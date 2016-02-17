@@ -39,13 +39,13 @@ class SpecialApiSandbox extends SpecialPage {
 		}
 
 		$out->addJsConfigVars( 'apihighlimits', $this->getUser()->isAllowed( 'apihighlimits' ) );
-		$out->addModuleStyles( array(
+		$out->addModuleStyles( [
 			'mediawiki.special.apisandbox.styles',
-		) );
-		$out->addModules( array(
+		] );
+		$out->addModules( [
 			'mediawiki.special.apisandbox',
 			'mediawiki.apipretty',
-		) );
+		] );
 		$out->wrapWikiMsg(
 			"<div id='mw-apisandbox'><div class='mw-apisandbox-nojs error'>\n$1\n</div></div>",
 			'apisandbox-jsonly'

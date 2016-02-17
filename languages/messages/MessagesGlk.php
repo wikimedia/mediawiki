@@ -12,7 +12,7 @@ $fallback = 'fa';
 
 $rtl = true;
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'مديا',
 	NS_SPECIAL          => 'خاص',
 	NS_TALK             => 'گب',
@@ -29,9 +29,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'رانما_گب',
 	NS_CATEGORY         => 'جرگه',
 	NS_CATEGORY_TALK    => 'جرگه_گب',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	// Aliases from old Persian (fa) namespace names
 	'ویژه' => NS_SPECIAL,
 	'بحث' => NS_TALK,
@@ -47,4 +47,4 @@ $namespaceAliases = array(
 	'بحث_راهنما' => NS_HELP_TALK,
 	'رده' => NS_CATEGORY,
 	'بحث_رده' => NS_CATEGORY_TALK,
-);
+];

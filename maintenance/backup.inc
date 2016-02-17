@@ -51,8 +51,8 @@ class BackupDumper extends Maintenance {
 	protected $pageCountLast = 0;
 	protected $revCountLast = 0;
 
-	protected $outputTypes = array();
-	protected $filterTypes = array();
+	protected $outputTypes = [];
+	protected $filterTypes = [];
 
 	protected $ID = 0;
 
@@ -137,8 +137,8 @@ class BackupDumper extends Maintenance {
 		if ( $file != '' ) {
 			require_once $file;
 		}
-		$register = array( $class, 'register' );
-		call_user_func_array( $register, array( $this ) );
+		$register = [ $class, 'register' ];
+		call_user_func_array( $register, [ $this ] );
 	}
 
 	function execute() {
@@ -150,7 +150,7 @@ class BackupDumper extends Maintenance {
 	 */
 	function processOptions() {
 		$sink = null;
-		$sinks = array();
+		$sinks = [];
 
 		$options = $this->orderedOptions;
 		foreach ( $options as $arg ) {
@@ -325,7 +325,7 @@ class BackupDumper extends Maintenance {
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
-		$db->setSessionOptions( array( 'connTimeout' => 3600 * 24 ) );
+		$db->setSessionOptions( [ 'connTimeout' => 3600 * 24 ] );
 
 		return $db;
 	}

@@ -38,10 +38,10 @@ class BenchWfIsWindows extends Benchmarker {
 	}
 
 	public function execute() {
-		$this->bench( array(
-			array( 'function' => array( $this, 'wfIsWindows' ) ),
-			array( 'function' => array( $this, 'wfIsWindowsCached' ) ),
-		) );
+		$this->bench( [
+			[ 'function' => [ $this, 'wfIsWindows' ] ],
+			[ 'function' => [ $this, 'wfIsWindowsCached' ] ],
+		] );
 		print $this->getFormattedResults();
 	}
 

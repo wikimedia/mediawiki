@@ -49,7 +49,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 			->method( 'error' );
 
 		$importer = new SiteImporter( $store );
-		$importer->setExceptionCallback( array( $errorHandler, 'error' ) );
+		$importer->setExceptionCallback( [ $errorHandler, 'error' ] );
 
 		return $importer;
 	}
@@ -82,22 +82,22 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 		$dewiki->setPath( MediaWikiSite::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
 		$dewiki->setSource( 'meta.wikimedia.org' );
 
-		return array(
-			'empty' => array(
+		return [
+			'empty' => [
 				'<sites></sites>',
-				array(),
-			),
-			'no sites' => array(
+				[],
+			],
+			'no sites' => [
 				'<sites><Foo><globalid>Foo</globalid></Foo><Bar><quux>Bla</quux></Bar></sites>',
-				array(),
-			),
-			'minimal' => array(
+				[],
+			],
+			'minimal' => [
 				'<sites>' .
 					'<site><globalid>Foo</globalid></site>' .
 				'</sites>',
-				array( $foo ),
-			),
-			'full' => array(
+				[ $foo ],
+			],
+			'full' => [
 				'<sites>' .
 					'<site><globalid>Foo</globalid></site>' .
 					'<site>' .
@@ -117,9 +117,9 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 						'<path type="page_path">http://de.wikipedia.org/wiki/</path>' .
 					'</site>' .
 				'</sites>',
-				array( $foo, $acme, $dewiki ),
-			),
-			'skip' => array(
+				[ $foo, $acme, $dewiki ],
+			],
+			'skip' => [
 				'<sites>' .
 					'<site><globalid>Foo</globalid></site>' .
 					'<site><barf>Foo</barf></site>' .
@@ -131,10 +131,10 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 						'<path type="link">http://acme.com/</path>' .
 					'</site>' .
 				'</sites>',
-				array( $foo, $acme ),
+				[ $foo, $acme ],
 				1
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -173,7 +173,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 		$dewiki->setPath( MediaWikiSite::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
 		$dewiki->setSource( 'meta.wikimedia.org' );
 
-		$importer = $this->newSiteImporter( array( $foo, $acme, $dewiki ), 0 );
+		$importer = $this->newSiteImporter( [ $foo, $acme, $dewiki ], 0 );
 
 		$file = __DIR__ . '/SiteImporterTest.xml';
 		$importer->importFromFile( $file );
@@ -185,7 +185,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	 * @return array[]
 	 */
 	private function getSerializedSiteList( $sites ) {
-		$serialized = array();
+		$serialized = [];
 
 		foreach ( $sites as $site ) {
 			$key = $site->getGlobalId();

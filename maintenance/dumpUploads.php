@@ -99,7 +99,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	function fetchLocal( $shared ) {
 		$dbr = $this->getDB( DB_SLAVE );
 		$result = $dbr->select( 'image',
-			array( 'img_name' ),
+			[ 'img_name' ],
 			'',
 			__METHOD__ );
 

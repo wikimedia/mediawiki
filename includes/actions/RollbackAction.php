@@ -53,7 +53,7 @@ class RollbackAction extends FormlessAction {
 			$this->getUser()
 		);
 
-		if ( in_array( array( 'actionthrottledtext' ), $result ) ) {
+		if ( in_array( [ 'actionthrottledtext' ], $result ) ) {
 			throw new ThrottledError;
 		}
 
@@ -80,7 +80,7 @@ class RollbackAction extends FormlessAction {
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
 
-		if ( $result == array( array( 'readonlytext' ) ) ) {
+		if ( $result == [ [ 'readonlytext' ] ] ) {
 			throw new ReadOnlyError;
 		}
 

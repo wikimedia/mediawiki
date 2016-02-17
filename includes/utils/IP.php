@@ -207,7 +207,7 @@ class IP {
 			if ( strpos( $ip, '/' ) !== false ) {
 				list( $ip, $cidr ) = explode( '/', $ip, 2 );
 			} else {
-				list( $ip, $cidr ) = array( $ip, '' );
+				list( $ip, $cidr ) = [ $ip, '' ];
 			}
 			// Get the largest slice of words with multiple zeros
 			$offset = 0;
@@ -257,9 +257,9 @@ class IP {
 		if ( substr( $both, 0, 1 ) === '[' ) {
 			if ( preg_match( '/^\[(' . RE_IPV6_ADD . ')\](?::(?P<port>\d+))?$/', $both, $m ) ) {
 				if ( isset( $m['port'] ) ) {
-					return array( $m[1], intval( $m['port'] ) );
+					return [ $m[1], intval( $m['port'] ) ];
 				} else {
-					return array( $m[1], false );
+					return [ $m[1], false ];
 				}
 			} else {
 				// Square bracket found but no IPv6
@@ -270,7 +270,7 @@ class IP {
 		if ( $numColons >= 2 ) {
 			// Is it a bare IPv6 address?
 			if ( preg_match( '/^' . RE_IPV6_ADD . '$/', $both ) ) {
-				return array( $both, false );
+				return [ $both, false ];
 			} else {
 				// Not valid IPv6, but too many colons for anything else
 				return false;
@@ -280,7 +280,7 @@ class IP {
 			// Host:port?
 			$bits = explode( ':', $both );
 			if ( preg_match( '/^\d+/', $bits[1] ) ) {
-				return array( $bits[0], intval( $bits[1] ) );
+				return [ $bits[0], intval( $bits[1] ) ];
 			} else {
 				// Not a valid port
 				return false;
@@ -288,7 +288,7 @@ class IP {
 		}
 
 		// Plain hostname
-		return array( $both, false );
+		return [ $both, false ];
 	}
 
 	/**
@@ -378,7 +378,7 @@ class IP {
 	public static function isPublic( $ip ) {
 		static $privateSet = null;
 		if ( !$privateSet ) {
-			$privateSet = new IPSet( array(
+			$privateSet = new IPSet( [
 				'10.0.0.0/8', # RFC 1918 (private)
 				'172.16.0.0/12', # RFC 1918 (private)
 				'192.168.0.0/16', # RFC 1918 (private)
@@ -388,7 +388,7 @@ class IP {
 				'0:0:0:0:0:0:0:1', # loopback
 				'169.254.0.0/16', # link-local
 				'fe80::/10', # link-local
-			) );
+			] );
 		}
 		return !$privateSet->match( $ip );
 	}
@@ -463,7 +463,7 @@ class IP {
 		}
 		$parts = explode( '/', $range, 2 );
 		if ( count( $parts ) != 2 ) {
-			return array( false, false );
+			return [ false, false ];
 		}
 		list( $network, $bits ) = $parts;
 		$network = ip2long( $network );
@@ -482,7 +482,7 @@ class IP {
 			$bits = false;
 		}
 
-		return array( $network, $bits );
+		return [ $network, $bits ];
 	}
 
 	/**
@@ -533,9 +533,9 @@ class IP {
 			$start = $end = self::toHex( $range );
 		}
 		if ( $start === false || $end === false ) {
-			return array( false, false );
+			return [ false, false ];
 		} else {
-			return array( $start, $end );
+			return [ $start, $end ];
 		}
 	}
 
@@ -551,7 +551,7 @@ class IP {
 		# Explode into <expanded IP,range>
 		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
-			return array( false, false );
+			return [ false, false ];
 		}
 		list( $network, $bits ) = $parts;
 		$network = self::IPv6ToRawHex( $network );
@@ -572,7 +572,7 @@ class IP {
 			$bits = false;
 		}
 
-		return array( $network, (int)$bits );
+		return [ $network, (int)$bits ];
 	}
 
 	/**
@@ -621,9 +621,9 @@ class IP {
 			$start = $end = self::toHex( $range );
 		}
 		if ( $start === false || $end === false ) {
-			return array( false, false );
+			return [ false, false ];
 		} else {
-			return array( $start, $end );
+			return [ $start, $end ];
 		}
 	}
 
@@ -686,7 +686,7 @@ class IP {
 			}
 		}
 		// IPv6 loopback address
-		$m = array();
+		$m = [];
 		if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) ) {
 			return '127.0.0.1';
 		}
@@ -731,7 +731,7 @@ class IP {
 	 */
 	public static function isTrustedProxy( $ip ) {
 		$trusted = self::isConfiguredProxy( $ip );
-		Hooks::run( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+		Hooks::run( 'IsTrustedProxy', [ &$ip, &$trusted ] );
 		return $trusted;
 	}
 
@@ -774,7 +774,7 @@ class IP {
 	 * @return string|false
 	 */
 	public static function getSubnet( $ip ) {
-		$matches = array();
+		$matches = [];
 		$subnet = false;
 		if ( IP::isIPv6( $ip ) ) {
 			$parts = IP::parseRange( "$ip/64" );

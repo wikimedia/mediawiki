@@ -31,7 +31,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	public $invert = false;
 
 	/** @var array */
-	public $namespaces = array();
+	public $namespaces = [];
 
 	/**
 	 * @param DumpOutput $sink
@@ -41,7 +41,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	function __construct( &$sink, $param ) {
 		parent::__construct( $sink );
 
-		$constants = array(
+		$constants = [
 			"NS_MAIN"           => NS_MAIN,
 			"NS_TALK"           => NS_TALK,
 			"NS_USER"           => NS_USER,
@@ -59,7 +59,7 @@ class DumpNamespaceFilter extends DumpFilter {
 			"NS_HELP"           => NS_HELP,
 			"NS_HELP_TALK"      => NS_HELP_TALK,
 			"NS_CATEGORY"       => NS_CATEGORY,
-			"NS_CATEGORY_TALK"  => NS_CATEGORY_TALK );
+			"NS_CATEGORY_TALK"  => NS_CATEGORY_TALK ];
 
 		if ( $param { 0 } == '!' ) {
 			$this->invert = true;

@@ -14,11 +14,11 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 			$this->cache = ObjectCache::getWANInstance( $name );
 		} else {
-			$this->cache = new WANObjectCache( array(
+			$this->cache = new WANObjectCache( [
 				'cache' => new HashBagOStuff(),
 				'pool' => 'testcache-hash',
-				'relayer' => new EventRelayerNull( array() )
-			) );
+				'relayer' => new EventRelayerNull( [] )
+			] );
 		}
 
 		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
@@ -47,17 +47,17 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	public static function provideSetAndGet() {
-		return array(
-			array( 14141, 3 ),
-			array( 3535.666, 3 ),
-			array( array(), 3 ),
-			array( null, 3 ),
-			array( '0', 3 ),
-			array( (object)array( 'meow' ), 3 ),
-			array( INF, 3 ),
-			array( '', 3 ),
-			array( 'pizzacat', INF ),
-		);
+		return [
+			[ 14141, 3 ],
+			[ 3535.666, 3 ],
+			[ [], 3 ],
+			[ null, 3 ],
+			[ '0', 3 ],
+			[ (object)[ 'meow' ], 3 ],
+			[ INF, 3 ],
+			[ '', 3 ],
+			[ 'pizzacat', INF ],
+		];
 	}
 
 	/**
@@ -91,7 +91,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	public function testStaleSet() {
 		$key = wfRandomString();
 		$value = wfRandomString();
-		$this->cache->set( $key, $value, 3, array( 'since' => microtime( true ) - 30 ) );
+		$this->cache->set( $key, $value, 3, [ 'since' => microtime( true ) - 30 ] );
 
 		$this->assertFalse( $this->cache->get( $key ), "Stale set() value ignored" );
 	}
@@ -116,7 +116,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		};
 
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 
@@ -126,10 +126,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
 
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, 30, $func, array(
+		$v = $cache->getWithSetCallback( $key, 30, $func, [
 			'lowTTL' => 0,
 			'lockTSE' => 5,
-		) );
+		] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 
@@ -137,7 +137,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		usleep( 1 );
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, 30, $func,
-			array( 'checkKeys' => array( $cKey1, $cKey2 ) ) );
+			[ 'checkKeys' => [ $cKey1, $cKey2 ] ] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
@@ -148,7 +148,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$priorTime = microtime( true );
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, 30, $func,
-			array( 'checkKeys' => array( $cKey1, $cKey2 ) ) );
+			[ 'checkKeys' => [ $cKey1, $cKey2 ] ] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
@@ -157,16 +157,16 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertLessThanOrEqual( $priorTime, $t2, 'Check keys did not change again' );
 
 		$curTTL = null;
-		$v = $cache->get( $key, $curTTL, array( $cKey1, $cKey2 ) );
+		$v = $cache->get( $key, $curTTL, [ $cKey1, $cKey2 ] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$v = $cache->getWithSetCallback( $key, 30, $func, array( 'pcTTL' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, [ 'pcTTL' => 5 ] );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$cache->delete( $key );
-		$v = $cache->getWithSetCallback( $key, 30, $func, array( 'pcTTL' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, [ 'pcTTL' => 5 ] );
 		$this->assertEquals( $value, $v, "Value still returned after deleted" );
 		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
 	}
@@ -186,13 +186,13 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			return $value;
 		};
 
-		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Value was populated' );
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->lock( $key, 0 );
-		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
 	}
@@ -215,7 +215,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		// Value should be marked as stale due to snapshot lag
 		$curTTL = null;
-		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( $value, $cache->get( $key, $curTTL ), 'Value was populated' );
 		$this->assertLessThan( 0, $curTTL, 'Value has negative curTTL' );
@@ -223,7 +223,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->lock( $key, 0 );
-		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
 	}
@@ -234,8 +234,8 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	public function testGetMulti() {
 		$cache = $this->cache;
 
-		$value1 = array( 'this' => 'is', 'a' => 'test' );
-		$value2 = array( 'this' => 'is', 'another' => 'test' );
+		$value1 = [ 'this' => 'is', 'a' => 'test' ];
+		$value2 = [ 'this' => 'is', 'another' => 'test' ];
 
 		$key1 = wfRandomString();
 		$key2 = wfRandomString();
@@ -244,10 +244,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$cache->set( $key1, $value1, 5 );
 		$cache->set( $key2, $value2, 10 );
 
-		$curTTLs = array();
+		$curTTLs = [];
 		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2 ),
-			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs ),
+			[ $key1 => $value1, $key2 => $value2 ],
+			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs ),
 			'Result array populated'
 		);
 
@@ -260,10 +260,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$priorTime = microtime( true );
 		usleep( 1 );
-		$curTTLs = array();
+		$curTTLs = [];
 		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2 ),
-			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs, array( $cKey1, $cKey2 ) ),
+			[ $key1 => $value1, $key2 => $value2 ],
+			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs, [ $cKey1, $cKey2 ] ),
 			"Result array populated even with new check keys"
 		);
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
@@ -275,10 +275,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertLessThanOrEqual( 0, $curTTLs[$key2], 'Key 2 has current TTL <= 0' );
 
 		usleep( 1 );
-		$curTTLs = array();
+		$curTTLs = [];
 		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2 ),
-			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs, array( $cKey1, $cKey2 ) ),
+			[ $key1 => $value1, $key2 => $value2 ],
+			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs, [ $cKey1, $cKey2 ] ),
 			"Result array still populated even with new check keys"
 		);
 		$this->assertEquals( 2, count( $curTTLs ), "Current TTLs still array set" );
@@ -302,7 +302,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		// Fake initial check key to be set in the past. Otherwise we'd have to sleep for
 		// several seconds during the test to assert the behaviour.
-		foreach ( array( $checkAll, $check1, $check2 ) as $checkKey ) {
+		foreach ( [ $checkAll, $check1, $check2 ] as $checkKey ) {
 			$cache->touchCheckKey( $checkKey, WANObjectCache::HOLDOFF_NONE );
 		}
 		usleep( 100 );
@@ -310,15 +310,15 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$cache->set( 'key1', $value1, 10 );
 		$cache->set( 'key2', $value2, 10 );
 
-		$curTTLs = array();
-		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
+		$curTTLs = [];
+		$result = $cache->getMulti( [ 'key1', 'key2', 'key3' ], $curTTLs, [
 			'key1' => $check1,
 			$checkAll,
 			'key2' => $check2,
 			'key3' => $check3,
-		) );
+		] );
 		$this->assertEquals(
-			array( 'key1' => $value1, 'key2' => $value2 ),
+			[ 'key1' => $value1, 'key2' => $value2 ],
 			$result,
 			'Initial values'
 		);
@@ -329,15 +329,15 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$cache->touchCheckKey( $check1 );
 
-		$curTTLs = array();
-		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
+		$curTTLs = [];
+		$result = $cache->getMulti( [ 'key1', 'key2', 'key3' ], $curTTLs, [
 			'key1' => $check1,
 			$checkAll,
 			'key2' => $check2,
 			'key3' => $check3,
-		) );
+		] );
 		$this->assertEquals(
-			array( 'key1' => $value1, 'key2' => $value2 ),
+			[ 'key1' => $value1, 'key2' => $value2 ],
 			$result,
 			'key1 expired by check1, but value still provided'
 		);
@@ -346,15 +346,15 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$cache->touchCheckKey( $checkAll );
 
-		$curTTLs = array();
-		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
+		$curTTLs = [];
+		$result = $cache->getMulti( [ 'key1', 'key2', 'key3' ], $curTTLs, [
 			'key1' => $check1,
 			$checkAll,
 			'key2' => $check2,
 			'key3' => $check3,
-		) );
+		] );
 		$this->assertEquals(
-			array( 'key1' => $value1, 'key2' => $value2 ),
+			[ 'key1' => $value1, 'key2' => $value2 ],
 			$result,
 			'All keys expired by checkAll, but value still provided'
 		);
@@ -373,10 +373,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			$key = wfRandomString();
 			$checkKey = wfRandomString();
 			// miss, set, hit
-			$cache->get( $key, $curTTL, array( $checkKey ) );
+			$cache->get( $key, $curTTL, [ $checkKey ] );
 			$cache->set( $key, 'val', 10 );
 			$curTTL = null;
-			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+			$v = $cache->get( $key, $curTTL, [ $checkKey ] );
 
 			$this->assertEquals( 'val', $v );
 			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (miss/set/hit)" );
@@ -388,7 +388,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			// set, hit
 			$cache->set( $key, 'val', 10 );
 			$curTTL = null;
-			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+			$v = $cache->get( $key, $curTTL, [ $checkKey ] );
 
 			$this->assertEquals( 'val', $v );
 			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (set/hit)" );
@@ -498,7 +498,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->cache->set( $key, $value, 30 );
 
 		$curTTL = null;
-		$v = $this->cache->get( $key, $curTTL, array( $tKey1, $tKey2 ) );
+		$v = $this->cache->get( $key, $curTTL, [ $tKey1, $tKey2 ] );
 		$this->assertEquals( $value, $v, "Value matches" );
 		$this->assertLessThan( -4.9, $curTTL, "Correct CTL" );
 		$this->assertGreaterThan( -5.1, $curTTL, "Correct CTL" );
@@ -511,17 +511,17 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$value = 1;
 
 		$key = wfRandomString();
-		$opts = array( 'lag' => 300, 'since' => microtime( true ) );
+		$opts = [ 'lag' => 300, 'since' => microtime( true ) ];
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( $value, $this->cache->get( $key ), "Rep-lagged value written." );
 
 		$key = wfRandomString();
-		$opts = array( 'lag' => 0, 'since' => microtime( true ) - 300 );
+		$opts = [ 'lag' => 0, 'since' => microtime( true ) - 300 ];
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( false, $this->cache->get( $key ), "Trx-lagged value not written." );
 
 		$key = wfRandomString();
-		$opts = array( 'lag' => 5, 'since' => microtime( true ) - 5 );
+		$opts = [ 'lag' => 5, 'since' => microtime( true ) - 5 ];
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( false, $this->cache->get( $key ), "Lagged value not written." );
 	}
@@ -533,7 +533,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$value = 1;
 
 		$key = wfRandomString();
-		$opts = array( 'pending' => true );
+		$opts = [ 'pending' => true ];
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( false, $this->cache->get( $key ), "Pending value not written." );
 	}

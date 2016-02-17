@@ -13,7 +13,7 @@
 
 $fallback = 'cdo, zh-hant';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Mûi-thé',
 	NS_SPECIAL          => 'Tek-pia̍t',
 	NS_TALK             => 'Thó-lūn',
@@ -30,9 +30,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Pang-chān_thó-lūn',
 	NS_CATEGORY         => 'Lūi-pia̍t',
 	NS_CATEGORY_TALK    => 'Lūi-pia̍t_thó-lūn',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'媒體' => NS_MEDIA,
 	'特殊' => NS_SPECIAL,
 	'討論' => NS_TALK,
@@ -49,24 +49,24 @@ $namespaceAliases = array(
 	'幫助討論' => NS_HELP_TALK,
 	'分類' => NS_CATEGORY,
 	'分類討論' => NS_CATEGORY_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Recentchangeslinked'       => array( 'Siong-koan_ê_kái-piàn' ),
-	'Specialpages'              => array( 'Te̍k-sû_ia̍h' ),
-	'Upload'                    => array( 'Kā_tóng-àn_chiūⁿ-bāng' ),
-	'Whatlinkshere'             => array( 'Tó-ūi_liân_kàu_chia' ),
-);
+$specialPageAliases = [
+	'Recentchangeslinked'       => [ 'Siong-koan_ê_kái-piàn' ],
+	'Specialpages'              => [ 'Te̍k-sû_ia̍h' ],
+	'Upload'                    => [ 'Kā_tóng-àn_chiūⁿ-bāng' ],
+	'Whatlinkshere'             => [ 'Tó-ūi_liân_kàu_chia' ],
+];
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'ISO 8601',
-);
+];
 
 $defaultDateFormat = 'nan';
 
-$dateFormats = array(
+$dateFormats = [
 	'nan time' => 'H:i',
 	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
 	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (D) H:i',
-);
+];

@@ -16,12 +16,12 @@ class CssContentTest extends JavaScriptContentTest {
 		$user = new User();
 		$user->setName( '127.0.0.1' );
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgUser' => $user,
-			'wgTextModelsToParse' => array(
+			'wgTextModelsToParse' => [
 				CONTENT_MODEL_CSS,
-			)
-		) );
+			]
+		] );
 	}
 
 	public function newContent( $text ) {
@@ -29,27 +29,27 @@ class CssContentTest extends JavaScriptContentTest {
 	}
 
 	public static function dataGetParserOutput() {
-		return array(
-			array(
+		return [
+			[
 				'MediaWiki:Test.css',
 				null,
 				"hello <world>\n",
 				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"
-			),
-			array(
+			],
+			[
 				'MediaWiki:Test.css',
 				null,
 				"/* hello [[world]] */\n",
 				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* hello [[world]] */\n\n</pre>",
-				array(
-					'Links' => array(
-						array( 'World' => 0 )
-					)
-				)
-			),
+				[
+					'Links' => [
+						[ 'World' => 0 ]
+					]
+				]
+			],
 
 			// TODO: more...?
-		);
+		];
 	}
 
 	/**
@@ -74,23 +74,23 @@ class CssContentTest extends JavaScriptContentTest {
 	 * Redirects aren't supported
 	 */
 	public static function provideUpdateRedirect() {
-		return array(
-			array(
+		return [
+			[
 				'#REDIRECT [[Someplace]]',
 				'#REDIRECT [[Someplace]]',
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
-		) );
+		] );
 		$content = new CssContent( $text );
 		$target = $content->getRedirectTarget();
 		$this->assertEquals( $title, $target ? $target->getPrefixedText() : null );
@@ -114,12 +114,12 @@ class CssContentTest extends JavaScriptContentTest {
 	}
 
 	public static function dataEquals() {
-		return array(
-			array( new CssContent( 'hallo' ), null, false ),
-			array( new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ),
-			array( new CssContent( 'hallo' ), new WikitextContent( 'hallo' ), false ),
-			array( new CssContent( 'hallo' ), new CssContent( 'HALLO' ), false ),
-		);
+		return [
+			[ new CssContent( 'hallo' ), null, false ],
+			[ new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ],
+			[ new CssContent( 'hallo' ), new WikitextContent( 'hallo' ), false ],
+			[ new CssContent( 'hallo' ), new CssContent( 'HALLO' ), false ],
+		];
 	}
 
 	/**

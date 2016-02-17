@@ -43,7 +43,7 @@ class FSFileBackend extends FileBackendStore {
 	protected $basePath;
 
 	/** @var array Map of container names to root paths for custom container paths */
-	protected $containerPaths = array();
+	protected $containerPaths = [];
 
 	/** @var int File permission mode */
 	protected $fileMode;
@@ -55,7 +55,7 @@ class FSFileBackend extends FileBackendStore {
 	protected $currentUser;
 
 	/** @var array */
-	protected $hadWarningErrors = array();
+	protected $hadWarningErrors = [];
 
 	/**
 	 * @see FileBackendStore::__construct()
@@ -209,11 +209,11 @@ class FSFileBackend extends FileBackendStore {
 
 				return $status;
 			}
-			$cmd = implode( ' ', array(
+			$cmd = implode( ' ', [
 				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
-			) );
+			] );
 			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-create', $params['dst'] );
@@ -248,11 +248,11 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array(
+			$cmd = implode( ' ', [
 				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $params['src'] ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
-			) );
+			] );
 			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
@@ -306,11 +306,11 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array(
+			$cmd = implode( ' ', [
 				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
-			) );
+			] );
 			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -366,11 +366,11 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array(
+			$cmd = implode( ' ', [
 				wfIsWindows() ? 'MOVE /Y' : 'mv', // (overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
-			) );
+			] );
 			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
@@ -412,10 +412,10 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array(
+			$cmd = implode( ' ', [
 				wfIsWindows() ? 'DEL' : 'unlink',
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) )
-			) );
+			] );
 			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
@@ -551,10 +551,10 @@ class FSFileBackend extends FileBackendStore {
 		$hadError = $this->untrapWarnings();
 
 		if ( $stat ) {
-			return array(
+			return [
 				'mtime' => wfTimestamp( TS_MW, $stat['mtime'] ),
 				'size' => $stat['size']
-			);
+			];
 		} elseif ( !$hadError ) {
 			return false; // file does not exist
 		} else {
@@ -593,7 +593,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
 
-			return array(); // nothing under this dir
+			return []; // nothing under this dir
 		} elseif ( !is_readable( $dir ) ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 
@@ -618,7 +618,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
 
-			return array(); // nothing under this dir
+			return []; // nothing under this dir
 		} elseif ( !is_readable( $dir ) ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 
@@ -629,7 +629,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	protected function doGetLocalReferenceMulti( array $params ) {
-		$fsFiles = array(); // (path => FSFile)
+		$fsFiles = []; // (path => FSFile)
 
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
@@ -644,7 +644,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	protected function doGetLocalCopyMulti( array $params ) {
-		$tmpFiles = array(); // (path => TempFSFile)
+		$tmpFiles = []; // (path => TempFSFile)
 
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
@@ -685,14 +685,14 @@ class FSFileBackend extends FileBackendStore {
 	 * @return Status[]
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
-		$statuses = array();
+		$statuses = [];
 
-		$pipes = array();
+		$pipes = [];
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
 			$pipes[$index] = popen( "{$fileOpHandle->cmd} 2>&1", 'r' );
 		}
 
-		$errs = array();
+		$errs = [];
 		foreach ( $pipes as $index => $pipe ) {
 			// Result will be empty on success in *NIX. On Windows,
 			// it may be something like "        1 file(s) [copied|moved].".
@@ -761,7 +761,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function trapWarnings() {
 		$this->hadWarningErrors[] = false; // push to stack
-		set_error_handler( array( $this, 'handleWarning' ), E_WARNING );
+		set_error_handler( [ $this, 'handleWarning' ], E_WARNING );
 	}
 
 	/**
@@ -831,7 +831,7 @@ abstract class FSFileBackendList implements Iterator {
 	protected $pos = 0;
 
 	/** @var array */
-	protected $params = array();
+	protected $params = [];
 
 	/**
 	 * @param string $dir File system directory

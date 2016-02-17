@@ -54,8 +54,8 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			return false;
 		}
 		$this->output( "Fixing protocol-relative entries in the externallinks table...\n" );
-		$res = $db->select( 'externallinks', array( 'el_from', 'el_to', 'el_index' ),
-			array( 'el_index' . $db->buildLike( '//', $db->anyString() ) ),
+		$res = $db->select( 'externallinks', [ 'el_from', 'el_to', 'el_index' ],
+			[ 'el_index' . $db->buildLike( '//', $db->anyString() ) ],
 			__METHOD__
 		);
 		$count = 0;
@@ -66,28 +66,28 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 				wfWaitForSlaves();
 			}
 			$db->insert( 'externallinks',
-				array(
-					array(
+				[
+					[
 						'el_id' => $db->nextSequenceValue( 'externallinks_el_id_seq' ),
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "http:{$row->el_index}",
-					),
-					array(
+					],
+					[
 						'el_id' => $db->nextSequenceValue( 'externallinks_el_id_seq' ),
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "https:{$row->el_index}",
-					)
-				), __METHOD__, array( 'IGNORE' )
+					]
+				], __METHOD__, [ 'IGNORE' ]
 			);
 			$db->delete(
 				'externallinks',
-				array(
+				[
 					'el_index' => $row->el_index,
 					'el_from' => $row->el_from,
 					'el_to' => $row->el_to
-				),
+				],
 				__METHOD__
 			);
 		}

@@ -130,7 +130,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'other' );
+		$forms = [ 'one', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -143,19 +143,19 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-			array( 'few', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 4 ),
-			array( 'few', 334 ),
-			array( 'other', 5 ),
-			array( 'other', 15 ),
-			array( 'other', 120 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+			[ 'few', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 4 ],
+			[ 'few', 334 ],
+			[ 'other', 5 ],
+			[ 'other', 15 ],
+			[ 'other', 120 ],
+		];
 	}
 
 	/**
@@ -163,18 +163,18 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = [ 'one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'other', 4 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'other', 4 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+		];
 	}
 
 	# #### HELPERS #####################################################

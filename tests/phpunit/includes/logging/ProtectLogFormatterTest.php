@@ -8,156 +8,156 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideProtectLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'protect',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'4::description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'5:bool:cascade' => false,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-				array(
+							],
+						],
+					],
+				],
+				[
 					'text' => 'User protected ProtectPage [Edit=Allow only administrators] ' .
 						'(indefinite) [Move=Allow only administrators] (indefinite)',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => false,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-			),
+							],
+						],
+					],
+				],
+			],
 
 			// Current format with cascade
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'protect',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'4::description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'5:bool:cascade' => true,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => true,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-				array(
+							],
+						],
+					],
+				],
+				[
 					'text' => 'User protected ProtectPage [Edit=Allow only administrators] ' .
 						'(indefinite) [Move=Allow only administrators] (indefinite) [cascading]',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => true,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => true,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-			),
+							],
+						],
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'protect',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User protected ProtectPage [edit=sysop] (indefinite)[move=sysop] (indefinite)',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => false,
-					),
-				),
-			),
+					],
+				],
+			],
 
 			// Legacy format with cascade
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'protect',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User protected ProtectPage [edit=sysop] ' .
 						'(indefinite)[move=sysop] (indefinite) [cascading]',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => true,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -173,159 +173,159 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideModifyLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'modify',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'4::description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'5:bool:cascade' => false,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-				array(
+							],
+						],
+					],
+				],
+				[
 					'text' => 'User changed protection level for ProtectPage ' .
 						'[Edit=Allow only administrators] ' .
 						'(indefinite) [Move=Allow only administrators] (indefinite)',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => false,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-			),
+							],
+						],
+					],
+				],
+			],
 
 			// Current format with cascade
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'modify',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'4::description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'5:bool:cascade' => true,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => true,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinity',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-				array(
+							],
+						],
+					],
+				],
+				[
 					'text' => 'User changed protection level for ProtectPage ' .
 						'[Edit=Allow only administrators] (indefinite) ' .
 						'[Move=Allow only administrators] (indefinite) [cascading]',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => true,
-						'details' => array(
-							array(
+						'details' => [
+							[
 								'type' => 'edit',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => true,
-							),
-							array(
+							],
+							[
 								'type' => 'move',
 								'level' => 'sysop',
 								'expiry' => 'infinite',
 								'cascade' => false,
-							),
-						),
-					),
-				),
-			),
+							],
+						],
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'modify',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User changed protection level for ProtectPage ' .
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => false,
-					),
-				),
-			),
+					],
+				],
+			],
 
 			// Legacy format with cascade
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'modify',
 					'comment' => 'protect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(
+					'params' => [
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User changed protection level for ProtectPage ' .
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite) [cascading]',
-					'api' => array(
+					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => true,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -341,23 +341,23 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideUnprotectLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'unprotect',
 					'comment' => 'unprotect comment',
 					'namespace' => NS_MAIN,
 					'title' => 'ProtectPage',
-					'params' => array(),
-				),
-				array(
+					'params' => [],
+				],
+				[
 					'text' => 'User removed protection from ProtectPage',
-					'api' => array(),
-				),
-			),
-		);
+					'api' => [],
+				],
+			],
+		];
 	}
 
 	/**
@@ -373,50 +373,50 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideMoveProtLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'move_prot',
 					'comment' => 'Move comment',
 					'namespace' => NS_MAIN,
 					'title' => 'NewPage',
-					'params' => array(
+					'params' => [
 						'4::oldtitle' => 'OldPage',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'text' => 'User moved protection settings from OldPage to NewPage',
-					'api' => array(
+					'api' => [
 						'oldtitle_ns' => 0,
 						'oldtitle_title' => 'OldPage',
-					),
-				),
-			),
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'protect',
 					'action' => 'move_prot',
 					'comment' => 'Move comment',
 					'namespace' => NS_MAIN,
 					'title' => 'NewPage',
-					'params' => array(
+					'params' => [
 						'OldPage',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User moved protection settings from OldPage to NewPage',
-					'api' => array(
+					'api' => [
 						'oldtitle_ns' => 0,
 						'oldtitle_title' => 'OldPage',
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**

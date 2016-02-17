@@ -49,50 +49,50 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		$tables = array( 'page', 'pagelinks', 'templatelinks' );
-		$conds = array(
+		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
+		$conds = [
 			'pl_namespace IS NULL',
 			'page_namespace' => MWNamespace::getContentNamespaces(),
 			'page_is_redirect' => 0,
 			'tl_namespace IS NULL'
-		);
-		$joinConds = array(
-			'pagelinks' => array(
-				'LEFT JOIN', array(
+		];
+		$joinConds = [
+			'pagelinks' => [
+				'LEFT JOIN', [
 					'pl_namespace = page_namespace',
 					'pl_title = page_title'
-				)
-			),
-			'templatelinks' => array(
-				'LEFT JOIN', array(
+				]
+			],
+			'templatelinks' => [
+				'LEFT JOIN', [
 					'tl_namespace = page_namespace',
 					'tl_title = page_title'
-				)
-			)
-		);
+				]
+			]
+		];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'LonelyPagesQuery', array( &$tables, &$conds, &$joinConds ) );
+		Hooks::run( 'LonelyPagesQuery', [ &$tables, &$conds, &$joinConds ] );
 
-		return array(
+		return [
 			'tables' => $tables,
-			'fields' => array(
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
-			),
+			],
 			'conds' => $conds,
 			'join_conds' => $joinConds
-		);
+		];
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5
 		if ( count( MWNamespace::getContentNamespaces() ) > 1 ) {
-			return array( 'page_namespace', 'page_title' );
+			return [ 'page_namespace', 'page_title' ];
 		} else {
-			return array( 'page_title' );
+			return [ 'page_title' ];
 		}
 	}
 

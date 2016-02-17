@@ -118,7 +118,7 @@ class Article implements Page {
 		}
 
 		$page = null;
-		Hooks::run( 'ArticleFromTitle', array( &$title, &$page, $context ) );
+		Hooks::run( 'ArticleFromTitle', [ &$title, &$page, $context ] );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
 				case NS_FILE:
@@ -283,7 +283,7 @@ class Article implements Page {
 				if ( $this->mRevision !== null ) {
 					// Revision title doesn't match the page title given?
 					if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
-						$function = array( get_class( $this->mPage ), 'newFromID' );
+						$function = [ get_class( $this->mPage ), 'newFromID' ];
 						$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
 					}
 				}
@@ -340,7 +340,7 @@ class Article implements Page {
 
 		// @todo Get rid of mContent everywhere!
 		$this->mContent = ContentHandler::getContentText( $content );
-		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', [ &$this, &$this->mContent ] );
 
 		return $this->mContent;
 	}
@@ -370,7 +370,7 @@ class Article implements Page {
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 		// XXX: this isn't page content but a UI message. horrible.
-		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ) );
+		$this->mContentObject = new MessageContent( 'missing-revision', [ $oldid ] );
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -390,7 +390,7 @@ class Article implements Page {
 			}
 
 			# Update error message with correct oldid
-			$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ) );
+			$this->mContentObject = new MessageContent( 'missing-revision', [ $oldid ] );
 
 			$this->mRevision = $this->mPage->getRevision();
 
@@ -417,7 +417,7 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		Hooks::run( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
+		Hooks::run( 'ArticleAfterFetchContentObject', [ &$this, &$this->mContentObject ] );
 
 		return $this->mContentObject;
 	}
@@ -582,7 +582,7 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
-					Hooks::run( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
+					Hooks::run( 'ArticleViewHeader', [ &$this, &$outputDone, &$useParserCache ] );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -644,12 +644,12 @@ class Article implements Page {
 						$this->showCssOrJsPage();
 						$outputDone = true;
 					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
-							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+							[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
-							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+							[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
@@ -823,7 +823,7 @@ class Article implements Page {
 			// Give hooks a chance to customise the output
 			if ( ContentHandler::runLegacyHooks(
 				'ShowRawCssJs',
-				array( $this->mContentObject, $this->getTitle(), $outputPage ) )
+				[ $this->mContentObject, $this->getTitle(), $outputPage ] )
 			) {
 				// If no legacy hooks ran, display the content of the parser output, including RL modules,
 				// but excluding metadata like categories and language links
@@ -856,31 +856,31 @@ class Article implements Page {
 				$specificTarget = $titleText;
 			}
 			if ( Block::newFromTarget( $specificTarget, $vagueTarget ) instanceof Block ) {
-				return array(
+				return [
 					'index' => 'noindex',
 					'follow' => 'nofollow'
-				);
+				];
 			}
 		}
 
 		if ( $this->mPage->getID() === 0 || $this->getOldID() ) {
 			# Non-articles (special pages etc), and old revisions
-			return array(
+			return [
 				'index' => 'noindex',
 				'follow' => 'nofollow'
-			);
+			];
 		} elseif ( $this->getContext()->getOutput()->isPrintable() ) {
 			# Discourage indexing of printable versions, but encourage following
-			return array(
+			return [
 				'index' => 'noindex',
 				'follow' => 'follow'
-			);
+			];
 		} elseif ( $this->getContext()->getRequest()->getInt( 'curid' ) ) {
 			# For ?curid=x urls, disallow indexing
-			return array(
+			return [
 				'index' => 'noindex',
 				'follow' => 'follow'
-			);
+			];
 		}
 
 		# Otherwise, construct the policy based on the various config variables.
@@ -898,7 +898,7 @@ class Article implements Page {
 			# a final sanity check that we have really got the parser output.
 			$policy = array_merge(
 				$policy,
-				array( 'index' => $pOutput->getIndexPolicy() )
+				[ 'index' => $pOutput->getIndexPolicy() ]
 			);
 		}
 
@@ -924,17 +924,17 @@ class Article implements Page {
 		if ( is_array( $policy ) ) {
 			return $policy;
 		} elseif ( !$policy ) {
-			return array();
+			return [];
 		}
 
 		$policy = explode( ',', $policy );
 		$policy = array_map( 'trim', $policy );
 
-		$arr = array();
+		$arr = [];
 		foreach ( $policy as $var ) {
-			if ( in_array( $var, array( 'index', 'noindex' ) ) ) {
+			if ( in_array( $var, [ 'index', 'noindex' ] ) ) {
 				$arr['index'] = $var;
-			} elseif ( in_array( $var, array( 'follow', 'nofollow' ) ) ) {
+			} elseif ( in_array( $var, [ 'follow', 'nofollow' ] ) ) {
 				$arr['follow'] = $var;
 			}
 		}
@@ -970,12 +970,12 @@ class Article implements Page {
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( Hooks::run( 'ArticleViewRedirect', array( &$this ) ) ) {
+			if ( Hooks::run( 'ArticleViewRedirect', [ &$this ] ) ) {
 				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
-					array(),
-					array( 'redirect' => 'no' )
+					[],
+					[ 'redirect' => 'no' ]
 				);
 
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
@@ -984,9 +984,9 @@ class Article implements Page {
 
 				// Add the script to update the displayed URL and
 				// set the fragment if one was specified in the redirect
-				$outputPage->addJsConfigVars( array(
+				$outputPage->addJsConfigVars( [
 					'wgInternalRedirectTargetUrl' => $redirectTargetUrl,
-				) );
+				] );
 				$outputPage->addModules( 'mediawiki.action.view.redirect' );
 
 				// Add a <link rel="canonical"> tag
@@ -1007,9 +1007,9 @@ class Article implements Page {
 				. "</span>" );
 
 				// Add the script to update the displayed URL
-				$outputPage->addJsConfigVars( array(
+				$outputPage->addJsConfigVars( [
 					'wgInternalRedirectTargetUrl' => $redirectTargetUrl,
-				) );
+				] );
 				$outputPage->addModules( 'mediawiki.action.view.redirect' );
 
 				return true;
@@ -1028,7 +1028,7 @@ class Article implements Page {
 			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
 				$this->getContext()->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-talkpageheader\">\n$1\n</div>",
-					array( 'talkpageheader' )
+					[ 'talkpageheader' ]
 				);
 			}
 		}
@@ -1048,7 +1048,7 @@ class Article implements Page {
 		// Show a footer allowing the user to patrol the shown revision or page if possible
 		$patrolFooterShown = $this->showPatrolFooter();
 
-		Hooks::run( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
+		Hooks::run( 'ArticleViewFooter', [ $this, $patrolFooterShown ] );
 	}
 
 	/**
@@ -1093,7 +1093,7 @@ class Article implements Page {
 		$oldestRevisionTimestamp = $dbr->selectField(
 			'revision',
 			'MIN( rev_timestamp )',
-			array( 'rev_page' => $this->getTitle()->getArticleID() ),
+			[ 'rev_page' => $this->getTitle()->getArticleID() ],
 			__METHOD__
 		);
 
@@ -1109,12 +1109,12 @@ class Article implements Page {
 			// 6h tolerance because the RC might not be cleaned out regularly
 			$recentPageCreation = true;
 			$rc = RecentChange::newFromConds(
-				array(
+				[
 					'rc_new' => 1,
 					'rc_timestamp' => $oldestRevisionTimestamp,
 					'rc_namespace' => $this->getTitle()->getNamespace(),
 					'rc_cur_id' => $this->getTitle()->getArticleID()
-				),
+				],
 				__METHOD__
 			);
 			if ( $rc ) {
@@ -1134,7 +1134,7 @@ class Article implements Page {
 			$newestUploadTimestamp = $dbr->selectField(
 				'image',
 				'MAX( img_timestamp )',
-				array( 'img_name' => $this->getTitle()->getDBkey() ),
+				[ 'img_name' => $this->getTitle()->getDBkey() ],
 				__METHOD__
 			);
 			if ( $newestUploadTimestamp
@@ -1143,15 +1143,15 @@ class Article implements Page {
 				// 6h tolerance because the RC might not be cleaned out regularly
 				$recentFileUpload = true;
 				$rc = RecentChange::newFromConds(
-					array(
+					[
 						'rc_type' => RC_LOG,
 						'rc_log_type' => 'upload',
 						'rc_timestamp' => $newestUploadTimestamp,
 						'rc_namespace' => NS_FILE,
 						'rc_cur_id' => $this->getTitle()->getArticleID()
-					),
+					],
 					__METHOD__,
-					array( 'USE INDEX' => 'rc_timestamp' )
+					[ 'USE INDEX' => 'rc_timestamp' ]
 				);
 				if ( $rc ) {
 					// Use patrol message specific to files
@@ -1205,12 +1205,12 @@ class Article implements Page {
 		$link = Linker::linkKnown(
 			$this->getTitle(),
 			$markPatrolledMsg->escaped(),
-			array(),
-			array(
+			[],
+			[
 				'action' => 'markpatrolled',
 				'rcid' => $rcid,
 				'token' => $token,
-			)
+			]
 		);
 
 		$outputPage->addHTML(
@@ -1258,7 +1258,7 @@ class Article implements Page {
 
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					array( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ) );
+					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
 			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
 				# Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
@@ -1266,14 +1266,14 @@ class Article implements Page {
 					'block',
 					MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
 					'',
-					array(
+					[
 						'lim' => 1,
 						'showIfEmpty' => false,
-						'msgKey' => array(
+						'msgKey' => [
 							'blocked-notice-logextract',
 							$user->getName() # Support GENDER in notice
-						)
-					)
+						]
+					]
 				);
 				$validUserPage = !$title->isSubpage();
 			} else {
@@ -1281,7 +1281,7 @@ class Article implements Page {
 			}
 		}
 
-		Hooks::run( 'ShowMissingArticle', array( $this ) );
+		Hooks::run( 'ShowMissingArticle', [ $this ] );
 
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
@@ -1290,24 +1290,24 @@ class Article implements Page {
 		$key = wfMemcKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		if ( $loggedIn || $cache->get( $key ) ) {
-			$logTypes = array( 'delete', 'move' );
-			$conds = array( "log_action != 'revision'" );
+			$logTypes = [ 'delete', 'move' ];
+			$conds = [ "log_action != 'revision'" ];
 			// Give extensions a chance to hide their (unrelated) log entries
-			Hooks::run( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
+			Hooks::run( 'Article::MissingArticleConditions', [ &$conds, $logTypes ] );
 			LogEventsList::showLogExtract(
 				$outputPage,
 				$logTypes,
 				$title,
 				'',
-				array(
+				[
 					'lim' => 10,
 					'conds' => $conds,
 					'showIfEmpty' => false,
-					'msgKey' => array( $loggedIn
+					'msgKey' => [ $loggedIn
 						? 'moveddeleted-notice'
 						: 'moveddeleted-notice-recent'
-					)
-				)
+					]
+				]
 			);
 		}
 
@@ -1322,7 +1322,7 @@ class Article implements Page {
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
-		$hookResult = Hooks::run( 'BeforeDisplayNoArticleText', array( $this ) );
+		$hookResult = Hooks::run( 'BeforeDisplayNoArticleText', [ $this ] );
 
 		if ( !$hookResult ) {
 			return;
@@ -1346,11 +1346,11 @@ class Article implements Page {
 
 			$dir = $this->getContext()->getLanguage()->getDir();
 			$lang = $this->getContext()->getLanguage()->getCode();
-			$outputPage->addWikiText( Xml::openElement( 'div', array(
+			$outputPage->addWikiText( Xml::openElement( 'div', [
 				'class' => "noarticletext mw-content-$dir",
 				'dir' => $dir,
 				'lang' => $lang,
-			) ) . "\n$text\n</div>" );
+			] ) . "\n$text\n</div>" );
 		}
 	}
 
@@ -1382,7 +1382,7 @@ class Article implements Page {
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				array( $msg, $link ) );
+				[ $msg, $link ] );
 
 			return false;
 		// We are allowed to see...
@@ -1404,7 +1404,7 @@ class Article implements Page {
 	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		if ( !Hooks::run( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
+		if ( !Hooks::run( 'DisplayOldSubtitle', [ &$this, &$oldid ] ) ) {
 			return;
 		}
 
@@ -1412,7 +1412,7 @@ class Article implements Page {
 		$unhide = $context->getRequest()->getInt( 'unhide' ) == 1;
 
 		# Cascade unhide param in links for easy deletion browsing
-		$extraParams = array();
+		$extraParams = [];
 		if ( $unhide ) {
 			$extraParams['unhide'] = 1;
 		}
@@ -1455,7 +1455,7 @@ class Article implements Page {
 			: Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'currentrevisionlink' )->escaped(),
-				array(),
+				[],
 				$extraParams
 			);
 		$curdiff = $current
@@ -1463,33 +1463,33 @@ class Article implements Page {
 			: Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'diff' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'diff' => 'cur',
 					'oldid' => $oldid
-				) + $extraParams
+				] + $extraParams
 			);
 		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'previousrevision' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'direction' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams
+				] + $extraParams
 			)
 			: $context->msg( 'previousrevision' )->escaped();
 		$prevdiff = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'diff' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'diff' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams
+				] + $extraParams
 			)
 			: $context->msg( 'diff' )->escaped();
 		$nextlink = $current
@@ -1497,22 +1497,22 @@ class Article implements Page {
 			: Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'nextrevision' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'direction' => 'next',
 					'oldid' => $oldid
-				) + $extraParams
+				] + $extraParams
 			);
 		$nextdiff = $current
 			? $context->msg( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'diff' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'diff' => 'next',
 					'oldid' => $oldid
-				) + $extraParams
+				] + $extraParams
 			);
 
 		$cdel = Linker::getRevDeleteLink( $user, $revision, $this->getTitle() );
@@ -1561,7 +1561,7 @@ class Article implements Page {
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
 		if ( !is_array( $target ) ) {
-			$target = array( $target );
+			$target = [ $target ];
 		}
 
 		$html = '<ul class="redirectText">';
@@ -1570,11 +1570,11 @@ class Article implements Page {
 			$html .= '<li>' . Linker::link(
 				$title,
 				htmlspecialchars( $title->getFullText() ),
-				array(),
+				[],
 				// Automatically append redirect=no to each link, since most of them are
 				// redirect pages themselves.
-				array( 'redirect' => 'no' ),
-				( $forceKnown ? array( 'known', 'noclasses' ) : array() )
+				[ 'redirect' => 'no' ],
+				( $forceKnown ? [ 'known', 'noclasses' ] : [] )
 			) . '</li>';
 		}
 		$html .= '</ul>';
@@ -1662,7 +1662,7 @@ class Article implements Page {
 			$outputPage = $context->getOutput();
 			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
-					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
+					[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
 				);
 			$outputPage->addHTML(
 				Xml::element( 'h2', null, $deleteLogPage->getName()->text() )
@@ -1691,7 +1691,7 @@ class Article implements Page {
 		}
 
 		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
-			array( 'delete', $this->getTitle()->getPrefixedText() ) )
+			[ 'delete', $this->getTitle()->getPrefixedText() ] )
 		) {
 			# Flag to hide all contents of the archived revisions
 			$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
@@ -1729,7 +1729,7 @@ class Article implements Page {
 			$revisions = $edits = (int)$dbr->selectField(
 				'revision',
 				'COUNT(rev_page)',
-				array( 'rev_page' => $title->getArticleID() ),
+				[ 'rev_page' => $title->getArticleID() ],
 				__METHOD__
 			);
 
@@ -1739,18 +1739,18 @@ class Article implements Page {
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
 				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
 					$context->msg( 'history' )->escaped(),
-					array(),
-					array( 'action' => 'history' ) ) .
+					[],
+					[ 'action' => 'history' ] ) .
 				'</strong>'
 			);
 
 			if ( $title->isBigDeletion() ) {
 				global $wgDeleteRevisionsLimit;
 				$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
-					array(
+					[
 						'delete-warning-toobig',
 						$context->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
-					)
+					]
 				);
 			}
 		}
@@ -1780,26 +1780,26 @@ class Article implements Page {
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
-		Hooks::run( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
+		Hooks::run( 'ArticleConfirmDelete', [ $this, $outputPage, &$reason ] );
 
 		$user = $this->getContext()->getUser();
 
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
-			$suppress = Html::openElement( 'div', array( 'id' => 'wpDeleteSuppressRow' ) ) .
+			$suppress = Html::openElement( 'div', [ 'id' => 'wpDeleteSuppressRow' ] ) .
 				Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
-					'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
+					'wpSuppress', 'wpSuppress', false, [ 'tabindex' => '4' ] ) .
 				Html::closeElement( 'div' );
 		} else {
 			$suppress = '';
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
 
-		$form = Html::openElement( 'form', array( 'method' => 'post',
-			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
-			Html::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
+		$form = Html::openElement( 'form', [ 'method' => 'post',
+			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ] ) .
+			Html::openElement( 'fieldset', [ 'id' => 'mw-delete-table' ] ) .
 			Html::element( 'legend', null, wfMessage( 'delete-legend' )->text() ) .
-			Html::openElement( 'div', array( 'id' => 'mw-deleteconfirm-table' ) ) .
-			Html::openElement( 'div', array( 'id' => 'wpDeleteReasonListRow' ) ) .
+			Html::openElement( 'div', [ 'id' => 'mw-deleteconfirm-table' ] ) .
+			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonListRow' ] ) .
 			Html::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
 			'&nbsp;' .
 			Xml::listDropDown(
@@ -1811,43 +1811,43 @@ class Article implements Page {
 				1
 			) .
 			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', array( 'id' => 'wpDeleteReasonRow' ) ) .
+			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonRow' ] ) .
 			Html::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
 			'&nbsp;' .
-			Html::input( 'wpReason', $reason, 'text', array(
+			Html::input( 'wpReason', $reason, 'text', [
 				'size' => '60',
 				'maxlength' => '255',
 				'tabindex' => '2',
 				'id' => 'wpReason',
 				'class' => 'mw-ui-input-inline',
 				'autofocus'
-			) ) .
+			] ) .
 			Html::closeElement( 'div' );
 
 		# Disallow watching if user is not logged in
 		if ( $user->isLoggedIn() ) {
 			$form .=
 					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
-						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) );
+						'wpWatch', 'wpWatch', $checkWatch, [ 'tabindex' => '3' ] );
 		}
 
 		$form .=
 				Html::openElement( 'div' ) .
 				$suppress .
 					Xml::submitButton( wfMessage( 'deletepage' )->text(),
-						array(
+						[
 							'name' => 'wpConfirmB',
 							'id' => 'wpConfirmB',
 							'tabindex' => '5',
 							'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button mw-ui-destructive' : '',
-						)
+						]
 					) .
 				Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' ) .
 			Xml::closeElement( 'fieldset' ) .
 			Html::hidden(
 				'wpEditToken',
-				$user->getEditToken( array( 'delete', $title->getPrefixedText() ) )
+				$user->getEditToken( [ 'delete', $title->getPrefixedText() ] )
 			) .
 			Xml::closeElement( 'form' );
 
@@ -1855,8 +1855,8 @@ class Article implements Page {
 				$link = Linker::linkKnown(
 					$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
 					wfMessage( 'delete-edit-reasonlist' )->escaped(),
-					array(),
-					array( 'action' => 'edit' )
+					[],
+					[ 'action' => 'edit' ]
 				);
 				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
 			}
@@ -1890,7 +1890,7 @@ class Article implements Page {
 
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 
-			Hooks::run( 'ArticleDeleteAfterSuccess', array( $this->getTitle(), $outputPage ) );
+			Hooks::run( 'ArticleDeleteAfterSuccess', [ $this->getTitle(), $outputPage ] );
 
 			$outputPage->returnToMain( false );
 		} else {
@@ -1943,7 +1943,7 @@ class Article implements Page {
 				return true;
 			} else {
 				wfDebug( "Article::tryFileCache(): starting buffer\n" );
-				ob_start( array( &$cache, 'saveToFileCache' ) );
+				ob_start( [ &$cache, 'saveToFileCache' ] );
 			}
 		} else {
 			wfDebug( "Article::tryFileCache(): not cacheable\n" );
@@ -1964,7 +1964,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = Hooks::run( 'IsFileCacheable', array( &$this ) );
+				$cacheable = Hooks::run( 'IsFileCacheable', [ &$this ] );
 			}
 		}
 
@@ -2076,7 +2076,7 @@ class Article implements Page {
 			# wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
-		} elseif ( !in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
+		} elseif ( !in_array( $fname, [ 'mContext', 'mPage' ] ) ) {
 			$this->mPage->$fname = $fvalue;
 		} else {
 			trigger_error( 'Inaccessible property via __set(): ' . $fname, E_USER_NOTICE );
@@ -2152,7 +2152,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doEditUpdates
 	 */
-	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
+	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
 		return $this->mPage->doEditUpdates( $revision, $user, $options );
 	}
 
@@ -2498,7 +2498,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::pageDataFromId
 	 */
-	public function pageDataFromId( $dbr, $id, $options = array() ) {
+	public function pageDataFromId( $dbr, $id, $options = [] ) {
 		return $this->mPage->pageDataFromId( $dbr, $id, $options );
 	}
 
@@ -2506,7 +2506,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::pageDataFromTitle
 	 */
-	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
+	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
 		return $this->mPage->pageDataFromTitle( $dbr, $title, $options );
 	}
 
@@ -2675,8 +2675,8 @@ class Article implements Page {
 	 * @param array $expiry
 	 * @return bool
 	 */
-	public function updateRestrictions( $limit = array(), $reason = '',
-		&$cascade = 0, $expiry = array()
+	public function updateRestrictions( $limit = [], $reason = '',
+		&$cascade = 0, $expiry = []
 	) {
 		return $this->mPage->doUpdateRestrictions(
 			$limit,

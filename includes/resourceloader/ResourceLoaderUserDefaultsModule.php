@@ -26,7 +26,7 @@
  */
 class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @return bool
@@ -42,7 +42,7 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
 			'mw.user.options.set',
-			array( User::getDefaultOptions() ),
+			[ User::getDefaultOptions() ],
 			ResourceLoader::inDebugMode()
 		);
 	}

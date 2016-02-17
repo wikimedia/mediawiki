@@ -51,65 +51,65 @@ class WebInstallerName extends WebInstallerPage {
 		);
 
 		$this->addHTML(
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => 'wgSitename',
 				'label' => 'config-site-name',
 				'help' => $this->parent->getHelpBox( 'config-site-name-help' )
-			) ) .
+			] ) .
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-ns-site-name, config-ns-generic, config-ns-other
-			$this->parent->getRadioSet( array(
+			$this->parent->getRadioSet( [
 				'var' => '_NamespaceType',
 				'label' => 'config-project-namespace',
 				'itemLabelPrefix' => 'config-ns-',
-				'values' => array( 'site-name', 'generic', 'other' ),
-				'commonAttribs' => array( 'class' => 'enableForOther',
-					'rel' => 'config_wgMetaNamespace' ),
+				'values' => [ 'site-name', 'generic', 'other' ],
+				'commonAttribs' => [ 'class' => 'enableForOther',
+					'rel' => 'config_wgMetaNamespace' ],
 				'help' => $this->parent->getHelpBox( 'config-project-namespace-help' )
-			) ) .
-			$this->parent->getTextBox( array(
+			] ) .
+			$this->parent->getTextBox( [
 				'var' => 'wgMetaNamespace',
 				'label' => '', // @todo Needs a label?
-				'attribs' => array( 'readonly' => 'readonly', 'class' => 'enabledByOther' )
-			) ) .
+				'attribs' => [ 'readonly' => 'readonly', 'class' => 'enabledByOther' ]
+			] ) .
 			$this->getFieldSetStart( 'config-admin-box' ) .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => '_AdminName',
 				'label' => 'config-admin-name',
 				'help' => $this->parent->getHelpBox( 'config-admin-help' )
-			) ) .
-			$this->parent->getPasswordBox( array(
+			] ) .
+			$this->parent->getPasswordBox( [
 				'var' => '_AdminPassword',
 				'label' => 'config-admin-password',
-			) ) .
-			$this->parent->getPasswordBox( array(
+			] ) .
+			$this->parent->getPasswordBox( [
 				'var' => '_AdminPasswordConfirm',
 				'label' => 'config-admin-password-confirm'
-			) ) .
-			$this->parent->getTextBox( array(
+			] ) .
+			$this->parent->getTextBox( [
 				'var' => '_AdminEmail',
-				'attribs' => array(
+				'attribs' => [
 					'dir' => 'ltr',
-				),
+				],
 				'label' => 'config-admin-email',
 				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
-			) ) .
-			$this->parent->getCheckBox( array(
+			] ) .
+			$this->parent->getCheckBox( [
 				'var' => '_Subscribe',
 				'label' => 'config-subscribe',
 				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
-			) ) .
+			] ) .
 			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMessage( 'config-almost-done' )->text() ) .
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-optional-continue, config-optional-skip
-			$this->parent->getRadioSet( array(
+			$this->parent->getRadioSet( [
 				'var' => '_SkipOptional',
 				'itemLabelPrefix' => 'config-optional-',
-				'values' => array( 'continue', 'skip' )
-			) )
+				'values' => [ 'continue', 'skip' ]
+			] )
 		);
 
 		// Restore the default value
@@ -127,9 +127,9 @@ class WebInstallerName extends WebInstallerPage {
 		global $wgPasswordPolicy;
 
 		$retVal = true;
-		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
+		$this->parent->setVarsFromRequest( [ 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
-			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ) );
+			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ] );
 
 		// Validate site name
 		if ( strval( $this->getVar( 'wgSitename' ) ) === '' ) {
@@ -209,7 +209,7 @@ class WebInstallerName extends WebInstallerPage {
 			$status = $upp->checkUserPasswordForGroups(
 				$user,
 				$pwd,
-				array( 'bureaucrat', 'sysop' )  // per Installer::createSysop()
+				[ 'bureaucrat', 'sysop' ]  // per Installer::createSysop()
 			);
 			$valid = $status->isGood() ? true : $status->getMessage();
 		} else {
@@ -224,7 +224,7 @@ class WebInstallerName extends WebInstallerPage {
 			$msg = $valid;
 		}
 		if ( $msg !== false ) {
-			call_user_func( array( $this->parent, 'showError' ), $msg );
+			call_user_func( [ $this->parent, 'showError' ], $msg );
 			$this->setVar( '_AdminPassword', '' );
 			$this->setVar( '_AdminPasswordConfirm', '' );
 			$retVal = false;

@@ -8,7 +8,7 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->cache = new MemcachedBagOStuff( array( 'keyspace' => 'test' ) );
+		$this->cache = new MemcachedBagOStuff( [ 'keyspace' => 'test' ] );
 	}
 
 	/**
@@ -76,12 +76,12 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 	}
 
 	public function validKeyProvider() {
-		return array(
-			'empty' => array( '' ),
-			'digits' => array( '09' ),
-			'letters' => array( 'AZaz' ),
-			'ASCII special characters' => array( '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' ),
-		);
+		return [
+			'empty' => [ '' ],
+			'digits' => [ '09' ],
+			'letters' => [ 'AZaz' ],
+			'ASCII special characters' => [ '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' ],
+		];
 	}
 
 	/**
@@ -93,13 +93,13 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 	}
 
 	public function invalidKeyProvider() {
-		return array(
-			array( "\x00" ),
-			array( ' ' ),
-			array( "\x1F" ),
-			array( "\x7F" ),
-			array( "\x80" ),
-			array( "\xFF" ),
-		);
+		return [
+			[ "\x00" ],
+			[ ' ' ],
+			[ "\x1F" ],
+			[ "\x7F" ],
+			[ "\x80" ],
+			[ "\xFF" ],
+		];
 	}
 }

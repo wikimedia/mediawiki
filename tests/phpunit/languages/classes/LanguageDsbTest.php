@@ -12,7 +12,7 @@ class LanguageDsbTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'two', 'few', 'other' );
+		$forms = [ 'one', 'two', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -25,17 +25,17 @@ class LanguageDsbTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'other', 0 ),
-			array( 'one', 1 ),
-			array( 'one', 101 ),
-			array( 'one', 90001 ),
-			array( 'two', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 203 ),
-			array( 'few', 4 ),
-			array( 'other', 99 ),
-			array( 'other', 555 ),
-		);
+		return [
+			[ 'other', 0 ],
+			[ 'one', 1 ],
+			[ 'one', 101 ],
+			[ 'one', 90001 ],
+			[ 'two', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 203 ],
+			[ 'few', 4 ],
+			[ 'other', 99 ],
+			[ 'other', 555 ],
+		];
 	}
 }

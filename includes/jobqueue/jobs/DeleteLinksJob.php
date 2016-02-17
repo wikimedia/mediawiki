@@ -50,7 +50,7 @@ class DeleteLinksJob extends Job {
 
 		$page = WikiPage::factory( $this->title ); // title when deleted
 		$update = new LinksDeletionUpdate( $page, $pageId );
-		DataUpdate::runUpdates( array( $update ) );
+		DataUpdate::runUpdates( [ $update ] );
 
 		return true;
 	}

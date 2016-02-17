@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_USER             => '𐌽𐌹𐌿𐍄𐌰𐌽𐌳𐍃',
 	NS_USER_TALK        => '𐌽𐌹𐌿𐍄𐌰𐌽𐌳𐌹𐍃_𐌲𐌰𐍅𐌰𐌿𐍂𐌳𐌾𐌰',
 	NS_PROJECT_TALK     => '𐌸𐌹𐍃_$1_𐌲𐌰𐍅𐌰𐌿𐍂𐌳𐌾𐌰',
@@ -20,10 +20,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => '𐌷𐌹𐌻𐍀𐍉𐍃_𐌲𐌰𐍅𐌰𐌿𐍂𐌳𐌾𐌰',
 	NS_CATEGORY         => '𐌷𐌰𐌽𐍃𐌰',
 	NS_CATEGORY_TALK    => '𐌷𐌰𐌽𐍃𐍉𐍃_𐌲𐌰𐍅𐌰𐌿𐍂𐌳𐌾𐌰',
-);
+];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( '𐌰𐌻𐌻𐍃𐍃𐌴𐌹𐌳𐍉𐌽𐍃' ),
-	'Recentchanges'             => array( '𐌰𐍆𐍄𐌿𐌼𐌹𐍃𐍄𐍉𐍃𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐌴𐌹𐍃' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ '𐌰𐌻𐌻𐍃𐍃𐌴𐌹𐌳𐍉𐌽𐍃' ],
+	'Recentchanges'             => [ '𐌰𐍆𐍄𐌿𐌼𐌹𐍃𐍄𐍉𐍃𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐌴𐌹𐍃' ],
+];
 

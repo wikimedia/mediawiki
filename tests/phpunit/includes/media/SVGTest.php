@@ -29,13 +29,13 @@ class SvgTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function providerGetIndependentMetaArray() {
-		return array(
-			array( 'Tux.svg', array(
+		return [
+			[ 'Tux.svg', [
 				'ObjectName' => 'Tux',
 				'ImageDescription' =>
 					'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
-			) ),
-			array( 'Wikimedia-logo.svg', array() )
-		);
+			] ],
+			[ 'Wikimedia-logo.svg', [] ]
+		];
 	}
 }

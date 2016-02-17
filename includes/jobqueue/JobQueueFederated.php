@@ -50,7 +50,7 @@ class JobQueueFederated extends JobQueue {
 	/** @var HashRing */
 	protected $partitionRing;
 	/** @var array (partition name => JobQueue) reverse sorted by weight */
-	protected $partitionQueues = array();
+	protected $partitionQueues = [];
 
 	/** @var int Maximum number of partitions to try */
 	protected $maxPartitionsTry;
@@ -88,8 +88,8 @@ class JobQueueFederated extends JobQueue {
 		arsort( $partitionMap, SORT_NUMERIC );
 		// Get the config to pass to merge into each partition queue config
 		$baseConfig = $params;
-		foreach ( array( 'class', 'sectionsByWiki', 'maxPartitionsTry',
-			'partitionsBySection', 'configByPartition', ) as $o
+		foreach ( [ 'class', 'sectionsByWiki', 'maxPartitionsTry',
+			'partitionsBySection', 'configByPartition', ] as $o
 		) {
 			unset( $baseConfig[$o] ); // partition queue doesn't care about this
 		}
@@ -109,7 +109,7 @@ class JobQueueFederated extends JobQueue {
 
 	protected function supportedOrders() {
 		// No FIFO due to partitioning, though "rough timestamp order" is supported
-		return array( 'undefined', 'random', 'timestamp' );
+		return [ 'undefined', 'random', 'timestamp' ];
 	}
 
 	protected function optimalOrder() {
@@ -209,12 +209,12 @@ class JobQueueFederated extends JobQueue {
 	 * @return array List of Job object that could not be inserted
 	 */
 	protected function tryJobInsertions( array $jobs, HashRing &$partitionRing, $flags ) {
-		$jobsLeft = array();
+		$jobsLeft = [];
 
 		// Because jobs are spread across partitions, per-job de-duplication needs
 		// to use a consistent hash to avoid allowing duplicate jobs per partition.
 		// When inserting a batch of de-duplicated jobs, QOS_ATOMIC is disregarded.
-		$uJobsByPartition = array(); // (partition name => job list)
+		$uJobsByPartition = []; // (partition name => job list)
 		/** @var Job $job */
 		foreach ( $jobs as $key => $job ) {
 			if ( $job->ignoreDuplicates() ) {
@@ -225,7 +225,7 @@ class JobQueueFederated extends JobQueue {
 		}
 		// Get the batches of jobs that are not de-duplicated
 		if ( $flags & self::QOS_ATOMIC ) {
-			$nuJobBatches = array( $jobs ); // all or nothing
+			$nuJobBatches = [ $jobs ]; // all or nothing
 		} else {
 			// Split the jobs into batches and spread them out over servers if there
 			// are many jobs. This helps keep the partitions even. Otherwise, send all
@@ -432,7 +432,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
-		$result = array();
+		$result = [];
 
 		$failed = 0;
 		/** @var JobQueue $queue */
@@ -458,7 +458,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doGetSiblingQueueSizes( array $types ) {
-		$result = array();
+		$result = [];
 		$failed = 0;
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {

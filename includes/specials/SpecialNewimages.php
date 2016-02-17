@@ -62,7 +62,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		if ( !$message->isDisabled() ) {
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'p',
-					array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ),
+					[ 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ],
 					"\n" . $message->plain() . "\n"
 				),
 				/* $lineStart */ false,
@@ -103,8 +103,8 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		$conds = $jconds = array();
-		$tables = array( 'image' );
+		$conds = $jconds = [];
+		$tables = [ 'image' ];
 
 		if ( !$this->showBots ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
@@ -112,13 +112,13 @@ class NewFilesPager extends ReverseChronologicalPager {
 			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';
 				$conds[] = 'ug_group IS NULL';
-				$jconds['user_groups'] = array(
+				$jconds['user_groups'] = [
 					'LEFT JOIN',
-					array(
+					[
 						'ug_group' => $groupsWithBotPermission,
 						'ug_user = img_user'
-					)
-				);
+					]
+				];
 			}
 		}
 
@@ -127,14 +127,14 @@ class NewFilesPager extends ReverseChronologicalPager {
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = 0;
-			$jconds['recentchanges'] = array(
+			$jconds['recentchanges'] = [
 				'INNER JOIN',
-				array(
+				[
 					'rc_title = img_name',
 					'rc_user = img_user',
 					'rc_timestamp = img_timestamp'
-				)
-			);
+				]
+			];
 		}
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $this->like !== null ) {
@@ -150,12 +150,12 @@ class NewFilesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		$query = array(
+		$query = [
 			'tables' => $tables,
 			'fields' => '*',
 			'join_conds' => $jconds,
 			'conds' => $conds
-		);
+		];
 
 		return $query;
 	}
@@ -200,33 +200,33 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getForm() {
-		$fields = array(
-			'like' => array(
+		$fields = [
+			'like' => [
 				'type' => 'text',
 				'label-message' => 'newimages-label',
 				'name' => 'like',
-			),
-			'showbots' => array(
+			],
+			'showbots' => [
 				'type' => 'check',
 				'label-message' => 'newimages-showbots',
 				'name' => 'showbots',
-			),
-			'hidepatrolled' => array(
+			],
+			'hidepatrolled' => [
 				'type' => 'check',
 				'label-message' => 'newimages-hidepatrolled',
 				'name' => 'hidepatrolled',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				'type' => 'hidden',
 				'default' => $this->mLimit,
 				'name' => 'limit',
-			),
-			'offset' => array(
+			],
+			'offset' => [
 				'type' => 'hidden',
 				'default' => $this->getRequest()->getText( 'offset' ),
 				'name' => 'offset',
-			),
-		);
+			],
+		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			unset( $fields['like'] );

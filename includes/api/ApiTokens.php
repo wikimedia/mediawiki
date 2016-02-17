@@ -37,9 +37,9 @@ class ApiTokens extends ApiBase {
 		$this->logFeatureUsage( "action=tokens" );
 
 		$params = $this->extractRequestParams();
-		$res = array(
+		$res = [
 			ApiResult::META_TYPE => 'assoc',
-		);
+		];
 
 		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {
@@ -59,20 +59,20 @@ class ApiTokens extends ApiBase {
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
 		if ( $this->lacksSameOriginSecurity() ) {
-			return array();
+			return [];
 		}
 
 		static $types = null;
 		if ( $types ) {
 			return $types;
 		}
-		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
-		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-			'email', 'import', 'watch', 'options' );
+		$types = [ 'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ] ];
+		$names = [ 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
+			'email', 'import', 'watch', 'options' ];
 		foreach ( $names as $name ) {
-			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
+			$types[$name] = [ 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' ];
 		}
-		Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ) );
+		Hooks::run( 'ApiTokensGetTokenTypes', [ &$types ] );
 
 		// For forwards-compat, copy any token types from ApiQueryTokens that
 		// we don't already have something for.
@@ -96,21 +96,21 @@ class ApiTokens extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'type' => array(
+		return [
+			'type' => [
 				ApiBase::PARAM_DFLT => 'edit',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenTypes() ),
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=tokens'
 				=> 'apihelp-tokens-example-edit',
 			'action=tokens&type=email|move'
 				=> 'apihelp-tokens-example-emailmove',
-		);
+		];
 	}
 }

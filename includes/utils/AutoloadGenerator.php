@@ -27,7 +27,7 @@ class AutoloadGenerator {
 	/**
 	 * @var array Map of file shortpath to list of FQCN detected within file
 	 */
-	protected $classes = array();
+	protected $classes = [];
 
 	/**
 	 * @var string The global variable to write output to
@@ -37,7 +37,7 @@ class AutoloadGenerator {
 	/**
 	 * @var array Map of FQCN to relative path(from self::$basepath)
 	 */
-	protected $overrides = array();
+	protected $overrides = [];
 
 	/**
 	 * @param string $basepath Root path of the project being scanned for classes
@@ -46,9 +46,9 @@ class AutoloadGenerator {
 	 *  local - If this flag is set $wgAutoloadLocalClasses will be build instead
 	 *          of $wgAutoloadClasses
 	 */
-	public function __construct( $basepath, $flags = array() ) {
+	public function __construct( $basepath, $flags = [] ) {
 		if ( !is_array( $flags ) ) {
-			$flags = array( $flags );
+			$flags = [ $flags ];
 		}
 		$this->basepath = self::normalizePathSeparator( realpath( $basepath ) );
 		$this->collector = new ClassCollector;
@@ -162,7 +162,7 @@ class AutoloadGenerator {
 	 */
 	protected function generatePHPAutoload( $commandName, $filename ) {
 		// No existing JSON file found; update/generate PHP file
-		$content = array();
+		$content = [];
 
 		// We need to generate a line each rather than exporting the
 		// full array so __DIR__ can be prepended to all the paths
@@ -282,9 +282,9 @@ class ClassCollector {
 	 */
 	public function getClasses( $code ) {
 		$this->namespace = '';
-		$this->classes = array();
+		$this->classes = [];
 		$this->startToken = null;
-		$this->tokens = array();
+		$this->tokens = [];
 
 		foreach ( token_get_all( $code ) as $token ) {
 			if ( $this->startToken === null ) {
@@ -347,12 +347,12 @@ class ClassCollector {
 	 * @return string
 	 */
 	protected function implodeTokens() {
-		$content = array();
+		$content = [];
 		foreach ( $this->tokens as $token ) {
 			$content[] = is_string( $token ) ? $token : $token[1];
 		}
 
-		$this->tokens = array();
+		$this->tokens = [];
 		$this->startToken = null;
 
 		return trim( implode( '', $content ), " \n\t" );

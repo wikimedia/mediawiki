@@ -27,7 +27,7 @@
  * @ingroup Language
  */
 class TgConverter extends LanguageConverter {
-	private $table = array(
+	private $table = [
 		'а' => 'a',
 		'б' => 'b',
 		'в' => 'v',
@@ -101,13 +101,13 @@ class TgConverter extends LanguageConverter {
 		'Ҳ' => 'H',
 		'Ҷ' => 'Ç',
 		'Ц' => 'Ts',
-	);
+	];
 
 	function loadDefaultTables() {
-		$this->mTables = array(
+		$this->mTables = [
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()
-		);
+		];
 	}
 
 }
@@ -120,7 +120,7 @@ class TgConverter extends LanguageConverter {
 class LanguageTg extends Language {
 	function __construct() {
 		parent::__construct();
-		$variants = array( 'tg', 'tg-latn' );
+		$variants = [ 'tg', 'tg-latn' ];
 		$this->mConverter = new TgConverter( $this, 'tg', $variants );
 	}
 }

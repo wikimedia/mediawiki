@@ -14,13 +14,13 @@ class HTMLCheckField extends HTMLFormField {
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 
-		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		$attr += $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		if ( $this->mClass !== '' ) {
 			$attr['class'] = $this->mClass;
 		}
 
-		$attrLabel = array( 'for' => $this->mID );
+		$attrLabel = [ 'for' => $this->mID ];
 		if ( isset( $attr['title'] ) ) {
 			// propagate tooltip to label
 			$attrLabel['title'] = $attr['title'];
@@ -33,7 +33,7 @@ class HTMLCheckField extends HTMLFormField {
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 			$chkLabel = Html::rawElement(
 				'div',
-				array( 'class' => 'mw-ui-checkbox' ),
+				[ 'class' => 'mw-ui-checkbox' ],
 				$chkLabel
 			);
 		}
@@ -57,12 +57,12 @@ class HTMLCheckField extends HTMLFormField {
 		$attr['name'] = $this->mName;
 
 		$attr += $this->getAttributes(
-			array( 'disabled', 'tabindex' ),
-			array( 'tabindex' => 'tabIndex' )
+			[ 'disabled', 'tabindex' ],
+			[ 'tabindex' => 'tabIndex' ]
 		);
 
 		if ( $this->mClass !== '' ) {
-			$attr['classes'] = array( $this->mClass );
+			$attr['classes'] = [ $this->mClass ];
 		}
 
 		$attr['selected'] = $value;

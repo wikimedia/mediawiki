@@ -53,9 +53,9 @@ class SVGReader {
 	private $mDebug = false;
 
 	/** @var array */
-	private $metadata = array();
-	private $languages = array();
-	private $languagePrefixes = array();
+	private $metadata = [];
+	private $languages = [];
+	private $languagePrefixes = [];
 
 	/**
 	 * Constructor
@@ -376,7 +376,7 @@ class SVGReader {
 	 * @return float Length in pixels
 	 */
 	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
-		static $unitLength = array(
+		static $unitLength = [
 			'px' => 1.0,
 			'pt' => 1.25,
 			'pc' => 15.0,
@@ -386,8 +386,8 @@ class SVGReader {
 			'em' => 16.0, // fake it?
 			'ex' => 12.0, // fake it?
 			'' => 1.0, // "User units" pixels by default
-		);
-		$matches = array();
+		];
+		$matches = [];
 		if ( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
 			$length = floatval( $matches[1] );
 			$unit = $matches[2];

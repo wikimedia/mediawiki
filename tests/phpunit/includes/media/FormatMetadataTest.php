@@ -52,47 +52,47 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	public function provideResolveMultivalueValue() {
-		return array(
-			'nonArray' => array(
+		return [
+			'nonArray' => [
 				'foo',
 				'foo'
-			),
-			'multiValue' => array(
-				array( 'first', 'second', 'third', '_type' => 'ol' ),
+			],
+			'multiValue' => [
+				[ 'first', 'second', 'third', '_type' => 'ol' ],
 				'first'
-			),
-			'noType' => array(
-				array( 'first', 'second', 'third' ),
+			],
+			'noType' => [
+				[ 'first', 'second', 'third' ],
 				'first'
-			),
-			'typeFirst' => array(
-				array( '_type' => 'ol', 'first', 'second', 'third' ),
+			],
+			'typeFirst' => [
+				[ '_type' => 'ol', 'first', 'second', 'third' ],
 				'first'
-			),
-			'multilang' => array(
-				array(
+			],
+			'multilang' => [
+				[
 					'en' => 'first',
 					'de' => 'Erste',
 					'_type' => 'lang'
-				),
-				array(
+				],
+				[
 					'en' => 'first',
 					'de' => 'Erste',
 					'_type' => 'lang'
-				),
-			),
-			'multilang-multivalue' => array(
-				array(
-					'en' => array( 'first', 'second' ),
-					'de' => array( 'Erste', 'Zweite' ),
+				],
+			],
+			'multilang-multivalue' => [
+				[
+					'en' => [ 'first', 'second' ],
+					'de' => [ 'Erste', 'Zweite' ],
 					'_type' => 'lang'
-				),
-				array(
+				],
+				[
 					'en' => 'first',
 					'de' => 'Erste',
 					'_type' => 'lang'
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }

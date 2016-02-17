@@ -54,7 +54,7 @@ class OOUIHTMLForm extends HTMLForm {
 		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
 
 		if ( $this->mShowSubmit ) {
-			$attribs = array( 'infusable' => true );
+			$attribs = [ 'infusable' => true ];
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
@@ -68,7 +68,7 @@ class OOUIHTMLForm extends HTMLForm {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['classes'] = array( 'mw-htmlform-submit' );
+			$attribs['classes'] = [ 'mw-htmlform-submit' ];
 			$attribs['type'] = 'submit';
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
@@ -79,15 +79,15 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 
 		if ( $this->mShowReset ) {
-			$buttons .= new OOUI\ButtonInputWidget( array(
+			$buttons .= new OOUI\ButtonInputWidget( [
 				'type' => 'reset',
 				'label' => $this->msg( 'htmlform-reset' )->text(),
 				'useInputTag' => $isBadIE,
-			) );
+			] );
 		}
 
 		foreach ( $this->mButtons as $button ) {
-			$attrs = array();
+			$attrs = [];
 
 			if ( $button['attribs'] ) {
 				$attrs += $button['attribs'];
@@ -109,43 +109,43 @@ class OOUIHTMLForm extends HTMLForm {
 				$label = $button['value'];
 			}
 
-			$attrs['classes'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : array();
+			$attrs['classes'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
 
-			$buttons .= new OOUI\ButtonInputWidget( array(
+			$buttons .= new OOUI\ButtonInputWidget( [
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value'],
 				'label' => $label,
 				'flags' => $button['flags'],
 				'useInputTag' => $isBadIE,
-			) + $attrs );
+			] + $attrs );
 		}
 
 		$html = Html::rawElement( 'div',
-			array( 'class' => 'mw-htmlform-submit-buttons' ), "\n$buttons" ) . "\n";
+			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 
 		return $html;
 	}
 
 	protected function wrapFieldSetSection( $legend, $section, $attributes ) {
 		// to get a user visible effect, wrap the fieldset into a framed panel layout
-		$layout = new OOUI\PanelLayout( array(
+		$layout = new OOUI\PanelLayout( [
 			'expanded' => false,
 			'padded' => true,
 			'framed' => true,
 			'infusable' => false,
-		) );
+		] );
 
 		$layout->appendContent(
-			new OOUI\FieldsetLayout( array(
+			new OOUI\FieldsetLayout( [
 				'label' => $legend,
 				'infusable' => false,
-				'items' => array(
-					new OOUI\Widget( array(
+				'items' => [
+					new OOUI\Widget( [
 						'content' => new OOUI\HtmlSnippet( $section )
-					) ),
-				),
-			) + $attributes )
+					] ),
+				],
+			] + $attributes )
 		);
 		return $layout;
 	}
@@ -158,9 +158,9 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @return string HTML
 	 */
 	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
-		$config = array(
+		$config = [
 			'items' => $fieldsHtml,
-		);
+		];
 		if ( $sectionName ) {
 			$config['id'] = Sanitizer::escapeId( $sectionName );
 		}
@@ -176,22 +176,22 @@ class OOUIHTMLForm extends HTMLForm {
 	 */
 	function getErrors( $err ) {
 		if ( !$err ) {
-			$errors = array();
+			$errors = [];
 		} elseif ( $err instanceof Status ) {
 			if ( $err->isOK() ) {
-				$errors = array();
+				$errors = [];
 			} else {
 				$errors = $err->getErrorsByType( 'error' );
 				foreach ( $errors as &$error ) {
 					// Input:  array( 'message' => 'foo', 'errors' => array( 'a', 'b', 'c' ) )
 					// Output: array( 'foo', 'a', 'b', 'c' )
-					$error = array_merge( array( $error['message'] ), $error['params'] );
+					$error = array_merge( [ $error['message'] ], $error['params'] );
 				}
 			}
 		} else {
 			$errors = $err;
 			if ( !is_array( $errors ) ) {
-				$errors = array( $errors );
+				$errors = [ $errors ];
 			}
 		}
 
@@ -200,7 +200,7 @@ class OOUIHTMLForm extends HTMLForm {
 				$msg = array_shift( $error );
 			} else {
 				$msg = $error;
-				$error = array();
+				$error = [];
 			}
 			// if the error is already a message object, don't use it as a message key
 			if ( !$msg instanceof Message ) {
@@ -229,41 +229,41 @@ class OOUIHTMLForm extends HTMLForm {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
 		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
-			$classes = array( 'mw-htmlform-ooui-header' );
+			$classes = [ 'mw-htmlform-ooui-header' ];
 			if ( !$this->mHeader ) {
 				$classes[] = 'mw-htmlform-ooui-header-empty';
 			}
 			if ( $this->oouiErrors ) {
 				$classes[] = 'mw-htmlform-ooui-header-errors';
 			}
-			$fieldset->addItems( array(
+			$fieldset->addItems( [
 				new OOUI\FieldLayout(
-					new OOUI\LabelWidget( array( 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ) ),
-					array(
+					new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] ),
+					[
 						'align' => 'top',
 						'errors' => $this->oouiErrors,
 						'classes' => $classes,
-					)
+					]
 				)
-			), 0 );
+			], 0 );
 		}
 		return $fieldset;
 	}
 
 	function wrapForm( $html ) {
-		$form = new OOUI\FormLayout( $this->getFormAttributes() + array(
-			'classes' => array( 'mw-htmlform-ooui' ),
+		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
+			'classes' => [ 'mw-htmlform-ooui' ],
 			'content' => new OOUI\HtmlSnippet( $html ),
-		) );
+		] );
 
 		// Include a wrapper for style, if requested.
-		$form = new OOUI\PanelLayout( array(
-			'classes' => array( 'mw-htmlform-ooui-wrapper' ),
+		$form = new OOUI\PanelLayout( [
+			'classes' => [ 'mw-htmlform-ooui-wrapper' ],
 			'expanded' => false,
 			'padded' => $this->mWrapperLegend !== false,
 			'framed' => $this->mWrapperLegend !== false,
 			'content' => $form,
-		) );
+		] );
 
 		return $form;
 	}

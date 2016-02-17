@@ -11,7 +11,7 @@
  * @author Reedy
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Espesiál',
 	NS_TALK             => 'Diskusaun',
@@ -28,45 +28,45 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Diskusaun_Ajuda',
 	NS_CATEGORY         => 'Kategoria',
 	NS_CATEGORY_TALK    => 'Diskusaun_Kategoria',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	"Kategoría"           => NS_CATEGORY,
 	"Diskusaun_Kategoría" => NS_CATEGORY_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Allmessages'               => array( 'Mensajen_hotu' ),
-	'Allpages'                  => array( 'Pájina_hotu' ),
-	'Block'                     => array( 'Blokeiu' ),
-	'Categories'                => array( 'Kategoria' ),
-	'Contributions'             => array( 'Kontribuisaun' ),
-	'CreateAccount'             => array( 'Rejista' ),
-	'Emailuser'                 => array( 'Haruka_korreiu_eletróniku' ),
-	'Export'                    => array( 'Esporta' ),
-	'Import'                    => array( 'Importa' ),
-	'BlockList'                 => array( 'Lista_ema_sira-ne\'ebé_blokeiu_tiha' ),
-	'Listadmins'                => array( 'Lista_administradór' ),
-	'Listfiles'                 => array( 'Lista_imajen' ),
-	'Listusers'                 => array( 'Lista_uza-na\'in' ),
-	'Longpages'                 => array( 'Pájina_naruk' ),
-	'Movepage'                  => array( 'Book_pájina', 'Book' ),
-	'Mypage'                    => array( 'Ha\'u-nia_pájina' ),
-	'Newimages'                 => array( 'Imajen_foun' ),
-	'Preferences'               => array( 'Preferénsia' ),
-	'Protectedpages'            => array( 'Pájina_sira-ne\'ebé_proteje_tiha' ),
-	'Randompage'                => array( 'Pájina_ruma' ),
-	'Recentchanges'             => array( 'Mudansa_foufoun_sira' ),
-	'Search'                    => array( 'Buka' ),
-	'Shortpages'                => array( 'Pájina_badak' ),
-	'Specialpages'              => array( 'Pájina_espesiál_sira' ),
-	'Statistics'                => array( 'Estatístika' ),
-	'Undelete'                  => array( 'Restaurar' ),
-	'Upload'                    => array( 'Tau_iha_arkivu_laran' ),
-	'Userrights'                => array( 'Priviléjiu' ),
-	'Version'                   => array( 'Versaun' ),
-	'Watchlist'                 => array( 'Lista_hateke' ),
-	'Whatlinkshere'             => array( 'Pájina_sira_ne\'ebé_bá_iha_ne\'e' ),
-	'Withoutinterwiki'          => array( 'Laiha_interwiki' ),
-);
+$specialPageAliases = [
+	'Allmessages'               => [ 'Mensajen_hotu' ],
+	'Allpages'                  => [ 'Pájina_hotu' ],
+	'Block'                     => [ 'Blokeiu' ],
+	'Categories'                => [ 'Kategoria' ],
+	'Contributions'             => [ 'Kontribuisaun' ],
+	'CreateAccount'             => [ 'Rejista' ],
+	'Emailuser'                 => [ 'Haruka_korreiu_eletróniku' ],
+	'Export'                    => [ 'Esporta' ],
+	'Import'                    => [ 'Importa' ],
+	'BlockList'                 => [ 'Lista_ema_sira-ne\'ebé_blokeiu_tiha' ],
+	'Listadmins'                => [ 'Lista_administradór' ],
+	'Listfiles'                 => [ 'Lista_imajen' ],
+	'Listusers'                 => [ 'Lista_uza-na\'in' ],
+	'Longpages'                 => [ 'Pájina_naruk' ],
+	'Movepage'                  => [ 'Book_pájina', 'Book' ],
+	'Mypage'                    => [ 'Ha\'u-nia_pájina' ],
+	'Newimages'                 => [ 'Imajen_foun' ],
+	'Preferences'               => [ 'Preferénsia' ],
+	'Protectedpages'            => [ 'Pájina_sira-ne\'ebé_proteje_tiha' ],
+	'Randompage'                => [ 'Pájina_ruma' ],
+	'Recentchanges'             => [ 'Mudansa_foufoun_sira' ],
+	'Search'                    => [ 'Buka' ],
+	'Shortpages'                => [ 'Pájina_badak' ],
+	'Specialpages'              => [ 'Pájina_espesiál_sira' ],
+	'Statistics'                => [ 'Estatístika' ],
+	'Undelete'                  => [ 'Restaurar' ],
+	'Upload'                    => [ 'Tau_iha_arkivu_laran' ],
+	'Userrights'                => [ 'Priviléjiu' ],
+	'Version'                   => [ 'Versaun' ],
+	'Watchlist'                 => [ 'Lista_hateke' ],
+	'Whatlinkshere'             => [ 'Pájina_sira_ne\'ebé_bá_iha_ne\'e' ],
+	'Withoutinterwiki'          => [ 'Laiha_interwiki' ],
+];
 

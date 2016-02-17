@@ -27,7 +27,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testTwoPluralForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = [ 'one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -36,7 +36,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testThreePluralForms( $result, $value ) {
-		$forms = array( 'one', 'two', 'other' );
+		$forms = [ 'one', 'two', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -45,7 +45,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testFourPluralForms( $result, $value ) {
-		$forms = array( 'one', 'two', 'many', 'other' );
+		$forms = [ 'one', 'two', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -58,36 +58,36 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideTwoPluralForms() {
-		return array(
-			array( 'other', 0 ), // Zero - plural
-			array( 'one', 1 ), // Singular
-			array( 'other', 2 ), // No third form provided, use it as plural
-			array( 'other', 3 ), // Plural - other
-			array( 'other', 10 ), // No fourth form provided, use it as plural
-			array( 'other', 20 ), // No fourth form provided, use it as plural
-		);
+		return [
+			[ 'other', 0 ], // Zero - plural
+			[ 'one', 1 ], // Singular
+			[ 'other', 2 ], // No third form provided, use it as plural
+			[ 'other', 3 ], // Plural - other
+			[ 'other', 10 ], // No fourth form provided, use it as plural
+			[ 'other', 20 ], // No fourth form provided, use it as plural
+		];
 	}
 
 	public static function provideThreePluralForms() {
-		return array(
-			array( 'other', 0 ), // Zero - plural
-			array( 'one', 1 ), // Singular
-			array( 'two', 2 ), // Dual
-			array( 'other', 3 ), // Plural - other
-			array( 'other', 10 ), // No fourth form provided, use it as plural
-			array( 'other', 20 ), // No fourth form provided, use it as plural
-		);
+		return [
+			[ 'other', 0 ], // Zero - plural
+			[ 'one', 1 ], // Singular
+			[ 'two', 2 ], // Dual
+			[ 'other', 3 ], // Plural - other
+			[ 'other', 10 ], // No fourth form provided, use it as plural
+			[ 'other', 20 ], // No fourth form provided, use it as plural
+		];
 	}
 
 	public static function provideFourPluralForms() {
-		return array(
-			array( 'other', 0 ), // Zero - plural
-			array( 'one', 1 ), // Singular
-			array( 'two', 2 ), // Dual
-			array( 'other', 3 ), // Plural - other
-			array( 'other', 10 ), // 10 is supposed to be plural (other), not "many"
-			array( 'many', 20 ), // Fourth form provided - rare, but supported by CLDR
-		);
+		return [
+			[ 'other', 0 ], // Zero - plural
+			[ 'one', 1 ], // Singular
+			[ 'two', 2 ], // Dual
+			[ 'other', 3 ], // Plural - other
+			[ 'other', 10 ], // 10 is supposed to be plural (other), not "many"
+			[ 'many', 20 ], // Fourth form provided - rare, but supported by CLDR
+		];
 	}
 
 	/**
@@ -101,32 +101,32 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	// The comments in the beginning of the line help avoid RTL problems
 	// with text editors.
 	public static function provideGrammar() {
-		return array(
-			array(
+		return [
+			[
 				/* result */'וויקיפדיה',
 				/* word   */'ויקיפדיה',
 				/* case   */'תחילית',
-			),
-			array(
+			],
+			[
 				/* result */'וולפגנג',
 				/* word   */'וולפגנג',
 				/* case   */'prefixed',
-			),
-			array(
+			],
+			[
 				/* result */'קובץ',
 				/* word   */'הקובץ',
 				/* case   */'תחילית',
-			),
-			array(
+			],
+			[
 				/* result */'־Wikipedia',
 				/* word   */'Wikipedia',
 				/* case   */'תחילית',
-			),
-			array(
+			],
+			[
 				/* result */'־1995',
 				/* word   */'1995',
 				/* case   */'תחילית',
-			),
-		);
+			],
+		];
 	}
 }

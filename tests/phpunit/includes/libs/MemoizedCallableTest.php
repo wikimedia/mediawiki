@@ -4,7 +4,7 @@
  * in an instance property rather than APC.
  */
 class ArrayBackedMemoizedCallable extends MemoizedCallable {
-	public $cache = array();
+	public $cache = [];
 
 	protected function fetchResult( $key, &$success ) {
 		if ( array_key_exists( $key, $this->cache ) ) {
@@ -31,12 +31,12 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	 * way as the original underlying callable.
 	 */
 	public function testReturnValuePassedThrough() {
-		$mock = $this->getMock( 'stdClass', array( 'reverse' ) );
+		$mock = $this->getMock( 'stdClass', [ 'reverse' ] );
 		$mock->expects( $this->any() )
 			->method( 'reverse' )
 			->will( $this->returnCallback( 'strrev' ) );
 
-		$memoized = new MemoizedCallable( array( $mock, 'reverse' ) );
+		$memoized = new MemoizedCallable( [ $mock, 'reverse' ] );
 		$this->assertEquals( 'flow', $memoized->invoke( 'wolf' ) );
 	}
 
@@ -47,12 +47,12 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	 * @requires function apc_store
 	 */
 	public function testCallableMemoized() {
-		$observer = $this->getMock( 'stdClass', array( 'computeSomething' ) );
+		$observer = $this->getMock( 'stdClass', [ 'computeSomething' ] );
 		$observer->expects( $this->once() )
 			->method( 'computeSomething' )
 			->will( $this->returnValue( 'ok' ) );
 
-		$memoized = new ArrayBackedMemoizedCallable( array( $observer, 'computeSomething' ) );
+		$memoized = new ArrayBackedMemoizedCallable( [ $observer, 'computeSomething' ] );
 
 		// First invocation -- delegates to $observer->computeSomething()
 		$this->assertEquals( 'ok', $memoized->invoke() );
@@ -67,7 +67,7 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	public function testInvokeVariadic() {
 		$memoized = new MemoizedCallable( 'sprintf' );
 		$this->assertEquals(
-			$memoized->invokeArgs( array( 'this is %s', 'correct' ) ),
+			$memoized->invokeArgs( [ 'this is %s', 'correct' ] ),
 			$memoized->invoke( 'this is %s', 'correct' )
 		);
 	}
@@ -78,7 +78,7 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	public function testShortcutMethod() {
 		$this->assertEquals(
 			'this is correct',
-			MemoizedCallable::call( 'sprintf', array( 'this is %s', 'correct' ) )
+			MemoizedCallable::call( 'sprintf', [ 'this is %s', 'correct' ] )
 		);
 	}
 

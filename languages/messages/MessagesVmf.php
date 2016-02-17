@@ -15,7 +15,7 @@
 
 $fallback = 'de';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Schbädsjaal',
 	NS_TALK             => 'Disghusjoon',
@@ -32,33 +32,33 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hilwâdisghusjoon',
 	NS_CATEGORY         => 'Gadâgorii',
 	NS_CATEGORY_TALK    => 'Gadâgoriidisghusjoon',
-);
+];
 
-$specialPageAliases = array(
-	'Allmessages'               => array( 'Ôlâ_Nôôchrichdâ' ),
-	'Allpages'                  => array( 'Ôlâ_Sajdâ' ),
-	'Categories'                => array( 'Gadâgoriin' ),
-	'Confirmemail'              => array( 'Iimäjl_bschdädigâ' ),
-	'Contributions'             => array( 'Bajdräächâ' ),
-	'DoubleRedirects'           => array( 'Dobâldâ_Wajdârlajdungân' ),
-	'Emailuser'                 => array( 'Iimäjlâ' ),
-	'Export'                    => array( 'Ägsbordiirn' ),
-	'Import'                    => array( 'Imbordiirn' ),
-	'Movepage'                  => array( 'Sajdâ_färschiibâ' ),
-	'Newpages'                  => array( 'Nojâ_Sajdâ' ),
-	'Preferences'               => array( 'Ôischtälungâ' ),
-	'Prefixindex'               => array( 'Indägs' ),
-	'Recentchanges'             => array( 'Lädsdâ_Änârungâ' ),
-	'Specialpages'              => array( 'Schbädsjaalsajdâ' ),
-	'Statistics'                => array( 'Schdadisdign' ),
-	'Undelete'                  => array( 'Wiidârhärschdälâ' ),
-	'Unwatchedpages'            => array( 'Unbäoobôchdâdâ_Sajdn' ),
-	'Upload'                    => array( 'Hoochlaadâ' ),
-	'Userlogin'                 => array( 'Ôômäldâ' ),
-	'Userlogout'                => array( 'Ôbmäldâ' ),
-	'Watchlist'                 => array( 'Bäoobôchdungslisdâ' ),
-);
+$specialPageAliases = [
+	'Allmessages'               => [ 'Ôlâ_Nôôchrichdâ' ],
+	'Allpages'                  => [ 'Ôlâ_Sajdâ' ],
+	'Categories'                => [ 'Gadâgoriin' ],
+	'Confirmemail'              => [ 'Iimäjl_bschdädigâ' ],
+	'Contributions'             => [ 'Bajdräächâ' ],
+	'DoubleRedirects'           => [ 'Dobâldâ_Wajdârlajdungân' ],
+	'Emailuser'                 => [ 'Iimäjlâ' ],
+	'Export'                    => [ 'Ägsbordiirn' ],
+	'Import'                    => [ 'Imbordiirn' ],
+	'Movepage'                  => [ 'Sajdâ_färschiibâ' ],
+	'Newpages'                  => [ 'Nojâ_Sajdâ' ],
+	'Preferences'               => [ 'Ôischtälungâ' ],
+	'Prefixindex'               => [ 'Indägs' ],
+	'Recentchanges'             => [ 'Lädsdâ_Änârungâ' ],
+	'Specialpages'              => [ 'Schbädsjaalsajdâ' ],
+	'Statistics'                => [ 'Schdadisdign' ],
+	'Undelete'                  => [ 'Wiidârhärschdälâ' ],
+	'Unwatchedpages'            => [ 'Unbäoobôchdâdâ_Sajdn' ],
+	'Upload'                    => [ 'Hoochlaadâ' ],
+	'Userlogin'                 => [ 'Ôômäldâ' ],
+	'Userlogout'                => [ 'Ôbmäldâ' ],
+	'Watchlist'                 => [ 'Bäoobôchdungslisdâ' ],
+];
 
 // Remove German aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

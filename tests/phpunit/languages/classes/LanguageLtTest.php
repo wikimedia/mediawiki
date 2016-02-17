@@ -12,7 +12,7 @@ class LanguageLtTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'other' );
+		$forms = [ 'one', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -25,19 +25,19 @@ class LanguageLtTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'other', 0 ),
-			array( 'one', 1 ),
-			array( 'few', 2 ),
-			array( 'few', 9 ),
-			array( 'other', 10 ),
-			array( 'other', 11 ),
-			array( 'other', 20 ),
-			array( 'one', 21 ),
-			array( 'few', 32 ),
-			array( 'one', 41 ),
-			array( 'one', 40001 ),
-		);
+		return [
+			[ 'other', 0 ],
+			[ 'one', 1 ],
+			[ 'few', 2 ],
+			[ 'few', 9 ],
+			[ 'other', 10 ],
+			[ 'other', 11 ],
+			[ 'other', 20 ],
+			[ 'one', 21 ],
+			[ 'few', 32 ],
+			[ 'one', 41 ],
+			[ 'one', 40001 ],
+		];
 	}
 
 	/**
@@ -45,19 +45,19 @@ class LanguageLtTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testOneFewPlural( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = [ 'one', 'other' ];
 		// This fails for 21, but not sure why.
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 2 ),
-			array( 'other', 15 ),
-			array( 'other', 20 ),
-			array( 'one', 21 ),
-			array( 'other', 22 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 2 ],
+			[ 'other', 15 ],
+			[ 'other', 20 ],
+			[ 'one', 21 ],
+			[ 'other', 22 ],
+		];
 	}
 }

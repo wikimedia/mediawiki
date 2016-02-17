@@ -44,59 +44,59 @@ return call_user_func( function () {
 		);
 	};
 
-	$modules = array();
+	$modules = [];
 
 	// Omnibus module.
-	$modules['oojs-ui'] = array(
-		'dependencies' => array(
+	$modules['oojs-ui'] = [
+		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui-widgets',
 			'oojs-ui-toolbars',
 			'oojs-ui-windows',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	);
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	];
 
 	// The core JavaScript library.
-	$modules['oojs-ui-core'] = array(
-		'scripts' => array(
+	$modules['oojs-ui-core'] = [
+		'scripts' => [
 			'resources/lib/oojs-ui/oojs-ui-core.js',
 			'resources/src/oojs-ui-local.js',
-		),
+		],
 		'skinScripts' => $getSkinSpecific( null, 'js' ),
-		'dependencies' => array(
+		'dependencies' => [
 			'es5-shim',
 			'oojs',
 			'oojs-ui-core.styles',
 			'mediawiki.language',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	);
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	];
 	// This contains only the styles required by core widgets.
-	$modules['oojs-ui-core.styles'] = array(
+	$modules['oojs-ui-core.styles'] = [
 		'position' => 'top',
 		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
 		'skinStyles' => $getSkinSpecific( 'core' ),
-		'targets' => array( 'desktop', 'mobile' ),
+		'targets' => [ 'desktop', 'mobile' ],
 		// ResourceLoaderImageModule doesn't support 'skipFunction', so instead we set this up so that
 		// this module is skipped together with its dependencies. Nothing else depends on these modules.
-		'dependencies' => array(
+		'dependencies' => [
 			'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
-		),
+		],
 		'skipFunction' => 'resources/src/oojs-ui-styles-skip.js',
-	);
+	];
 
 	// Deprecated old name for the module 'oojs-ui-core.styles'.
 	$modules['oojs-ui.styles'] = $modules['oojs-ui-core.styles'];
 
 	// Additional widgets and layouts module.
-	$modules['oojs-ui-widgets'] = array(
+	$modules['oojs-ui-widgets'] = [
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
 		'skinStyles' => $getSkinSpecific( 'widgets' ),
 		'dependencies' => 'oojs-ui-core',
-		'messages' => array(
+		'messages' => [
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
@@ -104,38 +104,38 @@ return call_user_func( function () {
 			'ooui-selectfile-dragdrop-placeholder',
 			'ooui-selectfile-not-supported',
 			'ooui-selectfile-placeholder',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	);
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	];
 	// Toolbar and tools module.
-	$modules['oojs-ui-toolbars'] = array(
+	$modules['oojs-ui-toolbars'] = [
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
 		'skinStyles' => $getSkinSpecific( 'toolbars' ),
 		'dependencies' => 'oojs-ui-core',
-		'messages' => array(
+		'messages' => [
 			'ooui-toolbar-more',
 			'ooui-toolgroup-collapse',
 			'ooui-toolgroup-expand',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	);
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	];
 	// Windows and dialogs module.
-	$modules['oojs-ui-windows'] = array(
+	$modules['oojs-ui-windows'] = [
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
 		'skinStyles' => $getSkinSpecific( 'windows' ),
 		'dependencies' => 'oojs-ui-core',
-		'messages' => array(
+		'messages' => [
 			'ooui-dialog-message-accept',
 			'ooui-dialog-message-reject',
 			'ooui-dialog-process-continue',
 			'ooui-dialog-process-dismiss',
 			'ooui-dialog-process-error',
 			'ooui-dialog-process-retry',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	);
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	];
 
-	$imageSets = array(
+	$imageSets = [
 		// Comments for greppability
 		'icons', // oojs-ui.styles.icons
 		'indicators', // oojs-ui.styles.indicators
@@ -155,16 +155,16 @@ return call_user_func( function () {
 		'icons-movement', // oojs-ui.styles.icons-movement
 		'icons-user', // oojs-ui.styles.icons-user
 		'icons-wikimedia', // oojs-ui.styles.icons-wikimedia
-	);
+	];
 	$rootPath = 'resources/lib/oojs-ui/themes';
 
 	foreach ( $imageSets as $name ) {
-		$module = array(
+		$module = [
 			'position' => 'top',
 			'class' => 'ResourceLoaderOOUIImageModule',
 			'name' => $name,
 			'rootPath' => $rootPath,
-		);
+		];
 
 		if ( substr( $name, 0, 5 ) === 'icons' ) {
 			$module['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';

@@ -29,9 +29,9 @@
  */
 class LocalSettingsGenerator {
 
-	protected $extensions = array();
-	protected $values = array();
-	protected $groupPermissions = array();
+	protected $extensions = [];
+	protected $values = [];
+	protected $groupPermissions = [];
 	protected $dbSettings = '';
 	protected $IP;
 
@@ -55,7 +55,7 @@ class LocalSettingsGenerator {
 		$db = $installer->getDBInstaller( $installer->getVar( 'wgDBtype' ) );
 
 		$confItems = array_merge(
-			array(
+			[
 				'wgServer', 'wgScriptPath',
 				'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
 				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
@@ -65,15 +65,15 @@ class LocalSettingsGenerator {
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion',
-			),
+			],
 			$db->getGlobalNames()
 		);
 
-		$unescaped = array( 'wgRightsIcon', 'wgLogo' );
-		$boolItems = array(
+		$unescaped = [ 'wgRightsIcon', 'wgLogo' ];
+		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons'
-		);
+		];
 
 		foreach ( $confItems as $c ) {
 			$val = $installer->getVar( $c );
@@ -117,14 +117,14 @@ class LocalSettingsGenerator {
 
 		return strtr(
 			$string,
-			array(
+			[
 				"\n" => "\\n",
 				"\r" => "\\r",
 				"\t" => "\\t",
 				"\\" => "\\\\",
 				"\$" => "\\\$",
 				"\"" => "\\\""
-			)
+			]
 		);
 	}
 

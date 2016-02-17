@@ -21,7 +21,7 @@
 
 $fallback = 'it';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Discussion',
@@ -38,5 +38,5 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Discussion_ant_sl\'agiut',
 	NS_CATEGORY         => 'Categorìa',
 	NS_CATEGORY_TALK    => 'Discussion_ant_sla_categorìa',
-);
+];
 

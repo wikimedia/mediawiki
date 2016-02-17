@@ -51,7 +51,7 @@ class McTest extends Maintenance {
 			}
 			$servers = $wgObjectCaches[$cache]['servers'];
 		} elseif ( $this->hasArg() ) {
-			$servers = array( $this->getArg() );
+			$servers = [ $this->getArg() ];
 		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
 			global $wgMemCachedServers;
 			$servers = $wgMemCachedServers;
@@ -70,11 +70,11 @@ class McTest extends Maintenance {
 				$server # output channel
 			);
 
-			$mcc = new MemCachedClientforWiki( array(
+			$mcc = new MemCachedClientforWiki( [
 				'persistant' => true,
 				'timeout' => $wgMemCachedTimeout
-			) );
-			$mcc->set_servers( array( $server ) );
+			] );
+			$mcc->set_servers( [ $server ] );
 			$set = 0;
 			$incr = 0;
 			$get = 0;

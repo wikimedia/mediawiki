@@ -62,7 +62,7 @@ class GIFMetadataExtractor {
 		$duration = 0.0;
 		$isLooped = false;
 		$xmp = "";
-		$comment = array();
+		$comment = [];
 
 		if ( !$filename ) {
 			throw new Exception( "No file name specified" );
@@ -251,13 +251,13 @@ class GIFMetadataExtractor {
 			}
 		}
 
-		return array(
+		return [
 			'frameCount' => $frameCount,
 			'looped' => $isLooped,
 			'duration' => $duration,
 			'xmp' => $xmp,
 			'comment' => $comment,
-		);
+		];
 	}
 
 	/**

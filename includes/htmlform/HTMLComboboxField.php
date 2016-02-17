@@ -17,10 +17,10 @@
 class HTMLComboboxField extends HTMLTextField {
 	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
 	public function getAttributes( array $list, array $mappings = null ) {
-		$attribs = array(
+		$attribs = [
 			'type' => 'text',
 			'list' => $this->mName . '-datalist',
-		) + parent::getAttributes( $list, $mappings );
+		] + parent::getAttributes( $list, $mappings );
 
 		return $attribs;
 	}
@@ -35,23 +35,23 @@ class HTMLComboboxField extends HTMLTextField {
 
 	function getInputOOUI( $value ) {
 		$disabled = false;
-		$allowedParams = array( 'tabindex' );
-		$attribs = $this->getAttributes( $allowedParams, array( 'tabindex' => 'tabIndex' ) );
+		$allowedParams = [ 'tabindex' ];
+		$attribs = $this->getAttributes( $allowedParams, [ 'tabindex' => 'tabIndex' ] );
 
 		if ( $this->mClass !== '' ) {
-			$attribs['classes'] = array( $this->mClass );
+			$attribs['classes'] = [ $this->mClass ];
 		}
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$disabled = true;
 		}
 
-		return new OOUI\ComboBoxInputWidget( array(
+		return new OOUI\ComboBoxInputWidget( [
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'options' => $this->getOptionsOOUI(),
 			'value' => strval( $value ),
 			'disabled' => $disabled,
-		) + $attribs );
+		] + $attribs );
 	}
 }

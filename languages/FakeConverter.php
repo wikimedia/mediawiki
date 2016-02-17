@@ -41,7 +41,7 @@ class FakeConverter {
 	}
 
 	function autoConvertToAllVariants( $text ) {
-		return array( $this->mLang->getCode() => $text );
+		return [ $this->mLang->getCode() => $text ];
 	}
 
 	function convert( $t ) {
@@ -65,7 +65,7 @@ class FakeConverter {
 	}
 
 	function getVariants() {
-		return array( $this->mLang->getCode() );
+		return [ $this->mLang->getCode() ];
 	}
 
 	function getVariantFallbacks( $variant ) {

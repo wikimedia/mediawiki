@@ -56,7 +56,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *     are not represented.
 	 */
 	public function batchFetchFromURLs( array $urls ) {
-		$batched = $inverseUrlMap = array();
+		$batched = $inverseUrlMap = [];
 		foreach ( $urls as $url ) {
 			list( $cluster, $id, $itemID ) = $this->parseURL( $url );
 			$batched[$cluster][$id][] = $itemID;
@@ -64,7 +64,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// since we do === from the $itemID in $batched
 			$inverseUrlMap[$cluster][$id][$itemID] = $url;
 		}
-		$ret = array();
+		$ret = [];
 		foreach ( $batched as $cluster => $batchByCluster ) {
 			$res = $this->batchFetchBlobs( $cluster, $batchByCluster );
 			/** @var HistoryBlob $blob */
@@ -90,7 +90,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$dbw = $this->getMaster( $cluster );
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ),
-			array( 'blob_id' => $id, 'blob_text' => $data ),
+			[ 'blob_id' => $id, 'blob_text' => $data ],
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
@@ -131,7 +131,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		$db = $lb->getConnection( DB_SLAVE, array(), $wiki );
+		$db = $lb->getConnection( DB_SLAVE, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -147,7 +147,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
 
-		$db = $lb->getConnection( DB_MASTER, array(), $wiki );
+		$db = $lb->getConnection( DB_MASTER, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -185,7 +185,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		 * the same blob. By keeping the last-used one open, we avoid
 		 * redundant unserialization and decompression overhead.
 		 */
-		static $externalBlobCache = array();
+		static $externalBlobCache = [];
 
 		$cacheID = ( $itemID === false ) ? "$cluster/$id" : "$cluster/$id/";
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
@@ -200,14 +200,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		$dbr = $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ),
-			'blob_text', array( 'blob_id' => $id ), __METHOD__ );
+			'blob_text', [ 'blob_id' => $id ], __METHOD__ );
 		if ( $ret === false ) {
 			wfDebugLog( 'ExternalStoreDB',
 				"ExternalStoreDB::fetchBlob master fallback on $cacheID" );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ),
-				'blob_text', array( 'blob_id' => $id ), __METHOD__ );
+				'blob_text', [ 'blob_id' => $id ], __METHOD__ );
 			if ( $ret === false ) {
 				wfDebugLog( 'ExternalStoreDB',
 					"ExternalStoreDB::fetchBlob master failed to find $cacheID" );
@@ -218,7 +218,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$ret = unserialize( $ret );
 		}
 
-		$externalBlobCache = array( $cacheID => $ret );
+		$externalBlobCache = [ $cacheID => $ret ];
 
 		return $ret;
 	}
@@ -234,8 +234,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	function batchFetchBlobs( $cluster, array $ids ) {
 		$dbr = $this->getSlave( $cluster );
 		$res = $dbr->select( $this->getTable( $dbr ),
-			array( 'blob_id', 'blob_text' ), array( 'blob_id' => array_keys( $ids ) ), __METHOD__ );
-		$ret = array();
+			[ 'blob_id', 'blob_text' ], [ 'blob_id' => array_keys( $ids ) ], __METHOD__ );
+		$ret = [];
 		if ( $res !== false ) {
 			$this->mergeBatchResult( $ret, $ids, $res );
 		}
@@ -246,8 +246,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$res = $dbw->select( $this->getTable( $dbr ),
-				array( 'blob_id', 'blob_text' ),
-				array( 'blob_id' => array_keys( $ids ) ),
+				[ 'blob_id', 'blob_text' ],
+				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
 			if ( $res === false ) {
 				wfDebugLog( __CLASS__, __METHOD__ . " master failed on '$cluster'" );
@@ -292,10 +292,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	protected function parseURL( $url ) {
 		$path = explode( '/', $url );
 
-		return array(
+		return [
 			$path[2], // cluster
 			$path[3], // id
 			isset( $path[4] ) ? $path[4] : false // itemID
-		);
+		];
 	}
 }

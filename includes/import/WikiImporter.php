@@ -43,7 +43,7 @@ class WikiImporter {
 	/** @var ImportTitleFactory */
 	private $importTitleFactory;
 	/** @var array */
-	private $countableCache = array();
+	private $countableCache = [];
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -85,11 +85,11 @@ class WikiImporter {
 		libxml_disable_entity_loader( $oldDisable );
 
 		// Default callbacks
-		$this->setPageCallback( array( $this, 'beforeImportPage' ) );
-		$this->setRevisionCallback( array( $this, "importRevision" ) );
-		$this->setUploadCallback( array( $this, 'importUpload' ) );
-		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
-		$this->setPageOutCallback( array( $this, 'finishImportPage' ) );
+		$this->setPageCallback( [ $this, 'beforeImportPage' ] );
+		$this->setRevisionCallback( [ $this, "importRevision" ] );
+		$this->setUploadCallback( [ $this, 'importUpload' ] );
+		$this->setLogItemCallback( [ $this, 'importLogItem' ] );
+		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
 
 		$this->importTitleFactory = new NaiveImportTitleFactory();
 	}
@@ -333,7 +333,7 @@ class WikiImporter {
 
 		try {
 			$dbw = wfGetDB( DB_MASTER );
-			return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
+			return $dbw->deadlockLoop( [ $revision, 'importOldRevision' ] );
 		} catch ( MWContentSerializationException $ex ) {
 			$this->notice( 'import-error-unserialize',
 				$revision->getTitle()->getPrefixedText(),
@@ -352,7 +352,7 @@ class WikiImporter {
 	 */
 	public function importLogItem( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( array( $revision, 'importLogItem' ) );
+		return $dbw->deadlockLoop( [ $revision, 'importLogItem' ] );
 	}
 
 	/**
@@ -362,7 +362,7 @@ class WikiImporter {
 	 */
 	public function importUpload( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
+		return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
 	}
 
 	/**
@@ -395,9 +395,9 @@ class WikiImporter {
 			$countable = $page->isCountable( $editInfo );
 			if ( array_key_exists( $countKey, $this->countableCache ) &&
 				$countable != $this->countableCache[$countKey] ) {
-				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
+				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [
 					'articles' => ( (int)$countable - (int)$this->countableCache[$countKey] )
-				) ) );
+				] ) );
 			}
 		}
 
@@ -430,7 +430,7 @@ class WikiImporter {
 	private function siteInfoCallback( $siteInfo ) {
 		if ( isset( $this->mSiteInfoCallback ) ) {
 			return call_user_func_array( $this->mSiteInfoCallback,
-					array( $siteInfo, $this ) );
+					[ $siteInfo, $this ] );
 		} else {
 			return false;
 		}
@@ -470,7 +470,7 @@ class WikiImporter {
 	private function revisionCallback( $revision ) {
 		if ( isset( $this->mRevisionCallback ) ) {
 			return call_user_func_array( $this->mRevisionCallback,
-					array( $revision, $this ) );
+					[ $revision, $this ] );
 		} else {
 			return false;
 		}
@@ -484,7 +484,7 @@ class WikiImporter {
 	private function logItemCallback( $revision ) {
 		if ( isset( $this->mLogItemCallback ) ) {
 			return call_user_func_array( $this->mLogItemCallback,
-					array( $revision, $this ) );
+					[ $revision, $this ] );
 		} else {
 			return false;
 		}
@@ -557,7 +557,7 @@ class WikiImporter {
 				$tag = $this->reader->localName;
 				$type = $this->reader->nodeType;
 
-				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
+				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', [ $this ] ) ) {
 					// Do nothing
 				} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
 					break;
@@ -598,10 +598,10 @@ class WikiImporter {
 
 	private function handleSiteInfo() {
 		$this->debug( "Enter site info handler." );
-		$siteInfo = array();
+		$siteInfo = [];
 
 		// Fields that can just be stuffed in the siteInfo object
-		$normalFields = array( 'sitename', 'base', 'generator', 'case' );
+		$normalFields = [ 'sitename', 'base', 'generator', 'case' ];
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
@@ -625,11 +625,11 @@ class WikiImporter {
 
 	private function handleLogItem() {
 		$this->debug( "Enter log item handler." );
-		$logInfo = array();
+		$logInfo = [];
 
 		// Fields that can just be stuffed in the pageInfo object
-		$normalFields = array( 'id', 'comment', 'type', 'action', 'timestamp',
-					'logtitle', 'params' );
+		$normalFields = [ 'id', 'comment', 'type', 'action', 'timestamp',
+					'logtitle', 'params' ];
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
@@ -639,9 +639,9 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', array(
+			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', [
 				$this, $logInfo
-			) ) ) {
+			] ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -702,10 +702,10 @@ class WikiImporter {
 	private function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );
-		$pageInfo = array( 'revisionCount' => 0, 'successfulRevisionCount' => 0 );
+		$pageInfo = [ 'revisionCount' => 0, 'successfulRevisionCount' => 0 ];
 
 		// Fields that can just be stuffed in the pageInfo object
-		$normalFields = array( 'title', 'ns', 'id', 'redirect', 'restrictions' );
+		$normalFields = [ 'title', 'ns', 'id', 'redirect', 'restrictions' ];
 
 		$skip = false;
 		$badTitle = false;
@@ -723,8 +723,8 @@ class WikiImporter {
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
 				$skip = true;
-			} elseif ( !Hooks::run( 'ImportHandlePageXMLTag', array( $this,
-						&$pageInfo ) ) ) {
+			} elseif ( !Hooks::run( 'ImportHandlePageXMLTag', [ $this,
+						&$pageInfo ] ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				// An XML snippet:
@@ -785,9 +785,9 @@ class WikiImporter {
 	 */
 	private function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
-		$revisionInfo = array();
+		$revisionInfo = [];
 
-		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' );
+		$normalFields = [ 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' ];
 
 		$skip = false;
 
@@ -799,9 +799,9 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', array(
+			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', [
 				$this, $pageInfo, $revisionInfo
-			) ) ) {
+			] ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
@@ -832,14 +832,14 @@ class WikiImporter {
 		// content models, as other content models might use serialization formats
 		// which aren't checked against $wgMaxArticleSize.
 		if ( ( !isset( $revisionInfo['model'] ) ||
-			in_array( $revisionInfo['model'], array(
+			in_array( $revisionInfo['model'], [
 				'wikitext',
 				'css',
 				'json',
 				'javascript',
 				'text',
 				''
-			) ) ) &&
+			] ) ) &&
 			(int)( strlen( $revisionInfo['text'] ) / 1024 ) > $wgMaxArticleSize
 		) {
 			throw new MWException( 'The text of ' .
@@ -901,10 +901,10 @@ class WikiImporter {
 	 */
 	private function handleUpload( &$pageInfo ) {
 		$this->debug( "Enter upload handler" );
-		$uploadInfo = array();
+		$uploadInfo = [];
 
-		$normalFields = array( 'timestamp', 'comment', 'filename', 'text',
-					'src', 'size', 'sha1base36', 'archivename', 'rel' );
+		$normalFields = [ 'timestamp', 'comment', 'filename', 'text',
+					'src', 'size', 'sha1base36', 'archivename', 'rel' ];
 
 		$skip = false;
 
@@ -916,9 +916,9 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleUploadXMLTag', array(
+			if ( !Hooks::run( 'ImportHandleUploadXMLTag', [
 				$this, $pageInfo
-			) ) ) {
+			] ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();
@@ -1003,8 +1003,8 @@ class WikiImporter {
 	 * @return array
 	 */
 	private function handleContributor() {
-		$fields = array( 'id', 'ip', 'username' );
-		$info = array();
+		$fields = [ 'id', 'ip', 'username' ];
+		$info = [];
 
 		if ( $this->reader->isEmptyElement ) {
 			return $info;
@@ -1065,6 +1065,6 @@ class WikiImporter {
 			return false;
 		}
 
-		return array( $title, $foreignTitle );
+		return [ $title, $foreignTitle ];
 	}
 }

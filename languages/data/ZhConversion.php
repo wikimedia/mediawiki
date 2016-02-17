@@ -11,7 +11,7 @@
 namespace MediaWiki\Languages\Data;
 
 class ZhConversion {
-public static $zh2Hant = array(
+public static $zh2Hant = [
 '㐷' => '傌',
 '㐹' => '㑶',
 '㐽' => '偑',
@@ -9374,9 +9374,9 @@ public static $zh2Hant = array(
 '，并力討' => '，并力討',
 '，并力讨' => '，并力討',
 '，个中' => '，箇中',
-);
+];
 
-public static $zh2Hans = array(
+public static $zh2Hans = [
 '㑯' => '㑔',
 '㑳' => '㑇',
 '㑶' => '㐹',
@@ -13814,9 +13814,9 @@ public static $zh2Hans = array(
 '黄润乾' => '黄润乾',
 '龍鍾' => '龙钟',
 '，陞' => '，升',
-);
+];
 
-public static $zh2TW = array(
+public static $zh2TW = [
 '0字节' => '0位元組',
 '0杆' => '0桿',
 '1字节' => '1位元組',
@@ -14595,9 +14595,9 @@ public static $zh2TW = array(
 '点烟' => '點菸',
 '點煙' => '點菸',
 '霉素' => '黴素',
-);
+];
 
-public static $zh2HK = array(
+public static $zh2HK = [
 '0字节' => '0位元組',
 '1字节' => '1位元組',
 '2字节' => '2位元組',
@@ -17617,9 +17617,9 @@ public static $zh2HK = array(
 '点里' => '點裏',
 '点里程' => '點里程',
 '鼓里' => '鼓裏',
-);
+];
 
-public static $zh2CN = array(
+public static $zh2CN = [
 '16進位制' => '16进位制',
 '16進位' => '16进制',
 'IP位址' => 'IP地址',
@@ -20277,5 +20277,5 @@ public static $zh2CN = array(
 '黏著述' => '黏著述',
 '蒙特內哥羅' => '黑山',
 '滑鼠' => '鼠标',
-);
+];
 }

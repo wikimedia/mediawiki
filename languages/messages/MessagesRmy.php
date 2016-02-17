@@ -12,7 +12,7 @@
 
 $fallback = 'ro';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Mediya',
 	NS_SPECIAL          => 'Uzalutno',
 	NS_TALK             => 'Vakyarimata',
@@ -29,5 +29,5 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Zhutipen_vakyarimata',
 	NS_CATEGORY         => 'Shopni',
 	NS_CATEGORY_TALK    => 'Shopni_vakyarimata',
-);
+];
 

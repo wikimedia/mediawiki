@@ -57,9 +57,9 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Route all HTCP messages to provided host:port
-			$wgHTCPRouting = array(
-				'' => array( 'host' => $parts[0], 'port' => $parts[1] ),
-			);
+			$wgHTCPRouting = [
+				'' => [ 'host' => $parts[0], 'port' => $parts[1] ],
+			];
 			if ( $this->hasOption( 'verbose' ) ) {
 				$this->output( "HTCP broadcasts to {$parts[0]}:{$parts[1]}\n" );
 			}
@@ -80,25 +80,25 @@ class PurgeChangedPages extends Maintenance {
 			$bSize = $this->mBatchSize + ( $stuckCount * $this->mBatchSize );
 
 			$res = $dbr->select(
-				array( 'page', 'revision' ),
-				array(
+				[ 'page', 'revision' ],
+				[
 					'rev_timestamp',
 					'page_namespace',
 					'page_title',
-				),
-				array(
+				],
+				[
 					"rev_timestamp > " . $dbr->addQuotes( $minTime ),
 					"rev_timestamp <= " . $dbr->addQuotes( $maxTime ),
 					// Only get rows where the revision is the latest for the page.
 					// Other revisions would be duplicate and we don't need to purge if
 					// there has been an edit after the interesting time window.
 					"page_latest = rev_id",
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'rev_timestamp', 'LIMIT' => $bSize ),
-				array(
-					'page' => array( 'INNER JOIN', 'rev_page=page_id' ),
-				)
+				[ 'ORDER BY' => 'rev_timestamp', 'LIMIT' => $bSize ],
+				[
+					'page' => [ 'INNER JOIN', 'rev_page=page_id' ],
+				]
 			);
 
 			if ( !$res->numRows() ) {
@@ -121,7 +121,7 @@ class PurgeChangedPages extends Maintenance {
 			$minTime = $lastTime;
 
 			// Create list of URLs from page_namespace + page_title
-			$urls = array();
+			$urls = [];
 			foreach ( $rows as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$urls[] = $title->getInternalURL();
@@ -170,9 +170,9 @@ class PurgeChangedPages extends Maintenance {
 		$rows = iterator_to_array( $res, false );
 		$count = count( $rows );
 		if ( !$count ) {
-			return array( array(), null ); // nothing to do
+			return [ [], null ]; // nothing to do
 		} elseif ( $count < $limit ) {
-			return array( $rows, $rows[$count - 1]->$column ); // no more rows left
+			return [ $rows, $rows[$count - 1]->$column ]; // no more rows left
 		}
 		$lastValue = $rows[$count - 1]->$column; // should be the highest
 		for ( $i = $count - 1; $i >= 0; --$i ) {
@@ -184,7 +184,7 @@ class PurgeChangedPages extends Maintenance {
 		}
 		$lastValueLeft = count( $rows ) ? $rows[count( $rows ) - 1]->$column : null;
 
-		return array( $rows, $lastValueLeft );
+		return [ $rows, $lastValueLeft ];
 	}
 }
 

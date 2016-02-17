@@ -45,7 +45,7 @@ class ApiImport extends ApiBase {
 				$this->dieUsageMsg( 'cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
-				$this->dieUsageMsg( array( 'missingparam', 'interwikipage' ) );
+				$this->dieUsageMsg( [ 'missingparam', 'interwikipage' ] );
 			}
 			$source = ImportStreamSource::newFromInterwiki(
 				$params['interwikisource'],
@@ -83,7 +83,7 @@ class ApiImport extends ApiBase {
 		try {
 			$importer->doImport();
 		} catch ( Exception $e ) {
-			$this->dieUsageMsg( array( 'import-unknownerror', $e->getMessage() ) );
+			$this->dieUsageMsg( [ 'import-unknownerror', $e->getMessage() ] );
 		}
 
 		$resultData = $reporter->getData();
@@ -101,9 +101,9 @@ class ApiImport extends ApiBase {
 	 */
 	public function getAllowedImportSources() {
 		$importSources = $this->getConfig()->get( 'ImportSources' );
-		Hooks::run( 'ImportSources', array( &$importSources ) );
+		Hooks::run( 'ImportSources', [ &$importSources ] );
 
-		$result = array();
+		$result = [];
 		foreach ( $importSources as $key => $value ) {
 			if ( is_int( $key ) ) {
 				$result[] = $value;
@@ -125,22 +125,22 @@ class ApiImport extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'summary' => null,
-			'xml' => array(
+			'xml' => [
 				ApiBase::PARAM_TYPE => 'upload',
-			),
-			'interwikisource' => array(
+			],
+			'interwikisource' => [
 				ApiBase::PARAM_TYPE => $this->getAllowedImportSources(),
-			),
+			],
 			'interwikipage' => null,
 			'fullhistory' => false,
 			'templates' => false,
-			'namespace' => array(
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
+			],
 			'rootpage' => null,
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -148,11 +148,11 @@ class ApiImport extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
 				'namespace=100&fullhistory=&token=123ABC'
 				=> 'apihelp-import-example-import',
-		);
+		];
 	}
 
 	public function getHelpUrls() {
@@ -165,7 +165,7 @@ class ApiImport extends ApiBase {
  * @ingroup API
  */
 class ApiImportReporter extends ImportReporter {
-	private $mResultArr = array();
+	private $mResultArr = [];
 
 	/**
 	 * @param Title $title
@@ -177,7 +177,7 @@ class ApiImportReporter extends ImportReporter {
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
-		$r = array();
+		$r = [];
 
 		if ( $title === null ) {
 			# Invalid or non-importable title

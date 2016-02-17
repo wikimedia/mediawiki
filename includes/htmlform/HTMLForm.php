@@ -122,7 +122,7 @@
  */
 class HTMLForm extends ContextSource {
 	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
-	public static $typeMappings = array(
+	public static $typeMappings = [
 		'api' => 'HTMLApiField',
 		'text' => 'HTMLTextField',
 		'textwithbutton' => 'HTMLTextFieldWithButton',
@@ -156,7 +156,7 @@ class HTMLForm extends ContextSource {
 		'url' => 'HTMLTextField',
 		'title' => 'HTMLTitleTextField',
 		'user' => 'HTMLUserTextField',
-	);
+	];
 
 	public $mFieldData;
 
@@ -168,7 +168,7 @@ class HTMLForm extends ContextSource {
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
-	protected $mSubmitFlags = array( 'constructive', 'primary' );
+	protected $mSubmitFlags = [ 'constructive', 'primary' ];
 
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
@@ -176,8 +176,8 @@ class HTMLForm extends ContextSource {
 	protected $mPre = '';
 	protected $mHeader = '';
 	protected $mFooter = '';
-	protected $mSectionHeaders = array();
-	protected $mSectionFooters = array();
+	protected $mSectionHeaders = [];
+	protected $mSectionFooters = [];
 	protected $mPost = '';
 	protected $mId;
 	protected $mTableId = '';
@@ -199,8 +199,8 @@ class HTMLForm extends ContextSource {
 	protected $mAction = false;
 
 	protected $mUseMultipart = false;
-	protected $mHiddenFields = array();
-	protected $mButtons = array();
+	protected $mHiddenFields = [];
+	protected $mButtons = [];
 
 	protected $mWrapperLegend = false;
 
@@ -230,21 +230,21 @@ class HTMLForm extends ContextSource {
 	 * Available formats in which to display the form
 	 * @var array
 	 */
-	protected $availableDisplayFormats = array(
+	protected $availableDisplayFormats = [
 		'table',
 		'div',
 		'raw',
 		'inline',
-	);
+	];
 
 	/**
 	 * Available formats in which to display the form
 	 * @var array
 	 */
-	protected $availableSubclassDisplayFormats = array(
+	protected $availableSubclassDisplayFormats = [
 		'vform',
 		'ooui',
-	);
+	];
 
 	/**
 	 * Construct a HTMLForm object for given display type. May return a HTMLForm subclass.
@@ -304,8 +304,8 @@ class HTMLForm extends ContextSource {
 		}
 
 		// Expand out into a tree.
-		$loadedDescriptor = array();
-		$this->mFlatFields = array();
+		$loadedDescriptor = [];
+		$this->mFlatFields = [];
 
 		foreach ( $descriptor as $fieldname => $info ) {
 			$section = isset( $info['section'] )
@@ -326,7 +326,7 @@ class HTMLForm extends ContextSource {
 					$newName = array_shift( $sectionParts );
 
 					if ( !isset( $setSection[$newName] ) ) {
-						$setSection[$newName] = array();
+						$setSection[$newName] = [];
 					}
 
 					$setSection =& $setSection[$newName];
@@ -554,10 +554,10 @@ class HTMLForm extends ContextSource {
 	 */
 	function trySubmit() {
 		$valid = true;
-		$hoistedErrors = array();
+		$hoistedErrors = [];
 		$hoistedErrors[] = isset( $this->mValidationErrorMessage )
 			? $this->mValidationErrorMessage
-			: array( 'htmlform-invalid-input' );
+			: [ 'htmlform-invalid-input' ];
 
 		$this->mWasSubmitted = true;
 
@@ -584,7 +584,7 @@ class HTMLForm extends ContextSource {
 			if ( $res !== true ) {
 				$valid = false;
 				if ( $res !== false && !$field->canDisplayErrors() ) {
-					$hoistedErrors[] = array( 'rawmessage', $res );
+					$hoistedErrors[] = [ 'rawmessage', $res ];
 				}
 			}
 		}
@@ -842,9 +842,9 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function addHiddenField( $name, $value, $attribs = array() ) {
-		$attribs += array( 'name' => $name );
-		$this->mHiddenFields[] = array( $value, $attribs );
+	public function addHiddenField( $name, $value, $attribs = [] ) {
+		$attribs += [ 'name' => $name ];
+		$this->mHiddenFields[] = [ $value, $attribs ];
 
 		return $this;
 	}
@@ -861,7 +861,7 @@ class HTMLForm extends ContextSource {
 	 */
 	public function addHiddenFields( array $fields ) {
 		foreach ( $fields as $name => $value ) {
-			$this->mHiddenFields[] = array( $value, array( 'name' => $name ) );
+			$this->mHiddenFields[] = [ $value, [ 'name' => $name ] ];
 		}
 
 		return $this;
@@ -898,12 +898,12 @@ class HTMLForm extends ContextSource {
 					'Incorrect number of arguments for deprecated calling style'
 				);
 			}
-			$data = array(
+			$data = [
 				'name' => $args[0],
 				'value' => $args[1],
 				'id' => isset( $args[2] ) ? $args[2] : null,
 				'attribs' => isset( $args[3] ) ? $args[3] : null,
-			);
+			];
 		} else {
 			if ( !isset( $data['name'] ) ) {
 				throw new InvalidArgumentException( 'A name is required' );
@@ -912,11 +912,11 @@ class HTMLForm extends ContextSource {
 				throw new InvalidArgumentException( 'A value is required' );
 			}
 		}
-		$this->mButtons[] = $data + array(
+		$this->mButtons[] = $data + [
 			'id' => null,
 			'attribs' => null,
 			'flags' => null,
-		);
+		];
 
 		return $this;
 	}
@@ -988,11 +988,11 @@ class HTMLForm extends ContextSource {
 			? 'multipart/form-data'
 			: 'application/x-www-form-urlencoded';
 		# Attributes
-		$attribs = array(
+		$attribs = [
 			'action' => $this->getAction(),
 			'method' => $this->getMethod(),
 			'enctype' => $encType,
-		);
+		];
 		if ( !empty( $this->mId ) ) {
 			$attribs['id'] = $this->mId;
 		}
@@ -1015,7 +1015,7 @@ class HTMLForm extends ContextSource {
 
 		return Html::rawElement(
 			'form',
-			$this->getFormAttributes() + array( 'class' => 'visualClear' ),
+			$this->getFormAttributes() + [ 'class' => 'visualClear' ],
 			$html
 		);
 	}
@@ -1030,7 +1030,7 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden(
 				'wpEditToken',
 				$this->getUser()->getEditToken( $this->mTokenSalt ),
-				array( 'id' => 'wpEditToken' )
+				[ 'id' => 'wpEditToken' ]
 			) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
@@ -1057,7 +1057,7 @@ class HTMLForm extends ContextSource {
 		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 
 		if ( $this->mShowSubmit ) {
-			$attribs = array();
+			$attribs = [];
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
@@ -1071,7 +1071,7 @@ class HTMLForm extends ContextSource {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['class'] = array( 'mw-htmlform-submit' );
+			$attribs['class'] = [ 'mw-htmlform-submit' ];
 
 			if ( $useMediaWikiUIEverywhere ) {
 				foreach ( $this->mSubmitFlags as $flag ) {
@@ -1086,11 +1086,11 @@ class HTMLForm extends ContextSource {
 		if ( $this->mShowReset ) {
 			$buttons .= Html::element(
 				'input',
-				array(
+				[
 					'type' => 'reset',
 					'value' => $this->msg( 'htmlform-reset' )->text(),
 					'class' => ( $useMediaWikiUIEverywhere ? 'mw-ui-button' : null ),
-				)
+				]
 			) . "\n";
 		}
 
@@ -1098,11 +1098,11 @@ class HTMLForm extends ContextSource {
 		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
 
 		foreach ( $this->mButtons as $button ) {
-			$attrs = array(
+			$attrs = [
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value']
-			);
+			];
 
 			if ( isset( $button['label-message'] ) ) {
 				$label = $this->msg( $button['label-message'] )->parse();
@@ -1123,7 +1123,7 @@ class HTMLForm extends ContextSource {
 			}
 
 			if ( $useMediaWikiUIEverywhere ) {
-				$attrs['class'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : array();
+				$attrs['class'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
 				$attrs['class'][] = 'mw-ui-button';
 			}
 
@@ -1135,7 +1135,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		$html = Html::rawElement( 'span',
-			array( 'class' => 'mw-htmlform-submit-buttons' ), "\n$buttons" ) . "\n";
+			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 
 		return $html;
 	}
@@ -1169,7 +1169,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		return $errorstr
-			? Html::rawElement( 'div', array( 'class' => 'error' ), $errorstr )
+			? Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr )
 			: '';
 	}
 
@@ -1188,17 +1188,17 @@ class HTMLForm extends ContextSource {
 				$msg = array_shift( $error );
 			} else {
 				$msg = $error;
-				$error = array();
+				$error = [];
 			}
 
 			$errorstr .= Html::rawElement(
 				'li',
-				array(),
+				[],
 				$this->msg( $msg, $error )->parse()
 			);
 		}
 
-		$errorstr = Html::rawElement( 'ul', array(), $errorstr );
+		$errorstr = Html::rawElement( 'ul', [], $errorstr );
 
 		return $errorstr;
 	}
@@ -1221,7 +1221,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.24
 	 */
 	public function setSubmitDestructive() {
-		$this->mSubmitFlags = array( 'destructive', 'primary' );
+		$this->mSubmitFlags = [ 'destructive', 'primary' ];
 	}
 
 	/**
@@ -1229,7 +1229,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.25
 	 */
 	public function setSubmitProgressive() {
-		$this->mSubmitFlags = array( 'progressive', 'primary' );
+		$this->mSubmitFlags = [ 'progressive', 'primary' ];
 	}
 
 	/**
@@ -1461,7 +1461,7 @@ class HTMLForm extends ContextSource {
 		&$hasUserVisibleFields = false ) {
 		$displayFormat = $this->getDisplayFormat();
 
-		$html = array();
+		$html = [];
 		$subsectionHtml = '';
 		$hasLabel = false;
 
@@ -1508,7 +1508,7 @@ class HTMLForm extends ContextSource {
 						$section .
 						$this->getFooterText( $key );
 
-					$attributes = array();
+					$attributes = [];
 					if ( $fieldsetIDPrefix ) {
 						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 					}
@@ -1548,15 +1548,15 @@ class HTMLForm extends ContextSource {
 			return $html;
 		}
 
-		$classes = array();
+		$classes = [];
 
 		if ( !$anyFieldHasLabel ) { // Avoid strange spacing when no labels exist
 			$classes[] = 'mw-htmlform-nolabel';
 		}
 
-		$attribs = array(
+		$attribs = [
 			'class' => implode( ' ', $classes ),
-		);
+		];
 
 		if ( $sectionName ) {
 			$attribs['id'] = Sanitizer::escapeId( $sectionName );
@@ -1565,7 +1565,7 @@ class HTMLForm extends ContextSource {
 		if ( $displayFormat === 'table' ) {
 			return Html::rawElement( 'table',
 					$attribs,
-					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
+					Html::rawElement( 'tbody', [], "\n$html\n" ) ) . "\n";
 		} elseif ( $displayFormat === 'inline' ) {
 			return Html::rawElement( 'span', $attribs, "\n$html\n" );
 		} else {
@@ -1577,7 +1577,7 @@ class HTMLForm extends ContextSource {
 	 * Construct the form fields from the Descriptor array
 	 */
 	function loadData() {
-		$fieldData = array();
+		$fieldData = [];
 
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty( $field->mParams['nodata'] ) ) {

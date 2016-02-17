@@ -183,7 +183,7 @@ abstract class ContextSource implements IContextSource {
 	public function msg( /* $args */ ) {
 		$args = func_get_args();
 
-		return call_user_func_array( array( $this->getContext(), 'msg' ), $args );
+		return call_user_func_array( [ $this->getContext(), 'msg' ], $args );
 	}
 
 	/**

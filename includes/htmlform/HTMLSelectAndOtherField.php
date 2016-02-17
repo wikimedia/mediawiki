@@ -28,7 +28,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		}
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
 			// Have 'other' always as first element
-			$this->mOptions = array( $params['other'] => 'other' ) + $this->mOptions;
+			$this->mOptions = [ $params['other'] => 'other' ] + $this->mOptions;
 		}
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 
@@ -37,25 +37,25 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	function getInputHTML( $value ) {
 		$select = parent::getInputHTML( $value[1] );
 
-		$textAttribs = array(
+		$textAttribs = [
 			'id' => $this->mID . '-other',
 			'size' => $this->getSize(),
-			'class' => array( 'mw-htmlform-select-and-other-field' ),
+			'class' => [ 'mw-htmlform-select-and-other-field' ],
 			'data-id-select' => $this->mID,
-		);
+		];
 
 		if ( $this->mClass !== '' ) {
 			$textAttribs['class'][] = $this->mClass;
 		}
 
-		$allowedParams = array(
+		$allowedParams = [
 			'required',
 			'autofocus',
 			'multiple',
 			'disabled',
 			'tabindex',
 			'maxlength', // gets dynamic with javascript, see mediawiki.htmlform.js
-		);
+		];
 
 		$textAttribs += $this->getAttributes( $allowedParams );
 
@@ -105,7 +105,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			}
 		}
 
-		return array( $final, $list, $text );
+		return [ $final, $list, $text ];
 	}
 
 	function getSize() {

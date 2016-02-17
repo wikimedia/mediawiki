@@ -9,5 +9,5 @@
  */
 
 $fallback = 'de';
-$separatorTransformTable = array( ',' => "'", '.' => ',' );
+$separatorTransformTable = [ ',' => "'", '.' => ',' ];
 

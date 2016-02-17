@@ -38,15 +38,15 @@ STR;
 	 * @return array
 	 */
 	protected function merge( /*...*/ ) {
-		$request = array();
-		$expected = array();
+		$request = [];
+		$expected = [];
 		foreach ( func_get_args() as $v ) {
 			list( $req, $exp ) = $this->validateRequestExpectedPair( $v );
 			$request = array_merge_recursive( $request, $req );
 			$this->mergeExpected( $expected, $exp );
 		}
 
-		return array( $request, $expected );
+		return [ $request, $expected ];
 	}
 
 	/**
@@ -106,7 +106,7 @@ STR;
 			}
 		}
 		$result = $this->doApiRequest( $req, $session, $appendModule, $user );
-		$this->assertResult( array( 'batchcomplete' => true, 'query' => $exp ), $result[0], $req );
+		$this->assertResult( [ 'batchcomplete' => true, 'query' => $exp ], $result[0], $req );
 	}
 
 	protected function assertResult( $exp, $result, $message = '' ) {

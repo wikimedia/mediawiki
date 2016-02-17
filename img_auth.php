@@ -43,7 +43,7 @@ require __DIR__ . '/includes/WebStart.php';
 # Set action base paths so that WebRequest::getPathInfo()
 # recognizes the "X" as the 'title' in ../img_auth.php/X urls.
 $wgArticlePath = false; # Don't let a "/*" article path clober our action path
-$wgActionPaths = array( "$wgUploadPath/" );
+$wgActionPaths = [ "$wgUploadPath/" ];
 
 wfImageAuthMain();
 
@@ -54,7 +54,7 @@ function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
 
 	$request = RequestContext::getMain()->getRequest();
-	$publicWiki = in_array( 'read', User::getGroupPermissions( array( '*' ) ), true );
+	$publicWiki = in_array( 'read', User::getGroupPermissions( [ '*' ] ), true );
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
@@ -69,7 +69,7 @@ function wfImageAuthMain() {
 	}
 
 	// Check for bug 28235: QUERY_STRING overriding the correct extension
-	$whitelist = array();
+	$whitelist = [];
 	$extension = FileBackend::extensionFromPath( $path, 'rawcase' );
 	if ( $extension != '' ) {
 		$whitelist[] = $extension;
@@ -90,10 +90,10 @@ function wfImageAuthMain() {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $path );
 				return;
 			}
-			if ( $be->fileExists( array( 'src' => $filename ) ) ) {
+			if ( $be->fileExists( [ 'src' => $filename ] ) ) {
 				wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-				$be->streamFile( array( 'src' => $filename ),
-					array( 'Cache-Control: private', 'Vary: Cookie' ) );
+				$be->streamFile( [ 'src' => $filename ],
+					[ 'Cache-Control: private', 'Vary: Cookie' ] );
 			} else {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $path );
 			}
@@ -133,7 +133,7 @@ function wfImageAuthMain() {
 		}
 	}
 
-	$headers = array(); // extra HTTP headers to send
+	$headers = []; // extra HTTP headers to send
 
 	if ( !$publicWiki ) {
 		// For private wikis, run extra auth checks and set cache control headers
@@ -149,7 +149,7 @@ function wfImageAuthMain() {
 		// Run hook for extension authorization plugins
 		/** @var $result array */
 		$result = null;
-		if ( !Hooks::run( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
+		if ( !Hooks::run( 'ImgAuthBeforeStream', [ &$title, &$path, &$name, &$result ] ) ) {
 			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 			return;
 		}

@@ -67,7 +67,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
 		$titleMsg = 'exception-nologin',
-		$params = array()
+		$params = []
 	) {
 		parent::__construct( $titleMsg, $reasonMsg, $params );
 	}
@@ -92,12 +92,12 @@ class UserNotLoggedIn extends ErrorPageError {
 		// Title will be overridden by returnto
 		unset( $query['title'] );
 		// Redirect to Special:Userlogin
-		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( array(
+		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 			// Return to this page when the user logs in
 			'returnto' => $context->getTitle()->getFullText(),
 			'returntoquery' => wfArrayToCgi( $query ),
 			'warning' => $this->msg,
-		) ) );
+		] ) );
 
 		$output->output();
 	}

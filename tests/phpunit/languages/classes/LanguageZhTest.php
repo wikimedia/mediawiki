@@ -10,10 +10,10 @@ class LanguageZhTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideAutoConvertToAllVariants() {
-		return array(
+		return [
 			// Plain hant -> hans
-			array(
-				array(
+			[
+				[
 					'zh'      => '㑯',
 					'zh-hans' => '㑔',
 					'zh-hant' => '㑯',
@@ -23,12 +23,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '㑔',
 					'zh-sg'   => '㑔',
 					'zh-tw'   => '㑯',
-				),
+				],
 				'㑯'
-			),
+			],
 			// Plain hans -> hant
-			array(
-				array(
+			[
+				[
 					'zh'      => '㐷',
 					'zh-hans' => '㐷',
 					'zh-hant' => '傌',
@@ -38,12 +38,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '㐷',
 					'zh-sg'   => '㐷',
 					'zh-tw'   => '傌',
-				),
+				],
 				'㐷'
-			),
+			],
 			// zh-cn specific
-			array(
-				array(
+			[
+				[
 					'zh'      => '仲介',
 					'zh-hans' => '仲介',
 					'zh-hant' => '仲介',
@@ -53,12 +53,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '中介',
 					'zh-sg'   => '中介',
 					'zh-tw'   => '仲介',
-				),
+				],
 				'仲介'
-			),
+			],
 			// zh-hk specific
-			array(
-				array(
+			[
+				[
 					'zh'      => '中文里',
 					'zh-hans' => '中文里',
 					'zh-hant' => '中文裡',
@@ -68,12 +68,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '中文里',
 					'zh-sg'   => '中文里',
 					'zh-tw'   => '中文裡',
-				),
+				],
 				'中文里'
-			),
+			],
 			// zh-tw specific
-			array(
-				array(
+			[
+				[
 					'zh'      => '甲肝',
 					'zh-hans' => '甲肝',
 					'zh-hant' => '甲肝',
@@ -83,12 +83,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '甲肝',
 					'zh-sg'   => '甲肝',
 					'zh-tw'   => 'A肝',
-				),
+				],
 				'甲肝'
-			),
+			],
 			// zh-tw overrides zh-hant
-			array(
-				array(
+			[
+				[
 					'zh'      => '账',
 					'zh-hans' => '账',
 					'zh-hant' => '賬',
@@ -98,12 +98,12 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '账',
 					'zh-sg'   => '账',
 					'zh-tw'   => '帳',
-				),
+				],
 				'账'
-			),
+			],
 			// zh-hk overrides zh-hant
-			array(
-				array(
+			[
+				[
 					'zh'      => '一地里',
 					'zh-hans' => '一地里',
 					'zh-hant' => '一地裡',
@@ -113,9 +113,9 @@ class LanguageZhTest extends LanguageClassesTestCase {
 					'zh-my'   => '一地里',
 					'zh-sg'   => '一地里',
 					'zh-tw'   => '一地裡',
-				),
+				],
 				'一地里'
-			),
-		);
+			],
+		];
 	}
 }

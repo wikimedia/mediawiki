@@ -78,17 +78,17 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// First, count anons
 		$this->addTables( 'revision' );
-		$this->addFields( array(
+		$this->addFields( [
 			'page' => 'rev_page',
 			'anons' => 'COUNT(DISTINCT rev_user_text)',
-		) );
+		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user = 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page' );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
-			$fit = $result->addValue( array( 'query', 'pages', $row->page ),
+			$fit = $result->addValue( [ 'query', 'pages', $row->page ],
 				'anoncontributors', (int)$row->anons
 			);
 			if ( !$fit ) {
@@ -106,11 +106,11 @@ class ApiQueryContributors extends ApiQueryBase {
 		// Next, add logged-in users
 		$this->resetQueryParams();
 		$this->addTables( 'revision' );
-		$this->addFields( array(
+		$this->addFields( [
 			'page' => 'rev_page',
 			'user' => 'rev_user',
 			'username' => 'MAX(rev_user_text)', // Non-MySQL databases don't like partial group-by
-		) );
+		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user != 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
@@ -125,7 +125,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->addOption( 'ORDER BY', 'rev_user' );
 		}
 
-		$limitGroups = array();
+		$limitGroups = [];
 		if ( $params['group'] ) {
 			$excludeGroups = false;
 			$limitGroups = $params['group'];
@@ -158,10 +158,10 @@ class ApiQueryContributors extends ApiQueryBase {
 		if ( $limitGroups ) {
 			$limitGroups = array_unique( $limitGroups );
 			$this->addTables( 'user_groups' );
-			$this->addJoinConds( array( 'user_groups' => array(
+			$this->addJoinConds( [ 'user_groups' => [
 				$excludeGroups ? 'LEFT OUTER JOIN' : 'INNER JOIN',
-				array( 'ug_user=rev_user', 'ug_group' => $limitGroups )
-			) ) );
+				[ 'ug_user=rev_user', 'ug_group' => $limitGroups ]
+			] ] );
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
 		}
 
@@ -189,7 +189,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			}
 
 			$fit = $this->addPageSubItem( $row->page,
-				array( 'userid' => (int)$row->user, 'name' => $row->username ),
+				[ 'userid' => (int)$row->user, 'name' => $row->username ],
 				'user'
 			);
 			if ( !$fit ) {
@@ -212,41 +212,41 @@ class ApiQueryContributors extends ApiQueryBase {
 		$userGroups = User::getAllGroups();
 		$userRights = User::getAllRights();
 
-		return array(
-			'group' => array(
+		return [
+			'group' => [
 				ApiBase::PARAM_TYPE => $userGroups,
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'excludegroup' => array(
+			],
+			'excludegroup' => [
 				ApiBase::PARAM_TYPE => $userGroups,
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'rights' => array(
+			],
+			'rights' => [
 				ApiBase::PARAM_TYPE => $userRights,
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'excluderights' => array(
+			],
+			'excluderights' => [
 				ApiBase::PARAM_TYPE => $userRights,
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=contributors&titles=Main_Page'
 				=> 'apihelp-query+contributors-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

@@ -70,7 +70,7 @@ interface IApiMessage extends MessageSpecifier {
  */
 trait ApiMessageTrait {
 	protected $apiCode = null;
-	protected $apiData = array();
+	protected $apiData = [];
 
 	public function getApiCode() {
 		return $this->apiCode === null ? $this->getKey() : $this->apiCode;
@@ -92,11 +92,11 @@ trait ApiMessageTrait {
 	}
 
 	public function serialize() {
-		return serialize( array(
+		return serialize( [
 			'parent' => parent::serialize(),
 			'apiCode' => $this->apiCode,
 			'apiData' => $this->apiData,
-		) );
+		] );
 	}
 
 	public function unserialize( $serialized ) {

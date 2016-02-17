@@ -217,13 +217,13 @@ class WikiExporter {
 		// rev_deleted
 
 		$res = $this->db->select(
-			array( 'page', 'revision' ),
-			array( 'DISTINCT rev_user_text', 'rev_user' ),
-			array(
+			[ 'page', 'revision' ],
+			[ 'DISTINCT rev_user_text', 'rev_user' ],
+			[
 				$this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0',
 				$cond,
 				'page_id = rev_id',
-			),
+			],
 			__METHOD__
 		);
 
@@ -248,7 +248,7 @@ class WikiExporter {
 	protected function dumpFrom( $cond = '' ) {
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
-			$where = array( 'user_id = log_user' );
+			$where = [ 'user_id = log_user' ];
 			# Hide private logs
 			$hideLogs = LogEventsList::getExcludeClause( $this->db );
 			if ( $hideLogs ) {
@@ -266,11 +266,11 @@ class WikiExporter {
 			}
 			$result = null; // Assuring $result is not undefined, if exception occurs early
 			try {
-				$result = $this->db->select( array( 'logging', 'user' ),
-					array( "{$logging}.*", 'user_name' ), // grab the user name
+				$result = $this->db->select( [ 'logging', 'user' ],
+					[ "{$logging}.*", 'user_name' ], // grab the user name
 					$where,
 					__METHOD__,
-					array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
+					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ]
 				);
 				$this->outputLogStream( $result );
 				if ( $this->buffer == WikiExporter::STREAM ) {
@@ -305,10 +305,10 @@ class WikiExporter {
 			}
 		# For page dumps...
 		} else {
-			$tables = array( 'page', 'revision' );
-			$opts = array( 'ORDER BY' => 'page_id ASC' );
-			$opts['USE INDEX'] = array();
-			$join = array();
+			$tables = [ 'page', 'revision' ];
+			$opts = [ 'ORDER BY' => 'page_id ASC' ];
+			$opts['USE INDEX'] = [];
+			$join = [];
 			if ( is_array( $this->history ) ) {
 				# Time offset/limit for all pages/history...
 				$revJoin = 'page_id=rev_page';
@@ -325,32 +325,32 @@ class WikiExporter {
 					$revJoin .= " AND rev_timestamp $op " .
 						$this->db->addQuotes( $this->db->timestamp( $this->history['offset'] ) );
 				}
-				$join['revision'] = array( 'INNER JOIN', $revJoin );
+				$join['revision'] = [ 'INNER JOIN', $revJoin ];
 				# Set query limit
 				if ( !empty( $this->history['limit'] ) ) {
 					$opts['LIMIT'] = intval( $this->history['limit'] );
 				}
 			} elseif ( $this->history & WikiExporter::FULL ) {
 				# Full history dumps...
-				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
+				$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page' ];
 			} elseif ( $this->history & WikiExporter::CURRENT ) {
 				# Latest revision dumps...
 				if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
 					$this->do_list_authors( $cond );
 				}
-				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' );
+				$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 			} elseif ( $this->history & WikiExporter::STABLE ) {
 				# "Stable" revision dumps...
 				# Default JOIN, to be overridden...
-				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' );
+				$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 				# One, and only one hook should set this, and return false
-				if ( Hooks::run( 'WikiExporter::dumpStableQuery', array( &$tables, &$opts, &$join ) ) ) {
+				if ( Hooks::run( 'WikiExporter::dumpStableQuery', [ &$tables, &$opts, &$join ] ) ) {
 					throw new MWException( __METHOD__ . " given invalid history dump type." );
 				}
 			} elseif ( $this->history & WikiExporter::RANGE ) {
 				# Dump of revisions within a specified range
-				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
-				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
+				$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page' ];
+				$opts['ORDER BY'] = [ 'rev_page ASC', 'rev_id ASC' ];
 			} else {
 				# Unknown history specification parameter?
 				throw new MWException( __METHOD__ . " given invalid history dump type." );
@@ -363,7 +363,7 @@ class WikiExporter {
 			# Build text join options
 			if ( $this->text != WikiExporter::STUB ) { // 1-pass
 				$tables[] = 'text';
-				$join['text'] = array( 'INNER JOIN', 'rev_text_id=old_id' );
+				$join['text'] = [ 'INNER JOIN', 'rev_text_id=old_id' ];
 			}
 
 			if ( $this->buffer == WikiExporter::STREAM ) {
@@ -373,7 +373,7 @@ class WikiExporter {
 			$result = null; // Assuring $result is not undefined, if exception occurs early
 			try {
 				Hooks::run( 'ModifyExportQuery',
-						array( $this->db, &$tables, &$cond, &$opts, &$join ) );
+						[ $this->db, &$tables, &$cond, &$opts, &$join ] );
 
 				# Do the query!
 				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );

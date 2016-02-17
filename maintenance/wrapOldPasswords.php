@@ -75,21 +75,21 @@ class WrapOldPasswords extends Maintenance {
 			$this->beginTransaction( $dbw, __METHOD__ );
 
 			$res = $dbw->select( 'user',
-				array( 'user_id', 'user_name', 'user_password' ),
-				array(
+				[ 'user_id', 'user_name', 'user_password' ],
+				[
 					'user_id > ' . $dbw->addQuotes( $minUserId ),
 					$typeCond
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'user_id',
 					'LIMIT' => $this->mBatchSize,
 					'LOCK IN SHARE MODE',
-				)
+				]
 			);
 
 			/** @var User[] $updateUsers */
-			$updateUsers = array();
+			$updateUsers = [];
 			foreach ( $res as $row ) {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( "Updating password for user {$row->user_name} ({$row->user_id}).\n" );
@@ -104,8 +104,8 @@ class WrapOldPasswords extends Maintenance {
 
 				$updateUsers[] = $user;
 				$dbw->update( 'user',
-					array( 'user_password' => $layeredPassword->toString() ),
-					array( 'user_id' => $row->user_id ),
+					[ 'user_password' => $layeredPassword->toString() ],
+					[ 'user_id' => $row->user_id ],
 					__METHOD__
 				);
 

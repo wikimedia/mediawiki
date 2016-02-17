@@ -11,7 +11,7 @@
  * @author Urhixidur
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Bolediša',
@@ -28,16 +28,16 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Poledišano_ya_Thušo',
 	NS_CATEGORY         => 'Setensele',
 	NS_CATEGORY_TALK    => 'Poledišano_ya_Setensele',
-);
+];
 
-$magicWords = array(
-	'currentmonth'              => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonthname'          => array( '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ),
-	'currentday'                => array( '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ),
-	'currentday2'               => array( '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ),
-	'currentdayname'            => array( '1', 'LEHONO_LETSATSILEINA', 'CURRENTDAYNAME' ),
-	'currentyear'               => array( '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ),
-	'currenttime'               => array( '1', 'NAKO_BJALE', 'CURRENTTIME' ),
-	'currenthour'               => array( '1', 'IRI_BJALE', 'CURRENTHOUR' ),
-);
+$magicWords = [
+	'currentmonth'              => [ '1', 'KGWEDI_BJALE', 'CURRENTMONTH', 'CURRENTMONTH2' ],
+	'currentmonthname'          => [ '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ],
+	'currentday'                => [ '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ],
+	'currentday2'               => [ '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ],
+	'currentdayname'            => [ '1', 'LEHONO_LETSATSILEINA', 'CURRENTDAYNAME' ],
+	'currentyear'               => [ '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ],
+	'currenttime'               => [ '1', 'NAKO_BJALE', 'CURRENTTIME' ],
+	'currenthour'               => [ '1', 'IRI_BJALE', 'CURRENTHOUR' ],
+];
 

@@ -101,32 +101,32 @@ class ApiQueryInfo extends ApiQueryBase {
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
 		if ( $this->lacksSameOriginSecurity() ) {
-			return array();
+			return [];
 		}
 
-		$this->tokenFunctions = array(
-			'edit' => array( 'ApiQueryInfo', 'getEditToken' ),
-			'delete' => array( 'ApiQueryInfo', 'getDeleteToken' ),
-			'protect' => array( 'ApiQueryInfo', 'getProtectToken' ),
-			'move' => array( 'ApiQueryInfo', 'getMoveToken' ),
-			'block' => array( 'ApiQueryInfo', 'getBlockToken' ),
-			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' ),
-			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
-			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
-			'watch' => array( 'ApiQueryInfo', 'getWatchToken' ),
-		);
-		Hooks::run( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
+		$this->tokenFunctions = [
+			'edit' => [ 'ApiQueryInfo', 'getEditToken' ],
+			'delete' => [ 'ApiQueryInfo', 'getDeleteToken' ],
+			'protect' => [ 'ApiQueryInfo', 'getProtectToken' ],
+			'move' => [ 'ApiQueryInfo', 'getMoveToken' ],
+			'block' => [ 'ApiQueryInfo', 'getBlockToken' ],
+			'unblock' => [ 'ApiQueryInfo', 'getUnblockToken' ],
+			'email' => [ 'ApiQueryInfo', 'getEmailToken' ],
+			'import' => [ 'ApiQueryInfo', 'getImportToken' ],
+			'watch' => [ 'ApiQueryInfo', 'getWatchToken' ],
+		];
+		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ] );
 
 		return $this->tokenFunctions;
 	}
 
-	static protected $cachedTokens = array();
+	static protected $cachedTokens = [];
 
 	/**
 	 * @deprecated since 1.24
 	 */
 	public static function resetTokenCache() {
-		ApiQueryInfo::$cachedTokens = array();
+		ApiQueryInfo::$cachedTokens = [];
 	}
 
 	/**
@@ -316,7 +316,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
 
-		uasort( $this->everything, array( 'Title', 'compare' ) );
+		uasort( $this->everything, [ 'Title', 'compare' ] );
 		if ( !is_null( $this->params['continue'] ) ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
@@ -337,7 +337,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		// when resolving redirects, no page will have this field
 		$this->pageIsRedir = !$pageSet->isResolvingRedirects()
 			? $pageSet->getCustomField( 'page_is_redirect' )
-			: array();
+			: [];
 		$this->pageIsNew = $pageSet->getCustomField( 'page_is_new' );
 
 		$this->pageTouched = $pageSet->getCustomField( 'page_touched' );
@@ -373,10 +373,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		/** @var $title Title */
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
-			$fit = $pageInfo !== null && $result->addValue( array(
+			$fit = $pageInfo !== null && $result->addValue( [
 				'query',
 				'pages'
-			), $pageid, $pageInfo );
+			], $pageid, $pageInfo );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue',
 					$title->getNamespace() . '|' .
@@ -393,7 +393,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return array|null
 	 */
 	private function extractPageInfo( $pageid, $title ) {
-		$pageInfo = array();
+		$pageInfo = [];
 		// $title->exists() needs pageid, which is not set for all title objects
 		$titleExists = $pageid > 0;
 		$ns = $title->getNamespace();
@@ -433,14 +433,14 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_protection ) {
-			$pageInfo['protection'] = array();
+			$pageInfo['protection'] = [];
 			if ( isset( $this->protections[$ns][$dbkey] ) ) {
 				$pageInfo['protection'] =
 					$this->protections[$ns][$dbkey];
 			}
 			ApiResult::setIndexedTagName( $pageInfo['protection'], 'pr' );
 
-			$pageInfo['restrictiontypes'] = array();
+			$pageInfo['restrictiontypes'] = [];
 			if ( isset( $this->restrictionTypes[$ns][$dbkey] ) ) {
 				$pageInfo['restrictiontypes'] =
 					$this->restrictionTypes[$ns][$dbkey];
@@ -498,7 +498,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
-				Hooks::run( 'EditFormPreloadText', array( &$text, &$title ) );
+				Hooks::run( 'EditFormPreloadText', [ &$text, &$title ] );
 
 				$pageInfo['preload'] = $text;
 			}
@@ -519,7 +519,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			$user = $this->getUser();
-			$pageInfo['actions'] = array();
+			$pageInfo['actions'] = [];
 			foreach ( $this->params['testactions'] as $action ) {
 				$this->countTestedActions++;
 				$pageInfo['actions'][$action] = $title->userCan( $action, $user );
@@ -534,26 +534,26 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getProtectionInfo() {
 		global $wgContLang;
-		$this->protections = array();
+		$this->protections = [];
 		$db = $this->getDB();
 
 		// Get normal protections for existing titles
 		if ( count( $this->titles ) ) {
 			$this->resetQueryParams();
 			$this->addTables( 'page_restrictions' );
-			$this->addFields( array( 'pr_page', 'pr_type', 'pr_level',
-				'pr_expiry', 'pr_cascade' ) );
+			$this->addFields( [ 'pr_page', 'pr_type', 'pr_level',
+				'pr_expiry', 'pr_cascade' ] );
 			$this->addWhereFld( 'pr_page', array_keys( $this->titles ) );
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
 				/** @var $title Title */
 				$title = $this->titles[$row->pr_page];
-				$a = array(
+				$a = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 )
-				);
+				];
 				if ( $row->pr_cascade ) {
 					$a['cascade'] = true;
 				}
@@ -574,26 +574,26 @@ class ApiQueryInfo extends ApiQueryBase {
 							if ( $restriction == '' ) {
 								continue;
 							}
-							$this->protections[$namespace][$dbKey][] = array(
+							$this->protections[$namespace][$dbKey][] = [
 								'type' => 'edit',
 								'level' => $restriction,
 								'expiry' => 'infinity',
-							);
-							$this->protections[$namespace][$dbKey][] = array(
+							];
+							$this->protections[$namespace][$dbKey][] = [
 								'type' => 'move',
 								'level' => $restriction,
 								'expiry' => 'infinity',
-							);
+							];
 						} else {
 							$restriction = trim( $temp[1] );
 							if ( $restriction == '' ) {
 								continue;
 							}
-							$this->protections[$namespace][$dbKey][] = array(
+							$this->protections[$namespace][$dbKey][] = [
 								'type' => $temp[0],
 								'level' => $restriction,
 								'expiry' => 'infinity',
-							);
+							];
 						}
 					}
 				}
@@ -605,21 +605,21 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->resetQueryParams();
 			$lb = new LinkBatch( $this->missing );
 			$this->addTables( 'protected_titles' );
-			$this->addFields( array( 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ) );
+			$this->addFields( [ 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ] );
 			$this->addWhere( $lb->constructSet( 'pt', $db ) );
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$this->protections[$row->pt_namespace][$row->pt_title][] = array(
+				$this->protections[$row->pt_namespace][$row->pt_title][] = [
 					'type' => 'create',
 					'level' => $row->pt_create_perm,
 					'expiry' => $wgContLang->formatExpiry( $row->pt_expiry, TS_ISO_8601 )
-				);
+				];
 			}
 		}
 
 		// Separate good and missing titles into files and other pages
 		// and populate $this->restrictionTypes
-		$images = $others = array();
+		$images = $others = [];
 		foreach ( $this->everything as $title ) {
 			if ( $title->getNamespace() == NS_FILE ) {
 				$images[] = $title->getDBkey();
@@ -635,10 +635,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			// Non-images: check templatelinks
 			$lb = new LinkBatch( $others );
 			$this->resetQueryParams();
-			$this->addTables( array( 'page_restrictions', 'page', 'templatelinks' ) );
-			$this->addFields( array( 'pr_type', 'pr_level', 'pr_expiry',
+			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
+			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
 				'page_title', 'page_namespace',
-				'tl_title', 'tl_namespace' ) );
+				'tl_title', 'tl_namespace' ] );
 			$this->addWhere( $lb->constructSet( 'tl', $db ) );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = tl_from' );
@@ -647,21 +647,21 @@ class ApiQueryInfo extends ApiQueryBase {
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
 				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->protections[$row->tl_namespace][$row->tl_title][] = array(
+				$this->protections[$row->tl_namespace][$row->tl_title][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 ),
 					'source' => $source->getPrefixedText()
-				);
+				];
 			}
 		}
 
 		if ( count( $images ) ) {
 			// Images: check imagelinks
 			$this->resetQueryParams();
-			$this->addTables( array( 'page_restrictions', 'page', 'imagelinks' ) );
-			$this->addFields( array( 'pr_type', 'pr_level', 'pr_expiry',
-				'page_title', 'page_namespace', 'il_to' ) );
+			$this->addTables( [ 'page_restrictions', 'page', 'imagelinks' ] );
+			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
+				'page_title', 'page_namespace', 'il_to' ] );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = il_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
@@ -670,12 +670,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
 				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->protections[NS_FILE][$row->il_to][] = array(
+				$this->protections[NS_FILE][$row->il_to][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 ),
 					'source' => $source->getPrefixedText()
-				);
+				];
 			}
 		}
 	}
@@ -685,7 +685,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * and put them in $talkids and $subjectids
 	 */
 	private function getTSIDs() {
-		$getTitles = $this->talkids = $this->subjectids = array();
+		$getTitles = $this->talkids = $this->subjectids = [];
 
 		/** @var $t Title */
 		foreach ( $this->everything as $t ) {
@@ -708,7 +708,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$lb = new LinkBatch( $getTitles );
 		$this->resetQueryParams();
 		$this->addTables( 'page' );
-		$this->addFields( array( 'page_title', 'page_namespace', 'page_id' ) );
+		$this->addFields( [ 'page_title', 'page_namespace', 'page_id' ] );
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
@@ -723,7 +723,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	private function getDisplayTitle() {
-		$this->displaytitles = array();
+		$this->displaytitles = [];
 
 		$pageIds = array_keys( $this->titles );
 
@@ -733,7 +733,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$this->resetQueryParams();
 		$this->addTables( 'page_props' );
-		$this->addFields( array( 'pp_page', 'pp_value' ) );
+		$this->addFields( [ 'pp_page', 'pp_value' ] );
 		$this->addWhereFld( 'pp_page', $pageIds );
 		$this->addWhereFld( 'pp_propname', 'displaytitle' );
 		$res = $this->select( __METHOD__ );
@@ -756,20 +756,20 @@ class ApiQueryInfo extends ApiQueryBase {
 			return;
 		}
 
-		$this->watched = array();
-		$this->notificationtimestamps = array();
+		$this->watched = [];
+		$this->notificationtimestamps = [];
 		$db = $this->getDB();
 
 		$lb = new LinkBatch( $this->everything );
 
 		$this->resetQueryParams();
-		$this->addTables( array( 'watchlist' ) );
-		$this->addFields( array( 'wl_title', 'wl_namespace' ) );
+		$this->addTables( [ 'watchlist' ] );
+		$this->addFields( [ 'wl_title', 'wl_namespace' ] );
 		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
-		$this->addWhere( array(
+		$this->addWhere( [
 			$lb->constructSet( 'wl', $db ),
 			'wl_user' => $user->getId()
-		) );
+		] );
 
 		$res = $this->select( __METHOD__ );
 
@@ -799,19 +799,19 @@ class ApiQueryInfo extends ApiQueryBase {
 			return;
 		}
 
-		$this->watchers = array();
+		$this->watchers = [];
 		$this->showZeroWatchers = $canUnwatchedpages;
 		$db = $this->getDB();
 
 		$lb = new LinkBatch( $this->everything );
 
 		$this->resetQueryParams();
-		$this->addTables( array( 'watchlist' ) );
-		$this->addFields( array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ) );
-		$this->addWhere( array(
+		$this->addTables( [ 'watchlist' ] );
+		$this->addFields( [ 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ] );
+		$this->addWhere( [
 			$lb->constructSet( 'wl', $db )
-		) );
-		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
+		] );
+		$this->addOption( 'GROUP BY', [ 'wl_namespace', 'wl_title' ] );
 		if ( !$canUnwatchedpages ) {
 			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
 		}
@@ -847,7 +847,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		//   visited the page recently
 		// * if the page doesn't exist, number of users that have
 		//   the page on their watchlist
-		$whereStrings = array();
+		$whereStrings = [];
 
 		// For pages that exist
 		if ( $this->titles ) {
@@ -855,19 +855,19 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			// Fetch last edit timestamps for pages
 			$this->resetQueryParams();
-			$this->addTables( array( 'page', 'revision' ) );
-			$this->addFields( array( 'page_namespace', 'page_title', 'rev_timestamp' ) );
-			$this->addWhere( array(
+			$this->addTables( [ 'page', 'revision' ] );
+			$this->addFields( [ 'page_namespace', 'page_title', 'rev_timestamp' ] );
+			$this->addWhere( [
 				'page_latest = rev_id',
 				$lb->constructSet( 'page', $db ),
-			) );
-			$this->addOption( 'GROUP BY', array( 'page_namespace', 'page_title' ) );
+			] );
+			$this->addOption( 'GROUP BY', [ 'page_namespace', 'page_title' ] );
 			$timestampRes = $this->select( __METHOD__ );
 
 			// Assemble SQL WHERE condition to find number of page watchers who also
 			// visited a "recent" edit (last visited about 26 weeks before latest edit)
 			$age = $config->get( 'WatchersMaxAge' );
-			$timestamps = array();
+			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
 				$threshold = $db->timestamp( $revTimestamp - $age );
@@ -875,7 +875,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			foreach ( $timestamps as $ns_key => $namespace ) {
-				$pageStrings = array();
+				$pageStrings = [];
 				foreach ( $namespace as $pg_key => $threshold ) {
 					$pageStrings[] = "wl_title = '$pg_key' AND" .
 						' (wl_notificationtimestamp >= ' .
@@ -897,14 +897,14 @@ class ApiQueryInfo extends ApiQueryBase {
 		$whereString = $db->makeList( $whereStrings, LIST_OR );
 
 		$this->resetQueryParams();
-		$this->addTables( array( 'watchlist' ) );
-		$this->addFields( array(
+		$this->addTables( [ 'watchlist' ] );
+		$this->addFields( [
 			'wl_namespace',
 			'wl_title',
 			'count' => 'COUNT(*)'
-		) );
-		$this->addWhere( array( $whereString ) );
-		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
+		] );
+		$this->addWhere( [ $whereString ] );
+		$this->addOption( 'GROUP BY', [ 'wl_namespace', 'wl_title' ] );
 		if ( !$canUnwatchedpages ) {
 			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
 		}
@@ -917,14 +917,14 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function getCacheMode( $params ) {
 		// Other props depend on something about the current user
-		$publicProps = array(
+		$publicProps = [
 			'protection',
 			'talkid',
 			'subjectid',
 			'url',
 			'preload',
 			'displaytitle',
-		);
+		];
 		if ( array_diff( (array)$params['prop'], $publicProps ) ) {
 			return 'private';
 		}
@@ -942,10 +942,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'protection',
 					'talkid',
 					'watched', # private
@@ -959,31 +959,31 @@ class ApiQueryInfo extends ApiQueryBase {
 					'displaytitle',
 					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'testactions' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'testactions' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=info&titles=Main%20Page'
 				=> 'apihelp-query+info-example-simple',
 			'action=query&prop=info&inprop=protection&titles=Main%20Page'
 				=> 'apihelp-query+info-example-protection',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

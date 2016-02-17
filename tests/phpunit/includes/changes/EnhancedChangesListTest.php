@@ -14,7 +14,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	 */
 	private $testRecentChangesHelper;
 
-	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
@@ -168,7 +168,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$method = $reflection->getMethod( 'recentChangesBlockLine' );
 		$method->setAccessible( true );
 
-		return $method->invokeArgs( $enhancedChangesList, array( $cacheEntry ) );
+		return $method->invokeArgs( $enhancedChangesList, [ $cacheEntry ] );
 	}
 
 }

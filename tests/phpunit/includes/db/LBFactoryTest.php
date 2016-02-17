@@ -33,14 +33,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$config = array(
+		$config = [
 			'class'          => $deprecated,
 			'connection'     => $mockDB,
 			# Various other parameters required:
-			'sectionsByDB'   => array(),
-			'sectionLoads'   => array(),
-			'serverTemplate' => array(),
-		);
+			'sectionsByDB'   => [],
+			'sectionLoads'   => [],
+			'serverTemplate' => [],
+		];
 
 		$this->hideDeprecated( '$wgLBFactoryConf must be updated. See RELEASE-NOTES for details' );
 		$result = LBFactory::getLBFactoryClass( $config );
@@ -49,19 +49,19 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function getLBFactoryClassProvider() {
-		return array(
+		return [
 			# Format: new class, old class
-			array( 'LBFactorySimple', 'LBFactory_Simple' ),
-			array( 'LBFactorySingle', 'LBFactory_Single' ),
-			array( 'LBFactoryMulti', 'LBFactory_Multi' ),
-			array( 'LBFactoryFake', 'LBFactory_Fake' ),
-		);
+			[ 'LBFactorySimple', 'LBFactory_Simple' ],
+			[ 'LBFactorySingle', 'LBFactory_Single' ],
+			[ 'LBFactoryMulti', 'LBFactory_Multi' ],
+			[ 'LBFactoryFake', 'LBFactory_Fake' ],
+		];
 	}
 
 	public function testLBFactorySimpleServer() {
 		$this->setMwGlobals( 'wgDBservers', false );
 
-		$factory = new LBFactorySimple( array() );
+		$factory = new LBFactorySimple( [] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -77,8 +77,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactorySimpleServers() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$this->setMwGlobals( 'wgDBservers', array(
-			array( // master
+		$this->setMwGlobals( 'wgDBservers', [
+			[ // master
 				'host'		=> $wgDBserver,
 				'dbname'    => $wgDBname,
 				'user'		=> $wgDBuser,
@@ -86,8 +86,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'type'		=> $wgDBtype,
 				'load'      => 0,
 				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
-			),
-			array( // emulated slave
+			],
+			[ // emulated slave
 				'host'		=> $wgDBserver,
 				'dbname'    => $wgDBname,
 				'user'		=> $wgDBuser,
@@ -95,10 +95,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'type'		=> $wgDBtype,
 				'load'      => 100,
 				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
-			)
-		) );
+			]
+		] );
 
-		$factory = new LBFactorySimple( array( 'loadMonitorClass' => 'LoadMonitorNull' ) );
+		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -118,27 +118,27 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactoryMulti() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$factory = new LBFactoryMulti( array(
-			'sectionsByDB' => array(),
-			'sectionLoads' => array(
-				'DEFAULT' => array(
+		$factory = new LBFactoryMulti( [
+			'sectionsByDB' => [],
+			'sectionLoads' => [
+				'DEFAULT' => [
 					'test-db1' => 0,
 					'test-db2' => 100,
-				),
-			),
-			'serverTemplate' => array(
+				],
+			],
+			'serverTemplate' => [
 				'dbname'	  => $wgDBname,
 				'user'		  => $wgDBuser,
 				'password'	  => $wgDBpassword,
 				'type'		  => $wgDBtype,
 				'flags'		  => DBO_DEFAULT
-			),
-			'hostsByName' => array(
+			],
+			'hostsByName' => [
 				'test-db1'  => $wgDBserver,
 				'test-db2'  => $wgDBserver
-			),
+			],
 			'loadMonitorClass' => 'LoadMonitorNull'
-		) );
+		] );
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -171,17 +171,17 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb->expects( $this->any() )
 			->method( 'getServerCount' )->will( $this->returnValue( 2 ) );
 		$lb->expects( $this->any() )
-			->method( 'parentInfo' )->will( $this->returnValue( array( 'id' => "main-DEFAULT" ) ) );
+			->method( 'parentInfo' )->will( $this->returnValue( [ 'id' => "main-DEFAULT" ] ) );
 		$lb->expects( $this->any() )
 			->method( 'getAnyOpenConnection' )->will( $this->returnValue( $mockDB ) );
 
 		$bag = new HashBagOStuff();
 		$cp = new ChronologyProtector(
 			$bag,
-			array(
+			[
 				'ip' => '127.0.0.1',
 				'agent' => "Totally-Not-FireFox"
-			)
+			]
 		);
 
 		$mockDB->expects( $this->exactly( 2 ) )->method( 'doneWrites' );
@@ -195,10 +195,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 		// (b) Second HTTP request
 		$cp = new ChronologyProtector(
 			$bag,
-			array(
+			[
 				'ip' => '127.0.0.1',
 				'agent' => "Totally-Not-FireFox"
-			)
+			]
 		);
 
 		$lb->expects( $this->once() )

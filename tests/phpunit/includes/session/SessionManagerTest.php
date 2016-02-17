@@ -19,30 +19,30 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 	protected function getManager() {
 		\ObjectCache::$instances['testSessionStore'] = new TestBagOStuff();
-		$this->config = new \HashConfig( array(
+		$this->config = new \HashConfig( [
 			'LanguageCode' => 'en',
 			'SessionCacheType' => 'testSessionStore',
 			'ObjectCacheSessionExpiry' => 100,
-			'SessionProviders' => array(
-				array( 'class' => 'DummySessionProvider' ),
-			)
-		) );
+			'SessionProviders' => [
+				[ 'class' => 'DummySessionProvider' ],
+			]
+		] );
 		$this->logger = new \TestLogger( false, function ( $m ) {
 			return substr( $m, 0, 15 ) === 'SessionBackend ' ? null : $m;
 		} );
 		$this->store = new TestBagOStuff();
 
-		return new SessionManager( array(
+		return new SessionManager( [
 			'config' => $this->config,
 			'logger' => $this->logger,
 			'store' => $this->store,
-		) );
+		] );
 	}
 
 	protected function objectCacheDef( $object ) {
-		return array( 'factory' => function () use ( $object ) {
+		return [ 'factory' => function () use ( $object ) {
 			return $object;
-		} );
+		} ];
 	}
 
 	public function testSingleton() {
@@ -110,18 +110,18 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( new SessionManager() );
 		$this->assertSame( \RequestContext::getMain()->getConfig(), $manager->config );
 
-		$manager = \TestingAccessWrapper::newFromObject( new SessionManager( array(
+		$manager = \TestingAccessWrapper::newFromObject( new SessionManager( [
 			'config' => $this->config,
-		) ) );
+		] ) );
 		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->store );
 
-		foreach ( array(
+		foreach ( [
 			'config' => '$options[\'config\'] must be an instance of Config',
 			'logger' => '$options[\'logger\'] must be an instance of LoggerInterface',
 			'store' => '$options[\'store\'] must be an instance of BagOStuff',
-		) as $key => $error ) {
+		] as $key => $error ) {
 			try {
-				new SessionManager( array( $key => new \stdClass ) );
+				new SessionManager( [ $key => new \stdClass ] );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( \InvalidArgumentException $ex ) {
 				$this->assertSame( $error, $ex->getMessage() );
@@ -139,7 +139,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
 			->setMethods(
-				array( 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe' )
+				[ 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe' ]
 			);
 
 		$provider1 = $providerBuilder->getMock();
@@ -150,12 +150,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 			} ) );
 		$provider1->expects( $this->any() )->method( 'newSessionInfo' )
 			->will( $this->returnCallback( function () use ( $idEmpty, $provider1 ) {
-				return new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider1,
 					'id' => $idEmpty,
 					'persisted' => true,
 					'idIsSafe' => true,
-				) );
+				] );
 			} ) );
 		$provider1->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'Provider1' ) );
@@ -173,10 +173,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider2->expects( $this->any() )->method( 'describe' )
 			->will( $this->returnValue( '#2 sessions' ) );
 
-		$this->config->set( 'SessionProviders', array(
+		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
-		) );
+		] );
 
 		// No provider returns info
 		$request->info1 = null;
@@ -186,53 +186,53 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( $idEmpty, $session->getId() );
 
 		// Both providers return info, picks best one
-		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, array(
+		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
-		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, array(
+		] );
+		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
 
-		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, array(
+		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
-		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, array(
+		] );
+		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id1, $session->getId() );
 
 		// Tied priorities
-		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'userInfo' => UserInfo::newAnonymous(),
 			'idIsSafe' => true,
-		) );
-		$request->info2 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		] );
+		$request->info2 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'userInfo' => UserInfo::newAnonymous(),
 			'idIsSafe' => true,
-		) );
+		] );
 		try {
 			$manager->getSessionForRequest( $request );
 			$this->fail( 'Expcected exception not thrown' );
@@ -247,12 +247,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 		}
 
 		// Bad provider
-		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider2,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$request->info2 = null;
 		try {
 			$manager->getSessionForRequest( $request );
@@ -266,32 +266,32 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Unusable session info
 		$this->logger->setCollect( true );
-		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
 			'idIsSafe' => true,
-		) );
-		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		] );
+		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
 		$this->logger->setCollect( false );
 
 		// Unpersisted session ID
-		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => false,
 			'userInfo' => UserInfo::newFromName( 'UTSysop', true ),
 			'idIsSafe' => true,
-		) );
+		] );
 		$request->info2 = null;
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
@@ -321,17 +321,17 @@ class SessionManagerTest extends MediaWikiTestCase {
 		// Known but unloadable session ID
 		$this->logger->setCollect( true );
 		$id = $manager->generateSessionId();
-		$this->store->setSession( $id, array( 'metadata' => array(
+		$this->store->setSession( $id, [ 'metadata' => [
 			'userId' => User::idFromName( 'UTSysop' ),
 			'userToken' => 'bad',
-		) ) );
+		] ] );
 
 		$this->assertNull( $manager->getSessionById( $id, true ) );
 		$this->assertNull( $manager->getSessionById( $id, false ) );
 		$this->logger->setCollect( false );
 
 		// Known session ID
-		$this->store->setSession( $id, array() );
+		$this->store->setSession( $id, [] );
 		$session = $manager->getSessionById( $id, false );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id, $session->getId() );
@@ -343,7 +343,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$request = new \FauxRequest();
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
-			->setMethods( array( 'provideSessionInfo', 'newSessionInfo', '__toString' ) );
+			->setMethods( [ 'provideSessionInfo', 'newSessionInfo', '__toString' ] );
 
 		$expectId = null;
 		$info1 = null;
@@ -375,10 +375,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider1->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider2' ) );
 
-		$this->config->set( 'SessionProviders', array(
+		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
-		) );
+		] );
 
 		// No info
 		$expectId = null;
@@ -396,12 +396,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Info
 		$expectId = null;
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider1,
 			'id' => 'empty---------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$info2 = null;
 		$session = $manager->getEmptySession();
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
@@ -409,12 +409,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Info, explicitly
 		$expectId = 'expected------------------------';
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider1,
 			'id' => $expectId,
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$info2 = null;
 		$session = $pmanager->getEmptySessionInternal( null, $expectId );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
@@ -422,12 +422,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Wrong ID
 		$expectId = 'expected-----------------------2';
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider1,
 			'id' => "un$expectId",
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$info2 = null;
 		try {
 			$pmanager->getEmptySessionInternal( null, $expectId );
@@ -442,11 +442,11 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Unsafe ID
 		$expectId = 'expected-----------------------2';
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider1,
 			'id' => $expectId,
 			'persisted' => true,
-		) );
+		] );
 		$info2 = null;
 		try {
 			$pmanager->getEmptySessionInternal( null, $expectId );
@@ -460,12 +460,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Wrong provider
 		$expectId = null;
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => 'empty---------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$info2 = null;
 		try {
 			$manager->getEmptySession();
@@ -479,55 +479,55 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Highest priority wins
 		$expectId = null;
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
 			'provider' => $provider1,
 			'id' => 'empty1--------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
-		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		] );
+		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => 'empty2--------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$session = $manager->getEmptySession();
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( 'empty1--------------------------', $session->getId() );
 
 		$expectId = null;
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
 			'provider' => $provider1,
 			'id' => 'empty1--------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
-		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, array(
+		] );
+		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [
 			'provider' => $provider2,
 			'id' => 'empty2--------------------------',
 			'persisted' => true,
 			'idIsSafe' => true,
-		) );
+		] );
 		$session = $manager->getEmptySession();
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( 'empty2--------------------------', $session->getId() );
 
 		// Tied priorities throw an exception
 		$expectId = null;
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider1,
 			'id' => 'empty1--------------------------',
 			'persisted' => true,
 			'userInfo' => UserInfo::newAnonymous(),
 			'idIsSafe' => true,
-		) );
-		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		] );
+		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => 'empty2--------------------------',
 			'persisted' => true,
 			'userInfo' => UserInfo::newAnonymous(),
 			'idIsSafe' => true,
-		) );
+		] );
 		try {
 			$manager->getEmptySession();
 			$this->fail( 'Expected exception not thrown' );
@@ -548,12 +548,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Session already exists
 		$expectId = 'expected-----------------------3';
-		$this->store->setSessionMeta( $expectId, array(
+		$this->store->setSessionMeta( $expectId, [
 			'provider' => 'MockProvider2',
 			'userId' => 0,
 			'userName' => null,
 			'userToken' => null,
-		) );
+		] );
 		try {
 			$pmanager->getEmptySessionInternal( null, $expectId );
 			$this->fail( 'Expected exception not thrown' );
@@ -566,39 +566,39 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = $this->getManager();
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
-			->setMethods( array( 'getVaryHeaders', '__toString' ) );
+			->setMethods( [ 'getVaryHeaders', '__toString' ] );
 
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->once() )->method( 'getVaryHeaders' )
-			->will( $this->returnValue( array(
+			->will( $this->returnValue( [
 				'Foo' => null,
-				'Bar' => array( 'X', 'Bar1' ),
+				'Bar' => [ 'X', 'Bar1' ],
 				'Quux' => null,
-			) ) );
+			] ) );
 		$provider1->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider1' ) );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->expects( $this->once() )->method( 'getVaryHeaders' )
-			->will( $this->returnValue( array(
+			->will( $this->returnValue( [
 				'Baz' => null,
-				'Bar' => array( 'X', 'Bar2' ),
-				'Quux' => array( 'Quux' ),
-			) ) );
+				'Bar' => [ 'X', 'Bar2' ],
+				'Quux' => [ 'Quux' ],
+			] ) );
 		$provider2->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider2' ) );
 
-		$this->config->set( 'SessionProviders', array(
+		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
-		) );
+		] );
 
-		$expect = array(
-			'Foo' => array(),
-			'Bar' => array( 'X', 'Bar1', 3 => 'Bar2' ),
-			'Quux' => array( 'Quux' ),
-			'Baz' => array(),
-		);
+		$expect = [
+			'Foo' => [],
+			'Bar' => [ 'X', 'Bar1', 3 => 'Bar2' ],
+			'Quux' => [ 'Quux' ],
+			'Baz' => [],
+		];
 
 		$this->assertEquals( $expect, $manager->getVaryHeaders() );
 
@@ -610,26 +610,26 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = $this->getManager();
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
-			->setMethods( array( 'getVaryCookies', '__toString' ) );
+			->setMethods( [ 'getVaryCookies', '__toString' ] );
 
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->once() )->method( 'getVaryCookies' )
-			->will( $this->returnValue( array( 'Foo', 'Bar' ) ) );
+			->will( $this->returnValue( [ 'Foo', 'Bar' ] ) );
 		$provider1->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider1' ) );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->expects( $this->once() )->method( 'getVaryCookies' )
-			->will( $this->returnValue( array( 'Foo', 'Baz' ) ) );
+			->will( $this->returnValue( [ 'Foo', 'Baz' ] ) );
 		$provider2->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider2' ) );
 
-		$this->config->set( 'SessionProviders', array(
+		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
-		) );
+		] );
 
-		$expect = array( 'Foo', 'Bar', 'Baz' );
+		$expect = [ 'Foo', 'Bar', 'Baz' ];
 
 		$this->assertEquals( $expect, $manager->getVaryCookies() );
 
@@ -641,9 +641,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$realManager = $this->getManager();
 		$manager = \TestingAccessWrapper::newFromObject( $realManager );
 
-		$this->config->set( 'SessionProviders', array(
-			array( 'class' => 'DummySessionProvider' ),
-		) );
+		$this->config->set( 'SessionProviders', [
+			[ 'class' => 'DummySessionProvider' ],
+		] );
 		$providers = $manager->getProviders();
 		$this->assertArrayHasKey( 'DummySessionProvider', $providers );
 		$provider = \TestingAccessWrapper::newFromObject( $providers['DummySessionProvider'] );
@@ -651,10 +651,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( $manager->config, $provider->config );
 		$this->assertSame( $realManager, $provider->getManager() );
 
-		$this->config->set( 'SessionProviders', array(
-			array( 'class' => 'DummySessionProvider' ),
-			array( 'class' => 'DummySessionProvider' ),
-		) );
+		$this->config->set( 'SessionProviders', [
+			[ 'class' => 'DummySessionProvider' ],
+			[ 'class' => 'DummySessionProvider' ],
+		] );
 		$manager->sessionProviders = null;
 		try {
 			$manager->getProviders();
@@ -671,10 +671,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( $this->getManager() );
 		$manager->setLogger( new \Psr\Log\NullLogger() );
 
-		$mock = $this->getMock( 'stdClass', array( 'save' ) );
+		$mock = $this->getMock( 'stdClass', [ 'save' ] );
 		$mock->expects( $this->once() )->method( 'save' );
 
-		$manager->allSessionBackends = array( $mock );
+		$manager->allSessionBackends = [ $mock ];
 		$manager->shutdown();
 	}
 
@@ -684,13 +684,13 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $manager->getProvider( 'DummySessionProvider' ),
 			'id' => $id,
 			'persisted' => true,
 			'userInfo' => UserInfo::newFromName( 'UTSysop', true ),
 			'idIsSafe' => true,
-		) );
+		] );
 		\TestingAccessWrapper::newFromObject( $info )->idIsSafe = true;
 		$session1 = \TestingAccessWrapper::newFromObject(
 			$manager->getSessionFromInfo( $info, $request )
@@ -762,12 +762,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 		global $wgGroupPermissions;
 
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
-		$this->setMwGlobals( array( 'wgMainCacheType' => __METHOD__ ) );
-		$this->setMWGlobals( array(
+		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		$this->setMWGlobals( [
 			'wgAuth' => new AuthPlugin,
-		) );
+		] );
 
-		$this->stashMwGlobals( array( 'wgGroupPermissions' ) );
+		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
 		$wgGroupPermissions['*']['createaccount'] = true;
 		$wgGroupPermissions['*']['autocreateaccount'] = false;
 
@@ -793,7 +793,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( $id, $user->getId() );
 		$this->assertSame( 'UTSysop', $user->getName() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Sanity check that creation works at all
@@ -805,9 +805,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate1', User::READ_LATEST )
 		);
-		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'creating new user ({username}) - from: {url}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Check lack of permissions
@@ -819,12 +819,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$session->clear();
-		$this->assertSame( array(
-			array(
+		$this->assertSame( [
+			[
 				LogLevel::DEBUG,
 				'user is blocked from this wiki, blacklisting',
-			),
-		), $logger->getBuffer() );
+			],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Check other permission
@@ -838,23 +838,23 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate2', User::READ_LATEST )
 		);
-		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'creating new user ({username}) - from: {url}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test account-creation block
 		$anon = new User;
-		$block = new \Block( array(
+		$block = new \Block( [
 			'address' => $anon->getName(),
 			'user' => $id,
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
-		) );
+		] );
 		$block->insert();
 		$this->assertInstanceOf( 'Block', $anon->isBlockedFromCreateAccount(), 'sanity check' );
-		$reset2 = new \ScopedCallback( array( $block, 'delete' ) );
+		$reset2 = new \ScopedCallback( [ $block, 'delete' ] );
 		$user = User::newFromName( 'UTDoesNotExist' );
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( 0, $user->getId() );
@@ -862,9 +862,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		\ScopedCallback::consume( $reset2 );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'user is blocked from this wiki, blacklisting' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'user is blocked from this wiki, blacklisting' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Sanity check that creation still works
@@ -876,50 +876,50 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate3', User::READ_LATEST )
 		);
-		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'creating new user ({username}) - from: {url}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test prevention by AuthPlugin
 		global $wgAuth;
 		$oldWgAuth = $wgAuth;
-		$mockWgAuth = $this->getMock( 'AuthPlugin', array( 'autoCreate' ) );
+		$mockWgAuth = $this->getMock( 'AuthPlugin', [ 'autoCreate' ] );
 		$mockWgAuth->expects( $this->once() )->method( 'autoCreate' )
 			->will( $this->returnValue( false ) );
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgAuth' => $mockWgAuth,
-		) );
+		] );
 		$user = User::newFromName( 'UTDoesNotExist' );
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgAuth' => $oldWgAuth,
-		) );
+		] );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'denied by AuthPlugin' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'denied by AuthPlugin' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test prevention by wfReadOnly()
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgReadOnly' => 'Because',
-		) );
+		] );
 		$user = User::newFromName( 'UTDoesNotExist' );
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgReadOnly' => false,
-		) );
+		] );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'denied by wfReadOnly()' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'denied by wfReadOnly()' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test prevention by a previous session
@@ -930,9 +930,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'blacklisted in session (test)' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'blacklisted in session (test)' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test uncreatable name
@@ -942,38 +942,38 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertNotSame( 'UTDoesNotExist@', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'Invalid username, blacklisting' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'Invalid username, blacklisting' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test AbortAutoAccount hook
-		$mock = $this->getMock( __CLASS__, array( 'onAbortAutoAccount' ) );
+		$mock = $this->getMock( __CLASS__, [ 'onAbortAutoAccount' ] );
 		$mock->expects( $this->once() )->method( 'onAbortAutoAccount' )
 			->will( $this->returnCallback( function ( User $user, &$msg ) {
 				$msg = 'No way!';
 				return false;
 			} ) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array( 'AbortAutoAccount' => array( $mock ) ) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'AbortAutoAccount' => [ $mock ] ] );
 		$user = User::newFromName( 'UTDoesNotExist' );
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array( 'AbortAutoAccount' => array() ) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'AbortAutoAccount' => [] ] );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'denied by hook: No way!' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'denied by hook: No way!' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test AbortAutoAccount hook screwing up the name
-		$mock = $this->getMock( 'stdClass', array( 'onAbortAutoAccount' ) );
+		$mock = $this->getMock( 'stdClass', [ 'onAbortAutoAccount' ] );
 		$mock->expects( $this->once() )->method( 'onAbortAutoAccount' )
 			->will( $this->returnCallback( function ( User $user ) {
 				$user->setName( 'UTDoesNotExistEither' );
 			} ) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array( 'AbortAutoAccount' => array( $mock ) ) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'AbortAutoAccount' => [ $mock ] ] );
 		try {
 			$user = User::newFromName( 'UTDoesNotExist' );
 			$manager->autoCreateUser( $user );
@@ -989,9 +989,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertNotSame( 'UTDoesNotExistEither', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExistEither', User::READ_LATEST ) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array( 'AbortAutoAccount' => array() ) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'AbortAutoAccount' => [] ] );
 		$session->clear();
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Test for "exception backoff"
@@ -1005,9 +1005,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$cache->delete( $backoffKey );
 		$session->clear();
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'denied by prior creation attempt failures' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'denied by prior creation attempt failures' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Sanity check that creation still works, and test completion hook
@@ -1020,15 +1020,15 @@ class SessionManagerTest extends MediaWikiTestCase {
 			return true;
 		} );
 		$mock = $this->getMock( 'stdClass',
-			array( 'onAuthPluginAutoCreate', 'onLocalUserCreated' ) );
+			[ 'onAuthPluginAutoCreate', 'onLocalUserCreated' ] );
 		$mock->expects( $this->once() )->method( 'onAuthPluginAutoCreate' )
 			->with( $cb );
 		$mock->expects( $this->once() )->method( 'onLocalUserCreated' )
 			->with( $cb, $this->identicalTo( true ) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'AuthPluginAutoCreate' => array( $mock ),
-			'LocalUserCreated' => array( $mock ),
-		) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'AuthPluginAutoCreate' => [ $mock ],
+			'LocalUserCreated' => [ $mock ],
+		] );
 		$user = User::newFromName( 'UTSessionAutoCreate4' );
 		$this->assertSame( 0, $user->getId(), 'sanity check' );
 		$this->assertTrue( $manager->autoCreateUser( $user ) );
@@ -1038,13 +1038,13 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$user->getId(),
 			User::idFromName( 'UTSessionAutoCreate4', User::READ_LATEST )
 		);
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'AuthPluginAutoCreate' => array(),
-			'LocalUserCreated' => array(),
-		) );
-		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
-		), $logger->getBuffer() );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'AuthPluginAutoCreate' => [],
+			'LocalUserCreated' => [],
+		] );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'creating new user ({username}) - from: {url}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 	}
 
@@ -1055,7 +1055,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = $this->getManager();
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
-			->setMethods( array( 'preventSessionsForUser', '__toString' ) );
+			->setMethods( [ 'preventSessionsForUser', '__toString' ] );
 
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->once() )->method( 'preventSessionsForUser' )
@@ -1063,9 +1063,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider1->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockProvider1' ) );
 
-		$this->config->set( 'SessionProviders', array(
+		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
-		) );
+		] );
 
 		$this->assertFalse( $manager->isUserSessionPrevented( 'UTSysop' ) );
 		$manager->preventSessionsForUser( 'UTSysop' );
@@ -1083,22 +1083,22 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$rMethod = $rClass->getMethod( 'loadSessionInfoFromStore' );
 		$rMethod->setAccessible( true );
 		$loadSessionInfoFromStore = function ( &$info ) use ( $rMethod, $manager, $request ) {
-			return $rMethod->invokeArgs( $manager, array( &$info, $request ) );
+			return $rMethod->invokeArgs( $manager, [ &$info, $request ] );
 		};
 
 		$userInfo = UserInfo::newFromName( 'UTSysop', true );
 		$unverifiedUserInfo = UserInfo::newFromName( 'UTSysop', false );
 
 		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$metadata = array(
+		$metadata = [
 			'userId' => $userInfo->getId(),
 			'userName' => $userInfo->getName(),
 			'userToken' => $userInfo->getToken( true ),
 			'provider' => 'Mock',
-		);
+		];
 
 		$builder = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
-			->setMethods( array( '__toString', 'mergeMetadata', 'refreshSessionInfo' ) );
+			->setMethods( [ '__toString', 'mergeMetadata', 'refreshSessionInfo' ] );
 
 		$provider = $builder->getMockForAbstractClass();
 		$provider->setManager( $manager );
@@ -1112,10 +1112,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 			->will( $this->returnValue( 'Mock' ) );
 		$provider->expects( $this->any() )->method( 'mergeMetadata' )
 			->will( $this->returnCallback( function ( $a, $b ) {
-				if ( $b === array( 'Throw' ) ) {
+				if ( $b === [ 'Throw' ] ) {
 					throw new MetadataMergeException( 'no merge!' );
 				}
-				return array( 'Merged' );
+				return [ 'Merged' ];
 			} ) );
 
 		$provider2 = $builder->getMockForAbstractClass();
@@ -1143,521 +1143,521 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider3->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'Mock3' ) );
 
-		\TestingAccessWrapper::newFromObject( $manager )->sessionProviders = array(
+		\TestingAccessWrapper::newFromObject( $manager )->sessionProviders = [
 			(string)$provider => $provider,
 			(string)$provider2 => $provider2,
 			(string)$provider3 => $provider3,
-		);
+		];
 
 		// No metadata, basic usage
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertFalse( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Unverified user, no metadata
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $unverifiedUserInfo
-		) );
+		] );
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array(
+		$this->assertSame( [
+			[
 				LogLevel::WARNING,
 				'Session "{session}": Unverified user provided and no metadata to auth it',
-			)
-		), $logger->getBuffer() );
+			]
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// No metadata, missing data
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Null provider and no metadata' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Null provider and no metadata' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\UserInfo', $info->getUserInfo() );
 		$this->assertTrue( $info->getUserInfo()->isVerified() );
 		$this->assertTrue( $info->getUserInfo()->isAnon() );
 		$this->assertFalse( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::INFO, 'Session "{session}": No user provided and provider cannot set user' )
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'Session "{session}": No user provided and provider cannot set user' ]
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Incomplete/bad metadata
 		$this->store->setRawSession( $id, true );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Bad data' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bad data' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$this->store->setRawSession( $id, array( 'data' => array() ) );
+		$this->store->setRawSession( $id, [ 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->deleteSession( $id );
-		$this->store->setRawSession( $id, array( 'metadata' => $metadata ) );
+		$this->store->setRawSession( $id, [ 'metadata' => $metadata ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$this->store->setRawSession( $id, array( 'metadata' => $metadata, 'data' => true ) );
+		$this->store->setRawSession( $id, [ 'metadata' => $metadata, 'data' => true ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$this->store->setRawSession( $id, array( 'metadata' => true, 'data' => array() ) );
+		$this->store->setRawSession( $id, [ 'metadata' => true, 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		foreach ( $metadata as $key => $dummy ) {
 			$tmp = $metadata;
 			unset( $tmp[$key] );
-			$this->store->setRawSession( $id, array( 'metadata' => $tmp, 'data' => array() ) );
+			$this->store->setRawSession( $id, [ 'metadata' => $tmp, 'data' => [] ] );
 			$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-			$this->assertSame( array(
-				array( LogLevel::WARNING, 'Session "{session}": Bad metadata' ),
-			), $logger->getBuffer() );
+			$this->assertSame( [
+				[ LogLevel::WARNING, 'Session "{session}": Bad metadata' ],
+			], $logger->getBuffer() );
 			$logger->clearBuffer();
 		}
 
 		// Basic usage with metadata
-		$this->store->setRawSession( $id, array( 'metadata' => $metadata, 'data' => array() ) );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setRawSession( $id, [ 'metadata' => $metadata, 'data' => [] ] );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Mismatched provider
-		$this->store->setSessionMeta( $id, array( 'provider' => 'Bad' ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'provider' => 'Bad' ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Wrong provider Bad !== Mock' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Wrong provider Bad !== Mock' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Unknown provider
-		$this->store->setSessionMeta( $id, array( 'provider' => 'Bad' ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'provider' => 'Bad' ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Unknown provider Bad' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Unknown provider Bad' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Fill in provider
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Bad user metadata
-		$this->store->setSessionMeta( $id, array( 'userId' => -1, 'userToken' => null ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'userId' => -1, 'userToken' => null ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::ERROR, 'Session "{session}": {exception}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::ERROR, 'Session "{session}": {exception}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => 0, 'userName' => '<X>', 'userToken' => null ) + $metadata
+			$id, [ 'userId' => 0, 'userName' => '<X>', 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::ERROR, 'Session "{session}": {exception}', ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::ERROR, 'Session "{session}": {exception}', ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Mismatched user by ID
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => $userInfo->getId() + 1, 'userToken' => null ) + $metadata
+			$id, [ 'userId' => $userInfo->getId() + 1, 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Mismatched user by name
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => 0, 'userName' => 'X', 'userToken' => null ) + $metadata
+			$id, [ 'userId' => 0, 'userName' => 'X', 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": User name mismatch, {uname_a} !== {uname_b}' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": User name mismatch, {uname_a} !== {uname_b}' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// ID matches, name doesn't
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => $userInfo->getId(), 'userName' => 'X', 'userToken' => null ) + $metadata
+			$id, [ 'userId' => $userInfo->getId(), 'userName' => 'X', 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array(
+		$this->assertSame( [
+			[
 				LogLevel::WARNING,
 				'Session "{session}": User ID matched but name didn\'t (rename?), {uname_a} !== {uname_b}'
-			),
-		), $logger->getBuffer() );
+			],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Mismatched anon user
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => 0, 'userName' => null, 'userToken' => null ) + $metadata
+			$id, [ 'userId' => 0, 'userName' => null, 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array(
+		$this->assertSame( [
+			[
 				LogLevel::WARNING,
 				'Session "{session}": Metadata has an anonymous user, ' .
 				'but a non-anon user was provided',
-			),
-		), $logger->getBuffer() );
+			],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Lookup user by ID
-		$this->store->setSessionMeta( $id, array( 'userToken' => null ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'userToken' => null ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( $userInfo->getId(), $info->getUserInfo()->getId() );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Lookup user by name
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => 0, 'userName' => 'UTSysop', 'userToken' => null ) + $metadata
+			$id, [ 'userId' => 0, 'userName' => 'UTSysop', 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( $userInfo->getId(), $info->getUserInfo()->getId() );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Lookup anonymous user
 		$this->store->setSessionMeta(
-			$id, array( 'userId' => 0, 'userName' => null, 'userToken' => null ) + $metadata
+			$id, [ 'userId' => 0, 'userName' => null, 'userToken' => null ] + $metadata
 		);
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->getUserInfo()->isAnon() );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Unverified user with metadata
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $unverifiedUserInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->getUserInfo()->isVerified() );
 		$this->assertSame( $unverifiedUserInfo->getId(), $info->getUserInfo()->getId() );
 		$this->assertSame( $unverifiedUserInfo->getName(), $info->getUserInfo()->getName() );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Unverified user with metadata
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $unverifiedUserInfo
-		) );
+		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->getUserInfo()->isVerified() );
 		$this->assertSame( $unverifiedUserInfo->getId(), $info->getUserInfo()->getId() );
 		$this->assertSame( $unverifiedUserInfo->getName(), $info->getUserInfo()->getName() );
 		$this->assertTrue( $info->isIdSafe() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Wrong token
-		$this->store->setSessionMeta( $id, array( 'userToken' => 'Bad' ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'userToken' => 'Bad' ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": User token mismatch' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": User token mismatch' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Provider metadata
-		$this->store->setSessionMeta( $id, array( 'provider' => 'Mock2' ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'provider' => 'Mock2' ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider2,
 			'id' => $id,
 			'userInfo' => $userInfo,
-			'metadata' => array( 'Info' ),
-		) );
+			'metadata' => [ 'Info' ],
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array( 'Info', 'changed' => true ), $info->getProviderMetadata() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [ 'Info', 'changed' => true ], $info->getProviderMetadata() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'providerMetadata' => array( 'Saved' ) ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'providerMetadata' => [ 'Saved' ] ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo,
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array( 'Saved' ), $info->getProviderMetadata() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [ 'Saved' ], $info->getProviderMetadata() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo,
-			'metadata' => array( 'Info' ),
-		) );
+			'metadata' => [ 'Info' ],
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array( 'Merged' ), $info->getProviderMetadata() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [ 'Merged' ], $info->getProviderMetadata() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo,
-			'metadata' => array( 'Throw' ),
-		) );
+			'metadata' => [ 'Throw' ],
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(
-			array(
+		$this->assertSame( [
+			[
 				LogLevel::WARNING,
 				'Session "{session}": Metadata merge failed: {exception}',
-			),
-		), $logger->getBuffer() );
+			],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		// Remember from session
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertFalse( $info->wasRemembered() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'remember' => true ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'remember' => true ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->wasRemembered() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'remember' => false ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'remember' => false ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->wasRemembered() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// forceHTTPS from session
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertFalse( $info->forceHTTPS() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'forceHTTPS' => true ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'forceHTTPS' => true ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->forceHTTPS() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'forceHTTPS' => false ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'forceHTTPS' => false ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo,
 			'forceHTTPS' => true
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->forceHTTPS() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// "Persist" flag from session
 		$this->store->setSessionMeta( $id, $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertFalse( $info->wasPersisted() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'persisted' => true ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'persisted' => true ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->wasPersisted() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
-		$this->store->setSessionMeta( $id, array( 'persisted' => false ) + $metadata );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$this->store->setSessionMeta( $id, [ 'persisted' => false ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo,
 			'persisted' => true
-		) );
+		] );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $info->wasPersisted() );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Provider refreshSessionInfo() returning false
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider3,
-		) );
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
-		$this->assertSame( array(), $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		// Hook
 		$called = false;
-		$data = array( 'foo' => 1 );
-		$this->store->setSession( $id, array( 'metadata' => $metadata, 'data' => $data ) );
-		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		$data = [ 'foo' => 1 ];
+		$this->store->setSession( $id, [ 'metadata' => $metadata, 'data' => $data ] );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,
 			'id' => $id,
 			'userInfo' => $userInfo
-		) );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'SessionCheckInfo' => array( function ( &$reason, $i, $r, $m, $d ) use (
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'SessionCheckInfo' => [ function ( &$reason, $i, $r, $m, $d ) use (
 				$info, $metadata, $data, $request, &$called
 			) {
 				$this->assertSame( $info->getId(), $i->getId() );
@@ -1668,13 +1668,13 @@ class SessionManagerTest extends MediaWikiTestCase {
 				$this->assertEquals( $data, $d );
 				$called = true;
 				return false;
-			} )
-		) );
+			} ]
+		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $called );
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session "{session}": Hook aborted' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Hook aborted' ],
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 	}
 
@@ -1682,12 +1682,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 	 * @dataProvider provideCheckIpLimits
 	 */
 	public function testCheckIpLimits( $ip, $sessionData, $userData, $logLevel1, $logLevel2 ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgSuspiciousIpPerSessionLimit' => 5,
 			'wgSuspiciousIpPerUserLimit' => 10,
 			'wgSuspiciousIpExpiry' => 600,
-			'wgSquidServers' => array( '11.22.33.44' ),
-		) );
+			'wgSquidServers' => [ '11.22.33.44' ],
+		] );
 		$manager = new SessionManager();
 		$logger = $this->getMock( '\Psr\Log\LoggerInterface' );
 		$this->setLogger( 'session-ip', $logger );
@@ -1698,7 +1698,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		/** @var SessionBackend $backend */
 		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
 		$data = &$backend->getData();
-		$data = array( 'SessionManager-ip' => $sessionData );
+		$data = [ 'SessionManager-ip' => $sessionData ];
 		$backend->setUser( User::newFromName( 'UTSysop' ) );
 		$manager = \TestingAccessWrapper::newFromObject( $manager );
 		$manager->store->set( 'SessionManager-ip:' . md5( 'UTSysop' ), $userData );
@@ -1719,32 +1719,32 @@ class SessionManagerTest extends MediaWikiTestCase {
 	public function provideCheckIpLimits() {
 		$future = time() + 1000;
 		$past = time() - 1000;
-		return array(
+		return [
 			// DEBUG log for first new IP
-			array( '1.2.3.4', array(), array(), LogLevel::DEBUG, LogLevel::DEBUG ),
+			[ '1.2.3.4', [], [], LogLevel::DEBUG, LogLevel::DEBUG ],
 			// no log for same IP
-			array( '1.2.3.4', array( '1.2.3.4'  => $future ), array( '1.2.3.4' => $future ),
-				   null, null ),
-			array( '1.2.3.4', array(), array( '1.2.3.4' => $future ),
-				   LogLevel::DEBUG, null ),
+			[ '1.2.3.4', [ '1.2.3.4'  => $future ], [ '1.2.3.4' => $future ],
+				   null, null ],
+			[ '1.2.3.4', [], [ '1.2.3.4' => $future ],
+				   LogLevel::DEBUG, null ],
 			// INFO log for second new IP
-			array( '1.2.3.4', array( '10.20.30.40'  => $future ), array( '10.20.30.40' => $future ),
-			   LogLevel::INFO, LogLevel::INFO ),
+			[ '1.2.3.4', [ '10.20.30.40'  => $future ], [ '10.20.30.40' => $future ],
+			   LogLevel::INFO, LogLevel::INFO ],
 			// WARNING above $wgSuspiciousIpPerSessionLimit
-			array( '1.2.3.4', array_fill_keys( range( 1, 5 ), $future ),
-			   array_fill_keys( range( 1, 5 ), $future ), LogLevel::WARNING, LogLevel::INFO ),
+			[ '1.2.3.4', array_fill_keys( range( 1, 5 ), $future ),
+			   array_fill_keys( range( 1, 5 ), $future ), LogLevel::WARNING, LogLevel::INFO ],
 			// WARNING above $wgSuspiciousIpPerUserLimit
 
-			array( '1.2.3.4', array_fill_keys( range( 1, 2 ), $future ),
-				   array_fill_keys( range( 1, 12 ), $future ), LogLevel::INFO, LogLevel::WARNING ),
+			[ '1.2.3.4', array_fill_keys( range( 1, 2 ), $future ),
+				   array_fill_keys( range( 1, 12 ), $future ), LogLevel::INFO, LogLevel::WARNING ],
 			// expired keys ignored
-			array( '1.2.3.4', array( '1.2.3.4'  => $past ), array( '1.2.3.4' => $past ),
-			   LogLevel::DEBUG, LogLevel::DEBUG ),
-			array( '1.2.3.4', array_fill_keys( range( 1, 5 ), $past ),
-				   array_fill_keys( range( 1, 5 ), $past ), LogLevel::DEBUG, LogLevel::DEBUG ),
+			[ '1.2.3.4', [ '1.2.3.4'  => $past ], [ '1.2.3.4' => $past ],
+			   LogLevel::DEBUG, LogLevel::DEBUG ],
+			[ '1.2.3.4', array_fill_keys( range( 1, 5 ), $past ),
+				   array_fill_keys( range( 1, 5 ), $past ), LogLevel::DEBUG, LogLevel::DEBUG ],
 			// special IPs are ignored
-			array( '127.0.0.1', array(), array(), null, null ),
-			array( '11.22.33.44', array(), array(), null, null ),
-		);
+			[ '127.0.0.1', [], [], null, null ],
+			[ '11.22.33.44', [], [], null, null ],
+		];
 	}
 }

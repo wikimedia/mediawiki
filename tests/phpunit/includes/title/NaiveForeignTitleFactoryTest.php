@@ -27,40 +27,40 @@
 class NaiveForeignTitleFactoryTest extends MediaWikiTestCase {
 
 	public function basicProvider() {
-		return array(
-			array(
+		return [
+			[
 				'MainNamespaceArticle', 0,
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
-			),
-			array(
+			],
+			[
 				'MainNamespaceArticle', null,
 				new ForeignTitle( null, '', 'MainNamespaceArticle' ),
-			),
-			array(
+			],
+			[
 				'Talk:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 0,
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 9000, // non-existent local namespace ID
 				new ForeignTitle( 9000, 'Bogus', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 4, // existing local namespace ID
 				new ForeignTitle( 4, 'Bogus', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Talk:Extra:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Extra:Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Talk:Extra:Nice_talk', null,
 				new ForeignTitle( null, 'Talk', 'Extra:Nice_talk' ),
-			),
-		);
+			],
+		];
 	}
 
 	/**

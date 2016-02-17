@@ -233,23 +233,23 @@ class SiteTest extends MediaWikiTestCase {
 		//      is true for Site but not guaranteed for subclasses.
 		//      Subclasses need to override this provider appropriately.
 
-		return array(
-			array( # 0
+		return [
+			[ # 0
 				'http://acme.test/TestPath/$1',
 				'Foo',
 				'/TestPath/Foo',
-			),
-			array( # 1
+			],
+			[ # 1
 				'http://acme.test/TestScript?x=$1&y=bla',
 				'Foo',
 				'TestScript?x=Foo&y=bla',
-			),
-			array( # 2
+			],
+			[ # 2
 				'http://acme.test/TestPath/$1',
 				'foo & bar/xyzzy (quux-shmoox?)',
 				'/TestPath/foo%20%26%20bar%2Fxyzzy%20%28quux-shmoox%3F%29',
-			),
-		);
+			],
+		];
 	}
 
 	/**

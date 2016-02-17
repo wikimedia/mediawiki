@@ -2,12 +2,12 @@
 
 /* Modules registered when $wgEnableJavaScriptTest is true */
 
-return array(
+return [
 
 	/* Utilities */
 
-	'test.sinonjs' => array(
-		'scripts' => array(
+	'test.sinonjs' => [
+		'scripts' => [
 			'resources/lib/sinonjs/sinon-1.15.4.js',
 			// We want tests to work in IE, but can't include this as it
 			// will break the placeholders in Sinon because the hack it uses
@@ -16,15 +16,15 @@ return array(
 			// Including it results (among other things) in sandboxed timers
 			// being broken due to Date inheritance being undefined.
 			// 'resources/lib/sinonjs/sinon-ie-1.15.4.js',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
-	'test.mediawiki.qunit.testrunner' => array(
-		'scripts' => array(
+	'test.mediawiki.qunit.testrunner' => [
+		'scripts' => [
 			'tests/qunit/data/testrunner.js',
-		),
-		'dependencies' => array(
+		],
+		'dependencies' => [
 			// Test runner configures QUnit but can't have it as dependency,
 			// see SpecialJavaScriptTest::viewQUnit.
 			'jquery.getAttrs',
@@ -32,18 +32,18 @@ return array(
 			'mediawiki.page.startup',
 			'test.sinonjs',
 			'dom-level2-shim',
-		),
+		],
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
-	),
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	/*
 		Test suites for MediaWiki core modules
 		These must have a dependency on test.mediawiki.qunit.testrunner!
 	*/
 
-	'test.mediawiki.qunit.suites' => array(
-		'scripts' => array(
+	'test.mediawiki.qunit.suites' => [
+		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.autoEllipsis.test.js',
@@ -93,8 +93,8 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
-		),
-		'dependencies' => array(
+		],
+		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'jquery.autoEllipsis',
 			'jquery.byteLength',
@@ -136,6 +136,6 @@ return array(
 			'mediawiki.cookie',
 			'mediawiki.experiments',
 			'test.mediawiki.qunit.testrunner',
-		),
-	)
-);
+		],
+	]
+];

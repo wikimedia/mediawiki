@@ -34,12 +34,12 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class ShowJobs extends Maintenance {
-	protected static $stateMethods = array(
+	protected static $stateMethods = [
 		'unclaimed' => 'getAllQueuedJobs',
 		'delayed'   => 'getAllDelayedJobs',
 		'claimed'   => 'getAllAcquiredJobs',
 		'abandoned' => 'getAllAbandonedJobs',
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
@@ -59,10 +59,10 @@ class ShowJobs extends Maintenance {
 		$group = JobQueueGroup::singleton();
 
 		$filteredTypes = $typeFilter
-			? array( $typeFilter )
+			? [ $typeFilter ]
 			: $group->getQueueTypes();
 		$filteredStates = $stateFilter
-			? array_intersect_key( self::$stateMethods, array( $stateFilter => 1 ) )
+			? array_intersect_key( self::$stateMethods, [ $stateFilter => 1 ] )
 			: self::$stateMethods;
 
 		if ( $this->hasOption( 'list' ) ) {

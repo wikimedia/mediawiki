@@ -79,11 +79,11 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		$this->addFields( array(
+		$this->addFields( [
 			'pl_from' => $this->prefix . '_from',
 			'pl_namespace' => $this->prefix . '_namespace',
 			'pl_title' => $this->prefix . '_title'
-		) );
+		] );
 
 		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
@@ -127,7 +127,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// but instead goes and filesorts, because the index for foo was used
 		// already. To work around this, we drop constant fields in the WHERE
 		// clause from the ORDER BY clause
-		$order = array();
+		$order = [];
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
 			$order[] = $this->prefix . '_from' . $sort;
 		}
@@ -152,7 +152,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, Title::makeTitle( $row->pl_namespace, $row->pl_title ) );
 				$fit = $this->addPageSubItem( $row->pl_from, $vals );
 				if ( !$fit ) {
@@ -162,7 +162,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				}
 			}
 		} else {
-			$titles = array();
+			$titles = [];
 			$count = 0;
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
@@ -179,46 +179,46 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'namespace' => array(
+		return [
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			$this->titlesParam => array(
+			],
+			$this->titlesParam => [
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				)
-			),
-		);
+				]
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
 
-		return array(
+		return [
 			"action=query&prop={$name}&titles=Main%20Page"
 				=> "apihelp-{$path}-example-simple",
 			"action=query&generator={$name}&titles=Main%20Page&prop=info"
 				=> "apihelp-{$path}-example-generator",
 			"action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10"
 				=> "apihelp-{$path}-example-namespaces",
-		);
+		];
 	}
 
 	public function getHelpUrls() {

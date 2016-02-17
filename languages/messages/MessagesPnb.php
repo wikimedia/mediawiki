@@ -19,7 +19,7 @@ $fallback8bitEncoding = 'windows-1256';
 
 $rtl = true;
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'میڈیا',
 	NS_SPECIAL          => 'خاص',
 	NS_TALK             => 'گل_بات',
@@ -36,4 +36,4 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'ہتھونڈائی_گل_بات',
 	NS_CATEGORY         => 'گٹھ',
 	NS_CATEGORY_TALK    => 'گٹھ_گل_بات',
-);
+];

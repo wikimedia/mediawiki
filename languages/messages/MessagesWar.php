@@ -14,7 +14,7 @@
  * @author לערי ריינהארט
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Pinaurog',
 	NS_TALK             => 'Hiruhimangraw',
@@ -31,33 +31,33 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hiruhimangaw_hiton_bulig',
 	NS_CATEGORY         => 'Kaarangay',
 	NS_CATEGORY_TALK    => 'Hiruhimangraw_hiton_kaarangay',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Fayl'                          => NS_FILE,
 	'Hiruhimangraw_hiton_fayl'      => NS_FILE_TALK,
 	'Hiruhimangraw_hiton_MediaWiki' => NS_MEDIAWIKI_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'NgatananngaPakli' ),
-	'Categories'                => array( 'Mga_kaarangay' ),
-	'Contributions'             => array( 'Mga_ámot' ),
-	'Longpages'                 => array( 'HaglabangamgaPakli' ),
-	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
-	'Movepage'                  => array( 'BalhinaAnPakli' ),
-	'Mypage'                    => array( 'AkonPakli' ),
-	'Mytalk'                    => array( 'AkonHiruhimangraw' ),
-	'Newpages'                  => array( 'Bag-ongamgaPakli' ),
-	'Randompage'                => array( 'Bisan_Ano', 'BisanAnongaPakli' ),
-	'Search'                    => array( 'Bilnga' ),
-	'Shortpages'                => array( 'HaglipotngamgaPakli' ),
-	'Specialpages'              => array( 'MgaIspisyalngaPakli' ),
-	'Statistics'                => array( 'Mga_Estadistika' ),
-	'Upload'                    => array( 'Pagkarga' ),
-	'Version'                   => array( 'Bersyon' ),
-	'Watchlist'                 => array( 'Angay_Timan-an' ),
-	'Whatlinkshere'             => array( 'AnoAnNasumpayDinhi' ),
-	'Withoutinterwiki'          => array( 'Warayinterwiki' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'NgatananngaPakli' ],
+	'Categories'                => [ 'Mga_kaarangay' ],
+	'Contributions'             => [ 'Mga_ámot' ],
+	'Longpages'                 => [ 'HaglabangamgaPakli' ],
+	'Mostlinked'                => [ 'Gidamo-iHinSumpay' ],
+	'Movepage'                  => [ 'BalhinaAnPakli' ],
+	'Mypage'                    => [ 'AkonPakli' ],
+	'Mytalk'                    => [ 'AkonHiruhimangraw' ],
+	'Newpages'                  => [ 'Bag-ongamgaPakli' ],
+	'Randompage'                => [ 'Bisan_Ano', 'BisanAnongaPakli' ],
+	'Search'                    => [ 'Bilnga' ],
+	'Shortpages'                => [ 'HaglipotngamgaPakli' ],
+	'Specialpages'              => [ 'MgaIspisyalngaPakli' ],
+	'Statistics'                => [ 'Mga_Estadistika' ],
+	'Upload'                    => [ 'Pagkarga' ],
+	'Version'                   => [ 'Bersyon' ],
+	'Watchlist'                 => [ 'Angay_Timan-an' ],
+	'Whatlinkshere'             => [ 'AnoAnNasumpayDinhi' ],
+	'Withoutinterwiki'          => [ 'Warayinterwiki' ],
+];
 

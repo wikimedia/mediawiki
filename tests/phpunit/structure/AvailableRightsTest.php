@@ -40,7 +40,7 @@ class AvailableRightsTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertEquals(
-			array(),
+			[],
 			// Re-index to produce nicer output, keys are meaningless.
 			array_values( $missingRights ),
 			'Additional user rights need to be added to $wgAvailableRights or ' .

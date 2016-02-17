@@ -71,10 +71,10 @@ abstract class WebInstallerPage {
 			"<div class=\"config-section\">\n" .
 			Html::openElement(
 				'form',
-				array(
+				[
 					'method' => 'post',
-					'action' => $this->parent->getUrl( array( 'page' => $this->getName() ) )
-				)
+					'action' => $this->parent->getUrl( [ 'page' => $this->getName() ] )
+				]
 			) . "\n"
 		);
 	}
@@ -96,10 +96,10 @@ abstract class WebInstallerPage {
 			// Messages: config-continue, config-restart, config-regenerate
 			$s .= Xml::submitButton(
 				wfMessage( "config-$continue" )->text(),
-				array(
+				[
 					'name' => "enter-$continue",
 					'style' => 'visibility:hidden;overflow:hidden;width:1px;margin:0'
-				)
+				]
 			) . "\n";
 		}
 
@@ -107,10 +107,10 @@ abstract class WebInstallerPage {
 			// Message: config-back
 			$s .= Xml::submitButton(
 				wfMessage( "config-$back" )->text(),
-				array(
+				[
 					'name' => "submit-$back",
 					'tabindex' => $this->parent->nextTabIndex()
-				)
+				]
 			) . "\n";
 		}
 
@@ -118,10 +118,10 @@ abstract class WebInstallerPage {
 			// Messages: config-continue, config-restart, config-regenerate
 			$s .= Xml::submitButton(
 				wfMessage( "config-$continue" )->text(),
-				array(
+				[
 					'name' => "submit-$continue",
 					'tabindex' => $this->parent->nextTabIndex(),
-				)
+				]
 			) . "\n";
 		}
 

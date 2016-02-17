@@ -23,7 +23,7 @@
  */
 class MWRestrictions {
 
-	private $ipAddresses = array( '0.0.0.0/0', '::/0' );
+	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
 
 	/**
 	 * @param array $restrictions
@@ -62,8 +62,8 @@ class MWRestrictions {
 	}
 
 	private function loadFromArray( array $restrictions ) {
-		static $validKeys = array( 'IPAddresses' );
-		static $neededKeys = array( 'IPAddresses' );
+		static $validKeys = [ 'IPAddresses' ];
+		static $neededKeys = [ 'IPAddresses' ];
 
 		$keys = array_keys( $restrictions );
 		$invalidKeys = array_diff( $keys, $validKeys );
@@ -95,9 +95,9 @@ class MWRestrictions {
 	 * @return array
 	 */
 	public function toArray() {
-		return array(
+		return [
 			'IPAddresses' => $this->ipAddresses,
-		);
+		];
 	}
 
 	/**
@@ -119,9 +119,9 @@ class MWRestrictions {
 	 * @return Status
 	 */
 	public function check( WebRequest $request ) {
-		$ok = array(
+		$ok = [
 			'ip' => $this->checkIP( $request->getIP() ),
-		);
+		];
 		$status = Status::newGood();
 		$status->setResult( $ok === array_filter( $ok ), $ok );
 		return $status;

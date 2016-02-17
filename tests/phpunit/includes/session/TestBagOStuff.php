@@ -18,7 +18,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	 * @param User $user User for metadata
 	 */
 	public function setSessionData( $id, array $data, $expiry = 0, User $user = null ) {
-		$this->setSession( $id, array( 'data' => $data ), $expiry, $user );
+		$this->setSession( $id, [ 'data' => $data ], $expiry, $user );
 	}
 
 	/**
@@ -27,7 +27,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	 * @param int $expiry Expiry
 	 */
 	public function setSessionMeta( $id, array $metadata, $expiry = 0 ) {
-		$this->setSession( $id, array( 'metadata' => $metadata ), $expiry );
+		$this->setSession( $id, [ 'metadata' => $metadata ], $expiry );
 	}
 
 	/**
@@ -37,16 +37,16 @@ class TestBagOStuff extends \CachedBagOStuff {
 	 * @param User $user User for metadata
 	 */
 	public function setSession( $id, array $blob, $expiry = 0, User $user = null ) {
-		$blob += array(
-			'data' => array(),
-			'metadata' => array(),
-		);
-		$blob['metadata'] += array(
+		$blob += [
+			'data' => [],
+			'metadata' => [],
+		];
+		$blob['metadata'] += [
 			'userId' => $user ? $user->getId() : 0,
 			'userName' => $user ? $user->getName() : null,
 			'userToken' => $user ? $user->getToken( true ) : null,
 			'provider' => 'DummySessionProvider',
-		);
+		];
 
 		$this->setRawSession( $id, $blob, $expiry, $user );
 	}

@@ -33,7 +33,7 @@ use Psr\Log\LogLevel;
  */
 class TestLogger extends \Psr\Log\AbstractLogger {
 	private $collect = false;
-	private $buffer = array();
+	private $buffer = [];
 	private $filter = null;
 
 	/**
@@ -66,10 +66,10 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 	 * Clear the collected log buffer
 	 */
 	public function clearBuffer() {
-		$this->buffer = array();
+		$this->buffer = [];
 	}
 
-	public function log( $level, $message, array $context = array() ) {
+	public function log( $level, $message, array $context = [] ) {
 		$message = trim( $message );
 
 		if ( $this->filter ) {
@@ -80,7 +80,7 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 		}
 
 		if ( $this->collect ) {
-			$this->buffer[] = array( $level, $message );
+			$this->buffer[] = [ $level, $message ];
 		} else {
 			switch ( $level ) {
 				case LogLevel::DEBUG:

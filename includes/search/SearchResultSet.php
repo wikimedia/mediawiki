@@ -54,7 +54,7 @@ class SearchResultSet {
 	 * @return array
 	 */
 	function termMatches() {
-		return array();
+		return [];
 	}
 
 	function numRows() {

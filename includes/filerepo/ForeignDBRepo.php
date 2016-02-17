@@ -53,8 +53,8 @@ class ForeignDBRepo extends LocalRepo {
 
 	# Other stuff
 	protected $dbConn;
-	protected $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
-	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
+	protected $fileFactory = [ 'ForeignDBFile', 'newFromTitle' ];
+	protected $fileFromRowFactory = [ 'ForeignDBFile', 'newFromRow' ];
 
 	/**
 	 * @param array|null $info
@@ -95,7 +95,7 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	protected function getDBFactory() {
 		$type = $this->dbType;
-		$params = array(
+		$params = [
 			'host' => $this->dbServer,
 			'user' => $this->dbUser,
 			'password' => $this->dbPassword,
@@ -103,7 +103,7 @@ class ForeignDBRepo extends LocalRepo {
 			'flags' => $this->dbFlags,
 			'tablePrefix' => $this->tablePrefix,
 			'foreign' => true,
-		);
+		];
 
 		return function ( $index ) use ( $type, $params ) {
 			return DatabaseBase::factory( $type, $params );

@@ -64,7 +64,7 @@ class ResourceLoaderContext {
 
 		// List of modules
 		$modules = $request->getVal( 'modules' );
-		$this->modules = $modules ? self::expandModuleNames( $modules ) : array();
+		$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
 
 		// Various parameters
 		$this->user = $request->getVal( 'user' );
@@ -97,7 +97,7 @@ class ResourceLoaderContext {
 	 * @return array Array of module names
 	 */
 	public static function expandModuleNames( $modules ) {
-		$retval = array();
+		$retval = [];
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
 			if ( strpos( $group, ',' ) === false ) {
@@ -132,7 +132,7 @@ class ResourceLoaderContext {
 		return new self( new ResourceLoader(
 			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
 			LoggerFactory::getInstance( 'resourceloader' )
-		), new FauxRequest( array() ) );
+		), new FauxRequest( [] ) );
 	}
 
 	/**
@@ -356,7 +356,7 @@ class ResourceLoaderContext {
 	 */
 	public function getHash() {
 		if ( !isset( $this->hash ) ) {
-			$this->hash = implode( '|', array(
+			$this->hash = implode( '|', [
 				// Module content vary
 				$this->getLanguage(),
 				$this->getSkin(),
@@ -369,7 +369,7 @@ class ResourceLoaderContext {
 				$this->getImage(),
 				$this->getVariant(),
 				$this->getFormat(),
-			) );
+			] );
 		}
 		return $this->hash;
 	}

@@ -11,20 +11,20 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		$conf = new SiteConfiguration();
-		$conf->settings = array(
-			'wgServer' => array(
+		$conf->settings = [
+			'wgServer' => [
 				'enwiki' => 'http://en.example.org',
 				'ruwiki' => '//ru.example.org',
-			),
-			'wgArticlePath' => array(
+			],
+			'wgArticlePath' => [
 				'enwiki' => '/w/$1',
 				'ruwiki' => '/wiki/$1',
-			),
-		);
-		$conf->suffixes = array( 'wiki' );
-		$this->setMwGlobals( array(
+			],
+		];
+		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( [
 			'wgConf' => $conf,
-		) );
+		] );
 
 		TestSites::insertIntoDb();
 	}
@@ -39,14 +39,14 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		// enwiktionary doesn't have an interwiki id, thus this falls back to minor = lang code
 		$enwiktionary = new WikiReference( 'https://en.wiktionary.org', '/wiki/$1' );
 
-		return array(
-			'unknown' => array( null, 'xyzzy' ),
-			'enwiki (wgConf)' => array( $enwiki, 'enwiki' ),
-			'ruwiki (wgConf)' => array( $ruwiki, 'ruwiki' ),
-			'nlwiki (sites)' => array( $nlwiki, 'nlwiki', false ),
-			'enwiktionary (sites)' => array( $enwiktionary, 'enwiktionary', false ),
-			'non MediaWiki site' => array( null, 'spam', false ),
-		);
+		return [
+			'unknown' => [ null, 'xyzzy' ],
+			'enwiki (wgConf)' => [ $enwiki, 'enwiki' ],
+			'ruwiki (wgConf)' => [ $ruwiki, 'ruwiki' ],
+			'nlwiki (sites)' => [ $nlwiki, 'nlwiki', false ],
+			'enwiktionary (sites)' => [ $enwiktionary, 'enwiktionary', false ],
+			'non MediaWiki site' => [ null, 'spam', false ],
+		];
 	}
 
 	/**
@@ -54,21 +54,21 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetWiki( $expected, $wikiId, $useWgConf = true ) {
 		if ( !$useWgConf ) {
-			$this->setMwGlobals( array(
+			$this->setMwGlobals( [
 				'wgConf' => new SiteConfiguration(),
-			) );
+			] );
 		}
 
 		$this->assertEquals( $expected, WikiMap::getWiki( $wikiId ) );
 	}
 
 	public function provideGetWikiName() {
-		return array(
-			'unknown' => array( 'xyzzy', 'xyzzy' ),
-			'enwiki' => array( 'en.example.org', 'enwiki' ),
-			'ruwiki' => array( 'ru.example.org', 'ruwiki' ),
-			'enwiktionary (sites)' => array( 'en.wiktionary.org', 'enwiktionary' ),
-		);
+		return [
+			'unknown' => [ 'xyzzy', 'xyzzy' ],
+			'enwiki' => [ 'en.example.org', 'enwiki' ],
+			'ruwiki' => [ 'ru.example.org', 'ruwiki' ],
+			'enwiktionary (sites)' => [ 'en.wiktionary.org', 'enwiktionary' ],
+		];
 	}
 
 	/**
@@ -79,29 +79,29 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideMakeForeignLink() {
-		return array(
-			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array(
+		return [
+			'unknown' => [ false, 'xyzzy', 'Foo' ],
+			'enwiki' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="http://en.example.org/w/Foo">Foo</a>',
 				'enwiki',
 				'Foo'
-			),
-			'ruwiki' => array(
+			],
+			'ruwiki' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="//ru.example.org/wiki/%D0%A4%D1%83">вар</a>',
 				'ruwiki',
 				'Фу',
 				'вар'
-			),
-			'enwiktionary (sites)' => array(
+			],
+			'enwiktionary (sites)' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="https://en.wiktionary.org/wiki/Kitten">Kittens!</a>',
 				'enwiktionary',
 				'Kitten',
 				'Kittens!'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -115,29 +115,29 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideForeignUserLink() {
-		return array(
-			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array(
+		return [
+			'unknown' => [ false, 'xyzzy', 'Foo' ],
+			'enwiki' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="http://en.example.org/w/User:Foo">User:Foo</a>',
 				'enwiki',
 				'Foo'
-			),
-			'ruwiki' => array(
+			],
+			'ruwiki' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="//ru.example.org/wiki/User:%D0%A4%D1%83">вар</a>',
 				'ruwiki',
 				'Фу',
 				'вар'
-			),
-			'enwiktionary (sites)' => array(
+			],
+			'enwiktionary (sites)' => [
 				'<a class="external" rel="nofollow" ' .
 					'href="https://en.wiktionary.org/wiki/User:Dummy">Whatever</a>',
 				'enwiktionary',
 				'Dummy',
 				'Whatever'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -148,21 +148,21 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideGetForeignURL() {
-		return array(
-			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array( 'http://en.example.org/w/Foo', 'enwiki', 'Foo' ),
-			'enwiktionary (sites)' => array(
+		return [
+			'unknown' => [ false, 'xyzzy', 'Foo' ],
+			'enwiki' => [ 'http://en.example.org/w/Foo', 'enwiki', 'Foo' ],
+			'enwiktionary (sites)' => [
 				'https://en.wiktionary.org/wiki/Testme',
 				'enwiktionary',
 				'Testme'
-			),
-			'ruwiki with fragment' => array(
+			],
+			'ruwiki with fragment' => [
 				'//ru.example.org/wiki/%D0%A4%D1%83#%D0%B2%D0%B0%D1%80',
 				'ruwiki',
 				'Фу',
 				'вар'
-			),
-		);
+			],
+		];
 	}
 
 	/**

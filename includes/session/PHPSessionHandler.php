@@ -49,7 +49,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	protected $logger;
 
 	/** @var array Track original session fields for later modification check */
-	protected $sessionFieldCache = array();
+	protected $sessionFieldCache = [];
 
 	protected function __construct( SessionManager $manager ) {
 		$this->setEnableFlags(
@@ -182,7 +182,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
-		$this->sessionFieldCache = array();
+		$this->sessionFieldCache = [];
 		return true;
 	}
 
@@ -234,9 +234,9 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			// invalid. Let's emit a log warning instead of a PHP warning.
 			$this->logger->warning(
 				__METHOD__ . ': Session "{session}" cannot be loaded, skipping write.',
-				array(
+				[
 					'session' => $id,
-			) );
+			] );
 			return true;
 		}
 
@@ -250,7 +250,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 		// Now merge the data into the Session object.
 		$changed = false;
-		$cache = isset( $this->sessionFieldCache[$id] ) ? $this->sessionFieldCache[$id] : array();
+		$cache = isset( $this->sessionFieldCache[$id] ) ? $this->sessionFieldCache[$id] : [];
 		foreach ( $data as $key => $value ) {
 			if ( !array_key_exists( $key, $cache ) ) {
 				if ( $session->exists( $key ) ) {
@@ -288,7 +288,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		\Wikimedia\PhpSessionSerializer::setLogger( new \Psr\Log\NullLogger() );
 		foreach ( $cache as $key => $value ) {
 			if ( !array_key_exists( $key, $data ) && $session->exists( $key ) &&
-				\Wikimedia\PhpSessionSerializer::encode( array( $key => true ) )
+				\Wikimedia\PhpSessionSerializer::encode( [ $key => true ] )
 			) {
 				if ( $cache[$key] === $session->get( $key ) ) {
 					// Unchanged in Session, delete it

@@ -40,7 +40,7 @@ class MWGrants {
 	public static function getRightsByGrant() {
 		global $wgGrantPermissions;
 
-		$res = array();
+		$res = [];
 		foreach ( $wgGrantPermissions as $grant => $rights ) {
 			$res[$grant] = array_keys( array_filter( $rights ) );
 		}
@@ -91,7 +91,7 @@ class MWGrants {
 			}
 		}
 
-		$ret = array();
+		$ret = [];
 		foreach ( $grants as $grant ) {
 			$ret[] = self::grantName( $grant, $lang );
 		}
@@ -106,7 +106,7 @@ class MWGrants {
 	public static function getGrantRights( $grants ) {
 		global $wgGrantPermissions;
 
-		$rights = array();
+		$rights = [];
 		foreach ( (array)$grants as $grant ) {
 			if ( isset( $wgGrantPermissions[$grant] ) ) {
 				$rights = array_merge( $rights, array_keys( array_filter( $wgGrantPermissions[$grant] ) ) );
@@ -121,7 +121,7 @@ class MWGrants {
 	 * @return bool
 	 */
 	public static function grantsAreValid( array $grants ) {
-		return array_diff( $grants, self::getValidGrants() ) === array();
+		return array_diff( $grants, self::getValidGrants() ) === [];
 	}
 
 	/**
@@ -136,7 +136,7 @@ class MWGrants {
 			$grantsFilter = array_flip( $grantsFilter );
 		}
 
-		$groups = array();
+		$groups = [];
 		foreach ( $wgGrantPermissions as $grant => $rights ) {
 			if ( $grantsFilter !== null && !isset( $grantsFilter[$grant] ) ) {
 				continue;
@@ -158,7 +158,7 @@ class MWGrants {
 	public static function getHiddenGrants() {
 		global $wgGrantPermissionGroups;
 
-		$grants = array();
+		$grants = [];
 		foreach ( $wgGrantPermissionGroups as $grant => $group ) {
 			if ( $group === 'hidden' ) {
 				$grants[] = $grant;

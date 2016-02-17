@@ -33,7 +33,7 @@ use Wikimedia\Assert\Assert;
  */
 class MapCacheLRU {
 	/** @var array */
-	protected $cache = array(); // (key => value)
+	protected $cache = []; // (key => value)
 
 	protected $maxCacheKeys; // integer; max entries
 
@@ -110,7 +110,7 @@ class MapCacheLRU {
 	 */
 	public function clear( $keys = null ) {
 		if ( $keys === null ) {
-			$this->cache = array();
+			$this->cache = [];
 		} else {
 			foreach ( (array)$keys as $key ) {
 				unset( $this->cache[$key] );

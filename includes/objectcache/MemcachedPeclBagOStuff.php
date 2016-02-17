@@ -112,7 +112,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 					__CLASS__ . ': invalid value for serializer parameter'
 				);
 		}
-		$servers = array();
+		$servers = [];
 		foreach ( $params['servers'] as $host ) {
 			$servers[] = IP::splitHostAndPort( $host ); // (ip, port)
 		}
@@ -189,7 +189,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				break;
 			default:
 				$msg = $this->client->getResultMessage();
-				$logCtx = array();
+				$logCtx = [];
 				if ( $key !== false ) {
 					$server = $this->client->getServerByKey( $key );
 					$logCtx['memcached-server'] = "{$server['host']}:{$server['port']}";
@@ -209,7 +209,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
 		}
-		$result = $this->client->getMulti( $keys ) ?: array();
+		$result = $this->client->getMulti( $keys ) ?: [];
 		return $this->checkResult( false, $result );
 	}
 

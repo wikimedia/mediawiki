@@ -45,7 +45,7 @@ namespace MediaWiki\Languages\Data;
  * @ingroup Language
  */
 class Names {
-	public static $names = array(
+	public static $names = [
 		'aa' => 'Qafár af',	# Afar
 		'ab' => 'Аҧсшәа',	# Abkhaz
 		'ace' => 'Acèh',	# Aceh
@@ -464,5 +464,5 @@ class Names {
 		'zh-tw' => "中文（台灣）\xE2\x80\x8E",	# Chinese (Taiwan)
 		'zh-yue' => '粵語',					# Cantonese -- (see bug 8217)
 		'zu' => 'isiZulu'		# Zulu
-	);
+	];
 }

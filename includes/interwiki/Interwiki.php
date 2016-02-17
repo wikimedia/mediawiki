@@ -30,7 +30,7 @@ use \Cdb\Reader as CdbReader;
  */
 class Interwiki {
 	// Cache - removes oldest entry when it hits limit
-	protected static $smCache = array();
+	protected static $smCache = [];
 	const CACHE_LIMIT = 100; // 0 means unlimited, any other value is max number of entries.
 
 	/** @var string The interwiki prefix, (e.g. "Meatball", or the language prefix "de") */
@@ -214,8 +214,8 @@ class Interwiki {
 	protected static function load( $prefix ) {
 		global $wgInterwikiExpiry;
 
-		$iwData = array();
-		if ( !Hooks::run( 'InterwikiLoadPrefix', array( $prefix, &$iwData ) ) ) {
+		$iwData = [];
+		if ( !Hooks::run( 'InterwikiLoadPrefix', [ $prefix, &$iwData ] ) ) {
 			return Interwiki::loadFromArray( $iwData );
 		}
 
@@ -237,7 +237,7 @@ class Interwiki {
 				$row = $dbr->selectRow(
 					'interwiki',
 					Interwiki::selectFields(),
-					array( 'iw_prefix' => $prefix ),
+					[ 'iw_prefix' => $prefix ],
 					__METHOD__
 				);
 
@@ -285,7 +285,7 @@ class Interwiki {
 		static $site;
 
 		wfDebug( __METHOD__ . "()\n" );
-		$data = array();
+		$data = [];
 		try {
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
@@ -297,7 +297,7 @@ class Interwiki {
 			}
 
 			// List of interwiki sources
-			$sources = array();
+			$sources = [];
 			// Global Level
 			if ( $wgInterwikiScopes >= 2 ) {
 				$sources[] = '__global';
@@ -322,11 +322,11 @@ class Interwiki {
 						continue;
 					}
 
-					$data[$iw_prefix] = array(
+					$data[$iw_prefix] = [
 						'iw_prefix' => $iw_prefix,
 						'iw_url' => $iw_url,
 						'iw_local' => $iw_local,
-					);
+					];
 				}
 			}
 		} catch ( CdbException $e ) {
@@ -349,7 +349,7 @@ class Interwiki {
 	protected static function getAllPrefixesDB( $local ) {
 		$db = wfGetDB( DB_SLAVE );
 
-		$where = array();
+		$where = [];
 
 		if ( $local !== null ) {
 			if ( $local == 1 ) {
@@ -361,10 +361,10 @@ class Interwiki {
 
 		$res = $db->select( 'interwiki',
 			self::selectFields(),
-			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
+			$where, __METHOD__, [ 'ORDER BY' => 'iw_prefix' ]
 		);
 
-		$retval = array();
+		$retval = [];
 		foreach ( $res as $row ) {
 			$retval[] = (array)$row;
 		}
@@ -473,13 +473,13 @@ class Interwiki {
 	 * @return string[]
 	 */
 	public static function selectFields() {
-		return array(
+		return [
 			'iw_prefix',
 			'iw_url',
 			'iw_api',
 			'iw_wikiid',
 			'iw_local',
 			'iw_trans'
-		);
+		];
 	}
 }

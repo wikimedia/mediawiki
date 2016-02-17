@@ -49,7 +49,7 @@ class ApiLogout extends ApiBase {
 
 		// Give extensions to do something after user logout
 		$injected_html = '';
-		Hooks::run( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ) );
+		Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
 	}
 
 	public function isReadMode() {
@@ -57,10 +57,10 @@ class ApiLogout extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=logout'
 				=> 'apihelp-logout-example-logout',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

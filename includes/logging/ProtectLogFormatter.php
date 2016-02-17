@@ -32,9 +32,9 @@ class ProtectLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'move_prot' ) {
 			$params = $this->extractParameters();
-			return array( Title::newFromText( $params[3] ) );
+			return [ Title::newFromText( $params[3] ) ];
 		}
-		return array();
+		return [];
 	}
 
 	protected function getMessageKey() {
@@ -69,7 +69,7 @@ class ProtectLogFormatter extends LogFormatter {
 				unset( $params[4] );
 			}
 		} elseif ( $subtype === 'move_prot' ) {
-			$oldname = $this->makePageLink( Title::newFromText( $params[3] ), array( 'redirect' => 'no' ) );
+			$oldname = $this->makePageLink( Title::newFromText( $params[3] ), [ 'redirect' => 'no' ] );
 			$params[3] = Message::rawParam( $oldname );
 		}
 
@@ -86,24 +86,24 @@ class ProtectLogFormatter extends LogFormatter {
 
 		// Show history link for all changes after the protection
 		$title = $this->entry->getTarget();
-		$links = array(
+		$links = [
 			Linker::link( $title,
 				$this->msg( 'hist' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'action' => 'history',
 					'offset' => $this->entry->getTimestamp(),
-				)
+				]
 			)
-		);
+		];
 
 		// Show change protection link
 		if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
 			$links[] = Linker::linkKnown(
 				$title,
 				$this->msg( 'protect_change' )->escaped(),
-				array(),
-				array( 'action' => 'protect' )
+				[],
+				[ 'action' => 'protect' ]
 			);
 		}
 
@@ -116,18 +116,18 @@ class ProtectLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		$params = $entry->getParameters();
 
-		$map = array();
+		$map = [];
 		if ( $subtype === 'protect' || $subtype === 'modify' ) {
-			$map = array(
+			$map = [
 				'4::description',
 				'5:bool:cascade',
 				'details' => ':array:details',
-			);
+			];
 		} elseif ( $subtype === 'move_prot' ) {
-			$map = array(
+			$map = [
 				'4:title:oldtitle',
 				'4::oldtitle' => '4:title:oldtitle',
-			);
+			];
 		}
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {

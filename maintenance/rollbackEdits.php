@@ -55,8 +55,8 @@ class RollbackEdits extends Maintenance {
 
 		$bot = $this->hasOption( 'bot' );
 		$summary = $this->getOption( 'summary', $this->mSelf . ' mass rollback' );
-		$titles = array();
-		$results = array();
+		$titles = [];
+		$results = [];
 		if ( $this->hasOption( 'titles' ) ) {
 			foreach ( explode( '|', $this->getOption( 'titles' ) ) as $title ) {
 				$t = Title::newFromText( $title );
@@ -76,7 +76,7 @@ class RollbackEdits extends Maintenance {
 			return;
 		}
 
-		$doer = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+		$doer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 
 		foreach ( $titles as $t ) {
 			$page = WikiPage::factory( $t );
@@ -96,11 +96,11 @@ class RollbackEdits extends Maintenance {
 	 */
 	private function getRollbackTitles( $user ) {
 		$dbr = $this->getDB( DB_SLAVE );
-		$titles = array();
+		$titles = [];
 		$results = $dbr->select(
-			array( 'page', 'revision' ),
-			array( 'page_namespace', 'page_title' ),
-			array( 'page_latest = rev_id', 'rev_user_text' => $user ),
+			[ 'page', 'revision' ],
+			[ 'page_namespace', 'page_title' ],
+			[ 'page_latest = rev_id', 'rev_user_text' => $user ],
 			__METHOD__
 		);
 		foreach ( $results as $row ) {

@@ -303,10 +303,10 @@ class AjaxResponse {
 	 */
 	function storeInMemcached( $mckey, $expiry = 86400 ) {
 		ObjectCache::getMainWANInstance()->set( $mckey,
-			array(
+			[
 				'timestamp' => wfTimestampNow(),
 				'value' => $this->mText
-			), $expiry
+			], $expiry
 		);
 
 		return true;

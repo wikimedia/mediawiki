@@ -13,13 +13,13 @@ class ApiLoginTest extends ApiTestCase {
 	 * Test result of attempted login with an empty username
 	 */
 	public function testApiLoginNoName() {
-		$session = array(
-			'wsTokenSecrets' => array( 'login' => 'foobar' ),
-		);
-		$data = $this->doApiRequest( array( 'action' => 'login',
+		$session = [
+			'wsTokenSecrets' => [ 'login' => 'foobar' ],
+		];
+		$data = $this->doApiRequest( [ 'action' => 'login',
 			'lgname' => '', 'lgpassword' => self::$users['sysop']->password,
 			'lgtoken' => (string)( new MediaWiki\Session\Token( 'foobar', '' ) )
-		), $session );
+		], $session );
 		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
 	}
 
@@ -32,11 +32,11 @@ class ApiLoginTest extends ApiTestCase {
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 			"action" => "login",
 			"lgname" => $user->username,
 			"lgpassword" => "bad",
-		) );
+		] );
 
 		$result = $ret[0];
 
@@ -47,12 +47,12 @@ class ApiLoginTest extends ApiTestCase {
 		$token = $result["login"]["token"];
 
 		$ret = $this->doApiRequest(
-			array(
+			[
 				"action" => "login",
 				"lgtoken" => $token,
 				"lgname" => $user->username,
 				"lgpassword" => "badnowayinhell",
-			),
+			],
 			$ret[2]
 		);
 
@@ -74,11 +74,11 @@ class ApiLoginTest extends ApiTestCase {
 		$user = self::$users['sysop'];
 		$user->getUser()->logOut();
 
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 				"action" => "login",
 				"lgname" => $user->username,
 				"lgpassword" => $user->password,
-			)
+			]
 		);
 
 		$result = $ret[0];
@@ -90,12 +90,12 @@ class ApiLoginTest extends ApiTestCase {
 		$token = $result["login"]["token"];
 
 		$ret = $this->doApiRequest(
-			array(
+			[
 				"action" => "login",
 				"lgtoken" => $token,
 				"lgname" => $user->username,
 				"lgpassword" => $user->password,
-			),
+			],
 			$ret[2]
 		);
 
@@ -122,12 +122,12 @@ class ApiLoginTest extends ApiTestCase {
 		$user = self::$users['sysop'];
 
 		$req = MWHttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
-			array( "method" => "POST",
-				"postData" => array(
+			[ "method" => "POST",
+				"postData" => [
 					"lgname" => $user->username,
 					"lgpassword" => $user->password
-				)
-			),
+				]
+			],
 			__METHOD__
 		);
 		$req->execute();
@@ -142,10 +142,10 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
 		$token = (string)$sxe->login[0]->attributes()->token;
 
-		$req->setData( array(
+		$req->setData( [
 			"lgtoken" => $token,
 			"lgname" => $user->username,
-			"lgpassword" => $user->password ) );
+			"lgpassword" => $user->password ] );
 		$req->execute();
 
 		$cj = $req->getCookieJar();
@@ -161,21 +161,21 @@ class ApiLoginTest extends ApiTestCase {
 
 	public function testRunLogin() {
 		$sysopUser = self::$users['sysop'];
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => $sysopUser->username,
-			'lgpassword' => $sysopUser->password ) );
+			'lgpassword' => $sysopUser->password ] );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "NeedToken", $data[0]['login']['result'] );
 		$token = $data[0]['login']['token'];
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'login',
 			"lgtoken" => $token,
 			"lgname" => $sysopUser->username,
-			"lgpassword" => $sysopUser->password ), $data[2] );
+			"lgpassword" => $sysopUser->password ], $data[2] );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -190,20 +190,20 @@ class ApiLoginTest extends ApiTestCase {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 
-		$this->setMwGlobals( array(
-			'wgSessionProviders' => array_merge( $wgSessionProviders, array(
-				array(
+		$this->setMwGlobals( [
+			'wgSessionProviders' => array_merge( $wgSessionProviders, [
+				[
 					'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
-					'args' => array( array( 'priority' => 40 ) ),
-				)
-			) ),
+					'args' => [ [ 'priority' => 40 ] ],
+				]
+			] ),
 			'wgEnableBotPasswords' => true,
 			'wgBotPasswordsDatabase' => false,
 			'wgCentralIdLookupProvider' => 'local',
-			'wgGrantPermissions' => array(
-				'test' => array( 'read' => true ),
-			),
-		) );
+			'wgGrantPermissions' => [
+				'test' => [ 'read' => true ],
+			],
+		] );
 
 		// Make sure our session provider is present
 		$manager = TestingAccessWrapper::newFromObject( MediaWiki\Session\SessionManager::singleton() );
@@ -232,24 +232,24 @@ class ApiLoginTest extends ApiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'bot_passwords',
-			array(
+			[
 				'bp_user' => $centralId,
 				'bp_app_id' => 'foo',
 				'bp_password' => $pwhash->toString(),
 				'bp_token' => '',
 				'bp_restrictions' => MWRestrictions::newDefault()->toJson(),
 				'bp_grants' => '["test"]',
-			),
+			],
 			__METHOD__
 		);
 
 		$lgName = $user->username . BotPassword::getSeparator() . 'foo';
 
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => $lgName,
 			'lgpassword' => 'foobaz',
-		) );
+		] );
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );
@@ -259,12 +259,12 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertEquals( 'NeedToken', $a );
 		$token = $result['login']['token'];
 
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgtoken' => $token,
 			'lgname' => $lgName,
 			'lgpassword' => 'foobaz',
-		), $ret[2] );
+		], $ret[2] );
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );

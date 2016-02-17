@@ -488,10 +488,10 @@ class WikiRevision {
 			$created = false;
 
 			$prior = $dbw->selectField( 'revision', '1',
-				array( 'rev_page' => $pageId,
+				[ 'rev_page' => $pageId,
 					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
 					'rev_user_text' => $userText,
-					'rev_comment' => $this->getComment() ),
+					'rev_comment' => $this->getComment() ],
 				__METHOD__
 			);
 			if ( $prior ) {
@@ -514,21 +514,21 @@ class WikiRevision {
 		// @todo This assumes that multiple revisions of the same page are imported
 		// in order from oldest to newest.
 		$prevId = $dbw->selectField( 'revision', 'rev_id',
-			array(
+			[
 				'rev_page' => $pageId,
 				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $this->timestamp ) ),
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => array(
+			[ 'ORDER BY' => [
 					'rev_timestamp DESC',
 					'rev_id DESC', // timestamp is not unique per page
-				)
-			)
+				]
+			]
 		);
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
-		$revision = new Revision( array(
+		$revision = new Revision( [
 			'title' => $this->title,
 			'page' => $pageId,
 			'content_model' => $this->getModel(),
@@ -541,7 +541,7 @@ class WikiRevision {
 			'timestamp' => $this->timestamp,
 			'minor_edit' => $this->minor,
 			'parent_id' => $prevId,
-			) );
+			] );
 		$revision->insertOn( $dbw );
 		$changed = $page->updateIfNewerOn( $dbw, $revision );
 
@@ -551,7 +551,7 @@ class WikiRevision {
 			$page->doEditUpdates(
 				$revision,
 				$user,
-				array( 'created' => $created, 'oldcountable' => 'no-change' )
+				[ 'created' => $created, 'oldcountable' => 'no-change' ]
 			);
 		}
 
@@ -579,14 +579,14 @@ class WikiRevision {
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
 		$prior = $dbw->selectField( 'logging', '1',
-			array( 'log_type' => $this->getType(),
+			[ 'log_type' => $this->getType(),
 				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 				'log_namespace' => $this->getTitle()->getNamespace(),
 				'log_title' => $this->getTitle()->getDBkey(),
 				'log_comment' => $this->getComment(),
 				# 'log_user_text' => $this->user_text,
-				'log_params' => $this->params ),
+				'log_params' => $this->params ],
 			__METHOD__
 		);
 		// @todo FIXME: This could fail slightly for multiple matches :P
@@ -597,7 +597,7 @@ class WikiRevision {
 			return;
 		}
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
-		$data = array(
+		$data = [
 			'log_id' => $log_id,
 			'log_type' => $this->type,
 			'log_action' => $this->action,
@@ -608,7 +608,7 @@ class WikiRevision {
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_comment' => $this->getComment(),
 			'log_params' => $this->params
-		);
+		];
 		$dbw->insert( 'logging', $data, __METHOD__ );
 	}
 
@@ -697,7 +697,7 @@ class WikiRevision {
 
 		// @todo FIXME!
 		$src = $this->getSrc();
-		$data = Http::get( $src, array(), __METHOD__ );
+		$data = Http::get( $src, [], __METHOD__ );
 		if ( !$data ) {
 			wfDebug( "IMPORT: couldn't fetch source $src\n" );
 			fclose( $f );

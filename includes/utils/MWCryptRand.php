@@ -67,7 +67,7 @@ class MWCryptRand {
 		$state .= rand() . uniqid( mt_rand(), true );
 
 		// Include some information about the filesystem's current state in the random state
-		$files = array();
+		$files = [];
 
 		// We know this file is here so grab some info about ourselves
 		$files[] = __FILE__;

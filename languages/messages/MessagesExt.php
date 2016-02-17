@@ -10,7 +10,7 @@
 
 $fallback = 'es';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Mediu',
 	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Caraba',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ayua_caraba',
 	NS_CATEGORY         => 'Categoria',
 	NS_CATEGORY_TALK    => 'Categoria_caraba',
-);
+];
 
-$namespaceGenderAliases = array(
-	NS_USER => array( 'male' => 'Usuario', 'female' => 'Usuaria' ),
-	NS_USER_TALK => array( 'male' => 'Usuario_caraba', 'female' => 'Usuaria_caraba' ),
-);
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Usuario', 'female' => 'Usuaria' ],
+	NS_USER_TALK => [ 'male' => 'Usuario_caraba', 'female' => 'Usuaria_caraba' ],
+];

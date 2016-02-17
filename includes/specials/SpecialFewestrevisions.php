@@ -41,27 +41,27 @@ class FewestrevisionsPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'revision', 'page' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'revision', 'page' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'COUNT(*)',
 				'redirect' => 'page_is_redirect'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_id = rev_page' ),
-			'options' => array(
+				'page_id = rev_page' ],
+			'options' => [
 				'HAVING' => 'COUNT(*) > 1',
 				// ^^^ This was probably here to weed out redirects.
 				// Since we mark them as such now, it might be
 				// useful to remove this. People _do_ create pages
 				// and never revise them, they aren't necessarily
 				// redirects.
-				'GROUP BY' => array( 'page_namespace', 'page_title', 'page_is_redirect' )
-			)
-		);
+				'GROUP BY' => [ 'page_namespace', 'page_title', 'page_is_redirect' ]
+			]
+		];
 	}
 
 	function sortDescending() {
@@ -80,7 +80,7 @@ class FewestrevisionsPage extends QueryPage {
 		if ( !$nt ) {
 			return Html::element(
 				'span',
-				array( 'class' => 'mw-invalidtitle' ),
+				[ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription(
 					$this->getContext(),
 					$result->namespace,
@@ -98,8 +98,8 @@ class FewestrevisionsPage extends QueryPage {
 		$nlink = Linker::linkKnown(
 			$nt,
 			$nl,
-			array(),
-			array( 'action' => 'history' )
+			[],
+			[ 'action' => 'history' ]
 		) . $redirect;
 
 		return $this->getLanguage()->specialList( $plink, $nlink );

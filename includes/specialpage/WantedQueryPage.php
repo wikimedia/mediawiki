@@ -85,9 +85,9 @@ abstract class WantedQueryPage extends QueryPage {
 				$pageLink = Linker::link(
 					$title,
 					null,
-					array(),
-					array(),
-					array( 'broken' )
+					[],
+					[],
+					[ 'broken' ]
 				);
 			}
 			return $this->getLanguage()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );

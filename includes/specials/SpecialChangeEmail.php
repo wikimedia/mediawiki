@@ -81,30 +81,30 @@ class SpecialChangeEmail extends FormSpecialPage {
 	protected function getFormFields() {
 		$user = $this->getUser();
 
-		$fields = array(
-			'Name' => array(
+		$fields = [
+			'Name' => [
 				'type' => 'info',
 				'label-message' => 'username',
 				'default' => $user->getName(),
-			),
-			'OldEmail' => array(
+			],
+			'OldEmail' => [
 				'type' => 'info',
 				'label-message' => 'changeemail-oldemail',
 				'default' => $user->getEmail() ?: $this->msg( 'changeemail-none' )->text(),
-			),
-			'NewEmail' => array(
+			],
+			'NewEmail' => [
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
 				'autofocus' => true,
 				'help-message' => 'changeemail-newemail-help',
-			),
-		);
+			],
+		];
 
 		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
-			$fields['Password'] = array(
+			$fields['Password'] = [
 				'type' => 'password',
 				'label-message' => 'changeemail-password'
-			);
+			];
 		}
 
 		return $fields;
@@ -200,7 +200,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return $status;
 		}
 
-		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
+		Hooks::run( 'PrefsEmailAudit', [ $user, $oldaddr, $newaddr ] );
 
 		$user->saveSettings();
 

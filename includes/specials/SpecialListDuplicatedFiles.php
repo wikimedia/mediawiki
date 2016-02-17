@@ -54,18 +54,18 @@ class ListDuplicatedFilesPage extends QueryPage {
 	 * @return array
 	 */
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'image' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'image' ],
+			'fields' => [
 				'namespace' => NS_FILE,
 				'title' => 'MIN(img_name)',
 				'value' => 'count(*)'
-			),
-			'options' => array(
+			],
+			'options' => [
 				'GROUP BY' => 'img_sha1',
 				'HAVING' => 'count(*) > 1',
-			),
-		);
+			],
+		];
 	}
 
 	/**

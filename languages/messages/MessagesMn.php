@@ -18,7 +18,7 @@
  * @author לערי ריינהארט
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Тусгай',
 	NS_TALK             => 'Хэлэлцүүлэг',
@@ -35,16 +35,16 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Тусламжийн_хэлэлцүүлэг',
 	NS_CATEGORY         => 'Ангилал',
 	NS_CATEGORY_TALK    => 'Ангиллын_хэлэлцүүлэг',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Зураг' => NS_FILE,
 	'Зургийн_хэлэлцүүлэг' => NS_FILE_TALK,
-);
+];
 
-$magicWords = array(
-	'redirect'                  => array( '0', '#ЧИГЛҮҮЛЭГ', '#REDIRECT' ),
-);
+$magicWords = [
+	'redirect'                  => [ '0', '#ЧИГЛҮҮЛЭГ', '#REDIRECT' ],
+];
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
 

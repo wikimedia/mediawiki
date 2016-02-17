@@ -17,7 +17,7 @@
 
 $fallback = 'et';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Meediä',
 	NS_SPECIAL          => 'Tallituslehekülg',
 	NS_TALK             => 'Arotus',
@@ -34,9 +34,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Oppusõ_arotus',
 	NS_CATEGORY         => 'Katõgooria',
 	NS_CATEGORY_TALK    => 'Katõgooria_arotus',
-);
+];
 
-$magicWords = array(
-	'redirect'                  => array( '0', '#saadaq', '#suuna', '#REDIRECT' ),
-);
+$magicWords = [
+	'redirect'                  => [ '0', '#saadaq', '#suuna', '#REDIRECT' ],
+];
 

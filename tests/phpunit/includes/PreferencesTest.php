@@ -35,10 +35,10 @@ class PreferencesTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgEnableEmail' => true,
 			'wgEmailAuthentication' => true,
-		) );
+		] );
 	}
 
 	/**
@@ -79,7 +79,7 @@ class PreferencesTest extends MediaWikiTestCase {
 
 	/** Helper */
 	protected function prefsFor( $user_key ) {
-		$preferences = array();
+		$preferences = [];
 		Preferences::profilePreferences(
 			$this->prefUsers[$user_key],
 			$this->context,

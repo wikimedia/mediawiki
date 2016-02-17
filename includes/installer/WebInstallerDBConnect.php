@@ -74,7 +74,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 					$type,
 					"DBType_$type",
 					$type == $defaultType,
-					array( 'class' => 'dbRadio', 'rel' => "DB_wrapper_$type" )
+					[ 'class' => 'dbRadio', 'rel' => "DB_wrapper_$type" ]
 				) .
 				"</li>\n";
 
@@ -82,12 +82,12 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			// config-header-sqlite
 			$settings .= Html::openElement(
 					'div',
-					array(
+					[
 						'id' => 'DB_wrapper_' . $type,
 						'class' => 'dbWrapper'
-					)
+					]
 				) .
-				Html::element( 'h3', array(), wfMessage( 'config-header-' . $type )->text() ) .
+				Html::element( 'h3', [], wfMessage( 'config-header-' . $type )->text() ) .
 				$installer->getConnectForm() .
 				"</div>\n";
 		}

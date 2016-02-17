@@ -148,7 +148,7 @@ class ConvertLinks extends Maintenance {
 
 			$dbw->bufferResults( false );
 			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
-			$ids = array();
+			$ids = [];
 
 			foreach ( $res as $row ) {
 				$title = $row->cur_title;
@@ -193,9 +193,9 @@ class ConvertLinks extends Maintenance {
 				$sqlRead = $dbw->limitResult( $sqlRead, $linksConvInsertInterval, $rowOffset );
 				$res = $dbw->query( $sqlRead );
 				if ( $noKeys ) {
-					$sqlWrite = array( "INSERT INTO $links_temp (l_from,l_to) VALUES " );
+					$sqlWrite = [ "INSERT INTO $links_temp (l_from,l_to) VALUES " ];
 				} else {
-					$sqlWrite = array( "INSERT IGNORE INTO $links_temp (l_from,l_to) VALUES " );
+					$sqlWrite = [ "INSERT IGNORE INTO $links_temp (l_from,l_to) VALUES " ];
 				}
 
 				$tuplesAdded = 0; # no tuples added to INSERT yet

@@ -61,10 +61,10 @@ class DumpPipeOutput extends DumpFileOutput {
 	 * @param string $command
 	 */
 	function startCommand( $command ) {
-		$spec = array(
-			0 => array( "pipe", "r" ),
-		);
-		$pipes = array();
+		$spec = [
+			0 => [ "pipe", "r" ],
+		];
+		$pipes = [];
 		$this->procOpenResource = proc_open( $command, $spec, $pipes );
 		$this->handle = $pipes[0];
 	}

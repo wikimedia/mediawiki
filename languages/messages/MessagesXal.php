@@ -15,7 +15,7 @@ $fallback = 'ru';
 
 $fallback8bitEncoding = "windows-1251";
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Аһар',
 	NS_SPECIAL          => 'Көдлхнә',
 	NS_TALK             => 'Меткән',
@@ -32,9 +32,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Цәәлһлһин_туск_меткән',
 	NS_CATEGORY         => 'Әәшл',
 	NS_CATEGORY_TALK    => 'Әәшлин_туск_меткән',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Көдлхнə'                 => NS_SPECIAL,
 	'Ухалвр'                  => NS_TALK,
 	'Орлцач'                  => NS_USER,
@@ -49,8 +49,8 @@ $namespaceAliases = array(
 	'Цəəлһлһин_тускар_ухалвр' => NS_HELP_TALK,
 	'Янз'                     => NS_CATEGORY,
 	'Янзин_тускар_ухалвр'     => NS_CATEGORY_TALK,
-);
+];
 
 // Remove Russian aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

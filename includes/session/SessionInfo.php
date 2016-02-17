@@ -88,7 +88,7 @@ class SessionInfo {
 			if ( !$from instanceof SessionInfo ) {
 				throw new \InvalidArgumentException( 'Invalid copyFrom' );
 			}
-			$data += array(
+			$data += [
 				'provider' => $from->provider,
 				'id' => $from->id,
 				'userInfo' => $from->userInfo,
@@ -98,10 +98,10 @@ class SessionInfo {
 				'metadata' => $from->providerMetadata,
 				'idIsSafe' => $from->idIsSafe,
 				// @codeCoverageIgnoreStart
-			);
+			];
 			// @codeCoverageIgnoreEnd
 		} else {
-			$data += array(
+			$data += [
 				'provider' => null,
 				'id' => null,
 				'userInfo' => null,
@@ -111,7 +111,7 @@ class SessionInfo {
 				'metadata' => null,
 				'idIsSafe' => false,
 				// @codeCoverageIgnoreStart
-			);
+			];
 			// @codeCoverageIgnoreEnd
 		}
 

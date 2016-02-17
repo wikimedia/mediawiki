@@ -15,7 +15,7 @@
 
 $fallback = 'ru';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Панель',
 	NS_TALK             => 'Вераськон',
@@ -32,17 +32,17 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Валэктон_сярысь_вераськон',
 	NS_CATEGORY         => 'Категория',
 	NS_CATEGORY_TALK    => 'Категория_сярысь_вераськон',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Суред'                  => NS_FILE,
 	'Суред_сярысь_вераськон' => NS_FILE_TALK,
-);
+];
 
 // Remove Russian aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
-$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 

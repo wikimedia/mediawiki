@@ -234,7 +234,7 @@ class ParserCache {
 			);
 			$value = false;
 		} elseif (
-			Hooks::run( 'RejectParserCacheValue', array( $value, $wikiPage, $popts ) ) === false
+			Hooks::run( 'RejectParserCacheValue', [ $value, $wikiPage, $popts ] ) === false
 		) {
 			wfIncrStats( 'pcache.miss.rejected' );
 			wfDebug(
@@ -295,7 +295,7 @@ class ParserCache {
 
 			Hooks::run(
 				'ParserCacheSaveComplete',
-				array( $this, $parserOutput, $page->getTitle(), $popts, $revId )
+				[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
 			);
 		} else {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );

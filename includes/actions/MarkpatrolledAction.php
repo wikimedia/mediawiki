@@ -53,11 +53,11 @@ class MarkpatrolledAction extends FormlessAction {
 
 		$errors = $rc->doMarkPatrolled( $user );
 
-		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
+		if ( in_array( [ 'rcpatroldisabled' ], $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 		}
 
-		if ( in_array( array( 'hookaborted' ), $errors ) ) {
+		if ( in_array( [ 'hookaborted' ], $errors ) ) {
 			// The hook itself has handled any output
 			return;
 		}
@@ -72,7 +72,7 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 		$return = SpecialPage::getTitleFor( $returnTo );
 
-		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
+		if ( in_array( [ 'markedaspatrollederror-noautopatrol' ], $errors ) ) {
 			$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrollederror' ) );
 			$this->getOutput()->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$this->getOutput()->returnToMain( null, $return );

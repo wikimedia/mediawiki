@@ -38,7 +38,7 @@ class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
 			// Check whether we have (reasonable fast) connectivity
 			$res = Http::get(
 				'https://www.wikidata.org/w/api.php?action=query&meta=siteinfo&format=json',
-				array( 'timeout' => 3 ),
+				[ 'timeout' => 3 ],
 				__METHOD__
 			);
 
@@ -69,17 +69,17 @@ class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
 	public function normalizePageTitleProvider() {
 		// Note: This makes (very conservative) assumptions about pages on Wikidata
 		// existing or not.
-		return array(
-			'universe (Q1)' => array(
+		return [
+			'universe (Q1)' => [
 				'Q1', 'Q1'
-			),
-			'Q404 redirects to Q395' => array(
+			],
+			'Q404 redirects to Q395' => [
 				'Q395', 'Q404'
-			),
-			'there is no Q0' => array(
+			],
+			'there is no Q0' => [
 				false, 'Q0'
-			)
-		);
+			]
+		];
 	}
 
 }

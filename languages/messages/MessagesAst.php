@@ -10,7 +10,7 @@
 
 $fallback = 'es';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Medios',
 	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Alderique',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ayuda_alderique',
 	NS_CATEGORY         => 'Categoría',
 	NS_CATEGORY_TALK    => 'Categoría_alderique',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Imaxe'               => NS_FILE,
 	'Imaxe_alderique'     => NS_FILE_TALK,
 	'Discusión'           => NS_TALK,
@@ -46,18 +46,18 @@ $namespaceAliases = array(
 	'Aida'                => NS_HELP,
 	'Aida_alderique'      => NS_HELP_TALK,
 	'Categoría_discusión' => NS_CATEGORY_TALK,
-);
+];
 
-$namespaceGenderAliases = array(
-	NS_USER => array( 'male' => 'Usuariu', 'female' => 'Usuaria' ),
-	NS_USER_TALK => array( 'male' => 'Usuariu_alderique', 'female' => 'Usuaria_alderique' ),
-);
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Usuariu', 'female' => 'Usuaria' ],
+	NS_USER_TALK => [ 'male' => 'Usuariu_alderique', 'female' => 'Usuaria_alderique' ],
+];
 
-$specialPageAliases = array(
-	'Block'                     => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
-	'Log'                       => array( 'Rexistru', 'Rexistros' ),
-	'Recentchanges'             => array( 'CambeosRecientes' ),
-	'Search'                    => array( 'Gueta' ),
-	'Statistics'                => array( 'Estadístiques' ),
-);
+$specialPageAliases = [
+	'Block'                     => [ 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ],
+	'Log'                       => [ 'Rexistru', 'Rexistros' ],
+	'Recentchanges'             => [ 'CambeosRecientes' ],
+	'Search'                    => [ 'Gueta' ],
+	'Statistics'                => [ 'Estadístiques' ],
+];
 

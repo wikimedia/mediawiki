@@ -21,7 +21,7 @@
  */
 class SquidPurgeClientPool {
 	/** @var array Array of SquidPurgeClient */
-	protected $clients = array();
+	protected $clients = [];
 
 	/** @var int */
 	protected $timeout = 5;
@@ -29,7 +29,7 @@ class SquidPurgeClientPool {
 	/**
 	 * @param array $options
 	 */
-	function __construct( $options = array() ) {
+	function __construct( $options = [] ) {
 		if ( isset( $options['timeout'] ) ) {
 			$this->timeout = $options['timeout'];
 		}
@@ -47,7 +47,7 @@ class SquidPurgeClientPool {
 		$done = false;
 		$startTime = microtime( true );
 		while ( !$done ) {
-			$readSockets = $writeSockets = array();
+			$readSockets = $writeSockets = [];
 			/**
 			 * @var $client SquidPurgeClient
 			 */

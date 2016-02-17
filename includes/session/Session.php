@@ -240,7 +240,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	public function clear() {
 		$data = &$this->backend->getData();
 		if ( $data ) {
-			$data = array();
+			$data = [];
 			$this->backend->dirty();
 		}
 		if ( $this->backend->canSetUser() ) {
@@ -334,7 +334,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		$new = false;
 		$secrets = $this->get( 'wsTokenSecrets' );
 		if ( !is_array( $secrets ) ) {
-			$secrets = array();
+			$secrets = [];
 		}
 		if ( isset( $secrets[$key] ) && is_string( $secrets[$key] ) ) {
 			$secret = $secrets[$key];
@@ -445,7 +445,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		$data = &$this->backend->getData();
 		if ( !array_key_exists( $offset, $data ) ) {
 			$ex = new \Exception( "Undefined index (auto-adds to session with a null value): $offset" );
-			$this->logger->debug( $ex->getMessage(), array( 'exception' => $ex ) );
+			$this->logger->debug( $ex->getMessage(), [ 'exception' => $ex ] );
 		}
 		return $data[$offset];
 	}

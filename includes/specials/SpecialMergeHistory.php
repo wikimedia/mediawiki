@@ -126,7 +126,7 @@ class SpecialMergeHistory extends SpecialPage {
 			return;
 		}
 
-		$errors = array();
+		$errors = [];
 		if ( !$this->mTargetObj instanceof Title ) {
 			$errors[] = $this->msg( 'mergehistory-invalid-source' )->parseAsBlock();
 		} elseif ( !$this->mTargetObj->exists() ) {
@@ -160,11 +160,11 @@ class SpecialMergeHistory extends SpecialPage {
 		$out->addWikiMsg( 'mergehistory-header' );
 
 		$out->addHTML(
-			Xml::openElement( 'form', array(
+			Xml::openElement( 'form', [
 				'method' => 'get',
-				'action' => wfScript() ) ) .
+				'action' => wfScript() ] ) .
 				'<fieldset>' .
-				Xml::element( 'legend', array(),
+				Xml::element( 'legend', [],
 					$this->msg( 'mergehistory-box' )->text() ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::hidden( 'submitted', '1' ) .
@@ -172,10 +172,10 @@ class SpecialMergeHistory extends SpecialPage {
 				Xml::openElement( 'table' ) .
 				'<tr>
 				<td>' . Xml::label( $this->msg( 'mergehistory-from' )->text(), 'target' ) . '</td>
-				<td>' . Xml::input( 'target', 30, $this->mTarget, array( 'id' => 'target' ) ) . '</td>
+				<td>' . Xml::input( 'target', 30, $this->mTarget, [ 'id' => 'target' ] ) . '</td>
 			</tr><tr>
 				<td>' . Xml::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
-				<td>' . Xml::input( 'dest', 30, $this->mDest, array( 'id' => 'dest' ) ) . '</td>
+				<td>' . Xml::input( 'dest', 30, $this->mDest, [ 'id' => 'dest' ] ) . '</td>
 			</tr><tr><td>' .
 				Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
 				'</td></tr>' .
@@ -192,21 +192,21 @@ class SpecialMergeHistory extends SpecialPage {
 
 		# List all stored revisions
 		$revisions = new MergeHistoryPager(
-			$this, array(), $this->mTargetObj, $this->mDestObj
+			$this, [], $this->mTargetObj, $this->mDestObj
 		);
 		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
 
 		$out = $this->getOutput();
 		$titleObj = $this->getPageTitle();
-		$action = $titleObj->getLocalURL( array( 'action' => 'submit' ) );
+		$action = $titleObj->getLocalURL( [ 'action' => 'submit' ] );
 		# Start the form here
 		$top = Xml::openElement(
 			'form',
-			array(
+			[
 				'method' => 'post',
 				'action' => $action,
 				'id' => 'merge'
-			)
+			]
 		);
 		$out->addHTML( $top );
 
@@ -217,13 +217,13 @@ class SpecialMergeHistory extends SpecialPage {
 				Xml::openElement( 'fieldset' ) .
 					$this->msg( 'mergehistory-merge', $this->mTargetObj->getPrefixedText(),
 						$this->mDestObj->getPrefixedText() )->parse() .
-					Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
+					Xml::openElement( 'table', [ 'id' => 'mw-mergehistory-table' ] ) .
 					'<tr>
 						<td class="mw-label">' .
 					Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
 					'</td>
 					<td class="mw-input">' .
-					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
+					Xml::input( 'wpComment', 50, $this->mComment, [ 'id' => 'wpComment' ] ) .
 					'</td>
 					</tr>
 					<tr>
@@ -231,7 +231,7 @@ class SpecialMergeHistory extends SpecialPage {
 						<td class="mw-submit">' .
 					Xml::submitButton(
 						$this->msg( 'mergehistory-submit' )->text(),
-						array( 'name' => 'merge', 'id' => 'mw-merge-submit' )
+						[ 'name' => 'merge', 'id' => 'mw-merge-submit' ]
 					) .
 					'</td>
 					</tr>' .
@@ -288,8 +288,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$pageLink = Linker::linkKnown(
 			$rev->getTitle(),
 			htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) ),
-			array(),
-			array( 'oldid' => $rev->getId() )
+			[],
+			[ 'oldid' => $rev->getId() ]
 		);
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
@@ -302,11 +302,11 @@ class SpecialMergeHistory extends SpecialPage {
 			$last = Linker::linkKnown(
 				$rev->getTitle(),
 				$this->msg( 'last' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'diff' => $row->rev_id,
 					'oldid' => $this->prevId[$row->rev_id]
-				)
+				]
 			);
 		}
 
@@ -318,7 +318,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$comment = Linker::revComment( $rev );
 
-		return Html::rawElement( 'li', array(),
+		return Html::rawElement( 'li', [],
 			$this->msg( 'mergehistory-revisionrow' )
 				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
@@ -362,8 +362,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$targetLink = Linker::link(
 			$targetTitle,
 			null,
-			array(),
-			array( 'redirect' => 'no' )
+			[],
+			[ 'redirect' => 'no' ]
 		);
 
 		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
@@ -397,7 +397,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$maxtimestamp = $dbr->selectField(
 			'revision',
 			'MIN(rev_timestamp)',
-			array( 'rev_page' => $dest->getArticleID() ),
+			[ 'rev_page' => $dest->getArticleID() ],
 			__METHOD__
 		);
 		$this->maxTimestamp = $maxtimestamp;
@@ -410,7 +410,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
 		# Give some pointers to make (last) links
-		$this->mForm->prevId = array();
+		$this->mForm->prevId = [];
 		foreach ( $this->mResult as $row ) {
 			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
@@ -440,14 +440,14 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
 
-		return array(
-			'tables' => array( 'revision', 'page', 'user' ),
+		return [
+			'tables' => [ 'revision', 'page', 'user' ],
 			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds' => $conds,
-			'join_conds' => array(
+			'join_conds' => [
 				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond() )
-		);
+				'user' => Revision::userJoinCond() ]
+		];
 	}
 
 	function getIndexField() {

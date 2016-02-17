@@ -1,7 +1,7 @@
 <?php
 
-$result = array( 'xmp-exif' =>
-	array(
+$result = [ 'xmp-exif' =>
+	[
 		'FNumber' => '28/10',
-	)
-);
+	]
+];

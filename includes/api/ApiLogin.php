@@ -51,17 +51,17 @@ class ApiLogin extends ApiBase {
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
 		if ( $this->lacksSameOriginSecurity() ) {
-			$this->getResult()->addValue( null, 'login', array(
+			$this->getResult()->addValue( null, 'login', [
 				'result' => 'Aborted',
 				'reason' => 'Cannot log in when the same-origin policy is not applied',
-			) );
+			] );
 
 			return;
 		}
 
 		$params = $this->extractRequestParams();
 
-		$result = array();
+		$result = [];
 
 		// Make sure session is persisted
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
@@ -69,11 +69,11 @@ class ApiLogin extends ApiBase {
 
 		// Make sure it's possible to log in
 		if ( !$session->canSetUser() ) {
-			$this->getResult()->addValue( null, 'login', array(
+			$this->getResult()->addValue( null, 'login', [
 				'result' => 'Aborted',
 				'reason' => 'Cannot log in when using ' .
 					$session->getProvider()->describe( Language::factory( 'en' ) ),
-			) );
+			] );
 
 			return;
 		}
@@ -112,13 +112,13 @@ class ApiLogin extends ApiBase {
 		if ( $authRes === false ) {
 			$context->setRequest( new DerivativeRequest(
 				$this->getContext()->getRequest(),
-				array(
+				[
 					'wpName' => $params['name'],
 					'wpPassword' => $params['password'],
 					'wpDomain' => $params['domain'],
 					'wpLoginToken' => $params['token'],
 					'wpRemember' => ''
-				)
+				]
 			) );
 			$loginForm = new LoginForm();
 			$loginForm->setContext( $context );
@@ -138,7 +138,7 @@ class ApiLogin extends ApiBase {
 				// @todo FIXME: Split back and frontend from this hook.
 				// @todo FIXME: This hook should be placed in the backend
 				$injected_html = '';
-				Hooks::run( 'UserLoginComplete', array( &$user, &$injected_html ) );
+				Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html ] );
 
 				$result['result'] = 'Success';
 				$result['lguserid'] = intval( $user->getId() );
@@ -231,12 +231,12 @@ class ApiLogin extends ApiBase {
 
 		$this->getResult()->addValue( null, 'login', $result );
 
-		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $authRes === LoginForm::SUCCESS,
 			'loginType' => $loginType,
 			'status' => LoginForm::$statusCodes[$authRes],
-		) );
+		] );
 	}
 
 	public function mustBePosted() {
@@ -248,27 +248,27 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'name' => null,
-			'password' => array(
+			'password' => [
 				ApiBase::PARAM_TYPE => 'password',
-			),
+			],
 			'domain' => null,
-			'token' => array(
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false, // for BC
-				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'login' ),
-			),
-		);
+				ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'login' ],
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=login&lgname=user&lgpassword=password'
 				=> 'apihelp-login-example-gettoken',
 			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
 				=> 'apihelp-login-example-login',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

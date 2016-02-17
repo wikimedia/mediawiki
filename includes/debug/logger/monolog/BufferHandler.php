@@ -38,7 +38,7 @@ class BufferHandler extends BaseBufferHandler {
 	 */
 	public function handle( array $record ) {
 		if ( !$this->initialized ) {
-			DeferredUpdates::addCallableUpdate( array( $this, 'close' ) );
+			DeferredUpdates::addCallableUpdate( [ $this, 'close' ] );
 			$this->initialized = true;
 		}
 		return parent::handle( $record );

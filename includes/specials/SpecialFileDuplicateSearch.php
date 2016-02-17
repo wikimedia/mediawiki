@@ -53,7 +53,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	function linkParameters() {
-		return array( 'filename' => $this->filename );
+		return [ 'filename' => $this->filename ];
 	}
 
 	/**
@@ -70,7 +70,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @param array $dupes Array of File objects
 	 */
 	function showList( $dupes ) {
-		$html = array();
+		$html = [];
 		$html[] = $this->openList( 0 );
 
 		foreach ( $dupes as $dupe ) {
@@ -83,16 +83,16 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'image' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'image' ],
+			'fields' => [
 				'title' => 'img_name',
 				'value' => 'img_sha1',
 				'img_user_text',
 				'img_timestamp'
-			),
-			'conds' => array( 'img_sha1' => $this->hash )
-		);
+			],
+			'conds' => [ 'img_sha1' => $this->hash ]
+		];
 	}
 
 	public function execute( $par ) {
@@ -110,8 +110,8 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out = $this->getOutput();
 
 		# Create the input form
-		$formFields = array(
-			'filename' => array(
+		$formFields = [
+			'filename' => [
 				'type' => 'text',
 				'name' => 'filename',
 				'label-message' => 'fileduplicatesearch-filename',
@@ -119,11 +119,11 @@ class FileDuplicateSearchPage extends QueryPage {
 				'size' => 50,
 				'value' => $this->filename,
 				'cssclass' => 'mw-ui-input-inline'
-			),
-		);
-		$hiddenFields = array(
+			],
+		];
+		$hiddenFields = [
 			'title' => $this->getPageTitle()->getPrefixedDBKey(),
-		);
+		];
 		$htmlForm = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setAction( wfScript() );
@@ -141,7 +141,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		} elseif ( $this->filename !== '' ) {
 			$out->wrapWikiMsg(
 				"<p class='mw-fileduplicatesearch-noresults'>\n$1\n</p>",
-				array( 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) )
+				[ 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) ]
 			);
 		}
 
@@ -149,11 +149,11 @@ class FileDuplicateSearchPage extends QueryPage {
 			# Show a thumbnail of the file
 			$img = $this->file;
 			if ( $img ) {
-				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
+				$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
 				if ( $thumb ) {
 					$out->addModuleStyles( 'mediawiki.special' );
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
-						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
+						$thumb->toHtml( [ 'desc-link' => false ] ) . '<br />' .
 						$this->msg( 'fileduplicatesearch-info' )->numParams(
 							$img->getWidth(), $img->getHeight() )->params(
 								$this->getLanguage()->formatSize( $img->getSize() ),
@@ -169,13 +169,13 @@ class FileDuplicateSearchPage extends QueryPage {
 			if ( $numRows == 1 ) {
 				$out->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-1'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-1', wfEscapeWikiText( $this->filename ) )
+					[ 'fileduplicatesearch-result-1', wfEscapeWikiText( $this->filename ) ]
 				);
 			} elseif ( $numRows ) {
 				$out->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-n'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
-						$this->getLanguage()->formatNum( $numRows - 1 ) )
+					[ 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
+						$this->getLanguage()->formatNum( $numRows - 1 ) ]
 				);
 			}
 
@@ -244,12 +244,12 @@ class FileDuplicateSearchPage extends QueryPage {
 		$title = Title::newFromText( $search, NS_FILE );
 		if ( !$title || $title->getNamespace() !== NS_FILE ) {
 			// No prefix suggestion outside of file namespace
-			return array();
+			return [];
 		}
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $limit, $offset );
 		// Autocomplete subpage the same as a normal search, but just for files
-		$search->setNamespaces( array( NS_FILE ) );
+		$search->setNamespaces( [ NS_FILE ] );
 		$result = $search->defaultPrefixSearch( $search );
 
 		return array_map( function ( Title $t ) {

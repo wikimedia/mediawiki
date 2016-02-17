@@ -45,12 +45,12 @@ use Psr\Log\NullLogger;
 class Timing implements LoggerAwareInterface {
 
 	/** @var array[] */
-	private $entries = array();
+	private $entries = [];
 
 	/** @var LoggerInterface */
 	protected $logger;
 
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		$this->clearMarks();
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 	}
@@ -73,12 +73,12 @@ class Timing implements LoggerAwareInterface {
 	 * @return array The mark that has been created.
 	 */
 	public function mark( $markName ) {
-		$this->entries[$markName] = array(
+		$this->entries[$markName] = [
 			'name'      => $markName,
 			'entryType' => 'mark',
 			'startTime' => microtime( true ),
 			'duration'  => 0,
-		);
+		];
 		return $this->entries[$markName];
 	}
 
@@ -90,16 +90,16 @@ class Timing implements LoggerAwareInterface {
 		if ( $markName !== null ) {
 			unset( $this->entries[$markName] );
 		} else {
-			$this->entries = array(
-				'requestStart' => array(
+			$this->entries = [
+				'requestStart' => [
 					'name'      => 'requestStart',
 					'entryType' => 'mark',
 					'startTime' => isset( $_SERVER['REQUEST_TIME_FLOAT'] )
 						? $_SERVER['REQUEST_TIME_FLOAT']
 						: $_SERVER['REQUEST_TIME'],
 					'duration'  => 0,
-				),
-			);
+				],
+			];
 		}
 	}
 
@@ -142,12 +142,12 @@ class Timing implements LoggerAwareInterface {
 			$endTime = microtime( true );
 		}
 
-		$this->entries[$measureName] = array(
+		$this->entries[$measureName] = [
 			'name'      => $measureName,
 			'entryType' => 'measure',
 			'startTime' => $startTime,
 			'duration'  => $endTime - $startTime,
-		);
+		];
 
 		return $this->entries[$measureName];
 	}
@@ -176,7 +176,7 @@ class Timing implements LoggerAwareInterface {
 	 */
 	public function getEntriesByType( $entryType ) {
 		$this->sortEntries();
-		$entries = array();
+		$entries = [];
 		foreach ( $this->entries as $entry ) {
 			if ( $entry['entryType'] === $entryType ) {
 				$entries[] = $entry;

@@ -198,8 +198,8 @@ class Preprocessor_DOM extends Preprocessor {
 		$xmlishElements = $this->parser->getStripList();
 		$enableOnlyinclude = false;
 		if ( $forInclusion ) {
-			$ignoredTags = array( 'includeonly', '/includeonly' );
-			$ignoredElements = array( 'noinclude' );
+			$ignoredTags = [ 'includeonly', '/includeonly' ];
+			$ignoredElements = [ 'noinclude' ];
 			$xmlishElements[] = 'noinclude';
 			if ( strpos( $text, '<onlyinclude>' ) !== false
 				&& strpos( $text, '</onlyinclude>' ) !== false
@@ -207,8 +207,8 @@ class Preprocessor_DOM extends Preprocessor {
 				$enableOnlyinclude = true;
 			}
 		} else {
-			$ignoredTags = array( 'noinclude', '/noinclude', 'onlyinclude', '/onlyinclude' );
-			$ignoredElements = array( 'includeonly' );
+			$ignoredTags = [ 'noinclude', '/noinclude', 'onlyinclude', '/onlyinclude' ];
+			$ignoredElements = [ 'includeonly' ];
 			$xmlishElements[] = 'includeonly';
 		}
 		$xmlishRegex = implode( '|', array_merge( $xmlishElements, $ignoredTags ) );
@@ -364,14 +364,14 @@ class Preprocessor_DOM extends Preprocessor {
 
 						// Keep looking forward as long as we're finding more
 						// comments.
-						$comments = array( array( $wsStart, $wsEnd ) );
+						$comments = [ [ $wsStart, $wsEnd ] ];
 						while ( substr( $text, $wsEnd + 1, 4 ) == '<!--' ) {
 							$c = strpos( $text, '-->', $wsEnd + 4 );
 							if ( $c === false ) {
 								break;
 							}
 							$c = $c + 2 + strspn( $text, " \t", $c + 3 );
-							$comments[] = array( $wsEnd + 1, $c );
+							$comments[] = [ $wsEnd + 1, $c ];
 							$wsEnd = $c;
 						}
 
@@ -509,12 +509,12 @@ class Preprocessor_DOM extends Preprocessor {
 					// methods for completely correct disambiguation are very
 					// complex.
 				} elseif ( $count > 0 ) {
-					$piece = array(
+					$piece = [
 						'open' => "\n",
 						'close' => "\n",
-						'parts' => array( new PPDPart( str_repeat( '=', $count ) ) ),
+						'parts' => [ new PPDPart( str_repeat( '=', $count ) ) ],
 						'startPos' => $i,
-						'count' => $count );
+						'count' => $count ];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
 					$flags = $stack->getFlags();
@@ -585,12 +585,12 @@ class Preprocessor_DOM extends Preprocessor {
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
 					# Add it to the stack
-					$piece = array(
+					$piece = [
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
 						'lineStart' => ( $i > 0 && $text[$i - 1] == "\n" ),
-					);
+					];
 
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
@@ -675,7 +675,7 @@ class Preprocessor_DOM extends Preprocessor {
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
 				if ( $matchingCount < $piece->count ) {
-					$piece->parts = array( new PPDPart );
+					$piece->parts = [ new PPDPart ];
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
 					$min = $this->rules[$piece->open]['min'];
@@ -732,7 +732,7 @@ class PPDStack {
 	public static $false = false;
 
 	public function __construct() {
-		$this->stack = array();
+		$this->stack = [];
 		$this->top = false;
 		$this->rootAccum = '';
 		$this->accum =& $this->rootAccum;
@@ -794,11 +794,11 @@ class PPDStack {
 	 */
 	public function getFlags() {
 		if ( !count( $this->stack ) ) {
-			return array(
+			return [
 				'findEquals' => false,
 				'findPipe' => false,
 				'inHeading' => false,
-			);
+			];
 		} else {
 			return $this->top->getFlags();
 		}
@@ -837,9 +837,9 @@ class PPDStackElement {
 
 	public $partClass = 'PPDPart';
 
-	public function __construct( $data = array() ) {
+	public function __construct( $data = [] ) {
 		$class = $this->partClass;
-		$this->parts = array( new $class );
+		$this->parts = [ new $class ];
 
 		foreach ( $data as $name => $value ) {
 			$this->$name = $value;
@@ -865,11 +865,11 @@ class PPDStackElement {
 	public function getFlags() {
 		$partCount = count( $this->parts );
 		$findPipe = $this->open != "\n" && $this->open != '[';
-		return array(
+		return [
 			'findPipe' => $findPipe,
 			'findEquals' => $findPipe && $partCount > 1 && !isset( $this->parts[$partCount - 1]->eqpos ),
 			'inHeading' => $this->open == "\n",
-		);
+		];
 	}
 
 	/**
@@ -971,10 +971,10 @@ class PPFrame_DOM implements PPFrame {
 		$this->preprocessor = $preprocessor;
 		$this->parser = $preprocessor->parser;
 		$this->title = $this->parser->mTitle;
-		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
-		$this->loopCheckHash = array();
+		$this->titleCache = [ $this->title ? $this->title->getPrefixedDBkey() : false ];
+		$this->loopCheckHash = [];
 		$this->depth = 0;
-		$this->childExpansionCache = array();
+		$this->childExpansionCache = [];
 	}
 
 	/**
@@ -987,8 +987,8 @@ class PPFrame_DOM implements PPFrame {
 	 * @return PPTemplateFrame_DOM
 	 */
 	public function newChild( $args = false, $title = false, $indexOffset = 0 ) {
-		$namedArgs = array();
-		$numberedArgs = array();
+		$namedArgs = [];
+		$numberedArgs = [];
 		if ( $title === false ) {
 			$title = $this->title;
 		}
@@ -1089,9 +1089,9 @@ class PPFrame_DOM implements PPFrame {
 			$root = $root->documentElement;
 		}
 
-		$outStack = array( '', '' );
-		$iteratorStack = array( false, $root );
-		$indexStack = array( 0, 0 );
+		$outStack = [ '', '' ];
+		$iteratorStack = [ false, $root ];
+		$indexStack = [ 0, 0 ];
 
 		while ( count( $iteratorStack ) > 1 ) {
 			$level = count( $outStack ) - 1;
@@ -1153,10 +1153,10 @@ class PPFrame_DOM implements PPFrame {
 						$newIterator = $this->virtualBracketedImplode( '{{', '|', '}}', $title, $parts );
 					} else {
 						$lineStart = $contextNode->getAttribute( 'lineStart' );
-						$params = array(
+						$params = [
 							'title' => new PPNode_DOM( $title ),
 							'parts' => new PPNode_DOM( $parts ),
-							'lineStart' => $lineStart );
+							'lineStart' => $lineStart ];
 						$ret = $this->parser->braceSubstitution( $params, $this );
 						if ( isset( $ret['object'] ) ) {
 							$newIterator = $ret['object'];
@@ -1173,9 +1173,9 @@ class PPFrame_DOM implements PPFrame {
 					if ( $flags & PPFrame::NO_ARGS ) {
 						$newIterator = $this->virtualBracketedImplode( '{{{', '|', '}}}', $title, $parts );
 					} else {
-						$params = array(
+						$params = [
 							'title' => new PPNode_DOM( $title ),
-							'parts' => new PPNode_DOM( $parts ) );
+							'parts' => new PPNode_DOM( $parts ) ];
 						$ret = $this->parser->argSubstitution( $params, $this );
 						if ( isset( $ret['object'] ) ) {
 							$newIterator = $ret['object'];
@@ -1236,12 +1236,12 @@ class PPFrame_DOM implements PPFrame {
 						}
 						$out .= $s;
 					} else {
-						$params = array(
+						$params = [
 							'name' => new PPNode_DOM( $names->item( 0 ) ),
 							'attr' => $attrs->length > 0 ? new PPNode_DOM( $attrs->item( 0 ) ) : null,
 							'inner' => $inners->length > 0 ? new PPNode_DOM( $inners->item( 0 ) ) : null,
 							'close' => $closes->length > 0 ? new PPNode_DOM( $closes->item( 0 ) ) : null,
-						);
+						];
 						$out .= $this->parser->extensionSubstitution( $params, $this );
 					}
 				} elseif ( $contextNode->nodeName == 'h' ) {
@@ -1254,7 +1254,7 @@ class PPFrame_DOM implements PPFrame {
 						# Insert heading index marker
 						$headingIndex = $contextNode->getAttribute( 'i' );
 						$titleText = $this->title->getPrefixedDBkey();
-						$this->parser->mHeadings[] = array( $titleText, $headingIndex );
+						$this->parser->mHeadings[] = [ $titleText, $headingIndex ];
 						$serial = count( $this->parser->mHeadings ) - 1;
 						$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 						$count = $contextNode->getAttribute( 'level' );
@@ -1309,7 +1309,7 @@ class PPFrame_DOM implements PPFrame {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
-				$root = array( $root );
+				$root = [ $root ];
 			}
 			foreach ( $root as $node ) {
 				if ( $first ) {
@@ -1341,7 +1341,7 @@ class PPFrame_DOM implements PPFrame {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
-				$root = array( $root );
+				$root = [ $root ];
 			}
 			foreach ( $root as $node ) {
 				if ( $first ) {
@@ -1365,7 +1365,7 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	public function virtualImplode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
-		$out = array();
+		$out = [];
 		$first = true;
 
 		foreach ( $args as $root ) {
@@ -1373,7 +1373,7 @@ class PPFrame_DOM implements PPFrame {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
-				$root = array( $root );
+				$root = [ $root ];
 			}
 			foreach ( $root as $node ) {
 				if ( $first ) {
@@ -1397,7 +1397,7 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
-		$out = array( $start );
+		$out = [ $start ];
 		$first = true;
 
 		foreach ( $args as $root ) {
@@ -1405,7 +1405,7 @@ class PPFrame_DOM implements PPFrame {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
-				$root = array( $root );
+				$root = [ $root ];
 			}
 			foreach ( $root as $node ) {
 				if ( $first ) {
@@ -1436,21 +1436,21 @@ class PPFrame_DOM implements PPFrame {
 	 * @return array
 	 */
 	public function getArguments() {
-		return array();
+		return [];
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getNumberedArguments() {
-		return array();
+		return [];
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getNamedArguments() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -1556,8 +1556,8 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 * @param array $namedArgs
 	 * @param bool|Title $title
 	 */
-	public function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
-		$namedArgs = array(), $title = false
+	public function __construct( $preprocessor, $parent = false, $numberedArgs = [],
+		$namedArgs = [], $title = false
 	) {
 		parent::__construct( $preprocessor );
 
@@ -1573,7 +1573,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 			$this->loopCheckHash[$pdbk] = true;
 		}
 		$this->depth = $parent->depth + 1;
-		$this->numberedExpansionCache = $this->namedExpansionCache = array();
+		$this->numberedExpansionCache = $this->namedExpansionCache = [];
 	}
 
 	public function __toString() {
@@ -1621,7 +1621,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	}
 
 	public function getArguments() {
-		$arguments = array();
+		$arguments = [];
 		foreach ( array_merge(
 				array_keys( $this->numberedArgs ),
 				array_keys( $this->namedArgs ) ) as $key ) {
@@ -1631,7 +1631,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	}
 
 	public function getNumberedArguments() {
-		$arguments = array();
+		$arguments = [];
 		foreach ( array_keys( $this->numberedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
 		}
@@ -1639,7 +1639,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	}
 
 	public function getNamedArguments() {
-		$arguments = array();
+		$arguments = [];
 		foreach ( array_keys( $this->namedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
 		}
@@ -1868,10 +1868,10 @@ class PPNode_DOM implements PPNode {
 		}
 		$name = $names->item( 0 );
 		$index = $name->getAttribute( 'index' );
-		return array(
+		return [
 			'name' => new self( $name ),
 			'index' => $index,
-			'value' => new self( $values->item( 0 ) ) );
+			'value' => new self( $values->item( 0 ) ) ];
 	}
 
 	/**
@@ -1890,9 +1890,9 @@ class PPNode_DOM implements PPNode {
 		if ( !$names->length || !$attrs->length ) {
 			throw new MWException( 'Invalid ext node passed to ' . __METHOD__ );
 		}
-		$parts = array(
+		$parts = [
 			'name' => new self( $names->item( 0 ) ),
-			'attr' => new self( $attrs->item( 0 ) ) );
+			'attr' => new self( $attrs->item( 0 ) ) ];
 		if ( $inners->length ) {
 			$parts['inner'] = new self( $inners->item( 0 ) );
 		}
@@ -1911,10 +1911,10 @@ class PPNode_DOM implements PPNode {
 		if ( $this->getName() !== 'h' ) {
 			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
 		}
-		return array(
+		return [
 			'i' => $this->node->getAttribute( 'i' ),
 			'level' => $this->node->getAttribute( 'level' ),
 			'contents' => $this->getChildren()
-		);
+		];
 	}
 }

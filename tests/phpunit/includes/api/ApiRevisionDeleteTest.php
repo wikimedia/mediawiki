@@ -10,13 +10,13 @@
 class ApiRevisionDeleteTest extends ApiTestCase {
 
 	public static $page = 'Help:ApiRevDel_test';
-	public $revs = array();
+	public $revs = [];
 
 	protected function setUp() {
 		// Needs to be before setup since this gets cached
 		$this->mergeMwGlobalArrayValue(
 			'wgGroupPermissions',
-			array( 'sysop' => array( 'deleterevision' => true ) )
+			[ 'sysop' => [ 'deleterevision' => true ] ]
 		);
 		parent::setUp();
 		// Make a few edits for us to play with
@@ -31,14 +31,14 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	public function testHidingRevisions() {
 		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
-		$out = $this->doApiRequest( array(
+		$out = $this->doApiRequest( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'hide' => 'content|user|comment',
 			'token' => $user->getEditToken(),
-		) );
+		] );
 		// Check the output
 		$out = $out[0]['revisiondelete'];
 		$this->assertEquals( $out['status'], 'Success' );
@@ -56,14 +56,14 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertEquals( $rev->getUser( Revision::FOR_PUBLIC ), 0 );
 
 		// Now test unhiding!
-		$out2 = $this->doApiRequest( array(
+		$out2 = $this->doApiRequest( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'show' => 'content|user|comment',
 			'token' => $user->getEditToken(),
-		) );
+		] );
 
 		// Check the output
 		$out2 = $out2[0]['revisiondelete'];
@@ -87,23 +87,23 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
 		// Hide revisions
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'hide' => 'content|user|comment',
 			'token' => $user->getEditToken(),
-		) );
+		] );
 
-		$out = $this->doApiRequest( array(
+		$out = $this->doApiRequest( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'show' => 'comment',
 			'token' => $user->getEditToken(),
-		) );
+		] );
 		$out = $out[0]['revisiondelete'];
 		$this->assertEquals( $out['status'], 'Success' );
 		$this->assertArrayHasKey( 'items', $out );

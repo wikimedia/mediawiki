@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Espesiat',
 	NS_TALK             => 'Kombetsasion',
@@ -21,5 +21,5 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Kombetsasion_ni_ayudo',
 	NS_CATEGORY         => 'Katigoria',
 	NS_CATEGORY_TALK    => 'Kombetsasion_ni_katigoria',
-);
+];
 

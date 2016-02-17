@@ -49,12 +49,12 @@ class RefreshFileHeaders extends Maintenance {
 		$count = 0;
 		$dbr = $this->getDB( DB_SLAVE );
 		do {
-			$conds = array( "img_name > {$dbr->addQuotes( $start )}" );
+			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
 			if ( strlen( $end ) ) {
 				$conds[] = "img_name <= {$dbr->addQuotes( $end )}";
 			}
 			$res = $dbr->select( 'image', '*', $conds,
-				__METHOD__, array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ) );
+				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				$headers = $file->getStreamHeaders();
@@ -80,9 +80,9 @@ class RefreshFileHeaders extends Maintenance {
 	}
 
 	protected function updateFileHeaders( File $file, array $headers ) {
-		$status = $file->getRepo()->getBackend()->describe( array(
+		$status = $file->getRepo()->getBackend()->describe( [
 			'src' => $file->getPath(), 'headers' => $headers
-		) );
+		] );
 		if ( !$status->isGood() ) {
 			$this->error( "Encountered error: " . print_r( $status, true ) );
 		}

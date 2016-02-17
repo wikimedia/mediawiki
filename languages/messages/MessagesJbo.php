@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'velsku',
 	NS_SPECIAL          => 'rirci',
 	NS_TALK             => 'casnu',
@@ -25,4 +25,4 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'casnu_lo_nundju',
 	NS_CATEGORY         => 'klesi',
 	NS_CATEGORY_TALK    => 'casnu_lo_klesi',
-);
+];

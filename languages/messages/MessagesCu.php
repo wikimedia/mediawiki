@@ -8,18 +8,18 @@
  *
  */
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'Вьсѩ_страницѧ' ),
-	'Categories'                => array( 'Катигорїѩ' ),
-	'Contributions'             => array( 'Добродѣꙗниꙗ' ),
-	'Preferences'               => array( 'Строи' ),
-	'Recentchanges'             => array( 'Послѣдьнѩ_мѣнꙑ' ),
-	'Search'                    => array( 'Исканиѥ' ),
-	'Statistics'                => array( 'Статїстїка' ),
-	'Upload'                    => array( 'Положєниѥ_дѣла' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'Вьсѩ_страницѧ' ],
+	'Categories'                => [ 'Катигорїѩ' ],
+	'Contributions'             => [ 'Добродѣꙗниꙗ' ],
+	'Preferences'               => [ 'Строи' ],
+	'Recentchanges'             => [ 'Послѣдьнѩ_мѣнꙑ' ],
+	'Search'                    => [ 'Исканиѥ' ],
+	'Statistics'                => [ 'Статїстїка' ],
+	'Upload'                    => [ 'Положєниѥ_дѣла' ],
+];
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Срѣдьства',
 	NS_SPECIAL          => 'Нарочьна',
 	NS_TALK             => 'Бєсѣда',
@@ -36,9 +36,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Помощи_бєсѣда',
 	NS_CATEGORY         => 'Катигорїꙗ',
 	NS_CATEGORY_TALK    => 'Катигорїѩ_бєсѣда',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Срѣдьства'                      => NS_MEDIA,
 	'Нарочьна'                       => NS_SPECIAL,
 	'Бесѣда'                         => NS_TALK,
@@ -56,23 +56,23 @@ $namespaceAliases = array(
 	'Помощи_бесѣда'                  => NS_HELP_TALK,
 	'Катигорї'                      => NS_CATEGORY,
 	'Катигорїѩ_бесѣда'               => NS_CATEGORY_TALK,
-);
+];
 
-$magicWords = array(
-	'redirect'                  => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
-	'language'                  => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
-);
+$magicWords = [
+	'redirect'                  => [ '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ],
+	'language'                  => [ '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ],
+];
 
-$separatorTransformTable = array(
+$separatorTransformTable = [
 	',' => ".",
 	'.' => ','
-);
+];
 
 $linkPrefixExtension = true;
 
 $defaultDateFormat = 'mdy';
 
-$dateFormats = array(
+$dateFormats = [
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j числа, Y',
 	'mdy both' => 'H:i, xg j числа, Y',
@@ -88,7 +88,7 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-);
+];
 
 $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿцчшщъыьѣюѥѧѩѫѭѯѱѳѷѵґѓђёјйљњќуўџэ҄я“»]+)(.*)$/sDu';
 $linkPrefixCharset = '„«';

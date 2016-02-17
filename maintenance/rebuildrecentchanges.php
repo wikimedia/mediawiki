@@ -67,8 +67,8 @@ class RebuildRecentchanges extends Maintenance {
 		}
 
 		$cutoff = time() - $wgRCMaxAge;
-		$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
-			array(
+		$dbw->insertSelect( 'recentchanges', [ 'page', 'revision' ],
+			[
 				'rc_timestamp' => 'rev_timestamp',
 				'rc_user' => 'rev_user',
 				'rc_user_text' => 'rev_user_text',
@@ -88,14 +88,14 @@ class RebuildRecentchanges extends Maintenance {
 						$dbw->addQuotes( RecentChange::SRC_EDIT )
 				),
 				'rc_deleted' => 'rev_deleted'
-			),
-			array(
+			],
+			[
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'rev_page=page_id'
-			),
+			],
 			__METHOD__,
-			array(), // INSERT options
-			array( 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
+			[], // INSERT options
+			[ 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 5000 ] // SELECT options
 		);
 	}
 
@@ -143,20 +143,20 @@ class RebuildRecentchanges extends Maintenance {
 				$this->output( "Uhhh, something wrong? No curid\n" );
 			} else {
 				# Grab the entry's text size
-				$size = $dbw->selectField( 'revision', 'rev_len', array( 'rev_id' => $obj->rc_this_oldid ) );
+				$size = $dbw->selectField( 'revision', 'rev_len', [ 'rev_id' => $obj->rc_this_oldid ] );
 
 				$dbw->update( 'recentchanges',
-					array(
+					[
 						'rc_last_oldid' => $lastOldId,
 						'rc_new' => $new,
 						'rc_type' => $new,
 						'rc_source' => $new === 1 ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 						'rc_old_len' => $lastSize,
 						'rc_new_len' => $size,
-					), array(
+					], [
 						'rc_cur_id' => $lastCurId,
 						'rc_this_oldid' => $obj->rc_this_oldid,
-					),
+					],
 					__METHOD__
 				);
 
@@ -182,11 +182,11 @@ class RebuildRecentchanges extends Maintenance {
 		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
 		$dbw->insertSelect(
 			'recentchanges',
-			array(
+			[
 				'user',
 				"$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)"
-			),
-			array(
+			],
+			[
 				'rc_timestamp' => 'log_timestamp',
 				'rc_user' => 'log_user',
 				'rc_user_text' => 'user_name',
@@ -207,15 +207,15 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_logid' => 'log_id',
 				'rc_params' => 'log_params',
 				'rc_deleted' => 'log_deleted'
-			),
-			array(
+			],
+			[
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'log_user=user_id',
 				'log_type' => $basicRCLogs,
-			),
+			],
 			__METHOD__,
-			array(), // INSERT options
-			array( 'ORDER BY' => 'log_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
+			[], // INSERT options
+			[ 'ORDER BY' => 'log_timestamp DESC', 'LIMIT' => 5000 ] // SELECT options
 		);
 	}
 
@@ -231,11 +231,11 @@ class RebuildRecentchanges extends Maintenance {
 			$dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
 
 		$botgroups = User::getGroupsWithPermission( 'bot' );
-		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : array();
+		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : [];
 		# Flag our recent bot edits
 		if ( !empty( $botgroups ) ) {
 			$botwhere = $dbw->makeList( $botgroups );
-			$botusers = array();
+			$botusers = [];
 
 			$this->output( "Flagging bot account edits...\n" );
 
@@ -259,7 +259,7 @@ class RebuildRecentchanges extends Maintenance {
 		# Flag our recent autopatrolled edits
 		if ( !$wgMiserMode && !empty( $autopatrolgroups ) ) {
 			$patrolwhere = $dbw->makeList( $autopatrolgroups );
-			$patrolusers = array();
+			$patrolusers = [];
 
 			$this->output( "Flagging auto-patrolled edits...\n" );
 
@@ -292,13 +292,13 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 
 		$res = $dbw->select(
-			array( 'logging', 'log_search' ),
-			array( 'ls_value', 'ls_log_id' ),
-			array(
+			[ 'logging', 'log_search' ],
+			[ 'ls_value', 'ls_log_id' ],
+			[
 				'ls_log_id = log_id',
 				'ls_field' => 'associated_rev_id',
 				'log_type' => 'upload',
-			),
+			],
 			__METHOD__
 		);
 		foreach ( $res as $obj ) {
@@ -308,15 +308,15 @@ class RebuildRecentchanges extends Maintenance {
 			// Mark the logging row as having an associated rev id
 			$dbw->update(
 				'recentchanges',
-				/*SET*/ array( 'rc_this_oldid' => $rev_id ),
-				/*WHERE*/ array( 'rc_logid' => $log_id ),
+				/*SET*/ [ 'rc_this_oldid' => $rev_id ],
+				/*WHERE*/ [ 'rc_logid' => $log_id ],
 				__METHOD__
 			);
 
 			// Delete the revision row
 			$dbw->delete(
 				'recentchanges',
-				/*WHERE*/ array( 'rc_this_oldid' => $rev_id, 'rc_logid' => 0 ),
+				/*WHERE*/ [ 'rc_this_oldid' => $rev_id, 'rc_logid' => 0 ],
 				__METHOD__
 			);
 		}

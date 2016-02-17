@@ -74,15 +74,15 @@ class RunJobs extends Maintenance {
 
 		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
 		if ( !$outputJSON ) {
-			$runner->setDebugHandler( array( $this, 'debugInternal' ) );
+			$runner->setDebugHandler( [ $this, 'debugInternal' ] );
 		}
 
-		$response = $runner->run( array(
+		$response = $runner->run( [
 			'type'     => $this->getOption( 'type', false ),
 			'maxJobs'  => $this->getOption( 'maxjobs', false ),
 			'maxTime'  => $this->getOption( 'maxtime', false ),
 			'throttle' => $this->hasOption( 'nothrottle' ) ? false : true,
-		) );
+		] );
 
 		if ( $outputJSON ) {
 			$this->output( FormatJson::encode( $response, true ) );

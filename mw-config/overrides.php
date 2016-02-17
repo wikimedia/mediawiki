@@ -75,7 +75,7 @@ class InstallerOverrides {
 	 * @param array $options
 	 * @return CliInstaller
 	 */
-	public static function getCliInstaller( $siteName, $admin = null, array $options = array() ) {
+	public static function getCliInstaller( $siteName, $admin = null, array $options = [] ) {
 		return new CliInstaller( $siteName, $admin, $options );
 	}
 }

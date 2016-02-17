@@ -96,7 +96,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
-		return self::newFromConds( array( 'rev_id' => intval( $id ) ), $flags );
+		return self::newFromConds( [ 'rev_id' => intval( $id ) ], $flags );
 	}
 
 	/**
@@ -114,10 +114,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
-		$conds = array(
+		$conds = [
 			'page_namespace' => $linkTarget->getNamespace(),
 			'page_title' => $linkTarget->getDBkey()
-		);
+		];
 		if ( $id ) {
 			// Use the specified ID
 			$conds['rev_id'] = $id;
@@ -145,7 +145,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
-		$conds = array( 'page_id' => $pageId );
+		$conds = [ 'page_id' => $pageId ];
 		if ( $revId ) {
 			$conds['rev_id'] = $revId;
 			return self::newFromConds( $conds, $flags );
@@ -168,10 +168,10 @@ class Revision implements IDBAccessObject {
 	 * @throws MWException
 	 * @return Revision
 	 */
-	public static function newFromArchiveRow( $row, $overrides = array() ) {
+	public static function newFromArchiveRow( $row, $overrides = [] ) {
 		global $wgContentHandlerUseDB;
 
-		$attribs = $overrides + array(
+		$attribs = $overrides + [
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
 			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
 			'comment'    => $row->ar_comment,
@@ -185,7 +185,7 @@ class Revision implements IDBAccessObject {
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
 			'content_model'   => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
 			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
-		);
+		];
 
 		if ( !$wgContentHandlerUseDB ) {
 			unset( $attribs['content_model'] );
@@ -228,7 +228,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromId( $db, $id ) {
-		return self::loadFromConds( $db, array( 'rev_id' => intval( $id ) ) );
+		return self::loadFromConds( $db, [ 'rev_id' => intval( $id ) ] );
 	}
 
 	/**
@@ -242,7 +242,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
-		$conds = array( 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) );
+		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
 		if ( $id ) {
 			$conds['rev_id'] = intval( $id );
 		} else {
@@ -268,11 +268,11 @@ class Revision implements IDBAccessObject {
 			$matchId = 'page_latest';
 		}
 		return self::loadFromConds( $db,
-			array(
+			[
 				"rev_id=$matchId",
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey()
-			)
+			]
 		);
 	}
 
@@ -288,11 +288,11 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		return self::loadFromConds( $db,
-			array(
+			[
 				'rev_timestamp' => $db->timestamp( $timestamp ),
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey()
-			)
+			]
 		);
 	}
 
@@ -362,11 +362,11 @@ class Revision implements IDBAccessObject {
 	public static function fetchRevision( $title ) {
 		return self::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
-			array(
+			[
 				'rev_id=page_latest',
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey()
-			)
+			]
 		);
 	}
 
@@ -386,17 +386,17 @@ class Revision implements IDBAccessObject {
 			self::selectPageFields(),
 			self::selectUserFields()
 		);
-		$options = array( 'LIMIT' => 1 );
+		$options = [ 'LIMIT' => 1 ];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
 		return $db->select(
-			array( 'revision', 'page', 'user' ),
+			[ 'revision', 'page', 'user' ],
 			$fields,
 			$conditions,
 			__METHOD__,
 			$options,
-			array( 'page' => self::pageJoinCond(), 'user' => self::userJoinCond() )
+			[ 'page' => self::pageJoinCond(), 'user' => self::userJoinCond() ]
 		);
 	}
 
@@ -407,7 +407,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function userJoinCond() {
-		return array( 'LEFT JOIN', array( 'rev_user != 0', 'user_id = rev_user' ) );
+		return [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
 	}
 
 	/**
@@ -417,7 +417,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function pageJoinCond() {
-		return array( 'INNER JOIN', array( 'page_id = rev_page' ) );
+		return [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
 	}
 
 	/**
@@ -428,7 +428,7 @@ class Revision implements IDBAccessObject {
 	public static function selectFields() {
 		global $wgContentHandlerUseDB;
 
-		$fields = array(
+		$fields = [
 			'rev_id',
 			'rev_page',
 			'rev_text_id',
@@ -441,7 +441,7 @@ class Revision implements IDBAccessObject {
 			'rev_len',
 			'rev_parent_id',
 			'rev_sha1',
-		);
+		];
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_format';
@@ -458,7 +458,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function selectArchiveFields() {
 		global $wgContentHandlerUseDB;
-		$fields = array(
+		$fields = [
 			'ar_id',
 			'ar_page_id',
 			'ar_rev_id',
@@ -473,7 +473,7 @@ class Revision implements IDBAccessObject {
 			'ar_len',
 			'ar_parent_id',
 			'ar_sha1',
-		);
+		];
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
@@ -488,10 +488,10 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectTextFields() {
-		return array(
+		return [
 			'old_text',
 			'old_flags'
-		);
+		];
 	}
 
 	/**
@@ -499,14 +499,14 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectPageFields() {
-		return array(
+		return [
 			'page_namespace',
 			'page_title',
 			'page_id',
 			'page_latest',
 			'page_is_redirect',
 			'page_len',
-		);
+		];
 	}
 
 	/**
@@ -514,7 +514,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectUserFields() {
-		return array( 'user_name' );
+		return [ 'user_name' ];
 	}
 
 	/**
@@ -524,13 +524,13 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function getParentLengths( $db, array $revIds ) {
-		$revLens = array();
+		$revLens = [];
 		if ( !$revIds ) {
 			return $revLens; // empty
 		}
 		$res = $db->select( 'revision',
-			array( 'rev_id', 'rev_len' ),
-			array( 'rev_id' => $revIds ),
+			[ 'rev_id', 'rev_len' ],
+			[ 'rev_id' => $revIds ],
 			__METHOD__ );
 		foreach ( $res as $row ) {
 			$revLens[$row->rev_id] = $row->rev_len;
@@ -777,10 +777,10 @@ class Revision implements IDBAccessObject {
 		if ( $this->mId !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
-				array( 'page', 'revision' ),
+				[ 'page', 'revision' ],
 				self::selectPageFields(),
-				array( 'page_id=rev_page',
-					'rev_id' => $this->mId ),
+				[ 'page_id=rev_page',
+					'rev_id' => $this->mId ],
 				__METHOD__ );
 			if ( $row ) {
 				$this->mTitle = Title::newFromRow( $row );
@@ -960,11 +960,11 @@ class Revision implements IDBAccessObject {
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
 		return RecentChange::newFromConds(
-			array(
+			[
 				'rc_user_text' => $this->getUserText( Revision::RAW ),
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
 				'rc_this_oldid' => $this->getId()
-			),
+			],
 			__METHOD__,
 			$dbType
 		);
@@ -1216,13 +1216,13 @@ class Revision implements IDBAccessObject {
 		# Use page_latest if ID is not given
 		if ( !$this->mId ) {
 			$prevId = $db->selectField( 'page', 'page_latest',
-				array( 'page_id' => $this->mPage ),
+				[ 'page_id' => $this->mPage ],
 				__METHOD__ );
 		} else {
 			$prevId = $db->selectField( 'revision', 'rev_id',
-				array( 'rev_page' => $this->mPage, 'rev_id < ' . $this->mId ),
+				[ 'rev_page' => $this->mPage, 'rev_id < ' . $this->mId ],
 				__METHOD__,
-				array( 'ORDER BY' => 'rev_id DESC' ) );
+				[ 'ORDER BY' => 'rev_id DESC' ] );
 		}
 		return intval( $prevId );
 	}
@@ -1249,7 +1249,7 @@ class Revision implements IDBAccessObject {
 		if ( isset( $row->$flagsField ) ) {
 			$flags = explode( ',', $row->$flagsField );
 		} else {
-			$flags = array();
+			$flags = [];
 		}
 
 		if ( isset( $row->$textField ) ) {
@@ -1265,7 +1265,7 @@ class Revision implements IDBAccessObject {
 			if ( count( $parts ) == 1 || $parts[1] == '' ) {
 				return false;
 			}
-			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
+			$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
 		}
 
 		// If the text was fetched without an error, convert it
@@ -1287,7 +1287,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function compressRevisionText( &$text ) {
 		global $wgCompressRevisions;
-		$flags = array();
+		$flags = [];
 
 		# Revisions not marked this way will be converted
 		# on load if $wgLegacyCharset is set in the future.
@@ -1399,11 +1399,11 @@ class Revision implements IDBAccessObject {
 		if ( $this->mTextId === null ) {
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
-				array(
+				[
 					'old_id' => $old_id,
 					'old_text' => $data,
 					'old_flags' => $flags,
-				), __METHOD__
+				], __METHOD__
 			);
 			$this->mTextId = $dbw->insertId();
 		}
@@ -1416,7 +1416,7 @@ class Revision implements IDBAccessObject {
 		$rev_id = $this->mId !== null
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
-		$row = array(
+		$row = [
 			'rev_id'         => $rev_id,
 			'rev_page'       => $this->mPage,
 			'rev_text_id'    => $this->mTextId,
@@ -1433,7 +1433,7 @@ class Revision implements IDBAccessObject {
 			'rev_sha1'       => $this->mSha1 === null
 				? Revision::base36Sha1( $this->mText )
 				: $this->mSha1,
-		);
+		];
 
 		if ( $wgContentHandlerUseDB ) {
 			// NOTE: Store null for the default model and format, to save space.
@@ -1469,7 +1469,7 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
-		Hooks::run( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
+		Hooks::run( 'RevisionInsertComplete', [ &$this, $data, $flags ] );
 
 		return $this->mId;
 	}
@@ -1573,8 +1573,8 @@ class Revision implements IDBAccessObject {
 			// Text data is immutable; check slaves first.
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
-				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $textId ),
+				[ 'old_text', 'old_flags' ],
+				[ 'old_id' => $textId ],
 				__METHOD__ );
 		}
 
@@ -1584,10 +1584,10 @@ class Revision implements IDBAccessObject {
 		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
-				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $textId ),
+				[ 'old_text', 'old_flags' ],
+				[ 'old_id' => $textId ],
 				__METHOD__,
-				$forUpdate ? array( 'FOR UPDATE' ) : array() );
+				$forUpdate ? [ 'FOR UPDATE' ] : [] );
 		}
 
 		if ( !$row ) {
@@ -1625,8 +1625,8 @@ class Revision implements IDBAccessObject {
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		global $wgContentHandlerUseDB, $wgContLang;
 
-		$fields = array( 'page_latest', 'page_namespace', 'page_title',
-						'rev_text_id', 'rev_len', 'rev_sha1' );
+		$fields = [ 'page_latest', 'page_namespace', 'page_title',
+						'rev_text_id', 'rev_len', 'rev_sha1' ];
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_model';
@@ -1634,14 +1634,14 @@ class Revision implements IDBAccessObject {
 		}
 
 		$current = $dbw->selectRow(
-			array( 'page', 'revision' ),
+			[ 'page', 'revision' ],
 			$fields,
-			array(
+			[
 				'page_id' => $pageId,
 				'page_latest=rev_id',
-			),
+			],
 			__METHOD__,
-			array( 'FOR UPDATE' ) // T51581
+			[ 'FOR UPDATE' ] // T51581
 		);
 
 		if ( $current ) {
@@ -1653,7 +1653,7 @@ class Revision implements IDBAccessObject {
 			// Truncate for whole multibyte characters
 			$summary = $wgContLang->truncate( $summary, 255 );
 
-			$row = array(
+			$row = [
 				'page'       => $pageId,
 				'user_text'  => $user->getName(),
 				'user'       => $user->getId(),
@@ -1663,7 +1663,7 @@ class Revision implements IDBAccessObject {
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
 				'sha1'       => $current->rev_sha1
-			);
+			];
 
 			if ( $wgContentHandlerUseDB ) {
 				$row['content_model'] = $current->rev_content_model;
@@ -1717,16 +1717,16 @@ class Revision implements IDBAccessObject {
 				$user = $wgUser;
 			}
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
-				$permissions = array( 'suppressrevision', 'viewsuppressed' );
+				$permissions = [ 'suppressrevision', 'viewsuppressed' ];
 			} elseif ( $field & self::DELETED_TEXT ) {
-				$permissions = array( 'deletedtext' );
+				$permissions = [ 'deletedtext' ];
 			} else {
-				$permissions = array( 'deletedhistory' );
+				$permissions = [ 'deletedhistory' ];
 			}
 			$permissionlist = implode( ', ', $permissions );
 			if ( $title === null ) {
 				wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-				return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
+				return call_user_func_array( [ $user, 'isAllowedAny' ], $permissions );
 			} else {
 				$text = $title->getPrefixedText();
 				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
@@ -1757,7 +1757,7 @@ class Revision implements IDBAccessObject {
 		if ( $id == '' ) {
 			$id = 0;
 		}
-		$conds = array( 'rev_id' => $id );
+		$conds = [ 'rev_id' => $id ];
 		$conds['rev_page'] = $title->getArticleID();
 		$timestamp = $db->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 
@@ -1772,8 +1772,8 @@ class Revision implements IDBAccessObject {
 	 * @return int
 	 */
 	static function countByPageId( $db, $id ) {
-		$row = $db->selectRow( 'revision', array( 'revCount' => 'COUNT(*)' ),
-			array( 'rev_page' => $id ), __METHOD__ );
+		$row = $db->selectRow( 'revision', [ 'revCount' => 'COUNT(*)' ],
+			[ 'rev_page' => $id ], __METHOD__ );
 		if ( $row ) {
 			return $row->revCount;
 		}
@@ -1822,12 +1822,12 @@ class Revision implements IDBAccessObject {
 
 		$res = $db->select( 'revision',
 			'rev_user',
-			array(
+			[
 				'rev_page' => $pageId,
 				'rev_timestamp > ' . $db->addQuotes( $db->timestamp( $since ) )
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ) );
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ] );
 		foreach ( $res as $row ) {
 			if ( $row->rev_user != $userId ) {
 				return false;

@@ -55,7 +55,7 @@ class BacklinkCache {
 	 * Cleared with BacklinkCache::clear()
 	 * @var array[]
 	 */
-	protected $partitionCache = array();
+	protected $partitionCache = [];
 
 	/**
 	 * Contains the whole links from a database result.
@@ -65,7 +65,7 @@ class BacklinkCache {
 	 * Cleared with BacklinkCache::clear()
 	 * @var ResultWrapper[]
 	 */
-	protected $fullResultCache = array();
+	protected $fullResultCache = [];
 
 	/**
 	 * Local copy of a database object.
@@ -115,15 +115,15 @@ class BacklinkCache {
 	 * @return array
 	 */
 	function __sleep() {
-		return array( 'partitionCache', 'fullResultCache', 'title' );
+		return [ 'partitionCache', 'fullResultCache', 'title' ];
 	}
 
 	/**
 	 * Clear locally stored data and database object.
 	 */
 	public function clear() {
-		$this->partitionCache = array();
-		$this->fullResultCache = array();
+		$this->partitionCache = [];
+		$this->fullResultCache = [];
 		unset( $this->db );
 	}
 
@@ -190,7 +190,7 @@ class BacklinkCache {
 			if ( $endId ) {
 				$conds[] = "$fromField <= " . intval( $endId );
 			}
-			$options = array( 'ORDER BY' => $fromField );
+			$options = [ 'ORDER BY' => $fromField ];
 			if ( is_finite( $max ) && $max > 0 ) {
 				$options['LIMIT'] = $max;
 			}
@@ -199,7 +199,7 @@ class BacklinkCache {
 				// Just select from the backlink table and ignore the page JOIN
 				$res = $this->getDB()->select(
 					$table,
-					array( $this->getPrefix( $table ) . '_from AS page_id' ),
+					[ $this->getPrefix( $table ) . '_from AS page_id' ],
 					array_filter( $conds, function ( $clause ) { // kind of janky
 						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
 					} ),
@@ -209,11 +209,11 @@ class BacklinkCache {
 			} else {
 				// Select from the backlink table and JOIN with page title information
 				$res = $this->getDB()->select(
-					array( $table, 'page' ),
-					array( 'page_namespace', 'page_title', 'page_id' ),
+					[ $table, 'page' ],
+					[ 'page_namespace', 'page_title', 'page_id' ],
 					$conds,
 					__METHOD__,
-					array_merge( array( 'STRAIGHT_JOIN' ), $options )
+					array_merge( [ 'STRAIGHT_JOIN' ], $options )
 				);
 			}
 
@@ -235,19 +235,19 @@ class BacklinkCache {
 	 * @return null|string
 	 */
 	protected function getPrefix( $table ) {
-		static $prefixes = array(
+		static $prefixes = [
 			'pagelinks' => 'pl',
 			'imagelinks' => 'il',
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect' => 'rd',
-		);
+		];
 
 		if ( isset( $prefixes[$table] ) ) {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
-			Hooks::run( 'BacklinkCacheGetPrefix', array( $table, &$prefix ) );
+			Hooks::run( 'BacklinkCacheGetPrefix', [ $table, &$prefix ] );
 			if ( $prefix ) {
 				return $prefix;
 			} else {
@@ -269,33 +269,33 @@ class BacklinkCache {
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
-				$conds = array(
+				$conds = [
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title" => $this->title->getDBkey(),
 					"page_id={$prefix}_from"
-				);
+				];
 				break;
 			case 'redirect':
-				$conds = array(
+				$conds = [
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title" => $this->title->getDBkey(),
-					$this->getDb()->makeList( array(
+					$this->getDb()->makeList( [
 						"{$prefix}_interwiki" => '',
 						"{$prefix}_interwiki IS NULL",
-					), LIST_OR ),
+					], LIST_OR ),
 					"page_id={$prefix}_from"
-				);
+				];
 				break;
 			case 'imagelinks':
 			case 'categorylinks':
-				$conds = array(
+				$conds = [
 					"{$prefix}_to" => $this->title->getDBkey(),
 					"page_id={$prefix}_from"
-				);
+				];
 				break;
 			default:
 				$conds = null;
-				Hooks::run( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
+				Hooks::run( 'BacklinkCacheGetConditions', [ $table, $this->title, &$conds ] );
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
@@ -406,7 +406,7 @@ class BacklinkCache {
 		}
 
 		// 4) ... finally fetch from the slow database :(
-		$cacheEntry = array( 'numRows' => 0, 'batches' => array() ); // final result
+		$cacheEntry = [ 'numRows' => 0, 'batches' => [] ]; // final result
 		// Do the selects in batches to avoid client-side OOMs (bug 43452).
 		// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
 		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
@@ -449,7 +449,7 @@ class BacklinkCache {
 	 * @return array
 	 */
 	protected function partitionResult( $res, $batchSize, $isComplete = true ) {
-		$batches = array();
+		$batches = [];
 		$numRows = $res->numRows();
 		$numBatches = ceil( $numRows / $batchSize );
 
@@ -477,10 +477,10 @@ class BacklinkCache {
 				throw new MWException( __METHOD__ . ': Internal error: query result out of order' );
 			}
 
-			$batches[] = array( $start, $end );
+			$batches[] = [ $start, $end ];
 		}
 
-		return array( 'numRows' => $numRows, 'batches' => $batches );
+		return [ 'numRows' => $numRows, 'batches' => $batches ];
 	}
 
 	/**
@@ -493,37 +493,37 @@ class BacklinkCache {
 		$dbr = $this->getDB();
 
 		// @todo: use UNION without breaking tests that use temp tables
-		$resSets = array();
+		$resSets = [];
 		$resSets[] = $dbr->select(
-			array( 'templatelinks', 'page_restrictions', 'page' ),
-			array( 'page_namespace', 'page_title', 'page_id' ),
-			array(
+			[ 'templatelinks', 'page_restrictions', 'page' ],
+			[ 'page_namespace', 'page_title', 'page_id' ],
+			[
 				'tl_namespace' => $this->title->getNamespace(),
 				'tl_title' => $this->title->getDBkey(),
 				'tl_from = pr_page',
 				'pr_cascade' => 1,
 				'page_id = tl_from'
-			),
+			],
 			__METHOD__,
-			array( 'DISTINCT' )
+			[ 'DISTINCT' ]
 		);
 		if ( $this->title->getNamespace() == NS_FILE ) {
 			$resSets[] = $dbr->select(
-				array( 'imagelinks', 'page_restrictions', 'page' ),
-				array( 'page_namespace', 'page_title', 'page_id' ),
-				array(
+				[ 'imagelinks', 'page_restrictions', 'page' ],
+				[ 'page_namespace', 'page_title', 'page_id' ],
+				[
 					'il_to' => $this->title->getDBkey(),
 					'il_from = pr_page',
 					'pr_cascade' => 1,
 					'page_id = il_from'
-				),
+				],
 				__METHOD__,
-				array( 'DISTINCT' )
+				[ 'DISTINCT' ]
 			);
 		}
 
 		// Combine and de-duplicate the results
-		$mergedRes = array();
+		$mergedRes = [];
 		foreach ( $resSets as $res ) {
 			foreach ( $res as $row ) {
 				$mergedRes[$row->page_id] = $row;

@@ -46,7 +46,7 @@ class LanguageUk extends Language {
 		# They are used only for site names.
 
 		# join and array_slice instead mb_substr
-		$ar = array();
+		$ar = [];
 		preg_match_all( '/./us', $word, $ar );
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {

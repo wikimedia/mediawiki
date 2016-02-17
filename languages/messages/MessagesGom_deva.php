@@ -11,7 +11,7 @@
 
 $fallback = 'hi';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'मिडिया',
 	NS_SPECIAL          => 'विशेश',
 	NS_TALK             => 'चर्चा',
@@ -28,4 +28,4 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'मजत_चर्चा',
 	NS_CATEGORY         => 'श्रेणी',
 	NS_CATEGORY_TALK    => 'श्रेणी_चर्चा',
-);
+];

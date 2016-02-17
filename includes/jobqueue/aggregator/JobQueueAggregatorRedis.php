@@ -49,7 +49,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		parent::__construct( $params );
 		$this->servers = isset( $params['redisServers'] )
 			? $params['redisServers']
-			: array( $params['redisServer'] ); // b/c
+			: [ $params['redisServer'] ]; // b/c
 		$params['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 	}
@@ -65,14 +65,14 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	protected function doGetAllReadyWikiQueues() {
 		$conn = $this->getConnection();
 		if ( !$conn ) {
-			return array();
+			return [];
 		}
 		try {
 			$map = $conn->hGetAll( $this->getReadyQueueKey() );
 
 			if ( is_array( $map ) && isset( $map['_epoch'] ) ) {
 				unset( $map['_epoch'] ); // ignore
-				$pendingDBs = array(); // (type => list of wikis)
+				$pendingDBs = []; // (type => list of wikis)
 				foreach ( $map as $key => $time ) {
 					list( $type, $wiki ) = $this->decodeQueueName( $key );
 					$pendingDBs[$type][] = $wiki;
@@ -87,7 +87,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		} catch ( RedisException $e ) {
 			$this->redisPool->handleError( $conn, $e );
 
-			return array();
+			return [];
 		}
 	}
 
@@ -127,6 +127,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	private function decodeQueueName( $name ) {
 		list( $type, $wiki ) = explode( '/', $name, 2 );
 
-		return array( rawurldecode( $type ), rawurldecode( $wiki ) );
+		return [ rawurldecode( $type ), rawurldecode( $wiki ) ];
 	}
 }

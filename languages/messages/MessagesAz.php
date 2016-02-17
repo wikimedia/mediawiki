@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Xüsusi',
 	NS_TALK             => 'Müzakirə',
 	NS_USER             => 'İstifadəçi',
@@ -24,39 +24,39 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Kömək_müzakirəsi',
 	NS_CATEGORY         => 'Kateqoriya',
 	NS_CATEGORY_TALK    => 'Kateqoriya_müzakirəsi',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Mediya'                 => NS_MEDIA,
 	'MediyaViki'             => NS_MEDIAWIKI,
 	'MediyaViki_müzakirəsi'  => NS_MEDIAWIKI_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
-	'Allpages'                  => array( 'BütünSəhifələr' ),
-	'Contributions'             => array( 'Fəaliyyətlər' ),
-	'CreateAccount'             => array( 'HesabAç' ),
-	'Longpages'                 => array( 'UzunSəhifələr' ),
-	'Mycontributions'           => array( 'MənimFəaliyyətlərim' ),
-	'Mypage'                    => array( 'MənimSəhifəm' ),
-	'Mytalk'                    => array( 'MənimDanışıqlarım' ),
-	'Newpages'                  => array( 'YeniSəhifələr' ),
-	'Preferences'               => array( 'Nizamlamalar' ),
-	'Recentchanges'             => array( 'SonDəyişikliklər' ),
-	'Search'                    => array( 'Axtar' ),
-	'Shortpages'                => array( 'QısaSəhifələr' ),
-	'Specialpages'              => array( 'XüsusiSəhifələr' ),
-	'Statistics'                => array( 'Statistika' ),
-	'Undelete'                  => array( 'Pozma' ),
-	'Version'                   => array( 'Versiya' ),
-);
+$specialPageAliases = [
+	'Activeusers'               => [ 'Aktivİstifadəçilər' ],
+	'Allpages'                  => [ 'BütünSəhifələr' ],
+	'Contributions'             => [ 'Fəaliyyətlər' ],
+	'CreateAccount'             => [ 'HesabAç' ],
+	'Longpages'                 => [ 'UzunSəhifələr' ],
+	'Mycontributions'           => [ 'MənimFəaliyyətlərim' ],
+	'Mypage'                    => [ 'MənimSəhifəm' ],
+	'Mytalk'                    => [ 'MənimDanışıqlarım' ],
+	'Newpages'                  => [ 'YeniSəhifələr' ],
+	'Preferences'               => [ 'Nizamlamalar' ],
+	'Recentchanges'             => [ 'SonDəyişikliklər' ],
+	'Search'                    => [ 'Axtar' ],
+	'Shortpages'                => [ 'QısaSəhifələr' ],
+	'Specialpages'              => [ 'XüsusiSəhifələr' ],
+	'Statistics'                => [ 'Statistika' ],
+	'Undelete'                  => [ 'Pozma' ],
+	'Version'                   => [ 'Versiya' ],
+];
 
-$magicWords = array(
-	'redirect'                  => array( '0', '#İSTİQAMƏTLƏNDİRMƏ', '#İSTİQAMƏTLƏNDİR', '#REDIRECT' ),
-	'notoc'                     => array( '0', '__MÜNDƏRİCATYOX__', '__NOTOC__' ),
-	'nogallery'                 => array( '0', '__QALEREYAYOX__', '__NOGALLERY__' ),
-);
+$magicWords = [
+	'redirect'                  => [ '0', '#İSTİQAMƏTLƏNDİRMƏ', '#İSTİQAMƏTLƏNDİR', '#REDIRECT' ],
+	'notoc'                     => [ '0', '__MÜNDƏRİCATYOX__', '__NOTOC__' ],
+	'nogallery'                 => [ '0', '__QALEREYAYOX__', '__NOGALLERY__' ],
+];
 
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$separatorTransformTable = [ ',' => '.', '.' => ',' ];
 

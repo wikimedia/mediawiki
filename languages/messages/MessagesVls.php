@@ -13,7 +13,7 @@
 
 $fallback = 'nl';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Specioal',
 	NS_TALK             => 'Discuusje',
@@ -30,5 +30,5 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Discuusje_ulpe',
 	NS_CATEGORY         => 'Categorie',
 	NS_CATEGORY_TALK    => 'Discuusje_categorie',
-);
+];
 

@@ -32,7 +32,7 @@ class TempFSFile extends FSFile {
 	protected $canDelete = false;
 
 	/** @var array Active temp files to purge on shutdown */
-	protected static $instances = array();
+	protected static $instances = [];
 
 	/** @var array Map of (path => 1) for paths to delete on shutdown */
 	protected static $pathsCollect = null;
@@ -41,8 +41,8 @@ class TempFSFile extends FSFile {
 		parent::__construct( $path );
 
 		if ( self::$pathsCollect === null ) {
-			self::$pathsCollect = array();
-			register_shutdown_function( array( __CLASS__, 'purgeAllOnShutdown' ) );
+			self::$pathsCollect = [];
+			register_shutdown_function( [ __CLASS__, 'purgeAllOnShutdown' ] );
 		}
 	}
 
@@ -102,7 +102,7 @@ class TempFSFile extends FSFile {
 		if ( is_object( $object ) ) {
 			if ( !isset( $object->tempFSFileReferences ) ) {
 				// Init first since $object might use __get() and return only a copy variable
-				$object->tempFSFileReferences = array();
+				$object->tempFSFileReferences = [];
 			}
 			$object->tempFSFileReferences[] = $this;
 		}

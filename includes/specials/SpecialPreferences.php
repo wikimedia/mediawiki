@@ -61,11 +61,11 @@ class SpecialPreferences extends SpecialPage {
 			$out->wrapWikiMsg(
 				Html::rawElement(
 					'div',
-					array(
+					[
 						'class' => 'mw-preferences-messagebox successbox',
 						'id' => 'mw-preferences-success'
-					),
-					Html::element( 'p', array(), '$1' )
+					],
+					Html::element( 'p', [], '$1' )
 				),
 				'savedprefs'
 			);
@@ -77,25 +77,25 @@ class SpecialPreferences extends SpecialPage {
 		$user = $this->getUser()->getInstanceForUpdate() ?: $this->getUser();
 
 		$htmlForm = Preferences::getFormObject( $user, $this->getContext() );
-		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
+		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryUISubmit' ] );
 		$sectionTitles = $htmlForm->getPreferenceSections();
 
 		$prefTabs = '';
 		foreach ( $sectionTitles as $key ) {
 			$prefTabs .= Html::rawElement( 'li',
-				array(
+				[
 					'role' => 'presentation',
 					'class' => ( $key === 'personal' ) ? 'selected' : null
-				),
+				],
 				Html::rawElement( 'a',
-					array(
+					[
 						'id' => 'preftab-' . $key,
 						'role' => 'tab',
 						'href' => '#mw-prefsection-' . $key,
 						'aria-controls' => 'mw-prefsection-' . $key,
 						'aria-selected' => ( $key === 'personal' ) ? 'true' : 'false',
 						'tabIndex' => ( $key === 'personal' ) ? 0 : -1,
-					),
+					],
 					$htmlForm->getLegend( $key )
 				)
 			);
@@ -103,10 +103,10 @@ class SpecialPreferences extends SpecialPage {
 
 		$out->addHTML(
 			Html::rawElement( 'ul',
-				array(
+				[
 					'id' => 'preftoc',
 					'role' => 'tablist'
-				),
+				],
 				$prefTabs )
 		);
 		$htmlForm->show();
@@ -121,11 +121,11 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
+		$htmlForm = new HTMLForm( [], $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setSubmitDestructive();
-		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
+		$htmlForm->setSubmitCallback( [ $this, 'submitReset' ] );
 		$htmlForm->suppressReset();
 
 		$htmlForm->show();

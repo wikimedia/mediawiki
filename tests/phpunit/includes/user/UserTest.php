@@ -15,10 +15,10 @@ class UserTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgGroupPermissions' => array(),
-			'wgRevokePermissions' => array(),
-		) );
+		$this->setMwGlobals( [
+			'wgGroupPermissions' => [],
+			'wgRevokePermissions' => [],
+		] );
 
 		$this->setUpPermissionGlobals();
 
@@ -30,40 +30,40 @@ class UserTest extends MediaWikiTestCase {
 		global $wgGroupPermissions, $wgRevokePermissions;
 
 		# Data for regular $wgGroupPermissions test
-		$wgGroupPermissions['unittesters'] = array(
+		$wgGroupPermissions['unittesters'] = [
 			'test' => true,
 			'runtest' => true,
 			'writetest' => false,
 			'nukeworld' => false,
-		);
-		$wgGroupPermissions['testwriters'] = array(
+		];
+		$wgGroupPermissions['testwriters'] = [
 			'test' => true,
 			'writetest' => true,
 			'modifytest' => true,
-		);
+		];
 
 		# Data for regular $wgRevokePermissions test
-		$wgRevokePermissions['formertesters'] = array(
+		$wgRevokePermissions['formertesters'] = [
 			'runtest' => true,
-		);
+		];
 
 		# For the options test
-		$wgGroupPermissions['*'] = array(
+		$wgGroupPermissions['*'] = [
 			'editmyoptions' => true,
-		);
+		];
 	}
 
 	/**
 	 * @covers User::getGroupPermissions
 	 */
 	public function testGroupPermissions() {
-		$rights = User::getGroupPermissions( array( 'unittesters' ) );
+		$rights = User::getGroupPermissions( [ 'unittesters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
 		$this->assertNotContains( 'modifytest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 
-		$rights = User::getGroupPermissions( array( 'unittesters', 'testwriters' ) );
+		$rights = User::getGroupPermissions( [ 'unittesters', 'testwriters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertContains( 'writetest', $rights );
 		$this->assertContains( 'modifytest', $rights );
@@ -74,7 +74,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getGroupPermissions
 	 */
 	public function testRevokePermissions() {
-		$rights = User::getGroupPermissions( array( 'unittesters', 'formertesters' ) );
+		$rights = User::getGroupPermissions( [ 'unittesters', 'formertesters' ] );
 		$this->assertNotContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
 		$this->assertNotContains( 'modifytest', $rights );
@@ -105,24 +105,24 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetGroupsWithPermission() {
-		return array(
-			array(
-				array( 'unittesters', 'testwriters' ),
+		return [
+			[
+				[ 'unittesters', 'testwriters' ],
 				'test'
-			),
-			array(
-				array( 'unittesters' ),
+			],
+			[
+				[ 'unittesters' ],
 				'runtest'
-			),
-			array(
-				array( 'testwriters' ),
+			],
+			[
+				[ 'testwriters' ],
 				'writetest'
-			),
-			array(
-				array( 'testwriters' ),
+			],
+			[
+				[ 'testwriters' ],
 				'modifytest'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -134,20 +134,20 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	public static function provideIPs() {
-		return array(
-			array( '', false, 'Empty string' ),
-			array( ' ', false, 'Blank space' ),
-			array( '10.0.0.0', true, 'IPv4 private 10/8' ),
-			array( '10.255.255.255', true, 'IPv4 private 10/8' ),
-			array( '192.168.1.1', true, 'IPv4 private 192.168/16' ),
-			array( '203.0.113.0', true, 'IPv4 example' ),
-			array( '2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff', true, 'IPv6 example' ),
+		return [
+			[ '', false, 'Empty string' ],
+			[ ' ', false, 'Blank space' ],
+			[ '10.0.0.0', true, 'IPv4 private 10/8' ],
+			[ '10.255.255.255', true, 'IPv4 private 10/8' ],
+			[ '192.168.1.1', true, 'IPv4 private 192.168/16' ],
+			[ '203.0.113.0', true, 'IPv4 example' ],
+			[ '2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff', true, 'IPv6 example' ],
 			// Not valid IPs but classified as such by MediaWiki for negated asserting
 			// of whether this might be the identifier of a logged-out user or whether
 			// to allow usernames like it.
-			array( '300.300.300.300', true, 'Looks too much like an IPv4 address' ),
-			array( '203.0.113.xxx', true, 'Assigned by UseMod to cloaked logged-out users' ),
-		);
+			[ '300.300.300.300', true, 'Looks too much like an IPv4 address' ],
+			[ '203.0.113.xxx', true, 'Assigned by UseMod to cloaked logged-out users' ],
+		];
 	}
 
 	/**
@@ -159,24 +159,24 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	public static function provideUserNames() {
-		return array(
-			array( '', false, 'Empty string' ),
-			array( ' ', false, 'Blank space' ),
-			array( 'abcd', false, 'Starts with small letter' ),
-			array( 'Ab/cd', false, 'Contains slash' ),
-			array( 'Ab cd', true, 'Whitespace' ),
-			array( '192.168.1.1', false, 'IP' ),
-			array( 'User:Abcd', false, 'Reserved Namespace' ),
-			array( '12abcd232', true, 'Starts with Numbers' ),
-			array( '?abcd', true, 'Start with ? mark' ),
-			array( '#abcd', false, 'Start with #' ),
-			array( 'Abcdകഖഗഘ', true, ' Mixed scripts' ),
-			array( 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ),
-			array( 'Ab　cd', false, ' Ideographic space' ),
-			array( '300.300.300.300', false, 'Looks too much like an IPv4 address' ),
-			array( '302.113.311.900', false, 'Looks too much like an IPv4 address' ),
-			array( '203.0.113.xxx', false, 'Reserved for usage by UseMod for cloaked logged-out users' ),
-		);
+		return [
+			[ '', false, 'Empty string' ],
+			[ ' ', false, 'Blank space' ],
+			[ 'abcd', false, 'Starts with small letter' ],
+			[ 'Ab/cd', false, 'Contains slash' ],
+			[ 'Ab cd', true, 'Whitespace' ],
+			[ '192.168.1.1', false, 'IP' ],
+			[ 'User:Abcd', false, 'Reserved Namespace' ],
+			[ '12abcd232', true, 'Starts with Numbers' ],
+			[ '?abcd', true, 'Start with ? mark' ],
+			[ '#abcd', false, 'Start with #' ],
+			[ 'Abcdകഖഗഘ', true, ' Mixed scripts' ],
+			[ 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ],
+			[ 'Ab　cd', false, ' Ideographic space' ],
+			[ '300.300.300.300', false, 'Looks too much like an IPv4 address' ],
+			[ '302.113.311.900', false, 'Looks too much like an IPv4 address' ],
+			[ '203.0.113.xxx', false, 'Reserved for usage by UseMod for cloaked logged-out users' ],
+		];
 	}
 
 	/**
@@ -189,7 +189,7 @@ class UserTest extends MediaWikiTestCase {
 		$allRights = User::getAllRights();
 		$allMessageKeys = Language::getMessageKeysFor( 'en' );
 
-		$rightsWithMessage = array();
+		$rightsWithMessage = [];
 		foreach ( $allMessageKeys as $message ) {
 			// === 0: must be at beginning of string (position 0)
 			if ( strpos( $message, 'right-' ) === 0 ) {
@@ -286,30 +286,30 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isValidPassword()
 	 */
 	public function testCheckPasswordValidity() {
-		$this->setMwGlobals( array(
-			'wgPasswordPolicy' => array(
-				'policies' => array(
-					'sysop' => array(
+		$this->setMwGlobals( [
+			'wgPasswordPolicy' => [
+				'policies' => [
+					'sysop' => [
 						'MinimalPasswordLength' => 8,
 						'MinimumPasswordLengthToLogin' => 1,
 						'PasswordCannotMatchUsername' => 1,
-					),
-					'default' => array(
+					],
+					'default' => [
 						'MinimalPasswordLength' => 6,
 						'PasswordCannotMatchUsername' => true,
 						'PasswordCannotMatchBlacklist' => true,
 						'MaximalPasswordLength' => 30,
-					),
-				),
-				'checks' => array(
+					],
+				],
+				'checks' => [
 					'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
 					'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
 					'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 					'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 					'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-				),
-			),
-		) );
+				],
+			],
+		] );
 
 		$user = User::newFromName( 'Useruser' );
 		// Sanity
@@ -353,20 +353,20 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetCanonicalName() {
-		return array(
-			array( ' Trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
+		return [
+			[ ' Trailing space ', [ 'creatable' => 'Trailing space' ], 'Trailing spaces' ],
 			// @todo FIXME: Maybe the creatable name should be 'Talk:Username' or false to reject?
-			array( 'Talk:Username', array( 'creatable' => 'Username', 'usable' => 'Username',
-				'valid' => 'Username', 'false' => 'Talk:Username' ), 'Namespace prefix' ),
-			array( ' name with # hash', array( 'creatable' => false, 'usable' => false ), 'With hash' ),
-			array( 'Multi  spaces', array( 'creatable' => 'Multi spaces',
-				'usable' => 'Multi spaces' ), 'Multi spaces' ),
-			array( 'lowercase', array( 'creatable' => 'Lowercase' ), 'Lowercase' ),
-			array( 'in[]valid', array( 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'In[]valid' ), 'Invalid' ),
-			array( 'with / slash', array( 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'With / slash' ), 'With slash' ),
-		);
+			[ 'Talk:Username', [ 'creatable' => 'Username', 'usable' => 'Username',
+				'valid' => 'Username', 'false' => 'Talk:Username' ], 'Namespace prefix' ],
+			[ ' name with # hash', [ 'creatable' => false, 'usable' => false ], 'With hash' ],
+			[ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
+				'usable' => 'Multi spaces' ], 'Multi spaces' ],
+			[ 'lowercase', [ 'creatable' => 'Lowercase' ], 'Lowercase' ],
+			[ 'in[]valid', [ 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'In[]valid' ], 'Invalid' ],
+			[ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'With / slash' ], 'With slash' ],
+		];
 	}
 
 	/**

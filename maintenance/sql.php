@@ -71,7 +71,7 @@ class MwSql extends Maintenance {
 			$index = DB_MASTER;
 		}
 		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
-		$db = $lb->getConnection( $index, array(), $wiki );
+		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $this->hasOption( 'slave' ) && $db->getLBInfo( 'master' ) !== null ) {
 			$this->error( "The server selected ({$db->getServer()}) is not a slave.", 1 );
 		}
@@ -82,7 +82,7 @@ class MwSql extends Maintenance {
 				$this->error( "Unable to open input file", true );
 			}
 
-			$error = $db->sourceStream( $file, false, array( $this, 'sqlPrintResult' ) );
+			$error = $db->sourceStream( $file, false, [ $this, 'sqlPrintResult' ] );
 			if ( $error !== true ) {
 				$this->error( $error, true );
 			} else {

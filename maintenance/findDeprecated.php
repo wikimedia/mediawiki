@@ -53,7 +53,7 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 
 	private $currentClass = null;
 
-	private $foundNodes = array();
+	private $foundNodes = [];
 
 	public function getFoundNodes() {
 		// Sort results by version, then by filename, then by name.
@@ -105,12 +105,12 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 				$name = $node->name;
 			}
 
-			$this->foundNodes[ $version ][] = array(
+			$this->foundNodes[ $version ][] = [
 				'filename' => $node->filename,
 				'line'     => $node->getLine(),
 				'name'     => $name,
 				'hard'     => $this->isHardDeprecated( $node ),
-			);
+			];
 		}
 
 		return $retVal;
@@ -158,7 +158,7 @@ class FindDeprecated extends Maintenance {
 			}
 
 			$finder->setCurrentFile( substr( $file->getPathname(), strlen( $IP ) + 1 ) );
-			$nodes = $parser->parse( $code, array( 'throwOnError' => false ) );
+			$nodes = $parser->parse( $code, [ 'throwOnError' => false ] );
 			$traverser->traverse( $nodes );
 
 			if ( $i % $chunkSize === 0 ) {

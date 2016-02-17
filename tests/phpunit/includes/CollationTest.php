@@ -37,21 +37,21 @@ class CollationTest extends MediaWikiLangTestCase {
 	}
 
 	public static function prefixDataProvider() {
-		return array(
-			array( 'en', 'A', 'AA' ),
-			array( 'en', 'A', 'AAA' ),
-			array( 'en', 'Д', 'ДЂ' ),
-			array( 'en', 'Д', 'ДA' ),
+		return [
+			[ 'en', 'A', 'AA' ],
+			[ 'en', 'A', 'AAA' ],
+			[ 'en', 'Д', 'ДЂ' ],
+			[ 'en', 'Д', 'ДA' ],
 			// 'Ʒ' should expand to 'Z ' (note space).
-			array( 'fi', 'Z', 'Ʒ' ),
+			[ 'fi', 'Z', 'Ʒ' ],
 			// 'Þ' should expand to 'th'
-			array( 'sv', 't', 'Þ' ),
+			[ 'sv', 't', 'Þ' ],
 			// Javanese is a limited use alphabet, so should have 3 bytes
 			// per character, so do some tests with it.
-			array( 'en', 'ꦲ', 'ꦲꦤ' ),
-			array( 'en', 'ꦲ', 'ꦲД' ),
-			array( 'en', 'A', 'Aꦲ' ),
-		);
+			[ 'en', 'ꦲ', 'ꦲꦤ' ],
+			[ 'en', 'ꦲ', 'ꦲД' ],
+			[ 'en', 'A', 'Aꦲ' ],
+		];
 	}
 
 	/**
@@ -70,12 +70,12 @@ class CollationTest extends MediaWikiLangTestCase {
 	}
 
 	public static function notPrefixDataProvider() {
-		return array(
-			array( 'en', 'A', 'B' ),
-			array( 'en', 'AC', 'ABC' ),
-			array( 'en', 'Z', 'Ʒ' ),
-			array( 'en', 'A', 'ꦲ' ),
-		);
+		return [
+			[ 'en', 'A', 'B' ],
+			[ 'en', 'AC', 'ABC' ],
+			[ 'en', 'Z', 'Ʒ' ],
+			[ 'en', 'A', 'ꦲ' ],
+		];
 	}
 
 	/**
@@ -93,25 +93,25 @@ class CollationTest extends MediaWikiLangTestCase {
 	}
 
 	function firstLetterProvider() {
-		return array(
-			array( 'uppercase', 'Abc', 'A' ),
-			array( 'uppercase', 'abc', 'A' ),
-			array( 'identity', 'abc', 'a' ),
-			array( 'uca-en', 'abc', 'A' ),
-			array( 'uca-en', ' ', ' ' ),
-			array( 'uca-en', 'Êveryone', 'E' ),
-			array( 'uca-vi', 'Êveryone', 'Ê' ),
+		return [
+			[ 'uppercase', 'Abc', 'A' ],
+			[ 'uppercase', 'abc', 'A' ],
+			[ 'identity', 'abc', 'a' ],
+			[ 'uca-en', 'abc', 'A' ],
+			[ 'uca-en', ' ', ' ' ],
+			[ 'uca-en', 'Êveryone', 'E' ],
+			[ 'uca-vi', 'Êveryone', 'Ê' ],
 			// Make sure thorn is not a first letter.
-			array( 'uca-sv', 'The', 'T' ),
-			array( 'uca-sv', 'Å', 'Å' ),
-			array( 'uca-hu', 'dzsdo', 'Dzs' ),
-			array( 'uca-hu', 'dzdso', 'Dz' ),
-			array( 'uca-hu', 'CSD', 'Cs' ),
-			array( 'uca-root', 'CSD', 'C' ),
-			array( 'uca-fi', 'Ǥ', 'G' ),
-			array( 'uca-fi', 'Ŧ', 'T' ),
-			array( 'uca-fi', 'Ʒ', 'Z' ),
-			array( 'uca-fi', 'Ŋ', 'N' ),
-		);
+			[ 'uca-sv', 'The', 'T' ],
+			[ 'uca-sv', 'Å', 'Å' ],
+			[ 'uca-hu', 'dzsdo', 'Dzs' ],
+			[ 'uca-hu', 'dzdso', 'Dz' ],
+			[ 'uca-hu', 'CSD', 'Cs' ],
+			[ 'uca-root', 'CSD', 'C' ],
+			[ 'uca-fi', 'Ǥ', 'G' ],
+			[ 'uca-fi', 'Ŧ', 'T' ],
+			[ 'uca-fi', 'Ʒ', 'Z' ],
+			[ 'uca-fi', 'Ŋ', 'N' ],
+		];
 	}
 }

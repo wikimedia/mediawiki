@@ -18,7 +18,7 @@
 
 $fallback = 'it';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciàle',
 	NS_TALK             => 'Chiàcchiera',
@@ -35,9 +35,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ajùto_chiàcchiera',
 	NS_CATEGORY         => 'Categurìa',
 	NS_CATEGORY_TALK    => 'Categurìa_chiàcchiera',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Speciale' => NS_SPECIAL,
 	'Discussione' => NS_TALK,
 	'Utente' => NS_USER,
@@ -52,5 +52,5 @@ $namespaceAliases = array(
 	'Discussioni_aiuto' => NS_HELP_TALK,
 	'Categoria' => NS_CATEGORY,
 	'Discussioni_categoria' => NS_CATEGORY_TALK,
-);
+];
 

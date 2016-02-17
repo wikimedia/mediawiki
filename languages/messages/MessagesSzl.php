@@ -25,7 +25,7 @@
 
 $fallback = 'pl';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Szpecyjalna',
 	NS_TALK             => 'Dyskusyjo',
 	NS_USER             => 'Używacz',
@@ -41,9 +41,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Dyskusyjo_půmocy',
 	NS_CATEGORY         => 'Kategoryjo',
 	NS_CATEGORY_TALK    => 'Dyskusyjo_kategoryji',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	// Aliases for Polish namespaces (bug 34988).
 	'Specjalna'            => NS_SPECIAL,
 	'Dyskusja'             => NS_TALK,
@@ -58,8 +58,8 @@ $namespaceAliases = array(
 	'Dyskusja_pomocy'      => NS_HELP_TALK,
 	'Kategoria'            => NS_CATEGORY,
 	'Dyskusja_kategorii'   => NS_CATEGORY_TALK,
-);
+];
 
 // Remove Polish gender aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

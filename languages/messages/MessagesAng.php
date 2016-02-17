@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Syndrig',
 	NS_TALK             => 'Mōtung',
 	NS_USER             => 'Brūcend',
@@ -22,9 +22,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Helpmōtung',
 	NS_CATEGORY         => 'Flocc',
 	NS_CATEGORY_TALK    => 'Floccmōtung',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Gesprec'       => NS_TALK,
 	'Motung'        => NS_TALK,
 	'Brucend'       => NS_USER,
@@ -38,5 +38,5 @@ $namespaceAliases = array(
 	'Helpmotung'    => NS_HELP_TALK,
 	'Floccgesprec'  => NS_CATEGORY_TALK,
 	'Floccmotung'   => NS_CATEGORY_TALK,
-);
+];
 

@@ -33,38 +33,38 @@ class AvroFormatterTest extends MediaWikiTestCase {
 	}
 
 	public function testSchemaNotAvailable() {
-		$formatter = new AvroFormatter( array() );
+		$formatter = new AvroFormatter( [] );
 		$this->setExpectedException(
 			'PHPUnit_Framework_Error_Notice',
 			"The schema for channel 'marty' is not available"
 		);
-		$formatter->format( array( 'channel' => 'marty' ) );
+		$formatter->format( [ 'channel' => 'marty' ] );
 	}
 
 	public function testSchemaNotAvailableReturnValue() {
-		$formatter = new AvroFormatter( array() );
+		$formatter = new AvroFormatter( [] );
 		$noticeEnabled = PHPUnit_Framework_Error_Notice::$enabled;
 		// disable conversion of notices
 		PHPUnit_Framework_Error_Notice::$enabled = false;
 		// have to keep the user notice from being output
 		wfSuppressWarnings();
-		$res = $formatter->format( array( 'channel' => 'marty' ) );
+		$res = $formatter->format( [ 'channel' => 'marty' ] );
 		wfRestoreWarnings();
 		PHPUnit_Framework_Error_Notice::$enabled = $noticeEnabled;
 		$this->assertNull( $res );
 	}
 
 	public function testDoesSomethingWhenSchemaAvailable() {
-		$formatter = new AvroFormatter( array(
-			'string' => array(
-				'schema' => array( 'type' => 'string' ),
+		$formatter = new AvroFormatter( [
+			'string' => [
+				'schema' => [ 'type' => 'string' ],
 				'revision' => 1010101,
-			)
-		) );
-		$res = $formatter->format( array(
+			]
+		] );
+		$res = $formatter->format( [
 			'channel' => 'string',
 			'context' => 'better to be',
-		) );
+		] );
 		$this->assertNotNull( $res );
 		// basically just tell us if avro changes its string encoding, or if
 		// we completely fail to generate a log message.

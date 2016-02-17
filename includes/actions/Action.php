@@ -101,7 +101,7 @@ abstract class Action {
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
-			return call_user_func_array( $classOrCallable, array( $page, $context ) );
+			return call_user_func_array( $classOrCallable, [ $page, $context ] );
 		}
 
 		return $classOrCallable;
@@ -164,7 +164,7 @@ abstract class Action {
 	 * @return bool
 	 */
 	final public static function exists( $name ) {
-		return self::getClass( $name, array() ) !== null;
+		return self::getClass( $name, [] ) !== null;
 	}
 
 	/**
@@ -252,7 +252,7 @@ abstract class Action {
 	 */
 	final public function msg() {
 		$params = func_get_args();
-		return call_user_func_array( array( $this->getContext(), 'msg' ), $params );
+		return call_user_func_array( [ $this->getContext(), 'msg' ], $params );
 	}
 
 	/**

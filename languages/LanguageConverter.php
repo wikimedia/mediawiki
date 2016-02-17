@@ -34,7 +34,7 @@ class LanguageConverter {
 	 * @since 1.20
 	 * @var array
 	 */
-	static public $languagesWithVariants = array(
+	static public $languagesWithVariants = [
 		'gan',
 		'iu',
 		'kk',
@@ -44,7 +44,7 @@ class LanguageConverter {
 		'tg',
 		'uz',
 		'zh',
-	);
+	];
 
 	public $mMainLanguageCode;
 	public $mVariants, $mVariantFallbacks, $mVariantNames;
@@ -81,9 +81,9 @@ class LanguageConverter {
 	 * @param array $flags Defining the custom strings that maps to the flags
 	 * @param array $manualLevel Limit for supported variants
 	 */
-	public function __construct( $langobj, $maincode, $variants = array(),
-								$variantfallbacks = array(), $flags = array(),
-								$manualLevel = array() ) {
+	public function __construct( $langobj, $maincode, $variants = [],
+								$variantfallbacks = [], $flags = [],
+								$manualLevel = [] ) {
 		global $wgDisabledVariants;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
@@ -91,7 +91,7 @@ class LanguageConverter {
 		$this->mVariantFallbacks = $variantfallbacks;
 		$this->mVariantNames = Language::fetchLanguageNames();
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
-		$defaultflags = array(
+		$defaultflags = [
 			// 'S' show converted text
 			// '+' add rules for alltext
 			// 'E' the gave flags is error
@@ -103,7 +103,7 @@ class LanguageConverter {
 			'-' => '-',	  // remove convert (not implement)
 			'H' => 'H',	  // add rule for convert code (but no display in placed code)
 			'N' => 'N'	  // current variant name
-		);
+		];
 		$this->mFlags = array_merge( $defaultflags, $flags );
 		foreach ( $this->mVariants as $v ) {
 			if ( array_key_exists( $v, $manualLevel ) ) {
@@ -292,7 +292,7 @@ class LanguageConverter {
 			return null;
 		}
 
-		$fallbackLanguages = array();
+		$fallbackLanguages = [];
 		foreach ( $languages as $language ) {
 			$this->mHeaderVariant = $this->validateVariant( $language );
 			if ( $this->mHeaderVariant ) {
@@ -399,7 +399,7 @@ class LanguageConverter {
 			) {
 				$attrs = Sanitizer::decodeTagAttributes( $elementMatches[2] );
 				$changed = false;
-				foreach ( array( 'title', 'alt' ) as $attrName ) {
+				foreach ( [ 'title', 'alt' ] as $attrName ) {
 					if ( !isset( $attrs[$attrName] ) ) {
 						continue;
 					}
@@ -469,7 +469,7 @@ class LanguageConverter {
 	public function autoConvertToAllVariants( $text ) {
 		$this->loadTables();
 
-		$ret = array();
+		$ret = [];
 		foreach ( $this->mVariants as $variant ) {
 			$ret[$variant] = $this->translate( $text, $variant );
 		}
@@ -783,7 +783,7 @@ class LanguageConverter {
 			return;
 		}
 
-		$titles = array();
+		$titles = [];
 
 		foreach ( $variants as $v ) {
 			if ( $v != $link ) {
@@ -924,14 +924,14 @@ class LanguageConverter {
 	 * @return array
 	 */
 	function parseCachedTable( $code, $subpage = '', $recursive = true ) {
-		static $parsed = array();
+		static $parsed = [];
 
 		$key = 'Conversiontable/' . $code;
 		if ( $subpage ) {
 			$key .= '/' . $subpage;
 		}
 		if ( array_key_exists( $key, $parsed ) ) {
-			return array();
+			return [];
 		}
 
 		$parsed[$key] = true;
@@ -955,7 +955,7 @@ class LanguageConverter {
 
 		# Nothing to parse if there's no text
 		if ( $txt === false || $txt === null || $txt === '' ) {
-			return array();
+			return [];
 		}
 
 		// get all subpage links of the form
@@ -963,7 +963,7 @@ class LanguageConverter {
 		$linkhead = $this->mLangObj->getNsText( NS_MEDIAWIKI ) .
 			':Conversiontable';
 		$subs = StringUtils::explode( '[[', $txt );
-		$sublinks = array();
+		$sublinks = [];
 		foreach ( $subs as $sub ) {
 			$link = explode( ']]', $sub, 2 );
 			if ( count( $link ) != 2 ) {
@@ -984,7 +984,7 @@ class LanguageConverter {
 
 		// parse the mappings in this page
 		$blocks = StringUtils::explode( '-{', $txt );
-		$ret = array();
+		$ret = [];
 		$first = true;
 		foreach ( $blocks as $block ) {
 			if ( $first ) {
@@ -993,7 +993,7 @@ class LanguageConverter {
 				continue;
 			}
 			$mappings = explode( '}-', $block, 2 );
-			$stripped = str_replace( array( "'", '"', '*', '#' ), '', $mappings[0] );
+			$stripped = str_replace( [ "'", '"', '*', '#' ], '', $mappings[0] );
 			$table = StringUtils::explode( ';', $stripped );
 			foreach ( $table as $t ) {
 				$m = explode( '=>', $t, 3 );

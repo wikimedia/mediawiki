@@ -66,7 +66,7 @@ class CategoryPage extends Article {
 			return;
 		}
 
-		if ( !Hooks::run( 'CategoryPageView', array( &$this ) ) ) {
+		if ( !Hooks::run( 'CategoryPageView', [ &$this ] ) ) {
 			return;
 		}
 
@@ -94,8 +94,8 @@ class CategoryPage extends Article {
 
 		$reqArray = $request->getValues();
 
-		$from = $until = array();
-		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
+		$from = $until = [];
+		foreach ( [ 'page', 'subcat', 'file' ] as $type ) {
 			$from[$type] = $request->getVal( "{$type}from", $oldFrom );
 			$until[$type] = $request->getVal( "{$type}until", $oldUntil );
 

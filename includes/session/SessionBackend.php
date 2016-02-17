@@ -79,7 +79,7 @@ final class SessionBackend {
 	private $curIndex = 0;
 
 	/** @var WebRequest[] Session requests */
-	private $requests = array();
+	private $requests = [];
 
 	/** @var SessionProvider provider */
 	private $provider;
@@ -135,14 +135,14 @@ final class SessionBackend {
 			!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] ) ||
 			!isset( $blob['data'] ) || !is_array( $blob['data'] )
 		) {
-			$this->data = array();
+			$this->data = [];
 			$this->dataDirty = true;
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" is unsaved, marking dirty in constructor',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 		} else {
 			$this->data = $blob['data'];
 			if ( isset( $blob['metadata']['loggedOut'] ) ) {
@@ -154,9 +154,9 @@ final class SessionBackend {
 				$this->metaDirty = true;
 				$this->logger->debug(
 					'SessionBackend "{session}" metadata dirty due to missing expiration timestamp',
-				array(
+				[
 					'session' => $this->id,
-				) );
+				] );
 			}
 		}
 		$this->dataHash = md5( serialize( $this->data ) );
@@ -225,10 +225,10 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" metadata dirty due to ID reset (formerly "{oldId}")',
-				array(
+				[
 					'session' => $this->id,
 					'oldId' => $oldId,
-			) );
+			] );
 
 			if ( $restart ) {
 				session_id( (string)$this->id );
@@ -274,9 +274,9 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" force-persist due to persist()',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 			$this->autosave();
 		} else {
 			$this->renew();
@@ -303,9 +303,9 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" metadata dirty due to remember-user change',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 			$this->autosave();
 		}
 	}
@@ -364,9 +364,9 @@ final class SessionBackend {
 		$this->metaDirty = true;
 		$this->logger->debug(
 			'SessionBackend "{session}" metadata dirty due to user change',
-			array(
+			[
 				'session' => $this->id,
-		) );
+		] );
 		$this->autosave();
 	}
 
@@ -400,9 +400,9 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" metadata dirty due to force-HTTPS change',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 			$this->autosave();
 		}
 	}
@@ -426,9 +426,9 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" metadata dirty due to logged-out-timestamp change',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 			$this->autosave();
 		}
 	}
@@ -456,9 +456,9 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{session}" metadata dirty due to provider metadata change',
-				array(
+				[
 					'session' => $this->id,
-			) );
+			] );
 			$this->autosave();
 		}
 	}
@@ -491,10 +491,10 @@ final class SessionBackend {
 				$this->dataDirty = true;
 				$this->logger->debug(
 					'SessionBackend "{session}" data dirty due to addData(): {callers}',
-					array(
+					[
 						'session' => $this->id,
 						'callers' => wfGetAllCallers( 5 ),
-				) );
+				] );
 			}
 		}
 	}
@@ -507,10 +507,10 @@ final class SessionBackend {
 		$this->dataDirty = true;
 		$this->logger->debug(
 			'SessionBackend "{session}" data dirty due to dirty(): {callers}',
-			array(
+			[
 				'session' => $this->id,
 				'callers' => wfGetAllCallers( 5 ),
-		) );
+		] );
 	}
 
 	/**
@@ -524,18 +524,18 @@ final class SessionBackend {
 			$this->metaDirty = true;
 			$this->logger->debug(
 				'SessionBackend "{callers}" metadata dirty for renew(): {callers}',
-				array(
+				[
 					'session' => $this->id,
 					'callers' => wfGetAllCallers( 5 ),
-			) );
+			] );
 			if ( $this->persist ) {
 				$this->forcePersist = true;
 				$this->logger->debug(
 					'SessionBackend "{session}" force-persist for renew(): {callers}',
-					array(
+					[
 						'session' => $this->id,
 						'callers' => wfGetAllCallers( 5 ),
-				) );
+				] );
 			}
 		}
 		$this->autosave();
@@ -576,10 +576,10 @@ final class SessionBackend {
 			$this->logger->debug(
 				'SessionBackend "{session}" not saving, user {user} was ' .
 				'passed to SessionManager::preventSessionsForUser',
-				array(
+				[
 					'session' => $this->id,
 					'user' => $this->user,
-			) );
+			] );
 			return;
 		}
 
@@ -589,10 +589,10 @@ final class SessionBackend {
 		if ( !$anon && !$this->user->getToken( false ) ) {
 			$this->logger->debug(
 				'SessionBackend "{session}" creating token for user {user} on save',
-				array(
+				[
 					'session' => $this->id,
 					'user' => $this->user,
-			) );
+			] );
 			$this->user->setToken();
 			if ( !wfReadOnly() ) {
 				$this->user->saveSettings();
@@ -606,11 +606,11 @@ final class SessionBackend {
 		) {
 			$this->logger->debug(
 				'SessionBackend "{session}" data dirty due to hash mismatch, {expected} !== {got}',
-				array(
+				[
 					'session' => $this->id,
 					'expected' => $this->dataHash,
 					'got' => md5( serialize( $this->data ) ),
-			) );
+			] );
 			$this->dataDirty = true;
 		}
 
@@ -621,12 +621,12 @@ final class SessionBackend {
 		$this->logger->debug(
 			'SessionBackend "{session}" save: dataDirty={dataDirty} ' .
 			'metaDirty={metaDirty} forcePersist={forcePersist}',
-			array(
+			[
 				'session' => $this->id,
 				'dataDirty' => (int)$this->dataDirty,
 				'metaDirty' => (int)$this->metaDirty,
 				'forcePersist' => (int)$this->forcePersist,
-		) );
+		] );
 
 		// Persist to the provider, if flagged
 		if ( $this->persist && ( $this->metaDirty || $this->forcePersist ) ) {
@@ -646,7 +646,7 @@ final class SessionBackend {
 		}
 
 		// Save session data to store, if necessary
-		$metadata = $origMetadata = array(
+		$metadata = $origMetadata = [
 			'provider' => (string)$this->provider,
 			'providerMetadata' => $this->providerMetadata,
 			'userId' => $anon ? 0 : $this->user->getId(),
@@ -657,9 +657,9 @@ final class SessionBackend {
 			'expires' => time() + $this->lifetime,
 			'loggedOut' => $this->loggedOut,
 			'persisted' => $this->persist,
-		);
+		];
 
-		\Hooks::run( 'SessionMetadata', array( $this, &$metadata, $this->requests ) );
+		\Hooks::run( 'SessionMetadata', [ $this, &$metadata, $this->requests ] );
 
 		foreach ( $origMetadata as $k => $v ) {
 			if ( $metadata[$k] !== $v ) {
@@ -669,10 +669,10 @@ final class SessionBackend {
 
 		$this->store->set(
 			wfMemcKey( 'MWSession', (string)$this->id ),
-			array(
+			[
 				'data' => $this->data,
 				'metadata' => $metadata,
-			),
+			],
 			$metadata['expires'],
 			$this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY
 		);
@@ -699,9 +699,9 @@ final class SessionBackend {
 			) {
 				$this->logger->debug(
 					'SessionBackend "{session}" Taking over PHP session',
-					array(
+					[
 						'session' => $this->id,
-				) );
+				] );
 				session_id( (string)$this->id );
 				\MediaWiki\quietCall( 'session_start' );
 			}

@@ -11,7 +11,7 @@
  * @author Vibhijain
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'मीडिया',
 	NS_SPECIAL          => 'विसेस',
 	NS_TALK             => 'सम्भासित',
@@ -28,9 +28,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'अवस्सय_सम्भासित',
 	NS_CATEGORY         => 'विभाग',
 	NS_CATEGORY_TALK    => 'विभाग_सम्भासित',
-);
+];
 
-$digitTransformTable = array(
+$digitTransformTable = [
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
 	'2' => '२', # &#x0968;
@@ -41,5 +41,5 @@ $digitTransformTable = array(
 	'7' => '७', # &#x096d;
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
-);
+];
 

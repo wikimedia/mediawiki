@@ -41,7 +41,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var array $mIndicators Page status indicators, usually displayed in top-right corner.
 	 */
-	public $mIndicators = array();
+	public $mIndicators = [];
 
 	/**
 	 * @var string $mTitleText Title text of the chosen language variant, as HTML.
@@ -52,40 +52,40 @@ class ParserOutput extends CacheTime {
 	 * @var array $mLinks 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 */
-	public $mLinks = array();
+	public $mLinks = [];
 
 	/**
 	 * @var array $mTemplates 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplates = array();
+	public $mTemplates = [];
 
 	/**
 	 * @var array $mTemplateIds 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplateIds = array();
+	public $mTemplateIds = [];
 
 	/**
 	 * @var array $mImages DB keys of the images used, in the array key only
 	 */
-	public $mImages = array();
+	public $mImages = [];
 
 	/**
 	 * @var array $mFileSearchOptions DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
-	public $mFileSearchOptions = array();
+	public $mFileSearchOptions = [];
 
 	/**
 	 * @var array $mExternalLinks External link URLs, in the key only.
 	 */
-	public $mExternalLinks = array();
+	public $mExternalLinks = [];
 
 	/**
 	 * @var array $mInterwikiLinks 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
-	public $mInterwikiLinks = array();
+	public $mInterwikiLinks = [];
 
 	/**
 	 * @var bool $mNewSection Show a new section link?
@@ -105,43 +105,43 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var array $mHeadItems Items to put in the <head> section
 	 */
-	public $mHeadItems = array();
+	public $mHeadItems = [];
 
 	/**
 	 * @var array $mModules Modules to be loaded by ResourceLoader
 	 */
-	public $mModules = array();
+	public $mModules = [];
 
 	/**
 	 * @var array $mModuleScripts Modules of which only the JS will be loaded by ResourceLoader.
 	 */
-	public $mModuleScripts = array();
+	public $mModuleScripts = [];
 
 	/**
 	 * @var array $mModuleStyles Modules of which only the CSSS will be loaded by ResourceLoader.
 	 */
-	public $mModuleStyles = array();
+	public $mModuleStyles = [];
 
 	/**
 	 * @var array $mJsConfigVars JavaScript config variable for mw.config combined with this page.
 	 */
-	public $mJsConfigVars = array();
+	public $mJsConfigVars = [];
 
 	/**
 	 * @var array $mOutputHooks Hook tags as per $wgParserOutputHooks.
 	 */
-	public $mOutputHooks = array();
+	public $mOutputHooks = [];
 
 	/**
 	 * @var array $mWarnings Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
-	public $mWarnings = array();
+	public $mWarnings = [];
 
 	/**
 	 * @var array $mSections Table of contents
 	 */
-	public $mSections = array();
+	public $mSections = [];
 
 	/**
 	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
@@ -151,7 +151,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var array $mProperties Name/value pairs to be cached in the DB.
 	 */
-	public $mProperties = array();
+	public $mProperties = [];
 
 	/**
 	 * @var string $mTOCHTML HTML of the TOC.
@@ -181,22 +181,22 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var array $mAccessedOptions List of ParserOptions (stored in the keys).
 	 */
-	private $mAccessedOptions = array();
+	private $mAccessedOptions = [];
 
 	/**
 	 * @var array $mExtensionData extra data used by extensions.
 	 */
-	private $mExtensionData = array();
+	private $mExtensionData = [];
 
 	/**
 	 * @var array $mLimitReportData Parser limit report data.
 	 */
-	private $mLimitReportData = array();
+	private $mLimitReportData = [];
 
 	/**
 	 * @var array $mParseStartTime Timestamps for getTimeSinceStart().
 	 */
-	private $mParseStartTime = array();
+	private $mParseStartTime = [];
 
 	/**
 	 * @var bool $mPreventClickjacking Whether to emit X-Frame-Options: DENY.
@@ -206,12 +206,12 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var array $mFlags Generic flags.
 	 */
-	private $mFlags = array();
+	private $mFlags = [];
 
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
-	public function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
+	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
@@ -248,9 +248,9 @@ class ParserOutput extends CacheTime {
 
 					$skin = $wgOut->getSkin();
 					return call_user_func_array(
-						array( $skin, 'doEditSectionLink' ),
-						array( $editsectionPage, $editsectionSection,
-							$editsectionContent, $wgLang->getCode() )
+						[ $skin, 'doEditSectionLink' ],
+						[ $editsectionPage, $editsectionSection,
+							$editsectionContent, $wgLang->getCode() ]
 					);
 				},
 				$text
@@ -261,7 +261,7 @@ class ParserOutput extends CacheTime {
 
 		// If you have an old cached version of this class - sorry, you can't disable the TOC
 		if ( isset( $this->mTOCEnabled ) && $this->mTOCEnabled ) {
-			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
+			$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
 		} else {
 			$text = preg_replace(
 				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
@@ -357,7 +357,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getModuleMessages() {
 		wfDeprecated( __METHOD__, '1.26' );
-		return array();
+		return [];
 	}
 
 	/** @since 1.23 */
@@ -468,7 +468,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function addOutputHook( $hook, $data = false ) {
-		$this->mOutputHooks[] = array( $hook, $data );
+		$this->mOutputHooks[] = [ $hook, $data ];
 	}
 
 	public function setNewSection( $value ) {
@@ -541,7 +541,7 @@ class ParserOutput extends CacheTime {
 			return;
 		}
 		if ( !isset( $this->mLinks[$ns] ) ) {
-			$this->mLinks[$ns] = array();
+			$this->mLinks[$ns] = [];
 		}
 		if ( is_null( $id ) ) {
 			$id = $title->getArticleID();
@@ -559,7 +559,7 @@ class ParserOutput extends CacheTime {
 	public function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
 		if ( $timestamp !== null && $sha1 !== null ) {
-			$this->mFileSearchOptions[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
+			$this->mFileSearchOptions[$name] = [ 'time' => $timestamp, 'sha1' => $sha1 ];
 		}
 	}
 
@@ -574,11 +574,11 @@ class ParserOutput extends CacheTime {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( !isset( $this->mTemplates[$ns] ) ) {
-			$this->mTemplates[$ns] = array();
+			$this->mTemplates[$ns] = [];
 		}
 		$this->mTemplates[$ns][$dbk] = $page_id;
 		if ( !isset( $this->mTemplateIds[$ns] ) ) {
-			$this->mTemplateIds[$ns] = array();
+			$this->mTemplateIds[$ns] = [];
 		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
@@ -593,7 +593,7 @@ class ParserOutput extends CacheTime {
 		}
 		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
-			$this->mInterwikiLinks[$prefix] = array();
+			$this->mInterwikiLinks[$prefix] = [];
 		}
 		$this->mInterwikiLinks[$prefix][$title->getDBkey()] = 1;
 	}
@@ -833,7 +833,7 @@ class ParserOutput extends CacheTime {
 
 	public function getProperties() {
 		if ( !isset( $this->mProperties ) ) {
-			$this->mProperties = array();
+			$this->mProperties = [];
 		}
 		return $this->mProperties;
 	}
@@ -845,7 +845,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
-			return array();
+			return [];
 		}
 		return array_keys( $this->mAccessedOptions );
 	}
@@ -934,7 +934,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	private static function getTimes( $clock = null ) {
-		$ret = array();
+		$ret = [];
 		if ( !$clock || $clock === 'wall' ) {
 			$ret['wall'] = microtime( true );
 		}
@@ -1033,7 +1033,7 @@ class ParserOutput extends CacheTime {
 	public function __sleep() {
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
-			array( 'mParseStartTime' )
+			[ 'mParseStartTime' ]
 		);
 	}
 }

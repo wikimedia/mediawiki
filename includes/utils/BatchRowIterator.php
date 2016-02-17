@@ -49,12 +49,12 @@ class BatchRowIterator implements RecursiveIterator {
 	 * @var array $conditions Array of strings containing SQL conditions
 	 *  to add to the query
 	 */
-	protected $conditions = array();
+	protected $conditions = [];
 
 	/**
 	 * @var array $joinConditions
 	 */
-	protected $joinConditions = array();
+	protected $joinConditions = [];
 
 	/**
 	 * @var array $fetchColumns List of column names to select from the
@@ -70,7 +70,7 @@ class BatchRowIterator implements RecursiveIterator {
 	/**
 	 * @var array $current The current iterator value
 	 */
-	private $current = array();
+	private $current = [];
 
 	/**
 	 * @var integer key 0-indexed number of pages fetched since self::reset()
@@ -135,7 +135,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 * @return array Map of primary key column to value within the row
 	 */
 	public function extractPrimaryKeys( $row ) {
-		$pk = array();
+		$pk = [];
 		foreach ( $this->primaryKey as $column ) {
 			$pk[$column] = $row->$column;
 		}
@@ -161,7 +161,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 */
 	public function rewind() {
 		$this->key = -1; // self::next() will turn this into 0
-		$this->current = array();
+		$this->current = [];
 		$this->next();
 	}
 
@@ -195,10 +195,10 @@ class BatchRowIterator implements RecursiveIterator {
 			$this->fetchColumns,
 			$this->buildConditions(),
 			__METHOD__,
-			array(
+			[
 				'LIMIT' => $this->batchSize,
 				'ORDER BY' => $this->orderBy,
-			),
+			],
 			$this->joinConditions
 		);
 
@@ -227,12 +227,12 @@ class BatchRowIterator implements RecursiveIterator {
 		}
 
 		$maxRow = end( $this->current );
-		$maximumValues = array();
+		$maximumValues = [];
 		foreach ( $this->primaryKey as $column ) {
 			$maximumValues[$column] = $this->db->addQuotes( $maxRow->$column );
 		}
 
-		$pkConditions = array();
+		$pkConditions = [];
 		// For example: If we have 3 primary keys
 		// first run through will generate
 		//   col1 = 4 AND col2 = 7 AND col3 > 1
@@ -267,7 +267,7 @@ class BatchRowIterator implements RecursiveIterator {
 		$keys = array_keys( $quotedMaximumValues );
 		$lastColumn = end( $keys );
 		$lastValue = array_pop( $quotedMaximumValues );
-		$conditions = array();
+		$conditions = [];
 		foreach ( $quotedMaximumValues as $column => $value ) {
 			$conditions[] = "$column = $value";
 		}

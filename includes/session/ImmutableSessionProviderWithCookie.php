@@ -41,7 +41,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/** @var string|null */
 	protected $sessionCookieName = null;
-	protected $sessionCookieOptions = array();
+	protected $sessionCookieOptions = [];
 
 	/**
 	 * @param array $params Keys include:
@@ -49,7 +49,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 	 *    client are to be supported.
 	 *  - sessionCookieOptions: Options to pass to WebResponse::setCookie().
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 		parent::__construct();
 
 		if ( isset( $params['sessionCookieName'] ) ) {
@@ -114,7 +114,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 		$options = $this->sessionCookieOptions;
 		if ( $session->shouldForceHTTPS() || $session->getUser()->requiresHTTPS() ) {
 			$response->setCookie( 'forceHTTPS', 'true', $session->shouldRememberUser() ? 0 : null,
-				array( 'prefix' => '', 'secure' => false ) + $options );
+				[ 'prefix' => '', 'secure' => false ] + $options );
 			$options['secure'] = true;
 		}
 
@@ -138,13 +138,13 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	public function getVaryCookies() {
 		if ( $this->sessionCookieName === null ) {
-			return array();
+			return [];
 		}
 
 		$prefix = isset( $this->sessionCookieOptions['prefix'] )
 			? $this->sessionCookieOptions['prefix']
 			: $this->config->get( 'CookiePrefix' );
-		return array( $prefix . $this->sessionCookieName );
+		return [ $prefix . $this->sessionCookieName ];
 	}
 
 	public function whyNoSession() {

@@ -38,16 +38,16 @@ class JpegTest extends MediaWikiMediaTestCase {
 	public function testGetIndependentMetaArray() {
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$res = $this->handler->getCommonMetaArray( $file );
-		$expected = array(
+		$expected = [
 			'ImageDescription' => 'Test file',
 			'XResolution' => '72/1',
 			'YResolution' => '72/1',
 			'ResolutionUnit' => 2,
 			'YCbCrPositioning' => 1,
-			'JPEGFileComment' => array(
+			'JPEGFileComment' => [
 				'Created with GIMP',
-			),
-		);
+			],
+		];
 
 		$this->assertEquals( $res, $expected );
 	}

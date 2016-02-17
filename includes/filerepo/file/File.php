@@ -150,7 +150,7 @@ abstract class File implements IDBAccessObject {
 	protected $repoClass = 'FileRepo';
 
 	/** @var array Cache of tmp filepaths pointing to generated bucket thumbnails, keyed by width */
-	protected $tmpBucketedThumbCache = array();
+	protected $tmpBucketedThumbCache = [];
 
 	/**
 	 * Call this constructor from child classes.
@@ -202,7 +202,7 @@ abstract class File implements IDBAccessObject {
 	}
 
 	function __get( $name ) {
-		$function = array( $this, 'get' . ucfirst( $name ) );
+		$function = [ $this, 'get' . ucfirst( $name ) ];
 		if ( !is_callable( $function ) ) {
 			return null;
 		} else {
@@ -222,12 +222,12 @@ abstract class File implements IDBAccessObject {
 	 */
 	static function normalizeExtension( $extension ) {
 		$lower = strtolower( $extension );
-		$squish = array(
+		$squish = [
 			'htm' => 'html',
 			'jpeg' => 'jpg',
 			'mpeg' => 'mpg',
 			'tiff' => 'tif',
-			'ogv' => 'ogg' );
+			'ogv' => 'ogg' ];
 		if ( isset( $squish[$lower] ) ) {
 			return $squish[$lower];
 		} elseif ( preg_match( '/^[0-9a-z]+$/', $lower ) ) {
@@ -273,7 +273,7 @@ abstract class File implements IDBAccessObject {
 		if ( strpos( $mime, '/' ) !== false ) {
 			return explode( '/', $mime, 2 );
 		} else {
-			return array( $mime, 'unknown' );
+			return [ $mime, 'unknown' ];
 		}
 	}
 
@@ -576,7 +576,7 @@ abstract class File implements IDBAccessObject {
 		if ( $handler ) {
 			return $handler->getAvailableLanguages( $this );
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -896,7 +896,7 @@ abstract class File implements IDBAccessObject {
 			if ( $this->repo ) {
 				$script = $this->repo->getThumbScriptUrl();
 				if ( $script ) {
-					$this->transformScript = wfAppendQuery( $script, array( 'f' => $this->getName() ) );
+					$this->transformScript = wfAppendQuery( $script, [ 'f' => $this->getName() ] );
 				}
 			}
 		}
@@ -911,7 +911,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getUnscaledThumb( $handlerParams = array() ) {
+	function getUnscaledThumb( $handlerParams = [] ) {
 		$hp =& $handlerParams;
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		$width = $this->getWidth( $page );
@@ -989,7 +989,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	public function createThumb( $width, $height = -1 ) {
-		$params = array( 'width' => $width );
+		$params = [ 'width' => $width ];
 		if ( $height != -1 ) {
 			$params['height'] = $height;
 		}
@@ -1170,7 +1170,7 @@ abstract class File implements IDBAccessObject {
 			$stats->timing( 'media.thumbnail.generate.store', 1000 * $statTiming );
 
 			// Give extensions a chance to do something with this thumbnail...
-			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
+			Hooks::run( 'FileTransformed', [ $this, $thumb, $tmpThumbPath, $thumbPath ] );
 		}
 
 		return $thumb;
@@ -1256,11 +1256,11 @@ abstract class File implements IDBAccessObject {
 				$tmpPath = $this->tmpBucketedThumbCache[$bucket];
 
 				if ( file_exists( $tmpPath ) ) {
-					return array(
+					return [
 						'path' => $tmpPath,
 						'width' => $bucket,
 						'height' => $bucketHeight
-					);
+					];
 				}
 			}
 
@@ -1270,11 +1270,11 @@ abstract class File implements IDBAccessObject {
 				$fsFile = $this->repo->getLocalReference( $bucketPath );
 
 				if ( $fsFile ) {
-					return array(
+					return [
 						'path' => $fsFile->getPath(),
 						'width' => $bucket,
 						'height' => $bucketHeight
-					);
+					];
 				}
 			}
 		}
@@ -1284,11 +1284,11 @@ abstract class File implements IDBAccessObject {
 		if ( $this->getSize() >= 1e7 ) { // 10MB
 			$that = $this;
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $this->getName() ),
-				array(
+				[
 					'doWork' => function () use ( $that ) {
 						return $that->getLocalRefPath();
 					}
-				)
+				]
 			);
 			$srcPath = $work->execute();
 		} else {
@@ -1296,11 +1296,11 @@ abstract class File implements IDBAccessObject {
 		}
 
 		// Original file
-		return array(
+		return [
 			'path' => $srcPath,
 			'width' => $this->getWidth(),
 			'height' => $this->getHeight()
-		);
+		];
 	}
 
 	/**
@@ -1319,7 +1319,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	protected function getBucketThumbName( $bucket ) {
-		return $this->thumbName( array( 'physicalWidth' => $bucket ) );
+		return $this->thumbName( [ 'physicalWidth' => $bucket ] );
 	}
 
 	/**
@@ -1380,10 +1380,10 @@ abstract class File implements IDBAccessObject {
 		$assetsPath = "$wgResourceBasePath/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 
-		$try = array( 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' );
+		$try = [ 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' ];
 		foreach ( $try as $icon ) {
 			if ( file_exists( $assetsDirectory . $icon ) ) { // always FS
-				$params = array( 'width' => 120, 'height' => 120 );
+				$params = [ 'width' => 120, 'height' => 120 ];
 
 				return new ThumbnailImage( $this, $assetsPath . $icon, false, $params );
 			}
@@ -1408,7 +1408,7 @@ abstract class File implements IDBAccessObject {
 	 * @return array
 	 */
 	function getThumbnails() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -1418,7 +1418,7 @@ abstract class File implements IDBAccessObject {
 	 * @param array $options Options, which include:
 	 *   'forThumbRefresh' : The purging is only to refresh thumbnails
 	 */
-	function purgeCache( $options = array() ) {
+	function purgeCache( $options = [] ) {
 	}
 
 	/**
@@ -1462,7 +1462,7 @@ abstract class File implements IDBAccessObject {
 	 * @return File[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
-		return array();
+		return [];
 	}
 
 	/**
@@ -1812,7 +1812,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function publish( $srcPath, $flags = 0, array $options = array() ) {
+	function publish( $srcPath, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
@@ -1945,7 +1945,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function restore( $versions = array(), $unsuppress = false ) {
+	function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -2065,7 +2065,7 @@ abstract class File implements IDBAccessObject {
 				wfDebug( "miss\n" );
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
-			$res = Http::get( $renderUrl, array(), __METHOD__ );
+			$res = Http::get( $renderUrl, [], __METHOD__ );
 			if ( $res && $key ) {
 				$cache->set( $key, $res, $this->repo->descriptionCacheExpiry );
 			}
@@ -2161,7 +2161,7 @@ abstract class File implements IDBAccessObject {
 		if ( $handler ) {
 			return $handler->getStreamHeaders( $this->getMetadata() );
 		} else {
-			return array();
+			return [];
 		}
 	}
 

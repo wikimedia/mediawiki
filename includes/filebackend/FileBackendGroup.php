@@ -33,7 +33,7 @@ class FileBackendGroup {
 	protected static $instance = null;
 
 	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
-	protected $backends = array();
+	protected $backends = [];
 
 	protected function __construct() {
 	}
@@ -66,9 +66,9 @@ class FileBackendGroup {
 		// Register explicitly defined backends
 		$this->register( $wgFileBackends, wfConfiguredReadOnlyReason() );
 
-		$autoBackends = array();
+		$autoBackends = [];
 		// Automatically create b/c backends for file repos...
-		$repos = array_merge( $wgForeignFileRepos, array( $wgLocalFileRepo ) );
+		$repos = array_merge( $wgForeignFileRepos, [ $wgLocalFileRepo ] );
 		foreach ( $repos as $info ) {
 			$backendName = $info['backend'];
 			if ( is_object( $backendName ) || isset( $this->backends[$backendName] ) ) {
@@ -90,19 +90,19 @@ class FileBackendGroup {
 				? $info['fileMode']
 				: 0644;
 			// Get the FS backend configuration
-			$autoBackends[] = array(
+			$autoBackends[] = [
 				'name' => $backendName,
 				'class' => 'FSFileBackend',
 				'lockManager' => 'fsLockManager',
-				'containerPaths' => array(
+				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
 					"{$repoName}-thumb" => $thumbDir,
 					"{$repoName}-transcoded" => $transcodedDir,
 					"{$repoName}-deleted" => $deletedDir,
 					"{$repoName}-temp" => "{$directory}/temp"
-				),
+				],
 				'fileMode' => $fileMode,
-			);
+			];
 		}
 
 		// Register implicitly defined backends
@@ -134,11 +134,11 @@ class FileBackendGroup {
 				: $readOnlyReason;
 
 			unset( $config['class'] ); // backend won't need this
-			$this->backends[$name] = array(
+			$this->backends[$name] = [
 				'class' => $class,
 				'config' => $config,
 				'instance' => null
-			);
+			];
 		}
 	}
 
@@ -164,9 +164,9 @@ class FileBackendGroup {
 				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
-				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
+				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
-			$config['mimeCallback'] = array( $this, 'guessMimeInternal' );
+			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
@@ -187,7 +187,7 @@ class FileBackendGroup {
 		}
 		$class = $this->backends[$name]['class'];
 
-		return array( 'class' => $class ) + $this->backends[$name]['config'];
+		return [ 'class' => $class ] + $this->backends[$name]['config'];
 	}
 
 	/**

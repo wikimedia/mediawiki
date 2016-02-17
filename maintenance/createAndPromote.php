@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CreateAndPromote extends Maintenance {
-	private static $permitRoles = array( 'sysop', 'bureaucrat', 'bot' );
+	private static $permitRoles = [ 'sysop', 'bureaucrat', 'bot' ];
 
 	public function __construct() {
 		parent::__construct();
@@ -59,7 +59,7 @@ class CreateAndPromote extends Maintenance {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
 		$force = $this->hasOption( 'force' );
-		$inGroups = array();
+		$inGroups = [];
 
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
@@ -77,7 +77,7 @@ class CreateAndPromote extends Maintenance {
 			$inGroups = $user->getGroups();
 		}
 
-		$groups = array_filter( self::$permitRoles, array( $this, 'hasOption' ) );
+		$groups = array_filter( self::$permitRoles, [ $this, 'hasOption' ] );
 		if ( $this->hasOption( 'custom-groups' ) ) {
 			$customGroupsText = $this->getOption( 'custom-groups' );
 			if ( $customGroupsText !== '' ) {
@@ -126,7 +126,7 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		# Promote user
-		array_map( array( $user, 'addGroup' ), $promotions );
+		array_map( [ $user, 'addGroup' ], $promotions );
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users

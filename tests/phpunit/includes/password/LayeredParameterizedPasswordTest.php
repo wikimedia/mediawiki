@@ -2,28 +2,28 @@
 
 class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
-		return array(
-			'testLargeLayeredTop' => array(
+		return [
+			'testLargeLayeredTop' => [
 				'class' => 'LayeredParameterizedPassword',
-				'types' => array(
+				'types' => [
 					'testLargeLayeredBottom',
 					'testLargeLayeredBottom',
 					'testLargeLayeredBottom',
 					'testLargeLayeredBottom',
 					'testLargeLayeredFinal',
-				),
-			),
-			'testLargeLayeredBottom' => array(
+				],
+			],
+			'testLargeLayeredBottom' => [
 				'class' => 'Pbkdf2Password',
 				'algo' => 'sha512',
 				'cost' => 1024,
 				'length' => 512,
-			),
-			'testLargeLayeredFinal' => array(
+			],
+			'testLargeLayeredFinal' => [
 				'class' => 'BcryptPassword',
 				'cost' => 5,
-			)
-		);
+			]
+		];
 	}
 
 	public static function providePasswordTests() {

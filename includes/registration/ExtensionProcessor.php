@@ -7,7 +7,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected static $globalSettings = array(
+	protected static $globalSettings = [
 		'ResourceLoaderSources',
 		'ResourceLoaderLESSVars',
 		'ResourceLoaderLESSImportPaths',
@@ -46,7 +46,7 @@ class ExtensionProcessor implements Processor {
 		'APIListModules',
 		'ValidSkinNames',
 		'FeedClasses',
-	);
+	];
 
 	/**
 	 * Mapping of global settings to their specific merge strategies.
@@ -55,7 +55,7 @@ class ExtensionProcessor implements Processor {
 	 * @see getExtractedInfo
 	 * @var array
 	 */
-	protected static $mergeStrategies = array(
+	protected static $mergeStrategies = [
 		'wgGroupPermissions' => 'array_plus_2d',
 		'wgRevokePermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
@@ -66,14 +66,14 @@ class ExtensionProcessor implements Processor {
 		'wgNamespaceProtection' => 'array_plus',
 		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgRateLimits' => 'array_plus_2d',
-	);
+	];
 
 	/**
 	 * Keys that are part of the extension credits
 	 *
 	 * @var array
 	 */
-	protected static $creditsAttributes = array(
+	protected static $creditsAttributes = [
 		'name',
 		'namemsg',
 		'author',
@@ -82,7 +82,7 @@ class ExtensionProcessor implements Processor {
 		'description',
 		'descriptionmsg',
 		'license-name',
-	);
+	];
 
 	/**
 	 * Things that are not 'attributes', but are not in
@@ -90,7 +90,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected static $notAttributes = array(
+	protected static $notAttributes = [
 		'callback',
 		'Hooks',
 		'namespaces',
@@ -105,7 +105,7 @@ class ExtensionProcessor implements Processor {
 		'AutoloadClasses',
 		'manifest_version',
 		'load_composer_autoloader',
-	);
+	];
 
 	/**
 	 * Stuff that is going to be set to $GLOBALS
@@ -114,29 +114,29 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected $globals = array(
-		'wgExtensionMessagesFiles' => array(),
-		'wgMessagesDirs' => array(),
-	);
+	protected $globals = [
+		'wgExtensionMessagesFiles' => [],
+		'wgMessagesDirs' => [],
+	];
 
 	/**
 	 * Things that should be define()'d
 	 *
 	 * @var array
 	 */
-	protected $defines = array();
+	protected $defines = [];
 
 	/**
 	 * Things to be called once registration of these extensions are done
 	 *
 	 * @var callable[]
 	 */
-	protected $callbacks = array();
+	protected $callbacks = [];
 
 	/**
 	 * @var array
 	 */
-	protected $credits = array();
+	protected $credits = [];
 
 	/**
 	 * Any thing else in the $info that hasn't
@@ -144,7 +144,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected $attributes = array();
+	protected $attributes = [];
 
 	/**
 	 * @param string $path
@@ -186,17 +186,17 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		return array(
+		return [
 			'globals' => $this->globals,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
 			'attributes' => $this->attributes,
-		);
+		];
 	}
 
 	public function getRequirements( array $info ) {
-		$requirements = array();
+		$requirements = [];
 		$key = ExtensionRegistry::MEDIAWIKI_CORE;
 		if ( isset( $info['requires'][$key] ) ) {
 			$requirements[$key] = $info['requires'][$key];
@@ -256,7 +256,7 @@ class ExtensionProcessor implements Processor {
 			$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
 		}
 
-		foreach ( array( 'ResourceModules', 'ResourceModuleSkinStyles' ) as $setting ) {
+		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles' ] as $setting ) {
 			if ( isset( $info[$setting] ) ) {
 				foreach ( $info[$setting] as $name => $data ) {
 					if ( isset( $data['localBasePath'] ) ) {
@@ -302,10 +302,10 @@ class ExtensionProcessor implements Processor {
 	 * @throws Exception
 	 */
 	protected function extractCredits( $path, array $info ) {
-		$credits = array(
+		$credits = [
 			'path' => $path,
 			'type' => isset( $info['type'] ) ? $info['type'] : 'other',
-		);
+		];
 		foreach ( self::$creditsAttributes as $attr ) {
 			if ( isset( $info[$attr] ) ) {
 				$credits[$attr] = $info[$attr];
@@ -374,7 +374,7 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getExtraAutoloaderPaths( $dir, array $info ) {
-		$paths = array();
+		$paths = [];
 		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
 			$path = "$dir/vendor/autoload.php";
 			if ( file_exists( $path ) ) {

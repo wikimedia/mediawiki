@@ -40,8 +40,8 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mTitle = clone $imagePage->getTitle();
 		$this->mTitle->setFragment( '#filehistory' );
 		$this->mImg = null;
-		$this->mHist = array();
-		$this->mRange = array( 0, 0 ); // display range
+		$this->mHist = [];
+		$this->mRange = [ 0, 0 ]; // display range
 	}
 
 	/**
@@ -122,7 +122,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			// The current rev may not meet the offset/limit
 			$numRows = count( $this->mHist );
 			if ( $numRows <= $this->mLimit && $this->mImg->getTimestamp() > $this->mOffset ) {
-				$this->mHist = array_merge( array( $this->mImg ), $this->mHist );
+				$this->mHist = array_merge( [ $this->mImg ], $this->mHist );
 			}
 		} else {
 			// The current rev may not meet the offset
@@ -148,14 +148,14 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 					# Index value of bottom item in the list
 					$lastIndex = $this->mHist[1]->getTimestamp();
 					# Display range
-					$this->mRange = array( 1, $numRows - 1 );
+					$this->mRange = [ 1, $numRows - 1 ];
 				} else {
 					# Index value of item past the index
 					$this->mPastTheEndIndex = $this->mHist[$numRows - 1]->getTimestamp();
 					# Index value of bottom item in the list
 					$lastIndex = $this->mHist[$numRows - 2]->getTimestamp();
 					# Display range
-					$this->mRange = array( 0, $numRows - 2 );
+					$this->mRange = [ 0, $numRows - 2 ];
 				}
 			} else {
 				# Setting indexes to an empty string means that they will be
@@ -167,7 +167,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 				$lastIndex = $this->mIsBackwards ?
 					$this->mHist[0]->getTimestamp() : $this->mHist[$numRows - 1]->getTimestamp();
 				# Display range
-				$this->mRange = array( 0, $numRows - 1 );
+				$this->mRange = [ 0, $numRows - 1 ];
 			}
 		} else {
 			$firstIndex = '';
