@@ -797,6 +797,7 @@
 	"apihelp-undelete-param-title": "Titel der wiederherzustellenden Seite.",
 	"apihelp-undelete-param-reason": "Grund für die Wiederherstellung.",
 	"apihelp-upload-param-filename": "Ziel-Dateiname.",
+	"apihelp-upload-param-tags": "Auf den Datei-Logbuch-Eintrag und die Dateiseitenversion anzuwendende Änderungsmarkierungen.",
 	"apihelp-upload-param-text": "Erster Seitentext für neue Dateien.",
 	"apihelp-upload-param-watch": "Die Seite beobachten.",
 	"apihelp-upload-param-ignorewarnings": "Ignoriert Warnungen.",

@@ -13,7 +13,8 @@
 			"Mywood",
 			"Impersonator 1",
 			"LNDDYL",
-			"唐吉訶德的侍從"
+			"唐吉訶德的侍從",
+			"飞舞回堂前"
 		]
 	},
 	"tog-underline": "鏈接加底線：",
@@ -218,7 +219,7 @@
 	"jumpto": "跳轉到:",
 	"jumptonavigation": "導航",
 	"jumptosearch": "搜尋",
-	"view-pool-error": "好抱歉，太多用戶嘗試緊流覽邇頁，使服務器超出負擔。請等多一刻再嘗試。\n\n$1",
+	"view-pool-error": "好抱歉，太多用戶嘗試緊瀏覽邇頁，使服務器超出負擔。請等多一刻再嘗試。\n\n$1",
 	"pool-timeout": "等待鎖定超時",
 	"pool-queuefull": "請求隊列满矣",
 	"pool-errorunknown": "毋知得嘅差錯",
