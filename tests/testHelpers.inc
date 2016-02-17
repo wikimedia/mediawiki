@@ -661,8 +661,7 @@ class TestFileIterator implements Iterator {
 			) );
 		}
 
-		$tokens = array_values( $tokens );
-		return $tokens[0];
+		return array_values( $tokens )[0];
 	}
 }
 

@@ -992,8 +992,8 @@ class LanguageConverter {
 				$first = false;
 				continue;
 			}
-			$mappings = explode( '}-', $block, 2 );
-			$stripped = str_replace( [ "'", '"', '*', '#' ], '', $mappings[0] );
+			$mappings = explode( '}-', $block, 2 )[0];
+			$stripped = str_replace( [ "'", '"', '*', '#' ], '', $mappings );
 			$table = StringUtils::explode( ';', $stripped );
 			foreach ( $table as $t ) {
 				$m = explode( '=>', $t, 3 );
