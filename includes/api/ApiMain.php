@@ -1533,6 +1533,7 @@ class ApiMain extends ApiBase {
 			'uselang' => [
 				ApiBase::PARAM_DFLT => 'user',
 			],
+			'variant' => null,
 		];
 	}
 
