@@ -60,11 +60,7 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook(
-			'namespace',
-			[ __CLASS__, 'mwnamespace' ],
-			Parser::SFH_NO_HASH
-		);
+		$parser->setFunctionHook( 'namespace', [ __CLASS__, 'namespace' ], Parser::SFH_NO_HASH );
 		$parser->setFunctionHook( 'int', [ __CLASS__, 'intFunction' ], Parser::SFH_NO_HASH );
 		$parser->setFunctionHook( 'special', [ __CLASS__, 'special' ] );
 		$parser->setFunctionHook( 'speciale', [ __CLASS__, 'speciale' ] );
@@ -517,13 +513,11 @@ class CoreParserFunctions {
 	/**
 	 * Given a title, return the namespace name that would be given by the
 	 * corresponding magic word
-	 * Note: function name changed to "mwnamespace" rather than "namespace"
-	 * to not break PHP 5.3
 	 * @param Parser $parser
 	 * @param string $title
 	 * @return mixed|string
 	 */
-	public static function mwnamespace( $parser, $title = null ) {
+	public static function namespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) ) {
 			return '';

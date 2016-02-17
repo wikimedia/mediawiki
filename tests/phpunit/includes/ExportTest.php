@@ -43,28 +43,26 @@ class ExportTest extends MediaWikiLangTestCase {
 
 		/**
 		 * Check namespaces match xml
-		 * FIXME: PHP 5.3 support. When we don't support PHP 5.3,
-		 * add ->namespace to object and remove from array
 		 */
-		$xmlNamespaces = (array) $xmlObject->siteinfo->namespaces;
-		$xmlNamespaces = str_replace( ' ', '_', $xmlNamespaces['namespace'] );
-		unset ( $xmlNamespaces[ '@attributes' ] );
+		$xmlNamespaces = (array)$xmlObject->siteinfo->namespaces->namespace;
+		$xmlNamespaces = str_replace( ' ', '_', $xmlNamespaces );
+		unset( $xmlNamespaces[ '@attributes' ] );
 		foreach ( $xmlNamespaces as &$namespaceObject ) {
 			if ( is_object( $namespaceObject ) ) {
 				$namespaceObject = '';
 			}
 		}
 
-		$actualNamespaces = (array) $wgContLang->getNamespaces();
+		$actualNamespaces = (array)$wgContLang->getNamespaces();
 		$actualNamespaces = array_values( $actualNamespaces );
 		$this->assertEquals( $actualNamespaces, $xmlNamespaces );
 
 		// Check xml page title correct
-		$xmlTitle = (array) $xmlObject->page->title;
+		$xmlTitle = (array)$xmlObject->page->title;
 		$this->assertEquals( $pageTitle, $xmlTitle[0] );
 
 		// Check xml page text is not empty
-		$text = (array) $xmlObject->page->revision->text;
+		$text = (array)$xmlObject->page->revision->text;
 		$this->assertNotEquals( '', $text[0] );
 	}
 
