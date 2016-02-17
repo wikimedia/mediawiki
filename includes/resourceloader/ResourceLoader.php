@@ -172,7 +172,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *  - (bool) cache: Whether to allow caching this data. Default: true.
 	 * @return string Filtered data, or a comment containing an error message
 	 */
-	public static function filter( $filter, $data, Array $options = [] ) {
+	public static function filter( $filter, $data, array $options = [] ) {
 		if ( strpos( $data, ResourceLoader::FILTER_NOMIN ) !== false ) {
 			return $data;
 		}
@@ -614,7 +614,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param array $modules List of ResourceLoaderModule objects
 	 * @return string Hash
 	 */
-	public function getCombinedVersion( ResourceLoaderContext $context, Array $modules ) {
+	public function getCombinedVersion( ResourceLoaderContext $context, array $modules ) {
 		if ( !$modules ) {
 			return '';
 		}
@@ -1241,7 +1241,7 @@ MESSAGE;
 	 *
 	 * @param Array $array
 	 */
-	private static function trimArray( Array &$array ) {
+	private static function trimArray( array &$array ) {
 		$i = count( $array );
 		while ( $i-- ) {
 			if ( $array[$i] === null

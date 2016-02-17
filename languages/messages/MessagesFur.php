@@ -10,7 +10,6 @@
 
 $fallback = 'it';
 
-
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciâl',
