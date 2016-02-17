@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.3
+ * OOjs UI v0.15.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-09T21:21:21Z
+ * Date: 2016-02-17T02:03:27Z
  */
 .oo-ui-draggableElement {
 	cursor: -webkit-grab -moz-grab, url(images/grab.cur), move;
@@ -238,9 +238,9 @@
 	border-radius: 1em;
 	background-color: #ffffff;
 	margin-right: 0.5em;
-	-webkit-transition: background-color 100ms ease, border-color 100ms ease;
-	   -moz-transition: background-color 100ms ease, border-color 100ms ease;
-	        transition: background-color 100ms ease, border-color 100ms ease;
+	-webkit-transition: background-color 100ms, border-color 100ms;
+	   -moz-transition: background-color 100ms, border-color 100ms;
+	        transition: background-color 100ms, border-color 100ms;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
 	cursor: pointer;
@@ -288,9 +288,9 @@
 	height: 1.2em;
 	border-radius: 1.2em;
 	background-color: #555555;
-	-webkit-transition: left 100ms ease, margin-left 100ms ease;
-	   -moz-transition: left 100ms ease, margin-left 100ms ease;
-	        transition: left 100ms ease, margin-left 100ms ease;
+	-webkit-transition: left 100ms, margin-left 100ms;
+	   -moz-transition: left 100ms, margin-left 100ms;
+	        transition: left 100ms, margin-left 100ms;
 }
 .oo-ui-toggleSwitchWidget-glow {
 	display: none;
