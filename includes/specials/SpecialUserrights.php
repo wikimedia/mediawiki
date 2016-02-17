@@ -84,6 +84,7 @@ class UserrightsPage extends SpecialPage {
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
+		$session = $request->getSession();
 		$out = $this->getOutput();
 
 		/*
@@ -129,7 +130,10 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if ( !$this->userCanChangeRights( $user, true ) ) {
-			if ( $this->isself && $request->getCheck( 'success' ) ) {
+			if ( $this->isself && $session->get( 'specialUserrightsSaveSuccess' ) ) {
+				// Remove session data for the success message
+				$session->remove( 'specialUserrightsSaveSuccess' );
+
 				// bug 48609: if the user just removed its own rights, this would
 				// leads it in a "permissions error" page. In that case, show a
 				// message that it can't anymore use this page instead of an error
@@ -146,7 +150,13 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// show a successbox, if the user rights was saved successfully
-		if ( $request->getCheck( 'success' ) && $this->mFetchedUser !== null ) {
+		if (
+			$session->get( 'specialUserrightsSaveSuccess' ) &&
+			$this->mFetchedUser !== null
+		) {
+			// Remove session data for the success message
+			$session->remove( 'specialUserrightsSaveSuccess' );
+
 			$out->wrapWikiMsg(
 				"<div class=\"successbox\">\n$1\n</div>",
 				[ 'savedrights', $this->mFetchedUser->getName() ]
@@ -195,6 +205,9 @@ class UserrightsPage extends SpecialPage {
 					$targetUser
 				);
 
+				// Set session data for the success message
+				$session->set( 'specialUserrightsSaveSuccess', 1 );
+
 				$out->redirect( $this->getSuccessURL() );
 
 				return;
@@ -208,7 +221,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function getSuccessURL() {
-		return $this->getPageTitle( $this->mTarget )->getFullURL( [ 'success' => 1 ] );
+		return $this->getPageTitle( $this->mTarget )->getFullURL();
 	}
 
 	/**
