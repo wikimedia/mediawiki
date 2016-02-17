@@ -45,7 +45,7 @@ class ApiOptions extends ApiBase {
 		$changed = false;
 
 		if ( isset( $params['optionvalue'] ) && !isset( $params['optionname'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'optionname' ) );
+			$this->dieUsageMsg( [ 'missingparam', 'optionname' ] );
 		}
 
 		// Load the user from the master to reduce CAS errors on double post (T95839)
@@ -59,7 +59,7 @@ class ApiOptions extends ApiBase {
 			$changed = true;
 		}
 
-		$changes = array();
+		$changes = [];
 		if ( count( $params['change'] ) ) {
 			foreach ( $params['change'] as $entry ) {
 				$array = explode( '=', $entry, 2 );
@@ -84,7 +84,7 @@ class ApiOptions extends ApiBase {
 					// Regular option.
 					if ( $htmlForm === null ) {
 						// We need a dummy HTMLForm for the validate callback...
-						$htmlForm = new HTMLForm( array(), $this );
+						$htmlForm = new HTMLForm( [], $this );
 					}
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
 					$field->mParent = $htmlForm;
@@ -142,23 +142,23 @@ class ApiOptions extends ApiBase {
 		$optionKinds = User::listOptionKinds();
 		$optionKinds[] = 'all';
 
-		return array(
+		return [
 			'reset' => false,
-			'resetkinds' => array(
+			'resetkinds' => [
 				ApiBase::PARAM_TYPE => $optionKinds,
 				ApiBase::PARAM_DFLT => 'all',
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'change' => array(
+			],
+			'change' => [
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'optionname' => array(
+			],
+			'optionname' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'optionvalue' => array(
+			],
+			'optionvalue' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-		);
+			],
+		];
 	}
 
 	public function needsToken() {
@@ -170,7 +170,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=options&reset=&token=123ABC'
 				=> 'apihelp-options-example-reset',
 			'action=options&change=skin=vector|hideminor=1&token=123ABC'
@@ -178,6 +178,6 @@ class ApiOptions extends ApiBase {
 			'action=options&reset=&change=skin=monobook&optionname=nickname&' .
 				'optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC'
 				=> 'apihelp-options-example-complex',
-		);
+		];
 	}
 }

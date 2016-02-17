@@ -74,7 +74,7 @@ class AjaxDispatcher {
 				if ( !empty( $_GET["rsargs"] ) ) {
 					$this->args = $_GET["rsargs"];
 				} else {
-					$this->args = array();
+					$this->args = [];
 				}
 				break;
 			case 'post':
@@ -82,7 +82,7 @@ class AjaxDispatcher {
 				if ( !empty( $_POST["rsargs"] ) ) {
 					$this->args = $_POST["rsargs"];
 				} else {
-					$this->args = array();
+					$this->args = [];
 				}
 				break;
 			default:

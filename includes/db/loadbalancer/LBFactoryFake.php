@@ -44,6 +44,6 @@ class LBFactoryFake extends LBFactory {
 		throw new DBAccessError;
 	}
 
-	public function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = [] ) {
 	}
 }

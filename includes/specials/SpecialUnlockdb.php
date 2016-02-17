@@ -49,12 +49,12 @@ class SpecialUnlockdb extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		return array(
-			'Confirm' => array(
+		return [
+			'Confirm' => [
 				'type' => 'toggle',
 				'label-message' => 'unlockconfirm',
-			),
-		);
+			],
+		];
 	}
 
 	protected function alterForm( HTMLForm $form ) {

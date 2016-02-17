@@ -4,21 +4,21 @@ class MWGrantsTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgGrantPermissions' => array(
-				'hidden1' => array( 'read' => true, 'autoconfirmed' => false ),
-				'hidden2' => array( 'autoconfirmed' => true ),
-				'normal' => array( 'edit' => true ),
-				'normal2' => array( 'edit' => true, 'create' => true ),
-				'admin' => array( 'protect' => true, 'delete' => true ),
-			),
-			'wgGrantPermissionGroups' => array(
+		$this->setMwGlobals( [
+			'wgGrantPermissions' => [
+				'hidden1' => [ 'read' => true, 'autoconfirmed' => false ],
+				'hidden2' => [ 'autoconfirmed' => true ],
+				'normal' => [ 'edit' => true ],
+				'normal2' => [ 'edit' => true, 'create' => true ],
+				'admin' => [ 'protect' => true, 'delete' => true ],
+			],
+			'wgGrantPermissionGroups' => [
 				'hidden1' => 'hidden',
 				'hidden2' => 'hidden',
 				'normal' => 'normal-group',
 				'admin' => 'admin',
-			),
-		) );
+			],
+		] );
 	}
 
 	/**
@@ -26,7 +26,7 @@ class MWGrantsTest extends MediaWikiTestCase {
 	 */
 	public function testGetValidGrants() {
 		$this->assertSame(
-			array( 'hidden1', 'hidden2', 'normal', 'normal2', 'admin' ),
+			[ 'hidden1', 'hidden2', 'normal', 'normal2', 'admin' ],
 			MWGrants::getValidGrants()
 		);
 	}
@@ -36,13 +36,13 @@ class MWGrantsTest extends MediaWikiTestCase {
 	 */
 	public function testGetRightsByGrant() {
 		$this->assertSame(
-			array(
-				'hidden1' => array( 'read' ),
-				'hidden2' => array( 'autoconfirmed' ),
-				'normal' => array( 'edit' ),
-				'normal2' => array( 'edit', 'create' ),
-				'admin' => array( 'protect', 'delete' ),
-			),
+			[
+				'hidden1' => [ 'read' ],
+				'hidden2' => [ 'autoconfirmed' ],
+				'normal' => [ 'edit' ],
+				'normal2' => [ 'edit', 'create' ],
+				'admin' => [ 'protect', 'delete' ],
+			],
 			MWGrants::getRightsByGrant()
 		);
 	}
@@ -58,11 +58,11 @@ class MWGrantsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetGrantRights() {
-		return array(
-			array( 'hidden1', array( 'read' ) ),
-			array( array( 'hidden1', 'hidden2', 'hidden3' ), array( 'read', 'autoconfirmed' ) ),
-			array( array( 'normal1', 'normal2' ), array( 'edit', 'create' ) ),
-		);
+		return [
+			[ 'hidden1', [ 'read' ] ],
+			[ [ 'hidden1', 'hidden2', 'hidden3' ], [ 'read', 'autoconfirmed' ] ],
+			[ [ 'normal1', 'normal2' ], [ 'edit', 'create' ] ],
+		];
 	}
 
 	/**
@@ -76,10 +76,10 @@ class MWGrantsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGrantsAreValid() {
-		return array(
-			array( array( 'hidden1', 'hidden2' ), true ),
-			array( array( 'hidden1', 'hidden3' ), false ),
-		);
+		return [
+			[ [ 'hidden1', 'hidden2' ], true ],
+			[ [ 'hidden1', 'hidden3' ], false ],
+		];
 	}
 
 	/**
@@ -93,25 +93,25 @@ class MWGrantsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetGrantGroups() {
-		return array(
-			array( null, array(
-				'hidden' => array( 'hidden1', 'hidden2' ),
-				'normal-group' => array( 'normal' ),
-				'other' => array( 'normal2' ),
-				'admin' => array( 'admin' ),
-			) ),
-			array( array( 'hidden1', 'normal' ), array(
-				'hidden' => array( 'hidden1' ),
-				'normal-group' => array( 'normal' ),
-			) ),
-		);
+		return [
+			[ null, [
+				'hidden' => [ 'hidden1', 'hidden2' ],
+				'normal-group' => [ 'normal' ],
+				'other' => [ 'normal2' ],
+				'admin' => [ 'admin' ],
+			] ],
+			[ [ 'hidden1', 'normal' ], [
+				'hidden' => [ 'hidden1' ],
+				'normal-group' => [ 'normal' ],
+			] ],
+		];
 	}
 
 	/**
 	 * @covers MWGrants::getHiddenGrants
 	 */
 	public function testGetHiddenGrants() {
-		$this->assertSame( array( 'hidden1', 'hidden2' ), MWGrants::getHiddenGrants() );
+		$this->assertSame( [ 'hidden1', 'hidden2' ], MWGrants::getHiddenGrants() );
 	}
 
 }

@@ -21,11 +21,11 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 		$langCode = 'en'; # For mainpage to be 'Main Page'
 		$langObj = Language::factory( $langCode );
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgLanguageCode' => $langCode,
 			'wgLang' => $langObj,
 			'wgContLang' => $langObj,
-		) );
+		] );
 
 		MessageCache::singleton()->disable();
 	}

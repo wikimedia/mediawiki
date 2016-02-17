@@ -15,7 +15,7 @@ require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
 
-	public static $additionalOptions = array(
+	public static $additionalOptions = [
 		'regex' => false,
 		'file' => false,
 		'use-filebackend' => false,
@@ -25,7 +25,7 @@ class PHPUnitMaintClass extends Maintenance {
 		'use-normal-tables' => false,
 		'reuse-db' => false,
 		'wiki' => false,
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
@@ -99,9 +99,9 @@ class PHPUnitMaintClass extends Maintenance {
 		// Uses db-replicated in DefaultSettings
 		$wgMainStash = 'hash';
 		// Use memory job queue
-		$wgJobTypeConf = array(
-			'default' => array( 'class' => 'JobQueueMemory', 'order' => 'fifo' ),
-		);
+		$wgJobTypeConf = [
+			'default' => [ 'class' => 'JobQueueMemory', 'order' => 'fifo' ],
+		];
 
 		$wgUseDatabaseMessages = false; # Set for future resets
 
@@ -113,15 +113,15 @@ class PHPUnitMaintClass extends Maintenance {
 		// Generic MediaWiki\Session\SessionManager configuration for tests
 		// We use CookieSessionProvider because things might be expecting
 		// cookies to show up in a FauxRequest somewhere.
-		$wgSessionProviders = array(
-			array(
+		$wgSessionProviders = [
+			[
 				'class' => 'MediaWiki\\Session\\CookieSessionProvider',
-				'args' => array( array(
+				'args' => [ [
 					'priority' => 30,
 					'callUserSetCookiesHook' => true,
-				) ),
-			),
-		);
+				] ],
+			],
+		];
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
@@ -155,7 +155,7 @@ class PHPUnitMaintClass extends Maintenance {
 		if ( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 			// Hack to eliminate the need to use the Makefile (which sucks ATM)
 			array_splice( $_SERVER['argv'], 1, 0,
-				array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
+				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
 		# --with-phpunitdir let us override the default PHPUnit version
@@ -234,7 +234,7 @@ class PHPUnitMaintClass extends Maintenance {
 	 *  - Split args such as "wiki=enwiki" into two separate arg elements "wiki" and "enwiki"
 	 */
 	private function forceFormatServerArgv() {
-		$argv = array();
+		$argv = [];
 		foreach ( $_SERVER['argv'] as $key => $arg ) {
 			if ( $key === 0 ) {
 				$argv[0] = $arg;
@@ -260,12 +260,12 @@ if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 	echo "PHPUnit already present\n";
 	$ok = true;
 } else {
-	foreach ( array(
+	foreach ( [
 				stream_resolve_include_path( 'phpunit.phar' ),
 				stream_resolve_include_path( 'phpunit-old.phar' ),
 				'PHPUnit/Runner/Version.php',
 				'PHPUnit/Autoload.php'
-			) as $includePath ) {
+			] as $includePath ) {
 
 		if ( $includePath === false ) {
 			// stream_resolve_include_path can return false

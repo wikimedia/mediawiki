@@ -28,7 +28,7 @@
  */
 class LogPager extends ReverseChronologicalPager {
 	/** @var array Log types */
-	private $types = array();
+	private $types = [];
 
 	/** @var string Events limited to those by performer when set */
 	private $performer = '';
@@ -58,8 +58,8 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int|bool $month The month to start from. Default: false
 	 * @param string $tagFilter Tag
 	 */
-	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
-		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
+	public function __construct( $list, $types = [], $performer = '', $title = '', $pattern = '',
+		$conds = [], $year = false, $month = false, $tagFilter = '' ) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
 
@@ -87,7 +87,7 @@ class LogPager extends ReverseChronologicalPager {
 	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
 		global $wgFilterLogTypes;
-		$filters = array();
+		$filters = [];
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
@@ -117,7 +117,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		$user = $this->getUser();
 		// If $types is not an array, make it an array
-		$types = ( $types === '' ) ? array() : (array)$types;
+		$types = ( $types === '' ) ? [] : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		$needReindex = false;
 		foreach ( $types as $type ) {
@@ -125,7 +125,7 @@ class LogPager extends ReverseChronologicalPager {
 				&& !$user->isAllowed( $wgLogRestrictions[$type] )
 			) {
 				$needReindex = true;
-				$types = array_diff( $types, array( $type ) );
+				$types = array_diff( $types, [ $type ] );
 			}
 		}
 		if ( $needReindex ) {
@@ -208,7 +208,7 @@ class LogPager extends ReverseChronologicalPager {
 		$db = $this->mDb;
 
 		$doUserRightsLogLike = false;
-		if ( $this->types == array( 'rights' ) ) {
+		if ( $this->types == [ 'rights' ] ) {
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBKey() );
 			if ( count( $parts ) == 2 ) {
 				list( $name, $database ) = array_map( 'trim', $parts );
@@ -233,7 +233,7 @@ class LogPager extends ReverseChronologicalPager {
 		 */
 		$this->mConds['log_namespace'] = $ns;
 		if ( $doUserRightsLogLike ) {
-			$params = array( $name . $wgUserrightsInterwikiDelimiter );
+			$params = [ $name . $wgUserrightsInterwikiDelimiter ];
 			foreach ( explode( '*', $database ) as $databasepart ) {
 				$params[] = $databasepart;
 				$params[] = $db->anyString();
@@ -270,7 +270,7 @@ class LogPager extends ReverseChronologicalPager {
 		$options = $basic['options'];
 		$joins = $basic['join_conds'];
 
-		$index = array();
+		$index = [];
 		# Add log_search table if there are conditions on it.
 		# This filters the results to only include log rows that have
 		# log_search records with the specified ls_field and ls_value values.
@@ -291,15 +291,15 @@ class LogPager extends ReverseChronologicalPager {
 			$options['USE INDEX'] = $index;
 		}
 		# Don't show duplicate rows when using log_search
-		$joins['log_search'] = array( 'INNER JOIN', 'ls_log_id=log_id' );
+		$joins['log_search'] = [ 'INNER JOIN', 'ls_log_id=log_id' ];
 
-		$info = array(
+		$info = [
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => array_merge( $conds, $this->mConds ),
 			'options' => $options,
 			'join_conds' => $joins,
-		);
+		];
 		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
 			$info['join_conds'], $info['options'], $this->mTagFilter );

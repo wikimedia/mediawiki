@@ -102,7 +102,7 @@ class LanguageFi extends Language {
 				'jul:heinäkuu,aug:elokuu,sep:syyskuu,oct:lokakuu,nov:marraskuu,' .
 				dec:joulukuu,sept:syyskuu';
 		*/
-		$weekds = array(
+		$weekds = [
 			'monday' => 'maanantai',
 			'tuesday' => 'tiistai',
 			'wednesday' => 'keskiviikko',
@@ -146,7 +146,7 @@ class LanguageFi extends Language {
 			'year' => 'vuosi',
 			'infinite' => 'ikuisesti',
 			'indefinite' => 'ikuisesti'
-		);
+		];
 
 		$final = '';
 		$tokens = explode( ' ', $str );

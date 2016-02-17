@@ -17,21 +17,21 @@ class RaggettExternal extends RaggettBase {
 		$opts = ' -utf8';
 
 		if ( $stderr ) {
-			$descriptorspec = array(
-				0 => array( 'pipe', 'r' ),
-				1 => array( 'file', wfGetNull(), 'a' ),
-				2 => array( 'pipe', 'w' )
-			);
+			$descriptorspec = [
+				0 => [ 'pipe', 'r' ],
+				1 => [ 'file', wfGetNull(), 'a' ],
+				2 => [ 'pipe', 'w' ]
+			];
 		} else {
-			$descriptorspec = array(
-				0 => array( 'pipe', 'r' ),
-				1 => array( 'pipe', 'w' ),
-				2 => array( 'file', wfGetNull(), 'a' )
-			);
+			$descriptorspec = [
+				0 => [ 'pipe', 'r' ],
+				1 => [ 'pipe', 'w' ],
+				2 => [ 'file', wfGetNull(), 'a' ]
+			];
 		}
 
 		$readpipe = $stderr ? 2 : 1;
-		$pipes = array();
+		$pipes = [];
 
 		$process = proc_open(
 			"{$this->config['tidyBin']} -config {$this->config['tidyConfigFile']} " .

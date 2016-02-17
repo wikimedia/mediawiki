@@ -32,7 +32,7 @@ class MappedIterator extends FilterIterator {
 	/** @var callable */
 	protected $aCallback;
 	/** @var array */
-	protected $cache = array();
+	protected $cache = [];
 
 	protected $rewound = false; // boolean; whether rewind() has been called
 
@@ -51,7 +51,7 @@ class MappedIterator extends FilterIterator {
 	 * @param array $options Options map (includes "accept") (since 1.22)
 	 * @throws UnexpectedValueException
 	 */
-	public function __construct( $iter, $vCallback, array $options = array() ) {
+	public function __construct( $iter, $vCallback, array $options = [] ) {
 		if ( is_array( $iter ) ) {
 			$baseIterator = new ArrayIterator( $iter );
 		} elseif ( $iter instanceof Iterator ) {
@@ -65,13 +65,13 @@ class MappedIterator extends FilterIterator {
 	}
 
 	public function next() {
-		$this->cache = array();
+		$this->cache = [];
 		parent::next();
 	}
 
 	public function rewind() {
 		$this->rewound = true;
-		$this->cache = array();
+		$this->cache = [];
 		parent::rewind();
 	}
 

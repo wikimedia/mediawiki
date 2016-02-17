@@ -149,7 +149,7 @@ class GenerateCollationData extends Maintenance {
 
 	function loadUcd() {
 		$uxr = new UcdXmlReader( "{$this->dataDir}/ucd.all.grouped.xml" );
-		$uxr->readChars( array( $this, 'charCallback' ) );
+		$uxr->readChars( [ $this, 'charCallback' ] );
 	}
 
 	function charCallback( $data ) {
@@ -215,7 +215,7 @@ class GenerateCollationData extends Maintenance {
 			exit( 1 );
 		}
 
-		$goodTertiaryChars = array();
+		$goodTertiaryChars = [];
 
 		// For each character with an entry in allkeys.txt, overwrite the implicit
 		// entry in $this->weights that came from the UCD.
@@ -257,10 +257,10 @@ class GenerateCollationData extends Maintenance {
 		fclose( $file );
 
 		// Identify groups of characters with the same primary weight
-		$this->groups = array();
+		$this->groups = [];
 		asort( $this->weights, SORT_STRING );
 		$prevWeight = reset( $this->weights );
-		$group = array();
+		$group = [];
 		foreach ( $this->weights as $cp => $weight ) {
 			if ( $weight !== $prevWeight ) {
 				$this->groups[$prevWeight] = $group;
@@ -268,7 +268,7 @@ class GenerateCollationData extends Maintenance {
 				if ( isset( $this->groups[$weight] ) ) {
 					$group = $this->groups[$weight];
 				} else {
-					$group = array();
+					$group = [];
 				}
 			}
 			$group[] = $cp;
@@ -294,15 +294,15 @@ class GenerateCollationData extends Maintenance {
 		ksort( $this->groups, SORT_STRING );
 
 		// Identify the header character in each group
-		$headerChars = array();
+		$headerChars = [];
 		$prevChar = "\000";
 		$tertiaryCollator = new Collator( 'root' );
 		$primaryCollator = new Collator( 'root' );
 		$primaryCollator->setStrength( Collator::PRIMARY );
 		$numOutOfOrder = 0;
 		foreach ( $this->groups as $weight => $group ) {
-			$uncomposedChars = array();
-			$goodChars = array();
+			$uncomposedChars = [];
+			$goodChars = [];
 			foreach ( $group as $cp ) {
 				if ( isset( $goodTertiaryChars[$cp] ) ) {
 					$goodChars[] = $cp;
@@ -352,7 +352,7 @@ class UcdXmlReader {
 	public $callback;
 	public $groupAttrs;
 	public $xml;
-	public $blocks = array();
+	public $blocks = [];
 	public $currentBlock;
 
 	function __construct( $fileName ) {
@@ -376,7 +376,7 @@ class UcdXmlReader {
 				}
 			} elseif ( $xml->nodeType === XMLReader::END_ELEMENT ) {
 				if ( $xml->name === 'group' ) {
-					$this->groupAttrs = array();
+					$this->groupAttrs = [];
 				}
 			}
 		}
@@ -401,7 +401,7 @@ class UcdXmlReader {
 	 * @return array
 	 */
 	protected function readAttributes() {
-		$attrs = array();
+		$attrs = [];
 		while ( $this->xml->moveToNextAttribute() ) {
 			$attrs[$this->xml->name] = $this->xml->value;
 		}
@@ -422,7 +422,7 @@ class UcdXmlReader {
 
 		for ( $cp = $first; $cp <= $last; $cp++ ) {
 			$hexCp = sprintf( "%04X", $cp );
-			foreach ( array( 'na', 'na1' ) as $nameProp ) {
+			foreach ( [ 'na', 'na1' ] as $nameProp ) {
 				if ( isset( $attrs[$nameProp] ) ) {
 					$attrs[$nameProp] = str_replace( '#', $hexCp, $attrs[$nameProp] );
 				}
@@ -458,7 +458,7 @@ class UcdXmlReader {
 					$attrs = $this->readAttributes();
 					$first = hexdec( $attrs['first-cp'] );
 					$last = hexdec( $attrs['last-cp'] );
-					$this->blocks[$attrs['name']] = array( $first, $last );
+					$this->blocks[$attrs['name']] = [ $first, $last ];
 				}
 			}
 		}

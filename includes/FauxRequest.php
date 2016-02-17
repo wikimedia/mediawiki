@@ -33,7 +33,7 @@ use MediaWiki\Session\SessionManager;
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $requestUrl;
-	protected $cookies = array();
+	protected $cookies = [];
 
 	/**
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
@@ -44,7 +44,7 @@ class FauxRequest extends WebRequest {
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
-	public function __construct( $data = array(), $wasPosted = false,
+	public function __construct( $data = [], $wasPosted = false,
 		$session = null, $protocol = 'http'
 	) {
 		$this->requestTime = microtime( true );
@@ -98,7 +98,7 @@ class FauxRequest extends WebRequest {
 	 */
 	public function getQueryValues() {
 		if ( $this->wasPosted ) {
-			return array();
+			return [];
 		} else {
 			return $this->data;
 		}
@@ -131,7 +131,7 @@ class FauxRequest extends WebRequest {
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
 	 */
 	public function setCookie( $key, $value, $prefix = null ) {
-		$this->setCookies( array( $key => $value ), $prefix );
+		$this->setCookies( [ $key => $value ], $prefix );
 	}
 
 	/**
@@ -177,7 +177,7 @@ class FauxRequest extends WebRequest {
 	 * @param string $val
 	 */
 	public function setHeader( $name, $val ) {
-		$this->setHeaders( array( $name => $val ) );
+		$this->setHeaders( [ $name => $val ] );
 	}
 
 	/**
@@ -229,7 +229,7 @@ class FauxRequest extends WebRequest {
 	 * @param array $extWhitelist
 	 * @return bool
 	 */
-	public function checkUrlExtension( $extWhitelist = array() ) {
+	public function checkUrlExtension( $extWhitelist = [] ) {
 		return true;
 	}
 

@@ -140,16 +140,16 @@ class Parser {
 	const TOC_END = '</mw:toc>';
 
 	# Persistent:
-	public $mTagHooks = array();
-	public $mTransparentTagHooks = array();
-	public $mFunctionHooks = array();
-	public $mFunctionSynonyms = array( 0 => array(), 1 => array() );
-	public $mFunctionTagHooks = array();
-	public $mStripList = array();
-	public $mDefaultStripList = array();
-	public $mVarCache = array();
-	public $mImageParams = array();
-	public $mImageParamsMagicArray = array();
+	public $mTagHooks = [];
+	public $mTransparentTagHooks = [];
+	public $mFunctionHooks = [];
+	public $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	public $mFunctionTagHooks = [];
+	public $mStripList = [];
+	public $mDefaultStripList = [];
+	public $mVarCache = [];
+	public $mImageParams = [];
+	public $mImageParamsMagicArray = [];
 	public $mMarkerIndex = 0;
 	public $mFirstCall = true;
 
@@ -256,7 +256,7 @@ class Parser {
 	/**
 	 * @param array $conf
 	 */
-	public function __construct( $conf = array() ) {
+	public function __construct( $conf = [] ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
@@ -303,7 +303,7 @@ class Parser {
 		// reference is copied as a reference in the new object. Both of these
 		// are defined PHP5 behaviors, as inconvenient as it is for us when old
 		// hooks from PHP4 days are passing fields by reference.
-		foreach ( array( 'mStripState', 'mVarCache' ) as $k ) {
+		foreach ( [ 'mStripState', 'mVarCache' ] as $k ) {
 			// Make a non-reference copy of the field, then rebind the field to
 			// reference the new copy.
 			$tmp = $this->$k;
@@ -311,7 +311,7 @@ class Parser {
 			unset( $tmp );
 		}
 
-		Hooks::run( 'ParserCloned', array( $this ) );
+		Hooks::run( 'ParserCloned', [ $this ] );
 	}
 
 	/**
@@ -327,7 +327,7 @@ class Parser {
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
-		Hooks::run( 'ParserFirstCallInit', array( &$this ) );
+		Hooks::run( 'ParserFirstCallInit', [ &$this ] );
 	}
 
 	/**
@@ -340,39 +340,39 @@ class Parser {
 			$this->firstCallInit();
 		}
 		$this->mOutput = new ParserOutput;
-		$this->mOptions->registerWatcher( array( $this->mOutput, 'recordOption' ) );
+		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
 		$this->mAutonumber = 0;
 		$this->mLastSection = '';
 		$this->mDTopen = false;
-		$this->mIncludeCount = array();
+		$this->mIncludeCount = [];
 		$this->mArgStack = false;
 		$this->mInPre = false;
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
 			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
-		$this->mVarCache = array();
+		$this->mVarCache = [];
 		$this->mUser = null;
-		$this->mLangLinkLanguages = array();
+		$this->mLangLinkLanguages = [];
 		$this->currentRevisionCache = null;
 
 		$this->mStripState = new StripState;
 
 		# Clear these on every parse, bug 4549
-		$this->mTplRedirCache = $this->mTplDomCache = array();
+		$this->mTplRedirCache = $this->mTplDomCache = [];
 
 		$this->mShowToc = true;
 		$this->mForceTocPosition = false;
-		$this->mIncludeSizes = array(
+		$this->mIncludeSizes = [
 			'post-expand' => 0,
 			'arg' => 0,
-		);
+		];
 		$this->mPPNodeCount = 0;
 		$this->mGeneratedPPNodeCount = 0;
 		$this->mHighestExpansionDepth = 0;
 		$this->mDefaultSort = false;
-		$this->mHeadings = array();
-		$this->mDoubleUnderscores = array();
+		$this->mHeadings = [];
+		$this->mDoubleUnderscores = [];
 		$this->mExpensiveFunctionCount = 0;
 
 		# Fix cloning
@@ -382,7 +382,7 @@ class Parser {
 
 		$this->mProfiler = new SectionProfiler();
 
-		Hooks::run( 'ParserClearState', array( &$this ) );
+		Hooks::run( 'ParserClearState', [ &$this ] );
 	}
 
 	/**
@@ -435,11 +435,11 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
 		# No more strip!
-		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text );
-		Hooks::run( 'ParserAfterParse', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterParse', [ &$this, &$text, &$this->mStripState ] );
 
 		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
@@ -488,24 +488,24 @@ class Parser {
 			);
 
 			$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
-				array( $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() )
+				[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
-				array( $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() )
+				[ $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
-				array( $this->mIncludeSizes['post-expand'], $max )
+				[ $this->mIncludeSizes['post-expand'], $max ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
-				array( $this->mIncludeSizes['arg'], $max )
+				[ $this->mIncludeSizes['arg'], $max ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
-				array( $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() )
+				[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
 			);
 			$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
-				array( $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() )
+				[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
 			);
-			Hooks::run( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
+			Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
 			$limitReport = "NewPP limit report\n";
 			if ( $wgShowHostnames ) {
@@ -519,10 +519,10 @@ class Parser {
 
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( Hooks::run( 'ParserLimitReportFormat',
-					array( $key, &$value, &$limitReport, false, false )
+					[ $key, &$value, &$limitReport, false, false ]
 				) ) {
 					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
-					$valueMsg = wfMessage( array( "$key-value-text", "$key-value" ) )
+					$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
 						->inLanguage( 'en' )->useDatabase( false );
 					if ( !$valueMsg->exists() ) {
 						$valueMsg = new RawMessage( '$1' );
@@ -536,11 +536,11 @@ class Parser {
 			// Since we're not really outputting HTML, decode the entities and
 			// then re-encode the things that need hiding inside HTML comments.
 			$limitReport = htmlspecialchars_decode( $limitReport );
-			Hooks::run( 'ParserLimitReport', array( $this, &$limitReport ) );
+			Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ] );
 
 			// Sanitize for comment. Note '‐' in the replacement is U+2010,
 			// which looks much like the problematic '-'.
-			$limitReport = str_replace( array( '-', '&' ), array( '‐', '&amp;' ), $limitReport );
+			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
 			$text .= "\n<!-- \n$limitReport-->\n";
 
 			// Add on template profiling data
@@ -597,8 +597,8 @@ class Parser {
 	 * @return string UNSAFE half-parsed HTML
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -645,8 +645,8 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', [ &$this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ &$this, &$text, &$this->mStripState ] );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -680,7 +680,7 @@ class Parser {
 	 * @param array $params
 	 * @return string
 	 */
-	public function getPreloadText( $text, Title $title, ParserOptions $options, $params = array() ) {
+	public function getPreloadText( $text, Title $title, ParserOptions $options, $params = [] ) {
 		$msg = new RawMessage( $text );
 		$text = $msg->params( $params )->plain();
 
@@ -773,12 +773,12 @@ class Parser {
 	public function setOutputType( $ot ) {
 		$this->mOutputType = $ot;
 		# Shortcut alias
-		$this->ot = array(
+		$this->ot = [
 			'html' => $ot == self::OT_HTML,
 			'wiki' => $ot == self::OT_WIKI,
 			'pre' => $ot == self::OT_PREPROCESS,
 			'plain' => $ot == self::OT_PLAIN,
-		);
+		];
 	}
 
 	/**
@@ -925,7 +925,7 @@ class Parser {
 		}
 		static $n = 1;
 		$stripped = '';
-		$matches = array();
+		$matches = [];
 
 		$taglist = implode( '|', $elements );
 		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?" . ">)|<(!--)/i";
@@ -976,10 +976,10 @@ class Parser {
 				}
 			}
 
-			$matches[$marker] = array( $element,
+			$matches[$marker] = [ $element,
 				$content,
 				Sanitizer::decodeTagAttributes( $attributes ),
-				"<$element$attributes$close$content$tail" );
+				"<$element$attributes$close$content$tail" ];
 		}
 		return $stripped;
 	}
@@ -1020,11 +1020,11 @@ class Parser {
 
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
-		$td_history = array(); # Is currently a td tag open?
-		$last_tag_history = array(); # Save history of last lag activated (td, th or caption)
-		$tr_history = array(); # Is currently a tr tag open?
-		$tr_attributes = array(); # history of tr attributes
-		$has_opened_tr = array(); # Did this table open a <tr> element?
+		$td_history = []; # Is currently a td tag open?
+		$last_tag_history = []; # Save history of last lag activated (td, th or caption)
+		$tr_history = []; # Is currently a tr tag open?
+		$tr_attributes = []; # history of tr attributes
+		$has_opened_tr = []; # Did this table open a <tr> element?
 		$indent_level = 0; # indent level of the table
 
 		foreach ( $lines as $outLine ) {
@@ -1037,7 +1037,7 @@ class Parser {
 
 			$first_character = $line[0];
 			$first_two = substr( $line, 0, 2 );
-			$matches = array();
+			$matches = [];
 
 			if ( preg_match( '/^(:*)\s*\{\|(.*)$/', $line, $matches ) ) {
 				# First check if we are starting a new table
@@ -1224,7 +1224,7 @@ class Parser {
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
+		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] ) ) {
 			return $text;
 		}
 
@@ -1244,14 +1244,14 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		Hooks::run( 'InternalParseBeforeSanitize', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'InternalParseBeforeSanitize', [ &$this, &$text, &$this->mStripState ] );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
-			array( &$this, 'attributeStripCallback' ),
+			[ &$this, 'attributeStripCallback' ],
 			false,
 			array_keys( $this->mTransparentTagHooks )
 		);
-		Hooks::run( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'InternalParseBeforeLinks', [ &$this, &$text, &$this->mStripState ] );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
@@ -1291,18 +1291,18 @@ class Parser {
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterUnstrip', array( &$this, &$text ) );
+			Hooks::run( 'ParserAfterUnstrip', [ &$this, &$text ] );
 		}
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		$fixtags = array(
+		$fixtags = [
 			# french spaces, last one Guillemet-left
 			# only if there is something before the space
 			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&#160;',
 			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
-		);
+		];
 		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
 
 		$text = $this->doBlockLevels( $text, $linestart );
@@ -1330,7 +1330,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserBeforeTidy', array( &$this, &$text ) );
+			Hooks::run( 'ParserBeforeTidy', [ &$this, &$text ] );
 		}
 
 		$text = $this->replaceTransparentTags( $text );
@@ -1344,7 +1344,7 @@ class Parser {
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (bug #2702 and quite a few others)
-			$tidyregs = array(
+			$tidyregs = [
 				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
 				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
@@ -1361,7 +1361,7 @@ class Parser {
 				# remove empty italic or bold tag pairs, some
 				# introduced by rules above
 				'/<([bi])><\/\\1>/' => '',
-			);
+			];
 
 			$text = preg_replace(
 				array_keys( $tidyregs ),
@@ -1370,7 +1370,7 @@ class Parser {
 		}
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterTidy', array( &$this, &$text ) );
+			Hooks::run( 'ParserAfterTidy', [ &$this, &$text ] );
 		}
 
 		return $text;
@@ -1408,7 +1408,7 @@ class Parser {
 					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
 					[0-9Xx]                  #  check digit
 				)\b
-			)!xu", array( &$this, 'magicLinkCallback' ), $text );
+			)!xu", [ &$this, 'magicLinkCallback' ], $text );
 		return $text;
 	}
 
@@ -1450,11 +1450,11 @@ class Parser {
 			$isbn = $m[6];
 			$space = self::SPACE_NOT_NL; #  non-newline space
 			$isbn = preg_replace( "/$space/", ' ', $isbn );
-			$num = strtr( $isbn, array(
+			$num = strtr( $isbn, [
 				'-' => '',
 				' ' => '',
 				'x' => 'X',
-			) );
+			] );
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			return '<a href="' .
 				htmlspecialchars( $titleObj->getLocalURL() ) .
@@ -1480,7 +1480,7 @@ class Parser {
 		# removeHTMLtags()) should not be included in
 		# URLs, per RFC 2396.
 		# Make &nbsp; terminate a URL as well (bug T84937)
-		$m2 = array();
+		$m2 = [];
 		if ( preg_match(
 			'/&(lt|gt|nbsp|#x0*(3[CcEe]|[Aa]0)|#0*(60|62|160));/',
 			$url,
@@ -1790,7 +1790,7 @@ class Parser {
 			# The characters '<' and '>' (which were escaped by
 			# removeHTMLtags()) should not be included in
 			# URLs, per RFC 2396.
-			$m2 = array();
+			$m2 = [];
 			if ( preg_match( '/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
 				$text = substr( $url, $m2[0][1] ) . ' ' . $text;
 				$url = substr( $url, 0, $m2[0][1] );
@@ -1872,7 +1872,7 @@ class Parser {
 	 * @return array Associative array of HTML attributes
 	 */
 	public function getExternalLinkAttribs( $url = false ) {
-		$attribs = array();
+		$attribs = [];
 		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
 
 		if ( $this->mOptions->getExternalLinkTarget() ) {
@@ -2072,7 +2072,7 @@ class Parser {
 		$nottalk = !$this->mTitle->isTalkPage();
 
 		if ( $useLinkPrefixExtension ) {
-			$m = array();
+			$m = [];
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];
 			} else {

@@ -5,17 +5,17 @@
 class ImagePage404Test extends MediaWikiMediaTestCase {
 
 	protected function getRepoOptions() {
-		return parent::getRepoOptions() + array( 'transformVia404' => true );
+		return parent::getRepoOptions() + [ 'transformVia404' => true ];
 	}
 
 	function setUp() {
-		$this->setMwGlobals( 'wgImageLimits', array(
-			array( 320, 240 ),
-			array( 640, 480 ),
-			array( 800, 600 ),
-			array( 1024, 768 ),
-			array( 1280, 1024 )
-		) );
+		$this->setMwGlobals( 'wgImageLimits', [
+			[ 320, 240 ],
+			[ 640, 480 ],
+			[ 800, 600 ],
+			[ 1024, 768 ],
+			[ 1280, 1024 ]
+		] );
 		parent::setUp();
 	}
 
@@ -43,11 +43,11 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 	}
 
 	function providerGetThumbSizes() {
-		return array(
-			array( 'animated.gif', 6 ),
-			array( 'Toll_Texas_1.svg', 6 ),
-			array( '80x60-Greyscale.xcf', 6 ),
-			array( 'jpeg-comment-binary.jpg', 6 ),
-		);
+		return [
+			[ 'animated.gif', 6 ],
+			[ 'Toll_Texas_1.svg', 6 ],
+			[ '80x60-Greyscale.xcf', 6 ],
+			[ 'jpeg-comment-binary.jpg', 6 ],
+		];
 	}
 }

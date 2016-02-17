@@ -58,8 +58,8 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			$params['action'] = 'query';
 		}
 		$count = 0;
-		$result = array();
-		$continue = array();
+		$result = [];
+		$continue = [];
 		do {
 			$request = array_merge( $params, $continue );
 			uksort( $request, function ( $a, $b ) {
@@ -90,7 +90,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				$continue = $data['continue'];
 				unset( $data['continue'] );
 			} else {
-				$continue = array();
+				$continue = [];
 			}
 			if ( $this->mVerbose ) {
 				$this->printResult( $data );
@@ -112,7 +112,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 */
 	private function printResult( $data ) {
 		$q = $data['query'];
-		$print = array();
+		$print = [];
 		if ( isset( $q['pages'] ) ) {
 			foreach ( $q['pages'] as $p ) {
 				$m = $p['title'];

@@ -27,7 +27,7 @@ require_once __DIR__ . '/Maintenance.php';
 global $optionsWithArgs;
 // @codingStandardsIgnoreEnd
 if ( !isset( $optionsWithArgs ) ) {
-	$optionsWithArgs = array();
+	$optionsWithArgs = [];
 }
 
 class CommandLineInc extends Maintenance {

@@ -9,12 +9,12 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	const GLOBAL_KEY_NONEXISTING = 'MediaWikiTestCaseTestGLOBAL-NONExisting';
 
-	private static $startGlobals = array(
+	private static $startGlobals = [
 		'MediaWikiTestCaseTestGLOBAL-ExistingString' => 'foo',
 		'MediaWikiTestCaseTestGLOBAL-ExistingStringEmpty' => '',
-		'MediaWikiTestCaseTestGLOBAL-ExistingArray' => array( 1, 'foo' => 'bar' ),
-		'MediaWikiTestCaseTestGLOBAL-ExistingArrayEmpty' => array(),
-	);
+		'MediaWikiTestCaseTestGLOBAL-ExistingArray' => [ 1, 'foo' => 'bar' ],
+		'MediaWikiTestCaseTestGLOBAL-ExistingArrayEmpty' => [],
+	];
 
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
@@ -31,10 +31,10 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	public function provideExistingKeysAndNewValues() {
-		$providedArray = array();
+		$providedArray = [];
 		foreach ( array_keys( self::$startGlobals ) as $key ) {
-			$providedArray[] = array( $key, 'newValue' );
-			$providedArray[] = array( $key, array( 'newValue' ) );
+			$providedArray[] = [ $key, 'newValue' ];
+			$providedArray[] = [ $key, [ 'newValue' ] ];
 		}
 		return $providedArray;
 	}

@@ -40,7 +40,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		global $wgCanonicalServer, $wgServerName, $wgScriptPath;
 
-		$packet = array(
+		$packet = [
 			// Usually, RC ID is exposed only for patrolling purposes,
 			// but there is no real reason not to expose it in other cases,
 			// and I can see how this may be potentially useful for clients.
@@ -52,7 +52,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'timestamp' => (int)wfTimestamp( TS_UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
 			'user' => $rc->getAttribute( 'rc_user_text' ),
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
-		);
+		];
 
 		if ( isset( $feed['channel'] ) ) {
 			$packet['channel'] = $feed['channel'];
@@ -70,19 +70,19 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 
 		switch ( $type ) {
 			case RC_EDIT:
-				$packet['length'] = array(
+				$packet['length'] = [
 					'old' => $rc->getAttribute( 'rc_old_len' ),
 					'new' => $rc->getAttribute( 'rc_new_len' )
-				);
-				$packet['revision'] = array(
+				];
+				$packet['revision'] = [
 					'old' => $rc->getAttribute( 'rc_last_oldid' ),
 					'new' => $rc->getAttribute( 'rc_this_oldid' )
-				);
+				];
 				break;
 
 			case RC_NEW:
-				$packet['length'] = array( 'old' => null, 'new' => $rc->getAttribute( 'rc_new_len' ) );
-				$packet['revision'] = array( 'old' => null, 'new' => $rc->getAttribute( 'rc_this_oldid' ) );
+				$packet['length'] = [ 'old' => null, 'new' => $rc->getAttribute( 'rc_new_len' ) ];
+				$packet['revision'] = [ 'old' => null, 'new' => $rc->getAttribute( 'rc_this_oldid' ) ];
 				break;
 
 			case RC_LOG:
@@ -98,7 +98,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 						$params !== false
 					) {
 						// From ApiQueryLogEvents::addLogParams
-						$logParams = array();
+						$logParams = [];
 						// Keys like "4::paramname" can't be used for output so we change them to "paramname"
 						foreach ( $params as $key => $value ) {
 							if ( strpos( $key, ':' ) === false ) {

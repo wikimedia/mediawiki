@@ -13,17 +13,17 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 
 		$this->tmpPrefix = $this->getNewTempDirectory();
 
-		$backend = new FSFileBackend( array(
+		$backend = new FSFileBackend( [
 			'name' => 'local-migratefilerepolayouttest',
 			'wikiId' => wfWikiID(),
-			'containerPaths' => array(
+			'containerPaths' => [
 				'migratefilerepolayouttest-original' => "{$this->tmpPrefix}-original",
 				'migratefilerepolayouttest-public' => "{$this->tmpPrefix}-public",
 				'migratefilerepolayouttest-thumb' => "{$this->tmpPrefix}-thumb",
 				'migratefilerepolayouttest-temp' => "{$this->tmpPrefix}-temp",
 				'migratefilerepolayouttest-deleted' => "{$this->tmpPrefix}-deleted",
-			)
-		) );
+			]
+		] );
 
 		$dbMock = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
@@ -36,24 +36,24 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 		$dbMock->expects( $this->any() )
 			->method( 'select' )
 			->will( $this->onConsecutiveCalls(
-				new FakeResultWrapper( array( $imageRow ) ), // image
-				new FakeResultWrapper( array() ), // image
-				new FakeResultWrapper( array() ) // filearchive
+				new FakeResultWrapper( [ $imageRow ] ), // image
+				new FakeResultWrapper( [] ), // image
+				new FakeResultWrapper( [] ) // filearchive
 			) );
 
 		$repoMock = $this->getMock( 'LocalRepo',
-			array( 'getMasterDB' ),
-			array( array(
+			[ 'getMasterDB' ],
+			[ [
 				'name' => 'migratefilerepolayouttest',
 				'backend' => $backend
-			) ) );
+			] ] );
 
 		$repoMock
 			->expects( $this->any() )
 			->method( 'getMasterDB' )
 			->will( $this->returnValue( $dbMock ) );
 
-		$this->migratorMock = $this->getMock( 'MigrateFileRepoLayout', array( 'getRepo' ) );
+		$this->migratorMock = $this->getMock( 'MigrateFileRepoLayout', [ 'getRepo' ] );
 		$this->migratorMock
 			->expects( $this->any() )
 			->method( 'getRepo' )
@@ -98,7 +98,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 	public function testMigration() {
 		$this->migratorMock->loadParamsAndArgs(
 			null,
-			array( 'oldlayout' => 'name', 'newlayout' => 'sha1' )
+			[ 'oldlayout' => 'name', 'newlayout' => 'sha1' ]
 		);
 
 		ob_start();

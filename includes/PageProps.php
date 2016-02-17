@@ -79,13 +79,13 @@ class PageProps {
 		if ( is_array( $propertyNames ) ) {
 			$gotArray = true;
 		} else {
-			$propertyNames = array( $propertyNames );
+			$propertyNames = [ $propertyNames ];
 			$gotArray = false;
 		}
 
-		$values = array();
+		$values = [];
 		$goodIDs = $this->getGoodIDs( $titles );
-		$queryIDs = array();
+		$queryIDs = [];
 		foreach ( $goodIDs as $pageID ) {
 			foreach ( $propertyNames as $propertyName ) {
 				$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
@@ -106,15 +106,15 @@ class PageProps {
 			$dbr = wfGetDB( DB_SLAVE );
 			$result = $dbr->select(
 				'page_props',
-				array(
+				[
 					'pp_page',
 					'pp_propname',
 					'pp_value'
-				),
-				array(
+				],
+				[
 					'pp_page' => $queryIDs,
 					'pp_propname' => $propertyNames
-				),
+				],
 				__METHOD__
 			);
 
@@ -148,9 +148,9 @@ class PageProps {
 	 * @return array associative array mapping page ID to property value array
 	 */
 	public function getAllProperties( $titles ) {
-		$values = array();
+		$values = [];
 		$goodIDs = $this->getGoodIDs( $titles );
-		$queryIDs = array();
+		$queryIDs = [];
 		foreach ( $goodIDs as $pageID ) {
 			$pageProperties = $this->getCachedProperties( $pageID );
 			if ( $pageProperties === false ) {
@@ -160,36 +160,36 @@ class PageProps {
 			}
 		}
 
-		if ( $queryIDs != array() ) {
+		if ( $queryIDs != [] ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$result = $dbr->select(
 				'page_props',
-				array(
+				[
 					'pp_page',
 					'pp_propname',
 					'pp_value'
-				),
-				array(
+				],
+				[
 					'pp_page' => $queryIDs,
-				),
+				],
 				__METHOD__
 			);
 
 			$currentPageID = 0;
-			$pageProperties = array();
+			$pageProperties = [];
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
 				if ( $currentPageID != $pageID ) {
-					if ( $pageProperties != array() ) {
+					if ( $pageProperties != [] ) {
 						$this->cacheProperties( $currentPageID, $pageProperties );
 						$values[$currentPageID] = $pageProperties;
 					}
 					$currentPageID = $pageID;
-					$pageProperties = array();
+					$pageProperties = [];
 				}
 				$pageProperties[$row->pp_propname] = $row->pp_value;
 			}
-			if ( $pageProperties != array() ) {
+			if ( $pageProperties != [] ) {
 				$this->cacheProperties( $pageID, $pageProperties );
 				$values[$pageID] = $pageProperties;
 			}
@@ -203,7 +203,7 @@ class PageProps {
 	 * @return array array of good page IDs
 	 */
 	private function getGoodIDs( $titles ) {
-		$result = array();
+		$result = [];
 		if ( is_array( $titles ) ) {
 			foreach ( $titles as $title ) {
 				$pageID = $title->getArticleID();

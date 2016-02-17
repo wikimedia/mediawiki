@@ -36,7 +36,7 @@ class OrphanStats extends Maintenance {
 			"Show some statistics on the blob_orphans table, created with trackBlobs.php" );
 	}
 
-	protected function &getDB( $cluster, $groups = array(), $wiki = false ) {
+	protected function &getDB( $cluster, $groups = [], $wiki = false ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
 
 		return $lb->getConnection( DB_SLAVE );
@@ -51,7 +51,7 @@ class OrphanStats extends Maintenance {
 
 		$num = 0;
 		$totalSize = 0;
-		$hashes = array();
+		$hashes = [];
 		$maxSize = 0;
 
 		foreach ( $res as $boRow ) {
@@ -59,7 +59,7 @@ class OrphanStats extends Maintenance {
 			$blobRow = $extDB->selectRow(
 				'blobs',
 				'*',
-				array( 'blob_id' => $boRow->bo_blob_id ),
+				[ 'blob_id' => $boRow->bo_blob_id ],
 				__METHOD__
 			);
 

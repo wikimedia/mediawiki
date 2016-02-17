@@ -2,13 +2,13 @@
 class ImagePageTest extends MediaWikiMediaTestCase {
 
 	function setUp() {
-		$this->setMwGlobals( 'wgImageLimits', array(
-			array( 320, 240 ),
-			array( 640, 480 ),
-			array( 800, 600 ),
-			array( 1024, 768 ),
-			array( 1280, 1024 )
-		) );
+		$this->setMwGlobals( 'wgImageLimits', [
+			[ 320, 240 ],
+			[ 640, 480 ],
+			[ 800, 600 ],
+			[ 1024, 768 ],
+			[ 1280, 1024 ]
+		] );
 		parent::setUp();
 	}
 
@@ -36,32 +36,32 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	function providerGetDisplayWidthHeight() {
-		return array(
-			array(
-				array( 1024.0, 768.0, 600.0, 600.0 ),
-				array( 600.0, 600.0 )
-			),
-			array(
-				array( 1024.0, 768.0, 1600.0, 600.0 ),
-				array( 1024.0, 384.0 )
-			),
-			array(
-				array( 1024.0, 768.0, 1024.0, 768.0 ),
-				array( 1024.0, 768.0 )
-			),
-			array(
-				array( 1024.0, 768.0, 800.0, 1000.0 ),
-				array( 614.0, 768.0 )
-			),
-			array(
-				array( 1024.0, 768.0, 0, 1000 ),
-				array( 0, 0 )
-			),
-			array(
-				array( 1024.0, 768.0, 2000, 0 ),
-				array( 0, 0 )
-			),
-		);
+		return [
+			[
+				[ 1024.0, 768.0, 600.0, 600.0 ],
+				[ 600.0, 600.0 ]
+			],
+			[
+				[ 1024.0, 768.0, 1600.0, 600.0 ],
+				[ 1024.0, 384.0 ]
+			],
+			[
+				[ 1024.0, 768.0, 1024.0, 768.0 ],
+				[ 1024.0, 768.0 ]
+			],
+			[
+				[ 1024.0, 768.0, 800.0, 1000.0 ],
+				[ 614.0, 768.0 ]
+			],
+			[
+				[ 1024.0, 768.0, 0, 1000 ],
+				[ 0, 0 ]
+			],
+			[
+				[ 1024.0, 768.0, 2000, 0 ],
+				[ 0, 0 ]
+			],
+		];
 	}
 
 	/**
@@ -80,11 +80,11 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	function providerGetThumbSizes() {
-		return array(
-			array( 'animated.gif', 2 ),
-			array( 'Toll_Texas_1.svg', 1 ),
-			array( '80x60-Greyscale.xcf', 1 ),
-			array( 'jpeg-comment-binary.jpg', 2 ),
-		);
+		return [
+			[ 'animated.gif', 2 ],
+			[ 'Toll_Texas_1.svg', 1 ],
+			[ '80x60-Greyscale.xcf', 1 ],
+			[ 'jpeg-comment-binary.jpg', 2 ],
+		];
 	}
 }

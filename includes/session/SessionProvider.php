@@ -166,12 +166,12 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 */
 	public function newSessionInfo( $id = null ) {
 		if ( $this->canChangeUser() && $this->persistsSessionId() ) {
-			return new SessionInfo( $this->priority, array(
+			return new SessionInfo( $this->priority, [
 				'id' => $id,
 				'provider' => $this,
 				'persisted' => false,
 				'idIsSafe' => true,
-			) );
+			] );
 		}
 		return null;
 	}
@@ -372,7 +372,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * @return array
 	 */
 	public function getVaryHeaders() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -381,7 +381,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * @return string[]
 	 */
 	public function getVaryCookies() {
-		return array();
+		return [];
 	}
 
 	/**

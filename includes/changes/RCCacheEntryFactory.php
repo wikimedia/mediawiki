@@ -151,11 +151,11 @@ class RCCacheEntryFactory {
 	 * @return array
 	 */
 	private function buildCurQueryParams( RecentChange $recentChange ) {
-		return array(
+		return [
 			'curid' => $recentChange->mAttribs['rc_cur_id'],
 			'diff' => 0,
 			'oldid' => $recentChange->mAttribs['rc_this_oldid']
-		);
+		];
 	}
 
 	/**
@@ -168,7 +168,7 @@ class RCCacheEntryFactory {
 	private function buildCurLink( RecentChange $cacheEntry, $showDiffLinks, $counter ) {
 		$queryParams = $this->buildCurQueryParams( $cacheEntry );
 		$curMessage = $this->getMessage( 'cur' );
-		$logTypes = array( RC_LOG );
+		$logTypes = [ RC_LOG ];
 
 		if ( !$showDiffLinks || in_array( $cacheEntry->mAttribs['rc_type'], $logTypes ) ) {
 			$curLink = $curMessage;
@@ -186,11 +186,11 @@ class RCCacheEntryFactory {
 	 * @return array
 	 */
 	private function buildDiffQueryParams( RecentChange $recentChange ) {
-		return array(
+		return [
 			'curid' => $recentChange->mAttribs['rc_cur_id'],
 			'diff' => $recentChange->mAttribs['rc_this_oldid'],
 			'oldid' => $recentChange->mAttribs['rc_last_oldid']
-		);
+		];
 	}
 
 	/**
@@ -203,7 +203,7 @@ class RCCacheEntryFactory {
 	private function buildDiffLink( RecentChange $cacheEntry, $showDiffLinks, $counter ) {
 		$queryParams = $this->buildDiffQueryParams( $cacheEntry );
 		$diffMessage = $this->getMessage( 'diff' );
-		$logTypes = array( RC_NEW, RC_LOG );
+		$logTypes = [ RC_NEW, RC_LOG ];
 
 		if ( !$showDiffLinks ) {
 			$diffLink = $diffMessage;
@@ -236,7 +236,7 @@ class RCCacheEntryFactory {
 		$lastOldid = $cacheEntry->mAttribs['rc_last_oldid'];
 		$lastMessage = $this->getMessage( 'last' );
 		$type = $cacheEntry->mAttribs['rc_type'];
-		$logTypes = array( RC_LOG );
+		$logTypes = [ RC_LOG ];
 
 		// Make "last" link
 		if ( !$showDiffLinks || !$lastOldid || in_array( $type, $logTypes ) ) {
@@ -245,7 +245,7 @@ class RCCacheEntryFactory {
 			$lastLink = Linker::linkKnown(
 				$cacheEntry->getTitle(),
 				$lastMessage,
-				array(),
+				[],
 				$this->buildDiffQueryParams( $cacheEntry )
 			);
 		}

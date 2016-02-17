@@ -10,21 +10,21 @@ class LanguageTgTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideAutoConvertToAllVariants() {
-		return array(
-			array(
-				array(
+		return [
+			[
+				[
 					'tg'      => 'г',
 					'tg-latn' => 'g',
-				),
+				],
 				'г'
-			),
-			array(
-				array(
+			],
+			[
+				[
 					'tg'      => 'g',
 					'tg-latn' => 'g',
-				),
+				],
 				'g'
-			),
-		);
+			],
+		];
 	}
 }

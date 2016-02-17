@@ -48,7 +48,7 @@ abstract class Benchmarker extends Maintenance {
 		foreach ( $benchs as $bench ) {
 			// handle empty args
 			if ( !array_key_exists( 'args', $bench ) ) {
-				$bench['args'] = array();
+				$bench['args'] = [];
 			}
 
 			$bench_number++;
@@ -64,13 +64,13 @@ abstract class Benchmarker extends Maintenance {
 				$bench['function'] = $ret;
 			}
 
-			$this->results[$bench_number] = array(
+			$this->results[$bench_number] = [
 				'function' => $bench['function'],
 				'arguments' => $bench['args'],
 				'count' => $count,
 				'delta' => $delta,
 				'average' => $delta / $count,
-			);
+			];
 		}
 	}
 

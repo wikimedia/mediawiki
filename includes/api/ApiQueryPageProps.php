@@ -45,7 +45,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		if ( $this->params['continue'] ) {
 			$continueValue = intval( $this->params['continue'] );
 			$this->dieContinueUsageIf( strval( $continueValue ) !== $this->params['continue'] );
-			$filteredPages = array();
+			$filteredPages = [];
 			foreach ( $pages as $id => $page ) {
 				if ( $id >= $continueValue ) {
 					$filteredPages[$id] = $page;
@@ -60,7 +60,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		}
 
 		$pageProps = PageProps::getInstance();
-		$props = array();
+		$props = [];
 		$result = $this->getResult();
 		if ( $this->params['prop'] ) {
 			$propnames = $this->params['prop'];
@@ -89,7 +89,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 */
 	private function addPageProps( $result, $page, $props ) {
 		ApiResult::setArrayType( $props, 'assoc' );
-		$fit = $result->addValue( array( 'query', 'pages', $page ), 'pageprops', $props );
+		$fit = $result->addValue( [ 'query', 'pages', $page ], 'pageprops', $props );
 
 		if ( !$fit ) {
 			$this->setContinueEnumParameter( 'continue', $page );
@@ -103,21 +103,21 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'continue' => array(
+		return [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=pageprops&titles=Main%20Page|MediaWiki'
 				=> 'apihelp-query+pageprops-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

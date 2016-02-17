@@ -35,7 +35,7 @@ class ProfilerSectionOnly extends Profiler {
 	/** @var SectionProfiler */
 	protected $sprofiler;
 
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 		$this->sprofiler = new SectionProfiler();
 	}
@@ -83,7 +83,7 @@ class ProfilerSectionOnly extends Profiler {
 		$width = 140;
 		$nameWidth = $width - 65;
 		$format = "%-{$nameWidth}s %6d %9d %9d %9d %9d %7.3f%% %9d";
-		$out = array();
+		$out = [];
 		$out[] = sprintf( "%-{$nameWidth}s %6s %9s %9s %9s %9s %7s %9s",
 			'Name', 'Calls', 'Total', 'Min', 'Each', 'Max', '%', 'Mem'
 		);

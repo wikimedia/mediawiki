@@ -10,7 +10,7 @@ require_once __DIR__ . '/../includes/utils/AutoloadGenerator.php';
 $base = dirname( __DIR__ );
 
 $generator = new AutoloadGenerator( $base, 'local' );
-foreach ( array( 'includes', 'languages', 'maintenance', 'mw-config' ) as $dir ) {
+foreach ( [ 'includes', 'languages', 'maintenance', 'mw-config' ] as $dir ) {
 	$generator->readDir( $base . '/' . $dir );
 }
 foreach ( glob( $base . '/*.php' ) as $file ) {

@@ -41,9 +41,9 @@ class BenchmarkPurge extends Benchmarker {
 		} else {
 			$this->output( "There are " . count( $wgSquidServers ) . " defined squid servers:\n" );
 			if ( $this->hasOption( 'count' ) ) {
-				$lengths = array( intval( $this->getOption( 'count' ) ) );
+				$lengths = [ intval( $this->getOption( 'count' ) ) ];
 			} else {
-				$lengths = array( 1, 10, 100 );
+				$lengths = [ 1, 10, 100 ];
 			}
 			foreach ( $lengths as $length ) {
 				$urls = $this->randomUrlList( $length );
@@ -79,7 +79,7 @@ class BenchmarkPurge extends Benchmarker {
 	 * @return array
 	 */
 	private function randomUrlList( $length ) {
-		$list = array();
+		$list = [];
 		for ( $i = 0; $i < $length; $i++ ) {
 			$list[] = $this->randomUrl();
 		}

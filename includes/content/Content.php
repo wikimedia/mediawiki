@@ -445,7 +445,7 @@ interface Content {
 	 *
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $parserOptions, $params = array() );
+	public function preloadTransform( Title $title, ParserOptions $parserOptions, $params = [] );
 
 	/**
 	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent() and in

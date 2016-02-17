@@ -102,7 +102,7 @@ class RawAction extends FormlessAction {
 			$response->statusHeader( 404 );
 		}
 
-		if ( !Hooks::run( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
+		if ( !Hooks::run( 'RawPageViewBeforeOutput', [ &$this, &$text ] ) ) {
 			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output.\n" );
 		}
 
@@ -228,7 +228,7 @@ class RawAction extends FormlessAction {
 			}
 		}
 
-		$allowedCTypes = array( 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' );
+		$allowedCTypes = [ 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' ];
 		if ( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
 			$ctype = 'text/x-wiki';
 		}

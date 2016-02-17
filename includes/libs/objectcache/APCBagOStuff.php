@@ -51,7 +51,7 @@ class APCBagOStuff extends BagOStuff {
 	 *
 	 * @param array $params
 	 */
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
 		if ( isset( $params['nativeSerialize'] ) ) {

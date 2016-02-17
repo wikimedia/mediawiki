@@ -7,10 +7,10 @@
  */
 class EventRelayerGroup {
 	/** @var array[] */
-	protected $configByChannel = array();
+	protected $configByChannel = [];
 
 	/** @var EventRelayer[] */
-	protected $relayers = array();
+	protected $relayers = [];
 
 	/** @var EventRelayerGroup */
 	protected static $instance = null;

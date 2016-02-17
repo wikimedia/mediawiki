@@ -37,7 +37,7 @@ abstract class MediaHandler {
 	const MAX_ERR_LOG_SIZE = 65535;
 
 	/** @var MediaHandler[] Instance cache with array of MediaHandler */
-	protected static $handlers = array();
+	protected static $handlers = [];
 
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
@@ -68,7 +68,7 @@ abstract class MediaHandler {
 	 * Resets all static caches
 	 */
 	public static function resetCache() {
-		self::$handlers = array();
+		self::$handlers = [];
 	}
 
 	/**
@@ -161,8 +161,8 @@ abstract class MediaHandler {
 	 * @return string Version string
 	 */
 	static function getMetadataVersion() {
-		$version = array( '2' ); // core metadata version
-		Hooks::run( 'GetMetadataVersion', array( &$version ) );
+		$version = [ '2' ]; // core metadata version
+		Hooks::run( 'GetMetadataVersion', [ &$version ] );
 
 		return implode( ';', $version );
 	}
@@ -317,13 +317,13 @@ abstract class MediaHandler {
 			// recognize the MIME type
 			$extensions = $magic->getExtensionsForType( $mime );
 			if ( $extensions ) {
-				return array( strtok( $extensions, ' ' ), $mime );
+				return [ strtok( $extensions, ' ' ), $mime ];
 			}
 		}
 
 		// The extension is correct (true) or the MIME type is unknown to
 		// MediaWiki (null)
-		return array( $ext, $mime );
+		return [ $ext, $mime ];
 	}
 
 	/**
@@ -333,7 +333,7 @@ abstract class MediaHandler {
 	 * @return array
 	 */
 	public function getStreamHeaders( $metadata ) {
-		return array();
+		return [];
 	}
 
 	/**
@@ -437,10 +437,10 @@ abstract class MediaHandler {
 	function getPageDimensions( File $image, $page ) {
 		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
 		if ( $gis ) {
-			return array(
+			return [
 				'width' => $gis[0],
 				'height' => $gis[1]
-			);
+			];
 		} else {
 			return false;
 		}
@@ -525,10 +525,10 @@ abstract class MediaHandler {
 	 * @return array Array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray, $context = false ) {
-		$result = array(
-			'visible' => array(),
-			'collapsed' => array()
-		);
+		$result = [
+			'visible' => [],
+			'collapsed' => []
+		];
 
 		$formatted = FormatMetadata::getFormattedData( $metadataArray, $context );
 		// Sort fields into visible and collapsed
@@ -592,11 +592,11 @@ abstract class MediaHandler {
 			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
 			$name = wfEscapeWikiText( $id );
 		}
-		$array[$visibility][] = array(
+		$array[$visibility][] = [
 			'id' => "$type-$id",
 			'name' => $name,
 			'value' => $value
-		);
+		];
 	}
 
 	/**
@@ -800,7 +800,7 @@ abstract class MediaHandler {
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages( File $file ) {
-		return array();
+		return [];
 	}
 
 	/**

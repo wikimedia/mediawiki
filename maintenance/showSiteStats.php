@@ -43,14 +43,14 @@ class ShowSiteStats extends Maintenance {
 	}
 
 	public function execute() {
-		$fields = array(
+		$fields = [
 			'ss_total_edits' => 'Total edits',
 			'ss_good_articles' => 'Number of articles',
 			'ss_total_pages' => 'Total pages',
 			'ss_users' => 'Number of users',
 			'ss_active_users' => 'Active users',
 			'ss_images' => 'Number of images',
-		);
+		];
 
 		// Get cached stats from slave database
 		$dbr = $this->getDB( DB_SLAVE );

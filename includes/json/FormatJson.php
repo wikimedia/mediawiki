@@ -94,18 +94,18 @@ class FormatJson {
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
 	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
 	 */
-	private static $badChars = array(
+	private static $badChars = [
 		"\xe2\x80\xa8", // U+2028 LINE SEPARATOR
 		"\xe2\x80\xa9", // U+2029 PARAGRAPH SEPARATOR
-	);
+	];
 
 	/**
 	 * Escape sequences for characters listed in FormatJson::$badChars.
 	 */
-	private static $badCharsEscaped = array(
+	private static $badCharsEscaped = [
 		'\u2028', // U+2028 LINE SEPARATOR
 		'\u2029', // U+2029 PARAGRAPH SEPARATOR
-	);
+	];
 
 	/**
 	 * Returns the JSON representation of a value.
@@ -131,7 +131,7 @@ class FormatJson {
 
 		static $bug66021;
 		if ( $pretty !== false && $bug66021 === null ) {
-			$bug66021 = json_encode( array(), JSON_PRETTY_PRINT ) !== '[]';
+			$bug66021 = json_encode( [], JSON_PRETTY_PRINT ) !== '[]';
 		}
 
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',

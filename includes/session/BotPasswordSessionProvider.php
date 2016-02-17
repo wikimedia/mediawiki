@@ -39,7 +39,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 	 *  - sessionCookieName: Session cookie name. Default is '_BPsession'.
 	 *  - sessionCookieOptions: Options to pass to WebResponse::setCookie().
 	 */
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		if ( !isset( $params['sessionCookieName'] ) ) {
 			$params['sessionCookieName'] = '_BPsession';
 		}
@@ -74,11 +74,11 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			return null;
 		}
 
-		return new SessionInfo( $this->priority, array(
+		return new SessionInfo( $this->priority, [
 			'provider' => $this,
 			'id' => $id,
 			'persisted' => true
-		) );
+		] );
 	}
 
 	public function newSessionInfo( $id = null ) {
@@ -95,18 +95,18 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 	 */
 	public function newSessionForRequest( User $user, BotPassword $bp, WebRequest $request ) {
 		$id = $this->getSessionIdFromCookie( $request );
-		$info = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		$info = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
 			'id' => $id,
 			'userInfo' => UserInfo::newFromUser( $user, true ),
 			'persisted' => $id !== null,
-			'metadata' => array(
+			'metadata' => [
 				'centralId' => $bp->getUserCentralId(),
 				'appId' => $bp->getAppId(),
 				'token' => $bp->getToken(),
 				'rights' => \MWGrants::getGrantRights( $bp->getGrants() ),
-			),
-		) );
+			],
+		] );
 		$session = $this->getManager()->getSessionFromInfo( $info, $request );
 		$session->persist();
 		return $session;
@@ -114,14 +114,14 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 
 	public function refreshSessionInfo( SessionInfo $info, WebRequest $request, &$metadata ) {
 		$missingKeys = array_diff(
-			array( 'centralId', 'appId', 'token' ),
+			[ 'centralId', 'appId', 'token' ],
 			array_keys( $metadata )
 		);
 		if ( $missingKeys ) {
-			$this->logger->info( 'Session "{session}": Missing metadata: {missing}', array(
+			$this->logger->info( 'Session "{session}": Missing metadata: {missing}', [
 				'session' => $info,
 				'missing' => join( ', ', $missingKeys ),
-			) );
+			] );
 			return false;
 		}
 
@@ -129,20 +129,20 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		if ( !$bp ) {
 			$this->logger->info(
 				'Session "{session}": No BotPassword for {centralId} {appId}',
-				array(
+				[
 					'session' => $info,
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],
-			) );
+			] );
 			return false;
 		}
 
 		if ( !hash_equals( $metadata['token'], $bp->getToken() ) ) {
-			$this->logger->info( 'Session "{session}": BotPassword token check failed', array(
+			$this->logger->info( 'Session "{session}": BotPassword token check failed', [
 				'session' => $info,
 				'centralId' => $metadata['centralId'],
 				'appId' => $metadata['appId'],
-			) );
+			] );
 			return false;
 		}
 
@@ -150,12 +150,12 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		if ( !$status->isOk() ) {
 			$this->logger->info(
 				'Session "{session}": Restrictions check failed',
-				array(
+				[
 					'session' => $info,
 					'restrictions' => $status->getValue(),
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],
-			) );
+			] );
 			return false;
 		}
 
@@ -180,6 +180,6 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 
 		// Should never happen
 		$this->logger->debug( __METHOD__ . ': No provider metadata, returning no rights allowed' );
-		return array();
+		return [];
 	}
 }

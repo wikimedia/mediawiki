@@ -86,7 +86,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			$height = $params['physicalHeight'];
 		}
 
-		return array( $width, $height );
+		return [ $width, $height ];
 	}
 
 	/**
@@ -108,7 +108,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		# Create a parameter array to pass to the scaler
-		$scalerParams = array(
+		$scalerParams = [
 			# The size to which the image will be resized
 			'physicalWidth' => $params['physicalWidth'],
 			'physicalHeight' => $params['physicalHeight'],
@@ -127,7 +127,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
 			'interlace' => isset( $params['interlace'] ) ? $params['interlace'] : false,
-		);
+		];
 
 		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
 			$scalerParams['quality'] = 30;
@@ -175,10 +175,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
-			$newParams = array(
+			$newParams = [
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
-			);
+			];
 			if ( isset( $params['quality'] ) ) {
 				$newParams['quality'] = $params['quality'];
 			}
@@ -223,7 +223,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Try a hook. Called "Bitmap" for historical reasons.
 		/** @var $mto MediaTransformOutput */
 		$mto = null;
-		Hooks::run( 'BitmapHandlerTransform', array( $this, $image, &$scalerParams, &$mto ) );
+		Hooks::run( 'BitmapHandlerTransform', [ $this, $image, &$scalerParams, &$mto ] );
 		if ( !is_null( $mto ) ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
@@ -271,10 +271,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		} elseif ( $mto ) {
 			return $mto;
 		} else {
-			$newParams = array(
+			$newParams = [
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
-			);
+			];
 			if ( isset( $params['quality'] ) ) {
 				$newParams['quality'] = $params['quality'];
 			}
@@ -330,10 +330,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @todo FIXME: No rotation support
 	 */
 	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
-		$params = array(
+		$params = [
 			'width' => $scalerParams['clientWidth'],
 			'height' => $scalerParams['clientHeight']
-		);
+		];
 
 		return new ThumbnailImage( $image, $image->getURL(), null, $params );
 	}
@@ -598,7 +598,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		$checkImageAreaHookResult = null;
 		Hooks::run(
 			'BitmapHandlerCheckImageArea',
-			array( $file, &$params, &$checkImageAreaHookResult )
+			[ $file, &$params, &$checkImageAreaHookResult ]
 		);
 
 		if ( !is_null( $checkImageAreaHookResult ) ) {

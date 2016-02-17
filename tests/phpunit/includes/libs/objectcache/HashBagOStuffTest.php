@@ -47,7 +47,7 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 	 * Ensure maxKeys eviction prefers keeping new keys.
 	 */
 	public function testEvictionAdd() {
-		$cache = new HashBagOStuff( array( 'maxKeys' => 10 ) );
+		$cache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
 			$this->assertEquals( 1, $cache->get( "key$i" ) );
@@ -64,9 +64,9 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 	 * even if the keys pre-exist.
 	 */
 	public function testEvictionSet() {
-		$cache = new HashBagOStuff( array( 'maxKeys' => 3 ) );
+		$cache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 
-		foreach ( array( 'foo', 'bar', 'baz' ) as $key ) {
+		foreach ( [ 'foo', 'bar', 'baz' ] as $key ) {
 			$cache->set( $key, 1 );
 		}
 
@@ -77,7 +77,7 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$cache->set( 'quux', 1 );
 
 		// Foo's life should have been extended over Bar
-		foreach ( array( 'foo', 'baz', 'quux' ) as $key ) {
+		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
 			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
 		}
 		$this->assertEquals( false, $cache->get( 'bar' ), 'Evicted bar' );
@@ -87,9 +87,9 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 	 * Ensure maxKeys eviction prefers recently retrieved keys (LRU).
 	 */
 	public function testEvictionGet() {
-		$cache = new HashBagOStuff( array( 'maxKeys' => 3 ) );
+		$cache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 
-		foreach ( array( 'foo', 'bar', 'baz' ) as $key ) {
+		foreach ( [ 'foo', 'bar', 'baz' ] as $key ) {
 			$cache->set( $key, 1 );
 		}
 
@@ -100,7 +100,7 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$cache->set( 'quux', 1 );
 
 		// Foo's life should have been extended over Bar
-		foreach ( array( 'foo', 'baz', 'quux' ) as $key ) {
+		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
 			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
 		}
 		$this->assertEquals( false, $cache->get( 'bar' ), 'Evicted bar' );

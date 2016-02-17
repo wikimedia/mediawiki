@@ -37,7 +37,7 @@ class ReplacementArray {
 	 * @return array
 	 */
 	public function __sleep() {
-		return array( 'data' );
+		return [ 'data' ];
 	}
 
 	/**

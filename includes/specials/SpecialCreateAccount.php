@@ -33,7 +33,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 			'CreateAccount',
 			'Userlogin',
 			'signup',
-			array( 'returnto', 'returntoquery', 'uselang' )
+			[ 'returnto', 'returntoquery', 'uselang' ]
 		);
 	}
 

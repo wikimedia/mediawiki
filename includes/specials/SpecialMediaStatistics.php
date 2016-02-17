@@ -63,7 +63,7 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$fakeTitle = $dbr->buildConcat( array(
+		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),
 			'img_major_mime',
@@ -73,26 +73,26 @@ class MediaStatisticsPage extends QueryPage {
 			'COUNT(*)',
 			$dbr->addQuotes( ';' ),
 			'SUM( img_size )'
-		) );
-		return array(
-			'tables' => array( 'image' ),
-			'fields' => array(
+		] );
+		return [
+			'tables' => [ 'image' ],
+			'fields' => [
 				'title' => $fakeTitle,
 				'namespace' => NS_MEDIA, /* needs to be something */
 				'value' => '1'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				// WMF has a random null row in the db
 				'img_media_type IS NOT NULL'
-			),
-			'options' => array(
-				'GROUP BY' => array(
+			],
+			'options' => [
+				'GROUP BY' => [
 					'img_media_type',
 					'img_major_mime',
 					'img_minor_mime',
-				)
-			)
-		);
+				]
+			]
+		];
 	}
 
 	/**
@@ -103,7 +103,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * @return Array Fields to sort by
 	 */
 	function getOrderFields() {
-		return array( 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' );
+		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
 	}
 
 	/**
@@ -176,18 +176,18 @@ class MediaStatisticsPage extends QueryPage {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
 		$row = Html::rawElement(
 			'td',
-			array(),
+			[],
 			Linker::link( $mimeSearch, htmlspecialchars( $mime ) )
 		);
 		$row .= Html::element(
 			'td',
-			array(),
+			[],
 			$this->getExtensionList( $mime )
 		);
 		$row .= Html::rawElement(
 			'td',
 			// Make sure js sorts it in numeric order
-			array( 'data-sort-value' => $count ),
+			[ 'data-sort-value' => $count ],
 			$this->msg( 'mediastatistics-nfiles' )
 				->numParams( $count )
 				/** @todo Check to be sure this really should have number formatting */
@@ -197,7 +197,7 @@ class MediaStatisticsPage extends QueryPage {
 		$row .= Html::rawElement(
 			'td',
 			// Make sure js sorts it in numeric order
-			array( 'data-sort-value' =>  $bytes ),
+			[ 'data-sort-value' =>  $bytes ],
 			$this->msg( 'mediastatistics-nbytes' )
 				->numParams( $bytes )
 				->sizeParams( $bytes )
@@ -206,7 +206,7 @@ class MediaStatisticsPage extends QueryPage {
 				->parse()
 		);
 		$this->totalPerType += $bytes;
-		$this->getOutput()->addHTML( Html::rawElement( 'tr', array(), $row ) );
+		$this->getOutput()->addHTML( Html::rawElement( 'tr', [], $row ) );
 	}
 
 	/**
@@ -256,12 +256,12 @@ class MediaStatisticsPage extends QueryPage {
 		$this->getOutput()->addHTML(
 			Html::openElement(
 				'table',
-				array( 'class' => array(
+				[ 'class' => [
 					'mw-mediastats-table',
 					'mw-mediastats-table-' . strtolower( $mediaType ),
 					'sortable',
 					'wikitable'
-				) )
+				] ]
 			)
 		);
 		$this->getOutput()->addHTML( $this->getTableHeaderRow() );
@@ -273,19 +273,19 @@ class MediaStatisticsPage extends QueryPage {
 	 * @return String the header row of the able
 	 */
 	protected function getTableHeaderRow() {
-		$headers = array( 'mimetype', 'extensions', 'count', 'totalbytes' );
+		$headers = [ 'mimetype', 'extensions', 'count', 'totalbytes' ];
 		$ths = '';
 		foreach ( $headers as $header ) {
 			$ths .= Html::rawElement(
 				'th',
-				array(),
+				[],
 				// for grep:
 				// mediastatistics-table-mimetype, mediastatistics-table-extensions
 				// tatistics-table-count, mediastatistics-table-totalbytes
 				$this->msg( 'mediastatistics-table-' . $header )->parse()
 			);
 		}
-		return Html::rawElement( 'tr', array(), $ths );
+		return Html::rawElement( 'tr', [], $ths );
 	}
 
 	/**
@@ -297,10 +297,10 @@ class MediaStatisticsPage extends QueryPage {
 		$this->getOutput()->addHTML(
 			Html::element(
 				'h2',
-				array( 'class' => array(
+				[ 'class' => [
 					'mw-mediastats-mediatype',
 					'mw-mediastats-mediatype-' . strtolower( $mediaType )
-				) ),
+				] ],
 				// for grep
 				// mediastatistics-header-unknown, mediastatistics-header-bitmap,
 				// mediastatistics-header-drawing, mediastatistics-header-audio,

@@ -52,11 +52,11 @@ class JpegMetadataExtractor {
 
 		$segmentCount = 0;
 
-		$segments = array(
-			'XMP_ext' => array(),
-			'COM' => array(),
-			'PSIR' => array(),
-		);
+		$segments = [
+			'XMP_ext' => [],
+			'COM' => [],
+			'PSIR' => [],
+		];
 
 		if ( !$filename ) {
 			throw new MWException( "No filename specified for " . __METHOD__ );

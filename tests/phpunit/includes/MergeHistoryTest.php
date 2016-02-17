@@ -42,23 +42,23 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	}
 
 	public static function provideIsValidMerge() {
-		return array(
+		return [
 			// for MergeHistory::isValidMerge
-			array( 'Test', 'Test2', false, true ),
+			[ 'Test', 'Test2', false, true ],
 			// Although this timestamp is after the latest timestamp of both pages,
 			// MergeHistory should select the latest source timestamp up to this which should
 			// still work for the merge.
-			array( 'Test', 'Test2', strtotime( 'tomorrow' ), true ),
-			array( 'Test', 'Test', false, 'mergehistory-fail-self-merge' ),
-			array( 'Nonexistant', 'Test2', false, 'mergehistory-fail-invalid-source' ),
-			array( 'Test', 'Nonexistant', false, 'mergehistory-fail-invalid-dest' ),
-			array(
+			[ 'Test', 'Test2', strtotime( 'tomorrow' ), true ],
+			[ 'Test', 'Test', false, 'mergehistory-fail-self-merge' ],
+			[ 'Nonexistant', 'Test2', false, 'mergehistory-fail-invalid-source' ],
+			[ 'Test', 'Nonexistant', false, 'mergehistory-fail-invalid-dest' ],
+			[
 				'Test',
 				'Test2',
 				'This is obviously an invalid timestamp',
 				'mergehistory-fail-bad-timestamp'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -69,11 +69,11 @@ class MergeHistoryTest extends MediaWikiTestCase {
 		$limit = MergeHistory::REVISION_LIMIT;
 
 		$mh = $this->getMockBuilder( 'MergeHistory' )
-			->setMethods( array( 'getRevisionCount' ) )
-			->setConstructorArgs( array(
+			->setMethods( [ 'getRevisionCount' ] )
+			->setConstructorArgs( [
 				Title::newFromText( 'Test' ),
 				Title::newFromText( 'Test2' ),
-			) )
+			] )
 			->getMock();
 		$mh->expects( $this->once() )
 			->method( 'getRevisionCount' )

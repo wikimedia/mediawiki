@@ -30,9 +30,9 @@
  */
 class BcryptPassword extends ParameterizedPassword {
 	protected function getDefaultParams() {
-		return array(
+		return [
 			'rounds' => $this->config['cost'],
-		);
+		];
 	}
 
 	protected function getDelimiter() {

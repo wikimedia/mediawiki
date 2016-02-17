@@ -92,11 +92,11 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			$res = $db->select(
 				$table,
 				$fields,
-				array(
+				[
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
 					"{$prefix}_len IS NULL"
-				),
+				],
 				__METHOD__
 			);
 
@@ -142,8 +142,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 		# Update the row...
 		$db->update( $table,
-			array( "{$prefix}_len" => $content->getSize() ),
-			array( $idCol => $row->$idCol ),
+			[ "{$prefix}_len" => $content->getSize() ],
+			[ $idCol => $row->$idCol ],
 			__METHOD__
 		);
 

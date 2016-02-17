@@ -56,19 +56,19 @@ class RequestContextTest extends MediaWikiTestCase {
 		$user = User::newFromName( 'UnitTestContextUser' );
 		$user->addToDatabase();
 
-		$sinfo = array(
+		$sinfo = [
 			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
 			'userId' => $user->getId(),
 			'ip' => '192.0.2.0',
-			'headers' => array(
+			'headers' => [
 				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
-			)
-		);
+			]
+		];
 		// importScopedSession() sets these variables
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgUser' => new User,
 			'wgRequest' => new FauxRequest,
-		) );
+		] );
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
 
 		$info = $context->exportSession();

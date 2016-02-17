@@ -67,7 +67,7 @@ class CategoryMembershipChange {
 		$this->pageTitle = $pageTitle;
 		$this->timestamp = wfTimestampNow();
 		$this->revision = $revision;
-		$this->newForCategorizationCallback = array( 'RecentChange', 'newForCategorization' );
+		$this->newForCategorizationCallback = [ 'RecentChange', 'newForCategorization' ];
 	}
 
 	/**
@@ -123,10 +123,10 @@ class CategoryMembershipChange {
 			$this->timestamp,
 			$categoryTitle,
 			$this->getUser(),
-			$this->getChangeMessageText( $type, array(
+			$this->getChangeMessageText( $type, [
 				'prefixedText' => $this->pageTitle->getPrefixedText(),
 				'numTemplateLinks' => $this->numTemplateLinks
-			) ),
+			] ),
 			$this->pageTitle,
 			$this->getPreviousRevisionTimestamp(),
 			$this->revision
@@ -181,7 +181,7 @@ class CategoryMembershipChange {
 		/** @var RecentChange $rc */
 		$rc = call_user_func_array(
 			$this->newForCategorizationCallback,
-			array(
+			[
 				$timestamp,
 				$categoryTitle,
 				$user,
@@ -193,7 +193,7 @@ class CategoryMembershipChange {
 				$bot,
 				$ip,
 				$deleted
-			)
+			]
 		);
 		$rc->save();
 	}
@@ -246,10 +246,10 @@ class CategoryMembershipChange {
 	 * @return string
 	 */
 	private function getChangeMessageText( $type, array $params ) {
-		$array = array(
+		$array = [
 			self::CATEGORY_ADDITION => 'recentchanges-page-added-to-category',
 			self::CATEGORY_REMOVAL => 'recentchanges-page-removed-from-category',
-		);
+		];
 
 		$msgKey = $array[$type];
 

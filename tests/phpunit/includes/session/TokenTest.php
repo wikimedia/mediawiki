@@ -12,8 +12,8 @@ class TokenTest extends MediaWikiTestCase {
 
 	public function testBasics() {
 		$token = $this->getMockBuilder( 'MediaWiki\\Session\\Token' )
-			->setMethods( array( 'toStringAtTimestamp' ) )
-			->setConstructorArgs( array( 'sekret', 'salty', true ) )
+			->setMethods( [ 'toStringAtTimestamp' ] )
+			->setConstructorArgs( [ 'sekret', 'salty', true ] )
 			->getMock();
 		$token->expects( $this->any() )->method( 'toStringAtTimestamp' )
 			->will( $this->returnValue( 'faketoken+\\' ) );

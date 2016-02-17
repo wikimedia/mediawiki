@@ -56,7 +56,7 @@ class PurgeList extends Maintenance {
 	 */
 	private function doPurge() {
 		$stdin = $this->getStdin();
-		$urls = array();
+		$urls = [];
 
 		while ( !feof( $stdin ) ) {
 			$page = trim( fgets( $stdin ) );
@@ -89,25 +89,25 @@ class PurgeList extends Maintenance {
 		$dbr = $this->getDB( DB_SLAVE );
 		$startId = 0;
 		if ( $namespace === false ) {
-			$conds = array();
+			$conds = [];
 		} else {
-			$conds = array( 'page_namespace' => $namespace );
+			$conds = [ 'page_namespace' => $namespace ];
 		}
 		while ( true ) {
 			$res = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title' ),
-				$conds + array( 'page_id > ' . $dbr->addQuotes( $startId ) ),
+				[ 'page_id', 'page_namespace', 'page_title' ],
+				$conds + [ 'page_id > ' . $dbr->addQuotes( $startId ) ],
 				__METHOD__,
-				array(
+				[
 					'LIMIT' => $this->mBatchSize,
 					'ORDER BY' => 'page_id'
 
-				)
+				]
 			);
 			if ( !$res->numRows() ) {
 				break;
 			}
-			$urls = array();
+			$urls = [];
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$url = $title->getInternalURL();
@@ -129,7 +129,7 @@ class PurgeList extends Maintenance {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $url . "\n" );
 				}
-				$u = new CdnCacheUpdate( array( $url ) );
+				$u = new CdnCacheUpdate( [ $url ] );
 				$u->doUpdate();
 				usleep( $delay * 1e6 );
 			}

@@ -48,14 +48,14 @@ class ExtensionRegistry {
 	 *
 	 * @var array
 	 */
-	private $loaded = array();
+	private $loaded = [];
 
 	/**
 	 * List of paths that should be loaded
 	 *
 	 * @var array
 	 */
-	protected $queued = array();
+	protected $queued = [];
 
 	/**
 	 * Items in the JSON file that aren't being
@@ -63,7 +63,7 @@ class ExtensionRegistry {
 	 *
 	 * @var array
 	 */
-	protected $attributes = array();
+	protected $attributes = [];
 
 	/**
 	 * @var ExtensionRegistry
@@ -120,10 +120,10 @@ class ExtensionRegistry {
 		}
 
 		// A few more things to vary the cache on
-		$versions = array(
+		$versions = [
 			'registration' => self::CACHE_VERSION,
 			'mediawiki' => $wgVersion
-		);
+		];
 
 		// See if this queue is in APC
 		$key = wfMemcKey(
@@ -142,7 +142,7 @@ class ExtensionRegistry {
 			unset( $data['autoload'] );
 			$this->cache->set( $key, $data, 60 * 60 * 24 );
 		}
-		$this->queued = array();
+		$this->queued = [];
 	}
 
 	/**
@@ -160,7 +160,7 @@ class ExtensionRegistry {
 	 * outside of the installer.
 	 */
 	public function clearQueue() {
-		$this->queued = array();
+		$this->queued = [];
 	}
 
 	/**
@@ -172,10 +172,10 @@ class ExtensionRegistry {
 	 */
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
-		$autoloadClasses = array();
-		$autoloaderPaths = array();
+		$autoloadClasses = [];
+		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$incompatible = array();
+		$incompatible = [];
 		$coreVersionParser = new CoreVersionChecker( $wgVersion );
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
@@ -224,7 +224,7 @@ class ExtensionRegistry {
 		}
 		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
-		$data['globals']['wgAutoloadClasses'] = array();
+		$data['globals']['wgAutoloadClasses'] = [];
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
@@ -325,7 +325,7 @@ class ExtensionRegistry {
 		if ( isset( $this->attributes[$name] ) ) {
 			return $this->attributes[$name];
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -362,7 +362,7 @@ class ExtensionRegistry {
 				return "$dir/$file";
 			}, $info['AutoloadClasses'] );
 		} else {
-			return array();
+			return [];
 		}
 	}
 }

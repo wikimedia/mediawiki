@@ -29,7 +29,7 @@
 class SpecialPermanentLink extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'PermanentLink' );
-		$this->mAllowedRedirectParams = array();
+		$this->mAllowedRedirectParams = [];
 	}
 
 	/**

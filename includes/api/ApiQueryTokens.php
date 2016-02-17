@@ -35,9 +35,9 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$res = array(
+		$res = [
 			ApiResult::META_TYPE => 'assoc',
-		);
+		];
 
 		if ( $this->lacksSameOriginSecurity() ) {
 			$this->setWarning( 'Tokens may not be obtained when the same-origin policy is not applied' );
@@ -65,16 +65,16 @@ class ApiQueryTokens extends ApiQueryBase {
 	public static function getTokenTypeSalts() {
 		static $salts = null;
 		if ( !$salts ) {
-			$salts = array(
+			$salts = [
 				'csrf' => '',
 				'watch' => 'watch',
 				'patrol' => 'patrol',
 				'rollback' => 'rollback',
 				'userrights' => 'userrights',
-				'login' => array( '', 'login' ),
-				'createaccount' => array( '', 'createaccount' ),
-			);
-			Hooks::run( 'ApiQueryTokensRegisterTypes', array( &$salts ) );
+				'login' => [ '', 'login' ],
+				'createaccount' => [ '', 'createaccount' ],
+			];
+			Hooks::run( 'ApiQueryTokensRegisterTypes', [ &$salts ] );
 			ksort( $salts );
 		}
 
@@ -96,29 +96,29 @@ class ApiQueryTokens extends ApiQueryBase {
 	public static function getToken( User $user, MediaWiki\Session\Session $session, $salt ) {
 		if ( is_array( $salt ) ) {
 			$session->persist();
-			return call_user_func_array( array( $session, 'getToken' ), $salt );
+			return call_user_func_array( [ $session, 'getToken' ], $salt );
 		} else {
 			return $user->getEditTokenObject( $salt, $session->getRequest() );
 		}
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'type' => array(
+		return [
+			'type' => [
 				ApiBase::PARAM_DFLT => 'csrf',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&meta=tokens'
 				=> 'apihelp-query+tokens-example-simple',
 			'action=query&meta=tokens&type=watch|patrol'
 				=> 'apihelp-query+tokens-example-types',
-		);
+		];
 	}
 
 	public function isReadMode() {

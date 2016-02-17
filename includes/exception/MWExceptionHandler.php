@@ -33,10 +33,10 @@ class MWExceptionHandler {
 	/**
 	 * @var array $fatalErrorTypes
 	 */
-	protected static $fatalErrorTypes = array(
+	protected static $fatalErrorTypes = [
 		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
 		/* HHVM's FATAL_ERROR level */ 16777217,
-	);
+	];
 	/**
 	 * @var bool $handledFatalCallback
 	 */
@@ -326,17 +326,17 @@ TXT;
 		// log.
 		$trace = $trace ?: debug_backtrace();
 		$logger = LoggerFactory::getInstance( 'fatal' );
-		$logger->error( $msg, array(
-			'exception' => array(
+		$logger->error( $msg, [
+			'exception' => [
 				'class' => 'ErrorException',
 				'message' => "PHP Fatal Error: {$message}",
 				'code' => $level,
 				'file' => $file,
 				'line' => $line,
 				'trace' => static::redactTrace( $trace ),
-			),
+			],
 			'exception_id' => wfRandomString( 8 ),
-		) );
+		] );
 
 		// Remember call so we don't double process via HHVM's fatal
 		// notifications and the shutdown hook behavior
@@ -507,10 +507,10 @@ TXT;
 	 * @return array
 	 */
 	public static function getLogContext( $e ) {
-		return array(
+		return [
 			'exception' => $e,
 			'exception_id' => static::getLogId( $e ),
-		);
+		];
 	}
 
 	/**
@@ -526,7 +526,7 @@ TXT;
 	 */
 	public static function getStructuredExceptionData( $e ) {
 		global $wgLogExceptionBacktrace;
-		$data = array(
+		$data = [
 			'id' => self::getLogId( $e ),
 			'type' => get_class( $e ),
 			'file' => $e->getFile(),
@@ -534,7 +534,7 @@ TXT;
 			'message' => $e->getMessage(),
 			'code' => $e->getCode(),
 			'url' => self::getURL() ?: null,
-		);
+		];
 
 		if ( $e instanceof ErrorException &&
 			( error_reporting() & $e->getSeverity() ) === 0
@@ -633,10 +633,10 @@ TXT;
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 			if ( $json !== false ) {
 				$logger = LoggerFactory::getInstance( 'exception-json' );
-				$logger->error( $json, array( 'private' => true ) );
+				$logger->error( $json, [ 'private' => true ] );
 			}
 
-			Hooks::run( 'LogException', array( $e, false ) );
+			Hooks::run( 'LogException', [ $e, false ] );
 		}
 	}
 
@@ -664,9 +664,9 @@ TXT;
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
-			$logger->error( $json, array( 'private' => true ) );
+			$logger->error( $json, [ 'private' => true ] );
 		}
 
-		Hooks::run( 'LogException', array( $e, $suppressed ) );
+		Hooks::run( 'LogException', [ $e, $suppressed ] );
 	}
 }

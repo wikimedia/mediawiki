@@ -90,37 +90,37 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 	 * testing method much like the testEncodingUrlWith() method above.
 	 */
 	public static function provideURLS() {
-		return array(
+		return [
 			# ## RFC 1738 chars
 			// + is not safe
-			array( '+', '%2B' ),
+			[ '+', '%2B' ],
 			// & and = not safe in queries
-			array( '&', '%26' ),
-			array( '=', '%3D' ),
+			[ '&', '%26' ],
+			[ '=', '%3D' ],
 
-			array( ':', array(
+			[ ':', [
 				'Apache' => ':',
 				'Microsoft-IIS/7' => '%3A',
-			) ),
+			] ],
 
 			// remaining chars do not need encoding
-			array(
+			[
 				';@$-_.!*',
 				';@$-_.!*',
-			),
+			],
 
 			# ## Other tests
 			// slash remain unchanged. %2F seems to break things
-			array( '/', '/' ),
+			[ '/', '/' ],
 			// T105265
-			array( '~', '~' ),
+			[ '~', '~' ],
 
 			// Other 'funnies' chars
-			array( '[]', '%5B%5D' ),
-			array( '<>', '%3C%3E' ),
+			[ '[]', '%5B%5D' ],
+			[ '<>', '%3C%3E' ],
 
 			// Apostrophe is encoded
-			array( '\'', '%27' ),
-		);
+			[ '\'', '%27' ],
+		];
 	}
 }

@@ -27,7 +27,7 @@ abstract class UserArray implements Iterator {
 	 */
 	static function newFromResult( $res ) {
 		$userArray = null;
-		if ( !Hooks::run( 'UserArrayFromResult', array( &$userArray, $res ) ) ) {
+		if ( !Hooks::run( 'UserArrayFromResult', [ &$userArray, $res ] ) ) {
 			return null;
 		}
 		if ( $userArray === null ) {
@@ -44,13 +44,13 @@ abstract class UserArray implements Iterator {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
 		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
-			return new ArrayIterator( array() );
+			return new ArrayIterator( [] );
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			'user',
 			User::selectFields(),
-			array( 'user_id' => array_unique( $ids ) ),
+			[ 'user_id' => array_unique( $ids ) ],
 			__METHOD__
 		);
 		return self::newFromResult( $res );
@@ -65,13 +65,13 @@ abstract class UserArray implements Iterator {
 		$names = array_map( 'strval', (array)$names ); // paranoia
 		if ( !$names ) {
 			// Database::select() doesn't like empty arrays
-			return new ArrayIterator( array() );
+			return new ArrayIterator( [] );
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			'user',
 			User::selectFields(),
-			array( 'user_name' => array_unique( $names ) ),
+			[ 'user_name' => array_unique( $names ) ],
 			__METHOD__
 		);
 		return self::newFromResult( $res );

@@ -34,15 +34,15 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	 * @return array List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		$pages = array();
+		$pages = [];
 		if ( $this->getConfig()->get( 'UseSiteJs' ) ) {
-			$pages['MediaWiki:Common.js'] = array( 'type' => 'script' );
-			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.js'] = array( 'type' => 'script' );
+			$pages['MediaWiki:Common.js'] = [ 'type' => 'script' ];
+			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.js'] = [ 'type' => 'script' ];
 		}
 		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
-			$pages['MediaWiki:Common.css'] = array( 'type' => 'style' );
-			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = array( 'type' => 'style' );
-			$pages['MediaWiki:Print.css'] = array( 'type' => 'style', 'media' => 'print' );
+			$pages['MediaWiki:Common.css'] = [ 'type' => 'style' ];
+			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = [ 'type' => 'style' ];
+			$pages['MediaWiki:Print.css'] = [ 'type' => 'style', 'media' => 'print' ];
 
 		}
 		return $pages;

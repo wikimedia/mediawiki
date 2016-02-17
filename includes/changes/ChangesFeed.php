@@ -182,10 +182,10 @@ class ChangesFeed {
 	 * @return array
 	 */
 	public static function buildItems( $rows ) {
-		$items = array();
+		$items = [];
 
 		# Merge adjacent edits by one user
-		$sorted = array();
+		$sorted = [];
 		$n = 0;
 		foreach ( $rows as $obj ) {
 			if ( $obj->rc_type == RC_EXTERNAL ) {
@@ -216,10 +216,10 @@ class ChangesFeed {
 			}
 
 			if ( $obj->rc_this_oldid ) {
-				$url = $title->getFullURL( array(
+				$url = $title->getFullURL( [
 					'diff' => $obj->rc_this_oldid,
 					'oldid' => $obj->rc_last_oldid,
-				) );
+				] );
 			} else {
 				// log entry or something like that.
 				$url = $title->getFullURL();

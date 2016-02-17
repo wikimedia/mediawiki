@@ -47,36 +47,36 @@ class UncategorizedPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'page', 'categorylinks' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'page', 'categorylinks' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
-			),
+			],
 			// default for page_namespace is all content namespaces (if requestedNamespace is false)
 			// otherwise, page_namespace is requestedNamespace
-			'conds' => array(
+			'conds' => [
 				'cl_from IS NULL',
 				'page_namespace' => $this->requestedNamespace !== false
 						? $this->requestedNamespace
 						: MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
-			),
-			'join_conds' => array(
-				'categorylinks' => array( 'LEFT JOIN', 'cl_from = page_id' )
-			)
-		);
+			],
+			'join_conds' => [
+				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ]
+			]
+		];
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
 		if ( $this->requestedNamespace === false && count( MWNamespace::getContentNamespaces() ) > 1 ) {
-			return array( 'page_namespace', 'page_title' );
+			return [ 'page_namespace', 'page_title' ];
 		}
 
-		return array( 'page_title' );
+		return [ 'page_title' ];
 	}
 
 	protected function getGroupName() {

@@ -32,10 +32,10 @@ class InstallerSessionProvider extends SessionProvider {
 	 * Pretend there is a session, to avoid MWCryptRand overhead
 	 */
 	public function provideSessionInfo( WebRequest $request ) {
-		return new SessionInfo( 1, array(
+		return new SessionInfo( 1, [
 			'provider' => $this,
 			'id' => str_repeat( 'x', 32 ),
-		) );
+		] );
 	}
 
 	/**

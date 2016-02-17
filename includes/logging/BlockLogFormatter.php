@@ -83,9 +83,9 @@ class BlockLogFormatter extends LogFormatter {
 		$title = $this->entry->getTarget();
 		// Preload user page for non-autoblocks
 		if ( substr( $title->getText(), 0, 1 ) !== '#' ) {
-			return array( $title->getTalkPage() );
+			return [ $title->getTalkPage() ];
 		}
-		return array();
+		return [];
 	}
 
 	public function getActionLinks() {
@@ -99,7 +99,7 @@ class BlockLogFormatter extends LogFormatter {
 
 		// Show unblock/change block link
 		$title = $this->entry->getTarget();
-		$links = array(
+		$links = [
 			Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
 				$this->msg( 'unblocklink' )->escaped()
@@ -108,7 +108,7 @@ class BlockLogFormatter extends LogFormatter {
 				SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
 				$this->msg( 'change-blocklink' )->escaped()
 			)
-		);
+		];
 
 		return $this->msg( 'parentheses' )->rawParams(
 			$this->context->getLanguage()->pipeList( $links ) )->escaped();
@@ -146,7 +146,7 @@ class BlockLogFormatter extends LogFormatter {
 	 * @return string
 	 */
 	public static function formatBlockFlag( $flag, $lang ) {
-		static $messages = array();
+		static $messages = [];
 
 		if ( !isset( $messages[$flag] ) ) {
 			$messages[$flag] = htmlspecialchars( $flag ); // Fallback
@@ -173,13 +173,13 @@ class BlockLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			// While this looks wrong to be starting at 5 rather than 4, it's
 			// because getMessageParameters uses $4 for its own purposes.
 			'5::duration',
 			'6:array:flags',
 			'6::flags' => '6:array:flags',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];
@@ -190,14 +190,14 @@ class BlockLogFormatter extends LogFormatter {
 		$subtype = $entry->getSubtype();
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
 			// Defaults for old log entries missing some fields
-			$params += array(
+			$params += [
 				'5::duration' => 'infinite',
-				'6:array:flags' => array(),
-			);
+				'6:array:flags' => [],
+			];
 
 			if ( !is_array( $params['6:array:flags'] ) ) {
 				$params['6:array:flags'] = $params['6:array:flags'] === ''
-					? array()
+					? []
 					: explode( ',', $params['6:array:flags'] );
 			}
 

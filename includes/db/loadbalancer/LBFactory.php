@@ -98,12 +98,12 @@ abstract class LBFactory {
 	public static function getLBFactoryClass( array $config ) {
 		// For configuration backward compatibility after removing
 		// underscores from class names in MediaWiki 1.23.
-		$bcClasses = array(
+		$bcClasses = [
 			'LBFactory_Simple' => 'LBFactorySimple',
 			'LBFactory_Single' => 'LBFactorySingle',
 			'LBFactory_Multi' => 'LBFactoryMulti',
 			'LBFactory_Fake' => 'LBFactoryFake',
-		);
+		];
 
 		$class = $config['class'];
 
@@ -184,7 +184,7 @@ abstract class LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	abstract public function forEachLB( $callback, array $params = array() );
+	abstract public function forEachLB( $callback, array $params = [] );
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
@@ -200,12 +200,12 @@ abstract class LBFactory {
 	 * @param string $methodName
 	 * @param array $args
 	 */
-	private function forEachLBCallMethod( $methodName, array $args = array() ) {
+	private function forEachLBCallMethod( $methodName, array $args = [] ) {
 		$this->forEachLB(
 			function ( LoadBalancer $loadBalancer, $methodName, array $args ) {
-				call_user_func_array( array( $loadBalancer, $methodName ), $args );
+				call_user_func_array( [ $loadBalancer, $methodName ], $args );
 			},
-			array( $methodName, $args )
+			[ $methodName, $args ]
 		);
 	}
 
@@ -219,7 +219,7 @@ abstract class LBFactory {
 		$this->logMultiDbTransaction();
 
 		$start = microtime( true );
-		$this->forEachLBCallMethod( 'commitAll', array( $fname ) );
+		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
 		RequestContext::getMain()->getStats()->timing( "db.commit-all", $timeMs );
@@ -231,7 +231,7 @@ abstract class LBFactory {
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 */
-	public function commitMasterChanges( $fname = __METHOD__, array $options = array() ) {
+	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
 
 		$this->logMultiDbTransaction();
@@ -248,7 +248,7 @@ abstract class LBFactory {
 		} );
 
 		$start = microtime( true );
-		$this->forEachLBCallMethod( 'commitMasterChanges', array( $fname ) );
+		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
 		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
@@ -260,14 +260,14 @@ abstract class LBFactory {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachLBCallMethod( 'rollbackMasterChanges', array( $fname ) );
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
 	}
 
 	/**
 	 * Log query info if multi DB transactions are going to be committed now
 	 */
 	private function logMultiDbTransaction() {
-		$callersByDB = array();
+		$callersByDB = [];
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$callersByDB ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			$callers = $lb->pendingMasterChangeCallers();
@@ -351,17 +351,17 @@ abstract class LBFactory {
 	 * @throws DBReplicationWaitError If a timeout or error occured waiting on a DB cluster
 	 * @since 1.27
 	 */
-	public function waitForReplication( array $opts = array() ) {
-		$opts += array(
+	public function waitForReplication( array $opts = [] ) {
+		$opts += [
 			'wiki' => false,
 			'cluster' => false,
 			'timeout' => 60,
 			'ifWritesSince' => null
-		);
+		];
 
 		// Figure out which clusters need to be checked
 		/** @var LoadBalancer[] $lbs */
-		$lbs = array();
+		$lbs = [];
 		if ( $opts['cluster'] !== false ) {
 			$lbs[] = $this->getExternalLB( $opts['cluster'] );
 		} elseif ( $opts['wiki'] !== false ) {
@@ -392,7 +392,7 @@ abstract class LBFactory {
 			$masterPositions[$i] = $lb->getMasterPos();
 		}
 
-		$failed = array();
+		$failed = [];
 		foreach ( $lbs as $i => $lb ) {
 			if ( $masterPositions[$i] ) {
 				// The DBMS may not support getMasterPos() or the whole
@@ -429,10 +429,10 @@ abstract class LBFactory {
 		$request = RequestContext::getMain()->getRequest();
 		$chronProt = new ChronologyProtector(
 			ObjectCache::getMainStashInstance(),
-			array(
+			[
 				'ip' => $request->getIP(),
 				'agent' => $request->getHeader( 'User-Agent' )
-			)
+			]
 		);
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );

@@ -77,24 +77,24 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $filename ) );
 	}
 	public function provideTestWithFileExtractMetaData() {
-		return array(
-			array( __DIR__ . '/../../data/media/2_webp_ll.webp',
-				array(
+		return [
+			[ __DIR__ . '/../../data/media/2_webp_ll.webp',
+				[
 					'compression' => 'lossless',
 					'width' => 386,
 					'height' => 395
-				)
-			),
-			array( __DIR__ . '/../../data/media/2_webp_a.webp',
-				array(
+				]
+			],
+			[ __DIR__ . '/../../data/media/2_webp_a.webp',
+				[
 					'compression' => 'lossy',
 					'animated' => false,
 					'transparency' => true,
 					'width' => 386,
 					'height' => 395
-				)
-			),
-		);
+				]
+			],
+		];
 	}
 
 	/**
@@ -105,15 +105,15 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedResult, $handler->getImageSize( null, $path ) );
 	}
 	public function provideTestGetImageSize() {
-		return array(
+		return [
 			// Public domain files from https://developers.google.com/speed/webp/gallery2
-			array( __DIR__ . '/../../data/media/2_webp_a.webp', array( 386, 395 ) ),
-			array( __DIR__ . '/../../data/media/2_webp_ll.webp', array( 386, 395 ) ),
-			array( __DIR__ . '/../../data/media/webp_animated.webp', array( 300, 225 ) ),
+			[ __DIR__ . '/../../data/media/2_webp_a.webp', [ 386, 395 ] ],
+			[ __DIR__ . '/../../data/media/2_webp_ll.webp', [ 386, 395 ] ],
+			[ __DIR__ . '/../../data/media/webp_animated.webp', [ 300, 225 ] ],
 
 			// Error cases
-			array( __FILE__, false ),
-		);
+			[ __FILE__, false ],
+		];
 	}
 
 	/**
@@ -127,12 +127,12 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( 'image/webp', $mime->guessMimeType( $path, false ) );
 	}
 	public function provideTestGetMimeType() {
-		return array(
+		return [
 				// Public domain files from https://developers.google.com/speed/webp/gallery2
-				array( __DIR__ . '/../../data/media/2_webp_a.webp' ),
-				array( __DIR__ . '/../../data/media/2_webp_ll.webp' ),
-				array( __DIR__ . '/../../data/media/webp_animated.webp' ),
-		);
+				[ __DIR__ . '/../../data/media/2_webp_a.webp' ],
+				[ __DIR__ . '/../../data/media/2_webp_ll.webp' ],
+				[ __DIR__ . '/../../data/media/webp_animated.webp' ],
+		];
 	}
 }
 

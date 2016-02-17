@@ -113,7 +113,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 				'Missing stream uri, the stream can not be opened.' );
 		}
 		$this->error = null;
-		set_error_handler( array( $this, 'errorTrap' ) );
+		set_error_handler( [ $this, 'errorTrap' ] );
 
 		if ( substr( $this->uri, 0, 4 ) == 'udp:' ) {
 			$parsed = parse_url( $this->uri );

@@ -145,11 +145,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Blank the internal arrays with query parameters
 	 */
 	protected function resetQueryParams() {
-		$this->tables = array();
-		$this->where = array();
-		$this->fields = array();
-		$this->options = array();
-		$this->join_conds = array();
+		$this->tables = [];
+		$this->where = [];
+		$this->fields = [];
+		$this->options = [];
+		$this->join_conds = [];
 	}
 
 	/**
@@ -300,7 +300,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// Append ORDER BY
 			$optionOrderBy = isset( $this->options['ORDER BY'] )
 				? (array)$this->options['ORDER BY']
-				: array();
+				: [];
 			$optionOrderBy[] = $order;
 			$this->addOption( 'ORDER BY', $optionOrderBy );
 		}
@@ -350,27 +350,27 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  )
 	 * @return ResultWrapper
 	 */
-	protected function select( $method, $extraQuery = array() ) {
+	protected function select( $method, $extraQuery = [] ) {
 
 		$tables = array_merge(
 			$this->tables,
-			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array()
+			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : []
 		);
 		$fields = array_merge(
 			$this->fields,
-			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array()
+			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : []
 		);
 		$where = array_merge(
 			$this->where,
-			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array()
+			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : []
 		);
 		$options = array_merge(
 			$this->options,
-			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array()
+			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : []
 		);
 		$join_conds = array_merge(
 			$this->join_conds,
-			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array()
+			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : []
 		);
 
 		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
@@ -414,21 +414,21 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		$this->addTables( 'ipblocks' );
-		$this->addJoinConds( array(
-			'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-		) );
+		$this->addJoinConds( [
+			'ipblocks' => [ 'LEFT JOIN', 'ipb_user=user_id' ],
+		] );
 
 		$this->addFields( 'ipb_deleted' );
 
 		if ( $showBlockInfo ) {
-			$this->addFields( array(
+			$this->addFields( [
 				'ipb_id',
 				'ipb_by',
 				'ipb_by_text',
 				'ipb_reason',
 				'ipb_expiry',
 				'ipb_timestamp'
-			) );
+			] );
 		}
 
 		// Don't show hidden names
@@ -466,7 +466,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $data, $this->getModulePrefix() );
 
-		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
+		return $result->addValue( [ 'query', 'pages', intval( $pageId ) ],
 			$this->getModuleName(),
 			$data );
 	}
@@ -484,13 +484,13 @@ abstract class ApiQueryBase extends ApiBase {
 			$elemname = $this->getModulePrefix();
 		}
 		$result = $this->getResult();
-		$fit = $result->addValue( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), null, $item );
+		$fit = $result->addValue( [ 'query', 'pages', $pageId,
+			$this->getModuleName() ], null, $item );
 		if ( !$fit ) {
 			return false;
 		}
-		$result->addIndexedTagName( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), $elemname );
+		$result->addIndexedTagName( [ 'query', 'pages', $pageId,
+			$this->getModuleName() ], $elemname );
 
 		return true;
 	}
@@ -518,7 +518,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::makeTitleSafe( $namespace, $titlePart . 'x' );
 		if ( !$t || $t->hasFragment() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 		if ( $namespace != $t->getNamespace() || $t->isExternal() ) {
 			// This can happen in two cases. First, if you call titlePartToKey with a title part
@@ -526,7 +526,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// difficult to handle such a case. Such cases cannot exist and are therefore treated
 			// as invalid user input. The second case is when somebody specifies a title interwiki
 			// prefix.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 
 		return substr( $t->getDBkey(), 0, -1 );
@@ -544,10 +544,10 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
 		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 
-		return array( $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) );
+		return [ $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) ];
 	}
 
 	/**

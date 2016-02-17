@@ -76,19 +76,19 @@ class SpecialLog extends SpecialPage {
 		}
 
 		# Handle type-specific inputs
-		$qc = array();
+		$qc = [];
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
 			$offender = User::newFromName( $opts->getValue( 'offender' ), false );
 			if ( $offender && $offender->getId() > 0 ) {
-				$qc = array( 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() );
+				$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
 			} elseif ( $offender && IP::isIPAddress( $offender->getName() ) ) {
-				$qc = array( 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() );
+				$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types
 			Hooks::run(
 				'SpecialLogAddLogSearchRelations',
-				array( $opts->getValue( 'type' ), $this->getRequest(), &$qc )
+				[ $opts->getValue( 'type' ), $this->getRequest(), &$qc ]
 			);
 		}
 
@@ -122,13 +122,13 @@ class SpecialLog extends SpecialPage {
 		if ( $types !== null ) {
 			return $types;
 		}
-		$types = array(
+		$types = [
 			'block',
 			'newusers',
 			'rights',
-		);
+		];
 
-		Hooks::run( 'GetLogTypesOnUser', array( &$types ) );
+		Hooks::run( 'GetLogTypesOnUser', [ &$types ] );
 		return $types;
 	}
 
@@ -147,7 +147,7 @@ class SpecialLog extends SpecialPage {
 	private function parseParams( FormOptions $opts, $par ) {
 		# Get parameters
 		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
-		$symsForAll = array( '*', 'all' );
+		$symsForAll = [ '*', 'all' ];
 		if ( $parms[0] != '' &&
 			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
 		) {
@@ -228,7 +228,7 @@ class SpecialLog extends SpecialPage {
 		# Show button to hide log entries and/or edit change tags
 		$s = Html::openElement(
 			'form',
-			array( 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' )
+			[ 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' ]
 		) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 		$s .= Html::hidden( 'type', 'logging' ) . "\n";
@@ -237,47 +237,47 @@ class SpecialLog extends SpecialPage {
 		if ( $canRevDelete ) {
 			$buttons .= Html::element(
 				'button',
-				array(
+				[
 					'type' => 'submit',
 					'name' => 'revisiondelete',
 					'value' => '1',
 					'class' => "deleterevision-log-submit mw-log-deleterevision-button"
-				),
+				],
 				$this->msg( 'showhideselectedlogentries' )->text()
 			) . "\n";
 		}
 		if ( $showTagEditUI ) {
 			$buttons .= Html::element(
 				'button',
-				array(
+				[
 					'type' => 'submit',
 					'name' => 'editchangetags',
 					'value' => '1',
 					'class' => "editchangetags-log-submit mw-log-editchangetags-button"
-				),
+				],
 				$this->msg( 'log-edit-tags' )->text()
 			) . "\n";
 		}
 
 		// Select: All, None, Invert
-		$links = array();
+		$links = [];
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'class' => 'mw-checkbox-all' ),
+			'a', [ 'href' => '#', 'class' => 'mw-checkbox-all' ],
 			$this->msg( 'checkbox-all' )->text()
 		);
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'class' => 'mw-checkbox-none' ),
+			'a', [ 'href' => '#', 'class' => 'mw-checkbox-none' ],
 			$this->msg( 'checkbox-none' )->text()
 		);
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'class' => 'mw-checkbox-invert' ),
+			'a', [ 'href' => '#', 'class' => 'mw-checkbox-invert' ],
 			$this->msg( 'checkbox-invert' )->text()
 		);
 
 		$buttons .= Html::rawElement( 'p',
-			array(
+			[
 				'class' => "mw-checkbox-toggle-controls"
-			),
+			],
 			$this->msg( 'checkbox-select' )
 				->rawParams( $this->getLanguage()->commaList( $links ) )->escaped()
 		);

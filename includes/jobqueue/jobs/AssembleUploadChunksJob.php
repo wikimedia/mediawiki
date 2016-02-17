@@ -47,7 +47,7 @@ class AssembleUploadChunksJob extends Job {
 			UploadBase::setSessionStatus(
 				$user,
 				$this->params['filekey'],
-				array( 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() )
+				[ 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() ]
 			);
 
 			$upload = new UploadFromChunks( $user );
@@ -63,7 +63,7 @@ class AssembleUploadChunksJob extends Job {
 				UploadBase::setSessionStatus(
 					$user,
 					$this->params['filekey'],
-					array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
+					[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 				);
 				$this->setLastError( $status->getWikiText() );
 
@@ -87,23 +87,23 @@ class AssembleUploadChunksJob extends Job {
 			UploadBase::setSessionStatus(
 				$user,
 				$this->params['filekey'],
-				array(
+				[
 					'result' => 'Success',
 					'stage' => 'assembling',
 					'filekey' => $newFileKey,
 					'imageinfo' => $imageInfo,
 					'status' => Status::newGood()
-				)
+				]
 			);
 		} catch ( Exception $e ) {
 			UploadBase::setSessionStatus(
 				$user,
 				$this->params['filekey'],
-				array(
+				[
 					'result' => 'Failure',
 					'stage' => 'assembling',
 					'status' => Status::newFatal( 'api-error-stashfailed' )
-				)
+				]
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );
 			// To be extra robust.
@@ -118,7 +118,7 @@ class AssembleUploadChunksJob extends Job {
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
-			$info['params'] = array( 'filekey' => $info['params']['filekey'] );
+			$info['params'] = [ 'filekey' => $info['params']['filekey'] ];
 		}
 
 		return $info;

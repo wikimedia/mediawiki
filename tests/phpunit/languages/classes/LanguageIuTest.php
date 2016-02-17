@@ -10,25 +10,25 @@ class LanguageIuTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideAutoConvertToAllVariants() {
-		return array(
+		return [
 			// ike-cans
-			array(
-				array(
+			[
+				[
 					'ike-cans' => 'ᐴ',
 					'ike-latn' => 'PUU',
 					'iu' => 'PUU',
-				),
+				],
 				'PUU'
-			),
+			],
 			// ike-latn
-			array(
-				array(
+			[
+				[
 					'ike-cans' => 'ᐴ',
 					'ike-latn' => 'puu',
 					'iu' => 'ᐴ',
-				),
+				],
 				'ᐴ'
-			),
-		);
+			],
+		];
 	}
 }

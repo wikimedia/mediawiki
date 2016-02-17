@@ -100,39 +100,39 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected function outputHTMLForm( $namespace = NS_MAIN,
 		$from = '', $to = '', $hideRedirects = false
 	) {
-		$fields = array(
-			'from' => array(
+		$fields = [
+			'from' => [
 				'type' => 'text',
 				'name' => 'from',
 				'id' => 'nsfrom',
 				'size' => 30,
 				'label-message' => 'allpagesfrom',
 				'default' => str_replace( '_', ' ', $from ),
-			),
-			'to' => array(
+			],
+			'to' => [
 				'type' => 'text',
 				'name' => 'to',
 				'id' => 'nsto',
 				'size' => 30,
 				'label-message' => 'allpagesto',
 				'default' => str_replace( '_', ' ', $to ),
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'label-message' => 'namespace',
 				'all' => null,
 				'value' => $namespace,
-			),
-			'hideredirects' => array(
+			],
+			'hideredirects' => [
 				'type' => 'check',
 				'name' => 'hideredirects',
 				'id' => 'hidredirects',
 				'label-message' => 'allpages-hide-redirects',
 				'value' => $hideRedirects,
-			),
-		);
+			],
+		];
 		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
 		$form->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
@@ -182,7 +182,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			list( , $toKey, $to ) = $toList;
 
 			$dbr = wfGetDB( DB_SLAVE );
-			$filterConds = array( 'page_namespace' => $namespace );
+			$filterConds = [ 'page_namespace' => $namespace ];
 			if ( $hideredirects ) {
 				$filterConds['page_is_redirect'] = 0;
 			}
@@ -194,18 +194,18 @@ class SpecialAllPages extends IncludableSpecialPage {
 			}
 
 			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ),
+				[ 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ],
 				$conds,
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'page_title',
 					'LIMIT' => $this->maxPerPage + 1,
 					'USE INDEX' => 'name_title',
-				)
+				]
 			);
 
 			if ( $res->numRows() > 0 ) {
-				$out = Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
+				$out = Html::openElement( 'ul', [ 'class' => 'mw-allpages-chunk' ] );
 
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
@@ -225,7 +225,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				if ( $res->numRows() > 2 ) {
 					// Only apply CSS column styles if there's more than 2 entries.
 					// Otherwise, rendering is broken as "mw-allpages-body"'s CSS column count is 3.
-					$out = Html::rawElement( 'div', array( 'class' => 'mw-allpages-body' ), $out );
+					$out = Html::rawElement( 'div', [ 'class' => 'mw-allpages-body' ], $out );
 				}
 			} else {
 				$out = '';
@@ -240,7 +240,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 					'page_title',
 					$prevConds,
 					__METHOD__,
-					array( 'ORDER BY' => 'page_title DESC', 'OFFSET' => $this->maxPerPage - 1 )
+					[ 'ORDER BY' => 'page_title DESC', 'OFFSET' => $this->maxPerPage - 1 ]
 				);
 
 				if ( $prevKey === false ) {
@@ -251,7 +251,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 						'page_title',
 						$prevConds,
 						__METHOD__,
-						array( 'ORDER BY' => 'page_title' )
+						[ 'ORDER BY' => 'page_title' ]
 					);
 				}
 
@@ -266,12 +266,12 @@ class SpecialAllPages extends IncludableSpecialPage {
 			return;
 		}
 
-		$navLinks = array();
+		$navLinks = [];
 		$self = $this->getPageTitle();
 
 		// Generate a "previous page" link if needed
 		if ( $prevTitle ) {
-			$query = array( 'from' => $prevTitle->getText() );
+			$query = [ 'from' => $prevTitle->getText() ];
 
 			if ( $namespace ) {
 				$query['namespace'] = $namespace;
@@ -284,7 +284,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$navLinks[] = Linker::linkKnown(
 				$self,
 				$this->msg( 'prevpage', $prevTitle->getText() )->escaped(),
-				array(),
+				[],
 				$query
 			);
 
@@ -294,7 +294,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 			# $s is the first link of the next chunk
 			$t = Title::makeTitle( $namespace, $s->page_title );
-			$query = array( 'from' => $t->getText() );
+			$query = [ 'from' => $t->getText() ];
 
 			if ( $namespace ) {
 				$query['namespace'] = $namespace;
@@ -307,7 +307,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$navLinks[] = Linker::linkKnown(
 				$self,
 				$this->msg( 'nextpage', $t->getText() )->escaped(),
-				array(),
+				[],
 				$query
 			);
 		}
@@ -317,7 +317,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		if ( count( $navLinks ) ) {
 			// Add pagination links
 			$pagination = Html::rawElement( 'div',
-				array( 'class' => 'mw-allpages-nav' ),
+				[ 'class' => 'mw-allpages-nav' ],
 				$this->getLanguage()->pipeList( $navLinks )
 			);
 
@@ -336,12 +336,12 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected function getNamespaceKeyAndText( $ns, $text ) {
 		if ( $text == '' ) {
 			# shortcut for common case
-			return array( $ns, '', '' );
+			return [ $ns, '', '' ];
 		}
 
 		$t = Title::makeTitleSafe( $ns, $text );
 		if ( $t && $t->isLocal() ) {
-			return array( $t->getNamespace(), $t->getDBkey(), $t->getText() );
+			return [ $t->getNamespace(), $t->getDBkey(), $t->getText() ];
 		} elseif ( $t ) {
 			return null;
 		}
@@ -350,7 +350,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$text = preg_replace( '/(#|$)/', 'X$1', $text );
 		$t = Title::makeTitleSafe( $ns, $text );
 		if ( $t && $t->isLocal() ) {
-			return array( $t->getNamespace(), '', '' );
+			return [ $t->getNamespace(), '', '' ];
 		} else {
 			return null;
 		}

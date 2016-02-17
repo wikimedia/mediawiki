@@ -127,13 +127,13 @@ class JsonContent extends TextContent {
 		if ( is_array( $val ) ) {
 			// Wrap arrays in another array so that they're visually boxed in a container.
 			// Otherwise they are visually indistinguishable from a single value.
-			return self::arrayTable( array( $val ) );
+			return self::arrayTable( [ $val ] );
 		}
 
-		return Html::rawElement( 'table', array( 'class' => 'mw-json mw-json-single-value' ),
-			Html::rawElement( 'tbody', array(),
-				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), self::primitiveValue( $val ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
+			Html::rawElement( 'tbody', [],
+				Html::rawElement( 'tr', [],
+					Html::element( 'td', [], self::primitiveValue( $val ) )
 				)
 			)
 		);
@@ -146,7 +146,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML
 	 */
 	protected function objectTable( $mapping ) {
-		$rows = array();
+		$rows = [];
 		$empty = true;
 
 		foreach ( $mapping as $key => $val ) {
@@ -154,14 +154,14 @@ class JsonContent extends TextContent {
 			$empty = false;
 		}
 		if ( $empty ) {
-			$rows[] = Html::rawElement( 'tr', array(),
-				Html::element( 'td', array( 'class' => 'mw-json-empty' ),
+			$rows[] = Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'class' => 'mw-json-empty' ],
 					wfMessage( 'content-json-empty-object' )->text()
 				)
 			);
 		}
-		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
-			Html::rawElement( 'tbody', array(), join( '', $rows ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
+			Html::rawElement( 'tbody', [], join( '', $rows ) )
 		);
 	}
 
@@ -173,9 +173,9 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function objectRow( $key, $val ) {
-		$th = Html::element( 'th', array(), $key );
+		$th = Html::element( 'th', [], $key );
 		$td = self::valueCell( $val );
-		return Html::rawElement( 'tr', array(), $th . $td );
+		return Html::rawElement( 'tr', [], $th . $td );
 	}
 
 	/**
@@ -185,7 +185,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML
 	 */
 	protected function arrayTable( $mapping ) {
-		$rows = array();
+		$rows = [];
 		$empty = true;
 
 		foreach ( $mapping as $val ) {
@@ -193,14 +193,14 @@ class JsonContent extends TextContent {
 			$empty = false;
 		}
 		if ( $empty ) {
-			$rows[] = Html::rawElement( 'tr', array(),
-				Html::element( 'td', array( 'class' => 'mw-json-empty' ),
+			$rows[] = Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'class' => 'mw-json-empty' ],
 					wfMessage( 'content-json-empty-array' )->text()
 				)
 			);
 		}
-		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
-			Html::rawElement( 'tbody', array(), join( "\n", $rows ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
+			Html::rawElement( 'tbody', [], join( "\n", $rows ) )
 		);
 	}
 
@@ -212,7 +212,7 @@ class JsonContent extends TextContent {
 	 */
 	protected function arrayRow( $val ) {
 		$td = self::valueCell( $val );
-		return Html::rawElement( 'tr', array(), $td );
+		return Html::rawElement( 'tr', [], $td );
 	}
 
 	/**
@@ -223,14 +223,14 @@ class JsonContent extends TextContent {
 	 */
 	protected function valueCell( $val ) {
 		if ( is_object( $val ) ) {
-			return Html::rawElement( 'td', array(), self::objectTable( $val ) );
+			return Html::rawElement( 'td', [], self::objectTable( $val ) );
 		}
 
 		if ( is_array( $val ) ) {
-			return Html::rawElement( 'td', array(), self::arrayTable( $val ) );
+			return Html::rawElement( 'td', [], self::arrayTable( $val ) );
 		}
 
-		return Html::element( 'td', array( 'class' => 'value' ), self::primitiveValue( $val ) );
+		return Html::element( 'td', [ 'class' => 'value' ], self::primitiveValue( $val ) );
 	}
 
 	/**

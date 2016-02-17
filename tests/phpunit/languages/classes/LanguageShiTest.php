@@ -10,23 +10,23 @@ class LanguageShiTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideAutoConvertToAllVariants() {
-		return array(
-			array(
-				array(
+		return [
+			[
+				[
 					'shi'      => 'AƔ',
 					'shi-tfng' => 'ⴰⵖ',
 					'shi-latn' => 'AƔ',
-				),
+				],
 				'AƔ'
-			),
-			array(
-				array(
+			],
+			[
+				[
 					'shi'      => 'ⴰⵖ',
 					'shi-tfng' => 'ⴰⵖ',
 					'shi-latn' => 'aɣ',
-				),
+				],
 				'ⴰⵖ'
-			),
-		);
+			],
+		];
 	}
 }

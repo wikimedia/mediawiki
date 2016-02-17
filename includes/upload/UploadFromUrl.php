@@ -33,7 +33,7 @@ class UploadFromUrl extends UploadBase {
 
 	protected $mTempPath, $mTmpHandle;
 
-	protected static $allowedUrls = array();
+	protected static $allowedUrls = [];
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
@@ -117,7 +117,7 @@ class UploadFromUrl extends UploadBase {
 	public static function isAllowedUrl( $url ) {
 		if ( !isset( self::$allowedUrls[$url] ) ) {
 			$allowed = true;
-			Hooks::run( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
+			Hooks::run( 'IsUploadAllowedFromUrl', [ $url, &$allowed ] );
 			self::$allowedUrls[$url] = $allowed;
 		}
 
@@ -182,7 +182,7 @@ class UploadFromUrl extends UploadBase {
 	 *   This could be used to override the timeout on the http request.
 	 * @return Status
 	 */
-	public function fetchFile( $httpOptions = array() ) {
+	public function fetchFile( $httpOptions = [] ) {
 		if ( !Http::isValidURI( $this->mUrl ) ) {
 			return Status::newFatal( 'http-invalid-url', $this->mUrl );
 		}
@@ -242,7 +242,7 @@ class UploadFromUrl extends UploadBase {
 	 * @param array $httpOptions Array of options for MWHttpRequest
 	 * @return Status
 	 */
-	protected function reallyFetchFile( $httpOptions = array() ) {
+	protected function reallyFetchFile( $httpOptions = [] ) {
 		global $wgCopyUploadProxy, $wgCopyUploadTimeout;
 		if ( $this->mTempPath === false ) {
 			return Status::newFatal( 'tmp-create-error' );
@@ -258,7 +258,7 @@ class UploadFromUrl extends UploadBase {
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
 
-		$options = $httpOptions + array( 'followRedirects' => true );
+		$options = $httpOptions + [ 'followRedirects' => true ];
 
 		if ( $wgCopyUploadProxy !== false ) {
 			$options['proxy'] = $wgCopyUploadProxy;
@@ -273,7 +273,7 @@ class UploadFromUrl extends UploadBase {
 				'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
 		$req = MWHttpRequest::factory( $this->mUrl, $options, __METHOD__ );
-		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
+		$req->setCallback( [ $this, 'saveTempFileChunk' ] );
 		$status = $req->execute();
 
 		if ( $this->mTmpHandle ) {

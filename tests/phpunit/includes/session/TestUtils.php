@@ -32,11 +32,11 @@ class TestUtils {
 
 		$oldInstance = $rInstance->getValue();
 
-		$reset = array(
-			array( $rInstance, $oldInstance ),
-			array( $rGlobalSession, $rGlobalSession->getValue() ),
-			array( $rGlobalSessionRequest, $rGlobalSessionRequest->getValue() ),
-		);
+		$reset = [
+			[ $rInstance, $oldInstance ],
+			[ $rGlobalSession, $rGlobalSession->getValue() ],
+			[ $rGlobalSessionRequest, $rGlobalSessionRequest->getValue() ],
+		];
 
 		$rInstance->setValue( $manager );
 		$rGlobalSession->setValue( null );

@@ -37,11 +37,11 @@ class WikiProcessor {
 		global $wgVersion;
 		$record['extra'] = array_merge(
 			$record['extra'],
-			array(
+			[
 				'host' => wfHostname(),
 				'wiki' => wfWikiID(),
 				'mwversion' => $wgVersion,
-			)
+			]
 		);
 		return $record;
 	}

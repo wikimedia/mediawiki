@@ -35,7 +35,7 @@ abstract class EventRelayer {
 	 * @return bool Success
 	 */
 	final public function notify( $channel, $event ) {
-		return $this->doNotify( $channel, array( $event ) );
+		return $this->doNotify( $channel, [ $event ] );
 	}
 
 	/**

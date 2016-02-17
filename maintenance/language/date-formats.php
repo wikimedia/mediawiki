@@ -41,7 +41,7 @@ class DateFormats extends Maintenance {
 		global $IP;
 		foreach ( glob( "$IP/languages/messages/Messages*.php" ) as $filename ) {
 			$base = basename( $filename );
-			$m = array();
+			$m = [];
 			if ( !preg_match( '/Messages(.*)\.php$/', $base, $m ) ) {
 				continue;
 			}
@@ -50,7 +50,7 @@ class DateFormats extends Maintenance {
 			$lang = Language::factory( $code );
 			$prefs = $lang->getDatePreferences();
 			if ( !$prefs ) {
-				$prefs = array( 'default' );
+				$prefs = [ 'default' ];
 			}
 			$this->output( "date: " );
 			foreach ( $prefs as $index => $pref ) {

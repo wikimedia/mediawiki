@@ -25,7 +25,7 @@ class HTMLButtonField extends HTMLFormField {
 	protected $buttonLabel = null;
 
 	/** @var array $mFlags Flags to add to OOUI Button widget */
-	protected $mFlags = array();
+	protected $mFlags = [];
 
 	public function __construct( $info ) {
 		$info['nodata'] = true;
@@ -41,7 +41,7 @@ class HTMLButtonField extends HTMLFormField {
 				$msg = array_shift( $msgInfo );
 			} else {
 				$msg = $msgInfo;
-				$msgInfo = array();
+				$msgInfo = [];
 			}
 
 			$this->buttonLabel = $this->msg( $msg, $msgInfo )->parse();
@@ -72,13 +72,13 @@ class HTMLButtonField extends HTMLFormField {
 		foreach ( $this->mFlags as $flag ) {
 			$flags .= ' ' . $prefix . $flag;
 		}
-		$attr = array(
+		$attr = [
 			'class' => 'mw-htmlform-submit ' . $this->mClass . $flags,
 			'id' => $this->mID,
 			'type' => $this->buttonType,
 			'name' => $this->mName,
 			'value' => $value,
-		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		if ( $this->isBadIE() ) {
 			return Html::element( 'input', $attr );
@@ -93,18 +93,18 @@ class HTMLButtonField extends HTMLFormField {
 	 * @return OOUI\ButtonInputWidget
 	 */
 	public function getInputOOUI( $value ) {
-		return new OOUI\ButtonInputWidget( array(
+		return new OOUI\ButtonInputWidget( [
 			'name' => $this->mName,
 			'value' => $value,
 			'label' => !$this->isBadIE() && $this->buttonLabel
 				? new OOUI\HtmlSnippet( $this->buttonLabel )
 				: $value,
 			'type' => $this->buttonType,
-			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
+			'classes' => [ 'mw-htmlform-submit', $this->mClass ],
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
 			'useInputTag' => $this->isBadIE(),
-		) + $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) ) );
+		] + $this->getAttributes( [ 'disabled', 'tabindex' ], [ 'tabindex' => 'tabIndex' ] ) );
 	}
 
 	protected function needsLabel() {

@@ -69,26 +69,26 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	protected function getFormFields() {
 		$that = $this;
-		$fields = array(
-			'pagetitle' => array(
+		$fields = [
+			'pagetitle' => [
 				'type' => 'title',
 				'creatable' => true,
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',
-				'validation-callback' => array( $this, 'validateTitle' ),
-			),
-		);
+				'validation-callback' => [ $this, 'validateTitle' ],
+			],
+		];
 		if ( $this->title ) {
 			$fields['pagetitle']['readonly'] = true;
-			$fields += array(
-				'model' => array(
+			$fields += [
+				'model' => [
 					'type' => 'select',
 					'name' => 'model',
 					'options' => $this->getOptionsForTitle( $this->title ),
 					'label-message' => 'changecontentmodel-model-label'
-				),
-				'reason' => array(
+				],
+				'reason' => [
 					'type' => 'text',
 					'name' => 'reason',
 					'validation-callback' => function( $reason ) use ( $that ) {
@@ -100,8 +100,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 						return true;
 					},
 					'label-message' => 'changecontentmodel-reason-label',
-				),
-			);
+				],
+			];
 		}
 
 		return $fields;
@@ -109,7 +109,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	private function getOptionsForTitle( Title $title = null ) {
 		$models = ContentHandler::getContentModels();
-		$options = array();
+		$options = [];
 		foreach ( $models as $model ) {
 			$handler = ContentHandler::getForModelID( $model );
 			if ( !$handler->supportsDirectEditing() ) {
@@ -152,7 +152,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionsErrorMessage( $errors );
 			// Hack to get our wikitext parsed
-			return Status::newFatal( new RawMessage( '$1', array( $wikitext ) ) );
+			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
 
 		$page = WikiPage::factory( $this->title );
@@ -188,10 +188,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$log->setPerformer( $user );
 		$log->setTarget( $this->title );
 		$log->setComment( $data['reason'] );
-		$log->setParameters( array(
+		$log->setParameters( [
 			'4::oldmodel' => $oldModel,
 			'5::newmodel' => $data['model']
-		) );
+		] );
 
 		$formatter = LogFormatter::newFromEntry( $log );
 		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );

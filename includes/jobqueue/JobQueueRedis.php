@@ -104,7 +104,7 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	protected function supportedOrders() {
-		return array( 'timestamp', 'fifo' );
+		return [ 'timestamp', 'fifo' ];
 	}
 
 	protected function optimalOrder() {
@@ -193,7 +193,7 @@ class JobQueueRedis extends JobQueue {
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
 		// Convert the jobs into field maps (de-duplicated against each other)
-		$items = array(); // (job ID => job fields map)
+		$items = []; // (job ID => job fields map)
 		foreach ( $jobs as $job ) {
 			$item = $this->getNewJobFields( $job );
 			if ( strlen( $item['sha1'] ) ) { // hash identifier => de-duplicate
@@ -211,7 +211,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			// Actually push the non-duplicate jobs into the queue...
 			if ( $flags & self::QOS_ATOMIC ) {
-				$batches = array( $items ); // all or nothing
+				$batches = [ $items ]; // all or nothing
 			} else {
 				$batches = array_chunk( $items, 100 ); // avoid tying up the server
 			}
@@ -246,7 +246,7 @@ class JobQueueRedis extends JobQueue {
 	 * @throws RedisException
 	 */
 	protected function pushBlobs( RedisConnRef $conn, array $items ) {
-		$args = array( $this->encodeQueueName() );
+		$args = [ $this->encodeQueueName() ];
 		// Next args come in 4s ([id, sha1, rtime, blob [, id, sha1, rtime, blob ... ] ] )
 		foreach ( $items as $item ) {
 			$args[] = (string)$item['uuid'];
@@ -290,14 +290,14 @@ class JobQueueRedis extends JobQueue {
 LUA;
 		return $conn->luaEval( $script,
 			array_merge(
-				array(
+				[
 					$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
 					$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
 					$this->getQueueKey( 'z-delayed' ), # KEYS[4]
 					$this->getQueueKey( 'h-data' ), # KEYS[5]
 					$this->getGlobalKey( 's-queuesWithJobs' ), # KEYS[6]
-				),
+				],
 				$args
 			),
 			6 # number of first argument(s) that are keys
@@ -362,7 +362,7 @@ LUA;
 		return redis.call('hGet',kData,id)
 LUA;
 		return $conn->luaEval( $script,
-			array(
+			[
 				$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 				$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
 				$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
@@ -370,7 +370,7 @@ LUA;
 				$this->getQueueKey( 'h-attempts' ), # KEYS[5]
 				$this->getQueueKey( 'h-data' ), # KEYS[6]
 				time(), # ARGV[1] (injected to be replication-safe)
-			),
+			],
 			6 # number of first argument(s) that are keys
 		);
 	}
@@ -401,12 +401,12 @@ LUA;
 			return redis.call('hDel',kData,uuid)
 LUA;
 			$res = $conn->luaEval( $script,
-				array(
+				[
 					$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-attempts' ), # KEYS[2]
 					$this->getQueueKey( 'h-data' ), # KEYS[3]
 					$uuid # ARGV[1]
-				),
+				],
 				3 # number of first argument(s) that are keys
 			);
 
@@ -484,12 +484,12 @@ LUA;
 	 * @throws JobQueueError
 	 */
 	protected function doDelete() {
-		static $props = array( 'l-unclaimed', 'z-claimed', 'z-abandoned',
-			'z-delayed', 'h-idBySha1', 'h-sha1ById', 'h-attempts', 'h-data' );
+		static $props = [ 'l-unclaimed', 'z-claimed', 'z-abandoned',
+			'z-delayed', 'h-idBySha1', 'h-sha1ById', 'h-attempts', 'h-data' ];
 
 		$conn = $this->getConnection();
 		try {
-			$keys = array();
+			$keys = [];
 			foreach ( $props as $prop ) {
 				$keys[] = $this->getQueueKey( $prop );
 			}
@@ -578,9 +578,9 @@ LUA;
 			function ( $uid ) use ( $conn ) {
 				return $this->getJobFromUidInternal( $uid, $conn );
 			},
-			array( 'accept' => function ( $job ) {
+			[ 'accept' => function ( $job ) {
 				return is_object( $job );
-			} )
+			} ]
 		);
 	}
 
@@ -593,7 +593,7 @@ LUA;
 	}
 
 	protected function doGetSiblingQueueSizes( array $types ) {
-		$sizes = array(); // (type => size)
+		$sizes = []; // (type => size)
 		$types = array_values( $types ); // reindex
 		$conn = $this->getConnection();
 		try {
@@ -652,7 +652,7 @@ LUA;
 	 * @throws JobQueueError
 	 */
 	public function getServerQueuesWithJobs() {
-		$queues = array();
+		$queues = [];
 
 		$conn = $this->getConnection();
 		try {
@@ -672,7 +672,7 @@ LUA;
 	 * @return array
 	 */
 	protected function getNewJobFields( IJobSpecification $job ) {
-		return array(
+		return [
 			// Fields that describe the nature of the job
 			'type' => $job->getType(),
 			'namespace' => $job->getTitle()->getNamespace(),
@@ -686,7 +686,7 @@ LUA;
 				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',
 			'timestamp' => time() // UNIX timestamp
-		);
+		];
 	}
 
 	/**
@@ -712,7 +712,7 @@ LUA;
 			&& strlen( $blob ) >= 1024
 			&& function_exists( 'gzdeflate' )
 		) {
-			$object = (object)array( 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' );
+			$object = (object)[ 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' ];
 			$blobz = serialize( $object );
 
 			return ( strlen( $blobz ) < strlen( $blob ) ) ? $blobz : $blob;
@@ -768,7 +768,7 @@ LUA;
 	 * @return string JSON
 	 */
 	private function encodeQueueName() {
-		return json_encode( array( $this->type, $this->wiki ) );
+		return json_encode( [ $this->type, $this->wiki ] );
 	}
 
 	/**
@@ -784,7 +784,7 @@ LUA;
 	 * @return string
 	 */
 	private function getGlobalKey( $name ) {
-		$parts = array( 'global', 'jobqueue', $name );
+		$parts = [ 'global', 'jobqueue', $name ];
 		foreach ( $parts as $part ) {
 		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
 		        throw new InvalidArgumentException( "Key part characters are out of range." );
@@ -804,7 +804,7 @@ LUA;
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 		$keyspace = $prefix ? "$db-$prefix" : $db;
 
-		$parts = array( $keyspace, 'jobqueue', $type, $prop );
+		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
 
 		// Parts are typically ASCII, but encode for sanity to escape ":"
 		return implode( ':', array_map( 'rawurlencode', $parts ) );

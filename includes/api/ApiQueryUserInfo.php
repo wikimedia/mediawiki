@@ -33,8 +33,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	const WL_UNREAD_LIMIT = 1000;
 
-	private $params = array();
-	private $prop = array();
+	private $params = [];
+	private $prop = [];
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ui' );
@@ -65,7 +65,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 */
 	public static function getBlockInfo( Block $block ) {
 		global $wgContLang;
-		$vals = array();
+		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
 		$vals['blockedbyid'] = $block->getBy();
@@ -92,14 +92,14 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public static function getCentralUserInfo( Config $config, User $user, $attachedWiki = null ) {
 		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
 
-		$ret = array(
-			'centralids' => array(),
-			'attachedlocal' => array(),
-		);
+		$ret = [
+			'centralids' => [],
+			'attachedlocal' => [],
+		];
 		ApiResult::setArrayType( $ret['centralids'], 'assoc' );
 		ApiResult::setArrayType( $ret['attachedlocal'], 'assoc' );
 		if ( $attachedWiki ) {
-			$ret['attachedwiki'] = array();
+			$ret['attachedwiki'] = [];
 			ApiResult::setArrayType( $ret['attachedwiki'], 'assoc' );
 		}
 
@@ -118,7 +118,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
-		$vals = array();
+		$vals = [];
 		$vals['id'] = intval( $user->getId() );
 		$vals['name'] = $user->getName();
 
@@ -214,9 +214,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['acceptlang'] ) ) {
 			$langs = $this->getRequest()->getAcceptLang();
-			$acceptLang = array();
+			$acceptLang = [];
 			foreach ( $langs as $lang => $val ) {
-				$r = array( 'q' => $val );
+				$r = [ 'q' => $val ];
 				ApiResult::setContentValue( $r, 'code', $lang );
 				$acceptLang[] = $r;
 			}
@@ -230,12 +230,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$count = $dbr->selectRowCount(
 				'watchlist',
 				'1',
-				array(
+				[
 					'wl_user' => $user->getId(),
 					'wl_notificationtimestamp IS NOT NULL',
-				),
+				],
 				__METHOD__,
-				array( 'LIMIT' => self::WL_UNREAD_LIMIT )
+				[ 'LIMIT' => self::WL_UNREAD_LIMIT ]
 			);
 
 			if ( $count >= self::WL_UNREAD_LIMIT ) {
@@ -255,9 +255,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getRateLimits() {
-		$retval = array(
+		$retval = [
 			ApiResult::META_TYPE => 'assoc',
-		);
+		];
 
 		$user = $this->getUser();
 		if ( !$user->isPingLimitable() ) {
@@ -265,7 +265,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		// Find out which categories we belong to
-		$categories = array();
+		$categories = [];
 		if ( $user->isAnon() ) {
 			$categories[] = 'anon';
 		} else {
@@ -294,10 +294,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'blockinfo',
 					'hasmsg',
 					'groups',
@@ -314,26 +314,26 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'registrationdate',
 					'unreadcount',
 					'centralids',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
-					'unreadcount' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
+					'unreadcount' => [
 						'apihelp-query+userinfo-paramvalue-prop-unreadcount',
 						self::WL_UNREAD_LIMIT - 1,
 						self::WL_UNREAD_LIMIT . '+',
-					),
-				),
-			),
+					],
+				],
+			],
 			'attachedwiki' => null,
-		);
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&meta=userinfo'
 				=> 'apihelp-query+userinfo-example-simple',
 			'action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg'
 				=> 'apihelp-query+userinfo-example-data',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

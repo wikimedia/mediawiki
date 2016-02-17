@@ -56,10 +56,10 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	public function testGetDefaultInstance() {
 		// Set $wgConfigRegistry, and check the default
 		// instance read from it
-		$this->setMwGlobals( 'wgConfigRegistry', array(
+		$this->setMwGlobals( 'wgConfigRegistry', [
 			'conf1' => 'GlobalVarConfig::newInstance',
 			'conf2' => 'GlobalVarConfig::newInstance',
-		) );
+		] );
 		ConfigFactory::destroyDefaultInstance();
 		$factory = ConfigFactory::getDefaultInstance();
 		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf1' ) );

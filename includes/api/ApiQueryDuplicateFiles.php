@@ -87,9 +87,9 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
 		$fit = true;
 		$count = 0;
-		$titles = array();
+		$titles = [];
 
-		$sha1s = array();
+		$sha1s = [];
 		foreach ( $files as $file ) {
 			/** @var $file File */
 			$sha1s[$file->getName()] = $file->getSha1();
@@ -134,12 +134,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				if ( !is_null( $resultPageSet ) ) {
 					$titles[] = $dupFile->getTitle();
 				} else {
-					$r = array(
+					$r = [
 						'name' => $dupName,
 						'user' => $dupFile->getUser( 'text' ),
 						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() ),
 						'shared' => !$dupFile->isLocal(),
-					);
+					];
 					$fit = $this->addPageSubItem( $pageId, $r );
 					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );
@@ -157,35 +157,35 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'limit' => array(
+		return [
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				)
-			),
+				]
+			],
 			'localonly' => false,
-		);
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles'
 				=> 'apihelp-query+duplicatefiles-example-simple',
 			'action=query&generator=allimages&prop=duplicatefiles'
 				=> 'apihelp-query+duplicatefiles-example-generated',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

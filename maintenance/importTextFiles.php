@@ -57,7 +57,7 @@ class ImportTextFiles extends Maintenance {
 
 		// Get all the arguments. A loop is required since Maintenance doesn't
 		// suppport an arbitrary number of arguments.
-		$files = array();
+		$files = [];
 		$i = 0;
 		while ( $arg = $this->getArg( $i++ ) ) {
 			if ( file_exists( $arg ) ) {
@@ -71,7 +71,7 @@ class ImportTextFiles extends Maintenance {
 		$this->output( "Importing $count pages...\n" );
 
 		if ( $userName === false ) {
-			$user = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $userName );
 		}

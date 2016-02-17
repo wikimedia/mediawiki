@@ -73,12 +73,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 	protected function getFormFields() {
 		global $wgAuth;
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
-		$a = array();
+		$a = [];
 		if ( isset( $resetRoutes['username'] ) && $resetRoutes['username'] ) {
-			$a['Username'] = array(
+			$a['Username'] = [
 				'type' => 'text',
 				'label-message' => 'passwordreset-username',
-			);
+			];
 
 			if ( $this->getUser()->isLoggedIn() ) {
 				$a['Username']['default'] = $this->getUser()->getName();
@@ -86,27 +86,27 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 
 		if ( isset( $resetRoutes['email'] ) && $resetRoutes['email'] ) {
-			$a['Email'] = array(
+			$a['Email'] = [
 				'type' => 'email',
 				'label-message' => 'passwordreset-email',
-			);
+			];
 		}
 
 		if ( isset( $resetRoutes['domain'] ) && $resetRoutes['domain'] ) {
 			$domains = $wgAuth->domainList();
-			$a['Domain'] = array(
+			$a['Domain'] = [
 				'type' => 'select',
 				'options' => $domains,
 				'label-message' => 'passwordreset-domain',
-			);
+			];
 		}
 
 		if ( $this->getUser()->isAllowed( 'passwordreset' ) ) {
-			$a['Capture'] = array(
+			$a['Capture'] = [
 				'type' => 'check',
 				'label-message' => 'passwordreset-capture',
 				'help-message' => 'passwordreset-capture-help',
-			);
+			];
 		}
 
 		return $a;
@@ -171,7 +171,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		if ( isset( $data['Username'] ) && $data['Username'] !== '' ) {
 			$method = 'username';
-			$users = array( User::newFromName( $data['Username'] ) );
+			$users = [ User::newFromName( $data['Username'] ) ];
 		} elseif ( isset( $data['Email'] )
 			&& $data['Email'] !== ''
 			&& Sanitizer::validateEmail( $data['Email'] )
@@ -180,12 +180,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$res = wfGetDB( DB_SLAVE )->select(
 				'user',
 				User::selectFields(),
-				array( 'user_email' => $data['Email'] ),
+				[ 'user_email' => $data['Email'] ],
 				__METHOD__
 			);
 
 			if ( $res ) {
-				$users = array();
+				$users = [];
 
 				foreach ( $res as $row ) {
 					$users[] = User::newFromRow( $row );
@@ -200,9 +200,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 
 		// Check for hooks (captcha etc), and allow them to modify the users list
-		$error = array();
-		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', array( &$users, $data, &$error ) ) ) {
-			return array( $error );
+		$error = [];
+		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
+			return [ $error ];
 		}
 
 		$this->method = $method;
@@ -212,7 +212,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 				// Don't reveal whether or not an email address is in use
 				return true;
 			} else {
-				return array( 'noname' );
+				return [ 'noname' ];
 			}
 		}
 
@@ -220,7 +220,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		if ( !$firstUser instanceof User || !$firstUser->getID() ) {
 			// Don't parse username as wikitext (bug 65501)
-			return array( array( 'nosuchuser', wfEscapeWikiText( $data['Username'] ) ) );
+			return [ [ 'nosuchuser', wfEscapeWikiText( $data['Username'] ) ] ];
 		}
 
 		// Check against the rate limiter
@@ -234,27 +234,27 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 				# Round the time in hours to 3 d.p., in case someone is specifying
 				# minutes or seconds.
-				return array( array(
+				return [ [
 					'throttled-mailpassword',
 					round( $this->getConfig()->get( 'PasswordReminderResendTime' ), 3 )
-				) );
+				] ];
 			}
 		}
 
 		// All the users will have the same email address
 		if ( $firstUser->getEmail() == '' ) {
 			// This won't be reachable from the email route, so safe to expose the username
-			return array( array( 'noemail', wfEscapeWikiText( $firstUser->getName() ) ) );
+			return [ [ 'noemail', wfEscapeWikiText( $firstUser->getName() ) ] ];
 		}
 
 		// We need to have a valid IP address for the hook, but per bug 18347, we should
 		// send the user's name if they're logged in.
 		$ip = $this->getRequest()->getIP();
 		if ( !$ip ) {
-			return array( 'badipaddress' );
+			return [ 'badipaddress' ];
 		}
 		$caller = $this->getUser();
-		Hooks::run( 'User::mailPasswordInternal', array( &$caller, &$ip, &$firstUser ) );
+		Hooks::run( 'User::mailPasswordInternal', [ &$caller, &$ip, &$firstUser ] );
 		$username = $caller->getName();
 		$msg = IP::isValid( $username )
 			? 'passwordreset-emailtext-ip'
@@ -263,7 +263,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		// Send in the user's language; which should hopefully be the same
 		$userLanguage = $firstUser->getOption( 'language' );
 
-		$passwords = array();
+		$passwords = [];
 		foreach ( $users as $user ) {
 			$password = PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
 			$user->setNewpassword( $password );
@@ -303,7 +303,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			// @todo FIXME: The email wasn't sent, but we have already set
 			// the password throttle timestamp, so they won't be able to try
 			// again until it expires...  :(
-			return array( array( 'mailerror', $this->result->getMessage() ) );
+			return [ [ 'mailerror', $this->result->getMessage() ] ];
 		}
 	}
 
@@ -318,7 +318,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 					$this->result->getMessage(), $this->firstUser->getName() );
 			}
 
-			$this->getOutput()->addHTML( Html::rawElement( 'pre', array(), $this->email->escaped() ) );
+			$this->getOutput()->addHTML( Html::rawElement( 'pre', [], $this->email->escaped() ) );
 		}
 
 		if ( $this->method === 'email' ) {

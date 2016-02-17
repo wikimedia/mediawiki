@@ -31,14 +31,14 @@ class LinkBatch {
 	/**
 	 * 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
-	public $data = array();
+	public $data = [];
 
 	/**
 	 * For debugging which method is using this class.
 	 */
 	protected $caller;
 
-	function __construct( $arr = array() ) {
+	function __construct( $arr = [] ) {
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
 		}
@@ -75,7 +75,7 @@ class LinkBatch {
 			return;
 		}
 		if ( !array_key_exists( $ns, $this->data ) ) {
-			$this->data[$ns] = array();
+			$this->data[$ns] = [];
 		}
 
 		$this->data[$ns][strtr( $dbkey, ' ', '_' )] = 1;
@@ -147,12 +147,12 @@ class LinkBatch {
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
-			return array();
+			return [];
 		}
 
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
-		$ids = array();
+		$ids = [];
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -187,8 +187,8 @@ class LinkBatch {
 		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = wfGetDB( DB_SLAVE );
 		$table = 'page';
-		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest' );
+		$fields = [ 'page_id', 'page_namespace', 'page_title', 'page_len',
+			'page_is_redirect', 'page_latest' ];
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';

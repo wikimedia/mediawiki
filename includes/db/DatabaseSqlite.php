@@ -85,13 +85,13 @@ class DatabaseSqlite extends Database {
 
 		$this->trxMode = isset( $p['trxMode'] ) ? strtoupper( $p['trxMode'] ) : null;
 		if ( $this->trxMode &&
-			!in_array( $this->trxMode, array( 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ) )
+			!in_array( $this->trxMode, [ 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ] )
 		) {
 			$this->trxMode = null;
 			wfWarn( "Invalid SQLite transaction mode provided." );
 		}
 
-		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "{$this->dbDir}/locks" ) );
+		$this->lockMgr = new FSLockManager( [ 'lockDirectory' => "{$this->dbDir}/locks" ] );
 	}
 
 	/**
@@ -103,7 +103,7 @@ class DatabaseSqlite extends Database {
 	 * @return DatabaseSqlite
 	 * @since 1.25
 	 */
-	public static function newStandaloneInstance( $filename, array $p = array() ) {
+	public static function newStandaloneInstance( $filename, array $p = [] ) {
 		$p['dbFilePath'] = $filename;
 		$p['schema'] = false;
 		$p['tablePrefix'] = '';
@@ -164,7 +164,7 @@ class DatabaseSqlite extends Database {
 		try {
 			if ( $this->mFlags & DBO_PERSISTENT ) {
 				$this->mConn = new PDO( "sqlite:$fileName", '', '',
-					array( PDO::ATTR_PERSISTENT => true ) );
+					[ PDO::ATTR_PERSISTENT => true ] );
 			} else {
 				$this->mConn = new PDO( "sqlite:$fileName", '', '' );
 			}
@@ -512,7 +512,7 @@ class DatabaseSqlite extends Database {
 		if ( $res->numRows() == 0 ) {
 			return false;
 		}
-		$info = array();
+		$info = [];
 		foreach ( $res as $row ) {
 			$info[] = $row->name;
 		}
@@ -528,10 +528,10 @@ class DatabaseSqlite extends Database {
 	 */
 	function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$row = $this->selectRow( 'sqlite_master', '*',
-			array(
+			[
 				'type' => 'index',
 				'name' => $this->indexName( $index ),
-			), $fname );
+			], $fname );
 		if ( !$row || !isset( $row->sql ) ) {
 			return null;
 		}
@@ -607,7 +607,7 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return bool
 	 */
-	function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
+	function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
 		if ( !count( $a ) ) {
 			return true;
 		}
@@ -915,11 +915,11 @@ class DatabaseSqlite extends Database {
 			}
 		}
 
-		return $this->lockMgr->lock( array( $lockName ), LockManager::LOCK_EX, $timeout )->isOK();
+		return $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout )->isOK();
 	}
 
 	public function unlock( $lockName, $method ) {
-		return $this->lockMgr->unlock( array( $lockName ), LockManager::LOCK_EX )->isOK();
+		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isOK();
 	}
 
 	/**
@@ -933,11 +933,11 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = array()
+		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
 		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
 	/**
@@ -989,7 +989,7 @@ class DatabaseSqlite extends Database {
 			$sql .= ' ' . $indexName . ' ON ' . $newName;
 
 			$indexInfo = $this->query( 'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')' );
-			$fields = array();
+			$fields = [];
 			foreach ( $indexInfo as $indexInfoRow ) {
 				$fields[$indexInfoRow->seqno] = $indexInfoRow->name;
 			}
@@ -1017,7 +1017,7 @@ class DatabaseSqlite extends Database {
 			"type='table'"
 		);
 
-		$endArray = array();
+		$endArray = [];
 
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );

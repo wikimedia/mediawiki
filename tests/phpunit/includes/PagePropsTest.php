@@ -39,12 +39,12 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		if ( !$this->the_properties ) {
-			$this->the_properties = array(
+			$this->the_properties = [
 				"property1" => "value1",
 				"property2" => "value2",
 				"property3" => "value3",
 				"property4" => "value4"
-			);
+			];
 		}
 
 		if ( !$this->title1 ) {
@@ -105,10 +105,10 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
-		$titles = array(
+		$titles = [
 			$this->title1,
 			$this->title2
-		);
+		];
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
@@ -124,14 +124,14 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
-		$titles = array(
+		$titles = [
 			$this->title1,
 			$this->title2
-		);
-		$properties = array(
+		];
+		$properties = [
 			"property1",
 			"property2"
-		);
+		];
 		$result = $pageProps->getProperties( $titles, $properties );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( "property1", $result[$page1ID], "Found page 1 property 1" );
@@ -174,10 +174,10 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
-		$titles = array(
+		$titles = [
 			$this->title1,
 			$this->title2
-		);
+		];
 		$result = $pageProps->getAllProperties( $titles );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 properties" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 properties" );
@@ -267,15 +267,15 @@ class TestPageProps extends MediaWikiLangTestCase {
 
 	protected function setProperties( $pageID, $properties ) {
 
-		$rows = array();
+		$rows = [];
 
 		foreach ( $properties as $propertyName => $propertyValue ) {
 
-			$row = array(
+			$row = [
 				'pp_page' => $pageID,
 				'pp_propname' => $propertyName,
 				'pp_value' => $propertyValue
-			);
+			];
 
 			$rows[] = $row;
 		}
@@ -283,12 +283,12 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'page_props',
-			array(
-				array(
+			[
+				[
 					'pp_page',
 					'pp_propname'
-				)
-			),
+				]
+			],
 			$rows,
 			__METHOD__
 		);
@@ -296,7 +296,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 
 	protected function setProperty( $pageID, $propertyName, $propertyValue ) {
 
-		$properties = array();
+		$properties = [];
 		$properties[$propertyName] = $propertyValue;
 
 		$this->setProperties( $pageID, $properties );

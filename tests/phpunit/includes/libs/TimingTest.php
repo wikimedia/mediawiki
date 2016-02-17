@@ -100,12 +100,12 @@ class TimingTest extends PHPUnit_Framework_TestCase {
 			return $entry['name'];
 		}, $timing->getEntriesByType( 'mark' ) );
 
-		$this->assertEquals( array( 'requestStart', 'mark_a', 'mark_b', 'mark_c' ), $marks );
+		$this->assertEquals( [ 'requestStart', 'mark_a', 'mark_b', 'mark_c' ], $marks );
 
 		$measures = array_map( function ( $entry ) {
 			return $entry['name'];
 		}, $timing->getEntriesByType( 'measure' ) );
 
-		$this->assertEquals( array( 'measure_a', 'measure_b' ), $measures );
+		$this->assertEquals( [ 'measure_a', 'measure_b' ], $measures );
 	}
 }

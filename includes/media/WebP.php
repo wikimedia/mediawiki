@@ -122,10 +122,10 @@ class WebPHandler extends BitmapHandler {
 	 * 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'
 	 */
 	public static function extractMetadataFromChunks( $chunks, $filename ) {
-		$vp8Info = array();
+		$vp8Info = [];
 
 		foreach ( $chunks as $chunk ) {
-			if ( !in_array( $chunk['fourCC'], array( 'VP8 ', 'VP8L', 'VP8X' ) ) ) {
+			if ( !in_array( $chunk['fourCC'], [ 'VP8 ', 'VP8L', 'VP8X' ] ) ) {
 				// Not a chunk containing interesting metadata
 				continue;
 			}
@@ -165,16 +165,16 @@ class WebPHandler extends BitmapHandler {
 		if ( $syncCode != "\x9D\x01\x2A" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid sync code: ' .
 				bin2hex( $syncCode ) . "\n" );
-			return array();
+			return [];
 		}
 		// Bytes 14-17 are image size
 		$imageSize = unpack( 'v2', substr( $header, 14, 4 ) );
 		// Image sizes are 14 bit, 2 MSB are scaling parameters which are ignored here
-		return array(
+		return [
 			'compression' => 'lossy',
 			'width' => $imageSize[1] & 0x3FFF,
 			'height' => $imageSize[2] & 0x3FFF
-		);
+		];
 	}
 
 	/**
@@ -189,17 +189,17 @@ class WebPHandler extends BitmapHandler {
 		if ( $header{8} != "\x2F" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
 				bin2hex( $header{8} ) . "\n" );
-			return array();
+			return [];
 		}
 		// Bytes 9-12 contain the image size
 		// Bits 0-13 are width-1; bits 15-27 are height-1
 		$imageSize = unpack( 'C4', substr( $header, 9, 4 ) );
-		return array(
+		return [
 				'compression' => 'lossless',
 				'width' => ( $imageSize[1] | ( ( $imageSize[2] & 0x3F ) << 8 ) ) + 1,
 				'height' => ( ( ( $imageSize[2] & 0xC0 ) >> 6 ) |
 						( $imageSize[3] << 2 ) | ( ( $imageSize[4] & 0x03 ) << 10 ) ) + 1
-		);
+		];
 	}
 
 	/**
@@ -217,13 +217,13 @@ class WebPHandler extends BitmapHandler {
 		$width = unpack( 'V', substr( $header, 12, 3 ) . "\x00" );
 		$height = unpack( 'V', substr( $header, 15, 3 ) . "\x00" );
 
-		return array(
+		return [
 			'compression' => 'unknown',
 			'animated' => ( $flags[1] & self::VP8X_ANIM ) == self::VP8X_ANIM,
 			'transparency' => ( $flags[1] & self::VP8X_ALPHA ) == self::VP8X_ALPHA,
 			'width' => ( $width[1] & 0xFFFFFF ) + 1,
 			'height' => ( $height[1] & 0xFFFFFF ) + 1
-		);
+		];
 	}
 
 	public function getImageSize( $file, $path, $metadata = false ) {
@@ -241,7 +241,7 @@ class WebPHandler extends BitmapHandler {
 		if ( $metadata == false ) {
 			return false;
 		}
-		return array( $metadata['width'], $metadata['height'] );
+		return [ $metadata['width'], $metadata['height'] ];
 	}
 
 	/**
@@ -292,7 +292,7 @@ class WebPHandler extends BitmapHandler {
 	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		return array( 'png', 'image/png' );
+		return [ 'png', 'image/png' ];
 	}
 
 	/**

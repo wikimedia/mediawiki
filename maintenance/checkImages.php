@@ -44,8 +44,8 @@ class CheckImages extends Maintenance {
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		do {
-			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ),
-				__METHOD__, array( 'LIMIT' => $this->mBatchSize ) );
+			$res = $dbr->select( 'image', '*', [ 'img_name > ' . $dbr->addQuotes( $start ) ],
+				__METHOD__, [ 'LIMIT' => $this->mBatchSize ] );
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;

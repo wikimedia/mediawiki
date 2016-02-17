@@ -75,7 +75,7 @@ class MergeHistory {
 		$firstDestTimestamp = $this->dbw->selectField(
 			'revision',
 			'MIN(rev_timestamp)',
-			array( 'rev_page' => $this->dest->getArticleID() ),
+			[ 'rev_page' => $this->dest->getArticleID() ],
 			__METHOD__
 		);
 		$this->maxTimestamp = new MWTimestamp( $firstDestTimestamp );
@@ -89,10 +89,10 @@ class MergeHistory {
 				$lastWorkingTimestamp = $this->dbw->selectField(
 					'revision',
 					'MAX(rev_timestamp)',
-					array(
+					[
 						'rev_timestamp <= ' . $this->dbw->timestamp( $mwTimestamp ),
 						'rev_page' => $this->source->getArticleID()
-					),
+					],
 					__METHOD__
 				);
 				$mwLastWorkingTimestamp = new MWTimestamp( $lastWorkingTimestamp );
@@ -105,11 +105,11 @@ class MergeHistory {
 
 				// Get the latest timestamp of the source
 				$lastSourceTimestamp = $this->dbw->selectField(
-					array( 'page', 'revision' ),
+					[ 'page', 'revision' ],
 					'rev_timestamp',
-					array( 'page_id' => $this->source->getArticleID(),
+					[ 'page_id' => $this->source->getArticleID(),
 						'page_latest = rev_id'
-					),
+					],
 					__METHOD__
 				);
 				$lasttimestamp = new MWTimestamp( $lastSourceTimestamp );
@@ -132,9 +132,9 @@ class MergeHistory {
 	 */
 	public function getRevisionCount() {
 		$count = $this->dbw->selectRowCount( 'revision', '1',
-			array( 'rev_page' => $this->source->getArticleID(), $this->timeWhere ),
+			[ 'rev_page' => $this->source->getArticleID(), $this->timeWhere ],
 			__METHOD__,
-			array( 'LIMIT' => self::REVISION_LIMIT + 1 )
+			[ 'LIMIT' => self::REVISION_LIMIT + 1 ]
 		);
 
 		return $count;
@@ -167,7 +167,7 @@ class MergeHistory {
 		// Convert into a Status object
 		if ( $errors ) {
 			foreach ( $errors as $error ) {
-				call_user_func_array( array( $status, 'fatal' ), $error );
+				call_user_func_array( [ $status, 'fatal' ], $error );
 			}
 		}
 
@@ -256,8 +256,8 @@ class MergeHistory {
 
 		$this->dbw->update(
 			'revision',
-			array( 'rev_page' => $this->dest->getArticleID() ),
-			array( 'rev_page' => $this->source->getArticleID(), $this->timeWhere ),
+			[ 'rev_page' => $this->dest->getArticleID() ],
+			[ 'rev_page' => $this->source->getArticleID(), $this->timeWhere ],
 			__METHOD__
 		);
 
@@ -272,9 +272,9 @@ class MergeHistory {
 		$haveRevisions = $this->dbw->selectField(
 			'revision',
 			'rev_timestamp',
-			array( 'rev_page' => $this->source->getArticleID() ),
+			[ 'rev_page' => $this->source->getArticleID() ],
 			__METHOD__,
-			array( 'FOR UPDATE' )
+			[ 'FOR UPDATE' ]
 		);
 		if ( !$haveRevisions ) {
 			if ( $reason ) {
@@ -300,11 +300,11 @@ class MergeHistory {
 
 			if ( $redirectContent ) {
 				$redirectPage = WikiPage::factory( $this->source );
-				$redirectRevision = new Revision( array(
+				$redirectRevision = new Revision( [
 					'title' => $this->source,
 					'page' => $this->source->getArticleID(),
 					'comment' => $reason,
-					'content' => $redirectContent ) );
+					'content' => $redirectContent ] );
 				$redirectRevision->insertOn( $this->dbw );
 				$redirectPage->updateRevisionOn( $this->dbw, $redirectRevision );
 
@@ -312,15 +312,15 @@ class MergeHistory {
 				// It should have no other outgoing links...
 				$this->dbw->delete(
 					'pagelinks',
-					array( 'pl_from' => $this->dest->getArticleID() ),
+					[ 'pl_from' => $this->dest->getArticleID() ],
 					__METHOD__
 				);
 				$this->dbw->insert( 'pagelinks',
-					array(
+					[
 						'pl_from' => $this->dest->getArticleID(),
 						'pl_from_namespace' => $this->dest->getNamespace(),
 						'pl_namespace' => $this->dest->getNamespace(),
-						'pl_title' => $this->dest->getDBkey() ),
+						'pl_title' => $this->dest->getDBkey() ],
 					__METHOD__
 				);
 			} else {
@@ -337,14 +337,14 @@ class MergeHistory {
 		$logEntry->setPerformer( $user );
 		$logEntry->setComment( $reason );
 		$logEntry->setTarget( $this->source );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'4::dest' => $this->dest->getPrefixedText(),
 			'5::mergepoint' => $this->timestampLimit->getTimestamp( TS_MW )
-		) );
+		] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		Hooks::run( 'ArticleMergeComplete', array( $this->source, $this->dest ) );
+		Hooks::run( 'ArticleMergeComplete', [ $this->source, $this->dest ] );
 
 		return $status;
 	}

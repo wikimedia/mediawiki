@@ -60,7 +60,7 @@ function wfInstallerMain() {
 	if ( isset( $_SESSION['installData'][$fingerprint] ) ) {
 		$session = $_SESSION['installData'][$fingerprint];
 	} else {
-		$session = array();
+		$session = [];
 	}
 
 	if ( !is_null( $wgRequest->getVal( 'uselang' ) ) ) {

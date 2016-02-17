@@ -14,22 +14,22 @@ class DummySessionProvider extends SessionProvider {
 	const ID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 	public function provideSessionInfo( WebRequest $request ) {
-		return new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this,
 			'id' => self::ID,
 			'persisted' => true,
 			'userInfo' => UserInfo::newAnonymous(),
-		) );
+		] );
 	}
 
 	public function newSessionInfo( $id = null ) {
-		return new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+		return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => $id,
 			'idIsSafe' => true,
 			'provider' => $this,
 			'persisted' => false,
 			'userInfo' => UserInfo::newAnonymous(),
-		) );
+		] );
 	}
 
 	public function persistsSessionId() {

@@ -83,17 +83,17 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 
 		if ( !$user->isEmailConfirmed() ) {
-			$descriptor = array();
+			$descriptor = [];
 			if ( $user->isEmailConfirmationPending() ) {
-				$descriptor += array(
-					'pending' => array(
+				$descriptor += [
+					'pending' => [
 						'type' => 'info',
 						'raw' => true,
 						'default' => "<div class=\"error mw-confirmemail-pending\">\n" .
 							$this->msg( 'confirmemail_pending' )->escaped() .
 							"\n</div>",
-					),
-				);
+					],
+				];
 			}
 
 			$out->addWikiMsg( 'confirmemail_text' );
@@ -102,7 +102,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				->setMethod( 'post' )
 				->setAction( $this->getPageTitle()->getLocalURL() )
 				->setSubmitTextMsg( 'confirmemail_send' )
-				->setSubmitCallback( array( $this, 'submitSend' ) );
+				->setSubmitCallback( [ $this, 'submitSend' ] );
 
 			$retval = $form->show();
 

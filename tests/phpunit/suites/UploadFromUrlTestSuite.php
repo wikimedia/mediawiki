@@ -3,7 +3,7 @@
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
-	public $savedGlobals = array();
+	public $savedGlobals = [];
 
 	public static function addTables( &$tables ) {
 		$tables[] = 'user_properties';
@@ -22,30 +22,30 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$parserMemc;
 
 		$tmpDir = $this->getNewTempDirectory();
-		$tmpGlobals = array();
+		$tmpGlobals = [];
 
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
-		$tmpGlobals['wgLocalFileRepo'] = array(
+		$tmpGlobals['wgLocalFileRepo'] = [
 			'class' => 'LocalRepo',
 			'name' => 'local',
 			'url' => 'http://example.com/images',
 			'hashLevels' => 2,
 			'transformVia404' => false,
-			'backend' => new FSFileBackend( array(
+			'backend' => new FSFileBackend( [
 				'name' => 'local-backend',
 				'wikiId' => wfWikiId(),
-				'containerPaths' => array(
+				'containerPaths' => [
 					'local-public' => "{$tmpDir}/test-repo/public",
 					'local-thumb' => "{$tmpDir}/test-repo/thumb",
 					'local-temp' => "{$tmpDir}/test-repo/temp",
 					'local-deleted' => "{$tmpDir}/test-repo/delete",
-				)
-			) ),
-		);
+				]
+			] ),
+		];
 		foreach ( $tmpGlobals as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedGlobals[$var] = $GLOBALS[$var];
@@ -67,7 +67,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$context = new RequestContext;
 		$wgLang = $context->getLanguage();
 		$wgOut = $context->getOutput();
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
+		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {

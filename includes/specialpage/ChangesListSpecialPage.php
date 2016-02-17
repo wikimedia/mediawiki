@@ -164,8 +164,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
-			Hooks::run( 'ChangesListSpecialPageFilters', array( $this, &$this->customFilters ) );
+			$this->customFilters = [];
+			Hooks::run( 'ChangesListSpecialPageFilters', [ $this, &$this->customFilters ] );
 		}
 
 		return $this->customFilters;
@@ -213,7 +213,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function buildMainQueryConds( FormOptions $opts ) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
-		$conds = array();
+		$conds = [];
 
 		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
 		// what the user meant and either show only bots or force anons to be shown.
@@ -293,10 +293,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool|ResultWrapper Result or false
 	 */
 	public function doMainQuery( $conds, $opts ) {
-		$tables = array( 'recentchanges' );
+		$tables = [ 'recentchanges' ];
 		$fields = RecentChange::selectFields();
-		$query_options = array();
-		$join_conds = array();
+		$query_options = [];
+		$join_conds = [];
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -330,7 +330,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	) {
 		return Hooks::run(
 			'ChangesListSpecialPageQuery',
-			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
+			[ $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ]
 		);
 	}
 
@@ -416,7 +416,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return array
 	 */
 	public function getExtraOptions( $opts ) {
-		return array();
+		return [];
 	}
 
 	/**
@@ -440,21 +440,21 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$cssClass = isset( $item['class'] ) ? $item['class'] : $key;
 
 			$legend .= Html::element( 'dt',
-				array( 'class' => $cssClass ), $context->msg( $letter )->text()
+				[ 'class' => $cssClass ], $context->msg( $letter )->text()
 			) . "\n" .
 			Html::rawElement( 'dd',
-				array( 'class' => Sanitizer::escapeClass( 'mw-changeslist-legend-' . $key ) ),
+				[ 'class' => Sanitizer::escapeClass( 'mw-changeslist-legend-' . $key ) ],
 				$context->msg( $label )->parse()
 			) . "\n";
 		}
 		# (+-123)
 		$legend .= Html::rawElement( 'dt',
-			array( 'class' => 'mw-plusminus-pos' ),
+			[ 'class' => 'mw-plusminus-pos' ],
 			$context->msg( 'recentchanges-legend-plusminus' )->parse()
 		) . "\n";
 		$legend .= Html::element(
 			'dd',
-			array( 'class' => 'mw-changeslist-legend-plusminus' ),
+			[ 'class' => 'mw-changeslist-legend-plusminus' ],
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
 		$legend .= Html::closeElement( 'dl' ) . "\n";

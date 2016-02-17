@@ -61,7 +61,7 @@ class SamplingStatsdClient extends StatsdClient {
 	 */
 	public function send( $data, $sampleRate = 1 ) {
 		if ( !is_array( $data ) ) {
-			$data = array( $data );
+			$data = [ $data ];
 		}
 		if ( !$data ) {
 			return;
@@ -111,7 +111,7 @@ class SamplingStatsdClient extends StatsdClient {
 	 * @throws LogicException
 	 */
 	protected function sampleData( $data ) {
-		$newData = array();
+		$newData = [];
 		$mt_rand_max = mt_getrandmax();
 		foreach ( $data as $item ) {
 			$samplingRate = $item->getSampleRate();

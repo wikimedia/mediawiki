@@ -259,7 +259,7 @@ class XMPValidate implements LoggerAwareInterface {
 			// this only validates standalone properties, not arrays, etc
 			return;
 		}
-		$res = array();
+		$res = [];
 		// @codingStandardsIgnoreStart Long line that cannot be broken
 		if ( !preg_match(
 			/* ahh! scary regex... */
@@ -360,7 +360,7 @@ class XMPValidate implements LoggerAwareInterface {
 			return;
 		}
 
-		$m = array();
+		$m = [];
 		if ( preg_match(
 			'/(\d{1,3}),(\d{1,2}),(\d{1,2})([NWSE])/D',
 			$val, $m )

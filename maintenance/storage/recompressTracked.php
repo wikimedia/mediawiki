@@ -68,15 +68,15 @@ class RecompressTracked {
 	public $debugLog, $infoLog, $criticalLog;
 	public $store;
 
-	private static $optionsWithArgs = array(
+	private static $optionsWithArgs = [
 		'procs',
 		'slave-id',
 		'debug-log',
 		'info-log',
 		'critical-log'
-	);
+	];
 
-	private static $cmdLineOptionMap = array(
+	private static $cmdLineOptionMap = [
 		'no-count' => 'noCount',
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
@@ -85,14 +85,14 @@ class RecompressTracked {
 		'debug-log' => 'debugLog',
 		'info-log' => 'infoLog',
 		'critical-log' => 'criticalLog',
-	);
+	];
 
 	static function getOptionsWithArgs() {
 		return self::$optionsWithArgs;
 	}
 
 	static function newFromCommandLine( $args, $options ) {
-		$jobOptions = array( 'destClusters' => $args );
+		$jobOptions = [ 'destClusters' => $args ];
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
 			if ( isset( $options[$cmdOption] ) ) {
 				$jobOptions[$classOption] = $options[$cmdOption];
@@ -227,14 +227,14 @@ class RecompressTracked {
 			' --wiki ' . wfEscapeShellArg( wfWikiID() ) .
 			' ' . call_user_func_array( 'wfEscapeShellArg', $this->destClusters );
 
-		$this->slavePipes = $this->slaveProcs = array();
+		$this->slavePipes = $this->slaveProcs = [];
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
-			$pipes = array();
-			$spec = array(
-				array( 'pipe', 'r' ),
-				array( 'file', 'php://stdout', 'w' ),
-				array( 'file', 'php://stderr', 'w' )
-			);
+			$pipes = [];
+			$spec = [
+				[ 'pipe', 'r' ],
+				[ 'file', 'php://stdout', 'w' ],
+				[ 'file', 'php://stderr', 'w' ]
+			];
 			MediaWiki\suppressWarnings();
 			$proc = proc_open( "$cmd --slave-id $i", $spec, $pipes );
 			MediaWiki\restoreWarnings();
@@ -272,7 +272,7 @@ class RecompressTracked {
 	function dispatch( /*...*/ ) {
 		$args = func_get_args();
 		$pipes = $this->slavePipes;
-		$numPipes = stream_select( $x = array(), $pipes, $y = array(), 3600 );
+		$numPipes = stream_select( $x = [], $pipes, $y = [], 3600 );
 		if ( !$numPipes ) {
 			$this->critical( "Error waiting to write to slaves. Aborting" );
 			exit( 1 );
@@ -314,7 +314,7 @@ class RecompressTracked {
 			$numPages = $dbr->selectField( 'blob_tracking',
 				'COUNT(DISTINCT bt_page)',
 				# A condition is required so that this query uses the index
-				array( 'bt_moved' => 0 ),
+				[ 'bt_moved' => 0 ],
 				__METHOD__
 			);
 		}
@@ -325,17 +325,17 @@ class RecompressTracked {
 		}
 		while ( true ) {
 			$res = $dbr->select( 'blob_tracking',
-				array( 'bt_page' ),
-				array(
+				[ 'bt_page' ],
+				[
 					'bt_moved' => 0,
 					'bt_page > ' . $dbr->addQuotes( $startId )
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'DISTINCT',
 					'ORDER BY' => 'bt_page',
 					'LIMIT' => $this->batchSize,
-				)
+				]
 			);
 			if ( !$res->numRows() ) {
 				break;
@@ -382,7 +382,7 @@ class RecompressTracked {
 		} else {
 			$numOrphans = $dbr->selectField( 'blob_tracking',
 				'COUNT(DISTINCT bt_text_id)',
-				array( 'bt_moved' => 0, 'bt_page' => 0 ),
+				[ 'bt_moved' => 0, 'bt_page' => 0 ],
 				__METHOD__ );
 			if ( !$numOrphans ) {
 				return;
@@ -396,23 +396,23 @@ class RecompressTracked {
 
 		while ( true ) {
 			$res = $dbr->select( 'blob_tracking',
-				array( 'bt_text_id' ),
-				array(
+				[ 'bt_text_id' ],
+				[
 					'bt_moved' => 0,
 					'bt_page' => 0,
 					'bt_text_id > ' . $dbr->addQuotes( $startId )
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'DISTINCT',
 					'ORDER BY' => 'bt_text_id',
 					'LIMIT' => $this->batchSize
-				)
+				]
 			);
 			if ( !$res->numRows() ) {
 				break;
 			}
-			$ids = array();
+			$ids = [];
 			foreach ( $res as $row ) {
 				$startId = $row->bt_text_id;
 				$ids[] = $row->bt_text_id;
@@ -425,12 +425,12 @@ class RecompressTracked {
 				$args = array_slice( $ids, 0, $this->orphanBatchSize );
 				$ids = array_slice( $ids, $this->orphanBatchSize );
 				array_unshift( $args, 'doOrphanList' );
-				call_user_func_array( array( $this, 'dispatch' ), $args );
+				call_user_func_array( [ $this, 'dispatch' ], $args );
 			}
 			if ( count( $ids ) ) {
 				$args = $ids;
 				array_unshift( $args, 'doOrphanList' );
-				call_user_func_array( array( $this, 'dispatch' ), $args );
+				call_user_func_array( [ $this, 'dispatch' ], $args );
 			}
 
 			$this->report( 'orphans', $i, $numOrphans );
@@ -484,7 +484,7 @@ class RecompressTracked {
 
 		// Finish any incomplete transactions
 		if ( !$this->copyOnly ) {
-			$this->finishIncompleteMoves( array( 'bt_page' => $pageId ) );
+			$this->finishIncompleteMoves( [ 'bt_page' => $pageId ] );
 			$this->syncDBs();
 		}
 
@@ -493,20 +493,20 @@ class RecompressTracked {
 
 		while ( true ) {
 			$res = $dbr->select(
-				array( 'blob_tracking', 'text' ),
+				[ 'blob_tracking', 'text' ],
 				'*',
-				array(
+				[
 					'bt_page' => $pageId,
 					'bt_text_id > ' . $dbr->addQuotes( $startId ),
 					'bt_moved' => 0,
 					'bt_new_url IS NULL',
 					'bt_text_id=old_id',
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'bt_text_id',
 					'LIMIT' => $this->batchSize
-				)
+				]
 			);
 			if ( !$res->numRows() ) {
 				break;
@@ -562,18 +562,18 @@ class RecompressTracked {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		$dbw->update( 'text',
-			array( // set
+			[ // set
 				'old_text' => $url,
 				'old_flags' => 'external,utf-8',
-			),
-			array( // where
+			],
+			[ // where
 				'old_id' => $textId
-			),
+			],
 			__METHOD__
 		);
 		$dbw->update( 'blob_tracking',
-			array( 'bt_moved' => 1 ),
-			array( 'bt_text_id' => $textId ),
+			[ 'bt_moved' => 1 ],
+			[ 'bt_text_id' => $textId ],
 			__METHOD__
 		);
 		$dbw->commit( __METHOD__ );
@@ -593,19 +593,19 @@ class RecompressTracked {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$startId = 0;
-		$conds = array_merge( $conds, array(
+		$conds = array_merge( $conds, [
 			'bt_moved' => 0,
 			'bt_new_url IS NOT NULL'
-		) );
+		] );
 		while ( true ) {
 			$res = $dbr->select( 'blob_tracking',
 				'*',
-				array_merge( $conds, array( 'bt_text_id > ' . $dbr->addQuotes( $startId ) ) ),
+				array_merge( $conds, [ 'bt_text_id > ' . $dbr->addQuotes( $startId ) ] ),
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'bt_text_id',
 					'LIMIT' => $this->batchSize,
-				)
+				]
 			);
 			if ( !$res->numRows() ) {
 				break;
@@ -653,22 +653,22 @@ class RecompressTracked {
 	function doOrphanList( $textIds ) {
 		// Finish incomplete moves
 		if ( !$this->copyOnly ) {
-			$this->finishIncompleteMoves( array( 'bt_text_id' => $textIds ) );
+			$this->finishIncompleteMoves( [ 'bt_text_id' => $textIds ] );
 			$this->syncDBs();
 		}
 
 		$trx = new CgzCopyTransaction( $this, $this->orphanBlobClass );
 
 		$res = wfGetDB( DB_SLAVE )->select(
-			array( 'text', 'blob_tracking' ),
-			array( 'old_id', 'old_text', 'old_flags' ),
-			array(
+			[ 'text', 'blob_tracking' ],
+			[ 'old_id', 'old_text', 'old_flags' ],
+			[
 				'old_id' => $textIds,
 				'bt_text_id=old_id',
 				'bt_moved' => 0,
-			),
+			],
 			__METHOD__,
-			array( 'DISTINCT' )
+			[ 'DISTINCT' ]
 		);
 
 		foreach ( $res as $row ) {
@@ -709,7 +709,7 @@ class CgzCopyTransaction {
 	function __construct( $parent, $blobClass ) {
 		$this->blobClass = $blobClass;
 		$this->cgz = false;
-		$this->texts = array();
+		$this->texts = [];
 		$this->parent = $parent;
 	}
 
@@ -742,7 +742,7 @@ class CgzCopyTransaction {
 	function recompress() {
 		$class = $this->blobClass;
 		$this->cgz = new $class;
-		$this->referrers = array();
+		$this->referrers = [];
 		foreach ( $this->texts as $textId => $text ) {
 			$hash = $this->cgz->addItem( $text );
 			$this->referrers[$textId] = $hash;
@@ -771,9 +771,9 @@ class CgzCopyTransaction {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',
-			array( 'bt_text_id', 'bt_moved' ),
-			array( 'bt_text_id' => array_keys( $this->referrers ) ),
-			__METHOD__, array( 'FOR UPDATE' ) );
+			[ 'bt_text_id', 'bt_moved' ],
+			[ 'bt_text_id' => array_keys( $this->referrers ) ],
+			__METHOD__, [ 'FOR UPDATE' ] );
 		$dirty = false;
 		foreach ( $res as $row ) {
 			if ( $row->bt_moved ) {
@@ -812,11 +812,11 @@ class CgzCopyTransaction {
 		foreach ( $this->referrers as $textId => $hash ) {
 			$url = $baseUrl . '/' . $hash;
 			$dbw->update( 'blob_tracking',
-				array( 'bt_new_url' => $url ),
-				array(
+				[ 'bt_new_url' => $url ],
+				[
 					'bt_text_id' => $textId,
 					'bt_moved' => 0, # Check for concurrent conflicting update
-				),
+				],
 				__METHOD__
 			);
 		}

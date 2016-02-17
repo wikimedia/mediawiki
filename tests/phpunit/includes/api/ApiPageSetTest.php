@@ -7,22 +7,22 @@
  */
 class ApiPageSetTest extends ApiTestCase {
 	public static function provideRedirectMergePolicy() {
-		return array(
-			'By default nothing is merged' => array(
+		return [
+			'By default nothing is merged' => [
 				null,
-				array()
-			),
+				[]
+			],
 
-			'A simple merge policy adds the redirect data in' => array(
+			'A simple merge policy adds the redirect data in' => [
 				function( $current, $new ) {
 					if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 						$current['index'] = $new['index'];
 					}
 					return $current;
 				},
-				array( 'index' => 1 ),
-			),
-		);
+				[ 'index' => 1 ],
+			],
+		];
 	}
 
 	/**
@@ -31,9 +31,9 @@ class ApiPageSetTest extends ApiTestCase {
 	public function testRedirectMergePolicyWithArrayResult( $mergePolicy, $expect ) {
 		list( $target, $pageSet ) = $this->createPageSetWithRedirect();
 		$pageSet->setRedirectMergePolicy( $mergePolicy );
-		$result = array(
-			$target->getArticleID() => array()
-		);
+		$result = [
+			$target->getArticleID() => []
+		];
 		$pageSet->populateGeneratorData( $result );
 		$this->assertEquals( $expect, $result[$target->getArticleID()] );
 	}
@@ -45,13 +45,13 @@ class ApiPageSetTest extends ApiTestCase {
 		list( $target, $pageSet ) = $this->createPageSetWithRedirect();
 		$pageSet->setRedirectMergePolicy( $mergePolicy );
 		$result = new ApiResult( false );
-		$result->addValue( null, 'pages', array(
-			$target->getArticleID() => array()
-		) );
-		$pageSet->populateGeneratorData( $result, array( 'pages' ) );
+		$result->addValue( null, 'pages', [
+			$target->getArticleID() => []
+		] );
+		$pageSet->populateGeneratorData( $result, [ 'pages' ] );
 		$this->assertEquals(
 			$expect,
-			$result->getResultData( array( 'pages', $target->getArticleID() ) )
+			$result->getResultData( [ 'pages', $target->getArticleID() ] )
 		);
 	}
 
@@ -63,16 +63,16 @@ class ApiPageSetTest extends ApiTestCase {
 		self::editPage( 'UTRedirectSourceA', '#REDIRECT [[UTRedirectTarget]]' );
 		self::editPage( 'UTRedirectSourceB', '#REDIRECT [[UTRedirectTarget]]' );
 
-		$request = new FauxRequest( array( 'redirects' => 1 ) );
+		$request = new FauxRequest( [ 'redirects' => 1 ] );
 		$context = new RequestContext();
 		$context->setRequest( $request );
 		$main = new ApiMain( $context );
 		$pageSet = new ApiPageSet( $main );
 
-		$pageSet->setGeneratorData( $sourceA, array( 'index' => 1 ) );
-		$pageSet->setGeneratorData( $sourceB, array( 'index' => 3 ) );
-		$pageSet->populateFromTitles( array( $sourceA, $sourceB ) );
+		$pageSet->setGeneratorData( $sourceA, [ 'index' => 1 ] );
+		$pageSet->setGeneratorData( $sourceB, [ 'index' => 3 ] );
+		$pageSet->populateFromTitles( [ $sourceA, $sourceB ] );
 
-		return array( $target, $pageSet );
+		return [ $target, $pageSet ];
 	}
 }

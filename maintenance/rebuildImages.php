@@ -127,7 +127,7 @@ class ImageBuilder extends Maintenance {
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
-		$result = $this->getDB( DB_SLAVE )->select( $table, '*', array(), __METHOD__ );
+		$result = $this->getDB( DB_SLAVE )->select( $table, '*', [], __METHOD__ );
 
 		foreach ( $result as $row ) {
 			$update = call_user_func( $callback, $row, null );
@@ -141,7 +141,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function buildImage() {
-		$callback = array( $this, 'imageCallback' );
+		$callback = [ $this, 'imageCallback' ];
 		$this->buildTable( 'image', 'img_name', $callback );
 	}
 
@@ -154,7 +154,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function buildOldImage() {
-		$this->buildTable( 'oldimage', 'oi_archive_name', array( $this, 'oldimageCallback' ) );
+		$this->buildTable( 'oldimage', 'oi_archive_name', [ $this, 'oldimageCallback' ] );
 	}
 
 	function oldimageCallback( $row, $copy ) {
@@ -171,14 +171,14 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function crawlMissing() {
-		$this->getRepo()->enumFiles( array( $this, 'checkMissingImage' ) );
+		$this->getRepo()->enumFiles( [ $this, 'checkMissingImage' ] );
 	}
 
 	function checkMissingImage( $fullpath ) {
 		$filename = wfBaseName( $fullpath );
 		$row = $this->dbw->selectRow( 'image',
-			array( 'img_name' ),
-			array( 'img_name' => $filename ),
+			[ 'img_name' ],
+			[ 'img_name' => $filename ],
 			__METHOD__ );
 
 		if ( !$row ) { // file not registered

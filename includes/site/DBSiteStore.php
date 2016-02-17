@@ -71,7 +71,7 @@ class DBSiteStore implements SiteStore {
 
 		$res = $dbr->select(
 			'sites',
-			array(
+			[
 				'site_id',
 				'site_global_key',
 				'site_type',
@@ -83,10 +83,10 @@ class DBSiteStore implements SiteStore {
 				'site_data',
 				'site_forward',
 				'site_config',
-			),
+			],
 			'',
 			__METHOD__,
-			array( 'ORDER BY' => 'site_global_key' )
+			[ 'ORDER BY' => 'site_global_key' ]
 		);
 
 		foreach ( $res as $row ) {
@@ -108,12 +108,12 @@ class DBSiteStore implements SiteStore {
 		// Batch load the local site identifiers.
 		$ids = $dbr->select(
 			'site_identifiers',
-			array(
+			[
 				'si_site',
 				'si_type',
 				'si_key',
-			),
-			array(),
+			],
+			[],
 			__METHOD__
 		);
 
@@ -153,7 +153,7 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
-		return $this->saveSites( array( $site ) );
+		return $this->saveSites( [ $site ] );
 	}
 
 	/**
@@ -176,15 +176,15 @@ class DBSiteStore implements SiteStore {
 
 		$success = true;
 
-		$internalIds = array();
-		$localIds = array();
+		$internalIds = [];
+		$localIds = [];
 
 		foreach ( $sites as $site ) {
 			if ( $site->getInternalId() !== null ) {
 				$internalIds[] = $site->getInternalId();
 			}
 
-			$fields = array(
+			$fields = [
 				// Site data
 				'site_global_key' => $site->getGlobalId(), // TODO: check not null
 				'site_type' => $site->getType(),
@@ -198,12 +198,12 @@ class DBSiteStore implements SiteStore {
 				// Site config
 				'site_forward' => $site->shouldForward() ? 1 : 0,
 				'site_config' => serialize( $site->getExtraConfig() ),
-			);
+			];
 
 			$rowId = $site->getInternalId();
 			if ( $rowId !== null ) {
 				$success = $dbw->update(
-					'sites', $fields, array( 'site_id' => $rowId ), __METHOD__
+					'sites', $fields, [ 'site_id' => $rowId ], __METHOD__
 				) && $success;
 			} else {
 				$rowId = $dbw->nextSequenceValue( 'sites_site_id_seq' );
@@ -214,15 +214,15 @@ class DBSiteStore implements SiteStore {
 
 			foreach ( $site->getLocalIds() as $idType => $ids ) {
 				foreach ( $ids as $id ) {
-					$localIds[] = array( $rowId, $idType, $id );
+					$localIds[] = [ $rowId, $idType, $id ];
 				}
 			}
 		}
 
-		if ( $internalIds !== array() ) {
+		if ( $internalIds !== [] ) {
 			$dbw->delete(
 				'site_identifiers',
-				array( 'si_site' => $internalIds ),
+				[ 'si_site' => $internalIds ],
 				__METHOD__
 			);
 		}
@@ -230,11 +230,11 @@ class DBSiteStore implements SiteStore {
 		foreach ( $localIds as $localId ) {
 			$dbw->insert(
 				'site_identifiers',
-				array(
+				[
 					'si_site' => $localId[0],
 					'si_type' => $localId[1],
 					'si_key' => $localId[2],
-				),
+				],
 				__METHOD__
 			);
 		}

@@ -78,9 +78,9 @@ use MediaWiki\Logger\LoggerFactory;
  */
 class ObjectCache {
 	/** @var BagOStuff[] Map of (id => BagOStuff) */
-	public static $instances = array();
+	public static $instances = [];
 	/** @var WANObjectCache[] Map of (id => WANObjectCache) */
-	public static $wanInstances = array();
+	public static $wanInstances = [];
 
 	/**
 	 * Get a cached instance of the specified type of cache object.
@@ -217,7 +217,7 @@ class ObjectCache {
 	 */
 	public static function newAnything( $params ) {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
-		$candidates = array( $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType );
+		$candidates = [ $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType ];
 		foreach ( $candidates as $candidate ) {
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
 				return self::getInstance( $candidate );
@@ -267,7 +267,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @deprecated 1.27
 	 */
-	public static function newAccelerator( $params = array(), $fallback = null ) {
+	public static function newAccelerator( $params = [], $fallback = null ) {
 		if ( $fallback === null ) {
 			// The is_array check here is needed because in PHP 5.3:
 			// $a = 'hash'; isset( $params['fallback'] ); yields true
@@ -363,7 +363,7 @@ class ObjectCache {
 	 * Clear all the cached instances.
 	 */
 	public static function clear() {
-		self::$instances = array();
-		self::$wanInstances = array();
+		self::$instances = [];
+		self::$wanInstances = [];
 	}
 }

@@ -50,16 +50,16 @@ class ConvertUserOptions extends Maintenance {
 		}
 		while ( $id !== null ) {
 			$res = $dbw->select( 'user',
-				array( 'user_id', 'user_options' ),
-				array(
+				[ 'user_id', 'user_options' ],
+				[
 					'user_id > ' . $dbw->addQuotes( $id ),
 					"user_options != " . $dbw->addQuotes( '' ),
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'user_id',
 					'LIMIT' => $this->mBatchSize,
-				)
+				]
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
 
@@ -81,9 +81,9 @@ class ConvertUserOptions extends Maintenance {
 		$id = null;
 		foreach ( $res as $row ) {
 			$this->mConversionCount++;
-			$insertRows = array();
+			$insertRows = [];
 			foreach ( explode( "\n", $row->user_options ) as $s ) {
-				$m = array();
+				$m = [];
 				if ( !preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
 					continue;
 				}
@@ -92,22 +92,22 @@ class ConvertUserOptions extends Maintenance {
 				// here (as in User) to avoid adding many unnecessary rows.
 				$defaultOption = User::getDefaultOption( $m[1] );
 				if ( is_null( $defaultOption ) || $m[2] != $defaultOption ) {
-					$insertRows[] = array(
+					$insertRows[] = [
 						'up_user' => $row->user_id,
 						'up_property' => $m[1],
 						'up_value' => $m[2],
-					);
+					];
 				}
 			}
 
 			if ( count( $insertRows ) ) {
-				$dbw->insert( 'user_properties', $insertRows, __METHOD__, array( 'IGNORE' ) );
+				$dbw->insert( 'user_properties', $insertRows, __METHOD__, [ 'IGNORE' ] );
 			}
 
 			$dbw->update(
 				'user',
-				array( 'user_options' => '' ),
-				array( 'user_id' => $row->user_id ),
+				[ 'user_options' => '' ],
+				[ 'user_id' => $row->user_id ],
 				__METHOD__
 			);
 			$id = $row->user_id;

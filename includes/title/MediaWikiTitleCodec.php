@@ -55,7 +55,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string[]|string $localInterwikis
 	 */
 	public function __construct( Language $language, GenderCache $genderCache,
-		$localInterwikis = array()
+		$localInterwikis = []
 	) {
 		$this->language = $language;
 		$this->genderCache = $genderCache;
@@ -205,14 +205,14 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		$dbkey = str_replace( ' ', '_', $text );
 
 		# Initialisation
-		$parts = array(
+		$parts = [
 			'interwiki' => '',
 			'local_interwiki' => false,
 			'fragment' => '',
 			'namespace' => $defaultNamespace,
 			'dbkey' => $dbkey,
 			'user_case_dbkey' => $dbkey,
-		);
+		];
 
 		# Strip Unicode bidi override characters.
 		# Sometimes they slip into cut-n-pasted page titles, where the
@@ -252,7 +252,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# Namespace or interwiki prefix
 		$prefixRegexp = "/^(.+?)_*:_*(.*)$/S";
 		do {
-			$m = array();
+			$m = [];
 			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
 				$p = $m[1];
 				$ns = $this->language->getNsIndex( $p );
@@ -283,14 +283,14 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 								# Empty self-links should point to the Main Page, to ensure
 								# compatibility with cross-wiki transclusions and the like.
 								$mainPage = Title::newMainPage();
-								return array(
+								return [
 									'interwiki' => $mainPage->getInterwiki(),
 									'local_interwiki' => true,
 									'fragment' => $mainPage->getFragment(),
 									'namespace' => $mainPage->getNamespace(),
 									'dbkey' => $mainPage->getDBkey(),
 									'user_case_dbkey' => $mainPage->getUserCaseDBKey()
-								);
+								];
 							}
 							$parts['interwiki'] = '';
 							# local interwikis should behave like initial-colon links
@@ -325,9 +325,9 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 
 		# Reject illegal characters.
 		$rxTc = self::getTitleInvalidRegex();
-		$matches = array();
+		$matches = [];
 		if ( preg_match( $rxTc, $dbkey, $matches ) ) {
-			throw new MalformedTitleException( 'title-invalid-characters', $text, array( $matches[0] ) );
+			throw new MalformedTitleException( 'title-invalid-characters', $text, [ $matches[0] ] );
 		}
 
 		# Pages with "/./" or "/../" appearing in the URLs will often be un-
@@ -360,7 +360,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		$maxLength = ( $parts['namespace'] != NS_SPECIAL ) ? 255 : 512;
 		if ( strlen( $dbkey ) > $maxLength ) {
 			throw new MalformedTitleException( 'title-invalid-too-long', $text,
-				array( Message::numParam( $maxLength ) ) );
+				[ Message::numParam( $maxLength ) ] );
 		}
 
 		# Normally, all wiki links are forced to have an initial capital letter so [[foo]]

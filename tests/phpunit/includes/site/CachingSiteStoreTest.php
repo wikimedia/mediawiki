@@ -64,7 +64,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	public function testSaveSites() {
 		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
 
-		$sites = array();
+		$sites = [];
 
 		$site = new Site();
 		$site->setGlobalId( 'ertrywuutr' );

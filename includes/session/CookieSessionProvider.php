@@ -35,8 +35,8 @@ use WebRequest;
  */
 class CookieSessionProvider extends SessionProvider {
 
-	protected $params = array();
-	protected $cookieOptions = array();
+	protected $params = [];
+	protected $cookieOptions = [];
 
 	/**
 	 * @param array $params Keys include:
@@ -51,13 +51,13 @@ class CookieSessionProvider extends SessionProvider {
 	 *    - secure: Cookie secure flag, defaults to $wgCookieSecure
 	 *    - httpOnly: Cookie httpOnly flag, defaults to $wgCookieHttpOnly
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 		parent::__construct();
 
-		$params += array(
-			'cookieOptions' => array(),
+		$params += [
+			'cookieOptions' => [],
 			// @codeCoverageIgnoreStart
-		);
+		];
 		// @codeCoverageIgnoreEnd
 
 		if ( !isset( $params['priority'] ) ) {
@@ -84,30 +84,30 @@ class CookieSessionProvider extends SessionProvider {
 		parent::setConfig( $config );
 
 		// @codeCoverageIgnoreStart
-		$this->params += array(
+		$this->params += [
 			// @codeCoverageIgnoreEnd
 			'callUserSetCookiesHook' => false,
 			'sessionName' =>
 				$config->get( 'SessionName' ) ?: $config->get( 'CookiePrefix' ) . '_session',
-		);
+		];
 
 		// @codeCoverageIgnoreStart
-		$this->cookieOptions += array(
+		$this->cookieOptions += [
 			// @codeCoverageIgnoreEnd
 			'prefix' => $config->get( 'CookiePrefix' ),
 			'path' => $config->get( 'CookiePath' ),
 			'domain' => $config->get( 'CookieDomain' ),
 			'secure' => $config->get( 'CookieSecure' ),
 			'httpOnly' => $config->get( 'CookieHttpOnly' ),
-		);
+		];
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
 		$sessionId = $this->getCookie( $request, $this->params['sessionName'], '' );
-		$info = array(
+		$info = [
 			'provider' => $this,
 			'forceHTTPS' => $this->getCookie( $request, 'forceHTTPS', '', false )
-		);
+		];
 		if ( SessionManager::validateSessionId( $sessionId ) ) {
 			$info['id'] = $sessionId;
 			$info['persisted'] = true;
@@ -125,14 +125,14 @@ class CookieSessionProvider extends SessionProvider {
 			if ( $userName !== null && $userInfo->getName() !== $userName ) {
 				$this->logger->warning(
 					'Session "{session}" requested with mismatched UserID and UserName cookies.',
-					array(
+					[
 						'session' => $sessionId,
-						'mismatch' => array(
+						'mismatch' => [
 							'userid' => $userId,
 							'cookie_username' => $userName,
 							'username' => $userInfo->getName(),
-						),
-				) );
+						],
+				] );
 				return null;
 			}
 
@@ -140,11 +140,11 @@ class CookieSessionProvider extends SessionProvider {
 				if ( !hash_equals( $userInfo->getToken(), $token ) ) {
 					$this->logger->warning(
 						'Session "{session}" requested with invalid Token cookie.',
-						array(
+						[
 							'session' => $sessionId,
 							'userid' => $userId,
 							'username' => $userInfo->getName(),
-					 ) );
+					 ] );
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
@@ -164,9 +164,9 @@ class CookieSessionProvider extends SessionProvider {
 			// * anon browsing after edit or preview
 			$this->logger->debug(
 				'Session "{session}" requested without UserID cookie',
-				array(
+				[
 					'session' => $info['id'],
-			) );
+			] );
 			$info['userInfo'] = UserInfo::newAnonymous();
 		} else {
 			// No session ID and no user is the same as an empty session, so
@@ -200,7 +200,7 @@ class CookieSessionProvider extends SessionProvider {
 
 		// Legacy hook
 		if ( $this->params['callUserSetCookiesHook'] && !$user->isAnon() ) {
-			\Hooks::run( 'UserSetCookies', array( $user, &$sessionData, &$cookies ) );
+			\Hooks::run( 'UserSetCookies', [ $user, &$sessionData, &$cookies ] );
 		}
 
 		$options = $this->cookieOptions;
@@ -214,7 +214,7 @@ class CookieSessionProvider extends SessionProvider {
 		}
 
 		$response->setCookie( $this->params['sessionName'], $session->getId(), null,
-			array( 'prefix' => '' ) + $options
+			[ 'prefix' => '' ] + $options
 		);
 
 		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
@@ -249,13 +249,13 @@ class CookieSessionProvider extends SessionProvider {
 			return;
 		}
 
-		$cookies = array(
+		$cookies = [
 			'UserID' => false,
 			'Token' => false,
-		);
+		];
 
 		$response->clearCookie(
-			$this->params['sessionName'], array( 'prefix' => '' ) + $this->cookieOptions
+			$this->params['sessionName'], [ 'prefix' => '' ] + $this->cookieOptions
 		);
 
 		foreach ( $cookies as $key => $value ) {
@@ -277,10 +277,10 @@ class CookieSessionProvider extends SessionProvider {
 		$response = $request->response();
 		if ( $set ) {
 			$response->setCookie( 'forceHTTPS', 'true', $backend->shouldRememberUser() ? 0 : null,
-				array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
+				[ 'prefix' => '', 'secure' => false ] + $this->cookieOptions );
 		} else {
 			$response->clearCookie( 'forceHTTPS',
-				array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
+				[ 'prefix' => '', 'secure' => false ] + $this->cookieOptions );
 		}
 	}
 
@@ -299,14 +299,14 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function getVaryCookies() {
-		return array(
+		return [
 			// Vary on token and session because those are the real authn
 			// determiners. UserID and UserName don't matter without those.
 			$this->cookieOptions['prefix'] . 'Token',
 			$this->cookieOptions['prefix'] . 'LoggedOut',
 			$this->params['sessionName'],
 			'forceHTTPS',
-		);
+		];
 	}
 
 	public function suggestLoginUsername( WebRequest $request ) {
@@ -324,11 +324,11 @@ class CookieSessionProvider extends SessionProvider {
 	 */
 	protected function getUserInfoFromCookies( $request ) {
 		$prefix = $this->cookieOptions['prefix'];
-		return array(
+		return [
 			$this->getCookie( $request, 'UserID', $prefix ),
 			$this->getCookie( $request, 'UserName', $prefix ),
 			$this->getCookie( $request, 'Token', $prefix ),
-		);
+		];
 	}
 
 	/**
@@ -360,16 +360,16 @@ class CookieSessionProvider extends SessionProvider {
 	 */
 	protected function cookieDataToExport( $user, $remember ) {
 		if ( $user->isAnon() ) {
-			return array(
+			return [
 				'UserID' => false,
 				'Token' => false,
-			);
+			];
 		} else {
-			return array(
+			return [
 				'UserID' => $user->getId(),
 				'UserName' => $user->getName(),
 				'Token' => $remember ? (string)$user->getToken() : false,
-			);
+			];
 		}
 	}
 
@@ -382,14 +382,14 @@ class CookieSessionProvider extends SessionProvider {
 		// If we're calling the legacy hook, we should populate $session
 		// like User::setCookies() did.
 		if ( !$user->isAnon() && $this->params['callUserSetCookiesHook'] ) {
-			return array(
+			return [
 				'wsUserID' => $user->getId(),
 				'wsToken' => $user->getToken(),
 				'wsUserName' => $user->getName(),
-			);
+			];
 		}
 
-		return array();
+		return [];
 	}
 
 	public function whyNoSession() {

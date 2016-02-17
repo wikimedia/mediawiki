@@ -65,11 +65,11 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideNumberOfRows() {
-		return array(
-			array( 0 ),
-			array( 1 ),
-			array( 122 ),
-		);
+		return [
+			[ 0 ],
+			[ 1 ],
+			[ 122 ],
+		];
 	}
 
 	/**
@@ -98,10 +98,10 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideTestValid() {
-		return array(
-			array( $this->getRowWithTitle(), true ),
-			array( false, false ),
-		);
+		return [
+			[ $this->getRowWithTitle(), true ],
+			[ false, false ],
+		];
 	}
 
 	/**

@@ -57,7 +57,7 @@ class ObjectFactory {
 	 * constructor is non-public or non-existent
 	 */
 	public static function getObjectFromSpec( $spec ) {
-		$args = isset( $spec['args'] ) ? $spec['args'] : array();
+		$args = isset( $spec['args'] ) ? $spec['args'] : [];
 		$expandArgs = !isset( $spec['closure_expansion'] ) ||
 			$spec['closure_expansion'] === true;
 
@@ -86,7 +86,7 @@ class ObjectFactory {
 				if ( $expandArgs ) {
 					$margs = static::expandClosures( $margs );
 				}
-				call_user_func_array( array( $obj, $method ), $margs );
+				call_user_func_array( [ $obj, $method ], $margs );
 			}
 		}
 

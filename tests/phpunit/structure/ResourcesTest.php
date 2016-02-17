@@ -53,7 +53,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public function testIllegalDependencies() {
 		$data = self::getAllModules();
-		$illegalDeps = array( 'jquery', 'mediawiki' );
+		$illegalDeps = [ 'jquery', 'mediawiki' ];
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
@@ -126,7 +126,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$basepath = __DIR__ . '/../data/css/';
 		$css = file_get_contents( $basepath . 'comments.css' );
 		$files = CSSMin::getAllLocalFileReferences( $css, $basepath );
-		$expected = array( $basepath . 'not-commented.gif' );
+		$expected = [ $basepath . 'not-commented.gif' ];
 		$this->assertArrayEquals(
 			$expected,
 			$files,
@@ -149,7 +149,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		// Initialize ResourceLoader
 		$rl = new ResourceLoader();
 
-		$modules = array();
+		$modules = [];
 
 		foreach ( $rl->getModuleNames() as $moduleName ) {
 			$modules[$moduleName] = $rl->getModule( $moduleName );
@@ -158,11 +158,11 @@ class ResourcesTest extends MediaWikiTestCase {
 		// Restore settings
 		$wgEnableJavaScriptTest = $org_wgEnableJavaScriptTest;
 
-		return array(
+		return [
 			'modules' => $modules,
 			'resourceloader' => $rl,
 			'context' => new ResourceLoaderContext( $rl, new FauxRequest() )
-		);
+		];
 	}
 
 	/**
@@ -171,7 +171,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public static function provideMediaStylesheets() {
 		$data = self::getAllModules();
-		$cases = array();
+		$cases = [];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
@@ -193,20 +193,20 @@ class ResourcesTest extends MediaWikiTestCase {
 			foreach ( $styleFiles as $media => $files ) {
 				if ( $media && $media !== 'all' ) {
 					foreach ( $files as $file ) {
-						$cases[] = array(
+						$cases[] = [
 							$moduleName,
 							$media,
 							$file,
 							// XXX: Wrapped in an object to keep it out of PHPUnit output
-							(object)array(
+							(object)[
 								'cssText' => $readStyleFile->invoke(
 									$module,
 									$file,
 									$flip,
 									$data['context']
 								)
-							),
-						);
+							],
+						];
 					}
 				}
 			}
@@ -224,24 +224,24 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public static function provideResourceFiles() {
 		$data = self::getAllModules();
-		$cases = array();
+		$cases = [];
 
 		// See also ResourceLoaderFileModule::__construct
-		$filePathProps = array(
+		$filePathProps = [
 			// Lists of file paths
-			'lists' => array(
+			'lists' => [
 				'scripts',
 				'debugScripts',
 				'styles',
-			),
+			],
 
 			// Collated lists of file paths
-			'nested-lists' => array(
+			'nested-lists' => [
 				'languageScripts',
 				'skinScripts',
 				'skinStyles',
-			),
-		);
+			],
+		];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
@@ -250,7 +250,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 			$reflectedModule = new ReflectionObject( $module );
 
-			$files = array();
+			$files = [];
 
 			foreach ( $filePathProps['lists'] as $propName ) {
 				$property = $reflectedModule->getProperty( $propName );
@@ -292,11 +292,11 @@ class ResourcesTest extends MediaWikiTestCase {
 
 			// Populate cases
 			foreach ( $files as $file ) {
-				$cases[] = array(
+				$cases[] = [
 					$method->invoke( $module, $file ),
 					$moduleName,
 					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
-				);
+				];
 			}
 
 			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
@@ -311,11 +311,11 @@ class ResourcesTest extends MediaWikiTestCase {
 			$missingLocalFileRefs = $property->getValue( $module );
 
 			foreach ( $missingLocalFileRefs as $file ) {
-				$cases[] = array(
+				$cases[] = [
 					$file,
 					$moduleName,
 					$file,
-				);
+				];
 			}
 		}
 

@@ -111,9 +111,9 @@ class FeedUtils {
 		// log entries
 		$completeText = '<p>' . implode( ' ',
 			array_filter(
-				array(
+				[
 					$actiontext,
-					Linker::formatComment( $comment ) ) ) ) . "</p>\n";
+					Linker::formatComment( $comment ) ] ) ) . "</p>\n";
 
 		// NOTE: Check permissions for anonymous users, not current user.
 		//       No "privileged" version should end up in the cache.
@@ -218,13 +218,13 @@ class FeedUtils {
 	 * @return string
 	 */
 	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
-		$queryParameters = array( 'diff' => $newid );
+		$queryParameters = [ 'diff' => $newid ];
 		if ( $oldid != null ) {
 			$queryParameters['oldid'] = $oldid;
 		}
 		$diffUrl = $title->getFullURL( $queryParameters );
 
-		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),
+		$diffLink = Html::element( 'a', [ 'href' => $diffUrl ],
 			wfMessage( 'showdiff' )->inContentLanguage()->text() );
 
 		return $diffLink;
@@ -239,7 +239,7 @@ class FeedUtils {
 	 * @return string Modified HTML
 	 */
 	public static function applyDiffStyle( $text ) {
-		$styles = array(
+		$styles = [
 			'diff'             => 'background-color: white; color:black;',
 			'diff-otitle'      => 'background-color: white; color:black; text-align: center;',
 			'diff-ntitle'      => 'background-color: white; color:black; text-align: center;',
@@ -253,7 +253,7 @@ class FeedUtils {
 				. 'border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; '
 				. 'border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
 			'diffchange'       => 'font-weight: bold; text-decoration: none;',
-		);
+		];
 
 		foreach ( $styles as $class => $style ) {
 			$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",

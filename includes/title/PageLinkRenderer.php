@@ -42,7 +42,7 @@ interface PageLinkRenderer {
 	 *
 	 * @return string
 	 */
-	public function getPageUrl( LinkTarget $page, $params = array() );
+	public function getPageUrl( LinkTarget $page, $params = [] );
 
 	/**
 	 * Returns an HTML link to the given page, using the given surface text.

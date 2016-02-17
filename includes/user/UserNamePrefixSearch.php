@@ -41,15 +41,15 @@ class UserNamePrefixSearch {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$prefix = $user ? $user->getName() : '';
-		$tables = array( 'user' );
-		$cond = array( 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) );
-		$joinConds = array();
+		$tables = [ 'user' ];
+		$cond = [ 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) ];
+		$joinConds = [];
 
 		// Filter out hidden user names
 		if ( $audience === 'public' || !$audience->isAllowed( 'hideuser' ) ) {
 			$tables[] = 'ipblocks';
-			$cond['ipb_deleted'] = array( 0, null );
-			$joinConds['ipblocks'] = array( 'LEFT JOIN', 'user_id=ipb_user' );
+			$cond['ipb_deleted'] = [ 0, null ];
+			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];
 		}
 
 		$res = $dbr->selectFieldValues(
@@ -57,14 +57,14 @@ class UserNamePrefixSearch {
 			'user_name',
 			$cond,
 			__METHOD__,
-			array(
+			[
 				'LIMIT' => $limit,
 				'ORDER BY' => 'user_name',
 				'OFFSET' => $offset
-			),
+			],
 			$joinConds
 		);
 
-		return $res === false ? array() : $res;
+		return $res === false ? [] : $res;
 	}
 }

@@ -44,7 +44,7 @@ class Status {
 	/** @var mixed */
 	public $value;
 	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
-	public $success = array();
+	public $success = [];
 	/** @var int Counter for batch operations */
 	public $successCount = 0;
 	/** @var int Counter for batch operations */
@@ -88,7 +88,7 @@ class Status {
 	 */
 	public static function newFatal( $message /*, parameters...*/ ) {
 		return new self( call_user_func_array(
-			array( 'StatusValue', 'newFatal' ), func_get_args()
+			[ 'StatusValue', 'newFatal' ], func_get_args()
 		) );
 	}
 
@@ -140,7 +140,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'warning' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'warning' ], func_get_args() );
 	}
 
 	/**
@@ -150,7 +150,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function error( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'error' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'error' ], func_get_args() );
 	}
 
 	/**
@@ -160,7 +160,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'fatal' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'fatal' ], func_get_args() );
 	}
 
 	/**
@@ -171,7 +171,7 @@ class Status {
 		if ( !$this->cleanCallback ) {
 			return $params;
 		}
-		$cleanParams = array();
+		$cleanParams = [];
 		foreach ( $params as $i => $param ) {
 			$cleanParams[$i] = call_user_func( $this->cleanCallback, $param );
 		}
@@ -321,7 +321,7 @@ class Status {
 	 * @return Message[]
 	 */
 	protected function getErrorMessageArray( $errors ) {
-		return array_map( array( $this, 'getErrorMessage' ), $errors );
+		return array_map( [ $this, 'getErrorMessage' ], $errors );
 	}
 
 	/**
@@ -365,19 +365,19 @@ class Status {
 	 * @return array
 	 */
 	protected function getStatusArray( $type = false ) {
-		$result = array();
+		$result = [];
 
 		foreach ( $this->sv->getErrors() as $error ) {
 			if ( $type === false || $error['type'] === $type ) {
 				if ( $error['message'] instanceof MessageSpecifier ) {
 					$result[] = array_merge(
-						array( $error['message']->getKey() ),
+						[ $error['message']->getKey() ],
 						$error['message']->getParams()
 					);
 				} elseif ( $error['params'] ) {
-					$result[] = array_merge( array( $error['message'] ), $error['params'] );
+					$result[] = array_merge( [ $error['message'] ], $error['params'] );
 				} else {
-					$result[] = array( $error['message'] );
+					$result[] = [ $error['message'] ];
 				}
 			}
 		}
@@ -474,7 +474,7 @@ class Status {
 	 */
 	function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
-		return array_diff( $keys, array( 'cleanCallback' ) );
+		return array_diff( $keys, [ 'cleanCallback' ] );
 	}
 
 	/**

@@ -55,7 +55,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @return DatabaseBase
 	 */
-	protected function getConnection( $id, $groups = array() ) {
+	protected function getConnection( $id, $groups = [] ) {
 		$loadBalancer = wfGetLB( $this->wiki );
 
 		return $loadBalancer->getConnection( $id, $groups, $this->wiki );

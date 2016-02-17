@@ -33,9 +33,9 @@ class UploadLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			'img_timestamp' => ':timestamp:img_timestamp',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];

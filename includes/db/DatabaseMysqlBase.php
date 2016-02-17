@@ -98,10 +98,10 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 			wfLogDBError(
 				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( array(
+				$this->getLogContext( [
 					'method' => __METHOD__,
 					'error' => $error,
-				) )
+				] )
 			);
 			wfDebug( "DB connection error\n" .
 				"Server: $server, User: $user, Password: " .
@@ -117,9 +117,9 @@ abstract class DatabaseMysqlBase extends Database {
 			if ( !$success ) {
 				wfLogDBError(
 					"Error selecting database {db_name} on server {db_server}",
-					$this->getLogContext( array(
+					$this->getLogContext( [
 						'method' => __METHOD__,
-					) )
+					] )
 				);
 				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
 					"from client host " . wfHostname() . "\n" );
@@ -134,7 +134,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// Abstract over any insane MySQL defaults
-		$set = array( 'group_concat_max_len = 262144' );
+		$set = [ 'group_concat_max_len = 262144' ];
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
 			$set[] = 'sql_mode = ' . $this->addQuotes( $wgSQLMode );
@@ -155,9 +155,9 @@ abstract class DatabaseMysqlBase extends Database {
 			if ( !$success ) {
 				wfLogDBError(
 					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
-					$this->getLogContext( array(
+					$this->getLogContext( [
 						'method' => __METHOD__,
-					) )
+					] )
 				);
 				$this->reportConnectionError(
 					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)' );
@@ -468,7 +468,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|int
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = array()
+		$fname = __METHOD__, $options = []
 	) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
@@ -541,7 +541,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return null;
 		}
 
-		$result = array();
+		$result = [];
 
 		foreach ( $res as $row ) {
 			if ( $row->Key_name == $index ) {
@@ -582,7 +582,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function addIdentifierQuotes( $s ) {
 		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
 		// Remove NUL bytes and escape backticks by doubling
-		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s ) . '`';
+		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
 	}
 
 	/**
@@ -656,9 +656,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( !$masterInfo ) {
 			wfLogDBError(
 				"Unable to query master of {db_server} for server ID",
-				$this->getLogContext( array(
+				$this->getLogContext( [
 					'method' => __METHOD__
-				) )
+				] )
 			);
 
 			return false; // could not get master server ID
@@ -675,9 +675,9 @@ abstract class DatabaseMysqlBase extends Database {
 
 		wfLogDBError(
 			"Unable to find pt-heartbeat row for {db_server}",
-			$this->getLogContext( array(
+			$this->getLogContext( [
 				'method' => __METHOD__
-			) )
+			] )
 		);
 
 		return false;
@@ -716,7 +716,7 @@ abstract class DatabaseMysqlBase extends Database {
 				}
 
 				// Cache the ID if it was retrieved
-				return $id ? array( 'serverId' => $id, 'asOf' => time() ) : false;
+				return $id ? [ 'serverId' => $id, 'asOf' => time() ] : false;
 			}
 		);
 	}
@@ -736,7 +736,7 @@ abstract class DatabaseMysqlBase extends Database {
 		);
 		$row = $res ? $res->fetchObject() : false;
 
-		return array( $row ? $row->ts : null, microtime( true ) );
+		return [ $row ? $row->ts : null, microtime( true ) ];
 	}
 
 	public function getApproximateLagStatus() {
@@ -980,7 +980,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool
 	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
-		$items = array();
+		$items = [];
 
 		foreach ( $write as $table ) {
 			$tbl = $this->tableName( $table ) .
@@ -1079,14 +1079,14 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
+			$rows = [ $rows ];
 		}
 
 		$table = $this->tableName( $table );
 		$columns = array_keys( $rows[0] );
 
 		$sql = "INSERT INTO $table (" . implode( ',', $columns ) . ') VALUES ';
-		$rowTuples = array();
+		$rowTuples = [];
 		foreach ( $rows as $row ) {
 			$rowTuples[] = '(' . $this->makeList( $row ) . ')';
 		}
@@ -1197,7 +1197,7 @@ abstract class DatabaseMysqlBase extends Database {
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$result = $this->query( "SHOW TABLES", $fname );
 
-		$endArray = array();
+		$endArray = [];
 
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
@@ -1247,7 +1247,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	function getMysqlStatus( $which = "%" ) {
 		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
-		$status = array();
+		$status = [];
 
 		foreach ( $res as $row ) {
 			$status[$row->Variable_name] = $row->Value;
@@ -1274,7 +1274,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 			// Query for the VIEWS
 			$result = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
-			$this->allViews = array();
+			$this->allViews = [];
 			while ( ( $row = $this->fetchRow( $result ) ) !== false ) {
 				array_push( $this->allViews, $row[$propertyName] );
 			}
@@ -1284,7 +1284,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return $this->allViews;
 		}
 
-		$filteredViews = array();
+		$filteredViews = [];
 		foreach ( $this->allViews as $viewName ) {
 			// Does the name of this VIEW start with the table-prefix?
 			if ( strpos( $viewName, $prefix ) === 0 ) {
@@ -1455,9 +1455,9 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @return array|bool (int, int)
 	 */
 	protected function getCoordinates() {
-		$m = array();
+		$m = [];
 		if ( preg_match( '!\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
-			return array( (int)$m[1], (int)$m[2] );
+			return [ (int)$m[1], (int)$m[2] ];
 		}
 
 		return false;

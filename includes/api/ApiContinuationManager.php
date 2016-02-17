@@ -26,13 +26,13 @@
 class ApiContinuationManager {
 	private $source;
 
-	private $allModules = array();
-	private $generatedModules = array();
+	private $allModules = [];
+	private $generatedModules = [];
 
-	private $continuationData = array();
-	private $generatorContinuationData = array();
+	private $continuationData = [];
+	private $generatorContinuationData = [];
 
-	private $generatorParams = array();
+	private $generatorParams = [];
 	private $generatorDone = false;
 
 	/**
@@ -42,16 +42,16 @@ class ApiContinuationManager {
 	 * @throws UsageException
 	 */
 	public function __construct(
-		ApiBase $module, array $allModules = array(), array $generatedModules = array()
+		ApiBase $module, array $allModules = [], array $generatedModules = []
 	) {
 		$this->source = get_class( $module );
 		$request = $module->getRequest();
 
 		$this->generatedModules = $generatedModules
 			? array_combine( $generatedModules, $generatedModules )
-			: array();
+			: [];
 
-		$skip = array();
+		$skip = [];
 		$continue = $request->getVal( 'continue', '' );
 		if ( $continue !== '' ) {
 			$continue = explode( '||', $continue );
@@ -170,7 +170,7 @@ class ApiContinuationManager {
 	 * @return array Array( (array)$data, (bool)$batchcomplete )
 	 */
 	public function getContinuation() {
-		$data = array();
+		$data = [];
 		$batchcomplete = false;
 
 		$finishedModules = array_diff(
@@ -198,7 +198,7 @@ class ApiContinuationManager {
 			// All the generator-using modules are complete, but the
 			// generator isn't. Continue the generator and restart the
 			// generator-using modules
-			$generatorParams = array();
+			$generatorParams = [];
 			foreach ( $this->generatorContinuationData as $kvp ) {
 				$generatorParams += $kvp;
 			}
@@ -218,7 +218,7 @@ class ApiContinuationManager {
 			$data['continue'] = $generatorKeys . '||' . join( '|', $finishedModules );
 		}
 
-		return array( $data, $batchcomplete );
+		return [ $data, $batchcomplete ];
 	}
 
 	/**

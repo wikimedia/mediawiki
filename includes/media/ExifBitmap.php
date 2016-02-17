@@ -146,12 +146,12 @@ class ExifBitmapHandler extends BitmapHandler {
 		) {
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
-			return array();
+			return [];
 		}
 
 		$exif = unserialize( $metadata );
 		if ( !$exif ) {
-			return array();
+			return [];
 		}
 		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
 

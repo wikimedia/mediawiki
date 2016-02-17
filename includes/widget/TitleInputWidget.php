@@ -29,10 +29,10 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	 * @param bool|null $config['validateTitle'] Whether the input must
 	 *  be a valid title (default: true)
 	 */
-	public function __construct( array $config = array() ) {
+	public function __construct( array $config = [] ) {
 		// Parent constructor
 		parent::__construct(
-			array_merge( array( 'infusable' => true, 'maxLength' => 255 ), $config )
+			array_merge( [ 'infusable' => true, 'maxLength' => 255 ], $config )
 		);
 
 		// Properties, which are ignored in PHP and just shipped back to JS
@@ -53,7 +53,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 
 		// Initialization
-		$this->addClasses( array( 'mw-widget-titleInputWidget' ) );
+		$this->addClasses( [ 'mw-widget-titleInputWidget' ] );
 	}
 
 	protected function getJavaScriptClassName() {

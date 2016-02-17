@@ -56,9 +56,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		// Make sure the delete button, if explicitly specified, is sane
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
-			$info = $this->mParams['fields']['delete'] + array(
+			$info = $this->mParams['fields']['delete'] + [
 				'cssclass' => $class
-			);
+			];
 			unset( $info['name'], $info['class'] );
 
 			if ( !isset( $info['type'] ) || $info['type'] !== 'submit' ) {
@@ -83,7 +83,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @return HTMLFormField[]
 	 */
 	protected function createFieldsForKey( $key ) {
-		$fields = array();
+		$fields = [];
 		foreach ( $this->mParams['fields'] as $fieldname => $info ) {
 			$name = "{$this->mName}[$key][$fieldname]";
 			if ( isset( $info['name'] ) ) {
@@ -111,7 +111,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @return array
 	 */
 	protected function rekeyValuesArray( $key, $values ) {
-		$data = array();
+		$data = [];
 		foreach ( $values as $fieldname => $value ) {
 			$name = "{$this->mName}[$key][$fieldname]";
 			$data[$name] = $value;
@@ -132,10 +132,10 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		$values = $request->getArray( $this->mName );
 		if ( $values === null ) {
-			$values = array();
+			$values = [];
 		}
 
-		$ret = array();
+		$ret = [];
 		foreach ( $values as $key => $value ) {
 			if ( $key === 'create' || isset( $value['delete'] ) ) {
 				$ret['nonjs'] = 1;
@@ -148,7 +148,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 			$fields = $this->createFieldsForKey( $key );
 			$subrequest = new DerivativeRequest( $request, $data, $request->wasPosted() );
-			$row = array();
+			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
@@ -164,7 +164,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		if ( isset( $values['create'] ) ) {
 			// Non-JS client clicked the "create" button.
 			$fields = $this->createFieldsForKey( $this->uniqueId );
-			$row = array();
+			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
@@ -185,7 +185,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		// defaults.
 		if ( $ret === null ) {
 			$fields = $this->createFieldsForKey( $this->uniqueId );
-			$row = array();
+			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
@@ -193,7 +193,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 					$row[$fieldname] = $field->getDefault();
 				}
 			}
-			$ret = array( $row );
+			$ret = [ $row ];
 		}
 
 		return $ret;
@@ -294,13 +294,13 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$label = isset( $this->mParams['delete-button-message'] )
 				? $this->mParams['delete-button-message']
 				: 'htmlform-cloner-delete';
-			$field = HTMLForm::loadInputFromParameters( $name, array(
+			$field = HTMLForm::loadInputFromParameters( $name, [
 				'type' => 'submit',
 				'name' => $name,
 				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
 				'default' => $this->msg( $label )->text(),
-			), $this->mParent );
+			], $this->mParent );
 			$v = $field->getDefault();
 
 			if ( $displayFormat === 'table' ) {
@@ -311,22 +311,22 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		if ( $displayFormat !== 'raw' ) {
-			$classes = array(
+			$classes = [
 				'mw-htmlform-cloner-row',
-			);
+			];
 
 			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
 			}
 
-			$attribs = array(
+			$attribs = [
 				'class' => implode( ' ', $classes ),
-			);
+			];
 
 			if ( $displayFormat === 'table' ) {
 				$html = Html::rawElement( 'table',
 					$attribs,
-					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
+					Html::rawElement( 'tbody', [], "\n$html\n" ) ) . "\n";
 			} else {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
@@ -349,30 +349,30 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			if ( $key === 'nonjs' ) {
 				continue;
 			}
-			$html .= Html::rawElement( 'li', array( 'class' => 'mw-htmlform-cloner-li' ),
+			$html .= Html::rawElement( 'li', [ 'class' => 'mw-htmlform-cloner-li' ],
 				$this->getInputHTMLForKey( $key, $value )
 			);
 		}
 
 		$template = $this->getInputHTMLForKey( $this->uniqueId, null );
-		$html = Html::rawElement( 'ul', array(
+		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',
 			'data-template' => $template,
 			'data-unique-id' => $this->uniqueId,
-		), $html );
+		], $html );
 
 		$name = "{$this->mName}[create]";
 		$label = isset( $this->mParams['create-button-message'] )
 			? $this->mParams['create-button-message']
 			: 'htmlform-cloner-create';
-		$field = HTMLForm::loadInputFromParameters( $name, array(
+		$field = HTMLForm::loadInputFromParameters( $name, [
 			'type' => 'submit',
 			'name' => $name,
 			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->msg( $label )->text(),
-		), $this->mParent );
+		], $this->mParent );
 		$html .= $field->getInputHTML( $field->getDefault() );
 
 		return $html;

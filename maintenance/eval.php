@@ -30,7 +30,7 @@
  * @ingroup Maintenance
  */
 
-$optionsWithArgs = array( 'd' );
+$optionsWithArgs = [ 'd' ];
 
 /** */
 require_once __DIR__ . "/commandLine.inc";

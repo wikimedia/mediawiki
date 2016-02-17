@@ -37,17 +37,17 @@
  */
 class MemcLockManager extends QuorumLockManager {
 	/** @var array Mapping of lock types to the type actually used */
-	protected $lockTypeMap = array(
+	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
-	);
+	];
 
 	/** @var array Map server names to MemcachedBagOStuff objects */
-	protected $bagOStuffs = array();
+	protected $bagOStuffs = [];
 
 	/** @var array (server name => bool) */
-	protected $serversUp = array();
+	protected $serversUp = [];
 
 	/** @var string Random UUID */
 	protected $session = '';
@@ -72,10 +72,10 @@ class MemcLockManager extends QuorumLockManager {
 
 		$memcConfig = isset( $config['memcConfig'] )
 			? $config['memcConfig']
-			: array( 'class' => 'MemcachedPhpBagOStuff' );
+			: [ 'class' => 'MemcachedPhpBagOStuff' ];
 
 		foreach ( $config['lockServers'] as $name => $address ) {
-			$params = array( 'servers' => array( $address ) ) + $memcConfig;
+			$params = [ 'servers' => [ $address ] ] + $memcConfig;
 			$cache = ObjectCache::newFromParams( $params );
 			if ( $cache instanceof MemcachedBagOStuff ) {
 				$this->bagOStuffs[$name] = $cache;
@@ -92,7 +92,7 @@ class MemcLockManager extends QuorumLockManager {
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 
-		$lockedPaths = array();
+		$lockedPaths = [];
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
 			if ( $status->isOK() ) {
@@ -132,7 +132,7 @@ class MemcLockManager extends QuorumLockManager {
 		$status = Status::newGood();
 
 		$memc = $this->getCache( $lockSrv );
-		$keys = array_map( array( $this, 'recordKeyForPath' ), $paths ); // lock records
+		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths ); // lock records
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {
@@ -208,7 +208,7 @@ class MemcLockManager extends QuorumLockManager {
 		$status = Status::newGood();
 
 		$memc = $this->getCache( $lockSrv );
-		$keys = array_map( array( $this, 'recordKeyForPath' ), $paths ); // lock records
+		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths ); // lock records
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {
@@ -298,14 +298,14 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return string
 	 */
 	protected function recordKeyForPath( $path ) {
-		return implode( ':', array( __CLASS__, 'locks', $this->sha1Base36Absolute( $path ) ) );
+		return implode( ':', [ __CLASS__, 'locks', $this->sha1Base36Absolute( $path ) ] );
 	}
 
 	/**
 	 * @return array An empty lock structure for a key
 	 */
 	protected static function newLockArray() {
-		return array( self::LOCK_SH => array(), self::LOCK_EX => array() );
+		return [ self::LOCK_SH => [], self::LOCK_EX => [] ];
 	}
 
 	/**
@@ -328,7 +328,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return bool
 	 */
 	protected function acquireMutexes( MemcachedBagOStuff $memc, array $keys ) {
-		$lockedKeys = array();
+		$lockedKeys = [];
 
 		// Acquire the keys in lexicographical order, to avoid deadlock problems.
 		// If P1 is waiting to acquire a key P2 has, P2 can't also be waiting for a key P1 has.
@@ -376,8 +376,8 @@ class MemcLockManager extends QuorumLockManager {
 	function __destruct() {
 		while ( count( $this->locksHeld ) ) {
 			foreach ( $this->locksHeld as $path => $locks ) {
-				$this->doUnlock( array( $path ), self::LOCK_EX );
-				$this->doUnlock( array( $path ), self::LOCK_SH );
+				$this->doUnlock( [ $path ], self::LOCK_EX );
+				$this->doUnlock( [ $path ], self::LOCK_SH );
 			}
 		}
 	}

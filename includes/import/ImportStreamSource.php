@@ -109,7 +109,7 @@ class ImportStreamSource implements ImportSource {
 		# quicker and sorts out user-agent problems which might
 		# otherwise prevent importing from large sites, such
 		# as the Wikimedia cluster, etc.
-		$data = Http::request( $method, $url, array( 'followRedirects' => true ), __METHOD__ );
+		$data = Http::request( $method, $url, [ 'followRedirects' => true ], __METHOD__ );
 		if ( $data !== false ) {
 			$file = tmpfile();
 			fwrite( $file, $data );
@@ -154,7 +154,7 @@ class ImportStreamSource implements ImportSource {
 		$link = $firstIw->getURL( strtr( "${additionalIwPrefixes}Special:Export/$page",
 			' ', '_' ) );
 
-		$params = array();
+		$params = [];
 		if ( $history ) {
 			$params['history'] = 1;
 		}

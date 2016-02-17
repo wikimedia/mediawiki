@@ -5,10 +5,10 @@
  */
 class BcryptPasswordTestCase extends PasswordTestCase {
 	protected function getTypeConfigs() {
-		return array( 'bcrypt' => array(
+		return [ 'bcrypt' => [
 			'class' => 'BcryptPassword',
 			'cost' => 9,
-		) );
+		] ];
 	}
 
 	public static function providePasswordTests() {

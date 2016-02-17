@@ -11,11 +11,11 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		$db = $this->mockDb();
 		$writer = new BatchRowWriter( $db, 'echo_event' );
 
-		$updates = array(
-			self::mockUpdate( array( 'something' => 'changed' ) ),
-			self::mockUpdate( array( 'otherthing' => 'changed' ) ),
-			self::mockUpdate( array( 'and' => 'something', 'else' => 'changed' ) ),
-		);
+		$updates = [
+			self::mockUpdate( [ 'something' => 'changed' ] ),
+			self::mockUpdate( [ 'otherthing' => 'changed' ] ),
+			self::mockUpdate( [ 'and' => 'something', 'else' => 'changed' ] ),
+		];
 
 		$db->expects( $this->exactly( count( $updates ) ) )
 			->method( 'update' );
@@ -25,10 +25,10 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 
 	protected static function mockUpdate( array $changes ) {
 		static $i = 0;
-		return array(
-			'primaryKey' => array( 'event_id' => $i++ ),
+		return [
+			'primaryKey' => [ 'event_id' => $i++ ],
 			'changes' => $changes,
-		);
+		];
 	}
 
 	public function testReaderBasicIterate() {
@@ -38,7 +38,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 
 		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, function() {
 			static $i = 0;
-			return array( 'id_field' => ++$i );
+			return [ 'id_field' => ++$i ];
 		} );
 		$db->expects( $this->exactly( count( $response ) ) )
 			->method( 'select' )
@@ -54,26 +54,26 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	public static function provider_readerGetPrimaryKey() {
-		$row = array(
+		$row = [
 			'id_field' => 42,
 			'some_col' => 'dvorak',
 			'other_col' => 'samurai',
-		);
-		return array(
+		];
+		return [
 
-			array(
+			[
 				'Must return single column pk when requested',
-				array( 'id_field' => 42 ),
+				[ 'id_field' => 42 ],
 				$row
-			),
+			],
 
-			array(
+			[
 				'Must return multiple column pks when requested',
-				array( 'id_field' => 42, 'other_col' => 'samurai' ),
+				[ 'id_field' => 42, 'other_col' => 'samurai' ],
 				$row
-			),
+			],
 
-		);
+		];
 	}
 
 	/**
@@ -85,39 +85,39 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	public static function provider_readerSetFetchColumns() {
-		return array(
+		return [
 
-			array(
+			[
 				'Must merge primary keys into select conditions',
 				// Expected column select
-				array( 'foo', 'bar' ),
+				[ 'foo', 'bar' ],
 				// primary keys
-				array( 'foo' ),
+				[ 'foo' ],
 				// setFetchColumn
-				array( 'bar' )
-			),
+				[ 'bar' ]
+			],
 
-			array(
+			[
 				'Must not merge primary keys into the all columns selector',
 				// Expected column select
-				array( '*' ),
+				[ '*' ],
 				// primary keys
-				array( 'foo' ),
+				[ 'foo' ],
 				// setFetchColumn
-				array( '*' ),
-			),
+				[ '*' ],
+			],
 
-			array(
+			[
 				'Must not duplicate primary keys into column selector',
 				// Expected column select.
 				// TODO: figure out how to only assert the array_values portion and not the keys
-				array( 0 => 'foo', 1 => 'bar', 3 => 'baz' ),
+				[ 0 => 'foo', 1 => 'bar', 3 => 'baz' ],
 				// primary keys
-				array( 'foo', 'bar', ),
+				[ 'foo', 'bar', ],
 				// setFetchColumn
-				array( 'bar', 'baz' ),
-			),
-		);
+				[ 'bar', 'baz' ],
+			],
+		];
 	}
 
 	/**
@@ -131,7 +131,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			->method( 'select' )
 			// only testing second parameter of DatabaseBase::select
 			->with( 'some_table', $columns )
-			->will( $this->returnValue( new ArrayIterator( array() ) ) );
+			->will( $this->returnValue( new ArrayIterator( [] ) ) );
 
 		$reader = new BatchRowIterator( $db, 'some_table', $primaryKeys, 22 );
 		$reader->setFetchColumns( $fetchColumns );
@@ -140,26 +140,26 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	public static function provider_readerSelectConditions() {
-		return array(
+		return [
 
-			array(
+			[
 				"With single primary key must generate id > 'value'",
 				// Expected second iteration
-				array( "( id_field > '3' )" ),
+				[ "( id_field > '3' )" ],
 				// Primary key(s)
 				'id_field',
-			),
+			],
 
-			array(
+			[
 				'With multiple primary keys the first conditions ' .
 					'must use >= and the final condition must use >',
 				// Expected second iteration
-				array( "( id_field = '3' AND foo > '103' ) OR ( id_field > '3' )" ),
+				[ "( id_field = '3' AND foo > '103' ) OR ( id_field > '3' )" ],
 				// Primary key(s)
-				array( 'id_field', 'foo' ),
-			),
+				[ 'id_field', 'foo' ],
+			],
 
-		);
+		];
 	}
 
 	/**
@@ -173,11 +173,11 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	) {
 		$results = $this->genSelectResult( $batchSize, $batchSize * 3, function() {
 			static $i = 0, $j = 100, $k = 1000;
-			return array( 'id_field' => ++$i, 'foo' => ++$j, 'bar' => ++$k );
+			return [ 'id_field' => ++$i, 'foo' => ++$j, 'bar' => ++$k ];
 		} );
 		$db = $this->mockDbConsecutiveSelect( $results );
 
-		$conditions = array( 'bar' => 42, 'baz' => 'hai' );
+		$conditions = [ 'bar' => 42, 'baz' => 'hai' ];
 		$reader = new BatchRowIterator( $db, 'some_table', $primaryKeys, $batchSize );
 		$reader->addConditions( $conditions );
 
@@ -212,25 +212,25 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	protected function consecutivelyReturnFromSelect( array $results ) {
-		$retvals = array();
+		$retvals = [];
 		foreach ( $results as $rows ) {
 			// The DatabaseBase::select method returns iterators, so we do too.
 			$retvals[] = $this->returnValue( new ArrayIterator( $rows ) );
 		}
 
-		return call_user_func_array( array( $this, 'onConsecutiveCalls' ), $retvals );
+		return call_user_func_array( [ $this, 'onConsecutiveCalls' ], $retvals );
 	}
 
 	protected function genSelectResult( $batchSize, $numRows, $rowGenerator ) {
-		$res = array();
+		$res = [];
 		for ( $i = 0; $i < $numRows; $i += $batchSize ) {
-			$rows = array();
+			$rows = [];
 			for ( $j = 0; $j < $batchSize && $i + $j < $numRows; $j++ ) {
 				$rows [] = (object) call_user_func( $rowGenerator );
 			}
 			$res[] = $rows;
 		}
-		$res[] = array(); // termination condition requires empty result for last row
+		$res[] = []; // termination condition requires empty result for last row
 		return $res;
 	}
 
@@ -246,7 +246,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$databaseMysql->expects( $this->any() )
 			->method( 'getApproximateLagStatus' )
-			->will( $this->returnValue( array( 'lag' => 0, 'since' => 0 ) ) );
+			->will( $this->returnValue( [ 'lag' => 0, 'since' => 0 ] ) );
 		return $databaseMysql;
 	}
 }

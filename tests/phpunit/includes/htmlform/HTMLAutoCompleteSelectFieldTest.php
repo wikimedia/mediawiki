@@ -6,11 +6,11 @@
  */
 class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 
-	public $options = array(
+	public $options = [
 		'Bulgaria'     => 'BGR',
 		'Burkina Faso' => 'BFA',
 		'Burundi'      => 'BDI',
-	);
+	];
 
 	/**
 	 * Verify that attempting to instantiate an HTMLAutoCompleteSelectField
@@ -21,7 +21,7 @@ class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * @expectedExceptionMessage called without any autocompletions
 	 */
 	function testMissingAutocompletions() {
-		new HTMLAutoCompleteSelectField( array( 'fieldname' => 'Test' ) );
+		new HTMLAutoCompleteSelectField( [ 'fieldname' => 'Test' ] );
 	}
 
 	/**
@@ -31,12 +31,12 @@ class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * @covers HTMLAutoCompleteSelectField::getAttributes
 	 */
 	function testGetAttributes() {
-		$field = new HTMLAutoCompleteSelectField( array(
+		$field = new HTMLAutoCompleteSelectField( [
 			'fieldname'    => 'Test',
 			'autocomplete' => $this->options,
-		) );
+		] );
 
-		$attributes = $field->getAttributes( array() );
+		$attributes = $field->getAttributes( [] );
 		$this->assertEquals( array_keys( $this->options ),
 			FormatJson::decode( $attributes['data-autocomplete'] ),
 			"The 'data-autocomplete' attribute encodes autocomplete option keys as a JSON array."
@@ -48,11 +48,11 @@ class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * the presence or absence of the 'options' parameter.
 	 */
 	function testOptionalSelectElement() {
-		$params = array(
+		$params = [
 			'fieldname'    => 'Test',
 			'autocomplete' => $this->options,
 			'options'      => $this->options,
-		);
+		];
 
 		$field = new HTMLAutoCompleteSelectField( $params );
 		$html = $field->getInputHTML( false );

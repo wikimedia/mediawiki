@@ -472,7 +472,7 @@ interface IDatabase {
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = []
 	);
 
 	/**
@@ -494,7 +494,7 @@ interface IDatabase {
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = []
 	);
 
 	/**
@@ -640,7 +640,7 @@ interface IDatabase {
 	 */
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	);
 
 	/**
@@ -661,7 +661,7 @@ interface IDatabase {
 	 */
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	);
 
 	/**
@@ -679,7 +679,7 @@ interface IDatabase {
 	 * @return stdClass|bool
 	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	);
 
 	/**
@@ -703,7 +703,7 @@ interface IDatabase {
 	 * @return int Row count
 	 */
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
 	);
 
 	/**
@@ -724,7 +724,7 @@ interface IDatabase {
 	 * @return int Row count
 	 */
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -801,7 +801,7 @@ interface IDatabase {
 	 *
 	 * @return bool
 	 */
-	public function insert( $table, $a, $fname = __METHOD__, $options = array() );
+	public function insert( $table, $a, $fname = __METHOD__, $options = [] );
 
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
@@ -821,7 +821,7 @@ interface IDatabase {
 	 *   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return bool
 	 */
-	public function update( $table, $values, $conds, $fname = __METHOD__, $options = array() );
+	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] );
 
 	/**
 	 * Makes an encoded list of strings from an array
@@ -896,7 +896,7 @@ interface IDatabase {
 	 * @since 1.23
 	 */
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = array()
+		$delim, $table, $field, $conds = '', $join_conds = []
 	);
 
 	/**
@@ -1098,7 +1098,7 @@ interface IDatabase {
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array()
+		$insertOptions = [], $selectOptions = []
 	);
 
 	/**

@@ -28,10 +28,10 @@ class SpecialPageAction extends FormlessAction {
 	/**
 	 * @var array A mapping of action names to special page names.
 	 */
-	public static $actionToSpecialPageMapping = array(
+	public static $actionToSpecialPageMapping = [
 		'revisiondelete' => 'Revisiondelete',
 		'editchangetags' => 'EditTags',
-	);
+	];
 
 	public function getName() {
 		$request = $this->getRequest();

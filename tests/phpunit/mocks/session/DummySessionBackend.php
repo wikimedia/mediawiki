@@ -9,11 +9,11 @@ namespace MediaWiki\Session;
  * does so tests can run.
  */
 class DummySessionBackend {
-	public $data = array(
+	public $data = [
 		'foo' => 1,
 		'bar' => 2,
 		0 => 'zero',
-	);
+	];
 	public $dirty = false;
 
 	public function &getData() {

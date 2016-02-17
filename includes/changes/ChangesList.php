@@ -53,7 +53,7 @@ class ChangesList extends ContextSource {
 			$this->skin = $obj;
 		}
 		$this->preCacheMessages();
-		$this->watchMsgCache = new HashBagOStuff( array( 'maxKeys' => 50 ) );
+		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class ChangesList extends ContextSource {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
-		if ( Hooks::run( 'FetchChangesList', array( $user, &$sk, &$list ) ) ) {
+		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list ] ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
 			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
@@ -113,9 +113,9 @@ class ChangesList extends ContextSource {
 	 */
 	private function preCacheMessages() {
 		if ( !isset( $this->message ) ) {
-			foreach ( array(
+			foreach ( [
 				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
-				'semicolon-separator', 'pipe-separator' ) as $msg
+				'semicolon-separator', 'pipe-separator' ] as $msg
 			) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
@@ -152,7 +152,7 @@ class ChangesList extends ContextSource {
 		static $flagInfos = null;
 		if ( is_null( $flagInfos ) ) {
 			global $wgRecentChangesFlags;
-			$flagInfos = array();
+			$flagInfos = [];
 			foreach ( $wgRecentChangesFlags as $key => $value ) {
 				$flagInfos[$key]['letter'] = wfMessage( $value['letter'] )->escaped();
 				$flagInfos[$key]['title'] = wfMessage( $value['title'] )->escaped();
@@ -163,10 +163,10 @@ class ChangesList extends ContextSource {
 		}
 
 		// Inconsistent naming, bleh, kepted for b/c
-		$map = array(
+		$map = [
 			'minoredit' => 'minor',
 			'botedit' => 'bot',
-		);
+		];
 		if ( isset( $map[$flag] ) ) {
 			$flag = $map[$flag];
 		}
@@ -181,7 +181,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function beginRecentChangesList() {
-		$this->rc_cache = array();
+		$this->rc_cache = [];
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
@@ -195,7 +195,7 @@ class ChangesList extends ContextSource {
 	 * @param ResultWrapper|array $rows
 	 */
 	public function initChangesListRows( $rows ) {
-		Hooks::run( 'ChangesListInitRows', array( $this, $rows ) );
+		Hooks::run( 'ChangesListInitRows', [ $this, $rows ] );
 	}
 
 	/**
@@ -217,7 +217,7 @@ class ChangesList extends ContextSource {
 		$lang = $context->getLanguage();
 		$config = $context->getConfig();
 		$code = $lang->getCode();
-		static $fastCharDiff = array();
+		static $fastCharDiff = [];
 		if ( !isset( $fastCharDiff[$code] ) ) {
 			$fastCharDiff[$code] = $config->get( 'MiserMode' )
 				|| $context->msg( 'rc-change-size' )->plain() === '$1';
@@ -247,7 +247,7 @@ class ChangesList extends ContextSource {
 		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
 		return Html::element( $tag,
-			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
+			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
 			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
 	}
 
@@ -329,16 +329,16 @@ class ChangesList extends ContextSource {
 		} elseif ( !self::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
 			$diffLink = $this->message['diff'];
 		} else {
-			$query = array(
+			$query = [
 				'curid' => $rc->mAttribs['rc_cur_id'],
 				'diff' => $rc->mAttribs['rc_this_oldid'],
 				'oldid' => $rc->mAttribs['rc_last_oldid']
-			);
+			];
 
 			$diffLink = Linker::linkKnown(
 				$rc->getTitle(),
 				$this->message['diff'],
-				array( 'tabindex' => $rc->counter ),
+				[ 'tabindex' => $rc->counter ],
 				$query
 			);
 		}
@@ -350,11 +350,11 @@ class ChangesList extends ContextSource {
 			$diffhist .= Linker::linkKnown(
 				$rc->getTitle(),
 				$this->message['hist'],
-				array(),
-				array(
+				[],
+				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
-				)
+				]
 			);
 		}
 
@@ -382,15 +382,15 @@ class ChangesList extends ContextSource {
 	 * @since 1.26
 	 */
 	public function getArticleLink( &$rc, $unpatrolled, $watched ) {
-		$params = array();
+		$params = [];
 		if ( $rc->getTitle()->isRedirect() ) {
-			$params = array( 'redirect' => 'no' );
+			$params = [ 'redirect' => 'no' ];
 		}
 
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
 			null,
-			array( 'class' => 'mw-changeslist-title' ),
+			[ 'class' => 'mw-changeslist-title' ],
 			$params
 		);
 		if ( $this->isDeleted( $rc, Revision::DELETED_TEXT ) ) {
@@ -404,7 +404,7 @@ class ChangesList extends ContextSource {
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
 		Hooks::run( 'ChangesListInsertArticleLink',
-			array( &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ) );
+			[ &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
 
 		return "{$s} {$articlelink}";
 	}
@@ -554,13 +554,13 @@ class ChangesList extends ContextSource {
 			if ( $this->getUser()->isAllowed( 'rollback' )
 				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
 			) {
-				$rev = new Revision( array(
+				$rev = new Revision( [
 					'title' => $page,
 					'id' => $rc->mAttribs['rc_this_oldid'],
 					'user' => $rc->mAttribs['rc_user'],
 					'user_text' => $rc->mAttribs['rc_user_text'],
 					'deleted' => $rc->mAttribs['rc_deleted']
-				) );
+				] );
 				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
 			}
 		}

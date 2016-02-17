@@ -85,7 +85,7 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 		$this->cacheHelper = new CacheHelper();
 
 		$this->cacheHelper->setCacheEnabled( $this->cacheEnabled );
-		$this->cacheHelper->setOnInitializedHandler( array( $this, 'onCacheInitialized' ) );
+		$this->cacheHelper->setOnInitializedHandler( [ $this, 'onCacheInitialized' ] );
 
 		$keyArgs = $this->getCacheKey();
 
@@ -116,7 +116,7 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 *
 	 * @return mixed
 	 */
-	public function getCachedValue( $computeFunction, $args = array(), $key = null ) {
+	public function getCachedValue( $computeFunction, $args = [], $key = null ) {
 		return $this->cacheHelper->getCachedValue( $computeFunction, $args, $key );
 	}
 
@@ -132,7 +132,7 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 * @param array $args
 	 * @param string|null $key
 	 */
-	public function addCachedHTML( $computeFunction, $args = array(), $key = null ) {
+	public function addCachedHTML( $computeFunction, $args = [], $key = null ) {
 		$html = $this->cacheHelper->getCachedValue( $computeFunction, $args, $key );
 		$this->getOutput()->addHTML( $html );
 	}
@@ -167,11 +167,11 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 * @return array
 	 */
 	protected function getCacheKey() {
-		return array(
+		return [
 			get_class( $this->page ),
 			$this->getName(),
 			$this->getLanguage()->getCode()
-		);
+		];
 	}
 
 	/**

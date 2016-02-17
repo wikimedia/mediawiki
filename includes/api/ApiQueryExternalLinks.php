@@ -45,10 +45,10 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$query = $params['query'];
 		$protocol = ApiQueryExtLinksUsage::getProtocolPrefix( $params['protocol'] );
 
-		$this->addFields( array(
+		$this->addFields( [
 			'el_from',
 			'el_to'
-		) );
+		] );
 
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
@@ -85,7 +85,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
 				break;
 			}
-			$entry = array();
+			$entry = [];
 			$to = $row->el_to;
 			// expand protocol-relative urls
 			if ( $params['expandurl'] ) {
@@ -105,32 +105,32 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'limit' => array(
+		return [
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'offset' => array(
+			],
+			'offset' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'protocol' => array(
+			],
+			'protocol' => [
 				ApiBase::PARAM_TYPE => ApiQueryExtLinksUsage::prepareProtocols(),
 				ApiBase::PARAM_DFLT => '',
-			),
+			],
 			'query' => null,
 			'expandurl' => false,
-		);
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=extlinks&titles=Main%20Page'
 				=> 'apihelp-query+extlinks-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

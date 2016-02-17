@@ -89,7 +89,7 @@ class ApiOpenSearch extends ApiBase {
 			$resolveRedir = $params['redirects'] === 'resolve';
 		}
 
-		$results = array();
+		$results = [];
 
 		if ( !$suggest || $this->getConfig()->get( 'EnableOpenSearchSuggest' ) ) {
 			// Open search results may be stored for a very long time
@@ -98,7 +98,7 @@ class ApiOpenSearch extends ApiBase {
 			$this->search( $search, $limit, $namespaces, $resolveRedir, $results );
 
 			// Allow hooks to populate extracts and images
-			Hooks::run( 'ApiOpenSearchSuggest', array( &$results ) );
+			Hooks::run( 'ApiOpenSearchSuggest', [ &$results ] );
 
 			// Trim extracts, if necessary
 			$length = $this->getConfig()->get( 'OpenSearchDescriptionLength' );
@@ -140,28 +140,28 @@ class ApiOpenSearch extends ApiBase {
 
 		if ( $resolveRedir ) {
 			// Query for redirects
-			$redirects = array();
+			$redirects = [];
 			$lb = new LinkBatch( $titles );
 			if ( !$lb->isEmpty() ) {
 				$db = $this->getDB();
 				$res = $db->select(
-					array( 'page', 'redirect' ),
-					array( 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ),
-					array(
+					[ 'page', 'redirect' ],
+					[ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ],
+					[
 						'rd_from = page_id',
 						'rd_interwiki IS NULL OR rd_interwiki = ' . $db->addQuotes( '' ),
 						$lb->constructSet( 'page', $db ),
-					),
+					],
 					__METHOD__
 				);
 				foreach ( $res as $row ) {
 					$redirects[$row->page_namespace][$row->page_title] =
-						array( $row->rd_namespace, $row->rd_title );
+						[ $row->rd_namespace, $row->rd_title ];
 				}
 			}
 
 			// Bypass any redirects
-			$seen = array();
+			$seen = [];
 			foreach ( $titles as $title ) {
 				$ns = $title->getNamespace();
 				$dbkey = $title->getDBkey();
@@ -178,14 +178,14 @@ class ApiOpenSearch extends ApiBase {
 						$resultId = $nextSpecialPageId;
 						$nextSpecialPageId -= 1;
 					}
-					$results[$resultId] = array(
+					$results[$resultId] = [
 						'title' => $title,
 						'redirect from' => $from,
 						'extract' => false,
 						'extract trimmed' => false,
 						'image' => false,
 						'url' => wfExpandUrl( $title->getFullURL(), PROTO_CURRENT ),
-					);
+					];
 				}
 			}
 		} else {
@@ -195,14 +195,14 @@ class ApiOpenSearch extends ApiBase {
 					$resultId = $nextSpecialPageId;
 					$nextSpecialPageId -= 1;
 				}
-				$results[$resultId] = array(
+				$results[$resultId] = [
 					'title' => $title,
 					'redirect from' => null,
 					'extract' => false,
 					'extract trimmed' => false,
 					'image' => false,
 					'url' => wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT ),
-				);
+				];
 			}
 		}
 	}
@@ -219,9 +219,9 @@ class ApiOpenSearch extends ApiBase {
 				// http://www.opensearch.org/Specifications/OpenSearch/Extensions/Suggestions/1.1
 				$result->addArrayType( null, 'array' );
 				$result->addValue( null, 0, strval( $search ) );
-				$terms = array();
-				$descriptions = array();
-				$urls = array();
+				$terms = [];
+				$descriptions = [];
+				$urls = [];
 				foreach ( $results as $r ) {
 					$terms[] = $r['title']->getPrefixedText();
 					$descriptions[] = strval( $r['extract'] );
@@ -234,19 +234,19 @@ class ApiOpenSearch extends ApiBase {
 
 			case 'xml':
 				// http://msdn.microsoft.com/en-us/library/cc891508%28v=vs.85%29.aspx
-				$imageKeys = array(
+				$imageKeys = [
 					'source' => true,
 					'alt' => true,
 					'width' => true,
 					'height' => true,
 					'align' => true,
-				);
-				$items = array();
+				];
+				$items = [];
 				foreach ( $results as $r ) {
-					$item = array(
+					$item = [
 						'Text' => $r['title']->getPrefixedText(),
 						'Url' => $r['url'],
-					);
+					];
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
 						$item['Description'] = $r['extract'];
 					}
@@ -270,37 +270,37 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'search' => null,
-			'limit' => array(
+			'limit' => [
 				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 100,
 				ApiBase::PARAM_MAX2 => 100
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_DFLT => NS_MAIN,
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_ISMULTI => true
-			),
+			],
 			'suggest' => false,
-			'redirects' => array(
-				ApiBase::PARAM_TYPE => array( 'return', 'resolve' ),
-			),
-			'format' => array(
+			'redirects' => [
+				ApiBase::PARAM_TYPE => [ 'return', 'resolve' ],
+			],
+			'format' => [
 				ApiBase::PARAM_DFLT => 'json',
-				ApiBase::PARAM_TYPE => array( 'json', 'jsonfm', 'xml', 'xmlfm' ),
-			),
+				ApiBase::PARAM_TYPE => [ 'json', 'jsonfm', 'xml', 'xmlfm' ],
+			],
 			'warningsaserror' => false,
-		);
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=opensearch&search=Te'
 				=> 'apihelp-opensearch-example-te',
-		);
+		];
 	}
 
 	public function getHelpUrls() {
@@ -321,19 +321,19 @@ class ApiOpenSearch extends ApiBase {
 		static $regex = null;
 
 		if ( $regex === null ) {
-			$endchars = array(
+			$endchars = [
 				'([^\d])\.\s', '\!\s', '\?\s', // regular ASCII
 				'。', // full-width ideographic full-stop
 				'．', '！', '？', // double-width roman forms
 				'｡', // half-width ideographic full stop
-			);
+			];
 			$endgroup = implode( '|', $endchars );
 			$end = "(?:$endgroup)";
 			$sentence = ".{{$length},}?$end+";
 			$regex = "/^($sentence)/u";
 		}
 
-		$matches = array();
+		$matches = [];
 		if ( preg_match( $regex, $text, $matches ) ) {
 			return trim( $matches[1] );
 		} else {
@@ -394,14 +394,14 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 			if ( $this->warningsAsError && $warnings ) {
 				$this->dieUsage(
 					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
-					array( 'warnings' => $warnings )
+					[ 'warnings' => $warnings ]
 				);
 			}
 
 			// Ignore any other unexpected keys (e.g. from $wgDebugToolbar)
 			$remove = array_keys( array_diff_key(
 				$result->getResultData(),
-				array( 0 => 'search', 1 => 'terms', 2 => 'descriptions', 3 => 'urls' )
+				[ 0 => 'search', 1 => 'terms', 2 => 'descriptions', 3 => 'urls' ]
 			) );
 			foreach ( $remove as $key ) {
 				$result->removeValue( $key, null );

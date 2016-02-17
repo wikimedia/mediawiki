@@ -7,13 +7,13 @@
 class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
 	public function provideGetDisplayName() {
-		return array(
-			'http' => array( 'foo.bar', 'http://foo.bar' ),
-			'https' => array( 'foo.bar', 'http://foo.bar' ),
+		return [
+			'http' => [ 'foo.bar', 'http://foo.bar' ],
+			'https' => [ 'foo.bar', 'http://foo.bar' ],
 
 			// apparently, this is the expected behavior
-			'invalid' => array( 'purple kittens', 'purple kittens' ),
-		);
+			'invalid' => [ 'purple kittens', 'purple kittens' ],
+		];
 	}
 
 	/**
@@ -30,56 +30,56 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideGetCanonicalUrl() {
-		return array(
-			'no fragment' => array(
+		return [
+			'no fragment' => [
 				'https://acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				null
-			),
-			'empty fragment' => array(
+			],
+			'empty fragment' => [
 				'https://acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				''
-			),
-			'fragment' => array(
+			],
+			'fragment' => [
 				'https://acme.com/wiki/Foo#Bar',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				'Bar'
-			),
-			'double fragment' => array(
+			],
+			'double fragment' => [
 				'https://acme.com/wiki/Foo#Bar%23Xus',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				'Bar#Xus'
-			),
-			'escaped fragment' => array(
+			],
+			'escaped fragment' => [
 				'https://acme.com/wiki/Foo%23Bar',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo#Bar',
 				null
-			),
-			'empty path' => array(
+			],
+			'empty path' => [
 				'https://acme.com/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/$1',
 				'Foo',
 				null
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -102,56 +102,56 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideGetFullUrl() {
-		return array(
-			'no fragment' => array(
+		return [
+			'no fragment' => [
 				'//acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				null
-			),
-			'empty fragment' => array(
+			],
+			'empty fragment' => [
 				'//acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				''
-			),
-			'fragment' => array(
+			],
+			'fragment' => [
 				'//acme.com/wiki/Foo#Bar',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				'Bar'
-			),
-			'double fragment' => array(
+			],
+			'double fragment' => [
 				'//acme.com/wiki/Foo#Bar%23Xus',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo',
 				'Bar#Xus'
-			),
-			'escaped fragment' => array(
+			],
+			'escaped fragment' => [
 				'//acme.com/wiki/Foo%23Bar',
 				'https://acme.com',
 				'//acme.com',
 				'/wiki/$1',
 				'Foo#Bar',
 				null
-			),
-			'empty path' => array(
+			],
+			'empty path' => [
 				'//acme.com/Foo',
 				'https://acme.com',
 				'//acme.com',
 				'/$1',
 				'Foo',
 				null
-			),
-		);
+			],
+		];
 	}
 
 	/**

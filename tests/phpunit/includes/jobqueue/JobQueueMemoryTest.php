@@ -14,18 +14,18 @@ class JobQueueMemoryTest extends PHPUnit_Framework_TestCase {
 	 * @return JobQueueMemory
 	 */
 	private function newJobQueue() {
-		return JobQueue::factory( array(
+		return JobQueue::factory( [
 			'class' => 'JobQueueMemory',
 			'wiki' => wfWikiID(),
 			'type' => 'null',
-		) );
+		] );
 	}
 
 	private function newJobSpecification() {
 		return new JobSpecification(
 			'null',
-			array( 'customParameter' => null ),
-			array(),
+			[ 'customParameter' => null ],
+			[],
 			Title::newFromText( 'Custom title' )
 		);
 	}

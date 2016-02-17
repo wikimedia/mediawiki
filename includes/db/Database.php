@@ -53,19 +53,19 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mOpened = false;
 
 	/** @var callable[] */
-	protected $mTrxIdleCallbacks = array();
+	protected $mTrxIdleCallbacks = [];
 	/** @var callable[] */
-	protected $mTrxPreCommitCallbacks = array();
+	protected $mTrxPreCommitCallbacks = [];
 
 	protected $mTablePrefix;
 	protected $mSchema;
 	protected $mFlags;
 	protected $mForeign;
-	protected $mLBInfo = array();
+	protected $mLBInfo = [];
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
 	/** @var array */
-	protected $mSessionVars = array();
+	protected $mSessionVars = [];
 
 	protected $preparedArgs;
 
@@ -132,7 +132,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @var array
 	 */
-	private $mTrxAtomicLevels = array();
+	private $mTrxAtomicLevels = [];
 
 	/**
 	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
@@ -146,7 +146,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @var string[]
 	 */
-	private $mTrxWriteCallers = array();
+	private $mTrxWriteCallers = [];
 
 	/**
 	 * Track the seconds spent in write queries for the current transaction
@@ -156,7 +156,7 @@ abstract class DatabaseBase implements IDatabase {
 	private $mTrxWriteDuration = 0.0;
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
-	private $mNamedLocksHeld = array();
+	private $mNamedLocksHeld = [];
 
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
@@ -398,7 +398,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function pendingWriteCallers() {
-		return $this->mTrxLevel ? $this->mTrxWriteCallers : array();
+		return $this->mTrxLevel ? $this->mTrxWriteCallers : [];
 	}
 
 	public function isOpen() {
@@ -577,14 +577,14 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws MWException If the database driver or extension cannot be found
 	 * @return DatabaseBase|null DatabaseBase subclass or null
 	 */
-	final public static function factory( $dbType, $p = array() ) {
-		$canonicalDBTypes = array(
-			'mysql' => array( 'mysqli', 'mysql' ),
-			'postgres' => array(),
-			'sqlite' => array(),
-			'oracle' => array(),
-			'mssql' => array(),
-		);
+	final public static function factory( $dbType, $p = [] ) {
+		$canonicalDBTypes = [
+			'mysql' => [ 'mysqli', 'mysql' ],
+			'postgres' => [],
+			'sqlite' => [],
+			'oracle' => [],
+			'mssql' => [],
+		];
 
 		$driver = false;
 		$dbType = strtolower( $dbType );
@@ -617,9 +617,9 @@ abstract class DatabaseBase implements IDatabase {
 		// and everything else doesn't use a schema (e.g. null)
 		// Although postgres and oracle support schemas, we don't use them (yet)
 		// to maintain backwards compatibility
-		$defaultSchemas = array(
+		$defaultSchemas = [
 			'mssql' => 'get from global',
-		);
+		];
 
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
@@ -629,7 +629,7 @@ abstract class DatabaseBase implements IDatabase {
 			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
 			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
-			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : array();
+			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
 			if ( !isset( $p['schema'] ) ) {
 				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
@@ -645,7 +645,7 @@ abstract class DatabaseBase implements IDatabase {
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
-		set_error_handler( array( $this, 'connectionErrorHandler' ) );
+		set_error_handler( [ $this, 'connectionErrorHandler' ] );
 	}
 
 	/**
@@ -680,13 +680,13 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $extras Additional data to add to context
 	 * @return array
 	 */
-	protected function getLogContext( array $extras = array() ) {
+	protected function getLogContext( array $extras = [] ) {
 		return array_merge(
-			array(
+			[
 				'db_server' => $this->mServer,
 				'db_name' => $this->mDBname,
 				'db_user' => $this->mUser,
-			),
+			],
 			$extras
 		);
 	}
@@ -774,7 +774,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected function isTransactableQuery( $sql ) {
 		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
-		return !in_array( $verb, array( 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ) );
+		return !in_array( $verb, [ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ] );
 	}
 
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
@@ -862,8 +862,8 @@ abstract class DatabaseBase implements IDatabase {
 			# Transaction is gone, like it or not
 			$hadTrx = $this->mTrxLevel; // possible lost transaction
 			$this->mTrxLevel = 0;
-			$this->mTrxIdleCallbacks = array(); // bug 65263
-			$this->mTrxPreCommitCallbacks = array(); // bug 65263
+			$this->mTrxIdleCallbacks = []; // bug 65263
+			$this->mTrxPreCommitCallbacks = []; // bug 65263
 			wfDebug( "Connection lost, reconnecting...\n" );
 			# Stash the last error values since ping() might clear them
 			$lastError = $this->lastError();
@@ -918,13 +918,13 @@ abstract class DatabaseBase implements IDatabase {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 			wfLogDBError(
 				"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
-				$this->getLogContext( array(
+				$this->getLogContext( [
 					'method' => __METHOD__,
 					'errno' => $errno,
 					'error' => $error,
 					'sql1line' => $sql1line,
 					'fname' => $fname,
-				) )
+				] )
 			);
 			wfDebug( "SQL ERROR: " . $error . "\n" );
 			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
@@ -950,7 +950,7 @@ abstract class DatabaseBase implements IDatabase {
 		 * pack up the query for reference. We'll manually replace
 		 * the bits later.
 		 */
-		return array( 'query' => $sql, 'func' => $func );
+		return [ 'query' => $sql, 'func' => $func ];
 	}
 
 	/**
@@ -992,7 +992,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->preparedArgs =& $args;
 
 		return preg_replace_callback( '/(\\\\[?!&]|[?!&])/',
-			array( &$this, 'fillPreparedArg' ), $preparedQuery );
+			[ &$this, 'fillPreparedArg' ], $preparedQuery );
 	}
 
 	/**
@@ -1039,14 +1039,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = []
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
 		}
 
 		if ( !is_array( $options ) ) {
-			$options = array( $options );
+			$options = [ $options ];
 		}
 
 		$options['LIMIT'] = 1;
@@ -1066,14 +1066,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array(), $join_conds = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
 		}
 
 		if ( !is_array( $options ) ) {
-			$options = array( $options );
+			$options = [ $options ];
 		}
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
@@ -1081,7 +1081,7 @@ abstract class DatabaseBase implements IDatabase {
 			return false;
 		}
 
-		$values = array();
+		$values = [];
 		foreach ( $res as $row ) {
 			$values[] = $row->$var;
 		}
@@ -1102,7 +1102,7 @@ abstract class DatabaseBase implements IDatabase {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
-		$noKeyOptions = array();
+		$noKeyOptions = [];
 
 		foreach ( $options as $key => $option ) {
 			if ( is_numeric( $key ) ) {
@@ -1171,7 +1171,7 @@ abstract class DatabaseBase implements IDatabase {
 			$useIndex = '';
 		}
 
-		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
+		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail ];
 	}
 
 	/**
@@ -1221,14 +1221,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array() ) {
+		$options = [], $join_conds = [] ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		return $this->query( $sql, $fname );
 	}
 
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	) {
 		if ( is_array( $vars ) ) {
 			$vars = implode( ',', $this->fieldNamesWithAlias( $vars ) );
@@ -1237,7 +1237,7 @@ abstract class DatabaseBase implements IDatabase {
 		$options = (array)$options;
 		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
 			? $options['USE INDEX']
-			: array();
+			: [];
 
 		if ( is_array( $table ) ) {
 			$from = ' FROM ' .
@@ -1247,7 +1247,7 @@ abstract class DatabaseBase implements IDatabase {
 				$from = ' FROM ' . $table;
 			} else {
 				$from = ' FROM ' .
-					$this->tableNamesWithUseIndexOrJOIN( array( $table ), $useIndexes, array() );
+					$this->tableNamesWithUseIndexOrJOIN( [ $table ], $useIndexes, [] );
 			}
 		} else {
 			$from = '';
@@ -1279,7 +1279,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	) {
 		$options = (array)$options;
 		$options['LIMIT'] = 1;
@@ -1299,10 +1299,10 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
 	) {
 		$rows = 0;
-		$res = $this->select( $table, array( 'rowcount' => 'COUNT(*)' ), $conds, $fname, $options );
+		$res = $this->select( $table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
@@ -1313,7 +1313,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$rows = 0;
 		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
@@ -1405,7 +1405,7 @@ abstract class DatabaseBase implements IDatabase {
 		return implode( ' ', $options );
 	}
 
-	public function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
+	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -1414,7 +1414,7 @@ abstract class DatabaseBase implements IDatabase {
 		$table = $this->tableName( $table );
 
 		if ( !is_array( $options ) ) {
-			$options = array( $options );
+			$options = [ $options ];
 		}
 
 		$fh = null;
@@ -1465,10 +1465,10 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected function makeUpdateOptionsArray( $options ) {
 		if ( !is_array( $options ) ) {
-			$options = array( $options );
+			$options = [ $options ];
 		}
 
-		$opts = array();
+		$opts = [];
 
 		if ( in_array( 'LOW_PRIORITY', $options ) ) {
 			$opts[] = $this->lowPriorityOption();
@@ -1493,12 +1493,12 @@ abstract class DatabaseBase implements IDatabase {
 		return implode( ' ', $opts );
 	}
 
-	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
+	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
 
-		if ( $conds !== array() && $conds !== '*' ) {
+		if ( $conds !== [] && $conds !== '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
 
@@ -1581,12 +1581,12 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
-		$conds = array();
+		$conds = [];
 
 		foreach ( $data as $base => $sub ) {
 			if ( count( $sub ) ) {
 				$conds[] = $this->makeList(
-					array( $baseKey => $base, $subKey => array_keys( $sub ) ),
+					[ $baseKey => $base, $subKey => array_keys( $sub ) ],
 					LIST_AND );
 			}
 		}
@@ -1628,11 +1628,11 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = array()
+		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
 	public function selectDB( $db ) {
@@ -1761,7 +1761,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function tableNames() {
 		$inArray = func_get_args();
-		$retVal = array();
+		$retVal = [];
 
 		foreach ( $inArray as $name ) {
 			$retVal[$name] = $this->tableName( $name );
@@ -1783,7 +1783,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function tableNamesN() {
 		$inArray = func_get_args();
-		$retVal = array();
+		$retVal = [];
 
 		foreach ( $inArray as $name ) {
 			$retVal[] = $this->tableName( $name );
@@ -1815,7 +1815,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string[] See tableNameWithAlias()
 	 */
 	public function tableNamesWithAlias( $tables ) {
-		$retval = array();
+		$retval = [];
 		foreach ( $tables as $alias => $table ) {
 			if ( is_numeric( $alias ) ) {
 				$alias = $table;
@@ -1849,7 +1849,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string[] See fieldNameWithAlias()
 	 */
 	public function fieldNamesWithAlias( $fields ) {
-		$retval = array();
+		$retval = [];
 		foreach ( $fields as $alias => $field ) {
 			if ( is_numeric( $alias ) ) {
 				$alias = $field;
@@ -1870,10 +1870,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string
 	 */
 	protected function tableNamesWithUseIndexOrJOIN(
-		$tables, $use_index = array(), $join_conds = array()
+		$tables, $use_index = [], $join_conds = []
 	) {
-		$ret = array();
-		$retJOIN = array();
+		$ret = [];
+		$retJOIN = [];
 		$use_index = (array)$use_index;
 		$join_conds = (array)$join_conds;
 
@@ -1919,7 +1919,7 @@ abstract class DatabaseBase implements IDatabase {
 		$explicitJoins = !empty( $retJOIN ) ? implode( ' ', $retJOIN ) : "";
 
 		// Compile our final table clause
-		return implode( ' ', array( $implicitJoins, $explicitJoins ) );
+		return implode( ' ', [ $implicitJoins, $explicitJoins ] );
 	}
 
 	/**
@@ -1930,11 +1930,11 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected function indexName( $index ) {
 		// Backwards-compatibility hack
-		$renamed = array(
+		$renamed = [
 			'ar_usertext_timestamp' => 'usertext_timestamp',
 			'un_user_id' => 'user_id',
 			'un_user_ip' => 'user_ip',
-		);
+		];
 
 		if ( isset( $renamed[$index] ) ) {
 			return $renamed[$index];
@@ -2045,7 +2045,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		# Single row case
 		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
+			$rows = [ $rows ];
 		}
 
 		// @FXIME: this is not atomic, but a trx would break affectedRows()
@@ -2099,7 +2099,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		# Single row case
 		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
+			$rows = [ $rows ];
 		}
 
 		$sql = "REPLACE INTO $table (" . implode( ',', array_keys( $rows[0] ) ) . ') VALUES ';
@@ -2126,22 +2126,22 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
+			$rows = [ $rows ];
 		}
 
 		if ( count( $uniqueIndexes ) ) {
-			$clauses = array(); // list WHERE clauses that each identify a single row
+			$clauses = []; // list WHERE clauses that each identify a single row
 			foreach ( $rows as $row ) {
 				foreach ( $uniqueIndexes as $index ) {
-					$index = is_array( $index ) ? $index : array( $index ); // columns
-					$rowKey = array(); // unique key to this row
+					$index = is_array( $index ) ? $index : [ $index ]; // columns
+					$rowKey = []; // unique key to this row
 					foreach ( $index as $column ) {
 						$rowKey[$column] = $row[$column];
 					}
 					$clauses[] = $this->makeList( $rowKey, LIST_AND );
 				}
 			}
-			$where = array( $this->makeList( $clauses, LIST_OR ) );
+			$where = [ $this->makeList( $clauses, LIST_OR ) ];
 		} else {
 			$where = false;
 		}
@@ -2158,7 +2158,7 @@ abstract class DatabaseBase implements IDatabase {
 				$ok = true;
 			}
 			# Now insert any non-conflicting row(s)
-			$ok = $this->insert( $table, $rows, $fname, array( 'IGNORE' ) ) && $ok;
+			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
 		} catch ( Exception $e ) {
 			if ( $useTrx ) {
 				$this->rollback( $fname );
@@ -2204,7 +2204,7 @@ abstract class DatabaseBase implements IDatabase {
 		$res = $this->query( $sql, 'DatabaseBase::textFieldSize' );
 		$row = $this->fetchObject( $res );
 
-		$m = array();
+		$m = [];
 
 		if ( preg_match( '/\((.*)\)/', $row->Type, $m ) ) {
 			$size = $m[1];
@@ -2247,24 +2247,24 @@ abstract class DatabaseBase implements IDatabase {
 
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array()
+		$insertOptions = [], $selectOptions = []
 	) {
 		$destTable = $this->tableName( $destTable );
 
 		if ( !is_array( $insertOptions ) ) {
-			$insertOptions = array( $insertOptions );
+			$insertOptions = [ $insertOptions ];
 		}
 
 		$insertOptions = $this->makeInsertOptions( $insertOptions );
 
 		if ( !is_array( $selectOptions ) ) {
-			$selectOptions = array( $selectOptions );
+			$selectOptions = [ $selectOptions ];
 		}
 
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -2438,7 +2438,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	final public function onTransactionIdle( $callback ) {
-		$this->mTrxIdleCallbacks[] = array( $callback, wfGetCaller() );
+		$this->mTrxIdleCallbacks[] = [ $callback, wfGetCaller() ];
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -2446,7 +2446,7 @@ abstract class DatabaseBase implements IDatabase {
 
 	final public function onTransactionPreCommitOrIdle( $callback ) {
 		if ( $this->mTrxLevel ) {
-			$this->mTrxPreCommitCallbacks[] = array( $callback, wfGetCaller() );
+			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
 		} else {
 			$this->onTransactionIdle( $callback ); // this will trigger immediately
 		}
@@ -2463,7 +2463,7 @@ abstract class DatabaseBase implements IDatabase {
 		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxIdleCallbacks;
-			$this->mTrxIdleCallbacks = array(); // recursion guard
+			$this->mTrxIdleCallbacks = []; // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
 					list( $phpCallback ) = $callback;
@@ -2502,7 +2502,7 @@ abstract class DatabaseBase implements IDatabase {
 		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxPreCommitCallbacks;
-			$this->mTrxPreCommitCallbacks = array(); // recursion guard
+			$this->mTrxPreCommitCallbacks = []; // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
 					list( $phpCallback ) = $callback;
@@ -2557,7 +2557,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$this->startAtomic( $fname );
 		try {
-			call_user_func_array( $callback, array( $this, $fname ) );
+			call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
 			$this->rollback( $fname );
 			throw $e;
@@ -2582,10 +2582,10 @@ abstract class DatabaseBase implements IDatabase {
 					" performing implicit commit!";
 				wfWarn( $msg );
 				wfLogDBError( $msg,
-					$this->getLogContext( array(
+					$this->getLogContext( [
 						'method' => __METHOD__,
 						'fname' => $fname,
-					) )
+					] )
 				);
 			} else {
 				// if the transaction was automatic and has done write operations
@@ -2616,12 +2616,12 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxDoneWrites = false;
 		$this->mTrxAutomatic = false;
 		$this->mTrxAutomaticAtomic = false;
-		$this->mTrxAtomicLevels = array();
-		$this->mTrxIdleCallbacks = array();
-		$this->mTrxPreCommitCallbacks = array();
+		$this->mTrxAtomicLevels = [];
+		$this->mTrxIdleCallbacks = [];
+		$this->mTrxPreCommitCallbacks = [];
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
-		$this->mTrxWriteCallers = array();
+		$this->mTrxWriteCallers = [];
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
 		// Get an estimate of the slave lag before then, treating estimate staleness
 		// as lag itself just to be safe
@@ -2711,9 +2711,9 @@ abstract class DatabaseBase implements IDatabase {
 		$this->assertOpen();
 
 		$this->doRollback( $fname );
-		$this->mTrxIdleCallbacks = array(); // cancel
-		$this->mTrxPreCommitCallbacks = array(); // cancel
-		$this->mTrxAtomicLevels = array();
+		$this->mTrxIdleCallbacks = []; // cancel
+		$this->mTrxPreCommitCallbacks = []; // cancel
+		$this->mTrxAtomicLevels = [];
 		if ( $this->mTrxDoneWrites ) {
 			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
@@ -2855,7 +2855,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function getTransactionLagStatus() {
 		return $this->mTrxLevel
-			? array( 'lag' => $this->mTrxSlaveLag, 'since' => $this->trxTimestamp() )
+			? [ 'lag' => $this->mTrxSlaveLag, 'since' => $this->trxTimestamp() ]
 			: null;
 	}
 
@@ -2866,10 +2866,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.27
 	 */
 	public function getApproximateLagStatus() {
-		return array(
+		return [
 			'lag'   => $this->getLBInfo( 'slave' ) ? $this->getLag() : 0,
 			'since' => microtime( true )
-		);
+		];
 	}
 
 	/**
@@ -2891,7 +2891,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.27
 	 */
 	public static function getCacheSetOptions( IDatabase $db1 ) {
-		$res = array( 'lag' => 0, 'since' => INF, 'pending' => false );
+		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 		foreach ( func_get_args() as $db ) {
 			/** @var IDatabase $db */
 			$status = $db->getSessionLagStatus();
@@ -3153,7 +3153,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
-		return array();
+		return [];
 	}
 
 	public function lockIsFree( $lockName, $method ) {
@@ -3292,7 +3292,7 @@ abstract class DatabaseBase implements IDatabase {
 			trigger_error( "Uncommitted DB writes (transaction from {$this->mTrxFname})." );
 		}
 		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
-			$callers = array();
+			$callers = [];
 			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
 				$callers[] = $callbackInfo[1];
 			}

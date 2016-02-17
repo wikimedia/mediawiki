@@ -32,14 +32,14 @@ class ConfigFactory {
 	 * Map of config name => callback
 	 * @var array
 	 */
-	protected $factoryFunctions = array();
+	protected $factoryFunctions = [];
 
 	/**
 	 * Config objects that have already been created
 	 * name => Config object
 	 * @var array
 	 */
-	protected $configs = array();
+	protected $configs = [];
 
 	/**
 	 * @var ConfigFactory

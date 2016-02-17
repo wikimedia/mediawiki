@@ -52,8 +52,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 		);
 
 		$this->assertNotEquals(
-			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc:', 'de' ) ),
-			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc', ':de' ) )
+			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc:', 'de' ] ),
+			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc', ':de' ] )
 		);
 	}
 
@@ -147,7 +147,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	public function testGet() {
-		$value = array( 'this' => 'is', 'a' => 'test' );
+		$value = [ 'this' => 'is', 'a' => 'test' ];
 
 		$key = wfMemcKey( 'test' );
 		$this->cache->add( $key, $value );
@@ -199,10 +199,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers BagOStuff::getMulti
 	 */
 	public function testGetMulti() {
-		$value1 = array( 'this' => 'is', 'a' => 'test' );
-		$value2 = array( 'this' => 'is', 'another' => 'test' );
-		$value3 = array( 'testing a key that may be encoded when sent to cache backend' );
-		$value4 = array( 'another test where chars in key will be encoded' );
+		$value1 = [ 'this' => 'is', 'a' => 'test' ];
+		$value2 = [ 'this' => 'is', 'another' => 'test' ];
+		$value3 = [ 'testing a key that may be encoded when sent to cache backend' ];
+		$value4 = [ 'another test where chars in key will be encoded' ];
 
 		$key1 = wfMemcKey( 'test1' );
 		$key2 = wfMemcKey( 'test2' );
@@ -218,8 +218,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->add( $key4, $value4 );
 
 		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2, $key3 => $value3, $key4 => $value4 ),
-			$this->cache->getMulti( array( $key1, $key2, $key3, $key4 ) )
+			[ $key1 => $value1, $key2 => $value2, $key3 => $value3, $key4 => $value4 ],
+			$this->cache->getMulti( [ $key1, $key2, $key3, $key4 ] )
 		);
 
 		// cleanup

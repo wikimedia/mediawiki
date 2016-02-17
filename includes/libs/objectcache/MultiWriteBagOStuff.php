@@ -72,7 +72,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 			);
 		}
 
-		$this->caches = array();
+		$this->caches = [];
 		foreach ( $params['caches'] as $cacheInfo ) {
 			if ( $cacheInfo instanceof BagOStuff ) {
 				$this->caches[] = $cacheInfo;
@@ -82,7 +82,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 					// Callers intenting this to be for ObjectFactory::getObjectFromSpec
 					// should have set "args" per the docs above. Doings so avoids extra
 					// (likely harmless) params (factory/class/calls) ending up in "args".
-					$cacheInfo['args'] = array( $cacheInfo );
+					$cacheInfo['args'] = [ $cacheInfo ];
 				}
 				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
 			}
@@ -194,7 +194,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 			if ( $i == 0 || !$asyncWrites ) {
 				// First store or in sync mode: write now and get result
-				if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
+				if ( !call_user_func_array( [ $cache, $method ], $args ) ) {
 					$ret = false;
 				}
 			} else {
@@ -203,7 +203,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				call_user_func(
 					$this->asyncHandler,
 					function () use ( $cache, $method, $args, $logger ) {
-						if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
+						if ( !call_user_func_array( [ $cache, $method ], $args ) ) {
 							$logger->warning( "Async $method op failed" );
 						}
 					}

@@ -33,7 +33,7 @@ class OldChangesList extends ChangesList {
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 
-		$classes = array();
+		$classes = [];
 		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from bug 14468)
 		if ( $linenumber ) {
 			if ( $linenumber & 1 ) {
@@ -55,7 +55,7 @@ class OldChangesList extends ChangesList {
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
-		if ( !Hooks::run( 'OldChangesListRecentChangesLine', array( &$this, &$html, $rc, &$classes ) ) ) {
+		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$this, &$html, $rc, &$classes ] ) ) {
 			return false;
 		}
 
@@ -79,8 +79,8 @@ class OldChangesList extends ChangesList {
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
-			$flags = $this->recentChangesFlags( array( 'unpatrolled' =>$unpatrolled,
-				'bot' => $rc->mAttribs['rc_bot'] ), '' );
+			$flags = $this->recentChangesFlags( [ 'unpatrolled' =>$unpatrolled,
+				'bot' => $rc->mAttribs['rc_bot'] ], '' );
 			if ( $flags !== '' ) {
 				$html .= ' ' . $flags;
 			}
@@ -95,12 +95,12 @@ class OldChangesList extends ChangesList {
 			$this->insertDiffHist( $html, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$html .= $this->recentChangesFlags(
-				array(
+				[
 					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
 					'minor' => $rc->mAttribs['rc_minor'],
 					'unpatrolled' => $unpatrolled,
 					'bot' => $rc->mAttribs['rc_bot']
-				),
+				],
 				''
 			);
 			$html .= $this->getArticleLink( $rc, $unpatrolled, $watched );

@@ -34,10 +34,10 @@ class SiteStats {
 	private static $jobs;
 
 	/** @var int[] */
-	private static $pageCount = array();
+	private static $pageCount = [];
 
 	/** @var int[] */
-	private static $groupMemberCounts = array();
+	private static $groupMemberCounts = [];
 
 	static function recache() {
 		self::load( true );
@@ -102,7 +102,7 @@ class SiteStats {
 	 * @return bool|ResultWrapper
 	 */
 	static function doLoad( $db ) {
-		return $db->selectRow( 'site_stats', array(
+		return $db->selectRow( 'site_stats', [
 				'ss_row_id',
 				'ss_total_edits',
 				'ss_good_articles',
@@ -110,7 +110,7 @@ class SiteStats {
 				'ss_users',
 				'ss_active_users',
 				'ss_images',
-			), false, __METHOD__ );
+			], false, __METHOD__ );
 	}
 
 	/**
@@ -192,11 +192,11 @@ class SiteStats {
 				return $dbr->selectField(
 					'user_groups',
 					'COUNT(*)',
-					array( 'ug_group' => $group ),
+					[ 'ug_group' => $group ],
 					__METHOD__
 				);
 			},
-			array( 'pcTTL' => 10 )
+			[ 'pcTTL' => 10 ]
 		);
 	}
 
@@ -229,7 +229,7 @@ class SiteStats {
 			self::$pageCount[$ns] = (int)$dbr->selectField(
 				'page',
 				'COUNT(*)',
-				array( 'page_namespace' => $ns ),
+				[ 'page_namespace' => $ns ],
 				__METHOD__
 			);
 		}
@@ -253,13 +253,13 @@ class SiteStats {
 			return false;
 		}
 		// Now check for underflow/overflow
-		foreach ( array(
+		foreach ( [
 			'ss_total_edits',
 			'ss_good_articles',
 			'ss_total_pages',
 			'ss_users',
 			'ss_images',
-		) as $member ) {
+		] as $member ) {
 			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
 				return false;
 			}
@@ -311,11 +311,11 @@ class SiteStatsInit {
 	public function articles() {
 		global $wgArticleCountMethod;
 
-		$tables = array( 'page' );
-		$conds = array(
+		$tables = [ 'page' ];
+		$conds = [
 			'page_namespace' => MWNamespace::getContentNamespaces(),
 			'page_is_redirect' => 0,
-		);
+		];
 
 		if ( $wgArticleCountMethod == 'link' ) {
 			$tables[] = 'pagelinks';
@@ -371,8 +371,8 @@ class SiteStatsInit {
 	 * @param array $options Array of options, may contain the following values
 	 * - activeUsers boolean: Whether to update the number of active users (default: false)
 	 */
-	public static function doAllAndCommit( $database, array $options = array() ) {
-		$options += array( 'update' => false, 'activeUsers' => false );
+	public static function doAllAndCommit( $database, array $options = [] ) {
+		$options += [ 'update' => false, 'activeUsers' => false ];
 
 		// Grab the object and count everything
 		$counter = new SiteStatsInit( $database );
@@ -395,16 +395,16 @@ class SiteStatsInit {
 	 * Refresh site_stats
 	 */
 	public function refresh() {
-		$values = array(
+		$values = [
 			'ss_row_id' => 1,
 			'ss_total_edits' => ( $this->mEdits === null ? $this->edits() : $this->mEdits ),
 			'ss_good_articles' => ( $this->mArticles === null ? $this->articles() : $this->mArticles ),
 			'ss_total_pages' => ( $this->mPages === null ? $this->pages() : $this->mPages ),
 			'ss_users' => ( $this->mUsers === null ? $this->users() : $this->mUsers ),
 			'ss_images' => ( $this->mFiles === null ? $this->files() : $this->mFiles ),
-		);
+		];
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->upsert( 'site_stats', $values, array( 'ss_row_id' ), $values, __METHOD__ );
+		$dbw->upsert( 'site_stats', $values, [ 'ss_row_id' ], $values, __METHOD__ );
 	}
 }

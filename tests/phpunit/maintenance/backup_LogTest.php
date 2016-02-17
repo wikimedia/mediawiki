@@ -78,7 +78,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 			$this->logId3 = $this->addLogEntry( 'move', 'delete',
 				$user2, NS_MAIN, "PageA", "SomeOtherComment",
-				array( 'key1' => 1, 3 => 'value3' ) );
+				[ 'key1' => 1, 3 => 'value3' ] );
 			$this->assertGreaterThan( 0, $this->logId3 );
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
@@ -102,7 +102,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	 * @param array $parameters (optional) unserialized data accompanying the log entry
 	 */
 	private function assertLogItem( $id, $user_name, $user_id, $comment, $type,
-		$subtype, $title, $parameters = array()
+		$subtype, $title, $parameters = []
 	) {
 
 		$this->assertNodeStart( "logitem" );
@@ -142,7 +142,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( array( '--output=file:' . $fname ) );
+		$dumper = new DumpBackup( [ '--output=file:' . $fname ] );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
@@ -167,7 +167,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		$this->assertLogItem( $this->logId3, "BackupDumperLogUserB",
 			$this->userId2, "SomeOtherComment", "move", "delete",
-			"PageA", array( 'key1' => 1, 3 => 'value3' ) );
+			"PageA", [ 'key1' => 1, 3 => 'value3' ] );
 
 		$this->assertDumpEnd();
 	}
@@ -181,8 +181,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$fname = $this->getNewTempFile();
 
 		$dumper = new DumpBackup();
-		$dumper->loadWithArgv( array( '--logs', '--output=gzip:' . $fname,
-			'--reporting=2' ) );
+		$dumper->loadWithArgv( [ '--logs', '--output=gzip:' . $fname,
+			'--reporting=2' ] );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->setDb( $this->db );
@@ -220,7 +220,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		$this->assertLogItem( $this->logId3, "BackupDumperLogUserB",
 			$this->userId2, "SomeOtherComment", "move", "delete",
-			"PageA", array( 'key1' => 1, 3 => 'value3' ) );
+			"PageA", [ 'key1' => 1, 3 => 'value3' ] );
 
 		$this->assertDumpEnd();
 

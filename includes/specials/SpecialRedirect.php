@@ -106,7 +106,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 		// If a width is requested...
 		if ( $width != -1 ) {
-			$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
+			$mto = $file->transform( [ 'width' => $width, 'height' => $height ] );
 			// ... and we can
 			if ( $mto && !$mto->isError() ) {
 				// ... change the URL to point to a thumbnail.
@@ -133,9 +133,9 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 
-		return wfAppendQuery( wfScript( 'index' ), array(
+		return wfAppendQuery( wfScript( 'index' ), [
 			'oldid' => $oldid
-		) );
+		] );
 	}
 
 	/**
@@ -153,9 +153,9 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 
-		return wfAppendQuery( wfScript( 'index' ), array(
+		return wfAppendQuery( wfScript( 'index' ), [
 			'curid' => $curid
-		) );
+		] );
 	}
 
 	/**
@@ -175,12 +175,12 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 
-		$logparams = array(
+		$logparams = [
 			'log_id',
 			'log_timestamp',
 			'log_type',
 			'log_user_text',
-		);
+		];
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -188,8 +188,8 @@ class SpecialRedirect extends FormSpecialPage {
 		// returns timestamp of the log with the given log ID
 		$inner = $dbr->selectSQLText(
 			'logging',
-			array( 'log_timestamp' ),
-			array( 'log_id' => $logid )
+			[ 'log_timestamp' ],
+			[ 'log_id' => $logid ]
 		);
 
 		// Returns all fields mentioned in $logparams of the logs
@@ -197,14 +197,14 @@ class SpecialRedirect extends FormSpecialPage {
 		$logsSameTimestamps = $dbr->select(
 			'logging',
 			$logparams,
-			array( "log_timestamp = ($inner)" )
+			[ "log_timestamp = ($inner)" ]
 		);
 		if ( $logsSameTimestamps->numRows() === 0 ) {
 			return null;
 		}
 
 		// Stores the row with the same log ID as the one given
-		$rowMain = array();
+		$rowMain = [];
 		foreach ( $logsSameTimestamps as $row ) {
 			if ( (int)$row->log_id === $logid ) {
 				$rowMain = $row;
@@ -216,7 +216,7 @@ class SpecialRedirect extends FormSpecialPage {
 		// Stores all the rows with the same values in each column
 		// as $rowMain
 		foreach ( $logparams as $cond ) {
-			$matchedRows = array();
+			$matchedRows = [];
 			foreach ( $logsSameTimestamps as $row ) {
 				if ( $row->$cond === $rowMain->$cond ) {
 					$matchedRows[] = $row;
@@ -227,14 +227,14 @@ class SpecialRedirect extends FormSpecialPage {
 			}
 			$logsSameTimestamps = $matchedRows;
 		}
-		$query = array( 'title' => 'Special:Log', 'limit' => count( $matchedRows ) );
+		$query = [ 'title' => 'Special:Log', 'limit' => count( $matchedRows ) ];
 
 		// A map of database field names from table 'logging' to the values of $logparams
-		$keys = array(
+		$keys = [
 			'log_timestamp' => 'offset',
 			'log_type' => 'type',
 			'log_user_text' => 'user'
-		);
+		];
 
 		foreach ( $logparams as $logKey ) {
 			$query[$keys[$logKey]] = $matchedRows[0]->$logKey;
@@ -294,7 +294,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 	protected function getFormFields() {
 		$mp = $this->getMessagePrefix();
-		$ns = array(
+		$ns = [
 			// subpage => message
 			// Messages: redirect-user, redirect-page, redirect-revision,
 			// redirect-file, redirect-logid
@@ -303,22 +303,22 @@ class SpecialRedirect extends FormSpecialPage {
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
 			'logid' => $mp . '-logid',
-		);
-		$a = array();
-		$a['type'] = array(
+		];
+		$a = [];
+		$a['type'] = [
 			'type' => 'select',
 			'label-message' => $mp . '-lookup', // Message: redirect-lookup
-			'options' => array(),
+			'options' => [],
 			'default' => current( array_keys( $ns ) ),
-		);
+		];
 		foreach ( $ns as $n => $m ) {
 			$m = $this->msg( $m )->text();
 			$a['type']['options'][$m] = $n;
 		}
-		$a['value'] = array(
+		$a['value'] = [
 			'type' => 'text',
 			'label-message' => $mp . '-value' // Message: redirect-value
-		);
+		];
 		// set the defaults according to the parsed subpage path
 		if ( !empty( $this->mType ) ) {
 			$a['type']['default'] = $this->mType;
@@ -359,13 +359,13 @@ class SpecialRedirect extends FormSpecialPage {
 	 * @return string[] subpages
 	 */
 	protected function getSubpagesForPrefixSearch() {
-		return array(
+		return [
 			'file',
 			'page',
 			'revision',
 			'user',
 			'logid',
-		);
+		];
 	}
 
 	/**

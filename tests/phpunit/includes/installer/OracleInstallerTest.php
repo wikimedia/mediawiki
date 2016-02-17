@@ -27,26 +27,26 @@ class OracleInstallerTest extends MediaWikiTestCase {
 	 */
 	function provideOracleConnectStrings() {
 		// expected result, connectString[, message]
-		return array(
-			array( true, 'simple_01', 'Simple TNS name' ),
-			array( true, 'simple_01.world', 'TNS name with domain' ),
-			array( true, 'simple_01.domain.net', 'TNS name with domain' ),
-			array( true, 'host123', 'Host only' ),
-			array( true, 'host123.domain.net', 'FQDN only' ),
-			array( true, '//host123.domain.net', 'FQDN URL only' ),
-			array( true, '123.223.213.132', 'Host IP only' ),
-			array( true, 'host:1521', 'Host and port' ),
-			array( true, 'host:1521/service', 'Host, port and service' ),
-			array( true, 'host:1521/service:shared', 'Host, port, service and shared server type' ),
-			array( true, 'host:1521/service:dedicated', 'Host, port, service and dedicated server type' ),
-			array( true, 'host:1521/service:pooled', 'Host, port, service and pooled server type' ),
-			array(
+		return [
+			[ true, 'simple_01', 'Simple TNS name' ],
+			[ true, 'simple_01.world', 'TNS name with domain' ],
+			[ true, 'simple_01.domain.net', 'TNS name with domain' ],
+			[ true, 'host123', 'Host only' ],
+			[ true, 'host123.domain.net', 'FQDN only' ],
+			[ true, '//host123.domain.net', 'FQDN URL only' ],
+			[ true, '123.223.213.132', 'Host IP only' ],
+			[ true, 'host:1521', 'Host and port' ],
+			[ true, 'host:1521/service', 'Host, port and service' ],
+			[ true, 'host:1521/service:shared', 'Host, port, service and shared server type' ],
+			[ true, 'host:1521/service:dedicated', 'Host, port, service and dedicated server type' ],
+			[ true, 'host:1521/service:pooled', 'Host, port, service and pooled server type' ],
+			[
 				true,
 				'host:1521/service:shared/instance1',
 				'Host, port, service, server type and instance'
-			),
-			array( true, 'host:1521//instance1', 'Host, port and instance' ),
-		);
+			],
+			[ true, 'host:1521//instance1', 'Host, port and instance' ],
+		];
 	}
 
 }

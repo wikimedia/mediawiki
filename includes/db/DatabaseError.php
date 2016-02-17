@@ -171,7 +171,7 @@ class DBConnectionError extends DBExpectedError {
 
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$info = str_replace(
-				'$1', Html::element( 'span', array( 'dir' => 'ltr' ), $this->error ),
+				'$1', Html::element( 'span', [ 'dir' => 'ltr' ], $this->error ),
 				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot access the database: $1)' ) )
 			);
 		} else {
@@ -221,7 +221,7 @@ class DBConnectionError extends DBExpectedError {
 				// Cached version on file system?
 				if ( $cache !== null ) {
 					// Hack: extend the body for error messages
-					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
+					$cache = str_replace( [ '</html>', '</body>' ], '', $cache );
 					// Add cache notice...
 					$cache .= '<div style="border:1px solid #ffd0d0;padding:1em;">' .
 						htmlspecialchars( $this->msg( 'dberr-cachederror',
@@ -366,7 +366,7 @@ class DBQueryError extends DBExpectedError {
 	 */
 	protected function getHTMLContent() {
 		$key = 'databaseerror-text';
-		$s = Html::element( 'p', array(), $this->msg( $key, $this->getFallbackMessage( $key ) ) );
+		$s = Html::element( 'p', [], $this->msg( $key, $this->getFallbackMessage( $key ) ) );
 
 		$details = $this->getTechnicalDetails();
 		if ( $details ) {
@@ -374,7 +374,7 @@ class DBQueryError extends DBExpectedError {
 			foreach ( $details as $key => $detail ) {
 				$s .= str_replace(
 					'$1', call_user_func_array( 'Html::element', $detail ),
-					Html::element( 'li', array(),
+					Html::element( 'li', [],
 						$this->msg( $key, $this->getFallbackMessage( $key ) )
 					)
 				);
@@ -415,18 +415,18 @@ class DBQueryError extends DBExpectedError {
 	protected function getTechnicalDetails() {
 		global $wgShowHostnames, $wgShowSQLErrors;
 
-		$attribs = array( 'dir' => 'ltr' );
-		$details = array();
+		$attribs = [ 'dir' => 'ltr' ];
+		$details = [];
 
 		if ( $wgShowSQLErrors ) {
-			$details['databaseerror-query'] = array(
-				'div', array( 'class' => 'mw-code' ) + $attribs, $this->sql );
+			$details['databaseerror-query'] = [
+				'div', [ 'class' => 'mw-code' ] + $attribs, $this->sql ];
 		}
 
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$errorMessage = $this->errno . ' ' . $this->error;
-			$details['databaseerror-function'] = array( 'code', $attribs, $this->fname );
-			$details['databaseerror-error'] = array( 'samp', $attribs, $errorMessage );
+			$details['databaseerror-function'] = [ 'code', $attribs, $this->fname ];
+			$details['databaseerror-error'] = [ 'samp', $attribs, $errorMessage ];
 		}
 
 		return $details;
@@ -437,14 +437,14 @@ class DBQueryError extends DBExpectedError {
 	 * @return string English message text
 	 */
 	private function getFallbackMessage( $key ) {
-		$messages = array(
+		$messages = [
 			'databaseerror-text' => 'A database query error has occurred.
 This may indicate a bug in the software.',
 			'databaseerror-textcl' => 'A database query error has occurred.',
 			'databaseerror-query' => 'Query: $1',
 			'databaseerror-function' => 'Function: $1',
 			'databaseerror-error' => 'Error: $1',
-		);
+		];
 
 		return $messages[$key];
 	}

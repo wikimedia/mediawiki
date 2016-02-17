@@ -20,7 +20,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * This property must be private, we do not want child to override it,
 	 * they should call the appropriate parent method instead.
 	 */
-	private $called = array();
+	private $called = [];
 
 	/**
 	 * @var TestUser[]
@@ -38,7 +38,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var array
 	 * @since 1.19
 	 */
-	protected $tablesUsed = array(); // tables with data
+	protected $tablesUsed = []; // tables with data
 
 	private static $useTemporaryTables = true;
 	private static $reuseDB = false;
@@ -58,7 +58,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @var array
 	 */
-	private $tmpFiles = array();
+	private $tmpFiles = [];
 
 	/**
 	 * Holds original values of MediaWiki configuration settings
@@ -66,13 +66,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * See also setMwGlobals().
 	 * @var array
 	 */
-	private $mwGlobals = array();
+	private $mwGlobals = [];
 
 	/**
 	 * Holds original loggers which have been replaced by setLogger()
 	 * @var LoggerInterface[]
 	 */
-	private $loggers = array();
+	private $loggers = [];
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -84,14 +84,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var array
 	 * @since 1.18
 	 */
-	protected $supportedDBs = array(
+	protected $supportedDBs = [
 		'mysql',
 		'sqlite',
 		'postgres',
 		'oracle'
-	);
+	];
 
-	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;
@@ -261,7 +261,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
-		$this->mwGlobals = array();
+		$this->mwGlobals = [];
 		$this->restoreLoggers();
 		RequestContext::resetMain();
 		MediaHandler::resetCache();
@@ -332,7 +332,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
 		if ( is_string( $pairs ) ) {
-			$pairs = array( $pairs => $value );
+			$pairs = [ $pairs => $value ];
 		}
 
 		$this->stashMwGlobals( array_keys( $pairs ) );
@@ -359,7 +359,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
-			$globalKeys = array( $globalKeys );
+			$globalKeys = [ $globalKeys ];
 		}
 
 		foreach ( $globalKeys as $globalKey ) {
@@ -467,7 +467,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 		$wrappedProvider->singletons = $singletons;
-		$this->loggers = array();
+		$this->loggers = [];
 	}
 
 	/**
@@ -520,10 +520,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$page = WikiPage::factory( $title );
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
 
-		return array(
+		return [
 			'title' => $title,
 			'id' => $page->getId(),
-		);
+		];
 	}
 
 	/**
@@ -540,13 +540,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
-			$this->db->insert( 'user', array(
+			$this->db->insert( 'user', [
 				'user_id' => 0,
-				'user_name' => 'Anonymous' ), __METHOD__, array( 'IGNORE' ) );
+				'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
 
 			# Insert 0 page to prevent FK violations
 			# Blank page
-			$this->db->insert( 'page', array(
+			$this->db->insert( 'page', [
 				'page_id' => 0,
 				'page_namespace' => 0,
 				'page_title' => ' ',
@@ -556,7 +556,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_random' => 0,
 				'page_touched' => $this->db->timestamp(),
 				'page_latest' => 0,
-				'page_len' => 0 ), __METHOD__, array( 'IGNORE' ) );
+				'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
 		}
 
 		User::resetIdByNameCache();
@@ -708,12 +708,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException
 	 */
 	public function __call( $func, $args ) {
-		static $compatibility = array(
+		static $compatibility = [
 			'assertEmpty' => 'assertEmpty2', // assertEmpty was added in phpunit 3.7.32
-		);
+		];
 
 		if ( isset( $compatibility[$func] ) ) {
-			return call_user_func_array( array( $this, $compatibility[$func] ), $args );
+			return call_user_func_array( [ $this, $compatibility[$func] ], $args );
 		} else {
 			throw new MWException( "Called non-existent $func method on "
 				. get_class( $this ) );
@@ -756,10 +756,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$views = $db->listViews( $wgDBprefix, __METHOD__ );
 			$tables = array_diff( $tables, $views );
 		}
-		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
+		$tables = array_map( [ __CLASS__, 'unprefixTable' ], $tables );
 
 		// Don't duplicate test tables from the previous fataled run
-		$tables = array_filter( $tables, array( __CLASS__, 'isNotUnittest' ) );
+		$tables = array_filter( $tables, [ __CLASS__, 'isNotUnittest' ] );
 
 		if ( $db->getType() == 'sqlite' ) {
 			$tables = array_flip( $tables );
@@ -842,7 +842,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$res = $db->select( $table, $fields, $condition, wfGetCaller(), array( 'ORDER BY' => $fields ) );
+		$res = $db->select( $table, $fields, $condition, wfGetCaller(), [ 'ORDER BY' => $fields ] );
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;
@@ -877,7 +877,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function arrayWrap( array $elements ) {
 		return array_map(
 			function ( $element ) {
-				return array( $element );
+				return [ $element ];
 			},
 			$elements
 		);
@@ -909,8 +909,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		call_user_func_array(
-			array( $this, 'assertEquals' ),
-			array_merge( array( $expected, $actual ), array_slice( func_get_args(), 4 ) )
+			[ $this, 'assertEquals' ],
+			array_merge( [ $expected, $actual ], array_slice( func_get_args(), 4 ) )
 		);
 	}
 
@@ -1052,13 +1052,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// NOTE: prefer content namespaces
 		$namespaces = array_unique( array_merge(
 			MWNamespace::getContentNamespaces(),
-			array( NS_MAIN, NS_HELP, NS_PROJECT ), // prefer these
+			[ NS_MAIN, NS_HELP, NS_PROJECT ], // prefer these
 			MWNamespace::getValidNamespaces()
 		) );
 
-		$namespaces = array_diff( $namespaces, array(
+		$namespaces = array_diff( $namespaces, [
 			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
-		) );
+		] );
 
 		$talk = array_filter( $namespaces, function ( $ns ) {
 			return MWNamespace::isTalk( $ns );

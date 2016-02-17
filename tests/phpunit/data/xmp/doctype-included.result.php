@@ -1,3 +1,3 @@
 <?php
 
-$result = array();
+$result = [];

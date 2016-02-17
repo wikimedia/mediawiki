@@ -36,7 +36,7 @@ class TestUser {
 	}
 
 	public function __construct( $username, $realname = 'Real Name',
-		$email = 'sample@example.com', $groups = array()
+		$email = 'sample@example.com', $groups = []
 	) {
 		$this->assertNotReal();
 
@@ -53,10 +53,10 @@ class TestUser {
 		if ( !$this->user->isLoggedIn() ) {
 			// create the user
 			$this->user = User::createNew(
-				$this->username, array(
+				$this->username, [
 					"email" => $email,
 					"real_name" => $realname
-				)
+				]
 			);
 
 			if ( !$this->user ) {
@@ -136,8 +136,8 @@ class TestUser {
 		$pwhash = $passwordFactory->newFromPlaintext( $password );
 		wfGetDB( DB_MASTER )->update(
 			'user',
-			array( 'user_password' => $pwhash->toString() ),
-			array( 'user_id' => $user->getId() ),
+			[ 'user_password' => $pwhash->toString() ],
+			[ 'user_id' => $user->getId() ],
 			__METHOD__
 		);
 	}

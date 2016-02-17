@@ -238,7 +238,7 @@ class NullFileJournal extends FileJournal {
 	 * @return array
 	 */
 	protected function doGetChangeEntries( $start, $limit ) {
-		return array();
+		return [];
 	}
 
 	/**
