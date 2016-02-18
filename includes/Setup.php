@@ -517,6 +517,11 @@ if ( $wgPHPSessionHandling !== 'enable' &&
 ) {
 	$wgPHPSessionHandling = 'warn';
 }
+if ( defined( 'MW_NO_SESSION' ) ) {
+	// If the entry point wants no session, force 'disable' here unless they
+	// specifically set it to the (undocumented) 'warn'.
+	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
+}
 
 Profiler::instance()->scopedProfileOut( $ps_default );
 
@@ -702,10 +707,13 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 	}
 
-	// Create the SessionManager singleton and set up our session handler
-	MediaWiki\Session\PHPSessionHandler::install(
-		MediaWiki\Session\SessionManager::singleton()
-	);
+	// Create the SessionManager singleton and set up our session handler,
+	// unless we're specifically asked not to.
+	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
+		MediaWiki\Session\PHPSessionHandler::install(
+			MediaWiki\Session\SessionManager::singleton()
+		);
+	}
 
 	// Initialize the session
 	try {
@@ -739,6 +747,16 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		// Start the PHP-session for backwards compatibility
 		session_id( $session->getId() );
 		MediaWiki\quietCall( 'session_start' );
+	}
+
+	unset( $session );
+} else {
+	// Even if we didn't set up a global Session, still install our session
+	// handler unless specifically requested not to.
+	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
+		MediaWiki\Session\PHPSessionHandler::install(
+			MediaWiki\Session\SessionManager::singleton()
+		);
 	}
 }
 Profiler::instance()->scopedProfileOut( $ps_session );
