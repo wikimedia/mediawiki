@@ -54,8 +54,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	/**
 	 * Generate the JavaScript content of this module.
 	 *
-	 * Add '@nomin' annotation to prevent the module's contents from getting
-	 * cached (T84960).
+	 * Add FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string
