@@ -424,16 +424,16 @@ class ApiMain extends ApiBase {
 		ob_start();
 
 		$t = microtime( true );
+		$isError = false;
 		try {
 			$this->executeAction();
-			$isError = false;
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
 			$isError = true;
 		}
 
 		// Log the request whether or not there was an error
-		$this->logRequest( microtime( true ) - $t );
+		$this->logRequest( microtime( true ) - $t, $isError );
 
 		// Commit DBs and send any related cookies and headers
 		MediaWiki::preOutputCommit( $this->getContext() );
@@ -536,7 +536,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Log the request and reset cache headers
-		$main->logRequest( 0 );
+		$main->logRequest( 0, true );
 		$main->sendCacheHeaders( true );
 
 		ob_end_flush();
@@ -1337,8 +1337,9 @@ class ApiMain extends ApiBase {
 	/**
 	 * Log the preceding request
 	 * @param float $time Time in seconds
+	 * @param bool $hadError Was this an error result?
 	 */
-	protected function logRequest( $time ) {
+	protected function logRequest( $time, $hadError ) {
 		$request = $this->getRequest();
 		$logCtx = [
 			'ts' => time(),
@@ -1346,6 +1347,7 @@ class ApiMain extends ApiBase {
 			'userAgent' => $this->getUserAgent(),
 			'wiki' => wfWikiID(),
 			'timeSpentBackend' => round( $time * 1000 ),
+			'hadError' => (bool)$hadError,
 			'params' => [],
 		];
 
