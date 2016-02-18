@@ -1258,6 +1258,7 @@
 	"apihelp-upload-description": "上传一个文件，或获取正在等待中的上传的状态。\n\n可以使用的几种方法：\n* 直接上传文件内容，使用<var>$1file</var>参数。\n* 成批上传文件，使用<var>$1filesize</var>、<var>$1chunk</var>和<var>$1offset</var>参数。\n* 有MediaWiki服务器从URL检索一个文件，使用<var>$1url</var>参数。\n* 完成一次由于警告而失败的早前上传，使用<var>$1filekey</var>参数。\n需要注意，当发送<var>$1file</var>时，HTTP POST必须做为一次文件上传（也就是使用<code>multipart/form-data</code>）完成。",
 	"apihelp-upload-param-filename": "目标文件名。",
 	"apihelp-upload-param-comment": "上传注释。如果没有指定<var>$1text</var>，那么它也被用于新文件的初始页面文本。",
+	"apihelp-upload-param-tags": "更改标签以应用于上传日志记录和文件页面修订中。",
 	"apihelp-upload-param-text": "用于新文件的初始页面文本。",
 	"apihelp-upload-param-watch": "监视页面。",
 	"apihelp-upload-param-watchlist": "无条件地将页面加入至当前用户的监视列表或将其移除，使用设置或不更改监视。",

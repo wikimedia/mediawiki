@@ -4,5 +4,7 @@
 			"Aftabuzzaman"
 		]
 	},
+	"apihelp-createaccount-param-name": "ব্যবহারকারী নাম।",
+	"apihelp-edit-param-minor": "অনুল্লেখ্য সম্পাদনা।",
 	"apihelp-login-example-login": "প্রবেশ"
 }

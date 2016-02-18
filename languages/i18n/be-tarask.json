@@ -867,6 +867,7 @@
 	"mergehistory-fail-invalid-source": "Няслушная старонка-крыніца.",
 	"mergehistory-fail-invalid-dest": "Няслушная мэтавая старонка.",
 	"mergehistory-fail-permission": "Недастаткова правоў для аб’яднаньня гісторыі.",
+	"mergehistory-fail-self-merge": "Крынічная і мэтавая старонкі супадаюць.",
 	"mergehistory-fail-toobig": "Немагчыма аб’яднаць гісторыю, бо будзе перавышаны ліміт у $1 {{PLURAL:$1|1=вэрсію|вэрсіі|вэрсіяў}}, якія будуць перанесеныя.",
 	"mergehistory-no-source": "Не існуе крынічнай старонкі $1.",
 	"mergehistory-no-destination": "Не існуе мэтавай старонкі $1.",
