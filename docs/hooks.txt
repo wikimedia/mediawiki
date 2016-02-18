@@ -2569,6 +2569,15 @@ $nt: the Title object
 &$prefix: optional text to display after $html
 &$ret: the value to return if your hook returns false
 
+'SendPersonalizedNotificationEmail: Allows modification of notification email to a user
+$watchingUser: the user receiving the email
+$oldid: id of the old revision
+$title: title of the new page
+&$headers: additional headers to add to the email
+&$subject: the subject of the outgoing email
+&$body: the actual text of the email
+&$EmailNotification: EmailNotification object ($this)
+
 'SendWatchlistEmailNotification': Return true to send watchlist email
 notification
 $targetUser: the user whom to send watchlist email notification
