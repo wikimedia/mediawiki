@@ -1069,7 +1069,9 @@ abstract class DatabaseBase implements IDatabase {
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		if ( $var === '*' ) { // sanity
-			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
+			throw new DBUnexpectedError( $this, "Cannot use a * field" );
+		} elseif ( !is_string( $var ) ) { // sanity
+			throw new DBUnexpectedError( $this, "Cannot use an array of fields" );
 		}
 
 		if ( !is_array( $options ) ) {
