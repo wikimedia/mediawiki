@@ -387,7 +387,7 @@ class ChangesList extends ContextSource {
 			$params = [ 'redirect' => 'no' ];
 		}
 
-		$articlelink = Linker::linkKnown(
+		$articlelink = Linker::link(
 			$rc->getTitle(),
 			null,
 			[ 'class' => 'mw-changeslist-title' ],
