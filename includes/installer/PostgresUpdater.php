@@ -452,6 +452,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
 			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
 			[ 'addPgIndex', 'user_groups', 'user_groups_expiry', '( ug_expiry )' ],
+			[ 'addPgField', 'watchlist', 'wl_timestamp', 'TIMESTAMPTZ' ],
+			[ 'addPgIndex', 'watchlist', 'wl_timestamp', '(wl_timestamp)' ],
 		];
 	}
 

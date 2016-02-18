@@ -886,12 +886,15 @@ CREATE TABLE /*_*/watchlist (
   -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
   -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
   -- of the page, which means that they should be sent an e-mail on the next change.
-  wl_notificationtimestamp varchar(14)
+  wl_notificationtimestamp varchar(14),
+  -- Timestamp the entry was created or last updated.
+  wl_timestamp varchar(14)
 
 );
 
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
+CREATE INDEX /*i*/wl_timestamp ON /*_*/watchlist (wl_timestamp);
 
 
 --

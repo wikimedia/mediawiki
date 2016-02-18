@@ -112,6 +112,7 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
 			[ 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ],
+			[ 'addField', 'watchlist', 'wl_timestamp', 'patch-watchlist-wl_timestamp.sql' ],
 
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',

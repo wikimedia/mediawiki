@@ -1168,13 +1168,17 @@ CREATE TABLE /*_*/watchlist (
   -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
   -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
   -- of the page, which means that they should be sent an e-mail on the next change.
-  wl_notificationtimestamp varbinary(14)
+  wl_notificationtimestamp varbinary(14),
+
+  -- Timestamp fo the creation or the last modification of the entry
+  wl_timestamp varbinary(14)
 
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
+CREATE INDEX /*i*/wl_timestamp ON /*_*/watchlist (wl_timestamp);
 
 
 --

@@ -301,6 +301,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
 			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'addField', 'watchlist', 'wl_timestamp', 'patch-watchlist-wl_timestamp.sql' ],
 		];
 	}
 
