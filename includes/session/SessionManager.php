@@ -358,19 +358,21 @@ final class SessionManager implements SessionManagerInterface {
 
 		// Try the local user from the slave DB
 		$localId = User::idFromName( $user->getName() );
+		$flags = 0;
 
 		// Fetch the user ID from the master, so that we don't try to create the user
 		// when they already exist, due to replication lag
 		// @codeCoverageIgnoreStart
 		if ( !$localId && wfGetLB()->getReaderIndex() != 0 ) {
 			$localId = User::idFromName( $user->getName(), User::READ_LATEST );
+			$flags = User::READ_LATEST;
 		}
 		// @codeCoverageIgnoreEnd
 
 		if ( $localId ) {
 			// User exists after all.
 			$user->setId( $localId );
-			$user->loadFromId();
+			$user->loadFromId( $flags );
 			return false;
 		}
 
