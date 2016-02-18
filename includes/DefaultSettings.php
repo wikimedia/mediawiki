@@ -2294,6 +2294,14 @@ $wgSessionHandler = null;
 
 /**
  * Whether to use PHP session handling ($_SESSION and session_*() functions)
+ *
+ * If the constant MW_NO_SESSION is defined, this is forced to 'disable'.
+ *
+ * If the constant MW_NO_SESSION_HANDLER is defined, this is ignored and PHP
+ * session handling will function independently of SessionHandler.
+ * SessionHandler and PHP's session handling may attempt to override each
+ * others' cookies.
+ *
  * @since 1.27
  * @var string
  *  - 'enable': Integrate with PHP's session handling as much as possible.
