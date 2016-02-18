@@ -953,6 +953,10 @@ final class SessionManager implements SessionManagerInterface {
 	 * @return Session
 	 */
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
+		if ( defined( 'MW_DISABLE_SESSIONS' ) ) {
+			throw new \BadMethodCallException( 'Sessions are disabled for this entry point' );
+		}
+
 		$id = $info->getId();
 
 		if ( !isset( $this->allSessionBackends[$id] ) ) {

@@ -696,7 +696,16 @@ $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
  * session ID (if any) loaded at startup
  */
 $wgInitialSessionId = null;
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+if ( defined( 'MW_DISABLE_SESSIONS' ) ) {
+	// Entry point specifically wants to disable sessions
+	if ( !defined( 'MW_NO_SESSION' ) ) {
+		define( 'MW_NO_SESSION', 1 );
+	}
+	$wgPHPSessionHandling = 'disable';
+	MediaWiki\Session\PHPSessionHandler::install(
+		MediaWiki\Session\SessionManager::singleton()
+	);
+} elseif ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
 		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
