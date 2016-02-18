@@ -41,7 +41,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
-				$html .= Html::rawElement( 'h1', [], $label ) . "\n";
+				$html .= Html::rawElement( 'h2', [], $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$thisAttribs = [
