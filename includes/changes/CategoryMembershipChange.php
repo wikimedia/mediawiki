@@ -65,7 +65,11 @@ class CategoryMembershipChange {
 	 */
 	public function __construct( Title $pageTitle, Revision $revision = null ) {
 		$this->pageTitle = $pageTitle;
-		$this->timestamp = wfTimestampNow();
+		if( $revision === null ) {
+			$this->timestamp = wfTimestampNow();
+		} else {
+			$this->timestamp = $revision->getTimestamp();
+		}
 		$this->revision = $revision;
 		$this->newForCategorizationCallback = [ 'RecentChange', 'newForCategorization' ];
 	}
