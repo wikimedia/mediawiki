@@ -41,7 +41,7 @@
 	 * @cfg {string} [apiUrl] api.php URL if the feedback page is on another wiki
 	 * @cfg {string} [dialogTitleMessageKey="feedback-dialog-title"] Message key for the
 	 *  title of the dialog box
-	 * @cfg {mw.Uri|string} [bugsLink="//phabricator.wikimedia.org/maniphest/task/create/"] URL where
+	 * @cfg {mw.Uri|string} [bugsLink="//phabricator.wikimedia.org/maniphest/task/edit/form/1/"] URL where
 	 *  bugs can be posted
 	 * @cfg {mw.Uri|string} [bugsListLink="//phabricator.wikimedia.org/maniphest/query/advanced"] URL
 	 *  where bugs can be listed
@@ -61,7 +61,7 @@
 		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle, config.apiUrl );
 
 		// Links
-		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/create/';
+		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/edit/form/1/';
 		this.bugsTaskListLink = config.bugsListLink || '//phabricator.wikimedia.org/maniphest/query/advanced';
 
 		// Terms of use
