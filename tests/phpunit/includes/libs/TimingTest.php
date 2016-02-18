@@ -55,6 +55,7 @@ class TimingTest extends PHPUnit_Framework_TestCase {
 		$this->assertArrayHasKey( 'startTime', $entry );
 		$this->assertEquals( 0, $entry['duration'] );
 
+		usleep( 100 );
 		$timing->mark( 'a' );
 		$newEntry = $timing->getEntryByName( 'a' );
 		$this->assertGreaterThan( $entry['startTime'], $newEntry['startTime'] );
@@ -67,9 +68,10 @@ class TimingTest extends PHPUnit_Framework_TestCase {
 		$timing = new Timing;
 
 		$timing->mark( 'a' );
-		$a = $timing->getEntryByName( 'a' );
-
+		usleep( 100 );
 		$timing->mark( 'b' );
+
+		$a = $timing->getEntryByName( 'a' );
 		$b = $timing->getEntryByName( 'b' );
 
 		$timing->measure( 'a_to_b', 'a', 'b' );
