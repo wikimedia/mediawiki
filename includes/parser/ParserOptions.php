@@ -175,6 +175,11 @@ class ParserOptions {
 	private $mThumbSize;
 
 	/**
+	 * Whether to include srcset attributes on images
+	 */
+	private $mUseResponsiveImages;
+
+	/**
 	 * Maximum article size of an article to be marked as "stub"
 	 */
 	private $mStubThreshold;
@@ -326,6 +331,13 @@ class ParserOptions {
 		$this->optionUsed( 'thumbsize' );
 
 		return $this->mThumbSize;
+	}
+
+	/**
+	 * @since 1.28
+	 */
+	public function getUseResponsiveImages() {
+		return $this->mUseResponsiveImages;
 	}
 
 	public function getStubThreshold() {
@@ -523,6 +535,10 @@ class ParserOptions {
 		return wfSetVar( $this->mThumbSize, $x );
 	}
 
+	public function setUseResponsiveImages( $x ) {
+		return wfSetVar( $this->mUseResponsiveImages, $x );
+	}
+
 	public function setStubThreshold( $x ) {
 		return wfSetVar( $this->mStubThreshold, $x );
 	}
@@ -652,7 +668,8 @@ class ParserOptions {
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion;
+			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion,
+			$wgResponsiveImages;
 
 		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -670,6 +687,7 @@ class ParserOptions {
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mDisableContentConversion = $wgDisableLangConversion;
 		$this->mDisableTitleConversion = $wgDisableLangConversion || $wgDisableTitleConversion;
+		$this->mUseResponsiveImages = $wgResponsiveImages;
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
@@ -824,6 +842,13 @@ class ParserOptions {
 
 		if ( $this->mIsPrintable && in_array( 'printable', $forOptions ) ) {
 			$confstr .= '!printable=1';
+		}
+
+		// Responsive images are enabled by default, so only record the value
+		// of it when it is false, to avoid needlessly invalidating parser
+		// cache entries which predate Ifa29d8b4.
+		if ( $this->mUseResponsiveImages === false ) {
+			$confstr .= '!responsiveimages=0';
 		}
 
 		if ( $this->mExtraKey != '' ) {
