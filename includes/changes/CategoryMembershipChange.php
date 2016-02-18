@@ -195,7 +195,8 @@ class CategoryMembershipChange {
 				$deleted
 			]
 		);
-		$rc->save();
+		// Don't sent to RC feed (T127360)
+		$rc->save( /* $noudp = */ true );
 	}
 
 	/**
