@@ -763,7 +763,7 @@ class ParserOptions {
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
-		global $wgRenderHashAppend;
+		global $wgRenderHashAppend, $wgResponsiveImages;
 
 		// FIXME: Once the cache key is reorganized this argument
 		// can be dropped. It was used when the math extension was
@@ -824,6 +824,13 @@ class ParserOptions {
 
 		if ( $this->mIsPrintable && in_array( 'printable', $forOptions ) ) {
 			$confstr .= '!printable=1';
+		}
+
+		// Responsive images are enabled by default, so only record the value
+		// of $wgResponsiveImages when it is false, to avoid needlessly
+		// invalidating parser cache entries which predate Ifa29d8b4.
+		if ( $wgResponsiveImages === false ) {
+			$confstr .= '!responsiveimages=0';
 		}
 
 		if ( $this->mExtraKey != '' ) {
