@@ -69,6 +69,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
 			[ 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ],
+			[ 'addField', 'watchlist', 'wl_timestamp', 'patch-watchlist-wl_timestamp.sql' ],
 		];
 	}
 

@@ -433,6 +433,8 @@ class PostgresUpdater extends DatabaseUpdater {
 				'addPgField', 'watchlist', 'wl_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq')"
 			],
+			[ 'addPgField', 'watchlist', 'wl_timestamp', 'TIMESTAMPTZ NULL DEFAULT NULL' ],
+			[ 'addPgIndex', 'watchlist', 'wl_timestamp', '(wl_timestamp)' ],
 		];
 	}
 
