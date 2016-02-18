@@ -54,8 +54,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	/**
 	 * Generate the JavaScript content of this module.
 	 *
-	 * Add '@nomin' annotation to prevent the module's contents from getting
-	 * cached (T84960).
+	 * Add FILTER_NOCACHE annotation to prevent caching of this script (T84960).
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string
@@ -65,7 +64,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 			'mw.user.tokens.set',
 			[ $this->contextUserTokens( $context ) ],
 			ResourceLoader::inDebugMode()
-		) . ResourceLoader::FILTER_NOMIN;
+		) . ResourceLoader::FILTER_NOCACHE;
 	}
 
 	/**
