@@ -33,6 +33,11 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,
 			$wgCanonicalServer, $wgScript;
 		$attribs = $rc->getAttributes();
+		if ( $attribs['rc_type'] == RC_CATEGORIZE ) {
+			// Don't send RC_CATEGORIZE events to IRC feed (T127360)
+			return null;
+		}
+
 		if ( $attribs['rc_type'] == RC_LOG ) {
 			// Don't use SpecialPage::getTitleFor, backwards compatibility with
 			// IRC API which expects "Log".
