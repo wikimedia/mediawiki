@@ -3434,7 +3434,7 @@ class Title implements LinkTarget {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param array $options May be FOR UPDATE
+	 * @param array $options Query option to Database::select()
 	 * @return Title[] Array of Title the Title objects linking here
 	 */
 	public function getTemplateLinksTo( $options = [] ) {
@@ -3448,7 +3448,7 @@ class Title implements LinkTarget {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param array $options May be FOR UPDATE
+	 * @param array $options Query option to Database::select()
 	 * @param string $table Table name
 	 * @param string $prefix Fields prefix
 	 * @return array Array of Title objects linking here
@@ -3461,11 +3461,7 @@ class Title implements LinkTarget {
 			return [];
 		}
 
-		if ( count( $options ) > 0 ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
+		$db = wfGetDB( DB_SLAVE );
 
 		$blNamespace = "{$prefix}_namespace";
 		$blTitle = "{$prefix}_title";
