@@ -16,14 +16,14 @@
 			$( '<label>' )
 				.text( mw.msg( 'powersearch-togglelabel' ) )
 		).append(
-			$( '<input type="button" />' )
+			$( '<input>' ).attr( 'type', 'button' )
 				.attr( 'id', 'mw-search-toggleall' )
 				.prop( 'value', mw.msg( 'powersearch-toggleall' ) )
 				.click( function () {
 					$checkboxes.prop( 'checked', true );
 				} )
 		).append(
-			$( '<input type="button" />' )
+			$( '<input>' ).attr( 'type', 'button' )
 				.attr( 'id', 'mw-search-togglenone' )
 				.prop( 'value', mw.msg( 'powersearch-togglenone' ) )
 				.click( function () {

@@ -358,7 +358,7 @@
 					if ( spec.intercalarySize ) {
 						$.each( spec.intercalarySize, reduceFunc );
 					}
-					$field = $( '<input type="text">' )
+					$field = $( '<input>' ).attr( 'type', 'text' )
 						.attr( {
 							tabindex: disabled ? -1 : 0,
 							size: spec.size,
@@ -762,7 +762,7 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.getInputElement = function () {
-		return $( '<input type="hidden" />' );
+		return $( '<input>' ).attr( 'type', 'hidden' );
 	};
 
 	/**

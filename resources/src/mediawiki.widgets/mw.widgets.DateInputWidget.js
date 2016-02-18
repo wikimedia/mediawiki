@@ -235,7 +235,7 @@
 	 * @protected
 	 */
 	mw.widgets.DateInputWidget.prototype.getInputElement = function () {
-		return $( '<input type="hidden">' );
+		return $( '<input>' ).attr( 'type', 'hidden' );
 	};
 
 	/**
