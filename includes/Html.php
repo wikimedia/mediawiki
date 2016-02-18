@@ -216,7 +216,7 @@ class Html {
 		if ( in_array( $element, self::$voidElements ) ) {
 			if ( $wgWellFormedXml ) {
 				// Silly XML.
-				return substr( $start, 0, -1 ) . ' />';
+				return substr( $start, 0, -1 ) . '/>';
 			}
 			return $start;
 		} else {

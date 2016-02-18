@@ -66,7 +66,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgWellFormedXml', true );
 
 		$this->assertEquals(
-			'<img />',
+			'<img/>',
 			Html::element( 'img', null, '' ),
 			'Self-closing tag for short-tag elements (wgWellFormedXml = true)'
 		);
