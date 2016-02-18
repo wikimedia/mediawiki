@@ -126,7 +126,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var bool Whether mw.loader.state() call should be omitted */
 	protected $raw = false;
 
-	protected $targets = [ 'desktop' ];
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @var bool Whether getStyleURLsForDebug should return raw file paths,
