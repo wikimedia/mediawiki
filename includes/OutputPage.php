@@ -460,7 +460,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script Raw HTML
 	 */
 	function addScript( $script ) {
-		$this->mScripts .= $script . "\n";
+		$this->mScripts .= $script;
 	}
 
 	/**
@@ -516,7 +516,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no "<script>" tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
+		$this->mScripts .= Html::inlineScript( $script );
 	}
 
 	/**
@@ -2989,7 +2989,7 @@ class OutputPage extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
-		return $this->getInlineHeadScripts() . "\n" . $this->getExternalHeadScripts();
+		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
 	}
 
 	/**
@@ -3671,7 +3671,7 @@ class OutputPage extends ContextSource {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
 		}
-		$this->mInlineStyles .= Html::inlineStyle( $style_css ) . "\n";
+		$this->mInlineStyles .= Html::inlineStyle( $style_css );
 	}
 
 	/**
@@ -3723,7 +3723,7 @@ class OutputPage extends ContextSource {
 			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
 				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
 			}
-			$otherTags[] = Html::inlineStyle( $previewedCSS ) . "\n";
+			$otherTags[] = Html::inlineStyle( $previewedCSS );
 		} else {
 			// Load the user styles normally
 			$moduleStyles[] = 'user';
@@ -3762,7 +3762,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_STYLES
 		);
 		// Add normal styles added through addStyle()/addInlineStyle() here
-		$links[] = implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
+		$links[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
 		// Add marker tag to mark the place where the client-side
 		// loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML

@@ -87,8 +87,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $logger;
 
-	/** @var string JavaScript / CSS pragma to disable minification. **/
-	const FILTER_NOMIN = ' /* @nomin */ ';
+	/** @var string JavaScript / CSS pragma to disable minification cache. **/
+	const FILTER_NOCACHE = '/*@nocache*/';
 
 	/**
 	 * Load information stored in the database about modules.
@@ -173,8 +173,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Filtered data, or a comment containing an error message
 	 */
 	public static function filter( $filter, $data, array $options = [] ) {
-		if ( strpos( $data, ResourceLoader::FILTER_NOMIN ) !== false ) {
-			return $data;
+		if ( strpos( $data, ResourceLoader::FILTER_NOCACHE ) !== false ) {
+			return self::applyFilter( $filter, $data ) . ResourceLoader::FILTER_NOCACHE;
 		}
 
 		if ( isset( $options['cache'] ) && $options['cache'] === false ) {
@@ -1362,8 +1362,8 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "(window.RLQ = window.RLQ || []).push(function () {\n" .
-			trim( $script ) . "\n} );";
+		return '(window.RLQ=window.RLQ||[]).push(function(){' .
+			trim( $script ) . '});';
 	}
 
 	/**
@@ -1379,8 +1379,8 @@ MESSAGE;
 		$js = self::makeLoaderConditionalScript( $script );
 		return new WrappedString(
 			Html::inlineScript( $js ),
-			"<script>(window.RLQ = window.RLQ || []).push(function () {\n",
-			"\n} );</script>"
+			'<script>(window.RLQ=window.RLQ||[]).push(function(){',
+			'});</script>'
 		);
 	}
 
@@ -1396,7 +1396,7 @@ MESSAGE;
 			'mw.config.set',
 			[ $configuration ],
 			ResourceLoader::inDebugMode()
-		) . ResourceLoader::FILTER_NOMIN;
+		) . ResourceLoader::FILTER_NOCACHE;
 	}
 
 	/**
