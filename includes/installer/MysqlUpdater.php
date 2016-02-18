@@ -283,6 +283,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
 				'patch-add-cl_collation_ext_index.sql' ],
 			[ 'doCollationUpdate' ],
+			[ 'addField', 'watchlist', 'wl_timestamp', 'patch-watchlist-wl_timestamp.sql' ],
+
 		];
 	}
 
