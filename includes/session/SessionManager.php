@@ -475,12 +475,21 @@ final class SessionManager implements SessionManagerInterface {
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {
 				// @codeCoverageIgnoreStart
-				$logger->error( __METHOD__ . ': failed with message ' . $status->getWikiText(),
-					[
-						'username' => $userName,
-				] );
-				$user->setId( 0 );
-				$user->loadFromId();
+				// double-check for a race condition (T70012)
+				$id = User::idFromName( $user->getName(), User::READ_LATEST );
+				if ( $id ) {
+					$logger->info( __METHOD__ . ': tried to autocreate existing user',
+						[
+							'username' => $userName,
+						] );
+				} else {
+					$logger->error( __METHOD__ . ': failed with message ' . $status->getWikiText(),
+						[
+							'username' => $userName,
+						] );
+				}
+				$user->setId( $id );
+				$user->loadFromId( User::READ_LATEST );
 				return false;
 				// @codeCoverageIgnoreEnd
 			}
