@@ -119,6 +119,7 @@
 			validate: this.validateDate.bind( this )
 		} );
 		this.calendar = new mw.widgets.CalendarWidget( {
+			lazyInitOnToggle: true,
 			// Can't pass `$floatableContainer: this.$element` here, the latter is not set yet.
 			// Instead we call setFloatableContainer() below.
 			precision: config.precision
