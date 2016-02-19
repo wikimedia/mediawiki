@@ -1090,7 +1090,6 @@ return [
 			'default' => 'resources/src/mediawiki/mediawiki.notification.css',
 		],
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
-		'dependencies' => 'mediawiki.page.startup',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notify' => [
