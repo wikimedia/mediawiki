@@ -302,7 +302,7 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( '#wpSummary' ).after(
+			$( '.mw-summary-clear' ).after(
 				$( '<div>' ).addClass( 'mw-summary-preview' )
 			);
 		}
