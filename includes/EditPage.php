@@ -2827,7 +2827,7 @@ class EditPage {
 		} elseif ( $wgUser->isAnon() ) {
 			if ( $this->formtype != 'preview' ) {
 				$wgOut->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning'>\n$1\n</div>",
+					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						'{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}',
