@@ -1598,7 +1598,10 @@ class ApiMain extends ApiBase {
 			$header = $this->msg( 'api-help-datatypes-header' )->parse();
 			$help['datatypes'] .= Html::rawElement( 'h' . min( 6, $level ),
 				[ 'id' => 'main/datatypes', 'class' => 'apihelp-header' ],
-				Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/datatypes' ) ] ) .
+				Html::element( 'span', [ 'id' => Sanitizer::escapeId(
+                                        'main/datatypes',
+                                        [ 'noninitial', 'noentities' ]
+                                ) ] ) .
 				$header
 			);
 			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
@@ -1617,7 +1620,10 @@ class ApiMain extends ApiBase {
 			$header = $this->msg( 'api-credits-header' )->parse();
 			$help['credits'] .= Html::rawElement( 'h' . min( 6, $level ),
 				[ 'id' => 'main/credits', 'class' => 'apihelp-header' ],
-				Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/credits' ) ] ) .
+				Html::element( 'span', [ 'id' => Sanitizer::escapeId(
+					'main/credits',
+					[ 'noninitial', 'noentities' ]
+				) ] ) .
 				$header
 			);
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();

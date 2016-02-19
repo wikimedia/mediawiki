@@ -825,7 +825,10 @@ class SpecialVersion extends SpecialPage {
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', [
 				'class' => 'mw-version-ext',
-				'id' => Sanitizer::escapeId( 'mw-version-ext-' . $extension['name'] )
+				'id' => Sanitizer::escapeId(
+					'mw-version-ext-' . $extension['name'],
+					[ 'noninitial', 'noentities' ]
+				)
 			]
 		);
 
