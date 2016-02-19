@@ -218,8 +218,9 @@ class XMPValidate implements LoggerAwareInterface {
 	 *
 	 * This is just a naive check to make sure it somewhat looks like a lang code.
 	 *
-	 * @see rfc 3066
-	 * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart1.pdf page 30 (section 8.2.2.5)
+	 * @see BCP 47
+	 * @see https://wwwimages2.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/
+	 *      XMP%20SDK%20Release%20cc-2014-12/XMPSpecificationPart1.pdf page 22 (section 8.2.2.4)
 	 *
 	 * @param array $info Information about current property
 	 * @param mixed &$val Current value to validate
