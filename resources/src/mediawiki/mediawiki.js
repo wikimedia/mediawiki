@@ -1193,7 +1193,7 @@
 				var r = $.Deferred();
 
 				pendingRequests.push( function () {
-					if ( moduleName && !hasOwn.call( registry, moduleName ) ) {
+					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}

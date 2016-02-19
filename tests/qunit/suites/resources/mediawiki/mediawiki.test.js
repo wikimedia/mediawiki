@@ -1127,4 +1127,23 @@
 		}, /is not loaded/, 'Requesting non-existent modules throws error.' );
 	} );
 
+	QUnit.asyncTest( 'mw.loader require in debug mode', 1, function ( assert ) {
+		var path = mw.config.get( 'wgScriptPath' );
+		mw.loader.implement( 'test.module.require.define', [ QUnit.fixurl( path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ) ] );
+		mw.loader.implement( 'test.module.require.callback', [ QUnit.fixurl( path + '/tests/qunit/data/requireCallMwLoaderTestCallback.js' ) ] );
+
+		mw.loader.testCallback = function () {
+			QUnit.start();
+		};
+
+		mw.loader.using( 'test.module.require.callback', function () {
+			var exported = mw.loader.require( 'test.module.require.callback' );
+			assert.strictEqual( exported, 'Require worked.Define worked.',
+				'module.exports worked in debug mode' );
+		}, function () {
+			QUnit.start();
+			assert.ok( true, 'Error callback fired while loader.using "test.module.require.callback" module' );
+		} );
+	} );
+
 }( mediaWiki, jQuery ) );
