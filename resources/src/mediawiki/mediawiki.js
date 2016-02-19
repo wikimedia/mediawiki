@@ -2066,15 +2066,18 @@
 				 * @return {Array}
 				 */
 				require: function ( moduleName ) {
-					var state = mw.loader.getState( moduleName );
+					var state,
+						registeredModule = hasOwn.call( registry, moduleName ) ? registry[ moduleName ] : false;
 
-					// Only ready mudules can be required
-					if ( state !== 'ready' ) {
+					// Purposely not using getState( moduleName ) as this
+					// leads to issues in debug mode where module is not defined
+					state = registeredModule && registeredModule.state ? registeredModule.state : null;
+					if ( ( registeredModule && state === 'ready' ) || state === 'executing' ) {
+						return registeredModule.module.exports;
+					} else {
 						// Module may've forgotten to declare a dependency
 						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
 					}
-
-					return registry[ moduleName ].module.exports;
 				},
 
 				/**
