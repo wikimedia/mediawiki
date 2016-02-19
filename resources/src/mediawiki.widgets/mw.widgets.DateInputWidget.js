@@ -131,20 +131,17 @@
 		this.placeholderLabel = config.placeholderLabel;
 
 		// Validate and set min and max dates as properties
-		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
-		mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
-		if (
-			config.mustBeAfter !== undefined &&
-			mustBeAfter.isValid()
-		) {
-			this.mustBeAfter = mustBeAfter;
+		if ( config.mustBeAfter !== undefined ) {
+			mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
+			if ( mustBeAfter.isValid() ) {
+				this.mustBeAfter = mustBeAfter;
+			}
 		}
-
-		if (
-			config.mustBeBefore !== undefined &&
-			mustBeBefore.isValid()
-		) {
-			this.mustBeBefore = mustBeBefore;
+		if ( config.mustBeBefore !== undefined ) {
+			mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
+			if ( mustBeBefore.isValid() ) {
+				this.mustBeBefore = mustBeBefore;
+			}
 		}
 
 		// Parent constructor
@@ -349,19 +346,21 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.updateUI = function () {
+		var moment;
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
 			this.label.setLabel( this.placeholderLabel );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
+			moment = this.getMoment();
 			if ( !this.inTextInput ) {
-				this.textInput.setValue( this.getMoment().format( this.getInputFormat() ) );
+				this.textInput.setValue( moment.format( this.getInputFormat() ) );
 			}
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
 			}
-			this.label.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
+			this.label.setLabel( moment.format( this.getDisplayFormat() ) );
 			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
 		}
 	};
@@ -563,7 +562,7 @@
 	mw.widgets.DateInputWidget.prototype.isValidDate = function ( date ) {
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
-		// parsing flags for the details (stoled from implementation of moment#isValid).
+		// parsing flags for the details (stolen from implementation of moment#isValid).
 		var
 			mom = moment( date, this.getInputFormat() ),
 			flags = mom.parsingFlags();
@@ -581,10 +580,13 @@
 	 * @return {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isInRange = function ( date ) {
-		var momentDate = moment( date, 'YYYY-MM-DD' ),
-			isAfter = ( this.mustBeAfter === undefined || momentDate.isAfter( this.mustBeAfter ) ),
-			isBefore = ( this.mustBeBefore === undefined || momentDate.isBefore( this.mustBeBefore ) );
-
+		var momentDate, isAfter, isBefore;
+		if ( this.mustBeAfter === undefined && this.mustBeBefore === undefined ) {
+			return true;
+		}
+		momentDate = moment( date, 'YYYY-MM-DD' );
+		isAfter = ( this.mustBeAfter === undefined || momentDate.isAfter( this.mustBeAfter ) );
+		isBefore = ( this.mustBeBefore === undefined || momentDate.isBefore( this.mustBeBefore ) );
 		return isAfter && isBefore;
 	};
 
