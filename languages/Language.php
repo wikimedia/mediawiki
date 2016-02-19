@@ -4320,6 +4320,17 @@ class Language {
 	}
 
 	/**
+	 * Compare with an other language object
+	 *
+	 * @since 1.27
+	 * @param Language $lang
+	 * @return boolean
+	 */
+	public function equals( Language $lang ) {
+		return $lang->getCode() === $this->mCode;
+	}
+
+	/**
 	 * Get the RFC 3066 code for this language object
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
