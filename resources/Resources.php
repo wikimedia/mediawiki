@@ -2236,7 +2236,7 @@ return [
 			'resources/lib/oojs/oojs.jquery.js',
 			'resources/src/oojs-global.js',
 		],
-		'targets' => array( 'desktop', 'mobile' ),
+		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'es5-shim',
 			'json',
