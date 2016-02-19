@@ -1245,12 +1245,20 @@ class Parser {
 		}
 
 		Hooks::run( 'InternalParseBeforeSanitize', [ &$this, &$text, &$this->mStripState ] );
+		$warnings = [];
 		$text = Sanitizer::removeHTMLtags(
 			$text,
 			[ &$this, 'attributeStripCallback' ],
 			false,
-			array_keys( $this->mTransparentTagHooks )
+			array_keys( $this->mTransparentTagHooks ),
+			[],
+			$warnings
 		);
+		if ( $warnings ) {
+			$this->addWarningMessages( $warnings );
+			$this->addTrackingCategory( 'sanitizer-error-category' );
+		}
+
 		Hooks::run( 'InternalParseBeforeLinks', [ &$this, &$text, &$this->mStripState ] );
 
 		# Tables need to come after variable replacement for things to work
@@ -3380,6 +3388,14 @@ class Parser {
 		}
 
 		return $assocArgs;
+	}
+
+	protected function addWarningMessages( $warnings ) {
+		foreach ( $warnings as $warning ) {
+			$msg = call_user_func_array( 'wfMessage', $warning );
+			$msg->inLanguage( $this->mOptions->getUserLangObj() );
+			$this->mOutput->addWarning( $msg->text() );
+		}
 	}
 
 	/**

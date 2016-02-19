@@ -450,10 +450,11 @@ class Sanitizer {
 	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
+	 * @param array|null $warnings List of parse errors detected
 	 * @return string
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = []
+		$args = [], $extratags = [], $removetags = [], &$warnings = null
 	) {
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
@@ -477,6 +478,7 @@ class Sanitizer {
 				}
 
 				$badtag = false;
+				$warningString = '';
 				$t = strtolower( $t );
 				if ( isset( $htmlelements[$t] ) ) {
 					# Check our stack
@@ -573,12 +575,19 @@ class Sanitizer {
 						}
 
 						# Strip non-approved attributes from the tag
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						$tagWarnings = [];
+						$newparams = Sanitizer::fixTagAttributes( $params, $t, $tagWarnings );
+						if ( $tagWarnings ) {
+							if ( $warnings !== null ) {
+								$warnings = array_merge( $warnings, $tagWarnings );
+							}
+							$warningString = Sanitizer::makeWarningComment( $tagWarnings );
+						}
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
 						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
-						$text .= "<$slash$t$newparams$close>$rest";
+						$text .= "<$slash$t$newparams$close>$warningString$rest";
 						continue;
 					}
 				}
@@ -608,10 +617,19 @@ class Sanitizer {
 							$badtag = true;
 						}
 
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						$tagWarnings = [];
+						$newparams = Sanitizer::fixTagAttributes( $params, $t, $tagWarnings );
+						if ( $tagWarnings ) {
+							if ( $warnings !== null ) {
+								$warnings = array_merge( $warnings, $tagWarnings );
+							}
+							$warningString = Sanitizer::makeWarningComment( $tagWarnings );
+						} else {
+							$warningString = '';
+						}
 						if ( !$badtag ) {
 							$rest = str_replace( '>', '&gt;', $rest );
-							$text .= "<$slash$t$newparams$brace$rest";
+							$text .= "<$slash$t$newparams$brace$warningString$rest";
 							continue;
 						}
 					}
@@ -620,6 +638,17 @@ class Sanitizer {
 			}
 		}
 		return $text;
+	}
+
+	private static function makeWarningComment( $warnings ) {
+		$s = '';
+		foreach ( $warnings as $warning ) {
+			$msg = call_user_func_array( 'wfMessage', $warning );
+			$s .= '<!-- ' . 
+				$msg->inContentLanguage()->escaped() .
+				' -->';
+		}
+		return $s;
 	}
 
 	/**
@@ -1034,14 +1063,15 @@ class Sanitizer {
 	 *
 	 * @param string $text
 	 * @param string $element
+	 * @param array|null $warnings List of parse errors detected
 	 * @return string
 	 */
-	static function fixTagAttributes( $text, $element ) {
+	static function fixTagAttributes( $text, $element, &$warnings = null ) {
 		if ( trim( $text ) == '' ) {
 			return '';
 		}
 
-		$decoded = Sanitizer::decodeTagAttributes( $text );
+		$decoded = Sanitizer::decodeTagAttributes( $text, $warnings );
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
 
 		return Sanitizer::safeEncodeTagAttributes( $stripped );
@@ -1246,9 +1276,10 @@ class Sanitizer {
 	 * character references are decoded to UTF-8 text.
 	 *
 	 * @param string $text
+	 * @param array|null $warnings List of parse errors detected
 	 * @return array
 	 */
-	public static function decodeTagAttributes( $text ) {
+	public static function decodeTagAttributes( $text, &$warnings = null ) {
 		if ( trim( $text ) == '' ) {
 			return [];
 		}
@@ -1265,7 +1296,32 @@ class Sanitizer {
 
 		foreach ( $pairs as $set ) {
 			$attribute = strtolower( $set[1] );
-			$value = Sanitizer::getTagAttributeCallback( $set );
+
+			// Determine value
+			if ( isset( $set[5] ) ) {
+				// No quotes.
+				$value = $set[5];
+				if ( $warnings !== null ) {
+					$errorPos = strcspn( $value, "='\"" );
+					if ( $errorPos !== strlen( $value ) ) {
+						$warnings[] = array( 'invalid-unquoted-attr',
+							$attribute, $value[$errorPos] );
+					}
+				}
+			} elseif ( isset( $set[4] ) ) {
+				// Single-quoted
+				$value = $set[4];
+			} elseif ( isset( $set[3] ) ) {
+				// Double-quoted
+				$value = $set[3];
+			} elseif ( !isset( $set[2] ) ) {
+				// In XHTML, attributes must have a value so return an empty string.
+				// See "Empty attribute syntax",
+				// http://www.w3.org/TR/html5/syntax.html#syntax-attribute-name
+				$value = "";
+			} else {
+				throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
+			}
 
 			// Normalize whitespace
 			$value = preg_replace( '/[\t\r\n ]+/', ' ', $value );
@@ -1293,34 +1349,6 @@ class Sanitizer {
 			$attribs[] = "$encAttribute=\"$encValue\"";
 		}
 		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
-	}
-
-	/**
-	 * Pick the appropriate attribute value from a match set from the
-	 * attribs regex matches.
-	 *
-	 * @param array $set
-	 * @throws MWException When tag conditions are not met.
-	 * @return string
-	 */
-	private static function getTagAttributeCallback( $set ) {
-		if ( isset( $set[5] ) ) {
-			# No quotes.
-			return $set[5];
-		} elseif ( isset( $set[4] ) ) {
-			# Single-quoted
-			return $set[4];
-		} elseif ( isset( $set[3] ) ) {
-			# Double-quoted
-			return $set[3];
-		} elseif ( !isset( $set[2] ) ) {
-			# In XHTML, attributes must have a value so return an empty string.
-			# See "Empty attribute syntax",
-			# http://www.w3.org/TR/html5/syntax.html#syntax-attribute-name
-			return "";
-		} else {
-			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
-		}
 	}
 
 	/**
