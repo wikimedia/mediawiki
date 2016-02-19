@@ -50,36 +50,8 @@
 		this.$bodyOuterWrapper = $( '<div>' ).addClass( 'mw-widget-calendarWidget-body-outer-wrapper' );
 		this.$bodyWrapper = $( '<div>' ).addClass( 'mw-widget-calendarWidget-body-wrapper' );
 		this.$body = $( '<div>' ).addClass( 'mw-widget-calendarWidget-body' );
-		this.labelButton = new OO.ui.ButtonWidget( {
-			tabIndex: -1,
-			label: '',
-			framed: false,
-			classes: [ 'mw-widget-calendarWidget-labelButton' ]
-		} );
-		this.upButton = new OO.ui.ButtonWidget( {
-			tabIndex: -1,
-			framed: false,
-			icon: 'collapse',
-			classes: [ 'mw-widget-calendarWidget-upButton' ]
-		} );
-		this.prevButton = new OO.ui.ButtonWidget( {
-			tabIndex: -1,
-			framed: false,
-			icon: 'previous',
-			classes: [ 'mw-widget-calendarWidget-prevButton' ]
-		} );
-		this.nextButton = new OO.ui.ButtonWidget( {
-			tabIndex: -1,
-			framed: false,
-			icon: 'next',
-			classes: [ 'mw-widget-calendarWidget-nextButton' ]
-		} );
 
 		// Events
-		this.labelButton.connect( this, { click: 'onUpButtonClick' } );
-		this.upButton.connect( this, { click: 'onUpButtonClick' } );
-		this.prevButton.connect( this, { click: 'onPrevButtonClick' } );
-		this.nextButton.connect( this, { click: 'onNextButtonClick' } );
 		this.$element.on( {
 			focus: this.onFocus.bind( this ),
 			mousedown: this.onClick.bind( this ),
@@ -90,12 +62,9 @@
 		this.$element
 			.addClass( 'mw-widget-calendarWidget' )
 			.append( this.$header, this.$bodyOuterWrapper.append( this.$bodyWrapper.append( this.$body ) ) );
-		this.$header.append(
-			this.prevButton.$element,
-			this.nextButton.$element,
-			this.upButton.$element,
-			this.labelButton.$element
-		);
+		if ( !this.lazyInitOnToggle ) {
+			this.buildHeaderButtons();
+		}
 		this.setDate( config.date !== undefined ? config.date : null );
 	};
 
@@ -332,6 +301,50 @@
 	};
 
 	/**
+	 * Construct and display buttons to navigate the calendar.
+	 *
+	 * @private
+	 */
+	mw.widgets.CalendarWidget.prototype.buildHeaderButtons = function () {
+		this.labelButton = new OO.ui.ButtonWidget( {
+			tabIndex: -1,
+			label: '',
+			framed: false,
+			classes: [ 'mw-widget-calendarWidget-labelButton' ]
+		} );
+		this.upButton = new OO.ui.ButtonWidget( {
+			tabIndex: -1,
+			framed: false,
+			icon: 'collapse',
+			classes: [ 'mw-widget-calendarWidget-upButton' ]
+		} );
+		this.prevButton = new OO.ui.ButtonWidget( {
+			tabIndex: -1,
+			framed: false,
+			icon: 'previous',
+			classes: [ 'mw-widget-calendarWidget-prevButton' ]
+		} );
+		this.nextButton = new OO.ui.ButtonWidget( {
+			tabIndex: -1,
+			framed: false,
+			icon: 'next',
+			classes: [ 'mw-widget-calendarWidget-nextButton' ]
+		} );
+
+		this.labelButton.connect( this, { click: 'onUpButtonClick' } );
+		this.upButton.connect( this, { click: 'onUpButtonClick' } );
+		this.prevButton.connect( this, { click: 'onPrevButtonClick' } );
+		this.nextButton.connect( this, { click: 'onNextButtonClick' } );
+
+		this.$header.append(
+			this.prevButton.$element,
+			this.nextButton.$element,
+			this.upButton.$element,
+			this.labelButton.$element
+		);
+	};
+
+	/**
 	 * Handle click events on the "up" button, switching to less precise view.
 	 *
 	 * @private
@@ -554,6 +567,7 @@
 	mw.widgets.CalendarWidget.prototype.toggle = function ( visible ) {
 		if ( this.lazyInitOnToggle && visible ) {
 			this.lazyInitOnToggle = false;
+			this.buildHeaderButtons();
 			this.updateUI();
 		}
 
