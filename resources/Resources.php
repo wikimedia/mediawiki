@@ -2206,7 +2206,7 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		],
 		'dependencies' => [
-			'oojs-ui-core',
+			'oojs-ui-widgets',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
