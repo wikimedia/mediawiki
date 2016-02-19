@@ -722,7 +722,7 @@
 	"last": "ଆଗ",
 	"page_first": "ପ୍ରଥମ",
 	"page_last": "ଶେଷ",
-	"histlegend": "ଭିନ୍ନ ବଛା: ବାଛିବା ପାଇଁ ଗୋଲ ବାଛିବା ଘରେ କ୍ଲିକ କରି ଏଣ୍ଟର ଅଥବା ତଳେ ଥିବା ବଟନ ଦବାନ୍ତୁ ।<br />\nନିର୍ଦ୍ଦେଶିକା: <strong>({{int:cur}})</strong> = ଗତ ସଂସ୍ମରଣମାନଙ୍କ ମଧ୍ୟରେ ତଫାତ, <strong>({{int:last}})</strong> = ଆଗର ସଂସ୍ମରଣମାନଙ୍କ ମଧ୍ୟରେ ତଫାତ, <strong>{{int:minoreditletter}}</strong> = ଛୋଟମୋଟ ସମ୍ପାଦନା ।",
+	"histlegend": "ଭିନ୍ନ ବଛା: ବାଛିବା ପାଇଁ ଗୋଲ ବାଛିବା ଘରେ କ୍ଲିକ କରି ଏଣ୍ଟର ଅଥବା ତଳେ ଥିବା ବଟନ ଦବାନ୍ତୁ ।<br />\nନିର୍ଦ୍ଦେଶିକା: <strong>({{int:cur}})</strong> = ଗତ ସଂସ୍କରଣମାନଙ୍କ ମଧ୍ୟରେ ତଫାତ, <strong>({{int:last}})</strong> = ଆଗର ସଂସ୍କରଣମାନଙ୍କ ମଧ୍ୟରେ ତଫାତ, <strong>{{int:minoreditletter}}</strong> = ଛୋଟମୋଟ ସମ୍ପାଦନା ।",
 	"history-fieldset-title": "ଇତିହାସରେ ଖୋଜନ୍ତୁ",
 	"history-show-deleted": "କେବଳ ଲିଭାଯାଇଥିବା",
 	"histfirst": "ସବୁଠୁ ପୁରୁଣା",

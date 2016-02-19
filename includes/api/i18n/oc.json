@@ -82,7 +82,7 @@
 	"api-help-license-noname": "Licéncia : [[$1|Veire lo ligam]]",
 	"api-help-license-unknown": "Licéncia : <span class=\"apihelp-unknown\">desconeguda</span>",
 	"api-help-parameters": "{{PLURAL:$1|Paramètre|Paramètres}} :",
-	"api-help-param-deprecated": "Obsolet.",
+	"api-help-param-deprecated": "Obsolèt.",
 	"api-help-datatypes-header": "Tipe de donadas",
 	"api-help-param-default": "Per defaut : $1",
 	"api-credits-header": "Mercejaments"
