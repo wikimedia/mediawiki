@@ -19,6 +19,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
+	 * @cfg {boolean} [lazyInitOnToggle=false] Don't build most of the interface until
+	 *     `.toggle( true )` is called. Meant to be used when the calendar is not immediately visible.
 	 * @cfg {string} [precision='day'] Date precision to use, 'day' or 'month'
 	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the format
 	 *     'YYYY-MM-DD' or 'YYYY-MM'. When null, the calendar will show today's date, but not select
@@ -36,6 +38,7 @@
 		OO.ui.mixin.FloatableElement.call( this, config );
 
 		// Properties
+		this.lazyInitOnToggle = !!config.lazyInitOnToggle;
 		this.precision = config.precision || 'day';
 		// Currently selected date (day or month)
 		this.date = null;
@@ -159,6 +162,11 @@
 	mw.widgets.CalendarWidget.prototype.updateUI = function ( fade ) {
 		var items, today, selected, currentMonth, currentYear, currentDay, i, needsFade,
 			$bodyWrapper = this.$bodyWrapper;
+
+		if ( this.lazyInitOnToggle ) {
+			// We're being called from the constructor and not being shown yet, do nothing
+			return;
+		}
 
 		if (
 			this.displayLayer === this.previousDisplayLayer &&
@@ -544,6 +552,11 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CalendarWidget.prototype.toggle = function ( visible ) {
+		if ( this.lazyInitOnToggle && visible ) {
+			this.lazyInitOnToggle = false;
+			this.updateUI();
+		}
+
 		// Parent method
 		mw.widgets.CalendarWidget.parent.prototype.toggle.call( this, visible );
 
