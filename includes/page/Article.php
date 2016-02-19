@@ -1575,7 +1575,7 @@ class Article implements Page {
 				[],
 				// Automatically append redirect=no to each link, since most of them are
 				// redirect pages themselves.
-				[ 'redirect' => 'no' ],
+				$title->isRedirect() ? [ 'redirect' => 'no' ] : [],
 				( $forceKnown ? [ 'known', 'noclasses' ] : [] )
 			) . '</li>';
 		}
