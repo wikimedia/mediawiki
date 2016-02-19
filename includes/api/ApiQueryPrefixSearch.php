@@ -48,7 +48,11 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$searchEngine = SearchEngine::create();
 		$searchEngine->setLimitOffset( $limit + 1, $offset );
 		$searchEngine->setNamespaces( $namespaces );
-		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
+		if ( $params['default'] ) {
+			$titles = $searchEngine->defaultPrefixSearch( $search );
+		} else {
+			$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
+		}
 
 		if ( $resultPageSet ) {
 			$resultPageSet->setRedirectMergePolicy( function( array $current, array $new ) {
@@ -121,6 +125,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					ApiBase::PARAM_DFLT => 0,
 					ApiBase::PARAM_TYPE => 'integer',
 				],
+				'default' => false,
 			];
 	}
 
