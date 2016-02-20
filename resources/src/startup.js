@@ -1,7 +1,6 @@
 /**
- * This script provides a function which is run to evaluate whether or not to
- * continue loading jQuery and the MediaWiki modules. This code should work on
- * even the most ancient of browsers, so be very careful when editing.
+ * This file is where we evaluate whether or not to continue loading jQuery and
+ * MediaWiki modules. This code must work on even the most ancient of browsers!
  */
 /*jshint unused: false, evil: true */
 /*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
@@ -17,51 +16,53 @@ mwPerformance.mark( 'mwLoadStart' );
 /**
  * Returns false for Grade C supported browsers.
  *
- * This function should only be used by the Startup module, do not expand it to
- * be generally useful beyond startup.
- *
  * See also:
  * - https://www.mediawiki.org/wiki/Compatibility#Browsers
  * - https://jquery.com/browser-support/
+ *
+ * Passes in:
+ * - IE9+
+ * - Edge
+ * - Firefox 3.5+
+ * - Chrome
+ * - Android 2.0+
+ * - Safari 4+
+ * - Mobile Safari (iOS1+)
+ * - Opera 10.5+
  */
-function isCompatible( ua ) {
-	if ( ua === undefined ) {
-		ua = navigator.userAgent;
-	}
+function isCompatible( str ) {
+	var ua = str || navigator.userAgent;
+	// Don't activate the JavaScript pipeline for users with browsers having
+	// outdated or limited JavaScript engines.
+	return !!(
+		// http://caniuse.com/#feat=queryselector
+		// Rejects: IE < 8
+		'querySelector' in document
 
-	// Browsers with outdated or limited JavaScript engines get the no-JS experience
-	return !(
-		// Internet Explorer < 9
-		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[ 1 ] ) < 9 ) ||
-		// Firefox < 3
-		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[ 1 ] ) < 3 ) ||
-		// Opera < 12
-		( ua.indexOf( 'Opera/' ) !== -1 && ( ua.indexOf( 'Version/' ) === -1 ?
-			// "Opera/x.y"
-			parseFloat( ua.split( 'Opera/' )[ 1 ] ) < 10 :
-			// "Opera/9.80 ... Version/x.y"
-			parseFloat( ua.split( 'Version/' )[ 1 ] ) < 12
-		) ) ||
-		// "Mozilla/0.0 ... Opera x.y"
-		( ua.indexOf( 'Opera ' ) !== -1 && parseFloat( ua.split( ' Opera ' )[ 1 ] ) < 10 ) ||
-		// BlackBerry < 6
-		ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
-		// Open WebOS < 1.5
-		ua.match( /webOS\/1\.[0-4]/ ) ||
-		// Anything PlayStation based.
-		ua.match( /PlayStation/i ) ||
-		// Any Symbian based browsers
-		ua.match( /SymbianOS|Series60/ ) ||
-		// Any NetFront based browser
-		ua.match( /NetFront/ ) ||
-		// Opera Mini, all versions
-		ua.match( /Opera Mini/ ) ||
-		// Nokia's Ovi Browser
-		ua.match( /S40OviBrowser/ ) ||
-		// MeeGo's browser
-		ua.match( /MeeGo/ ) ||
-		// Google Glass browser groks JS but UI is too limited
-		( ua.match( /Glass/ ) && ua.match( /Android/ ) )
+		// http://caniuse.com/#feat=namevalue-storage
+		// https://developer.blackberry.com/html5/apis/v1_0/localstorage.html
+		// Rejects: IE < 8, Firefox < 3.5, Safari < 4, Opera < 10.5, Opera Mini, Blackberry < 6
+		&& 'localStorage' in window
+
+		// http://caniuse.com/#feat=addeventlistener
+		// Rejects: IE < 9
+		&& 'addEventListener' in window
+
+		// Reject:
+		// - WebOS < 1.5
+		// - PlayStation
+		// - Symbian-based browsers
+		// - NetFront-based browser
+		// - Opera Mini
+		// - Nokia's Ovi Browser
+		// - MeeGo's browser
+		// - Google Glass
+		&& !(
+			ua.match( /webOS\/1\.[0-4]/ ) ||
+			ua.match( /PlayStation/i ) ||
+			ua.match( /SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo/ ) ||
+			( ua.match( /Glass/ ) && ua.match( /Android/ ) )
+		)
 	);
 }
 
