@@ -545,7 +545,7 @@
 	"preview": "Førehandsvising",
 	"showpreview": "Førehandsvis",
 	"showdiff": "Sjå skilnader",
-	"anoneditwarning": "'''Åtvaring:''' Du er ikkje innlogga.\nIP-adressa di vil verta lagra i den offentlege endringshistorikken til sida. Om du <strong>[$1 loggar inn]</strong> eller <strong>[$2 lager ein konto]</strong>, vil endringane dine knyttast til brukarnamnet ditt, saman med andre fordelar.",
+	"anoneditwarning": "'''Åtvaring:''' Du er ikkje innlogga.\nIP-adressa di vil verta lagra i den offentlege endringshistorikken til sida. Om du <strong>[$1 loggar inn]</strong> eller <strong>[$2 lagar ein konto]</strong>, vil endringane dine knytast til brukarnamnet ditt, saman med andre fordelar.",
 	"anonpreviewwarning": "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta ført opp i endringshistorikken til denne sida.''",
 	"missingsummary": "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 	"selfredirect": "<strong>Åtvaring:</strong> Du omdirigerer sida til seg sjølv.\nDu kan ha oppgjeve feil mål for omdirigeringa, eller det kan vera at du endrar feil side.\nKlikkar du «{{int:savearticle}}» på nytt vil omdirigeringa opprettast kor som er.",

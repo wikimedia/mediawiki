@@ -68,7 +68,8 @@
 			"Aaoo",
 			"Josve05a",
 			"Pipetricker",
-			"Dammråtta"
+			"Dammråtta",
+			"Mgr"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -78,7 +79,7 @@
 	"tog-hidecategorization": "Dölj kategorisering av sidor",
 	"tog-extendwatchlist": "Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste",
 	"tog-usenewrc": "Gruppera ändringar efter sida i senaste ändringar och bevakningslistan",
-	"tog-numberheadings": "Automatisk numrerade rubriker",
+	"tog-numberheadings": "Automatiskt numrerade rubriker",
 	"tog-showtoolbar": "Visa redigeringsverktygsraden",
 	"tog-editondblclick": "Redigera sidor med dubbelklick",
 	"tog-editsectiononrightclick": "Aktivera redigering av avsnitt genom högerklick på underrubriker",
