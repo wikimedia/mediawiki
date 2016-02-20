@@ -53,7 +53,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	 */
 	private function validateHexSortkey( $hexSortkey ) {
 		// A hex sortkey has an unbound number of 2 letter pairs
-		return preg_match( '/^(?:[a-fA-F0-9]{2})*$/', $hexSortkey );
+		return preg_match( '/^(?:[a-fA-F0-9]{2})*$/D', $hexSortkey );
 	}
 
 	/**
@@ -138,8 +138,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 				// Add a WHERE clause for sortkey and from
 				$this->dieContinueUsageIf( !$this->validateHexSortkey( $cont[1] ) );
-				// pack( "H*", $foo ) is used to convert hex back to binary
-				$escSortkey = $this->getDB()->addQuotes( pack( 'H*', $cont[1] ) );
+				$escSortkey = $this->getDB()->addQuotes( hex2bin( $cont[1] ) );
 				$from = intval( $cont[2] );
 				$op = $dir == 'newer' ? '>' : '<';
 				// $contWhere is used further down
@@ -156,7 +155,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
 						$this->dieUsage( 'The starthexsortkey provided is not valid', 'bad_starthexsortkey' );
 					}
-					$startsortkey = pack( 'H*', $params['starthexsortkey'] );
+					$startsortkey = hex2bin( $params['starthexsortkey'] );
 				} else {
 					$startsortkey = $params['startsortkey'];
 				}
@@ -166,7 +165,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
 						$this->dieUsage( 'The endhexsortkey provided is not valid', 'bad_endhexsortkey' );
 					}
-					$endsortkey = pack( 'H*', $params['endhexsortkey'] );
+					$endsortkey = hex2bin( $params['endhexsortkey'] );
 				} else {
 					$endsortkey = $params['endsortkey'];
 				}

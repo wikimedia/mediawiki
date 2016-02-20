@@ -26,7 +26,7 @@ class MWCryptHashTest extends MediaWikiTestCase {
 		// @codingStandardsIgnoreEnd
 
 		$this->assertEquals(
-			pack( 'H*', $hash ),
+			hex2bin( $hash ),
 			MWCryptHash::hash( $data ),
 			'Raw hash'
 		);
@@ -49,7 +49,7 @@ class MWCryptHashTest extends MediaWikiTestCase {
 		// @codingStandardsIgnoreEnd
 
 		$this->assertEquals(
-			pack( 'H*', $hash ),
+			hex2bin( $hash ),
 			MWCryptHash::hmac( $data, $key ),
 			'Raw hmac'
 		);
