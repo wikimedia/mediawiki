@@ -42,7 +42,6 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		// Note: If user is logged in but cannot upload, they can still see
 		// the list of stashed uploads...but it will probably be empty.
 
-		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 
 		$this->addTables( 'uploadstash' );
