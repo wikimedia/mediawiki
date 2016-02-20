@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mashoi7"
+			"Mashoi7",
+			"Ilja.mos"
 		]
 	},
 	"config-your-language": "Sinun kieli:",
@@ -17,7 +18,7 @@
 	"config-page-install": "Azenda",
 	"config-page-complete": "Valmis!",
 	"config-page-readme": "Luve minut",
-	"config-page-copying": "Kopiruitah",
+	"config-page-copying": "Kopiruijah",
 	"config-page-upgradedoc": "Päivitetäh",
 	"config-page-existingwiki": "Olemasolii wiki",
 	"config-restart": "Muga, käynnistä uvvelleh",
@@ -25,7 +26,7 @@
 	"config-env-hhvm": "HHVM $1 on azendettu.",
 	"config-db-name": "Tiedokannan nimi:",
 	"config-db-username": "Tiedokannan käyttäinimi:",
-	"config-db-password": "Tiedokannan peittosana:",
+	"config-db-password": "Tiedokannan salasana:",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL-azetukset",
 	"config-header-postgres": "PostgreSQL-azetukset",
@@ -41,17 +42,17 @@
 	"config-ns-generic": "Projektu",
 	"config-ns-other-default": "MinunWiki",
 	"config-admin-name": "Sinun käyttäitunnus:",
-	"config-admin-password": "Peittosana:",
-	"config-admin-password-confirm": "Peittosana myös:",
+	"config-admin-password": "Salasana:",
+	"config-admin-password-confirm": "Salasana myös:",
 	"config-admin-name-blank": "Kirjuta administruattoran käyttäinimi.",
-	"config-admin-password-blank": "Kirjuta administruattorutilin peittosana.",
-	"config-admin-password-mismatch": "Sinun kirjutetut kaksi peittosanua ei oldu yhtenjyttymät.",
+	"config-admin-password-blank": "Kirjuta administruattorutilin salasana.",
+	"config-admin-password-mismatch": "Sinun kirjutetut kaksi salasanua ei oldu yhtenjyttymät.",
 	"config-admin-email": "Sähköpoštuadressu:",
 	"config-optional-continue": "Kyzy minuspäi ližiä kyzymyksii.",
 	"config-optional-skip": "Olen jo terstavunnuh, vaiku azenda wiki.",
 	"config-email-settings": "Sähköpoštuazetukset",
 	"config-logo": "Logon URL:",
-	"config-skins": "Ketut",
+	"config-skins": "Sivun ulgonävöt",
 	"config-install-step-done": "ruattu",
 	"config-install-user-alreadyexists": "Käyttäi \"$1\" on jo olemas",
 	"config-help": "abu",

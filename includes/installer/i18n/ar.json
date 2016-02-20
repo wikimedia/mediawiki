@@ -133,6 +133,8 @@
 	"config-install-keys": "توليد المفاتيح السرية",
 	"config-install-sysop": "إنشاء حساب مستخدم إداري",
 	"config-install-mainpage": "إنشاء صفحة رئيسية بالمحتوى الافتراضي",
+	"config-install-extension-tables": "إنشاء جداول للامتدادات المفعلة",
+	"config-install-mainpage-failed": "لم يتمكن من إدراج الصفحة الرئيسية: $1",
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",
 	"mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",
