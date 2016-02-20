@@ -28,10 +28,10 @@ class MWCryptHKDFTest extends MediaWikiTestCase {
 	 * @dataProvider providerRfc5869
 	 */
 	public function testRfc5869( $hash, $ikm, $salt, $info, $L, $prk, $okm ) {
-		$ikm = pack( 'H*', $ikm );
-		$salt = pack( 'H*', $salt );
-		$info = pack( 'H*', $info );
-		$okm = pack( 'H*', $okm );
+		$ikm = hex2bin( $ikm );
+		$salt = hex2bin( $salt );
+		$info = hex2bin( $info );
+		$okm = hex2bin( $okm );
 		$result = MWCryptHKDF::HKDF( $hash, $ikm, $salt, $info, $L );
 		$this->assertEquals( $okm, $result );
 	}
