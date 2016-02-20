@@ -114,16 +114,16 @@ class ApiMain extends ApiBase {
 	 *                           'params' => array ( $someVarToSubst ) ),
 	 *                          );
 	 */
-	private static $mRights = array(
-		'writeapi' => array(
+	private static $mRights = [
+		'writeapi' => [
 			'msg' => 'right-writeapi',
-			'params' => array()
-		),
-		'apihighlimits' => array(
+			'params' => []
+		],
+		'apihighlimits' => [
 			'msg' => 'api-help-right-apihighlimits',
-			'params' => array( ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 )
-		)
-	);
+			'params' => [ ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 ]
+		]
+	];
 	// @codingStandardsIgnoreEnd
 
 	/**
