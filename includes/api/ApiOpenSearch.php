@@ -190,7 +190,7 @@ class ApiOpenSearch extends ApiBase {
 			}
 		} else {
 			foreach ( $titles as $title ) {
-				$resultId = $title->getArticleId();
+				$resultId = $title->getArticleID();
 				if ( $resultId === 0 ) {
 					$resultId = $nextSpecialPageId;
 					$nextSpecialPageId -= 1;
@@ -201,7 +201,7 @@ class ApiOpenSearch extends ApiBase {
 					'extract' => false,
 					'extract trimmed' => false,
 					'image' => false,
-					'url' => wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT ),
+					'url' => wfExpandUrl( $title->getFullURL(), PROTO_CURRENT ),
 				];
 			}
 		}

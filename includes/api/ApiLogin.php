@@ -97,7 +97,7 @@ class ApiLogin extends ApiBase {
 			$status = BotPassword::login(
 				$params['name'], $params['password'], $this->getRequest()
 			);
-			if ( $status->isOk() ) {
+			if ( $status->isOK() ) {
 				$session = $status->getValue();
 				$authRes = LoginForm::SUCCESS;
 				$loginType = 'BotPassword';
