@@ -919,7 +919,7 @@ class ApiMain extends ApiBase {
 		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 			$servedby = $this->getParameter( 'servedby' );
 			if ( $servedby ) {
-				$result->addValue( null, 'servedby', wfHostName() );
+				$result->addValue( null, 'servedby', wfHostname() );
 			}
 		}
 

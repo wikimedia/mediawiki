@@ -80,7 +80,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 				if ( $title->isSpecialPage() ) {
 					$vals['special'] = true;
 				} else {
-					$vals['pageid'] = intval( $title->getArticleId() );
+					$vals['pageid'] = intval( $title->getArticleID() );
 				}
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
