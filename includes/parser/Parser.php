@@ -253,6 +253,9 @@ class Parser {
 	/** @var SectionProfiler */
 	protected $mProfiler;
 
+	/** @var bool */
+	protected $isInsideTagParserFunctionCall = [];
+
 	/**
 	 * @param array $conf
 	 */
@@ -4270,8 +4273,10 @@ class Parser {
 			if ( is_null( $attrText ) ) {
 				$attrText = '';
 			}
+			$attributes = [];
 			if ( isset( $params['attributes'] ) ) {
-				foreach ( $params['attributes'] as $attrName => $attrValue ) {
+				$attributes = $params['attributes'];
+				foreach ( $attributes as $attrName => $attrValue ) {
 					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
 						htmlspecialchars( $attrValue ) . '"';
 				}
@@ -4283,6 +4288,9 @@ class Parser {
 				$output = "<$name$attrText>$content$close";
 			}
 		}
+
+		Hooks::run( 'ParserExtensionSubstitution', [ $this, $name, $attributes, $content,
+			$marker ] );
 
 		if ( $markerType === 'none' ) {
 			return $output;
@@ -6465,5 +6473,39 @@ class Parser {
 	public function enableOOUI() {
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
+	}
+
+	/**
+	 * Let the parser know when it is inside a parser function call
+	 * {{#tag:$tagName|...}}
+	 * Called by CoreParserFunctions::tagObj
+	 *
+	 * @param string $tagName
+	 * @since 1.27
+	 */
+	public function setIsInsideTagParserFunctionCall( $tagName ) {
+		$this->isInsideTagParserFunctionCall[$tagName] = '';
+	}
+
+	/**
+	 * Let the parser know when it is outside a parser function call
+	 * {{#tag:$tagName|...}}
+	 * Called by CoreParserFunctions::tagObj
+	 *
+	 * @param string $tagName
+	 * @since 1.27
+	 */
+	public function setIsOutsideTagParserFunctionCall( $tagName ) {
+		unset( $this->isOutsideTagParserFunctionCall[$tagName] );
+	}
+
+	/**
+	 * Let callers know when current parsing occurs inside a #tag parser function call
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function getIsInsideTagParserFunctionCall() {
+		return $this->isInsideTagParserFunctionCall;
 	}
 }
