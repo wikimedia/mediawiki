@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class UpdateCollation extends Maintenance {
-	const BATCH_SIZE = 10000; // Number of rows to process in one batch
+	const BATCH_SIZE = 100; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
 	public $sizeHistogram = [];
@@ -85,10 +85,18 @@ TEXT
 		// but this will raise an exception, breaking all category pages
 		$collation->getFirstLetter( 'MediaWiki' );
 
+		// Locally at least, (my local is a rather old version of mysql)
+		// mysql seems to filesort if there is both an equality
+		// (but not for an inequality) condition on cl_collation in the
+		// WHERE and it is also the first item in the ORDER BY.
+		if ( $this->hasOption( 'previous-collation' ) ) {
+			$orderBy = 'cl_collation, cl_to, cl_type, cl_from';
+		} else {
+			$orderBy = 'cl_to, cl_type, cl_from';
+		}
 		$options = [
 			'LIMIT' => self::BATCH_SIZE,
-			'ORDER BY' => 'cl_from, cl_to',
-			'STRAIGHT_JOIN',
+			'ORDER BY' => $orderBy,
 		];
 
 		if ( $force || $dryRun ) {
@@ -124,7 +132,7 @@ TEXT
 			}
 			$this->output( "Fixing collation for $count rows.\n" );
 		}
-
+$c = 0;
 		$count = 0;
 		$batchCount = 0;
 		$batchConds = [];
@@ -217,13 +225,17 @@ TEXT
 
 	/**
 	 * Return an SQL expression selecting rows which sort above the given row,
-	 * assuming an ordering of cl_from, cl_to
+	 * assuming an ordering of cl_collation, cl_to, cl_type, cl_from
 	 * @param stdClass $row
 	 * @param DatabaseBase $dbw
 	 * @return string
 	 */
 	function getBatchCondition( $row, $dbw ) {
-		$fields = [ 'cl_from', 'cl_to' ];
+		if ( $this->hasOption( 'previous-collation' ) ) {
+			$fields = [ 'cl_to', 'cl_type', 'cl_from' ];
+		} else {
+			$fields = [ 'cl_collation', 'cl_to', 'cl_type', 'cl_from' ];
+		}
 		$first = true;
 		$cond = false;
 		$prefix = false;
