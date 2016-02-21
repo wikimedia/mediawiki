@@ -253,6 +253,9 @@ class Parser {
 	/** @var SectionProfiler */
 	protected $mProfiler;
 
+	/** @var array */
+	protected $recursiveTagParserFunctionCalls = [];
+
 	/**
 	 * @param array $conf
 	 */
@@ -4213,7 +4216,7 @@ class Parser {
 	 *     attr       PPNode for unparsed text where tag attributes are thought to be
 	 *     attributes Optional associative array of parsed attributes
 	 *     inner      Contents of extension element
-	 *     noClose    Original text did not have a close tag
+	 *     close      Close for the tag from original text
 	 * @param PPFrame $frame
 	 *
 	 * @throws MWException
@@ -4247,6 +4250,8 @@ class Parser {
 				}
 				$output = call_user_func_array( $this->mTagHooks[$name],
 					[ $content, $attributes, $this, $frame ] );
+				Hooks::run( 'ParserAfterExtensionTagSubstitution', [ $this, $marker, $name,
+					$attributes, $content ] );
 			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
 				list( $callback, ) = $this->mFunctionTagHooks[$name];
 				if ( !is_callable( $callback ) ) {
@@ -6465,5 +6470,39 @@ class Parser {
 	public function enableOOUI() {
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
+	}
+
+	/**
+	 * Let the parser know when it is inside a parser function call {{#tag:$tagName|...}}
+	 * Called by CoreParserFunctions::tagObj
+	 *
+	 * @param string $tagName
+	 * @since 1.27
+	 */
+	public function setIsInsideTagParserFunctionCall( $tagName ) {
+		$this->recursiveTagParserFunctionCalls[$tagName]++;
+	}
+
+	/**
+	 * Let the parser know when it is outside a parser function call {{#tag:$tagName|...}}
+	 * Called by CoreParserFunctions::tagObj
+	 *
+	 * @param string $tagName
+	 * @since 1.27
+	 */
+	public function setIsOutsideTagParserFunctionCall( $tagName ) {
+		$this->recursiveTagParserFunctionCalls[$tagName]--;
+	}
+
+	/**
+	 * Let callers know when current parsing occurs inside a #tag parser function call
+	 * Each tag name is mapped to an integer indicating the current number
+	 * of recursive calls to it
+	 *
+	 * @return array of tag names mapped to integers
+	 * @since 1.27
+	 */
+	public function getRecursiveTagParserFunctionCalls() {
+		return $this->recursiveTagParserFunctionCalls;
 	}
 }
