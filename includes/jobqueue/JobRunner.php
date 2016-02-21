@@ -80,7 +80,8 @@ class JobRunner implements LoggerAwareInterface {
 	 * The response map also has:
 	 *   - backoffs : the (job type => seconds) map of backoff times
 	 *   - elapsed  : the total time spent running tasks in ms
-	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit)
+	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit,
+	 *  memory-limit)
 	 *
 	 * This method outputs status information only if a debug handler was set.
 	 * Any exceptions are caught and logged, but are not reported as output.
