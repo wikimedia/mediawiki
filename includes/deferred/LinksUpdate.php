@@ -444,7 +444,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryInsertions( $existing = [] ) {
-		global $wgContLang, $wgCategoryCollation;
+		global $wgContLang;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = [];
 		foreach ( $diffs as $name => $prefix ) {
@@ -463,7 +463,8 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			# things are forced to sort as '*' or something, they'll
 			# sort properly in the category rather than in page_id
 			# order or such.
-			$sortkey = Collation::singleton()->getSortKey(
+			$coll = Collation::singleton();
+			$sortkey = $coll->getSortKey(
 				$this->mTitle->getCategorySortkey( $prefix ) );
 
 			$arr[] = [
@@ -472,7 +473,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 				'cl_sortkey' => $sortkey,
 				'cl_timestamp' => $this->mDb->timestamp(),
 				'cl_sortkey_prefix' => $prefix,
-				'cl_collation' => $wgCategoryCollation,
+				'cl_collation' => $coll->getCollationNameForDB(),
 				'cl_type' => $type,
 			];
 		}
