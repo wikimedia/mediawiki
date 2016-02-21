@@ -564,4 +564,18 @@ class IcuCollation extends Collation {
 			return false;
 		}
 	}
+
+	public function getCollationIdentifier() {
+		global $wgCategoryCollation;
+
+		$ICUVersion = self::getICUVersion();
+		if ( $ICUVersion ) {
+			// @todo: Figure out how to deal with strings longer than 32 chars
+			// (such as 'uca-de-AT@collation=phonebook 55.1') once we need to
+			// support such collations.
+			return $wgCategoryCollation . ' ' . $ICUVersion;
+		} else {
+			return $wgCategoryCollation;
+		}
+	}
 }
