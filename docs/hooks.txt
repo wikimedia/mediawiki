@@ -2259,6 +2259,13 @@ $revId: ID of the revision that was parsed to create $parserOutput
 'ParserCloned': Called when the parser is cloned.
 $parser: Newly-cloned Parser object
 
+'ParserExtensionSubstitution': Called in extensionSubstitution
+$parser: current parser object
+$marker: strip marker used for substitution
+$name: name of the tag being processed
+$attributes: attributes of the tag given in wikitext
+$content: inner partially parsed wikitext content
+
 'ParserFirstCallInit': Called when the parser initialises for the first time.
 &$parser: Parser object being cleared
 
