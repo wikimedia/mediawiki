@@ -564,4 +564,15 @@ class IcuCollation extends Collation {
 			return false;
 		}
 	}
+
+	public function getCollationNameForDB() {
+		global $wgCategoryCollation;
+
+		$ICUVersion = self::getICUVersion();
+		if ( $ICUVersion ) {
+			return $wgCategoryCollation . ' ' . $ICUVersion;
+		} else {
+			return $wgCategoryCollation;
+		}
+	}
 }
