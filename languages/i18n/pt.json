@@ -65,7 +65,8 @@
 			"Macofe",
 			"He7d3r",
 			"Ti4goc",
-			"Jkb8"
+			"Jkb8",
+			"Önni"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -726,7 +727,7 @@
 	"copyrightwarning2": "Note, por favor, que todas as suas contribuições na {{SITENAME}} podem ser editadas, alteradas ou removidas por outros utilizadores.\nSe não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />\nGarante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (consulte $1 para mais detalhes).<br />\n'''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
 	"editpage-cannot-use-custom-model": "O modelo de conteúdo desta página não pode ser alterado.",
 	"longpageerror": "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''\nA página não pode ser gravada.",
-	"readonlywarning": "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''\nPode, no entanto, copiar e colar o seu texto num ficheiro de texto e guardá-lo para mais tarde.\n\nO administrador que bloqueou a base de dados forneceu a seguinte explicação: $1",
+	"readonlywarning": "<strong>Atenção: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar as suas edições neste momento.</strong>\nPode, contudo, copiar e colar o seu texto num ficheiro de texto e guardá-lo para mais tarde.\n\nO administrador do sistema que a bloqueou forneceu a seguinte explicação: $1",
 	"protectedpagewarning": "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''\nO último registo é apresentado abaixo para referência:",
 	"semiprotectedpagewarning": "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.\nA última entrada no histórico é fornecida abaixo como referência.",
 	"cascadeprotectedwarning": "<strong>Aviso:</strong> Esta página está protegida de forma que apenas os administradores possam editá-la, porque se encontra transcluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",

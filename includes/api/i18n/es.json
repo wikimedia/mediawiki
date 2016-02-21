@@ -723,6 +723,7 @@
 	"apihelp-unblock-example-user": "Desbloquear al usuario <kbd>Bob</kbd> con el motivo <kbd>Lo siento, Bob</kbd>",
 	"apihelp-undelete-param-reason": "Motivo de la restauración.",
 	"apihelp-undelete-example-revisions": "Restaurar dos revisiones de la página <kbd>Main Page</kbd>.",
+	"apihelp-upload-param-tags": "Cambiar etiquetas para aplicar a la entrada del registro de subidas y a la revisión de página de archivo.",
 	"apihelp-upload-param-watch": "Vigilar la página.",
 	"apihelp-upload-param-ignorewarnings": "Ignorar las advertencias.",
 	"apihelp-upload-example-url": "Subir desde una URL.",

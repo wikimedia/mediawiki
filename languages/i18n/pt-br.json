@@ -1130,7 +1130,7 @@
 	"userrights": "Gestão de privilégios {{GENDER:{{BASEPAGENAME}}|do usuário|da usuária|de usuário(a)}}",
 	"userrights-lookup-user": "Administrar grupos de usuários",
 	"userrights-user-editname": "Forneça um nome de usuário:",
-	"editusergroup": "Editar {{GENDER:$1|usuário}} grupos",
+	"editusergroup": "Editar grupos {{GENDER:$1|do(a) usuário(a)}}",
 	"editinguser": "Modificando privilégios d{{GENDER:$1|o usuário|a usuária|o(a) usuário(a)}} <strong>[[User:$1|$1]]</Strong> $2",
 	"userrights-editusergroup": "Editar grupos do usuário",
 	"saveusergroups": "Salvar grupos de{{GENDER:$1|usuário}}",

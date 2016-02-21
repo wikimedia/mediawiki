@@ -10,7 +10,8 @@
 			"LaG roiL",
 			"Elyashiv",
 			"Umherirrender",
-			"Macofe"
+			"Macofe",
+			"MojoMann"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -1251,7 +1252,7 @@
 	"apihelp-upload-description": "העלאת קובץ, או קבלת מצב ההעלאות הממתינות.\n\nיש מספר שיטות:\n* להעלות את הקובץ ישירות, באמצעות הפרמטר <var>$1file</var>.\n* להעלות את הקובץ בחלקים, באמצעות הפרמטרים <var>$1filesize</var>‏, <var>$1chunk</var> ו־<var>$1offset</var>.\n* לגרום לשרת מדיה־ויקי לאחזר את הקובץ מ־URL באמצעות הפרמטר <var>$1url</var>.\n* להשלים העלאה קודמת שנכשלה בשל אזהרות באמצעות הפרמטר <var>$1filekey</var>.\nלתשומך לבך, יש לעשות את HTTP POST בתור העלאת קובץ (כלומר באמצעות <code>multipart/form-data</code>) בעת שליחת ה־<var>$1file</var>.",
 	"apihelp-upload-param-filename": "שם קובץ היעד.",
 	"apihelp-upload-param-comment": "הערת העלאה. משמש גם בתור טקסט הדף ההתחלתי עבור קבצים חדשים אם <var>$1text</var> אינו מצוין.",
-	"apihelp-upload-param-tags": "תגי שינוי להחיל על עיולי יומן העלאות ועל גרסת דף הקובץ.",
+	"apihelp-upload-param-tags": "שינוי תגים להחלה לרשומות ההעלאה ולגרסאות דף הקובץ.",
 	"apihelp-upload-param-text": "טקסט הדף ההתחלתי לקבצים חדשים.",
 	"apihelp-upload-param-watch": "לעקוב אחרי הדף.",
 	"apihelp-upload-param-watchlist": "הוספה או הסרה של הדף ללא תנאי מרשימת המעקב של המשתמש הנוכחי, להשתמש בהעדפות או לא לשנות את המעקב.",
