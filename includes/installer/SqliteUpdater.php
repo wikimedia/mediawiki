@@ -148,6 +148,10 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
 			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
+			[ 'dropIndex', 'categorylinks', 'cl_collation', 'patch-kill-cl_collation_index.sql' ],
+			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
+				'patch-add-cl_collation_ext_index.sql' ],
+			[ 'doCollationUpdate' ],
 		];
 	}
 
