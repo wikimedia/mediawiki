@@ -1481,7 +1481,7 @@ class SpecialUndelete extends SpecialPage {
 				);
 			} else {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts );
-				$last = $this->msg( 'diff' )->escaped();
+				$last = $this->msg('parentheses')->rawParams( 'diff' )->escaped();
 			}
 		} else {
 			$pageLink = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
