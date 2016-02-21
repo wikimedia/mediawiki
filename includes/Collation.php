@@ -107,6 +107,24 @@ abstract class Collation {
 	 * @return string UTF-8 string corresponding to the first letter of input
 	 */
 	abstract function getFirstLetter( $string );
+
+	/**
+	 * Get collation name for db
+	 *
+	 * The convention is to return the value you'd give
+	 * to Collation::factory(), followed by a space, followed
+	 * by any internal version numbers that affect the binary
+	 * representation of the sortkey
+	 * @return String Collation name and version.
+	 */
+	public function getCollationNameForDB() {
+		// As a fallback, for extensions who have previously
+		// subclassed before this method was needed.
+		// All subclasses should reimplement this method. It may become
+		// abstract in a future version.
+		wfDeprecated( __METHOD__, '1.27' );
+		return strtolower( preg_replace( '/Collation$/', '', get_class( $this ) ) );
+	}
 }
 
 class UppercaseCollation extends Collation {
@@ -127,6 +145,10 @@ class UppercaseCollation extends Collation {
 			$string = substr( $string, 1 );
 		}
 		return $this->lang->ucfirst( $this->lang->firstChar( $string ) );
+	}
+
+	public function getCollationNameForDB() {
+		return 'uppercase';
 	}
 }
 
@@ -150,6 +172,10 @@ class IdentityCollation extends Collation {
 			$string = substr( $string, 1 );
 		}
 		return $wgContLang->firstChar( $string );
+	}
+
+	public function getCollationNameForDB() {
+		return 'identity';
 	}
 }
 
@@ -592,6 +618,24 @@ class IcuCollation extends Collation {
 			return false;
 		}
 	}
+
+	protected function addVersionToCollationName( $collName ) {
+		// I have no idea when INTL_ICU_DATA_VERSION was introduced.
+		// It also appears that the presence of INTL_ICU_DATA_VERSION
+		// may depend on the version of libicu linked against.
+		return $collName
+			. ' '
+			. ( defined( 'INTL_ICU_DATA_VERSION' ) ? INTL_ICU_DATA_VERSION : '' )
+			. ' '
+			. self::getICUVersion();
+	}
+
+	public function getCollationNameForDB() {
+		if ( $this->locale === 'root' ) {
+			return $this->addVersionToCollationName( 'uca-default' );
+		}
+		return $this->addVersionToCollationName( 'uca-' . $this->locale );
+	}
 }
 
 /**
@@ -605,6 +649,10 @@ class CollationCkb extends IcuCollation {
 		parent::__construct( 'fa' );
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
 		$this->digitTransformLanguage = Language::factory( 'ckb' );
+	}
+
+	public function getCollationNameForDB() {
+		return $this->addVersionToCollationName( 'xx-uca-ckb' );
 	}
 }
 
@@ -644,5 +692,9 @@ class CollationEt extends IcuCollation {
 
 	function getFirstLetter( $string ) {
 		return self::unmangle( parent::getFirstLetter( self::mangle( $string ) ) );
+	}
+
+	public function getCollationNameForDB() {
+		return $this->addVersionToCollationName( 'xx-uca-et' );
 	}
 }

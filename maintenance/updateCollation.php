@@ -41,10 +41,9 @@ class UpdateCollation extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		global $wgCategoryCollation;
 		$this->addDescription( <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation != '$wgCategoryCollation') and repopulate cl_sortkey
+out-of-date (cl_collation != '\$wgCollationName <version>') and repopulate cl_sortkey
 using the page title and cl_sortkey_prefix.  If all collations are
 up-to-date, it will do nothing.
 TEXT
@@ -53,7 +52,7 @@ TEXT
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' .
 			'supposed to be up-to-date.' );
 		$this->addOption( 'previous-collation', 'Set the previous value of ' .
-			'$wgCategoryCollation here to speed up this script, especially if your ' .
+			'$wgCategoryCollation<sp><version> here to speed up this script, especially if your ' .
 			'categorylinks table is large. This will only update rows with that ' .
 			'collation, though, so it may miss out-of-date rows with a different, ' .
 			'even older collation.', false, true );
@@ -67,19 +66,17 @@ TEXT
 	}
 
 	public function execute() {
-		global $wgCategoryCollation;
-
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
 		$dryRun = $this->getOption( 'dry-run' );
 		$verboseStats = $this->getOption( 'verbose-stats' );
 		if ( $this->hasOption( 'target-collation' ) ) {
-			$collationName = $this->getOption( 'target-collation' );
-			$collation = Collation::factory( $collationName );
+			$target = $this->getOption( 'target-collation' );
+			$collation = Collation::factory( $target );
 		} else {
-			$collationName = $wgCategoryCollation;
 			$collation = Collation::singleton();
 		}
+		$collationName = $collation->getCollationNameForDB();
 
 		// Collation sanity check: in some cases the constructor will work,
 		// but this will raise an exception, breaking all category pages
