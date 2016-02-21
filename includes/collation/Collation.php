@@ -126,4 +126,16 @@ abstract class Collation {
 	 */
 	abstract function getFirstLetter( $string );
 
+	/**
+	 * Get collation name for database
+	 *
+	 * Override this method if you need to add a version number or if there is
+	 * anything besides $wgCategoryCollation that affects the generated sortkey.
+	 *
+	 * @return String Collation name and possible version number
+	 */
+	public function getCollationNameForDB() {
+		global $wgCategoryCollation;
+		return $wgCategoryCollation;
+	}
 }
