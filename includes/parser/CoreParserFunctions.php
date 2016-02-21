@@ -1005,6 +1005,8 @@ class CoreParserFunctions {
 		}
 		$tagName = strtolower( trim( $frame->expand( array_shift( $args ) ) ) );
 
+		$parser->setIsInsideTagParserFunctionCall( $tagName );
+
 		if ( count( $args ) ) {
 			$inner = $frame->expand( array_shift( $args ) );
 		} else {
@@ -1031,6 +1033,7 @@ class CoreParserFunctions {
 			foreach ( $attributes as $name => $value ) {
 				$attrText .= ' ' . htmlspecialchars( $name ) . '="' . htmlspecialchars( $value ) . '"';
 			}
+			$parser->setIsOutsideTagParserFunctionCall( $tagName );
 			if ( $inner === null ) {
 				return "<$tagName$attrText/>";
 			}
@@ -1043,7 +1046,9 @@ class CoreParserFunctions {
 			'attributes' => $attributes,
 			'close' => "</$tagName>",
 		];
-		return $parser->extensionSubstitution( $params, $frame );
+		$res = $parser->extensionSubstitution( $params, $frame );
+		$parser->setIsOutsideTagParserFunctionCall( $tagName );
+		return $res;
 	}
 
 	/**
