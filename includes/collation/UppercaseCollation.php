@@ -41,4 +41,7 @@ class UppercaseCollation extends Collation {
 		return $this->lang->ucfirst( $this->lang->firstChar( $string ) );
 	}
 
+	public function getCollationNameForDB() {
+		return 'uppercase';
+	}
 }

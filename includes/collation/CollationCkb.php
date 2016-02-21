@@ -32,4 +32,8 @@ class CollationCkb extends IcuCollation {
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
 		$this->digitTransformLanguage = Language::factory( 'ckb' );
 	}
+
+	public function getCollationNameForDB() {
+		return $this->addVersionToCollationName( 'xx-uca-ckb' );
+	}
 }

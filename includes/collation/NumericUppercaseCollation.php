@@ -55,4 +55,8 @@ class NumericUppercaseCollation extends UppercaseCollation {
 			return parent::getFirstLetter( $string );
 		}
 	}
+
+	public function getCollationNameForDB() {
+		return 'numeric';
+	}
 }

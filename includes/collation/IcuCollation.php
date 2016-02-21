@@ -502,4 +502,22 @@ class IcuCollation extends Collation {
 			return false;
 		}
 	}
+
+	protected function addVersionToCollationName( $collName ) {
+		// I have no idea when INTL_ICU_DATA_VERSION was introduced.
+		// It also appears that the presence of INTL_ICU_DATA_VERSION
+		// may depend on the version of libicu linked against.
+		return $collName
+			. ' '
+			. ( defined( 'INTL_ICU_DATA_VERSION' ) ? INTL_ICU_DATA_VERSION : '' )
+			. ' '
+			. self::getICUVersion();
+	}
+
+	public function getCollationNameForDB() {
+		if ( $this->locale === 'root' ) {
+			return $this->addVersionToCollationName( 'uca-default' );
+		}
+		return $this->addVersionToCollationName( 'uca-' . $this->locale );
+	}
 }

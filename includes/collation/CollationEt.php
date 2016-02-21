@@ -57,4 +57,8 @@ class CollationEt extends IcuCollation {
 	public function getFirstLetter( $string ) {
 		return self::unmangle( parent::getFirstLetter( self::mangle( $string ) ) );
 	}
+
+	public function getCollationNameForDB() {
+		return $this->addVersionToCollationName( 'xx-uca-et' );
+	}
 }

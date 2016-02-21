@@ -41,4 +41,8 @@ class IdentityCollation extends Collation {
 		}
 		return $wgContLang->firstChar( $string );
 	}
+
+	public function getCollationNameForDB() {
+		return 'identity';
+	}
 }

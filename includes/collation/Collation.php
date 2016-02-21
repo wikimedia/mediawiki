@@ -122,4 +122,21 @@ abstract class Collation {
 	 */
 	abstract function getFirstLetter( $string );
 
+	/**
+	 * Get collation name for db
+	 *
+	 * The convention is to return the value you'd give
+	 * to Collation::factory(), followed by a space, followed
+	 * by any internal version numbers that affect the binary
+	 * representation of the sortkey
+	 * @return String Collation name and version.
+	 */
+	public function getCollationNameForDB() {
+		// As a fallback, for extensions who have previously
+		// subclassed before this method was needed.
+		// All subclasses should reimplement this method. It may become
+		// abstract in a future version.
+		wfDeprecated( __METHOD__, '1.28' );
+		return strtolower( preg_replace( '/Collation$/', '', get_class( $this ) ) );
+	}
 }

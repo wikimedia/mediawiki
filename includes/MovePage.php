@@ -228,7 +228,6 @@ class MovePage {
 	 * @return Status
 	 */
 	public function move( User $user, $reason, $createRedirect ) {
-		global $wgCategoryCollation;
 
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user ] );
 
@@ -279,11 +278,12 @@ class MovePage {
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
+			$coll = Collation::singleton();
 			$dbw->update( 'categorylinks',
 				[
-					'cl_sortkey' => Collation::singleton()->getSortKey(
+					'cl_sortkey' => $coll->getSortKey(
 							$this->newTitle->getCategorySortkey( $prefix ) ),
-					'cl_collation' => $wgCategoryCollation,
+					'cl_collation' => $coll->getCollationNameForDB(),
 					'cl_type' => $type,
 					'cl_timestamp=cl_timestamp' ],
 				[

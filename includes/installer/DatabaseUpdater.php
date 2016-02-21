@@ -1059,12 +1059,12 @@ abstract class DatabaseUpdater {
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
-		global $wgCategoryCollation;
 		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
+			$collName = Collation::singleton()->getCollationNameForDB();
 			if ( $this->db->selectField(
 				'categorylinks',
 				'COUNT(*)',
-				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
+				'cl_collation != ' . $this->db->addQuotes( $collName ),
 				__METHOD__
 				) == 0
 			) {
