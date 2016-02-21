@@ -863,7 +863,7 @@ class SpecialUndelete extends SpecialPage {
 		$query = [
 			"type" => "revision",
 			"ids" => $revisions,
-			"target" => wfUrlencode( $this->mTargetObj->getPrefixedText() )
+			"target" => wfUrlencode( $this->mTargetObj->getPrefixedURL() )
 		];
 		$url = SpecialPage::getTitleFor( "RevisionDelete" )->getFullURL( $query );
 		$this->getOutput()->redirect( $url );
