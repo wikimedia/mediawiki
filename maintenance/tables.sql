@@ -619,8 +619,8 @@ CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_
 -- Used by the API (and some extensions)
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 
--- FIXME: Not used, delete this
-CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
+-- Used when updating collation (e.g. updateCollation.php)
+CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
 --
 -- Track all existing categories.  Something is a category if 1) it has an en-
