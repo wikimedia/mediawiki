@@ -564,4 +564,18 @@ class IcuCollation extends Collation {
 			return false;
 		}
 	}
+
+	public function getCollationNameForDB() {
+		global $wgCategoryCollation;
+
+		$ICUVersion = self::getICUVersion();
+		if ( $ICUVersion ) {
+			// Trim long collation names. categorylinks.cl_collation is a
+			// varbinary(32), so 'uca-de-AT@collation=phonebook 55.1' won't fit.
+			$collation = substr( $wgCategoryCollation, 0, 26 );
+			return $collation . ' ' . $ICUVersion;
+		} else {
+			return $wgCategoryCollation;
+		}
+	}
 }
