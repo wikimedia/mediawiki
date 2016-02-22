@@ -51,7 +51,7 @@ TEXT
 		);
 
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' .
-			'supposed to be up-to-date.' );
+			'supposed to be up-to-date.', false, false, 'f' );
 		$this->addOption( 'previous-collation', 'Set the previous value of ' .
 			'$wgCategoryCollation here to speed up this script, especially if your ' .
 			'categorylinks table is large. This will only update rows with that ' .
