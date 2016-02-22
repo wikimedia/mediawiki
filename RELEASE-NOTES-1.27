@@ -254,6 +254,8 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 * (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
+* (T125373) Fallback language for Literary Chinese was set to Traditional
+  Chinese (from English).
 
 === Other changes in 1.27 ===
 * ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
