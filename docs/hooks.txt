@@ -2397,7 +2397,8 @@ $key: the section name
 &$legend: the legend text. Defaults to wfMessage( "prefs-$key" )->text() but may
   be overridden
 
-'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
+'PrefixSearchBackend': DEPRECATED! Override SearchEngine::completionSearchBackend instead.
+Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns: array of int namespace keys to search in
 $search: search term (not guaranteed to be conveniently normalized)
