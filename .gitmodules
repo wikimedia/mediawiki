@@ -348,3 +348,7 @@
 	path = extensions/AddHTMLMetaAndTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
 	branch = master
+[submodule "extensions/OpenGraphMeta"]
+	path = extensions/OpenGraphMeta
+	url = https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta
+	branch = REL1_26
