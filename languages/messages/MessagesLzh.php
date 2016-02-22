@@ -18,6 +18,8 @@
  * @author Yanteng3
  */
 
+$fallback = 'zh-hant'; // T125373
+
 $specialPageAliases = [
 	'Activeusers'               => [ '躍簿' ],
 	'Allmessages'               => [ '官話' ],
