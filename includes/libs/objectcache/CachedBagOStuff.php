@@ -76,11 +76,6 @@ class CachedBagOStuff extends HashBagOStuff {
 		return true;
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
-		parent::setLogger( $logger );
-		$this->backend->setLogger( $logger );
-	}
-
 	public function setDebug( $bool ) {
 		parent::setDebug( $bool );
 		$this->backend->setDebug( $bool );
