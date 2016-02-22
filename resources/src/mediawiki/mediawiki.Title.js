@@ -54,40 +54,42 @@
 
 	var
 
+	namespaceIds = mw.config.get( 'wgNamespaceIds' ),
+
 	/**
 	 * @private
 	 * @static
 	 * @property NS_MAIN
 	 */
-	NS_MAIN = 0,
+	NS_MAIN = namespaceIds[ '' ],
 
 	/**
 	 * @private
 	 * @static
 	 * @property NS_TALK
 	 */
-	NS_TALK = 1,
+	NS_TALK = namespaceIds.talk,
 
 	/**
 	 * @private
 	 * @static
 	 * @property NS_SPECIAL
 	 */
-	NS_SPECIAL = -1,
+	NS_SPECIAL = namespaceIds.special,
 
 	/**
 	 * @private
 	 * @static
 	 * @property NS_MEDIA
 	 */
-	NS_MEDIA = -2,
+	NS_MEDIA = namespaceIds.media,
 
 	/**
 	 * @private
 	 * @static
 	 * @property NS_FILE
 	 */
-	NS_FILE = 6,
+	NS_FILE = namespaceIds.file,
 
 	/**
 	 * @private
@@ -125,8 +127,9 @@
 		if ( typeof ns !== 'string' ) {
 			return false;
 		}
-		ns = ns.toLowerCase();
-		id = mw.config.get( 'wgNamespaceIds' )[ ns ];
+		// TODO: Should just use local var namespaceIds here but it
+		// breaks test which modify the config
+		id = mw.config.get( 'wgNamespaceIds' )[ ns.toLowerCase() ];
 		if ( id === undefined ) {
 			return false;
 		}
