@@ -33,6 +33,7 @@ class PatrolLogFormatter extends LogFormatter {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
 		if ( isset( $params[5] ) && $params[5] ) {
+			// Messages: logentry-patrol-patrol-auto
 			$key .= '-auto';
 		}
 

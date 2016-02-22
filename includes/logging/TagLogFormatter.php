@@ -39,8 +39,12 @@ class TagLogFormatter extends LogFormatter {
 		$key .= ( $remove ? ( $add ? '' : '-remove' ) : '-add' );
 
 		if ( isset( $params[3] ) && $params[3] ) {
+			// Messages: logentry-tag-update-add-revision, logentry-tag-update-remove-revision,
+			// logentry-tag-update-revision
 			$key .= '-revision';
 		} else {
+			// Messages: logentry-tag-update-add-logentry, logentry-tag-update-remove-logentry,
+			// logentry-tag-update-logentry
 			$key .= '-logentry';
 		}
 

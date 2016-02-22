@@ -53,6 +53,7 @@ class RightsLogFormatter extends LogFormatter {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
 		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
+			// Messages: logentry-rights-rights-legacy
 			$key .= '-legacy';
 		}
 
