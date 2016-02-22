@@ -3,7 +3,7 @@
 /**
  * @group large
  */
-class BcryptPasswordTestCase extends PasswordTestCase {
+class BcryptPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [ 'bcrypt' => [
 			'class' => 'BcryptPassword',
