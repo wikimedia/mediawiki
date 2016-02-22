@@ -3046,12 +3046,6 @@ function wfResetSessionID() {
 function wfSetupSession( $sessionId = false ) {
 	wfDeprecated( __FUNCTION__, '1.27' );
 
-	// If they're calling this, they probably want our session management even
-	// if NO_SESSION was set for Setup.php.
-	if ( !MediaWiki\Session\PHPSessionHandler::isInstalled() ) {
-		MediaWiki\Session\PHPSessionHandler::install( SessionManager::singleton() );
-	}
-
 	if ( $sessionId ) {
 		session_id( $sessionId );
 	}

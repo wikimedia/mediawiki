@@ -1111,7 +1111,8 @@ class User implements IDBAccessObject {
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
 
-		$loggedOut = $this->mRequest ? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
+		$loggedOut = $this->mRequest && !defined( 'MW_NO_SESSION' )
+			? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
 		if ( $loggedOut !== 0 ) {
 			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
@@ -3080,9 +3081,13 @@ class User implements IDBAccessObject {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
 
-			$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
-			if ( $allowedRights !== null ) {
-				$this->mRights = array_intersect( $this->mRights, $allowedRights );
+			// Deny any rights denied by the user's session, unless this
+			// endpoint has no sessions.
+			if ( !defined( 'MW_NO_SESSION' ) ) {
+				$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
+				if ( $allowedRights !== null ) {
+					$this->mRights = array_intersect( $this->mRights, $allowedRights );
+				}
 			}
 
 			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
@@ -4605,11 +4610,14 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		// Remove any rights that aren't allowed to the global-session user
-		$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
-		if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
-			$cache[$right] = false;
-			return false;
+		// Remove any rights that aren't allowed to the global-session user,
+		// unless there are no sessions for this endpoint.
+		if ( !defined( 'MW_NO_SESSION' ) ) {
+			$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
+			if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
+				$cache[$right] = false;
+				return false;
+			}
 		}
 
 		// Allow extensions to say false

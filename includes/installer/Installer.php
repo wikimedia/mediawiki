@@ -1715,7 +1715,9 @@ abstract class Installer {
 	 * Override the necessary bits of the config to run an installation.
 	 */
 	public static function overrideConfig() {
-		define( 'MW_NO_SESSION', 1 );
+		// Use PHP's built-in session handling, since MediaWiki's
+		// SessionHandler can't work before we have an object cache set up.
+		define( 'MW_NO_SESSION_HANDLER', 1 );
 
 		// Don't access the database
 		$GLOBALS['wgUseDatabaseMessages'] = false;
@@ -1739,6 +1741,8 @@ abstract class Installer {
 		// Some of the environment checks make shell requests, remove limits
 		$GLOBALS['wgMaxShellMemory'] = 0;
 
+		// Override the default CookieSessionProvider with a dummy
+		// implementation that won't stomp on PHP's cookies.
 		$GLOBALS['wgSessionProviders'] = [
 			[
 				'class' => 'InstallerSessionProvider',
@@ -1747,6 +1751,9 @@ abstract class Installer {
 				] ]
 			]
 		];
+
+		// Don't try to use any object cache for SessionManager either.
+		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
 	}
 
 	/**

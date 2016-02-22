@@ -111,6 +111,10 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			return;
 		}
 
+		if ( defined( 'MW_NO_SESSION_HANDLER' ) ) {
+			throw new \BadMethodCallException( 'MW_NO_SESSION_HANDLER is defined' );
+		}
+
 		self::$instance = new self( $manager );
 
 		// Close any auto-started session, before we replace it
