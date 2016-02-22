@@ -60,7 +60,6 @@ class ApiQueryPageProps extends ApiQueryBase {
 		}
 
 		$pageProps = PageProps::getInstance();
-		$props = [];
 		$result = $this->getResult();
 		if ( $this->params['prop'] ) {
 			$propnames = $this->params['prop'];
