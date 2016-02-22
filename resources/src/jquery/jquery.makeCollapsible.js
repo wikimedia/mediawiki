@@ -244,7 +244,7 @@
 			options = {};
 		}
 
-		return this.each( function () {
+		this.each( function () {
 			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler, buildDefaultToggleLink,
 				premadeToggleHandler, $toggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
 
@@ -392,13 +392,39 @@
 				}
 			}
 
+			$( this ).data( 'mw-collapsible', {
+				collapse: function () {
+					actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
+				},
+				expand: function () {
+					actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: true } );
+				},
+				toggle: function () {
+					actionHandler.call( $toggleLink.get( 0 ), null, null );
+				}
+			} );
+
 			// Initial state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
 				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
 			}
+
 		} );
+
+		/**
+		 * Fired after collapsible content has been initialized
+		 *
+		 * This gives an option to modify the collapsible behavior.
+		 *
+		 * @event wikipage_collapsibleContent
+		 * @member mw.hook
+		 * @param {jQuery} $content All the elements that have been made collapsible
+		 */
+		mw.hook( 'wikipage.collapsibleContent' ).fire( this );
+
+		return this;
 	};
 
 	/**
