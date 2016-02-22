@@ -3867,13 +3867,20 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
 		global $IP;
-		$remotePath = $config->get( 'ResourceBasePath' );
+		$remotePathPrefix = $config->get( 'ResourceBasePath' );
+		if ( $remotePathPrefix === '' ) {
+			// The configured base path is required to be empty string for
+			// wikis in the domain root
+			$remotePath = '/';
+		} else {
+			$remotePath = $remotePathPrefix;
+		}
 		if ( strpos( $path, $remotePath ) !== 0 ) {
 			// Path is outside wgResourceBasePath, ignore.
 			return $path;
 		}
 		$path = RelPath\getRelativePath( $path, $remotePath );
-		return self::transformFilePath( $remotePath, $IP, $path );
+		return self::transformFilePath( $remotePathPrefix, $IP, $path );
 	}
 
 	/**
@@ -3882,18 +3889,18 @@ class OutputPage extends ContextSource {
 	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
 	 *
 	 * @since 1.27
-	 * @param string $remotePath URL path that points to $localPath
+	 * @param string $remotePath URL path prefix that points to $localPath
 	 * @param string $localPath File directory exposed at $remotePath
 	 * @param string $file Path to target file relative to $localPath
 	 * @return string URL
 	 */
-	public static function transformFilePath( $remotePath, $localPath, $file ) {
+	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
 		$hash = md5_file( "$localPath/$file" );
 		if ( $hash === false ) {
 			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );
 			$hash = '';
 		}
-		return "$remotePath/$file?" . substr( $hash, 0, 5 );
+		return "$remotePathPrefix/$file?" . substr( $hash, 0, 5 );
 	}
 
 	/**
