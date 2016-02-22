@@ -2510,6 +2510,7 @@
 	"pageinfo-robot-index": "İzin verilmiş",
 	"pageinfo-robot-noindex": "İzin verilmedi",
 	"pageinfo-watchers": "Sayfanın izleyici sayısı",
+	"pageinfo-visiting-watchers": "Son değişiklikleri görüntüleyen izleyici sayısı",
 	"pageinfo-few-watchers": "$1 {{PLURAL:$1|izleyiciden|izleyiciden}} az",
 	"pageinfo-redirects-name": "Bu sayfaya yönlendirme sayısı",
 	"pageinfo-redirects-value": "$1",

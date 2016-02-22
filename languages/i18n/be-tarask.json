@@ -1172,6 +1172,7 @@
 	"right-changetags": "дадаваць і выдаляць адвольныя [[Special:Tags|меткі]] да асобных вэрсіяў і запісаў у журнале падзеяў",
 	"grant-generic": "Набор правоў «$1»",
 	"grant-group-page-interaction": "Узаемадзеньне з старонкамі",
+	"grant-group-file-interaction": "Узаемадзеяньне з мэдыяфайламі",
 	"grant-createaccount": "Стварыць рахункі",
 	"grant-createeditmovepage": "Ствараць, рэдагаваць і пераносіць старонкі",
 	"grant-delete": "Выдаляць старонкі, вэрсіі і запісы журналу",

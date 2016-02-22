@@ -1132,7 +1132,7 @@
 	"userrights-user-editname": "Forneça um nome de usuário:",
 	"editusergroup": "Editar grupos {{GENDER:$1|do(a) usuário(a)}}",
 	"editinguser": "Modificando privilégios d{{GENDER:$1|o usuário|a usuária|o(a) usuário(a)}} <strong>[[User:$1|$1]]</Strong> $2",
-	"userrights-editusergroup": "Editar grupos do usuário",
+	"userrights-editusergroup": "Editar grupos {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}}",
 	"saveusergroups": "Salvar grupos de{{GENDER:$1|usuário}}",
 	"userrights-groupsmember": "Membro de:",
 	"userrights-groupsmember-auto": "Membro implícito de:",
