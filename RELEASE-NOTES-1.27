@@ -336,9 +336,10 @@ The following PHP extensions are strongly recommended:
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
-
 * (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
 * (T116020) Aliases of magic words in MessagesXx.php are sorted by usage.
+* (T125373) Fallback language for Literary Chinese was set to Traditional
+  Chinese (from English).
 
 === Other changes in 1.27 ===
 * Added dependency injection (DI) infrastructure, see docs/injection.txt for details.
