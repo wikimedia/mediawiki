@@ -3871,6 +3871,11 @@ class OutputPage extends ContextSource {
 	public static function transformResourcePath( Config $config, $path ) {
 		global $IP;
 		$remotePath = $config->get( 'ResourceBasePath' );
+		if ( $remotePath === '' ) {
+			// The configured base path is required to be empty string for
+			// wikis in the domain root
+			$remotePath = '/';
+		}
 		if ( strpos( $path, $remotePath ) !== 0 ) {
 			// Path is outside wgResourceBasePath, ignore.
 			return $path;
