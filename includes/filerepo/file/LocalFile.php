@@ -1479,6 +1479,9 @@ class LocalFile extends File {
 				__METHOD__
 			);
 
+			# Uploads can be patrolled
+			$logEntry->setIsPatrollable( true );
+
 			# Now that the log entry is up-to-date, make an RC entry.
 			$recentChange = $logEntry->publish( $logId );
 
