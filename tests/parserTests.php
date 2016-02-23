@@ -24,9 +24,9 @@
  * @ingroup Testing
  */
 
-$otions = [ 'quick', 'color', 'quiet', 'help', 'show-output',
+$options = [ 'quick', 'color', 'quiet', 'help', 'show-output',
 	'record', 'run-disabled', 'run-parsoid' ];
-$optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion' ];
+$optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file' ];
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';
 require_once __DIR__ . '/TestsAutoLoader.php';
