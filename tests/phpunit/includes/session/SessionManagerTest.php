@@ -3,7 +3,6 @@
 namespace MediaWiki\Session;
 
 use AuthPlugin;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 use User;
@@ -1676,75 +1675,5 @@ class SessionManagerTest extends MediaWikiTestCase {
 			[ LogLevel::WARNING, 'Session "{session}": Hook aborted' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-	}
-
-	/**
-	 * @dataProvider provideCheckIpLimits
-	 */
-	public function testCheckIpLimits( $ip, $sessionData, $userData, $logLevel1, $logLevel2 ) {
-		$this->setMwGlobals( [
-			'wgSuspiciousIpPerSessionLimit' => 5,
-			'wgSuspiciousIpPerUserLimit' => 10,
-			'wgSuspiciousIpExpiry' => 600,
-			'wgSquidServers' => [ '11.22.33.44' ],
-		] );
-		$manager = new SessionManager();
-		$logger = $this->getMock( '\Psr\Log\LoggerInterface' );
-		$this->setLogger( 'session-ip', $logger );
-		$request = new \FauxRequest();
-		$request->setIP( $ip );
-
-		$session = $manager->getSessionForRequest( $request );
-		/** @var SessionBackend $backend */
-		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
-		$data = &$backend->getData();
-		$data = [ 'SessionManager-ip' => $sessionData ];
-		$backend->setUser( User::newFromName( 'UTSysop' ) );
-		$manager = \TestingAccessWrapper::newFromObject( $manager );
-		$manager->store->set( 'SessionManager-ip:' . md5( 'UTSysop' ), $userData );
-
-		$logger->expects( $this->exactly( isset( $logLevel1 ) + isset( $logLevel2 ) ) )->method( 'log' );
-		if ( $logLevel1 ) {
-			$logger->expects( $this->at( 0 ) )->method( 'log' )->with( $logLevel1,
-				'Same session used from {count} IPs', $this->isType( 'array' ) );
-		}
-		if ( $logLevel2 ) {
-			$logger->expects( $this->at( isset( $logLevel1 ) ) )->method( 'log' )->with( $logLevel2,
-				'Same user had sessions from {count} IPs', $this->isType( 'array' ) );
-		}
-
-		$manager->checkIpLimits( $session );
-	}
-
-	public function provideCheckIpLimits() {
-		$future = time() + 1000;
-		$past = time() - 1000;
-		return [
-			// DEBUG log for first new IP
-			[ '1.2.3.4', [], [], LogLevel::DEBUG, LogLevel::DEBUG ],
-			// no log for same IP
-			[ '1.2.3.4', [ '1.2.3.4'  => $future ], [ '1.2.3.4' => $future ],
-				   null, null ],
-			[ '1.2.3.4', [], [ '1.2.3.4' => $future ],
-				   LogLevel::DEBUG, null ],
-			// INFO log for second new IP
-			[ '1.2.3.4', [ '10.20.30.40'  => $future ], [ '10.20.30.40' => $future ],
-			   LogLevel::INFO, LogLevel::INFO ],
-			// WARNING above $wgSuspiciousIpPerSessionLimit
-			[ '1.2.3.4', array_fill_keys( range( 1, 5 ), $future ),
-			   array_fill_keys( range( 1, 5 ), $future ), LogLevel::WARNING, LogLevel::INFO ],
-			// WARNING above $wgSuspiciousIpPerUserLimit
-
-			[ '1.2.3.4', array_fill_keys( range( 1, 2 ), $future ),
-				   array_fill_keys( range( 1, 12 ), $future ), LogLevel::INFO, LogLevel::WARNING ],
-			// expired keys ignored
-			[ '1.2.3.4', [ '1.2.3.4'  => $past ], [ '1.2.3.4' => $past ],
-			   LogLevel::DEBUG, LogLevel::DEBUG ],
-			[ '1.2.3.4', array_fill_keys( range( 1, 5 ), $past ),
-				   array_fill_keys( range( 1, 5 ), $past ), LogLevel::DEBUG, LogLevel::DEBUG ],
-			// special IPs are ignored
-			[ '127.0.0.1', [], [], null, null ],
-			[ '11.22.33.44', [], [], null, null ],
-		];
 	}
 }
