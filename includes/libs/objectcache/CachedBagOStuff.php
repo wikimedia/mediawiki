@@ -50,11 +50,9 @@ class CachedBagOStuff extends HashBagOStuff {
 
 	protected function doGet( $key, $flags = 0 ) {
 		$ret = parent::doGet( $key, $flags );
-		if ( $ret === false ) {
+		if ( $ret === false && !$this->hasKey( $key ) ) {
 			$ret = $this->backend->doGet( $key, $flags );
-			if ( $ret !== false ) {
-				$this->set( $key, $ret, 0, self::WRITE_CACHE_ONLY );
-			}
+			$this->set( $key, $ret, 0, self::WRITE_CACHE_ONLY );
 		}
 		return $ret;
 	}
