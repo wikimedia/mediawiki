@@ -9804,8 +9804,7 @@ Magic Word: {{SCRIPTPATH}}
 !! wikitext
 {{SCRIPTPATH}}
 !! html
-<p>/
-</p>
+
 !! end
 
 !! test
