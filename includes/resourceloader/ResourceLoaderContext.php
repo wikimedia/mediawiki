@@ -221,13 +221,7 @@ class ResourceLoaderContext {
 		if ( $this->userObj === null ) {
 			$username = $this->getUser();
 			if ( $username ) {
-				// Optimize: Avoid loading a new User object if possible
-				global $wgUser;
-				if ( is_object( $wgUser ) && $wgUser->getName() === $username ) {
-					$this->userObj = $wgUser;
-				} else {
-					$this->userObj = User::newFromName( $username );
-				}
+				$this->userObj = User::newFromName( $username );
 			} else {
 				$this->userObj = new User; // Anonymous user
 			}
