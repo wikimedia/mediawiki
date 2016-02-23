@@ -829,7 +829,7 @@ class ParserTest {
 			'wgServer' => 'http://example.org',
 			'wgServerName' => 'example.org',
 			'wgScript' => '/index.php',
-			'wgScriptPath' => '/',
+			'wgScriptPath' => '',
 			'wgArticlePath' => '/wiki/$1',
 			'wgActionPaths' => [],
 			'wgLockManagers' => [ [
