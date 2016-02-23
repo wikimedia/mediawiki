@@ -31,8 +31,11 @@
 	font-size: 1em;
 	// Container layout
 	display: inline-block;
+	min-width: 4em;
+	max-width: 460px; // @see T95367
 	padding: .5em 1em;
 	margin: 0;
+	border-radius: @borderRadius;
 	.box-sizing( border-box );
 
 	// Disable weird iOS styling
@@ -43,15 +46,11 @@
 	*display: inline;
 	zoom: 1;
 
-	// Container styling
-	.button-colors( #fff, #ccc, #777 );
-	border-radius: @borderRadius;
-	min-width: 4em;
-
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
 	vertical-align: middle;
 
 	// Content styling
+	.button-colors( #fff, #ccc, #777 );
 	text-align: center;
 	font-weight: bold;
 
@@ -112,6 +111,8 @@
 	&.mw-ui-block {
 		display: block;
 		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	// Progressive buttons
