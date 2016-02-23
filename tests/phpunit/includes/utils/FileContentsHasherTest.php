@@ -18,7 +18,7 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers FileContentsHasher::getFileContentHash
+	 * @covers FileContentsHasher::getFileContentsHash
 	 * @covers FileContentsHasher::getFileContentsHashInternal
 	 * @dataProvider provideSingleFile
 	 */
@@ -33,7 +33,7 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers FileContentsHasher::getFileContentHash
+	 * @covers FileContentsHasher::getFileContentsHash
 	 * @covers FileContentsHasher::getFileContentsHashInternal
 	 * @dataProvider provideMultipleFiles
 	 */

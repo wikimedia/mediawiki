@@ -94,7 +94,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ProcessCacheLRU::get
 	 * @covers ProcessCacheLRU::set
-	 * @covers ProcessCacheLRU::het
+	 * @covers ProcessCacheLRU::has
 	 */
 	public function testAddAndGetAKey() {
 		$oneCache = new ProcessCacheLRUTestable( 1 );
@@ -184,7 +184,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ProcessCacheLRU::get
 	 * @covers ProcessCacheLRU::set
-	 * @covers ProcessCacheLRU::het
+	 * @covers ProcessCacheLRU::has
 	 */
 	public function testRecentlyAccessedKeyStickIn() {
 		$cache = new ProcessCacheLRUTestable( 2 );

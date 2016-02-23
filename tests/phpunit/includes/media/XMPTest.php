@@ -175,7 +175,7 @@ class XMPTest extends MediaWikiTestCase {
 
 	/**
 	 * Test for multi-section, hostile XML
-	 * @covers checkParseSafety
+	 * @covers XMPReader::checkParseSafety
 	 */
 	public function testCheckParseSafety() {
 

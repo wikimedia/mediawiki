@@ -146,7 +146,7 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider provideSwappingICCProfile
-	 * @covers BitmapHandler::swapICCProfile
+	 * @covers ExifBitmapHandler::swapICCProfile
 	 */
 	public function testSwappingICCProfile(
 		$sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName

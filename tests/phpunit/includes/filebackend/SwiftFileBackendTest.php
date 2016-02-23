@@ -27,17 +27,17 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_testSanitzeHdrs
-	 * @covers SwiftFileBackend::sanitzeHdrs
+	 * @dataProvider provider_testSanitizeHdrs
+	 * @covers SwiftFileBackend::sanitizeHdrs
 	 * @covers SwiftFileBackend::getCustomHeaders
 	 */
-	public function testSanitzeHdrs( $raw, $sanitized ) {
+	public function testSanitizeHdrs( $raw, $sanitized ) {
 		$hdrs = $this->backend->sanitizeHdrs( [ 'headers' => $raw ] );
 
 		$this->assertEquals( $hdrs, $sanitized, 'sanitizeHdrs() has expected result' );
 	}
 
-	public static function provider_testSanitzeHdrs() {
+	public static function provider_testSanitizeHdrs() {
 		return [
 			[
 				[

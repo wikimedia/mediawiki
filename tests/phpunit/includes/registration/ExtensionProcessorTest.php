@@ -130,7 +130,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertEquals( 'somevalue', $extracted['globals']['egBar'] );
 	}
 
-	public static function provideExtracttExtensionMessagesFiles() {
+	public static function provideExtractExtensionMessagesFiles() {
 		$dir = __DIR__ . '/FooBar/';
 		return [
 			[
@@ -155,10 +155,10 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ExtensionProcessor::extracttExtensionMessagesFiles
-	 * @dataProvider provideExtracttExtensionMessagesFiles
+	 * @covers ExtensionProcessor::extractExtensionMessagesFiles
+	 * @dataProvider provideExtractExtensionMessagesFiles
 	 */
-	public function testExtracttExtensionMessagesFiles( $input, $expected ) {
+	public function testExtractExtensionMessagesFiles( $input, $expected ) {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();

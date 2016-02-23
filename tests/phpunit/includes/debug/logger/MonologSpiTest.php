@@ -26,7 +26,7 @@ use TestingAccessWrapper;
 class MonologSpiTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers MonologSpi::mergeConfig
+	 * @covers MediaWiki\Logger\MonologSpi::mergeConfig
 	 */
 	public function testMergeConfig() {
 		$base = [
