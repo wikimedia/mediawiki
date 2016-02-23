@@ -71,6 +71,7 @@ function wfInstallerMain() {
 		$langCode = 'en';
 	}
 	$wgLang = Language::factory( $langCode );
+	RequestContext::getMain()->setLanguage( $wgLang );
 
 	$installer->setParserLanguage( $wgLang );
 
