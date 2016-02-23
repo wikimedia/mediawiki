@@ -252,29 +252,36 @@ a.mw-ui-button {
 //
 // Markup:
 // <div class="mw-ui-button-group">
-//   <div class="mw-ui-button">A</div>
+//   <div class="mw-ui-button is-on">A</div>
 //   <div class="mw-ui-button">B</div>
 //   <div class="mw-ui-button">C</div>
 //   <div class="mw-ui-button">D</div>
 // </div><div style="clear:both"></div>
 //
 // Styleguide 2.2.
-.mw-ui-button-group > * {
-	min-width: 48px;
-	border-radius: 0;
-	float: left;
+.mw-ui-button-group
+	& > * {
+		min-width: 48px;
+		border-radius: 0;
+		float: left;
 
-	&:first-child {
-		border-top-left-radius: @borderRadius;
-		border-bottom-left-radius: @borderRadius;
+		&:first-child {
+			border-top-left-radius: @borderRadius;
+			border-bottom-left-radius: @borderRadius;
+		}
+
+		&:not( :first-child ) {
+			border-left: 0;
+		}
+
+		&:last-child {
+			border-top-right-radius: @borderRadius;
+			border-bottom-right-radius: @borderRadius;
+		}
 	}
 
-	&:not( :first-child ) {
-		border-left: 0;
+	& .is-on .button {
+		cursor: default;
 	}
 
-	&:last-child{
-		border-top-right-radius: @borderRadius;
-		border-bottom-right-radius: @borderRadius;
-	}
 }
