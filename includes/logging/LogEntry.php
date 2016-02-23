@@ -425,6 +425,9 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int ID of the log entry */
 	protected $id;
 
+	/** @var Can this log entry be patrolled? */
+	protected $isPatrollable = false;
+
 	/** @var bool Whether this is a legacy log entry */
 	protected $legacy = false;
 
@@ -527,6 +530,19 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function setAssociatedRevId( $revId ) {
 		$this->revId = $revId;
+	}
+
+	/**
+	 * Set whether this log entry should be made patrollable
+	 * This shouldn't depend on config, only on whether there is full support
+	 * in the software for patrolling this log entry.
+	 * False by default
+	 *
+	 * @since 1.27
+	 * @param bool $patrollable
+	 */
+	public function setIsPatrollable( $patrollable ) {
+		$this->isPatrollable = (bool)$patrollable;
 	}
 
 	/**
@@ -663,7 +679,8 @@ class ManualLogEntry extends LogEntryBase {
 			LogEntryBase::makeParamBlob( $this->getParameters() ),
 			$newId,
 			$formatter->getIRCActionComment(), // Used for IRC feeds
-			$this->getAssociatedRevId() // Used for e.g. moves and uploads
+			$this->getAssociatedRevId(), // Used for e.g. moves and uploads
+			$this->getIsPatrollable()
 		);
 	}
 
@@ -741,6 +758,16 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function getAssociatedRevId() {
 		return $this->revId;
+	}
+
+	/**
+	 * Whether this log entry is patrollable
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function getIsPatrollable() {
+		return $this->isPatrollable;
 	}
 
 	/**

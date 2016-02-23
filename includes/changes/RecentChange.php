@@ -714,11 +714,12 @@ class RecentChange {
 	 * @param int $newId
 	 * @param string $actionCommentIRC
 	 * @param int $revId Id of associated revision, if any
+	 * @param bool $isPatrollable Whether this log entry is patrollable
 	 * @return RecentChange
 	 */
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
-		$revId = 0 ) {
+		$revId = 0, $isPatrollable = false ) {
 		global $wgRequest;
 
 		# # Get pageStatus for email notification
@@ -742,9 +743,8 @@ class RecentChange {
 				break;
 		}
 
-		// Allow unpatrolled status when an associated rev id is passed
-		// May be used in core by moves and uploads
-		$markPatrolled = ( $revId > 0 ) ? $user->isAllowed( 'autopatrol' ) : true;
+		// Allow unpatrolled status for patrollable log entries
+		$markPatrolled = $isPatrollable ? $user->isAllowed( 'autopatrol' ) : true;
 
 		$rc = new RecentChange;
 		$rc->mTitle = $target;
