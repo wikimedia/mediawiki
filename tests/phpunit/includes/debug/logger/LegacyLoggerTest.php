@@ -26,7 +26,7 @@ use Psr\Log\LogLevel;
 class LegacyLoggerTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers LegacyLogger::interpolate
+	 * @covers MediaWiki\Logger\LegacyLogger::interpolate
 	 * @dataProvider provideInterpolate
 	 */
 	public function testInterpolate( $message, $context, $expect ) {
@@ -125,7 +125,7 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers LegacyLogger::shouldEmit
+	 * @covers MediaWiki\Logger\LegacyLogger::shouldEmit
 	 * @dataProvider provideShouldEmit
 	 */
 	public function testShouldEmit( $level, $config, $expected ) {
