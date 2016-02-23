@@ -689,31 +689,43 @@ class ManualLogEntry extends LogEntryBase {
 	 *
 	 * @param int $newId Id of the log entry.
 	 * @param string $to One of: rcandudp (default), rc, udp
-	 * @return RecentChange|null
+	 * @param array $tags Change tags to apply to the log entry, recent change
+	 * and associated revision if any
+	 * Callers are responsible for permission checks
 	 */
-	public function publish( $newId, $to = 'rcandudp' ) {
-		$log = new LogPage( $this->getType() );
-		if ( $log->isRestricted() ) {
-			return null;
-		}
+	public function publish( $newId, $to = 'rcandudp', $tags = [] ) {
+		$that = $this;
+		DeferredUpdates::addCallableUpdate( function() use ( $that, $newId, $to, $tags ) {
+			$log = new LogPage( $that->getType() );
+			if ( !$log->isRestricted() ) {
+				$rc = $that->getRecentChange( $newId );
 
-		$rc = $this->getRecentChange( $newId );
+				if ( $to === 'rc' || $to === 'rcandudp' ) {
+					$rc->save( 'pleasedontudp' );
+				}
 
-		if ( $to === 'rc' || $to === 'rcandudp' ) {
-			$rc->save( 'pleasedontudp' );
-		}
+				if ( $to === 'udp' || $to === 'rcandudp' ) {
+					$rc->notifyRCFeeds();
+				}
 
-		if ( $to === 'udp' || $to === 'rcandudp' ) {
-			$rc->notifyRCFeeds();
-		}
+				$revId = $that->getAssociatedRevId();
+				// Log the autopatrol if an associated rev id was passed
+				if ( $revId > 0 &&
+					$rc->getAttribute( 'rc_patrolled' ) === 1 ) {
+					PatrolLog::record( $rc, true, $that->getPerformer() );
+				}
 
-		// Log the autopatrol if an associated rev id was passed
-		if ( $this->getAssociatedRevId() > 0 &&
-			$rc->getAttribute( 'rc_patrolled' ) === 1 ) {
-			PatrolLog::record( $rc, true, $this->getPerformer() );
-		}
-
-		return $rc;
+				// Apply the requested change tags
+				if ( count( $tags ) ) {
+					ChangeTags::addTags(
+						$tags,
+						$rc->getAttribute( 'rc_id' ),
+						$revId > 0 ? $revId : null,
+						$newId
+					);
+				}
+			}
+		} );
 	}
 
 	public function getType() {

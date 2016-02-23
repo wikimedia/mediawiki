@@ -1483,16 +1483,8 @@ class LocalFile extends File {
 			$logEntry->setIsPatrollable( true );
 
 			# Now that the log entry is up-to-date, make an RC entry.
-			$recentChange = $logEntry->publish( $logId );
-
-			if ( $tags ) {
-				ChangeTags::addTags(
-					$tags,
-					$recentChange ? $recentChange->getAttribute( 'rc_id' ) : null,
-					$logEntry->getAssociatedRevId(),
-					$logId
-				);
-			}
+			# Pass change tags so that it is done there (after publish, which is deferred)
+			$logEntry->publish( $logId, 'rcandudp', $tags );
 
 			# Run hook for other updates (typically more cache purging)
 			Hooks::run( 'FileUpload', [ $that, $reupload, !$newPageContent ] );
