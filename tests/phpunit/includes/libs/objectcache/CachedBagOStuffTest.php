@@ -49,4 +49,22 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$cache->delete( 'foo', CachedBagOStuff::WRITE_CACHE_ONLY );
 		$this->assertEquals( 'old', $cache->get( 'foo' ) ); // Reloaded from backend
 	}
+
+	public function testCacheBackendMisses() {
+		$backend = new HashBagOStuff;
+		$cache = new CachedBagOStuff( $backend );
+
+		// First hit primes the cache with miss from the backend
+		$this->assertEquals( false, $cache->get( 'foo' ) );
+
+		// Change the value in the backend
+		$backend->set( 'foo', true );
+
+		// Second hit returns the cached miss
+		$this->assertEquals( false, $cache->get( 'foo' ) );
+
+		// But a fresh value is read from the backend
+		$backend->set( 'bar', true );
+		$this->assertEquals( true, $cache->get( 'bar' ) );
+	}
 }
