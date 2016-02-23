@@ -71,13 +71,14 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgSitename'] = 'MediaWiki';
 		$tmpGlobals['wgServer'] = 'http://example.org';
 		$tmpGlobals['wgServerName'] = 'example.org';
+		$tmpGlobals['wgScriptPath'] = '';
 		$tmpGlobals['wgScript'] = '/index.php';
-		$tmpGlobals['wgScriptPath'] = '/';
+		$tmpGlobals['wgResourceBasePath'] = '';
+		$tmpGlobals['wgStylePath'] = '/skins';
+		$tmpGlobals['wgExtensionAssetsPath'] = '/extensions';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
 		$tmpGlobals['wgActionPaths'] = array();
 		$tmpGlobals['wgVariantArticlePath'] = false;
-		$tmpGlobals['wgExtensionAssetsPath'] = '/extensions';
-		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgEnableUploads'] = true;
 		$tmpGlobals['wgUploadNavigationUrl'] = false;
 		$tmpGlobals['wgThumbnailScriptPath'] = false;

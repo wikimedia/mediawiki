@@ -168,15 +168,16 @@ class ParserTest {
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$wgExtraInterlanguageLinkPrefixes, $wgLocalInterwikis,
-			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
+			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath, $wgResourceBasePath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
 
+		$wgScriptPath = '';
 		$wgScript = '/index.php';
-		$wgScriptPath = '/';
-		$wgArticlePath = '/wiki/$1';
 		$wgStylePath = '/skins';
+		$wgResourceBasePath = '';
 		$wgExtensionAssetsPath = '/extensions';
+		$wgArticlePath = '/wiki/$1';
 		$wgThumbnailScriptPath = false;
 		$wgLockManagers = array( array(
 			'name' => 'fsLockManager',
