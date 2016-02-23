@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.4
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-17T02:03:27Z
+ * Date: 2016-02-22T22:33:37Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -263,6 +263,9 @@
 .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
 .oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
 	opacity: 0.8;
+}
+.oo-ui-labelElement .oo-ui-labelElement-label-highlight {
+	font-weight: bold;
 }
 .oo-ui-pendingElement-pending {
 	background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
@@ -739,8 +742,11 @@
 	width: 100%;
 	max-width: 50em;
 }
+.oo-ui-dropdownInputWidget .oo-ui-dropdownWidget,
 .oo-ui-dropdownInputWidget select {
-	display: inline-block;
+	display: block;
+}
+.oo-ui-dropdownInputWidget select {
 	width: 100%;
 	resize: none;
 	-webkit-box-sizing: border-box;
@@ -786,7 +792,7 @@
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
-	display: inline-block;
+	display: block;
 	width: 100%;
 	resize: none;
 	-webkit-box-sizing: border-box;
@@ -980,7 +986,7 @@
 }
 .oo-ui-dropdownWidget-handle {
 	width: 100%;
-	display: inline-block;
+	display: block;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -1088,7 +1094,4 @@
 .oo-ui-comboBoxInputWidget-empty .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	cursor: default;
 	opacity: 0.2;
-}
-.oo-ui-comboBoxInputWidget > .oo-ui-selectWidget {
-	margin-top: -3px;
 }

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.4
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-17T02:03:23Z
+ * Date: 2016-02-22T22:33:33Z
  */
 ( function ( OO ) {
 
@@ -253,8 +253,10 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 		if ( immediate && !timeout ) {
 			func.apply( context, args );
 		}
-		clearTimeout( timeout );
-		timeout = setTimeout( later, wait );
+		if ( !timeout || wait ) {
+			clearTimeout( timeout );
+			timeout = setTimeout( later, wait );
+		}
 	};
 };
 
@@ -264,7 +266,7 @@ OO.ui.debounce = function ( func, wait, immediate ) {
  * @param {HTMLElement} node
  * @param {string} eventName
  * @param {Function} handler
- * @deprecated
+ * @deprecated since 0.15.0
  */
 OO.ui.addCaptureEventListener = function ( node, eventName, handler ) {
 	node.addEventListener( eventName, handler, true );
@@ -276,7 +278,7 @@ OO.ui.addCaptureEventListener = function ( node, eventName, handler ) {
  * @param {HTMLElement} node
  * @param {string} eventName
  * @param {Function} handler
- * @deprecated
+ * @deprecated since 0.15.0
  */
 OO.ui.removeCaptureEventListener = function ( node, eventName, handler ) {
 	node.removeEventListener( eventName, handler, true );
@@ -2636,8 +2638,6 @@ OO.ui.mixin.IndicatorElement.prototype.getIndicatorTitle = function () {
  *  as a plaintext string, a jQuery selection of elements, or a function that will produce a string
  *  in the future. See the [OOjs UI documentation on MediaWiki] [2] for examples.
  *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
- * @cfg {boolean} [autoFitLabel=true] Fit the label to the width of the parent element.
- *  The label will be truncated to fit if necessary.
  */
 OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
 	// Configuration initialization
@@ -2646,7 +2646,6 @@ OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
 	// Properties
 	this.$label = null;
 	this.label = null;
-	this.autoFitLabel = config.autoFitLabel === undefined || !!config.autoFitLabel;
 
 	// Initialization
 	this.setLabel( config.label || this.constructor.static.label );
@@ -2676,6 +2675,33 @@ OO.initClass( OO.ui.mixin.LabelElement );
  * @property {string|Function|null}
  */
 OO.ui.mixin.LabelElement.static.label = null;
+
+/* Static methods */
+
+/**
+ * Highlight the first occurrence of the query in the given text
+ *
+ * @param {string} text Text
+ * @param {string} query Query to find
+ * @return {jQuery} Text with the first match of the query
+ *  sub-string wrapped in highlighted span
+ */
+OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query ) {
+	var $result = $( '<span>' ),
+		offset = text.toLowerCase().indexOf( query.toLowerCase() );
+
+	if ( !query.length || offset === -1 ) {
+		return $result.text( text );
+	}
+	$result.append(
+		document.createTextNode( text.slice( 0, offset ) ),
+		$( '<span>' )
+			.addClass( 'oo-ui-labelElement-label-highlight' )
+			.text( text.slice( offset, offset + query.length ) ),
+		document.createTextNode( text.slice( offset + query.length ) )
+	);
+	return $result.contents();
+};
 
 /* Methods */
 
@@ -2723,6 +2749,17 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 };
 
 /**
+ * Set the label as plain text with a highlighted query
+ *
+ * @param {string} text Text label to set
+ * @param {string} query Substring of text to highlight
+ * @chainable
+ */
+OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query ) {
+	return this.setLabel( this.constructor.static.highlightQuery( text, query ) );
+};
+
+/**
  * Get the label.
  *
  * @return {jQuery|string|Function|null} Label nodes; text; a function that returns nodes or
@@ -2736,12 +2773,9 @@ OO.ui.mixin.LabelElement.prototype.getLabel = function () {
  * Fit the label.
  *
  * @chainable
+ * @deprecated since 0.16.0
  */
 OO.ui.mixin.LabelElement.prototype.fitLabel = function () {
-	if ( this.$label && this.$label.autoEllipsis && this.autoFitLabel ) {
-		this.$label.autoEllipsis( { hasSpan: false, tooltip: true } );
-	}
-
 	return this;
 };
 
@@ -5866,7 +5900,6 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
 
 	// Properties
-	this.newItems = null;
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.filterFromInput = !!config.filterFromInput;
 	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
@@ -6032,25 +6065,8 @@ OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
-	var i, len, item;
-
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.addItems.call( this, items, index );
-
-	// Auto-initialize
-	if ( !this.newItems ) {
-		this.newItems = [];
-	}
-
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		item = items[ i ];
-		if ( this.isVisible() ) {
-			// Defer fitting label until item has been attached
-			item.fitLabel();
-		} else {
-			this.newItems.push( item );
-		}
-	}
 
 	// Reevaluate clipping
 	this.clip();
@@ -6088,7 +6104,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
-	var i, len, change;
+	var change;
 
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 	change = visible !== this.isVisible();
@@ -6101,12 +6117,6 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.bindKeyDownListener();
 			this.bindKeyPressListener();
 
-			if ( this.newItems && this.newItems.length ) {
-				for ( i = 0, len = this.newItems.length; i < len; i++ ) {
-					this.newItems[ i ].fitLabel();
-				}
-				this.newItems = null;
-			}
 			this.toggleClipping( true );
 
 			if ( this.getSelectedItem() ) {
@@ -6851,7 +6861,7 @@ OO.ui.InputWidget.prototype.getValue = function () {
 /**
  * Set the directionality of the input, either RTL (right-to-left) or LTR (left-to-right).
  *
- * @deprecated since v0.13.1, use #setDir directly
+ * @deprecated since v0.13.1; use #setDir directly
  * @param {boolean} isRTL Directionality is right-to-left
  * @chainable
  */
@@ -7184,7 +7194,7 @@ OO.ui.CheckboxInputWidget.static.gatherPreInfuseState = function ( node, config 
  * @protected
  */
 OO.ui.CheckboxInputWidget.prototype.getInputElement = function () {
-	return $( '<input type="checkbox" />' );
+	return $( '<input>' ).attr( 'type', 'checkbox' );
 };
 
 /**
@@ -7314,7 +7324,7 @@ OO.ui.DropdownInputWidget.prototype.getInputElement = function ( config ) {
 	if ( config.$input ) {
 		return config.$input.addClass( 'oo-ui-element-hidden' );
 	}
-	return $( '<input type="hidden">' );
+	return $( '<input>' ).attr( 'type', 'hidden' );
 };
 
 /**
@@ -7476,7 +7486,7 @@ OO.ui.RadioInputWidget.static.gatherPreInfuseState = function ( node, config ) {
  * @protected
  */
 OO.ui.RadioInputWidget.prototype.getInputElement = function () {
-	return $( '<input type="radio" />' );
+	return $( '<input>' ).attr( 'type', 'radio' );
 };
 
 /**
@@ -7591,7 +7601,7 @@ OO.ui.RadioSelectInputWidget.static.gatherPreInfuseState = function ( node, conf
  * @protected
  */
 OO.ui.RadioSelectInputWidget.prototype.getInputElement = function () {
-	return $( '<input type="hidden">' );
+	return $( '<input>' ).attr( 'type', 'hidden' );
 };
 
 /**
@@ -8133,7 +8143,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
 	return config.multiline ?
 		$( '<textarea>' ) :
-		$( '<input type="' + this.getSaneType( config ) + '" />' );
+		$( '<input>' ).attr( 'type', this.getSaneType( config ) );
 };
 
 /**
@@ -8339,7 +8349,7 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
  * This method returns a promise that resolves with a boolean `true` if the current value is
  * considered valid according to the supplied {@link #validate validation pattern}.
  *
- * @deprecated
+ * @deprecated since v0.12.3
  * @return {jQuery.Promise} A promise that resolves to a boolean `true` if the value is valid.
  */
 OO.ui.TextInputWidget.prototype.isValid = function () {
@@ -8398,7 +8408,11 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
  */
 OO.ui.TextInputWidget.prototype.setLabelPosition = function ( labelPosition ) {
 	this.labelPosition = labelPosition;
-	this.updatePosition();
+	if ( this.label ) {
+		// If there is no label and we only change the position, #updatePosition is a no-op,
+		// but it takes really a lot of work to do nothing.
+		this.updatePosition();
+	}
 	return this;
 };
 
@@ -8734,7 +8748,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
 
 /**
  * @class
- * @deprecated Use OO.ui.ComboBoxInputWidget instead.
+ * @deprecated since 0.13.2; use OO.ui.ComboBoxInputWidget instead
  */
 OO.ui.ComboBoxWidget = OO.ui.ComboBoxInputWidget;
 

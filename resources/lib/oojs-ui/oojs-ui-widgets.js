@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.4
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-17T02:03:23Z
+ * Date: 2016-02-22T22:33:33Z
  */
 ( function ( OO ) {
 
@@ -22,21 +22,31 @@
  * @class
  *
  * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$handle] The part of the element which can be used for dragging, defaults to the whole element
  */
-OO.ui.mixin.DraggableElement = function OoUiMixinDraggableElement() {
+OO.ui.mixin.DraggableElement = function OoUiMixinDraggableElement( config ) {
+	config = config || {};
+
 	// Properties
 	this.index = null;
+	this.$handle = config.$handle || this.$element;
+	this.wasHandleUsed = null;
 
 	// Initialize and events
-	this.$element
+	this.$element.addClass( 'oo-ui-draggableElement' )
+		// We make the entire element draggable, not just the handle, so that
+		// the whole element appears to move. wasHandleUsed prevents drags from
+		// starting outside the handle
 		.attr( 'draggable', true )
-		.addClass( 'oo-ui-draggableElement' )
 		.on( {
+			mousedown: this.onDragMouseDown.bind( this ),
 			dragstart: this.onDragStart.bind( this ),
 			dragover: this.onDragOver.bind( this ),
 			dragend: this.onDragEnd.bind( this ),
 			drop: this.onDrop.bind( this )
 		} );
+	this.$handle.addClass( 'oo-ui-draggableElement-handle' );
 };
 
 OO.initClass( OO.ui.mixin.DraggableElement );
@@ -72,6 +82,20 @@ OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
 /* Methods */
 
 /**
+ * Respond to mousedown event.
+ *
+ * @private
+ * @param {jQuery.Event} event jQuery event
+ */
+OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
+	this.wasHandleUsed =
+		// Optimization: if the handle is the whole element this is always true
+		this.$handle[ 0 ] === this.$element[ 0 ] ||
+		// Check the mousedown occurred inside the handle
+		OO.ui.contains( this.$handle[ 0 ], e.target, true );
+};
+
+/**
  * Respond to dragstart event.
  *
  * @private
@@ -79,7 +103,13 @@ OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
  * @fires dragstart
  */
 OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
-	var dataTransfer = e.originalEvent.dataTransfer;
+	var element = this,
+		dataTransfer = e.originalEvent.dataTransfer;
+
+	if ( !this.wasHandleUsed ) {
+		return false;
+	}
+
 	// Define drop effect
 	dataTransfer.dropEffect = 'none';
 	dataTransfer.effectAllowed = 'move';
@@ -91,8 +121,14 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
 	} catch ( err ) {
 		// The above is only for Firefox. Move on if it fails.
 	}
-	// Add dragging class
-	this.$element.addClass( 'oo-ui-draggableElement-dragging' );
+	// Briefly add a 'clone' class to style the browser's native drag image
+	this.$element.addClass( 'oo-ui-draggableElement-clone' );
+	// Add placeholder class after the browser has rendered the clone
+	setTimeout( function () {
+		element.$element
+			.removeClass( 'oo-ui-draggableElement-clone' )
+			.addClass( 'oo-ui-draggableElement-placeholder' );
+	} );
 	// Emit event
 	this.emit( 'dragstart', this );
 	return true;
@@ -105,7 +141,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
  * @fires dragend
  */
 OO.ui.mixin.DraggableElement.prototype.onDragEnd = function () {
-	this.$element.removeClass( 'oo-ui-draggableElement-dragging' );
+	this.$element.removeClass( 'oo-ui-draggableElement-placeholder' );
 	this.emit( 'dragend' );
 };
 
@@ -181,9 +217,9 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	// Properties
 	this.orientation = config.orientation || 'vertical';
 	this.dragItem = null;
-	this.itemDragOver = null;
 	this.itemKeys = {};
-	this.sideInsertion = '';
+	this.dir = null;
+	this.itemsOrder = null;
 
 	// Events
 	this.aggregate( {
@@ -193,25 +229,18 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	} );
 	this.connect( this, {
 		itemDragStart: 'onItemDragStart',
-		itemDrop: 'onItemDrop',
-		itemDragEnd: 'onItemDragEnd'
-	} );
-	this.$element.on( {
-		dragover: this.onDragOver.bind( this ),
-		dragleave: this.onDragLeave.bind( this )
+		itemDrop: 'onItemDropOrDragEnd',
+		itemDragEnd: 'onItemDropOrDragEnd'
 	} );
 
 	// Initialize
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
-	this.$placeholder = $( '<div>' )
-		.addClass( 'oo-ui-draggableGroupElement-placeholder' );
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
 		.append( this.$status )
-		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' )
-		.prepend( this.$placeholder );
+		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
 };
 
 /* Setup */
@@ -220,7 +249,15 @@ OO.mixinClass( OO.ui.mixin.DraggableGroupElement, OO.ui.mixin.GroupElement );
 /* Events */
 
 /**
- * A 'reorder' event is emitted when the order of items in the group changes.
+ * An item has been dragged to a new position, but not yet dropped.
+ *
+ * @event drag
+ * @param {OO.ui.mixin.DraggableElement} item Dragged item
+ * @param {number} [newIndex] New index for the item
+ */
+
+/**
+ * And item has been dropped at a new position.
  *
  * @event reorder
  * @param {OO.ui.mixin.DraggableElement} item Reordered item
@@ -236,59 +273,49 @@ OO.mixinClass( OO.ui.mixin.DraggableGroupElement, OO.ui.mixin.GroupElement );
  * @param {OO.ui.mixin.DraggableElement} item Dragged item
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onItemDragStart = function ( item ) {
-	var i, len;
-
-	// Map the index of each object
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		this.items[ i ].setIndex( i );
-	}
-
+	// Make a shallow copy of this.items so we can re-order it during previews
+	// without affecting the original array.
+	this.itemsOrder = this.items.slice();
+	this.updateIndexes();
 	if ( this.orientation === 'horizontal' ) {
-		// Set the height of the indicator
-		this.$placeholder.css( {
-			height: item.$element.outerHeight(),
-			width: 2
-		} );
-	} else {
-		// Set the width of the indicator
-		this.$placeholder.css( {
-			height: 2,
-			width: item.$element.outerWidth()
-		} );
+		// Calculate and cache directionality on drag start - it's a little
+		// expensive and it shouldn't change while dragging.
+		this.dir = this.$element.css( 'direction' );
 	}
 	this.setDragItem( item );
 };
 
 /**
- * Respond to item drag end event
- *
- * @private
+ * Update the index properties of the items
  */
-OO.ui.mixin.DraggableGroupElement.prototype.onItemDragEnd = function () {
-	this.unsetDragItem();
-	return false;
+OO.ui.mixin.DraggableGroupElement.prototype.updateIndexes = function () {
+	var i, len;
+
+	// Map the index of each object
+	for ( i = 0, len = this.itemsOrder.length; i < len; i++ ) {
+		this.itemsOrder[ i ].setIndex( i );
+	}
 };
 
 /**
- * Handle drop event and switch the order of the items accordingly
+ * Handle drop or dragend event and switch the order of the items accordingly
  *
  * @private
  * @param {OO.ui.mixin.DraggableElement} item Dropped item
- * @fires reorder
  */
-OO.ui.mixin.DraggableGroupElement.prototype.onItemDrop = function ( item ) {
-	var toIndex = item.getIndex();
-	// Check if the dropped item is from the current group
+OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
+	var targetIndex, originalIndex,
+		item = this.getDragItem();
+
 	// TODO: Figure out a way to configure a list of legally droppable
 	// elements even if they are not yet in the list
-	if ( this.getDragItem() ) {
-		// If the insertion point is 'after', the insertion index
-		// is shifted to the right (or to the left in RTL, hence 'after')
-		if ( this.sideInsertion === 'after' ) {
-			toIndex++;
-		}
-		// Emit change event
-		this.emit( 'reorder', this.getDragItem(), toIndex );
+	if ( item ) {
+		originalIndex = this.items.indexOf( item );
+		// If the item has moved forward, add one to the index to account for the left shift
+		targetIndex = item.getIndex() + ( item.getIndex() > originalIndex ? 1 : 0 );
+		this.reorder( this.getDragItem(), targetIndex );
+		this.emit( 'reorder', this.getDragItem(), targetIndex );
+		this.updateIndexes();
 	}
 	this.unsetDragItem();
 	// Return false to prevent propogation
@@ -296,26 +323,18 @@ OO.ui.mixin.DraggableGroupElement.prototype.onItemDrop = function ( item ) {
 };
 
 /**
- * Handle dragleave event.
- *
- * @private
- */
-OO.ui.mixin.DraggableGroupElement.prototype.onDragLeave = function () {
-	// This means the item was dragged outside the widget
-	this.$placeholder
-		.css( 'left', 0 )
-		.addClass( 'oo-ui-element-hidden' );
-};
-
-/**
  * Respond to dragover event
  *
  * @private
- * @param {jQuery.Event} event Event details
+ * @param {jQuery.Event} event Dragover event
+ * @fires reorder
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 	var dragOverObj, $optionWidget, itemOffset, itemMidpoint, itemBoundingRect,
-		itemSize, cssOutput, dragPosition, itemIndex, itemPosition,
+		itemSize, cssOutput, dragPosition, overIndex, itemPosition, after,
+		targetIndex = null,
+		item = this.getDragItem(),
+		dragItemIndex = item.getIndex(),
 		clientX = e.originalEvent.clientX,
 		clientY = e.originalEvent.clientY;
 
@@ -326,13 +345,12 @@ OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 		itemOffset = $optionWidget.offset();
 		itemBoundingRect = $optionWidget[ 0 ].getBoundingClientRect();
 		itemPosition = $optionWidget.position();
-		itemIndex = $optionWidget.data( 'index' );
+		overIndex = $optionWidget.data( 'index' );
 	}
 
 	if (
 		itemOffset &&
-		this.isDragging() &&
-		itemIndex !== this.getDragItem().getIndex()
+		overIndex !== dragItemIndex
 	) {
 		if ( this.orientation === 'horizontal' ) {
 			// Calculate where the mouse is relative to the item width
@@ -340,7 +358,7 @@ OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 			itemMidpoint = itemBoundingRect.left + itemSize / 2;
 			dragPosition = clientX;
 			// Which side of the item we hover over will dictate
-			// where the placeholder will appear, on the left or
+			// where to drop the selected item, on the left or
 			// on the right
 			cssOutput = {
 				left: dragPosition < itemMidpoint ? itemPosition.left : itemPosition.left + itemSize,
@@ -352,7 +370,7 @@ OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 			itemMidpoint = itemBoundingRect.top + itemSize / 2;
 			dragPosition = clientY;
 			// Which side of the item we hover over will dictate
-			// where the placeholder will appear, on the top or
+			// where to drop the selected item, on the top or
 			// on the bottom
 			cssOutput = {
 				top: dragPosition < itemMidpoint ? itemPosition.top : itemPosition.top + itemSize,
@@ -361,23 +379,42 @@ OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 		}
 		// Store whether we are before or after an item to rearrange
 		// For horizontal layout, we need to account for RTL, as this is flipped
-		if (  this.orientation === 'horizontal' && this.$element.css( 'direction' ) === 'rtl' ) {
-			this.sideInsertion = dragPosition < itemMidpoint ? 'after' : 'before';
+		if ( this.orientation === 'horizontal' && this.dir === 'rtl' ) {
+			after = dragPosition < itemMidpoint;
 		} else {
-			this.sideInsertion = dragPosition < itemMidpoint ? 'before' : 'after';
+			after = dragPosition > itemMidpoint;
 		}
-		// Add drop indicator between objects
-		this.$placeholder
-			.css( cssOutput )
-			.removeClass( 'oo-ui-element-hidden' );
-	} else {
-		// This means the item was dragged outside the widget
-		this.$placeholder
-			.css( 'left', 0 )
-			.addClass( 'oo-ui-element-hidden' );
+		targetIndex = overIndex + ( after ? 1 : 0 );
+		// Check the targetIndex isn't immediately to the left or right of the current item (a no-op)
+		if ( targetIndex === dragItemIndex || targetIndex === dragItemIndex + 1 ) {
+			targetIndex = null;
+		}
+	}
+	if ( targetIndex !== null ) {
+		if ( targetIndex > 0 ) {
+			this.$group.children().eq( targetIndex - 1 ).after( item.$element );
+		} else {
+			this.$group.prepend( item.$element );
+		}
+		// Move item in itemsOrder array. Needs to account for left shift if the item is moved forward.
+		this.itemsOrder.splice( targetIndex - ( targetIndex > dragItemIndex ? 1 : 0 ), 0,
+			this.itemsOrder.splice( dragItemIndex, 1 )[ 0 ]
+		);
+		this.updateIndexes();
+		this.emit( 'drag', item, targetIndex );
 	}
 	// Prevent default
 	e.preventDefault();
+};
+
+/**
+ * Reorder the items in the group
+ *
+ * @param {OO.ui.mixin.DraggableElement} item Reordered item
+ * @param {number} newIndex New index
+ */
+OO.ui.mixin.DraggableGroupElement.prototype.reorder = function ( item, newIndex ) {
+	this.addItems( [ item ], newIndex );
 };
 
 /**
@@ -387,6 +424,8 @@ OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
  */
 OO.ui.mixin.DraggableGroupElement.prototype.setDragItem = function ( item ) {
 	this.dragItem = item;
+	this.$element.on( 'dragover', this.onDragOver.bind( this ) );
+	this.$element.addClass( 'oo-ui-draggableGroupElement-dragging' );
 };
 
 /**
@@ -394,9 +433,8 @@ OO.ui.mixin.DraggableGroupElement.prototype.setDragItem = function ( item ) {
  */
 OO.ui.mixin.DraggableGroupElement.prototype.unsetDragItem = function () {
 	this.dragItem = null;
-	this.itemDragOver = null;
-	this.$placeholder.addClass( 'oo-ui-element-hidden' );
-	this.sideInsertion = '';
+	this.$element.off( 'dragover' );
+	this.$element.removeClass( 'oo-ui-draggableGroupElement-dragging' );
 };
 
 /**
@@ -406,15 +444,6 @@ OO.ui.mixin.DraggableGroupElement.prototype.unsetDragItem = function () {
  */
 OO.ui.mixin.DraggableGroupElement.prototype.getDragItem = function () {
 	return this.dragItem;
-};
-
-/**
- * Check if an item in the group is currently being dragged.
- *
- * @return {Boolean} Item is being dragged
- */
-OO.ui.mixin.DraggableGroupElement.prototype.isDragging = function () {
-	return this.getDragItem() !== null;
 };
 
 /**
@@ -4245,17 +4274,11 @@ OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
  * @cfg {string} [notsupported] Text to display when file support is missing in the browser.
  * @cfg {boolean} [droppable=true] Whether to accept files by drag and drop.
  * @cfg {boolean} [showDropTarget=false] Whether to show a drop target. Requires droppable to be true.
- * @cfg {boolean} [dragDropUI=false] Deprecated alias for showDropTarget
  * @cfg {Number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
  *  preview (for performance)
  */
 OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	var dragHandler;
-
-	// TODO: Remove in next release
-	if ( config && config.dragDropUI ) {
-		config.showDropTarget = true;
-	}
 
 	// Configuration initialization
 	config = $.extend( {
@@ -4274,7 +4297,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$info } ) );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { autoFitLabel: true } ) );
+	OO.ui.mixin.LabelElement.call( this, config );
 
 	// Properties
 	this.$info = $( '<span>' );
@@ -4373,7 +4396,7 @@ OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.LabelElement );
 OO.ui.SelectFileWidget.static.isSupported = function () {
 	var $input;
 	if ( OO.ui.SelectFileWidget.static.isSupportedCache === null ) {
-		$input = $( '<input type="file">' );
+		$input = $( '<input>' ).attr( 'type', 'file' );
 		OO.ui.SelectFileWidget.static.isSupportedCache = $input[ 0 ].files !== undefined;
 	}
 	return OO.ui.SelectFileWidget.static.isSupportedCache;
@@ -4542,7 +4565,7 @@ OO.ui.SelectFileWidget.prototype.addInput = function () {
 		return;
 	}
 
-	this.$input = $( '<input type="file">' );
+	this.$input = $( '<input>' ).attr( 'type', 'file' );
 	this.$input.on( 'change', this.onFileSelectedHandler );
 	this.$input.on( 'click', function ( e ) {
 		// Prevents dropTarget to get clicked which calls
