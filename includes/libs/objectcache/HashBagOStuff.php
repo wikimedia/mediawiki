@@ -60,8 +60,19 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	/**
+	 * Does this bag have a non-null value for the given key?
+	 *
+	 * @param string $key
+	 * @return bool
+	 * @since 1.27
+	 */
+	protected function hasKey( $key ) {
+		return isset( $this->bag[$key] );
+	}
+
 	protected function doGet( $key, $flags = 0 ) {
-		if ( !isset( $this->bag[$key] ) ) {
+		if ( !$this->hasKey( $key ) ) {
 			return false;
 		}
 
