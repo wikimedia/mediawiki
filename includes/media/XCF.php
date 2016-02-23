@@ -37,7 +37,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 

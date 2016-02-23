@@ -31,15 +31,15 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canRender( $file ) {
+	public function canRender( $file ) {
 		return ( $file->getWidth() && $file->getHeight() );
 	}
 
-	function getParamMap() {
+	public function getParamMap() {
 		return [ 'img_width' => 'width' ];
 	}
 
-	function validateParam( $name, $value ) {
+	public function validateParam( $name, $value ) {
 		if ( in_array( $name, [ 'width', 'height' ] ) ) {
 			if ( $value <= 0 ) {
 				return false;
@@ -51,7 +51,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
-	function makeParamString( $params ) {
+	public function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {
 			$width = $params['physicalWidth'];
 		} elseif ( isset( $params['width'] ) ) {
@@ -65,7 +65,7 @@ abstract class ImageHandler extends MediaHandler {
 		return "{$width}px";
 	}
 
-	function parseParamString( $str ) {
+	public function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1] ];

@@ -75,7 +75,7 @@ abstract class MediaHandler {
 	 * Get an associative array mapping magic word IDs to parameter names.
 	 * Will be used by the parser to identify parameters.
 	 */
-	abstract function getParamMap();
+	abstract public function getParamMap();
 
 	/**
 	 * Validate a thumbnail parameter at parse time.
@@ -85,7 +85,7 @@ abstract class MediaHandler {
 	 * @param string $name
 	 * @param mixed $value
 	 */
-	abstract function validateParam( $name, $value );
+	abstract public function validateParam( $name, $value );
 
 	/**
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
@@ -93,7 +93,7 @@ abstract class MediaHandler {
 	 * @param array $params Array of parameters that have been through normaliseParams.
 	 * @return string
 	 */
-	abstract function makeParamString( $params );
+	abstract public function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
@@ -101,7 +101,7 @@ abstract class MediaHandler {
 	 * @param string $str The parameter string without file name (e.g. 122px)
 	 * @return array|bool Array of parameters or false on failure.
 	 */
-	abstract function parseParamString( $str );
+	abstract public function parseParamString( $str );
 
 	/**
 	 * Changes the parameter array as necessary, ready for transformation.
@@ -342,7 +342,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canRender( $file ) {
+	public function canRender( $file ) {
 		return true;
 	}
 
@@ -353,7 +353,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return false;
 	}
 
@@ -363,7 +363,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isMultiPage( $file ) {
+	public function isMultiPage( $file ) {
 		return false;
 	}
 
