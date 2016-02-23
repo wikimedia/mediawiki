@@ -255,9 +255,10 @@ class SpecialVersion extends SpecialPage {
 	 * Return a string of the MediaWiki version with Git revision if available.
 	 *
 	 * @param string $flags
+	 * @param Language|string|null $lang
 	 * @return mixed
 	 */
-	public static function getVersion( $flags = '' ) {
+	public static function getVersion( $flags = '', $lang = null ) {
 		global $wgVersion, $IP;
 
 		$gitInfo = self::getGitHeadSha1( $IP );
@@ -268,7 +269,11 @@ class SpecialVersion extends SpecialPage {
 			$version = "$wgVersion ($shortSha1)";
 		} else {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
-			$shortSha1 = wfMessage( 'parentheses' )->params( $shortSha1 )->escaped();
+			$msg = wfMessage( 'parentheses' );
+			if ( $lang !== null ) {
+				$msg->inLanguage( $lang );
+			}
+			$shortSha1 = $msg->params( $shortSha1 )->escaped();
 			$version = "$wgVersion $shortSha1";
 		}
 
