@@ -796,13 +796,15 @@ foreach ( $wgExtensionFunctions as $func ) {
 
 // If the session user has a 0 id but a valid name, that means we need to
 // autocreate it.
-$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
-if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
-	$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
-	MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
-	Profiler::instance()->scopedProfileOut( $ps_autocreate );
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
+	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
+		$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
+		MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
+		Profiler::instance()->scopedProfileOut( $ps_autocreate );
+	}
+	unset( $sessionUser );
 }
-unset( $sessionUser );
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
