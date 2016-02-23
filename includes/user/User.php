@@ -327,7 +327,8 @@ class User implements IDBAccessObject {
 	 */
 	public function isSafeToLoad() {
 		global $wgFullyInitialised;
-		return $wgFullyInitialised || $this->mLoadedItems === true || $this->mFrom !== 'session';
+		return ( !defined( 'MW_NO_SESSION' ) && $wgFullyInitialised ) ||
+			$this->mLoadedItems === true || $this->mFrom !== 'session';
 	}
 
 	/**
