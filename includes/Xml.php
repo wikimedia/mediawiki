@@ -49,7 +49,7 @@ class Xml {
 			if ( $allowShortTag && $contents === '' ) {
 				$out .= ' />';
 			} else {
-				$out .= '>' . htmlspecialchars( $contents ) . "</$element>";
+				$out .= '>' . htmlspecialchars( $contents, ENT_NOQUOTES ) . "</$element>";
 			}
 		}
 		return $out;

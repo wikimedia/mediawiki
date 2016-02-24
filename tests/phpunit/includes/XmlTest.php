@@ -97,8 +97,8 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testElementEscaping() {
 		$this->assertEquals(
-			'<element>hello &lt;there&gt; you &amp; you</element>',
-			Xml::element( 'element', null, 'hello <there> you & you' ),
+			'<element>"hello &lt;there&gt; your\'s &amp; you"</element>',
+			Xml::element( 'element', null, '"hello <there> your\'s & you"' ),
 			'Element with no attributes and content that needs escaping'
 		);
 	}
