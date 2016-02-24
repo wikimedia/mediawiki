@@ -360,3 +360,7 @@
 	path = extensions/BetaFeatures
 	url = https://github.com/wikimedia/mediawiki-extensions-BetaFeatures
 	branch = REL1_26
+[submodule "extensions/SandboxLink"]
+	path = extensions/SandboxLink
+	url = https://github.com/wikimedia/mediawiki-extensions-SandboxLink
+	branch = REL1_26
