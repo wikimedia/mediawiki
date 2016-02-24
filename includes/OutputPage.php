@@ -2211,7 +2211,7 @@ class OutputPage extends ContextSource {
 			$response->header( $this->getKeyHeader() );
 		}
 
-		if ( $this->mEnableClientCache ) {
+		if ( $this->mEnableClientCache && !$response->hasCookies() ) {
 			if (
 				$config->get( 'UseSquid' ) && !SessionManager::getGlobalSession()->isPersistent() &&
 				!$this->isPrintable() && $this->mCdnMaxage != 0 && !$this->haveCacheVaryCookies()
@@ -2250,12 +2250,26 @@ class OutputPage extends ContextSource {
 		} else {
 			wfDebug( __METHOD__ . ": no caching **", 'private' );
 
+			// Log request paths that are not properly disabling the use of
+			// cache headers when cookies have been set.
+			if ( $this->mEnableClientCache && $response->hasCookies() ) {
+				LoggerFactory::getInstance( 'cache-cookies' )->warning(
+					'Cookies set on {url} with mEnableClientCache=true', [
+						'url' => $this->getRequest()->getRequestURL(),
+						'cookies' => $response->getCookieKeys(),
+						'exception' => new UnexpectedValueException,
+				] );
+			}
+
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
 			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 			$response->header( 'Pragma: no-cache' );
 		}
+	}
+
+	protected function sendNoCacheHeaders() {
 	}
 
 	/**
