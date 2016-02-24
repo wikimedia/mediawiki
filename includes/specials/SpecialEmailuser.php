@@ -280,7 +280,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$name,
 				[
 					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
-					'autofocus' => true,
+					'autofocus' => '',
 				]
 			) .
 			' ' .
