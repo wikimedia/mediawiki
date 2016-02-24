@@ -810,7 +810,7 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * Magic method implementation of the above (for PHP >= 5.2.0), so we can do, eg:
-	 *     $foo = Message::get( $key );
+	 *     $foo = new Message( $key );
 	 *     $string = "<abbr>$foo</abbr>";
 	 *
 	 * @since 1.18
