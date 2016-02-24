@@ -1397,7 +1397,7 @@
 	"recentchanges-page-added-to-category": "[[:$1]] aggiunta alla categoria",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] e {{PLURAL:$2|una pagina è aggiunta|$2 pagine sono aggiunte}} alla categoria",
 	"recentchanges-page-removed-from-category": "[[:$1]] rimossa dalla categoria",
-	"recentchanges-page-removed-from-category-bundled": "[[:$1]] e {{PLURAL:$2|un'altra pagina rimosse|$2 pagine rimosse}} dalla categoria",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] e {{PLURAL:$2|un'altra pagina|altre $2 pagine}} rimosse dalla categoria",
 	"autochange-username": "Modifica automatica MediaWiki",
 	"upload": "Carica un file",
 	"uploadbtn": "Carica",

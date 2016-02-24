@@ -456,7 +456,7 @@
 	"shown-title": "दर एका पानार {{PLURAL:$1|निकाल}} दाखय",
 	"viewprevnext": "पळयात ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "ह्या'''विकीचेर \"[[:$1]]\" ह्या नांवाचें पान आसा .''' {{PLURAL:$2|0=|See also the other search results found.}}",
-	"searchmenu-new": "<strong>ह्या विकीचेर \"[[:$1]]\" हें पान रोचात!<strong> {{PLURAL:$2|सोदून मेळिल्लें पानय पळेयात.|सोदून मेळिल्ले निकाळय पळेयात.}}",
+	"searchmenu-new": "<strong>ह्या विकीचेर \"[[:$1]]\" हें पान रोचात!</strong> {{PLURAL:$2|सोदून मेळिल्लें पानय पळेयात.|सोदून मेळिल्ले निकाळय पळेयात.}}",
 	"searchprofile-articles": "मजकूराचीं पानां",
 	"searchprofile-images": "भोवमाध्यम",
 	"searchprofile-everything": "सगळें",
