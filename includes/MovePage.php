@@ -248,6 +248,9 @@ class MovePage {
 		}
 
 		$dbw->startAtomic( __METHOD__ );
+
+		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
+
 		$pageid = $this->oldTitle->getArticleID( Title::GAID_FOR_UPDATE );
 		$protected = $this->oldTitle->isProtected();
 
