@@ -1334,9 +1334,13 @@ interface IDatabase {
 	 * @param string $fname
 	 * @param string $flush Flush flag, set to 'flush' to disable warnings about
 	 *   explicitly committing implicit transactions, or calling commit when no
-	 *   transaction is in progress. This will silently break any ongoing
-	 *   explicit transaction. Only set the flush flag if you are sure that it
-	 *   is safe to ignore these warnings in your context.
+	 *   transaction is in progress.
+	 *
+	 *   This will trigger an exception if there is an ongoing explicit transaction.
+	 *
+	 *   Only set the flush flag if you are sure that these warnings are not applicable,
+	 *   and no explicit transactions are open.
+	 *
 	 * @throws DBUnexpectedError
 	 */
 	public function commit( $fname = __METHOD__, $flush = '' );
