@@ -572,7 +572,9 @@ final class SessionBackend {
 	 * @param bool $closing Whether the session is being closed
 	 */
 	public function save( $closing = false ) {
-		if ( $this->provider->getManager()->isUserSessionPrevented( $this->user->getName() ) ) {
+		$anon = $this->user->isAnon();
+
+		if ( !$anon && $this->provider->getManager()->isUserSessionPrevented( $this->user->getName() ) ) {
 			$this->logger->debug(
 				'SessionBackend "{session}" not saving, user {user} was ' .
 				'passed to SessionManager::preventSessionsForUser',
@@ -585,7 +587,6 @@ final class SessionBackend {
 
 		// Ensure the user has a token
 		// @codeCoverageIgnoreStart
-		$anon = $this->user->isAnon();
 		if ( !$anon && !$this->user->getToken( false ) ) {
 			$this->logger->debug(
 				'SessionBackend "{session}" creating token for user {user} on save',
