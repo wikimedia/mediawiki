@@ -179,6 +179,29 @@ class WebResponse {
 	public function clearCookie( $name, $options = [] ) {
 		$this->setCookie( $name, '', time() - 31536000 /* 1 year */, $options );
 	}
+
+	/**
+	 * Checks whether this request is performing cookie operations
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function hasCookies() {
+		return !!self::$setCookies;
+	}
+
+	/**
+	 * Get the keys for all cookies that are being changed in this request.
+	 *
+	 * A cookie key is a newline delimited string composed of the cookie name,
+	 * domain and path.
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function getCookieKeys() {
+		return array_keys( self::$setCookies );
+	}
 }
 
 /**
