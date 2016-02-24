@@ -109,7 +109,7 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 				[ 'xslt' => 'DoesNotExist' ] ],
 			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Stylesheet should be in the MediaWiki namespace.</xml></warnings></api>',
 				[ 'xslt' => 'ApiFormatXmlTest' ] ],
-			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Stylesheet should have &quot;.xsl&quot; extension.</xml></warnings></api>',
+			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Stylesheet should have ".xsl" extension.</xml></warnings></api>',
 				[ 'xslt' => 'MediaWiki:ApiFormatXmlTest' ] ],
 			[ [],
 				'<?xml version="1.0"?><?xml-stylesheet href="' .
