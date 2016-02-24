@@ -121,7 +121,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					$messages_target
 				),
 				$lang,
-				$lang != $wgContLang->getCode()
+				!$langObj->equals( $wgContLang )
 			);
 
 			$customised = $params['customised'] === 'modified';
