@@ -148,6 +148,7 @@ class CookieSessionProvider extends SessionProvider {
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
+				$info['persisted'] = true; // If we have user+token, it should be
 			} elseif ( isset( $info['id'] ) ) {
 				$info['userInfo'] = $userInfo;
 			} else {

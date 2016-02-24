@@ -203,9 +203,6 @@ class SessionInfo {
 
 	/**
 	 * Return whether the session is persisted
-	 *
-	 * i.e. a session ID was given to the constuctor
-	 *
 	 * @return bool
 	 */
 	final public function wasPersisted() {
