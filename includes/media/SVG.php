@@ -51,7 +51,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 
@@ -462,7 +462,7 @@ class SvgHandler extends ImageHandler {
 	 * @param mixed $value Parameter value
 	 * @return bool Validity
 	 */
-	function validateParam( $name, $value ) {
+	public function validateParam( $name, $value ) {
 		if ( in_array( $name, [ 'width', 'height' ] ) ) {
 			// Reject negative heights, widths
 			return ( $value > 0 );
@@ -485,7 +485,7 @@ class SvgHandler extends ImageHandler {
 	 * @param array $params Name=>value pairs of parameters
 	 * @return string Filename to use
 	 */
-	function makeParamString( $params ) {
+	public function makeParamString( $params ) {
 		$lang = '';
 		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
 			$params['lang'] = strtolower( $params['lang'] );
@@ -498,7 +498,7 @@ class SvgHandler extends ImageHandler {
 		return "$lang{$params['width']}px";
 	}
 
-	function parseParamString( $str ) {
+	public function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
@@ -509,7 +509,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function getParamMap() {
+	public function getParamMap() {
 		return [ 'img_lang' => 'lang', 'img_width' => 'width' ];
 	}
 

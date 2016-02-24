@@ -59,7 +59,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		return $scaler;
 	}
 
-	function makeParamString( $params ) {
+	public function makeParamString( $params ) {
 		$res = parent::makeParamString( $params );
 		if ( isset( $params['interlace'] ) && $params['interlace'] ) {
 			return "interlaced-{$res}";
@@ -68,7 +68,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 	}
 
-	function parseParamString( $str ) {
+	public function parseParamString( $str ) {
 		$remainder = preg_replace( '/^interlaced-/', '', $str );
 		$params = parent::parseParamString( $remainder );
 		if ( $params === false ) {
@@ -78,7 +78,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		return $params;
 	}
 
-	function validateParam( $name, $value ) {
+	public function validateParam( $name, $value ) {
 		if ( $name === 'interlace' ) {
 			return $value === false || $value === true;
 		} else {

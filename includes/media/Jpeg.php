@@ -42,7 +42,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return true;
 	}
 
-	function validateParam( $name, $value ) {
+	public function validateParam( $name, $value ) {
 		if ( $name === 'quality' ) {
 			return self::validateQuality( $value );
 		} else {
@@ -58,7 +58,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $value === 'low';
 	}
 
-	function makeParamString( $params ) {
+	public function makeParamString( $params ) {
 		// Prepend quality as "qValue-". This has to match parseParamString() below
 		$res = parent::makeParamString( $params );
 		if ( $res && isset( $params['quality'] ) ) {
@@ -67,7 +67,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
-	function parseParamString( $str ) {
+	public function parseParamString( $str ) {
 		// $str contains "qlow-200px" or "200px" strings because thumb.php would strip the filename
 		// first - check if the string begins with "qlow-", and if so, treat it as quality.
 		// Pass the first portion, or the whole string if "qlow-" not found, to the parent

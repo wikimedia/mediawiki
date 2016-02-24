@@ -47,7 +47,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 
@@ -64,14 +64,14 @@ class DjVuHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isMultiPage( $file ) {
+	public function isMultiPage( $file ) {
 		return true;
 	}
 
 	/**
 	 * @return array
 	 */
-	function getParamMap() {
+	public function getParamMap() {
 		return [
 			'img_width' => 'width',
 			'img_page' => 'page',
@@ -83,7 +83,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param mixed $value
 	 * @return bool
 	 */
-	function validateParam( $name, $value ) {
+	public function validateParam( $name, $value ) {
 		if ( $name === 'page' && trim( $value ) !== (string)intval( $value ) ) {
 			// Extra junk on the end of page, probably actually a caption
 			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
@@ -104,7 +104,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param array $params
 	 * @return bool|string
 	 */
-	function makeParamString( $params ) {
+	public function makeParamString( $params ) {
 		$page = isset( $params['page'] ) ? $params['page'] : 1;
 		if ( !isset( $params['width'] ) ) {
 			return false;
@@ -117,7 +117,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param string $str
 	 * @return array|bool
 	 */
-	function parseParamString( $str ) {
+	public function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[2], 'page' => $m[1] ];
