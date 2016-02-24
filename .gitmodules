@@ -356,3 +356,7 @@
 	path = extensions/WikiLove
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiLove
 	branch = REL1_26
+[submodule "extensions/BetaFeatures"]
+	path = extensions/BetaFeatures
+	url = https://github.com/wikimedia/mediawiki-extensions-BetaFeatures
+	branch = REL1_26
