@@ -33,6 +33,8 @@ class DeleteLogFormatter extends LogFormatter {
 		$key = parent::getMessageKey();
 		if ( in_array( $this->entry->getSubtype(), [ 'event', 'revision' ] ) ) {
 			if ( count( $this->getMessageParameters() ) < 5 ) {
+				// Messages: logentry-delete-event-legacy, logentry-delete-revision-legacy,
+				// logentry-suppress-event-legacy, logentry-suppress-revision-legacy
 				return "$key-legacy";
 			}
 		}
