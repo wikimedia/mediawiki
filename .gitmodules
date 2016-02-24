@@ -364,3 +364,7 @@
 	path = extensions/SandboxLink
 	url = https://github.com/wikimedia/mediawiki-extensions-SandboxLink
 	branch = REL1_26
+[submodule "extensions/MultimediaViewer"]
+	path = extensions/MultimediaViewer
+	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
+	branch = REL1_26
