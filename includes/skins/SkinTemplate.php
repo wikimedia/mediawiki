@@ -662,10 +662,6 @@ class SkinTemplate extends Skin {
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( User::groupHasPermission( '*', 'edit' ) ) {
-				// Show the text "Not logged in"
-				$personal_urls['anonuserpage'] = array(
-					'text' => $this->msg( 'notloggedin' )->text()
-				);
 
 				// Because of caching, we can't link directly to the IP talk and
 				// contributions pages. Instead we use the special page shortcuts
