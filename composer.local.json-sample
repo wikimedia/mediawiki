@@ -1,9 +1,0 @@
-{
-	"extra": {
-		"merge-plugin": {
-			"include": [
-				"extensions/example/composer.json"
-			]
-		}
-	}
-}
