@@ -170,7 +170,7 @@ final class SessionBackend {
 	public function getSession( WebRequest $request ) {
 		$index = ++$this->curIndex;
 		$this->requests[$index] = $request;
-		$session = new Session( $this, $index );
+		$session = new Session( $this, $index, $this->logger );
 		return $session;
 	}
 
