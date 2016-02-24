@@ -17,9 +17,9 @@
 		};
 
 	/**
-	 * @private
 	 * Get nonce for iframe IDs on the page.
 	 *
+	 * @private
 	 * @return {number}
 	 */
 	function getNonce() {
@@ -27,9 +27,9 @@
 	}
 
 	/**
-	 * @private
 	 * Given a non-empty object, return one of its keys.
 	 *
+	 * @private
 	 * @param {Object} obj
 	 * @return {string}
 	 */
@@ -42,9 +42,9 @@
 	}
 
 	/**
-	 * @private
 	 * Get new iframe object for an upload.
 	 *
+	 * @private
 	 * @return {HTMLIframeElement}
 	 */
 	function getNewIframe( id ) {
@@ -55,9 +55,9 @@
 	}
 
 	/**
-	 * @private
 	 * Shortcut for getting hidden inputs
 	 *
+	 * @private
 	 * @return {jQuery}
 	 */
 	function getHiddenInput( name, val ) {

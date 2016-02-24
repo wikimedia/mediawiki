@@ -10,10 +10,9 @@
 		"checkAnnotations": {
 			"preset": "jsduck5",
 			"extra": {
-				"context": true,
-				"source": true,
-				"see": true,
-				"private": true
+				"context": "some",
+				"source": "some",
+				"see": "some"
 			}
 		},
 		"checkParamNames": true,
