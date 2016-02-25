@@ -144,7 +144,7 @@ abstract class GenericArrayObject extends ArrayObject {
 		if ( !$this->hasValidType( $value ) ) {
 			throw new InvalidArgumentException(
 				'Can only add '	. $this->getObjectType() . ' implementing objects to '
-				. get_called_class() . '.'
+				. static::class . '.'
 			);
 		}
 
