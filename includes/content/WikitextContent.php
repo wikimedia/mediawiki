@@ -258,10 +258,10 @@ class WikitextContent extends TextContent {
 	 * Returns true if this content is not a redirect, and this content's text
 	 * is countable according to the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param bool $hasLinks If it is known whether this content contains
+	 * @param bool|null $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out (default: null).
-	 * @param Title $title Optional title, defaults to the title from the current main request.
+	 * @param Title|null $title Optional title, defaults to the title from the current main request.
 	 *
 	 * @return bool
 	 */

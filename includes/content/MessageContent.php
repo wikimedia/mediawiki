@@ -136,7 +136,7 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @param bool $hasLinks
+	 * @param bool|null $hasLinks
 	 *
 	 * @return bool Always false.
 	 *
