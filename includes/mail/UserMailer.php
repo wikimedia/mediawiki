@@ -33,7 +33,7 @@ class UserMailer {
 	/**
 	 * Send mail using a PEAR mailer
 	 *
-	 * @param UserMailer $mailer
+	 * @param Mail_smtp $mailer
 	 * @param string $dest
 	 * @param string $headers
 	 * @param string $body
