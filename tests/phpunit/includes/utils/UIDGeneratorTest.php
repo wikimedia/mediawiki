@@ -79,7 +79,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 				preg_match( '!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
 				"UID $id has the right format" );
 
-			$id = UIDGenerator::newRawUUIDv1( UIDGenerator::QUICK_RAND );
+			$id = UIDGenerator::newRawUUIDv1();
 			$this->assertEquals( true,
 				preg_match( '!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
 				"UID $id has the right format" );
