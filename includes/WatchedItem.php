@@ -379,63 +379,15 @@ class WatchedItem {
 	}
 
 	/**
-	 * Check if the given title already is watched by the user, and if so
-	 * add watches on a new title. To be used for page renames and such.
+	 * @deprecated since 1.27. See WatchedItemStore::duplicateEntry
 	 *
-	 * @param Title $ot Page title to duplicate entries from, if present
-	 * @param Title $nt Page title to add watches on
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
 	 */
-	public static function duplicateEntries( $ot, $nt ) {
-		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
-		WatchedItem::doDuplicateEntries( $ot->getTalkPage(), $nt->getTalkPage() );
+	public static function duplicateEntries( Title $oldTitle, Title $newTitle ) {
+		$store = WatchedItemStore::getDefaultInstance();
+		$store->duplicateEntry( $oldTitle->getSubjectPage(), $newTitle->getSubjectPage() );
+		$store->duplicateEntry( $oldTitle->getTalkPage(), $newTitle->getTalkPage() );
 	}
 
-	/**
-	 * Handle duplicate entries. Backend for duplicateEntries().
-	 *
-	 * @param Title $ot
-	 * @param Title $nt
-	 *
-	 * @return bool
-	 */
-	private static function doDuplicateEntries( $ot, $nt ) {
-		$oldnamespace = $ot->getNamespace();
-		$newnamespace = $nt->getNamespace();
-		$oldtitle = $ot->getDBkey();
-		$newtitle = $nt->getDBkey();
-
-		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( 'watchlist',
-			[ 'wl_user', 'wl_notificationtimestamp' ],
-			[ 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ],
-			__METHOD__, 'FOR UPDATE'
-		);
-		# Construct array to replace into the watchlist
-		$values = [];
-		foreach ( $res as $s ) {
-			$values[] = [
-				'wl_user' => $s->wl_user,
-				'wl_namespace' => $newnamespace,
-				'wl_title' => $newtitle,
-				'wl_notificationtimestamp' => $s->wl_notificationtimestamp,
-			];
-		}
-
-		if ( empty( $values ) ) {
-			// Nothing to do
-			return true;
-		}
-
-		# Perform replace
-		# Note that multi-row replace is very efficient for MySQL but may be inefficient for
-		# some other DBMSes, mostly due to poor simulation by us
-		$dbw->replace(
-			'watchlist',
-			[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-			$values,
-			__METHOD__
-		);
-
-		return true;
-	}
 }
