@@ -223,8 +223,10 @@ class ActiveUsersPager extends UsersPager {
 			[
 				'class' => 'mw-ui-input-inline mw-autocomplete-user',
 				'tabindex' => 1,
-				'autofocus' => $this->requestedUser === '',
-			]
+			] + (
+				// Set autofocus on blank input
+				$this->requestedUser === '' ? [ 'autofocus' => '' ] : []
+			)
 		) . '<br />';
 
 		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
