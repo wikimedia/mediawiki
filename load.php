@@ -24,6 +24,11 @@
 
 use MediaWiki\Logger\LoggerFactory;
 
+// This endpoint is supposed to be independent of request cookies and other
+// details of the session. Log warnings for violations of the no-session
+// constraint.
+define( 'MW_NO_SESSION', 'warn' );
+
 require __DIR__ . '/includes/WebStart.php';
 
 // URL safety checks
