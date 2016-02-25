@@ -243,7 +243,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param bool $hasLinks If it is known whether this content contains
+	 * @param bool|null $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out.
 	 *
