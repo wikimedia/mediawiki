@@ -34,14 +34,16 @@ class UserMailer {
 	 * Send mail using a PEAR mailer
 	 *
 	 * @param UserMailer $mailer
+	 * @param MailAddress $source
 	 * @param string $dest
 	 * @param string $headers
+	 * @param string $subject
 	 * @param string $body
 	 *
 	 * @return Status
 	 */
-	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
-		$mailResult = $mailer->send( $dest, $headers, $body );
+	protected static function sendWithPear( $mailer, $dest, $source, $subject, $body ) {
+		$mailResult = $mailer->send( $dest, $source, $subject, $body );
 
 		// Based on the result return an error string,
 		if ( PEAR::isError( $mailResult ) ) {
@@ -385,7 +387,7 @@ class UserMailer {
 			// number of possible recipients.
 			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
+				$status = self::sendWithPear( $mail_object, $chunk, $from, $subject, $body );
 				// FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
 					MediaWiki\restoreWarnings();
