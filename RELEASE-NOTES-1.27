@@ -318,6 +318,7 @@ changes to languages because of Phabricator reports.
 * New maintenance script resetUserEmail.php allows sysadmins to reset user emails in case
   a user forgot password/account was stolen.
 * wfCheckEntropy() was removed (deprecated in 1.27).
+* Browser support for Internet Explorer 8 lowered from Grade A to Grade C.
 
 == Compatibility ==
 
