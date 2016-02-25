@@ -51,10 +51,11 @@ class ListToggle {
 	 */
 	public function getHTML() {
 		// Select: All, None, Invert
-		$links = [];
-		$links[] = $this->checkboxLink( 'all' );
-		$links[] = $this->checkboxLink( 'none' );
-		$links[] = $this->checkboxLink( 'invert' );
+		$links = [
+			$this->checkboxLink( 'all' ),
+			$this->checkboxLink( 'none' ),
+			$this->checkboxLink( 'invert' ),
+		];
 
 		return Html::rawElement( 'div',
 			[
