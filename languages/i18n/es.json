@@ -135,7 +135,8 @@
 			"ElGatoSaez",
 			"Joaquin1001",
 			"YoViajo",
-			"Asierog"
+			"Asierog",
+			"Mgpena"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -764,7 +765,7 @@
 	"newarticle": "(Nuevo)",
 	"newarticletext": "Has seguido un enlace a una página que aún no existe.\nPara crear esta página, escribe en el cuadro que aparece a continuación. Para más información, consulta la [$1 página de ayuda].\nSi llegaste aquí por error, vuelve a la página anterior.",
 	"anontalkpagetext": "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Puede que varios usuarios compartan una misma dirección IP. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o, si ya la tienes, [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
-	"noarticletext": "En este momento no hay texto en esta página.\nPuedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados],\no [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.",
+	"noarticletext": "Actualmente no hay texto en esta página.\nPuedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.",
 	"noarticletext-nopermission": "Actualmente no hay texto en esta página.\nPuedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.",
 	"missing-revision": "La revisión n.º $1 de la página «{{FULLPAGENAME}}» no existe.\n\nEsto suele ocurrir cuando se sigue un enlace de historial obsoleto que apunta a una página ya borrada.\nPuedes encontrar detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 	"userpage-userdoesnotexist": "El usuario «$1» no está registrado. Asegúrate de que realmente quieres crear o editar esta página.",

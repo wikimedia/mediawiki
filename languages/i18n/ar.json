@@ -91,6 +91,7 @@
 	"tog-watchlisthidebots": "أخف تعديلات البوتات من قائمة المراقبة",
 	"tog-watchlisthideminor": "أخف التعديلات الطفيفة في قائمة المراقبة",
 	"tog-watchlisthideliu": "أخف تعديلات المستخدمين المسجلين في قائمة المراقبة",
+	"tog-watchlistreloadautomatically": "أعد تحميل قائمة المراقبة بصفة آلية حينما يتغير مرشح ما (يتطلب جافاسكربت)",
 	"tog-watchlisthideanons": "أخف تعديلات المستخدمين المجهولين في قائمة المراقبة",
 	"tog-watchlisthidepatrolled": " أخف التعديلات المراجعة في قائمة المراقبة",
 	"tog-watchlisthidecategorization": "أخف تصنيف الصفحات",
