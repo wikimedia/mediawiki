@@ -608,13 +608,13 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		}
 		if ( domPromise ) {
 			// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
-			state = data.gatherPreInfuseState( $elem );
+			state = data.constructor.static.gatherPreInfuseState( $elem, data );
 			// restore dynamic state after the new element is re-inserted into DOM under infused parent
 			domPromise.done( data.restorePreInfuseState.bind( data, state ) );
 			infusedChildren = $elem.data( 'ooui-infused-children' );
 			if ( infusedChildren && infusedChildren.length ) {
 				infusedChildren.forEach( function ( data ) {
-					var state = data.gatherPreInfuseState( $elem );
+					var state = data.constructor.static.gatherPreInfuseState( $elem, data );
 					domPromise.done( data.restorePreInfuseState.bind( data, state ) );
 				} );
 			}
