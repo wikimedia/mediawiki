@@ -296,6 +296,9 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	public function getVaryHeaders() {
+		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
+			return [];
+		}
 		if ( $this->varyHeaders === null ) {
 			$headers = [];
 			foreach ( $this->getProviders() as $provider ) {
@@ -314,6 +317,9 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	public function getVaryCookies() {
+		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
+			return [];
+		}
 		if ( $this->varyCookies === null ) {
 			$cookies = [];
 			foreach ( $this->getProviders() as $provider ) {
