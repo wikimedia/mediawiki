@@ -31,11 +31,9 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
-// Respond to resource loading request.
-// foo()->bar() syntax is not supported in PHP4, and this file needs to *parse* in PHP4.
-$configFactory = ConfigFactory::getDefaultInstance();
+// Respond to ResourceLoader request
 $resourceLoader = new ResourceLoader(
-	$configFactory->makeConfig( 'main' ),
+	ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
 	LoggerFactory::getInstance( 'resourceloader' )
 );
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
