@@ -695,7 +695,7 @@
 
 			// I'm surprised this doesn't seem to exist in jQuery or mw.util.
 			params = {};
-			hash = hash.replace( '+', '%20' );
+			hash = hash.replace( /\+/g, '%20' );
 			re = /([^&=#]+)=?([^&#]*)/g;
 			while ( ( m = re.exec( hash ) ) ) {
 				params[ decodeURIComponent( m[ 1 ] ) ] = decodeURIComponent( m[ 2 ] );
