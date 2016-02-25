@@ -315,9 +315,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Test if it's safe to load this User object. You should typically check this before using
-	 * $wgUser or RequestContext::getUser in a method that might be called before the system has
-	 * been fully initialized. If the object is unsafe, you should use an anonymous user:
+	 * Test if it's safe to load this User object.
+	 *
+	 * You should typically check this before using $wgUser or
+	 * RequestContext::getUser in a method that might be called before the
+	 * system has been fully initialized. If the object is unsafe, you should
+	 * use an anonymous user:
 	 * \code
 	 * $user = $wgUser->isSafeToLoad() ? $wgUser : new User;
 	 * \endcode
@@ -327,7 +330,14 @@ class User implements IDBAccessObject {
 	 */
 	public function isSafeToLoad() {
 		global $wgFullyInitialised;
-		return $wgFullyInitialised || $this->mLoadedItems === true || $this->mFrom !== 'session';
+
+		// The user is safe to load if:
+		// * MW_NO_SESSION is undefined AND $wgFullyInitialised is true (safe to use session data)
+		// * mLoadedItems === true (already loaded)
+		// * mFrom !== 'session' (sessions not involved at all)
+
+		return ( !defined( 'MW_NO_SESSION' ) && $wgFullyInitialised ) ||
+			$this->mLoadedItems === true || $this->mFrom !== 'session';
 	}
 
 	/**
