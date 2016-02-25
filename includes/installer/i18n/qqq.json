@@ -81,7 +81,6 @@
 	"config-xcache": "Message indicates if this program is available",
 	"config-apc": "Message indicates if this program is available",
 	"config-wincache": "Message indicates if this program is available",
-	"config-no-cache": "Status message in the MediaWiki installer environment checks.",
 	"config-no-cache-apcu": "Status message in the MediaWiki installer environment checks.",
 	"config-mod-security": "Status message in the MediaWiki installer environment checks.",
 	"config-diff3-bad": "Status message in the MediaWiki installer environment checks.",
