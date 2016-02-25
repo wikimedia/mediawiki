@@ -722,6 +722,11 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
+		foreach ( $modules as $module ) {
+			if( in_array( 'serviceworker', $module->getTargets() ) ) {
+				header( 'Service-Worker-Allowed: /' );
+			}
+		}
 		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors );
 
 		// Remove the output buffer and output the response
