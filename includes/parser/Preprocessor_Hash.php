@@ -1148,6 +1148,7 @@ class PPFrame_Hash implements PPFrame {
 						$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 						$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
 						$this->parser->mStripState->addGeneral( $marker, '' );
+						$this->parser->newHeadingDone( $serial, &$s );
 						$out .= $s;
 					} else {
 						# Expand in virtual stack

@@ -6466,4 +6466,17 @@ class Parser {
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
 	}
+
+	/**
+	 * Called in Preprocessor when a new header is expanded
+	 *
+	 * @param int $index Header number
+	 * @param string $text Expanded text for header
+	 *
+	 * @since 1.27
+	 */
+	public function newHeadingDone( $index, &$text ) {
+		$index++; // so that it matches sections numbering
+		Hooks::run( 'ParserNewHeadingDone', [ $this, $index, &$text, &$this->mStripState ] );
+	}
 }

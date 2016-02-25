@@ -1260,6 +1260,7 @@ class PPFrame_DOM implements PPFrame {
 						$count = $contextNode->getAttribute( 'level' );
 						$s = substr( $s, 0, $count ) . $marker . substr( $s, $count );
 						$this->parser->mStripState->addGeneral( $marker, '' );
+						$this->parser->newHeadingDone( $serial, &$s );
 					}
 					$out .= $s;
 				} else {

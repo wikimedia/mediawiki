@@ -2313,6 +2313,12 @@ $file: file object that will be used to create the image
 &$params: 2-D array of parameters
 $parser: Parser object that called the hook
 
+'ParserNewHeadingDone': Called during preprocessor expansion when each header is made.
+$parser: parser object
+$index: number of the header (starting at 1)
+&$text: text being parsed
+&$stripState: stripState used (object)
+
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like
 wrapping the section in a DIV).  Caveat: DIVs are valid wikitext, and a DIV
