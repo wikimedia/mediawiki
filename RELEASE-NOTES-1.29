@@ -15,6 +15,7 @@ This not a release yet!
 * (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
   sends non-standard url escaping.
 * (T165846) SECURITY: BotPassword login attempts weren't throttled.
+* (T128209) SECURITY: Reflected File Download from api.php.
 
 == MediaWiki 1.29.1 ==
 

@@ -459,6 +459,7 @@ class ApiQuery extends ApiBase {
 			// Raw formatter will handle this
 			$result->addValue( null, 'text', $sink, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'filename', 'export.xml', ApiResult::NO_SIZE_CHECK );
 		} else {
 			$result->addValue( 'query', 'export', $sink, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( 'query', ApiResult::META_BC_SUBELEMENTS, [ 'export' ] );
