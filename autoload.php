@@ -909,6 +909,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Tidy\\TidyDriverBase' => __DIR__ . '/includes/tidy/TidyDriverBase.php',
 	'MediaWiki\\Widget\\ComplexNamespaceInputWidget' => __DIR__ . '/includes/widget/ComplexNamespaceInputWidget.php',
 	'MediaWiki\\Widget\\ComplexTitleInputWidget' => __DIR__ . '/includes/widget/ComplexTitleInputWidget.php',
+	'MediaWiki\\Widget\\DateInputWidget' => __DIR__ . '/includes/widget/DateInputWidget.php',
 	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MediaWiki\\Widget\\SearchInputWidget' => __DIR__ . '/includes/widget/SearchInputWidget.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
