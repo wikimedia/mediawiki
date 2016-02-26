@@ -791,12 +791,19 @@
 		 * Submit button handler
 		 */
 		sendRequest: function () {
-			var page, subpages, i, query, $result,
+			var page, subpages, i, query, $result, $focus,
 				progress, $progressText, progressLoading,
 				deferreds = [],
 				params = {},
 				displayParams = {},
 				checkPages = [ pages.main ];
+
+			// Blur any focused widget before submit, because
+			// OO.ui.ButtonWidget doesn't take focus itself (T128054)
+			$focus = $( '#mw-apisandbox-ui' ).find( document.activeElement );
+			if ( $focus.length ) {
+				$focus[ 0 ].blur();
+			}
 
 			suppressErrors = false;
 
