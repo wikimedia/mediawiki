@@ -230,6 +230,12 @@ abstract class ChannelFeed extends FeedItem {
 		$wgOut->disable();
 		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
+
+		// Set a sane filename
+		$exts = MimeMagic::singleton()->getExtensionsForType( $mimetype );
+		$ext = $exts ? strtok( $exts, ' ' ) : 'xml';
+		header( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
+
 		if ( $wgVaryOnXFP ) {
 			$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
 		}

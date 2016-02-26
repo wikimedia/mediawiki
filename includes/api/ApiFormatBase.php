@@ -65,6 +65,26 @@ abstract class ApiFormatBase extends ApiBase {
 	abstract public function getMimeType();
 
 	/**
+	 * Return a filename for this module's output.
+	 * @note If $this->getIsWrappedHtml() || $this->getIsHtml(), you'll very
+	 *  likely want to fall back to this class's version.
+	 * @since 1.27
+	 * @return string Generally this should be "api-result.$ext", and must be
+	 *  encoded for inclusion in a Content-Disposition header's filename parameter.
+	 */
+	public function getFilename() {
+		if ( $this->getIsWrappedHtml() ) {
+			return 'api-result-wrapped.json';
+		} elseif ( $this->getIsHtml() ) {
+			return 'api-result.html';
+		} else {
+			$exts = MimeMagic::singleton()->getExtensionsForType( $this->getMimeType() );
+			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
+			return "api-result.$ext";
+		}
+	}
+
+	/**
 	 * Get the internal format name
 	 * @return string
 	 */
@@ -192,6 +212,13 @@ abstract class ApiFormatBase extends ApiBase {
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
 		}
+
+		// Set a Content-Disposition header so something downloading an API
+		// response uses a halfway-sensible filename (T128209).
+		$filename = $this->getFilename();
+		$this->getMain()->getRequest()->response()->header(
+			"Content-Disposition: inline; filename=\"{$filename}\""
+		);
 	}
 
 	/**

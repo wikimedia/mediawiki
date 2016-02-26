@@ -60,6 +60,17 @@ class ApiFormatRaw extends ApiFormatBase {
 		return $data['mime'];
 	}
 
+	public function getFilename() {
+		$data = $this->getResult()->getResultData();
+		if ( isset( $data['error'] ) ) {
+			return $this->errorFallback->getFilename();
+		} elseif ( !isset( $data['filename'] ) || $this->getIsWrappedHtml() || $this->getIsHtml() ) {
+			return parent::getFilename();
+		} else {
+			return $data['filename'];
+		}
+	}
+
 	public function initPrinter( $unused = false ) {
 		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) || isset( $data['errors'] ) ) {
