@@ -265,28 +265,32 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	protected function userForm( $name ) {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-		$string = Xml::openElement(
-			'form',
-			[ 'method' => 'get', 'action' => wfScript(), 'id' => 'askusername' ]
-		) .
+		$string = Html::openElement(
+				'form',
+				[ 'method' => 'get', 'action' => wfScript(), 'id' => 'askusername' ]
+			) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::openElement( 'fieldset' ) .
+			Html::openElement( 'fieldset' ) .
 			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
-			Xml::inputLabel(
+			Html::label(
 				$this->msg( 'emailusername' )->text(),
+				'emailusertarget'
+			) . '&#160;' .
+			Html::input(
 				'target',
-				'emailusertarget',
-				30,
 				$name,
+				'text',
 				[
+					'id' => 'emailusertarget',
 					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
-					'autofocus' => '',
+					'autofocus' => true,
+					'size' => 30,
 				]
 			) .
 			' ' .
-			Xml::submitButton( $this->msg( 'emailusernamesubmit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n";
+			Html::submitButton( $this->msg( 'emailusernamesubmit' )->text(), [] ) .
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' ) . "\n";
 
 		return $string;
 	}
