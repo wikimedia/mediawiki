@@ -153,4 +153,22 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
 		return $this->mOffset;
 	}
+
+	/**
+	 * Set and return the mOffset timestamp using a timestamp such that we can get all revisions
+	 * with a timestamp up to the specified parameters.
+	 * @param string $stamp Timestamp specified by user
+	 * @return string|null Timestamp or null if year and month are false/invalid
+	 */
+	function getDateCondWithDateString( $stamp ) {
+		$date = new DateTime( $stamp );
+
+		// We want the next day
+		$date = $date->modify( '+1 day' );
+		$timestamp = new MWTimestamp( $date->getTimestamp() );
+		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+
+		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		return $this->mOffset;
+	}
 }

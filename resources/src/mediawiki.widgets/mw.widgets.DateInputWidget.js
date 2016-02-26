@@ -219,6 +219,12 @@
 		this.updateUI();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+
+		// Hide unused <input> from PHP after infusion is done
+		// See InputWidget#reusePreInfuseDOM about config.$input
+		if ( config.$input ) {
+			config.$input.addClass( 'oo-ui-element-hidden' );
+		}
 	};
 
 	/* Inheritance */
