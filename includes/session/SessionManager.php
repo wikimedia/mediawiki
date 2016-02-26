@@ -296,9 +296,11 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	public function getVaryHeaders() {
+		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
+		// @codeCoverageIgnoreEnd
 		if ( $this->varyHeaders === null ) {
 			$headers = [];
 			foreach ( $this->getProviders() as $provider ) {
@@ -317,9 +319,11 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	public function getVaryCookies() {
+		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
+		// @codeCoverageIgnoreEnd
 		if ( $this->varyCookies === null ) {
 			$cookies = [];
 			foreach ( $this->getProviders() as $provider ) {
@@ -513,12 +517,14 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		# Notify AuthPlugin
+		// @codeCoverageIgnoreStart
 		$tmpUser = $user;
 		$wgAuth->initUser( $tmpUser, true );
 		if ( $tmpUser !== $user ) {
 			$logger->warning( __METHOD__ . ': ' .
 				get_class( $wgAuth ) . '::initUser() replaced the user object' );
 		}
+		// @codeCoverageIgnoreEnd
 
 		# Notify hooks (e.g. Newuserlog)
 		\Hooks::run( 'AuthPluginAutoCreate', [ $user ] );
@@ -957,6 +963,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * @return Session
 	 */
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
+		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
 			if ( MW_NO_SESSION === 'warn' ) {
 				// Undocumented safety case for converting existing entry points
@@ -965,6 +972,7 @@ final class SessionManager implements SessionManagerInterface {
 				throw new \BadMethodCallException( 'Sessions are disabled for this entry point' );
 			}
 		}
+		// @codeCoverageIgnoreEnd
 
 		$id = $info->getId();
 

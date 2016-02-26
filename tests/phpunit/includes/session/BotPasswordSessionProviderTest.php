@@ -281,4 +281,58 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( [], $logger->getBuffer() );
 		$this->assertEquals( $dataMD + [ 'rights' => [ 'read' ] ], $metadata );
 	}
+
+	public function testGetAllowedUserRights() {
+		$logger = new \TestLogger( true );
+		$provider = $this->getProvider();
+		$provider->setLogger( $logger );
+
+		$backend = TestUtils::getDummySessionBackend();
+		$backendPriv = \TestingAccessWrapper::newFromObject( $backend );
+
+		try {
+			$provider->getAllowedUserRights( $backend );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( \InvalidArgumentException $ex ) {
+			$this->assertSame( 'Backend\'s provider isn\'t $this', $ex->getMessage() );
+		}
+
+		$backendPriv->provider = $provider;
+		$backendPriv->providerMetadata = [ 'rights' => [ 'foo', 'bar', 'baz' ] ];
+		$this->assertSame( [ 'foo', 'bar', 'baz' ], $provider->getAllowedUserRights( $backend ) );
+		$this->assertSame( [], $logger->getBuffer() );
+
+		$backendPriv->providerMetadata = [ 'foo' => 'bar' ];
+		$this->assertSame( [], $provider->getAllowedUserRights( $backend ) );
+		$this->assertSame( [
+			[
+				LogLevel::DEBUG,
+				'MediaWiki\\Session\\BotPasswordSessionProvider::getAllowedUserRights: ' .
+					'No provider metadata, returning no rights allowed'
+			]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		$backendPriv->providerMetadata = [ 'rights' => 'bar' ];
+		$this->assertSame( [], $provider->getAllowedUserRights( $backend ) );
+		$this->assertSame( [
+			[
+				LogLevel::DEBUG,
+				'MediaWiki\\Session\\BotPasswordSessionProvider::getAllowedUserRights: ' .
+					'No provider metadata, returning no rights allowed'
+			]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		$backendPriv->providerMetadata = null;
+		$this->assertSame( [], $provider->getAllowedUserRights( $backend ) );
+		$this->assertSame( [
+			[
+				LogLevel::DEBUG,
+				'MediaWiki\\Session\\BotPasswordSessionProvider::getAllowedUserRights: ' .
+					'No provider metadata, returning no rights allowed'
+			]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
+	}
 }

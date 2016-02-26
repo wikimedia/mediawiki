@@ -216,6 +216,42 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionIds );
 	}
 
+	public function testSetProviderMetadata() {
+		$backend = $this->getBackend();
+		$priv = \TestingAccessWrapper::newFromObject( $backend );
+		$priv->providerMetadata = [ 'dummy' ];
+
+		try {
+			$backend->setProviderMetadata( 'foo' );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( \InvalidArgumentException $ex ) {
+			$this->assertSame( '$metadata must be an array or null', $ex->getMessage() );
+		}
+
+		try {
+			$backend->setProviderMetadata( (object)[] );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( \InvalidArgumentException $ex ) {
+			$this->assertSame( '$metadata must be an array or null', $ex->getMessage() );
+		}
+
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$backend->setProviderMetadata( [ 'dummy' ] );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$backend->setProviderMetadata( [ 'test' ] );
+		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertSame( [ 'test' ], $backend->getProviderMetadata() );
+		$this->store->deleteSession( self::SESSIONID );
+
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$backend->setProviderMetadata( null );
+		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertSame( null, $backend->getProviderMetadata() );
+		$this->store->deleteSession( self::SESSIONID );
+	}
+
 	public function testResetId() {
 		$id = session_id();
 
