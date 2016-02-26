@@ -129,10 +129,13 @@
 		 * @param {Object} context
 		 */
 		hide: function ( context ) {
+			var $container = context.data.$container;
 			// Remove any highlights, including on "special" items
-			context.data.$container.find( '.suggestions-result-current' ).removeClass( 'suggestions-result-current' );
+			$container.find( '.suggestions-result-current' ).removeClass( 'suggestions-result-current' );
+			// Remove results
+			$container.children( '.suggestions-results' ).empty();
 			// Hide the container
-			context.data.$container.hide();
+			$container.hide();
 		},
 
 		/**
@@ -250,9 +253,7 @@
 		 * @param {Mixed} value Value to set property with
 		 */
 		configure: function ( context, property, value ) {
-			var newCSS,
-				$result, $results, $spanForWidth, childrenWidth,
-				i, expWidth, maxWidth, text;
+			var $results, i, text, $result;
 
 			// Validate creation using fallback values
 			switch ( property ) {
@@ -274,90 +275,15 @@
 							$.suggestions.hide( context );
 						} else {
 							// Rebuild the suggestions list
-							context.data.$container.show();
-							// Update the size and position of the list
-							newCSS = {
-								top: context.config.$region.offset().top + context.config.$region.outerHeight(),
-								bottom: 'auto',
-								width: context.config.$region.outerWidth(),
-								height: 'auto'
-							};
-
-							// Process expandFrom, after this it is set to left or right.
-							context.config.expandFrom = ( function ( expandFrom ) {
-								var regionWidth, docWidth, regionCenter, docCenter,
-									docDir = $( document.documentElement ).css( 'direction' ),
-									$region = context.config.$region;
-
-								// Backwards compatible
-								if ( context.config.positionFromLeft ) {
-									expandFrom = 'left';
-
-								// Catch invalid values, default to 'auto'
-								} else if ( $.inArray( expandFrom, [ 'left', 'right', 'start', 'end', 'auto' ] ) === -1 ) {
-									expandFrom = 'auto';
-								}
-
-								if ( expandFrom === 'auto' ) {
-									if ( $region.data( 'searchsuggest-expand-dir' ) ) {
-										// If the markup explicitly contains a direction, use it.
-										expandFrom = $region.data( 'searchsuggest-expand-dir' );
-									} else {
-										regionWidth = $region.outerWidth();
-										docWidth = $( document ).width();
-										if ( regionWidth > ( 0.85 * docWidth ) ) {
-											// If the input size takes up more than 85% of the document horizontally
-											// expand the suggestions to the writing direction's native end.
-											expandFrom = 'start';
-										} else {
-											// Calculate the center points of the input and document
-											regionCenter = $region.offset().left + regionWidth / 2;
-											docCenter = docWidth / 2;
-											if ( Math.abs( regionCenter - docCenter ) < ( 0.10 * docCenter ) ) {
-												// If the input's center is within 10% of the document center
-												// use the writing direction's native end.
-												expandFrom = 'start';
-											} else {
-												// Otherwise expand the input from the closest side of the page,
-												// towards the side of the page with the most free open space
-												expandFrom = regionCenter > docCenter ? 'right' : 'left';
-											}
-										}
-									}
-								}
-
-								if ( expandFrom === 'start' ) {
-									expandFrom = docDir === 'rtl' ? 'right' : 'left';
-
-								} else if ( expandFrom === 'end' ) {
-									expandFrom = docDir === 'rtl' ? 'left' : 'right';
-								}
-
-								return expandFrom;
-
-							}( context.config.expandFrom ) );
-
-							if ( context.config.expandFrom === 'left' ) {
-								// Expand from left
-								newCSS.left = context.config.$region.offset().left;
-								newCSS.right = 'auto';
-							} else {
-								// Expand from right
-								newCSS.left = 'auto';
-								newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
-							}
-
-							context.data.$container.css( newCSS );
 							$results = context.data.$container.children( '.suggestions-results' );
 							$results.empty();
-							expWidth = -1;
 							for ( i = 0; i < context.config.suggestions.length; i++ ) {
 								/*jshint loopfunc:true */
 								text = context.config.suggestions[ i ];
 								$result = $( '<div>' )
 									.addClass( 'suggestions-result' )
 									.attr( 'rel', i )
-									.data( 'text', context.config.suggestions[ i ] )
+									.data( 'text', text )
 									.mousemove( function () {
 										context.data.selectedWithMouse = true;
 										$.suggestions.highlight(
@@ -369,7 +295,7 @@
 									.appendTo( $results );
 								// Allow custom rendering
 								if ( typeof context.config.result.render === 'function' ) {
-									context.config.result.render.call( $result, context.config.suggestions[ i ], context );
+									context.config.result.render.call( $result, text, context );
 								} else {
 									$result.text( text );
 								}
@@ -377,35 +303,9 @@
 								if ( context.config.highlightInput ) {
 									$result.highlightText( context.data.prevText );
 								}
-
-								// Widen results box if needed (new width is only calculated here, applied later).
-
-								// The monstrosity below accomplishes two things:
-								// * Wraps the text contents in a DOM element, so that we can know its width. There is
-								//   no way to directly access the width of a text node, and we can't use the parent
-								//   node width as it has text-overflow: ellipsis; and overflow: hidden; applied to
-								//   it, which trims it to a smaller width.
-								// * Temporarily applies position: absolute; to the wrapper to pull it out of normal
-								//   document flow. Otherwise the CSS text-overflow: ellipsis; and overflow: hidden;
-								//   rules would cause some browsers (at least all versions of IE from 6 to 11) to
-								//   still report the "trimmed" width. This should not be done in regular CSS
-								//   stylesheets as we don't want this rule to apply to other <span> elements, like
-								//   the ones generated by jquery.highlightText.
-								$spanForWidth = $result.wrapInner( '<span>' ).children();
-								childrenWidth = $spanForWidth.css( 'position', 'absolute' ).outerWidth();
-								$spanForWidth.contents().unwrap();
-
-								if ( childrenWidth > $result.width() && childrenWidth > expWidth ) {
-									// factor in any padding, margin, or border space on the parent
-									expWidth = childrenWidth + ( context.data.$container.width() - $result.width() );
-								}
 							}
 
-							// Apply new width for results box, if any
-							if ( expWidth > context.data.$container.width() ) {
-								maxWidth = context.config.maxExpandFactor * context.data.$textbox.width();
-								context.data.$container.width( Math.min( expWidth, maxWidth ) );
-							}
+							$.suggestions.show( context );
 						}
 					}
 					break;
@@ -428,6 +328,125 @@
 					context.config[ property ] = !!value;
 					break;
 			}
+		},
+
+		/**
+		 * Show the element with suggestions and calculate position and width.
+		 *
+		 * @param {Object} context
+		 */
+		show: function( context ) {
+			var newCSS, $results, expWidth, maxWidth;
+
+			// Update the size and position of the list
+			newCSS = {
+				top: context.config.$region.offset().top + context.config.$region.outerHeight(),
+				bottom: 'auto',
+				width: context.config.$region.outerWidth(),
+				height: 'auto'
+			};
+
+			// Process expandFrom, after this it is set to left or right.
+			context.config.expandFrom = ( function ( expandFrom ) {
+				var regionWidth, docWidth, regionCenter, docCenter,
+					docDir = $( document.documentElement ).css( 'direction' ),
+					$region = context.config.$region;
+
+				// Backwards compatible
+				if ( context.config.positionFromLeft ) {
+					expandFrom = 'left';
+
+				// Catch invalid values, default to 'auto'
+				} else if ( $.inArray( expandFrom, [ 'left', 'right', 'start', 'end', 'auto' ] ) === -1 ) {
+					expandFrom = 'auto';
+				}
+
+				if ( expandFrom === 'auto' ) {
+					if ( $region.data( 'searchsuggest-expand-dir' ) ) {
+						// If the markup explicitly contains a direction, use it.
+						expandFrom = $region.data( 'searchsuggest-expand-dir' );
+					} else {
+						regionWidth = $region.outerWidth();
+						docWidth = $( document ).width();
+						if ( regionWidth > ( 0.85 * docWidth ) ) {
+							// If the input size takes up more than 85% of the document horizontally
+							// expand the suggestions to the writing direction's native end.
+							expandFrom = 'start';
+						} else {
+							// Calculate the center points of the input and document
+							regionCenter = $region.offset().left + regionWidth / 2;
+							docCenter = docWidth / 2;
+							if ( Math.abs( regionCenter - docCenter ) < ( 0.10 * docCenter ) ) {
+								// If the input's center is within 10% of the document center
+								// use the writing direction's native end.
+								expandFrom = 'start';
+							} else {
+								// Otherwise expand the input from the closest side of the page,
+								// towards the side of the page with the most free open space
+								expandFrom = regionCenter > docCenter ? 'right' : 'left';
+							}
+						}
+					}
+				}
+
+				if ( expandFrom === 'start' ) {
+					expandFrom = docDir === 'rtl' ? 'right' : 'left';
+				} else if ( expandFrom === 'end' ) {
+					expandFrom = docDir === 'rtl' ? 'left' : 'right';
+				}
+
+				return expandFrom;
+
+			}( context.config.expandFrom ) );
+
+			if ( context.config.expandFrom === 'left' ) {
+				// Expand from left
+				newCSS.left = context.config.$region.offset().left;
+				newCSS.right = 'auto';
+			} else {
+				// Expand from right
+				newCSS.left = 'auto';
+				newCSS.right = $( 'body' ).width() - (
+					context.config.$region.offset().left + context.config.$region.outerWidth()
+				);
+			}
+			context.data.$container.css( newCSS );
+
+			$results = context.data.$container.children( '.suggestions-results' );
+			expWidth = -1;
+			$results.each( function() {
+				var $result = $( this ), $spanForWidth, childrenWidth;
+
+				// Widen results box if needed (new width is only calculated here, applied later).
+
+				// The monstrosity below accomplishes two things:
+				// * Wraps the text contents in a DOM element, so that we can know its width. There is
+				//   no way to directly access the width of a text node, and we can't use the parent
+				//   node width as it has text-overflow: ellipsis; and overflow: hidden; applied to
+				//   it, which trims it to a smaller width.
+				// * Temporarily applies position: absolute; to the wrapper to pull it out of normal
+				//   document flow. Otherwise the CSS text-overflow: ellipsis; and overflow: hidden;
+				//   rules would cause some browsers (at least all versions of IE from 6 to 11) to
+				//   still report the "trimmed" width. This should not be done in regular CSS
+				//   stylesheets as we don't want this rule to apply to other <span> elements, like
+				//   the ones generated by jquery.highlightText.
+				$spanForWidth = $result.wrapInner( '<span>' ).children();
+				childrenWidth = $spanForWidth.css( 'position', 'absolute' ).outerWidth();
+				$spanForWidth.contents().unwrap();
+
+				if ( childrenWidth > $result.width() && childrenWidth > expWidth ) {
+					// factor in any padding, margin, or border space on the parent
+					expWidth = childrenWidth + ( context.data.$container.width() - $result.width() );
+				}
+			} );
+
+			// Apply new width for results box, if any
+			if ( expWidth > context.data.$container.width() ) {
+				maxWidth = context.config.maxExpandFactor * context.data.$textbox.width();
+				context.data.$container.width( Math.min( expWidth, maxWidth ) );
+			}
+
+			context.data.$container.show();
 		},
 
 		/**

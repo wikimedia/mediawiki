@@ -144,8 +144,14 @@
 		}
 
 		function specialRenderFunction( query, context ) {
-			var $el = this,
-				formData = getFormData( context );
+			var $el, formData;
+			// Don't do anything if the textbox is empty
+			if ( context.data.$textbox.val().length === 0 ) {
+				return;
+			}
+
+			$el = this;
+			formData = getFormData( context );
 
 			// linkParams object is modified and reused
 			formData.linkParams[ formData.textParam ] = query;
@@ -175,6 +181,9 @@
 						.addClass( 'mw-searchSuggest-link' )
 				);
 			}
+
+			// Show container now instead of waiting on the suggestions request
+			$.suggestions.show( context );
 		}
 
 		// Generic suggestions functionality for all search boxes
