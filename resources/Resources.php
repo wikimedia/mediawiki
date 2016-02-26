@@ -1895,6 +1895,13 @@ return [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.comparepages.styles.less',
 	],
+	'mediawiki.special.contributions' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.contributions.js',
+		'dependencies' => [
+			'mediawiki.widgets.DateInputWidget',
+			'mediawiki.jqueryMsg',
+		]
+	],
 	'mediawiki.special.edittags' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
 		'dependencies' => [
@@ -1999,7 +2006,7 @@ return [
 		'dependencies' => [
 			'mediawiki.special.upload.styles',
 			'jquery.spinner',
-			'mediawiki.jqueryMsg',
+
 			'mediawiki.api',
 			'mediawiki.libs.jpegmeta',
 			'mediawiki.Title',
