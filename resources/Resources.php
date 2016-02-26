@@ -1480,6 +1480,7 @@ return [
 	],
 	'mediawiki.action.view.redirectPage' => [
 		'position' => 'top',
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectPage.css',
 	],
 	'mediawiki.action.view.rightClickEdit' => [
