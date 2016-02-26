@@ -126,6 +126,77 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testDuplicateAllAssociatedEntries_nothingToDuplicate() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 2 ) )
+			->method( 'select' )
+			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$store->duplicateAllAssociatedEntries(
+			Title::newFromText( 'Old_Title' ),
+			Title::newFromText( 'New_Title' )
+		);
+	}
+
+	public function testDuplicateAllAssociatedEntries_somethingToDuplicate() {
+		$fakeRows = [
+			$this->getFakeRow( [ 'wl_user' => 1, 'wl_notificationtimestamp' => '20151212010101' ] ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->at( 0 ) )
+			->method( 'select' )
+			->will( $this->returnValue( new FakeResultWrapper( $fakeRows ) ) );
+		$mockDb->expects( $this->at( 1 ) )
+			->method( 'replace' )
+			->with(
+				'watchlist',
+				[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
+				[
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 0,
+						'wl_title' => 'New_Title',
+						'wl_notificationtimestamp' => '20151212010101',
+					],
+				],
+				$this->isType( 'string' )
+			);
+		$mockDb->expects( $this->at( 2 ) )
+			->method( 'select' )
+			->will( $this->returnValue( new FakeResultWrapper( $fakeRows ) ) );
+		$mockDb->expects( $this->at( 3 ) )
+			->method( 'replace' )
+			->with(
+				'watchlist',
+				[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
+				[
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 1,
+						'wl_title' => 'New_Title',
+						'wl_notificationtimestamp' => '20151212010101',
+					],
+				],
+				$this->isType( 'string' )
+			);
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$store->duplicateAllAssociatedEntries(
+			Title::newFromText( 'Old_Title' ),
+			Title::newFromText( 'New_Title' )
+		);
+	}
+
 	public function testAddWatch_nonAnonymousUser() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
