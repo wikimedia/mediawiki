@@ -500,6 +500,8 @@
 	"resetpass_submit": "Parola eyar kere u newe ra dekewe",
 	"changepassword-success": "Parola şıma be serkewtış vuriye!",
 	"changepassword-throttled": "Şıma zaf ronıştış akerdış ke.Kerem ke verdi dekewten $1 bıpawe.",
+	"botpasswords-label-cancel": "Bıtexelne",
+	"botpasswords-label-delete": "Bestere",
 	"resetpass_forbidden": "parolayi nêvuryayi",
 	"resetpass-no-info": "şıma gani hesab akere u hona bıeşke bırese cı",
 	"resetpass-submit-loggedin": "Parola bıvurne",
