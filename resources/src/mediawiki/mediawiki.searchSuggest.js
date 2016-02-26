@@ -256,7 +256,8 @@
 					$input.closest( 'form' )
 						.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) );
 					return true; // allow the form to be submitted
-				}
+				},
+				timeout: 1000
 			},
 			$region: $searchRegion
 		} );
