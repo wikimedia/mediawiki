@@ -56,7 +56,8 @@
 			"Shbib Al-Subaie",
 			"Matma Rex",
 			"Haytham morsy",
-			"BAB ZAA"
+			"BAB ZAA",
+			"ASammour"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -550,6 +551,8 @@
 	"changepassword-success": "تم تغيير كلمة السر بنجاح!",
 	"changepassword-throttled": "لديك محاولات تسجيل دخول كثيرة حديثة. من فضلك انتظر $1 قبل المحاولة ثانية.",
 	"botpasswords": "كلمات مرور البوت",
+	"botpasswords-disabled": "كلمات السر الخاصة بالبوت معطلة.",
+	"botpasswords-no-central-id": "لاستخدام كلمة السر الخاصة بالبوت، يجب أن تقوم بتسجيل الدخول من خلال حساب موحد.",
 	"botpasswords-existing": "كلمات مرور البوت الموجودة",
 	"botpasswords-createnew": "إنشاء كلمة مرور جديدة للبوت",
 	"botpasswords-editexisting": "تعديل كلمة مرور موجودة للبوت",
@@ -562,6 +565,7 @@
 	"botpasswords-label-grants": "المنح التي يمكن تطبيقها:",
 	"botpasswords-label-restrictions": "قيود الاستخدام:",
 	"botpasswords-label-grants-column": "الممنوح",
+	"botpasswords-bad-appid": "اسم البوت \"$1\" غير صحيح.",
 	"resetpass_forbidden": "كلمات السر لا يمكن تغييرها",
 	"resetpass-no-info": "يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.",
 	"resetpass-submit-loggedin": "تغيير كلمة السر",
@@ -1722,6 +1726,7 @@
 	"apihelp": "مساعدة API",
 	"apihelp-no-such-module": "الوحدة \"$1\" غير موجودة.",
 	"apisandbox": "ملعب API",
+	"apisandbox-jsonly": "الجافا سكريبت مطلوبة لاستخدام ملعب API",
 	"apisandbox-fullscreen": "وسع اللوحة",
 	"apisandbox-unfullscreen": "أظهر الصفحة",
 	"apisandbox-submit": "عمل الطلب",
