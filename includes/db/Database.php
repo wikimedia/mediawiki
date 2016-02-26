@@ -859,8 +859,12 @@ abstract class DatabaseBase implements IDatabase {
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
-			# Transaction is gone, like it or not
-			$hadTrx = $this->mTrxLevel; // possible lost transaction
+			# Transaction is gone; this can mean lost writes or REPEATABLE-READ snapshots
+			$hadTrx = $this->mTrxLevel;
+			# T127428: for non-write transactions, a disconnect and a COMMIT are similar:
+			# neither changed data and in both cases any read snapshots are reset anyway.
+			$isNoopCommit = ( !$this->writesOrCallbacksPending() && $sql === 'COMMIT' );
+			# Update state tracking to reflect transaction loss
 			$this->mTrxLevel = 0;
 			$this->mTrxIdleCallbacks = []; // bug 65263
 			$this->mTrxPreCommitCallbacks = []; // bug 65263
@@ -874,12 +878,12 @@ abstract class DatabaseBase implements IDatabase {
 				$msg = __METHOD__ . ": lost connection to $server; reconnected";
 				wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
 
-				if ( $hadTrx || $this->mNamedLocksHeld ) {
+				if ( ( $hadTrx && !$isNoopCommit ) || $this->mNamedLocksHeld ) {
 					# Leave $ret as false and let an error be reported.
 					# Callers may catch the exception and continue to use the DB.
 					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
 				} else {
-					# Should be safe to silently retry (no trx and thus no callbacks)
+					# Should be safe to silently retry (no trx/callbacks/locks)
 					$startTime = microtime( true );
 					$ret = $this->doQuery( $commentedSql );
 					$queryRuntime = microtime( true ) - $startTime;
