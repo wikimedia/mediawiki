@@ -75,6 +75,7 @@ class SessionTest extends MediaWikiTestCase {
 			[ 'getProvider', [], false, true ],
 			[ 'isPersistent', [], false, true ],
 			[ 'persist', [], false, false ],
+			[ 'unpersist', [], false, false ],
 			[ 'shouldRememberUser', [], false, true ],
 			[ 'setRememberUser', [ true ], false, false ],
 			[ 'getRequest', [], true, true ],
