@@ -677,6 +677,16 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the session for this request, if any
+	 * @since 1.27
+	 * @private For use by MediaWiki\\Session classes only
+	 * @return MediaWiki\\Session\\SessionId|null
+	 */
+	public function getSessionId() {
+		return $this->sessionId;
+	}
+
+	/**
 	 * Returns true if the request has a persistent session.
 	 * This does not necessarily mean that the user is logged in!
 	 *

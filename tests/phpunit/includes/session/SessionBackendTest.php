@@ -63,6 +63,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$priv = \TestingAccessWrapper::newFromObject( $backend );
 		$priv->persist = false;
 		$priv->requests = [ 100 => new \FauxRequest() ];
+		$priv->requests[100]->setSessionId( $id );
 		$priv->usePhpSessionHandling = false;
 
 		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
@@ -309,6 +310,25 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertNotEquals( 0, $wrap->expires );
 	}
 
+	public function testUnpersist() {
+		$this->provider = $this->getMock( 'DummySessionProvider', [ 'unpersistSession' ] );
+		$this->provider->expects( $this->once() )->method( 'unpersistSession' );
+		$backend = $this->getBackend();
+		$wrap = \TestingAccessWrapper::newFromObject( $backend );
+		$wrap->store = new \CachedBagOStuff( $this->store );
+		$wrap->persist = true;
+		$wrap->dataDirty = true;
+
+		$backend->save(); // This one shouldn't call $provider->persistSession(), but should save
+		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+
+		$backend->unpersist();
+		$this->assertFalse( $backend->isPersistent() );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertNotFalse( $wrap->store->get( wfMemcKey( 'MWSession', self::SESSIONID ) ) );
+	}
+
 	public function testRememberUser() {
 		$backend = $this->getBackend();
 
@@ -470,8 +490,12 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$neverHook = $this->getMock( __CLASS__, [ 'onSessionMetadata' ] );
 		$neverHook->expects( $this->never() )->method( 'onSessionMetadata' );
 
-		$neverProvider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		$builder = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'persistSession', 'unpersistSession' ] );
+
+		$neverProvider = $builder->getMock();
 		$neverProvider->expects( $this->never() )->method( 'persistSession' );
+		$neverProvider->expects( $this->never() )->method( 'unpersistSession' );
 
 		// Not persistent or dirty
 		$this->provider = $neverProvider;
@@ -479,6 +503,38 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->store->setSessionData( self::SESSIONID, $testData );
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
+		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		\TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
+		\TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
+		$backend->save();
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+
+		// (but does unpersist if forced)
+		$this->provider = $builder->getMock();
+		$this->provider->expects( $this->never() )->method( 'persistSession' );
+		$this->provider->expects( $this->atLeastOnce() )->method( 'unpersistSession' );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $neverHook ] ] );
+		$this->store->setSessionData( self::SESSIONID, $testData );
+		$backend = $this->getBackend( $user );
+		$this->store->deleteSession( self::SESSIONID );
+		\TestingAccessWrapper::newFromObject( $backend )->persist = false;
+		\TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
+		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		\TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
+		\TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
+		$backend->save();
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+
+		// (but not to a WebRequest associated with a different session)
+		$this->provider = $neverProvider;
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $neverHook ] ] );
+		$this->store->setSessionData( self::SESSIONID, $testData );
+		$backend = $this->getBackend( $user );
+		\TestingAccessWrapper::newFromObject( $backend )->requests[100]
+			->setSessionId( new SessionId( 'x' ) );
+		$this->store->deleteSession( self::SESSIONID );
+		\TestingAccessWrapper::newFromObject( $backend )->persist = false;
+		\TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
 		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
 		\TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		\TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
@@ -520,8 +576,10 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$backend->save();
 		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		// (but will persist if forced)
+		$this->provider = $builder->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
+		$this->provider->expects( $this->never() )->method( 'unpersistSession' );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $neverHook ] ] );
 		$this->store->setSessionData( self::SESSIONID, $testData );
 		$backend = $this->getBackend( $user );
@@ -557,8 +615,10 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		// (also persists if forced)
+		$this->provider = $builder->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
+		$this->provider->expects( $this->never() )->method( 'unpersistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
 		$this->store->setSessionData( self::SESSIONID, $testData );
@@ -581,8 +641,10 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
-		$this->provider = $this->getMock( 'DummySessionProvider', [ 'persistSession' ] );
+		// (also persists if metadata dirty)
+		$this->provider = $builder->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
+		$this->provider->expects( $this->never() )->method( 'unpersistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
 		$this->store->setSessionData( self::SESSIONID, $testData );
@@ -788,6 +850,44 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$backend->persist();
 		$this->assertSame( $backend->getId(), session_id() );
 		session_write_close();
+	}
+
+	public function testUnpersistOfGlobalSession() {
+		if ( !PHPSessionHandler::isInstalled() ) {
+			PHPSessionHandler::install( SessionManager::singleton() );
+		}
+		if ( !PHPSessionHandler::isEnabled() ) {
+			$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+			$rProp->setAccessible( true );
+			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
+			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
+				session_write_close();
+				$handler->enable = false;
+			} );
+			$handler->enable = true;
+		}
+
+		$backend = $this->getBackend( User::newFromName( 'UTSysop' ) );
+		$wrap = \TestingAccessWrapper::newFromObject( $backend );
+		$wrap->usePhpSessionHandling = true;
+		$wrap->persist = true;
+
+		TestUtils::setSessionManagerSingleton( $this->manager );
+
+		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
+		$request = \RequestContext::getMain()->getRequest();
+		$manager->globalSession = $backend->getSession( $request );
+		$manager->globalSessionRequest = $request;
+
+		session_id( self::SESSIONID . 'x' );
+		\MediaWiki\quietCall( 'session_start' );
+		$backend->unpersist();
+		$this->assertSame( self::SESSIONID . 'x', session_id() );
+
+		session_id( self::SESSIONID );
+		$wrap->persist = true;
+		$backend->unpersist();
+		$this->assertSame( '', session_id() );
 	}
 
 	public function testGetAllowedUserRights() {
