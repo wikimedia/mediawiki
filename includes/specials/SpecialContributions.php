@@ -41,7 +41,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules('mediawiki.special.contributions');
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -669,7 +671,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$namespaceSelection .
 			$filterSelection .
 			$extraOptions .
-			$dateSelectionAndSubmit,
+			$dateSelectionAndSubmit .
+			new \Mediawiki\Widget\DateInputWidget(),
 			[ 'class' => 'mw-contributions-table' ]
 		);
 
