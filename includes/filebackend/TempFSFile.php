@@ -31,9 +31,6 @@ class TempFSFile extends FSFile {
 	/** @var bool Garbage collect the temp file */
 	protected $canDelete = false;
 
-	/** @var array Active temp files to purge on shutdown */
-	protected static $instances = [];
-
 	/** @var array Map of (path => 1) for paths to delete on shutdown */
 	protected static $pathsCollect = null;
 
@@ -55,25 +52,23 @@ class TempFSFile extends FSFile {
 	 * @return TempFSFile|null
 	 */
 	public static function factory( $prefix, $extension = '' ) {
-		$base = wfTempDir() . '/' . $prefix . wfRandomString( 12 );
 		$ext = ( $extension != '' ) ? ".{$extension}" : "";
-		for ( $attempt = 1; true; $attempt++ ) {
-			$path = "{$base}-{$attempt}{$ext}";
+
+		for ( $attempt = 1; $attempt <= 5; ++$attempt ) {
+			$path = wfTempDir() . '/' . $prefix . wfRandomString( 12 ) . $ext;
 			MediaWiki\suppressWarnings();
 			$newFileHandle = fopen( $path, 'x' );
 			MediaWiki\restoreWarnings();
 			if ( $newFileHandle ) {
 				fclose( $newFileHandle );
-				break; // got it
-			}
-			if ( $attempt >= 5 ) {
-				return null; // give up
+				$tmpFile = new self( $path );
+				$tmpFile->autocollect(); // safely instantiated
+
+				return $tmpFile; // got it
 			}
 		}
-		$tmpFile = new self( $path );
-		$tmpFile->autocollect(); // safely instantiated
 
-		return $tmpFile;
+		return null; // give up
 	}
 
 	/**
