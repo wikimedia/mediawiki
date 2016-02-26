@@ -61,6 +61,7 @@ class ApiHelp extends ApiBase {
 		if ( $params['wrap'] ) {
 			$data = [
 				'mime' => 'text/html',
+				'filename' => 'api-help.html',
 				'help' => $html,
 			];
 			ApiResult::setSubelementsList( $data, 'help' );
@@ -69,6 +70,7 @@ class ApiHelp extends ApiBase {
 			$result->reset();
 			$result->addValue( null, 'text', $html, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/html', ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'filename', 'api-help.html', ApiResult::NO_SIZE_CHECK );
 		}
 	}
 
