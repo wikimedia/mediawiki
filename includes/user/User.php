@@ -468,12 +468,18 @@ class User implements IDBAccessObject {
 		}
 
 		$cache = ObjectCache::getMainWANInstance();
-		$data = $cache->get( $this->getCacheKey( $cache ) );
-		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
-			// Object is expired
-			return false;
-		}
+		$key = $this->getCacheKey( $cache );
 
+		$processCache = ObjectCache::getLocalServerInstance( 'hash' );
+		$data = $processCache->get( $key );
+		if ( !is_array( $data ) ) {
+			$data = $cache->get( $key );
+			if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
+				// Object is expired
+				return false;
+			}
+			$processCache->set( $key, $data );
+		}
 		wfDebug( "User: got user {$this->mId} from cache\n" );
 
 		// Restore from cache
