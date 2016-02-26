@@ -1389,7 +1389,8 @@ class LocalFile extends File {
 				$descId,
 				$editSummary,
 				false,
-				$user
+				$user,
+				$timestamp
 			);
 			if ( $nullRevision ) {
 				$nullRevision->insertOn( $dbw );
@@ -1432,7 +1433,10 @@ class LocalFile extends File {
 					$comment,
 					EDIT_NEW | EDIT_SUPPRESS_RC,
 					false,
-					$user
+					$user,
+					null, /* serial format */
+					null, /* tags */
+					$this->timestamp
 				);
 
 				if ( isset( $status->value['revision'] ) ) {
