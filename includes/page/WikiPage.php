@@ -1639,6 +1639,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * @param string|null $timestamp Override the edit timestamp
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1660,7 +1661,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null, $tags = null
+		User $user = null, $serialFormat = null, $tags = null, $timestamp = null
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
 
@@ -1723,7 +1724,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'oldId' => $this->getLatest(),
 			'oldIsRedirect' => $this->isRedirect(),
 			'oldCountable' => $this->isCountable(),
-			'tags' => ( $tags !== null ) ? (array)$tags : []
+			'tags' => ( $tags !== null ) ? (array)$tags : [],
+			'timestamp' => $timestamp ?: wfTimestampNow()
 		];
 
 		// Actually create the revision and create/update the page
@@ -1763,7 +1765,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$status = Status::newGood( [ 'new' => false, 'revision' => null ] );
 
 		// Convenience variables
-		$now = wfTimestampNow();
+		$now = $meta['timestamp'];
 		$oldid = $meta['oldId'];
 		/** @var $oldContent Content|null */
 		$oldContent = $meta['oldContent'];
@@ -1928,7 +1930,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$status = Status::newGood( [ 'new' => true, 'revision' => null ] );
 
-		$now = wfTimestampNow();
+		$now = $meta['timestamp'];
 		$newsize = $content->getSize();
 		$prepStatus = $content->prepareSave( $this, $flags, $meta['oldId'], $user );
 		$status->merge( $prepStatus );

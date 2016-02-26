@@ -370,6 +370,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	protected $parentLens;
 
+	/** @var array Associative array, where the keys are unpatrolled revision ids */
+	protected $unpatrolledRevs;
+
+
 	/** @var bool Whether to show the tag editing UI */
 	protected $showTagEditUI;
 
@@ -462,6 +466,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
 		$revIds = [];
+		$potentialUnpatrolledRevs = [];
 		foreach ( $this->mResult as $row ) {
 			if ( $row->rev_parent_id ) {
 				$revIds[] = $row->rev_parent_id;
@@ -473,10 +478,45 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER, $row->rev_user_text );
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
+			if ( RecentChange::isInRCLifespan( $row->rev_timestamp, 21600 ) ) {
+				$potentialUnpatrolledRevs[] = $this->mDb->makeList( [
+					"rc_this_oldid" => $row->rev_id,
+					"rc_timestamp" => $row->rev_timestamp
+				], LIST_AND );
+			}
 		}
 		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );
+		$this->unpatrolledRevs = $this->getUnpatrolled( $potentialUnpatrolledRevs );
 		$batch->execute();
 		$this->mResult->seek( 0 );
+	}
+
+	/**
+	 * Find revisions not yet patrolled
+	 *
+	 * @param $potentialUnpatrolledRevs Array Conditions to check in RC table
+	 * @return Array List of revision ids that are not patrolled (as array keys)
+	 *   or empty array if rc patrol disabled or user does not have permission.
+	 */
+	protected function getUnpatrolled( array $potentialUnpatrolledRevs ) {
+		$user = $this->getContext()->getUser();
+		if ( !$user->useRCPatrol() || !$potentialUnpatrolledRevs ) {
+			return [];
+		}
+
+		// This is assuming that the most relavent index is
+		// on rc_timestamp, and there are not very many
+		// rc entries happening within a 1 second interval
+		return array_flip( $this->mDb->selectFieldValues(
+			'recentchanges',
+			'rc_this_oldid',
+			[
+				'rc_patrolled' => 0,
+				'rc_type' => [ RC_NEW, RC_EDIT, RC_LOG ],
+				$this->mDb->makeList( $potentialUnpatrolledRevs, LIST_OR )
+			],
+			__METHOD__
+		) );
 	}
 
 	/**
@@ -676,8 +716,20 @@ class HistoryPager extends ReverseChronologicalPager {
 			Linker::revUserTools( $rev, true ) . "</span>";
 		$s .= $dirmark;
 
+		$flags = '';
 		if ( $rev->isMinor() ) {
-			$s .= ' ' . ChangesList::flag( 'minor' );
+			$flags .= ChangesList::flag( 'minor' );
+		}
+
+		if ( isset( $this->unpatrolledRevs[$rev->getId()] ) ) {
+			// Note: if user does not have rights or $wgUseRCPatrol
+			// is false, then $this->unpatrolledRevs will be empty.
+			$flags .= ChangesList::flag( 'unpatrolled' );
+			$classes[] = 'mw-history-unpatrolled';
+		}
+
+		if ( $flags !== '' ) {
+			$s .= ' ' . $flags;
 		}
 
 		# Sometimes rev_len isn't populated

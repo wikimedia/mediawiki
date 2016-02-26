@@ -1620,9 +1620,10 @@ class Revision implements IDBAccessObject {
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
 	 * @param User|null $user User object to use or null for $wgUser
+	 * @param String|null $timestamp Timestamp, or null for current time
 	 * @return Revision|null Revision or null on error
 	 */
-	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
+	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null, $timestamp = null ) {
 		global $wgContentHandlerUseDB, $wgContLang;
 
 		$fields = [ 'page_latest', 'page_namespace', 'page_title',
@@ -1662,7 +1663,8 @@ class Revision implements IDBAccessObject {
 				'text_id'    => $current->rev_text_id,
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
-				'sha1'       => $current->rev_sha1
+				'sha1'       => $current->rev_sha1,
+				'timestamp'  => $timestamp ?: wfTimestampNow()
 			];
 
 			if ( $wgContentHandlerUseDB ) {
