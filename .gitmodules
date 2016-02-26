@@ -368,3 +368,7 @@
 	path = extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
 	branch = REL1_26
+[submodule "extensions/ContactPage"]
+	path = extensions/ContactPage
+	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
+	branch = REL1_26
