@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Session;
 
+use Exception;
 use UnexpectedValueException;
 
 /**

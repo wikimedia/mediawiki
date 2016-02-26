@@ -111,9 +111,11 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			return;
 		}
 
+		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION_HANDLER' ) ) {
 			throw new \BadMethodCallException( 'MW_NO_SESSION_HANDLER is defined' );
 		}
+		// @codeCoverageIgnoreEnd
 
 		self::$instance = new self( $manager );
 

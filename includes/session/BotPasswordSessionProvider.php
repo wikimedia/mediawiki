@@ -165,16 +165,19 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		return true;
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function preventSessionsForUser( $username ) {
 		BotPassword::removeAllPasswordsForUser( $username );
 	}
 
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
-			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
+			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
 		}
 		$data = $backend->getProviderMetadata();
-		if ( $data ) {
+		if ( $data && isset( $data['rights'] ) && is_array( $data['rights'] ) ) {
 			return $data['rights'];
 		}
 

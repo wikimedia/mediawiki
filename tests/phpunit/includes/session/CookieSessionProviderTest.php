@@ -762,4 +762,25 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	public function onUserSetCookies( $user, &$sessionData, &$cookies ) {
 	}
 
+	public function testGetCookie() {
+		$provider = new CookieSessionProvider( [
+			'priority' => 1,
+			'sessionName' => 'MySessionName',
+			'cookieOptions' => [ 'prefix' => 'x' ],
+		] );
+		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setConfig( $this->getConfig() );
+		$provider->setManager( SessionManager::singleton() );
+		$provider = \TestingAccessWrapper::newFromObject( $provider );
+
+		$request = new \FauxRequest();
+		$request->setCookies( [
+			'xFoo' => 'foo!',
+			'xBar' => 'deleted',
+		], '' );
+		$this->assertSame( 'foo!', $provider->getCookie( $request, 'Foo', 'x' ) );
+		$this->assertNull( $provider->getCookie( $request, 'Bar', 'x' ) );
+		$this->assertNull( $provider->getCookie( $request, 'Baz', 'x' ) );
+	}
+
 }
