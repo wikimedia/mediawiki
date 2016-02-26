@@ -199,7 +199,7 @@ class FileBackendMultiWrite extends FileBackend {
 				}
 
 				$realOps = $this->substOpBatchPaths( $ops, $backend );
-				if ( $this->asyncWrites ) {
+				if ( $this->asyncWrites && !$this->hasStoreOperation( $ops ) ) {
 					// Bind $scopeLock to the callback to preserve locks
 					DeferredUpdates::addCallableUpdate(
 						function() use ( $backend, $realOps, $opts, $scopeLock ) {
@@ -467,6 +467,20 @@ class FileBackendMultiWrite extends FileBackend {
 		);
 	}
 
+	/**
+	 * @param array $ops File operation batch map
+	 * @return bool
+	 */
+	protected function hasStoreOperation( array $ops ) {
+		foreach ( $ops as $op ) {
+			if ( $op['op'] === 'store' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	protected function doQuickOperationsInternal( array $ops ) {
 		$status = Status::newGood();
 		// Do the operations on the master backend; setting Status fields...
@@ -480,7 +494,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 
 			$realOps = $this->substOpBatchPaths( $ops, $backend );
-			if ( $this->asyncWrites ) {
+			if ( $this->asyncWrites && !$this->hasStoreOperation( $ops ) ) {
 				DeferredUpdates::addCallableUpdate(
 					function() use ( $backend, $realOps ) {
 						$backend->doQuickOperations( $realOps );
