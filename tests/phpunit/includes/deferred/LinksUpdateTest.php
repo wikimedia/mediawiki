@@ -223,7 +223,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$templateTitle,
 			$templatePage->getParserOutput( new ParserOptions() ),
 			Title::newFromText( 'Baz' ),
-			[ [ 'Baz', '[[:Template:TestingTemplate]] and 2 pages added to category' ] ]
+			[ [
+				'Baz',
+				'[[:Template:TestingTemplate]] and [[Special:WhatLinksHere/Template:TestingTemplate|2 pages]] '
+				. 'added to category'
+			] ]
 		);
 	}
 
