@@ -37,8 +37,13 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( [
+			'mediawiki.special',
+			'mediawiki.special.changeslist',
+		] );
+		$out->addModules('mediawiki.special.contributions');
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -633,13 +638,13 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 
 		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
-		$form .= Html::rawElement( 'table', [ 'class' => 'mw-contributions-table' ], "\n" .
-			Html::rawElement( 'tr', [], $targetSelection ) . "\n" .
+		$form .= Html::rawElement( 'table', [ 'class' => 'mw-contributions-table' ],
+			"\n" . Html::rawElement( 'tr', [], $targetSelection ) . "\n" .
 			Html::rawElement( 'tr', [], $namespaceSelection ) . "\n" .
 			Html::rawElement( 'tr', [], $filterSelection ) . "\n" .
 			Html::rawElement( 'tr', [], $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n"
-		);
+			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n" .
+			Html::rawElement( 'tr', [], new \MediaWiki\Widget\DateInputWidget() ) . "\n" );
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( !$explain->isBlank() ) {
