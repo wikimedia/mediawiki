@@ -911,7 +911,7 @@
 	"mergehistory-fail-bad-timestamp": "Registo data/hora inválido",
 	"mergehistory-fail-invalid-source": "Página de origem inválida.",
 	"mergehistory-fail-invalid-dest": "Página de destino inválida.",
-	"mergehistory-fail-permission": "Permissões insuficientes para fundir os históricos.",
+	"mergehistory-fail-permission": "Privilégios insuficientes para fundir os históricos.",
 	"mergehistory-fail-self-merge": "As páginas de origem e de destino não podem ser a mesma.",
 	"mergehistory-fail-toobig": "Não é possível fundir o histórico, já que um número de revisão(ões) acima do limite ($1 {{PLURAL:$1|revisão|revisões}}) seriam movidos.",
 	"mergehistory-no-source": "A página de origem $1 não existe.",

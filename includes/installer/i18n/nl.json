@@ -80,7 +80,6 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] is op dit moment geïnstalleerd",
 	"config-apc": "[http://www.php.net/apc APC] is op dit moment geïnstalleerd",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] is op dit moment geïnstalleerd",
-	"config-no-cache": "'''Waarschuwing:''' [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] of [http://www.iis.net/download/WinCacheForPhp WinCache] is niet aangetroffen.\nHet cachen van objecten is niet ingeschakeld.",
 	"config-no-cache-apcu": "<strong>Waarschuwing:</strong> [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] of [http://www.iis.net/download/WinCacheForPhp WinCache] is niet aangetroffen.\nHet cachen van objecten is niet ingeschakeld.",
 	"config-mod-security": "'''Waarschuwing:''' uw webserver heeft de module [http://modsecurity.org/ mod_security] ingeschakeld. Als deze onjuist is ingesteld, kan dit problemen geven in combinatie met MediaWiki of andere software die gebruikers in staat stelt willekeurige inhoud te posten.\nLees de [http://modsecurity.org/documentation/ documentatie over mod_security] of neem contact op met de helpdesk van uw provider als u tegen problemen aanloopt.",
 	"config-diff3-bad": "GNU diff3 niet aangetroffen.",
