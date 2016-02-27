@@ -27,7 +27,8 @@
 			"YjM",
 			"לערי ריינהארט",
 			"Cvanca",
-			"Macofe"
+			"Macofe",
+			"Urbanecm"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -3403,7 +3404,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 bez založení přesměrování",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 s výměnou přesměrování",
-	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 místo přesměrování bez založení přesměrování",
+	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 s výměnou přesměrování bez založení přesměrování",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|označil|označila}} revizi $4 stránky $3 jako prověřenou",
 	"logentry-patrol-patrol-auto": "$1 automaticky {{GENDER:$2|označil|označila}} revizi $4 stránky $3 jako prověřenou",
 	"logentry-newusers-newusers": "Byl {{GENDER:$2|založen}} uživatelský účet $1",
