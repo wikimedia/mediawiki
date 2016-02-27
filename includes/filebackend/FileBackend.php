@@ -237,6 +237,8 @@ abstract class FileBackend {
 	 *  - describe (since 1.21)
 	 *  - null
 	 *
+	 * FSFile/TempFSFile object support was added in 1.27.
+	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
 	 *     array(
@@ -253,7 +255,7 @@ abstract class FileBackend {
 	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
-	 *         'src'                 => <file system path>,
+	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
@@ -372,11 +374,15 @@ abstract class FileBackend {
 		if ( !count( $ops ) ) {
 			return Status::newGood(); // nothing to do
 		}
+
+		$ops = $this->resolveFSFileObjects( $ops );
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
+
 		return $this->doOperationsInternal( $ops, $opts );
 	}
 
@@ -503,6 +509,8 @@ abstract class FileBackend {
 	 *  - describe (since 1.21)
 	 *  - null
 	 *
+	 * FSFile/TempFSFile object support was added in 1.27.
+	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
 	 *     array(
@@ -517,7 +525,7 @@ abstract class FileBackend {
 	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
-	 *         'src'                 => <file system path>,
+	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
@@ -604,11 +612,15 @@ abstract class FileBackend {
 		if ( !count( $ops ) ) {
 			return Status::newGood(); // nothing to do
 		}
+
+		$ops = $this->resolveFSFileObjects( $ops );
 		foreach ( $ops as &$op ) {
 			$op['overwrite'] = true; // avoids RTTs in key/value stores
 		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
+
 		return $this->doQuickOperationsInternal( $ops );
 	}
 
@@ -1328,6 +1340,28 @@ abstract class FileBackend {
 	 */
 	final public function getJournal() {
 		return $this->fileJournal;
+	}
+
+	/**
+	 * Convert FSFile 'src' paths to string paths (with an 'srcRef' field set to the FSFile)
+	 *
+	 * The 'srcRef' field keeps any TempFSFile objects in scope for the backend to have it
+	 * around as long it needs (which may vary greatly depending on configuration)
+	 *
+	 * @param array $ops File operation batch for FileBaclend::doOperations()
+	 * @return array File operation batch
+	 */
+	protected function resolveFSFileObjects( array $ops ) {
+		foreach ( $ops as &$op ) {
+			$src = isset( $op['src'] ) ? $op['src'] : null;
+			if ( $src instanceof FSFile ) {
+				$op['srcRef'] = $src;
+				$op['src'] = $src->getPath();
+			}
+		}
+		unset( $op );
+
+		return $ops;
 	}
 
 	/**
