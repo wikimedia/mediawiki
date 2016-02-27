@@ -662,17 +662,18 @@ class SkinTemplate extends Skin {
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( User::groupHasPermission( '*', 'edit' ) ) {
-				// Show the text "Not logged in"
-				$personal_urls['anonuserpage'] = array(
-					'text' => $this->msg( 'notloggedin' )->text()
-				);
 
-				// Because of caching, we can't link directly to the IP talk and
+				// Because of caching, we can't link directly to the IP user, talk and
 				// contributions pages. Instead we use the special page shortcuts
 				// (which work correctly regardless of caching). This means we can't
 				// determine whether these links are active or not, but since major
 				// skins (MonoBook, Vector) don't use this information, it's not a
 				// huge loss.
+				$personal_urls['anonuserpage'] = array(
+					'text' => $this->msg( 'anonuserpage' )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Mypage', false ),
+					'active' => false
+				);
 				$personal_urls['anontalk'] = array(
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
@@ -683,10 +684,6 @@ class SkinTemplate extends Skin {
 					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
 					'active' => false
 				);
-			}
-
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
-				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
 			$personal_urls['login'] = $login_url;
