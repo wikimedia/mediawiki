@@ -198,12 +198,6 @@ class User implements IDBAccessObject {
 	 */
 	protected static $mAllRights = false;
 
-	/**
-	 * An in-process cache for user data lookup
-	 * @var HashBagOStuff
-	 */
-	protected static $inProcessCache;
-
 	/** Cache variables */
 	// @{
 	/** @var int */
@@ -425,6 +419,7 @@ class User implements IDBAccessObject {
 	 */
 	public function loadFromId( $flags = self::READ_NORMAL ) {
 		if ( $this->mId == 0 ) {
+			// Anonymous users are not in the database (don't need cache)
 			$this->loadDefaults();
 			return false;
 		}
@@ -432,17 +427,13 @@ class User implements IDBAccessObject {
 		// Try cache (unless this needs data from the master DB).
 		// NOTE: if this thread called saveSettings(), the cache was cleared.
 		$latest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
-		if ( $latest || !$this->loadFromCache() ) {
-			wfDebug( "User: cache miss for user {$this->mId}\n" );
-			// Load from DB (make sure this thread sees its own changes)
-			if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
-				$flags |= self::READ_LATEST;
-			}
+		if ( $latest ) {
 			if ( !$this->loadFromDatabase( $flags ) ) {
-				// Can't load from ID, user is anonymous
+				// Can't load from ID
 				return false;
 			}
-			$this->saveToCache();
+		} else {
+			$this->loadFromCache();
 		}
 
 		$this->mLoadedItems = true;
@@ -458,10 +449,8 @@ class User implements IDBAccessObject {
 	 */
 	public static function purge( $wikiId, $userId ) {
 		$cache = ObjectCache::getMainWANInstance();
-		$processCache = self::getInProcessCache();
 		$key = $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId );
 		$cache->delete( $key );
-		$processCache->delete( $key );
 	}
 
 	/**
@@ -474,44 +463,34 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * @since 1.27
-	 * @return HashBagOStuff
-	 */
-	protected static function getInProcessCache() {
-		if ( !self::$inProcessCache ) {
-			self::$inProcessCache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
-		}
-		return self::$inProcessCache;
-	}
-
-	/**
 	 * Load user data from shared cache, given mId has already been set.
 	 *
-	 * @return bool false if the ID does not exist or data is invalid, true otherwise
+	 * @return bool True
 	 * @since 1.25
 	 */
 	protected function loadFromCache() {
-		if ( $this->mId == 0 ) {
-			$this->loadDefaults();
-			return false;
-		}
-
 		$cache = ObjectCache::getMainWANInstance();
-		$processCache = self::getInProcessCache();
-		$key = $this->getCacheKey( $cache );
-		$data = $processCache->get( $key );
-		if ( !is_array( $data ) ) {
-			$data = $cache->get( $key );
-			if ( !is_array( $data )
-				|| !isset( $data['mVersion'] )
-				|| $data['mVersion'] < self::VERSION
-			) {
-				// Object is expired
-				return false;
-			}
-			$processCache->set( $key, $data );
-		}
-		wfDebug( "User: got user {$this->mId} from cache\n" );
+		$data = $cache->getWithSetCallback(
+			$this->getCacheKey( $cache ),
+			$cache::TTL_HOUR,
+			function ( $oldValue, &$ttl, array &$setOpts ) {
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				wfDebug( "User: cache miss for user {$this->mId}\n" );
+
+				$this->loadFromDatabase();
+				$this->loadGroups();
+				$this->loadOptions();
+
+				$data = [];
+				foreach ( self::$mCacheVars as $name ) {
+					$data[$name] = $this->$name;
+				}
+
+				return $data;
+
+			},
+			[ 'pcTTL' => $cache::TTL_MINUTE, 'version' => self::VERSION ]
+		);
 
 		// Restore from cache
 		foreach ( self::$mCacheVars as $name ) {
@@ -519,35 +498,6 @@ class User implements IDBAccessObject {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Save user data to the shared cache
-	 *
-	 * This method should not be called outside the User class
-	 */
-	public function saveToCache() {
-		$this->load();
-		$this->loadGroups();
-		$this->loadOptions();
-
-		if ( $this->isAnon() ) {
-			// Anonymous users are uncached
-			return;
-		}
-
-		$data = [];
-		foreach ( self::$mCacheVars as $name ) {
-			$data[$name] = $this->$name;
-		}
-		$data['mVersion'] = self::VERSION;
-		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
-
-		$cache = ObjectCache::getMainWANInstance();
-		$processCache = self::getInProcessCache();
-		$key = $this->getCacheKey( $cache );
-		$cache->set( $key, $data, $cache::TTL_HOUR, $opts );
-		$processCache->set( $key, $data );
 	}
 
 	/** @name newFrom*() static factory methods */
@@ -1269,8 +1219,8 @@ class User implements IDBAccessObject {
 		// Paranoia
 		$this->mId = intval( $this->mId );
 
-		// Anonymous user
 		if ( !$this->mId ) {
+			// Anonymous users are not in the database
 			$this->loadDefaults();
 			return false;
 		}
@@ -2396,16 +2346,13 @@ class User implements IDBAccessObject {
 		}
 
 		$cache = ObjectCache::getMainWANInstance();
-		$processCache = self::getInProcessCache();
 		$key = $this->getCacheKey( $cache );
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 );
-			$processCache->delete( $key );
 		} else {
 			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function() use ( $cache, $processCache, $key ) {
+				function() use ( $cache, $key ) {
 					$cache->delete( $key );
-					$processCache->delete( $key );
 				}
 			);
 		}
