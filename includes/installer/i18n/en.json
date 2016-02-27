@@ -187,7 +187,7 @@
 	"config-ns-site-name": "Same as the wiki name: $1",
 	"config-ns-other": "Other (specify)",
 	"config-ns-other-default": "MyWiki",
-	"config-project-namespace-help": "Following Wikipedia's example, many wikis keep their policy pages separate from their content pages, in a \"'''project namespace'''\".\nAll page titles in this namespace start with a certain prefix, which you can specify here.\nUsually, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as \"#\" or \":\".",
+	"config-project-namespace-help": "Following Wikipedia's example, many wikis keep their policy pages separate from their content pages, in a '''project namespace'''.\nAll page titles in this namespace start with a certain prefix, which you can specify here.\nUsually, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as \"#\" or \":\".",
 	"config-ns-invalid": "The specified namespace \"<nowiki>$1</nowiki>\" is invalid.\nSpecify a different project namespace.",
 	"config-ns-conflict": "The specified namespace \"<nowiki>$1</nowiki>\" conflicts with a default MediaWiki namespace.\nSpecify a different project namespace.",
 	"config-admin-box": "Administrator account",
