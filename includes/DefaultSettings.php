@@ -3330,10 +3330,10 @@ $wgFooterIcons = [
 /**
  * Login / create account link behavior when it's possible for anonymous users
  * to create an account.
- *  - true = use a combined login / create account link
- *  - false = split login and create account into two separate links
+ *  - true = only show the login link
+ *  - false = have separate links for login and create account
  */
-$wgUseCombinedLoginLink = false;
+$wgUseCombinedLoginLink = true;
 
 /**
  * Display user edit counts in various prominent places.

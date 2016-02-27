@@ -642,37 +642,21 @@ class SkinTemplate extends Skin {
 				'active' => false
 			);
 		} else {
-			$useCombinedLoginLink = $this->useCombinedLoginLink();
-			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
-				? 'nav-login-createaccount'
-				: 'pt-login';
-			$is_signup = $request->getText( 'type' ) == 'signup';
-
-			$login_url = array(
-				'text' => $this->msg( $loginlink )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' )
-					&& ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
-			);
-			$createaccount_url = array(
-				'text' => $this->msg( 'pt-createaccount' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
-				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
-			);
-
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( User::groupHasPermission( '*', 'edit' ) ) {
-				// Show the text "Not logged in"
-				$personal_urls['anonuserpage'] = array(
-					'text' => $this->msg( 'notloggedin' )->text()
-				);
 
-				// Because of caching, we can't link directly to the IP talk and
-				// contributions pages. Instead we use the special page shortcuts
-				// (which work correctly regardless of caching). This means we can't
-				// determine whether these links are active or not, but since major
-				// skins (MonoBook, Vector) don't use this information, it's not a
-				// huge loss.
+				// Because of caching, we can't link directly to the anonymous
+				// user page (for example [[User:127.0.0.1]]), talk page, and
+				// contributions pages. Instead we use the special page
+				// shortcuts (which work correctly regardless of caching). This
+				// means we can't determine whether these links are active or
+				// not, but since major skins (MonoBook, Vector) don't use this
+				// information, it's not a huge loss.
+				$personal_urls['anonuserpage'] = array(
+					'text' => $this->msg( 'anonuserpage' )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Mypage', false ),
+					'active' => false
+				);
 				$personal_urls['anontalk'] = array(
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
@@ -685,11 +669,21 @@ class SkinTemplate extends Skin {
 				);
 			}
 
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
-				$personal_urls['createaccount'] = $createaccount_url;
+			$is_signup = $request->getText( 'type' ) === 'signup';
+
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !( $this->useCombinedLoginLink() ) ) {
+				$personal_urls[ 'createaccount' ] = array(
+					'text' => $this->msg( 'pt-createaccount' )->text(),
+					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
+					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
+				);
 			}
 
-			$personal_urls['login'] = $login_url;
+			$personal_urls['login'] = array(
+				'text' => $this->msg( 'pt-login' )->text(),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+				'active' => $title->isSpecial( 'Userlogin' ) && !$is_signup,
+			);
 		}
 
 		Hooks::run( 'PersonalUrls', array( &$personal_urls, &$title, $this ) );
