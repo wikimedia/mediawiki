@@ -1557,7 +1557,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 		return [];
 	}
 
-	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+	if ( $limit ) {
 		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit + 1 ), 1 );
 	} else {
 		return array_slice( debug_backtrace(), 1 );
