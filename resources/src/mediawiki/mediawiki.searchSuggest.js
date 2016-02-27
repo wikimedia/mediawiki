@@ -114,7 +114,7 @@
 			// linkParams object is modified and reused
 			formData.linkParams[ formData.textParam ] = text;
 
-			// this is the container <div>, jQueryfield
+			// this is the container <div>, jQueryfied
 			this.text( text );
 
 			// wrap only as link, if the config doesn't disallow it
