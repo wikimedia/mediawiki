@@ -20,8 +20,8 @@ class TidyUpBug37714 extends Maintenance {
 		);
 
 		foreach ( $result as $row ) {
-			$paramLines = explode( "\n", $row->log_params );
-			$ids = explode( ',', $paramLines[0] ); // Array dereferencing is PHP >= 5.4 :(
+			$paramLines = explode( "\n", $row->log_params )[0];
+			$ids = explode( ',', $paramLines );
 			$result = $this->getDB( DB_SLAVE )->select( // Work out what log entries were changed here.
 				'logging',
 				'log_type',
