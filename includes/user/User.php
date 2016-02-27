@@ -443,7 +443,10 @@ class User implements IDBAccessObject {
 	 */
 	public static function purge( $wikiId, $userId ) {
 		$cache = ObjectCache::getMainWANInstance();
-		$cache->delete( $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId ) );
+		$processCache = ObjectCache::getLocalServerInstance( 'hash' );
+		$key = $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId );
+		$cache->delete( $key );
+		$processCache->delete( $key );
 	}
 
 	/**
@@ -513,8 +516,10 @@ class User implements IDBAccessObject {
 		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
 		$cache = ObjectCache::getMainWANInstance();
+		$processCache = ObjectCache::getLocalServerInstance( 'hash' );
 		$key = $this->getCacheKey( $cache );
 		$cache->set( $key, $data, $cache::TTL_HOUR, $opts );
+		$processCache->set( $key, $data );
 	}
 
 	/** @name newFrom*() static factory methods */
@@ -2302,13 +2307,18 @@ class User implements IDBAccessObject {
 		}
 
 		$cache = ObjectCache::getMainWANInstance();
+		$processCache = ObjectCache::getLocalServerInstance( 'hash' );
 		$key = $this->getCacheKey( $cache );
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 );
+			$processCache->delete( $key );
 		} else {
-			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
-				$cache->delete( $key );
-			} );
+			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
+				function() use ( $cache, $processCache, $key ) {
+					$cache->delete( $key );
+					$processCache->delete( $key );
+				}
+			);
 		}
 	}
 
