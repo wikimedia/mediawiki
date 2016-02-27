@@ -199,7 +199,7 @@ class FileBackendMultiWrite extends FileBackend {
 				}
 
 				$realOps = $this->substOpBatchPaths( $ops, $backend );
-				if ( $this->asyncWrites && !$this->hasStoreOperation( $ops ) ) {
+				if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 					// Bind $scopeLock to the callback to preserve locks
 					DeferredUpdates::addCallableUpdate(
 						function() use ( $backend, $realOps, $opts, $scopeLock ) {
@@ -468,13 +468,13 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param array $ops File operation batch map
-	 * @return bool
+	 * @param array $ops File operations for FileBackend::doOperations()
+	 * @return bool Whether there are file path sources with outside lifetime/ownership
 	 */
-	protected function hasStoreOperation( array $ops ) {
+	protected function hasVolatileSources( array $ops ) {
 		foreach ( $ops as $op ) {
-			if ( $op['op'] === 'store' ) {
-				return true;
+			if ( $op['op'] === 'store' && !isset( $op['srcRef'] ) ) {
+				return true; // source file might be deleted anytime after do*Operations()
 			}
 		}
 
@@ -494,7 +494,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 
 			$realOps = $this->substOpBatchPaths( $ops, $backend );
-			if ( $this->asyncWrites && !$this->hasStoreOperation( $ops ) ) {
+			if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 				DeferredUpdates::addCallableUpdate(
 					function() use ( $backend, $realOps ) {
 						$backend->doQuickOperations( $realOps );
