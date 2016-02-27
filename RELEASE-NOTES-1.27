@@ -98,6 +98,7 @@ HHVM 3.1.
 * $wgEnotifUseJobQ was removed and the job queue is always used.
 * The functionality of the ApiSandbox extension has been merged into core. The
   extension should no longer be used.
+* Default value for $wgUseCombinedLoginLink changed to true
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
