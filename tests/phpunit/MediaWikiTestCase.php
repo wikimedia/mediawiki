@@ -1182,11 +1182,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// If any of the user tables were marked as used, we should clear all of them.
 			if ( array_intersect( $tablesUsed, $userTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
-
-				// Totally clear User class in-process cache to avoid CAS errors
-				TestingAccessWrapper::newFromClass( 'User' )
-					->getInProcessCache()
-					->clear();
 			}
 
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
