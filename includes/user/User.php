@@ -417,8 +417,7 @@ class User implements IDBAccessObject {
 		// Try cache (unless this needs data from the master DB).
 		// NOTE: if this thread called saveSettings(), the cache was cleared.
 		$latest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
-		if ( $latest || !$this->loadFromCache() ) {
-			wfDebug( "User: cache miss for user {$this->mId}\n" );
+		if ( $latest ) {
 			// Load from DB (make sure this thread sees its own changes)
 			if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
 				$flags |= self::READ_LATEST;
@@ -427,7 +426,18 @@ class User implements IDBAccessObject {
 				// Can't load from ID, user is anonymous
 				return false;
 			}
-			$this->saveToCache();
+			$data = $this->prepareCacheData();
+			if ( $data ) {
+				$cache = ObjectCache::getMainWANInstance();
+				$cache->set(
+					$this->getCacheKey( $cache ),
+					$data,
+					$cache::TTL_HOUR,
+					Database::getCacheSetOptions( wfGetDB( DB_MASTER ) )
+				);
+			}
+		} else {
+			$this->loadFromCache();
 		}
 
 		$this->mLoadedItems = true;
@@ -466,21 +476,25 @@ class User implements IDBAccessObject {
 			$this->loadDefaults();
 			return false;
 		}
-
 		$cache = ObjectCache::getMainWANInstance();
-		$key = $this->getCacheKey( $cache );
+		$data = $cache->getWithSetCallback(
+			$this->getCacheKey( $cache ),
+			$cache::TTL_HOUR,
+			function ( $oldValue, &$ttl, array &$setOpts ) {
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
-		$processCache = ObjectCache::getLocalServerInstance( 'hash' );
-		$data = $processCache->get( $key );
-		if ( !is_array( $data ) ) {
-			$data = $cache->get( $key );
-			if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
-				// Object is expired
-				return false;
-			}
-			$processCache->set( $key, $data );
+				wfDebug( "User: cache miss for user {$this->mId}\n" );
+
+				return $this->prepareCacheData();
+
+			},
+			array( 'pcTTL' => $cache::TTL_MINUTE )
+		);
+
+		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
+			// Object is expired
+			return false;
 		}
-		wfDebug( "User: got user {$this->mId} from cache\n" );
 
 		// Restore from cache
 		foreach ( self::$mCacheVars as $name ) {
@@ -491,18 +505,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Save user data to the shared cache
-	 *
-	 * This method should not be called outside the User class
+	 * Prepare user data for the shared cache
+	 * @return array|bool
+	 * @since 1.27
 	 */
-	public function saveToCache() {
+	protected function prepareCacheData() {
 		$this->load();
 		$this->loadGroups();
 		$this->loadOptions();
 
 		if ( $this->isAnon() ) {
 			// Anonymous users are uncached
-			return;
+			return false;
 		}
 
 		$data = [];
@@ -510,11 +524,8 @@ class User implements IDBAccessObject {
 			$data[$name] = $this->$name;
 		}
 		$data['mVersion'] = self::VERSION;
-		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
-		$cache = ObjectCache::getMainWANInstance();
-		$key = $this->getCacheKey( $cache );
-		$cache->set( $key, $data, $cache::TTL_HOUR, $opts );
+		return $data;
 	}
 
 	/** @name newFrom*() static factory methods */

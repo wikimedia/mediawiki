@@ -232,11 +232,4 @@ Special:Recentchanges (feed):
 	Special:Recentchanges?action=purge&feed=atom,
 	but note need $wgGroupPermissions[...]['purge'] permission.
 
-User:
-	key: $wgDBname:user:id:$sId
-	ex: wikidb:user:id:51
-	stores: instance of class User
-	set in: User::saveToCache()
-	cleared by: User::saveSettings(), User::clearSharedCache()
-
 ... more to come ...
