@@ -263,7 +263,9 @@ class ParserCache {
 				!== false ) {
 				wfDebugLog( 'T124356', "MF pollution ({$page->getId()}): getText called from: " . (
 					$parserOutput->debug_gettext_trace ?
-					implode( ', ', $parserOutput->debug_gettext_trace ) : 'nowhere' ) );
+					implode( ', ', $parserOutput->debug_gettext_trace ) : 'nowhere' ) .
+					', save from ' . wfGetAllCallers( false )
+				);
 			}
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
