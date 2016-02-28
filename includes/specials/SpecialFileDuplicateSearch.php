@@ -124,7 +124,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$hiddenFields = [
 			'title' => $this->getPageTitle()->getPrefixedDBKey(),
 		];
-		$htmlForm = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formFields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setAction( wfScript() );
 		$htmlForm->setMethod( 'get' );
