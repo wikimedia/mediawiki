@@ -708,7 +708,7 @@
 	"undo-summary-username-hidden": "Poništi izmenu $1 skrivenog korisnika",
 	"cantcreateaccounttitle": "Ne mogu da otvorim nalog",
 	"cantcreateaccount-text": "Otvaranje naloga s ove IP adrese (<strong>$1</strong>) je blokirao/la [[User:$3|$3]].\n\nRazlog koji je naveo/la $3 je <em>$2</em>",
-	"cantcreateaccount-range-text": "Otvaranje naloga sa IP adresa u rasponu '''$1''', koji uključuje i vašu IP adresu ('''$4''') je blokirao/la [[User:$3|$3]].\n\nRazlog koji je naveo/la $3 je <em>$2</em>",
+	"cantcreateaccount-range-text": "Otvaranje naloga sa IP adresa u rasponu <strong>$1</strong>, koji uključuje i vašu IP adresu (<strong>$4</strong>) je blokirao/la [[User:$3|$3]].\n\nRazlog koji je naveo/la $3 je <em>$2</em>",
 	"viewpagelogs": "Pogledaj dnevnike ove stranice",
 	"nohistory": "Ne postoji istorija izmena ove stranice.",
 	"currentrev": "Tekuća izmena",

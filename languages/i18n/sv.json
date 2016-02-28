@@ -811,7 +811,7 @@
 	"undo-summary-username-hidden": "Gör version $1 av en dold användare ogjord",
 	"cantcreateaccounttitle": "Kan inte skapa konto",
 	"cantcreateaccount-text": "[[User:$3|$3]] har blockerat den här IP-adressen ('''$1''') från att registrera konton.\n\nAnledningen till blockeringen var \"$2\".",
-	"cantcreateaccount-range-text": "IP-adresserna i intervallet '''$1''', som inkluderar din IP-adress ('''$4'''), har blockerats från att skapa konton av [[User:$3|$3]].\n\nAnledningen enligt $3 var ''$2''",
+	"cantcreateaccount-range-text": "IP-adresserna i intervallet <strong>$1</strong>, som inkluderar din IP-adress (<strong>$4</strong>), har blockerats från att skapa konton av [[User:$3|$3]].\n\nAnledningen enligt $3 var <em>$2</em>",
 	"viewpagelogs": "Visa loggar för denna sida",
 	"nohistory": "Den här sidan har ingen versionshistorik.",
 	"currentrev": "Nuvarande version",

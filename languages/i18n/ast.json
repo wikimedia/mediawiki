@@ -753,7 +753,7 @@
 	"undo-summary-username-hidden": "Desfacer la revisión $1 d'un usuariu tapecíu",
 	"cantcreateaccounttitle": "Nun pue crease la cuenta",
 	"cantcreateaccount-text": "[[User:$3|$3]] bloquió la creación de cuentes dende esta direición IP (<strong>$1</strong>).\n\nEl motivu dau por $3 ye <em>$2</em>",
-	"cantcreateaccount-range-text": "La creación de cuentes dende direiciones IP del rangu '''$1''', qu'incluye la so direición IP ('''$4'''), ta bloquiada pol usuariu [[User:$3|$3]].\n\nLa razón dada por $3 ye ''$2''.",
+	"cantcreateaccount-range-text": "La creación de cuentes dende direiciones IP del rangu <strong>$1</strong>, qu'incluye la so direición IP (<strong>$4</strong>), ta bloquiada pol usuariu [[User:$3|$3]].\n\nLa razón dada por $3 ye <em>$2</em>.",
 	"viewpagelogs": "Ver los rexistros d'esta páxina",
 	"nohistory": "Nun hay historial d'ediciones pa esta páxina.",
 	"currentrev": "Revisión actual",

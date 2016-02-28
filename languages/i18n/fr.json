@@ -878,7 +878,7 @@
 	"undo-summary-username-hidden": "Annuler la révision $1 par un utilisateur masqué",
 	"cantcreateaccounttitle": "Vous ne pouvez pas créer de compte.",
 	"cantcreateaccount-text": "La création de compte depuis cette adresse IP (<b>$1</b>) a été bloquée par [[User:$3|$3]].\n\nLa raison donnée était ''$2''.",
-	"cantcreateaccount-range-text": "La création de compte depuis les adresses IP dans la plage '''$1''', qui comprend votre adresse IP ('''$4'''), ont été bloquées par [[User:$3|$3]].\n\nLe motif fourni par $3 est ''$2''",
+	"cantcreateaccount-range-text": "La création de compte depuis les adresses IP dans la plage <strong>$1</strong>, qui comprend votre adresse IP (<strong>$4</strong>), ont été bloquées par [[User:$3|$3]].\n\nLe motif fourni par $3 est <em>$2</em>",
 	"viewpagelogs": "Voir les opérations sur cette page",
 	"nohistory": "Il n'existe pas d'historique pour cette page.",
 	"currentrev": "Version actuelle",

@@ -791,7 +791,7 @@
 	"undo-summary-username-hidden": "Batalkan revisi $1 oleh seorang pengguna tersembunyi",
 	"cantcreateaccounttitle": "Akun tak dapat dibuat",
 	"cantcreateaccount-text": "Pembuatan akun dari alamat IP ini (<strong>$1</strong>) telah diblokir oleh [[User:$3|$3]].\n\nAlasan yang diberikan oleh $3 adalah ''$2''",
-	"cantcreateaccount-range-text": "Pembuatan akun dari alamat IP dalam rentang '''$1''', yang mencakup alamat IP anda ('''$4'''), telah diblokir oleh [[User:$3|$3]].\n\nAlasan yang diberikan oleh  $3  adalah ''$2''",
+	"cantcreateaccount-range-text": "Pembuatan akun dari alamat IP dalam rentang <strong>$1</strong>, yang mencakup alamat IP anda (<strong>$4</strong>), telah diblokir oleh [[User:$3|$3]].\n\nAlasan yang diberikan oleh  $3  adalah <em>$2</em>",
 	"viewpagelogs": "Lihat log halaman ini",
 	"nohistory": "Tidak ada sejarah penyuntingan untuk halaman ini",
 	"currentrev": "Revisi terkini",

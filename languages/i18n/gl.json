@@ -763,7 +763,7 @@
 	"undo-summary-username-hidden": "Desfíxose a edición $1 dun usuario agochado",
 	"cantcreateaccounttitle": "Non pode crear unha conta de usuario",
 	"cantcreateaccount-text": "A creación de contas desde este enderezo IP ('''$1''') foi bloqueada por [[User:$3|$3]].\n\nA razón dada por $3 foi ''$2''",
-	"cantcreateaccount-range-text": "O usuario [[User:$3|$3]] bloqueou a creación de contas desde enderezos IP no rango '''$1''', no que se inclúe o seu enderezo IP ('''$4''').\n\nA razón que deu $3 foi ''$2''.",
+	"cantcreateaccount-range-text": "O usuario [[User:$3|$3]] bloqueou a creación de contas desde enderezos IP no rango <strong>$1</strong>, no que se inclúe o seu enderezo IP (<strong>$4</strong>).\n\nA razón que deu $3 foi <em>$2</em>.",
 	"viewpagelogs": "Ver os rexistros desta páxina",
 	"nohistory": "Esta páxina non posúe ningún historial de edicións.",
 	"currentrev": "Revisión actual",

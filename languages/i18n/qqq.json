@@ -3863,7 +3863,7 @@
 	"tags-edit-revision-legend": "Form legend.\n\n$1 is the number of revisions.\n\nSee also:\n* {{msg-mw|tags-edit-logentry-legend}}",
 	"tags-edit-logentry-legend": "Form legend.\n\n$1 is the number of entries.\n\nSee also:\n* {{msg-mw|tags-edit-revision-legend}}",
 	"tags-edit-existing-tags": "Heading beneath which a list of tags already applied to the revision or log entry is presented.",
-	"tags-edit-existing-tags-none": "Shown when no tags are applied. Should be formatted differently (italicised or parenthesised).",
+	"tags-edit-existing-tags-none": "Shown when no tags are applied. Should be formatted differently (italicised or parenthesised).\n{{Identical|None}}",
 	"tags-edit-new-tags": "Heading beneath which the user chooses which tags should be attached to the revision or log entry. They may add or remove tags.",
 	"tags-edit-add": "Heading beneath which the user picks which tags to add to the revision or log entry.",
 	"tags-edit-remove": "Heading beneath which the user picks which tags to remove from the revision or log entry.",

@@ -8,7 +8,8 @@
 			"아라",
 			"Ammartivari",
 			"Olsi",
-			"Kosovastar"
+			"Kosovastar",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Nënvizoji vegzat",
@@ -308,7 +309,7 @@
 	"cascadeprotected": "Kjo faqe âsht e mbrojtun prej redaktimit, për shkak se âsht e përfshime në {{PLURAL:$1|faqen, e cila âsht e mbrojtun|faqet, të cilat janë të mbrojtuna}} me opcionin \"zinxhir\" të zgjedhun:\n$2",
 	"namespaceprotected": "Nuk keni tagër me redaktue faqe në hapësinën '''$1'''.",
 	"ns-specialprotected": "Faqet speciale nuk mujnë me u redaktue.",
-	"titleprotected": "Ky titull âsht i mbrojtun për krijim prej përdoruesit [[User:$1|$1]].\nArsyeja e dhânë âsht \"''$2''\".",
+	"titleprotected": "Ky titull âsht i mbrojtun për krijim prej përdoruesit [[User:$1|$1]].\nArsyeja e dhânë âsht <em>$2</em>.",
 	"virus-badscanner": "Konfigurim i keq: scanner i panjoftun virusash: ''$1''",
 	"virus-scanfailed": "scanimi dështoi (code $1)",
 	"virus-unknownscanner": "antivirus i panjoftun:",

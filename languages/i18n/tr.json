@@ -815,7 +815,7 @@
 	"undo-summary-username-hidden": "Gizli bir kullanıcı tarafından $1 sürümü geri alınıyor",
 	"cantcreateaccounttitle": "Hesap açılamıyor",
 	"cantcreateaccount-text": "Bu IP adresinden ('''$1''') kullanıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.\n\n$3 tarafından verilen sebep ''$2''",
-	"cantcreateaccount-range-text": "'''$1''' aralığındaki IP'ler için hesap oluşturma [[User:$3|$3]] tarafından engellendi, bu sizin IP adresinizi de ('''$4''') içeriyor.\n\n$3 tarafından verilen gerekçe ''$2''",
+	"cantcreateaccount-range-text": "<strong>$1</strong> aralığındaki IP'ler için hesap oluşturma [[User:$3|$3]] tarafından engellendi, bu sizin IP adresinizi de (<strong>$4</strong>) içeriyor.\n\n$3 tarafından verilen gerekçe <em>$2</em>",
 	"viewpagelogs": "Bu sayfa ile ilgili kayıtları göster",
 	"nohistory": "Bu sayfanın geçmiş sürümü yok.",
 	"currentrev": "Güncel sürüm",

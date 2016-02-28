@@ -751,7 +751,7 @@
 	"undo-summary-username-hidden": "Annullato 'o cagnamiento $1 pe n'utente annascunnuto",
 	"cantcreateaccounttitle": "Nun se può crià cunto",
 	"cantcreateaccount-text": "'A riggistraziona è stata bloccata 'a l'utente [[User:$3|$3]] 'a st'innerizzo IP ('''$1''').\n\n'O mutivo dato 'a $3 è chistu ccà: ''$2''",
-	"cantcreateaccount-range-text": "'A criazione 'e cunte 'a ll'indirizze int'o ntervallo '''$1''', che cummiglia 'o vuosto ('''$4'''), è stata bloccata 'a l'utente [[User:$3|$3]].\n\n'O mutivo dato 'a $3 è chistu ccà: ''$2''",
+	"cantcreateaccount-range-text": "'A criazione 'e cunte 'a ll'indirizze int'o ntervallo <strong>$1</strong>, che cummiglia 'o vuosto (<strong>$4</strong>), è stata bloccata 'a l'utente [[User:$3|$3]].\n\n'O mutivo dato 'a $3 è chistu ccà: <em>$2</em>",
 	"viewpagelogs": "Vide 'e log azzeccate a sta paggena",
 	"nohistory": "Nun esiste na cronologgia 'e verziune pe' sta paggena.",
 	"currentrev": "Verzione 'e mmo",

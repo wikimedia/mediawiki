@@ -769,7 +769,7 @@
 	"undo-summary-username-hidden": "Zrušena verze $1 od skrytého uživatele",
 	"cantcreateaccounttitle": "Nelze vytvořit uživatelský účet",
 	"cantcreateaccount-text": "Zakládání nových účtů z této IP adresy ('''$1''') bylo zablokováno uživatelem [[User:$3|$3]].\n\n$3 uvádí toto zdůvodnění: ''$2''",
-	"cantcreateaccount-range-text": "Zakládání nových účtů z IP adres v rozsahu '''$1''', který obsahuje i vaši IP adresu ('''$4'''), bylo zablokováno {{GENDER:$3|uživatelem|uživatelkou}} [[User:$3|$3]].\n\n$3 uvádí toto zdůvodnění: ''$2''",
+	"cantcreateaccount-range-text": "Zakládání nových účtů z IP adres v rozsahu <strong>$1</strong>, který obsahuje i vaši IP adresu (<strong>$4</strong>), bylo zablokováno {{GENDER:$3|uživatelem|uživatelkou}} [[User:$3|$3]].\n\n$3 uvádí toto zdůvodnění: <em>$2</em>",
 	"viewpagelogs": "Zobrazit protokolovací záznamy k této stránce",
 	"nohistory": "O této stránce neexistuje historie editací.",
 	"currentrev": "Aktuální verze",

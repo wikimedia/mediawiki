@@ -1322,7 +1322,7 @@
 	"recentchanges-label-bot": "Deze bewerking is uitgevoerd door een bot",
 	"recentchanges-label-unpatrolled": "Deze bewerking is nog niet gecontroleerd",
 	"recentchanges-label-plusminus": "Deze paginagrootte is met dit aantal bytes gewijzigd",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zie ook de [[Special:NewPages|lijst met nieuwe pagina's]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Weergeven",

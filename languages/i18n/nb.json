@@ -789,7 +789,7 @@
 	"undo-summary-username-hidden": "Fjern revisjon $1 av en skjult bruker",
 	"cantcreateaccounttitle": "Kan ikke opprette konto",
 	"cantcreateaccount-text": "Kontooppretting fra denne IP-adressen ('''$1''') har blitt blokkert av [[User:$3|$3]].\n\nGrunnen som ble oppgitt av $3 er ''$2''",
-	"cantcreateaccount-range-text": "Opprettelsen av en brukerkonto fra IP-adresser i intervallet '''$1''', som inneholder din IP-adresse ('''$4'''), er blitt blokkert av [[User:$3|$3]].\n\nÅrsaken angitt av $3 er ''$2''",
+	"cantcreateaccount-range-text": "Opprettelsen av en brukerkonto fra IP-adresser i intervallet <strong>$1</strong>, som inneholder din IP-adresse (<strong>$4</strong>), er blitt blokkert av [[User:$3|$3]].\n\nÅrsaken angitt av $3 er <em>$2</em>",
 	"viewpagelogs": "Vis logger for denne siden",
 	"nohistory": "Denne siden har ingen historikk.",
 	"currentrev": "Nåværende versjon",

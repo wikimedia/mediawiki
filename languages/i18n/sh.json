@@ -710,7 +710,7 @@
 	"undo-summary-username-hidden": "Poništi izmjenu $1 od skrivenog korisnika",
 	"cantcreateaccounttitle": "Nije moguće napraviti korisnički račun",
 	"cantcreateaccount-text": "Pravljenje korisničkog računa sa ove IP adrese ('''$1''') je blokirano od strane [[User:$3|$3]].\n\nRazlog koji je naveo $3 je ''$2''",
-	"cantcreateaccount-range-text": "Stvaranje računa od IP adresa iz pojasa'''$1''', koji uključuje vašu IP adresu ('''$4'''), je blokirao/la [[User:$3|$3]].\n\nRazlog koji je dao/la $3 je ''$2''",
+	"cantcreateaccount-range-text": "Stvaranje računa od IP adresa iz pojasa<strong>$1</strong>, koji uključuje vašu IP adresu (<strong>$4</strong>), je blokirao/la [[User:$3|$3]].\n\nRazlog koji je dao/la $3 je <em>$2</em>",
 	"viewpagelogs": "Pogledaj protokole ove stranice",
 	"nohistory": "Ne postoji historija izmjena za ovu stranicu.",
 	"currentrev": "Trenutna revizija",

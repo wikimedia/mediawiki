@@ -753,7 +753,7 @@
 	"undo-summary-username-hidden": "Anularea versiunii $1 a unui utilizator ascuns",
 	"cantcreateaccounttitle": "Crearea contului nu poate fi realizată",
 	"cantcreateaccount-text": "Crearea de conturi de la această adresă IP ('''$1''') a fost blocată de [[User:$3|$3]].\n\nMotivul invocat de $3 este ''$2''",
-	"cantcreateaccount-range-text": "Crearea de conturi de la adresele IP din gama '''$1''', care o include și pe a dumneavoastră ('''$4'''), a fost blocată de [[User:$3|$3]].\n\nMotivul invocat de $3 este ''$2''",
+	"cantcreateaccount-range-text": "Crearea de conturi de la adresele IP din gama <strong>$1</strong>, care o include și pe a dumneavoastră (<strong>$4</strong>), a fost blocată de [[User:$3|$3]].\n\nMotivul invocat de $3 este <em>$2</em>",
 	"viewpagelogs": "Afișează jurnalele paginii",
 	"nohistory": "Nu există istoric pentru această pagină.",
 	"currentrev": "Versiunea curentă",

@@ -768,7 +768,7 @@
 	"undo-summary-username-hidden": "Đã lùi lại sửa đổi $1 của một người dùng ẩn",
 	"cantcreateaccounttitle": "Không thể mở tài khoản",
 	"cantcreateaccount-text": "Chức năng tài tạo khoản từ địa chỉ IP này ('''$1''') đã bị [[User:$3|$3]] cấm.\n\nLý do được $3 đưa ra là ''$2''",
-	"cantcreateaccount-range-text": "[[User:$3|$3]] đã cấm các địa chỉ IP trong dãy '''$1''', bao gồm địa chỉ IP của bạn ('''$4'''), không được mở tài khoản.\n\nLý do được đưa ra bởi $3 là ''$2''",
+	"cantcreateaccount-range-text": "[[User:$3|$3]] đã cấm các địa chỉ IP trong dãy <strong>$1</strong>, bao gồm địa chỉ IP của bạn (<strong>$4</strong>), không được mở tài khoản.\n\nLý do được đưa ra bởi $3 là <em>$2</em>",
 	"viewpagelogs": "Xem nhật trình của trang này",
 	"nohistory": "Trang này chưa có lịch sử.",
 	"currentrev": "Bản hiện tại",
