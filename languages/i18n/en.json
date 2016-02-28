@@ -3582,7 +3582,6 @@
 	"redirect-not-exists": "Value not found",
 	"fileduplicatesearch": "Search for duplicate files",
 	"fileduplicatesearch-summary": "Search for duplicate files based on hash values.",
-	"fileduplicatesearch-legend": "Search for a duplicate",
 	"fileduplicatesearch-filename": "Filename:",
 	"fileduplicatesearch-submit": "Search",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />File size: $3<br />MIME type: $4",
