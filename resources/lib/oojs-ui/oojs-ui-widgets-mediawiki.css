@@ -909,9 +909,8 @@
 	background-color: #f3f3f3;
 }
 .oo-ui-capsuleItemWidget > .oo-ui-buttonElement {
-	float: right;
-	margin-top: -0.2em;
-	margin-left: 0.4em;
+	margin-top: -1.4em;
+	padding-left: 0.3em;
 }
 .oo-ui-searchWidget-query {
 	position: absolute;
