@@ -2540,7 +2540,7 @@ class EditPage {
 			Xml::openElement( 'div', [ 'id' => 'antispam-container', 'style' => 'display: none;' ] )
 			. Html::rawElement(
 				'label',
-				[ 'for' => 'wpAntiSpam' ],
+				[ 'for' => 'wpAntispam' ],
 				wfMessage( 'simpleantispam-label' )->parse()
 			)
 			. Xml::element(
