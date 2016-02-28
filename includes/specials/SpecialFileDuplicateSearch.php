@@ -118,19 +118,17 @@ class FileDuplicateSearchPage extends QueryPage {
 				'id' => 'filename',
 				'size' => 50,
 				'value' => $this->filename,
-				'cssclass' => 'mw-ui-input-inline'
 			],
 		];
 		$hiddenFields = [
 			'title' => $this->getPageTitle()->getPrefixedDBkey(),
 		];
-		$htmlForm = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formFields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setAction( wfScript() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->setSubmitProgressive();
 		$htmlForm->setSubmitTextMsg( $this->msg( 'fileduplicatesearch-submit' ) );
-		$htmlForm->setWrapperLegendMsg( 'fileduplicatesearch-legend' );
 
 		// The form should be visible always, even if it was submitted (e.g. to perform another action).
 		// To bypass the callback validation of HTMLForm, use prepareForm() and displayForm().

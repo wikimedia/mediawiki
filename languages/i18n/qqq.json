@@ -3761,7 +3761,6 @@
 	"redirect-not-exists": "Used as error message in [[Special:Redirect]]",
 	"fileduplicatesearch": "Name of special page [[Special:FileDuplicateSearch]].",
 	"fileduplicatesearch-summary": "Summary of [[Special:FileDuplicateSearch]]",
-	"fileduplicatesearch-legend": "Legend of the fieldset around the input form of [[Special:FileDuplicateSearch]]",
 	"fileduplicatesearch-filename": "Input form of [[Special:FileDuplicateSearch]]:\n\n{{Identical|Filename}}",
 	"fileduplicatesearch-submit": "Button label on [[Special:FileDuplicateSearch]].\n\n{{Identical|Search}}",
 	"fileduplicatesearch-info": "Information beneath the thumbnail on the right side shown after a successful search via [[Special:FileDuplicateSearch]].\n\nParameters:\n* $1 - width of the file\n* $2 - height of the file\n* $3 - File size\n* $4 - MIME type",
