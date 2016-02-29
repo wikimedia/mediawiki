@@ -431,7 +431,8 @@ class MWDebug {
 			// Cannot use OutputPage::addJsConfigVars because those are already outputted
 			// by the time this method is called.
 			$html = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] )
+				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] ),
+				$context->getOutput()->getCSPNonce()
 			);
 		}
 
