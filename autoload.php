@@ -28,6 +28,7 @@ $wgAutoloadLocalClasses = [
 	'ApiComparePages' => __DIR__ . '/includes/api/ApiComparePages.php',
 	'ApiContinuationManager' => __DIR__ . '/includes/api/ApiContinuationManager.php',
 	'ApiCreateAccount' => __DIR__ . '/includes/api/ApiCreateAccount.php',
+	'ApiCSPReport' => __DIR__ . '/includes/api/ApiCSPReport.php',
 	'ApiDelete' => __DIR__ . '/includes/api/ApiDelete.php',
 	'ApiDisabled' => __DIR__ . '/includes/api/ApiDisabled.php',
 	'ApiEditPage' => __DIR__ . '/includes/api/ApiEditPage.php',
