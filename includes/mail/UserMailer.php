@@ -501,12 +501,12 @@ class UserMailer {
 		}
 		$out = "=?$charset?Q?";
 		$out .= preg_replace_callback( "/([$replace])/",
-			[ __CLASS__, 'quotedPrintableCallback' ], $string );
+			function ( $matches ) {
+				return sprintf( "=%02X", ord( $matches[1] ) );
+			},
+			$string
+		);
 		$out .= '?=';
 		return $out;
-	}
-
-	protected static function quotedPrintableCallback( $matches ) {
-		return sprintf( "=%02X", ord( $matches[1] ) );
 	}
 }
