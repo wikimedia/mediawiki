@@ -11,12 +11,14 @@
  */
 class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 
-	const TITLE_STRING = 'UTCatChangeJobPage';
-
 	/**
-	 * @var Title
+	 * @var string[]
 	 */
-	private $title;
+	private $titles = [
+		'unused' => 'UTCatChangeJobPage-unused',
+		'used' => 'UTCatChangeJobPage-used',
+		'usage' => 'UTCatChangeJobPage-usage',
+	];
 
 	public function setUp() {
 		parent::setUp();
@@ -25,8 +27,10 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 
 	public function addDBData() {
 		parent::addDBData();
-		$insertResult = $this->insertPage( self::TITLE_STRING, 'UT Content' );
-		$this->title = $insertResult['title'];
+
+		$this->insertPage( $this->titles['used'], 'UT Content used' );
+		$this->insertPage( $this->titles['unused'], 'UT Content unused' );
+		$this->insertPage( $this->titles['usage'], '{{:' . $this->titles['used'] . '}}' );
 	}
 
 	private function runJobs() {
@@ -37,14 +41,16 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param string $titleString title to edit
 	 * @param string $text new page text
 	 *
 	 * @return int|null
 	 */
-	private function editPageText( $text ) {
-		$page = WikiPage::factory( $this->title );
+	private function editPageText( $titleString, $text ) {
+		$title = Title::newFromText( $titleString );
+		$page = WikiPage::factory( $title );
 		$editResult = $page->doEditContent(
-			ContentHandler::makeContent( $text, $this->title ),
+			ContentHandler::makeContent( $text, $title ),
 			__METHOD__
 		);
 		/** @var Revision $revision */
@@ -69,16 +75,92 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testRun_normalCategoryAddedAndRemoved() {
-		$addedRevId = $this->editPageText( '[[Category:Normal]]' );
-		$removedRevId = $this->editPageText( 'Blank' );
+	public function testRun_normalCategoryAddedAndRemovedOnUnusedPage() {
+		$addedRevId = $this->editPageText( $this->titles['unused'] ,'[[Category:Normal]]' );
+		$removedRevId = $this->editPageText( $this->titles['unused'], 'Blank' );
 
 		$this->assertEquals(
-			'[[:' . self::TITLE_STRING . ']] added to category',
+			'[[:' . $this->titles['unused'] . ']] added to category',
 			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
 		);
 		$this->assertEquals(
-			'[[:' . self::TITLE_STRING . ']] removed from category',
+			'[[:' . $this->titles['unused'] . ']] removed from category',
+			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
+		);
+	}
+
+	public function testRun_includeOnlyCategoryAddedAndRemovedOnUnusedPage() {
+		$addedRevId = $this->editPageText(
+			$this->titles['unused'],
+			'<includeonly>[[Category:IncludeOnly]]</includeonly>'
+		);
+		$removedRevId = $this->editPageText( $this->titles['unused'], 'Blank' );
+
+		$this->assertNull( $this->getCategorizeRecentChangeForRevId( $addedRevId ) );
+		$this->assertNull( $this->getCategorizeRecentChangeForRevId( $removedRevId ) );
+	}
+
+	public function testRun_noIncludeCategoryAddedAndRemovedOnUnusedPage() {
+		$addedRevId = $this->editPageText(
+			$this->titles['unused'],
+			'<noinclude>[[Category:NoInclude]]</noinclude>'
+		);
+		$removedRevId = $this->editPageText( $this->titles['unused'], 'Blank' );
+
+		$this->assertEquals(
+			'[[:' . $this->titles['unused'] . ']] added to category',
+			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
+		);
+		$this->assertEquals(
+			'[[:' . $this->titles['unused']. ']] removed from category',
+			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
+		);
+	}
+
+	public function testRun_normalCategoryAddedAndRemovedOnUsedPage() {
+		$addedRevId = $this->editPageText( $this->titles['used'] ,'[[Category:Normal]]' );
+		$removedRevId = $this->editPageText( $this->titles['used'], 'Blank' );
+
+		$this->assertEquals(
+			'[[:' . $this->titles['used'] . ']] and one page added to category',
+			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
+		);
+		$this->assertEquals(
+			'[[:' . $this->titles['used'] . ']] and one page removed from category',
+			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
+		);
+	}
+
+	public function testRun_includeOnlyCategoryAddedAndRemovedOnUsedPage() {
+		$addedRevId = $this->editPageText(
+			$this->titles['used'],
+			'<includeonly>[[Category:IncludeOnly]]</includeonly>'
+		);
+		$removedRevId = $this->editPageText( $this->titles['used'], 'Blank' );
+
+		$this->assertEquals(
+			'one page transcluding [[:' . $this->titles['used'] . ']] added to category',
+			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
+		);
+		$this->assertEquals(
+			'one page transcluding [[:' . $this->titles['used']. ']] removed from category',
+			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
+		);
+	}
+
+	public function testRun_noIncludeCategoryAddedAndRemovedOnUsedPage() {
+		$addedRevId = $this->editPageText(
+			$this->titles['used'],
+			'<noinclude>[[Category:NoInclude]]</noinclude>'
+		);
+		$removedRevId = $this->editPageText( $this->titles['used'], 'Blank' );
+
+		$this->assertEquals(
+			'[[:' . $this->titles['used'] . ']] added to category',
+			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
+		);
+		$this->assertEquals(
+			'[[:' . $this->titles['used']. ']] removed from category',
 			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
 		);
 	}

@@ -150,9 +150,17 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Parse the new revision and get the categories
-		$categoryChanges = $this->getExplicitCategoriesChanges( $title, $newRev, $oldRev );
-		list( $categoryInserts, $categoryDeletes ) = $categoryChanges;
-		if ( !$categoryInserts && !$categoryDeletes ) {
+		$categoryChangesMap = $this->getExplicitCategoriesChanges( $title, $newRev, $oldRev );
+
+		$nothingToDo = true;
+		foreach ( $categoryChangesMap as $levelOne ) {
+			foreach ( $levelOne as $levelTwo ) {
+				if ( $levelTwo ) {
+					$nothingToDo = false;
+				}
+			}
+		}
+		if ( $nothingToDo ) {
 			return; // nothing to do
 		}
 
@@ -163,21 +171,25 @@ class CategoryMembershipChangeJob extends Job {
 		$batchSize = $config->get( 'UpdateRowsPerQuery' );
 		$insertCount = 0;
 
-		foreach ( $categoryInserts as $categoryName ) {
-			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
-			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
-			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication();
+		foreach ( $categoryChangesMap[CategoryMembershipChange::CATEGORY_ADDITION] as $type => $categoryListMap ) {
+			foreach( $categoryListMap as $categoryName ) {
+				$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
+				$catMembChange->triggerCategoryAddedNotification( $categoryTitle, $type );
+				if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
+					$dbw->commit( __METHOD__, 'flush' );
+					wfGetLBFactory()->waitForReplication();
+				}
 			}
 		}
 
-		foreach ( $categoryDeletes as $categoryName ) {
-			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
-			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
-			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication();
+		foreach ( $categoryChangesMap[CategoryMembershipChange::CATEGORY_REMOVAL] as $type => $categoryListMap ) {
+			foreach( $categoryListMap as $categoryName ) {
+				$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
+				$catMembChange->triggerCategoryRemovedNotification( $categoryTitle, $type );
+				if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
+					$dbw->commit( __METHOD__, 'flush' );
+					wfGetLBFactory()->waitForReplication();
+				}
 			}
 		}
 	}
@@ -192,16 +204,42 @@ class CategoryMembershipChangeJob extends Job {
 		// Parse the old rev and get the categories. Do not use link tables as that
 		// assumes these updates are perfectly FIFO and that link tables are always
 		// up to date, neither of which are true.
-		$oldCategories = $oldRev
+		$oldCats = $oldRev
 			? $this->getCategoriesAtRev( $title, $oldRev, $parseTimestamp )
 			: [];
+		$oldCatsWhenTranscluded = $oldRev
+			? $this->getCategoriesWhenTranscluded( $title, $oldRev, $parseTimestamp )
+			: [];
 		// Parse the new revision and get the categories
-		$newCategories = $this->getCategoriesAtRev( $title, $newRev, $parseTimestamp );
+		$newCats = $this->getCategoriesAtRev( $title, $newRev, $parseTimestamp );
+		$newCatsWhenTranscluded = $this->getCategoriesWhenTranscluded( $title, $newRev, $parseTimestamp );
 
-		$categoryInserts = array_values( array_diff( $newCategories, $oldCategories ) );
-		$categoryDeletes = array_values( array_diff( $oldCategories, $newCategories ) );
+		$newCatsNoInclude = array_values( array_diff( $newCats, $newCatsWhenTranscluded ) );
+		$newCatsIncludeOnly = array_values( array_diff( $newCatsWhenTranscluded, $newCats ) );
+		$newCatsNormalText = array_values( array_diff( $newCats, array_merge( $newCatsNoInclude, $newCatsIncludeOnly ) ) );
 
-		return [ $categoryInserts, $categoryDeletes ];
+		$oldCatsNoInclude = array_values( array_diff( $oldCats, $oldCatsWhenTranscluded ) );
+		$oldCatsIncludeOnly = array_values( array_diff( $oldCatsWhenTranscluded, $oldCats ) );
+		$oldCatsNormalText = array_values( array_diff( $oldCats, array_merge( $oldCatsNoInclude, $oldCatsIncludeOnly ) ) );
+
+		return [
+			CategoryMembershipChange::CATEGORY_ADDITION => [
+				CategoryMembershipChange::CATEGORY_NORMAL =>
+					array_values( array_diff( $newCatsNormalText, $oldCatsNormalText ) ),
+				CategoryMembershipChange::CATEGORY_INCLUDE_ONLY =>
+					array_values( array_diff( $newCatsIncludeOnly, $oldCatsIncludeOnly ) ),
+				CategoryMembershipChange::CATEGORY_NO_INCLUDE =>
+					array_values( array_diff( $newCatsNoInclude, $oldCatsNoInclude ) ),
+			],
+			CategoryMembershipChange::CATEGORY_REMOVAL => [
+				CategoryMembershipChange::CATEGORY_NORMAL =>
+					array_values( array_diff( $oldCatsNormalText, $newCatsNormalText ) ),
+				CategoryMembershipChange::CATEGORY_INCLUDE_ONLY =>
+					array_values( array_diff( $oldCatsIncludeOnly, $newCatsIncludeOnly ) ),
+				CategoryMembershipChange::CATEGORY_NO_INCLUDE =>
+					array_values( array_diff( $oldCatsNoInclude, $newCatsNoInclude ) ),
+			],
+		];
 	}
 
 	/**
@@ -213,15 +251,60 @@ class CategoryMembershipChangeJob extends Job {
 	 */
 	private function getCategoriesAtRev( Title $title, Revision $rev, $parseTimestamp ) {
 		$content = $rev->getContent();
-		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
-		$options->setTimestamp( $parseTimestamp );
-		// This could possibly use the parser cache if it checked the revision ID,
-		// but that's more complicated than it's worth.
+		$options = $this->getParserOptions( $content, $parseTimestamp );
 		$output = $content->getParserOutput( $title, $rev->getId(), $options );
 
 		// array keys will cast numeric category names to ints
 		// so we need to cast them back to strings to avoid breaking things!
 		return array_map( 'strval', array_keys( $output->getCategories() ) );
+	}
+
+	/**
+	 * Gets a list of categories when the title is included on another page.
+	 * Thus this includes categories in <includeonly> tags but not categories in <noinclude> tags
+	 *
+	 * @param Title $title
+	 * @param Revision $rev
+	 * @param string $parseTimestamp TS_MW
+	 *
+	 * @return string[] category names
+	 */
+	private function getCategoriesWhenTranscluded( Title $title, Revision $rev, $parseTimestamp ) {
+		global $wgHooks;
+
+		$content = $rev->getContent();
+		if ( $content->getModel() != CONTENT_MODEL_WIKITEXT ) {
+			return [];
+		}
+
+		$wgHooks['BeforeParserFetchTemplateAndtitle'][__METHOD__] = function (
+			Parser $parser,
+			Title $title,
+			&$skip,
+			&$id
+		) use ( $rev ) {
+			$id = $rev->getId();
+			return true;
+		};
+
+		$content = new WikitextContent( '{{:' . $title->getPrefixedText() . '}}' );
+		$options = $this->getParserOptions( $content, $parseTimestamp );
+		$output = $content->getParserOutput( $title, $rev->getId(), $options );
+
+		unset( $wgHooks['BeforeParserFetchTemplateAndtitle'][__METHOD__] );
+
+		// array keys will cast numeric category names to ints
+		// so we need to cast them back to strings to avoid breaking things!
+		return array_map( 'strval', array_keys( $output->getCategories() ) );
+	}
+
+	private function getParserOptions( Content $content, $parseTimestamp ) {
+		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
+		// This could possibly use the parser cache if it checked the revision ID,
+		// but that's more complicated than it's worth.
+		$options->setTimestamp( $parseTimestamp );
+
+		return $options;
 	}
 
 	public function getDeduplicationInfo() {
