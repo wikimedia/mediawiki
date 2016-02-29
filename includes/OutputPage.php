@@ -308,6 +308,11 @@ class OutputPage extends ContextSource {
 	private $mLinkHeader = [];
 
 	/**
+	 * @var string The nonce for Content-Security-Policy
+	 */
+	private $CSPNonce;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -508,7 +513,7 @@ class OutputPage extends ContextSource {
 		if ( is_null( $version ) ) {
 			$version = $this->getConfig()->get( 'StyleVersion' );
 		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ), $this->getCSPNonce() ) );
 	}
 
 	/**
@@ -518,7 +523,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( $script );
+		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->getCSPNonce() ) . "\n";
 	}
 
 	/**
@@ -2360,6 +2365,7 @@ class OutputPage extends ContextSource {
 				} else {
 					$response->header( 'Location: ' . $redirect );
 				}
+
 			}
 
 			return $return ? '' : null;
@@ -2395,6 +2401,8 @@ class OutputPage extends ContextSource {
 		if ( $frameOptions ) {
 			$response->header( "X-Frame-Options: $frameOptions" );
 		}
+
+		ContentSecurityPolicy::sendHeaders( $this );
 
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
@@ -3057,7 +3065,8 @@ class OutputPage extends ContextSource {
 								] )
 								. '}'
 						)
-					] )
+					] ),
+					$this->getCSPNonce()
 				);
 				// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
 				// asynchronously and may arrive *after* the inline script here. So the previewed code
@@ -3075,7 +3084,8 @@ class OutputPage extends ContextSource {
 			$chunks[] = ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript(
 					[ 'wgPageParseReport' => $this->limitReportJSData ]
-				)
+				),
+				$this->getCSPNonce()
 			);
 		}
 
@@ -4058,5 +4068,26 @@ class OutputPage extends ContextSource {
 				'<' . $logos[$i]['src'] . '>;rel=preload;as=image;media=' . $media_query
 			);
 		}
+	}
+
+	/**
+	 * Get (and set if not yet set) the CSP nonce.
+	 *
+	 * This value needs to be included in any <script> tags on the
+	 * page.
+	 *
+	 * @return string|boolean Nonce or false to mean don't output nonce
+	 */
+	public function getCSPNonce() {
+		if ( !ContentSecurityPolicy::isEnabled( $this->getConfig() ) ) {
+			return false;
+		}
+		if ( $this->CSPNonce === null ) {
+			// XXX It might be expensive to generate randomness
+			// on every request, on windows.
+			$rand = MWCryptRand::generate( 15 );
+			$this->CSPNonce = base64_encode( $rand );
+		}
+		return $this->CSPNonce;
 	}
 }

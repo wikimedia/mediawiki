@@ -97,12 +97,22 @@ class ApiCSPReport extends ApiBase {
 		}
 
 		if (
-			( isset( $report['blocked-uri'] ) &&
-			isset( $falsePositives[$report['blocked-uri']] ) )
-			|| ( isset( $report['source-file'] ) &&
-			isset( $falsePositives[$report['source-file']] ) )
+			(
+				ContentSecurityPolicy::falsePositiveBrowser( $userAgent ) &&
+				$report['blocked-uri'] === "self"
+			) ||
+			(
+				isset( $report['blocked-uri'] ) &&
+				isset( $falsePositives[$report['blocked-uri']] )
+			) ||
+			(
+				isset( $report['source-file'] ) &&
+				isset( $falsePositives[$report['source-file']] )
+			)
 		) {
-			// Report caused by Ad-Ware
+			// False positive due to:
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
+
 			$flags[] = 'false-positive';
 		}
 		return $flags;
