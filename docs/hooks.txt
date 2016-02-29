@@ -1110,6 +1110,31 @@ $lossy:   boolean indicating whether lossy conversion is allowed.
   converted Content object. Note that $result->getContentModel() must return
   $toModel.
 
+'ContentSecurityPolicyDefaultSource': Modify the allowed CSP load sources. This affects all
+directives except for the script directive. If you want to add a script
+source, see ContentSecurityPolicyScriptSource hook.
+&$defaultSrc: Array of Content-Security-Policy allowed sources
+$policyConfig: Current configuration for the Content-Security-Policy header
+$mode: ContentSecurityPolicy::REPORT_ONLY_MODE or ContentSecurityPolicy::FULL_MODE
+  depending on type of header
+
+'ContentSecurityPolicyDirectives': Modify the content security policy directives.
+Use this only if ContentSecurityPolicyDefaultSource and
+ContentSecurityPolicyScriptSource do not meet your needs.
+&$directives: Array of CSP directives
+$policyConfig: Current configuration for the CSP header
+$mode: ContentSecurityPolicy::REPORT_ONLY_MODE or
+  ContentSecurityPolicy::FULL_MODE depending on type of header
+
+'ContentSecurityPolicyScriptSource': Modify the allowed CSP script sources.
+Note that you also have to use ContentSecurityPolicyDefaultSource if you
+want non-script sources to be loaded from
+whatever you add.
+&$scriptSrc: Array of CSP directives
+$policyConfig: Current configuration for the CSP header
+$mode: ContentSecurityPolicy::REPORT_ONLY_MODE or ContentSecurityPolicy::FULL_MODE
+  depending on type of header
+
 'CustomEditor': When invoking the page editor
 Return true to allow the normal editor to be used, or false if implementing
 a custom editor, e.g. for a special namespace, etc.
