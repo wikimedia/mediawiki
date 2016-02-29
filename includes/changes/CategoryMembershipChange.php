@@ -30,6 +30,10 @@ class CategoryMembershipChange {
 	const CATEGORY_ADDITION = 1;
 	const CATEGORY_REMOVAL = -1;
 
+	const CATEGORY_NORMAL = 0;
+	const CATEGORY_NO_INCLUDE = 1;
+	const CATEGORY_INCLUDE_ONLY = 2;
+
 	/**
 	 * @var string Current timestamp, set during CategoryMembershipChange::__construct()
 	 */
@@ -102,35 +106,47 @@ class CategoryMembershipChange {
 	 * Create a recentchanges entry for category additions
 	 *
 	 * @param Title $categoryTitle
+	 * @param int $type
 	 */
-	public function triggerCategoryAddedNotification( Title $categoryTitle ) {
-		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_ADDITION );
+	public function triggerCategoryAddedNotification(
+		Title $categoryTitle,
+		$type = self::CATEGORY_NORMAL
+	) {
+		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_ADDITION, $type );
 	}
 
 	/**
 	 * Create a recentchanges entry for category removals
 	 *
 	 * @param Title $categoryTitle
+	 * @param int $type
 	 */
-	public function triggerCategoryRemovedNotification( Title $categoryTitle ) {
-		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_REMOVAL );
+	public function triggerCategoryRemovedNotification(
+		Title $categoryTitle,
+		$type = self::CATEGORY_NORMAL
+	) {
+		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_REMOVAL, $type );
 	}
 
 	/**
 	 * Create a recentchanges entry using RecentChange::notifyCategorization()
 	 *
 	 * @param Title $categoryTitle
+	 * @param int $addedOrRemoved
 	 * @param int $type
 	 */
-	private function createRecentChangesEntry( Title $categoryTitle, $type ) {
+	private function createRecentChangesEntry( Title $categoryTitle, $addedOrRemoved, $type ) {
+		// Categories that are included only on pages that are not transcluded
+		// do not need a RecentChanges entry
+		if ( $type == self::CATEGORY_INCLUDE_ONLY && $this->numTemplateLinks == 0 ) {
+			return;
+		}
+
 		$this->notifyCategorization(
 			$this->timestamp,
 			$categoryTitle,
 			$this->getUser(),
-			$this->getChangeMessageText( $type, [
-				'prefixedText' => $this->pageTitle->getPrefixedText(),
-				'numTemplateLinks' => $this->numTemplateLinks
-			] ),
+			$this->getChangeMessageText( $addedOrRemoved, $type ),
 			$this->pageTitle,
 			$this->getPreviousRevisionTimestamp(),
 			$this->revision
@@ -239,25 +255,35 @@ class CategoryMembershipChange {
 	 * The message keys created in this method may be one of:
 	 * - recentchanges-page-added-to-category
 	 * - recentchanges-page-added-to-category-bundled
+	 * - recentchanges-page-added-to-category-transcluded
 	 * - recentchanges-page-removed-from-category
 	 * - recentchanges-page-removed-from-category-bundled
+	 * - recentchanges-page-removed-from-category-transcluded
 	 *
-	 * @param int $type may be CategoryMembershipChange::CATEGORY_ADDITION
+	 * @param int $addedOrRemoved may be CategoryMembershipChange::CATEGORY_ADDITION
 	 * or CategoryMembershipChange::CATEGORY_REMOVAL
-	 * @param array $params
-	 * - prefixedText: result of Title::->getPrefixedText()
+	 * @param int $type may be CategoryMembershipChange::CATEGORY_NORMAL
+	 * or CategoryMembershipChange::CATEGORY_NO_INCLUDE
+	 * or CategoryMembershipChange::CATEGORY_INCLUDE_ONLY
 	 *
 	 * @return string
 	 */
-	private function getChangeMessageText( $type, array $params ) {
+	private function getChangeMessageText( $addedOrRemoved, $type ) {
+		$params = [
+			'prefixedText' => $this->pageTitle->getPrefixedText(),
+			'numTemplateLinks' => $this->numTemplateLinks,
+		];
+
 		$array = [
 			self::CATEGORY_ADDITION => 'recentchanges-page-added-to-category',
 			self::CATEGORY_REMOVAL => 'recentchanges-page-removed-from-category',
 		];
 
-		$msgKey = $array[$type];
+		$msgKey = $array[$addedOrRemoved];
 
-		if ( intval( $params['numTemplateLinks'] ) > 0 ) {
+		if ( $type == self::CATEGORY_INCLUDE_ONLY ) {
+			$msgKey .= '-transcluded';
+		} elseif ( $type != self::CATEGORY_NO_INCLUDE && intval( $params['numTemplateLinks'] ) > 0 ) {
 			$msgKey .= '-bundled';
 		}
 
