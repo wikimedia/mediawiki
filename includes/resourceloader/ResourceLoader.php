@@ -1373,13 +1373,24 @@ MESSAGE;
 	 * only if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
+	 * @param string $nonce Content-security-policy nonce, from OutputPage::getCSPNonce()
 	 * @return WrappedString HTML
 	 */
-	public static function makeInlineScript( $script ) {
+	public static function makeInlineScript( $script, $nonce = null ) {
 		$js = self::makeLoaderConditionalScript( $script );
+		$escNonce = '';
+		if ( $nonce === null ) {
+			wfWarn( __METHOD__ . " did not get nonce. Will break CSP" );
+		} elseif ( $nonce !== false ) {
+			// If it was false, CSP is disabled, so no nonce attribute.
+			// Nonce should be only base64 characters, so should be safe,
+			// but better to be safely escaped than sorry.
+			$escNonce = ' nonce="' . htmlspecialchars( $nonce ) . '"';
+		}
+
 		return new WrappedString(
-			Html::inlineScript( $js ),
-			'<script>(window.RLQ=window.RLQ||[]).push(function(){',
+			Html::inlineScript( $js, $nonce ),
+			"<script$escNonce>(window.RLQ=window.RLQ||[]).push(function(){",
 			'});</script>'
 		);
 	}

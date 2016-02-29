@@ -483,7 +483,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
-		$tpl->set( 'reporttime', wfReportTime() );
+		$tpl->set( 'reporttime', wfReportTime( $out->getCSPNonce() ) );
 
 		// original version by hansm
 		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$this, &$tpl ] ) ) {
