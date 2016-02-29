@@ -62,6 +62,7 @@ class CategoryMembershipChangeJob extends Job {
 		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for slave to catch up" );
 			return false;
+
 		}
 		// Clear any stale REPEATABLE-READ snapshot
 		$dbr->commit( __METHOD__, 'flush' );
