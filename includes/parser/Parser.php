@@ -3948,8 +3948,7 @@ class Parser {
 	 * @return string|bool
 	 */
 	public function fetchTemplate( $title ) {
-		$rv = $this->fetchTemplateAndTitle( $title );
-		return $rv[0];
+		return $this->fetchTemplateAndTitle( $title )[0];
 	}
 
 	/**
@@ -4052,8 +4051,7 @@ class Parser {
 	 * @return File|bool
 	 */
 	public function fetchFile( $title, $options = [] ) {
-		$res = $this->fetchFileAndTitle( $title, $options );
-		return $res[0];
+		return $this->fetchFileAndTitle( $title, $options )[0];
 	}
 
 	/**

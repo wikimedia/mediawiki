@@ -694,8 +694,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return mixed Parameter value
 	 */
 	protected function getParameter( $paramName, $parseLimit = true ) {
-		$params = $this->getFinalParams();
-		$paramSettings = $params[$paramName];
+		$paramSettings = $this->getFinalParams()[$paramName];
 
 		return $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 	}

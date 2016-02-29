@@ -109,10 +109,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 
 		$result = [];
 		foreach ( $reqs as $key => $req ) {
-			$parts = explode( '/', $req['url'] );
-			if ( $parts[1] === 'v3' ) {
+			$version = explode( '/', $req['url'] )[1];
+			if ( $version === 'v3' ) {
 				$result[$key] = $this->onParsoid3Request( $req, $idGeneratorFunc );
-			} elseif ( $parts[1] === 'v1' ) {
+			} elseif ( $version === 'v1' ) {
 				$result[$key] = $this->onParsoid1Request( $req, $idGeneratorFunc );
 			} else {
 				throw new Exception( "Only v1 and v3 are supported." );

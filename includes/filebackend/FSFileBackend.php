@@ -86,8 +86,8 @@ class FSFileBackend extends FileBackendStore {
 		$this->fileMode = isset( $config['fileMode'] ) ? $config['fileMode'] : 0644;
 		if ( isset( $config['fileOwner'] ) && function_exists( 'posix_getuid' ) ) {
 			$this->fileOwner = $config['fileOwner'];
-			$info = posix_getpwuid( posix_getuid() );
-			$this->currentUser = $info['name']; // cache this, assuming it doesn't change
+			// cache this, assuming it doesn't change
+			$this->currentUser = posix_getpwuid( posix_getuid() )['name'];
 		}
 	}
 
