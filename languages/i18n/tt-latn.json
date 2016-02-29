@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Amire80",
-			"Frhdkazan"
+			"Frhdkazan",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -311,7 +312,7 @@
 	"cascadeprotected": "Bu bit üzgärtülärdän saqlanğan, çönki ul kaskadlı saqlaw qabul itelgän {{PLURAL:$1|bitkä|bitlärgä}} östälgän:\n$2",
 	"namespaceprotected": "'''$1''' isem kiñlegendäge bitlärne üzgärtü öçen sezneñ röxsätegez yuq.",
 	"ns-specialprotected": "Maxsus bitlärne üzgärtep bulmıy.",
-	"titleprotected": "Bu isem belän bit yasaw [[User:$1|$1]] tarafınnan tıyılğan.\nUl kürsätkän säbäp: ''$2''.",
+	"titleprotected": "Bu isem belän bit yasaw [[User:$1|$1]] tarafınnan tıyılğan.\nUl kürsätkän säbäp: <em>$2</em>.",
 	"virus-badscanner": "Köyläw xatası. Bilgesez viruslar skanerı: ''$1''",
 	"virus-scanfailed": "skanerlaw xatası ($1 kodı)",
 	"virus-unknownscanner": "bilgesez antivirus:",
@@ -894,7 +895,6 @@
 	"filewasdeleted": "Mondıy isemle fayl beterelgän bulğan inde. Zinhar,yañadan yökläw aldınnan $1 qarağız",
 	"filename-bad-prefix": "Faylnıñ iseme '''«$1»''' dip başlana. Zinhar, faylnı taswirlawçı isem biregez.",
 	"filename-prefix-blacklist": " #<!-- niçek bar şulay qaldırığız --> <pre>\n# Sintaksis töbändägeçä:\n#   *  «#» dip başlanğan barlıq närsä dä qömmentariy dip atalaçaq\n#   * Härber buş rät — faylnıñ isemeneñ prefiksı, sifrlı kamera birüçe isem\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # qaysıber käräzle telefonnar\nIMG # barlıq\nJD # Jenoptik\nMGP # Pentax\nPICT # törle\n #</pre> <!-- niçek bar şulay qaldırığız -->",
-	"upload-success-subj": "Yökläw äybät ütte",
 	"upload-form-label-usage-title": "Qullanılış",
 	"foreign-structured-upload-form-label-infoform-categories": "Törkemnär",
 	"foreign-structured-upload-form-label-infoform-date": "Data",
@@ -1080,7 +1080,6 @@
 	"notanarticle": "Mäqälä tügel",
 	"watchlist-details": "Küzätü isemlegegezdä, bäxäs bitlären sanamıyça, {{PLURAL:$1|$1 bit|$1 bit}} bar.",
 	"wlshowlast": "Bayağı $1 säğät $2 kön eçendä yäki nı kürsät",
-	"watchlistall2": "barlıq",
 	"watchlist-hide": "Yäşerü",
 	"watchlist-options": "Küzätü isemlege köyläwläre",
 	"watching": "Küzätü isemlegemä östäwe…",

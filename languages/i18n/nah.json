@@ -10,7 +10,8 @@
 			"Teòtlalili",
 			"아라",
 			"Fitoschido",
-			"Taresi"
+			"Taresi",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Mokìnxòîkuilòtzàswis tzòwilistìn:",
@@ -285,7 +286,7 @@
 	"viewsourcetext": "Tihuelīti tiquitta auh ticcopīna inīn zāzanilli ītlahtōlcaquiliztilōni:",
 	"namespaceprotected": "Ahmo tiquihuelīti tiquimpatla zāzaniltin īpan '''$1'''.",
 	"ns-specialprotected": "In nònkuâkìskàtlaìxtlapaltìn awel ìmpan nemàtilòs mokinyèktlàlis.",
-	"titleprotected": "Inīn zāzanilli ōmoquīxti ic tlachīhualiztli ic [[User:$1|$1]].\nŌquihto: ''$2''",
+	"titleprotected": "Inīn zāzanilli ōmoquīxti ic tlachīhualiztli ic [[User:$1|$1]].\nŌquihto: <em>$2</em>",
 	"exception-nologin": "Ahmō timocalac",
 	"virus-unknownscanner": "ahmatic antivirus:",
 	"welcomeuser": "Ximopanōlti, $1!",
@@ -662,7 +663,6 @@
 	"sourceurl": "Mēyal-URL:",
 	"destfilename": "Tōcāhuīc:",
 	"watchthisupload": "Tictlachiyāz inīn zāzanilli",
-	"upload-success-subj": "Cualli quetzaliztli",
 	"upload-form-label-infoform-name": "Tōcāitl",
 	"upload-form-label-usage-filename": "Ihcuilōlli ītōcā",
 	"upload_source_file": " (cē tlahcuilōlli mochīuhpōhualhuazco)",
@@ -811,7 +811,6 @@
 	"unwatch": "Ahtictlachiyāz",
 	"watchlist-details": "{{PLURAL:$1|$1 zāzanilli|$1 zāzaniltin}} motlachiyaliz, ahmo mopōhua tēixnāmiquiliztli.",
 	"wlshowlast": "Tiquinttāz tlapatlaliztli īhuīcpa achto $1 yēmpohualminuhtli, $2 tōnaltin",
-	"watchlistall2": "mochīntīn",
 	"watching": "Tlachiyacah...",
 	"unwatching": "Ahtlachiyacah...",
 	"enotif_impersonal_salutation": "tlatequitiltilīlli īpan {{SITENAME}}",
@@ -1173,5 +1172,6 @@
 	"special-characters-group-gujarati": "Guyaratitlahcuilōlli",
 	"special-characters-group-thai": "Taitlahcuilōlli",
 	"special-characters-group-lao": "Laotlahcuilōlli",
-	"special-characters-group-khmer": "Jemertlahcuilōlli"
+	"special-characters-group-khmer": "Jemertlahcuilōlli",
+	"randomrootpage": "Sâsaìntlèn nelwatlaìxtlapalli"
 }

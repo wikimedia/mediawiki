@@ -377,7 +377,7 @@
 	"myprivateinfoprotected": "Du derfsch Dyni privaten Informatione nit bearbeite.",
 	"mypreferencesprotected": "Du derfsch Dyni Yystellige nit bearbeite.",
 	"ns-specialprotected": "Spezialsyte chenne nid bearbeitet wäre.",
-	"titleprotected": "E Syte mit däm Name cha nid aaglait wäre.\nDie Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''.",
+	"titleprotected": "E Syte mit däm Name cha nid aaglait wäre.\nDie Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig <em>$2</em>.",
 	"filereadonlyerror": "D Datei „$1“ cha nit gänderet wäre, wel uf s Dateirepositorium „$2“ nume Läsezuegriff megli isch.\n\nDr Administrator, wu dr Schrybzuegriff gsperrt het, het dää Grund aagee: „$3“.",
 	"invalidtitle-knownnamespace": "Nit-gültige Titel mit Namensruum „$2“ un Text „$3“",
 	"invalidtitle-unknownnamespace": "Ungültige Titel mit unbekannte Namensruumnummer $1 un Text „$2“",

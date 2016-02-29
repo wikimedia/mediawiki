@@ -434,7 +434,7 @@
 	"myprivateinfoprotected": "U hebt geen rechten om uw privégegevens te bewerken.",
 	"mypreferencesprotected": "U hebt geen rechten om uw voorkeuren aan te passen.",
 	"ns-specialprotected": "Pagina's in de naamruimte \"{{ns:special}}\" kunnen niet bewerkt worden.",
-	"titleprotected": "Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]].\nDe gegeven reden is \"<em>$2</em>\".",
+	"titleprotected": "Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]].\nDe gegeven reden is <em>$2</em>.",
 	"filereadonlyerror": "Het was niet mogelijk het bestand \"$1\" aan te passen omdat de bestandsrepository \"$2\" op dit moment alleen-lezen is.\n\nDe opgegeven reden is \"''$3''\".",
 	"invalidtitle-knownnamespace": "Ongeldige titel met naamruimte \"$2\" en tekst \"$3\"",
 	"invalidtitle-unknownnamespace": "Ongeldige titel met onbekend naamruimtenummer $1 en tekst \"$2\"",

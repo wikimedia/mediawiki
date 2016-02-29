@@ -347,7 +347,7 @@
 	"myprivateinfoprotected": "Tú hevur ikki loyvi til at rætta tína privatu kunning.",
 	"mypreferencesprotected": "Tú hevur ikki loyvi til at rætta tínar preferensur.",
 	"ns-specialprotected": "Serstakar síður kunnu ikki rættast.",
-	"titleprotected": "[[User:$1|$1]] hevur vart hetta heitið frá skapan.\nGivin orsøk er \"''$2''\".",
+	"titleprotected": "[[User:$1|$1]] hevur vart hetta heitið frá skapan.\nGivin orsøk er <em>$2</em>.",
 	"filereadonlyerror": "Tað var ikki møguligt at broyta fíluna \"$1\" tí at fílugoymslan \"$2\" er í bara-lesa støðu.\n\nUmboðsstjórin sum stongdi hana, gav hesa frágreiðing: \"$3\".",
 	"invalidtitle-knownnamespace": "Ógyldugt heiti við navnaøki \"$2\" og teksti \"$3\"",
 	"invalidtitle-unknownnamespace": "Ógyldigt heiti við ókendum navnaøkis tali $1 og teksti \"$2\"",

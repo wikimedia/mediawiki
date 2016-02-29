@@ -24,7 +24,8 @@
 			"Obaid Raza",
 			"عثمان خان شاہ",
 			"Syedalinaqinaqvi",
-			"محمد افضل"
+			"محمد افضل",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -363,7 +364,7 @@
 	"myprivateinfoprotected": "آپ ان ذاتی معلوات (private information) میں ترمیم کرنے کا اختیار نہیں رکھتے۔",
 	"mypreferencesprotected": "آپ اپنی ان ترجیحات (preferences) میں ترمیم کرنے کا اختیار نہیں رکھتے۔",
 	"ns-specialprotected": "خاص صفحات کی تدوین نہیں کی جاسکتی.",
-	"titleprotected": "اس عنوان کو [[User:$1|$1]] نے تخلیق سے محفوظ کیا ہے.\nوجہ یہ بتائی گئی ہے: \"''$2''\"",
+	"titleprotected": "اس عنوان کو [[User:$1|$1]] نے تخلیق سے محفوظ کیا ہے.\nوجہ یہ بتائی گئی ہے: <em>$2</em>.",
 	"exception-nologin": "غیر داخل نوشتہ",
 	"exception-nologin-text": "براہ مہربانی! اس صفحہ تک رسائی یا ترمیم کے لیے لاگ ان ہوں۔",
 	"exception-nologin-text-manual": "$1 براہ مہربانی! اس صفحہ تک رسائی یا ترمیم کے لیے لاگ ان ہوں۔",
@@ -928,7 +929,6 @@
 	"upload-dialog-button-done": "مکمل",
 	"upload-dialog-button-save": "محفوظ",
 	"upload-dialog-button-upload": "اپلوڈ",
-	"upload-form-label-select-file": "قلف منتخب کریں",
 	"upload-form-label-infoform-title": "تفصیلات",
 	"upload-form-label-infoform-name": "نام",
 	"upload-form-label-infoform-description": "تفصیل",
@@ -937,8 +937,6 @@
 	"foreign-structured-upload-form-label-own-work": "یہ میرا ذاتی کام ہے",
 	"foreign-structured-upload-form-label-infoform-categories": "زمرہ جات",
 	"foreign-structured-upload-form-label-infoform-date": "تاریخ",
-	"foreign-structured-upload-form-3-label-yes": "ہاں",
-	"foreign-structured-upload-form-3-label-no": "نہیں",
 	"license": "اجازہ:",
 	"license-header": "اجازہ کاری",
 	"listfiles-delete": "حذف",

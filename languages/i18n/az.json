@@ -27,7 +27,8 @@
 			"Dağlı95",
 			"Sayginer",
 			"Şeyx Şamil",
-			"Serkanland"
+			"Serkanland",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -370,7 +371,7 @@
 	"myprivateinfoprotected": "Sizin şəxsi məlumatlarınızı redaktə etmək səlahiyyətiniz yoxdur.",
 	"mypreferencesprotected": "Seçimlərinizi redaktə etmək üçün izniniz yoxdur.",
 	"ns-specialprotected": "Xüsusi səhifələr redaktə oluna bilməz.",
-	"titleprotected": "Bu adda səhifənin yaradılması istifadəçi [[User:$1|$1]] tərəfindən qadağan edilmişdir.\nGöstərilən səbəb: \"''$2''\".",
+	"titleprotected": "Bu adda səhifənin yaradılması istifadəçi [[User:$1|$1]] tərəfindən qadağan edilmişdir.\nGöstərilən səbəb: <em>$2</em>.",
 	"filereadonlyerror": "\"$2\" fayl deposundakı \"$1\" faylı ancaq oxunula bilən rejimdə olduğuna görə dəyişdirmək üçün açıla bimir.\n\nRejimi qoyan nəzarətçinin izahı: \"$3\".",
 	"invalidtitle-knownnamespace": "\"$2\" sahə adı üçün \"$3\" mətni keçərsiz bir başlıq",
 	"invalidtitle-unknownnamespace": "Naməlum $1 ad sahəsi miqdarı və keçərsiz \"$2\" başlıq",
@@ -1131,7 +1132,6 @@
 	"upload-dialog-button-done": "Oldu",
 	"upload-dialog-button-save": "Qeyd et",
 	"upload-dialog-button-upload": "Yüklə",
-	"upload-form-label-select-file": "Fayl seç",
 	"upload-form-label-infoform-title": "Detallar",
 	"upload-form-label-infoform-name": "Ad",
 	"upload-form-label-infoform-description": "İzah",

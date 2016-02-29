@@ -374,7 +374,7 @@
 	"myprivateinfoprotected": "Do häs nit dat Rääsch, Ding päsöhnlesche Aanjahbe ze verändere.",
 	"mypreferencesprotected": "Do häs nit dat Rääsch, Ding Enschtällonge ze verändere.",
 	"ns-specialprotected": "{{int:nstab-special}}e künne mer nit ändere.",
-	"titleprotected": "Di Övverschreff för en Sigg eß fum [[User:$1]] verbodde woode, un der Jrond wohr: ''„$2“''",
+	"titleprotected": "Di Övverschreff för en Sigg eß fum [[User:$1|$1]] verbodde woode, un der Jrond wohr: „$2“",
 	"filereadonlyerror": "Mer künne di Dattei „$1“ nit ändere, weil dä Dateijebeshtand „$2“ bloß för ze Lässe doh es.\n\nDä Verantwootlesche doför hät beim Deeschmaache als Jrond aanjejovve: „$3“",
 	"invalidtitle-knownnamespace": "„$3“ es en onjöltijje Övverschreff för em Appachtemang „$2“",
 	"invalidtitle-unknownnamespace": "„$2“ es sn onjöltijje Övverschreff em onbikannte Appachtemang met dä Nommer $1",

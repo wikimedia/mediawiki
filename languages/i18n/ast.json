@@ -372,7 +372,7 @@
 	"myprivateinfoprotected": "Nun tien permisu pa editar la so información privada.",
 	"mypreferencesprotected": "Nun tien permisu pa editar les sos preferencies.",
 	"ns-specialprotected": "Les páxines especiales nun se puen editar.",
-	"titleprotected": "Esti títulu ta protexíu escontra creación por [[User:$1|$1]].\nEl motivu conseñáu ye «''$2''».",
+	"titleprotected": "Esti títulu ta protexíu escontra creación por [[User:$1|$1]].\nEl motivu conseñáu ye <em>$2</em>.",
 	"filereadonlyerror": "Nun pudo camudase'l ficheru «$1» porque l'estoyu de ficheros «$2» ta en mou de sólo llectura.\n\nL'alministrador del sistema que lu bloquió dio esti motivu: «$3».",
 	"invalidtitle-knownnamespace": "Títulu inválidu col espaciu de nomes «$2» ya'l testu «$3»",
 	"invalidtitle-unknownnamespace": "Títulu inválidu col númberu $1 d'espaciu de nomes desconocíu ya'l testu «$2»",

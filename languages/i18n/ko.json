@@ -419,7 +419,7 @@
 	"myprivateinfoprotected": "내 개인 정보를 편집할 권한이 없습니다.",
 	"mypreferencesprotected": "내 환경 설정을 편집할 권한이 없습니다.",
 	"ns-specialprotected": "특수 문서는 편집할 수 없습니다.",
-	"titleprotected": "[[User:$1|$1]] 사용자가 문서 만들기를 금지했습니다.\n이유는 다음과 같습니다. \"$2\"",
+	"titleprotected": "[[User:$1|$1]] 사용자가 문서 만들기를 금지했습니다.\n이유는 다음과 같습니다. <em>$2</em>",
 	"filereadonlyerror": "\"$2\" 파일 저장소가 읽기 전용이기 때문에 \"$1\" 파일을 바꿀 수 없습니다.\n\n저장소 관리자가 파일 저장소를 잠근 이유에 대한 설명을 남겼습니다: \"$3\".",
 	"invalidtitle-knownnamespace": "제목 오류: \"$2\" 이름공간과 \"$3\" 텍스트",
 	"invalidtitle-unknownnamespace": "제목 오류: 알 수 없는 $1 이름공간 번호와, \"$2\" 텍스트",

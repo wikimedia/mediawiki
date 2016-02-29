@@ -373,7 +373,7 @@
 	"myprivateinfoprotected": "Nun v'è permesso a cagnà 'a nfurmaziona privata vuosta.",
 	"mypreferencesprotected": "Nun v'è permesso 'a cagnà 'e preferenze tuoje.",
 	"ns-specialprotected": "'E paggene spiciale nun se ponno cagnà.",
-	"titleprotected": "'A criazione 'e stu titolo è stata bloccata 'a ll'utente [[User:$1|$1]].\n'A ragione è chesta: ''$2''.",
+	"titleprotected": "'A criazione 'e stu titolo è stata bloccata 'a ll'utente [[User:$1|$1]].\n'A ragione è chesta: <em>$2</em>.",
 	"filereadonlyerror": "Nun se può cagnà 'o file \"$1\" pecché 'o repository 'e file \"$2\" sta 'n modo sulo-lettura.\n\nL'ammenistratore 'e sistema che l'ha bloccato ha dato sta ragione: \"$3\".",
 	"invalidtitle-knownnamespace": "Titolo nun buono c' 'o namespace \"$2\" e testo \"$3\"",
 	"invalidtitle-unknownnamespace": "Titolo nun buono c' 'o namespace scanusciuto \"$1\" e testo \"$2\"",

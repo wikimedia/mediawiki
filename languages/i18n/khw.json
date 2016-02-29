@@ -3,7 +3,8 @@
 		"authors": [
 			"Rachitrali",
 			"아라",
-			"Obaid Raza"
+			"Obaid Raza",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -342,7 +343,7 @@
 	"myprivateinfoprotected": "تتے ھمی ذاتی معلواتہ (private information) ترمیم کویکو اختیار نیکی۔",
 	"mypreferencesprotected": "تتے تان ھمی ترجیحاتہ (preferences) ترمیم کوریکو اختیار نیکی۔",
 	"ns-specialprotected": "خاص صفحاتن تدوین کوریکو اجازت نیکی",
-	"titleprotected": "ھیہ عنوانو [[User:$1|$1]] تخلیق کوریکاری محفوظ کوری آسور.\nوجہ ھیہ شیر: \"''$2''\"",
+	"titleprotected": "ھیہ عنوانو [[User:$1|$1]] تخلیق کوریکاری محفوظ کوری آسور.\nوجہ ھیہ شیر: <em>$2</em>",
 	"virus-badscanner": "\"خراب وضعیت: نوژان وائرسی مفراس: ''$1''\",",
 	"virus-scanfailed": "تفریس ناکام (رمز $1)",
 	"virus-unknownscanner": "نوژان ضد وائرس:",
@@ -853,7 +854,6 @@
 	"unwatch": "زیرنظرمنسوخ",
 	"watchlist-details": " تہ زیرِنظرفہرستا {{PLURAL:$1|$1 صفحہ شیر|$1 صفحات شینی}}، ھیارا تبادلۂ خیالو صفحاتن تعداد شامل نیکی.",
 	"wlshowlast": "پشاوے آخری $1 گھنٹو $2 آنوسو",
-	"watchlistall2": "سف",
 	"watchlist-options": "واچ لسٹ آپشن",
 	"watching": "زیر نظر",
 	"unwatching": "منسوخ",

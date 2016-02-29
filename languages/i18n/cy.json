@@ -359,7 +359,7 @@
 	"myprivateinfoprotected": "Nid oes caniatad gennych i olygu eich manylion personol preifat.",
 	"mypreferencesprotected": "Nid oes caniatad gennych i olygu eich dewisiadau eich hunan.",
 	"ns-specialprotected": "Ni ellir golygu tudalennau arbennig.",
-	"titleprotected": "Diogelwyd y teitl hwn rhag ei greu gan [[User:$1|$1]].\nRhoddwyd y rheswm hwn - ''$2''.",
+	"titleprotected": "Diogelwyd y teitl hwn rhag ei greu gan [[User:$1|$1]].\nRhoddwyd y rheswm hwn - <em>$2</em>.",
 	"filereadonlyerror": "Nid oes modd newid y ffeil \"$1\" oherwydd nad oes modd gwneud dim heblaw darllen storfa'r ffeil yn \"$2\" yn unig.\n\nY rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw \"''$3''\".",
 	"invalidtitle-knownnamespace": "Teitl annilys o'r enw \"$3\" yn y parth \"$2\"",
 	"invalidtitle-unknownnamespace": "Teitl annilys ag iddi'r rhif parth anhysbys $1 a'r enw \"$2\"",

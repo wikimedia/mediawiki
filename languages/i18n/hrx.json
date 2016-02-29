@@ -340,7 +340,7 @@
 	"myprivateinfoprotected": "Du host ken Berechtichung, dein private Informatione zu beoorbeite.",
 	"mypreferencesprotected": "Du host ken Berechtichung, dein Einstellunge zu beoorbeite.",
 	"ns-specialprotected": "Spezialseite könne net beoorbeitet sin.",
-	"titleprotected": "En Seit mit dem Noome kann net oongelht sin.\nDie Sperre woare doorrich [[User:$1|$1]] mit der Begründung ''\"$2\"'' ingericht.",
+	"titleprotected": "En Seit mit dem Noome kann net oongelht sin.\nDie Sperre woare doorrich [[User:$1|$1]] mit der Begründung <em>$2</em> ingericht.",
 	"filereadonlyerror": "Die Datei \"$1\" kann net verännert sin, weil uff das Dateirepositorium \"$2\" nuar Lesezugriff möchlich ist.\n\nDer Administrator, wo den Schreibzugriff gesperrt hot, hot der follichende Grund oongäb: \"$3\".",
 	"invalidtitle-knownnamespace": "Ungülticher Titel mit Noomeraum \"$2\" und Text \"$3\"",
 	"invalidtitle-unknownnamespace": "Ungülticher Titel mit unbekannter Noomeraumnummer $1 und Text \"$2\"",

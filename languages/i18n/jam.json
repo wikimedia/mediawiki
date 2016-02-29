@@ -7,7 +7,8 @@
 			"គីមស៊្រុន",
 			"아라",
 			"Chabi1",
-			"Katxis"
+			"Katxis",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Lingk andalainin",
@@ -298,7 +299,7 @@
 	"cascadeprotected": "Dis piej protek frahn edit, bikaa i'inkluud ina di falarin {{PLURAL:$1|piej, ush|piejdem, ush}} protek wid di \"kiaskiedn\" apshan ton aan:\n$2",
 	"namespaceprotected": "Yu no gat no pomishan fi edit piej ina di '''$1''' niemspies.",
 	"ns-specialprotected": "Peshal piejdem kyaahn edit.",
-	"titleprotected": "Dis taikl protek frahn krieshan bai [[User:$1|$1]].\nDi riizn dehn gi a \"''$2''\".",
+	"titleprotected": "Dis taikl protek frahn krieshan bai [[User:$1|$1]].\nDi riizn dehn gi a <em>$2</em>.",
 	"virus-badscanner": "Bad kanfigarieshan: anuon vairos skiana: ''$1''",
 	"virus-scanfailed": "skian fiel (kuod $1)",
 	"virus-unknownscanner": "anuon antivairos:",

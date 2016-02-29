@@ -375,7 +375,7 @@
 	"myprivateinfoprotected": "Aap ke aapan private jaankari ke badle ke ijaajat nai hae.",
 	"mypreferencesprotected": "Aap ke aapan preferences ke badle ke ijaajat nai hae.",
 	"ns-specialprotected": "Khaas panna ke badla nai jae sake hai.",
-	"titleprotected": "Ii title ke banae se [[User:$1|$1]] rokis hai.\nIske kaaran hai ''$2''.",
+	"titleprotected": "Ii title ke banae se [[User:$1|$1]] rokis hai.\nIske kaaran hai <em>$2</em>.",
 	"filereadonlyerror": "File \"$1\" ke nai badle sakaa hae, kaahe ki ii file repository \"$2\" me hae aur iske khaali parrha jaae sake hae.\nJon administrator iske lock karis hae, ii diis hae: \"$3\"",
 	"invalidtitle-knownnamespace": "Namespace \"$2\" aur text \"$3\" ke kharaab title hae.",
 	"invalidtitle-unknownnamespace": "Title gaer kaanuni hae aur iske namespace number \"$1\" aur text \"$2\" ke nai jaana jaawe hae",

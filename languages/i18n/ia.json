@@ -373,7 +373,7 @@
 	"myprivateinfoprotected": "Tu non ha le permission de modificar le proprie information private.",
 	"mypreferencesprotected": "Tu non ha le permission de modificar le proprie preferentias.",
 	"ns-specialprotected": "Le paginas special non es modificabile.",
-	"titleprotected": "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].\nLe motivo specificate es ''$2''.",
+	"titleprotected": "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].\nLe motivo specificate es <em>$2</em>.",
 	"filereadonlyerror": "Impossibile modificar le file \"$1\" perque le repositorio de files \"$2\" es in modo de lectura sol.\n\nLe administrator de systema qui lo blocava offereva iste explication: \"$3\".",
 	"invalidtitle-knownnamespace": "Titulo invalide con spatio de nomines \"$2\" e texto \"$3\"",
 	"invalidtitle-unknownnamespace": "Titulo invalide con spatio de nomines incognite $1 e texto \"$2\"",

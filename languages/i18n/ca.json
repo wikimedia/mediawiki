@@ -419,7 +419,7 @@
 	"myprivateinfoprotected": "No tens permís per editar la teva informació privada.",
 	"mypreferencesprotected": "No tens permís per editar les teves preferències.",
 	"ns-specialprotected": "No es poden modificar les pàgines especials.",
-	"titleprotected": "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].\nEls seus motius han estat: «''$2''».",
+	"titleprotected": "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].\nEls seus motius han estat: <em>$2</em>.",
 	"filereadonlyerror": "No s'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers \"$2\" està en mode només de lectura.\nL'administrador que l'ha bloquejat ha donat aquesta explicació: \"$3\".",
 	"invalidtitle-knownnamespace": "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
 	"invalidtitle-unknownnamespace": "Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»",

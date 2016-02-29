@@ -403,7 +403,7 @@
 	"myprivateinfoprotected": "Vi ne havas permeson por redakti vian privatan informon.",
 	"mypreferencesprotected": "Vi ne havas permeson por redakti viajn preferojn.",
 	"ns-specialprotected": "Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.",
-	"titleprotected": "Ĉi tiu titolo estas protektita de kreado de [[User:$1|$1]].\nLa kialo donata estis ''$2''.",
+	"titleprotected": "Ĉi tiu titolo estas protektita de kreado de [[User:$1|$1]].\nLa kialo donata estis <em>$2</em>.",
 	"filereadonlyerror": "La dosiero \"$1\" ne estas modifebla, ĉar la dosiera deponejo \"$2\" estas en nurlegebla reĝimo.\n\nLa sistema administranto, kiu ŝlosis ĝin, oferis tiun klarigon: \"$3\".",
 	"invalidtitle-knownnamespace": "Nevalida titolo kun nomspaco \"$2\" kaj teksto \"$3\"",
 	"invalidtitle-unknownnamespace": "Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto \"$2\"",

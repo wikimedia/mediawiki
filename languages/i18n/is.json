@@ -366,7 +366,7 @@
 	"myprivateinfoprotected": "Þú ert ekki með réttindi til að breyta einkaupplýsingunum þínum.",
 	"mypreferencesprotected": "Þú ert ekki með réttindi til að breyta kjörstillingunum þínum.",
 	"ns-specialprotected": "Kerfissíðum er ekki hægt að breyta.",
-	"titleprotected": "Þessi titill hefur verið verndaður fyrir sköpun af [[User:$1|$1]].\nÁstæðan sem gefin var ''$2''.",
+	"titleprotected": "Þessi titill hefur verið verndaður fyrir sköpun af [[User:$1|$1]].\nÁstæðan sem gefin var <em>$2</em>.",
 	"filereadonlyerror": "Ekki var hægt að breyta skránni \"$1\" því skráin í skráarsafninu \"$2\" er engöngu hægt að lesa.\n\nKerfisstjórinn sem læsti skránni gaf þessa ástæðu: \"$3\".",
 	"invalidtitle-knownnamespace": "Ógildur titill í nafnrými \"$2\" og með textann \"$3\"",
 	"invalidtitle-unknownnamespace": "Ógildur titill með óþekkt nafnrými númer $1 og texta \"$2\"",

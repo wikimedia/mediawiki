@@ -404,7 +404,7 @@
 	"myprivateinfoprotected": "Nincs jogod módosítani a privát adataidat.",
 	"mypreferencesprotected": "Nincs jogod módosítani a beállításaidat.",
 	"ns-specialprotected": "A speciális lapok nem szerkeszthetők.",
-	"titleprotected": "Ilyen címmel nem lehet szócikket készíteni, [[User:$1|$1]] letiltotta.\nAz indoklás: „''$2''”.",
+	"titleprotected": "Ilyen címmel nem lehet szócikket készíteni, [[User:$1|$1]] letiltotta.\nAz indoklás: <em>$2</em>.",
 	"filereadonlyerror": "A(z) „$1” fájl nem módosítható, mert a(z) „$2” fájltároló csak olvasható módban üzemel.\n\nA lezárást végrehajtó rendszeradminisztrátor az alábbi indoklást adta meg: „$3”.",
 	"invalidtitle-knownnamespace": "Érvénytelen cím „$2” névtérrel és „$3” szöveggel",
 	"invalidtitle-unknownnamespace": "Érvénytelen cím az ismeretlen $1 névtérszámmal és „$2” szöveggel",

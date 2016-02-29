@@ -367,7 +367,7 @@
 	"myprivateinfoprotected": "Awan pammalubosmo nga agurnos iti pribado a pakaammom.",
 	"mypreferencesprotected": "Awan pammalubosmo nga agurnos kadagiti kakaykayatam.",
 	"ns-specialprotected": "Saan a mabalin nga urnosen dagiti espesial a panid.",
-	"titleprotected": "Daytoy a titulo ket nasalakniban manipud iti pannakapartuat babaen ni [[User:$1|$1]].\nTi naited a rason ket \"<em>$2</em>\".",
+	"titleprotected": "Daytoy a titulo ket nasalakniban manipud iti pannakapartuat babaen ni [[User:$1|$1]].\nTi naited a rason ket <em>$2</em>.",
 	"filereadonlyerror": "Di nabaliwan ti papeles ti \"$1\" gapu ta ti repositorio ti papeles ti \"$2\" ket mabasa laeng a moda.\n\nTi administrador ti sistema a nangserra ket nangited iti daytoy a panagilawlawag: \"$3\".",
 	"invalidtitle-knownnamespace": "Imbalido a titulo iti nagan ti espasio \"$2\" ken teksto \"$3\"",
 	"invalidtitle-unknownnamespace": "Imbalido a titulo iti di ammo a nagan ti espasio a bilang $1 ken teksto \"$2\"",

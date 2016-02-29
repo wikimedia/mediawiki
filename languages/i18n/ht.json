@@ -8,7 +8,8 @@
 			"Urhixidur",
 			"아라",
 			"Tisave",
-			"Bfpage"
+			"Bfpage",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Souliyen lyen yo :",
@@ -330,7 +331,7 @@
 	"cascadeprotected": "Paj sa pwoteje kounye a paske l nan {{PLURAL:$1|paj ki douvan l|paj yo ki douvan l}}, paske {{PLURAL:$1|l te pwoteje|yo te pwoteje}} ak opsyon « pwoteksyon pou tout paj ki nan premye paj an - kaskad » aktive :\n$2",
 	"namespaceprotected": "Ou pa gen dwa modifye paj nan espas non « '''$1''' ».",
 	"ns-specialprotected": "Paj yo ki nan espas non « {{ns:special}} » pa kapab modifye.",
-	"titleprotected": "Tit, sijè sa pwoteje pandan kreyasyon l pa [[User:$1|$1]].\nRezon li bay yo se « ''$2'' ».",
+	"titleprotected": "Tit, sijè sa pwoteje pandan kreyasyon l pa [[User:$1|$1]].\nRezon li bay yo se <em>$2</em>.",
 	"exception-nologin": "Ou pa konekte",
 	"virus-badscanner": "Move konfigirasyon : eskanè viris sa, nou pa konenn l : ''$1''",
 	"virus-scanfailed": "Rechèch an pa ritounen pyès rezilta (kòd $1)",
@@ -374,8 +375,6 @@
 	"createaccountreason": "Rezon:",
 	"createacct-reason": "Rezon",
 	"createacct-reason-ph": "Poukisa w ap ouvri yon lòt kont?",
-	"createacct-captcha": "Verifikasyon sekirite",
-	"createacct-imgcaptcha-ph": "Rantre teks ke w anlè a",
 	"createacct-submit": "Ouvri kont ou",
 	"createacct-another-submit": "Ouvrir yon lòt kont",
 	"createacct-benefit-heading": "Se moun tankou w ki fè {{SITENAME}}.",
@@ -653,6 +652,7 @@
 	"prefs-help-email-required": "Nou bezwen ou bay yon adrès imèl. Souple, chache yonn.",
 	"group-sysop": "Administratè yo",
 	"grouppage-sysop": "{{ns:project}}:Administratè",
+	"grant-viewdeleted": "Gade fichye ak paj ki efase yo",
 	"newuserlogpage": "Jounal pou kreyasyon kont itilizatè yo",
 	"newuserlogpagetext": "Men jounal, istorik kreyasyon kont itilizatè yo.",
 	"rightslog": "Jounal modifikasyon estati itilizatè yo",
@@ -882,7 +882,6 @@
 	"move-page-legend": "Deplase paj sa",
 	"movepagetext": "Itilize fòmilè sa a pou renonmen yon paj epi deplase tout istorik li nan nouvo non an.\nTit anvan pral vin yon paj redireksyon pou ale nan nouvo paj nan.\nOu kapab mete a jou lyen yo ki t ap voye vè tit anvan otomatikman.\nSi nou pa vle fè sa, gade byen [[Special:DoubleRedirects|de fwa]] ak [[Special:BrokenRedirects|redireksyon ki pa bon]] pou nou sèten nou pa kreye redireksyon de fwa oubyen yon lòt kalite redireksyon ki pa bon.\nSe ou menm ki responsab pou lyen yo toujou kontinye ale nan paj kote yo sipoze a.\n\nYon paj pa ka deplase si nouvo paj an egziste deja, eksepte si paj sa vid oubyen ke li se yon paj redireksyon (fok li pa genyen yon istorik nan li tou).  Sa vle di ke ou kapab renonme yon paj nan tit orijinal li si nou te fè yon erè, men nou pa ka ekraze yon paj ki deja ekziste.\n\n'''Pòte Atansyon !'''\nSa w ap fè a kapab pwovoke yon gwo chanjman pou yon paj ki popilè.\nSe pou nou byen konprann e nou byen mezire tout konsekans aksyon sa ke n ap fè a.",
 	"movepagetalktext": "Paj diskisyon ki asosye, si li egziste, pral otomatikman renonmen tou, <b>eksepte si: </b>\n*W ap renonmen yon paj nan direksyon yon lòt espas\n*yon paj diskisyon ki pa vid deja ekziste nan nouvo non an\n*Ou deseleksyone bouton ki anba mesaj sa a\n\nNan ka sa yo, ou dwe renonmen oubyen fizyone paj la ou menm si ou vle.",
-	"movearticle": "Deplase paj sa :",
 	"newtitle": "Nouvo tit, non:",
 	"move-watch": "Swiv paj orijinal ak nouvo paj yo",
 	"movepagebtn": "Deplase paj sa",

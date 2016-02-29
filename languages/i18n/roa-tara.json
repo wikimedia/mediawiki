@@ -368,7 +368,7 @@
 	"myprivateinfoprotected": "Non ge tìne le permesse pe cangià le 'mbormaziune private tune.",
 	"mypreferencesprotected": "Non ge tìne le permesse pe cangià le preferenze tune.",
 	"ns-specialprotected": "Le pàgene speciale no ponne essere cangete.",
-	"titleprotected": "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].\n'U mutive jè ''$2''.",
+	"titleprotected": "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].\n'U mutive jè <em>$2</em>.",
 	"filereadonlyerror": "Non ge pozze cangià 'u file \"$1\" purcé l'archivije de le file \"$2\" ste in mode sola letture.\n\nL'amministratore ca l'ha bloccate dèje sta spiegazione: \"$3\".",
 	"invalidtitle-knownnamespace": "Titole invalide cu 'u namespace \"$2\" e teste \"$3\"",
 	"invalidtitle-unknownnamespace": "Titele invalide cu numere de namespace scanusciute $1 e teste \"$2\"",

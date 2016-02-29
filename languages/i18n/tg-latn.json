@@ -285,7 +285,7 @@
 	"cascadeprotected": "In sahifa az viroiş muhofizat şudaast, baroi in ki  dar {{PLURAL:$1|sahifai|sahifahoi}} muhofizatşudai zerin, ki guzainai \"obşorī\" dar {{PLURAL:$1|on|onho}} intixob şudaast, faro giriftaast: $2",
 	"namespaceprotected": "Şumo içozati viroişi sahifahoi fazoinomi '''$1'''-ro nadored.",
 	"ns-specialprotected": "Sahifahoi viƶa ƣajri qobili viroiş hastand.",
-	"titleprotected": "Eçodi sahifae bo in unvon az tarafi [[User:$1|$1]] çilavgirī şudaast.\nDaleli zikrşuda az in qaror ast ''$2''.",
+	"titleprotected": "Eçodi sahifae bo in unvon az tarafi [[User:$1|$1]] çilavgirī şudaast.\nDaleli zikrşuda az in qaror ast <em>$2</em>.",
 	"virus-badscanner": "Tanzimoti bad: puişgari virusi noşinoxta: ''$1''",
 	"virus-scanfailed": "puiş nomuvaffaq (ramzi $1)",
 	"virus-unknownscanner": "antivirusi noşinos:",
@@ -750,7 +750,6 @@
 	"upload-maxfilesize": "Buzurgtarin andozai parvanda: $1",
 	"filewasdeleted": "Parvandae bo hamin nom peştar borguzorī va pas az on pok şudaast. Peş az borguzorī ba $1 nigared.",
 	"filename-bad-prefix": "Nomi parvandae, ki şumo borguzori kardanied bo '''\"$1\"''' oƣoz meşavad, ki jak peşvandi maxsusi akshoi sabtşuda tavassuti aksbardorakhoi raqamī ast. Lutfan nomi behtari tavsifotī baroi parvanda intixob kuned.",
-	"upload-success-subj": "Firistodan bomuvaffaqijat",
 	"upload-proto-error": "Qarordodi nodurust",
 	"upload-proto-error-text": "Borguzori az durdast bo nişonahoe, ki bo <code>http://</code> jo <code>ftp://</code> oƣoz meşavand, nijoz dorad.",
 	"upload-file-error": "Xatoi doxilī",
@@ -1204,7 +1203,6 @@
 	"movesubpage": "{{PLURAL:$1|Zersahifa|Zersahifaho}}",
 	"movereason": "Sabab:",
 	"revertmove": "vogardonī",
-	"delete_and_move": "Hazf va kūconidan",
 	"delete_and_move_text": "==Nijoz ba hazf==\n\nMaqolai maqsad \"[[:$1]]\" vuçud dorad. Ojo mexohed onro hazf kuned to intiqol mumkin şavad?",
 	"delete_and_move_confirm": "Bale, sahifa hazf şavad",
 	"delete_and_move_reason": "Hazf şud baroi mumkin şudani kūconidan",
@@ -1729,5 +1727,6 @@
 	"expand_templates_ok": "Ta'jid",
 	"expand_templates_remove_comments": "Hazfi tavzehot",
 	"expand_templates_generate_xml": "Namoişi daraxti taçzehi XML",
-	"expand_templates_preview": "Peşnamoiş"
+	"expand_templates_preview": "Peşnamoiş",
+	"randomrootpage": "Sahifai reşaviji tasodufī"
 }

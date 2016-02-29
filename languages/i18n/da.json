@@ -413,7 +413,7 @@
 	"myprivateinfoprotected": "Du har ikke rettigheder til at redigere dine private oplysninger.",
 	"mypreferencesprotected": "Du har ikke rettigheder til at redigere dine indstillinger.",
 	"ns-specialprotected": "Sider i navnerummet {{ns:special}} kan ikke redigeres.",
-	"titleprotected": "Dette sidenavn er blevet beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er \"''$2''\".",
+	"titleprotected": "Dette sidenavn er blevet beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er <em>$2</em>.",
 	"filereadonlyerror": "Ude af stand til at redigere filen \"$1\", fordi fildatabasen \"$2\" er skrivebeskyttet.\n\nAdministratoren, som skrivebeskyttede den, gav følgende begrundelse: \"$3\".",
 	"invalidtitle-knownnamespace": "Ugyldig titel med navnerummet \"$2\" og teksten \"$3\"",
 	"invalidtitle-unknownnamespace": "Ugyldig titel med ukendt navnerum nummer $1 og tekst \"$2\"",

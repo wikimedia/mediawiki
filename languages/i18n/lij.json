@@ -10,7 +10,8 @@
 			"ZeneizeForesto",
 			"아라",
 			"V6rg",
-			"C.R."
+			"C.R.",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sottolineâ i collegamenti",
@@ -370,7 +371,7 @@
 	"myprivateinfoprotected": "No ti g'hæ o permisso pe modificâ i teu dæti personali.",
 	"mypreferencesprotected": "No ti g'hæ o permisso pe modificâ e teu preferense.",
 	"ns-specialprotected": "No se pœu modificâ e paggine speciali",
-	"titleprotected": "A creaçion de 'na paggina con sto tittolo a l'è stæta bloccâ da [[User:$1|$1]].\nA raxon a l'è: ''$2''.",
+	"titleprotected": "A creaçion de 'na paggina con sto tittolo a l'è stæta bloccâ da [[User:$1|$1]].\nA raxon a l'è: <em>$2</em>.",
 	"filereadonlyerror": "N'ho posciuo modificâ o file \"$1\" perché o repository de file \"$2\" o l'è in modalitæ de sola lettua.\n\nL'amministratô ch'o l'ha bloccòu o l'ha fornio sta motivaçion: \"$3\".",
 	"invalidtitle-knownnamespace": "Tittolo non vallido con namespace \"$2\" e testo \"$3\"",
 	"invalidtitle-unknownnamespace": "Tittolo non vallido con namespace sconosciuo \"$1\" e testo \"$2\"",

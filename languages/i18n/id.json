@@ -410,7 +410,7 @@
 	"myprivateinfoprotected": "Anda tidak memiliki izin untuk menyunting informasi pribadi Anda.",
 	"mypreferencesprotected": "Anda tidak memiliki izin untuk menyunting preferensi Anda.",
 	"ns-specialprotected": "Halaman pada ruang nama {{ns:special}} tidak dapat disunting.",
-	"titleprotected": "Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]].\nAlasan yang diberikan adalah ''$2''.",
+	"titleprotected": "Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]].\nAlasan yang diberikan adalah <em>$2</em>.",
 	"filereadonlyerror": "Tidak dapat memodifikasi berkas \"$1\" karena file repositori \"$2\" adalah pada mode baca-saja.\n\nPengurus yang menguncinya memberikan alasan: \"$3\".",
 	"invalidtitle-knownnamespace": "Judul yang tidak sah dengan ruangnama \"$2\" dan teks \"$3\"",
 	"invalidtitle-unknownnamespace": "Judul yang tidak sah dengan nomor ruang nama tidak diketahui $1 dan teks \"$2\"",

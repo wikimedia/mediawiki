@@ -10,7 +10,8 @@
 			"Impersonator 1",
 			"LNDDYL",
 			"唐吉訶德的侍從",
-			"Ztl8702"
+			"Ztl8702",
+			"Macofe"
 		]
 	},
 	"tog-underline": "下劃綫鏈接",
@@ -346,7 +347,7 @@
 	"myprivateinfoprotected": "汝無權限编輯汝其私人信息。",
 	"mypreferencesprotected": "汝無權限編輯偏好。",
 	"ns-specialprotected": "𣍐使修改特殊頁面。",
-	"titleprotected": "茲蜀萆標題共[[User:$1|$1]]保護其咯。\n原因是「''$2''」。",
+	"titleprotected": "茲蜀萆標題共[[User:$1|$1]]保護其咯。\n原因是<em>$2</em>。",
 	"exception-nologin": "未登錄",
 	"exception-nologin-text": "起動汝登錄以後再訪問茲蜀頁，或者做茲蜀萆操作。",
 	"exception-nologin-text-manual": "起動汝$1，以後才會使訪問茲蜀頁，或者做茲蜀萆行為。",

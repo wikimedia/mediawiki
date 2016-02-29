@@ -6,7 +6,8 @@
 			"Geitost",
 			"아라",
 			"Shirayuki",
-			"Gloria sah"
+			"Gloria sah",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -350,7 +351,7 @@
 	"myprivateinfoprotected": "An 's gh'à mìa i permès necesâri per cambiê 'l j infurmasiòun personêli.",
 	"mypreferencesprotected": "An 's gh'à mìa i permès necesâri per cambiêr al preferèinsi personêli.",
 	"ns-specialprotected": "An n'é mìa pusébil mudifichêr al pàgini specêli.",
-	"titleprotected": "Al tétol ed cla pagina ché l'é stê bluchê da [[User:$1|$1]].\nCòst l'é al mutîv:\"$2\".",
+	"titleprotected": "Al tétol ed cla pagina ché l'é stê bluchê da [[User:$1|$1]].\nCòst l'é al mutîv: <em>$2</em>.",
 	"filereadonlyerror": "An n'é mìa stê pusébil mudifichêr al file \"$1\" perchè al depôsit di file \"$2\" a 's pōl sōl lēzer.\n\nL'aministradōr ch' al l'à bluchê l'à dê cla spiegasiòun ché:\"$3\".",
 	"invalidtitle-knownnamespace": "Tétol mìa vâlid cme spâsi di nòm \"$2\" e tèst \"$3\"",
 	"invalidtitle-unknownnamespace": "Tétol mìa vâlid cun spâsi di nòm mìa cgnusû \"$1\" e tèst \"$2\"",

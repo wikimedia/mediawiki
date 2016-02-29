@@ -361,7 +361,7 @@
 	"myprivateinfoprotected": "Chan eil cead agad am fiosrachadh prìobhaideach agad a dheasachadh.",
 	"mypreferencesprotected": "Chan eil cead agad na roghainnean agad a dheasachadh.",
 	"ns-specialprotected": "Chan ghabh duilleagan sònraichte a dheasachadh.",
-	"titleprotected": "Chaidh an duilleag seo a dhìon o chruthachadh le [[User:$1|$1]].\nSeo am mìneachadh: \"<em>$2</em>\".",
+	"titleprotected": "Chaidh an duilleag seo a dhìon o chruthachadh le [[User:$1|$1]].\nSeo am mìneachadh: <em>$2</em>.",
 	"filereadonlyerror": "Cha ghabh am faidhle \"$1\" atharrachadh a chionn 's gu bheil ionad-tasgaidh fhaidhlichean \"$2\" ri leughadh a-mhàin.\nThug an rianaire a ghlais e seachad an t-adhbhar a leanas: \"$3\".",
 	"invalidtitle-knownnamespace": "Tiotal mì-dhligheach leis an ainm-spàs \"$2\" agus an teacsa \"$3\"",
 	"invalidtitle-unknownnamespace": "Tiotal mì-dhligheach leis an àireamh ainm-spàis $1 agus an teacsa \"$2\"",

@@ -14,7 +14,8 @@
 			"Impersonator 1",
 			"LNDDYL",
 			"唐吉訶德的侍從",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Macofe"
 		]
 	},
 	"tog-underline": "鏈接加底線：",
@@ -342,7 +343,7 @@
 	"myprivateinfoprotected": "汝無權限編輯汝个個人信息。",
 	"mypreferencesprotected": "汝無權限編輯汝个個人設定。",
 	"ns-specialprotected": "邇兜特殊頁面係毋做得編輯嘅。",
-	"titleprotected": "邇隻標題已經分[[User:$1|$1]]保護來防止建立。理由係''$2''。",
+	"titleprotected": "邇隻標題已經分[[User:$1|$1]]保護來防止建立。理由係<em>$2</em>。",
 	"filereadonlyerror": "無辦法修改文件「$1」因為文件庫「$2」處於唯讀模式。 ！\n管理員鎖定其嘅解釋係：「$3」。",
 	"invalidtitle-knownnamespace": "使用名字空間「$2」與文本「$3」嘅無效標題",
 	"invalidtitle-unknownnamespace": "使用未知名字空間編號$1與文本“$2”嘅無效標題",

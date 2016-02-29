@@ -389,7 +389,7 @@
 	"myprivateinfoprotected": "Nu aveți permisiunea să vă modificați informațiile personale.",
 	"mypreferencesprotected": "Nu aveți permisiunea să vă modificați preferințele.",
 	"ns-specialprotected": "Paginile din spațiul de nume {{ns:special}} nu pot fi editate.",
-	"titleprotected": "Acest titlu a fos protejat la creare de [[User:$1|$1]].\nMotivul invocat este ''$2''.",
+	"titleprotected": "Acest titlu a fos protejat la creare de [[User:$1|$1]].\nMotivul invocat este <em>$2</em>.",
 	"filereadonlyerror": "Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.\n\nAdministratorul de sistem care a efectuat blocarea a furnizat explicația: „$3”.",
 	"invalidtitle-knownnamespace": "Titlu invalid cu spațiul de nume „$2” și textul „$3”",
 	"invalidtitle-unknownnamespace": "Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”",

@@ -350,7 +350,7 @@
 	"customcssprotected": "Nò se dispone dei parmesi necesari a la modifega de sta pajina CSS, in quanto la contien le inpostasion personali de n'altro utente.",
 	"customjsprotected": "Nò se dispone dei parmesi necesari a la modifega de sta pajina JavaScript, in quanto la contien le inpostasion personali de n'altro utente.",
 	"ns-specialprotected": "No xè posibiłe modifegare łe pajine spesałi.",
-	"titleprotected": "Ła creasion de na pajina con sto titoło xè sta blocà da [[User:$1|$1]].\nŁa modivasion xè ła seguente: \"$2\".",
+	"titleprotected": "Ła creasion de na pajina con sto titoło xè sta blocà da [[User:$1|$1]].\nŁa modivasion xè ła seguente: <em>$2</em>.",
 	"filereadonlyerror": "No xe stà posibiłe modifegare el file \"$1\" parché el repository de file \"$2\" xe in modałità de soła letura.\n\nL'aministradore che ło ga blocà ga fornìo sta spiegasion: \"$3\".",
 	"invalidtitle-knownnamespace": "Titoło no vałido co namespace \"$2\" e testo \"$3\"",
 	"invalidtitle-unknownnamespace": "Titoło no vałido co namespace sconosùo \"$1\" e testo \"$2\"",

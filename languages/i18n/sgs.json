@@ -6,7 +6,8 @@
 			"Reedy",
 			"Zordsdavini",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Pabriežtė nūruodas:",
@@ -324,7 +325,7 @@
 	"translateinterface": "Ka pamainītomiet pargoldīmus vėsūs wiki pruojektus, nauduokat [//translatewiki.net/ translatewiki.net] tėnklapi.",
 	"namespaceprotected": "Tamsta netorėt teisiu keistė poslapiu '''$1''' srėtī.",
 	"ns-specialprotected": "Specēlė̄jė poslapē nagal būtė keitamė.",
-	"titleprotected": "Nauduotuos [[User:$1|$1]] ožgīnė padėrbtė straipsni tuokio pavadėnėmo.\nDingstės īr „<em>$2</em>“.",
+	"titleprotected": "Nauduotuos [[User:$1|$1]] ožgīnė padėrbtė straipsni tuokio pavadėnėmo.\nDingstės īr <em>$2</em>.",
 	"exception-nologin": "Nesat prėsėjongis",
 	"exception-nologin-text": "Ka galietomiet ton padėrbtė, Tamstā būtėnā rēk prėsėjongtė.",
 	"exception-nologin-text-manual": "Ka galietomiet ton padėrbtė, Tamstā būtėnā rēk $1.",

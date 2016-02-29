@@ -385,7 +385,7 @@
 	"myprivateinfoprotected": "Nemate ovlasti za uređivanje Vaših osobnih informacija.",
 	"mypreferencesprotected": "Nemate ovlasti za uređivanje Vaših postavki.",
 	"ns-specialprotected": "Stranice u imenskom prostoru ''{{ns:special}}'' ne mogu se uređivati.",
-	"titleprotected": "Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: ''$2''.",
+	"titleprotected": "Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: <em>$2</em>.",
 	"filereadonlyerror": "Ne mogu izmijeniti datoteku \"$1\" jer je spremište \"$2\" dostupno samo za čitanje.\n\nAdministrator koji je zaključao spremište naveo je sljedeći razlog: \"$3\".",
 	"invalidtitle-knownnamespace": "Neispravan naziv imenskog prostora \"$2\" i teksta \"$3\"",
 	"invalidtitle-unknownnamespace": "Neispravan naziv imenskog prostora broj $1 i teksta \"$2\"",

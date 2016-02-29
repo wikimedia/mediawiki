@@ -7,7 +7,8 @@
 			"Reedy",
 			"SF-Language",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -293,7 +294,7 @@
 	"cascadeprotected": "Xët wii dañ kaa aar ndaxte daa ëmbu ci {{PLURAL:$1|xët wi toftal|xët yi toftal}}, di yu ñu aar :\n$2",
 	"namespaceprotected": "Amoo sañ-sañu soppi xët yi ne ci bii barabu tur « '''$1''' ».",
 	"ns-specialprotected": "Xët yi ne ci bii barabu tur « {{ns:special}} » kenn maneesu leen a soppi.",
-	"titleprotected": "Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam.\nNgirte li mu joxe mooy ne « ''$2'' ».",
+	"titleprotected": "Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam.\nNgirte li mu joxe mooy ne <em>$2</em>.",
 	"virus-badscanner": "Tànnéef wu bon: saytukatu wiris bees xamul: ''$1''",
 	"virus-scanfailed": "Saytu gi dog na (code $1)",
 	"logouttext": "Fi mu nekk nii génn nga.'''\n\nMan ngaa wéy di jëfandikoo {{SITENAME}} ci anam buñ la dul xamme walla nga  <span class='plainlinks'>[$1 duggewaat]</span> ak wenn tur wi walla ak weneen.",
@@ -790,7 +791,6 @@
 	"right-blockemail": "Tere ab jëfandikukat yónney m-bataaxal",
 	"right-hideuser": "Téye ab jëfandikukat, nëbbaale ko mbooloo mi",
 	"right-ipblock-exempt": "Jéggi IP yees téye, téye yu boppu ak téyey tooli IP",
-	"right-proxyunbannable": "Jéggi téye yu proxy yi",
 	"right-protect": "Soppi tolluwaayu kaaraange gi te soppi xët yees aar",
 	"right-editprotected": "Soppi xët yees aar",
 	"right-editinterface": "Soppi jokkalekaayu jëfandikukat bi",
@@ -949,7 +949,6 @@
 	"watchthisupload": "Topp dencukaay bii",
 	"filewasdeleted": "Dencukaay bu tudd nii yeboon nañ ko fi ba noppi, faraat ko. Saytul $1 laataa nga koy yebaat.",
 	"filename-bad-prefix": "Turu dencukaay bi ngay yeb moo ngi tambalee '''\"$1\"''', te muy tur wu nosukaay bi di joxal boppam nataalukaay yi.\nDila ñaan nga tànn tur wuy faramfacce dencukaay bi.",
-	"upload-success-subj": "Yeb gi jàll na",
 	"license-header": "Anami Jëfandikoo gi",
 	"imgfile": "Dencukaay",
 	"listfiles": "Limu dencukaay",
@@ -1461,7 +1460,6 @@
 	"movenosubpage": "Wii xët amul ron-xët",
 	"movereason": "Ngirte :",
 	"revertmove": "delloowaat",
-	"delete_and_move": "Far te tuddewaat",
 	"delete_and_move_text": "== Laajub far ==\nXët wi nga joge niki àgguwaay « [[:$1]] » am na fi.\nDëgg-dëgg namm nga koo far ngir tuddewaat gi mana antu?",
 	"delete_and_move_confirm": "Waaw, faral xët wi",
 	"delete_and_move_reason": "Far nañu ko ngir mana amal tuddewaat gi",

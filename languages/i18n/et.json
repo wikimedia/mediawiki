@@ -387,7 +387,7 @@
 	"myprivateinfoprotected": "Sul pole lubatud oma eraandmeid redigeerida.",
 	"mypreferencesprotected": "Sul pole lubatud oma eelistusi muuta.",
 	"ns-specialprotected": "Erilehekülgi ei saa redigeerida.",
-	"titleprotected": "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
+	"titleprotected": "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: <em>$2</em>.",
 	"filereadonlyerror": "Faili \"$1\" ei saa muuta, sest hoidla \"$2\" on kirjutuskaitstud.\n\nSüsteemiadministraator lukustas selle järgmisel põhjusel: \"$3\".",
 	"invalidtitle-knownnamespace": "Vigane pealkiri nimeruumis \"$2\" tekstiga \"$3\"",
 	"invalidtitle-unknownnamespace": "Vigane pealkiri nimeruuminumbriga $1 ja tekstiga \"$2\"",

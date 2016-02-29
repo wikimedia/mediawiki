@@ -342,7 +342,7 @@
 	"myprivateinfoprotected": "Ur tesɛiḍ ara turagt ad beddeleḍ tilɣa inek(em) tusligtin.",
 	"mypreferencesprotected": "Ur tesɛiḍ ara turagt ad beddeleḍ iɣewwaren inek(em).",
 	"ns-specialprotected": "Ur t-zemred ara ad beddeleḍ isebtar usligen",
-	"titleprotected": "Azwel agi yegdel deg usnulfu ɣef [[User:$1|$1]].\nTaɣẓint id yenna : ''$2''",
+	"titleprotected": "Azwel agi yegdel deg usnulfu ɣef [[User:$1|$1]].\nTaɣẓint id yenna : <em>$2</em>",
 	"filereadonlyerror": "Ulamek an beddel afaylu « $1 » acku akaram n ifuyla « $2 » yella deg taɣuri kan.\n\nAnedbal i tid sekkweṛen yefkad taɣẓint agi : « $3 ».",
 	"invalidtitle-knownnamespace": "Azwel ur i ɣbel ara s tallunt n isemawen « $2 » dɣa d-uglam « $3 »",
 	"invalidtitle-unknownnamespace": "Azwel ur i ɣbel ara s uṭṭun n tallunt n isemawen $1 dɣa d-uglam « $2 » warisem",

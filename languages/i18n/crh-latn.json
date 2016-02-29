@@ -4,7 +4,8 @@
 			"AlefZet",
 			"Don Alessandro",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -305,7 +306,7 @@
 	"cascadeprotected": "Bu saifeni deñiştirip olamazsıñız, çünki kaskad qorçalav altında bulunğan {{PLURAL:$1|saifege|saifelerge}} mensüptir:\n$2",
 	"namespaceprotected": "'''$1''' isim fezasında saifeler deñiştirmege aqqıñız yoq.",
 	"ns-specialprotected": "{{ns:special}} isim fezasındaki saifelerni deñiştirmek yasaq.",
-	"titleprotected": "Böyle serlevanen saife yaratmaq yasaqtır. Yasaqlağan: [[User:$1|$1]].\nSebep: ''$2''.",
+	"titleprotected": "Böyle serlevanen saife yaratmaq yasaqtır. Yasaqlağan: [[User:$1|$1]].\nSebep: <em>$2</em>.",
 	"virus-badscanner": "Yañlış sazlama. Bilinmegen virus skaneri: ''$1''",
 	"virus-scanfailed": "skan etüv muvafaqiyetsiz (kod $1)",
 	"virus-unknownscanner": "bilinmegen antivirus:",
@@ -850,7 +851,6 @@
 	"watchthisupload": "Bu faylnı közet",
 	"filewasdeleted": "Bu isimde bir fayl bar edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.",
 	"filename-bad-prefix": "Siz yüklegen faylnıñ adı '''\"$1\"'''-nen başlana. Bu, adetince, raqamlı fotoapparatlardan fayl adına yazılğan manasız işaretlerdir. Lütfen, bu fayl içün añlıca bir ad saylap yazıñız.",
-	"upload-success-subj": "Yüklenüv becerildi",
 	"upload-proto-error": "Yañlış protokol",
 	"upload-proto-error-text": "İnternetten bir resim faylı yüklemege isteseñiz adres <code>http://</code> ya da <code>ftp://</code>nen başlamalı.",
 	"upload-file-error": "İçki hata",
@@ -1038,7 +1038,6 @@
 	"wlheader-showupdated": "Soñki ziyaretiñizden soñ deñiştirilgen saifeler '''qalın ariflernen''' kösterildi.",
 	"wlnote": "Aşağıda saat $3, $4 içün soñki {{PLURAL:$2|saat|'''$2''' saat}} içinde yapılğan soñki {{PLURAL:$1|deñiştirme|'''$1''' deñiştirme}} kösterile.",
 	"wlshowlast": "Soñki $1 saat içün, $2 kün içün ya da  köster",
-	"watchlistall2": "episini",
 	"watchlist-options": "Közetüv cedveli sazlamaları",
 	"watching": "Közetüv cedveline kirsetilmekte...",
 	"unwatching": "Közetüv cedvelinden yoq etilmekte...",

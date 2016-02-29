@@ -5,7 +5,8 @@
 			"Maax",
 			"Mimursal",
 			"Yariiska",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Linkiga hoos ka calaamadeysan:",
@@ -298,7 +299,7 @@
 	"namespaceprotected": "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' xarun magaceedka.",
 	"customcssprotected": "Ma laguu ogolo in aad wax ka badashid boggaan, sababtoo ah waxaa ku qoran isticmaale'yaal kale waxyaabo u shaqsi ah.",
 	"ns-specialprotected": "Bogyaasha gaarka ah wax malaga bedeli karo.",
-	"titleprotected": "Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.\nSababta neh waxaa waaye \"''$2''\".",
+	"titleprotected": "Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.\nSababta neh waxaa waaye <em>$2</em>.",
 	"virus-scanfailed": "baaritaanka woo shaqeesmi waayay (koodka $1)",
 	"virus-unknownscanner": "ka hor tagga fayruska la aqoon:",
 	"logouttext": "'''Hada waad ka baxday.'''\n\nWaad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama <span class='plainlinks'>[$1 gudaha gal]</span> adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
@@ -754,8 +755,6 @@
 	"upload-description": "Qeexida faylka",
 	"upload-options": "Dooqyada soo gelinta",
 	"watchthisupload": "Faylkaan waardiyeey",
-	"upload-failure-subj": "Dhibaatada soo gelinta",
-	"upload-warning-subj": "Digniin waxa aad soo gelineesid",
 	"img-auth-streaming": "Woo dareeraa \"$1\".",
 	"upload-curl-error28": "Waqtiga woo ka dhamaaday soo gelinta",
 	"license": "Laysinka:",
@@ -815,6 +814,7 @@
 	"move": "Wareeji",
 	"pager-newer-n": "{{PLURAL:$1|ka cusub 1|ka cusub $1}}",
 	"pager-older-n": "{{PLURAL:$1|ka duqsan 1|ka duqsan $1}}",
+	"apisandbox": "API bacaad",
 	"booksources": "Xogta buuga",
 	"booksources-search-legend": "Raadi xogta buuga",
 	"log": "Guda galayaasha",
@@ -868,7 +868,6 @@
 	"unwatchthispage": "Jooji waardiyeyntiisa",
 	"watchlist-details": "{{PLURAL:$1|$1 bog|$1 boggag ah}}  aa ku jirto liiskaaga waardiyaha, ma lagu darin boggaga wadahadalka.",
 	"wlshowlast": "Itus wixii ka danbeeyay $1 saacadood $2 maalmood",
-	"watchlistall2": "dhamaan",
 	"watchlist-options": "Dooqyada liiska waardiyaha",
 	"watching": "Daawasho...",
 	"enotif_subject_created": "{{SITENAME}} Bogga $1 Qof ayaa sameeyey {{gender:$2|$2}}",

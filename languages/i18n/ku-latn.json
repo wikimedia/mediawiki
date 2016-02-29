@@ -16,7 +16,8 @@
 			"아라",
 			"Bikarhêner",
 			"Uygar",
-			"MikaelF"
+			"MikaelF",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Xetekê di bin girêdanê de çêke:",
@@ -338,7 +339,7 @@
 	"myprivateinfoprotected": "Destûra te tune ye ku tu agahiyên xwe yên kesane biguherînî.",
 	"mypreferencesprotected": "Destûr tune ye ku tu eyarên xwe biguherînî.",
 	"ns-specialprotected": "Rûpelên taybet {{ns:special}} nikarin werin guherandin.",
-	"titleprotected": "Rûpelek bi vî navî nikare bê çêkirin. Ev astengkirin ji [[User:$1|$1]] bi sedema ''$2'' hatiye çêkirin.",
+	"titleprotected": "Rûpelek bi vî navî nikare bê çêkirin. Ev astengkirin ji [[User:$1|$1]] bi sedema <em>$2</em> hatiye çêkirin.",
 	"exception-nologin": "Têneketî",
 	"virus-unknownscanner": "Antîvîrusa nenas:",
 	"logouttext": "'''Tu niha derketî.'''\n\nTu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner <span class='plainlinks'>[$1 dîsa têkevî]</span>.\nBila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.",

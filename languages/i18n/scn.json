@@ -368,7 +368,7 @@
 	"myprivateinfoprotected": "Nun hai lu pirmissu pi canciari li tò nfurmazzioni risirvati.",
 	"mypreferencesprotected": "Nun hai lu pirmissu pi canciari li tò prifirenzi.",
 	"ns-specialprotected": "Li pàggini ntô namespace {{ns:special}} non ponnu èssiri canciati.",
-	"titleprotected": "La criazzioni di sta pàggina cu stu tìtulu fu bluccata da [[User:$1|$1]].\nLa mutivazzioni è chista: ''$2''.",
+	"titleprotected": "La criazzioni di sta pàggina cu stu tìtulu fu bluccata da [[User:$1|$1]].\nLa mutivazzioni è chista: <em>$2</em>.",
 	"filereadonlyerror": "Nun fu pussìbbili canciari lu file \"$1\" pirchì lu repository di file \"$2\" è n mudalità di littura sula.\n\nL'amministraturi chi lu bluccau desi sta spigazzioni: \"$3\".",
 	"invalidtitle-knownnamespace": "Tìtulu nun vàlidu cu spazziu dî nomi \"$2\" e testu \"$3\"",
 	"invalidtitle-unknownnamespace": "Tìtulu nun vàlidu cu nùmmiru di spazziu dî nomi scanusciutu $1 e testu \"$2\"",

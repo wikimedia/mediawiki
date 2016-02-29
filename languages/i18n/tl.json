@@ -369,7 +369,7 @@
 	"myprivateinfoprotected": "Wala kang pahintulot na baguhin ang iyong pribadong impormasyon.",
 	"mypreferencesprotected": "Wala kang pahintulot na baguhin ang iyong mga kagustuhan.",
 	"ns-specialprotected": "Hindi pwedeng baguhin ang mga natatanging pahina.",
-	"titleprotected": "Nakasanggalang ang pamagat na ito mula sa paglikha ni [[User:$1|$1]].\nAng ibinigay na dahilan ay ''$2''.",
+	"titleprotected": "Nakasanggalang ang pamagat na ito mula sa paglikha ni [[User:$1|$1]].\nAng ibinigay na dahilan ay <em>$2</em>.",
 	"filereadonlyerror": "Hindi nabago ang talaksang \"$1\" dahil ang repositoryong talaksan na \"$2\" ay nasa kalakarang mababasa lang.\n\nAng tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: \"$3\".",
 	"invalidtitle-knownnamespace": "Hindi katanggap-tanggap na pamagat na may puwang na pampangalang \"$2\" at tekstong \"$3\"",
 	"invalidtitle-unknownnamespace": "Hindi katanggap-tanggap na pamagat na mayroong hindi nalalamang bilang na pampuwang ng pangalan na $1 at tekstong \"$2\"",

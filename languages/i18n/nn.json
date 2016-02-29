@@ -362,7 +362,7 @@
 	"myprivateinfoprotected": "Du har ikkje løyve til endra den private informasjonen din.",
 	"mypreferencesprotected": "Du har ikkje løyve til å endra innstillingane dine.",
 	"ns-specialprotected": "Sider i {{ns:special}}-namnerommet kan ikkje endrast.",
-	"titleprotected": "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].\nGrunnen som er gjeven er: ''$2''.",
+	"titleprotected": "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].\nGrunnen som er gjeven er: <em>$2</em>.",
 	"filereadonlyerror": "Kan ikkje endra fila «$1» av di filsamlinga «$2» er skriveverna.\n\nAdministratoren som låste filsamlinga oppgav den fylgjande årsaka: «$3».",
 	"invalidtitle-knownnamespace": "Ugyldig tittel med namnerommet «$2» og teksten «$3»",
 	"invalidtitle-unknownnamespace": "Ugyldig tittel med ukjend namneromstal $1 og teksten «$2»",

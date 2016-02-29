@@ -358,7 +358,7 @@
 	"myprivateinfoprotected": "Tsy manana alalana ahafahana manova ny fampahalalana tsy sarababem-bahoakanao ianao.",
 	"mypreferencesprotected": "Tsy manana alalana ahafahana manova ny safidinao ianao.",
 	"ns-specialprotected": "Tsy afaka ovaina ny pejy anatin'ny toeran'anarana « {{ns:special}} » .",
-	"titleprotected": "Voaaron'i [[User:$1|$1]] ity lohateny ity mba tsy hamorona pejy mitondra ity anarana ity.\nNy antony napetraka dia : « ''$2'' ».",
+	"titleprotected": "Voaaron'i [[User:$1|$1]] ity lohateny ity mba tsy hamorona pejy mitondra ity anarana ity.\nNy antony napetraka dia : <em>$2</em>.",
 	"filereadonlyerror": "Tsy afaka manova ny rakitra \"$1\" satria famakiana ihany no tao azo atao amin'i \"$2\".\n\nNy antony nomen'ny mpandrindra nanidy azy: \"$3\".",
 	"invalidtitle-knownnamespace": "Lohateny tsy miady amin'ny fepetra miaraka amin'ny anaram-balam-pejy \"$2\" ary soratra \"$3\"",
 	"invalidtitle-unknownnamespace": "Lohateny tsy ekena miaraka amin'ny laharana anaran-tsehatra $1 ary soratra \"$2\"",

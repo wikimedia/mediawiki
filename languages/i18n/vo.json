@@ -322,7 +322,7 @@
 	"myprivateinfoprotected": "No dalol redakön nünis privatik ola.",
 	"mypreferencesprotected": "No dalol votükön buükamis olik.",
 	"ns-specialprotected": "Pads patik no kanons paredakön.",
-	"titleprotected": "Jaf tiäda at penemögükon fa geban: [[User:$1|$1]].\nKod binon: ''$2''.",
+	"titleprotected": "Jaf tiäda at penemögükon fa geban: [[User:$1|$1]].\nKod binon: <em>$2</em>.",
 	"exception-nologin": "No enunädol oli",
 	"virus-badscanner": "Parametem badik: program tavirudik nesevädik: ''$1''",
 	"virus-scanfailed": "skrutam no eplöpon (kot $1)",

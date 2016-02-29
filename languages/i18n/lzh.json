@@ -18,7 +18,8 @@
 			"RalfX",
 			"Davidzdh",
 			"Nemo bis",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Macofe"
 		]
 	},
 	"tog-underline": "鏈墊線：",
@@ -336,7 +337,7 @@
 	"cascadeprotected": "此頁\"迭緘\"矣。$1頁牽連如下：\n$2",
 	"namespaceprotected": "子權未逮，莫能纂'''$1'''。",
 	"ns-specialprotected": "奇頁禁纂。",
-	"titleprotected": "緘焉自[[User:$1|$1]]防建。以''$2''之故也。",
+	"titleprotected": "緘焉自[[User:$1|$1]]防建。以<em>$2</em>之故也。",
 	"invalidtitle-knownnamespace": "無效卷題，含名域\"$2\"與文本\"$3\"",
 	"exception-nologin": "尚未登簿",
 	"virus-badscanner": "壞設：不明之病掃：''$1''",

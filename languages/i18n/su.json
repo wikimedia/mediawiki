@@ -365,7 +365,7 @@
 	"myprivateinfoprotected": "Anjeun teu boga kawenangan pikeun ngédit émbaran pribadi anjeun.",
 	"mypreferencesprotected": "Anjeun teu boga kawenangan pikeun ngédit préferénsi anjeun.",
 	"ns-specialprotected": "Kaca dina ngaranspasi {{ns:special}} teu bisa di édit.",
-	"titleprotected": "Ieu judul dikonci ku [[User:$1|$1]] kalawan alesan ''$2''.",
+	"titleprotected": "Ieu judul dikonci ku [[User:$1|$1]] kalawan alesan <em>$2</em>.",
 	"filereadonlyerror": "Berkas \"$1\" teu bisa dirobah kusabab répositori \"$2\" keur dina mode ukur-maca.\n\nKuncén anu ngonci méré alesan: \"$3\".",
 	"invalidtitle-knownnamespace": "Judul henteu sah kusabab ngandung ngaranspasi \"$2\" jeung téks \"$3\"",
 	"invalidtitle-unknownnamespace": "Judul henteu sah kusabab ngandung angka ngaranspasi $1 jeung tulisan \"$2\"",

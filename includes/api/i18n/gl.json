@@ -1250,6 +1250,7 @@
 	"apihelp-upload-description": "Subir un ficheiro, ou obter o estado de subas pedentes.\n\nHai varios métodos dispoñibles:\n*Subir o contido do ficheiro directamente, usando o parámetro <var>$1file</var>.\n*Subir o ficheiro por partes, usando os parámetros <var>$1filesize</var>, <var>$1chunk</var>, e <var>$1offset</var>.\n*Mandar ó servidor MediaWiki que colla un ficheiro dunha URL, usando o parámetro <var>$1url</var>.\n*Completar unha suba anterior que fallou a causa dos avisos, usando o parámetro <var>$1filekey</var>. \nTeña en conta que o HTTP POST debe facerse como suba de ficheiro (p.ex. usando <code>multipart/form-data</code>)cando se envie o <var>$1file</var>.",
 	"apihelp-upload-param-filename": "Nome de ficheiro obxectivo.",
 	"apihelp-upload-param-comment": "Subir comentario. Tamén usado como texto da páxina inicial para ficheiros novos se non se especifica <var>$1text</var>.",
+	"apihelp-upload-param-tags": "Cambiar etiquetas a aplicar á entrada do rexistro de subas e á revisión de páxina de ficheiro.",
 	"apihelp-upload-param-text": "Texto da páxina inicial para novos ficheiros.",
 	"apihelp-upload-param-watch": "Vixiar a páxina.",
 	"apihelp-upload-param-watchlist": "Engadir ou eliminar sen condicións a páxina da lista de vixiancia do usuario actual, use as preferencias ou non cambie a vixiancia.",

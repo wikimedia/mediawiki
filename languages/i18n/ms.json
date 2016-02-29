@@ -383,7 +383,7 @@
 	"myprivateinfoprotected": "Anda tidak mempunyai kebenaran untuk menyunting maklumat peribadi anda.",
 	"mypreferencesprotected": "Anda tidak mempunyai kebenaran untuk menyunting tetapan keutamaan anda.",
 	"ns-specialprotected": "Laman khas tidak boleh disunting.",
-	"titleprotected": "Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah ''$2''.",
+	"titleprotected": "Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah <em>$2</em>.",
 	"filereadonlyerror": "Fail \"$1\" tidak dapat diubah suai kerana repositori fail \"$2\" berada dalam mod baca sahaja.\n\nPenyelia yang telah menguncinya memberikan penjelasan berikut: \"$3\".",
 	"invalidtitle-knownnamespace": "Tajuk tidak sah dengan ruang nama \"$2\" dan teks \"$3\"",
 	"invalidtitle-unknownnamespace": "Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks \"$2\"",

@@ -8,7 +8,8 @@
 			"Kaganer",
 			"Reedy",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Siltewdin' astın sız:",
@@ -277,7 +278,7 @@
 	"editinginterface": "'''Esletpe:''' Siz ishinde MediaWiki sistema xabarı bar bolg'an betti o'zgertip atırsız.\nBul bettin' o'zgeriwi basqa paydalanıwshılardın' sırtqı interfeysine ta'sir etedi.\nBul xabardın' awdarmasın qosıw yamasa o'zgertiw ushın,  MediaWiki programmasının' lokallastırıw [//translatewiki.net/wiki/Main_Page?setlang=kaa translatewiki.net proektinen] paydalanın'.",
 	"namespaceprotected": "'''$1''' isimler ko'pligindegi betlerdi o'zgertiwge ruxsatın'ız joq.",
 	"ns-specialprotected": "\"{{ns:special}}:\" isimler ko'pligindegi betler o'zgertilmeydi",
-	"titleprotected": "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an.\nKeltirilgen sebep: ''$2''.",
+	"titleprotected": "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an.\nKeltirilgen sebep: <em>$2</em>.",
 	"virus-unknownscanner": "belgisiz antivirus:",
 	"logouttext": "'''Siz endi sayttan shıqtın'ız.'''\n\nSonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
 	"yourname": "Paydalanıwshı atı:",
@@ -627,7 +628,6 @@
 	"right-blockemail": "Paydalanıwshının' xat jiberiw mu'mkinshiligin bloklaw",
 	"right-hideuser": "Ja'miyetten jasırg'an halda paydalanıwshı atın bloklaw",
 	"right-ipblock-exempt": "IP boyınsha bloklaw, avtomat bloklaw ha'mde diapazon bloklawların shetlep o'tiw",
-	"right-proxyunbannable": "Proksi serverlerdin' avtomat bloklawlarınan o'tiw",
 	"right-protect": "Qorg'aw da'relelerin o'zgertiw ha'm qorg'alg'an betlerdi o'zgertiw",
 	"right-editprotected": "Qorg'alg'an betlerdi o'zgertiw (kaskadlı qorg'awsız)",
 	"right-editinterface": "Paydalanıwshı interfeysin o'zgertiw",
@@ -747,7 +747,6 @@
 	"destfilename": "Belgilengen fail atı:",
 	"upload-maxfilesize": "Fayldın' maksimal ko'lemi: $1",
 	"watchthisupload": "Bul fayldı baqlaw",
-	"upload-success-subj": "Tabıslı aploud",
 	"upload-proto-error": "Nadurıs protokol",
 	"upload-file-error": "İshki qa'telik",
 	"upload-misc-error": "Belgisiz aploud qatesi",
@@ -1138,7 +1137,6 @@
 	"movelogpagetext": "To'mende ko'shirilgen betlerdin' dizimi keltirilgen.",
 	"movereason": "Sebep:",
 	"revertmove": "qaytarıw",
-	"delete_and_move": "O'shiriw ha'm ko'shiriw",
 	"delete_and_move_confirm": "Awa, bul betti o'shiriw",
 	"delete_and_move_reason": "Ko'shiriwge jol beriw ushın o'shirilgen",
 	"export": "Betlerdi eksport qılıw",

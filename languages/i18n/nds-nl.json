@@ -357,7 +357,7 @@
 	"myprivateinfoprotected": "Je hebben gien rechten um joew priveegegevens an te passen.",
 	"mypreferencesprotected": "Je hebben gien rechten um joew veurkeuren an te passen.",
 	"ns-specialprotected": "Spesiale ziejen kunnen niet bewarkt wörden.",
-	"titleprotected": "t Anmaken van disse zied is beveiligd deur [[User:$1|$1]].\nDe op-egeven reden is ''$2''.",
+	"titleprotected": "t Anmaken van disse zied is beveiligd deur [[User:$1|$1]].\nDe op-egeven reden is <em>$2</em>.",
 	"filereadonlyerror": "Kon t bestaand \"$1\" niet anpassen umdat de bestaandsmap \"$2\" op dit moment op allinnig-lezen steet.\n\nDe beheerder gaf hierveur de volgende reden: \"$3\".",
 	"invalidtitle-knownnamespace": "Ongeldige titel mit naamruumte \"$2\" en tekste \"$3\"",
 	"invalidtitle-unknownnamespace": "Ongeldige titel mit onbekend naamruumtenummer $1 en tekste \"$2\"",

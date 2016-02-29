@@ -9,7 +9,8 @@
 			"아라",
 			"Via maxima",
 			"Uharteko",
-			"Taxandru"
+			"Taxandru",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sutalìnia sos ligòngios",
@@ -351,7 +352,7 @@
 	"myprivateinfoprotected": "Non tenes su permissu de cambiare is informatziones privadas tuas.",
 	"mypreferencesprotected": "Non tenes su permissu de cambiare is preferèntzias tuas.",
 	"ns-specialprotected": "Is pàginas ispetziales non podent èssere acontzadas.",
-	"titleprotected": "Sa creatzione de una pàgina cun custu tìtulu est istada arreada dae [[User:$1|$1]].\nSa motivatzione est \"<em>$2</em>\".",
+	"titleprotected": "Sa creatzione de una pàgina cun custu tìtulu est istada arreada dae [[User:$1|$1]].\nSa motivatzione est <em>$2</em>.",
 	"invalidtitle-knownnamespace": "Su tìtulu cun nùmene-logu \"$2\" e testu \"$3\" no est bàlidu",
 	"invalidtitle-unknownnamespace": "Su tìtulu cun nùmene-logu disconnotu de nùmeru $1 e testu \"$2\" no est bàlidu",
 	"exception-nologin": "Non ses intrau",
@@ -908,9 +909,6 @@
 	"upload-description": "Descritzione de su file",
 	"upload-options": "Optziones de carrigamentu",
 	"watchthisupload": "Annota custu documentu",
-	"upload-success-subj": "Carrigamentu acabau",
-	"upload-failure-subj": "Problema de carrimentu",
-	"upload-warning-subj": "Avisu de carrigamentu",
 	"upload-file-error": "Faddina a intru",
 	"backend-fail-notexists": "Su documentu $1 no esistit.",
 	"backend-fail-alreadyexists": "Su documentu \"$1\" esistit giai.",
@@ -1098,7 +1096,6 @@
 	"notanarticle": "Custa pàgina no est unu artìculu",
 	"watchlist-details": "Tenes {{PLURAL:$1|$1 pàgina annotada paris a sa pagina de cuntierra sua|$1 pàginas annotadas paris a is pàginas de cuntierra issoro}}.",
 	"wlshowlast": "Ammustra is ùrtimas $1 oras, $2 dies",
-	"watchlistall2": "totu",
 	"watchlist-options": "Optziones subra sa lista de pàginas annotadas",
 	"watching": "Giunghende a sa watchlist...",
 	"unwatching": "Boghende dae sa watchlist...",

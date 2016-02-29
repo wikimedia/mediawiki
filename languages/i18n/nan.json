@@ -6,7 +6,8 @@
 			"Kaihsu",
 			"아라",
 			"唐吉訶德的侍從",
-			"Luuva"
+			"Luuva",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -345,7 +346,7 @@
 	"myprivateinfoprotected": "你無授權改你家己的私人資訊。",
 	"mypreferencesprotected": "你無授權改你的家己的喜愛設定。",
 	"ns-specialprotected": "特殊頁袂得改。",
-	"titleprotected": "這个標題已經予[[User:$1|$1]]保護起來，袂得提來用。\n原因是 \"<em>$2</em>。",
+	"titleprotected": "這个標題已經予[[User:$1|$1]]保護起來，袂得提來用。\n原因是 <em>$2</em>。",
 	"filereadonlyerror": "因為檔案庫這馬只會使看，所以袂得改 \"$1\"這个檔案。\n鎖檔案庫的管理員講是因為：\"$3\"。",
 	"invalidtitle-knownnamespace": "佇名空間 \"$2\"佮文字\"$3\"的標題袂使得。",
 	"invalidtitle-unknownnamespace": "名空間編號 $1(毋知名)的\"$2\"文字標題袂使用。",

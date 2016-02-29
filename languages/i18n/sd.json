@@ -5,7 +5,8 @@
 			"아라",
 			"Fayazburiro",
 			"Sindhu",
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -311,7 +312,7 @@
 	"myprivateinfoprotected": "توهان کي پنهنجي ذاتي معلومات سنوارڻ جي اجازت حاصل نہ آهي.",
 	"mypreferencesprotected": "توهان جي پنهنجون ترجيحات سنوارڻ جي اجات حاصل ڪانهي.",
 	"ns-specialprotected": "خاص صفحا سنواري نٿا سگھجن.",
-	"titleprotected": "[[User:$1|$1]] اهڙي عنوان سان صفحو سرجڻ تي روڪ لڳائي ڇڏي آهي. سبب \"<em>$2</em>\" ڄاڻايو ويو آهي.",
+	"titleprotected": "[[User:$1|$1]] اهڙي عنوان سان صفحو سرجڻ تي روڪ لڳائي ڇڏي آهي. سبب <em>$2</em> ڄاڻايو ويو آهي.",
 	"exception-nologin": "لا اِن ٿيل ناهيو",
 	"virus-unknownscanner": "اڻ ڄاتل نِس وائرس:",
 	"welcomeuser": "ڀلي ڪري آيا، $1!",

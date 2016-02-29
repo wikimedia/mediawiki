@@ -365,7 +365,7 @@
 	"myprivateinfoprotected": "Ye dinna hae permeession tae eidit yer private information.",
 	"mypreferencesprotected": "Ye dinna hae permeession tae eidit yer preferences.",
 	"ns-specialprotected": "Byordinar pages canna be eeditit.",
-	"titleprotected": "This teetle haes been protectit fae bein makit bi [[User:$1|$1]].\nThe groonds fer this ar: ''$2''.",
+	"titleprotected": "This teetle haes been protectit fae bein makit bi [[User:$1|$1]].\nThe groonds fer this ar: <em>$2</em>.",
 	"filereadonlyerror": "Canna modify the file \"$1\" cause the file repository \"$2\" is in read-yinly mode.\n\nThe administrater that lock't it affered this explanation: \"$3\".",
 	"invalidtitle-knownnamespace": "Onvalit title wi namespace \"$2\" n tex \"$3\"",
 	"invalidtitle-unknownnamespace": "Onvalit title wi onkent namespace nummer $1 n tex \"$2\"",

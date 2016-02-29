@@ -376,7 +376,7 @@
 	"myprivateinfoprotected": "Dü heest ei det brükerrocht, am din priwoot dooten tu feranrin.",
 	"mypreferencesprotected": "Dü heest ei det brükerrocht, am din iinstelangen tu feranrin.",
 	"ns-specialprotected": "Spezial-sidjen kön ei bewerket wurd.",
-	"titleprotected": "En sidj mä didiar nööm koon ei uunlaanj wurd.\nDi brüker [[User:$1|$1]] hää det sidj speret, an di grünj as: \"''$2''\".",
+	"titleprotected": "En sidj mä didiar nööm koon ei uunlaanj wurd.\nDi brüker [[User:$1|$1]] hää det sidj speret, an di grünj as: <em>$2</em>.",
 	"filereadonlyerror": "Det datei „$1“ koon ei feranert wurd, auer uun det fertiaknis „$2“ bluas leesen wurd koon.\nDi grünj faan di süsteem-administraator as: „$3“.",
 	"invalidtitle-knownnamespace": "Ferkiard auerskraft uun di nöömrüm „$2“ an tekst „$3“",
 	"invalidtitle-unknownnamespace": "Ferkiard auerskraft uun di ünbekäänd nöömrüm „$1“ an tekst „$2“",

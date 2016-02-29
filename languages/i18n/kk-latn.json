@@ -4,7 +4,8 @@
 			"Atabek",
 			"GaiJin",
 			"Kaztrans",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Siltemeniñ astın sız:",
@@ -267,7 +268,7 @@
 	"cascadeprotected": "Bul bet öñdewden qorğalğan, sebebi bul kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|bettiñ|betterdiñ}} kirikbeti:\n$2",
 	"namespaceprotected": "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
 	"ns-specialprotected": "{{ns:special}} esim ayasındağı better öñdelinbeýdi",
-	"titleprotected": "Bul taqırıp atı bastawdan [[{{ns:user}}:$1|$1]] qorğadı.\nKeltirilgen sebebi: ''$2''.",
+	"titleprotected": "Bul taqırıp atı bastawdan [[User:$1|$1]] qorğadı.\nKeltirilgen sebebi: <em>$2</em>.",
 	"logouttext": "'''Endi jüýeden şıqtıñız.'''\n\nJüýege kirmesten {{SITENAME}} jobasın paýdalanwın jalğastıra alasız, nemese däl sol ne özge qatıswşı bop qaýta krwiñiz mümkin.\nAñğartpa: Keýbir better şolğışıñızdıñ bürkemesin tazartqanşa deýin äli de kirp qalğanıñızdaý körinwi mümkin.",
 	"yourname": "Qatıswşı atıñız:",
 	"yourpassword": "Qupïya söziñiz:",
@@ -642,7 +643,6 @@
 	"right-blockemail": "Qatıswşınıñ xat jöneltwin buğattaw",
 	"right-hideuser": "Barşadan jasırıp, qatıswşı atın buğattaw",
 	"right-ipblock-exempt": "IP buğattawlardı, özbuğattawlardı jäne awqım buğattawlardı orağıtw",
-	"right-proxyunbannable": "Proksï serverlerdiñ özbuğattawların orağıtw",
 	"right-protect": "Qorğaw deñgeýlerin özgertw jäne qorğalğan betterdi öñdew",
 	"right-editprotected": "Qorğalğan betterdi öñdew (bawlı qorğawlarsız)",
 	"right-editinterface": "Paýdalanwşılıq tildesiwin öñdew",
@@ -748,7 +748,6 @@
 	"watchthisupload": "Bul betti baqılaw",
 	"filewasdeleted": "Bul atawı bar faýl burın qotarıp berilgen de beri kele joýılğan.\nBunı qaýta qotarıp berw aldınan $1 degendi tekserip şığıñız.",
 	"filename-bad-prefix": "Qotarıp bermek faýlıñızdıñ atawı '''«$1» ''' dep bastaladı, mınadaý sïpattawsız atawdı ädette sandıq kameralar özdiktik beredi.\nFaýlıñızğa sïpattılaw atawdı tañdañız.",
-	"upload-success-subj": "Sätti qotarıp berildi",
 	"upload-proto-error": "Burıs xattama",
 	"upload-proto-error-text": "Şetten qotarıp berw üşin URL jaýları <code>http://</code> nemese <code>ftp://</code> degenderden bastalw jön.",
 	"upload-file-error": "İşki qate",
@@ -1212,7 +1211,6 @@
 	"movelogpagetext": "Tömende jıljıtılğan betterdiñ tizimi berilip tur.",
 	"movereason": "Sebebi:",
 	"revertmove": "qaýtarw",
-	"delete_and_move": "Joyw jäne jıljıtw",
 	"delete_and_move_text": "==Joyw kerek==\n«[[:$1]]» degen nısana bet aldaqaşan bar.\nJıljıtwğa jol berw üşin bunı joyasız ba?",
 	"delete_and_move_confirm": "Ïä, bul betti joý",
 	"delete_and_move_reason": "Jıljıtwğa jol berw üşin joýılğan",

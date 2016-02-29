@@ -25,7 +25,8 @@
 			"Liuxinyu970226",
 			"Yueman",
 			"CRCHF",
-			"Shinjiman"
+			"Shinjiman",
+			"Macofe"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -383,7 +384,7 @@
 	"myprivateinfoprotected": "你無權改呢版你嘅私人資料。",
 	"mypreferencesprotected": "你無權改呢版你嘅個人設定。",
 	"ns-specialprotected": "特別頁係唔可以編輯嘅。",
-	"titleprotected": "呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係''$2''。",
+	"titleprotected": "呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係<em>$2</em>。",
 	"filereadonlyerror": "改唔到檔案 \"$1\"，因為檔案庫 \"$2\" 而家係唯讀。\n\n負責鎖嘅管理員嘅解釋：\"$3\"。",
 	"invalidtitle-knownnamespace": "名域 \"$2\" 同版名 \"$3\" 無效嘅標題",
 	"invalidtitle-unknownnamespace": "未知名域號碼 \"$1\" 同版名 \"$2\" 無效嘅標題",

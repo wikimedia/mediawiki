@@ -14,7 +14,8 @@
 			"The Evil IP address",
 			"Timpul",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -264,7 +265,7 @@
 	"cascadeprotected": "Diese Seite ies zur Beoarbeetung gesperrt. Se ies ei de {{PLURAL:$1|fulgende Seite|fulgenda Seita}} eengebunda, de mittels der Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:\n$2",
 	"namespaceprotected": "Du host kenne Berechtigung, de Seite eim '''$1'''-Noamensraum zu bearbta.",
 	"ns-specialprotected": "Spezialseyta kinna nicht beoarbeet warn.",
-	"titleprotected": "Enne Seite miet dam della Noama koan nicht oageläat warn.\nDe Sperre wurde durch [[User:$1|$1]] miet der Begrindung ''„$2“'' eigerichtet.",
+	"titleprotected": "Enne Seite miet dam della Noama koan nicht oageläat warn.\nDe Sperre wurde durch [[User:$1|$1]] miet der Begrindung <em>$2</em> eigerichtet.",
 	"virus-badscanner": "Fahlerhofte Konfiguration: unbekoannter Virenskänner: ''$1''",
 	"virus-scanfailed": "Skän fahlgeschloan (Kode $1)",
 	"virus-unknownscanner": "Unbekoannter Virenskänner:",
@@ -669,7 +670,6 @@
 	"right-blockemail": "Nutzer oam Versenda vu E-Mails hindern",
 	"right-hideuser": "Nutzernoama sperra und verberga",
 	"right-ipblock-exempt": "Ausnahm vu IP-Sperra, Autoblocks und Rangesperra",
-	"right-proxyunbannable": "Ausnahme vu automatischa Proxysperra",
 	"right-protect": "Seytaschutzstatus ändern",
 	"right-editprotected": "Geschitzte Seita bearbta (ohne Kaskadenschutz)",
 	"right-editinterface": "Nutzeräberfläche bearbta",
@@ -806,7 +806,6 @@
 	"watchthisupload": "Diese Datei beobachta",
 	"filewasdeleted": "Anne Datei miet diesem Noama wurde schunnt eemoll huchgeloada und zwischenzeitlich wieder geläscht. Bitte priefe zuerst dann Eintrag eim $1, bevor du de Datei wirklich speicherst.",
 	"filename-bad-prefix": "Dar Dateinoame beginnt miet '''„$1“'''. Dies ies eim allgemeena dar vu a'r Digitalkamera vorgegebene Dateinoame und daher ne sehr aussagekräftig.\nBitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
-	"upload-success-subj": "Erfolgreich huchgeloada",
 	"upload-proto-error": "Foalsches Protokoll",
 	"upload-proto-error-text": "De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.",
 	"upload-file-error-text": "Bei dar Erstellung a'r temporären Datei uff'd Server ies a interner Fahler uffgetreta.\nBitte informiere an'n [[Special:ListUsers/sysop|Administrator]].",
@@ -1289,7 +1288,6 @@
 	"movenosubpage": "Diese Seite hoot kenne Underseita.",
 	"movereason": "Begriendung:",
 	"revertmove": "zerricke scherga",
-	"delete_and_move": "Läscha und Verschieba",
 	"delete_and_move_text": "== Läschung erforderlich ==\n\nDe Seite „[[:$1]]“ existiert bereits. Mechtest du diese läscha, im de Seite verschieba zu kinna?",
 	"delete_and_move_confirm": "Zielseyte fier de Verschiebung läscha",
 	"delete_and_move_reason": "geläscht, im Ploatz fier Verschiebung zu macha",

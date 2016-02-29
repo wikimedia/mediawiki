@@ -445,7 +445,7 @@
 	"myprivateinfoprotected": "Sizin özel bilgilerinizi düzenleme yetkiniz yok.",
 	"mypreferencesprotected": "Tercihlerinizi düzenlemek için yetkiniz yok.",
 	"ns-specialprotected": "{{ns:special}} alanadı içindeki sayfalar değiştirilemez.",
-	"titleprotected": "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.\nVerilen sebep: ''$2''.",
+	"titleprotected": "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.\nVerilen sebep: <em>$2</em>.",
 	"filereadonlyerror": "\"$2\" dosya deposundaki \"$1\" dosyası salt okunur modda olduğundan dolayı değiştirmek için açılamıyor.\n\nKilitleyen hizmetlinin bu konudaki nedeni: \"$3\".",
 	"invalidtitle-knownnamespace": "\"$2\" alan adı için \"$3\" metni geçersiz bir başlık",
 	"invalidtitle-unknownnamespace": "Bilinmeyen $1 ad alanı sayısı ve geçersiz \"$2\" başlık",
