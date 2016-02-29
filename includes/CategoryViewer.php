@@ -387,6 +387,7 @@ class CategoryViewer extends ContextSource {
 		$r = '';
 		$rescnt = count( $this->children );
 		$dbcnt = $this->cat->getSubcatCount();
+		// This function should be called even if the result isn't used, it has side-effects
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'subcat' );
 
 		if ( $rescnt > 0 ) {
@@ -417,6 +418,7 @@ class CategoryViewer extends ContextSource {
 		$dbcnt = $this->cat->getPageCount() - $this->cat->getSubcatCount()
 			- $this->cat->getFileCount();
 		$rescnt = count( $this->articles );
+		// This function should be called even if the result isn't used, it has side-effects
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
 
 		if ( $rescnt > 0 ) {
@@ -437,10 +439,11 @@ class CategoryViewer extends ContextSource {
 	function getImageSection() {
 		$r = '';
 		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
-		if ( $rescnt > 0 ) {
-			$dbcnt = $this->cat->getFileCount();
-			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
+		$dbcnt = $this->cat->getFileCount();
+		// This function should be called even if the result isn't used, it has side-effects
+		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
+		if ( $rescnt > 0 ) {
 			$r .= "<div id=\"mw-category-media\">\n";
 			$r .= '<h2>' .
 				$this->msg(
