@@ -424,16 +424,16 @@ class ApiMain extends ApiBase {
 		ob_start();
 
 		$t = microtime( true );
+		$isError = false;
 		try {
 			$this->executeAction();
-			$isError = false;
+			$this->logRequest( microtime( true ) - $t );
+
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
+			$this->logRequest( microtime( true ) - $t, $e );
 			$isError = true;
 		}
-
-		// Log the request whether or not there was an error
-		$this->logRequest( microtime( true ) - $t );
 
 		// Commit DBs and send any related cookies and headers
 		MediaWiki::preOutputCommit( $this->getContext() );
@@ -530,13 +530,13 @@ class ApiMain extends ApiBase {
 		try {
 			$main = new self( RequestContext::getMain(), false );
 			$main->handleException( $e );
+			$main->logRequest( 0, $e );
 		} catch ( Exception $e2 ) {
 			// Nope, even that didn't work. Punt.
 			throw $e;
 		}
 
-		// Log the request and reset cache headers
-		$main->logRequest( 0 );
+		// Reset cache headers
 		$main->sendCacheHeaders( true );
 
 		ob_end_flush();
@@ -847,20 +847,19 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Replace the result data with the information about an exception.
-	 * Returns the error code
+	 * Create an error message for the given exception.
+	 *
+	 * If the exception is a UsageException then
+	 * UsageException::getMessageArray() will be called to create the message.
+	 *
 	 * @param Exception $e
-	 * @return string
+	 * @return array ['code' => 'some string', 'info' => 'some other string']
+	 * @since 1.27
 	 */
-	protected function substituteResultWithError( $e ) {
-		$result = $this->getResult();
-		$config = $this->getConfig();
-
+	protected function errorMessageFromException( $e ) {
 		if ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - generate error response
 			$errMessage = $e->getMessageArray();
-			$link = wfExpandUrl( wfScript( 'api' ) );
-			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
 		} else {
 			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
@@ -873,6 +872,27 @@ class ApiMain extends ApiBase {
 				'code' => 'internal_api_error_' . get_class( $e ),
 				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			];
+		}
+		return $errMessage;
+	}
+
+	/**
+	 * Replace the result data with the information about an exception.
+	 * Returns the error code
+	 * @param Exception $e
+	 * @return string
+	 */
+	protected function substituteResultWithError( $e ) {
+		$result = $this->getResult();
+		$config = $this->getConfig();
+
+		$errMessage = $this->errorMessageFromException( $e );
+		if ( $e instanceof UsageException ) {
+			// User entered incorrect parameters - generate error response
+			$link = wfExpandUrl( wfScript( 'api' ) );
+			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
+		} else {
+			// Something is seriously wrong
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
 				ApiResult::setContentValue(
 					$errMessage,
@@ -1337,8 +1357,9 @@ class ApiMain extends ApiBase {
 	/**
 	 * Log the preceding request
 	 * @param float $time Time in seconds
+	 * @param Exception $e Exception caught while processing the request
 	 */
-	protected function logRequest( $time ) {
+	protected function logRequest( $time, $e = null ) {
 		$request = $this->getRequest();
 		$logCtx = [
 			'ts' => time(),
@@ -1346,8 +1367,14 @@ class ApiMain extends ApiBase {
 			'userAgent' => $this->getUserAgent(),
 			'wiki' => wfWikiID(),
 			'timeSpentBackend' => round( $time * 1000 ),
+			'hadError' => $e !== null,
+			'errorCodes' => [],
 			'params' => [],
 		];
+
+		if ( $e ) {
+			$logCtx['errorCodes'][] = $this->errorMessageFromException( $e )['code'];
+		}
 
 		// Construct space separated message for 'api' log channel
 		$msg = "API {$request->getMethod()} " .
