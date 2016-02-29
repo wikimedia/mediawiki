@@ -249,6 +249,7 @@ class ResourceLoaderClientHtml {
 	 */
 	public function getHeadHtml() {
 		$data = $this->getData();
+		$nonce = $this->context->getOutput()->getCSPNonce();
 		$chunks = [];
 
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
@@ -256,13 +257,15 @@ class ResourceLoaderClientHtml {
 		// See also #getDocumentAttributes() and /resources/src/startup.js.
 		$chunks[] = Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );',
+			$nonce
 		);
 
 		// Inline RLQ: Set page variables
 		if ( $this->config ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( $this->config )
+				ResourceLoader::makeConfigSetScript( $this->config ),
+				$nonce
 			);
 		}
 
@@ -270,7 +273,8 @@ class ResourceLoaderClientHtml {
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states )
+				ResourceLoader::makeLoaderStateScript( $states ),
+				$nonce
 			);
 		}
 
@@ -285,7 +289,8 @@ class ResourceLoaderClientHtml {
 		// Inline RLQ: Load general modules
 		if ( $data['general'] ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] )
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] ),
+				$nonce
 			);
 		}
 
