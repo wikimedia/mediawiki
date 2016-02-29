@@ -64,6 +64,10 @@ application/xml xml xsl xsd kml
 application/xml-dtd dtd
 application/zip zip jar xpi sxc stc sxd std sxi sti sxm stm sxw stw
 application/x-rar rar
+application/font-woff woff
+application/font-woff2 woff2
+application/vnd.ms-fontobject eot
+application/x-font-ttf ttf
 audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
