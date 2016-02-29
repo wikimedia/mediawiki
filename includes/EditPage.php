@@ -4183,6 +4183,7 @@ ERROR;
 		}
 
 		$script .= '});';
+		$wgOut->addScript( ResourceLoader::makeInlineScript( $script, $wgOut->getCSPNonce() ) );
 
 		$toolbar = '<div id="toolbar"></div>';
 
