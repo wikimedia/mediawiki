@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\Session\BotPasswordSessionProvider;
+
 /**
  * API module to allow users to log out of the wiki. API equivalent of
  * Special:Userlogout.
@@ -33,8 +35,15 @@
 class ApiLogout extends ApiBase {
 
 	public function execute() {
-		// Make sure it's possible to log out
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+
+		// Handle bot password logout specially
+		if ( $session->getProvider() instanceof BotPasswordSessionProvider ) {
+			$session->unpersist();
+			return;
+		}
+
+		// Make sure it's possible to log out
 		if ( !$session->canSetUser() ) {
 			$this->dieUsage(
 				'Cannot log out when using ' .
