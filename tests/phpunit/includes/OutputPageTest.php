@@ -321,7 +321,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Single only=scripts load
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
 			],
@@ -334,8 +334,34 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Private embed (only=scripts)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
+					. "});</script>"
+			],
+			// Load private module (combined)
+			[
+				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
+				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+					. "mw.loader.implement(\"test.quux@1ev0ijv\",function($,jQuery,require,module){"
+					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
+					. "\"]});});</script>"
+			],
+			// Load no modules
+			[
+				[ [], ResourceLoaderModule::TYPE_COMBINED ],
+				'',
+			],
+			// noscript group
+			[
+				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
+				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"/></noscript>'
+			],
+			// Load two modules in separate groups
+			[
+				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
+				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
 					. "});</script>"
 			],
 		];
@@ -352,6 +378,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgResourceLoaderDebug' => false,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
+			'wgCSPReportOnlyHeader' => true,
 		] );
 		$class = new ReflectionClass( OutputPage::class );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
@@ -360,6 +387,9 @@ class OutputPageTest extends MediaWikiTestCase {
 		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
+		$nonce = $class->getProperty( 'CSPNonce' );
+		$nonce->setAccessible( true );
+		$nonce->setValue( $out, 'secret' );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( new NullMessageBlobStore() );
 		$rl->register( [
@@ -379,6 +409,18 @@ class OutputPageTest extends MediaWikiTestCase {
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
+			] ),
+			'test.noscript' => new ResourceLoaderTestModule( [
+				'styles' => '.stuff { color: red; }',
+				'group' => 'noscript',
+			] ),
+			'test.group.foo' => new ResourceLoaderTestModule( [
+				'script' => 'mw.doStuff( "foo" );',
+				'group' => 'foo',
+			] ),
+			'test.group.bar' => new ResourceLoaderTestModule( [
+				'script' => 'mw.doStuff( "bar" );',
+				'group' => 'bar',
 			] ),
 		] );
 		$links = $method->invokeArgs( $out, $args );

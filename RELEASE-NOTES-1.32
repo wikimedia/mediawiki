@@ -17,6 +17,10 @@ production.
   'html5-legacy' value for $wgFragmentMode is no longer accepted.
 * The experimental Html5Internal and Html5Depurate tidy drivers were removed.
   RemexHtml, which is the default, should be used instead.
+* (T135963) You can now define a Content Security Policy for your wiki. This
+  adds a defense-in-depth feature to stop an attacker who has found a bug in
+  the parser allowing them to insert malicious attributes. Disabled by default,
+  you can configure this via $wgCSPHeader and $wgCSPReportOnlyHeader.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
