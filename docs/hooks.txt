@@ -3065,6 +3065,11 @@ $old: old title
 $nt: new title
 $user: user who does the move
 
+'TitleMoveStarting': Before moving an article (title), but just after the atomic DB section starts.
+$old: old title
+$nt: new title
+$user: user who does the move
+
 'TitleMoveComplete': After moving an article (title), post-commit.
 &$old: old title
 &$nt: new title
