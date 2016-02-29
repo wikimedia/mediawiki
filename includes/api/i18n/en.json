@@ -73,7 +73,9 @@
 	"apihelp-createaccount-param-language": "Language code to set as default for the user (optional, defaults to content language).",
 	"apihelp-createaccount-example-pass": "Create user <kbd>testuser</kbd> with password <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Create user <kbd>testmailuser</kbd> and email a randomly-generated password.",
-
+	"apihelp-cspreport-description": "Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser.",
+	"apihelp-cspreport-param-reportonly": "Mark as being a report from a monitoring policy, not an enforced policy",
+	"apihelp-cspreport-param-source": "What generated the CSP header that triggered this report",
 	"apihelp-delete-description": "Delete a page.",
 	"apihelp-delete-param-title": "Title of the page to delete. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "Page ID of the page to delete. Cannot be used together with <var>$1title</var>.",
