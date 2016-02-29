@@ -58,8 +58,12 @@ class LinkBatch {
 	/**
 	 * @param LinkTarget $linkTarget
 	 */
-	public function addObj( LinkTarget $linkTarget ) {
-		$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
+	public function addObj( $linkTarget ) {
+		if ( is_object( $linkTarget ) ) {
+			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
+		} else {
+			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object\n" );
+		}
 	}
 
 	/**
