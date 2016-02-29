@@ -95,8 +95,9 @@ class ApiCSPReport extends ApiBase {
 		if ( $reportOnly ) {
 			$flags[] = 'report-only';
 		}
-		if ( CSP::falsePositiveBrowser( $userAgent )
-			&& $report['document-uri'] === "'self'"
+
+		if ( ContentSecurityPolicy::falsePositiveBrowser( $userAgent )
+			&& $report['blocked-uri'] === "self"
 		) {
 			// False positive due to:
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
