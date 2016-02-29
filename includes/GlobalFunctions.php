@@ -1511,9 +1511,10 @@ function wfHostname() {
  * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
  * hostname of the server handling the request.
  *
+ * @param string $nonce Value from OutputPage::getCSPNonce
  * @return string
  */
-function wfReportTime() {
+function wfReportTime( $nonce = null ) {
 	global $wgShowHostnames;
 
 	$elapsed = ( microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'] );
@@ -1523,7 +1524,7 @@ function wfReportTime() {
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
 	}
-	return Skin::makeVariablesScript( $reportVars );
+	return Skin::makeVariablesScript( $reportVars, $nonce );
 }
 
 /**
