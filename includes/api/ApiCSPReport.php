@@ -1,0 +1,232 @@
+<?php
+/**
+ * Copyright © 2015 Brian Wolff
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+use MediaWiki\Logger\LoggerFactory;
+
+/**
+ * Api module to receive and log CSP violation reports
+ *
+ * @ingroup API
+ */
+class ApiCSPReport extends ApiBase {
+
+	private $log;
+
+	/**
+	 * These reports should be small. Ignore super big reports out of paranoia
+	 */
+	const MAX_POST_SIZE = 8192;
+
+	/**
+	 * Logs a content-security-policy violation report from web browser.
+	 */
+	public function execute() {
+		$reportOnly = $this->getParameter( 'reportonly' );
+		$logname = $reportOnly ? 'csp-report-only' : 'csp';
+		$this->log = LoggerFactory::getInstance( $logname );
+		$userAgent = $this->getRequest()->getHeader( 'user-agent' );
+
+		$this->verifyPostBodyOk();
+		$report = $this->getReport();
+		$flags = $this->getFlags( $report );
+
+		$warningText = $this->generateLogLine( $flags, $report );
+		$this->logReport( $flags, $warningText, [
+			// XXX Is it ok to put untrusted data into log??
+			'csp-report' => $report['csp-report'],
+			'method' => __METHOD__,
+			'user' => $this->getUser()->getName(),
+			'user-agent' => $userAgent,
+			'source' => $this->getParameter( 'source' ),
+		] );
+		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
+	}
+
+	/**
+	 * Log CSP report, with a different severity depending on $flags
+	 * @param $flags Array Flags for this report
+	 * @param $logLine String text of log entry
+	 * @param $context Array logging context
+	 */
+	private function logReport( $flags, $logLine, $context ) {
+		if ( in_array( 'false-positive', $flags ) ) {
+			// These reports probably don't matter much
+			$this->log->debug( $logLine, $context );
+		} else {
+			// Normal report.
+			$this->log->warning( $logLine, $context );
+		}
+	}
+
+	/**
+	 * Get extra notes about the report.
+	 *
+	 * @param $report Array The CSP report
+	 * @return Array
+	 */
+	private function getFlags( $report ) {
+		$reportOnly = $this->getParameter( 'reportonly' );
+		$userAgent = $this->getRequest()->getHeader( 'user-agent' );
+		$source = $this->getParameter( 'source' );
+
+		$flags = [];
+		if ( $source !== 'internal' ) {
+			$flags[] = 'source=' . $source;
+		}
+		if ( $reportOnly ) {
+			$flags[] = 'report-only';
+		}
+		if ( CSP::falsePositiveBrowser( $userAgent )
+			&& $report['document-uri'] === "'self'"
+		) {
+			// False positive due to:
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
+
+			$flags[] = 'false-positive';
+		}
+		return $flags;
+	}
+
+	/**
+	 * Output an api error if post body is obviously not OK.
+	 */
+	private function verifyPostBodyOk() {
+		$req = $this->getRequest();
+		$contentType = $req->getHeader( 'content-type' );
+		if ( $contentType !== 'application/json'
+			&& $contentType !=='application/csp-report'
+		) {
+			$this->error( 'wrongformat', __METHOD__ );
+		}
+		if ( $req->getHeader( 'content-length' ) > self::MAX_POST_SIZE ) {
+			$this->error( 'toobig', __METHOD__ );
+		}
+	}
+
+	/**
+	 * Get the report from post body and turn into associative array.
+	 *
+	 * @return Array
+	 */
+	private function getReport() {
+		$postBody = $this->getRequest()->getRawInput();
+		if ( strlen( $postBody ) > self::MAX_POST_SIZE ) {
+			// paranoia, already checked content-length earlier.
+			$this->error( 'toobig', __METHOD__ );
+		}
+		$status = FormatJson::parse( $postBody, FormatJson::FORCE_ASSOC );
+		if ( !$status->isGood() ) {
+			list( $code, ) = $this->getErrorFromStatus( $status );
+			$this->error( $code, __METHOD__ );
+		}
+
+		$report = $status->getValue();
+
+		if ( !isset( $report['csp-report'] ) ) {
+			$this->error( 'missingkey', __METHOD__ );
+		}
+		return $report['csp-report'];
+	}
+
+	/**
+	 * Get text of log line.
+	 *
+	 * @param $flags Array of additional markers for this report
+	 * @param $report Array the csp report
+	 * @return String Text to put in log
+	 */
+	private function generateLogLine( $flags, $report ) {
+		$flagText = '';
+		if ( $flags ) {
+			$flagText = '[' . implode( $flags, ', ' ) . ']';
+		}
+
+		$blockedFile = isset( $report['blocked-uri'] ) ? $report['blocked-uri'] : 'n/a';
+		$page = isset( $report['document-uri'] ) ? $report['document-uri'] : 'n/a';
+		$line = isset( $report['line-number'] ) ? ':' . $report['line-number'] : '';
+		$warningText = $flagText .
+			' Received CSP report: <' . $blockedFile .
+			'> blocked from being loaded on <' . $page . '>' . $line;
+		return $warningText;
+	}
+
+	/**
+	 * Stop processing the request, and output/log an error
+	 *
+	 * @param $code String error code
+	 * @param $method String method that made error
+	 * @throws UsageException Always
+	 */
+	private function error( $code, $method ) {
+		$this->log->info( 'Error reading CSP report: ' . $code, [
+			'method' => $method,
+			'user-agent' => $this->getRequest()->getHeader( 'user-agent' )
+		] );
+		// 500 so it shows up in browser's developer console.
+		$this->dieUsage( "Error processing CSP report: $code", 'cspreport-' . $code, 500 );
+	}
+
+	public function getAllowedParams() {
+		return [
+			'reportonly' => [
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false
+			],
+			'source' => [
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => 'internal',
+				ApiBase::PARAM_REQUIRED => false
+			]
+		];
+	}
+
+	public function mustBePosted() {
+		return true;
+	}
+
+	public function isWriteMode() {
+		return false;
+	}
+
+	/**
+	 * Mark as internal. This isn't meant to be used by normal api users
+	 */
+	public function isInternal() {
+		return true;
+	}
+
+	/**
+	 * Even if you don't have read rights, we still want your report.
+	 */
+	public function isReadMode() {
+		return false;
+	}
+
+	/**
+	 * Doesn't touch db, so max lag should be rather irrelavent.
+	 *
+	 * Also, this makes sure that reports aren't lost during lag events.
+	 */
+	public function shouldCheckMaxLag() {
+		return false;
+	}
+}
