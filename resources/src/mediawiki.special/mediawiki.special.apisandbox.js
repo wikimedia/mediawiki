@@ -519,6 +519,9 @@
 				}
 			}
 
+			// Some widgets' height changes with the input, e.g. CapsuleMultiSelectWidget.
+			widget.on( 'change', ApiSandbox.resizePanel );
+
 			if ( Util.apiBool( pi.required ) || opts.nooptional ) {
 				finalWidget = widget;
 			} else {
@@ -636,6 +639,7 @@
 				);
 
 			$( window ).on( 'resize', ApiSandbox.resizePanel );
+			booklet.on( 'set', ApiSandbox.resizePanel );
 
 			ApiSandbox.resizePanel();
 		},
@@ -663,18 +667,17 @@
 		 * Set the height of the panel based on the current viewport.
 		 */
 		resizePanel: function () {
-			var height = $( window ).height(),
-				contentTop = $content.offset().top;
+			var page, height;
 
 			if ( $( document.body ).hasClass( 'mw-apisandbox-fullscreen' ) ) {
+				height = $( window ).height();
 				height -= panel.$element.offset().top - $( '#mw-apisandbox-ui' ).offset().top;
 				panel.$element.height( height - 1 );
 			} else {
-				// Subtract the height of the intro text
-				height -= panel.$element.offset().top - contentTop;
-
-				panel.$element.height( height - 10 );
-				$( window ).scrollTop( contentTop - 5 );
+				// Match height of current page to avoid double scrollbars
+				page = booklet.getCurrentPage();
+				height = page.$element[ 0 ].scrollHeight;
+				panel.$element.height( height );
 			}
 		},
 
@@ -1036,7 +1039,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	ApiSandbox.PageLayout = function ( config ) {
-		config = $.extend( { prefix: '' }, config );
+		config = $.extend( { prefix: '', expanded: false }, config );
 		this.displayText = config.key;
 		this.apiModule = config.path;
 		this.prefix = config.prefix;
@@ -1421,7 +1424,10 @@
 							$( '<legend>' ).append(
 								new OO.ui.ToggleButtonWidget( {
 									label: mw.message( 'apisandbox-deprecated-parameters' ).text()
-								} ).on( 'change', tmp.toggle, [], tmp ).$element
+								} )
+									.on( 'change', tmp.toggle, [], tmp )
+									.on( 'change', ApiSandbox.resizePanel )
+									.$element
 							),
 							tmp.$element
 						)
@@ -1451,6 +1457,8 @@
 							label: mw.message( 'apisandbox-retry' ).text()
 						} ).on( 'click', that.loadParamInfo, [], that ).$element
 					);
+			} ).always( function () {
+				ApiSandbox.resizePanel();
 			} );
 	};
 
