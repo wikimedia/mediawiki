@@ -319,6 +319,7 @@ $wgAutoloadLocalClasses = [
 	'CrhConverter' => __DIR__ . '/languages/classes/LanguageCrh.php',
 	'CryptHKDF' => __DIR__ . '/includes/libs/CryptHKDF.php',
 	'CryptRand' => __DIR__ . '/includes/libs/CryptRand.php',
+	'ContentSecurityPolicy' => __DIR__ . '/includes/ContentSecurityPolicy.php',
 	'CssContent' => __DIR__ . '/includes/content/CssContent.php',
 	'CssContentHandler' => __DIR__ . '/includes/content/CssContentHandler.php',
 	'CsvStatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
