@@ -134,4 +134,52 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
 	}
 
+	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|PageProps
+	 */
+	private function getMockPageProps() {
+		return $this->getMockBuilder( PageProps::class )
+			->disableOriginalConstructor()
+			->getMock();
+	}
+
+	public function provideCategoryContent() {
+		return [
+			[ true ],
+			[ false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCategoryContent
+	 * @covers RecentChange::newForCategorization
+	 */
+	public function testHiddenCategoryChange( $isHidden ) {
+		$categoryTitle = Title::newFromText( 'CategoryPage', NS_CATEGORY );
+
+		$rc = RecentChange::newForCategorization(
+			'0',
+			$categoryTitle,
+			$this->user,
+			$this->user_comment,
+			$this->title,
+			$categoryTitle->getLatestRevID(),
+			$categoryTitle->getLatestRevID(),
+			'0',
+			false
+		);
+
+		$pageProps = $this->getMockPageProps();
+		$pageProps->expects( $this->once() )
+			->method( 'getProperties' )
+			->with( $categoryTitle, 'hiddencat' )
+			->will( $this->returnValue( [ $categoryTitle->getArticleID() => $isHidden ] ) );
+
+		$scopedOverride = PageProps::overrideDefaultInstance( $pageProps );
+
+		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
+		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
+
+		ScopedCallback::consume( $scopedOverride );
+	}
 }
