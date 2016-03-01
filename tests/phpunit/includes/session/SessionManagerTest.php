@@ -131,6 +131,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 	public function testGetSessionForRequest() {
 		$manager = $this->getManager();
 		$request = new \FauxRequest();
+		$request->unpersist1 = false;
+		$request->unpersist2 = false;
 
 		$id1 = '';
 		$id2 = '';
@@ -138,7 +140,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
 			->setMethods(
-				[ 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe' ]
+				[ 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe', 'unpersistSession' ]
 			);
 
 		$provider1 = $providerBuilder->getMock();
@@ -160,6 +162,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 			->will( $this->returnValue( 'Provider1' ) );
 		$provider1->expects( $this->any() )->method( 'describe' )
 			->will( $this->returnValue( '#1 sessions' ) );
+		$provider1->expects( $this->any() )->method( 'unpersistSession' )
+			->will( $this->returnCallback( function ( $request ) {
+				$request->unpersist1 = true;
+			} ) );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->expects( $this->any() )->method( 'provideSessionInfo' )
@@ -171,6 +177,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 			->will( $this->returnValue( 'Provider2' ) );
 		$provider2->expects( $this->any() )->method( 'describe' )
 			->will( $this->returnValue( '#2 sessions' ) );
+		$provider2->expects( $this->any() )->method( 'unpersistSession' )
+			->will( $this->returnCallback( function ( $request ) {
+				$request->unpersist2 = true;
+			} ) );
 
 		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
@@ -183,6 +193,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $idEmpty, $session->getId() );
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
 
 		// Both providers return info, picks best one
 		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
@@ -200,6 +212,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
 
 		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [
 			'provider' => $provider1,
@@ -216,6 +230,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id1, $session->getId() );
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
 
 		// Tied priorities
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -244,6 +260,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$this->assertContains( $request->info1, $ex->sessionInfos );
 			$this->assertContains( $request->info2, $ex->sessionInfos );
 		}
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
 
 		// Bad provider
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -262,6 +280,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 				$ex->getMessage()
 			);
 		}
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
 
 		// Unusable session info
 		$this->logger->setCollect( true );
@@ -282,6 +302,31 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
 		$this->logger->setCollect( false );
+		$this->assertTrue( $request->unpersist1 );
+		$this->assertFalse( $request->unpersist2 );
+		$request->unpersist1 = false;
+
+		$this->logger->setCollect( true );
+		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
+			'provider' => $provider1,
+			'id' => ( $id1 = $manager->generateSessionId() ),
+			'persisted' => true,
+			'idIsSafe' => true,
+		] );
+		$request->info2 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
+			'provider' => $provider2,
+			'id' => ( $id2 = $manager->generateSessionId() ),
+			'persisted' => true,
+			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
+			'idIsSafe' => true,
+		] );
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertSame( $id1, $session->getId() );
+		$this->logger->setCollect( false );
+		$this->assertFalse( $request->unpersist1 );
+		$this->assertTrue( $request->unpersist2 );
+		$request->unpersist2 = false;
 
 		// Unpersisted session ID
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -295,6 +340,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id1, $session->getId() );
+		$this->assertTrue( $request->unpersist1 ); // The saving of the session does it
+		$this->assertFalse( $request->unpersist2 );
 		$session->persist();
 		$this->assertTrue( $session->isPersistent(), 'sanity check' );
 	}

@@ -663,8 +663,14 @@ final class SessionManager implements SessionManagerInterface {
 						// This is going to error out below, but we want to
 						// provide a complete list.
 						$retInfos[] = $info;
+					} else {
+						// Session load failed, so unpersist it from this request
+						$info->getProvider()->unpersistSession( $request );
 					}
 				}
+			} else {
+				// Session load failed, so unpersist it from this request
+				$info->getProvider()->unpersistSession( $request );
 			}
 		}
 
