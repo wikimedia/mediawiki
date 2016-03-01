@@ -92,8 +92,8 @@ class MagicWord {
 	/** @var bool */
 	private $mFound = false;
 
-	static public $mVariableIDsInitialised = false;
-	static public $mVariableIDs = [
+	public static $mVariableIDsInitialised = false;
+	public static $mVariableIDs = [
 		'!',
 		'currentmonth',
 		'currentmonth1',
@@ -174,7 +174,7 @@ class MagicWord {
 	];
 
 	/* Array of caching hints for ParserCache */
-	static public $mCacheTTLs = [
+	public static $mCacheTTLs = [
 		'currentmonth' => 86400,
 		'currentmonth1' => 86400,
 		'currentmonthname' => 86400,
@@ -215,7 +215,7 @@ class MagicWord {
 		'numberingroup' => 3600,
 	];
 
-	static public $mDoubleUnderscoreIDs = [
+	public static $mDoubleUnderscoreIDs = [
 		'notoc',
 		'nogallery',
 		'forcetoc',
@@ -231,17 +231,17 @@ class MagicWord {
 		'nocontentconvert',
 	];
 
-	static public $mSubstIDs = [
+	public static $mSubstIDs = [
 		'subst',
 		'safesubst',
 	];
 
-	static public $mObjects = [];
-	static public $mDoubleUnderscoreArray = null;
+	public static $mObjects = [];
+	public static $mDoubleUnderscoreArray = null;
 
 	/**#@-*/
 
-	function __construct( $id = 0, $syn = [], $cs = false ) {
+	public function __construct( $id = 0, $syn = [], $cs = false ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
@@ -254,7 +254,7 @@ class MagicWord {
 	 *
 	 * @return MagicWord
 	 */
-	static function &get( $id ) {
+	public static function &get( $id ) {
 		if ( !isset( self::$mObjects[$id] ) ) {
 			$mw = new MagicWord();
 			$mw->load( $id );
@@ -268,7 +268,7 @@ class MagicWord {
 	 *
 	 * @return array
 	 */
-	static function getVariableIDs() {
+	public static function getVariableIDs() {
 		if ( !self::$mVariableIDsInitialised ) {
 			# Get variable IDs
 			Hooks::run( 'MagicWordwgVariableIDs', [ &self::$mVariableIDs ] );
@@ -281,7 +281,7 @@ class MagicWord {
 	 * Get an array of parser substitution modifier IDs
 	 * @return array
 	 */
-	static function getSubstIDs() {
+	public static function getSubstIDs() {
 		return self::$mSubstIDs;
 	}
 
@@ -291,7 +291,7 @@ class MagicWord {
 	 * @param int $id
 	 * @return int
 	 */
-	static function getCacheTTL( $id ) {
+	public static function getCacheTTL( $id ) {
 		if ( array_key_exists( $id, self::$mCacheTTLs ) ) {
 			return self::$mCacheTTLs[$id];
 		} else {
@@ -304,7 +304,7 @@ class MagicWord {
 	 *
 	 * @return MagicWordArray
 	 */
-	static function getDoubleUnderscoreArray() {
+	public static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
 			Hooks::run( 'GetDoubleUnderscoreIDs', [ &self::$mDoubleUnderscoreIDs ] );
 			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
@@ -326,7 +326,7 @@ class MagicWord {
 	 * @param int $id
 	 * @throws MWException
 	 */
-	function load( $id ) {
+	public function load( $id ) {
 		global $wgContLang;
 		$this->mId = $id;
 		$wgContLang->getMagic( $this );
@@ -340,7 +340,7 @@ class MagicWord {
 	 * Preliminary initialisation
 	 * @private
 	 */
-	function initRegex() {
+	public function initRegex() {
 		// Sort the synonyms by length, descending, so that the longest synonym
 		// matches in precedence to the shortest
 		$synonyms = $this->mSynonyms;
@@ -372,7 +372,7 @@ class MagicWord {
 	 *
 	 * @return int
 	 */
-	function compareStringLength( $s1, $s2 ) {
+	public function compareStringLength( $s1, $s2 ) {
 		$l1 = strlen( $s1 );
 		$l2 = strlen( $s2 );
 		if ( $l1 < $l2 ) {
@@ -389,7 +389,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getRegex() {
+	public function getRegex() {
 		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
@@ -403,7 +403,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getRegexCase() {
+	public function getRegexCase() {
 		if ( $this->mRegex === '' ) {
 			$this->initRegex();
 		}
@@ -416,7 +416,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getRegexStart() {
+	public function getRegexStart() {
 		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
@@ -429,7 +429,7 @@ class MagicWord {
 	 * @return string
 	 * @since 1.23
 	 */
-	function getRegexStartToEnd() {
+	public function getRegexStartToEnd() {
 		if ( $this->mRegexStartToEnd == '' ) {
 			$this->initRegex();
 		}
@@ -441,7 +441,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getBaseRegex() {
+	public function getBaseRegex() {
 		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
@@ -455,7 +455,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function match( $text ) {
+	public function match( $text ) {
 		return (bool)preg_match( $this->getRegex(), $text );
 	}
 
@@ -466,7 +466,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function matchStart( $text ) {
+	public function matchStart( $text ) {
 		return (bool)preg_match( $this->getRegexStart(), $text );
 	}
 
@@ -478,7 +478,7 @@ class MagicWord {
 	 * @return bool
 	 * @since 1.23
 	 */
-	function matchStartToEnd( $text ) {
+	public function matchStartToEnd( $text ) {
 		return (bool)preg_match( $this->getRegexStartToEnd(), $text );
 	}
 
@@ -492,7 +492,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function matchVariableStartToEnd( $text ) {
+	public function matchVariableStartToEnd( $text ) {
 		$matches = [];
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
@@ -521,7 +521,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function matchAndRemove( &$text ) {
+	public function matchAndRemove( &$text ) {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegex(),
@@ -536,7 +536,7 @@ class MagicWord {
 	 * @param string $text
 	 * @return bool
 	 */
-	function matchStartAndRemove( &$text ) {
+	public function matchStartAndRemove( &$text ) {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegexStart(),
@@ -552,7 +552,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function pregRemoveAndRecord() {
+	public function pregRemoveAndRecord() {
 		$this->mFound = true;
 		return '';
 	}
@@ -566,7 +566,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function replace( $replacement, $subject, $limit = -1 ) {
+	public function replace( $replacement, $subject, $limit = -1 ) {
 		$res = preg_replace(
 			$this->getRegex(),
 			StringUtils::escapeRegexReplacement( $replacement ),
@@ -587,7 +587,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function substituteCallback( $text, $callback ) {
+	public function substituteCallback( $text, $callback ) {
 		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
 		$this->mModified = $res !== $text;
 		return $res;
@@ -598,7 +598,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getVariableRegex() {
+	public function getVariableRegex() {
 		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
 		}
@@ -610,7 +610,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getVariableStartToEndRegex() {
+	public function getVariableStartToEndRegex() {
 		if ( $this->mVariableStartToEndRegex == '' ) {
 			$this->initRegex();
 		}
@@ -624,14 +624,14 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getSynonym( $i ) {
+	public function getSynonym( $i ) {
 		return $this->mSynonyms[$i];
 	}
 
 	/**
 	 * @return array
 	 */
-	function getSynonyms() {
+	public function getSynonyms() {
 		return $this->mSynonyms;
 	}
 
@@ -641,7 +641,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function getWasModified() {
+	public function getWasModified() {
 		return $this->mModified;
 	}
 
@@ -658,7 +658,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function replaceMultiple( $magicarr, $subject, &$result ) {
+	public function replaceMultiple( $magicarr, $subject, &$result ) {
 		wfDeprecated( __METHOD__, '1.25' );
 		$search = [];
 		$replace = [];
@@ -679,7 +679,7 @@ class MagicWord {
 	 * @param array $array
 	 * @param string $value
 	 */
-	function addToArray( &$array, $value ) {
+	public function addToArray( &$array, $value ) {
 		global $wgContLang;
 		foreach ( $this->mSynonyms as $syn ) {
 			$array[$wgContLang->lc( $syn )] = $value;
@@ -689,14 +689,14 @@ class MagicWord {
 	/**
 	 * @return bool
 	 */
-	function isCaseSensitive() {
+	public function isCaseSensitive() {
 		return $this->mCaseSensitive;
 	}
 
 	/**
 	 * @return int
 	 */
-	function getId() {
+	public function getId() {
 		return $this->mId;
 	}
 }
