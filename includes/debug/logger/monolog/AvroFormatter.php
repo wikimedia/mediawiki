@@ -23,7 +23,7 @@ namespace MediaWiki\Logger\Monolog;
 use AvroIODatumWriter;
 use AvroIOBinaryEncoder;
 use AvroIOTypeException;
-use AvroNamedSchemata;
+use AvroProtocol;
 use AvroSchema;
 use AvroStringIO;
 use AvroValidator;
@@ -132,19 +132,25 @@ class AvroFormatter implements FormatterInterface {
 			return null;
 		}
 
-		if ( !$this->schemas[$channel]['schema'] instanceof AvroSchema ) {
-			$schema = $this->schemas[$channel]['schema'];
-			if ( is_string( $schema ) ) {
-				$this->schemas[$channel]['schema'] = AvroSchema::parse( $schema );
-			} else {
-				$this->schemas[$channel]['schema'] = AvroSchema::real_parse(
-					$schema,
-					null,
-					new AvroNamedSchemata()
+		if ( $this->schemas[$channel]['schema'] instanceof AvroSchema ) {
+			return $this->schemas[$channel]['schema'];
+		}
+
+		if ( isset( $this->schemas[$channel]['protocol'] ) ) {
+			$protocol = AvroProtocol::parse( $this->schemas[$channel]['protocol'] );
+			$schema = $protocol->schemata->schema( $this->schemas[$channel]['schema'] );
+			if ( $schema === null ) {
+				throw new \RuntimeException("Named schema not included in protocol: " .
+					$this->schemas[$channel]['schema']
 				);
 			}
+		} else {
+			$schema = AvroSchema::parse( $this->schemas[$channel]['schema'] );
 		}
-		return $this->schemas[$channel]['schema'];
+
+		$this->schemas[$channel]['schema'] = $schema;
+
+		return $schema;
 	}
 
 	/**
