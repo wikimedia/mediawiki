@@ -30,10 +30,11 @@ if ( !isset( $args[0] ) ) {
 	exit( 1 );
 }
 
+$lang = Language::factory( 'en' );
 $title = Title::newFromText( $args[0] );
 if ( isset( $options['start'] ) ) {
 	$start = wfTimestamp( TS_MW, strtotime( $options['start'] ) );
-	echo "Starting from " . $wgLang->timeanddate( $start ) . "\n";
+	echo "Starting from " . $lang->timeanddate( $start ) . "\n";
 } else {
 	$start = '19700101000000';
 }
@@ -83,7 +84,7 @@ printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n",
 	$type,
 	count( $hashes ),
 	$uncompressedSize / strlen( $serialized ),
-	$wgLang->formatSize( $uncompressedSize ),
+	$lang->formatSize( $uncompressedSize ),
 	strlen( $serialized )
 );
 printf( "Compression time: %5.2f ms\n", $t * 1000 );
