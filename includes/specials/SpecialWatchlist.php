@@ -363,10 +363,21 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr->dataSeek( $rows, 0 );
 
 		$s = $list->beginRecentChangesList();
+		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$counter = 1;
 		foreach ( $rows as $obj ) {
 			# Make RC entry
 			$rc = RecentChange::newFromRow( $obj );
+
+			# Skip CatWatch entries for hidden cats based on user preference
+			if (
+				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
+				!$userShowHiddenCats &&
+				$rc->parseParams()['hidden-cat']
+			) {
+				continue;
+			}
+
 			$rc->counter = $counter++;
 
 			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {

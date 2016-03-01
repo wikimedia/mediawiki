@@ -819,6 +819,10 @@ class RecentChange {
 		$ip = '',
 		$deleted = 0
 	) {
+		$isHiddenCat = WikiPage::factory( $categoryTitle )
+			->getContent()
+			->matchMagicWord( MagicWord::get( 'hiddencat' ) );
+
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
 		$rc->mPerformer = $user;
@@ -845,7 +849,7 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' => ''
+			'rc_params' => serialize( [ 'hidden-cat' => $isHiddenCat ] ),
 		];
 
 		$rc->mExtra = [
