@@ -865,6 +865,39 @@ class RecentChange {
 	}
 
 	/**
+	 * Get a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @return mixed
+	 */
+	public function getParam( $name ) {
+		$params = $this->parseParams();
+		if ( $name === 'hidden-cat' && !isset( $params[$name] ) ) {
+			return $this->addHiddenCatParam();
+		}
+
+		return isset( $params[$name] ) ? $params[$name] : null;
+	}
+
+	/**
+	 * Set a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @param mixed $value parameter value
+	 */
+	public function setParam( $name, $value ) {
+		$params = $this->parseParams();
+		$params = array_merge( $params ? $params : [], [ $name => $value ] );
+		$this->setAttribute( 'rc_params', serialize( $params ) );
+	}
+
+	private function addHiddenCatParam() {
+		$isHiddenCat = WikiCategoryPage::factory( $this->mTitle )->isHidden();
+		$this->setParam( 'hidden-cat', $isHiddenCat );
+		return $isHiddenCat;
+	}
+
+	/**
 	 * Initialises the members of this object from a mysql row object
 	 *
 	 * @param mixed $row
@@ -883,6 +916,16 @@ class RecentChange {
 	 */
 	public function getAttribute( $name ) {
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
+	}
+
+	/**
+	 * Set an attribute value
+	 *
+	 * @param string $name Attribute name
+	 * @param mixed $value Attribute value
+	 */
+	public function setAttribute( $name, $value ) {
+		$this->mAttribs[$name] = $value;
 	}
 
 	/**
