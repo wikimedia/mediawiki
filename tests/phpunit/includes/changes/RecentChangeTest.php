@@ -134,4 +134,39 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
 	}
 
+	public function provideCategoryContent() {
+		return [
+			[ "Hidden. __HIDDENCAT__", true ],
+			[ "Not Hidden.", false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCategoryContent
+	 * @covers RecentChange::newForCategorization
+	 */
+	public function testHiddenCategoryChange( $content, $isHidden ) {
+		$categoryTitle = Title::newFromText( 'CategoryPage', NS_CATEGORY );
+		$categoryPage = WikiPage::factory( $categoryTitle );
+		$content = ContentHandler::makeContent(
+			$content,
+			$categoryTitle,
+			CONTENT_MODEL_WIKITEXT
+		);
+		$categoryPage->doEditContent( $content, '' );
+
+		$rc = RecentChange::newForCategorization(
+			'0',
+			$categoryTitle,
+			$this->user,
+			$this->user_comment,
+			$this->title,
+			$categoryTitle->getLatestRevID(),
+			$categoryTitle->getLatestRevID(),
+			'0',
+			false
+		);
+
+		$this->assertEquals( [ 'hidden-cat' => $isHidden ], $rc->parseParams() );
+	}
 }
