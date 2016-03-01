@@ -298,7 +298,7 @@
 	"cascadeprotected": "Na pele esterıtene ra sıtar biya, çıke na zerrê {{PLURAL:$1|pela ke|pelunê ke}} dera/derê be \"cascading\" opsiyoni kılit biya, $2 de bena ra.",
 	"namespaceprotected": "'''$1''' ''namespace'' de desturê sıma be vurnaisê pelu çino.",
 	"ns-specialprotected": "Pelê xususi nêvurrinê.",
-	"titleprotected": "No sername terefê [[User:$1|$1]]i ra, afernaene ra sıtar biyo.\nSebebê ho <em>$2</em> dero.",
+	"titleprotected": "No sername terefê [[User:$1|$1]] ra, afernayene ra sıtar biyo.\nSebebê xo <em>$2</em> dero.",
 	"virus-badscanner": "Sıkılo xırabın: ''scanner''ê ''virus''ê nêzanıtey: ''$1''",
 	"virus-scanfailed": "''scan'' nêbi (code $1)",
 	"virus-unknownscanner": "''antivirus''o nêzanıte:",
