@@ -160,19 +160,18 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * In which language to get this message. True, which is the default,
-	 * means the current interface language, false content language.
+	 * means the current user language, false content language.
 	 *
 	 * @var bool
 	 */
 	protected $interface = true;
 
 	/**
-	 * In which language to get this message. Overrides the $interface
-	 * variable.
+	 * In which language to get this message. Overrides the $interface setting.
 	 *
-	 * @var Language
+	 * @var Language|bool Explicit language object, or false for user language
 	 */
-	protected $language = null;
+	protected $language = false;
 
 	/**
 	 * @var string The message key. If $keysToTry has more than one element,
@@ -225,18 +224,14 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * @since 1.17
-	 *
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of
 	 * message keys to try and use the first non-empty message for, or a
 	 * MessageSpecifier to copy from.
 	 * @param array $params Message parameters.
-	 * @param Language $language Optional language of the message, defaults to $wgLang.
-	 *
+	 * @param Language $language [optional] Language to use (defaults to current user language).
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $key, $params = [], Language $language = null ) {
-		global $wgLang;
-
 		if ( $key instanceof MessageSpecifier ) {
 			if ( $params ) {
 				throw new InvalidArgumentException(
@@ -260,7 +255,9 @@ class Message implements MessageSpecifier, Serializable {
 		$this->key = reset( $this->keysToTry );
 
 		$this->parameters = array_values( $params );
-		$this->language = $language ?: $wgLang;
+		// User language is only resolved in getLanguage(). This helps preserve the
+		// semantic intent of "user language" across serialize() and unserialize().
+		$this->language = $language ?: false;
 	}
 
 	/**
@@ -271,7 +268,7 @@ class Message implements MessageSpecifier, Serializable {
 	public function serialize() {
 		return serialize( [
 			'interface' => $this->interface,
-			'language' => $this->language instanceof StubUserLang ? false : $this->language->getCode(),
+			'language' => $this->language ? $this->language->getCode() : false,
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
@@ -287,8 +284,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @param string $serialized
 	 */
 	public function unserialize( $serialized ) {
-		global $wgLang;
-
 		$data = unserialize( $serialized );
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
@@ -296,7 +291,7 @@ class Message implements MessageSpecifier, Serializable {
 		$this->parameters = $data['parameters'];
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
-		$this->language = $data['language'] ? Language::factory( $data['language'] ) : $wgLang;
+		$this->language = $data['language'] ? Language::factory( $data['language'] ) : false;
 		$this->title = $data['title'];
 	}
 
@@ -365,7 +360,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Language
 	 */
 	public function getLanguage() {
-		return $this->language;
+		// Defaults to false which means current user language
+		return $this->language ?: RequestContext::getMain()->getLanguage();
 	}
 
 	/**
@@ -425,7 +421,7 @@ class Message implements MessageSpecifier, Serializable {
 	public function getTitle() {
 		global $wgContLang, $wgForceUIMsgAsContentMsg;
 
-		$code = $this->language->getCode();
+		$code = $this->getLanguage()->getCode();
 		$title = $this->key;
 		if (
 			$wgContLang->getCode() !== $code
@@ -656,23 +652,24 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * Request the message in any language that is supported.
+	 *
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
 	 *
 	 * @since 1.17
-	 *
 	 * @param Language|string $lang Language code or Language object.
-	 *
 	 * @return Message $this
 	 * @throws MWException
 	 */
 	public function inLanguage( $lang ) {
-		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
+		if ( $lang instanceof Language ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
 			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
 				$this->language = Language::factory( $lang );
 			}
+		} elseif ( $lang instanceof StubUserLang ) {
+			$this->language = false;
 		} else {
 			$type = gettype( $lang );
 			throw new MWException( __METHOD__ . " must be "
@@ -1061,17 +1058,17 @@ class Message implements MessageSpecifier, Serializable {
 			} elseif ( isset( $param['num'] ) ) {
 				// Replace number params always in before step for now.
 				// No support for combined raw and num params
-				return [ 'before', $this->language->formatNum( $param['num'] ) ];
+				return [ 'before', $this->getLanguage()->formatNum( $param['num'] ) ];
 			} elseif ( isset( $param['duration'] ) ) {
-				return [ 'before', $this->language->formatDuration( $param['duration'] ) ];
+				return [ 'before', $this->getLanguage()->formatDuration( $param['duration'] ) ];
 			} elseif ( isset( $param['expiry'] ) ) {
-				return [ 'before', $this->language->formatExpiry( $param['expiry'] ) ];
+				return [ 'before', $this->getLanguage()->formatExpiry( $param['expiry'] ) ];
 			} elseif ( isset( $param['period'] ) ) {
-				return [ 'before', $this->language->formatTimePeriod( $param['period'] ) ];
+				return [ 'before', $this->getLanguage()->formatTimePeriod( $param['period'] ) ];
 			} elseif ( isset( $param['size'] ) ) {
-				return [ 'before', $this->language->formatSize( $param['size'] ) ];
+				return [ 'before', $this->getLanguage()->formatSize( $param['size'] ) ];
 			} elseif ( isset( $param['bitrate'] ) ) {
-				return [ 'before', $this->language->formatBitrate( $param['bitrate'] ) ];
+				return [ 'before', $this->getLanguage()->formatBitrate( $param['bitrate'] ) ];
 			} elseif ( isset( $param['plaintext'] ) ) {
 				return [ 'after', $this->formatPlaintext( $param['plaintext'] ) ];
 			} else {
@@ -1108,7 +1105,7 @@ class Message implements MessageSpecifier, Serializable {
 			$this->title,
 			/*linestart*/true,
 			$this->interface,
-			$this->language
+			$this->getLanguage()
 		);
 
 		return $out instanceof ParserOutput ? $out->getText() : $out;
@@ -1127,7 +1124,7 @@ class Message implements MessageSpecifier, Serializable {
 		return MessageCache::singleton()->transform(
 			$string,
 			$this->interface,
-			$this->language,
+			$this->getLanguage(),
 			$this->title
 		);
 	}
@@ -1145,7 +1142,7 @@ class Message implements MessageSpecifier, Serializable {
 			$cache = MessageCache::singleton();
 
 			foreach ( $this->keysToTry as $key ) {
-				$message = $cache->get( $key, $this->useDatabase, $this->language );
+				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage() );
 				if ( $message !== false && $message !== '' ) {
 					break;
 				}

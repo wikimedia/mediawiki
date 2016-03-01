@@ -537,7 +537,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 		// NOTE: make sure internal caching of the message text is reset appropriately.
 		// NOTE: wgForceUIMsgAsContentMsg forces the messages *current* language to be used.
-		$msg = wfMessage( 'mainpage' );
+		$msg = wfMessage( 'mainpage' )->inLanguage( 'fr' );
 		$this->assertEquals(
 			'Accueil',
 			$msg->inContentLanguage()->plain(),
