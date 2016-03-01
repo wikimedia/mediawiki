@@ -72,7 +72,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
-		$config = $this->getConfig();
 
 		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
 		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
