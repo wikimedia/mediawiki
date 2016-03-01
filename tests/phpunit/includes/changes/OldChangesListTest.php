@@ -29,8 +29,10 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgLang' => Language::factory( 'qqx' )
 		] );
+		// FIXME: Language is also set down in getContext() but something
+		// still ends up using the main context somehow.
+		RequestContext::getMain()->setLanguage( 'qqx' );
 	}
 
 	/**
