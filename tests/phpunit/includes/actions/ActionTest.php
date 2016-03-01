@@ -187,7 +187,7 @@ class ActionTest extends MediaWikiTestCase {
 class DummyAction extends Action {
 
 	public function getName() {
-		return get_called_class();
+		return static::class;
 	}
 
 	public function show() {

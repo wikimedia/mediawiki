@@ -102,7 +102,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// Complain if self::setUp() was called, but not self::tearDown()
 		// $this->called['setUp'] will be checked by self::testMediaWikiTestCaseParentSetupCalled()
 		if ( isset( $this->called['setUp'] ) && !isset( $this->called['tearDown'] ) ) {
-			throw new MWException( get_called_class() . "::tearDown() must call parent::tearDown()" );
+			throw new MWException( static::class . "::tearDown() must call parent::tearDown()" );
 		}
 	}
 
@@ -294,7 +294,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	final public function testMediaWikiTestCaseParentSetupCalled() {
 		$this->assertArrayHasKey( 'setUp', $this->called,
-			get_called_class() . "::setUp() must call parent::setUp()"
+			static::class . '::setUp() must call parent::setUp()'
 		);
 	}
 
