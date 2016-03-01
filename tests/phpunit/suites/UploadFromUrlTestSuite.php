@@ -63,8 +63,9 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$messageMemc = wfGetMessageCacheStorage();
 		$parserMemc = wfGetParserCacheStorage();
 
+		RequestContext::resetMain();
+		$context = RequestContext::getMain();
 		$wgUser = new User;
-		$context = new RequestContext;
 		$wgLang = $context->getLanguage();
 		$wgOut = $context->getOutput();
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
