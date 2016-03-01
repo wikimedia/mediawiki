@@ -227,12 +227,13 @@ class ParserTest {
 		$messageMemc = wfGetMessageCacheStorage();
 		$parserMemc = wfGetParserCacheStorage();
 
-		$wgUser = new User;
+		RequestContext::resetMain();
 		$context = new RequestContext;
+		$wgUser = new User;
 		$wgLang = $context->getLanguage();
 		$wgOut = $context->getOutput();
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 		$wgRequest = $context->getRequest();
+		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory = "$IP/skins";
@@ -931,10 +932,12 @@ class ParserTest {
 			$GLOBALS[$var] = $val;
 		}
 
+		// Must be set before $context as user language defaults to $wgContLang
 		$GLOBALS['wgContLang'] = Language::factory( $lang );
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
 
-		$context = new RequestContext();
+		RequestContext::resetMain();
+		$context = RequestContext::getMain();
 		$GLOBALS['wgLang'] = $context->getLanguage();
 		$GLOBALS['wgOut'] = $context->getOutput();
 		$GLOBALS['wgUser'] = $context->getUser();
