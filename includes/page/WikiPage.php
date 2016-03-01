@@ -100,7 +100,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Title $title
 	 *
 	 * @throws MWException
-	 * @return WikiPage Object of the appropriate type
+	 * @return WikiPage|WikiCategoryPage|WikiFilePage
 	 */
 	public static function factory( Title $title ) {
 		$ns = $title->getNamespace();
