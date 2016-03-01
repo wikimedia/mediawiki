@@ -225,7 +225,16 @@ class EmailNotification {
 		$this->composed_common = false;
 		$this->pageStatus = $pageStatus;
 
-		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
+		$formattedPageStatus =
+			[
+				'deleted',
+				'created',
+				'moved',
+				'restored',
+				'changed',
+				'catMemberAdded',
+				'catMemberRemoved',
+			];
 
 		Hooks::run( 'UpdateUserMailerFormattedPageStatus', [ &$formattedPageStatus ] );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
@@ -249,6 +258,7 @@ class EmailNotification {
 				// and don't send to watchers who are blocked and cannot login
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
+					//TODO AddShore check new optiona nd RC type?
 					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()

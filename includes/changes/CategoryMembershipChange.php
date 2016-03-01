@@ -123,6 +123,7 @@ class CategoryMembershipChange {
 	 * @param int $type
 	 */
 	private function createRecentChangesEntry( Title $categoryTitle, $type ) {
+		//TODO pass type into this method call?
 		$this->notifyCategorization(
 			$this->timestamp,
 			$categoryTitle,
@@ -197,6 +198,7 @@ class CategoryMembershipChange {
 				$bot,
 				$ip,
 				$deleted
+				//TODO addshore pass in added or removed in here?
 			]
 		);
 		$rc->save();
