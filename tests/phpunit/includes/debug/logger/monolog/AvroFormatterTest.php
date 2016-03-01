@@ -57,7 +57,7 @@ class AvroFormatterTest extends MediaWikiTestCase {
 	public function testDoesSomethingWhenSchemaAvailable() {
 		$formatter = new AvroFormatter( [
 			'string' => [
-				'schema' => [ 'type' => 'string' ],
+				'schema' => json_encode( [ 'type' => 'string' ] ),
 				'revision' => 1010101,
 			]
 		] );
@@ -69,5 +69,38 @@ class AvroFormatterTest extends MediaWikiTestCase {
 		// basically just tell us if avro changes its string encoding, or if
 		// we completely fail to generate a log message.
 		$this->assertEquals( 'AAAAAAAAD2m1GGJldHRlciB0byBiZQ==', base64_encode( $res ) );
+	}
+
+	public function testReadsAvroProtocols() {
+		$protocol = json_encode( [
+			'protocol' => 'UnitTest',
+			'namespace' => 'org.wikimedia.unittest',
+			'types' => [
+				[
+					'type' => 'record',
+					'namespae' => null,
+					'name' => 'Foo',
+					'fields' => [
+						[ 'name' => 'bar', 'type' => 'string' ],
+					],
+				]
+			],
+			'messages' => [],
+		] );
+		$formatter = new AvroFormatter( [
+			'Foo' => [
+				'protocol' => $protocol,
+				'schema' => 'org.wikimedia.unittest.Foo',
+				'revision' => 1010101,
+			]
+		] );
+		$res = $formatter->format( [
+			'channel' => 'Foo',
+			'context' => [ 'bar' => 'bigger than the other' ],
+		] );
+		// This doesn't on its own say much other than that avro has a consistent encoding,
+		// but it would also tell us if we somehow broke avro and it returned something but
+		// not what it was supposed to.
+		$this->assertEquals( 'AAAAAAAAD2m1KmJpZ2dlciB0aGFuIHRoZSBvdGhlcg==', base64_encode( $res ) );
 	}
 }
