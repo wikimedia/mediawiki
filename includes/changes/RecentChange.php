@@ -824,6 +824,8 @@ class RecentChange {
 		$ip = '',
 		$deleted = 0
 	) {
+		$isHiddenCat = WikiCategoryPage::isHidden( WikiPage::factory( $categoryTitle ) );
+
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
 		$rc->mPerformer = $user;
@@ -850,7 +852,7 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' => ''
+			'rc_params' => serialize( [ 'hidden-cat' => $isHiddenCat ] ),
 		];
 
 		$rc->mExtra = [
@@ -862,6 +864,17 @@ class RecentChange {
 		];
 
 		return $rc;
+	}
+
+	/**
+	 * Get a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @return mixed
+	 */
+	public function getParam( $name ) {
+		$params = $this->parseParams();
+		return isset( $params[$name] ) ? $params[$name] : null;
 	}
 
 	/**
