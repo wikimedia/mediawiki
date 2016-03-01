@@ -4560,6 +4560,7 @@ $wgDefaultUserOptions = [
 	'enotifrevealaddr' => 0,
 	'enotifusertalkpages' => 1,
 	'enotifwatchlistpages' => 1,
+	'enotifwatchlistcategories' => 0,
 	'extendwatchlist' => 1,
 	'fancysig' => 0,
 	'forceeditsummary' => 0,
