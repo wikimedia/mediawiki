@@ -125,6 +125,13 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
+	 * Make this session not be persisted across requests
+	 */
+	public function unpersist() {
+		$this->backend->unpersist();
+	}
+
+	/**
 	 * Indicate whether the user should be remembered independently of the
 	 * session ID.
 	 * @return bool

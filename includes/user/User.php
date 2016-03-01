@@ -3747,6 +3747,7 @@ class User implements IDBAccessObject {
 		} else {
 			$this->clearInstanceCache( 'defaults' );
 			$delay = $session->delaySave();
+			$session->unpersist(); // Clear cookies (T127436)
 			$session->setLoggedOutTimestamp( time() );
 			$session->setUser( new User );
 			$session->set( 'wsUserID', 0 ); // Other code expects this

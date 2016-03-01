@@ -284,6 +284,35 @@ final class SessionBackend {
 	}
 
 	/**
+	 * Make this session not persisted across requests
+	 */
+	public function unpersist() {
+		if ( $this->persist ) {
+			// Close the PHP session, if we're the one that's open
+			if ( $this->usePhpSessionHandling && PHPSessionHandler::isEnabled() &&
+				session_id() === (string)$this->id
+			) {
+				$this->logger->debug(
+					'SessionBackend "{session}" Closing PHP session for unpersist',
+					[ 'session' => $this->id ]
+				);
+				session_write_close();
+				session_id( '' );
+			}
+
+			$this->persist = false;
+			$this->forcePersist = true;
+			$this->metaDirty = true;
+
+			// Delete the session data, so the local cache-only write in
+			// self::save() doesn't get things out of sync with the backend.
+			$this->store->delete( wfMemcKey( 'MWSession', (string)$this->id ) );
+
+			$this->autosave();
+		}
+	}
+
+	/**
 	 * Indicate whether the user should be remembered independently of the
 	 * session ID.
 	 * @return bool
@@ -629,14 +658,22 @@ final class SessionBackend {
 				'forcePersist' => (int)$this->forcePersist,
 		] );
 
-		// Persist to the provider, if flagged
-		if ( $this->persist && ( $this->metaDirty || $this->forcePersist ) ) {
-			foreach ( $this->requests as $request ) {
-				$request->setSessionId( $this->getSessionId() );
-				$this->provider->persistSession( $this, $request );
-			}
-			if ( !$closing ) {
-				$this->checkPHPSession();
+		// Persist or unpersist to the provider, if necessary
+		if ( $this->metaDirty || $this->forcePersist ) {
+			if ( $this->persist ) {
+				foreach ( $this->requests as $request ) {
+					$request->setSessionId( $this->getSessionId() );
+					$this->provider->persistSession( $this, $request );
+				}
+				if ( !$closing ) {
+					$this->checkPHPSession();
+				}
+			} else {
+				foreach ( $this->requests as $request ) {
+					if ( $request->getSessionId() === $this->id ) {
+						$this->provider->unpersistSession( $request );
+					}
+				}
 			}
 		}
 
