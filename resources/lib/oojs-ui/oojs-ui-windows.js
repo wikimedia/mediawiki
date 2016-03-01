@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.0
+ * OOjs UI v0.16.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-22T22:33:33Z
+ * Date: 2016-03-01T21:50:12Z
  */
 ( function ( OO ) {
 
@@ -525,7 +525,7 @@ OO.ui.ActionSet.prototype.setAbilities = function ( actions ) {
  * When making changes to multiple actions, use this method instead of iterating over the actions
  * manually to defer emitting a #change event until after all actions have been changed.
  *
- * @param {Object|null} actions Filters to use to determine which actions to iterate over; see #get
+ * @param {Object|null} filter Filters to use to determine which actions to iterate over; see #get
  * @param {Function} callback Callback to run for each action; callback is invoked with three
  *   arguments: the action, the action's index, the list of actions being iterated over
  * @chainable

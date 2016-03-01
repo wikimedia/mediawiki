@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.0
+ * OOjs UI v0.16.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-22T22:33:33Z
+ * Date: 2016-03-01T21:50:12Z
  */
 ( function ( OO ) {
 
@@ -56,14 +56,14 @@ OO.ui.MouseButtons = {
 };
 
 /**
- * @property {Number}
+ * @property {number}
  */
 OO.ui.elementId = 0;
 
 /**
  * Generate a unique ID for element
  *
- * @return {String} [id]
+ * @return {string} [id]
  */
 OO.ui.generateElementId = function () {
 	OO.ui.elementId += 1;
@@ -74,7 +74,7 @@ OO.ui.generateElementId = function () {
  * Check if an element is focusable.
  * Inspired from :focusable in jQueryUI v1.11.4 - 2015-04-14
  *
- * @param {jQuery} element Element to test
+ * @param {jQuery} $element Element to test
  * @return {boolean}
  */
 OO.ui.isFocusableElement = function ( $element ) {
@@ -356,7 +356,7 @@ OO.ui.infuse = function ( idOrNode ) {
 	 * they support unnamed, ordered message parameters.
 	 *
 	 * @param {string} key Message key
-	 * @param {Mixed...} [params] Message parameters
+	 * @param {...Mixed} [params] Message parameters
 	 * @return {string} Translated message with parameters substituted
 	 */
 	OO.ui.msg = function ( key ) {
@@ -382,7 +382,7 @@ OO.ui.infuse = function ( idOrNode ) {
  * Use this when you are statically specifying a message and the message may not yet be present.
  *
  * @param {string} key Message key
- * @param {Mixed...} [params] Message parameters
+ * @param {...Mixed} [params] Message parameters
  * @return {Function} Function that returns the resolved message when executed
  */
 OO.ui.deferMsg = function () {
@@ -579,6 +579,7 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
 /**
  * Implementation helper for `infuse`; skips the type check and has an
  * extra property so that only the top-level invocation touches the DOM.
+ *
  * @private
  * @param {string|HTMLElement|jQuery} idOrNode
  * @param {jQuery.Promise|boolean} domPromise A promise that will be resolved
@@ -1205,7 +1206,7 @@ OO.ui.Element.prototype.getData = function () {
 /**
  * Set element data.
  *
- * @param {Mixed} Element data
+ * @param {Mixed} data Element data
  * @chainable
  */
 OO.ui.Element.prototype.setData = function ( data ) {
@@ -1266,6 +1267,7 @@ OO.ui.Element.prototype.getTagName = function () {
 
 /**
  * Check if the element is attached to the DOM
+ *
  * @return {boolean} The element is attached to the DOM
  */
 OO.ui.Element.prototype.isElementAttached = function () {
@@ -1726,6 +1728,7 @@ OO.ui.mixin.TabIndexedElement.prototype.getTabIndex = function () {
  * See the [OOjs UI documentation on MediaWiki] [1] for examples.
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Buttons
+ *
  * @abstract
  * @class
  *
@@ -2577,7 +2580,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
  *
  * The title is displayed when a user moves the mouse over the indicator.
  *
- * @param {string|Function|null} indicator Indicator title text, a function that returns text, or
+ * @param {string|Function|null} indicatorTitle Indicator title text, a function that returns text, or
  *   `null` for no indicator title
  * @chainable
  */
@@ -3203,7 +3206,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKeyedElement = function ( $acc
 /**
  * Set accesskey.
  *
- * @param {string|Function|null} accesskey Key, a function that returns a key, or `null` for no accesskey
+ * @param {string|Function|null} accessKey Key, a function that returns a key, or `null` for no accesskey
  * @chainable
  */
 OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
@@ -4466,6 +4469,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 
 /**
  * Set popup alignment
+ *
  * @param {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
  *  `backwards` or `forwards`.
  */
@@ -4480,6 +4484,7 @@ OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
 
 /**
  * Get popup alignment
+ *
  * @return {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
  *  `backwards` or `forwards`.
  */
@@ -5188,7 +5193,7 @@ OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
 /**
  * Scroll item into view, preventing spurious mouse highlight actions from happening.
  *
- * @return {OO.ui.OptionWidget} Item to scroll into view
+ * @param {OO.ui.OptionWidget} item Item to scroll into view
  */
 OO.ui.SelectWidget.prototype.scrollItemIntoView = function ( item ) {
 	var widget = this;
@@ -5977,6 +5982,7 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 
 /**
  * Update menu item visibility after input changes.
+ *
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
@@ -6052,6 +6058,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
  *
  * Note that ‘choose’ should never be modified programmatically. A user can choose an option with the keyboard
  * or mouse and it becomes selected. To select an item programmatically, use the #selectItem method.
+ *
  * @param {OO.ui.OptionWidget} item Item to choose
  * @chainable
  */
@@ -8617,6 +8624,7 @@ OO.inheritClass( OO.ui.ComboBoxInputWidget, OO.ui.TextInputWidget );
 
 /**
  * Get the combobox's menu.
+ *
  * @return {OO.ui.FloatingMenuSelectWidget} Menu widget
  */
 OO.ui.ComboBoxInputWidget.prototype.getMenu = function () {
@@ -8625,6 +8633,7 @@ OO.ui.ComboBoxInputWidget.prototype.getMenu = function () {
 
 /**
  * Get the combobox's text input widget.
+ *
  * @return {OO.ui.TextInputWidget} Text input widget
  */
 OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
@@ -8772,6 +8781,7 @@ OO.ui.ComboBoxWidget = OO.ui.ComboBoxInputWidget;
  * Please see the [OOjs UI documentation on MediaWiki] [1] for examples and more information.
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
+ *
  * @class
  * @extends OO.ui.Layout
  * @mixins OO.ui.mixin.LabelElement

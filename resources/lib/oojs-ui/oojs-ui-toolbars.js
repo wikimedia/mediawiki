@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.0
+ * OOjs UI v0.16.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-22T22:33:33Z
+ * Date: 2016-03-01T21:50:12Z
  */
 ( function ( OO ) {
 
@@ -356,7 +356,7 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
  * every time the state of the application using the toolbar changes, and an update to the state of
  * tools is required.
  *
- * @param {Mixed...} data Application-defined parameters
+ * @param {...Mixed} data Application-defined parameters
  */
 
 /* Methods */
@@ -1359,6 +1359,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
  * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ *
  * @class
  * @extends OO.Factory
  * @constructor
