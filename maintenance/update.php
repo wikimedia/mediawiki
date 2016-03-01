@@ -86,7 +86,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function execute() {
-		global $wgVersion, $wgLang, $wgAllowSchemaUpdates;
+		global $wgVersion, $wgAllowSchemaUpdates;
 
 		if ( !$wgAllowSchemaUpdates
 			&& !( $this->hasOption( 'force' )
@@ -112,7 +112,9 @@ class UpdateMediaWiki extends Maintenance {
 			}
 		}
 
-		$wgLang = Language::factory( 'en' );
+		$lang = Language::factory( 'en' );
+		// Set global language to ensure localised errors are in English (bug 20633)
+		RequestContext::getMain()->setLanguage( $lang );
 
 		define( 'MW_UPDATER', true );
 
@@ -191,7 +193,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$time2 = microtime( true );
 
-		$timeDiff = $wgLang->formatTimePeriod( $time2 - $time1 );
+		$timeDiff = $lang->formatTimePeriod( $time2 - $time1 );
 		$this->output( "\nDone in $timeDiff.\n" );
 	}
 
