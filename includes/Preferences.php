@@ -534,6 +534,12 @@ class Preferences {
 					'label-message' => 'tog-enotifwatchlistpages',
 					'disabled' => $disableEmailPrefs,
 				];
+				$defaultPreferences['enotifwatchlistcategories'] = [
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'tog-enotifwatchlistcategories',
+					'disabled' => $disableEmailPrefs,
+				];
 			}
 			if ( $config->get( 'EnotifUserTalk' ) ) {
 				$defaultPreferences['enotifusertalkpages'] = [

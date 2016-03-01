@@ -225,7 +225,16 @@ class EmailNotification {
 		$this->composed_common = false;
 		$this->pageStatus = $pageStatus;
 
-		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
+		$formattedPageStatus =
+			[
+				'deleted',
+				'created',
+				'moved',
+				'restored',
+				'changed',
+				'catMemberAdded',
+				'catMemberRemoved',
+			];
 
 		Hooks::run( 'UpdateUserMailerFormattedPageStatus', [ &$formattedPageStatus ] );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
@@ -248,8 +257,14 @@ class EmailNotification {
 				// Send updates to watchers other than the current editor
 				// and don't send to watchers who are blocked and cannot login
 				$userArray = UserArray::newFromIDs( $watchers );
+				$isCatMemberChange = substr( $this->pageStatus, 0, 9 ) == 'catMember';
 				foreach ( $userArray as $watchingUser ) {
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
+					if (
+						( (
+							$watchingUser->getOption( 'enotifwatchlistpages' ) && !$isCatMemberChange
+						) || (
+							$watchingUser->getOption( 'enotifwatchlistcategories' ) && $isCatMemberChange
+						) )
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
@@ -388,17 +403,23 @@ class EmailNotification {
 		// Messages:
 		// enotif_subject_deleted, enotif_subject_created, enotif_subject_moved,
 		// enotif_subject_restored, enotif_subject_changed
+		// enotif_subject_catMemberAdded, enotif_subject_catMemberRemoved
 		$this->subject = wfMessage( 'enotif_subject_' . $this->pageStatus )->inContentLanguage()
 			->params( $pageTitle, $keys['$PAGEEDITOR'] )->text();
 
 		// Messages:
 		// enotif_body_intro_deleted, enotif_body_intro_created, enotif_body_intro_moved,
 		// enotif_body_intro_restored, enotif_body_intro_changed
+		// enotif_body_intro_catMemberAdded, enotif_body_intro_catMemberRemoved
 		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
 			->inContentLanguage()->params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )
 			->text();
 
-		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
+		if( substr( $this->pageStatus, 0, 9 ) == 'catMember' ) {
+			$body = wfMessage( 'enotif_body_catMember' )->inContentLanguage()->plain();
+		} else {
+			$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
+		}
 		$body = strtr( $body, $keys );
 		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );

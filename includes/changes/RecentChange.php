@@ -324,21 +324,18 @@ class RecentChange {
 			$editor = $this->getPerformer();
 			$title = $this->getTitle();
 
-			// Never send an RC notification email about categorization changes
-			if ( $this->mAttribs['rc_type'] != RC_CATEGORIZE ) {
-				if ( Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) ) {
-					# @todo FIXME: This would be better as an extension hook
-					$enotif = new EmailNotification();
-					$enotif->notifyOnPageChange(
-						$editor,
-						$title,
-						$this->mAttribs['rc_timestamp'],
-						$this->mAttribs['rc_comment'],
-						$this->mAttribs['rc_minor'],
-						$this->mAttribs['rc_last_oldid'],
-						$this->mExtra['pageStatus']
-					);
-				}
+			if ( Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) ) {
+				# @todo FIXME: This would be better as an extension hook
+				$enotif = new EmailNotification();
+				$enotif->notifyOnPageChange(
+					$editor,
+					$title,
+					$this->mAttribs['rc_timestamp'],
+					$this->mAttribs['rc_comment'],
+					$this->mAttribs['rc_minor'],
+					$this->mAttribs['rc_last_oldid'],
+					$this->mExtra['pageStatus']
+				);
 			}
 		}
 
@@ -803,6 +800,7 @@ class RecentChange {
 	 * @param bool $bot true, if the change was made by a bot
 	 * @param string $ip IP address of the user, if the change was made anonymously
 	 * @param int $deleted Indicates whether the change has been deleted
+	 * @param string $emailPageStatus Indicates the type of change for email notifications
 	 *
 	 * @return RecentChange
 	 */
@@ -817,7 +815,8 @@ class RecentChange {
 		$lastTimestamp,
 		$bot,
 		$ip = '',
-		$deleted = 0
+		$deleted = 0,
+		$emailPageStatus
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
@@ -853,7 +852,7 @@ class RecentChange {
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => 0,
 			'newSize' => 0,
-			'pageStatus' => 'changed'
+			'pageStatus' => $emailPageStatus
 		];
 
 		return $rc;

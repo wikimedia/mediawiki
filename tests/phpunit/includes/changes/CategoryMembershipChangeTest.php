@@ -62,6 +62,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
 		$this->assertEquals( null, self::$lastNotifyArgs[9] );
 		$this->assertEquals( 0, self::$lastNotifyArgs[10] );
+		$this->assertEquals( 'catMemberAdded', self::$lastNotifyArgs[11] );
 	}
 
 	public function testChangeRemovedNoRev() {
@@ -81,6 +82,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
 		$this->assertEquals( null, self::$lastNotifyArgs[9] );
 		$this->assertEquals( 0, self::$lastNotifyArgs[10] );
+		$this->assertEquals( 'catMemberRemoved', self::$lastNotifyArgs[11] );
 	}
 
 	public function testChangeAddedWithRev() {
@@ -101,6 +103,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 0, self::$lastNotifyArgs[8] );
 		$this->assertEquals( '127.0.0.1', self::$lastNotifyArgs[9] );
 		$this->assertEquals( 0, self::$lastNotifyArgs[10] );
+		$this->assertEquals( 'catMemberAdded', self::$lastNotifyArgs[11] );
 	}
 
 	public function testChangeRemovedWithRev() {
@@ -121,6 +124,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 0, self::$lastNotifyArgs[8] );
 		$this->assertEquals( '127.0.0.1', self::$lastNotifyArgs[9] );
 		$this->assertEquals( 0, self::$lastNotifyArgs[10] );
+		$this->assertEquals( 'catMemberRemoved', self::$lastNotifyArgs[11] );
 	}
 
 }
