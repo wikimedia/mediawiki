@@ -6,9 +6,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgLang' => Language::factory( 'en' ),
 			'wgForceUIMsgAsContentMsg' => [],
 		] );
+
+		RequestContext::getMain()->setLanguage( 'en' );
 	}
 
 	/**
@@ -517,7 +518,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguage() {
-		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
+		RequestContext::getMain()->setLanguage( 'fr' );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately
 		$msg = wfMessage( 'mainpage' );
@@ -531,13 +532,12 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testInContentLanguageOverride() {
 		$this->setMwGlobals( [
-			'wgLang' => Language::factory( 'fr' ),
 			'wgForceUIMsgAsContentMsg' => [ 'mainpage' ],
 		] );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately.
 		// NOTE: wgForceUIMsgAsContentMsg forces the messages *current* language to be used.
-		$msg = wfMessage( 'mainpage' );
+		$msg = wfMessage( 'mainpage' )->inLanguage( 'fr' );
 		$this->assertEquals(
 			'Accueil',
 			$msg->inContentLanguage()->plain(),
