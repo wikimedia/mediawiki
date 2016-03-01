@@ -42,7 +42,7 @@ class MagicWordArray {
 	/**
 	 * @param array $names
 	 */
-	function __construct( $names = [] ) {
+	public function __construct( $names = [] ) {
 		$this->names = $names;
 	}
 
@@ -70,7 +70,7 @@ class MagicWordArray {
 	 * Get a 2-d hashtable for this array
 	 * @return array
 	 */
-	function getHash() {
+	public function getHash() {
 		if ( is_null( $this->hash ) ) {
 			global $wgContLang;
 			$this->hash = [ 0 => [], 1 => [] ];
@@ -92,7 +92,7 @@ class MagicWordArray {
 	 * Get the base regex
 	 * @return array
 	 */
-	function getBaseRegex() {
+	public function getBaseRegex() {
 		if ( is_null( $this->baseRegex ) ) {
 			$this->baseRegex = [ 0 => '', 1 => '' ];
 			foreach ( $this->names as $name ) {
@@ -117,7 +117,7 @@ class MagicWordArray {
 	 * Get an unanchored regex that does not match parameters
 	 * @return array
 	 */
-	function getRegex() {
+	public function getRegex() {
 		if ( is_null( $this->regex ) ) {
 			$base = $this->getBaseRegex();
 			$this->regex = [ '', '' ];
@@ -136,7 +136,7 @@ class MagicWordArray {
 	 *
 	 * @return string
 	 */
-	function getVariableRegex() {
+	public function getVariableRegex() {
 		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
 	}
 
@@ -145,7 +145,7 @@ class MagicWordArray {
 	 *
 	 * @return array
 	 */
-	function getRegexStart() {
+	public function getRegexStart() {
 		$base = $this->getBaseRegex();
 		$newRegex = [ '', '' ];
 		if ( $base[0] !== '' ) {
@@ -162,7 +162,7 @@ class MagicWordArray {
 	 *
 	 * @return array
 	 */
-	function getVariableStartToEndRegex() {
+	public function getVariableStartToEndRegex() {
 		$base = $this->getBaseRegex();
 		$newRegex = [ '', '' ];
 		if ( $base[0] !== '' ) {
@@ -192,7 +192,7 @@ class MagicWordArray {
 	 * @throws MWException
 	 * @return array
 	 */
-	function parseMatch( $m ) {
+	public function parseMatch( $m ) {
 		reset( $m );
 		while ( list( $key, $value ) = each( $m ) ) {
 			if ( $key === 0 || $value === '' ) {
