@@ -325,12 +325,23 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->initChangesListRows( $rows );
 
+		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$rclistOutput = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {
 			if ( $limit == 0 ) {
 				break;
 			}
 			$rc = RecentChange::newFromRow( $obj );
+
+			# Skip CatWatch entries for hidden cats based on user preference
+			if (
+				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
+				!$userShowHiddenCats &&
+				$rc->parseParams()['hidden-cat']
+			) {
+				continue;
+			}
+
 			$rc->counter = $counter++;
 			# Check if the page has been updated since the last visit
 			if ( $this->getConfig()->get( 'ShowUpdatedMarker' )
