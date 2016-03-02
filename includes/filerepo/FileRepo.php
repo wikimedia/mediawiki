@@ -956,7 +956,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
-	 * @param string $src Source file system path, storage path, or virtual URL
+	 * @param string|FSFile $src Source file system path, storage path, or virtual URL
 	 * @param string $dst Virtual URL or storage path
 	 * @param array|string|null $options An array consisting of a key named headers
 	 *   listing extra headers. If a string, taken as content-disposition header.
@@ -1003,7 +1003,7 @@ class FileRepo {
 	 * All path parameters may be a file system path, storage path, or virtual URL.
 	 * When "headers" are given they are used as HTTP headers if supported.
 	 *
-	 * @param array $triples List of (source path, destination path, disposition)
+	 * @param array $triples List of (source path or FSFile, destination path, disposition)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $triples ) {
@@ -1011,7 +1011,12 @@ class FileRepo {
 		$operations = [];
 		foreach ( $triples as $triple ) {
 			list( $src, $dst ) = $triple;
-			$src = $this->resolveToStoragePath( $src );
+			if ( $src instanceof FSFile ) {
+				$op = 'store';
+			} else {
+				$src = $this->resolveToStoragePath( $src );
+				$op = FileBackend::isStoragePath( $src ) ? 'copy' : 'store';
+			}
 			$dst = $this->resolveToStoragePath( $dst );
 
 			if ( !isset( $triple[2] ) ) {
@@ -1026,7 +1031,7 @@ class FileRepo {
 			}
 
 			$operations[] = [
-				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
+				'op' => $op,
 				'src' => $src,
 				'dst' => $dst,
 				'headers' => $headers
