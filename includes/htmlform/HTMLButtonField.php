@@ -104,7 +104,9 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
 			'useInputTag' => $this->isBadIE(),
-		] + $this->getAttributes( [ 'disabled', 'tabindex' ], [ 'tabindex' => 'tabIndex' ] ) );
+		] + OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'tabindex' ] )
+		) );
 	}
 
 	protected function needsLabel() {

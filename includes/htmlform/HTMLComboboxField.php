@@ -16,11 +16,11 @@
  */
 class HTMLComboboxField extends HTMLTextField {
 	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
-	public function getAttributes( array $list, array $mappings = null ) {
+	public function getAttributes( array $list ) {
 		$attribs = [
 			'type' => 'text',
 			'list' => $this->mName . '-datalist',
-		] + parent::getAttributes( $list, $mappings );
+		] + parent::getAttributes( $list );
 
 		return $attribs;
 	}
@@ -36,7 +36,9 @@ class HTMLComboboxField extends HTMLTextField {
 	function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
-		$attribs = $this->getAttributes( $allowedParams, [ 'tabindex' => 'tabIndex' ] );
+		$attribs = OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
 
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];
