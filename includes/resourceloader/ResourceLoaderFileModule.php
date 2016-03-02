@@ -890,8 +890,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		$localDir = dirname( $localPath );
 		$remoteDir = dirname( $remotePath );
-		// Get and register local file references
-		$localFileRefs = CSSMin::getAllLocalFileReferences( $style, $localDir );
+		// Collect local file references
+		$localFileRefs = SSMin::getAllLocalFileReferences( $style, $localDir );
 		foreach ( $localFileRefs as $file ) {
 			if ( file_exists( $file ) ) {
 				$this->localFileRefs[] = $file;
@@ -899,8 +899,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$this->missingLocalFileRefs[] = $file;
 			}
 		}
-		return MemoizedCallable::call( 'CSSMin::remap',
-			[ $style, $localDir, $remoteDir, true ] );
+		// Don't cache this call. remap() ensures data URIs embeds are up to date,
+		// and urls contain correct content hashes in their query string. (T128668)
+		return CSSMin::remap( $style, $localDir, $remoteDir, true );
 	}
 
 	/**
