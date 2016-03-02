@@ -179,6 +179,10 @@ class ObjectCache {
 					? $params['asyncHandler']
 					: 'DeferredUpdates::addCallableUpdate';
 			}
+			// Automatically set the 'trackdupsHandler' callback
+			$params['trackdupsHandler'] = isset( $params['trackdupsHandler'] )
+				? $params['trackdupsHandler']
+				: 'DeferredUpdates::addCallableUpdate';
 			// Do b/c logic for MemcachedBagOStuff
 			if ( is_subclass_of( $class, 'MemcachedBagOStuff' ) ) {
 				if ( !isset( $params['servers'] ) ) {

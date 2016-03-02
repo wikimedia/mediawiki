@@ -58,6 +58,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var bool */
 	private $debugMode = false;
 
+	/** @var array */
+	private $duplicateKeyLookups;
+
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
@@ -71,6 +74,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	const WRITE_SYNC = 1; // synchronously write to all locations for replicated stores
 	const WRITE_CACHE_ONLY = 2; // Only change state of the in-memory cache
 
+	/**
+	 * $params include:
+	 *   - logger: Psr\Log\LoggerInterface instance
+	 *   - keyspace: Default keyspace for $this->makeKey()
+	 *   - trackdupsHandler: callable that takes a callback and runs it after
+	 *     the current web request ends. Will be passed a callable that emits
+	 *     warning level debug log messages for all keys that were requested
+	 *     more than once.
+	 */
 	public function __construct( array $params = [] ) {
 		if ( isset( $params['logger'] ) ) {
 			$this->setLogger( $params['logger'] );
@@ -80,6 +92,12 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 		if ( isset( $params['keyspace'] ) ) {
 			$this->keyspace = $params['keyspace'];
+		}
+
+		if ( isset( $params['trackdupsHandler'] ) &&
+			is_callable( $params['trackdupsHandler'] )
+		) {
+			$this->duplicateKeyLookups = [];
 		}
 	}
 
@@ -144,7 +162,45 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		// B/C for ( $key, &$casToken = null, $flags = 0 )
 		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
 
+		if ( $this->duplicateKeyLookups !== null ) {
+			$this->trackDuplicateKeys( $key );
+		}
+
 		return $this->doGet( $key, $flags );
+	}
+
+	/**
+	 * Track the number of times that a given key has been used.
+	 * @param string $key
+	 */
+	private function trackDuplicateKeys( $key ) {
+		static $handlerRegistered = false;
+
+		if ( $handlerRegistered === false ) {
+			// Register a callback that will look through the keys that
+			// have been processed by get() and emit a log message for any
+			// keys that were requested more than once.
+			call_user_func( $params['trackdupsHandler'], function () {
+				$dups = array_filter( $this->duplicateKeyLookups );
+				foreach ( $dups as $key => $count ) {
+					$this->logger->warning(
+						'Duplicate get(): "{key}" fetched {count} times',
+						// Count is N-1 of the actual lookup count
+						[ 'key' => $key, 'count' => $count + 1, ]
+					);
+				}
+			} );
+			$handlerRegistered = true;
+		}
+
+		if ( !isset( $this->duplicateKeyLookups[$key] ) ) {
+			// Track that we have seen this key before. This N-1 counting
+			// style makes filtering the collection using array_filter()
+			// trivial later.
+			$this->duplicateKeyLookups[$key] = 0;
+		} else {
+			$this->duplicateKeyLookups[$key] += 1;
+		}
 	}
 
 	/**
