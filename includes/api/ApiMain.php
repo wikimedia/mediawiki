@@ -861,6 +861,7 @@ class ApiMain extends ApiBase {
 			// User entered incorrect parameters - generate error response
 			$errMessage = $e->getMessageArray();
 		} else {
+			$config = $this->getConfig();
 			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
 				$info = 'Database query error';
