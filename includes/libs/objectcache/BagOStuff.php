@@ -58,6 +58,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var bool */
 	private $debugMode = false;
 
+	/** @var array */
+	private $duplicateKeyLookups;
+
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
@@ -80,6 +83,19 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 		if ( isset( $params['keyspace'] ) ) {
 			$this->keyspace = $params['keyspace'];
+		}
+
+		if ( isset( $params['trackdups'] ) && $params['trackdups'] ) {
+			$this->duplicateKeyLookups = [];
+
+			// Register a callback that will look through the keys that have
+			// been processed by get() and emit a log message for any keys
+			// that were requested more than once.
+			if ( function_exists( 'register_postsend_function' ) ) {
+				register_postsend_function( [ $this, 'logDuplicateKeyGets' ] );
+			} else {
+				register_shutdown_function( [ $this, 'logDuplicateKeyGets' ] );
+			}
 		}
 	}
 
@@ -143,6 +159,17 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	public function get( $key, $flags = 0, $oldFlags = null ) {
 		// B/C for ( $key, &$casToken = null, $flags = 0 )
 		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
+
+		if ( $this->duplicateKeyLookups !== null ) {
+			if ( !isset( $this->duplicateKeyLookups[$key] ) ) {
+				// Track that we have seen this key before. This N-1 counting
+				// style makes filtering the collection using array_filter()
+				// trivial later.
+				$this->duplicateKeyLookups[$key] = 0;
+			} else {
+				$this->duplicateKeyLookups[$key] += 1;
+			}
+		}
 
 		return $this->doGet( $key, $flags );
 	}
@@ -662,5 +689,25 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function makeKey() {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
+	}
+
+	/**
+	 * Look through the keys that have been processed by get() and emit
+	 * a debug log message for any keys that were requested more than once.
+	 * @since 1.27
+	 */
+	public function logDuplicateKeyGets() {
+		if ( $this->duplicateKeyLookups !== null ) {
+			$dups = array_filter( $this->duplicateKeyLookups );
+			foreach ( $dups as $key => $count ) {
+				$this->logger->warning(
+					'Duplicate lookup: Fetched {key} {count} times',
+					[
+						'key' => $key,
+						// Count from array is N-1 of the actual lookup count
+						'count' => $count + 1,
+				] );
+			}
+		}
 	}
 }
