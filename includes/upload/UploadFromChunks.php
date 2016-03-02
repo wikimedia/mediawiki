@@ -147,10 +147,9 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds." );
 
-		// File system path
-		$this->mTempPath = $tmpPath;
-		// Since this was set for the last chunk previously
-		$this->mFileSize = filesize( $this->mTempPath );
+		// File system path of the actual full temp file
+		$this->setTempFile( $tmpPath );
+
 		$ret = $this->verifyUpload();
 		if ( $ret['status'] !== UploadBase::OK ) {
 			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );

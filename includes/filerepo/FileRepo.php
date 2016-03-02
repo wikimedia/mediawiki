@@ -1158,7 +1158,7 @@ class FileRepo {
 	 * Options to $options include:
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
-	 * @param string $srcPath The source file system path, storage path, or URL
+	 * @param string|FSFile $src The source file system path, storage path, or URL
 	 * @param string $dstRel The destination relative path
 	 * @param string $archiveRel The relative path where the existing file is to
 	 *   be archived, if there is one. Relative to the public zone root.
@@ -1168,12 +1168,12 @@ class FileRepo {
 	 * @return FileRepoStatus
 	 */
 	public function publish(
-		$srcPath, $dstRel, $archiveRel, $flags = 0, array $options = []
+		$src, $dstRel, $archiveRel, $flags = 0, array $options = []
 	) {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		$status = $this->publishBatch(
-			[ [ $srcPath, $dstRel, $archiveRel, $options ] ], $flags );
+			[ [ $src, $dstRel, $archiveRel, $options ] ], $flags );
 		if ( $status->successCount == 0 ) {
 			$status->ok = false;
 		}
@@ -1212,7 +1212,9 @@ class FileRepo {
 		$sourceFSFilesToDelete = []; // cleanup for disk source files
 		// Validate each triplet and get the store operation...
 		foreach ( $ntuples as $ntuple ) {
-			list( $srcPath, $dstRel, $archiveRel ) = $ntuple;
+			list( $src, $dstRel, $archiveRel ) = $ntuple;
+			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
+
 			$options = isset( $ntuple[3] ) ? $ntuple[3] : [];
 			// Resolve source to a storage path if virtual
 			$srcPath = $this->resolveToStoragePath( $srcPath );
@@ -1275,7 +1277,7 @@ class FileRepo {
 			} else { // FS source path
 				$operations[] = [
 					'op' => 'store',
-					'src' => $srcPath,
+					'src' => $src, // prefer FSFile objects
 					'dst' => $dstPath,
 					'overwrite' => true, // replace current
 					'headers' => $headers
