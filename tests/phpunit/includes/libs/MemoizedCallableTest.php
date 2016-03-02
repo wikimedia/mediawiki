@@ -4,7 +4,7 @@
  * in an instance property rather than APC.
  */
 class ArrayBackedMemoizedCallable extends MemoizedCallable {
-	public $cache = [];
+	private $cache = [];
 
 	protected function fetchResult( $key, &$success ) {
 		if ( array_key_exists( $key, $this->cache ) ) {
@@ -112,6 +112,11 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 			$this->readAttribute( $a, 'callableName' ),
 			$this->readAttribute( $b, 'callableName' )
 		);
+
+		$c = new ArrayBackedMemoizedCallable( function () {
+			return rand();
+		} );
+		$this->assertEquals( $c->invokeArgs(), $c->invokeArgs(), 'memoized random' );
 	}
 
 	/**
