@@ -1191,6 +1191,7 @@ return [
 			'oojs-ui-windows',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-editing-advanced',
+			'moment',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Upload',
