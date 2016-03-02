@@ -311,6 +311,7 @@ class ClassCollector {
 		case T_CLASS:
 		case T_INTERFACE:
 		case T_TRAIT:
+		case T_DOUBLE_COLON:
 			$this->startToken = $token;
 		}
 	}
@@ -322,6 +323,11 @@ class ClassCollector {
 	 */
 	protected function tryEndExpect( $token ) {
 		switch ( $this->startToken[0] ) {
+		case T_DOUBLE_COLON:
+			// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
+			// "self::static" which accesses the class name. It doens't define a new class.
+			$this->startToken = null;
+			break;
 		case T_NAMESPACE:
 			if ( $token === ';' || $token === '{' ) {
 				$this->namespace = $this->implodeTokens() . '\\';
