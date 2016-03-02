@@ -2169,7 +2169,7 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  * given, giving a callable function which will generate a suitable cache object.
  */
 $wgObjectCaches = [
-	CACHE_NONE => [ 'class' => 'EmptyBagOStuff' ],
+	CACHE_NONE => [ 'class' => 'EmptyBagOStuff', 'reportDupes' => false ],
 	CACHE_DB => [ 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ],
 
 	CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
@@ -2189,12 +2189,12 @@ $wgObjectCaches = [
 		'loggroup'  => 'SQLBagOStuff'
 	],
 
-	'apc' => [ 'class' => 'APCBagOStuff' ],
-	'xcache' => [ 'class' => 'XCacheBagOStuff' ],
-	'wincache' => [ 'class' => 'WinCacheBagOStuff' ],
+	'apc' => [ 'class' => 'APCBagOStuff', 'reportDupes' => false ],
+	'xcache' => [ 'class' => 'XCacheBagOStuff', 'reportDupes' => false ],
+	'wincache' => [ 'class' => 'WinCacheBagOStuff', 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
 	'memcached-pecl' => [ 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ],
-	'hash' => [ 'class' => 'HashBagOStuff' ],
+	'hash' => [ 'class' => 'HashBagOStuff', 'reportDupes' => false ],
 ];
 
 /**

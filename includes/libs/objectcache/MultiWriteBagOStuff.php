@@ -33,8 +33,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 	protected $caches;
 	/** @var bool Use async secondary writes */
 	protected $asyncWrites = false;
-	/** @var callback|null */
-	protected $asyncHandler;
 
 	/** Idiom for "write to all backends" */
 	const ALL = INF;
@@ -58,8 +56,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      safe to use for modules when cached values: are immutable,
 	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
 	 *      validation against the DB, or merge() is used to handle races.
-	 *   - asyncHandler: callable that takes a callback and runs it after the
-	 *      current web request ends. In CLI mode, it should run it immediately.
 	 * @param array $params
 	 * @throws InvalidArgumentException
 	 */
@@ -88,9 +84,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 			}
 		}
 
-		$this->asyncHandler = isset( $params['asyncHandler'] )
-			? $params['asyncHandler']
-			: null;
 		$this->asyncWrites = (
 			isset( $params['replication'] ) &&
 			$params['replication'] === 'async' &&
