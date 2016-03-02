@@ -41,6 +41,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		if ( !$this->title ) {
 			$form->setMethod( 'GET' );
 		}
+
+		$this->getOutput()->addHelpLink( 'Help:ChangeContentModel' );
 	}
 
 	public function validateTitle( $title ) {
