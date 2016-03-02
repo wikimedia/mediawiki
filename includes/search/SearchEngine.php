@@ -54,7 +54,7 @@ class SearchEngine {
 
 	/**
 	 * Perform a full text search query and return a result set.
-	 * If title searches are not supported or disabled, return null.
+	 * If full text searches are not supported or disabled, return null.
 	 * STUB
 	 *
 	 * @param string $term Raw search term
