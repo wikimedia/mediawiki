@@ -403,13 +403,29 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetMessage
 	 * @covers Status::getMessage
-	 * @todo test long and short context messages generated through this method
 	 */
-	public function testGetMessage( Status $status, $expectedParams = [], $expectedKey ) {
+	public function testGetMessage(
+		Status $status, $expectedParams = [], $expectedKey, $expectedWrapper
+	) {
 		$message = $status->getMessage();
 		$this->assertInstanceOf( 'Message', $message );
 		$this->assertEquals( $expectedParams, $message->getParams(), 'Message::getParams' );
 		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
+
+		$message = $status->getMessage( 'wrapper-short', 'wrapper-long' );
+		$this->assertInstanceOf( 'Message', $message );
+		$this->assertEquals( $expectedWrapper, $message->getKey(), 'Message::getKey with wrappers' );
+		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
+
+		$message = $status->getMessage( 'wrapper' );
+		$this->assertInstanceOf( 'Message', $message );
+		$this->assertEquals( 'wrapper', $message->getKey(), 'Message::getKey with wrappers' );
+		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
+
+		$message = $status->getMessage( false, 'wrapper' );
+		$this->assertInstanceOf( 'Message', $message );
+		$this->assertEquals( 'wrapper', $message->getKey(), 'Message::getKey with wrappers' );
+		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
 	}
 
 	/**
@@ -424,7 +440,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['GoodStatus'] = [
 			new Status(),
 			[ "Status::getMessage called for a good result, this is incorrect\n" ],
-			'internalerror_info'
+			'internalerror_info',
+			'wrapper-short'
 		];
 
 		$status = new Status();
@@ -432,7 +449,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['GoodButNoError'] = [
 			$status,
 			[ "Status::getMessage: Invalid result object: no error text but not OK\n" ],
-			'internalerror_info'
+			'internalerror_info',
+			'wrapper-short'
 		];
 
 		$status = new Status();
@@ -440,7 +458,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['1StringWarning'] = [
 			$status,
 			[],
-			'fooBar!'
+			'fooBar!',
+			'wrapper-short'
 		];
 
 		// FIXME: Assertion tries to compare a StubUserLang with a Language object, because
@@ -454,7 +473,8 @@ class StatusTest extends MediaWikiLangTestCase {
 // 		$testCases[ '2StringWarnings' ] = array(
 // 			$status,
 // 			array( new Message( 'fooBar!' ), new Message( 'fooBar2!' ) ),
-// 			"* \$1\n* \$2"
+// 			"* \$1\n* \$2",
+// 			'wrapper-long'
 // 		);
 
 		$status = new Status();
@@ -462,7 +482,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['1MessageWarning'] = [
 			$status,
 			[ 'foo', 'bar' ],
-			'fooBar!'
+			'fooBar!',
+			'wrapper-short'
 		];
 
 		$status = new Status();
@@ -471,7 +492,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['2MessageWarnings'] = [
 			$status,
 			[ new Message( 'fooBar!', [ 'foo', 'bar' ] ), new Message( 'fooBar2!' ) ],
-			"* \$1\n* \$2"
+			"* \$1\n* \$2",
+			'wrapper-long'
 		];
 
 		return $testCases;

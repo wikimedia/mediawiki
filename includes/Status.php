@@ -265,7 +265,7 @@ class Status {
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $s );
 			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", $s );
+				$wrapper = new RawMessage( "\n\$1\n", [ $s ] );
 				$wrapper->parse();
 				$s = wfMessage( $shortContext, $wrapper );
 			}
