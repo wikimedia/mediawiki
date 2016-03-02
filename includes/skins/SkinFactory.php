@@ -32,14 +32,14 @@ class SkinFactory {
 	 * Map of name => callback
 	 * @var array
 	 */
-	private $factoryFunctions = array();
+	private $factoryFunctions = [];
 	/**
 	 * Map of name => fallback human-readable name, used when the 'skinname-<skin>' message is not
 	 * available
 	 *
 	 * @var array
 	 */
-	private $displayNames = array();
+	private $displayNames = [];
 
 	/**
 	 * @var SkinFactory

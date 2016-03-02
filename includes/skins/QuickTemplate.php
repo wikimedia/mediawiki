@@ -32,7 +32,7 @@ abstract class QuickTemplate {
 	 * @param Config $config
 	 */
 	function __construct( Config $config = null ) {
-		$this->data = array();
+		$this->data = [];
 		$this->translator = new MediaWikiI18N();
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
