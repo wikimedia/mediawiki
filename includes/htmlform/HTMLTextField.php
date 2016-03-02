@@ -107,11 +107,9 @@ class HTMLTextField extends HTMLFormField {
 			'type',
 		];
 
-		$attribs += $this->getAttributes( $allowedParams, [
-			'maxlength' => 'maxLength',
-			'readonly' => 'readOnly',
-			'tabindex' => 'tabIndex',
-		] );
+		$attribs += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
 
 		$type = $this->getType( $attribs );
 

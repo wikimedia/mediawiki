@@ -85,13 +85,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
 
-		$mappings = [];
-
-		if ( $this->mParent instanceof OOUIHTMLForm ) {
-			$mappings['tabindex'] = 'tabIndex';
-		}
-
-		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ], $mappings );
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		// Build the column headers
 		$headerContents = Html::rawElement( 'td', [], '&#160;' );
@@ -156,8 +150,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			return new OOUI\CheckboxInputWidget( [
 				'name' => "{$this->mName}[]",
 				'selected' => $checked,
-				'value' => $attribs['value'],
-			] + $attribs );
+			] + OOUI\Element::configFromHtmlAttributes(
+				$attribs
+			) );
 		} else {
 			$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
 			if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {

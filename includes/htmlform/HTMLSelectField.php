@@ -45,7 +45,9 @@ class HTMLSelectField extends HTMLFormField {
 	function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
-		$attribs = $this->getAttributes( $allowedParams, [ 'tabindex' => 'tabIndex' ] );
+		$attribs = OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
 
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];

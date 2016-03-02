@@ -101,11 +101,11 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 	}
 
 	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
-	public function getAttributes( array $list, array $mappings = null ) {
+	public function getAttributes( array $list ) {
 		$attribs = [
 			'type' => 'text',
 			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocomplete ) ),
-		] + parent::getAttributes( $list, $mappings );
+		] + parent::getAttributes( $list );
 
 		if ( $this->getOptions() ) {
 			$attribs['data-hide-if'] = FormatJson::encode(

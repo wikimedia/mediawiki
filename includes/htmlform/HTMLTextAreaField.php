@@ -66,10 +66,9 @@ class HTMLTextAreaField extends HTMLFormField {
 			'autofocus',
 		];
 
-		$attribs += $this->getAttributes( $allowedParams, [
-			'tabindex' => 'tabIndex',
-			'readonly' => 'readOnly',
-		] );
+		$attribs += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
 
 		return new OOUI\TextInputWidget( [
 			'id' => $this->mID,

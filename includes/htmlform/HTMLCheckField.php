@@ -56,9 +56,8 @@ class HTMLCheckField extends HTMLFormField {
 		$attr['id'] = $this->mID;
 		$attr['name'] = $this->mName;
 
-		$attr += $this->getAttributes(
-			[ 'disabled', 'tabindex' ],
-			[ 'tabindex' => 'tabIndex' ]
+		$attr += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		);
 
 		if ( $this->mClass !== '' ) {
