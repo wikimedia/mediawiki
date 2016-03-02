@@ -55,8 +55,20 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var callback|null */
+	protected $asyncHandler;
+
 	/** @var bool */
 	private $debugMode = false;
+
+	/** @var array */
+	private $duplicateKeyLookups = [];
+
+	/** @var bool */
+	private $reportDupes = false;
+
+	/** @var bool */
+	private $dupeTrackScheduled = false;
 
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
@@ -71,6 +83,16 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	const WRITE_SYNC = 1; // synchronously write to all locations for replicated stores
 	const WRITE_CACHE_ONLY = 2; // Only change state of the in-memory cache
 
+	/**
+	 * $params include:
+	 *   - logger: Psr\Log\LoggerInterface instance
+	 *   - keyspace: Default keyspace for $this->makeKey()
+	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
+	 *      In CLI mode, it should run the task immediately.
+	 *   - reportDupes: Whether to emit warning log messages for all keys that were
+	 *      requested more than once (requires an asyncHandler).
+	 * @param array $params
+	 */
 	public function __construct( array $params = [] ) {
 		if ( isset( $params['logger'] ) ) {
 			$this->setLogger( $params['logger'] );
@@ -80,6 +102,14 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 		if ( isset( $params['keyspace'] ) ) {
 			$this->keyspace = $params['keyspace'];
+		}
+
+		$this->asyncHandler = isset( $params['asyncHandler'] )
+			? $params['asyncHandler']
+			: null;
+
+		if ( !empty( $params['reportDupes'] ) && is_callable( $this->asyncHandler ) ) {
+			$this->reportDupes = true;
 		}
 	}
 
@@ -144,7 +174,42 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		// B/C for ( $key, &$casToken = null, $flags = 0 )
 		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
 
+		$this->trackDuplicateKeys( $key );
+
 		return $this->doGet( $key, $flags );
+	}
+
+	/**
+	 * Track the number of times that a given key has been used.
+	 * @param string $key
+	 */
+	private function trackDuplicateKeys( $key ) {
+		if ( !$this->reportDupes ) {
+			return;
+		}
+
+		if ( !isset( $this->duplicateKeyLookups[$key] ) ) {
+			// Track that we have seen this key. This N-1 counting style allows
+			// easy filtering with array_filter() later.
+			$this->duplicateKeyLookups[$key] = 0;
+		} else {
+			$this->duplicateKeyLookups[$key] += 1;
+
+			if ( $this->dupeTrackScheduled === false ) {
+				$this->dupeTrackScheduled = true;
+				// Schedule a callback that logs keys processed more than once by get().
+				call_user_func( $this->asyncHandler, function () {
+					$dups = array_filter( $this->duplicateKeyLookups );
+					foreach ( $dups as $key => $count ) {
+						$this->logger->warning(
+							'Duplicate get(): "{key}" fetched {count} times',
+							// Count is N-1 of the actual lookup count
+							[ 'key' => $key, 'count' => $count + 1, ]
+						);
+					}
+				} );
+			}
+		}
 	}
 
 	/**

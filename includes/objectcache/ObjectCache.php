@@ -174,11 +174,13 @@ class ObjectCache {
 		} elseif ( isset( $params['class'] ) ) {
 			$class = $params['class'];
 			// Automatically set the 'async' update handler
-			if ( $class === 'MultiWriteBagOStuff' ) {
-				$params['asyncHandler'] = isset( $params['asyncHandler'] )
-					? $params['asyncHandler']
-					: 'DeferredUpdates::addCallableUpdate';
-			}
+			$params['asyncHandler'] = isset( $params['asyncHandler'] )
+				? $params['asyncHandler']
+				: 'DeferredUpdates::addCallableUpdate';
+			// Enable reportDupes by default
+			$params['reportDupes'] = isset( $params['reportDupes'] )
+				? $params['reportDupes']
+				: true;
 			// Do b/c logic for MemcachedBagOStuff
 			if ( is_subclass_of( $class, 'MemcachedBagOStuff' ) ) {
 				if ( !isset( $params['servers'] ) ) {

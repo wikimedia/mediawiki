@@ -252,4 +252,29 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertType( 'ScopedCallback', $value1, 'First reentrant call returned lock' );
 		$this->assertType( 'ScopedCallback', $value1, 'Second reentrant call returned lock' );
 	}
+
+	/**
+	 * @covers BagOStuff::__construct
+	 * @covers BagOStuff::trackDuplicateKeys
+	 */
+	public function testReportDupes() {
+		$logger = $this->getMock( 'Psr\Log\NullLogger' );
+		$logger->expects( $this->once() )
+			->method( 'warning' )
+			->with( 'Duplicate get(): "{key}" fetched {count} times', [
+				'key' => 'foo',
+				'count' => 2,
+			] );
+
+		$cache = new HashBagOStuff( [
+			'reportDupes' => true,
+			'asyncHandler' => 'DeferredUpdates::addCallableUpdate',
+			'logger' => $logger,
+		] );
+		$cache->get( 'foo' );
+		$cache->get( 'bar' );
+		$cache->get( 'foo' );
+
+		DeferredUpdates::doUpdates();
+	}
 }
