@@ -112,6 +112,11 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 			$this->readAttribute( $a, 'callableName' ),
 			$this->readAttribute( $b, 'callableName' )
 		);
+
+		$c = new MemoizedCallable( function () {
+			return rand();
+		} );
+		$this->assertEquals( $c->invokeArgs(), $c->invokeArgs(), 'memoized random' );
 	}
 
 	/**
