@@ -267,13 +267,8 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		if ( $this->newTitle->getNamespace() == NS_CATEGORY ) {
-			$type = 'subcat';
-		} elseif ( $this->newTitle->getNamespace() == NS_FILE ) {
-			$type = 'file';
-		} else {
-			$type = 'page';
-		}
+		$type = $this->newTitle->getCategoryLinkType();
+		$catTitles = [];
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
@@ -289,6 +284,22 @@ class MovePage {
 					'cl_to' => $catTo ],
 				__METHOD__
 			);
+
+			$catTitles[] = $catTo;
+		}
+
+		// Also update the category counts if necessary to reflect
+		// a change in the cl_type value for this page.
+		$oldType = $this->oldTitle->getCategoryLinkType();
+		if ( $catTitles && $type !== $oldType ) {
+			$set = [];
+			if ( $oldType !== 'page' ) {
+				$set[] = "cat_{$oldType}s = cat_{$oldType}s - 1";
+			}
+			if ( $type !== 'page' ) {
+				$set[] = "cat_{$type}s = cat_{$type}s + 1";
+			}
+			$dbw->update( 'category', $set, [ 'cat_title' => $catTitles ], __METHOD__ );
 		}
 
 		$redirid = $this->oldTitle->getArticleID();

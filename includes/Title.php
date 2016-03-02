@@ -4590,6 +4590,19 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Returns the link type to be used for categories.
+	 *
+	 * This determines which section of a category page this title
+	 * will appear within.
+	 *
+	 * @since 1.27
+	 * @return string One of 'subcat', 'file', 'page'
+	 */
+	public function getCategoryLinkType() {
+		return MWNamespace::getCategoryLinkType( $this->mNamespace );
+	}
+
+	/**
 	 * Returns the raw sort key to be used for categories, with the specified
 	 * prefix.  This will be fed to Collation::getSortKey() to get a
 	 * binary sortkey that can be used for actual sorting.
