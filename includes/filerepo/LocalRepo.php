@@ -532,7 +532,7 @@ class LocalRepo extends FileRepo {
 	}
 
 	public function publish(
-		$srcPath,
+		$src,
 		$dstRel,
 		$archiveRel,
 		$flags = 0,

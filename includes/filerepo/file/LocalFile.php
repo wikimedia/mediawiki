@@ -1108,7 +1108,7 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param string $srcPath Source storage path, virtual URL, or filesystem path
+	 * @param string|FSFile $src Source storage path, virtual URL, or filesystem path
 	 * @param string $comment Upload description
 	 * @param string $pageText Text to use for the new description page,
 	 *   if a new description page is created
@@ -1124,7 +1124,7 @@ class LocalFile extends File {
 	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false,
+	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
 		$timestamp = false, $user = null, $tags = []
 	) {
 		global $wgContLang;
@@ -1133,6 +1133,7 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
+		$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 		if ( !$props ) {
 			if ( $this->repo->isVirtualUrl( $srcPath )
 				|| FileBackend::isStoragePath( $srcPath )
@@ -1158,7 +1159,7 @@ class LocalFile extends File {
 		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock(); // begin
-		$status = $this->publish( $srcPath, $flags, $options );
+		$status = $this->publish( $src, $flags, $options );
 
 		if ( $status->successCount >= 2 ) {
 			// There will be a copy+(one of move,copy,store).
@@ -1527,15 +1528,15 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $srcPath Local filesystem path or virtual URL to the source image
+	 * @param string|FSFile $src Local filesystem path or virtual URL to the source image
 	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
 	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publish( $srcPath, $flags = 0, array $options = [] ) {
-		return $this->publishTo( $srcPath, $this->getRel(), $flags, $options );
+	function publish( $src, $flags = 0, array $options = [] ) {
+		return $this->publishTo( $src, $this->getRel(), $flags, $options );
 	}
 
 	/**
@@ -1545,7 +1546,7 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $srcPath Local filesystem path or virtual URL to the source image
+	 * @param string|FSFile $src Local filesystem path or virtual URL to the source image
 	 * @param string $dstRel Target relative path
 	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
@@ -1553,7 +1554,9 @@ class LocalFile extends File {
 	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publishTo( $srcPath, $dstRel, $flags = 0, array $options = [] ) {
+	function publishTo( $src, $dstRel, $flags = 0, array $options = [] ) {
+		$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
+
 		$repo = $this->getRepo();
 		if ( $repo->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1567,9 +1570,9 @@ class LocalFile extends File {
 		if ( $repo->hasSha1Storage() ) {
 			$sha1 = $repo->isVirtualUrl( $srcPath )
 				? $repo->getFileSha1( $srcPath )
-				: File::sha1Base36( $srcPath );
+				: FSFile::getSha1Base36FromPath( $srcPath );
 			$dst = $repo->getBackend()->getPathForSHA1( $sha1 );
-			$status = $repo->quickImport( $srcPath, $dst );
+			$status = $repo->quickImport( $src, $dst );
 			if ( $flags & File::DELETE_SOURCE ) {
 				unlink( $srcPath );
 			}

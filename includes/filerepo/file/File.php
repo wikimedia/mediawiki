@@ -1802,7 +1802,7 @@ abstract class File implements IDBAccessObject {
 	 * Options to $options include:
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
-	 * @param string $srcPath Local filesystem path to the source image
+	 * @param string|FSFile $src Local filesystem path to the source image
 	 * @param int $flags A bitwise combination of:
 	 *   File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
@@ -1812,7 +1812,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function publish( $srcPath, $flags = 0, array $options = [] ) {
+	function publish( $src, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
