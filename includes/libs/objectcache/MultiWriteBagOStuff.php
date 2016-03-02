@@ -52,7 +52,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      only use the primary store.
 	 *   - replication: Either 'sync' or 'async'. This controls whether writes
 	 *      to secondary stores are deferred when possible. Async writes
-	 *      require setting 'asyncCallback'. HHVM register_postsend_function() function.
+	 *      require setting 'asyncHandler'. HHVM register_postsend_function() function.
 	 *      Async writes can increase the chance of some race conditions
 	 *      or cause keys to expire seconds later than expected. It is
 	 *      safe to use for modules when cached values: are immutable,
