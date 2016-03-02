@@ -3125,7 +3125,7 @@
 	"action-pagelang": "orrialdearen hizkuntza aldatu",
 	"log-name-pagelang": "Hizkuntza aldatu:",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (gaituta)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desgaituta''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>desgaituta</strong>)",
 	"mediastatistics": "Media estatistikak",
 	"mediastatistics-summary": "Igotako fitxategien estatistikak. Hemen ikus daitekeena fitxategiaren azken bertsioa baino ez da. Fitxategiaren bertsio zahar edo ezabatuak kanpo daude.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 byte}} ($2; %$3)",

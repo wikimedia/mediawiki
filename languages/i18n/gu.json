@@ -2958,7 +2958,7 @@
 	"action-pagelang": "પાનાની ભાષા બદલો",
 	"log-name-pagelang": "ભાષા બદલો",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (સક્રિય)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''નિષ્ક્રિય''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>નિષ્ક્રિય</strong>)",
 	"mediastatistics-table-mimetype": "MIME પ્રકાર",
 	"mediastatistics-table-count": "ફાઇલ્સની સંખ્યા",
 	"mediastatistics-header-unknown": "અજ્ઞાત",

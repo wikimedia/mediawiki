@@ -3148,7 +3148,7 @@
 	"log-description-pagelang": "Aquò es un jornal dels cambiaments dins las lengas de las paginas.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|a cambiat}} la lenga de la pagina $3 de $4 a $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (activat)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desactivat''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>desactivat</strong>)",
 	"mediastatistics": "Estatisticas suls mèdias",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 octet|$1 octets}} ($2 ; $3%)",
 	"mediastatistics-table-mimetype": "Tipe MIME",

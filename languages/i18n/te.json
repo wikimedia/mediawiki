@@ -3177,7 +3177,7 @@
 	"log-description-pagelang": "ఇది పేజీ భాష మార్పుల చిట్టా.",
 	"logentry-pagelang-pagelang": "$3 పేజీ భాషను $4 నుండి $5 కి $1 {{GENDER:$2|మార్చారు}}.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (చేతనం)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''అచేతనం''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>అచేతనం</strong>)",
 	"mediastatistics": "మాధ్యమ గణాంకాలు",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 బైటు|$1 బైట్లు}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIME రకం",

@@ -2992,7 +2992,7 @@
 	"log-name-pagelang": "改語言紀錄",
 	"log-description-pagelang": "呢個係改語言嘅紀錄。",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 （可以用）",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 （唔可以用）",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 （<strong>唔可以用</strong>）",
 	"mediastatistics": "媒體統計",
 	"mediastatistics-table-mimetype": "MIME類型",
 	"mediastatistics-table-extensions": "可能嘅格式",

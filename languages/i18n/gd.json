@@ -3185,7 +3185,7 @@
 	"log-description-pagelang": "Seo loga dhe na h-atharraichean air cànanan nan duilleagan.",
 	"logentry-pagelang-pagelang": "Dh'atharraich $1 cànan nan duilleagan airson $3 o $4 gu $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (an comas)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''à comas''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>à comas</strong>)",
 	"mediastatistics": "Stadastaireachd nam meadhanan",
 	"mediastatistics-summary": "Stadastaireachd air na seòrsaichean faidhle a chaidh a luchdadh suas. Cha ghabh seo a-steach ach an tionndadh as ùire de gach faidhle. Tha seann-tionndaidhean 's faidhlichean air an sguabadh às 'gan leigeil seachad.",
 	"mediastatistics-nfiles": "$1 ($2%)",

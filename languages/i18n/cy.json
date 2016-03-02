@@ -3127,7 +3127,7 @@
 	"log-description-pagelang": "Dyma log o newidiadau yn nhudalen yr ieithoedd",
 	"logentry-pagelang-pagelang": "Newidiodd $1 {{GENDER:$2}} iaith ydudalen am $3 o $4 i $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (galluogi)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''diffoddwyd''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>diffoddwyd</strong>)",
 	"mediastatistics": "Ystadegau cyfryngau",
 	"mediastatistics-summary": "Ystadegau am fathau o ffeiliau a uwchlwythwyd. Mae hyn yn cynnwys y fersiynau diweddaraf o'r ffeil yn unig.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 beit|$1 beit}} ($2; $3%)",

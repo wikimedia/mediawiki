@@ -3488,7 +3488,7 @@
 	"log-description-pagelang": "Este é um registo de alterações aos idiomas das páginas.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|alterou}} o idioma da página $3 de $4 para $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (ativado)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>desativado</strong>''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>desativado</strong>)",
 	"mediastatistics": "Estatísticas multimédia",
 	"mediastatistics-summary": "Estatísticas sobre os tipos de ficheiros carregados. Inclui apenas a versão mais recente do ficheiro. Versões antigas ou eliminadas são excluídas.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",

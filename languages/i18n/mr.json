@@ -3341,7 +3341,7 @@
 	"log-description-pagelang": "या पानातील भाषाबदलाच्या नोंदी आहेत.",
 	"logentry-pagelang-pagelang": "$1 ने $3 करीता पानाची भाषा $4 वरुन $5 ला {{GENDER:$2|बदलली}}",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (सक्षम केला)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''अक्षम केला''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>अक्षम केला</strong>)",
 	"mediastatistics": "माध्यम सांख्यिकी",
 	"mediastatistics-table-extensions": "शक्य विस्तारके",
 	"mediastatistics-table-count": "संचिकांची संख्या",

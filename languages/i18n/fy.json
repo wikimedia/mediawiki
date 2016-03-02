@@ -2025,7 +2025,7 @@
 	"pagelang-use-default": "Standerttaal brûken",
 	"pagelang-select-lang": "Taal selektearje",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (ynskeakele)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''útskeakele''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>útskeakele</strong>)",
 	"mediastatistics": "Mediastatistiken",
 	"mediastatistics-nfiles": "$1 ($2%)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",

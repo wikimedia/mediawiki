@@ -3121,7 +3121,7 @@
 	"log-description-pagelang": "Hemañ zo ur marilh eus ar c'hemmoù e pajenn ar yezhoù.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|en deus|he deus}} cheñchet yezh ar bajenn evit $3 eus $4 da $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (gweredekaet)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''diweredekaet''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>diweredekaet</strong>)",
 	"mediastatistics": "Stadegoù ar media",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 okted|$1 a oktedoù}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "Seurt MIME",

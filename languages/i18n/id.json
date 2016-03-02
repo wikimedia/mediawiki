@@ -3541,7 +3541,7 @@
 	"log-description-pagelang": "Ini adalah log perubahan dalam bahasa halaman.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|mengubah}} bahasa halaman $3 dari $4 menjadi $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (aktif)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''nonaktif''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>nonaktif</strong>)",
 	"mediastatistics": "Statistik media",
 	"mediastatistics-summary": "Statistik mengenai jenis berkas yang diunggah. Hanya mencakup versi terbaru dari berkas. Berkas lama dan berkas yang sudah dihapus tidak termasuk.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 bita}} ($2; $3%)",

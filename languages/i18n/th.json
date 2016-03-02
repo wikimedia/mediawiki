@@ -3019,7 +3019,7 @@
 	"log-description-pagelang": "นี่คือปูมการเปลี่ยนภาษาหน้า",
 	"logentry-pagelang-pagelang": "$1 เปลี่ยนภาษาของ $3 จาก $4 เป็น $5",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (เปิดใช้งาน)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''ปิดใช้งาน''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>ปิดใช้งาน</strong>)",
 	"mediastatistics": "สถิติสื่อ",
 	"mediastatistics-summary": "สถิติเกี่ยวกับประเภทไฟล์ที่อัปโหลด ซึ่งรวมเฉพาะรุ่นล่าสุดของไฟล์นั้น \nไม่รวมไฟล์รุ่นเก่าหรือที่ถูกลบแล้ว",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 ไบต์}} ($2; $3%)",

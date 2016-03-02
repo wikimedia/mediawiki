@@ -2501,7 +2501,7 @@
 	"action-pagelang": "badilisha lugha ya ukurasa",
 	"log-name-pagelang": "Badili lugha ya kumbukumbu",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (imewezeshwa)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''imelemazwa''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>imelemazwa</strong>)",
 	"mediastatistics": "Takwimu za media",
 	"mediastatistics-table-mimetype": "Aina ya MIME",
 	"mediastatistics-table-count": "Idadi ya mafaili",

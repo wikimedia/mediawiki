@@ -3209,7 +3209,7 @@
 	"expand_templates_generate_xml": "XML ව්‍යාකරණ විග්‍රහ රුක පෙන්වන්න",
 	"expand_templates_preview": "පෙරදසුන",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (සක්‍රියයි)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''අක්‍රියයි''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>අක්‍රියයි</strong>)",
 	"mediastatistics": "මාධ්‍ය සංඛ්‍යාලේඛන",
 	"mediastatistics-nbytes": "{{PLURAL:$1|බයිට $1|බයිට් $1}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIME වර්ගය",

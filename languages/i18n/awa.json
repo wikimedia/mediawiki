@@ -3094,7 +3094,7 @@
 	"log-name-pagelang": "भाषा लाग बदला जाय",
 	"log-description-pagelang": "यह पृष्ठ भाषाओं में परिवर्तन का लॉग है।",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (सक्षम)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''अक्षम''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>अक्षम</strong>)",
 	"mediastatistics": "मीडिया कय आँकड़ा",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 बाईट}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIME प्रकार",

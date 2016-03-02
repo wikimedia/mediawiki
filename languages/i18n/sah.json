@@ -3472,7 +3472,7 @@
 	"log-description-pagelang": "Сирэй тылын талыы сурунаала.",
 	"logentry-pagelang-pagelang": "$1 кыттааччы $3 сирэй тылын мантан $4 манныкка $5 {{GENDER:$2|уларыппыт}}.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (холбоммут)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''арахсыбыт''')",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>арахсыбыт</strong>)",
 	"mediastatistics": "Миэдьийэ ыстатыыстыката",
 	"mediastatistics-summary": "Киирбит билэ көрүҥүн ыстатыыстыката. Билэ тиһэх эрэ торумун көрдөрөр. Урукку уонна сотуллубут билэлэр ааҕыллыбаттар.",
 	"mediastatistics-nbytes": "$1 баайт ($2; $3%)",
