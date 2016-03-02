@@ -179,6 +179,10 @@ class ObjectCache {
 					? $params['asyncHandler']
 					: 'DeferredUpdates::addCallableUpdate';
 			}
+			// Automatically set the 'dupGetCallback' callback
+			$params['dupGetCallback'] = isset( $params['dupGetCallback'] )
+				? $params['dupGetCallback']
+				: 'DeferredUpdates::addCallableUpdate';
 			// Do b/c logic for MemcachedBagOStuff
 			if ( is_subclass_of( $class, 'MemcachedBagOStuff' ) ) {
 				if ( !isset( $params['servers'] ) ) {
