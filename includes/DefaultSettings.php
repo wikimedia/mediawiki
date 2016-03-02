@@ -7203,6 +7203,7 @@ $wgLogActionsHandlers = [
 	'block/reblock' => 'BlockLogFormatter',
 	'block/unblock' => 'BlockLogFormatter',
 	'contentmodel/change' => 'ContentModelLogFormatter',
+	'contentmodel/new' => 'ContentModelLogFormatter',
 	'delete/delete' => 'DeleteLogFormatter',
 	'delete/event' => 'DeleteLogFormatter',
 	'delete/restore' => 'DeleteLogFormatter',
