@@ -473,14 +473,20 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	function makeSearchInput( $attrs = array() ) {
-		$realAttrs = array(
-			'type' => 'search',
-			'name' => 'search',
-			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
-			'value' => $this->get( 'search', '' ),
+		$realAttrs = array_merge( [
+				'type' => 'search',
+				'name' => 'search',
+				'suggestions' => true,
+				'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
+				'value' => $this->get( 'search', '' ),
+			],
+			Linker::tooltipAndAccesskeyAttribs( 'search' ),
+			$attrs
 		);
-		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
-		return Html::element( 'input', $realAttrs );
+
+		// FIXME: "<MatmaRex> there's some boring stuff where we have readOnly and HTML has readonly, or accessKey vs accesskey, or something else too"
+		$this->getSkin()->getOutput()->enableOOUI();
+		return new MediaWiki\Widget\SearchInputWidget( $realAttrs );;
 	}
 
 	function makeSearchButton( $mode, $attrs = array() ) {
