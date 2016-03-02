@@ -473,14 +473,17 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	function makeSearchInput( $attrs = [] ) {
-		$realAttrs = [
-			'type' => 'search',
-			'name' => 'search',
-			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
-			'value' => $this->get( 'search', '' ),
-		];
-		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
-		return Html::element( 'input', $realAttrs );
+		$realAttrs = array_merge( [
+				'type' => 'search',
+				'name' => 'search',
+				'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
+				'value' => $this->get( 'search', '' ),
+			],
+			Linker::tooltipAndAccesskeyAttribs( 'search' ),
+			$attrs
+		);
+		$this->getSkin()->getOutput()->enableOOUI();
+		return new MediaWiki\Widget\SearchInputWidget( $realAttrs );;
 	}
 
 	function makeSearchButton( $mode, $attrs = [] ) {

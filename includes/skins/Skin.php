@@ -183,6 +183,7 @@ abstract class Skin extends ContextSource {
 			}
 
 			$modules['search'][] = 'mediawiki.searchSuggest';
+			$modules['search'][] = 'mediawiki.widgets.SearchInputWidget';
 		}
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
