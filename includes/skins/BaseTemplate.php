@@ -473,39 +473,39 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	function makeSearchInput( $attrs = [] ) {
-		$realAttrs = [
-			'type' => 'search',
-			'name' => 'search',
-			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
-			'value' => $this->get( 'search', '' ),
-		];
-		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
-		return Html::element( 'input', $realAttrs );
+		$this->getSkin()->getOutput()->enableOOUI();
+		$searchInputAttrs = array_merge( [
+				'type' => 'search',
+				'name' => 'search',
+				'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
+				'value' => $this->get( 'search', '' ),
+			],
+			Linker::tooltipAndAccesskeyAttribs( 'search' ),
+			$attrs
+		);
+		return new MediaWiki\Widget\SearchInputWidget( $searchInputAttrs );;
 	}
 
 	function makeSearchButton( $mode, $attrs = [] ) {
 		switch ( $mode ) {
 			case 'go':
 			case 'fulltext':
-				$realAttrs = [
-					'type' => 'submit',
-					'name' => $mode,
-					'value' => $this->translator->translate(
-						$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
-				];
-				$realAttrs = array_merge(
-					$realAttrs,
+				$this->getSkin()->getOutput()->enableOOUI();
+				$searchButtonAttrs = array_merge( [
+						'type' => 'submit',
+						'name' => $mode,
+						'value' => $this->translator->translate(
+							$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
+					],
 					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
 					$attrs
 				);
-				return Html::element( 'input', $realAttrs );
+				return new OOUI\ButtonInputWidget( $searchButtonAttrs );
 			case 'image':
-				$buttonAttrs = [
-					'type' => 'submit',
-					'name' => 'button',
-				];
-				$buttonAttrs = array_merge(
-					$buttonAttrs,
+				$buttonAttrs = array_merge( [
+						'type' => 'submit',
+						'name' => 'button',
+					],
 					Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' ),
 					$attrs
 				);
