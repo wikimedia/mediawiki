@@ -4,6 +4,15 @@
  * @group Database
  */
 class MergeHistoryTest extends MediaWikiTestCase {
+	function __construct( $name = null, array $data = [], $dataName = '' ) {
+		parent::__construct( $name, $data, $dataName );
+
+		$this->tablesUsed = array_merge( $this->tablesUsed, [
+			'page',
+			'revision',
+			'text',
+		] );
+	}
 
 	/**
 	 * Make some pages to work with
