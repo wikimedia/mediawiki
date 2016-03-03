@@ -4,6 +4,7 @@
  * @group Database
  */
 class PrefixSearchTest extends MediaWikiLangTestCase {
+	private $originalHandlers;
 
 	public function addDBData() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
@@ -40,7 +41,23 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		}
 
 		// Avoid special pages from extensions interferring with the tests
-		$this->setMwGlobals( 'wgSpecialPages', [] );
+		$this->setMwGlobals( [
+			'wgSpecialPages' => [],
+			'wgHooks' => [],
+		] );
+
+		$this->originalHandlers = TestingAccessWrapper::newFromClass( 'Hooks' )->handlers;
+		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = [];
+
+		SpecialPageFactory::resetList();
+	}
+
+	public function tearDown() {
+		parent::tearDown();
+
+		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = $this->originalHandlers;
+
+		SpecialPageFactory::resetList();
 	}
 
 	protected function searchProvision( array $results = null ) {
