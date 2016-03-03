@@ -168,12 +168,12 @@ class ExtensionProcessor implements Processor {
 		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
 			if ( in_array( $key, self::$globalSettings ) ) {
-				$this->storeToArray( "wg$key", $val, $this->globals );
+				$this->storeToArray( $path, "wg$key", $val, $this->globals );
 			// Ignore anything that starts with a @
 			} elseif ( $key[0] !== '@' && !in_array( $key, self::$notAttributes )
 				&& !in_array( $key, self::$creditsAttributes )
 			) {
-				$this->storeToArray( $key, $val, $this->attributes );
+				$this->storeToArray( $path, $key, $val, $this->attributes );
 			}
 		}
 	}
@@ -367,14 +367,15 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
+	 * @param string $path
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
 	 * @throws InvalidArgumentException
 	 */
-	protected function storeToArray( $name, $value, &$array ) {
+	protected function storeToArray( $path, $name, $value, &$array ) {
 		if ( !is_array( $value ) ) {
-			throw new InvalidArgumentException( "The value for '$name' should be an array" );
+			throw new InvalidArgumentException( "The value for '$name' should be an array (from $path)" );
 		}
 		if ( isset( $array[$name] ) ) {
 			$array[$name] = array_merge_recursive( $array[$name], $value );
