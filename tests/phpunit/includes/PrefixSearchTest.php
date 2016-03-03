@@ -55,6 +55,12 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 			return;
 		}
 
+		$this->tablesUsed = array_merge( $this->tablesUsed, [
+			'page',
+			'revision',
+			'text',
+		] );
+
 		$this->insertPage( 'Sandbox' );
 		$this->insertPage( 'Bar' );
 		$this->insertPage( 'Example' );
