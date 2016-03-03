@@ -4,6 +4,50 @@
  * @group Database
  */
 class PrefixSearchTest extends MediaWikiLangTestCase {
+	private static $originalSpecialPages;
+
+	private static $originalInitListHooks;
+
+	private static $originalSpecialList;
+
+	private static $specialListProperty;
+
+	public static function setUpBeforeClass() {
+		global $wgSpecialPages, $wgHooks;
+
+		// Avoid special pages from extensions interferring with the tests
+		// This is done here to be before all the page creations (which trigger
+		// the list to be populated).
+
+		self::$originalInitListHooks = Hooks::getHandlers( 'SpecialPage_initList' );
+		self::$originalSpecialPages = $wgSpecialPages;
+
+		self::$specialListProperty = new ReflectionProperty( 'SpecialPageFactory', 'list' );
+		self::$specialListProperty->setAccessible( true );
+		self::$originalSpecialList = self::$specialListProperty->getValue();
+
+		$wgSpecialPages = [];
+		Hooks::clear( 'SpecialPage_initList' );
+		$wgHooks['SpecialPage_initList'] = [];
+
+		// Clear the cache manually, since it may already be populated
+		// by other tests.
+		self::$specialListProperty->setValue( null );
+
+		// Populate cache
+		SpecialPageFactory::getNames();
+	}
+
+	public static function tearDownAfterClass() {
+		global $wgSpecialPages;
+
+		$wgSpecialPages = self::$originalSpecialPages;
+		foreach ( self::$originalInitListHooks as $hook ) {
+			Hooks::register( 'SpecialPage_initList', $hook );
+		}
+
+		self::$specialListProperty->setValue( self::$originalSpecialList );
+	}
 
 	public function addDBData() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
@@ -38,9 +82,6 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			$this->markTestSkipped( 'Main namespace does not support wikitext.' );
 		}
-
-		// Avoid special pages from extensions interferring with the tests
-		$this->setMwGlobals( 'wgSpecialPages', [] );
 	}
 
 	protected function searchProvision( array $results = null ) {
