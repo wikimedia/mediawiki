@@ -119,13 +119,13 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * CSSMin::getAllLocalFileReferences should ignore url(...) expressions
+	 * CSSMin::getLocalFileReferences should ignore url(...) expressions
 	 * that have been commented out.
 	 */
 	public function testCommentedLocalFileReferences() {
 		$basepath = __DIR__ . '/../data/css/';
 		$css = file_get_contents( $basepath . 'comments.css' );
-		$files = CSSMin::getAllLocalFileReferences( $css, $basepath );
+		$files = CSSMin::getLocalFileReferences( $css, $basepath );
 		$expected = [ $basepath . 'not-commented.gif' ];
 		$this->assertArrayEquals(
 			$expected,

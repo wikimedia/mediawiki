@@ -60,41 +60,13 @@ class CSSMin {
 	/* Static Methods */
 
 	/**
-	 * Gets a list of local file paths which are referenced in a CSS style sheet.
-	 *
-	 * If you wish non-existent files to be listed too, use getAllLocalFileReferences().
-	 *
-	 * For backwards-compatibility, if the second parameter is not given or null,
-	 * this function will return an empty array instead of erroring out.
+	 * Get a list of local files referenced in a stylesheet (includes non-existent files).
 	 *
 	 * @param string $source CSS stylesheet source to process
 	 * @param string $path File path where the source was read from
 	 * @return array List of local file references
 	 */
-	public static function getLocalFileReferences( $source, $path = null ) {
-		if ( $path === null ) {
-			return [];
-		}
-
-		$files = self::getAllLocalFileReferences( $source, $path );
-
-		// Skip non-existent files
-		$files = array_filter( $files, function ( $file ) {
-			return file_exists( $file );
-		} );
-
-		return $files;
-	}
-
-	/**
-	 * Gets a list of local file paths which are referenced in a CSS style sheet, including
-	 * non-existent files.
-	 *
-	 * @param string $source CSS stylesheet source to process
-	 * @param string $path File path where the source was read from
-	 * @return array List of local file references
-	 */
-	public static function getAllLocalFileReferences( $source, $path ) {
+	public static function getLocalFileReferences( $source, $path ) {
 		$stripped = preg_replace( '/' . self::COMMENT_REGEX . '/s', '', $source );
 		$path = rtrim( $path, '/' ) . '/';
 		$files = [];
