@@ -202,6 +202,7 @@ final class SessionManager implements SessionManagerInterface {
 		// of "no such ID"
 		$key = wfMemcKey( 'MWSession', $id );
 		if ( is_array( $this->store->get( $key ) ) ) {
+			$create = false;
 			$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id, 'idIsSafe' => true ] );
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
 				$session = $this->getSessionFromInfo( $info, $request );
