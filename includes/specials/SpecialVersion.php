@@ -222,6 +222,7 @@ class SpecialVersion extends SpecialPage {
 			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
 		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
+                $software['[https://www.jquery.com/ jQuery]'] = "1.11.3";
 
 		if ( IcuCollation::getICUVersion() ) {
 			$software['[http://site.icu-project.org/ ICU]'] = IcuCollation::getICUVersion();
