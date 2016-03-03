@@ -1101,16 +1101,13 @@ class ContribsPager extends ReverseChronologicalPager {
 				$userlink = '';
 			}
 
+			$flags = [];
 			if ( $rev->getParentId() === 0 ) {
-				$nflag = ChangesList::flag( 'newpage' );
-			} else {
-				$nflag = '';
+				$flags[] = ChangesList::flag( 'newpage' );
 			}
 
 			if ( $rev->isMinor() ) {
-				$mflag = ChangesList::flag( 'minor' );
-			} else {
-				$mflag = '';
+				$flags[] = ChangesList::flag( 'minor' );
 			}
 
 			$del = Linker::getRevDeleteLink( $user, $rev, $page );
@@ -1121,15 +1118,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$diffHistLinks = $this->msg( 'parentheses' )
 				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
 				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
-			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
-
-			# Denote if username is redacted for this edit
-			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-				$ret .= " <strong>" .
-					$this->msg( 'rev-deleted-user-contribs' )->escaped() .
-					"</strong>";
-			}
 
 			# Tags, if any.
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
@@ -1138,20 +1126,48 @@ class ContribsPager extends ReverseChronologicalPager {
 				$this->getContext()
 			);
 			$classes = array_merge( $classes, $newClasses );
-			$ret .= " $tagSummary";
+
+			$templateParams = [
+				'articleLink' => $link,
+				'charDifference' => $chardiff,
+				'classes' => $classes,
+				'diffHistLinks' => $diffHistLinks,
+				'flags' => $flags,
+				'logText' => $comment,
+				'revDeleteLink' => $del,
+				'tagSummary' => $tagSummary,
+				'timestamp' => $d,
+				'topmarktext' => $topmarktext,
+				'userlink' => $userlink,
+			];
+
+			# Denote if username is redacted for this edit
+			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+				$templateParams['rev-deleted-user-contribs'] =
+					$this->msg( 'rev-deleted-user-contribs' )->escaped();
+			}
+
+			$templateParser = new TemplateParser();
+			$ret = $templateParser->processTemplate(
+				'SpecialContributionsLine',
+				$templateParams
+			);
 		}
 
 		// Let extensions add data
-		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes ] );
+		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$templateParams['classes'] ] );
 
-		if ( $classes === [] && $ret === '' ) {
+		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
+		// receiving empty rows?
+
+		if ( $templateParams['classes'] === [] && $ret === '' ) {
 			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
-			$ret = "<!-- Could not format Special:Contribution row. -->\n";
-		} else {
-			$ret = Html::rawElement( 'li', [ 'class' => $classes ], $ret ) . "\n";
+			return "<!-- Could not format Special:Contribution row. -->\n";
 		}
 
-		return $ret;
+		// FIXME: The signature of the ContributionsLineEnding hook makes it
+		// very awkward to move this LI wrapper into the template.
+		return Html::rawElement( 'li', [ 'class' => $templateParams['classes'] ], $ret ) . "\n";
 	}
 
 	/**
