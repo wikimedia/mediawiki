@@ -4,7 +4,6 @@
  * @group Database
  */
 class MergeHistoryTest extends MediaWikiTestCase {
-
 	/**
 	 * Make some pages to work with
 	 */
