@@ -2273,6 +2273,7 @@
 	"sp-contributions-footer-anon": "-",
 	"sp-contributions-footer-newbies": "-",
 	"whatlinkshere": "What links here",
+	"whatlinkshere-count": "Displayed $1 {{PLURAL:$1|item|items}}.",
 	"whatlinkshere-title": "Pages that link to \"$1\"",
 	"whatlinkshere-summary": "",
 	"whatlinkshere-page": "Page:",
