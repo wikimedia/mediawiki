@@ -29,10 +29,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static $users;
 
 	/**
+	 * Primary database
+	 *
 	 * @var DatabaseBase
 	 * @since 1.18
 	 */
-	protected $db;
+	protected $mainDb;
 
 	/**
 	 * @var array
@@ -127,22 +129,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
-			$this->db = wfGetDB( DB_MASTER );
+			$this->mainDb = wfGetDB( DB_MASTER );
 
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {
-				// switch to a temporary clone of the database
-				self::setupTestDB( $this->db, $this->dbPrefix() );
+				$this->setupAllTestDBs();
 				$this->addCoreDBData();
 
-				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-					$this->resetDB();
+				if ( ( $this->mainDb->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+					$this->resetDB( $this->mainDb, $this->tablesUsed );
 				}
 			}
 
 			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
-			// is available in subclasse's setUpBeforeClass() and setUp() methods.
+			// is available in subclass's setUpBeforeClass() and setUp() methods.
 			// This would also remove the need for the HACK that is oncePerClass().
 			if ( $this->oncePerClass() ) {
 				$this->addDBDataOnce();
@@ -155,7 +156,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		parent::run( $result );
 
 		if ( $needsResetDB ) {
-			$this->resetDB();
+			$this->resetDB( $this->mainDb, $this->tablesUsed );
 		}
 	}
 
@@ -168,10 +169,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$class = static::class;
 
-		$first = !isset( $this->db->_hasDataForTestClass )
-			|| $this->db->_hasDataForTestClass !== $class;
+		$first = !isset( $this->mainDb->_hasDataForTestClass )
+			|| $this->mainDb->_hasDataForTestClass !== $class;
 
-		$this->db->_hasDataForTestClass = $class;
+		$this->mainDb->_hasDataForTestClass = $class;
 		return $first;
 	}
 
@@ -238,10 +239,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		if ( $this->needsDB() && $this->db ) {
+		if ( $this->needsDB() && $this->mainDb ) {
 			// Clean up open transactions
-			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback( __METHOD__, 'flush' );
+			while ( $this->mainDb->trxLevel() > 0 ) {
+				$this->mainDb->rollback( __METHOD__, 'flush' );
 			}
 		}
 
@@ -274,10 +275,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		if ( $this->needsDB() && $this->db ) {
+		if ( $this->needsDB() && $this->mainDb ) {
 			// Clean up open transactions
-			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback( __METHOD__, 'flush' );
+			while ( $this->mainDb->trxLevel() > 0 ) {
+				$this->mainDb->rollback( __METHOD__, 'flush' );
 			}
 		}
 
@@ -526,7 +527,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.18
 	 */
 	public function dbPrefix() {
-		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
+		return $this->mainDb->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
 
 	/**
@@ -563,10 +564,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$user = User::newFromName( 'UTSysop' );
 		$comment = __METHOD__ . ': Sample page for unit test.';
-
-		// Avoid memory leak...?
-		// LinkCache::singleton()->clear();
-		// Maybe.  But doing this absolutely breaks $title->isRedirect() when called during unit tests....
 
 		$page = WikiPage::factory( $title );
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
@@ -608,17 +605,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	private function addCoreDBData() {
-		if ( $this->db->getType() == 'oracle' ) {
+		if ( $this->mainDb->getType() == 'oracle' ) {
 
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
-			$this->db->insert( 'user', [
+			$this->mainDb->insert( 'user', [
 				'user_id' => 0,
 				'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
 
 			# Insert 0 page to prevent FK violations
 			# Blank page
-			$this->db->insert( 'page', [
+			$this->mainDb->insert( 'page', [
 				'page_id' => 0,
 				'page_namespace' => 0,
 				'page_title' => ' ',
@@ -626,7 +623,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_is_redirect' => 0,
 				'page_is_new' => 0,
 				'page_random' => 0,
-				'page_touched' => $this->db->timestamp(),
+				'page_touched' => $this->mainDb->timestamp(),
 				'page_latest' => 0,
 				'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
 		}
@@ -691,6 +688,52 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Setups a database with the given prefix.
+	 *
+	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
+	 * Otherwise, it will clone the tables and change the prefix.
+	 *
+	 * Clones all tables in the given database (whatever database that connection has
+	 * open), to versions with the test prefix.
+	 *
+	 * @param DatabaseBase $db Database to use
+	 * @param string $prefix Prefix to use for test tables
+	 * @return bool True if tables were cloned, false if only the prefix was changed
+	 */
+	protected static function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix ) {
+		$tablesCloned = self::listTables( $db );
+		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+			CloneDatabase::changePrefix( $prefix );
+
+			return false;
+		} else {
+			$dbClone->cloneTableStructure();
+			return true;
+		}
+	}
+
+	/**
+	 * Set up all test DBs
+	 */
+	public function setupAllTestDBs() {
+		global $wgDBprefix;
+
+		self::$oldTablePrefix = $wgDBprefix;
+
+		$testPrefix = $this->dbPrefix();
+
+		// switch to a temporary clone of the database
+		self::setupTestDB( $this->mainDb, $testPrefix );
+
+		if ( self::isUsingExternalStoreDB() ) {
+			self::setupExternalStoreTestDBs( $testPrefix );
+		}
+	}
+
+	/**
 	 * Creates an empty skeleton of the wiki database by cloning its structure
 	 * to equivalent tables using the given $prefix. Then sets MediaWiki to
 	 * use the new set of tables (aka schema) instead of the original set.
@@ -712,8 +755,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
-		global $wgDBprefix;
-		if ( $wgDBprefix === $prefix ) {
+		if ( $db->tablePrefix() === $prefix ) {
 			throw new MWException(
 				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
 		}
@@ -722,42 +764,110 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return;
 		}
 
-		$tablesCloned = self::listTables( $db );
-		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
-		self::$dbSetup = true;
-		self::$oldTablePrefix = $wgDBprefix;
-
-		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-			CloneDatabase::changePrefix( $prefix );
-
+		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
 			return;
-		} else {
-			$dbClone->cloneTableStructure();
 		}
 
+		// Assuming this isn't needed for External Store database, and not sure if the procedure
+		// would be available there.
 		if ( $db->getType() == 'oracle' ) {
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+		}
+
+		self::$dbSetup = true;
+	}
+
+	/**
+	 * Clones the External Store database(s) for testing
+	 *
+	 * @param string $testPrefix Prefix for test tables
+	 */
+	protected static function setupExternalStoreTestDBs( $testPrefix ) {
+		$connections = self::getExternalStoreDatabaseConnections();
+		foreach ( $connections as $dbw ) {
+			// Hack: cloneTableStructure sets $wgDBprefix to the unit test
+			// prefix,.  Even though listTables now uses tablePrefix, that
+			// itself is populated from $wgDBprefix by default.
+
+			// We have to set it back, or we won't find the original 'blobs'
+			// table to copy.
+
+			$dbw->tablePrefix( self::$oldTablePrefix );
+			self::setupDatabaseWithTestPrefix( $dbw, $testPrefix );
 		}
 	}
 
 	/**
-	 * Empty all tables so they can be repopulated for tests
+	 * Gets master database connections for all of the ExternalStoreDB
+	 * stores configured in $wgDefaultExternalStore.
+	 *
+	 * @return array Array of DatabaseBase master connections
 	 */
-	private function resetDB() {
-		if ( $this->db ) {
-			$truncate = in_array( $this->db->getType(), [ 'oracle', 'mysql' ] );
-			foreach ( $this->tablesUsed as $tbl ) {
+
+	protected static function getExternalStoreDatabaseConnections() {
+		global $wgDefaultExternalStore;
+
+		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
+		$defaultArray = (array) $wgDefaultExternalStore;
+		$dbws = [];
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				list( $proto, $cluster ) = explode( '://', $url, 2 );
+				$dbw = $externalStoreDB->getMaster( $cluster );
+				$dbws[] = $dbw;
+			}
+		}
+
+		return $dbws;
+	}
+
+	/**
+	 * Check whether ExternalStoreDB is being used
+	 *
+	 * @return bool True if it's being used
+	 */
+	protected static function isUsingExternalStoreDB() {
+		global $wgDefaultExternalStore;
+		if ( !$wgDefaultExternalStore ) {
+			return false;
+		}
+
+		$defaultArray = (array) $wgDefaultExternalStore;
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Empty all tables so they can be repopulated for tests
+	 *
+	 * @param DatabaseBase $db|null Database to reset
+	 * @param array $tablesUsed Tables to reset
+	 */
+	private function resetDB( $db, $tablesUsed ) {
+		if ( $db ) {
+			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
+			foreach ( $tablesUsed as $tbl ) {
 				// TODO: reset interwiki and user tables to their original content.
 				if ( $tbl == 'interwiki' || $tbl == 'user' ) {
 					continue;
 				}
 
 				if ( $truncate ) {
-					$this->db->query( 'TRUNCATE TABLE ' . $this->db->tableName( $tbl ), __METHOD__ );
+					$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tbl ), __METHOD__ );
 				} else {
-					$this->db->delete( $tbl, '*', __METHOD__ );
+
+					$db->delete( $tbl, '*', __METHOD__ );
+				}
+
+				if ( $tbl === 'page' ) {
+					// Forget about the pages since they don't
+					// exist in the DB.
+					LinkCache::singleton()->clear();
 				}
 			}
 		}
@@ -794,10 +904,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $value == '', $msg );
 	}
 
-	private static function unprefixTable( $tableName ) {
-		global $wgDBprefix;
-
-		return substr( $tableName, strlen( $wgDBprefix ) );
+	private static function unprefixTable( &$tableName, $ind, $prefix ) {
+		$tableName = substr( $tableName, strlen( $prefix ) );
 	}
 
 	private static function isNotUnittest( $table ) {
@@ -812,16 +920,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return array
 	 */
 	public static function listTables( $db ) {
-		global $wgDBprefix;
-
-		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
+		$prefix = $db->tablePrefix();
+		$tables = $db->listTables( $prefix, __METHOD__ );
 
 		if ( $db->getType() === 'mysql' ) {
 			# bug 43571: cannot clone VIEWs under MySQL
-			$views = $db->listViews( $wgDBprefix, __METHOD__ );
+			$views = $db->listViews( $prefix, __METHOD__ );
 			$tables = array_diff( $tables, $views );
 		}
-		$tables = array_map( [ __CLASS__, 'unprefixTable' ], $tables );
+		array_walk( $tables, [ __CLASS__, 'unprefixTable' ], $prefix );
 
 		// Don't duplicate test tables from the previous fataled run
 		$tables = array_filter( $tables, [ __CLASS__, 'isNotUnittest' ] );
@@ -843,8 +950,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.18
 	 */
 	protected function checkDbIsSupported() {
-		if ( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
-			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
+		if ( !in_array( $this->mainDb->getType(), $this->supportedDBs ) ) {
+			throw new MWException( $this->mainDb->getType() . " is not currently supported for unit testing." );
 		}
 	}
 
