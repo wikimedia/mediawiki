@@ -844,7 +844,7 @@ class Block {
 					'ipb_expiry' => $dbw->timestamp( $this->mExpiry ),
 				],
 				[ /* WHERE */
-					'ipb_address' => (string)$this->getTarget()
+					'ipb_id' => $this->getId(),
 				],
 				__METHOD__
 			);
