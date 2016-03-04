@@ -795,7 +795,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
-		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
+		if ( !$canUnwatchedpages || !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
 
@@ -836,7 +836,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
-		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
+		if ( !$canUnwatchedpages || !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
 
