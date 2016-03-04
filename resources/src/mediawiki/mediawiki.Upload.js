@@ -92,6 +92,20 @@
 	};
 
 	/**
+	 * Set the stashed file to finish uploading.
+	 *
+	 * @param {string} filekey
+	 */
+	UP.setFilekey = function ( filekey ) {
+		var upload = this;
+
+		this.setState( Upload.State.STASHED );
+		this.stashPromise = $.Deferred().resolve( function ( data ) {
+			upload.api.uploadFromStash( filekey, data );
+		} );
+	};
+
+	/**
 	 * Sets the filename based on the filename as it was on the upload.
 	 */
 	UP.setFilenameFromFile = function () {
