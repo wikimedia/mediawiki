@@ -145,6 +145,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( !$status->isOk() ) {
 			return $status;
 		}
+
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds." );
 
 		// File system path
