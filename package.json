@@ -15,7 +15,7 @@
     "grunt-jscs-checker": "0.4.1",
     "grunt-karma": "0.10.1",
     "karma": "0.12.31",
-    "karma-chrome-launcher": "0.1.7",
+    "karma-chrome-launcher": "0.1.8",
     "karma-firefox-launcher": "0.1.4",
     "karma-qunit": "0.1.4",
     "qunitjs": "1.16.0"
