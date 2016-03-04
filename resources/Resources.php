@@ -1196,6 +1196,7 @@ return [
 			'mediawiki.user',
 			'mediawiki.Upload',
 			'mediawiki.jqueryMsg',
+			'mediawiki.widgets.StashedFileSelectWidget'
 		],
 		'messages' => [
 			'upload-form-label-infoform-title',
@@ -2236,6 +2237,23 @@ return [
 		],
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	'mediawiki.widgets.StashedFileSelectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.StashedFileSelect.js',
+		],
+
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.widgets/mw.widgets.StashedFileSelect.less',
+			],
+		],
+
+		'dependencies' => [
+			'oojs',
+			'oojs-ui',
+		],
 	],
 
 	/* es5-shim */

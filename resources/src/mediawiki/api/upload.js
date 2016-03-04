@@ -347,21 +347,7 @@
 			}
 
 			function finishUpload( moreData ) {
-				data = $.extend( data, moreData );
-				data.filekey = filekey;
-				data.action = 'upload';
-				data.format = 'json';
-
-				if ( !data.filename ) {
-					throw new Error( 'Filename not included in file data.' );
-				}
-
-				return api.postWithEditToken( data ).then( function ( result ) {
-					if ( result.upload && result.upload.warnings ) {
-						return $.Deferred().reject( getFirstKey( result.upload.warnings ), result ).promise();
-					}
-					return result;
-				} );
+				api.uploadFromStash( filekey, $.extend( data, moreData ) );
 			}
 
 			return this.upload( file, { stash: true, filename: data.filename } ).then(
@@ -378,6 +364,29 @@
 					return $.Deferred().reject( errorCode, result );
 				}
 			);
+		},
+
+		/**
+		 * Finish an upload in the stash.
+		 *
+		 * @param {string} filekey
+		 * @param {Object} data
+		 */
+		uploadFromStash: function ( filekey, data ) {
+			data.filekey = filekey;
+			data.action = 'upload';
+			data.format = 'json';
+
+			if ( !data.filename ) {
+				throw new Error( 'Filename not included in file data.' );
+			}
+
+			return this.postWithEditToken( data ).then( function ( result ) {
+				if ( result.upload && result.upload.warnings ) {
+					return $.Deferred().reject( getFirstKey( result.upload.warnings ), result ).promise();
+				}
+				return result;
+			} );
 		},
 
 		needToken: function () {
