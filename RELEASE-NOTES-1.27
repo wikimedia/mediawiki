@@ -322,6 +322,8 @@ changes to languages because of Phabricator reports.
 * ContentHandler::supportsCategories method added. Default is true.
   CategoryMembershipChangeJob updates are skipped for content that
   does not support categories.
+* wikidiff difference engine is no longer supported, anyone still using it are encouraged
+  to upgrade to wikidiff2 which is actively maintained and has better package availability.
 
 == Compatibility ==
 

@@ -847,16 +847,6 @@ class DifferenceEngine extends ContextSource {
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
-		if ( $wgExternalDiffEngine == 'wikidiff' && function_exists( 'wikidiff_do_diff' ) ) {
-			# For historical reasons, external diff engine expects
-			# input text to be HTML-escaped already
-			$otext = htmlspecialchars( $wgContLang->segmentForDiff( $otext ) );
-			$ntext = htmlspecialchars( $wgContLang->segmentForDiff( $ntext ) );
-
-			return $wgContLang->unsegmentForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
-			$this->debug( 'wikidiff1' );
-		}
-
 		if ( $wgExternalDiffEngine == 'wikidiff2' && function_exists( 'wikidiff2_do_diff' ) ) {
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
