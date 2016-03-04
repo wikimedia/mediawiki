@@ -1,5 +1,4 @@
-/*global moment*/
-( function ( $, mw, moment ) {
+( function ( $, mw ) {
 
 	/**
 	 * mw.Upload.BookletLayout encapsulates the process of uploading a file
@@ -61,12 +60,15 @@
 	 * @constructor
 	 * @param {Object} config Configuration options
 	 * @cfg {jQuery} [$overlay] Overlay to use for widgets in the booklet
+	 * @cfg {string} [filekey] Sets the stashed file to finish uploading. Overrides most of the file selection process, and fetches a thumbnail from the server.
 	 */
 	mw.Upload.BookletLayout = function ( config ) {
 		// Parent constructor
 		mw.Upload.BookletLayout.parent.call( this, config );
 
 		this.$overlay = config.$overlay;
+
+		this.filekey = config.filekey;
 
 		this.renderUploadForm();
 		this.renderInfoForm();
@@ -96,14 +98,6 @@
 	OO.inheritClass( mw.Upload.BookletLayout, OO.ui.BookletLayout );
 
 	/* Events */
-
-	/**
-	 * Progress events for the uploaded file
-	 *
-	 * @event fileUploadProgress
-	 * @param {number} progress In percentage
-	 * @param {Object} duration Duration object from `moment.duration()`
-	 */
 
 	/**
 	 * The file has finished uploading
@@ -164,7 +158,12 @@
 
 		this.clear();
 		this.upload = this.createUpload();
+
 		this.setPage( 'upload' );
+
+		if ( this.filekey ) {
+			this.setFilekey( this.filekey );
+		}
 
 		return this.upload.getApi().then(
 			function ( api ) {
@@ -207,19 +206,30 @@
 	 * file object.
 	 *
 	 * @protected
-	 * @fires fileUploadProgress
 	 * @fires fileUploaded
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		var deferred = $.Deferred(),
-			startTime = new Date(),
 			layout = this,
 			file = this.getFile();
 
-		this.setFilename( file.name );
-
 		this.setPage( 'info' );
+
+		if ( this.filekey ) {
+			if ( file === null ) {
+				// Someone gonna get-a hurt real bad
+				throw new Error( 'filekey not passed into file select widget, which is impossible. Quitting while we\'re behind.' );
+			}
+
+			// Stashed file already uploaded.
+			deferred.resolve();
+			this.uploadPromise = deferred;
+			this.emit( 'fileUploaded' );
+			return deferred;
+		}
+
+		this.setFilename( file.name );
 
 		this.upload.setFile( file );
 		// The original file name might contain invalid characters, so use our sanitized one
@@ -235,11 +245,6 @@
 			// really be an error...
 			var errorMessage = layout.getErrorMessageForStateDetails();
 			deferred.reject( errorMessage );
-		}, function ( progress ) {
-			var elapsedTime = new Date() - startTime,
-				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
-				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
-			layout.emit( 'fileUploadProgress', progress, estimatedRemainingTime );
 		} );
 
 		// If there is an error in uploading, come back to the upload page
@@ -402,14 +407,12 @@
 		var fieldset,
 			layout = this;
 
-		this.selectFileWidget = new OO.ui.SelectFileWidget( {
-			showDropTarget: true
-		} );
+		this.selectFileWidget = this.getFileWidget();
 		fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [ this.selectFileWidget ] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
-		// Validation
+		// Validation (if the SFW is for a stashed file, this never fires)
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 
 		this.selectFileWidget.on( 'change', function () {
@@ -417,6 +420,23 @@
 		} );
 
 		return this.uploadForm;
+	};
+
+	/**
+	 * Gets the widget for displaying or inputting the file to upload.
+	 *
+	 * @return {OO.ui.SelectFileWidget|mw.widgets.StashedFileSelectWidget}
+	 */
+	mw.Upload.BookletLayout.prototype.getFileWidget = function () {
+		if ( this.filekey ) {
+			return new mw.widgets.StashedFileSelectWidget( {
+				filekey: this.filekey
+			} );
+		}
+
+		return new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
 	};
 
 	/**
@@ -465,11 +485,6 @@
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
 		} );
-		this.progressBarWidget = new OO.ui.ProgressBarWidget( {
-			progress: 0
-		} );
-		this.filePreview.$element.append( this.progressBarWidget.$element );
-
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			indicator: 'required',
 			required: true,
@@ -502,10 +517,6 @@
 			classes: [ 'mw-upload-bookletLayout-infoForm' ],
 			items: [ this.filePreview, fieldset ]
 		} );
-
-		this.on( 'fileUploadProgress', function ( progress ) {
-			this.progressBarWidget.setProgress( progress * 100 );
-		}.bind( this ) );
 
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
@@ -627,16 +638,29 @@
 	};
 
 	/**
+	 * Sets the filekey of a file already stashed on the server
+	 * as the target of this upload operation.
+	 *
+	 * @protected
+	 * @param {string} filekey
+	 */
+	mw.Upload.BookletLayout.prototype.setFilekey = function ( filekey ) {
+		this.upload.setFilekey( this.filekey );
+		this.selectFileWidget.setValue( filekey );
+
+		this.onUploadFormChange();
+	};
+
+	/**
 	 * Clear the values of all fields
 	 *
 	 * @protected
 	 */
 	mw.Upload.BookletLayout.prototype.clear = function () {
 		this.selectFileWidget.setValue( null );
-		this.progressBarWidget.setProgress( 0 );
 		this.filenameWidget.setValue( null ).setValidityFlag( true );
 		this.descriptionWidget.setValue( null ).setValidityFlag( true );
 		this.filenameUsageWidget.setValue( null );
 	};
 
-}( jQuery, mediaWiki, moment ) );
+}( jQuery, mediaWiki ) );
