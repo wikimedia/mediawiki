@@ -823,6 +823,34 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
+		$diff = function() use ( $otext, $ntext ) {
+			return $this->textDiff( $otext, $ntext );
+		};
+
+		$error = function( $status ) {
+			throw new FatalError( $status->getWikiText() );
+		};
+
+		// Use PoolCounter if the diff looks like it can be expensive
+		if ( strlen( $otext ) + strlen( $ntext ) > 20000 ) {
+			$work = new PoolCounterWorkViaCallback( 'diff',
+				md5( $otext ) . md5( $ntext ),
+				array( 'doWork' => $diff, 'error' => $error )
+			);
+			return $work->execute();
+		}
+
+		return $diff();
+	}
+
+	/**
+	 * Generates diff, to be wrapped internally in a logging/instrumentation
+	 *
+	 * @param string $otext Old text, must be already segmented
+	 * @param string $ntext New text, must be already segmented
+	 * @return bool|string
+	 */
+	protected function textDiff( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		$otext = str_replace( "\r\n", "\n", $otext );
