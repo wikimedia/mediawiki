@@ -476,8 +476,6 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
-
-		return true;
 	}
 
 	/**
