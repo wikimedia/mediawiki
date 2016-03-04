@@ -452,7 +452,6 @@ class JobQueueDB extends JobQueue {
 	 * @see JobQueue::doAck()
 	 * @param Job $job
 	 * @throws MWException
-	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['id'] ) ) {
@@ -476,8 +475,6 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
-
-		return true;
 	}
 
 	/**
