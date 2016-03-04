@@ -1089,6 +1089,7 @@ class LoginForm extends SpecialPage {
 					$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
 					$userLang = Language::factory( $code );
 					$wgLang = $userLang;
+					RequestContext::getMain()->setLanguage( $userLang );
 					$this->getContext()->setLanguage( $userLang );
 					// Reset SessionID on Successful login (bug 40995)
 					$this->renewSessionId();
