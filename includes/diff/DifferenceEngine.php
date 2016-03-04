@@ -859,8 +859,7 @@ class DifferenceEngine extends ContextSource {
 			$text .= $this->debug( 'wikidiff2' );
 
 			return $text;
-		}
-		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
+		} elseif ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
 			$tmpDir = wfTempDir();
 			$tempName1 = tempnam( $tmpDir, 'diff_' );
