@@ -640,22 +640,24 @@ class WikiRevision {
 
 		# Get the file source or download if necessary
 		$source = $this->getFileSrc();
-		$flags = $this->isTempSrc() ? File::DELETE_SOURCE : 0;
-		if ( !$source ) {
+		$autoDeleteSource = $this->isTempSrc();
+		if ( !strlen( $source ) ) {
 			$source = $this->downloadSource();
-			$flags |= File::DELETE_SOURCE;
+			$autoDeleteSource = true;
 		}
-		if ( !$source ) {
+		if ( !strlen( $source ) ) {
 			wfDebug( __METHOD__ . ": Could not fetch remote file.\n" );
 			return false;
 		}
+
+		$tmpFile = new TempFSFile( $source );
+		if ( $autoDeleteSource ) {
+			$tmpFile->autocollect();
+		}
+
 		$sha1File = ltrim( sha1_file( $source ), '0' );
 		$sha1 = $this->getSha1();
 		if ( $sha1 && ( $sha1 !== $sha1File ) ) {
-			if ( $flags & File::DELETE_SOURCE ) {
-				# Broken file; delete it if it is a temporary file
-				unlink( $source );
-			}
 			wfDebug( __METHOD__ . ": Corrupt file $source.\n" );
 			return false;
 		}
@@ -665,8 +667,9 @@ class WikiRevision {
 		# Do the actual upload
 		if ( $archiveName ) {
 			$status = $file->uploadOld( $source, $archiveName,
-				$this->getTimestamp(), $this->getComment(), $user, $flags );
+				$this->getTimestamp(), $this->getComment(), $user );
 		} else {
+			$flags = 0;
 			$status = $file->upload( $source, $this->getComment(), $this->getComment(),
 				$flags, false, $this->getTimestamp(), $user );
 		}

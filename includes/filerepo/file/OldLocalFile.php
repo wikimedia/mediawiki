@@ -332,16 +332,13 @@ class OldLocalFile extends LocalFile {
 	 * @param string $timestamp
 	 * @param string $comment
 	 * @param User $user
-	 * @param int $flags
 	 * @return FileRepoStatus
 	 */
-	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
+	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$this->lock();
 
 		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
-		$status = $this->publishTo( $srcPath, $dstRel,
-			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0
-		);
+		$status = $this->publishTo( $srcPath, $dstRel );
 
 		if ( $status->isGood() ) {
 			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
