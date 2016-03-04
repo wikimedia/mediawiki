@@ -1615,7 +1615,7 @@
 	"rollbackfailed": "Afturrulling miseydnað",
 	"cantrollback": "Tað ber ikki til at afturstilla rættingina;\ntann seinasti ið skrivaði her er eisini tann einasti høvundurin á hesi síðu.",
 	"alreadyrolled": "Tað ber ikki til at rulla aftur seinastu rætting av [[:$1]] hjá [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nonkur annar hevur longu rættað ella rullað síðuna aftur.\n\nSeinasta broytingin á síðuni var av [[User:$3|$3]] ([[User talk:$3|kjak]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Rættingarfrágreiðingin var: \"''$1''\".",
+	"editcomment": "Rættingarfrágreiðingin var: <em>$1</em>.",
 	"revertpage": "Tók burtur rættingar hjá [[Special:Contributions/$2|$2]] ([[User talk:$2|kjak]]) til seinastu versjón hjá [[User:$1|$1]]",
 	"revertpage-nouser": "Tók burtur rættingar hjá einum fjaldum brúkara til seinastu versjón hjá  {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tók burtur rættingar hjá $1;\nbroytti tað aftur til seinastu versjón hjá $2.",

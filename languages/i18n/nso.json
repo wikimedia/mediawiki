@@ -654,7 +654,7 @@
 	"deleteotherreason": "Mabaka a mangwe:",
 	"deletereasonotherlist": "Mabaka a mangwe",
 	"rollbacklink": "bošetša morago",
-	"editcomment": "Ahlaahlo ya phetogo e bile : \"''$1''\".",
+	"editcomment": "Ahlaahlo ya phetogo e bile : <em>$1</em>.",
 	"protectlogpage": "''Log'' yago lota",
 	"protectedarticle": "lotilwe \"[[$1]]\"",
 	"modifiedarticleprotection": "fetotše  mokgwa wa go lota \"[[$1]]\"",

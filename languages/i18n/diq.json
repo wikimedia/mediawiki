@@ -1768,7 +1768,7 @@
 	"rollbackfailed": "Peyserardış nêbi",
 	"cantrollback": "karbero peyin têna paşt dayo, no semedi ra vuriyayiş tepiya nêgeriyeni.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}} hetê [[Special:Contributions/$2|{{int:contribslink}}]]) ra pelê ıney[[:$1]] de vurnayiş biyo u no vurnayiş tepiya nêgeriyeno;\nyewna ten pel de vurnayiş kerdo u pel tepiya nêgeriyeno.\n\noyo ke vurnayişo peyin kerdo: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "kılmnuşteyê vurnayişibi: \"''$1''\".",
+	"editcomment": "kılmnuşteyê vurnayişibi: <em>$1</em>.",
 	"revertpage": "Hetê [[Special:Contributions/$2|$2]] ([[User talk:$2|Mesac]]) ra vurnayiş biyo u ney vurnayişi tepiya geriyayo u no [[User:$1|$1]] kes o ke cuwa ver revizyon kerdo revizyonê no kesi tepiya anciyayo.",
 	"revertpage-nouser": "No keso ke vuriyayiş kerdo vuriyayişé{{GENDER:$1|[[User:$1|$1]]}} ker o",
 	"rollback-success": "vurnayişê no kesi $1 tepiya geriyayo u hetê no\n$2 kesi ra cıwa ver o ke revizyon biyo no revizyon tepiya anciyayo.",

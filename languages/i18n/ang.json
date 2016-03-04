@@ -12,7 +12,8 @@
 			"Tsepelcory",
 			"Wōdenhelm",
 			"아라",
-			"Dpk"
+			"Dpk",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -370,7 +371,6 @@
 	"createaccountreason": "Racu:",
 	"createacct-reason": "Racu",
 	"createacct-reason-ph": "For hwȳ wyrcest þū ōðerne grīman",
-	"createacct-imgcaptcha-ph": "Besettan þone traht þe þū sīhst būfan",
 	"createacct-submit": "Scieppan þīnne grīman",
 	"createacct-another-submit": "Scieppan ōðerne grīman",
 	"createacct-benefit-heading": "{{SITENAME}} is geworht fram hādum swilce þū.",
@@ -798,7 +798,7 @@
 	"deletereasonotherlist": "Ōðru racu",
 	"rollbacklink": "settan on bæc",
 	"rollbackfailed": "Bæcsettung tōsǣlde",
-	"editcomment": "Þǣre adihtunge se cwide wæs: \"''$1''\".",
+	"editcomment": "Þǣre adihtunge se cwide wæs: <em>$1</em>.",
 	"revertpage": "Onhwearf adihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|mōtung]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]",
 	"protectlogpage": "Beorges ealdhord",
 	"protectedarticle": "bearg \"[[$1]]\"",
@@ -877,7 +877,6 @@
 	"contribslink": "forðunga",
 	"unblocklogentry": "unfortȳnde $1",
 	"block-log-flags-nocreate": "Forbēad tō scieppenne reccinge",
-	"movearticle": "Wegan tramet:",
 	"newtitle": "Tō nīwum naman:",
 	"move-watch": "Behealdan frumtramet and endetramet",
 	"movepagebtn": "Wegan tramet",

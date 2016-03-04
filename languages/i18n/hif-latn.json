@@ -1797,7 +1797,7 @@
 	"rollbackfailed": "Pahile jaise kare ke kosis safal nai bhais",
 	"cantrollback": "Badlao ke pahile jaise nai kare sakta hai;\nisse pahile waala sadasya ii panna ke khaali yogdaan de waala hai.",
 	"alreadyrolled": "[[:$1]] by [[User:$2|$2]] ke pahile jaise nai kare sakta hai. ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\naur koi ii panna ke badal nai to pahile jaise kar diis hai.\n\nIi panna ke pichla badla [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) se rahaa",
-	"editcomment": "Badlao ke summary rahaa: \"''$1''\".",
+	"editcomment": "Badlao ke summary rahaa: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.",
 	"revertpage-nouser": "Reverted edits by a hidden user to last revision by {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "$1 ke badlao ke pahile jaise kar dewa gais hai;\nbadal ke $2 ke aakhri version kar dewa gais hai.",

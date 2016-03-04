@@ -1818,7 +1818,7 @@
 	"rollbackfailed": "Lu canciu n arreri nun arriniscìu",
 	"cantrollback": "Nun si pò annullari lu canciamentu;\nl'ùrtimu cuntribbuturi è l'ùnicu auturi di sta pàggina.",
 	"alreadyrolled": "Nun si pò annullari l'ùrtimu canciamentu â pàggina [[:$1]] fattu di [[User:$2|$2]] ([[User talk:$2|discussioni]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nquarchidun'àutru già canciau la pàggina o puru fici nu canciu n'arreri.\n\nL'ùrtimu canciamentu â pàggina fu fattu di [[User:$3|$3]] ([[User talk:$3|discussioni]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Lu riassuntu dû canciamentu era: \"''$1''\".",
+	"editcomment": "Lu riassuntu dû canciamentu era: <em>$1</em>.",
 	"revertpage": "Annullati li canciamenti fatti di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]]) nfina a l'ùrtima virsioni di [[User:$1|$1]]",
 	"revertpage-nouser": "Annullati li canciamenti fatti di n'utenti ammucciatu nfina a l'ùrtima virsioni di {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Annullati li canciamenti di $1;\nsi turnau a l'ùrtima virsioni di $2.",

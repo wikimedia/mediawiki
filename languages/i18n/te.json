@@ -1815,7 +1815,7 @@
 	"rollbackfailed": "రద్దుచేయటం విఫలమైంది",
 	"cantrollback": "రచనను వెనక్కి తీసుకువెళ్ళలేము; ఈ పేజీకి ఇదొక్కటే రచన.",
 	"alreadyrolled": "[[:$1]]లో [[User:$2|$2]] ([[User talk:$2|చర్చ]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) చేసిన చివరి మార్పును రద్దు చెయ్యలేము;\nమరెవరో ఆ పేజీని వెనక్కి మళ్ళించారు, లేదా మార్చారు.\n\nచివరి మార్పులు చేసినవారు: [[User:$3|$3]] ([[User talk:$3|చర్చ]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "దిద్దుబాటు సారాశం: \"''$1''\".",
+	"editcomment": "దిద్దుబాటు సారాశం: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] యొక్క చివరి కూర్పు వరకు తిప్పికొట్టారు.",
 	"revertpage-nouser": "దాచబడిన వాడుకరి చేసిన మార్పులను [[User:$1|$1]] యొక్క చివరి కూర్పుకి తిప్పికొట్టారు",
 	"rollback-success": "$1 చేసిన దిద్దుబాట్లను వెనక్కు తీసుకెళ్ళాం; తిరిగి $2 చేసిన చివరి కూర్పుకు మార్చాం.",

@@ -1839,7 +1839,7 @@
 	"rollbackfailed": "Vraćanje nije uspjelo",
 	"cantrollback": "Nemoguće je vratiti izmjenu;\nposljednji kontributor je jedini na ovoj stranici.",
 	"alreadyrolled": "Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.\n\nPosljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Sažetak izmjene je bio: \"''$1''\".",
+	"editcomment": "Sažetak izmjene je bio: <em>$1</em>.",
 	"revertpage": "Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]",
 	"revertpage-nouser": "Vraćene izmjene skrivenog korisnika na posljednju reviziju, koju je {{GENDER:$1|napravio|napravila}} [[User:$1|$1]]",
 	"rollback-success": "Vraćene su izmjene korisnika $1;\nvraćeno na posljednju verziju koju je snimio $2.",

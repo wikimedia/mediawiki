@@ -2052,7 +2052,7 @@
 	"rollbackfailed": "Ongedaan maken van wijzigingen mislukt.",
 	"cantrollback": "Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.",
 	"alreadyrolled": "Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|bijdragen]]) ongedaan te maken.\nIemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.\n\nDe meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|bijdragen]]).",
-	"editcomment": "De bewerkingssamenvatting was: \"''$1''\".",
+	"editcomment": "De bewerkingssamenvatting was: <em>$1</em>.",
 	"revertpage": "Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]",
 	"revertpage-nouser": "Wijzigingen door een verborgen gebruiker teruggedraaid naar de laatste versie door {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "De wijzigingen door $1 zijn teruggedraaid.\nDe laatste versie van $2 is hersteld.",

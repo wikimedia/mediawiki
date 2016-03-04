@@ -1843,7 +1843,7 @@
 	"rollbackfailed": "Bi't turagsaaten as wat skiaf gingen.",
 	"cantrollback": "Det feranrang koon ei turagsaat wurd, diar san nian ööder skriiwern weesen.",
 	"alreadyrolled": "A feranrangen faan [[User:$2|$2]] ([[User talk:$2|Diskuschuun]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) bi [[:$1]] kön ei turagsaat wurd. Diar hää uuntesken en öödern brüker det sidj feranert.\n\nDet leetst feranrang as faan [[User:$3|$3]] ([[User talk:$3|Diskuschuun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Tuupfaadet feranrang: ''„$1“''.",
+	"editcomment": "Tuupfaadet feranrang: <em>$1</em>.",
 	"revertpage": "Feranrangen faan [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschuun]]) san üüb di leetst stant faan [[User:$1|$1]] turagsaat wurden.",
 	"revertpage-nouser": "Feranrangen faan en ferbürgenen brüker turagsaat an det leetst werjuun faan {{GENDER:$1|[[User:$1|$1]]}} weder iinsteld.",
 	"rollback-success": "Feranrangen faan $1 turagsaat an det leetst werjuun faan $2 weder iinsteld.",

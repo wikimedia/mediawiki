@@ -1482,7 +1482,7 @@
 	"rollbackfailed": "No s'ha puesto revertir",
 	"cantrollback": "No se pueden revertir as edicions; o zaguer colaborador ye o solo autor d'iste articlo.",
 	"alreadyrolled": "No se puet desfer a zaguer edición de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u desfeito edicions en ixa pachina.\n\nA zaguer edición d'a pachina la fació [[User:$3|$3]] ([[User talk:$3|descusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "O resumen d'a edición ye: \"''$1''\".",
+	"editcomment": "O resumen d'a edición ye: <em>$1</em>.",
 	"revertpage": "S'han revertito as edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); tornando t'a zaguera versión editada por [[User:$1|$1]]",
 	"revertpage-nouser": "S'han revertito as edicions feitas por (nombre d'usuario eliminato) a la zaguera versión feita por [[User:$1|$1]]",
 	"rollback-success": "Revertidas as edicions de $1; s'ha retornato t'a zaguer versión de $2.",

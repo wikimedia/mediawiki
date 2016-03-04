@@ -1781,7 +1781,7 @@
 	"rollbackfailed": "Cofnjenje njeporadźiło",
 	"cantrollback": "Njemóžno změnu cofnyć; strona nima druhich awtorow.",
 	"alreadyrolled": "Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.\n\nPoslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Zjeće wobdźěłanja bě: \"''$1''\".",
+	"editcomment": "Zjeće wobdźěłanja bě: <em>$1</em>.",
 	"revertpage": "Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]",
 	"revertpage-nouser": "Změny su so wot schowaneho wužiwarja anulowali a předchadna wersija wužiwarja {{GENDER:$1|[[User:$1|$1]]}} je so wobnowiła",
 	"rollback-success": "Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.",

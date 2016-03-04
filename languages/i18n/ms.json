@@ -1876,7 +1876,7 @@
 	"rollbackfailed": "Pengunduran gagal",
 	"cantrollback": "Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.",
 	"alreadyrolled": "Suntingan terakhir bagi [[:$1]] oleh [[Pengguna:$2|$2]] ([[Perbincangan pengguna:$2|bincang]]{{int:pipe-separator}}[[Khas:Sumbangan/$2|{{int:contribslink}}]]) tidak dapat dibalikkan; seorang pengguna lain sudahpun menyunting atau membalikkan laman itu.\n\nSuntingan terakhir kepada laman ini telah dibuat oleh [[Pengguna:$3|$3]] ([[Perbincangan pengguna:$3|bincang]]{{int:pipe-separator}}[[Khas:Sumbangan/$3|{{int:contribslink}}]]).",
-	"editcomment": "Ringkasan sutingan: \"''$1''\".",
+	"editcomment": "Ringkasan sutingan: <em>$1</em>.",
 	"revertpage": "Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]",
 	"revertpage-nouser": "Membalikkan suntingan oleh seorang pengguna tersorok kepada semakan terakhir oleh {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.",

@@ -1678,7 +1678,7 @@
 	"rollbackfailed": "Rikthimi dështoi",
 	"cantrollback": "Redaktimi nuk mund të kthehej;\nredaktori i fundit është i vetmi autor i këtij artikulli.",
 	"alreadyrolled": "Nuk mund të rikthehej redaktimi i fundit i [[:$1]] nga [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe tashmë.\n\nRedaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|diskuto]]{{nt:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Përmbledhja e redaktimit ishte: \"''$1''\".",
+	"editcomment": "Përmbledhja e redaktimit ishte: <em>$1</em>.",
 	"revertpage": "Ndryshimet e [[Special:Contributions/$2|$2]] ([[User talk:$2|diskutimet]]) u kthyen mbrapsht, artikulli tani ndodhet në versionin e fundit nga [[User:$1|$1]].",
 	"revertpage-nouser": "U rikthyen redaktimet nga (përdoruesi i larguar) në versionin e fundit nga [[User:$1|$1]]",
 	"rollback-success": "Ndryshimet e $1 u kthyen mbrapsh; artikulli ndodhet tek verzioni i $2.",

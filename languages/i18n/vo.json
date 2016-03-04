@@ -1317,7 +1317,7 @@
 	"rollbackfailed": "Sädunam no eplöpon",
 	"cantrollback": "Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.",
 	"alreadyrolled": "No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.\n\nRedakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Redakamaplän äbinon: „''$1''“.",
+	"editcomment": "Redakamaplän äbinon: <em>$1</em>.",
 	"revertpage": "Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]",
 	"rollback-success": "Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.",
 	"sessionfailure": "Jiniko ädabinon säkäd seimik pö nunädam olik.\nDun at no pelasumon ad vitön mögi, das votükams olik pogivulons gebane votik.\nVälolös knopi: „Geikön“ e dönulodolös padi, de kel ekömol, e tän steifülolös nogna.",

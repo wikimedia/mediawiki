@@ -1185,7 +1185,7 @@
 	"rollbackfailed": "Reversum defecit",
 	"cantrollback": "Haec non potest reverti; conlator proximus solus auctor huius rei est.",
 	"alreadyrolled": "Ad emendationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.\n\nEmendatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.",
-	"editcomment": "Summarium erat: \"''$1''\".",
+	"editcomment": "Summarium erat: <em>$1</em>.",
 	"revertpage": "Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]",
 	"rollback-success": "Reverti recensiones ab usore $1\nad emendationem proximam ab $2.",
 	"protectlogpage": "Index protectionum",

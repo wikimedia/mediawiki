@@ -1048,7 +1048,7 @@
 	"rollbackfailed": "E melaus ing pamanurung",
 	"cantrollback": "E malyaring ibalik itang miyalilan; bukud mung ing tawling minambag yang sinulat king bulung a ini.",
 	"alreadyrolled": "E malyaring isubli king sadya ing tawling pamanalili ning [[:$1]]\na gewa nang [[User:$2|$2]] ([[User talk:$2|Talk]]); atin nang aliwang menalili o minyubli ketang bulung.\n\nI [[User:$3|$3]] ([[User talk:$3|Talk]]) ing tawling menalili.",
-	"editcomment": "Ini ing komentu king edit: \"''$1''\".",
+	"editcomment": "Ini ing komentu king edit: <em>$1</em>.",
 	"revertpage": "Miurung la reng in-edit nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Pamisabi-sabi]]);\nbinalik neng [[User:$1|$1]] king tauling bersion",
 	"rollback-success": "Deng edit nang $1 a miurung;\nbinalik nong $2 king sadiang bersion.",
 	"sessionfailure": "Balamu ating prublema king kekang login session;\nmituknang ya ing kimut (action) a ini bang milisia king session hijacking (pamaniamsam session).\nPakitimid me ing \"mibalik\" (\"back\") at luban meng pasibayu ing bulung a penibatan mu, potang kai subukan mung pasibayu.",

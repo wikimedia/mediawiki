@@ -1660,7 +1660,7 @@
 	"rollbackfailed": "Nabigo ang pagpapagulong na pabalik sa (mas) dati",
 	"cantrollback": "Hindi maibalik ang pagbabago; tanging ang may-akda lamang ng pahinang ito ang huling tagapagambag/tagapaglathala.",
 	"alreadyrolled": "Hindi mapagulong na pabalik sa dati ang huling pagbabago ng [[$1]] ni ([[User talk:$2|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nmayroon nang ibang taong nagbago o nagpagulong pabalik sa dati ng pahina.\n\nAng huling pagbabago sa pahina ay ginawa ni [[User:$3|$3]] ([[User talk:$3|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Ang buod ng pagbabago ay: \"''$1''\".",
+	"editcomment": "Ang buod ng pagbabago ay: <em>$1</em>.",
 	"revertpage": "Ibinalik ang mga pagbabago ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]]) patungo sa huling rebisyon ni [[User:$1|$1]]",
 	"revertpage-nouser": "Ibinalik ang mga pagbabago ni (tinanggal ang bansag) patungo sa huling rebisyon ni [[User:$1|$1]]",
 	"rollback-success": "Ibinalik ang mga pagbabago ni $1; ibinalik sa huling bersyon ni $2.",

@@ -1201,7 +1201,7 @@
 	"rollbackfailed": "Pambalèkan gagal dilakoni",
 	"cantrollback": "Ora teyeng mbatalna suntingan;\nkontributor pungkasane kuwe siji-sijine sing nulis artikel kiye.",
 	"alreadyrolled": "Ora teyeng mbalekna suntingan pungkasan [[:$1]] sekang [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nwis ana wong sejen sing nyunting utawa mbalekna artikel kuwe.\n\nSuntingan pungkasan kaca kiye digawe nang [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Ringkesan suntingan yakuwe: \"''$1''\".",
+	"editcomment": "Ringkesan suntingan yakuwe: <em>$1</em>.",
 	"revertpage": "Suntingane [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dibalekna maring vèrsi pungkasan sekang [[User:$1|$1]]",
 	"revertpage-nouser": "Mbalekna suntingan sekang (jeneng panganggo dibusek) ming revisi pungkasan sekang [[User:$1|$1]]",
 	"rollback-success": "Mbalekna suntingane $1;\ndibalekna ming revisi pungkasan sekang $2.",

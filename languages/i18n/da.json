@@ -1892,7 +1892,7 @@
 	"rollbackfailed": "Kunne ikke fjerne redigeringen",
 	"cantrollback": "Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.",
 	"alreadyrolled": "Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nen anden har allerede redigeret siden eller fjernet redigeringen.\n\nDen seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Redigeringsbeskrivelsen var: \"''$1''\".",
+	"editcomment": "Redigeringsbeskrivelsen var: <em>$1</em>.",
 	"revertpage": "Gendannet til seneste version af [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])",
 	"revertpage-nouser": "Gendannet til seneste version af {{GENDER:$1|[[User:$1|$1]]}}, fjerner ændringer fra en skjult bruger",
 	"rollback-success": "Ændringerne fra $1 er fjernet,\nog den seneste version af $2 er gendannet.",

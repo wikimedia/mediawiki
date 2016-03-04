@@ -1478,7 +1478,7 @@
 	"rollbackfailed": "Guling-bulik luput",
 	"cantrollback": "Kada kawa mambalikakan babakan;\npanyumbang tauncit adalah asa-asanya panulis tungkaran ngini.",
 	"alreadyrolled": "Kada kawa malakukan pambulikan ka ralatan tauncit [[:$1]] ulih [[User:$2|$2]] ([[User talk:$2|pandir]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\npamuruk lain sudah mambabak atawa malakukan pambulikan lawan tungkaran ini.\n\nBabakan tauncit dilakukan ulih [[User:$3|$3]] ([[User talk:$3|pandir]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Kumintar pambabakan adalah: \"''$1''\".",
+	"editcomment": "Kumintar pambabakan adalah: <em>$1</em>.",
 	"revertpage": "←Babakan [[Special:Contributions/$2|$2]] ([[User talk:$2|pandir]]) dibulikakan ka ralatan tauncit ulih [[User:$1|$1]]",
 	"revertpage-nouser": "Pambulikan babakan ulih (pamuruk dihapus) ka babakan tauncit ulih [[User:$1|$1]]",
 	"rollback-success": "Pambalikakan babakab ulih $1;\ndiubah bulik ka ralatan tauncit ulih $2.",

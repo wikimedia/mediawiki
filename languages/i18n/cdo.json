@@ -815,7 +815,7 @@
 	"rollbackfailed": "轉𣍐去",
 	"cantrollback": "𣍐使恢復修改；最後其貢獻者是茲蜀頁其唯一其作者。",
 	"alreadyrolled": "𣍐使回滾最後蜀回[[User:$2|$2]] ([[User talk:$2|討論]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])其[[:$1]]編輯；\n有其他儂已經編輯過了或者茲蜀頁已經乞回滾過了。\n\n最後蜀回茲蜀頁其修改是[[User:$3|$3]] ([[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])改其。",
-	"editcomment": "修改評論是：「''$1''」。",
+	"editcomment": "修改評論是：<em>$1</em>。",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])所做其修改轉去[[User:$1|$1]]其前蜀萆版本",
 	"protectlogpage": "保護日誌",
 	"protect-title": "改變「$1」其保護等級",

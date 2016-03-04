@@ -1254,7 +1254,7 @@
 	"rollbacklinkcount": "ji {{PLURAL:$1|guhertin|guhertina}} $1 vegere",
 	"cantrollback": "Guherto naye vegerandin;\nbikarhênerê dawî, tenya nivîskarê vê rûpelê ye.",
 	"alreadyrolled": "Guherandina dawiya [[$1]]\nbi [[User:$2|$2]] ([[User talk:$2|gotûbêj]]) venizivre; kesekî din ew rûpel zîvirandiye an guherandiye.\n\nGuhertoya dawî bi [[User:$3|$3]] ([[User talk:$3|gotûbêj]]).",
-	"editcomment": "Kurtenivîsê guherandinê ev bû: \"''$1''\".",
+	"editcomment": "Kurtenivîsê guherandinê ev bû: <em>$1</em>.",
 	"revertpage": "Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1",
 	"rollback-success": "Guherandina $1 şondakir; dîsa guharte verzyona $2.",
 	"changecontentmodel-title-label": "Sernavê rûpelê",

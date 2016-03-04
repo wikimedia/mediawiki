@@ -1089,7 +1089,7 @@
 	"rollbackfailed": "Rodjeyesa nabildara",
 	"cantrollback": "Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article",
 	"alreadyrolled": "Dimplekura va ironokafa betara va \"$1\" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.\n\nIronokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.",
-	"editcomment": "Betaravildeks tiyir : ''« $1 »''.",
+	"editcomment": "Betaravildeks tiyir : <em>$1</em>.",
 	"revertpage": "Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]",
 	"rollback-success": "Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.",
 	"protectlogpage": "Izvot va nendareem",

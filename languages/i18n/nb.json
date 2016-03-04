@@ -1985,7 +1985,7 @@
 	"rollbackfailed": "Kunne ikke tilbakestille",
 	"cantrollback": "Kan ikke fjerne redigering; den siste brukeren er den eneste forfatteren.",
 	"alreadyrolled": "Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); en annen har allerede redigert siden eller fjernet redigeringen.\n\nDen siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Redigeringskommentaren var: «''$1''»",
+	"editcomment": "Redigeringskommentaren var: <em>$1</em>",
 	"revertpage": "Tilbakestilte endringer av [[Special:Contributions/$2|$2]] ([[User talk:$2|brukerdiskusjon]]) til siste versjon av [[User:$1|$1]]",
 	"revertpage-nouser": "Tilbakestilt endringer av skjult bruker til siste versjon av\n{{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tilbakestilte endringer av $1; endret til siste versjon av $2.",

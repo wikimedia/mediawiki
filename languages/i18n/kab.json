@@ -1643,7 +1643,7 @@
 	"rollbackfailed": "Asemmet yexseṛ",
 	"cantrollback": "Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.",
 	"alreadyrolled": "Ulamek an semmet abeddel aneggaru n usebtar « [[:$1]] » yetwaxeddemen sɣur [[User:$2|$2]] ([[User talk:$2|Mmeslay]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;\nwayeḍ nniḍen yebeddel yakan neɣ yesemmet asebtar nni.\n\nAbeddel aneggaru n usebtar yetwaxeddemen sɣur [[User:$3|$3]] ([[User talk:$3|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Agzul n ubeddel yella: \"''$1''\".",
+	"editcomment": "Agzul n ubeddel yella: <em>$1</em>.",
 	"revertpage": "Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]",
 	"revertpage-nouser": "Tiririt n ibeddilen sur amseqdac yeffren ar lqem aneggaru sɣur {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Asemmet n ibeddilen yetwaxeddemen sɣur $1 ;\ntuqqla ar lqem aneggaru sɣur $2.",

@@ -1224,7 +1224,7 @@
 	"rollback": "tjjea taadilat",
 	"rollbacklink": "Rjeĝ l-lor",
 	"rollbackfailed": "rjoaa mankhch",
-	"editcomment": "molĥĥaṣ ṫ-ṫĝdil kan: \"''$1''\".",
+	"editcomment": "molĥĥaṣ ṫ-ṫĝdil kan: <em>$1</em>.",
 	"protectlogpage": "Ṫariĥ l-ḫimaya",
 	"protectedarticle": "ḫma \"[[$1]]\"",
 	"modifiedarticleprotection": "beddel l-mosṫawa de l-ḫimaya dyal « [[$1]] »",

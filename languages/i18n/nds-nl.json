@@ -1673,7 +1673,7 @@
 	"rollbackfailed": "Wieziging herstellen is mislokt",
 	"cantrollback": "De wiezigingen konnen niet hersteld wörden; der is mer 1 auteur.",
 	"alreadyrolled": "Kan de leste wieziging van de zied [[:$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niet weerummedreien.\nn Aander hef disse zied al bewarkt of hersteld naor n eerdere versie.\n\nDe leste bewarking op disse zied is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "De bewarkingssamenvatting was: ''$1''.",
+	"editcomment": "De bewarkingssamenvatting was: <em>$1</em>.",
 	"revertpage": "Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur [[User:$1|$1]]",
 	"revertpage-nouser": "Wiezigingen deur n verbörgen gebruker weerummedreid naor de leste versie deur {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Wiezigingen van $1; weerummedreid naor de leste versie van $2.",

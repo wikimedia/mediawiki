@@ -1187,7 +1187,7 @@
 	"rollbacklink": "etwārtai wartinnais",
 	"rollbackfailed": "Kitawīdisnas etwārtai wartīnsna ni izpalla",
 	"cantrollback": "Ni mazīngi etwārtai wartīntun redigīsenin, beggi ast tēr aīna šisse pāusas wersiōni.",
-	"editcomment": "Redigīsenes kumentārs: \"''$1''\".",
+	"editcomment": "Redigīsenes kumentārs: <em>$1</em>.",
 	"revertpage": "Etwārtai wartinnā di redigīsenins stesse tērpautajan [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusiōni]]). Etwārtai wartīntas wersiōnis autōrs ast [[User:$1|$1]]",
 	"rollback-success": "Naikinnā di redigīsenins stesse(s) $1.\nEtwārtai wartinnā di panzdauman wersiōnin, kawīdse autōrs ast $2.",
 	"protectlogpage": "Pakūnstai",

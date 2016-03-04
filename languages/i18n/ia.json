@@ -1888,7 +1888,7 @@
 	"rollbackfailed": "Revocation fallite",
 	"cantrollback": "Impossibile revocar le modification;\nle ultime contributor es le sol autor de iste pagina.",
 	"alreadyrolled": "Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nun altere persona ha ja modificate o revocate le pagina.\n\nLe ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Le summario del modification esseva: \"''$1''\".",
+	"editcomment": "Le summario del modification esseva: <em>$1</em>.",
 	"revertpage": "Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]",
 	"revertpage-nouser": "Reverteva modificationes per un usator celate al ultime version per {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Revocava modificationes per $1;\nretornava al version per $2.",

@@ -1556,7 +1556,7 @@
 	"rollbackfailed": "Betg reussì da revocar",
 	"cantrollback": "Betg pussaivel da reinizialisar questa modificaziun; \nl'ulitima contribuziun è dal sulet autur da questa pagina.",
 	"alreadyrolled": "Impussibel da reinizialisar la midada da l'artitgel [[:$1]] da l'utilisader [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nEnzatgi auter ha gia modifitga u reinizialisà qeusta pagina.\n\nL'ultima modificaziun vid questa pagina è da [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "La resumaziun da la midada era: \"''$1''\"",
+	"editcomment": "La resumaziun da la midada era: <em>$1</em>",
 	"revertpage": "Annullà las modificaziuns da [[Special:Contributions/$2|$2]] ([[User talk:$2|discussiun]]) e restaurà l'ultima versiun da [[User:$1|$1]]",
 	"revertpage-nouser": "Annullà las modificaziuns d'in utilisader zuppentà e restaurà l'ultima versiun da {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Annullà las modificaziuns da $1;\nrestaurà l'ultima versiun da $2.",

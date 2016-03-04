@@ -1108,7 +1108,7 @@
 	"deletereason-dropdown": "* Beterüneñ säbäpläre\n** vandallıq\n** avtor sorawı buyınça\n** avtor xoquqların bozu",
 	"delete-edit-reasonlist": "Säbäplär isemlegen üzgärtü",
 	"rollbacklink": "kire qaytaru",
-	"editcomment": "Üzgärtü öçen taswir: \"''$1''\".",
+	"editcomment": "Üzgärtü öçen taswir: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] üzgärtüläre ([[User talk:$2|bäxäs]])  [[User:$1|$1]] yuramasına kire qaytarıldı",
 	"changecontentmodel-title-label": "Bitneñ iseme",
 	"changecontentmodel-reason-label": "Säbäp:",

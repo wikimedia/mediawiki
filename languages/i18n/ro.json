@@ -1948,7 +1948,7 @@
 	"rollbackfailed": "Revenirea nu s-a putut face",
 	"cantrollback": "Nu se poate reveni; ultimul contribuitor este autorul acestui articol.",
 	"alreadyrolled": "Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuție]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.\n\nUltima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuție]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Descrierea modificărilor a fost: „''$1''”.",
+	"editcomment": "Descrierea modificărilor a fost: <em>$1</em>.",
 	"revertpage": "Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuție]]) și revenire la ultima versiune de către [[User:$1|$1]]",
 	"revertpage-nouser": "Anularea modificărilor efectuate de un utilizator ascuns și revenirea la ultima modificare de către {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Anularea modificărilor făcute de $1;\nrevenire la ultima versiune de $2.",

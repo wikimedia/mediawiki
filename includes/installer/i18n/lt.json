@@ -141,7 +141,7 @@
 	"config-install-database": "Tvarkoma duomenų bazė",
 	"config-install-schema": "Kuriama schema",
 	"config-install-pg-schema-not-exist": "PostgreSQL schemos nėra.",
-	"config-install-user": "Kuriama naudotojų duomenų bazė",
+	"config-install-user": "Kuriamas duomenų bazės naudotojas",
 	"config-install-user-alreadyexists": "Naudotojas „$1“ jau yra",
 	"config-install-user-create-failed": "Nepavyko sukurti naudotojo „$1“: $2",
 	"config-install-tables": "Kuriamos lentelės",

@@ -1907,7 +1907,7 @@
 	"rollbackfailed": "Dat Zeröcknemme jingk scheiv",
 	"cantrollback": "De läzde Änderong zeröckzenemme es nit müjjelich. Dä läzde Schrihver es dä eijnzeje, dä aan dä Sigg heh jht jedonn hät!",
 	"alreadyrolled": "Mer künne de letzte Änderonge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.\n\nDe Neuste Änderong aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Bei dä Änderong schtundt: „''$1''“.",
+	"editcomment": "Bei dä Änderong schtundt: „$1“.",
 	"revertpage": "Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmeße, un doför de lätzde Väsjohn vum „[[User:$1|$1]]“ widder zeröckjehollt",
 	"revertpage-nouser": "Änderunge vun enem Metmaacher, däm singe Name vershtoche es, retuur jemaat op de letzte Version {{GENDER:$1|vum|vum|vumm Metmaacher|vun dä|vum}} [[User:$1|$1]]",
 	"rollback-success": "De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.",

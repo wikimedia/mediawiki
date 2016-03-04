@@ -6,7 +6,8 @@
 			"MacTire02",
 			"Shimmin Beg",
 			"아라",
-			"Xð"
+			"Xð",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Cur linnaghyn fo chianglaghyn:",
@@ -326,7 +327,7 @@
 	"passwordreset-username": "Dt'ennym ymmydeyr:",
 	"passwordreset-email": "Enmys post-L:",
 	"passwordreset-emailelement": "Ennym ymmydeyr: \n$1\n\nFockle arrey shallidagh: \n$2",
-	"passwordreset-emailsent": "Ta post-l cur gys cooinaghtyn er ny chur dhyt.",
+	"passwordreset-emailsentemail": "Ta post-l cur gys cooinaghtyn er ny chur dhyt.",
 	"passwordreset-emailsent-capture": "Ta post-l cur gys cooinaghtyn er ny chur dhyt, as eshyn heese.",
 	"passwordreset-emailerror-capture": "Ta post-l cur gys cooinaghtyn er ny chur dhyt, as eshyn heese, agh cha rosh eh yn ymmydeyr: $1",
 	"changeemail-none": "(gyn)",
@@ -782,7 +783,7 @@
 	"deletereasonotherlist": "Fa elley",
 	"deletereason-dropdown": "*Fa scryssey cadjin\n** Aghin yn ughtar\n** Brishey choip-chiart\n** Cragheydys",
 	"rollbacklink": "aahogher",
-	"editcomment": "V'eh \"''$1''\" giare-choontys y reaghey.",
+	"editcomment": "V'eh <em>$1</em> giare-choontys y reaghey.",
 	"protectlogpage": "Lioar choadee",
 	"protectedarticle": "\"[[$1]]\" glast",
 	"modifiedarticleprotection": "er gaghlaa keim coadee \"[[$1]]\"",
@@ -881,7 +882,6 @@
 	"move-page-legend": "Duillag y scughey",
 	"movepagetext": "Ta'n form heese lhiggey dhyt duillag y aa-enmys, as y shennaghys echey y scughey dys yn ennym noa.\nHig y shenn ennym y ve duillag aastiurey dys yn ennym noa.\nMy ta aastiuraghyn ayn hannah dys y shenn ennym, foddee oo adsyn y chaghlaa dy seyr-obbragh.  Mannagh nee oo shen, jean shickyr dy hirrey er [[Special:DoubleRedirects|dooble-aastiuraghyn]] as [[Special:BrokenRedirects|aastiuraghyn brishtey]].\nT'eh ort y yannoo shickyr dy bee kianglaghyn kiangley rish y dean kiart foast.\n\nGow tashtey '''nagh''' jed y duillag er scughey my ta duillag ayn as yn ennym noa echey hannah, '''mannagh''' nee duillag follym ny aastiurey t'ayn gyn shennaghys reaghey erbee.\nMyr shen, foddee oo duillag y chur erash 'syn chenn ynnyd echey my nee uss marrantys, as cha nod oo screeu harrish duillag t'ayn hannah.\n\n'''Raaue!'''\nShe caghlaa trome as doaltattym t'ayn er son duillag mie er enney.  Jean shickyr dy vel oo toiggal ny h-eiyrtyssyn roish my nee uss y caghlaa shoh.",
 	"movepagetalktext": "Hed y duillag resooney eck er scughey lesh y duillag hene '''mannagh:'''\n*Vel duillag resooney ayn nagh vel follym as yn ennym noa er;\n*Nee uss jee-reih y kishtey heese.\n\nFoddee oo y duillag resooney y scughey er lheh ny yei shen.",
-	"movearticle": "Duillag y scughey:",
 	"newtitle": "Gys ard-ennym noa:",
 	"move-watch": "Freill arrey er y duillag shoh",
 	"movepagebtn": "Yn duillag y scughey",
@@ -892,7 +892,6 @@
 	"movelogpage": "Scugh y Lioar chooishyn",
 	"movereason": "Fa:",
 	"revertmove": "cur er ash",
-	"delete_and_move": "Scryss as scughey",
 	"delete_and_move_confirm": "Ta, scryss magh y duillag",
 	"export": "Assphurtal duillagyn",
 	"export-submit": "Assphurtal",

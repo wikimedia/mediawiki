@@ -1342,7 +1342,7 @@
 	"rollbackfailed": "Öňki katdyna getirmeklik şowsuz",
 	"cantrollback": "Özgerdişi yzyna getirip bolmaýar;\niň soňky goşant goşan ulanyjy bu sahypanyň ýeke-täk awtory bolup durýar.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|Çekişme]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarapyndan [[:$1]] sahypasynda edilen iň soňky özgerdişi öňki katdyna getirip bolmaýar;\nkimdir biri ony redaktirläpdir ýa-da eýýäm öňki katdyna getiripdir.\n\nIň soňky özgerdiş eden: [[User:$3|$3]] ([[User talk:$3|Çekişme]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Özgerdişiň teswiri şeýledi: \"''$1''\".",
+	"editcomment": "Özgerdişiň teswiri şeýledi: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Çekişme]]) tarapyndan edilen özgerdişler [[User:$1|$1]] tarapyndan redaktirlenen soňky wersiýasyna yzyna getirildi.",
 	"revertpage-nouser": "(ulanyjy ady aýyrylan) tarapyndan edilen özgerdişler [[User:$1|$1]] tarapyndan redaktirlenen soňky wersiýasyna yzyna getirildi.",
 	"rollback-success": "$1 tarapyndan edilen özgerdişler yzyna getirildi;\n$2 tarapyndan edilen soňky wersiýa gaýdyp gelindi.",

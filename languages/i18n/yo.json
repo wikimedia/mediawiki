@@ -1587,7 +1587,7 @@
 	"rollbackfailed": "Ìyípadà kùnà",
 	"cantrollback": "Kò le dá àtúnṣe padà;\noníṣe tógbẹ̀yìn nìkan ni olùdá ojúewé yìí.",
 	"alreadyrolled": "Kò le ṣe ìdápadà àtúnṣe tógbèyìn sí [[:$1]] látọwọ́ [[User:$2|$2]] ([[User talk:$2|ọ̀rọ̀]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ẹlòmíràn ti ṣàtúnṣe tàbí ṣe ìdápadà ojúewé náà tẹ̀lẹ̀.\n\nÀtúnṣe tógbẹ̀yìn sí ojúewé náà wá látọwọ́ [[User:$3|$3]] ([[User talk:$3|ọ̀rọ̀]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Àkótán àtúnṣe náà jẹ́: \"''$1''\".",
+	"editcomment": "Àkótán àtúnṣe náà jẹ́: <em>$1</em>.",
 	"revertpage": "Ìdápadà àwọn àtúnṣe ti [[Special:Contributions/$2|$2]] ([[User talk:$2|ọ̀rọ̀]]) sí àtúnyẹ̀wò tógbẹ̀yìn látọwó [[User:$1|$1]]",
 	"revertpage-nouser": "Ìdápadà àwọn àtúnṣe ti (ọrúkọ oníṣe jẹ́ yíyọkúrò) sí àtúnyẹ̀wò tógbẹ̀yìn látọwọ́ [[User:$1|$1]]",
 	"rollback-success": "Ìdápadà àwọn àtúnṣe ti $1;\njẹ́ yíyípadà sí àtúnyẹ̀wò tógbẹ̀yìn látọwọ́ $2.",

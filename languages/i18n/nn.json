@@ -1719,7 +1719,7 @@
 	"rollbackfailed": "Kunne ikkje rulle attende",
 	"cantrollback": "Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.",
 	"alreadyrolled": "Kan ikkje rulla attende den siste endringa på [[:$1]] gjord av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) av di nokon andre alt har endra eller attenderulla sida.\n\nDen siste endringa vart gjord av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Samandraget for endringa var: «''$1''».",
+	"editcomment": "Samandraget for endringa var: <em>$1</em>.",
 	"revertpage": "Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjonen av [[User:$1|$1]]",
 	"revertpage-nouser": "Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]",
 	"rollback-success": "Rulla attende endringane av $1, attende til siste versjonen av $2.",

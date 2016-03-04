@@ -1073,7 +1073,7 @@
 	"rollbacklink": "eski alına ketir",
 	"rollbackfailed": "keri aluv muvafaqiyetsiz",
 	"cantrollback": "Deñiştirmeler keri alınamay, saifeni soñki deñiştirgen kişi onıñ tek bir müellifidir",
-	"editcomment": "Deñiştirme izaatı: \"''$1''\" edi.",
+	"editcomment": "Deñiştirme izaatı: <em>$1</em> edi.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñiştirmeler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.",
 	"protectlogpage": "Qorçalav jurnalı",
 	"protectlogtext": "Aşağıdaki, saifeni qorçalavğa aluv/qorçalavdan çıqaruv ile bağlı deñişmeler jurnalıdır.\nQorçalanğan saifeler [[Special:ProtectedPages|tam cedvelini]] de köre bilesiñiz.",

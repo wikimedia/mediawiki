@@ -1741,7 +1741,7 @@
 	"rollbackfailed": "Terugrol onsuksesvol",
 	"cantrollback": "Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.",
 	"alreadyrolled": "Dit is nie moontlik om die laaste wysiging van die bladsy [[:$1]] deur [[User:$2|$2]] ([[User talk:$2|bespreking]]{{int:pipe-separator}}[[Special:Contributions/$2|bydraes]]) ongedaan te maak nie.\nIemand anders het reeds hierdie bladsy gewysig of teruggerol na 'n vroeëre weergawe.\n\nDie mees onlangse wysiging is gemaak deur [[User:$3|$3]] ([[User talk:$3|bespreking]]{{int:pipe-separator}}[[Special:Contributions/$3|bydraes]]).",
-	"editcomment": "Die wysigsopsomming was: \"''$1''\".",
+	"editcomment": "Die wysigsopsomming was: <em>$1</em>.",
 	"revertpage": "Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur [[User:$1|$1]]",
 	"revertpage-nouser": "Rol wysigings deur versteekte gebruiker terug na die laaste weergawe deur [[User:$1|$1]]",
 	"rollback-success": "Wysigings deur $1 is teruggerol.\nDie laaste weergawe van $2 is teruggeplaas.",

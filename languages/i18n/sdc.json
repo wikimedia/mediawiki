@@ -982,7 +982,7 @@
 	"rollbacklink": "turrà che primma",
 	"rollbackfailed": "Nò è ridisciddu a turrà che primma",
 	"cantrollback": "Impussìbiri annullà li mudìfigghi; l'utenti chi n'è l'autori è l'unicu cuntribudori di la pàgina.",
-	"editcomment": "L'oggettu di la mudìfigga era: \"''$1''\".",
+	"editcomment": "L'oggettu di la mudìfigga era: <em>$1</em>.",
 	"rollback-success": "Annulladdi li mudìfigghi di $1; turradda a la versioni prizzidenti di $2.",
 	"sessionfailure": "S'è verifigaddu un probrema i' la sissioni ch'identifigga l'intradda; lu sistham nò à eseguiddu lu cumandu imparthiddu pa precauzioni. Turrà a la pàgina prizzidenti cu' lu buttoni \"Indareddu\" di lu proprio nabigaddori, turrà a carriggà la pàgina e riprubà.",
 	"protectlogpage": "Rigisthru di prutizioni",

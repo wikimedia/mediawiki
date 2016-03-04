@@ -1426,7 +1426,7 @@
 	"delete-edit-reasonlist": "Сәбәпләр исемлеген үзгәртү",
 	"rollbacklink": "кире кайтару",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|төзәтмәне}} кире кагу",
-	"editcomment": "Үзгәртү өчен тасвир: \"''$1''\".",
+	"editcomment": "Үзгәртү өчен тасвир: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] үзгәртүләре ([[User talk:$2|бәхәс]])  [[User:$1|$1]] юрамасына кадәр кире кайтарылды",
 	"changecontentmodel-title-label": "Битнең исеме",
 	"changecontentmodel-reason-label": "Сәбәп:",

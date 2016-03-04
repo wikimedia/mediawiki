@@ -1493,7 +1493,7 @@
 	"rollbackfailed": "Ongedaon make van wieziginge mislùk.",
 	"cantrollback": "Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.",
 	"alreadyrolled": "'t Is neet mäögelik óm de lètste verangering van [[:$1]] door [[User:$2|$2]] ([[User talk:$2|euverlèk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) óngedaon te make.\nEmes angers haet de pagina al hersjtèld of haet 'n anger bewirking gedaon.\n\nDe lètste bewirking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "'t Bewirkingscommentair waor: \"''$1''\".",
+	"editcomment": "'t Bewirkingscommentair waor: <em>$1</em>.",
 	"revertpage": "Wieziginge door [[Special:Contributions/$2|$2]] ([[User talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]",
 	"revertpage-nouser": "Wieziginge door (gwösdje gebroeker) trögkgezadj nao bie [[User:$1|$1]]",
 	"rollback-success": "Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.",

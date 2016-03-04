@@ -1578,7 +1578,7 @@
 	"rollbackfailed": "Gagal malikkeun",
 	"cantrollback": "Éditan teu bisa dibalikkeun; kontribusi panungtung ngarupakeun hiji-hijina panulis kaca ieu.",
 	"alreadyrolled": "Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); geus aya nu ngédit atawa mulangkeun kacana.\n\nÉdit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Komentar ngéditna: \"''$1''\".",
+	"editcomment": "Komentar ngéditna: <em>$1</em>.",
 	"revertpage": "Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1",
 	"rollback-success": "Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.",
 	"sessionfailure": "Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét \"back\" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.",

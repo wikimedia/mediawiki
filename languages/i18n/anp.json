@@ -4,7 +4,8 @@
 			"Angpradesh",
 			"Vinitutpal",
 			"아라",
-			"Samyo"
+			"Samyo",
+			"Macofe"
 		]
 	},
 	"tog-underline": " कड़ी अधोरेखित करना:",
@@ -375,8 +376,6 @@
 	"userlogin-helplink2": "लॉग-इन सथें सहायता",
 	"createacct-emailoptional": "ई-मेल पता (वैकल्पिक)",
 	"createacct-email-ph": "अपनऽ ई-मेल पता लिखऽ",
-	"createacct-captcha": "सुरक्षा जाँच",
-	"createacct-imgcaptcha-ph": "उपरोक्त पाठ लिखऽ",
 	"createacct-submit": "आपनऽ खाता बनाबऽ",
 	"createacct-benefit-heading": "आपने ऐन्हऽ लोगऽ द्वारा बनैलऽ गेलऽ {{SITENAME}} छै .",
 	"createacct-benefit-body1": "{{PLURAL:$1|सम्पादन}}",
@@ -616,7 +615,7 @@
 	"rollbackfailed": "पूर्ववत स्थिति निष्फल",
 	"cantrollback": "पुराना अवतरण पूर्ववत नै करॆ सकॆ छियै;\nइ पन्ना के आखिरी योगदानकर्ता इ लेख के एकमात्र लेखक छेकै.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) द्वारा करलॊ गेलॊ  [[:$1]] के पिछला संपादन कॆ वापस पुरानॊ स्थिति पर नै लानलॊ जाबॆ सकॆ छै;\nकोय आरू इ बीच या तॆ इ पन्ना कॆ फिर सॆं संपादित करी देनॆ छै या पहले ही पन्ना पुरानॊ स्थिति पर लानलॊ जाय चुकलॊ छै.\n\nइ पन्ना के ताज़ातरीन संपादन [[User:$3|$3]] ([[User talk:$3|वार्ता]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) नॆ करनॆ छै.",
-	"editcomment": "संपादन टिप्पणी छेलै: \"''$1''\".",
+	"editcomment": "संपादन टिप्पणी छेलै: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) केरॊ संपादनॊ कॆ हटायकॆ [[User:$1|$1]] के आखिरी अवतरण कॆ पूर्ववत करलॊ गेलै.",
 	"revertpage-nouser": "(प्रयोक्ता नाम हटैलॊ गेलॊ छै) द्वारा करलॊ संपादन कॆ वापस पुरानॊ स्थिति मॆं लाना कॆ ऐकरॊ पहले केरॊ [[User:$1|$1]] द्वारा बनैलॊ संस्करण कॆ फिर सॆं ताज़ा संस्करण बनाबॊ.",
 	"rollback-success": "$1 केरॊ संपादन हटाबॊ;\n$2 द्वारा संपादित आखिरी अवतरण कॆ पुनर्स्थापित करलॊ गेलै.",

@@ -1120,7 +1120,7 @@
 	"rollbacklink": "sûtlêtna",
 	"rollbackfailed": "Sûtlêt a tlawlh",
 	"cantrollback": "Siamṭhatna a sûtlêt theih loh;\na siamṭhatu hnuhnüng ber hi hë phêk tawktu awm chhun a la ni tlat.",
-	"editcomment": "Siamṭhatna kaihtawi: \"''$1''\".",
+	"editcomment": "Siamṭhatna kaihtawi: <em>$1</em>.",
 	"rollback-success": "$1-in siamṭhana a sûtlêt a;\n$2-in a awmphung ngäiah a dahlêt leh.",
 	"sessionfailure-title": "Hun hman tlawlh!",
 	"protectlogpage": "Venhim chhinchhiahna",

@@ -1758,7 +1758,7 @@
 	"rollbackfailed": "Rowback failed",
 	"cantrollback": "Canna revert eidit; laist contreebuter is the ae auther o this page.",
 	"alreadyrolled": "Canna rollback laist eidit o [[:$1]] bi [[User:$2|$2]] ([[User talk:$2|tauk]]{{int:pipe-separater}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nsome ither bodie haes eidited or rolled back the page awreadie.\n\nThe laist eidit til the page wis bi [[User:$3|$3]] ([[User talk:$3|tauk]]{{int:pipe-separater}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "The eedit ootline wis: \"''$1''\".",
+	"editcomment": "The eedit ootline wis: <em>$1</em>.",
 	"revertpage": "Reverted eidits bi [[Special:Contributions/$2|$2]] ([[User talk:$2|tauk]]) til laist reveesion bi [[User:$1|$1]]",
 	"revertpage-nouser": "Reverted eedits bi ae skaukt uiser til laist revesion bi {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Reverted eedits b $1;\nchynged back til the laist reveesion bi $2.",

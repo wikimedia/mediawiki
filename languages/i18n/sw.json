@@ -1692,7 +1692,7 @@
 	"rollbacklink": "rejesha",
 	"rollbackfailed": "Haikufaulu kurejesha",
 	"cantrollback": "Haiwezekana kujesha sahihisho;\nukurasa huu una mhariri mmoja tu.",
-	"editcomment": "Muhtasari wa kuhariri ilikuwa: \"''$1''\".",
+	"editcomment": "Muhtasari wa kuhariri ilikuwa: <em>$1</em>.",
 	"revertpage": "Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]",
 	"revertpage-nouser": "Masahihisho ya mtumiaji (jina lake limefichwa) yamerudishwa hadi pitio la mwisho lililotengenezwa na [[User:$1|$1]].",
 	"rollback-success": "Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.",

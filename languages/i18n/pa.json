@@ -1482,7 +1482,7 @@
 	"rollbacklinkcount": "$1 {{PLURAL:$1|ਸੋਧ|ਸੋਧਾਂ}} ਵਾਪਸ ਮੋੜੋ",
 	"rollbacklinkcount-morethan": "$1 ਤੋਂ ਜ਼ਿਆਦਾ {{PLURAL:$1|ਸੋਧ|ਸੋਧਾਂ}} ਵਾਪਸ ਮੋੜੋ",
 	"rollbackfailed": "ਰੋਲਬੈਕ ਫੇਲ੍ਹ",
-	"editcomment": "ਸੋਧ ਸਾਰ ਸੀ: \"''$1''\"",
+	"editcomment": "ਸੋਧ ਸਾਰ ਸੀ: <em>$1</em>",
 	"sessionfailure-title": "ਇਜਲਾਸ ਫੇਲ੍ਹ",
 	"changecontentmodel-title-label": "ਸਫ਼ੇ ਦਾ ਸਿਰਲੇਖ",
 	"changecontentmodel-reason-label": "ਕਾਰਨ:",

@@ -1938,7 +1938,7 @@
 	"rollbackfailed": "द्रूतमाघार फसली",
 	"cantrollback": "जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.",
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|Talk]] [[Special:Contributions/$2|{{int:contribslink}}]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येत नाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादित केले आहे.\n\nशेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]] [[Special:Contributions/$3|{{int:contribslink}}]])-चे होते.",
-	"editcomment": "संपादन सारांश \"''$1''\" होता.",
+	"editcomment": "संपादन सारांश <em>$1</em> होता.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.",
 	"revertpage-nouser": "लपविलेल्या सदस्याची संपादने उलटवून {{GENDER:$1|[[User:$1|$1]]}}च्या मागील आवृत्तीप्रमाणे पूर्ववत केले",
 	"rollback-success": "$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.",

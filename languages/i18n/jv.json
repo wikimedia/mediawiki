@@ -1658,7 +1658,7 @@
 	"rollbackfailed": "Pambalèkan gagal dilakoni",
 	"cantrollback": "Ora bisa mbalèkaké suntingan; panganggo pungkasan iku siji-sijiné penulis artikel iki.",
 	"alreadyrolled": "Ora bisa mbalèkaké suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); wong liya wis nyunting utawa mbalèkaké kaca artikel iku.\n\nSuntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Ringkesan suntingan yaiku: \"''$1''\".",
+	"editcomment": "Ringkesan suntingan yaiku: <em>$1</em>.",
 	"revertpage": "Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]",
 	"revertpage-nouser": "Suntingan déning panganggo sing didhelikake, dibalèkaké nèng benahan pungkasan déning [[User:$1|$1]]",
 	"rollback-success": "Suntingan dibalèkaké déning $1;\ndiowahi bali menyang vèrsi pungkasan déning $2.",

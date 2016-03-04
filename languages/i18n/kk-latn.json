@@ -1001,7 +1001,7 @@
 	"rollbackfailed": "Şegindirw sätsiz bitti",
 	"cantrollback": "Öñdeme qaýtarılmadı;\nsoñğı üleskeri tek osı bettiñ bastawşısı boldı.",
 	"alreadyrolled": "[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen [[:$1]] soñğı öñdemesi şegindirilmedi;\nbasqa birew bul betti aldaqaşan öñdegen ne şegindirgen.\n\nsoñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.",
-	"editcomment": "Bolğan öñdeme mändemesi: «''$1''».",
+	"editcomment": "Bolğan öñdeme mändemesi: <em>$1</em>.",
 	"revertpage": "[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı",
 	"rollback-success": "$1 öñdemelerinen qaýtarğan;\n$2 soñğı nusqasına özgertti.",
 	"sessionfailure": "Kirw sessïyasında şataq bolğan sïyaqtı;\nsessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.\n«Artqa» degendi basıñız, jäne betti qaýta jükteñiz de, qaýta baýqap köriñiz.",

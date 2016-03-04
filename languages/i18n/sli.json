@@ -1069,7 +1069,7 @@
 	"rollbackfailed": "Zerrickesetza gescheitert",
 	"cantrollback": "De Änderung koan ne zerrickegesetzt waan, do is kenne friehera Autoren gibt.",
 	"alreadyrolled": "Doas Zerrickesetza der Änderunga vu [[User:$2|$2]] ([[User talk:$2|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) oa [[:$1]] ies gescheitert, do ei der Zwischenzeit a anderer Nutzer de Seite geändert hoot.\n\nDe letzte Änderung stommt vu [[User:$3|$3]] ([[User talk:$3|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "De Änderungszusommafassung lautet: ''„$1“''.",
+	"editcomment": "De Änderungszusommafassung lautet: <em>$1</em>.",
 	"revertpage": "Änderunga vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) rickgängig gemacht und letzte Version vu [[User:$1|$1]] wiederhergestellt",
 	"rollback-success": "De Änderunga vu $1 wurden rickgängig gemacht und de letzte Version vu $2 wurde wiederhergestellt.",
 	"sessionfailure": "Is goab a Problem miet dar Iebertragung denner Nutzerdaten.\nDiese Aksjonn wurde daher sicherheetsholber obgebrochen, im anne foalsche Zuordnung denner Änderunga zu an'm andern Nutzer zu verhindern.\nBitte gieh zerricke und versiche dann Vurgang erneut auszufiehrn.",

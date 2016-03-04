@@ -1220,7 +1220,7 @@
 	"rollbackfailed": "Atmetėms nasėgava",
 	"cantrollback": "Negalėma atmestė redagavėma; paskotinis keitės nauduotuos īr tuo poslapė autorius.",
 	"alreadyrolled": "Nė̄šēn otgrōžintė pakeitėma, [[:$1]] katra padėrba [[User:$2|$2]] ([[User talk:$2|aptarėms]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nkažkas ton jau padėrba pėrmiou.\n\nVielībiausā ton poslapė pakeitėms padėrbts [[User:$3|$3]] ([[User talk:$3|aptarėms]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) īr.",
-	"editcomment": "Padėrbėma pāiškėnėms bova: „''$1''“.",
+	"editcomment": "Padėrbėma pāiškėnėms bova: <em>$1</em>.",
 	"revertpage": "Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|aptarėms]]) pakeitėms; sogrōžints atmains, katron padėrba nauduotuos [[User:$1|$1]]",
 	"rollback-success": "Atmestė $1 padėrbtė keitėmā; grōžints $2 padėrbts atmains.",
 	"sessionfailure": "Atruod ka īr biedū so Tamstas prėsėjongėmo; tas vēksmos bova grōžints kāp atsargoma prėimonė nu sesėjės vuogėma.\nPrašoum mīgtė „atgal“ ėr parkrautė poslapi ėš katruo atiejėt, ė pamieginkėt apent.",

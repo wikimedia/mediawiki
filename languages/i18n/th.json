@@ -1804,7 +1804,7 @@
 	"rollbackfailed": "ย้อนกลับฉุกเฉินล้มเหลว",
 	"cantrollback": "ไม่สามารถย้อนการแก้ไขได้ ผู้เขียนคนล่าสุดเป็นผู้เขียนคนเดียวของหน้านี้",
 	"alreadyrolled": "ไม่สามารถย้อนกลับฉุกเฉินการแก้ไขสุดท้ายโดย [[User:$2|$2]] ([[User talk:$2|พูดคุย]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ในหน้า [[:$1]] มีผู้อื่นได้แก้ไขหรือย้อนกลับฉุกเฉินหน้านี้ไปก่อนแล้ว\n\nผู้แก้ไขล่าสุดของหน้านี้คือ [[User:$3|$3]] ([[User talk:$3|พูดคุย]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])",
-	"editcomment": "คำอธิบายการแก้ไขคือ: \"''$1''\"",
+	"editcomment": "คำอธิบายการแก้ไขคือ: <em>$1</em>",
 	"revertpage": "ย้อนการแก้ไขโดย [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นแก้ไขล่าสุดโดย [[User:$1|$1]]",
 	"revertpage-nouser": "ย้อนการแก้ไขโดยผู้ใช้ไม่ระบุชื่อไปยังรุ่นล่าสุดโดย {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "ย้อนการแก้ไขโดย $1; \nเปลี่ยนกลับไปรุ่นล่าสุดโดย $2",

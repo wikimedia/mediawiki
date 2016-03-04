@@ -1782,7 +1782,7 @@
 	"rollbackfailed": "Dh'fhàillig leis an roladh air ais",
 	"cantrollback": "Cha ghabh na chaidh a dheasachadh a thilleadh;\nis an deasaiche mu dheireadh an aon ùghdar aig an duilleag seo.",
 	"alreadyrolled": "Cha ghabh an deasachadh mu dheireadh air [[:$1]] leis [[User:$2|$2]] ([[User talk:$2|an deasbaireachd]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) a roladh air ais on a rinn cuideigin eile deasachadh no roladh air ais air an duilleag mar-thà.\n\nChaidh an duilleag a dheasachadh an turas mu dheireadh leis [[User:$3|$3]] ([[User talk:$3|an deasbaireachd]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Seo gearr-chunntas an deasachaidh: \"''$1''\".",
+	"editcomment": "Seo gearr-chunntas an deasachaidh: <em>$1</em>.",
 	"revertpage": "Deasachaidhean a chaidh a thilleadh leis [[Special:Contributions/$2|$2]] ([[User talk:$2|an deasbaireachd]]) dhan mhùthadh mu dheireadh le [[User:$1|$1]]",
 	"revertpage-nouser": "Deasachaidhean a chaidh a thilleadh le cleachdaiche falaichte dhan mhùthadh mu dheireadh le [[User:$1|$1]]",
 	"rollback-success": "Na deasachaidhean a chaidh a thilleadh le $1;\nchaidh an tilleadh gun mhùthadh mu dheireadh le $2.",

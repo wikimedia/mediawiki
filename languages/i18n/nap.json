@@ -1983,7 +1983,7 @@
 	"rollbackfailed": "Annullamento fallito",
 	"cantrollback": "Nun se può annullà stu cagnamiento;\nsapite ca l'urdemo autore è stato pure sul'isso a faticà dint'a sta paggena (nun ce sta n'at'autore).",
 	"alreadyrolled": "Nun se può turna arreto a l'urdemo cagnamiento [[:$1]] 'a [[User:$2|$2]] ([[User talk:$2|Chiacchiera]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\ncocch'ato ha cagnato o annullato 'a paggena già.\n\nL'urdemo cangamiento d' 'a paggena fuje 'a [[User:$3|$3]] ([[User talk:$3|Chiacchiera]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "'O riepilego d' 'o cagnamiento era: \"''$1''\".",
+	"editcomment": "'O riepilego d' 'o cagnamiento era: <em>$1</em>.",
 	"revertpage": "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]",
 	"revertpage-nouser": "Annullate 'e cagnamiente 'e n'utente annascunnuto, è stata ripigliata ll'urdema verzione 'e {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Cagnamiente annullate 'a $1;\ns'è turnat arreto a l'urdema verzione 'e $2.",

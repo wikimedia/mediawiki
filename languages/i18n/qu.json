@@ -1683,7 +1683,7 @@
 	"rollbackfailed": "Manam kutichiyta atinchu",
 	"cantrollback": "Manam atinichu llamk'apusqata kutichiyta; qhipaq kaq llamk'apuqqa kay p'anqap hukllam ruraqnin.",
 	"alreadyrolled": "Manam atinichu [[User:$2|$2]]-pa ([[User talk:$2|rimanakuy]]) [[$1]] nisqa qhipaq llamk'apusqanta kutichiyta; pipas kay p'anqataqa llamk'apurqunñam icha kutichirqunñam.\n\nQhipaq kaq llamk'apusqaqa [[User:$3|$3]]-pa ([[User talk:$3|rimanakuy]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) rurasqanmi.",
-	"editcomment": "Llamk'apusqakunamanta pisichasqaqa kay hinam: \"''$1''\".",
+	"editcomment": "Llamk'apusqakunamanta pisichasqaqa kay hinam: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman",
 	"revertpage-nouser": "Ruraqpa hukchasqankunaqa (sutinqa qichusqam) kutichisqañam {{GENDER:$1|[[User:$1|$1]]}}-pa ñawpaq llamk'apusqanta paqarichispa",
 	"rollback-success": "$1-pa hukchasqankunaqa kutichisqañam $2-pa ñawpaq llamk'apusqanta paqarichispa.",

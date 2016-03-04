@@ -1804,7 +1804,7 @@
 	"rollbackfailed": "反轉唔到",
 	"cantrollback": "反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。",
 	"alreadyrolled": "無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。\n\n上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。",
-	"editcomment": "編輯摘要係：「'''$1'''」。",
+	"editcomment": "編輯摘要係：<em>$1</em>。",
 	"revertpage": "已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。",
 	"revertpage-nouser": "已經反轉咗由收埋咗嘅用戶名所寫嘅編輯，到[[User:$1|$1]]所寫嘅最後修訂版本。",
 	"rollback-success": "已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。",

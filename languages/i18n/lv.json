@@ -1555,7 +1555,7 @@
 	"rollbackfailed": "Novēršana neizdevās",
 	"cantrollback": "Nav iespējams novērst labojumu; iepriekšējais labotājs ir vienīgais lapas autors.",
 	"alreadyrolled": "Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir labojis šo lapu vai novērsis izmaiņas.\n\nPēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Attiecīgās izmaiņas kopsavilkums bija: \"''$1''\".",
+	"editcomment": "Attiecīgās izmaiņas kopsavilkums bija: <em>$1</em>.",
 	"revertpage": "Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]",
 	"revertpage-nouser": "Novērsu (lietotājvārds slēpts) izmaiņas, atjaunoju [[User:$1|$1]] versiju.",
 	"rollback-success": "Novērsu izmaiņas, ko izdarīja $1;\natjaunoju versiju, ko saglabāja $2.",

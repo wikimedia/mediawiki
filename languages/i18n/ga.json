@@ -933,7 +933,7 @@
 	"rollbackfailed": "Theip an rolladh siar",
 	"cantrollback": "Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.",
 	"alreadyrolled": "Ní féidir eagrán níos luaí an leathanaigh [[:$1]] le [[User:$2|$2]] ([[User talk:$2|Plé]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) a athúsáid; d'athraigh duine eile é cheana fein, nó d'athúsáid duine eile eagrán níos luaí cheana féin.\n\n[[User:$3|$3]] ([[User talk:$3|Plé]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) an té a rinne an athrú is déanaí.",
-	"editcomment": "Seo a raibh an achoimre eagarthóireacht: \"''$1''\".",
+	"editcomment": "Seo a raibh an achoimre eagarthóireacht: <em>$1</em>.",
 	"revertpage": "Cealaíodh athruithe [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); ar ais chuig leagan le [[User:$1|$1]]",
 	"protectlogpage": "Log cosanta",
 	"protectlogtext": "Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.\nFéach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eolais a fháil.",

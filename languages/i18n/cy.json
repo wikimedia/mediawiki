@@ -1763,7 +1763,7 @@
 	"rollbackfailed": "Methodd y gwrthdroi",
 	"cantrollback": "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
 	"alreadyrolled": "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nmae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.\n\n[[User:$3|$3]] ([[User talk:$3|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) a wnaeth y golygiad diwethaf.",
-	"editcomment": "Crynodeb y golygiad oedd: \"''$1''\".",
+	"editcomment": "Crynodeb y golygiad oedd: <em>$1</em>.",
 	"revertpage": "Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]",
 	"revertpage-nouser": "Wedi gwrthdroi golygiadau gan ddefnyddiwr cudd; wedi adfer y golygiad diweddaraf gan {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Gwrthdrowyd y golygiadau gan $1;\nwedi gwrthdroi i'r golygiad olaf gan $2.",

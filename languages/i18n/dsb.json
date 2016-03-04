@@ -1721,7 +1721,7 @@
 	"rollbackfailed": "Slědkwześe njejo se raźiło.",
 	"cantrollback": "Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.",
 	"alreadyrolled": "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .\n\nSlědnu změnu k bokoju jo pśewjadł [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Zapominanje k slědnej změnje jo było: \"''$1''\".",
+	"editcomment": "Zapominanje k slědnej změnje jo było: <em>$1</em>.",
 	"revertpage": "Změny wužywarja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wótwrośili a slědna wersija wužywarja [[User:$1|$1]] jo se wótnowiła.",
 	"revertpage-nouser": "Změny su se wót schowanego wužywarja anulěrowali a pjerwjejšna wersija wužywarja {{GENDER:$1|[[User:$1|$1]]}} jo se wótnowiła",
 	"rollback-success": "Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.",

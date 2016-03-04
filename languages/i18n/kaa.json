@@ -982,7 +982,7 @@
 	"rollback": "O'zgerislerdi biykar etiw",
 	"rollbacklink": "qaytarıw",
 	"rollbackfailed": "Biykar etiw sa'tsiz tamamlandı",
-	"editcomment": "O'zgertiwge qaldırılg'an kommentariy: \"''$1''\".",
+	"editcomment": "O'zgertiwge qaldırılg'an kommentariy: <em>$1</em>.",
 	"protectlogpage": "Qorg'aw jurnalı",
 	"protectedarticle": "\"[[$1]]\" qorg'alg'an",
 	"modifiedarticleprotection": "\"[[$1]]\" betinin' qorg'aw da'rejesi ozgertildi",

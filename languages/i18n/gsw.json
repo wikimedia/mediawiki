@@ -1858,7 +1858,7 @@
 	"rollbackfailed": "S Zrucksetze het nit funktioniert",
 	"cantrollback": "D Änderig cha nit zruckgsetzt wäre, wel s keini friejere Autore git.",
 	"alreadyrolled": "Cha d Änderig uf [[:$1]] wu vu [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) gmacht wore sin, zruckneh, wel e andere Benutzer in dr Zwischenzyt s scho zruckgsetzt het oder suscht ebis an däre Syte gänderet het.\n\nDi letscht Änderig het [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) gmacht.",
-	"editcomment": "D Änderigszämmefassig isch: „''$1''“.",
+	"editcomment": "D Änderigszämmefassig isch: <em>$1</em>.",
 	"revertpage": "Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt",
 	"revertpage-nouser": "Bearbeitige ruckgängig gmacht vu (Benutzername uusegnuu), letschti Fassig vu {{GENDER:$1|[[User:$1|$1]]}} widerhärgstellt",
 	"rollback-success": "D Änderige vu $1 sin ruckgängig gmacht wore un di letscht Version vu $2 isch widerhärgstellt wore.",

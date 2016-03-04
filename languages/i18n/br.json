@@ -1771,7 +1771,7 @@
 	"rollbackfailed": "C'hwitet eo bet an distaoladenn",
 	"cantrollback": "Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ",
 	"alreadyrolled": "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nkemmet pe distaolet eo bet c'hoazh gant unan bennak all.\n\nAr c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User talk:$3|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Diverradenn ar c'hemm a oa : \"''$1''\".",
+	"editcomment": "Diverradenn ar c'hemm a oa : <em>$1</em>.",
 	"revertpage": "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
 	"revertpage-nouser": "Disteuler kemmoù un implijer kuzhet ha distreiñ d'ar stumm diwezhañ gant an {{GENDER:$1|[[implijer :$1|$1]]}}",
 	"rollback-success": "Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.",

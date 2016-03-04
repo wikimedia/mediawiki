@@ -1230,7 +1230,7 @@
 	"rollbackfailed": "Loppanti gi antuwul",
 	"cantrollback": "Neenal coppite gi manula nekk;\nKi def coppite gi mooy Kenn ki masa cëru ci xët wii.",
 	"alreadyrolled": "Loppantig coppite gu mujj gu xët wii di « [[:$1]] » manula nekk, ki ko def di [[User:$2|$2]] ([[User talk:$2|Waxtaan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nam na keneen ku jota soppi walla loppanti xët wi.\n\nKi mujje soppi xët wi mooy [[User:$3|$3]] ([[User talk:$3|Waxtaan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"editcomment": "Tënkug coppite gi mooy: « ''$1'' ».",
+	"editcomment": "Tënkug coppite gi mooy: <em>$1</em>.",
 	"revertpage": "Loppantig coppite gu [[Special:Contributions/$2|$2]] ([[User talk:$2|Waxtaan]]) dello ko ci sumb mu [[User:$1|$1]]",
 	"rollback-success": "Ki loppanti mooy $1 ;\nKi ko dello ci sumb mu mujj mi mooy $2.",
 	"sessionfailure": "Dafa mel ne sa dugg gi am na ay tolof-tolof ;\nNoste gi téye na sag dugg ngir wattu kaaraange.\nDi la ñaan nga dellu ginnaaw te yesalaat xët wa jóge, te jéemaat",

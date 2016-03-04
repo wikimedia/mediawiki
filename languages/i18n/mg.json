@@ -1723,7 +1723,7 @@
 	"rollbackfailed": "Tsy voaverina amin'ny teo aloha",
 	"cantrollback": "Tsy afaka iverenana ny fiovana; ny mpanova farany ihany no tompon'ny pejy.",
 	"alreadyrolled": "Tsy afaka foanana ny fiovan'ny pejy « [[:$1]] » nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])\n\nEfa nataon'i [[User:$3|$3]] ([[User talk:$3|dinika]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ny fiovana farany.",
-	"editcomment": "Toy izao no fanamarihana momba io fanovana io: \"''$1''\".",
+	"editcomment": "Toy izao no fanamarihana momba io fanovana io: <em>$1</em>.",
 	"revertpage": "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
 	"revertpage-nouser": "Manala ny fanovana (nataom-pikambana voaafina), miverina any amin'ny filaza faran'i  [[User:$1|$1]]",
 	"rollback-success": "Fanesorana ny fiovana nataon'i $1 ;\nfiverenana amin'ny fiovana farany nataon'i $2.",
