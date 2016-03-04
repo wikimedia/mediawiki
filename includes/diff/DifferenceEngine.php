@@ -860,7 +860,10 @@ class DifferenceEngine extends ContextSource {
 
 			return $text;
 		}
-		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
+		if ( $wgExternalDiffEngine != 'wikidiff2'
+			 && $wgExternalDiffEngine != 'wikidiff3'
+			 && $wgExternalDiffEngine !== false )
+		{
 			# Diff via the shell
 			$tmpDir = wfTempDir();
 			$tempName1 = tempnam( $tmpDir, 'diff_' );
