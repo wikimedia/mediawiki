@@ -842,6 +842,24 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
+		$time = microtime( true );
+
+		$result = $this->textDiff( $otext, $ntext );
+
+		$time = microtime( true ) - $time;
+		$this->getStats()->timing( 'diff_time', $time );
+
+		return $result;
+	}
+
+	/**
+	 * Generates diff, to be wrapped internally in a logging/instrumentation
+	 *
+	 * @param string $otext Old text, must be already segmented
+	 * @param string $ntext New text, must be already segmented
+	 * @return bool|string
+	 */
+	protected function textDiff( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		$otext = str_replace( "\r\n", "\n", $otext );
