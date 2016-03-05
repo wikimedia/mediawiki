@@ -2745,6 +2745,12 @@ after variants have been added.
 &$links: Structured navigation links. This is used to alter the navigation for
   skins which use buildNavigationUrls such as Vector.
 
+'SkinTemplateBeforeWrap': Called before SkinTemplate wraps the HTML in OutputPage
+in the #mw-content-text element to provide language context information.
+&$sktemplate: SkinTemplate object
+&$tpl: QuickTemplate engine object
+&$html: The current value of the HTML to be wrapped
+
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts
 page output.
 &$sktemplate: SkinTemplate object
