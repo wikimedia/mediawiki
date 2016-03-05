@@ -49,7 +49,8 @@
 			"Danialbehzadi",
 			"MRG90",
 			"Mahdy Saffar",
-			"Arian Ar"
+			"Arian Ar",
+			"Ms96"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -337,7 +338,7 @@
 	"nstab-special": "صفحهٔ ویژه",
 	"nstab-project": "صفحهٔ پروژه",
 	"nstab-image": "پرونده",
-	"nstab-mediawiki": "پیغام",
+	"nstab-mediawiki": "پیام",
 	"nstab-template": "الگو",
 	"nstab-help": "صفحهٔ راهنما",
 	"nstab-category": "رده",
@@ -432,7 +433,7 @@
 	"userlogin-yourname": "نام کاربری",
 	"userlogin-yourname-ph": "نام کاربریتان را وارد کنید",
 	"createacct-another-username-ph": "نام کاربریتان را وارد کنید",
-	"yourpassword": "رمز عبور:",
+	"yourpassword": "گذرواژه:",
 	"userlogin-yourpassword": "گذرواژه",
 	"userlogin-yourpassword-ph": "گذرواژه را وارد کنید",
 	"createacct-yourpassword-ph": "یک گذرواژه وارد کنید",
@@ -558,7 +559,7 @@
 	"botpasswords-editexisting": "ویرایش گذرواژه موجود ربات",
 	"botpasswords-label-appid": "نام ربات:",
 	"botpasswords-label-create": "ایجاد",
-	"botpasswords-label-update": "به‌روز",
+	"botpasswords-label-update": "به‌روز رسانی",
 	"botpasswords-label-cancel": "لغو",
 	"botpasswords-label-delete": "حذف",
 	"botpasswords-label-resetpassword": "بازگردانی گذرواژه",

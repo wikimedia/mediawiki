@@ -137,6 +137,7 @@
 	"actions": "Үүлдвр",
 	"namespaces": "Нернә төрл",
 	"variants": "Хүвлвр",
+	"navigation-heading": "Айллын цес",
 	"errorpagetitle": "Эндү",
 	"returnto": "«$1» тал хәрү одх.",
 	"tagline": "{{SITENAME}} талас",
@@ -246,6 +247,7 @@
 	"nstab-template": "Кевләр",
 	"nstab-help": "Дөң",
 	"nstab-category": "Әәшл",
+	"mainpage-nstab": "Нүр халх",
 	"nosuchaction": "Иим үүлдвр уга",
 	"nosuchactiontext": "URL'д заасн үүлдвр буру.\nТа URL орулад эндүрсн аль буру заалһар одсн маһд.\nДәкәд, эн {{SITENAME}} төслин эндү маһд.",
 	"nosuchspecialpage": "Иим шишлң халх уга",
@@ -303,6 +305,8 @@
 	"emailauthenticated": "Тана e-mail хайг $2 өдрт, $3 цагт батлсн.",
 	"accountcreated": "Бичгдлһн бүтәв.",
 	"loginlanguagelabel": "Келн: $1",
+	"pt-login": "Орлһн",
+	"pt-createaccount": "Бичгдлһн бүтәх",
 	"changepassword": "Нууц үг сольлһн",
 	"resetpass_header": "Бичгдлһнә нууц үг сольх",
 	"oldpassword": "Көгшн нууц үг:",
@@ -536,6 +540,7 @@
 	"minoreditletter": "б",
 	"newpageletter": "Ш",
 	"boteditletter": "к",
+	"rc-change-size-new": "Сольсн хөөн аһу $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ Шин салвр",
 	"rc-enhanced-expand": "Нәрн учр үзүлх",
 	"rc-enhanced-hide": "Тодрха нуух",
@@ -555,7 +560,6 @@
 	"filedesc": "Учр-утх",
 	"fileuploadsummary": "Учр-утх:",
 	"savefile": "Хадһлх",
-	"upload-success-subj": "Йовудта тәвллһн",
 	"license": "Закан:",
 	"license-header": "Закан:",
 	"imgfile": "боомг",
@@ -871,5 +875,6 @@
 	"intentionallyblankpage": "Тер  халх хоосн күслтә бәәнә.",
 	"htmlform-reset": "Сольлһиг уга кех",
 	"htmlform-selectorother-other": "Талдан",
-	"rightsnone": "(уга)"
+	"rightsnone": "(уга)",
+	"searchsuggest-search": "Хәәвр"
 }

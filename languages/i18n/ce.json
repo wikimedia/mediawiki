@@ -1141,7 +1141,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (хьажа кхин [[Special:NewPages|керла агӀонийн могӀа]])",
 	"recentchanges-submit": "Гайта",
 	"rcnotefrom": "Лахахь гайтина тӀера <strong>$2</strong> (хийцамаш <strong>$1</strong> кӀезиг).",
-	"rclistfrom": "Гайта хийцам {{CURRENTYEAR}} шаран {{CURRENTDAY}} {{CURRENTMONTHNAMEGEN}} {{CURRENTTIME}} бина болу",
+	"rclistfrom": "Гайта хийцам {{CURRENTYEAR}} шеран {{CURRENTDAY}} {{CURRENTMONTHNAMEGEN}} {{CURRENTTIME}} бина болу",
 	"rcshowhideminor": "$1 кегийра нисдарш",
 	"rcshowhideminor-show": "Гайта",
 	"rcshowhideminor-hide": "Къайладаха",

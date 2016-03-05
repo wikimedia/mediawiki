@@ -55,7 +55,7 @@
 	"apihelp-delete-example-simple": "Usuń <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Usuń <kbd>Main Page</kbd> z powodem <kbd>Preparing for move</kbd>.",
 	"apihelp-disabled-description": "Ten moduł został wyłączony.",
-	"apihelp-edit-description": "Utwórz i edytuj strony.;",
+	"apihelp-edit-description": "Twórz i edytuj strony.",
 	"apihelp-edit-param-section": "Numer sekcji. <kbd>0</kbd> dla górnej sekcji, <kbd>new</kbd> dla nowej sekcji.",
 	"apihelp-edit-param-sectiontitle": "Tytuł nowej sekcji.",
 	"apihelp-edit-param-text": "Zawartość strony.",

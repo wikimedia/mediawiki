@@ -3732,5 +3732,6 @@
 	"mw-widgets-titleinput-description-new-page": "ページは存在しません",
 	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト",
 	"api-error-blacklisted": "他の、説明的なタイトルをお選びください。",
+	"sessionprovider-generic": "$1 セッション",
 	"randomrootpage": "おまかせルートページ"
 }

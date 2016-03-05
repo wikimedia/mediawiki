@@ -59,7 +59,8 @@
 			"Sternradio",
 			"Joolee0104",
 			"Mooozi",
-			"Ellif"
+			"Ellif",
+			"HDNua"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -581,6 +582,7 @@
 	"botpasswords-newpassword": "<strong>$1</strong> 계정의 비밀번호가 <strong>$2</strong>로 변경되었습니다. <em>잊어버리지 않도록 기록해두시기 바랍니다.</em>",
 	"botpasswords-no-provider": "'BotPasswordsSessionProvider'는 이용할 수 없습니다.",
 	"botpasswords-restriction-failed": "봇 비밀번호 제한으로 인해 로그인할 수 없습니다.",
+	"botpasswords-not-exist": "\"$1\" 사용자가 이름이 \"$2\"인 봇의 비밀번호를 가지고 있지 않습니다.",
 	"resetpass_forbidden": "비밀번호를 바꿀 수 없습니다",
 	"resetpass-no-info": "이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.",
 	"resetpass-submit-loggedin": "비밀번호 바꾸기",
@@ -613,6 +615,7 @@
 	"passwordreset-emailerror-capture": "비밀번호 재설정 이메일이 생성되어 아래에 보여져 있지만, {{GENDER:$2|사용자}}에게 발송하는 데에는 실패했습니다: $1",
 	"changeemail": "이메일 주소를 바꾸거나 제거하기",
 	"changeemail-header": "이메일 주소를 바꾸려면 이 양식을 채우세요. 계정에서 이메일 연동을 취소하고 싶다면 양식을 제출할 때 새 이메일 주소를 공란으로 두세요.",
+	"changeemail-passwordrequired": "변경을 적용하려면 비밀번호를 입력해야 합니다.",
 	"changeemail-no-info": "이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.",
 	"changeemail-oldemail": "현재 이메일 주소:",
 	"changeemail-newemail": "새 이메일 주소:",
@@ -680,7 +683,7 @@
 	"newarticle": "(새 문서)",
 	"newarticletext": "아직 없는 문서의 링크를 따라왔습니다.\n새 문서를 만들려면 아래 상자에 내용을 입력하면 됩니다. (자세한 내용은 [$1 도움말 문서]를 참조하세요)\n만약 잘못 찾아왔다면, 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 	"anontalkpagetext": "----\n여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다.\n익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다.\nIP 주소는 여러 사용자가 공유할 수 있습니다.\n자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인해서]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.",
-	"noarticletext": "이 문서가 현재 존재하지 않습니다.\n이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]],\n이 문서에 관련된 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,\n문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.",
+	"noarticletext": "이 문서가 현재 존재하지 않습니다.\n이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]],\n이 문서에 관련된 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,\n문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 생성]</span>할 수 있습니다.",
 	"noarticletext-nopermission": "이 문서가 현재 존재하지 않습니다.\n이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]], 이 문서에 관련된 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span> 그러나 이 문서를 만들 수 있는 권한은 없습니다.",
 	"missing-revision": "\"{{FULLPAGENAME}}\"이라는 문서의 #$1판이 존재하지 않습니다.\n\n이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.\n자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.",
 	"userpage-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.\n이 문서를 만들거나 편집하기 전에 계정이 존재하는지 확인해주세요.",
@@ -700,7 +703,7 @@
 	"continue-editing": "편집 영역으로 가기",
 	"previewconflict": "이 미리 보기는 저장할 때의 모습으로 위쪽 편집창의 문서를 반영합니다.",
 	"session_fail_preview": "세션 데이터가 없어져 편집을 저장하지 못했습니다.\n\n로그아웃 되었는지도 모릅니다. '''아직 로그인 상태인지 확인하고 다시 시도해주세요.'''\n다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인하세요. 그리고 브라우저 설정에서 쿠키 사용을 허용하는지 확인하세요.",
-	"session_fail_preview_html": "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.'''\n\n{{SITENAME}}에서 HTML 입력을 허용하기 때문에, 자바스크립트 공격을 막기 위해 미리 보기는 숨겨져 있습니다.\n\n'''적합하게 편집을 시도했다면 다시 시도하세요'''\n다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인하세요.",
+	"session_fail_preview_html": "세션 데이터가 없어져 편집을 저장하지 못했습니다.\n\n<em>{{SITENAME}}에서 HTML 입력을 허용하기 때문에, 자바스크립트 공격을 막기 위해 미리 보기는 숨겨져 있습니다.</em>\n\n<strong>적합하게 편집을 시도했다면 다시 시도해주세요.</strong>\n다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인하고, 브라우저가 이 사이트에서 쿠키를 허용하는지 확인하세요.",
 	"token_suffix_mismatch": "'''저장하려는 내용의 문장 부호가 망가져 있습니다.'''\n문서 보호를 위해 해당 내용을 저장하지 않습니다.\n버그가 있는 익명 프록시 서비스 등을 사용할 때 이런 문제가 발생할 수 있습니다.",
 	"edit_form_incomplete": "'''편집의 일부 내용이 서버에 전달되지 않았습니다. 편집이 손상되지 않았는지 확인하고 다시 시도해 주십시오.'''",
 	"editing": "$1 편집하기",
