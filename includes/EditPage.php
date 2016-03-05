@@ -3749,10 +3749,10 @@ HTML
 		} else {
 			$conflict = '<hr />';
 		}
-
+		$err = [ 'class' => 'error'];
 		$previewhead = "<div class='previewnote'>\n" .
 			'<h2 id="mw-previewheader">' . wfMessage( 'preview' )->escaped() . "</h2>" .
-			$wgOut->parse( $note, true, /* interface */true ) . $conflict . "</div>\n";
+			$wgOut->parse( $note = HTML::rawElement( 'p', $err, $note ), true, /* interface */true ) . $conflict . "</div>\n";
 
 		$pageViewLang = $this->mTitle->getPageViewLanguage();
 		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
