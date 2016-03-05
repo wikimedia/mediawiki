@@ -426,22 +426,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
-
-		# An ID that includes the actual body text; without categories, contentSub, ...
-		$realBodyAttribs = array( 'id' => 'mw-content-text' );
-
-		# Add a mw-content-ltr/rtl class to be able to style based on text direction
-		# when the content is different from the UI language, i.e.:
-		# not for special pages or file pages AND only when viewing
-		if ( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-			Action::getActionName( $this ) === 'view' ) {
-			$pageLang = $title->getPageViewLanguage();
-			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
-			$realBodyAttribs['dir'] = $pageLang->getDir();
-			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
-		}
-
-		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		$language_urls = $this->getLanguages();
@@ -472,6 +456,25 @@ class SkinTemplate extends Skin {
 		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
+
+		# An ID that includes the actual body text; without categories, contentSub, ...
+		$realBodyAttribs = array( 'id' => 'mw-content-text' );
+
+		# Add a mw-content-ltr/rtl class to be able to style based on text direction
+		# when the content is different from the UI language, i.e.:
+		# not for special pages or file pages AND only when viewing
+		if ( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
+			Action::getActionName( $this ) === 'view' ) {
+			$pageLang = $title->getPageViewLanguage();
+			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
+			$realBodyAttribs['dir'] = $pageLang->getDir();
+			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
+		}
+
+		// Wrap the bodyText with #mw-content-text element
+		// Do this after the hook in case anything has changed
+		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
+		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		// Set the bodytext to another key so that skins can just output it on its own
 		// and output printfooter and debughtml separately
