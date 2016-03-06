@@ -17,7 +17,8 @@
 			"Sujiniku",
 			"Macofe",
 			"2nd-player",
-			"Otokoume"
+			"Otokoume",
+			"Rxy"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -81,6 +82,7 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] がインストール済み",
 	"config-apc": "[http://www.php.net/apc APC] がインストール済み",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み",
+	"config-no-cache-apcu": "<strong>警告:</strong> [http://www.php.net/apcu APCu]、 [http://xcache.lighttpd.net/ XCache]、 [http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
 	"config-mod-security": "<strong>警告:</strong> あなたのウェブサーバーでは [http://modsecurity.org/ mod_security] が有効になっています。正しく構成されていない場合は、MediaWiki や利用者にコンテンツの投稿を許可するその他のソフトウェアに問題が発生する場合があります。\n[http://modsecurity.org/documentation/ mod_security の説明文書]を確認するか、ランダムなエラーが発生した場合はあなたのホストのサポートにお問い合わせください。",
 	"config-diff3-bad": "GNU diff3 が見つかりません。",
 	"config-git": "バージョン管理ソフトウェア Git が見つかりました: <code>$1</code>",

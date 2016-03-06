@@ -1324,7 +1324,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Visa",
 	"rcnotefrom": "Nedan visas {{PLURAL:$5|ändringen|ändringar}} sedan <strong>$3, $4</strong> (upp till <strong>$1</strong> ändringar visas).",
-	"rclistfrom": "Visa ändringar från och med $3 $2",
+	"rclistfrom": "Visa ändringar från och med $2 $3",
 	"rcshowhideminor": "$1 mindre ändringar",
 	"rcshowhideminor-show": "Visa",
 	"rcshowhideminor-hide": "Dölj",

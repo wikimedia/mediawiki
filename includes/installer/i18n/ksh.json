@@ -190,7 +190,7 @@
 	"config-ns-site-name": "Et sällve wi däm Wiki singe Name: $1",
 	"config-ns-other": "Andere (jiff aan wälshe)",
 	"config-ns-other-default": "MingWiki",
-	"config-project-namespace-help": "Noh dämm Vörbeld vun de Wikipeedija, donn vill Wikis dänne ier Sigge övver et Wiki un sing Rääjelle vun dä Sigge mem Enhald vum Wiki tränne, un en enem extra Appachtemang för et „'''Projäk'''“ afflääje.\nSigge en däm Appachtemang fange all med enem beshtemmpte Vörsaz aan, däm Name vum Appachtemang, un dä moß De heh faßlääje.\nDä Name kann beshtemmpte Zeiche nit enthallde, wi „#“ un „:“ un et es Tradizjuhn, dat hä vum Name vum Wiki her kütt.",
+	"config-project-namespace-help": "Noh dämm Vörbeld vun de Wikipehdija, donn vill Wikkis dänne ier Sigge övver et Wikki un sing Rääjelle vun dä Sigge mem Enhald vum Wikki tränne, un en enem extra Appachtemang för et „'''Projäk'''“ afflääje.\nSigge en däm Appachtemang fange all med enem beschtemmpte Vörsaz aan, däm Name vum Appachtemang, un dä moß De heh faßlähje.\nDä Nahme darref beschtemmpte Zeiche nit enthallde, wi „#“ un „:“ un et es övv esu, dat hä vum Nahme vum Wikki her kütt.",
 	"config-ns-invalid": "Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ es nit jöltesch.\nNemm ene andere Name för däm Wiki sing eije Appachtemang.",
 	"config-ns-conflict": "Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ kütt ald als Standatt-Appachtemang em MediaWiki vör.\nNemm ene andere Name för däm Wiki sing eije Appachtemang.",
 	"config-admin-box": "Der Zohjang för der eezte Wiki_Köbes",
