@@ -20,7 +20,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	private $revId4_1, $textId4_1;
 	private $namespace, $talk_namespace;
 
-	function addDBData() {
+	function prepareDB() {
 		// be sure, titles created here using english namespace names
 		$this->setMwGlobals( [
 			'wgLanguageCode' => 'en',

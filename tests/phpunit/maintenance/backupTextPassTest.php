@@ -27,7 +27,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	private $revId4_1, $textId4_1;
 	private static $numOfRevs = 8;
 
-	function addDBData() {
+	function prepareDB() {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';

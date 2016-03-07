@@ -6,7 +6,7 @@
  * ^--- make sure temporary tables are used.
  */
 class LinksUpdateTest extends MediaWikiLangTestCase {
-	protected $testingPageId;
+	protected static $testingPageId;
 
 	function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -47,7 +47,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	public function addDBData() {
 		$res = $this->insertPage( 'Testing' );
-		$this->testingPageId = $res['id'];
+		self::$testingPageId = $res['id'];
 		$this->insertPage( 'Some_other_page' );
 		$this->insertPage( 'Template:TestingTemplate' );
 	}
@@ -68,7 +68,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_pagelinks() {
 		/** @var Title $t */
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addLink( Title::newFromText( "Foo" ) );
 		$po->addLink( Title::newFromText( "Special:Foo" ) ); // special namespace should be ignored
@@ -81,7 +81,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			'pagelinks',
 			'pl_namespace,
 			pl_title',
-			'pl_from = ' . $this->testingPageId,
+			'pl_from = ' . self::$testingPageId,
 			[ [ NS_MAIN, 'Foo' ] ]
 		);
 		$this->assertArrayEquals( [
@@ -100,7 +100,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			'pagelinks',
 			'pl_namespace,
 			pl_title',
-			'pl_from = ' . $this->testingPageId,
+			'pl_from = ' . self::$testingPageId,
 			[
 				[ NS_MAIN, 'Bar' ],
 				[ NS_TALK, 'Bar' ],
@@ -120,7 +120,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addExternalLink( "http://testing.com/wiki/Foo" );
 
@@ -129,7 +129,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'externallinks',
 			'el_to, el_index',
-			'el_from = ' . $this->testingPageId,
+			'el_from = ' . self::$testingPageId,
 			[
 				[ 'http://testing.com/wiki/Foo', 'http://com.testing./wiki/Foo' ],
 			]
@@ -143,7 +143,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addCategory( "Foo", "FOO" );
 
@@ -152,7 +152,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'categorylinks',
 			'cl_to, cl_sortkey',
-			'cl_from = ' . $this->testingPageId,
+			'cl_from = ' . self::$testingPageId,
 			[ [ 'Foo', "FOO\nTESTING" ] ]
 		);
 	}
@@ -232,7 +232,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_iwlinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$target = Title::makeTitleSafe( NS_MAIN, "Foo", '', 'linksupdatetest' );
 		$po->addInterwikiLink( $target );
@@ -242,7 +242,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'iwlinks',
 			'iwl_prefix, iwl_title',
-			'iwl_from = ' . $this->testingPageId,
+			'iwl_from = ' . self::$testingPageId,
 			[ [ 'linksupdatetest', 'Foo' ] ]
 		);
 	}
@@ -252,7 +252,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addTemplate( Title::newFromText( "Template:Foo" ), 23, 42 );
 
@@ -262,7 +262,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			'templatelinks',
 			'tl_namespace,
 			tl_title',
-			'tl_from = ' . $this->testingPageId,
+			'tl_from = ' . self::$testingPageId,
 			[ [ NS_TEMPLATE, 'Foo' ] ]
 		);
 	}
@@ -272,7 +272,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_imagelinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addImage( "Foo.png" );
 
@@ -281,7 +281,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'imagelinks',
 			'il_to',
-			'il_from = ' . $this->testingPageId,
+			'il_from = ' . self::$testingPageId,
 			[ [ 'Foo.png' ] ]
 		);
 	}
@@ -295,7 +295,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		] );
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addLanguageLink( Title::newFromText( "en:Foo" )->getFullText() );
 
@@ -304,7 +304,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$po,
 			'langlinks',
 			'll_lang, ll_title',
-			'll_from = ' . $this->testingPageId,
+			'll_from = ' . self::$testingPageId,
 			[ [ 'En', 'Foo' ] ]
 		);
 	}
@@ -316,7 +316,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		global $wgPagePropsHaveSortkey;
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", $this->testingPageId );
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$fields = [ 'pp_propname', 'pp_value' ];
 		$expected = [];
@@ -349,7 +349,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		}
 
 		$this->assertLinksUpdate(
-			$t, $po, 'page_props', $fields, 'pp_page = ' . $this->testingPageId, $expected );
+			$t, $po, 'page_props', $fields, 'pp_page = ' . self::$testingPageId, $expected );
 	}
 
 	public function testUpdate_page_props_without_sortkey() {

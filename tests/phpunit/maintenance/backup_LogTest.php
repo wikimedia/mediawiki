@@ -47,7 +47,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		return $logEntry->insert();
 	}
 
-	function addDBData() {
+	function prepareDB() {
 		$this->tablesUsed[] = 'logging';
 		$this->tablesUsed[] = 'user';
 

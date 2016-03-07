@@ -123,7 +123,7 @@ class FetchTextTest extends MediaWikiTestCase {
 		throw new MWException( "Could not determine text id" );
 	}
 
-	function addDBData() {
+	function prepareDB() {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';

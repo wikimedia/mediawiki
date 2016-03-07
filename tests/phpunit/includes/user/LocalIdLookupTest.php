@@ -16,7 +16,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$wgGroupPermissions['local-id-lookup-test']['hideuser'] = true;
 	}
 
-	public function addDBData() {
+	public function prepareDB() {
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$user = User::newFromName( "UTLocalIdLookup$i" );
 			if ( $user->getId() == 0 ) {
