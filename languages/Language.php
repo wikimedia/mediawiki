@@ -803,19 +803,6 @@ class Language {
 	}
 	
 	/**
-	 * Get translated language names. This is done on best effort and
-	 * by default this is exactly the same as Language::getLanguageNames.
-	 * The CLDR extension provides translated names.
-	 * @param string $code Language code.
-	 * @return array Language code => language name
-	 * @since 1.18.0
-	 * @deprecated since 1.20, use fetchLanguageNames()
-	 */
-	public static function getTranslatedLanguageNames( $code ) {
-		return self::fetchLanguageNames( $code, 'all' );
-	}
-
-	/**
 	 * Get an array of language names, indexed by code.
 	 * @param null|string $inLanguage Code of language in which to return the names
 	 *		Use null for autonyms (native names)
