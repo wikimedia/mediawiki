@@ -4229,16 +4229,7 @@ class Language {
 	public function linkPrefixCharset() {
 		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
 	}
-
-	/**
-	 * @deprecated since 1.24, will be removed in 1.25
-	 * @return Language
-	 */
-	function getLangObj() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return $this;
-	}
-
+	
 	/**
 	 * Get the "parent" language which has a converter to convert a "compatible" language
 	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
