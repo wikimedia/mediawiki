@@ -167,7 +167,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 *
 	 * @param Title $title
 	 */
-	public function setTitle( Title $title ) {
+	public function setTitle( Title $title = null ) {
 		$this->title = $title;
 		// Erase the WikiPage so a new one with the new title gets created.
 		$this->wikipage = null;
