@@ -220,6 +220,7 @@ HHVM 3.1.
 * ApiQuery::getModules() was removed (deprecated since 1.21).
 * ApiMain::getModules() was removed (deprecated since 1.21).
 * ApiBase::getVersion() was removed (deprecated since 1.21).
+* Language::getLangObj() was removed (deprecated since 1.24).
 * Language::getLanguageName() was removed (deprecated since 1.20).
 * Language::getLanguageNames() was removed (deprecated since 1.20).
 * Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
