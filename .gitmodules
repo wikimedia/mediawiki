@@ -650,3 +650,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.15
+[submodule "extensions/Kartographer"]
+	path = extensions/Kartographer
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Kartographer
+	branch = wmf/1.27.0-wmf.15
