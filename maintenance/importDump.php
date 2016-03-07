@@ -281,7 +281,12 @@ TEXT
 		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );
-		$importer = new WikiImporter( $source, $this->getConfig() );
+		if ( defined( 'MW_DB') ) {
+			$wiki = MW_DB;
+		} else {
+			$wiki = false;
+		}
+		$importer = new WikiImporter( $source, $this->getConfig(), $wiki );
 
 		if ( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );

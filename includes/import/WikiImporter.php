@@ -32,6 +32,7 @@
  */
 class WikiImporter {
 	private $reader = null;
+	private $wiki = false;
 	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
 	private $mSiteInfoCallback, $mPageOutCallback;
@@ -49,9 +50,10 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportSource $source
 	 * @param Config $config
+	 * @param $wiki the wiki into which to import
 	 * @throws Exception
 	 */
-	function __construct( ImportSource $source, Config $config = null ) {
+	function __construct( ImportSource $source, Config $config = null, $wiki = false ) {
 		if ( !class_exists( 'XMLReader' ) ) {
 			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
 		}
@@ -62,6 +64,9 @@ class WikiImporter {
 			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 		$this->config = $config;
+		$this->wiki = $wiki;
+
+		print "Importing into " . $wiki . "--\n";
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
@@ -332,7 +337,7 @@ class WikiImporter {
 		}
 
 		try {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER, [], $this->wiki );
 			return $dbw->deadlockLoop( [ $revision, 'importOldRevision' ] );
 		} catch ( MWContentSerializationException $ex ) {
 			$this->notice( 'import-error-unserialize',
@@ -351,7 +356,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importLogItem( $revision ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER, [], $this->wiki );
 		return $dbw->deadlockLoop( [ $revision, 'importLogItem' ] );
 	}
 
@@ -361,7 +366,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER, [], $this->wiki );
 		return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
 	}
 
