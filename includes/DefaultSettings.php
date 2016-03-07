@@ -2096,7 +2096,7 @@ $wgTransactionalTimeLimit = 120;
 
 /**
  * Directory for caching data in the local filesystem. Should not be accessible
- * from the web. Set this to false to not use any local caches.
+ * from the web.
  *
  * Note: if multiple wikis share the same localisation cache directory, they
  * must all have the same set of extensions. You can set a directory just for
