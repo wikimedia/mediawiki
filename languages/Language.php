@@ -801,7 +801,7 @@ class Language {
 	function getUserToggle( $tog ) {
 		return $this->getMessageFromDB( "tog-$tog" );
 	}
-	
+
 	/**
 	 * Get an array of language names, indexed by code.
 	 * @param null|string $inLanguage Code of language in which to return the names
@@ -925,17 +925,6 @@ class Language {
 	 */
 	protected function msg( $msg ) {
 		return wfMessage( $msg )->inLanguage( $this );
-	}
-
-	/**
-	 * Get the native language name of $code.
-	 * Only if defined in MediaWiki, no other data like CLDR.
-	 * @param string $code
-	 * @return string
-	 * @deprecated since 1.20, use fetchLanguageName()
-	 */
-	function getLanguageName( $code ) {
-		return self::fetchLanguageName( $code );
 	}
 
 	/**
