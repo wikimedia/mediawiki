@@ -178,7 +178,8 @@ once for 'TimStarling', and once for 'brion'.
 
 Hooks can return three possible values:
 
-  * true: the hook has operated successfully
+  * No return value (or null): the hook has operated successfully. Previously,
+    true was required. This is the default since MediaWiki 1.23.
   * "some string": an error occurred; processing should stop and the error
                    should be shown to the user
   * false: the hook has successfully done the work necessary and the calling
