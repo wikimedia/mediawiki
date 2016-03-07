@@ -23,8 +23,8 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
 	}
 
-	public function addDBData() {
-		parent::addDBData();
+	public function addDBDataOnce() {
+		parent::addDBDataOnce();
 		$insertResult = $this->insertPage( self::TITLE_STRING, 'UT Content' );
 		$this->title = $insertResult['title'];
 	}
