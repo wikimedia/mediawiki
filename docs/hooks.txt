@@ -178,11 +178,12 @@ once for 'TimStarling', and once for 'brion'.
 
 Hooks can return three possible values:
 
-  * true: the hook has operated successfully
+  * no value ("return null;" or just "return;" or no explicit return
+        statement at all): the hook has operated successfully
   * "some string": an error occurred; processing should stop and the error
-                   should be shown to the user
+        should be shown to the user
   * false: the hook has successfully done the work necessary and the calling
-           function should skip
+        function should skip
 
 The last result would be for cases where the hook function replaces the main
 functionality. For example, if you wanted to authenticate users to a custom
@@ -197,6 +198,10 @@ system (LDAP, another PHP program, whatever), you could do:
 
 Returning false makes less sense for events where the action is complete, and
 will normally be ignored.
+
+In older versions of MediaWiki, hooks were required to return true on success.
+This is deprecated but still works (has the same result as not returning any
+value).
 
 Note that none of the examples made use of create_function() as a way to
 attach a function to a hook. This is known to cause problems (notably with
