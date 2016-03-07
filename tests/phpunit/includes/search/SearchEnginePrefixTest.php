@@ -10,7 +10,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 */
 	private $search;
 
-	public function addDBData() {
+	public function addDBDataOnce() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			// tests are skipped if NS_MAIN is not wikitext
 			return;
