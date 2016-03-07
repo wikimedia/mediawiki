@@ -211,19 +211,22 @@ class NewParserTest extends MediaWikiTestCase {
 		parent::tearDownAfterClass();
 	}
 
+	function prepareDB() {
+		LinkCache::singleton()->clear(); # Avoids the odd failure at creating the nullRevision
+	}
+
 	function addDBData() {
-		$this->tablesUsed[] = 'site_stats';
 		# disabled for performance
 		# $this->tablesUsed[] = 'image';
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
 			[ 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ],
-			__METHOD__
+			__METHOD__,
+			[ 'IGNORE' ]
 		);
 
 		$user = User::newFromId( 0 );
-		LinkCache::singleton()->clear(); # Avoids the odd failure at creating the nullRevision
 
 		# Upload DB table entries for files.
 		# We will upload the actual files later. Note that if anything causes LocalFile::load()

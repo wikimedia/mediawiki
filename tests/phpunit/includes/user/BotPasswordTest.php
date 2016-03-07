@@ -46,7 +46,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 		CentralIdLookup::resetCache();
 	}
 
-	public function addDBData() {
+	public function prepareDB() {
 		$passwordFactory = new \PasswordFactory();
 		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
