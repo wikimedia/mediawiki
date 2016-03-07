@@ -21,10 +21,11 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+		$this->setContentLang( 'qqx' );
 	}
 
-	public function addDBData() {
-		parent::addDBData();
+	public function addDBDataOnce() {
+		parent::addDBDataOnce();
 		$insertResult = $this->insertPage( self::TITLE_STRING, 'UT Content' );
 		$this->title = $insertResult['title'];
 	}
@@ -74,11 +75,11 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 		$removedRevId = $this->editPageText( 'Blank' );
 
 		$this->assertEquals(
-			'[[:' . self::TITLE_STRING . ']] added to category',
+			'(recentchanges-page-added-to-category: ' . self::TITLE_STRING . ', 0)',
 			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
 		);
 		$this->assertEquals(
-			'[[:' . self::TITLE_STRING . ']] removed from category',
+			'(recentchanges-page-removed-from-category: ' . self::TITLE_STRING . ', 0)',
 			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
 		);
 	}
