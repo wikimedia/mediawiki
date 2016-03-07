@@ -29,7 +29,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		] );
 	}
 
-	function addDBData() {
+	function addDBDataOnce() {
 		$this->configureLanguages();
 
 		// Set up messages and fallbacks ab -> ru -> de

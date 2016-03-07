@@ -57,6 +57,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 				CONTENT_MODEL_WIKITEXT
 			);
 		}
+
+		$this->tablesUsed[] = 'archive';
 	}
 
 	protected function tearDown() {
