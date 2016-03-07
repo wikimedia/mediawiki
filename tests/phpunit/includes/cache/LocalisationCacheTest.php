@@ -15,7 +15,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|LocalisationCache
+	 * @return LocalisationCache
 	 */
 	protected function getMockLocalisationCache() {
 		global $IP;
