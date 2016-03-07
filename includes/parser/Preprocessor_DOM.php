@@ -1462,6 +1462,10 @@ class PPFrame_DOM implements PPFrame {
 		return true;
 	}
 
+	/**
+	 * @param int|string $name
+	 * @return bool Always false in this implementation.
+	 */
 	public function getArgument( $name ) {
 		return false;
 	}
@@ -1646,6 +1650,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $arguments;
 	}
 
+	/**
+	 * @param int $index
+	 * @return string|bool
+	 */
 	public function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
 			return false;
@@ -1660,6 +1668,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->numberedExpansionCache[$index];
 	}
 
+	/**
+	 * @param string $name
+	 * @return string|bool
+	 */
 	public function getNamedArgument( $name ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
 			return false;
@@ -1672,6 +1684,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->namedExpansionCache[$name];
 	}
 
+	/**
+	 * @param int|string $name
+	 * @return string|bool
+	 */
 	public function getArgument( $name ) {
 		$text = $this->getNumberedArgument( $name );
 		if ( $text === false ) {
@@ -1738,6 +1754,10 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 		return !count( $this->args );
 	}
 
+	/**
+	 * @param int|string $index
+	 * @return string|bool
+	 */
 	public function getArgument( $index ) {
 		if ( !isset( $this->args[$index] ) ) {
 			return false;

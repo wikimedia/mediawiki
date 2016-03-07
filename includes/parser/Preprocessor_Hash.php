@@ -1355,8 +1355,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param string $name
-	 * @return bool
+	 * @param int|string $name
+	 * @return bool Always false in this implementation.
 	 */
 	public function getArgument( $name ) {
 		return false;
@@ -1549,7 +1549,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param int $index
-	 * @return array|bool
+	 * @return string|bool
 	 */
 	public function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
@@ -1567,7 +1567,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param string $name
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getNamedArgument( $name ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
@@ -1582,8 +1582,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param string $name
-	 * @return array|bool
+	 * @param int|string $name
+	 * @return string|bool
 	 */
 	public function getArgument( $name ) {
 		$text = $this->getNumberedArgument( $name );
@@ -1652,8 +1652,8 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param int $index
-	 * @return bool
+	 * @param int|string $index
+	 * @return string|bool
 	 */
 	public function getArgument( $index ) {
 		if ( !isset( $this->args[$index] ) ) {
