@@ -260,8 +260,8 @@ interface PPFrame {
 
 	/**
 	 * Get an argument to this frame by name
-	 * @param string $name
-	 * @return bool
+	 * @param int|string $name
+	 * @return string|bool
 	 */
 	public function getArgument( $name );
 
