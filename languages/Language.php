@@ -801,21 +801,7 @@ class Language {
 	function getUserToggle( $tog ) {
 		return $this->getMessageFromDB( "tog-$tog" );
 	}
-
-	/**
-	 * Get native language names, indexed by code.
-	 * Only those defined in MediaWiki, no other data like CLDR.
-	 * If $customisedOnly is true, only returns codes with a messages file
-	 *
-	 * @param bool $customisedOnly
-	 *
-	 * @return array
-	 * @deprecated since 1.20, use fetchLanguageNames()
-	 */
-	public static function getLanguageNames( $customisedOnly = false ) {
-		return self::fetchLanguageNames( null, $customisedOnly ? 'mwfile' : 'mw' );
-	}
-
+	
 	/**
 	 * Get translated language names. This is done on best effort and
 	 * by default this is exactly the same as Language::getLanguageNames.
