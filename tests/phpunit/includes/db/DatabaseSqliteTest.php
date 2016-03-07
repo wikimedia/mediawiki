@@ -330,7 +330,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		foreach ( $versions as $version ) {
 			$versions = "upgrading from $version to $wgVersion";
-			$db = $this->prepareDB( $version );
+			$db = $this->prepareTestDB( $version );
 			$tables = $this->getTables( $db );
 			$this->assertEquals( $currentTables, $tables, "Different tables $versions" );
 			foreach ( $tables as $table ) {
@@ -389,7 +389,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
-	private function prepareDB( $version ) {
+	private function prepareTestDB( $version ) {
 		static $maint = null;
 		if ( $maint === null ) {
 			$maint = new FakeMaintenance();

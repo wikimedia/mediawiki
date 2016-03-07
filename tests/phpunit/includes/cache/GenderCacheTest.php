@@ -6,7 +6,7 @@
  */
 class GenderCacheTest extends MediaWikiLangTestCase {
 
-	function addDBData() {
+	function addDBDataOnce() {
 		// ensure the correct default gender
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'gender' => 'unknown' ] );
 

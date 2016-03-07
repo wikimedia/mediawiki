@@ -44,7 +44,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
-	public function addDBData() {
+	public function addDBDataOnce() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			// @todo cover the case of non-wikitext content in the main namespace
 			return;
