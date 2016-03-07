@@ -134,12 +134,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			if ( !self::$dbSetup ) {
 				// switch to a temporary clone of the database
 				self::setupTestDB( $this->db, $this->dbPrefix() );
+				$this->addCoreDBData();
 
 				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 					$this->resetDB();
 				}
 			}
-			$this->addCoreDBData();
+
+			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
+			// is available in subclasse's setUpBeforeClass() and setUp() methods.
+			// This would also remove the need for the HACK that is oncePerClass().
+			if ( $this->oncePerClass() ) {
+				$this->addDBDataOnce();
+			}
+
 			$this->addDBData();
 			$needsResetDB = true;
 		}
@@ -149,6 +157,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $needsResetDB ) {
 			$this->resetDB();
 		}
+	}
+
+	/**
+	 * @return boolean
+	 */
+	private function oncePerClass() {
+		// Remember current test class in the database connection,
+		// so we know when we need to run addData.
+
+		$class = get_class( $this );
+
+		$first = !isset( $this->db->_hasDataForTestClass )
+			|| $this->db->_hasDataForTestClass !== $class;
+
+		$this->db->_hasDataForTestClass = $class;
+		return $first;
 	}
 
 	/**
@@ -527,8 +551,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Stub. If a test needs to add additional data to the database, it should
-	 * implement this method and do so
+	 * Stub. If a test suite needs to add additional data to the database, it should
+	 * implement this method and do so. This method is called once per test suite
+	 * (i.e. once per class).
+	 *
+	 * Note data added by this method may be removed by resetDB() depending on
+	 * the contents of $tablesUsed.
+	 *
+	 * To add additional data between test function runs, override prepareDB().
+	 *
+	 * @see addDBData()
+	 * @see resetDB()
+	 *
+	 * @since 1.27
+	 */
+	public function addDBDataOnce() {
+	}
+
+	/**
+	 * Stub. Subclasses may override this to prepare the database.
+	 * Called before every test run (test function or data set).
+	 *
+	 * @see addDBDataOnce()
+	 * @see resetDB()
 	 *
 	 * @since 1.18
 	 */
@@ -675,23 +720,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	private function resetDB() {
 		if ( $this->db ) {
-			if ( $this->db->getType() == 'oracle' ) {
-				if ( self::$useTemporaryTables ) {
-					wfGetLB()->closeAll();
-					$this->db = wfGetDB( DB_MASTER );
-				} else {
-					foreach ( $this->tablesUsed as $tbl ) {
-						if ( $tbl == 'interwiki' ) {
-							continue;
-						}
-						$this->db->query( 'TRUNCATE TABLE ' . $this->db->tableName( $tbl ), __METHOD__ );
-					}
+			$truncate = in_array( $this->db->getType(), [ 'oracle', 'mysql' ] );
+			foreach ( $this->tablesUsed as $tbl ) {
+				// TODO: reset interwiki and user tables to their original content.
+				if ( $tbl == 'interwiki' || $tbl == 'user' ) {
+					continue;
 				}
-			} else {
-				foreach ( $this->tablesUsed as $tbl ) {
-					if ( $tbl == 'interwiki' || $tbl == 'user' ) {
-						continue;
-					}
+
+				if ( $truncate ) {
+					$this->db->query( 'TRUNCATE TABLE ' . $this->db->tableName( $tbl ), __METHOD__ );
+				} else {
 					$this->db->delete( $tbl, '*', __METHOD__ );
 				}
 			}
@@ -1283,4 +1321,5 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function wfResetOutputBuffersBarrier( $buffer ) {
 		return $buffer;
 	}
+
 }
