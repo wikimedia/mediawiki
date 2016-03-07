@@ -2065,7 +2065,7 @@ class EditPage {
 		if ( $changingContentModel ) {
 			$this->addContentModelChangeLogEntry(
 				$wgUser,
-				$oldContentModel,
+				$new ? false : $oldContentModel,
 				$this->contentModel,
 				$this->summary
 			);
@@ -2076,12 +2076,13 @@ class EditPage {
 
 	/**
 	 * @param User $user
-	 * @param string $oldModel
+	 * @param string|false $oldModel false if the page is being newly created
 	 * @param string $newModel
 	 * @param string $reason
 	 */
 	protected function addContentModelChangeLogEntry( User $user, $oldModel, $newModel, $reason ) {
-		$log = new ManualLogEntry( 'contentmodel', 'change' );
+		$new = $oldModel === false;
+		$log = new ManualLogEntry( 'contentmodel', $new ? 'new' : 'change' );
 		$log->setPerformer( $user );
 		$log->setTarget( $this->mTitle );
 		$log->setComment( $reason );

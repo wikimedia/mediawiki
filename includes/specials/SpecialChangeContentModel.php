@@ -185,7 +185,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
-		$log = new ManualLogEntry( 'contentmodel', 'change' );
+		$log = new ManualLogEntry( 'contentmodel', $this->oldRevision ? 'change' : 'new' );
 		$log->setPerformer( $user );
 		$log->setTarget( $this->title );
 		$log->setComment( $data['reason'] );
