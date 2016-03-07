@@ -724,20 +724,6 @@ class Language {
 	}
 
 	/**
-	 * @deprecated since 1.24, doesn't handle conflicting aliases. Use
-	 *   SpecialPageFactory::getLocalNameFor instead.
-	 * @param string $name
-	 * @return string
-	 */
-	function specialPage( $name ) {
-		$aliases = $this->getSpecialPageAliases();
-		if ( isset( $aliases[$name][0] ) ) {
-			$name = $aliases[$name][0];
-		}
-		return $this->getNsText( NS_SPECIAL ) . ':' . $name;
-	}
-
-	/**
 	 * @return array
 	 */
 	function getDatePreferences() {
