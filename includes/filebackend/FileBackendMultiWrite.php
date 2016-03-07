@@ -202,11 +202,17 @@ class FileBackendMultiWrite extends FileBackend {
 				if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 					// Bind $scopeLock to the callback to preserve locks
 					DeferredUpdates::addCallableUpdate(
-						function() use ( $backend, $realOps, $opts, $scopeLock ) {
+						function() use ( $backend, $realOps, $opts, $scopeLock, $relevantPaths ) {
+							wfDebugLog( 'FileOperationReplication',
+								"'{$backend->getName()}' async replication; paths: " .
+								FormatJson::encode( $relevantPaths ) );
 							$backend->doOperations( $realOps, $opts );
 						}
 					);
 				} else {
+					wfDebugLog( 'FileOperationReplication',
+						"'{$backend->getName()}' sync replication; paths: " .
+						FormatJson::encode( $relevantPaths ) );
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
 				}
 			}
