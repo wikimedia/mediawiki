@@ -706,6 +706,7 @@ class DelayedParserTest {
 		foreach ( $this->hooks as $hook ) {
 			$ret = $parserTest->requireHook( $hook );
 			if ( !$ret ) {
+				wfDebug( __METHOD__ . " parser hook '$hook' failed." );
 				return false;
 			}
 		}
@@ -714,6 +715,7 @@ class DelayedParserTest {
 		foreach ( $this->fnHooks as $fnHook ) {
 			$ret = $parserTest->requireFunctionHook( $fnHook );
 			if ( !$ret ) {
+				wfDebug( __METHOD__ . " parser function hook '$hook' failed." );
 				return false;
 			}
 		}
@@ -722,6 +724,7 @@ class DelayedParserTest {
 		foreach ( $this->transparentHooks as $hook ) {
 			$ret = $parserTest->requireTransparentHook( $hook );
 			if ( !$ret ) {
+				wfDebug( __METHOD__ . " parser transparent hook '$hook' failed." );
 				return false;
 			}
 		}
