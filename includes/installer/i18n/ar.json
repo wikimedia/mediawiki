@@ -83,6 +83,7 @@
 	"config-mysql-charset": "مجموعة محارف قاعدة البيانات",
 	"config-mysql-binary": "ثنائي",
 	"config-mysql-utf8": "يو تي إف-8",
+	"config-mssql-auth": "نوع الاستيثاق:",
 	"config-site-name": "اسم الويكي:",
 	"config-site-name-blank": "أدخل اسم موقع.",
 	"config-project-namespace": "نطاق المشروع:",
@@ -104,6 +105,7 @@
 	"config-profile": "ملف صلاحيات المستخدم:",
 	"config-profile-wiki": "افتح ويكي",
 	"config-profile-no-anon": "إنشاء الحساب مطلوب",
+	"config-profile-fishbowl": "المحررون المخولون فقط",
 	"config-profile-private": "ويكي خاص",
 	"config-license": "حقوق النسخ والترخيص:",
 	"config-license-none": "لا تذييل ترخيص",
@@ -149,8 +151,10 @@
 	"config-install-mainpage": "إنشاء صفحة رئيسية بالمحتوى الافتراضي",
 	"config-install-extension-tables": "إنشاء جداول للامتدادات المفعلة",
 	"config-install-mainpage-failed": "لم يتمكن من إدراج الصفحة الرئيسية: $1",
+	"config-download-localsettings": "تنزيل <code>LocalSettings.php</code>",
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",
+	"config-nofile": "لا يمكن العثور على الملف \"$1\". هل حُذف؟",
 	"mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",
 	"mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
 }

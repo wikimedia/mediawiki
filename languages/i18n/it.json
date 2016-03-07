@@ -3369,7 +3369,7 @@
 	"tags-edit-chosen-placeholder": "Seleziona alcune etichette",
 	"tags-edit-chosen-no-results": "Nessun tag corrispondente trovato",
 	"tags-edit-reason": "Motivo:",
-	"tags-edit-revision-submit": "Applica le modifiche a {{PLURAL:$1|questa revisione|$1 revisioni}}",
+	"tags-edit-revision-submit": "Applica le modifiche a {{PLURAL:$1|questa versione|$1 versioni}}",
 	"tags-edit-logentry-submit": "Applica le modifiche a {{PLURAL:$1|questa voce di registro|$1 voci di registro}}",
 	"tags-edit-success": "Le modifiche sono state applicate correttamente.",
 	"tags-edit-failure": "Non è stato possibile effettuare le seguenti modifiche:\n$1",
