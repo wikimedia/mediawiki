@@ -49,7 +49,7 @@
 class JobQueueFederated extends JobQueue {
 	/** @var HashRing */
 	protected $partitionRing;
-	/** @var array (partition name => JobQueue) reverse sorted by weight */
+	/** @var JobQueue[] (partition name => JobQueue) reverse sorted by weight */
 	protected $partitionQueues = [];
 
 	/** @var int Maximum number of partitions to try */
@@ -311,7 +311,7 @@ class JobQueueFederated extends JobQueue {
 			throw new MWException( "The given job has no defined partition name." );
 		}
 
-		return $this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
+		$this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
 	}
 
 	protected function doIsRootJobOldDuplicate( Job $job ) {
