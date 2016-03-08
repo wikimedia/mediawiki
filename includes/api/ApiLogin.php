@@ -141,7 +141,7 @@ class ApiLogin extends ApiBase {
 				Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html ] );
 
 				$result['result'] = 'Success';
-				$result['lguserid'] = intval( $user->getId() );
+				$result['lguserid'] = (int)$user->getId();
 				$result['lgusername'] = $user->getName();
 
 				// @todo: These are deprecated, and should be removed at some
@@ -208,7 +208,7 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::THROTTLED:
 				$result['result'] = 'Throttled';
-				$result['wait'] = intval( $loginForm->mThrottleWait );
+				$result['wait'] = (int)$loginForm->mThrottleWait;
 				break;
 
 			case LoginForm::USER_BLOCKED:

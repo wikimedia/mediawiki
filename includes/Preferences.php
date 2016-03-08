@@ -1360,7 +1360,7 @@ class Preferences {
 	 * @return int
 	 */
 	static function filterIntval( $value, $alldata ) {
-		return intval( $value );
+		return (int)$value;
 	}
 
 	/**
@@ -1377,14 +1377,14 @@ class Preferences {
 			default:
 				$data = explode( ':', $tz, 2 );
 				if ( count( $data ) == 2 ) {
-					$data[0] = intval( $data[0] );
-					$data[1] = intval( $data[1] );
+					$data[0] = (int)$data[0];
+					$data[1] = (int)$data[1];
 					$minDiff = abs( $data[0] ) * 60 + $data[1];
 					if ( $data[0] < 0 ) {
 						$minDiff = - $minDiff;
 					}
 				} else {
-					$minDiff = intval( $data[0] ) * 60;
+					$minDiff = (int)$data[0] * 60;
 				}
 
 				# Max is +14:00 and min is -12:00, see:

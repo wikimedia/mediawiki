@@ -230,7 +230,7 @@ class LocalRepo extends FileRepo {
 		);
 
 		// @note: also checks " " for b/c
-		if ( $redirDbKey !== ' ' && strval( $redirDbKey ) !== '' ) {
+		if ( $redirDbKey !== ' ' && (string)$redirDbKey !== '' ) {
 			// Page is a redirect to another file
 			return Title::newFromText( $redirDbKey, NS_FILE );
 		}
@@ -430,7 +430,7 @@ class LocalRepo extends FileRepo {
 	 * @return array
 	 */
 	public function findFilesByPrefix( $prefix, $limit ) {
-		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) ];
+		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => (int)$limit ];
 
 		// Query database
 		$dbr = $this->getSlaveDB();

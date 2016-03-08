@@ -17,7 +17,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals(
 			$expected,
-			strval( $wgContLang->userAdjust( $date, '' ) ),
+			(string)$wgContLang->userAdjust( $date, '' ),
 			"User adjust {$date} by {$localTZoffset} minutes should give {$expected}"
 		);
 	}

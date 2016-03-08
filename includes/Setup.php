@@ -836,7 +836,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 			$profName = $fname . '-extensions-' . implode( '::', $func );
 		}
 	} else {
-		$profName = $fname . '-extensions-' . strval( $func );
+		$profName = $fname . '-extensions-' . (string)$func;
 	}
 
 	$ps_ext_func = Profiler::instance()->scopedProfileIn( $profName );

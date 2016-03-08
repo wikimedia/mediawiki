@@ -119,7 +119,7 @@ class UsersPager extends AlphabeticPager {
 		if ( $this->requestedUser != '' ) {
 			# Sorted either by account creation or name
 			if ( $this->creationSort ) {
-				$conds[] = 'user_id >= ' . intval( User::idFromName( $this->requestedUser ) );
+				$conds[] = 'user_id >= ' . (int)User::idFromName( $this->requestedUser );
 			} else {
 				$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
 			}
@@ -179,7 +179,7 @@ class UsersPager extends AlphabeticPager {
 		$lang = $this->getLanguage();
 
 		$groups = '';
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
+		$groups_list = self::getGroups( (int)$row->user_id, $this->userGroupCache );
 
 		if ( !$this->including && count( $groups_list ) > 0 ) {
 			$list = [];
@@ -240,7 +240,7 @@ class UsersPager extends AlphabeticPager {
 		$cache = [];
 		$groups = [];
 		foreach ( $groupRes as $row ) {
-			$cache[intval( $row->ug_user )][] = $row->ug_group;
+			$cache[(int)$row->ug_user][] = $row->ug_group;
 			$groups[$row->ug_group] = true;
 		}
 		$this->userGroupCache = $cache;

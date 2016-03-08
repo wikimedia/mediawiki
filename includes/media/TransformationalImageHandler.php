@@ -135,7 +135,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		// For subclasses that might be paged.
 		if ( $image->isMultipage() && isset( $params['page'] ) ) {
-			$scalerParams['page'] = intval( $params['page'] );
+			$scalerParams['page'] = (int)$params['page'];
 		}
 
 		# Determine scaler type

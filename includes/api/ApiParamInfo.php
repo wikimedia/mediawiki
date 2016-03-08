@@ -291,11 +291,11 @@ class ApiParamInfo extends ApiBase {
 					case 'string':
 					case 'text':
 					case 'password':
-						$item['default'] = strval( $settings[ApiBase::PARAM_DFLT] );
+						$item['default'] = (string)$settings[ApiBase::PARAM_DFLT];
 						break;
 					case 'integer':
 					case 'limit':
-						$item['default'] = intval( $settings[ApiBase::PARAM_DFLT] );
+						$item['default'] = (string)$settings[ApiBase::PARAM_DFLT];
 						break;
 					case 'timestamp':
 						$item['default'] = wfTimestamp( TS_ISO_8601, $settings[ApiBase::PARAM_DFLT] );

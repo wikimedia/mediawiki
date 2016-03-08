@@ -84,7 +84,7 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool
 	 */
 	public function validateParam( $name, $value ) {
-		if ( $name === 'page' && trim( $value ) !== (string)intval( $value ) ) {
+		if ( $name === 'page' && trim( $value ) !== (string)(int)$value ) {
 			// Extra junk on the end of page, probably actually a caption
 			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
 			return false;

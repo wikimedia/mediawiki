@@ -151,7 +151,7 @@ class SearchHighlighter {
 		// length, and do proper utf-8 substrings and lengths everywhere,
 		// but PHP is making that very hard and unclean to implement :(
 		$scale = strlen( $anyterm ) / mb_strlen( $anyterm );
-		$contextchars = intval( $contextchars * $scale );
+		$contextchars = (int)( $contextchars * $scale );
 
 		$patPre = "(^|$wgSearchHighlightBoundaries)";
 		$patPost = "($wgSearchHighlightBoundaries|$)";
@@ -218,7 +218,7 @@ class SearchHighlighter {
 			}
 
 			// calc by how much to extend existing snippets
-			$targetchars = intval( ( $contextchars * $contextlines ) / count( $snippets ) );
+			$targetchars = (int)( ( $contextchars * $contextlines ) / count( $snippets ) );
 		}
 
 		foreach ( $snippets as $index => $line ) {
@@ -420,7 +420,7 @@ class SearchHighlighter {
 			} elseif ( $len > $contextchars ) {
 				$begin = $offset;
 			} else {
-				$begin = $offset + intval( ( $len - $contextchars ) / 2 );
+				$begin = $offset + (int)( ( $len - $contextchars ) / 2 );
 			}
 
 			$end = $begin + $contextchars;
@@ -497,7 +497,7 @@ class SearchHighlighter {
 		$lines = explode( "\n", $text );
 
 		$terms = implode( '|', $terms );
-		$max = intval( $contextchars ) + 1;
+		$max = (int)$contextchars + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
 		$lineno = 0;

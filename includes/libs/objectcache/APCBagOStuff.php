@@ -79,7 +79,7 @@ class APCBagOStuff extends BagOStuff {
 
 		if ( is_string( $val ) && !$this->nativeSerialize ) {
 			$val = $this->isInteger( $val )
-				? intval( $val )
+				? (int)$val
 				: unserialize( $val );
 		}
 

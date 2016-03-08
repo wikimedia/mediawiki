@@ -1622,7 +1622,7 @@ class OutputPage extends ContextSource {
 	 * @return mixed Previous value
 	 */
 	public function setRevisionId( $revid ) {
-		$val = is_null( $revid ) ? null : intval( $revid );
+		$val = is_null( $revid ) ? null : (int)$revid;
 		return wfSetVar( $this->mRevisionId, $val );
 	}
 

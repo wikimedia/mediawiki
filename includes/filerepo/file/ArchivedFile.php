@@ -249,7 +249,7 @@ class ArchivedFile {
 	 * @since 1.21
 	 */
 	public function loadFromRow( $row ) {
-		$this->id = intval( $row->fa_id );
+		$this->id = (int)$row->fa_id;
 		$this->name = $row->fa_name;
 		$this->archive_name = $row->fa_archive_name;
 		$this->group = $row->fa_storage_group;

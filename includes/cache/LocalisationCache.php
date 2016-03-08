@@ -1347,7 +1347,7 @@ class LCStoreCDB implements LCStore {
 	}
 
 	protected function getFileName( $code ) {
-		if ( strval( $code ) === '' || strpos( $code, '/' ) !== false ) {
+		if ( (string)$code === '' || strpos( $code, '/' ) !== false ) {
 			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 

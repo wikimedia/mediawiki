@@ -240,12 +240,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $mode == 'all' || $mode == 'revs' ) {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = intval( $cont[0] );
-				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+				$ns = (int)$cont[0];
+				$this->dieContinueUsageIf( (string)$ns !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 				$ar_id = (int)$cont[3];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[3] );
+				$this->dieContinueUsageIf( (string)$ar_id !== $cont[3] );
 				$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND " .
 					"(ar_title $op $title OR " .
@@ -257,7 +257,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
 				$ar_id = (int)$cont[1];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
+				$this->dieContinueUsageIf( (string)$ar_id !== $cont[1] );
 				$this->addWhere( "ar_timestamp $op $ts OR " .
 					"(ar_timestamp = $ts AND " .
 					"ar_id $op= $ar_id)" );
@@ -313,10 +313,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
 			if ( $fld_revid ) {
-				$rev['revid'] = intval( $row->ar_rev_id );
+				$rev['revid'] = (int)$row->ar_rev_id;
 			}
 			if ( $fld_parentid && !is_null( $row->ar_parent_id ) ) {
-				$rev['parentid'] = intval( $row->ar_parent_id );
+				$rev['parentid'] = (int)$row->ar_parent_id;
 			}
 			if ( $fld_user || $fld_userid ) {
 				if ( $row->ar_deleted & Revision::DELETED_USER ) {

@@ -147,7 +147,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		);
 		$dbw->update(
 			'site_stats',
-			[ 'ss_active_users' => intval( $activeUsers ) ],
+			[ 'ss_active_users' => (int)$activeUsers ],
 			[ 'ss_row_id' => 1 ],
 			__METHOD__
 		);

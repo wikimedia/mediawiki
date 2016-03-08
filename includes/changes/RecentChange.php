@@ -569,7 +569,7 @@ class RecentChange {
 			'rc_last_oldid' => $oldId,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
+			'rc_patrolled' => (int)$patrol,
 			'rc_new' => 0, # obsolete
 			'rc_old_len' => $oldSize,
 			'rc_new_len' => $newSize,
@@ -641,7 +641,7 @@ class RecentChange {
 			'rc_last_oldid' => 0,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
+			'rc_patrolled' => (int)$patrol,
 			'rc_new' => 1, # obsolete
 			'rc_old_len' => 0,
 			'rc_new_len' => $size,

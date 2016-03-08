@@ -106,7 +106,7 @@ abstract class Preprocessor {
 			return false;
 		}
 
-		$version = intval( substr( $value, 0, 8 ) );
+		$version = (int)substr( $value, 0, 8 );
 		if ( $version !== static::CACHE_VERSION ) {
 			return false;
 		}

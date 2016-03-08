@@ -456,7 +456,7 @@ class RecompressTracked {
 			$cmd = array_shift( $args );
 			switch ( $cmd ) {
 				case 'doPage':
-					$this->doPage( intval( $args[0] ) );
+					$this->doPage( (int)$args[0] );
 					break;
 				case 'doOrphanList':
 					$this->doOrphanList( array_map( 'intval', $args ) );

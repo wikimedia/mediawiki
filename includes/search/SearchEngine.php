@@ -285,8 +285,8 @@ class SearchEngine {
 	 * @param int $offset
 	 */
 	function setLimitOffset( $limit, $offset = 0 ) {
-		$this->limit = intval( $limit );
-		$this->offset = intval( $offset );
+		$this->limit = (int)$limit;
+		$this->offset = (int)$offset;
 	}
 
 	/**

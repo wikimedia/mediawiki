@@ -272,7 +272,7 @@ class PageArchive {
 				'ORDER BY' => 'rev_timestamp DESC',
 				'LIMIT' => 1 ] );
 		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
-		$prevLiveId = $row ? intval( $row->rev_id ) : null;
+		$prevLiveId = $row ? (int)$row->rev_id : null;
 
 		if ( $prevLive && $prevLive > $prevDeleted ) {
 			// Most prior revision was live
@@ -756,7 +756,7 @@ class SpecialUndelete extends SpecialPage {
 				}
 
 				if ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
-					$this->mFileVersions[] = intval( $matches[1] );
+					$this->mFileVersions[] = (int)$matches[1];
 				}
 			}
 			rsort( $timestamps );

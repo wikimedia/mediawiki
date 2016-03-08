@@ -176,12 +176,12 @@ class LinkCache {
 	public function addGoodLinkObjFromRow( Title $title, $row ) {
 		$dbkey = $title->getPrefixedDBkey();
 		$this->mGoodLinks->set( $dbkey, [
-			'id' => intval( $row->page_id ),
-			'length' => intval( $row->page_len ),
-			'redirect' => intval( $row->page_is_redirect ),
-			'revision' => intval( $row->page_latest ),
-			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
-			'lang' => !empty( $row->page_lang ) ? strval( $row->page_lang ) : null,
+			'id' => (int)$row->page_id,
+			'length' => (int)$row->page_len,
+			'redirect' => (int)$row->page_is_redirect,
+			'revision' => (int)$row->page_latest,
+			'model' => !empty( $row->page_content_model ) ? (string)$row->page_content_model : null,
+			'lang' => !empty( $row->page_lang ) ? (string)$row->page_lang : null,
 		] );
 	}
 
@@ -262,7 +262,7 @@ class LinkCache {
 
 		if ( $row !== false ) {
 			$this->addGoodLinkObjFromRow( $nt, $row );
-			$id = intval( $row->page_id );
+			$id = (int)$row->page_id;
 		} else {
 			$this->addBadLinkObj( $nt );
 			$id = 0;

@@ -83,8 +83,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		}
 
 		# Do remaining chunks
-		$blockStart = intval( $start );
-		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
+		$blockStart = (int)$start;
+		$blockEnd = (int)$start + $this->mBatchSize - 1;
 		$count = 0;
 
 		while ( $blockStart <= $end ) {

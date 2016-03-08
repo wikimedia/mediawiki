@@ -145,7 +145,7 @@ class Category {
 	 */
 	public static function newFromID( $id ) {
 		$cat = new self();
-		$cat->mID = intval( $id );
+		$cat->mID = (int)$id;
 		return $cat;
 	}
 

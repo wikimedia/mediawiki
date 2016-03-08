@@ -55,7 +55,7 @@ class CapsCleanup extends TableCleanup {
 
 		$this->user = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
 
-		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
+		$this->namespace = (int)$this->getOption( 'namespace', 0 );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 
 		$this->runTable( [

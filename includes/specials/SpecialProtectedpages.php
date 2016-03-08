@@ -288,7 +288,7 @@ class ProtectedPagesPager extends TablePager {
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;
-		$this->size = intval( $size );
+		$this->size = (int)$size;
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;

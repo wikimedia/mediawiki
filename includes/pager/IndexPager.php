@@ -396,7 +396,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if ( $offset != '' ) {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
 		}
-		$options['LIMIT'] = intval( $limit );
+		$options['LIMIT'] = (int)$limit;
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
 	}
 

@@ -82,8 +82,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->mDest = $request->getVal( 'dest' );
 		$this->mSubmitted = $request->getBool( 'submitted' );
 
-		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
-		$this->mDestID = intval( $request->getVal( 'destID' ) );
+		$this->mTargetID = (int)$request->getVal( 'targetID' );
+		$this->mDestID = (int)$request->getVal( 'destID' );
 		$this->mTimestamp = $request->getVal( 'mergepoint' );
 		if ( !preg_match( '/[0-9]{14}/', $this->mTimestamp ) ) {
 			$this->mTimestamp = '';

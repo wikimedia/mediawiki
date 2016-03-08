@@ -482,7 +482,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 		$n = $this->get( $key );
 		if ( $this->isInteger( $n ) ) { // key exists?
-			$n += intval( $value );
+			$n += (int)$value;
 			$this->set( $key, max( 0, $n ) ); // exptime?
 		} else {
 			$n = false;

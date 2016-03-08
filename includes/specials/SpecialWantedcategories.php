@@ -75,7 +75,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 			__METHOD__
 		);
 		foreach ( $categoryRes as $row ) {
-			$this->currentCategoryCounts[$row->cat_title] = intval( $row->cat_pages );
+			$this->currentCategoryCounts[$row->cat_title] = (int)$row->cat_pages;
 		}
 
 		// Back to start for display
@@ -109,7 +109,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 			$currentValue = isset( $this->currentCategoryCounts[$result->title] )
 				? $this->currentCategoryCounts[$result->title]
 				: 0;
-			$cachedValue = intval( $result->value ); // T76910
+			$cachedValue = (int)$result->value; // T76910
 
 			// If the category has been created or emptied since the list was refreshed, strike it
 			if ( $nt->isKnown() || $currentValue === 0 ) {

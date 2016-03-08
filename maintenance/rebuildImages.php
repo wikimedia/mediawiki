@@ -111,10 +111,10 @@ class ImageBuilder extends Maintenance {
 		$rate = $this->processed / $delta;
 
 		$this->output( sprintf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
-			wfTimestamp( TS_DB, intval( $now ) ),
+			wfTimestamp( TS_DB, (int)$now ),
 			$portion * 100.0,
 			$this->table,
-			wfTimestamp( TS_DB, intval( $eta ) ),
+			wfTimestamp( TS_DB, (int)$eta ),
 			$this->processed,
 			$this->count,
 			$rate,

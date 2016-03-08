@@ -90,16 +90,16 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$this->opts->setValue( 'hideredirs', false );
 			}
 			if ( is_numeric( $bit ) ) {
-				$this->opts->setValue( 'limit', intval( $bit ) );
+				$this->opts->setValue( 'limit', (int)$bit );
 			}
 
 			$m = [];
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
-				$this->opts->setValue( 'limit', intval( $m[1] ) );
+				$this->opts->setValue( 'limit', (int)$m[1] );
 			}
 			// PG offsets not just digits!
 			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) ) {
-				$this->opts->setValue( 'offset', intval( $m[1] ) );
+				$this->opts->setValue( 'offset', (int)$m[1] );
 			}
 			if ( preg_match( '/^username=(.*)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'username', $m[1] );
@@ -439,7 +439,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::makeTitle( (int)$row->rc_namespace, $row->rc_title );
 		if ( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
@@ -503,7 +503,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$conds['rc_new'] = 1;
 
 		$namespace = $this->opts->getValue( 'namespace' );
-		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
+		$namespace = ( $namespace === 'all' ) ? false : (int)$namespace;
 
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );

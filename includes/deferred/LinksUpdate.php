@@ -565,7 +565,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 */
 	private function getPropertySortKeyValue( $value ) {
 		if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
-			return floatval( $value );
+			return (float)$value;
 		}
 
 		return null;

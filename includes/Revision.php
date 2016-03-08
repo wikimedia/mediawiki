@@ -96,7 +96,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
-		return self::newFromConds( [ 'rev_id' => intval( $id ) ], $flags );
+		return self::newFromConds( [ 'rev_id' => (int)$id ], $flags );
 	}
 
 	/**
@@ -228,7 +228,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromId( $db, $id ) {
-		return self::loadFromConds( $db, [ 'rev_id' => intval( $id ) ] );
+		return self::loadFromConds( $db, [ 'rev_id' => (int)$id ] );
 	}
 
 	/**
@@ -242,9 +242,9 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
-		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
+		$conds = [ 'rev_page' => (int)$pageid, 'page_id' => (int)$pageid ];
 		if ( $id ) {
-			$conds['rev_id'] = intval( $id );
+			$conds['rev_id'] = (int)$id;
 		} else {
 			$conds[] = 'rev_id=page_latest';
 		}
@@ -263,7 +263,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
 		if ( $id ) {
-			$matchId = intval( $id );
+			$matchId = (int)$id;
 		} else {
 			$matchId = 'page_latest';
 		}
@@ -547,25 +547,25 @@ class Revision implements IDBAccessObject {
 	 */
 	function __construct( $row ) {
 		if ( is_object( $row ) ) {
-			$this->mId = intval( $row->rev_id );
-			$this->mPage = intval( $row->rev_page );
-			$this->mTextId = intval( $row->rev_text_id );
+			$this->mId = (int)$row->rev_id;
+			$this->mPage = (int)$row->rev_page;
+			$this->mTextId = (int)$row->rev_text_id;
 			$this->mComment = $row->rev_comment;
-			$this->mUser = intval( $row->rev_user );
-			$this->mMinorEdit = intval( $row->rev_minor_edit );
+			$this->mUser = (int)$row->rev_user;
+			$this->mMinorEdit = (int)$row->rev_minor_edit;
 			$this->mTimestamp = $row->rev_timestamp;
-			$this->mDeleted = intval( $row->rev_deleted );
+			$this->mDeleted = (int)$row->rev_deleted;
 
 			if ( !isset( $row->rev_parent_id ) ) {
 				$this->mParentId = null;
 			} else {
-				$this->mParentId = intval( $row->rev_parent_id );
+				$this->mParentId = (int)$row->rev_parent_id;
 			}
 
 			if ( !isset( $row->rev_len ) ) {
 				$this->mSize = null;
 			} else {
-				$this->mSize = intval( $row->rev_len );
+				$this->mSize = (int)$row->rev_len;
 			}
 
 			if ( !isset( $row->rev_sha1 ) ) {
@@ -585,13 +585,13 @@ class Revision implements IDBAccessObject {
 			if ( !isset( $row->rev_content_model ) ) {
 				$this->mContentModel = null; # determine on demand if needed
 			} else {
-				$this->mContentModel = strval( $row->rev_content_model );
+				$this->mContentModel = (string)$row->rev_content_model;
 			}
 
 			if ( !isset( $row->rev_content_format ) ) {
 				$this->mContentFormat = null; # determine on demand if needed
 			} else {
-				$this->mContentFormat = strval( $row->rev_content_format );
+				$this->mContentFormat = (string)$row->rev_content_format;
 			}
 
 			// Lazy extraction...
@@ -629,28 +629,28 @@ class Revision implements IDBAccessObject {
 				# also set text to null?
 			}
 
-			$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
-			$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
-			$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
+			$this->mId = isset( $row['id'] ) ? (int)$row['id'] : null;
+			$this->mPage = isset( $row['page'] ) ? (int)$row['page'] : null;
+			$this->mTextId = isset( $row['text_id'] ) ? (int)$row['text_id'] : null;
 			$this->mUserText = isset( $row['user_text'] )
-				? strval( $row['user_text'] ) : $wgUser->getName();
-			$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
-			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
+				? (string)$row['user_text'] : $wgUser->getName();
+			$this->mUser = isset( $row['user'] ) ? (int)$row['user'] : $wgUser->getId();
+			$this->mMinorEdit = isset( $row['minor_edit'] ) ? (int)$row['minor_edit'] : 0;
 			$this->mTimestamp = isset( $row['timestamp'] )
-				? strval( $row['timestamp'] ) : wfTimestampNow();
-			$this->mDeleted = isset( $row['deleted'] ) ? intval( $row['deleted'] ) : 0;
-			$this->mSize = isset( $row['len'] ) ? intval( $row['len'] ) : null;
-			$this->mParentId = isset( $row['parent_id'] ) ? intval( $row['parent_id'] ) : null;
-			$this->mSha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
+				? (string)$row['timestamp'] : wfTimestampNow();
+			$this->mDeleted = isset( $row['deleted'] ) ? (int)$row['deleted'] : 0;
+			$this->mSize = isset( $row['len'] ) ? (int)$row['len'] : null;
+			$this->mParentId = isset( $row['parent_id'] ) ? (int)$row['parent_id'] : null;
+			$this->mSha1 = isset( $row['sha1'] ) ? (string)$row['sha1'] : null;
 
 			$this->mContentModel = isset( $row['content_model'] )
-				? strval( $row['content_model'] ) : null;
+				? (string)$row['content_model'] : null;
 			$this->mContentFormat = isset( $row['content_format'] )
-				? strval( $row['content_format'] ) : null;
+				? (string)$row['content_format'] : null;
 
 			// Enforce spacing trimming on supplied text
-			$this->mComment = isset( $row['comment'] ) ? trim( strval( $row['comment'] ) ) : null;
-			$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
+			$this->mComment = isset( $row['comment'] ) ? trim( (string)$row['comment'] ) : null;
+			$this->mText = isset( $row['text'] ) ? rtrim( (string)$row['text'] ) : null;
 			$this->mTextRow = null;
 
 			$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
@@ -1224,7 +1224,7 @@ class Revision implements IDBAccessObject {
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_id DESC' ] );
 		}
-		return intval( $prevId );
+		return (int)$prevId;
 	}
 
 	/**

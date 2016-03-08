@@ -1659,7 +1659,7 @@ class FileRepo {
 	 * @return bool
 	 */
 	public function validateFilename( $filename ) {
-		if ( strval( $filename ) == '' ) {
+		if ( (string)$filename == '' ) {
 			return false;
 		}
 

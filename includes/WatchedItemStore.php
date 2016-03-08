@@ -324,7 +324,7 @@ class WatchedItemStore {
 		$res = $dbw->select( [ 'watchlist' ],
 			[ 'wl_user' ],
 			[
-				'wl_user != ' . intval( $editor->getId() ),
+				'wl_user != ' . (int)$editor->getId(),
 				'wl_namespace' => $target->getNamespace(),
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
@@ -333,7 +333,7 @@ class WatchedItemStore {
 
 		$watchers = [];
 		foreach ( $res as $row ) {
-			$watchers[] = intval( $row->wl_user );
+			$watchers[] = (int)$row->wl_user;
 		}
 
 		if ( $watchers ) {

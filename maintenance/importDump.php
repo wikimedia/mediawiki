@@ -88,7 +88,7 @@ TEXT
 			$this->error( "Wiki is in read-only mode; you'll need to disable it for import to work.", true );
 		}
 
-		$this->reportingInterval = intval( $this->getOption( 'report', 100 ) );
+		$this->reportingInterval = (int)$this->getOption( 'report', 100 );
 		if ( !$this->reportingInterval ) {
 			$this->reportingInterval = 100; // avoid division by zero
 		}
@@ -127,8 +127,8 @@ TEXT
 		if ( $result !== false ) {
 			return $result;
 		}
-		$ns = intval( $namespace );
-		if ( strval( $ns ) === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
+		$ns = (int)$namespace;
+		if ( (string)$ns === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
 			return $ns;
 		}
 		$this->error( "Unknown namespace text / index specified: $namespace", true );

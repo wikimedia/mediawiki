@@ -1203,7 +1203,7 @@ class Language {
 					break;
 				case 'j':
 					$usedDay = true;
-					$num = intval( substr( $ts, 6, 2 ) );
+					$num = (int)substr( $ts, 6, 2 );
 					break;
 				case 'xij':
 					$usedDay = true;
@@ -1267,7 +1267,7 @@ class Language {
 					break;
 				case 'n':
 					$usedMonth = true;
-					$num = intval( substr( $ts, 4, 2 ) );
+					$num = (int)substr( $ts, 4, 2 );
 					break;
 				case 'xin':
 					$usedIranianMonth = true;
@@ -1356,11 +1356,11 @@ class Language {
 					break;
 				case 'a':
 					$usedAMPM = true;
-					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
+					$s .= (int)substr( $ts, 8, 2 ) < 12 ? 'am' : 'pm';
 					break;
 				case 'A':
 					$usedAMPM = true;
-					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'AM' : 'PM';
+					$s .= (int)substr( $ts, 8, 2 ) < 12 ? 'AM' : 'PM';
 					break;
 				case 'g':
 					$usedHour = true;
@@ -1369,7 +1369,7 @@ class Language {
 					break;
 				case 'G':
 					$usedHour = true;
-					$num = intval( substr( $ts, 8, 2 ) );
+					$num = (int)substr( $ts, 8, 2 );
 					break;
 				case 'h':
 					$usedHour = true;
@@ -1825,19 +1825,19 @@ class Language {
 	 * @return string
 	 */
 	private static function hebrewYearStart( $year ) {
-		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
-		$b = intval( ( $year - 1 ) % 4 );
+		$a = (int)( ( 12 * ( $year - 1 ) + 17 ) % 19 );
+		$b = (int)( ( $year - 1 ) % 4 );
 		$m = 32.044093161144 + 1.5542417966212 * $a + $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
 		if ( $m < 0 ) {
 			$m--;
 		}
-		$Mar = intval( $m );
+		$Mar = (int)$m;
 		if ( $m < 0 ) {
 			$m++;
 		}
 		$m -= $Mar;
 
-		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7 );
+		$c = (int)( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7 );
 		if ( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
 		} elseif ( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
@@ -1846,7 +1846,7 @@ class Language {
 			$Mar++;
 		}
 
-		$Mar += intval( ( $year - 3761 ) / 100 ) - intval( ( $year - 3761 ) / 400 ) - 24;
+		$Mar += (int)( ( $year - 3761 ) / 100 ) - (int)( ( $year - 3761 ) / 400 ) - 24;
 		return $Mar;
 	}
 
@@ -1974,7 +1974,7 @@ class Language {
 				'MMMMMMMM', 'MMMMMMMMM', 'MMMMMMMMMM' ]
 		];
 
-		$num = intval( $num );
+		$num = (int)$num;
 		if ( $num > 10000 || $num <= 0 ) {
 			return $num;
 		}
@@ -2015,7 +2015,7 @@ class Language {
 			[ '', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י' ]
 		];
 
-		$num = intval( $num );
+		$num = (int)$num;
 		if ( $num > 9999 || $num <= 0 ) {
 			return $num;
 		}
@@ -2038,7 +2038,7 @@ class Language {
 				} else {
 					$letters = array_merge(
 						$letters,
-						(array)$table[$i][intval( $num / $pow10 )]
+						(array)$table[$i][(int)( $num / $pow10 )]
 					);
 
 					if ( $pow10 === 1000 ) {
@@ -2110,18 +2110,18 @@ class Language {
 			# Global offset in minutes.
 			$minDiff = $wgLocalTZoffset;
 		} elseif ( $data[0] == 'Offset' ) {
-			$minDiff = intval( $data[1] );
+			$minDiff = (int)$data[1];
 		} else {
 			$data = explode( ':', $tz );
 			if ( count( $data ) == 2 ) {
-				$data[0] = intval( $data[0] );
-				$data[1] = intval( $data[1] );
+				$data[0] = (int)$data[0];
+				$data[1] = (int)$data[1];
 				$minDiff = abs( $data[0] ) * 60 + $data[1];
 				if ( $data[0] < 0 ) {
 					$minDiff = -$minDiff;
 				}
 			} else {
-				$minDiff = intval( $data[0] ) * 60;
+				$minDiff = (int)$data[0] * 60;
 			}
 		}
 
@@ -2718,7 +2718,7 @@ class Language {
 	function lcfirst( $str ) {
 		$o = ord( $str );
 		if ( !$o ) {
-			return strval( $str );
+			return (string)$str;
 		} elseif ( $o >= 128 ) {
 			return $this->lc( $str, true );
 		} elseif ( $o > 96 ) {
@@ -3403,7 +3403,7 @@ class Language {
 		} else {
 			// Ref: http://cldr.unicode.org/translation/number-patterns
 			$sign = "";
-			if ( intval( $number ) < 0 ) {
+			if ( (int)$number < 0 ) {
 				// For negative numbers apply the algorithm like positive number and add sign.
 				$sign = "-";
 				$number = substr( $number, 1 );

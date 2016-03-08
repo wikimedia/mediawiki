@@ -76,7 +76,7 @@ class MagicWordArray {
 			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
 				$magic = MagicWord::get( $name );
-				$case = intval( $magic->isCaseSensitive() );
+				$case = (int)$magic->isCaseSensitive();
 				foreach ( $magic->getSynonyms() as $syn ) {
 					if ( !$case ) {
 						$syn = $wgContLang->lc( $syn );
@@ -97,7 +97,7 @@ class MagicWordArray {
 			$this->baseRegex = [ 0 => '', 1 => '' ];
 			foreach ( $this->names as $name ) {
 				$magic = MagicWord::get( $name );
-				$case = intval( $magic->isCaseSensitive() );
+				$case = (int)$magic->isCaseSensitive();
 				foreach ( $magic->getSynonyms() as $i => $syn ) {
 					// Group name must start with a non-digit in PCRE 8.34+
 					$it = strtr( $i, '0123456789', 'abcdefghij' );

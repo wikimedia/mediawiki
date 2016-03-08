@@ -103,13 +103,13 @@ class SqlBagOStuff extends BagOStuff {
 			$this->numServers = 1;
 		}
 		if ( isset( $params['purgePeriod'] ) ) {
-			$this->purgePeriod = intval( $params['purgePeriod'] );
+			$this->purgePeriod = (int)$params['purgePeriod'];
 		}
 		if ( isset( $params['tableName'] ) ) {
 			$this->tableName = $params['tableName'];
 		}
 		if ( isset( $params['shards'] ) ) {
-			$this->shards = intval( $params['shards'] );
+			$this->shards = (int)$params['shards'];
 		}
 		if ( isset( $params['syncTimeout'] ) ) {
 			$this->syncTimeout = $params['syncTimeout'];
@@ -353,7 +353,7 @@ class SqlBagOStuff extends BagOStuff {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
 			$db = $this->getDB( $serverIndex );
-			$exptime = intval( $exptime );
+			$exptime = (int)$exptime;
 
 			if ( $exptime < 0 ) {
 				$exptime = 0;
@@ -409,7 +409,7 @@ class SqlBagOStuff extends BagOStuff {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
 			$db = $this->getDB( $serverIndex );
-			$step = intval( $step );
+			$step = (int)$step;
 			$row = $db->selectRow(
 				$tableName,
 				[ 'value', 'exptime' ],
@@ -428,7 +428,7 @@ class SqlBagOStuff extends BagOStuff {
 				return null;
 			}
 
-			$oldValue = intval( $this->unserialize( $db->decodeBlob( $row->value ) ) );
+			$oldValue = (int)$this->unserialize( $db->decodeBlob( $row->value ) );
 			$newValue = $oldValue + $step;
 			$db->insert( $tableName,
 				[
@@ -555,7 +555,7 @@ class SqlBagOStuff extends BagOStuff {
 							__METHOD__ );
 
 						if ( $progressCallback ) {
-							if ( intval( $totalSeconds ) === 0 ) {
+							if ( (int)$totalSeconds === 0 ) {
 								$percent = 0;
 							} else {
 								$remainingSeconds = wfTimestamp( TS_UNIX, $timestamp )

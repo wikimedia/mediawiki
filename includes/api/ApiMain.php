@@ -1026,8 +1026,8 @@ class ApiMain extends ApiBase {
 			if ( $lag > $maxLag ) {
 				$response = $this->getRequest()->response();
 
-				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
+				$response->header( 'Retry-After: ' . max( (int)$maxLag, 5 ) );
+				$response->header( 'X-Database-Lag: ' . (int)$lag );
 
 				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
@@ -1803,7 +1803,7 @@ class ApiMain extends ApiBase {
 	public static function makeHelpMsgHeader( $module, $paramName ) {
 		wfDeprecated( __METHOD__, '1.25' );
 		$modulePrefix = $module->getModulePrefix();
-		if ( strval( $modulePrefix ) !== '' ) {
+		if ( (string)$modulePrefix !== '' ) {
 			$modulePrefix = "($modulePrefix) ";
 		}
 

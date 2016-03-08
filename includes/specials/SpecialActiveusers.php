@@ -180,7 +180,7 @@ class ActiveUsersPager extends UsersPager {
 		// Note: This is a different loop than for user rights,
 		// because we're reusing it to build the group links
 		// at the same time
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
+		$groups_list = self::getGroups( (int)$row->user_id, $this->userGroupCache );
 		foreach ( $groups_list as $group ) {
 			if ( in_array( $group, $this->hideGroups ) ) {
 				return '';

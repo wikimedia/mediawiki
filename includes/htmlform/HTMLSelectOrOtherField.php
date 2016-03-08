@@ -25,7 +25,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$valInSelect = false;
 
 		if ( $value !== false ) {
-			$value = strval( $value );
+			$value = (string)$value;
 			$valInSelect = in_array(
 				$value, HTMLFormField::flattenOptions( $this->getOptions() ), true
 			);

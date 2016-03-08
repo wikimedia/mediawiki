@@ -41,7 +41,7 @@ class Preprocessor_DOM extends Preprocessor {
 		$this->parser = $parser;
 		$mem = ini_get( 'memory_limit' );
 		$this->memoryLimit = false;
-		if ( strval( $mem ) !== '' && $mem != -1 ) {
+		if ( (string)$mem !== '' && $mem != -1 ) {
 			if ( preg_match( '/^\d+$/', $mem ) ) {
 				$this->memoryLimit = $mem;
 			} elseif ( preg_match( '/^(\d+)M$/i', $mem, $m ) ) {
@@ -117,7 +117,7 @@ class Preprocessor_DOM extends Preprocessor {
 		}
 		$usage = memory_get_usage();
 		if ( $usage > $this->memoryLimit * 0.9 ) {
-			$limit = intval( $this->memoryLimit * 0.9 / 1048576 + 0.5 );
+			$limit = (int)( $this->memoryLimit * 0.9 / 1048576 + 0.5 );
 			throw new MWException( "Preprocessor hit 90% memory limit ($limit MB)" );
 		}
 		return $usage <= $this->memoryLimit * 0.8;
@@ -548,7 +548,7 @@ class Preprocessor_DOM extends Preprocessor {
 						if ( $count < 3 ) {
 							$count = 0;
 						} else {
-							$count = min( 6, intval( ( $count - 1 ) / 2 ) );
+							$count = min( 6, (int)( ( $count - 1 ) / 2 ) );
 						}
 					} else {
 						$count = min( $equalsLength, $count );

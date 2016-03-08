@@ -61,8 +61,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	}
 
 	function getDateCond( $year, $month ) {
-		$year = intval( $year );
-		$month = intval( $month );
+		$year = (int)$year;
+		$month = (int)$month;
 
 		// Basic validity checks
 		$this->mYear = $year > 0 ? $year : false;

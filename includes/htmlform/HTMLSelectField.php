@@ -13,7 +13,7 @@ class HTMLSelectField extends HTMLFormField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
 
-		if ( in_array( strval( $value ), $validOptions, true ) ) {
+		if ( in_array( (string)$value, $validOptions, true ) ) {
 			return true;
 		} else {
 			return $this->msg( 'htmlform-select-badoption' )->parse();
@@ -21,7 +21,7 @@ class HTMLSelectField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
-		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
+		$select = new XmlSelect( $this->mName, $this->mID, (string)$value );
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
@@ -59,7 +59,7 @@ class HTMLSelectField extends HTMLFormField {
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'options' => $this->getOptionsOOUI(),
-			'value' => strval( $value ),
+			'value' => (string)$value,
 			'disabled' => $disabled,
 		] + $attribs );
 	}

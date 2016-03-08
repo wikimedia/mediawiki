@@ -89,8 +89,8 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( "got $num rows in " );
 
 						$elapsed = $t2 - $t1;
-						$hours = intval( $elapsed / 3600 );
-						$minutes = intval( $elapsed % 3600 / 60 );
+						$hours = (int)( $elapsed / 3600 );
+						$minutes = (int)( $elapsed % 3600 / 60 );
 						$seconds = $elapsed - $hours * 3600 - $minutes * 60;
 						if ( $hours ) {
 							$this->output( $hours . 'h ' );
@@ -143,8 +143,8 @@ class UpdateSpecialPages extends Maintenance {
 
 				$this->output( "completed in " );
 				$elapsed = $t2 - $t1;
-				$hours = intval( $elapsed / 3600 );
-				$minutes = intval( $elapsed % 3600 / 60 );
+				$hours = (int)( $elapsed / 3600 );
+				$minutes = (int)( $elapsed % 3600 / 60 );
 				$seconds = $elapsed - $hours * 3600 - $minutes * 60;
 				if ( $hours ) {
 					$this->output( $hours . 'h ' );

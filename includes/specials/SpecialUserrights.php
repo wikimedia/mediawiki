@@ -385,7 +385,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $name[0] == '#' ) {
 			// Numeric ID can be specified...
 			// We'll do a lookup for the name internally.
-			$id = intval( substr( $name, 1 ) );
+			$id = (int)substr( $name, 1 );
 
 			if ( $database == '' ) {
 				$name = User::whoIs( $id );

@@ -755,7 +755,7 @@ class WebInstaller extends Installer {
 	 * @return string
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
-		if ( strval( $msg ) == '' ) {
+		if ( (string)$msg == '' ) {
 			$labelText = '&#160;';
 		} else {
 			$labelText = wfMessage( $msg )->escaped();

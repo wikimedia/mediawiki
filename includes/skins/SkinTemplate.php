@@ -106,7 +106,7 @@ class SkinTemplate extends Skin {
 				$ilInterwikiCode = $languageLinkTitle->getInterwiki();
 				$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
 
-				if ( strval( $ilLangName ) === '' ) {
+				if ( (string)$ilLangName === '' ) {
 					$ilDisplayTextMsg = wfMessage( "interlanguage-link-$ilInterwikiCode" );
 					if ( !$ilDisplayTextMsg->isDisabled() ) {
 						// Use custom MW message for the display text
@@ -577,7 +577,7 @@ class SkinTemplate extends Skin {
 		}
 		$page = $request->getVal( 'returnto', $page );
 		$a = [];
-		if ( strval( $page ) !== '' ) {
+		if ( (string)$page !== '' ) {
 			$a['returnto'] = $page;
 			$query = $request->getVal( 'returntoquery', $this->thisquery );
 			if ( $query != '' ) {

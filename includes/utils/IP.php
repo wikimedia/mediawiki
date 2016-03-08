@@ -257,7 +257,7 @@ class IP {
 		if ( substr( $both, 0, 1 ) === '[' ) {
 			if ( preg_match( '/^\[(' . RE_IPV6_ADD . ')\](?::(?P<port>\d+))?$/', $both, $m ) ) {
 				if ( isset( $m['port'] ) ) {
-					return [ $m[1], intval( $m['port'] ) ];
+					return [ $m[1], (int)$m['port'] ];
 				} else {
 					return [ $m[1], false ];
 				}
@@ -280,7 +280,7 @@ class IP {
 			// Host:port?
 			$bits = explode( ':', $both );
 			if ( preg_match( '/^\d+/', $bits[1] ) ) {
-				return [ $bits[0], intval( $bits[1] ) ];
+				return [ $bits[0], (int)$bits[1] ];
 			} else {
 				// Not a valid port
 				return false;

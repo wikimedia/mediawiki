@@ -132,7 +132,7 @@ class WebInstallerName extends WebInstallerPage {
 			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ] );
 
 		// Validate site name
-		if ( strval( $this->getVar( 'wgSitename' ) ) === '' ) {
+		if ( (string)$this->getVar( 'wgSitename' ) === '' ) {
 			$this->parent->showError( 'config-site-name-blank' );
 			$retVal = false;
 		}
@@ -183,7 +183,7 @@ class WebInstallerName extends WebInstallerPage {
 
 		// Validate username for creation
 		$name = $this->getVar( '_AdminName' );
-		if ( strval( $name ) === '' ) {
+		if ( (string)$name === '' ) {
 			$this->parent->showError( 'config-admin-name-blank' );
 			$cname = $name;
 			$retVal = false;
@@ -215,7 +215,7 @@ class WebInstallerName extends WebInstallerPage {
 		} else {
 			$valid = 'config-admin-name-invalid';
 		}
-		if ( strval( $pwd ) === '' ) {
+		if ( (string)$pwd === '' ) {
 			// Provide a more specific and helpful message if password field is left blank
 			$msg = 'config-admin-password-blank';
 		} elseif ( $pwd !== $this->getVar( '_AdminPasswordConfirm' ) ) {

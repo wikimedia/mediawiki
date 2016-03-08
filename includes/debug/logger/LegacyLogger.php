@@ -417,7 +417,7 @@ class LegacyLogger extends AbstractLogger {
 			if ( is_array( $logConfig ) ) {
 				$destination = $logConfig['destination'];
 			} else {
-				$destination = strval( $logConfig );
+				$destination = (string)$logConfig;
 			}
 		}
 

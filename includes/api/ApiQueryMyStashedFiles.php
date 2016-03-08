@@ -54,7 +54,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 1 );
 			$cont_from = (int)$cont[0];
-			$this->dieContinueUsageIf( strval( $cont_from ) !== $cont[0] );
+			$this->dieContinueUsageIf( (string)$cont_from !== $cont[0] );
 			$this->addWhere( "us_id >= $cont_from" );
 		}
 

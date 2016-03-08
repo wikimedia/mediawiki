@@ -1060,7 +1060,7 @@ class UploadForm extends HTMLForm {
 				'size' => 60,
 				'default' => $this->mDestFile,
 				# @todo FIXME: Hack to work around poor handling of the 'default' option in HTMLForm
-				'nodata' => strval( $this->mDestFile ) !== '',
+				'nodata' => (string)$this->mDestFile !== '',
 			],
 			'UploadDescription' => [
 				'type' => 'textarea',

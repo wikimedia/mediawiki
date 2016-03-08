@@ -248,7 +248,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 		$ts = ( $this->maxTimestamp - $this->minTimestamp ) * $rand + $this->minTimestamp;
 
-		return intval( $ts );
+		return (int)$ts;
 	}
 
 	/**

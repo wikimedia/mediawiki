@@ -72,7 +72,7 @@ class DumpNamespaceFilter extends DumpFilter {
 				$ns = $constants[$key];
 				$this->namespaces[$ns] = true;
 			} elseif ( is_numeric( $key ) ) {
-				$ns = intval( $key );
+				$ns = (int)$key;
 				$this->namespaces[$ns] = true;
 			} else {
 				throw new MWException( "Unrecognized namespace key '$key'\n" );

@@ -31,7 +31,7 @@ class StorageTypeStats extends Maintenance {
 			exit( 1 );
 		}
 
-		$binSize = intval( pow( 10, floor( log10( $endId ) ) - 3 ) );
+		$binSize = (int)pow( 10, floor( log10( $endId ) ) - 3 );
 		if ( $binSize < 100 ) {
 			$binSize = 100;
 		}
@@ -70,8 +70,8 @@ SQL;
 					'COUNT(*) as count',
 				],
 				[
-					'old_id >= ' . intval( $rangeStart ),
-					'old_id < ' . intval( $rangeStart + $binSize )
+					'old_id >= ' . (int)$rangeStart,
+					'old_id < ' . (int)( $rangeStart + $binSize )
 				],
 				__METHOD__,
 				[ 'GROUP BY' => 'old_flags, class' ]

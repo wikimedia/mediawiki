@@ -450,8 +450,8 @@ class MediaTransformError extends MediaTransformOutput {
 
 		$this->htmlMsg = wfMessage( $msg )->rawParams( $htmlArgs )->escaped();
 		$this->textMsg = wfMessage( $msg )->rawParams( $htmlArgs )->text();
-		$this->width = intval( $width );
-		$this->height = intval( $height );
+		$this->width = (int)$width;
+		$this->height = (int)$height;
 		$this->url = false;
 		$this->path = false;
 	}

@@ -1474,7 +1474,7 @@ class MssqlResultWrapper extends ResultWrapper {
 
 		// check bounds
 		$numRows = $this->db->numRows( $res );
-		$row = intval( $row );
+		$row = (int)$row;
 
 		if ( $numRows === 0 ) {
 			return false;

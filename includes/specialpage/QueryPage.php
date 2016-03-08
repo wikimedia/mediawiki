@@ -322,7 +322,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = wfTimestamp( TS_UNIX,
 								$row->value );
 						} else {
-							$value = intval( $row->value ); // @bug 14414
+							$value = (int)$row->value; // @bug 14414
 						}
 					} else {
 						$value = 0;
@@ -410,11 +410,11 @@ abstract class QueryPage extends SpecialPage {
 			}
 
 			if ( $limit !== false ) {
-				$options['LIMIT'] = intval( $limit );
+				$options['LIMIT'] = (int)$limit;
 			}
 
 			if ( $offset !== false ) {
-				$options['OFFSET'] = intval( $offset );
+				$options['OFFSET'] = (int)$offset;
 			}
 
 			$res = $dbr->select( $tables, $fields, $conds, $fname,
@@ -456,10 +456,10 @@ abstract class QueryPage extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = [];
 		if ( $limit !== false ) {
-			$options['LIMIT'] = intval( $limit );
+			$options['LIMIT'] = (int)$limit;
 		}
 		if ( $offset !== false ) {
-			$options['OFFSET'] = intval( $offset );
+			$options['OFFSET'] = (int)$offset;
 		}
 		if ( $this->sortDescending() ) {
 			$options['ORDER BY'] = 'qc_value DESC';
@@ -782,7 +782,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( !isset( $row->title ) ) {
 			return null;
 		}
-		$title = Title::makeTitle( intval( $row->namespace ), $row->title );
+		$title = Title::makeTitle( (int)$row->namespace, $row->title );
 		if ( $title ) {
 			$date = isset( $row->timestamp ) ? $row->timestamp : '';
 			$comments = '';

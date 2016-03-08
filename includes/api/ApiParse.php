@@ -278,7 +278,7 @@ class ApiParse extends ApiBase {
 		$result_array['pageid'] = $pageid ?: $pageObj->getId();
 
 		if ( !is_null( $oldid ) ) {
-			$result_array['revid'] = intval( $oldid );
+			$result_array['revid'] = (int)$oldid;
 		}
 
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {

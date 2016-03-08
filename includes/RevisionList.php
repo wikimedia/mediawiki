@@ -229,7 +229,7 @@ abstract class RevisionItemBase {
 	 */
 	public function getAuthorId() {
 		$field = $this->getAuthorIdField();
-		return intval( $this->row->$field );
+		return (int)$this->row->$field;
 	}
 
 	/**
@@ -238,7 +238,7 @@ abstract class RevisionItemBase {
 	 */
 	public function getAuthorName() {
 		$field = $this->getAuthorNameField();
-		return strval( $this->row->$field );
+		return (string)$this->row->$field;
 	}
 
 	/**

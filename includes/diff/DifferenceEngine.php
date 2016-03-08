@@ -1198,15 +1198,15 @@ class DifferenceEngine extends ContextSource {
 	public function mapDiffPrevNext( $old, $new ) {
 		if ( $new === 'prev' ) {
 			// Show diff between revision $old and the previous one. Get previous one from DB.
-			$newid = intval( $old );
+			$newid = (int)$old;
 			$oldid = $this->getTitle()->getPreviousRevisionID( $newid );
 		} elseif ( $new === 'next' ) {
 			// Show diff between revision $old and the next one. Get next one from DB.
-			$oldid = intval( $old );
+			$oldid = (int)$old;
 			$newid = $this->getTitle()->getNextRevisionID( $oldid );
 		} else {
-			$oldid = intval( $old );
-			$newid = intval( $new );
+			$oldid = (int)$old;
+			$newid = (int)$new;
 		}
 
 		return [ $oldid, $newid ];

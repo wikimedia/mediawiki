@@ -1234,7 +1234,7 @@ class User implements IDBAccessObject {
 	 */
 	public function loadFromDatabase( $flags = self::READ_LATEST ) {
 		// Paranoia
-		$this->mId = intval( $this->mId );
+		$this->mId = (int)$this->mId;
 
 		// Anonymous user
 		if ( !$this->mId ) {
@@ -1300,7 +1300,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( isset( $row->user_id ) ) {
-			$this->mId = intval( $row->user_id );
+			$this->mId = (int)$row->user_id;
 			$this->mFrom = 'id';
 			$this->setItemLoaded( 'id' );
 		} else {
@@ -1903,7 +1903,7 @@ class User implements IDBAccessObject {
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
 				if ( $incrBy > 0 ) {
-					$cache->add( $key, 0, intval( $period ) ); // first ping
+					$cache->add( $key, 0, (int)$period ); // first ping
 				}
 			}
 			if ( $incrBy > 0 ) {
@@ -2821,7 +2821,7 @@ class User implements IDBAccessObject {
 		if ( $val == '' ) {
 			$val = $defaultOverride;
 		}
-		return intval( $val );
+		return (int)$val;
 	}
 
 	/**
@@ -3778,7 +3778,7 @@ class User implements IDBAccessObject {
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_touched' => $dbw->timestamp( $newTouched ),
-				'user_token' => strval( $this->mToken ),
+				'user_token' => (string)$this->mToken,
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
 			], [ /* WHERE */
@@ -3875,7 +3875,7 @@ class User implements IDBAccessObject {
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
-			'user_token' => strval( $user->mToken ),
+			'user_token' => (string)$user->mToken,
 			'user_registration' => $dbw->timestamp( $user->mRegistration ),
 			'user_editcount' => 0,
 			'user_touched' => $dbw->timestamp( $user->newTouchedTimestamp() ),
@@ -3940,7 +3940,7 @@ class User implements IDBAccessObject {
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
-				'user_token' => strval( $this->mToken ),
+				'user_token' => (string)$this->mToken,
 				'user_registration' => $dbw->timestamp( $this->mRegistration ),
 				'user_editcount' => 0,
 				'user_touched' => $dbw->timestamp( $this->mTouched ),
@@ -5308,7 +5308,7 @@ class User implements IDBAccessObject {
 		# DSK-262266, but they don't have a public bug tracker for us to follow.
 		/*
 		if ( $wgMinimalPasswordLength > 1 ) {
-			$ret['pattern'] = '.{' . intval( $wgMinimalPasswordLength ) . ',}';
+			$ret['pattern'] = '.{' . (int)$wgMinimalPasswordLength . ',}';
 			$ret['title'] = wfMessage( 'passwordtooshort' )
 				->numParams( $wgMinimalPasswordLength )->text();
 		}

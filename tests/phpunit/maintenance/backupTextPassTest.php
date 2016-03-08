@@ -506,7 +506,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 ';
 
 		$content = $header;
-		$iterations = intval( $iterations );
+		$iterations = (int)$iterations;
 		for ( $i = 0; $i < $iterations; $i++ ) {
 
 			$page1 = '  <page>

@@ -415,7 +415,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$ns = $request->getVal( 'namespace', null );
 		if ( $ns !== null && $ns !== '' ) {
-			$options['namespace'] = intval( $ns );
+			$options['namespace'] = (int)$ns;
 		} else {
 			$options['namespace'] = '';
 		}

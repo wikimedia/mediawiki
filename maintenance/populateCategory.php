@@ -91,7 +91,7 @@ TEXT
 			}
 		}
 
-		$throttle = intval( $throttle );
+		$throttle = (int)$throttle;
 		if ( $begin !== '' ) {
 			$where = 'cl_to > ' . $dbw->addQuotes( $begin );
 		} else {

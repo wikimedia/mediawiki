@@ -279,7 +279,7 @@ class JobRunner implements LoggerAwareInterface {
 		wfGetLBFactory()->commitAll( __METHOD__ );
 		// Clear out title cache data from prior snapshots
 		LinkCache::singleton()->clear();
-		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
+		$timeMs = (int)( microtime( true ) - $jobStartTime ) * 1000;
 		$rssEnd = $this->getMaxRssKb();
 
 		// Record how long jobs wait before getting popped
@@ -504,7 +504,7 @@ class JobRunner implements LoggerAwareInterface {
 			return;
 		}
 
-		$ms = intval( 1000 * $dbwSerial->pendingWriteQueryDuration() );
+		$ms = 1000 * (int)$dbwSerial->pendingWriteQueryDuration();
 		$msg = $job->toString() . " COMMIT ENQUEUED [{$ms}ms of writes]";
 		$this->logger->warning( $msg );
 		$this->debugCallback( $msg );

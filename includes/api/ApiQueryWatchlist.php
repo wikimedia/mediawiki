@@ -276,9 +276,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				}
 			} else {
 				if ( $params['allrev'] ) {
-					$ids[] = intval( $row->rc_this_oldid );
+					$ids[] = (int)$row->rc_this_oldid;
 				} else {
-					$ids[] = intval( $row->rc_cur_id );
+					$ids[] = (int)$row->rc_cur_id;
 				}
 			}
 		}
@@ -302,7 +302,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Our output data. */
 		$vals = [];
-		$type = intval( $row->rc_type );
+		$type = (int)$row->rc_type;
 		$vals['type'] = RecentChange::parseFromRCType( $type );
 		$anyHidden = false;
 
@@ -320,9 +320,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $row->rc_cur_id );
-					$vals['revid'] = intval( $row->rc_this_oldid );
-					$vals['old_revid'] = intval( $row->rc_last_oldid );
+					$vals['pageid'] = (int)$row->rc_cur_id;
+					$vals['revid'] = (int)$row->rc_this_oldid;
+					$vals['old_revid'] = (int)$row->rc_last_oldid;
 				}
 			}
 		}
@@ -359,8 +359,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add sizes of each revision. (Only available on 1.10+) */
 		if ( $this->fld_sizes ) {
-			$vals['oldlen'] = intval( $row->rc_old_len );
-			$vals['newlen'] = intval( $row->rc_new_len );
+			$vals['oldlen'] = (int)$row->rc_old_len;
+			$vals['newlen'] = (int)$row->rc_new_len;
 		}
 
 		/* Add the timestamp. */
@@ -403,7 +403,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user ) ) {
-				$vals['logid'] = intval( $row->rc_logid );
+				$vals['logid'] = (int)$row->rc_logid;
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
 				$vals['logparams'] = LogFormatter::newFromRow( $row )->formatParametersForApi();

@@ -521,7 +521,7 @@ END;
 		}
 
 		$indkey = $r[0];
-		$relid = intval( $r[1] );
+		$relid = (int)$r[1];
 		$indkeys = explode( ' ', $indkey );
 
 		$colnames = [];

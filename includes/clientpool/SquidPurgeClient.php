@@ -351,7 +351,7 @@ class SquidPurgeClient {
 			return;
 		}
 		list( , , , $status, $reason ) = $m;
-		$status = intval( $status );
+		$status = (int)$status;
 		if ( $status !== 200 && $status !== 404 ) {
 			$this->log( "unexpected status code: $status $reason" );
 			$this->markDown();
@@ -365,7 +365,7 @@ class SquidPurgeClient {
 	 */
 	protected function processHeaderLine( $line ) {
 		if ( preg_match( '/^Content-Length: (\d+)$/i', $line, $m ) ) {
-			$this->bodyRemaining = intval( $m[1] );
+			$this->bodyRemaining = (int)$m[1];
 		} elseif ( $line === '' ) {
 			$this->readState = 'body';
 		}

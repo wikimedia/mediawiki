@@ -62,7 +62,7 @@ class RebuildLocalisationCache extends Maintenance {
 
 		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
-		if ( $threads < 1 || $threads != intval( $threads ) ) {
+		if ( $threads < 1 || $threads != (int)$threads ) {
 			$this->output( "Invalid thread count specified; running single-threaded.\n" );
 			$threads = 1;
 		}

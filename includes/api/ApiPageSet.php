@@ -451,7 +451,7 @@ class ApiPageSet extends ApiBase {
 		$values = [];
 		foreach ( $this->getRedirectTitles() as $titleStrFrom => $titleTo ) {
 			$r = [
-				'from' => strval( $titleStrFrom ),
+				'from' => (string)$titleStrFrom,
 				'to' => $titleTo->getPrefixedText(),
 			];
 			if ( $titleTo->hasFragment() ) {
@@ -730,7 +730,7 @@ class ApiPageSet extends ApiBase {
 		// Store Title object in various data structures
 		$title = Title::newFromRow( $row );
 
-		$pageId = intval( $row->page_id );
+		$pageId = (int)$row->page_id;
 		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
 		$this->mTitles[] = $title;
 
@@ -842,7 +842,7 @@ class ApiPageSet extends ApiBase {
 		$usernames = [];
 		if ( $res ) {
 			foreach ( $res as $row ) {
-				$pageId = intval( $row->page_id );
+				$pageId = (int)$row->page_id;
 
 				// Remove found page from the list of remaining items
 				if ( isset( $remaining ) ) {
@@ -923,8 +923,8 @@ class ApiPageSet extends ApiBase {
 			// Get pageIDs data from the `page` table
 			$res = $db->select( $tables, $fields, $where, __METHOD__ );
 			foreach ( $res as $row ) {
-				$revid = intval( $row->rev_id );
-				$pageid = intval( $row->rev_page );
+				$revid = (int)$row->rev_id;
+				$pageid = (int)$row->rev_page;
 				$this->mGoodRevIDs[$revid] = $pageid;
 				$this->mLiveRevIDs[$revid] = $pageid;
 				$pageids[$pageid] = '';
@@ -949,7 +949,7 @@ class ApiPageSet extends ApiBase {
 			$res = $db->select( $tables, $fields, $where, __METHOD__ );
 			$titles = [];
 			foreach ( $res as $row ) {
-				$revid = intval( $row->ar_rev_id );
+				$revid = (int)$row->ar_rev_id;
 				$titles[$revid] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				unset( $remaining[$revid] );
 			}
@@ -1039,7 +1039,7 @@ class ApiPageSet extends ApiBase {
 			__METHOD__
 		);
 		foreach ( $res as $row ) {
-			$rdfrom = intval( $row->rd_from );
+			$rdfrom = (int)$row->rd_from;
 			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
 			$to = Title::makeTitle(
 				$row->rd_namespace,

@@ -208,7 +208,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( isset( $this->prop['gender'] ) ) {
 					$gender = $user->getOption( 'gender' );
-					if ( strval( $gender ) === '' ) {
+					if ( (string)$gender === '' ) {
 						$gender = 'unknown';
 					}
 					$data[$name]['gender'] = $gender;

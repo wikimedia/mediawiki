@@ -407,11 +407,11 @@ class WikiPage implements Page, IDBAccessObject {
 			// Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$this->mId = intval( $data->page_id );
+			$this->mId = (int)$data->page_id;
 			$this->mTouched = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mLinksUpdated = wfTimestampOrNull( TS_MW, $data->page_links_updated );
-			$this->mIsRedirect = intval( $data->page_is_redirect );
-			$this->mLatest = intval( $data->page_latest );
+			$this->mIsRedirect = (int)$data->page_is_redirect;
+			$this->mLatest = (int)$data->page_latest;
 			// Bug 37225: $latest may no longer match the cached latest Revision object.
 			// Double-check the ID of any cached latest Revision object for consistency.
 			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
@@ -1402,7 +1402,7 @@ class WikiPage implements Page, IDBAccessObject {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		// NOTE: keep condition in sync with condition in replaceSectionContent!
-		if ( strval( $sectionId ) === '' ) {
+		if ( (string)$sectionId === '' ) {
 			// Whole-page edit; let the whole text through
 			return $text;
 		}
@@ -1492,7 +1492,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$sectionTitle = '', $baseRevId = null
 	) {
 
-		if ( strval( $sectionId ) === '' ) {
+		if ( (string)$sectionId === '' ) {
 			// Whole-page edit; let the whole text through
 			$newContent = $sectionContent;
 		} else {
@@ -3167,7 +3167,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Get the last edit not by this person...
 		// Note: these may not be public values
-		$user = intval( $current->getUser( Revision::RAW ) );
+		$user = (int)$current->getUser( Revision::RAW );
 		$user_text = $dbw->addQuotes( $current->getUserText( Revision::RAW ) );
 		$s = $dbw->selectRow( 'revision',
 			[ 'rev_id', 'rev_timestamp', 'rev_deleted' ],

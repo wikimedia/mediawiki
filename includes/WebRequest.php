@@ -452,7 +452,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getInt( $name, $default = 0 ) {
-		return intval( $this->getVal( $name, $default ) );
+		return (int)$this->getVal( $name, $default );
 	}
 
 	/**
@@ -466,7 +466,7 @@ class WebRequest {
 	public function getIntOrNull( $name ) {
 		$val = $this->getVal( $name );
 		return is_numeric( $val )
-			? intval( $val )
+			? (int)$val
 			: null;
 	}
 
@@ -481,7 +481,7 @@ class WebRequest {
 	 * @return float
 	 */
 	public function getFloat( $name, $default = 0.0 ) {
-		return floatval( $this->getVal( $name, $default ) );
+		return (float)$this->getVal( $name, $default );
 	}
 
 	/**

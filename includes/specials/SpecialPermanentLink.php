@@ -37,7 +37,7 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 	 * @return Title|bool
 	 */
 	public function getRedirect( $subpage ) {
-		$subpage = intval( $subpage );
+		$subpage = (int)$subpage;
 		if ( $subpage === 0 ) {
 			# throw an error page when no subpage was given
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );

@@ -432,7 +432,7 @@ class MssqlInstaller extends DatabaseInstaller {
 
 		if ( $this->getVar( '_CreateDBAccount' )
 			&& $this->getVar( '_WebWindowsAuthentication' ) == 'sqlauth'
-			&& strval( $this->getVar( 'wgDBpassword' ) ) == ''
+			&& (string)$this->getVar( 'wgDBpassword' ) == ''
 		) {
 			return Status::newFatal( 'config-db-password-empty', $this->getVar( 'wgDBuser' ) );
 		}

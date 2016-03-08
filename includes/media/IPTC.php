@@ -396,8 +396,8 @@ class IPTC {
 			return null;
 		}
 
-		$tz = ( intval( substr( $time, 7, 2 ) ) * 60 * 60 )
-			+ ( intval( substr( $time, 9, 2 ) ) * 60 );
+		$tz = ( (int)substr( $time, 7, 2 ) * 60 * 60 )
+			+ ( (int)substr( $time, 9, 2 ) * 60 );
 
 		if ( substr( $time, 6, 1 ) === '-' ) {
 			$tz = -$tz;

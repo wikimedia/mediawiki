@@ -61,7 +61,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 
 		# Removed for ProofreadPage
-		# $width = intval( $width );
+		# $width = (int)$width;
 		return "{$width}px";
 	}
 
@@ -93,7 +93,7 @@ abstract class ImageHandler extends MediaHandler {
 		if ( !isset( $params['page'] ) ) {
 			$params['page'] = 1;
 		} else {
-			$params['page'] = intval( $params['page'] );
+			$params['page'] = (int)$params['page'];
 			if ( $params['page'] > $image->pageCount() ) {
 				$params['page'] = $image->pageCount();
 			}
@@ -160,7 +160,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
-		$width = intval( $width );
+		$width = (int)$width;
 
 		# Sanity check $width
 		if ( $width <= 0 ) {

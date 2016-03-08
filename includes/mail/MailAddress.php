@@ -43,9 +43,9 @@ class MailAddress {
 			$this->name = $address->getName();
 			$this->realName = $address->getRealName();
 		} else {
-			$this->address = strval( $address );
-			$this->name = strval( $name );
-			$this->realName = strval( $realName );
+			$this->address = (string)$address;
+			$this->name = (string)$name;
+			$this->realName = (string)$realName;
 		}
 	}
 

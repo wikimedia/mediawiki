@@ -3064,7 +3064,7 @@ class Parser {
 				# *after* a revision ID has been assigned. This is for null edits.
 				$this->mOutput->setFlag( 'vary-revision' );
 				wfDebug( __METHOD__ . ": {{REVISIONDAY}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 6, 2 ) );
+				$value = (int)substr( $this->getRevisionTimestamp(), 6, 2 );
 				break;
 			case 'revisionday2':
 				# Let the edit saving system know we should parse the page
@@ -3085,7 +3085,7 @@ class Parser {
 				# *after* a revision ID has been assigned. This is for null edits.
 				$this->mOutput->setFlag( 'vary-revision' );
 				wfDebug( __METHOD__ . ": {{REVISIONMONTH1}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 4, 2 ) );
+				$value = (int)substr( $this->getRevisionTimestamp(), 4, 2 );
 				break;
 			case 'revisionyear':
 				# Let the edit saving system know we should parse the page
@@ -3591,7 +3591,7 @@ class Parser {
 					$argsLength = $args->getLength();
 					for ( $i = 0; $i < $argsLength; $i++ ) {
 						$bits = $args->item( $i )->splitArg();
-						if ( strval( $bits['index'] ) === '' ) {
+						if ( (string)$bits['index'] === '' ) {
 							$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
 							$value = trim( $frame->expand( $bits['value'] ) );
 							$pageArgs[$name] = $value;
@@ -5220,7 +5220,7 @@ class Parser {
 		}
 
 		$synonyms = $mw->getSynonyms();
-		$sensitive = intval( $mw->isCaseSensitive() );
+		$sensitive = (int)$mw->isCaseSensitive();
 
 		foreach ( $synonyms as $syn ) {
 			# Case
@@ -5870,7 +5870,7 @@ class Parser {
 		}
 
 		# Check for empty input
-		if ( strval( $text ) === '' ) {
+		if ( (string)$text === '' ) {
 			# Only sections 0 and T-0 exist in an empty document
 			if ( $sectionIndex == 0 ) {
 				if ( $mode === 'get' ) {
@@ -6380,12 +6380,12 @@ class Parser {
 		# (bug 13500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
 		if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
-			$width = intval( $m[1] );
-			$height = intval( $m[2] );
+			$width = (int)$m[1];
+			$height = (int)$m[2];
 			$parsedWidthParam['width'] = $width;
 			$parsedWidthParam['height'] = $height;
 		} elseif ( preg_match( '/^[0-9]*\s*(?:px)?\s*$/', $value ) ) {
-			$width = intval( $value );
+			$width = (int)$value;
 			$parsedWidthParam['width'] = $width;
 		}
 		return $parsedWidthParam;

@@ -33,7 +33,7 @@ class XCacheBagOStuff extends BagOStuff {
 
 		if ( is_string( $val ) ) {
 			if ( $this->isInteger( $val ) ) {
-				$val = intval( $val );
+				$val = (int)$val;
 			} else {
 				$val = unserialize( $val );
 			}

@@ -205,7 +205,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->mConds = $conds;
 		$this->level = $level;
 		$this->namespace = $namespace;
-		$this->size = intval( $size );
+		$this->size = (int)$size;
 		parent::__construct( $form->getContext() );
 	}
 

@@ -279,7 +279,7 @@ class PathRouter {
 			// matches properly here.
 			foreach ( $pattern->options as $key => $option ) {
 				if ( preg_match( '/^\$\d+$/u', $key ) ) {
-					$n = intval( substr( $key, 1 ) );
+					$n = (int)substr( $key, 1 );
 					$value = rawurldecode( $m["par{$n}"] );
 					if ( !in_array( $value, $option ) ) {
 						// If any restriction does not match return null
@@ -292,7 +292,7 @@ class PathRouter {
 			// Give our $data array a copy of every $# that was matched
 			foreach ( $m as $matchKey => $matchValue ) {
 				if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
-					$n = intval( substr( $matchKey, 3 ) );
+					$n = (int)substr( $matchKey, 3 );
 					$data['$' . $n] = rawurldecode( $matchValue );
 				}
 			}

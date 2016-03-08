@@ -138,14 +138,14 @@ class FormatMetadata extends ContextSource {
 				) {
 					continue;
 				}
-				$tags[$tag] = str_pad( intval( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
-					. ':' . str_pad( intval( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
-					. ':' . str_pad( intval( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
+				$tags[$tag] = str_pad( (int)( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
+					. ':' . str_pad( (int)( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
+					. ':' . str_pad( (int)( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
 
 				try {
 					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
 					// the 1971:01:01 is just a placeholder, and not shown to user.
-					if ( $time && intval( $time ) > 0 ) {
+					if ( $time && (int)$time > 0 ) {
 						$tags[$tag] = $this->getLanguage()->time( $time );
 					}
 				} catch ( TimestampException $e ) {
@@ -319,7 +319,7 @@ class FormatMetadata extends ContextSource {
 						) ) {
 							// Full date.
 							$time = wfTimestamp( TS_MW, $val );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 							}
 						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d)$/D', $val ) ) {
@@ -327,7 +327,7 @@ class FormatMetadata extends ContextSource {
 							// since timeanddate doesn't include seconds anyways,
 							// but second still available in api
 							$time = wfTimestamp( TS_MW, $val . ':00' );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 							}
 						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
@@ -336,7 +336,7 @@ class FormatMetadata extends ContextSource {
 								. substr( $val, 5, 2 )
 								. substr( $val, 8, 2 )
 								. '000000' );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->date( $time );
 							}
 						}
@@ -1272,8 +1272,8 @@ class FormatMetadata extends ContextSource {
 	private function formatFraction( $num ) {
 		$m = [];
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
-			$numerator = intval( $m[1] );
-			$denominator = intval( $m[2] );
+			$numerator = (int)$m[1];
+			$denominator = (int)$m[2];
 			$gcd = $this->gcd( abs( $numerator ), $denominator );
 			if ( $gcd != 0 ) {
 				// 0 shouldn't happen! ;)

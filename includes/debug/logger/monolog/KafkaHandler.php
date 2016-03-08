@@ -104,14 +104,14 @@ class KafkaHandler extends AbstractProcessingHandler {
 			$timeOut = $options['sendTimeout'];
 			$produce->getClient()->setStreamOption( 'SendTimeoutSec', 0 );
 			$produce->getClient()->setStreamOption( 'SendTimeoutUSec',
-				intval( $timeOut * 1000000 )
+				(int)( $timeOut * 1000000 )
 			);
 		}
 		if ( isset( $options['recvTimeout'] ) ) {
 			$timeOut = $options['recvTimeout'];
 			$produce->getClient()->setStreamOption( 'RecvTimeoutSec', 0 );
 			$produce->getClient()->setStreamOption( 'RecvTimeoutUSec',
-				intval( $timeOut * 1000000 )
+				(int)( $timeOut * 1000000 )
 			);
 		}
 		if ( isset( $options['logExceptions'] ) && is_string( $options['logExceptions'] ) ) {

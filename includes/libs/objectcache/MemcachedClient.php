@@ -432,7 +432,7 @@ class MemcachedClient {
 			$this->_debugprint( "get($key)" );
 		}
 
-		if ( !is_array( $key ) && strval( $key ) === '' ) {
+		if ( !is_array( $key ) && (string)$key === '' ) {
 			$this->_debugprint( "Skipping key which equals to an empty string" );
 			return false;
 		}
@@ -504,17 +504,17 @@ class MemcachedClient {
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
 			if ( !isset( $sock_keys[$sock] ) ) {
-				$sock_keys[intval( $sock )] = array();
+				$sock_keys[(int)$sock] = array();
 				$socks[] = $sock;
 			}
-			$sock_keys[intval( $sock )][] = $key;
+			$sock_keys[(int)$sock][] = $key;
 		}
 
 		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
 			$cmd = 'gets';
-			foreach ( $sock_keys[intval( $sock )] as $key ) {
+			foreach ( $sock_keys[(int)$sock] as $key ) {
 				$cmd .= ' ' . $key;
 			}
 			$cmd .= "\r\n";
@@ -792,7 +792,7 @@ class MemcachedClient {
 	 */
 	function _dead_host( $host ) {
 		$ip = explode( ':', $host )[0];
-		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
+		$this->_host_dead[$ip] = time() + 30 + (int)rand( 0, 10 );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
 		unset( $this->_cache_sock[$host] );
 	}
@@ -817,7 +817,7 @@ class MemcachedClient {
 			return $this->sock_to_host( $this->_single_sock );
 		}
 
-		$hv = is_array( $key ) ? intval( $key[0] ) : $this->_hashfunc( $key );
+		$hv = is_array( $key ) ? (int)$key[0] : $this->_hashfunc( $key );
 		if ( $this->_buckets === null ) {
 			$bu = array();
 			foreach ( $this->_servers as $v ) {
@@ -981,7 +981,7 @@ class MemcachedClient {
 					if ( $flags & self::SERIALIZED ) {
 						$ret[$rkey] = unserialize( $ret[$rkey] );
 					} elseif ( $flags & self::INTVAL ) {
-						$ret[$rkey] = intval( $ret[$rkey] );
+						$ret[$rkey] = (int)$ret[$rkey];
 					}
 				}
 
@@ -1165,7 +1165,7 @@ class MemcachedClient {
 	 */
 	function _handle_error( $sock, $msg ) {
 		$peer = stream_socket_get_name( $sock, true /** remote **/ );
-		if ( strval( $peer ) === '' ) {
+		if ( (string)$peer === '' ) {
 			$peer = array_search( $sock, $this->_cache_sock );
 			if ( $peer === false ) {
 				$peer = '[unknown host]';

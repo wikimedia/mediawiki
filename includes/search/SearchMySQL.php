@@ -195,7 +195,7 @@ class SearchMySQL extends SearchDatabase {
 
 		$row = $totalResult->fetchObject();
 		if ( $row ) {
-			$total = intval( $row->c );
+			$total = (int)$row->c;
 		}
 		$totalResult->free();
 
@@ -443,7 +443,7 @@ class SearchMySQL extends SearchDatabase {
 			$result->free();
 
 			if ( $row && $row->Variable_name == 'ft_min_word_len' ) {
-				self::$mMinSearchLength = intval( $row->Value );
+				self::$mMinSearchLength = (int)$row->Value;
 			} else {
 				self::$mMinSearchLength = 0;
 			}

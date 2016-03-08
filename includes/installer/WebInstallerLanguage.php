@@ -31,7 +31,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 		$contLang = $r->getVal( 'ContLang' );
 
 		$languages = Language::fetchLanguageNames();
-		$lifetime = intval( ini_get( 'session.gc_maxlifetime' ) );
+		$lifetime = (int)ini_get( 'session.gc_maxlifetime' );
 		if ( !$lifetime ) {
 			$lifetime = 1440; // PHP default
 		}

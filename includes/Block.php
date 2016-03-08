@@ -585,7 +585,7 @@ class Block {
 			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
-			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
+			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
 			'ipb_parent_block_id'  => $this->mParentBlockId

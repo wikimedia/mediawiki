@@ -145,7 +145,7 @@ abstract class Maintenance {
 	public function __construct() {
 		// Setup $IP, using MW_INSTALL_PATH if it exists
 		global $IP;
-		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
+		$IP = (string)getenv( 'MW_INSTALL_PATH' ) !== ''
 			? getenv( 'MW_INSTALL_PATH' )
 			: realpath( __DIR__ . '/..' );
 
@@ -386,7 +386,7 @@ abstract class Maintenance {
 		} else {
 			print $err;
 		}
-		$die = intval( $die );
+		$die = (int)$die;
 		if ( $die > 0 ) {
 			die( $die );
 		}
@@ -843,7 +843,7 @@ abstract class Maintenance {
 			$this->mQuiet = true;
 		}
 		if ( $this->hasOption( 'batch-size' ) ) {
-			$this->mBatchSize = intval( $this->getOption( 'batch-size' ) );
+			$this->mBatchSize = (int)$this->getOption( 'batch-size' );
 		}
 	}
 

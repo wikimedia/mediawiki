@@ -72,8 +72,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$ns = intval( $cont[0] );
-			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+			$ns = (int)$cont[0];
+			$this->dieContinueUsageIf( (string)$ns !== $cont[0] );
 			$title = $this->getDB()->addQuotes( $cont[1] );
 			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(

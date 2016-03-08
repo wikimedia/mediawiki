@@ -189,7 +189,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' .
-				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
+				$dbr->addQuotes( $dbr->timestamp( time() - (int)( $opts['days'] * 86400 ) ) );
 		}
 
 		return $conds;

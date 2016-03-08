@@ -158,8 +158,8 @@ class XmlDumpWriter {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . Xml::elementClean( 'title', [], self::canonicalTitle( $title ) ) . "\n";
-		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
-		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
+		$out .= '    ' . Xml::element( 'ns', [], (string)$row->page_namespace ) . "\n";
+		$out .= '    ' . Xml::element( 'id', [], (string)$row->page_id ) . "\n";
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
@@ -172,7 +172,7 @@ class XmlDumpWriter {
 
 		if ( $row->page_restrictions != '' ) {
 			$out .= '    ' . Xml::element( 'restrictions', [],
-				strval( $row->page_restrictions ) ) . "\n";
+					(string)$row->page_restrictions ) . "\n";
 		}
 
 		Hooks::run( 'XmlDumpWriterOpenPage', [ $this, &$out, $row, $title ] );
@@ -201,9 +201,9 @@ class XmlDumpWriter {
 	function writeRevision( $row ) {
 
 		$out = "    <revision>\n";
-		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
+		$out .= "      " . Xml::element( 'id', null, (string)$row->rev_id ) . "\n";
 		if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
-			$out .= "      " . Xml::element( 'parentid', null, strval( $row->rev_parent_id ) ) . "\n";
+			$out .= "      " . Xml::element( 'parentid', null, (string)$row->rev_parent_id ) . "\n";
 		}
 
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
@@ -220,11 +220,11 @@ class XmlDumpWriter {
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( $row->rev_comment != '' ) {
-			$out .= "      " . Xml::elementClean( 'comment', [], strval( $row->rev_comment ) ) . "\n";
+			$out .= "      " . Xml::elementClean( 'comment', [], (string)$row->rev_comment ) . "\n";
 		}
 
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
-			$content_model = strval( $row->rev_content_model );
+			$content_model = (string)$row->rev_content_model;
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -234,29 +234,29 @@ class XmlDumpWriter {
 		$content_handler = ContentHandler::getForModelID( $content_model );
 
 		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$content_format = strval( $row->rev_content_format );
+			$content_format = (string)$row->rev_content_format;
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
 			$content_format = $content_handler->getDefaultFormat();
 		}
 
-		$out .= "      " . Xml::element( 'model', null, strval( $content_model ) ) . "\n";
-		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
+		$out .= "      " . Xml::element( 'model', null, (string)$content_model ) . "\n";
+		$out .= "      " . Xml::element( 'format', null, (string)$content_format ) . "\n";
 
 		$text = '';
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element( 'text', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
-			$text = strval( Revision::getRevisionText( $row ) );
+			$text = (string)Revision::getRevisionText( $row );
 			$text = $content_handler->exportTransform( $text, $content_format );
 			$out .= "      " . Xml::elementClean( 'text',
-				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
-				strval( $text ) ) . "\n";
+				[ 'xml:space' => 'preserve', 'bytes' => (int)$row->rev_len ],
+				(string)$text ) . "\n";
 		} else {
 			// Stub output
 			$out .= "      " . Xml::element( 'text',
-				[ 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ],
+				[ 'id' => $row->rev_text_id, 'bytes' => (int)$row->rev_len ],
 				"" ) . "\n";
 		}
 
@@ -264,7 +264,7 @@ class XmlDumpWriter {
 			&& $row->rev_sha1
 			&& !( $row->rev_deleted & Revision::DELETED_TEXT )
 		) {
-			$out .= "      " . Xml::element( 'sha1', null, strval( $row->rev_sha1 ) ) . "\n";
+			$out .= "      " . Xml::element( 'sha1', null, (string)$row->rev_sha1 ) . "\n";
 		} else {
 			$out .= "      <sha1/>\n";
 		}
@@ -287,7 +287,7 @@ class XmlDumpWriter {
 	function writeLogItem( $row ) {
 
 		$out = "  <logitem>\n";
-		$out .= "    " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
+		$out .= "    " . Xml::element( 'id', null, (string)$row->log_id ) . "\n";
 
 		$out .= $this->writeTimestamp( $row->log_timestamp, "    " );
 
@@ -300,11 +300,11 @@ class XmlDumpWriter {
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
 			$out .= "    " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( $row->log_comment != '' ) {
-			$out .= "    " . Xml::elementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
+			$out .= "    " . Xml::elementClean( 'comment', null, (string)$row->log_comment ) . "\n";
 		}
 
-		$out .= "    " . Xml::element( 'type', null, strval( $row->log_type ) ) . "\n";
-		$out .= "    " . Xml::element( 'action', null, strval( $row->log_action ) ) . "\n";
+		$out .= "    " . Xml::element( 'type', null, (string)$row->log_type ) . "\n";
+		$out .= "    " . Xml::element( 'action', null, (string)$row->log_action ) . "\n";
 
 		if ( $row->log_deleted & LogPage::DELETED_ACTION ) {
 			$out .= "    " . Xml::element( 'text', [ 'deleted' => 'deleted' ] ) . "\n";
@@ -313,7 +313,7 @@ class XmlDumpWriter {
 			$out .= "    " . Xml::elementClean( 'logtitle', null, self::canonicalTitle( $title ) ) . "\n";
 			$out .= "    " . Xml::elementClean( 'params',
 				[ 'xml:space' => 'preserve' ],
-				strval( $row->log_params ) ) . "\n";
+					(string)$row->log_params ) . "\n";
 		}
 
 		$out .= "  </logitem>\n";
@@ -340,10 +340,10 @@ class XmlDumpWriter {
 	function writeContributor( $id, $text, $indent = "      " ) {
 		$out = $indent . "<contributor>\n";
 		if ( $id || !IP::isValid( $text ) ) {
-			$out .= $indent . "  " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
-			$out .= $indent . "  " . Xml::element( 'id', null, strval( $id ) ) . "\n";
+			$out .= $indent . "  " . Xml::elementClean( 'username', null, (string)$text ) . "\n";
+			$out .= $indent . "  " . Xml::element( 'id', null, (string)$id ) . "\n";
 		} else {
-			$out .= $indent . "  " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
+			$out .= $indent . "  " . Xml::elementClean( 'ip', null, (string)$text ) . "\n";
 		}
 		$out .= $indent . "</contributor>\n";
 		return $out;

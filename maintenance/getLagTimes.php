@@ -50,7 +50,7 @@ class GetLagTimes extends Maintenance {
 				} else {
 					$ip = gethostbyname( $host );
 				}
-				$starLen = min( intval( $lag ), 40 );
+				$starLen = min( (int)$lag, 40 );
 				$stars = str_repeat( '*', $starLen );
 				$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
 			}

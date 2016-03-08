@@ -185,10 +185,10 @@ class BacklinkCache {
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
 			if ( $startId ) {
-				$conds[] = "$fromField >= " . intval( $startId );
+				$conds[] = "$fromField >= " . (int)$startId;
 			}
 			if ( $endId ) {
-				$conds[] = "$fromField <= " . intval( $endId );
+				$conds[] = "$fromField <= " . (int)$endId;
 			}
 			$options = [ 'ORDER BY' => $fromField ];
 			if ( is_finite( $max ) && $max > 0 ) {

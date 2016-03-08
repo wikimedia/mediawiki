@@ -196,7 +196,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		// Use one thread only, to avoid deadlock bugs on OOM
 		$env = [ 'OMP_NUM_THREADS' => 1 ];
-		if ( strval( $wgImageMagickTempDir ) !== '' ) {
+		if ( (string)$wgImageMagickTempDir !== '' ) {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
 

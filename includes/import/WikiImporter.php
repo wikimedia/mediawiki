@@ -244,9 +244,9 @@ class WikiImporter {
 			return true;
 		} elseif (
 			$namespace >= 0 &&
-			MWNamespace::exists( intval( $namespace ) )
+			MWNamespace::exists( (int)$namespace )
 		) {
-			$namespace = intval( $namespace );
+			$namespace = (int)$namespace;
 			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
 			return true;
 		} else {
@@ -985,7 +985,7 @@ class WikiImporter {
 		if ( isset( $uploadInfo['sha1base36'] ) ) {
 			$revision->setSha1Base36( $uploadInfo['sha1base36'] );
 		}
-		$revision->setSize( intval( $uploadInfo['size'] ) );
+		$revision->setSize( (int)$uploadInfo['size'] );
 		$revision->setComment( $uploadInfo['comment'] );
 
 		if ( isset( $uploadInfo['contributor']['ip'] ) ) {
@@ -1039,7 +1039,7 @@ class WikiImporter {
 		}
 
 		$foreignTitle = $foreignTitleFactory->createForeignTitle( $text,
-			intval( $ns ) );
+			(int)$ns );
 
 		$title = $this->importTitleFactory->createTitleFromForeignTitle(
 			$foreignTitle );

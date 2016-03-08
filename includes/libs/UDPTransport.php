@@ -53,7 +53,7 @@ class UDPTransport {
 		if ( preg_match( '!^udp:(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $info, $m ) ) {
 			// IPv6 bracketed host
 			$host = $m[1];
-			$port = intval( $m[2] );
+			$port = (int)$m[2];
 			$prefix = isset( $m[3] ) ? $m[3] : false;
 			$domain = AF_INET6;
 		} elseif ( preg_match( '!^udp:(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $info, $m ) ) {
@@ -61,7 +61,7 @@ class UDPTransport {
 			if ( !IP::isIPv4( $host ) ) {
 				$host = gethostbyname( $host );
 			}
-			$port = intval( $m[2] );
+			$port = (int)$m[2];
 			$prefix = isset( $m[3] ) ? $m[3] : false;
 			$domain = AF_INET;
 		} else {

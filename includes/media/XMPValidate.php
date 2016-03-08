@@ -172,8 +172,8 @@ class XMPValidate implements LoggerAwareInterface {
 		if ( isset( $info['rangeLow'] )
 			&& isset( $info['rangeHigh'] )
 			&& is_numeric( $val )
-			&& ( intval( $val ) <= $info['rangeHigh'] )
-			&& ( intval( $val ) >= $info['rangeLow'] )
+			&& ( (int)$val <= $info['rangeHigh'] )
+			&& ( (int)$val >= $info['rangeLow'] )
 		) {
 			$inRange = true;
 		}
@@ -206,8 +206,8 @@ class XMPValidate implements LoggerAwareInterface {
 			$val = null;
 		} else {
 			$val = ( "\0" | ( $val['Fired'] === 'True' )
-				| ( intval( $val['Return'] ) << 1 )
-				| ( intval( $val['Mode'] ) << 3 )
+				| ( (int)$val['Return'] << 1 )
+				| ( (int)$val['Mode'] << 3 )
 				| ( ( $val['Function'] === 'True' ) << 5 )
 				| ( ( $val['RedEyeMode'] === 'True' ) << 6 ) );
 		}
@@ -330,8 +330,8 @@ class XMPValidate implements LoggerAwareInterface {
 			// by virtue of regex not failing.
 
 			$unix = wfTimestamp( TS_UNIX, $res[1] . $res[2] . $res[3] . $res[4] . $res[5] . $res[6] );
-			$offset = intval( substr( $res[7], 1, 2 ) ) * 60 * 60;
-			$offset += intval( substr( $res[7], 4, 2 ) ) * 60;
+			$offset = (int)substr( $res[7], 1, 2 ) * 60 * 60;
+			$offset += (int)substr( $res[7], 4, 2 ) * 60;
 			if ( substr( $res[7], 0, 1 ) === '-' ) {
 				$offset = -$offset;
 			}
@@ -366,9 +366,9 @@ class XMPValidate implements LoggerAwareInterface {
 			'/(\d{1,3}),(\d{1,2}),(\d{1,2})([NWSE])/D',
 			$val, $m )
 		) {
-			$coord = intval( $m[1] );
-			$coord += intval( $m[2] ) * ( 1 / 60 );
-			$coord += intval( $m[3] ) * ( 1 / 3600 );
+			$coord = (int)$m[1];
+			$coord += (int)$m[2] * ( 1 / 60 );
+			$coord += (int)$m[3] * ( 1 / 3600 );
 			if ( $m[4] === 'S' || $m[4] === 'W' ) {
 				$coord = -$coord;
 			}
@@ -379,8 +379,8 @@ class XMPValidate implements LoggerAwareInterface {
 			'/(\d{1,3}),(\d{1,2}(?:.\d*)?)([NWSE])/D',
 			$val, $m )
 		) {
-			$coord = intval( $m[1] );
-			$coord += floatval( $m[2] ) * ( 1 / 60 );
+			$coord = (int)$m[1];
+			$coord += (float)$m[2] * ( 1 / 60 );
 			if ( $m[3] === 'S' || $m[3] === 'W' ) {
 				$coord = -$coord;
 			}

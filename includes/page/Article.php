@@ -740,7 +740,7 @@ class Article implements Page {
 	public function adjustDisplayTitle( ParserOutput $pOutput ) {
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
-		if ( strval( $titleText ) !== '' ) {
+		if ( (string)$titleText !== '' ) {
 			$this->getContext()->getOutput()->setPageTitle( $titleText );
 		}
 	}
@@ -1378,7 +1378,7 @@ class Article implements Page {
 		// If the user needs to confirm that they want to see it...
 		} elseif ( $this->getContext()->getRequest()->getInt( 'unhide' ) != 1 ) {
 			# Give explanation and add a link to view the revision...
-			$oldid = intval( $this->getOldID() );
+			$oldid = (int)$this->getOldID();
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';

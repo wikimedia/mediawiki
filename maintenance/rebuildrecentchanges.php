@@ -60,10 +60,10 @@ class RebuildRecentchanges extends Maintenance {
 
 		$this->output( '$wgRCMaxAge=' . $wgRCMaxAge );
 		$days = $wgRCMaxAge / 24 / 3600;
-		if ( intval( $days ) == $days ) {
+		if ( (int)$days == $days ) {
 			$this->output( " (" . $days . " days)\n" );
 		} else {
-			$this->output( " (approx. " . intval( $days ) . " days)\n" );
+			$this->output( " (approx. " . (int)$days . " days)\n" );
 		}
 
 		$cutoff = time() - $wgRCMaxAge;
@@ -120,7 +120,7 @@ class RebuildRecentchanges extends Maintenance {
 			$new = 0;
 			if ( $obj->rc_cur_id != $lastCurId ) {
 				# Switch! Look up the previous last edit, if any
-				$lastCurId = intval( $obj->rc_cur_id );
+				$lastCurId = (int)$obj->rc_cur_id;
 				$emit = $obj->rc_timestamp;
 				$sql2 = "SELECT rev_id,rev_len FROM $revision " .
 					"WHERE rev_page={$lastCurId} " .
@@ -129,9 +129,9 @@ class RebuildRecentchanges extends Maintenance {
 				$res2 = $dbw->query( $sql2 );
 				$row = $dbw->fetchObject( $res2 );
 				if ( $row ) {
-					$lastOldId = intval( $row->rev_id );
+					$lastOldId = (int)$row->rev_id;
 					# Grab the last text size if available
-					$lastSize = !is_null( $row->rev_len ) ? intval( $row->rev_len ) : null;
+					$lastSize = !is_null( $row->rev_len ) ? (int)$row->rev_len : null;
 				} else {
 					# No previous edit
 					$lastOldId = 0;
@@ -160,7 +160,7 @@ class RebuildRecentchanges extends Maintenance {
 					__METHOD__
 				);
 
-				$lastOldId = intval( $obj->rc_this_oldid );
+				$lastOldId = (int)$obj->rc_this_oldid;
 				$lastSize = $size;
 			}
 		}

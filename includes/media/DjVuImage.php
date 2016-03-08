@@ -330,7 +330,7 @@ EOR;
 	 * @return string
 	 */
 	function convertDumpToXML( $dump ) {
-		if ( strval( $dump ) == '' ) {
+		if ( (string)$dump == '' ) {
 			return false;
 		}
 

@@ -248,19 +248,19 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $optimizeGenerateTitles ) {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$ns = intval( $cont[0] );
-				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+				$ns = (int)$cont[0];
+				$this->dieContinueUsageIf( (string)$ns !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND ar_title $op= $title)" );
 			} elseif ( $mode == 'all' ) {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = intval( $cont[0] );
-				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+				$ns = (int)$cont[0];
+				$this->dieContinueUsageIf( (string)$ns !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 				$ar_id = (int)$cont[3];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[3] );
+				$this->dieContinueUsageIf( (string)$ar_id !== $cont[3] );
 				$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND " .
 					"(ar_title $op $title OR " .
@@ -272,7 +272,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
 				$ar_id = (int)$cont[1];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
+				$this->dieContinueUsageIf( (string)$ar_id !== $cont[1] );
 				$this->addWhere( "ar_timestamp $op $ts OR " .
 					"(ar_timestamp = $ts AND " .
 					"ar_id $op= $ar_id)" );

@@ -73,7 +73,7 @@ class RawAction extends FormlessAction {
 				// CSS/JS raw content has its own CDN max age configuration.
 				// Note: Title::getCdnUrls() includes action=raw for css/js pages,
 				// so if using the canonical url, this will get HTCP purges.
-				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
+				$smaxage = (int)$config->get( 'ForcedRawSMaxage' );
 			} else {
 				// No CDN cache for anything else
 				$smaxage = 0;
