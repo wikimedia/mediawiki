@@ -247,14 +247,64 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		];
 	}
 
-	function testMasterPos() {
-		$pos1 = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
-		$pos2 = new MySQLMasterPos( 'db1034-bin.000976', '843431248' );
+	/**
+	 * @dataProvider provideComparePositions
+	 */
+	function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos ) {
+		$this->assertTrue( $higherPos->hasReached( $lowerPos ) );
+		$this->assertTrue( $higherPos->hasReached( $higherPos ) );
+		$this->assertTrue( $lowerPos->hasReached( $lowerPos ) );
+		$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
+	}
 
-		$this->assertTrue( $pos1->hasReached( $pos1 ) );
-		$this->assertTrue( $pos2->hasReached( $pos2 ) );
-		$this->assertTrue( $pos2->hasReached( $pos1 ) );
-		$this->assertFalse( $pos1->hasReached( $pos2 ) );
+	function provideComparePositions() {
+		return [
+			[
+				new MySQLMasterPos( 'db1034-bin.000976', '843431247' ),
+				new MySQLMasterPos( 'db1034-bin.000976', '843431248' )
+			],
+			[
+				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
+				new MySQLMasterPos( 'db1034-bin.000976', '1000' )
+			],
+			[
+				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
+				new MySQLMasterPos( 'db1035-bin.000976', '1000' )
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideChannelPositions
+	 */
+	function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
+		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
+		$this->assertEquals( $matches, $pos2->channelsMatch( $pos1 ) );
+	}
+
+	function provideChannelPositions() {
+		return [
+			[
+				new MySQLMasterPos( 'db1034-bin.000876', '44' ),
+				new MySQLMasterPos( 'db1034-bin.000976', '74' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1052-bin.000976', '999' ),
+				new MySQLMasterPos( 'db1052-bin.000976', '1000' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1066-bin.000976', '9999' ),
+				new MySQLMasterPos( 'db1035-bin.000976', '10000' ),
+				false
+			],
+			[
+				new MySQLMasterPos( 'db1066-bin.000976', '9999' ),
+				new MySQLMasterPos( 'trump2016.000976', '10000' ),
+				false
+			],
+		];
 	}
 
 	/**
