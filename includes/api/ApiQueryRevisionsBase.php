@@ -294,9 +294,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$vals['parsetree'] = $xml;
 				} else {
 					$vals['badcontentformatforparsetree'] = true;
-					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
+					$this->setWarning( 'Conversion to XML is supported for wikitext only, ' .
 						$title->getPrefixedDBkey() .
-						" uses content model " . $content->getModel() );
+						' uses content model ' . $content->getModel() );
 				}
 			}
 		}
@@ -315,9 +315,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						ParserOptions::newFromContext( $this->getContext() )
 					);
 				} else {
-					$this->setWarning( "Template expansion is supported for wikitext only, " .
+					$this->setWarning( 'Template expansion is supported for wikitext only, ' .
 						$title->getPrefixedDBkey() .
-						" uses content model " . $content->getModel() );
+						' uses content model ' . $content->getModel() );
 					$vals['badcontentformat'] = true;
 					$text = false;
 				}

@@ -978,7 +978,7 @@ class ApiMain extends ApiBase {
 		if ( $module->needsToken() === true ) {
 			throw new MWException(
 				"Module '{$module->getModuleName()}' must be updated for the new token handling. " .
-				"See documentation for ApiBase::needsToken for details."
+				'See documentation for ApiBase::needsToken for details.'
 			);
 		}
 		if ( $module->needsToken() ) {
@@ -1174,7 +1174,7 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( 'writerequired' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieUsage(
-					"Promise-Non-Write-API-Action HTTP header cannot be sent to write API modules",
+					'Promise-Non-Write-API-Action HTTP header cannot be sent to write API modules',
 					'promised-nonwrite-api'
 				);
 			}
@@ -1771,7 +1771,7 @@ class ApiMain extends ApiBase {
 				->inLanguage( 'en' )
 				->text();
 			$groups = User::getGroupsWithPermission( $right );
-			$msg .= "* " . $right . " *\n  $rightsMsg" .
+			$msg .= '* ' . $right . " *\n  $rightsMsg" .
 				"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
 		}
 

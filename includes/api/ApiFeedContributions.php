@@ -173,7 +173,7 @@ class ApiFeedContributions extends ApiBase {
 
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
-				"</p>\n<hr />\n<div>" . $html . "</div>";
+				"</p>\n<hr />\n<div>" . $html . '</div>';
 		}
 
 		return '';

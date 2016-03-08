@@ -80,7 +80,7 @@ class ApiWatch extends ApiBase {
 			if ( $extraParams ) {
 				$p = $this->getModulePrefix();
 				$this->dieUsage(
-					"The parameter {$p}title can not be used with " . implode( ", ", $extraParams ),
+					"The parameter {$p}title can not be used with " . implode( ', ', $extraParams ),
 					'invalidparammix'
 				);
 			}

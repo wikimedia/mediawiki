@@ -42,7 +42,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		$result = $this->getResult();
 
 		if ( !$params['filekey'] && !$params['sessionkey'] ) {
-			$this->dieUsage( "One of filekey or sessionkey must be supplied", 'nofilekey' );
+			$this->dieUsage( 'One of filekey or sessionkey must be supplied', 'nofilekey' );
 		}
 
 		// Alias sessionkey to filekey, but give an existing filekey precedence.
@@ -62,9 +62,9 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			}
 		// @todo Update exception handling here to understand current getFile exceptions
 		} catch ( UploadStashFileNotFoundException $e ) {
-			$this->dieUsage( "File not found: " . $e->getMessage(), "invalidsessiondata" );
+			$this->dieUsage( 'File not found: ' . $e->getMessage(), 'invalidsessiondata' );
 		} catch ( UploadStashBadPathException $e ) {
-			$this->dieUsage( "Bad path: " . $e->getMessage(), "invalidsessiondata" );
+			$this->dieUsage( 'Bad path: ' . $e->getMessage(), 'invalidsessiondata' );
 		}
 	}
 
