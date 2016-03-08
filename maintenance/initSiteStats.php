@@ -63,6 +63,9 @@ class InitSiteStats extends Maintenance {
 			$this->output( "\nUpdating site statistics..." );
 			$counter->refresh();
 			$this->output( "done.\n" );
+		} else {
+			$this->output( "\nTo update the site statistics table, run the script "
+				. "with the --update option.\n" );
 		}
 
 		if ( $this->hasOption( 'active' ) ) {
