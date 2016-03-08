@@ -194,7 +194,7 @@ class ApiImportReporter extends ImportReporter {
 		parent::reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo );
 	}
 
-	function getData() {
+	public function getData() {
 		return $this->mResultArr;
 	}
 }
