@@ -13,6 +13,7 @@
 			"ltr": "images/icons/calendar-ltr.svg",
 			"rtl": "images/icons/calendar-rtl.svg"
 		} },
+		"code": { "file": "images/icons/code.svg" },
 		"find": { "file": {
 			"ltr": "images/icons/find-ltr.svg",
 			"rtl": "images/icons/find-rtl.svg"
@@ -25,6 +26,7 @@
 			"ltr": "images/icons/layout-ltr.svg",
 			"rtl": "images/icons/layout-rtl.svg"
 		} },
+		"markup": { "file": "images/icons/markup.svg" },
 		"newline": { "file": {
 			"ltr": "images/icons/newline-ltr.svg",
 			"rtl": "images/icons/newline-rtl.svg"

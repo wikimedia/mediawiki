@@ -38,7 +38,7 @@
 				"fr,it": "images/icons/bold-g.svg",
 				"hy": "images/icons/bold-armn-to.svg",
 				"ka": "images/icons/bold-geor-man.svg",
-				"ky,ru": "images/icons/bold-cyrl-zhe.svg",
+				"ky,ru,uk": "images/icons/bold-cyrl-zhe.svg",
 				"nl": "images/icons/bold-v.svg",
 				"os": "images/icons/bold-cyrl-be.svg"
 			}
@@ -48,7 +48,7 @@
 			"lang": {
 					"ar": "images/icons/italic-arab-meem.svg",
 					"cs,en,fr,he,ml,pl,pt,sco": "images/icons/italic-i.svg",
-					"be,da,de,fi,ky,nn,no,os,sv,ru": "images/icons/italic-k.svg",
+					"be,da,de,fi,ky,nn,no,os,sv,ru,uk": "images/icons/italic-k.svg",
 					"es,gl,it,nl": "images/icons/italic-c.svg",
 					"eu": "images/icons/italic-e.svg",
 					"fa": "images/icons/italic-arab-keheh-jeem.svg",

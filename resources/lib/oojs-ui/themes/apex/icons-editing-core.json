@@ -19,6 +19,14 @@
 			"ltr": "images/icons/external-link-ltr.svg",
 			"rtl": "images/icons/external-link-rtl.svg"
 		} },
-		"linkSecure": { "file": "images/icons/secure-link.svg" }
+		"linkSecure": { "file": "images/icons/secure-link.svg" },
+		"redo": { "file": {
+			"ltr": "images/icons/arched-arrow-ltr.svg",
+			"rtl": "images/icons/arched-arrow-rtl.svg"
+		} },
+		"undo": { "file": {
+			"ltr": "images/icons/arched-arrow-rtl.svg",
+			"rtl": "images/icons/arched-arrow-ltr.svg"
+		} }
 	}
 }

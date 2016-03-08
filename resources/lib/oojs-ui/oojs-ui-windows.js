@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.1
+ * OOjs UI v0.16.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-01T21:50:12Z
+ * Date: 2016-03-08T21:46:49Z
  */
 ( function ( OO ) {
 
@@ -2417,10 +2417,18 @@ OO.ui.Dialog.static.escapable = true;
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
-	if ( e.which === OO.ui.Keys.ESCAPE ) {
+	var actions;
+	if ( e.which === OO.ui.Keys.ESCAPE && this.constructor.static.escapable ) {
 		this.executeAction( '' );
 		e.preventDefault();
 		e.stopPropagation();
+	} else if ( e.which === OO.ui.Keys.ENTER && e.ctrlKey ) {
+		actions = this.actions.get( { flags: 'primary', visible: true, disabled: false } );
+		if ( actions.length > 0 ) {
+			this.executeAction( actions[ 0 ].getAction() );
+			e.preventDefault();
+			e.stopPropagation();
+		}
 	}
 };
 
@@ -2511,9 +2519,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 			);
 			this.actions.add( this.getActionWidgets( actions ) );
 
-			if ( this.constructor.static.escapable ) {
-				this.$element.on( 'keydown', this.onDialogKeyDownHandler );
-			}
+			this.$element.on( 'keydown', this.onDialogKeyDownHandler );
 		}, this );
 };
 
@@ -2524,9 +2530,7 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.Dialog.parent.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
-			if ( this.constructor.static.escapable ) {
-				this.$element.off( 'keydown', this.onDialogKeyDownHandler );
-			}
+			this.$element.off( 'keydown', this.onDialogKeyDownHandler );
 
 			this.actions.clear();
 			this.currentAction = null;

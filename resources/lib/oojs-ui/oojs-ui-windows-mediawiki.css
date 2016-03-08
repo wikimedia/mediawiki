@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.1
+ * OOjs UI v0.16.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-01T21:50:17Z
+ * Date: 2016-03-08T21:46:53Z
  */
 .oo-ui-window {
 	background: transparent;
@@ -146,7 +146,6 @@
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
 	text-align: center;
 	line-height: 3.4em;
-	padding: 0 2em;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget:hover {
 	background-color: rgba(0, 0, 0, 0.05);
@@ -164,10 +163,10 @@
 	font-weight: bold;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:hover {
-	background-color: rgba(118, 171, 54, 0.05);
+	background-color: rgba(8, 126, 204, 0.05);
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:active {
-	background-color: rgba(118, 171, 54, 0.1);
+	background-color: rgba(8, 126, 204, 0.1);
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-destructive:hover {
 	background-color: rgba(212, 83, 83, 0.05);
