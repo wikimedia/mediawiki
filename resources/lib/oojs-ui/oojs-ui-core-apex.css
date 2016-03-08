@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.1
+ * OOjs UI v0.16.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-01T21:50:17Z
+ * Date: 2016-03-08T21:46:53Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -31,7 +31,8 @@
 	cursor: default;
 }
 .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
-.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
+.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -39,18 +40,9 @@
 	display: inline-block;
 	position: relative;
 }
-.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-	display: inline-block;
-	vertical-align: middle;
-}
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
-	display: inline-block;
 	vertical-align: top;
 	text-align: center;
-}
-.oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-	display: inline-block;
-	vertical-align: middle;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
@@ -806,12 +798,9 @@
 	overflow: auto;
 }
 .oo-ui-textInputWidget input[type="search"] {
-	-webkit-appearance: none;
+	-webkit-appearance: texfield;
 }
 .oo-ui-textInputWidget input[type="search"]::-ms-clear {
-	display: none;
-}
-.oo-ui-textInputWidget input[type="search"]::-ms-reveal {
 	display: none;
 }
 .oo-ui-textInputWidget input[type="search"]::-webkit-search-decoration,

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.1
+ * OOjs UI v0.16.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-01T21:50:12Z
+ * Date: 2016-03-08T21:46:49Z
  */
 ( function ( OO ) {
 
@@ -7020,7 +7020,7 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
  * @cfg {boolean} [useInputTag=false] Use an `<input/>` tag instead of a `<button/>` tag, the default.
  *  Widgets configured to be an `<input/>` do not support {@link #icon icons} and {@link #indicator indicators},
  *  non-plaintext {@link #label labels}, or {@link #value values}. In general, useInputTag should only
- *  be set to `true` when there’s need to support IE6 in a form with multiple buttons.
+ *  be set to `true` when there’s need to support IE 6 in a form with multiple buttons.
  */
 OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
@@ -7705,7 +7705,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password', 'search',
- *  'email' or 'url'. Ignored if `multiline` is true.
+ *  'email', 'url' or 'date'. Ignored if `multiline` is true.
  *
  *  Some values of `type` result in additional behaviors:
  *
@@ -8106,8 +8106,8 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 				.val( '' );
 			maxInnerHeight = this.$clone.innerHeight();
 
-			// Difference between reported innerHeight and scrollHeight with no scrollbars present
-			// Equals 1 on Blink-based browsers and 0 everywhere else
+			// Difference between reported innerHeight and scrollHeight with no scrollbars present.
+			// This is sometimes non-zero on Blink-based browsers, depending on zoom level.
 			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
 			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 
@@ -8161,7 +8161,7 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  * @private
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
-	var type = [ 'text', 'password', 'search', 'email', 'url' ].indexOf( config.type ) !== -1 ?
+	var type = [ 'text', 'password', 'search', 'email', 'url', 'date' ].indexOf( config.type ) !== -1 ?
 		config.type :
 		'text';
 	return config.multiline ? 'multiline' : type;
@@ -8204,7 +8204,16 @@ OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 
 	this.focus();
 
-	input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
+	try {
+		input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
+	} catch ( e ) {
+		// IE throws an exception if you call setSelectionRange on a unattached DOM node.
+		// Rather than expensively check if the input is attached every time, just check
+		// if it was the cause of an error being thrown. If not, rethrow the error.
+		if ( this.getElementDocument().body.contains( input ) ) {
+			throw e;
+		}
+	}
 	return this;
 };
 

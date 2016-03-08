@@ -1,31 +1,36 @@
 /*!
- * OOjs UI v0.16.1
+ * OOjs UI v0.16.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-01T21:50:17Z
+ * Date: 2016-03-08T21:46:53Z
  */
-.oo-ui-draggableElement-handle.oo-ui-widget-enabled {
+.oo-ui-draggableElement-handle,
+.oo-ui-draggableElement-handle.oo-ui-widget {
 	cursor: move;
 	cursor: url(images/grab.cur );
 	cursor: -webkit-grab;
 	cursor:    -moz-grab;
 	cursor:         grab;
 }
-.oo-ui-draggableElement-placeholder {
-	opacity: 0.2;
-}
-.oo-ui-draggableElement.oo-ui-widget-enabled:active {
+.oo-ui-draggableElement-handle:active {
 	cursor: move;
 	cursor: url(images/grabbing.cur );
 	cursor: -webkit-grabbing;
 	cursor:    -moz-grabbing;
 	cursor:         grabbing;
 }
-.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement.oo-ui-optionWidget {
+.oo-ui-draggableElement-handle.oo-ui-widget-disabled,
+.oo-ui-widget-disabled .oo-ui-draggableElement-handle {
+	cursor: default;
+}
+.oo-ui-draggableElement-placeholder {
+	opacity: 0.2;
+}
+.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement {
 	display: inline-block;
 }
 .oo-ui-lookupElement > .oo-ui-menuSelectWidget {
