@@ -34,6 +34,8 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $lastKnownSlavePos;
 	/** @var string Method to detect slave lag */
 	protected $lagDetectionMethod;
+	/** @var array Method to detect slave lag */
+	protected $lagDetectionOptions = [];
 
 	/** @var string|null */
 	private $serverVersion = null;
@@ -44,6 +46,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 *                          pt-heartbeat assumes the table is at heartbeat.heartbeat
 	 *                          and uses UTC timestamps in the heartbeat.ts column.
 	 *                          (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
+	 *   - lagDetectionOptions : if using pt-heartbeat, this can be set to an array map to change
+	 *                           the default behavior. Normally, the heartbeat row with the server
+	 *                           ID of this server's master will be used. Set the "conds" field to
+	 *                           override the query conditions, e.g. ['shard' => 's1'].
 	 * @param array $params
 	 */
 	function __construct( array $params ) {
@@ -52,6 +58,9 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
 			? $params['lagDetectionMethod']
 			: 'Seconds_Behind_Master';
+		$this->lagDetectionOptions = isset( $params['lagDetectionOptions'] )
+			? $params['lagDetectionOptions']
+			: [];
 	}
 
 	/**
@@ -652,19 +661,30 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|float
 	 */
 	protected function getLagFromPtHeartbeat() {
-		$masterInfo = $this->getMasterServerInfo();
-		if ( !$masterInfo ) {
-			wfLogDBError(
-				"Unable to query master of {db_server} for server ID",
-				$this->getLogContext( [
-					'method' => __METHOD__
-				] )
-			);
+		$options = $this->lagDetectionOptions;
 
-			return false; // could not get master server ID
+		if ( isset( $options['conds'] ) ) {
+			// Best method for multi-DC setups: use logical channel names
+			$data = $this->getHeartbeatData( $options['conds'] );
+		} else {
+			// Standard method: use master server ID (works with stock pt-heartbeat)
+			$masterInfo = $this->getMasterServerInfo();
+			if ( !$masterInfo ) {
+				wfLogDBError(
+					"Unable to query master of {db_server} for server ID",
+					$this->getLogContext( [
+						'method' => __METHOD__
+					] )
+				);
+
+				return false; // could not get master server ID
+			}
+
+			$conds = [ 'server_id' => intval( $masterInfo['serverId'] ) ];
+			$data = $this->getHeartbeatData( $conds );
 		}
 
-		list( $time, $nowUnix ) = $this->getHeartbeatData( $masterInfo['serverId'] );
+		list( $time, $nowUnix ) = $data;
 		if ( $time !== null ) {
 			// @time is in ISO format like "2015-09-25T16:48:10.000510"
 			$dateTime = new DateTime( $time, new DateTimeZone( 'UTC' ) );
@@ -722,17 +742,17 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * @param string $masterId Server ID
-	 * @return array (heartbeat `ts` column value or null, UNIX timestamp)
+	 * @param array $conds WHERE clause conditions to find a row
+	 * @return array (heartbeat `ts` column value or null, UNIX timestamp) for the newest beat
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
-	protected function getHeartbeatData( $masterId ) {
-		// Get the status row for this master; use the oldest for sanity in case the master
-		// has entries listed under different server IDs (which should really not happen).
-		// Note: this would use "MAX(TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)))" but the
+	protected function getHeartbeatData( array $conds ) {
+		$whereSQL = $this->makeList( $conds, LIST_AND );
+		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
+		// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
 		// percision field is not supported in MySQL <= 5.5.
 		$res = $this->query(
-			"SELECT ts FROM heartbeat.heartbeat WHERE server_id=" . intval( $masterId )
+			"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
 		);
 		$row = $res ? $res->fetchObject() : false;
 
