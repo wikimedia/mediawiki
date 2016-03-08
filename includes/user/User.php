@@ -856,8 +856,6 @@ class User implements IDBAccessObject {
 			|| strlen( $name ) > $wgMaxNameChars
 			|| $name != $wgContLang->ucfirst( $name )
 		) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to empty, IP, slash, length, or lowercase" );
 			return false;
 		}
 
@@ -867,8 +865,6 @@ class User implements IDBAccessObject {
 		if ( is_null( $parsed )
 			|| $parsed->getNamespace()
 			|| strcmp( $name, $parsed->getPrefixedText() ) ) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to ambiguous prefixes" );
 			return false;
 		}
 
@@ -883,8 +879,6 @@ class User implements IDBAccessObject {
 			'\x{e000}-\x{f8ff}' . # private use
 			']/u';
 		if ( preg_match( $unicodeBlacklist, $name ) ) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to blacklisted characters" );
 			return false;
 		}
 
