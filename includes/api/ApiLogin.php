@@ -208,7 +208,6 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::THROTTLED:
 				$result['result'] = 'Throttled';
-				$throttle = $this->getConfig()->get( 'PasswordAttemptThrottle' );
 				$result['wait'] = intval( $loginForm->mThrottleWait );
 				break;
 
