@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Anomie <bjorsch@wikimedia.org>
+Code-Review+1: Gergő Tisza <gtisza@wikimedia.org>
+Code-Review+1: BBlack <bblack@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Tue, 08 Mar 2016 17:12:19 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/272937
+Project: mediawiki/core
+Branch: refs/heads/master
