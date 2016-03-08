@@ -633,7 +633,7 @@ class SpecialVersion extends SpecialPage {
 			usort( $wgExtensionCredits[$type], [ $this, 'compare' ] );
 
 			foreach ( $wgExtensionCredits[$type] as $extension ) {
-				$out .= $this->getCreditsForExtension( $extension );
+				$out .= $this->getCreditsForExtension( $type, $extension );
 			}
 		}
 
@@ -669,11 +669,12 @@ class SpecialVersion extends SpecialPage {
 	 *  - Description of extension (descriptionmsg or description)
 	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
 	 *
+	 * @param string $type Category name of the extension
 	 * @param array $extension
 	 *
 	 * @return string Raw HTML
 	 */
-	public function getCreditsForExtension( array $extension ) {
+	public function getCreditsForExtension( $type, array $extension ) {
 		$out = $this->getOutput();
 
 		// We must obtain the information for all the bits and pieces!
@@ -830,7 +831,7 @@ class SpecialVersion extends SpecialPage {
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', [
 				'class' => 'mw-version-ext',
-				'id' => Sanitizer::escapeId( 'mw-version-ext-' . $extension['name'] )
+				'id' => Sanitizer::escapeId( 'mw-version-ext-' . $type . '-' . $extension['name'] )
 			]
 		);
 
