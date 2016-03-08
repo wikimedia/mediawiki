@@ -1115,7 +1115,7 @@ class FileRepo {
 	 * @param array $srcPaths Ordered list of source virtual URLs/storage paths
 	 * @param string $dstPath Target file system path
 	 * @param int $flags Bitwise combination of the following flags:
-	 *   self::DELETE_SOURCE     Delete the source files
+	 *   self::DELETE_SOURCE     Delete the source files on success
 	 * @return FileRepoStatus
 	 */
 	public function concatenate( array $srcPaths, $dstPath, $flags = 0 ) {
