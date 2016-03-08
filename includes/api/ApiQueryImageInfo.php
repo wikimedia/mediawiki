@@ -308,7 +308,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		foreach ( $paramList as $name => $value ) {
 			if ( !$h->validateParam( $name, $value ) ) {
-				$this->dieUsage( "Invalid value for {$p}urlparam ($name=$value)", "urlparam" );
+				$this->dieUsage( "Invalid value for {$p}urlparam ($name=$value)", 'urlparam' );
 			}
 		}
 

@@ -542,7 +542,7 @@ class ApiUpload extends ApiBase {
 				];
 				ApiResult::setIndexedTagName( $extradata['allowed'], 'ext' );
 
-				$msg = "Filetype not permitted: ";
+				$msg = 'Filetype not permitted: ';
 				if ( isset( $verification['blacklistedExt'] ) ) {
 					$msg .= join( ', ', $verification['blacklistedExt'] );
 					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
@@ -664,7 +664,7 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( 'No such filekey: ' . $e->getMessage(), 'stashnosuchfilekey' );
 				break;
 			default:
-				$this->dieUsage( $exceptionType . ": " . $e->getMessage(), 'stasherror' );
+				$this->dieUsage( $exceptionType . ': ' . $e->getMessage(), 'stasherror' );
 				break;
 		}
 	}
@@ -714,7 +714,7 @@ class ApiUpload extends ApiBase {
 		if ( $this->mParams['async'] ) {
 			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
 			if ( $progress && $progress['result'] === 'Poll' ) {
-				$this->dieUsage( "Upload from stash already in progress.", 'publishfailed' );
+				$this->dieUsage( 'Upload from stash already in progress.', 'publishfailed' );
 			}
 			UploadBase::setSessionStatus(
 				$this->getUser(),

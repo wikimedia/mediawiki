@@ -340,7 +340,7 @@ class ApiResult implements ApiSerializable {
 				$value = $value->serializeForApiResult();
 				if ( is_object( $value ) ) {
 					throw new UnexpectedValueException(
-						get_class( $oldValue ) . "::serializeForApiResult() returned an object of class " .
+						get_class( $oldValue ) . '::serializeForApiResult() returned an object of class ' .
 							get_class( $value )
 					);
 				}
@@ -351,7 +351,7 @@ class ApiResult implements ApiSerializable {
 					return self::validateValue( $value );
 				} catch ( Exception $ex ) {
 					throw new UnexpectedValueException(
-						get_class( $oldValue ) . "::serializeForApiResult() returned an invalid value: " .
+						get_class( $oldValue ) . '::serializeForApiResult() returned an invalid value: ' .
 							$ex->getMessage(),
 						0,
 						$ex
@@ -372,7 +372,7 @@ class ApiResult implements ApiSerializable {
 			}
 			$value = $tmp;
 		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
-			throw new InvalidArgumentException( "Cannot add non-finite floats to ApiResult" );
+			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );
 		} elseif ( is_string( $value ) ) {
 			$value = $wgContLang->normalize( $value );
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
@@ -538,7 +538,7 @@ class ApiResult implements ApiSerializable {
 		) {
 			throw new RuntimeException(
 				"Attempting to set content element as $name when " . $arr[self::META_CONTENT] .
-					" is already set as the content element"
+					' is already set as the content element'
 			);
 		}
 		$arr[self::META_CONTENT] = $name;

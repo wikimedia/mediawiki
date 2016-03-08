@@ -50,7 +50,7 @@ class ApiStashEdit extends ApiBase {
 		if ( !ContentHandler::getForModelID( $params['contentmodel'] )
 			->isSupportedFormat( $params['contentformat'] )
 		) {
-			$this->dieUsage( "Unsupported content model/format", 'badmodelformat' );
+			$this->dieUsage( 'Unsupported content model/format', 'badmodelformat' );
 		}
 
 		// Trim and fix newlines so the key SHA1's match (see RequestContext::getText())
@@ -77,7 +77,7 @@ class ApiStashEdit extends ApiBase {
 				$baseRev->getId()
 			);
 			if ( !$editContent ) {
-				$this->dieUsage( "Could not merge updated section.", 'replacefailed' );
+				$this->dieUsage( 'Could not merge updated section.', 'replacefailed' );
 			}
 			if ( $currentRev->getId() == $baseRev->getId() ) {
 				// Base revision was still the latest; nothing to merge

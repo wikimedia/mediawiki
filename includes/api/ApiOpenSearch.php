@@ -358,7 +358,7 @@ class ApiOpenSearch extends ApiBase {
 
 		$ns = implode( '|', SearchEngine::defaultNamespaces() );
 		if ( !$ns ) {
-			$ns = "0";
+			$ns = '0';
 		}
 
 		switch ( $type ) {
