@@ -337,7 +337,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
-		$logname = $page->getName()->escaped();
+		$logname = $page->getName()->setContext( $this->getContext() )->escaped();
 		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
 	}
 
