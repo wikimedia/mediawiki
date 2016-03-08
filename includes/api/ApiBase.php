@@ -2323,18 +2323,18 @@ abstract class ApiBase extends ContextSource {
 			$msg = ApiBase::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
 			if ( !$msg ) {
-				$this->dieDebug( __METHOD__,
+				self::dieDebug( __METHOD__,
 					'Value in ApiBase::PARAM_HELP_MSG is not valid' );
 			}
 			$msgs[$param] = [ $msg ];
 
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
-					$this->dieDebug( __METHOD__,
+					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
 				}
 				if ( !is_array( $settings[ApiBase::PARAM_TYPE] ) ) {
-					$this->dieDebug( __METHOD__,
+					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
 						'ApiBase::PARAM_TYPE is an array' );
 				}
@@ -2356,7 +2356,7 @@ abstract class ApiBase extends ContextSource {
 						);
 						$msgs[$param][] = $m->setContext( $this->getContext() );
 					} else {
-						$this->dieDebug( __METHOD__,
+						self::dieDebug( __METHOD__,
 							"Value in ApiBase::PARAM_HELP_MSG_PER_VALUE for $value is not valid" );
 					}
 				}
@@ -2364,7 +2364,7 @@ abstract class ApiBase extends ContextSource {
 
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
 				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
-					$this->dieDebug( __METHOD__,
+					self::dieDebug( __METHOD__,
 						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
 				}
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $m ) {
@@ -2373,7 +2373,7 @@ abstract class ApiBase extends ContextSource {
 					if ( $m ) {
 						$msgs[$param][] = $m;
 					} else {
-						$this->dieDebug( __METHOD__,
+						self::dieDebug( __METHOD__,
 							'Value in ApiBase::PARAM_HELP_MSG_APPEND is not valid' );
 					}
 				}
