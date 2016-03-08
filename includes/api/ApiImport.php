@@ -175,7 +175,7 @@ class ApiImportReporter extends ImportReporter {
 	 * @param array $pageInfo
 	 * @return void
 	 */
-	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
+	public function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = [];
 
