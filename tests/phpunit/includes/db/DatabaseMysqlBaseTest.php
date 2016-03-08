@@ -339,7 +339,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 		$db->expects( $this->any() )
 			->method( 'getHeartbeatData' )
-			->with( 172 )
+			->with( [ 'server_id' => 172 ] )
 			->will( $this->returnValue( [ $ptTimeISO, $now ] ) );
 
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
