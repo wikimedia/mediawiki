@@ -230,6 +230,7 @@ HHVM 3.1.
 * Language::specialPage() was removed (deprecated since 1.24).
 * OutputPage::getHeadItems() was removed (deprecated since 1.24).
 * OutputPage::getScript() was removed (deprecated since 1.24).
+* OutputPage::out() was removed (deprecated since 1.22).
 * OutputPage::setAllowedModules() was removed (deprecated since 1.24).
 
 === Languages updated in 1.27 ===
