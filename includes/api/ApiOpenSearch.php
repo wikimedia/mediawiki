@@ -218,13 +218,13 @@ class ApiOpenSearch extends ApiBase {
 			case 'json':
 				// http://www.opensearch.org/Specifications/OpenSearch/Extensions/Suggestions/1.1
 				$result->addArrayType( null, 'array' );
-				$result->addValue( null, 0, strval( $search ) );
+				$result->addValue( null, 0, (string)$search );
 				$terms = [];
 				$descriptions = [];
 				$urls = [];
 				foreach ( $results as $r ) {
 					$terms[] = $r['title']->getPrefixedText();
-					$descriptions[] = strval( $r['extract'] );
+					$descriptions[] = (string)$r['extract'];
 					$urls[] = $r['url'];
 				}
 				$result->addValue( null, 1, $terms );
@@ -259,7 +259,7 @@ class ApiOpenSearch extends ApiBase {
 				ApiResult::setIndexedTagName( $items, 'Item' );
 				$result->addValue( null, 'version', '2.0' );
 				$result->addValue( null, 'xmlns', 'http://opensearch.org/searchsuggest2' );
-				$result->addValue( null, 'Query', strval( $search ) );
+				$result->addValue( null, 'Query', (string)$search );
 				$result->addSubelementsList( null, 'Query' );
 				$result->addValue( null, 'Section', $items );
 				break;

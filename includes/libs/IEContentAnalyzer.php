@@ -403,7 +403,7 @@ class IEContentAnalyzer {
 		{
 			return $proposed;
 		}
-		if ( strval( $chunk ) === '' ) {
+		if ( (string)$chunk === '' ) {
 			return $proposed;
 		}
 
@@ -838,7 +838,7 @@ class IEContentAnalyzer {
 	 */
 	protected function getDataFormat( $version, $type ) {
 		$types = $this->typeTable[$version];
-		if ( $type == '(null)' || strval( $type ) === '' ) {
+		if ( $type == '(null)' || (string)$type === '' ) {
 			return 'ambiguous';
 		}
 		foreach ( $types as $format => $list ) {

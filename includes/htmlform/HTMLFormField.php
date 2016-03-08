@@ -953,7 +953,7 @@ abstract class HTMLFormField {
 			$key = $this->msg( $key )->plain();
 			$ret[$key] = is_array( $value )
 				? $this->lookupOptionsKeys( $value )
-				: strval( $value );
+				: (string)$value;
 		}
 		return $ret;
 	}
@@ -969,7 +969,7 @@ abstract class HTMLFormField {
 		if ( is_array( $array ) ) {
 			return array_map( [ __CLASS__, 'forceToStringRecursive' ], $array );
 		} else {
-			return strval( $array );
+			return (string)$array;
 		}
 	}
 

@@ -108,19 +108,19 @@ TEXT
 		}
 
 		if ( $this->hasOption( 'start' ) ) {
-			$this->startId = intval( $this->getOption( 'start' ) );
+			$this->startId = (int)$this->getOption( 'start' );
 		}
 
 		if ( $this->hasOption( 'end' ) ) {
-			$this->endId = intval( $this->getOption( 'end' ) );
+			$this->endId = (int)$this->getOption( 'end' );
 		}
 
 		if ( $this->hasOption( 'revstart' ) ) {
-			$this->revStartId = intval( $this->getOption( 'revstart' ) );
+			$this->revStartId = (int)$this->getOption( 'revstart' );
 		}
 
 		if ( $this->hasOption( 'revend' ) ) {
-			$this->revEndId = intval( $this->getOption( 'revend' ) );
+			$this->revEndId = (int)$this->getOption( 'revend' );
 		}
 
 		$this->skipHeader = $this->hasOption( 'skip-header' );

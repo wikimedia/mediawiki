@@ -98,12 +98,12 @@ class IEUrlExtension {
 	 * @return bool
 	 */
 	public static function isUrlExtensionBad( $urlPart, $extWhitelist = [] ) {
-		if ( strval( $urlPart ) === '' ) {
+		if ( (string)$urlPart === '' ) {
 			return false;
 		}
 
 		$extension = self::findIE6Extension( $urlPart );
-		if ( strval( $extension ) === '' ) {
+		if ( (string)$extension === '' ) {
 			// No extension or empty extension
 			return false;
 		}

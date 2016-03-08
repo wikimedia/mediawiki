@@ -120,7 +120,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					);
 					foreach ( $sres as $srow ) {
 						if ( $srow->$userField > 0 ) {
-							$userIds[] = intval( $srow->$userField );
+							$userIds[] = (int)$srow->$userField;
 						} elseif ( $srow->$userTextField != '' ) {
 							$userIPs[] = $srow->$userTextField;
 						}
@@ -147,7 +147,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					);
 					foreach ( $sres as $srow ) {
 						if ( $srow->log_user > 0 ) {
-							$userIds[] = intval( $srow->log_user );
+							$userIds[] = (int)$srow->log_user;
 						} elseif ( IP::isIPAddress( $srow->log_user_text ) ) {
 							$userIPs[] = $srow->log_user_text;
 						}

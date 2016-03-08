@@ -55,7 +55,7 @@ class MockOggHandler extends OggHandlerTMH {
 			'isVideo' => !$this->isAudio( $file ),
 			'thumbtime' => isset(
 				$params['thumbtime']
-			) ? $params['thumbtime'] : intval( $file->getLength() / 2 ),
+			) ? $params['thumbtime'] : (int)( $file->getLength() / 2 ),
 			'start' => isset( $params['start'] ) ? $params['start'] : false,
 			'end' => isset( $params['end'] ) ? $params['end'] : false,
 			'fillwindow' => isset( $params['fillwindow'] ) ? $params['fillwindow'] : false,

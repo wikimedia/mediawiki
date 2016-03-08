@@ -642,7 +642,7 @@ class ZipDirectoryReader {
 				}
 			} else {
 				// Unsigned little-endian integer
-				$length = intval( $type );
+				$length = (int)$type;
 
 				// Calculate the value. Use an algorithm which automatically
 				// upgrades the value to floating point if necessary.

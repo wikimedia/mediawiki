@@ -55,7 +55,7 @@ class AttachLatest extends Maintenance {
 
 		$n = 0;
 		foreach ( $result as $row ) {
-			$pageId = intval( $row->page_id );
+			$pageId = (int)$row->page_id;
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$name = $title->getPrefixedText();
 			$latestTime = $dbw->selectField( 'revision',

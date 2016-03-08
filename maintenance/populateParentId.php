@@ -61,8 +61,8 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			return true;
 		}
 		# Do remaining chunk
-		$blockStart = intval( $start );
-		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
+		$blockStart = (int)$start;
+		$blockEnd = (int)$start + $this->mBatchSize - 1;
 		$count = 0;
 		$changed = 0;
 		while ( $blockStart <= $end ) {
@@ -81,7 +81,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 				# as timestamp can only decrease and never loops with IDs (from parent to parent)
 				$previousID = $db->selectField( 'revision', 'rev_id',
 					[ 'rev_page' => $row->rev_page, 'rev_timestamp' => $row->rev_timestamp,
-						"rev_id < " . intval( $row->rev_id ) ],
+						"rev_id < " . (int)$row->rev_id ],
 					__METHOD__,
 					[ 'ORDER BY' => 'rev_id DESC' ] );
 				# If there are none, check the highest ID with a lower timestamp
@@ -105,7 +105,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 							[ 'ORDER BY' => 'rev_id DESC' ] );
 					}
 				}
-				$previousID = intval( $previousID );
+				$previousID = (int)$previousID;
 				if ( $previousID != $row->rev_parent_id ) {
 					$changed++;
 				}

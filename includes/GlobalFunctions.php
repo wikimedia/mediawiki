@@ -1926,7 +1926,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 		if ( count( $values ) == 1 ) {
 			$prefs[$values[0]] = 1.0;
 		} elseif ( preg_match( '/q\s*=\s*(\d*\.\d+)/', $values[1], $match ) ) {
-			$prefs[$values[0]] = floatval( $match[1] );
+			$prefs[$values[0]] = (float)$match[1];
 		}
 	}
 
@@ -2197,7 +2197,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
-	if ( strval( $dir ) === '' || is_dir( $dir ) ) {
+	if ( (string)$dir === '' || is_dir( $dir ) ) {
 		return true;
 	}
 
@@ -2446,16 +2446,16 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 
 	$useLogPipe = false;
 	if ( is_executable( '/bin/bash' ) ) {
-		$time = intval( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
+		$time = (int)( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
-			$wallTime = intval( $limits['walltime'] );
+			$wallTime = (int)$limits['walltime'];
 		} elseif ( isset( $limits['time'] ) ) {
 			$wallTime = $time;
 		} else {
-			$wallTime = intval( $wgMaxShellWallClockTime );
+			$wallTime = (int)$wgMaxShellWallClockTime;
 		}
-		$mem = intval( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
-		$filesize = intval( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
+		$mem = (int)( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
+		$filesize = (int)( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
@@ -3438,7 +3438,7 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 		return $default;
 	}
 	$last = $string[strlen( $string ) - 1];
-	$val = intval( $string );
+	$val = (int)$string;
 	switch ( $last ) {
 		case 'g':
 		case 'G':

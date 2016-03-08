@@ -57,7 +57,7 @@ class FetchText extends Maintenance {
 				// We appear to have lost contact...
 				break;
 			}
-			$textId = intval( $line );
+			$textId = (int)$line;
 			$text = $this->doGetText( $db, $textId );
 			if ( $text === false ) {
 				# actual error, not zero-length text
@@ -76,7 +76,7 @@ class FetchText extends Maintenance {
 	 * @return string
 	 */
 	private function doGetText( $db, $id ) {
-		$id = intval( $id );
+		$id = (int)$id;
 		$row = $db->selectRow( 'text',
 			[ 'old_text', 'old_flags' ],
 			[ 'old_id' => $id ],

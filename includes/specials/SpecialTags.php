@@ -266,7 +266,7 @@ class SpecialTags extends SpecialPage {
 		$context = $form->getContext();
 		$out = $context->getOutput();
 
-		$tag = trim( strval( $data['Tag'] ) );
+		$tag = trim( (string)$data['Tag'] );
 		$ignoreWarnings = isset( $data['IgnoreWarnings'] ) && $data['IgnoreWarnings'] === '1';
 		$status = ChangeTags::createTagWithChecks( $tag, $data['Reason'],
 			$context->getUser(), $ignoreWarnings );

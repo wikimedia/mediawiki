@@ -150,7 +150,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
 			$rev_id = (int)$cont[1];
-			$this->dieContinueUsageIf( strval( $rev_id ) !== $cont[1] );
+			$this->dieContinueUsageIf( (string)$rev_id !== $cont[1] );
 			$this->addWhere( "rev_timestamp $op $ts OR " .
 				"(rev_timestamp = $ts AND " .
 				"rev_id $op= $rev_id)" );

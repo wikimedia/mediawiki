@@ -685,8 +685,8 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	protected function isCategorizationWithoutRevision( $rcObj ) {
-		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
-			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+		return (int)$rcObj->getAttribute( 'rc_type' ) === RC_CATEGORIZE
+			&& (int)$rcObj->getAttribute( 'rc_this_oldid' ) === 0;
 	}
 
 }

@@ -167,17 +167,17 @@ class Xml {
 	public static function dateMenu( $year, $month ) {
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
-			$encMonth = intval( $month );
+			$encMonth = (int)$month;
 		} else {
 			$encMonth = '';
 		}
 		if ( $year ) {
-			$encYear = intval( $year );
+			$encYear = (int)$year;
 		} elseif ( $encMonth ) {
 			$timestamp = MWTimestamp::getInstance();
-			$thisMonth = intval( $timestamp->format( 'n' ) );
-			$thisYear = intval( $timestamp->format( 'Y' ) );
-			if ( intval( $encMonth ) > $thisMonth ) {
+			$thisMonth = (int)$timestamp->format( 'n' );
+			$thisYear = (int)$timestamp->format( 'Y' );
+			if ( (int)$encMonth > $thisMonth ) {
 				$thisYear--;
 			}
 			$encYear = $thisYear;

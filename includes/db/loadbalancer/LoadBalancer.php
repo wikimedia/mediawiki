@@ -620,7 +620,7 @@ class LoadBalancer {
 
 		$dbName = $conn->getDBname();
 		$prefix = $conn->tablePrefix();
-		if ( strval( $prefix ) !== '' ) {
+		if ( (string)$prefix !== '' ) {
 			$wiki = "$dbName-$prefix";
 		} else {
 			$wiki = $dbName;

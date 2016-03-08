@@ -589,7 +589,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function setupPage( $term ) {
 		$out = $this->getOutput();
-		if ( strval( $term ) !== '' ) {
+		if ( (string)$term !== '' ) {
 			$out->setPageTitle( $this->msg( 'searchresults' ) );
 			$out->setHTMLTitle( $this->msg( 'pagetitle' )
 				->rawParams( $this->msg( 'searchresults-title' )->rawParams( $term )->text() )

@@ -261,8 +261,8 @@ class SvgHandler extends ImageHandler {
 				$cmd = str_replace(
 					[ '$path/', '$width', '$height', '$input', '$output' ],
 					[ $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
-						intval( $width ),
-						intval( $height ),
+						(int)$width,
+						(int)$height,
 						wfEscapeShellArg( $srcPath ),
 						wfEscapeShellArg( $dstPath ) ],
 					$wgSVGConverters[$wgSVGConverter]
@@ -292,7 +292,7 @@ class SvgHandler extends ImageHandler {
 		$im->setBackgroundColor( 'transparent' );
 		$im->setImageDepth( 8 );
 
-		if ( !$im->thumbnailImage( intval( $width ), intval( $height ), /* fit */ false ) ) {
+		if ( !$im->thumbnailImage( (int)$width, (int)$height, /* fit */ false ) ) {
 			return 'Could not resize image';
 		}
 		if ( !$im->writeImage( $dstPath ) ) {

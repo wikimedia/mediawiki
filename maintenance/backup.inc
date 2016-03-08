@@ -185,7 +185,7 @@ class BackupDumper extends Maintenance {
 					}
 					$class = $this->outputTypes[$type];
 					if ( $type === "7zip" ) {
-						$sink = new $class( $file, intval( $this->getOption( '7ziplevel' ) ) );
+						$sink = new $class( $file, (int)$this->getOption( '7ziplevel' ) );
 					} else {
 						$sink = new $class( $file );
 					}
@@ -222,7 +222,7 @@ class BackupDumper extends Maintenance {
 		}
 
 		if ( $this->hasOption( 'report' ) ) {
-			$this->reportingInterval = intval( $this->getOption( 'report' ) );
+			$this->reportingInterval = (int)$this->getOption( 'report' );
 		}
 
 		if ( $this->hasOption( 'server' ) ) {
@@ -383,7 +383,7 @@ class BackupDumper extends Maintenance {
 			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
 				$eta = $this->startTime + $deltaAll / $portion;
-				$etats = wfTimestamp( TS_DB, intval( $eta ) );
+				$etats = wfTimestamp( TS_DB, (int)$eta );
 				$pageRate = $this->pageCount / $deltaAll;
 				$revRate = $this->revCount / $deltaAll;
 			} else {

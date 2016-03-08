@@ -201,7 +201,7 @@ class LinkBatch {
 
 		// Do query
 		$caller = __METHOD__;
-		if ( strval( $this->caller ) !== '' ) {
+		if ( (string)$this->caller !== '' ) {
 			$caller .= " (for {$this->caller})";
 		}
 		$res = $dbr->select( $table, $fields, $conds, $caller );

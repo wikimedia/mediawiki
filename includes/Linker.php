@@ -1136,7 +1136,7 @@ class Linker {
 			// check if the user has an edit
 			$attribs = [];
 			if ( $redContribsWhenNoEdits ) {
-				if ( intval( $edits ) === 0 && $edits !== 0 ) {
+				if ( (int)$edits === 0 && $edits !== 0 ) {
 					$user = User::newFromId( $userId );
 					$edits = $user->getEditCount();
 				}

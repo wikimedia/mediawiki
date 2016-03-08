@@ -615,11 +615,11 @@ class LoginForm extends SpecialPage {
 
 		# if you need a confirmed email address to edit, then obviously you
 		# need an email address.
-		if ( $wgEmailConfirmToEdit && strval( $this->mEmail ) === '' ) {
+		if ( $wgEmailConfirmToEdit && (string)$this->mEmail === '' ) {
 			return Status::newFatal( 'noemailtitle' );
 		}
 
-		if ( strval( $this->mEmail ) !== '' && !Sanitizer::validateEmail( $this->mEmail ) ) {
+		if ( (string)$this->mEmail !== '' && !Sanitizer::validateEmail( $this->mEmail ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
 

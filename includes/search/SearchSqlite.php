@@ -179,7 +179,7 @@ class SearchSqlite extends SearchDatabase {
 		$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 		$row = $totalResult->fetchObject();
 		if ( $row ) {
-			$total = intval( $row->c );
+			$total = (int)$row->c;
 		}
 		$totalResult->free();
 

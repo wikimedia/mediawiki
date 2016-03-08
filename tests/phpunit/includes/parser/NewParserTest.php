@@ -862,7 +862,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 			while ( strlen( $input ) < $totalLength ) {
 				$logHairLength = mt_rand( 0, 1000000 ) / 1000000 * $logMaxLength;
-				$hairLength = min( intval( exp( $logHairLength ) ), $dictSize );
+				$hairLength = min( (int)exp( $logHairLength ), $dictSize );
 				$offset = mt_rand( 0, $dictSize - $hairLength );
 				$input .= substr( $dict, $offset, $hairLength );
 			}
@@ -886,7 +886,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$parser->__destruct();
 
 			if ( $id % 100 == 0 ) {
-				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
+				$usage = (int)( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
 				// echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
 				if ( $usage > 90 ) {
 					$ret = "Out of memory:\n";

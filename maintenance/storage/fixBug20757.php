@@ -69,7 +69,7 @@ class FixBug20757 extends Maintenance {
 				'text',
 				[ 'old_id', 'old_flags', 'old_text' ],
 				[
-					'old_id > ' . intval( $startId ),
+					'old_id > ' . (int)$startId,
 					'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\'',
 					"$lowerLeft = 'o:15:\"historyblobstub\"'",
 				],
@@ -121,7 +121,7 @@ class FixBug20757 extends Maintenance {
 				}
 
 				// Queue the stub for future batch processing
-				$id = intval( $obj->mOldId );
+				$id = (int)$obj->mOldId;
 				$secondaryIds[] = $id;
 				$stubs[$row->old_id] = [
 					'legacyEncoding' => $legacyEncoding,
@@ -198,7 +198,7 @@ class FixBug20757 extends Maintenance {
 
 				// Find the page_id and rev_id
 				// The page is probably the same as the page of the secondary row
-				$pageId = intval( $trackRow->bt_page );
+				$pageId = (int)$trackRow->bt_page;
 				if ( !$pageId ) {
 					$revId = $pageId = 0;
 				} else {

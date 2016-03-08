@@ -713,13 +713,13 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				$mtime = $this->getModifiedTime( $context );
 				if ( $mtime !== null ) {
 					// Support: MediaWiki 1.25 and earlier
-					$str .= strval( $mtime );
+					$str .= (string)$mtime;
 				}
 
 				$mhash = $this->getModifiedHash( $context );
 				if ( $mhash !== null ) {
 					// Support: MediaWiki 1.25 and earlier
-					$str .= strval( $mhash );
+					$str .= (string)$mhash;
 				}
 			}
 

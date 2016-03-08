@@ -1567,7 +1567,7 @@ abstract class Installer {
 	 */
 	public function generateKeys() {
 		$keys = [ 'wgSecretKey' => 64 ];
-		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
+		if ( (string)$this->getVar( 'wgUpgradeKey' ) === '' ) {
 			$keys['wgUpgradeKey'] = 16;
 		}
 

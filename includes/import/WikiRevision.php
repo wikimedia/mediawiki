@@ -247,7 +247,7 @@ class WikiRevision {
 	 * @param int $size
 	 */
 	function setSize( $size ) {
-		$this->size = intval( $size );
+		$this->size = (int)$size;
 	}
 
 	/**
@@ -465,7 +465,7 @@ class WikiRevision {
 		# Sneak a single revision into place
 		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
 		if ( $user ) {
-			$userId = intval( $user->getId() );
+			$userId = (int)$user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;
@@ -563,7 +563,7 @@ class WikiRevision {
 
 		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
 		if ( $user ) {
-			$userId = intval( $user->getId() );
+			$userId = (int)$user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;

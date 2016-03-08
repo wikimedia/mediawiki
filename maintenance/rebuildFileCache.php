@@ -60,13 +60,13 @@ class RebuildFileCache extends Maintenance {
 		if ( !ctype_digit( $start ) ) {
 			$this->error( "Invalid value for start parameter.", true );
 		}
-		$start = intval( $start );
+		$start = (int)$start;
 
 		$end = $this->getOption( 'end', "0" );
 		if ( !ctype_digit( $end ) ) {
 			$this->error( "Invalid value for end parameter.", true );
 		}
-		$end = intval( $end );
+		$end = (int)$end;
 
 		$this->output( "Building content page file cache from page {$start}!\n" );
 

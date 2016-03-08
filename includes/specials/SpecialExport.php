@@ -76,7 +76,7 @@ class SpecialExport extends SpecialPage {
 			$page = $request->getText( 'pages' );
 			$nsindex = $request->getText( 'nsindex', '' );
 
-			if ( strval( $nsindex ) !== '' ) {
+			if ( (string)$nsindex !== '' ) {
 				/**
 				 * Same implementation as above, so same @todo
 				 */
@@ -517,7 +517,7 @@ class SpecialExport extends SpecialPage {
 		 * number too high. In other words, last resort safety net.
 		 */
 
-		return intval( min( $depth, 5 ) );
+		return (int)min( $depth, 5 );
 	}
 
 	/**

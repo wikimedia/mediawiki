@@ -140,7 +140,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			} else {
 				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
-				$continueFrom = intval( $continueArr[1] );
+				$continueFrom = (int)$continueArr[1];
 				$this->addWhere(
 					"{$pfx}{$fieldTitle} $op $continueTitle OR " .
 					"({$pfx}{$fieldTitle} = $continueTitle AND " .
@@ -204,7 +204,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					ApiResult::META_TYPE => 'assoc',
 				];
 				if ( $fld_ids ) {
-					$vals['fromid'] = intval( $row->pl_from );
+					$vals['fromid'] = (int)$row->pl_from;
 				}
 				if ( $fld_title ) {
 					$title = Title::makeTitle( $namespace, $row->pl_title );

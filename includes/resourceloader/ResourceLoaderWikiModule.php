@@ -186,7 +186,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				continue;
 			}
 			$script = $this->getContent( $titleText );
-			if ( strval( $script ) !== '' ) {
+			if ( (string)$script !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
 			}
@@ -206,7 +206,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';
 			$style = $this->getContent( $titleText );
-			if ( strval( $style ) === '' ) {
+			if ( (string)$style === '' ) {
 				continue;
 			}
 			if ( $this->getFlip( $context ) ) {

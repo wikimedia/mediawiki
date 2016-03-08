@@ -257,7 +257,7 @@ class CategoryMembershipChange {
 
 		$msgKey = $array[$type];
 
-		if ( intval( $params['numTemplateLinks'] ) > 0 ) {
+		if ( (int)$params['numTemplateLinks'] > 0 ) {
 			$msgKey .= '-bundled';
 		}
 

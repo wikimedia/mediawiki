@@ -472,7 +472,7 @@ class Preprocessor_Hash extends Preprocessor {
 						if ( $count < 3 ) {
 							$count = 0;
 						} else {
-							$count = min( 6, intval( ( $count - 1 ) / 2 ) );
+							$count = min( 6, (int)( $count - 1 ) / 2 );
 						}
 					} else {
 						$count = min( $equalsLength, $count );

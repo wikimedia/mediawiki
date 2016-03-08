@@ -274,7 +274,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $this->fld_ids ) {
-			$vals['logid'] = intval( $row->log_id );
+			$vals['logid'] = (int)$row->log_id;
 		}
 
 		if ( $this->fld_title || $this->fld_parsedcomment ) {
@@ -291,8 +291,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $row->page_id );
-					$vals['logpage'] = intval( $row->log_page );
+					$vals['pageid'] = (int)$row->page_id;
+					$vals['logpage'] = (int)$row->log_page;
 				}
 				if ( $this->fld_details ) {
 					$vals['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
@@ -315,7 +315,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$vals['user'] = $row->user_name === null ? $row->log_user_text : $row->user_name;
 				}
 				if ( $this->fld_userid ) {
-					$vals['userid'] = intval( $row->log_user );
+					$vals['userid'] = (int)$row->log_user;
 				}
 
 				if ( !$row->log_user ) {

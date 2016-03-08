@@ -56,7 +56,7 @@ class RunJobs extends Maintenance {
 		global $wgCommandLineMode;
 
 		if ( $this->hasOption( 'procs' ) ) {
-			$procs = intval( $this->getOption( 'procs' ) );
+			$procs = (int)$this->getOption( 'procs' );
 			if ( $procs < 1 || $procs > 1000 ) {
 				$this->error( "Invalid argument to --procs", true );
 			} elseif ( $procs != 1 ) {

@@ -112,7 +112,7 @@ class ImportTextFiles extends Maintenance {
 					$this->output( "Title $actualTitle already exists. Skipping.\n" );
 					$skipCount++;
 					continue;
-				} elseif ( $useTimestamp && intval( $touched ) >= intval( $timestamp ) ) {
+				} elseif ( $useTimestamp && (int)$touched >= (int)$timestamp ) {
 					$this->output( "File for title $actualTitle has not been modified since the " .
 						"destination page was touched. Skipping.\n" );
 					$skipCount++;

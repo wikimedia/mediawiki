@@ -52,7 +52,7 @@ class HTMLComboboxField extends HTMLTextField {
 			'name' => $this->mName,
 			'id' => $this->mID,
 			'options' => $this->getOptionsOOUI(),
-			'value' => strval( $value ),
+			'value' => (string)$value,
 			'disabled' => $disabled,
 		] + $attribs );
 	}

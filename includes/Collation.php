@@ -334,7 +334,7 @@ class IcuCollation extends Collation {
 	}
 
 	function getFirstLetter( $string ) {
-		$string = strval( $string );
+		$string = (string)$string;
 		if ( $string === '' ) {
 			return '';
 		}

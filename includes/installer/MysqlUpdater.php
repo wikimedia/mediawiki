@@ -568,7 +568,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			__METHOD__
 		);
 
-		$maxold = intval( $this->db->selectField( 'old', 'max(old_id)', '', __METHOD__ ) );
+		$maxold = (int)$this->db->selectField( 'old', 'max(old_id)', '', __METHOD__ );
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......maxold is {$maxold}\n" );
 

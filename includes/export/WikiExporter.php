@@ -136,9 +136,9 @@ class WikiExporter {
 	 *   If 0, no upper limit.
 	 */
 	public function pagesByRange( $start, $end ) {
-		$condition = 'page_id >= ' . intval( $start );
+		$condition = 'page_id >= ' . (int)$start;
 		if ( $end ) {
-			$condition .= ' AND page_id < ' . intval( $end );
+			$condition .= ' AND page_id < ' . (int)$end;
 		}
 		$this->dumpFrom( $condition );
 	}
@@ -151,9 +151,9 @@ class WikiExporter {
 	 *   If 0, no upper limit.
 	 */
 	public function revsByRange( $start, $end ) {
-		$condition = 'rev_id >= ' . intval( $start );
+		$condition = 'rev_id >= ' . (int)$start;
 		if ( $end ) {
-			$condition .= ' AND rev_id < ' . intval( $end );
+			$condition .= ' AND rev_id < ' . (int)$end;
 		}
 		$this->dumpFrom( $condition );
 	}
@@ -198,9 +198,9 @@ class WikiExporter {
 	 * @param int $end
 	 */
 	public function logsByRange( $start, $end ) {
-		$condition = 'log_id >= ' . intval( $start );
+		$condition = 'log_id >= ' . (int)$start;
 		if ( $end ) {
-			$condition .= ' AND log_id < ' . intval( $end );
+			$condition .= ' AND log_id < ' . (int)$end;
 		}
 		$this->dumpFrom( $condition );
 	}
@@ -328,7 +328,7 @@ class WikiExporter {
 				$join['revision'] = [ 'INNER JOIN', $revJoin ];
 				# Set query limit
 				if ( !empty( $this->history['limit'] ) ) {
-					$opts['LIMIT'] = intval( $this->history['limit'] );
+					$opts['LIMIT'] = (int)$this->history['limit'];
 				}
 			} elseif ( $this->history & WikiExporter::FULL ) {
 				# Full history dumps...

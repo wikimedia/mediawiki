@@ -234,7 +234,7 @@ class GenerateSitemap extends Maintenance {
 			 * @var $wgSitemapNamespacesPriorities array
 			 */
 			foreach ( $wgSitemapNamespacesPriorities as $namespace => $priority ) {
-				$float = floatval( $priority );
+				$float = (float)$priority;
 				if ( $float > 1.0 ) {
 					$priority = '1.0';
 				} elseif ( $float < 0.0 ) {

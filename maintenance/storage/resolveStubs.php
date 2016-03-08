@@ -40,14 +40,14 @@ function resolveStubs() {
 	$dbr = wfGetDB( DB_SLAVE );
 	$maxID = $dbr->selectField( 'text', 'MAX(old_id)', false, $fname );
 	$blockSize = 10000;
-	$numBlocks = intval( $maxID / $blockSize ) + 1;
+	$numBlocks = (int)$maxID / $blockSize + 1;
 
 	for ( $b = 0; $b < $numBlocks; $b++ ) {
 		wfWaitForSlaves();
 
 		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
-		$start = intval( $maxID / $numBlocks ) * $b + 1;
-		$end = intval( $maxID / $numBlocks ) * ( $b + 1 );
+		$start = (int)( $maxID / $numBlocks ) * $b + 1;
+		$end = (int)( $maxID / $numBlocks ) * ( $b + 1 );
 
 		$res = $dbr->select( 'text', [ 'old_id', 'old_text', 'old_flags' ],
 			"old_id>=$start AND old_id<=$end " .

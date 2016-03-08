@@ -39,11 +39,11 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		if ( array_key_exists( 'autocomplete-messages', $this->mParams ) ) {
 			foreach ( $this->mParams['autocomplete-messages'] as $key => $value ) {
 				$key = $this->msg( $key )->plain();
-				$this->autocomplete[$key] = strval( $value );
+				$this->autocomplete[$key] = (string)$value;
 			}
 		} elseif ( array_key_exists( 'autocomplete', $this->mParams ) ) {
 			foreach ( $this->mParams['autocomplete'] as $key => $value ) {
-				$this->autocomplete[$key] = strval( $value );
+				$this->autocomplete[$key] = (string)$value;
 			}
 		}
 		if ( !is_array( $this->autocomplete ) || !$this->autocomplete ) {
@@ -89,9 +89,9 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
 
-		if ( in_array( strval( $value ), $validOptions, true ) ) {
+		if ( in_array( (string)$value, $validOptions, true ) ) {
 			return true;
-		} elseif ( in_array( strval( $value ), $this->autocomplete, true ) ) {
+		} elseif ( in_array( (string)$value, $this->autocomplete, true ) ) {
 			return true;
 		} elseif ( $this->mParams['require-match'] ) {
 			return $this->msg( 'htmlform-select-badoption' )->parse();
@@ -125,7 +125,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 		if ( $this->getOptions() ) {
 			if ( $value !== false ) {
-				$value = strval( $value );
+				$value = (string)$value;
 				$valInSelect = in_array(
 					$value, HTMLFormField::flattenOptions( $this->getOptions() ), true
 				);
@@ -152,7 +152,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		if ( $valInSelect ) {
 			$value = '';
 		} else {
-			$key = array_search( strval( $value ), $this->autocomplete, true );
+			$key = array_search( (string)$value, $this->autocomplete, true );
 			if ( $key !== false ) {
 				$value = $key;
 			}

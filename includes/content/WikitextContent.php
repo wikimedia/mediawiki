@@ -81,7 +81,7 @@ class WikitextContent extends TextContent {
 		$oldtext = $this->getNativeData();
 		$text = $with->getNativeData();
 
-		if ( strval( $sectionId ) === '' ) {
+		if ( (string)$sectionId === '' ) {
 			return $with; # XXX: copy first?
 		}
 

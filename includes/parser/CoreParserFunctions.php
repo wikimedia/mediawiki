@@ -93,7 +93,7 @@ class CoreParserFunctions {
 	 * @return array
 	 */
 	public static function intFunction( $parser, $part1 = '' /*, ... */ ) {
-		if ( strval( $part1 ) !== '' ) {
+		if ( (string)$part1 !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )
 				->inLanguage( $parser->getOptions()->getUserLangObj() );
@@ -135,8 +135,8 @@ class CoreParserFunctions {
 
 	public static function ns( $parser, $part1 = '' ) {
 		global $wgContLang;
-		if ( intval( $part1 ) || $part1 == "0" ) {
-			$index = intval( $part1 );
+		if ( (int)$part1 || $part1 == "0" ) {
+			$index = (int)$part1;
 		} else {
 			$index = $wgContLang->getNsIndex( str_replace( ' ', '_', $part1 ) );
 		}
@@ -470,7 +470,7 @@ class CoreParserFunctions {
 	 * @return bool True on successful match
 	 */
 	private static function matchAgainstMagicword( $magicword, $value ) {
-		$value = trim( strval( $value ) );
+		$value = trim( (string)$value );
 		if ( $value === '' ) {
 			return false;
 		}
@@ -508,7 +508,7 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::edits(), $raw );
 	}
 	public static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
-		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
+		return self::formatRaw( SiteStats::pagesInNs( (int)$namespace ), $raw );
 	}
 	public static function numberingroup( $parser, $name = '', $raw = null ) {
 		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
@@ -1014,7 +1014,7 @@ class CoreParserFunctions {
 		$attributes = [];
 		foreach ( $args as $arg ) {
 			$bits = $arg->splitArg();
-			if ( strval( $bits['index'] ) === '' ) {
+			if ( (string)$bits['index'] === '' ) {
 				$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
 				$value = trim( $frame->expand( $bits['value'] ) );
 				if ( preg_match( '/^(?:["\'](.+)["\']|""|\'\')$/s', $value, $m ) ) {

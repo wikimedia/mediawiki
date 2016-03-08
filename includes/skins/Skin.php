@@ -999,7 +999,7 @@ abstract class Skin extends ContextSource {
 		$options = [ 'action' => 'edit' ];
 
 		if ( !$this->isRevisionCurrent() ) {
-			$options['oldid'] = intval( $this->getRevisionId() );
+			$options['oldid'] = (int)$this->getRevisionId();
 		}
 
 		return $options;

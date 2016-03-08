@@ -198,7 +198,7 @@ function wfHtmlValidationHandler( $s ) {
 	$badLines = [];
 	while ( $error !== false ) {
 		if ( preg_match( '/^line (\d+)/', $error, $m ) ) {
-			$lineNum = intval( $m[1] );
+			$lineNum = (int)$m[1];
 			$badLines[$lineNum] = true;
 			$out .= Html::rawElement( 'li', null,
 				Html::element( 'a', [ 'href' => "#line-{$lineNum}" ], $error ) ) . "\n";

@@ -171,7 +171,7 @@ class GenderCache {
 			[ 'LEFT JOIN', [ 'user_id = up_user', 'up_property' => 'gender' ] ] ];
 
 		$comment = __METHOD__;
-		if ( strval( $caller ) !== '' ) {
+		if ( (string)$caller !== '' ) {
 			$comment .= "/$caller";
 		}
 		$res = $dbr->select( $table, $fields, $conds, $comment, [], $joins );

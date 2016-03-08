@@ -228,7 +228,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		parent::setUp();
 		$this->called['setUp'] = true;
 
-		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
+		$this->phpErrorLevel = (int)ini_get( 'error_reporting' );
 
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -297,7 +297,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$wgRequest = new FauxRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 
-		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
+		$phpErrorLevel = (int)ini_get( 'error_reporting' );
 
 		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
 			ini_set( 'error_reporting', $this->phpErrorLevel );

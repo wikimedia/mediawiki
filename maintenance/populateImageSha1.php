@@ -132,7 +132,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 
 			// Upgrade the current file version...
 			$sha1 = $file->getRepo()->getFileSha1( $file->getPath() );
-			if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
+			if ( (string)$sha1 !== '' ) { // file on disk and hashed properly
 				if ( $isRegen && $file->getSha1() !== $sha1 ) {
 					// The population was probably done already. If the old SHA1
 					// does not match, then both fix the SHA1 and the metadata.
@@ -150,7 +150,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			// Upgrade the old file versions...
 			foreach ( $file->getHistory() as $oldFile ) {
 				$sha1 = $oldFile->getRepo()->getFileSha1( $oldFile->getPath() );
-				if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
+				if ( (string)$sha1 !== '' ) { // file on disk and hashed properly
 					if ( $isRegen && $oldFile->getSha1() !== $sha1 ) {
 						// The population was probably done already. If the old SHA1
 						// does not match, then both fix the SHA1 and the metadata.

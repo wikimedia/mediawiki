@@ -17,7 +17,7 @@ class HTMLRadioField extends HTMLFormField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
 
-		if ( in_array( strval( $value ), $validOptions, true ) ) {
+		if ( in_array( (string)$value, $validOptions, true ) ) {
 			return true;
 		} else {
 			return $this->msg( 'htmlform-select-badoption' )->parse();
@@ -33,7 +33,7 @@ class HTMLRadioField extends HTMLFormField {
 	 * @return string
 	 */
 	function getInputHTML( $value ) {
-		$html = $this->formatOptions( $this->getOptions(), strval( $value ) );
+		$html = $this->formatOptions( $this->getOptions(), (string)$value );
 
 		return $html;
 	}

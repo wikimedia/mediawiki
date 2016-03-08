@@ -982,7 +982,7 @@ abstract class DatabaseUpdater {
 				[ 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ], __METHOD__
 			);
 			$this->db->update( 'site_stats',
-				[ 'ss_active_users' => intval( $activeUsers ) ],
+				[ 'ss_active_users' => (int)$activeUsers ],
 				[ 'ss_row_id' => 1 ], __METHOD__, [ 'LIMIT' => 1 ]
 			);
 		}

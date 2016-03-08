@@ -108,7 +108,7 @@ class MediaWiki {
 
 		// Use the main page as default title if nothing else has been provided
 		if ( $ret === null
-			&& strval( $title ) === ''
+			&& (string)$title === ''
 			&& !$request->getCheck( 'curid' )
 			&& $action !== 'delete'
 		) {
@@ -801,7 +801,7 @@ class MediaWiki {
 			}
 			$n = 1;
 		} else {
-			$n = intval( $jobRunRate );
+			$n = (int)$jobRunRate;
 		}
 
 		$runJobsLogger = LoggerFactory::getInstance( 'runJobs' );

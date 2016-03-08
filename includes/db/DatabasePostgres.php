@@ -1435,7 +1435,7 @@ SQL;
 		if ( is_null( $s ) ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
-			return intval( $s );
+			return (int)$s;
 		} elseif ( $s instanceof Blob ) {
 			if ( $s instanceof PostgresBlob ) {
 				$s = $s->fetch();

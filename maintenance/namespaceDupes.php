@@ -76,7 +76,7 @@ class NamespaceConflictChecker extends Maintenance {
 			'add-prefix' => $this->getOption( 'add-prefix', '' ),
 			'move-talk' => $this->hasOption( 'move-talk' ),
 			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
-			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) ) ];
+			'dest-namespace' => (int)$this->getOption( 'dest-namespace', 0 ) ];
 
 		if ( $options['source-pseudo-namespace'] !== '' ) {
 			$retval = $this->checkPrefix( $options );

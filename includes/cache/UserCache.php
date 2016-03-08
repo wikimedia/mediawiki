@@ -106,7 +106,7 @@ class UserCache {
 			$fields = [ 'user_name', 'user_real_name', 'user_registration', 'user_id' ];
 
 			$comment = __METHOD__;
-			if ( strval( $caller ) !== '' ) {
+			if ( (string)$caller !== '' ) {
 				$comment .= "/$caller";
 			}
 

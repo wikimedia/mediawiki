@@ -105,7 +105,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$ns = $request->getVal( 'namespace', null );
 		if ( $ns !== null && $ns !== '' ) {
-			$this->opts['namespace'] = intval( $ns );
+			$this->opts['namespace'] = (int)$ns;
 		} else {
 			$this->opts['namespace'] = '';
 		}
@@ -1081,7 +1081,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					$page,
 					htmlspecialchars( $date ),
 					[ 'class' => 'mw-changeslist-date' ],
-					[ 'oldid' => intval( $row->rev_id ) ]
+					[ 'oldid' => (int)$row->rev_id ]
 				);
 			} else {
 				$d = htmlspecialchars( $date );

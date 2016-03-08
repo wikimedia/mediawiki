@@ -164,9 +164,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
-			$vals['revid'] = intval( $revision->getId() );
+			$vals['revid'] = (int)$revision->getId();
 			if ( !is_null( $revision->getParentId() ) ) {
-				$vals['parentid'] = intval( $revision->getParentId() );
+				$vals['parentid'] = (int)$revision->getParentId();
 			}
 		}
 
@@ -200,7 +200,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_size ) {
 			if ( !is_null( $revision->getSize() ) ) {
-				$vals['size'] = intval( $revision->getSize() );
+				$vals['size'] = (int)$revision->getSize();
 			} else {
 				$vals['size'] = 0;
 			}

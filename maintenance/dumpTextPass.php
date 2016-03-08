@@ -137,7 +137,7 @@ TEXT
 		parent::processOptions();
 
 		if ( $this->hasOption( 'buffersize' ) ) {
-			$this->bufferSize = max( intval( $this->getOption( 'buffersize' ) ), 4 * 1024 );
+			$this->bufferSize = max( (int)$this->getOption( 'buffersize' ), 4 * 1024 );
 		}
 
 		if ( $this->hasOption( 'prefetch' ) ) {
@@ -151,7 +151,7 @@ TEXT
 		}
 
 		if ( $this->hasOption( 'maxtime' ) ) {
-			$this->maxTimeAllowed = intval( $this->getOption( 'maxtime' ) ) * 60;
+			$this->maxTimeAllowed = (int)$this->getOption( 'maxtime' ) * 60;
 		}
 
 		if ( $this->hasOption( 'checkpointfile' ) ) {
@@ -325,7 +325,7 @@ TEXT
 			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
 				$eta = $this->startTime + $deltaAll / $portion;
-				$etats = wfTimestamp( TS_DB, intval( $eta ) );
+				$etats = wfTimestamp( TS_DB, (int)$eta );
 				if ( $this->fetchCount ) {
 					$fetchRate = 100.0 * $this->prefetchCount / $this->fetchCount;
 				} else {
@@ -580,8 +580,8 @@ TEXT
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
-					$text = $this->prefetch->prefetch( intval( $this->thisPage ),
-						intval( $this->thisRev ) );
+					$text = $this->prefetch->prefetch( (int)$this->thisPage,
+						(int)$this->thisRev );
 
 					if ( $text === null ) {
 						$text = false;
@@ -628,7 +628,7 @@ TEXT
 
 				// Step 2: Checking for plausibility and return the text if it is
 				//         plausible
-				$revID = intval( $this->thisRev );
+				$revID = (int)$this->thisRev;
 				if ( !isset( $this->db ) ) {
 					throw new MWException( "No database available" );
 				}
@@ -811,7 +811,7 @@ TEXT
 		if ( $newId === false ) {
 			return false;
 		}
-		if ( $id != intval( $newId ) ) {
+		if ( $id != (int)$newId ) {
 			return false;
 		}
 
@@ -821,7 +821,7 @@ TEXT
 			return false;
 		}
 
-		$nbytes = intval( $len );
+		$nbytes = (int)$len;
 		// actual error, not zero-length text
 		if ( $nbytes < 0 ) {
 			return false;

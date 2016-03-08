@@ -227,7 +227,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$offset = 0;
 		}
 		$data['timezone'] = $tz;
-		$data['timeoffset'] = intval( $offset );
+		$data['timeoffset'] = (int)$offset;
 		$data['articlepath'] = $config->get( 'ArticlePath' );
 		$data['scriptpath'] = $config->get( 'ScriptPath' );
 		$data['script'] = $config->get( 'Script' );
@@ -277,7 +277,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		];
 		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
 			$data[$ns] = [
-				'id' => intval( $ns ),
+				'id' => (int)$ns,
 				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			];
 			ApiResult::setContentValue( $data[$ns], 'name', $title );
@@ -316,7 +316,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				continue;
 			}
 			$item = [
-				'id' => intval( $ns )
+				'id' => (int)$ns
 			];
 			ApiResult::setContentValue( $item, 'alias', strtr( $title, '_', ' ' ) );
 			$data[] = $item;
@@ -452,7 +452,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'host' => $showHostnames
 						? $lb->getServerName( $index )
 						: '',
-				'lag' => intval( $lag )
+				'lag' => (int)$lag
 			];
 		}
 
@@ -463,14 +463,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendStatistics( $property ) {
 		$data = [];
-		$data['pages'] = intval( SiteStats::pages() );
-		$data['articles'] = intval( SiteStats::articles() );
-		$data['edits'] = intval( SiteStats::edits() );
-		$data['images'] = intval( SiteStats::images() );
-		$data['users'] = intval( SiteStats::users() );
-		$data['activeusers'] = intval( SiteStats::activeUsers() );
-		$data['admins'] = intval( SiteStats::numberingroup( 'sysop' ) );
-		$data['jobs'] = intval( SiteStats::jobs() );
+		$data['pages'] = (int)SiteStats::pages();
+		$data['articles'] = (int)SiteStats::articles();
+		$data['edits'] = (int)SiteStats::edits();
+		$data['images'] = (int)SiteStats::images();
+		$data['users'] = (int)SiteStats::users();
+		$data['activeusers'] = (int)SiteStats::activeUsers();
+		$data['admins'] = (int)SiteStats::numberingroup( 'sysop' );
+		$data['jobs'] = (int)SiteStats::jobs();
 
 		Hooks::run( 'APIQuerySiteInfoStatisticsInfo', [ &$data ] );
 

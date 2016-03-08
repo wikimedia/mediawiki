@@ -362,8 +362,8 @@ class SVGReader {
 		}
 
 		if ( $width > 0 && $height > 0 ) {
-			$this->metadata['width'] = intval( round( $width ) );
-			$this->metadata['height'] = intval( round( $height ) );
+			$this->metadata['width'] = (int)round( $width );
+			$this->metadata['height'] = (int)round( $height );
 		}
 	}
 
@@ -389,7 +389,7 @@ class SVGReader {
 		];
 		$matches = [];
 		if ( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
-			$length = floatval( $matches[1] );
+			$length = (float)$matches[1];
 			$unit = $matches[2];
 			if ( $unit == '%' ) {
 				return $length * 0.01 * $viewportSize;
@@ -398,7 +398,7 @@ class SVGReader {
 			}
 		} else {
 			// Assume pixels
-			return floatval( $length );
+			return (float)$length;
 		}
 	}
 }

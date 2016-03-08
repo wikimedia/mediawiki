@@ -208,7 +208,7 @@ class FauxResponse extends WebResponse {
 	public function header( $string, $replace = true, $http_response_code = null ) {
 		if ( substr( $string, 0, 5 ) == 'HTTP/' ) {
 			$parts = explode( ' ', $string, 3 );
-			$this->code = intval( $parts[1] );
+			$this->code = (int)$parts[1];
 		} else {
 			list( $key, $val ) = array_map( 'trim', explode( ":", $string, 2 ) );
 
@@ -220,7 +220,7 @@ class FauxResponse extends WebResponse {
 		}
 
 		if ( $http_response_code !== null ) {
-			$this->code = intval( $http_response_code );
+			$this->code = (int)$http_response_code;
 		}
 	}
 
@@ -229,7 +229,7 @@ class FauxResponse extends WebResponse {
 	 * @param int $code Status code
 	 */
 	public function statusHeader( $code ) {
-		$this->code = intval( $code );
+		$this->code = (int)$code;
 	}
 
 	public function headersSent() {

@@ -44,7 +44,7 @@ class PurgeList extends Maintenance {
 		if ( $this->hasOption( 'all' ) ) {
 			$this->purgeNamespace( false );
 		} elseif ( $this->hasOption( 'namespace' ) ) {
-			$this->purgeNamespace( intval( $this->getOption( 'namespace' ) ) );
+			$this->purgeNamespace( (int)$this->getOption( 'namespace' ) );
 		} else {
 			$this->doPurge();
 		}
@@ -124,7 +124,7 @@ class PurgeList extends Maintenance {
 	 */
 	private function sendPurgeRequest( $urls ) {
 		if ( $this->hasOption( 'delay' ) ) {
-			$delay = floatval( $this->getOption( 'delay' ) );
+			$delay = (float)$this->getOption( 'delay' );
 			foreach ( $urls as $url ) {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $url . "\n" );

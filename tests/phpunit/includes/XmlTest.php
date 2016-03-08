@@ -140,10 +140,10 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::dateMenu
 	 */
 	public function testDateMenu() {
-		$curYear = intval( gmdate( 'Y' ) );
+		$curYear = (int)gmdate( 'Y' );
 		$prevYear = $curYear - 1;
 
-		$curMonth = intval( gmdate( 'n' ) );
+		$curMonth = (int)gmdate( 'n' );
 
 		$nextMonth = $curMonth + 1;
 		if ( $nextMonth == 13 ) {

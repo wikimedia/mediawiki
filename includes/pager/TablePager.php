@@ -118,7 +118,7 @@ abstract class TablePager extends IndexPager {
 
 		// Make table header
 		foreach ( $fields as $field => $name ) {
-			if ( strval( $name ) == '' ) {
+			if ( (string)$name == '' ) {
 				$s .= Html::rawElement( 'th', [], '&#160;' ) . "\n";
 			} elseif ( $this->isFieldSortable( $field ) ) {
 				$query = [ 'sort' => $field, 'limit' => $this->mLimit ];
@@ -189,7 +189,7 @@ abstract class TablePager extends IndexPager {
 
 		foreach ( $fieldNames as $field => $name ) {
 			$value = isset( $row->$field ) ? $row->$field : null;
-			$formatted = strval( $this->formatValue( $field, $value ) );
+			$formatted = (string)$this->formatValue( $field, $value );
 
 			if ( $formatted == '' ) {
 				$formatted = '&#160;';

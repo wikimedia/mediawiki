@@ -1415,7 +1415,7 @@ class Sanitizer {
 	 * @return null|string
 	 */
 	static function decCharReference( $codepoint ) {
-		$point = intval( $codepoint );
+		$point = (int)$codepoint;
 		if ( Sanitizer::validateCodepoint( $point ) ) {
 			return sprintf( '&#%d;', $point );
 		} else {
@@ -1500,7 +1500,7 @@ class Sanitizer {
 		if ( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif ( $matches[2] != '' ) {
-			return Sanitizer::decodeChar( intval( $matches[2] ) );
+			return Sanitizer::decodeChar( (int)$matches[2] );
 		} elseif ( $matches[3] != '' ) {
 			return Sanitizer::decodeChar( hexdec( $matches[3] ) );
 		}

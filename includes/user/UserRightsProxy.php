@@ -40,7 +40,7 @@ class UserRightsProxy {
 		$this->db = $db;
 		$this->database = $database;
 		$this->name = $name;
-		$this->id = intval( $id );
+		$this->id = (int)$id;
 		$this->newOptions = [];
 	}
 
@@ -90,7 +90,7 @@ class UserRightsProxy {
 	 * @return UserRightsProxy|null If doesn't exist
 	 */
 	public static function newFromId( $database, $id, $ignoreInvalidDB = false ) {
-		return self::newFromLookup( $database, 'user_id', intval( $id ), $ignoreInvalidDB );
+		return self::newFromLookup( $database, 'user_id', (int)$id, $ignoreInvalidDB );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class UserRightsProxy {
 			if ( $row !== false ) {
 				return new UserRightsProxy( $db, $database,
 					$row->user_name,
-					intval( $row->user_id ) );
+					(int)$row->user_id );
 			}
 		}
 		return null;

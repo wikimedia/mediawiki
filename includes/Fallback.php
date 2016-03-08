@@ -43,12 +43,12 @@ class Fallback {
 	 */
 	public static function mb_substr( $str, $start, $count = 'end' ) {
 		if ( $start != 0 ) {
-			$split = self::mb_substr_split_unicode( $str, intval( $start ) );
+			$split = self::mb_substr_split_unicode( $str, (int)$start );
 			$str = substr( $str, $split );
 		}
 
 		if ( $count !== 'end' ) {
-			$split = self::mb_substr_split_unicode( $str, intval( $count ) );
+			$split = self::mb_substr_split_unicode( $str, (int)$count );
 			$str = substr( $str, 0, $split );
 		}
 

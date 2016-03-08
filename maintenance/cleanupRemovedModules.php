@@ -44,7 +44,7 @@ class CleanupRemovedModules extends Maintenance {
 		$rl = new ResourceLoader( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 		$moduleNames = $rl->getModuleNames();
 		$moduleList = implode( ', ', array_map( [ $dbw, 'addQuotes' ], $moduleNames ) );
-		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
+		$limit = max( 1, (int)$this->getOption( 'batchsize', 500 ) );
 
 		$this->output( "Cleaning up module_deps table...\n" );
 		$i = 1;

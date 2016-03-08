@@ -412,7 +412,7 @@ class AllMessagesTablePager extends TablePager {
 		// But if there's a customised message, add that too.
 		if ( $row->am_customised ) {
 			$s .= Xml::openElement( 'tr', $this->getRowAttrs( $row, true ) );
-			$formatted = strval( $this->formatValue( 'am_actual', $row->am_actual ) );
+			$formatted = (string)$this->formatValue( 'am_actual', $row->am_actual );
 
 			if ( $formatted === '' ) {
 				$formatted = '&#160;';

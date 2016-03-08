@@ -281,7 +281,7 @@ class Title implements LinkTarget {
 		}
 
 		try {
-			return Title::newFromTextThrow( strval( $text ), $defaultNamespace );
+			return Title::newFromTextThrow( (string)$text, $defaultNamespace );
 		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
@@ -324,7 +324,7 @@ class Title implements LinkTarget {
 
 		$t = new Title();
 		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
-		$t->mDefaultNamespace = intval( $defaultNamespace );
+		$t->mDefaultNamespace = (int)$defaultNamespace;
 
 		$t->secureAndSplit();
 		if ( $defaultNamespace == NS_MAIN ) {
@@ -486,7 +486,7 @@ class Title implements LinkTarget {
 				$this->mLatestID = (int)$row->page_latest;
 			}
 			if ( isset( $row->page_content_model ) ) {
-				$this->mContentModel = strval( $row->page_content_model );
+				$this->mContentModel = (string)$row->page_content_model;
 			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 			}
@@ -522,7 +522,7 @@ class Title implements LinkTarget {
 		$t = new Title();
 		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
-		$t->mNamespace = $ns = intval( $ns );
+		$t->mNamespace = $ns = (int)$ns;
 		$t->mDbkeyform = strtr( $title, ' ', '_' );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
@@ -794,10 +794,10 @@ class Title implements LinkTarget {
 			$namespace = $wgContLang->getNsText( $ns );
 		}
 		$name = $namespace == '' ? $title : "$namespace:$title";
-		if ( strval( $interwiki ) != '' ) {
+		if ( (string)$interwiki != '' ) {
 			$name = "$interwiki:$name";
 		}
-		if ( strval( $fragment ) != '' ) {
+		if ( (string)$fragment != '' ) {
 			$name .= '#' . $fragment;
 		}
 		return $name;
@@ -3247,7 +3247,7 @@ class Title implements LinkTarget {
 			return $this->mLength;
 		}
 
-		$this->mLength = intval( $cached );
+		$this->mLength = (int)$cached;
 
 		return $this->mLength;
 	}
@@ -3260,7 +3260,7 @@ class Title implements LinkTarget {
 	 */
 	public function getLatestRevID( $flags = 0 ) {
 		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
-			return intval( $this->mLatestID );
+			return (int)$this->mLatestID;
 		}
 		if ( !$this->getArticleID( $flags ) ) {
 			$this->mLatestID = 0;
@@ -3275,7 +3275,7 @@ class Title implements LinkTarget {
 			return $this->mLatestID;
 		}
 
-		$this->mLatestID = intval( $cached );
+		$this->mLatestID = (int)$cached;
 
 		return $this->mLatestID;
 	}
@@ -3297,7 +3297,7 @@ class Title implements LinkTarget {
 		if ( $newid === false ) {
 			$this->mArticleID = -1;
 		} else {
-			$this->mArticleID = intval( $newid );
+			$this->mArticleID = (int)$newid;
 		}
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = [];
@@ -3792,11 +3792,11 @@ class Title implements LinkTarget {
 			[ 'FOR UPDATE' ]
 		);
 		# Cache some fields we may want
-		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
+		$this->mArticleID = $row ? (int)$row->page_id : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
-		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
+		$this->mLatestID = $row ? (int)$row->page_latest : false;
 		$this->mContentModel = $row && isset( $row->page_content_model )
-			? strval( $row->page_content_model )
+			? (string)$row->page_content_model
 			: false;
 
 		if ( !$this->mRedirect ) {
@@ -3956,7 +3956,7 @@ class Title implements LinkTarget {
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
-				'rev_id < ' . intval( $revId )
+				'rev_id < ' . (int)$revId
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'rev_id DESC' ]
@@ -3965,7 +3965,7 @@ class Title implements LinkTarget {
 		if ( $revId === false ) {
 			return false;
 		} else {
-			return intval( $revId );
+			return (int)$revId;
 		}
 	}
 
@@ -3981,7 +3981,7 @@ class Title implements LinkTarget {
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $this->getArticleID( $flags ),
-				'rev_id > ' . intval( $revId )
+				'rev_id > ' . (int)$revId
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'rev_id' ]
@@ -3990,7 +3990,7 @@ class Title implements LinkTarget {
 		if ( $revId === false ) {
 			return false;
 		} else {
-			return intval( $revId );
+			return (int)$revId;
 		}
 	}
 

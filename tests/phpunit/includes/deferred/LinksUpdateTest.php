@@ -341,7 +341,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				$value = $row[1];
 
 				if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
-					$row[] = floatval( $value );
+					$row[] = (float)$value;
 				} else {
 					$row[] = null;
 				}

@@ -374,7 +374,7 @@ class Html {
 			if ( is_array( $value ) ) {
 				$value = implode( ' ', $value );
 			} else {
-				$value = strval( $value );
+				$value = (string)$value;
 			}
 
 			// Simple checks using $attribDefaults
@@ -391,7 +391,7 @@ class Html {
 
 		// More subtle checks
 		if ( $element === 'link'
-			&& isset( $attribs['type'] ) && strval( $attribs['type'] ) == 'text/css'
+			&& isset( $attribs['type'] ) && (string)$attribs['type'] == 'text/css'
 		) {
 			unset( $attribs['type'] );
 		}
@@ -423,12 +423,12 @@ class Html {
 				|| ( isset( $attribs['multiple'] ) && $attribs['multiple'] !== false )
 			) {
 				// A multi-select
-				if ( strval( $attribs['size'] ) == '4' ) {
+				if ( (string)$attribs['size'] == '4' ) {
 					unset( $attribs['size'] );
 				}
 			} else {
 				// Single select
-				if ( strval( $attribs['size'] ) == '1' ) {
+				if ( (string)$attribs['size'] == '1' ) {
 					unset( $attribs['size'] );
 				}
 			}
@@ -886,7 +886,7 @@ class Html {
 			// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
 			// and returns false for already clean ints. Use regex instead..
 			if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
-				$params['selected'] = intval( $params['selected'] );
+				$params['selected'] = (int)$params['selected'];
 			}
 			// else: leaves it untouched for later processing
 		} else {

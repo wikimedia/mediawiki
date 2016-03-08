@@ -641,8 +641,8 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromSlaveStatus() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $res ? $res->fetchObject() : false;
-		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
-			return intval( $row->Seconds_Behind_Master );
+		if ( $row && (string)$row->Seconds_Behind_Master !== '' ) {
+			return (int)$row->Seconds_Behind_Master;
 		}
 
 		return false;
@@ -732,7 +732,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Note: this would use "MAX(TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)))" but the
 		// percision field is not supported in MySQL <= 5.5.
 		$res = $this->query(
-			"SELECT ts FROM heartbeat.heartbeat WHERE server_id=" . intval( $masterId )
+			"SELECT ts FROM heartbeat.heartbeat WHERE server_id=" . (int)$masterId
 		);
 		$row = $res ? $res->fetchObject() : false;
 
@@ -771,7 +771,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->addQuotes( $pos->file );
-		$encPos = intval( $pos->pos );
+		$encPos = (int)$pos->pos;
 		$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
 
 		$row = $res ? $this->fetchRow( $res ) : false;
@@ -780,7 +780,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
-		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
+		$status = ( $row[0] !== null ) ? (int)$row[0] : null;
 		if ( $status === null ) {
 			// T126436: jobs programmed to wait on master positions might be referencing binlogs
 			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try

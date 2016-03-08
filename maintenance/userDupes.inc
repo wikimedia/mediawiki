@@ -263,11 +263,11 @@ class UserDupes {
 	 * @access private
 	 */
 	function editCount( $userid ) {
-		return intval( $this->db->selectField(
+		return (int)$this->db->selectField(
 			'revision',
 			'COUNT(*)',
 			[ 'rev_user' => $userid ],
-			__METHOD__ ) );
+			__METHOD__ );
 	}
 
 	/**

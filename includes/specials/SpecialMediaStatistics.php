@@ -135,7 +135,7 @@ class MediaStatisticsPage extends QueryPage {
 				$this->outputTableStart( $mediaType );
 				$prevMediaType = $mediaType;
 			}
-			$this->outputTableRow( $mime, intval( $totalCount ), intval( $totalBytes ) );
+			$this->outputTableRow( $mime, (int)$totalCount, (int)$totalBytes );
 		}
 		if ( $prevMediaType !== null ) {
 			$this->outputTableEnd();

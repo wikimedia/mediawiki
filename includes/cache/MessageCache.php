@@ -474,7 +474,7 @@ class MessageCache {
 
 		# Conditions to fetch oversized pages to ignore them
 		$bigConds = $conds;
-		$bigConds[] = 'page_len > ' . intval( $wgMaxMsgCacheEntrySize );
+		$bigConds[] = 'page_len > ' . (int)$wgMaxMsgCacheEntrySize;
 
 		# Load titles for all oversized pages in the MediaWiki namespace
 		$res = $dbr->select( 'page', 'page_title', $bigConds, __METHOD__ . "($code)-big" );
@@ -486,7 +486,7 @@ class MessageCache {
 		$smallConds = $conds;
 		$smallConds[] = 'page_latest=rev_id';
 		$smallConds[] = 'rev_text_id=old_id';
-		$smallConds[] = 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize );
+		$smallConds[] = 'page_len <= ' . (int)$wgMaxMsgCacheEntrySize;
 
 		$res = $dbr->select(
 			[ 'page', 'revision', 'text' ],

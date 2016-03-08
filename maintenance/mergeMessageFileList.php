@@ -170,7 +170,7 @@ require_once RUN_MAINTENANCE_IF_MAIN;
 
 $queue = [];
 foreach ( $mmfl['setupFiles'] as $fileName ) {
-	if ( strval( $fileName ) === '' ) {
+	if ( (string)$fileName === '' ) {
 		continue;
 	}
 	if ( empty( $mmfl['quiet'] ) ) {

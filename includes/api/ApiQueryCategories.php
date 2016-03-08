@@ -86,7 +86,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$clfrom = intval( $cont[0] );
+			$clfrom = (int)$cont[0];
 			$clto = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
 				"cl_from $op $clfrom OR " .

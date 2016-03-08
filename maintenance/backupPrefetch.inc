@@ -68,8 +68,8 @@ class BaseDump {
 	 * @return string|null
 	 */
 	function prefetch( $page, $rev ) {
-		$page = intval( $page );
-		$rev = intval( $rev );
+		$page = (int)$page;
+		$rev = (int)$rev;
 		while ( $this->lastPage < $page && !$this->atEnd ) {
 			$this->debug( "BaseDump::prefetch at page $this->lastPage, looking for $page" );
 			$this->nextPage();
@@ -109,7 +109,7 @@ class BaseDump {
 	function nextPage() {
 		if ( $this->skipTo( 'page', 'mediawiki' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
-				$this->lastPage = intval( $this->nodeContents() );
+				$this->lastPage = (int)$this->nodeContents();
 				$this->lastRev = 0;
 				$this->atPageEnd = false;
 			}
@@ -129,7 +129,7 @@ class BaseDump {
 	function nextRev() {
 		if ( $this->skipTo( 'revision' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
-				$this->lastRev = intval( $this->nodeContents() );
+				$this->lastRev = (int)$this->nodeContents();
 			}
 		} else {
 			$this->atPageEnd = true;
@@ -143,7 +143,7 @@ class BaseDump {
 	function nextText() {
 		$this->skipTo( 'text' );
 
-		return strval( $this->nodeContents() );
+		return (string)$this->nodeContents();
 	}
 
 	/**

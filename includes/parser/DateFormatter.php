@@ -275,14 +275,14 @@ class DateFormatter {
 					break;
 				case 'j': # ordinary day of month
 					if ( !isset( $bits['j'] ) ) {
-						$text .= intval( $bits['d'] );
+						$text .= (int)$bits['d'];
 					} else {
 						$text .= $bits['j'];
 					}
 					break;
 				case 'F': # long month
 					if ( !isset( $bits['F'] ) ) {
-						$m = intval( $bits['m'] );
+						$m = (int)$bits['m'];
 						if ( $m > 12 || $m < 1 ) {
 							$fail = true;
 						} else {
@@ -350,7 +350,7 @@ class DateFormatter {
 	public function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
-			$num = intval( substr( $year, 0, -3 ) ) - 1;
+			$num = (int)substr( $year, 0, -3 ) - 1;
 			# PHP bug note: sprintf( "%04d", -1 ) fails poorly
 			$text = sprintf( '-%04d', $num );
 
@@ -368,9 +368,9 @@ class DateFormatter {
 	 */
 	public function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
-			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
+			$text = ( (int)substr( $iso, 1 ) + 1 ) . ' BC';
 		} else {
-			$text = intval( $iso );
+			$text = (int)$iso;
 		}
 		return $text;
 	}

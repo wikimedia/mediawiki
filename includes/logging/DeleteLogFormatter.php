@@ -157,7 +157,7 @@ class DeleteLogFormatter extends LogFormatter {
 							$this->msg( 'diff' )->escaped(),
 							[],
 							[
-								'diff' => intval( $ids[0] ),
+								'diff' => (int)$ids[0],
 								'unhide' => 1
 							]
 						);

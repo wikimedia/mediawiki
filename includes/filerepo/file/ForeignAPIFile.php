@@ -154,7 +154,7 @@ class ForeignAPIFile extends File {
 	 * @return int|number
 	 */
 	public function getWidth( $page = 1 ) {
-		return isset( $this->mInfo['width'] ) ? intval( $this->mInfo['width'] ) : 0;
+		return isset( $this->mInfo['width'] ) ? (int)$this->mInfo['width'] : 0;
 	}
 
 	/**
@@ -162,7 +162,7 @@ class ForeignAPIFile extends File {
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
-		return isset( $this->mInfo['height'] ) ? intval( $this->mInfo['height'] ) : 0;
+		return isset( $this->mInfo['height'] ) ? (int)$this->mInfo['height'] : 0;
 	}
 
 	/**
@@ -208,14 +208,14 @@ class ForeignAPIFile extends File {
 	 * @return bool|int|null
 	 */
 	public function getSize() {
-		return isset( $this->mInfo['size'] ) ? intval( $this->mInfo['size'] ) : null;
+		return isset( $this->mInfo['size'] ) ? (int)$this->mInfo['size'] : null;
 	}
 
 	/**
 	 * @return null|string
 	 */
 	public function getUrl() {
-		return isset( $this->mInfo['url'] ) ? strval( $this->mInfo['url'] ) : null;
+		return isset( $this->mInfo['url'] ) ? (string)$this->mInfo['url'] : null;
 	}
 
 	/**
@@ -243,7 +243,7 @@ class ForeignAPIFile extends File {
 	 */
 	public function getUser( $type = 'text' ) {
 		if ( $type == 'text' ) {
-			return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
+			return isset( $this->mInfo['user'] ) ? (string)$this->mInfo['user'] : null;
 		} elseif ( $type == 'id' ) {
 			return 0; // What makes sense here, for a remote user?
 		}
@@ -255,7 +255,7 @@ class ForeignAPIFile extends File {
 	 * @return null|string
 	 */
 	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
-		return isset( $this->mInfo['comment'] ) ? strval( $this->mInfo['comment'] ) : null;
+		return isset( $this->mInfo['comment'] ) ? (string)$this->mInfo['comment'] : null;
 	}
 
 	/**
@@ -263,7 +263,7 @@ class ForeignAPIFile extends File {
 	 */
 	function getSha1() {
 		return isset( $this->mInfo['sha1'] )
-			? Wikimedia\base_convert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
+			? Wikimedia\base_convert( (string)$this->mInfo['sha1'], 16, 36, 31 )
 			: null;
 	}
 
@@ -273,7 +273,7 @@ class ForeignAPIFile extends File {
 	function getTimestamp() {
 		return wfTimestamp( TS_MW,
 			isset( $this->mInfo['timestamp'] )
-				? strval( $this->mInfo['timestamp'] )
+				? (string)$this->mInfo['timestamp']
 				: null
 		);
 	}

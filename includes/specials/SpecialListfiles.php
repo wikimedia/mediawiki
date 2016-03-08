@@ -521,7 +521,7 @@ class ImageListPager extends TablePager {
 			case 'img_description':
 				return Linker::formatComment( $value );
 			case 'count':
-				return intval( $value ) + 1;
+				return (int)$value + 1;
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value );

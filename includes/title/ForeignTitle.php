@@ -48,7 +48,7 @@ class ForeignTitle {
 		if ( is_null( $namespaceId ) ) {
 			$this->namespaceId = null;
 		} else {
-			$this->namespaceId = intval( $namespaceId );
+			$this->namespaceId = (int)$namespaceId;
 		}
 		$this->namespaceName = str_replace( ' ', '_', $namespaceName );
 		$this->pageName = str_replace( ' ', '_', $pageName );

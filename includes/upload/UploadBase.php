@@ -1958,7 +1958,7 @@ abstract class UploadBase {
 				return $wgMaxUploadSize['*'];
 			}
 		} else {
-			return intval( $wgMaxUploadSize );
+			return (int)$wgMaxUploadSize;
 		}
 	}
 

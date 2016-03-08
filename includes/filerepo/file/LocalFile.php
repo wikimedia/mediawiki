@@ -1265,8 +1265,8 @@ class LocalFile extends File {
 			[
 				'img_name' => $this->getName(),
 				'img_size' => $this->size,
-				'img_width' => intval( $this->width ),
-				'img_height' => intval( $this->height ),
+				'img_width' => (int)$this->width,
+				'img_height' => (int)$this->height,
 				'img_bits' => $this->bits,
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $this->major_mime,
@@ -1335,8 +1335,8 @@ class LocalFile extends File {
 			$dbw->update( 'image',
 				[
 					'img_size' => $this->size,
-					'img_width' => intval( $this->width ),
-					'img_height' => intval( $this->height ),
+					'img_width' => (int)$this->width,
+					'img_height' => (int)$this->height,
 					'img_bits' => $this->bits,
 					'img_media_type' => $this->media_type,
 					'img_major_mime' => $this->major_mime,
@@ -1872,7 +1872,7 @@ class LocalFile extends File {
 			$this->lock(); // begin
 
 			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
-			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
+			if ( !wfReadOnly() && (string)$this->sha1 != '' ) {
 				$dbw = $this->repo->getMasterDB();
 				$dbw->update( 'image',
 					[ 'img_sha1' => $this->sha1 ],
