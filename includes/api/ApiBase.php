@@ -2534,21 +2534,6 @@ abstract class ApiBase extends ContextSource {
 	const PROP_NULLABLE = 1;
 
 	/**
-	 * Formerly used to fetch a list of possible properites in the result,
-	 * somehow organized with respect to the prop parameter that causes them to
-	 * be returned. The specific semantics of the return value was never
-	 * specified. Since this was never possible to be accurately updated, it
-	 * has been removed.
-	 *
-	 * @deprecated since 1.24
-	 * @return array|bool
-	 */
-	protected function getResultProperties() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return false;
-	}
-
-	/**
 	 * This formerly attempted to return a list of all possible errors returned
 	 * by the module. However, this was impossible to maintain in many cases
 	 * since errors could come from other areas of MediaWiki and in some cases

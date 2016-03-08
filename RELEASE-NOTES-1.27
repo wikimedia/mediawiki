@@ -218,6 +218,7 @@ HHVM 3.1.
 * ApiBase::getRequireAtLeastOneParameterErrorMessages() was removed (deprecated since 1.24).
 * ApiBase::getRequireMaxOneParameterErrorMessages() was removed (deprecated since 1.24).
 * ApiBase::getRequireOnlyOneParameterErrorMessages() was removed (deprecated since 1.24).
+* ApiBase::getResultProperties() was removed (deprecated since 1.24).
 * ApiBase::getTitleOrPageIdErrorMessage() was removed (deprecated since 1.24).
 * ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
   ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
