@@ -275,7 +275,7 @@ class ApiParse extends ApiBase {
 		$result_array = [];
 
 		$result_array['title'] = $titleObj->getPrefixedText();
-		$result_array['pageid'] = $pageid ? $pageid : $pageObj->getId();
+		$result_array['pageid'] = $pageid ?: $pageObj->getId();
 
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
@@ -341,8 +341,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
-			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?
-				$p_result->getDisplayTitle() :
+			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?:
 				$titleObj->getPrefixedText();
 		}
 
