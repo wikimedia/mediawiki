@@ -18,7 +18,6 @@
  * @file
  * @ingroup Watchlist
  */
-use Wikimedia\Assert\Assert;
 
 /**
  * Representation of a pair of user and title for watchlist entries.
