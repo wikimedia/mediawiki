@@ -151,7 +151,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * Initialize the printer function and prepare the output headers.
 	 * @param bool $unused Always false since 1.25
 	 */
-	function initPrinter( $unused = false ) {
+	public function initPrinter( $unused = false ) {
 		if ( $this->mDisabled ) {
 			return;
 		}
