@@ -203,16 +203,6 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Get whether the specified module is a prop, list or a meta query module
-	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
-	 * @param string $moduleName Name of the module to find type for
-	 * @return string|null
-	 */
-	function getModuleType( $moduleName ) {
-		return $this->getModuleManager()->getModuleGroup( $moduleName );
-	}
-
-	/**
 	 * @return ApiFormatRaw|null
 	 */
 	public function getCustomPrinter() {
