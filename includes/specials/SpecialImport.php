@@ -581,7 +581,7 @@ class ImportReporter extends ContextSource {
 	 * @param array $pageInfo
 	 * @return void
 	 */
-	function reportPage( $title, $foreignTitle, $revisionCount,
+	public function reportPage( $title, $foreignTitle, $revisionCount,
 			$successCount, $pageInfo ) {
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
