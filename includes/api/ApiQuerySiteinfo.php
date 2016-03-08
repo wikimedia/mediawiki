@@ -652,8 +652,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$data = [
-			'url' => $url ? $url : '',
-			'text' => $text ? $text : ''
+			'url' => $url ?: '',
+			'text' => $text ?: ''
 		];
 
 		return $this->getResult()->addValue( 'query', $property, $data );

@@ -332,7 +332,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 
 			if ( $text === null ) {
-				$format = $this->contentFormat ? $this->contentFormat : $content->getDefaultFormat();
+				$format = $this->contentFormat ?: $content->getDefaultFormat();
 				$model = $content->getModel();
 
 				if ( !$content->isSupportedFormat( $format ) ) {
