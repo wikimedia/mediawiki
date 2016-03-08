@@ -164,22 +164,14 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$this->dieContinueUsageIf( count( $cont ) != count( $sortby ) );
 			$where = '';
 			$i = count( $sortby ) - 1;
-			$cont_ns = 0;
-			$cont_title = '';
 			foreach ( array_reverse( $sortby, true ) as $field => $type ) {
 				$v = $cont[$i];
 				switch ( $type ) {
 					case 'ns':
-						$cont_ns = (int)$v;
-						/* fall through */
 					case 'int':
 						$v = (int)$v;
 						$this->dieContinueUsageIf( $v != $cont[$i] );
 						break;
-
-					case 'title':
-						$cont_title = $v;
-						/* fall through */
 					default:
 						$v = $db->addQuotes( $v );
 						break;
