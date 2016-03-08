@@ -1089,7 +1089,7 @@
 	"recentchanges-label-plusminus": "تاکدیمئ حجم بئ ای اندازگ بایٹ ئا تغیر کورته",
 	"recentchanges-legend-heading": "<strong>اختصارئان:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همیرنگ بی [[Special:NewPages|نوکین تاکدیمانئ لڑ لیست]] ئا سیل بکنیت)",
-	"rcnotefrom": "بئ جهلگا تغیرات شه <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داته بوته|نشان داته انت}}).",
+	"rcnotefrom": "بِه جهلگا تغیرات شه <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داته بوته|نشان داته انت}}).",
 	"rclistfrom": "نوکین تغیراتانئ نشان داتین شرو شه $3 $2",
 	"rcshowhideminor": "$1 ئی کمین ایڈیٹان",
 	"rcshowhideminor-show": "نشان داتین",

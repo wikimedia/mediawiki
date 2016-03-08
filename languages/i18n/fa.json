@@ -2048,6 +2048,7 @@
 	"changecontentmodel-nodirectediting": "نمونه محتوی $1 امکان ویرایش مستقیم را پشتیبانی نمی‌کند",
 	"log-name-contentmodel": "سیاهه تغییر نمونه محتوی",
 	"log-description-contentmodel": "رویدادهای مرتبط با نمونه محتوی‌های یک صفحه",
+	"logentry-contentmodel-new": "صفحهٔ $3 با استفاده از مدل‌های محتوایی غیر پیش‌فرض «$5» توسط $1 {{GENDER:$2|ساخته شد}}",
 	"logentry-contentmodel-change": "نمونه محتوای صفحهٔ $3 از \"$4\" به \"$5\" توسط $1 {{GENDER:$2|تغییر داده شد}}",
 	"logentry-contentmodel-change-revertlink": "واگردانی",
 	"logentry-contentmodel-change-revert": "واگردانی",

@@ -2076,6 +2076,7 @@
 	"changecontentmodel-nodirectediting": "Модель вмісту $1 не підтримує пряме редагування",
 	"log-name-contentmodel": "Журнал змін моделі вмісту",
 	"log-description-contentmodel": "Події, пов'язані з моделями вмісту сторінки",
+	"logentry-contentmodel-new": "$1 {{GENDER:$2|створив|створила}} сторінку $3, використовуючи нестандартну модель вмісту «$5»",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|змінив|змінила}} модель вмісту сторінки $3 з «$4» на «$5»",
 	"logentry-contentmodel-change-revertlink": "відкинути",
 	"logentry-contentmodel-change-revert": "відкинути",

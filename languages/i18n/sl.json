@@ -2007,6 +2007,7 @@
 	"changecontentmodel-nodirectediting": "Model vsebine $1 ne podpira neposrednega urejanja",
 	"log-name-contentmodel": "Dnevnik sprememb modela vsebine",
 	"log-description-contentmodel": "Dogodki, povezani z modeli vsebin strani",
+	"logentry-contentmodel-new": "$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} stran $3 z neprivzetim modelom vsebine »$5«",
 	"logentry-contentmodel-change": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} model vsebine strani $3 z »$4« na »$5«",
 	"logentry-contentmodel-change-revertlink": "vrni",
 	"logentry-contentmodel-change-revert": "vrni",
