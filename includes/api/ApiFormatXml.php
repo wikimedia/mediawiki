@@ -266,7 +266,7 @@ class ApiFormatXml extends ApiFormatBase {
 		);
 	}
 
-	function addXslt() {
+	protected function addXslt() {
 		$nt = Title::newFromText( $this->mXslt );
 		if ( is_null( $nt ) || !$nt->exists() ) {
 			$this->setWarning( 'Invalid or non-existent stylesheet specified' );
