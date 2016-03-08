@@ -668,22 +668,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get all header items in a string
-	 *
-	 * @return string
-	 * @deprecated since 1.24 Use OutputPage::headElement or
-	 *   if absolutely necessary use OutputPage::getHeadItemsArray
-	 */
-	function getHeadItems() {
-		wfDeprecated( __METHOD__, '1.24' );
-		$s = '';
-		foreach ( $this->mHeadItems as $item ) {
-			$s .= $item;
-		}
-		return $s;
-	}
-
-	/**
 	 * Add or replace an header item to the output
 	 *
 	 * Whenever possible, use more specific options like ResourceLoader modules,
