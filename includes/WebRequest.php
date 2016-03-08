@@ -719,13 +719,13 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the path and query string portion of the request URI.
+	 * Return the path and query string portion of the main request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
 	 * @throws MWException
 	 * @return string
 	 */
-	public function getRequestURL() {
+	public static function getGlobalRequestURL() {
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
 		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] )
@@ -760,6 +760,17 @@ class WebRequest {
 			// We may get paths with a host prepended; strip it.
 			return preg_replace( '!^[^:]+://[^/]+/+!', '/', $base );
 		}
+	}
+
+	/**
+	 * Return the path and query string portion of the request URI.
+	 * This will be suitable for use as a relative link in HTML output.
+	 *
+	 * @throws MWException
+	 * @return string
+	 */
+	public function getRequestURL() {
+		return self::getGlobalRequestURL();
 	}
 
 	/**
