@@ -682,7 +682,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
-			$s .= ' ' . ChangesList::flag( 'minor' );
+			$s .= ' ' . ChangesList::flag( 'minor', $this->getContext() );
 		}
 
 		# Sometimes rev_len isn't populated

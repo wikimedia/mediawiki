@@ -132,7 +132,7 @@ class ChangesList extends ContextSource {
 		$f = '';
 		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
-				? self::flag( $flag )
+				? self::flag( $flag, $this->getContext() )
 				: $nothing;
 		}
 
@@ -168,40 +168,40 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Provide the "<abbr>" element appropriate to a given abbreviated flag,
-	 * namely the flag indicating a new page, a minor edit, a bot edit, or an
-	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
-	 * "!" respectively, plus it will have an appropriate title and class.
+	 * Make an "<abbr>" element for a given change flag. The flag indicating a new page, minor edit,
+	 * bot edit, or unpatrolled edit. In English it typically contains "N", "m", "b", or "!".
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
-	 * @return string Raw HTML
+	 * @param IContextSource $context
+	 * @return string HTML
 	 */
-	public static function flag( $flag ) {
+	public static function flag( $flag, IContextSource $context = null ) {
+		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
+
 		if ( is_null( $flagInfos ) ) {
 			global $wgRecentChangesFlags;
 			$flagInfos = [];
 			foreach ( $wgRecentChangesFlags as $key => $value ) {
-				$flagInfos[$key]['letter'] = wfMessage( $value['letter'] )->escaped();
-				$flagInfos[$key]['title'] = wfMessage( $value['title'] )->escaped();
+				$flagInfos[$key]['letter'] = $value['letter'];
+				$flagInfos[$key]['title'] = $value['title'];
 				// Allow customized class name, fall back to flag name
-				$flagInfos[$key]['class'] = Sanitizer::escapeClass(
-					isset( $value['class'] ) ? $value['class'] : $key );
+				$flagInfos[$key]['class'] = isset( $value['class'] ) ? $value['class'] : $key );
 			}
 		}
 
-		// Inconsistent naming, bleh, kepted for b/c
-		$map = [
-			'minoredit' => 'minor',
-			'botedit' => 'bot',
-		];
+		$context = $context || RequestContext::getMain();
+
+		// Inconsistent naming, kepted for b/c
 		if ( isset( $map[$flag] ) ) {
 			$flag = $map[$flag];
 		}
 
-		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" .
-			$flagInfos[$flag]['title'] . "'>" . $flagInfos[$flag]['letter'] .
-			'</abbr>';
+		$info = $flagInfos[$flag];
+		return Html::element( 'abbr', [
+			'class' => $info['class'],
+			'title' => wfMessage( $info['title']->setContext( $context )->text(),
+		], wfMessage( $info['letter'] )->setContext( $context )->text() )
 	}
 
 	/**
@@ -337,7 +337,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
-		$logname = $page->getName()->escaped();
+		$logname = $page->getName()->setContext( $this->getContext() )->escaped();
 		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
 	}
 
