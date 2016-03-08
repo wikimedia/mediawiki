@@ -2213,8 +2213,12 @@ class OutputPage extends ContextSource {
 
 		if ( $this->mEnableClientCache ) {
 			if (
-				$config->get( 'UseSquid' ) && !SessionManager::getGlobalSession()->isPersistent() &&
-				!$this->isPrintable() && $this->mCdnMaxage != 0 && !$this->haveCacheVaryCookies()
+				$config->get( 'UseSquid' ) &&
+				!$response->hasCookies() &&
+				!SessionManager::getGlobalSession()->isPersistent() &&
+				!$this->isPrintable() &&
+				$this->mCdnMaxage != 0 &&
+				!$this->haveCacheVaryCookies()
 			) {
 				if ( $config->get( 'UseESI' ) ) {
 					# We'll purge the proxy cache explicitly, but require end user agents

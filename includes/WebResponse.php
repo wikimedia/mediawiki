@@ -179,6 +179,16 @@ class WebResponse {
 	public function clearCookie( $name, $options = [] ) {
 		$this->setCookie( $name, '', time() - 31536000 /* 1 year */, $options );
 	}
+
+	/**
+	 * Checks whether this request is performing cookie operations
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function hasCookies() {
+		return (bool)self::$setCookies;
+	}
 }
 
 /**
