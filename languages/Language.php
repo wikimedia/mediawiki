@@ -2844,6 +2844,7 @@ class Language {
 	/**
 	 * @param string $s
 	 * @return string
+	 * @throws MWException
 	 */
 	function checkTitleEncoding( $s ) {
 		if ( is_array( $s ) ) {
@@ -4183,7 +4184,7 @@ class Language {
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
-	 * @param Title $titleobj The Title of the page being updated
+	 * @param Title $title The Title of the page being updated
 	 */
 	public function updateConversionTable( Title $title ) {
 		$this->mConverter->updateConversionTable( $title );
@@ -4355,6 +4356,7 @@ class Language {
 	/**
 	 * @param string $code
 	 * @return string
+	 * @throws MWException
 	 * @since 1.23
 	 */
 	public static function getJsonMessagesFileName( $code ) {
@@ -4520,7 +4522,7 @@ class Language {
 	 * @param string $expiry Database expiry String
 	 * @param bool|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
-	 * @param string $inifinity If $format is not true, use this string for infinite expiry
+	 * @param string $infinity If $format is not true, use this string for infinite expiry
 	 * @return string
 	 * @since 1.18
 	 */
