@@ -335,7 +335,7 @@ class ApiEditPage extends ApiBase {
 			$section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
 				$this->dieUsage( "The section parameter must be a valid section id or 'new'",
-					"invalidsection" );
+					'invalidsection' );
 			}
 			$content = $pageObj->getContent();
 			if ( $section !== '0' && $section != 'new'

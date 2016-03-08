@@ -111,9 +111,9 @@ class ApiImageRotate extends ApiBase {
 			$tmpFile = TempFSFile::factory( 'rotate_', $ext );
 			$dstPath = $tmpFile->getPath();
 			$err = $handler->rotate( $file, [
-				"srcPath" => $srcPath,
-				"dstPath" => $dstPath,
-				"rotation" => $rotation
+				'srcPath' => $srcPath,
+				'dstPath' => $dstPath,
+				'rotation' => $rotation
 			] );
 			if ( !$err ) {
 				$comment = wfMessage(

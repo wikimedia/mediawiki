@@ -72,7 +72,7 @@ class ApiParse extends ApiBase {
 			$this->section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
 				$this->dieUsage(
-					"The section parameter must be a valid section id or 'new'", "invalidsection"
+					"The section parameter must be a valid section id or 'new'", 'invalidsection'
 				);
 			}
 		} else {
@@ -392,7 +392,7 @@ class ApiParse extends ApiBase {
 			!isset( $prop['jsconfigvars'] ) && !isset( $prop['encodedjsconfigvars'] ) ) {
 			$this->setWarning( "Property 'modules' was set but not 'jsconfigvars' " .
 				"or 'encodedjsconfigvars'. Configuration variables are necessary " .
-				"for proper module usage." );
+				'for proper module usage.' );
 		}
 
 		if ( isset( $prop['indicators'] ) ) {
@@ -428,7 +428,7 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
-				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
+				$this->dieUsage( 'parsetree is only supported for wikitext content', 'notwikitext' );
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
@@ -548,7 +548,7 @@ class ApiParse extends ApiBase {
 			$this->dieUsage( "There is no section {$this->section} in " . $what, 'nosuchsection' );
 		}
 		if ( $section === null ) {
-			$this->dieUsage( "Sections are not supported by " . $what, 'nosuchsection' );
+			$this->dieUsage( 'Sections are not supported by ' . $what, 'nosuchsection' );
 			$section = false;
 		}
 

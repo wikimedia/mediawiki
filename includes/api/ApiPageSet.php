@@ -595,22 +595,22 @@ class ApiPageSet extends ApiBase {
 		'special', 'missingIds', 'missingRevIds', 'missingTitles', 'interwikiTitles' ]
 	) {
 		$result = [];
-		if ( in_array( "invalidTitles", $invalidChecks ) ) {
+		if ( in_array( 'invalidTitles', $invalidChecks ) ) {
 			self::addValues( $result, $this->getInvalidTitlesAndReasons(), 'invalid' );
 		}
-		if ( in_array( "special", $invalidChecks ) ) {
+		if ( in_array( 'special', $invalidChecks ) ) {
 			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
 		}
-		if ( in_array( "missingIds", $invalidChecks ) ) {
+		if ( in_array( 'missingIds', $invalidChecks ) ) {
 			self::addValues( $result, $this->getMissingPageIDs(), 'missing', 'pageid' );
 		}
-		if ( in_array( "missingRevIds", $invalidChecks ) ) {
+		if ( in_array( 'missingRevIds', $invalidChecks ) ) {
 			self::addValues( $result, $this->getMissingRevisionIDs(), 'missing', 'revid' );
 		}
-		if ( in_array( "missingTitles", $invalidChecks ) ) {
+		if ( in_array( 'missingTitles', $invalidChecks ) ) {
 			self::addValues( $result, $this->getMissingTitles(), 'missing' );
 		}
-		if ( in_array( "interwikiTitles", $invalidChecks ) ) {
+		if ( in_array( 'interwikiTitles', $invalidChecks ) ) {
 			self::addValues( $result, $this->getInterwikiTitlesAsResult() );
 		}
 

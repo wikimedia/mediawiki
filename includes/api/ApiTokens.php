@@ -32,9 +32,9 @@ class ApiTokens extends ApiBase {
 
 	public function execute() {
 		$this->setWarning(
-			"action=tokens has been deprecated. Please use action=query&meta=tokens instead."
+			'action=tokens has been deprecated. Please use action=query&meta=tokens instead.'
 		);
-		$this->logFeatureUsage( "action=tokens" );
+		$this->logFeatureUsage( 'action=tokens' );
 
 		$params = $this->extractRequestParams();
 		$res = [

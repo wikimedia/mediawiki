@@ -302,7 +302,7 @@ abstract class ApiBase extends ContextSource {
 					$qs = $k;
 					$msg = self::escapeWikiText( $v );
 					if ( is_array( $msg ) ) {
-						$msg = join( " ", $msg );
+						$msg = join( ' ', $msg );
 					}
 				}
 
@@ -336,7 +336,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array
 	 */
 	protected function getAllowedParams( /* $flags = 0 */ ) {
-		// int $flags is not declared because it causes "Strict standards"
+		// int $flags is not declared because it causes 'Strict standards"
 		// warning. Most derived classes do not implement it.
 		return [];
 	}
@@ -711,7 +711,7 @@ abstract class ApiBase extends ContextSource {
 		$p = $this->getModulePrefix();
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-			[ $this, "parameterNotEmpty" ] ) ), $required );
+			[ $this, 'parameterNotEmpty' ] ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage(
@@ -737,7 +737,7 @@ abstract class ApiBase extends ContextSource {
 		$p = $this->getModulePrefix();
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-			[ $this, "parameterNotEmpty" ] ) ), $required );
+			[ $this, 'parameterNotEmpty' ] ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage(
@@ -760,7 +760,7 @@ abstract class ApiBase extends ContextSource {
 		$p = $this->getModulePrefix();
 
 		$intersection = array_intersect(
-			array_keys( array_filter( $params, [ $this, "parameterNotEmpty" ] ) ),
+			array_keys( array_filter( $params, [ $this, 'parameterNotEmpty' ] ) ),
 			$required
 		);
 
@@ -917,7 +917,7 @@ abstract class ApiBase extends ContextSource {
 				ApiBase::dieDebug(
 					__METHOD__,
 					"Boolean param $encParamName's default is set to '$default'. " .
-						"Boolean parameters must default to false."
+						'Boolean parameters must default to false.'
 				);
 			}
 
@@ -942,8 +942,8 @@ abstract class ApiBase extends ContextSource {
 				if ( $value !== null ) {
 					$this->dieUsage(
 						"File upload param $encParamName is not a file upload; " .
-							"be sure to use multipart/form-data for your POST and include " .
-							"a filename in the Content-Disposition header.",
+							'be sure to use multipart/form-data for your POST and include ' .
+							'a filename in the Content-Disposition header.',
 						"badupload_{$encParamName}"
 					);
 				}
@@ -1157,7 +1157,7 @@ abstract class ApiBase extends ContextSource {
 			if ( count( $unknown ) ) {
 				if ( $allowMultiple ) {
 					$s = count( $unknown ) > 1 ? 's' : '';
-					$vals = implode( ", ", $unknown );
+					$vals = implode( ', ', $unknown );
 					$this->setWarning( "Unrecognized value$s for parameter '$valueName': $vals" );
 				} else {
 					$this->dieUsage(
@@ -1615,15 +1615,15 @@ abstract class ApiBase extends ContextSource {
 		],
 		'badaccess-group0' => [
 			'code' => 'permissiondenied',
-			'info' => "Permission denied"
+			'info' => 'Permission denied'
 		], // Generic permission denied message
 		'badaccess-groups' => [
 			'code' => 'permissiondenied',
-			'info' => "Permission denied"
+			'info' => 'Permission denied'
 		],
 		'titleprotected' => [
 			'code' => 'protectedtitle',
-			'info' => "This title has been protected from creation"
+			'info' => 'This title has been protected from creation'
 		],
 		'nocreate-loggedin' => [
 			'code' => 'cantcreate',
@@ -1643,15 +1643,15 @@ abstract class ApiBase extends ContextSource {
 		],
 		'confirmedittext' => [
 			'code' => 'confirmemail',
-			'info' => "You must confirm your email address before you can edit"
+			'info' => 'You must confirm your email address before you can edit'
 		],
 		'blockedtext' => [
 			'code' => 'blocked',
-			'info' => "You have been blocked from editing"
+			'info' => 'You have been blocked from editing'
 		],
 		'autoblockedtext' => [
 			'code' => 'autoblocked',
-			'info' => "Your IP address has been blocked automatically, because it was used by a blocked user"
+			'info' => 'Your IP address has been blocked automatically, because it was used by a blocked user'
 		],
 
 		// Miscellaneous interface messages
@@ -1661,19 +1661,19 @@ abstract class ApiBase extends ContextSource {
 		],
 		'alreadyrolled' => [
 			'code' => 'alreadyrolled',
-			'info' => "The page you tried to rollback was already rolled back"
+			'info' => 'The page you tried to rollback was already rolled back'
 		],
 		'cantrollback' => [
 			'code' => 'onlyauthor',
-			'info' => "The page you tried to rollback only has one author"
+			'info' => 'The page you tried to rollback only has one author'
 		],
 		'readonlytext' => [
 			'code' => 'readonly',
-			'info' => "The wiki is currently in read-only mode"
+			'info' => 'The wiki is currently in read-only mode'
 		],
 		'sessionfailure' => [
 			'code' => 'badtoken',
-			'info' => "Invalid token" ],
+			'info' => 'Invalid token' ],
 		'cannotdelete' => [
 			'code' => 'cantdelete',
 			'info' => "Couldn't delete \"\$1\". Maybe it was deleted already by someone else"
@@ -1686,11 +1686,11 @@ abstract class ApiBase extends ContextSource {
 		],
 		'immobile_namespace' => [
 			'code' => 'immobilenamespace',
-			'info' => "You tried to move pages from or to a namespace that is protected from moving"
+			'info' => 'You tried to move pages from or to a namespace that is protected from moving'
 		],
 		'articleexists' => [
 			'code' => 'articleexists',
-			'info' => "The destination article already exists and is not a redirect to the source article"
+			'info' => 'The destination article already exists and is not a redirect to the source article'
 		],
 		'protectedpage' => [
 			'code' => 'protectedpage',
@@ -1698,11 +1698,11 @@ abstract class ApiBase extends ContextSource {
 		],
 		'hookaborted' => [
 			'code' => 'hookaborted',
-			'info' => "The modification you tried to make was aborted by an extension hook"
+			'info' => 'The modification you tried to make was aborted by an extension hook'
 		],
 		'cantmove-titleprotected' => [
 			'code' => 'protectedtitle',
-			'info' => "The destination article has been protected from creation"
+			'info' => 'The destination article has been protected from creation'
 		],
 		'imagenocrossnamespace' => [
 			'code' => 'nonfilenamespace',
@@ -1714,20 +1714,20 @@ abstract class ApiBase extends ContextSource {
 		],
 		// 'badarticleerror' => shouldn't happen
 		// 'badtitletext' => shouldn't happen
-		'ip_range_invalid' => [ 'code' => 'invalidrange', 'info' => "Invalid IP range" ],
+		'ip_range_invalid' => [ 'code' => 'invalidrange', 'info' => 'Invalid IP range' ],
 		'range_block_disabled' => [
 			'code' => 'rangedisabled',
-			'info' => "Blocking IP ranges has been disabled"
+			'info' => 'Blocking IP ranges has been disabled'
 		],
 		'nosuchusershort' => [
 			'code' => 'nosuchuser',
 			'info' => "The user you specified doesn't exist"
 		],
-		'badipaddress' => [ 'code' => 'invalidip', 'info' => "Invalid IP address specified" ],
-		'ipb_expiry_invalid' => [ 'code' => 'invalidexpiry', 'info' => "Invalid expiry time" ],
+		'badipaddress' => [ 'code' => 'invalidip', 'info' => 'Invalid IP address specified' ],
+		'ipb_expiry_invalid' => [ 'code' => 'invalidexpiry', 'info' => 'Invalid expiry time' ],
 		'ipb_already_blocked' => [
 			'code' => 'alreadyblocked',
-			'info' => "The user you tried to block was already blocked"
+			'info' => 'The user you tried to block was already blocked'
 		],
 		'ipb_blocked_as_range' => [
 			'code' => 'blockedasrange',
@@ -1735,11 +1735,11 @@ abstract class ApiBase extends ContextSource {
 		],
 		'ipb_cant_unblock' => [
 			'code' => 'cantunblock',
-			'info' => "The block you specified was not found. It may have been unblocked already"
+			'info' => 'The block you specified was not found. It may have been unblocked already'
 		],
 		'mailnologin' => [
 			'code' => 'cantsend',
-			'info' => "You are not logged in, you do not have a confirmed email address, or you are not allowed to send email to other users, so you cannot send email"
+			'info' => 'You are not logged in, you do not have a confirmed email address, or you are not allowed to send email to other users, so you cannot send email'
 		],
 		'ipbblocked' => [
 			'code' => 'ipbblocked',
@@ -1751,23 +1751,23 @@ abstract class ApiBase extends ContextSource {
 		],
 		'usermaildisabled' => [
 			'code' => 'usermaildisabled',
-			'info' => "User email has been disabled"
+			'info' => 'User email has been disabled'
 		],
 		'blockedemailuser' => [
 			'code' => 'blockedfrommail',
-			'info' => "You have been blocked from sending email"
+			'info' => 'You have been blocked from sending email'
 		],
 		'notarget' => [
 			'code' => 'notarget',
-			'info' => "You have not specified a valid target for this action"
+			'info' => 'You have not specified a valid target for this action'
 		],
 		'noemail' => [
 			'code' => 'noemail',
-			'info' => "The user has not specified a valid email address, or has chosen not to receive email from other users"
+			'info' => 'The user has not specified a valid email address, or has chosen not to receive email from other users'
 		],
 		'rcpatroldisabled' => [
 			'code' => 'patroldisabled',
-			'info' => "Patrolling is disabled on this wiki"
+			'info' => 'Patrolling is disabled on this wiki'
 		],
 		'markedaspatrollederror-noautopatrol' => [
 			'code' => 'noautopatrol',
@@ -1804,7 +1804,7 @@ abstract class ApiBase extends ContextSource {
 		// API-specific messages
 		'readrequired' => [
 			'code' => 'readapidenied',
-			'info' => "You need read permission to use this module"
+			'info' => 'You need read permission to use this module'
 		],
 		'writedisabled' => [
 			'code' => 'noapiwrite',
@@ -1843,7 +1843,7 @@ abstract class ApiBase extends ContextSource {
 		],
 		'unblock-notarget' => [
 			'code' => 'notarget',
-			'info' => "Either the id or the user parameter must be set"
+			'info' => 'Either the id or the user parameter must be set'
 		],
 		'unblock-idanduser' => [
 			'code' => 'idanduser',
@@ -1863,7 +1863,7 @@ abstract class ApiBase extends ContextSource {
 		],
 		'createonly-exists' => [
 			'code' => 'articleexists',
-			'info' => "The article you tried to create has been created already"
+			'info' => 'The article you tried to create has been created already'
 		],
 		'nocreate-missing' => [
 			'code' => 'missingtitle',
@@ -1992,17 +1992,17 @@ abstract class ApiBase extends ContextSource {
 		'noedit' => [ 'code' => 'noedit', 'info' => "You don't have permission to edit pages" ],
 		'wasdeleted' => [
 			'code' => 'pagedeleted',
-			'info' => "The page has been deleted since you fetched its timestamp"
+			'info' => 'The page has been deleted since you fetched its timestamp'
 		],
 		'blankpage' => [
 			'code' => 'emptypage',
-			'info' => "Creating new, empty pages is not allowed"
+			'info' => 'Creating new, empty pages is not allowed'
 		],
-		'editconflict' => [ 'code' => 'editconflict', 'info' => "Edit conflict detected" ],
-		'hashcheckfailed' => [ 'code' => 'badmd5', 'info' => "The supplied MD5 hash was incorrect" ],
+		'editconflict' => [ 'code' => 'editconflict', 'info' => 'Edit conflict detected' ],
+		'hashcheckfailed' => [ 'code' => 'badmd5', 'info' => 'The supplied MD5 hash was incorrect' ],
 		'missingtext' => [
 			'code' => 'notext',
-			'info' => "One of the text, appendtext, prependtext and undo parameters must be set"
+			'info' => 'One of the text, appendtext, prependtext and undo parameters must be set'
 		],
 		'emptynewsection' => [
 			'code' => 'emptynewsection',
@@ -2024,13 +2024,13 @@ abstract class ApiBase extends ContextSource {
 		// Messages from WikiPage::doEit(]
 		'edit-hook-aborted' => [
 			'code' => 'edit-hook-aborted',
-			'info' => "Your edit was aborted by an ArticleSave hook"
+			'info' => 'Your edit was aborted by an ArticleSave hook'
 		],
 		'edit-gone-missing' => [
 			'code' => 'edit-gone-missing',
 			'info' => "The page you tried to edit doesn't seem to exist anymore"
 		],
-		'edit-conflict' => [ 'code' => 'editconflict', 'info' => "Edit conflict detected" ],
+		'edit-conflict' => [ 'code' => 'editconflict', 'info' => 'Edit conflict detected' ],
 		'edit-already-exists' => [
 			'code' => 'edit-already-exists',
 			'info' => 'It seems the page you tried to create already exist'
@@ -2740,7 +2740,7 @@ abstract class ApiBase extends ContextSource {
 						$examples
 					];
 				}
-				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
+				$msg .= 'Example' . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
 				foreach ( $examples as $k => $v ) {
 					if ( is_numeric( $k ) ) {
 						$msg .= "  $v\n";
@@ -2750,7 +2750,7 @@ abstract class ApiBase extends ContextSource {
 						} else {
 							$msgExample = "  $v";
 						}
-						$msgExample .= ":";
+						$msgExample .= ':';
 						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
 					}
 				}
@@ -2766,7 +2766,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return string
 	 */
 	private function indentExampleText( $item ) {
-		return "  " . $item;
+		return '  ' . $item;
 	}
 
 	/**
@@ -2849,7 +2849,7 @@ abstract class ApiBase extends ContextSource {
 				if ( isset( $paramSettings[self::PARAM_REQUIRED] )
 					&& $paramSettings[self::PARAM_REQUIRED]
 				) {
-					$desc .= $paramPrefix . "This parameter is required";
+					$desc .= $paramPrefix . 'This parameter is required';
 				}
 
 				$type = isset( $paramSettings[self::PARAM_TYPE] )
@@ -2925,7 +2925,7 @@ abstract class ApiBase extends ContextSource {
 								}
 								break;
 							case 'upload':
-								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
+								$desc .= $paramPrefix . 'Must be posted as a file upload using multipart/form-data';
 								break;
 						}
 					}
@@ -2939,8 +2939,8 @@ abstract class ApiBase extends ContextSource {
 						if ( !$isArray
 							|| $isArray && count( $type ) > self::LIMIT_SML1
 						) {
-							$desc .= $paramPrefix . "Maximum number of values " .
-								self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
+							$desc .= $paramPrefix . 'Maximum number of values ' .
+								self::LIMIT_SML1 . ' (' . self::LIMIT_SML2 . ' for bots)';
 						}
 					}
 				}

@@ -99,19 +99,19 @@ class ApiOptions extends ApiBase {
 				case 'userjs':
 					// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts
 					if ( strlen( $key ) > 255 ) {
-						$validation = "key too long (no more than 255 bytes allowed)";
-					} elseif ( preg_match( "/[^a-zA-Z0-9_-]/", $key ) !== 0 ) {
-						$validation = "invalid key (only a-z, A-Z, 0-9, _, - allowed)";
+						$validation = 'key too long (no more than 255 bytes allowed)';
+					} elseif ( preg_match( '/[^a-zA-Z0-9_-]/', $key ) !== 0 ) {
+						$validation = 'invalid key (only a-z, A-Z, 0-9, _, - allowed)';
 					} else {
 						$validation = true;
 					}
 					break;
 				case 'special':
-					$validation = "cannot be set by this module";
+					$validation = 'cannot be set by this module';
 					break;
 				case 'unused':
 				default:
-					$validation = "not a valid preference";
+					$validation = 'not a valid preference';
 					break;
 			}
 			if ( $validation === true ) {
