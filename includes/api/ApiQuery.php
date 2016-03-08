@@ -186,33 +186,6 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Get the generators array mapping module names to class names
-	 * @deprecated since 1.21, list of generators is maintained by ApiPageSet
-	 * @return array Array(modulename => classname)
-	 */
-	public function getGenerators() {
-		wfDeprecated( __METHOD__, '1.21' );
-		$gens = [];
-		foreach ( $this->mModuleMgr->getNamesWithClasses() as $name => $class ) {
-			if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
-				$gens[$name] = $class;
-			}
-		}
-
-		return $gens;
-	}
-
-	/**
-	 * Get whether the specified module is a prop, list or a meta query module
-	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
-	 * @param string $moduleName Name of the module to find type for
-	 * @return string|null
-	 */
-	function getModuleType( $moduleName ) {
-		return $this->getModuleManager()->getModuleGroup( $moduleName );
-	}
-
-	/**
 	 * @return ApiFormatRaw|null
 	 */
 	public function getCustomPrinter() {
@@ -449,22 +422,6 @@ class ApiQuery extends ApiBase {
 		if ( $this->mParams['export'] ) {
 			$this->doExport( $pageSet, $result );
 		}
-	}
-
-	/**
-	 * This method is called by the generator base when generator in the smart-continue
-	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
-	 * until the post-processing when it is known if the generation should continue or repeat.
-	 * @deprecated since 1.24
-	 * @param ApiQueryGeneratorBase $module Generator module
-	 * @param string $paramName
-	 * @param mixed $paramValue
-	 * @return bool True if processed, false if this is a legacy continue
-	 */
-	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->getContinuationManager()->addGeneratorContinueParam( $module, $paramName, $paramValue );
-		return !$this->getParameter( 'rawcontinue' );
 	}
 
 	/**
