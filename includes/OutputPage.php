@@ -4033,6 +4033,9 @@ class OutputPage extends ContextSource {
 	 */
 	public function enableTOC( $flag = true ) {
 		$this->mEnableTOC = $flag;
+		if ( $flag ) {
+			$this->addModules( 'mediawiki.toc' );
+		}
 	}
 
 	/**
