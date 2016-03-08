@@ -72,7 +72,7 @@ function isCompatible( ua ) {
 		// Undo class swapping in case of an unsupported browser.
 		// See OutputPage::getHeadScripts().
 		document.documentElement.className = document.documentElement.className
-			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs client-gradec-js$2' );
 
 		NORLQ = window.NORLQ || [];
 		while ( NORLQ.length ) {
