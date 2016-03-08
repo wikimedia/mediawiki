@@ -433,19 +433,19 @@ class ApiStashEdit extends ApiBase {
 		];
 	}
 
-	function needsToken() {
+	public function needsToken() {
 		return 'csrf';
 	}
 
-	function mustBePosted() {
+	public function mustBePosted() {
 		return true;
 	}
 
-	function isWriteMode() {
+	public function isWriteMode() {
 		return true;
 	}
 
-	function isInternal() {
+	public function isInternal() {
 		return true;
 	}
 }
