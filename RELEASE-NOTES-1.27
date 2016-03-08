@@ -218,6 +218,7 @@ HHVM 3.1.
 * ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
 * ApiQueryBase::getDirectionDescription() was removed (deprecated since 1.25).
 * ApiQuery::getModules() was removed (deprecated since 1.21).
+* ApiQuery::getModuleType() was removed (deprecated since 1.21).
 * ApiMain::getModules() was removed (deprecated since 1.21).
 * ApiBase::getVersion() was removed (deprecated since 1.21).
 
