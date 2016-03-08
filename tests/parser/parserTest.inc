@@ -895,7 +895,7 @@ class ParserTest {
 			'wgExperimentalHtmlIds' => false,
 			'wgExternalLinkTarget' => false,
 			'wgHtml5' => true,
-			'wgWellFormedXml' => true,
+			'wgWellFormedXml' => !isset( $opts['noxml'] ),
 			'wgAllowMicrodataAttributes' => true,
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
