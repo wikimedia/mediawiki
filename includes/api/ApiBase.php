@@ -2549,64 +2549,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @see self::getResultProperties()
-	 * @deprecated since 1.24
-	 * @return array|bool
-	 */
-	public function getFinalResultProperties() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return [];
-	}
-
-	/**
-	 * @see self::getResultProperties()
-	 * @deprecated since 1.24
-	 */
-	protected static function addTokenProperties( &$props, $tokenFunctions ) {
-		wfDeprecated( __METHOD__, '1.24' );
-	}
-
-	/**
-	 * @see self::getPossibleErrors()
-	 * @deprecated since 1.24
-	 * @return array
-	 */
-	public function getRequireOnlyOneParameterErrorMessages( $params ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return [];
-	}
-
-	/**
-	 * @see self::getPossibleErrors()
-	 * @deprecated since 1.24
-	 * @return array
-	 */
-	public function getRequireMaxOneParameterErrorMessages( $params ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return [];
-	}
-
-	/**
-	 * @see self::getPossibleErrors()
-	 * @deprecated since 1.24
-	 * @return array
-	 */
-	public function getRequireAtLeastOneParameterErrorMessages( $params ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return [];
-	}
-
-	/**
-	 * @see self::getPossibleErrors()
-	 * @deprecated since 1.24
-	 * @return array
-	 */
-	public function getTitleOrPageIdErrorMessage() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return [];
-	}
-
-	/**
 	 * This formerly attempted to return a list of all possible errors returned
 	 * by the module. However, this was impossible to maintain in many cases
 	 * since errors could come from other areas of MediaWiki and in some cases
