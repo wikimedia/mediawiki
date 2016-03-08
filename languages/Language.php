@@ -928,17 +928,6 @@ class Language {
 	}
 
 	/**
-	 * Get the native language name of $code.
-	 * Only if defined in MediaWiki, no other data like CLDR.
-	 * @param string $code
-	 * @return string
-	 * @deprecated since 1.20, use fetchLanguageName()
-	 */
-	function getLanguageName( $code ) {
-		return self::fetchLanguageName( $code );
-	}
-
-	/**
 	 * @param string $key
 	 * @return string
 	 */
