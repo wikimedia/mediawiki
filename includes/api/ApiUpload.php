@@ -544,7 +544,7 @@ class ApiUpload extends ApiBase {
 
 				$msg = 'Filetype not permitted: ';
 				if ( isset( $verification['blacklistedExt'] ) ) {
-					$msg .= join( ', ', $verification['blacklistedExt'] );
+					$msg .= implode( ', ', $verification['blacklistedExt'] );
 					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
 					ApiResult::setIndexedTagName( $extradata['blacklisted'], 'ext' );
 				} else {

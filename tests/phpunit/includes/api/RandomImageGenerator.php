@@ -230,7 +230,7 @@ class RandomImageGenerator {
 			$points[] = $point['x'] . ',' . $point['y'];
 		}
 
-		return join( " ", $points );
+		return implode( " ", $points );
 	}
 
 	/**
@@ -425,7 +425,7 @@ class RandomImageGenerator {
 			$components[] = mt_rand( 0, 255 );
 		}
 
-		return 'rgb(' . join( ', ', $components ) . ')';
+		return 'rgb(' . implode( ', ', $components ) . ')';
 	}
 
 	/**

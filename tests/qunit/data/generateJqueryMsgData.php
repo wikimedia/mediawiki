@@ -110,7 +110,7 @@ class GenerateJqueryMsgData extends Maintenance {
 					$langKey = $languageCode . '_' . $key;
 					$messages[$langKey] = $template;
 					$tests[] = [
-						'name' => $languageCode . ' ' . $key . ' ' . join( ',', $args ),
+						'name' => $languageCode . ' ' . $key . ' ' . implode( ',', $args ),
 						'key' => $langKey,
 						'args' => $args,
 						'result' => $result,

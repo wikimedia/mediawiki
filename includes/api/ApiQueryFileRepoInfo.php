@@ -78,7 +78,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		return [
 			'prop' => [
-				ApiBase::PARAM_DFLT => join( '|', $props ),
+				ApiBase::PARAM_DFLT => implode( '|', $props ),
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $props,
 			],

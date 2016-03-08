@@ -296,7 +296,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				// Note we must keep the parameters for the first query constant
 				// This may be overridden at a later step
 				$title = $row->{$this->bl_title};
-				$this->continueStr = join( '|', array_slice( $this->cont, 0, 2 ) ) .
+				$this->continueStr = implode( '|', array_slice( $this->cont, 0, 2 ) ) .
 					"|$ns|$title|{$row->from_ns}|{$row->page_id}";
 				break;
 			}
@@ -451,7 +451,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 						[ 'query', $this->getModuleName() ],
 						$idx, array_diff_key( $arr, [ 'redirlinks' => '' ] ) );
 					if ( !$fit ) {
-						$this->continueStr = join( '|', array_slice( $this->cont, 0, 6 ) ) .
+						$this->continueStr = implode( '|', array_slice( $this->cont, 0, 6 ) ) .
 							"|$pageID";
 						break;
 					}
@@ -474,7 +474,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 							[ 'query', $this->getModuleName(), $idx, 'redirlinks' ],
 							null, $redir );
 						if ( !$fit ) {
-							$this->continueStr = join( '|', array_slice( $this->cont, 0, 6 ) ) .
+							$this->continueStr = implode( '|', array_slice( $this->cont, 0, 6 ) ) .
 								"|$pageID|$key";
 							break;
 						}

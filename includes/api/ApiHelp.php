@@ -268,7 +268,7 @@ class ApiHelp extends ApiBase {
 					'level' => $level,
 					'anchor' => $anchor,
 					'line' => $header,
-					'number' => join( '.', $tocnumber ),
+					'number' => implode( '.', $tocnumber ),
 					'index' => false,
 				];
 				if ( empty( $options['noheader'] ) ) {
@@ -618,7 +618,7 @@ class ApiHelp extends ApiBase {
 									->parse();
 							}
 							if ( $extra ) {
-								$info[] = join( ' ', $extra );
+								$info[] = implode( ' ', $extra );
 							}
 						}
 					}
@@ -655,7 +655,7 @@ class ApiHelp extends ApiBase {
 					}
 
 					if ( $description ) {
-						$description = join( '', $description );
+						$description = implode( '', $description );
 						$description = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $description );
 						$help['parameters'] .= Html::rawElement( 'dd',
 							[ 'class' => 'description' ], $description );
@@ -744,7 +744,7 @@ class ApiHelp extends ApiBase {
 
 			Hooks::run( 'APIHelpModifyOutput', [ $module, &$help, $suboptions, &$haveModules ] );
 
-			$out .= join( "\n", $help );
+			$out .= implode( "\n", $help );
 		}
 
 		return $out;

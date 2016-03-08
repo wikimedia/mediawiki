@@ -352,7 +352,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 			$new = true;
 		}
 		if ( is_array( $salt ) ) {
-			$salt = join( '|', $salt );
+			$salt = implode( '|', $salt );
 		}
 		return new Token( $secret, (string)$salt, $new );
 	}

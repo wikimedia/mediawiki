@@ -53,7 +53,7 @@ class GetConfiguration extends Maintenance {
 		$this->addOption( 'regex', 'regex to filter variables with', false, true );
 		$this->addOption( 'iregex', 'same as --regex but case insensitive', false, true );
 		$this->addOption( 'settings', 'Space-separated list of wg* variables', false, true );
-		$this->addOption( 'format', join( ', ', self::$outFormats ), false, true );
+		$this->addOption( 'format', implode( ', ', self::$outFormats ), false, true );
 	}
 
 	protected function validateParamsAndArgs() {

@@ -137,7 +137,7 @@ class ApiParamInfo extends ApiBase {
 				foreach ( $msgs as $m ) {
 					$ret[] = $m->setContext( $this->context )->text();
 				}
-				$res[$key] = join( "\n\n", $ret );
+				$res[$key] = implode( "\n\n", $ret );
 				if ( $joinLists ) {
 					$res[$key] = preg_replace( '!^(([*#:;])[^\n]*)\n\n(?=\2)!m', "$1\n", $res[$key] );
 				}
@@ -148,7 +148,7 @@ class ApiParamInfo extends ApiBase {
 				foreach ( $msgs as $m ) {
 					$ret[] = $m->setContext( $this->context )->parseAsBlock();
 				}
-				$ret = join( "\n", $ret );
+				$ret = implode( "\n", $ret );
 				if ( $joinLists ) {
 					$ret = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $ret );
 				}
