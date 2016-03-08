@@ -1469,19 +1469,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the highest level of CSS/JS untrustworthiness allowed
-	 *
-	 * @deprecated since 1.24 Raising level of allowed untrusted content is no longer supported.
-	 *  Use reduceAllowedModules() instead
-	 * @param string $type ResourceLoaderModule TYPE_ constant
-	 * @param int $level ResourceLoaderModule class constant
-	 */
-	public function setAllowedModules( $type, $level ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->reduceAllowedModules( $type, $level );
-	}
-
-	/**
 	 * Limit the highest level of CSS/JS untrustworthiness allowed.
 	 *
 	 * If passed the same or a higher level than the current level of untrustworthiness set, the
