@@ -1877,6 +1877,9 @@ class OutputPage extends ContextSource {
 	public function addParserOutputText( $parserOutput ) {
 		$text = $parserOutput->getText();
 		Hooks::run( 'OutputPageBeforeHTML', [ &$this, &$text ] );
+		if ( $this->isTOCEnabled() ) {
+			$this->addModules( 'mediawiki.toc' );
+		}
 		$this->addHTML( $text );
 	}
 
