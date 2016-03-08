@@ -327,6 +327,17 @@ changes to languages because of Phabricator reports.
   does not support categories.
 * wikidiff difference engine is no longer supported, anyone still using it are encouraged
   to upgrade to wikidiff2 which is actively maintained and has better package availability.
+* Database logic was removed from WatchedItem and a WatchedItemStore was created:
+** WatchedItem::IGNORE_USER_RIGHTS and WatchedItem::CHECK_USER_RIGHTS were deprecated.
+   User::IGNORE_USER_RIGHTS and User::CHECK_USER_RIGHTS were introduced.
+** WatchedItem::fromUserTitle was deprecated in favour of the constructor.
+** WatchedItem::resetNotificationTimestamp was deprecated.
+** WatchedItem::batchAddWatch was deprecated.
+** WatchedItem::addWatch was deprecated.
+** WatchedItem::removeWatch was deprecated.
+** WatchedItem::isWatched was deprecated.
+** WatchedItem::duplicateEntries was deprecated.
+** User::getWatchedItem was removed.
 
 == Compatibility ==
 
