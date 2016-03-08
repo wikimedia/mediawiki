@@ -108,13 +108,13 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
 		$this->assertContains(
-			"<abbr class='newpage' title='(recentchanges-label-newpage)'>(newpageletter)</abbr>",
+			'<abbr class="newpage" title="(recentchanges-label-newpage)">(newpageletter)</abbr>',
 			$line,
 			'new page flag'
 		);
 
 		$this->assertContains(
-			"<abbr class='botedit' title='(recentchanges-label-bot)'>(boteditletter)</abbr>",
+			'<abbr class="botedit" title="(recentchanges-label-bot)">(boteditletter)</abbr>',
 			$line,
 			'bot flag'
 		);
