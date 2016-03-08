@@ -224,6 +224,7 @@ HHVM 3.1.
 * ApiMain::getModules() was removed (deprecated since 1.21).
 * ApiBase::getVersion() was removed (deprecated since 1.21).
 * Language::getLanguageNames() was removed (deprecated since 1.20).
+* Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
 
 === Languages updated in 1.27 ===
 
