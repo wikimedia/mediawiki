@@ -1,9 +1,8 @@
 /* The login form invites users to create an account */
 #mw-createaccount-cta {
 	width: 20em;
-	height: 10em;
 	/* @embed */
-	background: url(images/glyph-people-large.png) no-repeat 50%;
+	background: url( images/glyph-people-large.png ) no-repeat 50%;
 	margin: 0 auto;
-	padding-top: 4em;
+	padding-top: 7.8em;
 }
