@@ -360,6 +360,45 @@ class OutputPageTest extends MediaWikiTestCase {
 		$request->setCookie( 'Token', '123' );
 		$this->assertTrue( $outputPage->haveCacheVaryCookies() );
 	}
+
+	public static function provideAddParserOutputText() {
+		return [
+			// Table of contents is enabled and HTML is present
+			[
+				true,
+				'<toc></toc>',
+				true,
+			],
+			// Table of contents is enabled but no TOC generated
+			[
+				true,
+				'',
+				false,
+			],
+			// Table of contents is disabled and TOC generated
+			[
+				false,
+				'<toc></toc>',
+				false,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddParserOutputText
+	 * @covers OutputPage::addParserOutputText
+	 */
+	function testAddParserOutputText( $tocEnabled, $tocHtml, $expectedTocModuleIsPresent ) {
+		$po = new ParserOutput();
+		$context = new RequestContext();
+		$outputPage = new OutputPage( $context );
+		$outputPage->enableTOC( $tocEnabled );
+		$po->setTOCHTML( $tocHtml );
+		$outputPage->addParserOutputText( $po );
+		$modules = $po->getModules();
+		$moduleIsPresent = array_search( 'mediawiki.toc', $modules ) !== false;
+		$this->assertTrue( $expectedTocModuleIsPresent === $moduleIsPresent );
+	}
 }
 
 /**

@@ -340,7 +340,13 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function getModules() {
-		return $this->mModules;
+		// Only add the module if a table of contents was generated and has been asked for
+		// setTOCEnabled could be called at any time.
+		if ( $this->getTOCEnabled() && $this->getTOCHTML() ) {
+			return array_merge( $this->mModules, array( 'mediawiki.toc' ) );
+		} else {
+			return $this->mModules;
+		}
 	}
 
 	public function getModuleScripts() {

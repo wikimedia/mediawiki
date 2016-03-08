@@ -1810,7 +1810,6 @@ class OutputPage extends ContextSource {
 		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
-		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
@@ -1849,6 +1848,10 @@ class OutputPage extends ContextSource {
 		$linkFlags = [];
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
 		Hooks::run( 'OutputPageParserOutput', [ &$this, $parserOutput ] );
+		// OutputPageParserOutput may have been used to disable Table of Contents so we delay addition
+		// of modules to the last minute given these can impact the result.
+		$parserOutput->setTOCEnabled( $this->mEnableTOC );
+		$this->addModules( $parserOutput->getModules() );
 	}
 
 	/**
@@ -1887,7 +1890,6 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
-		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
