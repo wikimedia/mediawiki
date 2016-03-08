@@ -174,7 +174,7 @@ class Title implements LinkTarget {
 		// make sure we are using the right one. To detect changes over the course
 		// of a request, we remember a fingerprint of the config used to create the
 		// codec singleton, and re-create it if the fingerprint doesn't match.
-		$fingerprint = spl_object_hash( $wgContLang ) . '|' . join( '+', $wgLocalInterwikis );
+		$fingerprint = spl_object_hash( $wgContLang ) . '|' . implode( '+', $wgLocalInterwikis );
 
 		if ( $fingerprint !== $titleCodecFingerprint ) {
 			$titleCodec = null;

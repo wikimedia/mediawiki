@@ -137,7 +137,7 @@ class ApiContinuationManager {
 		}
 		$paramName = $module->encodeParamName( $paramName );
 		if ( is_array( $paramValue ) ) {
-			$paramValue = join( '|', $paramValue );
+			$paramValue = implode( '|', $paramValue );
 		}
 		$this->continuationData[$name][$paramName] = $paramValue;
 	}
@@ -152,7 +152,7 @@ class ApiContinuationManager {
 		$name = $module->getModuleName();
 		$paramName = $module->encodeParamName( $paramName );
 		if ( is_array( $paramValue ) ) {
-			$paramValue = join( '|', $paramValue );
+			$paramValue = implode( '|', $paramValue );
 		}
 		$this->generatorContinuationData[$name][$paramName] = $paramValue;
 	}
@@ -193,7 +193,7 @@ class ApiContinuationManager {
 				$data += $kvp;
 			}
 			$data += $this->generatorParams;
-			$generatorKeys = join( '|', array_keys( $this->generatorParams ) );
+			$generatorKeys = implode( '|', array_keys( $this->generatorParams ) );
 		} elseif ( $this->generatorContinuationData ) {
 			// All the generator-using modules are complete, but the
 			// generator isn't. Continue the generator and restart the
@@ -204,7 +204,7 @@ class ApiContinuationManager {
 			}
 			$data += $generatorParams;
 			$finishedModules = array_diff( $finishedModules, $this->generatedModules );
-			$generatorKeys = join( '|', array_keys( $generatorParams ) );
+			$generatorKeys = implode( '|', array_keys( $generatorParams ) );
 			$batchcomplete = true;
 		} else {
 			// Generator and prop modules are all done. Mark it so.
@@ -215,7 +215,7 @@ class ApiContinuationManager {
 		// Set 'continue' if any continuation data is set or if the generator
 		// still needs to run
 		if ( $data || $generatorKeys !== '-' ) {
-			$data['continue'] = $generatorKeys . '||' . join( '|', $finishedModules );
+			$data['continue'] = $generatorKeys . '||' . implode( '|', $finishedModules );
 		}
 
 		return [ $data, $batchcomplete ];

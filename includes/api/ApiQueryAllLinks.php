@@ -117,7 +117,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( $matches ) {
 				$p = $this->getModulePrefix();
 				$this->dieUsage(
-					"Cannot use {$p}prop=" . join( '|', array_keys( $matches ) ) . " with {$p}unique",
+					"Cannot use {$p}prop=" . implode( '|', array_keys( $matches ) ) . " with {$p}unique",
 					'params'
 				);
 			}

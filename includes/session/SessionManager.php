@@ -287,7 +287,7 @@ final class SessionManager implements SessionManagerInterface {
 		// Make sure there's exactly one
 		if ( count( $infos ) > 1 ) {
 			throw new \UnexpectedValueException(
-				'Multiple empty sessions tied for top priority: ' . join( ', ', $infos )
+				'Multiple empty sessions tied for top priority: ' . implode( ', ', $infos )
 			);
 		} elseif ( count( $infos ) < 1 ) {
 			throw new \UnexpectedValueException( 'No provider could provide an empty session!' );
@@ -677,7 +677,7 @@ final class SessionManager implements SessionManagerInterface {
 
 		if ( count( $retInfos ) > 1 ) {
 			$ex = new \OverflowException(
-				'Multiple sessions for this request tied for top priority: ' . join( ', ', $retInfos )
+				'Multiple sessions for this request tied for top priority: ' . implode( ', ', $retInfos )
 			);
 			$ex->sessionInfos = $retInfos;
 			throw $ex;

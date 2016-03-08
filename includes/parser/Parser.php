@@ -4636,7 +4636,7 @@ class Parser {
 			$anchor = $safeHeadline;
 			$legacyAnchor = $legacyHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
-				// @codingStandardsIgnoreStart 
+				// @codingStandardsIgnoreStart
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
 				// @codingStandardsIgnoreEnd
 				$anchor .= "_$i";
@@ -4645,7 +4645,7 @@ class Parser {
 				$refers[$arrayKey] = true;
 			}
 			if ( $legacyHeadline !== false && isset( $refers[$legacyArrayKey] ) ) {
-				// @codingStandardsIgnoreStart 
+				// @codingStandardsIgnoreStart
 				for ( $i = 2; isset( $refers["${legacyArrayKey}_$i"] ); ++$i );
 				// @codingStandardsIgnoreEnd
 				$legacyAnchor .= "_$i";
@@ -4793,7 +4793,7 @@ class Parser {
 			$sections[0] = $sections[0] . $toc . "\n";
 		}
 
-		$full .= join( '', $sections );
+		$full .= implode( '', $sections );
 
 		if ( $this->mForceTocPosition ) {
 			return str_replace( '<!--MWTOC-->', $toc, $full );

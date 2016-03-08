@@ -161,7 +161,7 @@ class JsonContent extends TextContent {
 			);
 		}
 		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
-			Html::rawElement( 'tbody', [], join( '', $rows ) )
+			Html::rawElement( 'tbody', [], implode( '', $rows ) )
 		);
 	}
 
@@ -200,7 +200,7 @@ class JsonContent extends TextContent {
 			);
 		}
 		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
-			Html::rawElement( 'tbody', [], join( "\n", $rows ) )
+			Html::rawElement( 'tbody', [], implode( "\n", $rows ) )
 		);
 	}
 

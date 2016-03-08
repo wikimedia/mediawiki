@@ -137,5 +137,5 @@ class WebPHandlerTest extends MediaWikiTestCase {
 }
 
 /* Python code to extract a header and convert to PHP format:
- * print '"%s"' % ''.join( '\\x%02X' % ord(c) for c in urllib.urlopen(url).read(36) )
+ * print '"%s"' % ''.implode( '\\x%02X' % ord(c) for c in urllib.urlopen(url).read(36) )
  */

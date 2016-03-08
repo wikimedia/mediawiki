@@ -537,7 +537,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @since 1.23
 	 */
 	protected static function getIIProps() {
-		return join( '|', self::$imageInfoProps );
+		return implode( '|', self::$imageInfoProps );
 	}
 
 	/**

@@ -160,7 +160,7 @@ class SearchMssql extends SearchDatabase {
 			}
 		}
 
-		$searchon = $this->db->addQuotes( join( ',', $q ) );
+		$searchon = $this->db->addQuotes( implode( ',', $q ) );
 		$field = $this->getIndexField( $fulltext );
 		return "$field, $searchon";
 	}

@@ -171,7 +171,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$gotWarnings = count( $warnings );
 		if ( $gotWarnings !== $expectWarnings ) {
 			$this->fail( "Expected $expectWarnings warning(s), but got $gotWarnings:\n" .
-				join( "\n", $warnings )
+				implode( "\n", $warnings )
 			);
 		}
 	}
