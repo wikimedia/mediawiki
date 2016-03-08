@@ -1322,33 +1322,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Asserts that an exception of the specified type occurs when running
-	 * the provided code.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.22 Use setExpectedException
-	 *
-	 * @param callable $code
-	 * @param string $expected
-	 * @param string $message
-	 */
-	protected function assertException( $code, $expected = 'Exception', $message = '' ) {
-		$pokemons = null;
-
-		try {
-			call_user_func( $code );
-		} catch ( Exception $pokemons ) {
-			// Gotta Catch 'Em All!
-		}
-
-		if ( $message === '' ) {
-			$message = 'An exception of type "' . $expected . '" should have been thrown';
-		}
-
-		$this->assertInstanceOf( $expected, $pokemons, $message );
-	}
-
-	/**
 	 * Asserts that the given string is a valid HTML snippet.
 	 * Wraps the given string in the required top level tags and
 	 * then calls assertValidHtmlDocument().

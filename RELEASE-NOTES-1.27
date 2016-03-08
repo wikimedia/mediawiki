@@ -245,6 +245,7 @@ HHVM 3.1.
 * Language::getLanguageNames() was removed (deprecated since 1.20).
 * Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
 * Language::specialPage() was removed (deprecated since 1.24).
+* MediaWikiTestCase::assertException() was removed (deprecated since 1.22).
 * OutputPage::getHeadItems() was removed (deprecated since 1.24).
 * OutputPage::getScript() was removed (deprecated since 1.24).
 * OutputPage::out() was removed (deprecated since 1.22).
