@@ -516,7 +516,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				$prev_title = $row->cur_title;
 				$prev_namespace = $row->cur_namespace;
 			}
-			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
+			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . implode( ',', $deleteId ) . ')';
 			$this->db->query( $sql, __METHOD__ );
 			$this->output( wfTimestamp( TS_DB ) );
 			$this->output( "......<b>Deleted</b> " . $this->db->affectedRows() . " records.\n" );

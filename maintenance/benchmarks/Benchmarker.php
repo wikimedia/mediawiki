@@ -87,7 +87,7 @@ abstract class Benchmarker extends Maintenance {
 			$ret .= sprintf( "%s times: function %s(%s) :\n",
 				$res['count'],
 				$res['function'],
-				join( ', ', $res['arguments'] )
+				implode( ', ', $res['arguments'] )
 			);
 			$ret .= sprintf( "   %6.2fms (%6.2fms each)\n",
 				$res['delta'] * 1000,

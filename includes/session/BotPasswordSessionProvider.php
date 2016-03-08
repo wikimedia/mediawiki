@@ -120,7 +120,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		if ( $missingKeys ) {
 			$this->logger->info( 'Session "{session}": Missing metadata: {missing}', [
 				'session' => $info,
-				'missing' => join( ', ', $missingKeys ),
+				'missing' => implode( ', ', $missingKeys ),
 			] );
 			return false;
 		}

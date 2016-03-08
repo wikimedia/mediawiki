@@ -153,7 +153,7 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 				foreach ( $globals as $k => $v ) {
 					$g[] = "$k=" . var_export( $v, 1 );
 				}
-				$k = "Module $path with " . join( ', ', $g );
+				$k = "Module $path with " . implode( ', ', $g );
 				$ret[$k] = [ $path, $globals ];
 			}
 		}

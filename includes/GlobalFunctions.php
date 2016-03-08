@@ -1738,7 +1738,7 @@ function wfEscapeWikiText( $text ) {
 				$repl2[] = preg_quote( substr( $prot, 0, -1 ), '/' );
 			}
 		}
-		$repl2 = $repl2 ? '/\b(' . join( '|', $repl2 ) . '):/i' : '/^(?!)/';
+		$repl2 = $repl2 ? '/\b(' . implode( '|', $repl2 ) . '):/i' : '/^(?!)/';
 	}
 	$text = substr( strtr( "\n$text", $repl ), 1 );
 	$text = preg_replace( $repl2, '$1&#58;', $text );

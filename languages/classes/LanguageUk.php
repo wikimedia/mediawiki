@@ -51,19 +51,19 @@ class LanguageUk extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родовий відмінок
-					if ( join( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ії';
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) === 'ти' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'т';
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) === 'ди' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'дів';
-					} elseif ( join( '', array_slice( $ar[0], -3 ) ) === 'ник' ) {
-						$word = join( '', array_slice( $ar[0], 0, -3 ) ) . 'ника';
+					if ( implode( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'ії';
+					} elseif ( implode( '', array_slice( $ar[0], -2 ) ) === 'ти' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'т';
+					} elseif ( implode( '', array_slice( $ar[0], -2 ) ) === 'ди' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'дів';
+					} elseif ( implode( '', array_slice( $ar[0], -3 ) ) === 'ник' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -3 ) ) . 'ника';
 					}
 					break;
 				case 'accusative': # знахідний відмінок
-					if ( join( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ію';
+					if ( implode( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'ію';
 					}
 					break;
 			}

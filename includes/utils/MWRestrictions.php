@@ -69,13 +69,13 @@ class MWRestrictions {
 		$invalidKeys = array_diff( $keys, $validKeys );
 		if ( $invalidKeys ) {
 			throw new InvalidArgumentException(
-				'Array contains invalid keys: ' . join( ', ', $invalidKeys )
+				'Array contains invalid keys: ' . implode( ', ', $invalidKeys )
 			);
 		}
 		$missingKeys = array_diff( $neededKeys, $keys );
 		if ( $missingKeys ) {
 			throw new InvalidArgumentException(
-				'Array is missing required keys: ' . join( ', ', $missingKeys )
+				'Array is missing required keys: ' . implode( ', ', $missingKeys )
 			);
 		}
 

@@ -52,12 +52,12 @@ class LanguageHy extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # սեռական հոլով
-					if ( join( '', array_slice( $ar[0], -1 ) ) == 'ա' ) {
-						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'այի';
-					} elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ո' ) {
-						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'ոյի';
-					} elseif ( join( '', array_slice( $ar[0], -4 ) ) == 'գիրք' ) {
-						$word = join( '', array_slice( $ar[0], 0, -4 ) ) . 'գրքի';
+					if ( implode( '', array_slice( $ar[0], -1 ) ) == 'ա' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -1 ) ) . 'այի';
+					} elseif ( implode( '', array_slice( $ar[0], -1 ) ) == 'ո' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -1 ) ) . 'ոյի';
+					} elseif ( implode( '', array_slice( $ar[0], -4 ) ) == 'գիրք' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -4 ) ) . 'գրքի';
 					} else {
 						$word .= 'ի';
 					}

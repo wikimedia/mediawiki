@@ -1225,7 +1225,7 @@ class ApiMain extends ApiBase {
 		// If a majority of slaves are too lagged then disallow writes
 		$slaveCount = wfGetLB()->getServerCount() - 1;
 		if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
-			$laggedServers = join( ', ', $laggedServers );
+			$laggedServers = implode( ', ', $laggedServers );
 			wfDebugLog(
 				'api-readonly',
 				"Api request failed as read only because the following DBs are lagged: $laggedServers"
@@ -1443,7 +1443,7 @@ class ApiMain extends ApiBase {
 		$ret = $this->getRequest()->getVal( $name );
 		if ( $ret === null ) {
 			if ( $this->getRequest()->getArray( $name ) !== null ) {
-				// See bug 10262 for why we don't just join( '|', ... ) the
+				// See bug 10262 for why we don't just implode( '|', ... ) the
 				// array.
 				$this->setWarning(
 					"Parameter '$name' uses unsupported PHP array syntax"
@@ -1637,7 +1637,7 @@ class ApiMain extends ApiBase {
 					'level' => $level,
 					'anchor' => 'main/datatypes',
 					'line' => $header,
-					'number' => join( '.', $tocnumber ),
+					'number' => implode( '.', $tocnumber ),
 					'index' => false,
 				];
 			}
@@ -1656,7 +1656,7 @@ class ApiMain extends ApiBase {
 					'level' => $level,
 					'anchor' => 'main/credits',
 					'line' => $header,
-					'number' => join( '.', $tocnumber ),
+					'number' => implode( '.', $tocnumber ),
 					'index' => false,
 				];
 			}

@@ -2069,7 +2069,7 @@ class OutputPage extends ContextSource {
 		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $options ) {
 			$this->addVaryHeader( $header, $options );
 		}
-		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
+		return 'Vary: ' . implode( ', ', array_keys( $this->mVaryHeader ) );
 	}
 
 	/**

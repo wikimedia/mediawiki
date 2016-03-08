@@ -321,7 +321,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		foreach ( $sortby as $field => $v ) {
 			$cont[] = $row->$field;
 		}
-		$this->setContinueEnumParameter( 'continue', join( '|', $cont ) );
+		$this->setContinueEnumParameter( 'continue', implode( '|', $cont ) );
 	}
 
 	public function getCacheMode( $params ) {

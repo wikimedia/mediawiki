@@ -312,7 +312,7 @@ class ApiResult implements ApiSerializable {
 			if ( !$conflicts ) {
 				$arr[$name] += $value;
 			} else {
-				$keys = join( ', ', array_keys( $conflicts ) );
+				$keys = implode( ', ', array_keys( $conflicts ) );
 				throw new RuntimeException(
 					"Conflicting keys ($keys) when attempting to merge element $name"
 				);
@@ -1132,12 +1132,12 @@ class ApiResult implements ApiSerializable {
 						$tmp = [];
 						return $tmp;
 					default:
-						$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+						$fail = implode( '.', array_slice( $path, 0, $i + 1 ) );
 						throw new InvalidArgumentException( "Path $fail does not exist" );
 				}
 			}
 			if ( !is_array( $ret[$k] ) ) {
-				$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+				$fail = implode( '.', array_slice( $path, 0, $i + 1 ) );
 				throw new InvalidArgumentException( "Path $fail is not an array" );
 			}
 			$ret = &$ret[$k];

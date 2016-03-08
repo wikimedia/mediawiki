@@ -302,7 +302,7 @@ abstract class ApiBase extends ContextSource {
 					$qs = $k;
 					$msg = self::escapeWikiText( $v );
 					if ( is_array( $msg ) ) {
-						$msg = join( ' ', $msg );
+						$msg = implode( ' ', $msg );
 					}
 				}
 
@@ -547,13 +547,13 @@ abstract class ApiBase extends ContextSource {
 			$parent = $module;
 			$manager = $parent->getModuleManager();
 			if ( $manager === null ) {
-				$errorPath = join( '+', array_slice( $parts, 0, $i ) );
+				$errorPath = implode( '+', array_slice( $parts, 0, $i ) );
 				$this->dieUsage( "The module \"$errorPath\" has no submodules", 'badmodule' );
 			}
 			$module = $manager->getModule( $parts[$i] );
 
 			if ( $module === null ) {
-				$errorPath = $i ? join( '+', array_slice( $parts, 0, $i ) ) : $parent->getModuleName();
+				$errorPath = $i ? implode( '+', array_slice( $parts, 0, $i ) ) : $parent->getModuleName();
 				$this->dieUsage(
 					"The module \"$errorPath\" does not have a submodule \"{$parts[$i]}\"",
 					'badmodule'
@@ -2223,7 +2223,7 @@ abstract class ApiBase extends ContextSource {
 		Hooks::run( 'APIGetDescription', [ &$this, &$desc ] );
 		$desc = self::escapeWikiText( $desc );
 		if ( is_array( $desc ) ) {
-			$desc = join( "\n", $desc );
+			$desc = implode( "\n", $desc );
 		} else {
 			$desc = (string)$desc;
 		}
@@ -2309,7 +2309,7 @@ abstract class ApiBase extends ContextSource {
 					}
 					return $line;
 				}, $d );
-				$d = join( ' ', $d );
+				$d = implode( ' ', $d );
 			}
 
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG] ) ) {

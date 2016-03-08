@@ -52,11 +52,11 @@ class LanguageCu extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родительный падеж
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' )
-						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' )
+					if ( ( implode( '', array_slice( $ar[0], -4 ) ) == 'вики' )
+						|| ( implode( '', array_slice( $ar[0], -4 ) ) == 'Вики' )
 					) {
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ї' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'їѩ';
+					} elseif ( implode( '', array_slice( $ar[0], -2 ) ) == 'ї' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'їѩ';
 					}
 					break;
 				case 'accusative': # винительный падеж
