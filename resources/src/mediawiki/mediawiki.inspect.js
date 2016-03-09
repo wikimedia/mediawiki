@@ -202,6 +202,7 @@
 
 				// Convert size to human-readable string.
 				$.each( modules, function ( i, module ) {
+					module.sizeInBytes = module.size;
 					module.size = humanSize( module.size );
 				} );
 
