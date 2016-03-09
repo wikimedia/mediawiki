@@ -337,7 +337,8 @@
 					} else if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							allowArbitrary: true,
-							allowDuplicates: Util.apiBool( pi.allowsduplicates )
+							allowDuplicates: Util.apiBool( pi.allowsduplicates ),
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -459,13 +460,15 @@
 						}
 
 						widget = new OO.ui.CapsuleMultiselectWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
 					} else {
 						widget = new OO.ui.DropdownWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
@@ -489,7 +492,8 @@
 						}
 
 						widget = new OO.ui.CapsuleMultiselectWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -499,7 +503,8 @@
 						}
 					} else {
 						widget = new OO.ui.DropdownWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
@@ -535,6 +540,7 @@
 				widget = new OO.ui.CapsuleMultiselectWidget( {
 					allowArbitrary: true,
 					allowDuplicates: Util.apiBool( pi.allowsduplicates ),
+					$overlay: $( '#mw-apisandbox-ui' ),
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
 						$content: $content
@@ -1031,7 +1037,8 @@
 
 				if ( !formatDropdown ) {
 					formatDropdown = new OO.ui.DropdownWidget( {
-						menu: { items: [] }
+						menu: { items: [] },
+						$overlay: $( '#mw-apisandbox-ui' )
 					} );
 					formatDropdown.getMenu().on( 'choose', Util.onFormatDropdownChange );
 				}
