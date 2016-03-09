@@ -1054,7 +1054,7 @@ class MessageCache {
 	 * @param Title $title
 	 * @param bool $linestart Whether or not this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
-	 * @param string $language Language code
+	 * @param Language|string $language Language code
 	 * @return ParserOutput|string
 	 */
 	public function parse( $text, $title = null, $linestart = true,
@@ -1067,6 +1067,10 @@ class MessageCache {
 		$parser = $this->getParser();
 		$popts = $this->getParserOptions();
 		$popts->setInterfaceMessage( $interface );
+
+		if ( is_string( $language ) ) {
+			$language = Language::factory( $language );
+		}
 		$popts->setTargetLanguage( $language );
 
 		if ( !$title || !$title instanceof Title ) {
