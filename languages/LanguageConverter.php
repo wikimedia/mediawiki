@@ -160,7 +160,7 @@ class LanguageConverter {
 
 		$req = $this->getURLVariant();
 
-		if ( $wgUser->isLoggedIn() && !$req ) {
+		if ( $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
 			$req = $this->getUserVariant();
 		} elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
@@ -257,6 +257,9 @@ class LanguageConverter {
 		// Get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
+		if ( !$wgUser->isSafeToLoad() ) {
+			return false;
+		}
 		if ( $wgUser->isLoggedIn() ) {
 			if ( $this->mMainLanguageCode == $wgContLang->getCode() ) {
 				$ret = $wgUser->getOption( 'variant' );
