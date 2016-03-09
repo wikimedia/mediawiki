@@ -82,6 +82,9 @@ class ParserTest {
 
 	public $regex = "";
 	private $savedGlobals = [];
+	private $useDwdiff = false;
+	private $markWhitespace = false;
+	private $normalizationFunctions = [];
 
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
@@ -116,6 +119,18 @@ class ParserTest {
 				|| isset( $options['compare'] ) ) ); // redundant output
 
 		$this->showOutput = isset( $options['show-output'] );
+		$this->useDwdiff = isset( $options['dwdiff'] );
+		$this->markWhitespace = isset( $options['mark-ws'] );
+
+		if ( isset( $options['norm'] ) ) {
+			foreach ( explode( ',', $options['norm'] ) as $func ) {
+				if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
+					$this->normalizationFunctions[] = $func;
+				} else {
+					echo "Warning: unknown normalization option \"$func\"\n";
+				}
+			}
+		}
 
 		if ( isset( $options['filter'] ) ) {
 			$options['regex'] = $options['filter'];
@@ -699,6 +714,11 @@ class ParserTest {
 		}
 
 		$this->teardownGlobals();
+
+		if ( count( $this->normalizationFunctions ) ) {
+			$result = ParserTestResultNormalizer::normalize( $result, $this->normalizationFunctions );
+			$out = ParserTestResultNormalizer::normalize( $out, $this->normalizationFunctions );
+		}
 
 		$testResult = new ParserTestResult( $desc );
 		$testResult->expected = $result;
@@ -1469,6 +1489,16 @@ class ParserTest {
 	protected function quickDiff( $input, $output,
 		$inFileTail = 'expected', $outFileTail = 'actual'
 	) {
+		if ( $this->markWhitespace ) {
+			$pairs = [
+				"\n" => '¶',
+				' ' => '·',
+				"\t" => '→'
+			];
+			$input = strtr( $input, $pairs );
+			$output = strtr( $output, $pairs );
+		}
+
 		# Windows, or at least the fc utility, is retarded
 		$slash = wfIsWindows() ? '\\' : '/';
 		$prefix = wfTempDir() . "{$slash}mwParser-" . mt_rand();
@@ -1484,14 +1514,22 @@ class ParserTest {
 
 		global $wgDiff3;
 		// we assume that people with diff3 also have usual diff
-		$shellCommand = ( wfIsWindows() && !$wgDiff3 ) ? 'fc' : 'diff -au';
+		if ( $this->useDwdiff ) {
+			$shellCommand = 'dwdiff -Pc';
+		} else {
+			$shellCommand = ( wfIsWindows() && !$wgDiff3 ) ? 'fc' : 'diff -au';
+		}
 
 		$diff = wfShellExec( "$shellCommand $shellInfile $shellOutfile" );
 
 		unlink( $infile );
 		unlink( $outfile );
 
-		return $this->colorDiff( $diff );
+		if ( $this->useDwdiff ) {
+			return $diff;
+		} else {
+			return $this->colorDiff( $diff );
+		}
 	}
 
 	/**
@@ -1697,5 +1735,86 @@ class ParserTest {
 	static function getFakeTimestamp( &$parser, &$ts ) {
 		$ts = 123; // parsed as '1970-01-01T00:02:03Z'
 		return true;
+	}
+}
+
+class ParserTestResultNormalizer {
+	protected $doc, $xpath, $invalid;
+
+	public static function normalize( $text, $funcs ) {
+		$norm = new self( $text );
+		if ( $norm->invalid ) {
+			return $text;
+		}
+		foreach ( $funcs as $func ) {
+			$norm->$func();
+		}
+		return $norm->serialize();
+	}
+
+	protected function __construct( $text ) {
+		$this->doc = new DOMDocument( '1.0', 'utf-8' );
+
+		// Note: parsing a supposedly XHTML document with an XML parser is not
+		// guaranteed to give accurate results. For example, it may introduce
+		// differences in the number of line breaks in <pre> tags.
+
+		MediaWiki\suppressWarnings();
+		if ( !$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
+			$this->invalid = true;
+		}
+		MediaWiki\restoreWarnings();
+		$this->xpath = new DOMXPath( $this->doc );
+		$this->body = $this->xpath->query( '//body' )->item( 0 );
+	}
+
+	protected function removeTbody() {
+		foreach ( $this->xpath->query( '//tbody' ) as $tbody ) {
+			while ( $tbody->firstChild ) {
+				$child = $tbody->firstChild;
+				$tbody->removeChild( $child );
+				$tbody->parentNode->insertBefore( $child, $tbody );
+			}
+			$tbody->parentNode->removeChild( $tbody );
+		}
+	}
+
+	/**
+	 * The point of this function is to produce a normalized DOM in which
+	 * Tidy's output matches the output of html5depurate. Tidy both trims
+	 * and pretty-prints, so this requires fairly aggressive treatment.
+	 *
+	 * In particular, note that Tidy converts <pre>x</pre> to <pre>\nx\n</pre>,
+	 * which theoretically affects display since the second line break is not
+	 * ignored by compliant HTML parsers.
+	 *
+	 * This function also removes empty elements, as does Tidy.
+	 */
+	protected function trimWhitespace() {
+		foreach ( $this->xpath->query( '//text()' ) as $child ) {
+			if ( strtolower( $child->parentNode->nodeName ) === 'pre' ) {
+				// Just trim one line break from the start and end
+				if ( substr_compare( $child->data, "\n", 0 ) === 0 ) {
+					$child->data = substr( $child->data, 1 );
+				}
+				if ( substr_compare( $child->data, "\n", -1 ) === 0 ) {
+					$child->data = substr( $child->data, 0, -1 );
+				}
+			} else {
+				// Trim all whitespace
+				$child->data = trim( $child->data );
+			}
+			if ( $child->data === '' ) {
+				$child->parentNode->removeChild( $child );
+			}
+		}
+	}
+
+	/**
+	 * Serialize the XML DOM for comparison purposes. This does not generate HTML.
+	 */
+	protected function serialize() {
+		return strtr( $this->doc->saveXML( $this->body ),
+			[ '<body>' => '', '</body>' => '' ] );
 	}
 }

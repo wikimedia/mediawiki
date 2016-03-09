@@ -27,8 +27,8 @@
 define( 'MW_PARSER_TEST', true );
 
 $options = [ 'quick', 'color', 'quiet', 'help', 'show-output',
-	'record', 'run-disabled', 'run-parsoid' ];
-$optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file' ];
+	'record', 'run-disabled', 'run-parsoid', 'dwdiff', 'mark-ws' ];
+$optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file', 'norm' ];
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';
 require_once __DIR__ . '/TestsAutoLoader.php';
@@ -54,9 +54,16 @@ Options:
   --keep-uploads   Re-use the same upload directory for each test, don't delete it
   --fuzz           Do a fuzz test instead of a normal test
   --seed <n>       Start the fuzz test from the specified seed
-  --help           Show this help message
   --run-disabled   run disabled tests
   --run-parsoid    run parsoid tests (normally disabled)
+  --dwdiff         Use dwdiff to display diff output
+  --mark-ws        Mark whitespace in diffs by replacing it with symbols
+  --norm=<funcs>   Apply a comma-separated list of normalization functions to
+                   both the expected and actual output in order to resolve
+                   irrelevant differences. The accepted normalization functions
+                   are: removeTbody to remove <tbody> tags; and trimWhitespace
+                   to trim whitespace from the start and end of text nodes.
+  --help           Show this help message
 
 ENDS;
 	exit( 0 );
