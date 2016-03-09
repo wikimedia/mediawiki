@@ -13,7 +13,7 @@ $namespaceNames = [
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
-	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
+	NS_USER_TALK        => 'Razgovor_s_korisnikom',
 	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
 	NS_FILE             => 'Datoteka',
 	NS_FILE_TALK        => 'Razgovor_o_datoteci',
@@ -28,6 +28,7 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
+	'Razgovor_sa_korisnikom' => NS_USER_TALK,
 	'Medija' => NS_MEDIA,
 	'Slika' => NS_FILE,
 	'Razgovor_o_datoteci' => NS_FILE_TALK,
