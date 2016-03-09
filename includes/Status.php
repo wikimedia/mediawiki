@@ -179,14 +179,38 @@ class Status {
 	}
 
 	/**
+	 * @param string|Language|false|null $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
+	 * @return Language
+	 */
+	protected function languageFromParam( $lang ) {
+		global $wgLang, $wgContLang;
+
+		if ( $lang === null ) {
+			// @todo: Use RequestContext::getMain()->getLanguage() instead
+			return $wgLang;
+		} elseif ( $lang === false ) {
+			return $wgContLang;
+		} elseif ( $lang instanceof Language || $lang instanceof StubUserLang ) {
+			return $lang;
+		} else {
+			return Language::factory( $lang );
+		}
+	}
+
+	/**
 	 * Get the error list as a wikitext formatted list
 	 *
 	 * @param string|bool $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string|bool $longContext A long enclosing context message name, for a list
+	 * @param string|Language|false $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
 	 * @return string
 	 */
-	public function getWikiText( $shortContext = false, $longContext = false ) {
+	public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+
 		$rawErrors = $this->sv->getErrors();
 		if ( count( $rawErrors ) == 0 ) {
 			if ( $this->sv->isOK() ) {
@@ -199,22 +223,22 @@ class Status {
 			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
 		if ( count( $rawErrors ) == 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0] )->plain();
+			$s = $this->getErrorMessage( $rawErrors[0], $lang )->plain();
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s )->plain();
+				$s = wfMessage( $shortContext, $s )->inLanguage( $lang )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMessage( $longContext, "* $s\n" )->plain();
+				$s = wfMessage( $longContext, "* $s\n" )->inLanguage( $lang )->plain();
 			}
 		} else {
-			$errors = $this->getErrorMessageArray( $rawErrors );
+			$errors = $this->getErrorMessageArray( $rawErrors, $lang );
 			foreach ( $errors as &$error ) {
 				$error = $error->plain();
 			}
 			$s = '* ' . implode( "\n* ", $errors ) . "\n";
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s )->plain();
+				$s = wfMessage( $longContext, $s )->inLanguage( $lang )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
+				$s = wfMessage( $shortContext, "\n$s\n" )->inLanguage( $lang )->plain();
 			}
 		}
 		return $s;
@@ -227,10 +251,13 @@ class Status {
 	 * message names), to be used when there is a single error.
 	 * @param string|string[] $longContext A long enclosing context message name (or an array of
 	 * message names), for a list.
-	 *
+	 * @param string|Language|false $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
 	 * @return Message
 	 */
-	public function getMessage( $shortContext = false, $longContext = false ) {
+	public function getMessage( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+
 		$rawErrors = $this->sv->getErrors();
 		if ( count( $rawErrors ) == 0 ) {
 			if ( $this->sv->isOK() ) {
@@ -243,16 +270,16 @@ class Status {
 			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
 		if ( count( $rawErrors ) == 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0] );
+			$s = $this->getErrorMessage( $rawErrors[0], $lang );
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s );
+				$s = wfMessage( $shortContext, $s )->inLanguage( $lang );
 			} elseif ( $longContext ) {
 				$wrapper = new RawMessage( "* \$1\n" );
 				$wrapper->params( $s )->parse();
-				$s = wfMessage( $longContext, $wrapper );
+				$s = wfMessage( $longContext, $wrapper )->inLanguage( $lang );
 			}
 		} else {
-			$msgs = $this->getErrorMessageArray( $rawErrors );
+			$msgs = $this->getErrorMessageArray( $rawErrors, $lang );
 			$msgCount = count( $msgs );
 
 			if ( $shortContext ) {
@@ -263,11 +290,11 @@ class Status {
 			$s->params( $msgs )->parse();
 
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s );
+				$s = wfMessage( $longContext, $s )->inLanguage( $lang );
 			} elseif ( $shortContext ) {
 				$wrapper = new RawMessage( "\n\$1\n", [ $s ] );
 				$wrapper->parse();
-				$s = wfMessage( $shortContext, $wrapper );
+				$s = wfMessage( $shortContext, $wrapper )->inLanguage( $lang );
 			}
 		}
 
@@ -280,10 +307,11 @@ class Status {
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
 	 * message and the remaining items as the params.
-	 *
+	 * @param string|Language|false $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
 	 * @return Message
 	 */
-	protected function getErrorMessage( $error ) {
+	protected function getErrorMessage( $error, $lang = null ) {
 		if ( is_array( $error ) ) {
 			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
@@ -298,6 +326,8 @@ class Status {
 		} else {
 			$msg = wfMessage( $error );
 		}
+
+		$msg->inLanguage( $this->languageFromParam( $lang ) );
 		return $msg;
 	}
 
@@ -307,21 +337,29 @@ class Status {
 	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string $longContext A long enclosing context message name, for a list
+	 * @param string|Language|false $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
 	 * @return string
 	 */
-	public function getHTML( $shortContext = false, $longContext = false ) {
-		$text = $this->getWikiText( $shortContext, $longContext );
-		$out = MessageCache::singleton()->parse( $text, null, true, true );
+	public function getHTML( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+		$text = $this->getWikiText( $shortContext, $longContext, $lang );
+		$out = MessageCache::singleton()->parse( $text, null, true, true, $lang );
 		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
 	/**
 	 * Return an array with a Message object for each error.
 	 * @param array $errors
+	 * @param string|Language|false $lang Language to use for processing
+	 *  messages, or false to use the wiki's content language
 	 * @return Message[]
 	 */
-	protected function getErrorMessageArray( $errors ) {
-		return array_map( [ $this, 'getErrorMessage' ], $errors );
+	protected function getErrorMessageArray( $errors, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+		return array_map( function ( $e ) use ( $lang ) {
+			return $this->getErrorMessage( $e, $lang );
+		}, $errors );
 	}
 
 	/**
