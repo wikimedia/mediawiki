@@ -595,7 +595,7 @@ class DiffEngine {
 		$i = 0;
 		$j = 0;
 
-		assert( count($lines) == count($changed) );
+		assert( count( $lines ) == count( $changed ) );
 		$len = count( $lines );
 		$other_len = count( $other_changed );
 
