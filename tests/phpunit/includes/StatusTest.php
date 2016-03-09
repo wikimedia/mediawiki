@@ -321,24 +321,25 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetWikiTextAndHtml
 	 * @covers Status::getWikiText
-	 * @todo test long and short context messages generated through this method
-	 *       this can not really be done now due to use of wfMessage()->plain()
-	 *       It is possible to mock such methods but only if namespaces are used
 	 */
-	public function testGetWikiText( Status $status, $wikitext, $html ) {
+	public function testGetWikiText(
+		Status $status, $wikitext, $wrappedWikitext, $html, $wrappedHtml
+	) {
 		$this->assertEquals( $wikitext, $status->getWikiText() );
+
+		$this->assertEquals( $wrappedWikitext, $status->getWikiText( 'wrap-short', 'wrap-long', 'qqx' ) );
 	}
 
 	/**
 	 * @dataProvider provideGetWikiTextAndHtml
 	 * @covers Status::getHtml
-	 * @todo test long and short context messages generated through this method
-	 *   this can not really be done now due to use of $this->getWikiText using
-	 *   wfMessage()->plain(). It is possible to mock such methods but only if
-	 *   namespaces are used.
 	 */
-	public function testGetHtml( Status $status, $wikitext, $html ) {
+	public function testGetHtml(
+		Status $status, $wikitext, $wrappedWikitext, $html, $wrappedHtml
+	) {
 		$this->assertEquals( $html, $status->getHTML() );
+
+		$this->assertEquals( $wrappedHtml, $status->getHTML( 'wrap-short', 'wrap-long', 'qqx' ) );
 	}
 
 	/**
@@ -352,7 +353,11 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['GoodStatus'] = [
 			new Status(),
 			"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
+			"(wrap-short: (internalerror_info: Status::getWikiText called for a good result, " .
+				"this is incorrect\n))",
 			"<p>Internal error: Status::getWikiText called for a good result, this is incorrect\n</p>",
+			"<p>(wrap-short: (internalerror_info: Status::getWikiText called for a good result, " .
+				"this is incorrect\n))\n</p>",
 		];
 
 		$status = new Status();
@@ -360,7 +365,11 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['GoodButNoError'] = [
 			$status,
 			"Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n",
+			"(wrap-short: (internalerror_info: Status::getWikiText: Invalid result object: " .
+				"no error text but not OK\n))",
 			"<p>Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n</p>",
+			"<p>(wrap-short: (internalerror_info: Status::getWikiText: Invalid result object: " .
+				"no error text but not OK\n))\n</p>",
 		];
 
 		$status = new Status();
@@ -368,7 +377,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['1StringWarning'] = [
 			$status,
 			"<fooBar!>",
+			"(wrap-short: (fooBar!))",
 			"<p>&lt;fooBar!&gt;\n</p>",
+			"<p>(wrap-short: (fooBar!))\n</p>",
 		];
 
 		$status = new Status();
@@ -377,7 +388,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['2StringWarnings'] = [
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
+			"(wrap-long: * (fooBar!)\n* (fooBar2!)\n)",
 			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
+			"<p>(wrap-long: * (fooBar!)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
 		$status = new Status();
@@ -385,7 +398,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['1MessageWarning'] = [
 			$status,
 			"<fooBar!>",
+			"(wrap-short: (fooBar!: foo, bar))",
 			"<p>&lt;fooBar!&gt;\n</p>",
+			"<p>(wrap-short: (fooBar!: foo, bar))\n</p>",
 		];
 
 		$status = new Status();
@@ -394,10 +409,24 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases['2MessageWarnings'] = [
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
+			"(wrap-long: * (fooBar!: foo, bar)\n* (fooBar2!)\n)",
 			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
+			"<p>(wrap-long: * (fooBar!: foo, bar)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
 		return $testCases;
+	}
+
+	private static function sanitizedMessageParams( Message $message ) {
+		return array_map( function ( $p ) {
+			return $p instanceof Message
+				? [
+					'key' => $p->getKey(),
+					'params' => self::sanitizedMessageParams( $p ),
+					'lang' => $p->getLanguage()->getCode(),
+				]
+				: $p;
+		}, $message->getParams() );
 	}
 
 	/**
@@ -407,9 +436,10 @@ class StatusTest extends MediaWikiLangTestCase {
 	public function testGetMessage(
 		Status $status, $expectedParams = [], $expectedKey, $expectedWrapper
 	) {
-		$message = $status->getMessage();
+		$message = $status->getMessage( null, null, 'qqx' );
 		$this->assertInstanceOf( 'Message', $message );
-		$this->assertEquals( $expectedParams, $message->getParams(), 'Message::getParams' );
+		$this->assertEquals( $expectedParams, self::sanitizedMessageParams( $message ),
+			'Message::getParams' );
 		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
 
 		$message = $status->getMessage( 'wrapper-short', 'wrapper-long' );
@@ -462,20 +492,18 @@ class StatusTest extends MediaWikiLangTestCase {
 			'wrapper-short'
 		];
 
-		// FIXME: Assertion tries to compare a StubUserLang with a Language object, because
-		// "data providers are executed before both the call to the setUpBeforeClass static method
-		// and the first call to the setUp method. Because of that you can't access any variables
-		// you create there from within a data provider."
-		// http://phpunit.de/manual/3.7/en/writing-tests-for-phpunit.html
-// 		$status = new Status();
-// 		$status->warning( 'fooBar!' );
-// 		$status->warning( 'fooBar2!' );
-// 		$testCases[ '2StringWarnings' ] = array(
-// 			$status,
-// 			array( new Message( 'fooBar!' ), new Message( 'fooBar2!' ) ),
-// 			"* \$1\n* \$2",
-// 			'wrapper-long'
-// 		);
+		$status = new Status();
+		$status->warning( 'fooBar!' );
+		$status->warning( 'fooBar2!' );
+		$testCases[ '2StringWarnings' ] = [
+			$status,
+			[
+				[ 'key' => 'fooBar!', 'params' => [], 'lang' => 'qqx' ],
+				[ 'key' => 'fooBar2!', 'params' => [], 'lang' => 'qqx' ]
+			],
+			"* \$1\n* \$2",
+			'wrapper-long'
+		];
 
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', [ 'foo', 'bar' ] ) );
@@ -491,7 +519,10 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->warning( new Message( 'fooBar2!' ) );
 		$testCases['2MessageWarnings'] = [
 			$status,
-			[ new Message( 'fooBar!', [ 'foo', 'bar' ] ), new Message( 'fooBar2!' ) ],
+			[
+				[ 'key' => 'fooBar!', 'params' => [ 'foo', 'bar' ], 'lang' => 'qqx' ],
+				[ 'key' => 'fooBar2!', 'params' => [], 'lang' => 'qqx' ]
+			],
 			"* \$1\n* \$2",
 			'wrapper-long'
 		];
