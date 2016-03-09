@@ -520,17 +520,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get all registered JS and CSS tags for the header.
-	 *
-	 * @return string
-	 * @deprecated since 1.24 Use OutputPage::headElement to build the full header.
-	 */
-	function getScript() {
-		wfDeprecated( __METHOD__, '1.24' );
-		return $this->mScripts . $this->getHeadItems();
-	}
-
-	/**
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param array $modules
