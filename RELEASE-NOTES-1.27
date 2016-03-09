@@ -392,7 +392,7 @@ changes to languages because of Phabricator reports.
 * MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
 * Title::newFromRedirect() was removed (deprecated since 1.21).
 * Skin::commonPrintStylesheet() was removed (deprecated since 1.22).
-
+* Skin::getCommonStylePath() was removed (deprecated since 1.24).
 
 == Compatibility ==
 
