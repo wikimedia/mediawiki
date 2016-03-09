@@ -165,18 +165,12 @@ class StubObject {
 }
 
 /**
- * Stub object for the user language. It depends of the user preferences and
- * "uselang" parameter that can be passed to index.php. This object have to be
- * in $wgLang global.
+ * Stub object for the user language. Assigned to the $wgLang global.
  */
 class StubUserLang extends StubObject {
 
 	public function __construct() {
 		parent::__construct( 'wgLang' );
-	}
-
-	public function __call( $name, $args ) {
-		return $this->_call( $name, $args );
 	}
 
 	/**
