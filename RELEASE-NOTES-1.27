@@ -391,6 +391,8 @@ changes to languages because of Phabricator reports.
 * UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
 * MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
 * Title::newFromRedirect() was removed (deprecated since 1.21).
+* Skin::commonPrintStylesheet() was removed (deprecated since 1.22).
+
 
 == Compatibility ==
 
