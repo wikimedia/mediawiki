@@ -1023,21 +1023,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * This function previously returned a fully resolved style path URL to images or styles stored in
-	 * the legacy skins/common/ directory.
-	 *
-	 * That directory has been removed in 1.24 and the function always returns an empty string.
-	 *
-	 * @deprecated since 1.24
-	 * @param string $name The name or path of a skin resource file
-	 * @return string Empty string
-	 */
-	function getCommonStylePath( $name ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return '';
-	}
-
-	/**
 	 * Return a fully resolved style path url to images or styles stored in the current skins's folder.
 	 * This method returns a url resolved using the configured skin style path
 	 * and includes the style version inside of the url.
