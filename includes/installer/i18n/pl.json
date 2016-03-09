@@ -84,7 +84,6 @@
 	"config-xcache": "[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany",
 	"config-apc": "[Http://www.php.net/apc APC] jest zainstalowany",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany",
-	"config-no-cache": "'''Uwaga:''' Pamięć podręczna dla kodu MediaWiki nie będzie uruchomiona., gdyż nie ma żadnego z następujących narzędzi: [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].",
 	"config-mod-security": "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli jest niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.\nSprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	"config-diff3-bad": "Nie znaleziono GNU diff3.",
 	"config-git": "Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.",
@@ -331,6 +330,6 @@
 	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
 	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions/pl rozszerzenia]?\n\nMożesz przejrzeć [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category rozszerzenia według kategorii] lub [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] aby zobaczyć pełną listę rozszerzeń.",
-	"mainpagetext": "'''Instalacja MediaWiki powiodła się.'''",
+	"mainpagetext": "<strong>Instalacja MediaWiki powiodła się.</strong>",
 	"mainpagedocfooter": "Zobacz [//meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika], aby uzyskać informacje o działaniu oprogramowania wiki.\n\n== Na początek ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/pl Lista ustawień konfiguracyjnych]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/pl MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Przetłumacz MediaWiki na swój język]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam \nDowiedz się, jak walczyć ze spamem na swojej wiki]"
 }

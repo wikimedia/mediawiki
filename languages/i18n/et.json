@@ -1228,7 +1228,7 @@
 	"recentchanges-label-bot": "Roboti tehtud muudatus",
 	"recentchanges-label-unpatrolled": "Seda muudatust ei ole veel kontrollitud",
 	"recentchanges-label-plusminus": "Lehekülje suuruse muutus baitides",
-	"recentchanges-legend-heading": "'''Seletus:'''",
+	"recentchanges-legend-heading": "<strong>Seletus:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vaata ka [[Special:NewPages|uute lehekülgede loendit]])",
 	"recentchanges-submit": "Näita",
 	"rcnotefrom": "Allpool on toodud {{PLURAL:$5|muudatus|muudatused}} alates: <strong>$3, kell $4</strong> (näidatakse kuni <strong>$1</strong> muudatust)",

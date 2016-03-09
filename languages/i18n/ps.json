@@ -1012,7 +1012,7 @@
 	"recentchanges-label-bot": "دا سمون يو روباټ ترسره کړی",
 	"recentchanges-label-unpatrolled": "دغه سمون تر اوسه پورې نه دی څارل شوی",
 	"recentchanges-label-plusminus": "د بايټونو د شمېر له مخې د مخ د بدلون کچه",
-	"recentchanges-legend-heading": "'''لنډونونه:'''",
+	"recentchanges-legend-heading": "<strong>لنډونونه:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|د نويو مخونو لړليک]] هم وگورئ)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "ښکاره کول",

@@ -1170,7 +1170,7 @@
 	"recentchanges-label-bot": "ఈ మార్పును ఒక బాటు చేసింది",
 	"recentchanges-label-unpatrolled": "ఈ దిద్దుబాటు మీద నిఘా లేదు",
 	"recentchanges-label-plusminus": "ఈ పేజి పరిమాణంలో  జరిగిన మార్పుల  బైట్ల సంఖ్య",
-	"recentchanges-legend-heading": "'''సూచిక :'''",
+	"recentchanges-legend-heading": "<strong>సూచిక :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)",
 	"recentchanges-submit": "చూపించు",
 	"rcnotefrom": "<strong>$2</strong> నుండి జరిగిన మార్పులు (<strong>$1</strong> వరకు) కింద చూపబడ్డాయి.",

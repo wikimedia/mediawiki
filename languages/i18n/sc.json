@@ -841,7 +841,7 @@
 	"recentchanges-label-bot": "Custa modìfica l'at fata unu bot",
 	"recentchanges-label-unpatrolled": "Custu càmbiu no est istadu cumprobadu",
 	"recentchanges-label-plusminus": "Su càmbiu de sa mannària de sa pàgina dae su nùmeru de bytes",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (càstia [[Special:NewPages|is pàginas noas]])",
 	"rcnotefrom": "{{PLURAL:$5|Sa chi sighit est sa mudàntzia|Is chi sighint sunt is mudàntzias}} dae <strong>$3, $4</strong> (ammustradas fintzas a <strong>$1</strong>).",
 	"rclistfrom": "Ammustra càmbios dae $3 $2",

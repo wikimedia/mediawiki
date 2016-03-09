@@ -696,7 +696,7 @@
 	"recentchanges-label-bot": "هاذ التبديل ندار بروبو",
 	"recentchanges-label-unpatrolled": "ما تراجعتش هاذ التبديله للآن",
 	"recentchanges-label-plusminus": "الحجَم تاع الصفحة راه تبدّل ب هاد العدّة تاع البايتات",
-	"recentchanges-legend-heading": "'''تفسار:'''",
+	"recentchanges-legend-heading": "<strong>تفسار:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (شوف تاني [[Special:NewPages|ليستة تاع صفحات جديدة]])",
 	"rcnotefrom": "التحت التبديلات من <strong>$2</strong> (إلى <strong>$1</strong> معروضة).",
 	"rclistfrom": "بين التبديلات البديه من $3 $2",

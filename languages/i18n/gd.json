@@ -1160,7 +1160,7 @@
 	"recentchanges-label-bot": "'S e bot a rinn an deasachadh seo",
 	"recentchanges-label-unpatrolled": "Cha do chuir freiceadan comharra ris an deasachadh seo fhathast",
 	"recentchanges-label-plusminus": "Seo meud atharrachadh na duilleige ann am byte",
-	"recentchanges-legend-heading": "'''Treòir:'''",
+	"recentchanges-legend-heading": "<strong>Treòir:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (faic [[Special:NewPages|liosta nan duilleagan ùra]] cuideachd)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "Chì thu {{PLURAL:$5|am mùthadh|na mùthaidhean|na mùthaidhean|na mùthaidhean}} o <strong>$3 $4</strong> (gu ruige <strong>$1</strong> dhiubh) gu h-ìosal.",

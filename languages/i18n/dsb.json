@@ -1114,7 +1114,7 @@
 	"recentchanges-label-bot": "Toś ta změna jo se pśez bośik wuwjadła.",
 	"recentchanges-label-unpatrolled": "Toś ta změna hyšći njejo se pśekontrolěrowała",
 	"recentchanges-label-plusminus": "Změnjona wjelikosc boka (licba bajtow)",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (glej teke [[Special:NewPages|lisćinu nowych bokow]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Dołojce pokazuju se změny wót <strong>$2</strong> (maks. <strong>$1</strong> zapisow).",

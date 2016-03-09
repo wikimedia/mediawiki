@@ -1069,7 +1069,7 @@
 	"recentchanges-label-bot": "ئەم دەستکارییە لە لایەن بۆتەوە کراوە",
 	"recentchanges-label-unpatrolled": "ئەم دەستکارییە ھێشتا پاس نەدراوە",
 	"recentchanges-label-plusminus": "قەبارەی پەڕە ئەوەندە بایت گۆڕاوە",
-	"recentchanges-legend-heading": "'''کورتکراوەکان:'''",
+	"recentchanges-legend-heading": "<strong>کورتکراوەکان:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ھەروەھا بڕوانە [[Special:NewPages|پێرستی پەڕە نوێکان]])",
 	"recentchanges-legend-plusminus": "(''±۱٢٣'')",
 	"recentchanges-submit": "نیشانی بدە",

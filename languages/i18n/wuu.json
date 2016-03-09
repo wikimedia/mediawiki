@@ -1037,7 +1037,7 @@
 	"recentchanges-label-bot": "箇编辑由机器人执行",
 	"recentchanges-label-unpatrolled": "该编辑还朆巡查",
 	"recentchanges-label-plusminus": "箇页面字节数前后个变化",
-	"recentchanges-legend-heading": "'''说明：'''",
+	"recentchanges-legend-heading": "<strong>说明：</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}（见[[Special:NewPages|新页面列表]]）",
 	"rclistfrom": "显示 $3 $2 以来个新改动",
 	"rcshowhideminor": "$1小编写",

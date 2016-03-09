@@ -1179,7 +1179,7 @@
 	"recentchanges-label-bot": "बोट्-द्वारा कृतं सम्पादनमेतत्",
 	"recentchanges-label-unpatrolled": "एतावता अस्य सम्पादनस्य परिशीलिनं नाभूत् ।",
 	"recentchanges-label-plusminus": "पृष्ठस्य आकारः एतावद्भिः बैट्स्-संख्याभिः परिवर्तितः",
-	"recentchanges-legend-heading": "'''विकल्पविषयकम्'''",
+	"recentchanges-legend-heading": "<strong>विकल्पविषयकम्</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|अत्र नूतनपृष्ठानाम् आवलिः]] अपि दृश्यताम्)",
 	"rcnotefrom": "<strong>$3, $4</strong> तः आरभ्य (<strong>$1</strong> पर्यन्तं) जातानि {{PLURAL:$5|परिवर्तनानि}} अधः प्रदर्शितानि ।",
 	"rclistfrom": "$3 $2 पश्चात् जातानि नूतनानि परिवर्तनानि दृश्यन्ताम्",

@@ -655,7 +655,7 @@
 	"nchanges": "$1 changement{{PLURAL:$1||s}}",
 	"enhancedrc-history": "changements",
 	"recentchanges": "Changements récent",
-	"recentchanges-legend-heading": "'''Légende:'''",
+	"recentchanges-legend-heading": "<strong>Légende:</strong>",
 	"rcshowhideminor-hide": "Cacher",
 	"rcshowhidebots": "$1 les robots",
 	"rcshowhidebots-show": "Afficher",

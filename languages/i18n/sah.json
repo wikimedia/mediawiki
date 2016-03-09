@@ -1264,7 +1264,7 @@
 	"recentchanges-label-bot": "Бу уларытыыны робот оҥорбут",
 	"recentchanges-label-unpatrolled": "Бу уларытыы өссө ботурууллана илик",
 	"recentchanges-label-plusminus": "Сирэй кээмэйэ бачча баайтынан уларыйбыт",
-	"recentchanges-legend-heading": "'''Легендата:'''",
+	"recentchanges-legend-heading": "<strong>Легендата:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (өссө көр: [[Special:NewPages|Саҥа сирэйдэр тиһиктэрэ]])",
 	"recentchanges-submit": "Көрдөр",
 	"rcnotefrom": "Манна {{PLURAL:$5|уларытыы көрдөрүлүннэ|уларытыылар көһүннүлэр}} баччаттан <strong>$3, $4</strong> (баччаттан элбэх көстүбэт <strong>$1</strong>).",

@@ -1144,7 +1144,7 @@
 	"recentchanges-label-bot": "This eedit wis performed bi ae bot",
 	"recentchanges-label-unpatrolled": "This eedit haes no bin patrolled yet",
 	"recentchanges-label-plusminus": "The page size chynged bi this nummer o bytes",
-	"recentchanges-legend-heading": "'''Legend:'''",
+	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (see [[Special:NewPages|leet o new pages]] n aw)",
 	"rcnotefrom": "Ablo {{PLURAL:$5|is the chynge|ar the chynges}} sin <strong>$3, $4</strong> (up tae <strong>$1</strong> shawn).",
 	"rclistfrom": "Shaw new chynges stertin fae $3 $2",

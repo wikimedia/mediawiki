@@ -665,7 +665,7 @@
 	"recentchanges-label-newpage": "Modifikasyon sa a kreye yon lòt paj",
 	"recentchanges-label-minor": "Sa se yon ti chanjman",
 	"recentchanges-label-bot": "Se yon wobo ki fè chanjman sa a.",
-	"recentchanges-legend-heading": "'''Lejann:'''",
+	"recentchanges-legend-heading": "<strong>Lejann:</strong>",
 	"rcnotefrom": "Men modifikasyon yo ki fèt depi '''$2''' ('''$1''' dènye).",
 	"rclistfrom": "Afiche nouvo modifikasyon yo depi $3 $2",
 	"rcshowhideminor": "$1 modifiksayon yo ki tou piti",

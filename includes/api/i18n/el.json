@@ -99,7 +99,7 @@
 	"apihelp-opensearch-param-format": "Η μορφή των δεδομένων εξόδου.",
 	"apihelp-options-example-reset": "Επαναφορά όλων των προτιμήσεων.",
 	"apihelp-paraminfo-param-helpformat": "Μορφή των συμβολοσειρών βοήθειας.",
-	"apihelp-patrol-example-revid": "Περιπολία αναθεώρησης.",
+	"apihelp-patrol-example-revid": "Έλεγχος αναθεώρησης.",
 	"apihelp-protect-example-protect": "Προστασία σελίδας.",
 	"apihelp-query+users-paramvalue-prop-gender": "Επισημαίνει το φύλο του χρήστη. Επιστρέφει «αρσενικό», «θηλυκό» ή «άγνωστο»",
 	"api-help-param-type-limit": "Τύπος: ακέραιος ή <kbd>max</kbd>",

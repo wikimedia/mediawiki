@@ -1151,7 +1151,7 @@
 	"recentchanges-label-bot": "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 	"recentchanges-label-unpatrolled": "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
 	"recentchanges-label-plusminus": "Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù",
-	"recentchanges-legend-heading": "'''Alc'hwez :'''",
+	"recentchanges-legend-heading": "<strong>Alc'hwez :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])",
 	"rcnotefrom": "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an <strong>$2</strong> (<strong>$1</strong> d'ar muiañ).",
 	"rclistfrom": "Diskouez ar c'hemmoù diwezhañ abaoe an/ar $3 $2",

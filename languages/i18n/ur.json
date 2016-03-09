@@ -857,7 +857,7 @@
 	"recentchanges-label-bot": "اس ترمیم کو ایک روبہ نے انجام دیا ہے",
 	"recentchanges-label-unpatrolled": "اس ترمیم کی اب تک مراجعت نہیں کی گئی",
 	"recentchanges-label-plusminus": "صفحہ کا حجم تبدیل شدہ بلحاظ بائٹ مقدار",
-	"recentchanges-legend-heading": "'''اختیارات'''",
+	"recentchanges-legend-heading": "<strong>اختیارات</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (نیز [[Special:NewPages|جدید صفحات کی فہرست]]) ملاحظہ فرمائیں",
 	"recentchanges-submit": "دکھائیں",
 	"rcnotefrom": "ذیل میں <strong>$3, $4</strong> سے کی گئی {{PLURAL:$5|تبدیلی|تبدیلیاں}} <strong>$1</strong> تک دکھائی جا رہی ہیں۔",

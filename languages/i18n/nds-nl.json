@@ -1102,7 +1102,7 @@
 	"recentchanges-label-bot": "Disse bewarking is uutevoerd deur n bot",
 	"recentchanges-label-unpatrolled": "Disse bewarking is nog niet nao-ekeken",
 	"recentchanges-label-plusminus": "Disse ziedgrootte is mit dit antal bytes ewiezigd",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zie oek de [[Special:NewPages|lieste mit nieje ziejen]])",
 	"rcnotefrom": "Dit bin de wiezigingen sinds <strong>$2</strong> (maximum van <strong>$1</strong> wiezigingen).",
 	"rclistfrom": "Bekiek wiezigingen vanaof $3 $2",

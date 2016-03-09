@@ -1222,7 +1222,7 @@
 	"recentchanges-label-bot": "Ову измену је направио бот",
 	"recentchanges-label-unpatrolled": "Ова измена још није патролирана",
 	"recentchanges-label-plusminus": "Промена величине странице у бајтовима",
-	"recentchanges-legend-heading": "'''Легенда:'''",
+	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|списак нових страница]])",
 	"recentchanges-submit": "Прикажи",
 	"rcnotefrom": "Испод {{PLURAL:$5|је измена|су измене}} од <strong>$3, $4</strong> (до <strong>$1</strong> приказано).",

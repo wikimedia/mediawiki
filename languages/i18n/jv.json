@@ -1085,7 +1085,7 @@
 	"recentchanges-label-bot": "Suntingan iki diayahi déning bot",
 	"recentchanges-label-unpatrolled": "Suntingan iki durung dipatroli",
 	"recentchanges-label-plusminus": "Agengipun kaca sampun dipunowahi samekaten.",
-	"recentchanges-legend-heading": "'''Katrangan:'''",
+	"recentchanges-legend-heading": "<strong>Katrangan:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (dhelengen uga: [[Special:NewPages|daftar kaca anyar]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).",

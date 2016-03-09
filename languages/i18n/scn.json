@@ -1174,7 +1174,7 @@
 	"recentchanges-label-bot": "Stu canciamentu fu fattu di nu bot",
 	"recentchanges-label-unpatrolled": "Stu canciamentu ancora nun fu virificatu",
 	"recentchanges-label-plusminus": "La grannizza dâ pàggina canciau di stu nùmmiru di byte",
-	"recentchanges-legend-heading": "'''Ligenda:'''",
+	"recentchanges-legend-heading": "<strong>Ligenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (talìa puru [[Special:NewPages|la lista dî pàggini novi]])",
 	"rcnotefrom": "Ccassutta {{PLURAL:$5|c'è lu canciamentu|ci sù li canciamenti}} a pàrtiri dû <strong>$3, $4</strong> (nn'havi ammustrati nfina a <strong>$1</strong>).",
 	"rclistfrom": "Ammustra li canciamenti novi a pàrtiri dû $3 $2",

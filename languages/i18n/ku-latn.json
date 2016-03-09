@@ -861,7 +861,7 @@
 	"recentchanges-label-bot": "Ev guherîn ji aliyê botekê ve hate çêkirin",
 	"recentchanges-label-unpatrolled": "Ev gotar hêjî nehatiye sererastkirin",
 	"recentchanges-label-plusminus": "Qebareya vê rûpelê bi ev qas biteyan hate guherandin",
-	"recentchanges-legend-heading": "'''Ravekirina kurtenavan:'''",
+	"recentchanges-legend-heading": "<strong>Ravekirina kurtenavan:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (here [[Special:NewPages|lîsteya rûpelên nû]])",
 	"rclistfrom": "Guherandinên ji $3 $2 şûnde nîşan bide",
 	"rcshowhideminor": "Guherandinên biçûk $1",

@@ -1178,7 +1178,7 @@
 	"recentchanges-label-bot": "บอตกระทำการแก้ไขนี้",
 	"recentchanges-label-unpatrolled": "การแก้ไขนี้ยังไม่ได้ตรวจสอบ",
 	"recentchanges-label-plusminus": "ขนาดของหน้าเปลี่ยนไปจำนวนไบต์เท่านี้",
-	"recentchanges-legend-heading": "'''คำอธิบายสัญลักษณ์:'''",
+	"recentchanges-legend-heading": "<strong>คำอธิบายสัญลักษณ์:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ดูเพิ่มที่ [[Special:NewPages|รายชื่อหน้าใหม่]])",
 	"recentchanges-submit": "แสดง",
 	"rcnotefrom": "ด้านล่างเป็นการเปลี่ยนแปลงตั้งแต่ <strong>$3, $4</strong> (แสดงมากสุด <strong>$1</strong>)",

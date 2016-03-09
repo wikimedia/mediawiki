@@ -1038,7 +1038,7 @@
 	"recentchanges-label-bot": "Sto cangiaménto o l'à fæto in bot",
 	"recentchanges-label-unpatrolled": "Sto cangiaménto o no l'é stæto ancón verificòu",
 	"recentchanges-label-plusminus": "Variassion da paggina in nummero de byte",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veddi e [[Special:NewPages|neuve paggine]])",
 	"rcnotefrom": "Chì sotta gh'è i cangiamenti fæti comensando da '''$2''' (scin a '''$1''').",
 	"rclistfrom": "Fanni vedde e modiffiche apportæ partindo da $3 $2",

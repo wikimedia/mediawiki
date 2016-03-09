@@ -707,7 +707,7 @@
 	"recentchanges-label-bot": "Chest cambiament al è stât eseguît di un bot",
 	"recentchanges-label-unpatrolled": "Chest cambiament nol è stât ancjemò verificât",
 	"recentchanges-label-plusminus": "La dimension de pagjine e je cambiade di chest numar di byte",
-	"recentchanges-legend-heading": "'''Lejende:'''",
+	"recentchanges-legend-heading": "<strong>Lejende:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (cjale lis [[Special:NewPages|gnovis pagjinis]])",
 	"rcnotefrom": "Ca sot i cambiaments dal '''$2''' (fintremai al '''$1''').",
 	"rclistfrom": "Mostre i ultins cambiaments dal $3 $2",

@@ -1100,7 +1100,7 @@
 	"recentchanges-label-bot": "Henda rætting varð gjørd av einum botti",
 	"recentchanges-label-unpatrolled": "Henda rætting er ikki blivin eftirkannað enn",
 	"recentchanges-label-plusminus": "Støddin á síðuni broyttist við hesum talinum av bytes",
-	"recentchanges-legend-heading": "'''Teknfrágreiðing:'''",
+	"recentchanges-legend-heading": "<strong>Teknfrágreiðing:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sí eisini [[Special:NewPages|yvirlit yvir nýggjar síður]])",
 	"rcnotefrom": "Niðanfyri verða broytingar síðan <strong>$2</strong> (upp til <strong>$1</strong> vístar).",
 	"rclistfrom": "Sýn nýggjar broytingar byrjandi við $3 $2",

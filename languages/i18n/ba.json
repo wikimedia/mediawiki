@@ -1142,7 +1142,7 @@
 	"recentchanges-label-bot": "Был төҙәтеү бот тарафынан башҡарылды",
 	"recentchanges-label-unpatrolled": "Был төҙәтеү ҡаралмаған әле",
 	"recentchanges-label-plusminus": "Бит шул тиклем байтҡа үҙгәрҙе",
-	"recentchanges-legend-heading": "'''Легенда:'''",
+	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|Яңы биттәр исемлеген]] ҡарағыҙ)",
 	"rcnotefrom": "Түбәндә '''$2''' башлап ('''$1''' тиклем) үҙгәртеүҙәр күрһәтелгән.",
 	"rclistfrom": "$3 $2 башлап яңы үҙгәртеүҙәрҙе күрһәт.",

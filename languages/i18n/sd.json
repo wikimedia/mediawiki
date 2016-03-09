@@ -861,7 +861,7 @@
 	"recentchanges-label-minor": "هيءُ هڪ معمولي ترميم آهي.",
 	"recentchanges-label-bot": "هيءُ ترميم بوٽ عمل ۾ آندي.",
 	"recentchanges-label-plusminus": "هن صفحي جي ماپ ۾ هيترين ٻاٺڻين جو ڦير آيو آهي",
-	"recentchanges-legend-heading": "\"ڪنجي.\"",
+	"recentchanges-legend-heading": "<strong>\"ڪنجي.</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (پڻ ڏسو [[Special:NewPages|نون صفحن جي فهرست]])",
 	"recentchanges-submit": "ڏيکاريو",
 	"rcnotefrom": "هيٺ {{PLURAL:$5|تبديلي آهي|تبديليون آهن}} کان <strong>$3, $4</strong> (تائين <strong>$1</strong> ) ڏيکاريل آهن.",

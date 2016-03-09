@@ -1083,7 +1083,7 @@
 	"recentchanges-label-bot": "D-arubut id yeseqdacen abeddel agi",
 	"recentchanges-label-unpatrolled": "Abeddel agi mazal yesɛa aselken.",
 	"recentchanges-label-plusminus": "Tiddi n usebtar tetwebeddel s umḍan agi n itamḍanen.",
-	"recentchanges-legend-heading": "'''Aglam :'''",
+	"recentchanges-legend-heading": "<strong>Aglam :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zeṛ daɣen [[Special:NewPages|umuɣ n isebtar imaynuten]]).",
 	"recentchanges-legend-plusminus": "(''± 123'')",
 	"rcnotefrom": "Deg ukessar llan ibeddlen seg wasmi '''$2''' (ar '''$1''').",

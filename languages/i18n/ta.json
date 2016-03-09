@@ -1279,7 +1279,7 @@
 	"recentchanges-label-bot": "இந்த தொகுப்பானது ஒரு தானியங்கியால் செய்யப்பட்டதாகும்",
 	"recentchanges-label-unpatrolled": "இந்த  தொகுப்பு  இன்னும் ரோந்திடப்படவில்லை",
 	"recentchanges-label-plusminus": "இத்தனை பைட்டுகளுக்கு பக்கத்தின் அளவு மாற்றப்பட்டுள்ளது",
-	"recentchanges-legend-heading": "'''குறியீட்டு விளக்கம்:'''",
+	"recentchanges-legend-heading": "<strong>குறியீட்டு விளக்கம்:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|புதிய பக்கங்கள் பட்டியலையும்]] காணவும்)",
 	"recentchanges-submit": "காட்டு",
 	"rcnotefrom": "கீழே காணப்படுவது <strong>$3, $4</strong> இலிருந்து செய்யப்பட்ட (<strong>$1</strong> வரைக் காட்டப்பட்டுள்ளது) {{PLURAL:$5|மாற்றமாகும்.|மாற்றங்களாகும்.}}",

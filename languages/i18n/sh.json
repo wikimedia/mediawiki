@@ -1178,7 +1178,7 @@
 	"recentchanges-label-bot": "Ovu je izmjenu učinio bot",
 	"recentchanges-label-unpatrolled": "Ova izmjena još nije patrolirana",
 	"recentchanges-label-plusminus": "Veličina stranice promijenila se za ovoliko bajtova",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (također pogledajte [[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod {{PLURAL:$5|je izmjena|su izmjene}} od <strong>$3, $4</strong> (do <strong>$1</strong> prikazano).",
 	"rclistfrom": "Prikaži nove poruke od / Прикажи нове поруке од $3 $2",

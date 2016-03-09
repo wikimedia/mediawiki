@@ -1097,7 +1097,7 @@
 	"recentchanges-label-bot": "ការកែប្រែនេះត្រូវបានធ្វើឡើងដោយរូបយន្ត",
 	"recentchanges-label-unpatrolled": "ការកែប្រែនេះមិនទាន់ត្រូវបានល្បាតទេ",
 	"recentchanges-label-plusminus": "ទំហំទំព័រត្រូវបានផ្លាស់ប្ដូរគិតជាចំនួនបៃ",
-	"recentchanges-legend-heading": "''កំណត់សម្គាល់៖'''",
+	"recentchanges-legend-heading": "<strong>កំណត់សម្គាល់៖</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (មើលផងដែរនូវ [[Special:NewPages|បញ្ជីទំព័រថ្មី]])",
 	"rcnotefrom": "ខាងក្រោមនេះជាបន្លាស់ប្ដូរនានាគិតចាប់តាំងពី <strong>$4 $3</strong> (បង្ហាញអតិបរមាចំនួន <strong>$1</strong>)។",
 	"rclistfrom": "បង្ហាញបន្លាស់ប្ដូរថ្មីៗចាប់តាំងពី $3 $2",

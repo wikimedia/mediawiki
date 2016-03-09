@@ -1125,7 +1125,7 @@
 	"recentchanges-label-bot": "Ky redaktim u krye nga një robot",
 	"recentchanges-label-unpatrolled": "Ky editim ende nuk është patrolluar",
 	"recentchanges-label-plusminus": "Madhësia e faqes ndryshoi me këtë numër bajtësh",
-	"recentchanges-legend-heading": "'''Legjenda:'''",
+	"recentchanges-legend-heading": "<strong>Legjenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (shiko gjithashtu [[Special:NewPages|listën e faqeve të reja]])",
 	"rcnotefrom": "Më poshtë {{PLURAL:$5|është shfaqur ndryshimi|janë shfaqur ndryshimet}} që nga <strong>$3, $4</strong> (deri në <strong>$1</strong>).",
 	"rclistfrom": "Tregon ndryshime së fundmi duke filluar nga $3 $2",

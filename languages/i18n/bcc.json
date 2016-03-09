@@ -1128,7 +1128,7 @@
 	"recentchanges-label-bot": "ائ ویرایش گون یک رباتء کتن بیتگ",
 	"recentchanges-label-unpatrolled": "این ویرایش اناگتء گشت‌زنی نه بیتگ",
 	"recentchanges-label-plusminus": "تاکء سایز همگرنچ گون ائ بایت انی انداجگ ٹگل وارتگ انت",
-	"recentchanges-legend-heading": "'''اختصاران:'''",
+	"recentchanges-legend-heading": "<strong>اختصاران:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (هنچوش پر [[Special:NewPages|نوکین تاکانء فهرست]] بچار ات)",
 	"rcnotefrom": "بی جهلگا ٹگلان شه <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داته بوته انت|نشان داته بوته انت}}).",
 	"rclistfrom": "پیش دار نوکین تغییراتآ چه $3 $2",

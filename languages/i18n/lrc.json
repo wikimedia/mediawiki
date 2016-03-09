@@ -1182,7 +1182,7 @@
 	"recentchanges-label-bot": "ای ويرايشت نه يه بوت انجوم دئه",
 	"recentchanges-label-unpatrolled": "ای ويرايشت هنی تيه واداشت نبيه",
 	"recentchanges-label-plusminus": "انازه بلگه وه شمار ای بایتیا آلشت کرده.",
-	"recentchanges-legend-heading": "'''میراث:'''",
+	"recentchanges-legend-heading": "<strong>میراث:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنو بوینیت [[ویجه:بلگیا تازه|نوم گه بلگیا تازه]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "د هار آلشتیا د $2 هیئن(د بال د $1 نشون دئه بیه)",

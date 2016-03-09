@@ -1013,7 +1013,7 @@
 	"recentchanges-label-bot": "Bu redaktə bot tərəfindən edilmişdir",
 	"recentchanges-label-unpatrolled": "Bu redaktə hələ patrullanmayıb",
 	"recentchanges-label-plusminus": "Səhifənin ölçüsündəki dəyişiklik (baytlarla)",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (həmçinin bax: [[Special:NewPages|yeni səhifələrin siyahısı]])",
 	"rcnotefrom": "Aşağıda <strong>$2</strong>-dən bu yana olan dəyişikliklər göstərilib (<strong>$1</strong>-dən çox olmayaraq).",
 	"rclistfrom": "$3 $2 vaxtından başlayaraq yeni dəyişiklikləri göstər",

@@ -699,7 +699,7 @@
 	"recentchanges-label-bot": "ھیہ ایڈیٹو خود کار بوٹو زریعا انجام دیونو ہوئے",
 	"recentchanges-label-unpatrolled": "ھیہ ترمیمو ھمونیہ پت مراجعت(Patrolled) کورونو نو بیتی شیر",
 	"recentchanges-label-plusminus": "صفحو سائز تبدیل شدہ بلحاظ بائٹ مقدار",
-	"recentchanges-legend-heading": "'''لیجنڈ:'''",
+	"recentchanges-legend-heading": "<strong>لیجنڈ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ھمو دی لوڑے [[Special:NewPages|list of new pages]])",
 	"rcnotefrom": "ھیہ موڑا '''$2''' کورونو بیرو تبدیلیان تفصیلات شینی ('''$1''' تبدیلیان پشینو بونیان)۔",
 	"rclistfrom": "$3 $2 نوغ تبدیلیاں پشیک شروع کورے",

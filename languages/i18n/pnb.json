@@ -966,7 +966,7 @@
 	"recentchanges-label-bot": "ایس تبدیلی نوں بوٹ نے کیتا اے۔",
 	"recentchanges-label-unpatrolled": "ایس تبدیلی تے ہلے گشت نئیں ہوئی۔",
 	"recentchanges-label-plusminus": "صفے دا ناپ اینے بائٹاں نال بدلیا گیا",
-	"recentchanges-legend-heading": "'''وات:'''",
+	"recentchanges-legend-heading": "<strong>وات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ایہ وی ویکھو [[Special:NewPages|نویں صفیاں دی لسٹ]])",
 	"rcnotefrom": "ہلے تک '''$2''' توں '''$1''' تبدیلیاں تھلے دتیاں گئیاں نیں۔",
 	"rclistfrom": "$3 $2 توں ہونے آلیاں نویاں تبدیلیاں وکھاؤ",

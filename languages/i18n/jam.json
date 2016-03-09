@@ -560,7 +560,7 @@
 	"recentchanges-label-bot": "Dis edit pofaam bai bot",
 	"recentchanges-label-unpatrolled": "Dis edit no get pachuol yet",
 	"recentchanges-label-plusminus": "Di piej saiz chienj bai dis nomba a bait",
-	"recentchanges-legend-heading": "'''Lejen:'''",
+	"recentchanges-legend-heading": "<strong>Lejen:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (azwel si [[Special:NewPages|lis a nyuu piej]])",
 	"rclistfrom": "Shuo nyuu chienjdem we taat frahn $3 $2",
 	"rcshowhideminor": "$1 maina editdem",

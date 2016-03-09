@@ -1131,7 +1131,7 @@
 	"recentchanges-label-bot": "Sahihisho hili lilitekelezwa na bot",
 	"recentchanges-label-unpatrolled": "Haririo hili bado halijafanyiwa doria",
 	"recentchanges-label-plusminus": "Ukubwa ukurasa kubadilishwa na hii idadi ya baiti",
-	"recentchanges-legend-heading": "'''Simulizi:'''",
+	"recentchanges-legend-heading": "<strong>Simulizi:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (pia tazama [[Special:NewPages|orodha ya kurasa mpya]])",
 	"rcnotefrom": "Hapo chini {{PLURAL:$5|is the change|yaonekana mabadiliko}} tangu <strong>$3,$4</strong> (hadi <strong>$1</strong>tunaonyesha).",
 	"rclistfrom": "Onyesha mabadiliko mapya kuanzia $3 $2",

@@ -807,7 +807,7 @@
 	"recentchanges-label-bot": "Seo muutmisõ tekk' robot",
 	"recentchanges-label-unpatrolled": "Seod muutmist olõ-õi viil üle kaet",
 	"recentchanges-label-plusminus": "Lehe suurusõ muutus baidõn",
-	"recentchanges-legend-heading": "'''Seletüs:'''",
+	"recentchanges-legend-heading": "<strong>Seletüs:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kaeq ka [[Special:NewPages|vahtsidõ lehti nimekirjä]])",
 	"rcnotefrom": "Tan ommaq muutmisõq kuupääväst '''$2''' pääle (näüdätäs kooniq '''$1''' muutmist).",
 	"rclistfrom": "Näütäq muutmiisi kuupääväst $3 $2 pääle",

@@ -755,7 +755,7 @@
 	"recentchanges-label-bot": "Бу бир ботнынъ япкъан денъиштирмеси",
 	"recentchanges-label-unpatrolled": "Бу денъиштирме аля даа тешкерильмеген",
 	"recentchanges-label-plusminus": "Байт эсабынен саифе буюклигининъ денъиштирильмеси",
-	"recentchanges-legend-heading": "'''Ишаретлер:'''",
+	"recentchanges-legend-heading": "<strong>Ишаретлер:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|янъы саифелер джедвелине]] де бакъынъыз)",
 	"rcnotefrom": "<strong>$3, $4</strong> тарихындан башлап япылгъан {{PLURAL:$5|денъиштирме|денъиштирмелер}} ашагъыдадыр (энъ чокъ <strong>$1</strong> дане саифе косьтериле).",
 	"rclistfrom": "$3 $2 тарихындан берли япылгъан денъиштирмелерни косьтер",

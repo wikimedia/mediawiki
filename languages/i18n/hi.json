@@ -1272,7 +1272,7 @@
 	"recentchanges-label-bot": "यह संपादन एक बॉट द्वारा किया गया था",
 	"recentchanges-label-unpatrolled": "यह संपादन अभी जाँचा नहीं गया है",
 	"recentchanges-label-plusminus": "पृष्ठ आकार इस बाइट संख्या से बदला",
-	"recentchanges-legend-heading": "'''कुंजी:'''",
+	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)",
 	"recentchanges-submit": "दिखाएँ",
 	"rcnotefrom": "नीचे <strong>$2</strong> के बाद से (<strong>$1</strong> तक) {{PLURAL:$5|हुआ बदलाव दर्शाया गया है|हुए बदलाव दर्शाए गये हैं}}।",

@@ -1195,7 +1195,7 @@
 	"recentchanges-label-bot": "මෙය රොබෝවක් විසින් කරන ලද සංස්කරණයකි",
 	"recentchanges-label-unpatrolled": "මෙම සංස්කරණය තවම විමර්ශනය කර නොමැත",
 	"recentchanges-label-plusminus": "පිටුවේ බයිට ගණන මෙපමණකින් වෙනස් වී ඇත",
-	"recentchanges-legend-heading": "'''විස්තරය:'''",
+	"recentchanges-legend-heading": "<strong>විස්තරය:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|නව පිටු ලැයිස්තුව]] ද බලන්න)",
 	"recentchanges-submit": "පෙන්වන්න",
 	"rcnotefrom": "{{PLURAL:$5|වෙනස්කම|වෙනස්කම්}} න් පසු සිදුවී ඇති <strong>$3, $4</strong> මෙහි පහත දැක්වේ (<strong>$1</strong> ක ප්‍රමාණයක උපරිමයක් පෙන්වා ඇත).",

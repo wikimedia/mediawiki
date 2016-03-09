@@ -1018,7 +1018,7 @@
 	"recentchanges-label-bot": "इ संपादन एगो बॉट द्वारा कइल गइल बा",
 	"recentchanges-label-unpatrolled": "ए संपादन के अभिन ले जाँचल नइखे गइल",
 	"recentchanges-label-plusminus": "एतना बाइटस् से पन्ना के साइज बदलल गइल",
-	"recentchanges-legend-heading": "'''संकेत:'''",
+	"recentchanges-legend-heading": "<strong>संकेत:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (इहो देखीं [[Special:NewPages|नया पन्नवन के लिस्ट]])",
 	"rclistfrom": "$2, $3 से शुरु नया बदलाव देखाईं",
 	"rcshowhideminor": "$1 छोट संपादन",

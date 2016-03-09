@@ -1180,7 +1180,7 @@
 	"recentchanges-label-bot": "Ii badlao ke ek bot karis hae",
 	"recentchanges-label-unpatrolled": "Ii badlao pe abhi pahraa nai dewa gais hae.",
 	"recentchanges-label-plusminus": "Panna ke size etna bytes se badla",
-	"recentchanges-legend-heading": "'''Legend:'''",
+	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (aur dekho [[Special:NewPages|nawaa panna ke suchi]])",
 	"recentchanges-submit": "Dekhao",
 	"rcnotefrom": "Niche {{PLURAL:$5|badlao hae|badlao hae}} <strong>$3, $4</strong> (<strong>$1</strong> talak dekhawa gais) talak.",

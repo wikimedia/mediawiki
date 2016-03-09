@@ -1187,7 +1187,7 @@
 	"recentchanges-label-bot": "Túto úpravu vykonal bot",
 	"recentchanges-label-unpatrolled": "Táto úprava zatiaľ nebola strážená",
 	"recentchanges-label-plusminus": "Veľkosť stránky sa zmenila o toľkoto bajtov",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (pozri tiež [[Special:NewPages|zoznam nových stránok]])",
 	"recentchanges-submit": "Zobraziť",
 	"rcnotefrom": "Nižšie {{PLURAL:$5|je zobrazená úprava|sú zobrazené úpravy}} od <strong>$2</strong> (do <strong>$1</strong>).",

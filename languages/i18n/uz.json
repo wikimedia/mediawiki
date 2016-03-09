@@ -790,7 +790,7 @@
 	"recentchanges-label-bot": "Bu tahrirni bot bajargan",
 	"recentchanges-label-unpatrolled": "Bu tahrir hali tekshirilmagan",
 	"recentchanges-label-plusminus": "Sahifa vazni qanchaga oʻzgargani (bayt)",
-	"recentchanges-legend-heading": "'''Izoh:'''",
+	"recentchanges-legend-heading": "<strong>Izoh:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|alohida roʻyxat]])",
 	"rcnotefrom": "Quyida <strong>$3, $4</strong> dan keyin sodir boʻlgan oʻzgarishlar koʻrsatilgan (oxirgi <strong>$1</strong> tasi).",
 	"rclistfrom": "$3, $2 dan keyin sodir boʻlgan oʻzgarishlarni koʻrsat",

@@ -1172,7 +1172,7 @@
 	"recentchanges-label-bot": "Бұл өңдемені бот жасады.",
 	"recentchanges-label-unpatrolled": "Бұл өңдеме әлі тексеруден өтпеді.",
 	"recentchanges-label-plusminus": "Байт бойынша беттің өзгеріс өлшемі",
-	"recentchanges-legend-heading": "'''Шартты белгілер:'''",
+	"recentchanges-legend-heading": "<strong>Шартты белгілер:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (қ: [[Special:NewPages|бөлек бетте]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Көрсету",

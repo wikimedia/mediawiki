@@ -1189,7 +1189,7 @@
 	"recentchanges-label-bot": "呢次編輯係由機械人進行",
 	"recentchanges-label-unpatrolled": "呢次編輯重未巡查過",
 	"recentchanges-label-plusminus": "頁面位元組大細變化",
-	"recentchanges-legend-heading": "'''標記：'''",
+	"recentchanges-legend-heading": "<strong>標記：</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} （睇埋[[Special:NewPages|新開版]]）",
 	"recentchanges-submit": "顯示",
 	"rcnotefrom": "下面嘅{{PLURAL:$5|改動}}由 <strong>$3 $4</strong> 開始（顯示到'''$1'''）。",

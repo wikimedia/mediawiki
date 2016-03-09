@@ -1060,7 +1060,7 @@
 	"recentchanges-label-bot": "Sta modifica el la ga fata un bot",
 	"recentchanges-label-unpatrolled": "Sta modifica no la xe stà gnancora verificà",
 	"recentchanges-label-plusminus": "La dimension de la pagina la xe canbià de sto nùmaro de byte",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (varda anca [[Special:NewPages|l'elenco de le pagine nove]])",
 	"rcnotefrom": "Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 	"rclistfrom": "Mostra i canbiamenti fati da ƚe $2 del $3",

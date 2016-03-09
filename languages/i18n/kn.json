@@ -942,7 +942,7 @@
 	"recentchanges-label-bot": "ಈ ಸಂಪಾದನೆಯನ್ನು ಒಂದು ಬಾಟ್ ಮಾಡಿದೆ",
 	"recentchanges-label-unpatrolled": "ಈ ಸಂಪಾದನೆಯನ್ನು ಇನ್ನೂ ಪರೀಕ್ಷೆಗೆ ಒಳಪಡಿಸಿಲ್ಲ",
 	"recentchanges-label-plusminus": "ಪುಟದ ಗಾತ್ರವು ಇಷ್ಟು ಸಂಖ್ಯೆಯ ಬೈಟ್‍ಗಳಿಂದ ಬದಲಾಯಿಸಲ್ಪಟ್ಟಿದೆ",
-	"recentchanges-legend-heading": "'''ಪರಿವಿಡಿ:'''",
+	"recentchanges-legend-heading": "<strong>ಪರಿವಿಡಿ:</strong>",
 	"rcnotefrom": "'''$2''' ಇಂದ ಆಗಿರುವ ಬದಲಾವಣೆಗಳು ಕೆಳಗಿವೆ (ಕೊನೆಯ '''$1'''ರವರೆಗೆ ತೋರಿಸಲಾಗಿದೆ).",
 	"rclistfrom": "$3 $2 ಇಂದ ಪ್ರಾರಂಭಿಸಿ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ",
 	"rcshowhideminor": "ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು $1",

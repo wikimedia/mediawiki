@@ -1297,7 +1297,7 @@
 	"recentchanges-label-bot": "봇이 수행한 편집",
 	"recentchanges-label-unpatrolled": "아직 점검하지 않은 편집",
 	"recentchanges-label-plusminus": "바이트로 표기된 바뀐 문서 크기",
-	"recentchanges-legend-heading": "'''범례:'''",
+	"recentchanges-legend-heading": "<strong>범례:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|새 문서 목록]]도 보세요)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "보기",

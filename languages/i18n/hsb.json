@@ -1150,7 +1150,7 @@
 	"recentchanges-label-bot": "Tuta změna bu přez roboćik přewjedźena",
 	"recentchanges-label-unpatrolled": "Tuta změnu hišće njebu přepruwowana",
 	"recentchanges-label-plusminus": "Změnjena wulkosć strony (w bajtach)",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (hlej tež [[Special:NewPages|lisćinu nowych stronow]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Deleka so {{PLURAL:$5|změna|změnje|změny}} wot <strong>$3, $4</strong> {{PLURAL:$5|pokazuje|pokazujetej|pokazuja}} (hač k <strong>$1</strong>).",

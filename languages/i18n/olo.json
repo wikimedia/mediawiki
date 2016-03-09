@@ -699,7 +699,7 @@
 	"recentchanges-label-bot": "Tämän kohenduksen on luadinuh bot",
 	"recentchanges-label-unpatrolled": "Tädä korjuandua vie ei ole tarkistettu",
 	"recentchanges-label-plusminus": "Sivu on kazvanuh [] baital",
-	"recentchanges-legend-heading": "'''Legendu:'''",
+	"recentchanges-legend-heading": "<strong>Legendu:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kačo sežo [[Special:NewPages|uuzien sivuloin listu]])",
 	"rclistfrom": "Ozuta jälgimäzet muutokset algajen $2, $3",
 	"rcshowhideminor": "$1 pienet kohendukset",

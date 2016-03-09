@@ -1087,7 +1087,7 @@
 	"recentchanges-label-minor": "Isa itong munting pagbabago",
 	"recentchanges-label-bot": "Gawa ng isang bot ang pagbabagong ito",
 	"recentchanges-label-unpatrolled": "Hindi pa napapatrulyahan ang pagbabagong ito",
-	"recentchanges-legend-heading": "'''Gabay:'''",
+	"recentchanges-legend-heading": "<strong>Gabay:</strong>",
 	"recentchanges-legend-newpage": "$1 - bagong pahina",
 	"rcnotefrom": "Nasa ibaba ang mga pagbabago mula pa noong '''$2''' (ipinapakita ang magpahanggang sa '''$1''').",
 	"rclistfrom": "Ipakita ang bagong mga pagbabago simula sa $3 $2",

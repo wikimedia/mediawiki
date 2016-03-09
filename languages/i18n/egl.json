@@ -1147,7 +1147,7 @@
 	"recentchanges-label-bot": "Cla mudéfica ché l'é stêda fâta da un bot.",
 	"recentchanges-label-unpatrolled": "Cla mudéfica ché an n'é mìa incòra stêda verifichêda.",
 	"recentchanges-label-plusminus": "Cambiamèint ed la pàgina in nómer ed byte",
-	"recentchanges-legend-heading": "'''Spiegasiòun:'''",
+	"recentchanges-legend-heading": "<strong>Spiegasiòun:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (guêrda [[Special:NewPages|al pàgini nōvi]])",
 	"rcnotefrom": "Ché sòt a {{PLURAL:$5|gh'é la mudéfica fâta|gh'în al mudéfichi fâti}} a partîr da<strong>$3,$4</strong>(fîn a <strong>$1</strong>).",
 	"rclistfrom": "Fà vèder al mudéfichi fâti a partîr da $3 $2",

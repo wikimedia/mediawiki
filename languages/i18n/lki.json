@@ -1174,7 +1174,7 @@
 	"recentchanges-label-bot": "اێ دەسکاریە رباتێ انجۆم دائه",
 	"recentchanges-label-unpatrolled": "این ویرایش هنوز گشت‌زنی نشده است",
 	"recentchanges-label-plusminus": "حجم وۀلگۀ به اندازه این مقدار بایت تغییر یافته است",
-	"recentchanges-legend-heading": "'''اختصارۀل:'''",
+	"recentchanges-legend-heading": "<strong>اختصارۀل:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنین به [[Special:NewPages|فهرست صفحات تازه]] نگاه کنید)",
 	"recentchanges-submit": "نیشان دائن",
 	"rcnotefrom": "در زیر تغییرات از <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داده شده‌است|نشان داده شده‌اند}}).",

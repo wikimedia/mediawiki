@@ -327,12 +327,12 @@
 	"config-install-mainpage": "正在创建显示默认内容的首页",
 	"config-install-extension-tables": "正在创建已启用扩展程序表",
 	"config-install-mainpage-failed": "无法插入首页:$1",
-	"config-install-done": "'''恭喜！'''\n您已经成功地安装了MediaWiki。\n\n安装程序已经生成了<code>LocalSettings.php</code>文件，其中包含了您所有的配置。\n\n您需要下载该文件，并将其放在您wiki的根目录（index.php的同级目录）中。稍后下载将自动开始。\n\n如果浏览器没有提示您下载，或者您取消了下载，您可以点击下面的链接重新开始下载：\n\n$3\n\n'''注意'''：如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。\n\n当本步骤完成后，您可以 '''[$2 进入您的wiki]'''。",
+	"config-install-done": "<strong>恭喜！</strong>\n您已经安装了MediaWiki。\n\n安装程序已经生成了<code>LocalSettings.php</code>文件，其中包含了您所有的配置。\n\n您需要下载该文件，并将其放在您wiki的根目录（index.php的同级目录）中。稍后下载将自动开始。\n\n如果浏览器没有提示您下载，或者您取消了下载，您可以点击下面的链接重新开始下载：\n\n$3\n\n<strong>注意：</strong>如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。\n\n当本步骤完成后，您可以<strong>[$2 进入您的wiki]</strong>。",
 	"config-download-localsettings": "下载<code>LocalSettings.php</code>",
 	"config-help": "帮助",
 	"config-help-tooltip": "单击展开",
 	"config-nofile": "找不到文件“$1”。它是否已被删除？",
 	"config-extension-link": "您是否知道您的wiki支持[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拓展]？\n您可浏览[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 拓展分类]。",
-	"mainpagetext": "'''已成功安装MediaWiki。'''",
+	"mainpagetext": "<strong>已安装MediaWiki。</strong>",
 	"mainpagedocfooter": "请查阅[//meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！\n\n== 入门 ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki配置设置列表]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 本地化MediaWiki到您的语言]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上打击破坏]"
 }

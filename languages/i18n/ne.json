@@ -1189,7 +1189,7 @@
 	"recentchanges-label-bot": "यो सम्पादन बोटद्वारा गरिएको थियो",
 	"recentchanges-label-unpatrolled": "यो सम्पादन अहिले सम्म गस्ती गरिएको छैन",
 	"recentchanges-label-plusminus": "यति बाइटहरू संख्याले पृष्ठको आकार परिवर्तन भएको छ",
-	"recentchanges-legend-heading": "'''आदर्श वाक्य:'''",
+	"recentchanges-legend-heading": "<strong>आदर्श वाक्य:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नयाँ पृष्ठहरूको सूची]] यो पनि हेर्नुहोस्)",
 	"recentchanges-legend-plusminus": "(''±१२३'')",
 	"recentchanges-submit": "देखाउनुहोस्",

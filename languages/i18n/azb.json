@@ -1154,7 +1154,7 @@
 	"recentchanges-label-bot": "بو دییشیک بیر بوت طرفیندن ائدیلیب‌دیر",
 	"recentchanges-label-unpatrolled": "بو دییشیکلیک هله گؤزدن گئچیریلمه‌ییب‌دیر",
 	"recentchanges-label-plusminus": "صفحه‌نین اؤلچوسو بایت میقداری ایله تعیین ائدیلیر",
-	"recentchanges-legend-heading": "'''قیسالتمالار:'''",
+	"recentchanges-legend-heading": "<strong>قیسالتمالار:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (بیرده [[Special:NewPages|یئنی صفحه‌لرین لیستینه]] باخین)",
 	"rcnotefrom": "آشاغی داکی دَییشیک لرده <strong>$3, $4</strong> (دن <strong>$1</strong> {{PLURAL:$5|چان گوستریلیب|چان گوستریلیب دیر}}).",
 	"rclistfrom": "$3 $2 واختیندان باشلایاراق یئنی دییشیکلری گؤستر",

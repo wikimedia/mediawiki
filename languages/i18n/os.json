@@ -909,7 +909,7 @@
 	"recentchanges-label-minor": "Ай у чысыл ивд",
 	"recentchanges-label-bot": "Ацы ивд бот сарæзта",
 	"recentchanges-label-unpatrolled": "Ацы ивд нырмæ нæу фидар гонд",
-	"recentchanges-legend-heading": "'''Легендæ:'''",
+	"recentchanges-legend-heading": "<strong>Легендæ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (уый йеддæмæ фен [[Special:NewPages|ног фæрсты номхыгъд]])",
 	"rcnotefrom": "Бындæр сты æвдыст ивдтытæ '''$2'''-æй ('''{{grammar:genitive|$1}}''' йонг).",
 	"rclistfrom": "Равдисын ивдтытæ амæй фæстæ: $3 $2",

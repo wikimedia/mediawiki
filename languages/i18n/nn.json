@@ -1095,7 +1095,7 @@
 	"recentchanges-label-bot": "Endringa vart gjord av ein robot",
 	"recentchanges-label-unpatrolled": "Endringa er ikkje patruljert enno",
 	"recentchanges-label-plusminus": "Storleiken til sida vart endra med så mange byte",
-	"recentchanges-legend-heading": "'''Tyding:'''",
+	"recentchanges-legend-heading": "<strong>Tyding:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sjå dessutan [[Special:NewPages|lista over nye sider]])",
 	"recentchanges-submit": "Vis",
 	"rcnotefrom": "Nedanfor er endringane gjorde sidan <strong>$2</strong> viste (opp til <strong>$1</strong> stykke)",

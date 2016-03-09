@@ -1147,7 +1147,7 @@
 	"recentchanges-label-bot": "Робот гүйцэтгэсэн засвар",
 	"recentchanges-label-unpatrolled": "Энэ засварыг манаж амжаагүй",
 	"recentchanges-label-plusminus": "Өөрчлөгдсөн байт хэмжээ",
-	"recentchanges-legend-heading": "'''Таних үсэг:'''",
+	"recentchanges-legend-heading": "<strong>Таних үсэг:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|жагсааж харах]])",
 	"rcnotefrom": "Доорх нь '''$2'''-с хойших өөрчлөлтүүд ('''$1''' хүртэлхийг харуулав) юм.",
 	"rclistfrom": "$3 $2-с хойших шинэ засваруудыг үзүүлэх",

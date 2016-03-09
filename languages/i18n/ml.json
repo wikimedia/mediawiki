@@ -1247,7 +1247,7 @@
 	"recentchanges-label-bot": "ഇത് യന്ത്രം ചെയ്ത തിരുത്താണ്",
 	"recentchanges-label-unpatrolled": "ഇതുവരെ റോന്തുചുറ്റപ്പെടാത്ത തിരുത്ത്",
 	"recentchanges-label-plusminus": "താളിന്റെ വലിപ്പം ഇത്രയും ബൈറ്റുകൾ മാറിയിരിക്കുന്നു",
-	"recentchanges-legend-heading": "'''സൂചന:'''",
+	"recentchanges-legend-heading": "<strong>സൂചന:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|പുതിയ താളുകളുടെ പട്ടികയും]] കാണുക)",
 	"recentchanges-submit": "പ്രദർശിപ്പിക്കുക",
 	"rcnotefrom": "<strong>$3, $4</strong> മുതലുള്ള {{PLURAL:$5|മാറ്റം|മാറ്റങ്ങൾ}} ആണ് താഴെയുള്ളത്  (<strong>$1</strong> എണ്ണം വരെ കൊടുക്കുന്നതാണ്).",

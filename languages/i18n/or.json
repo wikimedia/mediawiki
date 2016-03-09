@@ -1163,7 +1163,7 @@
 	"recentchanges-label-bot": "ଏହି ବଦଳଟି ଜଣେ '''ବଟ'''ଙ୍କ ଦେଇ କରାଯାଇଥିଲା",
 	"recentchanges-label-unpatrolled": "ଏହି ବଦଳଟିକୁ ଏ ଯାଏଁ ପରଖା ଯାଇନାହିଁ",
 	"recentchanges-label-plusminus": "ଏହି ବାଇଟ ତଥ୍ୟରୁ ଏଇ ପୃଷ୍ଠାର ଆକାର ବଦଳ",
-	"recentchanges-legend-heading": "'''ଆକଳନ:'''",
+	"recentchanges-legend-heading": "<strong>ଆକଳନ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}  (ଆହୁରି ଦେଖନ୍ତୁ: [[Special:NewPages|ନୂଆ ପୃଷ୍ଠାମାନଙ୍କ ତାଲିକା]])",
 	"rcnotefrom": "<strong>$3, $4</strong> ପରଠାରୁ {{PLURAL:$5|ବଦଳଟି|ବଦଳଗୁଡ଼ିକ}} ତଳେ ଦିଆଗଲା (<strong>$1</strong> ଯାଏ ଦିଆଗଲା) ।",
 	"rclistfrom": "$3 $2ରୁ ଆରମ୍ଭ କରି ନୂଆ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ",

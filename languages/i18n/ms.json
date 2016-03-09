@@ -1201,7 +1201,7 @@
 	"recentchanges-label-bot": "Suntingan ini dilakukan oleh bot",
 	"recentchanges-label-unpatrolled": "Suntingan ini belum dirondai",
 	"recentchanges-label-plusminus": "Saiz laman telah berubah sebanyak jumlah bait ini",
-	"recentchanges-legend-heading": "'''Petunjuk:'''",
+	"recentchanges-legend-heading": "<strong>Petunjuk:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (lihat juga [[Special:NewPages|senarai laman baru]])",
 	"rcnotefrom": "Yang berikut adalah {{PLURAL:$5|suntingan|suntingan-suntingan}} sejak <strong>$3, $4</strong> (selebihi <strong>$1</strong> dipaparkan).",
 	"rclistfrom": "Paparkan perubahan sejak $3 $2",

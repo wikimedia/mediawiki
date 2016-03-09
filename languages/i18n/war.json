@@ -1034,7 +1034,7 @@
 	"recentchanges-label-bot": "Ini nga pagliwat in ginbuhat han bot",
 	"recentchanges-label-unpatrolled": "Ini nga pagliwat in diri pa nakapatrol",
 	"recentchanges-label-plusminus": "An kadako han pakli in nabag-o hin ini nga numero nga mga byte",
-	"recentchanges-legend-heading": "'''Leyenda:'''",
+	"recentchanges-legend-heading": "<strong>Leyenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kitaa gihapon [[Special:NewPages|talaan han mga bag-o nga pakli]])",
 	"recentchanges-submit": "Pakit-a",
 	"rcnotefrom": "An ha ubos in mga pagbabag-o tikang han <strong>$2</strong> (kutob ngadto ha <strong>$1</strong> nga ginpakita).",

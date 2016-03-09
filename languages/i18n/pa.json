@@ -1037,7 +1037,7 @@
 	"recentchanges-label-bot": "ਇਹ ਸੋਧ ਇੱਕ ਬੋਟ ਦੁਆਰਾ ਕੀਤੀ ਗਈ ਸੀ",
 	"recentchanges-label-unpatrolled": "ਇਹ ਫੇਰ-ਬਦਲ ਹਾਲੇ ਵੇਖਿਆ ਨਹੀਂ ਗਿਆ",
 	"recentchanges-label-plusminus": "ਸਫ਼ੇ ਵਿੱਚ ਇੰਨੀਆਂ ਬਾਈਟਾਂ ਦੀ ਤਬਦੀਲੀ ਹੋਈ",
-	"recentchanges-legend-heading": "'''ਟੀਕਾ:'''",
+	"recentchanges-legend-heading": "<strong>ਟੀਕਾ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|ਨਵੇਂ ਸਫ਼ਿਆਂ ਦੀ ਸੂਚੀ]] ਵੀ ਵੇਖੋ)",
 	"recentchanges-legend-plusminus": "(''±੧੨੩'')",
 	"recentchanges-submit": "ਦਿਖਾਓ",

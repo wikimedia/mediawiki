@@ -803,7 +803,7 @@
 	"recentchanges-label-bot": "यो सम्पादन बोटबठे गरियाको थ्यो",
 	"recentchanges-label-unpatrolled": "यो सम्पादन यैलसम्म गस्ती गरियाको नाइथी",
 	"recentchanges-label-plusminus": "यति बाइटहरू संख्याले पानाको आकार फेरबदल  भयाको छ",
-	"recentchanges-legend-heading": "'''आदर्श वाक्य:'''",
+	"recentchanges-legend-heading": "<strong>आदर्श वाक्य:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नौला पानाको सूची]] यैलाई लै हेरिदिय)",
 	"rclistfrom": "$3 $2 देखिका नयाँ परिवर्तनहरू देखाउन्या",
 	"rcshowhideminor": "$1 सानतिनो सम्पादन",

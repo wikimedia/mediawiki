@@ -501,7 +501,7 @@
 	"recentchanges-label-bot": "इ संपादन बॉट न॑ करलकै",
 	"recentchanges-label-unpatrolled": "इ संपादन अखनी जाँचलऽ नै गेलऽ छै.",
 	"recentchanges-label-plusminus": "पृष्ठ आकार इ बाइट संख्या सं॑ बदललै",
-	"recentchanges-legend-heading": "'''विवरण:'''",
+	"recentchanges-legend-heading": "<strong>विवरण:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नया पन्ना के सूची]] क॑ भी देखऽ)",
 	"rclistfrom": "$3 $2 सं॑ नया बदलाव देखलाबऽ",
 	"rcshowhideminor": "छोटऽ बदलाव $1",

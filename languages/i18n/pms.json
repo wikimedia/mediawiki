@@ -1179,7 +1179,7 @@
 	"recentchanges-label-bot": "Sa modìfica a l'é stàita fàita da un trigomiro",
 	"recentchanges-label-unpatrolled": "Sta modìfica-sì a l'é pa ancó stàita verificà",
 	"recentchanges-label-plusminus": "La taja dla pàgina a l'é cangià d'un nùmer ëd bytes",
-	"recentchanges-legend-heading": "'''Legend:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vëdde ëdcò la [[Special:NewPages|lista dle pàgine neuve]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Ambelessì sota a-i é {{PLURAL:$5|la modìfica|le modìfiche}} da <strong>$3, $4</strong> (mostrà fin-a a <strong>$1</strong>).",

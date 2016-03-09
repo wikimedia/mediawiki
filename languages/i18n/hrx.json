@@ -1103,7 +1103,7 @@
 	"recentchanges-label-bot": "Ännrung doorich en Bot",
 	"recentchanges-label-unpatrolled": "Nicht-kontrollierte Ännrung",
 	"recentchanges-label-plusminus": "Die Ännrung von der Seitengröss in Bytes",
-	"recentchanges-legend-heading": "'''Legende:'''",
+	"recentchanges-legend-heading": "<strong>Legende:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sieh ooch die [[Special:NewPages|List von neier Seite]])",
 	"rcnotefrom": "Oongezeicht sin die Ännrunge seit <strong>$2</strong> (max. <strong>$1</strong> Einträch).",
 	"rclistfrom": "Nuar Ännrunge seit $3, $2 Uhr zeiche.",

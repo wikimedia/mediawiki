@@ -1287,7 +1287,7 @@
 	"recentchanges-label-bot": "ეს არის ბოტის რედაქტირება",
 	"recentchanges-label-unpatrolled": "ეს რედაქტირება გადაუმოწმებელია",
 	"recentchanges-label-plusminus": "ცვლილებების ზომა ბაიტებში",
-	"recentchanges-legend-heading": "'''ლეგენდა:'''",
+	"recentchanges-legend-heading": "<strong>ლეგენდა:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (იხ. აგრეთვე [[Special:NewPages|ახალი გვერდების სია]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "ჩვენება",

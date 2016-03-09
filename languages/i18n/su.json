@@ -1104,7 +1104,7 @@
 	"recentchanges-label-bot": "Ieu parobahan dijieun ku bot",
 	"recentchanges-label-unpatrolled": "Ieu éditan can karoris",
 	"recentchanges-label-plusminus": "Ukuran kaca robah sajumlah ieu bit",
-	"recentchanges-legend-heading": "'''Pedaran:'''",
+	"recentchanges-legend-heading": "<strong>Pedaran:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (tempo ogé [[Special:NewPages|béréndélan kaca anyar]])",
 	"rcnotefrom": "Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).",
 	"rclistfrom": "Témbongkeun nu anyar robah nepi ka $3 $2",

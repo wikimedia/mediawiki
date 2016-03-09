@@ -1188,7 +1188,7 @@
 	"recentchanges-label-bot": "Die Bearbeitig isch dur e Bott uusgfiert wore",
 	"recentchanges-label-unpatrolled": "Die Bearbeitig isch nonig vun eme Fäldhieter aagluegt wore",
 	"recentchanges-label-plusminus": "Di gänderet Sytegreßi (Aazahl in Byte)",
-	"recentchanges-legend-heading": "'''Legänd:'''",
+	"recentchanges-legend-heading": "<strong>Legänd:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (lueg au d [[Special:NewPages|Lischt vu neie Syte]])",
 	"rcnotefrom": "Azeigt {{PLURAL:$5|isch d Änderig|sy maximal <strong>$1</strong> Änderige}} syt <strong>$3, $4</strong>.",
 	"rclistfrom": "Nume Änderige syt $3, $2 Uhr zeige.",

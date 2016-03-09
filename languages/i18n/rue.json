@@ -1077,7 +1077,7 @@
 	"recentchanges-label-minor": "Тото є мала зміна",
 	"recentchanges-label-bot": "Тото едітованя зроблене ботом",
 	"recentchanges-label-unpatrolled": "Тота зміна дотеперь не была патролёвана.",
-	"recentchanges-legend-heading": "'''Леґенда:'''",
+	"recentchanges-legend-heading": "<strong>Леґенда:</strong>",
 	"recentchanges-legend-newpage": "$1 — нова сторінка",
 	"rcnotefrom": "Долов суть вказаны зміны од <strong>$2</strong> (до <strong>$1</strong>).",
 	"rclistfrom": "Вказати едітованя почінаючі з $3 $2.",

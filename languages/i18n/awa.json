@@ -1141,7 +1141,7 @@
 	"recentchanges-label-bot": "ई सम्पादन एक्ठु ब़ा़ट करे है",
 	"recentchanges-label-unpatrolled": "ई संपादन अभीन नाइ जाँचि गा है",
 	"recentchanges-label-plusminus": "पन्ना कय आकार इ बाइट संख्या से बदला",
-	"recentchanges-legend-heading": "'''कुंजी:'''",
+	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नवा पन्नन् कय सूची]] कय भी देखा जाय)",
 	"rcnotefrom": "नीचे <strong>$2</strong> के बाद से (<strong>$1</strong> तक) {{PLURAL:$5|हुआ बदलाव दर्शाया गया है|हुए बदलाव दर्शाए गये हैं}}।",
 	"rclistfrom": "$3 $2 से नँवा बदलाव देखावा जाय",

@@ -199,7 +199,7 @@
 	"privacy": "Gupitaiechem dhoronn",
 	"privacypage": "Project:Gupitachem dhoronn",
 	"badaccess-group0": "Tumi tillson kel'lem karya korunk tumkam permissanv na.",
-	"badaccess-groups": "Tumi tillson kel'lem kary mat {{PLURAL:$2|the group|one of the groups}}: $1 -ak permissanv asa.",
+	"badaccess-groups": "Tumi tillson kel'lem karya mat {{PLURAL:$2|hea zomeache|hantuntle eke zomeache}} vaporpeank porvangi asa: $1.",
 	"versionrequired": "MediaWikichem $1 version zai",
 	"versionrequiredtext": "Hem pan vaprunk MediaWikichem $1 version zai.\n[[Special:Version|version page]] pan poloea.",
 	"ok": "Zait",

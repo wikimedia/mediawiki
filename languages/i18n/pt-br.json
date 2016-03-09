@@ -1329,7 +1329,7 @@
 	"recentchanges-label-bot": "Esta edição foi feita por um robô",
 	"recentchanges-label-unpatrolled": "Esta edição ainda não foi patrulhada",
 	"recentchanges-label-plusminus": "Alteração no tamanho da página, em bytes",
-	"recentchanges-legend-heading": "'''Legenda''':",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veja também a [[Special:NewPages|lista de páginas novas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Exibir",

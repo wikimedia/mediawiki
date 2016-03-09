@@ -858,7 +858,7 @@
 	"recentchanges-label-bot": "Coppite bu ab bot def",
 	"recentchanges-label-unpatrolled": "Coppite bii kenn fugloogu ko",
 	"recentchanges-label-plusminus": "Dayoob xët wi soppeeku na ci lu ni toll ciy byte.",
-	"recentchanges-legend-heading": "'''Piri:'''",
+	"recentchanges-legend-heading": "<strong>Piri:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (wone itam [[Special:NewPages|limu xët yu bees yi]]) -",
 	"rcnotefrom": "Yii ñooy coppite yi dalee '''$2''' (ba '''$1''').",
 	"rclistfrom": "Wone coppite yi mujj yi dooree $3 $2",

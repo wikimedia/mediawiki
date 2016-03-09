@@ -1131,7 +1131,7 @@
 	"recentchanges-label-bot": "თე რედაქტირაფა ბოტიშ ნაღოლემი რე",
 	"recentchanges-label-unpatrolled": "თე რედაქტირაფა დიო ხოლო ვა რე პატრულირაფირი",
 	"recentchanges-label-plusminus": "თირაფეფიშ ზჷმა ბაიტეფს",
-	"recentchanges-legend-heading": "'''ლეგენდა:'''",
+	"recentchanges-legend-heading": "<strong>ლეგენდა:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (თაშნეშე ქოძირით [[Special:NewPages|ახალ ხასჷლეფიშ ერკებული]])",
 	"rcnotefrom": "ქვემოთ {{PLURAL:$5|ნაჩვენებია ცვლილება|ნაჩვენებია ცვლილებები}} <strong>$3, $4</strong>-დან (ნაჩვენებია არაუმეტეს <strong>$1</strong>).",
 	"rclistfrom": "ახალ თირაფეფიშ ძირაფა დოჭყაფილ $3 $2-შე",

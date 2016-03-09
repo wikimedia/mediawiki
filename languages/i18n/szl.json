@@ -984,7 +984,7 @@
 	"recentchanges-label-bot": "To sprowjyńy bůło zrobjůne uod bota",
 	"recentchanges-label-unpatrolled": "To sprowjyńy ńy bůło jeszcze uowjerzůne",
 	"recentchanges-label-plusminus": "Půmjyńono mjara zajty we bajtach",
-	"recentchanges-legend-heading": "'''Legynda:'''",
+	"recentchanges-legend-heading": "<strong>Legynda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (uobejrzij tyż [[Special:NewPages|lista nowych zajt]])",
 	"rcnotefrom": "Půńiżej pokazano půmjyńańo zrobjůne pů <b>$2</b> (ńy wjyncyj kej <b>$1</b> pozycji).",
 	"rclistfrom": "Ukoż půmjyńańa uod $3 $2",

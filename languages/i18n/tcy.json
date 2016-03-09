@@ -635,7 +635,7 @@
 	"recentchanges-label-bot": "ಈ ಸಂಪದನೆ ಒಂಜಿ ಬಾಟ್‍ಡ್ ಆತ್ಂಡ್",
 	"recentchanges-label-unpatrolled": "ಈ ಸಂಪಾದನೆನ್ ನನಲಾ ಪರೀಕ್ಷೆ ಮಲ್ತ್‌ಜಿ.",
 	"recentchanges-label-plusminus": "ಬೈಟ್ಸ್‌ದ ಲೆಕ್ಕೊಡು ಈ ಪಾಲೆದ ಗಾತ್ರೊ ಬದಲಾತ್ಂಡ್",
-	"recentchanges-legend-heading": "'''ಲೆಜೆಂಡ್:'''",
+	"recentchanges-legend-heading": "<strong>ಲೆಜೆಂಡ್:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ಬೊಕ್ಕೊಲಾ ತೂಲೆ [[Special:NewPages|ಪೊಸ ಪುಟೊದ ಪಟ್ಟಿ]])",
 	"rclistfrom": "$3 $2 ರ್ದ್ ಸುರುವಾತಿನ ಪೊಸ ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವು",
 	"rcshowhideminor": "$1 ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲು",

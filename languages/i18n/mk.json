@@ -1237,7 +1237,7 @@
 	"recentchanges-label-bot": "Ова уредување е направено од бот",
 	"recentchanges-label-unpatrolled": "Ова уредување сè уште не е испатролирано",
 	"recentchanges-label-plusminus": "Големинска промена на страницата во бајти",
-	"recentchanges-legend-heading": "'''Легенда:'''",
+	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (погл. и [[Special:NewPages|списокот на нови страници]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Прикажи",

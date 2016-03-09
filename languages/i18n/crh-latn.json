@@ -753,7 +753,7 @@
 	"recentchanges-label-bot": "Bu bir botnıñ yapqan deñiştirmesi",
 	"recentchanges-label-unpatrolled": "Bu deñiştirme alâ daa teşkerilmegen",
 	"recentchanges-label-plusminus": "Bayt esabınen saife büyükliginiñ deñiştirilmesi",
-	"recentchanges-legend-heading": "'''İşaretler:'''",
+	"recentchanges-legend-heading": "<strong>İşaretler:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|yañı saifeler cedveline]] de baqıñız)",
 	"rcnotefrom": "<strong>$3, $4</strong> tarihından başlap yapılğan {{PLURAL:$5|deñiştirme|deñiştirmeler}} aşağıdadır (eñ çоq <strong>$1</strong> dane saife kösterile).",
 	"rclistfrom": "$3 $2 tarihından berli yapılğan deñiştirmelerni köster",

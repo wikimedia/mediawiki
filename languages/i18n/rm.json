@@ -1006,7 +1006,7 @@
 	"recentchanges-label-minor": "Quai è ina pitschna modificaziun",
 	"recentchanges-label-bot": "Questa modificaziun è vegnida exequida dad in bot",
 	"recentchanges-label-unpatrolled": "Questa midada n'è anc betg vegnida controllada",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vesair era la [[Special:NewPages|glista da novas paginas]])",
 	"rcnotefrom": "I vegnan mussadas las midadas a partir da las <strong>$4</strong> dals <strong>$3</strong> (maximalmain <strong>$1</strong>).",
 	"rclistfrom": "Mussar las novas midadas a partir da las $2 dals $3",

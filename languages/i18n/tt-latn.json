@@ -800,7 +800,7 @@
 	"recentchanges-label-bot": "Bu üzgärtmä bot tarafınnan yasaldı",
 	"recentchanges-label-unpatrolled": "Bu üzgärtmä älegä raslanmağan",
 	"recentchanges-label-plusminus": "Bit zurlığınıñ baytlardağı üzgäreş",
-	"recentchanges-legend-heading": "'''Añlatma:'''",
+	"recentchanges-legend-heading": "<strong>Añlatma:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (şulay uq [[Special:NewPages|yaña bitlär isemlegen]] qarap alığız)",
 	"rcnotefrom": "Astaraq '''$2''' başlap ('''$1''' qädär) üzgärtülär kürsätelgän.",
 	"rclistfrom": "$3 $2 başlap yaña üzgärtülärne kürsät",

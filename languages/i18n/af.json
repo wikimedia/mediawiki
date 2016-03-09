@@ -1115,7 +1115,7 @@
 	"recentchanges-label-bot": "Hierdie wysiging is deur 'n bot gemaak",
 	"recentchanges-label-unpatrolled": "Die wysiging is nog nie gekontroleer nie",
 	"recentchanges-label-plusminus": "Bladsy is met die aantal grepe gewysig",
-	"recentchanges-legend-heading": "'''Sleutel:'''",
+	"recentchanges-legend-heading": "<strong>Sleutel:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sien ook die [[Special:NewPages|lys van nuwe bladsye]])",
 	"rcnotefrom": "Wysigings sedert <strong>$2</strong> (maksimum van <strong>$1</strong> word gewys).",
 	"rclistfrom": "Vertoon wysigings vanaf $3 $2",

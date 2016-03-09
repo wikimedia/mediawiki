@@ -1199,7 +1199,7 @@
 	"recentchanges-label-bot": "Izmjenu napravio bot",
 	"recentchanges-label-unpatrolled": "Ova izmjena još nije patrolirana",
 	"recentchanges-label-plusminus": "Promjena veličine stranice u bajtovima",
-	"recentchanges-legend-heading": "'''Legenda:'''",
+	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|spisak novih stranica]])",
 	"recentchanges-submit": "Prikaži",
 	"rcnotefrom": "Ispod {{PLURAL:$5|je izmjena|su izmjene}} od <strong>$3, $4</strong> (do <strong>$1</strong> prikazano).",

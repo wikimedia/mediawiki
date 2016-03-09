@@ -644,7 +644,7 @@
 	"nocookiesfornew": "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 	"nocookiesforlogin": "{{optional}}\nThis message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).\n\nDefault:\n* {{msg-mw|Nocookieslogin}}",
 	"noname": "Error message.",
-	"loginsuccesstitle": "The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.\n{{Identical|Login successful}}",
+	"loginsuccesstitle": "The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.\n{{Identical|Log in}}",
 	"loginsuccess": "The content of the page saying that you are logged in. The title of the page is {{msg-mw|Loginsuccesstitle}}.\n\nParameters:\n* $1 - the name of the logged in user\n{{Gender}}",
 	"nosuchuser": "Displayed when trying to log in with an unexisting username.\n\nWhen you are not allowed to create an account, the following message is displayed:\n* {{msg-mw|Nosuchusershort}}\nParameters:\n* $1 - username",
 	"nosuchusershort": "Displayed when trying to log in with a non-existent username.\n\nThis message is only shown when you can't create an account, otherwise the following message is displayed:\n* {{msg-mw|Nosuchusershort}}\n\nParameters:\n* $1 - username",

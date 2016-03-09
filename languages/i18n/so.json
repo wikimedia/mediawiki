@@ -693,7 +693,7 @@
 	"recentchanges-label-bot": "Badalkaan waxaa sameeyay bot",
 	"recentchanges-label-unpatrolled": "bedelkaan hadda wali lama waardiyeen",
 	"recentchanges-label-plusminus": "Qaadka bogga wuxuu ku bedelmay tirada halbeega baytka",
-	"recentchanges-legend-heading": "'''Sharaxaad:'''",
+	"recentchanges-legend-heading": "<strong>Sharaxaad:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sidoo kale eeg [[Special:NewPages|liiska bogagga cusub]])",
 	"rcnotefrom": "Hoostaan waa isbedaladii dhacay  '''$2''' (waxaad arkoosaa ilaa '''$1''' ).",
 	"rclistfrom": "Itusi isbedelada cusub oo ka bilaabaneyso $3 $2",

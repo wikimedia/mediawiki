@@ -947,7 +947,7 @@
 	"recentchanges-label-minor": "Dit is in tekstwiziging",
 	"recentchanges-label-bot": "Dizze wiziging is troch in robot makke",
 	"recentchanges-label-unpatrolled": "Dizze wiziging is noch net neisjûn",
-	"recentchanges-legend-heading": "'''Leginda:'''",
+	"recentchanges-legend-heading": "<strong>Leginda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sjoch ek de [[Special:NewPages|list mei nije siden]])",
 	"rcnotefrom": "Dit binne de feroarings sûnt <b>$2</b> (maksimaal <b>$1</b>).",
 	"rclistfrom": "Jou nije feroarings, begjinnende mei $3 $2",

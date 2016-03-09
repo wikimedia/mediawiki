@@ -1180,7 +1180,7 @@
 	"recentchanges-label-bot": "Stu cangiamende ha state fatte da 'nu bot",
 	"recentchanges-label-unpatrolled": "Stu cangiamende non g'à state angore condrollate",
 	"recentchanges-label-plusminus": "'A dimenzione d'a pàgene ave cangiate da stu numere de byte",
-	"recentchanges-legend-heading": "'''Leggende:'''",
+	"recentchanges-legend-heading": "<strong>Leggende:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
 	"rcnotefrom": "Sotte {{PLURAL:$5|ste 'u cangiamende|stonne le cangiaminde}} da <strong>$3, $4</strong> ('nzigne a <strong>$1</strong> fatte vedè).",
 	"rclistfrom": "Fà vedè le urteme cangiaminde partenne da $3 $2",

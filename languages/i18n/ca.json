@@ -1261,7 +1261,7 @@
 	"recentchanges-label-bot": "Aquesta modificació fou feta per un bot",
 	"recentchanges-label-unpatrolled": "Aquesta modificació encara no s'ha patrullat",
 	"recentchanges-label-plusminus": "La mida de la pàgina ha canviat aquest nombre de bytes",
-	"recentchanges-legend-heading": "'''Llegenda:'''",
+	"recentchanges-legend-heading": "<strong>Llegenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vegeu també la [[Special:NewPages|llista de pàgines noves]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Mostra",

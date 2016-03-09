@@ -816,7 +816,7 @@
 	"recentchanges-label-bot": "Šėta keitėma padėrba autuomatėnė pruograma",
 	"recentchanges-label-unpatrolled": "Ons pakeitėms dā nabova oždabuots",
 	"recentchanges-label-plusminus": "Anuo baitu skaitliom pakeists straipsnė apmiers",
-	"recentchanges-legend-heading": "'''Pāiškėnėmā:'''",
+	"recentchanges-legend-heading": "<strong>Pāiškėnėmā:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (dā veiziekat [[Special:NewPages|vielībūju straipsniu sāroša]])",
 	"rcnotefrom": "Apatiuo {{PLURAL:$5|ruodoms pakeitėms|ruodomė pakeitėmā}} nug <strong>$3, $4</strong> (ne daugiau kāp <strong>$1</strong> ruodoma īr).",
 	"rclistfrom": "Ruodītė vielībus pakeitėmus pradedont nug $3 $2",

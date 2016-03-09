@@ -1074,7 +1074,7 @@
 	"recentchanges-label-bot": "Бу тюрлендириуню бот этгенди",
 	"recentchanges-label-unpatrolled": "Бу тюрлендириу алкъын патруль этилинмегенди",
 	"recentchanges-label-plusminus": "Бетни ёлчеми быллай бир байтха тюрленнгенди",
-	"recentchanges-legend-heading": "'''Легенда:&nbsp;'''",
+	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (къарагъыз: [[Special:NewPages|джангы бетлени тизмеси]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Тюбюрекде <strong>$2</strong> башлаб (<strong>$1</strong> дери) тюрлендириуле кёрюнедиле",

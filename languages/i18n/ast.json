@@ -1254,7 +1254,7 @@
 	"recentchanges-label-bot": "Esta edición ta fecha por un bot",
 	"recentchanges-label-unpatrolled": "Esta edición ta ensin patrullar entá",
 	"recentchanges-label-plusminus": "El tamañu d'esta páxina cambió nesti númberu de bytes",
-	"recentchanges-legend-heading": "'''Lleenda:'''",
+	"recentchanges-legend-heading": "<strong>Lleenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ver tamién la  [[Special:NewPages|llista de páxines nueves]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Amosar",
