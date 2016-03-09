@@ -242,6 +242,7 @@ HHVM 3.1.
 * OutputPage::setAllowedModules() was removed (deprecated since 1.24).
 * Skin::commonPrintStylesheet() was removed (deprecated since 1.22).
 * Skin::getCommonStylePath() was removed (deprecated since 1.24).
+* Skin::getUsableSkins() was removed (deprecated since 1.23).
 * Skin::newFromKey() was removed (deprecated since 1.24).
 * UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
 
