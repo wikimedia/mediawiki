@@ -17,9 +17,8 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$page = WikiPage::factory( $title );
 		$user = new User();
 		$user->mRights = [ 'createpage', 'edit', 'purge' ];
-		$this->setMwGlobals( 'wgLanguageCode', 'es' );
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'es' ) );
-		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
+		$this->setContentLang( 'es' );
+		$this->setUserLang( 'fr' );
 
 		$page->doEditContent(
 			new WikitextContent( '{{:{{int:history}}}}' ),
@@ -30,7 +29,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		);
 		$templates1 = $title->getTemplateLinksFrom();
 
-		$this->setMwGlobals( 'wgLang', Language::factory( 'de' ) );
+		$this->setUserLang( 'de' );
 		$page = WikiPage::factory( $title ); // In order to force the re-rendering of the same wikitext
 
 		// We need an edit, a purge is not enough to regenerate the tables

@@ -9,14 +9,12 @@ class TitleTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-			// User language
-			'wgLang' => Language::factory( 'en' ),
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 			'wgMetaNamespace' => 'Project',
 		] );
+		$this->setUserLang( 'en' );
+		$this->setContentLang( 'en' );
 	}
 
 	/**
@@ -421,12 +419,11 @@ class TitleTest extends MediaWikiTestCase {
 	) {
 		// Setup environnement for this test
 		$this->setMwGlobals( [
-			'wgLanguageCode' => $contLang,
-			'wgContLang' => Language::factory( $contLang ),
-			'wgLang' => Language::factory( $lang ),
 			'wgDefaultLanguageVariant' => $variant,
 			'wgAllowUserJs' => true,
 		] );
+		$this->setUserLang( $lang );
+		$this->setContentLang( $contLang );
 
 		$title = Title::newFromText( $titleText );
 		$this->assertInstanceOf( 'Title', $title,

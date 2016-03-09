@@ -29,8 +29,8 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgLang' => Language::factory( 'qqx' )
 		] );
+		$this->setUserLang( 'qqx' );
 	}
 
 	/**
@@ -197,7 +197,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	private function getContext() {
 		$user = $this->getTestUser();
 		$context = $this->testRecentChangesHelper->getTestContext( $user );
-		$context->setLanguage( Language::factory( 'qqx' ) );
+		$context->setLanguage( 'qqx' );
 
 		return $context;
 	}

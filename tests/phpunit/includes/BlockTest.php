@@ -13,14 +13,6 @@ class BlockTest extends MediaWikiLangTestCase {
 	/* variable used to save up the blockID we insert in this test suite */
 	private $blockId;
 
-	protected function setUp() {
-		parent::setUp();
-		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' )
-		] );
-	}
-
 	function addDBData() {
 
 		$user = User::newFromName( 'UTBlockee' );

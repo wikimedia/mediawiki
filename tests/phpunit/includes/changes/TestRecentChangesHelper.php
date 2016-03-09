@@ -154,7 +154,7 @@ class TestRecentChangesHelper {
 
 	public function getTestContext( User $user ) {
 		$context = new RequestContext();
-		$context->setLanguage( Language::factory( 'en' ) );
+		$context->setLanguage( 'en' );
 
 		$context->setUser( $user );
 

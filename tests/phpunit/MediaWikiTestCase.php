@@ -416,6 +416,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @since 1.27
+	 * @param string|Language $lang
+	 */
+	public function setUserLang( $lang ) {
+		RequestContext::getMain()->setLanguage( $lang );
+		$this->setMwGlobals( 'wgLang', RequestContext::getMain()->getLanguage() );
+	}
+
+	/**
+	 * @since 1.27
+	 * @param string|Language $lang
+	 */
+	public function setContentLang( $lang ) {
+		if ( $lang instanceof Language ) {
+			$langCode = $lang->getCode();
+			$langObj = $lang;
+		} else {
+			$langCode = $lang;
+			$langObj = Language::factory( $langCode );
+		}
+		$this->setMwGlobals( [
+			'wgLanguageCode' => $langCode,
+			'wgContLang' => $langObj,
+		] );
+	}
+
+	/**
 	 * Sets the logger for a specified channel, for the duration of the test.
 	 * @since 1.27
 	 * @param string $channel

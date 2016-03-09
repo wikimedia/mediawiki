@@ -26,14 +26,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$langObj = Language::factory( 'en' );
 		$localZone = 'UTC';
 		$localOffset = date( 'Z' ) / 60;
 
 		$this->setMwGlobals( [
-			'wgContLang' => $langObj,
-			'wgLanguageCode' => 'en',
-			'wgLang' => $langObj,
 			'wgLocaltimezone' => $localZone,
 			'wgLocalTZoffset' => $localOffset,
 			'wgNamespaceProtection' => [

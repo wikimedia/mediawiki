@@ -10,8 +10,6 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 
 		// Avoid 'GetHumanTimestamp' hook and others
 		$this->setMwGlobals( 'wgHooks', [] );
-
-		RequestContext::getMain()->setLanguage( Language::factory( 'en' ) );
 	}
 
 	/**
