@@ -19,9 +19,9 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 * @dataProvider provideTextUseOutputPage
 	 * @covers MWException::useOutputPage
 	 */
-	public function testUseOutputPage( $expected, $wgLang, $wgFullyInitialised, $wgOut ) {
+	public function testUseOutputPage( $expected, $langObj, $wgFullyInitialised, $wgOut ) {
 		$this->setMwGlobals( [
-			'wgLang' => $wgLang,
+			'wgLang' => $langObj,
 			'wgFullyInitialised' => $wgFullyInitialised,
 			'wgOut' => $wgOut,
 		] );
@@ -32,7 +32,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 
 	public function provideTextUseOutputPage() {
 		return [
-			// expected, wgLang, wgFullyInitialised, wgOut
+			// expected, langObj, wgFullyInitialised, wgOut
 			[ false, null, null, null ],
 			[ false, $this->getMockLanguage(), null, null ],
 			[ false, $this->getMockLanguage(), true, null ],
@@ -52,9 +52,9 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 * @dataProvider provideUseMessageCache
 	 * @covers MWException::useMessageCache
 	 */
-	public function testUseMessageCache( $expected, $wgLang ) {
+	public function testUseMessageCache( $expected, $langObj ) {
 		$this->setMwGlobals( [
-			'wgLang' => $wgLang,
+			'wgLang' => $langObj,
 		] );
 		$e = new MWException();
 		$this->assertEquals( $expected, $e->useMessageCache() );

@@ -6,8 +6,11 @@ class HtmlTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$langCode = 'en';
-		$langObj = Language::factory( $langCode );
+		$this->setMwGlobals( [
+			'wgWellFormedXml' => false,
+		] );
+
+		$langObj = Language::factory( 'en' );
 
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
@@ -32,13 +35,8 @@ class HtmlTest extends MediaWikiTestCase {
 			100 => 'Custom',
 			101 => 'Custom_talk',
 		] );
-
-		$this->setMwGlobals( [
-			'wgLanguageCode' => $langCode,
-			'wgContLang' => $langObj,
-			'wgLang' => $langObj,
-			'wgWellFormedXml' => false,
-		] );
+		$this->setUserLang( $langObj );
+		$this->setContentLang( $langObj );
 	}
 
 	/**

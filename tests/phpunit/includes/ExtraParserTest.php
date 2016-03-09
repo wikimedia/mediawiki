@@ -18,12 +18,12 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$contLang = Language::factory( 'en' );
 		$this->setMwGlobals( [
 			'wgShowDBErrorBacktrace' => true,
-			'wgLanguageCode' => 'en',
-			'wgContLang' => $contLang,
-			'wgLang' => Language::factory( 'en' ),
 			'wgCleanSignatures' => true,
 		] );
+		$this->setUserLang( 'en' );
+		$this->setContentLang( $contLang );
 
+		// FIXME: This test should pass without setting global content language
 		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );
 		$this->options->setTemplateCallback( [ __CLASS__, 'statelessFetchTemplate' ] );
 		$this->parser = new Parser;

@@ -19,14 +19,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	protected function configureLanguages() {
 		// for the test, we need the content language to be anything but English,
 		// let's choose e.g. German (de)
-		$langCode = 'de';
-		$langObj = Language::factory( $langCode );
-
-		$this->setMwGlobals( [
-			'wgLanguageCode' => $langCode,
-			'wgLang' => $langObj,
-			'wgContLang' => $langObj,
-		] );
+		$this->setUserLang( 'de' );
+		$this->setContentLang( 'de' );
 	}
 
 	function addDBData() {

@@ -32,10 +32,6 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-			// User language
-			'wgLang' => Language::factory( 'en' ),
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 			'wgMetaNamespace' => 'Project',
@@ -57,6 +53,8 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 				]
 			]
 		] );
+		$this->setUserLang( 'en' );
+		$this->setContentLang( 'en' );
 	}
 
 	/**
