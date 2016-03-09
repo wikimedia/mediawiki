@@ -82,15 +82,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.23, use getAllowedSkins
-	 * @return string[]
-	 */
-	public static function getUsableSkins() {
-		wfDeprecated( __METHOD__, '1.23' );
-		return self::getAllowedSkins();
-	}
-
-	/**
 	 * Normalize a skin preference value to a form that can be loaded.
 	 *
 	 * If a skin can't be found, it will fall back to the configured default ($wgDefaultSkin), or the
