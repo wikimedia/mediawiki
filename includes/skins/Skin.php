@@ -141,23 +141,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Factory method for loading a skin of a given type
-	 * @param string $key 'monobook', 'vector', etc.
-	 * @return Skin
-	 * @deprecated since 1.24; Use SkinFactory instead
-	 */
-	static function &newFromKey( $key ) {
-		wfDeprecated( __METHOD__, '1.24' );
-
-		$key = Skin::normalizeKey( $key );
-		$factory = SkinFactory::getDefaultInstance();
-
-		// normalizeKey() guarantees that a skin with this key will exist.
-		$skin = $factory->makeSkin( $key );
-		return $skin;
-	}
-
-	/**
 	 * @return string Skin name
 	 */
 	public function getSkinName() {
