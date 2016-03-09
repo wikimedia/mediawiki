@@ -305,7 +305,8 @@
 						} );
 					} else if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiSelectWidget( {
-							allowArbitrary: true
+							allowArbitrary: true,
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -414,13 +415,15 @@
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiSelectWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
 					} else {
 						widget = new OO.ui.DropdownWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
@@ -437,7 +440,8 @@
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.CapsuleMultiSelectWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -447,7 +451,8 @@
 						}
 					} else {
 						widget = new OO.ui.DropdownWidget( {
-							menu: { items: items }
+							menu: { items: items },
+							$overlay: $( '#mw-apisandbox-ui' )
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
