@@ -36,7 +36,11 @@
  * @author Michael Dale
  */
 abstract class UploadBase {
+	/** @var string Local file system path to the file to upload (or a local copy) */
 	protected $mTempPath;
+	/** @var TempFSFile|null Wrapper to handle deleting the temp file */
+	protected $tempFileObj;
+
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
 	protected $mTitle = false, $mTitleError = 0;
 	protected $mFilteredName, $mFinalExtension;
@@ -219,8 +223,8 @@ abstract class UploadBase {
 		if ( FileBackend::isStoragePath( $tempPath ) ) {
 			throw new MWException( __METHOD__ . " given storage path `$tempPath`." );
 		}
-		$this->mTempPath = $tempPath;
-		$this->mFileSize = $fileSize;
+
+		$this->setTempFile( $tempPath, $fileSize );
 		$this->mRemoveTempFile = $removeTempFile;
 	}
 
@@ -230,6 +234,21 @@ abstract class UploadBase {
 	 * @param WebRequest $request
 	 */
 	abstract public function initializeFromRequest( &$request );
+
+	/**
+	 * @param string $tempPath File system path to temporary file containing the upload
+	 * @param integer $fileSize
+	 */
+	protected function setTempFile( $tempPath, $fileSize = null ) {
+		$this->mTempPath = $tempPath;
+		if ( strlen( $this->mTempPath ) && file_exists( $this->mTempPath ) ) {
+			$this->tempFileObj = new TempFSFile( $this->mTempPath );
+			$this->mFileSize = $fileSize ?: filesize( $this->mTempPath );
+		} else {
+			$this->tempFileObj = null;
+			$this->mFileSize = null;
+		}
+	}
 
 	/**
 	 * Fetch the file. Usually a no-op
@@ -952,9 +971,10 @@ abstract class UploadBase {
 	 * on exit to clean up.
 	 */
 	public function cleanupTempFile() {
-		if ( $this->mRemoveTempFile && $this->mTempPath && file_exists( $this->mTempPath ) ) {
-			wfDebug( __METHOD__ . ": Removing temporary file {$this->mTempPath}\n" );
-			unlink( $this->mTempPath );
+		if ( $this->mRemoveTempFile && $this->tempFileObj ) {
+			// Delete when all relevant TempFSFile handles go out of scope
+			wfDebug( __METHOD__ . ": Marked temporary file '{$this->mTempPath}' for removal\n" );
+			$this->tempFileObj->autocollect();
 		}
 	}
 
