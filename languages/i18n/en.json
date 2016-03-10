@@ -3346,6 +3346,8 @@
 	"confirmemail_body_set": "Someone, probably you, from IP address $1,\nhas set the email address of the account \"$2\" to this address on {{SITENAME}}.\n\nTo confirm that this account really does belong to you and activate\nemail features on {{SITENAME}}, open this link in your browser:\n\n$3\n\nIf the account does *not* belong to you, follow this link\nto cancel the email address confirmation:\n\n$5\n\nThis confirmation code will expire at $4.",
 	"confirmemail_invalidated": "Email address confirmation canceled",
 	"invalidateemail": "Cancel email confirmation",
+	"notificationemail_subject": "{{SITENAME}} registered email address has been changed",
+	"notificationemail_body": "Someone, probably you, from IP address $1,\nhas changed the email address of the account \"$2\" to \"$3\" on {{SITENAME}}.\n\nThis is to notify you of this change.",
 	"scarytranscludedisabled": "[Interwiki transcluding is disabled]",
 	"scarytranscludefailed": "[Template fetch failed for $1]",
 	"scarytranscludefailed-httpstatus": "[Template fetch failed for $1: HTTP $2]",
