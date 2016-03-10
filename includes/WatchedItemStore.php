@@ -580,6 +580,44 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param User $user
+	 * @param int $unreadLimit
+	 *
+	 * @return int|bool The number of unread notifications
+	 *                  true if greater than or equal to $unreadLimit
+	 */
+	public function countUnreadNotifications( User $user, $unreadLimit = null ) {
+		$queryOptions = [];
+		if ( $unreadLimit !== null ) {
+			$unreadLimit = (int)$unreadLimit;
+			$queryOptions['LIMIT'] = $unreadLimit;
+		}
+
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$rowCount = $dbr->selectRowCount(
+			'watchlist',
+			'1',
+			[
+				'wl_user' => $user->getId(),
+				'wl_notificationtimestamp IS NOT NULL',
+			],
+			__METHOD__,
+			$queryOptions
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		if ( !isset( $unreadLimit ) ) {
+			return $rowCount;
+		}
+
+		if ( $rowCount >= $unreadLimit ) {
+			return true;
+		}
+
+		return $rowCount;
+	}
+
+	/**
 	 * Check if the given title already is watched by the user, and if so
 	 * add a watch for the new title.
 	 *
