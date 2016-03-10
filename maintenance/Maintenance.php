@@ -752,17 +752,19 @@ abstract class Maintenance {
 
 		if ( isset( $this->mParams[$option] ) ) {
 			$multi = $this->mParams[$option]['multiOccurrence'];
-			$exists = array_key_exists( $option, $options );
-			if ( $multi && $exists ) {
-				$options[$option][] = $value;
-			} elseif ( $multi ) {
-				$options[$option] = [ $value ];
-			} elseif ( !$exists ) {
-				$options[$option] = $value;
-			} else {
-				$this->error( "\nERROR: $option parameter given twice\n" );
-				$this->maybeHelp( true );
-			}
+		} else {
+			$multi = false;
+		}
+		$exists = array_key_exists( $option, $options );
+		if ( $multi && $exists ) {
+			$options[$option][] = $value;
+		} elseif ( $multi ) {
+			$options[$option] = [ $value ];
+		} elseif ( !$exists ) {
+			$options[$option] = $value;
+		} else {
+			$this->error( "\nERROR: $option parameter given twice\n" );
+			$this->maybeHelp( true );
 		}
 	}
 
