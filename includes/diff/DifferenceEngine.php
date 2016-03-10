@@ -847,7 +847,7 @@ class DifferenceEngine extends ContextSource {
 		$result = $this->textDiff( $otext, $ntext );
 
 		$time = microtime( true ) - $time;
-		$this->getStats()->timing( 'diff_time', $time );
+		$this->getStats()->timing( 'diff_time', $time * 1000 );
 
 		return $result;
 	}
