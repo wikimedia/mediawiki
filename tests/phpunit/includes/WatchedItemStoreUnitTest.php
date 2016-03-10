@@ -166,7 +166,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
 	}
 
-	public function provideMinimumWatchers() {
+	public function provideIntWithDbUnsafeVersion() {
 		return [
 			[ 50 ],
 			[ "50; DROP TABLE watchlist;\n--" ],
@@ -174,7 +174,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider provideMinimumWatchers
+	 * @dataProvider provideIntWithDbUnsafeVersion
 	 */
 	public function testCountWatchersMultiple_withMinimumWatchers( $minWatchers ) {
 		$titleValues = [
@@ -274,6 +274,110 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertEquals( 7, $store->countVisitingWatchers( $titleValue, '111' ) );
+	}
+
+	public function testCountUnreadNotifications() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectRowCount' )
+			->with(
+				'watchlist',
+				'1',
+				[
+					"wl_notificationtimestamp IS NOT NULL",
+					'wl_user' => 1,
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 9 ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals( 9, $store->countUnreadNotifications( $user ) );
+	}
+
+	/**
+	 * @dataProvider provideIntWithDbUnsafeVersion
+	 */
+	public function testCountUnreadNotifications_withUnreadLimit_overLimit( $limit ) {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectRowCount' )
+			->with(
+				'watchlist',
+				'1',
+				[
+					"wl_notificationtimestamp IS NOT NULL",
+					'wl_user' => 1,
+				],
+				$this->isType( 'string' ),
+				[ 'LIMIT' => 50 ]
+			)
+			->will( $this->returnValue( 50 ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertSame(
+			true,
+			$store->countUnreadNotifications( $user, [ 'unreadLimit' => $limit ] )
+		);
+	}
+
+	/**
+	 * @dataProvider provideIntWithDbUnsafeVersion
+	 */
+	public function testCountUnreadNotifications_withUnreadLimit_underLimit( $limit ) {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectRowCount' )
+			->with(
+				'watchlist',
+				'1',
+				[
+					"wl_notificationtimestamp IS NOT NULL",
+					'wl_user' => 1,
+				],
+				$this->isType( 'string' ),
+				[ 'LIMIT' => 50 ]
+			)
+			->will( $this->returnValue( 9 ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			9,
+			$store->countUnreadNotifications( $user, [ 'unreadLimit' => $limit ] )
+		);
 	}
 
 	public function testDuplicateEntry_nothingToDuplicate() {
