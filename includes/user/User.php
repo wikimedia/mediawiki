@@ -2703,8 +2703,28 @@ class User implements IDBAccessObject {
 			// Send a confirmation request to the new address if needed
 			$type = $oldaddr != '' ? 'changed' : 'set';
 			$result = $this->sendConfirmationMail( $type );
-			if ( $result->isGood() ) {
-				// Say to the caller that a confirmation mail has been sent
+			if ( $type == 'changed' ) {
+				// Send the user an email notifying the user of the change in registered
+				// email address on their previous email address
+				global $wgPasswordSender;
+				$sender = new MailAddress( $wgPasswordSender,
+					wfMessage( 'emailsender' )->inContentLanguage()->text() );
+
+				$to = new MailAddress( $oldaddr, $this->getName(), $this->getRealName() );
+				$notificationResult = UserMailer::send(
+					$to,
+					$sender,
+					wfMessage( 'notificationemail_subject' )->text(),
+					wfMessage( 'notificationemail_body',
+						$this->getRequest()->getIP(),
+						$this->getName(),
+						$this->getEmail() )->text(), [
+							'replyTo' => null,
+						]
+				);
+			}
+			if ( $result->isGood() && $notificationResult->isGood() ) {
+				// Say to the caller that a confirmation and notification mail has been sent
 				$result->value = 'eauth';
 			}
 		} else {
