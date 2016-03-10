@@ -23,6 +23,11 @@ class WatchedItemStore {
 	private $cache;
 
 	/**
+	 * @var array[] Looks like $cacheLinkTargetIndex[namespace ID][DB Key][ 'key1', 'key2' ]
+	 */
+	private $cacheLinkTargetIndex = [];
+
+	/**
 	 * @var callable|null
 	 */
 	private $deferredUpdatesAddCallableUpdateCallback;
@@ -121,14 +126,23 @@ class WatchedItemStore {
 	}
 
 	private function cache( WatchedItem $item ) {
-		$this->cache->set(
-			$this->getCacheKey( $item->getUser(), $item->getLinkTarget() ),
-			$item
-		);
+		$linkTarget = $item->getLinkTarget();
+		$key = $this->getCacheKey( $item->getUser(), $linkTarget );
+		$this->cache->set( $key, $item );
+		$this->cacheLinkTargetIndex[$linkTarget->getNamespace()][$linkTarget->getDBkey()][] = $key;
 	}
 
 	private function uncache( User $user, LinkTarget $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
+	}
+
+	private function uncacheLinkTarget( LinkTarget $target ) {
+		if( !isset( $this->cacheLinkTargetIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
+			return;
+		}
+		foreach ( $this->cacheLinkTargetIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
+			$this->cache->delete( $key );
+		}
 	}
 
 	/**
@@ -350,6 +364,7 @@ class WatchedItemStore {
 							'wl_title' => $target->getDBkey(),
 						], $fname
 					);
+					$this->uncacheLinkTarget( $target );
 				}
 			);
 		}
