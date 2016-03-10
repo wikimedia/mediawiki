@@ -95,6 +95,22 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Overrides the cacheIndex array for the instance
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
+	 *
+	 * @param array $cacheIndex
+	 *
+	 * @throws MWException
+	 */
+	public function overrideCacheIndex( $cacheIndex ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'Cannot override WatchedItemStore::cacheIndex in operation.' );
+		}
+		Assert::parameterType( 'array', $cacheIndex, '$cacheIndex' );
+		$this->cacheIndex = $cacheIndex;
+	}
+
+	/**
 	 * Overrides the default instance of this class
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
@@ -181,6 +197,34 @@ class WatchedItemStore {
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 		];
+	}
+
+	/**
+	 * Deletes ALL watched items for the given user!
+	 *
+	 * @param User $user
+	 */
+	public function clearUserWatchedItems( User $user ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw->delete(
+			'watchlist',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbw );
+		$this->uncacheAllItemsForUser( $user );
+	}
+
+	private function uncacheAllItemsForUser( User $user ) {
+		$userId = $user->getId();
+		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
+			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
+				if ( array_key_exists( $userId, $userIndex ) ) {
+					$this->cache->delete( $userIndex[$userId] );
+					unset( $this->cacheIndex[$ns][$dbKey][$userId] );
+				}
+			}
+		}
 	}
 
 	/**
