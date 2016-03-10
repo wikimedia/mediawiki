@@ -186,6 +186,10 @@ class WatchedItemStore {
 	 * @return WatchedItem|false
 	 */
 	public function getWatchedItem( User $user, LinkTarget $target ) {
+		if ( $user->isAnon() ) {
+			return false;
+		}
+
 		$cached = $this->getCached( $user, $target );
 		if ( $cached ) {
 			return $cached;
