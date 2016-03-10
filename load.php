@@ -36,12 +36,15 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
-// Respond to ResourceLoader request
+// Set up ResourceLoader
 $resourceLoader = new ResourceLoader(
 	ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
 	LoggerFactory::getInstance( 'resourceloader' )
 );
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+
+// Respond to ResourceLoader request
+$resourceLoader->respond( $context );
 
 Profiler::instance()->setTemplated( true );
 

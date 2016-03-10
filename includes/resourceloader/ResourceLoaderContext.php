@@ -212,6 +212,18 @@ class ResourceLoaderContext {
 	}
 
 	/**
+	 * Get a Message object with context set.  See wfMessage for parameters.
+	 *
+	 * @since 1.27
+	 * @param mixed ...
+	 * @return Message
+	 */
+	public function msg() {
+		return call_user_func_array( 'wfMessage', func_get_args() )
+			->inLanguage( $this->getLanguage() );
+	}
+
+	/**
 	 * Get the possibly-cached User object for the specified username
 	 *
 	 * @since 1.25
