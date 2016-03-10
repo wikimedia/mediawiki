@@ -68,21 +68,15 @@ class XCFHandler extends BitmapHandler {
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
-		$metadata = [];
-		$metadata[0] = $header['width'];
-		$metadata[1] = $header['height'];
-		$metadata[2] = null; # IMAGETYPE constant, none exist for XCF.
-		$metadata[3] = sprintf(
-			'height="%s" width="%s"', $header['height'], $header['width']
-		);
-		$metadata['mime'] = 'image/x-xcf';
-		$metadata['channels'] = null;
-		$metadata['bits'] = 8; # Always 8-bits per color
-
-		assert( '7 == count($metadata); ' .
-			'# return array must contains 7 elements just like getimagesize() return' );
-
-		return $metadata;
+		return [
+			0 => $header['width'],
+			1 => $header['height'],
+			2 => null, # IMAGETYPE constant, none exist for XCF.
+			3 => "height=\"{$header['height']}\" width=\"{$header['width']}\"",
+			'mime' => 'image/x-xcf',
+			'channels' => null,
+			'bits' => 8, # Always 8-bits per color
+		];
 	}
 
 	/**
