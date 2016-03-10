@@ -41,6 +41,7 @@
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-db-port": "მონაცემთა ბაზის პორტი:",
 	"config-db-schema": "მედიავიკის სქემა:",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL-ის პარამეტრები",
 	"config-header-postgres": "PostgreSQL-ის პარამეტრები",
 	"config-header-sqlite": "SQLite-ის პარამეტრები",

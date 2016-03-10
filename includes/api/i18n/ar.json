@@ -45,6 +45,7 @@
 	"apihelp-emailuser-description": "مراسلة المستخدم",
 	"apihelp-expandtemplates-param-title": "عنوان الصفحة.",
 	"apihelp-feedrecentchanges-param-tagfilter": "فلتر بالوسم.",
+	"apihelp-feedrecentchanges-example-simple": " اظهر التغييرات الحديثة",
 	"apihelp-feedrecentchanges-example-30days": "أظهر التغييرات الأخيرة في 30 يوم.",
 	"apihelp-feedwatchlist-example-all6hrs": "اظهر كل التغييرات في اخر 6 ساعات",
 	"apihelp-filerevert-param-comment": "تعليق الرفع.",
