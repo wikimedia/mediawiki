@@ -19,7 +19,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	protected $mButtonValue;
 
 	/** @var string $mButtonType Value for the button in this field */
-	protected $mButtonFlags = [ 'primary', 'progressive' ];
+	protected $mButtonFlags = [ 'progressive' ];
 
 	public function __construct( $info ) {
 		if ( isset( $info['buttonclass'] ) ) {

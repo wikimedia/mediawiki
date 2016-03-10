@@ -192,6 +192,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 				'type' => 'textwithbutton',
 				'label-message' => 'botpasswords-label-appid',
 				'buttondefault' => $this->msg( 'botpasswords-label-create' )->text(),
+				'buttonflags' => [ 'progressive', 'primary' ],
 				'required' => true,
 				'size' => BotPassword::APPID_MAXLENGTH,
 				'maxlength' => BotPassword::APPID_MAXLENGTH,
