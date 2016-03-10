@@ -913,44 +913,22 @@ abstract class HTMLFormField {
 	}
 
 	/**
-	 * Get a translated key if necessary.
-	 * @param array|null $mappings Array of mappings, 'original' => 'translated'
-	 * @param string $key
-	 * @return string
-	 */
-	protected function getMappedKey( $mappings, $key ) {
-		if ( !is_array( $mappings ) ) {
-			return $key;
-		}
-
-		if ( !empty( $mappings[$key] ) ) {
-			return $mappings[$key];
-		}
-
-		return $key;
-	}
-
-	/**
 	 * Returns the given attributes from the parameters
 	 *
 	 * @param array $list List of attributes to get
-	 * @param array $mappings Optional - Key/value map of attribute names to use
-	 *   instead of the ones passed in.
 	 * @return array Attributes
 	 */
-	public function getAttributes( array $list, array $mappings = null ) {
+	public function getAttributes( array $list ) {
 		static $boolAttribs = [ 'disabled', 'required', 'autofocus', 'multiple', 'readonly' ];
 
 		$ret = [];
 		foreach ( $list as $key ) {
-			$mappedKey = $this->getMappedKey( $mappings, $key );
-
 			if ( in_array( $key, $boolAttribs ) ) {
 				if ( !empty( $this->mParams[$key] ) ) {
-					$ret[$mappedKey] = $mappedKey;
+					$ret[$key] = '';
 				}
 			} elseif ( isset( $this->mParams[$key] ) ) {
-				$ret[$mappedKey] = $this->mParams[$key];
+				$ret[$key] = $this->mParams[$key];
 			}
 		}
 
