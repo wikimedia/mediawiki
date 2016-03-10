@@ -166,6 +166,21 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Deletes ALL watched items for the given user!
+	 *
+	 * @param User $user
+	 */
+	public function clearWatchedItems( User $user ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw->delete(
+			'watchlist',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbw );
+	}
+
+	/**
 	 * @param LinkTarget $target
 	 *
 	 * @return int

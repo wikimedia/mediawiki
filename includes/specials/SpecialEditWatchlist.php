@@ -441,12 +441,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Remove all titles from a user's watchlist
 	 */
 	private function clearWatchlist() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			[ 'wl_user' => $this->getUser()->getId() ],
-			__METHOD__
-		);
+		WatchedItemStore::getDefaultInstance()->clearWatchedItems( $this->getUser() );
 	}
 
 	/**
