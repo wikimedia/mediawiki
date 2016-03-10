@@ -225,23 +225,15 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['unreadcount'] ) ) {
-			$dbr = $this->getQuery()->getNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
-
-			$count = $dbr->selectRowCount(
-				'watchlist',
-				'1',
-				[
-					'wl_user' => $user->getId(),
-					'wl_notificationtimestamp IS NOT NULL',
-				],
-				__METHOD__,
-				[ 'LIMIT' => self::WL_UNREAD_LIMIT ]
+			$unreadNotifications = WatchedItemStore::getDefaultInstance()->countUnreadNotifications(
+				$user,
+				[ 'unreadLimit' => self::WL_UNREAD_LIMIT ]
 			);
 
-			if ( $count >= self::WL_UNREAD_LIMIT ) {
+			if ( $unreadNotifications === true ) {
 				$vals['unreadcount'] = self::WL_UNREAD_LIMIT . '+';
 			} else {
-				$vals['unreadcount'] = $count;
+				$vals['unreadcount'] = $unreadNotifications;
 			}
 		}
 

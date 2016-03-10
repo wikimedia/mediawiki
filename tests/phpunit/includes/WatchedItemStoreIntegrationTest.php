@@ -71,6 +71,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$store->addWatch( $user, $title );
 		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
 		$initialVisitingWatchers = $store->countVisitingWatchers( $title, '20150202020202' );
+		$initialUnreadNotifications = $store->countUnreadNotifications( $user );
 
 		$store->updateNotificationTimestamp( $otherUser, $title, '20150202010101' );
 		$this->assertEquals(
@@ -80,6 +81,17 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$initialVisitingWatchers - 1,
 			$store->countVisitingWatchers( $title, '20150202020202' )
+		);
+		$this->assertEquals(
+			$initialUnreadNotifications + 1,
+			$store->countUnreadNotifications( $user )
+		);
+		$this->assertSame(
+			true,
+			$store->countUnreadNotifications(
+				$user,
+				[ 'unreadLimit' => $initialUnreadNotifications + 1 ]
+			)
 		);
 
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
