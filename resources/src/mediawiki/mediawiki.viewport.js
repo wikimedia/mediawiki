@@ -50,14 +50,25 @@
 		 * @return {boolean}
 		 */
 		isElementInViewport: function ( el, rectangle ) {
-			var elRect = el.getBoundingClientRect(),
+			var $el = $( el ),
+				offset = $el.offset(),
+				rect = {
+					height: $el.height(),
+					width: $el.width(),
+					top: offset.top,
+					left: offset.left
+				},
 				viewport = rectangle || this.makeViewportFromWindow();
 
 			return (
-				( viewport.bottom >= elRect.top ) &&
-				( viewport.right >= elRect.left ) &&
-				( viewport.top <= elRect.top + elRect.height ) &&
-				( viewport.left <= elRect.left + elRect.width )
+				// Top border must be above viewport's bottom
+				( viewport.bottom >= rect.top ) &&
+				// Left border must be before viewport's right border
+				( viewport.right >= rect.left ) &&
+				// Bottom border must be below viewport's top
+				( viewport.top <= rect.top + rect.height ) &&
+				// Right border must be after viewport's left border
+				( viewport.left <= rect.left + rect.width )
 			);
 		},
 
