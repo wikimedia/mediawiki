@@ -60,6 +60,29 @@
 			'It should default to the window object if no viewport is given' );
 	} );
 
+	QUnit.test( 'isElementInViewport with scrolled page', 1, function ( assert ) {
+		var viewport = {
+				top: 2000,
+				left: 0,
+				right: 1000,
+				bottom: 2500
+			},
+			el = $( '<div />' )
+				.appendTo( '#qunit-fixture' )
+				.width( 20 )
+				.height( 20 )
+				.offset( {
+					top: 2300,
+					left: 20
+				} )
+				.get( 0 );
+		window.scrollTo(viewport.left, viewport.top);
+		assert.ok( mw.viewport.isElementInViewport( el, viewport ),
+			'It should return true when the element is fully enclosed in the ' +
+			'viewport even when the page is scrolled down' );
+		window.scrollTo(0, 0);
+	} );
+
 	QUnit.test( 'isElementCloseToViewport', 3, function ( assert ) {
 		var
 			viewport = {
