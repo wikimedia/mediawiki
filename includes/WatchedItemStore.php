@@ -18,9 +18,14 @@ class WatchedItemStore {
 	private $loadBalancer;
 
 	/**
-	 * @var BagOStuff
+	 * @var HashBagOStuff
 	 */
 	private $cache;
+
+	/**
+	 * @var array[] Looks like $cacheIndex[namespace ID][DB Key][ userId => 'key1', userId => 'key2' ]
+	 */
+	private $cacheIndex = [];
 
 	/**
 	 * @var callable|null
@@ -37,7 +42,7 @@ class WatchedItemStore {
 	 */
 	private static $instance;
 
-	public function __construct( LoadBalancer $loadBalancer, BagOStuff $cache ) {
+	public function __construct( LoadBalancer $loadBalancer, HashBagOStuff $cache ) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
@@ -121,14 +126,27 @@ class WatchedItemStore {
 	}
 
 	private function cache( WatchedItem $item ) {
-		$this->cache->set(
-			$this->getCacheKey( $item->getUser(), $item->getLinkTarget() ),
-			$item
-		);
+		$user = $item->getUser();
+		$target = $item->getLinkTarget();
+		$key = $this->getCacheKey( $user, $target );
+		$this->cache->set( $key, $item );
+		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
 	}
 
 	private function uncache( User $user, LinkTarget $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
+		if ( isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] ) ) {
+			unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
+		}
+	}
+
+	private function uncacheLinkTarget( LinkTarget $target ) {
+		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
+			return;
+		}
+		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
+			$this->cache->delete( $key );
+		}
 	}
 
 	/**
@@ -350,6 +368,7 @@ class WatchedItemStore {
 							'wl_title' => $target->getDBkey(),
 						], $fname
 					);
+					$this->uncacheLinkTarget( $target );
 				}
 			);
 		}
