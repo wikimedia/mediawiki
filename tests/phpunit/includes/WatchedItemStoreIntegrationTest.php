@@ -57,7 +57,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
-		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
+		$this->assertNull( $store->getWatchedItem( $user, $title )->getNotificationTimestamp() );
 	}
 
 	public function testDuplicateAllAssociatedEntries() {
