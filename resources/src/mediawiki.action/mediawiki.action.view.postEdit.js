@@ -2,6 +2,7 @@
 	'use strict';
 
 	/**
+	 * Fired after a page edit is complete. Does not fire for null edits.
 	 * @event postEdit
 	 * @member mw.hook
 	 * @param {Object} [data] Optional data
