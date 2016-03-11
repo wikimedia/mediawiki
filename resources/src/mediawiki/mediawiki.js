@@ -1193,14 +1193,22 @@
 				var r = $.Deferred();
 
 				pendingRequests.push( function () {
-					if ( moduleName && !hasOwn.call( registry, moduleName ) ) {
+					if ( moduleName && !hasOwn.call( registry, moduleName )
+						// certain libraries e.g. Ace might make use of a global require method
+						// so only hijack where necessary (see T127643)
+						&& typeof window.require === undefined
+					) {
+						window._mwRequire = true;
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}
 					addScript( src ).always( function () {
-						// Clear environment
-						delete window.require;
-						delete window.module;
+						// Clear environment after running script if we hijacked it
+						if ( window._mwRequire ) {
+							delete window._mwRequire;
+							delete window.require;
+							delete window.module;
+						}
 						r.resolve();
 
 						// Start the next one (if any)
