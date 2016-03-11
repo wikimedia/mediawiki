@@ -1374,9 +1374,7 @@ class Parser {
 				true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
-			# Replace unnecessary URL escape codes with their equivalent characters
-			$pasteurized = self::replaceUnusualEscapes( $url );
-			$this->mOutput->addExternalLink( $pasteurized );
+			$this->mOutput->addExternalLink( $url );
 		}
 		wfProfileOut( __METHOD__ );
 		return $text . $trail;
@@ -1680,10 +1678,7 @@ class Parser {
 				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
 
 			# Register link in the output object.
-			# Replace unnecessary URL escape codes with the referenced character
-			# This prevents spammers from hiding links from the filters
-			$pasteurized = self::replaceUnusualEscapes( $url );
-			$this->mOutput->addExternalLink( $pasteurized );
+			$this->mOutput->addExternalLink( $url );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -5214,10 +5209,12 @@ class Parser {
 							//check to see if link matches an absolute url, if not then it must be a wiki link.
 							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
 								$link = $linkValue;
+								$this->mOutput->addExternalLink( $link );
 							} else {
 								$localLinkTitle = Title::newFromText( $linkValue );
 								if ( $localLinkTitle !== null ) {
-									$link = $localLinkTitle->getLocalURL();
+									$this->mOutput->addLink( $localLinkTitle );
+									$link = $localLinkTitle->getLinkURL();
 								}
 							}
 							break;

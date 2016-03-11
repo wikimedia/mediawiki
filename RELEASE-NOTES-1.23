@@ -22,6 +22,8 @@ This is not a release yet!
 * (T156184) SECURITY: Escape content model/format url parameter in message.
 * (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
   declaration.
+* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
+  syntax's link parameter.
 
 == MediaWiki 1.23.15 ==
 
