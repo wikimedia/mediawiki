@@ -28,13 +28,13 @@ class UsercreateTemplate extends BaseTemplate {
 	 * UserCreateForm hook to add checkboxes to the create account form.
 	 */
 	function addInputItem( $name, $value, $type, $msg, $helptext = false ) {
-		$this->data['extraInput'][] = array(
+		$this->data['extraInput'][] = [
 			'name' => $name,
 			'value' => $value,
 			'type' => $type,
 			'msg' => $msg,
 			'helptext' => $helptext,
-		);
+		];
 	}
 
 	function execute() {
@@ -84,7 +84,7 @@ class UsercreateTemplate extends BaseTemplate {
 					<span class="mw-ui-flush-right"><?php echo $this->getMsg( 'createacct-helpusername' )->parse(); ?></span>
 				</label>
 				<?php
-				echo Html::input( 'wpName', $this->data['name'], 'text', array(
+				echo Html::input( 'wpName', $this->data['name'], 'text', [
 					'class' => 'mw-ui-input loginText',
 					'id' => 'wpName2',
 					'tabindex' => '1',
@@ -92,7 +92,7 @@ class UsercreateTemplate extends BaseTemplate {
 					'required',
 					'placeholder' => $this->getMsg( $this->data['loggedin'] ?
 						'createacct-another-username-ph' : 'userlogin-yourname-ph' )->text(),
-				) );
+				] );
 				?>
 			</div>
 
@@ -113,14 +113,14 @@ class UsercreateTemplate extends BaseTemplate {
 			<div class="mw-ui-vform-field mw-row-password">
 				<label for='wpPassword2'><?php $this->msg( 'userlogin-yourpassword' ); ?></label>
 				<?php
-				echo Html::input( 'wpPassword', null, 'password', array(
+				echo Html::input( 'wpPassword', null, 'password', [
 					'class' => 'mw-ui-input loginPassword',
 					'id' => 'wpPassword2',
 					'tabindex' => '3',
 					'size' => '20',
 					'required',
 					'placeholder' => $this->getMsg( 'createacct-yourpassword-ph' )->text()
-				) + User::passwordChangeInputAttribs() );
+				] + User::passwordChangeInputAttribs() );
 				?>
 			</div>
 
@@ -143,14 +143,14 @@ class UsercreateTemplate extends BaseTemplate {
 			<div class="mw-ui-vform-field mw-row-password">
 				<label for='wpRetype'><?php $this->msg( 'createacct-yourpasswordagain' ); ?></label>
 				<?php
-				echo Html::input( 'wpRetype', null, 'password', array(
+				echo Html::input( 'wpRetype', null, 'password', [
 					'class' => 'mw-ui-input loginPassword',
 					'id' => 'wpRetype',
 					'tabindex' => '5',
 					'size' => '20',
 					'required',
 					'placeholder' => $this->getMsg( 'createacct-yourpasswordagain-ph' )->text()
-					) + User::passwordChangeInputAttribs() );
+				] + User::passwordChangeInputAttribs() );
 				?>
 			</div>
 
@@ -165,7 +165,7 @@ class UsercreateTemplate extends BaseTemplate {
 						?>
 					</label>
 					<?php
-						echo Html::input( 'wpEmail', $this->data['email'], 'email', array(
+						echo Html::input( 'wpEmail', $this->data['email'], 'email', [
 							'class' => 'mw-ui-input loginText',
 							'id' => 'wpEmail',
 							'tabindex' => '6',
@@ -173,7 +173,7 @@ class UsercreateTemplate extends BaseTemplate {
 							'required' => $this->data['emailrequired'],
 							'placeholder' => $this->getMsg( $this->data['loggedin'] ?
 								'createacct-another-email-ph' : 'createacct-email-ph' )->text()
-						) );
+						] );
 					?>
 				<?php } ?>
 			</div>
@@ -193,13 +193,13 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php if ( $this->data['usereason'] ) { ?>
 				<div class="mw-ui-vform-field">
 					<label for='wpReason'><?php $this->msg( 'createacct-reason' ); ?></label>
-					<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', array(
+					<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', [
 						'class' => 'mw-ui-input loginText',
 						'id' => 'wpReason',
 						'tabindex' => '8',
 						'size' => '20',
 						'placeholder' => $this->getMsg( 'createacct-reason-ph' )->text()
-					) ); ?>
+					] ); ?>
 				</div>
 			<?php } ?>
 
@@ -265,15 +265,15 @@ class UsercreateTemplate extends BaseTemplate {
 				<?php
 				echo Html::submitButton(
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
-					array(
+					[
 						'id' => 'wpCreateaccount',
 						'name' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
-					),
-					array(
+					],
+					[
 						'mw-ui-block',
 						'mw-ui-constructive',
-					)
+					]
 				);
 				?>
 			</div>

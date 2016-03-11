@@ -67,15 +67,15 @@ class UserloginTemplate extends BaseTemplate {
 					$this->msg( 'userlogin-yourname' );
 
 					if ( $this->data['secureLoginUrl'] ) {
-						echo Html::element( 'a', array(
+						echo Html::element( 'a', [
 							'href' => $this->data['secureLoginUrl'],
 							'class' => 'mw-ui-flush-right mw-secure',
-						), $this->getMsg( 'userlogin-signwithsecure' )->text() );
+						], $this->getMsg( 'userlogin-signwithsecure' )->text() );
 					}
 					?>
 				</label>
 				<?php
-				echo Html::input( 'wpName', $this->data['name'], 'text', array(
+				echo Html::input( 'wpName', $this->data['name'], 'text', [
 					'class' => 'loginText mw-ui-input',
 					'id' => 'wpName1',
 					'tabindex' => '1',
@@ -85,7 +85,7 @@ class UserloginTemplate extends BaseTemplate {
 					// Set focus to this field if it's blank.
 					'autofocus' => !$this->data['name'],
 					'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text()
-				) );
+				] );
 				?>
 			</div>
 
@@ -96,14 +96,14 @@ class UserloginTemplate extends BaseTemplate {
 					?>
 				</label>
 				<?php
-				echo Html::input( 'wpPassword', null, 'password', array(
+				echo Html::input( 'wpPassword', null, 'password', [
 					'class' => 'loginPassword mw-ui-input',
 					'id' => 'wpPassword1',
 					'tabindex' => '2',
 					// Set focus to this field if username is filled in.
 					'autofocus' => (bool)$this->data['name'],
 					'placeholder' => $this->getMsg( 'userlogin-yourpassword-ph' )->text()
-				) );
+				] );
 				?>
 			</div>
 
@@ -142,14 +142,14 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div class="mw-ui-vform-field">
 				<?php
-				$attrs = array(
+				$attrs = [
 					'id' => 'wpLoginAttempt',
 					'name' => 'wpLoginAttempt',
 					'tabindex' => '6',
-				);
-				$modifiers = array(
+				];
+				$modifiers = [
 					'mw-ui-progressive',
-				);
+				];
 				echo Html::submitButton( $this->getMsg( 'pt-login-button' )->text(), $attrs, $modifiers );
 				?>
 			</div>
@@ -158,11 +158,11 @@ class UserloginTemplate extends BaseTemplate {
 				<?php
 				echo Html::element(
 					'a',
-					array(
+					[
 						'href' => Skin::makeInternalOrExternalUrl(
 							wfMessage( 'helplogin-url' )->inContentLanguage()->text()
 						),
-					),
+					],
 					$this->getMsg( 'userlogin-helplink2' )->text()
 				);
 				?>
@@ -172,9 +172,9 @@ class UserloginTemplate extends BaseTemplate {
 			if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
 				echo Html::rawElement(
 					'div',
-					array(
+					[
 						'class' => 'mw-ui-vform-field mw-form-related-link-container',
-					),
+					],
 					Linker::link(
 						SpecialPage::getTitleFor( 'PasswordReset' ),
 						$this->getMsg( 'userlogin-resetpassword-link' )->escaped()

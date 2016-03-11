@@ -43,7 +43,7 @@ class GitInfo {
 	/**
 	 * Cached git information.
 	 */
-	protected $cache = array();
+	protected $cache = [];
 
 	/**
 	 * Map of repo URLs to viewer URLs. Access via static method getViewers().
@@ -215,7 +215,7 @@ class GitInfo {
 				is_executable( $wgGitBin ) &&
 				$this->getHead() !== false
 			) {
-				$environment = array( "GIT_DIR" => $this->basedir );
+				$environment = [ "GIT_DIR" => $this->basedir ];
 				$cmd = wfEscapeShellArg( $wgGitBin ) .
 					" show -s --format=format:%ct HEAD";
 				$retc = false;
@@ -265,11 +265,11 @@ class GitInfo {
 			if ( preg_match( $pattern, $url, $matches ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
 				$headSHA1 = $this->getHeadSHA1();
-				$replacements = array(
+				$replacements = [
 					'%h' => substr( $headSHA1, 0, 7 ),
 					'%H' => $headSHA1,
 					'%r' => urlencode( $matches[1] ),
-				);
+				];
 				return strtr( $viewerUrl, $replacements );
 			}
 		}
@@ -396,7 +396,7 @@ class GitInfo {
 
 		if ( self::$viewers === false ) {
 			self::$viewers = $wgGitRepositoryViewers;
-			Hooks::run( 'GitViewers', array( &self::$viewers ) );
+			Hooks::run( 'GitViewers', [ &self::$viewers ] );
 		}
 
 		return self::$viewers;
