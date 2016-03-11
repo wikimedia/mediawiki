@@ -417,17 +417,17 @@ def main():
 namespace MediaWiki\Languages\Data;
 
 class ZhConversion {
-public static $zh2Hant = array(\n'''
+public static $zh2Hant = [\n'''
     php += PHPArray(toHant) \
-        + '\n);\n\npublic static $zh2Hans = array(\n' \
+        + '\n];\n\npublic static $zh2Hans = [\n' \
         + PHPArray(toHans) \
-        + '\n);\n\npublic static $zh2TW = array(\n' \
+        + '\n];\n\npublic static $zh2TW = [\n' \
         + PHPArray(toTW) \
-        + '\n);\n\npublic static $zh2HK = array(\n' \
+        + '\n];\n\npublic static $zh2HK = [\n' \
         + PHPArray(toHK) \
-        + '\n);\n\npublic static $zh2CN = array(\n' \
+        + '\n];\n\npublic static $zh2CN = [\n' \
         + PHPArray(toCN) \
-        + '\n);\n}\n'
+        + '\n];\n}\n'
 
     if pyversion[:1] in ['2']:
         f = open(os.path.join('..', '..', '..', 'languages', 'data', 'ZhConversion.php'), 'wb', encoding='utf8')
