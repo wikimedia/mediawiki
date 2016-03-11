@@ -528,6 +528,10 @@ class ParserOutput extends CacheTime {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
 
+		# Replace unnecessary URL escape codes with the referenced character
+		# This prevents spammers from hiding links from the filters
+		$url = parser::normalizeLinkUrl( $url );
+
 		$registerExternalLink = true;
 		if ( !$wgRegisterInternalExternals ) {
 			$registerExternalLink = !self::isLinkInternal( $wgServer, $url );
