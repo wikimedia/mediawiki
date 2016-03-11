@@ -1,0 +1,10 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review+1: Purodha <purodha@blissenbach.org>
+Code-Review+1: Florianschmidtwelzow <florian.schmidt.stargatewissen@gmail.com>
+Code-Review+1: BryanDavis <bdavis@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Fri, 11 Mar 2016 07:14:43 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/276242
+Project: mediawiki/core
+Branch: refs/heads/master
