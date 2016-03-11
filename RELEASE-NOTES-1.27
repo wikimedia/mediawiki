@@ -36,6 +36,8 @@ was released.
   declaration.
 * (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
   in it's fallback chain when trying to work out where to write the cache.
+* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
+  syntax's link parameter.
 
 == MediaWiki 1.27.1 ==
 
