@@ -2127,6 +2127,7 @@
 	"changecontentmodel-title-label": "Page title",
 	"changecontentmodel-model-label": "New content model",
 	"changecontentmodel-reason-label": "Reason:",
+	"changecontentmodel-submit": "Change",
 	"changecontentmodel-success-title": "The content model was changed",
 	"changecontentmodel-success-text": "The content type of [[:$1]] has been changed.",
 	"changecontentmodel-cannot-convert": "The content on [[:$1]] cannot be converted to a type of $2.",
