@@ -846,8 +846,13 @@ class DifferenceEngine extends ContextSource {
 
 		$result = $this->textDiff( $otext, $ntext );
 
-		$time = microtime( true ) - $time;
-		$this->getStats()->timing( 'diff_time', $time * 1000 );
+		$time = intval( ( microtime( true ) - $time ) * 1000 );
+		$this->getStats()->timing( 'diff_time', $time );
+		// Log requests slower than 99th percentile
+		if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
+			wfDebugLog( 'diff',
+				"$time ms diff: {$this->mOldid} -> {$this->mNewid} {$this->mNewPage}" );
+		}
 
 		return $result;
 	}
