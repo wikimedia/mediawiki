@@ -2303,6 +2303,7 @@
 	"changecontentmodel-title-label": "Label for the input field where the target page title should be entered\n{{Identical|Page title}}",
 	"changecontentmodel-model-label": "Label of the dropdown listing available content model types the user can change a page to",
 	"changecontentmodel-reason-label": "{{Identical|Reason}}",
+	"changecontentmodel-submit": "Label of the form \"submit\" button for [[Special:ChangeContentModel]]\n{{Identical|Change}}",
 	"changecontentmodel-success-title": "Title of the success page of the change content model special page",
 	"changecontentmodel-success-text": "Message telling user that their change has been successfully done.\n* $1 - Target page title",
 	"changecontentmodel-cannot-convert": "Error message shown if the content model cannot be changed to the specified type. $1 is the page title, $2 is the localized content model name.",

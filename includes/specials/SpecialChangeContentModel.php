@@ -43,6 +43,9 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 
 		$this->addHelpLink( 'Help:ChangeContentModel' );
+
+		// T120576
+		$form->setSubmitTextMsg( 'changecontentmodel-submit' );
 	}
 
 	public function validateTitle( $title ) {
