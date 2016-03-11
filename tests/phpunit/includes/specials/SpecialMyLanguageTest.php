@@ -5,7 +5,7 @@
  * @covers SpecialMyLanguage
  */
 class SpecialMyLanguageTest extends MediaWikiTestCase {
-	public function addDBData() {
+	public function addDBDataOnce() {
 		$titles = [
 			'Page/Another',
 			'Page/Another/ru',

@@ -14,7 +14,6 @@ class BlockTest extends MediaWikiLangTestCase {
 	private $blockId;
 
 	function addDBData() {
-
 		$user = User::newFromName( 'UTBlockee' );
 		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();

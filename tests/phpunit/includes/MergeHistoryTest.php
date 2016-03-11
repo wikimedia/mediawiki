@@ -8,7 +8,7 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	/**
 	 * Make some pages to work with
 	 */
-	public function addDBData() {
+	public function addDBDataOnce() {
 		// Pages that won't actually be merged
 		$this->insertPage( 'Test' );
 		$this->insertPage( 'Test2' );
