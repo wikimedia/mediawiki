@@ -58,7 +58,8 @@
 			"Haytham morsy",
 			"BAB ZAA",
 			"ASammour",
-			"Maroen1990"
+			"Maroen1990",
+			"Sonic N800"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2536,8 +2537,8 @@
 	"pageinfo-language": "لغة محتوى الصفحة",
 	"pageinfo-content-model": "نموذج محتوى الصفحة",
 	"pageinfo-robot-policy": "فهرسة الروبوتات",
-	"pageinfo-robot-index": "مسموحة",
-	"pageinfo-robot-noindex": "غير مسموحة",
+	"pageinfo-robot-index": "مسموح بها",
+	"pageinfo-robot-noindex": "غير مسموح بها",
 	"pageinfo-watchers": "عدد المراقبين",
 	"pageinfo-visiting-watchers": "عدد مراقبي الصفحة الذين زاروا التعديلات الأخيرة",
 	"pageinfo-few-watchers": "أقل من {{PLURAL:$1||مراقب واحد|مراقبين اثنين|$1 مراقبين|$1 مراقباً|$1 مراقب}}",

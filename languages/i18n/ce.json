@@ -2259,6 +2259,7 @@
 	"seconds-abbrev": "$1 оцу",
 	"minutes-abbrev": "$1 мин",
 	"hours-abbrev": "$1 сахь.",
+	"days-abbrev": "$1 д",
 	"seconds": "{{PLURAL:$1|$1 секунд|$1 секунд}}",
 	"minutes": "{{PLURAL:$1|$1 минот|$1 минот}}",
 	"hours": "{{PLURAL:$1|$1 сахьт}}",
