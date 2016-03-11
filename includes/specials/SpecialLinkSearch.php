@@ -158,7 +158,7 @@ class LinkSearchPage extends QueryPage {
 
 		if ( $target != '' ) {
 			$this->setParams( [
-				'query' => $target2,
+				'query' => Parser::normalizeLinkUrl( $target2 ),
 				'namespace' => $namespace,
 				'protocol' => $protocol ] );
 			parent::execute( $par );
