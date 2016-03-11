@@ -316,20 +316,21 @@ class SpecialBotPasswords extends FormSpecialPage {
 	public function onSuccess() {
 		$out = $this->getOutput();
 
+		$username = $this->getUser()->getName();
 		switch ( $this->operation ) {
 			case 'insert':
 				$out->setPageTitle( $this->msg( 'botpasswords-created-title' )->text() );
-				$out->addWikiMsg( 'botpasswords-created-body', $this->par );
+				$out->addWikiMsg( 'botpasswords-created-body', $this->par, $username );
 				break;
 
 			case 'update':
 				$out->setPageTitle( $this->msg( 'botpasswords-updated-title' )->text() );
-				$out->addWikiMsg( 'botpasswords-updated-body', $this->par );
+				$out->addWikiMsg( 'botpasswords-updated-body', $this->par, $username );
 				break;
 
 			case 'delete':
 				$out->setPageTitle( $this->msg( 'botpasswords-deleted-title' )->text() );
-				$out->addWikiMsg( 'botpasswords-deleted-body', $this->par );
+				$out->addWikiMsg( 'botpasswords-deleted-body', $this->par, $username );
 				$this->password = null;
 				break;
 		}
@@ -338,7 +339,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$sep = BotPassword::getSeparator();
 			$out->addWikiMsg(
 				'botpasswords-newpassword',
-				htmlspecialchars( $this->getUser()->getName() . $sep . $this->par ),
+				htmlspecialchars( $username . $sep . $this->par ),
 				htmlspecialchars( $this->password )
 			);
 			$this->password = null;
