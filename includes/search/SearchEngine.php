@@ -708,10 +708,6 @@ class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
-		if ( $suggestions->getSize() == 0 ) {
-			// If we don't have anything, don't bother
-			return $suggestions;
-		}
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$titles = $suggestions->map( function( SearchSuggestion $sugg ) {
