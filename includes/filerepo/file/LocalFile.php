@@ -915,6 +915,7 @@ class LocalFile extends File {
 		// Purge any custom thumbnail caches
 		Hooks::run( 'LocalFilePurgeThumbnails', [ $this, $archiveName ] );
 
+		// Delete thumbnails
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
@@ -931,7 +932,6 @@ class LocalFile extends File {
 	 * @param array $options
 	 */
 	public function purgeThumbnails( $options = [] ) {
-		// Delete thumbnails
 		$files = $this->getThumbnails();
 		// Always purge all files from CDN regardless of handler filters
 		$urls = [];
@@ -951,6 +951,7 @@ class LocalFile extends File {
 		// Purge any custom thumbnail caches
 		Hooks::run( 'LocalFilePurgeThumbnails', [ $this, false ] );
 
+		// Delete thumbnails
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
