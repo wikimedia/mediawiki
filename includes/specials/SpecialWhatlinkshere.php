@@ -455,53 +455,53 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$nsinvert = $this->opts->consumeValue( 'invert' );
 
 		# Build up the form
-		$f = Xml::openElement( 'form', [ 'action' => wfScript() ] );
 
-		# Values that should not be forgotten
-		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
-			$f .= Html::hidden( $name, $value );
-		}
+		$hiddenFields = [
+			'title' => $this->getPageTitle()->getPrefixedDBkey(),
+		];
 
-		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
+		$formDescriptor = array(
 
-		# Target input (.mw-searchInput enables suggestions)
-		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target, [ 'class' => 'mw-searchInput' ] );
 
-		$f .= ' ';
+			'target' => array(
+				'class' => 'HTMLTextField',
+				'label' => 'Page:',
+			),
 
-		# Namespace selector
-		$f .= Html::namespaceSelector(
+			'namespace' => array(
+				'class' => 'HTMLSelectField',
+				'label' => 'Namespace	',
+				'options' =>  array_flip($this->getNamespaceOptions($namespace)),
+			),
+
+			'invert' => array(
+				'class' => 'HTMLCheckField',
+				'label' => 'Inverse Selection',
+				'default' => false,
+			),
+	);
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->setSubmitText( 'Go' );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		//$htmlForm->setSubmitCa	llback( array( 'SpecialTestForm', 'trySubmit' ) );
+		$htmlForm->setAction( wfScript() );
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->prepareForm()->displayForm( false );
+
+	}
+
+	function getNamespaceOptions($namespace) {
+		return Html::namespaceSelectorOptions(
 			[
 				'selected' => $namespace,
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
-			], [
-				'name' => 'namespace',
-				'id' => 'namespace',
-				'class' => 'namespaceselector',
 			]
 		);
 
-		$f .= '&#160;' .
-			Xml::checkLabel(
-				$this->msg( 'invert' )->text(),
-				'invert',
-				'nsinvert',
-				$nsinvert,
-				[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
-			);
 
-		$f .= ' ';
 
-		# Submit
-		$f .= Xml::submitButton( $this->msg( 'whatlinkshere-submit' )->text() );
-
-		# Close
-		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
-
-		return $f;
 	}
 
 	/**
