@@ -51,19 +51,19 @@ class SpecialBookSources extends SpecialPage {
         $this->setHeaders();
         $formDescriptor = array(
             'simpletextfield' => array(
-                    'label' => 'ISBN', 
+                    'label' => 'ISBN',
                     'class' => 'HTMLTextField',
                     'size' => 20,
             )
         );
 
-        $htmlForm = HTMLForm::factory( 'ooui',$formDescriptor, $this->getContext());
-        $htmlForm->setSubmitText( 'Search' ); 
+        $htmlForm = HTMLForm::factory( 'ooui',$formDescriptor, $this->getContext() );
+        $htmlForm->setSubmitText( 'Search' );
         $htmlForm->setWrapperLegendMsg( 'booksources-search-legend' );
         $htmlForm->addHiddenFields( $hiddenFields );
         $htmlForm->setAction( wfScript() );
         $htmlForm->setMethod( 'get' );
-        $htmlForm->prepareForm()->displayForm( false ); 
+        $htmlForm->prepareForm()->displayForm( false );
 	}
 
 	/**
