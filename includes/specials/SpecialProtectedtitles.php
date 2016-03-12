@@ -120,14 +120,31 @@ class SpecialProtectedtitles extends SpecialPage {
 		$title = $this->getPageTitle();
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 
-		return "<form action=\"$action\" method=\"get\">\n" .
-			'<fieldset>' .
-			Xml::element( 'legend', [], $this->msg( 'protectedtitles' )->text() ) .
-			Html::hidden( 'title', $special ) . "&#160;\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( $this->msg( 'protectedtitles-submit' )->text() ) . "\n" .
-			"</fieldset></form>";
+		$formDescriptor = array(
+			'namespace' => array(
+				'class' => 'HTMLSelectField',
+				'label' => $this->msg( 'namespace' )->text(),
+				'options' => array_flip( $this->getNamespaceMenu( $namespace ) ),
+			),
+			'level' => array(
+				'class' => 'HTMLSelectField',
+				'label' => $this->msg( 'restriction-level' )->text(),
+				'options' => array_flip( $this->getLevelMenu( $level ) ),
+			),
+		);
+
+		$hiddenFields = [
+			'title' => $special,
+		];
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		$htmlForm->setSubmitTextMsg( 'protectedtitles-submit' );
+		$htmlForm->setSubmitCallback( array( 'SpecialTestForm', 'trySubmit' ) );
+		$htmlForm->setWrapperLegendMsg( 'protectedtitles' );
+		$htmlForm->setAction( $action );
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->prepareForm()->displayForm( false );
+
 	}
 
 	/**
@@ -138,15 +155,11 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function getNamespaceMenu( $namespace = null ) {
-		return Html::namespaceSelector(
+		return Html::namespaceSelectorOptions(
 			[
 				'selected' => $namespace,
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
-			], [
-				'name' => 'namespace',
-				'id' => 'namespace',
-				'class' => 'namespaceselector',
 			]
 		);
 	}
@@ -177,13 +190,9 @@ class SpecialProtectedtitles extends SpecialPage {
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
 			$selected = ( $type == $pr_level );
-			$options[] = Xml::option( $text, $type, $selected );
+			$options[] = $text;
 		}
-
-		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
-			Xml::tags( 'select',
-				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
-				implode( "\n", $options ) );
+		return  $options;
 	}
 
 	protected function getGroupName() {
