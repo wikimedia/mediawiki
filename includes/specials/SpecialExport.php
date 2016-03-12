@@ -168,6 +168,7 @@ class SpecialExport extends SpecialPage {
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
 			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
+			$request->response()->header("X-Robots-Tag: noindex, nofollow ", true);
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
