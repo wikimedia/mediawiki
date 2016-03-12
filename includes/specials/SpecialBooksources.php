@@ -43,20 +43,26 @@ class SpecialBookSources extends SpecialPage {
 	 *
 	 * @param string $isbn ISBN passed as a subpage parameter
 	 */
-	public function execute( $isbn ) {
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->isbn = self::cleanIsbn( $isbn ?: $this->getRequest()->getText( 'isbn' ) );
-		$this->getOutput()->addHTML( $this->makeForm() );
-		if ( $this->isbn !== '' ) {
-			if ( !self::isValidISBN( $this->isbn ) ) {
-				$this->getOutput()->wrapWikiMsg(
-					"<div class=\"error\">\n$1\n</div>",
-					'booksources-invalid-isbn'
-				);
-			}
-			$this->showList();
-		}
+
+	public function execute($isbn) {
+		$hiddenFields = [
+            'title' => $this->getPageTitle()->getPrefixedDBkey(),
+        ];
+        $this->setHeaders();
+        $formDescriptor = array(
+            'simpletextfield' => array(
+                    'label' => 'ISBN',
+                    'class' => 'HTMLTextField',
+                    'size' => 20,
+            )
+        );
+        $htmlForm = HTMLForm::factory( 'ooui',$formDescriptor, $this->getContext() );
+        $htmlForm->setSubmitText( 'Search' );
+        $htmlForm->setWrapperLegendMsg( 'booksources-search-legend' );
+        $htmlForm->addHiddenFields( $hiddenFields );
+        $htmlForm->setAction( wfScript() );
+        $htmlForm->setMethod( 'get' );
+        $htmlForm->prepareForm()->displayForm( false );
 	}
 
 	/**
@@ -118,34 +124,6 @@ class SpecialBookSources extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	private function makeForm() {
-		$form = Html::openElement( 'fieldset' ) . "\n";
-		$form .= Html::element(
-			'legend',
-			[],
-			$this->msg( 'booksources-search-legend' )->text()
-		) . "\n";
-		$form .= Html::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) . "\n";
-		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
-		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'booksources-isbn' )->text(),
-			'isbn',
-			'isbn',
-			20,
-			$this->isbn,
-			[ 'autofocus' => '', 'class' => 'mw-ui-input-inline' ]
-		);
-
-		$form .= '&#160;' . Html::submitButton(
-			$this->msg( 'booksources-search' )->text(),
-			[], [ 'mw-ui-progressive' ]
-		) . "</p>\n";
-
-		$form .= Html::closeElement( 'form' ) . "\n";
-		$form .= Html::closeElement( 'fieldset' ) . "\n";
-
-		return $form;
-	}
 
 	/**
 	 * Determine where to get the list of book sources from,
