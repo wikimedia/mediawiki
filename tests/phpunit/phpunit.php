@@ -30,13 +30,6 @@ class PHPUnitMaintClass extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption(
-			'with-phpunitdir',
-			'Directory to include PHPUnit from, for example when using a git '
-				. 'fetchout from upstream. Path will be prepended to PHP `include_path`.',
-			false, # not required
-			true # need arg
-		);
-		$this->addOption(
 			'debug-tests',
 			'Log testing activity to the PHPUnitCommand log channel.',
 			false, # not required
@@ -158,38 +151,6 @@ class PHPUnitMaintClass extends Maintenance {
 				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
-		# --with-phpunitdir let us override the default PHPUnit version
-		# Can use with either or phpunit.phar in the directory or the
-		# full PHPUnit code base.
-		if ( $this->hasOption( 'with-phpunitdir' ) ) {
-			$phpunitDir = $this->getOption( 'with-phpunitdir' );
-
-			# prepends provided PHPUnit directory or phar
-			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
-			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
-
-			# Cleanup $args array so the option and its value do not
-			# pollute PHPUnit
-			$key = array_search( '--with-phpunitdir', $_SERVER['argv'] );
-			unset( $_SERVER['argv'][$key] ); // the option
-			unset( $_SERVER['argv'][$key + 1] ); // its value
-			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
-		}
-
-		# Makes MediaWiki PHPUnit directory includable so the PHPUnit will
-		# be able to resolve relative files inclusion such as suites/*
-		# PHPUnit uses stream_resolve_include_path() internally
-		# See bug 32022
-		$key = array_search( '--include-path', $_SERVER['argv'] );
-		if ( $key === false ) {
-			array_splice( $_SERVER['argv'], 1, 0,
-				__DIR__
-				. PATH_SEPARATOR
-				. get_include_path()
-			);
-			array_splice( $_SERVER['argv'], 1, 0, '--include-path' );
-		}
-
 		$key = array_search( '--debug-tests', $_SERVER['argv'] );
 		if ( $key !== false && array_search( '--printer', $_SERVER['argv'] ) === false ) {
 			unset( $_SERVER['argv'][$key] );
@@ -241,43 +202,9 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-$ok = false;
-
-if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
-	echo "PHPUnit already present\n";
-	$ok = true;
-} else {
-	foreach ( [
-				stream_resolve_include_path( 'phpunit.phar' ),
-				stream_resolve_include_path( 'phpunit-old.phar' ),
-				'PHPUnit/Runner/Version.php',
-				'PHPUnit/Autoload.php'
-			] as $includePath ) {
-
-		if ( $includePath === false ) {
-			// stream_resolve_include_path can return false
-			continue;
-		}
-
-		\MediaWiki\suppressWarnings();
-		include_once $includePath;
-		\MediaWiki\restoreWarnings();
-		if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
-			$ok = true;
-			echo "Using PHPUnit from $includePath\n";
-			break;
-		}
-	}
-}
-
-if ( !$ok ) {
-	echo "Couldn't find a usable PHPUnit.\n";
-	exit( 1 );
-}
-
-$puVersion = PHPUnit_Runner_Version::id();
-if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
-	echo "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n";
+if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
+	echo "PHPUnit not found. Please install it and other dev dependencies by
+running `composer install` in MediaWiki root directory.\n";
 	exit( 1 );
 }
 
