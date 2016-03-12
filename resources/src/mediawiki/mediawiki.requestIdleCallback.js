@@ -3,37 +3,19 @@
  *
  * Loosely based on https://w3c.github.io/requestidlecallback/
  */
-( function ( mw, $ ) {
-	var tasks = [],
-		maxIdleDuration = 50,
-		timeout = null;
-
-	function schedule( trigger ) {
-		clearTimeout( timeout );
-		timeout = setTimeout( trigger, 700 );
-	}
-
-	function triggerIdle() {
-		var elapsed,
-			start = mw.now();
-
-		while ( tasks.length ) {
-			elapsed = mw.now() - start;
-			if ( elapsed < maxIdleDuration ) {
-				tasks.shift().callback();
-			} else {
-				// Idle moment expired, try again later
-				schedule( triggerIdle );
-				break;
-			}
-		}
-	}
+( function ( mw ) {
+	var maxBusy = 50;
 
 	mw.requestIdleCallbackInternal = function ( callback ) {
-		var task = { callback: callback };
-		tasks.push( task );
-
-		$( function () { schedule( triggerIdle ); } );
+		setTimeout( function () {
+			var start = mw.now();
+			callback( {
+				didTimeout: false,
+				timeRemaining: function () {
+					return Math.max( 0, maxBusy - ( mw.now() - start ) );
+				}
+			} );
+		}, 1 );
 	};
 
 	/**
@@ -43,8 +25,7 @@
 	 * @param {Function} callback
 	 */
 	mw.requestIdleCallback = window.requestIdleCallback
-		? function ( callback ) {
-			window.requestIdleCallback( callback );
-		}
+		// Bind because it throws TypeError if context is not window
+		? window.requestIdleCallback.bind( window )
 		: mw.requestIdleCallbackInternal;
 }( mediaWiki, jQuery ) );
