@@ -2147,6 +2147,10 @@ return [
 			'mediawiki.widgets',
 		],
 	],
+	'mediawiki.special.newpages' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => 'resources/src/mediawiki.special.newpages/newpages.less',
+	],
 	'mediawiki.special.pageLanguage' => [
 		'scripts' => 'resources/src/mediawiki.special.pageLanguage.js',
 		'dependencies' => [
