@@ -97,7 +97,7 @@ class SpecialTags extends SpecialPage {
 				],
 			];
 
-			$form = new HTMLForm( $fields, $this->getContext() );
+                        $form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 			$form->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
 			$form->setWrapperLegendMsg( 'tags-create-heading' );
 			$form->setHeaderText( $this->msg( 'tags-create-explanation' )->parseAsBlock() );
