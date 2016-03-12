@@ -172,7 +172,8 @@ HHVM 3.1.
 ==== Upgraded external libraries ====
 * Updated oojs/oojs-ui from v0.12.12 to v0.13.3.
 * Updated composer/semver from v1.0.0 to v1.2.0.
-* Update liuggio/statsd-php-client to 1.0.18.
+* Updated liuggio/statsd-php-client to 1.0.18.
+* Updated QUnit from v1.18.0 to v1.22.0.
 
 ==== New external libraries ====
 * Added wikimedia/base-convert v1.0.1.
