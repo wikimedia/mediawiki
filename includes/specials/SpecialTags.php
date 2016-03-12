@@ -97,7 +97,7 @@ class SpecialTags extends SpecialPage {
 				],
 			];
 
-			$form = HTMLForm::factory( 'ooui', $fields, $this->getContext());
+			$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 			$form->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
 			$form->setWrapperLegendMsg( 'tags-create-heading' );
 			$form->setHeaderText( $this->msg( 'tags-create-explanation' )->parseAsBlock() );
@@ -300,7 +300,7 @@ class SpecialTags extends SpecialPage {
 				$out->parse( $status->getWikitext() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
-			$subform = new HTMLForm( $fields, $this->getContext() );
+			$subform = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 			$subform->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
 			$subform->setWrapperLegendMsg( 'tags-create-heading' );
 			$subform->setHeaderText( $headerText );
@@ -365,7 +365,7 @@ class SpecialTags extends SpecialPage {
 			'required' => true,
 		];
 
-		$form = new HTMLForm( $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setAction( $this->getPageTitle( 'delete' )->getLocalURL() );
 		$form->tagAction = 'delete'; // custom property on HTMLForm object
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
@@ -416,7 +416,7 @@ class SpecialTags extends SpecialPage {
 			'required' => true,
 		];
 
-		$form = new HTMLForm( $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext());
 		$form->setAction( $this->getPageTitle( $actionStr )->getLocalURL() );
 		$form->tagAction = $actionStr;
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
