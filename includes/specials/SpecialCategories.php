@@ -69,6 +69,23 @@ class SpecialCategories extends SpecialPage {
 		$this->initServices();
 
 		$this->setHeaders();
+		$formDescriptor = array(
+			'from' => array(
+				'label' => $this->msg( 'categoriesfrom' )->text(),
+				'class' => 'HTMLTextField'
+			)
+		);
+		$hiddenFields = [
+			'title' => $this->getTitle()->getPrefixedText(),
+		];
+
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$form->addHiddenFields( $hiddenFields );
+		$form->setSubmitTextMsg( 'categories-submit' );
+		$form->setAction( wfScript() );
+		$form->setMethod( 'get' );
+		$form->prepareForm()->displayForm( false );
+
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
@@ -79,12 +96,11 @@ class SpecialCategories extends SpecialPage {
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
-				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
-				$cap->getStartForm( $from ) .
-				$cap->getNavigationBar() .
-				'<ul>' . $cap->getBody() . '</ul>' .
-				$cap->getNavigationBar() .
-				Html::closeElement( 'div' )
+			$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
+			$cap->getNavigationBar() .
+			'<ul>' . $cap->getBody() . '</ul>' .
+			$cap->getNavigationBar() .
+			Html::closeElement( 'div' )
 		);
 	}
 
@@ -179,22 +195,4 @@ class CategoryPager extends AlphabeticPager {
 		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 
-	public function getStartForm( $from ) {
-		return Xml::tags(
-			'form',
-			[ 'method' => 'get', 'action' => wfScript() ],
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset(
-					$this->msg( 'categories' )->text(),
-					Xml::inputLabel(
-						$this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from, [ 'class' => 'mw-ui-input-inline' ] ) .
-						' ' .
-						Html::submitButton(
-							$this->msg( 'categories-submit' )->text(),
-							[], [ 'mw-ui-progressive' ]
-						)
-				)
-		);
-	}
 }
