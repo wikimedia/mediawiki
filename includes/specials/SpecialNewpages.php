@@ -230,7 +230,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$form = [
+		$formDescriptor = [
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
@@ -266,26 +266,31 @@ class SpecialNewpages extends IncludableSpecialPage {
 			],
 		];
 
-		$htmlForm = new HTMLForm( $form, $this->getContext() );
+		//$out->addHTML( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
 
-		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
-		$htmlForm->setSubmitProgressive();
-		// The form should be visible on each request (inclusive requests with submitted forms), so
-		// return always false here.
-		$htmlForm->setSubmitCallback(
-			function () {
-				return false;
-			}
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setFormIdentifier( 'newpagesform' )
+			// The form should be visible on each request (inclusive requests with submitted forms), so
+			// return always false here.
+			->setSubmitCallback(
+				function () {
+					return false;
+				}
+			)
+			->setSubmitText( $this->msg( 'newpages-submit' )->text() )
+			->setSubmitProgressive()
+			->setWrapperLegend( $this->msg( 'newpages' )->text() )
+			->show();
+
+		$out->addHTML(
+			Html::rawElement(
+				'div',
+				null,
+				$this->filterLinks()
+			)
 		);
-		$htmlForm->setMethod( 'get' );
-		$htmlForm->setWrapperLegend( true );
-		$htmlForm->setWrapperLegendMsg( 'newpages' );
-		$htmlForm->addFooterText( Html::rawElement(
-			'div',
-			null,
-			$this->filterLinks()
-		) );
-		$htmlForm->show();
 	}
 
 	/**
