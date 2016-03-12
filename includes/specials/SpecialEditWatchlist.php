@@ -49,8 +49,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	protected $successMessage;
 
-	protected $toc;
-
 	private $badItems = [];
 
 	/**
@@ -157,9 +155,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( $form->show() ) {
 			$out->addHTML( $this->successMessage );
 			$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
-		} elseif ( $this->toc !== false ) {
-			$out->prependHTML( $this->toc );
-			$out->addModules( 'mediawiki.toc' );
 		}
 	}
 
@@ -541,6 +536,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getNormalForm() {
 		global $wgContLang;
 
+		$out = $this->getOutput();
 		$fields = [];
 		$count = 0;
 
@@ -577,7 +573,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->cleanupWatchlist();
 
 		if ( count( $fields ) > 1 && $count > 30 ) {
-			$this->toc = Linker::tocIndent();
+			$toc = Linker::tocIndent();
 			$tocLength = 0;
 
 			foreach ( $fields as $data ) {
@@ -587,14 +583,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$nsText = ( $ns == NS_MAIN )
 					? $this->msg( 'blanknamespace' )->escaped()
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
-				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
+				$toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
 
-			$this->toc = Linker::tocList( $this->toc );
-		} else {
-			$this->toc = false;
+			$toc = Linker::tocList( $toc );
+			$out->addHTML( $toc );
+			$out->addModules( 'mediawiki.toc' );
 		}
+
+		$out->wrapWikiMsg( '<h3>$1</h3>', 'watchlistedit-normal-legend' );
+		$out->addHTML( $this->msg( 'watchlistedit-normal-explain' )->parse() );
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
@@ -604,8 +603,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# Used message keys:
 		# 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
 		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
-		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() );
 		$form->setSubmitCallback( [ $this, 'submitNormal' ] );
 
 		return $form;
@@ -672,7 +669,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		];
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
-		$form = new HTMLForm( $fields, $context );
+		$form = HTMLForm::factory( 'ooui', $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );
@@ -691,7 +688,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getClearForm() {
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
-		$form = new HTMLForm( [], $context );
+		$form = HTMLForm::factory( 'ooui', [], $context );
 		$form->setSubmitTextMsg( 'watchlistedit-clear-submit' );
 		# Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
 		$form->setSubmitTooltip( 'watchlistedit-clear-submit' );
