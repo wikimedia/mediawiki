@@ -1408,7 +1408,7 @@
 	"apihelp-unblock-example-id": "Unblock block ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Unblock user <kbd>Bob</kbd> with reason <kbd>Sorry Bob</kbd>.",
 
-	"apihelp-undelete-description": "Restore revisions of a deleted page.\n\nA list of deleted revisions (including timestamps) can be retrieved through [[Special:ApiHelp/query+deletedrevs|list=deletedrevs]], and a list of deleted file IDs can be retrieved through [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-description": "Restore revisions of a deleted page.\n\nA list of deleted revisions (including timestamps) can be retrieved through [[Special:ApiHelp/query+alldeletedrevisions|list=alldeletedrevisions]], and a list of deleted file IDs can be retrieved through [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Title of the page to restore.",
 	"apihelp-undelete-param-reason": "Reason for restoring.",
 	"apihelp-undelete-param-tags": "Change tags to apply to the entry in the deletion log.",
