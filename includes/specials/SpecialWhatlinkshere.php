@@ -465,24 +465,24 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 			'target' => array(
 				'class' => 'HTMLTextField',
-				'label' => 'Page:',
+				'label' =>  $this->msg( 'whatlinkshere-page' )->text() ,
 			),
 
 			'namespace' => array(
 				'class' => 'HTMLSelectField',
-				'label' => 'Namespace	',
+				'label' => $this->msg( 'invert' )->text(),
 				'options' =>  array_flip($this->getNamespaceOptions($namespace)),
 			),
 
 			'invert' => array(
 				'class' => 'HTMLCheckField',
-				'label' => 'Inverse Selection',
+				'label' => $this->msg( 'invert' )->text(),
 				'default' => false,
 			),
 	);
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->setSubmitText( 'Go' );
+		$htmlForm->setSubmitText( $this->msg( 'whatlinkshere-submit' )->text() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		//$htmlForm->setSubmitCa	llback( array( 'SpecialTestForm', 'trySubmit' ) );
 		$htmlForm->setAction( wfScript() );
