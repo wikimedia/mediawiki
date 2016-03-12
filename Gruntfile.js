@@ -62,6 +62,9 @@ module.exports = function ( grunt ) {
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
+				// This must be higher than 'QUnit.config.testTimeout'. Otherwise Karma may
+				// disconnect the browser before the test timed out client-side, which means the
+				// console report won't include the timed out test.
 				browserNoActivityTimeout: 60 * 1000
 			},
 			main: {
