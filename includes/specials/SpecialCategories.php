@@ -80,6 +80,10 @@ class SpecialCategories extends SpecialPage {
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
 				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
+				Html::closeElement( 'div' )
+		);
+		$this->getOutput()->addHTML(
+			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
 				$cap->getStartForm( $from ) .
 				$cap->getNavigationBar() .
 				'<ul>' . $cap->getBody() . '</ul>' .
@@ -178,23 +182,28 @@ class CategoryPager extends AlphabeticPager {
 		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
 		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
-
 	public function getStartForm( $from ) {
-		return Xml::tags(
-			'form',
-			[ 'method' => 'get', 'action' => wfScript() ],
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset(
-					$this->msg( 'categories' )->text(),
-					Xml::inputLabel(
-						$this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from, [ 'class' => 'mw-ui-input-inline' ] ) .
-						' ' .
-						Html::submitButton(
-							$this->msg( 'categories-submit' )->text(),
-							[], [ 'mw-ui-progressive' ]
-						)
-				)
-		);
+		$formDescriptor = [
+			'from' => [
+				'type' => 'text',
+				'label' => $this->msg( 'categoriesfrom' )->text(),
+				'name' => 'from',
+				'id' => 'from',
+				'size' => 20,
+				'default' => $from,
+				'cssclass' => 'mw-ui-input-inline',
+			],
+		];
+		$hiddenFields = [
+			'title' => $this->getTitle()->getPrefixedText(),
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		$htmlForm->setSubmitTextMsg( 'categories-submit' );
+		$htmlForm->setWrapperLegendMsg( 'categories' );
+		$htmlForm->setAction( wfScript() );
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->prepareForm()->displayForm( false );
 	}
 }
