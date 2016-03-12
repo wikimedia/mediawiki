@@ -38,6 +38,16 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$userName = $this->getRequest()->getText( 'user', $par );
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
 			$showAll = $this->getRequest()->getBool( 'ilshowall', false );
+
+			// Match the behaviour of SpecialContributions when setting
+			// the relevant user
+			$userPage = Title::makeTitleSafe( NS_USER, $userName );
+			if ( $userPage ) {
+				$userObj = User::newFromName( $userPage->getText(), false );
+				if ( $userObj ) {
+					$this->getSkin()->setRelevantUser( $userObj );
+				}
+			}
 		}
 
 		$pager = new ImageListPager(
