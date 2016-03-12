@@ -2028,6 +2028,7 @@
 	"changecontentmodel-title-label": "Tytuł strony",
 	"changecontentmodel-model-label": "Nowy model zawartości",
 	"changecontentmodel-reason-label": "Powód:",
+	"changecontentmodel-submit": "Zmień",
 	"changecontentmodel-success-title": "Model zawartości został zmieniony",
 	"changecontentmodel-success-text": "Typ zawartości [[:$1]] został zmieniony.",
 	"changecontentmodel-cannot-convert": "Zawartość [[:$1]] nie może być przekształcona do typu $2.",

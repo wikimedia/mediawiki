@@ -90,7 +90,8 @@
 			"Eduardo Addad de Oliveira",
 			"Raphaelras",
 			"Arthurteb303",
-			"Rffontenelle"
+			"Rffontenelle",
+			"HenriqueCrang"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -232,6 +233,7 @@
 	"moredotdotdot": "Mais...",
 	"morenotlisted": "Esta lista não está completa.",
 	"mypage": "Página",
+	"anonuserpage": "Usuário desconhecido",
 	"mytalk": "Discussão",
 	"anontalk": "Discussão",
 	"navigation": "Navegação",
@@ -533,7 +535,7 @@
 	"nocookieslogin": "Você tem os <i>cookies</i> desativados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor os ative e tente novamente.",
 	"nocookiesfornew": "A conta de usuário não foi criada porque não foi possível confirmar a sua origem.\nCertifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.",
 	"noname": "Você não colocou um nome de usuário válido.",
-	"loginsuccesstitle": "Login bem sucedido",
+	"loginsuccesstitle": "Autenticado",
 	"loginsuccess": "'''Agora você está {{GENDER:autenticado|autenticada}} ao wiki {{SITENAME}} como \"$1\"'''.",
 	"nosuchuser": "Não existe nenhum usuário com o nome \"$1\".\nOs nomes de usuário são sensíveis a letras maiúsculas.\nVerifique o que foi digitado ou [[Special:UserLogin/signup|crie uma nova conta]].",
 	"nosuchusershort": "Não existe um usuário com o nome \"$1\". Verifique o nome que introduziu.",

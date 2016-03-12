@@ -50,7 +50,8 @@
 			"MRG90",
 			"Mahdy Saffar",
 			"Arian Ar",
-			"Ms96"
+			"Ms96",
+			"Freshman404"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -2042,6 +2043,7 @@
 	"changecontentmodel-title-label": "عنوان صفحه",
 	"changecontentmodel-model-label": "نمونه محتوای جدید",
 	"changecontentmodel-reason-label": "دلیل:",
+	"changecontentmodel-submit": "تغییر",
 	"changecontentmodel-success-title": "نمونه محتوی تغییر یافت",
 	"changecontentmodel-success-text": "نوع محتوی [[:$1]]  تغییر یافت",
 	"changecontentmodel-cannot-convert": "محتوی در [[:$1]] نمی‌تواند به گونه‌ای از $2 تبدیل شود.",
