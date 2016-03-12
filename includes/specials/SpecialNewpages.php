@@ -256,8 +256,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			],
 		];
 
-		$htmlForm = new HTMLForm( $form, $this->getContext() );
-
+		$htmlForm = HTMLForm::factory( 'ooui', $form, $this->getContext() );
 		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
 		$htmlForm->setSubmitProgressive();
 		// The form should be visible on each request (inclusive requests with submitted forms), so
