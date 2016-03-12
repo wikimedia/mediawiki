@@ -519,8 +519,8 @@ class ImageListPager extends TablePager {
 	}
 
 	function getForm() {
-		$fields = [];
-		$fields['limit'] = [
+		$formDescriptor = [];
+		$formDescriptor['limit'] = [
 			'type' => 'select',
 			'name' => 'limit',
 			'label-message' => 'table_pager_limit_label',
@@ -529,7 +529,7 @@ class ImageListPager extends TablePager {
 		];
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$fields['ilsearch'] = [
+			$formDescriptor['ilsearch'] = [
 				'type' => 'text',
 				'name' => 'ilsearch',
 				'id' => 'mw-ilsearch',
@@ -540,7 +540,7 @@ class ImageListPager extends TablePager {
 			];
 		}
 
-		$fields['user'] = [
+		$formDescriptor['user'] = [
 			'type' => 'user',
 			'name' => 'user',
 			'id' => 'mw-listfiles-user',
@@ -550,7 +550,7 @@ class ImageListPager extends TablePager {
 			'maxlength' => '255',
 		];
 
-		$fields['ilshowall'] = [
+		$formDescriptor['ilshowall'] = [
 			'type' => 'check',
 			'name' => 'ilshowall',
 			'id' => 'mw-listfiles-show-all',
@@ -565,17 +565,16 @@ class ImageListPager extends TablePager {
 		unset( $query['ilshowall'] );
 		unset( $query['user'] );
 
-		$form = new HTMLForm( $fields, $this->getContext() );
-
-		$form->setMethod( 'get' );
-		$form->setTitle( $this->getTitle() );
-		$form->setId( 'mw-listfiles-form' );
-		$form->setWrapperLegendMsg( 'listfiles' );
-		$form->setSubmitTextMsg( 'table_pager_limit_submit' );
-		$form->addHiddenFields( $query );
-
-		$form->prepareForm();
-		$form->displayForm( '' );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' );
+			->setId( 'mw-listfiles-form' );
+			->setTitle( $this->getTitle() );
+			->setSubmitTextMsg( 'table_pager_limit_submit' );
+			->setWrapperLegendMsg( 'listfiles' );
+			->addHiddenFields( $query );
+			->prepareForm();
+			->displayForm( '' );
 	}
 
 	protected function getTableClass() {
