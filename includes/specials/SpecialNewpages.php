@@ -266,22 +266,21 @@ class SpecialNewpages extends IncludableSpecialPage {
 			],
 		];
 
-		$htmlForm = new HTMLForm( $form, $this->getContext() );
-
-		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
-		$htmlForm->setSubmitProgressive();
-		// The form should be visible on each request (inclusive requests with submitted forms), so
-		// return always false here.
-		$htmlForm->setSubmitCallback(
-			function () {
-				return false;
-			}
-		);
-		$htmlForm->setMethod( 'get' );
-
 		$out->addHTML( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
 
-		$htmlForm->show();
+		$htmlForm = HTMLForm::factory( 'ooui', $form, $this->getContext() );
+		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() )
+			->setSubmitProgressive()
+			->setFormIdentifier( 'newpagesform' )
+			// The form should be visible on each request (inclusive requests with submitted forms), so
+			// return always false here.
+			->setSubmitCallback(
+				function () {
+					return false;
+				}
+			)
+			->setMethod( 'get' )
+			->show();
 
 		$out->addHTML(
 			Html::rawElement(
