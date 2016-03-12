@@ -229,7 +229,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$form = [
+		$formDescriptor = [
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
@@ -264,25 +264,27 @@ class SpecialNewpages extends IncludableSpecialPage {
 			],
 		];
 
-		$htmlForm = new HTMLForm( $form, $this->getContext() );
-
-		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
-		// The form should be visible on each request (inclusive requests with submitted forms), so
-		// return always false here.
-		$htmlForm->setSubmitCallback(
-			function () {
-				return false;
-			}
-		);
-		$htmlForm->setMethod( 'get' );
-		$htmlForm->setWrapperLegend( true );
-		$htmlForm->setWrapperLegendMsg( 'newpages' );
-		$htmlForm->addFooterText( Html::rawElement(
-			'div',
-			null,
-			$this->filterLinks()
-		) );
-		$htmlForm->show();
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setFormIdentifier( 'newpagesform' )
+			// The form should be visible on each request (inclusive requests with submitted forms), so
+			// return always false here.
+			->setSubmitCallback(
+				function () {
+					return false;
+				}
+			)
+			->setSubmitText( $this->msg( 'newpages-submit' )->text() )
+			->setSubmitProgressive()
+			->setWrapperLegend( $this->msg( 'newpages' )->text() )
+			->addFooterText( Html::rawElement(
+				'div',
+				null,
+				$this->filterLinks()
+			) )
+			->show();
+		$out->addModuleStyles( 'mediawiki.special' );
 	}
 
 	/**
