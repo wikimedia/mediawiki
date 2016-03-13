@@ -808,7 +808,9 @@
 					$.data( table, 'tablesorter', { config: config } );
 
 					// Get the CSS class names, could be done elsewhere
-					sortCSS = [ config.cssDesc, config.cssAsc ];
+					sortCSS = [ config.cssAsc, config.cssDesc ];
+					// Messages tell the the user what the *next* state will be
+					// so are in reverse order to the CSS classes.
 					sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
 
 					// Build headers
