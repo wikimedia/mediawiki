@@ -134,7 +134,8 @@
 			"StevenJ81",
 			"The RedBurn",
 			"Fredlefred",
-			"Lbayle"
+			"Lbayle",
+			"Cl3m3n7"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -654,11 +655,11 @@
 	"botpasswords-insert-failed": "Échec de l’ajout du nom de robot « $1 ». A-t-il déjà été ajouté ?",
 	"botpasswords-update-failed": "Échec à la mise à jour du nom de robot « $1 ». A-t-il déjà été supprimé ?",
 	"botpasswords-created-title": "Mot de passe de robots créé",
-	"botpasswords-created-body": "Le mot de passe de robots « $1 » a été créé.",
+	"botpasswords-created-body": "Le mot de passe pour le robot « $1 » de l'utilisateur « $2 » a été créé.",
 	"botpasswords-updated-title": "Mot de passe de robots mis à jour",
-	"botpasswords-updated-body": "Le mot de passe de robots « $1 » a été mis à jour.",
+	"botpasswords-updated-body": "Le mot de passe pour le robot « $1 » de l'utilisateur « $2 » a été mis à jour.",
 	"botpasswords-deleted-title": "Mot de passe de robots supprimé",
-	"botpasswords-deleted-body": "Le mot de passe de robots « $1 » a été supprimé.",
+	"botpasswords-deleted-body": "Le mot de passe pour le robot « $1 » de l'utilisateur « $2 » a été supprimé.",
 	"botpasswords-newpassword": "Le nouveau mot de passe pour se connecter avec <strong>$1</strong> est <strong>$2</strong>. <em>Veuillez l’enregistrer pour y faire référence ultérieurement.</em>",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider n’est pas disponible.",
 	"botpasswords-restriction-failed": "Les restrictions de mot de passe de robots empêchent cette connexion.",
@@ -1199,7 +1200,7 @@
 	"userrights-changeable-col": "Les groupes que vous pouvez modifier",
 	"userrights-unchangeable-col": "Les groupes que vous ne pouvez pas modifier",
 	"userrights-conflict": "Conflit de modification de droits utilisateur ! Veuillez relire et confirmer vos modifications.",
-	"userrights-removed-self": "Vous avez supprimé vos propres droits. Du coup, vous ne pouvez plus accéder à cette page.",
+	"userrights-removed-self": "Vous avez supprimé vos propres droits. Par conséquent, vous ne pouvez plus accéder à cette page.",
 	"group": "Groupe :",
 	"group-user": "Utilisateurs",
 	"group-autoconfirmed": "Utilisateurs autoconfirmés",

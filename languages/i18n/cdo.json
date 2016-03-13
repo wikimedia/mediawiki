@@ -167,7 +167,7 @@
 	"tagline": "來源：{{SITENAME}}",
 	"help": "幫助",
 	"search": "尋討",
-	"searchbutton": "尋討",
+	"searchbutton": "討",
 	"go": "去",
 	"searcharticle": "去",
 	"history": "頁面歷史",
@@ -264,7 +264,7 @@
 	"toc": "目錄",
 	"showtoc": "顯示",
 	"hidetoc": "囥起",
-	"collapsible-collapse": "隱",
+	"collapsible-collapse": "掩",
 	"collapsible-expand": "現",
 	"confirmable-confirm": "汝會確定𣍐？",
 	"confirmable-yes": "是",
@@ -279,7 +279,7 @@
 	"site-atom-feed": "$1原子訂閱",
 	"page-rss-feed": "「$1」RSS訂閱",
 	"page-atom-feed": "「$1」原子訂閱",
-	"red-link-title": "$1（頁面無敆𡅏）",
+	"red-link-title": "$1（無許頁）",
 	"sort-descending": "降序排序",
 	"sort-ascending": "升序排序",
 	"nstab-main": "頁面",
@@ -590,6 +590,7 @@
 	"searchrelated": "相關其",
 	"searchall": "全部",
 	"showingresults": "顯示趁#<b>$2</b>開始其{{PLURAL:$1|'''$1'''萆結果}}。",
+	"search-nonefound": "討毋着",
 	"preferences": "設定",
 	"mypreferences": "我其設定",
 	"prefs-edits": "修改數量：",
@@ -1028,5 +1029,6 @@
 	"watchlisttools-view": "看相關改變",
 	"watchlisttools-edit": "看共修改監視單",
 	"watchlisttools-raw": "修改原始監視單",
-	"specialpages": "特殊頁"
+	"specialpages": "特殊頁",
+	"searchsuggest-search": "討"
 }

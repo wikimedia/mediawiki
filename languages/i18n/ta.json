@@ -45,7 +45,8 @@
 			"Anj.balaji",
 			"Dineshkumar Ponnusamy",
 			"Sharanrajindia",
-			"Maathavan"
+			"Maathavan",
+			"தமிழ்க்குரிசில்"
 		]
 	},
 	"tog-underline": "இணைப்புகளுக்கு அடிக்கோடிடு",
@@ -524,7 +525,7 @@
 	"loginlanguagelabel": "மொழி: $1",
 	"suspicious-userlogout": "உங்கள் விடுபதிகை கோரிக்கை மறுக்கப்பட்டது ஏனென்றால் அது அறுபட்ட உலாவி அல்லது மாற்று இடைக்கிடங்கியால் அனுப்பப்பட்டுள்ளது.",
 	"createacct-another-realname-tip": "உண்மையான பெயர் கட்டாயமற்றது.\nநீங்கள் இதை கொடுத்தால் உங்கள் ஆக்கங்களுக்கான உரிமையளிப்புகளின் போது இது பயன்படும்.",
-	"pt-login": "புகுபதிகை",
+	"pt-login": "உள்நுழை",
 	"pt-login-button": "புகுபதிகை",
 	"pt-createaccount": "புதிய கணக்கை உருவாக்கவும்",
 	"pt-userlogout": "விடுபதிகை",
@@ -1531,7 +1532,7 @@
 	"listfiles-latestversion-yes": "ஆம்",
 	"listfiles-latestversion-no": "இல்லை",
 	"file-anchor-link": "கோப்பு",
-	"filehist": "கோப்பு வரலாறு",
+	"filehist": "கோப்பின் வரலாறு",
 	"filehist-help": "குறித்த நேரத்தில் இருந்த படிமத்தைப் பார்க்க அந்நேரத்தின் மீது சொடுக்கவும்.",
 	"filehist-deleteall": "சகலத்தையும் நீக்கு",
 	"filehist-deleteone": "நீக்குக",
