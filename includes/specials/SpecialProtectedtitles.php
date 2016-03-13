@@ -119,6 +119,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$action = htmlspecialchars( wfScript() );
 		$title = $this->getPageTitle();
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
+		print( $namespace );
 
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
@@ -138,6 +139,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function getNamespaceMenu( $namespace = null ) {
+
 		return Html::namespaceSelector(
 			[
 				'selected' => $namespace,
