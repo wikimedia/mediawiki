@@ -12,7 +12,7 @@
     "grunt-contrib-copy": "0.8.2",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-jscs": "2.7.0",
+    "grunt-jscs": "2.8.0",
     "grunt-jsonlint": "1.0.7",
     "grunt-karma": "0.12.1",
     "karma": "0.13.19",
