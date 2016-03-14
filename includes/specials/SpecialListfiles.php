@@ -52,6 +52,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
+			$user = $pager->getRelevantUser();
+			$this->getSkin()->setRelevantUser( $user );
 			$pager->getForm();
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		}
@@ -91,6 +93,13 @@ class ImageListPager extends TablePager {
 
 	protected $mUserName = null;
 
+	/**
+	 * The relevant user
+	 *
+	 * @var User|null
+	 */
+	protected $mUser = null;
+
 	protected $mSearch = '';
 
 	protected $mIncluding = false;
@@ -108,20 +117,18 @@ class ImageListPager extends TablePager {
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::newFromText( $userName, NS_USER );
-			$user = User::newFromName( $userName, false );
-			if ( !is_null( $nt ) ) {
+			if ( is_null( $nt ) ) {
+				$this->outputUserDoesNotExist( $userName );
+			} else {
 				$this->mUserName = $nt->getText();
+				$user = User::newFromName( $this->mUserName, false );
+				if ( $user ) {
+					$this->mUser = $user;
+				}
+				if ( !$user || ( $user->isAnon() && !User::isIP( $user->getName() ) ) ) {
+					$this->outputUserDoesNotExist( $userName );
+				}
 			}
-			if ( !$user || ( $user->isAnon() && !User::isIP( $user->getName() ) ) ) {
-				$this->getOutput()->wrapWikiMsg(
-					"<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
-					[
-						'listfiles-userdoesnotexist',
-						wfEscapeWikiText( $userName ),
-					]
-				);
-			}
-
 		}
 
 		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
@@ -147,6 +154,30 @@ class ImageListPager extends TablePager {
 		}
 
 		parent::__construct( $context );
+	}
+
+	/**
+	 * Get the user relevant to the ImageList
+	 *
+	 * @return User|null
+	 */
+	function getRelevantUser() {
+		return $this->mUser;
+	}
+
+	/**
+	 * Add a message to the output stating that the user doesn't exist
+	 *
+	 * @param string $userName Unescaped user name
+	 */
+	protected function outputUserDoesNotExist( $userName ) {
+		$this->getOutput()->wrapWikiMsg(
+			"<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
+			[
+				'listfiles-userdoesnotexist',
+				wfEscapeWikiText( $userName ),
+			]
+		);
 	}
 
 	/**
