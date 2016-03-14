@@ -55,14 +55,14 @@
 	"config-admin-password": "Lykilorð:",
 	"config-admin-password-confirm": "Lykilorðið aftur:",
 	"config-admin-email": "Tölvupóstfang:",
-	"config-license": "Höfundaréttur og leyfi",
+	"config-license": "Höfundaréttur og notkunarleyfi:",
 	"config-license-pd": "Almenningseign",
 	"config-extensions": "Viðbætur",
 	"config-skins": "Skinn",
 	"config-install-step-done": "lokið",
 	"config-install-step-failed": "mistókst",
-	"config-install-pg-commit": "Virkja breytingar...",
-	"config-help": "_Hjálp",
-	"mainpagetext": "'''Uppsetning á MediaWiki heppnaðist.'''",
+	"config-install-pg-commit": "Virkja breytingar",
+	"config-help": "hjálp",
+	"mainpagetext": "<strong>MediaWiki var sett upp.</strong>",
 	"mainpagedocfooter": "Ráðfærðu þig við [//meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.\n\n== Fyrir byrjendur ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listi yfir uppsetningarstillingar]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Læra hvernig á að berjast við amapóst á þínum wiki]"
 }

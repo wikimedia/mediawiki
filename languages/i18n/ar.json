@@ -1760,6 +1760,7 @@
 	"apisandbox-dynamic-error-exists": "يوجد بالفعل معامل باسم \"$1\".",
 	"apisandbox-deprecated-parameters": "معاملات مهملة",
 	"apisandbox-submit-invalid-fields-title": "بعض الحقول غير صالحة",
+	"apisandbox-submit-invalid-fields-message": "برجاء تصحيح الحقل المعلم والمحاولة مرة أخرى.",
 	"apisandbox-results": "النتائج",
 	"apisandbox-sending-request": "إرسال طلب API ...",
 	"apisandbox-loading-results": "استقبال طلبات API ...",
