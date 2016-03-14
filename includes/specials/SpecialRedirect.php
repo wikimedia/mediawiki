@@ -342,7 +342,7 @@ class SpecialRedirect extends FormSpecialPage {
 	public function onSuccess() {
 		/* do nothing, we redirect in $this->dispatch if successful. */
 	}
-
+	
 	protected function alterForm( HTMLForm $form ) {
 		/* display summary at top of page */
 		$this->outputHeader();
