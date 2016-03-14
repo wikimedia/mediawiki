@@ -226,6 +226,29 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Count the number of individual items that are watched by the user.
+	 * If a subject and corresponding talk page are watched this will return 2.
+	 *
+	 * @param User $user
+	 *
+	 * @return int
+	 */
+	public function countWatchedItems( User $user ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$return = (int)$dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			[
+				'wl_user' => $user->getId()
+			],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		return $return;
+	}
+
+	/**
 	 * @param LinkTarget $target
 	 *
 	 * @return int

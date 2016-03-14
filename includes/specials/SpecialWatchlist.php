@@ -568,8 +568,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form = "";
 		$user = $this->getUser();
 
-		$dbr = $this->getDB();
-		$numItems = $this->countItems( $dbr );
+		$numItems = $this->countItems();
 		$showUpdatedMarker = $this->getConfig()->get( 'ShowUpdatedMarker' );
 
 		// Show watchlist header
@@ -629,18 +628,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Count the number of items on a user's watchlist
+	 * Count the number of paired items on a user's watchlist.
+	 * The assumption made here is that when a subject page is watched a talk page is also watched.
+	 * Hence the number of individual items is halved.
 	 *
-	 * @param IDatabase $dbr A database connection
 	 * @return int
 	 */
-	protected function countItems( $dbr ) {
-		# Fetch the raw count
-		$rows = $dbr->select( 'watchlist', [ 'count' => 'COUNT(*)' ],
-			[ 'wl_user' => $this->getUser()->getId() ], __METHOD__ );
-		$row = $dbr->fetchObject( $rows );
-		$count = $row->count;
-
+	protected function countItems() {
+		$count = WatchedItemStore::getDefaultInstance()->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
 	}
 }
