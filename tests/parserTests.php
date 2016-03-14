@@ -30,6 +30,8 @@ $options = [ 'quick', 'color', 'quiet', 'help', 'show-output',
 	'record', 'run-disabled', 'run-parsoid' ];
 $optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file' ];
 
+define( 'MW_PHPUNIT_TEST', true );
+
 require_once __DIR__ . '/../maintenance/commandLine.inc';
 require_once __DIR__ . '/TestsAutoLoader.php';
 
