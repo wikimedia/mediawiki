@@ -7359,6 +7359,7 @@ $wgJobClasses = [
 	'refreshLinksDynamic' => 'RefreshLinksJob',
 	'activityUpdateJob' => 'ActivityUpdateJob',
 	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
+	'clearUserWatchlist' => 'ClearUserWatchlistJob',
 	'cdnPurge' => 'CdnPurgeJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
