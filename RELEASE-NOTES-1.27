@@ -359,6 +359,8 @@ changes to languages because of Phabricator reports.
 ** WatchedItem::duplicateEntries was deprecated.
 ** EmailNotification::updateWatchlistTimestamp was deprecated.
 ** User::getWatchedItem was removed.
+* Unit tests don't work with external PHPUnit anymore, Composer is now the only supported
+  way. Run `composer install` to install it and other dev dependencies to run unit tests.
 
 == Compatibility ==
 
