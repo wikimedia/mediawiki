@@ -362,6 +362,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list->initChangesListRows( $rows );
 		$dbr->dataSeek( $rows, 0 );
 
+		if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
+			&& $user->getOption( 'shownumberswatching' )
+		) {
+			$watchedItemStore = WatchedItemStore::getDefaultInstance();
+		}
+
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
 		foreach ( $rows as $obj ) {
@@ -375,16 +381,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$updated = false;
 			}
 
-			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
-				&& $user->getOption( 'shownumberswatching' )
-			) {
-				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
-					'COUNT(*)',
-					[
-						'wl_namespace' => $obj->rc_namespace,
-						'wl_title' => $obj->rc_title,
-					],
-					__METHOD__ );
+			if ( isset( $watchedItemStore ) ) {
+				$rcTitleValue = new TitleValue( $obj->rc_namespace, $obj->rc_title );
+				$rc->numberofWatchingusers = $watchedItemStore->countWatchers( $rcTitleValue );
 			} else {
 				$rc->numberofWatchingusers = 0;
 			}
