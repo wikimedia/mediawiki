@@ -38,7 +38,7 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		parent::__construct();
 
 		// @codingStandardsIgnoreStart Ignore long line warnings.
-		$this->data = array(
+		$this->data = [
 			"",
 			"United States of America", // 7bit ASCII
 			"S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e",
@@ -58,7 +58,7 @@ class BenchUtf8TitleCheck extends Benchmarker {
 			. "Saison%207%20des%20Experts%7CSaison%208%20des%20Experts%7CSaison%209%20des%20Experts%7C"
 			. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 			. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
-		);
+		];
 		// @codingStandardsIgnoreEnd
 
 		$this->canRun = function_exists( 'mb_check_encoding' );

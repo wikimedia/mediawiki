@@ -573,7 +573,7 @@ class DifferenceEngine extends ContextSource {
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
 		# @codingStandardsIgnoreStart Ignoring long lines.
-		if ( Hooks::run( 'ArticleContentOnDiff', array( $this, $out ) ) ) {
+		if ( Hooks::run( 'ArticleContentOnDiff', [ $this, $out ] ) ) {
 			$this->loadNewText();
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
@@ -584,7 +584,7 @@ class DifferenceEngine extends ContextSource {
 				// This needs to be synchronised with Article::showCssOrJsPage(), which sucks
 				// Give hooks a chance to customise the output
 				// @todo standardize this crap into one function
-				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
 					// NOTE: deprecated hook, B/C only
 					// use the content object's own rendering
 					$cnt = $this->mNewRev->getContent();
@@ -593,9 +593,9 @@ class DifferenceEngine extends ContextSource {
 						$out->addParserOutputContent( $po );
 					}
 				}
-			} elseif ( !Hooks::run( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+			} elseif ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
 				// Handled by extension
-			} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+			} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
 				// NOTE: deprecated hook, B/C only
 				// Handled by extension
 			} else {
