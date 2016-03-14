@@ -185,6 +185,15 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Queues a job that will clear the users watchlist using the Job Queue
+	 *
+	 * @param User $user
+	 */
+	public function clearUserWatchedItemsUsingJobQueue( User $user ) {
+		JobQueueGroup::singleton()->push( ClearUserWatchlistJob::newForUser( $user ) );
+	}
+
+	/**
 	 * Count the number of individual items that are watched by the user.
 	 * If a subject and corresponding talk page are watched this will return 2.
 	 *
@@ -194,7 +203,10 @@ class WatchedItemStore {
 	 */
 	public function countWatchedItems( User $user ) {
 		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
-		$return = (int)$dbr->selectField(
+
+		wfDebug( __CLASS__ . ' $dbr type ' . get_class( $dbr ) );
+
+		$return = $dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
 			[
@@ -203,6 +215,12 @@ class WatchedItemStore {
 			__METHOD__
 		);
 		$this->loadBalancer->reuseConnection( $dbr );
+
+		wfDebug( __CLASS__ . ' $return pre cast ' . $return );
+
+		$return = (int)$return;
+
+		wfDebug( __CLASS__ . ' $return post cast ' . $return );
 
 		return $return;
 	}
