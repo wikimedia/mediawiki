@@ -3748,7 +3748,6 @@
 	"version-libraries-description": "Column header for the library's description\n{{Identical|Description}}",
 	"version-libraries-authors": "Column header for the library's authors\n{{Identical|Author}}",
 	"redirect": "{{doc-special|Redirect}}\nThis means \"Redirect by file '''name''', user '''ID''', page '''ID''', revision '''ID''', or log '''ID'''\".",
-	"redirect-legend": "Legend of fieldset around input box in [[Special:Redirect]]",
 	"redirect-text": "Inside fieldset for [[Special:Redirect]]",
 	"redirect-summary": "Shown at top of [[Special:Redirect]]",
 	"redirect-submit": "Button label in [[Special:Redirect]].\n{{Identical|Go}}",

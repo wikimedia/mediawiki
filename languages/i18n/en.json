@@ -3572,7 +3572,6 @@
 	"version-libraries-description": "Description",
 	"version-libraries-authors": "Authors",
 	"redirect": "Redirect by file, user, page, revision, or log ID",
-	"redirect-legend": "Redirect to a file or page",
 	"redirect-text": "",
 	"redirect-summary": "This special page redirects to a file (given the filename), a page (given a revision ID or page ID), a user page (given a numeric user ID), or a log entry (given the log ID). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], or [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Go",

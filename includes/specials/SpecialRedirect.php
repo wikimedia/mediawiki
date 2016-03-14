@@ -352,6 +352,10 @@ class SpecialRedirect extends FormSpecialPage {
 		$form->setMethod( 'get' );
 	}
 
+	protected function getDisplayFormat() {
+		return 'ooui';
+	}
+
 	/**
 	 * Return an array of subpages that this special page will accept.
 	 *
