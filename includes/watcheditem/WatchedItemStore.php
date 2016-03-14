@@ -213,6 +213,33 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * Queues a job that will clear the users watchlist using the Job Queue.
+	 *
+	 * @since 1.31
+	 *
+	 * @param User $user
+	 */
+	public function clearUserWatchedItemsUsingJobQueue( User $user ) {
+		$job = ClearUserWatchlistJob::newForUser( $user, $this->getMaxId() );
+		// TODO inject me.
+		JobQueueGroup::singleton()->push( $job );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return int The maximum current wl_id
+	 */
+	public function getMaxId() {
+		$dbr = $this->getConnectionRef( DB_REPLICA );
+		return (int)$dbr->selectField(
+			'watchlist',
+			'MAX(wl_id)',
+			'',
+			__METHOD__
+		);
+	}
+
+	/**
 	 * @since 1.31
 	 */
 	public function countWatchedItems( User $user ) {
