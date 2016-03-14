@@ -708,10 +708,6 @@ class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
-		if ( $suggestions->getSize() == 0 ) {
-			// If we don't have anything, don't bother
-			return $suggestions;
-		}
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$titles = $suggestions->map( function( SearchSuggestion $sugg ) {
@@ -726,6 +722,10 @@ class SearchEngine {
 		} );
 
 		// Rescore results with an exact title match
+		// NOTE: in some cases like cross-namespace redirects
+		// (frequently used as shortcuts e.g. WP:WP on huwiki) some
+		// backends like Cirrus will return no results. We should still
+		// try an exact title match to workaround this limitation
 		$rescorer = new SearchExactMatchRescorer();
 		$rescoredResults = $rescorer->rescore( $search, $this->namespaces, $results, $this->limit );
 
