@@ -732,6 +732,7 @@ return [
 	'moment' => [
 		'scripts' => [
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-global.js',
 			'resources/src/moment-local-dmy.js',
 		],
 		'languageScripts' => [
@@ -2260,6 +2261,7 @@ return [
 	'oojs' => [
 		'scripts' => [
 			'resources/lib/oojs/oojs.jquery.js',
+			'resources/src/oojs-global.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
