@@ -63,18 +63,18 @@ abstract class DatabaseUpdater {
 	protected $shared = false;
 
 	/**
-	 * Scripts to run after database update
+	 * @var string[] Scripts to run after database update
 	 * Should be a subclass of LoggedUpdateMaintenance
 	 */
 	protected $postDatabaseUpdateMaintenance = [
-		'DeleteDefaultMessages',
-		'PopulateRevisionLength',
-		'PopulateRevisionSha1',
-		'PopulateImageSha1',
-		'FixExtLinksProtocolRelative',
-		'PopulateFilearchiveSha1',
-		'PopulateBacklinkNamespace',
-		'FixDefaultJsonContentPages'
+		DeleteDefaultMessages::class,
+		PopulateRevisionLength::class,
+		PopulateRevisionSha1::class,
+		PopulateImageSha1::class,
+		FixExtLinksProtocolRelative::class,
+		PopulateFilearchiveSha1::class,
+		PopulateBacklinkNamespace::class,
+		FixDefaultJsonContentPages::class,
 	];
 
 	/**
@@ -375,7 +375,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * @since 1.17
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;
