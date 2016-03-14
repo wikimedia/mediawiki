@@ -610,11 +610,16 @@ abstract class HTMLFormField {
 		$config = [
 			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
 			'align' => $this->getLabelAlignOOUI(),
-			'label' => new OOUI\HtmlSnippet( $this->getLabel() ),
 			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
 		];
+
+		// the element could specify, that the label doesn't need to be added
+		$label = $this->getLabel();
+		if ( $label ) {
+			$config['label'] = new OOUI\HtmlSnippet( $label );
+		}
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
 	}

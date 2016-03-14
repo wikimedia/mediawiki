@@ -56,6 +56,8 @@ class HTMLButtonField extends HTMLFormField {
 			$this->buttonLabel = $info['buttonlabel-raw'];
 		}
 
+		$this->setShowEmptyLabel( false );
+
 		parent::__construct( $info );
 	}
 
