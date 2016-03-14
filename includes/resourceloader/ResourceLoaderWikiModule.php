@@ -72,8 +72,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
 				case 'position':
-					$this->isPositionDefined = true;
-					// Don't break since we need the member set as well
 				case 'styles':
 				case 'scripts':
 				case 'group':
