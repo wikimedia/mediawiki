@@ -55,7 +55,7 @@ class MWUnknownContentModelException extends MWException {
 
 	/** @return string */
 	public function getModelId() {
-		return $modelId;
+		return $this->modelId;
 	}
 }
 
