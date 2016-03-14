@@ -1189,18 +1189,11 @@
 			 * @param {string} [moduleName] Name of currently executing module
 			 * @return {jQuery.Promise}
 			 */
-			function queueModuleScript( src, moduleName ) {
+			function queueModuleScript( src ) {
 				var r = $.Deferred();
 
 				pendingRequests.push( function () {
-					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
-						window.require = mw.loader.require;
-						window.module = registry[ moduleName ].module;
-					}
 					addScript( src ).always( function () {
-						// Clear environment
-						delete window.require;
-						delete window.module;
 						r.resolve();
 
 						// Start the next one (if any)
