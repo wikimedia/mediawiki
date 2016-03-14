@@ -806,9 +806,18 @@ class MediaWiki {
 		$errno = $errstr = null;
 		$info = wfParseUrl( $this->config->get( 'Server' ) );
 		MediaWiki\suppressWarnings();
+		$host = $info['host'];
+		$port = 80;
+		if ( isset( $info['scheme'] ) && $info['scheme'] == 'https' ) {
+			$host = "tls://" . $host;
+			$port = 443;
+		}
+		if ( isset( $info['port'] ) ) {
+			$port = $info['port'];
+		}
 		$sock = fsockopen(
-			$info['host'],
-			isset( $info['port'] ) ? $info['port'] : 80,
+			$host,
+			$port,
 			$errno,
 			$errstr,
 			// If it takes more than 100ms to connect to ourselves there
