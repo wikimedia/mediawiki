@@ -26,6 +26,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		// Cleanup after previous tests
 		$store->removeWatch( $user, $title );
 		$initialWatchers = $store->countWatchers( $title );
+		$initialUserWatchedItems = $store->countWatchedItems( $user );
 
 		$this->assertFalse(
 			$store->isWatched( $user, $title ),
@@ -37,6 +38,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->isWatched( $user, $title ),
 			'Page should be watched'
 		);
+		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 		$this->assertEquals( $initialWatchers + 1, $store->countWatchers( $title ) );
 		$this->assertEquals(
 			$initialWatchers + 1,
@@ -56,6 +58,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->isWatched( $user, $title ),
 			'Page should be unwatched'
 		);
+		$this->assertEquals( $initialUserWatchedItems, $store->countWatchedItems( $user ) );
 		$this->assertEquals( $initialWatchers, $store->countWatchers( $title ) );
 		$this->assertEquals(
 			$initialWatchers,
