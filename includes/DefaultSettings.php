@@ -6238,14 +6238,15 @@ $wgGitBin = '/usr/bin/git';
  * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
  * full SHA-1 of the HEAD revision.
  * %r will be replaced with a URL-encoded version of $1.
+ * %R will be replaced with $1 and no URL-encoding
  *
  * @since 1.20
  */
 $wgGitRepositoryViewers = [
 	'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' =>
-		'https://git.wikimedia.org/tree/%r/%H',
+		'https://phabricator.wikimedia.org/r/revision/%R;%H',
 	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' =>
-		'https://git.wikimedia.org/tree/%r/%H',
+		'https://phabricator.wikimedia.org/r/revision/%R;%H',
 ];
 
 /** @} */ # End of maintenance }
