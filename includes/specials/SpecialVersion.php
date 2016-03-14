@@ -177,7 +177,7 @@ class SpecialVersion extends SpecialPage {
 		global $wgLang;
 
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
-			$othersLink = '[//www.mediawiki.org/wiki/Special:Version/Credits ' .
+			$othersLink = '[https://www.mediawiki.org/wiki/Special:Version/Credits ' .
 				wfMessage( 'version-poweredby-others' )->text() . ']';
 		} else {
 			$othersLink = '[[Special:Version/Credits|' .
@@ -555,7 +555,7 @@ class SpecialVersion extends SpecialPage {
 					'id' => 'mw-version-parser-extensiontags',
 				],
 				Linker::makeExternalLink(
-					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
+					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
 					false /* msg()->parse() already escapes */
 				)
@@ -598,7 +598,7 @@ class SpecialVersion extends SpecialPage {
 					'id' => 'mw-version-parser-function-hooks',
 				],
 				Linker::makeExternalLink(
-					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
+					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 					$this->msg( 'version-parser-function-hooks' )->parse(),
 					false /* msg()->parse() already escapes */
 				)
