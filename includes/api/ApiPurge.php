@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * API interface for page purging
@@ -74,6 +75,17 @@ class ApiPurge extends ApiBase {
 						$popts,
 						$enableParserCache
 					);
+
+					# Logging to better see expensive usage patterns
+					if ( $forceRecursiveLinkUpdate ) {
+						LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
+							"Recursive link purge enqueued for {$title->getPrefixedText()}",
+							[
+							'user' => $this->getUser()->getName(),
+							'title' => $title->getPrefixedText()
+							]
+						);
+					}
 
 					# Update the links tables
 					$updates = $content->getSecondaryDataUpdates(
