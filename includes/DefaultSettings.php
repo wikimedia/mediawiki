@@ -3112,11 +3112,6 @@ $wgUseMediaWikiUIEverywhere = false;
 $wgAllowRdfaAttributes = false;
 
 /**
- * Enabled HTML5 microdata attributes for use in wikitext.
- */
-$wgAllowMicrodataAttributes = false;
-
-/**
  * Should we try to make our HTML output well-formed XML?  If set to false,
  * output will be a few bytes shorter, and the HTML will arguably be more
  * readable.  If set to true, life will be much easier for the authors of
