@@ -1139,6 +1139,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 
 
 CREATE TABLE /*_*/watchlist (
+  wl_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Key to user.user_id
   wl_user int unsigned NOT NULL,
 

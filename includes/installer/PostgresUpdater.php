@@ -67,6 +67,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'filearchive', 'fa_id', 'filearchive_fa_id_seq' ],
 			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
 			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
+			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -428,6 +429,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
+			[
+				'addPgField', 'watchlist', 'wl_id',
+				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq')"
+			],
 		];
 	}
 

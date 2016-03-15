@@ -847,6 +847,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 
 
 CREATE TABLE /*_*/watchlist (
+  wl_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Key to user.user_id
   wl_user int NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
 
