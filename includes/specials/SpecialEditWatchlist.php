@@ -243,17 +243,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
-			$this->clearWatchlist();
-			$this->getUser()->invalidateCache();
 
-			if ( count( $current ) > 0 ) {
-				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
-			} else {
+			if ( count( $current ) == 0 ) {
 				return false;
 			}
 
-			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
-				->numParams( count( $current ) )->parse();
+			$watchedItemStore = WatchedItemStore::getDefaultInstance();
+			if ( $watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
+						->numParams( count( $current ) )->parse();
+				$this->getUser()->invalidateCache();
+			} else {
+				$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+				$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
+			}
+
 			$this->showTitles( $current, $this->successMessage );
 		}
 
@@ -262,11 +267,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	public function submitClear( $data ) {
 		$current = $this->getWatchlist();
-		$this->clearWatchlist();
-		$this->getUser()->invalidateCache();
-		$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
-		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
-			->numParams( count( $current ) )->parse();
+
+		$watchedItemStore = WatchedItemStore::getDefaultInstance();
+
+		if ( $watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+			$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
+			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
+					->numParams( count( $current ) )->parse();
+			$this->getUser()->invalidateCache();
+		} else {
+			$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+			$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
+		}
+
 		$this->showTitles( $current, $this->successMessage );
 
 		return true;
@@ -445,18 +458,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				}
 			}
 		} );
-	}
-
-	/**
-	 * Remove all titles from a user's watchlist
-	 */
-	private function clearWatchlist() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			[ 'wl_user' => $this->getUser()->getId() ],
-			__METHOD__
-		);
 	}
 
 	/**
