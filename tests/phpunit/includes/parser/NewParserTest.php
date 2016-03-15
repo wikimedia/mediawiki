@@ -102,7 +102,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgAllowExternalImages'] = true;
 		$tmpGlobals['wgRawHtml'] = false;
 		$tmpGlobals['wgWellFormedXml'] = true;
-		$tmpGlobals['wgAllowMicrodataAttributes'] = true;
 		$tmpGlobals['wgExperimentalHtmlIds'] = false;
 		$tmpGlobals['wgAdaptiveMessageCache'] = true;
 		$tmpGlobals['wgUseDatabaseMessages'] = true;

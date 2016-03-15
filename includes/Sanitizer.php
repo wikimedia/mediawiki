@@ -363,14 +363,14 @@ class Sanitizer {
 	 * @return array
 	 */
 	public static function getRecognizedTagData( $extratags = [], $removetags = [] ) {
-		global $wgAllowMicrodataAttributes, $wgAllowImageTag;
+		global $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
 		// Base our staticInitialised variable off of the global config state so that if the globals
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
-		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
+		$globalContext = $wgAllowImageTag ? '1' : '0';
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 			$htmlpairsStatic = [ # Tags that must be closed
 				'b', 'bdi', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
@@ -386,10 +386,10 @@ class Sanitizer {
 			$htmlsingleonly = [ # Elements that cannot have close tags
 				'br', 'wbr', 'hr'
 			];
-			if ( $wgAllowMicrodataAttributes ) {
-				$htmlsingle[] = $htmlsingleonly[] = 'meta';
-				$htmlsingle[] = $htmlsingleonly[] = 'link';
-			}
+
+			$htmlsingle[] = $htmlsingleonly[] = 'meta';
+			$htmlsingle[] = $htmlsingleonly[] = 'link';
+
 			$htmlnest = [ # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'li', 'dl', 'dt', 'dd', 'font', 'big', 'small', 'sub', 'sup', 'span',
@@ -734,7 +734,7 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
-		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
+		global $wgAllowRdfaAttributes;
 
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
@@ -817,15 +817,14 @@ class Sanitizer {
 			$out[$attribute] = $value;
 		}
 
-		if ( $wgAllowMicrodataAttributes ) {
-			# itemtype, itemid, itemref don't make sense without itemscope
-			if ( !array_key_exists( 'itemscope', $out ) ) {
-				unset( $out['itemtype'] );
-				unset( $out['itemid'] );
-				unset( $out['itemref'] );
-			}
-			# TODO: Strip itemprop if we aren't descendants of an itemscope or pointed to by an itemref.
+		# itemtype, itemid, itemref don't make sense without itemscope
+		if ( !array_key_exists( 'itemscope', $out ) ) {
+			unset( $out['itemtype'] );
+			unset( $out['itemid'] );
+			unset( $out['itemref'] );
 		}
+		# TODO: Strip itemprop if we aren't descendants of an itemscope or pointed to by an itemref.
+
 		return $out;
 	}
 
@@ -1561,10 +1560,10 @@ class Sanitizer {
 	 * @return array
 	 */
 	static function setupAttributeWhitelist() {
-		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
+		global $wgAllowRdfaAttributes;
 		static $whitelist, $staticInitialised;
 
-		$globalContext = implode( '-', compact( 'wgAllowRdfaAttributes', 'wgAllowMicrodataAttributes' ) );
+		$globalContext = $wgAllowRdfaAttributes ? '1' : '0';
 
 		if ( $whitelist !== null && $staticInitialised == $globalContext ) {
 			return $whitelist;
@@ -1596,13 +1595,11 @@ class Sanitizer {
 			] );
 		}
 
-		if ( $wgAllowMicrodataAttributes ) {
-			# add HTML5 microdata tags as specified by
-			# http://www.whatwg.org/html/microdata.html#the-microdata-model
-			$common = array_merge( $common, [
-				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
-			] );
-		}
+		# add HTML5 microdata tags as specified by
+		# http://www.whatwg.org/html/microdata.html#the-microdata-model
+		$common = array_merge( $common, [
+			'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
+		] );
 
 		$block = array_merge( $common, [ 'align' ] );
 		$tablealign = [ 'align', 'valign' ];
