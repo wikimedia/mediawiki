@@ -503,10 +503,11 @@ class EnhancedChangesList extends ChangesList {
 		/** @var $block0 RecentChange */
 		$block0 = $block[0];
 		$last = $block[count( $block ) - 1];
-		if ( !$allLogs && $rcObj->mAttribs['rc_type'] != RC_CATEGORIZE ) {
-			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-				$links['total-changes'] = $nchanges[$n];
-			} elseif ( $isnew ) {
+		if ( !$allLogs ) {
+			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ||
+				$isnew ||
+				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE
+			) {
 				$links['total-changes'] = $nchanges[$n];
 			} else {
 				$links['total-changes'] = Linker::link(
