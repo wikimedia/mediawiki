@@ -39,7 +39,12 @@
 			'import',
 			'options'
 		];
-		return $.inArray( action, csrfActions ) !== -1 ? 'csrf' : action;
+		if ( $.inArray( action, csrfActions ) !== -1 ) {
+			mw.track( 'mw.deprecate', action + 'token' );
+			mw.log.warn( 'Use of the "' + action + '" token is deprecated. Use "csrf" instead.' );
+			return 'csrf';
+		}
+		return action;
 	}
 
 	// Pre-populate with fake ajax promises to save http requests for tokens
