@@ -31,10 +31,10 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|BagOStuff
+	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
 	 */
 	private function getMockCache() {
-		$mock = $this->getMockBuilder( BagOStuff::class )
+		$mock = $this->getMockBuilder( HashBagOStuff::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->any() )
