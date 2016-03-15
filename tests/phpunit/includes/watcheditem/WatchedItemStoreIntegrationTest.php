@@ -106,6 +106,23 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testWatchBatchAndClearItems() {
+		$user = $this->getUser();
+		$title1 = Title::newFromText( 'WatchedItemStoreIntegrationTestPage1' );
+		$title2 = Title::newFromText( 'WatchedItemStoreIntegrationTestPage2' );
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+
+		$store->addWatchBatchForUser( $user, [ $title1, $title2 ] );
+
+		$this->assertTrue( $store->isWatched( $user, $title1 ) );
+		$this->assertTrue( $store->isWatched( $user, $title2 ) );
+
+		$store->clearUserWatchedItems( $user );
+
+		$this->assertFalse( $store->isWatched( $user, $title1 ) );
+		$this->assertFalse( $store->isWatched( $user, $title2 ) );
+	}
+
 	public function testUpdateResetAndSetNotificationTimestamp() {
 		$user = $this->getUser();
 		$otherUser = ( new TestUser( 'WatchedItemStoreIntegrationTestUser_otherUser' ) )->getUser();
