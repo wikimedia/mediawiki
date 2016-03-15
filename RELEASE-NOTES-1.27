@@ -10,6 +10,7 @@ As of 1.27, MediaWiki now requires PHP 5.5.9 or higher. This corresponds with
 HHVM 3.1.
 
 === Configuration changes in 1.27 ===
+* $wgAllowMicrodataAttributes was removed, now always enabled.
 * $wgUseLinkNamespaceDBFields was removed.
 * Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in

@@ -3081,10 +3081,11 @@ $wgHtml5 = true;
 
 /**
  * Defines the value of the version attribute in the &lt;html&gt; tag, if any.
- * If $wgAllowRdfaAttributes is true, and this evaluates to boolean false
- * (like if it's left at the default null value), it will be auto-initialized
- * to the correct value for RDFa+HTML5.  As such, you should have no reason to
- * ever actually set this to anything.
+ *
+ * If your wiki uses RDFa, set it to the correct value for RDFa+HTML5.
+ * Correct current values are 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
+ * See also http://www.w3.org/TR/rdfa-in-html/#document-conformance
+ * @since 1.27
  */
 $wgHtml5Version = null;
 
@@ -3104,17 +3105,6 @@ $wgHTMLFormAllowTableFormat = true;
  * @since 1.24
  */
 $wgUseMediaWikiUIEverywhere = false;
-
-/**
- * Enabled RDFa attributes for use in wikitext.
- * NOTE: Interaction with HTML5 is somewhat underspecified.
- */
-$wgAllowRdfaAttributes = false;
-
-/**
- * Enabled HTML5 microdata attributes for use in wikitext.
- */
-$wgAllowMicrodataAttributes = false;
 
 /**
  * Should we try to make our HTML output well-formed XML?  If set to false,
