@@ -3882,6 +3882,7 @@
 	"watchlistedit-clear-titles": "Text above edit box containing items being watched on [[Special:Watchlist/clear]].\n{{Identical|Title}}",
 	"watchlistedit-clear-submit": "Text of submit button on [[Special:Watchlist/clear]].\n{{Identical|Clear watchlist}}",
 	"watchlistedit-clear-done": "A message which appears after the watchlist has been cleared using [[Special:Watchlist/clear]].",
+	"watchlistedit-clear-jobqueue": "A message which appears after the watchlist has been scheduled to be cleared using [[Special:Watchlist/clear]] and the Job Queue.",
 	"watchlistedit-clear-removed": "Message on [[Special:EditWatchlist/clear]].\n\nThe message appears once the watchlist has been cleared.",
 	"watchlistedit-too-many": "Message on [[Special:EditWatchlist]] that is used when there are too many titles to display.\n\nShown instead of list of the pages.",
 	"watchlisttools-clear": "[[Special:Watchlist]]: Navigation link under the title.\n{{Identical|Clear watchlist}}",
