@@ -276,6 +276,65 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param array $thresholds TODO
+	 * @param LinkTarget[] $missingTargets
+	 * @param int|null $minimumWatchers
+	 * @return array TODO
+	 */
+	public function countVisitingWatchersMultiple( array $thresholds, array $missingTargets, $minimumWatchers = null ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+
+		// Assemble a WHERE condition to find:
+		// * if the page exists, number of users watching who have
+		//   visited the page recently
+		// * if the page doesn't exist, number of users that have
+		//   the page on their watchlist
+		$conds = [];
+		foreach ( $thresholds as $namespace => $dbKeys ) {
+			$pageConds = [];
+			foreach ( $dbKeys as $dbKey => $threshold ) {
+				$pageConds[] =
+					'wl_title = ' . $dbr->addQuotes( $dbKey ) .
+					' AND (' .
+					'wl_notificationtimestamp >= ' .
+					$dbr->addQuotes( $dbr->timestamp( $threshold ) ) .
+					' OR wl_notificationtimestamp IS NULL' .
+					')';
+			}
+			$conds[] = 'wl_namespace = ' . $namespace .
+				' AND (' . $dbr->makeList( $pageConds, LIST_OR ) . ')';
+		}
+
+		if ( !empty( $missingTargets ) ) {
+			$lb = new LinkBatch( $missingTargets );
+			$conds[] = $lb->constructSet( 'wl', $dbr );
+		}
+
+		$cond = $dbr->makeList( $conds, LIST_OR );
+
+		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
+		if ( $minimumWatchers !== null ) {
+			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$minimumWatchers;
+		}
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
+			$cond,
+			__METHOD__,
+			$dbOptions
+		);
+
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		$watcherCounts = [];
+		foreach ( $res as $row ) {
+			$watcherCounts[$row->wl_namespace][$row->wl_title] = (int)$row->watchers;
+		}
+
+		return $watcherCounts;
+	}
+
+	/**
 	 * Get an item (may be cached)
 	 *
 	 * @param User $user

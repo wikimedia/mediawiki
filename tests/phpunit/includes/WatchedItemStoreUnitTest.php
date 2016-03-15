@@ -188,8 +188,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$dbResult = [
 			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
 			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ]
-			),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ] ),
 		];
 		$mockDb->expects( $this->once() )
 			->method( 'makeWhereFrom2d' )
@@ -274,6 +273,81 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertEquals( 7, $store->countVisitingWatchers( $titleValue, '111' ) );
+	}
+
+	public function testCountVisitingWatchersMultiple() {
+		$thresholds = [
+			0 => [ 'SomeDbKey' => '111', 'OtherDbKey' => '111' ],
+			1 => [ 'AnotherDbKey' => '123' ],
+		];
+
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ] ),
+		];
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 2 * 3 ) )
+			->method( 'addQuotes' )
+			->will( $this->returnCallback( function( $value ) {
+				return "'$value'";
+			} ) );
+		$mockDb->expects( $this->exactly( 3 ) )
+			->method( 'timestamp' )
+			->will( $this->returnCallback( function( $value ) {
+				return 'TS' . $value . 'TS';
+			} ) );
+		$mockDb->expects( $this->exactly( 3 ) )
+			->method( 'makeList' )
+			->with(
+				$this->isType( 'array' ),
+				LIST_OR
+			)
+			->will( $this->returnCallback( function( $a ) {
+				return join( ' OR ', array_map( function( $s ) {
+					return '(' . $s . ')';
+				}, $a
+				) );
+			} ) );
+		$mockDb->expects( $this->never() )
+			->method( 'makeWhereFrom2d' );
+		$expectedCond =
+			'(wl_namespace = 0 AND (' .
+			"(wl_title = 'SomeDbKey' AND (wl_notificationtimestamp >= 'TS111TS' OR wl_notificationtimestamp IS NULL)) OR " .
+			"(wl_title = 'OtherDbKey' AND (wl_notificationtimestamp >= 'TS111TS' OR wl_notificationtimestamp IS NULL)))" .
+			') OR (wl_namespace = 1 AND (' .
+			"(wl_title = 'AnotherDbKey' AND (wl_notificationtimestamp >= 'TS123TS' OR wl_notificationtimestamp IS NULL)))" .
+			')';
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
+				$expectedCond,
+				$this->isType( 'string' ),
+				[
+					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
+				]
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$expected = [
+			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
+			1 => [ 'AnotherDbKey' => 500 ],
+		];
+		$this->assertEquals( $expected, $store->countVisitingWatchersMultiple( $thresholds, [] ) );
 	}
 
 	public function testDuplicateEntry_nothingToDuplicate() {
