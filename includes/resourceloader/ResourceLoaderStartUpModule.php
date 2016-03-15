@@ -101,7 +101,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
-			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
@@ -276,20 +275,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public static function getStartupModules() {
 		return [ 'jquery', 'mediawiki' ];
-	}
-
-	public static function getLegacyModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil;
-
-		$legacyModules = [];
-		if ( $wgIncludeLegacyJavaScript ) {
-			$legacyModules[] = 'mediawiki.legacy.wikibits';
-		}
-		if ( $wgPreloadJavaScriptMwUtil ) {
-			$legacyModules[] = 'mediawiki.util';
-		}
-
-		return $legacyModules;
 	}
 
 	/**
