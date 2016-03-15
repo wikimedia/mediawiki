@@ -1033,13 +1033,17 @@ class Sanitizer {
 	 * @param string $element
 	 * @return string
 	 */
-	static function fixTagAttributes( $text, $element ) {
+	static function fixTagAttributes( $text, $element, $sorted = false ) {
 		if ( trim( $text ) == '' ) {
 			return '';
 		}
 
 		$decoded = Sanitizer::decodeTagAttributes( $text );
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
+
+		if ( $sorted ) {
+			ksort( $stripped );
+		}
 
 		return Sanitizer::safeEncodeTagAttributes( $stripped );
 	}
