@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Рустам Нурыев"
+			"Рустам Нурыев",
+			"Азат Хәлилов"
 		]
 	},
+	"apihelp-main-param-action": "Хәрәкәтте нисек үтәргә?",
+	"apihelp-main-param-format": "Мәғлүмәттәр сығарыу форматы.",
 	"apihelp-feedcontributions-param-toponly": "Һуңғы өлгө булған төҙәтеүҙәрҙе генә күрһәтергә",
 	"apihelp-feedcontributions-param-showsizediff": "Өлгәоәр араһыдағы күләм айырмаһын күрһәтергә",
 	"apihelp-feedrecentchanges-param-from": "Теге ваҡыттын булған үҙгәрештәрҙе күрһәтергә",

@@ -1702,7 +1702,7 @@
 	"ninterwikis": "$1 {{PLURAL:$1|میان‌ویکی|میان‌ویکی}}",
 	"nlinks": "$1 {{PLURAL:$1|پیوند|پیوند}}",
 	"nmembers": "$1 {{PLURAL:$1|عضو|عضو}}",
-	"nmemberschanged": "$1 → $2   {{PLURAL:$2| عضو|عضو}}",
+	"nmemberschanged": "$1 ← $2 {{PLURAL:$2| عضو|عضو}}",
 	"nrevisions": "$1 {{PLURAL:$1|نسخه|نسخه}}",
 	"nimagelinks": "مورد استفاده در $1 {{PLURAL:$1|صفحه|صفحه}}",
 	"ntransclusions": "در $1 {{PLURAL:$1|صفحه|صفحه}} استفاده شده‌است",
