@@ -831,14 +831,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$this->showZeroWatchers = $canUnwatchedpages;
 
-		// Assemble a WHERE condition to find:
-		// * if the page exists, number of users watching who have
-		//   visited the page recently
-		// * if the page doesn't exist, number of users that have
-		//   the page on their watchlist
-		$whereStrings = [];
-
-		// For pages that exist
+		$titlesWithVisitThresholds = [];
 		if ( $this->titles ) {
 			$lb = new LinkBatch( $this->titles );
 
@@ -853,55 +846,27 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addOption( 'GROUP BY', [ 'page_namespace', 'page_title' ] );
 			$timestampRes = $this->select( __METHOD__ );
 
-			// Assemble SQL WHERE condition to find number of page watchers who also
-			// visited a "recent" edit (last visited about 26 weeks before latest edit)
 			$age = $config->get( 'WatchersMaxAge' );
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
-				$threshold = $db->timestamp( $revTimestamp - $age );
-				$timestamps[$row->page_namespace][$row->page_title] = $threshold;
+				$timestamps[$row->page_namespace][$row->page_title] = $revTimestamp - $age;
 			}
-
-			foreach ( $timestamps as $ns_key => $namespace ) {
-				$pageStrings = [];
-				foreach ( $namespace as $pg_key => $threshold ) {
-					$pageStrings[] = "wl_title = '$pg_key' AND" .
-						' (wl_notificationtimestamp >= ' .
-						$db->addQuotes( $threshold ) .
-						' OR wl_notificationtimestamp IS NULL)';
-				}
-				$whereStrings[] = "wl_namespace = '$ns_key' AND (" .
-					$db->makeList( $pageStrings, LIST_OR ) . ')';
-			}
+			$titlesWithVisitThresholds = array_map(
+				function( LinkTarget $target ) use ( $timestamps ) {
+					return [
+						$target, $timestamps[$target->getNamespace()][$target->getDBkey()]
+					];
+				},
+				$this->titles
+			);
 		}
 
-		// For nonexistant pages
-		if ( $this->missing ) {
-			$lb = new LinkBatch( $this->missing );
-			$whereStrings[] = $lb->constructSet( 'wl', $db );
-		}
-
-		// Make the actual string and do the query
-		$whereString = $db->makeList( $whereStrings, LIST_OR );
-
-		$this->resetQueryParams();
-		$this->addTables( [ 'watchlist' ] );
-		$this->addFields( [
-			'wl_namespace',
-			'wl_title',
-			'count' => 'COUNT(*)'
-		] );
-		$this->addWhere( [ $whereString ] );
-		$this->addOption( 'GROUP BY', [ 'wl_namespace', 'wl_title' ] );
-		if ( !$canUnwatchedpages ) {
-			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
-		}
-
-		$res = $this->select( __METHOD__ );
-		foreach ( $res as $row ) {
-			$this->visitingwatchers[$row->wl_namespace][$row->wl_title] = (int)$row->count;
-		}
+		$this->visitingwatchers = WatchedItemStore::getDefaultInstance()->countVisitingWatchersMultiple(
+			$titlesWithVisitThresholds,
+			$this->missing,
+			!$canUnwatchedpages ? $unwatchedPageThreshold : null
+		);
 	}
 
 	public function getCacheMode( $params ) {

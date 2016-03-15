@@ -276,6 +276,88 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget, last visit threshold)
+	 * @param LinkTarget[] $missingTargets
+	 * @param int|null $minimumWatchers
+	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = int $watchers,
+	 *         where $watchers is a:
+	 *         - if the page exists, number of users watching who have visited the page recently
+	 *         - if the page doesn't exist, number of users that have the page on their watchlist
+	 */
+	public function countVisitingWatchersMultiple(
+		array $targetsWithVisitThresholds, array $missingTargets, $minimumWatchers = null
+	) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+
+		$conds = $this->getVisitingWatchersCondition(
+			$dbr, $targetsWithVisitThresholds, $missingTargets
+		);
+
+		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
+		if ( $minimumWatchers !== null ) {
+			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$minimumWatchers;
+		}
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
+			$conds,
+			__METHOD__,
+			$dbOptions
+		);
+
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		$watcherCounts = [];
+		foreach ( $targetsWithVisitThresholds as list( $target ) ) {
+			/* @var LinkTarget $target */
+			$watcherCounts[$target->getNamespace()][$target->getDBkey()] = 0;
+		}
+
+		foreach ( $res as $row ) {
+			$watcherCounts[$row->wl_namespace][$row->wl_title] = (int)$row->watchers;
+		}
+
+		return $watcherCounts;
+	}
+
+	/**
+	 * Generates condition for the query used in a batch count visiting watchers.
+	 *
+	 * @param IDatabase $db
+	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget, last visit threshold)
+	 * @param LinkTarget[] $missingTargets
+	 * @return string
+	 */
+	private function getVisitingWatchersCondition(
+		IDatabase $db, array $targetsWithVisitThresholds, array $missingTargets
+	) {
+		$namespaceConds = [];
+		foreach ( $targetsWithVisitThresholds as list( $target, $threshold ) ) {
+			/* @var LinkTarget $target */
+			$namespaceConds[$target->getNamespace()][] =
+				'wl_title = ' . $db->addQuotes( $target->getDBkey() ) .
+				' AND (' .
+				'wl_notificationtimestamp >= ' .
+				$db->addQuotes( $db->timestamp( $threshold ) ) .
+				' OR wl_notificationtimestamp IS NULL' .
+				')';
+		}
+
+		$conds = [];
+		foreach ( $namespaceConds as $namespace => $pageConds ) {
+			$conds[] = 'wl_namespace = ' . $namespace .
+				' AND (' . $db->makeList( $pageConds, LIST_OR ) . ')';
+		}
+
+		if ( !empty( $missingTargets ) ) {
+			$lb = new LinkBatch( $missingTargets );
+			$conds[] = $lb->constructSet( 'wl', $db );
+		}
+
+		return $db->makeList( $conds, LIST_OR );
+	}
+
+	/**
 	 * Get an item (may be cached)
 	 *
 	 * @param User $user
