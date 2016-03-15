@@ -107,6 +107,74 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testClearWatchedItems() {
+		$user = $this->getMockNonAnonUserWithId( 7 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_user' => $user->getId(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 12 ) );
+		$mockDb->expects( $this->once() )
+			->method( 'delete' )
+			->with(
+				'watchlist',
+				[ 'wl_user' => 7 ],
+				$this->isType( 'string' )
+			);
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( 'RM-KEY' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+		$store->overrideCacheIndex( [ 0 => [ 'F' => [ 7 => 'RM-KEY', 9 => 'KEEP-KEY' ] ] ] );
+
+		$this->assertTrue( $store->clearUserWatchedItems( $user ) );
+	}
+
+	public function testClearWatchedItems_tooManyItemsWatched() {
+		$user = $this->getMockNonAnonUserWithId( 7 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_user' => $user->getId(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 99999 ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertFalse( $store->clearUserWatchedItems( $user ) );
+	}
+
 	public function testCountWatchedItems() {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
