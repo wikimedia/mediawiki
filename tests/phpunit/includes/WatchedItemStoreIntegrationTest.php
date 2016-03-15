@@ -39,6 +39,18 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			'Page should be watched'
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
+		$watchedItemsForUser = $store->getWatchedItemsForUser( $user );
+		$this->assertCount( $initialUserWatchedItems + 1, $watchedItemsForUser );
+		$watchedItemsForUserHasExpectedItem = false;
+		foreach ( $watchedItemsForUser as $watchedItem ) {
+			if (
+				$watchedItem->getUser()->equals( $user ) &&
+				$watchedItem->getLinkTarget() == $title->getTitleValue()
+			) {
+				$watchedItemsForUserHasExpectedItem = true;
+			}
+		}
+		$this->assertTrue( $watchedItemsForUserHasExpectedItem );
 		$this->assertEquals( $initialWatchers + 1, $store->countWatchers( $title ) );
 		$this->assertEquals(
 			$initialWatchers + 1,
@@ -59,6 +71,18 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			'Page should be unwatched'
 		);
 		$this->assertEquals( $initialUserWatchedItems, $store->countWatchedItems( $user ) );
+		$watchedItemsForUser = $store->getWatchedItemsForUser( $user );
+		$this->assertCount( $initialUserWatchedItems, $watchedItemsForUser );
+		$watchedItemsForUserHasExpectedItem = false;
+		foreach ( $watchedItemsForUser as $watchedItem ) {
+			if (
+				$watchedItem->getUser()->equals( $user ) &&
+				$watchedItem->getLinkTarget() == $title->getTitleValue()
+			) {
+				$watchedItemsForUserHasExpectedItem = true;
+			}
+		}
+		$this->assertFalse( $watchedItemsForUserHasExpectedItem );
 		$this->assertEquals( $initialWatchers, $store->countWatchers( $title ) );
 		$this->assertEquals(
 			$initialWatchers,
