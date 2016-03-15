@@ -24664,7 +24664,7 @@ Don't block XML namespace declaration
 !! wikitext
 <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">MediaWiki</span>
 !! html/php
-<p><span>MediaWiki</span>
+<p><span xmlns:dct="http&#58;//purl.org/dc/terms/" property="dct:title">MediaWiki</span>
 </p>
 !! html/parsoid
 <p><span xmlns:dct="http://purl.org/dc/terms/" data-x-property="dct:title" data-parsoid='{"stx":"html"}'>MediaWiki</span></p>
