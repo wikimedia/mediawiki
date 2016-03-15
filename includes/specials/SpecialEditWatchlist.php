@@ -426,22 +426,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			return; // nothing to do
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
 		$user = $this->getUser();
+		$store = WatchedItemStore::getDefaultInstance();
 
 		foreach ( $this->badItems as $row ) {
 			list( $title, $namespace, $dbKey ) = $row;
 			$action = $title ? 'cleaning up' : 'deleting';
 			wfDebug( "User {$user->getName()} has broken watchlist item ns($namespace):$dbKey, $action.\n" );
 
-			$dbw->delete( 'watchlist',
-				[
-					'wl_user' => $user->getId(),
-					'wl_namespace' => $namespace,
-					'wl_title' => $dbKey,
-				],
-				__METHOD__
-			);
+			$store->removeWatch( $user, new TitleValue( $namespace, $dbKey ) );
 
 			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 			if ( $title ) {
@@ -495,7 +488,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param array $titles Array of strings, or Title objects
 	 */
 	private function unwatchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$store = WatchedItemStore::getDefaultInstance();
 
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
@@ -503,25 +496,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
-				$dbw->delete(
-					'watchlist',
-					[
-						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-						'wl_title' => $title->getDBkey(),
-					],
-					__METHOD__
-				);
-
-				$dbw->delete(
-					'watchlist',
-					[
-						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-						'wl_title' => $title->getDBkey(),
-					],
-					__METHOD__
-				);
+				$store->removeWatch( $this->getUser(), $title->getSubjectPage() );
+				$store->removeWatch( $this->getUser(), $title->getTalkPage() );
 
 				$page = WikiPage::factory( $title );
 				Hooks::run( 'UnwatchArticleComplete', [ $this->getUser(), &$page ] );
