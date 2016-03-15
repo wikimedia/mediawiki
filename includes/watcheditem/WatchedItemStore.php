@@ -13,14 +13,17 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Database interaction & caching
  * TODO caching should be factored out into a CachingWatchedItemStore class
  *
- * Uses database because this uses User::isAnon
- *
- * @group Database
  *
  * @author Addshore
  * @since 1.27
  */
 class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
+
+	/**
+	 * @var int The maximum number of rows to allow to be deleted at once
+	 * @todo extract out into a config setting such as $wgInteractiveWatchlistBatchDeleteSize?
+	 */
+	const MAX_INTERACTIVE_ITEM_DELETE = 1000;
 
 	/**
 	 * @var LoadBalancer
@@ -129,6 +132,22 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		} );
 	}
 
+	/**
+	 * Overrides the cacheIndex array for the instance
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
+	 *
+	 * @param array $cacheIndex
+	 *
+	 * @throws MWException
+	 */
+	public function overrideCacheIndex( $cacheIndex ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'Cannot override WatchedItemStore::cacheIndex in operation.' );
+		}
+		Assert::parameterType( 'array', $cacheIndex, '$cacheIndex' );
+		$this->cacheIndex = $cacheIndex;
+	}
+
 	private function getCacheKey( User $user, LinkTarget $target ) {
 		return $this->cache->makeKey(
 			(string)$target->getNamespace(),
@@ -210,6 +229,44 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private function getConnectionRef( $dbIndex ) {
 		return $this->loadBalancer->getConnectionRef( $dbIndex, [ 'watchlist' ] );
+	}
+
+	/**
+	 * Deletes ALL watched items for the given user when under
+	 * MAX_INTERACTIVE_ITEM_DELETE entries exist.
+	 *
+	 * @since 1.30
+	 *
+	 * @param User $user
+	 *
+	 * @return bool true on success, false when too many items are watched
+	 */
+	public function clearUserWatchedItems( User $user ) {
+		if ( $this->countWatchedItems( $user ) > self::MAX_INTERACTIVE_ITEM_DELETE ) {
+			return false;
+		}
+
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw->delete(
+			'watchlist',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->uncacheAllItemsForUser( $user );
+
+		return true;
+	}
+
+	private function uncacheAllItemsForUser( User $user ) {
+		$userId = $user->getId();
+		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
+			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
+				if ( array_key_exists( $userId, $userIndex ) ) {
+					$this->cache->delete( $userIndex[$userId] );
+					unset( $this->cacheIndex[$ns][$dbKey][$userId] );
+				}
+			}
+		}
 	}
 
 	/**
