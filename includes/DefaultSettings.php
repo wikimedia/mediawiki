@@ -3629,13 +3629,6 @@ $wgResourceLoaderMinifierStatementsOnOwnLine = false;
 $wgResourceLoaderMinifierMaxLineLength = 1000;
 
 /**
- * Whether to ensure the mediawiki.legacy library is loaded before other modules.
- *
- * @deprecated since 1.26: Always declare dependencies.
- */
-$wgIncludeLegacyJavaScript = false;
-
-/**
  * Whether or not to assign configuration variables to the global window object.
  *
  * If this is set to false, old code using deprecated variables will no longer

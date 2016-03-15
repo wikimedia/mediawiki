@@ -16,6 +16,10 @@ production.
 * $wgForeignUploadTargets now defaults to `[ 'local' ]`, where `'local'`
   signifies local uploads. A value of `[]` (empty array) now means that
   no upload targets are allowed, effectively disabling the upload dialog.
+* $wgIncludeLegacyJavaScript, deprecated in MediaWiki 1.26 and false by default
+  since MediaWiki 1.27, is now removed. Extensions, skins, gadgets and scripts
+  that need the mediawiki.legacy.wikibits module should express a dependency on
+  it in the usual way.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

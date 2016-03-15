@@ -161,8 +161,6 @@ abstract class Skin extends ContextSource {
 			'content' => [
 				'mediawiki.page.ready',
 			],
-			// modules that exist for legacy reasons
-			'legacy' => ResourceLoaderStartUpModule::getLegacyModules(),
 			// modules relating to search functionality
 			'search' => [],
 			// modules relating to functionality relating to watching an article

@@ -1225,10 +1225,7 @@
 				registry[ module ].state = 'executing';
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript, legacyWait,
-						// Expand to include dependencies since we have to exclude both legacy modules
-						// and their dependencies from the legacyWait (to prevent a circular dependency).
-						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
+					var script, markModuleReady, nestedAddScript;
 					try {
 						script = registry[ module ].script;
 						markModuleReady = function () {
@@ -1249,39 +1246,33 @@
 							} );
 						};
 
-						legacyWait = ( $.inArray( module, legacyModules ) !== -1 )
-							? $.Deferred().resolve()
-							: mw.loader.using( legacyModules );
+						if ( $.isArray( script ) ) {
+							nestedAddScript( script, markModuleReady, 0 );
+						} else if ( $.isFunction( script ) ) {
+							// Pass jQuery twice so that the signature of the closure which wraps
+							// the script can bind both '$' and 'jQuery'.
+							script( $, $, mw.loader.require, registry[ module ].module );
+							markModuleReady();
 
-						legacyWait.always( function () {
-							if ( $.isArray( script ) ) {
-								nestedAddScript( script, markModuleReady, 0 );
-							} else if ( $.isFunction( script ) ) {
-								// Pass jQuery twice so that the signature of the closure which wraps
-								// the script can bind both '$' and 'jQuery'.
-								script( $, $, mw.loader.require, registry[ module ].module );
-								markModuleReady();
-
-							} else if ( typeof script === 'string' ) {
-								// Site and user modules are legacy scripts that run in the global scope.
-								// This is transported as a string instead of a function to avoid needing
-								// to use string manipulation to undo the function wrapper.
-								if ( module === 'user' ) {
-									// Implicit dependency on the site module. Not real dependency because
-									// it should run after 'site' regardless of whether it succeeds or fails.
-									mw.loader.using( 'site' ).always( function () {
-										$.globalEval( script );
-										markModuleReady();
-									} );
-								} else {
+						} else if ( typeof script === 'string' ) {
+							// Site and user modules are legacy scripts that run in the global scope.
+							// This is transported as a string instead of a function to avoid needing
+							// to use string manipulation to undo the function wrapper.
+							if ( module === 'user' ) {
+								// Implicit dependency on the site module. Not real dependency because
+								// it should run after 'site' regardless of whether it succeeds or fails.
+								mw.loader.using( 'site' ).always( function () {
 									$.globalEval( script );
 									markModuleReady();
-								}
+								} );
 							} else {
-								// Module without script
+								$.globalEval( script );
 								markModuleReady();
 							}
-						} );
+						} else {
+							// Module without script
+							markModuleReady();
+						}
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode
 						// and not in debug mode, such as when a symbol that should be global isn't exported
