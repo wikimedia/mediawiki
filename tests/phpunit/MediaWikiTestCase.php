@@ -764,6 +764,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return;
 		}
 
+		self::$dbSetup = true;
+
 		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
 			return;
 		}
@@ -773,8 +775,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $db->getType() == 'oracle' ) {
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
-
-		self::$dbSetup = true;
 	}
 
 	/**
