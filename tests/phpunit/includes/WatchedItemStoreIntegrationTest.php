@@ -86,6 +86,12 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->countVisitingWatchers( $title, '20150202020202' )
 		);
 		$this->assertEquals(
+			$initialVisitingWatchers - 1,
+			$store->countVisitingWatchersMultiple(
+				[ [ $title, '20150202020202' ] ], []
+			)[$title->getNamespace()][$title->getDBkey()]
+		);
+		$this->assertEquals(
 			$initialUnreadNotifications + 1,
 			$store->countUnreadNotifications( $user )
 		);
@@ -99,6 +105,24 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$initialVisitingWatchers,
 			$store->countVisitingWatchers( $title, '20150202020202' )
+		);
+		$this->assertEquals(
+			$initialVisitingWatchers,
+			$store->countVisitingWatchersMultiple(
+				[ [ $title, '20150202020202' ] ], []
+			)[$title->getNamespace()][$title->getDBkey()]
+		);
+		$this->assertEquals(
+			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => $initialVisitingWatchers ] ],
+			$store->countVisitingWatchersMultiple(
+				[ [ $title, '20150202020202' ] ], [], $initialVisitingWatchers
+			)
+		);
+		$this->assertEquals(
+			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => 0 ] ],
+			$store->countVisitingWatchersMultiple(
+				[ [ $title, '20150202020202' ] ], [], $initialVisitingWatchers + 1
+			)
 		);
 	}
 
