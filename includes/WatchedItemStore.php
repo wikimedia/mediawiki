@@ -101,11 +101,14 @@ class WatchedItemStore {
 	 * Overrides the default instance of this class
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
-	 * @param WatchedItemStore $store
+	 * If this method is used it MUST also be called with null after a test to ensure a new
+	 * default instance is created next time getDefaultInstance is called.
+	 *
+	 * @param WatchedItemStore|null $store
 	 *
 	 * @throws MWException
 	 */
-	public static function overrideDefaultInstance( WatchedItemStore $store ) {
+	public static function overrideDefaultInstance( WatchedItemStore $store = null ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException(
 				'Cannot override ' . __CLASS__ . 'default instance in operation.'

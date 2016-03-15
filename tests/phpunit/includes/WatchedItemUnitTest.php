@@ -7,6 +7,12 @@
  */
 class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 
+	public function tearDown() {
+		parent::tearDown();
+		// Reset the WatchedItemStore default instance if we overrode it
+		WatchedItemStore::overrideDefaultInstance();
+	}
+
 	public function provideUserTitleTimestamp() {
 		return [
 			[ User::newFromId( 111 ), Title::newFromText( 'SomeTitle' ), null ],
