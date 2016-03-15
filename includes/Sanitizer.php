@@ -1060,18 +1060,24 @@ class Sanitizer {
 	 * - Double attributes are discarded
 	 * - Unsafe style attributes are discarded
 	 * - Prepends space if there are attributes.
+	 * - (Optionally) Sorts attributes by name.
 	 *
 	 * @param string $text
 	 * @param string $element
+	 * @param bool $sorted Whether to sort the attributes (default: false)
 	 * @return string
 	 */
-	static function fixTagAttributes( $text, $element ) {
+	static function fixTagAttributes( $text, $element, $sorted = false ) {
 		if ( trim( $text ) == '' ) {
 			return '';
 		}
 
 		$decoded = Sanitizer::decodeTagAttributes( $text );
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
+
+		if ( $sorted ) {
+			ksort( $stripped );
+		}
 
 		return Sanitizer::safeEncodeTagAttributes( $stripped );
 	}
