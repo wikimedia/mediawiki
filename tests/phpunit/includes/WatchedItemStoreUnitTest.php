@@ -966,7 +966,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			$callableCallCounter++;
 			$this->assertInternalType( 'callable', $callable );
 		};
-		$store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
 		$this->assertTrue(
 			$store->resetNotificationTimestamp(
@@ -975,6 +975,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 		);
 		$this->assertEquals( 1, $callableCallCounter );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testResetNotificationTimestamp_noItemForced() {
@@ -1002,7 +1004,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			$callableCallCounter++;
 			$this->assertInternalType( 'callable', $callable );
 		};
-		$store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
 		$this->assertTrue(
 			$store->resetNotificationTimestamp(
@@ -1012,6 +1014,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 		);
 		$this->assertEquals( 1, $callableCallCounter );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -1060,7 +1064,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 
 		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
-		$store->overrideDeferredUpdatesAddCallableUpdateCallback(
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
 			function( $callable ) use ( &$callableCallCounter ) {
 				$callableCallCounter++;
 				$this->assertInternalType( 'callable', $callable );
@@ -1076,6 +1080,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 		);
 		$this->assertEquals( 1, $callableCallCounter );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testResetNotificationTimestamp_oldidSpecifiedNotLatestRevisionForced() {
@@ -1116,7 +1122,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 
 		// Note: This does not actually assert the job is correct
 		$addUpdateCallCounter = 0;
-		$store->overrideDeferredUpdatesAddCallableUpdateCallback(
+		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
 			function( $callable ) use ( &$addUpdateCallCounter ) {
 				$addUpdateCallCounter++;
 				$this->assertInternalType( 'callable', $callable );
@@ -1124,7 +1130,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$getTimestampCallCounter = 0;
-		$store->overrideRevisionGetTimestampFromIdCallback(
+		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
 			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
 				$getTimestampCallCounter++;
 				$this->assertEquals( $title, $titleParam );
@@ -1142,6 +1148,9 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 		$this->assertEquals( 1, $addUpdateCallCounter );
 		$this->assertEquals( 1, $getTimestampCallCounter );
+
+		ScopedCallback::consume( $scopedOverrideDeferred);
+		ScopedCallback::consume( $scopedOverrideRevision );
 	}
 
 	public function testUpdateNotificationTimestamp_watchersExist() {

@@ -49,8 +49,10 @@ class WatchedItemStore {
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
 	 * @param callable $callback
+	 *
 	 * @see DeferredUpdates::addCallableUpdate for callback signiture
 	 *
+	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
 	public function overrideDeferredUpdatesAddCallableUpdateCallback( $callback ) {
@@ -60,7 +62,12 @@ class WatchedItemStore {
 			);
 		}
 		Assert::parameterType( 'callable', $callback, '$callback' );
+
+		$previousValue = $this->deferredUpdatesAddCallableUpdateCallback;
 		$this->deferredUpdatesAddCallableUpdateCallback = $callback;
+		return new ScopedCallback( function() use ( $previousValue ) {
+			$this->deferredUpdatesAddCallableUpdateCallback = $previousValue;
+		} );
 	}
 
 	/**
@@ -70,6 +77,7 @@ class WatchedItemStore {
 	 * @param callable $callback
 	 * @see Revision::getTimestampFromId for callback signiture
 	 *
+	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
 	public function overrideRevisionGetTimestampFromIdCallback( $callback ) {
@@ -79,24 +87,39 @@ class WatchedItemStore {
 			);
 		}
 		Assert::parameterType( 'callable', $callback, '$callback' );
+
+		$previousValue = $this->revisionGetTimestampFromIdCallback;
 		$this->revisionGetTimestampFromIdCallback = $callback;
+		return new ScopedCallback( function() use ( $previousValue ) {
+			$this->revisionGetTimestampFromIdCallback = $previousValue;
+		} );
 	}
 
 	/**
 	 * Overrides the default instance of this class
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
-	 * @param WatchedItemStore $store
+	 * If this method is used it MUST also be called with null after a test to ensure a new
+	 * default instance is created next time getDefaultInstance is called.
 	 *
+	 * @param WatchedItemStore|null $store
+	 *
+	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
-	public static function overrideDefaultInstance( WatchedItemStore $store ) {
+	public static function overrideDefaultInstance( WatchedItemStore $store = null ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException(
 				'Cannot override ' . __CLASS__ . 'default instance in operation.'
 			);
 		}
 		self::$instance = $store;
+
+		$previousValue = self::$instance;
+		self::$instance = $store;
+		return new ScopedCallback( function() use ( $previousValue ) {
+			self::$instance = $previousValue;
+		} );
 	}
 
 	/**
