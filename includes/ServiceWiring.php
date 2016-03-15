@@ -158,7 +158,8 @@ return [
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 		return $store;
