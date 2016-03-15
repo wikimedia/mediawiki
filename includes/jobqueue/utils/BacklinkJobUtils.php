@@ -137,6 +137,10 @@ class BacklinkJobUtils {
 						'batchSize' => $realBSize,
 						'subranges' => array_slice( $ranges, 1 )
 					],
+					// Track how many times the base job divided for debugging
+					'division'      => isset( $params['division'] )
+						? ( $params['division'] + 1 )
+						: 1
 				] + $extraParams
 			);
 		}
