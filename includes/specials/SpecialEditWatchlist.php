@@ -244,17 +244,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
-			$this->clearWatchlist();
-			$this->getUser()->invalidateCache();
 
-			if ( count( $current ) > 0 ) {
-				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
-			} else {
+			if ( count( $current ) === 0 ) {
 				return false;
 			}
 
-			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
-				->numParams( count( $current ) )->parse();
+			$this->clearUserWatchedItems( $current, 'raw' );
 			$this->showTitles( $current, $this->successMessage );
 		}
 
@@ -263,14 +258,26 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	public function submitClear( $data ) {
 		$current = $this->getWatchlist();
-		$this->clearWatchlist();
-		$this->getUser()->invalidateCache();
-		$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
-		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
-			->numParams( count( $current ) )->parse();
+		$this->clearUserWatchedItems( $current, 'clear' );
 		$this->showTitles( $current, $this->successMessage );
-
 		return true;
+	}
+
+	/**
+	 * @param array $current
+	 * @param string $messageFor 'raw' or 'clear'
+	 */
+	private function clearUserWatchedItems( $current, $messageFor ) {
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		if ( $watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+			$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
+			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
+					->numParams( count( $current ) )->parse();
+			$this->getUser()->invalidateCache();
+		} else {
+			$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+			$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
+		}
 	}
 
 	/**
@@ -446,22 +453,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				}
 			}
 		} );
-	}
-
-	/**
-	 * Remove all titles from a user's watchlist
-	 */
-	private function clearWatchlist() {
-		if ( $this->getConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
-			throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			[ 'wl_user' => $this->getUser()->getId() ],
-			__METHOD__
-		);
 	}
 
 	/**
