@@ -13,6 +13,12 @@ use Wikimedia\Assert\Assert;
 class WatchedItemStore {
 
 	/**
+	 * @var int The maximum number of rows to allow to be deleted at once
+	 * @todo extract out into a config setting such as $wgInteractiveWatchlistBatchDeleteSize?
+	 */
+	const MAX_INTERACTIVE_ITEM_DELETE = 1000;
+
+	/**
 	 * @var LoadBalancer
 	 */
 	private $loadBalancer;
@@ -95,6 +101,22 @@ class WatchedItemStore {
 		}
 		Assert::parameterType( 'callable', $callback, '$callback' );
 		$this->revisionGetTimestampFromIdCallback = $callback;
+	}
+
+	/**
+	 * Overrides the cacheIndex array for the instance
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
+	 *
+	 * @param array $cacheIndex
+	 *
+	 * @throws MWException
+	 */
+	public function overrideCacheIndex( $cacheIndex ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'Cannot override WatchedItemStore::cacheIndex in operation.' );
+		}
+		Assert::parameterType( 'array', $cacheIndex, '$cacheIndex' );
+		$this->cacheIndex = $cacheIndex;
 	}
 
 	/**
@@ -185,6 +207,42 @@ class WatchedItemStore {
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 		];
+	}
+
+	/**
+	 * Deletes ALL watched items for the given user when under 1000 entries exist.
+	 *
+	 * @param User $user
+	 *
+	 * @return bool true on success, false when too many items are watched
+	 */
+	public function clearUserWatchedItems( User $user ) {
+		if ( $this->countWatchedItems( $user ) > self::MAX_INTERACTIVE_ITEM_DELETE ) {
+			return false;
+		}
+
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw->delete(
+			'watchlist',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbw );
+		$this->uncacheAllItemsForUser( $user );
+
+		return true;
+	}
+
+	private function uncacheAllItemsForUser( User $user ) {
+		$userId = $user->getId();
+		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
+			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
+				if ( array_key_exists( $userId, $userIndex ) ) {
+					$this->cache->delete( $userIndex[$userId] );
+					unset( $this->cacheIndex[$ns][$dbKey][$userId] );
+				}
+			}
+		}
 	}
 
 	/**
