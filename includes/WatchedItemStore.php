@@ -207,12 +207,31 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param int $slaveOrMaster DB_MASTER or DB_SLAVE
+	 *
+	 * @return DatabaseBase
+	 * @throws MWException
+	 */
+	private function getConnection( $slaveOrMaster ) {
+		return $this->loadBalancer->getConnection( $slaveOrMaster, [ 'watchlist' ] );
+	}
+
+	/**
+	 * @param DatabaseBase $connection
+	 *
+	 * @throws MWException
+	 */
+	private function reuseConnection( DatabaseBase $connection ) {
+		$this->loadBalancer->reuseConnection( $connection );
+	}
+
+	/**
 	 * @param LinkTarget $target
 	 *
 	 * @return int
 	 */
 	public function countWatchers( LinkTarget $target ) {
-		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$dbr = $this->getConnection( DB_SLAVE );
 		$return = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
@@ -222,7 +241,7 @@ class WatchedItemStore {
 			],
 			__METHOD__
 		);
-		$this->loadBalancer->reuseConnection( $dbr );
+		$this->reuseConnection( $dbr );
 
 		return $return;
 	}
@@ -238,7 +257,7 @@ class WatchedItemStore {
 	 * @throws MWException
 	 */
 	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
-		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$dbr = $this->getConnection( DB_SLAVE );
 		$visitingWatchers = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
@@ -251,7 +270,7 @@ class WatchedItemStore {
 			],
 			__METHOD__
 		);
-		$this->loadBalancer->reuseConnection( $dbr );
+		$this->reuseConnection( $dbr );
 
 		return $visitingWatchers;
 	}
@@ -268,7 +287,7 @@ class WatchedItemStore {
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
 
-		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$dbr = $this->getConnection( DB_SLAVE );
 
 		if ( array_key_exists( 'minimumWatchers', $options ) ) {
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
@@ -283,7 +302,7 @@ class WatchedItemStore {
 			$dbOptions
 		);
 
-		$this->loadBalancer->reuseConnection( $dbr );
+		$this->reuseConnection( $dbr );
 
 		$watchCounts = [];
 		foreach ( $targets as $linkTarget ) {
@@ -331,14 +350,14 @@ class WatchedItemStore {
 			return false;
 		}
 
-		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$dbr = $this->getConnection( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'watchlist',
 			'wl_notificationtimestamp',
 			$this->dbCond( $user, $target ),
 			__METHOD__
 		);
-		$this->loadBalancer->reuseConnection( $dbr );
+		$this->reuseConnection( $dbr );
 
 		if ( !$row ) {
 			return false;
@@ -410,13 +429,13 @@ class WatchedItemStore {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw = $this->getConnection( DB_MASTER );
 		foreach ( array_chunk( $rows, 100 ) as $toInsert ) {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
 		}
-		$this->loadBalancer->reuseConnection( $dbw );
+		$this->reuseConnection( $dbw );
 
 		return true;
 	}
@@ -440,7 +459,7 @@ class WatchedItemStore {
 
 		$this->uncache( $user, $target );
 
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw = $this->getConnection( DB_MASTER );
 		$dbw->delete( 'watchlist',
 			[
 				'wl_user' => $user->getId(),
@@ -449,7 +468,7 @@ class WatchedItemStore {
 			], __METHOD__
 		);
 		$success = (bool)$dbw->affectedRows();
-		$this->loadBalancer->reuseConnection( $dbw );
+		$this->reuseConnection( $dbw );
 
 		return $success;
 	}
@@ -463,7 +482,7 @@ class WatchedItemStore {
 	 * @return int[] Array of user IDs the timestamp has been updated for
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw = $this->getConnection( DB_MASTER );
 		$res = $dbw->select( [ 'watchlist' ],
 			[ 'wl_user' ],
 			[
@@ -498,7 +517,7 @@ class WatchedItemStore {
 			);
 		}
 
-		$this->loadBalancer->reuseConnection( $dbw );
+		$this->reuseConnection( $dbw );
 
 		return $watchers;
 	}
@@ -615,7 +634,7 @@ class WatchedItemStore {
 			$queryOptions['LIMIT'] = $unreadLimit;
 		}
 
-		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$dbr = $this->getConnection( DB_SLAVE );
 		$rowCount = $dbr->selectRowCount(
 			'watchlist',
 			'1',
@@ -626,7 +645,7 @@ class WatchedItemStore {
 			__METHOD__,
 			$queryOptions
 		);
-		$this->loadBalancer->reuseConnection( $dbr );
+		$this->reuseConnection( $dbr );
 
 		if ( !isset( $unreadLimit ) ) {
 			return $rowCount;
@@ -671,7 +690,7 @@ class WatchedItemStore {
 	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$dbw = $this->getConnection( DB_MASTER );
 
 		$result = $dbw->select(
 			'watchlist',
@@ -710,7 +729,7 @@ class WatchedItemStore {
 			);
 		}
 
-		$this->loadBalancer->reuseConnection( $dbw );
+		$this->reuseConnection( $dbw );
 	}
 
 }
