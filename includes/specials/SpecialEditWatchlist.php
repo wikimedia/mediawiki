@@ -305,34 +305,27 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return array
 	 */
 	private function getWatchlist() {
+		wfDebugLog( 'addshore', __METHOD__ );
 		$list = [];
 
-		$index = $this->getRequest()->wasPosted() ? DB_MASTER : DB_SLAVE;
-		$dbr = wfGetDB( $index );
+		$dbType = $this->getRequest()->wasPosted() ? DB_MASTER : DB_SLAVE;
+		$watchedItems = WatchedItemStore::getDefaultInstance()
+			->getWatchedItemsForUser( $this->getUser(), [ 'db' => $dbType ] );
 
-		$res = $dbr->select(
-			'watchlist',
-			[
-				'wl_namespace', 'wl_title'
-			], [
-				'wl_user' => $this->getUser()->getId(),
-			],
-			__METHOD__
-		);
-
-		if ( $res->numRows() > 0 ) {
+		if ( count( $watchedItems ) > 0 ) {
 			/** @var Title[] $titles */
 			$titles = [];
-			foreach ( $res as $row ) {
-				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
+			foreach ( $watchedItems as $watchedItem ) {
+				$namespace = $watchedItem->getLinkTarget()->getNamespace();
+				$dbKey = $watchedItem->getLinkTarget()->getDBkey();
+				$title = Title::makeTitleSafe( $namespace, $dbKey );
 
-				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
+				if ( $this->checkTitle( $title, $namespace, $dbKey )
 					&& !$title->isTalkPage()
 				) {
 					$titles[] = $title;
 				}
 			}
-			$res->free();
 
 			GenderCache::singleton()->doTitlesArray( $titles );
 
