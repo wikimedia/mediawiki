@@ -92,6 +92,35 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( $instance, WatchedItemStore::getDefaultInstance() );
 	}
 
+	public function testCountWatchedItems() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_user' => $user->getId(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 12 ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals( 12, $store->countWatchedItems( $user ) );
+	}
+
 	public function testCountWatchers() {
 		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 
