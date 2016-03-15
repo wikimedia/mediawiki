@@ -87,6 +87,25 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Verify that all specified messages actually exist.
+	 */
+	public function testMissingMessages() {
+		$data = self::getAllModules();
+		$validDeps = array_keys( $data['modules'] );
+		$lang = Language::factory( 'en' );
+
+		/** @var ResourceLoaderModule $module */
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			foreach ( $module->getMessages() as $msgKey ) {
+				$this->assertTrue(
+					wfMessage( $msgKey )->useDatabase( false )->inLanguage( $lang )->exists(),
+					"Message '$msgKey' required by '$moduleName' must exist"
+				);
+			}
+		}
+	}
+
+	/**
 	 * Verify that all dependencies of all modules are always satisfiable with the 'targets' defined
 	 * for the involved modules.
 	 *
