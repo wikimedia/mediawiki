@@ -51,13 +51,15 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'loadWatchedItem' )
 			->with( $user, $linkTarget )
 			->will( $this->returnValue( new WatchedItem( $user, $linkTarget, $timestamp ) ) );
-		WatchedItemStore::overrideDefaultInstance( $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		$item = WatchedItem::fromUserTitle( $user, $linkTarget, User::IGNORE_USER_RIGHTS );
 
 		$this->assertEquals( $user, $item->getUser() );
 		$this->assertEquals( $linkTarget, $item->getLinkTarget() );
 		$this->assertEquals( $timestamp, $item->getNotificationTimestamp() );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -83,10 +85,12 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 					return true;
 				}
 			) );
-		WatchedItemStore::overrideDefaultInstance( $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		$item = new WatchedItem( $user, $linkTarget, $timestamp );
 		$item->resetNotificationTimestamp( $force, $oldid );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testAddWatch() {
@@ -153,9 +157,11 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 		$store->expects( $this->once() )
 			->method( 'duplicateAllAssociatedEntries' )
 			->with( $oldTitle, $newTitle );
-		WatchedItemStore::overrideDefaultInstance( $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		WatchedItem::duplicateEntries( $oldTitle, $newTitle );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testBatchAddWatch() {
@@ -175,9 +181,11 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 		$store->expects( $this->once() )
 			->method( 'addWatchBatch' )
 			->with( $userTargetCombinations );
-		WatchedItemStore::overrideDefaultInstance( $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		WatchedItem::batchAddWatch( $items );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 }
