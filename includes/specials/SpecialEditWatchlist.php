@@ -347,22 +347,18 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function getWatchlistInfo() {
 		$titles = [];
-		$dbr = wfGetDB( DB_SLAVE );
 
-		$res = $dbr->select(
-			[ 'watchlist' ],
-			[ 'wl_namespace', 'wl_title' ],
-			[ 'wl_user' => $this->getUser()->getId() ],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'wl_namespace', 'wl_title' ] ]
-		);
+		$watchedItems = WatchedItemStore::getDefaultInstance()
+			->getWatchedItemsForUser( $this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ] );
 
 		$lb = new LinkBatch();
 
-		foreach ( $res as $row ) {
-			$lb->add( $row->wl_namespace, $row->wl_title );
-			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = 1;
+		foreach ( $watchedItems as $watchedItem ) {
+			$namespace = $watchedItem->getLinkTarget()->getNamespace();
+			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
+			$lb->add( $namespace, $dbKey );
+			if ( !MWNamespace::isTalk( $namespace ) ) {
+				$titles[$namespace][$dbKey] = 1;
 			}
 		}
 
