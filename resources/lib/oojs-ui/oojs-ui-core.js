@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.2
+ * OOjs UI v0.16.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-08T21:46:49Z
+ * Date: 2016-03-16T19:20:22Z
  */
 ( function ( OO ) {
 
@@ -258,6 +258,58 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 			timeout = setTimeout( later, wait );
 		}
 	};
+};
+
+/**
+ * Returns a function, that, when invoked, will only be triggered at most once
+ * during a given window of time. If called again during that window, it will
+ * wait until the window ends and then trigger itself again.
+ *
+ * As it's not knowable to the caller whether the function will actually run
+ * when the wrapper is called, return values from the function are entirely
+ * discarded.
+ *
+ * @param {Function} func
+ * @param {number} wait
+ * @return {Function}
+ */
+OO.ui.throttle = function ( func, wait ) {
+	var context, args, timeout,
+		previous = 0,
+		run = function () {
+			timeout = null;
+			previous = OO.ui.now();
+			func.apply( context, args );
+		};
+	return function () {
+		// Check how long it's been since the last time the function was
+		// called, and whether it's more or less than the requested throttle
+		// period. If it's less, run the function immediately. If it's more,
+		// set a timeout for the remaining time -- but don't replace an
+		// existing timeout, since that'd indefinitely prolong the wait.
+		var remaining = wait - ( OO.ui.now() - previous );
+		context = this;
+		args = arguments;
+		if ( remaining <= 0 ) {
+			// Note: unless wait was ridiculously large, this means we'll
+			// automatically run the first time the function was called in a
+			// given period. (If you provide a wait period larger than the
+			// current Unix timestamp, you *deserve* unexpected behavior.)
+			clearTimeout( timeout );
+			run();
+		} else if ( !timeout ) {
+			timeout = setTimeout( run, remaining );
+		}
+	};
+};
+
+/**
+ * A (possibly faster) way to get the current timestamp as an integer
+ *
+ * @return {number} Current timestamp
+ */
+OO.ui.now = Date.now || function () {
+	return new Date().getTime();
 };
 
 /**
@@ -685,7 +737,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 				infused.$element.removeData( 'ooui-infused-children' );
 				return infused;
 			}
-			if ( value.html ) {
+			if ( value.html !== undefined ) {
 				return new OO.ui.HtmlSnippet( value.html );
 			}
 		}
@@ -3054,7 +3106,7 @@ OO.ui.mixin.TitledElement = function OoUiMixinTitledElement( config ) {
 	this.title = null;
 
 	// Initialization
-	this.setTitle( config.title || this.constructor.static.title );
+	this.setTitle( config.title !== undefined ? config.title : this.constructor.static.title );
 	this.setTitledElement( config.$titled || this.$element );
 };
 
@@ -4052,6 +4104,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		ccWidth + ccOffset.left :
 		( scOffset.left + scrollLeft + scWidth ) - ccOffset.left;
 	desiredHeight = ( scOffset.top + scrollTop + scHeight ) - ccOffset.top;
+	// It should never be desirable to exceed the dimensions of the browser viewport... right?
+	desiredWidth = Math.min( desiredWidth, document.documentElement.clientWidth );
+	desiredHeight = Math.min( desiredHeight, document.documentElement.clientHeight );
 	allotedWidth = Math.ceil( desiredWidth - extraWidth );
 	allotedHeight = Math.ceil( desiredHeight - extraHeight );
 	naturalWidth = this.$clippable.prop( 'scrollWidth' );
@@ -6563,22 +6618,19 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 
 		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
 		closestScrollableOfFloatable = OO.ui.Element.static.getClosestScrollableContainer( this.$floatable[ 0 ] );
-		if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
-			// If the scrollable is the root, we have to listen to scroll events
-			// on the window because of browser inconsistencies (or do we? someone should verify this)
-			if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
-				closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
-			}
+		this.needsCustomPosition = closestScrollableOfContainer !== closestScrollableOfFloatable;
+		// If the scrollable is the root, we have to listen to scroll events
+		// on the window because of browser inconsistencies.
+		if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
+			closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
 		}
 
 		if ( positioning ) {
 			this.$floatableWindow = $( this.getElementWindow() );
 			this.$floatableWindow.on( 'resize', this.onFloatableWindowResizeHandler );
 
-			if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
-				this.$floatableClosestScrollable = $( closestScrollableOfContainer );
-				this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
-			}
+			this.$floatableClosestScrollable = $( closestScrollableOfContainer );
+			this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
 
 			// Initial position after visible
 			this.position();
@@ -6601,6 +6653,50 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 };
 
 /**
+ * Check whether the bottom edge of the given element is within the viewport of the given container.
+ *
+ * @private
+ * @param {jQuery} $element
+ * @param {jQuery} $container
+ * @return {boolean}
+ */
+OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
+	var elemRect, contRect,
+		topEdgeInBounds = false,
+		leftEdgeInBounds = false,
+		bottomEdgeInBounds = false,
+		rightEdgeInBounds = false;
+
+	elemRect = $element[ 0 ].getBoundingClientRect();
+	if ( $container[ 0 ] === window ) {
+		contRect = {
+			top: 0,
+			left: 0,
+			right: document.documentElement.clientWidth,
+			bottom: document.documentElement.clientHeight
+		};
+	} else {
+		contRect = $container[ 0 ].getBoundingClientRect();
+	}
+
+	if ( elemRect.top >= contRect.top && elemRect.top <= contRect.bottom ) {
+		topEdgeInBounds = true;
+	}
+	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
+		leftEdgeInBounds = true;
+	}
+	if ( elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom ) {
+		bottomEdgeInBounds = true;
+	}
+	if ( elemRect.right >= contRect.left && elemRect.right <= contRect.right ) {
+		rightEdgeInBounds = true;
+	}
+
+	// We only care that any part of the bottom edge is visible
+	return bottomEdgeInBounds && ( leftEdgeInBounds || rightEdgeInBounds );
+};
+
+/**
  * Position the floatable below its container.
  *
  * This should only be done when both of them are attached to the DOM and visible.
@@ -6612,6 +6708,17 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 
 	if ( !this.positioning ) {
 		return this;
+	}
+
+	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+		this.$floatable.addClass( 'oo-ui-floatableElement-hidden' );
+		return;
+	} else {
+		this.$floatable.removeClass( 'oo-ui-floatableElement-hidden' );
+	}
+
+	if ( !this.needsCustomPosition ) {
+		return;
 	}
 
 	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
@@ -6745,7 +6852,8 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	OO.ui.InputWidget.parent.call( this, config );
 
 	// Properties
-	this.$input = this.getInputElement( config );
+	// See #reusePreInfuseDOM about config.$input
+	this.$input = config.$input || this.getInputElement( config );
 	this.value = '';
 	this.inputFilter = config.inputFilter;
 
@@ -6829,9 +6937,8 @@ OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
  * @param {Object} config Configuration options
  * @return {jQuery} Input element
  */
-OO.ui.InputWidget.prototype.getInputElement = function ( config ) {
-	// See #reusePreInfuseDOM about config.$input
-	return config.$input || $( '<input>' );
+OO.ui.InputWidget.prototype.getInputElement = function () {
+	return $( '<input>' );
 };
 
 /**
@@ -7026,6 +7133,11 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( { type: 'button', useInputTag: false }, config );
 
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		config.$input.empty();
+	}
+
 	// Properties (must be set before parent constructor, which calls #setValue)
 	this.useInputTag = config.useInputTag;
 
@@ -7071,10 +7183,6 @@ OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
  */
 OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
 	var type;
-	// See InputWidget#reusePreInfuseDOM about config.$input
-	if ( config.$input ) {
-		return config.$input.empty();
-	}
 	type = [ 'button', 'submit', 'reset' ].indexOf( config.type ) !== -1 ? config.type : 'button';
 	return $( '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + type + '">' );
 };
@@ -7089,22 +7197,20 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
  * @chainable
  */
 OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
-	OO.ui.mixin.LabelElement.prototype.setLabel.call( this, label );
+	if ( typeof label === 'function' ) {
+		label = OO.ui.resolveMsg( label );
+	}
 
 	if ( this.useInputTag ) {
-		if ( typeof label === 'function' ) {
-			label = OO.ui.resolveMsg( label );
-		}
-		if ( label instanceof jQuery ) {
-			label = label.text();
-		}
-		if ( !label ) {
+		// Discard non-plaintext labels
+		if ( typeof label !== 'string' ) {
 			label = '';
 		}
+
 		this.$input.val( label );
 	}
 
-	return this;
+	return OO.ui.mixin.LabelElement.prototype.setLabel.call( this, label );
 };
 
 /**
@@ -7296,6 +7402,11 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		config.$input.addClass( 'oo-ui-element-hidden' );
+	}
+
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.dropdownWidget = new OO.ui.DropdownWidget( config.dropdown );
 
@@ -7326,11 +7437,7 @@ OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
  * @inheritdoc
  * @protected
  */
-OO.ui.DropdownInputWidget.prototype.getInputElement = function ( config ) {
-	// See InputWidget#reusePreInfuseDOM about config.$input
-	if ( config.$input ) {
-		return config.$input.addClass( 'oo-ui-element-hidden' );
-	}
+OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
 	return $( '<input>' ).attr( 'type', 'hidden' );
 };
 
@@ -7805,7 +7912,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
 	this.updateSearchIndicator();
-	if ( config.placeholder ) {
+	if ( config.placeholder !== undefined ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
 	if ( config.maxLength !== undefined ) {

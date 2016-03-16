@@ -17,6 +17,8 @@
 	"ooui-dialog-process-dismiss": "Сап",
 	"ooui-dialog-process-retry": "Хатылаан көр",
 	"ooui-dialog-process-continue": "Салгыы",
+	"ooui-selectfile-button-select": "Билэни тал",
 	"ooui-selectfile-not-supported": "Билэни талыы өйөммөт",
-	"ooui-selectfile-placeholder": "Биир да билэ талыллыбатах"
+	"ooui-selectfile-placeholder": "Биир да билэ талыллыбатах",
+	"ooui-selectfile-dragdrop-placeholder": "Билэни манна сыҕарыт"
 }
