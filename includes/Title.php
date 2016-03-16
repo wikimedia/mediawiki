@@ -1844,7 +1844,8 @@ class Title implements LinkTarget {
 	 * May provide false positives, but should never provide a false negative.
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check (since 1.19); $wgUser will be used if not provided.
+	 * @param User $user User to check (since 1.19);
+	 * RequestContext::getMain()->getUser() will be used if not provided.
 	 * @return bool
 	 */
 	public function quickUserCan( $action, $user = null ) {
@@ -1855,15 +1856,14 @@ class Title implements LinkTarget {
 	 * Can $user perform $action on this page?
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check (since 1.19); $wgUser will be used if not
-	 *   provided.
+	 * @param User $user User to check (since 1.19);
+	 * RequestContext::getMain()->getUser() will be used if not provided.
 	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @return bool
 	 */
 	public function userCan( $action, $user = null, $rigor = 'secure' ) {
 		if ( !$user instanceof User ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMain()->getUser();
 		}
 
 		return !count( $this->getUserPermissionsErrorsInternal( $action, $user, $rigor, true ) );
@@ -3559,12 +3559,11 @@ class Title implements LinkTarget {
 	 *
 	 * @deprecated since 1.25, use MovePage's methods instead
 	 * @param Title $nt The new title
-	 * @param bool $auth Whether to check user permissions (uses $wgUser)
+	 * @param bool $auth Whether to check user permissions (uses RequestContext::getMain()->getUser())
 	 * @param string $reason Is the log summary of the move, used for spam checking
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
-		global $wgUser;
 
 		if ( !( $nt instanceof Title ) ) {
 			// Normally we'd add this to $errors, but we'll get
@@ -3577,7 +3576,7 @@ class Title implements LinkTarget {
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays(
 				$errors,
-				$mp->checkPermissions( $wgUser, $reason )->getErrorsArray()
+				$mp->checkPermissions( RequestContext::getMain()->getUser(), $reason )->getErrorsArray()
 			);
 		}
 
@@ -3591,13 +3590,13 @@ class Title implements LinkTarget {
 	 * @return array List of errors
 	 */
 	protected function validateFileMoveOperation( $nt ) {
-		global $wgUser;
+		$user = RequestContext::getMain()->getUser();
 
 		$errors = [];
 
 		$destFile = wfLocalFile( $nt );
 		$destFile->load( File::READ_LATEST );
-		if ( !$wgUser->isAllowed( 'reupload-shared' )
+		if ( !$user->isAllowed( 'reupload-shared' )
 			&& !$destFile->exists() && wfFindFile( $nt )
 		) {
 			$errors[] = [ 'file-exists-sharedrepo' ];
@@ -3611,7 +3610,7 @@ class Title implements LinkTarget {
 	 *
 	 * @deprecated since 1.25, use the MovePage class instead
 	 * @param Title $nt The new title
-	 * @param bool $auth Indicates whether $wgUser's permissions
+	 * @param bool $auth Indicates whether $user's permissions
 	 *  should be checked
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
@@ -3619,20 +3618,20 @@ class Title implements LinkTarget {
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgUser;
+		$user = RequestContext::getMain()->getUser();
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
+			$user->spreadAnyEditBlock();
 			return $err;
 		}
 		// Check suppressredirect permission
-		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
+		if ( $auth && !$user->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
 		$mp = new MovePage( $this, $nt );
-		$status = $mp->move( $wgUser, $reason, $createRedirect );
+		$status = $mp->move( $user, $reason, $createRedirect );
 		if ( $status->isOK() ) {
 			return true;
 		} else {
@@ -3644,7 +3643,7 @@ class Title implements LinkTarget {
 	 * Move this page's subpages to be subpages of $nt
 	 *
 	 * @param Title $nt Move target
-	 * @param bool $auth Whether $wgUser's permissions should be checked
+	 * @param bool $auth Whether $user's permissions should be checked
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create redirects from the old subpages to
 	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
@@ -4391,11 +4390,10 @@ class Title implements LinkTarget {
 	 * @return string|null
 	 */
 	public function getNotificationTimestamp( $user = null ) {
-		global $wgUser;
 
 		// Assume current user if none given
 		if ( !$user ) {
-			$user = $wgUser;
+			$user = RequestContext::getMain()->getUser();
 		}
 		// Check cache first
 		$uid = $user->getId();
