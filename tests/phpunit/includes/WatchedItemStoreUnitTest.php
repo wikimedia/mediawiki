@@ -1217,7 +1217,9 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->with(
 				'watchlist',
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-				[ 'wl_user' => 1 ]
+				[ 'wl_user' => 1 ],
+				$this->isType( 'string' ),
+				[ 'ORDER BY' => [ 'wl_namespace', 'wl_title' ] ]
 			)
 			->will( $this->returnValue( [] ) );
 
@@ -1228,7 +1230,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
-			[ 'forWrite' => $forWrite ]
+			[ 'forWrite' => $forWrite, 'ordered' => true ]
 		);
 		$this->assertEquals( [], $watchedItems );
 	}

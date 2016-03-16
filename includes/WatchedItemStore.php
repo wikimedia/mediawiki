@@ -400,6 +400,8 @@ class WatchedItemStore {
 	 * @param User $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
+	 *        'namespaceId' => int optional namespace ID to filter by (default to all namespaces)
+	 *        'ordered' => bool optional ordering by namespace ID and title
 	 *
 	 * @return WatchedItem[]
 	 */
@@ -410,12 +412,18 @@ class WatchedItemStore {
 
 		$conds = [ 'wl_user' => $user->getId() ];
 
+		$dbOptions = [];
+		if ( array_key_exists( 'ordered', $options ) && $options['ordered'] ) {
+			$dbOptions['ORDER BY'] = [ 'wl_namespace', 'wl_title' ];
+		}
 		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+
 		$res = $db->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			$conds,
-			__METHOD__
+			__METHOD__,
+			$dbOptions
 		);
 		$this->reuseConnection( $db );
 
