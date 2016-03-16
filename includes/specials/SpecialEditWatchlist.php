@@ -432,39 +432,33 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Add a list of titles to a user's watchlist
+	 * Add a list of targets to a user's watchlist
 	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
-	 *
-	 * @param array $titles Array of strings, or Title objects
+	 * @param string[]|LinkTarget[] $targets
 	 */
-	private function watchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$rows = [];
-
-		foreach ( $titles as $title ) {
-			if ( !$title instanceof Title ) {
-				$title = Title::newFromText( $title );
+	private function watchTitles( $targets ) {
+		$expandedTargets = [];
+		foreach ( $targets as $target ) {
+			if (is_string( $target ) ) {
+				$target = Title::newFromText( $target );
+			}
+			if ( !$target instanceof LinkTarget ) {
+				continue;
 			}
 
-			if ( $title instanceof Title ) {
-				$rows[] = [
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				];
-				$rows[] = [
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				];
-			}
+			$ns = $target->getNamespace();
+			$dbKey = $target->getDBkey();
+			$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
+			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
 		}
 
-		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		$userTargetCombinations = [];
+		$user = $this->getUser();
+		foreach ( $expandedTargets as $target ) {
+			$userTargetCombinations[] = [ $user, $target ];
+		}
+
+		WatchedItemStore::getDefaultInstance()->addWatchBatch( $userTargetCombinations );
 	}
 
 	/**
