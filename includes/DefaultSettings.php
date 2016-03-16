@@ -3572,7 +3572,7 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
  *
  * @deprecated since 1.26: Always declare dependencies.
  */
-$wgIncludeLegacyJavaScript = true;
+$wgIncludeLegacyJavaScript = false;
 
 /**
  * Whether or not to assign configuration variables to the global window object.
