@@ -315,14 +315,6 @@ abstract class Job implements IJobSpecification {
 	 * @return string
 	 */
 	public function toString() {
-		$truncFunc = function ( $value ) {
-			$value = (string)$value;
-			if ( mb_strlen( $value ) > 1024 ) {
-				$value = "string(" . mb_strlen( $value ) . ")";
-			}
-			return $value;
-		};
-
 		$paramString = '';
 		if ( $this->params ) {
 			foreach ( $this->params as $key => $value ) {
@@ -332,14 +324,14 @@ abstract class Job implements IJobSpecification {
 				if ( is_array( $value ) ) {
 					$filteredValue = [];
 					foreach ( $value as $k => $v ) {
-						if ( is_scalar( $v ) ) {
-							$filteredValue[$k] = $truncFunc( $v );
+						$json = FormatJson::encode( $v );
+						if ( $json === false || mb_strlen( $json ) > 512 ) {
+							$filteredValue[$k] = gettype( $v ) . '(...)';
 						} else {
-							$filteredValue = null;
-							break;
+							$filteredValue[$k] = $v;
 						}
 					}
-					if ( $filteredValue && count( $filteredValue ) < 10 ) {
+					if ( count( $filteredValue ) <= 10 ) {
 						$value = FormatJson::encode( $filteredValue );
 					} else {
 						$value = "array(" . count( $value ) . ")";
@@ -348,7 +340,12 @@ abstract class Job implements IJobSpecification {
 					$value = "object(" . get_class( $value ) . ")";
 				}
 
-				$paramString .= "$key={$truncFunc( $value )}";
+				$flatValue = (string)$value;
+				if ( mb_strlen( $value ) > 1024 ) {
+					$flatValue = "string(" . mb_strlen( $value ) . ")";
+				}
+
+				$paramString .= "$key={$flatValue}";
 			}
 		}
 
