@@ -401,6 +401,7 @@ class WatchedItemStore {
 	 * @param array $options Allowed keys:
 	 *        'db' => int options DB_MASTER or DB_SLAVE (defaults to DB_SLAVE)
 	 *        'namespaceId' => int optional namespace ID to filter by (default to all namespaces)
+	 *        'ordered' => bool optional ordering by namespace ID and title
 	 *
 	 * @return WatchedItem[]
 	 */
@@ -414,12 +415,18 @@ class WatchedItemStore {
 			$conds['wl_namespace'] = (int)$options['namespaceId'];
 		}
 
+		$dbOptions = [];
+		if ( array_key_exists( 'ordered', $options ) && $options['ordered'] ) {
+			$dbOptions['ORDER BY'] = [ 'wl_namespace', 'wl_title' ];
+		}
+
 		$db = $this->getConnection( $options['db'] );
 		$res = $db->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			$conds,
-			__METHOD__
+			__METHOD__,
+			$dbOptions
 		);
 		$this->reuseConnection( $db );
 
