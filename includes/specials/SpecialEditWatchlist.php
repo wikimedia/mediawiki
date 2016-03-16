@@ -49,8 +49,24 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	private $badItems = [];
 
+	/**
+	 * @var TitleParser
+	 */
+	private $titleParser;
+
 	public function __construct() {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
+	}
+
+	/**
+	 * Initialize any services we'll need (unless it has already been provided via a setter).
+	 * This allows for dependency injection even though we don't control object creation.
+	 */
+	private function initServices() {
+		if ( !$this->titleParser ) {
+			$lang = $this->getContext()->getLanguage();
+			$this->titleParser = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+		}
 	}
 
 	public function doesWrites() {
@@ -63,6 +79,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param int $mode
 	 */
 	public function execute( $mode ) {
+		$this->initServices();
 		$this->setHeaders();
 
 		# Anons don't get a watchlist
@@ -432,39 +449,32 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Add a list of titles to a user's watchlist
+	 * Add a list of targets to a user's watchlist
 	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
-	 *
-	 * @param array $titles Array of strings, or Title objects
+	 * @param string[]|LinkTarget[] $targets
 	 */
-	private function watchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$rows = [];
-
-		foreach ( $titles as $title ) {
-			if ( !$title instanceof Title ) {
-				$title = Title::newFromText( $title );
+	private function watchTitles( $targets ) {
+		$expandedTargets = [];
+		foreach ( $targets as $target ) {
+			if ( !$target instanceof LinkTarget ) {
+				try {
+					$target = $this->titleParser->parseTitle( $target, NS_MAIN );
+				}
+				catch ( MalformedTitleException $e ) {
+					continue;
+				}
 			}
 
-			if ( $title instanceof Title ) {
-				$rows[] = [
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				];
-				$rows[] = [
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				];
-			}
+			$ns = $target->getNamespace();
+			$dbKey = $target->getDBkey();
+			$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
+			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
 		}
 
-		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		WatchedItemStore::getDefaultInstance()->addWatchBatchForUser(
+			$this->getUser(),
+			$expandedTargets
+		);
 	}
 
 	/**
