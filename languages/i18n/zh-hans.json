@@ -2535,7 +2535,7 @@
 	"tooltip-ca-talk": "关于内容页面的讨论",
 	"tooltip-ca-edit": "编辑本页",
 	"tooltip-ca-addsection": "开始新段落",
-	"tooltip-ca-viewsource": "本页面受到保护。\n您可以查看其源代码",
+	"tooltip-ca-viewsource": "本页面受到保护。您可以查看其源代码",
 	"tooltip-ca-history": "本页面过去的版本",
 	"tooltip-ca-protect": "保护本页",
 	"tooltip-ca-unprotect": "更改本页面的保护",
