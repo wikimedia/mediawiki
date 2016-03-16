@@ -586,6 +586,7 @@ $wgAutoloadLocalClasses = [
 	'ImportTextFiles' => __DIR__ . '/maintenance/importTextFiles.php',
 	'ImportTitleFactory' => __DIR__ . '/includes/title/ImportTitleFactory.php',
 	'IncludableSpecialPage' => __DIR__ . '/includes/specialpage/IncludableSpecialPage.php',
+	'IndexedBagOStuff' => __DIR__ . '/includes/libs/objectcache/IndexedBagOStuff.php',
 	'IndexPager' => __DIR__ . '/includes/pager/IndexPager.php',
 	'InfoAction' => __DIR__ . '/includes/actions/InfoAction.php',
 	'InitEditCount' => __DIR__ . '/maintenance/initEditCount.php',
