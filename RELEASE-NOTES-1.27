@@ -98,6 +98,9 @@ HHVM 3.1.
 * $wgEnotifUseJobQ was removed and the job queue is always used.
 * The functionality of the ApiSandbox extension has been merged into core. The
   extension should no longer be used.
+* $wgPreloadJavaScriptMwUtil was removed (deprecated in 1.26).
+  Extensions, skins, gadgets and scripts that use the mediawiki.util module must
+  express a dependency on it.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user

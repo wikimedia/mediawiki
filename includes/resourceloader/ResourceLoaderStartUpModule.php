@@ -279,14 +279,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	public static function getLegacyModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil;
+		global $wgIncludeLegacyJavaScript;
 
 		$legacyModules = [];
 		if ( $wgIncludeLegacyJavaScript ) {
 			$legacyModules[] = 'mediawiki.legacy.wikibits';
-		}
-		if ( $wgPreloadJavaScriptMwUtil ) {
-			$legacyModules[] = 'mediawiki.util';
 		}
 
 		return $legacyModules;

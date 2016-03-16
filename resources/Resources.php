@@ -1332,7 +1332,6 @@ return [
 			'mediawiki.RegExp',
 			'mediawiki.notify',
 		],
-		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.viewport' => [
