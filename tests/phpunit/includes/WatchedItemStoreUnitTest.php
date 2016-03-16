@@ -1217,7 +1217,9 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->with(
 				'watchlist',
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-				[ 'wl_user' => 1 ]
+				[ 'wl_user' => 1 ],
+				$this->isType( 'string' ),
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
 			)
 			->will( $this->returnValue( [] ) );
 
@@ -1228,9 +1230,22 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
-			[ 'forWrite' => $forWrite ]
+			[ 'forWrite' => $forWrite, 'sort' => WatchedItemStore::SORT_ASC ]
 		);
 		$this->assertEquals( [], $watchedItems );
+	}
+
+	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockCache()
+		);
+
+		$this->setExpectedException( 'InvalidArgumentException' );
+		$store->getWatchedItemsForUser(
+			$this->getMockNonAnonUserWithId( 1 ),
+			[ 'sort' => 'foo' ]
+		);
 	}
 
 	public function testIsWatchedItem_existingItem() {
