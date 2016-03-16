@@ -654,3 +654,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.16
+[submodule "extensions/UrlShortener"]
+	path = extensions/UrlShortener
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UrlShortener.git
+	branch = wmf/1.27.0-wmf.17
