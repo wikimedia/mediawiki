@@ -306,6 +306,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( $size > self::MAX_SERVE_BYTES ) {
 			throw new SpecialUploadStashTooLargeException();
 		}
+		// Cancel output buffering and gzipping if set
+		wfResetOutputBuffers();
 		self::outputFileHeaders( $contentType, $size );
 		print $content;
 
