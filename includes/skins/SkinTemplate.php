@@ -650,33 +650,42 @@ class SkinTemplate extends Skin {
 				'active' => false
 			];
 		} else {
+			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
+				? 'nav-login-createaccount'
+				: 'pt-login';
+			$is_signup = $request->getText( 'type' ) == 'signup';
+
+			$login_url = [
+				'text' => $this->msg( $loginlink )->text(),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+				'active' => $title->isSpecial( 'Userlogin' )
+					&& ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
+			];
+			$createaccount_url = [
+				'text' => $this->msg( 'pt-createaccount' )->text(),
+				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
+				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
+			];
+
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( User::groupHasPermission( '*', 'edit' ) ) {
+				// Show the text "Not logged in"
+				$personal_urls['anonuserpage'] = [
+					'text' => $this->msg( 'notloggedin' )->text()
+				];
 
-				// Because of caching, we can't link directly to the anonymous
-				// user page (for example [[User:127.0.0.1]]), talk page, and
-				// contributions pages. Instead we use the special page
-				// shortcuts (which work correctly regardless of caching). This
-				// means we can't determine whether these links are active or
-				// not, but since major skins (MonoBook, Vector) don't use this
-				// information, it's not a huge loss.
-
-				// Only show (red) link to anon user page if anon users are
-				// allowed to create that page
-				if ( User::groupHasPermission( '*', 'createpage' ) ) {
-					$personal_urls[ 'anonuserpage' ] = [
-						'text'   => $this->msg( 'anonuserpage' )->text(),
-						'href'   => self::makeSpecialUrlSubpage( 'Mypage', false ),
-						'active' => false
-					];
-				}
-
+				// Because of caching, we can't link directly to the IP talk and
+				// contributions pages. Instead we use the special page shortcuts
+				// (which work correctly regardless of caching). This means we can't
+				// determine whether these links are active or not, but since major
+				// skins (MonoBook, Vector) don't use this information, it's not a
+				// huge loss.
 				$personal_urls['anontalk'] = [
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
 					'active' => false
 				];
-
 				$personal_urls['anoncontribs'] = [
 					'text' => $this->msg( 'anoncontribs' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
@@ -684,21 +693,11 @@ class SkinTemplate extends Skin {
 				];
 			}
 
-			$is_signup = $request->getText( 'type' ) === 'signup';
-
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !( $this->useCombinedLoginLink() ) ) {
-				$personal_urls[ 'createaccount' ] = [
-					'text' => $this->msg( 'pt-createaccount' )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
-					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
-				];
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			$personal_urls['login'] = [
-				'text' => $this->msg( 'pt-login' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' ) && !$is_signup,
-			];
+			$personal_urls['login'] = $login_url;
 		}
 
 		Hooks::run( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );
