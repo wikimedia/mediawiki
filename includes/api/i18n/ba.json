@@ -2,11 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Рустам Нурыев",
-			"Азат Хәлилов"
+			"Азат Хәлилов",
+			"Sagan"
 		]
 	},
 	"apihelp-main-param-action": "Хәрәкәтте нисек үтәргә?",
 	"apihelp-main-param-format": "Мәғлүмәттәр сығарыу форматы.",
+	"apihelp-main-param-smaxage": "Cache-Control HTTP-баш һүҙҙең <code>s-maxage</code>  мәғәнәһен бирелгән секунд эсендә билдәләй",
+	"apihelp-block-description": "Ҡатнашыусыны бикләү",
+	"apihelp-block-param-user": "Һеҙ бикләргә теләгән ҡатнашыусының IP адресы йәки  IP диапозоны",
+	"apihelp-block-param-anononly": "Аноним ҡатнашыусыларҙы бикләү (йәғни IP адресынан төҙәтеүҙе тыйыу)",
+	"apihelp-block-param-nocreate": "Яңы иҫәп яҙыуҙарын булдырыуҙы тыйыу",
+	"apihelp-block-param-autoblock": "Был ҡатнашыусы ҡулланған һуңғы IP адрестарҙы һәм артабан үҙгәртеү өсөн ҡулланрға тырышҡан IP адрестарҙы бикләргә.",
 	"apihelp-feedcontributions-param-toponly": "Һуңғы өлгө булған төҙәтеүҙәрҙе генә күрһәтергә",
 	"apihelp-feedcontributions-param-showsizediff": "Өлгәоәр араһыдағы күләм айырмаһын күрһәтергә",
 	"apihelp-feedrecentchanges-param-from": "Теге ваҡыттын булған үҙгәрештәрҙе күрһәтергә",
