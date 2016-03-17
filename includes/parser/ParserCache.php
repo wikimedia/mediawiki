@@ -88,6 +88,15 @@ class ParserCache {
 	}
 
 	/**
+	 * Allow extensions to use another revision than the latest
+	 * to validate this parser cache
+	 * @return int
+	 */
+	protected function getValidRevision( $article ) {
+		return $article->getLatest();
+	}
+
+	/**
 	 * Provides an E-Tag suitable for the whole page. Note that $article
 	 * is just the main wikitext. The E-Tag has to be unique to the whole
 	 * page, even if the article itself is the same, so it uses the
@@ -157,12 +166,13 @@ class ParserCache {
 					"Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( !$useOutdated && $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+			} elseif ( !$useOutdated &&
+				$optionsKey->isDifferentRevision( $this->getValidRevision( $article ) ) ) {
 				wfIncrStats( "pcache.miss.revid" );
-				$revId = $article->getLatest();
+				$revId = $this->getValidRevision( $article );
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebugLog( "ParserCache",
-					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+					"ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n"
 				);
 				return false;
 			}
@@ -238,12 +248,13 @@ class ParserCache {
 				"ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
-		} elseif ( !$useOutdated && $value->isDifferentRevision( $article->getLatest() ) ) {
+		} elseif ( !$useOutdated &&
+			$value->isDifferentRevision( $this->getValidRevision( $article ) ) ) {
 			wfIncrStats( "pcache.miss.revid" );
-			$revId = $article->getLatest();
+			$revId = $this->getValidRevision( $article );
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebugLog( "ParserCache",
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				"ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n"
 			);
 			$value = false;
 		} elseif (
