@@ -1367,7 +1367,7 @@ class ApiMain extends ApiBase {
 			'ip' => $request->getIP(),
 			'userAgent' => $this->getUserAgent(),
 			'wiki' => wfWikiID(),
-			'timeSpentBackend' => round( $time * 1000 ),
+			'timeSpentBackend' => (int) round( $time * 1000 ),
 			'hadError' => $e !== null,
 			'errorCodes' => [],
 			'params' => [],
