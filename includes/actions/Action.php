@@ -96,6 +96,9 @@ abstract class Action {
 		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
 
 		if ( is_string( $classOrCallable ) ) {
+			if ( !class_exists( $classOrCallable ) ) {
+				return false;
+			}
 			$obj = new $classOrCallable( $page, $context );
 			return $obj;
 		}
