@@ -285,6 +285,12 @@ class ParserCache {
 			$parserOutputKey = $this->getParserOutputKey( $page,
 				$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
 
+			// Allow extensions to save any data still of use from the previous parser cache
+			Hooks::run(
+				'ParserCacheBeforeSave',
+				[ $this, $this->mMemc, $page, $popts, $parserOutputKey ]
+			);
+
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->setTimestamp( $page->getTimestamp() );
 
