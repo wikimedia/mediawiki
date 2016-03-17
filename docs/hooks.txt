@@ -376,6 +376,7 @@ $user: Current user
 'APIEditBeforeSave': Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
+Unlike for example 'EditFilterMergedContent' this also being run on undo.
 $editPage: the EditPage object
 $text: the new text of the article (has yet to be saved)
 &$resultArr: data in this array will be added to the API result
