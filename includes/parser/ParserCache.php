@@ -37,7 +37,7 @@ class ParserCache {
 		static $instance;
 		if ( !isset( $instance ) ) {
 			global $parserMemc;
-			$instance = new ParserCache( $parserMemc );
+			$instance = new static( $parserMemc );
 		}
 		return $instance;
 	}
@@ -85,6 +85,19 @@ class ParserCache {
 	 */
 	public function deleteOptionsKey( $page ) {
 		$this->mMemc->delete( $this->getOptionsKey( $page ) );
+	}
+
+	/**
+	 * Allow extensions to use another revision than the latest to validate this parser cache
+	 *
+	 * Overriding subclasses should also override getOptionsKey() and getParserOutputKey()
+	 *
+	 * @param WikiPage $page
+	 * @return int
+	 * @since 1.29
+	 */
+	protected function getValidRevision( $page ) {
+		return $page->getLatest();
 	}
 
 	/**
@@ -157,12 +170,13 @@ class ParserCache {
 					"Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( !$useOutdated && $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+			} elseif ( !$useOutdated &&
+				$optionsKey->isDifferentRevision( $this->getValidRevision( $article ) ) ) {
 				wfIncrStats( "pcache.miss.revid" );
-				$revId = $article->getLatest();
+				$revId = $this->getValidRevision( $article );
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebugLog( "ParserCache",
-					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+					"ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n"
 				);
 				return false;
 			}
@@ -238,12 +252,13 @@ class ParserCache {
 				"ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
-		} elseif ( !$useOutdated && $value->isDifferentRevision( $article->getLatest() ) ) {
+		} elseif ( !$useOutdated &&
+			$value->isDifferentRevision( $this->getValidRevision( $article ) ) ) {
 			wfIncrStats( "pcache.miss.revid" );
-			$revId = $article->getLatest();
+			$revId = $this->getValidRevision( $article );
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebugLog( "ParserCache",
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				"ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n"
 			);
 			$value = false;
 		} elseif (
