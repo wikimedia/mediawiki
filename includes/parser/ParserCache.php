@@ -190,10 +190,11 @@ class ParserCache {
 	 * @param WikiPage|Article $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
+	 * @param string &$parserOutputKey Allows to get the key at the same time
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( $article, $popts, $useOutdated = false ) {
+	public function get( $article, $popts, $useOutdated = false, &$parserOutputKey ) {
 		global $wgCacheEpoch;
 
 		$canCache = $article->checkTouched();
