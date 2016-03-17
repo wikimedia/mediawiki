@@ -10,6 +10,8 @@
 // through this entry point or not.
 define( 'MW_PHPUNIT_TEST', true );
 
+$wgPhpUnitClass = 'PHPUnit_TextUI_Command';
+
 // Start up MediaWiki in command-line mode
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
@@ -29,6 +31,12 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
+		$this->addOption(
+			'with-phpunitclass',
+			'Class name of the PHPUnit entry point to use',
+			false,
+			true
+		);
 		$this->addOption(
 			'debug-tests',
 			'Log testing activity to the PHPUnitCommand log channel.',
@@ -151,6 +159,18 @@ class PHPUnitMaintClass extends Maintenance {
 				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
+		if ( $this->hasOption( 'with-phpunitclass' ) ) {
+			global $wgPhpUnitClass;
+			$wgPhpUnitClass = $this->getOption( 'with-phpunitclass' );
+
+			# Cleanup $args array so the option and its value do not
+			# pollute PHPUnit
+			$key = array_search( '--with-phpunitclass', $_SERVER['argv'] );
+			unset( $_SERVER['argv'][$key] ); // the option
+			unset( $_SERVER['argv'][$key + 1] ); // its value
+			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
+		}
+
 		$key = array_search( '--debug-tests', $_SERVER['argv'] );
 		if ( $key !== false && array_search( '--printer', $_SERVER['argv'] ) === false ) {
 			unset( $_SERVER['argv'][$key] );
@@ -202,7 +222,7 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
+if ( !class_exists( $wgPhpUnitClass ) ) {
 	echo "PHPUnit not found. Please install it and other dev dependencies by
 running `composer install` in MediaWiki root directory.\n";
 	exit( 1 );
@@ -212,4 +232,4 @@ echo defined( 'HHVM_VERSION' ) ?
 	'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
 	'Using PHP ' . PHP_VERSION . "\n";
 
-PHPUnit_TextUI_Command::main();
+$wgPhpUnitClass::main();
