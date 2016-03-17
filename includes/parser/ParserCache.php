@@ -28,6 +28,7 @@
 class ParserCache {
 	/** @var BagOStuff */
 	private $mMemc;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -139,9 +140,8 @@ class ParserCache {
 		}
 
 		// Determine the options which affect this article
-		$casToken = null;
 		$optionsKey = $this->mMemc->get(
-			$this->getOptionsKey( $article ), $casToken, BagOStuff::READ_VERIFIED );
+			$this->getOptionsKey( $article ), BagOStuff::READ_VERIFIED );
 		if ( $optionsKey instanceof CacheTime ) {
 			if ( !$useOutdated && $optionsKey->expired( $article->getTouched() ) ) {
 				wfIncrStats( "pcache.miss.expired" );
@@ -180,10 +180,11 @@ class ParserCache {
 	 * @param WikiPage|Article $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
+	 * @param string &$parserOutputKey Allows to get the key at the same time
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( $article, $popts, $useOutdated = false ) {
+	public function get( $article, $popts, $useOutdated = false, &$parserOutputKey = null ) {
 		global $wgCacheEpoch;
 
 		$canCache = $article->checkTouched();
@@ -192,16 +193,13 @@ class ParserCache {
 			return false;
 		}
 
-		$touched = $article->getTouched();
-
 		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
 			wfIncrStats( 'pcache.miss.absent' );
 			return false;
 		}
 
-		$casToken = null;
-		$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
+		$value = $this->mMemc->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			wfIncrStats( "pcache.miss.absent" );
@@ -219,6 +217,7 @@ class ParserCache {
 			? $article->getPage()
 			: $article;
 
+		$touched = $article->getTouched();
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
@@ -257,48 +256,48 @@ class ParserCache {
 	 */
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
-		if ( $expire > 0 ) {
-			$cacheTime = $cacheTime ?: wfTimestampNow();
-			if ( !$revId ) {
-				$revision = $page->getRevision();
-				$revId = $revision ? $revision->getId() : null;
-			}
-
-			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
-			$optionsKey->updateCacheExpiry( $expire );
-
-			$optionsKey->setCacheTime( $cacheTime );
-			$parserOutput->setCacheTime( $cacheTime );
-			$optionsKey->setCacheRevisionId( $revId );
-			$parserOutput->setCacheRevisionId( $revId );
-
-			$parserOutputKey = $this->getParserOutputKey( $page,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
-
-			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->setTimestamp( $page->getTimestamp() );
-
-			$msg = "Saved in parser cache with key $parserOutputKey" .
-				" and timestamp $cacheTime" .
-				" and revision id $revId" .
-				"\n";
-
-			$parserOutput->mText .= "\n<!-- $msg -->\n";
-			wfDebug( $msg );
-
-			// Save the parser output
-			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
-
-			// ...and its pointer
-			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
-
-			Hooks::run(
-				'ParserCacheSaveComplete',
-				[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
-			);
-		} else {
+		if ( $expire <= 0 ) {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
+			return;
 		}
+		$cacheTime = $cacheTime ?: wfTimestampNow();
+		if ( !$revId ) {
+			$revision = $page->getRevision();
+			$revId = $revision ? $revision->getId() : null;
+		}
+
+		$optionsKey = new CacheTime;
+		$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
+		$optionsKey->updateCacheExpiry( $expire );
+
+		$optionsKey->setCacheTime( $cacheTime );
+		$parserOutput->setCacheTime( $cacheTime );
+		$optionsKey->setCacheRevisionId( $revId );
+		$parserOutput->setCacheRevisionId( $revId );
+
+		$parserOutputKey = $this->getParserOutputKey( $page,
+			$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
+
+		// Save the timestamp so that we don't have to load the revision row on view
+		$parserOutput->setTimestamp( $page->getTimestamp() );
+
+		$msg = "Saved in parser cache with key $parserOutputKey" .
+			" and timestamp $cacheTime" .
+			" and revision id $revId" .
+			"\n";
+
+		$parserOutput->mText .= "\n<!-- $msg -->\n";
+		wfDebug( $msg );
+
+		// Save the parser output
+		$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
+
+		// ...and its pointer
+		$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
+
+		Hooks::run(
+			'ParserCacheSaveComplete',
+			[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
+		);
 	}
 }
