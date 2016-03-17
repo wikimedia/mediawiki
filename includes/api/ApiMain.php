@@ -1401,8 +1401,8 @@ class ApiMain extends ApiBase {
 		}
 
 		wfDebugLog( 'api', $msg, 'private' );
-		// ApiRequest channel is for structured data consumers
-		wfDebugLog( 'ApiRequest', '', 'private', $logCtx );
+		// ApiAction channel is for structured data consumers
+		wfDebugLog( 'ApiAction', '', 'private', $logCtx );
 	}
 
 	/**
