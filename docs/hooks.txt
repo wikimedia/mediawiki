@@ -2391,6 +2391,14 @@ TODO: No more strip, deprecated ?
 &$parser: Parser object being used
 &$text: actual text
 
+'ParserCacheBeforeSave': Called before a ParserOutput will be committed to
+the parser cache.
+$parserCache: ParserCache object that will store the new parser output
+$parserOutputKey: Key under which the parser output will be saved
+$parserOutput: Parser output to be stored, note that this is a clone of
+the parser output that will later be provided to the ParserCacheSaveComplete
+hook and LinksUpdate
+
 'ParserCacheSaveComplete': Called after a ParserOutput has been committed to
 the parser cache.
 $parserCache: ParserCache object $parserOutput was stored in

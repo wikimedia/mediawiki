@@ -27,7 +27,8 @@
  */
 class ParserCache {
 	/** @var BagOStuff */
-	private $mMemc;
+	protected $mMemc;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -311,8 +312,17 @@ class ParserCache {
 			$parserOutput->mText .= "\n<!-- $msg -->\n";
 			wfDebug( $msg );
 
+			// Allow extensions to modify the parser output to be saved
+			// and save the removed data elsewhere, such as in a parser
+			// cache implemented by a subclass
+			$parserOutputToSave = clone $parserOutput;
+			Hooks::run(
+				'ParserCacheBeforeSave',
+				[ $this, $parserOutputKey, $parserOutputToSave ]
+			);
+
 			// Save the parser output
-			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
+			$this->mMemc->set( $parserOutputKey, $parserOutputToSave, $expire );
 
 			// ...and its pointer
 			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
