@@ -453,8 +453,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_watchers ) {
-			if ( $this->watchers[$ns][$dbkey] !== 0 || $this->showZeroWatchers ) {
+			if ( $this->watchers !== null && $this->watchers[$ns][$dbkey] !== 0 ) {
 				$pageInfo['watchers'] = $this->watchers[$ns][$dbkey];
+			} elseif ( $this->showZeroWatchers ) {
+				$pageInfo['watchers'] = 0;
 			}
 		}
 
