@@ -160,7 +160,7 @@ class ParserCache {
 				wfDebug( "Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( $this->isInvalidRevision( $optionsKey, $article, &$revId ) ) {
+			} elseif ( $this->isInvalidRevision( $optionsKey, $article, $revId ) ) {
 				wfIncrStats( "pcache.miss.revid" );
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebug( "ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n" );
@@ -235,7 +235,7 @@ class ParserCache {
 			wfDebug( "ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
-		} elseif ( $this->isInvalidRevision( $value, $article, &$revId ) ) {
+		} elseif ( $this->isInvalidRevision( $value, $article, $revId ) ) {
 			wfIncrStats( "pcache.miss.revid" );
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug(
