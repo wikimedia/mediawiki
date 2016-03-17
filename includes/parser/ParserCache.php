@@ -81,6 +81,17 @@ class ParserCache {
 	}
 
 	/**
+	 * @param CacheTime $optionsKey
+	 * @param WikiPage $article
+	 * @param int &$revId
+	 * @return bool
+	 */
+	protected function isInvalidRevision( CacheTime $optionsKey, WikiPage $article, &$revId ) {
+		$revId = $article->getLatest();
+		return $optionsKey->isDifferentRevision( $revId );
+	}
+
+	/**
 	 * Provides an E-Tag suitable for the whole page. Note that $article
 	 * is just the main wikitext. The E-Tag has to be unique to the whole
 	 * page, even if the article itself is the same, so it uses the
@@ -149,11 +160,10 @@ class ParserCache {
 				wfDebug( "Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+			} elseif ( $this->isInvalidRevision( $optionsKey, $article, &$revId ) ) {
 				wfIncrStats( "pcache.miss.revid" );
-				$revId = $article->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
-				wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+				wfDebug( "ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n" );
 				return false;
 			}
 
@@ -225,12 +235,11 @@ class ParserCache {
 			wfDebug( "ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
-		} elseif ( $value->isDifferentRevision( $article->getLatest() ) ) {
+		} elseif ( $this->isInvalidRevision( $value, $article, &$revId ) ) {
 			wfIncrStats( "pcache.miss.revid" );
-			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug(
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				"ParserOutput key is for an old revision, expected $revId, cached $cachedRevId\n"
 			);
 			$value = false;
 		} elseif (
