@@ -22,12 +22,12 @@
 				contentmodel: 'wikitext'
 			}, additionalParams );
 
-			if ( typeof content === 'string' ) {
-				// Wikitext
-				config.text = content;
-			} else {
-				// mw.Title
+			if ( mw.Title && content instanceof mw.Title ) {
+				// Parse existing page
 				config.page = content.getPrefixedDb();
+			} else {
+				// Parse wikitext from input
+				config.text = String( content );
 			}
 
 			apiPromise = this.get( config );
