@@ -52,6 +52,11 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => 0 ] ],
 			$store->countWatchersMultiple( [ $title ], [ 'minimumWatchers' => $initialWatchers + 2 ] )
 		);
+		$watchedItems = $store->getWatchedItems( $user, [ $title ] );
+		$this->assertCount( 1, $watchedItems );
+		$this->assertEquals( $user, $watchedItems[0]->getUser() );
+		$this->assertEquals( $title->getDBkey(), $watchedItems[0]->getLinkTarget()->getDBkey() );
+		$this->assertEquals( $title->getNamespace(), $watchedItems[0]->getLinkTarget()->getNamespace() );
 
 		$store->removeWatch( $user, $title );
 		$this->assertFalse(
@@ -64,6 +69,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$initialWatchers,
 			$store->countWatchersMultiple( [ $title ] )[$title->getNamespace()][$title->getDBkey()]
 		);
+		$watchedItems = $store->getWatchedItems( $user, [ $title ] );
+		$this->assertEmpty( $watchedItems );
 	}
 
 	public function testUpdateAndResetNotificationTimestamp() {

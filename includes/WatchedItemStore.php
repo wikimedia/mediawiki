@@ -491,6 +491,61 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Get items for targets
+	 *
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return WatchedItem[]
+	 */
+	public function getWatchedItems( User $user, array $targets ) {
+		if ( $user->isAnon() ) {
+			return [];
+		}
+
+		$watchedItems = [];
+		$targetsToLoad = [];
+		foreach ( $targets as $target ) {
+			$cachedItem = $this->getCached( $user, $target );
+			if ( $cachedItem ) {
+				$watchedItems[] = $cachedItem;
+			} else {
+				$targetsToLoad[] = $target;
+			}
+		}
+
+		if ( !$targetsToLoad ) {
+			return $watchedItems;
+		}
+
+		$dbr = $this->getConnection( DB_SLAVE );
+
+		$lb = new LinkBatch( $targetsToLoad );
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			[
+				$lb->constructSet( 'wl', $dbr ),
+				'wl_user' => $user->getId(),
+			],
+			__METHOD__
+		);
+		$this->reuseConnection( $dbr );
+
+		foreach ( $res as $row ) {
+			$item = new WatchedItem(
+				$user,
+				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
+				$row->wl_notificationtimestamp
+			);
+			$this->cache( $item );
+			$watchedItems[] = $item;
+		}
+
+		return $watchedItems;
+	}
+
+	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @param User $user

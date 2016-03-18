@@ -758,28 +758,17 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$this->watched = [];
 		$this->notificationtimestamps = [];
-		$db = $this->getDB();
 
-		$lb = new LinkBatch( $this->everything );
+		$items = WatchedItemStore::getDefaultInstance()->getWatchedItems( $user, $this->everything );
 
-		$this->resetQueryParams();
-		$this->addTables( [ 'watchlist' ] );
-		$this->addFields( [ 'wl_title', 'wl_namespace' ] );
-		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
-		$this->addWhere( [
-			$lb->constructSet( 'wl', $db ),
-			'wl_user' => $user->getId()
-		] );
-
-		$res = $this->select( __METHOD__ );
-
-		foreach ( $res as $row ) {
+		foreach ( $items as $item ) {
+			$target = $item->getLinkTarget();
 			if ( $this->fld_watched ) {
-				$this->watched[$row->wl_namespace][$row->wl_title] = true;
+				$this->watched[$target->getNamespace()][$target->getDBkey()] = true;
 			}
 			if ( $this->fld_notificationtimestamp ) {
-				$this->notificationtimestamps[$row->wl_namespace][$row->wl_title] =
-					$row->wl_notificationtimestamp;
+				$this->notificationtimestamps[$target->getNamespace()][$target->getDBkey()] =
+					$item->getNotificationTimestamp();
 			}
 		}
 	}
