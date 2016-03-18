@@ -41,6 +41,10 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 		$result = $this->getResult();
 
+		if ( !$this->getUser()->isLoggedIn() ) {
+			$this->dieUsage( 'You must be logged-in to have an upload stash', 'notloggedin' );
+		}
+
 		if ( !$params['filekey'] && !$params['sessionkey'] ) {
 			$this->dieUsage( 'One of filekey or sessionkey must be supplied', 'nofilekey' );
 		}
