@@ -503,6 +503,112 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = bool $isWatched,
+	 */
+	public function isWatchedBatch( User $user, array $targets ) {
+		$watchedStatus = [];
+		foreach ( $targets as $target ) {
+			$watchedStatus[$target->getNamespace()][$target->getDBkey()] = false;
+		}
+
+		if ( $user->isAnon() ) {
+			return $watchedStatus;
+		}
+
+		$targetsToLoad = [];
+		foreach ( $targets as $target ) {
+			$cachedItem = $this->getCached( $user, $target );
+			if ( $cachedItem ) {
+				$watchedStatus[$target->getNamespace()][$target->getDBkey()] = true;
+			} else {
+				$targetsToLoad[] = $target;
+			}
+		}
+
+		if ( !$targetsToLoad ) {
+			return $watchedStatus;
+		}
+
+		$dbr = $this->getConnection( DB_SLAVE );
+
+		$lb = new LinkBatch( $targetsToLoad );
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title' ],
+			[
+				$lb->constructSet( 'wl', $dbr ),
+				'wl_user' => $user->getId(),
+			],
+			__METHOD__
+		);
+		$this->reuseConnection( $dbr );
+
+		foreach ( $res as $row ) {
+			$watchedStatus[(int)$row->wl_namespace][$row->wl_title] = true;
+		}
+
+		return $watchedStatus;
+	}
+
+	/**
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
+	 *         where $timestamp is:
+	 *         - string|null value of wl_notificationtimestamp,
+	 *         - false if $target is not watched by $user.
+	 */
+	public function getNotificationTimestampsBatch( User $user, array $targets ) {
+		$timestamps = [];
+		foreach ( $targets as $target ) {
+			$timestamps[$target->getNamespace()][$target->getDBkey()] = false;
+		}
+
+		if ( $user->isAnon() ) {
+			return $timestamps;
+		}
+
+		$targetsToLoad = [];
+		foreach ( $targets as $target ) {
+			$cachedItem = $this->getCached( $user, $target );
+			if ( $cachedItem ) {
+				$timestamps[$target->getNamespace()][$target->getDBkey()] =
+					$cachedItem->getNotificationTimestamp();
+			} else {
+				$targetsToLoad[] = $target;
+			}
+		}
+
+		if ( !$targetsToLoad ) {
+			return $timestamps;
+		}
+
+		$dbr = $this->getConnection( DB_SLAVE );
+
+		$lb = new LinkBatch( $targetsToLoad );
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			[
+				$lb->constructSet( 'wl', $dbr ),
+				'wl_user' => $user->getId(),
+			],
+			__METHOD__
+		);
+		$this->reuseConnection( $dbr );
+
+		foreach ( $res as $row ) {
+			$timestamps[(int)$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
+		}
+
+		return $timestamps;
+	}
+
+	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @param User $user

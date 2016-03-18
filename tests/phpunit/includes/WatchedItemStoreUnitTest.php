@@ -1481,6 +1481,446 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testIsWatchedBatch() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_namespace' => 0, 'wl_title' => 'SomeDbKey' ] ),
+			$this->getFakeRow( [ 'wl_namespace' => 1, 'wl_title' => 'AnotherDbKey' ] ),
+		];
+
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1, 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title' ],
+				[
+					'makeWhereFrom2d return value',
+					'wl_user' => 1
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( $dbResult ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->exactly( 3 ) )
+			->method( 'get' )
+			->withConsecutive(
+				[ '0:SomeDbKey:1' ],
+				[ '0:OtherDbKey:1' ],
+				[ '1:AnotherDbKey:1' ]
+			)
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => true, 'OtherDbKey' => false, ],
+				1 => [ 'AnotherDbKey' => true, ],
+			],
+			$store->isWatchedBatch( $this->getMockNonAnonUserWithId( 1 ), $targets )
+		);
+	}
+
+	public function testIsWatchedBatch_cachedItem() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$cachedItem = new WatchedItem( $user, $targets[0], '20151212010101' );
+
+		$mockDb = $this->getMockDb();
+
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title' ],
+				[
+					'makeWhereFrom2d return value',
+					'wl_user' => 1
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( [
+				$this->getFakeRow(
+					[ 'wl_namespace' => 1, 'wl_title' => 'AnotherDbKey' ]
+				)
+			] ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->at( 1 ) )
+			->method( 'get' )
+			->with( '0:SomeDbKey:1' )
+			->will( $this->returnValue( $cachedItem ) );
+		$mockCache->expects( $this->at( 3 ) )
+			->method( 'get' )
+			->with( '0:OtherDbKey:1' )
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->at( 5 ) )
+			->method( 'get' )
+			->with( '1:AnotherDbKey:1' )
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => true, 'OtherDbKey' => false, ],
+				1 => [ 'AnotherDbKey' => true, ],
+			],
+			$store->isWatchedBatch( $user, $targets )
+		);
+	}
+
+	public function testIsWatchedBatch_allItemsCached() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$cachedItems = [
+			new WatchedItem( $user, $targets[0], '20151212010101' ),
+			new WatchedItem( $user, $targets[1], null ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->never() )->method( $this->anything() );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->at( 1 ) )
+			->method( 'get' )
+			->with( '0:SomeDbKey:1' )
+			->will( $this->returnValue( $cachedItems[0] ) );
+
+		$mockCache->expects( $this->at( 3 ) )
+			->method( 'get' )
+			->with( '1:AnotherDbKey:1' )
+			->will( $this->returnValue( $cachedItems[1] ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => true, ],
+				1 => [ 'AnotherDbKey' => true, ],
+			],
+			$store->isWatchedBatch( $user, $targets )
+		);
+	}
+
+	public function testIsWatchedBatch_anonymousUser() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->never() )->method( $this->anything() );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( $this->anything() );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => false, 'OtherDbKey' => false, ],
+			],
+			$store->isWatchedBatch(
+				$this->getAnonUser(),
+				[
+					new TitleValue( 0, 'SomeDbKey' ),
+					new TitleValue( 0, 'OtherDbKey' ),
+				]
+			)
+		);
+	}
+
+	public function testGetNotificationTimestampsBatch() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$dbResult = [
+			$this->getFakeRow( [
+				'wl_namespace' => 0,
+				'wl_title' => 'SomeDbKey',
+				'wl_notificationtimestamp' => '20151212010101',
+			] ),
+			$this->getFakeRow(
+				[
+					'wl_namespace' => 1,
+					'wl_title' => 'AnotherDbKey',
+					'wl_notificationtimestamp' => null,
+				]
+			),
+		];
+
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[
+					'makeWhereFrom2d return value',
+					'wl_user' => 1
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( $dbResult ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->withConsecutive(
+				[ '0:SomeDbKey:1' ],
+				[ '1:AnotherDbKey:1' ]
+			)
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => '20151212010101', ],
+				1 => [ 'AnotherDbKey' => null, ],
+			],
+			$store->getNotificationTimestampsBatch( $this->getMockNonAnonUserWithId( 1 ), $targets )
+		);
+	}
+
+	public function testGetNotificationTimestampsBatch_notWatchedTarget() {
+		$targets = [
+			new TitleValue( 0, 'OtherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'OtherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[
+					'makeWhereFrom2d return value',
+					'wl_user' => 1
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( $this->getFakeRow( [] ) ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->once() )
+			->method( 'get' )
+			->with( '0:OtherDbKey:1' )
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'OtherDbKey' => false, ],
+			],
+			$store->getNotificationTimestampsBatch( $this->getMockNonAnonUserWithId( 1 ), $targets )
+		);
+	}
+
+	public function testGetNotificationTimestampsBatch_cachedItem() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$cachedItem = new WatchedItem( $user, $targets[0], '20151212010101' );
+
+		$mockDb = $this->getMockDb();
+
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ 1 => [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[
+					'makeWhereFrom2d return value',
+					'wl_user' => 1
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( [
+				$this->getFakeRow(
+					[ 'wl_namespace' => 1, 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
+				)
+			] ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->at( 1 ) )
+			->method( 'get' )
+			->with( '0:SomeDbKey:1' )
+			->will( $this->returnValue( $cachedItem ) );
+		$mockCache->expects( $this->at( 3 ) )
+			->method( 'get' )
+			->with( '1:AnotherDbKey:1' )
+			->will( $this->returnValue( null ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => '20151212010101', ],
+				1 => [ 'AnotherDbKey' => null, ],
+			],
+			$store->getNotificationTimestampsBatch( $user, $targets )
+		);
+	}
+
+	public function testGetNotificationTimestampsBatch_allItemsCached() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$cachedItems = [
+			new WatchedItem( $user, $targets[0], '20151212010101' ),
+			new WatchedItem( $user, $targets[1], null ),
+		];
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->never() )->method( $this->anything() );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->at( 1 ) )
+			->method( 'get' )
+			->with( '0:SomeDbKey:1' )
+			->will( $this->returnValue( $cachedItems[0] ) );
+		$mockCache->expects( $this->at( 3 ) )
+			->method( 'get' )
+			->with( '1:AnotherDbKey:1' )
+			->will( $this->returnValue( $cachedItems[1] ) );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->never() )->method( 'delete' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => '20151212010101', ],
+				1 => [ 'AnotherDbKey' => null, ],
+			],
+			$store->getNotificationTimestampsBatch( $user, $targets )
+		);
+	}
+
+	public function testGetNotificationTimestampsBatch_anonymousUser() {
+		$targets = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->never() )->method( $this->anything() );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( $this->anything() );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$this->assertEquals(
+			[
+				0 => [ 'SomeDbKey' => false, ],
+				1 => [ 'AnotherDbKey' => false, ],
+			],
+			$store->getNotificationTimestampsBatch( $this->getAnonUser(), $targets )
+		);
+	}
+
 	public function testResetNotificationTimestamp_anonymousUser() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
