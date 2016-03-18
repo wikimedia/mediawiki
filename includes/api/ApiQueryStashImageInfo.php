@@ -32,6 +32,10 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function execute() {
+		if ( !$this->getUser()->isLoggedIn() ) {
+			$this->dieUsage( 'You must be logged-in to have an upload stash', 'notloggedin' );
+		}
+
 		$params = $this->extractRequestParams();
 		$modulePrefix = $this->getModulePrefix();
 
