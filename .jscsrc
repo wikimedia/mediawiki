@@ -4,7 +4,6 @@
 
 	"requireVarDeclFirst": null,
 
-	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireDotNotation": { "allExcept": [ "keywords" ] },
 	"jsDoc": {
 		"checkAnnotations": {
