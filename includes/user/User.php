@@ -3986,9 +3986,14 @@ class User implements IDBAccessObject {
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
+		if ( wfReadOnly() ) {
+			return false;
+		}
+
 		if ( $this->isLoggedIn() && $this->isBlocked() ) {
 			return $this->spreadBlock();
 		}
+
 		return false;
 	}
 
