@@ -2452,8 +2452,8 @@ class Title implements LinkTarget {
 
 	/**
 	 * Can $user perform $action on this page? This is an internal function,
-	 * which checks ONLY that previously checked by userCan (i.e. it leaves out
-	 * checks on wfReadOnly() and blocks)
+	 * with multiple levels of checks depending on performance needs; see $rigor below.
+	 * It does not check wfReadOnly().
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
