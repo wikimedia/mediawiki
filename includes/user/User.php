@@ -3989,6 +3989,7 @@ class User implements IDBAccessObject {
 		if ( $this->isLoggedIn() && $this->isBlocked() ) {
 			return $this->spreadBlock();
 		}
+
 		return false;
 	}
 
