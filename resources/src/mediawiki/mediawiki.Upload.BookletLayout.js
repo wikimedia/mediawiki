@@ -242,6 +242,10 @@
 
 		this.setFilename( file.name );
 
+		if ( this.shouldRecordBucket ) {
+			this.upload.bucket = this.bucket;
+		}
+
 		this.upload.setFile( file );
 		// The original file name might contain invalid characters, so use our sanitized one
 		this.upload.setFilename( this.getFilename() );
