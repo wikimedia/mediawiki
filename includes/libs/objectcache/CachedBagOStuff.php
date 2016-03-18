@@ -21,8 +21,6 @@
  * @ingroup Cache
  */
 
-use Psr\Log\LoggerInterface;
-
 /**
  * Wrapper around a BagOStuff that caches data in memory
  *
