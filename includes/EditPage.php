@@ -530,11 +530,12 @@ class EditPage {
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			// Auto-block user's IP if the account was "hard" blocked
-			$user = $wgUser;
-			DeferredUpdates::addCallableUpdate( function() use ( $user ) {
-				$user->spreadAnyEditBlock();
-			} );
-
+			if ( !wfReadOnly() ) {
+				$user = $wgUser;
+				DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+					$user->spreadAnyEditBlock();
+				} );
+			}
 			$this->displayPermissionsError( $permErrors );
 
 			return;
@@ -1735,7 +1736,9 @@ class EditPage {
 
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
+			if ( !wfReadOnly() ) {
+				$wgUser->spreadAnyEditBlock();
+			}
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
 			return $status;
