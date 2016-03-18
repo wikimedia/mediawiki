@@ -10,6 +10,9 @@ As of 1.27, MediaWiki now requires PHP 5.5.9 or higher. This corresponds with
 HHVM 3.1.
 
 === Configuration changes in 1.27 ===
+* $wgAllowMicrodataAttributes and $wgAllowRdfaAttributes were removed,
+  now always enabled. If you use RDFa on your wiki, you now have to explicitly
+  set $wgHtml5Version to 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
 * $wgUseLinkNamespaceDBFields was removed.
 * Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in
