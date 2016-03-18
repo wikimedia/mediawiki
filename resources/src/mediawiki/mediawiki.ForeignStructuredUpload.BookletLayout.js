@@ -80,11 +80,48 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
+		var
+			query = /[?&]uploadbucket=(\d)/.exec( location.search ),
+			isTestEnabled = !!mw.config.get( 'wgForeignUploadTestEnabled' ),
+			defaultBucket = mw.config.get( 'wgForeignUploadTestDefault' ) || 1,
+			userId = mw.config.get( 'wgUserId' );
+
+		if ( query && query[ 1 ] ) {
+			// Testing and debugging
+			this.shouldRecordBucket = false;
+			this.bucket = Number( query[ 1 ] );
+		} else if ( !userId || !isTestEnabled ) {
+			// a) Anonymous user. This can actually happen, because our software sucks.
+			// b) Test is not enabled on this wiki.
+			// In either case, display the old interface and don't record bucket on uploads.
+			this.shouldRecordBucket = false;
+			this.bucket = defaultBucket;
+		} else {
+			// Regular logged in user on a wiki where the test is running
+			this.shouldRecordBucket = true;
+			this.bucket = ( userId % 2 ) + 5; // 5, 6
+		}
+
+		if ( this.bucket === 5 || this.bucket === 6 ) {
+			return this[ 'renderUploadForm' + this.bucket ]();
+		} else {
+			return this.renderUploadForm1();
+		}
+	};
+
+	/**
+	 * Test option 1
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm1 = function () {
 		var fieldset, $ownWorkMessage, $notOwnWorkMessage,
+			onUploadFormChange,
 			ownWorkMessage, notOwnWorkMessage, notOwnWorkLocal,
 			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
 			target = this.target || validTargets[ 0 ] || 'local',
 			layout = this;
+
+		// Temporary override to make my life easier during A/B test
+		target = 'shared';
 
 		// foreign-structured-upload-form-label-own-work-message-local
 		// foreign-structured-upload-form-label-own-work-message-shared
@@ -112,7 +149,13 @@
 			$( '<p>' ).append( notOwnWorkMessage.parseDom() ),
 			$( '<p>' ).append( notOwnWorkLocal.parseDom() )
 		);
-		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' ).attr( 'target', '_blank' );
+		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' )
+			.attr( 'target', '_blank' )
+			.on( 'click', function ( e ) {
+				// Some stupid code is trying to prevent default on all clicks, which causes the links to
+				// not be openable, don't let it
+				e.stopPropagation();
+			} );
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget( {
 			showDropTarget: true
@@ -142,9 +185,16 @@
 		] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				ownWork = this.ownWorkCheckbox.isSelected(),
+				valid = !!file && ownWork;
+			this.emit( 'uploadValid', valid );
+		};
+
 		// Validation
-		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
-		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+		this.ownWorkCheckbox.on( 'change', onUploadFormChange.bind( this ) );
 
 		this.selectFileWidget.on( 'change', function () {
 			var file = layout.getFile();
@@ -166,14 +216,240 @@
 	};
 
 	/**
+	 * Test option 2
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm5 = function () {
+		var fieldset, $ownWorkMessage, $notOwnWorkMessage,
+			onUploadFormChange,
+			ownWorkMessage, notOwnWorkMessage, notOwnWorkLocal,
+			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
+			target = this.target || validTargets[ 0 ] || 'local',
+			layout = this;
+
+		// Temporary override to make my life easier during A/B test
+		target = 'shared';
+
+		// foreign-structured-upload-form-label-own-work-message-local
+		// foreign-structured-upload-form-label-own-work-message-shared
+		ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-' + target );
+		// foreign-structured-upload-form-label-not-own-work-message-local
+		// foreign-structured-upload-form-label-not-own-work-message-shared
+		notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-' + target );
+		// foreign-structured-upload-form-label-not-own-work-local-local
+		// foreign-structured-upload-form-label-not-own-work-local-shared
+		notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-' + target );
+
+		if ( !ownWorkMessage.exists() ) {
+			ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-default' );
+		}
+		if ( !notOwnWorkMessage.exists() ) {
+			notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-default' );
+		}
+		if ( !notOwnWorkLocal.exists() ) {
+			notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-default' );
+		}
+
+		$ownWorkMessage = $( '<p>' ).append( ownWorkMessage.parseDom() )
+			.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' );
+		$notOwnWorkMessage = $( '<div>' ).append(
+			$( '<p>' ).append( notOwnWorkMessage.parseDom() ),
+			$( '<p>' ).append( notOwnWorkLocal.parseDom() )
+		);
+		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' )
+			.attr( 'target', '_blank' )
+			.on( 'click', function ( e ) {
+				// Some stupid code is trying to prevent default on all clicks, which causes the links to
+				// not be openable, don't let it
+				e.stopPropagation();
+			} );
+
+		this.selectFileWidget = new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
+		this.uploadTypeSelect = new OO.ui.ButtonSelectWidget( {
+			items: [
+				new OO.ui.ButtonOptionWidget( {
+					data: 'person',
+					label: mw.msg( 'foreign-structured-upload-form-5-type-option-person' ),
+					icon: 'userAvatar'
+				} ),
+				new OO.ui.ButtonOptionWidget( {
+					data: 'place',
+					label: mw.msg( 'foreign-structured-upload-form-5-type-option-place' ),
+					icon: 'image'
+				} ),
+				new OO.ui.ButtonOptionWidget( {
+					data: 'object',
+					label: mw.msg( 'foreign-structured-upload-form-5-type-option-object' ),
+					icon: 'puzzle'
+				} ),
+				new OO.ui.ButtonOptionWidget( {
+					data: 'other',
+					label: mw.msg( 'foreign-structured-upload-form-5-type-option-other' ),
+					icon: 'ellipsis'
+				} )
+			]
+		} );
+		this.uploadTypeHelpLabel = new OO.ui.LabelWidget( {
+			classes: [ 'mw-foreignStructuredUpload-bookletLayout-upload-type-help-label' ]
+		} ).toggle( false );
+		this.messageLabel = new OO.ui.LabelWidget( {
+			label: $notOwnWorkMessage
+		} );
+		this.ownWorkCheckbox = new OO.ui.CheckboxInputWidget().on( 'change', function ( on ) {
+			layout.messageLabel.toggle( !on );
+		} );
+
+		fieldset = new OO.ui.FieldsetLayout();
+		fieldset.addItems( [
+			new OO.ui.FieldLayout( this.selectFileWidget, {
+				align: 'top'
+			} ),
+			new OO.ui.FieldLayout( this.uploadTypeSelect, {
+				align: 'top',
+				label: mw.msg( 'foreign-structured-upload-form-5-type-option-heading' )
+			} ),
+			new OO.ui.FieldLayout( this.uploadTypeHelpLabel, {
+				align: 'top'
+			} ),
+			new OO.ui.FieldLayout( this.ownWorkCheckbox, {
+				align: 'inline',
+				label: $( '<div>' ).append(
+					$( '<p>' ).text( mw.msg( 'foreign-structured-upload-form-label-own-work' ) ),
+					$ownWorkMessage
+				)
+			} ),
+			new OO.ui.FieldLayout( this.messageLabel, {
+				align: 'top'
+			} )
+		] );
+		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				ownWork = this.ownWorkCheckbox.isSelected(),
+				uploadType = this.uploadTypeSelect.getSelectedItem(),
+				uploadTypeCategory,
+				valid = !!file && ownWork && uploadType !== null;
+
+			this.uploadTypeHelpLabel.toggle( uploadType !== null );
+
+			if ( uploadType !== null ) {
+				uploadTypeCategory = uploadType.data.charAt( 0 ).toUpperCase() + uploadType.data.slice( 1 ).toLowerCase();
+				this.uploadTypeHelpLabel.setLabel( mw.msg( 'foreign-structured-upload-form-5-type-option-' + uploadType.data + '-help' ) );
+				this.categoriesWidget.addItemsFromData( [ 'Category:' + uploadTypeCategory ] );
+			}
+
+			this.emit( 'uploadValid', valid );
+		};
+
+		// Validation
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+		this.ownWorkCheckbox.on( 'change', onUploadFormChange.bind( this ) );
+		this.uploadTypeSelect.on( 'choose', onUploadFormChange.bind( this ) );
+
+		this.selectFileWidget.on( 'change', function () {
+			var file = layout.getFile();
+
+			// Set the date to lastModified once we have the file
+			if ( layout.getDateFromLastModified( file ) !== undefined ) {
+				layout.dateWidget.setValue( layout.getDateFromLastModified( file ) );
+			}
+
+			// Check if we have EXIF data and set to that where available
+			layout.getDateFromExif( file ).done( function ( date ) {
+				layout.dateWidget.setValue( date );
+			} );
+
+			layout.updateFilePreview();
+		} );
+
+		return this.uploadForm;
+	};
+
+	/**
+	 * Test option 3
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm6 = function () {
+		var fieldset, fields, onUploadFormChange;
+
+		this.selectFileWidget = new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
+		this.contentDeletedLabel = new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-6-label-content-deleted' ).parseDom()
+		} );
+		this.contentReviewedLabel = new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-6-label-content-reviewed' ).parseDom()
+		} );
+		this.ownershipLabel = new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-6-label-ownership' ).parseDom()
+		} ).toggle( false );
+		this.licenseLabel = new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-6-label-license' ).parseDom()
+		} ).toggle( false );
+		this.finalWarningLabel = new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-6-label-final-warning' ).parseDom()
+		} ).toggle( false );
+		this.moreOptionsButton = new OO.ui.ButtonWidget( {
+			label: mw.msg( 'foreign-structured-upload-form-more-options-label' ),
+			href: mw.msg( 'foreign-structured-upload-form-more-options-link' ),
+			target: '_blank'
+		} );
+
+		fields = [
+			new OO.ui.FieldLayout( this.selectFileWidget, {
+				align: 'top',
+				label: mw.message( 'foreign-structured-upload-form-6-educational-content-intro' ).parseDom(),
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-selectFile' ]
+			} ),
+			new OO.ui.FieldLayout( this.ownershipLabel, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-green-notice' ]
+			} ),
+			new OO.ui.FieldLayout( this.licenseLabel, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-green-notice' ]
+			} ),
+			new OO.ui.FieldLayout( this.finalWarningLabel, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-bottom-notice' ]
+			} ),
+			new OO.ui.FieldLayout( this.contentDeletedLabel, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-bottom-notice' ]
+			} ),
+			new OO.ui.FieldLayout( this.contentReviewedLabel, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-bottom-notice' ]
+			} ),
+			new OO.ui.FieldLayout( this.moreOptionsButton, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-more-options' ]
+			}  )
+		];
+
+		fieldset = new OO.ui.FieldsetLayout( { items: fields } );
+		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				valid = !!file;
+
+			this.contentDeletedLabel.toggle( !valid );
+			this.contentReviewedLabel.toggle( !valid );
+
+			this.ownershipLabel.toggle( valid );
+			this.licenseLabel.toggle( valid );
+			this.finalWarningLabel.toggle( valid );
+
+			this.emit( 'uploadValid', valid );
+		};
+
+		// Validation
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+
+		return this.uploadForm;
+	};
+
+	/**
 	 * @inheritdoc
 	 */
-	mw.ForeignStructuredUpload.BookletLayout.prototype.onUploadFormChange = function () {
-		var file = this.selectFileWidget.getValue(),
-			ownWork = this.ownWorkCheckbox.isSelected(),
-			valid = !!file && ownWork;
-		this.emit( 'uploadValid', valid );
-	};
+	mw.ForeignStructuredUpload.BookletLayout.prototype.onUploadFormChange = function () {};
 
 	/**
 	 * @inheritdoc
@@ -355,8 +631,24 @@
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.clear = function () {
 		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.clear.call( this );
+		// TODO: Fix this
+		if ( this.ownWorkCheckbox ) {
+			this.ownWorkCheckbox.setSelected( false );
+		}
+		if ( this.licenseCheckboxes ) {
+			this.licenseCheckboxes.forEach( function ( checkbox ) {
+				checkbox.setSelected( false );
+			} );
+		}
+		if ( this.licenseSelectFields ) {
+			this.licenseSelectFields.forEach( function ( field, i ) {
+				field.fieldWidget.selectItem( null );
+				if ( i !== 0 ) {
+					field.toggle( false );
+				}
+			} );
+		}
 
-		this.ownWorkCheckbox.setSelected( false );
 		this.categoriesWidget.setItemsFromData( [] );
 		this.dateWidget.setValue( '' ).setValidityFlag( true );
 	};
