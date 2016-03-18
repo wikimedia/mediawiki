@@ -451,7 +451,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	function getCategoryLinks() {
 		global $wgUseCategoryBrowser;
@@ -542,25 +542,27 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	function getCategories() {
 		$out = $this->getOutput();
-
 		$catlinks = $this->getCategoryLinks();
-
-		$classes = 'catlinks';
 
 		// Check what we're showing
 		$allCats = $out->getCategoryLinks();
 		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
 						$this->getTitle()->getNamespace() == NS_CATEGORY;
 
+		$classes = [ 'catlinks' ];
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
-			$classes .= ' catlinks-allhidden';
+			$classes[] = 'catlinks-allhidden';
 		}
 
-		return "<div id='catlinks' class='$classes' data-mw='interface'>{$catlinks}</div>";
+		return Html::rawElement(
+			'div',
+			[ 'id' => 'catlinks', 'class' => $classes, 'data-mw' => 'interface' ],
+			$catlinks
+		);
 	}
 
 	/**
