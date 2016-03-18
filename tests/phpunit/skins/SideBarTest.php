@@ -78,7 +78,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */
 	public function testExpandMessages() {
-		$this->assertSidebar(
+		$this->assertSideBar(
 			[ 'Title' => [
 				[
 					'text' => 'Help',
@@ -102,7 +102,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'wgNoFollowDomainExceptions' => [],
 			'wgNoFollowNsExceptions' => [],
 		] );
-		$this->assertSidebar(
+		$this->assertSideBar(
 			[ 'Title' => [
 				# ** http://www.mediawiki.org/| Home
 				[

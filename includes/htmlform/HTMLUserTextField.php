@@ -51,6 +51,6 @@ class HTMLUserTextField extends HTMLTextField {
 		$this->mClass .= ' mw-autocomplete-user';
 
 		// return parent html
-		return parent::getInputHtml( $value );
+		return parent::getInputHTML( $value );
 	}
 }

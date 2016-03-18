@@ -115,7 +115,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
 		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
-		$timestamp->setTimeZone( $this->getConfig()->get( 'Localtimezone' ) );
+		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
 		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
 	}

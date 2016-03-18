@@ -37,7 +37,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
+				'wikiId' => wfWikiID(),
 				'containerPaths' => [
 					'local-public' => "{$tmpDir}/test-repo/public",
 					'local-thumb' => "{$tmpDir}/test-repo/thumb",

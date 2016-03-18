@@ -99,7 +99,7 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 		// Default behavior: Use the direct link to the file.
-		$url = $file->getURL();
+		$url = $file->getUrl();
 		$request = $this->getRequest();
 		$width = $request->getInt( 'width', -1 );
 		$height = $request->getInt( 'height', -1 );
@@ -110,7 +110,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// ... and we can
 			if ( $mto && !$mto->isError() ) {
 				// ... change the URL to point to a thumbnail.
-				$url = $mto->getURL();
+				$url = $mto->getUrl();
 			}
 		}
 

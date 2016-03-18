@@ -114,7 +114,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$dumper = new TextPassDumper( [ "--stub=file:" . $nameStub,
 			"--output=file:" . $nameFull ] );
 		$dumper->reporting = false;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );

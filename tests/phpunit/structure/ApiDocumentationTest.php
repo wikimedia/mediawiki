@@ -65,7 +65,7 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 			RequestContext::getMain()->getConfig(),
 		] ) );
 		foreach ( $globals as $k => $v ) {
-			$this->setMWGlobals( "wg$k", $v );
+			$this->setMwGlobals( "wg$k", $v );
 		}
 
 		// Fetch module.

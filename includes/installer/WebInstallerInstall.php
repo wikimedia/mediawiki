@@ -81,9 +81,9 @@ class WebInstallerInstall extends WebInstallerPage {
 		if ( $step == 'extension-tables' ) {
 			$this->endLiveBox();
 		}
-		$msg = $status->isOk() ? 'config-install-step-done' : 'config-install-step-failed';
+		$msg = $status->isOK() ? 'config-install-step-done' : 'config-install-step-failed';
 		$html = wfMessage( 'word-separator' )->escaped() . wfMessage( $msg )->escaped();
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$html = "<span class=\"error\">$html</span>";
 		}
 		$this->addHTML( $html . "</li>\n" );

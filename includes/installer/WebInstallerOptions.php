@@ -67,7 +67,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->parent->getHelpBox( 'config-license-help' ) .
 
 			# E-mail
-			$this->getFieldSetStart( 'config-email-settings' ) .
+			$this->getFieldsetStart( 'config-email-settings' ) .
 			$this->parent->getCheckBox( [
 				'var' => 'wgEnableEmail',
 				'label' => 'config-enable-email',
@@ -101,11 +101,11 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			$this->parent->getHelpBox( 'config-email-auth-help' ) .
 			"</div>" .
-			$this->getFieldSetEnd()
+			$this->getFieldsetEnd()
 		);
 
 		$skins = $this->parent->findExtensions( 'skins' );
-		$skinHtml = $this->getFieldSetStart( 'config-skins' );
+		$skinHtml = $this->getFieldsetStart( 'config-skins' );
 
 		$skinNames = array_map( 'strtolower', $skins );
 		$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );

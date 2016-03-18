@@ -104,11 +104,11 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$this->assertTrue( $lookup->isAttached( $user1 ) );
 		$this->assertFalse( $lookup->isAttached( $user2 ) );
 
-		$wiki = wfWikiId();
+		$wiki = wfWikiID();
 		$this->assertTrue( $lookup->isAttached( $user1, $wiki ) );
 		$this->assertFalse( $lookup->isAttached( $user2, $wiki ) );
 
-		$wiki = 'not-' . wfWikiId();
+		$wiki = 'not-' . wfWikiID();
 		$this->assertFalse( $lookup->isAttached( $user1, $wiki ) );
 		$this->assertFalse( $lookup->isAttached( $user2, $wiki ) );
 	}

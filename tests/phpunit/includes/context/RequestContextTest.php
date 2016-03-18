@@ -91,7 +91,7 @@ class RequestContextTest extends MediaWikiTestCase {
 			MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
 			"Correct context session ID."
 		);
-		if ( \MediaWiki\Session\PhpSessionHandler::isEnabled() ) {
+		if ( \MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
 			$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
 		} else {
 			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );

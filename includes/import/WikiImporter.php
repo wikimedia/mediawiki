@@ -604,7 +604,7 @@ class WikiImporter {
 		$normalFields = [ 'sitename', 'base', 'generator', 'case' ];
 
 		while ( $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->localName == 'siteinfo' ) {
 				break;
 			}

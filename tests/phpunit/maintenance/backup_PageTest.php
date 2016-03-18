@@ -104,7 +104,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->execute();
