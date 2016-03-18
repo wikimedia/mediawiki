@@ -601,7 +601,7 @@ if ( !$wgPasswordSender ) {
 	$wgPasswordSender = 'apache@' . $wgServerName;
 }
 if ( !$wgNoReplyAddress ) {
-	$wgNoReplyAddress = $wgNoReplyAddress;
+	$wgNoReplyAddress = $wgPasswordSender;
 }
 
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
