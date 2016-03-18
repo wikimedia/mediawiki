@@ -369,13 +369,14 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new HTMLForm( [
+		$form = HTMLForm::factory( 'ooui', [
 			'Clear' => [
 				'type' => 'hidden',
 				'default' => true,
 				'name' => 'clear',
 			]
 		], $context, 'clearStashedUploads' );
+		$form->setSubmitDestructive();
 		$form->setSubmitCallback( [ __CLASS__, 'tryClearStashedUploads' ] );
 		$form->setSubmitTextMsg( 'uploadstash-clear' );
 
