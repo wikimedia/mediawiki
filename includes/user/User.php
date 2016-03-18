@@ -200,6 +200,7 @@ class User implements IDBAccessObject {
 
 	/** Cache variables */
 	// @{
+	/** @var int */
 	public $mId;
 	/** @var string */
 	public $mName;
@@ -2052,7 +2053,8 @@ class User implements IDBAccessObject {
 			// Don't load if this was initialized from an ID
 			$this->load();
 		}
-		return $this->mId;
+
+		return (int)$this->mId;
 	}
 
 	/**
