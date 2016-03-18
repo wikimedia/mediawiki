@@ -275,7 +275,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public function execute( $subPage ) {
 		// Make sure session is persisted
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session = SessionManager::getGlobalSession();
 		$session->persist();
 
 		$this->load();
@@ -1716,7 +1716,7 @@ class LoginForm extends SpecialPage {
 			$wgCookieSecure = false;
 		}
 
-		MediaWiki\Session\SessionManager::getGlobalSession()->resetId();
+		SessionManager::getGlobalSession()->resetId();
 	}
 
 	/**
