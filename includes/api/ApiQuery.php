@@ -552,6 +552,26 @@ class ApiQuery extends ApiBase {
 		return implode( "\n", $moduleDescriptions );
 	}
 
+	public function isReadMode() {
+		// We need to make an exception for ApiQueryTokens so login tokens can
+		// be fetched on private wikis. Restrict that exception as much as
+		// possible: no other modules allowed, and no pageset parameters
+		// either. We do allow the 'rawcontinue' and 'indexpageids' parameters
+		// since frameworks might add these unconditionally and they can't
+		// expose anything here.
+		$params = array_filter(
+			array_diff_key(
+				$this->extractRequestParams() + $this->getPageSet()->extractRequestParams(),
+				[ 'rawcontinue' => 1, 'indexpageids' => 1 ]
+			)
+		);
+		if ( $params === [ 'meta' => [ 'tokens' ] ] ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	protected function getExamplesMessages() {
 		return [
 			'action=query&prop=revisions&meta=siteinfo&' .
