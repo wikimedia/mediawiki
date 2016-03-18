@@ -27,6 +27,7 @@
  * https://www.mediawiki.org/wiki/Localisation_statistics
  */
 $optionsWithArgs = [ 'output' ];
+$optionsWithoutArgs = [ 'help' ];
 
 require_once __DIR__ . '/../commandLine.inc';
 require_once 'languages.inc';
