@@ -85,7 +85,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			return;
 		}
-		$id = $userObj->getID();
+		$id = $userObj->getId();
 
 		if ( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();

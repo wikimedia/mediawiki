@@ -112,7 +112,7 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 
 		$status = $upp->checkUserPassword( $user, $password );
 		$this->assertSame( $valid, $status->isGood(), $msg . ' - password valid' );
-		$this->assertSame( $ok, $status->isOk(), $msg . ' - can login' );
+		$this->assertSame( $ok, $status->isOK(), $msg . ' - can login' );
 	}
 
 	public function provideCheckUserPassword() {

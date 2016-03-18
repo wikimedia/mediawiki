@@ -73,7 +73,7 @@ class CLIParser extends Maintenance {
 
 	public function execute() {
 		$this->initParser();
-		print $this->render( $this->WikiText() );
+		print $this->render( $this->Wikitext() );
 	}
 
 	/**

@@ -64,7 +64,7 @@ class ParserCache {
 		global $wgRequest;
 
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
-		$pageid = $article->getID();
+		$pageid = $article->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
 		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
@@ -76,7 +76,7 @@ class ParserCache {
 	 * @return mixed|string
 	 */
 	protected function getOptionsKey( $article ) {
-		$pageid = $article->getID();
+		$pageid = $article->getId();
 		return wfMemcKey( 'pcache', 'idoptions', "{$pageid}" );
 	}
 

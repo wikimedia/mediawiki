@@ -15,7 +15,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	function addDBData() {
 		$user = User::newFromName( 'UTBlockee' );
-		if ( $user->getID() == 0 ) {
+		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
 			TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 
@@ -31,7 +31,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$blockOptions = [
 			'address' => 'UTBlockee',
-			'user' => $user->getID(),
+			'user' => $user->getId(),
 			'reason' => 'Parce que',
 			'expiry' => time() + 100500,
 		];

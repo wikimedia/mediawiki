@@ -79,7 +79,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		}
 		$html[] = $this->closeList();
 
-		$this->getOutput()->addHtml( implode( "\n", $html ) );
+		$this->getOutput()->addHTML( implode( "\n", $html ) );
 	}
 
 	public function getQueryInfo() {

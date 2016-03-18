@@ -57,7 +57,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'name' => 'localtesting',
 			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
-			'wikiId' => wfWikiId() . wfRandomString(),
+			'wikiId' => wfWikiID() . wfRandomString(),
 			'backends' => [
 				[
 					'name' => 'localmultitesting1',

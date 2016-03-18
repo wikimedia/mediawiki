@@ -48,7 +48,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
-			if ( !$this->userUser->getID() ) {
+			if ( !$this->userUser->getId() ) {
 				$this->userUser = User::createNew( $this->userName, [
 					"email" => "test@example.com",
 					"real_name" => "Test User" ] );
@@ -56,7 +56,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			}
 
 			$this->altUser = User::newFromName( $this->altUserName );
-			if ( !$this->altUser->getID() ) {
+			if ( !$this->altUser->getId() ) {
 				$this->altUser = User::createNew( $this->altUserName, [
 					"email" => "alttest@example.com",
 					"real_name" => "Test User Alt" ] );

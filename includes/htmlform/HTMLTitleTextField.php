@@ -86,7 +86,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		$this->mClass .= 'mw-searchInput';
 
 		// return the HTMLTextField html
-		return parent::getInputHtml( $value );
+		return parent::getInputHTML( $value );
 	}
 
 	protected function getDataAttribs() {

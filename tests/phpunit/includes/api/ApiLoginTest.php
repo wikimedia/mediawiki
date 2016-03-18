@@ -27,7 +27,7 @@ class ApiLoginTest extends ApiTestCase {
 		global $wgServer;
 
 		$user = self::$users['sysop'];
-		$user->getUser()->logOut();
+		$user->getUser()->logout();
 
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
@@ -72,7 +72,7 @@ class ApiLoginTest extends ApiTestCase {
 		}
 
 		$user = self::$users['sysop'];
-		$user->getUser()->logOut();
+		$user->getUser()->logout();
 
 		$ret = $this->doApiRequest( [
 				"action" => "login",

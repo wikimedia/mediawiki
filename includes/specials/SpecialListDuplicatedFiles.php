@@ -96,12 +96,12 @@ class ListDuplicatedFilesPage extends QueryPage {
 		// Future version might include a list of the first 5 duplicates
 		// perhaps separated by an "↔".
 		$image1 = Title::makeTitle( $result->namespace, $result->title );
-		$dupeSearch = SpecialPage::getTitleFor( 'FileDuplicateSearch', $image1->getDBKey() );
+		$dupeSearch = SpecialPage::getTitleFor( 'FileDuplicateSearch', $image1->getDBkey() );
 
 		$msg = $this->msg( 'listduplicatedfiles-entry' )
 			->params( $image1->getText() )
 			->numParams( $result->value - 1 )
-			->params( $dupeSearch->getPrefixedDBKey() );
+			->params( $dupeSearch->getPrefixedDBkey() );
 
 		return $msg->parse();
 	}

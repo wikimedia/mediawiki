@@ -95,7 +95,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$rev = new Revision( $props );
 
-		$dbw = wfgetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$rev->insertOn( $dbw );
 
 		return $rev;

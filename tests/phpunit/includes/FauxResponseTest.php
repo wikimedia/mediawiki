@@ -69,33 +69,33 @@ class FauxResponseTest extends MediaWikiTestCase {
 	 * @covers FauxResponse::header
 	 */
 	public function testHeader() {
-		$this->assertEquals( null, $this->response->getheader( 'Location' ), 'Non-existing header' );
+		$this->assertEquals( null, $this->response->getHeader( 'Location' ), 'Non-existing header' );
 
 		$this->response->header( 'Location: http://localhost/' );
 		$this->assertEquals(
 			'http://localhost/',
-			$this->response->getheader( 'Location' ),
+			$this->response->getHeader( 'Location' ),
 			'Set header'
 		);
 
 		$this->response->header( 'Location: http://127.0.0.1/' );
 		$this->assertEquals(
 			'http://127.0.0.1/',
-			$this->response->getheader( 'Location' ),
+			$this->response->getHeader( 'Location' ),
 			'Same header'
 		);
 
 		$this->response->header( 'Location: http://127.0.0.2/', false );
 		$this->assertEquals(
 			'http://127.0.0.1/',
-			$this->response->getheader( 'Location' ),
+			$this->response->getHeader( 'Location' ),
 			'Same header with override disabled'
 		);
 
 		$this->response->header( 'Location: http://localhost/' );
 		$this->assertEquals(
 			'http://localhost/',
-			$this->response->getheader( 'LOCATION' ),
+			$this->response->getHeader( 'LOCATION' ),
 			'Get header case insensitive'
 		);
 	}

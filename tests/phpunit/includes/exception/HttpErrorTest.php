@@ -22,7 +22,7 @@ class HttpErrorTest extends MediaWikiTestCase {
 	 */
 	public function testGetHtml( array $expected, $content, $header ) {
 		$httpError = new HttpError( 500, $content, $header );
-		$errorHtml = $httpError->getHtml();
+		$errorHtml = $httpError->getHTML();
 
 		foreach ( $expected as $key => $html ) {
 			$this->assertContains( $html, $errorHtml, $key );

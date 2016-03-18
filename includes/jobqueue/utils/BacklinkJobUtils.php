@@ -116,7 +116,7 @@ class BacklinkJobUtils {
 			foreach ( array_chunk( $titles, $cSize ) as $titleBatch ) {
 				$pages = [];
 				foreach ( $titleBatch as $tl ) {
-					$pages[$tl->getArticleId()] = [ $tl->getNamespace(), $tl->getDBKey() ];
+					$pages[$tl->getArticleID()] = [ $tl->getNamespace(), $tl->getDBkey() ];
 				}
 				$jobs[] = new $class(
 					$title, // maintain parent job title

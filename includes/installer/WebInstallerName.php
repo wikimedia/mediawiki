@@ -73,7 +73,7 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => '', // @todo Needs a label?
 				'attribs' => [ 'readonly' => 'readonly', 'class' => 'enabledByOther' ]
 			] ) .
-			$this->getFieldSetStart( 'config-admin-box' ) .
+			$this->getFieldsetStart( 'config-admin-box' ) .
 			$this->parent->getTextBox( [
 				'var' => '_AdminName',
 				'label' => 'config-admin-name',
@@ -100,7 +100,7 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => 'config-subscribe',
 				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			] ) .
-			$this->getFieldSetEnd() .
+			$this->getFieldsetEnd() .
 			$this->parent->getInfoBox( wfMessage( 'config-almost-done' )->text() ) .
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:

@@ -10,7 +10,7 @@ class UserWrapper {
 		$this->password = $password;
 
 		$this->user = User::newFromName( $this->userName );
-		if ( !$this->user->getID() ) {
+		if ( !$this->user->getId() ) {
 			$this->user = User::createNew( $this->userName, [
 				"email" => "test@example.com",
 				"real_name" => "Test User" ] );
