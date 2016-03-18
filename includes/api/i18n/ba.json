@@ -9,6 +9,7 @@
 	"apihelp-main-param-action": "Хәрәкәтте нисек үтәргә?",
 	"apihelp-main-param-format": "Мәғлүмәттәр сығарыу форматы.",
 	"apihelp-main-param-smaxage": "Cache-Control HTTP-баш һүҙҙең <code>s-maxage</code>  мәғәнәһен бирелгән секунд эсендә билдәләй",
+	"apihelp-main-param-maxage": "Cache-Control HTTP-баш һүҙҙең <code>s-maxage</code>  мәғәнәһен бирелгән секунд эсендә билдәләй",
 	"apihelp-block-description": "Ҡатнашыусыны бикләү",
 	"apihelp-block-param-user": "Һеҙ бикләргә теләгән ҡатнашыусының IP адресы йәки  IP диапозоны",
 	"apihelp-block-param-anononly": "Аноним ҡатнашыусыларҙы бикләү (йәғни IP адресынан төҙәтеүҙе тыйыу)",

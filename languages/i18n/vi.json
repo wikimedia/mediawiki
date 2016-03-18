@@ -3608,7 +3608,7 @@
 	"mediastatistics-summary": "Thống kê về các kiểu tập tin đã tải lên. Bảng này chỉ liệt kê phiên bản mới nhất của các tập tin. Các phiên bản cũ hoặc các phiên bản bị xóa được bỏ qua.",
 	"mediastatistics-nbytes": "$1 byte ($2; $3%)",
 	"mediastatistics-bytespertype": "Tổng kích thước tập tin của phần này: $1 byte.",
-	"mediastatistics-allbytes": "Tổng kích thước của tất cả các file: {{PLURAL:$1|$1 byte|$1 bytes}} ($2).",
+	"mediastatistics-allbytes": "Tổng kích thước của tất cả các tập tin: $1 byte ($2).",
 	"mediastatistics-table-mimetype": "Kiểu MIME",
 	"mediastatistics-table-extensions": "Phần mở rộng có thể",
 	"mediastatistics-table-count": "Số tập tin",

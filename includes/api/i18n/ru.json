@@ -13,7 +13,8 @@
 			"INS Pirat",
 			"Macofe",
 			"Краснорядцева Елена",
-			"Iniquity"
+			"Iniquity",
+			"Лилиә"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
@@ -32,7 +33,9 @@
 	"apihelp-block-param-anononly": "Блокировать только анонимных пользователей (т. е. запретить анонимные правки для этого IP-адреса).",
 	"apihelp-block-param-nocreate": "Запретить создание учётных записей.",
 	"apihelp-block-param-autoblock": "Автоматически блокировать последний использованный IP-адрес и все последующие, с которых будут совершаться попытки авторизации.",
+	"apihelp-block-param-noemail": "Ҡулланыусының Вики аша электрон почта ебәреүен тыйыу. (Талап итә <code>blockemail</code> хоҡуғын)",
 	"apihelp-block-param-hidename": "Скрыть имя участника из журнала блокировок. (Требуется право <code>hideuser</code>).",
+	"apihelp-block-param-allowusertalk": "Ҡулланыусыларға үҙҙәренең әңгәмә биттәрен төҙәтергә рөхсәт итергә [[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>)",
 	"apihelp-block-param-reblock": "Если участник уже заблокирован, перезаписать существующую блокировку.",
 	"apihelp-block-param-watchuser": "Следить за страницей пользователя или IP-участника и страницей обсуждения.",
 	"apihelp-checktoken-param-type": "Тип маркера проходит тестирование.",
