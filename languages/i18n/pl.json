@@ -3500,7 +3500,7 @@
 	"api-error-stashfailed": "Błąd wewnętrzny – serwer nie mógł zapisać pliku tymczasowego.",
 	"api-error-publishfailed": "Błąd wewnętrzny: serwer nie mógł zapisać pliku tymczasowego.",
 	"api-error-stasherror": "Wystąpił błąd podczas przesyłania pliku.",
-	"api-error-stashedfilenotfound": "Nie odnaleziono pliku zapasowego podczas próby jego pobrania z archiwum.",
+	"api-error-stashedfilenotfound": "Nie odnaleziono pliku podczas próby pobrania go ze schowka.",
 	"api-error-stashpathinvalid": "Ścieżka do pliku zapasowego jest błędna.",
 	"api-error-stashfilestorage": "Wystąpił błąd podczas przesyłania pliku do archiwum.",
 	"api-error-stashzerolength": "Serwer nie może zapisać pliku zapasowego do archiwum, gdyż ma on zerową długość.",
