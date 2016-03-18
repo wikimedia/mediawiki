@@ -819,11 +819,7 @@ class RecentChange {
 		$ip = '',
 		$deleted = 0
 	) {
-		$isHiddenCat = false;
-		$categoryContent = WikiPage::factory( $categoryTitle )->getContent();
-		if ( $categoryContent ) {
-			$isHiddenCat = $categoryContent->matchMagicWord( MagicWord::get( 'hiddencat' ) );
-		}
+		$isHiddenCat = WikiCategoryPage::isHidden( WikiPage::factory( $categoryTitle ) );
 
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
@@ -863,6 +859,17 @@ class RecentChange {
 		];
 
 		return $rc;
+	}
+
+	/**
+	 * Get a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @return mixed
+	 */
+	public function getParam( $name ) {
+		$params = $this->parseParams();
+		return isset( $params[$name] ) ? $params[$name] : null;
 	}
 
 	/**

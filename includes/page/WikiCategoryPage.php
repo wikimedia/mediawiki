@@ -47,4 +47,20 @@ class WikiCategoryPage extends WikiPage {
 		}
 		return false;
 	}
+
+
+	/**
+	 * Checks if a category is hidden.
+	 * @param WikiCategoryPage $page
+	 * @return bool
+	 */
+	public static function isHidden( WikiPage $page ) {
+		$isHiddenCat = false;
+		$categoryContent = $page->getContent();
+		if ( $categoryContent ) {
+			$isHiddenCat = $categoryContent->matchMagicWord( MagicWord::get( 'hiddencat' ) );
+			return $isHiddenCat;
+		}
+		return $isHiddenCat;
+	}
 }

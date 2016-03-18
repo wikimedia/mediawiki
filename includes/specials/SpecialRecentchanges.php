@@ -337,7 +337,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if (
 				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
 				!$userShowHiddenCats &&
-				$rc->parseParams()['hidden-cat']
+				$rc->getParam( 'hidden-cat' )
 			) {
 				continue;
 			}
