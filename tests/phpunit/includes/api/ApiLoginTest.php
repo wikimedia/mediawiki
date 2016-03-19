@@ -153,7 +153,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotEquals( false, $serverName );
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
-		$this->assertRegexp(
+		$this->assertRegExp(
 			'/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $user->userName . '; .*Token=/',
 			$serializedCookie
 		);

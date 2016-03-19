@@ -137,7 +137,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception );
 
 		// clean up
-		$this->deleteFileByFilename( $fileName );
+		$this->deleteFileByFileName( $fileName );
 	}
 
 	/**
@@ -173,7 +173,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertTrue( $exception );
 
 		// clean up
-		$this->deleteFileByFilename( $fileName );
+		$this->deleteFileByFileName( $fileName );
 	}
 
 	/**
@@ -243,7 +243,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception );
 
 		// clean up
-		$this->deleteFileByFilename( $fileName );
+		$this->deleteFileByFileName( $fileName );
 	}
 
 	/**
@@ -322,8 +322,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception );
 
 		// clean up
-		$this->deleteFileByFilename( $fileNames[0] );
-		$this->deleteFileByFilename( $fileNames[1] );
+		$this->deleteFileByFileName( $fileNames[0] );
+		$this->deleteFileByFileName( $fileNames[1] );
 	}
 
 	/**
@@ -406,7 +406,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception, "No UsageException exception." );
 
 		// clean up
-		$this->deleteFileByFilename( $fileName );
+		$this->deleteFileByFileName( $fileName );
 	}
 
 	/**
@@ -550,6 +550,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception );
 
 		// clean up
-		$this->deleteFileByFilename( $fileName );
+		$this->deleteFileByFileName( $fileName );
 	}
 }

@@ -119,7 +119,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$fetchedStatus = $this->fetchUser( $this->mTarget );
-		if ( $fetchedStatus->isOk() ) {
+		if ( $fetchedStatus->isOK() ) {
 			$this->mFetchedUser = $fetchedStatus->value;
 			if ( $this->mFetchedUser instanceof User ) {
 				// Set the 'relevant user' in the skin, so it displays links like Contributions,
@@ -627,7 +627,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return string
 	 */
 	private static function buildGroupLink( $group ) {
-		return User::makeGroupLinkHtml( $group, User::getGroupName( $group ) );
+		return User::makeGroupLinkHTML( $group, User::getGroupName( $group ) );
 	}
 
 	/**
@@ -637,7 +637,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return string
 	 */
 	private static function buildGroupMemberLink( $group ) {
-		return User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
+		return User::makeGroupLinkHTML( $group, User::getGroupMember( $group ) );
 	}
 
 	/**

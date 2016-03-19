@@ -246,13 +246,13 @@ class MediaWiki {
 		} elseif ( !$this->tryNormaliseRedirect( $title ) ) {
 			// Prevent information leak via Special:MyPage et al (T109724)
 			if ( $title->isSpecialPage() ) {
-				$specialPage = SpecialPageFactory::getPage( $title->getDBKey() );
+				$specialPage = SpecialPageFactory::getPage( $title->getDBkey() );
 				if ( $specialPage instanceof RedirectSpecialPage ) {
 					$specialPage->setContext( $this->context );
 					if ( $this->config->get( 'HideIdentifiableRedirects' )
 						&& $specialPage->personallyIdentifiableTarget()
 					) {
-						list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBKey() );
+						list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 						$target = $specialPage->getRedirect( $subpage );
 						// target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {

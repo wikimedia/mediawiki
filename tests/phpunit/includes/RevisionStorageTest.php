@@ -145,7 +145,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testConstructFromRow() {
 		$orig = $this->makeRevision();
 
-		$dbr = wfgetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
@@ -163,7 +163,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testNewFromRow() {
 		$orig = $this->makeRevision();
 
-		$dbr = wfgetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
@@ -187,7 +187,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $page->getRevision();
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
-		$dbr = wfgetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'archive', '*', [ 'ar_rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 

@@ -272,7 +272,7 @@ class ResourceLoaderImage {
 	 */
 	protected function variantize( $variantConf, ResourceLoaderContext $context ) {
 		$dom = new DomDocument;
-		$dom->loadXml( file_get_contents( $this->getPath( $context ) ) );
+		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
 		$wrapper = $dom->createElement( 'g' );
 		while ( $root->firstChild ) {
@@ -280,7 +280,7 @@ class ResourceLoaderImage {
 		}
 		$root->appendChild( $wrapper );
 		$wrapper->setAttribute( 'fill', $variantConf['color'] );
-		return $dom->saveXml();
+		return $dom->saveXML();
 	}
 
 	/**
@@ -295,7 +295,7 @@ class ResourceLoaderImage {
 	 */
 	protected function massageSvgPathdata( $svg ) {
 		$dom = new DomDocument;
-		$dom->loadXml( $svg );
+		$dom->loadXML( $svg );
 		foreach ( $dom->getElementsByTagName( 'path' ) as $node ) {
 			$pathData = $node->getAttribute( 'd' );
 			// Make sure there is at least one space between numbers, and that leading zero is not omitted.
@@ -305,7 +305,7 @@ class ResourceLoaderImage {
 			$pathData = preg_replace( '/([ -])0(\d)/', '$1$2', $pathData );
 			$node->setAttribute( 'd', $pathData );
 		}
-		return $dom->saveXml();
+		return $dom->saveXML();
 	}
 
 	/**

@@ -131,7 +131,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			$this->markTestSkipped( "This test needs the xml extension." );
 		}
 		$handler = new BitmapMetadataHandler();
-		$result = $handler->png( $this->filePath . 'xmp.png' );
+		$result = $handler->PNG( $this->filePath . 'xmp.png' );
 		$expected = [
 			'frameCount' => 0,
 			'loopCount' => 1,
@@ -151,7 +151,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testPNGNative() {
 		$handler = new BitmapMetadataHandler();
-		$result = $handler->png( $this->filePath . 'Png-native-test.png' );
+		$result = $handler->PNG( $this->filePath . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
 		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] );
 	}

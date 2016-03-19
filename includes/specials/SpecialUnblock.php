@@ -218,7 +218,7 @@ class SpecialUnblock extends SpecialPage {
 		if ( $block->mHideName ) {
 			# Something is deeply FUBAR if this is not a User object, but who knows?
 			$id = $block->getTarget() instanceof User
-				? $block->getTarget()->getID()
+				? $block->getTarget()->getId()
 				: User::idFromName( $block->getTarget() );
 
 			RevisionDeleteUser::unsuppressUserName( $block->getTarget(), $id );
@@ -229,7 +229,7 @@ class SpecialUnblock extends SpecialPage {
 			$page = Title::makeTitle( NS_USER, '#' . $block->getId() );
 		} else {
 			$page = $block->getTarget() instanceof User
-				? $block->getTarget()->getUserpage()
+				? $block->getTarget()->getUserPage()
 				: Title::makeTitle( NS_USER, $block->getTarget() );
 		}
 

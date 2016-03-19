@@ -792,7 +792,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$isAutoCreated = false;
-		if ( $u->getID() == 0 ) {
+		if ( $u->getId() == 0 ) {
 			$status = $this->attemptAutoCreate( $u );
 			if ( $status !== self::SUCCESS ) {
 				return $status;

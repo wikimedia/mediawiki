@@ -202,7 +202,7 @@ abstract class DatabaseInstaller {
 			$this->db->commit( __METHOD__ );
 		}
 		// Resume normal operations
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			$this->enableLB();
 		}
 

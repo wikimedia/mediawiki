@@ -263,7 +263,7 @@ class HistoryBlobStub {
 				if ( !isset( $parts[1] ) || $parts[1] == '' ) {
 					return false;
 				}
-				$row->old_text = ExternalStore::fetchFromUrl( $url );
+				$row->old_text = ExternalStore::fetchFromURL( $url );
 
 			}
 

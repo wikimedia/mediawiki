@@ -218,7 +218,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$firstUser = $users[0];
 
-		if ( !$firstUser instanceof User || !$firstUser->getID() ) {
+		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
 			// Don't parse username as wikitext (bug 65501)
 			return [ [ 'nosuchuser', wfEscapeWikiText( $data['Username'] ) ] ];
 		}

@@ -290,7 +290,7 @@ class HtmlFormatter {
 			}
 			$html = $this->doc->saveHTML();
 
-			$html = $this->fixLibXml( $html );
+			$html = $this->fixLibXML( $html );
 			if ( wfIsWindows() ) {
 				// Cleanup for CRLF misprocessing of unknown origin on Windows.
 				// If this error continues in the future, please track it down in the

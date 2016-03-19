@@ -366,7 +366,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$rclistOutput .= $list->endRecentChangesList();
 
 		if ( $rows->numRows() === 0 ) {
-			$this->getOutput()->addHtml(
+			$this->getOutput()->addHTML(
 				'<div class="mw-changeslist-empty">' .
 				$this->msg( 'recentchanges-noresult' )->parse() .
 				'</div>'
@@ -399,7 +399,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = $this->getExtraOptions( $opts );
 		$extraOptsCount = count( $extraOpts );
 		$count = 0;
-		$submit = ' ' . Xml::submitbutton( $this->msg( 'recentchanges-submit' )->text() );
+		$submit = ' ' . Xml::submitButton( $this->msg( 'recentchanges-submit' )->text() );
 
 		$out = Xml::openElement( 'table', [ 'class' => 'mw-recentchanges-table' ] );
 		foreach ( $extraOpts as $name => $optionRow ) {

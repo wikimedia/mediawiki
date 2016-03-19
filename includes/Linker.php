@@ -992,7 +992,7 @@ class Linker {
 	 */
 	public static function makeMediaLinkFile( Title $title, $file, $html = '' ) {
 		if ( $file && $file->exists() ) {
-			$url = $file->getURL();
+			$url = $file->getUrl();
 			$class = 'internal';
 		} else {
 			$url = self::getUploadUrl( $title );

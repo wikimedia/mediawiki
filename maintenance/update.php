@@ -127,7 +127,7 @@ class UpdateMediaWiki extends Maintenance {
 			$this->compatChecks();
 		} else {
 			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
-			wfCountdown( 5 );
+			wfCountDown( 5 );
 		}
 
 		// Check external dependencies are up to date
@@ -168,7 +168,7 @@ class UpdateMediaWiki extends Maintenance {
 			$updates[] = 'stats';
 		}
 
-		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
+		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
 		$updater->doUpdates( $updates );
 
 		foreach ( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {

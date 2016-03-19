@@ -319,7 +319,7 @@ class FixBug20757 extends Maintenance {
 			if ( $path == "" ) {
 				return false;
 			}
-			$text = ExternalStore::fetchFromUrl( $url );
+			$text = ExternalStore::fetchFromURL( $url );
 		}
 		if ( !in_array( 'object', $flags ) ) {
 			return false;

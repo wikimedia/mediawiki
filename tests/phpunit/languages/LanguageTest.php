@@ -281,7 +281,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,
-			$this->getLang()->truncateHTML( $input, $len, $ellipsis )
+			$this->getLang()->truncateHtml( $input, $len, $ellipsis )
 		);
 	}
 

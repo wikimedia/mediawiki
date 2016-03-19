@@ -279,7 +279,7 @@ class BacklinkCache {
 				$conds = [
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title" => $this->title->getDBkey(),
-					$this->getDb()->makeList( [
+					$this->getDB()->makeList( [
 						"{$prefix}_interwiki" => '',
 						"{$prefix}_interwiki IS NULL",
 					], LIST_OR ),

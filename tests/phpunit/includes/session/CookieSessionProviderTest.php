@@ -145,7 +145,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	public function testBasics() {
 		$provider = new CookieSessionProvider( [ 'priority' => 10 ] );
 
-		$this->assertTrue( $provider->persistsSessionID() );
+		$this->assertTrue( $provider->persistsSessionId() );
 		$this->assertTrue( $provider->canChangeUser() );
 
 		$msg = $provider->whyNoSession();

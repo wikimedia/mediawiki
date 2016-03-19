@@ -395,7 +395,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				$query
 			);
 		} elseif ( !empty( $options['file-link'] ) ) {
-			$linkAttribs = [ 'href' => $this->file->getURL() ];
+			$linkAttribs = [ 'href' => $this->file->getUrl() ];
 		} else {
 			$linkAttribs = false;
 			if ( !empty( $options['title'] ) ) {

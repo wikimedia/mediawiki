@@ -183,7 +183,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		$dumper->prefetch = $prefetchMock;
 		$dumper->reporting = false;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
@@ -274,7 +274,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 				"--maxtime=1" /*This is in minutes. Fixup is below*/,
 				"--buffersize=32768", // The default of 32 iterations fill up 32KB about twice
 				"--checkpointfile=checkpoint-%s-%s.xml.gz" ] );
-			$dumper->setDb( $this->db );
+			$dumper->setDB( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
 			$dumper->stderr = $stderr;
 

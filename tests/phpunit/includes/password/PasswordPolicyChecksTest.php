@@ -130,7 +130,7 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 			'Passpass1'  // password
 		);
 		$this->assertFalse( $statusLong->isGood(), 'Password matches blacklist' );
-		$this->assertTrue( $statusLong->isOk(), 'Password matches blacklist, not fatal' );
+		$this->assertTrue( $statusLong->isOK(), 'Password matches blacklist, not fatal' );
 	}
 
 }

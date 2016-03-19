@@ -160,7 +160,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname, '--stub' ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->execute();
@@ -210,7 +210,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
@@ -256,7 +256,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
@@ -318,7 +318,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			"--reporting=1000" ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// xmldumps-backup uses reporting. We will not check the exact reported
 		// message, as they are dependent on the processing power of the used

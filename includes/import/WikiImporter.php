@@ -693,7 +693,7 @@ class WikiImporter {
 		if ( !isset( $logInfo['contributor']['username'] ) ) {
 			$revision->setUsername( 'Unknown user' );
 		} else {
-			$revision->setUserName( $logInfo['contributor']['username'] );
+			$revision->setUsername( $logInfo['contributor']['username'] );
 		}
 
 		return $this->logItemCallback( $revision );
@@ -886,9 +886,9 @@ class WikiImporter {
 		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
 		} elseif ( isset( $revisionInfo['contributor']['username'] ) ) {
-			$revision->setUserName( $revisionInfo['contributor']['username'] );
+			$revision->setUsername( $revisionInfo['contributor']['username'] );
 		} else {
-			$revision->setUserName( 'Unknown user' );
+			$revision->setUsername( 'Unknown user' );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
@@ -992,7 +992,7 @@ class WikiImporter {
 			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
-			$revision->setUserName( $uploadInfo['contributor']['username'] );
+			$revision->setUsername( $uploadInfo['contributor']['username'] );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
