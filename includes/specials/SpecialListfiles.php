@@ -482,7 +482,7 @@ class ImageListPager extends TablePager {
 						htmlspecialchars( $filePage->getText() )
 					);
 					$download = Xml::element( 'a',
-						[ 'href' => wfLocalFile( $filePage )->getURL() ],
+						[ 'href' => wfLocalFile( $filePage )->getUrl() ],
 						$imgfile
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();

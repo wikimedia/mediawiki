@@ -3570,9 +3570,9 @@ class Title implements LinkTarget {
 
 		// If we are looking at a css/js user subpage, purge the action=raw.
 		if ( $this->isJsSubpage() ) {
-			$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/javascript' );
+			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
 		} elseif ( $this->isCssSubpage() ) {
-			$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/css' );
+			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/css' );
 		}
 
 		Hooks::run( 'TitleSquidURLs', [ $this, &$urls ] );

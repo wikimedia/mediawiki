@@ -142,7 +142,7 @@ class UploadFromChunks extends UploadFromFile {
 		$tStart = microtime( true );
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		$tAmount = microtime( true ) - $tStart;
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			return $status;
 		}
 
@@ -234,7 +234,7 @@ class UploadFromChunks extends UploadFromFile {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
-		$dbw = $this->repo->getMasterDb();
+		$dbw = $this->repo->getMasterDB();
 		// Use a quick transaction since we will upload the full temp file into shared
 		// storage, which takes time for large files. We don't want to hold locks then.
 		$dbw->update(
@@ -256,7 +256,7 @@ class UploadFromChunks extends UploadFromFile {
 	private function getChunkStatus() {
 		// get Master db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
-		$dbw = $this->repo->getMasterDb();
+		$dbw = $this->repo->getMasterDB();
 		$row = $dbw->selectRow(
 			'uploadstash',
 			[

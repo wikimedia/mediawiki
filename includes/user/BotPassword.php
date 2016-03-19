@@ -429,7 +429,7 @@ class BotPassword implements IDBAccessObject {
 
 		// Check restrictions
 		$status = $bp->getRestrictions()->check( $request );
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			return Status::newFatal( 'botpasswords-restriction-failed' );
 		}
 

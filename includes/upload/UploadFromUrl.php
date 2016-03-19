@@ -286,7 +286,7 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		wfDebugLog( 'fileupload', $status );
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfuly.' );
 		} else {
 			wfDebugLog(

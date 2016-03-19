@@ -160,7 +160,7 @@ class ImagePage extends Article {
 		}
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
-		if ( $this->mPage->getID() ) {
+		if ( $this->mPage->getId() ) {
 			# NS_FILE is in the user language, but this section (the actual wikitext)
 			# should be in page content language
 			$pageLang = $this->getTitle()->getPageViewLanguage();
@@ -299,7 +299,7 @@ class ImagePage extends Article {
 	 */
 	public function getContentObject() {
 		$this->loadFile();
-		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
+		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getId() ) {
 			return null;
 		}
 		return parent::getContentObject();
@@ -565,7 +565,7 @@ EOT
 				if ( is_null( $currentLanguage ) ) {
 					$currentLanguage = $defaultLang;
 				}
-				$out->addHtml( $this->doRenderLangOpt( $renderLangOptions, $currentLanguage, $defaultLang ) );
+				$out->addHTML( $this->doRenderLangOpt( $renderLangOptions, $currentLanguage, $defaultLang ) );
 			}
 
 			// Add cannot animate thumbnail warning
@@ -592,7 +592,7 @@ EOT
 			}
 		} else {
 			# Image does not exist
-			if ( !$this->getID() ) {
+			if ( !$this->getId() ) {
 				# No article exists either
 				# Show deletion log to be consistent with normal articles
 				LogEventsList::showLogExtract(
@@ -623,7 +623,7 @@ EOT
 			// by Article::View().
 			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
-			if ( !$this->getID() && $wgSend404Code ) {
+			if ( !$this->getId() && $wgSend404Code ) {
 				// If there is no image, no shared image, and no description page,
 				// output a 404, to be consistent with Article::showMissingArticle.
 				$request->response()->statusHeader( 404 );
@@ -635,7 +635,7 @@ EOT
 	/**
 	 * Make the text under the image to say what size preview
 	 *
-	 * @param $params Array parameters for thumbnail
+	 * @param $params array parameters for thumbnail
 	 * @param $sizeLinkBigImagePreview HTML for the current size
 	 * @return string HTML output
 	 */
@@ -704,7 +704,7 @@ EOT
 		$descText = $this->mPage->getFile()->getDescriptionText( $this->getContext()->getLanguage() );
 
 		/* Add canonical to head if there is no local page for this shared file */
-		if ( $descUrl && $this->mPage->getID() == 0 ) {
+		if ( $descUrl && $this->mPage->getId() == 0 ) {
 			$out->setCanonicalUrl( $descUrl );
 		}
 

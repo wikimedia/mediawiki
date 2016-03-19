@@ -365,7 +365,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		# Set up the target
 		$u = User::newFromName( $username );
-		if ( $u->getID() == 0 ) {
+		if ( $u->getId() == 0 ) {
 			$u->addToDatabase();
 			TestUser::setPasswordForUser( $u, 'TotallyObvious' );
 		}

@@ -184,7 +184,7 @@ class LogEventsList extends ContextSource {
 		$selector = $this->getTypeSelector();
 		$selector->setDefault( $queryType );
 
-		return $selector->getHtml();
+		return $selector->getHTML();
 	}
 
 	/**

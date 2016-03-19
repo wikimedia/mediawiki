@@ -809,7 +809,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
-		$this->setMWGlobals( [
+		$this->setMwGlobals( [
 			'wgAuth' => new AuthPlugin,
 		] );
 

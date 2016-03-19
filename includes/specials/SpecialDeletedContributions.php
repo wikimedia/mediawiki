@@ -470,7 +470,7 @@ class DeletedContributionsPage extends SpecialPage {
 		}
 		$links = '';
 		$nt = $userObj->getUserPage();
-		$id = $userObj->getID();
+		$id = $userObj->getId();
 		$talk = $nt->getTalkPage();
 		if ( $talk ) {
 			# Talk page link

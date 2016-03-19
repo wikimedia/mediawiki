@@ -2162,7 +2162,7 @@ class User implements IDBAccessObject {
 		// Get the "last viewed rev" timestamp from the oldest message notification
 		$timestamp = $dbr->selectField( 'user_newtalk',
 			'MIN(user_last_timestamp)',
-			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getID() ],
+			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getId() ],
 			__METHOD__ );
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
 		return [ [ 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ] ];
@@ -3268,7 +3268,7 @@ class User implements IDBAccessObject {
 		if ( $this->getId() ) {
 			$dbw->insert( 'user_groups',
 				[
-					'ug_user' => $this->getID(),
+					'ug_user' => $this->getId(),
 					'ug_group' => $group,
 				],
 				__METHOD__,
@@ -3306,14 +3306,14 @@ class User implements IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'user_groups',
 			[
-				'ug_user' => $this->getID(),
+				'ug_user' => $this->getId(),
 				'ug_group' => $group,
 			], __METHOD__
 		);
 		// Remember that the user was in this group
 		$dbw->insert( 'user_former_groups',
 			[
-				'ufg_user' => $this->getID(),
+				'ufg_user' => $this->getId(),
 				'ufg_group' => $group,
 			],
 			__METHOD__,
@@ -3338,7 +3338,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isLoggedIn() {
-		return $this->getID() != 0;
+		return $this->getId() != 0;
 	}
 
 	/**

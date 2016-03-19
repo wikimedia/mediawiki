@@ -154,7 +154,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * Output closing </table>
 	 */
 	protected function outputTableEnd() {
-		$this->getOutput()->addHtml( Html::closeElement( 'table' ) );
+		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
 		$this->getOutput()->addWikiText(
 				$this->msg( 'mediastatistics-bytespertype' )
 					->numParams( $this->totalPerType )

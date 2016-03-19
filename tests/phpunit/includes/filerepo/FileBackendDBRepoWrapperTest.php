@@ -120,7 +120,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiTestCase {
 			[],
 			[ [
 				'name' => $this->backendName,
-				'wikiId' => wfWikiId()
+				'wikiId' => wfWikiID()
 			] ] );
 
 		$wrapperMock = $this->getMock( 'FileBackendDBRepoWrapper',

@@ -238,7 +238,7 @@ class MovePage {
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				$status = $file->move( $this->newTitle );
-				if ( !$status->isOk() ) {
+				if ( !$status->isOK() ) {
 					return $status;
 				}
 			}

@@ -221,10 +221,10 @@ class WikiReference {
 	 * @return string relative URL, without the server part.
 	 */
 	private function getLocalUrl( $page, $fragmentId = null ) {
-		$page = wfUrlEncode( str_replace( ' ', '_', $page ) );
+		$page = wfUrlencode( str_replace( ' ', '_', $page ) );
 
 		if ( is_string( $fragmentId ) && $fragmentId !== '' ) {
-			$page .= '#' . wfUrlEncode( $fragmentId );
+			$page .= '#' . wfUrlencode( $fragmentId );
 		}
 
 		return str_replace( '$1', $page, $this->mPath );

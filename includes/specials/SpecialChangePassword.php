@@ -332,7 +332,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		$dbw->update(
 			'user',
 			[ 'user_password_expires' => $dbw->timestampOrNull( $newExpire ) ],
-			[ 'user_id' => $user->getID() ],
+			[ 'user_id' => $user->getId() ],
 			__METHOD__
 		);
 	}

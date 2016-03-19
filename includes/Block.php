@@ -137,7 +137,7 @@ class Block {
 
 		if ( $options['by'] ) {
 			# Local user
-			$this->setBlocker( User::newFromID( $options['by'] ) );
+			$this->setBlocker( User::newFromId( $options['by'] ) );
 		} else {
 			# Foreign user
 			$this->setBlocker( $options['byText'] );
@@ -568,7 +568,7 @@ class Block {
 		if ( $this->forcedTargetID ) {
 			$uid = $this->forcedTargetID;
 		} else {
-			$uid = $this->target instanceof User ? $this->target->getID() : 0;
+			$uid = $this->target instanceof User ? $this->target->getId() : 0;
 		}
 
 		$a = [

@@ -147,7 +147,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		}
 
 		$status = $bp->getRestrictions()->check( $request );
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->logger->info(
 				'Session "{session}": Restrictions check failed',
 				[

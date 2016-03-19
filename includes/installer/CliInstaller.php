@@ -199,7 +199,7 @@ class CliInstaller extends Installer {
 			}
 		}
 
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			echo "\n";
 			exit( 1 );
 		}

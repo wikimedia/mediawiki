@@ -820,7 +820,7 @@ class InfoAction extends FormlessAction {
 				: $user->getUserPage();
 
 			$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
-			if ( $user->getID() == 0 ) {
+			if ( $user->getId() == 0 ) {
 				$anon_ips[] = Linker::link( $page, htmlspecialchars( $user->getName() ) );
 			} elseif ( !in_array( 'realname', $hiddenPrefs ) && $user->getRealName() ) {
 				$real_names[] = Linker::link( $page, htmlspecialchars( $user->getRealName() ) );

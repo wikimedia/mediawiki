@@ -393,10 +393,10 @@ abstract class File implements IDBAccessObject {
 				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
 					' (' . $this->getMimeType() . "), but can't!\n" );
 
-				return $this->getURL(); # hm... return NULL?
+				return $this->getUrl(); # hm... return NULL?
 			}
 		} else {
-			return $this->getURL();
+			return $this->getUrl();
 		}
 	}
 

@@ -155,7 +155,7 @@ class XCFHandler extends BitmapHandler {
 	 * @return string
 	 */
 	public function getMetadata( $file, $filename ) {
-		$header = self::getXCFMetadata( $filename );
+		$header = self::getXCFMetaData( $filename );
 		$metadata = [];
 		if ( $header ) {
 			// Try to be consistent with the names used by PNG files.

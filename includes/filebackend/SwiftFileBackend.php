@@ -802,7 +802,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		$status = $this->objectListing( $fullCont, 'names', 1, null, $prefix );
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			return ( count( $status->value ) ) > 0;
 		}
 
@@ -854,7 +854,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Non-recursive: only list dirs right under $dir
 		if ( !empty( $params['topOnly'] ) ) {
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix, '/' );
-			if ( !$status->isOk() ) {
+			if ( !$status->isOK() ) {
 				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 			}
 			$objects = $status->value;
@@ -873,7 +873,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$lastDir = $getParentDir( $after ); // must be first page
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix );
 
-			if ( !$status->isOk() ) {
+			if ( !$status->isOK() ) {
 				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 			}
 
@@ -949,7 +949,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		// Reformat this list into a list of (name, stat array or null) entries
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 		}
 

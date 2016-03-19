@@ -155,7 +155,7 @@ class EmailNotification {
 				$title,
 				[
 					'editor' => $editor->getName(),
-					'editorID' => $editor->getID(),
+					'editorID' => $editor->getId(),
 					'timestamp' => $timestamp,
 					'summary' => $summary,
 					'minorEdit' => $minorEdit,
@@ -232,7 +232,7 @@ class EmailNotification {
 					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
-						&& $watchingUser->getID() != $userTalkId
+						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
 						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
 					) {

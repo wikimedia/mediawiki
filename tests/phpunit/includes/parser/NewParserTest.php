@@ -411,7 +411,7 @@ class NewParserTest extends MediaWikiTestCase {
 			# informations.
 			$backend = new MockFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId()
+				'wikiId' => wfWikiID()
 			] );
 		}
 

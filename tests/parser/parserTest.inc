@@ -195,7 +195,7 @@ class ParserTest {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
+				'wikiId' => wfWikiID(),
 				'containerPaths' => [
 					'local-public' => $this->uploadDir . '/public',
 					'local-thumb' => $this->uploadDir . '/thumb',
@@ -849,7 +849,7 @@ class ParserTest {
 				'transformVia404' => false,
 				'backend' => new FSFileBackend( [
 					'name' => 'local-backend',
-					'wikiId' => wfWikiId(),
+					'wikiId' => wfWikiID(),
 					'containerPaths' => [
 						'local-public' => $this->uploadDir,
 						'local-thumb' => $this->uploadDir . '/thumb',

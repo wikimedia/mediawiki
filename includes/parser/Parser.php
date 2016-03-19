@@ -3000,7 +3000,7 @@ class Parser {
 				$value = wfEscapeWikiText( $this->mTitle->getRootText() );
 				break;
 			case 'rootpagenamee':
-				$value = wfEscapeWikiText( wfUrlEncode( str_replace(
+				$value = wfEscapeWikiText( wfUrlencode( str_replace(
 					' ',
 					'_',
 					$this->mTitle->getRootText()
@@ -3010,7 +3010,7 @@ class Parser {
 				$value = wfEscapeWikiText( $this->mTitle->getBaseText() );
 				break;
 			case 'basepagenamee':
-				$value = wfEscapeWikiText( wfUrlEncode( str_replace(
+				$value = wfEscapeWikiText( wfUrlencode( str_replace(
 					' ',
 					'_',
 					$this->mTitle->getBaseText()

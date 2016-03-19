@@ -132,7 +132,7 @@ class SpecialVersion extends SpecialPage {
 					$this->softwareInformation() .
 					$this->getEntryPointInfo()
 				);
-				$out->addHtml(
+				$out->addHTML(
 					$this->getSkinCredits() .
 					$this->getExtensionCredits() .
 					$this->getExternalLibraries() .
