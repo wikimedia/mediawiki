@@ -189,192 +189,192 @@ class CSSMinTest extends MediaWikiTestCase {
 			. '%228%22%3E%0A%3Ccircle%20cx%3D%224%22%20cy%3D%224%22%20r%3D%222%22%2F%3E%0A%3C%2Fsvg%3E%0A';
 
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array(
+		return [
+			[
 				'Regular file',
 				'foo { background: url(red.gif); }',
 				'foo { background: url(http://localhost/w/red.gif?34ac6); }',
-			),
-			array(
+			],
+			[
 				'Regular file (missing)',
 				'foo { background: url(theColorOfHerHair.gif); }',
 				'foo { background: url(http://localhost/w/theColorOfHerHair.gif); }',
-			),
-			array(
+			],
+			[
 				'Remote URL',
 				'foo { background: url(http://example.org/w/foo.png); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
-			),
-			array(
+			],
+			[
 				'Protocol-relative remote URL',
 				'foo { background: url(//example.org/w/foo.png); }',
 				'foo { background: url(//example.org/w/foo.png); }',
-			),
-			array(
+			],
+			[
 				'Remote URL with query',
 				'foo { background: url(http://example.org/w/foo.png?query=yes); }',
 				'foo { background: url(http://example.org/w/foo.png?query=yes); }',
-			),
-			array(
+			],
+			[
 				'Protocol-relative remote URL with query',
 				'foo { background: url(//example.org/w/foo.png?query=yes); }',
 				'foo { background: url(//example.org/w/foo.png?query=yes); }',
-			),
-			array(
+			],
+			[
 				'Domain-relative URL',
 				'foo { background: url(/static/foo.png); }',
 				'foo { background: url(http://doc.example.org/static/foo.png); }',
-			),
-			array(
+			],
+			[
 				'Domain-relative URL with query',
 				'foo { background: url(/static/foo.png?query=yes); }',
 				'foo { background: url(http://doc.example.org/static/foo.png?query=yes); }',
-			),
-			array(
+			],
+			[
 				'Remote URL (unnecessary quotes not preserved)',
 				'foo { background: url("http://example.org/w/foo.png"); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
-			),
-			array(
+			],
+			[
 				'Embedded file',
 				'foo { /* @embed */ background: url(red.gif); }',
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?34ac6)!ie; }",
-			),
-			array(
+			],
+			[
 				'Embedded file, other comments before the rule',
 				"foo { /* Bar. */ /* @embed */ background: url(red.gif); }",
 				"foo { /* Bar. */ background: url($red); /* Bar. */ background: url(http://localhost/w/red.gif?34ac6)!ie; }",
-			),
-			array(
+			],
+			[
 				'Can not re-embed data: URIs',
 				"foo { /* @embed */ background: url($red); }",
 				"foo { background: url($red); }",
-			),
-			array(
+			],
+			[
 				'Can not remap data: URIs',
 				"foo { background: url($red); }",
 				"foo { background: url($red); }",
-			),
-			array(
+			],
+			[
 				'Can not embed remote URLs',
 				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
-			),
-			array(
+			],
+			[
 				'Embedded file (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif); }',
 				"foo { background: url($red); "
 					. "background: url(http://localhost/w/red.gif?34ac6)!ie; }",
-			),
-			array(
+			],
+			[
 				'Can not embed large files',
 				'foo { /* @embed */ background: url(large.png); }',
 				"foo { background: url(http://localhost/w/large.png?e3d1f); }",
-			),
-			array(
+			],
+			[
 				'SVG files are embedded without base64 encoding and unnecessary IE 6 and 7 fallback',
 				'foo { /* @embed */ background: url(circle.svg); }',
 				"foo { background: url($svg); }",
-			),
-			array(
+			],
+			[
 				'Two regular files in one rule',
 				'foo { background: url(red.gif), url(green.gif); }',
 				'foo { background: url(http://localhost/w/red.gif?34ac6), '
 					. 'url(http://localhost/w/green.gif?13651); }',
-			),
-			array(
+			],
+			[
 				'Two embedded files in one rule',
 				'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
 				"foo { background: url($red), url($green); "
 					. "background: url(http://localhost/w/red.gif?34ac6), "
 					. "url(http://localhost/w/green.gif?13651)!ie; }",
-			),
-			array(
+			],
+			[
 				'Two embedded files in one rule (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
 				"foo { background: url($red), url($green); "
 					. "background: url(http://localhost/w/red.gif?34ac6), "
 					. "url(http://localhost/w/green.gif?13651)!ie; }",
-			),
-			array(
+			],
+			[
 				'Two embedded files in one rule (inline @embed), one too large',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(large.png); }',
 				"foo { background: url($red), url(http://localhost/w/large.png?e3d1f); "
 					. "background: url(http://localhost/w/red.gif?34ac6), "
 					. "url(http://localhost/w/large.png?e3d1f)!ie; }",
-			),
-			array(
+			],
+			[
 				'Practical example with some noise',
 				'foo { /* @embed */ background: #f9f9f9 url(red.gif) 0 0 no-repeat; }',
 				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; "
 					. "background: #f9f9f9 url(http://localhost/w/red.gif?34ac6) 0 0 no-repeat!ie; }",
-			),
-			array(
+			],
+			[
 				'Does not mess with other properties',
 				'foo { color: red; background: url(red.gif); font-size: small; }',
 				'foo { color: red; background: url(http://localhost/w/red.gif?34ac6); font-size: small; }',
-			),
-			array(
+			],
+			[
 				'Spacing and miscellanea not changed (1)',
 				'foo {   background:    url(red.gif);  }',
 				'foo {   background:    url(http://localhost/w/red.gif?34ac6);  }',
-			),
-			array(
+			],
+			[
 				'Spacing and miscellanea not changed (2)',
 				'foo {background:url(red.gif)}',
 				'foo {background:url(http://localhost/w/red.gif?34ac6)}',
-			),
-			array(
+			],
+			[
 				'Spaces within url() parentheses are ignored',
 				'foo { background: url( red.gif ); }',
 				'foo { background: url(http://localhost/w/red.gif?34ac6); }',
-			),
-			array(
+			],
+			[
 				'@import rule to local file (should we remap this?)',
 				'@import url(/styles.css)',
 				'@import url(http://doc.example.org/styles.css)',
-			),
-			array(
+			],
+			[
 				'@import rule to URL (should we remap this?)',
 				'@import url(//localhost/styles.css?query=yes)',
 				'@import url(//localhost/styles.css?query=yes)',
-			),
-			array(
+			],
+			[
 				'Simple case with comments before url',
 				'foo { prop: /* some {funny;} comment */ url(bar.png); }',
 				'foo { prop: /* some {funny;} comment */ url(http://localhost/w/bar.png); }',
-			),
-			array(
+			],
+			[
 				'Simple case with comments after url',
 				'foo { prop: url(red.gif)/* some {funny;} comment */ ; }',
 				'foo { prop: url(http://localhost/w/red.gif?34ac6)/* some {funny;} comment */ ; }',
-			),
-			array(
+			],
+			[
 				'Embedded file with comment before url',
 				'foo { /* @embed */ background: /* some {funny;} comment */ url(red.gif); }',
 				"foo { background: /* some {funny;} comment */ url($red); background: /* some {funny;} comment */ url(http://localhost/w/red.gif?34ac6)!ie; }",
-			),
-			array(
+			],
+			[
 				'Embedded file with comments inside and outside the rule',
 				'foo { /* @embed */ background: url(red.gif) /* some {foo;} comment */; /* some {bar;} comment */ }',
 				"foo { background: url($red) /* some {foo;} comment */; background: url(http://localhost/w/red.gif?34ac6) /* some {foo;} comment */!ie; /* some {bar;} comment */ }",
-			),
-			array(
+			],
+			[
 				'Embedded file with comment outside the rule',
 				'foo { /* @embed */ background: url(red.gif); /* some {funny;} comment */ }',
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?34ac6)!ie; /* some {funny;} comment */ }",
-			),
-			array(
+			],
+			[
 				'Rule with two urls, each with comments',
 				'{ background: /*asd*/ url(something.png); background: /*jkl*/ url(something.png); }',
 				'{ background: /*asd*/ url(http://localhost/w/something.png); background: /*jkl*/ url(http://localhost/w/something.png); }',
-			),
-			array(
+			],
+			[
 				'Sanity check for offending line from jquery.ui.theme.css (bug 60077)',
 				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
 				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(http://localhost/w/images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
-			),
-		);
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 

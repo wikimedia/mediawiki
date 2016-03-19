@@ -138,62 +138,62 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	public static function provideMakeResourceLoaderLink() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
+		return [
 			// Load module script only
-			array(
-				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
+			[
+				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
-			),
-			array(
+			],
+			[
 				// Don't condition wrap raw modules (like the startup module)
-				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
+				[ 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ],
 				'<script async src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
-			),
+			],
 			// Load module styles only
 			// This also tests the order the modules are put into the url
-			array(
-				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
+			[
+				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
 
 				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback">'
-			),
+			],
 			// Load private module (only=scripts)
-			array(
-				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
+			[
+				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
-			),
+			],
 			// Load private module (combined)
-			array(
-				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
+			[
+				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});});</script>"
-			),
+			],
 			// Load no modules
-			array(
-				array( array(), ResourceLoaderModule::TYPE_COMBINED ),
+			[
+				[ [], ResourceLoaderModule::TYPE_COMBINED ],
 				'',
-			),
+			],
 			// noscript group
-			array(
-				array( 'test.noscript', ResourceLoaderModule::TYPE_STYLES ),
+			[
+				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
 				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"></noscript>'
-			),
+			],
 			// Load two modules in separate groups
-			array(
-				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
+			[
+				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
 					. "});</script>\n"
 					. "<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
 					. "});</script>"
-			),
-		);
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 

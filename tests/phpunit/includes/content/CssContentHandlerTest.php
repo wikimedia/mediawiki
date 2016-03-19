@@ -22,11 +22,20 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	public static function provideMakeRedirectContent() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array( 'MediaWiki:MonoBook.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);" ),
-			array( 'User:FooBar/common.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=User:FooBar/common.css&action=raw&ctype=text/css);" ),
-			array( 'Gadget:FooBaz.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ),
-		);
+		return [
+			[
+				'MediaWiki:MonoBook.css',
+				"/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);"
+			],
+			[
+				'User:FooBar/common.css',
+				"/* #REDIRECT */@import url(//example.org/w/index.php?title=User:FooBar/common.css&action=raw&ctype=text/css);"
+			],
+			[
+				'Gadget:FooBaz.css',
+				"/* #REDIRECT */@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);"
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 }

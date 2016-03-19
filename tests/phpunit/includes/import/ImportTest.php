@@ -37,8 +37,8 @@ class ImportTest extends MediaWikiLangTestCase {
 
 	public function getUnknownTagsXML() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array(
+		return [
+			[
 				<<< EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <page unknown="123" dontknow="533">
@@ -68,8 +68,8 @@ EOF
 				,
 				'noitazinagro tseb eht si ikiWaideM',
 				'TestImportPage'
-			)
-		);
+			]
+		];
 		// @codingStandardsIgnoreEnd
 	}
 
@@ -102,8 +102,8 @@ EOF
 
 	public function getRedirectXML() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array(
+		return [
+			[
 				<<< EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
 	<page>
@@ -129,8 +129,8 @@ EOF
 EOF
 			,
 				'Test22'
-			),
-			array(
+			],
+			[
 				<<< EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.9/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.9/ http://www.mediawiki.org/xml/export-0.9.xsd" version="0.9" xml:lang="en">
 	<page>
@@ -154,8 +154,8 @@ EOF
 EOF
 			,
 				null
-			),
-		);
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 
@@ -185,8 +185,8 @@ EOF
 
 	public function getSiteInfoXML() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array(
+		return [
+			[
 				<<< EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <siteinfo>
@@ -204,7 +204,7 @@ EOF
 </mediawiki>
 EOF
 			,
-				array(
+				[
 					'-2' => 'Media',
 					'-1' => 'Special',
 					'0' => '',
@@ -213,9 +213,9 @@ EOF
 					'3' => 'User talk',
 					'100' => 'Portal',
 					'101' => 'Portal talk',
-				)
-			),
-		);
+				]
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 
