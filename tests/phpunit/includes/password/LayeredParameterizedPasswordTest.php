@@ -28,9 +28,13 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 
 	public static function providePasswordTests() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
-		return array(
-			array( true, ':testLargeLayeredTop:sha512:1024:512!sha512:1024:512!sha512:1024:512!sha512:1024:512!5!vnRy+2SrSA0fHt3dwhTP5g==!AVnwfZsAQjn+gULv7FSGjA==!xvHUX3WcpkeSn1lvjWcvBg==!It+OC/N9tu+d3ByHhuB0BQ==!Tb.gqUOiD.aWktVwHM.Q/O!7CcyMfXUPky5ptyATJsR2nq3vUqtnBC', 'testPassword123' ),
-		);
+		return [
+			[
+				true,
+				':testLargeLayeredTop:sha512:1024:512!sha512:1024:512!sha512:1024:512!sha512:1024:512!5!vnRy+2SrSA0fHt3dwhTP5g==!AVnwfZsAQjn+gULv7FSGjA==!xvHUX3WcpkeSn1lvjWcvBg==!It+OC/N9tu+d3ByHhuB0BQ==!Tb.gqUOiD.aWktVwHM.Q/O!7CcyMfXUPky5ptyATJsR2nq3vUqtnBC',
+				'testPassword123' 
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 

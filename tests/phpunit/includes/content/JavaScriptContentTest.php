@@ -278,10 +278,10 @@ class JavaScriptContentTest extends TextContentTest {
 			],
 
 			// @codingStandardsIgnoreStart Generic.Files.LineLength
-			array(
+			[
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");',
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=TestUpdateRedirect_target\u0026action=raw\u0026ctype=text/javascript");'
-			)
+			]
 			// @codingStandardsIgnoreEnd
 		];
 	}
@@ -333,15 +333,30 @@ class JavaScriptContentTest extends TextContentTest {
 	 */
 	public static function provideGetRedirectTarget() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
-		return array(
-			array( 'MediaWiki:MonoBook.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");' ),
-			array( 'User:FooBar/common.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");' ),
-			array( 'Gadget:FooBaz.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");' ),
+		return [
+			[
+				'MediaWiki:MonoBook.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+			[
+				'User:FooBar/common.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+			[
+				'Gadget:FooBaz.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
 			// No #REDIRECT comment
-			array( null, 'mw.loader.load("//example.org/w/index.php?title=MediaWiki:NoRedirect.js\u0026action=raw\u0026ctype=text/javascript");' ),
+			[
+				null,
+				'mw.loader.load("//example.org/w/index.php?title=MediaWiki:NoRedirect.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
 			// Different domain
-			array( null, '/* #REDIRECT */mw.loader.load("//example.com/w/index.php?title=MediaWiki:OtherWiki.js\u0026action=raw\u0026ctype=text/javascript");' ),
-		);
+			[
+				null,
+				'/* #REDIRECT */mw.loader.load("//example.com/w/index.php?title=MediaWiki:OtherWiki.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+		];
 		// @codingStandardsIgnoreEnd
 	}
 }

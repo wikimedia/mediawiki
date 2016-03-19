@@ -1310,19 +1310,19 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function provideCheckTitleEncodingData() {
 		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-		return array(
-			array( "" ),
-			array( "United States of America" ), // 7bit ASCII
-			array( rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ),
-			array(
+		return [
+			[ "" ],
+			[ "United States of America" ], // 7bit ASCII
+			[ rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ],
+			[
 				rawurldecode(
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn"
 				)
-			),
+			],
 			// The following two data sets come from bug 36839. They fail if checkTitleEncoding uses a regexp to test for
 			// valid UTF-8 encoding and the pcre.recursion_limit is low (like, say, 1024). They succeed if checkTitleEncoding
 			// uses mb_check_encoding for its test.
-			array(
+			[
 				rawurldecode(
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn%7C"
 						. "Catherine%20Willows%7CDavid%20Hodges%7CDavid%20Phillips%7CGil%20Grissom%7CGreg%20Sanders%7CHodges%7C"
@@ -1339,8 +1339,8 @@ class LanguageTest extends LanguageClassesTestCase {
 						. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 						. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
 				),
-			),
-			array(
+			],
+			[
 				rawurldecode(
 					"Mod%C3%A8le%3AArrondissements%20homonymes%7CMod%C3%A8le%3ABandeau%20standard%20pour%20page%20d'homonymie%7C"
 						. "Mod%C3%A8le%3ABatailles%20homonymes%7CMod%C3%A8le%3ACantons%20homonymes%7C"
@@ -1358,8 +1358,8 @@ class LanguageTest extends LanguageClassesTestCase {
 						. "Mod%C3%A8le%3ATitres%20homonymes%7CMod%C3%A8le%3AToponymie%7CMod%C3%A8le%3AUnit%C3%A9s%20homonymes%7C"
 						. "Mod%C3%A8le%3AVilles%20homonymes%7CMod%C3%A8le%3A%C3%89difices%20religieux%20homonymes"
 				)
-			)
-		);
+			]
+		];
 		// @codingStandardsIgnoreEnd
 	}
 
