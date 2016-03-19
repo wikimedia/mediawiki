@@ -5880,6 +5880,14 @@ class Parser {
 			'stripState' => $this->mStripState->getSubState( $text ),
 			'linkHolders' => $this->mLinkHolders->getSubArray( $text )
 		];
+		// no need to store strip state if it has no markers
+		if ( $data['stripState']->isTrivial() ) {
+			$data['stripState'] = null;
+		}
+		// no need to store link holders if it has no links
+		if ( $data['linkHolders']->isTrivial() ) {
+			$data['linkHolders'] = null;
+		}
 		return $data;
 	}
 
@@ -5895,20 +5903,27 @@ class Parser {
 	 * check whether it is still valid, by calling isValidHalfParsedText().
 	 *
 	 * @param array $data Serialized data
+	 * @param bool $checkVersion
 	 * @throws MWException
 	 * @return string
 	 */
-	public function unserializeHalfParsedText( $data ) {
-		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
+	public function unserializeHalfParsedText( $data, $checkVersion = true ) {
+		if ( $checkVersion &&
+			( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION )
+		) {
 			throw new MWException( __METHOD__ . ': invalid version' );
 		}
 
 		# First, extract the strip state.
 		$texts = [ $data['text'] ];
-		$texts = $this->mStripState->merge( $data['stripState'], $texts );
+		if ( $data['stripState'] !== null ) {
+			$texts = $this->mStripState->merge( $data['stripState'], $texts );
+		}
 
 		# Now renumber links
-		$texts = $this->mLinkHolders->mergeForeign( $data['linkHolders'], $texts );
+		if ( $data['linkHolders'] !== null ) {
+			$texts = $this->mLinkHolders->mergeForeign( $data['linkHolders'], $texts );
+		}
 
 		# Should be good to go.
 		return $texts[0];

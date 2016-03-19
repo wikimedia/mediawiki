@@ -26,7 +26,6 @@
  * @ingroup Parser
  */
 class StripState {
-	protected $prefix;
 	protected $data;
 	protected $regex;
 
@@ -52,6 +51,34 @@ class StripState {
 		];
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f<>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = [];
+	}
+
+	function __sleep() {
+		return [ 'data' ];
+	}
+
+	function __wakeup() {
+		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
+		$this->circularRefGuard = [];
+	}
+
+	/**
+	 * Returns whether the strip state does not have any useful data
+	 * (and is thus useless to serialize)
+	 *
+	 * @return bool
+	 */
+	public function isTrivial() {
+		return !count( $this->data['nowiki'] ) && !count( $this->data['general'] );
+	}
+
+	/**
+	 * Returns all data about this object that can be made available publicly through the API
+	 *
+	 * @return array
+	 */
+	public function getPublicData() {
+		return [ 'markers' => $this->data ];
 	}
 
 	/**
