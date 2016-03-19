@@ -634,7 +634,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		$status = parent::createTables();
 
 		// Do last-minute stuff like fulltext indexes (since they can't be inside a transaction)
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			$searchindex = $this->db->tableName( 'searchindex' );
 			$schema = $this->db->addIdentifierQuotes( $this->getVar( 'wgDBmwschema' ) );
 			try {

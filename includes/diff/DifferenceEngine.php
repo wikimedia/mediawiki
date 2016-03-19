@@ -232,7 +232,7 @@ class DifferenceEngine extends ContextSource {
 			->params( $this->getLanguage()->listToText( $missing ) )
 			->numParams( count( $missing ) )
 			->parseAsBlock();
-		$out->addHtml( $msg );
+		$out->addHTML( $msg );
 	}
 
 	public function showDiffPage( $diffOnly = false ) {
@@ -715,7 +715,7 @@ class DifferenceEngine extends ContextSource {
 		}
 		// Short-circuit
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
-			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
+			&& $this->mOldRev->getId() == $this->mNewRev->getId() )
 		) {
 			return '';
 		}
@@ -1060,12 +1060,12 @@ class DifferenceEngine extends ContextSource {
 		$title = $rev->getTitle();
 
 		$header = Linker::linkKnown( $title, $header, [],
-			[ 'oldid' => $rev->getID() ] );
+			[ 'oldid' => $rev->getId() ] );
 
 		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$editQuery = [ 'action' => 'edit' ];
 			if ( !$rev->isCurrent() ) {
-				$editQuery['oldid'] = $rev->getID();
+				$editQuery['oldid'] = $rev->getId();
 			}
 
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';

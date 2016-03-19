@@ -206,7 +206,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			'tables' => [ 'categorylinks', 'page' ],
 			'fields' => [ 'page_title', 'page_namespace' ],
 			'conds' => array_merge( [
-				'cl_to' => $this->category->getDBKey(),
+				'cl_to' => $this->category->getDBkey(),
 			], $this->extra ),
 			'options' => [
 				'ORDER BY' => 'cl_timestamp ' . $dir,

@@ -860,7 +860,7 @@ class ParserOptions {
 						'page' => $title->getArticleID(),
 						'user_text' => $user->getName(),
 						'user' => $user->getId(),
-						'parent_id' => $title->getLatestRevId(),
+						'parent_id' => $title->getLatestRevID(),
 						'title' => $title,
 						'content' => $content
 					] );

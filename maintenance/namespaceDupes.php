@@ -583,7 +583,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$wikiPage = new WikiPage( $sourceTitle );
 		$wikiPage->loadPageData( 'fromdbmaster' );
 
-		$destId = $newTitle->getArticleId();
+		$destId = $newTitle->getArticleID();
 		$this->beginTransaction( $this->db, __METHOD__ );
 		$this->db->update( 'revision',
 			// SET

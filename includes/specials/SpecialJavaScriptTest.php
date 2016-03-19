@@ -168,12 +168,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 </div>
 HTML;
 
-		$out->addHtml( $this->getSummaryHtml() . $baseHtml );
+		$out->addHTML( $this->getSummaryHtml() . $baseHtml );
 
 		// The testrunner configures QUnit and essentially depends on it. However, test suites
 		// are reusable in environments that preload QUnit (or a compatibility interface to
 		// another framework). Therefore we have to load it ourselves.
-		$out->addHtml( ResourceLoader::makeInlineScript(
+		$out->addHTML( ResourceLoader::makeInlineScript(
 			Xml::encodeJsCall( 'mw.loader.using', [
 				[ 'jquery.qunit', 'jquery.qunit.completenessTest' ],
 				new XmlJsCode(

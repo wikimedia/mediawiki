@@ -297,7 +297,7 @@ class SpecialTags extends SpecialPage {
 
 			$headerText = $this->msg( 'tags-create-warnings-above', $tag,
 				count( $status->getWarningsArray() ) )->parseAsBlock() .
-				$out->parse( $status->getWikitext() ) .
+				$out->parse( $status->getWikiText() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
 			$subform = new HTMLForm( $fields, $this->getContext() );
@@ -311,7 +311,7 @@ class SpecialTags extends SpecialPage {
 			$out->addBacklinkSubtitle( $this->getPageTitle() );
 			return true;
 		} else {
-			$out->addWikiText( "<div class=\"error\">\n" . $status->getWikitext() .
+			$out->addWikiText( "<div class=\"error\">\n" . $status->getWikiText() .
 				"\n</div>" );
 			return false;
 		}

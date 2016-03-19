@@ -4464,7 +4464,7 @@ class Language {
 	 * @return array Array of message keys (strings)
 	 */
 	public static function getMessageKeysFor( $code ) {
-		return self::getLocalisationCache()->getSubItemList( $code, 'messages' );
+		return self::getLocalisationCache()->getSubitemList( $code, 'messages' );
 	}
 
 	/**

@@ -216,7 +216,7 @@ class JobSpecification implements IJobSpecification {
 			'opts'   => $this->opts,
 			'title'  => [
 				'ns'  => $this->title->getNamespace(),
-				'key' => $this->title->getDbKey()
+				'key' => $this->title->getDBkey()
 			]
 		];
 	}

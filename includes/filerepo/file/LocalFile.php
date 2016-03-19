@@ -2771,7 +2771,7 @@ class LocalFileMoveBatch {
 		$this->newName = $this->file->repo->getNameFromTitle( $this->target );
 		$this->oldRel = $this->oldHash . $this->oldName;
 		$this->newRel = $this->newHash . $this->newName;
-		$this->db = $file->getRepo()->getMasterDb();
+		$this->db = $file->getRepo()->getMasterDB();
 	}
 
 	/**

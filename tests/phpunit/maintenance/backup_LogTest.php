@@ -146,7 +146,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
@@ -185,7 +185,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 			'--reporting=2' ] );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
-		$dumper->setDb( $this->db );
+		$dumper->setDB( $this->db );
 
 		// xmldumps-backup demands reporting, although this is currently not
 		// implemented in BackupDumper, when dumping logging data. We

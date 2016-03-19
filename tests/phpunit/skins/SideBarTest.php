@@ -128,7 +128,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */
 	public function testTrickyPipe() {
-		$this->assertSidebar(
+		$this->assertSideBar(
 			[ 'Title' => [
 				# The first 2 are skipped
 				# Doesn't really test the url properly
@@ -163,7 +163,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 ** http://www.mediawiki.org/| Home';
 
 		$bar = [];
-		$this->skin->addToSideBarPlain( $bar, $text );
+		$this->skin->addToSidebarPlain( $bar, $text );
 
 		return $bar['Title'][0];
 	}

@@ -136,13 +136,13 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 
 		$skinHtml .= $this->parent->getHelpBox( 'config-skins-help' ) .
-			$this->getFieldSetEnd();
+			$this->getFieldsetEnd();
 		$this->addHTML( $skinHtml );
 
 		$extensions = $this->parent->findExtensions();
 
 		if ( $extensions ) {
-			$extHtml = $this->getFieldSetStart( 'config-extensions' );
+			$extHtml = $this->getFieldsetStart( 'config-extensions' );
 
 			foreach ( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( [
@@ -152,7 +152,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
-				$this->getFieldSetEnd();
+				$this->getFieldsetEnd();
 			$this->addHTML( $extHtml );
 		}
 
@@ -167,7 +167,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$uploadwrapperStyle = $this->getVar( 'wgEnableUploads' ) ? '' : 'display: none';
 		$this->addHTML(
 			# Uploading
-			$this->getFieldSetStart( 'config-upload-settings' ) .
+			$this->getFieldsetStart( 'config-upload-settings' ) .
 			$this->parent->getCheckBox( [
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
@@ -195,7 +195,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				'label' => 'config-instantcommons',
 				'help' => $this->parent->getHelpBox( 'config-instantcommons-help' )
 			] ) .
-			$this->getFieldSetEnd()
+			$this->getFieldsetEnd()
 		);
 
 		$caches = [ 'none' ];
@@ -219,7 +219,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$hidden = ( $cacheval == 'memcached' ) ? '' : 'display: none';
 		$this->addHTML(
 			# Advanced settings
-			$this->getFieldSetStart( 'config-advanced-settings' ) .
+			$this->getFieldsetStart( 'config-advanced-settings' ) .
 			# Object cache settings
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
@@ -239,7 +239,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-memcached-help' )
 			] ) .
 			'</div>' .
-			$this->getFieldSetEnd()
+			$this->getFieldsetEnd()
 		);
 		$this->endForm();
 

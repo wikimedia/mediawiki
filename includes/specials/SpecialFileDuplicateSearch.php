@@ -122,7 +122,7 @@ class FileDuplicateSearchPage extends QueryPage {
 			],
 		];
 		$hiddenFields = [
-			'title' => $this->getPageTitle()->getPrefixedDBKey(),
+			'title' => $this->getPageTitle()->getPrefixedDBkey(),
 		];
 		$htmlForm = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );

@@ -2880,7 +2880,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->startAtomic( __METHOD__ );
 
 		$this->loadPageData( self::READ_LATEST );
-		$id = $this->getID();
+		$id = $this->getId();
 		// T98706: lock the page from various other updates but avoid using
 		// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
 		// the revisions queries (which also JOIN on user). Only lock the page

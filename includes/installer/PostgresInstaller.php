@@ -615,7 +615,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn->commit( __METHOD__ );
 		}
 		// Resume normal operations
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			$this->enableLB();
 		}
 

@@ -265,11 +265,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 		$htmlForm->setMethod( 'get' );
 
-		$out->addHtml( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
+		$out->addHTML( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
 
 		$htmlForm->show();
 
-		$out->addHtml(
+		$out->addHTML(
 			Html::rawElement(
 				'div',
 				null,

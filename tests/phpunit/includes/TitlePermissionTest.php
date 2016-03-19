@@ -658,7 +658,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setUserPerm( [ "createpage" ] );
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['permission'] = '';
-		$this->title->mTitleProtection['user'] = $this->user->getID();
+		$this->title->mTitleProtection['user'] = $this->user->getId();
 		$this->title->mTitleProtection['expiry'] = 'infinity';
 		$this->title->mTitleProtection['reason'] = 'test';
 		$this->title->mCascadeRestriction = false;

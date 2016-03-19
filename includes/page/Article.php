@@ -225,7 +225,7 @@ class Article implements Page {
 	 */
 	protected function getContentObject() {
 
-		if ( $this->mPage->getID() === 0 ) {
+		if ( $this->mPage->getId() === 0 ) {
 			# If this is a MediaWiki:x message, then load the messages
 			# and return the message value for x.
 			if ( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
@@ -282,7 +282,7 @@ class Article implements Page {
 				$this->mRevision = Revision::newFromId( $oldid );
 				if ( $this->mRevision !== null ) {
 					// Revision title doesn't match the page title given?
-					if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
+					if ( $this->mPage->getId() != $this->mRevision->getPage() ) {
 						$function = [ get_class( $this->mPage ), 'newFromID' ];
 						$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
 					}
@@ -768,7 +768,7 @@ class Article implements Page {
 				->params( $oldid )
 				->numParams( 1 )
 				->parseAsBlock();
-			$this->getContext()->getOutput()->addHtml( $msg );
+			$this->getContext()->getOutput()->addHTML( $msg );
 			return;
 		}
 
@@ -863,7 +863,7 @@ class Article implements Page {
 			}
 		}
 
-		if ( $this->mPage->getID() === 0 || $this->getOldID() ) {
+		if ( $this->mPage->getId() === 0 || $this->getOldID() ) {
 			# Non-articles (special pages etc), and old revisions
 			return [
 				'index' => 'noindex',
@@ -1445,7 +1445,7 @@ class Article implements Page {
 		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" .
 			$context->msg( $infomsg, $td )
 				->rawParams( $userlinks )
-				->params( $revision->getID(), $tddate, $tdtime, $revision->getUserText() )
+				->params( $revision->getId(), $tddate, $tdtime, $revision->getUserText() )
 				->rawParams( Linker::revComment( $revision, true, true ) )
 				->parse() .
 			"</div>"
@@ -1961,7 +1961,7 @@ class Article implements Page {
 		$cacheable = false;
 
 		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
-			$cacheable = $this->mPage->getID()
+			$cacheable = $this->mPage->getId()
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {

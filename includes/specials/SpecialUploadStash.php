@@ -398,11 +398,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 						$this->getPageTitle( "file/$file" )->getLocalURL() ], $file )
 				);
 			}
-			$this->getOutput()->addHtml( Html::rawElement( 'ul', [], $fileListItemsHtml ) );
+			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $fileListItemsHtml ) );
 			$form->displayForm( $formResult );
-			$this->getOutput()->addHtml( Html::rawElement( 'p', [], $refreshHtml ) );
+			$this->getOutput()->addHTML( Html::rawElement( 'p', [], $refreshHtml ) );
 		} else {
-			$this->getOutput()->addHtml( Html::rawElement( 'p', [],
+			$this->getOutput()->addHTML( Html::rawElement( 'p', [],
 				Html::element( 'span', [], $this->msg( 'uploadstash-nofiles' )->text() )
 				. ' '
 				. $refreshHtml

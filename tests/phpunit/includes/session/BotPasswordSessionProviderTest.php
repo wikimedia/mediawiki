@@ -154,7 +154,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 	public function testBasics() {
 		$provider = $this->getProvider();
 
-		$this->assertTrue( $provider->persistsSessionID() );
+		$this->assertTrue( $provider->persistsSessionId() );
 		$this->assertFalse( $provider->canChangeUser() );
 
 		$this->assertNull( $provider->newSessionInfo() );

@@ -991,7 +991,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		];
 
 		if ( $this->proxy ) {
-			$options['http']['proxy'] = $this->urlToTCP( $this->proxy );
+			$options['http']['proxy'] = $this->urlToTcp( $this->proxy );
 			$options['http']['request_fulluri'] = true;
 		}
 

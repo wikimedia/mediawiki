@@ -388,7 +388,7 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	protected static function buildGroupLink( $group, $username ) {
-		return User::makeGroupLinkHtml(
+		return User::makeGroupLinkHTML(
 			$group,
 			User::getGroupMember( $group, $username )
 		);

@@ -2431,7 +2431,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiId() . mt_rand(),
+				'wikiId' => wfWikiID() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
@@ -2481,7 +2481,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiId() . mt_rand(),
+				'wikiId' => wfWikiID() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',

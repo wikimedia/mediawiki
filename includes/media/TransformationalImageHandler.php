@@ -335,7 +335,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'height' => $scalerParams['clientHeight']
 		];
 
-		return new ThumbnailImage( $image, $image->getURL(), null, $params );
+		return new ThumbnailImage( $image, $image->getUrl(), null, $params );
 	}
 
 	/**

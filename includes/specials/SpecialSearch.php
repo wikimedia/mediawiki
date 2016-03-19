@@ -299,7 +299,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// start rendering the page
-		$out->addHtml(
+		$out->addHTML(
 			Xml::openElement(
 				'form',
 				[
@@ -323,7 +323,7 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
-		$out->addHtml(
+		$out->addHTML(
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
 			# stuck with it
@@ -342,7 +342,7 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$out->addHtml( "<div class='searchresults'>" );
+		$out->addHTML( "<div class='searchresults'>" );
 
 		// prev/next links
 		$prevnext = null;
@@ -429,7 +429,7 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 
-		$out->addHtml( "</div>" );
+		$out->addHTML( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
 
@@ -551,7 +551,7 @@ class SpecialSearch extends SpecialPage {
 		) {
 			// invalid title
 			// preserve the paragraph for margins etc...
-			$this->getOutput()->addHtml( '<p></p>' );
+			$this->getOutput()->addHTML( '<p></p>' );
 
 			return;
 		}
@@ -580,7 +580,7 @@ class SpecialSearch extends SpecialPage {
 			$this->getOutput()->wrapWikiMsg( "<p class=\"$linkClass\">\n$1</p>", $params );
 		} else {
 			// preserve the paragraph for margins etc...
-			$this->getOutput()->addHtml( '<p></p>' );
+			$this->getOutput()->addHTML( '<p></p>' );
 		}
 	}
 

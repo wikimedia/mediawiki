@@ -1058,7 +1058,7 @@ class WebInstaller extends Installer {
 		if ( !$status->isGood() ) {
 			$text = $status->getWikiText();
 
-			if ( $status->isOk() ) {
+			if ( $status->isOK() ) {
 				$box = $this->getWarningBox( $text );
 			} else {
 				$box = $this->getErrorBox( $text );
@@ -1149,7 +1149,7 @@ class WebInstaller extends Installer {
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser ) {
 		$anchor = Html::rawElement( 'a',
-			[ 'href' => $this->getURL( [ 'localsettings' => 1 ] ) ],
+			[ 'href' => $this->getUrl( [ 'localsettings' => 1 ] ) ],
 			wfMessage( 'config-download-localsettings' )->parse()
 		);
 
