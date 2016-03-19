@@ -699,4 +699,42 @@ class MagicWord {
 	public function getId() {
 		return $this->mId;
 	}
+
+	public static function getDocs( $word ) {
+		global $wgContLang;
+		$magicWordAliases = [];
+		foreach ( $wgContLang->getMagicWords() as $magicWord => $aliases ) {
+			$magicWordAliases[$magicWord] = $magicWord;
+			foreach ( $aliases as $alias ) {
+				$magicWordAliases[$alias] = $magicWord;
+			}
+		}
+
+		if ( isset( $magicWordAliases[$word] ) ) {
+			$word = $magicWordAliases[$word];
+			$doc = [
+				'code' => $word,
+				'params' => []
+			];
+			if ( wfMessage( "magicwords-$word-description" )->exists() ) {
+				$doc['description'] = wfMessage( "magicwords-$word-description" )->plain();
+			} else {
+				$doc['description'] = null;
+			}
+
+			$i = 0;
+			while (
+				wfMessage( "magicwords-$word-params-$i-label" )->exists() ||
+				wfMessage( "magicwords-$word-params-$i-description" )->exists()
+			) {
+				$doc['params'][$i] = [
+					'label' => wfMessage( "magicwords-$word-params-$i-label" )->plain(),
+					'description' => wfMessage( "magicwords-$word-params-$i-description" )->plain()
+				];
+				$i++;
+			}
+
+			return $doc;
+		}
+	}
 }

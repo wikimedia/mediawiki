@@ -4029,5 +4029,10 @@
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
 	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again.",
-	"randomrootpage": "Random root page"
+	"randomrootpage": "Random root page",
+	"magicwords-pagesincategory-description": "Counts the number of pages in a category",
+	"magicwords-pagesincategory-params-0-label": "Category name",
+	"magicwords-pagesincategory-params-0-description": "Category name",
+	"magicwords-pagesincategory-params-1-label": "Types",
+	"magicwords-pagesincategory-params-1-description": "One of: 'all' (default), 'pages' (ordinary pages), 'subcats' (subcategories), 'files' (files)"
 }
