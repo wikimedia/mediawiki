@@ -95,6 +95,28 @@ class LinkHolderArray {
 	}
 
 	/**
+	 * Returns whether the links holder does not have any useful data
+	 * (and is thus useless to serialize)
+	 *
+	 * @return bool
+	 */
+	public function isTrivial() {
+		return !count( $this->internals ) && !count( $this->interwikis );
+	}
+
+	/**
+	 * Returns all data about this object that can be made available publicly through the API
+	 *
+	 * @return array
+	 */
+	public function getPublicData() {
+		return [
+			'internals' => $this->internals,
+			'interwikis' => $this->interwikis
+		];
+	}
+
+	/**
 	 * Merge another LinkHolderArray into this one
 	 * @param LinkHolderArray $other
 	 */
