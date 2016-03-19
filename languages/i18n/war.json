@@ -432,7 +432,7 @@
 	"createaccountreason": "Rason:",
 	"createacct-reason": "Rason",
 	"createacct-reason-ph": "Kay ano nahimo ka hin usa pa nga akawnt",
-	"createacct-submit": "Ighimo an im akawnt",
+	"createacct-submit": "Ighimo an im account",
 	"createacct-another-submit": "Paghimo hin account",
 	"createacct-benefit-heading": "{{SITENAME}} in ginhimo hin tawo nga sugad ha imo.",
 	"createacct-benefit-body1": "{{PLURAL:$1|pagliwat|mga pagliwat}}",
