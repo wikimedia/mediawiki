@@ -1814,6 +1814,12 @@ class Linker {
 			if ( preg_match( $regex, $trail, $m ) ) {
 				$inside = $m[1];
 				$trail = $m[2];
+				// bug T29473: If there are two or more apostrophes in a row in the
+                                // linktrail, put them outside the link. This should be handled here due 
+                                // to separation of language and wikitext parsing.
+                                $pos = strpos( $m[1], "''");
+                                $inside = $pos === false ? $m[1] : substr( $m[1], 0, $pos );
+                                $trail = $pos === false ? $m[2] : substr( $m[1], $pos ) . $m[2];
 			}
 		}
 		return [ $inside, $trail ];
