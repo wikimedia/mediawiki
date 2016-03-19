@@ -1216,15 +1216,18 @@ class Parser {
 	 * @param string $text
 	 * @param bool $isMain
 	 * @param PPFrame|bool $frame
+	 * @param bool $isResume
 	 *
 	 * @return string
 	 */
-	public function internalParse( $text, $isMain = true, $frame = false ) {
+	public function internalParse( $text, $isMain = true, $frame = false, $isResume = false ) {
 
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] ) ) {
+		if ( !$isResume &&
+			!Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] )
+		) {
 			return $text;
 		}
 
@@ -1276,6 +1279,33 @@ class Parser {
 		$text = $this->formatHeadings( $text, $origText, $isMain );
 
 		return $text;
+	}
+
+	/**
+	 * Resume parse from a serialised HalfParsedText extracted from another
+	 * parser instance
+	 * @warning This may leave strip markers in some convoluted cases
+	 * @todo Fix this, StripState::getSubState probably not recursive enough
+	 *
+	 * @param array $data
+	 * @param Title|null $title
+	 * @param ParserOptions $options
+	 * @param bool $clearState
+	 * @param bool $isMain
+	 * @param bool $linestart
+	 *
+	 * @return string Fully parsed html
+	 */
+	public function resumeParse( $data, $title, $options, $clearState = true, $isMain = true,
+		$linestart = true
+	) {
+		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+		// retrieve text, merge StripStates
+		$text = $this->unserializeHalfParsedText( $data, false );
+		$text = $this->internalParse( $text, $isMain, false, true );
+		// this hook gets called between internalParse and internalParseHalfParsed in parse
+		Hooks::run( 'ParserAfterParse', [ &$this, &$text, &$this->mStripState ] );
+		return $this->internalParseHalfParsed( $text, true, $linestart );
 	}
 
 	/**
@@ -6306,16 +6336,27 @@ class Parser {
 	 * the return value of a parser hook.
 	 *
 	 * @param string $text
+	 * @param bool $includeVersion
 	 *
 	 * @return array
 	 */
-	public function serializeHalfParsedText( $text ) {
+	public function serializeHalfParsedText( $text, $includeVersion = true ) {
 		$data = [
 			'text' => $text,
-			'version' => self::HALF_PARSED_VERSION,
 			'stripState' => $this->mStripState->getSubState( $text ),
 			'linkHolders' => $this->mLinkHolders->getSubArray( $text )
 		];
+		if ( $includeVersion ) {
+			$data['version'] = self::HALF_PARSED_VERSION;
+		}
+		// no need to store strip state if it has no markers
+		if ( $data['stripState']->isTrivial() ) {
+			unset( $data['stripState'] );
+		}
+		// no need to store link holders if it has no links
+		if ( $data['linkHolders']->isTrivial() ) {
+			unset( $data['linkHolders'] );
+		}
 		return $data;
 	}
 
@@ -6331,20 +6372,27 @@ class Parser {
 	 * check whether it is still valid, by calling isValidHalfParsedText().
 	 *
 	 * @param array $data Serialized data
+	 * @param bool $checkVersion
 	 * @throws MWException
 	 * @return string
 	 */
-	public function unserializeHalfParsedText( $data ) {
-		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
+	public function unserializeHalfParsedText( $data, $checkVersion = true ) {
+		if ( $checkVersion &&
+			( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION )
+		) {
 			throw new MWException( __METHOD__ . ': invalid version' );
 		}
 
 		# First, extract the strip state.
 		$texts = [ $data['text'] ];
-		$texts = $this->mStripState->merge( $data['stripState'], $texts );
+		if ( isset( $data['stripState'] ) ) {
+			$texts = $this->mStripState->merge( $data['stripState'], $texts );
+		}
 
 		# Now renumber links
-		$texts = $this->mLinkHolders->mergeForeign( $data['linkHolders'], $texts );
+		if ( isset( $data['linkHolders'] ) ) {
+			$texts = $this->mLinkHolders->mergeForeign( $data['linkHolders'], $texts );
+		}
 
 		# Should be good to go.
 		return $texts[0];
