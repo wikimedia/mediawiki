@@ -1,6 +1,7 @@
 <?php
 
-use Psr\Cache\CacheItemPoolInterface;
+use Cache\Taggable\TaggablePoolInterface;
+use Cache\Taggable\TaggablePSR6PoolAdapter;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -19,17 +20,9 @@ class WatchedItemStore {
 	private $loadBalancer;
 
 	/**
-	 * @var CacheItemPoolInterface
+	 * @var TaggablePoolInterface
 	 */
 	private $cache;
-
-	/**
-	 * @var array[] Looks like $cacheIndex[Namespace ID][Target DB Key][User Id] => 'key'
-	 * The index is needed so that on mass changes all relevant items can be un-cached.
-	 * For example: Clearing a users watchlist of all items or updating notification timestamps
-	 *              for all users watching a single target.
-	 */
-	private $cacheIndex = [];
 
 	/**
 	 * @var callable|null
@@ -48,11 +41,11 @@ class WatchedItemStore {
 
 	/**
 	 * @param LoadBalancer $loadBalancer
-	 * @param CacheItemPoolInterface $cache
+	 * @param TaggablePoolInterface $cache
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		CacheItemPoolInterface $cache
+		TaggablePoolInterface $cache
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
@@ -144,7 +137,11 @@ class WatchedItemStore {
 		if ( !self::$instance ) {
 			self::$instance = new self(
 				wfGetLB(),
-				new BagOStuffPsrCache( new HashBagOStuff( [ 'maxKeys' => 100 ] ) )
+				TaggablePSR6PoolAdapter::makeTaggable(
+					new BagOStuffPsrCache(
+						new HashBagOStuff( [ 'maxKeys' => 100 ] )
+					)
+				)
 			);
 		}
 		return self::$instance;
@@ -163,23 +160,24 @@ class WatchedItemStore {
 	private function cache( WatchedItem $item ) {
 		$user = $item->getUser();
 		$target = $item->getLinkTarget();
-		$key = $this->getCacheKey( $user, $target );
-		$this->cache->save( $this->cache->getItem( $key )->set( $item ) );
-		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
+		$this->cache->save(
+			$this->cache->getItem( $this->getCacheKey( $user, $target ) )
+				->set( $item )
+				->setTags(
+					[
+						'user-' . $user->getId(),
+						'target-' . $target->getNamespace() . '-' . $target->getDBkey(),
+					]
+				)
+		);
 	}
 
 	private function uncache( User $user, LinkTarget $target ) {
 		$this->cache->deleteItem( $this->getCacheKey( $user, $target ) );
-		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
 	}
 
 	private function uncacheLinkTarget( LinkTarget $target ) {
-		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
-			return;
-		}
-		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
-			$this->cache->deleteItem( $key );
-		}
+		$this->cache->clearTags( [ 'target-' . $target->getNamespace() . '-' . $target->getDBkey() ] );
 	}
 
 	/**
