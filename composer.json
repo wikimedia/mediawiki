@@ -16,6 +16,7 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"cache/taggable-cache": "0.4.0",
 		"composer/semver": "1.2.0",
 		"cssjanus/cssjanus": "1.1.2",
 		"ext-iconv": "*",
