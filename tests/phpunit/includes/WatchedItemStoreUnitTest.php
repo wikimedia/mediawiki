@@ -1,5 +1,7 @@
 <?php
-use Psr\Cache\CacheItemPoolInterface;
+
+use Cache\Taggable\TaggableItemInterface;
+use Cache\Taggable\TaggablePoolInterface;
 
 /**
  * @author Addshore
@@ -32,10 +34,10 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|CacheItemPoolInterface
+	 * @return PHPUnit_Framework_MockObject_MockObject|TaggablePoolInterface
 	 */
 	private function getMockCache() {
-		$mock = $this->getMockBuilder( BagOStuffPsrCache::class )
+		$mock = $this->getMockBuilder( TaggablePoolInterface::class )
 			->disableOriginalConstructor()
 			->getMock();
 		return $mock;
@@ -45,7 +47,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	 * @param bool $isHit
 	 * @param string[] $expectedMethods Method names that we want to expect
 	 *
-	 * @return PHPUnit_Framework_MockObject_MockObject|BagOStuffPsrCacheItem
+	 * @return PHPUnit_Framework_MockObject_MockObject|TaggableItemInterface
 	 */
 	private function getMockCacheItem( $isHit, array $expectedMethods = [] ) {
 		$methods = [
@@ -54,8 +56,11 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			'set',
 			'expiresAt',
 			'expiresAfter',
+			'getTags',
+			'setTags',
+			'addTag',
 		];
-		$mock = $this->getMockBuilder( BagOStuffPsrCacheItem::class )
+		$mock = $this->getMockBuilder( TaggableItemInterface::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->any() )
@@ -70,7 +75,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @param string[] $expectedMethods Method names that we want to expect
 	 *
-	 * @return PHPUnit_Framework_MockObject_MockObject|CacheItemPoolInterface
+	 * @return PHPUnit_Framework_MockObject_MockObject|TaggablePoolInterface
 	 */
 	private function getMockCacheWithNoExpectedCalls( array $expectedMethods = [] ) {
 		$methods =
@@ -84,6 +89,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				'save',
 				'saveDeferred',
 				'commit',
+				'clearTags',
 			];
 		$mockCache = $this->getMockCache();
 		foreach ( array_diff( $methods, $expectedMethods ) as $method ) {
@@ -1052,10 +1058,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCache();
@@ -1248,10 +1258,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCache();
@@ -1389,10 +1403,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCache();
@@ -1540,10 +1558,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCache();
@@ -1699,10 +1721,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCacheWithNoExpectedCalls( [ 'getItem', 'save', 'deleteItem' ] );
@@ -1793,9 +1819,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				]
 			);
 
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->once() )
+			->method( 'clearTags' )
+			->with( [ 'target-0-SomeDbKey' ] );
+
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCacheWithNoExpectedCalls()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1871,10 +1902,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'update' );
 
-		$mockCacheItem = $this->getMockCacheItem( false, [ 'set' ] );
+		$mockCacheItem = $this->getMockCacheItem( false, [ 'set', 'setTags' ] );
 		$mockCacheItem->expects( $this->once() )
 			->method( 'set' )
 			->with( $this->isInstanceOf( WatchedItem::class ) )
+			->will( $this->returnValue( $mockCacheItem ) );
+		$mockCacheItem->expects( $this->once() )
+			->method( 'setTags' )
+			->with( [ 'user-1', 'target-0-SomeDbKey' ] )
 			->will( $this->returnValue( $mockCacheItem ) );
 
 		$mockCache = $this->getMockCache();
@@ -1886,8 +1921,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'save' )
 			->with( $mockCacheItem );
 		$mockCache->expects( $this->once() )
-			->method( 'deleteItem' )
-			->with( '0|SomeDbKey|1' );
+			->method( 'clearTags' )
+			->with( [ 'target-0-SomeDbKey' ] );
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
