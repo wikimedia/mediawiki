@@ -372,3 +372,7 @@
 	path = extensions/Poll
 	url = https://github.com/wikimedia/mediawiki-extensions-Poll
 	branch = REL1_26
+[submodule "extensions/HighlightLinksInCategory"]
+	path = extensions/HighlightLinksInCategory
+	url = https://github.com/labster/HighlightLinksInCategory.git
+	branch = master
