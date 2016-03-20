@@ -241,12 +241,14 @@ abstract class UploadBase {
 	 */
 	protected function setTempFile( $tempPath, $fileSize = null ) {
 		$this->mTempPath = $tempPath;
+		$this->mFileSize = $fileSize ?: null;
 		if ( strlen( $this->mTempPath ) && file_exists( $this->mTempPath ) ) {
 			$this->tempFileObj = new TempFSFile( $this->mTempPath );
-			$this->mFileSize = $fileSize ?: filesize( $this->mTempPath );
+			if ( !$fileSize ) {
+				$this->mFileSize = filesize( $this->mTempPath );
+			}
 		} else {
 			$this->tempFileObj = null;
-			$this->mFileSize = null;
 		}
 	}
 
