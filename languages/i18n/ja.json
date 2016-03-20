@@ -2060,6 +2060,7 @@
 	"changecontentmodel-title-label": "ページ名",
 	"changecontentmodel-model-label": "新しい コンテンツ モデル",
 	"changecontentmodel-reason-label": "理由:",
+	"changecontentmodel-submit": "変更",
 	"changecontentmodel-success-title": "コンテント・モデルは変更されました",
 	"changecontentmodel-success-text": "[[:$1]]のコンテント・タイプは変更されています。",
 	"changecontentmodel-cannot-convert": "[[:$1]]上のコンテントは$2の型には変換できません。",

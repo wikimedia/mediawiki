@@ -1569,6 +1569,7 @@
 	"editcomment": "د سمون لنډيز دا و: \"''$1''\".",
 	"changecontentmodel-title-label": "مخ سرليک",
 	"changecontentmodel-reason-label": "سبب:",
+	"changecontentmodel-submit": "بدلول",
 	"logentry-contentmodel-change-revertlink": "په څټ گرځول",
 	"logentry-contentmodel-change-revert": "په څټ گرځول",
 	"protectlogpage": "د ژغورنې يادښت",
