@@ -1,5 +1,6 @@
 <?php
 
+use Psr\Cache\CacheItemPoolInterface;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -18,7 +19,7 @@ class WatchedItemStore {
 	private $loadBalancer;
 
 	/**
-	 * @var HashBagOStuff
+	 * @var CacheItemPoolInterface
 	 */
 	private $cache;
 
@@ -47,11 +48,11 @@ class WatchedItemStore {
 
 	/**
 	 * @param LoadBalancer $loadBalancer
-	 * @param HashBagOStuff $cache
+	 * @param CacheItemPoolInterface $cache
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache
+		CacheItemPoolInterface $cache
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
@@ -143,17 +144,19 @@ class WatchedItemStore {
 		if ( !self::$instance ) {
 			self::$instance = new self(
 				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] )
+				new BagOStuffPsrCache( new HashBagOStuff( [ 'maxKeys' => 100 ] ) )
 			);
 		}
 		return self::$instance;
 	}
 
 	private function getCacheKey( User $user, LinkTarget $target ) {
-		return $this->cache->makeKey(
-			(string)$target->getNamespace(),
-			$target->getDBkey(),
-			(string)$user->getId()
+		return implode( '|',
+			[
+				(string)$target->getNamespace(),
+				$target->getDBkey(),
+				(string)$user->getId(),
+			]
 		);
 	}
 
@@ -161,12 +164,12 @@ class WatchedItemStore {
 		$user = $item->getUser();
 		$target = $item->getLinkTarget();
 		$key = $this->getCacheKey( $user, $target );
-		$this->cache->set( $key, $item );
+		$this->cache->save( $this->cache->getItem( $key )->set( $item ) );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
 	}
 
 	private function uncache( User $user, LinkTarget $target ) {
-		$this->cache->delete( $this->getCacheKey( $user, $target ) );
+		$this->cache->deleteItem( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
 	}
 
@@ -175,7 +178,7 @@ class WatchedItemStore {
 			return;
 		}
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
-			$this->cache->delete( $key );
+			$this->cache->deleteItem( $key );
 		}
 	}
 
@@ -186,7 +189,11 @@ class WatchedItemStore {
 	 * @return WatchedItem|null
 	 */
 	private function getCached( User $user, LinkTarget $target ) {
-		return $this->cache->get( $this->getCacheKey( $user, $target ) );
+		$item = $this->cache->getItem( $this->getCacheKey( $user, $target ) );
+		if ( $item->isHit() ) {
+			return $item->get();
+		}
+		return null;
 	}
 
 	/**
