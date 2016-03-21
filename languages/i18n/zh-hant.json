@@ -69,7 +69,8 @@
 			"Jasonzhuocn",
 			"Bowleerin",
 			"飞舞回堂前",
-			"Bbslam"
+			"Bbslam",
+			"Zerng07"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -923,7 +924,9 @@
 	"mergehistory-fail-invalid-source": "來源頁面無效。",
 	"mergehistory-fail-invalid-dest": "目標頁面無效。",
 	"mergehistory-fail-no-change": "歷史合併尚未合併任何修訂歷史紀錄。請再次檢查頁面以及時間參數。",
+	"mergehistory-fail-permission": "權限不足，無法合併歷史。",
 	"mergehistory-fail-self-merge": "來源頁面與目標頁面的名稱相同。",
+	"mergehistory-fail-timestamps-overlap": "來源修訂版本重複，或在目標修訂版本之後才出現。",
 	"mergehistory-fail-toobig": "超過 $1 個修訂移動的上限，無法進行歷史合併。",
 	"mergehistory-no-source": "來源頁面 $1 不存在。",
 	"mergehistory-no-destination": "目標頁面 $1 不存在。",
@@ -1797,6 +1800,7 @@
 	"apihelp": "API 說明",
 	"apihelp-no-such-module": "查無模組 \"$1\"。",
 	"apisandbox": "API 沙盒",
+	"apisandbox-jsonly": "需要 JavaScript 才能使用 API 沙箱。",
 	"apisandbox-api-disabled": "此網站已關閉 API。",
 	"apisandbox-intro": "使用此頁面可測試 '''MediaWiki Web Service API'''。\n請參考　[//www.mediawiki.org/wiki/API:Main_page API 說明文件] 以取得詳細資訊。例：[//www.mediawiki.org/wiki/API#A_simple_example 取得主頁的內容]。 請選擇動作以取得更多範例。\n\n請注意，雖然此為沙盒，您在此頁所執行的動作仍有可能會修改到 Wiki。",
 	"apisandbox-fullscreen": "展開面板",
