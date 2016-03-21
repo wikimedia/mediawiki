@@ -448,8 +448,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
-		if ( $this->fld_watched ) {
-			$pageInfo['watched'] = isset( $this->watched[$ns][$dbkey] );
+		if ( $this->fld_watched && $this->watched !== null ) {
+			$pageInfo['watched'] = $this->watched[$ns][$dbkey];
 		}
 
 		if ( $this->fld_watchers ) {
@@ -470,7 +470,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_notificationtimestamp ) {
 			$pageInfo['notificationtimestamp'] = '';
-			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
+			if ( $this->notificationtimestamps[$ns][$dbkey] ) {
 				$pageInfo['notificationtimestamp'] =
 					wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
 			}
@@ -758,29 +758,22 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$this->watched = [];
 		$this->notificationtimestamps = [];
-		$db = $this->getDB();
 
-		$lb = new LinkBatch( $this->everything );
+		$store = WatchedItemStore::getDefaultInstance();
+		$timestamps = $store->getNotificationTimestampsBatch( $user, $this->everything );
 
-		$this->resetQueryParams();
-		$this->addTables( [ 'watchlist' ] );
-		$this->addFields( [ 'wl_title', 'wl_namespace' ] );
-		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
-		$this->addWhere( [
-			$lb->constructSet( 'wl', $db ),
-			'wl_user' => $user->getId()
-		] );
-
-		$res = $this->select( __METHOD__ );
-
-		foreach ( $res as $row ) {
-			if ( $this->fld_watched ) {
-				$this->watched[$row->wl_namespace][$row->wl_title] = true;
+		if ( $this->fld_watched ) {
+			foreach ( $timestamps as $namespaceId => $dbKeys ) {
+				$this->watched[$namespaceId] = array_map(
+					function( $x ) {
+						return $x !== false;
+					},
+					$dbKeys
+				);
 			}
-			if ( $this->fld_notificationtimestamp ) {
-				$this->notificationtimestamps[$row->wl_namespace][$row->wl_title] =
-					$row->wl_notificationtimestamp;
-			}
+		}
+		if ( $this->fld_notificationtimestamp ) {
+			$this->notificationtimestamps = $timestamps;
 		}
 	}
 

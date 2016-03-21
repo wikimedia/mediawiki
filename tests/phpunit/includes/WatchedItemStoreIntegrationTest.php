@@ -52,6 +52,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => 0 ] ],
 			$store->countWatchersMultiple( [ $title ], [ 'minimumWatchers' => $initialWatchers + 2 ] )
 		);
+		$this->assertEquals(
+			[ $title->getNamespace() => [ $title->getDBkey() => null ] ],
+			$store->getNotificationTimestampsBatch( $user, [ $title ] )
+		);
 
 		$store->removeWatch( $user, $title );
 		$this->assertFalse(
@@ -63,6 +67,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$initialWatchers,
 			$store->countWatchersMultiple( [ $title ] )[$title->getNamespace()][$title->getDBkey()]
+		);
+		$this->assertEquals(
+			[ $title->getNamespace() => [ $title->getDBkey() => false ] ],
+			$store->getNotificationTimestampsBatch( $user, [ $title ] )
 		);
 	}
 
@@ -80,6 +88,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'20150202010101',
 			$store->loadWatchedItem( $user, $title )->getNotificationTimestamp()
+		);
+		$this->assertEquals(
+			[ $title->getNamespace() => [ $title->getDBkey() => '20150202010101' ] ],
+			$store->getNotificationTimestampsBatch( $user, [ $title ] )
 		);
 		$this->assertEquals(
 			$initialVisitingWatchers - 1,
@@ -102,6 +114,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
 		$this->assertNull( $store->getWatchedItem( $user, $title )->getNotificationTimestamp() );
+		$this->assertEquals(
+			[ $title->getNamespace() => [ $title->getDBkey() => null ] ],
+			$store->getNotificationTimestampsBatch( $user, [ $title ] )
+		);
 		$this->assertEquals(
 			$initialVisitingWatchers,
 			$store->countVisitingWatchers( $title, '20150202020202' )
