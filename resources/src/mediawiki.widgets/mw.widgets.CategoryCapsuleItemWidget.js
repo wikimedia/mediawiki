@@ -55,7 +55,7 @@
 				var title = new ForeignTitle( page.title ).getPrefixedText();
 				this.existenceCache[ title ] = !page.missing;
 				queue[ title ].resolve( this.existenceCache[ title ] );
-			} );
+			}.bind( this ) );
 		}.bind( this ) );
 	};
 
