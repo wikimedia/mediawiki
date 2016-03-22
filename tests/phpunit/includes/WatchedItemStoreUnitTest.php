@@ -1206,7 +1206,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideDbTypes
 	 */
-	public function testGetWatchedItemsForUser_optionsAndEmptyResult( $forWrite, $dbType ) {
+	public function testGetWatchedItemsForUser_dbTypeOptions( $forWrite, $dbType ) {
 		$mockDb = $this->getMockDb();
 		$mockCache = $this->getMockCache();
 		$mockLoadBalancer = $this->getMockLoadBalancer( $mockDb, $dbType );
@@ -1218,8 +1218,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				'watchlist',
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				[ 'wl_user' => 1 ],
-				$this->isType( 'string' ),
-				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+				$this->isType( 'string' )
 			)
 			->will( $this->returnValue( [] ) );
 
@@ -1230,7 +1229,232 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
-			[ 'forWrite' => $forWrite, 'sort' => WatchedItemStore::SORT_ASC ]
+			[ 'forWrite' => $forWrite ]
+		);
+		$this->assertEquals( [], $watchedItems );
+	}
+
+	public function provideGetWatchedItemsForUserOptions() {
+		return [
+			[
+				[ 'namespaceIds' => [ 0, 1 ], ],
+				[ 'wl_namespace' => [ 0, 1 ], ],
+				[]
+			],
+			[
+				[ 'sort' => WatchedItemStore::SORT_ASC, ],
+				[],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0 ],
+					'sort' => WatchedItemStore::SORT_ASC,
+				],
+				[ 'wl_namespace' => [ 0 ], ],
+				[ 'ORDER BY' => 'wl_title ASC' ]
+			],
+			[
+				[ 'limit' => 10 ],
+				[],
+				[ 'LIMIT' => 10 ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0, "1; DROP TABLE watchlist;\n--" ],
+					'limit' => "10; DROP TABLE watchlist;\n--",
+				],
+				[ 'wl_namespace' => [ 0, 1 ], ],
+				[ 'LIMIT' => 10 ]
+			],
+			[
+				[ 'filter' => WatchedItemStore::FILTER_ONLY_CHANGED ],
+				[ 'wl_notificationtimestamp IS NOT NULL' ],
+				[]
+			],
+			[
+				[ 'filter' => WatchedItemStore::FILTER_ONLY_NOT_CHANGED ],
+				[ 'wl_notificationtimestamp IS NULL' ],
+				[]
+			],
+			[
+				[ 'sort' => WatchedItemStore::SORT_DESC, ],
+				[],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0 ],
+					'sort' => WatchedItemStore::SORT_DESC,
+				],
+				[ 'wl_namespace' => [ 0 ], ],
+				[ 'ORDER BY' => 'wl_title DESC' ]
+			],
+			[
+				[ 'namespaceIds' => 0, ],
+				[],
+				[]
+			],
+			[
+				[ 'namespaceIds' => "1; DROP TABLE watchlist;\n--", ],
+				[],
+				[]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetWatchedItemsForUserOptions
+	 */
+	public function testGetWatchedItemsForUser_optionsAndEmptyResult(
+		array $options,
+		array $expectedConds,
+		array $expectedDbOptions
+	) {
+		$mockDb = $this->getMockDb();
+		$mockCache = $this->getMockCache();
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				$expectedConds,
+				$this->isType( 'string' ),
+				$expectedDbOptions
+			)
+			->will( $this->returnValue( [] ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$watchedItems = $store->getWatchedItemsForUser(
+			$user,
+			$options
+		);
+		$this->assertEquals( [], $watchedItems );
+	}
+
+	public function provideGetWatchedItemsForUser_fromUntilStartFromOptions() {
+		return [
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_ASC
+				],
+				[ "(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_DESC,
+				],
+				[ "(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_ASC
+				],
+				[ "(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_DESC
+				],
+				[ "(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'AnotherDbKey' ),
+					'until' => new TitleValue( 0, 'SomeOtherDbKey' ),
+					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_ASC
+				],
+				[
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'AnotherDbKey'))",
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeOtherDbKey'))",
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))",
+				],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeOtherDbKey' ),
+					'until' => new TitleValue( 0, 'AnotherDbKey' ),
+					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemStore::SORT_DESC
+				],
+				[
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeOtherDbKey'))",
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'AnotherDbKey'))",
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))",
+				],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetWatchedItemsForUser_fromUntilStartFromOptions
+	 */
+	public function testGetWatchedItemsForUser_fromUntilStartFromOptions(
+		array $options,
+		array $expectedConds,
+		array $expectedDbOptions
+	) {
+		$mockCache = $this->getMockCache();
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->any() )
+			->method( 'addQuotes' )
+			->will( $this->returnCallback( function( $value ) {
+				return "'$value'";
+			} ) );
+		$mockDb->expects( $this->any() )
+			->method( 'makeList' )
+			->with(
+				$this->isType( 'array' ),
+				$this->isType( 'int' )
+			)
+			->will( $this->returnCallback( function( $a, $conj ) {
+				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
+				return join( $sqlConj, array_map( function( $s ) {
+					return '(' . $s . ')';
+				}, $a
+				) );
+			} ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				$expectedConds,
+				$this->isType( 'string' ),
+				$expectedDbOptions
+			)
+			->will( $this->returnValue( [] ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$watchedItems = $store->getWatchedItemsForUser(
+			$user,
+			$options
 		);
 		$this->assertEquals( [], $watchedItems );
 	}
@@ -1245,6 +1469,43 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$store->getWatchedItemsForUser(
 			$this->getMockNonAnonUserWithId( 1 ),
 			[ 'sort' => 'foo' ]
+		);
+	}
+
+	public function testGetWatchedItemsForUser_badFilterOptionThrowsException() {
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockCache()
+		);
+
+		$this->setExpectedException( 'InvalidArgumentException' );
+		$store->getWatchedItemsForUser(
+			$this->getMockNonAnonUserWithId( 1 ),
+			[ 'filter' => 'foo' ]
+		);
+	}
+
+	public function provideGetWatchedItemsForUser_fromUntilStartFromNoSort() {
+		return [
+			[ [ 'from' => new TitleValue( 0, 'SomeDbKey' ), ] ],
+			[ [ 'until' => new TitleValue( 0, 'SomeDbKey' ), ] ],
+			[ [ 'startFrom' => new TitleValue( 0, 'SomeDbKey' ), ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetWatchedItemsForUser_fromUntilStartFromNoSort
+	 */
+	public function testGetWatchedItemsForUser_fromUntilNoSortThrowsException( array $options ) {
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockCache()
+		);
+
+		$this->setExpectedException( 'InvalidArgumentException' );
+		$store->getWatchedItemsForUser(
+			$this->getMockNonAnonUserWithId( 1 ),
+			$options
 		);
 	}
 
