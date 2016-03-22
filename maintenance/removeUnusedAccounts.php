@@ -62,7 +62,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			# group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
-				&& $this->isInactiveAccount( $row->user_id, true )
+				&& $instance->isInactiveAccount( true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
 			) {
 				# Inactive; print out the name and flag it
@@ -96,39 +96,6 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nRun the script again with --delete to remove them from the database.\n" );
 		}
 		$this->output( "\n" );
-	}
-
-	/**
-	 * Could the specified user account be deemed inactive?
-	 * (No edits, no deleted edits, no log entries, no current/old uploads)
-	 *
-	 * @param int $id User's ID
-	 * @param bool $master Perform checking on the master
-	 * @return bool
-	 */
-	private function isInactiveAccount( $id, $master = false ) {
-		$dbo = $this->getDB( $master ? DB_MASTER : DB_REPLICA );
-		$checks = [
-			'revision' => 'rev',
-			'archive' => 'ar',
-			'image' => 'img',
-			'oldimage' => 'oi',
-			'filearchive' => 'fa'
-		];
-		$count = 0;
-
-		$this->beginTransaction( $dbo, __METHOD__ );
-		foreach ( $checks as $table => $fprefix ) {
-			$conds = [ $fprefix . '_user' => $id ];
-			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
-		}
-
-		$conds = [ 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) ];
-		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
-
-		$this->commitTransaction( $dbo, __METHOD__ );
-
-		return $count == 0;
 	}
 }
 
