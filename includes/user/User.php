@@ -3467,10 +3467,9 @@ class User implements IDBAccessObject {
 	 */
 	public function addWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			WatchedItemStore::getDefaultInstance()->addWatchBatch( [
-				[ $this, $title->getSubjectPage() ],
-				[ $this, $title->getTalkPage() ],
-			]
+			WatchedItemStore::getDefaultInstance()->addWatchBatchForUser(
+				$this,
+				[ $title->getSubjectPage(), $title->getTalkPage() ]
 			);
 		}
 		$this->invalidateCache();
