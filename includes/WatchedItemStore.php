@@ -16,6 +16,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 	const SORT_DESC = 'DESC';
 	const SORT_ASC = 'ASC';
 
+	const FILTER_ONLY_CHANGED = 'changed';
+	const FILTER_ONLY_NOT_CHANGED = '!changed';
+
 	/**
 	 * @var LoadBalancer
 	 */
@@ -517,30 +520,53 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 *        'forWrite' => bool defaults to false
 	 *        'sort' => string optional sorting by namespace ID and title
 	 *                     one of the self::SORT_* constants
+	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
+	 *        'limit' => int maximum number of items to return
+	 *        'filter' => string optional filter, one of the self::FILTER_* contants
+	 *        'from' => LinkTarget requires 'sort' key, only return items starting from
+	 *        those related to the link target
+	 *        'until' => LinkTarget requires 'sort' key, only return items until
+	 *        those related to the link target
+	 *        'startFrom' => LinkTarget requires 'sort' key, only return items starting from
+	 *        those related to the link target, allows to skip some link targets specified using
+	 *        the form option
 	 *
 	 * @return WatchedItem[]
 	 */
 	public function getWatchedItemsForUser( User $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
+		$options += [ 'namespaceIds' => [] ];
 
-		$dbOptions = [];
-		if ( array_key_exists( 'sort', $options ) ) {
-			Assert::parameter(
-				( in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ) ),
-				'$options[\'sort\']',
-				'must be SORT_ASC or SORT_DESC'
-			);
-			$dbOptions['ORDER BY'] = [
-				"wl_namespace {$options['sort']}",
-				"wl_title {$options['sort']}"
-			];
-		}
+		Assert::parameter(
+			!isset( $options['sort'] ) || in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ),
+			'$options[\'sort\']',
+			'must be SORT_ASC or SORT_DESC'
+		);
+		Assert::parameter(
+			!isset( $options['filter'] ) || in_array(
+				$options['filter'], [ self::FILTER_ONLY_CHANGED, self::FILTER_ONLY_NOT_CHANGED ]
+			),
+			'$options["filter"]',
+			'must be FILTER_ONLY_CHANGED or FILTER_ONLY_NOT_CHANGED'
+		);
+		Assert::parameter(
+			!isset( $options['from'] ) && !isset( $options['until'] ) && !isset( $options['startFrom'] )
+				|| isset( $options['sort'] ),
+			'$options["sort"]',
+			'must be provided if any of "from", "until", "startFrom" options is provided'
+		);
+
 		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+
+		$extraConds = $this->getWatchedItemsForUserQueryConds( $db, $options );
+		$conds = [ 'wl_user' => $user->getId() ] + $extraConds;
+
+		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
 
 		$res = $db->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-			[ 'wl_user' => $user->getId() ],
+			$conds,
 			__METHOD__,
 			$dbOptions
 		);
@@ -557,6 +583,102 @@ class WatchedItemStore implements StatsdAwareInterface {
 		}
 
 		return $watchedItems;
+	}
+
+	private function getWatchedItemsForUserQueryConds( IDatabase $db, array $options ) {
+		$conds = [];
+		if ( $options['namespaceIds'] ) {
+			$conds['wl_namespace'] = array_map( 'intval', $options['namespaceIds'] );
+		}
+		if ( isset( $options['filter'] ) ) {
+			$filter = $options['filter'];
+			if ( $filter ===  self::FILTER_ONLY_CHANGED ) {
+				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
+			} else {
+				$conds[] = 'wl_notificationtimestamp IS NULL';
+			}
+		}
+
+		if ( isset( $options['from'] ) ) {
+			$conds[] = $this->getAfterTargetQueryPart( $db, $options['from'], $options['sort'] );
+		}
+		if ( isset( $options['until'] ) ) {
+			$conds[] = $this->getBeforeTargetQueryPart( $db, $options['until'], $options['sort'] );
+		}
+		if ( isset( $options['startFrom'] ) ) {
+			$conds[] = $this->getAfterTargetQueryPart( $db, $options['startFrom'], $options['sort'] );
+		}
+
+		return $conds;
+	}
+
+	/**
+	 * Creates a query condition part for getting only items before the given link target
+	 * (while ordering using $sort mode)
+	 *
+	 * @param IDatabase $db
+	 * @param LinkTarget $target
+	 * @param string $sort self::SORT_ASC or self::SORT::DESC
+	 * @return string
+	 */
+	private function getAfterTargetQueryPart( IDatabase $db, LinkTarget $target, $sort ) {
+		$op = $sort === self::SORT_ASC ? '>' : '<';
+		return $db->makeList(
+			[
+				"wl_namespace $op " . $target->getNamespace(),
+				$db->makeList(
+					[
+						'wl_namespace = ' . $target->getNamespace(),
+						"wl_title $op= " . $db->addQuotes( $target->getDBkey() )
+					],
+					LIST_AND
+				)
+			],
+			LIST_OR
+		);
+	}
+
+	/**
+	 * Creates a query condition part for getting only items before the given link target
+	 * (while ordering using $sort mode)
+	 *
+	 * @param IDatabase $db
+	 * @param LinkTarget $target
+	 * @param string $sort self::SORT_ASC or self::SORT::DESC
+	 * @return string
+	 */
+	private function getBeforeTargetQueryPart( IDatabase $db, LinkTarget $target, $sort ) {
+		$op = $sort === self::SORT_ASC ? '<' : '>';
+		return $db->makeList(
+			[
+				"wl_namespace $op " . $target->getNamespace(),
+				$db->makeList(
+					[
+						'wl_namespace = ' . $target->getNamespace(),
+						"wl_title $op= " . $db->addQuotes( $target->getDBkey() )
+					],
+					LIST_AND
+				)
+			],
+			LIST_OR
+		);
+	}
+
+	private function getWatchedItemsForUserQueryDbOptions( array $options ) {
+		$dbOptions = [];
+		if ( array_key_exists( 'sort', $options ) ) {
+			$dbOptions['ORDER BY'] = [
+				"wl_namespace {$options['sort']}",
+				"wl_title {$options['sort']}"
+			];
+			if ( count( $options['namespaceIds'] ) === 1 ) {
+				$dbOptions['ORDER BY'] = "wl_title {$options['sort']}";
+			}
+		}
+		if ( array_key_exists( 'limit', $options ) ) {
+			$dbOptions['LIMIT'] = (int)$options['limit'];
+		}
+		return $dbOptions;
 	}
 
 	/**
