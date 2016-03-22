@@ -45,6 +45,14 @@ class SkinTemplate extends Skin {
 	 */
 	public $template = 'QuickTemplate';
 
+	public $thispage;
+	public $titletxt;
+	public $userpage;
+	public $thisquery;
+	public $loggedin;
+	public $username;
+	public $userpageUrlDetails;
+
 	/**
 	 * Add specific styles for this skin
 	 *
