@@ -400,8 +400,17 @@ class WatchedItemStore {
 	 * @param User $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
-	 *        'namespaceId' => int optional namespace ID to filter by (default to all namespaces)
 	 *        'ordered' => bool optional ordering by namespace ID and title
+	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
+	 *        'limit' => int maximum number of items to return
+	 *        'filter' => string optional filter, allowed values:
+	 *        - changedSinceLastVisit,
+	 *        - changedBeforeLastVisit,
+	 *        'orderDescending' => bool reverse ordering of items, defaults to false
+	 *        'from' => LinkTarget requires 'ordered' key, only return items starting from
+	 *        those related to the link target
+	 *        'until' => LinkTarget requires 'ordered' key, only return items until
+	 *        those related to the link target
 	 *
 	 * @return WatchedItem[]
 	 */
@@ -409,14 +418,16 @@ class WatchedItemStore {
 		if ( !array_key_exists( 'forWrite', $options ) ) {
 			$options['forWrite'] = false;
 		}
-
-		$conds = [ 'wl_user' => $user->getId() ];
-
-		$dbOptions = [];
-		if ( array_key_exists( 'ordered', $options ) && $options['ordered'] ) {
-			$dbOptions['ORDER BY'] = [ 'wl_namespace', 'wl_title' ];
+		if ( !array_key_exists( 'namespaceIds', $options ) || !is_array( $options['namespaceIds'] ) ) {
+			$options['namespaceIds'] = [];
 		}
+
 		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+
+		$extraConds = $this->getWatchedItemsForUserQueryConds( $db, $options );
+		$conds = array_merge( [ 'wl_user' => $user->getId() ], $extraConds );
+
+		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
 
 		$res = $db->select(
 			'watchlist',
@@ -438,6 +449,72 @@ class WatchedItemStore {
 		}
 
 		return $watchedItems;
+	}
+
+	private function getWatchedItemsForUserQueryConds( IDatabase $db, array $options ) {
+		$conds = [];
+		if ( $options['namespaceIds'] ) {
+			$conds['wl_namespace'] = array_map(
+				function( $x ) {
+					return (int)$x;
+				},
+				$options['namespaceIds']
+			);
+		}
+		if ( array_key_exists( 'filter', $options ) ) {
+			if ( $options['filter'] === 'changedSinceLastVisit' ) {
+				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
+			}
+			if ( $options['filter'] === 'changedBeforeLastVisit' ) {
+				$conds[] = 'wl_notificationtimestamp IS NULL';
+			}
+		}
+		$ordered = array_key_exists( 'ordered', $options ) && $options['ordered'];
+		$reversedOrder = array_key_exists( 'orderDescending', $options ) && $options['orderDescending'];
+		if ( $ordered && (
+				array_key_exists( 'from', $options ) || array_key_exists( 'until', $options )
+			) ) {
+			/** @var LinkTarget $target */
+			if ( array_key_exists( 'from', $options ) ) {
+				$target = $options['from'];
+				$op = !$reversedOrder ? '>' : '<';
+			} else {
+				$target = $options['until'];
+				$op = !$reversedOrder ? '<' : '>';
+			}
+			$conds[] = $db->makeList(
+				[
+					"wl_namespace $op " . $target->getNamespace(),
+					$db->makeList(
+						[
+							'wl_namespace = ' . $target->getNamespace(),
+							"wl_title $op= " . $db->addQuotes( $target->getDBkey() )
+						],
+						LIST_AND
+					)
+				],
+				LIST_OR
+			);
+		}
+		return $conds;
+	}
+
+	private function getWatchedItemsForUserQueryDbOptions( array $options ) {
+		$dbOptions = [];
+		if ( array_key_exists( 'ordered', $options ) && $options['ordered'] ) {
+			$sortSuffix = '';
+			if ( array_key_exists( 'orderDescending', $options ) && $options['orderDescending'] ) {
+				$sortSuffix = ' DESC';
+			}
+			$dbOptions['ORDER BY'] = [ 'wl_namespace' . $sortSuffix, 'wl_title' . $sortSuffix ];
+			if ( count( $options['namespaceIds'] ) === 1 ) {
+				$dbOptions['ORDER BY'] = 'wl_title' . $sortSuffix;
+			}
+		}
+		if ( array_key_exists( 'limit', $options ) ) {
+			$dbOptions['LIMIT'] = (int)$options['limit'];
+		}
+		return $dbOptions;
 	}
 
 	/**
