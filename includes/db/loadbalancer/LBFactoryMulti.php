@@ -23,7 +23,15 @@
 
 /**
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
- * Ignores the old configuration globals
+ * Ignores the old configuration globals.
+ *
+ * Template override precedence (highest => lowest):
+ *   - templateOverridesByServer
+ *   - masterTemplateOverrides
+ *   - templateOverridesBySection/templateOverridesByCluster
+ *   - externalTemplateOverrides
+ *   - serverTemplate
+ * Overrides only work on top level keys (so nested values will not be merged).
  *
  * Configuration:
  *     sectionsByDB                A map of database names to section names.
@@ -63,7 +71,7 @@
  *     templateOverridesByServer   A 2-d map overriding serverTemplate and
  *                                 externalTemplateOverrides on a server-by-server basis. Applies
  *                                 to both core and external storage.
- *
+ *     templateOverridesBySection  A 2-d map overriding the server info by section.
  *     templateOverridesByCluster  A 2-d map overriding the server info by external storage cluster.
  *
  *     masterTemplateOverrides     An override array for all master servers.
@@ -119,6 +127,9 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	private $templateOverridesByServer;
 
+	/** @var array A 2-d map overriding the server info by section */
+	private $templateOverridesBySection;
+
 	/** @var array A 2-d map overriding the server info by external storage cluster */
 	private $templateOverridesByCluster;
 
@@ -162,7 +173,7 @@ class LBFactoryMulti extends LBFactory {
 		$required = [ 'sectionsByDB', 'sectionLoads', 'serverTemplate' ];
 		$optional = [ 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
-			'templateOverridesByCluster', 'masterTemplateOverrides',
+			'templateOverridesByCluster', 'templateOverridesBySection', 'masterTemplateOverrides',
 			'readOnlyBySection', 'loadMonitorClass' ];
 
 		foreach ( $required as $key ) {
@@ -222,8 +233,13 @@ class LBFactoryMulti extends LBFactory {
 			$readOnlyReason = $this->readOnlyBySection[$section];
 		}
 
+		$template = $this->serverTemplate;
+		if ( isset( $this->templateOverridesBySection[$section] ) ) {
+			$template = $this->templateOverridesBySection[$section] + $template;
+		}
+
 		return $this->newLoadBalancer(
-			$this->serverTemplate,
+			$template,
 			$this->sectionLoads[$section],
 			$groupLoads,
 			$readOnlyReason
