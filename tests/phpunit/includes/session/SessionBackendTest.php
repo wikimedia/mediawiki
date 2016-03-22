@@ -23,8 +23,9 @@ class SessionBackendTest extends MediaWikiTestCase {
 	/**
 	 * Returns a non-persistent backend that thinks it has at least one session active
 	 * @param User|null $user
+	 * @param string $id
 	 */
-	protected function getBackend( User $user = null ) {
+	protected function getBackend( User $user = null, $id = null ) {
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 			$this->manager = null;
@@ -52,7 +53,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this->provider,
-			'id' => self::SESSIONID,
+			'id' => $id ?: self::SESSIONID,
 			'persisted' => true,
 			'userInfo' => UserInfo::newFromUser( $user ?: new User, true ),
 			'idIsSafe' => true,
@@ -67,8 +68,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$priv->usePhpSessionHandling = false;
 
 		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
-		$manager->allSessionBackends = [ $backend->getId() => $backend ];
-		$manager->allSessionIds = [ $backend->getId() => $id ];
+		$manager->allSessionBackends = [ $backend->getId() => $backend ] + $manager->allSessionBackends;
+		$manager->allSessionIds = [ $backend->getId() => $id ] + $manager->allSessionIds;
 		$manager->sessionProviders = [ (string)$this->provider => $this->provider ];
 
 		return $backend;
@@ -813,6 +814,46 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$metadata['???'] = '!!!';
 	}
 
+	public function testTakeOverGlobalSession() {
+		if ( !PHPSessionHandler::isInstalled() ) {
+			PHPSessionHandler::install( SessionManager::singleton() );
+		}
+		if ( !PHPSessionHandler::isEnabled() ) {
+			$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+			$rProp->setAccessible( true );
+			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
+			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
+				session_write_close();
+				$handler->enable = false;
+			} );
+			$handler->enable = true;
+		}
+
+		$backend = $this->getBackend( User::newFromName( 'UTSysop' ) );
+		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
+
+		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
+
+		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
+		$request = \RequestContext::getMain()->getRequest();
+		$manager->globalSession = $backend->getSession( $request );
+		$manager->globalSessionRequest = $request;
+
+		session_id( '' );
+		\TestingAccessWrapper::newFromObject( $backend )->checkPHPSession();
+		$this->assertSame( $backend->getId(), session_id() );
+		session_write_close();
+
+		$backend2 = $this->getBackend(
+			User::newFromName( 'UTSysop' ), 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+		);
+		\TestingAccessWrapper::newFromObject( $backend2 )->usePhpSessionHandling = true;
+
+		session_id( '' );
+		\TestingAccessWrapper::newFromObject( $backend2 )->checkPHPSession();
+		$this->assertSame( '', session_id() );
+	}
+
 	public function testResetIdOfGlobalSession() {
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( SessionManager::singleton() );
@@ -831,7 +872,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$backend = $this->getBackend( User::newFromName( 'UTSysop' ) );
 		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
-		TestUtils::setSessionManagerSingleton( $this->manager );
+		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
 
 		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
 		$request = \RequestContext::getMain()->getRequest();
@@ -840,15 +881,12 @@ class SessionBackendTest extends MediaWikiTestCase {
 
 		session_id( self::SESSIONID );
 		\MediaWiki\quietCall( 'session_start' );
+		$_SESSION['foo'] = __METHOD__;
 		$backend->resetId();
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $backend->getId(), session_id() );
-		session_write_close();
-
-		session_id( '' );
-		$this->assertNotSame( $backend->getId(), session_id(), 'sanity check' );
-		$backend->persist();
-		$this->assertSame( $backend->getId(), session_id() );
+		$this->assertArrayHasKey( 'foo', $_SESSION );
+		$this->assertSame( __METHOD__, $_SESSION['foo'] );
 		session_write_close();
 	}
 
@@ -872,7 +910,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$wrap->usePhpSessionHandling = true;
 		$wrap->persist = true;
 
-		TestUtils::setSessionManagerSingleton( $this->manager );
+		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
 
 		$manager = \TestingAccessWrapper::newFromObject( $this->manager );
 		$request = \RequestContext::getMain()->getRequest();

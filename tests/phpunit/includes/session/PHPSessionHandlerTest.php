@@ -292,7 +292,9 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		// Test that write doesn't break if the session is invalid
 		$session = $manager->getEmptySession();
 		$session->persist();
-		session_id( $session->getId() );
+		$id = $session->getId();
+		unset( $session );
+		session_id( $id );
 		session_start();
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'SessionCheckInfo' => [ function ( &$reason ) {
@@ -300,12 +302,13 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 				return false;
 			} ],
 		] );
-		$this->assertNull( $manager->getSessionById( $session->getId(), true ), 'sanity check' );
+		$this->assertNull( $manager->getSessionById( $id, true ), 'sanity check' );
 		session_write_close();
+
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'SessionCheckInfo' => [],
 		] );
-		$this->assertNotNull( $manager->getSessionById( $session->getId(), true ), 'sanity check' );
+		$this->assertNotNull( $manager->getSessionById( $id, true ), 'sanity check' );
 	}
 
 	public static function provideHandlers() {
