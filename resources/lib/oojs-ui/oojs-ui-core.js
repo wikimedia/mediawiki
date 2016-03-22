@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.3
+ * OOjs UI v0.16.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-16T19:20:22Z
+ * Date: 2016-03-22T22:48:21Z
  */
 ( function ( OO ) {
 
@@ -2788,9 +2788,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
  */
 OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
-	label = ( ( typeof label === 'string' && label.length ) || label instanceof jQuery || label instanceof OO.ui.HtmlSnippet ) ? label : null;
-
-	this.$element.toggleClass( 'oo-ui-labelElement', !!label );
+	label = ( ( typeof label === 'string' || label instanceof jQuery ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
 
 	if ( this.label !== label ) {
 		if ( this.$label ) {
@@ -2799,6 +2797,8 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 		this.label = label;
 		this.emit( 'labelChange' );
 	}
+
+	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label );
 
 	return this;
 };
