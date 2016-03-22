@@ -136,7 +136,8 @@
 			"Fredlefred",
 			"Lbayle",
 			"Cl3m3n7",
-			"C13m3n7"
+			"C13m3n7",
+			"Gnangbade"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -277,7 +278,6 @@
 	"moredotdotdot": "Plus...",
 	"morenotlisted": "Cette liste n’est pas complète.",
 	"mypage": "Page",
-	"anonuserpage": "Utilisateur inconnu",
 	"mytalk": "Discussion",
 	"anontalk": "Discussion",
 	"navigation": "Navigation",
@@ -1552,7 +1552,7 @@
 	"upload-foreign-cant-upload": "Ce wiki n’est pas configuré pour télécharger des fichiers vers le dépôt de fichiers externe demandé.",
 	"upload-dialog-title": "Téléverser un fichier",
 	"upload-dialog-button-cancel": "Annuler",
-	"upload-dialog-button-done": "Fait",
+	"upload-dialog-button-done": "Terminé",
 	"upload-dialog-button-save": "Enregistrer",
 	"upload-dialog-button-upload": "Téléverser",
 	"upload-form-label-infoform-title": "Détails",
@@ -3615,7 +3615,7 @@
 	"feedback-bugnew": "J'ai vérifié. Signaler un nouveau bogue",
 	"feedback-bugornote": "Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bogue].\nSinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page « [$3 $2] », avec votre nom d'utilisateur.",
 	"feedback-cancel": "Annuler",
-	"feedback-close": "Fait",
+	"feedback-close": "Terminé",
 	"feedback-external-bug-report-button": "Signaler un bogue technique",
 	"feedback-dialog-title": "Soumettre un commentaire",
 	"feedback-dialog-intro": "Vous pouvez utiliser le simple formulaire ci-dessous pour faire parvenir vos commentaires. Votre commentaire sera ajouté à la page « $1 », ainsi que votre nom d’utilisateur.",

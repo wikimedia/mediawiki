@@ -213,7 +213,7 @@
 	"config-admin-error-password": "\"<nowiki>$1</nowiki>\" 관리자의 비밀번호를 설정하는 중 내부 오류가 발생했습니다: <pre>$2</pre>",
 	"config-admin-error-bademail": "이메일 주소를 잘못 입력하였습니다.",
 	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 릴리스 발표 메일링 리스트]를 구독합니다.",
-	"config-subscribe-help": "중요한 보안 알림을 포함한 릴리스 알림에 사용되는 저용량 메일링 리스트입니다.\n이 리스트를 구독하고 새 버전이 나올 때 미디어위키 설치를 업데이트해야 합니다.",
+	"config-subscribe-help": "중요한 보안 발표를 포함한 배포판 발표에 사용되는 저용량 메일링 리스트입니다.\n이 리스트를 구독하고 새 버전이 나올 때 미디어위키 설치를 업데이트해야 합니다.",
 	"config-subscribe-noemail": "이메일 주소를 입력하지 않고 릴리스 발표 메일링 리스트에 가입하려 합니다.\n메일링 리스트에 가입하고자 할 경우 이메일 주소를 입력하세요.",
 	"config-almost-done": "거의 다 완료했습니다!\n이제 남은 설정을 생략하고 지금 바로 위키를 설치할 수 있습니다.",
 	"config-optional-continue": "더 많은 질문을 물어보세요.",

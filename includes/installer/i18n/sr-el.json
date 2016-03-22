@@ -35,6 +35,6 @@
 	"config-site-name": "Ime vikija:",
 	"config-license-cc-0": "Creative Commons Zero (javno vlasništvo)",
 	"config-skins": "Teme",
-	"mainpagetext": "'''MedijaViki je uspešno instaliran.'''",
+	"mainpagetext": "<strong>Medijaviki je uspešno instaliran.</strong>",
 	"mainpagedocfooter": "Molimo vidite [//meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.\n\n== Za početak ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Najčešće postavljena pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]"
 }

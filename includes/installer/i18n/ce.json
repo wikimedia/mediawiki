@@ -46,7 +46,7 @@
 	"config-mssql-auth": "Аутентификацин тайп:",
 	"config-site-name": "Викин цӀе:",
 	"config-site-name-blank": "Язъе сайтан цӀе.",
-	"config-project-namespace": "ЦӀерийн ана проектан:",
+	"config-project-namespace": "Проектан цӀерийн меттиг:",
 	"config-ns-generic": "Проект",
 	"config-ns-other-default": "MyWiki",
 	"config-admin-password": "Пароль:",

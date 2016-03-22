@@ -25,7 +25,8 @@
 			"Linedwell",
 			"Orlodrim",
 			"Cl3m3n7",
-			"C13m3n7"
+			"C13m3n7",
+			"The RedBurn"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -298,7 +299,7 @@
 	"config-skins-must-enable-default": "L’habillage choisi par défaut doit être activé.",
 	"config-install-alreadydone": "'''Attention''': Vous semblez avoir déjà installé MediaWiki et tentez de l'installer à nouveau.\nS'il vous plaît, allez à la page suivante.",
 	"config-install-begin": "En appuyant sur {{int:config-continue}}, vous commencerez l'installation de MediaWiki.\nSi vous voulez encore apporter des modifications, appuyez sur \"{{int:config-back}}\".",
-	"config-install-step-done": "fait",
+	"config-install-step-done": "terminé",
 	"config-install-step-failed": "échec",
 	"config-install-extensions": "Inclusion des extensions",
 	"config-install-database": "Création de la base de données",
