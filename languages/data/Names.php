@@ -180,7 +180,7 @@ class Names {
 		'gv' => 'Gaelg',		# Manx
 		'ha' => 'Hausa',	# Hausa
 		'hak' => '客家語/Hak-kâ-ngî',	# Hakka
-		'haw' => 'Hawai`i',		# Hawaiian
+		'haw' => 'Hawaiʻi',		# Hawaiian
 		'he' => 'עברית',	# Hebrew
 		'hi' => 'हिन्दी',	# Hindi
 		'hif' => 'Fiji Hindi',	# Fijian Hindi (multiple scripts - defaults to Latin)
