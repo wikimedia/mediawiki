@@ -179,23 +179,30 @@ class WatchedItem {
 	 */
 	public static function batchAddWatch( array $items ) {
 		// wfDeprecated( __METHOD__, '1.27' );
-		$userTargetCombinations = [];
+		$targets = [];
+		$users = [];
 		/** @var WatchedItem $watchedItem */
 		foreach ( $items as $watchedItem ) {
-			if ( $watchedItem->checkRights && !$watchedItem->getUser()->isAllowed( 'editmywatchlist' ) ) {
+			$user = $watchedItem->getUser();
+			if ( $watchedItem->checkRights && !$user->isAllowed( 'editmywatchlist' ) ) {
 				continue;
 			}
-			$userTargetCombinations[] = [
-				$watchedItem->getUser(),
-				$watchedItem->getTitle()->getSubjectPage()
-			];
-			$userTargetCombinations[] = [
-				$watchedItem->getUser(),
-				$watchedItem->getTitle()->getTalkPage()
-			];
+			$userId = $user->getId();
+			$users[$userId] = $user;
+			$targets[$userId][] = $watchedItem->getTitle()->getSubjectPage();
+			$targets[$userId][] = $watchedItem->getTitle()->getTalkPage();
 		}
+
 		$store = WatchedItemStore::getDefaultInstance();
-		return $store->addWatchBatch( $userTargetCombinations );
+		$success = true;
+		foreach ( $users as $userId => $user ) {
+			$userSuccess = $store->addWatchBatchForUser( $user, $targets[$userId] );
+			if ( !$userSuccess ) {
+				$success = false;
+			}
+		}
+
+		return $success;
 	}
 
 	/**

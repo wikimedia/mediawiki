@@ -693,7 +693,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testAddWatchBatch_nonAnonymousUser() {
+	public function testAddWatchBatchForUser_nonAnonymousUser() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
 			->method( 'insert' )
@@ -733,52 +733,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockUser = $this->getMockNonAnonUserWithId( 1 );
 
 		$this->assertTrue(
-			$store->addWatchBatch(
-				[
-					[ $mockUser, new TitleValue( 0, 'Some_Page' ) ],
-					[ $mockUser, new TitleValue( 1, 'Some_Page' ) ],
-				]
+			$store->addWatchBatchForUser(
+				$mockUser,
+				[ new TitleValue( 0, 'Some_Page' ), new TitleValue( 1, 'Some_Page' ) ]
 			)
 		);
 	}
 
-	public function testAddWatchBatch_anonymousUserCombinationsAreSkipped() {
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'insert' )
-			->with(
-				'watchlist',
-				[
-					[
-						'wl_user' => 1,
-						'wl_namespace' => 0,
-						'wl_title' => 'Some_Page',
-						'wl_notificationtimestamp' => null,
-					]
-				]
-			);
-
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:Some_Page:1' );
-
-		$store = new WatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
-
-		$this->assertTrue(
-			$store->addWatchBatch(
-				[
-					[ $this->getMockNonAnonUserWithId( 1 ), new TitleValue( 0, 'Some_Page' ) ],
-					[ $this->getAnonUser(), new TitleValue( 0, 'Other_Page' ) ],
-				]
-			)
-		);
-	}
-
-	public function testAddWatchBatchReturnsFalse_whenOnlyGivenAnonymousUserCombinations() {
+	public function testAddWatchBatchForUser_anonymousUsersAreSkipped() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
@@ -792,18 +754,16 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			$mockCache
 		);
 
-		$anonUser = $this->getAnonUser();
 		$this->assertFalse(
-			$store->addWatchBatch(
-				[
-					[ $anonUser, new TitleValue( 0, 'Some_Page' ) ],
-					[ $anonUser, new TitleValue( 1, 'Other_Page' ) ],
-				]
+			$store->addWatchBatchForUser(
+				$this->getAnonUser(),
+				[ new TitleValue( 0, 'Other_Page' ) ]
 			)
 		);
 	}
 
 	public function testAddWatchBatchReturnsFalse_whenGivenEmptyList() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
@@ -818,7 +778,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertFalse(
-			$store->addWatchBatch( [] )
+			$store->addWatchBatchForUser( $user, [] )
 		);
 	}
 
