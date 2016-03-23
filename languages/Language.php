@@ -387,6 +387,11 @@ class Language {
 			return false;
 		}
 
+		global $wgDummyLanguageCodes;
+		if ( isset( $wgDummyLanguageCodes[$tag] ) ) {
+			$tag = $wgDummyLanguageCodes[$tag];
+		}
+
 		if ( isset( MediaWiki\Languages\Data\Names::$names[$tag] )
 			|| self::fetchLanguageName( $tag, $tag ) !== ''
 		) {
