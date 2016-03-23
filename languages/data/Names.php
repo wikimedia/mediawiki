@@ -57,7 +57,6 @@ class Names {
 		'af' => 'Afrikaans', # Afrikaans
 		'ak' => 'Akan', # Akan
 		'aln' => 'Gegë', # Gheg Albanian
-		'als' => 'Alemannisch', # Alemannic -- not a valid code, for compatibility. See gsw.
 		'am' => 'አማርኛ', # Amharic
 		'an' => 'aragonés', # Aragonese
 		'ang' => 'Ænglisc', # Old English, T25283
@@ -81,14 +80,12 @@ class Names {
 		'ba' => 'башҡортса', # Bashkir
 		'ban' => 'Basa Bali', # Balinese
 		'bar' => 'Boarisch', # Bavarian (Austro-Bavarian and South Tyrolean)
-		'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
 		'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
 		'bbc-latn' => 'Batak Toba', # Batak Toba
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
 		'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 		'be' => 'беларуская', # Belarusian normative
 		'be-tarask' => "беларуская (тарашкевіца)\xE2\x80\x8E", # Belarusian in Taraskievica orthography
-		'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E", # (be-tarask compat)
 		'bg' => 'български', # Bulgarian
 		'bgn' => 'روچ کپتین بلوچی', # Western Balochi
 		'bh' => 'भोजपुरी', # Bihari macro language. Falls back to Bhojpuri (bho)
@@ -155,7 +152,6 @@ class Names {
 		'ff' => 'Fulfulde', # Fulfulde, Maasina
 		'fi' => 'suomi', # Finnish
 		'fit' => 'meänkieli', # Tornedalen Finnish
-		'fiu-vro' => 'Võro', # Võro (deprecated code, 'vro' in ISO 639-3 since 2009-01-16)
 		'fj' => 'Na Vosa Vakaviti', # Fijian
 		'fo' => 'føroyskt', # Faroese
 		'fr' => 'français', # French
@@ -354,7 +350,6 @@ class Names {
 		'rmy' => 'Romani', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
-		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 693-3)
 		'roa-tara' => 'tarandíne', # Tarantino
 		'ru' => 'русский', # Russian
 		'rue' => 'русиньскый', # Rusyn
@@ -465,17 +460,14 @@ class Names {
 		'za' => 'Vahcuengh', # Zhuang
 		'zea' => 'Zeêuws', # Zeeuws/Zeaws
 		'zh' => '中文', # (Zhōng Wén) - Chinese
-		'zh-classical' => '文言', # Classical Chinese/Literary Chinese -- (see T10217)
 		'zh-cn' => "中文（中国大陆）\xE2\x80\x8E", # Chinese (PRC)
 		'zh-hans' => "中文（简体）\xE2\x80\x8E", # Mandarin Chinese (Simplified Chinese script) (cmn-hans)
 		'zh-hant' => "中文（繁體）\xE2\x80\x8E", # Mandarin Chinese (Traditional Chinese script) (cmn-hant)
 		'zh-hk' => "中文（香港）\xE2\x80\x8E", # Chinese (Hong Kong)
-		'zh-min-nan' => 'Bân-lâm-gú', # Min-nan -- (see T10217)
 		'zh-mo' => "中文（澳門）\xE2\x80\x8E", # Chinese (Macau)
 		'zh-my' => "中文（马来西亚）\xE2\x80\x8E", # Chinese (Malaysia)
 		'zh-sg' => "中文（新加坡）\xE2\x80\x8E", # Chinese (Singapore)
 		'zh-tw' => "中文（台灣）\xE2\x80\x8E", # Chinese (Taiwan)
-		'zh-yue' => '粵語', # Cantonese -- (see T10217)
 		'zu' => 'isiZulu' # Zulu
 	];
 }
