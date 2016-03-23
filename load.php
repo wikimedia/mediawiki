@@ -43,6 +43,13 @@ $resourceLoader = new ResourceLoader(
 );
 $context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
 
+// Extract the language from the RL context and set it as the request context
+// language
+RequestContext::getMain()->setLanguage( $context->getLanguage() );
+if ( !$wgLang instanceof StubUserLang ) {
+	$wgLang = new StubUserLang; // reset $wgLang too
+}
+
 // Respond to ResourceLoader request
 $resourceLoader->respond( $context );
 
