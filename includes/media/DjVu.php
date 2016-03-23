@@ -393,13 +393,20 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	protected function getDimensionInfo( File $file ) {
-		$that = $this;
+		static $processCache = [];
 
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'file-djvu', 'dimensions', $file->getSha1() ),
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $cache->makeKey( 'file-djvu', 'dimensions', $file->getSha1() );
+
+		if ( isset( $processCache[ $key ] ) ) {
+			return $processCache[ $key ];
+		}
+
+		$info = $cache->getWithSetCallback(
+			$key,
 			WANObjectCache::TTL_INDEFINITE,
-			function () use ( $that, $file ) {
-				$tree = $that->getMetaTree( $file );
+			function () use ( $file ) {
+				$tree = $this->getMetaTree( $file );
 				if ( !$tree ) {
 					return false;
 				}
@@ -421,6 +428,9 @@ class DjVuHandler extends ImageHandler {
 				return [ 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage ];
 			}
 		);
+
+		$processCache[ $key ] = $info;
+		return $info;
 	}
 
 	/**
