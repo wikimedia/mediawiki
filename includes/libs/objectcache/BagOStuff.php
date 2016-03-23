@@ -42,7 +42,7 @@ use Psr\Log\NullLogger;
  *
  * @ingroup Cache
  */
-abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
+abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface, IBagOStuff {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
 
