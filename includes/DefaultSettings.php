@@ -6479,6 +6479,9 @@ $wgUnwatchedPageThreshold = false;
  *   'legend' => 'legend-msg',
  *   // optional (defaults to 'flag'), CSS class to put on changes lists rows
  *   'class' => 'css-class',
+ *   // optional (defaults to 'any'), how top-level flag is determined.  'any'
+ *   // will set the top-level flag if any line contains the flag, 'all' will
+ *   // only be set if all lines contain the flag.
  * );
  * @endcode
  *
@@ -6489,23 +6492,27 @@ $wgRecentChangesFlags = [
 		'letter' => 'newpageletter',
 		'title' => 'recentchanges-label-newpage',
 		'legend' => 'recentchanges-legend-newpage',
+		'grouping' => 'any',
 	],
 	'minor' => [
 		'letter' => 'minoreditletter',
 		'title' => 'recentchanges-label-minor',
 		'legend' => 'recentchanges-legend-minor',
 		'class' => 'minoredit',
+		'grouping' => 'all',
 	],
 	'bot' => [
 		'letter' => 'boteditletter',
 		'title' => 'recentchanges-label-bot',
 		'legend' => 'recentchanges-legend-bot',
 		'class' => 'botedit',
+		'grouping' => 'all',
 	],
 	'unpatrolled' => [
 		'letter' => 'unpatrolledletter',
 		'title' => 'recentchanges-label-unpatrolled',
 		'legend' => 'recentchanges-legend-unpatrolled',
+		'grouping' => 'any',
 	],
 ];
 
