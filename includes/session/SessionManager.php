@@ -197,13 +197,17 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		$session = null;
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id, 'idIsSafe' => true ] );
 
-		// Test this here to provide a better log message for the common case
-		// of "no such ID"
+		// If we already have the backend loaded, use it directly
+		if ( isset( $this->allSessionBackends[$id] ) ) {
+			return $this->getSessionFromInfo( $info, $request );
+		}
+
+		// Test if the session is in storage, and if so try to load it.
 		$key = wfMemcKey( 'MWSession', $id );
 		if ( is_array( $this->store->get( $key ) ) ) {
-			$create = false;
-			$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id, 'idIsSafe' => true ] );
+			$create = false; // If loading fails, don't bother creating because it probably will fail too.
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
 				$session = $this->getSessionFromInfo( $info, $request );
 			}

@@ -381,6 +381,40 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionById( $id, false );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id, $session->getId() );
+
+		// Store isn't checked if the session is already loaded
+		$this->store->setSession( $id, [ 'metadata' => [
+			'userId' => User::idFromName( 'UTSysop' ),
+			'userToken' => 'bad',
+		] ] );
+		$session2 = $manager->getSessionById( $id, false );
+		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session2 );
+		$this->assertSame( $id, $session2->getId() );
+		unset( $session, $session2 );
+		$this->logger->setCollect( true );
+		$this->assertNull( $manager->getSessionById( $id, true ) );
+		$this->logger->setCollect( false );
+
+		// Failure to create an empty session
+		$manager = $this->getManager();
+		$provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'provideSessionInfo', 'newSessionInfo', '__toString' ] )
+			->getMock();
+		$provider->expects( $this->any() )->method( 'provideSessionInfo' )
+			->will( $this->returnValue( null ) );
+		$provider->expects( $this->any() )->method( 'newSessionInfo' )
+			->will( $this->returnValue( null ) );
+		$provider->expects( $this->any() )->method( '__toString' )
+			->will( $this->returnValue( 'MockProvider' ) );
+		$this->config->set( 'SessionProviders', [
+			$this->objectCacheDef( $provider ),
+		] );
+		$this->logger->setCollect( true );
+		$this->assertNull( $manager->getSessionById( $id, true ) );
+		$this->logger->setCollect( false );
+		$this->assertSame( [
+			[ LogLevel::ERROR, 'Failed to create empty session: {exception}' ]
+		], $this->logger->getBuffer() );
 	}
 
 	public function testGetEmptySession() {
