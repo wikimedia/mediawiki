@@ -1549,14 +1549,21 @@ class Revision implements IDBAccessObject {
 	protected function loadText() {
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry;
+		static $processCache = [];
 
 		$cache = ObjectCache::getMainWANInstance();
 		$textId = $this->getTextId();
 		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
+
+		if ( isset( $processCache[ $key ] ) ) {
+			return $processCache[ $key ];
+		}
+
 		if ( $wgRevisionCacheExpiry ) {
 			$text = $cache->get( $key );
 			if ( is_string( $text ) ) {
 				wfDebug( __METHOD__ . ": got id $textId from cache\n" );
+				$processCache[ $key ] = $text;
 				return $text;
 			}
 		}
@@ -1598,6 +1605,8 @@ class Revision implements IDBAccessObject {
 		if ( $row && $text === false ) {
 			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
 		}
+
+		$processCache[ $key ] = $text;
 
 		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
 		if ( $wgRevisionCacheExpiry && $text !== false ) {
