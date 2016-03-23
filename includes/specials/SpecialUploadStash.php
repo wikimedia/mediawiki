@@ -392,11 +392,21 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			sort( $files );
 			$fileListItemsHtml = '';
 			foreach ( $files as $file ) {
-				// TODO: Use Linker::link or even construct the list in plain wikitext
-				$fileListItemsHtml .= Html::rawElement( 'li', [],
-					Html::element( 'a', [ 'href' =>
-						$this->getPageTitle( "file/$file" )->getLocalURL() ], $file )
-				);
+				$itemHtml = Linker::linkKnown( $this->getPageTitle( "file/$file" ), htmlspecialchars( $file ) );
+				try {
+					$fileObj = $this->stash->getFile( $file );
+					$thumb = $fileObj->generateThumbName( $file, [ 'width' => 220 ] );
+					$itemHtml .=
+						$this->msg( 'word-separator' )->escaped() .
+						$this->msg( 'parentheses' )->rawParams(
+							Linker::linkKnown(
+								$this->getPageTitle( "thumb/$file/$thumb" ),
+								$this->msg( 'uploadstash-thumbnail' )->escaped()
+							)
+						)->escaped();
+				} catch ( Exception $e ) {
+				}
+				$fileListItemsHtml .= Html::rawElement( 'li', [], $itemHtml );
 			}
 			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $fileListItemsHtml ) );
 			$form->displayForm( $formResult );
