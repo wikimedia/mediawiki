@@ -1193,6 +1193,7 @@
 	"rcshowhidemine": "నా మార్పులను $1",
 	"rcshowhidemine-show": "చూపించు",
 	"rcshowhidemine-hide": "దాచు",
+	"rcshowhidecategorization": "పేజి  వర్గీకరణ $1",
 	"rcshowhidecategorization-show": "చూపించు",
 	"rcshowhidecategorization-hide": "దాచు",
 	"rclinks": "గత  $2 రోజుల లోని చివరి $1 మార్పులను చూపించు <br />$3",
