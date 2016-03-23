@@ -414,7 +414,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$action = $title ? 'cleaning up' : 'deleting';
 			wfDebug( "User {$user->getName()} has broken watchlist item ns($namespace):$dbKey, $action.\n" );
 
-			$store->removeWatch( $user, new TitleValue( $namespace, $dbKey ) );
+			$store->removeWatch( $user, new TitleValue( (int)$namespace, $dbKey ) );
 
 			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 			if ( $title ) {
