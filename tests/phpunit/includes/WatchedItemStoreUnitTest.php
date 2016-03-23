@@ -17,13 +17,20 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
 	 */
-	private function getMockLoadBalancer( $mockDb ) {
+	private function getMockLoadBalancer( $mockDb, $expectedConnectionType = null ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getConnection' )
-			->will( $this->returnValue( $mockDb ) );
+		if ( $expectedConnectionType !== null ) {
+			$mock->expects( $this->any() )
+				->method( 'getConnection' )
+				->with( $expectedConnectionType )
+				->will( $this->returnValue( $mockDb ) );
+		} else {
+			$mock->expects( $this->any() )
+				->method( 'getConnection' )
+				->will( $this->returnValue( $mockDb ) );
+		}
 		$mock->expects( $this->any() )
 			->method( 'getReadOnlyReason' )
 			->will( $this->returnValue( false ) );
@@ -1378,6 +1385,93 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				new TitleValue( 0, 'SomeDbKey' )
 			)
 		);
+	}
+
+	public function testGetWatchedItemsForUser() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[ 'wl_user' => 1 ]
+			)
+			->will( $this->returnValue( [
+				$this->getFakeRow( [
+					'wl_namespace' => 0,
+					'wl_title' => 'Foo1',
+					'wl_notificationtimestamp' => '20151212010101',
+				] ),
+				$this->getFakeRow( [
+					'wl_namespace' => 1,
+					'wl_title' => 'Foo2',
+					'wl_notificationtimestamp' => null,
+				] ),
+			] ) );
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$watchedItems = $store->getWatchedItemsForUser( $user );
+
+		$this->assertInternalType( 'array', $watchedItems );
+		$this->assertCount( 2, $watchedItems );
+		foreach ( $watchedItems as $watchedItem ) {
+			$this->assertInstanceOf( 'WatchedItem', $watchedItem );
+		}
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			$watchedItems[0]
+		);
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			$watchedItems[1]
+		);
+	}
+
+	public function provideDbTypes() {
+		return [
+			[ false, DB_SLAVE ],
+			[ true, DB_MASTER ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideDbTypes
+	 */
+	public function testGetWatchedItemsForUser_optionsAndEmptyResult( $forWrite, $dbType ) {
+		$mockDb = $this->getMockDb();
+		$mockCache = $this->getMockCache();
+		$mockLoadBalancer = $this->getMockLoadBalancer( $mockDb, $dbType );
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[ 'wl_user' => 1 ]
+			)
+			->will( $this->returnValue( [] ) );
+
+		$store = new WatchedItemStore(
+			$mockLoadBalancer,
+			$mockCache
+		);
+
+		$watchedItems = $store->getWatchedItemsForUser(
+			$user,
+			[ 'forWrite' => $forWrite ]
+		);
+		$this->assertEquals( [], $watchedItems );
 	}
 
 	public function testIsWatchedItem_existingItem() {

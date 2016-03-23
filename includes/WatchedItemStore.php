@@ -491,6 +491,38 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param User $user
+	 * @param array $options Allowed keys:
+	 *        'forWrite' => bool defaults to false
+	 *
+	 * @return WatchedItem[]
+	 */
+	public function getWatchedItemsForUser( User $user, array $options = [] ) {
+		$options += [ 'forWrite' => false ];
+
+		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+		$res = $db->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->reuseConnection( $db );
+
+		$watchedItems = [];
+		foreach ( $res as $row ) {
+			// todo these could all be cached at some point?
+			$watchedItems[] = new WatchedItem(
+				$user,
+				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
+				$row->wl_notificationtimestamp
+			);
+		}
+
+		return $watchedItems;
+	}
+
+	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @param User $user
