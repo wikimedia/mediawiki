@@ -390,6 +390,9 @@ class Language {
 			return false;
 		}
 
+		// Replace deprecated language codes
+		$tag = LanguageCode::replaceDeprecatedCodes( $tag );
+
 		if ( isset( MediaWiki\Languages\Data\Names::$names[$tag] )
 			|| self::fetchLanguageName( $tag, $tag ) !== ''
 		) {
