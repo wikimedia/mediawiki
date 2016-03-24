@@ -1517,6 +1517,7 @@
 	"uploadstash-badtoken": "Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.",
 	"uploadstash-errclear": "Việc dọn sạch các tập tin bị thất bại.",
 	"uploadstash-refresh": "Làm mới danh sách tập tin",
+	"uploadstash-thumbnail": "xem hình thu nhỏ",
 	"invalid-chunk-offset": "Khúc lệch (chunk offset) không hợp lệ",
 	"img-auth-accessdenied": "Không cho phép truy cập",
 	"img-auth-nopathinfo": "Thiếu PATH_INFO.\nMáy chủ của bạn không được thiết lập để truyền thông tin này.\nCó thể do nó dựa trên CGI và không hỗ trợ img_auth.\nXem [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization hướng dẫn điều khiển truy cập hình ảnh].",

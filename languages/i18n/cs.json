@@ -1512,6 +1512,7 @@
 	"uploadstash-badtoken": "Operace se nezdařila. Možná vypršela platnost vašeho oprávnění k editaci. Zkuste to znovu.",
 	"uploadstash-errclear": "Soubory se nepodařilo vymazat.",
 	"uploadstash-refresh": "Aktualizovat seznam souborů",
+	"uploadstash-thumbnail": "zobrazit náhled",
 	"invalid-chunk-offset": "Neplatný posun bloku",
 	"img-auth-accessdenied": "Přístup odepřen",
 	"img-auth-nopathinfo": "Chybí PATH_INFO.\nVáš server není nastaven tak, aby tuto informaci poskytoval.\nMožná funguje pomocí CGI a img_auth na něm nemůže fungovat.\nVizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

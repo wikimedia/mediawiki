@@ -1507,6 +1507,7 @@
 	"uploadstash-badtoken": "Scenos šį ieškinį, buvo nesėkmingas, galbūt todėl, kad jūsų redagavimo įgaliojimai pasibaigė. Bandykite dar kartą.",
 	"uploadstash-errclear": "Kliringo failai buvo nesėkmingas.",
 	"uploadstash-refresh": "Atnaujinti failų sąrašą",
+	"uploadstash-thumbnail": "rodyti miniatiūrą",
 	"invalid-chunk-offset": "Neleistinas segmento poslinkis",
 	"img-auth-accessdenied": "Prieiga uždrausta",
 	"img-auth-nopathinfo": "Trūksta PATH_INFO.\nJūsų serveris nenustatytas perduoti šią informaciją.\nTai gali būti CGI paremta ir negali palaikyti img_auth.\nDaugiau informacijos https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization. žr.",

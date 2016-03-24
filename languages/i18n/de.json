@@ -1573,6 +1573,7 @@
 	"uploadstash-badtoken": "Das Entfernen der vorab gespeicherten Dateien ist fehlgeschlagen, da vielleicht deine Sitzungsdaten abgelaufen sind. Bitte versuche es erneut.",
 	"uploadstash-errclear": "Das Entfernen der vorab gespeicherten Dateien ist fehlgeschlagen.",
 	"uploadstash-refresh": "Liste der Dateien aktualisieren",
+	"uploadstash-thumbnail": "Vorschaubild ansehen",
 	"invalid-chunk-offset": "Ungültiger Startpunkt",
 	"img-auth-accessdenied": "Zugriff verweigert",
 	"img-auth-nopathinfo": "Die Angabe PATH_INFO fehlt.\nDer Server ist nicht dafür eingerichtet, diese Information weiterzugeben.\nSie könnte CGI-gestützt sein und kann daher „img_auth“ (Authentifizierung des Dateiaufrufs) nicht unterstützen.\nSiehe auch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (englisch).",

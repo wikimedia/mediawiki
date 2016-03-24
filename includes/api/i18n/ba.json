@@ -69,7 +69,7 @@
 	"apihelp-delete-param-watch": "Ҡулланыусының ағымдағы күҙәтеү исемлегенә бит өҫтәргә.",
 	"apihelp-delete-param-watchlist": "Ағымдағы ҡулланыусының теҙмәһенән битте һүҙһеҙ өҫтәргә йәки юйырға, һылтанмаларҙы файҙаланығыҙ йәки сәғәтте алмаштырмаҫҡа.",
 	"apihelp-delete-param-unwatch": "Ҡулланыусының ағымдағы күҙәтеү исемлегенән битте юйырға.",
-	"apihelp-delete-param-oldimage": "Имя старого изображения для удаления, как это предусмотрено\n\nБында нисек  ҡаралғанса, юйыу өсөн иҫке һүрәтләмәнең исеме [[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]]",
+	"apihelp-delete-param-oldimage": "\nБында нисек  ҡаралғанса, юйыу өсөн иҫке һүрәтләмәнең исеме [[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]]",
 	"apihelp-delete-example-simple": "Юйырға: <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Юйырға <kbd>Main Page</kbd> сәбәп <kbd>Preparing for move</kbd>.",
 	"apihelp-disabled-description": "Был модуль һүндерелгән.",
@@ -93,7 +93,7 @@
 	"apihelp-edit-param-unwatch": "Ҡулланыусының ағымдағы күҙәтеү исемлегенән битте юйырға.",
 	"apihelp-edit-param-watchlist": "Ағымдағы ҡулланыусының теҙмәһенән битте һүҙһеҙ өҫтәргә йәки юйырға, һылтанмаларҙы файҙаланығыҙ йәки сәғәтте алмаштырмағыҙ.",
 	"apihelp-edit-param-md5": "\n\nMD5-хэш параметрының $1 text, йәки  $1 prepend тексы  һәм $1 appendtext параметрҙары  бәйләнгән. \nҠуйылған булһа, әгәр хэш дөрөҫ булмаһа, мөхәррирләү эшләнмәйәсәк.",
-	"apihelp-edit-param-prependtext": "Был тексты биттең башына өҫтәгеҙ. $ 1text алмаштыра.",
+	"apihelp-edit-param-prependtext": "Был тексты биттең башына өҫтәгеҙ. $1text алмаштыра.",
 	"apihelp-edit-param-appendtext": "Был тексты биттең аҙағынаса өҫтәгеҙ.$1text алмаштыра.\n$1section -ды файҙаланығыҙ = яңы, яңы бүлек өҫтәү өсөн, ә был параметрға түгел.",
 	"apihelp-edit-param-undo": "Был версияны кире алырға. $1text,$1prependtext,$1appendtext алмаштыра.",
 	"apihelp-edit-param-undoafter": "$1undo- нан алып барлыҡ үҙгәртеүҙәрҙе кире алырға. Әгәр ул ҡуйылмаған булһа, бер тикшереүҙе кире алыу ҙа етә.",
@@ -201,5 +201,7 @@
 	"apihelp-query+allcategories-description": "Бөтә категорияларҙы иҫәпләргә",
 	"apihelp-query+allcategories-param-limit": "Нисә категорияны кире ҡайтарырға",
 	"apihelp-query+allcategories-param-prop": "Ниндәй үҙенсәлек алырға:",
-	"apihelp-query+allmessages-param-prop": "Ниндәй үҙенсәлек алырға:"
+	"apihelp-query+allmessages-param-prop": "Ниндәй үҙенсәлек алырға:",
+	"apihelp-query+categorymembers-param-limit": "Кире ҡайтарылған белдереүҙәрҙең иң күп һаны",
+	"apihelp-query+categorymembers-param-sort": "Сортҡа бүлеү үҙенсәлеге"
 }

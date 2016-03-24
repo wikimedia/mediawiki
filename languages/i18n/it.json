@@ -1577,6 +1577,7 @@
 	"uploadstash-badtoken": "Esecuzione dell'azione non riuscita, forse perché le tue credenziali di modifica sono scadute. Prova ancora.",
 	"uploadstash-errclear": "La pulizia dei file non è riuscita.",
 	"uploadstash-refresh": "Aggiorna l'elenco dei file",
+	"uploadstash-thumbnail": "vedi miniatura",
 	"invalid-chunk-offset": "Offset della parte non valido.",
 	"img-auth-accessdenied": "Accesso negato",
 	"img-auth-nopathinfo": "PATH_INFO mancante.\nIl server non è impostato per passare questa informazione.\nPotrebbe essere basato su CGI e non può supportare img_auth.\nVedi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",

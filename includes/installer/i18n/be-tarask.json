@@ -321,6 +321,6 @@
 	"config-help-tooltip": "націсьніце, каб разгарнуць",
 	"config-nofile": "Файл «$1» ня знойдзены. Ці быў ён выдалены?",
 	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў].",
-	"mainpagetext": "'''MediaWiki пасьпяхова ўсталяваная.'''",
+	"mainpagetext": "<strong>MediaWiki была ўсталяваная.</strong>",
 	"mainpagedocfooter": "Глядзіце [//meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
 }

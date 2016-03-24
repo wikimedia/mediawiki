@@ -1622,6 +1622,7 @@
 	"uploadstash-badtoken": "L’exécution de cette action a échoué, peut-être parce que vos informations d’identification ont expiré. Veuillez réessayer.",
 	"uploadstash-errclear": "La suppression des fichiers a échoué.",
 	"uploadstash-refresh": "Actualiser la liste des fichiers",
+	"uploadstash-thumbnail": "afficher la miniature",
 	"invalid-chunk-offset": "Offset de segment non valide",
 	"img-auth-accessdenied": "Accès refusé",
 	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n'est pas paramétré pour transmettre cette information.\nIl fonctionne peut-être en CGI et ne supporte pas img_auth.\nVoir : https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

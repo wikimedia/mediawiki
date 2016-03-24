@@ -1494,6 +1494,7 @@
 	"uploadstash-badtoken": "Izvedba dejanja je spodletela. Morda zaradi izteklih poverilnic za urejanje. Prosimo, poskusite znova.",
 	"uploadstash-errclear": "Čiščenje datotek je spodletelo.",
 	"uploadstash-refresh": "Osveži seznam datotek",
+	"uploadstash-thumbnail": "ogled sličice",
 	"invalid-chunk-offset": "Neveljaven odmik delčka",
 	"img-auth-accessdenied": "Dostop zavrnjen",
 	"img-auth-nopathinfo": "Manjka PATH_INFO.\nVaš strežnik ne poda te informacije.\nMorda temelji na CGI in ne more podpirati img_auth.\nOglejte si  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
