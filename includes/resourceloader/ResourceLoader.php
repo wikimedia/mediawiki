@@ -88,7 +88,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $logger;
 
 	/** @var string JavaScript / CSS pragma to disable minification. **/
-	const FILTER_NOMIN = ' /* @nomin */ ';
+	const FILTER_NOMIN = '/*@nomin*/';
 
 	/**
 	 * Load information stored in the database about modules.
@@ -1362,8 +1362,8 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "(window.RLQ = window.RLQ || []).push(function () {\n" .
-			trim( $script ) . "\n} );";
+		return '(window.RLQ=window.RLQ||[]).push(function(){' .
+			trim( $script ) . '});';
 	}
 
 	/**
@@ -1379,8 +1379,8 @@ MESSAGE;
 		$js = self::makeLoaderConditionalScript( $script );
 		return new WrappedString(
 			Html::inlineScript( $js ),
-			"<script>(window.RLQ = window.RLQ || []).push(function () {\n",
-			"\n} );</script>"
+			'<script>(window.RLQ=window.RLQ||[]).push(function(){',
+			'});</script>'
 		);
 	}
 
@@ -1396,7 +1396,7 @@ MESSAGE;
 			'mw.config.set',
 			[ $configuration ],
 			ResourceLoader::inDebugMode()
-		) . ResourceLoader::FILTER_NOMIN;
+		);
 	}
 
 	/**
