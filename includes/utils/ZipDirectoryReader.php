@@ -215,6 +215,10 @@ class ZipDirectoryReader {
 			$startPos = 0;
 		}
 
+		if ( $this->getFileLength() === 0 ) {
+			$this->error( 'zip-wrong-format', "The file is empty." );
+		}
+
 		$block = $this->getBlock( $startPos );
 		$sigPos = strrpos( $block, "PK\x05\x06" );
 		if ( $sigPos === false ) {
