@@ -811,6 +811,8 @@ return [
 			'vi' => 'resources/lib/moment/locale/vi.js',
 			'zh-cn' => 'resources/lib/moment/locale/zh-cn.js',
 			'zh-tw' => 'resources/lib/moment/locale/zh-tw.js',
+			'zh-hans' => 'resources/lib/moment/locale/zh-cn.js',
+			'zh-hant' => 'resources/lib/moment/locale/zh-tw.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
