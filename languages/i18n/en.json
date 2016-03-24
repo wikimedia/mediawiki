@@ -2328,6 +2328,7 @@
 	"ipb-unblock": "Unblock a username or IP address",
 	"ipb-blocklist": "View existing blocks",
 	"ipb-blocklist-contribs": "Contributions for {{GENDER:$1|$1}}",
+	"ipb-blocklist-duration-left": "$1 left",
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"ipusubmit": "Remove this block",
