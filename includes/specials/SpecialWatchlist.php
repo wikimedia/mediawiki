@@ -382,7 +382,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 
 			if ( isset( $watchedItemStore ) ) {
-				$rcTitleValue = new TitleValue( $obj->rc_namespace, $obj->rc_title );
+				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
 				$rc->numberofWatchingusers = $watchedItemStore->countWatchers( $rcTitleValue );
 			} else {
 				$rc->numberofWatchingusers = 0;
