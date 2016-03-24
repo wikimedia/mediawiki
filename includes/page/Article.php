@@ -1572,8 +1572,7 @@ class Article implements Page {
 				$title,
 				htmlspecialchars( $title->getFullText() ),
 				[],
-				// Automatically append redirect=no to each link, since most of them are
-				// redirect pages themselves.
+				// Make sure wiki page redirects are not followed
 				$title->isRedirect() ? [ 'redirect' => 'no' ] : [],
 				( $forceKnown ? [ 'known', 'noclasses' ] : [] )
 			) . '</li>';
