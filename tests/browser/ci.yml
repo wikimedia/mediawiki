@@ -1,0 +1,11 @@
+BROWSER:
+  - firefox
+
+MEDIAWIKI_ENVIRONMENT:
+  - beta
+
+PLATFORM:
+  - Linux
+
+VERSION:
+  - ''
