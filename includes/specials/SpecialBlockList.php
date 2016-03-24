@@ -340,6 +340,22 @@ class BlockListPager extends TablePager {
 							$language->pipeList( $links ) )->escaped()
 					);
 				}
+				if ( $value !== 'infinity' ) {
+					$timestamp = new MWTimestamp( $value );
+					$formatted .= '<br />' . $this->msg(
+						'ipb-blocklist-duration-left',
+						$language->formatDuration(
+							$timestamp->getTimestamp() - time(),
+							// reasonable output
+							array(
+								'minutes',
+								'hours',
+								'days',
+								'years',
+							)
+					)
+					);
+				}
 				break;
 
 			case 'ipb_by':
