@@ -103,6 +103,7 @@ class ActiveUsersPager extends UsersPager {
 			'user_name = qcc_title',
 			'rc_user_text = qcc_title',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
+			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
 			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
 		];
