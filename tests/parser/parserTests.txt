@@ -6567,6 +6567,8 @@ Table with empty line following the start tag
 
 !! test
 Table attributes with empty value
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 | style=| hello
@@ -6579,11 +6581,8 @@ Table attributes with empty value
 
 !! html/parsoid
 <table>
-<tbody>
-<tr>
-<td style=""> hello
-</td></tr></tbody></table>
-
+<tbody><tr><td style=""> hello</td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -10509,6 +10508,7 @@ Abort table cell attribute parsing on wikilink
 {|
 | testing [[one|two]] | three || four
 | testing one two | three || four
+| testing="[[one|two]]" | three || four
 |}
 !! html/php
 <table>
@@ -10518,12 +10518,16 @@ Abort table cell attribute parsing on wikilink
 </td>
 <td> three </td>
 <td> four
+</td>
+<td> testing="<a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a>" | three </td>
+<td> four
 </td></tr></table>
 
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> | three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td>
-<td data-parsoid='{"a":{"testing":null,"one":null,"two":null},"sa":{"testing":"","one":"","two":""},"autoInsertedEnd":true}'> three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td></tr>
+<td data-parsoid='{"a":{"testing":null,"one":null,"two":null},"sa":{"testing":"","one":"","two":""},"autoInsertedEnd":true}'> three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td>
+<td> testing="<a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a>" | three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td></tr>
 </tbody></table>
 !! end
 
@@ -15471,14 +15475,17 @@ div with illegal double attributes
 
 !! test
 div with empty attribute value, space before equals
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <div class =>HTML rocks</div>
-!! html
+!! html/php
 <div class="">HTML rocks</div>
 
+!! html/parsoid
+<div class="" data-parsoid='{"stx":"html"}'>HTML rocks</div>
 !! end
 
-# FIXME: Parsoid doesn't match the html5 spec
 !! test
 div with multiple empty attribute values
 !! options
@@ -15489,10 +15496,9 @@ parsoid=wt2html,html2html
 <div id="title.3D">HTML rocks</div>
 
 !! html/parsoid
-<div id="" title="">HTML rocks</div>
+<div id="title=" data-parsoid='{"stx":"html"}'>HTML rocks</div>
 !! end
 
-# FIXME: Parsoid doesn't match the html5 spec
 !! test
 table with multiple empty attribute values
 !! options
@@ -15508,7 +15514,7 @@ parsoid=wt2html,html2html
 </td></tr></table>
 
 !! html/parsoid
-<table title="" id="">
+<table title="id=">
 <tbody><tr><td> hi</td></tr>
 </tbody></table>
 !! end
@@ -15850,20 +15856,28 @@ Empty attribute crash test single-quotes (bug 2067)
 
 !! test
 Attribute test: equals, then nothing
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <font color=>foo</font>
-!! html
+!! html/php
 <p><font color="">foo</font>
 </p>
+!! html/parsoid
+<p><font color="" data-parsoid='{"stx":"html"}'>foo</font></p>
 !! end
 
 !! test
 Attribute test: unquoted value
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <font color=x>foo</font>
-!! html
+!! html/php
 <p><font color="x">foo</font>
 </p>
+!! html/parsoid
+<p><font color="x" data-parsoid='{"stx":"html"}'>foo</font></p>
 !! end
 
 !! test
@@ -17049,6 +17063,8 @@ http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 
 !! test
 Fuzz testing: Parser14-table
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 ==a==
 {| STYLE=__TOC__
@@ -17065,6 +17081,9 @@ Fuzz testing: Parser14-table
 <td></td>
 </tr>
 </table>
+!! html/parsoid
+<h2>a</h2>
+<table style="__TOC__"></table>
 !! end
 
 # Known to produce bogus xml (extra </td>)
