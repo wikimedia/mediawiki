@@ -104,6 +104,9 @@ HHVM 3.1.
 * $wgPreloadJavaScriptMwUtil was removed (deprecated in 1.26).
   Extensions, skins, gadgets and scripts that use the mediawiki.util module must
   express a dependency on it.
+* $wgIncludeLegacyJavaScript, deprecated in MediaWiki 1.26, now defaults false.
+  Extensions, skins, gadgets and scripts that need the mediawiki.legacy.wikibits
+  module should express a dependency on it.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
