@@ -242,7 +242,7 @@ class LocalFile extends File {
 	 * Try to load file metadata from memcached. Returns true on success.
 	 * @return bool
 	 */
-	function loadFromCache() {
+	private function loadFromCache() {
 		$this->dataLoaded = false;
 		$this->extraDataLoaded = false;
 		$key = $this->getCacheKey();
@@ -279,7 +279,7 @@ class LocalFile extends File {
 	/**
 	 * Save the file metadata to memcached
 	 */
-	function saveToCache() {
+	private function saveToCache() {
 		$this->load();
 
 		$key = $this->getCacheKey();
