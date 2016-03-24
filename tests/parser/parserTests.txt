@@ -18,7 +18,6 @@
 # ill           add inter-language links
 #               (ignored by Parsoid, since it emits <link>s)
 # subpage       enable subpages (disabled by default)
-# noxml         don't check for XML well-formedness
 # title=[[XXX]] run test using article title XXX
 # language=XXX  set content language to XXX for this test
 # variant=XXX   set the variant of language for this test (eg zh-tw)
@@ -12167,7 +12166,7 @@ This template has <!-- a comment --> in it.
 !! test
 pre-save transform: unclosed tag
 !! options
-pst noxml
+pst
 !! wikitext
 <nowiki>'''not wiki'''
 !! html/php
@@ -12177,7 +12176,7 @@ pst noxml
 !! test
 pre-save transform: mixed tag case
 !! options
-pst noxml
+pst
 !! wikitext
 <NOwiki>'''not wiki'''</noWIKI>
 !! html/php
@@ -12187,7 +12186,7 @@ pst noxml
 !! test
 pre-save transform: unclosed comment in <nowiki>
 !! options
-pst noxml
+pst
 !! wikitext
 wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
 !! html/php
@@ -16428,8 +16427,6 @@ array (
 
 !! test
 Parser hook: nested tags
-!! options
-noxml
 !! wikitext
 <tag><tag></tag></tag>
 !! html/php
@@ -17089,8 +17086,6 @@ parsoid=wt2html,html2html
 # Known to produce bogus xml (extra </td>)
 !! test
 Fuzz testing: Parser16
-!! options
-noxml
 !! wikitext
 {|
 !https://||||||
@@ -17152,8 +17147,6 @@ http://===r:::https://b
 # Known to produce bad XML for now
 !! test
 Fuzz testing: Parser24
-!! options
-noxml
 !! wikitext
 {|
 {{{|
@@ -18218,7 +18211,7 @@ section=1
 !! test
 Section extraction, <pre> around bogus header (bug 10309)
 !! options
-noxml section=2
+section=2
 !! wikitext
 == Section One ==
 <pre>
@@ -18235,7 +18228,7 @@ stuff
 !! test
 Section replacement, <pre> around bogus header (bug 10309)
 !! options
-noxml replace=2,"xxx"
+replace=2,"xxx"
 !! wikitext
 == Section One ==
 <pre>

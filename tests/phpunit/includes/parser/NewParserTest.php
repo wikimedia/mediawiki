@@ -433,6 +433,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgUseTeX' => isset( $opts['math'] ) || isset( $opts['texvc'] ),
+			'wgWellFormedXml' => true,
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
