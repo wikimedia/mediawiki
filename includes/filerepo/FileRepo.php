@@ -1906,7 +1906,7 @@ class FileRepo {
 
 	/**
 	 * Returns whether or not storage is SHA-1 based
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasSha1Storage() {
 		return $this->hasSha1Storage;
@@ -1914,7 +1914,7 @@ class FileRepo {
 
 	/**
 	 * Returns whether or not repo supports having originals SHA-1s in the thumb URLs
-	 * @return boolean
+	 * @return bool
 	 */
 	public function supportsSha1URLs() {
 		return $this->supportsSha1URLs;

@@ -71,11 +71,11 @@ abstract class PoolCounter {
 	protected $timeout;
 
 	/**
-	 * @var boolean Whether the key is a "might wait" key
+	 * @var bool Whether the key is a "might wait" key
 	 */
 	private $isMightWaitKey;
 	/**
-	 * @var boolean Whether this process holds a "might wait" lock key
+	 * @var bool Whether this process holds a "might wait" lock key
 	 */
 	private static $acquiredMightWaitKey = 0;
 

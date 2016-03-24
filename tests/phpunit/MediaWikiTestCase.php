@@ -161,7 +161,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	private function oncePerClass() {
 		// Remember current test class in the database connection,

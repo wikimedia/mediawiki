@@ -154,7 +154,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Decodes a lossy chunk header
 	 * @param string $header Header string
-	 * @return boolean|array See WebPHandler::decodeHeader
+	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	protected static function decodeLossyChunkHeader( $header ) {
 		// Bytes 0-3 are 'VP8 '
@@ -180,7 +180,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Decodes a lossless chunk header
 	 * @param string $header Header string
-	 * @return boolean|array See WebPHandler::decodeHeader
+	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	public static function decodeLosslessChunkHeader( $header ) {
 		// Bytes 0-3 are 'VP8L'
@@ -205,7 +205,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Decodes an extended chunk header
 	 * @param string $header Header string
-	 * @return boolean|array See WebPHandler::decodeHeader
+	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	public static function decodeExtendedChunkHeader( $header ) {
 		// Bytes 0-3 are 'VP8X'

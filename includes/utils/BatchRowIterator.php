@@ -166,14 +166,14 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * @return boolean True when the iterator is in a valid state
+	 * @return bool True when the iterator is in a valid state
 	 */
 	public function valid() {
 		return (bool)$this->current;
 	}
 
 	/**
-	 * @return boolean True when this result set has rows
+	 * @return bool True when this result set has rows
 	 */
 	public function hasChildren() {
 		return $this->current && count( $this->current );

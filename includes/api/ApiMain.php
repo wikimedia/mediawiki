@@ -711,7 +711,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Send caching headers
-	 * @param boolean $isError Whether an error response is being output
+	 * @param bool $isError Whether an error response is being output
 	 * @since 1.26 added $isError parameter
 	 */
 	protected function sendCacheHeaders( $isError ) {

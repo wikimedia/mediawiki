@@ -50,7 +50,7 @@ class HashSiteStore implements SiteStore {
 	 *
 	 * @param Site $site
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
 		$this->sites[$site->getGlobalId()] = $site;
@@ -65,7 +65,7 @@ class HashSiteStore implements SiteStore {
 	 *
 	 * @param Site[] $sites
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
 		foreach ( $sites as $site ) {

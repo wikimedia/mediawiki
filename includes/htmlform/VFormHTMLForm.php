@@ -27,7 +27,7 @@
 class VFormHTMLForm extends HTMLForm {
 	/**
 	 * Wrapper and its legend are never generated in VForm mode.
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $mWrapperLegend = false;
 

@@ -1150,7 +1150,7 @@ class ApiResult implements ApiSerializable {
 	 * the API.
 	 *
 	 * @param array $vars
-	 * @param boolean $forceHash
+	 * @param bool $forceHash
 	 * @return array
 	 */
 	public static function addMetadataToResultVars( $vars, $forceHash = true ) {

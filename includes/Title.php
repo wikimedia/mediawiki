@@ -145,7 +145,7 @@ class Title implements LinkTarget {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
-	/** @var string|boolean|null The page language code from the database, null if not saved in
+	/** @var string|bool|null The page language code from the database, null if not saved in
 	 * the database or false if not loaded, yet. */
 	private $mDbPageLanguage = false;
 
@@ -4627,7 +4627,7 @@ class Title implements LinkTarget {
 	 * to true in LocalSettings.php, otherwise returns false. If there is no language saved in
 	 * the db, it will return NULL.
 	 *
-	 * @return string|null|boolean
+	 * @return string|null|bool
 	 */
 	private function getDbPageLanguageCode() {
 		global $wgPageLanguageUseDB;

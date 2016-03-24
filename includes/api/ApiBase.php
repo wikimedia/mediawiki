@@ -437,7 +437,7 @@ abstract class ApiBase extends ContextSource {
 	 *    RFC 7232 § 2.2 for semantics.
 	 *  - etag: Return an entity-tag representing the state of all resources involved
 	 *    in the request. Quotes must be included. See RFC 7232 § 2.3 for semantics.
-	 * @return string|boolean|null As described above, or null if no value is available.
+	 * @return string|bool|null As described above, or null if no value is available.
 	 */
 	public function getConditionalRequestData( $condition ) {
 		return null;

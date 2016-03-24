@@ -38,7 +38,7 @@ class TemplateParser {
 
 	/**
 	 * @param string $templateDir
-	 * @param boolean $forceRecompile
+	 * @param bool $forceRecompile
 	 */
 	public function __construct( $templateDir = null, $forceRecompile = false ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
