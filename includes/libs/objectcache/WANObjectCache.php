@@ -919,6 +919,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Clear the in-process caches; useful for testing
+	 *
+	 * @since 1.27
+	 */
+	public function clearProcessCache() {
+		$this->procCache->clear();
+	}
+
+	/**
 	 * Do the actual async bus purge of a key
 	 *
 	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
