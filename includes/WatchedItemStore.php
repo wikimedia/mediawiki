@@ -583,7 +583,7 @@ class WatchedItemStore {
 		$this->reuseConnection( $dbr );
 
 		foreach ( $res as $row ) {
-			$timestamps[(int)$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
+			$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
 		}
 
 		return $timestamps;
