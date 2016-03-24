@@ -698,6 +698,10 @@ class SpecialUndelete extends SpecialPage {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	function loadRequest( $par ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
