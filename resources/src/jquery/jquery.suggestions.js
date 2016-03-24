@@ -14,7 +14,7 @@
  *
  *		$( '#textbox' ).suggestions();
  *
- * Uses jQuery.suggestions singleteon internally.
+ * Uses jQuery.suggestions singleton internally.
  *
  * @class jQuery.plugin.suggestions
  */
