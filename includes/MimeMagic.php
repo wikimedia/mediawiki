@@ -645,7 +645,7 @@ class MimeMagic {
 			throw new MWException(
 				"Seeking $tailLength bytes from EOF failed in " . __METHOD__ );
 		}
-		$tail = fread( $f, $tailLength );
+		$tail = $tailLength ? fread( $f, $tailLength ) : '';
 		fclose( $f );
 
 		wfDebug( __METHOD__ . ": analyzing head and tail of $file for magic numbers.\n" );
