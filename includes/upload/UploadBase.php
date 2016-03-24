@@ -666,7 +666,7 @@ abstract class UploadBase {
 		}
 
 		if ( $this->mFileSize == 0 ) {
-			$warnings['emptyfile'] = true;
+			$warnings['empty-file'] = true;
 		}
 
 		$exists = self::getExistsWarning( $localFile );
