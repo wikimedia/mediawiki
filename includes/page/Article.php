@@ -1644,6 +1644,7 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$context = $this->getContext();
 		$user = $context->getUser();
+		$request = $context->getRequest();
 
 		# Check permissions
 		$permissionErrors = $title->getUserPermissionsErrors( 'delete', $user );
@@ -1657,7 +1658,9 @@ class Article implements Page {
 		}
 
 		# Better double-check that it hasn't been deleted yet!
-		$this->mPage->loadPageData( 'fromdbmaster' );
+		$this->mPage->loadPageData(
+			$request->wasPosted() ? WikiPage::READ_LATEST : WikiPage::READ_NORMAL
+		);
 		if ( !$this->mPage->exists() ) {
 			$deleteLogPage = new LogPage( 'delete' );
 			$outputPage = $context->getOutput();
@@ -1677,7 +1680,6 @@ class Article implements Page {
 			return;
 		}
 
-		$request = $context->getRequest();
 		$deleteReasonList = $request->getText( 'wpDeleteReasonList', 'other' );
 		$deleteReason = $request->getText( 'wpReason' );
 
