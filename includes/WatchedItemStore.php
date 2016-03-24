@@ -12,6 +12,9 @@ use Wikimedia\Assert\Assert;
  */
 class WatchedItemStore {
 
+	const SORT_DESC = 'DESC';
+	const SORT_ASC = 'ASC';
+
 	/**
 	 * @var LoadBalancer
 	 */
@@ -494,18 +497,34 @@ class WatchedItemStore {
 	 * @param User $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
+	 *        'sort' => string optional sorting by namespace ID and title
+	 *                     one of the self::SORT_* constants
 	 *
 	 * @return WatchedItem[]
 	 */
 	public function getWatchedItemsForUser( User $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
 
+		$dbOptions = [];
+		if ( array_key_exists( 'sort', $options ) ) {
+			Assert::parameter(
+				( in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ) ),
+				'$options[\'sort\']',
+				'must be SORT_ASC or SORT_DESC'
+			);
+			$dbOptions['ORDER BY'] = [
+				"wl_namespace {$options['sort']}",
+				"wl_title {$options['sort']}"
+			];
+		}
 		$db = $this->getConnection( $options['forWrite'] ? DB_MASTER : DB_SLAVE );
+
 		$res = $db->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			[ 'wl_user' => $user->getId() ],
-			__METHOD__
+			__METHOD__,
+			$dbOptions
 		);
 		$this->reuseConnection( $db );
 
