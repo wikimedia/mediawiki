@@ -6,14 +6,13 @@
  */
 ( function ( $, mw ) {
 
-	var interwikiPrefixes = [],
-		interwikiPrefixesPromise = new mw.Api().get( {
+	var interwikiPrefixesPromise = new mw.Api().get( {
 			action: 'query',
 			meta: 'siteinfo',
 			siprop: 'interwikimap'
-		} ).done( function ( data ) {
-			$.each( data.query.interwikimap, function ( index, interwiki ) {
-				interwikiPrefixes.push( interwiki.prefix );
+		} ).then( function ( data ) {
+			return $.map( data.query.interwikimap, function ( interwiki ) {
+				return interwiki.prefix;
 			} );
 		} );
 
@@ -107,7 +106,7 @@
 			} };
 
 		if ( mw.Title.newFromText( query ) ) {
-			return interwikiPrefixesPromise.then( function () {
+			return interwikiPrefixesPromise.then( function ( interwikiPrefixes ) {
 				var params,
 					interwiki = query.substring( 0, query.indexOf( ':' ) );
 				if (
