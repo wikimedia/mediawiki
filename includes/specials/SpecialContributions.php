@@ -40,7 +40,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:User contributions' );
 
-		$this->opts = [];
+		$this->opts = [ ];
 		$request = $this->getRequest();
 
 		if ( $par !== null ) {
@@ -264,7 +264,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {
-			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
+			$user =
+				Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
 		}
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
@@ -283,7 +284,8 @@ class SpecialContributions extends IncludableSpecialPage {
 						$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 					}
 
-					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
+					$out =
+						$this->getOutput(); // showLogExtract() wants first parameter by reference
 					LogEventsList::showLogExtract(
 						$out,
 						'block',
@@ -296,7 +298,8 @@ class SpecialContributions extends IncludableSpecialPage {
 								$userObj->isAnon() ?
 									'sp-contributions-blocked-notice-anon' :
 									'sp-contributions-blocked-notice',
-								$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
+								$userObj->getName()
+								# Support GENDER in 'sp-contributions-blocked-notice'
 							],
 							'offset' => '' # don't use WebRequest parameter offset
 						]
@@ -305,7 +308,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )
+			->params( $userObj->getName() );
 	}
 
 	/**
@@ -345,7 +349,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log', 'block' ),
 				$this->msg( 'sp-contributions-blocklog' )->escaped(),
-				[],
+				[ ],
 				[ 'page' => $userpage->getPrefixedText() ]
 			);
 
@@ -354,7 +358,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log', 'suppress' ),
 					$this->msg( 'sp-contributions-suppresslog' )->escaped(),
-					[],
+					[ ],
 					[ 'offender' => $username ]
 				);
 			}
@@ -487,7 +491,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $tagFilter ) {
 			$filterSelection = Html::rawElement(
 				'td',
-				[],
+				[ ],
 				implode( '&#160;', $tagFilter )
 			);
 		} else {
@@ -526,9 +530,9 @@ class SpecialContributions extends IncludableSpecialPage {
 				],
 			] + (
 				// Only autofocus if target hasn't been specified or in non-newbies mode
-				( $this->opts['contribs'] === 'newbie' || $this->opts['target'] )
-					? [] : [ 'autofocus' => true ]
-				)
+			( $this->opts['contribs'] === 'newbie' || $this->opts['target'] )
+				? [ ] : [ 'autofocus' => true ]
+			)
 		);
 
 		$targetSelection = Html::rawElement(
@@ -539,7 +543,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$namespaceSelection = Xml::tags(
 			'td',
-			[],
+			[ ],
 			Xml::label(
 				$this->msg( 'namespace' )->text(),
 				'namespace',
@@ -553,35 +557,35 @@ class SpecialContributions extends IncludableSpecialPage {
 					'class' => 'namespaceselector',
 				]
 			) . '&#160;' .
-				Html::rawElement(
-					'span',
-					[ 'class' => 'mw-input-with-label' ],
-					Xml::checkLabel(
-						$this->msg( 'invert' )->text(),
-						'nsInvert',
-						'nsInvert',
-						$this->opts['nsInvert'],
-						[
-							'title' => $this->msg( 'tooltip-invert' )->text(),
-							'class' => 'mw-input'
-						]
-					) . '&#160;'
-				) .
-				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
-					Xml::checkLabel(
-						$this->msg( 'namespace_association' )->text(),
-						'associated',
-						'associated',
-						$this->opts['associated'],
-						[
-							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
-							'class' => 'mw-input'
-						]
-					) . '&#160;'
-				)
+			Html::rawElement(
+				'span',
+				[ 'class' => 'mw-input-with-label' ],
+				Xml::checkLabel(
+					$this->msg( 'invert' )->text(),
+					'nsInvert',
+					'nsInvert',
+					$this->opts['nsInvert'],
+					[
+						'title' => $this->msg( 'tooltip-invert' )->text(),
+						'class' => 'mw-input'
+					]
+				) . '&#160;'
+			) .
+			Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
+				Xml::checkLabel(
+					$this->msg( 'namespace_association' )->text(),
+					'associated',
+					'associated',
+					$this->opts['associated'],
+					[
+						'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+						'class' => 'mw-input'
+					]
+				) . '&#160;'
+			)
 		);
 
-		$filters = [];
+		$filters = [ ];
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$filters[] = Html::rawElement(
@@ -644,22 +648,23 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
 			Xml::dateMenu(
-				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
+				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) :
+					$this->opts['year'],
 				$this->opts['month']
 			) . ' ' .
-				Html::submitButton(
-					$this->msg( 'sp-contributions-submit' )->text(),
-					[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
-				)
+			Html::submitButton(
+				$this->msg( 'sp-contributions-submit' )->text(),
+				[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
+			)
 		);
 
 		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
 		$form .= Html::rawElement( 'table', [ 'class' => 'mw-contributions-table' ], "\n" .
-			Html::rawElement( 'tr', [], $targetSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $namespaceSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $filterSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n"
+			Html::rawElement( 'tr', [ ], $targetSelection ) . "\n" .
+			Html::rawElement( 'tr', [ ], $namespaceSelection ) . "\n" .
+			Html::rawElement( 'tr', [ ], $filterSelection ) . "\n" .
+			Html::rawElement( 'tr', [ ], $extraOptions ) . "\n" .
+			Html::rawElement( 'tr', [ ], $dateSelectionAndSubmit ) . "\n"
 		);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
@@ -684,8 +689,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		$user = User::newFromName( $search );
 		if ( !$user ) {
 			// No prefix suggestion for invalid user
-			return [];
+			return [ ];
 		}
+
 		// Autocomplete subpage as user list - public to allow caching
 		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
 	}
