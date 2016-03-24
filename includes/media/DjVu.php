@@ -419,7 +419,8 @@ class DjVuHandler extends ImageHandler {
 				}
 
 				return [ 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage ];
-			}
+			},
+			[ 'pcTTL' => WANObjectCache::TTL_INDEFINITE ]
 		);
 	}
 
