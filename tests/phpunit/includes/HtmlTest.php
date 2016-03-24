@@ -8,6 +8,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( [
 			'wgWellFormedXml' => false,
+			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 
 		$langObj = Language::factory( 'en' );
