@@ -2504,6 +2504,7 @@
 	"ipb-unblock": "Used as page title in [[Special:Block]], if the target user is not specified.\n\nSee also:\n* {{msg-mw|Ipb-unblock-addr}}",
 	"ipb-blocklist": "Used as link text in [[Special:Block]].\n\nThe link points to Specil:BlockList.",
 	"ipb-blocklist-contribs": "Used in [[Special:Block]].\n* $1 - target username",
+	"ipb-blocklist-duration-left": "Used on [[Special:BlockList]] to show the remaining time (years, months, days, hours, minutes) until the block expires.\n$1 - The duration left",
 	"unblockip": "Used as legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
 	"ipusubmit": "Used as button text on [{{canonicalurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock]. To see the message:\n* Go to [[Special:BlockList]]\n* Click \"unblock\" for any block (but you can only see \"unblock\" if you have administrator rights)\n* It is now the button below the form",
