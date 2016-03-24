@@ -821,10 +821,6 @@ class ParserTest {
 			self::getOptionValue( 'language', $opts, 'en' );
 		$variant =
 			self::getOptionValue( 'variant', $opts, false );
-		$maxtoclevel =
-			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
-		$linkHolderBatchSize =
-			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$settings = [
 			'wgServer' => 'http://example.org',
@@ -868,7 +864,7 @@ class ParserTest {
 			'wgLang' => null,
 			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => [ 0 => isset( $opts['subpage'] ) ],
-			'wgMaxTocLevel' => $maxtoclevel,
+			'wgMaxTocLevel' => self::getOptionValue( 'wgMaxTocLevel', $opts, 999 ),
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
 			'wgNoFollowDomainExceptions' => [],
@@ -891,11 +887,11 @@ class ParserTest {
 			'wgNamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
 			'wgDefaultExternalStore' => [],
 			'wgForeignFileRepos' => [],
-			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
+			'wgLinkHolderBatchSize' => self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 ),
 			'wgExperimentalHtmlIds' => false,
 			'wgExternalLinkTarget' => false,
 			'wgHtml5' => true,
-			'wgWellFormedXml' => true,
+			'wgWellFormedXml' => self::getOptionValue( 'wgWellFormedXml', $opts, true ),
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,

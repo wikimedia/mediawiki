@@ -35,7 +35,7 @@
 #
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
-#  wgLinkHolderBatchSize, wgRawHtml
+#  wgLinkHolderBatchSize, wgRawHtml, wgWellFormedXml
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle

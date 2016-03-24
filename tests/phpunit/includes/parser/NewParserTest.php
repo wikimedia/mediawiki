@@ -381,10 +381,6 @@ class NewParserTest extends MediaWikiTestCase {
 			self::getOptionValue( 'language', $opts, 'en' );
 		$variant =
 			self::getOptionValue( 'variant', $opts, false );
-		$maxtoclevel =
-			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
-		$linkHolderBatchSize =
-			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$uploadDir = $this->getUploadDir();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
@@ -431,12 +427,12 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgNamespacesWithSubpages' => [ NS_MAIN => isset( $opts['subpage'] ) ],
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
-			'wgMaxTocLevel' => $maxtoclevel,
+			'wgMaxTocLevel' => self::getOptionValue( 'wgMaxTocLevel', $opts, 999 ),
 			'wgUseTeX' => isset( $opts['math'] ) || isset( $opts['texvc'] ),
-			'wgWellFormedXml' => true,
+			'wgWellFormedXml' => self::getOptionValue( 'wgWellFormedXml', $opts, true ),
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgDefaultLanguageVariant' => $variant,
-			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
+			'wgLinkHolderBatchSize' => self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 ),
 			'wgUseTidy' => isset( $opts['tidy'] ),
 		];
 
