@@ -371,8 +371,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 			$user = $this->getUser();
-			if ( $row->rev_id == $row->page_latest ) {
+			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
+				$classes[] = 'mw-contributions-current';
 				# Add rollback link
 				if ( !$row->page_is_new && $page->quickUserCan( 'rollback', $user )
 					&& $page->quickUserCan( 'edit', $user )
