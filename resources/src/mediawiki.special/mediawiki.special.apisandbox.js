@@ -916,27 +916,34 @@
 								} ).$element
 							);
 					} )
-					.done( function ( data, jqXHR ) {
-						var m, loadTime, button,
+					.done( function ( responseText, jqXHR ) {
+						var data, m, loadTime, button,
 							ct = jqXHR.getResponseHeader( 'Content-Type' );
 
 						$result.empty();
 						if ( /^text\/mediawiki-api-prettyprint-wrapped(?:;|$)/.test( ct ) ) {
-							data = $.parseJSON( data );
+							try {
+								data = $.parseJSON( responseText );
+							} catch ( err ) {
+								// JSON failed to parse. Something's badly busted, e.g. output has PHP warnings.
+							}
+						}
+
+						if ( data ) {
 							if ( data.modules.length ) {
 								mw.loader.load( data.modules );
 							}
 							$result.append( Util.parseHTML( data.html ) );
 							loadTime = data.time;
-						} else if ( ( m = data.match( /<pre[ >][\s\S]*<\/pre>/ ) ) ) {
+						} else if ( ( m = responseText.match( /^<pre[ >][\s\S]*<\/pre>\n?$/ ) ) ) {
 							$result.append( Util.parseHTML( m[ 0 ] ) );
-							if ( ( m = data.match( /"wgBackendResponseTime":\s*(\d+)/ ) ) ) {
+							if ( ( m = responseText.match( /"wgBackendResponseTime":\s*(\d+)/ ) ) ) {
 								loadTime = parseInt( m[ 1 ], 10 );
 							}
 						} else {
 							$( '<pre>' )
 								.addClass( 'api-pretty-content' )
-								.text( data )
+								.text( responseText )
 								.appendTo( $result );
 						}
 						if ( typeof loadTime === 'number' ) {
