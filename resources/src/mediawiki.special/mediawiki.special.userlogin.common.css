@@ -1,5 +1,5 @@
-/* Styles for user login and signup forms */
-.mw-form-related-link-container {
+/* User login and signup forms */
+.mw-ui-vform .mw-form-related-link-container {
 	margin-bottom: 0.5em;
 	text-align: center;
 }
