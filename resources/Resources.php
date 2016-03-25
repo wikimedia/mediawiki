@@ -482,7 +482,7 @@ return [
 			'sk' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sk.js',
 			'sl' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sl.js',
 			'sq' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sq.js',
-			'sr-sr' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sr-SR.js',
+			'sr-el' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sr-SR.js',
 			'sr' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sr.js',
 			'sv' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sv.js',
 			'ta' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ta.js',
