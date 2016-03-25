@@ -227,7 +227,7 @@ class LocalRepo extends FileRepo {
 					? Title::makeTitle( $row->rd_namespace, $row->rd_title )->getDBkey()
 					: ''; // negative cache
 			},
-			[ 'pcTTL' => $expiry ]
+			[ 'pcTTL' => 5 ]
 		);
 
 		// @note: also checks " " for b/c
