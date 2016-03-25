@@ -871,7 +871,7 @@ class ApiMain extends ApiBase {
 
 			$errMessage = [
 				'code' => 'internal_api_error_' . get_class( $e ),
-				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
+				'info' => '[' . WebRequest::getRequestId() . '] ' . $info,
 			];
 		}
 		return $errMessage;
