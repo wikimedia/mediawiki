@@ -238,7 +238,9 @@ class SpecialUnblock extends SpecialPage {
 		$logEntry->setTarget( $page );
 		$logEntry->setComment( $data['Reason'] );
 		$logEntry->setPerformer( $performer );
-		$logEntry->setTags( $data['Tags'] );
+		if ( isset( $data['Tags'] ) ) {
+			$logEntry->setTags( $data['Tags'] );
+		}
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
