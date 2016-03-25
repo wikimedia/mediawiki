@@ -436,6 +436,8 @@ return [
 			'ca' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ca.js',
 			'cs' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-cs.js',
 			'da' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-da.js',
+			'de-at' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-de-AT.js',
+			'de-ch' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-de-CH.js',
 			'de' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-de.js',
 			'el' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-el.js',
 			'en-au' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-en-AU.js',
