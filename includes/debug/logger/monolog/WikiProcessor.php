@@ -42,7 +42,7 @@ class WikiProcessor {
 				'host' => wfHostname(),
 				'wiki' => wfWikiID(),
 				'mwversion' => $wgVersion,
-				'reqId' => WebRequest::getRequestId(),
+				'reqId' => \WebRequest::getRequestId(),
 			]
 		);
 		return $record;
