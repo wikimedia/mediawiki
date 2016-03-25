@@ -393,25 +393,24 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	protected function getDimensionInfo( File $file ) {
-		$that = $this;
-
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'file-djvu', 'dimensions', $file->getSha1() ),
-			WANObjectCache::TTL_INDEFINITE,
-			function () use ( $that, $file ) {
-				$tree = $that->getMetaTree( $file );
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'file-djvu', 'dimensions', $file->getSha1() ),
+			$cache::TTL_INDEFINITE,
+			function () use ( $file ) {
+				$tree = $this->getMetaTree( $file );
 				if ( !$tree ) {
 					return false;
 				}
 
 				$dimsByPage = [];
 				$count = count( $tree->xpath( '//OBJECT' ) );
-				for ( $i = 0; $i < $count; ++$i ) {
+				for ( $i = 0; $i < $count; $i++ ) {
 					$o = $tree->BODY[0]->OBJECT[$i];
 					if ( $o ) {
 						$dimsByPage[$i] = [
 							'width' => (int)$o['width'],
-							'height' => (int)$o['height']
+							'height' => (int)$o['height'],
 						];
 					} else {
 						$dimsByPage[$i] = false;
@@ -420,7 +419,7 @@ class DjVuHandler extends ImageHandler {
 
 				return [ 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage ];
 			},
-			[ 'pcTTL' => WANObjectCache::TTL_INDEFINITE ]
+			[ 'pcTTL' => $cache::TTL_INDEFINITE ]
 		);
 	}
 
