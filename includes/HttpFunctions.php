@@ -192,6 +192,26 @@ class Http {
 			$uri
 		);
 	}
+
+	/**
+	 * Gets the relevant proxy from $wgHTTPProxy/http_proxy (when set).
+	 *
+	 * @return mixed The proxy address or an empty string if not set.
+	 */
+	public static function getProxy() {
+		global $wgHTTPProxy;
+
+		if ( $wgHTTPProxy ) {
+			return $wgHTTPProxy;
+		}
+
+		$envHttpProxy = getenv( "http_proxy" );
+		if ( $envHttpProxy ) {
+			return $envHttpProxy;
+		}
+
+		return "";
+	}
 }
 
 /**
@@ -368,8 +388,6 @@ class MWHttpRequest {
 	 * @return void
 	 */
 	public function proxySetup() {
-		global $wgHTTPProxy;
-
 		// If there is an explicit proxy set and proxies are not disabled, then use it
 		if ( $this->proxy && !$this->noProxy ) {
 			return;
@@ -379,10 +397,8 @@ class MWHttpRequest {
 		// local URL and proxies are not disabled
 		if ( Http::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
-		} elseif ( $wgHTTPProxy ) {
-			$this->proxy = $wgHTTPProxy;
-		} elseif ( getenv( "http_proxy" ) ) {
-			$this->proxy = getenv( "http_proxy" );
+		} else {
+			$this->proxy = Http::getProxy();
 		}
 	}
 
