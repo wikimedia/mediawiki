@@ -141,7 +141,7 @@ class MWException extends Exception {
 			nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
 			"</p>\n";
 		} else {
-			$logId = MWExceptionHandler::getLogId( $this );
+			$logId = WebRequest::getRequestId();
 			$type = get_class( $this );
 			return "<div class=\"errorbox\">" .
 			'[' . $logId . '] ' .

@@ -175,6 +175,12 @@ HHVM 3.1.
   be a good idea, but will log out all current sessions.
 * $wgEventRelayerConfig was added, for managing PubSub event relay configuration,
   specifically for reliable CDN url purges.
+* Requests have unique IDs, equal to the UNIQUE_ID environment variable (when
+  MediaWiki is behind Apache+mod_unique_id or something similar) or a randomly-
+  generated 24-character string. This request ID is used to annotate log records
+  and error messages. It is available client-side via mw.config.get( 'wgRequestId' ).
+  The request ID supplants exception IDs. Accordingly, MWExceptionHandler::getLogId()
+  is deprecated.
 
 === External library changes in 1.27 ===
 
