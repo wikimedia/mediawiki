@@ -615,30 +615,30 @@ class WatchedItemStore {
 	 * @param LinkTarget $target
 	 */
 	public function addWatch( User $user, LinkTarget $target ) {
-		$this->addWatchBatch( [ [ $user, $target ] ] );
+		$this->addWatchBatchForUser( $user, [ $target ] );
 	}
 
 	/**
-	 * @param array[] $userTargetCombinations array of arrays containing [0] => User [1] => LinkTarget
+	 * @param User $user
+	 * @param LinkTarget[] $targets
 	 *
 	 * @return bool success
 	 */
-	public function addWatchBatch( array $userTargetCombinations ) {
+	public function addWatchBatchForUser( User $user, array $targets ) {
 		if ( $this->loadBalancer->getReadOnlyReason() !== false ) {
 			return false;
 		}
+		// Only loggedin user can have a watchlist
+		if ( $user->isAnon() ) {
+			return false;
+		}
+
+		if ( !$targets ) {
+			return true;
+		}
 
 		$rows = [];
-		foreach ( $userTargetCombinations as list( $user, $target ) ) {
-			/**
-			 * @var User $user
-			 * @var LinkTarget $target
-			 */
-
-			// Only loggedin user can have a watchlist
-			if ( $user->isAnon() ) {
-				continue;
-			}
+		foreach ( $targets as $target ) {
 			$rows[] = [
 				'wl_user' => $user->getId(),
 				'wl_namespace' => $target->getNamespace(),
@@ -646,10 +646,6 @@ class WatchedItemStore {
 				'wl_notificationtimestamp' => null,
 			];
 			$this->uncache( $user, $target );
-		}
-
-		if ( !$rows ) {
-			return false;
 		}
 
 		$dbw = $this->getConnection( DB_MASTER );

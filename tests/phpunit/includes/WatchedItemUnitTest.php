@@ -165,25 +165,37 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testBatchAddWatch() {
-		/** @var WatchedItem[] $items */
-		$items = [
-			new WatchedItem( User::newFromId( 1 ), new TitleValue( 0, 'Title1' ), null ),
-			new WatchedItem( User::newFromId( 3 ), Title::newFromText( 'Title2' ), '20150101010101' ),
-		];
-
-		$userTargetCombinations = [];
-		foreach ( $items as $item ) {
-			$userTargetCombinations[] = [ $item->getUser(), $item->getTitle()->getSubjectPage() ];
-			$userTargetCombinations[] = [ $item->getUser(), $item->getTitle()->getTalkPage() ];
-		}
+		$itemOne = new WatchedItem( User::newFromId( 1 ), new TitleValue( 0, 'Title1' ), null );
+		$itemTwo = new WatchedItem(
+			User::newFromId( 3 ),
+			Title::newFromText( 'Title2' ),
+			'20150101010101'
+		);
 
 		$store = $this->getMockWatchedItemStore();
-		$store->expects( $this->once() )
-			->method( 'addWatchBatch' )
-			->with( $userTargetCombinations );
+		$store->expects( $this->exactly( 2 ) )
+			->method( 'addWatchBatchForUser' );
+		$store->expects( $this->at( 0 ) )
+			->method( 'addWatchBatchForUser' )
+			->with(
+				$itemOne->getUser(),
+				[
+					$itemOne->getTitle()->getSubjectPage(),
+					$itemOne->getTitle()->getTalkPage(),
+				]
+			);
+		$store->expects( $this->at( 1 ) )
+			->method( 'addWatchBatchForUser' )
+			->with(
+				$itemTwo->getUser(),
+				[
+					$itemTwo->getTitle()->getSubjectPage(),
+					$itemTwo->getTitle()->getTalkPage(),
+				]
+			);
 		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
-		WatchedItem::batchAddWatch( $items );
+		WatchedItem::batchAddWatch( [ $itemOne, $itemTwo ] );
 
 		ScopedCallback::consume( $scopedOverride );
 	}
