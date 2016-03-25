@@ -443,7 +443,7 @@ class Language {
 	 * @return array
 	 * @since 1.19
 	 */
-	function getFallbackLanguages() {
+	public function getFallbackLanguages() {
 		return self::getFallbacksFor( $this->mCode );
 	}
 
@@ -451,7 +451,7 @@ class Language {
 	 * Exports $wgBookstoreListEn
 	 * @return array
 	 */
-	function getBookstoreList() {
+	public function getBookstoreList() {
 		return self::$dataCache->getItem( $this->mCode, 'bookstoreList' );
 	}
 
@@ -520,7 +520,7 @@ class Language {
 	 *
 	 * @return array
 	 */
-	function getFormattedNamespaces() {
+	public function getFormattedNamespaces() {
 		$ns = $this->getNamespaces();
 		foreach ( $ns as $k => $v ) {
 			$ns[$k] = strtr( $v, '_', ' ' );
@@ -539,7 +539,7 @@ class Language {
 	 * @param int $index The array key of the namespace to return
 	 * @return string|bool String if the namespace value exists, otherwise false
 	 */
-	function getNsText( $index ) {
+	public function getNsText( $index ) {
 		$ns = $this->getNamespaces();
 		return isset( $ns[$index] ) ? $ns[$index] : false;
 	}
@@ -557,7 +557,7 @@ class Language {
 	 * @param int $index The array key of the namespace to return
 	 * @return string Namespace name without underscores (empty string if namespace does not exist)
 	 */
-	function getFormattedNsText( $index ) {
+	public function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
 		return strtr( $ns, '_', ' ' );
 	}
@@ -570,7 +570,7 @@ class Language {
 	 * @return string
 	 * @since 1.18
 	 */
-	function getGenderNsText( $index, $gender ) {
+	public function getGenderNsText( $index, $gender ) {
 		global $wgExtraGenderNamespaces;
 
 		$ns = $wgExtraGenderNamespaces +
@@ -585,7 +585,7 @@ class Language {
 	 * @return bool
 	 * @since 1.18
 	 */
-	function needsGenderDistinction() {
+	public function needsGenderDistinction() {
 		global $wgExtraGenderNamespaces, $wgExtraNamespaces;
 		if ( count( $wgExtraGenderNamespaces ) > 0 ) {
 			// $wgExtraGenderNamespaces overrides everything
@@ -618,7 +618,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getNamespaceAliases() {
+	public function getNamespaceAliases() {
 		if ( is_null( $this->namespaceAliases ) ) {
 			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceAliases' );
 			if ( !$aliases ) {
@@ -662,7 +662,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getNamespaceIds() {
+	public function getNamespaceIds() {
 		if ( is_null( $this->mNamespaceIds ) ) {
 			global $wgNamespaceAliases;
 			# Put namespace names and aliases into a hashtable.
@@ -692,7 +692,7 @@ class Language {
 	 * @param string $text
 	 * @return int|bool An integer if $text is a valid value otherwise false
 	 */
-	function getNsIndex( $text ) {
+	public function getNsIndex( $text ) {
 		$lctext = $this->lc( $text );
 		$ns = MWNamespace::getCanonicalIndex( $lctext );
 		if ( $ns !== null ) {
@@ -709,7 +709,7 @@ class Language {
 	 * @param bool $usemsg Use the "variantname-xyz" message if it exists
 	 * @return string
 	 */
-	function getVariantname( $code, $usemsg = true ) {
+	public function getVariantname( $code, $usemsg = true ) {
 		$msg = "variantname-$code";
 		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
@@ -726,7 +726,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getDatePreferences() {
+	public function getDatePreferences() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
 	}
 
@@ -740,7 +740,7 @@ class Language {
 	/**
 	 * @return array|string
 	 */
-	function getDefaultDateFormat() {
+	public function getDefaultDateFormat() {
 		$df = self::$dataCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
 			global $wgAmericanDates;
@@ -753,7 +753,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getDatePreferenceMigrationMap() {
+	public function getDatePreferenceMigrationMap() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
 	}
 
@@ -769,14 +769,14 @@ class Language {
 	 * @return array
 	 * @since 1.24
 	 */
-	function getImageFiles() {
+	public function getImageFiles() {
 		return self::$dataCache->getItem( $this->mCode, 'imageFiles' );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getExtraUserToggles() {
+	public function getExtraUserToggles() {
 		return (array)self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );
 	}
 
@@ -899,7 +899,7 @@ class Language {
 	 * @param string $msg Message name
 	 * @return string
 	 */
-	function getMessageFromDB( $msg ) {
+	public function getMessageFromDB( $msg ) {
 		return $this->msg( $msg )->text();
 	}
 
@@ -917,14 +917,14 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getMonthName( $key ) {
+	public function getMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mMonthMsgs[$key - 1] );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getMonthNamesArray() {
+	public function getMonthNamesArray() {
 		$monthNames = [ '' ];
 		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
@@ -936,7 +936,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getMonthNameGen( $key ) {
+	public function getMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
 	}
 
