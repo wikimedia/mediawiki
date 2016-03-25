@@ -21,7 +21,8 @@
 namespace MediaWiki\Logger\Monolog;
 
 /**
- * Injects `wfHostname()`, `wfWikiID()` and `$wgVersion` in all records.
+ * Annotate log records with request-global metadata, such as the hostname,
+ * wiki / request ID, and MediaWiki version.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
@@ -41,6 +42,7 @@ class WikiProcessor {
 				'host' => wfHostname(),
 				'wiki' => wfWikiID(),
 				'mwversion' => $wgVersion,
+				'reqId' => \WebRequest::getRequestId(),
 			]
 		);
 		return $record;

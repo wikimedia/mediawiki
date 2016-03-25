@@ -445,14 +445,13 @@ TXT;
 	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
 	 *
 	 * @since 1.22
+	 * @deprecated since 1.27: Exception IDs are synonymous with request IDs.
 	 * @param Exception|Throwable $e
 	 * @return string
 	 */
 	public static function getLogId( $e ) {
-		if ( !isset( $e->_mwLogId ) ) {
-			$e->_mwLogId = wfRandomString( 8 );
-		}
-		return $e->_mwLogId;
+		wfDeprecated( __METHOD__, '1.27' );
+		return WebRequest::getRequestId();
 	}
 
 	/**
@@ -478,7 +477,7 @@ TXT;
 	 * @return string
 	 */
 	public static function getLogMessage( $e ) {
-		$id = self::getLogId( $e );
+		$id = WebRequest::getRequestId();
 		$type = get_class( $e );
 		$file = $e->getFile();
 		$line = $e->getLine();
@@ -489,9 +488,9 @@ TXT;
 	}
 
 	public static function getPublicLogMessage( Exception $e ) {
-		$logId = self::getLogId( $e );
+		$reqId = WebRequest::getRequestId();
 		$type = get_class( $e );
-		return '[' . $logId . '] '
+		return '[' . $reqId . '] '
 			. gmdate( 'Y-m-d H:i:s' ) . ': '
 			. 'Fatal exception of type ' . $type;
 	}
@@ -509,7 +508,7 @@ TXT;
 	public static function getLogContext( $e ) {
 		return [
 			'exception' => $e,
-			'exception_id' => static::getLogId( $e ),
+			'exception_id' => WebRequest::getRequestId(),
 		];
 	}
 
@@ -527,7 +526,7 @@ TXT;
 	public static function getStructuredExceptionData( $e ) {
 		global $wgLogExceptionBacktrace;
 		$data = [
-			'id' => self::getLogId( $e ),
+			'id' => WebRequest::getRequestId(),
 			'type' => get_class( $e ),
 			'file' => $e->getFile(),
 			'line' => $e->getLine(),
