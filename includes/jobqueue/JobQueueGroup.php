@@ -36,6 +36,8 @@ class JobQueueGroup {
 
 	/** @var string Wiki ID */
 	protected $wiki;
+	/** @var string|bool Read only rationale (or false if r/w) */
+	protected $readOnlyReason;
 
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
@@ -54,9 +56,11 @@ class JobQueueGroup {
 
 	/**
 	 * @param string $wiki Wiki ID
+	 * @param string|bool $readOnlyReason Read-only reason or false
 	 */
-	protected function __construct( $wiki ) {
+	protected function __construct( $wiki, $readOnlyReason ) {
 		$this->wiki = $wiki;
+		$this->readOnlyReason = $readOnlyReason;
 		$this->cache = new ProcessCacheLRU( 10 );
 	}
 
@@ -67,7 +71,7 @@ class JobQueueGroup {
 	public static function singleton( $wiki = false ) {
 		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
 		if ( !isset( self::$instances[$wiki] ) ) {
-			self::$instances[$wiki] = new self( $wiki );
+			self::$instances[$wiki] = new self( $wiki, wfConfiguredReadOnlyReason() );
 		}
 
 		return self::$instances[$wiki];
@@ -98,6 +102,9 @@ class JobQueueGroup {
 			$conf = $conf + $wgJobTypeConf['default'];
 		}
 		$conf['aggregator'] = JobQueueAggregator::singleton();
+		if ( $this->readOnlyReason !== false ) {
+			$conf['readOnlyReason'] = $this->readOnlyReason;
+		}
 
 		return JobQueue::factory( $conf );
 	}
