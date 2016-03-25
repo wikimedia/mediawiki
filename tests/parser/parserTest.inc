@@ -619,6 +619,7 @@ class ParserTest {
 			$titleText = 'Parser test';
 		}
 
+		ObjectCache::getMainWANInstance()->clearProcessCache();
 		$local = isset( $opts['local'] );
 		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
 		$parser = $this->getParser( $preprocessor );
