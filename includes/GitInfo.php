@@ -257,9 +257,6 @@ class GitInfo {
 		if ( $url === false ) {
 			return false;
 		}
-		if ( substr( $url, -4 ) !== '.git' ) {
-			$url .= '.git';
-		}
 		foreach ( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
 			if ( preg_match( $pattern, $url, $matches ) ) {
@@ -269,6 +266,7 @@ class GitInfo {
 					'%h' => substr( $headSHA1, 0, 7 ),
 					'%H' => $headSHA1,
 					'%r' => urlencode( $matches[1] ),
+					'%R' => $matches[1],
 				];
 				return strtr( $viewerUrl, $replacements );
 			}
