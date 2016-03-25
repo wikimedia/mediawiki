@@ -25,23 +25,24 @@
 	 * @private
 	 */
 	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
-		var queue, titles;
+		var queue, titles,
+			cache = this;
 		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
 			this.currentRequest.always( function () {
-				this.currentRequest = null;
-				this.processExistenceCheckQueueDebounced();
-			}.bind( this ) );
+				cache.currentRequest = null;
+				cache.processExistenceCheckQueueDebounced();
+			} );
 			return;
 		}
 		queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
 		titles = Object.keys( queue ).filter( function ( title ) {
-			if ( this.existenceCache.hasOwnProperty( title ) ) {
-				queue[ title ].resolve( this.existenceCache[ title ] );
+			if ( cache.existenceCache.hasOwnProperty( title ) ) {
+				queue[ title ].resolve( cache.existenceCache[ title ] );
 			}
-			return !this.existenceCache.hasOwnProperty( title );
-		}.bind( this ) );
+			return !cache.existenceCache.hasOwnProperty( title );
+		} );
 		if ( !titles.length ) {
 			return;
 		}
@@ -53,10 +54,10 @@
 		} ).done( function ( response ) {
 			$.each( response.query.pages, function ( index, page ) {
 				var title = new ForeignTitle( page.title ).getPrefixedText();
-				this.existenceCache[ title ] = !page.missing;
-				queue[ title ].resolve( this.existenceCache[ title ] );
-			}.bind( this ) );
-		}.bind( this ) );
+				cache.existenceCache[ title ] = !page.missing;
+				queue[ title ].resolve( cache.existenceCache[ title ] );
+			} );
+		} );
 	};
 
 	/**
@@ -107,6 +108,7 @@
 	 * @cfg {string} [apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryCapsuleItemWidget = function MWWCategoryCapsuleItemWidget( config ) {
+		var widget = this;
 		// Parent constructor
 		mw.widgets.CategoryCapsuleItemWidget.parent.call( this, $.extend( {
 			data: config.title.getMainText(),
@@ -137,8 +139,8 @@
 		this.constructor.static.pageExistenceCaches[ this.apiUrl ]
 			.checkPageExistence( new ForeignTitle( this.title.getPrefixedText() ) )
 			.done( function ( exists ) {
-				this.setMissing( !exists );
-			}.bind( this ) );
+				widget.setMissing( !exists );
+			} );
 		/*jshint +W024*/
 	};
 
