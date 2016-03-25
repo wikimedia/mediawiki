@@ -247,6 +247,25 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the unique request ID.
+	 * This is either the value of the UNIQUE_ID envvar (if present) or a
+	 * randomly-generated 24-character string.
+	 *
+	 * @return string
+	 * @since 1.27
+	 */
+	public static function getRequestId() {
+		static $reqId;
+
+		if ( !$reqId ) {
+			$reqId = isset( $_SERVER['UNIQUE_ID'] )
+				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
+		}
+
+		return $reqId;
+	}
+
+	/**
 	 * Get the current URL protocol (http or https)
 	 * @return string
 	 */
