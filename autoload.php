@@ -620,6 +620,7 @@ $wgAutoloadLocalClasses = [
 	'JobQueueFederated' => __DIR__ . '/includes/jobqueue/JobQueueFederated.php',
 	'JobQueueGroup' => __DIR__ . '/includes/jobqueue/JobQueueGroup.php',
 	'JobQueueMemory' => __DIR__ . '/includes/jobqueue/JobQueueMemory.php',
+	'JobQueueReadOnlyError' => __DIR__ . '/includes/jobqueue/JobQueue.php',
 	'JobQueueRedis' => __DIR__ . '/includes/jobqueue/JobQueueRedis.php',
 	'JobRunner' => __DIR__ . '/includes/jobqueue/JobRunner.php',
 	'JobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
