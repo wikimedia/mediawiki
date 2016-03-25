@@ -397,7 +397,13 @@ class ApiMain extends ApiBase {
 		if ( $this->mInternalMode ) {
 			$this->executeAction();
 		} else {
+			$start = microtime( true );
 			$this->executeActionWithErrorHandling();
+			if ( $this->isWriteMode() && $this->getRequest()->wasPosted() ) {
+				$timeMs = 1000 * max( 0, microtime( true ) - $start );
+				$this->getStats()->timing(
+					'api.' . $this->getModuleName() . '.executeTiming', $timeMs );
+			}
 		}
 	}
 
