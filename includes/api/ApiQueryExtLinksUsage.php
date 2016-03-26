@@ -66,6 +66,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}
 
+		// Normalize query to match the normalization applied for the externallinks table
+		$query = Parser::normalizeLinkUrl( $query );
+
 		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
 
 		if ( $whereQuery !== null ) {
