@@ -944,14 +944,14 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getMonthAbbreviation( $key ) {
+	public function getMonthAbbreviation( $key ) {
 		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key - 1] );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getMonthAbbreviationsArray() {
+	public function getMonthAbbreviationsArray() {
 		$monthNames = [ '' ];
 		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
@@ -963,7 +963,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getWeekdayName( $key ) {
+	public function getWeekdayName( $key ) {
 		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key - 1] );
 	}
 
@@ -1091,7 +1091,7 @@ class Language {
 	 * @throws MWException
 	 * @return string
 	 */
-	function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = null ) {
+	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = null ) {
 		$s = '';
 		$raw = false;
 		$roman = false;
@@ -2069,7 +2069,7 @@ class Language {
 	 *   get user timecorrection setting)
 	 * @return int
 	 */
-	function userAdjust( $ts, $tz = false ) {
+	public function userAdjust( $ts, $tz = false ) {
 		global $wgUser, $wgLocalTZoffset;
 
 		if ( $tz === false ) {
@@ -2216,7 +2216,7 @@ class Language {
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+	public function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
@@ -2235,7 +2235,7 @@ class Language {
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+	public function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
@@ -2255,7 +2255,7 @@ class Language {
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
+	public function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
@@ -2561,7 +2561,7 @@ class Language {
 	 * @param string $key
 	 * @return array|null
 	 */
-	function getMessage( $key ) {
+	public function getMessage( $key ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
 	}
 
@@ -2578,7 +2578,7 @@ class Language {
 	 * @param string $string
 	 * @return string
 	 */
-	function iconv( $in, $out, $string ) {
+	public function iconv( $in, $out, $string ) {
 		# This is a wrapper for iconv in all languages except esperanto,
 		# which does some nasty x-conversions beforehand
 
@@ -2652,7 +2652,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function ucfirst( $str ) {
+	public function ucfirst( $str ) {
 		$o = ord( $str );
 		if ( $o < 96 ) { // if already uppercase...
 			return $str;
@@ -2672,7 +2672,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function uc( $str, $first = false ) {
+	public function uc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtoupper' ) ) {
 			if ( $first ) {
 				if ( $this->isMultibyte( $str ) ) {
