@@ -1750,8 +1750,8 @@ class ApiMain extends ApiBase {
 		// Use parent to make default message for the main module
 		$msg = parent::makeHelpMsg();
 
-		$astriks = str_repeat( '*** ', 14 );
-		$msg .= "\n\n$astriks Modules  $astriks\n\n";
+		$asterisks = str_repeat( '*** ', 14 );
+		$msg .= "\n\n$asterisks Modules  $asterisks\n\n";
 
 		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
 			$module = $this->mModuleMgr->getModule( $name );
@@ -1764,7 +1764,7 @@ class ApiMain extends ApiBase {
 			$msg .= "\n";
 		}
 
-		$msg .= "\n$astriks Permissions $astriks\n\n";
+		$msg .= "\n$asterisks Permissions $asterisks\n\n";
 		foreach ( self::$mRights as $right => $rightMsg ) {
 			$rightsMsg = $this->msg( $rightMsg['msg'], $rightMsg['params'] )
 				->useDatabase( false )
@@ -1775,7 +1775,7 @@ class ApiMain extends ApiBase {
 				"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
 		}
 
-		$msg .= "\n$astriks Formats  $astriks\n\n";
+		$msg .= "\n$asterisks Formats  $asterisks\n\n";
 		foreach ( $this->mModuleMgr->getNames( 'format' ) as $name ) {
 			$module = $this->mModuleMgr->getModule( $name );
 			$msg .= self::makeHelpMsgHeader( $module, 'format' );
