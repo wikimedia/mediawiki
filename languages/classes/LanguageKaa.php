@@ -54,7 +54,7 @@ class LanguageKaa extends Language {
 	 *
 	 * @return string
 	 */
-	function ucfirst( $string ) {
+	public function ucfirst( $string ) {
 		if ( substr( $string, 0, 1 ) === 'i' ) {
 			return 'İ' . substr( $string, 1 );
 		}
