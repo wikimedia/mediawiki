@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"TTO",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1298,7 +1299,7 @@
 	"recentchangeslinked-page": "Dä Sigg ier Övverschreff:",
 	"recentchangeslinked-to": "Zeisch de Änderonge aan dä Sigge, woh Lengks op di aanjejovve Sigg drop sin",
 	"recentchanges-page-added-to-category": "Di Sigg [[:$1]] wood en di Saachjrop jedonn",
-	"recentchanges-page-added-to-category-bundled": "Di Sigg [[:$1]] un {{PLURAL:$2|noch ein Sigg wood|$2 Sigge woodte|kein Sigg wood}} en di Saachjrop jedonn",
+	"recentchanges-page-added-to-category-bundled": "Di Sigg [[:$1]] un [[Special:WhatLinksHere/$1|{{PLURAL:$2|noch ein Sigg wood|$2 Sigge woodte|kein Sigg wood}}]] en di Saachjrop jedonn",
 	"recentchanges-page-removed-from-category": "Di Sigg [[:$1]] wood uß dä Saachjrop jenumme",
 	"recentchanges-page-removed-from-category-bundled": "Di Sigg [[:$1]] un {{PLURAL:$2|noch ein Sigg woodte|$2 Sigge woodte|kein Sigg wood}} uß dä Saachjrop jenumme",
 	"autochange-username": "Automattesche Ännderong aam MediaWiki",

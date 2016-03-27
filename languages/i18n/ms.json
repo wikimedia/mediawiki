@@ -20,7 +20,8 @@
 			"아라",
 			"Pizza1016",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1252,7 +1253,7 @@
 	"recentchangeslinked-page": "Nama laman:",
 	"recentchangeslinked-to": "Paparkan perubahan pada laman yang mengandungi pautan ke laman yang diberikan",
 	"recentchanges-page-added-to-category": "[[:$1]] ditambahkan kepada kategori",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] dan {{PLURAL:$2|satu|$2}} lagi halaman ditambahkan kepada kategori",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] dan [[Special:WhatLinksHere/$1|{{PLURAL:$2|satu|$2}}]] lagi halaman ditambahkan kepada kategori",
 	"recentchanges-page-removed-from-category": "[[:$1]] digugurkan dari kategori",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] dan {{PLURAL:$2|satu|$2}} lagi halaman digugurkan dari kategori",
 	"autochange-username": "Perubahan automatik MediaWiki",

@@ -10,7 +10,8 @@
 			"아라",
 			"Kaganer",
 			"Исмаил Садуев",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
@@ -1187,7 +1188,7 @@
 	"recentchangeslinked-page": "АгӀон цӀе:",
 	"recentchangeslinked-to": "Кхечу агӀор, гайта хийцамаш агӀонашца, хӀоттийначу агӀонтӀе хьажорг йолуш",
 	"recentchanges-page-added-to-category": "[[:$1]] категори чу тоьхна",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] а, {{PLURAL:$2|цхьа агӀо|$2 агӀо}} а категорин тӀетоьхна",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] а, [[Special:WhatLinksHere/$1|{{PLURAL:$2|цхьа агӀо|$2 агӀо}}]] а категорин тӀетоьхна",
 	"recentchanges-page-removed-from-category": "[[:$1]] дӀаяьккхина категори чура",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] а, {{PLURAL:$2|цхьа агӀо|$2 агӀо}} а категорин чура дӀаяьккхина",
 	"autochange-username": "MediaWiki авто-хийцамбар",
@@ -2681,7 +2682,7 @@
 	"tags-hitcount-header": "Билгалдина нисдарш",
 	"tags-actions-header": "Дийраш",
 	"tags-active-yes": "ХӀаъ",
-	"tags-active-no": "ХӀахӀа",
+	"tags-active-no": "ХӀан-хӀа",
 	"tags-source-extension": "Билгалйо шоралица",
 	"tags-source-none": "Кхий лелош яц",
 	"tags-edit": "нисъе",

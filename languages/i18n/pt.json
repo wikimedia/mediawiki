@@ -68,7 +68,8 @@
 			"Jkb8",
 			"Önni",
 			"Diniscoelho",
-			"Josep Maria Roca Peña"
+			"Josep Maria Roca Peña",
+			"Luan"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -775,14 +776,14 @@
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Matriz vazia",
 	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] chama [[:$2]] com mais de um valor para o parâmetro \"$3\". Somente o último valor fornecido será utilizado.",
-	"duplicate-args-category": "Páginas que utilizam argumentos duplicados ao chamar predefinições",
+	"duplicate-args-category": "Páginas com argumentos de predefinições duplicados",
 	"duplicate-args-category-desc": "A página contém campos de predefinições que utilizam duplicatas de argumentos, tais como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Aviso:''' Esta página contém demasiadas chamadas de funções exigentes do analisador sintático.\n\nDevia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.",
 	"expensive-parserfunction-category": "Páginas com demasiadas chamadas a funções exigentes",
 	"post-expand-template-inclusion-warning": "Aviso: O tamanho de inclusão de predefinições é demasiado grande, algumas predefinições não serão incluídas.",
-	"post-expand-template-inclusion-category": "Páginas onde o tamanho de inclusão de predefinições é excedido",
+	"post-expand-template-inclusion-category": "Páginas com excesso de predefinições",
 	"post-expand-template-argument-warning": "Aviso: Esta página contém pelo menos um argumento de predefinição com um tamanho expandido demasiado grande.\nEstes argumentos foram omitidos.",
-	"post-expand-template-argument-category": "Páginas com omissão de argumentos para predefinições",
+	"post-expand-template-argument-category": "Páginas com argumentos de predefinições descartados",
 	"parser-template-loop-warning": "Ciclo de predefinições detetado: [[$1]]",
 	"parser-template-recursion-depth-warning": "Foi excedido o limite da profundidade de recursividade nas predefinições ($1)",
 	"language-converter-depth-warning": "O limite de profundidade do conversor de idiomas excedeu a ($1)",

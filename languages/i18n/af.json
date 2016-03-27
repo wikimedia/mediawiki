@@ -1163,7 +1163,7 @@
 	"recentchangeslinked-page": "Bladsynaam:",
 	"recentchangeslinked-to": "Besigtig wysigings aan bladsye met skakels na die bladsy",
 	"recentchanges-page-added-to-category": "[[:$1]] by kategorie gevoeg",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] en {{PLURAL:$2|een bladsy|$2 bladsye}} by kategorie gevoeg",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] en [[Special:WhatLinksHere/$1|{{PLURAL:$2|een bladsy|$2 bladsye}}]] by kategorie gevoeg",
 	"recentchanges-page-removed-from-category": "[[:$1]] uit kategorie verwyder",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] en {{PLURAL:$2|een bladsy|$2 bladsye}} van kategorie verwyder",
 	"autochange-username": "Outomatiese MediaWiki-wysiging",

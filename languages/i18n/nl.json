@@ -73,7 +73,8 @@
 			"Matma Rex",
 			"Robin van der Vliet",
 			"Catrope",
-			"Edoderoo"
+			"Edoderoo",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -1373,7 +1374,7 @@
 	"recentchangeslinked-page": "Paginanaam:",
 	"recentchangeslinked-to": "Wijzigingen aan pagina's met koppelingen naar deze pagina bekijken",
 	"recentchanges-page-added-to-category": "[[:$1]] aan categorie toegevoegd",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] en {{PLURAL:$2|één pagina|$2 pagina's}} zijn toegevoegd aan categorie",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] en [[Special:WhatLinksHere/$1|{{PLURAL:$2|één pagina|$2 pagina's}}]] zijn toegevoegd aan categorie",
 	"recentchanges-page-removed-from-category": "[[:$1]] is verwijderd uit categorie",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] en {{PLURAL:$2|één pagina|$2 pagina's}} zijn verwijderd uit categorie",
 	"autochange-username": "Automatische wijziging van MediaWiki",
@@ -1808,7 +1809,7 @@
 	"apisandbox-api-disabled": "De API is uitgeschakeld op deze site.",
 	"apisandbox-intro": "Gebruik deze pagina om te experimenteren met de <strong>MediaWiki-API</strong>.\nZie de [[mw:API:Main page|API-documentatie]] voor verdere details over het gebruik van de API. Voorbeeld: [//www.mediawiki.org/wiki/API#A_simple_example hoe de inhoud van een Hoofdpagina ophalen]. Selecteer een handeling om meer voorbeelden te zien.\n\nHoewel dit een testfunctie is, kunnen sommige handelingen toch wijzigingen in de wiki maken.",
 	"apisandbox-fullscreen": "Paneel uitvouwen",
-	"apisandbox-fullscreen-tooltip": "Het zandbakvenster uitvoeren om het browservenster te vullen.",
+	"apisandbox-fullscreen-tooltip": "Het zandbakpaneel zo groot als het browservenster maken.",
 	"apisandbox-unfullscreen": "Pagina weergeven",
 	"apisandbox-unfullscreen-tooltip": "Het zandbakvenster samenvouwen zodat de navigatie voor MediaWiki weer beschikbaar is.",
 	"apisandbox-submit": "Verzoek uitvoeren",

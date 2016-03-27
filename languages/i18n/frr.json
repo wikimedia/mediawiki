@@ -10,7 +10,8 @@
 			"아라",
 			"Purodha",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -1252,7 +1253,7 @@
 	"recentchangeslinked-page": "Sidjennööm:",
 	"recentchangeslinked-to": "Wise feranrangen üüb sidjen, diar heerhen ferwise.",
 	"recentchanges-page-added-to-category": "[[:$1]] tu kategorii saat",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] an {{PLURAL:$2|ian sidj muar|$2 muar sidjen}} tu kategorii saat",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] an [[Special:WhatLinksHere/$1|{{PLURAL:$2|ian sidj muar|$2 muar sidjen}}]] tu kategorii saat",
 	"recentchanges-page-removed-from-category": "[[:$1]] faan't kategorii wechnimen",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] an {{PLURAL:$2|ian sidj muar|$2 muar sidjen}} faan det kategorii wechnimen",
 	"upload": "Datei huuchschüür",

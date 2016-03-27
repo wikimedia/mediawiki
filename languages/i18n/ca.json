@@ -1340,7 +1340,7 @@
 	"recentchangeslinked-page": "Nom de la pàgina:",
 	"recentchangeslinked-to": "Mostra els canvis de les pàgines enllaçades amb la pàgina donada",
 	"recentchanges-page-added-to-category": "[[:$1]] afegida a la categoria",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] i {{PLURAL:$2|una pàgina|$2 pàgines}} més afegides a la categoria",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] i [[Special:WhatLinksHere/$1|{{PLURAL:$2|una pàgina|$2 pàgines}}]] més afegides a la categoria",
 	"recentchanges-page-removed-from-category": "[[:$1]] treta de la categoria",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] i {{PLURAL:$2|una pàgina|$2 pàgines}} més tretes de la categoria",
 	"autochange-username": "Canvi automàtic del MediaWiki",

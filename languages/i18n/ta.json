@@ -46,7 +46,8 @@
 			"Dineshkumar Ponnusamy",
 			"Sharanrajindia",
 			"Maathavan",
-			"தமிழ்க்குரிசில்"
+			"தமிழ்க்குரிசில்",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "இணைப்புகளுக்கு அடிக்கோடிடு",
@@ -1330,7 +1331,7 @@
 	"recentchangeslinked-page": "பக்கப் பெயர்:",
 	"recentchangeslinked-to": "இதற்குப் பதிலாக இப்பக்கத்தினை இணைத்த பக்கங்களின் மாற்றங்களைக் காட்டவும்",
 	"recentchanges-page-added-to-category": "[[:$1]] பகுப்பில் சேர்க்கப்பட்டது",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] மற்றும் {{PLURAL:$2|ஒரு பக்கம்|$2 பக்கங்கள்}} பகுப்பில் சேர்க்கப்பட்டது",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] மற்றும் [[Special:WhatLinksHere/$1|{{PLURAL:$2|ஒரு பக்கம்|$2 பக்கங்கள்}}]] பகுப்பில் சேர்க்கப்பட்டது",
 	"recentchanges-page-removed-from-category": "[[:$1]] பகுப்பில் இருந்து நீக்கப்பட்டது",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] மற்றும் {{PLURAL:$2|ஒரு பக்கம்|$2 பக்கங்கள்}} பகுப்பிலிருந்து நீக்கப்பட்டது",
 	"autochange-username": "மீடியாவிக்கி தானியக்க மாற்றம்",

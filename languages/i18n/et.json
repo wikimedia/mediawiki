@@ -1278,7 +1278,7 @@
 	"recentchangeslinked-page": "Lehekülje nimi:",
 	"recentchangeslinked-to": "Näita hoopis muudatusi lehekülgedel, mis sellele lehele lingivad",
 	"recentchanges-page-added-to-category": "kategooriasse lisatud \"[[:$1]]\"",
-	"recentchanges-page-added-to-category-bundled": "kategooriasse lisatud \"[[:$1]]\" ja veel {{PLURAL:$2|üks lehekülg|$2 lehekülge}}",
+	"recentchanges-page-added-to-category-bundled": "kategooriasse lisatud \"[[:$1]]\" ja veel [[Special:WhatLinksHere/$1|{{PLURAL:$2|üks lehekülg|$2 lehekülge}}]]",
 	"recentchanges-page-removed-from-category": "kategooriast eemaldatud \"[[:$1]]\"",
 	"recentchanges-page-removed-from-category-bundled": "kategooriast eemaldatud \"[[:$1]]\" ja veel {{PLURAL:$2|üks lehekülg|$2 lehekülge}}",
 	"autochange-username": "MediaWiki automaatne muudatus",

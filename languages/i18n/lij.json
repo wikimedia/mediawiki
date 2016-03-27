@@ -11,7 +11,8 @@
 			"아라",
 			"V6rg",
 			"C.R.",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Sottolineâ i collegamenti",
@@ -1079,7 +1080,7 @@
 	"recentchangeslinked-page": "Nómme da pàgina:",
 	"recentchangeslinked-to": "Fanni védde sôlo i cangiaménti a-e pàgine colegæ a-a pàgina specificâ",
 	"recentchanges-page-added-to-category": "[[:$1]] azonto a-a categoria",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] e {{PLURAL:$2|una paggina a l'è azonta|$2 paggine son azonte}} a-a categoria",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] e [[Special:WhatLinksHere/$1|{{PLURAL:$2|una paggina a l'è azonta|$2 paggine son azonte}}]] a-a categoria",
 	"recentchanges-page-removed-from-category": "[[:$1]] rimosso da-a categoria",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] e {{PLURAL:$2|una paggina a l'è rimossa|$2 paggine son rimosse}} da-a categoria",
 	"autochange-username": "Modiffica aotomattica MediaWiki",

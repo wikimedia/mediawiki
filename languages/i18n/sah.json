@@ -1314,7 +1314,7 @@
 	"recentchangeslinked-page": "Сирэй аата:",
 	"recentchangeslinked-to": "Төттөрүтүн, ыйыллыбыт сирэйгэ сигэнэр сирэйдэри көрдөр",
 	"recentchanges-page-added-to-category": "[[:$1]] категорияҕа эбилиннэ",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] уонна {{PLURAL:$2|биир сирэй|$2 сирэй}} категорияҕа эбилиннэ",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] уонна [[Special:WhatLinksHere/$1|{{PLURAL:$2|биир сирэй|$2 сирэй}}]] категорияҕа эбилиннэ",
 	"recentchanges-page-removed-from-category": "[[:$1]] категорияттан сотулунна",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] уонна {{PLURAL:$2|биир сирэй|$2 сирэй}} категорияттан сотулунна",
 	"autochange-username": "MediaWiki аптамаатынан уларыйыыта",

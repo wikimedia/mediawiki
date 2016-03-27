@@ -1329,7 +1329,7 @@
 	"recentchangeslinked-page": "पृष्ठ नाव:",
 	"recentchangeslinked-to": "याऐवजी दिलेल्या पानाला जोडलेल्या पानांवरील बदल दाखवा",
 	"recentchanges-page-added-to-category": "[[:$1]] वर्गास जोडले",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] व {{PLURAL:$2|एक पान वर्गास जोडले|$2 पाने वर्गास जोडलीत}}",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] व [[Special:WhatLinksHere/$1|{{PLURAL:$2|एक पान वर्गास जोडले|$2 पाने वर्गास जोडलीत}}]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] ला वर्गातून हटविले",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] व {{PLURAL:$2|एक पान वर्गातून हटविले|$2 पाने वर्गातून हटविलीत}}",
 	"autochange-username": "मिडियाविकि आपोआप बदल",

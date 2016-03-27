@@ -44,7 +44,8 @@
 			"Matma Rex",
 			"WongKentir",
 			"Rachmat.Wahidi",
-			"Arief"
+			"Arief",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1354,7 +1355,7 @@
 	"recentchangeslinked-page": "Nama halaman:",
 	"recentchangeslinked-to": "Perlihatkan perubahan dari halaman-halaman yang terhubung dengan halaman yang disajikan",
 	"recentchanges-page-added-to-category": "[[:$1]] ditambahkan pada kategori",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] dan {{PLURAL:$2|satu halaman|$2 halaman-halaman}} lagi halaman ditambahkan pada kategori",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] dan [[Special:WhatLinksHere/$1|{{PLURAL:$2|satu halaman|$2 halaman-halaman}}]] lagi halaman ditambahkan pada kategori",
 	"recentchanges-page-removed-from-category": "[[:$1]] dihapus dari kategori",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] dan {{PLURAL:$2|satu halaman|$2 halaman-halaman}} lagi halaman dihapus dari kategori",
 	"autochange-username": "Perubahan otomatis MediaWiki",

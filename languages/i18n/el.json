@@ -45,7 +45,8 @@
 			"Stam.nikos",
 			"Giorgos456",
 			"SucreRouge",
-			"Gts-tg"
+			"Gts-tg",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1329,7 +1330,7 @@
 	"recentchangeslinked-page": "Όνομα σελίδας:",
 	"recentchangeslinked-to": "Εμφάνιση αλλαγών σε σελίδες συνδεδεμένες με την δεδομένη σελίδα αντί αυτής",
 	"recentchanges-page-added-to-category": "Η σελίδα [[:$1]] προστέθηκε στην κατηγορία",
-	"recentchanges-page-added-to-category-bundled": "Η σελίδα [[:$1]] και {{PLURAL:$2|μία ακόμα σελίδα|$2 ακόμα σελίδες}} προστέθηκαν στην κατηγορία",
+	"recentchanges-page-added-to-category-bundled": "Η σελίδα [[:$1]] και [[Special:WhatLinksHere/$1|{{PLURAL:$2|μία ακόμα σελίδα|$2 ακόμα σελίδες}}]] προστέθηκαν στην κατηγορία",
 	"recentchanges-page-removed-from-category": "Η σελίδα [[:$1]] αφαιρέθηκε από την κατηγορία",
 	"recentchanges-page-removed-from-category-bundled": "Η σελίδα [[:$1]] και {{PLURAL:$2|μία ακόμα σελίδα|$2 ακόμα σελίδες}} αφαιρέθηκαν από την κατηγορία",
 	"autochange-username": "Αυτόματη αλλαγή MediaWiki",

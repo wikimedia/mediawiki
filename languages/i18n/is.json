@@ -23,7 +23,8 @@
 			"Jonbg",
 			"Matma Rex",
 			"Xð",
-			"Sveinki"
+			"Sveinki",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -1256,7 +1257,7 @@
 	"recentchangeslinked-page": "Síðutitill:",
 	"recentchangeslinked-to": "Sýna breytingar á síðum sem tengjast uppgefinni síðu í staðinn",
 	"recentchanges-page-added-to-category": "[[:$1]] bætt við flokk",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] og $2 {{PLURAL:$2|síðu|síðum}} bætt við flokk",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] og $2 [[Special:WhatLinksHere/$1|{{PLURAL:$2|síðu|síðum}}]] bætt við flokk",
 	"recentchanges-page-removed-from-category": "[[:$1]] fjarlægð úr flokki",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] og $2 {{PLURAL:$2|síðu|síðum}} fjarlægð úr flokki",
 	"autochange-username": "Sjálfvirk MediaWiki-breyting",

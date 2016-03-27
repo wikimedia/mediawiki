@@ -7,7 +7,8 @@
 			"Macofe",
 			"Mjbmr",
 			"Matma Rex",
-			"Lakzon"
+			"Lakzon",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "هوم پئیڤأند زیرخأط دار:",
@@ -1893,7 +1894,7 @@
 	"protect-otherreason-op": "دألیل ھأنی",
 	"protect-dropdown": "*دلیلیا جاافتائه سی پر و پیم کاری\n** خراوکاری گپ کلون\n** هرزه نیسی گپ کلون\n** جئن ویرایشتی وه درد نحور\n** بلگه فره تماشاکار دار",
 	"protect-edit-reasonlist": "دلیلا پر و پیم بیین ویرایشت",
-	"protect-expiry-options": "۱ ساعأت:1 hour,۱ روٙز:1 day,۱ ھأفتە:1 week,۲ ھأفتە:2 weeks,۱ ما:1 month,۳ ما:3 months,۶ ما:6 months,۱ سال:1 year,بی حئسۉ:infinite",
+	"protect-expiry-options": "2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite",
 	"restriction-type": "دسرسی:",
 	"restriction-level": "ریتراز محدودیت:",
 	"minimum-size": "انازه کمترونه",
@@ -2011,7 +2012,7 @@
 	"ipbenableautoblock": "بستن خودانجوم آخری تیرنشون آی پی وه کار گرته بیه وه دس کاریار و تیرنشونیا هنی که که د ونو سی ویرایشت وه سعی می کن.",
 	"ipbsubmit": "نهاگری ای کاریار",
 	"ipbother": "وخت هنی:",
-	"ipboptions": "۱ ساعأت:1 hour,۱ روٙز:1 day,۱ ھأفتە:1 week,۲ ھأفتە:2 weeks,۱ ما:1 month,۳ ما:3 months,۶ ما:6 months,۱ سال:1 year,بی حئسۉ:infinite",
+	"ipboptions": "2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite",
 	"ipbhidename": "نوم کاروری نه سی ویرایشت یا و نوم گه یا قام کو",
 	"ipbwatchuser": "پی گری بلگه کاریاری و بلگه چک چنه ای کاریار",
 	"ipb-disableusertalk": "نها ای کاریار نه اوسه که میها د بلگه چک چنه ش ویرایشت بکه و وه قلف بیه بئر",

@@ -71,7 +71,8 @@
 			"Niharika29",
 			"जनक राज भट्ट",
 			"YmKavishwar",
-			"Upendradutt93"
+			"Upendradutt93",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1376,7 +1377,7 @@
 	"recentchangeslinked-page": "पृष्ठ नाम:",
 	"recentchangeslinked-to": "इसके बदले में दिये हुए पृष्ठसे जुडे पन्नोंके बदलाव दर्शायें",
 	"recentchanges-page-added-to-category": "[[:$1]] श्रेणी में जुड़ा",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] और {{PLURAL:$2|एक पृष्ठ|$2 पृष्ठ}} श्रेणी में जुड़ा",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] और [[Special:WhatLinksHere/$1|{{PLURAL:$2|एक पृष्ठ|$2 पृष्ठ}}]] श्रेणी में जुड़ा",
 	"recentchanges-page-removed-from-category": "[[:$1]] श्रेणी से हटा",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] और {{PLURAL:$2|एक पृष्ठ|$2 पृष्ठ}} श्रेणी से हटा",
 	"autochange-username": "मीडियाविकि स्वतः परिवर्तन",
@@ -1558,6 +1559,7 @@
 	"uploadstash-badtoken": "वह कार्य असफल रहा, सम्भवतः आपके सम्पादन प्रमाणपत्र की अवधि समाप्त हो गई है। पुनः प्रयास करें।",
 	"uploadstash-errclear": "फ़ाइलों को साफ़ करना असफल रहा।",
 	"uploadstash-refresh": "फ़ाइलों की सूची रिफ़्रेश करें",
+	"uploadstash-thumbnail": "छवि देखें",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफ़सेट",
 	"img-auth-accessdenied": "अनुमति नहीं है",
 	"img-auth-nopathinfo": "PATH_INFO मौजूद नहीं है।\nआपके सर्वर में इस जानकारी को भेजने के लिए जमाव नहीं है।\nयह सी॰जी॰आई-आधारित हो सकता है और img_auth को स्वीकार नहीं करता है।\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization देखें।",

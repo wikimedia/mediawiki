@@ -1239,7 +1239,7 @@
 	"recentchangeslinked-page": "頁名:",
 	"recentchangeslinked-to": "顯示連到所畀到嘅版",
 	"recentchanges-page-added-to-category": "[[:$1]] 加咗落分類",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] 同另外 {{PLURAL:$2|1 版|$2 版}}加咗落分類",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] 同另外 [[Special:WhatLinksHere/$1|{{PLURAL:$2|1 版|$2 版}}]]加咗落分類",
 	"recentchanges-page-removed-from-category": "[[:$1]] 拎走咗分類",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] 同另外 {{PLURAL:$2|1 版|$2 版}}拎走咗分類",
 	"autochange-username": "MediaWiki 自動改動",

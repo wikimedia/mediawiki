@@ -1182,7 +1182,7 @@
 	"recentchanges-label-bot": "ई सम्पादन यांत्रिक छल।",
 	"recentchanges-label-unpatrolled": "ऐ सम्पादनक पुनरीक्षण अखन धरि नै कएल गेल अछि।",
 	"recentchanges-label-plusminus": "पन्नाके आकार इ बाइट संख्यासे बदलल गेल",
-	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
+	"recentchanges-legend-heading": "<strong>कुञ्जी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नयाँ पन्नसभके सूची]] सहो देखु)",
 	"rcnotefrom": "नीचाँमे '''$2''' सँ भेल परिवर्तन अछि ('''$1''' धरि देखाएल)।",
 	"rclistfrom": "$3 $2 सँ शुरू भेल नव परिवर्तन देखू",

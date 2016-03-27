@@ -25,7 +25,8 @@
 			"Artificial123",
 			"Macofe",
 			"Matma Rex",
-			"Goshaproject"
+			"Goshaproject",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -1323,7 +1324,7 @@
 	"recentchangeslinked-page": "Назва старонкі:",
 	"recentchangeslinked-to": "Паказваць, замест гэтага, змяненні на старонках, што спасылаюцца сюды",
 	"recentchanges-page-added-to-category": "[[:$1]] дададзена ў катэгорыю",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] і яшчэ {{PLURAL:$2|адна старонка дададзена|$2 старонкі дададзены|$2 старонак дададзена}} ў катэгорыю",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] і яшчэ [[Special:WhatLinksHere/$1|{{PLURAL:$2|адна старонка дададзена|$2 старонкі дададзены|$2 старонак дададзена}}]] ў катэгорыю",
 	"recentchanges-page-removed-from-category": "[[:$1]] выдалена з катэгорыі",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] і яшчэ {{PLURAL:$2|адна старонка выдалена|$2 старонкі выдалены|$2 старонак выдалена}} з катэгорыі",
 	"autochange-username": "Аўтаматычная змена MediaWiki",

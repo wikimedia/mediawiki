@@ -1227,7 +1227,7 @@
 	"recentchangeslinked-page": "Naslov stranice:",
 	"recentchangeslinked-to": "Pokaži promjene stranica koji su povezane sa datom stranicom",
 	"recentchanges-page-added-to-category": "[[:$1]] pridodano kategoriji",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] i {{PLURAL:$2|stranica|$2 stranica}} {{PLURAL:$2|pridodana|pridodane}} kategoriji",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] i [[Special:WhatLinksHere/$1|{{PLURAL:$2|stranica|$2 stranica}} {{PLURAL:$2|pridodana|pridodane}}]] kategoriji",
 	"recentchanges-page-removed-from-category": "[[:$1]] uklonjeno iz kategorije",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] i {{PLURAL:$2|stranica|$2 stranica}} {{PLURAL:$2|uklonjena|uklonjenne}} iz kategorije",
 	"autochange-username": "MediaWiki automatska promjena",

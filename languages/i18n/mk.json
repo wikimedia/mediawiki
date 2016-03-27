@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Milicevic01",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Потцртување на врски:",
@@ -1291,7 +1292,7 @@
 	"recentchangeslinked-page": "Име на страницата:",
 	"recentchangeslinked-to": "Прикажи ги промените на страниците поврзани со дадената страница",
 	"recentchanges-page-added-to-category": "[[:$1]] ставена во категорија",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] и уште {{PLURAL:$2|една страница ставена|$2 страници ставеи}} во категорија",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] и уште [[Special:WhatLinksHere/$1|{{PLURAL:$2|една страница ставена|$2 страници ставеи}}]] во категорија",
 	"recentchanges-page-removed-from-category": "[[:$1]] отстранета од категорија",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] и уште {{PLURAL:$2|една страница отстранета|$2 страници отстранети}} од категорија",
 	"autochange-username": "Автоматски промени на МедијаВики",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Renessaince"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Дакумэнтацыя]]\n* [[mw:API:FAQ|Частыя пытаньні]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Сьпіс рассылкі]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-аб’явы]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Памылкі і запыты]\n</div>\n<strong>Статус:</strong> усе магчымасьці на гэтай старонцы павінны працаваць, але API знаходзіцца ў актыўнай распрацоўцы і можа зьмяняцца ў любы момант. Падпісвайцеся на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ рассылку mediawiki-api-announce] дзеля паведамленьняў пра абнаўленьні.\n\n<strong>Памылковыя запыты:</strong> калі да API дасылаюцца памылковыя запыты, HTTP-загаловак будзе дасланы з ключом «MediaWiki-API-Error», а потым значэньне загалоўку і код памылкі будуць выстаўленыя на аднолькавае значэньне. Дзеля дадатковай інфармацыі глядзіце [[mw:API:Errors_and_warnings|API: Памылкі і папярэджаньні]].\n\n<strong>Тэставаньне:</strong> для зручнасьці праверкі API-запытаў, глядзіце [[Special:ApiSandbox]].",
@@ -51,5 +52,8 @@
 	"apihelp-createaccount-param-reason": "Неабавязковая прычына стварэньня рахунку, якая будзе запісаная ў журнал.",
 	"apihelp-createaccount-param-language": "Моўны код, які будзе выстаўлены ўдзельніку па змоўчаньні (неабавязкова, па змоўчаньні мова зьместу).",
 	"apihelp-createaccount-example-pass": "Стварэньне ўдзельніка <kbd>testuser</kbd> з паролем <kbd>test123</kbd>.",
-	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка <kbd>testmailuser</kbd> і адпраўка выпадковага паролю электроннай поштай."
+	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка <kbd>testmailuser</kbd> і адпраўка выпадковага паролю электроннай поштай.",
+	"apihelp-query+transcludedin-paramvalue-prop-title": "Назва кожнай старонкі.",
+	"apihelp-query+transcludedin-param-limit": "Колькі вяртаць.",
+	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублюе загаловак <code>Accept-Language</code>, адасланы кліентам у структураваным фармаце."
 }

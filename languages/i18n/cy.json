@@ -15,7 +15,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"Diafol"
+			"Diafol",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -156,7 +157,6 @@
 	"moredotdotdot": "Rhagor...",
 	"morenotlisted": "Nid yw'r rhestr hon yn llawn.",
 	"mypage": "Tudalen defnyddiwr",
-	"anonuserpage": "Defnyddiwr anhysbys",
 	"mytalk": "Sgwrs",
 	"anontalk": "Sgwrs",
 	"navigation": "Panel llywio",
@@ -1206,7 +1206,7 @@
 	"recentchangeslinked-page": "Tudalen:",
 	"recentchangeslinked-to": "Dangos newidiadau i'r tudalennau â chyswllt arnynt sy'n arwain at y dudalen a enwir",
 	"recentchanges-page-added-to-category": "Ychwanegwyd [[:$1]] at y categori",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] ac {{PLURAL:$2|un ddalen|$2 dalen}} wedi'u hychwanegu at y categori",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] ac [[Special:WhatLinksHere/$1|{{PLURAL:$2|un ddalen|$2 dalen}}]] wedi'u hychwanegu at y categori",
 	"recentchanges-page-removed-from-category": "Symudwyd [[:$1]] o'r categori",
 	"upload": "Uwchlwytho ffeil",
 	"uploadbtn": "Uwchlwytho ffeil",

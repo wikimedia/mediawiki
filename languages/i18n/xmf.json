@@ -15,7 +15,8 @@
 			"아라",
 			"Silovan",
 			"David1010",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -1180,7 +1181,7 @@
 	"recentchangeslinked-page": "ხასილაშ ჯოხო:",
 	"recentchangeslinked-to": "მანგიერო ქაძირე ათე ხასილაშა მერცხილ ხასილეფშა მიშაღალირ თირაფეფ",
 	"recentchanges-page-added-to-category": "[[:$1]] გეძინელჷ რე კატეგორიას",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] დო {{PLURAL:$2|ართ ხასჷლა|$2 ხასჷლა}} გეძინელ რე კატეგორიას",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] დო [[Special:WhatLinksHere/$1|{{PLURAL:$2|ართ ხასჷლა|$2 ხასჷლა}}]] გეძინელ რე კატეგორიას",
 	"recentchanges-page-removed-from-category": "[[:$1]] ლასირი რე კატეგორიაშე",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] დო {{PLURAL:$2|ართ ხასჷლა|$2 ხასჷლა}} ლასირი რე კატეგორიაშე",
 	"upload": "ფაილიშ ეხარგუა",

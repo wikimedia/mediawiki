@@ -15,7 +15,8 @@
 			"VT98Fan",
 			"Zinneke",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -1271,9 +1272,9 @@
 	"recentchangeslinked-page": "Säitennumm:",
 	"recentchangeslinked-to": "Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit",
 	"recentchanges-page-added-to-category": "[[:$1]] an d'Kategorie derbäigesat",
-	"recentchanges-page-added-to-category-bundled": "{{PLURAL:$2|}}[[:$1]] a(n) {{PLURAL:$2|eng Säit|$2 Säiten}} an d'Kategorie derbäigesat",
+	"recentchanges-page-added-to-category-bundled": "{{PLURAL:$2|}}[[:$1]] a(n) [[Special:WhatLinksHere/$1|{{PLURAL:$2|eng Säit|$2 Säiten}}]] an d'Kategorie derbäigesat",
 	"recentchanges-page-removed-from-category": "[[:$1]] erausgeholl aus der Kategorie",
-	"recentchanges-page-removed-from-category-bundled": "{{PLURAL:$2|}}[[:$1]] a(n) {{PLURAL:$2|eng Säit|$2 Säiten}} aus der Kategorie erausgeholl",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] a(n) [[Special:WhatLinksHere/$1|{{PLURAL:$2|eng Säit|$2 Säiten}}]] aus der Kategorie erausgeholl",
 	"autochange-username": "Automatesch MediaWiki-Ännerung",
 	"upload": "Eroplueden",
 	"uploadbtn": "Fichier eroplueden",
@@ -1424,6 +1425,7 @@
 	"uploadstash-badtoken": "D'Ausféiere vun dëser Aktioun huet net funktionéiert, vläicht well d'Informatiounen iwwer Är Rechter ofgelaf sinn. Probéiert et w.e.g. nach emol.",
 	"uploadstash-errclear": "D'Läsche vun de Fichieren huet net funktionéiert.",
 	"uploadstash-refresh": "Lëscht vun de Fichieren aktualiséieren",
+	"uploadstash-thumbnail": "Miniaturbild weisen",
 	"img-auth-accessdenied": "Zougang refuséiert",
 	"img-auth-nopathinfo": "PATH_INFO feelt.\nÄre Server ass net agestallt fir déi Informatioun weiderzeginn.\nEt kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.\nKuckt https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "De gefrote Pad ass net am Upload-Repertoire agestallt.",
@@ -3353,5 +3355,9 @@
 	"mw-widgets-titleinput-description-redirect": "viruleeden op $1",
 	"api-error-blacklisted": "Sicht w.e.g. en aneren Titel, dee méi iwwer de Sujet ausseet.",
 	"sessionprovider-generic": "$1-Sessiounen",
-	"randomrootpage": "Zoufalls-Stammsäit"
+	"randomrootpage": "Zoufalls-Stammsäit",
+	"log-action-filter-all": "All",
+	"log-action-filter-block-block": "Spären",
+	"log-action-filter-protect-protect": "Spär",
+	"log-action-filter-protect-modify": "Spär-pÄnnerung"
 }

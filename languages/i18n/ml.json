@@ -1298,7 +1298,7 @@
 	"recentchangeslinked-page": "താളിന്റെ പേര്:",
 	"recentchangeslinked-to": "തന്നിരിക്കുന്ന താളിലെ മാറ്റങ്ങൾക്കു പകരം ബന്ധപ്പെട്ട താളുകളിലെ മാറ്റങ്ങൾ കാണിക്കുക",
 	"recentchanges-page-added-to-category": "[[:$1]] വർഗ്ഗത്തിലേക്ക് ചേർത്തിരിക്കുന്നു",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] താളും ഒപ്പം {{PLURAL:$2|മറ്റൊരു താളും|$2 താളുകളും}} വർഗ്ഗത്തിലേക്ക് ചേർത്തിരിക്കുന്നു",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] താളും ഒപ്പം [[Special:WhatLinksHere/$1|{{PLURAL:$2|മറ്റൊരു താളും|$2 താളുകളും}}]] വർഗ്ഗത്തിലേക്ക് ചേർത്തിരിക്കുന്നു",
 	"recentchanges-page-removed-from-category": "[[:$1]] വർഗ്ഗത്തിൽ നിന്ന് നീക്കംചെയ്തു",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] താളും ഒപ്പം {{PLURAL:$2|മറ്റൊരു താളും|$2 താളുകളും}} വർഗ്ഗത്തിൽ നിന്ന് നീക്കംചെയ്തിരിക്കുന്നു",
 	"autochange-username": "മീഡിയവിക്കി സ്വയംപ്രവർത്തിത മാറ്റം",

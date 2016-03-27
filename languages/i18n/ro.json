@@ -28,7 +28,8 @@
 			"Macofe",
 			"ImGelu",
 			"Wintereu",
-			"Rsocol"
+			"Rsocol",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1278,7 +1279,7 @@
 	"recentchangeslinked-page": "Numele paginii:",
 	"recentchangeslinked-to": "Arată în schimb modificările asupra paginilor care se leagă de pagina indicată",
 	"recentchanges-page-added-to-category": "[[:$1]] a fost adăugată în categorii",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] și încă {{PLURAL:$2|o pagină|$2 pagini|$2 de pagini}} au fost adăugate în categorii",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] și încă [[Special:WhatLinksHere/$1|{{PLURAL:$2|o pagină|$2 pagini|$2 de pagini}}]] au fost adăugate în categorii",
 	"recentchanges-page-removed-from-category": "[[:$1]] eliminată din categorii",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] și încă {{PLURAL:$2|o pagină|$2 pagini|$2 de pagini}} au fost eliminate din categorii",
 	"autochange-username": "Modificare automată a MediaWiki",

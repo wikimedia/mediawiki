@@ -47,7 +47,8 @@
 			"Macofe",
 			"Beluga",
 			"Pyscowicz",
-			"Olimar"
+			"Olimar",
+			"Mikahama"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1323,9 +1324,9 @@
 	"recentchangeslinked-page": "Sivun nimi:",
 	"recentchangeslinked-to": "Näytä sen sijaan muutokset sivuihin, joista on linkki tähän sivuun",
 	"recentchanges-page-added-to-category": "[[:$1]] lisätty luokkaan",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] ja {{PLURAL:$2|one page|$2 pages}} lisätty luokkaan",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] ja [[Special:WhatLinksHere/$1|{{PLURAL:$2|yksi sivu|$2 sivua}}]] lisätty luokkaan",
 	"recentchanges-page-removed-from-category": "[[:$1]] poistettu luokasta",
-	"recentchanges-page-removed-from-category-bundled": "[[:$1]] ja {{PLURAL:$2|one page|$2 pages}} poistettu luokasta",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] ja [[Special:WhatLinksHere/$1|{{PLURAL:$2|yksi sivu|$2 sivua}}]] poistettu luokasta",
 	"autochange-username": "MediaWiki automaattinen muutos",
 	"upload": "Tallenna tiedosto",
 	"uploadbtn": "Tallenna tiedosto",
@@ -1501,6 +1502,7 @@
 	"uploadstash-badtoken": "Toiminnon suoritus epäonnistui. Tähän voi olla syynä muokkausvaltuuksien vanhentuminen. Yritä uudelleen.",
 	"uploadstash-errclear": "Muistin tyhjennys epäonnistui.",
 	"uploadstash-refresh": "Päivitä tiedostoluettelo",
+	"uploadstash-thumbnail": "näytä pienoiskuva",
 	"invalid-chunk-offset": "Kelpaamaton siirtymä lohkoissa",
 	"img-auth-accessdenied": "Pääsy estetty",
 	"img-auth-nopathinfo": "PATH_INFO puuttuu.\nPalvelintasi ei ole asetettu välittämään tätä tietoa.\nSe saattaa olla CGI-pohjainen eikä voi tukea img_authia.\nLisätietoja löytyy sivulta https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

@@ -16,7 +16,8 @@
 			"Amire80",
 			"පසිඳු කාවින්ද",
 			"Matma Rex",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -1251,7 +1252,7 @@
 	"recentchangeslinked-page": "בלאַט נאָמען:",
 	"recentchangeslinked-to": "צייג ענדערונגען צו בלעטער פארבינדן צו דעם בלאט אנשטאט",
 	"recentchanges-page-added-to-category": "[[:$1]] צוגעלייגט צו קאטעגאריע",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] און {{PLURAL:$2|איין בלאט|$2 בלעטער}} צוגעלייגט צו קאטעגאריע",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] און [[Special:WhatLinksHere/$1|{{PLURAL:$2]]|איין בלאט|$2 בלעטער}} צוגעלייגט צו קאטעגאריע",
 	"recentchanges-page-removed-from-category": "[[:$1]] אראפגענומען פון קאטעגאריע",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] און {{PLURAL:$2|איין בלאט|$2 בלעטער}} אראפגענומען פון קאטעגאריע",
 	"autochange-username": "מעדיעוויקי אויטאמאטישער טויש",

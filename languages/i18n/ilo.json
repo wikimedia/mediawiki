@@ -8,7 +8,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -1301,7 +1302,7 @@
 	"recentchangeslinked-page": "Nagan ti panid:",
 	"recentchangeslinked-to": "Ipakita dagiti sinukatan kadagiti panid nga imbes a naisilpo iti naited a panid",
 	"recentchanges-page-added-to-category": "nainayon ti [[:$1]] iti kategoria",
-	"recentchanges-page-added-to-category-bundled": "nainayon ti [[:$1]] ken {{PLURAL:$2|maysa a panid|$2 a pampanid}} iti kategoria",
+	"recentchanges-page-added-to-category-bundled": "nainayon ti [[:$1]] ken [[Special:WhatLinksHere/$1|{{PLURAL:$2|maysa a panid|$2 a pampanid}}]] iti kategoria",
 	"recentchanges-page-removed-from-category": "naikkat ti [[:$1]] manipud iti kategoria",
 	"recentchanges-page-removed-from-category-bundled": "Naikkat ti [[:$1]] ken {{PLURAL:$2|maysa a panid|$2 a pampanid}} manipud iti kategoria",
 	"autochange-username": "Automatiko a panagbaliw iti MediaWiki",

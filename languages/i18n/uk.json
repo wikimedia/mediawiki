@@ -64,7 +64,8 @@
 			"Translatemyname",
 			"Dars",
 			"Mix Gerder",
-			"E.belykh"
+			"E.belykh",
+			"Visem"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -3777,5 +3778,25 @@
 	"sessionprovider-generic": "сесій $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "сесій на основі кук",
 	"sessionprovider-nocookies": "Куки можуть бути відключені. Переконайтеся, що у Вас включені cookies і почніть знову.",
-	"randomrootpage": "Випадкова коренева сторінка"
+	"randomrootpage": "Випадкова коренева сторінка",
+	"log-action-filter-block": "Тип блокування:",
+	"log-action-filter-delete": "Тип вилучення:",
+	"log-action-filter-patrol": "Тип патрулювання:",
+	"log-action-filter-protect": "Тип захисту:",
+	"log-action-filter-upload": "Тип завантаження:",
+	"log-action-filter-all": "Усі",
+	"log-action-filter-block-block": "Блокування",
+	"log-action-filter-block-reblock": "Зміна блокування",
+	"log-action-filter-block-unblock": "Розблокування",
+	"log-action-filter-delete-delete": "Видалення сторінки",
+	"log-action-filter-delete-restore": "Відновлення сторінки",
+	"log-action-filter-delete-event": "Вилучення журналу",
+	"log-action-filter-delete-revision": "Вилучення версії",
+	"log-action-filter-patrol-patrol": "Ручне патрулювання",
+	"log-action-filter-patrol-autopatrol": "Автоматичне патрулювання",
+	"log-action-filter-protect-protect": "Захист",
+	"log-action-filter-protect-modify": "Зміна захисту",
+	"log-action-filter-protect-unprotect": "Зняття захисту",
+	"log-action-filter-upload-upload": "Нове завантаження",
+	"log-action-filter-upload-overwrite": "Повторне завантаження"
 }

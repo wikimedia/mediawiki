@@ -34,7 +34,8 @@
 			"Albertas",
 			"Macofe",
 			"Zygimantus",
-			"Matma Rex"
+			"Matma Rex",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -1327,7 +1328,7 @@
 	"recentchangeslinked-page": "Puslapio pavadinimas:",
 	"recentchangeslinked-to": "Rodyti su duotuoju puslapiu susijusių puslapių pakeitimus",
 	"recentchanges-page-added-to-category": "[[:$1]] pridėta prie kategorijos",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] ir {{PLURAL:$2|vienas puslapis|$2 puslapiai}} pridėti prie kategorijos",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] ir [[Special:WhatLinksHere/$1|{{PLURAL:$2|vienas puslapis|$2 puslapiai}}]] pridėti prie kategorijos",
 	"recentchanges-page-removed-from-category": "[[:$1]] pašalinta iš kategorijos",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] ir {{PLURAL:$2|vienas puslapis|$2 puslapiai}} pašalinti iš kategorijos",
 	"autochange-username": "MediaWiki automatinis pakeitimas",

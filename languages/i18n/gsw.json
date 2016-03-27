@@ -1237,7 +1237,7 @@
 	"recentchangeslinked-page": "Syte:",
 	"recentchangeslinked-to": "Zeig Änderige uf Syte, wu uff die Syte verwyyse",
 	"recentchanges-page-added-to-category": "[[:$1]] zur Kategorie derzue ta",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] und {{PLURAL:$2|ei|$2}} anderi Syte zur Kategorie derzue ta",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] und [[Special:WhatLinksHere/$1|{{PLURAL:$2|ei|$2}}]] anderi Syte zur Kategorie derzue ta",
 	"recentchanges-page-removed-from-category": "[[:$1]] vor Kategorie furtgnoh",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] und {{PLURAL:$2|ei|$2}} anderi Syte vor Kategorie furtgnoh",
 	"autochange-username": "Automatischi MediaWiki-Änderig",
