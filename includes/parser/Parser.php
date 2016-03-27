@@ -1216,15 +1216,18 @@ class Parser {
 	 * @param string $text
 	 * @param bool $isMain
 	 * @param PPFrame|bool $frame
+	 * @param bool $isResume
 	 *
 	 * @return string
 	 */
-	public function internalParse( $text, $isMain = true, $frame = false ) {
+	public function internalParse( $text, $isMain = true, $frame = false, $isResume = false ) {
 
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] ) ) {
+		if ( !$isResume &&
+			!Hooks::run( 'ParserBeforeInternalParse', [ &$this, &$text, &$this->mStripState ] )
+		) {
 			return $text;
 		}
 
@@ -1276,6 +1279,33 @@ class Parser {
 		$text = $this->formatHeadings( $text, $origText, $isMain );
 
 		return $text;
+	}
+
+	/**
+	 * Resume parse from a serialised HalfParsedText extracted from another
+	 * parser instance
+	 * @warning This may leave strip markers in some convoluted cases
+	 * @todo Fix this, StripState::getSubState probably not recursive enough
+	 *
+	 * @param array $data
+	 * @param Title|null $title
+	 * @param ParserOptions $options
+	 * @param bool $clearState
+	 * @param bool $isMain
+	 * @param bool $linestart
+	 *
+	 * @return string Fully parsed html
+	 */
+	public function resumeParse( $data, $title, $options, $clearState = true, $isMain = true,
+		$linestart = true
+	) {
+		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+		// retrieve text, merge StripStates
+		$text = $this->unserializeHalfParsedText( $data, false );
+		$text = $this->internalParse( $text, $isMain, false, true );
+		// this hook gets called between internalParse and internalParseHalfParsed in parse
+		Hooks::run( 'ParserAfterParse', [ &$this, &$text, &$this->mStripState ] );
+		return $this->internalParseHalfParsed( $text, true, $linestart );
 	}
 
 	/**
