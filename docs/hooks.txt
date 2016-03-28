@@ -575,6 +575,12 @@ $content: content of the page, as a Content object
 $title: title of the page
 $output: reference to $wgOut
 
+'ArticleCountQuery': Modify the query used to generate total article count. This
+query is used by {{NUMBEROFARTICLES}}.
+&$tables: tables to join in the query
+&$conds: conditions for the query
+&$joinConds: join conditions for the query
+
 'ArticleDelete': Before an article is deleted.
 &$wikiPage: the WikiPage (object) being deleted
 &$user: the user (object) deleting the article
@@ -1720,6 +1726,14 @@ $addr: The e-mail address entered by the user
 $password: The password entered by the user
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
+
+'IsWikitextContentCountable': Extend the test that determines if Wikitext
+content should be counted as an article. This is used by {{NUMBEROFARTICLES}}.
+&$isCountable: Boolean indicating whether the page has been assessed as
+  countable so far
+$content: The WikitextContent object for the page
+$title: The Title object for the page
+$po: The ParserOutput object for the page
 
 'Language::getMessagesFileName':
 $code: The language code or the language we're looking for a messages file for

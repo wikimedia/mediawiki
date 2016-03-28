@@ -838,7 +838,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		return $content->isCountable( $hasLinks );
+		return $content->isCountable( $hasLinks, $this->mTitle );
 	}
 
 	/**
