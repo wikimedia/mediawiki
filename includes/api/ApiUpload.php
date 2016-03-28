@@ -381,6 +381,10 @@ class ApiUpload extends ApiBase {
 
 		// chunk or one and only one of the following parameters is needed
 		if ( !$this->mParams['chunk'] ) {
+			if ( !$this->mParams['filekey'] && !$this->mParams['file'] && !$this->mParams['url'] ) {
+				wfDebugLog( 'upload', 'missingparam: ' . print_r( $this->mParams, true ) );
+			}
+
 			$this->requireOnlyOneParameter( $this->mParams,
 				'filekey', 'file', 'url' );
 		}
