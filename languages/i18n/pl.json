@@ -83,7 +83,8 @@
 			"The Polish",
 			"Expert3222",
 			"Mateuszek045",
-			"Sethakill"
+			"Sethakill",
+			"Mateon1"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -601,7 +602,7 @@
 	"botpasswords-created-body": "Hasło bota \"$1\" użytkownika \"$2\" zostało utworzone.",
 	"botpasswords-updated-title": "Hasło bota zaktualizowane",
 	"botpasswords-updated-body": "Hasło bota \"$1\" użytkownika \"$2\" zostało zaktualizowane.",
-	"botpasswords-deleted-title": "Hasło bota usunięta",
+	"botpasswords-deleted-title": "Hasło bota usunięte",
 	"botpasswords-deleted-body": "Hasło bota \"$1\" użytkownika \"$2\" zostało usunięte.",
 	"resetpass_forbidden": "Hasła nie mogą zostać zmienione",
 	"resetpass-no-info": "Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.",
@@ -3641,5 +3642,12 @@
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1",
 	"api-error-blacklisted": "Wybierz inny, opisowy tytuł.",
 	"randomrootpage": "Losowa strona (bez podstron)",
-	"log-action-filter-all": "Wszystkie"
+	"log-action-filter-all": "Wszystkie",
+	"log-action-filter-block-reblock": "Zmiana blokady",
+	"log-action-filter-block-unblock": "Odblokowanie",
+	"log-action-filter-delete-delete": "Usunięcie strony",
+	"log-action-filter-delete-restore": "Przywrócenie strony",
+	"log-action-filter-protect-protect": "Zabezpieczenie",
+	"log-action-filter-protect-modify": "Zmiana zabezpieczenia",
+	"log-action-filter-protect-unprotect": "Odbezpieczenie"
 }

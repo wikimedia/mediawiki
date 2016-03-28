@@ -3451,7 +3451,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|1=сәғәт|сәғәт}}",
 	"duration-days": "$1 {{PLURAL:$1|көн}}",
 	"duration-weeks": "$1 {{PLURAL:$1|аҙна}}",
-	"duration-years": "$1 {{PLURAL:$1|йыл|йылдар}}",
+	"duration-years": "$1 {{PLURAL:$1|йыл}}",
 	"duration-decades": "$1 {{PLURAL:$1|1=ун йыллыҡ|ун йыллыҡтар}}",
 	"duration-centuries": "$1 {{PLURAL:$1|1=быуат|быуаттар}}",
 	"duration-millennia": "$1 {{PLURAL:$1|1=меңйыллыҡ|меңйыллыҡтар}}",

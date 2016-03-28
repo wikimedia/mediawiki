@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"WongKentir"
+			"WongKentir",
+			"Beeyan"
 		]
 	},
-	"apihelp-createaccount-param-name": "Nama pengguna"
+	"apihelp-createaccount-param-name": "Nama pengguna",
+	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
 }
