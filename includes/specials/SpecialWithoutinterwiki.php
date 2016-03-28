@@ -83,18 +83,29 @@ class WithoutInterwikiPage extends PageQueryPage {
 
 	function getQueryInfo() {
 		$query = [
-			'tables' => [ 'page', 'langlinks' ],
+			'tables' => [ 'page', 'langlinks', 'watchlist' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
+				'value' => 'page_title',
+				'watched' => 'wl_user'
 			],
 			'conds' => [
 				'll_title IS NULL',
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
 			],
-			'join_conds' => [ 'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ] ]
+			'join_conds' => [
+				'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ],
+				'watchlist' => [
+					'LEFT JOIN',
+					[
+						'wl_user=' . $this->getUser()->getId(),
+						'wl_title=page_title',
+						'wl_namespace=page_namespace'
+					]
+				]
+			]
 		];
 		if ( $this->prefix ) {
 			$dbr = wfGetDB( DB_SLAVE );

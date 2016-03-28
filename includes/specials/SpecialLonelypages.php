@@ -49,7 +49,7 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
+		$tables = [ 'page', 'pagelinks', 'templatelinks', 'watchlist' ];
 		$conds = [
 			'pl_namespace IS NULL',
 			'page_namespace' => MWNamespace::getContentNamespaces(),
@@ -68,6 +68,14 @@ class LonelyPagesPage extends PageQueryPage {
 					'tl_namespace = page_namespace',
 					'tl_title = page_title'
 				]
+			],
+			'watchlist' => [
+				'LEFT JOIN',
+				[
+					'wl_user=' . $this->getUser()->getId(),
+					'wl_title=page_title',
+					'wl_namespace=page_namespace'
+				]
 			]
 		];
 
@@ -79,7 +87,8 @@ class LonelyPagesPage extends PageQueryPage {
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
+				'value' => 'page_title',
+				'watched' => 'wl_user'
 			],
 			'conds' => $conds,
 			'join_conds' => $joinConds

@@ -557,6 +557,7 @@ abstract class QueryPage extends SpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special' );
 
 		if ( $this->isCached() && !$this->isCacheable() ) {
 			$out->addWikiMsg( 'querypage-disabled' );

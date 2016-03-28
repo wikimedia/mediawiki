@@ -121,3 +121,8 @@ p.mw-upload-editlicenses {
 	font-size: 90%;
 	text-align: right;
 }
+
+/* Special:[Deadendpages, Shortpages, LonelyPagesPage, Uncategorizedpages, Withoutinterwiki] */
+.mw-watched-item {
+	font-weight: bold;
+}

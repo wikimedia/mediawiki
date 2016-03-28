@@ -48,11 +48,12 @@ class UncategorizedPagesPage extends PageQueryPage {
 
 	function getQueryInfo() {
 		return [
-			'tables' => [ 'page', 'categorylinks' ],
+			'tables' => [ 'page', 'categorylinks', 'watchlist' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
+				'value' => 'page_title',
+				'watched' => 'wl_user'
 			],
 			// default for page_namespace is all content namespaces (if requestedNamespace is false)
 			// otherwise, page_namespace is requestedNamespace
@@ -64,7 +65,15 @@ class UncategorizedPagesPage extends PageQueryPage {
 				'page_is_redirect' => 0
 			],
 			'join_conds' => [
-				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ]
+				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ],
+				'watchlist' => [
+					'LEFT JOIN',
+					[
+						'wl_user=' . $this->getUser()->getId(),
+						'wl_title=page_title',
+						'wl_namespace=page_namespace'
+					]
+				]
 			]
 		];
 	}

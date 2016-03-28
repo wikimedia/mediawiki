@@ -38,12 +38,21 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$tables = [ 'page' ];
+		$tables = [ 'page', 'watchlist' ];
 		$conds = [
 			'page_namespace' => MWNamespace::getContentNamespaces(),
 			'page_is_redirect' => 0
 		];
-		$joinConds = [];
+		$joinConds = [
+			'watchlist' => [
+				'LEFT JOIN',
+				[
+					'wl_user=' . $this->getUser()->getId(),
+					'wl_title=page_title',
+					'wl_namespace=page_namespace'
+				]
+			]
+		];
 		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];
 
 		// Allow extensions to modify the query
@@ -54,7 +63,8 @@ class ShortPagesPage extends QueryPage {
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_len'
+				'value' => 'page_len',
+				'watched' => 'wl_user'
 			],
 			'conds' => $conds,
 			'join_conds' => $joinConds,
@@ -113,10 +123,18 @@ class ShortPagesPage extends QueryPage {
 		$hlinkInParentheses = $this->msg( 'parentheses' )->rawParams( $hlink )->escaped();
 
 		if ( $this->isCached() ) {
-			$plink = Linker::link( $title );
+			$plink = Linker::link(
+				$title,
+				null,
+				empty( $result->watched ) ? [] : [ 'class' => 'mw-watched-item' ]
+			);
 			$exists = $title->exists();
 		} else {
-			$plink = Linker::linkKnown( $title );
+			$plink = Linker::linkKnown(
+				$title,
+				null,
+				empty( $result->watched ) ? [] : [ 'class' => 'mw-watched-item' ]
+			);
 			$exists = true;
 		}
 

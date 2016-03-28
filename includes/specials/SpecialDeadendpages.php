@@ -58,11 +58,12 @@ class DeadendPagesPage extends PageQueryPage {
 
 	function getQueryInfo() {
 		return [
-			'tables' => [ 'page', 'pagelinks' ],
+			'tables' => [ 'page', 'pagelinks', 'watchlist' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
+				'value' => 'page_title',
+				'watched' => 'wl_user'
 			],
 			'conds' => [
 				'pl_from IS NULL',
@@ -73,6 +74,14 @@ class DeadendPagesPage extends PageQueryPage {
 				'pagelinks' => [
 					'LEFT JOIN',
 					[ 'page_id=pl_from' ]
+				],
+				'watchlist' => [
+					'LEFT JOIN',
+					[
+						'wl_user=' . $this->getUser()->getId(),
+						'wl_title=page_title',
+						'wl_namespace=page_namespace'
+					]
 				]
 			]
 		];
