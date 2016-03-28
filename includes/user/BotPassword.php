@@ -18,6 +18,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Session\BotPasswordSessionProvider;
+
 /**
  * Utility class for bot passwords
  * @since 1.27
@@ -401,9 +403,7 @@ class BotPassword implements IDBAccessObject {
 		}
 
 		$manager = MediaWiki\Session\SessionManager::singleton();
-		$provider = $manager->getProvider(
-			'MediaWiki\\Session\\BotPasswordSessionProvider'
-		);
+		$provider = $manager->getProvider( BotPasswordSessionProvider::class );
 		if ( !$provider ) {
 			return Status::newFatal( 'botpasswords-no-provider' );
 		}

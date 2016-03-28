@@ -48,7 +48,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$reset = TestUtils::setSessionManagerSingleton( null );
 
 		$singleton = SessionManager::singleton();
-		$this->assertInstanceOf( 'MediaWiki\\Session\\SessionManager', $singleton );
+		$this->assertInstanceOf( SessionManager::class, $singleton );
 		$this->assertSame( $singleton, SessionManager::singleton() );
 	}
 
@@ -58,7 +58,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
-		$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
 		$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 		$oldEnable = $handler->enable;
@@ -191,7 +191,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$request->info1 = null;
 		$request->info2 = null;
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $idEmpty, $session->getId() );
 		$this->assertFalse( $request->unpersist1 );
 		$this->assertFalse( $request->unpersist2 );
@@ -210,7 +210,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id2, $session->getId() );
 		$this->assertFalse( $request->unpersist1 );
 		$this->assertFalse( $request->unpersist2 );
@@ -228,7 +228,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id1, $session->getId() );
 		$this->assertFalse( $request->unpersist1 );
 		$this->assertFalse( $request->unpersist2 );
@@ -299,7 +299,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id2, $session->getId() );
 		$this->logger->setCollect( false );
 		$this->assertTrue( $request->unpersist1 );
@@ -321,7 +321,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id1, $session->getId() );
 		$this->logger->setCollect( false );
 		$this->assertFalse( $request->unpersist1 );
@@ -338,7 +338,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		] );
 		$request->info2 = null;
 		$session = $manager->getSessionForRequest( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id1, $session->getId() );
 		$this->assertTrue( $request->unpersist1 ); // The saving of the session does it
 		$this->assertFalse( $request->unpersist2 );
@@ -358,7 +358,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		// Unknown session ID
 		$id = $manager->generateSessionId();
 		$session = $manager->getSessionById( $id, true );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id, $session->getId() );
 
 		$id = $manager->generateSessionId();
@@ -379,7 +379,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		// Known session ID
 		$this->store->setSession( $id, [] );
 		$session = $manager->getSessionById( $id, false );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id, $session->getId() );
 
 		// Store isn't checked if the session is already loaded
@@ -388,7 +388,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'userToken' => 'bad',
 		] ] );
 		$session2 = $manager->getSessionById( $id, false );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session2 );
+		$this->assertInstanceOf( Session::class, $session2 );
 		$this->assertSame( $id, $session2->getId() );
 		unset( $session, $session2 );
 		$this->logger->setCollect( true );
@@ -484,7 +484,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		] );
 		$info2 = null;
 		$session = $manager->getEmptySession();
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( 'empty---------------------------', $session->getId() );
 
 		// Info, explicitly
@@ -497,7 +497,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		] );
 		$info2 = null;
 		$session = $pmanager->getEmptySessionInternal( null, $expectId );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $expectId, $session->getId() );
 
 		// Wrong ID
@@ -572,7 +572,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getEmptySession();
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( 'empty1--------------------------', $session->getId() );
 
 		$expectId = null;
@@ -589,7 +589,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getEmptySession();
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( 'empty2--------------------------', $session->getId() );
 
 		// Tied priorities throw an exception
@@ -1177,7 +1177,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'provider' => 'Mock',
 		];
 
-		$builder = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
+		$builder = $this->getMockBuilder( SessionProvider::class )
 			->setMethods( [ '__toString', 'mergeMetadata', 'refreshSessionInfo' ] );
 
 		$provider = $builder->getMockForAbstractClass();
@@ -1292,7 +1292,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		] );
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\UserInfo', $info->getUserInfo() );
+		$this->assertInstanceOf( UserInfo::class, $info->getUserInfo() );
 		$this->assertTrue( $info->getUserInfo()->isVerified() );
 		$this->assertTrue( $info->getUserInfo()->isAnon() );
 		$this->assertFalse( $info->isIdSafe() );

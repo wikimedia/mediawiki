@@ -18,15 +18,15 @@ class TestUtils {
 		session_write_close();
 
 		$rInstance = new \ReflectionProperty(
-			'MediaWiki\\Session\\SessionManager', 'instance'
+			SessionManager::class, 'instance'
 		);
 		$rInstance->setAccessible( true );
 		$rGlobalSession = new \ReflectionProperty(
-			'MediaWiki\\Session\\SessionManager', 'globalSession'
+			SessionManager::class, 'globalSession'
 		);
 		$rGlobalSession->setAccessible( true );
 		$rGlobalSessionRequest = new \ReflectionProperty(
-			'MediaWiki\\Session\\SessionManager', 'globalSessionRequest'
+			SessionManager::class, 'globalSessionRequest'
 		);
 		$rGlobalSessionRequest->setAccessible( true );
 
@@ -62,7 +62,7 @@ class TestUtils {
 	 *  fields necessary.
 	 */
 	public static function getDummySessionBackend() {
-		$rc = new \ReflectionClass( 'MediaWiki\\Session\\SessionBackend' );
+		$rc = new \ReflectionClass( SessionBackend::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
 			\PHPUnit_Framework_Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
@@ -83,7 +83,7 @@ class TestUtils {
 	 * @return Session
 	 */
 	public static function getDummySession( $backend = null, $index = -1, $logger = null ) {
-		$rc = new \ReflectionClass( 'MediaWiki\\Session\\Session' );
+		$rc = new \ReflectionClass( Session::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
 			\PHPUnit_Framework_Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'

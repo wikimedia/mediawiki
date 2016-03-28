@@ -24,7 +24,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			$params['sessionCookieOptions']['prefix'] = $prefix;
 		}
 
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' )
+		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ $params ] )
 			->getMockForAbstractClass();
 		$provider->setLogger( new \TestLogger() );
@@ -35,13 +35,13 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 	}
 
 	public function testConstructor() {
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' )
+		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->getMockForAbstractClass();
 		$priv = \TestingAccessWrapper::newFromObject( $provider );
 		$this->assertNull( $priv->sessionCookieName );
 		$this->assertSame( [], $priv->sessionCookieOptions );
 
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' )
+		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ [
 				'sessionCookieName' => 'Foo',
 				'sessionCookieOptions' => [ 'Bar' ],
@@ -52,7 +52,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$this->assertSame( [ 'Bar' ], $priv->sessionCookieOptions );
 
 		try {
-			$provider = $this->getMockBuilder( 'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' )
+			$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 				->setConstructorArgs( [ [
 					'sessionCookieName' => false,
 				] ] )
@@ -66,7 +66,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		}
 
 		try {
-			$provider = $this->getMockBuilder( 'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' )
+			$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 				->setConstructorArgs( [ [
 					'sessionCookieOptions' => 'x',
 				] ] )

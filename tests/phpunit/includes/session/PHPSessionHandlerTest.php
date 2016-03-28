@@ -23,7 +23,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		} );
 		$reset[] = new \ScopedCallback( 'restore_error_handler' );
 
-		$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
 		if ( $rProp->getValue() ) {
 			$old = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
@@ -31,7 +31,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			$oldStore = $old->store;
 			$oldLogger = $old->logger;
 			$reset[] = new \ScopedCallback(
-				[ 'MediaWiki\\Session\\PHPSessionHandler', 'install' ],
+				[ PHPSessionHandler::class, 'install' ],
 				[ $oldManager, $oldStore, $oldLogger ]
 			);
 		}
@@ -41,13 +41,13 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 	public function testEnableFlags() {
 		$handler = \TestingAccessWrapper::newFromObject(
-			$this->getMockBuilder( 'MediaWiki\\Session\\PHPSessionHandler' )
+			$this->getMockBuilder( PHPSessionHandler::class )
 				->setMethods( null )
 				->disableOriginalConstructor()
 				->getMock()
 		);
 
-		$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
 		$reset = new \ScopedCallback( [ $rProp, 'setValue' ], [ $rProp->getValue() ] );
 		$rProp->setValue( $handler );
@@ -325,9 +325,9 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 	 * @expectedExceptionMessage Attempt to use PHP session management
 	 */
 	public function testDisabled( $method, $args ) {
-		$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
-		$handler = $this->getMockBuilder( 'MediaWiki\\Session\\PHPSessionHandler' )
+		$handler = $this->getMockBuilder( PHPSessionHandler::class )
 			->setMethods( null )
 			->disableOriginalConstructor()
 			->getMock();
@@ -354,7 +354,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 	 * @expectedExceptionMessageRegExp /: Wrong instance called!$/
 	 */
 	public function testWrongInstance( $method, $args ) {
-		$handler = $this->getMockBuilder( 'MediaWiki\\Session\\PHPSessionHandler' )
+		$handler = $this->getMockBuilder( PHPSessionHandler::class )
 			->setMethods( null )
 			->disableOriginalConstructor()
 			->getMock();

@@ -37,7 +37,7 @@ class SessionTest extends MediaWikiTestCase {
 	 * @param bool $ret Whether the method returns a value
 	 */
 	public function testMethods( $m, $args, $index, $ret ) {
-		$mock = $this->getMock( 'MediaWiki\\Session\\DummySessionBackend',
+		$mock = $this->getMock( DummySessionBackend::class,
 			[ $m, 'deregisterSession' ] );
 		$mock->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );
@@ -224,7 +224,7 @@ class SessionTest extends MediaWikiTestCase {
 		$priv = \TestingAccessWrapper::newFromObject( $session );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
+			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
 		);
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
@@ -239,7 +239,7 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertTrue( $backend->dirty );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
+			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
 		);
 		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
@@ -254,7 +254,7 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertFalse( $backend->dirty );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
+			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
 		);
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( false ) );
@@ -267,7 +267,7 @@ class SessionTest extends MediaWikiTestCase {
 	}
 
 	public function testTokens() {
-		$rc = new \ReflectionClass( 'MediaWiki\\Session\\Session' );
+		$rc = new \ReflectionClass( Session::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
 			$this->markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
