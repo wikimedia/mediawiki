@@ -5342,6 +5342,11 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 		}
 
+		// Replace deprecated language codes
+		$this->mOptions['language'] = LanguageCode::replaceDeprecatedCodes(
+			$this->mOptions['language']
+		);
+
 		$this->mOptionsLoaded = true;
 
 		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
