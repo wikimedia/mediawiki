@@ -225,8 +225,9 @@ class ResourceLoader implements LoggerAwareInterface {
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
-				// Set a TTL since HHVM's APC doesn't have any limitation or eviction logic.
-				$cache->set( $key, $result, 24 * 3600 );
+				// Please don't cache ResourceLoader related stuff in Redis. We already have Varnish.
+				// --Southparkfan 2016-03-26
+				// $cache->set( $key, $result, 24 * 3600 );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->warning( 'Minification failed: {exception}', array(
