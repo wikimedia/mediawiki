@@ -268,32 +268,33 @@ class WikitextContent extends TextContent {
 	public function isCountable( $hasLinks = null, Title $title = null ) {
 		global $wgArticleCountMethod;
 
-		if ( $this->isRedirect() ) {
-			return false;
+		$isCountable = false;
+		if ( !$title ) {
+			$context = RequestContext::getMain();
+			$title = $context->getTitle();
 		}
+		$po = $this->getParserOutput( $title, null, null, false );
 
-		switch ( $wgArticleCountMethod ) {
-			case 'any':
-				return true;
-			case 'comma':
-				$text = $this->getNativeData();
-				return strpos( $text, ',' ) !== false;
-			case 'link':
-				if ( $hasLinks === null ) { # not known, find out
-					if ( !$title ) {
-						$context = RequestContext::getMain();
-						$title = $context->getTitle();
+		if ( !$this->isRedirect() ) {
+			switch ( $wgArticleCountMethod ) {
+				case 'any':
+					$isCountable = true;
+				case 'comma':
+					$text = $this->getNativeData();
+					$isCountable = strpos( $text, ',' ) !== false;
+				case 'link':
+					if ( $hasLinks === null ) { # not known, find out
+						$links = $po->getLinks();
+						$hasLinks = !empty( $links );
 					}
-
-					$po = $this->getParserOutput( $title, null, null, false );
-					$links = $po->getLinks();
-					$hasLinks = !empty( $links );
-				}
-
-				return $hasLinks;
+					$isCountable = $hasLinks;
+			}
 		}
 
-		return false;
+		// Allow extensions to extend the isCountable test
+		Hooks::run( 'IsWikitextContentCountable', [ &$isCountable, &$this, &$title, &$po ] );
+
+		return $isCountable;
 	}
 
 	/**

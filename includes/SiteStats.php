@@ -316,6 +316,7 @@ class SiteStatsInit {
 			'page_namespace' => MWNamespace::getContentNamespaces(),
 			'page_is_redirect' => 0,
 		];
+		$joinConds = [];
 
 		if ( $wgArticleCountMethod == 'link' ) {
 			$tables[] = 'pagelinks';
@@ -329,8 +330,11 @@ class SiteStatsInit {
 			$conds[] = 'page_len > 0';
 		}
 
+		// Allow extensions to modify the query
+		Hooks::run( 'ArticleCountQuery', [ &$tables, &$conds, &$joinConds ] );
+
 		$this->mArticles = $this->db->selectField( $tables, 'COUNT(DISTINCT page_id)',
-			$conds, __METHOD__ );
+			$conds, __METHOD__, [], $joinConds );
 		return $this->mArticles;
 	}
 
