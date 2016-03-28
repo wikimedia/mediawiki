@@ -1350,6 +1350,7 @@ $changesList: EnhancedChangesList object
 &$data: An array with all the components that will be joined in order to create the line
 $block: An array of RecentChange objects in that block
 $rc: The RecentChange object for this line
+&$classes: An array of classes to change
 
 'EnhancedChangesListModifyBlockLineData': to alter data used to build
 a non-grouped recent change line in EnhancedChangesList.
