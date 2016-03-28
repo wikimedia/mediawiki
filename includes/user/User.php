@@ -5171,6 +5171,13 @@ class User implements IDBAccessObject {
 			}
 		}
 
+		// Replace DummyLanguageCodes
+		global $wgDummyLanguageCodes;
+		$language = $this->mOptions['language'];
+		if ( isset( $wgDummyLanguageCodes[$language] ) ) {
+			$this->mOptions['language'] = $wgDummyLanguageCodes[$language];
+		}
+
 		$this->mOptionsLoaded = true;
 
 		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
