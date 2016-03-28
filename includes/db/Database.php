@@ -1042,8 +1042,19 @@ abstract class DatabaseBase implements IDatabase {
 	public function freeResult( $res ) {
 	}
 
-	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+	/**
+	 * Returns the values of a single field (or SQL function)
+	 *
+	 * @param array|string $table Table name(s) (prefix auto-added)
+	 * @param string $var Field name (or function) to be retrieved
+	 * @param array|string $cond Condition(s) for WHERE
+	 * @param string $fname Calling function name for logs/profiling
+	 * @param array $options Associative array of options
+	 * @param array $join_conds Associative array of table join conditions (optional)
+	 * @return array|bool Array of values from the query or false if no results are found
+	 */
+	public function selectField( $table, $var, $cond = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
@@ -1055,7 +1066,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$options['LIMIT'] = 1;
 
-		$res = $this->select( $table, $var, $cond, $fname, $options );
+		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
 		}

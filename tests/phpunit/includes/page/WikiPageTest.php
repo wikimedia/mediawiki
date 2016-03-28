@@ -65,7 +65,9 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			$title = Title::newFromText( $title, $ns );
 		}
 
-		$p = new WikiPage( $title );
+		$article = new Article( $title );
+		$article->getContext()->setTitle( $title );
+		$p = $article->getPage();
 
 		$this->pages_to_delete[] = $p;
 
