@@ -357,6 +357,12 @@ class EnhancedChangesList extends ChangesList {
 		) {
 			$lineParams['classes'] = [ 'mw-enhanced-watched' ];
 		}
+
+
+		// give the hook a chance to modify the classes
+		Hooks::run( 'EnhancedChangesListModifyLineClasses',
+			[ $this, &$classes, $block, $rcObj ] );
+
 		$separator = ' <span class="mw-changeslist-separator">. .</span> ';
 
 		$data['recentChangesFlags'] = [
