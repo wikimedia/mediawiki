@@ -422,7 +422,7 @@
 									]
 								},
 								"templates": {
-									"type": "object",
+									"type": ["object", "array"],
 									"description": "Templates to be loaded for client-side usage"
 								},
 								"targets": {
