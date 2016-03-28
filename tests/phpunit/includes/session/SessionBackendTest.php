@@ -184,8 +184,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$request2 = new \FauxRequest();
 		$session2 = $backend->getSession( $request2 );
 
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session1 );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session2 );
+		$this->assertInstanceOf( Session::class, $session1 );
+		$this->assertInstanceOf( Session::class, $session2 );
 		$this->assertSame( 2, count( $priv->requests ) );
 
 		$index = \TestingAccessWrapper::newFromObject( $session1 )->index;
@@ -819,7 +819,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
@@ -859,7 +859,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 			$resetHandler = new \ScopedCallback( function () use ( $handler ) {
@@ -895,7 +895,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			PHPSessionHandler::install( SessionManager::singleton() );
 		}
 		if ( !PHPSessionHandler::isEnabled() ) {
-			$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
+			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 			$resetHandler = new \ScopedCallback( function () use ( $handler ) {

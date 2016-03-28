@@ -4631,15 +4631,15 @@ $wgAuthenticationTokenVersion = null;
  * @since 1.27
  */
 $wgSessionProviders = [
-	'MediaWiki\\Session\\CookieSessionProvider' => [
-		'class' => 'MediaWiki\\Session\\CookieSessionProvider',
+	MediaWiki\Session\CookieSessionProvider::class => [
+		'class' => MediaWiki\Session\CookieSessionProvider::class,
 		'args' => [ [
 			'priority' => 30,
 			'callUserSetCookiesHook' => true,
 		] ],
 	],
-	'MediaWiki\\Session\\BotPasswordSessionProvider' => [
-		'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
+	MediaWiki\Session\BotPasswordSessionProvider::class => [
+		'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 		'args' => [ [
 			'priority' => 40,
 		] ],

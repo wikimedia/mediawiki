@@ -234,7 +234,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 		] );
 		$reset = MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
 		$this->assertNull(
-			$manager->getProvider( 'MediaWiki\\Session\\BotPasswordSessionProvider' ),
+			$manager->getProvider( MediaWiki\Session\BotPasswordSessionProvider::class ),
 			'sanity check'
 		);
 		$status = BotPassword::login( 'UTSysop@BotPassword', 'foobaz', new FauxRequest );
@@ -245,8 +245,8 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$mainConfig = RequestContext::getMain()->getConfig();
 		$config = new HashConfig( [
 			'SessionProviders' => $mainConfig->get( 'SessionProviders' ) + [
-				'MediaWiki\\Session\\BotPasswordSessionProvider' => [
-					'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
+				MediaWiki\Session\BotPasswordSessionProvider::class => [
+					'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],
 				]
 			],
@@ -287,7 +287,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 		// Success!
 		$request = new FauxRequest;
 		$this->assertNotInstanceOf(
-			'MediaWiki\\Session\\BotPasswordSessionProvider',
+			MediaWiki\Session\BotPasswordSessionProvider::class,
 			$request->getSession()->getProvider(),
 			'sanity check'
 		);
@@ -295,9 +295,9 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( 'Status', $status );
 		$this->assertTrue( $status->isGood() );
 		$session = $status->getValue();
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( MediaWiki\Session\Session::class, $session );
 		$this->assertInstanceOf(
-			'MediaWiki\\Session\\BotPasswordSessionProvider', $session->getProvider()
+			MediaWiki\Session\BotPasswordSessionProvider::class, $session->getProvider()
 		);
 		$this->assertSame( $session->getId(), $request->getSession()->getId() );
 

@@ -116,7 +116,7 @@ class PHPUnitMaintClass extends Maintenance {
 		// cookies to show up in a FauxRequest somewhere.
 		$wgSessionProviders = [
 			[
-				'class' => 'MediaWiki\\Session\\CookieSessionProvider',
+				'class' => MediaWiki\Session\CookieSessionProvider::class,
 				'args' => [ [
 					'priority' => 30,
 					'callUserSetCookiesHook' => true,

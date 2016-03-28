@@ -193,7 +193,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->setMwGlobals( [
 			'wgSessionProviders' => array_merge( $wgSessionProviders, [
 				[
-					'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
+					'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],
 				]
 			] ),
@@ -207,14 +207,14 @@ class ApiLoginTest extends ApiTestCase {
 
 		// Make sure our session provider is present
 		$manager = TestingAccessWrapper::newFromObject( MediaWiki\Session\SessionManager::singleton() );
-		if ( !isset( $manager->sessionProviders['MediaWiki\\Session\\BotPasswordSessionProvider'] ) ) {
+		if ( !isset( $manager->sessionProviders[MediaWiki\Session\BotPasswordSessionProvider::class] ) ) {
 			$tmp = $manager->sessionProviders;
 			$manager->sessionProviders = null;
 			$manager->sessionProviders = $tmp + $manager->getProviders();
 		}
 		$this->assertNotNull(
 			MediaWiki\Session\SessionManager::singleton()->getProvider(
-				'MediaWiki\\Session\\BotPasswordSessionProvider'
+				MediaWiki\Session\BotPasswordSessionProvider::class
 			),
 			'sanity check'
 		);

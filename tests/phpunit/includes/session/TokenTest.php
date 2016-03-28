@@ -11,7 +11,7 @@ use MediaWikiTestCase;
 class TokenTest extends MediaWikiTestCase {
 
 	public function testBasics() {
-		$token = $this->getMockBuilder( 'MediaWiki\\Session\\Token' )
+		$token = $this->getMockBuilder( Token::class )
 			->setMethods( [ 'toStringAtTimestamp' ] )
 			->setConstructorArgs( [ 'sekret', 'salty', true ] )
 			->getMock();

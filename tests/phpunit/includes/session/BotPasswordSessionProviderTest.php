@@ -33,8 +33,8 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 				'EnableBotPasswords' => true,
 				'BotPasswordsDatabase' => false,
 				'SessionProviders' => $wgSessionProviders + [
-					'MediaWiki\\Session\\BotPasswordSessionProvider' => [
-						'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
+					BotPasswordSessionProvider::class => [
+						'class' => BotPasswordSessionProvider::class,
 						'args' => [ $params ],
 					]
 				],
@@ -46,7 +46,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 			'store' => new TestBagOStuff,
 		] );
 
-		return $manager->getProvider( 'MediaWiki\\Session\\BotPasswordSessionProvider' );
+		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}
 
 	protected function setUp() {
@@ -172,7 +172,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		}
 
 		$info = $provider->provideSessionInfo( $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\SessionInfo', $info );
+		$this->assertInstanceOf( SessionInfo::class, $info );
 		$this->assertSame( 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', $info->getId() );
 
 		$this->config->set( 'EnableBotPasswords', false );
@@ -191,7 +191,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$bp = \BotPassword::newFromUser( $user, 'BotPasswordSessionProvider' );
 
 		$session = $provider->newSessionForRequest( $user, $bp, $request );
-		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
+		$this->assertInstanceOf( Session::class, $session );
 
 		$this->assertEquals( $session->getId(), $request->getSession()->getId() );
 		$this->assertEquals( $user->getName(), $session->getUser()->getName() );

@@ -16,7 +16,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 		$logger = new \TestLogger();
 		$config = new \HashConfig();
 
-		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Session\\SessionProvider' );
+		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$priv = \TestingAccessWrapper::newFromObject( $provider );
 
 		$provider->setConfig( $config );
@@ -53,7 +53,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 	public function testNewSessionInfo( $persistId, $persistUser, $ok ) {
 		$manager = new SessionManager();
 
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'persistsSessionId' )
@@ -80,7 +80,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testMergeMetadata() {
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->getMockForAbstractClass();
 
 		try {
@@ -112,14 +112,14 @@ class SessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testImmutableSessions() {
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'canChangeUser' )
 			->will( $this->returnValue( true ) );
 		$provider->preventSessionsForUser( 'Foo' );
 
-		$provider = $this->getMockBuilder( 'MediaWiki\\Session\\SessionProvider' )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'canChangeUser' )
@@ -142,7 +142,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 			'SecretKey' => 'Shhh!',
 		] );
 
-		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Session\\SessionProvider',
+		$provider = $this->getMockForAbstractClass( SessionProvider::class,
 			[], 'MockSessionProvider' );
 		$provider->setConfig( $config );
 		$priv = \TestingAccessWrapper::newFromObject( $provider );
@@ -172,7 +172,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testDescribe() {
-		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Session\\SessionProvider',
+		$provider = $this->getMockForAbstractClass( SessionProvider::class,
 			[], 'MockSessionProvider' );
 
 		$this->assertSame(
@@ -182,7 +182,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testGetAllowedUserRights() {
-		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Session\\SessionProvider' );
+		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$backend = TestUtils::getDummySessionBackend();
 
 		try {
