@@ -2315,11 +2315,21 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
 
-			$sk->outputPage();
+			try {
+				$sk->outputPage();
+			} catch ( Exception $e ) {
+				ob_end_clean(); // bug T129657
+				throw $e;
+			}
 		}
 
-		// This hook allows last minute changes to final overall output by modifying output buffer
-		Hooks::run( 'AfterFinalPageOutput', [ $this ] );
+		try {
+			// This hook allows last minute changes to final overall output by modifying output buffer
+			Hooks::run( 'AfterFinalPageOutput', [ $this ] );
+		} catch ( Exception $e ) {
+			ob_end_clean(); // bug T129657
+			throw $e;
+		}
 
 		$this->sendCacheControl();
 
