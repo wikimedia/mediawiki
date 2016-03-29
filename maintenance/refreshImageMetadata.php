@@ -69,8 +69,15 @@ class RefreshImageMetadata extends Maintenance {
 		$this->addOption( 'end', 'Name of file to end with', false, true );
 
 		$this->addOption(
+			'mediatype',
+			'Only refresh files with this media type, e.g. BITMAP, UNKNOWN etc.',
+			false,
+			true
+		);
+		$this->addOption(
 			'mime',
-			'(Inefficient!) Only refresh files with this MIME type. Can accept wild-card image/*',
+			"Only refresh files with this MIME type. Can accept wild-card 'image/*'. "
+				. "Potentially inefficient unless 'mediatype' is also specified",
 			false,
 			true
 		);
@@ -197,6 +204,7 @@ class RefreshImageMetadata extends Maintenance {
 
 		$end = $this->getOption( 'end', false );
 		$mime = $this->getOption( 'mime', false );
+		$mediatype = $this->getOption( 'mediatype', false );
 		$like = $this->getOption( 'metadata-contains', false );
 
 		if ( $end !== false ) {
@@ -208,6 +216,9 @@ class RefreshImageMetadata extends Maintenance {
 			if ( $minor !== '*' ) {
 				$conds['img_minor_mime'] = $minor;
 			}
+		}
+		if ( $mediatype !== false ) {
+			$conds['img_media_type'] = $mediatype;
 		}
 		if ( $like ) {
 			$conds[] = 'img_metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() );
