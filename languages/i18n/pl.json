@@ -604,6 +604,7 @@
 	"botpasswords-updated-body": "Hasło bota \"$1\" użytkownika \"$2\" zostało zaktualizowane.",
 	"botpasswords-deleted-title": "Hasło bota usunięte",
 	"botpasswords-deleted-body": "Hasło bota \"$1\" użytkownika \"$2\" zostało usunięte.",
+	"botpasswords-not-exist": "Użytkownik \"$1\" nie ma hasła dla bota o nazwie \"$2\".",
 	"resetpass_forbidden": "Hasła nie mogą zostać zmienione",
 	"resetpass-no-info": "Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.",
 	"resetpass-submit-loggedin": "Zmień hasło",

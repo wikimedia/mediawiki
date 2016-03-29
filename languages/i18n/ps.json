@@ -2605,5 +2605,7 @@
 	"mw-widgets-dateinput-placeholder-month": "کککک-م م",
 	"mw-widgets-titleinput-description-new-page": "تر اوسه پورې دا مخ نشته",
 	"mw-widgets-titleinput-description-redirect": "$1 ته ورگرځېدنه",
-	"randomrootpage": "د ناټاکلې ريښې مخ"
+	"randomrootpage": "د ناټاکلې ريښې مخ",
+	"log-action-filter-all": "ټول",
+	"log-action-filter-block-block": "بنديز لگول"
 }

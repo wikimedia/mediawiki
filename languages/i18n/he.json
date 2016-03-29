@@ -3446,7 +3446,7 @@
 	"logentry-import-upload": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 באמצעות העלאת קובץ",
 	"logentry-import-upload-details": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 באמצעות העלאת קובץ ({{PLURAL:$4|גרסה אחת|$4 גרסאות}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מאתר ויקי אחר",
-	"logentry-import-interwiki-details": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מ־$5 ({{PLURAL:$4|גרסה אחת|$4 גרסאות}})&rlm;",
+	"logentry-import-interwiki-details": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מ־$5&rlm; ({{PLURAL:$4|גרסה אחת|$4 גרסאות}})&rlm;",
 	"logentry-merge-merge": "$1 {{GENDER:$2|מיזג|מיזגה}} את $3 לתוך $4 (גרסאות עד $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}}",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} בלי להשאיר הפניה",

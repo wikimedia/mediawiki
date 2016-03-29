@@ -3357,6 +3357,7 @@
 	"sessionprovider-generic": "$1-Sessiounen",
 	"randomrootpage": "Zoufalls-Stammsäit",
 	"log-action-filter-block": "Typ vun der Spär:",
+	"log-action-filter-protect": "Typ vu Spär",
 	"log-action-filter-all": "All",
 	"log-action-filter-block-block": "Spären",
 	"log-action-filter-block-unblock": "Spär ophiewen",
