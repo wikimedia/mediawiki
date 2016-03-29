@@ -1301,6 +1301,7 @@ class Preferences {
 
 		$htmlForm->setModifiedUser( $user );
 		$htmlForm->setId( 'mw-prefs-form' );
+		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );

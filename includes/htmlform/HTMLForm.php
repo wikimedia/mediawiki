@@ -198,6 +198,13 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $mAction = false;
 
+	/**
+	 * Form attribute autocomplete. false does not set the attribute
+	 * @since 1.27
+	 * @var bool|string
+	 */
+	protected $mAutocomplete = false;
+
 	protected $mUseMultipart = false;
 	protected $mHiddenFields = [];
 	protected $mButtons = [];
@@ -996,6 +1003,9 @@ class HTMLForm extends ContextSource {
 		if ( !empty( $this->mId ) ) {
 			$attribs['id'] = $this->mId;
 		}
+		if ( !empty( $this->mAutocomplete ) ) {
+			$attribs['autocomplete'] = $this->mAutocomplete;
+		}
 		return $attribs;
 	}
 
@@ -1676,5 +1686,21 @@ class HTMLForm extends ContextSource {
 		}
 
 		return $this->getTitle()->getLocalURL();
+	}
+
+	/**
+	 * Set the value for the autocomplete attribute of the form.
+	 * When set to false (which is the default state), the attribute get not set.
+	 *
+	 * @since 1.27
+	 *
+	 * @param string|bool $autocomplete
+	 *
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setAutocomplete( $autocomplete ) {
+		$this->mAutocomplete = $autocomplete;
+
+		return $this;
 	}
 }
