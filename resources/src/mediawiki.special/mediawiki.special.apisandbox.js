@@ -906,6 +906,15 @@
 						return xhr;
 					}
 				} )
+					.then( null, function ( code, data, result, jqXHR ) {
+						if ( code !== 'http' ) {
+							// Not really an error, work around mw.Api thinking it is.
+							return $.Deferred()
+								.resolve( result, jqXHR )
+								.promise();
+						}
+						return this;
+					} )
 					.fail( function ( code, data ) {
 						var details = 'HTTP error: ' + data.exception;
 						$result.empty()

@@ -239,11 +239,13 @@
 				.done( function ( result, textStatus, jqXHR ) {
 					if ( result === undefined || result === null || result === '' ) {
 						apiDeferred.reject( 'ok-but-empty',
-							'OK response but empty result (check HTTP headers?)'
+							'OK response but empty result (check HTTP headers?)',
+							result,
+							jqXHR
 						);
 					} else if ( result.error ) {
 						var code = result.error.code === undefined ? 'unknown' : result.error.code;
-						apiDeferred.reject( code, result );
+						apiDeferred.reject( code, result, result, jqXHR );
 					} else {
 						apiDeferred.resolve( result, jqXHR );
 					}
