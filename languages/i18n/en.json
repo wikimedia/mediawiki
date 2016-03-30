@@ -1785,6 +1785,7 @@
 	"uncategorizedimages-summary": "",
 	"uncategorizedtemplates": "Uncategorized templates",
 	"uncategorizedtemplates-summary": "",
+	"uncategorized-categories-exceptionlist": "# Contains a list of catgeories, which shouldn't be mentioned on Special:UncategorizedCategories. One per line, starting with \"*\". Lines starting with another character (including whitespaces) are ignored. Use \"#\" for comments.",
 	"unusedcategories": "Unused categories",
 	"unusedcategories-summary": "",
 	"unusedimages": "Unused files",
