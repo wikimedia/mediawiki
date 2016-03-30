@@ -4225,5 +4225,8 @@
 	"log-action-filter-protect-modify": "Action to filter for in this log",
 	"log-action-filter-protect-unprotect": "Action to filter for in this log",
 	"log-action-filter-upload-upload": "Action to filter for in this log",
-	"log-action-filter-upload-overwrite": "Action to filter for in this log"
+	"log-action-filter-upload-overwrite": "Action to filter for in this log",
+	"page-changelang-nopermission": "Error message shown when a user doesn't have permissions for changing page language.",
+	"changelang-none": "Error message shown when there is no change in page language.",
+	"changelang-fail": "Error message shown when changing language fails because of race condition."
 }

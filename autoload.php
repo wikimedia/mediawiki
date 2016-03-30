@@ -937,6 +937,7 @@ $wgAutoloadLocalClasses = [
 	'Page' => __DIR__ . '/includes/page/WikiPage.php',
 	'PageArchive' => __DIR__ . '/includes/specials/SpecialUndelete.php',
 	'PageExists' => __DIR__ . '/maintenance/pageExists.php',
+	'PageLanguage' => __DIR__ . '/includes/PageLanguage.php',
 	'PageLangLogFormatter' => __DIR__ . '/includes/logging/PageLangLogFormatter.php',
 	'PageLinkRenderer' => __DIR__ . '/includes/title/PageLinkRenderer.php',
 	'PageProps' => __DIR__ . '/includes/PageProps.php',
