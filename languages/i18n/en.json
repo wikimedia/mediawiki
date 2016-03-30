@@ -4183,5 +4183,8 @@
 	"linkaccounts-success-text": "The account was linked.",
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
-	"unlinkaccounts-success": "The account was unlinked."
+	"unlinkaccounts-success": "The account was unlinked.",
+	"page-changelang-nopermission": "You don't have permission to change the language for this page.",
+	"changelang-none": "No change in the page language.",
+	"changelang-fail": "The language change failed."
 }

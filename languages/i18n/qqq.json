@@ -4364,5 +4364,8 @@
 	"linkaccounts-success-text": "Text shown on top of the form after a successful action.",
 	"linkaccounts-submit": "Text of the main submit button on [[Special:LinkAccounts]] (when there is one)",
 	"unlinkaccounts": "Title of the special page [[Special:UnlinkAccounts]] which allows the user to remove linked remote accounts.",
-	"unlinkaccounts-success": "Account unlinking form success message"
+	"unlinkaccounts-success": "Account unlinking form success message",
+	"page-changelang-nopermission": "Error message shown when a user doesn't have permissions for changing page language.",
+	"changelang-none": "Error message shown when there is no change in page language.",
+	"changelang-fail": "Error message shown when changing language fails because of race condition."
 }
