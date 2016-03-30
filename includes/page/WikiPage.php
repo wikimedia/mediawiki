@@ -1816,6 +1816,13 @@ class WikiPage implements Page, IDBAccessObject {
 						'oldrevision' => $meta['oldRevision']
 					]
 				);
+				if (
+					$this->mTitle->getText() === 'Uncategorized-categories-exceptionlist' &&
+					$this->mTitle->getNamespace() === NS_MEDIAWIKI
+				) {
+					$cache = ObjectCache::getMainWANInstance();
+					$cache->delete( $cache->makeKey( 'specialuncategorizedcategories', 'exceptionlist' ) );
+				}
 				// Trigger post-save hook
 				$params = [ &$that, &$user, $content, $summary, $flags & EDIT_MINOR,
 					null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
