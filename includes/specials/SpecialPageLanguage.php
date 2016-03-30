@@ -30,9 +30,9 @@
  */
 class SpecialPageLanguage extends FormSpecialPage {
 	/**
-	 * @var string URL to go to if language change successful
+	 * @var Title object for page to go to on successful change of language
 	 */
-	private $goToUrl;
+	private $redirectTitle;
 
 	public function __construct() {
 		parent::__construct( 'PageLanguage', 'pagelang' );
@@ -114,86 +114,37 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data ) {
-		$title = Title::newFromText( $data['pagename'] );
+		// Check if user wants to use default language
+		if ( $data['selectoptions'] == 1 ) {
+			$lang = null;
+		} else {
+			$lang = $data['language'];
+		}
+
+		$page = $data['pagename'];
+		$title = Title::newFromText( $page );
 
 		// Check if title is valid
 		if ( !$title ) {
-			return false;
+			return Status::newFatal( 'badtitle' );
 		}
 
-		// Get the default language for the wiki
-		$defLang = $this->getConfig()->get( 'LanguageCode' );
-
-		$pageId = $title->getArticleID();
-
-		// Check if article exists
-		if ( !$pageId ) {
-			return false;
-		}
-
-		// Load the page language from DB
-		$dbw = wfGetDB( DB_MASTER );
-		$langOld = $dbw->selectField(
-			'page',
-			'page_lang',
-			[ 'page_id' => $pageId ],
-			__METHOD__
-		);
-
-		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
-
-		// Check if user wants to use default language
-		if ( $data['selectoptions'] == 1 ) {
-			$langNew = null;
-		} else {
-			$langNew = $data['language'];
-		}
-
-		// No change in language
-		if ( $langNew === $langOld ) {
-			return false;
-		}
-
-		// Hardcoded [def] if the language is set to null
-		$logOld = $langOld ? $langOld : $defLang . '[def]';
-		$logNew = $langNew ? $langNew : $defLang . '[def]';
-
-		// Writing new page language to database
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update(
-			'page',
-			[ 'page_lang' => $langNew ],
-			[
-				'page_id' => $pageId,
-				'page_lang' => $langOld
-			],
-			__METHOD__
-		);
-
-		if ( !$dbw->affectedRows() ) {
-			return false;
-		}
-
-		// Logging change of language
-		$logParams = [
-			'4::oldlanguage' => $logOld,
-			'5::newlanguage' => $logNew
-		];
-		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
-		$entry->setPerformer( $this->getUser() );
-		$entry->setTarget( $title );
-		$entry->setParameters( $logParams );
-
-		$logid = $entry->insert();
-		$entry->publish( $logid );
-
-		return true;
+		$this->redirectTitle = $title;
+		$result = PageLanguage::changeLanguage( $title, $lang, $this->getUser() );
+		return $result;
 	}
 
 	public function onSuccess() {
-		// Success causes a redirect
-		$this->getOutput()->redirect( $this->goToUrl );
+		// Title to redirect to after the operation
+		$title = $this->redirectTitle;
+
+		// Purge the page's contents
+		$page = WikiPage::factory( $title );
+		$page->doPurge();
+
+		// Redirect to the page
+		$url = $title->getFullURL();
+		$this->getOutput()->redirect( $url );
 	}
 
 	function showLogFragment( $title ) {
