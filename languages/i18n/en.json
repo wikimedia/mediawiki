@@ -4049,5 +4049,8 @@
 	"log-action-filter-protect-modify": "Protection modification",
 	"log-action-filter-protect-unprotect": "Unprotection",
 	"log-action-filter-upload-upload": "New upload",
-	"log-action-filter-upload-overwrite": "Reupload"
+	"log-action-filter-upload-overwrite": "Reupload",
+	"page-changelang-nopermission": "You don't have permission to change the language for this page.",
+	"changelang-none": "No change in the page language.",
+	"changelang-fail": "The language change failed."
 }
