@@ -27,9 +27,39 @@
  * @ingroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
+	/**
+	 * Holds a list of categories, which shouldn't be listed on this special page,
+	 * even if it is uncategorized.
+	 * @var array
+	 */
+	private $exceptionList = null;
+
 	function __construct( $name = 'Uncategorizedcategories' ) {
 		parent::__construct( $name );
 		$this->requestedNamespace = NS_CATEGORY;
+	}
+
+	/**
+	 * Returns an array of categorie titles (usually without the namespace), which
+	 * shouldn't be listed on this page, even if they're uncategorized.
+	 *
+	 * @return array
+	 */
+	private function getExceptionList() {
+		if ( $this->exceptionList === null ) {
+			$exList = $this->msg( 'uncategorized-categories-exceptionlist' )
+				->inContentLanguage()->plain();
+			$this->exceptionList = explode( "\n", str_replace( '* ', '', $exList ) );
+		}
+		return $this->exceptionList;
+	}
+
+	public function getQueryInfo() {
+		$dbr = wfGetDB( DB_SLAVE );
+		$query = parent::getQueryInfo();
+		$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $this->getExceptionList() ) . ' )';
+
+		return $query;
 	}
 
 	/**
