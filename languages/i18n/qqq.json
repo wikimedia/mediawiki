@@ -1968,6 +1968,7 @@
 	"uncategorizedimages-summary": "{{notranslate}}\nused in [[Special:Uncategorizedimages]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
 	"uncategorizedtemplates": "{{doc-special|UncategorizedTemplates}}",
 	"uncategorizedtemplates-summary": "{{doc-specialpagesummary|uncategorizedtemplates}}",
+	"uncategorized-categories-exceptionlist": "System message used as a list of exceptions for Special:UncategorizedCategories. {{notranslate}}",
 	"unusedcategories": "{{doc-special|UnusedCategories}}",
 	"unusedcategories-summary": "{{doc-specialpagesummary|unusedcategories}}",
 	"unusedimages": "{{doc-special|UnusedImages}}",
