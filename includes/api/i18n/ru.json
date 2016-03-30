@@ -34,7 +34,7 @@
 	"apihelp-block-param-anononly": "Блокировать только анонимных пользователей (т. е. запретить анонимные правки для этого IP-адреса).",
 	"apihelp-block-param-nocreate": "Запретить создание учётных записей.",
 	"apihelp-block-param-autoblock": "Автоматически блокировать последний использованный IP-адрес и все последующие, с которых будут совершаться попытки авторизации.",
-	"apihelp-block-param-noemail": "Ҡулланыусының Вики аша электрон почта ебәреүен тыйыу. (Талап итә <code>blockemail</code> хоҡуғын)",
+	"apihelp-block-param-noemail": "Запретить участнику отправлять электронную почту через интерфейс вики. (Требуется право <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Скрыть имя участника из журнала блокировок. (Требуется право <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Позволяет участникам редактировать их собственные страницы обсуждения (зависит от <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Если участник уже заблокирован, перезаписать существующую блокировку.",

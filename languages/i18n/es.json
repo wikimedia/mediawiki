@@ -3724,7 +3724,7 @@
 	"log-action-filter-patrol-autopatrol": "Verificación automática",
 	"log-action-filter-protect-protect": "Protección",
 	"log-action-filter-protect-modify": "Modificación de protección",
-	"log-action-filter-protect-unprotect": "Desproteccion",
+	"log-action-filter-protect-unprotect": "Desprotección",
 	"log-action-filter-upload-upload": "Subida nueva",
 	"log-action-filter-upload-overwrite": "Volver a subir"
 }

@@ -1748,6 +1748,7 @@
 	"apisandbox-intro": "Выкарыстоўвайце гэтую старонку для экспэрымэнтаў з <strong>API вэб-сэрвісу MediaWiki</strong>.\nЗьвяртайцеся да [[mw:API:Main page|дакумэнтацыі API]] для дадатковай інфармацыі па выкарыстаньні API. Напрыклад, [//www.mediawiki.org/wiki/API#A_simple_example як атрымаць зьмест галоўнай старонкі]. Абярыце дзеяньне, каб пабачыць болей узораў.\n\nЗьвярніце ўвагу, што нягледзячы на тое, што гэта пясочніца, вашыя дзеяньні могуць унесьці зьмены ў вікі.",
 	"apisandbox-fullscreen": "Разгарнуць панэль",
 	"apisandbox-fullscreen-tooltip": "Разгарнуць панэль пясочніцы, каб запоўніць акно браўзэра.",
+	"apisandbox-unfullscreen": "Паказаць старонку",
 	"apisandbox-submit": "Зрабіць запыт",
 	"apisandbox-reset": "Ачысьціць",
 	"apisandbox-examples": "Прыклады",

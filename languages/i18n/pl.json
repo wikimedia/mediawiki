@@ -3643,12 +3643,21 @@
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1",
 	"api-error-blacklisted": "Wybierz inny, opisowy tytuł.",
 	"randomrootpage": "Losowa strona (bez podstron)",
+	"log-action-filter-block": "Rodzaj blokady:",
+	"log-action-filter-delete": "Rodzaj usunięcia:",
+	"log-action-filter-protect": "Rodzaj zabezpieczenia:",
+	"log-action-filter-upload": "Rodzaj przesłanych:",
 	"log-action-filter-all": "Wszystkie",
+	"log-action-filter-block-block": "Zablokowanie",
 	"log-action-filter-block-reblock": "Zmiana blokady",
 	"log-action-filter-block-unblock": "Odblokowanie",
 	"log-action-filter-delete-delete": "Usunięcie strony",
-	"log-action-filter-delete-restore": "Przywrócenie strony",
+	"log-action-filter-delete-restore": "Odtworzenie strony",
+	"log-action-filter-delete-event": "Usunięcie wpisu rejestru",
+	"log-action-filter-delete-revision": "Usunięcie wersji",
 	"log-action-filter-protect-protect": "Zabezpieczenie",
 	"log-action-filter-protect-modify": "Zmiana zabezpieczenia",
-	"log-action-filter-protect-unprotect": "Odbezpieczenie"
+	"log-action-filter-protect-unprotect": "Odbezpieczenie",
+	"log-action-filter-upload-upload": "Nowe przesłane",
+	"log-action-filter-upload-overwrite": "Przesłane ponownie"
 }

@@ -3124,5 +3124,9 @@
 	"special-characters-group-khmer": "כמער",
 	"special-characters-title-endash": "ען טירע",
 	"special-characters-title-emdash": "עם טירע",
-	"special-characters-title-minus": "מינוס"
+	"special-characters-title-minus": "מינוס",
+	"log-action-filter-upload": "טיפ ארויפֿלאד:",
+	"log-action-filter-all": "אַלע",
+	"log-action-filter-delete-delete": "אויסמעקן בלאט",
+	"log-action-filter-protect-unprotect": "אראפנעמען שיץ"
 }
