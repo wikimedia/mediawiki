@@ -30,9 +30,19 @@
  */
 class SpecialPageLanguage extends FormSpecialPage {
 	/**
-	 * @var string URL to go to if language change successful
+	 * @var Title object for page to go to on successful change of language
 	 */
-	private $goToUrl;
+	private $redirectTitle;
+
+	/**
+	 * @var array Options selector options
+	 */
+	private $options;
+
+	/**
+	 * @var string Language code for the default wiki language
+	 */
+	private $defLang;
 
 	public function __construct() {
 		parent::__construct( 'PageLanguage', 'pagelang' );
@@ -50,6 +60,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Get default from the subpage of Special page
 		$defaultName = $this->par;
 
+		// Get default language code for wiki
+		$this->defLang = $this->getConfig()->get( 'LanguageCode' );
+
 		$page = [];
 		$page['pagename'] = [
 			'type' => 'title',
@@ -62,13 +75,15 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Options for whether to use the default language or select language
 		$selectoptions = [
 			(string)$this->msg( 'pagelang-use-default' )->escaped() => 1,
-			(string)$this->msg( 'pagelang-select-lang' )->escaped() => 2,
+			(string)$this->msg( 'pagelang-select-lang' )->escaped() => 2
 		];
+		$this->options = array_values($selectoptions);
+
 		$page['selectoptions'] = [
 			'id' => 'mw-pl-options',
 			'type' => 'radio',
 			'options' => $selectoptions,
-			'default' => 1
+			'default' => $this->options[0]
 		];
 
 		// Building a language selector
@@ -86,7 +101,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
-			'default' => $this->getConfig()->get( 'LanguageCode' ),
+			'default' => $this->defLang,
 		];
 
 		return $page;
@@ -111,89 +126,36 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/**
 	 *
 	 * @param array $data
-	 * @return bool
+	 * @return Status
 	 */
 	public function onSubmit( array $data ) {
-		$title = Title::newFromText( $data['pagename'] );
+		// Check if user wants to use default language
+		if ( $data['selectoptions'] == $this->options[0] ) {
+			$lang = null;
+		} else {
+			$lang = $data['language'];
+		}
+
+		$page = $data['pagename'];
+		$title = Title::newFromText( $page );
 
 		// Check if title is valid
 		if ( !$title ) {
-			return false;
+			return Status::newFatal( 'badtitle' );
 		}
 
-		// Get the default language for the wiki
-		$defLang = $this->getConfig()->get( 'LanguageCode' );
-
-		$pageId = $title->getArticleID();
-
-		// Check if article exists
-		if ( !$pageId ) {
-			return false;
-		}
-
-		// Load the page language from DB
-		$dbw = wfGetDB( DB_MASTER );
-		$langOld = $dbw->selectField(
-			'page',
-			'page_lang',
-			[ 'page_id' => $pageId ],
-			__METHOD__
-		);
-
-		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
-
-		// Check if user wants to use default language
-		if ( $data['selectoptions'] == 1 ) {
-			$langNew = null;
-		} else {
-			$langNew = $data['language'];
-		}
-
-		// No change in language
-		if ( $langNew === $langOld ) {
-			return false;
-		}
-
-		// Hardcoded [def] if the language is set to null
-		$logOld = $langOld ? $langOld : $defLang . '[def]';
-		$logNew = $langNew ? $langNew : $defLang . '[def]';
-
-		// Writing new page language to database
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update(
-			'page',
-			[ 'page_lang' => $langNew ],
-			[
-				'page_id' => $pageId,
-				'page_lang' => $langOld
-			],
-			__METHOD__
-		);
-
-		if ( !$dbw->affectedRows() ) {
-			return false;
-		}
-
-		// Logging change of language
-		$logParams = [
-			'4::oldlanguage' => $logOld,
-			'5::newlanguage' => $logNew
-		];
-		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
-		$entry->setPerformer( $this->getUser() );
-		$entry->setTarget( $title );
-		$entry->setParameters( $logParams );
-
-		$logid = $entry->insert();
-		$entry->publish( $logid );
-
-		return true;
+		$this->redirectTitle = $title;
+		$result = PageLanguage::changeLanguage( $title, $lang, $this->getUser(), $this->defLang );
+		return $result;
 	}
 
 	public function onSuccess() {
-		// Success causes a redirect
-		$this->getOutput()->redirect( $this->goToUrl );
+		// Title to redirect to after the operation
+		$title = $this->redirectTitle;
+
+		// Redirect to the page
+		$url = $title->getFullURL();
+		$this->getOutput()->redirect( $url );
 	}
 
 	function showLogFragment( $title ) {
