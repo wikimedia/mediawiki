@@ -28,4 +28,4 @@
 		// Bind because it throws TypeError if context is not window
 		? window.requestIdleCallback.bind( window )
 		: mw.requestIdleCallbackInternal;
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );
