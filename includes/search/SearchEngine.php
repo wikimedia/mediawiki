@@ -52,6 +52,9 @@ class SearchEngine {
 	/** @var array Feature values */
 	protected $features = [];
 
+	/** @const string profile type for completionSearch */
+	const COMPLETION_PROFILE_TYPE = 'completionSearch';
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If full text searches are not supported or disabled, return null.
@@ -772,6 +775,24 @@ class SearchEngine {
 		// Use default database prefix search
 		$backend = new TitlePrefixSearch;
 		return $backend->defaultSearchBackend( $this->namespaces, $search, $this->limit, $this->offset );
+	}
+
+	/**
+	 * Get a list of supported profiles.
+	 * Some search engine implementations may expose specific profiles to fine-tune
+	 * its behaviors.
+	 * The profile can be passed as a feature data with setFeatureData( $profileType, $profileName )
+	 * The array returned by this function contains the following keys:
+	 * - name: the profile name to use with setFeatureData
+	 * - desc-message: the i18n description
+	 * - default: set to true if this profile is the default
+	 *
+	 * @since 1.27
+	 * @param $profileType the type of profiles
+	 * @return array|null the list of profiles or null if none available
+	 */
+	public function getProfiles( $profileType ) {
+		return null;
 	}
 
 }
