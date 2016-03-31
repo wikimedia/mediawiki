@@ -32,6 +32,17 @@ class ApiOpenSearch extends ApiBase {
 	private $format = null;
 	private $fm = null;
 
+	/** @var array list of api allowed params */
+	private $allowedParams = null;
+
+	/** @var SearchEngine */
+	private $searchEngine = null;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+		$this->searchEngine = SearchEngine::create();
+	}
+
 	/**
 	 * Get the output format
 	 *
@@ -124,10 +135,16 @@ class ApiOpenSearch extends ApiBase {
 	 */
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
 
-		$searchEngine = SearchEngine::create();
-		$searchEngine->setLimitOffset( $limit );
-		$searchEngine->setNamespaces( $namespaces );
-		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
+		if ( isset( $this->getAllowedParams()['profile'] )
+				&& $this->getParameter( 'profile' ) != null ) {
+			$this->searchEngine->setFeatureData(
+					SearchEngine::COMPLETION_PROFILE_TYPE,
+					$this->getParameter( 'profile' ) );
+		}
+		$this->searchEngine->setLimitOffset( $limit );
+		$this->searchEngine->setNamespaces( $namespaces );
+		$titles = $this->searchEngine->extractTitles(
+				$this->searchEngine->completionSearchWithVariants( $search ) );
 
 		if ( !$titles ) {
 			return;
@@ -270,7 +287,10 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		if ( $this->allowedParams !== null ) {
+			return $this->allowedParams;
+		}
+		$this->allowedParams = [
 			'search' => null,
 			'limit' => [
 				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
@@ -294,6 +314,12 @@ class ApiOpenSearch extends ApiBase {
 			],
 			'warningsaserror' => false,
 		];
+
+		$profileParam = ApiQueryPrefixSearch::buildProfileApiParam( $this->searchEngine );
+		if ( $profileParam ) {
+			$this->allowedParams['profile'] = $profileParam;
+		}
+		return $this->allowedParams;
 	}
 
 	protected function getExamplesMessages() {
