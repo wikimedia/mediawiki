@@ -1199,6 +1199,7 @@ $wgAutoloadLocalClasses = [
 	'SavepointPostgres' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'ScopedCallback' => __DIR__ . '/includes/libs/ScopedCallback.php',
 	'ScopedLock' => __DIR__ . '/includes/filebackend/lockmanager/ScopedLock.php',
+	'SearchApi' => __DIR__ . '/includes/api/SearchApi.php',
 	'SearchDatabase' => __DIR__ . '/includes/search/SearchDatabase.php',
 	'SearchDump' => __DIR__ . '/maintenance/dumpIterator.php',
 	'SearchEngine' => __DIR__ . '/includes/search/SearchEngine.php',
