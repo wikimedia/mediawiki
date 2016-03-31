@@ -300,7 +300,7 @@
 			}
 		},
 		"ResourceModules": {
-			"type": "object",
+			"type": ["array", "object"],
 			"description": "ResourceLoader modules to register",
 			"patternProperties": {
 				"^[a-zA-Z0-9-\\.]+$": {
