@@ -461,6 +461,7 @@ class RecentChange {
 	 */
 	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
+
 		$errors = [];
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
@@ -497,8 +498,8 @@ class RecentChange {
 		PatrolLog::record( $this, $auto, $user, $tags );
 
 		Hooks::run(
-					'MarkPatrolledComplete',
-					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ]
+			'MarkPatrolledComplete',
+			[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ]
 		);
 
 		return [];
