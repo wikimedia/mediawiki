@@ -41,6 +41,8 @@
 	} );
 
 	QUnit.test( 'getUserInfos', 3, function ( assert ) {
+		mw.config.set( 'wgUserGroups', [ '*', 'user' ] );
+
 		mw.user.getGroups( function ( groups ) {
 			assert.deepEqual( groups, [ '*', 'user' ], 'Result' );
 		} );
@@ -55,7 +57,7 @@
 
 		this.server.respondWith( /meta=userinfo/, function ( request ) {
 			request.respond( 200, { 'Content-Type': 'application/json' },
-				'{ "query": { "userinfo": { "groups": [ "*", "user" ], "rights": [ "read", "edit", "createtalk" ] } } }'
+				'{ "query": { "userinfo": { "groups": [ "unused" ], "rights": [ "read", "edit", "createtalk" ] } } }'
 			);
 		} );
 
