@@ -113,15 +113,14 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		$customiseFilterEnabled = $params['customised'] !== 'all';
 		if ( $customiseFilterEnabled ) {
 			global $wgContLang;
-			$lang = $langObj->getCode();
 
 			$customisedMessages = AllMessagesTablePager::getCustomisedStatuses(
 				array_map(
 					[ $langObj, 'ucfirst' ],
 					$messages_target
 				),
-				$lang,
-				$lang != $wgContLang->getCode()
+				$langObj->getCode(),
+				!$langObj->equals( $wgContLang )
 			);
 
 			$customised = $params['customised'] === 'modified';
