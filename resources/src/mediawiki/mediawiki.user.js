@@ -241,10 +241,10 @@
 		 * @return {jQuery.Promise}
 		 */
 		getGroups: function ( callback ) {
-			return getUserInfo().then(
-				function ( userInfo ) { return userInfo.groups; },
-				function () { return []; }
-			).done( callback );
+			var userGroups = mw.config.get( 'wgUserGroups', [] );
+
+			// Uses promise for backwards compatibility
+			return $.Deferred().resolve( userGroups ).done( callback );
 		},
 
 		/**
