@@ -962,6 +962,7 @@
 	"apihelp-query+prefixsearch-param-limit": "Maximum number of results to return.",
 	"apihelp-query+prefixsearch-param-offset": "Number of results to skip.",
 	"apihelp-query+prefixsearch-example-simple": "Search for page titles beginning with <kbd>meaning</kbd>.",
+	"apihelp-query+prefixsearch-param-profile": "Search profile to use.",
 
 	"apihelp-query+protectedtitles-description": "List all titles protected from creation.",
 	"apihelp-query+protectedtitles-param-namespace": "Only list titles in these namespaces.",
@@ -1082,6 +1083,7 @@
 	"apihelp-query+search-param-what": "Which type of search to perform.",
 	"apihelp-query+search-param-info": "Which metadata to return.",
 	"apihelp-query+search-param-prop": "Which properties to return:",
+	"apihelp-query+search-param-qiprofile": "Query independent profile to use (affects ranking algorithm).",
 	"apihelp-query+search-paramvalue-prop-size": "Adds the size of the page in bytes.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "Adds the word count of the page.",
 	"apihelp-query+search-paramvalue-prop-timestamp": "Adds the timestamp of when the page was last edited.",
