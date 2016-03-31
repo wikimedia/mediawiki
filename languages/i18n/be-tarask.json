@@ -1749,6 +1749,7 @@
 	"apisandbox-fullscreen": "Разгарнуць панэль",
 	"apisandbox-fullscreen-tooltip": "Разгарнуць панэль пясочніцы, каб запоўніць акно браўзэра.",
 	"apisandbox-unfullscreen": "Паказаць старонку",
+	"apisandbox-unfullscreen-tooltip": "Паменшыць панэль пясочніцы, каб былі даступныя навігацыйныя спасылкі MediaWiki.",
 	"apisandbox-submit": "Зрабіць запыт",
 	"apisandbox-reset": "Ачысьціць",
 	"apisandbox-examples": "Прыклады",
