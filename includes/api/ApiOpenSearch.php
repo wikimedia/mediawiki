@@ -125,6 +125,8 @@ class ApiOpenSearch extends ApiBase {
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
 
 		$searchEngine = SearchEngine::create();
+		$searchEngine->setFeatureData( SearchEngine::COMPLETION_PROFILE_TYPE,
+				$this->getParameter( 'profile' ) );
 		$searchEngine->setLimitOffset( $limit );
 		$searchEngine->setNamespaces( $namespaces );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
@@ -270,7 +272,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$allowedParams = [
 			'search' => null,
 			'limit' => [
 				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
@@ -294,6 +296,12 @@ class ApiOpenSearch extends ApiBase {
 			],
 			'warningsaserror' => false,
 		];
+
+		$profileParam = ApiQueryPrefixSearch::buildProfileApiParam( SearchEngine::create() );
+		if ( $profileParam ) {
+			$allowedParams['profile'] = $profileParam;
+		}
+		return $allowedParams;
 	}
 
 	protected function getExamplesMessages() {
