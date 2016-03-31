@@ -272,7 +272,6 @@ class SpecialRedirect extends FormSpecialPage {
 				$url = $this->dispatchLog();
 				break;
 			default:
-				$this->getOutput()->setStatusCode( 404 );
 				$url = null;
 				break;
 		}
