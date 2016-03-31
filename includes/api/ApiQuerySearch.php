@@ -32,6 +32,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQuerySearch extends ApiQueryGeneratorBase {
+	use SearchApi;
+	/** @var array list of api allowed params */
+	private $allowedParams;
 
 	/**
 	 * When $wgSearchType is null, $wgSearchAlternatives[0] is null. Null isn't
@@ -62,7 +65,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Extract parameters
-		$limit = $params['limit'];
 		$query = $params['search'];
 		$what = $params['what'];
 		$interwiki = $params['interwiki'];
@@ -80,11 +82,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		// Create search engine instance and set options
-		$type = isset( $params['backend'] ) && $params['backend'] != self::BACKEND_NULL_PARAM ?
-			$params['backend'] : null;
-		$search = MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
-		$search->setLimitOffset( $limit + 1, $params['offset'] );
-		$search->setNamespaces( $params['namespace'] );
+		$search = $this->buildSearchEngine( $params );
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 
 		$query = $search->transformSearchTerm( $query );
@@ -152,6 +150,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$titles = [];
 		$count = 0;
 		$result = $matches->next();
+		$limit = $params['limit'];
 
 		while ( $result ) {
 			if ( ++$count > $limit ) {
@@ -301,7 +300,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		$params = [
+		if ( $this->allowedParams !== null ) {
+			return $this->allowedParams;
+		}
+		$this->allowedParams = [
 			'search' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
@@ -372,9 +374,26 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DFLT => $searchConfig->getSearchType(),
 				ApiBase::PARAM_TYPE => $alternatives,
 			];
+		} else {
+			// Unfortunately we can't support profile selection if
+			// multiple backends are supported. List of profiles
+			// depends is backend dependent but at this stage we don't
+			// know yet which one will be chosen.
+			$profileParam = $this->buildProfileApiParam( SearchEngine::COMPLETION_PROFILE_TYPE,
+				'apihelp-query+search-param-qiprofile' );
+			if ( $profileParam ) {
+				$this->allowedParams['qiprofile'] = $profileParam;
+			}
 		}
 
-		return $params;
+		return $this->allowedParams;
+	}
+
+	public function getSearchProfileParams() {
+		if ( isset( $this->getAllowedParams()['qiprofile'] ) ) {
+			return [ 'qiprofile' => SearchEngine::COMPLETION_PROFILE_TYPE ];
+		}
+		return [];
 	}
 
 	protected function getExamplesMessages() {

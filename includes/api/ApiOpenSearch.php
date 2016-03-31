@@ -30,9 +30,17 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiOpenSearch extends ApiBase {
+	use SearchApi;
 
 	private $format = null;
 	private $fm = null;
+
+	/** @var array list of api allowed params */
+	private $allowedParams = null;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	}
 
 	/**
 	 * Get the output format
@@ -78,26 +86,14 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();
-		$search = $params['search'];
-		$limit = $params['limit'];
-		$namespaces = $params['namespace'];
-		$suggest = $params['suggest'];
-
-		if ( $params['redirects'] === null ) {
-			// Backwards compatibility, don't resolve for JSON.
-			$resolveRedir = $this->getFormat() !== 'json';
-		} else {
-			$resolveRedir = $params['redirects'] === 'resolve';
-		}
-
 		$results = [];
-
+		$params = $this->extractRequestParams();
+		$suggest = $params['suggest'];
 		if ( !$suggest || $this->getConfig()->get( 'EnableOpenSearchSuggest' ) ) {
 			// Open search results may be stored for a very long time
 			$this->getMain()->setCacheMaxAge( $this->getConfig()->get( 'SearchSuggestCacheExpiry' ) );
 			$this->getMain()->setCacheMode( 'public' );
-			$this->search( $search, $limit, $namespaces, $resolveRedir, $results );
+			$results = $this->search( $params );
 
 			// Allow hooks to populate extracts and images
 			Hooks::run( 'ApiOpenSearchSuggest', [ &$results ] );
@@ -117,21 +113,24 @@ class ApiOpenSearch extends ApiBase {
 
 	/**
 	 * Perform the search
-	 *
-	 * @param string $search Text to search
-	 * @param int $limit Maximum items to return
-	 * @param array $namespaces Namespaces to search
-	 * @param bool $resolveRedir Whether to resolve redirects
-	 * @param array &$results Put results here. Keys have to be integers.
+	 * @param array $params api request params
+	 * @return array search results. Keys are integers.
 	 */
-	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
-		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
-		$searchEngine->setLimitOffset( $limit );
-		$searchEngine->setNamespaces( $namespaces );
+	private function search( array $params ) {
+		$search = $params['search'];
+
+		if ( $params['redirects'] === null ) {
+			// Backwards compatibility, don't resolve for JSON.
+			$resolveRedir = $this->getFormat() !== 'json';
+		} else {
+			$resolveRedir = $params['redirects'] === 'resolve';
+		}
+
+		$searchEngine = $this->buildSearchEngine( $params );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
 
 		if ( !$titles ) {
-			return;
+			return [];
 		}
 
 		// Special pages need unique integer ids in the return list, so we just
@@ -206,6 +205,8 @@ class ApiOpenSearch extends ApiBase {
 				];
 			}
 		}
+
+		return $results;
 	}
 
 	/**
@@ -271,7 +272,10 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		if ( $this->allowedParams !== null ) {
+			return $this->allowedParams;
+		}
+		$this->allowedParams = [
 			'search' => null,
 			'limit' => [
 				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
@@ -295,6 +299,20 @@ class ApiOpenSearch extends ApiBase {
 			],
 			'warningsaserror' => false,
 		];
+
+		$profileParam = $this->buildProfileApiParam( SearchEngine::COMPLETION_PROFILE_TYPE,
+			'apihelp-query+prefixsearch-param-profile' );
+		if ( $profileParam ) {
+			$this->allowedParams['profile'] = $profileParam;
+		}
+		return $this->allowedParams;
+	}
+
+	public function getSearchProfileParams() {
+		if ( isset( $this->getAllowedParams()['profile'] ) ) {
+			return [ 'profile' => SearchEngine::COMPLETION_PROFILE_TYPE ];
+		}
+		return [];
 	}
 
 	protected function getExamplesMessages() {
