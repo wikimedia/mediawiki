@@ -25,6 +25,11 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
+	use SearchApi;
+
+	/** @var array list of api allowed params */
+	private $allowedParams;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ps' );
 	}
@@ -44,12 +49,9 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
 		$limit = $params['limit'];
-		$namespaces = $params['namespace'];
 		$offset = $params['offset'];
 
-		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
-		$searchEngine->setLimitOffset( $limit + 1, $offset );
-		$searchEngine->setNamespaces( $namespaces );
+		$searchEngine = $this->buildSearchEngine( $params );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
 
 		if ( $resultPageSet ) {
@@ -60,7 +62,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 				return $current;
 			} );
 			if ( count( $titles ) > $limit ) {
-				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
+				$this->setContinueEnumParameter( 'offset', $offset + $limit );
 				array_pop( $titles );
 			}
 			$resultPageSet->populateFromTitles( $titles );
@@ -72,7 +74,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 			$count = 0;
 			foreach ( $titles as $title ) {
 				if ( ++$count > $limit ) {
-					$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
+					$this->setContinueEnumParameter( 'offset', $offset + $limit );
 					break;
 				}
 				$vals = [
@@ -101,29 +103,45 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-			return [
-				'search' => [
-					ApiBase::PARAM_TYPE => 'string',
-					ApiBase::PARAM_REQUIRED => true,
-				],
-				'namespace' => [
-					ApiBase::PARAM_DFLT => NS_MAIN,
-					ApiBase::PARAM_TYPE => 'namespace',
-					ApiBase::PARAM_ISMULTI => true,
-				],
-				'limit' => [
-					ApiBase::PARAM_DFLT => 10,
-					ApiBase::PARAM_TYPE => 'limit',
-					ApiBase::PARAM_MIN => 1,
-					// Non-standard value for compatibility with action=opensearch
-					ApiBase::PARAM_MAX => 100,
-					ApiBase::PARAM_MAX2 => 200,
-				],
-				'offset' => [
-					ApiBase::PARAM_DFLT => 0,
-					ApiBase::PARAM_TYPE => 'integer',
-				],
-			];
+		if ( $this->allowedParams !== null ) {
+			return $this->allowedParams;
+		}
+		$this->allowedParams = [
+			'search' => [
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+			],
+			'namespace' => [
+				ApiBase::PARAM_DFLT => NS_MAIN,
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_ISMULTI => true,
+			],
+			'limit' => [
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				// Non-standard value for compatibility with action=opensearch
+				ApiBase::PARAM_MAX => 100,
+				ApiBase::PARAM_MAX2 => 200,
+			],
+			'offset' => [
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => 'integer',
+			],
+		];
+		$profileParam = $this->buildProfileApiParam( SearchEngine::COMPLETION_PROFILE_TYPE,
+			'apihelp-query+prefixsearch-param-profile' );
+		if ( $profileParam ) {
+			$this->allowedParams['profile'] = $profileParam;
+		}
+		return $this->allowedParams;
+	}
+
+	public function getSearchProfileParams() {
+		if ( isset( $this->getAllowedParams()['profile'] ) ) {
+			return [ SearchEngine::COMPLETION_PROFILE_TYPE => 'profile' ];
+		}
+		return [];
 	}
 
 	protected function getExamplesMessages() {
