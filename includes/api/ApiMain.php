@@ -1816,53 +1816,6 @@ class ApiMain extends ApiBase {
 		return "* $paramName={$module->getModuleName()} $modulePrefix*";
 	}
 
-	/**
-	 * Check whether the user wants us to show version information in the API help
-	 * @return bool
-	 * @deprecated since 1.21, always returns false
-	 */
-	public function getShowVersions() {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		return false;
-	}
-
-	/**
-	 * Add or overwrite a module in this ApiMain instance. Intended for use by extending
-	 * classes who wish to add their own modules to their lexicon or override the
-	 * behavior of inherent ones.
-	 *
-	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
-	 * @param string $name The identifier for this module.
-	 * @param ApiBase $class The class where this module is implemented.
-	 */
-	protected function addModule( $name, $class ) {
-		$this->getModuleManager()->addModule( $name, 'action', $class );
-	}
-
-	/**
-	 * Add or overwrite an output format for this ApiMain. Intended for use by extending
-	 * classes who wish to add to or modify current formatters.
-	 *
-	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
-	 * @param string $name The identifier for this format.
-	 * @param ApiFormatBase $class The class implementing this format.
-	 */
-	protected function addFormat( $name, $class ) {
-		$this->getModuleManager()->addModule( $name, 'format', $class );
-	}
-
-	/**
-	 * Returns the list of supported formats in form ( 'format' => 'ClassName' )
-	 *
-	 * @since 1.18
-	 * @deprecated since 1.21, Use getModuleManager()'s methods instead.
-	 * @return array
-	 */
-	public function getFormats() {
-		return $this->getModuleManager()->getNamesWithClasses( 'format' );
-	}
-
 	/**@}*/
 
 }
