@@ -1,84 +1,123 @@
 <?php
 /**
- * Portions taken from phpwiki-1.3.3.
- *
- * Copyright © 2000, 2001 Geoffrey T. Dairiki <dairiki@dairiki.org>
- * You may copy this code freely under the conditions of the GPL.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup DifferenceEngine
+ * Extends standard Table-formatted DiffFormatter of core to enable Inline-Diff
+ * format of MF with only one column.
  */
-
-/**
- * A formatter that outputs unified diffs
- * @ingroup DifferenceEngine
- */
-class UnifiedDiffFormatter extends DiffFormatter {
-
-	/** @var int */
-	protected $leadingContextLines = 2;
-
-	/** @var int */
-	protected $trailingContextLines = 2;
-
+class UnifiedDiffFormatter extends TableDiffFormatter {
 	/**
-	 * @param string[] $lines
-	 * @param string $prefix
+	 * Get a div element with a complete new added line as content.
+	 * Complete line will be appear with green background.
+	 * @param array $lines With changed lines
 	 */
-	protected function lines( $lines, $prefix = ' ' ) {
+	function added( $lines ) {
 		foreach ( $lines as $line ) {
-			$this->writeOutput( "{$prefix}{$line}\n" );
+			$this->writeOutput( '<div class="mw-diff-inline-added"><ins>'
+				. $this->lineOrNbsp( htmlspecialchars( $line ) )
+				. "</ins></div>\n" );
 		}
 	}
 
 	/**
-	 * @param string[] $lines
+	 * Get a div with a line which is deleted completly.
+	 * This line will be appear with complete red background.
+	 * @param array $lines With deleted lines
 	 */
-	protected function added( $lines ) {
-		$this->lines( $lines, '+' );
+	function deleted( $lines ) {
+		foreach ( $lines as $line ) {
+			$this->writeOutput( '<div class="mw-diff-inline-deleted"><del>'
+				. $this->lineOrNbsp( htmlspecialchars( $line ) )
+				. "</del></div>\n" );
+		}
 	}
 
 	/**
-	 * @param string[] $lines
+	 * Get a div with changed content (not complete added or deleted line)
+	 * @param string[] $orig Old content to compare with
+	 * @param string[] $closing New content to compare with
 	 */
-	protected function deleted( $lines ) {
-		$this->lines( $lines, '-' );
+	function changed( $orig, $closing ) {
+		$this->writeOutput( '<div class="mw-diff-inline-changed">' );
+		$diff = new WordLevelDiff( $orig, $closing );
+		$edits = $this->inlineWordDiff( $diff );
+
+		# WordLevelDiff returns already HTML-escaped output.
+		$this->writeOutput( implode( '', $edits ) );
+
+		$this->writeOutput( "</div>\n" );
 	}
 
 	/**
-	 * @param string[] $orig
-	 * @param string[] $closing
+	 * @inheritdoc
 	 */
-	protected function changed( $orig, $closing ) {
-		$this->deleted( $orig );
-		$this->added( $closing );
+	function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
+		return "<div class=\"mw-diff-inline-header\"><!-- LINES $xbeg,$ybeg --></div>\n";
 	}
 
 	/**
-	 * @param int $xbeg
-	 * @param int $xlen
-	 * @param int $ybeg
-	 * @param int $ylen
+	 * Get a div with some changed content.
+	 * Line will appear with white and the changed context in
+	 * red (for deleted chars) and green (for added chars) background.
+	 * @param array $lines With edited lines
+	 */
+	function context( $lines ) {
+		foreach ( $lines as $line ) {
+			$this->writeOutput( "<div class=\"mw-diff-inline-context\">" .
+				"{$this->contextLine( htmlspecialchars( $line ) )}</div>\n" );
+		}
+	}
+
+	/**
+	 * Convert all spaces to a forced blank. If line is empty creates at least one
+	 * forced space.
+	 * @param string $marker Unused
+	 * @param string $class Unused
+	 * @param string $line Content of the line
+	 * @return string
+	 */
+	protected function wrapLine( $marker, $class, $line ) {
+		// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
+		$this->escapeWhiteSpace( $this->lineOrNbsp( $line ) );
+
+		return $line;
+	}
+
+	/**
+	 * Adds a forced blank to line, if the line is empty.
+	 * @param string $line
 	 *
 	 * @return string
 	 */
-	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
-		return "@@ -$xbeg,$xlen +$ybeg,$ylen @@";
+	protected function lineOrNbsp( $line ) {
+		if ( $line === '' ) {
+			$line = '&#160;';
+		}
+
+		return $line;
 	}
 
+	/**
+	 * Builds the string of deleted and added words from the given diff.
+	 * @param WordLevelDiff $diff
+	 * @return array Array of changed lines
+	 */
+	private function inlineWordDiff( $diff ) {
+		$inline = new HWLDFWordAccumulator;
+		$inline->insClass = $inline->delClass = '';
+
+		foreach ( $diff->edits as $edit ) {
+			if ( $edit->type == 'copy' ) {
+				$inline->addWords( $edit->orig );
+			} elseif ( $edit->type == 'delete' ) {
+				$inline->addWords( $edit->orig, 'del' );
+			} elseif ( $edit->type == 'add' ) {
+				$inline->addWords( $edit->closing, 'ins' );
+			} else {
+				$inline->addWords( $edit->orig, 'del' );
+				$inline->addWords( $edit->closing, 'ins' );
+			}
+		}
+		$lines = $inline->getLines();
+
+		return $lines;
+	}
 }
