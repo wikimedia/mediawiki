@@ -14,9 +14,9 @@
  *     'table', 'div', or 'raw'.
  *   row-legend - If non-empty, each group of subfields will be enclosed in a
  *     fieldset. The value is the name of a message key to use as the legend.
- *   create-button-message - Message key to use as the text of the button to
+ *   create-button-message - Message to use as the text of the button to
  *     add an additional group of fields.
- *   delete-button-message - Message key to use as the text of automatically-
+ *   delete-button-message - Message to use as the text of automatically-
  *     generated 'delete' button. Ignored if 'delete' is included in 'fields'.
  *
  * In the generated HTML, the subfields will be named along the lines of
@@ -299,7 +299,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				'name' => $name,
 				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
-				'default' => $this->msg( $label )->text(),
+				'default' => $this->getMessage( $label )->text(),
 			], $this->mParent );
 			$v = $field->getDefault();
 
@@ -371,7 +371,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'name' => $name,
 			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
-			'default' => $this->msg( $label )->text(),
+			'default' => $this->getMessage( $label )->text(),
 		], $this->mParent );
 		$html .= $field->getInputHTML( $field->getDefault() );
 
