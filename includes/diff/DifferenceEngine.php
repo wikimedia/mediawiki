@@ -34,6 +34,9 @@ define( 'MW_DIFF_VERSION', '1.11a' );
  * @ingroup DifferenceEngine
  */
 class DifferenceEngine extends ContextSource {
+	protected $newRevisionHeader = '';
+	protected $prevLink = '';
+	protected $nextLink = '';
 
 	/** @var int */
 	public $mOldid;
@@ -98,6 +101,8 @@ class DifferenceEngine extends ContextSource {
 	/** @var bool Refresh the diff cache */
 	protected $mRefreshCache = false;
 
+	protected $name = 'split';
+
 	/**#@-*/
 
 	/**
@@ -117,7 +122,6 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'\n" );
-
 		$this->mOldid = $old;
 		$this->mNewid = $new;
 		$this->mRefreshCache = $refreshCache;
@@ -328,11 +332,12 @@ class DifferenceEngine extends ContextSource {
 					$this->mOldPage,
 					$this->msg( 'previousdiff' )->escaped(),
 					[ 'id' => 'differences-prevlink' ],
-					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
+					[ 'diff' => 'prev', 'oldid' => $this->mOldid, 'engine' => $this->name ] + $query
 				);
 			} else {
 				$prevlink = '&#160;';
 			}
+			$this->prevLink = $prevlink;
 
 			if ( $this->mOldRev->isMinor() ) {
 				$oldminor = ChangesList::flag( 'minor' );
@@ -372,11 +377,12 @@ class DifferenceEngine extends ContextSource {
 				$this->mNewPage,
 				$this->msg( 'nextdiff' )->escaped(),
 				[ 'id' => 'differences-nextlink' ],
-				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
+				[ 'diff' => 'next', 'oldid' => $this->mNewid, 'engine' => $this->name ] + $query
 			);
 		} else {
 			$nextlink = '&#160;';
 		}
+		$this->nextLink = $nextlink;
 
 		if ( $this->mNewRev->isMinor() ) {
 			$newminor = ChangesList::flag( 'minor' );
@@ -405,8 +411,10 @@ class DifferenceEngine extends ContextSource {
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
+		$this->newRevisionHeader = $newRevisionHeader;
+		$this->revUserTools = Linker::revUserTools( $this->mNewRev, !$this->unhide );
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
+			'<div id="mw-diff-ntitle2">' . $this->revUserTools .
 			" $rollback</div>" .
 			'<div id="mw-diff-ntitle3">' . $newminor .
 			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
