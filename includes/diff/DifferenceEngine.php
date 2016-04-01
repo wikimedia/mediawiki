@@ -37,6 +37,17 @@ class DifferenceEngine extends ContextSource {
 	 */
 	const DIFF_VERSION = MW_DIFF_VERSION;
 
+	/** @var string the header for the current revision */
+	protected $newRevisionHeader = '';
+	/** @var string a link to the previous revision */
+	protected $prevLink = '';
+	/** @var string a link to the next revision */
+	protected $nextLink = '';
+	/** @var string the edit summary for the new revision */
+	protected $newRevisionSummary = '';
+	/** @var string the revision user tools for the new revision */
+	protected $newRevisionUserTools = '';
+
 	/** @var int */
 	public $mOldid;
 
@@ -100,6 +111,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var bool Refresh the diff cache */
 	protected $mRefreshCache = false;
 
+	/** @var string name for the engine. key for ContentHandler::getAvailableDifferenceEngines */
+	protected $name = 'split';
+
 	/**#@-*/
 
 	/**
@@ -119,7 +133,6 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'\n" );
-
 		$this->mOldid = $old;
 		$this->mNewid = $new;
 		$this->mRefreshCache = $refreshCache;
@@ -334,11 +347,12 @@ class DifferenceEngine extends ContextSource {
 					$this->mOldPage,
 					$this->msg( 'previousdiff' )->escaped(),
 					[ 'id' => 'differences-prevlink' ],
-					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
+					[ 'diff' => 'prev', 'oldid' => $this->mOldid, 'engine' => $this->name ] + $query
 				);
 			} else {
 				$prevlink = '&#160;';
 			}
+			$this->prevLink = $prevlink;
 
 			if ( $this->mOldRev->isMinor() ) {
 				$oldminor = ChangesList::flag( 'minor' );
@@ -382,11 +396,12 @@ class DifferenceEngine extends ContextSource {
 				$this->mNewPage,
 				$this->msg( 'nextdiff' )->escaped(),
 				[ 'id' => 'differences-nextlink' ],
-				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
+				[ 'diff' => 'next', 'oldid' => $this->mNewid, 'engine' => $this->name ] + $query
 			);
 		} else {
 			$nextlink = '&#160;';
 		}
+		$this->nextLink = $nextlink;
 
 		if ( $this->mNewRev->isMinor() ) {
 			$newminor = ChangesList::flag( 'minor' );
@@ -415,11 +430,14 @@ class DifferenceEngine extends ContextSource {
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
+		$this->newRevisionHeader = $newRevisionHeader;
+		$this->newRevisionUserTools = Linker::revUserTools( $this->mNewRev, !$this->unhide );
+		$this->newRevisionSummary = $newminor .
+			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel;
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
+			'<div id="mw-diff-ntitle2">' . $this->newRevisionUserTools .
 			" $rollback</div>" .
-			'<div id="mw-diff-ntitle3">' . $newminor .
-			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
+			'<div id="mw-diff-ntitle3">' . $this->newRevisionSummary . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
