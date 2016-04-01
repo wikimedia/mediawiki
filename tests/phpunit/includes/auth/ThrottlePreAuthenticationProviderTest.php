@@ -8,15 +8,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
 class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	public function testConstructor() {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
