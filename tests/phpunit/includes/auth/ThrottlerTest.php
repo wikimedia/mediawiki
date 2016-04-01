@@ -14,15 +14,6 @@ use Psr\Log\NullLogger;
  * @covers MediaWiki\Auth\Throttler
  */
 class ThrottlerTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	public function testConstructor() {
 		$cache = new \HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
