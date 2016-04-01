@@ -9,6 +9,9 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Flaky test (T131549).
+	 *
+	 * @group Broken
 	 * @dataProvider provider_testTimestampedUID
 	 * @covers UIDGenerator::newTimestampedUID128
 	 * @covers UIDGenerator::newTimestampedUID88
