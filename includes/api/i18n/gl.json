@@ -1286,6 +1286,7 @@
 	"apihelp-watch-example-unwatch": "Deixar de vixiar a páxina <kbd>Páxina Principal</kbd>.",
 	"apihelp-watch-example-generator": "Vixiar as primeiras páxinas no espazo de nomes principal",
 	"apihelp-format-example-generic": "Devolver o resultado da consulta no formato $1.",
+	"apihelp-format-param-wrappedhtml": "Devolver o HTML formatado e os módulos ResourceLoader asociados como un obxecto JSON.",
 	"apihelp-json-description": "Datos de saída en formato JSON.",
 	"apihelp-json-param-callback": "Se está especificado, inclúe a saída na chamada da función indicada. Para maior seguridade, todos os datos específicos do usuario serán restrinxidos.",
 	"apihelp-json-param-utf8": "Se está especificado, codifica a maioría (pero non todos) dos caracteres ASCII como UTF-8 no canto de reemprazalos con secuencias de escape hexadecimais. Por defecto cando <var>formatversion</var> non é <kbd>1</kbd>.",

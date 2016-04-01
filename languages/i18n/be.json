@@ -1441,6 +1441,7 @@
 	"foreign-structured-upload-form-label-own-work": "Гэта мая ўласная праца",
 	"foreign-structured-upload-form-label-infoform-categories": "Катэгорыі",
 	"foreign-structured-upload-form-label-infoform-date": "Дата",
+	"foreign-structured-upload-form-label-own-work-message-local": "Я пацвярджаю, што ўкладваю гэты файл згодна з правіламі і ліцэнзійнай палітыкай {{GRAMMAR:родны|{{SITENAME}}}}.",
 	"backend-fail-stream": "Не атрымалася трансляваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзервную копію $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

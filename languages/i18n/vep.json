@@ -940,6 +940,7 @@
 	"recentchanges-label-bot": "Necen redakcijan tegi bot",
 	"recentchanges-label-unpatrolled": "Necidä redakcijad ei völ patruliruinugoi",
 	"recentchanges-label-plusminus": "Suruden toižetamine baitoiš",
+	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "$1 - uz' lehtpol'",
 	"rcnotefrom": "Alemba oma anttud toižetused '''$2'''-späi ( '''$1'''-hesai).",
 	"rclistfrom": "Ozutada uded toižetused dataspäi $3 $2 augotaden",
