@@ -108,12 +108,6 @@ class AuthManager implements LoggerAwareInterface {
 	 * @return AuthManager
 	 */
 	public static function singleton() {
-		global $wgDisableAuthManager;
-
-		if ( $wgDisableAuthManager ) {
-			throw new \BadMethodCallException( '$wgDisableAuthManager is set' );
-		}
-
 		if ( self::$instance === null ) {
 			self::$instance = new self(
 				\RequestContext::getMain()->getRequest(),
