@@ -1,5 +1,6 @@
 <?php
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -44,6 +45,11 @@ class WatchedItemStore {
 	private $revisionGetTimestampFromIdCallback;
 
 	/**
+	 * @var StatsdDataFactoryInterface
+	 */
+	private $stats;
+
+	/**
 	 * @var self|null
 	 */
 	private static $instance;
@@ -51,13 +57,16 @@ class WatchedItemStore {
 	/**
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
+	 * @param StatsdDataFactoryInterface $stats
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache
+		HashBagOStuff $cache,
+		StatsdDataFactoryInterface $stats
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->stats = $stats;
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
 	}
@@ -146,7 +155,8 @@ class WatchedItemStore {
 		if ( !self::$instance ) {
 			self::$instance = new self(
 				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] )
+				new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+				RequestContext::getMain()->getStats()
 			);
 		}
 		return self::$instance;
@@ -166,18 +176,22 @@ class WatchedItemStore {
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
+		$this->stats->increment( 'WatchedItemStore.cache' );
 	}
 
 	private function uncache( User $user, LinkTarget $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
+		$this->stats->increment( 'WatchedItemStore.uncache' );
 	}
 
 	private function uncacheLinkTarget( LinkTarget $target ) {
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
 		}
+		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
+			$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget.items' );
 			$this->cache->delete( $key );
 		}
 	}
@@ -451,8 +465,10 @@ class WatchedItemStore {
 
 		$cached = $this->getCached( $user, $target );
 		if ( $cached ) {
+			$this->stats->increment( 'WatchedItemStore.getWatchedItem.cached' );
 			return $cached;
 		}
+		$this->stats->increment( 'WatchedItemStore.getWatchedItem.load' );
 		return $this->loadWatchedItem( $user, $target );
 	}
 
