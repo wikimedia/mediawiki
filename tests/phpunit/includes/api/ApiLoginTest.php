@@ -13,8 +13,6 @@ class ApiLoginTest extends ApiTestCase {
 	 * Test result of attempted login with an empty username
 	 */
 	public function testApiLoginNoName() {
-		global $wgDisableAuthManager;
-
 		$session = [
 			'wsTokenSecrets' => [ 'login' => 'foobar' ],
 		];
@@ -22,11 +20,11 @@ class ApiLoginTest extends ApiTestCase {
 			'lgname' => '', 'lgpassword' => self::$users['sysop']->password,
 			'lgtoken' => (string)( new MediaWiki\Session\Token( 'foobar', '' ) )
 		], $session );
-		$this->assertEquals( $wgDisableAuthManager ? 'NoName' : 'Failed', $data[0]['login']['result'] );
+		$this->assertEquals( 'Failed', $data[0]['login']['result'] );
 	}
 
 	public function testApiLoginBadPass() {
-		global $wgServer, $wgDisableAuthManager;
+		global $wgServer;
 
 		$user = self::$users['sysop'];
 		$user->getUser()->logout();
@@ -63,7 +61,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 
-		$this->assertEquals( $wgDisableAuthManager ? 'WrongPass' : 'Failed', $a );
+		$this->assertEquals( 'Failed', $a );
 	}
 
 	public function testApiLoginGoodPass() {

@@ -7,15 +7,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\AuthenticationRequest
  */
 class AuthenticationRequestTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	public function testBasics() {
 		$mock = $this->getMockForAbstractClass( AuthenticationRequest::class );
 
