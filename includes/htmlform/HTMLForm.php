@@ -58,17 +58,17 @@
  *                             Some field types support multi-level arrays.
  *    'options-message'     -- message key to be parsed to extract the list of
  *                             options (like 'ipbreason-dropdown').
- *    'label-message'       -- message key for a message to use as the label.
+ *    'label-message'       -- message key or object for a message to use as the label.
  *                             can be an array of msg key and then parameters to
  *                             the message.
  *    'label'               -- alternatively, a raw text message. Overridden by
  *                             label-message
  *    'help'                -- message text for a message to use as a help text.
- *    'help-message'        -- message key for a message to use as a help text.
+ *    'help-message'        -- message key or object for a message to use as a help text.
  *                             can be an array of msg key and then parameters to
  *                             the message.
  *                             Overwrites 'help-messages' and 'help'.
- *    'help-messages'       -- array of message key. As above, each item can
+ *    'help-messages'       -- array of message keys/objects. As above, each item can
  *                             be an array of msg key and then parameters.
  *                             Overwrites 'help'.
  *    'required'            -- passed through to the object, indicating that it
