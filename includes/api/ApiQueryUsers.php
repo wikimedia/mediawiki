@@ -261,7 +261,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					}
 				} else {
 					$data[$u]['missing'] = true;
-					if ( isset( $this->prop['cancreate'] ) && !$this->getConfig()->get( 'DisableAuthManager' ) ) {
+					if ( isset( $this->prop['cancreate'] ) ) {
 						$data[$u]['cancreate'] = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u )
 							->isGood();
 					}
@@ -304,7 +304,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		$ret = [
+		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => [
@@ -317,6 +317,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					'emailable',
 					'gender',
 					'centralids',
+					'cancreate',
 					// When adding a prop, consider whether it should be added
 					// to self::$publicProps
 				],
@@ -333,10 +334,6 @@ class ApiQueryUsers extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 		];
-		if ( !$this->getConfig()->get( 'DisableAuthManager' ) ) {
-			$ret['prop'][ApiBase::PARAM_TYPE][] = 'cancreate';
-		}
-		return $ret;
 	}
 
 	protected function getExamplesMessages() {
