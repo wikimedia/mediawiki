@@ -180,6 +180,7 @@ class HTMLForm extends ContextSource {
 	protected $mSectionFooters = [];
 	protected $mPost = '';
 	protected $mId;
+	protected $mName;
 	protected $mTableId = '';
 
 	protected $mSubmitID;
@@ -1006,6 +1007,9 @@ class HTMLForm extends ContextSource {
 		if ( !empty( $this->mAutocomplete ) ) {
 			$attribs['autocomplete'] = $this->mAutocomplete;
 		}
+		if ( !empty ( $this->mName ) ) {
+			$attribs['name'] = $this->mName;
+		}
 		return $attribs;
 	}
 
@@ -1343,6 +1347,16 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setId( $id ) {
 		$this->mId = $id;
+
+		return $this;
+	}
+
+	/**
+	 * @param string$ name 'name' attribute for the form
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setName( $name ) {
+		$this->mName = $name;
 
 		return $this;
 	}
