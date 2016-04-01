@@ -162,19 +162,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Given an array of non-normalised probabilities, this function will select
-	 * an element and return the appropriate key
-	 *
-	 * @deprecated since 1.21, use ArrayUtils::pickRandom()
-	 *
-	 * @param array $weights
-	 * @return bool|int|string
-	 */
-	public function pickRandom( array $weights ) {
-		return ArrayUtils::pickRandom( $weights );
-	}
-
-	/**
 	 * @param array $loads
 	 * @param bool|string $wiki Wiki to get non-lagged for
 	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
