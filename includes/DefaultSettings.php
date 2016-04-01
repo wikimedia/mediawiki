@@ -4407,13 +4407,6 @@ $wgPasswordPolicy = [
 ];
 
 /**
- * Disable AuthManager
- * @since 1.27
- * @deprecated since 1.27, for use during development only
- */
-$wgDisableAuthManager = true;
-
-/**
  * Configure AuthManager
  *
  * All providers are constructed using ObjectFactory, see that for the general
@@ -8085,13 +8078,6 @@ $wgTextModelsToParse = [
 	CONTENT_MODEL_JAVASCRIPT, // Make categories etc work, people put them into comments.
 	CONTENT_MODEL_CSS, // Make categories etc work, people put them into comments.
 ];
-
-/**
- * Whether the user must enter their password to change their e-mail address
- *
- * @since 1.20
- */
-$wgRequirePasswordforEmailChange = true;
 
 /**
  * Register handlers for specific types of sites.
