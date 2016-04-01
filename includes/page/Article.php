@@ -769,8 +769,9 @@ class Article implements Page {
 		}
 
 		$contentHandler = $rev->getContentHandler();
+		$ctx = $this->getContext();
 		$de = $contentHandler->createDifferenceEngine(
-			$this->getContext(),
+			$ctx,
 			$oldid,
 			$diff,
 			$rcid,
@@ -780,6 +781,7 @@ class Article implements Page {
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
+		$ctx->getOutput()->addHtml( $this->getDiffEngineSelectorHTML( $ctx, $oldid, $diff ) );
 		$de->showDiffPage( $diffOnly );
 
 		// Run view updates for the newer revision being diffed (and shown
@@ -787,6 +789,50 @@ class Article implements Page {
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
+	}
+
+	/**
+	 * Creates and generates HTML for an HTMLForm that allows the user
+	 * control over the difference engine to use.
+	 *
+	 * @param IContextSource $ctx
+	 * @param string $oldid of the previous revision
+	 * @param string $currentId revision id of the current revision
+	 * @return string
+	 */
+	protected function getDiffEngineSelectorHTML( $ctx, $oldid, $currentId ) {
+		$engines = ContentHandler::getAvailableDifferenceEngines();
+		$options = [];
+		foreach ( $engines as $name => $engine ) {
+			$options[$engine['label']->text()] = $name;
+		}
+		$fields = [
+			'oldid' => [
+				'type' => 'hidden',
+				'name' => 'oldid',
+				'default' => $oldid,
+			],
+			'diff' => [
+				'type' => 'hidden',
+				'name' => 'diff',
+				'default' => $currentId,
+			],
+			'diffonly' => [
+				'name' => 'diffonly',
+				'class' => 'HTMLCheckField',
+				'label' => wfMessage( 'difference-view-diff-only-label' )->text(),
+			],
+			'engine' => [
+				'type' => 'select',
+				'name' => 'engine',
+				'options' => $options,
+			]
+		];
+		$form = HTMLForm::factory( 'table', $fields, $ctx );
+		$form->setWrapperLegend( wfMessage( 'difference-header' )->text() );
+		$form->setMethod( 'get' );
+		$form->loadData();
+		return $form->getHTML( false );
 	}
 
 	/**
