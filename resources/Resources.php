@@ -1442,6 +1442,13 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.action.history.diff.inline' => [
+		'position' => 'top',
+		'styles' => [
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.inline.less',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.action.view.dblClickEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => [
