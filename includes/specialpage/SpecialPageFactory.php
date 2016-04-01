@@ -83,8 +83,8 @@ class SpecialPageFactory {
 
 		// Authentication
 		'Userlogin' => 'SpecialUserLogin',
-		'Userlogout' => 'SpecialUserLogoutPreAuthManager',
-		'CreateAccount' => 'SpecialCreateAccountPreAuthManager',
+		'Userlogout' => 'SpecialUserLogout',
+		'CreateAccount' => 'SpecialCreateAccount',
 		'LinkAccounts' => 'SpecialLinkAccounts',
 		'UnlinkAccounts' => 'SpecialUnlinkAccounts',
 		'ChangeCredentials' => 'SpecialChangeCredentials',
@@ -97,7 +97,7 @@ class SpecialPageFactory {
 		'BlockList' => 'SpecialBlockList',
 		'ChangePassword' => 'SpecialChangePasswordPreAuthManager',
 		'BotPasswords' => 'SpecialBotPasswords',
-		'PasswordReset' => 'SpecialPasswordResetPreAuthManager',
+		'PasswordReset' => 'SpecialPasswordReset',
 		'DeletedContributions' => 'DeletedContributionsPage',
 		'Preferences' => 'SpecialPreferences',
 		'ResetTokens' => 'SpecialResetTokens',
@@ -230,7 +230,6 @@ class SpecialPageFactory {
 		global $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
 		global $wgPageLanguageUseDB, $wgContentHandlerUseDB;
-		global $wgDisableAuthManager;
 
 		if ( !is_array( self::$list ) ) {
 
@@ -246,7 +245,7 @@ class SpecialPageFactory {
 			}
 
 			if ( $wgEnableEmail ) {
-				self::$list['ChangeEmail'] = 'SpecialChangeEmailPreAuthManager';
+				self::$list['ChangeEmail'] = 'SpecialChangeEmail';
 			}
 
 			if ( $wgEnableJavaScriptTest ) {
@@ -258,19 +257,6 @@ class SpecialPageFactory {
 			}
 			if ( $wgContentHandlerUseDB ) {
 				self::$list['ChangeContentModel'] = 'SpecialChangeContentModel';
-			}
-
-			// horrible hack to allow selection between old and new classes via a feature flag - T110756
-			// will be removed once AuthManager is stable
-			if ( !$wgDisableAuthManager ) {
-				self::$list = array_map( function ( $class ) {
-					return preg_replace( '/PreAuthManager$/', '', $class );
-				}, self::$list );
-			} else {
-				self::$list['Userlogin'] = 'LoginForm';
-				self::$list = array_diff_key( self::$list, array_fill_keys( [
-					'LinkAccounts', 'UnlinkAccounts', 'ChangeCredentials', 'RemoveCredentials',
-				], true ) );
 			}
 
 			// Add extension special pages
