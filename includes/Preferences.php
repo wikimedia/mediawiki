@@ -207,8 +207,9 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser, $wgDisableAuthManager;
+		global $wgContLang, $wgParser;
 
+		$authManager = AuthManager::singleton();
 		$config = $context->getConfig();
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
@@ -283,21 +284,19 @@ class Preferences {
 		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
 
 		// Actually changeable stuff
-		$realnameChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'realname' )
-			: AuthManager::singleton()->allowsPropertyChange( 'realname' );
 		$defaultPreferences['realname'] = [
 			// (not really "private", but still shouldn't be edited without permission)
-			'type' => $canEditPrivateInfo && $realnameChangeAllowed ? 'text' : 'info',
+			'type' => $canEditPrivateInfo && $authManager->allowsPropertyChange( 'realname' )
+				? 'text' : 'info',
 			'default' => $user->getRealName(),
 			'section' => 'personal/info',
 			'label-message' => 'yourrealname',
 			'help-message' => 'prefs-help-realname',
 		];
 
-		$allowPasswordChange = $wgDisableAuthManager ? $wgAuth->allowPasswordChange()
-			: AuthManager::singleton()->allowsAuthenticationDataChange(
-				new PasswordAuthenticationRequest(), false );
-		if ( $canEditPrivateInfo && $allowPasswordChange ) {
+		if ( $canEditPrivateInfo && $authManager->allowsAuthenticationDataChange(
+			new PasswordAuthenticationRequest(), false )
+		) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), [],
 				[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
@@ -418,10 +417,8 @@ class Preferences {
 			'default' => $oldsigHTML,
 			'section' => 'personal/signature',
 		];
-		$nicknameChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'nickname' )
-			: AuthManager::singleton()->allowsPropertyChange( 'nickname' );
 		$defaultPreferences['nickname'] = [
-			'type' => $nicknameChangeAllowed ? 'text' : 'info',
+			'type' => $authManager->allowsPropertyChange( 'nickname' ) ? 'text' : 'info',
 			'maxlength' => $config->get( 'MaxSigChars' ),
 			'label-message' => 'yournick',
 			'validation-callback' => [ 'Preferences', 'validateSignature' ],
@@ -450,9 +447,7 @@ class Preferences {
 				}
 
 				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
-				$emailChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'emailaddress' )
-					: AuthManager::singleton()->allowsPropertyChange( 'emailaddress' );
-				if ( $canEditPrivateInfo && $emailChangeAllowed ) {
+				if ( $canEditPrivateInfo && $authManager->allowsPropertyChange( 'emailaddress' ) ) {
 					$link = Linker::link(
 						SpecialPage::getTitleFor( 'ChangeEmail' ),
 						$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
