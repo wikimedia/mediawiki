@@ -129,8 +129,6 @@ if ( isset( $wgFooterIcons['copyright'] )
 			'src' => $wgRightsIcon,
 			'alt' => $wgRightsText,
 		];
-	} else {
-		unset( $wgFooterIcons['copyright']['copyright'] );
 	}
 }
 
