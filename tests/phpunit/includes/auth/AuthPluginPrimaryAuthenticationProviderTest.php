@@ -7,15 +7,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider
  */
 class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	public function testConstruction() {
 		$plugin = new AuthManagerAuthPlugin();
 		try {

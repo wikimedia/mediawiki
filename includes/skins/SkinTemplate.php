@@ -664,34 +664,17 @@ class SkinTemplate extends Skin {
 				? 'nav-login-createaccount'
 				: 'pt-login';
 
-			// TODO remove this after AuthManager is stable
-			global $wgDisableAuthManager;
-			if ( $wgDisableAuthManager ) {
-				$is_signup = $request->getText( 'type' ) == 'signup';
-				$login_url = [
-					'text' => $this->msg( $loginlink )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-					'active' => $title->isSpecial( 'Userlogin' )
-						&& ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
-				];
-				$createaccount_url = [
-					'text' => $this->msg( 'pt-createaccount' )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
-					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
-				];
-			} else {
-				$login_url = [
-					'text' => $this->msg( $loginlink )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-					'active' => $title->isSpecial( 'Userlogin' ) ||
-						$title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
-				];
-				$createaccount_url = [
-					'text' => $this->msg( 'pt-createaccount' )->text(),
-					'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
-					'active' => $title->isSpecial( 'CreateAccount' ),
-				];
-			}
+			$login_url = [
+				'text' => $this->msg( $loginlink )->text(),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+				'active' => $title->isSpecial( 'Userlogin' )
+					|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
+			];
+			$createaccount_url = [
+				'text' => $this->msg( 'pt-createaccount' )->text(),
+				'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
+				'active' => $title->isSpecial( 'CreateAccount' ),
+			];
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( User::groupHasPermission( '*', 'edit' ) ) {
