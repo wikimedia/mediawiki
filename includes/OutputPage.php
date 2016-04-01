@@ -2298,6 +2298,7 @@ class OutputPage extends ContextSource {
 				'site',
 				'mediawiki.page.startup',
 				'mediawiki.user',
+				'mediawiki.piglatin',
 			];
 
 			// Support for high-density display images if enabled

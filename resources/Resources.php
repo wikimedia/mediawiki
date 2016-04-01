@@ -366,6 +366,11 @@ return [
 		'styles' => 'resources/src/jquery.tipsy/jquery.tipsy.css',
 	],
 
+	/* jQuery Piglatinify */
+	'jquery.piglatinify' => [
+		'scripts' => 'resources/lib/jquery.piglatinify/jquery.piglatinify.js'
+	],
+
 	/* jQuery UI */
 
 	'jquery.ui.core' => [
@@ -1984,6 +1989,12 @@ return [
 		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	/* MediaWiki Piglatin */
+	'mediawiki.piglatin' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.piglatin.js',
+		'dependencies' => 'jquery.piglatinify'
 	],
 
 	/* MediaWiki UI */
