@@ -4382,13 +4382,6 @@ $wgPasswordPolicy = [
 ];
 
 /**
- * Disable AuthManager
- * @since 1.27
- * @deprecated since 1.27, for use during development only
- */
-$wgDisableAuthManager = true;
-
-/**
  * Configure AuthManager
  *
  * All providers are constructed using ObjectFactory, see that for the general
