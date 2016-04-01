@@ -748,14 +748,6 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Do not use, does nothing, will be removed
-	 * @deprecated since 1.21
-	 */
-	public function finishPageSetGeneration() {
-		wfDeprecated( __METHOD__, '1.21' );
-	}
-
-	/**
 	 * This method populates internal variables with page information
 	 * based on the given array of title strings.
 	 *
