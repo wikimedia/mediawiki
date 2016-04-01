@@ -1580,12 +1580,13 @@ class HTMLForm extends ContextSource {
 		$fieldData = [];
 
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			if ( !empty( $field->mParams['nodata'] ) ) {
+			$request = $this->getRequest();
+			if ( $field->noData( $request ) ) {
 				continue;
 			} elseif ( !empty( $field->mParams['disabled'] ) ) {
 				$fieldData[$fieldname] = $field->getDefault();
 			} else {
-				$fieldData[$fieldname] = $field->loadDataFromRequest( $this->getRequest() );
+				$fieldData[$fieldname] = $field->loadDataFromRequest( $request );
 			}
 		}
 
