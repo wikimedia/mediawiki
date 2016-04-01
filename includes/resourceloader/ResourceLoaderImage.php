@@ -179,7 +179,7 @@ class ResourceLoaderImage {
 			'version' => $context->getVersion(),
 		];
 
-		return wfExpandUrl( wfAppendQuery( $script, $query ), PROTO_RELATIVE );
+		return wfAppendQuery( $script, $query );
 	}
 
 	/**
