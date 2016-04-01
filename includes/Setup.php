@@ -468,22 +468,6 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
-// Disable AuthManager API modules if $wgDisableAuthManager
-if ( $wgDisableAuthManager ) {
-	$wgAPIModules += [
-		'clientlogin' => 'ApiDisabled',
-		'createaccount' => 'ApiCreateAccount', // Use the non-AuthManager version
-		'linkaccount' => 'ApiDisabled',
-		'unlinkaccount' => 'ApiDisabled',
-		'changeauthenticationdata' => 'ApiDisabled',
-		'removeauthenticationdata' => 'ApiDisabled',
-		'resetpassword' => 'ApiDisabled',
-	];
-	$wgAPIMetaModules += [
-		'authmanagerinfo' => 'ApiQueryDisabled',
-	];
-}
-
 // Backwards compatibility with old password limits
 if ( $wgMinimalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
@@ -719,12 +703,10 @@ $wgContLang->initContLang();
 $wgRequest->interpolateTitle();
 
 if ( !is_object( $wgAuth ) ) {
-	$wgAuth = $wgDisableAuthManager ? new AuthPlugin : new MediaWiki\Auth\AuthManagerAuthPlugin;
+	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
 	Hooks::run( 'AuthPluginSetup', [ &$wgAuth ] );
 }
-if ( !$wgDisableAuthManager &&
-	$wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin
-) {
+if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
 	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( [
 		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
 		new MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider( [
@@ -860,11 +842,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
 		$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
-		if ( $wgDisableAuthManager ) {
-			MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
-		} else {
-			MediaWiki\Auth\AuthManager::singleton()->autoCreateUser( $sessionUser, true );
-		}
+		MediaWiki\Auth\AuthManager::singleton()->autoCreateUser( $sessionUser, true );
 		Profiler::instance()->scopedProfileOut( $ps_autocreate );
 	}
 	unset( $sessionUser );
