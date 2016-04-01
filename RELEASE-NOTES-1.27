@@ -226,8 +226,6 @@ The following PHP extensions are strongly recommended:
   authentication, or add additional checks to the login process, or to support
   multiple login methods at once, or to support non-password-based login methods.
 ** Providers are configured via the global setting $wgAuthManagerConfig.
-** A global, $wgDisableAuthManager, is temporarily available to disable
-   AuthManager until extensions are ready to support it.
 ** New hook, AuthChangeFormFields, to adjust the form fields on
    AuthManager-related special pages.
 ** New hook, AuthManagerLoginAuthenticateAudit, for additional logging of
@@ -280,18 +278,17 @@ The following PHP extensions are strongly recommended:
   merely need to change the username and password used after setting up a bot
   password.
 * action=upload no longer understands statuskey, asyncdownload or leavemessage.
-* Several changes when $wgDisableAuthManager is false:
-** action=login is deprecated for uses other than bot passwords.
-** list=users can now indicate if a missing username is creatable.
-** action=createaccount is changed in a non-backwards-compatible manner.
-** Added action=query&meta=authmanagerinfo.
-** Added action=clientlogin to be used to log into the main account instead of
+* action=login is deprecated for uses other than bot passwords.
+* list=users can now indicate if a missing username is creatable.
+* action=createaccount is changed in a non-backwards-compatible manner.
+* Added action=query&meta=authmanagerinfo.
+* Added action=clientlogin to be used to log into the main account instead of
    action=login.
-** Added action=linkaccount.
-** Added action=unlinkaccount.
-** Added action=changeauthenticationdata.
-** Added action=removeauthenticationdata.
-** Added action=resetpassword.
+* Added action=linkaccount.
+* Added action=unlinkaccount.
+* Added action=changeauthenticationdata.
+* Added action=removeauthenticationdata.
+* Added action=resetpassword.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
