@@ -9,7 +9,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected $apiContext;
 
 	protected function setUp() {
-		global $wgServer, $wgDisableAuthManager;
+		global $wgServer;
 
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
@@ -22,7 +22,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		];
 
 		$this->setMwGlobals( [
-			'wgAuth' => $wgDisableAuthManager ? new AuthPlugin : new MediaWiki\Auth\AuthManagerAuthPlugin,
+			'wgAuth' => new MediaWiki\Auth\AuthManagerAuthPlugin,
 			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->user,
 		] );

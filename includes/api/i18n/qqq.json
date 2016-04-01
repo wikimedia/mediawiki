@@ -217,7 +217,6 @@
 	"apihelp-linkaccount-example-link": "{{doc-apihelp-example|linkaccount}}",
 	"apihelp-login-description": "{{doc-apihelp-description|login|info=This message is used when <code>$wgEnableBotPasswords</code> is true.|seealso=* {{msg-mw|apihelp-login-description-nobotpasswords}}}}",
 	"apihelp-login-description-nobotpasswords": "{{doc-apihelp-description|login|info=This message is used when <code>$wgEnableBotPasswords</code> is false.|seealso=* {{msg-mw|apihelp-login-description}}}}",
-	"apihelp-login-description-nonauthmanager": "{{doc-apihelp-description|login|info=This message is used when <code>$wgDisableAuthManager</code> is true.|seealso=* {{msg-mw|apihelp-login-description}}}}",
 	"apihelp-login-param-name": "{{doc-apihelp-param|login|name}}\n{{Identical|Username}}",
 	"apihelp-login-param-password": "{{doc-apihelp-param|login|password}}\n{{Identical|Password}}",
 	"apihelp-login-param-domain": "{{doc-apihelp-param|login|domain}}",

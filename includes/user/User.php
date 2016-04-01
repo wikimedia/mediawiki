@@ -648,8 +648,6 @@ class User implements IDBAccessObject {
 	 * @since 1.27
 	 */
 	public static function newSystemUser( $name, $options = [] ) {
-		global $wgDisableAuthManager;
-
 		$options += [
 			'validate' => 'valid',
 			'create' => true,
@@ -662,9 +660,6 @@ class User implements IDBAccessObject {
 		}
 
 		$fields = self::selectFields();
-		if ( $wgDisableAuthManager ) {
-			$fields = array_merge( $fields, [ 'user_password', 'user_newpassword' ] );
-		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$row = $dbw->selectRow(
@@ -681,49 +676,15 @@ class User implements IDBAccessObject {
 
 		// A user is considered to exist as a non-system user if it can
 		// authenticate, or has an email set, or has a non-invalid token.
-		if ( !$user->mEmail && $user->mToken === self::INVALID_TOKEN ) {
-			if ( $wgDisableAuthManager ) {
-				$passwordFactory = new PasswordFactory();
-				$passwordFactory->init( RequestContext::getMain()->getConfig() );
-				try {
-					$password = $passwordFactory->newFromCiphertext( $row->user_password );
-				} catch ( PasswordError $e ) {
-					wfDebug( 'Invalid password hash found in database.' );
-					$password = PasswordFactory::newInvalidPassword();
-				}
-				try {
-					$newpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
-				} catch ( PasswordError $e ) {
-					wfDebug( 'Invalid password hash found in database.' );
-					$newpassword = PasswordFactory::newInvalidPassword();
-				}
-				$canAuthenticate = !$password instanceof InvalidPassword ||
-					!$newpassword instanceof InvalidPassword;
-			} else {
-				$canAuthenticate = AuthManager::singleton()->userCanAuthenticate( $name );
-			}
-		}
-		if ( $user->mEmail || $user->mToken !== self::INVALID_TOKEN || $canAuthenticate ) {
+		if ( $user->mEmail || $user->mToken !== self::INVALID_TOKEN ||
+			AuthManager::singleton()->userCanAuthenticate( $name )
+		) {
 			// User exists. Steal it?
 			if ( !$options['steal'] ) {
 				return null;
 			}
 
-			if ( $wgDisableAuthManager ) {
-				$nopass = PasswordFactory::newInvalidPassword()->toString();
-				$dbw->update(
-					'user',
-					[
-						'user_password' => $nopass,
-						'user_newpassword' => $nopass,
-						'user_newpass_time' => null,
-					],
-					[ 'user_id' => $user->getId() ],
-					__METHOD__
-				);
-			} else {
-				AuthManager::singleton()->revokeAccessForUser( $name );
-			}
+			AuthManager::singleton()->revokeAccessForUser( $name );
 
 			$user->invalidateEmail();
 			$user->mToken = self::INVALID_TOKEN;
@@ -2469,31 +2430,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function setPassword( $str ) {
-		global $wgAuth, $wgDisableAuthManager;
-
-		if ( !$wgDisableAuthManager ) {
-			return $this->setPasswordInternal( $str );
-		}
-
-		if ( $str !== null ) {
-			if ( !$wgAuth->allowPasswordChange() ) {
-				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
-			}
-
-			$status = $this->checkPasswordValidity( $str );
-			if ( !$status->isGood() ) {
-				throw new PasswordError( $status->getMessage()->text() );
-			}
-		}
-
-		if ( !$wgAuth->setPassword( $this, $str ) ) {
-			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
-		}
-
-		$this->setOption( 'watchlisttoken', false );
-		$this->setPasswordInternal( $str );
-
-		return true;
+		return $this->setPasswordInternal( $str );
 	}
 
 	/**
@@ -2505,16 +2442,7 @@ class User implements IDBAccessObject {
 	 *  through the web interface.
 	 */
 	public function setInternalPassword( $str ) {
-		global $wgAuth, $wgDisableAuthManager;
-
-		if ( !$wgDisableAuthManager ) {
-			$this->setPasswordInternal( $str );
-		}
-
-		if ( $wgAuth->allowSetLocalPassword() ) {
-			$this->setOption( 'watchlisttoken', false );
-			$this->setPasswordInternal( $str );
-		}
+		$this->setPasswordInternal( $str );
 	}
 
 	/**
@@ -2526,55 +2454,26 @@ class User implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	private function setPasswordInternal( $str ) {
-		global $wgDisableAuthManager;
+		$manager = AuthManager::singleton();
 
-		if ( $wgDisableAuthManager ) {
-			$id = self::idFromName( $this->getName(), self::READ_LATEST );
-			if ( $id == 0 ) {
-				throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
-			}
-
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update(
-				'user',
-				[
-					'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
-					'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
-					'user_newpass_time' => $dbw->timestampOrNull( null ),
-				],
-				[
-					'user_id' => $id,
-				],
-				__METHOD__
-			);
-
-			// When the main password is changed, invalidate all bot passwords too
-			BotPassword::invalidateAllPasswordsForUser( $this->getName() );
-		} else {
-			$manager = AuthManager::singleton();
-
-			// If the user doesn't exist yet, fail
-			if ( !$manager->userExists( $this->getName() ) ) {
-				throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
-			}
-
-			$status = $this->changeAuthenticationData( [
-				'username' => $this->getName(),
-				'password' => $str,
-				'retype' => $str,
-			] );
-			if ( !$status->isGood() ) {
-				\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
-					->info( __METHOD__ . ': Password change rejected: '
-						. $status->getWikiText( null, null, 'en' ) );
-				return false;
-			}
-
-			$this->setOption( 'watchlisttoken', false );
+		// If the user doesn't exist yet, fail
+		if ( !$manager->userExists( $this->getName() ) ) {
+			throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
 		}
 
+		$status = $this->changeAuthenticationData( [
+			'username' => $this->getName(),
+			'password' => $str,
+			'retype' => $str,
+		] );
+		if ( !$status->isGood() ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+				->info( __METHOD__ . ': Password change rejected: '
+					. $status->getWikiText( null, null, 'en' ) );
+			return false;
+		}
+
+		$this->setOption( 'watchlisttoken', false );
 		SessionManager::singleton()->invalidateSessionsForUser( $this );
 
 		return true;
@@ -2593,12 +2492,6 @@ class User implements IDBAccessObject {
 	 * @since 1.27
 	 */
 	public function changeAuthenticationData( array $data ) {
-		global $wgDisableAuthManager;
-		if ( $wgDisableAuthManager ) {
-			throw new LogicException( __METHOD__ . ' cannot be called when $wgDisableAuthManager '
-				. 'is true' );
-		}
-
 		$manager = AuthManager::singleton();
 		$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_CHANGE, $this );
 		$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
@@ -2684,32 +2577,7 @@ class User implements IDBAccessObject {
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
-		global $wgDisableAuthManager;
-
-		if ( $wgDisableAuthManager ) {
-			$id = $this->getId();
-			if ( $id == 0 ) {
-				throw new LogicException( 'Cannot set new password for a user that is not in the database.' );
-			}
-
-			$dbw = wfGetDB( DB_MASTER );
-
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
-			$update = [
-				'user_newpassword' => $passwordFactory->newFromPlaintext( $str )->toString(),
-			];
-
-			if ( $str === null ) {
-				$update['user_newpass_time'] = null;
-			} elseif ( $throttle ) {
-				$update['user_newpass_time'] = $dbw->timestamp();
-			}
-
-			$dbw->update( 'user', $update, [ 'user_id' => $id ], __METHOD__ );
-		} else {
-			throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
-		}
+		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
 	}
 
 	/**
@@ -2719,33 +2587,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isPasswordReminderThrottled() {
-		global $wgPasswordReminderResendTime, $wgDisableAuthManager;
-
-		if ( $wgDisableAuthManager ) {
-			if ( !$wgPasswordReminderResendTime ) {
-				return false;
-			}
-
-			$this->load();
-
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-			$newpassTime = $db->selectField(
-				'user',
-				'user_newpass_time',
-				[ 'user_id' => $this->getId() ],
-				__METHOD__
-			);
-
-			if ( $newpassTime === null ) {
-				return false;
-			}
-			$expiry = wfTimestamp( TS_UNIX, $newpassTime ) + $wgPasswordReminderResendTime * 3600;
-			return time() < $expiry;
-		} else {
-			throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
-		}
+		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
 	}
 
 	/**
@@ -4241,87 +4083,27 @@ class User implements IDBAccessObject {
 	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
-		global $wgAuth, $wgLegacyEncoding, $wgDisableAuthManager;
-
-		if ( $wgDisableAuthManager ) {
-			$this->load();
-
-			// Some passwords will give a fatal Status, which means there is
-			// some sort of technical or security reason for this password to
-			// be completely invalid and should never be checked (e.g., T64685)
-			if ( !$this->checkPasswordValidity( $password )->isOK() ) {
-				return false;
-			}
-
-			// Certain authentication plugins do NOT want to save
-			// domain passwords in a mysql database, so we should
-			// check this (in case $wgAuth->strict() is false).
-			if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
+		$manager = AuthManager::singleton();
+		$reqs = AuthenticationRequest::loadRequestsFromSubmission(
+			$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
+			[
+				'username' => $this->getName(),
+				'password' => $password,
+			]
+		);
+		$res = AuthManager::singleton()->beginAuthentication( $reqs, 'null:' );
+		switch ( $res->status ) {
+			case AuthenticationResponse::PASS:
 				return true;
-			} elseif ( $wgAuth->strict() ) {
-				// Auth plugin doesn't allow local authentication
+			case AuthenticationResponse::FAIL:
+				// Hope it's not a PreAuthenticationProvider that failed...
+				\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+					->info( __METHOD__ . ': Authentication failed: ' . $res->message->plain() );
 				return false;
-			} elseif ( $wgAuth->strictUserAuth( $this->getName() ) ) {
-				// Auth plugin doesn't allow local authentication for this user name
-				return false;
-			}
-
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-
-			try {
-				$mPassword = $passwordFactory->newFromCiphertext( $db->selectField(
-					'user', 'user_password', [ 'user_id' => $this->getId() ], __METHOD__
-				) );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$mPassword = PasswordFactory::newInvalidPassword();
-			}
-
-			if ( !$mPassword->equals( $password ) ) {
-				if ( $wgLegacyEncoding ) {
-					// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
-					// Check for this with iconv
-					$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-					if ( $cp1252Password === $password || !$mPassword->equals( $cp1252Password ) ) {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-
-			if ( $passwordFactory->needsUpdate( $mPassword ) && !wfReadOnly() ) {
-				$this->setPasswordInternal( $password );
-			}
-
-			return true;
-		} else {
-			$manager = AuthManager::singleton();
-			$reqs = AuthenticationRequest::loadRequestsFromSubmission(
-				$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
-				[
-					'username' => $this->getName(),
-					'password' => $password,
-				]
-			);
-			$res = AuthManager::singleton()->beginAuthentication( $reqs, 'null:' );
-			switch ( $res->status ) {
-				case AuthenticationResponse::PASS:
-					return true;
-				case AuthenticationResponse::FAIL:
-					// Hope it's not a PreAuthenticationProvider that failed...
-					\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
-						->info( __METHOD__ . ': Authentication failed: ' . $res->message->plain() );
-					return false;
-				default:
-					throw new BadMethodCallException(
-						'AuthManager returned a response unsupported by ' . __METHOD__
-					);
-			}
+			default:
+				throw new BadMethodCallException(
+					'AuthManager returned a response unsupported by ' . __METHOD__
+				);
 		}
 	}
 
@@ -4334,43 +4116,8 @@ class User implements IDBAccessObject {
 	 * @return bool True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
-		global $wgNewPasswordExpiry, $wgDisableAuthManager;
-
-		if ( $wgDisableAuthManager ) {
-			$this->load();
-
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-
-			$row = $db->selectRow(
-				'user',
-				[ 'user_newpassword', 'user_newpass_time' ],
-				[ 'user_id' => $this->getId() ],
-				__METHOD__
-			);
-			try {
-				$newPassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$newPassword = PasswordFactory::newInvalidPassword();
-			}
-
-			if ( $newPassword->equals( $plaintext ) ) {
-				if ( is_null( $row->user_newpass_time ) ) {
-					return true;
-				}
-				$expiry = wfTimestamp( TS_UNIX, $row->user_newpass_time ) + $wgNewPasswordExpiry;
-				return ( time() < $expiry );
-			} else {
-				return false;
-			}
-		} else {
-			// Can't check the temporary password individually.
-			return $this->checkPassword( $plaintext );
-		}
+		// Can't check the temporary password individually.
+		return $this->checkPassword( $plaintext );
 	}
 
 	/**
@@ -5239,45 +4986,10 @@ class User implements IDBAccessObject {
 	 *     - false will be converted to 'create' if this object is the same as
 	 *       $wgUser and to 'create2' otherwise
 	 * @param string $reason User supplied reason
-	 * @return int|bool True if not $wgNewUserLog or not $wgDisableAuthManager;
-	 *   otherwise ID of log item or 0 on failure
+	 * @return bool true
 	 */
 	public function addNewUserLogEntry( $action = false, $reason = '' ) {
-		global $wgUser, $wgNewUserLog, $wgDisableAuthManager;
-		if ( !$wgDisableAuthManager || empty( $wgNewUserLog ) ) {
-			return true; // disabled
-		}
-
-		if ( $action === true ) {
-			$action = 'byemail';
-		} elseif ( $action === false ) {
-			if ( $this->equals( $wgUser ) ) {
-				$action = 'create';
-			} else {
-				$action = 'create2';
-			}
-		}
-
-		if ( $action === 'create' || $action === 'autocreate' ) {
-			$performer = $this;
-		} else {
-			$performer = $wgUser;
-		}
-
-		$logEntry = new ManualLogEntry( 'newusers', $action );
-		$logEntry->setPerformer( $performer );
-		$logEntry->setTarget( $this->getUserPage() );
-		$logEntry->setComment( $reason );
-		$logEntry->setParameters( [
-			'4::userid' => $this->getId(),
-		] );
-		$logid = $logEntry->insert();
-
-		if ( $action !== 'autocreate' ) {
-			$logEntry->publish( $logid );
-		}
-
-		return (int)$logid;
+		return true; // disabled
 	}
 
 	/**
