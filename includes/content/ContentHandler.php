@@ -672,7 +672,7 @@ abstract class ContentHandler {
 		) ) {
 			return $differenceEngine;
 		}
-		$diffEngineClass = $this->getDiffEngineClass();
+		$diffEngineClass = $this->getDiffEngineClass( $context );
 		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
 	}
 
@@ -770,14 +770,39 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns the available diff engines that can be used
+	 *
+	 * @return array
+	 */
+	public static function getAvailableDifferenceEngines() {
+		return [
+			'split' => [
+				'label' => wfMessage( 'difference-view-split-name' ),
+				'class' => DifferenceEngine::class,
+			],
+			'unified' => [
+				'label' => wfMessage( 'difference-view-unified-name' ),
+				'class' => UnifiedDifferenceEngine::class,
+			],
+		];
+	}
+
+	/**
 	 * Returns the name of the diff engine to use.
 	 *
 	 * @since 1.21
+	 * @param IContextSource $context
 	 *
 	 * @return string
 	 */
-	protected function getDiffEngineClass() {
-		return DifferenceEngine::class;
+	protected function getDiffEngineClass( IContextSource $context ) {
+		$engines = self::getAvailableDifferenceEngines();
+		$engine = $context->getRequest()->getText( 'engine' );
+		if ( isset( $engines[$engine] ) ) {
+			return $engines[$engine]['class'];
+		} else {
+			return $engines['split']['class'];
+		}
 	}
 
 	/**
