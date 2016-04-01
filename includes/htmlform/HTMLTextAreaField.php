@@ -4,6 +4,24 @@ class HTMLTextAreaField extends HTMLFormField {
 	const DEFAULT_COLS = 80;
 	const DEFAULT_ROWS = 25;
 
+	protected $mPlaceholder = '';
+
+	/**
+	 * @param array $params
+	 *   - cols, rows: textarea size
+	 *   - placeholder/placeholder-message: set HTML placeholder attribute
+	 *   - spellcheck: set HTML spellcheck attribute
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		if ( isset( $params['placeholder-message'] ) ) {
+			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->parse();
+		} elseif ( isset( $params['placeholder'] ) ) {
+			$this->mPlaceholder = $params['placeholder'];
+		}
+	}
+
 	function getCols() {
 		return isset( $this->mParams['cols'] ) ? $this->mParams['cols'] : static::DEFAULT_COLS;
 	}
@@ -32,9 +50,11 @@ class HTMLTextAreaField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		$allowedParams = [
-			'placeholder',
 			'tabindex',
 			'disabled',
 			'readonly',
@@ -56,9 +76,11 @@ class HTMLTextAreaField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		$allowedParams = [
-			'placeholder',
 			'tabindex',
 			'disabled',
 			'readonly',

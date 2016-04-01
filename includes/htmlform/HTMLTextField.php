@@ -1,6 +1,27 @@
 <?php
 
 class HTMLTextField extends HTMLFormField {
+	protected $mPlaceholder = '';
+
+	/**
+	 * @param array $params
+	 *   - type: HTML textfield type
+	 *   - size: field size in characters (defaults to 45)
+	 *   - placeholder/placeholder-message: set HTML placeholder attribute
+	 *   - spellcheck: set HTML spellcheck attribute
+	 *   - persistent: upon unsuccessful requests, retain the value (defaults to true, except
+	 *     for password fields)
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		if ( isset( $params['placeholder-message'] ) ) {
+			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->parse();
+		} elseif ( isset( $params['placeholder'] ) ) {
+			$this->mPlaceholder = $params['placeholder'];
+		}
+	}
+
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
@@ -27,6 +48,9 @@ class HTMLTextField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
@@ -37,7 +61,6 @@ class HTMLTextField extends HTMLFormField {
 			'pattern',
 			'title',
 			'step',
-			'placeholder',
 			'list',
 			'maxlength',
 			'tabindex',
@@ -90,6 +113,9 @@ class HTMLTextField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
@@ -100,7 +126,6 @@ class HTMLTextField extends HTMLFormField {
 			'flags',
 			'indicator',
 			'maxlength',
-			'placeholder',
 			'readonly',
 			'required',
 			'tabindex',
