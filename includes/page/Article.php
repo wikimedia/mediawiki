@@ -773,8 +773,9 @@ class Article implements Page {
 		}
 
 		$contentHandler = $rev->getContentHandler();
+		$ctx = $this->getContext();
 		$de = $contentHandler->createDifferenceEngine(
-			$this->getContext(),
+			$ctx,
 			$oldid,
 			$diff,
 			$rcid,
@@ -784,6 +785,7 @@ class Article implements Page {
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
+		$ctx->getOutput()->addHtml( $this->getEngineSelectorHTML( $ctx, $oldid, $diff ) );
 		$de->showDiffPage( $diffOnly );
 
 		// Run view updates for the newer revision being diffed (and shown
@@ -791,6 +793,42 @@ class Article implements Page {
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
+	}
+
+	protected function getEngineSelectorHTML( $ctx, $oldid, $diff ) {
+		$engines = ContentHandler::getAvailableDifferenceEngines();
+		$options = [];
+		foreach ( $engines as $name => $engine ) {
+			$options[$engine['label']] = $name;
+		}
+		$fields = [
+			'diffonly' => [
+				'name' => 'diffonly',
+				'class' => 'HTMLCheckField',
+				'label' => wfMessage( 'difference-view-diff-only-label' )->text(),
+			],
+			'oldid' => [
+				'type' => 'hidden',
+				'name' => 'oldid',
+				'default' => $oldid,
+			],
+			'diff' => [
+				'type' => 'hidden',
+				'name' => 'diff',
+				'default' => $diff,
+			],
+			'engine' => [
+				'label' => wfMessage( 'difference-view-engine-label' )->text(),
+				'type' => 'select',
+				'name' => 'engine',
+				'options' => $options,
+			]
+		];
+		$form = HTMLForm::factory( 'ooui', $fields, $ctx );
+		$form->setWrapperLegend( wfMessage( 'difference-header' )->text() );
+		$form->setMethod( 'get' );
+		$form->loadData();
+		return $form->getHTML( false );
 	}
 
 	/**
