@@ -395,6 +395,7 @@ changes to languages because of Phabricator reports.
 * Skin::getCommonStylePath() was removed (deprecated since 1.24).
 * Skin::newFromKey() was removed (deprecated since 1.24).
 * Skin::getUsableSkins() was removed (deprecated since 1.23).
+* LoadBalancer::pickRandom() was removed (deprecated in 1.21).
 
 == Compatibility ==
 
