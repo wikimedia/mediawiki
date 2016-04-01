@@ -150,7 +150,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$subrequest = new DerivativeRequest( $request, $data, $request->wasPosted() );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
-				if ( !empty( $field->mParams['nodata'] ) ) {
+				if ( $field->skipLoadData( $subrequest ) ) {
 					continue;
 				} elseif ( !empty( $field->mParams['disabled'] ) ) {
 					$row[$fieldname] = $field->getDefault();

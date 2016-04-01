@@ -1097,4 +1097,13 @@ abstract class HTMLFormField {
 			return Html::rawElement( 'span', [ 'class' => 'error' ], $errors );
 		}
 	}
+
+	/**
+	 * Skip this field when collecting data.
+	 * @param WebRequest $request
+	 * @return bool
+	 */
+	public function skipLoadData( $request ) {
+		return !empty( $this->mParams['nodata'] );
+	}
 }
