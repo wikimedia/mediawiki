@@ -6,15 +6,6 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  */
 abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	abstract protected function getInstance( array $args = [] );
 
 	/**
