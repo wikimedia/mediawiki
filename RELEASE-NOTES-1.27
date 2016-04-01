@@ -109,11 +109,6 @@ HHVM 3.1.
   module should express a dependency on it.
 * Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
   $wgFooterIcons['copyright']['copyright'] instead.
-* ApiMain::getShowVersions() was removed (deprecated in 1.21).
-* ApiMain::addModule() was removed (deprecated in 1.21).
-* ApiMain::addFormat() was removed (deprecated in 1.21).
-* ApiMain::getFormats() was removed (deprecated in 1.21).
-* ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
@@ -256,18 +251,11 @@ HHVM 3.1.
 * ApiQuery::setGeneratorContinue() was removed (deprecated since 1.24).
 * ApiMain::getModules() was removed (deprecated since 1.21).
 * ApiBase::getVersion() was removed (deprecated since 1.21).
-* Language::getLangObj() was removed (deprecated since 1.24).
-* Language::getLanguageName() was removed (deprecated since 1.20).
-* Language::getLanguageNames() was removed (deprecated since 1.20).
-* Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
-* Language::specialPage() was removed (deprecated since 1.24).
-* MediaWikiTestCase::assertException() was removed (deprecated since 1.22).
-* OutputPage::getHeadItems() was removed (deprecated since 1.24).
-* OutputPage::getScript() was removed (deprecated since 1.24).
-* OutputPage::out() was removed (deprecated since 1.22).
-* OutputPage::setAllowedModules() was removed (deprecated since 1.24).
-* UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
-* MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
+* ApiMain::getShowVersions() was removed (deprecated in 1.21).
+* ApiMain::addModule() was removed (deprecated in 1.21).
+* ApiMain::addFormat() was removed (deprecated in 1.21).
+* ApiMain::getFormats() was removed (deprecated in 1.21).
+* ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
 
 === Languages updated in 1.27 ===
 
@@ -390,6 +378,18 @@ changes to languages because of Phabricator reports.
 * Revision::getRawText() was removed (deprecated since 1.21).
 * WikiPage::replaceSection() was removed (deprecated since 1.21).
 * Article::replaceSection() was removed (deprecated since 1.21).
+* Language::getLangObj() was removed (deprecated since 1.24).
+* Language::getLanguageName() was removed (deprecated since 1.20).
+* Language::getLanguageNames() was removed (deprecated since 1.20).
+* Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
+* Language::specialPage() was removed (deprecated since 1.24).
+* MediaWikiTestCase::assertException() was removed (deprecated since 1.22).
+* OutputPage::getHeadItems() was removed (deprecated since 1.24).
+* OutputPage::getScript() was removed (deprecated since 1.24).
+* OutputPage::out() was removed (deprecated since 1.22).
+* OutputPage::setAllowedModules() was removed (deprecated since 1.24).
+* UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
+* MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
 
 == Compatibility ==
 
