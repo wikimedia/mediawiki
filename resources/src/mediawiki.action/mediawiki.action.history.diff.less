@@ -10,6 +10,7 @@ table.diff {
 	table-layout: fixed;
 }
 
+.mw-diff-inline-changed,
 table.diff td {
 	padding: 0.33em 0.5em;
 }
@@ -48,6 +49,9 @@ td.diff-marker {
 	line-height: 1.2;
 }
 
+.mw-diff-inline-added,
+.mw-diff-inline-deleted,
+.mw-diff-inline-changed *,
 td.diff-addedline,
 td.diff-deletedline,
 td.diff-context {
@@ -61,10 +65,14 @@ td.diff-context {
 	border-radius: 0.33em;
 }
 
+.mw-diff-inline-added,
+.mw-diff-inline-changed ins,
 td.diff-addedline {
 	border-color: #a3d3ff;
 }
 
+.mw-diff-inline-deleted,
+.mw-diff-inline-changed del,
 td.diff-deletedline {
 	border-color: #ffe49c;
 }
@@ -75,46 +83,50 @@ td.diff-context {
 	color: #333;
 }
 
+#minidiff ins,
+#minidiff del,
 .diffchange {
 	font-weight: bold;
 	text-decoration: none;
 }
 
+.mw-diff-inline-added,
+.mw-diff-inline-deleted,
+.mw-diff-inline-changed,
 td.diff-addedline .diffchange,
 td.diff-deletedline .diffchange {
 	border-radius: 0.33em;
 	padding: 0.25em 0;
 }
 
+.mw-diff-inline-added,
+.mw-diff-inline-changed ins,
 td.diff-addedline .diffchange {
 	background: #d8ecff;
 }
 
+.mw-diff-inline-deleted,
+.mw-diff-inline-changed del,
 td.diff-deletedline .diffchange {
 	background: #feeec8;
 }
 
-/* Correct user & content directionality when viewing a diff */
-.diff-currentversion-title,
-.diff {
-	direction: ltr;
-	unicode-bidi: embed;
+/* unified specific */
+#mw-content-text {
+	ul.revision-history-links {
+		margin-left: 0;
+
+		.current {
+			font-weight: bold;
+		}
+	}
 }
 
-/* @noflip */ .diff-contentalign-right td {
-	direction: rtl;
-	unicode-bidi: embed;
-}
+.revision-meta-data {
+	text-align: center;
+	padding: 0.33em 0.5em 1em;
 
-/* @noflip */ .diff-contentalign-left td {
-	direction: ltr;
-	unicode-bidi: embed;
-}
-
-.diff-multi,
-.diff-otitle,
-.diff-ntitle,
-.diff-lineno {
-	direction: ltr !important;
-	unicode-bidi: embed;
+	.revision-meta-data-item {
+		margin: 0.2em 0;
+	}
 }
