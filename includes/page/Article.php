@@ -2553,19 +2553,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::replaceSection
-	 */
-	public function replaceSection( $sectionId, $text, $sectionTitle = '',
-		$edittime = null
-	) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-		return $this->mPage->replaceSection( $sectionId, $text, $sectionTitle,
-			$edittime
-		);
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::replaceSectionAtRev
 	 */
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
