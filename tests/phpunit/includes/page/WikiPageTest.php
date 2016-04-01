@@ -769,22 +769,6 @@ more stuff
 
 	/**
 	 * @dataProvider dataReplaceSection
-	 * @covers WikiPage::replaceSection
-	 */
-	public function testReplaceSection( $title, $model, $text, $section, $with,
-		$sectionTitle, $expected
-	) {
-		$this->hideDeprecated( "WikiPage::replaceSection" );
-
-		$page = $this->createPage( $title, $text, $model );
-		$text = $page->replaceSection( $section, $with, $sectionTitle );
-		$text = trim( $text );
-
-		$this->assertEquals( $expected, $text );
-	}
-
-	/**
-	 * @dataProvider dataReplaceSection
 	 * @covers WikiPage::replaceSectionContent
 	 */
 	public function testReplaceSectionContent( $title, $model, $text, $section,
