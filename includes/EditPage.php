@@ -1175,7 +1175,7 @@ class EditPage {
 	 * Get the content of the wanted revision, without section extraction.
 	 *
 	 * The result of this function can be used to compare user's input with
-	 * section replaced in its context (using WikiPage::replaceSection())
+	 * section replaced in its context (using WikiPage::replaceSectionAtRev())
 	 * to the original text of the edit.
 	 *
 	 * This differs from Article::getContent() that when a missing revision is
@@ -1982,7 +1982,7 @@ class EditPage {
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
-				# XXX: Might be better to integrate this into Article::replaceSection
+				# XXX: Might be better to integrate this into Article::replaceSectionAtRev
 				# for duplicate heading checking and maybe parsing.
 				$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 				# We can't deal with anchors, includes, html etc in the header for now,

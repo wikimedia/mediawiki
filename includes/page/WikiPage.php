@@ -1384,44 +1384,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param string|number|null|bool $sectionId Section identifier as a number or string
-	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
-	 * or 'new' for a new section.
-	 * @param string $text New text of the section.
-	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param string $edittime Revision timestamp or null to use the current revision.
-	 *
-	 * @throws MWException
-	 * @return string|null New complete article text, or null if error.
-	 *
-	 * @deprecated since 1.21, use replaceSectionAtRev() instead
-	 */
-	public function replaceSection( $sectionId, $text, $sectionTitle = '',
-		$edittime = null
-	) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		// NOTE: keep condition in sync with condition in replaceSectionContent!
-		if ( strval( $sectionId ) === '' ) {
-			// Whole-page edit; let the whole text through
-			return $text;
-		}
-
-		if ( !$this->supportsSections() ) {
-			throw new MWException( "sections not supported for content model " .
-				$this->getContentHandler()->getModelID() );
-		}
-
-		// could even make section title, but that's not required.
-		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() );
-
-		$newContent = $this->replaceSectionContent( $sectionId, $sectionContent, $sectionTitle,
-			$edittime );
-
-		return ContentHandler::getContentText( $newContent );
-	}
-
-	/**
 	 * Returns true if this page's content model supports sections.
 	 *
 	 * @return bool
