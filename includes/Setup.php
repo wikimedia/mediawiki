@@ -119,8 +119,7 @@ if ( $wgRightsIcon ) {
 	);
 }
 
-if ( isset( $wgFooterIcons['copyright'] )
-	&& isset( $wgFooterIcons['copyright']['copyright'] )
+if ( isset( $wgFooterIcons['copyright']['copyright'] )
 	&& $wgFooterIcons['copyright']['copyright'] === []
 ) {
 	if ( $wgRightsIcon || $wgRightsText ) {
