@@ -769,8 +769,9 @@ class Article implements Page {
 		}
 
 		$contentHandler = $rev->getContentHandler();
+		$ctx = $this->getContext();
 		$de = $contentHandler->createDifferenceEngine(
-			$this->getContext(),
+			$ctx,
 			$oldid,
 			$diff,
 			$rcid,
@@ -780,6 +781,7 @@ class Article implements Page {
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
+		$ctx->getOutput()->setSubtitle( $this->getDiffEngineSelectorHTML( $ctx, $oldid, $diff ) );
 		$de->showDiffPage( $diffOnly );
 
 		// Run view updates for the newer revision being diffed (and shown
@@ -787,6 +789,55 @@ class Article implements Page {
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
+	}
+
+	/**
+	 * Creates and generates HTML for an HTMLForm that allows the user
+	 * control over the difference engine to use.
+	 *
+	 * @param IContextSource $ctx
+	 * @param string $oldid of the previous revision
+	 * @param string $currentId revision id of the current revision
+	 * @return string
+	 */
+	protected function getDiffEngineSelectorHTML( $ctx, $oldid, $currentId ) {
+		$engines = ContentHandler::getAvailableDifferenceEngines();
+		$diffListItems = '';
+		$title = $this->getTitle();
+		$req = $ctx->getRequest();
+		$query = [ 'oldid' => $oldid,
+			'diffonly' => $req->getBool( 'diffonly' ),
+			'diff' => $currentId ];
+		$currentEngine = $req->getText( 'engine' );
+		if ( $currentEngine ) {
+			$query['engine'] = $currentEngine;
+		}
+
+		if ( $query['diffonly'] ) {
+			$url = $title->getLocalUrl( [ 'diffonly' => '0' ] + $query );
+			$diffOnlySwitcher = Html::element( 'a', [ 'href' => $url ],
+				wfMessage( 'difference-view-diff-with-revision-label' )->text() );
+		} else {
+			$url = $title->getLocalUrl( [ 'diffonly' => '1' ] + $query );
+			$diffOnlySwitcher = Html::element( 'a', [ 'href' => $url ],
+				wfMessage( 'difference-view-diff-only-label' )->text() );
+		}
+
+		foreach ( $engines as $name => $engine ) {
+			$url = $title->getLocalUrl( [ 'engine' => $name ] + $query );
+			$diffListItems .= Html::openElement( 'li' )
+				. Html::element( 'a', [ 'href' =>  $url ],
+						$engine['label']->text() )
+				. Html::closeElement( 'li' );
+		}
+
+		return Html::openElement( 'ul', [ 'class' => 'hlist' ] )
+			. Html::openElement( 'li' )
+			. $diffOnlySwitcher
+			. Html::closeElement( 'li' )
+			. $diffListItems
+			. Html::openElement( 'ul' );
+
 	}
 
 	/**
