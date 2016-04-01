@@ -228,7 +228,6 @@
 
 	"apihelp-login-description": "Log in and get authentication cookies.\n\nThis action should only be used in combination with [[Special:BotPasswords]]; use for main-account login is deprecated and may fail without warning. To safely log in to the main account, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"apihelp-login-description-nobotpasswords": "Log in and get authentication cookies.\n\nThis action is deprecated and may fail without warning. To safely log in, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
-	"apihelp-login-description-nonauthmanager": "Log in and get authentication cookies.\n\nIn the event of a successful log-in, the needed cookies will be included in the HTTP response headers. In the event of a failed log-in, further attempts may be throttled to limit automated password guessing attacks.",
 	"apihelp-login-param-name": "User name.",
 	"apihelp-login-param-password": "Password.",
 	"apihelp-login-param-domain": "Domain (optional).",

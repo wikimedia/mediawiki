@@ -8,15 +8,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\LegacyHookPreAuthenticationProvider
  */
 class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	/**
 	 * Get an instance of the provider
 	 * @return LegacyHookPreAuthenticationProvider

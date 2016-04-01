@@ -41,8 +41,6 @@ class ChangePassword extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgDisableAuthManager;
-
 		if ( $this->hasOption( "user" ) ) {
 			$user = User::newFromName( $this->getOption( 'user' ) );
 		} elseif ( $this->hasOption( "userid" ) ) {
@@ -55,17 +53,13 @@ class ChangePassword extends Maintenance {
 		}
 		$password = $this->getOption( 'password' );
 		try {
-			if ( $wgDisableAuthManager ) {
-				$user->setPassword( $password );
-			} else {
-				$status = $user->changeAuthenticationData( [
-					'username' => $user->getName(),
-					'password' => $password,
-					'retype' => $password,
-				] );
-				if ( !$status->isGood() ) {
-					throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
-				}
+			$status = $user->changeAuthenticationData( [
+				'username' => $user->getName(),
+				'password' => $password,
+				'retype' => $password,
+			] );
+			if ( !$status->isGood() ) {
+				throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
 			}
 			$user->saveSettings();
 			$this->output( "Password set for " . $user->getName() . "\n" );
