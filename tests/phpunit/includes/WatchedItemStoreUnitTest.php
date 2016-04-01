@@ -1,4 +1,5 @@
 <?php
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
 /**
  * @author Addshore
@@ -85,7 +86,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	private function newWatchedItemStore( LoadBalancer $loadBalancer, HashBagOStuff $cache ) {
 		return new WatchedItemStore(
 			$loadBalancer,
-			$cache
+			$cache,
+			$this->getMock( StatsdDataFactory::class )
 		);
 	}
 
