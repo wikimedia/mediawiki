@@ -2855,6 +2855,7 @@ $special: the SpecialPage object
 $subPage: the subpage string or null if no subpage was specified
 
 'SpecialPageBeforeExecute': Called before SpecialPage::execute.
+Return false to prevent execution.
 $special: the SpecialPage object
 $subPage: the subpage string or null if no subpage was specified
 
