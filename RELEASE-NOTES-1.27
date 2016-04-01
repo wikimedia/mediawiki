@@ -113,6 +113,7 @@ HHVM 3.1.
 * ApiMain::addModule() was removed (deprecated in 1.21).
 * ApiMain::addFormat() was removed (deprecated in 1.21).
 * ApiMain::getFormats() was removed (deprecated in 1.21).
+* ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
