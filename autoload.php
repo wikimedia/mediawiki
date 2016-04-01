@@ -1330,6 +1330,7 @@ $wgAutoloadLocalClasses = [
 	'UncategorizedPagesPage' => __DIR__ . '/includes/specials/SpecialUncategorizedpages.php',
 	'UncategorizedTemplatesPage' => __DIR__ . '/includes/specials/SpecialUncategorizedtemplates.php',
 	'Undelete' => __DIR__ . '/maintenance/undelete.php',
+	'UnifiedDifferenceEngine' => __DIR__ . '/includes/diff/UnifiedDifferenceEngine.php',
 	'UnifiedDiffFormatter' => __DIR__ . '/includes/diff/UnifiedDiffFormatter.php',
 	'UnlistedSpecialPage' => __DIR__ . '/includes/specialpage/UnlistedSpecialPage.php',
 	'UnprotectAction' => __DIR__ . '/includes/actions/UnprotectAction.php',
