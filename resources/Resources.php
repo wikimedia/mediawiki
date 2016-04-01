@@ -1451,7 +1451,7 @@ return [
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
 		'styles' => [
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.less',
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => [
 				'media' => 'print'
 			],
