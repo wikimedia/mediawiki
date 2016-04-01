@@ -426,23 +426,6 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Make a list of group names to be stored as parameter for log entries
-	 *
-	 * @deprecated since 1.21; use LogFormatter instead.
-	 * @param array $ids
-	 * @return string
-	 */
-	function makeGroupNameListForLog( $ids ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		if ( empty( $ids ) ) {
-			return '';
-		} else {
-			return $this->makeGroupNameList( $ids );
-		}
-	}
-
-	/**
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
