@@ -35,16 +35,7 @@ class HTMLButtonField extends HTMLFormField {
 
 		# Generate the label from a message, if possible
 		if ( isset( $info['buttonlabel-message'] ) ) {
-			$msgInfo = $info['buttonlabel-message'];
-
-			if ( is_array( $msgInfo ) ) {
-				$msg = array_shift( $msgInfo );
-			} else {
-				$msg = $msgInfo;
-				$msgInfo = [];
-			}
-
-			$this->buttonLabel = $this->msg( $msg, $msgInfo )->parse();
+			$this->buttonLabel = $this->getMessage( $info['buttonlabel-message'] )->parse();
 		} elseif ( isset( $info['buttonlabel'] ) ) {
 			if ( $info['buttonlabel'] === '&#160;' ) {
 				// Apparently some things set &nbsp directly and in an odd format

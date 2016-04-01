@@ -53,7 +53,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		$this->getOptions();
 		if ( $this->mOptions && !in_array( 'other', $this->mOptions, true ) ) {
 			if ( isset( $params['other-message'] ) ) {
-				$msg = wfMessage( $params['other-message'] )->text();
+				$msg = $this->getMessage( $params['other-message'] )->text();
 			} elseif ( isset( $params['other'] ) ) {
 				$msg = $params['other'];
 			} else {

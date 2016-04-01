@@ -381,16 +381,7 @@ abstract class HTMLFormField {
 
 		# Generate the label from a message, if possible
 		if ( isset( $params['label-message'] ) ) {
-			$msgInfo = $params['label-message'];
-
-			if ( is_array( $msgInfo ) ) {
-				$msg = array_shift( $msgInfo );
-			} else {
-				$msg = $msgInfo;
-				$msgInfo = [];
-			}
-
-			$this->mLabel = $this->msg( $msg, $msgInfo )->parse();
+			$this->mLabel = $this->getMessage( $params['label-message'] )->parse();
 		} elseif ( isset( $params['label'] ) ) {
 			if ( $params['label'] === '&#160;' ) {
 				// Apparently some things set &nbsp directly and in an odd format
@@ -783,9 +774,8 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $this->mParams['help-messages'] ) ) {
-			foreach ( $this->mParams['help-messages'] as $name ) {
-				$helpMessage = (array)$name;
-				$msg = $this->msg( array_shift( $helpMessage ), $helpMessage );
+			foreach ( $this->mParams['help-messages'] as $msg ) {
+				$msg = $this->getMessage( $msg );
 
 				if ( $msg->exists() ) {
 					if ( is_null( $helptext ) ) {
@@ -988,7 +978,7 @@ abstract class HTMLFormField {
 				$this->mOptions = self::forceToStringRecursive( $this->mParams['options'] );
 			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
 				/** @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication? */
-				$message = $this->msg( $this->mParams['options-message'] )->inContentLanguage()->plain();
+				$message = $this->getMessage( $this->mParams['options-message'] )->inContentLanguage()->plain();
 
 				$optgroup = false;
 				$this->mOptions = [];
@@ -1095,6 +1085,25 @@ abstract class HTMLFormField {
 			}
 
 			return Html::rawElement( 'span', [ 'class' => 'error' ], $errors );
+		}
+	}
+
+	/**
+	 * Turns a *-message parameter (which could be a MessageSpecifier, or a message name, or a
+	 * name + parameters array) into a Message.
+	 * @param mixed $value
+	 * @return Message
+	 */
+	protected function getMessage( $value ) {
+		if ( $value instanceof Message ) {
+			return $value;
+		} elseif ( $value instanceof MessageSpecifier ) {
+			return Message::newFromKey( $value );
+		} elseif ( is_array( $value ) ) {
+			$msg = array_shift( $value );
+			return $this->msg( $msg, $value );
+		} else {
+			return $this->msg( $value, [] );
 		}
 	}
 }

@@ -15,9 +15,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		if ( array_key_exists( 'other', $params ) ) {
 			// Do nothing
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
-			$params['other'] = wfMessage( $params['other-message'] )->plain();
+			$params['other'] = $this->getMessage( $params['other-message'] )->plain();
 		} else {
-			$params['other'] = wfMessage( 'htmlform-selectorother-other' )->plain();
+			$params['other'] = $this->msg( 'htmlform-selectorother-other' )->plain();
 		}
 
 		parent::__construct( $params );
