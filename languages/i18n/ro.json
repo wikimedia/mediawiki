@@ -468,7 +468,7 @@
 	"nocookieslogin": "{{SITENAME}} folosește module cookie pentru a autentifica utilizatorii. Browser-ul dvs. are cookie-urile dezactivate. Vă rugăm să le activați și să incercați din nou.",
 	"nocookiesfornew": "Contul de utilizator nu a fost creat, deoarece nu am putut confirma sursa.\nAsigurați-vă că aveți cookie-urile activate, reîncărcați pagina și încercați din nou.",
 	"noname": "Numele de utilizator pe care l-ați introdus nu este valid.",
-	"loginsuccesstitle": "Autentificare reușită",
+	"loginsuccesstitle": "Autentificat(ă)",
 	"loginsuccess": "'''Ați fost autentificat la {{SITENAME}} ca „$1”.'''",
 	"nosuchuser": "Nu există nici un utilizator cu numele „$1”.\nNumele de utilizatori sunt sensibile la majuscule.\nVerifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou cont de utilizator]].",
 	"nosuchusershort": "Nu există niciun utilizator cu numele „$1”.\nVerificați ortografierea.",

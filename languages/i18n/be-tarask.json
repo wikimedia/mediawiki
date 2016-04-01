@@ -1752,6 +1752,7 @@
 	"apisandbox-unfullscreen-tooltip": "Паменшыць панэль пясочніцы, каб былі даступныя навігацыйныя спасылкі MediaWiki.",
 	"apisandbox-submit": "Зрабіць запыт",
 	"apisandbox-reset": "Ачысьціць",
+	"apisandbox-retry": "Паўтарыць",
 	"apisandbox-examples": "Прыклады",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-request-url-label": "URL-адрас запыту:",

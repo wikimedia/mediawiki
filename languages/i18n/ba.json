@@ -24,7 +24,8 @@
 			"Янмурза Баки",
 			"Айсар",
 			"Lizalizaufa",
-			"Кутлубаева Кунсулу Закиевна"
+			"Кутлубаева Кунсулу Закиевна",
+			"Вильданова Гюзель"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -3536,6 +3537,7 @@
 	"special-characters-group-ipa": "ХАФӘ (IPA)",
 	"special-characters-group-symbols": "Тамғалар",
 	"special-characters-group-greek": "Грек",
+	"special-characters-group-greekextended": "Грек телендә киңәйтелгән",
 	"special-characters-group-cyrillic": "Кириллик",
 	"special-characters-group-arabic": "Ғәрәп",
 	"special-characters-group-arabicextended": "Ғәрәп (киңәйтелгән)",
