@@ -390,6 +390,7 @@ changes to languages because of Phabricator reports.
 * OutputPage::setAllowedModules() was removed (deprecated since 1.24).
 * UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
 * MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
+* Title::newFromRedirect() was removed (deprecated since 1.21).
 
 == Compatibility ==
 

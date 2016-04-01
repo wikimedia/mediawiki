@@ -575,23 +575,6 @@ class Title implements LinkTarget {
 	/**
 	 * Extract a redirect destination from a string and return the
 	 * Title, or null if the text doesn't contain a valid redirect
-	 * This will only return the very next target, useful for
-	 * the redirect table and other checks that don't need full recursion
-	 *
-	 * @param string $text Text with possible redirect
-	 * @return Title The corresponding Title
-	 * @deprecated since 1.21, use Content::getRedirectTarget instead.
-	 */
-	public static function newFromRedirect( $text ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
-		return $content->getRedirectTarget();
-	}
-
-	/**
-	 * Extract a redirect destination from a string and return the
-	 * Title, or null if the text doesn't contain a valid redirect
 	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
 	 * in order to provide (hopefully) the Title of the final destination instead of another redirect
 	 *
