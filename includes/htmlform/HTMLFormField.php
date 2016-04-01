@@ -179,7 +179,7 @@ abstract class HTMLFormField {
 					return true;
 
 				case 'OR':
-					foreach ( $params as $p ) {
+					foreach ( $params as $i => $p ) {
 						if ( !is_array( $p ) ) {
 							throw new MWException(
 								"Expected array, found " . gettype( $p ) . " at index $i"
@@ -205,7 +205,7 @@ abstract class HTMLFormField {
 					return false;
 
 				case 'NOR':
-					foreach ( $params as $p ) {
+					foreach ( $params as $i => $p ) {
 						if ( !is_array( $p ) ) {
 							throw new MWException(
 								"Expected array, found " . gettype( $p ) . " at index $i"
