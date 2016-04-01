@@ -14,7 +14,19 @@ class HTMLTextField extends HTMLFormField {
 		return null;
 	}
 
+	public function isPersistent() {
+		if ( isset( $this->mParams['persistent'] ) ) {
+			return $this->mParams['persistent'];
+		}
+		// don't put passwords into the HTML body, they could get cached or otherwise leaked
+		return !( isset( $this->mParams['type'] ) && $this->mParams['type'] === 'password' );
+	}
+
 	function getInputHTML( $value ) {
+		if ( !$this->isPersistent() ) {
+			$value = '';
+		}
+
 		$attribs = [
 				'id' => $this->mID,
 				'name' => $this->mName,
@@ -85,6 +97,10 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	function getInputOOUI( $value ) {
+		if ( !$this->isPersistent() ) {
+			$value = '';
+		}
+
 		$attribs = $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
