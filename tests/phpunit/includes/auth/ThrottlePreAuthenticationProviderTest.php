@@ -8,15 +8,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
 class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	public function testConstructor() {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
@@ -140,10 +131,12 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->testForAccountCreation( $user, $creator, [] ),
 			'attempt #2'
 		);
+		$status = $provider->testForAccountCreation( $user, $creator, [] );
+		$debug = $status->isGood() ? '' : ' ' . \Status::wrap( $status )->getMessage()->getKey() . ' ' . \Status::wrap( $status )->getMessage();
 		$this->assertEquals(
 			$succeed ? \StatusValue::newGood() : \StatusValue::newFatal( 'acct_creation_throttle_hit', 2 ),
-			$provider->testForAccountCreation( $user, $creator, [] ),
-			'attempt #3'
+			$status,
+			'attempt #3' . $debug
 		);
 	}
 
