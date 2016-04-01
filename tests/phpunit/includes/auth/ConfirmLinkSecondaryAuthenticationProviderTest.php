@@ -7,15 +7,6 @@ namespace MediaWiki\Auth;
  * @covers MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
  */
 class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
-	protected function setUp() {
-		global $wgDisableAuthManager;
-
-		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
-	}
-
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
