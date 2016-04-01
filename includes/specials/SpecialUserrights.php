@@ -417,7 +417,14 @@ class UserrightsPage extends SpecialPage {
 		return Status::newGood( $user );
 	}
 
-	function makeGroupNameList( $ids ) {
+	/**
+	 * @since 1.15
+	 *
+	 * @param array $ids
+	 *
+	 * @return string
+	 */
+	public function makeGroupNameList( $ids ) {
 		if ( empty( $ids ) ) {
 			return $this->msg( 'rightsnone' )->inContentLanguage()->text();
 		} else {
