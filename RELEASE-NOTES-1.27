@@ -262,6 +262,7 @@ HHVM 3.1.
 * OutputPage::out() was removed (deprecated since 1.22).
 * OutputPage::setAllowedModules() was removed (deprecated since 1.24).
 * UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
+* MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
 
 === Languages updated in 1.27 ===
 

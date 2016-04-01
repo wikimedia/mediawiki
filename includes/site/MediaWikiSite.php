@@ -40,20 +40,6 @@ class MediaWikiSite extends Site {
 	const PATH_PAGE = 'page_path';
 
 	/**
-	 * @since 1.21
-	 * @deprecated since 1.21 Just use the constructor or the factory Site::newForType
-	 *
-	 * @param int $globalId
-	 *
-	 * @return MediaWikiSite
-	 */
-	public static function newFromGlobalId( $globalId ) {
-		$site = new static();
-		$site->setGlobalId( $globalId );
-		return $site;
-	}
-
-	/**
 	 * Constructor.
 	 *
 	 * @since 1.21
