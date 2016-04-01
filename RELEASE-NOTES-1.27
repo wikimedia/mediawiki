@@ -109,6 +109,10 @@ HHVM 3.1.
   module should express a dependency on it.
 * Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
   $wgFooterIcons['copyright']['copyright'] instead.
+* ApiMain::getShowVersions() was removed (deprecated in 1.21).
+* ApiMain::addModule() was removed (deprecated in 1.21).
+* ApiMain::addFormat() was removed (deprecated in 1.21).
+* ApiMain::getFormats() was removed (deprecated in 1.21).
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
