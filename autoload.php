@@ -516,6 +516,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLFormFieldCloner' => __DIR__ . '/includes/htmlform/HTMLFormFieldCloner.php',
 	'HTMLFormFieldRequiredOptionsException' => __DIR__ . '/includes/htmlform/HTMLFormFieldRequiredOptionsException.php',
 	'HTMLFormFieldWithButton' => __DIR__ . '/includes/htmlform/HTMLFormFieldWithButton.php',
+	'HTMLFormRawElementField' => __DIR__ . '/includes/htmlform/HTMLFormRawElementField.php',
 	'HTMLHiddenField' => __DIR__ . '/includes/htmlform/HTMLHiddenField.php',
 	'HTMLInfoField' => __DIR__ . '/includes/htmlform/HTMLInfoField.php',
 	'HTMLIntField' => __DIR__ . '/includes/htmlform/HTMLIntField.php',
