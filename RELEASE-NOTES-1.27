@@ -400,6 +400,7 @@ changes to languages because of Phabricator reports.
 * Article::getUndoText() and WikiPage::getUndoText were removed (deprecated since
  1.21).
 * DifferenceEngine::setText() was removed (deprecated in 1.21).
+* Xml::escapeJsString() was removed (deprecated since 1.21).
 
 == Compatibility ==
 
