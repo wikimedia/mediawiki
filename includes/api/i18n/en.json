@@ -20,7 +20,7 @@
 	"apihelp-main-param-uselang": "Language to use for message translations. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>user</kbd> to use the current user's language preference, or specify <kbd>content</kbd> to use this wiki's content language.",
 
 	"apihelp-block-description": "Block a user.",
-	"apihelp-block-param-user": "Username, IP address, or IP range to block.",
+	"apihelp-block-param-user": "Username, IP address, or IP address range to block.",
 	"apihelp-block-param-expiry": "Expiry time. May be relative (e.g. <kbd>5 months</kbd> or <kbd>2 weeks</kbd>) or absolute (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). If set to <kbd>infinite</kbd>, <kbd>indefinite</kbd>, or <kbd>never</kbd>, the block will never expire.",
 	"apihelp-block-param-reason": "Reason for block.",
 	"apihelp-block-param-anononly": "Block anonymous users only (i.e. disable anonymous edits for this IP address).",
@@ -587,7 +587,7 @@
 	"apihelp-query+blocks-param-end": "The timestamp to stop enumerating at.",
 	"apihelp-query+blocks-param-ids": "List of block IDs to list (optional).",
 	"apihelp-query+blocks-param-users": "List of users to search for (optional).",
-	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP or CIDR range, including range blocks.\nCannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 are not accepted.",
+	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP address range or CIDR range, including range blocks.\nCannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 are not accepted.",
 	"apihelp-query+blocks-param-limit": "The maximum number of blocks to list.",
 	"apihelp-query+blocks-param-prop": "Which properties to get:",
 	"apihelp-query+blocks-paramvalue-prop-id": "Adds the ID of the block.",
@@ -1331,7 +1331,7 @@
 
 	"apihelp-unblock-description": "Unblock a user.",
 	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var>.",
-	"apihelp-unblock-param-user": "Username, IP address or IP range to unblock. Cannot be used together with <var>$1id</var>.",
+	"apihelp-unblock-param-user": "Username, IP address or IP address range to unblock. Cannot be used together with <var>$1id</var>.",
 	"apihelp-unblock-param-reason": "Reason for unblock.",
 	"apihelp-unblock-param-tags": "Change tags to apply to the entry in the block log.",
 	"apihelp-unblock-example-id": "Unblock block ID #<kbd>105</kbd>.",
