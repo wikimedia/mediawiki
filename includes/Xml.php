@@ -139,12 +139,13 @@ class Xml {
 	 * @param string $allmonths Value of a special item denoting all month.
 	 *   Null to not include (default).
 	 * @param string $id Element identifier
+	 * @param string $name Name of the month field
 	 * @return string Html string containing the month selector
 	 */
-	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
+	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month', $name = 'month' ) {
 		global $wgLang;
 		$options = [];
-		$data = new XmlSelect( 'month', $id, $selected );
+		$data = new XmlSelect( $name, $id, $selected );
 		if ( is_null( $selected ) ) {
 			$selected = '';
 		}
@@ -162,9 +163,10 @@ class Xml {
 	/**
 	 * @param int $year
 	 * @param int $month
+	 * @param string $prefix
 	 * @return string Formatted HTML
 	 */
-	public static function dateMenu( $year, $month ) {
+	public static function dateMenu( $year, $month, $nameprefix = '', $labelprefix = '' ) {
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
@@ -184,11 +186,11 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
-		$inputAttribs = [ 'id' => 'year', 'maxlength' => 4, 'size' => 7 ];
-		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
-			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
-			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
-			self::monthSelector( $encMonth, -1 );
+		$inputAttribs = [ 'id' => $nameprefix . 'year', 'maxlength' => 4, 'size' => 7 ];
+		return self::label( wfMessage( $labelprefix . 'year' )->text(), $labelprefix . 'year' ) . ' ' .
+			Html::input( $nameprefix . 'year', $encYear, 'number', $inputAttribs ) . ' ' .
+			self::label( wfMessage( $labelprefix . 'month' )->text(), $labelprefix . 'month' ) . ' ' .
+			self::monthSelector( $encMonth, -1, $nameprefix . 'month', $nameprefix . 'month' );
 	}
 
 	/**

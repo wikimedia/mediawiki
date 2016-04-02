@@ -31,6 +31,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	public $namespace = '';
 	public $mDb;
 	public $preventClickjacking = false;
+	public $fromTime;
 
 	/** @var IDatabase */
 	public $mDbSecondary;
@@ -65,9 +66,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->topOnly = !empty( $options['topOnly'] );
 		$this->newOnly = !empty( $options['newOnly'] );
 
-		$year = isset( $options['year'] ) ? $options['year'] : false;
-		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+		$toyear = isset( $options['toyear'] ) ? $options['toyear'] : false;
+		$tomonth = isset( $options['tomonth'] ) ? $options['tomonth'] : false;
+		$fromyear = isset( $options['fromyear'] ) ? $options['fromyear'] : false;
+		$frommonth = isset( $options['frommonth'] ) ? $options['frommonth'] : false;
+		$this->fromTime = $this->getDateTimeCond( $fromyear, $frommonth, 0 );
+
+		$this->getDateCond( $toyear, $tomonth );
 
 		// Most of this code will use the 'contributions' group DB, which can map to slaves
 		// with extra user based indexes or partioning by user. The additional metadata
@@ -156,6 +161,8 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$user = $this->getUser();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		// add ending time
+		$conds[] = 'rev_timestamp > ' . $this->mDb->addQuotes( $this->fromTime );
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
