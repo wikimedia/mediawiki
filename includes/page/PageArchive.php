@@ -73,9 +73,10 @@ class PageArchive {
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
 	 * @param string $prefix Title prefix
+	 * @param bool $useSearchEngine Should we use search engine archive?
 	 * @return ResultWrapper
 	 */
-	public static function listPagesByPrefix( $prefix ) {
+	public static function listPagesByPrefix( $prefix, $useSearchEngine = false ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$title = Title::newFromText( $prefix );
@@ -88,10 +89,35 @@ class PageArchive {
 			$ns = 0;
 		}
 
-		$conds = [
-			'ar_namespace' => $ns,
-			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
-		];
+		if ( $useSearchEngine ) {
+			// Try search engine first
+			$engine = MediaWikiServices::getInstance()->newSearchEngine();
+			$engine->setLimitOffset( 100 );
+			$results = $engine->searchArchiveTitle( $prefix );
+			if ( !$results->isOK() ) {
+				$results = [];
+			} else {
+				$results = $results->getValue();
+			}
+		} else {
+			$results = [];
+		}
+
+		if ( $results ) {
+			$condTitles = array_unique( array_map( function ( Title $t ) {
+				return $t->getDBkey();
+			}, $results ) );
+			$conds = [
+				'ar_namespace' => $ns,
+				$dbr->makeList( [ 'ar_title' => $condTitles ], LIST_OR ) . " OR ar_title " .
+				$dbr->buildLike( $prefix, $dbr->anyString() )
+			];
+		} else {
+			$conds = [
+				'ar_namespace' => $ns,
+				'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			];
+		}
 
 		return self::listPages( $dbr, $conds );
 	}
