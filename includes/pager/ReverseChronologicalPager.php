@@ -60,7 +60,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		return $this->mNavigationBar;
 	}
 
-	function getDateCond( $year, $month ) {
+	function getDateTimeCond( $year, $month, $dir = 1 ) {
 		$year = intval( $year );
 		$month = intval( $month );
 
@@ -69,10 +69,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
 
 		// Given an optional year and month, we need to generate a timestamp
-		// to use as "WHERE rev_timestamp <= result"
-		// Examples: year = 2006 equals < 20070101 (+000000)
-		// year=2005, month=1    equals < 20050201
-		// year=2005, month=12   equals < 20060101
+		// to use as "WHERE rev_timestamp <= result" or
+		// "WHERE rev_timestamp > result" depending upon "dir" parameter
+		// Examples: year = 2006 equals < 20070101 (+000000) with dir = 1
+		// year=2005, month=1    equals < 20050201 with dir = 1
+		// year=2005, month=12   equals < 20051130 with dir = 0
 		if ( !$this->mYear && !$this->mMonth ) {
 			return;
 		}
@@ -90,16 +91,19 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		}
 
 		if ( $this->mMonth ) {
-			$month = $this->mMonth + 1;
+			$month = $dir === 1?$this->mMonth + 1:$this->mMonth - 1;
 			// For December, we want January 1 of the next year
-			if ( $month > 12 ) {
+			if ( $month > 12 && $dir === 1 ) {
 				$month = 1;
 				$year++;
+			} elseif ( $month < 1 && $dir === 0 ) {
+				$month = 12;
+				$year--;
 			}
 		} else {
 			// No month implies we want up to the end of the year in question
-			$month = 1;
-			$year++;
+			$month = $dir === 1 ? 1 : 12;
+			$year = $dir === 1?$year + 1:$year - 1;
 		}
 
 		// Y2K38 bug
@@ -107,7 +111,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year = 2032;
 		}
 
-		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+		$ymd = $dir == 1?(int)sprintf( "%04d%02d01", $year, $month ):
+			(int)sprintf( "%04d%02d30", $year, $month );
 
 		if ( $ymd > 20320101 ) {
 			$ymd = 20320101;
@@ -116,7 +121,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
 		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
 		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+		return $this->mDb->timestamp( $timestamp->getTimestamp() );
+	}
 
-		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+	function getDateCond( $year, $month ) {
+		$this->mOffset = $this->getDateTimeCond( $year, $month, 1 );
 	}
 }
