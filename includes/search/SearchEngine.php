@@ -73,6 +73,21 @@ abstract class SearchEngine {
 	}
 
 	/**
+	 * Perform a title search in the article archive.
+	 * NOTE: these results still should be filtered by
+	 * matching against PageArchive, permissions checks etc
+	 * The results returned by this methods are only sugegstions and
+	 * may not end up being shown to the user.
+	 *
+	 * @param string $term Raw search term
+	 * @return Title[]|Status|null
+	 * @since 1.29
+	 */
+	function searchArchiveTitle( $term ) {
+		return null;
+	}
+
+	/**
 	 * Perform a title-only search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
 	 * STUB

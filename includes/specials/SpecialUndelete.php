@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**
@@ -45,6 +46,10 @@ class SpecialUndelete extends SpecialPage {
 
 	/** @var Title */
 	private $mTargetObj;
+	/**
+	 * @var string Search prefix
+	 */
+	private $mSearchPrefix;
 
 	function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
@@ -245,15 +250,25 @@ class SpecialUndelete extends SpecialPage {
 					20,
 					$this->mSearchPrefix,
 					[ 'id' => 'prefix', 'autofocus' => '' ]
-				) . ' ' .
-				Xml::submitButton( $this->msg( 'undelete-search-submit' )->text() ) .
+				) .
+				' ' .
+				Xml::submitButton(
+					$this->msg( 'undelete-search-submit' )->text(),
+					[ 'id' => 'searchUndelete' ]
+				) .
 				Xml::closeElement( 'fieldset' ) .
 				Xml::closeElement( 'form' )
 		);
 
 		# List undeletable articles
 		if ( $this->mSearchPrefix ) {
-			$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix );
+			$engine = MediaWikiServices::getInstance()->newSearchEngine();
+			$engine->setLimitOffset( 100 );
+			$results = $engine->searchArchiveTitle( $this->mSearchPrefix );
+			if ( !is_array( $results ) ) {
+				$results = [];
+			}
+			$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix, $results );
 			$this->showList( $result );
 		}
 	}
@@ -277,7 +292,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 		$undelete = $this->getPageTitle();
-		$out->addHTML( "<ul>\n" );
+		$out->addHTML( "<ul id='undeleteResultsList'>\n" );
 		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 			if ( $title !== null ) {
@@ -300,7 +315,7 @@ class SpecialUndelete extends SpecialPage {
 				);
 			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
-			$out->addHTML( "<li>{$item} ({$revs})</li>\n" );
+			$out->addHTML( "<li class='undeleteResult'>{$item} ({$revs})</li>\n" );
 		}
 		$result->free();
 		$out->addHTML( "</ul>\n" );
