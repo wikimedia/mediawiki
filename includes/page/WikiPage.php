@@ -21,12 +21,6 @@
  */
 
 /**
- * Interface for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
- */
-interface Page {
-}
-
-/**
  * Class representing a MediaWiki article and history.
  *
  * Some fields are public only for backwards-compatibility. Use accessors.
