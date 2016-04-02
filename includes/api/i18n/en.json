@@ -587,7 +587,7 @@
 	"apihelp-query+blocks-param-end": "The timestamp to stop enumerating at.",
 	"apihelp-query+blocks-param-ids": "List of block IDs to list (optional).",
 	"apihelp-query+blocks-param-users": "List of users to search for (optional).",
-	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP address range or CIDR range, including range blocks.\nCannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 are not accepted.",
+	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP address or CIDR range, including range blocks.\nCannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 are not accepted.",
 	"apihelp-query+blocks-param-limit": "The maximum number of blocks to list.",
 	"apihelp-query+blocks-param-prop": "Which properties to get:",
 	"apihelp-query+blocks-paramvalue-prop-id": "Adds the ID of the block.",
