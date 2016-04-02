@@ -121,14 +121,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
-		# Offset overrides year/month selection
-		if ( $skip ) {
-			$this->opts['year'] = '';
-			$this->opts['month'] = '';
-		} else {
-			$this->opts['year'] = $request->getIntOrNull( 'year' );
-			$this->opts['month'] = $request->getIntOrNull( 'month' );
-		}
+		
+		$this->opts['toyear'] = $request->getIntOrNull( 'toyear' );
+		$this->opts['tomonth'] = $request->getIntOrNull( 'tomonth' );
+		$this->opts['fromyear'] = $request->getIntOrNull( 'fromyear' );
+		$this->opts['frommonth'] = $request->getIntOrNull( 'frommonth' );
 
 		$feedType = $request->getVal( 'feed' );
 
@@ -153,11 +150,18 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		// Don't use year and month for the feed URL, but pass them on if
 		// we redirect to API (if $feedType is specified)
-		if ( $feedType && $this->opts['year'] !== null ) {
-			$feedParams['year'] = $this->opts['year'];
+		if ( $feedType && $this->opts['toyear'] !== null ) {
+			$feedParams['toyear'] = $this->opts['toyear'];
 		}
-		if ( $feedType && $this->opts['month'] !== null ) {
-			$feedParams['month'] = $this->opts['month'];
+		if ( $feedType && $this->opts['tomonth'] !== null ) {
+			$feedParams['tomonth'] = $this->opts['tomonth'];
+		}
+
+		if ( $feedType && $this->opts['fromyear'] !== null ) {
+			$feedParams['fromyear'] = $this->opts['fromyear'];
+		}
+		if ( $feedType && $this->opts['frommonth'] !== null ) {
+			$feedParams['frommonth'] = $this->opts['frommonth'];
 		}
 
 		if ( $feedType ) {
@@ -183,8 +187,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
-				'year' => $this->opts['year'],
-				'month' => $this->opts['month'],
+				'toyear' => $this->opts['toyear'],
+				'tomonth' => $this->opts['tomonth'],
+				'fromyear' => $this->opts['fromyear'],
+				'frommonth' => $this->opts['frommonth'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -417,12 +423,20 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['contribs'] = 'user';
 		}
 
-		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = '';
+		if ( !isset( $this->opts['toyear'] ) ) {
+			$this->opts['toyear'] = '';
 		}
 
-		if ( !isset( $this->opts['month'] ) ) {
-			$this->opts['month'] = '';
+		if ( !isset( $this->opts['tomonth'] ) ) {
+			$this->opts['tomonth'] = '';
+		}
+
+		if ( !isset( $this->opts['fromyear'] ) ) {
+			$this->opts['fromyear'] = '';
+		}
+
+		if ( !isset( $this->opts['frommonth'] ) ) {
+			$this->opts['frommonth'] = '';
 		}
 
 		if ( $this->opts['contribs'] == 'newbie' ) {
@@ -457,8 +471,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			'deletedOnly',
 			'target',
 			'contribs',
-			'year',
-			'month',
+			'fromyear',
+			'frommonth',
+			'toyear',
+			'tomonth',
 			'topOnly',
 			'newOnly',
 			'associated',
@@ -621,15 +637,28 @@ class SpecialContributions extends IncludableSpecialPage {
 			implode( '', $filters )
 		);
 
-		$dateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
+		$toDateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
 			Xml::dateMenu(
-				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
-				$this->opts['month']
+				$this->opts['toyear'] === '' ? MWTimestamp::getInstance()->format( 'Y' )
+				: $this->opts['toyear'],
+				$this->opts['tomonth'] === ''? 1:$this->opts['tomonth'],
+				'to',
+				'to'
 			) . ' ' .
 				Html::submitButton(
 					$this->msg( 'sp-contributions-submit' )->text(),
 					[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
 				)
+		);
+
+		$fromDateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
+			Xml::dateMenu(
+				$this->opts['fromyear'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) :
+				$this->opts['fromyear'],
+				$this->opts['frommonth'] === ''? 1:$this->opts['frommonth'],
+				'from',
+				'from'
+			) . ' '
 		);
 
 		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
@@ -638,7 +667,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			Html::rawElement( 'tr', [], $namespaceSelection ) . "\n" .
 			Html::rawElement( 'tr', [], $filterSelection ) . "\n" .
 			Html::rawElement( 'tr', [], $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n"
+			Html::rawElement( 'tr', [], $fromDateSelectionAndSubmit ) . "\n" .
+			Html::rawElement( 'tr', [], $toDateSelectionAndSubmit ) . "\n"
 		);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
