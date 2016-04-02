@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A checkbox field
  */
