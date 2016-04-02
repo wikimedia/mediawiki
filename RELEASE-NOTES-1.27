@@ -119,6 +119,7 @@ The following PHP extensions are strongly recommended:
 * If the openssl and mcrypt PHP extensions are both unavailable, secure
   session storage (soon to be used for login) will raise an exception. This
   exception may be bypassed by setting $wgSessionInsecureSecrets = true.
+* Removed SpecialContributions::getForm::filters hook.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
