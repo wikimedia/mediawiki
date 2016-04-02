@@ -497,6 +497,19 @@ class SpecialContributions extends IncludableSpecialPage {
 			'name' => 'newOnly',
 			'id' => 'mw-show-new-only',
 		];
+
+		$filters = [];
+		Hooks::run(
+			'SpecialContributions::getForm::filters',
+			[ $this, &$filters ]
+		);
+		foreach ( $filters as $i => $html ) {
+			$fields['filter-' . $i] = [
+				'class' => 'HTMLFormRawElementField',
+				'default' => $html,
+			];
+		}
+
 		$fields['divider4'] = [
 			'class' => 'HTMLFormDividerField',
 		];
