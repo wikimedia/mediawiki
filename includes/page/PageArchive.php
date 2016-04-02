@@ -68,6 +68,56 @@ class PageArchive {
 	}
 
 	/**
+	 * List deleted pages recorded in the archive matching the
+	 * given term, using search engine archive.
+	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
+	 *
+	 * @param string $term Search term
+	 * @return ResultWrapper
+	 */
+	public static function listPagesBySearch( $term ) {
+		$title = Title::newFromText( $term );
+		if ( $title ) {
+			$ns = $title->getNamespace();
+			$termMain = $title->getText();
+			$termDb = $title->getDBkey();
+		} else {
+			// Prolly won't work too good
+			// @todo handle bare namespace names cleanly?
+			$ns = 0;
+			$termMain = $termDb = $term;
+		}
+
+		// Try search engine first
+		$engine = MediaWikiServices::getInstance()->newSearchEngine();
+		$engine->setLimitOffset( 100 );
+		$engine->setNamespaces( [ $ns ] );
+		$results = $engine->searchArchiveTitle( $termMain );
+		if ( !$results->isOK() ) {
+			$results = [];
+		} else {
+			$results = $results->getValue();
+		}
+
+		if ( !$results ) {
+			// Fall back to regular prefix search
+			return self::listPagesByPrefix( $term );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$condTitles = array_unique( array_map( function ( Title $t ) {
+			return $t->getDBkey();
+		}, $results ) );
+		$conds = [
+			'ar_namespace' => $ns,
+			$dbr->makeList( [ 'ar_title' => $condTitles ], LIST_OR ) . " OR ar_title " .
+			$dbr->buildLike( $termDb, $dbr->anyString() )
+		];
+
+		return self::listPages( $dbr, $conds );
+	}
+
+	/**
 	 * List deleted pages recorded in the archive table matching the
 	 * given title prefix.
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
