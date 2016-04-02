@@ -99,7 +99,7 @@ class LineFormatter extends MonologLineFormatter {
 	 * @param Exception $e
 	 * @return string
 	 */
-	protected function normalizeException( Exception $e ) {
+	protected function normalizeException( $e ) {
 		return $this->normalizeExceptionArray( $this->exceptionAsArray( $e ) );
 	}
 
