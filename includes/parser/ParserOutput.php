@@ -456,6 +456,10 @@ class ParserOutput extends CacheTime {
 	 * @param bool $enable If OOUI should be enabled or not
 	 */
 	public function setEnableOOUI( $enable = false ) {
+		if ( $enable ) {
+			OutputPage::setupOOUI();
+		}
+
 		$this->mEnableOOUI = $enable;
 	}
 

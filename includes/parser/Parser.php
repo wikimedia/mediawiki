@@ -20,6 +20,8 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\PreprocessorFactory;
 
 /**
  * @defgroup Parser Parser
@@ -164,12 +166,13 @@ class Parser {
 	 * @var MagicWordArray
 	 */
 	public $mSubstWords;
+
 	# Initialised in constructor
-	public $mConf, $mExtLinkBracketedRegex, $mUrlProtocols;
+	public $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
 	/** @var Preprocessor */
-	public $mPreprocessor;
+	public $mPreprocessor = null;
 
 	# Cleared with clearState():
 	/**
@@ -254,35 +257,57 @@ class Parser {
 	protected $mProfiler;
 
 	/**
-	 * @param array $conf
+	 * @var PreprocessorFactory
 	 */
-	public function __construct( $conf = [] ) {
-		$this->mConf = $conf;
-		$this->mUrlProtocols = wfUrlProtocols();
+	private $preprocessorFactory;
+
+	/**
+	 * @var string
+	 */
+	private $limitReportPrefix = '';
+
+	/**
+	 * @var string[]
+	 */
+	private $urlProtocolsWithoutProtRel = [];
+
+	/**
+	 * @param PreprocessorFactory $preprocessorFactory
+	 */
+	public function __construct( PreprocessorFactory $preprocessorFactory ) {
+		$this->preprocessorFactory = $preprocessorFactory;
+		$this->setUrlProtocols( [
+			'ftp://', 'ftps://', 'git://', 'http://', 'https://',
+			'irc://', 'ircs://', 'mailto:', 'news:',
+		], [ 'mailto:', 'news:' ] );
+	}
+
+	/**
+	 * @param string $limitReportPrefix
+	 */
+	public function setLimitReportPrefix( $limitReportPrefix ) {
+		$this->limitReportPrefix = $limitReportPrefix;
+	}
+
+	/**
+	 * @param string[] $urlProtocols
+	 * @param array $urlProtocolsWithoutProtRel
+	 */
+	public function setUrlProtocols( array $urlProtocols, array $urlProtocolsWithoutProtRel ) {
+		$this->mUrlProtocols = $urlProtocols;
+		$this->urlProtocolsWithoutProtRel = $urlProtocolsWithoutProtRel;
+
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
-		if ( isset( $conf['preprocessorClass'] ) ) {
-			$this->mPreprocessorClass = $conf['preprocessorClass'];
-		} elseif ( defined( 'HPHP_VERSION' ) ) {
-			# Preprocessor_Hash is much faster than Preprocessor_DOM under HipHop
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
-		} elseif ( extension_loaded( 'domxml' ) ) {
-			# PECL extension that conflicts with the core DOM extension (bug 13770)
-			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
-		} elseif ( extension_loaded( 'dom' ) ) {
-			$this->mPreprocessorClass = 'Preprocessor_DOM';
-		} else {
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
-		}
-		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 	}
 
 	/**
 	 * Reduce memory usage to reduce the impact of circular references
+	 * @todo rename this to destroy(). Calling a destructor explicitly is a bad idea.
 	 */
 	public function __destruct() {
+		// XXX: why is this needed in addition to the loop below?
 		if ( isset( $this->mLinkHolders ) ) {
 			unset( $this->mLinkHolders );
 		}
@@ -323,8 +348,6 @@ class Parser {
 		}
 		$this->mFirstCall = false;
 
-		CoreParserFunctions::register( $this );
-		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
 		Hooks::run( 'ParserFirstCallInit', [ &$this ] );
@@ -404,8 +427,6 @@ class Parser {
 		 * First pass--just handle <nowiki> sections, pass the rest off
 		 * to internalParse() which does all the real work.
 		 */
-
-		global $wgShowHostnames;
 
 		if ( $clearState ) {
 			// We use U+007F DELETE to construct strip markers, so we have to make
@@ -508,8 +529,8 @@ class Parser {
 			Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
 			$limitReport = "NewPP limit report\n";
-			if ( $wgShowHostnames ) {
-				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
+			if ( $this->limitReportPrefix !== '' ) {
+				$limitReport .= $this->limitReportPrefix . "\n";
 			}
 			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
 			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
@@ -734,6 +755,7 @@ class Parser {
 	 */
 	public function setTitle( $t ) {
 		if ( !$t ) {
+			// TODO: use TitleFactory, once we have that
 			$t = Title::newFromText( 'NO TITLE' );
 		}
 
@@ -891,10 +913,12 @@ class Parser {
 	 * @return Preprocessor
 	 */
 	public function getPreprocessor() {
-		if ( !isset( $this->mPreprocessor ) ) {
-			$class = $this->mPreprocessorClass;
-			$this->mPreprocessor = new $class( $this );
+		if ( !$this->mPreprocessor ) {
+			// XXX: Parser and Preprocessor reference each other, so there is a chicken-and-egg
+			// issue during instantiation. PreprocessorFactory allows us to work around that.
+			$this->mPreprocessor = $this->preprocessorFactory->newPreprocessor( $this );
 		}
+
 		return $this->mPreprocessor;
 	}
 
@@ -1244,6 +1268,7 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
+		//TODO: make sanitizer injectable
 		Hooks::run( 'InternalParseBeforeSanitize', [ &$this, &$text, &$this->mStripState ] );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
@@ -1388,7 +1413,7 @@ class Parser {
 	 * @return string
 	 */
 	public function doMagicLinks( $text ) {
-		$prots = wfUrlProtocolsWithoutProtRel();
+		$prots = $this->urlProtocolsWithoutProtRel;
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$addr = self::EXT_LINK_ADDR;
 		$space = self::SPACE_NOT_NL; #  non-newline space
@@ -1444,6 +1469,8 @@ class Parser {
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
+
+			//TODO: make Linker injectable
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass );
 		} elseif ( isset( $m[6] ) && $m[6] !== '' ) {
 			# ISBN
@@ -1851,10 +1878,10 @@ class Parser {
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ) {
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions; //FIXME inject or extract
 		$ns = $title ? $title->getNamespace() : false;
 		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions )
-			&& !wfMatchesDomainList( $url, $wgNoFollowDomainExceptions )
+			&& !wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) //FIXME: inject/extract
 		) {
 			return 'nofollow';
 		}
@@ -2033,7 +2060,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	public function replaceInternalLinks2( &$s ) {
+	public function replaceInternalLinks2( &$s ) { //FIXME: extract!
 		global $wgExtraInterlanguageLinkPrefixes;
 
 		static $tc = false, $e1, $e1_img;
@@ -2253,7 +2280,7 @@ class Parser {
 				}
 
 				if ( $ns == NS_FILE ) {
-					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
+					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) { //FIXME: inject/extract
 						if ( $wasblank ) {
 							# if no parameters were passed, $text
 							# becomes something like "File:Foo.png",
@@ -2904,7 +2931,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 */
-	public function getVariableValue( $index, $frame = false ) {
+	public function getVariableValue( $index, $frame = false ) { //FIXME: extract
 		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
@@ -3256,7 +3283,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	public function initialiseVariables() {
+	public function initialiseVariables() { //FIXME: move to factory
 		$variableIDs = MagicWord::getVariableIDs();
 		$substIDs = MagicWord::getSubstIDs();
 
@@ -3523,6 +3550,8 @@ class Parser {
 			}
 		}
 
+		//FIXME: extract this method???
+
 		# Parser functions
 		if ( !$found ) {
 			$colonPos = strpos( $part1, ':' );
@@ -3749,7 +3778,7 @@ class Parser {
 	 * @return array
 	 */
 	public function callParserFunction( $frame, $function, array $args = [] ) {
-		global $wgContLang;
+		global $wgContLang; //FIXME: inject
 
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
@@ -3911,6 +3940,7 @@ class Parser {
 	 * @return Revision
 	 */
 	public static function statelessFetchRevision( $title, $parser = false ) {
+		//TODO: use RevisionLookup once we have that
 		return Revision::newFromTitle( $title );
 	}
 
@@ -3960,7 +3990,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	public static function statelessFetchTemplate( $title, $parser = false ) {
+	public static function statelessFetchTemplate( $title, $parser = false ) { //FIXME: extract
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
@@ -4092,7 +4122,7 @@ class Parser {
 		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
 		} else { // get by (name,timestamp)
-			$file = wfFindFile( $title, $options );
+			$file = wfFindFile( $title, $options ); //FIXME: inject RepoGroup
 		}
 		return $file;
 	}
@@ -4106,7 +4136,7 @@ class Parser {
 	 * @return string
 	 */
 	public function interwikiTransclude( $title, $action ) {
-		global $wgEnableScaryTranscluding;
+		global $wgEnableScaryTranscluding; //FIXME: inject
 
 		if ( !$wgEnableScaryTranscluding ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
@@ -4125,8 +4155,8 @@ class Parser {
 	 * @return mixed|string
 	 */
 	public function fetchScaryTemplateMaybeFromCache( $url ) {
-		global $wgTranscludeCacheExpiry;
-		$dbr = wfGetDB( DB_SLAVE );
+		global $wgTranscludeCacheExpiry; //FIXME: inject
+		$dbr = wfGetDB( DB_SLAVE ); //FIXME: inject
 		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
 		$obj = $dbr->selectRow( 'transcache', [ 'tc_time', 'tc_contents' ],
 				[ 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ] );
@@ -4146,7 +4176,7 @@ class Parser {
 			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER ); //FIXME: inject
 		$dbw->replace( 'transcache', [ 'tc_url' ], [
 			'tc_url' => $url,
 			'tc_time' => $dbw->timestamp( time() ),
@@ -4404,7 +4434,7 @@ class Parser {
 	 * @private
 	 */
 	public function formatHeadings( $text, $origText, $isMain = true ) {
-		global $wgMaxTocLevel, $wgExperimentalHtmlIds;
+		global $wgMaxTocLevel, $wgExperimentalHtmlIds; //FIXME: inject
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -4846,7 +4876,7 @@ class Parser {
 	 * @return string
 	 */
 	private function pstPass2( $text, $user ) {
-		global $wgContLang;
+		global $wgContLang; //FIXME: inject
 
 		# Note: This is the timestamp saved as hardcoded wikitext to
 		# the database, we use $wgContLang here in order to give
@@ -4925,7 +4955,7 @@ class Parser {
 	 * @return string
 	 */
 	public function getUserSig( &$user, $nickname = false, $fancySig = null ) {
-		global $wgMaxSigChars;
+		global $wgMaxSigChars; //FIXME: inject
 
 		$username = $user->getName();
 
@@ -4988,7 +5018,7 @@ class Parser {
 	 * @return string Signature text
 	 */
 	public function cleanSig( $text, $parsing = false ) {
-		if ( !$parsing ) {
+		if ( !$parsing ) { //FIXME: WHUT?!
 			global $wgTitle;
 			$magicScopeVariable = $this->lock();
 			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
@@ -5069,7 +5099,7 @@ class Parser {
 	 * @param Title|null $title Title object or null to use $wgTitle
 	 * @return string
 	 */
-	public function transformMsg( $text, $options, $title = null ) {
+	public function transformMsg( $text, $options, $title = null ) { //FIXME: extract ??
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -5079,7 +5109,7 @@ class Parser {
 		$executing = true;
 
 		if ( !$title ) {
-			global $wgTitle;
+			global $wgTitle; //FIXME: $this->Title??
 			$title = $wgTitle;
 		}
 
@@ -5208,7 +5238,7 @@ class Parser {
 	 * @return string|callable The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, $callback, $flags = 0 ) {
-		global $wgContLang;
+		global $wgContLang; //FIXME: inject
 
 		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
@@ -5852,7 +5882,7 @@ class Parser {
 	 *   for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $sectionId, $mode, $newText = '' ) {
-		global $wgTitle; # not generally used but removes an ugly failure mode
+		global $wgTitle; # not generally used but removes an ugly failure mode //FIXME: inject??
 
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
@@ -6042,7 +6072,7 @@ class Parser {
 	 */
 	public function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
-			global $wgContLang;
+			global $wgContLang; //FIXME: inject
 
 			$revObject = $this->getRevisionObject();
 			$timestamp = $revObject ? $revObject->getTimestamp() : wfTimestampNow();
@@ -6437,21 +6467,15 @@ class Parser {
 
 	/**
 	 * Return this parser if it is not doing anything, otherwise
-	 * get a fresh parser. You can use this method by doing
-	 * $myParser = $wgParser->getFreshParser(), or more simply
-	 * $wgParser->getFreshParser()->parse( ... );
-	 * if you're unsure if $wgParser is safe to use.
+	 * get a fresh parser.
+	 *
+	 * @deprecated since 1.27, use MediaWikiServices::getInstance()->getParserFactory()->newParser()
 	 *
 	 * @since 1.24
 	 * @return Parser A parser object that is not parsing anything
 	 */
-	public function getFreshParser() {
-		global $wgParserConf;
-		if ( $this->mInParse ) {
-			return new $wgParserConf['class']( $wgParserConf );
-		} else {
-			return $this;
-		}
+	public static function getFreshParser() {
+		return MediaWikiServices::getInstance()->getParserFactory()->newParser();
 	}
 
 	/**
@@ -6461,7 +6485,6 @@ class Parser {
 	 * @since 1.26
 	 */
 	public function enableOOUI() {
-		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
 	}
 }

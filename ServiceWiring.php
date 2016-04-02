@@ -38,6 +38,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\PreprocessorFactory;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
@@ -90,6 +92,42 @@ return [
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'ParserFactory' => function( MediaWikiServices $services ) {
+		$mainConfig = $services->getMainConfig();
+		$parserConf = $mainConfig->get( 'ParserConf' );
+		if ( isset( $parserConf['preprocessorClass'] ) ) {
+			$preprocessorClass = $parserConf['preprocessorClass'];
+		} elseif ( defined( 'HPHP_VERSION' ) ) {
+			# Preprocessor_Hash is much faster than Preprocessor_DOM under HipHop
+			$preprocessorClass = 'Preprocessor_Hash';
+		} elseif ( extension_loaded( 'domxml' ) ) {
+			# PECL extension that conflicts with the core DOM extension (bug 13770)
+			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
+			$preprocessorClass = 'Preprocessor_Hash';
+		} elseif ( extension_loaded( 'dom' ) ) {
+			$preprocessorClass = 'Preprocessor_DOM';
+		} else {
+			$preprocessorClass = 'Preprocessor_Hash';
+		}
+		wfDebug( __CLASS__ . ": using preprocessor: {$preprocessorClass}\n" );
+
+		$parserFactory = new ParserFactory(
+			new PreprocessorFactory( $preprocessorClass )
+		);
+
+		//TODO: avoid functions that rely on global variables
+		$parserFactory->setUrlProtocols(
+			wfUrlProtocols(),
+			wfUrlProtocolsWithoutProtRel()
+		);
+
+		if ( $mainConfig->get( 'ShowHostnames' ) ) {
+			$parserFactory->setLimitReportPrefix( 'Parsed by ' . wfHostname() );
+		}
+
+		return $parserFactory;
 	},
 
 	///////////////////////////////////////////////////////////////////////////

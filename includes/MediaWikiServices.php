@@ -18,6 +18,7 @@ use LoadBalancer;
 use LockManagerGroup;
 use MagicWord;
 use MediaHandler;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Services\ServiceContainer;
 use MessageCache;
 use MWException;
@@ -449,6 +450,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return ParserFactory
+	 */
+	public function getParserFactory() {
+		return $this->getService( 'ParserFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

@@ -87,7 +87,7 @@ abstract class Preprocessor {
 	 * @return PPNode_Hash_Tree|bool
 	 */
 	protected function cacheGetTree( $text, $flags ) {
-		$config = RequestContext::getMain()->getConfig();
+		$config = RequestContext::getMain()->getConfig(); //FIXME: inject!
 
 		$length = strlen( $text );
 		$threshold = $config->get( 'PreprocessorCacheThreshold' );

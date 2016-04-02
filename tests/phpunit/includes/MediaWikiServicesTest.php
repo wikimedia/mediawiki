@@ -189,6 +189,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => [ 'SiteLookup', 'SiteLookup' ],
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'ParserFactory' => [ 'ParserFactory', 'MediaWiki\Parser\ParserFactory' ],
 		];
 	}
 
