@@ -1352,7 +1352,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * @param string$ name 'name' attribute for the form
+	 * @param string $name 'name' attribute for the form
 	 * @return HTMLForm $this for chaining calls
 	 */
 	public function setName( $name ) {
