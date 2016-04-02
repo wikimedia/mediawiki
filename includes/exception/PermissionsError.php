@@ -39,7 +39,7 @@ class PermissionsError extends ErrorPageError {
 
 		if ( !count( $errors ) ) {
 			$groups = array_map(
-				[ 'User', 'makeGroupLinkWiki' ],
+				[ $this, 'makeGroupLinkListMembers' ],
 				User::getGroupsWithPermission( $this->permission )
 			);
 
@@ -58,5 +58,18 @@ class PermissionsError extends ErrorPageError {
 
 		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );
 		$wgOut->output();
+	}
+
+	private function makeGroupLinkListMembers( $usergroup ) {
+		$ret = User::makeGroupLinkWiki( $usergroup );
+		$ret .= ' [[' .
+			SpecialPage::getTitleFor( 'Listusers' )->getPrefixedText() .
+			'/' .
+			$usergroup .
+			'|' .
+			$this->msg( 'listgrouprights-members', '(list of members)' ) .
+			']]';
+
+		return $ret;
 	}
 }
