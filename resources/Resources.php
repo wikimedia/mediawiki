@@ -732,7 +732,6 @@ return [
 	'moment' => [
 		'scripts' => [
 			'resources/lib/moment/moment.js',
-			'resources/src/moment-local-dmy.js',
 		],
 		'languageScripts' => [
 			'af' => 'resources/lib/moment/locale/af.js',
@@ -813,6 +812,13 @@ return [
 			'zh-tw' => 'resources/lib/moment/locale/zh-tw.js',
 			'zh-hans' => 'resources/lib/moment/locale/zh-cn.js',
 			'zh-hant' => 'resources/lib/moment/locale/zh-tw.js',
+		],
+		// HACK: skinScripts come after languageScripts, and we need locale overrides to come
+		// after locale definitions
+		'skinScripts' => [
+			'default' => [
+				'resources/src/moment-locale-overrides.js',
+			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
