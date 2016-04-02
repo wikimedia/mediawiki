@@ -157,8 +157,10 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC group
 	 * @param RCCacheEntry[] $block
 	 * @return string
+	 * @throws DomainException
 	 */
 	protected function recentChangesBlockGroup( $block ) {
+		$recentChangesFlags = $this->getConfig()->get( 'RecentChangesFlags' );
 
 		# Add the namespace and title of the block as part of the class
 		$tableClasses = [ 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' ];
@@ -186,20 +188,24 @@ class EnhancedChangesList extends ChangesList {
 		$namehidden = true;
 		$allLogs = true;
 		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
-		$collectedRcFlags = [
-			// All are by bots?
-			'bot' => true,
-			// Includes a new page?
-			'newpage' => false,
-			// All are minor edits?
-			'minor' => true,
-			// Contains an unpatrolled edit?
-			'unpatrolled' => false,
-		];
-		foreach ( $block as $rcObj ) {
-			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
-				$collectedRcFlags['newpage'] = true;
+
+		# Default values for RC flags
+		$collectedRcFlags = [];
+		foreach ( $recentChangesFlags as $key => $value ) {
+			$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
+					$recentChangesFlags[$key]['grouping'] : 'any' );
+			switch ( $flagGrouping ) {
+				case 'all':
+					$collectedRcFlags[$key] = true;
+					break;
+				case 'any':
+					$collectedRcFlags[$key] = false;
+					break;
+				default:
+					throw new DomainException( "Unknown grouping type \"{$flagGrouping}\"" );
 			}
+		}
+		foreach ( $block as $rcObj ) {
 			// If all log actions to this page were hidden, then don't
 			// give the name of the affected page for this block!
 			if ( !$this->isDeleted( $rcObj, LogPage::DELETED_ACTION ) ) {
@@ -209,9 +215,6 @@ class EnhancedChangesList extends ChangesList {
 			if ( !isset( $userlinks[$u] ) ) {
 				$userlinks[$u] = 0;
 			}
-			if ( $rcObj->unpatrolled ) {
-				$collectedRcFlags['unpatrolled'] = true;
-			}
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
 			}
@@ -219,13 +222,6 @@ class EnhancedChangesList extends ChangesList {
 			# since logs may not have these.
 			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
 				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
-
-			if ( !$rcObj->mAttribs['rc_bot'] ) {
-				$collectedRcFlags['bot'] = false;
-			}
-			if ( !$rcObj->mAttribs['rc_minor'] ) {
-				$collectedRcFlags['minor'] = false;
 			}
 
 			$userlinks[$u]++;
@@ -267,6 +263,27 @@ class EnhancedChangesList extends ChangesList {
 				// completely ignore this RC entry if we don't want to render it
 				unset( $block[$i] );
 			}
+
+			// Roll up flags
+			foreach ( $line['recentChangesFlagsRaw'] as $key => $value ) {
+				$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
+					$recentChangesFlags[$key]['grouping'] : 'any' );
+				switch ( $flagGrouping ) {
+					case 'all':
+						if ( !$value ) {
+							$collectedRcFlags[$key] = false;
+						}
+						break;
+					case 'any':
+						if ( $value ) {
+							$collectedRcFlags[$key] = true;
+						}
+						break;
+					default:
+						throw new DomainException( "Unknown grouping type \"{$flagGrouping}\"" );
+				}
+			}
+
 			$lines[] = $line;
 		}
 		// Further down are some assumptions that $block is a 0-indexed array
@@ -436,8 +453,11 @@ class EnhancedChangesList extends ChangesList {
 			return [];
 		}
 
+		$lineParams['recentChangesFlagsRaw'] = [];
 		if ( isset( $data['recentChangesFlags'] ) ) {
 			$lineParams['recentChangesFlags'] = $this->recentChangesFlags( $data['recentChangesFlags'] );
+			# FIXME: This is used by logic, don't return it in the template params.
+			$lineParams['recentChangesFlagsRaw'] = $data['recentChangesFlags'];
 			unset( $data['recentChangesFlags'] );
 		}
 
