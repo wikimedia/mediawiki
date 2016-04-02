@@ -152,9 +152,9 @@ class XmlTest extends MediaWikiTestCase {
 		}
 
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> ' .
+			'<label for="year">From year (and later):</label> ' .
 				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
-				'<label for="month">From month (and earlier):</label> ' .
+				'<label for="month">From month (and later):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
@@ -173,9 +173,9 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu for february 2011"
 		);
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> ' .
+			'<label for="year">From year (and later):</label> ' .
 				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
-				'<label for="month">From month (and earlier):</label> ' .
+				'<label for="month">From month (and later):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
@@ -207,9 +207,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> ' .
+			'<label for="year">From year (and later):</label> ' .
 				'<input id="year" maxlength="4" size="7" type="number" name="year"/> ' .
-				'<label for="month">From month (and earlier):</label> ' .
+				'<label for="month">From month (and later):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
