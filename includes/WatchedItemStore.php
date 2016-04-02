@@ -57,18 +57,20 @@ class WatchedItemStore {
 	/**
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
-	 * @param StatsdDataFactoryInterface $stats
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache,
-		StatsdDataFactoryInterface $stats
+		HashBagOStuff $cache
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
-		$this->stats = $stats;
+		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $stats ) {
+		$this->stats = $stats;
 	}
 
 	/**
@@ -155,9 +157,9 @@ class WatchedItemStore {
 		if ( !self::$instance ) {
 			self::$instance = new self(
 				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] ),
-				RequestContext::getMain()->getStats()
+				new HashBagOStuff( [ 'maxKeys' => 100 ] )
 			);
+			self::$instance->setStatsdDataFactory( RequestContext::getMain()->getStats() );
 		}
 		return self::$instance;
 	}
