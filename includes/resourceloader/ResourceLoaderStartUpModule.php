@@ -40,8 +40,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		global $wgContLang;
+		$conf = $this->getConfig();
 
-		$mainPage = Title::newMainPage();
+		// We can't use Title::newMainPage() if 'mainpage' is in
+		// $wgForceUIMsgAsContentMsg because that will try to use the session
+		// user's language and we have no session user. This does the
+		// equivalent but falling back to our ResourceLoaderContext language
+		// instead.
+		$mainPage = Title::newFromText( $context->msg( 'mainpage' )->inContentLanguage()->text() );
+		if ( !$mainPage ) {
+			$mainPage = Title::newFromText( 'Main Page' );
+		}
 
 		/**
 		 * Namespace related preparation
@@ -57,7 +66,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 
-		$conf = $this->getConfig();
 		// Build list of variables
 		$vars = [
 			'wgLoadScript' => wfScript( 'load' ),
