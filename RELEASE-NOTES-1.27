@@ -114,6 +114,7 @@ HHVM 3.1. Additionally, the following PHP extensions are required:
   module should express a dependency on it.
 * Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
   $wgFooterIcons['copyright']['copyright'] instead.
+* Removed SpecialContributions::getForm::filters hook.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
