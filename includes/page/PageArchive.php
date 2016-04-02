@@ -72,9 +72,11 @@ class PageArchive {
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
 	 * @param string $prefix Title prefix
+	 * @param Title[] $titles Titles suggested by SearchEngine.
+	 * Titles are assumed to be in the same namespace as prefix.
 	 * @return ResultWrapper
 	 */
-	public static function listPagesByPrefix( $prefix ) {
+	public static function listPagesByPrefix( $prefix, $titles = [] ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$title = Title::newFromText( $prefix );
@@ -87,10 +89,21 @@ class PageArchive {
 			$ns = 0;
 		}
 
-		$conds = [
-			'ar_namespace' => $ns,
-			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
-		];
+		if ( $titles ) {
+			$condTitles = array_map( function ( Title $t ) {
+				return $t->getDBkey();
+			}, $titles );
+			$conds = [
+				'ar_namespace' => $ns,
+				$dbr->makeList( [ 'ar_title' => $condTitles ], LIST_OR ) . " OR ar_title " .
+				$dbr->buildLike( $prefix, $dbr->anyString() )
+			];
+		} else {
+			$conds = [
+				'ar_namespace' => $ns,
+				'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			];
+		}
 
 		return self::listPages( $dbr, $conds );
 	}
