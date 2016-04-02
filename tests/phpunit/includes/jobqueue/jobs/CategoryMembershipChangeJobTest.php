@@ -75,11 +75,11 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 		$removedRevId = $this->editPageText( 'Blank' );
 
 		$this->assertEquals(
-			'(recentchanges-page-added-to-category: ' . self::TITLE_STRING . ', 0)',
+			'(recentchanges-page-added-to-category: ' . self::TITLE_STRING . ')',
 			$this->getCategorizeRecentChangeForRevId( $addedRevId )->getAttribute( 'rc_comment' )
 		);
 		$this->assertEquals(
-			'(recentchanges-page-removed-from-category: ' . self::TITLE_STRING . ', 0)',
+			'(recentchanges-page-removed-from-category: ' . self::TITLE_STRING . ')',
 			$this->getCategorizeRecentChangeForRevId( $removedRevId )->getAttribute( 'rc_comment' )
 		);
 	}
