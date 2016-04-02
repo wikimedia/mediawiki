@@ -141,6 +141,7 @@ The following PHP extensions are strongly recommended:
    those via the web UI. Use UserLoggedIn if you need to do something on all
    logins.
 ** $wgRequirePasswordforEmailChange is removed.
+* Removed SpecialContributions::getForm::filters hook.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
