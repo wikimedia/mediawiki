@@ -506,6 +506,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLCheckField' => __DIR__ . '/includes/htmlform/HTMLCheckField.php',
 	'HTMLCheckMatrix' => __DIR__ . '/includes/htmlform/HTMLCheckMatrix.php',
 	'HTMLComboboxField' => __DIR__ . '/includes/htmlform/HTMLComboboxField.php',
+	'HTMLFormDividerField' => __DIR__ . '/includes/htmlform/HTMLFormDividerField.php',
 	'HTMLEditTools' => __DIR__ . '/includes/htmlform/HTMLEditTools.php',
 	'HTMLFileCache' => __DIR__ . '/includes/cache/HTMLFileCache.php',
 	'HTMLFloatField' => __DIR__ . '/includes/htmlform/HTMLFloatField.php',
