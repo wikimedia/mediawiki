@@ -401,6 +401,7 @@ changes to languages because of Phabricator reports.
  1.21).
 * DifferenceEngine::setText() was removed (deprecated in 1.21).
 * Title::newFromRedirectArray() was removed (deprecated in 1.21).
+* Title::newFromRedirectRecurse() was removed (deprecated in 1.21).
 
 == Compatibility ==
 
