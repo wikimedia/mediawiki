@@ -41,7 +41,7 @@ class SearchExactMatchRescorer {
 	 */
 	public function rescore( $search, $namespaces, $srchres, $limit ) {
 		// Pick namespace (based on PrefixSearch::defaultSearchBackend)
-		$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : $namespaces[0];
+		$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : reset( $namespaces );
 		$t = Title::newFromText( $search, $ns );
 		if ( !$t || !$t->exists() ) {
 			// No exact match so just return the search results
