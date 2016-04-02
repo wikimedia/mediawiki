@@ -225,8 +225,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			Title::newFromText( 'Baz' ),
 			[ [
 				'Baz',
-				'[[:Template:TestingTemplate]] and [[Special:WhatLinksHere/Template:TestingTemplate|2 pages]] '
-				. 'added to category'
+				'[[:Template:TestingTemplate]] added to category, ' .
+				'[[Special:WhatLinksHere/Template:TestingTemplate|this page is included within other pages]]'
 			] ]
 		);
 	}
