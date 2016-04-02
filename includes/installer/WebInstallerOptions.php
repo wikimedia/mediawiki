@@ -25,6 +25,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return string|null
 	 */
 	public function execute() {
+		global $wgLocaltimezone;
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			$this->submitSkins();
 			return 'skip';
@@ -197,6 +198,17 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			$this->getFieldsetEnd()
 		);
+		$this->addHTML(
+			$this->getFieldSetStart( 'config-timezone-settings' ) .
+			$this->getTimezoneSelector(
+				'config_wgLocaltimezone',
+				'config-wiki-timezone',
+				$wgLocaltimezone === null ? 'UTC' : $wgLocaltimezone,
+				$this->parent->getHelpBox( 'config-wiki-timezone-help' )
+			) .
+			$this->getFieldsetEnd()
+		);
+		$wgLocaltimezone = $this->parent->request->getVal( 'config_wgLocaltimezone' );
 
 		$caches = [ 'none' ];
 		$cachevalDefault = 'none';
@@ -244,6 +256,30 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->endForm();
 
 		return null;
+	}
+
+	/**
+	 * Get a "<select>" for selecting timezones.
+	 *
+	 * @param $name Name of the selector
+	 * @param $label Key of the message containing the selector label
+	 * @param $selectedCode Default value
+	 * @param $helpHtml string HTML explaining the option
+	 * @return string
+	 */
+	public function getTimezoneSelector( $name, $label, $selectedCode, $helpHtml = '' ) {
+		$s = $helpHtml;
+		$s .= Html::openElement( 'select',
+			array( 'id' => $name, 'name' => $name, 'tabindex' => $this->parent->nextTabIndex() )
+		) . "\n";
+
+		$zones = DateTimeZone::listIdentifiers();
+
+		foreach ( $zones as $zone ) {
+			$s .= "\n" . Xml::option( $zone, $zone, $zone == $selectedCode );
+		}
+		$s .= "\n</select>\n";
+		return $this->parent->label( $label, $name, $s );
 	}
 
 	/**
@@ -364,7 +400,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
-			'wgUseInstantCommons', 'wgDefaultSkin' ] );
+			'wgUseInstantCommons', 'wgLocaltimezone', 'wgDefaultSkin' ] );
 
 		$retVal = true;
 

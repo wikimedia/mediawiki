@@ -178,6 +178,7 @@ abstract class Installer {
 		'wgEnableUploads',
 		'wgShellLocale',
 		'wgSecretKey',
+		'wgLocaltimezone',
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
 		'wgDefaultSkin',
