@@ -27,6 +27,7 @@
  */
 class PermissionsError extends ErrorPageError {
 	public $permission, $errors;
+	private $specialListUsers = null;
 
 	/**
 	 * @param string $permission A permission name.
@@ -38,8 +39,9 @@ class PermissionsError extends ErrorPageError {
 		$this->permission = $permission;
 
 		if ( !count( $errors ) ) {
+			$this->specialListUsers = SpecialPage::getTitleFor( 'Listusers' );
 			$groups = array_map(
-				[ 'User', 'makeGroupLinkWiki' ],
+				[ $this, 'makeGroupLinkListMembers' ],
 				User::getGroupsWithPermission( $this->permission )
 			);
 
@@ -58,5 +60,18 @@ class PermissionsError extends ErrorPageError {
 
 		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );
 		$wgOut->output();
+	}
+
+	private function makeGroupLinkListMembers( $usergroup ) {
+		$ret = User::makeGroupLinkWiki( $usergroup );
+		$ret .= ' [[' .
+			$this->specialListUsers->getPrefixedText() .
+			'/' .
+			$usergroup .
+			'|' .
+			wfMessage( 'listgrouprights-members' )->text() .
+			']]';
+
+		return $ret;
 	}
 }
