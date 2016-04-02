@@ -3177,7 +3177,7 @@ $row: Revision information from the database
 'SpecialContributions::getForm::filters': Called with a list of filters to render
 on Special:Contributions.
 $sp: SpecialContributions object, for context
-&$filters: List of filters rendered as HTML
+&$filters: List of filter object definitions (compatible with OOUI form)
 
 'SpecialListusersDefaultQuery': Called right before the end of
 UsersPager::getDefaultQuery().

@@ -126,6 +126,9 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * (T222388) API modules can now be specified as an ObjectFactory spec,
   allowing the construction of modules that require services to be injected
   in their constructor.
+* (T117736) The function signature of SpecialContributions::getForm::filters
+  has changed. It now expects definitions of additional filter fields as array
+  rather than string.
 
 === External library changes in 1.34 ===
 
