@@ -11,7 +11,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.27
  */
-class WatchedItemStore {
+class WatchedItemStore implements StatsdAwareInterface {
 
 	const SORT_DESC = 'DESC';
 	const SORT_ASC = 'ASC';
