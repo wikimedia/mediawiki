@@ -2381,15 +2381,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::getUndoText
-	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-		return $this->mPage->getUndoText( $undo, $undoafter );
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUser
 	 */
 	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
