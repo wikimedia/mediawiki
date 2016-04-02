@@ -182,6 +182,7 @@ class SpecialPageFactory {
 
 	private static $list;
 	private static $aliases;
+	private static $pageObjectCache = [];
 
 	/**
 	 * Reset the internal list of special pages. Useful when changing $wgSpecialPages after
@@ -190,6 +191,7 @@ class SpecialPageFactory {
 	public static function resetList() {
 		self::$list = null;
 		self::$aliases = null;
+		self::$pageObjectCache = [];
 	}
 
 	/**
@@ -373,6 +375,10 @@ class SpecialPageFactory {
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
 
+		if ( isset( self::$pageObjectCache[$realName] ) ) {
+			return self::$pageObjectCache[$realName];
+		}
+
 		$specialPageList = self::getPageList();
 
 		if ( isset( $specialPageList[$realName] ) ) {
@@ -400,6 +406,7 @@ class SpecialPageFactory {
 				$page = null;
 			}
 
+			self::$pageObjectCache[$realName] = $page;
 			if ( $page instanceof SpecialPage ) {
 				return $page;
 			} else {
