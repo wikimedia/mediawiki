@@ -395,60 +395,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 */
 	protected function getForm() {
 		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
-		if ( !isset( $this->opts['target'] ) ) {
-			$this->opts['target'] = '';
-		} else {
-			$this->opts['target'] = str_replace( '_', ' ', $this->opts['target'] );
-		}
-
-		if ( !isset( $this->opts['namespace'] ) ) {
-			$this->opts['namespace'] = '';
-		}
-
-		if ( !isset( $this->opts['nsInvert'] ) ) {
-			$this->opts['nsInvert'] = '';
-		}
-
-		if ( !isset( $this->opts['associated'] ) ) {
-			$this->opts['associated'] = false;
-		}
-
-		if ( !isset( $this->opts['contribs'] ) ) {
-			$this->opts['contribs'] = 'user';
-		}
-
-		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = '';
-		}
-
-		if ( !isset( $this->opts['month'] ) ) {
-			$this->opts['month'] = '';
-		}
-
-		if ( $this->opts['contribs'] == 'newbie' ) {
-			$this->opts['target'] = '';
-		}
-
-		if ( !isset( $this->opts['tagfilter'] ) ) {
-			$this->opts['tagfilter'] = '';
-		}
-
-		if ( !isset( $this->opts['topOnly'] ) ) {
-			$this->opts['topOnly'] = false;
-		}
-
-		if ( !isset( $this->opts['newOnly'] ) ) {
-			$this->opts['newOnly'] = false;
-		}
-
-		$form = Html::openElement(
-			'form',
-			[
-				'method' => 'get',
-				'action' => wfScript(),
-				'class' => 'mw-contributions-form'
-			]
-		);
+		$fields = [];
 
 		# Add hidden params for tracking except for parameters in $skipParameters
 		$skipParameters = [
@@ -469,186 +416,128 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( in_array( $name, $skipParameters ) ) {
 				continue;
 			}
-			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
-		}
-
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
-
-		if ( $tagFilter ) {
-			$filterSelection = Html::rawElement(
-				'td',
-				[],
-				implode( '&#160;', $tagFilter )
-			);
-		} else {
-			$filterSelection = Html::rawElement( 'td', [ 'colspan' => 2 ], '' );
+			$fields[$name] = [
+				'type' => 'hidden',
+				'name' => $name,
+				'value' => $value,
+			];
 		}
 
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
-		$labelNewbies = Xml::radioLabel(
-			$this->msg( 'sp-contributions-newbies' )->text(),
-			'contribs',
-			'newbie',
-			'newbie',
-			$this->opts['contribs'] == 'newbie',
-			[ 'class' => 'mw-input' ]
-		);
-		$labelUsername = Xml::radioLabel(
-			$this->msg( 'sp-contributions-username' )->text(),
-			'contribs',
-			'user',
-			'user',
-			$this->opts['contribs'] == 'user',
-			[ 'class' => 'mw-input' ]
-		);
-		$input = Html::input(
-			'target',
-			$this->opts['target'],
-			'text',
-			[
-				'size' => '40',
-				'required' => '',
-				'class' => [
-					'mw-input',
-					'mw-ui-input-inline',
-					'mw-autocomplete-user', // used by mediawiki.userSuggest
-				],
-			] + (
-				// Only autofocus if target hasn't been specified or in non-newbies mode
-				( $this->opts['contribs'] === 'newbie' || $this->opts['target'] )
-					? [] : [ 'autofocus' => true ]
-				)
-		);
-
-		$targetSelection = Html::rawElement(
-			'td',
-			[ 'colspan' => 2 ],
-			$labelNewbies . '<br />' . $labelUsername . ' ' . $input . ' '
-		);
-
-		$namespaceSelection = Xml::tags(
-			'td',
-			[],
-			Xml::label(
-				$this->msg( 'namespace' )->text(),
-				'namespace',
-				''
-			) .
-			Html::namespaceSelector(
-				[ 'selected' => $this->opts['namespace'], 'all' => '' ],
-				[
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				]
-			) . '&#160;' .
-				Html::rawElement(
-					'span',
-					[ 'class' => 'mw-input-with-label' ],
-					Xml::checkLabel(
-						$this->msg( 'invert' )->text(),
-						'nsInvert',
-						'nsInvert',
-						$this->opts['nsInvert'],
-						[
-							'title' => $this->msg( 'tooltip-invert' )->text(),
-							'class' => 'mw-input'
-						]
-					) . '&#160;'
-				) .
-				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
-					Xml::checkLabel(
-						$this->msg( 'namespace_association' )->text(),
-						'associated',
-						'associated',
-						$this->opts['associated'],
-						[
-							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
-							'class' => 'mw-input'
-						]
-					) . '&#160;'
-				)
-		);
-
-		$filters = [];
+		$fields['contribs'] = [
+			'section' => 'search',
+			'name' => 'contribs',
+			'class' => 'HTMLRadioField',
+			'default' => $this->opts['contribs'],
+			'options' => [
+				$this->msg( 'sp-contributions-newbies' )->text() => 'newbie',
+				$this->msg( 'sp-contributions-username' )->text() => 'user',
+			],
+		];
+		$fields['target'] = [
+			'section' => 'search',
+			'class' => 'HTMLTextField',
+			'required' => true,
+			'cssclass' => 'mw-input mw-ui-input-inline mw-autocomplete-user',
+			'name' => 'target',
+			'size' => 40,
+			'default' => $this->opts['target'],
+		];
+		$fields['namespace'] = [
+			'section' => 'filters',
+			'cssclass' => 'mw-htmlform-inline',
+			'class' => 'HTMLSelectNamespace',
+			'label' => $this->msg( 'namespace' )->text(),
+			'name' => 'namespace',
+		];
+		$fields['nsInvert'] = [
+			'section' => 'filters',
+			'cssclass' => 'mw-htmlform-inline',
+			'class' => 'HTMLCheckField',
+			'label' => $this->msg( 'invert' )->text(),
+			'name' => 'nsInvert',
+			'tooltip' => 'invert',
+		];
+		$fields['associated'] = [
+			'section' => 'filters',
+			'cssclass' => 'mw-htmlform-inline',
+			'class' => 'HTMLCheckField',
+			'label' => $this->msg( 'namespace_association' )->text(),
+			'name' => 'associated',
+			'tooltip' => 'namespace_association',
+		];
+		$fields['tagfilter'] = [
+			'section' => 'tags',
+			'size' => 20,
+			'class' => 'HTMLTextField',
+			'name' => 'tagfilter',
+			'id' => 'tagfilter',
+			'cssclass' => 'mw-tagfilter-input mw-htmlform-inline',
+			'label-message' => [ 'tag-filter', 'parse' ],
+		];
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$filters[] = Html::rawElement(
-				'span',
-				[ 'class' => 'mw-input-with-label' ],
-				Xml::checkLabel(
-					$this->msg( 'history-show-deleted' )->text(),
-					'deletedOnly',
-					'mw-show-deleted-only',
-					$this->opts['deletedOnly'],
-					[ 'class' => 'mw-input' ]
-				)
-			);
+			$fields['deletedOnly'] = [
+				'section' => 'flags',
+				'cssclass' => 'mw-htmlform-inline',
+				'class' => 'HTMLCheckField',
+				'label' => $this->msg( 'history-show-deleted' )->text(),
+				'name' => 'deletedOnly',
+				'id' => 'mw-show-deleted-only',
+			];
 		}
 
-		$filters[] = Html::rawElement(
-			'span',
-			[ 'class' => 'mw-input-with-label' ],
-			Xml::checkLabel(
-				$this->msg( 'sp-contributions-toponly' )->text(),
-				'topOnly',
-				'mw-show-top-only',
-				$this->opts['topOnly'],
-				[ 'class' => 'mw-input' ]
-			)
-		);
-		$filters[] = Html::rawElement(
-			'span',
-			[ 'class' => 'mw-input-with-label' ],
-			Xml::checkLabel(
-				$this->msg( 'sp-contributions-newonly' )->text(),
-				'newOnly',
-				'mw-show-new-only',
-				$this->opts['newOnly'],
-				[ 'class' => 'mw-input' ]
-			)
-		);
+		$fields['topOnly'] = [
+			'section' => 'flags',
+			'cssclass' => 'mw-htmlform-inline',
+			'class' => 'HTMLCheckField',
+			'label' => $this->msg( 'sp-contributions-toponly' )->text(),
+			'name' => 'topOnly',
+			'id' => 'mw-show-top-only',
+		];
+		$fields['newOnly'] = [
+			'section' => 'flags',
+			'cssclass' => 'mw-htmlform-inline',
+			'class' => 'HTMLCheckField',
+			'label' => $this->msg( 'sp-contributions-newonly' )->text(),
+			'name' => 'newOnly',
+			'id' => 'mw-show-new-only',
+		];
+		$fields['year'] = [
+			'section' => 'period',
+			'cssclass' => 'mw-htmlform-inline',
+			'maxlength' => 4,
+			'size' => 7,
+			'class' => 'HTMLIntField',
+			'name' => 'year',
+			'id' => 'year',
+			'default' => MWTimestamp::getInstance()->format( 'Y' ),
+			'label' => wfMessage( 'year' )->text(),
+		];
+		$fields['month'] = [
+			'section' => 'period',
+			'cssclass' => 'mw-htmlform-inline',
+			'name' => 'month',
+			'id' => 'month',
+			'class' => 'HTMLSelectField',
+			'label' => wfMessage( 'month' )->text(),
+			'options' => Xml::getMonthSelectOptions( true ),
+		];
 
-		Hooks::run(
-			'SpecialContributions::getForm::filters',
-			[ $this, &$filters ]
-		);
-
-		$extraOptions = Html::rawElement(
-			'td',
-			[ 'colspan' => 2 ],
-			implode( '', $filters )
-		);
-
-		$dateSelectionAndSubmit = Xml::tags( 'td', [ 'colspan' => 2 ],
-			Xml::dateMenu(
-				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
-				$this->opts['month']
-			) . ' ' .
-				Html::submitButton(
-					$this->msg( 'sp-contributions-submit' )->text(),
-					[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
-				)
-		);
-
-		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
-		$form .= Html::rawElement( 'table', [ 'class' => 'mw-contributions-table' ], "\n" .
-			Html::rawElement( 'tr', [], $targetSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $namespaceSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $filterSelection ) . "\n" .
-			Html::rawElement( 'tr', [], $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', [], $dateSelectionAndSubmit ) . "\n"
-		);
+		$form = HTMLForm::factory( 'div', $fields, $this->getContext() );
+		$form->setSubmitText( $this->msg( 'sp-contributions-submit' )->text() );
+		$form->setMethod( 'get' );
+		$form->setSubmitProgressive();
+		$form->setWrapperLegend( $this->msg( 'sp-contributions-search' )->text() );
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( !$explain->isBlank() ) {
-			$form .= "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>";
+			$form->addFooterText( "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>" );
 		}
 
-		$form .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' );
-
-		return $form;
+		$form->loadData();
+		return $form->getHTML( false );
 	}
 
 	/**

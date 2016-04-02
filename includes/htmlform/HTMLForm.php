@@ -1451,14 +1451,19 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Wraps the given $section into an user-visible fieldset.
+	 * Wraps the given $section into a fieldset.
 	 *
-	 * @param string $legend Legend text for the fieldset
+	 * @param string $legend Legend text for the fieldset. When an empty string a class
+	 *  htmlform-unlabeled-group will be added to the fieldset element
 	 * @param string $section The section content in plain Html
-	 * @param array $attributes Additional attributes for the fieldset
+	 * @param array $attributes Additional attributes for the fieldset.
+	 *  Note that `class` will be overriden if the $legend is an empty string.
 	 * @return string The fieldset's Html
 	 */
 	protected function wrapFieldSetSection( $legend, $section, $attributes ) {
+		if ( !$legend ) {
+			$attributes['class'] = 'htmlform-unlabeled-section';
+		}
 		return Xml::fieldset( $legend, $section, $attributes ) . "\n";
 	}
 
@@ -1653,7 +1658,7 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getLegend( $key ) {
-		return $this->msg( "{$this->mMessagePrefix}-$key" )->text();
+		return $this->mMessagePrefix ? $this->msg( "{$this->mMessagePrefix}-$key" )->text() : '';
 	}
 
 	/**

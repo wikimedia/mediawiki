@@ -47,3 +47,18 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	-ms-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
+
+.mw-htmlform-inline *,
+.mw-htmlform-inline {
+	display: inline;
+}
+
+.mw-htmlform-inline .mw-label {
+	margin-right: 4px;
+}
+
+.htmlform-unlabeled-section {
+	border: none;
+	margin: 0;
+	padding-left: 0;
+}
