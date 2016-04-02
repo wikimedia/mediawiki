@@ -590,23 +590,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Extract a redirect destination from a string and return an
-	 * array of Titles, or null if the text doesn't contain a valid redirect
-	 * The last element in the array is the final destination after all redirects
-	 * have been resolved (up to $wgMaxRedirects times)
-	 *
-	 * @param string $text Text with possible redirect
-	 * @return Title[] Array of Titles, with the destination last
-	 * @deprecated since 1.21, use Content::getRedirectChain instead.
-	 */
-	public static function newFromRedirectArray( $text ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
-		return $content->getRedirectChain();
-	}
-
-	/**
 	 * Get the prefixed DB key associated with an ID
 	 *
 	 * @param int $id The page_id of the article
