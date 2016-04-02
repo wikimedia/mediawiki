@@ -384,7 +384,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
 		$this->tagFilter = $tagFilter;
-		$this->getDateCond( $year, $month );
+		$this->mOffset = $this->getDateCond( $year, $month );
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
