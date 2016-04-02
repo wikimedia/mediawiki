@@ -29,6 +29,7 @@ class WatchedItemStore {
 	/**
 	 * @var array[] Looks like $cacheIndex[Namespace ID][Target DB Key][User Id] => 'key'
 	 * The index is needed so that on mass changes all relevant items can be un-cached.
+
 	 * For example: Clearing a users watchlist of all items or updating notification timestamps
 	 *              for all users watching a single target.
 	 */
@@ -57,18 +58,20 @@ class WatchedItemStore {
 	/**
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
-	 * @param StatsdDataFactoryInterface $stats
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache,
-		StatsdDataFactoryInterface $stats
+		HashBagOStuff $cache
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
-		$this->stats = $stats;
+		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $stats ) {
+		$this->stats = $stats;
 	}
 
 	/**
@@ -155,9 +158,9 @@ class WatchedItemStore {
 		if ( !self::$instance ) {
 			self::$instance = new self(
 				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] ),
-				RequestContext::getMain()->getStats()
+				new HashBagOStuff( [ 'maxKeys' => 100 ] )
 			);
+			self::$instance->setStatsdDataFactory( RequestContext::getMain()->getStats() );
 		}
 		return self::$instance;
 	}
