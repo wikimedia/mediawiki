@@ -1267,6 +1267,7 @@ $wgAutoloadLocalClasses = [
 	'SquidPurgeClientPool' => __DIR__ . '/includes/clientpool/SquidPurgeClientPool.php',
 	'SquidUpdate' => __DIR__ . '/includes/deferred/CdnCacheUpdate.php',
 	'SrConverter' => __DIR__ . '/languages/classes/LanguageSr.php',
+	'StatsdAwareInterface' => __DIR__ . '/includes/libs/stats/StatsdAwareInterface.php',
 	'StatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
 	'Status' => __DIR__ . '/includes/Status.php',
 	'StatusValue' => __DIR__ . '/includes/libs/StatusValue.php',
