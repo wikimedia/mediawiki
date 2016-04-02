@@ -822,21 +822,6 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a diff, no caching
 	 *
-	 * @param string $otext Old text, must be already segmented
-	 * @param string $ntext New text, must be already segmented
-	 *
-	 * @return bool|string
-	 * @deprecated since 1.21, use generateContentDiffBody() instead!
-	 */
-	public function generateDiffBody( $otext, $ntext ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		return $this->generateTextDiffBody( $otext, $ntext );
-	}
-
-	/**
-	 * Generate a diff, no caching
-	 *
 	 * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
 	 *
 	 * @param string $otext Old text, must be already segmented
