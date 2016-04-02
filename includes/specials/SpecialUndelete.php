@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**
@@ -45,6 +46,10 @@ class SpecialUndelete extends SpecialPage {
 
 	/** @var Title */
 	private $mTargetObj;
+	/**
+	 * @var string Search prefix
+	 */
+	private $mSearchPrefix;
 
 	function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
@@ -253,7 +258,12 @@ class SpecialUndelete extends SpecialPage {
 
 		# List undeletable articles
 		if ( $this->mSearchPrefix ) {
-			$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix );
+			$engine = MediaWikiServices::getInstance()->newSearchEngine();
+			$results = $engine->searchArchiveTitle( $this->mSearchPrefix );
+			if ( !is_array( $results ) ) {
+				$results = [];
+			}
+			$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix, $results );
 			$this->showList( $result );
 		}
 	}
