@@ -1352,38 +1352,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Get the text that needs to be saved in order to undo all revisions
-	 * between $undo and $undoafter. Revisions must belong to the same page,
-	 * must exist and must not be deleted
-	 * @param Revision $undo
-	 * @param Revision $undoafter Must be an earlier revision than $undo
-	 * @return string|bool String on success, false on failure
-	 * @deprecated since 1.21: use ContentHandler::getUndoContent() instead.
-	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		$this->loadLastEdit();
-
-		if ( $this->mLastRevision ) {
-			if ( is_null( $undoafter ) ) {
-				$undoafter = $undo->getPrevious();
-			}
-
-			$handler = $this->getContentHandler();
-			$undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
-
-			if ( !$undone ) {
-				return false;
-			} else {
-				return ContentHandler::getContentText( $undone );
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Returns true if this page's content model supports sections.
 	 *
 	 * @return bool
