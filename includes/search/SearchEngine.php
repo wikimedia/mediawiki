@@ -73,6 +73,16 @@ abstract class SearchEngine {
 	}
 
 	/**
+	 * Perform a title search in the article archive.
+	 *
+	 * @param string $term Raw search term
+	 * @return Title[]|Status|null
+	 */
+	function searchArchiveTitle( $term ) {
+		return null;
+	}
+
+	/**
 	 * Perform a title-only search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
 	 * STUB
