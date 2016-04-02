@@ -298,7 +298,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 			if ( !$batch->isEmpty() ) {
 				$res = $dbr->select( [ 'page', 'revision' ],
-					[ 'page_namespace', 'page_title', 'rev_len', 'rev_sha1' ],
+					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
+					[ 'page_namespace', 'page_title', 'page_touched', 'rev_len', 'rev_sha1' ],
 					$batch->constructSet( 'page', $dbr ),
 					__METHOD__,
 					[],
@@ -311,6 +312,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 					$this->titleInfo[$key][$title->getPrefixedText()] = [
 						'rev_len' => $row->rev_len,
 						'rev_sha1' => $row->rev_sha1,
+						'page_touched' => $row->page_touched,
 					];
 				}
 			}
