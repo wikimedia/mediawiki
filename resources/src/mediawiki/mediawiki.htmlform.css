@@ -47,3 +47,7 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	-ms-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
+
+.mw-htmlform-divider {
+	visibility: hidden;
+}
