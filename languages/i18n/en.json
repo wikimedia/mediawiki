@@ -1561,7 +1561,7 @@
 	"uploadstash-summary": "This page provides access to files that are uploaded or in the process of uploading, but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.",
 	"uploadstash-clear": "Clear stashed files",
 	"uploadstash-nofiles": "You have no stashed files.",
-	"uploadstash-badtoken": "Performing that action failed. Perhaps because your editing credentials expired. Please try again.",
+	"uploadstash-badtoken": "Performing that action failed, perhaps because your editing credentials expired. Please try again.",
 	"uploadstash-errclear": "Clearing the files failed.",
 	"uploadstash-refresh": "Refresh the list of files",
 	"uploadstash-thumbnail": "view thumbnail",
