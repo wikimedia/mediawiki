@@ -133,6 +133,25 @@ class Xml {
 	}
 
 	/**
+	 * Return the list of months in the current language for use in a select dropdown
+	 *
+	 * @param string $allmonths Value of a special item denoting all month.
+	 *   Null to not include (default).
+	 * @return string Html string containing the month selector
+	 */
+	public static function getMonthSelectOptions( $allmonths = null ) {
+		global $wgLang;
+		$options = [];
+		if ( !is_null( $allmonths ) ) {
+			$options[wfMessage( 'monthsall' )->text()] = $allmonths;
+		}
+		for ( $i = 1; $i < 13; $i++ ) {
+			$options[$wgLang->getMonthName( $i )] = $i;
+		}
+		return $options;
+	}
+
+	/**
 	 * Create a date selector
 	 *
 	 * @param string $selected The month which should be selected, default ''.
@@ -142,19 +161,11 @@ class Xml {
 	 * @return string Html string containing the month selector
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
-		global $wgLang;
-		$options = [];
 		$data = new XmlSelect( 'month', $id, $selected );
 		if ( is_null( $selected ) ) {
 			$selected = '';
 		}
-		if ( !is_null( $allmonths ) ) {
-			$options[wfMessage( 'monthsall' )->text()] = $allmonths;
-		}
-		for ( $i = 1; $i < 13; $i++ ) {
-			$options[$wgLang->getMonthName( $i )] = $i;
-		}
-		$data->addOptions( $options );
+		$data->addOptions( self::getMonthSelectOptions( $allmonths ) );
 		$data->setAttribute( 'class', 'mw-month-selector' );
 		return $data->getHTML();
 	}
