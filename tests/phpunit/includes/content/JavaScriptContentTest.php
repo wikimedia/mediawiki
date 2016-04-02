@@ -151,16 +151,6 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 	*/
 
-	/**
-	 * @todo Test needs database!
-	 */
-	/*
-	public function getUltimateRedirectTarget() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectRecurse( $text );
-	}
-	*/
-
 	public static function dataIsCountable() {
 		return [
 			[ '',

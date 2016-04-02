@@ -190,16 +190,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 	*/
 
-	/**
-	 * @todo Test needs database! Should be done by a test class in the Database group.
-	 */
-	/*
-	public function getUltimateRedirectTarget() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectRecurse( $text );
-	}
-	*/
-
 	public static function dataIsCountable() {
 		return [
 			[ '',
