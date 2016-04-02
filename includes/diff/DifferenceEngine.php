@@ -1154,19 +1154,6 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
-	 * @deprecated since 1.21, use setContent() instead.
-	 */
-	public function setText( $oldText, $newText ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
-		$newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
-
-		$this->setContent( $oldContent, $newContent );
-	}
-
-	/**
-	 * Use specified text instead of loading from the database
 	 * @param Content $oldContent
 	 * @param Content $newContent
 	 * @since 1.21
