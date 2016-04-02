@@ -70,6 +70,19 @@ class ServiceContainer {
 	}
 
 	/**
+	 * Create dynamic getters for getService.
+	 * @param string $name
+	 * @param array $args
+	 * @return object
+	 */
+	public function __call( $name, $args ) {
+		if ( !preg_match( '/^get\w+$/', $name ) ) {
+			throw new \BadMethodCallException( 'Invalid method' );
+		}
+		return $this->getService( substr( $name, 3 ) );
+	}
+
+	/**
 	 * @param array $wiringFiles A list of PHP files to load wiring information from.
 	 * Each file is loaded using PHP's include mechanism. Each file is expected to
 	 * return an associative array that maps service names to instantiator functions.

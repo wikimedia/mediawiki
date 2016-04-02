@@ -489,6 +489,7 @@ $wgAutoloadLocalClasses = [
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
 	'GenerateNormalizerDataAr' => __DIR__ . '/maintenance/language/generateNormalizerDataAr.php',
 	'GenerateNormalizerDataMl' => __DIR__ . '/maintenance/language/generateNormalizerDataMl.php',
+	'GenerateServiceTypeHints' => __DIR__ . '/maintenance/generateServiceTypeHints.php',
 	'GenerateSitemap' => __DIR__ . '/maintenance/generateSitemap.php',
 	'GenerateUtf8Case' => __DIR__ . '/maintenance/language/generateUtf8Case.php',
 	'GenericArrayObject' => __DIR__ . '/includes/libs/GenericArrayObject.php',
