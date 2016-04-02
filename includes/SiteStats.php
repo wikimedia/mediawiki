@@ -289,8 +289,10 @@ class SiteStatsInit {
 	public function __construct( $database = false ) {
 		if ( $database instanceof IDatabase ) {
 			$this->db = $database;
+		} elseif ( $database ) {
+			$this->db = wfGetDB( DB_MASTER );
 		} else {
-			$this->db = wfGetDB( $database ? DB_MASTER : DB_SLAVE );
+			$this->db = wfGetDB( DB_SLAVE, 'vslow' );
 		}
 	}
 
