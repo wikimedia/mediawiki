@@ -736,7 +736,9 @@ $current: the reverted revision
 $create: Whether or not the restoration caused the page to be created (i.e. it
   didn't exist before).
 $comment: The comment associated with the undeletion.
-$oldPageId: ID of page previously deleted (from archive table)
+$oldPageId: ID of page previously deleted (from archive table).
+$restoredPages: Set of IDs of pages that have revisions restored for this undelete,
+with keys being page IDs and values are 'true'.
 
 'ArticleUndeleteLogEntry': When a log entry is generated but not yet saved.
 $pageArchive: the PageArchive object

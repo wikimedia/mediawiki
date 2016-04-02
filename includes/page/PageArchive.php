@@ -68,6 +68,56 @@ class PageArchive {
 	}
 
 	/**
+	 * List deleted pages recorded in the archive matching the
+	 * given term, using search engine archive.
+	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
+	 *
+	 * @param string $term Search term
+	 * @return ResultWrapper
+	 */
+	public static function listPagesBySearch( $term ) {
+		$title = Title::newFromText( $term );
+		if ( $title ) {
+			$ns = $title->getNamespace();
+			$termMain = $title->getText();
+			$termDb = $title->getDBkey();
+		} else {
+			// Prolly won't work too good
+			// @todo handle bare namespace names cleanly?
+			$ns = 0;
+			$termMain = $termDb = $term;
+		}
+
+		// Try search engine first
+		$engine = MediaWikiServices::getInstance()->newSearchEngine();
+		$engine->setLimitOffset( 100 );
+		$engine->setNamespaces( [ $ns ] );
+		$results = $engine->searchArchiveTitle( $termMain );
+		if ( !$results->isOK() ) {
+			$results = [];
+		} else {
+			$results = $results->getValue();
+		}
+
+		if ( !$results ) {
+			// Fall back to regular prefix search
+			return self::listPagesByPrefix( $term );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$condTitles = array_unique( array_map( function ( Title $t ) {
+			return $t->getDBkey();
+		}, $results ) );
+		$conds = [
+			'ar_namespace' => $ns,
+			$dbr->makeList( [ 'ar_title' => $condTitles ], LIST_OR ) . " OR ar_title " .
+			$dbr->buildLike( $termDb, $dbr->anyString() )
+		];
+
+		return self::listPages( $dbr, $conds );
+	}
+
+	/**
 	 * List deleted pages recorded in the archive table matching the
 	 * given title prefix.
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
@@ -133,6 +183,7 @@ class PageArchive {
 		$fields = [
 			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
 			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
+		    'ar_page_id'
 		];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
@@ -620,7 +671,7 @@ class PageArchive {
 		$restored = 0; // number of revisions restored
 		/** @var Revision $revision */
 		$revision = null;
-
+		$restoredPages = [];
 		// If there are no restorable revisions, we can skip most of the steps.
 		if ( $latestRestorableRow === null ) {
 			$failedRevisionCount = $rev_count;
@@ -677,6 +728,7 @@ class PageArchive {
 
 				Hooks::run( 'ArticleRevisionUndeleted',
 					[ &$this->title, $revision, $row->ar_page_id ] );
+				$restoredPages[$row->ar_page_id] = true;
 			}
 
 			// Now that it's safely stored, take it out of the archive
@@ -717,7 +769,8 @@ class PageArchive {
 				);
 			}
 
-			Hooks::run( 'ArticleUndelete', [ &$this->title, $created, $comment, $oldPageId ] );
+			Hooks::run( 'ArticleUndelete',
+				[ &$this->title, $created, $comment, $oldPageId, $restoredPages ] );
 			if ( $this->title->getNamespace() == NS_FILE ) {
 				DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->title, 'imagelinks' ) );
 			}
