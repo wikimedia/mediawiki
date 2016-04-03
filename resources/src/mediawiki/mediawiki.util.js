@@ -101,36 +101,38 @@
 		/**
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
-		 * @param {string|null} [str=wgPageName] Page name
+		 * @param {string|null} [pageName=wgPageName] Page name
 		 * @param {Object} [params] A mapping of query parameter names to values,
 		 *  e.g. `{ action: 'edit' }`
-		 * @return {string} Url of the page with name of `str`
+		 * @return {string} Url of the page with name of `pageName`
 		 */
-		getUrl: function ( str, params ) {
-			var titleFragmentStart,
-				url,
+		getUrl: function ( pageName, params ) {
+			var titleFragmentStart, url, query,
 				fragment = '',
-				pageName = typeof str === 'string' ? str : mw.config.get( 'wgPageName' );
+				title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
-			// Find any fragment should one exist
-			if ( typeof str === 'string' ) {
-				titleFragmentStart = pageName.indexOf( '#' );
-				if ( titleFragmentStart !== -1 ) {
-					fragment = pageName.slice( titleFragmentStart + 1 );
-					// Exclude the fragment from the page name
-					pageName = pageName.slice( 0, titleFragmentStart );
-				}
+			// Find any fragment
+			titleFragmentStart = title.indexOf( '#' );
+			if ( titleFragmentStart !== -1 ) {
+				fragment = title.slice( titleFragmentStart + 1 );
+				// Exclude the fragment from the page name
+				title = title.slice( 0, titleFragmentStart );
 			}
 
-			url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( pageName ) );
-
-			// Add query string if necessary
-			if ( params && !$.isEmptyObject( params ) ) {
-				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) + $.param( params );
+			// Produce query string
+			if ( params ) {
+				query = $.param( params );
+			}
+			if ( query ) {
+				url = title
+					? util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query
+					: util.wikiScript() + '?' + query;
+			} else {
+				url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( title ) );
 			}
 
 			// Append the encoded fragment
-			if ( fragment.length > 0 ) {
+			if ( fragment.length ) {
 				url += '#' + util.escapeId( fragment );
 			}
 
