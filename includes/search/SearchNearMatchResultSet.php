@@ -1,6 +1,6 @@
 <?php
 /**
- * A SearchResultSet wrapper for SearchEngine::getNearMatch
+ * A SearchResultSet wrapper for SearchNearMatcher
  */
 class SearchNearMatchResultSet extends SearchResultSet {
 	private $fetched = false;

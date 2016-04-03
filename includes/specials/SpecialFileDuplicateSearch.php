@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:FileDuplicateSearch
  *
@@ -244,7 +246,7 @@ class FileDuplicateSearchPage extends QueryPage {
 			// No prefix suggestion outside of file namespace
 			return [];
 		}
-		$searchEngine = SearchEngine::create();
+		$searchEngine = MediaWikiServices::getInstance()->getSearchEngine();
 		$searchEngine->setLimitOffset( $limit, $offset );
 		// Autocomplete subpage the same as a normal search, but just for files
 		$searchEngine->setNamespaces( [ NS_FILE ] );
