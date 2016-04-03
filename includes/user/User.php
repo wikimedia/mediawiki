@@ -21,13 +21,14 @@
  */
 
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\Token;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
  * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
  * @ingroup Constants
  */
-define( 'EDIT_TOKEN_SUFFIX', MediaWiki\Session\Token::SUFFIX );
+define( 'EDIT_TOKEN_SUFFIX', Token::SUFFIX );
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
@@ -4265,7 +4266,7 @@ class User implements IDBAccessObject {
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
-		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . self::EDIT_TOKEN_SUFFIX;
+		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . Token::SUFFIX;
 		return $this->matchEditToken( $val, $salt, $request, $maxage );
 	}
 
