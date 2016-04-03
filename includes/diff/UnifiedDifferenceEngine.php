@@ -34,6 +34,7 @@ class UnifiedDifferenceEngine extends DifferenceEngine {
 		if ( $context->getRequest()->getText( 'engine' ) === 'unified-plain' ) {
 			$this->name = 'unified-plain';
 		}
+		$this->getOutput()->addModules( 'mediawiki.action.history.diff.scripts' );
 	}
 
 	/**

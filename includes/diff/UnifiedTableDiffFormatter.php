@@ -9,6 +9,37 @@
  * It differs from UnifiedDiffFormatter which outputs diffs in plaintext.
  */
 class UnifiedTableDiffFormatter extends TableDiffFormatter {
+	protected $linesRemoved = [];
+	protected $linesAdded = [];
+	protected $changeNumber = 0;
+
+	protected function makeLine( $line, $isInsert = true ) {
+		$attrs = [
+			'class' => $isInsert ? 'mw-diff-inline-added' : 'mw-diff-inline-deleted',
+			'data-line' => $this->changeNumber,
+		];
+
+		// check previous changes to see if this is a move of something that came before
+		$prevChanges = $isInsert ? $this->linesRemoved : $this->linesAdded;
+		foreach ( $prevChanges as $change ) {
+			if ( $change[1] === $line ) {
+				$attrs['class'] .= ' mw-diff-inline-moved';
+				$attrs['data-move-ref'] = $change[0];
+			}
+		}
+		$this->writeOutput(
+			Html::openElement( 'div', $attrs )
+			 . Html::rawElement( $isInsert ? 'ins' : 'del', [], $this->lineOrNbsp( htmlspecialchars( $line ) ) )
+			 . Html::closeElement( 'div' )
+		);
+		if ( $isInsert ) {
+			$this->linesAdded[] = [ $this->changeNumber, $line ];
+		} else {
+			$this->linesRemoved[] = [ $this->changeNumber, $line ];
+		}
+		$this->changeNumber += 1;
+	}
+
 	/**
 	 * Get a div element with a complete new added line as content.
 	 * Complete line will be appear with green background.
@@ -16,9 +47,7 @@ class UnifiedTableDiffFormatter extends TableDiffFormatter {
 	 */
 	function added( $lines ) {
 		foreach ( $lines as $line ) {
-			$this->writeOutput( '<div class="mw-diff-inline-added"><ins>'
-				. $this->lineOrNbsp( htmlspecialchars( $line ) )
-				. "</ins></div>\n" );
+			$this->makeLine( $line, true );
 		}
 	}
 
@@ -29,9 +58,7 @@ class UnifiedTableDiffFormatter extends TableDiffFormatter {
 	 */
 	function deleted( $lines ) {
 		foreach ( $lines as $line ) {
-			$this->writeOutput( '<div class="mw-diff-inline-deleted"><del>'
-				. $this->lineOrNbsp( htmlspecialchars( $line ) )
-				. "</del></div>\n" );
+			$this->makeLine( $line, false );
 		}
 	}
 
