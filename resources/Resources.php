@@ -1432,6 +1432,13 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
 	],
+	'mediawiki.action.history.diff.scripts' => [
+		'position' => 'top',
+		'scripts' => [
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.js',
+		],
+		'targets' => [ 'desktop' ],
+	],
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
 		'styles' => [

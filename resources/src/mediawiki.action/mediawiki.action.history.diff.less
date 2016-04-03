@@ -1,3 +1,5 @@
+@import "mediawiki.ui/variables.less";
+
 /*!
  * Diff rendering
  */
@@ -90,6 +92,7 @@ td.diff-context {
 	text-decoration: none;
 }
 
+.mw-diff-move-marker,
 .mw-diff-inline-added,
 .mw-diff-inline-deleted,
 .mw-diff-inline-changed,
@@ -129,3 +132,40 @@ td.diff-deletedline .diffchange {
 		margin: 0.2em 0;
 	}
 }
+
+.mw-diff-move-marker {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border: solid 2px @colorGray8;
+	border-right: none;
+	&:after {
+		right: -9px;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+	&:after {
+		border-left-color: @colorGray8;
+		border-width: 8px;
+	}
+}
+
+.mw-diff-move-marker-to-from {
+	border-bottom-color: @colorGray12;
+	border-bottom-width: 1px;
+	&:after {
+		top: -8px;
+	}
+}
+
+.mw-diff-move-marker-from-to {
+	border-top-color: @colorGray12;
+	border-top-width: 1px;
+	&:after {
+		bottom: -8px;
+	}
+}
+
