@@ -18,6 +18,9 @@
  * @file
  */
 
+/**
+ * @since 1.16.3
+ */
 class IcuCollation extends Collation {
 	const FIRST_LETTER_VERSION = 2;
 
@@ -159,6 +162,9 @@ class IcuCollation extends Collation {
 		'uz' => [ "Ch", "G'", "Ng", "O'", "Sh" ],
 	];
 
+	/**
+	 * @since 1.16.3
+	 */
 	const RECORD_LENGTH = 14;
 
 	public function __construct( $locale ) {
@@ -226,6 +232,11 @@ class IcuCollation extends Collation {
 		return $this->getLetterByIndex( $min );
 	}
 
+	/**
+	 * @since 1.16.3
+	 * @return array|mixed
+	 * @throws MWException
+	 */
 	public function getFirstLetterData() {
 		if ( $this->firstLetterData !== null ) {
 			return $this->firstLetterData;
@@ -377,6 +388,9 @@ class IcuCollation extends Collation {
 		return $data;
 	}
 
+	/**
+	 * @since 1.16.3
+	 */
 	public function getLetterByIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
@@ -384,6 +398,9 @@ class IcuCollation extends Collation {
 		return $this->firstLetterData['chars'][$index];
 	}
 
+	/**
+	 * @since 1.16.3
+	 */
 	public function getSortKeyByLetterIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
@@ -391,6 +408,9 @@ class IcuCollation extends Collation {
 		return $this->firstLetterData['keys'][$index];
 	}
 
+	/**
+	 * @since 1.16.3
+	 */
 	public function getFirstLetterCount() {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
@@ -398,7 +418,10 @@ class IcuCollation extends Collation {
 		return count( $this->firstLetterData['chars'] );
 	}
 
-	static function isCjk( $codepoint ) {
+	/**
+	 * @since 1.16.3
+	 */
+	public static function isCjk( $codepoint ) {
 		foreach ( self::$cjkBlocks as $block ) {
 			if ( $codepoint >= $block[0] && $codepoint <= $block[1] ) {
 				return true;
