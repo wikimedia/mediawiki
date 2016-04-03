@@ -70,7 +70,7 @@ class McTest extends Maintenance {
 				$server # output channel
 			);
 
-			$mcc = new MemCachedClientforWiki( [
+			$mcc = new MemcachedClient( [
 				'persistant' => true,
 				'timeout' => $wgMemCachedTimeout
 			] );
