@@ -159,6 +159,28 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'EventRelayerGroup' );
 	}
 
+	/**
+	 * @return SearchEngine
+	 */
+	public function newSearchEngine() {
+		// New engine object every time, since they keep state
+		return $this->getService( 'SearchEngineFactory' )->create();
+	}
+
+	/**
+	 * @return SearchEngineFactory
+	 */
+	public function getSearchEngineFactory() {
+		return $this->getService( 'SearchEngineFactory' );
+	}
+
+	/**
+	 * @return SearchEngineConfig
+	 */
+	public function getSearchEngineConfig() {
+		return $this->getService( 'SearchEngineConfig' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in
