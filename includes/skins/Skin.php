@@ -387,8 +387,9 @@ abstract class Skin extends ContextSource {
 		}
 
 		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
+		$root = Sanitizer::escapeClass( 'rootpage-' . $title->getRootTitle()->getPrefixedText() );
 
-		return "$numeric $type $name";
+		return "$numeric $type $name $root";
 	}
 
 	/**
