@@ -84,9 +84,6 @@ class SpecialBotPasswords extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		$user = $this->getUser();
-		$request = $this->getRequest();
-
 		$fields = [];
 
 		if ( $this->par !== null ) {
