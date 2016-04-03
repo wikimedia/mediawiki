@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 /**
  * Created on Oct 13, 2006
  *
@@ -123,8 +124,7 @@ class ApiOpenSearch extends ApiBase {
 	 * @param array &$results Put results here. Keys have to be integers.
 	 */
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
-
-		$searchEngine = SearchEngine::create();
+		$searchEngine = MediaWikiServices::getInstance()->getSearchEngine();
 		$searchEngine->setLimitOffset( $limit );
 		$searchEngine->setNamespaces( $namespaces );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
@@ -356,7 +356,7 @@ class ApiOpenSearch extends ApiBase {
 			return $wgOpenSearchTemplate;
 		}
 
-		$ns = implode( '|', SearchEngine::defaultNamespaces() );
+		$ns = implode( '|', MediaWikiServices::getInstance()->getSearchEngineConfig()->defaultNamespaces() );
 		if ( !$ns ) {
 			$ns = '0';
 		}

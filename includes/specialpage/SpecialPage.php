@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 /**
  * Parent class for all special pages.
  *
@@ -342,7 +343,7 @@ class SpecialPage {
 			return [];
 		}
 
-		$searchEngine = SearchEngine::create();
+		$searchEngine = MediaWikiServices::getInstance()->getSearchEngine();
 		$searchEngine->setLimitOffset( $limit, $offset );
 		$searchEngine->setNamespaces( [] );
 		$result = $searchEngine->defaultPrefixSearch( $search );
