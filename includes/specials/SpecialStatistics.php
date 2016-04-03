@@ -36,8 +36,6 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		$miserMode = $this->getConfig()->get( 'MiserMode' );
-
 		$this->setHeaders();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
