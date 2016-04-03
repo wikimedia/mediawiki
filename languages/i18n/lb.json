@@ -3333,6 +3333,7 @@
 	"special-characters-group-ipa": "IPA",
 	"special-characters-group-symbols": "Symboler",
 	"special-characters-group-greek": "Griichesch",
+	"special-characters-group-greekextended": "Griichesch erweidert",
 	"special-characters-group-cyrillic": "Kyrillisch",
 	"special-characters-group-arabic": "Arabesch",
 	"special-characters-group-arabicextended": "Arabesch, erweidert",
@@ -3360,10 +3361,13 @@
 	"log-action-filter-protect": "Typ vu Spär",
 	"log-action-filter-all": "All",
 	"log-action-filter-block-block": "Spären",
+	"log-action-filter-block-reblock": "Ännere vun enger Spär",
 	"log-action-filter-block-unblock": "Spär ophiewen",
 	"log-action-filter-delete-delete": "Säite läschen",
 	"log-action-filter-patrol-patrol": "Manuell Kontroll",
 	"log-action-filter-patrol-autopatrol": "Automatesch Kontroll",
 	"log-action-filter-protect-protect": "Spär",
-	"log-action-filter-protect-modify": "Spär-pÄnnerung"
+	"log-action-filter-protect-modify": "Spär-pÄnnerung",
+	"log-action-filter-upload-upload": "Neien Upload",
+	"log-action-filter-upload-overwrite": "Nees eroplueden"
 }

@@ -3734,5 +3734,13 @@
 	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト",
 	"api-error-blacklisted": "他の、説明的なタイトルをお選びください。",
 	"sessionprovider-generic": "$1 セッション",
-	"randomrootpage": "おまかせルートページ"
+	"randomrootpage": "おまかせルートページ",
+	"log-action-filter-block": "ブロックの種類",
+	"log-action-filter-upload": "ブロックの種類",
+	"log-action-filter-all": "すべて",
+	"log-action-filter-block-block": "ブロック",
+	"log-action-filter-block-reblock": "ブロック変更",
+	"log-action-filter-block-unblock": "ブロック解除",
+	"log-action-filter-delete-delete": "ページの削除",
+	"log-action-filter-delete-restore": "ページの復帰"
 }

@@ -596,6 +596,7 @@
 	"botpasswords-label-cancel": "Anuluj",
 	"botpasswords-label-delete": "Usuń",
 	"botpasswords-label-resetpassword": "Zresetuj hasło",
+	"botpasswords-label-grants": "Zastosowane uprawnienia:",
 	"botpasswords-label-grants-column": "Przyznane",
 	"botpasswords-bad-appid": "Nazwa bota \"$1\" nie jest prawidłowa.",
 	"botpasswords-created-title": "Hasło bota stworzone",
