@@ -20,38 +20,10 @@
  */
 
 /**
- * Base class for reliable event relays
+ * No-op class for publishing messages into a PubSub system
  */
-abstract class EventRelayer {
-	/**
-	 * @param array $params
-	 */
-	public function __construct( array $params ) {
+class EventRelayerNull extends EventRelayer {
+	public function doNotify( $channel, array $events ) {
+		return true;
 	}
-
-	/**
-	 * @param string $channel
-	 * @param array $event Event data map
-	 * @return bool Success
-	 */
-	final public function notify( $channel, $event ) {
-		return $this->doNotify( $channel, [ $event ] );
-	}
-
-	/**
-	 * @param string $channel
-	 * @param array $events List of event data maps
-	 * @return bool Success
-	 */
-	final public function notifyMulti( $channel, $events ) {
-		return $this->doNotify( $channel, $events );
-	}
-
-	/**
-	 * @param string $channel
-	 * @param array $events List of event data maps
-	 * @return bool Success
-	 */
-	abstract protected function doNotify( $channel, array $events );
 }
-
