@@ -22,9 +22,11 @@
  * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
  *
  * Uses the same collation rules as Persian / Farsi ('fa'), but different characters for digits.
+ *
+ * @since 1.23
  */
 class CollationCkb extends IcuCollation {
-	function __construct() {
+	public function __construct() {
 		// This will set $locale and collators, which affect the actual sorting order
 		parent::__construct( 'fa' );
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()

@@ -20,13 +20,18 @@
  * @file
  */
 
+/**
+ * @since 1.16.3
+ * @author Tim Starling
+ */
 abstract class Collation {
 	private static $instance;
 
 	/**
+	 * @since 1.16.3
 	 * @return Collation
 	 */
-	static function singleton() {
+	public static function singleton() {
 		if ( !self::$instance ) {
 			global $wgCategoryCollation;
 			self::$instance = self::factory( $wgCategoryCollation );
@@ -35,11 +40,12 @@ abstract class Collation {
 	}
 
 	/**
+	 * @since 1.16.3
 	 * @throws MWException
 	 * @param string $collationName
 	 * @return Collation
 	 */
-	static function factory( $collationName ) {
+	public static function factory( $collationName ) {
 		switch ( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
@@ -78,6 +84,8 @@ abstract class Collation {
 	 * has no other particular expectations (and that one can be changed if
 	 * necessary).
 	 *
+	 * @since 1.16.3
+	 *
 	 * @param string $string UTF-8 string
 	 * @return string Binary sortkey
 	 */
@@ -102,6 +110,8 @@ abstract class Collation {
 	 * * [[Ape]]
 	 *
 	 * etc., assuming for the sake of argument that $wgCapitalLinks is false.
+	 *
+	 * @since 1.16.3
 	 *
 	 * @param string $string UTF-8 string
 	 * @return string UTF-8 string corresponding to the first letter of input
