@@ -246,11 +246,11 @@ class FileDuplicateSearchPage extends QueryPage {
 			// No prefix suggestion outside of file namespace
 			return [];
 		}
-		$search = SearchEngine::create();
-		$search->setLimitOffset( $limit, $offset );
+		$searchEngine = SearchEngine::create();
+		$searchEngine->setLimitOffset( $limit, $offset );
 		// Autocomplete subpage the same as a normal search, but just for files
-		$search->setNamespaces( [ NS_FILE ] );
-		$result = $search->defaultPrefixSearch( $search );
+		$searchEngine->setNamespaces( [ NS_FILE ] );
+		$result = $searchEngine->defaultPrefixSearch( $search );
 
 		return array_map( function ( Title $t ) {
 			// Remove namespace in search suggestion
