@@ -1,7 +1,5 @@
 <?php
 /**
- * Database row sorting.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,139 +17,6 @@
  *
  * @file
  */
-
-abstract class Collation {
-	private static $instance;
-
-	/**
-	 * @return Collation
-	 */
-	static function singleton() {
-		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * @throws MWException
-	 * @param string $collationName
-	 * @return Collation
-	 */
-	static function factory( $collationName ) {
-		switch ( $collationName ) {
-			case 'uppercase':
-				return new UppercaseCollation;
-			case 'identity':
-				return new IdentityCollation;
-			case 'uca-default':
-				return new IcuCollation( 'root' );
-			case 'xx-uca-ckb':
-				return new CollationCkb;
-			case 'xx-uca-et':
-				return new CollationEt;
-			default:
-				$match = [];
-				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
-					return new IcuCollation( $match[1] );
-				}
-
-				# Provide a mechanism for extensions to hook in.
-				$collationObject = null;
-				Hooks::run( 'Collation::factory', [ $collationName, &$collationObject ] );
-
-				if ( $collationObject instanceof Collation ) {
-					return $collationObject;
-				}
-
-				// If all else fails...
-				throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
-		}
-	}
-
-	/**
-	 * Given a string, convert it to a (hopefully short) key that can be used
-	 * for efficient sorting.  A binary sort according to the sortkeys
-	 * corresponds to a logical sort of the corresponding strings.  Current
-	 * code expects that a line feed character should sort before all others, but
-	 * has no other particular expectations (and that one can be changed if
-	 * necessary).
-	 *
-	 * @param string $string UTF-8 string
-	 * @return string Binary sortkey
-	 */
-	abstract function getSortKey( $string );
-
-	/**
-	 * Given a string, return the logical "first letter" to be used for
-	 * grouping on category pages and so on.  This has to be coordinated
-	 * carefully with convertToSortkey(), or else the sorted list might jump
-	 * back and forth between the same "initial letters" or other pathological
-	 * behavior.  For instance, if you just return the first character, but "a"
-	 * sorts the same as "A" based on getSortKey(), then you might get a
-	 * list like
-	 *
-	 * == A ==
-	 * * [[Aardvark]]
-	 *
-	 * == a ==
-	 * * [[antelope]]
-	 *
-	 * == A ==
-	 * * [[Ape]]
-	 *
-	 * etc., assuming for the sake of argument that $wgCapitalLinks is false.
-	 *
-	 * @param string $string UTF-8 string
-	 * @return string UTF-8 string corresponding to the first letter of input
-	 */
-	abstract function getFirstLetter( $string );
-}
-
-class UppercaseCollation extends Collation {
-	private $lang;
-
-	function __construct() {
-		// Get a language object so that we can use the generic UTF-8 uppercase
-		// function there
-		$this->lang = Language::factory( 'en' );
-	}
-
-	function getSortKey( $string ) {
-		return $this->lang->uc( $string );
-	}
-
-	function getFirstLetter( $string ) {
-		if ( $string[0] == "\0" ) {
-			$string = substr( $string, 1 );
-		}
-		return $this->lang->ucfirst( $this->lang->firstChar( $string ) );
-	}
-}
-
-/**
- * Collation class that's essentially a no-op.
- *
- * Does sorting based on binary value of the string.
- * Like how things were pre 1.17.
- */
-class IdentityCollation extends Collation {
-
-	function getSortKey( $string ) {
-		return $string;
-	}
-
-	function getFirstLetter( $string ) {
-		global $wgContLang;
-		// Copied from UppercaseCollation.
-		// I'm kind of unclear on when this could happen...
-		if ( $string[0] == "\0" ) {
-			$string = substr( $string, 1 );
-		}
-		return $wgContLang->firstChar( $string );
-	}
-}
 
 class IcuCollation extends Collation {
 	const FIRST_LETTER_VERSION = 2;
@@ -296,7 +161,7 @@ class IcuCollation extends Collation {
 
 	const RECORD_LENGTH = 14;
 
-	function __construct( $locale ) {
+	public function __construct( $locale ) {
 		if ( !extension_loaded( 'intl' ) ) {
 			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
@@ -316,7 +181,7 @@ class IcuCollation extends Collation {
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
 	}
 
-	function getSortKey( $string ) {
+	public function getSortKey( $string ) {
 		// intl extension produces non null-terminated
 		// strings. Appending '' fixes it so that it doesn't generate
 		// a warning on each access in debug php.
@@ -326,14 +191,14 @@ class IcuCollation extends Collation {
 		return $key;
 	}
 
-	function getPrimarySortKey( $string ) {
+	public function getPrimarySortKey( $string ) {
 		MediaWiki\suppressWarnings();
 		$key = $this->primaryCollator->getSortKey( $string ) . '';
 		MediaWiki\restoreWarnings();
 		return $key;
 	}
 
-	function getFirstLetter( $string ) {
+	public function getFirstLetter( $string ) {
 		$string = strval( $string );
 		if ( $string === '' ) {
 			return '';
@@ -361,7 +226,7 @@ class IcuCollation extends Collation {
 		return $this->getLetterByIndex( $min );
 	}
 
-	function getFirstLetterData() {
+	public function getFirstLetterData() {
 		if ( $this->firstLetterData !== null ) {
 			return $this->firstLetterData;
 		}
@@ -512,21 +377,21 @@ class IcuCollation extends Collation {
 		return $data;
 	}
 
-	function getLetterByIndex( $index ) {
+	public function getLetterByIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
 		return $this->firstLetterData['chars'][$index];
 	}
 
-	function getSortKeyByLetterIndex( $index ) {
+	public function getSortKeyByLetterIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
 		return $this->firstLetterData['keys'][$index];
 	}
 
-	function getFirstLetterCount() {
+	public function getFirstLetterCount() {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
@@ -591,58 +456,5 @@ class IcuCollation extends Collation {
 		} else {
 			return false;
 		}
-	}
-}
-
-/**
- * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
- *
- * Uses the same collation rules as Persian / Farsi ('fa'), but different characters for digits.
- */
-class CollationCkb extends IcuCollation {
-	function __construct() {
-		// This will set $locale and collators, which affect the actual sorting order
-		parent::__construct( 'fa' );
-		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
-		$this->digitTransformLanguage = Language::factory( 'ckb' );
-	}
-}
-
-/**
- * Workaround for incorrect collation of Estonian language ('et') in ICU (bug 54168).
- *
- * 'W' and 'V' should not be considered the same letter for the purposes of collation in modern
- * Estonian. We work around this by replacing 'W' and 'w' with 'ᴡ' U+1D21 'LATIN LETTER SMALL
- * CAPITAL W' for sortkey generation, which is collated like 'W' and is not tailored to have the
- * same primary weight as 'V' in Estonian.
- */
-class CollationEt extends IcuCollation {
-	function __construct() {
-		parent::__construct( 'et' );
-	}
-
-	private static function mangle( $string ) {
-		return str_replace(
-			[ 'w', 'W' ],
-			'ᴡ', // U+1D21 'LATIN LETTER SMALL CAPITAL W'
-			$string
-		);
-	}
-
-	private static function unmangle( $string ) {
-		// Casing data is lost…
-		return str_replace(
-			'ᴡ', // U+1D21 'LATIN LETTER SMALL CAPITAL W'
-			'W',
-			$string
-		);
-	}
-
-	function getSortKey( $string ) {
-		return parent::getSortKey( self::mangle( $string ) );
-	}
-
-	function getFirstLetter( $string ) {
-		return self::unmangle( parent::getFirstLetter( self::mangle( $string ) ) );
 	}
 }
