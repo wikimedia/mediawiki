@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +47,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$namespaces = $params['namespace'];
 		$offset = $params['offset'];
 
-		$searchEngine = SearchEngine::create();
+		$searchEngine = MediaWikiServices::getInstance()->getSearchEngine();
 		$searchEngine->setLimitOffset( $limit + 1, $offset );
 		$searchEngine->setNamespaces( $namespaces );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
