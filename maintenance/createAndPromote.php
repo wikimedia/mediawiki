@@ -79,11 +79,16 @@ class CreateAndPromote extends Maintenance {
 
 		$groups = array_filter( self::$permitRoles, [ $this, 'hasOption' ] );
 		if ( $this->hasOption( 'custom-groups' ) ) {
+			$allGroups = array_flip( User::getAllGroups() );
 			$customGroupsText = $this->getOption( 'custom-groups' );
 			if ( $customGroupsText !== '' ) {
 				$customGroups = explode( ',', $customGroupsText );
 				foreach ( $customGroups as $customGroup ) {
-					$groups[] = trim( $customGroup );
+					if ( isset( $allGroups[$customGroup] ) ) {
+						$groups[] = trim( $customGroup );
+					} else {
+						$this->output( "$customGroup is not a valid group, ignoring!\n" );
+					}
 				}
 			}
 		}
