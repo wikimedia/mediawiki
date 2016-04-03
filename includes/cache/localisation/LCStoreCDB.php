@@ -17,6 +17,9 @@
  *
  * @file
  */
+use Cdb\Exception;
+use Cdb\Reader;
+use Cdb\Writer;
 
 /**
  * LCStore implementation which stores data as a collection of CDB files in the
@@ -32,10 +35,10 @@
  */
 class LCStoreCDB implements LCStore {
 
-	/** @var CdbReader[] */
+	/** @var Reader[] */
 	private $readers;
 
-	/** @var CdbWriter */
+	/** @var Writer */
 	private $writer;
 
 	/** @var string Current language code */
@@ -61,8 +64,8 @@ class LCStoreCDB implements LCStore {
 			$this->readers[$code] = false;
 			if ( file_exists( $fileName ) ) {
 				try {
-					$this->readers[$code] = CdbReader::open( $fileName );
-				} catch ( CdbException $e ) {
+					$this->readers[$code] = Reader::open( $fileName );
+				} catch ( Exception $e ) {
 					wfDebug( __METHOD__ . ": unable to open cdb file for reading\n" );
 				}
 			}
@@ -74,8 +77,8 @@ class LCStoreCDB implements LCStore {
 			$value = false;
 			try {
 				$value = $this->readers[$code]->get( $key );
-			} catch ( CdbException $e ) {
-				wfDebug( __METHOD__ . ": CdbException caught, error message was "
+			} catch ( Exception $e ) {
+				wfDebug( __METHOD__ . ": \Cdb\Exception caught, error message was "
 					. $e->getMessage() . "\n" );
 			}
 			if ( $value === false ) {
@@ -100,8 +103,8 @@ class LCStoreCDB implements LCStore {
 		}
 
 		try {
-			$this->writer = CdbWriter::open( $this->getFileName( $code ) );
-		} catch ( CdbException $e ) {
+			$this->writer = Writer::open( $this->getFileName( $code ) );
+		} catch ( Exception $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 		$this->currentLang = $code;
@@ -111,7 +114,7 @@ class LCStoreCDB implements LCStore {
 		// Close the writer
 		try {
 			$this->writer->close();
-		} catch ( CdbException $e ) {
+		} catch ( Exception $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 		$this->writer = null;
@@ -125,7 +128,7 @@ class LCStoreCDB implements LCStore {
 		}
 		try {
 			$this->writer->set( $key, serialize( $value ) );
-		} catch ( CdbException $e ) {
+		} catch ( Exception $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 	}
