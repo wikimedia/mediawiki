@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 /**
  * @group Search
  * @group Database
@@ -46,7 +47,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 		// Avoid special pages from extensions interferring with the tests
 		$this->setMwGlobals( 'wgSpecialPages', [] );
-		$this->search = SearchEngine::create();
+		$this->search = MediaWikiServices::getInstance()->getSearchEngine();
 		$this->search->setNamespaces( [] );
 	}
 

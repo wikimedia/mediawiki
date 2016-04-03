@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Test class for SpecialSearch class
  * Copyright © 2012, Antoine Musso
@@ -57,7 +59,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	}
 
 	public static function provideSearchOptionsTests() {
-		$defaultNS = SearchEngine::defaultNamespaces();
+		$defaultNS = MediaWikiServices::getInstance()->getSearchEngineConfig()->defaultNamespaces();
 		$EMPTY_REQUEST = [];
 		$NO_USER_PREF = null;
 

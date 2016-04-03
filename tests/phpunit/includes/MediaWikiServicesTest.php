@@ -23,6 +23,9 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => [ 'getMainConfig', Config::class ],
 			'SiteStore' => [ 'getSiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'getSiteLookup', SiteLookup::class ],
+			'SearchEngine' => [ 'getSearchEngine', SearchEngine::class ],
+			'SearchEngineFactory' => [ 'getSearchEngineFactory', SearchEngineFactory::class ],
+			'SearchEngineConfig' => [ 'getSearchEngineConfig', SearchEngineConfig::class ],
 		];
 	}
 
@@ -46,6 +49,9 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => [ 'MainConfig', Config::class ],
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
+			'SearchEngine' => [ 'SearchEngine', SearchEngine::class ],
+			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
+			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
 		];
 	}
 

@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Search engine result
  *
@@ -50,6 +52,11 @@ class SearchResult {
 	protected $mText;
 
 	/**
+	 * @var SearchEngine
+	 */
+	protected $se;
+
+	/**
 	 * Return a new SearchResult and initializes it with a title.
 	 *
 	 * @param Title $title
@@ -78,6 +85,7 @@ class SearchResult {
 				$this->mImage = wfFindFile( $this->mTitle );
 			}
 		}
+		$this->se = MediaWikiServices::getInstance()->getSearchEngine();
 	}
 
 	/**
@@ -119,8 +127,8 @@ class SearchResult {
 	protected function initText() {
 		if ( !isset( $this->mText ) ) {
 			if ( $this->mRevision != null ) {
-				$this->mText = SearchEngine::create()
-					->getTextFromContent( $this->mTitle, $this->mRevision->getContent() );
+				$this->mText = $this->se->getTextFromContent(
+						$this->mTitle, $this->mRevision->getContent() );
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
 			}
@@ -136,7 +144,7 @@ class SearchResult {
 		$this->initText();
 
 		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs();
+		list( $contextlines, $contextchars ) = $this->se->userHighlightPrefs();
 
 		$h = new SearchHighlighter();
 		if ( count( $terms ) > 0 ) {
