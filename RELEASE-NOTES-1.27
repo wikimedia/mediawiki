@@ -267,6 +267,9 @@ changes to languages because of Phabricator reports.
 * (T116020) Aliases of magic words in MessagesXx.php are sorted by usage.
 
 === Other changes in 1.27 ===
+* Added dependency injection (DI) infrastructure, see docs/injection.txt for details.
+  It is planned to incrementally move MediaWiki code towards using DI, using the
+  service locator (SL) pattern as a stepping stone.
 * ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
 * WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
   ignore the 2nd and 3rd arguments (formerly $id and $commit).
