@@ -25,9 +25,11 @@
  * Estonian. We work around this by replacing 'W' and 'w' with 'ᴡ' U+1D21 'LATIN LETTER SMALL
  * CAPITAL W' for sortkey generation, which is collated like 'W' and is not tailored to have the
  * same primary weight as 'V' in Estonian.
+ *
+ * @since 1.24
  */
 class CollationEt extends IcuCollation {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'et' );
 	}
 
@@ -48,11 +50,11 @@ class CollationEt extends IcuCollation {
 		);
 	}
 
-	function getSortKey( $string ) {
+	public function getSortKey( $string ) {
 		return parent::getSortKey( self::mangle( $string ) );
 	}
 
-	function getFirstLetter( $string ) {
+	public function getFirstLetter( $string ) {
 		return self::unmangle( parent::getFirstLetter( self::mangle( $string ) ) );
 	}
 }

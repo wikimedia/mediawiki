@@ -23,6 +23,8 @@
  *
  * Does sorting based on binary value of the string.
  * Like how things were pre 1.17.
+ *
+ * @since 1.18
  */
 class IdentityCollation extends Collation {
 
