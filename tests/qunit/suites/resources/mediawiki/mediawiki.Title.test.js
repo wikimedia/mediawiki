@@ -360,19 +360,20 @@
 
 	QUnit.test( 'getUrl', 4, function ( assert ) {
 		var title;
-
-		// Config
-		mw.config.set( 'wgArticlePath', '/wiki/$1' );
+		mw.config.set( {
+			wgScript: '/w/index.php',
+			wgArticlePath: '/wiki/$1'
+		} );
 
 		title = new mw.Title( 'Foobar' );
 		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
-		assert.equal( title.getUrl( { action: 'edit' } ), '/wiki/Foobar?action=edit', 'Basic functionality, \'params\' parameter' );
+		assert.equal( title.getUrl( { action: 'edit' } ), '/w/index.php?title=Foobar&action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 
 		title = new mw.Title( 'John Cena#And_His_Name_Is', 3 );
-		assert.equal( title.getUrl( { meme: true } ), '/wiki/User_talk:John_Cena?meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
+		assert.equal( title.getUrl( { meme: true } ), '/w/index.php?title=User_talk:John_Cena&meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
 	} );
 
 	QUnit.test( 'newFromImg', 44, function ( assert ) {
