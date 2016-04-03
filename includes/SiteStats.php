@@ -36,9 +36,6 @@ class SiteStats {
 	/** @var int[] */
 	private static $pageCount = [];
 
-	/** @var int[] */
-	private static $groupMemberCounts = [];
-
 	static function recache() {
 		self::load( true );
 	}
