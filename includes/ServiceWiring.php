@@ -82,6 +82,17 @@ return [
 		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
 	},
 
+	'SearchEngineFactory' => function( MediaWikiServices $services ) {
+		// Create search engine
+		return new SearchEngineFactory( $services->getService( 'SearchEngineConfig' ) );
+	},
+
+	'SearchEngineConfig' => function( MediaWikiServices $services ) {
+		// Create a search engine config from main config.
+		$config = $services->getService( 'MainConfig' );
+		return new SearchEngineConfig( $config );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

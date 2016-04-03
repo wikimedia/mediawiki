@@ -23,6 +23,8 @@
  * @ingroup Search
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Database independant search index updater
  *
@@ -75,14 +77,15 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Perform actual update for the entry
 	 */
 	public function doUpdate() {
-		global $wgDisableSearchUpdate;
+		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
 
-		if ( $wgDisableSearchUpdate || !$this->id ) {
+		if ( $config->getConfig()->get( 'DisableSearchUpdate' ) || !$this->id ) {
 			return;
 		}
 
-		foreach ( SearchEngine::getSearchTypes() as $type ) {
-			$search = SearchEngine::create( $type );
+		$seFactory = MediaWikiServices::getInstance()->getSearchEngineFactory();
+		foreach ( $config->getSearchTypes() as $type ) {
+			$search = $seFactory->create( $type );
 			if ( !$search->supports( 'search-update' ) ) {
 				continue;
 			}
@@ -99,7 +102,7 @@ class SearchUpdate implements DeferrableUpdate {
 
 			$text = $search->getTextFromContent( $this->title, $this->content );
 			if ( !$search->textAlreadyUpdatedForIndex() ) {
-				$text = self::updateText( $text );
+				$text = $this->updateText( $text, $search );
 			}
 
 			# Perform the actual update
@@ -113,14 +116,16 @@ class SearchUpdate implements DeferrableUpdate {
 	 * If you're using a real search engine, you'll probably want to override
 	 * this behavior and do something nicer with the original wikitext.
 	 * @param string $text
+	 * @param SearchEngine $se Search engine
 	 * @return string
 	 */
-	public static function updateText( $text ) {
+	public function updateText( $text, SearchEngine $se = null ) {
 		global $wgContLang;
 
 		# Language-specific strip/conversion
 		$text = $wgContLang->normalizeForSearch( $text );
-		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$se = $se ?: MediaWikiServices::getInstance()->newSearchEngine();
+		$lc = $se->legalSearchChars() . '&#;';
 
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
