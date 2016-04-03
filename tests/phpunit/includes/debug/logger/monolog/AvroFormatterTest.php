@@ -47,9 +47,9 @@ class AvroFormatterTest extends MediaWikiTestCase {
 		// disable conversion of notices
 		PHPUnit_Framework_Error_Notice::$enabled = false;
 		// have to keep the user notice from being output
-		wfSuppressWarnings();
+		\MediaWiki\suppressWarnings();
 		$res = $formatter->format( [ 'channel' => 'marty' ] );
-		wfRestoreWarnings();
+		\MediaWiki\restoreWarnings();
 		PHPUnit_Framework_Error_Notice::$enabled = $noticeEnabled;
 		$this->assertNull( $res );
 	}
