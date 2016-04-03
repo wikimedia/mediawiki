@@ -887,6 +887,58 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * UPDATE wrapper. Takes a condition array and a SET array.
+	 *
+	 * @param string $table Name of the table to UPDATE. This will be passed through
+	 *   DatabaseBase::tableName().
+	 * @param array $values An array of values to SET. For each array element,
+	 *   the key gives the field name, and the value gives the data to set
+	 *   that field to. The data will be quoted by DatabaseBase::addQuotes().
+	 * @param array $conds An array of conditions (WHERE). See
+	 *   DatabaseBase::select() for the details of the format of condition
+	 *   arrays. Use '*' to update all rows.
+	 * @param string $fname The function name of the caller (from __METHOD__),
+	 *   for logging and profiling.
+	 * @param array $options An array of UPDATE options, can be:
+	 *   - IGNORE: Ignore unique key conflicts
+	 *   - LOW_PRIORITY: Not implemented for this database.
+	 * @return bool
+	 */
+	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
+		$table = $this->tableName( $table );
+		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
+
+		if ( $conds !== [] && $conds !== '*' ) {
+			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+		}
+
+		// If IGNORE is set, we use savepoints to emulate mysql's behavior
+		$savepoint = null;
+		if ( in_array( 'IGNORE', $options ) ) {
+			$savepoint = new SavepointPostgres( $this, 'mw' );
+			$olde = error_reporting( 0 );
+			$savepoint->savepoint();
+		}
+
+		$res = (bool)$this->query( $sql, $fname, $savepoint );
+
+		if ( $savepoint ) {
+			$bar = pg_last_error();
+			if ( $bar != false ) {
+				$savepoint->rollback();
+			} else {
+				$savepoint->release();
+			}
+			error_reporting( $olde );
+			$savepoint->commit();
+			// IGNORE always returns true
+			return true;
+		}
+
+		return $res;
+	}
+
+	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
 	 * Source items may be literals rather then field names, but strings should
