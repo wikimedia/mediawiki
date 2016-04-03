@@ -149,7 +149,6 @@ class StubObject {
 		}
 
 		if ( get_class( $GLOBALS[$this->global] ) != $this->class ) {
-			$fname = __METHOD__ . '-' . $this->global;
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
 				throw new MWException( "Unstub loop detected on call of "
