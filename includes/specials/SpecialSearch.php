@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * implements Special:Search - Run text & title search and display the output
  * @ingroup SpecialPage
@@ -79,10 +81,17 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $customCaptions;
 
+	/**
+	 * Search engine configurations.
+	 * @var SearchEngineConfig
+	 */
+	protected $searchConfig;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
 		parent::__construct( 'Search' );
+		$this->searchConfig = MediaWikiServices::getInstance()->getSearchEngineConfig();
 	}
 
 	/**
@@ -150,7 +159,7 @@ class SpecialSearch extends SpecialPage {
 		$nslist = $this->powerSearch( $request );
 		if ( !count( $nslist ) ) {
 			# Fallback to user preference
-			$nslist = SearchEngine::userNamespaces( $user );
+			$nslist = $this->searchConfig->userNamespaces( $user );
 		}
 
 		$profile = null;
@@ -202,7 +211,8 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 		# If there's an exact or very near match, jump right there.
-		$title = SearchEngine::getNearMatch( $term );
+		$title = $this->getSearchEngine()->
+			getNearMatcher( $this->getConfig() )->getNearMatch( $term );
 
 		if ( !is_null( $title ) &&
 			Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] )
@@ -618,7 +628,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function powerSearch( &$request ) {
 		$arr = [];
-		foreach ( SearchEngine::searchableNamespaces() as $ns => $name ) {
+		foreach ( $this->searchConfig->searchableNamespaces() as $ns => $name ) {
 			if ( $request->getCheck( 'ns' . $ns ) ) {
 				$arr[] = $ns;
 			}
@@ -1019,7 +1029,7 @@ class SpecialSearch extends SpecialPage {
 
 		// Groups namespaces into rows according to subject
 		$rows = [];
-		foreach ( SearchEngine::searchableNamespaces() as $namespace => $name ) {
+		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
 			$subject = MWNamespace::getSubject( $namespace );
 			if ( !array_key_exists( $subject, $rows ) ) {
 				$rows[$subject] = "";
@@ -1102,15 +1112,15 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function getSearchProfiles() {
 		// Builds list of Search Types (profiles)
-		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
-
+		$nsAllSet = array_keys( $this->searchConfig->searchableNamespaces() );
+		$defaultNs = $this->searchConfig->defaultNamespaces();
 		$profiles = [
 			'default' => [
 				'message' => 'searchprofile-articles',
 				'tooltip' => 'searchprofile-articles-tooltip',
-				'namespaces' => SearchEngine::defaultNamespaces(),
-				'namespace-messages' => SearchEngine::namespacesAsText(
-					SearchEngine::defaultNamespaces()
+				'namespaces' => $defaultNs,
+				'namespace-messages' => $this->searchConfig->namespacesAsText(
+					$defaultNs
 				),
 			],
 			'images' => [
@@ -1326,7 +1336,8 @@ class SpecialSearch extends SpecialPage {
 	public function getSearchEngine() {
 		if ( $this->searchEngine === null ) {
 			$this->searchEngine = $this->searchEngineType ?
-				SearchEngine::create( $this->searchEngineType ) : SearchEngine::create();
+				MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $this->searchEngineType ) :
+				MediaWikiServices::getInstance()->getSearchEngine();
 		}
 
 		return $this->searchEngine;
