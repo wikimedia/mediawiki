@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query module to perform full text search within wiki titles and content
  *
@@ -78,8 +80,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		// Create search engine instance and set options
-		$search = isset( $params['backend'] ) && $params['backend'] != self::BACKEND_NULL_PARAM ?
-			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
+		$type = isset( $params['backend'] ) && $params['backend'] != self::BACKEND_NULL_PARAM ?
+			$params['backend'] : null;
+		$search = MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
@@ -95,7 +98,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		} elseif ( $what == 'nearmatch' ) {
 			// near matches must receive the user input as provided, otherwise
 			// the near matches within namespaces are lost.
-			$matches = SearchEngine::getNearMatchResultSet( $params['search'] );
+			$matches = $search->getNearMatchResultSet( $params['search'] );
 		} else {
 			// We default to title searches; this is a terrible legacy
 			// of the way we initially set up the MySQL fulltext-based
@@ -358,13 +361,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'enablerewrites' => false,
 		];
 
-		$alternatives = SearchEngine::getSearchTypes();
+		$searchConfig = MediaWikiServices::getInstance()->getSearchEngineConfig();
+		$alternatives = $searchConfig->getSearchTypes();
 		if ( count( $alternatives ) > 1 ) {
 			if ( $alternatives[0] === null ) {
 				$alternatives[0] = self::BACKEND_NULL_PARAM;
 			}
 			$params['backend'] = [
-				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'SearchType' ),
+				ApiBase::PARAM_DFLT => $searchConfig->getSearchType(),
 				ApiBase::PARAM_TYPE => $alternatives,
 			];
 		}

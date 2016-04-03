@@ -25,6 +25,8 @@
  * @defgroup Search Search
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Contain a class for special pages
  * @ingroup Search
@@ -124,7 +126,7 @@ class SearchEngine {
 	 * @param string $term
 	 * @return string
 	 */
-	function transformSearchTerm( $term ) {
+	public function transformSearchTerm( $term ) {
 		return $term;
 	}
 
@@ -136,7 +138,12 @@ class SearchEngine {
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
-		$title = self::getNearMatchInternal( $searchterm );
+		if ( empty( $this ) ) {
+			// Deprecated form of calling
+			wfDeprecated( "SearchEngine::getNearMatch as static", "1.27" );
+			return MediaWikiServices::getInstance()->getSearchEngine()->getNearMatch( $searchterm );
+		}
+		$title = $this->getNearMatchInternal( $searchterm );
 
 		Hooks::run( 'SearchGetNearMatchComplete', [ $searchterm, &$title ] );
 		return $title;
@@ -150,7 +157,12 @@ class SearchEngine {
 	 * @return SearchResultSet
 	 */
 	public static function getNearMatchResultSet( $searchterm ) {
-		return new SearchNearMatchResultSet( self::getNearMatch( $searchterm ) );
+		if ( empty( $this ) ) {
+			// Deprecated form of calling
+			wfDeprecated( "SearchEngine::getNearMatchResultSet as static", "1.27" );
+			return MediaWikiServices::getInstance()->getSearchEngine()->getNearMatchResultSet( $searchterm );
+		}
+		return new SearchNearMatchResultSet( $this->getNearMatch( $searchterm ) );
 	}
 
 	/**
@@ -158,7 +170,7 @@ class SearchEngine {
 	 * @param string $searchterm
 	 * @return null|Title
 	 */
-	private static function getNearMatchInternal( $searchterm ) {
+	private function getNearMatchInternal( $searchterm ) {
 		global $wgContLang, $wgEnableSearchContributorsByIP;
 
 		$allSearchTerms = [ $searchterm ];
@@ -267,12 +279,17 @@ class SearchEngine {
 		# Quoted term? Try without the quotes...
 		$matches = [];
 		if ( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
-			return SearchEngine::getNearMatch( $matches[1] );
+			return self::getNearMatch( $matches[1] );
 		}
 
 		return null;
 	}
 
+	/**
+	 * Get chars legal for search.
+	 * NOTE: usage as static is deprecated and preserved only as
+	 * @return string
+	 */
 	public static function legalSearchChars() {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
 	}
@@ -391,120 +408,13 @@ class SearchEngine {
 	}
 
 	/**
-	 * Make a list of searchable namespaces and their canonical names.
-	 * @return array
-	 */
-	public static function searchableNamespaces() {
-		global $wgContLang;
-		$arr = [];
-		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {
-			if ( $ns >= NS_MAIN ) {
-				$arr[$ns] = $name;
-			}
-		}
-
-		Hooks::run( 'SearchableNamespaces', [ &$arr ] );
-		return $arr;
-	}
-
-	/**
-	 * Extract default namespaces to search from the given user's
-	 * settings, returning a list of index numbers.
-	 *
-	 * @param user $user
-	 * @return array
-	 */
-	public static function userNamespaces( $user ) {
-		$arr = [];
-		foreach ( SearchEngine::searchableNamespaces() as $ns => $name ) {
-			if ( $user->getOption( 'searchNs' . $ns ) ) {
-				$arr[] = $ns;
-			}
-		}
-
-		return $arr;
-	}
-
-	/**
 	 * Find snippet highlight settings for all users
-	 *
 	 * @return array Contextlines, contextchars
 	 */
 	public static function userHighlightPrefs() {
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = 75; // same as above.... :P
 		return [ $contextlines, $contextchars ];
-	}
-
-	/**
-	 * An array of namespaces indexes to be searched by default
-	 *
-	 * @return array
-	 */
-	public static function defaultNamespaces() {
-		global $wgNamespacesToBeSearchedDefault;
-
-		return array_keys( $wgNamespacesToBeSearchedDefault, true );
-	}
-
-	/**
-	 * Get a list of namespace names useful for showing in tooltips
-	 * and preferences
-	 *
-	 * @param array $namespaces
-	 * @return array
-	 */
-	public static function namespacesAsText( $namespaces ) {
-		global $wgContLang;
-
-		$formatted = array_map( [ $wgContLang, 'getFormattedNsText' ], $namespaces );
-		foreach ( $formatted as $key => $ns ) {
-			if ( empty( $ns ) ) {
-				$formatted[$key] = wfMessage( 'blanknamespace' )->text();
-			}
-		}
-		return $formatted;
-	}
-
-	/**
-	 * Load up the appropriate search engine class for the currently
-	 * active database backend, and return a configured instance.
-	 *
-	 * @param string $type Type of search backend, if not the default
-	 * @return SearchEngine
-	 */
-	public static function create( $type = null ) {
-		global $wgSearchType;
-		$dbr = null;
-
-		$alternatives = self::getSearchTypes();
-
-		if ( $type && in_array( $type, $alternatives ) ) {
-			$class = $type;
-		} elseif ( $wgSearchType !== null ) {
-			$class = $wgSearchType;
-		} else {
-			$dbr = wfGetDB( DB_SLAVE );
-			$class = $dbr->getSearchEngine();
-		}
-
-		$search = new $class( $dbr );
-		return $search;
-	}
-
-	/**
-	 * Return the search engines we support. If only $wgSearchType
-	 * is set, it'll be an array of just that one item.
-	 *
-	 * @return array
-	 */
-	public static function getSearchTypes() {
-		global $wgSearchType, $wgSearchTypeAlternatives;
-
-		$alternatives = $wgSearchTypeAlternatives ?: [];
-		array_unshift( $alternatives, $wgSearchType );
-
-		return $alternatives;
 	}
 
 	/**
@@ -774,6 +684,66 @@ class SearchEngine {
 		return $backend->defaultSearchBackend( $this->namespaces, $search, $this->limit, $this->offset );
 	}
 
+	/**
+	 * Make a list of searchable namespaces and their canonical names.
+	 * @deprecated use SearchEngineConfig::searchableNamespaces()
+	 * @return array
+	 */
+	public static function searchableNamespaces() {
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
+	}
+
+	/**
+	 * Extract default namespaces to search from the given user's
+	 * settings, returning a list of index numbers.
+	 * @deprecated use SearchEngineConfig::userNamespaces()
+	 * @param user $user
+	 * @return array
+	 */
+	public static function userNamespaces( $user ) {
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->userNamespaces( $user );
+	}
+
+	/**
+	 * An array of namespaces indexes to be searched by default
+	 * @deprecated use SearchEngineConfig::defaultNamespaces()
+	 * @return array
+	 */
+	public static function defaultNamespaces() {
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->defaultNamespaces();
+	}
+
+	/**
+	 * Get a list of namespace names useful for showing in tooltips
+	 * and preferences
+	 * @deprecated use SearchEngineConfig::namespacesAsText()
+	 * @param array $namespaces
+	 * @return array
+	 */
+	public static function namespacesAsText( $namespaces ) {
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->namespacesAsText();
+	}
+
+	/**
+	 * Load up the appropriate search engine class for the currently
+	 * active database backend, and return a configured instance.
+	 * @deprecated Use SearchEngineFactory::create
+	 * @param string $type Type of search backend, if not the default
+	 * @return SearchEngine
+	 */
+	public static function create( $type = null ) {
+		return MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
+	}
+
+	/**
+	 * Return the search engines we support. If only $wgSearchType
+	 * is set, it'll be an array of just that one item.
+	 * @deprecated use SearchEngineConfig::getSearchTypes()
+	 * @return array
+	 */
+	public static function getSearchTypes() {
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
+	}
 }
 
 /**

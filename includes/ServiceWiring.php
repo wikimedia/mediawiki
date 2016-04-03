@@ -72,6 +72,22 @@ return [
 		return $services->getConfigFactory()->makeConfig( 'main' );
 	},
 
+	'SearchEngineFactory' => function( MediaWikiServices $services ) {
+		// Create search engine
+		return new SearchEngineFactory( $services->getService( 'SearchEngineConfig' ) );
+	},
+
+	'SearchEngine' => function( MediaWikiServices $services ) {
+		// Create a default search engine service.
+		return $services->getSearchEngineFactory()->create();
+	},
+
+	'SearchEngineConfig' => function( MediaWikiServices $services ) {
+		// Create a search engine config from main config.
+		$config = $services->getService( 'MainConfig' );
+		return new SearchEngineConfig( $config );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
