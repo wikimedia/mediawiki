@@ -63,9 +63,9 @@ class WebPHandler extends BitmapHandler {
 				return self::METADATA_GOOD;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$data = unserialize( $metadata );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
 				wfDebug( __METHOD__ . " invalid WebP metadata\n" );
@@ -234,9 +234,9 @@ class WebPHandler extends BitmapHandler {
 			$metadata = $file->getMetadata();
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$metadata = unserialize( $metadata );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $metadata == false ) {
 			return false;
