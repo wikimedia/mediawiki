@@ -403,6 +403,10 @@ changes to languages because of Phabricator reports.
 * Title::newFromRedirectArray() was removed (deprecated in 1.21).
 * UserMailer::send() no longer accepts $replyto as the 5th argument and $contentType
   as the 6th. These must be passed in the options array now.
+* IcuCollation::getSortKeyByLetterIndex was made private.
+* IcuCollation::getFirstLetterCount was made private.
+* IcuCollation::getFirstLetterData was made private.
+* IcuCollation::getLetterByIndex was made private.
 
 == Compatibility ==
 

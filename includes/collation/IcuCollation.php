@@ -232,10 +232,7 @@ class IcuCollation extends Collation {
 		return $this->getLetterByIndex( $min );
 	}
 
-	/**
-	 * @since 1.16.3
-	 */
-	public function getFirstLetterData() {
+	private function getFirstLetterData() {
 		if ( $this->firstLetterData !== null ) {
 			return $this->firstLetterData;
 		}
@@ -386,30 +383,21 @@ class IcuCollation extends Collation {
 		return $data;
 	}
 
-	/**
-	 * @since 1.16.3
-	 */
-	public function getLetterByIndex( $index ) {
+	private function getLetterByIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
 		return $this->firstLetterData['chars'][$index];
 	}
 
-	/**
-	 * @since 1.16.3
-	 */
-	public function getSortKeyByLetterIndex( $index ) {
+	private function getSortKeyByLetterIndex( $index ) {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
 		return $this->firstLetterData['keys'][$index];
 	}
 
-	/**
-	 * @since 1.16.3
-	 */
-	public function getFirstLetterCount() {
+	private function getFirstLetterCount() {
 		if ( $this->firstLetterData === null ) {
 			$this->getFirstLetterData();
 		}
@@ -440,7 +428,7 @@ class IcuCollation extends Collation {
 	 * @since 1.21
 	 * @return string|bool
 	 */
-	static function getICUVersion() {
+	public static function getICUVersion() {
 		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
 	}
 
@@ -451,7 +439,7 @@ class IcuCollation extends Collation {
 	 * @since 1.21
 	 * @return string|bool
 	 */
-	static function getUnicodeVersionForICU() {
+	public static function getUnicodeVersionForICU() {
 		$icuVersion = IcuCollation::getICUVersion();
 		if ( !$icuVersion ) {
 			return false;
