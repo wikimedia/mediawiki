@@ -342,10 +342,10 @@ class SpecialPage {
 			return [];
 		}
 
-		$search = SearchEngine::create();
-		$search->setLimitOffset( $limit, $offset );
-		$search->setNamespaces( [] );
-		$result = $search->defaultPrefixSearch( $search );
+		$searchEngine = SearchEngine::create();
+		$searchEngine->setLimitOffset( $limit, $offset );
+		$searchEngine->setNamespaces( [] );
+		$result = $searchEngine->defaultPrefixSearch( $search );
 		return array_map( function( Title $t ) {
 			return $t->getPrefixedText();
 		}, $result );
