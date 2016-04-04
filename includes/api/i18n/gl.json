@@ -194,7 +194,7 @@
 	"apihelp-imagerotate-example-simple": "Rotar <kbd>File:Example.png</kbd> <kbd>90</kbd> graos.",
 	"apihelp-imagerotate-example-generator": "Rotar tódalas imaxes en <kbd>Category:Flip</kbd> <kbd>180</kbd> graos",
 	"apihelp-import-description": "Importar unha páxina doutra wiki, ou dun ficheiro XML.\n\nDecátese de que o POST HTTP debe facerse como unha carga de ficheiro (p. ex. usando multipart/form-data) cando se envíe un ficheiro para o parámetro <var>xml</var>.",
-	"apihelp-import-param-summary": "Resume de importación.",
+	"apihelp-import-param-summary": "Resume de importación de entrada no rexistro.",
 	"apihelp-import-param-xml": "Subido ficheiro XML.",
 	"apihelp-import-param-interwikisource": "Para importacións interwiki: wiki da que importar.",
 	"apihelp-import-param-interwikipage": "Para importacións interwiki: páxina a importar.",

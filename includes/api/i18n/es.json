@@ -179,7 +179,7 @@
 	"apihelp-imagerotate-param-rotation": "Grados que rotar una imagen en sentido horario.",
 	"apihelp-imagerotate-example-simple": "Rotar <kbd>File:Example.png</kbd> <kbd>90</kbd> grados.",
 	"apihelp-imagerotate-example-generator": "Rotar todas las imágenes en <kbd>Category:Flip</kbd> <kbd>180</kbd> grados.",
-	"apihelp-import-param-summary": "Resumen de importación.",
+	"apihelp-import-param-summary": "Resumen de importación de entrada del registro.",
 	"apihelp-import-param-xml": "Se cargó el archivo XML.",
 	"apihelp-import-param-interwikisource": "Para importaciones interwiki: wiki desde la que importar.",
 	"apihelp-import-param-interwikipage": "Para importaciones interwiki: página a importar.",

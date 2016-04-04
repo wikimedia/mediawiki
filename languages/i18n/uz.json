@@ -11,7 +11,8 @@
 			"Xexdof",
 			"Arystanbek",
 			"6ahodir",
-			"Таржимон"
+			"Таржимон",
+			"Ximik1991"
 		]
 	},
 	"tog-underline": "Havolalarning tagiga chizish:",
@@ -149,7 +150,7 @@
 	"mytalk": "Munozara",
 	"anontalk": "Ushbu IP-manzil munozarasi",
 	"navigation": "Saytda harakatlanish",
-	"and": "&#32;va",
+	"and": "&nbsp;va",
 	"qbfind": "Topish",
 	"qbbrowse": "Koʻrib chiqish",
 	"qbedit": "Tahrirlash",

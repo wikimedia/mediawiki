@@ -194,7 +194,7 @@
 	"apihelp-imagerotate-example-simple": "Повернути <kbd>File:Example.png</kbd> на <kbd>90</kbd> градусів.",
 	"apihelp-imagerotate-example-generator": "Повернути усі зображення у <kbd>Category:Flip</kbd> на <kbd>180</kbd> градусів.",
 	"apihelp-import-description": "Імпортувати сторінку з іншої вікі або з XML-файлу.\n\nЗважте, що HTTP POST має бути виконано як завантаження файлу (тобто з використанням даних різних частин/форм) під час надсилання файлу для параметра <var>xml</var>.",
-	"apihelp-import-param-summary": "Імпортувати підсумок.",
+	"apihelp-import-param-summary": "Підсумок імпорту записів журналу.",
 	"apihelp-import-param-xml": "Завантажено XML-файл.",
 	"apihelp-import-param-interwikisource": "Для інтервікі-імпорту: вікі, з якої імпортувати.",
 	"apihelp-import-param-interwikipage": "Для інтервікі-імпорту: сторінки для імпорту.",

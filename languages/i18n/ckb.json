@@ -2465,7 +2465,6 @@
 	"version-libraries-description": "وەسف",
 	"version-libraries-authors": "نووسەر",
 	"redirect": "ڕەوانەکەر بە پێی پەڕگە، بەکارھێنەر، پەڕە، پێداچوونەوە یان پێناسەی لۆگ",
-	"redirect-legend": "ڕەوانەکەر بۆ پەڕگە یان پەڕەیەک",
 	"redirect-summary": "ئەم پەڕە تایبەتە ڕەوانە دەکرێ بۆ پەڕگەیەک (ناوی پەڕگەکە)، پەڕەیەک (پێناسەی پێداچوونەوەیەک یان پێناسەی پەڕە) یان پەڕەیەکی بەکارھێنەر (پێناسەیەکی  ژمارەیی بەکارھێنەر). بەکارھێنان: [[{{#Special:Redirect}}/file/Example.jpg]]، [[{{#Special:Redirect}}/page/64308]]، [[{{#Special:Redirect}}/revision/328429]] یان [[{{#Special:Redirect}}/user/101]].",
 	"redirect-submit": "بڕۆ",
 	"redirect-lookup": "گەڕان لە:",
