@@ -1685,9 +1685,16 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Provide autosummaries if one is not provided and autosummaries are enabled
-		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
+		if (
+			$wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) &&
+			// No summary, or only automatic '/* Section */ ' summary
+			( $summary == '' || preg_match( '/^\/\*(.*?)\*\/ */', $summary ) )
+		) {
 			$handler = $content->getContentHandler();
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+			$autosummary = $handler->getAutosummary( $old_content, $content, $flags );
+			if ( $autosummary ) {
+				$summary = $autosummary;
+			}
 		}
 
 		// Avoid statsd noise and wasted cycles check the edit stash (T136678)

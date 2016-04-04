@@ -875,9 +875,68 @@ abstract class ContentHandler {
 			return wfMessage( 'autosumm-newblank' )->inContentLanguage()->text();
 		}
 
+		// New section added auto-summary
+		$oldSections = $this->getSectionList( $oldContent->getNativeData() );
+		$newSections = $this->getSectionList( $newContent->getNativeData() );
+		$addedSectionWikitext = null;
+		if ( count( $newSections ) > count( $oldSections ) ) {
+			$oldIdx = 0;
+			$newIdx = 0;
+			while ( isset( $newSections[$newIdx] ) ) {
+				if ( isset( $oldSections[$oldIdx] ) && $oldSections[$oldIdx] === $newSections[$newIdx] ) {
+					// Common prefix continues
+					$oldIdx++;
+					$newIdx++;
+				} elseif ( $addedSectionWikitext == null ) {
+					// First mismatch - if this is the only one, we've detected a newly added section
+					$addedSectionWikitext = $newSections[$newIdx];
+					$newIdx++;
+				} else {
+					// Second mismatch - the situation is more complicated, either multiple sections were added
+					// or they were moved around, bail
+					$addedSectionWikitext = null;
+					break;
+				}
+			}
+		}
+		// If $addedSectionWikitext is null, either we found no new sections, or we had multiple mismatches
+		// and bailed
+		if ( $addedSectionWikitext ) {
+			global $wgParser;
+			$cleanSectionTitle = trim( $wgParser->stripSectionName(
+				preg_replace( '/^(=+)(.+)\1$/', '$2', $addedSectionWikitext )
+			) );
+			return wfMessage( 'newsectionsummary' )
+				->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
+		}
+
 		// If we reach this point, there's no applicable auto-summary for our
 		// case, so our auto-summary is empty.
 		return '';
+	}
+
+	private function getSectionList( $text ) {
+		global $wgParser, $wgTitle;
+		$wgParser->startExternalParse( $wgTitle, new ParserOptions, Parser::OT_PLAIN, true );
+		$preprocessor = $wgParser->getPreprocessor();
+
+		$frame = $preprocessor->newFrame();
+		$root = $preprocessor->preprocessToObj( $text );
+
+		# <h> nodes indicate section breaks
+		# They can only occur at the top level, so we can find them by iterating the root's children
+		$node = $root->getFirstChild();
+		$sections = [];
+		while ( $node ) {
+			if ( $node->getName() === 'h' ) {
+				$bits = $node->splitHeading();
+				$headingWikitext = $frame->expand( $bits['contents'], PPFrame::RECOVER_ORIG );
+				$sections[] = $headingWikitext;
+			}
+			$node = $node->getNextSibling();
+		}
+
+		return $sections;
 	}
 
 	/**
