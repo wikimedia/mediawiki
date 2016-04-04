@@ -1628,9 +1628,16 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
 		// Provide autosummaries if one is not provided and autosummaries are enabled
-		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
+		if (
+			$wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) &&
+			// No summary, or only automatic '/* Section */ ' summary
+			( $summary == '' || preg_match( '/^\/\*(.*?)\*\/ */', $summary ) )
+		) {
 			$handler = $content->getContentHandler();
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+			$autosummary = $handler->getAutosummary( $old_content, $content, $flags );
+			if ( $autosummary ) {
+				$summary = $autosummary;
+			}
 		}
 
 		// Get the pre-save transform content and final parser output
