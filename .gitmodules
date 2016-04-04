@@ -376,3 +376,7 @@
 	path = extensions/HighlightLinksInCategory
 	url = https://github.com/labster/HighlightLinksInCategory.git
 	branch = master
+[submodule "extensions/Editcount"]
+	path = extensions/Editcount
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Editcount.git
+	branch = REL1_26
