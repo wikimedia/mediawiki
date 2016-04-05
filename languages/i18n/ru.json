@@ -1336,7 +1336,7 @@
 	"recentchanges-label-bot": "Эта правка сделана ботом",
 	"recentchanges-label-unpatrolled": "Эта правка ещё никем не патрулировалась",
 	"recentchanges-label-plusminus": "изменение размера в байтах",
-	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
+	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (см. также [[Special:NewPages|список новых страниц]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Показать",

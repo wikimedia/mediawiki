@@ -2236,6 +2236,7 @@
 	"ipb-unblock": "Odblokuj użytkownika lub adres IP",
 	"ipb-blocklist": "Zobacz istniejące blokady",
 	"ipb-blocklist-contribs": "Wkład {{GENDER:$1|$1}}",
+	"ipb-blocklist-duration-left": "pozostało $1",
 	"unblockip": "Odblokuj użytkownika",
 	"unblockiptext": "Użyj poniższego formularza, by przywrócić możliwość edycji z wcześniej zablokowanego adresu IP lub użytkownikowi.",
 	"ipusubmit": "Odblokuj",

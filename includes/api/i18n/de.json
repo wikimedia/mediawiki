@@ -200,7 +200,7 @@
 	"apihelp-imagerotate-example-simple": "<kbd>Datei:Beispiel.png</kbd> um <kbd>90</kbd> Grad drehen.",
 	"apihelp-imagerotate-example-generator": "Alle Bilder in der <kbd>Kategorie:Flip</kbd> um <kbd>180</kbd> Grad drehen.",
 	"apihelp-import-description": "Importiert eine Seite aus einem anderen Wiki oder von einer XML-Datei.\n\nBitte beachte, dass der HTTP-POST-Vorgang als Dateiupload ausgeführt werden muss (z.B. durch multipart/form-data), um eine Datei über den <var>xml</var>-Parameter zu senden.",
-	"apihelp-import-param-summary": "Import-Zusammenfassung.",
+	"apihelp-import-param-summary": "Importzusammenfassung des Logbucheintrags.",
 	"apihelp-import-param-xml": "Hochgeladene XML-Datei.",
 	"apihelp-import-param-interwikisource": "Für Interwiki-Importe: Wiki, von dem importiert werden soll.",
 	"apihelp-import-param-interwikipage": "Für Interwiki-Importe: zu importierende Seite.",

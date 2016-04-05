@@ -73,6 +73,7 @@
 	"config-missing-db-host": "আপনাকে অবশ্যই \"{{int:config-db-host}}\"-এর জন্য একটি মান প্রবেশ করাতে হবে।",
 	"config-missing-db-server-oracle": "আপনাকে অবশ্যই \"{{int:config-db-host-oracle}}\"-এর জন্য একটি মান প্রবেশ করাতে হবে।",
 	"config-connection-error": "$1।\n\n\nদয়া করে প্রস্তাবকারী, ব্যবহারকারী নাম ও পাসওয়ার্ড দেখুন এবং পুনরায় চেষ্টা করুন।",
+	"config-regenerate": "LocalSettings.php পুনরূত্পাদিত করুন →",
 	"config-mysql-engine": "সংরক্ষণ ইঞ্জিন:",
 	"config-mysql-innodb": "ইনোডিবি",
 	"config-mysql-myisam": "মাইআইএসএএম",

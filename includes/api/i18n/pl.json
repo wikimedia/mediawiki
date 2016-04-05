@@ -121,7 +121,7 @@
 	"apihelp-imagerotate-param-rotation": "Stopni w prawo, aby obrócić zdjęcie.",
 	"apihelp-imagerotate-example-simple": "Obróć <kbd>Plik:Przykład.png</kbd> o <kbd>90</kbd> stopni.",
 	"apihelp-imagerotate-example-generator": "Obróć wszystkie obrazki w <kbd>Kategorii:Flip</kbd> o <kbd>180</kbd> stopni.",
-	"apihelp-import-param-summary": "Podsumowanie importu.",
+	"apihelp-import-param-summary": "Podsumowanie importu rekordów dziennika.",
 	"apihelp-import-param-xml": "Przesłany plik XML.",
 	"apihelp-import-param-interwikisource": "Dla importów mediawiki: źródłowa wiki.",
 	"apihelp-import-param-interwikipage": "Dla importów interwiki: strona do importu.",

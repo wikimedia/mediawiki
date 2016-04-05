@@ -141,7 +141,7 @@
 	"apihelp-imagerotate-param-rotation": "Gradi di rotazione dell'immagine in senso orario.",
 	"apihelp-imagerotate-example-simple": "Ruota <kbd>File:Example.png</kbd> di <kbd>90</kbd> gradi.",
 	"apihelp-imagerotate-example-generator": "Ruota tutte le immagini in <kbd>Category:Flip</kbd> di <kbd>180</kbd> gradi.",
-	"apihelp-import-param-summary": "Oggetto dell'importazione.",
+	"apihelp-import-param-summary": "Oggetto nel registro di importazione.",
 	"apihelp-import-param-xml": "File XML caricato.",
 	"apihelp-import-param-interwikisource": "Per importazioni interwiki: wiki da cui importare.",
 	"apihelp-import-param-interwikipage": "Per importazioni interwiki: pagina da importare.",
