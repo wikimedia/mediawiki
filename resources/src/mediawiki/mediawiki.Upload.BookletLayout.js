@@ -322,9 +322,13 @@
 				);
 			}
 
-			message = mw.message( 'api-error-' + error.code );
-			if ( !message.exists() ) {
-				message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
+			if ( error.code === 'protectedpage' ) {
+				message = mw.message( 'protectedpagetext' );
+			} else {
+				message = mw.message( 'api-error-' + error.code );
+				if ( !message.exists() ) {
+					message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
+				}
 			}
 			return new OO.ui.Error(
 				$( '<p>' ).append( message.parseDom() ),
@@ -344,6 +348,11 @@
 			} else if ( warnings.exists !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).msg( 'fileexists', 'File:' + warnings.exists ),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'exists-normalized' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).msg( 'fileexists', 'File:' + warnings[ 'exists-normalized' ] ),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'page-exists' ] !== undefined ) {
@@ -369,6 +378,11 @@
 			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-duplicate-archive', 1 ),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'was-deleted' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).msg( 'api-error-was-deleted' ),
 					{ recoverable: false }
 				);
 			} else if ( warnings.badfilename !== undefined ) {

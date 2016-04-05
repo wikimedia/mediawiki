@@ -1255,11 +1255,13 @@ return [
 			'api-error-unknown-error',
 			'api-error-uploaddisabled',
 			'api-error-verification-error',
+			'api-error-was-deleted',
 			'fileexists',
 			'filepageexists',
 			'filename-bad-prefix',
 			'filename-thumb-name',
 			'badfilename',
+			'protectedpagetext',
 			'api-error-blacklisted', // HACK
 		],
 	],

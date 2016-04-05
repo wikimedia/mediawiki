@@ -3900,6 +3900,7 @@
 	"api-error-unknownerror": "Unknown error: \"$1\".",
 	"api-error-uploaddisabled": "Uploading is disabled on this wiki.",
 	"api-error-verification-error": "This file might be corrupt, or have the wrong extension.",
+	"api-error-was-deleted": "A file of this name has been previously uploaded and subsequently deleted.",
 	"duration-seconds": "$1 {{PLURAL:$1|second|seconds}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minute|minutes}}",
 	"duration-hours": "$1 {{PLURAL:$1|hour|hours}}",
