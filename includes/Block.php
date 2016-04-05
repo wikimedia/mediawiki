@@ -578,16 +578,16 @@ class Block {
 			'ipb_by_text'          => $this->getByName(),
 			'ipb_reason'           => $this->mReason,
 			'ipb_timestamp'        => $db->timestamp( $this->mTimestamp ),
-			'ipb_auto'             => $this->mAuto,
-			'ipb_anon_only'        => !$this->isHardblock(),
-			'ipb_create_account'   => $this->prevents( 'createaccount' ),
-			'ipb_enable_autoblock' => $this->isAutoblocking(),
+			'ipb_auto'             => $this->mAuto ? 1 : 0,
+			'ipb_anon_only'        => $this->isHardblock() ? 0 : 1,
+			'ipb_create_account'   => $this->prevents( 'createaccount' ) ? 1 : 0,
+			'ipb_enable_autoblock' => $this->isAutoblocking() ? 1 : 0,
 			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
-			'ipb_block_email'      => $this->prevents( 'sendemail' ),
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_block_email'      => $this->prevents( 'sendemail' ) ? 1 : 0,
+			'ipb_allow_usertalk'   => $this->prevents( 'editownusertalk' ) ? 0 : 1,
 			'ipb_parent_block_id'  => $this->mParentBlockId
 		];
 
