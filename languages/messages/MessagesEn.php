@@ -198,10 +198,15 @@ $bookstoreList = [
  * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to localisers:
- *   - Include the English magic words as synonyms. This allows people from other
- *     that do no speak the language to contribute more easily.
- *   - Order the aliases so that common aliases are occur before more rarely
- *     used aliases. Tools are expected to use the first alias.
+ *   - Include the English magic words as synonyms. This allows people from
+ *     other wikis that do not speak the language to contribute more easily.
+ *   - The first alias listed MUST be the preferred alias in that language.
+ *     Tools (like Visual Editor) are expected to use the first listed alias
+ *     when editing or creating new content.
+ *   - Order the other aliases so that common aliases occur before more rarely
+ *     used aliases. The aliases SHOULD be sorted by the following convention:
+ *     1. Local first, English last, then
+ *     2. Most common first, least common last.
  *
  * This array can be modified at runtime with the LanguageGetMagic hook
  */
