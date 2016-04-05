@@ -64,6 +64,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
 			'extra' => [],
+			'context' => [],
 		] );
 	}
 
@@ -98,6 +99,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
 			'extra' => [],
+			'context' => [],
 		] );
 
 		if ( !$expectException ) {
@@ -128,6 +130,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
 			'extra' => [],
+			'context' => [],
 		] );
 
 		if ( !$expectException ) {
@@ -163,6 +166,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
 				'extra' => [],
+				'context' => [],
 			] );
 		}
 	}
@@ -190,16 +194,19 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
 				'extra' => [],
+				'context' => [],
 			],
 			[
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
 				'extra' => [],
+				'context' => [],
 			],
 			[
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
 				'extra' => [],
+				'context' => [],
 			],
 		] );
 	}
