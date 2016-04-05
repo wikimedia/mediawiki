@@ -9,9 +9,8 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Flaky test (T131549).
+	 * Test that generated UIDs have the expected properties
 	 *
-	 * @group Broken
 	 * @dataProvider provider_testTimestampedUID
 	 * @covers UIDGenerator::newTimestampedUID128
 	 * @covers UIDGenerator::newTimestampedUID88
@@ -34,19 +33,29 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( array_unique( $ids ), $ids, "All generated IDs are unique." );
 
 		foreach ( $ids as $id ) {
-			$id_bin = Wikimedia\base_convert( $id, 10, 2 );
-			$lastId_bin = Wikimedia\base_convert( $lastId, 10, 2 );
+			// Convert string to binary and pad to full length so we can
+			// extract segments
+			$id_bin = Wikimedia\base_convert( $id, 10, 2, $bits );
+			$lastId_bin = Wikimedia\base_convert( $lastId, 10, 2, $bits );
+
+			$timestamp_bin = substr( $id_bin, 0, $tbits );
+			$last_timestamp_bin = substr( $lastId_bin, 0, $tbits );
 
 			$this->assertGreaterThanOrEqual(
-				substr( $lastId_bin, 0, $tbits ),
-				substr( $id_bin, 0, $tbits ),
-				"New ID timestamp ($id_bin) >= prior one ($lastId_bin)." );
+				$last_timestamp_bin,
+				$timestamp_bin,
+				"timestamp ($timestamp_bin) of current ID ($id_bin) >= timestamp ($last_timestamp_bin) " .
+				  "of prior one ($lastId_bin)" );
+
+			$hostbits_bin = substr( $id_bin, -$hostbits );
+			$last_hostbits_bin = substr( $lastId_bin, -$hostbits );
 
 			if ( $hostbits ) {
 				$this->assertEquals(
-					substr( $id_bin, -$hostbits ),
-					substr( $lastId_bin, -$hostbits ),
-					"Host ID of ($id_bin) is same as prior one ($lastId_bin)." );
+					$hostbits_bin,
+					$last_hostbits_bin,
+					"Host ID ($hostbits_bin) of current ID ($id_bin) is same as host ID ($last_hostbits_bin) " .
+					  "of prior one ($lastId_bin)." );
 			}
 
 			$lastId = $id;
