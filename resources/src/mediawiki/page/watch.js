@@ -46,11 +46,7 @@
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
 			.updateTooltipAccessKeys()
-			.attr( 'href', mw.util.wikiScript() + '?' + $.param( {
-					title: title,
-					action: action
-				} )
-			);
+			.attr( 'href', mw.util.getUrl( title, { action: action } ) );
 
 		// Most common ID style
 		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
