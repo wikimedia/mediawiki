@@ -1680,7 +1680,6 @@ return [
 	'mediawiki.page.image.pagination' => [
 		'scripts' => 'resources/src/mediawiki/page/image-pagination.js',
 		'dependencies' => [
-			'mediawiki.Uri',
 			'mediawiki.util',
 			'jquery.spinner',
 		],

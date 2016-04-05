@@ -99,16 +99,14 @@
 
 	function bindPageNavigation( $container ) {
 		$container.find( '.multipageimagenavbox' ).one( 'click', 'a', function ( e ) {
-			var page, uri;
+			var page, url;
 
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
 			// We avoid using the URL in the link directly since it could have been manipulated (bug 66608)
 			page = Number( mw.util.getParamValue( 'page', this.href ) );
-			uri = new mw.Uri( mw.util.wikiScript() )
-				.extend( { title: mw.config.get( 'wgPageName' ), page: page } )
-				.toString();
+			url = mw.util.getUrl( mw.config.get( 'wgPageName' ), { page: page } );
 
-			switchPage( uri );
+			switchPage( url );
 			e.preventDefault();
 		} );
 
