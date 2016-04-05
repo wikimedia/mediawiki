@@ -58,7 +58,8 @@ class BlockLogFormatter extends LogFormatter {
 			// is shown on the correct side of the tooltip text.
 			$durationTooltip = '&lrm;' . htmlspecialchars( $params[4] );
 			$params[4] = Message::rawParam( "<span class='blockExpiry' title='$durationTooltip'>" .
-				$this->context->getLanguage()->translateBlockExpiry( $params[4] ) . '</span>' );
+				$this->context->getLanguage()->translateBlockExpiry( $params[4],
+					$this->context->getUser() ) . '</span>' );
 			$params[5] = isset( $params[5] ) ?
 				self::formatBlockFlags( $params[5], $this->context->getLanguage() ) : '';
 		}
