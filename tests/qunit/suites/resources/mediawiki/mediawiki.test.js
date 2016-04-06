@@ -1147,4 +1147,38 @@
 		} );
 	} );
 
+	QUnit.asyncTest( 'mw.loader relative require in debug mode', 1, function ( assert ) {
+		var path = mw.config.get( 'wgScriptPath' );
+		if ( !mw.loader.getState( 'test.require.define' ) ) {
+			mw.loader.register( [
+				[ 'test.require.define', '0' ]
+			] );
+			mw.loader.implement( 'test.require.define', [ QUnit.fixurl( path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ) ] );
+		}
+		mw.loader.register( [
+			[ 'test.require.relativeCallback', '0', [ 'test.require.define' ] ]
+		] );
+		mw.loader.implement( 'test.require.relativeCallback', [ QUnit.fixurl( path + '/tests/qunit/data/relativeRequireCallMwLoaderTestCallback.js' ) ] );
+
+		mw.loader.using( 'test.require.relativeCallback', function () {
+			QUnit.start();
+			var exported = mw.loader.require( 'test.require.relativeCallback' );
+			assert.strictEqual( exported, 'Relative require worked.Define worked.',
+				'module.exports worked in debug mode' );
+		}, function () {
+			QUnit.start();
+			assert.ok( false, 'Error callback fired while loader.using "test.require.relativeCallback" module' );
+		} );
+	} );
+
+	QUnit.test( 'mw.loader.resolveModule', function ( assert ) {
+		assert.strictEqual( mw.loader.resolveModule( 'abc', 'any.base.path' ), 'abc' );
+		assert.strictEqual( mw.loader.resolveModule( './abc', 'any.base.path' ), 'any.base.abc' );
+		assert.strictEqual( mw.loader.resolveModule( '../abc', 'any.base.path' ), 'any.abc' );
+		assert.strictEqual( mw.loader.resolveModule( './../abc', 'any.base.path' ), 'any.abc' );
+		assert.strictEqual( mw.loader.resolveModule( '../../abc', 'any.base.path' ), 'abc' );
+		assert.strictEqual( mw.loader.resolveModule( './foo/../abc', 'any.base.path' ), 'any.base.abc' );
+
+	} );
+
 }( mediaWiki, jQuery ) );

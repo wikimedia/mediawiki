@@ -1194,7 +1194,7 @@
 
 				pendingRequests.push( function () {
 					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
-						window.require = mw.loader.require;
+						window.require = mw.loader.requireFrom.bind( mw.loader, moduleName );
 						window.module = registry[ moduleName ].module;
 					}
 					addScript( src ).always( function () {
@@ -1291,7 +1291,7 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $, mw.loader.require, registry[ module ].module );
+								script( $, $, mw.loader.requireFrom.bind( mw.loader, module ), registry[ module ].module );
 								markModuleReady();
 
 							} else if ( typeof script === 'string' ) {
@@ -2075,6 +2075,40 @@
 					}
 
 					return registry[ moduleName ].module.exports;
+				},
+
+				/**
+				 * Get the exported value of a module while resolving the module name.
+				 *
+				 * @since 1.27
+				 * @return {Array}
+				 */
+				requireFrom: function( baseModule, targetModule ) {
+					return this.require( this.resolveModule( targetModule, baseModule ) );
+				},
+
+				/**
+				 * Resolve a module name relative to a base module
+				 */
+				resolveModule: function( targetModule, baseModule ) {
+					var result = targetModule;
+					if ( targetModule[ 0 ] === '.' ) {
+						result = baseModule.split( '.' );
+						result.pop();
+						targetModule = targetModule.split( '/' );
+						for ( var i = 0; i < targetModule.length; ++i ) {
+							var m = targetModule[ i ];
+							if ( m === '.' ) {
+								// noop
+							} else if ( m === '..' ) {
+								result.pop();
+							} else {
+								result.push( m );
+							}
+						}
+						result = result.join( '.' );
+					}
+					return result;
 				},
 
 				/**
