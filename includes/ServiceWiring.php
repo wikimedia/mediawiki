@@ -130,6 +130,15 @@ return [
 		return $factory;
 	},
 
+	'WatchedItemStore' => function( MediaWikiServices $services ) {
+		$store = new WatchedItemStore(
+			$services->getDBLoadBalancer(),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+		return $store;
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
