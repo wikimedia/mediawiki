@@ -6,11 +6,11 @@
     "postdoc": "grunt copy:jsduck"
   },
   "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
+    "grunt": "1.0.1",
+    "grunt-cli": "1.2.0",
     "grunt-banana-checker": "0.5.0",
     "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-jshint": "1.0.0",
+    "grunt-contrib-jshint": "gruntjs/grunt-contrib-jshint",
     "grunt-contrib-watch": "1.0.0",
     "grunt-jscs": "2.8.0",
     "grunt-jsonlint": "1.0.7",
