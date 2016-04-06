@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 
 /**
@@ -66,7 +68,7 @@ class WebRequest {
 	protected $protocol;
 
 	/**
-	 * @var \\MediaWiki\\Session\\SessionId|null Session ID to use for this
+	 * @var SessionId|null Session ID to use for this
 	 *  request. We can't save the session directly due to reference cycles not
 	 *  working too well (slow GC in Zend and never collected in HHVM).
 	 */
@@ -670,7 +672,7 @@ class WebRequest {
 	 * @since 1.27
 	 * @note For performance, keep the session locally if you will be making
 	 *  much use of it instead of calling this method repeatedly.
-	 * @return MediaWiki\\Session\\Session
+	 * @return Session
 	 */
 	public function getSession() {
 		if ( $this->sessionId !== null ) {
@@ -689,9 +691,9 @@ class WebRequest {
 	 * Set the session for this request
 	 * @since 1.27
 	 * @private For use by MediaWiki\\Session classes only
-	 * @param MediaWiki\\Session\\SessionId $sessionId
+	 * @param SessionId $sessionId
 	 */
-	public function setSessionId( MediaWiki\Session\SessionId $sessionId ) {
+	public function setSessionId( SessionId $sessionId ) {
 		$this->sessionId = $sessionId;
 	}
 
@@ -699,7 +701,7 @@ class WebRequest {
 	 * Get the session id for this request, if any
 	 * @since 1.27
 	 * @private For use by MediaWiki\\Session classes only
-	 * @return MediaWiki\\Session\\SessionId|null
+	 * @return SessionId|null
 	 */
 	public function getSessionId() {
 		return $this->sessionId;
