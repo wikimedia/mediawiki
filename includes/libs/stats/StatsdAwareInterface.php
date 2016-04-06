@@ -11,7 +11,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 interface StatsdAwareInterface {
 
 	/**
-	 * Sets a logger instance on the object
+	 * Sets a StatsdDataFactory instance on the object
 	 *
 	 * @param StatsdDataFactoryInterface $statsFactory
 	 * @return null
