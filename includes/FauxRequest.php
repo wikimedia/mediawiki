@@ -39,7 +39,7 @@ class FauxRequest extends WebRequest {
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param MediaWiki\\Session\\Session|array|null $session Session, session
+	 * @param MediaWiki\Session\Session|array|null $session Session, session
 	 *  data array, or null
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException

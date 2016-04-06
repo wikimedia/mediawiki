@@ -6,7 +6,7 @@
  * wish to add a submit button to a form.
  *
  * Additional recognized configuration parameters include:
- * - flags: OOUI flags for the button, see OOUI\\FlaggedElement
+ * - flags: OOUI flags for the button, see OOUI\FlaggedElement
  * - buttonlabel-message: Message to use for the button display text, instead
  *   of the value from 'default'. Overrides 'buttonlabel' and 'buttonlabel-raw'.
  * - buttonlabel: Text to display for the button display text, instead

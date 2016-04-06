@@ -26,7 +26,7 @@ use MediaWiki\Session\Token;
 /**
  * Value object representing a logged-out user's edit token
  *
- * This exists so that code generically dealing with MediaWiki\\Session\\Token
+ * This exists so that code generically dealing with MediaWiki\Session\Token
  * (i.e. the API) doesn't have to have so many special cases for anon edit
  * tokens.
  *

@@ -2288,7 +2288,7 @@ $wgSessionsInObjectCache = true;
 $wgObjectCacheSessionExpiry = 3600;
 
 /**
- * @deprecated since 1.27, MediaWiki\\Session\\SessionManager doesn't use PHP session storage.
+ * @deprecated since 1.27, MediaWiki\Session\SessionManager doesn't use PHP session storage.
  */
 $wgSessionHandler = null;
 

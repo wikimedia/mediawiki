@@ -1647,8 +1647,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the login token from the current session
-	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
-	 * @return MediaWiki\\Session\\Token
+	 * @since 1.27 returns a MediaWiki\Session\Token instead of a string
+	 * @return MediaWiki\Session\Token
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
@@ -1678,8 +1678,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the createaccount token from the current session
-	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
-	 * @return MediaWiki\\Session\\Token
+	 * @since 1.27 returns a MediaWiki\Session\Token instead of a string
+	 * @return MediaWiki\Session\Token
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;

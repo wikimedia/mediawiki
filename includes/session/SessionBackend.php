@@ -31,7 +31,7 @@ use WebRequest;
 /**
  * This is the actual workhorse for Session.
  *
- * Most code does not need to use this class, you want \\MediaWiki\\Session\\Session.
+ * Most code does not need to use this class, you want \MediaWiki\Session\Session.
  * The exceptions are SessionProviders and SessionMetadata hook functions,
  * which get an instance of this class rather than Session.
  *
@@ -176,7 +176,7 @@ final class SessionBackend {
 
 	/**
 	 * Deregister a Session
-	 * @private For use by \\MediaWiki\\Session\\Session::__destruct() only
+	 * @private For use by \MediaWiki\Session\Session::__destruct() only
 	 * @param int $index
 	 */
 	public function deregisterSession( $index ) {
@@ -498,7 +498,7 @@ final class SessionBackend {
 	 * Note the caller is responsible for calling $this->dirty() if anything in
 	 * the array is changed.
 	 *
-	 * @private For use by \\MediaWiki\\Session\\Session only.
+	 * @private For use by \MediaWiki\Session\Session only.
 	 * @return array
 	 */
 	public function &getData() {
@@ -530,7 +530,7 @@ final class SessionBackend {
 
 	/**
 	 * Mark data as dirty
-	 * @private For use by \\MediaWiki\\Session\\Session only.
+	 * @private For use by \MediaWiki\Session\Session only.
 	 */
 	public function dirty() {
 		$this->dataDirty = true;
