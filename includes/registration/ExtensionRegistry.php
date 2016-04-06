@@ -274,12 +274,11 @@ class ExtensionRegistry {
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
 		}
-		foreach ( $info['callbacks'] as $cb ) {
-			call_user_func( $cb );
-		}
-
 		foreach ( $info['autoloaderPaths'] as $path ) {
 			require_once $path;
+		}
+		foreach ( $info['callbacks'] as $cb ) {
+			call_user_func( $cb );
 		}
 
 		$this->loaded += $info['credits'];
