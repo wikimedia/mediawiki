@@ -5,7 +5,7 @@
  *
  * @covers WatchedItemStore
  */
-class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
+class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
@@ -93,17 +93,6 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$instanceOne = WatchedItemStore::getDefaultInstance();
 		$instanceTwo = WatchedItemStore::getDefaultInstance();
 		$this->assertSame( $instanceOne, $instanceTwo );
-	}
-
-	public function testOverrideDefaultInstance() {
-		$instance = WatchedItemStore::getDefaultInstance();
-		$scopedOverride = $instance->overrideDefaultInstance( null );
-
-		$this->assertNotSame( $instance, WatchedItemStore::getDefaultInstance() );
-
-		unset( $scopedOverride );
-
-		$this->assertSame( $instance, WatchedItemStore::getDefaultInstance() );
 	}
 
 	public function testCountWatchedItems() {
