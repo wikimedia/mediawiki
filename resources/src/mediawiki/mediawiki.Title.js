@@ -960,7 +960,7 @@
 		getUrl: function ( params ) {
 			var fragment = this.getFragment();
 			if ( fragment ) {
-				return mw.util.getUrl( this.toString() + '#' + this.getFragment(), params );
+				return mw.util.getUrl( this.toString() + '#' + fragment, params );
 			} else {
 				return mw.util.getUrl( this.toString(), params );
 			}
