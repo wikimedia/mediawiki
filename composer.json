@@ -18,8 +18,11 @@
 	"require": {
 		"composer/semver": "1.4.0",
 		"cssjanus/cssjanus": "1.1.2",
+		"ext-ctype": "*",
 		"ext-iconv": "*",
+		"ext-json": "*",
 		"ext-mbstring": "*",
+		"ext-xml": "*",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mediawiki/at-ease": "1.1.0",
 		"oojs/oojs-ui": "0.16.4",
