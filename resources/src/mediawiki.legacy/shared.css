@@ -59,7 +59,7 @@ wbr {
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
-input[type="file"] {
+[type="file"] {
 	direction: ltr;
 }
 
