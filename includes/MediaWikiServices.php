@@ -17,6 +17,7 @@ use SearchEngineConfig;
 use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
+use WatchedItemStore;
 use SkinFactory;
 
 /**
@@ -412,6 +413,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return WatchedItemStore
+	 */
+	public function getWatchedItemStore() {
+		return $this->getService( 'WatchedItemStore' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
