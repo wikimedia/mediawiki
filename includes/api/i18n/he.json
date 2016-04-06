@@ -195,7 +195,7 @@
 	"apihelp-imagerotate-example-simple": "לסובב את <kbd>File:Example.png</kbd> ב־<kbd>90</kbd> מעלות.",
 	"apihelp-imagerotate-example-generator": "לסובב את כל התמונות ב־<kbd>Category:Flip</kbd> ב־<kbd>180</kbd> מעלות.",
 	"apihelp-import-description": "לייבא דף מוויקי אחר או מקובץ XML.\n\nיש לשים לב לכך שפעולת HTTP POST צריכה להיעשות בתור העלאת קובץ (כלומר, עם multipart/form-data) בזמן שליחת קובץ לפרמטר <var>xml</var>.",
-	"apihelp-import-param-summary": "תקציר יבוא.",
+	"apihelp-import-param-summary": "תקציר ייבוא עיולי יומן.",
 	"apihelp-import-param-xml": "קובץ XML שהועלה.",
 	"apihelp-import-param-interwikisource": "ליבוא בין אתרי ויקי: מאיזה ויקי לייבא.",
 	"apihelp-import-param-interwikipage": "ליבוא בין אתרי ויקי: איזה דף לייבא.",

@@ -3449,6 +3449,7 @@
 	"api-error-unknownerror": "Neznana napaka: »$1«.",
 	"api-error-uploaddisabled": "Nalaganje je onemogočeno na tem wikiju.",
 	"api-error-verification-error": "Ta datoteka je morda poškodovana ali ima napačno končnico.",
+	"api-error-was-deleted": "Datoteko s tem imenom je v preteklosti nekdo že naložil, ampak je bila nato izbrisana.",
 	"duration-seconds": "$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuta|minuti|minute|minut}}",
 	"duration-hours": "$1 {{PLURAL:$1|ura|uri|ure|ur}}",

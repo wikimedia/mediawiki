@@ -1753,6 +1753,7 @@
 	"apisandbox-submit": "Зрабіць запыт",
 	"apisandbox-reset": "Ачысьціць",
 	"apisandbox-retry": "Паўтарыць",
+	"apisandbox-loading": "Загрузка інфармацыі для API-модуля «$1»…",
 	"apisandbox-examples": "Прыклады",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-request-url-label": "URL-адрас запыту:",

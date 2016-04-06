@@ -3677,6 +3677,7 @@
 	"api-error-unknownerror": "Erreur inconnue : « $1 ».",
 	"api-error-uploaddisabled": "Le téléversement est désactivé sur ce wiki.",
 	"api-error-verification-error": "Ce fichier peut être corrompu, ou son extension est incorrecte.",
+	"api-error-was-deleted": "Un fichier portant ce nom a déjà été importé puis supprimé.",
 	"duration-seconds": "$1 seconde{{PLURAL:$1||s}}",
 	"duration-minutes": "$1 minute{{PLURAL:$1||s}}",
 	"duration-hours": "$1 heure{{PLURAL:$1||s}}",

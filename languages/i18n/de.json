@@ -3559,6 +3559,7 @@
 	"api-error-unknownerror": "Unbekannter Fehler: „$1“",
 	"api-error-uploaddisabled": "Das Hochladen ist in diesem Wiki deaktiviert.",
 	"api-error-verification-error": "Die hochzuladende Datei ist entweder fehlerhaft oder hat keine Dateinamenserweiterung.",
+	"api-error-was-deleted": "Eine Datei mit diesem Namen wurde kürzlich hochgeladen und anschließend gelöscht.",
 	"duration-seconds": "$1 {{PLURAL:$1|Sekunde|Sekunden}}",
 	"duration-minutes": "$1 {{PLURAL:$1|Minute|Minuten}}",
 	"duration-hours": "$1 {{PLURAL:$1|Stunde|Stunden}}",
