@@ -1,11 +1,12 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 /**
  * @author Addshore
  *
  * @covers WatchedItem
  */
-class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
+class WatchedItemUnitTest extends MediaWikiTestCase {
 
 	public function provideUserTitleTimestamp() {
 		return [
@@ -51,15 +52,13 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'loadWatchedItem' )
 			->with( $user, $linkTarget )
 			->will( $this->returnValue( new WatchedItem( $user, $linkTarget, $timestamp ) ) );
-		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
+		$this->setService( 'WatchedItemStore', $store );
 
 		$item = WatchedItem::fromUserTitle( $user, $linkTarget, User::IGNORE_USER_RIGHTS );
 
 		$this->assertEquals( $user, $item->getUser() );
 		$this->assertEquals( $linkTarget, $item->getLinkTarget() );
 		$this->assertEquals( $timestamp, $item->getNotificationTimestamp() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -85,12 +84,10 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 					return true;
 				}
 			) );
-		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
+		$this->setService( 'WatchedItemStore', $store );
 
 		$item = new WatchedItem( $user, $linkTarget, $timestamp );
 		$item->resetNotificationTimestamp( $force, $oldid );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testAddWatch() {
@@ -157,11 +154,9 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 		$store->expects( $this->once() )
 			->method( 'duplicateAllAssociatedEntries' )
 			->with( $oldTitle, $newTitle );
-		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
+		$this->setService( 'WatchedItemStore', $store );
 
 		WatchedItem::duplicateEntries( $oldTitle, $newTitle );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testBatchAddWatch() {
@@ -193,11 +188,9 @@ class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 					$itemTwo->getTitle()->getTalkPage(),
 				]
 			);
-		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
+		$this->setService( 'WatchedItemStore', $store );
 
 		WatchedItem::batchAddWatch( [ $itemOne, $itemTwo ] );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 }

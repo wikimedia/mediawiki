@@ -389,6 +389,26 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Sets a service, maintaining a stashed version of the previous service to be
+	 * restored in tearDown
+	 *
+	 * @param string $name
+	 * @param object $object
+	 */
+	protected function setService( $name, $object ) {
+		if ( $this->mwServices === null ) {
+			$this->overrideMwServices();
+		}
+		MediaWikiServices::getInstance()->disableService( $name );
+		MediaWikiServices::getInstance()->redefineService(
+			$name,
+			function () use ( $object ) {
+				return $object;
+			}
+		);
+	}
+
+	/**
 	 * Sets a global, maintaining a stashed version of the previous global to be
 	 * restored in tearDown
 	 *
