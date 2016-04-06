@@ -232,6 +232,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 		];
 	}
 

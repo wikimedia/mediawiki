@@ -36,6 +36,8 @@ use SiteStore;
 use SpecialPageFactory;
 use Title;
 use User;
+use WatchedItemStore;
+use Wikimedia\Assert\Assert;
 
 /**
  * Service locator for MediaWiki core services.
@@ -480,6 +482,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return WatchedItemStore
+	 */
+	public function getWatchedItemStore() {
+		return $this->getService( 'WatchedItemStore' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

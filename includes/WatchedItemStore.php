@@ -1,6 +1,7 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
@@ -49,11 +50,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @var StatsdDataFactoryInterface
 	 */
 	private $stats;
-
-	/**
-	 * @var self|null
-	 */
-	private static $instance;
 
 	/**
 	 * @param LoadBalancer $loadBalancer
@@ -126,43 +122,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Overrides the default instance of this class
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * If this method is used it MUST also be called with null after a test to ensure a new
-	 * default instance is created next time getDefaultInstance is called.
-	 *
-	 * @param WatchedItemStore|null $store
-	 *
-	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
-	 */
-	public static function overrideDefaultInstance( WatchedItemStore $store = null ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
-				'Cannot override ' . __CLASS__ . 'default instance in operation.'
-			);
-		}
-
-		$previousValue = self::$instance;
-		self::$instance = $store;
-		return new ScopedCallback( function() use ( $previousValue ) {
-			self::$instance = $previousValue;
-		} );
-	}
-
-	/**
+	 * @deprecated use MediaWikiServices::getInstance()->getWatchedItemStore()
 	 * @return self
 	 */
 	public static function getDefaultInstance() {
-		if ( !self::$instance ) {
-			self::$instance = new self(
-				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] )
-			);
-			self::$instance->setStatsdDataFactory( RequestContext::getMain()->getStats() );
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getWatchedItemStore();
 	}
 
 	private function getCacheKey( User $user, LinkTarget $target ) {
