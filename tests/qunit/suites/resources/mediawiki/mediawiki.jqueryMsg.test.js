@@ -81,8 +81,9 @@
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
 			'external-link-replace': 'Foo [$1 bar]',
-			'external-link-plural': 'Foo {{PLURAL:$1|is [$2 one]|are [$2 some]|2=[$2 two]|3=three|4=a=b|5=}} things.',
-			'plural-only-explicit-forms': 'It is a {{PLURAL:$1|1=single|2=double}} room.'
+			'external-link-plural': 'Foo {{PLURAL:$1|is [$2 one]|are [$2 some]|2=[$2 two]|3=three|4=a=b}} things.',
+			'plural-only-explicit-forms': 'It is a {{PLURAL:$1|1=single|2=double}} room.',
+			'plural-empty-explicit-form': 'There is me{{PLURAL:$1|0=| and other people}}.'
 		}
 	} ) );
 
@@ -144,7 +145,7 @@
 		next();
 	}
 
-	QUnit.test( 'Replace', 16, function ( assert ) {
+	QUnit.test( 'Replace', 15, function ( assert ) {
 		mw.messages.set( 'simple', 'Foo $1 baz $2' );
 
 		assert.equal( formatParse( 'simple' ), 'Foo $1 baz $2', 'Replacements with no substitutes' );
@@ -213,11 +214,6 @@
 			'Only first equal sign is used as delimiter for explicit plural form. Repeated equal signs does not create issue'
 		);
 		assert.equal(
-			formatParse( 'external-link-plural', 5, 'http://example.org' ),
-			'Foo are <a href="http://example.org">some</a> things.',
-			'Invalid explicit plural form. Plural fallback to the "other" plural form'
-		);
-		assert.equal(
 			formatParse( 'external-link-plural', 6, 'http://example.org' ),
 			'Foo are <a href="http://example.org">some</a> things.',
 			'Plural fallback to the "other" plural form'
@@ -229,13 +225,16 @@
 		);
 	} );
 
-	QUnit.test( 'Plural', 6, function ( assert ) {
+	QUnit.test( 'Plural', 9, function ( assert ) {
 		assert.equal( formatParse( 'plural-msg', 0 ), 'Found 0 items', 'Plural test for english with zero as count' );
 		assert.equal( formatParse( 'plural-msg', 1 ), 'Found 1 item', 'Singular test for english' );
 		assert.equal( formatParse( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
 		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 6 ), 'Found 6 results', 'Plural message with explicit plural forms' );
 		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 0 ), 'Found no results in Wiki', 'Plural message with explicit plural forms, with nested {{SITENAME}}' );
 		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 1 ), 'Found 1 result', 'Plural message with explicit plural forms with placeholder nested' );
+		assert.equal( formatParse( 'plural-empty-explicit-form', 0 ), 'There is me.' );
+		assert.equal( formatParse( 'plural-empty-explicit-form', 1 ), 'There is me and other people.' );
+		assert.equal( formatParse( 'plural-empty-explicit-form', 2 ), 'There is me and other people.' );
 	} );
 
 	QUnit.test( 'Gender', 15, function ( assert ) {

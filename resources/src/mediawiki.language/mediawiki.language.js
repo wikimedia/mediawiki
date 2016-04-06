@@ -47,7 +47,7 @@ $.extend( mw.language, {
 		var pluralRules,
 			pluralFormIndex = 0;
 
-		if ( explicitPluralForms && explicitPluralForms[ count ] ) {
+		if ( explicitPluralForms && ( typeof explicitPluralForms[ count ] !== 'undefined' ) ) {
 			return explicitPluralForms[ count ];
 		}
 
