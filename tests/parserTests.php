@@ -63,6 +63,8 @@ Options:
                    irrelevant differences. The accepted normalization functions
                    are: removeTbody to remove <tbody> tags; and trimWhitespace
                    to trim whitespace from the start and end of text nodes.
+  --use-tidy-config Use the wiki's Tidy configuration instead of known-good
+                   defaults.
   --help           Show this help message
 
 ENDS;
