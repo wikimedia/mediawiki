@@ -14,6 +14,7 @@ class BalancerTest extends MediaWikiTestCase {
 		$this->balancer = new MediaWiki\Tidy\Balancer( [
 			'strict' => false, /* not strict */
 			'allowedHtmlElements' => null, /* no sanitization */
+			'tidyCompat' => false, /* standard parser */
 		] );
 	}
 
