@@ -132,6 +132,8 @@ class MWTidy {
 				case 'Html5Depurate':
 					self::$instance = new MediaWiki\Tidy\Html5Depurate( $config );
 					break;
+				case 'disabled':
+					return false;
 				default:
 					throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
 			}

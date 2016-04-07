@@ -163,12 +163,8 @@ class NewParserTest extends MediaWikiTestCase {
 		$this->djVuSupport = new DjVuSupport();
 		// Tidy support
 		$this->tidySupport = new TidySupport();
-		$tmpGlobals['wgTidyConfig'] = null;
+		$tmpGlobals['wgTidyConfig'] = $this->tidySupport->getConfig();
 		$tmpGlobals['wgUseTidy'] = false;
-		$tmpGlobals['wgDebugTidy'] = false;
-		$tmpGlobals['wgTidyConf'] = $IP . '/includes/tidy/tidy.conf';
-		$tmpGlobals['wgTidyOpts'] = '';
-		$tmpGlobals['wgTidyInternal'] = $this->tidySupport->isInternal();
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -452,7 +448,8 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
-			'wgUseTidy' => isset( $opts['tidy'] ),
+			'wgUseTidy' => false,
+			'wgTidyConfig' => isset( $opts['tidy'] ) ? $this->tidySupport->getConfig() : null
 		];
 
 		if ( $config ) {
