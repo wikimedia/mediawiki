@@ -42,6 +42,9 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $typeCGI = '';
 
+	/** @var string */
+	private $action = '';
+
 	/** @var LogEventsList */
 	public $mLogEventsList;
 
@@ -57,9 +60,12 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int|bool $year The year to start from. Default: false
 	 * @param int|bool $month The month to start from. Default: false
 	 * @param string $tagFilter Tag
+	 * @param string $action Specific action (subtype) requested
 	 */
-	public function __construct( $list, $types = [], $performer = '', $title = '', $pattern = '',
-		$conds = [], $year = false, $month = false, $tagFilter = '' ) {
+	public function __construct( $list, $types = [], $performer = '', $title = '',
+		$pattern = '', $conds = [], $year = false, $month = false, $tagFilter = '',
+		$action = ''
+	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
 
@@ -68,6 +74,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitType( $types ); // also excludes hidden types
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
+		$this->limitAction( $action );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
 
@@ -257,6 +264,31 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Set the log_action field to a specified value (or values)
+	 *
+	 * @param string $action
+	 */
+	private function limitAction( $action ) {
+		global $wgActionFilteredLogs;
+		// Allow to filter the log by actions
+		$type = $this->typeCGI;
+		if ( $type === '' ) {
+			// nothing to do
+			return;
+		}
+		$actions = $wgActionFilteredLogs;
+		if ( isset( $actions[$type] ) ) {
+			// log type can be filtered by actions
+			$this->mLogEventsList->setAllowedActions( array_keys( $actions[$type] ) );
+			if ( $action !== '' && isset( $actions[$type][$action] ) ) {
+				// add condition to query
+				$this->mConds['log_action'] = $actions[$type][$action];
+				$this->action = $action;
+			}
+		}
+	}
+
+	/**
 	 * Constructs the most part of the query. Extra conditions are sprinkled in
 	 * all over this class.
 	 * @return array
@@ -379,6 +411,10 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getTagFilter() {
 		return $this->mTagFilter;
+	}
+
+	public function getAction() {
+		return $this->action;
 	}
 
 	public function doQuery() {

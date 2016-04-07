@@ -169,25 +169,6 @@ class SpecialLog extends SpecialPage {
 			LogEventsList::USE_CHECKBOXES
 		);
 
-		$action = '';
-		// Allow to filter the log by actions
-		$type = $opts->getValue( 'type' );
-		if ( $type !== '' ) {
-			$actions = $this->getConfig()->get( 'ActionFilteredLogs' );
-			if ( isset( $actions[$type] ) ) {
-				// log type can be filtered by actions
-				$loglist->setAllowedActions( array_keys( $actions[$type] ) );
-				$action = $opts->getValue( 'subtype' );
-				if ( $action !== '' && isset( $actions[$type][$action] ) ) {
-					// add condition to query
-					$extraConds['log_action'] = $actions[$type][$action];
-				} else {
-					// no action or invalid action
-					$action = '';
-				}
-			}
-		}
-
 		$pager = new LogPager(
 			$loglist,
 			$opts->getValue( 'type' ),
@@ -197,7 +178,8 @@ class SpecialLog extends SpecialPage {
 			$extraConds,
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$opts->getValue( 'subtype' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -210,14 +192,14 @@ class SpecialLog extends SpecialPage {
 		# Show form options
 		$loglist->showOptions(
 			$pager->getType(),
-			$opts->getValue( 'user' ),
+			$pager->getPerformer(),
 			$pager->getPage(),
 			$pager->getPattern(),
 			$pager->getYear(),
 			$pager->getMonth(),
 			$pager->getFilterParams(),
-			$opts->getValue( 'tagfilter' ),
-			$action
+			$pager->getTagFilter(),
+			$pager->getAction()
 		);
 
 		# Insert list
