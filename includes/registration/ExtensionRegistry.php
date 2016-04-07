@@ -194,6 +194,9 @@ class ExtensionRegistry {
 			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
 				throw new Exception( "$path: unsupported manifest_version: {$version}" );
 			}
+			// Get extra paths for later inclusion
+			$autoloaderPaths = array_merge( $autoloaderPaths,
+				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
 			$autoload = $this->processAutoLoader( dirname( $path ), $info );
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
@@ -209,9 +212,6 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
-			// Get extra paths for later inclusion
-			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -223,14 +223,22 @@ class ExtensionRegistry {
 			}
 		}
 		$data = $processor->getExtractedInfo();
+		$data['autoloaderPaths'] = $autoloaderPaths;
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = [];
 		$data['autoload'] = $autoloadClasses;
-		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
 	}
 
 	protected function exportExtractedData( array $info ) {
+		foreach ( $info['defines'] as $name => $val ) {
+			define( $name, $val );
+		}
+
+		foreach ( $info['autoloaderPaths'] as $path ) {
+			require_once $path;
+		}
+
 		foreach ( $info['globals'] as $key => $val ) {
 			// If a merge strategy is set, read it and remove it from the value
 			// so it doesn't accidentally end up getting set.
@@ -271,12 +279,6 @@ class ExtensionRegistry {
 			}
 		}
 
-		foreach ( $info['defines'] as $name => $val ) {
-			define( $name, $val );
-		}
-		foreach ( $info['autoloaderPaths'] as $path ) {
-			require_once $path;
-		}
 		foreach ( $info['callbacks'] as $cb ) {
 			call_user_func( $cb );
 		}
