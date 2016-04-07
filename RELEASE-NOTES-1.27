@@ -119,6 +119,28 @@ The following PHP extensions are strongly recommended:
 * If the openssl and mcrypt PHP extensions are both unavailable, secure
   session storage (soon to be used for login) will raise an exception. This
   exception may be bypassed by setting $wgSessionInsecureSecrets = true.
+* Massive overhaul to authentication:
+** AuthPlugin and AuthPluginUser are deprecated.
+** LoginForm and associated templates are deprecated. Extensions which called
+   static LoginForm methods should be converted into authentication providers.
+** The following hooks are deprecated:
+*** AbortAutoAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortLogin (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortNewAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AddNewAccount (use LocalUserCreated instead)
+*** AuthPluginSetup (create a MediaWiki\Auth\PrimaryAuthenticationProvider instead)
+*** ChangePasswordForm (use AuthChangeFormFields instead, or security levels)
+*** LoginUserMigrated (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** UserCreateForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+*** UserLoginForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+** The following hooks are removed:
+*** AbortChangePassword
+*** LoginPasswordResetMessage
+*** PrefsPasswordAudit
+** The UserLoginComplete hook will no longer be called for all logins, only for
+   those via the web UI. Use UserLoggedIn if you need to do something on all
+   logins.
+** $wgRequirePasswordforEmailChange is removed.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
@@ -198,6 +220,25 @@ The following PHP extensions are strongly recommended:
 * $wgJpegPixelFormat was added to override chroma subsampling for JPEG image
   thumbnails created via ImageMagick. Defaults to 'yuv420', providing bandwidth
   savings versus the previous behavior on many files.
+* MediaWiki\Auth infrastructure (called "AuthManager") allows for more flexible
+  configuration of multiple authentication pieces that was possible with
+  AuthPlugin. For example, it's now easy to plug in second-factor
+  authentication, or add additional checks to the login process, or to support
+  multiple login methods at once, or to support non-password-based login methods.
+** Providers are configured via the global setting $wgAuthManagerConfig.
+** A global, $wgDisableAuthManager, is temporarily available to disable
+   AuthManager until extensions are ready to support it.
+** New hook, AuthChangeFormFields, to adjust the form fields on
+   AuthManager-related special pages.
+** New hook, AuthManagerLoginAuthenticateAudit, for additional logging of
+   AuthManager-related authentication requests.
+** New hook, ChangeAuthenticationDataAudit, for additional logging of
+   AuthManager-related authentication data changes.
+** New hook, SecuritySensitiveOperationStatus, to work with the new mechanism
+   for requiring a recent login before taking security-sensitive operations
+   like changing a password.
+** Two new globals, $wgChangeCredentialsBlacklist and $wgRemoveCredentialsBlacklist
+   can be used to prevent the web UI and the API changing certain authentication data.
 
 === External library changes in 1.27 ===
 
@@ -239,6 +280,18 @@ The following PHP extensions are strongly recommended:
   merely need to change the username and password used after setting up a bot
   password.
 * action=upload no longer understands statuskey, asyncdownload or leavemessage.
+* Several changes when $wgDisableAuthManager is false:
+** action=login is deprecated for uses other than bot passwords.
+** list=users can now indicate if a missing username is creatable.
+** action=createaccount is changed in a non-backwards-compatible manner.
+** Added action=query&meta=authmanagerinfo.
+** Added action=clientlogin to be used to log into the main account instead of
+   action=login.
+** Added action=linkaccount.
+** Added action=unlinkaccount.
+** Added action=changeauthenticationdata.
+** Added action=removeauthenticationdata.
+** Added action=resetpassword.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
@@ -271,6 +324,7 @@ The following PHP extensions are strongly recommended:
 * ApiMain::addFormat() was removed (deprecated in 1.21).
 * ApiMain::getFormats() was removed (deprecated in 1.21).
 * ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
+* ApiCreateAccount is deprecated, and will be removed soon.
 
 === Languages updated in 1.27 ===
 
@@ -475,6 +529,11 @@ changes to languages because of Phabricator reports.
   performance on complex changes. $wgExternalDiffEngine = 'wikidiff3' therefore
   makes no difference now. Users are still recommended to use wikidiff2 if possible,
   though.
+* User::addNewUserLogEntry() was deprecated.
+* User::addNewUserLogEntryAutoCreate() was deprecated.
+* User::isPasswordReminderThrottled() was deprecated.
+* Bot-oriented parameters to Special:UserLogin (wpCookieCheck, wpSkipCookieCheck)
+  were removed.
 
 == Compatibility ==
 
