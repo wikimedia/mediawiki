@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:25Z
+ * Date: 2016-04-07T15:12:44Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -399,7 +399,7 @@
 	position: relative;
 	overflow: hidden;
 }
-.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button > input[type="file"] {
+.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button > [type="file"] {
 	position: absolute;
 	margin: 0;
 	top: 0;
@@ -413,7 +413,7 @@
 	cursor: pointer;
 	padding-top: 100px;
 }
-.oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > input[type="file"] {
+.oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > [type="file"] {
 	display: none;
 }
 .oo-ui-selectFileWidget-info {
@@ -475,7 +475,7 @@
 	width: 5.5em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
-	border: none;
+	border: 0;
 	background: none;
 	display: block;
 	height: 100%;

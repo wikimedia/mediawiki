@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:21Z
+ * Date: 2016-04-07T15:12:41Z
  */
 ( function ( OO ) {
 
@@ -2052,6 +2052,16 @@ OO.ui.mixin.GroupElement = function OoUiMixinGroupElement( config ) {
 	this.setGroupElement( config.$group || $( '<div>' ) );
 };
 
+/* Events */
+
+/**
+ * @event change
+ *
+ * A change event is emitted when the set of selected items changes.
+ *
+ * @param {OO.ui.Element[]} items Items currently in the group
+ */
+
 /* Methods */
 
 /**
@@ -2243,6 +2253,7 @@ OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
 		this.items.splice.apply( this.items, [ index, 0 ].concat( items ) );
 	}
 
+	this.emit( 'change', this.getItems() );
 	return this;
 };
 
@@ -2279,6 +2290,7 @@ OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
 		}
 	}
 
+	this.emit( 'change', this.getItems() );
 	return this;
 };
 
@@ -2310,6 +2322,7 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
 		item.$element.detach();
 	}
 
+	this.emit( 'change', this.getItems() );
 	this.items = [];
 	return this;
 };
@@ -6909,9 +6922,11 @@ OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
  */
 OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.InputWidget.parent.static.gatherPreInfuseState( node, config );
-	state.value = config.$input.val();
-	// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
-	state.focus = config.$input.is( ':focus' );
+	if ( config.$input && config.$input.length ) {
+		state.value = config.$input.val();
+		// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
+		state.focus = config.$input.is( ':focus' );
+	}
 	return state;
 };
 
@@ -7706,6 +7721,16 @@ OO.ui.RadioSelectInputWidget.static.gatherPreInfuseState = function ( node, conf
 	var state = OO.ui.RadioSelectInputWidget.parent.static.gatherPreInfuseState( node, config );
 	state.value = $( node ).find( '.oo-ui-radioInputWidget .oo-ui-inputWidget-input:checked' ).val();
 	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioSelectInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+	config = OO.ui.RadioSelectInputWidget.parent.static.reusePreInfuseDOM( node, config );
+	// Cannot reuse the `<input type=radio>` set
+	delete config.$input;
+	return config;
 };
 
 /* Methods */
@@ -8680,7 +8705,8 @@ OO.ui.TextInputWidget.prototype.restorePreInfuseState = function ( state ) {
 OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( {
-		indicator: 'down'
+		indicator: 'down',
+		autocomplete: false
 	}, config );
 	// For backwards-compatibility with ComboBoxWidget config
 	$.extend( config, config.input );

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:25Z
+ * Date: 2016-04-07T15:12:44Z
  */
 .oo-ui-window {
 	background: transparent;
@@ -17,7 +17,7 @@
 	        box-sizing: border-box;
 }
 .oo-ui-window-content:focus {
-	outline: none;
+	outline: 0;
 }
 .oo-ui-window-head,
 .oo-ui-window-foot {
@@ -377,6 +377,8 @@
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
 	top: 1em;
 	bottom: 1em;
+	max-height: 100%;
+	max-height: calc(100% - 2em);
 	border: 1px solid #aaaaaa;
 	border-radius: 2px;
 	box-shadow: 0 0.15em 0 0 rgba(0, 0, 0, 0.15);

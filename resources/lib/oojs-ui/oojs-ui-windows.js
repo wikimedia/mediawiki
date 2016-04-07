@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:21Z
+ * Date: 2016-04-07T15:12:41Z
  */
 ( function ( OO ) {
 
@@ -2060,9 +2060,9 @@ OO.ui.Window.prototype.updateSize = function () {
  * @param {string|number} [dim.width] Width
  * @param {string|number} [dim.minWidth] Minimum width
  * @param {string|number} [dim.maxWidth] Maximum width
- * @param {string|number} [dim.width] Height, omit to set based on height of contents
- * @param {string|number} [dim.minWidth] Minimum height
- * @param {string|number} [dim.maxWidth] Maximum height
+ * @param {string|number} [dim.height] Height, omit to set based on height of contents
+ * @param {string|number} [dim.minHeight] Minimum height
+ * @param {string|number} [dim.maxHeight] Maximum height
  * @chainable
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {

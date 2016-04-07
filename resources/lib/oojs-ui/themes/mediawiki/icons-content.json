@@ -13,6 +13,10 @@
 			"ltr": "images/icons/article-ltr.svg",
 			"rtl": "images/icons/article-rtl.svg"
 		} },
+		"articles": { "file": {
+			"ltr": "images/icons/articles-ltr.svg",
+			"rtl": "images/icons/articles-rtl.svg"
+		} },
 		"articleCheck": { "file": {
 			"ltr": "images/icons/articleCheck-ltr.svg",
 			"rtl": "images/icons/articleCheck-rtl.svg"

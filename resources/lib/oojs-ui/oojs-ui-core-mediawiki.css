@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:25Z
+ * Date: 2016-04-07T15:12:44Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -69,7 +69,7 @@
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.2);
-	outline: none;
+	outline: 0;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
 	margin-right: 0;
@@ -153,7 +153,7 @@
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
-	outline: none;
+	outline: 0;
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -206,8 +206,8 @@
 	color: #347bff;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
-	background-color: rgba(52, 123, 255, 0.1);
-	border-color: rgba(31, 73, 153, 0.5);
+	background-color: #ebf2ff;
+	border-color: #859dcc;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 0 0 1px #1f4999;
@@ -227,8 +227,8 @@
 	color: #347bff;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover {
-	background-color: rgba(52, 123, 255, 0.1);
-	border-color: rgba(31, 73, 153, 0.5);
+	background-color: #ebf2ff;
+	border-color: #859dcc;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 0 0 1px #1f4999;
@@ -248,8 +248,8 @@
 	color: #d11d13;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
-	background-color: rgba(209, 29, 19, 0.1);
-	border-color: rgba(115, 16, 10, 0.5);
+	background-color: #fbe8e7;
+	border-color: #b77c79;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 0 0 1px #73100a;
@@ -831,7 +831,7 @@
 	font: inherit;
 	vertical-align: middle;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"] {
+.oo-ui-checkboxInputWidget [type="checkbox"] {
 	opacity: 0;
 	z-index: 1;
 	position: relative;
@@ -841,7 +841,7 @@
 	height: 1.6em;
 	max-width: none;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"] + span {
+.oo-ui-checkboxInputWidget [type="checkbox"] + span {
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -850,11 +850,9 @@
 	        box-sizing: border-box;
 	position: absolute;
 	left: 0;
-	border-radius: 2px;
 	width: 1.6em;
 	height: 1.6em;
-	background-color: white;
-	border: 1px solid #777777;
+	background-color: #ffffff;
 	background-image: url("themes/mediawiki/images/icons/check-constructive-deprecated.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-constructive-deprecated.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-constructive-deprecated.svg");
@@ -863,29 +861,31 @@
 	background-position: center center;
 	background-origin: border-box;
 	background-size: 0 0;
+	border: 1px solid #777777;
+	border-radius: 2px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:checked + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:checked + span {
 	background-size: 100% 100%;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:active + span {
 	background-color: #cccccc;
 	border-color: #cccccc;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:focus + span {
 	border-width: 2px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:focus:hover + span,
-.oo-ui-checkboxInputWidget input[type="checkbox"]:hover + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:focus:hover + span,
+.oo-ui-checkboxInputWidget [type="checkbox"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled {
+.oo-ui-checkboxInputWidget [type="checkbox"]:disabled {
 	cursor: default;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:disabled + span {
 	background-color: #dddddd;
 	border-color: #dddddd;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span {
+.oo-ui-checkboxInputWidget [type="checkbox"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/check-invert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
@@ -906,7 +906,7 @@
 }
 .oo-ui-dropdownInputWidget select {
 	width: 100%;
-	resize: none;
+	cursor: pointer;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -933,7 +933,7 @@
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {
 	border-color: #aaaaaa;
-	outline: none;
+	outline: 0;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled select {
 	color: #cccccc;
@@ -949,7 +949,7 @@
 	font: inherit;
 	vertical-align: middle;
 }
-.oo-ui-radioInputWidget input[type="radio"] {
+.oo-ui-radioInputWidget [type="radio"] {
 	opacity: 0;
 	z-index: 1;
 	position: relative;
@@ -959,7 +959,7 @@
 	height: 1.6em;
 	max-width: none;
 }
-.oo-ui-radioInputWidget input[type="radio"] + span {
+.oo-ui-radioInputWidget [type="radio"] + span {
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -968,11 +968,9 @@
 	        box-sizing: border-box;
 	position: absolute;
 	left: 0;
-	border-radius: 100%;
 	width: 1.6em;
 	height: 1.6em;
-	background: white;
-	border: 1px solid #777777;
+	background-color: #ffffff;
 	background-image: url("themes/mediawiki/images/icons/circle-constructive-deprecated.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-constructive-deprecated.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-constructive-deprecated.svg");
@@ -981,29 +979,31 @@
 	background-position: center center;
 	background-origin: border-box;
 	background-size: 0 0;
+	border: 1px solid #777777;
+	border-radius: 100%;
 }
-.oo-ui-radioInputWidget input[type="radio"]:checked + span {
+.oo-ui-radioInputWidget [type="radio"]:checked + span {
 	background-size: 100% 100%;
 }
-.oo-ui-radioInputWidget input[type="radio"]:active + span {
+.oo-ui-radioInputWidget [type="radio"]:active + span {
 	background-color: #cccccc;
 	border-color: #cccccc;
 }
-.oo-ui-radioInputWidget input[type="radio"]:focus + span {
+.oo-ui-radioInputWidget [type="radio"]:focus + span {
 	border-width: 2px;
 }
-.oo-ui-radioInputWidget input[type="radio"]:focus:hover + span,
-.oo-ui-radioInputWidget input[type="radio"]:hover + span {
+.oo-ui-radioInputWidget [type="radio"]:focus:hover + span,
+.oo-ui-radioInputWidget [type="radio"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled {
+.oo-ui-radioInputWidget [type="radio"]:disabled {
 	cursor: default;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled + span {
+.oo-ui-radioInputWidget [type="radio"]:disabled + span {
 	background-color: #dddddd;
 	border-color: #dddddd;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span {
+.oo-ui-radioInputWidget [type="radio"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/circle-invert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
@@ -1011,6 +1011,12 @@
 }
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
 	margin-bottom: 0;
+}
+.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
+	padding: 0.25em 0;
+}
+.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body .oo-ui-labelElement-label {
+	line-height: 1.5em;
 }
 .oo-ui-textInputWidget {
 	position: relative;
@@ -1033,16 +1039,16 @@
 .oo-ui-textInputWidget textarea {
 	overflow: auto;
 }
-.oo-ui-textInputWidget input[type="search"] {
+.oo-ui-textInputWidget [type="search"] {
 	-webkit-appearance: texfield;
 }
-.oo-ui-textInputWidget input[type="search"]::-ms-clear {
+.oo-ui-textInputWidget [type="search"]::-ms-clear {
 	display: none;
 }
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-decoration,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-cancel-button,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-button,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-decoration {
+.oo-ui-textInputWidget [type="search"]::-webkit-search-decoration,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-cancel-button,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-results-button,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
@@ -1116,7 +1122,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
-	outline: none;
+	outline: 0;
 	border-color: #347bff;
 	box-shadow: inset 0 0 0 0.1em #347bff;
 }

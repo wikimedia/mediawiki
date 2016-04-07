@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.4
+ * OOjs UI v0.16.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-03-22T22:48:25Z
+ * Date: 2016-04-07T15:12:44Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -527,9 +527,6 @@
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
 	opacity: 0.2;
 }
-.oo-ui-radioSelectWidget {
-	padding: 0.75em 0 0.5em 0;
-}
 .oo-ui-radioOptionWidget {
 	cursor: default;
 	padding: 0;
@@ -746,7 +743,7 @@
 }
 .oo-ui-dropdownInputWidget select {
 	width: 100%;
-	resize: none;
+	cursor: pointer;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -800,16 +797,16 @@
 .oo-ui-textInputWidget textarea {
 	overflow: auto;
 }
-.oo-ui-textInputWidget input[type="search"] {
+.oo-ui-textInputWidget [type="search"] {
 	-webkit-appearance: texfield;
 }
-.oo-ui-textInputWidget input[type="search"]::-ms-clear {
+.oo-ui-textInputWidget [type="search"]::-ms-clear {
 	display: none;
 }
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-decoration,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-cancel-button,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-button,
-.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-decoration {
+.oo-ui-textInputWidget [type="search"]::-webkit-search-decoration,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-cancel-button,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-results-button,
+.oo-ui-textInputWidget [type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
