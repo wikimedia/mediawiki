@@ -3,35 +3,12 @@
 class StringUtilsTest extends PHPUnit_Framework_TestCase {
 
 	/**
-	 * This tests StringUtils::isUtf8 whenever we have the mbstring extension
-	 * loaded.
-	 *
 	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	public function testIsUtf8WithMbstring( $expected, $string ) {
-		if ( !function_exists( 'mb_check_encoding' ) ) {
-			$this->markTestSkipped( 'Test requires the mbstring PHP extension' );
-		}
-		$this->assertEquals( $expected,
-			StringUtils::isUtf8( $string ),
-			'Testing string "' . $this->escaped( $string ) . '" with mb_check_encoding'
-		);
-	}
-
-	/**
-	 * This tests StringUtils::isUtf8 making sure we use the pure PHP
-	 * implementation used as a fallback when mb_check_encoding() is
-	 * not available.
-	 *
-	 * @covers StringUtils::isUtf8
-	 * @dataProvider provideStringsForIsUtf8Check
-	 */
-	public function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
-		$this->assertEquals( $expected,
-			StringUtils::isUtf8( $string, /** disable mbstring: */true ),
-			'Testing string "' . $this->escaped( $string ) . '" with pure PHP implementation'
-		);
+	public function testIsUtf8( $expected, $string ) {
+		$this->assertEquals( $expected, StringUtils::isUtf8( $string ),
+			'Testing string "' . $this->escaped( $string ) . '"' );
 	}
 
 	/**
