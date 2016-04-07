@@ -262,6 +262,9 @@ The following PHP extensions are strongly recommended:
 === Bug fixes in 1.27 ===
 * Special:Upload will now display correct maximum allowed file size when running
   under HHVM (T116347).
+* (T54077) The APIEditBeforeSave hook will once again give only the content of
+  the section being edited, rather than the whole revision. This reverts the
+  change made in MediaWiki 1.22.
 
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
