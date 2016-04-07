@@ -260,6 +260,7 @@ class SkinTemplate extends Skin {
 	 * Wrap the body text with language information and identifiable element
 	 *
 	 * @param Title $title
+	 * @param string $html body text
 	 * @return string html
 	 */
 	protected function wrapHTML( $title, $html ) {
