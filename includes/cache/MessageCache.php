@@ -735,6 +735,34 @@ class MessageCache {
 	 *   message (which can be empty)
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
+		$result = $this->getPair( $key, $useDB, $langcode, $isFullKey );
+		if ( $result !== false ) {
+			$result = $result[0];
+
+			// Post-processing if the message exists
+			// Fix whitespace
+			$result = str_replace(
+				[
+					# Fix for trailing whitespace, removed by textarea
+					'&#32;',
+					# Fix for NBSP, converted to space by firefox
+					'&nbsp;',
+					'&#160;',
+					'&shy;'
+				],
+				[
+					' ',
+					"\xc2\xa0",
+					"\xc2\xa0",
+					"\xc2\xad"
+				],
+				$result
+			);
+		}
+		return $result;
+	}
+
+	private function getPair( $key, $useDB, $langcode, $isFullKey ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
 			// on their way here
@@ -773,36 +801,56 @@ class MessageCache {
 			// Let's not load nonexistent languages for those
 			// They usually have more than one slash.
 			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
-				$message = Language::getMessageFor( $parts[0], $parts[1] );
-				if ( $message === null ) {
+				$message = [ Language::getMessageFor( $parts[0], $parts[1] ), $parts[1] ];
+				if ( $message[0] === null ) {
 					$message = false;
 				}
 			}
 		}
 
-		// Post-processing if the message exists
-		if ( $message !== false ) {
-			// Fix whitespace
-			$message = str_replace(
-				[
-					# Fix for trailing whitespace, removed by textarea
-					'&#32;',
-					# Fix for NBSP, converted to space by firefox
-					'&nbsp;',
-					'&#160;',
-					'&shy;'
-				],
-				[
-					' ',
-					"\xc2\xa0",
-					"\xc2\xa0",
-					"\xc2\xad"
-				],
-				$message
-			);
-		}
-
 		return $message;
+	}
+
+	/**
+	 * Get the language a message would be in
+	 *
+	 * First, assemble a list of languages to attempt getting the message from. This
+	 * chain begins with the requested language and its fallbacks and then continues with
+	 * the content language and its fallbacks. For each language in the chain, the following
+	 * process will occur (in this order):
+	 *  1. If a language-specific override, i.e., [[MW:msg/lang]], is available, use that.
+	 *     Note: for the content language, there is no /lang subpage.
+	 *  2. Fetch from the static CDB cache.
+	 *  3. If available, check the database for fallback language overrides.
+	 *
+	 * This process provides a number of guarantees. When changing this code, make sure all
+	 * of these guarantees are preserved.
+	 *  * If the requested language is *not* the content language, then the CDB cache for that
+	 *    specific language will take precedence over the root database page ([[MW:msg]]).
+	 *  * Fallbacks will be just that: fallbacks. A fallback language will never be reached if
+	 *    the message is available *anywhere* in the language for which it is a fallback.
+	 *
+	 * @param string $key The message key
+	 * @param bool $useDB If true, look for the message in the DB, false
+	 *   to use only the compiled l10n cache.
+	 * @param bool|string|object $langcode Code of the language to get the message for.
+	 *   - If string and a valid code, will create a standard language object
+	 *   - If string but not a valid code, will create a basic language object
+	 *   - If boolean and false, create object from the current users language
+	 *   - If boolean and true, create object from the wikis content language
+	 *   - If language object, use it as given
+	 * @param bool $isFullKey Specifies whether $key is a two part key "msg/lang".
+	 *
+	 * @throws MWException When given an invalid key
+	 * @return string|bool False if the message doesn't exist, otherwise the
+	 *   language code
+	 */
+	public function getLanguageOf( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
+		$result = $this->getPair( $key, $useDB, $langcode, $isFullKey );
+		if ( $result === false ) {
+			return $result;
+		}
+		return $result[1];
 	}
 
 	/**
@@ -815,7 +863,7 @@ class MessageCache {
 	 * @param Language|StubObject $lang Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
-	 * @return string|bool The message, or false if not found
+	 * @return string[]|bool The message and the language the message is in, or false if not found
 	 */
 	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
 		global $wgContLang;
@@ -823,14 +871,14 @@ class MessageCache {
 		$alreadyTried = [];
 
 		 // First try the requested language.
-		$message = $this->getMessageForLang( $lang, $lckey, $useDB, $alreadyTried );
-		if ( $message !== false ) {
-			return $message;
+		$result = $this->getMessageForLang( $lang, $lckey, $useDB, $alreadyTried );
+		if ( $result !== false ) {
+			return $result;
 		}
 
 		// Now try checking the site language.
-		$message = $this->getMessageForLang( $wgContLang, $lckey, $useDB, $alreadyTried );
-		return $message;
+		$result = $this->getMessageForLang( $wgContLang, $lckey, $useDB, $alreadyTried );
+		return $result;
 	}
 
 	/**
@@ -841,7 +889,8 @@ class MessageCache {
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @param bool[] $alreadyTried Contains true for each language that has been tried already
-	 * @return string|bool The message, or false if not found
+	 * @return string[]|bool The message and the code of the language the message is in, or false
+	 * if not found
 	 */
 	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {
 		global $wgContLang;
@@ -858,7 +907,7 @@ class MessageCache {
 				);
 
 				if ( $message !== false ) {
-					return $message;
+					return [ $message, $langcode ];
 				}
 				$alreadyTried[ $langcode ] = true;
 			}
@@ -867,7 +916,7 @@ class MessageCache {
 		// Check the CDB cache
 		$message = $lang->getMessage( $lckey );
 		if ( $message !== null ) {
-			return $message;
+			return [ $message, $langcode ];
 		}
 
 		// Try checking the database for all of the fallback languages
@@ -882,7 +931,7 @@ class MessageCache {
 				$message = $this->getMsgFromNamespace( $this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {
-					return $message;
+					return [ $message, $code ];
 				}
 				$alreadyTried[ $code ] = true;
 			}
