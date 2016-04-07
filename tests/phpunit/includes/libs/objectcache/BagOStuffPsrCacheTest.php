@@ -2,7 +2,7 @@
 
 use Cache\IntegrationTests\CachePoolTest;
 
-require_once __DIR__ . '/../../../../../vendor/cache/integration-tests/src/CachePoolTest.php';
+require __DIR__ . '/../../../../../vendor/cache/integration-tests/src/CachePoolTest.php';
 
 /**
  * @covers BagOStuffPsrCache

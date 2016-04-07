@@ -9,7 +9,7 @@ use Psr\Cache\CacheItemInterface;
  *
  * @since 1.27
  */
-class BagOStuffPsrCacheItem implements CacheItemInterface {
+class MediaWikiPsrCacheItem implements CacheItemInterface {
 
 	/**
 	 * @var string

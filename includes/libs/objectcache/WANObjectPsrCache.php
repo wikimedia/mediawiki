@@ -10,7 +10,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * @since 1.27
  */
-class BagOStuffPsrCache implements CacheItemPoolInterface {
+class WANObjectPsrCache implements CacheItemPoolInterface {
 
 	/**
 	 * List of invalid (or reserved) key characters.
@@ -20,26 +20,26 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 	const INVALID_KEY_CHARACTERS = '{}()/\@:';
 
 	/**
-	 * @var BagOStuff
+	 * @var WANObjectCache
 	 */
-	private $bagOStuff;
+	private $objectCache;
 
-	public function __construct( BagOStuff $bagOStuff ) {
-		$this->bagOStuff = $bagOStuff;
+	public function __construct( WANObjectCache $objectCache ) {
+		$this->objectCache = $objectCache;
 	}
 
 	/**
 	 * @return string The cache key used to store a list of all cached keys
 	 */
 	private function getKeyListKey() {
-		return $this->bagOStuff->makeKey( __CLASS__, 'keylist' );
+		return $this->objectCache->makeKey( __CLASS__, 'keylist' );
 	}
 
 	/**
 	 * @return array Keys stored in this cache
 	 */
 	private function getKeyList() {
-		$value = $this->bagOStuff->get( $this->getKeyListKey() );
+		$value = $this->objectCache->get( $this->getKeyListKey() );
 		if ( !$value ) {
 			return [];
 		}
@@ -53,14 +53,14 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 	private function addToKeyList( $key ) {
 		$storedKeys = $this->getKeyList();
 		$storedKeys[$key] = $key;
-		$this->bagOStuff->set( $this->getKeyListKey(), $storedKeys );
+		$this->objectCache->set( $this->getKeyListKey(), $storedKeys );
 	}
 
 	/**
 	 * Clears all stored keys from the list
 	 */
 	private function clearKeyList() {
-		$this->bagOStuff->delete( $this->getKeyListKey() );
+		$this->objectCache->delete( $this->getKeyListKey() );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 	public function getItem( $key ) {
 		$this->throwExceptionOnBadKey( $key );
 
-		$item = $this->bagOStuff->get( $key );
+		$item = $this->objectCache->get( $key );
 		if ( $item === false ) {
 			return new MediaWikiPsrCacheItem( $key, null, false );
 		}
@@ -158,7 +158,7 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 	public function hasItem( $key ) {
 		$this->throwExceptionOnBadKey( $key );
 
-		return $this->bagOStuff->get( $key ) !== false;
+		return $this->objectCache->get( $key ) !== false;
 	}
 
 	/**
@@ -190,7 +190,7 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 	public function deleteItem( $key ) {
 		$this->throwExceptionOnBadKey( $key );
 
-		return $this->bagOStuff->delete( $key );
+		return $this->objectCache->delete( $key );
 	}
 
 	/**
@@ -245,7 +245,7 @@ class BagOStuffPsrCache implements CacheItemPoolInterface {
 			$exptime = date_timestamp_get( $itemExpiration );
 		}
 
-		$storeSuccess = $this->bagOStuff->set(
+		$storeSuccess = $this->objectCache->set(
 			$item->getKey(),
 			$item->get(),
 			$exptime

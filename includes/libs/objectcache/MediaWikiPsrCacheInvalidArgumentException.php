@@ -9,7 +9,7 @@ use Psr\Cache\InvalidArgumentException;
  *
  * @since 1.27
  */
-class BagOStuffPsrCacheInvalidArgumentException extends BagOStuffPsrCacheException
+class MediaWikiPsrCacheInvalidArgumentException extends MediaWikiPsrCacheException
 	implements InvalidArgumentException {
 
 }

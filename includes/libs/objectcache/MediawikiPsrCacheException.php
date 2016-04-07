@@ -9,6 +9,6 @@ use Psr\Cache\CacheException;
  *
  * @since 1.27
  */
-class BagOStuffPsrCacheException extends Exception implements CacheException {
+class MediaWikiPsrCacheException extends Exception implements CacheException {
 
 }
