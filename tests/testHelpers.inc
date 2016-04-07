@@ -837,30 +837,60 @@ class DjVuSupport {
  * Initialize and detect the tidy support
  */
 class TidySupport {
-	private $internalTidy;
-	private $externalTidy;
+	private $enabled;
+	private $config;
 
 	/**
 	 * Determine if there is a usable tidy.
 	 */
-	public function __construct() {
-		global $wgTidyBin;
+	public function __construct( $useConfiguration = false ) {
+		global $IP, $wgUseTidy, $wgTidyBin, $wgTidyInternal, $wgTidyConfig,
+			$wgTidyConf, $wgTidyOpts;
 
-		$this->internalTidy = extension_loaded( 'tidy' ) &&
-			class_exists( 'tidy' ) && !wfIsHHVM();
-
-		$this->externalTidy = is_executable( $wgTidyBin ) ||
-			Installer::locateExecutableInDefaultPaths( [ $wgTidyBin ] )
-			!== false;
-	}
-
-	/**
-	 * Returns true if we should use internal tidy.
-	 *
-	 * @return bool
-	 */
-	public function isInternal() {
-		return $this->internalTidy;
+		$this->enabled = true;
+		if ( $useConfiguration ) {
+			if ( $wgTidyConfig !== null ) {
+				$this->config = $wgTidyConfig;
+			} elseif ( $wgUseTidy ) {
+				$this->config = [
+					'tidyConfigFile' => $wgTidyConf,
+					'debugComment' => false,
+					'tidyBin' => $wgTidyBin,
+					'tidyCommandLine' => $wgTidyOpts
+				];
+				if ( $wgTidyInternal ) {
+					$this->config['driver'] = wfIsHHVM() ? 'RaggettInternalHHVM' : 'RaggettInternalPHP';
+				} else {
+					$this->config['driver'] = 'RaggettExternal';
+				}
+			} else {
+				$this->enabled = false;
+			}
+		} else {
+			$this->config = [
+				'tidyConfigFile' => "$IP/includes/tidy/tidy.conf",
+				'tidyCommandLine' => '',
+			];
+			if ( extension_loaded( 'tidy' ) && class_exists( 'tidy' ) ) {
+				$this->config['driver'] = wfIsHHVM() ? 'RaggettInternalHHVM' : 'RaggettInternalPHP';
+			} else {
+				if ( is_executable( $wgTidyBin ) ) {
+					$this->config['driver'] = 'RaggettExternal';
+					$this->config['tidyBin'] = $wgTidyBin;
+				} else {
+					$path = Installer::locateExecutableInDefaultPaths( $wgTidyBin );
+					if ( $path !== false ) {
+						$this->config['driver'] = 'RaggettExternal';
+						$this->config['tidyBin'] = $wgTidyBin;
+					} else {
+						$this->enabled = false;
+					}
+				}
+			}
+		}
+		if ( !$this->enabled ) {
+			$this->config = [ 'driver' => 'disabled' ];
+		}
 	}
 
 	/**
@@ -869,6 +899,10 @@ class TidySupport {
 	 * @return bool
 	 */
 	public function isEnabled() {
-		return $this->internalTidy || $this->externalTidy;
+		return $this->enabled;
+	}
+
+	public function getConfig() {
+		return $this->config;
 	}
 }

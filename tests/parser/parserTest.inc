@@ -164,7 +164,7 @@ class ParserTest {
 		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
-		$this->tidySupport = new TidySupport();
+		$this->tidySupport = new TidySupport( isset( $options['use-tidy-config'] ) );
 		if ( !$this->tidySupport->isEnabled() ) {
 			echo "Warning: tidy is not installed, skipping some tests\n";
 		}
@@ -854,8 +854,6 @@ class ParserTest {
 	 * @return RequestContext
 	 */
 	private function setupGlobals( $opts = '', $config = '' ) {
-		global $IP;
-
 		# Find out values for some special options.
 		$lang =
 			self::getOptionValue( 'language', $opts, 'en' );
@@ -939,12 +937,8 @@ class ParserTest {
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
 			// Tidy options.
-			'wgUseTidy' => isset( $opts['tidy'] ),
-			'wgTidyConfig' => null,
-			'wgDebugTidy' => false,
-			'wgTidyConf' => $IP . '/includes/tidy/tidy.conf',
-			'wgTidyOpts' => '',
-			'wgTidyInternal' => $this->tidySupport->isInternal(),
+			'wgUseTidy' => false,
+			'wgTidyConfig' => isset( $opts['tidy'] ) ? $this->tidySupport->getConfig() : null
 		];
 
 		if ( $config ) {
