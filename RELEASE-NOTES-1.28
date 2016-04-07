@@ -9,9 +9,49 @@ production.
 * The load.php entry point now enforces the existing policy of not allowing
   access to session data, which includes the session user and the session
   user's language. If such access is attempted, an exception will be thrown.
+* Massive overhaul to authentication:
+** AuthPlugin and AuthPluginUser are deprecated.
+** LoginForm and associated templates are deprecated. Extensions which called
+   static LoginForm methods should be converted into authentication providers.
+** The following hooks are deprecated:
+*** AbortAutoAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortLogin (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortNewAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AddNewAccount (use LocalUserCreated instead)
+*** AuthPluginSetup (create a MediaWiki\Auth\PrimaryAuthenticationProvider instead)
+*** ChangePasswordForm (use AuthChangeFormFields instead, or security levels)
+*** LoginUserMigrated (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** UserCreateForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+*** UserLoginForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+** The following hooks are removed:
+*** AbortChangePassword
+*** LoginPasswordResetMessage
+*** PrefsPasswordAudit
+** The UserLoginComplete hook will no longer be called for all logins, only for
+   those via the web UI. Use UserLoggedIn if you need to do something on all
+   logins.
+** $wgRequirePasswordforEmailChange is removed.
 
 === New features in 1.28 ===
-
+* MediaWiki\Auth infrastructure (called "AuthManager") allows for more flexible
+  configuration of multiple authentication pieces that was possible with
+  AuthPlugin. For example, it's now easy to plug in second-factor
+  authentication, or add additional checks to the login process, or to support
+  multiple login methods at once, or to support non-password-based login methods.
+** Providers are configured via the global setting $wgAuthManagerConfig.
+** A global, $wgDisableAuthManager, is temporarily available to disable
+   AuthManager until extensions are ready to support it.
+** New hook, AuthChangeFormFields, to adjust the form fields on
+   AuthManager-related special pages.
+** New hook, AuthManagerLoginAuthenticateAudit, for additional logging of
+   AuthManager-related authentication requests.
+** New hook, ChangeAuthenticationDataAudit, for additional logging of
+   AuthManager-related authentication data changes.
+** New hook, SecuritySensitiveOperationStatus, to work with the new mechanism
+   for requiring a recent login before taking security-sensitive operations
+   like changing a password.
+** Two new globals, $wgChangeCredentialsBlacklist and $wgRemoveCredentialsBlacklist
+   can be used to prevent the web UI and the API changing certain authentication data.
 
 === External library changes in 1.28 ===
 
@@ -28,9 +68,21 @@ production.
 
 
 === Action API changes in 1.28 ===
-
+* Several changes when $wgDisableAuthManager is false:
+** action=login is deprecated for uses other than bot passwords.
+** list=users can now indicate if a missing username is creatable.
+** action=createaccount is changed in a non-backwards-compatible manner.
+** Added action=query&meta=authmanagerinfo.
+** Added action=clientlogin to be used to log into the main account instead of
+   action=login.
+** Added action=linkaccount.
+** Added action=unlinkaccount.
+** Added action=changeauthenticationdata.
+** Added action=removeauthenticationdata.
+** Added action=resetpassword.
 
 === Action API internal changes in 1.28 ===
+* ApiCreateAccount is deprecated, and will be removed soon.
 
 
 === Languages updated in 1.28 ===
@@ -39,7 +91,12 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
-=== Other changes in 1.27 ===
+=== Other changes in 1.28 ===
+* User::addNewUserLogEntry() was deprecated.
+* User::addNewUserLogEntryAutoCreate() was deprecated.
+* User::isPasswordReminderThrottled() was deprecated.
+* Bot-oriented parameters to Special:UserLogin (wpCookieCheck, wpSkipCookieCheck)
+  were removed.
 
 
 == Compatibility ==
