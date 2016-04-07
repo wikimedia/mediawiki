@@ -680,7 +680,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$this->file = $wgParserTestFiles[0];
 		}
 
-		return new TestFileIterator( $this->file, $this );
+		return new TestFileDataProvider( $this->file, $this );
 	}
 
 	/**

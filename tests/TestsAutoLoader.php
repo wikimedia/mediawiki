@@ -32,6 +32,7 @@ $wgAutoloadClasses += [
 	'DelayedParserTest' => "$testDir/testHelpers.inc",
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'TestFileIterator' => "$testDir/testHelpers.inc",
+	'TestFileDataProvider' => "$testDir/testHelpers.inc",
 	'TestRecorder' => "$testDir/testHelpers.inc",
 	'ITestRecorder' => "$testDir/testHelpers.inc",
 	'DjVuSupport' => "$testDir/testHelpers.inc",

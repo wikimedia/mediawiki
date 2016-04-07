@@ -44,9 +44,10 @@ interface ITestRecorder {
 	/**
 	 * Called after each test
 	 * @param string $test
+	 * @param integer $subtest
 	 * @param bool $result
 	 */
-	public function record( $test, $result );
+	public function record( $test, $subtest, $result );
 
 	/**
 	 * Called before finishing the test run
@@ -74,7 +75,7 @@ class TestRecorder implements ITestRecorder {
 		$this->success = 0;
 	}
 
-	function record( $test, $result ) {
+	function record( $test, $subtest, $result ) {
 		$this->total++;
 		$this->success += ( $result ? 1 : 0 );
 	}
@@ -147,9 +148,17 @@ class DbTestPreviewer extends TestRecorder {
 		$this->results = [];
 	}
 
-	function record( $test, $result ) {
-		parent::record( $test, $result );
-		$this->results[$test] = $result;
+	function getName( $test, $subtest ) {
+		if ( $subtest ) {
+			return "$test subtest #$subtest";
+		} else {
+			return $test;
+		}
+	}
+
+	function record( $test, $subtest, $result ) {
+		parent::record( $test, $subtest, $result );
+		$this->results[ $this->getName( $test, $subtest ) ] = $result;
 	}
 
 	function report() {
@@ -299,10 +308,9 @@ class DbTestPreviewer extends TestRecorder {
 	}
 
 	/**
-	 * Commit transaction and clean up for result recording
+	 * Close the DB connection
 	 */
 	function end() {
-		$this->lb->commitMasterChanges();
 		$this->lb->closeAll();
 		parent::end();
 	}
@@ -350,16 +358,24 @@ class DbTestRecorder extends DbTestPreviewer {
 	 * @param string $test
 	 * @param bool $result
 	 */
-	function record( $test, $result ) {
-		parent::record( $test, $result );
+	function record( $test, $subtest, $result ) {
+		parent::record( $test, $subtest, $result );
 
 		$this->db->insert( 'testitem',
 			[
 				'ti_run' => $this->curRun,
-				'ti_name' => $test,
+				'ti_name' => $this->getName( $test, $subtest ),
 				'ti_success' => $result ? 1 : 0,
 			],
 			__METHOD__ );
+	}
+
+	/**
+	 * Commit transaction and clean up for result recording
+	 */
+	function end() {
+		$this->db->commit( __METHOD__ );
+		parent::end();
 	}
 }
 
@@ -479,6 +495,7 @@ class TestFileIterator implements Iterator {
 
 		$this->test = [
 			'test' => ParserTest::chomp( $this->sectionData['test'] ),
+			'subtest' => $this->nextSubTest,
 			'input' => ParserTest::chomp( $this->sectionData[$input] ),
 			'result' => ParserTest::chomp( $this->sectionData[$result] ),
 			'options' => ParserTest::chomp( $this->sectionData['options'] ),
@@ -662,6 +679,27 @@ class TestFileIterator implements Iterator {
 		}
 
 		return array_values( $tokens )[0];
+	}
+}
+
+/**
+ * An iterator for use as a phpunit data provider. Provides the test arguments
+ * in the order expected by NewParserTest::testParserTest().
+ */
+class TestFileDataProvider extends TestFileIterator {
+	function current() {
+		$test = parent::current();
+		if ( $test ) {
+			return [
+				$test['test'],
+				$test['input'],
+				$test['result'],
+				$test['options'],
+				$test['config'],
+			];
+		} else {
+			return $test;
+		}
 	}
 }
 

@@ -244,6 +244,10 @@ class ParserTest {
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
 		array_push( $wgExtraInterlanguageLinkPrefixes, 'mul' );
+
+		// Reset namespace cache
+		MWNamespace::getCanonicalNamespaces( true );
+		Language::factory( 'en' )->resetNamespaces();
 	}
 
 	/**
@@ -536,7 +540,7 @@ class ParserTest {
 			$result =
 				$this->runTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
 			$ok = $ok && $result;
-			$this->recorder->record( $t['test'], $result );
+			$this->recorder->record( $t['test'], $t['subtest'], $result );
 		}
 
 		if ( $this->showProgress ) {
