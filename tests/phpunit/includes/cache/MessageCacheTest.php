@@ -82,20 +82,30 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
 
+	/**
+	 * Test getLanguageOf with message fallbacks
+	 *
+	 * @dataProvider provideMessagesForFallback
+	 */
+	public function testGetLanguageOfMessageFallbacks( $message, $lang, $expectedContent, $expectedLanguage ) {
+		$result = MessageCache::singleton()->getLanguageOf( $message, true, $lang );
+		$this->assertEquals( $expectedLanguage, $result, "getLanguageOf Message fallback failed." );
+	}
+
 	function provideMessagesForFallback() {
 		return [
-			[ 'FallbackLanguageTest-Full', 'ab', 'ab' ],
-			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],
-			[ 'FallbackLanguageTest-ContLang', 'ab', 'de' ],
-			[ 'FallbackLanguageTest-None', 'ab', false ],
+			[ 'FallbackLanguageTest-Full', 'ab', 'ab', 'ab' ],
+			[ 'FallbackLanguageTest-Partial', 'ab', 'ru', 'ru' ],
+			[ 'FallbackLanguageTest-ContLang', 'ab', 'de', 'de' ],
+			[ 'FallbackLanguageTest-None', 'ab', false, false ],
 
 			// Existing message with customizations on the fallbacks
-			[ 'sunday', 'ab', 'амҽыш' ],
+			[ 'sunday', 'ab', 'амҽыш', 'ab' ],
 
 			// bug 46579
-			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
+			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none', 'de' ],
 			// UI language different from content language should only use de/none as last option
-			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ],
+			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none', 'de' ],
 		];
 	}
 
@@ -108,6 +118,17 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	public function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
 		$result = MessageCache::singleton()->get( $message, true, $lang, true );
 		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
+	}
+
+	/**
+	 * There's a fallback case where the message key is given as fully qualified -- this
+	 * should ignore the passed $lang and use the language from the key
+	 *
+	 * @dataProvider provideMessagesForFullKeys
+	 */
+	public function testGetLanguageOfFullKeyBehaviour( $message, $lang, $expectedLanguage ) {
+		$result = MessageCache::singleton()->getLanguageOf( $message, true, $lang, true );
+		$this->assertEquals( $expectedLanguage, $result, "Full key message fallback failed." );
 	}
 
 	function provideMessagesForFullKeys() {
