@@ -818,24 +818,50 @@ class MessageCache {
 	 * @return string|bool The message, or false if not found
 	 */
 	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
-		global $wgLanguageCode, $wgContLang;
+		global $wgContLang;
 
-		$uckey = $wgContLang->ucfirst( $lckey );
-		$langcode = $lang->getCode();
-		$message = false;
+		$alreadyTried = [];
 
-		// First try the requested language.
-		if ( $useDB ) {
-			if ( $langcode === $wgLanguageCode ) {
-				// Messages created in the content language will not have the /lang extension
-				$message = $this->getMsgFromNamespace( $uckey, $langcode );
-			} else {
-				$message = $this->getMsgFromNamespace( "$uckey/$langcode", $langcode );
-			}
-		}
-
+		 // First try the requested language.
+		$message = $this->getMessageForLang( $lang, $lckey, $useDB, $alreadyTried );
 		if ( $message !== false ) {
 			return $message;
+		}
+
+		// Now try checking the site language.
+		$message = $this->getMessageForLang( $wgContLang, $lckey, $useDB, $alreadyTried );
+		return $message;
+	}
+
+	/**
+	 * Given a language, try and fetch messages from that language and its fallbacks.
+	 *
+	 * @see MessageCache::get
+	 * @param Language|StubObject $lang Preferred language
+	 * @param string $lckey Lowercase key for the message (as for localisation cache)
+	 * @param bool $useDB Whether to include messages from the wiki database
+	 * @param bool[] $alreadyTried Contains true for each language that has been tried already
+	 * @return string|bool The message, or false if not found
+	 */
+	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {
+		global $wgContLang;
+		$langcode = $lang->getCode();
+
+		// Try checking the database for the requested language
+		if ( $useDB ) {
+			$uckey = $wgContLang->ucfirst( $lckey );
+
+			if ( !isset( $alreadyTried[ $langcode ] ) ) {
+				$message = $this->getMsgFromNamespace(
+					$this->getMessagePageName( $langcode, $uckey ),
+					$langcode
+				);
+
+				if ( $message !== false ) {
+					return $message;
+				}
+				$alreadyTried[ $langCode ] = true;
+			}
 		}
 
 		// Check the CDB cache
@@ -844,56 +870,42 @@ class MessageCache {
 			return $message;
 		}
 
-		list( $fallbackChain, $siteFallbackChain ) =
-			Language::getFallbacksIncludingSiteLanguage( $langcode );
-
-		// Next try checking the database for all of the fallback languages of the requested language.
+		// Try checking the database for all of the fallback languages
 		if ( $useDB ) {
+			$fallbackChain = Language::getFallbacksFor( $langcode );
+
 			foreach ( $fallbackChain as $code ) {
-				if ( $code === $wgLanguageCode ) {
-					// Messages created in the content language will not have the /lang extension
-					$message = $this->getMsgFromNamespace( $uckey, $code );
-				} else {
-					$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
+				if ( isset( $alreadyTried[ $code ] ) ) {
+					continue;
 				}
+
+				$message = $this->getMsgFromNamespace( $this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {
-					// Found the message.
 					return $message;
 				}
-			}
-		}
-
-		// Now try checking the site language.
-		if ( $useDB ) {
-			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
-			if ( $message !== false ) {
-				return $message;
-			}
-		}
-
-		$message = $wgContLang->getMessage( $lckey );
-		if ( $message !== null ) {
-			return $message;
-		}
-
-		// Finally try the DB for the site language's fallbacks.
-		if ( $useDB ) {
-			foreach ( $siteFallbackChain as $code ) {
-				$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
-				if ( $message === false && $code === $wgLanguageCode ) {
-					// Messages created in the content language will not have the /lang extension
-					$message = $this->getMsgFromNamespace( $uckey, $code );
-				}
-
-				if ( $message !== false ) {
-					// Found the message.
-					return $message;
-				}
+				$alreadyTried[ $code ] = true;
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the message page name for a given language
+	 *
+	 * @param string $langcode
+	 * @param string $uckey Uppercase key for the message
+	 * @return string The page name
+	 */
+	private function getMessagePageName( $langcode, $uckey ) {
+		global $wgLanguageCode;
+		if ( $langcode === $wgLanguageCode ) {
+			// Messages created in the content language will not have the /lang extension
+			return $uckey;
+		} else {
+			return "$uckey/$langcode";
+		}
 	}
 
 	/**
