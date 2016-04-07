@@ -3560,6 +3560,7 @@
 	"api-error-unknownerror": "未知错误：$1。",
 	"api-error-uploaddisabled": "该wiki停用上传。",
 	"api-error-verification-error": "该文件可能损坏或扩展名错误。",
+	"api-error-was-deleted": "此名称的文件曾被上传，随后被删除。",
 	"duration-seconds": "$1秒",
 	"duration-minutes": "$1分",
 	"duration-hours": "$1小时",

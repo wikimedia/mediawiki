@@ -22,7 +22,8 @@
 			"L",
 			"Umherirrender",
 			"Elfix",
-			"Lbayle"
+			"Lbayle",
+			"Verdy p"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
@@ -1250,7 +1251,7 @@
 	"apihelp-tokens-example-emailmove": "Récupérer un jeton de courriel et un jeton de déplacement.",
 	"apihelp-unblock-description": "Débloquer un utilisateur.",
 	"apihelp-unblock-param-id": "ID du blocage à lever (obtenu via <kbd>list=blocks</kbd>). Impossible à utiliser avec <var>$1user</var>.",
-	"apihelp-unblock-param-user": "Nom d’utilisateur, adresse IP ou plage d’adresses IP à débloquer. Impossible à utiliser avec <var>$1id</var>.",
+	"apihelp-unblock-param-user": "Nom d’utilisateur, adresse IP ou plage d’adresses IP à débloquer. Impossible à utiliser en même temps que <var>$1id</var>.",
 	"apihelp-unblock-param-reason": "Motif de déblocage.",
 	"apihelp-unblock-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal de blocage.",
 	"apihelp-unblock-example-id": "Lever le blocage d’ID #<kbd>105</kbd>.",

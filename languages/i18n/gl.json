@@ -3465,6 +3465,7 @@
 	"api-error-unknownerror": "Erro descoñecido: \"$1\".",
 	"api-error-uploaddisabled": "As cargas están desactivadas neste wiki.",
 	"api-error-verification-error": "Este ficheiro podería estar corrupto ou ter unha extensión incorrecta.",
+	"api-error-was-deleted": "Un ficheiro con este mesmo nome xa foi cargado con anterioridade e posteriormente eliminado.",
 	"duration-seconds": "$1 {{PLURAL:$1|segundo|segundos}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuto|minutos}}",
 	"duration-hours": "$1 {{PLURAL:$1|hora|horas}}",

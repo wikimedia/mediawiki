@@ -11,7 +11,8 @@
 			"Danialbehzadi",
 			"Leyth",
 			"Huji",
-			"Macofe"
+			"Macofe",
+			"درفش کاویانی"
 		]
 	},
 	"config-desc": "نصب کنندهٔ ویکی‌مدیا",
@@ -75,7 +76,6 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] نصب شده‌است.",
 	"config-apc": "[http://www.php.net/apc APC] نصب شده‌است.",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] نصب شده‌است.",
-	"config-no-cache": "'''هشدار:''' [http://www.php.net/apc APC],[http://xcache.lighttpd.net/ XCache] یا [http://www.iis.net/download/WinCacheForPhp WinCache] را نتوانست پیدا کند.\nذخیره شی فعال نیست.",
 	"config-no-cache-apcu": "<strong>هشدار:</strong> پیوند [http://www.php.net/apcu APCu]، [http://xcache.lighttpd.net/ XCache] یا [http://www.iis.net/download/WinCacheForPhp WinCache] یافت نشد. ذخیره شی فعال نیست.",
 	"config-mod-security": "'''هشدار:''' وب سرور شما [http://modsecurity.org/ mod_security] فعال است.اگر اشتباه پیکربندی شده‌‌ باشد،می تواند باعث ایجاد مشکلاتی برای مدیاویکی یا دیگر نرم‌افزاری شود که به کاربران اجازه می‌دهد پیام دلخواه ارسال کنند.\nبه [http://modsecurity.org/documentation/ mod_security documentation] مراجعه کنید یا اگر با خطاهای اتفاقی مواجه شدید با پشتیبانی میزبان خود در تماس باشید.",
 	"config-diff3-bad": "جی‌ان‌یو دیف۳ پیدا نشد.",
@@ -323,6 +323,6 @@
 	"config-help-tooltip": "برای گسترش کلیک کنید",
 	"config-nofile": "پروندهٔ «$1» یافت نشد. آیا حذف شده‌است؟",
 	"config-extension-link": "آیا می‌دانستید که ویکی شما [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions] را پشتیبانی می‌کند؟\nشما می‌توانید [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category]",
-	"mainpagetext": "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
+	"mainpagetext": "'''مدیاویکی با موفقیت نصب شد.'''",
 	"mainpagedocfooter": "از [//meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]\nبرای استفاده از نرم‌افزار ویکی کمک بگیرید.\n\n== آغاز به کار ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings تنظیم پیکربندی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki پرسش‌های متداول]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست ارسال نسخه‌های مدیاویکی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise مدیاویکی برای زبان شما]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam آموزش مقابله به هرزنگاری در ویکی شما]"
 }

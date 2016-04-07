@@ -83,6 +83,7 @@
 	"config-ctype": "<strong>致命错误：</strong>PHP必须有[http://www.php.net/manual/en/ctype.installation.php Ctype 扩展]来支持编译。",
 	"config-iconv": "<strong>致命错误：</strong>PHP必须编译支持[http://www.php.net/manual/en/iconv.installation.php iconv拓展]。",
 	"config-json": "<strong>致命错误：</strong>PHP编译没有附带JSON支持。\n在安装MediaWiki前，你必须安装PHP JSON扩展或者[http://pecl.php.net/package/jsonc PECL jsonc]扩展。\n* PHP扩展已包含在Red Hat Enterprise Linux (CentOS) 5和6中，但必须在<code>/etc/php.ini</code>或<code>/etc/php.d/json.ini</code>中启用。\n* 部分在2013年5月后发行的Linux发行版省略了PHP扩展，而将PECL扩展打包成了<code>php5-json</code>或<code>php-pecl-jsonc</code>。",
+	"config-mbstring-absent": "<strong>致命错误：</strong>PHP必须有[http://www.php.net/manual/en/mbstring.setup.php mbstring扩展]来支持编译。",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache]已安装",
 	"config-apc": "[http://www.php.net/apc APC]已安装",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache]已安装",

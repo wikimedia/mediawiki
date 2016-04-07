@@ -68,6 +68,7 @@
 	"config-ctype": "'''Фатальная памылка''': PHP мусіць быць скампіляваны з падтрымкай [http://www.php.net/manual/en/ctype.installation.php пашырэньня Ctype].",
 	"config-iconv": "<strong>Непапраўная памылка:</strong> PHP мусіць быць скампіляваны з падтрымкай [http://www.php.net/manual/en/iconv.installation.php пашырэньня iconv].",
 	"config-json": "<strong>Крытычная памылка:</strong> PHP быў скампіляваны без падтрымкі JSON.\nВы павінныя ўсталяваць або пашырэньне PHP JSON, або пашырэньне [http://pecl.php.net/package/jsonc PECL jsonc] перад усталёўкай MediaWiki.\n* Пашырэньне PHP уваходзіць у Red Hat Enterprise Linux (CentOS) 5 і 6, пры гэтым павінна быць падключана ў <code>/etc/php.ini</code> або <code>/etc/php.d/json.ini</code>.\n* Некаторыя дыстрыбутывы Linux, выдадзеныя пасьля траўня 2013 году, ня маюць пашырэньня PHP, замест яго пакуюць пашырэньне PECL як <code>php5-json</code> або <code>php-pecl-jsonc</code>.",
+	"config-mbstring-absent": "<strong>Непапраўная памылка:</strong> PHP мусіць быць скампіляваны з падтрымкай [http://www.php.net/manual/en/mbstring.setup.php пашырэньня mbstring].",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] усталяваны",
 	"config-apc": "[http://www.php.net/apc APC] усталяваны",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны",

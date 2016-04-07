@@ -2134,6 +2134,7 @@
 	"ipb-unblock": "En IP-Addräß ov ene Metmaacher widder zohlohße",
 	"ipb-blocklist": "All de Sperre för Metmaacher un <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>-Adräße aanzeije, di jrad beschtonn",
 	"ipb-blocklist-contribs": "{{GENDER:$1|Däm|Däm|Däm Metmaacher|Dä|Däm}} $1 {{GENDER:$1|sing|singe|sing|iere|sing}} Bäjdrähsch",
+	"ipb-blocklist-duration-left": "noch $1",
 	"unblockip": "Dä Medmacher widder maache looße",
 	"unblockiptext": "Heh kanns De vörher jesperrte IP_Adresse oder Metmaacher widder freijevve, un dänne esu dat Rääch för ze Schrieve heh em Wiki widder jevve.",
 	"ipusubmit": "Sperr ophevve!",

@@ -3524,6 +3524,7 @@
 	"api-error-unknownerror": "Neznámá chyba: „$1“.",
 	"api-error-uploaddisabled": "Načítání souborů je na této wiki vypnuto.",
 	"api-error-verification-error": "Soubor je možná poškozen nebo má špatnou příponu.",
+	"api-error-was-deleted": "Soubor s tímto názvem byl již dříve načten a později smazán.",
 	"duration-seconds": "$1 {{PLURAL:$1|sekunda|sekundy|sekund}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuta|minuty|minut}}",
 	"duration-hours": "$1 {{PLURAL:$1|hodina|hodiny|hodin}}",
