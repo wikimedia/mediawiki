@@ -398,35 +398,6 @@ class ApiEditPage extends ApiBase {
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;
 
-		// The following is needed to give the hook the full content of the
-		// new revision rather than just the current section. (Bug 52077)
-		if ( !is_null( $params['section'] ) &&
-			$contentHandler->supportsSections() && $titleObj->exists()
-		) {
-			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-			// backwards compatibility with old forms/bots).
-			if ( $ep->sectiontitle !== '' ) {
-				$sectionTitle = $ep->sectiontitle;
-			} else {
-				$sectionTitle = $ep->summary;
-			}
-
-			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
-
-			$fullContentObj = $articleObject->replaceSectionContent(
-				$params['section'],
-				$contentObj,
-				$sectionTitle
-			);
-			if ( $fullContentObj ) {
-				$content = $fullContentObj->serialize( $contentFormat );
-			} else {
-				// This most likely means we have an edit conflict which means that the edit
-				// wont succeed anyway.
-				$this->dieUsageMsg( 'editconflict' );
-			}
-		}
-
 		// Run hooks
 		// Handle APIEditBeforeSave parameters
 		$r = [];
