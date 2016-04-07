@@ -377,8 +377,12 @@ $user: Current user
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
 Unlike for example 'EditFilterMergedContent' this also being run on undo.
+Since MediaWiki 1.25, 'EditFilterMergedContent' can also return error details
+for the API and it's recommended to use it instead of this hook.
 $editPage: the EditPage object
-$text: the new text of the article (has yet to be saved)
+$text: the text passed to the API. Note that this includes only the single
+  section for section edit, and is not necessarily the final text in case of
+  automatically resolved edit conflicts.
 &$resultArr: data in this array will be added to the API result
 
 'ApiFeedContributions::feedItem': Called to convert the result of ContribsPager
