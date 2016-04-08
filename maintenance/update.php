@@ -87,7 +87,8 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !function_exists( 'mb_strlen' ) ) {
 			$this->error(
 				"MediaWiki now requires the mbstring PHP extension, your system doesn't have it.\n"
-				. "ABORTING.\n" );
+				. "ABORTING.\n",
+				true );
 		}
 	}
 
