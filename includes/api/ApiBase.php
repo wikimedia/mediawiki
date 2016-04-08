@@ -503,7 +503,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	public function lacksSameOriginSecurity() {
-		return $this->getMain()->getRequest()->getVal( 'callback' ) !== null;
+		return $this->getMain()->getRequest()->getVal( 'callback' ) !== null
+			|| $this->getMain()->getRequest()->getVal( 'origin' ) === '*';
 	}
 
 	/**
