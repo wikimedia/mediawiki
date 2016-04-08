@@ -79,6 +79,7 @@
 	"config-ctype": "<strong>致命的エラー:</strong> PHP は [http://www.php.net/manual/en/ctype.installation.php Ctype 拡張モジュール]のサポート付きでコンパイルされている必要があります。",
 	"config-iconv": "<strong>致命的なエラー:</strong> PHPは[http://www.php.net/manual/en/iconv.installation.php iconv 拡張機能]のサポートを有効にしてコンパイルされている必要があります。",
 	"config-json": "<strong>致命的エラー:</strong> PHP は JSON サポートなしでコンパイルされています。\nPHP に JSON 拡張モジュールまたは [http://pecl.php.net/package/jsonc PECL jsonc] 拡張モジュールをインストールしてから、MediaWiki をインストールしてください。\n* Red Hat Enterprise Linux (CentOS) 5 および 6には PHP の拡張機能が含まれているため、<code>/etc/php.ini</code> または <code>/etc/php.d/json.ini</code> から有効にしてください。\n* 2013年5月以降にリリースされた一部の Linux ディストリビューションでは、PHP 拡張モジュールの代わりに、<code>php5-json</code> または <code>php-pecl-jsonc</code> として PECL が同梱されています。",
+	"config-mbstring-absent": "<strong>致命的エラー:</strong> PHP は [http://www.php.net/manual/en/mbstring.setup.php mbstring 拡張モジュール]のサポートを有効にしてコンパイルされている必要があります。",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] がインストール済み",
 	"config-apc": "[http://www.php.net/apc APC] がインストール済み",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み",

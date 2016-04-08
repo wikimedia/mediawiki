@@ -3606,6 +3606,7 @@
 	"api-error-unknownerror": "Неизвестная ошибка: «$1».",
 	"api-error-uploaddisabled": "В этой вики отключена возможность загрузки файлов.",
 	"api-error-verification-error": "Возможно, этот файл повреждён или имеет неправильное расширение.",
+	"api-error-was-deleted": "Файл с таким именем был уже ранее загружен и впоследствии удалён.",
 	"duration-seconds": "$1 {{PLURAL:$1|секунда|секунды|секунд}}",
 	"duration-minutes": "$1 {{PLURAL:$1|минута|минуты|минут}}",
 	"duration-hours": "$1 {{PLURAL:$1|час|часа|часов}}",

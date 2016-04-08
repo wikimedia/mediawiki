@@ -14,7 +14,9 @@
 			"Ncontinanza",
 			"Poco a poco",
 			"YoViajo",
-			"Eloy"
+			"Eloy",
+			"AlvaroMolina",
+			"Ciencia Al Poder"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -420,6 +422,7 @@
 	"apihelp-query+backlinks-example-generator": "Obtener información acerca de las páginas enlazadas a <kbd>Main page</kbd>.",
 	"apihelp-query+blocks-description": "Listar todos los usuarios y direcciones IP bloqueadas.",
 	"apihelp-query+blocks-param-users": "Lista de usuarios a buscar (opcional).",
+	"apihelp-query+blocks-param-ip": "Obtiene todos los bloqueos que se aplican a esta dirección IP o intervalo CIDR, incluyendo bloqueos de intervalos. No se puede usar en conjunto con <var>$3users</var>. No se aceptan intervalos CIDR mayores que IPv4/$1 o IPv6/$2.",
 	"apihelp-query+blocks-param-prop": "Qué propiedades se obtendrán:",
 	"apihelp-query+blocks-paramvalue-prop-userid": "Añade el identificador del usuario bloqueado.",
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Añade la fecha y hora de cuando se aplicó el bloque.",
@@ -723,6 +726,7 @@
 	"apihelp-tag-example-rev": "Añadir la etiqueta <kbd>vandalism</kbd> al identificador de revisión 123 sin especificar un motivo",
 	"apihelp-tag-example-log": "Eliminar la etiqueta <kbd>spam</kbd> de la entrada del registro con identificador 123 con el motivo <kbd>Wrongly applied</kbd>",
 	"apihelp-unblock-description": "Desbloquear un usuario.",
+	"apihelp-unblock-param-user": "Nombre de usuario, dirección IP o rango de direcciones IP para desbloquear. No se puede utilizar junto con <var>$1id</var>.",
 	"apihelp-unblock-param-reason": "Motivo del desbloqueo.",
 	"apihelp-unblock-example-user": "Desbloquear al usuario <kbd>Bob</kbd> con el motivo <kbd>Sorry Bob</kbd>",
 	"apihelp-undelete-param-reason": "Motivo de la restauración.",

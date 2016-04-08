@@ -3185,6 +3185,8 @@
 	"logentry-newusers-create2": "De Benotzerkont $3 gouf vum $1 {{GENDER:$2|ugeluecht}}",
 	"logentry-newusers-byemail": "De Benotzerkont $3 gouf vum $1 {{GENDER:$2|ugeluecht}} an d'Passwuert gouf per E-Mail geschéckt.",
 	"logentry-newusers-autocreate": "De Benotzerkont $1 gouf automatesch {{GENDER:$2|ugeluecht}}",
+	"logentry-protect-protect": "$1 {{GENDER:$2|huet}} d'Säit $3 $4 gespaart",
+	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|huet}} d'Säit $3 $4 gepaart [Kaskadespär]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|huet}} d'Gruppen zou deenen de Benotzer $3 gehéiert vu(n) $4 op $5 geännert",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|huet}} d'Gruppen zou deenen de Benotzer $3 gehéiert geännert",
 	"logentry-rights-autopromote": "De Benotzer $1 {{GENDER:$2|krut}} d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",

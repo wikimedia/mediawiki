@@ -81,6 +81,7 @@
 	"config-ctype": "'''Фатальная ошибка:''' PHP должен быть скомпилирован с поддержкой [http://www.php.net/manual/ru/ctype.installation.php расширения Ctype].",
 	"config-iconv": "<strong>Фатальная ошибка:</strong> PHP должен быть скомпилирован с поддержкой [http://www.php.net/manual/en/iconv.installation.php расширения iconv].",
 	"config-json": "'''Фатальная ошибка:''' PHP был скомпилирован без поддержка JSON.\nВам необходимо установить либо расширение PHP JSON, либо расширение [http://pecl.php.net/package/jsonc PECL jsonc] перед установкой MediaWiki.\n* PHP-расширение входит в состав Red Hat Enterprise Linux (CentOS) 5 и 6, хотя должна быть включено в <code>/etc/php.ini</code> или <code>/etc/php.d/json.ini</code>.\n* Некоторые дистрибутивы Linux, выпущенные после мая 2013 года, не включают расширение PHP, вместо того, чтобы упаковывать расширение PECL как <code>php5-json</code> или <code>php-pecl-jsonc</code>.",
+	"config-mbstring-absent": "<strong>Фатальная ошибка:</strong> PHP должен быть скомпилирован с поддержкой [http://www.php.net/manual/en/mbstring.setup.php расширения mbstring].",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] установлен",
 	"config-apc": "[http://www.php.net/apc APC] установлен",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] установлен",

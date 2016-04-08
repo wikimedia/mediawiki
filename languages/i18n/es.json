@@ -3588,6 +3588,7 @@
 	"api-error-unknownerror": "Error desconocido: «$1».",
 	"api-error-uploaddisabled": "Las subidas están desactivadas en este wiki.",
 	"api-error-verification-error": "Este archivo puede estar dañado, o tiene una extensión incorrecta.",
+	"api-error-was-deleted": "Un archivo de este nombre se ha subido previamente y eliminado posteriormente.",
 	"duration-seconds": "$1 {{PLURAL:$1|segundo|segundos}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuto|minutos}}",
 	"duration-hours": "$1 {{PLURAL:$1|hora|horas}}",

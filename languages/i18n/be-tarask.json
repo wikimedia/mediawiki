@@ -1755,6 +1755,7 @@
 	"apisandbox-retry": "Паўтарыць",
 	"apisandbox-loading": "Загрузка інфармацыі для API-модуля «$1»…",
 	"apisandbox-load-error": "Пры загрузцы інфармацыі для API-модуля «$1» адбылася памылка: $2",
+	"apisandbox-no-parameters": "Гэты API-модуль ня мае парамэтраў.",
 	"apisandbox-examples": "Прыклады",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
