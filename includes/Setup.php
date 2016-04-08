@@ -361,11 +361,6 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-// Doesn't make sense to have if disabled.
-if ( !$wgEnotifMinorEdits ) {
-	$wgHiddenPrefs[] = 'enotifminoredits';
-}
-
 if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
