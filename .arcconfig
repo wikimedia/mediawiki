@@ -1,0 +1,8 @@
+{
+  "phabricator.uri" : "https://phabricator.wikimedia.org/",
+  "repository.callsign" : "MW",
+  "history.immutable" : false,
+  "unit.engine": "NoseTestEngine"
+}
+
+
