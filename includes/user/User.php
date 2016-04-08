@@ -25,7 +25,7 @@ use MediaWiki\Session\Token;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
- * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
+ * @deprecated since 1.27, use \MediaWiki\Session\Token::SUFFIX
  * @ingroup Constants
  */
 define( 'EDIT_TOKEN_SUFFIX', Token::SUFFIX );
@@ -54,7 +54,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
-	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
+	 * @deprecated since 1.27, use \MediaWiki\Session\Token::SUFFIX
 	 */
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
@@ -4200,7 +4200,7 @@ class User implements IDBAccessObject {
 	 * @since 1.27
 	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
-	 * @return MediaWiki\\Session\\Token The new edit token
+	 * @return MediaWiki\Session\Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
 		if ( $this->isAnon() ) {
@@ -4230,7 +4230,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the embedded timestamp from a token.
-	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::getTimestamp instead.
+	 * @deprecated since 1.27, use \MediaWiki\Session\Token::getTimestamp instead.
 	 * @param string $val Input token
 	 * @return int|null
 	 */

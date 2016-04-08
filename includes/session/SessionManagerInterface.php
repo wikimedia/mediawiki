@@ -43,7 +43,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * @param WebRequest $request Any existing associated session will be reset
 	 *  to the session corresponding to the data in the request itself.
 	 * @return Session
-	 * @throws \\OverflowException if there are multiple sessions tied for top
+	 * @throws \OverflowException if there are multiple sessions tied for top
 	 *  priority in the request. Exception has a property "sessionInfos"
 	 *  holding the SessionInfo objects for the sessions involved.
 	 */

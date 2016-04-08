@@ -715,7 +715,7 @@ if ( !is_object( $wgAuth ) ) {
 // Set up the session
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 /**
- * @var MediaWiki\\Session\\SessionId|null $wgInitialSessionId The persistent
+ * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent
  * session ID (if any) loaded at startup
  */
 $wgInitialSessionId = null;

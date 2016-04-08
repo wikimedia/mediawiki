@@ -2937,7 +2937,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 
 /**
  * @deprecated since 1.27, PHP's session generation isn't used with
- *  MediaWiki\\Session\\SessionManager
+ *  MediaWiki\Session\SessionManager
  */
 function wfFixSessionID() {
 	wfDeprecated( __FUNCTION__, '1.27' );
@@ -2946,7 +2946,7 @@ function wfFixSessionID() {
 /**
  * Reset the session id
  *
- * @deprecated since 1.27, use MediaWiki\\Session\\SessionManager instead
+ * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead
  * @since 1.22
  */
 function wfResetSessionID() {
@@ -2968,7 +2968,7 @@ function wfResetSessionID() {
 /**
  * Initialise php session
  *
- * @deprecated since 1.27, use MediaWiki\\Session\\SessionManager instead.
+ * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead.
  *  Generally, "using" SessionManager will be calling ->getSessionById() or
  *  ::getGlobalSession() (depending on whether you were passing $sessionId
  *  here), then calling $session->persist().
