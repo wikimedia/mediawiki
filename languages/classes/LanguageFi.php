@@ -73,7 +73,6 @@ class LanguageFi extends Language {
 				break;
 			case 'illative':
 				# Double the last letter and add 'n'
-				# mb_substr has a compatibility function in GlobalFunctions.php
 				$word = $word . mb_substr( $word, -1 ) . 'n';
 				break;
 			case 'inessive':

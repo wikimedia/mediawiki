@@ -30,9 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-if ( function_exists( 'mb_strtoupper' ) ) {
-	mb_internal_encoding( 'UTF-8' );
-}
+mb_internal_encoding( 'UTF-8' );
 
 use CLDRPluralRuleParser\Evaluator;
 
@@ -2592,7 +2590,7 @@ class Language {
 		return $text;
 	}
 
-	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
+	// callback functions for ucwords(), ucwordbreaks()
 
 	/**
 	 * @param array $matches
@@ -2614,35 +2612,8 @@ class Language {
 	 * @param array $matches
 	 * @return string
 	 */
-	function ucCallback( $matches ) {
-		list( $wikiUpperChars ) = self::getCaseMaps();
-		return strtr( $matches[1], $wikiUpperChars );
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	function lcCallback( $matches ) {
-		list( , $wikiLowerChars ) = self::getCaseMaps();
-		return strtr( $matches[1], $wikiLowerChars );
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
 	function ucwordsCallbackMB( $matches ) {
 		return mb_strtoupper( $matches[0] );
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	function ucwordsCallbackWiki( $matches ) {
-		list( $wikiUpperChars ) = self::getCaseMaps();
-		return strtr( $matches[0], $wikiUpperChars );
 	}
 
 	/**
@@ -2673,27 +2644,14 @@ class Language {
 	 * @return string
 	 */
 	function uc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtoupper' ) ) {
-			if ( $first ) {
-				if ( $this->isMultibyte( $str ) ) {
-					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				} else {
-					return ucfirst( $str );
-				}
+		if ( $first ) {
+			if ( $this->isMultibyte( $str ) ) {
+				return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
 			} else {
-				return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+				return ucfirst( $str );
 			}
 		} else {
-			if ( $this->isMultibyte( $str ) ) {
-				$x = $first ? '^' : '';
-				return preg_replace_callback(
-					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
-					[ $this, 'ucCallback' ],
-					$str
-				);
-			} else {
-				return $first ? ucfirst( $str ) : strtoupper( $str );
-			}
+			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 		}
 	}
 
@@ -2721,27 +2679,14 @@ class Language {
 	 * @return mixed|string
 	 */
 	function lc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtolower' ) ) {
-			if ( $first ) {
-				if ( $this->isMultibyte( $str ) ) {
-					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				} else {
-					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
-				}
+		if ( $first ) {
+			if ( $this->isMultibyte( $str ) ) {
+				return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
 			} else {
-				return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
+				return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
 			}
 		} else {
-			if ( $this->isMultibyte( $str ) ) {
-				$x = $first ? '^' : '';
-				return preg_replace_callback(
-					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
-					[ $this, 'lcCallback' ],
-					$str
-				);
-			} else {
-				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
-			}
+			return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
 		}
 	}
 
@@ -2765,19 +2710,11 @@ class Language {
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
 			// function to use to capitalize a single char
-			if ( function_exists( 'mb_strtoupper' ) ) {
-				return preg_replace_callback(
-					$replaceRegexp,
-					[ $this, 'ucwordsCallbackMB' ],
-					$str
-				);
-			} else {
-				return preg_replace_callback(
-					$replaceRegexp,
-					[ $this, 'ucwordsCallbackWiki' ],
-					$str
-				);
-			}
+			return preg_replace_callback(
+				$replaceRegexp,
+				[ $this, 'ucwordsCallbackMB' ],
+				$str
+			);
 		} else {
 			return ucwords( strtolower( $str ) );
 		}
@@ -2800,19 +2737,11 @@ class Language {
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|" .
 				"$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
-			if ( function_exists( 'mb_strtoupper' ) ) {
-				return preg_replace_callback(
-					$replaceRegexp,
-					[ $this, 'ucwordbreaksCallbackMB' ],
-					$str
-				);
-			} else {
-				return preg_replace_callback(
-					$replaceRegexp,
-					[ $this, 'ucwordsCallbackWiki' ],
-					$str
-				);
-			}
+			return preg_replace_callback(
+				$replaceRegexp,
+				[ $this, 'ucwordbreaksCallbackMB' ],
+				$str
+			);
 		} else {
 			return preg_replace_callback(
 				'/\b([\w\x80-\xff]+)\b/',
@@ -4494,26 +4423,6 @@ class Language {
 	 */
 	function replaceGrammarInNamespace( $m ) {
 		return $this->convertGrammar( trim( $m[2] ), trim( $m[1] ) );
-	}
-
-	/**
-	 * @throws MWException
-	 * @return array
-	 */
-	static function getCaseMaps() {
-		static $wikiUpperChars, $wikiLowerChars;
-		if ( isset( $wikiUpperChars ) ) {
-			return [ $wikiUpperChars, $wikiLowerChars ];
-		}
-
-		$arr = wfGetPrecompiledData( 'Utf8Case.ser' );
-		if ( $arr === false ) {
-			throw new MWException(
-				"Utf8Case.ser is missing, please run \"make\" in the serialized directory\n" );
-		}
-		$wikiUpperChars = $arr['wikiUpperChars'];
-		$wikiLowerChars = $arr['wikiLowerChars'];
-		return [ $wikiUpperChars, $wikiLowerChars ];
 	}
 
 	/**

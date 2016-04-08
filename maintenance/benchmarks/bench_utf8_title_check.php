@@ -24,14 +24,12 @@
 require_once __DIR__ . '/Benchmarker.php';
 
 /**
- * This little benchmark executes the regexp used in Language->checkTitleEncoding()
- * and compares its execution time against that of mb_check_encoding, if available.
+ * This little benchmark executes the regexp formerly used in Language->checkTitleEncoding()
+ * and compares its execution time against that of mb_check_encoding.
  *
  * @ingroup Benchmark
  */
 class BenchUtf8TitleCheck extends Benchmarker {
-	private $canRun;
-
 	private $data;
 
 	public function __construct() {
@@ -61,20 +59,11 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		];
 		// @codingStandardsIgnoreEnd
 
-		$this->canRun = function_exists( 'mb_check_encoding' );
-
-		if ( $this->canRun ) {
-			$this->addDescription( "Benchmark for using a regexp vs. mb_check_encoding " .
-				"to check for UTF-8 encoding." );
-		} else {
-			$this->addDescription( 'CANNOT RUN benchmark using mb_check_encoding: function not available.' );
-		}
+		$this->addDescription( "Benchmark for using a regexp vs. mb_check_encoding " .
+			"to check for UTF-8 encoding." );
 	}
 
 	public function execute() {
-		if ( !$this->canRun ) {
-			return;
-		}
 		$benchmarks = [];
 		foreach ( $this->data as $val ) {
 			$benchmarks[] = [

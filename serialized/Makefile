@@ -1,4 +1,4 @@
-SPECIAL_TARGETS=Utf8Case.ser normalize-ar.ser normalize-ml.ser first-letters-root.ser
+SPECIAL_TARGETS=normalize-ar.ser normalize-ml.ser first-letters-root.ser
 ALL_TARGETS=$(SPECIAL_TARGETS)
 DIST_TARGETS=$(SPECIAL_TARGETS)
 UNICODE_VERSION=6.0.0
@@ -12,9 +12,6 @@ dist: $(DIST_TARGETS)
 
 clean:
 	rm -f $(ALL_TARGETS)
-
-Utf8Case.ser: UnicodeData.txt
-	php ../maintenance/language/generateUtf8Case.php
 
 normalize-ar.ser: UnicodeData.txt
 	php ../maintenance/language/generateNormalizerDataAr.php
