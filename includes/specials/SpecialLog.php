@@ -147,7 +147,8 @@ class SpecialLog extends SpecialPage {
 
 	private function parseParams( FormOptions $opts, $par ) {
 		# Get parameters
-		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
+		$par = $par !== null ? $par : '';
+		$parms = explode( '/', $par );
 		$symsForAll = [ '*', 'all' ];
 		if ( $parms[0] != '' &&
 			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
