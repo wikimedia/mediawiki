@@ -7239,11 +7239,35 @@ $wgActionFilteredLogs = [
 		'reblock' => [ 'reblock' ],
 		'unblock' => [ 'unblock' ],
 	],
+	'contentmodel' => [
+		'change' => [ 'change' ],
+		'new' => [ 'new' ],
+	],
 	'delete' => [
 		'delete' => [ 'delete' ],
 		'restore' => [ 'restore' ],
 		'event' => [ 'event' ],
 		'revision' => [ 'revision' ],
+	],
+	'import' => [
+		'interwiki' => [ 'interwiki' ],
+		'upload' => [ 'upload' ],
+	],
+	'managetags' => [
+		'create' => [ 'create' ],
+		'delete' => [ 'delete' ],
+		'activate' => [ 'activate' ],
+		'deactivate' => [ 'deactivate' ],
+	],
+	'move' => [
+		'move' => [ 'move' ],
+		'move_redir' => [ 'move_redir' ],
+	],
+	'newusers' => [
+		'create' => [ 'create', 'newusers' ],
+		'create2' => ['create2' ],
+		'autocreate' => [ 'autocreate' ],
+		'byemail' => [ 'byemail' ],
 	],
 	'patrol' => [
 		'patrol' => [ 'patrol' ],
@@ -7253,6 +7277,18 @@ $wgActionFilteredLogs = [
 		'protect' => [ 'protect' ],
 		'modify' => [ 'modify' ],
 		'unprotect' => [ 'unprotect' ],
+		'move_prot' => ['move_prot'],
+	],
+	'rights' => [
+		'rights' => [ 'rights' ],
+		'autopromote' => [ 'autopromote' ],
+	],
+	'suppress' => [
+		'event' => [ 'event' ],
+		'revision' => [ 'revision' ],
+		'delete' => [ 'delete' ],
+		'block' => [ 'block' ],
+		'reblock' => [ 'reblock' ],
 	],
 	'upload' => [
 		'upload' => [ 'upload' ],
