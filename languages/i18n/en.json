@@ -3434,7 +3434,7 @@
 	"watchlistedit-raw-done": "Your watchlist has been updated.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 title was|$1 titles were}} added:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 title was|$1 titles were}} removed:",
-	"watchlistedit-clear-title": "Cleared watchlist",
+	"watchlistedit-clear-title": "Clear watchlist",
 	"watchlistedit-clear-legend": "Clear watchlist",
 	"watchlistedit-clear-explain": "All of the titles will be removed from your watchlist",
 	"watchlistedit-clear-titles": "Titles:",
