@@ -73,7 +73,7 @@ class IP {
 	/**
 	 * Determine if a string is as valid IP address or network (CIDR prefix).
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -84,7 +84,7 @@ class IP {
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv6 only.
-	 * Note: Unlike isValid(), this looks for networks too.
+	 * @note Unlike isValid(), this looks for networks too.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -95,7 +95,7 @@ class IP {
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv4 only.
-	 * Note: Unlike isValid(), this looks for networks too.
+	 * @note Unlike isValid(), this looks for networks too.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -107,7 +107,7 @@ class IP {
 	/**
 	 * Validate an IP address. Ranges are NOT considered valid.
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ip
 	 * @return bool True if it is valid
@@ -120,7 +120,7 @@ class IP {
 	/**
 	 * Validate an IP Block (valid address WITH a valid prefix).
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ipblock
 	 * @return bool True if it is valid
@@ -633,6 +633,9 @@ class IP {
 	 * @param string $addr The address to check against the given range.
 	 * @param string $range The range to check the given address against.
 	 * @return bool Whether or not the given address is in the given range.
+	 *
+	 * @note This can return unexpected results for invalid arguments!
+	 *       Make sure you pass a valid IP address and IP range.
 	 */
 	public static function isInRange( $addr, $range ) {
 		$hexIP = self::toHex( $addr );
