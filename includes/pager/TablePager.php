@@ -264,26 +264,23 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getTableClass() {
+	protected function getTableClass() {
 		return 'TablePager';
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getNavClass() {
+	protected function getNavClass() {
 		return 'TablePager_nav';
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getSortHeaderClass() {
+	protected function getSortHeaderClass() {
 		return 'TablePager_sort';
 	}
 

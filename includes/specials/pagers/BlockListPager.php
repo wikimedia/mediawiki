@@ -241,7 +241,7 @@ class BlockListPager extends TablePager {
 		return $info;
 	}
 
-	public function getTableClass() {
+	protected function getTableClass() {
 		return parent::getTableClass() . ' mw-blocklist';
 	}
 

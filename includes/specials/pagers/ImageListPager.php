@@ -561,15 +561,15 @@ class ImageListPager extends TablePager {
 		$form->displayForm( '' );
 	}
 
-	function getTableClass() {
+	protected function getTableClass() {
 		return parent::getTableClass() . ' listfiles';
 	}
 
-	function getNavClass() {
+	protected function getNavClass() {
 		return parent::getNavClass() . ' listfiles_nav';
 	}
 
-	function getSortHeaderClass() {
+	protected function getSortHeaderClass() {
 		return parent::getSortHeaderClass() . ' listfiles_sort';
 	}
 
