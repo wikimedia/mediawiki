@@ -923,7 +923,11 @@ class EditPage {
 
 			$changeTags = $request->getVal( 'wpChangeTags' );
 			if ( is_null( $changeTags ) || $changeTags === '' ) {
-				$this->changeTags = [];
+				// if tags aren't explicitly defined try to extract them from the summary
+				preg_match_all( '/(?:^\#| \#)([^ ]+)/', $this->summary, $implicitTagMatches );
+				// TODO: ideally we should accept translated tags wfMesssage(tag-$tag) => tag.
+				$existingTags = ChangeTags::allowedTagsAccompanyingChange( $implicitTagMatches[1] );
+				$this->changeTags = $existingTags;
 			} else {
 				$this->changeTags = array_filter( array_map( 'trim', explode( ',',
 					$changeTags ) ) );
