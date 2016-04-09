@@ -398,6 +398,29 @@ class ChangeTags {
 		return Status::newGood();
 	}
 
+
+	/**
+	 * List of tags user is allowed to add
+	 *
+	 * @param array $tags Tags that you are interested in applying
+	 * @param User|null $user User whose permission you wish to check, or null if
+	 * you don't care (e.g. maintenance scripts)
+	 * @return Status
+	 * @since 1.27
+	 */
+	public static function allowedTagsAccompanyingChange( array $tags,
+		User $user = null ) {
+
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'applychangetags' ) || $user->isBlocked() ) {
+				return [];
+			}
+		}
+
+		$allowedTags = self::listExplicitlyDefinedTags();
+		return array_intersect( $tags, $allowedTags );
+	}
+
 	/**
 	 * Adds tags to a given change, checking whether it is allowed first, but
 	 * without adding a log entry. Useful for cases where the tag is being added
