@@ -384,6 +384,8 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Guaranteed to either return a valid title string or a Zero-Length String
+	 *
 	 * @return string
 	 */
 	public function getPerformer() {
