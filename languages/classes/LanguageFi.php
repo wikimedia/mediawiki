@@ -84,10 +84,10 @@ class LanguageFi extends Language {
 
 	/**
 	 * @param string $str
-	 * @param bool $forContent
+	 * @param User $user User object to use timezone from or null for $wgUser
 	 * @return string
 	 */
-	function translateBlockExpiry( $str, $forContent = false ) {
+	function translateBlockExpiry( $str, User $user = null ) {
 		/*
 			'ago', 'now', 'today', 'this', 'next',
 			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth',

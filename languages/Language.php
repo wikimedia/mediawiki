@@ -3895,10 +3895,11 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param string $str The validated block duration in English
+	 * @param User $user User object to use timezone from or null for $wgUser
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str ) {
+	function translateBlockExpiry( $str, User $user = null ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -3924,10 +3925,12 @@ class Language {
 		} else { // It's an absolute timestamp.
 			if ( $time === 0 ) {
 				// wfTimestamp() handles 0 as current time instead of epoch.
-				return $this->timeanddate( '19700101000000' );
-			} else {
-				return $this->timeanddate( $time );
+				$time = '19700101000000';
 			}
+			if ( $user ) {
+				return $this->userTimeAndDate( $time, $user );
+			}
+			return $this->timeanddate( $time );
 		}
 	}
 
