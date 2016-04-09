@@ -474,7 +474,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 	function makeSearchInput( $attrs = [] ) {
 		$realAttrs = [
-			'type' => 'search',
+			'type' => 'text',
 			'name' => 'search',
 			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
 			'value' => $this->get( 'search', '' ),
