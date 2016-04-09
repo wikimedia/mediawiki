@@ -926,6 +926,16 @@ return [
 			'mediawiki.api',
 		],
 	],
+	'mediawiki.CategorySearchType' => [
+		'scripts' => [
+			'resources/src/mediawiki/mediawiki.CategorySearchType.js',
+		],
+		'dependencies' => [
+			'oojs',
+			'mediawiki.api',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.content.json' => [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
@@ -2208,6 +2218,7 @@ return [
 		'dependencies' => [
 			'oojs-ui-widgets',
 			'mediawiki.api',
+			'mediawiki.CategorySearchType',
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
 		],

@@ -6,7 +6,8 @@
  */
 ( function ( $, mw ) {
 	var CSP,
-		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
+		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category,
+		categorySearch = require( 'mediawiki.CategorySearchType' );
 
 	/**
 	 * Category selector widget. Displays an OO.ui.CapsuleMultiSelectWidget
@@ -209,32 +210,24 @@
 	 * @return {boolean}
 	 */
 	CSP.validateSearchTypes = function () {
-		var validSearchTypes = false,
-			searchTypeEnumCount = Object.keys( CategorySelector.SearchType ).length;
+		var validSearchTypes = false;
 
-		// Check if all values are in the SearchType enum
+		// Check if all values are instances of CategorySearchType
 		validSearchTypes = this.searchTypes.every( function ( searchType ) {
-			return searchType > -1 && searchType < searchTypeEnumCount;
+			return searchType instanceof categorySearch.CategorySearchType;
 		} );
 
 		if ( validSearchTypes === false ) {
 			throw new Error( 'Unknown searchType in searchTypes' );
 		}
 
-		// If the searchTypes has CategorySelector.SearchType.SubCategories
-		// it can be the only search type.
-		if ( this.searchTypes.indexOf( CategorySelector.SearchType.SubCategories ) > -1 &&
-			this.searchTypes.length > 1
-		) {
-			throw new Error( 'Can\'t have additional search types with CategorySelector.SearchType.SubCategories' );
-		}
-
-		// If the searchTypes has CategorySelector.SearchType.ParentCategories
-		// it can be the only search type.
-		if ( this.searchTypes.indexOf( CategorySelector.SearchType.ParentCategories ) > -1 &&
-			this.searchTypes.length > 1
-		) {
-			throw new Error( 'Can\'t have additional search types with CategorySelector.SearchType.ParentCategories' );
+		// Check whether it can be the only search type.
+		if ( this.searchTypes.length > 1 ) {
+			this.searchTypes.forEach( function ( searchType ) {
+				if ( searchType.mustBeTheOnlySearchType === true ) {
+					throw new Error( 'Can\'t have additional search types with ' + searchType.constructor.name );
+				}
+			} );
 		}
 
 		return true;
@@ -260,118 +253,7 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	CSP.searchCategories = function ( input, searchType ) {
-		var deferred = $.Deferred();
-
-		switch ( searchType ) {
-			case CategorySelector.SearchType.OpenSearch:
-				this.api.get( {
-					formatversion: 2,
-					action: 'opensearch',
-					namespace: NS_CATEGORY,
-					limit: this.limit,
-					search: input
-				} ).done( function ( res ) {
-					var categories = res[ 1 ];
-					deferred.resolve( categories );
-				} ).fail( deferred.reject.bind( deferred ) );
-				break;
-
-			case CategorySelector.SearchType.InternalSearch:
-				this.api.get( {
-					formatversion: 2,
-					action: 'query',
-					list: 'allpages',
-					apnamespace: NS_CATEGORY,
-					aplimit: this.limit,
-					apfrom: input,
-					apprefix: input
-				} ).done( function ( res ) {
-					var categories = res.query.allpages.map( function ( page ) {
-						return page.title;
-					} );
-					deferred.resolve( categories );
-				} ).fail( deferred.reject.bind( deferred ) );
-				break;
-
-			case CategorySelector.SearchType.Exists:
-				if ( input.indexOf( '|' ) > -1 ) {
-					deferred.resolve( [] );
-					break;
-				}
-
-				this.api.get( {
-					formatversion: 2,
-					action: 'query',
-					prop: 'info',
-					titles: 'Category:' + input
-				} ).done( function ( res ) {
-					var categories = [];
-
-					$.each( res.query.pages, function ( index, page ) {
-						if ( !page.missing ) {
-							categories.push( page.title );
-						}
-					} );
-
-					deferred.resolve( categories );
-				} ).fail( deferred.reject.bind( deferred ) );
-				break;
-
-			case CategorySelector.SearchType.SubCategories:
-				if ( input.indexOf( '|' ) > -1 ) {
-					deferred.resolve( [] );
-					break;
-				}
-
-				this.api.get( {
-					formatversion: 2,
-					action: 'query',
-					list: 'categorymembers',
-					cmtype: 'subcat',
-					cmlimit: this.limit,
-					cmtitle: 'Category:' + input
-				} ).done( function ( res ) {
-					var categories = res.query.categorymembers.map( function ( category ) {
-						return category.title;
-					} );
-					deferred.resolve( categories );
-				} ).fail( deferred.reject.bind( deferred ) );
-				break;
-
-			case CategorySelector.SearchType.ParentCategories:
-				if ( input.indexOf( '|' ) > -1 ) {
-					deferred.resolve( [] );
-					break;
-				}
-
-				this.api.get( {
-					formatversion: 2,
-					action: 'query',
-					prop: 'categories',
-					cllimit: this.limit,
-					titles: 'Category:' + input
-				} ).done( function ( res )  {
-					var categories = [];
-
-					$.each( res.query.pages, function ( index, page ) {
-						if ( !page.missing ) {
-							if ( $.isArray( page.categories ) ) {
-								categories.push.apply( categories, page.categories.map( function ( category ) {
-									return category.title;
-								} ) );
-							}
-						}
-					} );
-
-					deferred.resolve( categories );
-				} ).fail( deferred.reject.bind( deferred ) );
-				break;
-
-			default:
-				throw new Error( 'Unknown searchType' );
-		}
-
-		return deferred.promise();
+		return searchType.searchCategories( input, this.limit ).promise();
 	};
 
 	/**
@@ -380,19 +262,19 @@
 	 */
 	CategorySelector.SearchType = {
 		/** Search using action=opensearch */
-		OpenSearch: 0,
+		OpenSearch: new categorySearch.OpenSearchCategorySearchType(),
 
 		/** Search using action=query */
-		InternalSearch: 1,
+		InternalSearch: new categorySearch.InternalSearchCategorySearchType(),
 
 		/** Search for existing categories with the exact title */
-		Exists: 2,
+		Exists: new categorySearch.ExistsCategorySearchType(),
 
 		/** Search only subcategories  */
-		SubCategories: 3,
+		SubCategories: new categorySearch.SubCategoriesCategorySearchType(),
 
 		/** Search only parent categories */
-		ParentCategories: 4
+		ParentCategories: new categorySearch.ParentCategoriesCategorySearchType()
 	};
 
 	mw.widgets.CategorySelector = CategorySelector;
