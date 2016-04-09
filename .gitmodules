@@ -380,3 +380,7 @@
 	path = extensions/Editcount
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Editcount.git
 	branch = REL1_26
+[submodule "extensions/NativeSvgHandler"]
+	path = extensions/NativeSvgHandler
+	url = https://github.com/p12tic/NativeSvgHandler.git
+	branch = master
