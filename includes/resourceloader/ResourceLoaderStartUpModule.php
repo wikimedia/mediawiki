@@ -109,7 +109,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
-			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
@@ -308,7 +307,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
-		$moduleNames = self::getStartupModules();
+		$moduleNames = array_merge( self::getStartupModules(), self::getLegacyModules() );
 
 		$query = [
 			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
