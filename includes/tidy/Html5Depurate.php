@@ -29,9 +29,9 @@ class Html5Depurate extends TidyDriverBase {
 			] );
 		$status = $req->execute();
 		if ( !$status->isOK() ) {
-			throw new Exception( "Error contacting depurate service: " . $status->getWikiText() );
+			throw new Exception( "Error contacting depurate service: " . $status->getWikiText( false, false, 'en' ) );
 		} elseif ( $req->getStatus() !== 200 ) {
-			throw new Exception( "Depurate returned error: " . $status->getWikiText() );
+			throw new Exception( "Depurate returned error: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		$result = $req->getContent();
 		$startBody = strpos( $result, "<body>" );

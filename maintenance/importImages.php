@@ -257,7 +257,7 @@ if ( $count > 0 ) {
 			$archive = $image->publish( $file, $flags, $publishOptions );
 			if ( !$archive->isGood() ) {
 				echo "failed. (" .
-					$archive->getWikiText() .
+					$archive->getWikiText( false, false, 'en' ) .
 					")\n";
 				$failed++;
 				continue;

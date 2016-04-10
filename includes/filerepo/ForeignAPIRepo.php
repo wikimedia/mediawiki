@@ -527,7 +527,10 @@ class ForeignAPIRepo extends FileRepo {
 			return $req->getContent();
 		} else {
 			$logger = LoggerFactory::getInstance( 'http' );
-			$logger->warning( $status->getWikiText(), [ 'caller' => 'ForeignAPIRepo::httpGet' ] );
+			$logger->warning(
+				$status->getWikiText( false, false, 'en' ),
+				[ 'caller' => 'ForeignAPIRepo::httpGet' ]
+			);
 			return false;
 		}
 	}
