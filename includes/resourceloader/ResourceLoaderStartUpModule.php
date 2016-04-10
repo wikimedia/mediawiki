@@ -112,7 +112,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
-			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
@@ -330,9 +329,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
-
 		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( self::getStartupModules() );
+		$derivative->setModules( array_merge(
+			self::getStartupModules(),
+			self::getLegacyModules()
+		) );
 		$derivative->setOnly( 'scripts' );
 		// Must setModules() before makeVersionQuery()
 		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
