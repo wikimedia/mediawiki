@@ -97,12 +97,14 @@ class RightsLogFormatter extends LogFormatter {
 			$params[3] = $this->msg( 'rightsnone' )->text();
 		}
 		if ( count( $newGroups ) ) {
-			// Array_values is used here because of bug 42211
+			// Array_values is used here because of T44211
 			// see use of array_unique in UserrightsPage::doSaveUserGroups on $newGroups.
 			$params[4] = $lang->listToText( array_values( $newGroups ) );
 		} else {
 			$params[4] = $this->msg( 'rightsnone' )->text();
 		}
+
+		$params[5] = $userName;
 
 		return $params;
 	}
