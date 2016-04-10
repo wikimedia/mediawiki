@@ -1239,6 +1239,7 @@
 	"pagemovedsub": "Sahifa qayta nomlandi",
 	"movepage-moved": "'''Sahifa nomi «$1»dan «$2»ga koʻchirildi'''",
 	"movepage-moved-redirect": "Qayta yo‘naltirish yaratildi.",
+	"articleexists": "Shunday nomli sahifa mavjud, yoki siz tanlagan nom mumkin emas. \nIltimos, boshqa nom tanlang.",
 	"movetalk": "Mos munozara sahifasini qayta nomlash",
 	"move-subpages": "Ostsahifalarni ham qayta nomlash ($1 tadan kam)",
 	"move-talk-subpages": "Munozara sahifasining ostsahifalarini ham qayta nomlash ($1 tadan kam)",

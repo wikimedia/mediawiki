@@ -3258,7 +3258,6 @@
 	"redirect-not-exists": "მნიშვნელობა ვერ მოიძებნა",
 	"fileduplicatesearch": "ერთნაირი ფაილების ძიება",
 	"fileduplicatesearch-summary": "ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.",
-	"fileduplicatesearch-legend": "დუბლიკატების ძიება",
 	"fileduplicatesearch-filename": "ფაილის სახელი:",
 	"fileduplicatesearch-submit": "ძიება",
 	"fileduplicatesearch-info": "$1 × $2 პიქსელზე<br />ფაილის ზომაა: $3<br />MIME-ტიპი: $4",

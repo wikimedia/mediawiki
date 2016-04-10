@@ -3111,7 +3111,6 @@
 	"redirect-not-exists": "Значэнне не знойдзена",
 	"fileduplicatesearch": "Пошук дублікатных файлаў",
 	"fileduplicatesearch-summary": "Пошук дублікатных файлах на падставе іх хэшаў.",
-	"fileduplicatesearch-legend": "Знайсці дублікаты",
 	"fileduplicatesearch-filename": "Назва файла:",
 	"fileduplicatesearch-submit": "Знайсці",
 	"fileduplicatesearch-info": "$1 × $2 кропак<br />Аб'ём файла: $3<br />Тып MIME: $4",

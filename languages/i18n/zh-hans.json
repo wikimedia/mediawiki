@@ -3266,7 +3266,6 @@
 	"redirect-not-exists": "没找到相应值",
 	"fileduplicatesearch": "搜索重复文件",
 	"fileduplicatesearch-summary": "根据哈希（hash）值搜索重复文件。",
-	"fileduplicatesearch-legend": "搜索重复文件",
 	"fileduplicatesearch-filename": "文件名：",
 	"fileduplicatesearch-submit": "搜索",
 	"fileduplicatesearch-info": "$1×$2像素<br />文件大小：$3<br />MIME类型：$4",

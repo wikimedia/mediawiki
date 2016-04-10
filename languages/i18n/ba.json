@@ -3148,7 +3148,6 @@
 	"redirect-not-exists": "Мәғәнәһе табылманы",
 	"fileduplicatesearch": "Бер иш файлдарҙы эҙләү",
 	"fileduplicatesearch-summary": "Бер иш файлдарҙы хэш-кодтары буйынса эҙләү.",
-	"fileduplicatesearch-legend": "Бер иш файлдарҙы эҙләү",
 	"fileduplicatesearch-filename": "Файл исеме:",
 	"fileduplicatesearch-submit": "Эҙләү",
 	"fileduplicatesearch-info": "$1 × $2 пиксел<br />Файлдың дәүмәле: $3<br />MIME төрө: $4",

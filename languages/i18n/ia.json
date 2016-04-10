@@ -3148,7 +3148,6 @@
 	"redirect-not-exists": "Valor non trovate",
 	"fileduplicatesearch": "Cercar files duplicate",
 	"fileduplicatesearch-summary": "Cercar files duplicate a base de lor summas de verification ''(hash).''",
-	"fileduplicatesearch-legend": "Cercar un duplicato",
 	"fileduplicatesearch-filename": "Nomine del file:",
 	"fileduplicatesearch-submit": "Cercar",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Grandor del file: $3<br />Typo MIME: $4",

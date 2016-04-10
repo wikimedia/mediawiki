@@ -3363,7 +3363,6 @@
 	"redirect-not-exists": "Значення не знайдено",
 	"fileduplicatesearch": "Пошук файлів-дублікатів",
 	"fileduplicatesearch-summary": "Пошук дублікатів файлів на основі хеш-значень.",
-	"fileduplicatesearch-legend": "Пошук дублікатів",
 	"fileduplicatesearch-filename": "Назва файлу:",
 	"fileduplicatesearch-submit": "Знайти",
 	"fileduplicatesearch-info": "$1 × $2 пікселів<br />Розмір файлу: $3<br />MIME-тип: $4",

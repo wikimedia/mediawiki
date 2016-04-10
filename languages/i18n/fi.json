@@ -3175,7 +3175,6 @@
 	"redirect-not-exists": "Arvoa ei löytynyt",
 	"fileduplicatesearch": "Kaksoiskappaleiden haku",
 	"fileduplicatesearch-summary": "Etsii tiedoston kaksoiskappaleita hajautusarvon perusteella.",
-	"fileduplicatesearch-legend": "Etsi kaksoiskappaleita",
 	"fileduplicatesearch-filename": "Tiedostonimi",
 	"fileduplicatesearch-submit": "Etsi",
 	"fileduplicatesearch-info": "$1 × $2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4",

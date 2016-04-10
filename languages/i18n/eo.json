@@ -3104,7 +3104,6 @@
 	"redirect-not-exists": "Valoro ne trovita",
 	"fileduplicatesearch": "Serĉu duplikatajn dosierojn",
 	"fileduplicatesearch-summary": "Serĉi duplikatajn dosierojn bazite de haketvaloro.",
-	"fileduplicatesearch-legend": "Serĉi duplikaton",
 	"fileduplicatesearch-filename": "Dosiernomo:",
 	"fileduplicatesearch-submit": "Serĉi",
 	"fileduplicatesearch-info": "$1 × $2 rastrumero<br />Dosiera pezo: $3<br />MIME-tipo: $4",

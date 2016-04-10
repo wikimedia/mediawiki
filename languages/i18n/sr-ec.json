@@ -3185,7 +3185,6 @@
 	"redirect-not-exists": "Вредност није пронађена",
 	"fileduplicatesearch": "Претрага дупликата",
 	"fileduplicatesearch-summary": "Претрага дуплираних датотека према хеш вредности.",
-	"fileduplicatesearch-legend": "Претрага дупликата",
 	"fileduplicatesearch-filename": "Назив датотеке:",
 	"fileduplicatesearch-submit": "Претражи",
 	"fileduplicatesearch-info": "$1 × $2 пиксела<br />Величина датотеке: $3<br />MIME тип: $4",

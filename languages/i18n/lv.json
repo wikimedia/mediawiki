@@ -2437,7 +2437,6 @@
 	"redirect-not-exists": "Vērtība nav atrasta",
 	"fileduplicatesearch": "Meklēt failu kopijas",
 	"fileduplicatesearch-summary": "Meklē dublējošos failus, izmantojot uz jaucējfunkcijas vērtības.",
-	"fileduplicatesearch-legend": "Meklēt kopiju",
 	"fileduplicatesearch-filename": "Faila vārds:",
 	"fileduplicatesearch-submit": "Meklēt",
 	"fileduplicatesearch-info": "$1 × $2 pikseļi<br />Faila izmērs: $3<br />MIME tips: $4",

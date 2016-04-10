@@ -3184,7 +3184,6 @@
 	"redirect-not-exists": "값을 찾을 수 없습니다",
 	"fileduplicatesearch": "중복된 파일 검색",
 	"fileduplicatesearch-summary": "파일 해시값을 이용해 중복 파일을 검색합니다.",
-	"fileduplicatesearch-legend": "중복 검색",
 	"fileduplicatesearch-filename": "파일 이름:",
 	"fileduplicatesearch-submit": "검색",
 	"fileduplicatesearch-info": "$1 × $2 픽셀<br />파일 크기: $3<br />MIME 유형: $4",

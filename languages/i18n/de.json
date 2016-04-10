@@ -3265,7 +3265,6 @@
 	"redirect-not-exists": "Der Wert wurde nicht gefunden",
 	"fileduplicatesearch": "Dateiduplikatsuche",
 	"fileduplicatesearch-summary": "Suche nach Dateiduplikaten auf Basis ihres Hashwertes.",
-	"fileduplicatesearch-legend": "Suche nach Duplikaten",
 	"fileduplicatesearch-filename": "Dateiname:",
 	"fileduplicatesearch-submit": "Suchen",
 	"fileduplicatesearch-info": "$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4",

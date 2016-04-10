@@ -3239,7 +3239,6 @@
 	"redirect-not-exists": "Nie znaleziono wartości",
 	"fileduplicatesearch": "Wyszukiwanie duplikatów pliku",
 	"fileduplicatesearch-summary": "Wyszukiwanie duplikatów pliku na podstawie wartości funkcji skrótu.",
-	"fileduplicatesearch-legend": "Szukaj duplikatów pliku",
 	"fileduplicatesearch-filename": "Nazwa pliku:",
 	"fileduplicatesearch-submit": "Szukaj",
 	"fileduplicatesearch-info": "$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4",

@@ -2845,7 +2845,6 @@
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Landas ng panitik]",
 	"fileduplicatesearch": "Maghanap ng kaparehong mga talaksan",
 	"fileduplicatesearch-summary": "Maghanap ng mga kaparehong mga talaksan sa baba ng kanyang halaga ng ''hash''.",
-	"fileduplicatesearch-legend": "Maghanap ng mga kapareho",
 	"fileduplicatesearch-filename": "Pangalan ng file:",
 	"fileduplicatesearch-submit": "Hanapin",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Laki ng talaksan: $3<br />Uri ng MIME: $4",

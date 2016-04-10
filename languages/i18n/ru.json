@@ -3312,7 +3312,6 @@
 	"redirect-not-exists": "Значение не найдено",
 	"fileduplicatesearch": "Поиск одинаковых файлов",
 	"fileduplicatesearch-summary": "Поиск одинаковых файлов по хэш-коду.",
-	"fileduplicatesearch-legend": "Поиск дубликатов",
 	"fileduplicatesearch-filename": "Имя файла:",
 	"fileduplicatesearch-submit": "Найти",
 	"fileduplicatesearch-info": "$1 × $2 {{PLURAL:$2|пиксель|пикселя|пикселей}}<br />Размер файла: $3<br />MIME-тип: $4",

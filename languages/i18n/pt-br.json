@@ -3176,7 +3176,6 @@
 	"redirect-not-exists": "Valor não encontrado",
 	"fileduplicatesearch": "Procurar por arquivos duplicados",
 	"fileduplicatesearch-summary": "Procure por arquivos duplicados tendo por base seu valor \"hash\".",
-	"fileduplicatesearch-legend": "Procurar por duplicatas",
 	"fileduplicatesearch-filename": "Nome do arquivo:",
 	"fileduplicatesearch-submit": "Pesquisa",
 	"fileduplicatesearch-info": "$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4",

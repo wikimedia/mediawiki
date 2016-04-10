@@ -2223,7 +2223,6 @@
 	"version-entrypoints-header-url": "URL",
 	"fileduplicatesearch": "Ectä kaksitadud failad",
 	"fileduplicatesearch-summary": "Ühtejiččiden failoiden ecmine niiden heš-kodan mödhe.",
-	"fileduplicatesearch-legend": "Ectä dublikatoid",
 	"fileduplicatesearch-filename": "Failannimi:",
 	"fileduplicatesearch-submit": "Ectä",
 	"fileduplicatesearch-info": "$1 × $2 pikselad<br />Failan suruz: $3<br />MIME-tip: $4",

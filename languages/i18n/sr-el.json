@@ -3126,7 +3126,6 @@
 	"redirect-not-exists": "Vrednost nije pronađen",
 	"fileduplicatesearch": "Pretraga duplikata",
 	"fileduplicatesearch-summary": "Pretraga dupliranih datoteka prema heš vrednosti.",
-	"fileduplicatesearch-legend": "Pretraga duplikata",
 	"fileduplicatesearch-filename": "Naziv datoteke:",
 	"fileduplicatesearch-submit": "Pretraži",
 	"fileduplicatesearch-info": "$1 × $2 piksela<br />Veličina datoteke: $3<br />MIME tip: $4",

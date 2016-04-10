@@ -3253,7 +3253,6 @@
 	"redirect-not-exists": "المطلوب غير موجود",
 	"fileduplicatesearch": "بحث عن ملفات مكررة",
 	"fileduplicatesearch-summary": "ابحث عن الملفات المكررة بناء على قيم الهاش.",
-	"fileduplicatesearch-legend": "بحث عن مكرر",
 	"fileduplicatesearch-filename": "اسم الملف:",
 	"fileduplicatesearch-submit": "بحث",
 	"fileduplicatesearch-info": "$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4",

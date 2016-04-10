@@ -3140,7 +3140,6 @@
 	"redirect-not-exists": "Значэньне ня знойдзена",
 	"fileduplicatesearch": "Пошук дублікатаў файлаў",
 	"fileduplicatesearch-summary": "Пошук аднолькавых файлаў на падставе іх хэшаў.",
-	"fileduplicatesearch-legend": "Пошук аднолькавых файлаў",
 	"fileduplicatesearch-filename": "Назва файла:",
 	"fileduplicatesearch-submit": "Шукаць",
 	"fileduplicatesearch-info": "$1 × $2 піксэляў<br />Памер файла: $3<br />Тып MIME: $4",

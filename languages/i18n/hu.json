@@ -3160,7 +3160,6 @@
 	"redirect-not-exists": "Érték nem található",
 	"fileduplicatesearch": "Duplikátumok keresése",
 	"fileduplicatesearch-summary": "Fájlok duplikátumainak keresése hash értékük alapján.",
-	"fileduplicatesearch-legend": "Duplikátum keresése",
 	"fileduplicatesearch-filename": "Fájlnév:",
 	"fileduplicatesearch-submit": "Keresés",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4",

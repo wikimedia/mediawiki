@@ -3055,7 +3055,6 @@
 	"redirect-not-exists": "Мән табылмады",
 	"fileduplicatesearch": "Файл телнұсқаларын іздеу",
 	"fileduplicatesearch-summary": "Файл хеші мағынасы негізінде телнұсқаларын іздеу.",
-	"fileduplicatesearch-legend": "Телнұсқаны іздеу",
 	"fileduplicatesearch-filename": "Файл атауы:",
 	"fileduplicatesearch-submit": "Іздеу",
 	"fileduplicatesearch-info": "$1 × $2 пиксел (нүкте)<br />Файл өлшемі: $3<br />MIME түрі: $4",

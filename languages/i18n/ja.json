@@ -3325,7 +3325,6 @@
 	"redirect-not-exists": "値が見つかりません",
 	"fileduplicatesearch": "重複ファイルの検索",
 	"fileduplicatesearch-summary": "重複ファイルをハッシュ値に基づいて検索します。",
-	"fileduplicatesearch-legend": "重複の検索",
 	"fileduplicatesearch-filename": "ファイル名:",
 	"fileduplicatesearch-submit": "検索",
 	"fileduplicatesearch-info": "$1 × $2 ピクセル<br />ファイルサイズ: $3<br />MIME タイプ: $4",

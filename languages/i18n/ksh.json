@@ -3165,7 +3165,6 @@
 	"redirect-not-exists": "Nit jefonge",
 	"fileduplicatesearch": "Sök noh dubbelte Dateie",
 	"fileduplicatesearch-summary": "Söhhk noh dubbelte Dateie övver dänne iere Häsh-Zahl.",
-	"fileduplicatesearch-legend": "Sök noh ene dubbelte Dattei",
 	"fileduplicatesearch-filename": "Datteinahme:",
 	"fileduplicatesearch-submit": "Söhke",
 	"fileduplicatesearch-info": "{{PLURAL:$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Multi-Purpose Internet Mail Extensions\">MIME</i>-Zoot: <code>$4</code>",

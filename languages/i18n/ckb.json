@@ -2477,7 +2477,6 @@
 	"redirect-file": "ناوی پەڕگە",
 	"fileduplicatesearch": "گەڕان بۆ پەڕگە دووپات کراوەکان",
 	"fileduplicatesearch-summary": "گەڕان بۆ پەڕگە دووبارەکراوەکان لەسەر بنەمای نرخی hash.",
-	"fileduplicatesearch-legend": "گەڕان بۆ دووبارەکردنێک",
 	"fileduplicatesearch-filename": "ناوی پەرگە:",
 	"fileduplicatesearch-submit": "گەڕان",
 	"fileduplicatesearch-info": "$1 × $2 پیکسەل<br />قەبارەی پەڕگە: $3<br />MIME جۆری: $4",

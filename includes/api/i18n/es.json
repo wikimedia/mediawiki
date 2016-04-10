@@ -286,7 +286,7 @@
 	"apihelp-parse-example-summary": "Analizar un resumen.",
 	"apihelp-patrol-description": "Verificar una página o revisión.",
 	"apihelp-patrol-param-rcid": "Identificador de cambios recientes que verificar.",
-	"apihelp-patrol-param-revid": "ID de revisión a patrullar.",
+	"apihelp-patrol-param-revid": "Identificador de revisión que patrullar.",
 	"apihelp-patrol-example-rcid": "Verificar un cambio reciente.",
 	"apihelp-patrol-example-revid": "Verificar una revisión.",
 	"apihelp-protect-description": "Cambiar el nivel de protección de una página.",

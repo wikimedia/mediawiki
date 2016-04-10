@@ -3256,7 +3256,6 @@
 	"redirect-not-exists": "مقدار پیدا نشد",
 	"fileduplicatesearch": "جستجو برای پرونده‌های تکراری",
 	"fileduplicatesearch-summary": "جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.",
-	"fileduplicatesearch-legend": "جستجوی موارد تکراری",
 	"fileduplicatesearch-filename": "نام پرونده:",
 	"fileduplicatesearch-submit": "جستجو",
 	"fileduplicatesearch-info": "<span dir=\"ltr\">$1 × $2</span> پیکسل<br />اندازهٔ پرونده: $3<br />نوع MIME: $4",

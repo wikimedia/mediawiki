@@ -1932,7 +1932,6 @@
 	"redirect-file": "Triemnamme",
 	"redirect-not-exists": "Wearde net fûn",
 	"fileduplicatesearch": "Sykje op duplikaten",
-	"fileduplicatesearch-legend": "Sykje op duplikaten",
 	"fileduplicatesearch-filename": "Triemnamme:",
 	"fileduplicatesearch-submit": "Sykje",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Triemgrutte: $3<br />MIME-type: $4",

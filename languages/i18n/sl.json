@@ -3155,7 +3155,6 @@
 	"redirect-not-exists": "Vrednosti ni mogoče najti",
 	"fileduplicatesearch": "Iskanje podvojenih datotek",
 	"fileduplicatesearch-summary": "Iskanje podvojenih datotek, ki temelji na podlagi njenih hashvrednosti.",
-	"fileduplicatesearch-legend": "Poišči dvojnik",
 	"fileduplicatesearch-filename": "Ime datoteke:",
 	"fileduplicatesearch-submit": "Iskanje",
 	"fileduplicatesearch-info": "$1 × $2 pik<br />Velikost datoteke: $3<br />Vrsta MIME: $4",

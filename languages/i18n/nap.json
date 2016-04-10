@@ -3136,7 +3136,6 @@
 	"redirect-not-exists": "Valore nun accucchiato",
 	"fileduplicatesearch": "Ascìa 'e file duprecate",
 	"fileduplicatesearch-summary": "Circa pe' file duprecate cu bbase 'o valore hash.",
-	"fileduplicatesearch-legend": "Circa pe' nu duprecato",
 	"fileduplicatesearch-filename": "Nomme d' 'o file",
 	"fileduplicatesearch-submit": "Truova",
 	"fileduplicatesearch-info": "$1 × $2 pixel, dimenzione d' 'o file: $3<br />tipo MIME: $4",

@@ -3230,7 +3230,6 @@
 	"redirect-not-exists": "Hodnota nenalezena",
 	"fileduplicatesearch": "Hledání duplicitních souborů",
 	"fileduplicatesearch-summary": "Hledání duplicitních souborů podle jejich hašů.",
-	"fileduplicatesearch-legend": "Hledání duplikátů",
 	"fileduplicatesearch-filename": "Jméno souboru:",
 	"fileduplicatesearch-submit": "Hledat",
 	"fileduplicatesearch-info": "(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)",

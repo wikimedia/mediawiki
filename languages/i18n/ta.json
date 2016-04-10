@@ -3064,7 +3064,6 @@
 	"redirect-not-exists": "மதிப்பு காணப்பெறவில்லை",
 	"fileduplicatesearch": "நகல் கோப்புகளைத் தேடுக",
 	"fileduplicatesearch-summary": "நகல் கோப்புகளை  ஹாஷ் மதிப்புகள் அடிப்படையில் தேடு.",
-	"fileduplicatesearch-legend": "நகல்களைத் தேடுக",
 	"fileduplicatesearch-filename": "கோப்பின் பெயர்:",
 	"fileduplicatesearch-submit": "தேடுக",
 	"fileduplicatesearch-info": "$1 × $2 பிக்சல்<br />கோப்பின் அளவு: $3<br />MIME வகை: $4",

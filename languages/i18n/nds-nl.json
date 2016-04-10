@@ -2750,7 +2750,6 @@
 	"redirect-not-exists": "Weerde niet evunnen",
 	"fileduplicatesearch": "Dubbele bestaanden zeuken",
 	"fileduplicatesearch-summary": "Dubbele bestaanden zeuken op baosis van de hashweerde.",
-	"fileduplicatesearch-legend": "Dubbele bestaanden zeuken",
 	"fileduplicatesearch-filename": "Bestaandsnaam:",
 	"fileduplicatesearch-submit": "Zeuken",
 	"fileduplicatesearch-info": "$1 × $2 beeldpunten<br />Bestaandsgrootte: $3<br />MIME-type: $4",
