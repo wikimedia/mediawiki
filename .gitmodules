@@ -384,3 +384,7 @@
 	path = extensions/NativeSvgHandler
 	url = https://github.com/p12tic/NativeSvgHandler.git
 	branch = master
+[submodule "extensions/PageNotice"]
+	path = extensions/PageNotice
+	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
+	branch = REL1_26
