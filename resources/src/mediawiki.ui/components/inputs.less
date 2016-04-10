@@ -27,8 +27,6 @@
 //
 // Styleguide 1.1.
 .mw-ui-input {
-	// turn off default input styling for input[type="search"] fields
-	-webkit-appearance: none;
 	.box-sizing( border-box );
 	display: block;
 	width: 100%;
@@ -73,6 +71,23 @@
 	&:disabled {
 		border-color: @colorGray14;
 		color: @colorGray12;
+	}
+
+	// Normalize styling for `<input type="search">`
+	&[type="search"] {
+		// Correct the odd appearance in Chrome and Safari 5.
+		-webkit-appearance: textfield;
+
+		// Remove proprietary clear button in IE 10-11.
+		&::-ms-clear {
+			display: none;
+		}
+
+		// Remove the inner padding and cancel buttons in Chrome on OS X and Safari on OS X.
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-decoration {
+	 		-webkit-appearance: none;
+		}
 	}
 }
 
