@@ -69,7 +69,7 @@ class AssembleUploadChunksJob extends Job {
 					$this->params['filekey'],
 					[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 				);
-				$this->setLastError( $status->getWikiText() );
+				$this->setLastError( $status->getWikiText( false, false, 'en' ) );
 
 				return false;
 			}

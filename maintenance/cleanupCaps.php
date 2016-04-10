@@ -92,7 +92,7 @@ class CapsCleanup extends TableCleanup {
 		} else {
 			$mp = new MovePage( $current, $target );
 			$status = $mp->move( $this->user, 'Converting page titles to lowercase', true );
-			$ok = $status->isOK() ? 'OK' : $status->getWikiText();
+			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
 		}
 		if ( $ok === true ) {

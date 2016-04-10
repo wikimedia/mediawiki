@@ -320,7 +320,7 @@ function wfStreamThumb( array $params ) {
 			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
 		} else {
 			wfThumbError( 500, 'Could not stream the file', null, [ 'file' => $thumbName,
-				'path' => $thumbPath, 'error' => $status->getWikiText() ] );
+				'path' => $thumbPath, 'error' => $status->getWikiText( false, false, 'en' ) ] );
 		}
 		return;
 	}
@@ -366,7 +366,8 @@ function wfStreamThumb( array $params ) {
 		$status = $thumb->streamFileWithStatus( $headers );
 		if ( !$status->isOK() ) {
 			wfThumbError( 500, 'Could not stream the file', null, [
-				'file' => $thumbName, 'path' => $thumbPath, 'error' => $status->getWikiText() ] );
+				'file' => $thumbName, 'path' => $thumbPath,
+				'error' => $status->getWikiText( false, false, 'en' ) ] );
 		}
 	}
 }
