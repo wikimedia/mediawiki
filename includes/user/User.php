@@ -2694,14 +2694,36 @@ class User implements IDBAccessObject {
 			return Status::newGood( true );
 		}
 
+		$type = $oldaddr != '' ? 'changed' : 'set';
+		$notificationResult = null;
+
+		if ( $wgEmailAuthentication ) {
+			// Send the user an email notifying the user of the change in registered
+			// email address on their previous email address
+			if ( $type == 'changed' ) {
+				$change = $str != '' ? 'changed' : 'removed';
+				$notificationResult = $this->sendMail(
+					wfMessage( 'notificationemail_subject_' . $change )->text(),
+					wfMessage( 'notificationemail_body_' . $change,
+						$this->getRequest()->getIP(),
+						$this->getName(),
+						$str )->text()
+				);
+			}
+		}
+
 		$this->setEmail( $str );
 
 		if ( $str !== '' && $wgEmailAuthentication ) {
 			// Send a confirmation request to the new address if needed
-			$type = $oldaddr != '' ? 'changed' : 'set';
 			$result = $this->sendConfirmationMail( $type );
+
+			if ( $notificationResult !== null ) {
+				$result->merge( $notificationResult );
+			}
+
 			if ( $result->isGood() ) {
-				// Say to the caller that a confirmation mail has been sent
+				// Say to the caller that a confirmation and notification mail has been sent
 				$result->value = 'eauth';
 			}
 		} else {
