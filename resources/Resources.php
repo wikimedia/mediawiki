@@ -2030,7 +2030,6 @@ return [
 	],
 	'mediawiki.legacy.wikibits' => [
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
-		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
