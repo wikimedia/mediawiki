@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MWException;
 use Psr\Log\LoggerInterface;
 use BagOStuff;
 use CachedBagOStuff;
