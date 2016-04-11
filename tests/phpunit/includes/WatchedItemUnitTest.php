@@ -5,30 +5,13 @@
  *
  * @covers WatchedItem
  */
-class WatchedItemUnitTest extends MediaWikiTestCase {
-
-	/**
-	 * @param int $id
-	 *
-	 * @return PHPUnit_Framework_MockObject_MockObject|User
-	 */
-	private function getMockUser( $id ) {
-		$user = $this->getMock( User::class );
-		$user->expects( $this->any() )
-			->method( 'getId' )
-			->will( $this->returnValue( $id ) );
-		$user->expects( $this->any() )
-			->method( 'isAllowed' )
-			->will( $this->returnValue( true ) );
-		return $user;
-	}
+class WatchedItemUnitTest extends PHPUnit_Framework_TestCase {
 
 	public function provideUserTitleTimestamp() {
-		$user = $this->getMockUser( 111 );
 		return [
-			[ $user, Title::newFromText( 'SomeTitle' ), null ],
-			[ $user, Title::newFromText( 'SomeTitle' ), '20150101010101' ],
-			[ $user, new TitleValue( 0, 'TVTitle', 'frag' ), '20150101010101' ],
+			[ User::newFromId( 111 ), Title::newFromText( 'SomeTitle' ), null ],
+			[ User::newFromId( 111 ), Title::newFromText( 'SomeTitle' ), '20150101010101' ],
+			[ User::newFromId( 111 ), new TitleValue( 0, 'TVTitle', 'frag' ), '20150101010101' ],
 		];
 	}
 
@@ -68,13 +51,15 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 			->method( 'loadWatchedItem' )
 			->with( $user, $linkTarget )
 			->will( $this->returnValue( new WatchedItem( $user, $linkTarget, $timestamp ) ) );
-		$this->setService( 'WatchedItemStore', $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		$item = WatchedItem::fromUserTitle( $user, $linkTarget, User::IGNORE_USER_RIGHTS );
 
 		$this->assertEquals( $user, $item->getUser() );
 		$this->assertEquals( $linkTarget, $item->getLinkTarget() );
 		$this->assertEquals( $timestamp, $item->getNotificationTimestamp() );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -100,10 +85,12 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 					return true;
 				}
 			) );
-		$this->setService( 'WatchedItemStore', $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		$item = new WatchedItem( $user, $linkTarget, $timestamp );
 		$item->resetNotificationTimestamp( $force, $oldid );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testAddWatch() {
@@ -170,15 +157,17 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 		$store->expects( $this->once() )
 			->method( 'duplicateAllAssociatedEntries' )
 			->with( $oldTitle, $newTitle );
-		$this->setService( 'WatchedItemStore', $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		WatchedItem::duplicateEntries( $oldTitle, $newTitle );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function testBatchAddWatch() {
-		$itemOne = new WatchedItem( $this->getMockUser( 1 ), new TitleValue( 0, 'Title1' ), null );
+		$itemOne = new WatchedItem( User::newFromId( 1 ), new TitleValue( 0, 'Title1' ), null );
 		$itemTwo = new WatchedItem(
-			$this->getMockUser( 3 ),
+			User::newFromId( 3 ),
 			Title::newFromText( 'Title2' ),
 			'20150101010101'
 		);
@@ -204,9 +193,11 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 					$itemTwo->getTitle()->getTalkPage(),
 				]
 			);
-		$this->setService( 'WatchedItemStore', $store );
+		$scopedOverride = WatchedItemStore::overrideDefaultInstance( $store );
 
 		WatchedItem::batchAddWatch( [ $itemOne, $itemTwo ] );
+
+		ScopedCallback::consume( $scopedOverride );
 	}
 
 }
