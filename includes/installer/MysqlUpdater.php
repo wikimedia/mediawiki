@@ -287,6 +287,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
+			[ 'doRevisionPageRevIndexNonUnique' ]
 		];
 	}
 
@@ -1099,6 +1100,26 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-user-newtalk-userid-unsigned.sql',
 			false,
 			'Making user_id unsigned int'
+		);
+	}
+
+	protected function doRevisionPageRevIndexNonUnique() {
+		if ( !$this->doTable( 'user_newtalk' ) ) {
+			return true;
+		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id' ) ) {
+			$this->output( "...rev_page_id index not found on revision.\n" );
+			return true;
+		}
+
+		if ( !$this->db->indexUnique( 'revision', 'rev_page_id' ) ) {
+			$this->output( "...rev_page_id index already non-unique.\n" );
+			return true;
+		}
+
+		return $this->applyPatch(
+			'patch-revision-page-rev-index-nonunique.sql',
+			false,
+			'Making rev_page_id index non-unique'
 		);
 	}
 }
