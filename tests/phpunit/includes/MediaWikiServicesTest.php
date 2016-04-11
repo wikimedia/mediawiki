@@ -1,4 +1,5 @@
 <?php
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -46,6 +47,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => [ 'MainConfig', Config::class ],
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
+			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 		];
 	}
 

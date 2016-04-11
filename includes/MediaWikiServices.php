@@ -6,6 +6,7 @@ use GlobalVarConfig;
 use Config;
 use Hooks;
 use LBFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
 use SiteLookup;
@@ -142,6 +143,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteStore() {
 		return $this->getService( 'SiteStore' );
+	}
+
+	/**
+	 * @return StatsdDataFactory
+	 */
+	public function getStatsdDataFactory() {
+		return $this->getService( 'StatsdDataFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
