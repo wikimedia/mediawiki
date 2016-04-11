@@ -240,8 +240,8 @@ class IcuCollation extends Collation {
 			return $this->firstLetterData;
 		}
 
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheKey = wfMemcKey(
+		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+		$cacheKey = $cache->makeKey(
 			'first-letters',
 			$this->locale,
 			$this->digitTransformLanguage->getCode(),
