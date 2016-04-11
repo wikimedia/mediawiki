@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -334,6 +335,10 @@ class MergeHistory {
 			$this->source->invalidateCache(); // update histories
 		}
 		$this->dest->invalidateCache(); // update histories
+
+		// Duplicate watchers of the old article to the new article on history merge
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );
