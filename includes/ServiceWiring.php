@@ -72,6 +72,12 @@ return [
 		return $services->getConfigFactory()->makeConfig( 'main' );
 	},
 
+	'StatsdDataFactory' => function( MediaWikiServices $services ) {
+		return new BufferingStatsdDataFactory(
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
