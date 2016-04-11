@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance
@@ -497,8 +496,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Resets singleton returned by getMain(). Should be called only from unit tests.
 	 */
 	public static function resetMain() {
-		// TODO: manage service instances in MediaWikiServices
-		MediaWikiServices::failUnlessBootstrapping( __METHOD__ );
+		if ( !( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_PARSER_TEST' ) ) ) {
+			throw new MWException( __METHOD__ . '() should be called only from unit tests!' );
+		}
 		self::$instance = null;
 	}
 
