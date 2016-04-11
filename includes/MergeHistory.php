@@ -335,6 +335,10 @@ class MergeHistory {
 		}
 		$this->dest->invalidateCache(); // update histories
 
+		// Duplicate watchers of the old article to the new article on history merge
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store->duplicateAllAssociatedEntries( $this->source, $this->dest );
+
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );
 		$logEntry->setPerformer( $user );
