@@ -163,6 +163,7 @@
 				e.type === 'click' &&
 				options.linksPassthru &&
 				$.nodeName( e.target, 'a' ) &&
+				$( e.target ).attr( 'href' ) &&
 				$( e.target ).attr( 'href' ) !== '#'
 			) {
 				// Don't fire if a link with href !== '#' was clicked, if requested  (for premade togglers by default)
