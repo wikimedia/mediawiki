@@ -1,0 +1,172 @@
+.mw-widgets-stashedFileWidget {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	max-width: 50em;
+	margin-right: 0.5em;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&.oo-ui-iconElement .mw-widgets-stashedFileWidget-info .mw-widgets-stashedFileWidget-label {
+		left: 2.875em;
+	}
+
+	&.oo-ui-indicatorElement .mw-widgets-stashedFileWidget-info .mw-widgets-stashedFileWidget-label {
+		right: 4.4625em;
+	}
+}
+
+.mw-widgets-stashedFileWidget-info {
+	height: 2.4em;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	position: relative;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+
+	> .mw-widgets-stashedFileWidget-label {
+		line-height: 2.3em;
+		margin: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+				box-sizing: border-box;
+		text-overflow: ellipsis;
+		left: 0.5em;
+		right: 2.375em;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+
+		> .mw-widgets-stashedFileWidget-fileName {
+			float: left;
+		}
+		> .mw-widgets-stashedFileWidget-fileType {
+			color: #888888;
+			float: right;
+		}
+	}
+
+	> .oo-ui-indicatorElement-indicator,
+	> .oo-ui-iconElement-icon {
+		position: absolute;
+	}
+
+	> .oo-ui-indicatorElement-indicator {
+		right: 0;
+		top: 0;
+		width: 0.9375em;
+		height: 2.3em;
+		margin-right: 0.775em;
+	}
+
+	> .oo-ui-iconElement-icon {
+		top: 0;
+		width: 1.875em;
+		height: 2.3em;
+		margin-left: 0.5em;
+		left: 0;
+	}
+
+	&.oo-ui-widget-disabled {
+		.mw-widgets-stashedFileWidget-info {
+			color: #cccccc;
+			text-shadow: 0 1px 1px #ffffff;
+			border-color: #dddddd;
+			background-color: #f3f3f3;
+
+			> .oo-ui-iconElement-icon,
+			> .oo-ui-indicatorElement-indicator {
+				opacity: 0.2;
+			}
+		}
+	}
+}
+
+.mw-widgets-stashedFileWidget-thumbnail-container {
+	cursor: default;
+	height: 5.5em;
+	text-align: left;
+	padding: 0;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	margin-bottom: 0.5em;
+	vertical-align: middle;
+	overflow: hidden;
+	border-radius: 2px;
+
+	.mw-widgets-stashedFileWidget-thumbnail {
+		height: 5.5em;
+		width: 5.5em;
+		position: absolute;
+		background-size: cover;
+		background-position: center center;
+
+		&.oo-ui-pendingElement-pending {
+			background-size: auto;
+		}
+
+		> .mw-widgets-stashedFileWidget-noThumbnail-icon {
+			opacity: 0.4;
+			background-color: #cccccc;
+			height: 5.5em;
+			width: 5.5em;
+		}
+	}
+
+	.mw-widgets-stashedFileWidget-info {
+		border: none;
+		background: none;
+		display: block;
+		height: 100%;
+		width: auto;
+		margin-left: 5.5em;
+
+		> .mw-widgets-stashedFileWidget-label {
+			position: relative;
+
+			> .mw-widgets-stashedFileWidget-fileName {
+				display: block;
+				float: none;
+			}
+
+			> .mw-widgets-stashedFileWidget-fileType {
+				display: block;
+				float: none;
+			}
+		}
+	}
+}
+
+
+.mw-widgets-stashedFileWidget-empty {
+	.mw-widgets-stashedFileWidget-thumbnail-container {
+		text-align: center;
+
+		.mw-widgets-stashedFileWidget-thumbnail,
+		.mw-widgets-stashedFileWidget-info {
+			margin: 0;
+			display: none;
+		}
+	}
+
+	.mw-widgets-stashedFileWidget-label {
+		color: #cccccc;
+		right: 0.5em;
+	}
+
+	&.oo-ui-indicatorElement {
+		.mw-widgets-stashedFileWidget-label {
+			right: 2em;
+		}
+	}
+}

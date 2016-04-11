@@ -61,12 +61,15 @@
 	 * @constructor
 	 * @param {Object} config Configuration options
 	 * @cfg {jQuery} [$overlay] Overlay to use for widgets in the booklet
+	 * @cfg {string} [filekey] Sets the stashed file to finish uploading. Overrides most of the file selection process, and fetches a thumbnail from the server.
 	 */
 	mw.Upload.BookletLayout = function ( config ) {
 		// Parent constructor
 		mw.Upload.BookletLayout.parent.call( this, config );
 
 		this.$overlay = config.$overlay;
+
+		this.filekey = config.filekey;
 
 		this.renderUploadForm();
 		this.renderInfoForm();
@@ -164,7 +167,12 @@
 
 		this.clear();
 		this.upload = this.createUpload();
+
 		this.setPage( 'upload' );
+
+		if ( this.filekey ) {
+			this.setFilekey( this.filekey );
+		}
 
 		return this.upload.getApi().then(
 			function ( api ) {
@@ -217,9 +225,22 @@
 			layout = this,
 			file = this.getFile();
 
-		this.setFilename( file.name );
-
 		this.setPage( 'info' );
+
+		if ( this.filekey ) {
+			if ( file === null ) {
+				// Someone gonna get-a hurt real bad
+				throw new Error( 'filekey not passed into file select widget, which is impossible. Quitting while we\'re behind.' );
+			}
+
+			// Stashed file already uploaded.
+			deferred.resolve();
+			this.uploadPromise = deferred;
+			this.emit( 'fileUploaded' );
+			return deferred;
+		}
+
+		this.setFilename( file.name );
 
 		this.upload.setFile( file );
 		// The original file name might contain invalid characters, so use our sanitized one
@@ -416,14 +437,12 @@
 		var fieldset,
 			layout = this;
 
-		this.selectFileWidget = new OO.ui.SelectFileWidget( {
-			showDropTarget: true
-		} );
+		this.selectFileWidget = this.getFileWidget();
 		fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [ this.selectFileWidget ] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
-		// Validation
+		// Validation (if the SFW is for a stashed file, this never fires)
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 
 		this.selectFileWidget.on( 'change', function () {
@@ -431,6 +450,23 @@
 		} );
 
 		return this.uploadForm;
+	};
+
+	/**
+	 * Gets the widget for displaying or inputting the file to upload.
+	 *
+	 * @return {OO.ui.SelectFileWidget|mw.widgets.StashedFileWidget}
+	 */
+	mw.Upload.BookletLayout.prototype.getFileWidget = function () {
+		if ( this.filekey ) {
+			return new mw.widgets.StashedFileWidget( {
+				filekey: this.filekey
+			} );
+		}
+
+		return new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
 	};
 
 	/**
@@ -638,6 +674,20 @@
 	 */
 	mw.Upload.BookletLayout.prototype.setFile = function ( file ) {
 		this.selectFileWidget.setValue( file );
+	};
+
+	/**
+	 * Sets the filekey of a file already stashed on the server
+	 * as the target of this upload operation.
+	 *
+	 * @protected
+	 * @param {string} filekey
+	 */
+	mw.Upload.BookletLayout.prototype.setFilekey = function ( filekey ) {
+		this.upload.setFilekey( this.filekey );
+		this.selectFileWidget.setValue( filekey );
+
+		this.onUploadFormChange();
 	};
 
 	/**
