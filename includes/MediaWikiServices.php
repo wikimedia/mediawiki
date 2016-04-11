@@ -14,6 +14,7 @@ use JobQueueAggregator;
 use Language;
 use LBFactory;
 use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use LockManagerGroup;
 use MagicWord;
@@ -455,6 +456,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return StatsdDataFactory
+	 */
+	public function getStatsdDataFactory() {
+		return $this->getService( 'StatsdDataFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

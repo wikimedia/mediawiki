@@ -1,4 +1,5 @@
 <?php
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\ServiceDisabledException;
 
@@ -231,6 +232,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
+			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 		];
 	}
 
