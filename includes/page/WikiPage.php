@@ -3503,6 +3503,8 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
+		$config = RequestContext::getMain()->getConfig();
+
 		$params = [
 			'isOpportunistic' => true,
 			'rootJobTimestamp' => $parserOutput->getCacheTime()
@@ -3513,7 +3515,7 @@ class WikiPage implements Page, IDBAccessObject {
 			JobQueueGroup::singleton()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
-		} elseif ( $parserOutput->hasDynamicContent() ) {
+		} elseif ( !$config->get( 'MiserMode' ) && $parserOutput->hasDynamicContent() ) {
 			// Assume the output contains "dynamic" time/random based magic words.
 			// Only update pages that expired due to dynamic content and NOT due to edits
 			// to referenced templates/files. When the cache expires due to dynamic content,
