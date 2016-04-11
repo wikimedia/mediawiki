@@ -163,6 +163,8 @@ class JobRunner implements LoggerAwareInterface {
 				$popTime = time();
 				$jType = $job->getType();
 
+				WebRequest::overrideRequestId( $job->getRequestId() );
+
 				// Back off of certain jobs for a while (for throttling and for errors)
 				$ttw = $this->getBackoffTimeToWait( $job );
 				if ( $ttw > 0 ) {

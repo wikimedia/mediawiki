@@ -92,6 +92,10 @@ abstract class Job implements IJobSpecification {
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;
+
+		if ( !isset( $this->params['requestId'] ) ) {
+			$this->params['requestId'] = WebRequest::getRequestId();
+		}
 	}
 
 	/**
@@ -149,6 +153,18 @@ abstract class Job implements IJobSpecification {
 	public function getQueuedTimestamp() {
 		return isset( $this->metadata['timestamp'] )
 			? wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] )
+			: null;
+	}
+
+	/**
+	 * @return string|null Id of the request that created this job. Follows
+	 *  jobs recursively, allowing to track the id of the request that started a
+	 *  job when jobs insert jobs which insert other jobs.
+	 * @since 1.27
+	 */
+	public function getRequestId() {
+		return isset( $this->params['requestId'] )
+			? $this->params['requestId']
 			: null;
 	}
 
@@ -214,6 +230,8 @@ abstract class Job implements IJobSpecification {
 			unset( $info['params']['rootJobTimestamp'] );
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
+			// Identical jobs from different requests should count as duplicates
+			unset( $info['params']['requestId'] );
 			// Queues pack and hash this array, so normalize the order
 			ksort( $info['params'] );
 		}
