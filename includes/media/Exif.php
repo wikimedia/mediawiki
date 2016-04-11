@@ -174,8 +174,8 @@ class Exif {
 				# Tags relating to image configuration
 				'ComponentsConfiguration' => Exif::UNDEFINED, # Meaning of each component #p33
 				'CompressedBitsPerPixel' => Exif::RATIONAL, # Image compression mode
-				'PixelYDimension' => Exif::SHORT_OR_LONG, # Valid image width
-				'PixelXDimension' => Exif::SHORT_OR_LONG, # Valid image height
+				'PixelYDimension' => Exif::SHORT_OR_LONG, # Valid image height
+				'PixelXDimension' => Exif::SHORT_OR_LONG, # Valid image width
 
 				# Tags relating to related user information
 				'MakerNote' => Exif::IGNORE, # Manufacturer notes
