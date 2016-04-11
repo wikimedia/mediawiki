@@ -925,11 +925,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
 			TestUser::setPasswordForUser( $user, 'UTSysopPassword' );
+			$user->addGroup( 'sysop' );
+			$user->addGroup( 'bureaucrat' );
 		}
-
-		// Always set groups, because $this->resetDB() wipes them out
-		$user->addGroup( 'sysop' );
-		$user->addGroup( 'bureaucrat' );
 
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -1142,17 +1140,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
+			$userTables = [ 'user', 'user_groups', 'user_properties' ];
+			$coreDBDataTables = array_merge( $userTables, [ 'page', 'revision' ] );
+
+			// If any of the user tables were marked as used, we should clear all of them.
+			if ( array_intersect( $tablesUsed, $userTables ) ) {
+				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
+
+				// Totally clear User class in-process cache to avoid CAS errors
+				TestingAccessWrapper::newFromClass( 'User' )
+					->getInProcessCache()
+					->clear();
+			}
+
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
 			foreach ( $tablesUsed as $tbl ) {
-				// TODO: reset interwiki and user tables to their original content.
-				if ( $tbl == 'interwiki' || $tbl == 'user' ) {
+				// TODO: reset interwiki table to its original content.
+				if ( $tbl == 'interwiki' ) {
 					continue;
 				}
 
 				if ( $truncate ) {
 					$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tbl ), __METHOD__ );
 				} else {
-
 					$db->delete( $tbl, '*', __METHOD__ );
 				}
 
@@ -1161,6 +1171,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 					// exist in the DB.
 					LinkCache::singleton()->clear();
 				}
+			}
+
+			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
+				// Re-add core DB data that was deleted
+				$this->addCoreDBData();
 			}
 		}
 	}
