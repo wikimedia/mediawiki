@@ -99,7 +99,13 @@ return [
 		);
 		$store->setStatsdDataFactory( RequestContext::getMain()->getStats() );
 		return $store;
-	}
+	},
+
+	'StatsdDataFactory' => function( MediaWikiServices $services ) {
+		return new BufferingStatsdDataFactory(
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
+		);
+	},
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function

@@ -21,6 +21,8 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+
 /**
  * Interface for objects which can provide a MediaWiki context on request
  *
@@ -126,8 +128,10 @@ interface IContextSource {
 	/**
 	 * Get the stats object
 	 *
+	 * @deprecated since 1.27 use MediaWikiServices::getInstance()->getStatsdDataFactory() directly.
+	 *
 	 * @since 1.25
-	 * @return BufferingStatsdDataFactory
+	 * @return StatsdDataFactory
 	 */
 	public function getStats();
 
