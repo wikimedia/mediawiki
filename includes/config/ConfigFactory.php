@@ -51,39 +51,16 @@ class ConfigFactory {
 	}
 
 	/**
-	 * @return string[]
-	 */
-	public function getConfigNames() {
-		return array_keys( $this->factoryFunctions );
-	}
-
-	/**
-	 * Register a new config factory function.
-	 * Will override if it's already registered.
-	 * Use "*" for $name to provide a fallback config for all unknown names.
+	 * Register a new config factory function
+	 * Will override if it's already registered
 	 * @param string $name
-	 * @param callable|Config $callback A factory callabck that takes this ConfigFactory
-	 *        as an argument and returns a Config instance, or an existing Config instance.
+	 * @param callable $callback That takes this ConfigFactory as an argument
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
 	public function register( $name, $callback ) {
-		if ( $callback instanceof Config ) {
-			$instance = $callback;
-
-			// Register a callback anyway, for consistency. Note that getConfigNames()
-			// relies on $factoryFunctions to have all config names.
-			$callback = function() use ( $instance ) {
-				return $instance;
-			};
-		} else {
-			$instance = null;
-		}
-
 		if ( !is_callable( $callback ) ) {
 			throw new InvalidArgumentException( 'Invalid callback provided' );
 		}
-
-		$this->configs[$name] = $instance;
 		$this->factoryFunctions[$name] = $callback;
 	}
 
@@ -98,14 +75,10 @@ class ConfigFactory {
 	 */
 	public function makeConfig( $name ) {
 		if ( !isset( $this->configs[$name] ) ) {
-			$key = $name;
-			if ( !isset( $this->factoryFunctions[$key] ) ) {
-				$key = '*';
-			}
-			if ( !isset( $this->factoryFunctions[$key] ) ) {
+			if ( !isset( $this->factoryFunctions[$name] ) ) {
 				throw new ConfigException( "No registered builder available for $name." );
 			}
-			$conf = call_user_func( $this->factoryFunctions[$key], $this );
+			$conf = call_user_func( $this->factoryFunctions[$name], $this );
 			if ( $conf instanceof Config ) {
 				$this->configs[$name] = $conf;
 			} else {
@@ -115,5 +88,4 @@ class ConfigFactory {
 
 		return $this->configs[$name];
 	}
-
 }

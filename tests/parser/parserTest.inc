@@ -27,7 +27,6 @@
  * @file
  * @ingroup Testing
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup Testing
@@ -245,9 +244,6 @@ class ParserTest {
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
 		array_push( $wgExtraInterlanguageLinkPrefixes, 'mul' );
-
-		// Reset all services to be consistent with the new settings!
-		MediaWikiServices::resetGlobalInstance();
 	}
 
 	/**
@@ -1009,6 +1005,11 @@ class ParserTest {
 
 		$this->databaseSetupDone = true;
 
+		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
+		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
+		# This works around it for now...
+		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
 		if ( wfGetLB()->getServerCount() != 1 ) {
 			$this->useTemporaryTables = false;
@@ -1035,22 +1036,11 @@ class ParserTest {
 		$this->db->insert( 'site_stats',
 			[ 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ] );
 
-		$bootstrapConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
-		$configOverrides = new HashConfig();
+		# Reinitialise the LocalisationCache to match the database state
+		Language::getLocalisationCache()->unloadAll();
 
-		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
-		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
-		# This works around it for now...
-		$objectCaches = [
-				CACHE_DB => [ 'class' => 'HashBagOStuff' ],
-			] + $bootstrapConfig->get( 'ObjectCaches' );
-
-		$configOverrides->set( 'ObjectCaches', $objectCaches );
-
-		// Reset all services to be consistent with the new settings!
-		MediaWikiServices::resetGlobalInstance(
-			new MultiConfig( [ $configOverrides, $bootstrapConfig ] )
-		);
+		# Clear the message cache
+		MessageCache::singleton()->clear();
 
 		// Remember to update newParserTests.php after changing the below
 		// (and it uses a slightly different syntax just for teh lulz)
@@ -1251,7 +1241,11 @@ class ParserTest {
 	 * after each test runs.
 	 */
 	private function teardownGlobals() {
-		MediaWikiServices::resetGlobalInstance();
+		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
+		LockManagerGroup::destroySingletons();
+		LinkCache::singleton()->clear();
+		MWTidy::destroySingleton();
 
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
