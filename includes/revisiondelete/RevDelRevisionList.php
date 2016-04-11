@@ -66,7 +66,10 @@ class RevDelRevisionList extends RevDelList {
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id' => $ids,
 			],
-			'options' => [ 'ORDER BY' => 'rev_id DESC' ],
+			'options' => [
+				'ORDER BY' => 'rev_id DESC',
+				'USE INDEX' => [ 'revision' => 'PRIMARY' ] // workaround for MySQL bug (T104313)
+			],
 			'join_conds' => [
 				'page' => Revision::pageJoinCond(),
 				'user' => Revision::userJoinCond(),
