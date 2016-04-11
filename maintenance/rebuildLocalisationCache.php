@@ -29,8 +29,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -113,8 +111,9 @@ class RebuildLocalisationCache extends Maintenance {
 			$pid = ( $threads > 1 ) ? pcntl_fork() : -1;
 
 			if ( $pid === 0 ) {
-				// Reset services, so we don't re-use connections.
-				MediaWikiServices::resetChildProcessServices();
+				// Child, reseed because there is no bug in PHP:
+				// http://bugs.php.net/bug.php?id=42465
+				mt_srand( getmypid() );
 
 				$this->doRebuild( $codes, $lc, $force );
 				exit( 0 );
