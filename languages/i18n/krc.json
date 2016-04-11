@@ -2663,7 +2663,6 @@
 	"redirect-file": "Файлны аты",
 	"fileduplicatesearch": "Дубликат файлланы изле",
 	"fileduplicatesearch-summary": "Хэш-кодлары бла дубликат файланны изле.",
-	"fileduplicatesearch-legend": "Дубликатланы изле",
 	"fileduplicatesearch-filename": "Файлны аты:",
 	"fileduplicatesearch-submit": "Таб",
 	"fileduplicatesearch-info": "$1 × $2 пиксель<br />Файлны ёлчеми: $3<br />MIME-тип: $4",

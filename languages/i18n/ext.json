@@ -1693,7 +1693,6 @@
 	"version-software-product": "Proutu",
 	"version-software-version": "Velsión",
 	"fileduplicatesearch": "Landeal archivus dupricaus",
-	"fileduplicatesearch-legend": "Landeal dupricaus",
 	"fileduplicatesearch-filename": "Nombri el archivu:",
 	"fileduplicatesearch-submit": "Landeal",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Grandol del archivu: $3<br />Crasi MIME: $4",

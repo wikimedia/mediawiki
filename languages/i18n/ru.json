@@ -3727,8 +3727,11 @@
 	"randomrootpage": "Случайная корневая страница",
 	"log-action-filter-block": "Тип блокировки:",
 	"log-action-filter-delete": "Тип удаления:",
+	"log-action-filter-import": "Тип импорта:",
 	"log-action-filter-patrol": "Тип патрулирования:",
 	"log-action-filter-protect": "Тип защиты:",
+	"log-action-filter-rights": "Тип изменения прав",
+	"log-action-filter-suppress": "Тип подавления",
 	"log-action-filter-upload": "Тип загрузки:",
 	"log-action-filter-all": "Все",
 	"log-action-filter-block-block": "Блокировка",
@@ -3743,6 +3746,8 @@
 	"log-action-filter-protect-protect": "Защита",
 	"log-action-filter-protect-modify": "Изменение защиты",
 	"log-action-filter-protect-unprotect": "Снятие защиты",
+	"log-action-filter-rights-rights": "Ручное изменение",
+	"log-action-filter-rights-autopromote": "Автоматическое изменение",
 	"log-action-filter-upload-upload": "Новая загрузка",
 	"log-action-filter-upload-overwrite": "Повторно загрузить"
 }

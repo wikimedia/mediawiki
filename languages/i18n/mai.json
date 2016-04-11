@@ -2932,7 +2932,6 @@
 	"redirect-not-exists": "बैनर नैं मिल्ल",
 	"fileduplicatesearch": "द्वितीयक संचिका ताकू",
 	"fileduplicatesearch-summary": "हैश मानक आधारपर द्वितीयक संचिका ताकू।",
-	"fileduplicatesearch-legend": "द्वितीयक ताकू",
 	"fileduplicatesearch-filename": "संचिकानाम:",
 	"fileduplicatesearch-submit": "ताकू",
 	"fileduplicatesearch-info": "$1 × $2 चित्राणु<br /> फाइल आकार: $3<br /> माइम प्रकार: $4",

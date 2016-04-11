@@ -2472,7 +2472,6 @@
 	"version-software-version": "Versión",
 	"fileduplicatesearch": "Mirar fichers duplicatos",
 	"fileduplicatesearch-summary": "Mirar archivos duplicatos basatos en a suya valura hash.",
-	"fileduplicatesearch-legend": "Mirar duplicatos",
 	"fileduplicatesearch-filename": "Nombre d'o fichero:",
 	"fileduplicatesearch-submit": "Mirar",
 	"fileduplicatesearch-info": "$1 × $2 pixels<br />Grandaria d'o fichero: $3<br />tipo MIME: $4",

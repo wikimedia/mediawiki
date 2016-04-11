@@ -2348,7 +2348,6 @@
 	"version-software-product": "Produk",
 	"version-software-version": "Vérsi",
 	"fileduplicatesearch": "Sungsi gambar duplikat",
-	"fileduplicatesearch-legend": "Sungsi duplikat",
 	"fileduplicatesearch-filename": "Ngaran koropak:",
 	"fileduplicatesearch-submit": "Sungsi",
 	"fileduplicatesearch-info": "$1 × $2 piksel<br />Ukuran koropak: $3<br />Tipeu MIME: $4",

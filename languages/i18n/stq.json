@@ -2275,7 +2275,6 @@
 	"version-software-version": "Version",
 	"fileduplicatesearch": "Doatäi-Duplikoat-Säike",
 	"fileduplicatesearch-summary": "Säike ätter Doatäi-Duplikoate ap Basis fon hieren Hash-Wäid.",
-	"fileduplicatesearch-legend": "Säike ätter Duplikoate",
 	"fileduplicatesearch-filename": "Doatäinoome:",
 	"fileduplicatesearch-submit": "Säike (016)",
 	"fileduplicatesearch-info": "$1 × $2 Pixel<br />Doatäigrööte: $3<br />MIME-Typ: $4",

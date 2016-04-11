@@ -1761,7 +1761,6 @@
 	"redirect-revision": "Poslapė versėjė",
 	"redirect-file": "Abruozdėlė vards",
 	"fileduplicatesearch": "Ėiškuotė doblikoutu failu",
-	"fileduplicatesearch-legend": "Ėiškuotė doblėkatu",
 	"fileduplicatesearch-filename": "Faila vards:",
 	"fileduplicatesearch-submit": "Ėiškuotė",
 	"fileduplicatesearch-info": "$1 × $2 pėkseliu<br />Faila dėdoms: $3<br />MIME tėps: $4",

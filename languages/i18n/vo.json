@@ -2076,7 +2076,6 @@
 	"redirect-file": "Ragivanem",
 	"fileduplicatesearch": "Sukön ragivis petelüköl",
 	"fileduplicatesearch-summary": "Sukön ragivis petelüköl stabü völad kontrolasaedota onsik.",
-	"fileduplicatesearch-legend": "Sukön telükoti",
 	"fileduplicatesearch-filename": "Ragivanem:",
 	"fileduplicatesearch-submit": "Sukön",
 	"fileduplicatesearch-info": "pixels $1 × $2 <br />Ragivagretot: $3<br />MIME-sot: $4",

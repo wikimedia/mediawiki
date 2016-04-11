@@ -2540,7 +2540,6 @@
 	"redirect-submit": "برا",
 	"fileduplicatesearch": "گردگ په کپی  فایلان",
 	"fileduplicatesearch-summary": "گردگ په کپی فایلان په اساس درهمین ارزش.",
-	"fileduplicatesearch-legend": "گردگ په  کپی",
 	"fileduplicatesearch-filename": ":نام فایل",
 	"fileduplicatesearch-submit": "گردگ",
 	"fileduplicatesearch-info": "$1 × $2 پیکسل<br />اندازه فایل: $3<br />نوع مایم: $4",

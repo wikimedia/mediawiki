@@ -2366,7 +2366,6 @@
 	"redirect-submit": "Nenda",
 	"fileduplicatesearch": "Tafuta mafaili ya nakili",
 	"fileduplicatesearch-summary": "Kutafuta mafaili ya nakili kwa kuzingatia thamani za reli.",
-	"fileduplicatesearch-legend": "Kutafuta kifani",
 	"fileduplicatesearch-filename": "Jina la faili:",
 	"fileduplicatesearch-submit": "Tafuta",
 	"fileduplicatesearch-info": "Piseli $1 × $2<br />Ukubwa wa faili: $3<br />Aina ya MIME: $4",

@@ -1907,7 +1907,6 @@
 	"version-software-version": "Wersiōni",
 	"fileduplicatesearch": "Laukīs dwigubbintans zūrbrukins",
 	"fileduplicatesearch-summary": "Laukīs dwigubbintans zūrbrukins pa tenēisan kōntrōlingin summin.",
-	"fileduplicatesearch-legend": "Laukīs dwigubbintans zūrbrukins",
 	"fileduplicatesearch-filename": "Zūrbrukes pabilisnā:",
 	"fileduplicatesearch-submit": "Laukīs",
 	"fileduplicatesearch-info": "$1 × $2 pikselai<br />Zūrbrukis debban: $3<br />MIME tīps: $4",

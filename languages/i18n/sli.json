@@ -1636,7 +1636,6 @@
 	"version-hook-name": "Schnittstallanoame",
 	"version-hook-subscribedby": "Uffruff vu",
 	"fileduplicatesearch-summary": "Suche noach Dateiduplikaten uff Basis ihres Hashwertes.",
-	"fileduplicatesearch-legend": "Suche noach Duplikata",
 	"fileduplicatesearch-filename": "Dateinoame:",
 	"fileduplicatesearch-submit": "Sucha",
 	"fileduplicatesearch-info": "$1 × $2 Pixel<br />Dateigreeße: $3<br />MIME-Typ: $4",

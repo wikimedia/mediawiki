@@ -2109,7 +2109,6 @@
 	"version-entrypoints-header-url": "URL",
 	"fileduplicatesearch": "Söök na Datein, de jüst gliek sünd",
 	"fileduplicatesearch-summary": "Söök na Datein, de na jemehr Hash-Tallen jüst gliek sünd.",
-	"fileduplicatesearch-legend": "Söök na Datein, de jüst gliek sünd",
 	"fileduplicatesearch-filename": "Dateinaam:",
 	"fileduplicatesearch-submit": "Söken",
 	"fileduplicatesearch-info": "$1 × $2 Pixel<br />Dateigrött: $3<br />MIME-Typ: $4",

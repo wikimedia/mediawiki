@@ -2982,7 +2982,6 @@
 	"redirect-not-exists": "Hodnota nebola nájdená",
 	"fileduplicatesearch": "Hľadať duplicitné súbory",
 	"fileduplicatesearch-summary": "Hľadanie duplicitných súborov na základe ich haš hodnôt.",
-	"fileduplicatesearch-legend": "Hľadať duplicity",
 	"fileduplicatesearch-filename": "Názov súboru:",
 	"fileduplicatesearch-submit": "Hľadať",
 	"fileduplicatesearch-info": "$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4",

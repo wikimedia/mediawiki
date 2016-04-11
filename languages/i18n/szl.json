@@ -2124,7 +2124,6 @@
 	"version-software-version": "Wersjo",
 	"fileduplicatesearch": "Šnupej za duplikatym plika",
 	"fileduplicatesearch-summary": "Šnupej za duplikatůma plika na podstawje wartośći fůnkcyji skrůtu.",
-	"fileduplicatesearch-legend": "Šnupej za duplikatůma plika",
 	"fileduplicatesearch-filename": "Mjano pliku:",
 	"fileduplicatesearch-submit": "Šnupej",
 	"fileduplicatesearch-info": "$1 × $2 pikseli<br />Wjelgość plika: $3<br />Typ MIME: $4",

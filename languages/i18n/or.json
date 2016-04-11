@@ -2892,7 +2892,6 @@
 	"redirect-not-exists": "ମୂଳ୍ୟ ମିଳିଲା ନାହିଁ",
 	"fileduplicatesearch": "ଏହାର ନକଲ ପୃଷ୍ଠା ଖୋଜିବେ ।",
 	"fileduplicatesearch-summary": "ହାସ୍ ମୂଲ୍ୟକୁ ନେଇ ଦୁଇଥର ଥିବା ଫାଇଲ ଖୋଜନ୍ତୁ ।",
-	"fileduplicatesearch-legend": "ନକଲ ପାଇଁ ଖୋଜନ୍ତୁ ।",
 	"fileduplicatesearch-filename": "ଫାଇଲ ନାମ:",
 	"fileduplicatesearch-submit": "ଖୋଜନ୍ତୁ",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />ଫାଇଲ ପ୍ରକାର: $3<br />MIME ପ୍ରକାର: $4",

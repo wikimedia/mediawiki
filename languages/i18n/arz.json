@@ -2258,7 +2258,6 @@
 	"version-software-version": "النسخه",
 	"fileduplicatesearch": "دور على الملفات المتكررة",
 	"fileduplicatesearch-summary": "دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.",
-	"fileduplicatesearch-legend": "تدوير على متكرر",
 	"fileduplicatesearch-filename": "اسم الملف:",
 	"fileduplicatesearch-submit": "تدوير",
 	"fileduplicatesearch-info": "$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4",

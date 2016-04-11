@@ -3166,7 +3166,6 @@
 	"redirect-submit": "Emmodar",
 	"fileduplicatesearch": "Rechèrche des fichiérs en doblo",
 	"fileduplicatesearch-summary": "Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.",
-	"fileduplicatesearch-legend": "Rechèrche d’un doblo",
 	"fileduplicatesearch-filename": "Nom du fichiér :",
 	"fileduplicatesearch-submit": "Rechèrchiér",
 	"fileduplicatesearch-info": "$1 × $2 pixèls<br />Talye du fichiér : $3<br />Tipo MIME : $4",

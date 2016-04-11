@@ -2339,7 +2339,6 @@
 	"redirect-user": "İstifadəçi ID-si",
 	"redirect-page": "Səhifə ID-si",
 	"fileduplicatesearch": "Dublikat fayl axtarışı",
-	"fileduplicatesearch-legend": "Dublikatı axtar",
 	"fileduplicatesearch-filename": "Fayl adı:",
 	"fileduplicatesearch-submit": "Axtar",
 	"fileduplicatesearch-result-1": "\"$1\" faylı hər hansı eyni dublikata malik deyil.",

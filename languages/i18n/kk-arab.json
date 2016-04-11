@@ -1721,7 +1721,6 @@
 	"version-software-version": "نۇسقاسى",
 	"fileduplicatesearch": "فايل تەلنۇسقالارىن ىزدەۋ",
 	"fileduplicatesearch-summary": "فايل حەشى ماعىناسى نەگىزىندە تەلنۇسقالارىن ىزدەۋ.",
-	"fileduplicatesearch-legend": "تەلنۇسقانى ىزدەۋ",
 	"fileduplicatesearch-filename": "فايل اتاۋى:",
 	"fileduplicatesearch-submit": "ىزدە",
 	"fileduplicatesearch-info": "$1 × $2 پىيكسەل<br />فايل مولشەرى: $3<br />MIME ٴتۇرى: $4",

@@ -2819,7 +2819,6 @@
 	"redirect-not-exists": "Fann ikkje verdi",
 	"fileduplicatesearch": "Søk etter duplikatfiler",
 	"fileduplicatesearch-summary": "Søk etter duplikatfiler basert på hash-verdiane deira.",
-	"fileduplicatesearch-legend": "Søk etter ei duplikatfil",
 	"fileduplicatesearch-filename": "Filnamn:",
 	"fileduplicatesearch-submit": "Søk",
 	"fileduplicatesearch-info": "$1 × $2 pikslar<br />Filstorleik: $3<br />MIME-type: $4",

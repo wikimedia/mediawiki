@@ -3131,7 +3131,6 @@
 	"redirect-not-exists": "Суолта көстүбэтэ",
 	"fileduplicatesearch": "Хос билэлэри көрдөөһүн",
 	"fileduplicatesearch-summary": "Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.",
-	"fileduplicatesearch-legend": "Хатылааһыннары көрдөөһүн",
 	"fileduplicatesearch-filename": "Билэ аата:",
 	"fileduplicatesearch-submit": "Бул",
 	"fileduplicatesearch-info": "$1 × $2 пииксэл<br />Билэ кээмэйэ: $3<br />MIME-тиип: $4",

@@ -2376,7 +2376,6 @@
 	"redirect-logid": "پېژند يادښت",
 	"redirect-not-exists": "ارزښت و نه موندل شو",
 	"fileduplicatesearch": "د دوه گونو دوتنو پلټنه",
-	"fileduplicatesearch-legend": "د دوه گونو دوتنو پلټنه",
 	"fileduplicatesearch-filename": "د دوتنې نوم:",
 	"fileduplicatesearch-submit": "پلټل",
 	"fileduplicatesearch-info": "<span dir=\"ltr\">$1 × $2</span> پېکسل<br />د دوتنې کچه: $3<br />ډول MIME: $4",

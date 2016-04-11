@@ -2623,7 +2623,6 @@
 	"redirect-not-exists": "اندازه گ ودی نه بوت",
 	"fileduplicatesearch": "گشتین په تکرارین فایلان",
 	"fileduplicatesearch-summary": "گشتین په تکرارین پایلان بي اساس آوانی درهم بوته اندازه گ ئا سورت ئه گیت.",
-	"fileduplicatesearch-legend": "گشتین په تکرارین موریدان",
 	"fileduplicatesearch-filename": "فایلئ نام:",
 	"fileduplicatesearch-submit": "گشتین",
 	"fileduplicatesearch-info": "<span dir=\"ltr\">$1 × $2</span> پیکسل<br />فایلئ اندازه گ: $3<br />نوع MIME: $4",

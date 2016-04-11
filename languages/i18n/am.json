@@ -1906,7 +1906,6 @@
 	"version-software-product": "ሶፍትዌር",
 	"version-software-version": "ዝርያ",
 	"fileduplicatesearch": "ለቅጂ ፋይሎች መፈልግ",
-	"fileduplicatesearch-legend": "ለቅጂ ለመፈልግ",
 	"fileduplicatesearch-filename": "የፋይል ስም:",
 	"fileduplicatesearch-submit": "ፍለጋ",
 	"fileduplicatesearch-noresults": "«$1» የሚባል ፋይል አልተገኘም።",

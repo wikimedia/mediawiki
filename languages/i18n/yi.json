@@ -2899,7 +2899,6 @@
 	"redirect-not-exists": "ווערט נישט געטראפן",
 	"fileduplicatesearch": "זוכן דופליקאַטע טעקעס",
 	"fileduplicatesearch-summary": "זוכן דופליקאטע טעקעס באזירט אויף האש־ווערטן.",
-	"fileduplicatesearch-legend": "זוכן א דופליקאַט",
 	"fileduplicatesearch-filename": "טעקע:",
 	"fileduplicatesearch-submit": "זוכן",
 	"fileduplicatesearch-info": "$1 × $2 פיקסעל<br />טעקע גרייס: $3<br /> טיפ MIME: $4",

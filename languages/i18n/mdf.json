@@ -1984,7 +1984,6 @@
 	"version-software-version": "Верзие",
 	"fileduplicatesearch": "Вешендемс кафонзаф файлхне",
 	"fileduplicatesearch-summary": "Вешендемс кафонзаф файлхнень хэш-кодонь лувкс коряс.",
-	"fileduplicatesearch-legend": "Вешендемс кафонзафкс",
 	"fileduplicatesearch-filename": "Файллем:",
 	"fileduplicatesearch-submit": "Вешендемс",
 	"fileduplicatesearch-info": "$1 × $2 пиксель<br />Файл кувалмоц: $3<br />MIME сорт: $4",

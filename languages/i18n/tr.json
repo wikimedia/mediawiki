@@ -3134,7 +3134,6 @@
 	"redirect-not-exists": "Değer bulunamadı",
 	"fileduplicatesearch": "Benzer dosyaları ara",
 	"fileduplicatesearch-summary": "Sağlama değeri tabanında benzer dosyaları ara.",
-	"fileduplicatesearch-legend": "Bir benzerini ara",
 	"fileduplicatesearch-filename": "Dosya adı:",
 	"fileduplicatesearch-submit": "Ara",
 	"fileduplicatesearch-info": "$1 × $2 piksel<br />Dosya boyutu: $3<br />MIME tipi: $4",

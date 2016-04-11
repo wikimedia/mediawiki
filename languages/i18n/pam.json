@@ -1644,7 +1644,6 @@
 	"version-software-version": "Bersion",
 	"version-libraries-license": "Lisensya",
 	"fileduplicatesearch": "Maintun simpan (file) a kapareu",
-	"fileduplicatesearch-legend": "Maintun kapareu",
 	"fileduplicatesearch-filename": "Lagyungsimpan (filename):",
 	"fileduplicatesearch-submit": "Maintun",
 	"fileduplicatesearch-result-1": "Ala yang eksaktung kapareu ing simpan (file) a \"$1\".",

@@ -2554,7 +2554,6 @@
 	"redirect-file": "ឈ្មោះឯកសារ",
 	"redirect-not-exists": "តម្លៃរ​រកមិនឃើញ​",
 	"fileduplicatesearch": "ស្វែងរកឯកសារដូចគ្នាបេះបិទ",
-	"fileduplicatesearch-legend": "ស្វែងរកឯកសារដូចគ្នាបេះបិទ",
 	"fileduplicatesearch-filename": "ឈ្មោះឯកសារ៖",
 	"fileduplicatesearch-submit": "ស្វែងរក",
 	"fileduplicatesearch-info": "$1 × $2 ភីកសែល<br />ទំហំឯកសារ:$3<br />ប្រភេទMIME:$4",

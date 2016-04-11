@@ -2136,7 +2136,6 @@
 	"version-software-version": "Wersiýa",
 	"fileduplicatesearch": "Dublikat faýllaryň gözlegi",
 	"fileduplicatesearch-summary": "Heş kodlary boýunça meňzeş faýllary gözle.",
-	"fileduplicatesearch-legend": "Dublikatyny gözle",
 	"fileduplicatesearch-filename": "Faýlyň ady:",
 	"fileduplicatesearch-submit": "Gözle",
 	"fileduplicatesearch-info": "$1 × $2 piksel<br />Faýlyň ölçegi: $3<br />MIME tipi: $4",
