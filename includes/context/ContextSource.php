@@ -18,6 +18,8 @@
  * @author Happy-melon
  * @file
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
@@ -165,8 +167,10 @@ abstract class ContextSource implements IContextSource {
 	/**
 	 * Get the Stats object
 	 *
+	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
+	 *
 	 * @since 1.25
-	 * @return BufferingStatsdDataFactory
+	 * @return StatsdDataFactory
 	 */
 	public function getStats() {
 		return $this->getContext()->getStats();
