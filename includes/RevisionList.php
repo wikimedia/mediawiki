@@ -81,7 +81,7 @@ abstract class RevisionListBase extends ContextSource {
 	 */
 	public function reset() {
 		if ( !$this->res ) {
-			$this->res = $this->doQuery( wfGetDB( DB_SLAVE ) );
+			$this->res = $this->doQuery( wfGetDB( DB_SLAVE, 'contributions' ) );
 		} else {
 			$this->res->rewind();
 		}
