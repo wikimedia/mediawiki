@@ -37,7 +37,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		];
 
 		$this->setMwGlobals( [
-			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
+			'wgAuth' => new AuthPlugin,
 			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->user,
 		] );
