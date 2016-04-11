@@ -44,6 +44,12 @@ class WebRequest {
 	const GETHEADER_LIST = 1;
 
 	/**
+	 * The unique request ID.
+	 * @var string
+	 */
+	private static $reqId;
+
+	/**
 	 * Lazy-init response object
 	 * @var WebResponse
 	 */
@@ -257,14 +263,22 @@ class WebRequest {
 	 * @since 1.27
 	 */
 	public static function getRequestId() {
-		static $reqId;
-
-		if ( !$reqId ) {
-			$reqId = isset( $_SERVER['UNIQUE_ID'] )
+		if ( !self::$reqId ) {
+			self::$reqId = isset( $_SERVER['UNIQUE_ID'] )
 				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
 		}
 
-		return $reqId;
+		return self::$reqId;
+	}
+
+	/**
+	 * Override the unique request ID. This is for sub-requests, such as jobs, 
+	 * that wish to use the same id but are not part of the same execution context.
+	 *
+	 * @param string $id
+	 */
+	public static function overrideRequestId( $id ) {
+		self::$reqId = $id;
 	}
 
 	/**
