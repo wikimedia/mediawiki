@@ -3525,7 +3525,8 @@ class WikiPage implements Page, IDBAccessObject {
 				// Although it would be de-duplicated, it would still waste I/O.
 				$cache = ObjectCache::getLocalClusterInstance();
 				$key = $cache->makeKey( 'dynamic-linksupdate', 'last', $this->getId() );
-				if ( $cache->add( $key, time(), 60 ) ) {
+				$ttl = max( $parserOutput->getCacheExpiry(), 3600 );
+				if ( $cache->add( $key, time(), $ttl ) ) {
 					JobQueueGroup::singleton()->lazyPush(
 						RefreshLinksJob::newDynamic( $this->mTitle, $params )
 					);
