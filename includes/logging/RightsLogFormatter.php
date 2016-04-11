@@ -33,12 +33,19 @@ class RightsLogFormatter extends LogFormatter {
 		global $wgContLang, $wgUserrightsInterwikiDelimiter;
 
 		if ( !$this->plaintext ) {
-			$text = $wgContLang->ucfirst( $title->getText() );
+			$text = $wgContLang->ucfirst( $title->getDBkey() );
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
 
 			if ( count( $parts ) === 2 ) {
-				$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
-					htmlspecialchars( $title->getText() ) );
+				$titleLink = WikiMap::foreignUserLink(
+					$parts[1],
+					$parts[0],
+					htmlspecialchars(
+						strtr( $parts[0], '_', ' ' ) .
+						$wgUserrightsInterwikiDelimiter .
+						$parts[1]
+					)
+				);
 
 				if ( $titleLink !== false ) {
 					return $titleLink;
