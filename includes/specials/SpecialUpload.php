@@ -622,7 +622,8 @@ class SpecialUpload extends SpecialPage {
 			return false;
 		} else {
 			// New page should get watched if that's our option.
-			return $this->getUser()->getOption( 'watchcreations' );
+			return $this->getUser()->getOption( 'watchcreations' ) ||
+				$this->getUser()->getOption( 'watchuploads' );
 		}
 	}
 

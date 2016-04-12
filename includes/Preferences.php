@@ -1042,10 +1042,14 @@ class Preferences {
 			$watchTypes['rollback'] = 'watchrollback';
 		}
 
+		if ( $user->isAllowed( 'upload' ) ) {
+			$watchTypes['upload'] = 'watchuploads';
+		}
+
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:
-				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations
+				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
 				// tog-watchrollback
 				$defaultPreferences[$pref] = [
 					'type' => 'toggle',
