@@ -1539,7 +1539,7 @@ class Article implements Page {
 	 * @return string Containing HTML with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		$lang = $this->getTitle()->getPageLanguage();
+		$lang = $this->getTitle()->getPageViewLanguage();
 		$out = $this->getContext()->getOutput();
 		if ( $appendSubtitle ) {
 			$out->addSubtitle( wfMessage( 'redirectpagesub' ) );
