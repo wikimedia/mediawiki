@@ -197,3 +197,18 @@ class StubUserLang extends StubObject {
 		return RequestContext::getMain()->getLanguage();
 	}
 }
+
+/**
+ * Stub object for the auth plugin. Assigned to the $wgAuth global. Only used in tests.
+ */
+class StubAuthPlugin extends StubObject {
+	public function __construct() {
+		parent::__construct( 'wgAuth', 'AuthPlugin' );
+	}
+
+	public function getUserInstance( User &$user ) {
+		global $wgAuth;
+		$this->_unstub( 'getUserInstance', 5 );
+		return $wgAuth->getUserInstance( $user );
+	}
+}
