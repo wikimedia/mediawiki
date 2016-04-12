@@ -115,8 +115,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideMessagesForFullKeys
 	 */
-	public function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
-		$result = MessageCache::singleton()->get( $message, true, $lang, true );
+	public function testFullKeyBehaviour( $message, $useDB, $lang, $expectedContent ) {
+		$result = MessageCache::singleton()->get( $message, $useDB, $lang, true );
 		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
 	}
 
@@ -126,16 +126,21 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideMessagesForFullKeys
 	 */
-	public function testGetLanguageOfFullKeyBehaviour( $message, $lang, $expectedLanguage ) {
-		$result = MessageCache::singleton()->getLanguageOf( $message, true, $lang, true );
+	public function testGetLanguageOfFullKeyBehaviour( $message, $useDB, $lang, $unused, $expectedLanguage ) {
+		$result = MessageCache::singleton()->getLanguageOf( $message, $useDB, $lang, true );
 		$this->assertEquals( $expectedLanguage, $result, "Full key message fallback failed." );
 	}
 
 	function provideMessagesForFullKeys() {
 		return [
-			[ 'MessageCacheTest-FullKeyTest/ru', 'ru', 'ru' ],
-			[ 'MessageCacheTest-FullKeyTest/ru', 'ab', 'ru' ],
-			[ 'MessageCacheTest-FullKeyTest/ru/foo', 'ru', false ],
+			[ 'MessageCacheTest-FullKeyTest/ru', true, 'ru', 'ru', 'ru' ],
+			[ 'MessageCacheTest-FullKeyTest/ru', true, 'ab', 'ru', 'ru' ],
+			[ 'MessageCacheTest-FullKeyTest/ru/foo', true, 'ru', false, false ],
+			[ 'MessageCacheTest-FullKeyTest/ru', false, false, false, false ],
+			[ 'MessageCacheTest-FullKeyTest/ru', false, false, false, false ],
+			[ 'MessageCacheTest-FullKeyTest/ru/foo', false, false, false, false ],
+			[ 'parentheses/ru', false, 'doesntmatter', '($1)', 'ru' ],
+//			[ 'parentheses/es', false, 'doesntmatter', '($1)', 'en' ],
 		];
 	}
 
