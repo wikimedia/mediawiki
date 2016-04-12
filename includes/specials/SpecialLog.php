@@ -187,7 +187,8 @@ class SpecialLog extends SpecialPage {
 
 		# Set relevant user
 		if ( $pager->getPerformer() ) {
-			$this->getSkin()->setRelevantUser( User::newFromName( $pager->getPerformer() ) );
+			$performerUser = User::newFromName( $pager->getPerformer(), false );
+			$this->getSkin()->setRelevantUser( $performerUser );
 		}
 
 		# Show form options
