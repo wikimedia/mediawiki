@@ -256,7 +256,7 @@ class MovePage {
 		$pageid = $this->oldTitle->getArticleID( Title::GAID_FOR_UPDATE );
 		$protected = $this->oldTitle->isProtected();
 
-		// Do the actual move
+		// Do the actual move; if this fails, it will throw an MWException(!)
 		$nullRevision = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect );
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
@@ -412,7 +412,7 @@ class MovePage {
 	 *
 	 * @fixme This was basically directly moved from Title, it should be split into smaller functions
 	 * @param User $user the User doing the move
-	 * @param Title $nt The page to move to, which should be a redirect or nonexistent
+	 * @param Title $nt The page to move to, which should be a redirect or non-existent
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
@@ -428,6 +428,29 @@ class MovePage {
 		} else {
 			$moveOverRedirect = false;
 			$logType = 'move';
+		}
+
+		if ( $moveOverRedirect ) {
+			$overwriteMessage = wfMessage(
+					'delete_and_move_reason',
+					$this->oldTitle->getPrefixedText()
+				)->text();
+			$newpage = WikiPage::factory( $nt );
+			$errs = [];
+			$status = $newpage->doDeleteArticleReal(
+				$overwriteMessage,
+				/* $suppress */ false,
+				$nt->getArticleId(),
+				/* $commit */ false,
+				$errs,
+				$user
+			);
+
+			if ( !$status->isGood() ) {
+				throw new MWException( 'Failed to delete page-move revision: ' . $status );
+			}
+
+			$nt->resetArticleID( false );
 		}
 
 		if ( $createRedirect ) {
@@ -484,19 +507,6 @@ class MovePage {
 
 		$newpage = WikiPage::factory( $nt );
 
-		if ( $moveOverRedirect ) {
-			$newid = $nt->getArticleID();
-			$newcontent = $newpage->getContent();
-
-			# Delete the old redirect. We don't save it to history since
-			# by definition if we've got here it's rather uninteresting.
-			# We have to remove it so that the next step doesn't trigger
-			# a conflict on the unique namespace+title index...
-			$dbw->delete( 'page', [ 'page_id' => $newid ], __METHOD__ );
-
-			$newpage->doDeleteUpdates( $newid, $newcontent );
-		}
-
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
 		if ( !is_object( $nullRevision ) ) {
@@ -542,9 +552,7 @@ class MovePage {
 			);
 		}
 
-		if ( !$moveOverRedirect ) {
-			WikiPage::onArticleCreate( $nt );
-		}
+		WikiPage::onArticleCreate( $nt );
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
