@@ -24,6 +24,8 @@
  * @file
  */
 
+use HtmlFormatter\HtmlFormatter;
+
 /**
  * Class to output help for an API module
  *
