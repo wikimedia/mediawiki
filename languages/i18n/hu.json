@@ -1573,7 +1573,7 @@
 	"filehist-comment": "Megjegyzés",
 	"imagelinks": "Fájlhasználat",
 	"linkstoimage": "Az alábbi {{PLURAL:$1|lap hivatkozik|lapok hivatkoznak}} erre a fájlra:",
-	"linkstoimage-more": "Több, mint {{PLURAL:$1|egy|$1}} oldal hivatkozik erre a fájlra.\nA következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmazza.\nA teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.",
+	"linkstoimage-more": "Több mint $1 oldal hivatkozik erre a fájlra.\nA következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmazza.\nA teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.",
 	"nolinkstoimage": "Erre a fájlra nem hivatkozik lap.",
 	"morelinkstoimage": "[[Special:WhatLinksHere/$1|További hivatkozások]] megtekintése",
 	"linkstoimage-redirect": "$1 (fájlátirányítás) $2",

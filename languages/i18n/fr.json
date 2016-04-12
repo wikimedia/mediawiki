@@ -598,7 +598,7 @@
 	"passwordsent": "Un nouveau mot de passe a été envoyé à l’adresse de courriel de l’utilisateur « $1 ».\nVeuillez vous reconnecter après l’avoir reçu.",
 	"blocked-mailpassword": "Votre adresse IP est bloquée pour la modification. Pour éviter les abus, il n’est pas autorisé d’utiliser la récupération de mot de passe à partir de cette adresse IP.",
 	"eauthentsent": "Un courriel de confirmation a été envoyé à l’adresse indiquée.\nAvant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
-	"throttled-mailpassword": "Un courriel de réinitialisation de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d’éviter les abus, un seul courriel de réinitialisation de votre mot de passe sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
+	"throttled-mailpassword": "Un courriel de réinitialisation de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. \nAfin d’éviter les abus, un seul courriel de réinitialisation de votre mot de passe sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
 	"mailerror": "Erreur lors de l’envoi du courriel : $1",
 	"acct_creation_throttle_hit": "Les visiteurs de ce wiki qui utilisent votre adresse IP ont créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui est la limite maximale autorisée dans cet intervalle de temps.\nPar conséquent, la création de comptes pour les visiteurs utilisant cette adresse IP est temporairement suspendue.",
 	"emailauthenticated": "Votre adresse de courriel a été confirmée le $2 à $3.",

@@ -3721,11 +3721,17 @@
 	"log-action-filter-delete-restore": "Restauración de páginas",
 	"log-action-filter-delete-event": "Eliminación de registros",
 	"log-action-filter-delete-revision": "Eliminación de revisión",
+	"log-action-filter-managetags-create": "Creación de etiqueta",
+	"log-action-filter-managetags-delete": "Eliminación de etiqueta",
+	"log-action-filter-managetags-activate": "Activación de etiqueta",
+	"log-action-filter-newusers-autocreate": "Creación automática",
 	"log-action-filter-patrol-patrol": "Verificación manual",
 	"log-action-filter-patrol-autopatrol": "Verificación automática",
 	"log-action-filter-protect-protect": "Protección",
 	"log-action-filter-protect-modify": "Modificación de protección",
 	"log-action-filter-protect-unprotect": "Desprotección",
+	"log-action-filter-rights-rights": "Cambio manual",
+	"log-action-filter-rights-autopromote": "Cambio automático",
 	"log-action-filter-upload-upload": "Subida nueva",
 	"log-action-filter-upload-overwrite": "Volver a subir"
 }

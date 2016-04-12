@@ -226,6 +226,7 @@
 	"apihelp-mergehistory-param-fromid": "Identificador da páxina desde a que se fusionará o historial. Non pode usarse xunto con <var>$1from</var>.",
 	"apihelp-mergehistory-param-to": "Título da páxina á que se fusionará o historial. Non pode usarse xunto con <var>$1toid</var>.",
 	"apihelp-mergehistory-param-toid": "Identificador da páxina á que se fusionará o historial. Non pode usarse xunto con <var>$1to</var>.",
+	"apihelp-mergehistory-param-timestamp": "Selo de tempo dende o que se moverán as modificacións desde o historial da páxina fonte ó historial da páxina destino. Se non se indica, todo o historial da páxina fonte fusionarase co da páxina destino.",
 	"apihelp-mergehistory-param-reason": "Razón para a fusión de historiais.",
 	"apihelp-mergehistory-example-merge": "Fusionar o historial enteiro de <kbd>PáxinaVella</kbd> en <kbd>PáxinaNova</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Fusionar as revisións da páxina <kbd>PáxinaVella</kbd> con data <kbd>2015-12-31T04:37:41Z</kbd> en <kbd>PáxinaNova</kbd>.",

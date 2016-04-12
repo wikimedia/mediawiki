@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pirehelokan"
+			"Pirehelokan",
+			"Sarchia"
 		]
 	},
-	"apihelp-parse-param-disabletoc": "پێرستی ناوەرۆک پیشان مەدە."
+	"apihelp-parse-param-disabletoc": "پێرستی ناوەرۆک پیشان مەدە.",
+	"api-help-param-default": "بنەڕەت: $1"
 }
