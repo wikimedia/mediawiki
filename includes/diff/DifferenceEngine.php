@@ -842,19 +842,36 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
-		$time = microtime( true );
+		$diff = function() use ( $otext, $ntext ) {
+			$time = microtime( true );
 
-		$result = $this->textDiff( $otext, $ntext );
+			$result = $this->textDiff( $otext, $ntext );
 
-		$time = intval( ( microtime( true ) - $time ) * 1000 );
-		$this->getStats()->timing( 'diff_time', $time );
-		// Log requests slower than 99th percentile
-		if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
-			wfDebugLog( 'diff',
-				"$time ms diff: {$this->mOldid} -> {$this->mNewid} {$this->mNewPage}" );
+			$time = intval( ( microtime( true ) - $time ) * 1000 );
+			$this->getStats()->timing( 'diff_time', $time );
+			// Log requests slower than 99th percentile
+			if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
+				wfDebugLog( 'diff',
+					"$time ms diff: {$this->mOldid} -> {$this->mNewid} {$this->mNewPage}" );
+			}
+
+			return $result;
+		};
+
+		$error = function( $status ) {
+			throw new FatalError( $status->getWikiText() );
+		};
+
+		// Use PoolCounter if the diff looks like it can be expensive
+		if ( strlen( $otext ) + strlen( $ntext ) > 20000 ) {
+			$work = new PoolCounterWorkViaCallback( 'diff',
+				md5( $otext ) . md5( $ntext ),
+				[ 'doWork' => $diff, 'error' => $error ]
+			);
+			return $work->execute();
 		}
 
-		return $result;
+		return $diff();
 	}
 
 	/**
