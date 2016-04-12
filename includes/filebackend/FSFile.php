@@ -98,9 +98,22 @@ class FSFile {
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - size (filesize in bytes)
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *   - file-mime
+	 *   - major_mime
+	 *   - minor_mime
+	 *
 	 * @param string|bool $ext The file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
-	 *
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
@@ -151,6 +164,16 @@ class FSFile {
 	/**
 	 * Placeholder file properties to use for files that don't exist
 	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *
 	 * @return array
 	 */
 	public static function placeholderProps() {
@@ -198,7 +221,6 @@ class FSFile {
 	 * @return bool|string False on failure
 	 */
 	public function getSha1Base36( $recache = false ) {
-
 		if ( $this->sha1Base36 !== null && !$recache ) {
 			return $this->sha1Base36;
 		}
