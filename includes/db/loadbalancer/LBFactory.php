@@ -247,11 +247,7 @@ abstract class LBFactory {
 			} );
 		} );
 
-		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
-		$timeMs = 1000 * ( microtime( true ) - $start );
-
-		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
 	}
 
 	/**
