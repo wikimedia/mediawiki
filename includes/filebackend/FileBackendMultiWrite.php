@@ -178,7 +178,9 @@ class FileBackendMultiWrite extends FileBackend {
 			wfDebugLog( 'FileOperation', get_class( $this ) .
 				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
 			// Try to resync the clone backends to the master on the spot...
-			if ( !$this->autoResync || !$this->resyncFiles( $relevantPaths )->isOK() ) {
+			if ( $this->autoResync === false
+				|| !$this->resyncFiles( $relevantPaths, $this->autoResync )->isOK()
+			) {
 				$status->merge( $syncStatus );
 
 				return $status; // abort
@@ -322,9 +324,10 @@ class FileBackendMultiWrite extends FileBackend {
 	 * and re-synchronize those files against the "multi master" if needed.
 	 *
 	 * @param array $paths List of storage paths
+	 * @param string|bool $resyncMode False, True, or "conservative"; see __construct()
 	 * @return Status
 	 */
-	public function resyncFiles( array $paths ) {
+	public function resyncFiles( array $paths, $resyncMode = true ) {
 		$status = Status::newGood();
 
 		$mBackend = $this->backends[$this->masterIndex];
@@ -355,7 +358,7 @@ class FileBackendMultiWrite extends FileBackend {
 				if ( $mSha1 === $cSha1 ) {
 					// already synced; nothing to do
 				} elseif ( $mSha1 !== false ) { // file is in master
-					if ( $this->autoResync === 'conservative'
+					if ( $resyncMode === 'conservative'
 						&& $cStat && $cStat['mtime'] > $mStat['mtime']
 					) {
 						$status->fatal( 'backend-fail-synced', $path );
@@ -367,7 +370,7 @@ class FileBackendMultiWrite extends FileBackend {
 						[ 'src' => $fsFile->getPath(), 'dst' => $cPath ]
 					) );
 				} elseif ( $mStat === false ) { // file is not in master
-					if ( $this->autoResync === 'conservative' ) {
+					if ( $resyncMode === 'conservative' ) {
 						$status->fatal( 'backend-fail-synced', $path );
 						continue; // don't delete data
 					}
