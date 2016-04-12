@@ -2046,34 +2046,29 @@ abstract class File implements IDBAccessObject {
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
 			$cache = ObjectCache::getMainWANInstance();
+			$key = $this->repo->getLocalCacheKey(
+				'RemoteFileDescription',
+				'url',
+				$lang->getCode(),
+				$this->getName()
+			);
 
-			$key = null;
-			if ( $this->repo->descriptionCacheExpiry > 0 ) {
-				wfDebug( "Attempting to get the description from cache..." );
-				$key = $this->repo->getLocalCacheKey(
-					'RemoteFileDescription',
-					'url',
-					$lang->getCode(),
-					$this->getName()
-				);
-				$obj = $cache->get( $key );
-				if ( $obj ) {
-					wfDebug( "success!\n" );
+			return $cache->getWithSetCallback(
+				$key,
+				$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
+				function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl ) {
+					wfDebug( "Fetching shared description from $renderUrl\n" );
+					$res = Http::get( $renderUrl, [], __METHOD__ );
+					if ( !$res ) {
+						$ttl = WANObjectCache::TTL_UNCACHEABLE;
+					}
 
-					return $obj;
+					return $res;
 				}
-				wfDebug( "miss\n" );
-			}
-			wfDebug( "Fetching shared description from $renderUrl\n" );
-			$res = Http::get( $renderUrl, [], __METHOD__ );
-			if ( $res && $key ) {
-				$cache->set( $key, $res, $this->repo->descriptionCacheExpiry );
-			}
-
-			return $res;
-		} else {
-			return false;
+			);
 		}
+
+		return false;
 	}
 
 	/**
