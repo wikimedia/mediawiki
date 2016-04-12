@@ -30,6 +30,19 @@ use Liuggio\StatsdClient\Entity\StatsdDataInterface;
  * @since 1.26
  */
 class SamplingStatsdClient extends StatsdClient {
+	protected $samplingRates = [];
+
+	/**
+	 * Sampling rates as an associative array of patterns and rates.
+	 * Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
+	 * Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
+	 * @param array $samplingRates
+	 * @since 1.28
+	 */
+	public function setSamplingRates( array $samplingRates ) {
+		$this->samplingRates = $samplingRates;
+	}
+
 	/**
 	 * Sets sampling rate for all items in $data.
 	 * The sample rate specified in a StatsdData entity overrides the sample rate specified here.
@@ -37,11 +50,18 @@ class SamplingStatsdClient extends StatsdClient {
 	 * {@inheritDoc}
 	 */
 	public function appendSampleRate( $data, $sampleRate = 1 ) {
-		if ( $sampleRate < 1 ) {
-			array_walk( $data, function( $item ) use ( $sampleRate ) {
+		$samplingRates = $this->samplingRates;
+		if ( !$samplingRates && $sampleRate !== 1 ) {
+			$samplingRates = [ '*' => $sampleRate ];
+		}
+		if ( $samplingRates ) {
+			array_walk( $data, function( $item ) use ( $samplingRates ) {
 				/** @var $item StatsdData */
-				if ( $item->getSampleRate() === 1 ) {
-					$item->setSampleRate( $sampleRate );
+				foreach ( $samplingRates as $pattern => $rate ) {
+					if ( fnmatch( $pattern, $item->getKey(), FNM_NOESCAPE ) ) {
+						$item->setSampleRate( $item->getSampleRate() * $rate );
+						break;
+					}
 				}
 			} );
 		}
@@ -74,9 +94,7 @@ class SamplingStatsdClient extends StatsdClient {
 		}
 
 		// add sampling
-		if ( $sampleRate < 1 ) {
-			$data = $this->appendSampleRate( $data, $sampleRate );
-		}
+		$data = $this->appendSampleRate( $data, $sampleRate );
 		$data = $this->sampleData( $data );
 
 		$data = array_map( 'strval', $data );

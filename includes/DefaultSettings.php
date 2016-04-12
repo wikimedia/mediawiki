@@ -5902,6 +5902,14 @@ $wgStatsdServer = false;
 $wgStatsdMetricPrefix = 'MediaWiki';
 
 /**
+ * Sampling rate for statsd metrics as an associative array of patterns and rates.
+ * Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
+ * Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
+ * @since 1.28
+ */
+$wgStatsdSamplingRates = [];
+
+/**
  * InfoAction retrieves a list of transclusion links (both to and from).
  * This number puts a limit on that query in the case of highly transcluded
  * templates.

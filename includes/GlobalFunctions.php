@@ -1182,6 +1182,7 @@ function wfLogProfilingData() {
 			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
 			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
+			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
 			$statsdClient->send( $context->getStats()->getBuffer() );
 		} catch ( Exception $ex ) {
 			MWExceptionHandler::logException( $ex );
