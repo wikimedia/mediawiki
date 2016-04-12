@@ -32,12 +32,35 @@ class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
 
 		return [
 			// $data, $sampleRate, $seed, $expectWrite
-			[ $unsampled, 1, 0 /*0.44*/, $unsampled ],
-			[ $sampled, 1, 0 /*0.44*/, null ],
-			[ $sampled, 1, 4 /*0.03*/, $sampled ],
-			[ $unsampled, 0.1, 4 /*0.03*/, $sampled ],
-			[ $sampled, 0.5, 0 /*0.44*/, null ],
-			[ $sampled, 0.5, 4 /*0.03*/, $sampled ],
+			[ $unsampled, 1, 0 /*0.44*/, true ],
+			[ $sampled, 1, 0 /*0.44*/, false ],
+			[ $sampled, 1, 4 /*0.03*/, true ],
+			[ $unsampled, 0.1, 0 /*0.44*/, false ],
+			[ $sampled, 0.5, 0 /*0.44*/, false ],
+			[ $sampled, 0.5, 4 /*0.03*/, false ],
 		];
+	}
+
+	public function testSetSamplingRates() {
+		$matching = new StatsdData();
+		$matching->setKey( 'foo.bar' );
+		$matching->setValue( 1 );
+
+		$nonMatching = new StatsdData();
+		$nonMatching->setKey( 'oof.bar' );
+		$nonMatching->setValue( 1 );
+
+		$sender = $this->getMock( 'Liuggio\StatsdClient\Sender\SenderInterface' );
+		$sender->expects( $this->any() )->method( 'open' )->will( $this->returnValue( true ) );
+		$sender->expects( $this->once() )->method( 'write' )->with( $this->anything(),
+			$this->equalTo( $nonMatching ) );
+
+		$client = new SamplingStatsdClient( $sender );
+		$client->setSamplingRates( [ 'foo.*' => 0.2 ] );
+
+		mt_srand( 0 ); // next random is 0.44
+		$client->send( $matching );
+		mt_srand( 0 );
+		$client->send( $nonMatching );
 	}
 }
