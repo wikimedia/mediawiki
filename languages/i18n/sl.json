@@ -29,6 +29,7 @@
 	"tog-watchdefault": "Na spisek nadzorov dodaj vse članke in datoteke, ki sem jih spremenil/-a",
 	"tog-watchmoves": "Dodaj strani in datoteke, ki jih premaknem, na moj spisek nadzorov",
 	"tog-watchdeletion": "Dodaj strani in datoteke, ki jih izbrišem, na moj spisek nadzorov",
+	"tog-watchuploads": "Dodaj nove datoteke, ki jih naložim, na moj spisek nadzorov",
 	"tog-watchrollback": "Dodaj strani, na katerih sem izvedel vrnitev, na moj spisek nadzorov",
 	"tog-minordefault": "Vsa urejanja označi kot manjša",
 	"tog-previewontop": "Prikaži predogled pred urejevalnim poljem",

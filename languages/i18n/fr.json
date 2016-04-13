@@ -155,6 +155,7 @@
 	"tog-watchdefault": "Ajouter à ma liste de suivi les pages et les fichiers que je modifie",
 	"tog-watchmoves": "Ajouter à ma liste de suivi les pages et les fichiers que je renomme",
 	"tog-watchdeletion": "Ajouter à ma liste de suivi les pages et les fichiers que je supprime",
+	"tog-watchuploads": "Ajouter les nouveaux fichiers que j’ai téléchargés à ma liste de suivi",
 	"tog-watchrollback": "Ajouter à ma liste de suivi les pages sur lesquelles j’ai effectué une révocation",
 	"tog-minordefault": "Marquer toutes mes modifications comme mineures par défaut",
 	"tog-previewontop": "Afficher la prévisualisation avant la zone de modification",

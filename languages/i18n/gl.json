@@ -40,6 +40,7 @@
 	"tog-watchdefault": "Engadir as páxinas e os ficheiros que edite á miña lista de vixilancia",
 	"tog-watchmoves": "Engadir as páxinas e os ficheiros que mova á miña lista de vixilancia",
 	"tog-watchdeletion": "Engadir as páxinas e os ficheiros que borre á miña lista de vixilancia",
+	"tog-watchuploads": "Engadir os novos ficheiros que subín á miña lista de vixilancia",
 	"tog-watchrollback": "Engadir as páxinas nas que realice unha reversión á miña lista de vixilancia",
 	"tog-minordefault": "Marcar todas as edicións como pequenas por defecto",
 	"tog-previewontop": "Mostrar a vista previa antes da caixa de edición",
