@@ -370,9 +370,10 @@ class SpecialPageFactory {
 	 * Find the object with a given name and return it (or NULL)
 	 *
 	 * @param string $name Special page name, may be localised and/or an alias
+	 * @param bool $including Output is being captured for use in {{special:whatever}}
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
-	public static function getPage( $name ) {
+	public static function getPage( $name, $including = false ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
 
 		if ( isset( self::$pageObjectCache[$realName] ) ) {
@@ -406,7 +407,11 @@ class SpecialPageFactory {
 				$page = null;
 			}
 
-			self::$pageObjectCache[$realName] = $page;
+			// transcluded special pages need to be constructed whenever they're transcluded to avoid
+			// the same result for a different parameterized transclusion of the same special page - T132545
+			if ( !$including ) {
+				self::$pageObjectCache[$realName] = $page;
+			}
 			if ( $page instanceof SpecialPage ) {
 				return $page;
 			} else {
@@ -504,7 +509,7 @@ class SpecialPageFactory {
 	 *
 	 * @param Title $title
 	 * @param IContextSource $context
-	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
+	 * @param bool $including Output is being captured for use in {{special:whatever}}
 	 *
 	 * @return bool
 	 */
@@ -518,7 +523,7 @@ class SpecialPageFactory {
 			$par = $bits[1];
 		}
 
-		$page = self::getPage( $name );
+		$page = self::getPage( $name, $including );
 		if ( !$page ) {
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
