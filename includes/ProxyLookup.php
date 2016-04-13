@@ -57,16 +57,32 @@ class ProxyLookup {
 	 * @return bool
 	 */
 	public function isConfiguredProxy( $ip ) {
+		global $wgSquidServers, $wgSquidServersNoPurge;
+
 		// Quick check of known singular proxy servers
-		if ( in_array( $ip, $this->proxyServers ) ) {
-			return true;
+		$trusted = in_array( $ip, $wgSquidServers );
+
+		// Check known singular proxy servers with ports
+		if ( !$trusted ) {
+			$ipWithColon = $ip . ':';
+			$ipWithColonLen = strlen( $ipWithColon );
+			foreach ( $wgSquidServers as $server ) {
+				if ( !strncmp( $ipWithColon, $server, $ipWithColonLen ) ) {
+					$trusted = true;
+					break;
+				}
+			}
 		}
 
-		// Check against addresses and CIDR nets in the complex list
-		if ( !$this->proxyIPSet ) {
-			$this->proxyIPSet = new IPSet( $this->proxyServersComplex );
+		// Check against addresses and CIDR nets in the NoPurge list
+		if ( !$trusted ) {
+			if ( !self::$proxyIpSet ) {
+				self::$proxyIpSet = new IPSet( $wgSquidServersNoPurge );
+			}
+			$trusted = self::$proxyIpSet->match( $ip );
 		}
-		return $this->proxyIPSet->match( $ip );
+
+		return $trusted;
 	}
 
 	/**
@@ -78,8 +94,16 @@ class ProxyLookup {
 	 * @return bool
 	 */
 	public function isTrustedProxy( $ip ) {
-		$trusted = $this->isConfiguredProxy( $ip );
+		$trusted = self::isConfiguredProxy( $ip );
 		Hooks::run( 'IsTrustedProxy', [ &$ip, &$trusted ] );
 		return $trusted;
+	}
+
+	/**
+	 * Clears precomputed data used for proxy support.
+	 * Use this only for unit tests.
+	 */
+	public static function clearCaches() {
+		self::$proxyIpSet = null;
 	}
 }
