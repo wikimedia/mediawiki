@@ -2875,7 +2875,8 @@ class LocalFileMoveBatch {
 				$this->cleanupTarget( $triplets );
 				$destFile->unlock();
 				$this->file->unlockAndRollback(); // unlocks the destination
-				wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
+				wfDebugLog( 'imagemove', "Error in moving files: "
+					. $statusMove->getWikiText( false, false, 'en' ) );
 				$statusMove->ok = false;
 
 				return $statusMove;

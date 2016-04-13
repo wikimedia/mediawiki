@@ -92,7 +92,7 @@ class PublishStashedFileJob extends Job {
 					$this->params['filekey'],
 					[ 'result' => 'Failure', 'stage' => 'publish', 'status' => $status ]
 				);
-				$this->setLastError( $status->getWikiText() );
+				$this->setLastError( $status->getWikiText( false, false, 'en' ) );
 
 				return false;
 			}

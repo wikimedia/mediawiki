@@ -97,7 +97,7 @@ class EditCLI extends Maintenance {
 			$exit = 1;
 		}
 		if ( !$status->isGood() ) {
-			$this->output( $status->getWikiText() . "\n" );
+			$this->output( $status->getWikiText( false, false, 'en' ) . "\n" );
 		}
 		exit( $exit );
 	}

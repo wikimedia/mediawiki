@@ -499,10 +499,12 @@ final class SessionManager implements SessionManagerInterface {
 							'username' => $userName,
 						] );
 				} else {
-					$logger->error( __METHOD__ . ': failed with message ' . $status->getWikiText(),
+					$logger->error(
+						__METHOD__ . ': failed with message ' . $status->getWikiText( false, false, 'en' ),
 						[
 							'username' => $userName,
-						] );
+						]
+					);
 				}
 				$user->setId( $id );
 				$user->loadFromId( User::READ_LATEST );

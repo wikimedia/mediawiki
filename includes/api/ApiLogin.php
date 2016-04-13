@@ -103,7 +103,7 @@ class ApiLogin extends ApiBase {
 				$loginType = 'BotPassword';
 			} else {
 				LoggerFactory::getInstance( 'authmanager' )->info(
-					'BotPassword login failed: ' . $status->getWikiText()
+					'BotPassword login failed: ' . $status->getWikiText( false, false, 'en' )
 				);
 			}
 		}

@@ -257,7 +257,7 @@ class ApiUpload extends ApiBase {
 					'offset' => $this->mUpload->getOffset(),
 				];
 
-				$this->dieUsage( $status->getWikiText(), 'stashfailed', 0, $extradata );
+				$this->dieUsage( $status->getWikiText( false, false, 'en' ), 'stashfailed', 0, $extradata );
 			}
 		}
 
@@ -288,7 +288,7 @@ class ApiUpload extends ApiBase {
 						$filekey,
 						[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 					);
-					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+					$this->dieUsage( $status->getWikiText( false, false, 'en' ), 'stashfailed' );
 				}
 
 				// The fully concatenated file has a new filekey. So remove
@@ -391,7 +391,7 @@ class ApiUpload extends ApiBase {
 			if ( !$progress ) {
 				$this->dieUsage( 'No result in status data', 'missingresult' );
 			} elseif ( !$progress['status']->isGood() ) {
-				$this->dieUsage( $progress['status']->getWikiText(), 'stashfailed' );
+				$this->dieUsage( $progress['status']->getWikiText( false, false, 'en' ), 'stashfailed' );
 			}
 			if ( isset( $progress['status']->value['verification'] ) ) {
 				$this->checkVerification( $progress['status']->value['verification'] );
