@@ -724,6 +724,65 @@ class IP {
 	}
 
 	/**
+	 * Checks if an IP is a trusted proxy provider.
+	 * Useful to tell if X-Forwarded-For data is possibly bogus.
+	 * CDN cache servers for the site are whitelisted.
+	 * @since 1.24
+	 *
+	 * @param string $ip
+	 * @return bool
+	 */
+	public static function isTrustedProxy( $ip ) {
+		$trusted = self::isConfiguredProxy( $ip );
+		Hooks::run( 'IsTrustedProxy', [ &$ip, &$trusted ] );
+		return $trusted;
+	}
+
+	/**
+	 * Checks if an IP matches a proxy we've configured
+	 * @since 1.24
+	 *
+	 * @param string $ip
+	 * @return bool
+	 */
+	public static function isConfiguredProxy( $ip ) {
+		global $wgSquidServers, $wgSquidServersNoPurge;
+
+		// Quick check of known singular proxy servers
+		$trusted = in_array( $ip, $wgSquidServers );
+
+		// Check known singular proxy servers with ports
+		if ( !$trusted ) {
+			$ipWithColon = $ip . ':';
+			$ipWithColonLen = strlen( $ipWithColon );
+			foreach ( $wgSquidServers as $server ) {
+				if ( !strncmp( $ipWithColon, $server, $ipWithColonLen ) ) {
+					$trusted = true;
+					break;
+				}
+			}
+		}
+
+		// Check against addresses and CIDR nets in the NoPurge list
+		if ( !$trusted ) {
+			if ( !self::$proxyIpSet ) {
+				self::$proxyIpSet = new IPSet( $wgSquidServersNoPurge );
+			}
+			$trusted = self::$proxyIpSet->match( $ip );
+		}
+
+		return $trusted;
+	}
+
+	/**
+	 * Clears precomputed data used for proxy support.
+	 * Use this only for unit tests.
+	 */
+	public static function clearCaches() {
+		self::$proxyIpSet = null;
+	}
+
+	/**
 	 * Returns the subnet of a given IP
 	 *
 	 * @param string $ip

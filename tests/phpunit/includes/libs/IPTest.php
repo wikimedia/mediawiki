@@ -9,7 +9,17 @@
  * dataprovider.
  */
 
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends MediaWikiTestCase {
+
+	protected function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( [
+			'wgSquidServers' => [ '127.0.0.1', '127.0.0.1:8080', '192.168.0.2:80' ],
+			'wgSquidServersNoPurge' => [ '192.168.0.3' ],
+			'wgUsePrivateIPs' => false,
+		] );
+	}
+
 	/**
 	 * @covers IP::isIPAddress
 	 * @dataProvider provideInvalidIPs
@@ -665,6 +675,26 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			[ '0:0:fef:0:0:0:e:fbb/96', '0:0:fef::e:fbb/96' ],
 			[ 'abbc:2004:0:0::0:0/40', 'abbc:2004::/40' ],
 			[ 'aebc:2004:f:0:0:0:0:0/80', 'aebc:2004:f::/80' ],
+		];
+	}
+
+	/**
+	 * @covers IP::isConfiguredProxy
+	 * @dataProvider provideIPsToTestConfiguredProxy
+	 */
+	public function testisConfiguredProxy( $expected, $input, $description ) {
+		$this->assertEquals( $expected, IP::isConfiguredProxy( $input ), $description );
+	}
+
+	/**
+	 * Provider for IP::testisConfiguredProxy()
+	 */
+	public static function provideIPsToTestConfiguredProxy() {
+		return [
+			[ true, '127.0.0.1', 'IP in $wgSquidServers list without port' ],
+			[ true, '192.168.0.2', 'IP in $wgSquidServers list with port' ],
+			[ true, '192.168.0.3', 'IP in $wgSquidServersNoPurge list' ],
+			[ false, '192.168.0.4', 'IP not in any list' ],
 		];
 	}
 }
