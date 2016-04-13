@@ -155,6 +155,12 @@ class SearchResultSet {
 	}
 
 	/**
+	 * Rewind result set back to begining
+	 */
+	function rewind() {
+	}
+
+	/**
 	 * Frees the result set, if applicable.
 	 */
 	function free() {
