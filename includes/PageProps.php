@@ -34,6 +34,31 @@ class PageProps {
 	private static $instance;
 
 	/**
+	 * Overrides the default instance of this class
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
+	 *
+	 * If this method is used it MUST also be called with null after a test to ensure a new
+	 * default instance is created next time getInstance is called.
+	 *
+	 * @param PageProps|null $store
+	 *
+	 * @return ScopedCallback to reset the overridden value
+	 * @throws MWException
+	 */
+	public static function overrideInstance( PageProps $store = null ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException(
+				'Cannot override ' . __CLASS__ . 'default instance in operation.'
+			);
+		}
+		$previousValue = self::$instance;
+		self::$instance = $store;
+		return new ScopedCallback( function() use ( $previousValue ) {
+			self::$instance = $previousValue;
+		} );
+	}
+
+	/**
 	 * @return PageProps
 	 */
 	public static function getInstance() {

@@ -47,4 +47,18 @@ class WikiCategoryPage extends WikiPage {
 		}
 		return false;
 	}
+
+	/**
+	 * Checks if a category is hidden.
+	 *
+	 * @since 1.27
+	 *
+	 * @return bool
+	 */
+	public function isHidden() {
+		$pageId = $this->getTitle()->getArticleID();
+		$pageProps = PageProps::getInstance()->getProperties( $this->getTitle(), 'hiddencat' );
+
+		return isset( $pageProps[$pageId] ) ? true : false;
+	}
 }
