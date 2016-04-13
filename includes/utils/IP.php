@@ -751,6 +751,16 @@ class IP {
 		// Quick check of known singular proxy servers
 		$trusted = in_array( $ip, $wgSquidServers );
 
+		// Check known singular proxy servers with ports
+		$ipWithColon = $ip . ':';
+		$ipWithColonLen = strlen( $ipWithColon );
+		foreach ( $wgSquidServers as $server ) {
+			if ( !strncmp( $ipWithColon, $server, $ipWithColonLen ) ) {
+				$trusted = true;
+				break;
+			}
+		}
+
 		// Check against addresses and CIDR nets in the NoPurge list
 		if ( !$trusted ) {
 			if ( !self::$proxyIpSet ) {
