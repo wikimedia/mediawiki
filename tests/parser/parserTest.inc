@@ -1008,7 +1008,7 @@ class ParserTest {
 			'site_stats', 'ipblocks', 'image', 'oldimage',
 			'recentchanges', 'watchlist', 'interwiki', 'logging', 'log_search',
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
-			'archive', 'user_groups', 'page_props', 'category'
+			'archive', 'user_groups', 'page_props', 'category', 'change_tag'
 		];
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite', 'oracle' ] ) ) {
@@ -1576,12 +1576,16 @@ class ParserTest {
 	 * @param string $text The article text
 	 * @param int|string $line The input line number, for reporting errors
 	 * @param bool|string $ignoreDuplicate Whether to silently ignore duplicate pages
+	 * @param string $options Options for creating the article
 	 * @throws Exception
 	 * @throws MWException
 	 */
-	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
+	public function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '',
+		$options = ''
+	) {
 		global $wgCapitalLinks;
 
+		$opts = $this->parseOptions( $options );
 		$oldCapitalLinks = $wgCapitalLinks;
 		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
 
@@ -1606,6 +1610,39 @@ class ParserTest {
 		}
 
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+
+		$now = wfTimestampNow();
+		$artileEditTime = self::getOptionValue( 'timestamp', $opts, $now );
+		if ( $artileEditTime !== $now ) {
+			$result = $this->db->update(
+				'revision',
+				[
+					'rev_timestamp' => $artileEditTime,
+				],
+				[
+					'rev_id' => $page->getRevision()->getId(),
+				]
+			);
+			if ( !$result ) {
+				throw new MWException( 'Coudl not modify timestamp on revision ' .
+					$page->getRevision()->getId() . ' of newly created article ' .
+					$title->getFullText() );
+			}
+			$result = $this->db->update(
+				'recentchanges',
+				[
+					'rc_timestamp' => $artileEditTime,
+				],
+				[
+					'rc_title' => $title->getText(),
+					'rc_namespace' => $title->getNamespace(),
+				]
+			);
+			if ( !$result ) {
+				throw new MWException( 'Could not modify timestamp on recentchanges' .
+					' of newly created article ' . $title->getFullText() );
+			}
+		}
 
 		$wgCapitalLinks = $oldCapitalLinks;
 	}

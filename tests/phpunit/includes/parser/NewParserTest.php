@@ -1003,7 +1003,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		foreach ( self::$articles as $name => $info ) {
 			list( $text, $line ) = $info;
-			ParserTest::addArticle( $name, $text, $line, 'ignoreduplicate' );
+			$parserTest = new ParserTest();
+			$parserTest->addArticle( $name, $text, $line, 'ignoreduplicate' );
 		}
 	}
 
