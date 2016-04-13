@@ -256,6 +256,7 @@ class IEUrlExtension {
 	 *
 	 */
 	public static function haveUndecodedRequestUri( $serverSoftware ) {
+		return true; // Ori 13-Apr-2016
 		static $whitelist = [
 			'Apache',
 			'Zeus',
