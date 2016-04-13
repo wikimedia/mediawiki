@@ -851,7 +851,9 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' => ''
+			'rc_params' =>  serialize( [
+				'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
+			] )
 		];
 
 		$rc->mExtra = [
@@ -863,6 +865,29 @@ class RecentChange {
 		];
 
 		return $rc;
+	}
+
+	/**
+	 * Get a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @return mixed
+	 */
+	public function getParam( $name ) {
+		$params = $this->parseParams();
+		return isset( $params[$name] ) ? $params[$name] : null;
+	}
+
+	/**
+	 * Set a parameter value
+	 *
+	 * @param string $name parameter name
+	 * @param mixed $value parameter value
+	 */
+	public function setParam( $name, $value ) {
+		$params = $this->parseParams();
+		$params = array_merge( $params ? $params : [], [ $name => $value ] );
+		$this->setAttribute( 'rc_params', serialize( $params ) );
 	}
 
 	/**
@@ -884,6 +909,16 @@ class RecentChange {
 	 */
 	public function getAttribute( $name ) {
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
+	}
+
+	/**
+	 * Set an attribute value
+	 *
+	 * @param string $name Attribute name
+	 * @param mixed $value Attribute value
+	 */
+	public function setAttribute( $name, $value ) {
+		$this->mAttribs[$name] = $value;
 	}
 
 	/**
