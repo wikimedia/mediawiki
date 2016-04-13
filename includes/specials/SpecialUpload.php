@@ -180,6 +180,11 @@ class SpecialUpload extends SpecialPage {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
+		// Global blocks
+		if ( $user->isBlockedGlobally() ) {
+			throw new UserBlockedError( $user->getGlobalBlock() );
+		}
+
 		# Check whether we actually want to allow changing stuff
 		$this->checkReadOnly();
 
