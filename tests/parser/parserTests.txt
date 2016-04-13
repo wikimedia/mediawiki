@@ -17415,6 +17415,30 @@ Special page transclusion twice (bug 5021)
 
 !! end
 
+
+!! article
+Yxzzxy
+!! text
+Article for special page transclusion test
+!! endarticle
+
+!! test
+Multiple special page transclusion (task T132545)
+!! options
+!! wikitext
+{{Special:RecentChanges|limit=1}}
+{{Special:RecentChanges|limit=2}}
+!! result
+<div class="mw-changeslist"><h4>01 January 1970</h4>
+<div><table class="mw-changeslist-ns0-Yxzzxy mw-changeslist-line-not-watched mw-enhanced-rc"><tr><td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span><abbr class="newpage" title="This edit created a new page">N</abbr>&#160;&#160;&#160;&#160;00:02&#160;</td><td> <span class="mw-title"><a href="/wiki/Yxzzxy" title="Yxzzxy" class="mw-changeslist-title">Yxzzxy</a></span>‎ (diff | <a href="/index.php?title=Yxzzxy&amp;curid=92&amp;action=history" title="Yxzzxy">hist</a>) <span class="mw-changeslist-separator">. .</span> <span dir="ltr" class="mw-plusminus-pos" title="42 bytes after change">(+42)</span>‎ <span class="mw-changeslist-separator">. .</span> <a href="/wiki/Special:Contributions/127.0.0.1" title="Special:Contributions/127.0.0.1" class="mw-userlink mw-anonuserlink">127.0.0.1</a> <span class="mw-usertoollinks">(<a href="/index.php?title=User_talk:127.0.0.1&amp;action=edit&amp;redlink=1" class="new" title="User talk:127.0.0.1 (page does not exist)">talk</a>)</span></td></tr></table>
+</div></div>
+<div class="mw-changeslist"><h4>14 April 2016</h4>
+<div><table class="mw-changeslist-ns0-Yxzzxy mw-changeslist-line-not-watched mw-enhanced-rc"><tr><td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span><abbr class="newpage" title="This edit created a new page">N</abbr>&#160;&#160;&#160;&#160;22:41&#160;</td><td> <span class="mw-title"><a href="/wiki/Yxzzxy" title="Yxzzxy" class="mw-changeslist-title">Yxzzxy</a></span>‎ (diff | <a href="/index.php?title=Yxzzxy&amp;curid=92&amp;action=history" title="Yxzzxy">hist</a>) <span class="mw-changeslist-separator">. .</span> <span dir="ltr" class="mw-plusminus-pos" title="42 bytes after change">(+42)</span>‎ <span class="mw-changeslist-separator">. .</span> <a href="/wiki/Special:Contributions/127.0.0.1" title="Special:Contributions/127.0.0.1" class="mw-userlink mw-anonuserlink">127.0.0.1</a> <span class="mw-usertoollinks">(<a href="/index.php?title=User_talk:127.0.0.1&amp;action=edit&amp;redlink=1" class="new" title="User talk:127.0.0.1 (page does not exist)">talk</a>)</span></td></tr></table>
+<table class="mw-changeslist-ns0-Xyzzyx mw-changeslist-line-not-watched mw-enhanced-rc"><tr><td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span><abbr class="newpage" title="This edit created a new page">N</abbr>&#160;&#160;&#160;&#160;22:41&#160;</td><td> <span class="mw-title"><a href="/wiki/Xyzzyx" title="Xyzzyx" class="mw-changeslist-title">Xyzzyx</a></span>‎ (diff | <a href="/index.php?title=Xyzzyx&amp;curid=91&amp;action=history" title="Xyzzyx">hist</a>) <span class="mw-changeslist-separator">. .</span> <span dir="ltr" class="mw-plusminus-pos" title="42 bytes after change">(+42)</span>‎ <span class="mw-changeslist-separator">. .</span> <a href="/wiki/Special:Contributions/127.0.0.1" title="Special:Contributions/127.0.0.1" class="mw-userlink mw-anonuserlink">127.0.0.1</a> <span class="mw-usertoollinks">(<a href="/index.php?title=User_talk:127.0.0.1&amp;action=edit&amp;redlink=1" class="new" title="User talk:127.0.0.1 (page does not exist)">talk</a>)</span></td></tr></table>
+</div></div>
+
+!! end
+
 !! test
 Transclusion of default MediaWiki message
 !! wikitext

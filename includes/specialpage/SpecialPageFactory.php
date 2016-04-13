@@ -370,9 +370,11 @@ class SpecialPageFactory {
 	 * Find the object with a given name and return it (or NULL)
 	 *
 	 * @param string $name Special page name, may be localised and/or an alias
+	 * @param string $doCache Flag to decide, if the result should be cached, or not, for later
+	 *  calls to this function. ("cache" to cache and "nocache" to not cache)
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
-	public static function getPage( $name ) {
+	public static function getPage( $name, $doCache = 'cache' ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
 
 		if ( isset( self::$pageObjectCache[$realName] ) ) {
@@ -406,7 +408,11 @@ class SpecialPageFactory {
 				$page = null;
 			}
 
-			self::$pageObjectCache[$realName] = $page;
+			// transcluded special pages need to be constructed whenever they're transcluded to avoid
+			// the same result for a different parameterized transclusion of the same special page - T132545
+			if ( $doCache !== 'nocache' ) {
+				self::$pageObjectCache[$realName] = $page;
+			}
 			if ( $page instanceof SpecialPage ) {
 				return $page;
 			} else {
@@ -504,7 +510,7 @@ class SpecialPageFactory {
 	 *
 	 * @param Title $title
 	 * @param IContextSource $context
-	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
+	 * @param bool $including Output is being captured for use in {{special:whatever}}
 	 *
 	 * @return bool
 	 */
@@ -518,7 +524,7 @@ class SpecialPageFactory {
 			$par = $bits[1];
 		}
 
-		$page = self::getPage( $name );
+		$page = self::getPage( $name, $including ? 'nocache' : 'cache' );
 		if ( !$page ) {
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
