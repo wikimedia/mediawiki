@@ -41,6 +41,12 @@ class SqlSearchResultSet extends SearchResultSet {
 		);
 	}
 
+	function rewind() {
+		if ( $this->resultSet ) {
+			$this->resultSet->rewind();
+		}
+	}
+
 	function free() {
 		if ( $this->resultSet === false ) {
 			return false;
