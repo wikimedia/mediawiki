@@ -482,6 +482,14 @@ class ApiParse extends ApiBase {
 		if ( $params['disabletidy'] ) {
 			$popts->setTidy( false );
 		}
+		$expandMapping = [
+			'http' => PROTO_HTTP,
+			'https' => PROTO_HTTPS,
+			'canonical' => PROTO_CANONICAL,
+			'relative' => PROTO_RELATIVE,
+			'none' => false,
+		];
+		$popts->setExpandURLs( $expandMapping[$params['expandurls']] );
 
 		return $popts;
 	}
@@ -799,6 +807,16 @@ class ApiParse extends ApiBase {
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
 			'disabletidy' => false,
+			'expandurls' => [
+				ApiBase::PARAM_DFLT => 'none',
+				ApiBase::PARAM_TYPE => [
+					'http',
+					'https',
+					'canonical',
+					'none',
+					'relative',
+				],
+			],
 			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => [
