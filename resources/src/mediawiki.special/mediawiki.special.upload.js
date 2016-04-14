@@ -407,6 +407,10 @@
 
 					$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 				};
+				img.onerror = function () {
+					// Can happen for example for invalid SVG files
+					clearPreview();
+				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
 				try {
