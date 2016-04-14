@@ -47,6 +47,13 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ConfigFactory::register
 	 */
+	public function testSalvage() {
+		$this->fail( "TEST ME!" );
+	}
+
+	/**
+	 * @covers ConfigFactory::register
+	 */
 	public function testGetConfigNames() {
 		$factory = new ConfigFactory();
 		$factory->register( 'foo', 'GlobalVarConfig::newInstance' );

@@ -1,6 +1,8 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\DestructibleService;
+use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
 
 /**
@@ -8,7 +10,7 @@ use MediaWiki\Services\ServiceDisabledException;
  *
  * @group MediaWiki
  */
-class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
+class MediaWikiServicesTest extends MediaWikiTestCase {
 
 	/**
 	 * @return Config
@@ -65,8 +67,68 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
+		$service1 = $this->getMock( SalvageableService::class );
+		$service1->expects( $this->never() )
+			->method( 'salvage' );
+
+		$newServices->defineService(
+			'Test',
+			function() use ( $service1 ) {
+				return $service1;
+			}
+		);
+
+		// force instantiation
+		$newServices->getService( 'Test' );
+
 		MediaWikiServices::resetGlobalInstance( $this->newTestConfig() );
 		$theServices = MediaWikiServices::getInstance();
+
+		$this->assertSame(
+			$service1,
+			$theServices->getService( 'Test' ),
+			'service definition should survive reset'
+		);
+
+		$this->assertNotSame( $theServices, $newServices );
+		$this->assertNotSame( $theServices, $oldServices );
+
+		MediaWikiServices::forceGlobalInstance( $oldServices );
+	}
+
+	public function testResetGlobalInstance_quick() {
+		$newServices = $this->newMediaWikiServices();
+		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
+
+		$service1 = $this->getMock( SalvageableService::class );
+		$service1->expects( $this->never() )
+			->method( 'salvage' );
+
+		$service2 = $this->getMock( SalvageableService::class );
+		$service2->expects( $this->once() )
+			->method( 'salvage' )
+			->with( $service1 );
+
+		// sequence of values the instantiator will return
+		$instantiatorReturnValues = [
+			$service1,
+			$service2,
+		];
+
+		$newServices->defineService(
+			'Test',
+			function() use ( &$instantiatorReturnValues ) {
+				return array_shift( $instantiatorReturnValues );
+			}
+		);
+
+		// force instantiation
+		$newServices->getService( 'Test' );
+
+		MediaWikiServices::resetGlobalInstance( $this->newTestConfig(), 'quick' );
+		$theServices = MediaWikiServices::getInstance();
+
+		$this->assertSame( $service2, $theServices->getService( 'Test' ) );
 
 		$this->assertNotSame( $theServices, $newServices );
 		$this->assertNotSame( $theServices, $oldServices );
@@ -109,35 +171,42 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		}
 
 		MediaWikiServices::forceGlobalInstance( $oldServices );
+		$newServices->destroy();
 	}
 
 	public function testResetChildProcessServices() {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$lbFactory = $this->getMockBuilder( 'LBFactorySimple' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$lbFactory->expects( $this->once() )
+		$service1 = $this->getMock( DestructibleService::class );
+		$service1->expects( $this->once() )
 			->method( 'destroy' );
 
-		$newServices->redefineService(
-			'DBLoadBalancerFactory',
-			function() use ( $lbFactory ) {
-				return $lbFactory;
+		$service2 = $this->getMock( DestructibleService::class );
+		$service2->expects( $this->never() )
+			->method( 'destroy' );
+
+		// sequence of values the instantiator will return
+		$instantiatorReturnValues = [
+			$service1,
+			$service2,
+		];
+
+		$newServices->defineService(
+			'Test',
+			function() use ( &$instantiatorReturnValues ) {
+				return array_shift( $instantiatorReturnValues );
 			}
 		);
 
 		// force the service to become active, so we can check that it does get destroyed
-		$oldLBFactory = $newServices->getService( 'DBLoadBalancerFactory' );
+		$oldTestService = $newServices->getService( 'Test' );
 
 		MediaWikiServices::resetChildProcessServices();
 		$finalServices = MediaWikiServices::getInstance();
 
-		$newLBFactory = $finalServices->getService( 'DBLoadBalancerFactory' );
-
-		$this->assertNotSame( $oldLBFactory, $newLBFactory );
+		$newTestService = $finalServices->getService( 'Test' );
+		$this->assertNotSame( $oldTestService, $newTestService );
 
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 	}
