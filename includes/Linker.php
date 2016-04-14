@@ -189,6 +189,8 @@ class Linker {
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
 	 *     'stubThreshold' => (int): Stub threshold to use when determining link classes.
+	 *     'relative': Use protocol-relative urls
+	 *     'canonical': Use the canonical protocol
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -296,11 +298,17 @@ class Linker {
 			$proto = PROTO_HTTP;
 		} elseif ( in_array( 'https', $options, true ) ) {
 			$proto = PROTO_HTTPS;
+		} elseif ( in_array( 'canonical', $options ) ) {
+			$proto = PROTO_CANONICAL;
 		} else {
 			$proto = PROTO_RELATIVE;
 		}
 
 		$ret = $target->getLinkURL( $query, false, $proto );
+		if ( in_array( 'relative', $options ) ) {
+			$ret = wfExpandUrl( $ret, PROTO_RELATIVE );
+		}
+
 		return $ret;
 	}
 
