@@ -800,6 +800,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Services\\CannotReplaceActiveServiceException' => __DIR__ . '/includes/Services/CannotReplaceActiveServiceException.php',
 	'MediaWiki\\Services\\ContainerDisabledException' => __DIR__ . '/includes/Services/ContainerDisabledException.php',
 	'MediaWiki\\Services\\DestructibleService' => __DIR__ . '/includes/Services/DestructibleService.php',
+	'MediaWiki\\Services\\SalvageableService' => __DIR__ . '/includes/Services/SalvageableService.php',
 	'MediaWiki\\Services\\NoSuchServiceException' => __DIR__ . '/includes/Services/NoSuchServiceException.php',
 	'MediaWiki\\Services\\ServiceAlreadyDefinedException' => __DIR__ . '/includes/Services/ServiceAlreadyDefinedException.php',
 	'MediaWiki\\Services\\ServiceContainer' => __DIR__ . '/includes/Services/ServiceContainer.php',
