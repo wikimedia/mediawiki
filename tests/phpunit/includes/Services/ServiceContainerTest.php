@@ -166,6 +166,55 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 'Bar!', $services->getService( 'Bar' ) );
 	}
 
+	public function testImportWiring() {
+		$services = $this->newServiceContainer();
+
+		$wiring = [
+			'Foo' => function() {
+				return 'Foo!';
+			},
+			'Bar' => function() {
+				return 'Bar!';
+			},
+			'Car' => function() {
+				return 'FUBAR!';
+			},
+		];
+
+		$services->applyWiring( $wiring );
+
+		$newServices = $this->newServiceContainer();
+
+		// define a service before importing, so we can later check that
+		// existing service instances survive importWiring()
+		$newServices->defineService( 'Car', function() {
+			return 'Car!';
+		} );
+
+		// force instantiation
+		$newServices->getService( 'Car' );
+
+		// Define another service, so we can later check that extra wiring
+		// is not lost.
+		$newServices->defineService( 'Xar', function() {
+			return 'Xar!';
+		} );
+
+		// import wiring, but skip `Bar`
+		$newServices->importWiring( $services, [ 'Bar' ] );
+
+		$this->assertNotContains( 'Bar', $newServices->getServiceNames(), 'Skip `Bar` service' );
+		$this->assertSame( 'Foo!', $newServices->getService( 'Foo' ) );
+
+		// import all wiring, but preserve existing service instance
+		$newServices->importWiring( $services );
+
+		$this->assertContains( 'Bar', $newServices->getServiceNames(), 'Import all services' );
+		$this->assertSame( 'Bar!', $newServices->getService( 'Bar' ) );
+		$this->assertSame( 'Car!', $newServices->getService( 'Car' ), 'Use existing service instance' );
+		$this->assertSame( 'Xar!', $newServices->getService( 'Xar' ), 'Predefined services are kept' );
+	}
+
 	public function testLoadWiringFiles() {
 		$services = $this->newServiceContainer();
 
@@ -215,6 +264,27 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 				return $theService1;
 			}
 		);
+
+		// force instantiation, check result
+		$this->assertSame( $theService1, $services->getService( $name ) );
+	}
+
+	public function testRedefineService_disabled() {
+		$services = $this->newServiceContainer( [ 'Foo' ] );
+
+		$theService1 = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService( $name, function() {
+			return 'Foo';
+		} );
+
+		// disable the service. we should be able to redefine it anyway.
+		$services->disableService( $name );
+
+		$services->redefineService( $name, function() use ( $theService1 ) {
+			return $theService1;
+		} );
 
 		// force instantiation, check result
 		$this->assertSame( $theService1, $services->getService( $name ) );
@@ -293,13 +363,6 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		// disabled service should still be listed
 		$this->assertContains( 'Bar', $services->getServiceNames() );
 		$this->assertContains( 'Qux', $services->getServiceNames() );
-
-		// re-enable Bar service
-		$services->redefineService( 'Bar', function() {
-			return new stdClass();
-		} );
-
-		$services->getService( 'Bar' );
 
 		$this->setExpectedException( 'MediaWiki\Services\ServiceDisabledException' );
 		$services->getService( 'Qux' );
