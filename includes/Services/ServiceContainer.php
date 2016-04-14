@@ -127,6 +127,18 @@ class ServiceContainer implements DestructibleService {
 	}
 
 	/**
+	 * Imports all wiring defined in $container
+	 *
+	 * @param ServiceContainer $container
+	 */
+	public function importWiring( ServiceContainer $container ) {
+		$this->serviceInstantiators = array_merge(
+			$this->serviceInstantiators,
+			$container->serviceInstantiators
+		);
+	}
+
+	/**
 	 * Returns true if a service is defined for $name, that is, if a call to getService( $name )
 	 * would return a service instance.
 	 *
@@ -326,6 +338,7 @@ class ServiceContainer implements DestructibleService {
 				$this->serviceInstantiators[$name],
 				array_merge( [ $this ], $this->extraInstantiationParams )
 			);
+			// NOTE: when adding more wiring logic here, make sure copyWiring() is kept in sync!
 		} else {
 			throw new NoSuchServiceException( $name );
 		}

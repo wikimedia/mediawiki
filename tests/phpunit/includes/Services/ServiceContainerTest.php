@@ -166,6 +166,10 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 'Bar!', $services->getService( 'Bar' ) );
 	}
 
+	public function testImportWiring() {
+		$this->fail( 'TEST ME' );
+	}
+
 	public function testLoadWiringFiles() {
 		$services = $this->newServiceContainer();
 
