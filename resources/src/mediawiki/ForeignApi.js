@@ -94,7 +94,9 @@
 			url = ( ajaxOptions && ajaxOptions.url ) || this.defaults.ajax.url;
 			origin = ( parameters && parameters.origin ) || this.defaults.parameters.origin;
 			url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
-				'origin=' + encodeURIComponent( origin );
+				// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
+				// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
+				'origin=' + encodeURIComponent( origin ).replace( /\./g, '%2E' );
 			newAjaxOptions = $.extend( {}, ajaxOptions, { url: url } );
 		} else {
 			newAjaxOptions = ajaxOptions;
