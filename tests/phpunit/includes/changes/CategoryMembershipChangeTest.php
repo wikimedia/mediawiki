@@ -74,7 +74,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
 		$this->assertEquals( '(autochange-username)', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-added-to-category: ' . self::$pageName . ', 0)',
+		$this->assertEquals( '(recentchanges-page-added-to-category: ' . self::$pageName . ')',
 			self::$lastNotifyArgs[3] );
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( 0, self::$lastNotifyArgs[5] );
@@ -94,7 +94,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
 		$this->assertEquals( '(autochange-username)', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-removed-from-category: ' . self::$pageName . ', 0)',
+		$this->assertEquals( '(recentchanges-page-removed-from-category: ' . self::$pageName . ')',
 			self::$lastNotifyArgs[3] );
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( 0, self::$lastNotifyArgs[5] );
@@ -115,7 +115,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
 		$this->assertEquals( 'UTSysop', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-added-to-category: ' . self::$pageName . ', 0)',
+		$this->assertEquals( '(recentchanges-page-added-to-category: ' . self::$pageName . ')',
 			self::$lastNotifyArgs[3] );
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( self::$pageRev->getParentId(), self::$lastNotifyArgs[5] );
@@ -136,7 +136,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
 		$this->assertEquals( 'UTSysop', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-removed-from-category: ' . self::$pageName . ', 0)',
+		$this->assertEquals( '(recentchanges-page-removed-from-category: ' . self::$pageName . ')',
 			self::$lastNotifyArgs[3] );
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( self::$pageRev->getParentId(), self::$lastNotifyArgs[5] );

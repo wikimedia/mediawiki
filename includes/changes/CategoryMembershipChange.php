@@ -127,10 +127,11 @@ class CategoryMembershipChange {
 			$this->timestamp,
 			$categoryTitle,
 			$this->getUser(),
-			$this->getChangeMessageText( $type, [
-				'prefixedText' => $this->pageTitle->getPrefixedText(),
-				'numTemplateLinks' => $this->numTemplateLinks
-			] ),
+			$this->getChangeMessageText(
+				$type,
+				[ 'prefixedText' => $this->pageTitle->getPrefixedText() ],
+				$this->numTemplateLinks
+			),
 			$this->pageTitle,
 			$this->getPreviousRevisionTimestamp(),
 			$this->revision
@@ -246,10 +247,11 @@ class CategoryMembershipChange {
 	 * or CategoryMembershipChange::CATEGORY_REMOVAL
 	 * @param array $params
 	 * - prefixedText: result of Title::->getPrefixedText()
+	 * @param int $numTemplateLinks
 	 *
 	 * @return string
 	 */
-	private function getChangeMessageText( $type, array $params ) {
+	private function getChangeMessageText( $type, array $params, $numTemplateLinks ) {
 		$array = [
 			self::CATEGORY_ADDITION => 'recentchanges-page-added-to-category',
 			self::CATEGORY_REMOVAL => 'recentchanges-page-removed-from-category',
@@ -257,7 +259,7 @@ class CategoryMembershipChange {
 
 		$msgKey = $array[$type];
 
-		if ( intval( $params['numTemplateLinks'] ) > 0 ) {
+		if ( intval( $numTemplateLinks ) > 0 ) {
 			$msgKey .= '-bundled';
 		}
 
