@@ -54,7 +54,7 @@
 					}
 				} else {
 					if ( value !== null ) {
-						deferreds.push( this.postWithToken( 'options', {
+						deferreds.push( this.postWithToken( 'csrf', {
 							formatversion: 2,
 							action: 'options',
 							optionname: name,
@@ -62,7 +62,7 @@
 						} ) );
 					} else {
 						// Omitting value resets the option
-						deferreds.push( this.postWithToken( 'options', {
+						deferreds.push( this.postWithToken( 'csrf', {
 							formatversion: 2,
 							action: 'options',
 							optionname: name
@@ -72,7 +72,7 @@
 			}
 
 			if ( grouped.length ) {
-				deferreds.push( this.postWithToken( 'options', {
+				deferreds.push( this.postWithToken( 'csrf', {
 					formatversion: 2,
 					action: 'options',
 					change: grouped

@@ -274,7 +274,7 @@
 		 * If we have a cached token try using that, and if it fails, blank out the
 		 * cached token and start over. For example to change an user option you could do:
 		 *
-		 *     new mw.Api().postWithToken( 'options', {
+		 *     new mw.Api().postWithToken( 'csrf', {
 		 *         action: 'options',
 		 *         optionname: 'gender',
 		 *         optionvalue: 'female'

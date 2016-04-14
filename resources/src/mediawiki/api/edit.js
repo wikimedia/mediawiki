@@ -15,7 +15,7 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ajaxOptions ) {
-			return this.postWithToken( 'edit', params, ajaxOptions );
+			return this.postWithToken( 'csrf', params, ajaxOptions );
 		},
 
 		/**
@@ -26,7 +26,7 @@
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function () {
-			return this.getToken( 'edit' );
+			return this.getToken( 'csrf' );
 		},
 
 		/**
