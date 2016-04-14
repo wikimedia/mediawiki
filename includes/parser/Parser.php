@@ -1213,9 +1213,9 @@ class Parser {
 	 *
 	 * @private
 	 *
-	 * @param string $text
-	 * @param bool $isMain
-	 * @param PPFrame|bool $frame
+	 * @param string $text The text to parse
+	 * @param bool $isMain Whether this is being called from the main parse() function
+	 * @param PPFrame|bool $frame A pre-processor frame
 	 *
 	 * @return string
 	 */
