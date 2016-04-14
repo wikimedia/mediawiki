@@ -1,5 +1,4 @@
 <?php
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
 /**
  * @author Addshore
