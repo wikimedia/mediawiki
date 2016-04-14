@@ -91,17 +91,17 @@ abbr[title],
 	}
 }
 
-/* Colored watchlist and recent changes numbers */
+/* Colored change size numbers in change lists (recent changes, history, etc.) */
 .mw-plusminus-pos {
-	color: #006400; /* dark green */
+	color: #007900; /* green */
 }
 
 .mw-plusminus-neg {
-	color: #8b0000; /* dark red */
+	color: #ba0000; /* red */
 }
 
 .mw-plusminus-null {
-	color: #aaa; /* gray */
+	color: #757575; /* gray */
 }
 
 /*
@@ -287,7 +287,7 @@ p.mw-delete-editreasons {
 
 /* The auto-generated edit comments */
 .autocomment {
-	color: gray;
+	color: #757575;
 }
 
 #pagehistory .history-user {
