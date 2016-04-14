@@ -74,7 +74,11 @@ class SpecialPreferences extends SpecialPage {
 		$this->addHelpLink( 'Help:Preferences' );
 
 		// Load the user from the master to reduce CAS errors on double post (T95839)
-		$user = $this->getUser()->getInstanceForUpdate() ?: $this->getUser();
+		if ( $this->getRequest()->wasPosted() ) {
+			$user = $this->getUser()->getInstanceForUpdate() ?: $this->getUser();
+		} else {
+			$user = $this->getUser();
+		}
 
 		$htmlForm = Preferences::getFormObject( $user, $this->getContext() );
 		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryUISubmit' ] );
