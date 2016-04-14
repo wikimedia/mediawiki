@@ -416,6 +416,11 @@ class LinkHolderArray {
 					}
 					$type = [ 'known', 'noclasses' ];
 				}
+				$expandUrls = $this->parent->getExpandUrlOptionForLinker();
+				if ( $expandUrls ) {
+					$type[] = $expandUrls;
+				}
+
 				$replacePairs[$searchkey] = Linker::link( $title, $displayText,
 						$attribs, $query, $type );
 			}

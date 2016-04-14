@@ -309,4 +309,54 @@ class LinkerTest extends MediaWikiLangTestCase {
 		];
 		// @codingStandardsIgnoreEnd
 	}
+
+	/**
+	 * @nottodo Incomplete, only covers 'canonical' option
+	 * @covers Linker::linkUrl
+	 * @dataProvider provideCasesForLinkUrl
+	 */
+	public function testLinkUrl( $server, $target, $options, $expected ) {
+		$this->setMwGlobals( [
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgServer' => $server,
+			'wgCanonicalServer' => $server,
+			'wgWellFormedXml' => true,
+			'wgCapitalLinks' => true,
+		] );
+
+		$title = Title::newFromText( $target );
+		$link = Linker::link( $title, null, [], [], $options );
+		$this->assertEquals( $expected, $link );
+	}
+
+	public static function provideCasesForLinkUrl() {
+		return [
+			[
+				'//localhost',
+				'FooBar',
+				[],
+				'<a href="/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>',
+			],
+			[
+				'//localhost',
+				'FooBar',
+				[ 'canonical' ],
+				'<a href="//localhost/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>'
+			],
+			[
+				'http://localhost',
+				'FooBar',
+				[ 'canonical' ],
+				'<a href="http://localhost/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>'
+			],
+			[
+				'https://localhost',
+				'FooBar',
+				[ 'canonical' ],
+				'<a href="https://localhost/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>'
+			],
+
+		];
+	}
 }
