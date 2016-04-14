@@ -908,6 +908,9 @@ class Parser {
 			$this->mLinkRenderer->setStubThreshold(
 				$this->getOptions()->getStubThreshold()
 			);
+			$this->mLinkRenderer->setExpandURLs(
+				$this->getOptions()->getExpandURLs()
+			);
 		}
 
 		return $this->mLinkRenderer;

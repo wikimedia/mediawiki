@@ -323,6 +323,7 @@
 	"apihelp-parse-param-disablepp": "{{doc-apihelp-param|parse|disablepp}}",
 	"apihelp-parse-param-disableeditsection": "{{doc-apihelp-param|parse|disableeditsection}}",
 	"apihelp-parse-param-disabletidy": "{{doc-apihelp-param|parse|disabletidy}}",
+	"apihelp-parse-param-expandurls": "{{doc-apihelp-param|parse|expandurls}}",
 	"apihelp-parse-param-generatexml": "{{doc-apihelp-param|parse|generatexml|params=* $1 - Value of the constant CONTENT_MODEL_WIKITEXT|paramstart=2}}",
 	"apihelp-parse-param-preview": "{{doc-apihelp-param|parse|preview}}",
 	"apihelp-parse-param-sectionpreview": "{{doc-apihelp-param|parse|sectionpreview}}",

@@ -344,6 +344,7 @@
 	"apihelp-parse-param-disableeditsection": "Omit edit section links from the parser output.",
 	"apihelp-parse-param-disabletidy": "Do not run HTML cleanup (e.g. tidy) on the parser output.",
 	"apihelp-parse-param-generatexml": "Generate XML parse tree (requires content model <code>$1</code>; replaced by <kbd>$2prop=parsetree</kbd>).",
+	"apihelp-parse-param-expandurls": "How to expand urls used for internal links.",
 	"apihelp-parse-param-preview": "Parse in preview mode.",
 	"apihelp-parse-param-sectionpreview": "Parse in section preview mode (enables preview mode too).",
 	"apihelp-parse-param-disabletoc": "Omit table of contents in output.",
