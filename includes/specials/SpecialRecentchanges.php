@@ -344,14 +344,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
 				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
 					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						$dbr->selectField(
-							'watchlist',
-							'COUNT(*)',
-							[
-								'wl_namespace' => $obj->rc_namespace,
-								'wl_title' => $obj->rc_title,
-							],
-							__METHOD__ . '-watchers'
+						WatchedItemStore::getDefaultInstance()->countWatchers(
+							new TitleValue( $obj->rc_namespace, $obj->rc_title )
 						);
 				}
 				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
