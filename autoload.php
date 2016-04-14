@@ -794,6 +794,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\Services\\DestructibleService' => __DIR__ . '/includes/Services/DestructibleService.php',
+	'MediaWiki\\Services\\SalvageableService' => __DIR__ . '/includes/Services/SalvageableService.php',
 	'MediaWiki\\Services\\ServiceContainer' => __DIR__ . '/includes/Services/ServiceContainer.php',
 	'MediaWiki\\Services\\NoSuchServiceException' => __DIR__ . '/includes/Services/NoSuchServiceException.php',
 	'MediaWiki\\Services\\CannotReplaceActiveServiceException' => __DIR__ . '/includes/Services/CannotReplaceActiveServiceException.php',
