@@ -8,7 +8,7 @@ class SqlSearchResultSet extends SearchResultSet {
 	protected $terms;
 	protected $totalHits;
 
-	function __construct( $resultSet, $terms, $total = null ) {
+	function __construct( ResultWrapper $resultSet, $terms, $total = null ) {
 		$this->resultSet = $resultSet;
 		$this->terms = $terms;
 		$this->totalHits = $total;
@@ -39,6 +39,12 @@ class SqlSearchResultSet extends SearchResultSet {
 		return SearchResult::newFromTitle(
 			Title::makeTitle( $row->page_namespace, $row->page_title )
 		);
+	}
+
+	function rewind() {
+		if ( $this->resultSet ) {
+			$this->resultSet->rewind();
+		}
 	}
 
 	function free() {
