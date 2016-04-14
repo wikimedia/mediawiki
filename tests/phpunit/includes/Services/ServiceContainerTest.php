@@ -166,6 +166,55 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 'Bar!', $services->getService( 'Bar' ) );
 	}
 
+	public function testImportWiring() {
+		$services = $this->newServiceContainer();
+
+		$wiring = [
+			'Foo' => function() {
+				return 'Foo!';
+			},
+			'Bar' => function() {
+				return 'Bar!';
+			},
+			'Car' => function() {
+				return 'FUBAR!';
+			},
+		];
+
+		$services->applyWiring( $wiring );
+
+		$newServices = $this->newServiceContainer();
+
+		// define a service before importing, so we can later check that
+		// existing service instances survive importWiring()
+		$newServices->defineService( 'Car', function() {
+			return 'Car!';
+		} );
+
+		// force instantiation
+		$newServices->getService( 'Car' );
+
+		// Define another service, so we can later check that extra wiring
+		// is not lost.
+		$newServices->defineService( 'Xar', function() {
+			return 'Xar!';
+		} );
+
+		// import wiring, but skip `Bar`
+		$newServices->importWiring( $services, [ 'Bar' ] );
+
+		$this->assertNotContains( 'Bar', $newServices->getServiceNames(), 'Skip `Bar` service' );
+		$this->assertSame( 'Foo!', $newServices->getService( 'Foo' ) );
+
+		// import all wiring, but preserve existing service instance
+		$newServices->importWiring( $services );
+
+		$this->assertContains( 'Bar', $newServices->getServiceNames(), 'Import all services' );
+		$this->assertSame( 'Bar!', $newServices->getService( 'Bar' ) );
+		$this->assertSame( 'Car!', $newServices->getService( 'Car' ), 'Use existing service instance' );
+		$this->assertSame( 'Xar!', $newServices->getService( 'Xar' ), 'Predefined services are kept' );
+	}
+
 	public function testLoadWiringFiles() {
 		$services = $this->newServiceContainer();
 
@@ -293,13 +342,6 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		// disabled service should still be listed
 		$this->assertContains( 'Bar', $services->getServiceNames() );
 		$this->assertContains( 'Qux', $services->getServiceNames() );
-
-		// re-enable Bar service
-		$services->redefineService( 'Bar', function() {
-			return new stdClass();
-		} );
-
-		$services->getService( 'Bar' );
 
 		$this->setExpectedException( 'MediaWiki\Services\ServiceDisabledException' );
 		$services->getService( 'Qux' );

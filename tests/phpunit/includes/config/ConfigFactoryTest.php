@@ -47,6 +47,42 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ConfigFactory::register
 	 */
+	public function testSalvage() {
+		$oldFactory = new ConfigFactory();
+		$oldFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
+		$oldFactory->register( 'bar', 'GlobalVarConfig::newInstance' );
+		$oldFactory->register( 'quux', 'GlobalVarConfig::newInstance' );
+
+		// instantiate two of the three defined configurations
+		$foo = $oldFactory->makeConfig( 'foo' );
+		$bar = $oldFactory->makeConfig( 'bar' );
+		$quux = $oldFactory->makeConfig( 'quux' );
+
+		// define new config instance
+		$newFactory = new ConfigFactory();
+		$newFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
+		$newFactory->register( 'bar', function() {
+			return new HashConfig();
+		} );
+
+		// "foo" and "quux" are defined in the old and the new factory.
+		// The old factory has instances for "foo" and "bar", but not "quux".
+		$newFactory->salvage( $oldFactory );
+
+		$newFoo = $newFactory->makeConfig( 'foo' );
+		$this->assertSame( $foo, $newFoo, 'existing instance should be salvaged' );
+
+		$newBar = $newFactory->makeConfig( 'bar' );
+		$this->assertNotSame( $bar, $newBar, 'don\'t salvage if callbacks differ' );
+
+		// the new factory doesn't have quux defined, so the quux instance should not be salvaged
+		$this->setExpectedException( 'ConfigException' );
+		$newFactory->makeConfig( 'quux' );
+	}
+
+	/**
+	 * @covers ConfigFactory::register
+	 */
 	public function testGetConfigNames() {
 		$factory = new ConfigFactory();
 		$factory->register( 'foo', 'GlobalVarConfig::newInstance' );
