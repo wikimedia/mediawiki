@@ -94,8 +94,11 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 				if ( strpos( $errstr, 'Cannot modify header information' ) !== false ) {
 					return true; // bug T115413
 				}
-				// Delegate unhandled errors to the default handlers
-				return false;
+				// Delegate unhandled errors to the default MediaWiki handler
+				// so that fatal errors get proper logging (T89169)
+				return call_user_func_array(
+					'MWExceptionHandler::handleError', func_get_args()
+				);
 			} );
 		}
 
