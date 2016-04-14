@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:41Z
+ * Date: 2016-02-22T22:33:33Z
  */
 ( function ( OO ) {
 
@@ -525,7 +525,7 @@ OO.ui.ActionSet.prototype.setAbilities = function ( actions ) {
  * When making changes to multiple actions, use this method instead of iterating over the actions
  * manually to defer emitting a #change event until after all actions have been changed.
  *
- * @param {Object|null} filter Filters to use to determine which actions to iterate over; see #get
+ * @param {Object|null} actions Filters to use to determine which actions to iterate over; see #get
  * @param {Function} callback Callback to run for each action; callback is invoked with three
  *   arguments: the action, the action's index, the list of actions being iterated over
  * @chainable
@@ -2060,9 +2060,9 @@ OO.ui.Window.prototype.updateSize = function () {
  * @param {string|number} [dim.width] Width
  * @param {string|number} [dim.minWidth] Minimum width
  * @param {string|number} [dim.maxWidth] Maximum width
- * @param {string|number} [dim.height] Height, omit to set based on height of contents
- * @param {string|number} [dim.minHeight] Minimum height
- * @param {string|number} [dim.maxHeight] Maximum height
+ * @param {string|number} [dim.width] Height, omit to set based on height of contents
+ * @param {string|number} [dim.minWidth] Minimum height
+ * @param {string|number} [dim.maxWidth] Maximum height
  * @chainable
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
@@ -2417,18 +2417,10 @@ OO.ui.Dialog.static.escapable = true;
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
-	var actions;
-	if ( e.which === OO.ui.Keys.ESCAPE && this.constructor.static.escapable ) {
+	if ( e.which === OO.ui.Keys.ESCAPE ) {
 		this.executeAction( '' );
 		e.preventDefault();
 		e.stopPropagation();
-	} else if ( e.which === OO.ui.Keys.ENTER && e.ctrlKey ) {
-		actions = this.actions.get( { flags: 'primary', visible: true, disabled: false } );
-		if ( actions.length > 0 ) {
-			this.executeAction( actions[ 0 ].getAction() );
-			e.preventDefault();
-			e.stopPropagation();
-		}
 	}
 };
 
@@ -2519,7 +2511,9 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 			);
 			this.actions.add( this.getActionWidgets( actions ) );
 
-			this.$element.on( 'keydown', this.onDialogKeyDownHandler );
+			if ( this.constructor.static.escapable ) {
+				this.$element.on( 'keydown', this.onDialogKeyDownHandler );
+			}
 		}, this );
 };
 
@@ -2530,7 +2524,9 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.Dialog.parent.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
-			this.$element.off( 'keydown', this.onDialogKeyDownHandler );
+			if ( this.constructor.static.escapable ) {
+				this.$element.off( 'keydown', this.onDialogKeyDownHandler );
+			}
 
 			this.actions.clear();
 			this.currentAction = null;

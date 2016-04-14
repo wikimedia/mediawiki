@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:41Z
+ * Date: 2016-02-22T22:33:33Z
  */
 ( function ( OO ) {
 
@@ -85,7 +85,7 @@ OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
  * Respond to mousedown event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} event jQuery event
  */
 OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
 	this.wasHandleUsed =
@@ -99,7 +99,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
  * Respond to dragstart event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} event jQuery event
  * @fires dragstart
  */
 OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
@@ -149,7 +149,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragEnd = function () {
  * Handle drop event.
  *
  * @private
- * @param {jQuery.Event} e jQuery event
+ * @param {jQuery.Event} event jQuery event
  * @fires drop
  */
 OO.ui.mixin.DraggableElement.prototype.onDrop = function ( e ) {
@@ -172,7 +172,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragOver = function ( e ) {
  * Store it in the DOM so we can access from the widget drag event
  *
  * @private
- * @param {number} index Item index
+ * @param {number} Item index
  */
 OO.ui.mixin.DraggableElement.prototype.setIndex = function ( index ) {
 	if ( this.index !== index ) {
@@ -313,10 +313,8 @@ OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
 		originalIndex = this.items.indexOf( item );
 		// If the item has moved forward, add one to the index to account for the left shift
 		targetIndex = item.getIndex() + ( item.getIndex() > originalIndex ? 1 : 0 );
-		if ( targetIndex !== originalIndex ) {
-			this.reorder( this.getDragItem(), targetIndex );
-			this.emit( 'reorder', this.getDragItem(), targetIndex );
-		}
+		this.reorder( this.getDragItem(), targetIndex );
+		this.emit( 'reorder', this.getDragItem(), targetIndex );
 		this.updateIndexes();
 	}
 	this.unsetDragItem();
@@ -328,7 +326,7 @@ OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
  * Respond to dragover event
  *
  * @private
- * @param {jQuery.Event} e Dragover event
+ * @param {jQuery.Event} event Dragover event
  * @fires reorder
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
@@ -1054,7 +1052,7 @@ OO.ui.CardLayout.prototype.setupTabItem = function () {
  * CSS is applied to the tab item to reflect the card's active state. Outside of the index
  * context, setting the active state on a card does nothing.
  *
- * @param {boolean} active Card is active
+ * @param {boolean} value Card is active
  * @fires active
  */
 OO.ui.CardLayout.prototype.setActive = function ( active ) {
@@ -1193,7 +1191,7 @@ OO.ui.PageLayout.prototype.setupOutlineItem = function () {
  * CSS is applied to the outline item to reflect the page's active state. Outside of the booklet
  * context, setting the active state on a page does nothing.
  *
- * @param {boolean} active Page is active
+ * @param {boolean} value Page is active
  * @fires active
  */
 OO.ui.PageLayout.prototype.setActive = function ( active ) {
@@ -1833,7 +1831,6 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
  *
  * If no page is selected, the first selectable page will be selected.
  * If the focus is already in an element on the current page, nothing will happen.
- *
  * @param {number} [itemIndex] A specific item to focus on
  */
 OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
@@ -2341,7 +2338,6 @@ OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
  *
  * If no card is selected, the first selectable card will be selected.
  * If the focus is already in an element on the current card, nothing will happen.
- *
  * @param {number} [itemIndex] A specific item to focus on
  */
 OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
@@ -3025,9 +3021,8 @@ OO.ui.OutlineControlsWidget.prototype.setAbilities = function ( abilities ) {
 };
 
 /**
- * Handle outline change events.
- *
  * @private
+ * Handle outline change events.
  */
 OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	var i, len, firstMovable, lastMovable,
@@ -3720,13 +3715,6 @@ OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.IconElement );
  * @param {Mixed[]} datas Data of the now-selected items
  */
 
-/**
- * @event resize
- *
- * A resize event is emitted when the widget's dimensions change to accomodate newly added items or
- * current user input.
- */
-
 /* Methods */
 
 /**
@@ -3743,7 +3731,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.createItemWidget = function ( data, lab
 
 /**
  * Get the data of the items in the capsule
- *
  * @return {Mixed[]}
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.getItemsData = function () {
@@ -3752,7 +3739,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.getItemsData = function () {
 
 /**
  * Set the items in the capsule by providing data
- *
  * @chainable
  * @param {Mixed[]} datas
  * @return {OO.ui.CapsuleMultiSelectWidget}
@@ -3797,7 +3783,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.setItemsFromData = function ( datas ) {
 
 /**
  * Add items to the capsule by providing their data
- *
  * @chainable
  * @param {Mixed[]} datas
  * @return {OO.ui.CapsuleMultiSelectWidget}
@@ -3829,7 +3814,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItemsFromData = function ( datas ) {
 
 /**
  * Add items to the capsule by providing a label
- *
  * @param {string} label
  * @return {boolean} Whether the item was added or not
  */
@@ -3847,7 +3831,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItemFromLabel = function ( label ) {
 
 /**
  * Remove items by data
- *
  * @chainable
  * @param {Mixed[]} datas
  * @return {OO.ui.CapsuleMultiSelectWidget}
@@ -3889,7 +3872,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.menu.position();
 	}
 
 	return this;
@@ -3926,7 +3909,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.removeItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.menu.position();
 	}
 
 	return this;
@@ -3939,7 +3922,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.clearItems = function () {
 	if ( this.items.length ) {
 		OO.ui.mixin.GroupElement.prototype.clearItems.call( this );
 		this.emit( 'change', this.getItemsData() );
-		this.updateIfHeightChanged();
+		this.menu.position();
 	}
 	return this;
 };
@@ -3996,7 +3979,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.getPreviousItem = function ( item ) {
 
 /**
  * Get the capsule widget's menu.
- *
  * @return {OO.ui.MenuSelectWidget} Menu widget
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.getMenu = function () {
@@ -4169,21 +4151,8 @@ OO.ui.CapsuleMultiSelectWidget.prototype.updateInputSize = function () {
 			bestWidth = this.$content.innerWidth() - 10;
 		}
 		this.$input.width( Math.floor( bestWidth ) );
-		this.updateIfHeightChanged();
-	}
-};
 
-/**
- * Determine if widget height changed, and if so, update menu position and emit 'resize' event.
- *
- * @private
- */
-OO.ui.CapsuleMultiSelectWidget.prototype.updateIfHeightChanged = function () {
-	var height = this.$element.height();
-	if ( height !== this.height ) {
-		this.height = height;
 		this.menu.position();
-		this.emit( 'resize' );
 	}
 };
 
@@ -4212,7 +4181,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onMenuItemsChange = function () {
 
 /**
  * Clear the input field
- *
  * @private
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.clearInput = function () {
@@ -4258,7 +4226,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.setDisabled = function ( disabled ) {
 
 /**
  * Focus the widget
- *
  * @chainable
  * @return {OO.ui.CapsuleMultiSelectWidget}
  */
@@ -4307,7 +4274,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
  * @cfg {string} [notsupported] Text to display when file support is missing in the browser.
  * @cfg {boolean} [droppable=true] Whether to accept files by drag and drop.
  * @cfg {boolean} [showDropTarget=false] Whether to show a drop target. Requires droppable to be true.
- * @cfg {number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
+ * @cfg {Number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
  *  preview (for performance)
  */
 OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
@@ -4618,7 +4585,7 @@ OO.ui.SelectFileWidget.prototype.addInput = function () {
  * Determine if we should accept this file
  *
  * @private
- * @param {string} mimeType File MIME type
+ * @param {string} File MIME type
  * @return {boolean}
  */
 OO.ui.SelectFileWidget.prototype.isAllowedType = function ( mimeType ) {
@@ -5029,9 +4996,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  *     // Example: A NumberInputWidget.
  *     var numberInput = new OO.ui.NumberInputWidget( {
  *         label: 'NumberInputWidget',
- *         input: { value: 5 },
- *         min: 1,
- *         max: 10
+ *         input: { value: 5, min: 1, max: 10 }
  *     } );
  *     $( 'body' ).append( numberInput.$element );
  *
@@ -5048,7 +5013,6 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  * @cfg {number} [max=Infinity] Maximum allowed value
  * @cfg {number} [step=1] Delta when using the buttons or up/down arrow keys
  * @cfg {number|null} [pageStep] Delta when using the page-up/page-down keys. Defaults to 10 times #step.
- * @cfg {boolean} [showButtons=true] Whether to show the plus and minus buttons.
  */
 OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	// Configuration initialization
@@ -5057,8 +5021,7 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 		min: -Infinity,
 		max: Infinity,
 		step: 1,
-		pageStep: null,
-		showButtons: true
+		pageStep: null
 	}, config );
 
 	// Parent constructor
@@ -5071,30 +5034,28 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 		},
 		config.input
 	) );
-	if ( config.showButtons ) {
-		this.minusButton = new OO.ui.ButtonWidget( $.extend(
-			{
-				disabled: this.isDisabled(),
-				tabIndex: -1
-			},
-			config.minusButton,
-			{
-				classes: [ 'oo-ui-numberInputWidget-minusButton' ],
-				label: '−'
-			}
-		) );
-		this.plusButton = new OO.ui.ButtonWidget( $.extend(
-			{
-				disabled: this.isDisabled(),
-				tabIndex: -1
-			},
-			config.plusButton,
-			{
-				classes: [ 'oo-ui-numberInputWidget-plusButton' ],
-				label: '+'
-			}
-		) );
-	}
+	this.minusButton = new OO.ui.ButtonWidget( $.extend(
+		{
+			disabled: this.isDisabled(),
+			tabIndex: -1
+		},
+		config.minusButton,
+		{
+			classes: [ 'oo-ui-numberInputWidget-minusButton' ],
+			label: '−'
+		}
+	) );
+	this.plusButton = new OO.ui.ButtonWidget( $.extend(
+		{
+			disabled: this.isDisabled(),
+			tabIndex: -1
+		},
+		config.plusButton,
+		{
+			classes: [ 'oo-ui-numberInputWidget-plusButton' ],
+			label: '+'
+		}
+	) );
 
 	// Events
 	this.input.connect( this, {
@@ -5105,14 +5066,12 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 		keydown: this.onKeyDown.bind( this ),
 		'wheel mousewheel DOMMouseScroll': this.onWheel.bind( this )
 	} );
-	if ( config.showButtons ) {
-		this.plusButton.connect( this, {
-			click: [ 'onButtonClick', +1 ]
-		} );
-		this.minusButton.connect( this, {
-			click: [ 'onButtonClick', -1 ]
-		} );
-	}
+	this.plusButton.connect( this, {
+		click: [ 'onButtonClick', +1 ]
+	} );
+	this.minusButton.connect( this, {
+		click: [ 'onButtonClick', -1 ]
+	} );
 
 	// Initialization
 	this.setIsInteger( !!config.isInteger );
@@ -5120,14 +5079,12 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	this.setStep( config.step, config.pageStep );
 
 	this.$field = $( '<div>' ).addClass( 'oo-ui-numberInputWidget-field' )
-		.append( this.input.$element );
+		.append(
+			this.minusButton.$element,
+			this.input.$element,
+			this.plusButton.$element
+		);
 	this.$element.addClass( 'oo-ui-numberInputWidget' ).append( this.$field );
-	if ( config.showButtons ) {
-		this.$field
-			.prepend( this.minusButton.$element )
-			.append( this.plusButton.$element );
-		this.$element.addClass( 'oo-ui-numberInputWidget-buttoned' );
-	}
 	this.input.setValidation( this.validateNumber.bind( this ) );
 };
 
@@ -5153,7 +5110,6 @@ OO.inheritClass( OO.ui.NumberInputWidget, OO.ui.Widget );
 
 /**
  * Set whether only integers are allowed
- *
  * @param {boolean} flag
  */
 OO.ui.NumberInputWidget.prototype.setIsInteger = function ( flag ) {
@@ -5163,7 +5119,6 @@ OO.ui.NumberInputWidget.prototype.setIsInteger = function ( flag ) {
 
 /**
  * Get whether only integers are allowed
- *
  * @return {boolean} Flag value
  */
 OO.ui.NumberInputWidget.prototype.getIsInteger = function () {
@@ -5172,7 +5127,6 @@ OO.ui.NumberInputWidget.prototype.getIsInteger = function () {
 
 /**
  * Set the range of allowed values
- *
  * @param {number} min Minimum allowed value
  * @param {number} max Maximum allowed value
  */
@@ -5187,7 +5141,6 @@ OO.ui.NumberInputWidget.prototype.setRange = function ( min, max ) {
 
 /**
  * Get the current range
- *
  * @return {number[]} Minimum and maximum values
  */
 OO.ui.NumberInputWidget.prototype.getRange = function () {
@@ -5196,7 +5149,6 @@ OO.ui.NumberInputWidget.prototype.getRange = function () {
 
 /**
  * Set the stepping deltas
- *
  * @param {number} step Normal step
  * @param {number|null} pageStep Page step. If null, 10 * step will be used.
  */
@@ -5215,7 +5167,6 @@ OO.ui.NumberInputWidget.prototype.setStep = function ( step, pageStep ) {
 
 /**
  * Get the current stepping values
- *
  * @return {number[]} Step and page step
  */
 OO.ui.NumberInputWidget.prototype.getStep = function () {
@@ -5224,7 +5175,6 @@ OO.ui.NumberInputWidget.prototype.getStep = function () {
 
 /**
  * Get the current value of the widget
- *
  * @return {string}
  */
 OO.ui.NumberInputWidget.prototype.getValue = function () {
@@ -5233,7 +5183,6 @@ OO.ui.NumberInputWidget.prototype.getValue = function () {
 
 /**
  * Get the current value of the widget as a number
- *
  * @return {number} May be NaN, or an invalid number
  */
 OO.ui.NumberInputWidget.prototype.getNumericValue = function () {
@@ -5242,7 +5191,6 @@ OO.ui.NumberInputWidget.prototype.getNumericValue = function () {
 
 /**
  * Set the value of the widget
- *
  * @param {string} value Invalid values are allowed
  */
 OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
@@ -5251,7 +5199,6 @@ OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
 
 /**
  * Adjust the value of the widget
- *
  * @param {number} delta Adjustment amount
  */
 OO.ui.NumberInputWidget.prototype.adjustValue = function ( delta ) {
@@ -5279,7 +5226,6 @@ OO.ui.NumberInputWidget.prototype.adjustValue = function ( delta ) {
 
 /**
  * Validate input
- *
  * @private
  * @param {string} value Field value
  * @return {boolean}

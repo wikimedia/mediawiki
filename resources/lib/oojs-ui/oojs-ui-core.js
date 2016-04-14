@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:41Z
+ * Date: 2016-02-22T22:33:33Z
  */
 ( function ( OO ) {
 
@@ -56,14 +56,14 @@ OO.ui.MouseButtons = {
 };
 
 /**
- * @property {number}
+ * @property {Number}
  */
 OO.ui.elementId = 0;
 
 /**
  * Generate a unique ID for element
  *
- * @return {string} [id]
+ * @return {String} [id]
  */
 OO.ui.generateElementId = function () {
 	OO.ui.elementId += 1;
@@ -74,7 +74,7 @@ OO.ui.generateElementId = function () {
  * Check if an element is focusable.
  * Inspired from :focusable in jQueryUI v1.11.4 - 2015-04-14
  *
- * @param {jQuery} $element Element to test
+ * @param {jQuery} element Element to test
  * @return {boolean}
  */
 OO.ui.isFocusableElement = function ( $element ) {
@@ -261,58 +261,6 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 };
 
 /**
- * Returns a function, that, when invoked, will only be triggered at most once
- * during a given window of time. If called again during that window, it will
- * wait until the window ends and then trigger itself again.
- *
- * As it's not knowable to the caller whether the function will actually run
- * when the wrapper is called, return values from the function are entirely
- * discarded.
- *
- * @param {Function} func
- * @param {number} wait
- * @return {Function}
- */
-OO.ui.throttle = function ( func, wait ) {
-	var context, args, timeout,
-		previous = 0,
-		run = function () {
-			timeout = null;
-			previous = OO.ui.now();
-			func.apply( context, args );
-		};
-	return function () {
-		// Check how long it's been since the last time the function was
-		// called, and whether it's more or less than the requested throttle
-		// period. If it's less, run the function immediately. If it's more,
-		// set a timeout for the remaining time -- but don't replace an
-		// existing timeout, since that'd indefinitely prolong the wait.
-		var remaining = wait - ( OO.ui.now() - previous );
-		context = this;
-		args = arguments;
-		if ( remaining <= 0 ) {
-			// Note: unless wait was ridiculously large, this means we'll
-			// automatically run the first time the function was called in a
-			// given period. (If you provide a wait period larger than the
-			// current Unix timestamp, you *deserve* unexpected behavior.)
-			clearTimeout( timeout );
-			run();
-		} else if ( !timeout ) {
-			timeout = setTimeout( run, remaining );
-		}
-	};
-};
-
-/**
- * A (possibly faster) way to get the current timestamp as an integer
- *
- * @return {number} Current timestamp
- */
-OO.ui.now = Date.now || function () {
-	return new Date().getTime();
-};
-
-/**
  * Proxy for `node.addEventListener( eventName, handler, true )`.
  *
  * @param {HTMLElement} node
@@ -408,7 +356,7 @@ OO.ui.infuse = function ( idOrNode ) {
 	 * they support unnamed, ordered message parameters.
 	 *
 	 * @param {string} key Message key
-	 * @param {...Mixed} [params] Message parameters
+	 * @param {Mixed...} [params] Message parameters
 	 * @return {string} Translated message with parameters substituted
 	 */
 	OO.ui.msg = function ( key ) {
@@ -434,7 +382,7 @@ OO.ui.infuse = function ( idOrNode ) {
  * Use this when you are statically specifying a message and the message may not yet be present.
  *
  * @param {string} key Message key
- * @param {...Mixed} [params] Message parameters
+ * @param {Mixed...} [params] Message parameters
  * @return {Function} Function that returns the resolved message when executed
  */
 OO.ui.deferMsg = function () {
@@ -631,7 +579,6 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
 /**
  * Implementation helper for `infuse`; skips the type check and has an
  * extra property so that only the top-level invocation touches the DOM.
- *
  * @private
  * @param {string|HTMLElement|jQuery} idOrNode
  * @param {jQuery.Promise|boolean} domPromise A promise that will be resolved
@@ -663,13 +610,13 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		}
 		if ( domPromise ) {
 			// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
-			state = data.constructor.static.gatherPreInfuseState( $elem, data );
+			state = data.gatherPreInfuseState( $elem );
 			// restore dynamic state after the new element is re-inserted into DOM under infused parent
 			domPromise.done( data.restorePreInfuseState.bind( data, state ) );
 			infusedChildren = $elem.data( 'ooui-infused-children' );
 			if ( infusedChildren && infusedChildren.length ) {
 				infusedChildren.forEach( function ( data ) {
-					var state = data.constructor.static.gatherPreInfuseState( $elem, data );
+					var state = data.gatherPreInfuseState( $elem );
 					domPromise.done( data.restorePreInfuseState.bind( data, state ) );
 				} );
 			}
@@ -737,7 +684,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 				infused.$element.removeData( 'ooui-infused-children' );
 				return infused;
 			}
-			if ( value.html !== undefined ) {
+			if ( value.html ) {
 				return new OO.ui.HtmlSnippet( value.html );
 			}
 		}
@@ -1258,7 +1205,7 @@ OO.ui.Element.prototype.getData = function () {
 /**
  * Set element data.
  *
- * @param {Mixed} data Element data
+ * @param {Mixed} Element data
  * @chainable
  */
 OO.ui.Element.prototype.setData = function ( data ) {
@@ -1319,7 +1266,6 @@ OO.ui.Element.prototype.getTagName = function () {
 
 /**
  * Check if the element is attached to the DOM
- *
  * @return {boolean} The element is attached to the DOM
  */
 OO.ui.Element.prototype.isElementAttached = function () {
@@ -1780,7 +1726,6 @@ OO.ui.mixin.TabIndexedElement.prototype.getTabIndex = function () {
  * See the [OOjs UI documentation on MediaWiki] [1] for examples.
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Buttons
- *
  * @abstract
  * @class
  *
@@ -2052,16 +1997,6 @@ OO.ui.mixin.GroupElement = function OoUiMixinGroupElement( config ) {
 	this.setGroupElement( config.$group || $( '<div>' ) );
 };
 
-/* Events */
-
-/**
- * @event change
- *
- * A change event is emitted when the set of selected items changes.
- *
- * @param {OO.ui.Element[]} items Items currently in the group
- */
-
 /* Methods */
 
 /**
@@ -2253,7 +2188,6 @@ OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
 		this.items.splice.apply( this.items, [ index, 0 ].concat( items ) );
 	}
 
-	this.emit( 'change', this.getItems() );
 	return this;
 };
 
@@ -2290,7 +2224,6 @@ OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
 		}
 	}
 
-	this.emit( 'change', this.getItems() );
 	return this;
 };
 
@@ -2322,7 +2255,6 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
 		item.$element.detach();
 	}
 
-	this.emit( 'change', this.getItems() );
 	this.items = [];
 	return this;
 };
@@ -2645,7 +2577,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
  *
  * The title is displayed when a user moves the mouse over the indicator.
  *
- * @param {string|Function|null} indicatorTitle Indicator title text, a function that returns text, or
+ * @param {string|Function|null} indicator Indicator title text, a function that returns text, or
  *   `null` for no indicator title
  * @chainable
  */
@@ -2801,7 +2733,9 @@ OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
  */
 OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
-	label = ( ( typeof label === 'string' || label instanceof jQuery ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
+	label = ( ( typeof label === 'string' && label.length ) || label instanceof jQuery || label instanceof OO.ui.HtmlSnippet ) ? label : null;
+
+	this.$element.toggleClass( 'oo-ui-labelElement', !!label );
 
 	if ( this.label !== label ) {
 		if ( this.$label ) {
@@ -2810,8 +2744,6 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 		this.label = label;
 		this.emit( 'labelChange' );
 	}
-
-	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label );
 
 	return this;
 };
@@ -3119,7 +3051,7 @@ OO.ui.mixin.TitledElement = function OoUiMixinTitledElement( config ) {
 	this.title = null;
 
 	// Initialization
-	this.setTitle( config.title !== undefined ? config.title : this.constructor.static.title );
+	this.setTitle( config.title || this.constructor.static.title );
 	this.setTitledElement( config.$titled || this.$element );
 };
 
@@ -3271,7 +3203,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKeyedElement = function ( $acc
 /**
  * Set accesskey.
  *
- * @param {string|Function|null} accessKey Key, a function that returns a key, or `null` for no accesskey
+ * @param {string|Function|null} accesskey Key, a function that returns a key, or `null` for no accesskey
  * @chainable
  */
 OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
@@ -4117,9 +4049,6 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		ccWidth + ccOffset.left :
 		( scOffset.left + scrollLeft + scWidth ) - ccOffset.left;
 	desiredHeight = ( scOffset.top + scrollTop + scHeight ) - ccOffset.top;
-	// It should never be desirable to exceed the dimensions of the browser viewport... right?
-	desiredWidth = Math.min( desiredWidth, document.documentElement.clientWidth );
-	desiredHeight = Math.min( desiredHeight, document.documentElement.clientHeight );
 	allotedWidth = Math.ceil( desiredWidth - extraWidth );
 	allotedHeight = Math.ceil( desiredHeight - extraHeight );
 	naturalWidth = this.$clippable.prop( 'scrollWidth' );
@@ -4537,7 +4466,6 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 
 /**
  * Set popup alignment
- *
  * @param {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
  *  `backwards` or `forwards`.
  */
@@ -4552,7 +4480,6 @@ OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
 
 /**
  * Get popup alignment
- *
  * @return {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
  *  `backwards` or `forwards`.
  */
@@ -5261,7 +5188,7 @@ OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
 /**
  * Scroll item into view, preventing spurious mouse highlight actions from happening.
  *
- * @param {OO.ui.OptionWidget} item Item to scroll into view
+ * @return {OO.ui.OptionWidget} Item to scroll into view
  */
 OO.ui.SelectWidget.prototype.scrollItemIntoView = function ( item ) {
 	var widget = this;
@@ -6050,7 +5977,6 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 
 /**
  * Update menu item visibility after input changes.
- *
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
@@ -6126,7 +6052,6 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
  *
  * Note that ‘choose’ should never be modified programmatically. A user can choose an option with the keyboard
  * or mouse and it becomes selected. To select an item programmatically, use the #selectItem method.
- *
  * @param {OO.ui.OptionWidget} item Item to choose
  * @chainable
  */
@@ -6631,19 +6556,22 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 
 		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
 		closestScrollableOfFloatable = OO.ui.Element.static.getClosestScrollableContainer( this.$floatable[ 0 ] );
-		this.needsCustomPosition = closestScrollableOfContainer !== closestScrollableOfFloatable;
-		// If the scrollable is the root, we have to listen to scroll events
-		// on the window because of browser inconsistencies.
-		if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
-			closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
+		if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
+			// If the scrollable is the root, we have to listen to scroll events
+			// on the window because of browser inconsistencies (or do we? someone should verify this)
+			if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
+				closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
+			}
 		}
 
 		if ( positioning ) {
 			this.$floatableWindow = $( this.getElementWindow() );
 			this.$floatableWindow.on( 'resize', this.onFloatableWindowResizeHandler );
 
-			this.$floatableClosestScrollable = $( closestScrollableOfContainer );
-			this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
+			if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
+				this.$floatableClosestScrollable = $( closestScrollableOfContainer );
+				this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
+			}
 
 			// Initial position after visible
 			this.position();
@@ -6666,50 +6594,6 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 };
 
 /**
- * Check whether the bottom edge of the given element is within the viewport of the given container.
- *
- * @private
- * @param {jQuery} $element
- * @param {jQuery} $container
- * @return {boolean}
- */
-OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
-	var elemRect, contRect,
-		topEdgeInBounds = false,
-		leftEdgeInBounds = false,
-		bottomEdgeInBounds = false,
-		rightEdgeInBounds = false;
-
-	elemRect = $element[ 0 ].getBoundingClientRect();
-	if ( $container[ 0 ] === window ) {
-		contRect = {
-			top: 0,
-			left: 0,
-			right: document.documentElement.clientWidth,
-			bottom: document.documentElement.clientHeight
-		};
-	} else {
-		contRect = $container[ 0 ].getBoundingClientRect();
-	}
-
-	if ( elemRect.top >= contRect.top && elemRect.top <= contRect.bottom ) {
-		topEdgeInBounds = true;
-	}
-	if ( elemRect.left >= contRect.left && elemRect.left <= contRect.right ) {
-		leftEdgeInBounds = true;
-	}
-	if ( elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom ) {
-		bottomEdgeInBounds = true;
-	}
-	if ( elemRect.right >= contRect.left && elemRect.right <= contRect.right ) {
-		rightEdgeInBounds = true;
-	}
-
-	// We only care that any part of the bottom edge is visible
-	return bottomEdgeInBounds && ( leftEdgeInBounds || rightEdgeInBounds );
-};
-
-/**
  * Position the floatable below its container.
  *
  * This should only be done when both of them are attached to the DOM and visible.
@@ -6721,17 +6605,6 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 
 	if ( !this.positioning ) {
 		return this;
-	}
-
-	if ( !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
-		this.$floatable.addClass( 'oo-ui-floatableElement-hidden' );
-		return;
-	} else {
-		this.$floatable.removeClass( 'oo-ui-floatableElement-hidden' );
-	}
-
-	if ( !this.needsCustomPosition ) {
-		return;
 	}
 
 	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
@@ -6865,8 +6738,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	OO.ui.InputWidget.parent.call( this, config );
 
 	// Properties
-	// See #reusePreInfuseDOM about config.$input
-	this.$input = config.$input || this.getInputElement( config );
+	this.$input = this.getInputElement( config );
 	this.value = '';
 	this.inputFilter = config.inputFilter;
 
@@ -6922,11 +6794,9 @@ OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
  */
 OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.InputWidget.parent.static.gatherPreInfuseState( node, config );
-	if ( config.$input && config.$input.length ) {
-		state.value = config.$input.val();
-		// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
-		state.focus = config.$input.is( ':focus' );
-	}
+	state.value = config.$input.val();
+	// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
+	state.focus = config.$input.is( ':focus' );
 	return state;
 };
 
@@ -6952,8 +6822,9 @@ OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
  * @param {Object} config Configuration options
  * @return {jQuery} Input element
  */
-OO.ui.InputWidget.prototype.getInputElement = function () {
-	return $( '<input>' );
+OO.ui.InputWidget.prototype.getInputElement = function ( config ) {
+	// See #reusePreInfuseDOM about config.$input
+	return config.$input || $( '<input>' );
 };
 
 /**
@@ -7142,16 +7013,11 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
  * @cfg {boolean} [useInputTag=false] Use an `<input/>` tag instead of a `<button/>` tag, the default.
  *  Widgets configured to be an `<input/>` do not support {@link #icon icons} and {@link #indicator indicators},
  *  non-plaintext {@link #label labels}, or {@link #value values}. In general, useInputTag should only
- *  be set to `true` when there’s need to support IE 6 in a form with multiple buttons.
+ *  be set to `true` when there’s need to support IE6 in a form with multiple buttons.
  */
 OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( { type: 'button', useInputTag: false }, config );
-
-	// See InputWidget#reusePreInfuseDOM about config.$input
-	if ( config.$input ) {
-		config.$input.empty();
-	}
 
 	// Properties (must be set before parent constructor, which calls #setValue)
 	this.useInputTag = config.useInputTag;
@@ -7198,6 +7064,10 @@ OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
  */
 OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
 	var type;
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		return config.$input.empty();
+	}
 	type = [ 'button', 'submit', 'reset' ].indexOf( config.type ) !== -1 ? config.type : 'button';
 	return $( '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + type + '">' );
 };
@@ -7212,20 +7082,22 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
  * @chainable
  */
 OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
-	if ( typeof label === 'function' ) {
-		label = OO.ui.resolveMsg( label );
-	}
+	OO.ui.mixin.LabelElement.prototype.setLabel.call( this, label );
 
 	if ( this.useInputTag ) {
-		// Discard non-plaintext labels
-		if ( typeof label !== 'string' ) {
+		if ( typeof label === 'function' ) {
+			label = OO.ui.resolveMsg( label );
+		}
+		if ( label instanceof jQuery ) {
+			label = label.text();
+		}
+		if ( !label ) {
 			label = '';
 		}
-
 		this.$input.val( label );
 	}
 
-	return OO.ui.mixin.LabelElement.prototype.setLabel.call( this, label );
+	return this;
 };
 
 /**
@@ -7417,11 +7289,6 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
-	// See InputWidget#reusePreInfuseDOM about config.$input
-	if ( config.$input ) {
-		config.$input.addClass( 'oo-ui-element-hidden' );
-	}
-
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.dropdownWidget = new OO.ui.DropdownWidget( config.dropdown );
 
@@ -7452,7 +7319,11 @@ OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
  * @inheritdoc
  * @protected
  */
-OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
+OO.ui.DropdownInputWidget.prototype.getInputElement = function ( config ) {
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		return config.$input.addClass( 'oo-ui-element-hidden' );
+	}
 	return $( '<input>' ).attr( 'type', 'hidden' );
 };
 
@@ -7723,16 +7594,6 @@ OO.ui.RadioSelectInputWidget.static.gatherPreInfuseState = function ( node, conf
 	return state;
 };
 
-/**
- * @inheritdoc
- */
-OO.ui.RadioSelectInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
-	config = OO.ui.RadioSelectInputWidget.parent.static.reusePreInfuseDOM( node, config );
-	// Cannot reuse the `<input type=radio>` set
-	delete config.$input;
-	return config;
-};
-
 /* Methods */
 
 /**
@@ -7837,7 +7698,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password', 'search',
- *  'email', 'url' or 'date'. Ignored if `multiline` is true.
+ *  'email' or 'url'. Ignored if `multiline` is true.
  *
  *  Some values of `type` result in additional behaviors:
  *
@@ -7937,7 +7798,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
 	this.updateSearchIndicator();
-	if ( config.placeholder !== undefined ) {
+	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
 	if ( config.maxLength !== undefined ) {
@@ -8238,8 +8099,8 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 				.val( '' );
 			maxInnerHeight = this.$clone.innerHeight();
 
-			// Difference between reported innerHeight and scrollHeight with no scrollbars present.
-			// This is sometimes non-zero on Blink-based browsers, depending on zoom level.
+			// Difference between reported innerHeight and scrollHeight with no scrollbars present
+			// Equals 1 on Blink-based browsers and 0 everywhere else
 			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
 			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 
@@ -8293,7 +8154,7 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  * @private
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
-	var type = [ 'text', 'password', 'search', 'email', 'url', 'date' ].indexOf( config.type ) !== -1 ?
+	var type = [ 'text', 'password', 'search', 'email', 'url' ].indexOf( config.type ) !== -1 ?
 		config.type :
 		'text';
 	return config.multiline ? 'multiline' : type;
@@ -8336,16 +8197,7 @@ OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 
 	this.focus();
 
-	try {
-		input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
-	} catch ( e ) {
-		// IE throws an exception if you call setSelectionRange on a unattached DOM node.
-		// Rather than expensively check if the input is attached every time, just check
-		// if it was the cause of an error being thrown. If not, rethrow the error.
-		if ( this.getElementDocument().body.contains( input ) ) {
-			throw e;
-		}
-	}
+	input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
 	return this;
 };
 
@@ -8705,8 +8557,7 @@ OO.ui.TextInputWidget.prototype.restorePreInfuseState = function ( state ) {
 OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( {
-		indicator: 'down',
-		autocomplete: false
+		indicator: 'down'
 	}, config );
 	// For backwards-compatibility with ComboBoxWidget config
 	$.extend( config, config.input );
@@ -8766,7 +8617,6 @@ OO.inheritClass( OO.ui.ComboBoxInputWidget, OO.ui.TextInputWidget );
 
 /**
  * Get the combobox's menu.
- *
  * @return {OO.ui.FloatingMenuSelectWidget} Menu widget
  */
 OO.ui.ComboBoxInputWidget.prototype.getMenu = function () {
@@ -8775,7 +8625,6 @@ OO.ui.ComboBoxInputWidget.prototype.getMenu = function () {
 
 /**
  * Get the combobox's text input widget.
- *
  * @return {OO.ui.TextInputWidget} Text input widget
  */
 OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
@@ -8923,7 +8772,6 @@ OO.ui.ComboBoxWidget = OO.ui.ComboBoxInputWidget;
  * Please see the [OOjs UI documentation on MediaWiki] [1] for examples and more information.
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
- *
  * @class
  * @extends OO.ui.Layout
  * @mixins OO.ui.mixin.LabelElement

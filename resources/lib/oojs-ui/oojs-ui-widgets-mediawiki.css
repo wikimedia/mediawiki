@@ -1,36 +1,31 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:44Z
+ * Date: 2016-02-22T22:33:37Z
  */
-.oo-ui-draggableElement-handle,
-.oo-ui-draggableElement-handle.oo-ui-widget {
+.oo-ui-draggableElement-handle.oo-ui-widget-enabled {
 	cursor: move;
 	cursor: url(images/grab.cur );
 	cursor: -webkit-grab;
 	cursor:    -moz-grab;
 	cursor:         grab;
 }
-.oo-ui-draggableElement-handle:active {
+.oo-ui-draggableElement-placeholder {
+	opacity: 0.2;
+}
+.oo-ui-draggableElement.oo-ui-widget-enabled:active {
 	cursor: move;
 	cursor: url(images/grabbing.cur );
 	cursor: -webkit-grabbing;
 	cursor:    -moz-grabbing;
 	cursor:         grabbing;
 }
-.oo-ui-draggableElement-handle.oo-ui-widget-disabled,
-.oo-ui-widget-disabled .oo-ui-draggableElement-handle {
-	cursor: default;
-}
-.oo-ui-draggableElement-placeholder {
-	opacity: 0.2;
-}
-.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement {
+.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement.oo-ui-optionWidget {
 	display: inline-block;
 }
 .oo-ui-lookupElement > .oo-ui-menuSelectWidget {
@@ -329,7 +324,7 @@
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
 	border-color: #347bff;
-	outline: 0;
+	outline: none;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on {
 	border-color: #347bff;
@@ -348,12 +343,12 @@
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
-	background-color: #dddddd;
+	background: #dddddd;
 	border-color: #dddddd;
 	outline: 0;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled .oo-ui-toggleSwitchWidget-grip {
-	background-color: #ffffff;
+	background: #ffffff;
 }
 .oo-ui-progressBarWidget {
 	max-width: 50em;
@@ -363,8 +358,8 @@
 	overflow: hidden;
 }
 .oo-ui-progressBarWidget-bar {
-	background-color: #dddddd;
 	height: 1em;
+	background: #dddddd;
 	-webkit-transition: width 200ms, margin-left 200ms;
 	   -moz-transition: width 200ms, margin-left 200ms;
 	        transition: width 200ms, margin-left 200ms;
@@ -419,7 +414,7 @@
 	position: relative;
 	overflow: hidden;
 }
-.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button > [type="file"] {
+.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button > input[type="file"] {
 	position: absolute;
 	margin: 0;
 	top: 0;
@@ -433,7 +428,7 @@
 	cursor: pointer;
 	padding-top: 100px;
 }
-.oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > [type="file"] {
+.oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > input[type="file"] {
 	display: none;
 }
 .oo-ui-selectFileWidget-info {
@@ -495,7 +490,7 @@
 	width: 5.5em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
-	border: 0;
+	border: none;
 	background: none;
 	display: block;
 	height: 100%;
@@ -633,7 +628,7 @@
 	right: 2em;
 }
 .oo-ui-selectFileWidget-supported.oo-ui-widget-enabled.oo-ui-selectFileWidget-canDrop .oo-ui-selectFileWidget-dropTarget {
-	background-color: #ebf2ff;
+	background: rgba(52, 123, 255, 0.1);
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
@@ -842,7 +837,7 @@
 	vertical-align: middle;
 }
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-capsuleMultiSelectWidget-content > input:focus {
-	outline: 0;
+	outline: none;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiSelectWidget-handle {
 	padding-right: 2.4875em;
@@ -904,7 +899,7 @@
 	overflow: hidden;
 }
 .oo-ui-capsuleItemWidget:focus {
-	outline: 0;
+	outline: none;
 	border-color: #347bff;
 }
 .oo-ui-capsuleItemWidget.oo-ui-widget-disabled {
@@ -914,8 +909,9 @@
 	background-color: #f3f3f3;
 }
 .oo-ui-capsuleItemWidget > .oo-ui-buttonElement {
-	margin-top: -1.4em;
-	padding-left: 0.3em;
+	float: right;
+	margin-top: -0.2em;
+	margin-left: 0.4em;
 }
 .oo-ui-searchWidget-query {
 	position: absolute;
@@ -986,6 +982,6 @@
 	border-bottom-left-radius: 0;
 	border-left-width: 0;
 }
-.oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget input {
+.oo-ui-numberInputWidget .oo-ui-textInputWidget input {
 	border-radius: 0;
 }
