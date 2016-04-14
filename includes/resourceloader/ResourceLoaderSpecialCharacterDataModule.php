@@ -78,6 +78,7 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 			'special-characters-group-ipa',
 			'special-characters-group-symbols',
 			'special-characters-group-greek',
+			'special-characters-group-greekextended',
 			'special-characters-group-cyrillic',
 			'special-characters-group-arabic',
 			'special-characters-group-arabicextended',
