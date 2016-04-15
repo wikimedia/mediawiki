@@ -305,18 +305,10 @@ class EnhancedChangesList extends ChangesList {
 			$last = 0;
 			$first = count( $block ) - 1;
 			# Some events (like logs and category changes) have an "empty" size, so we need to skip those...
-			while ( $last < $first && (
-					$block[$last]->mAttribs['rc_new_len'] === null ||
-					# TODO kill the below check after March 2016 - https://phabricator.wikimedia.org/T126428
-					$block[$last]->mAttribs['rc_type'] == RC_CATEGORIZE
-				) ) {
+			while ( $last < $first && $block[$last]->mAttribs['rc_new_len'] === null ) {
 				$last++;
 			}
-			while ( $last < $first && (
-					$block[$first]->mAttribs['rc_old_len'] === null ||
-					# TODO kill the below check after March 2016 - https://phabricator.wikimedia.org/T126428
-					$block[$first]->mAttribs['rc_type'] == RC_CATEGORIZE
-				) ) {
+			while ( $last < $first && $block[$first]->mAttribs['rc_old_len'] === null ) {
 				$first--;
 			}
 			# Get net change
