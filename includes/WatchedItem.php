@@ -18,6 +18,7 @@
  * @file
  * @ingroup Watchlist
  */
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 
 /**
@@ -118,7 +119,7 @@ class WatchedItem {
 			if ( $this->checkRights && !$this->user->isAllowed( 'viewmywatchlist' ) ) {
 				return false;
 			}
-			$item = WatchedItemStore::getDefaultInstance()
+			$item = MediaWikiServices::getInstance()->getWatchedItemStore()
 				->loadWatchedItem( $this->user, $this->linkTarget );
 			if ( $item ) {
 				$this->notificationTimestamp = $item->getNotificationTimestamp();
@@ -163,7 +164,7 @@ class WatchedItem {
 		if ( $this->checkRights && !$this->user->isAllowed( 'editmywatchlist' ) ) {
 			return;
 		}
-		WatchedItemStore::getDefaultInstance()->resetNotificationTimestamp(
+		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
 			$this->user,
 			$this->getTitle(),
 			$force,
@@ -194,7 +195,7 @@ class WatchedItem {
 			$targets[$userId][] = $watchedItem->getTitle()->getTalkPage();
 		}
 
-		$store = WatchedItemStore::getDefaultInstance();
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$success = true;
 		foreach ( $users as $userId => $user ) {
 			$success &= $store->addWatchBatchForUser( $user, $targets[$userId] );
@@ -240,7 +241,7 @@ class WatchedItem {
 	 */
 	public static function duplicateEntries( Title $oldTitle, Title $newTitle ) {
 		// wfDeprecated( __METHOD__, '1.27' );
-		$store = WatchedItemStore::getDefaultInstance();
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$store->duplicateAllAssociatedEntries( $oldTitle, $newTitle );
 	}
 

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists last changes made to the wiki
  *
@@ -355,7 +357,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
 				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
 					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						WatchedItemStore::getDefaultInstance()->countWatchers(
+						MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchers(
 							new TitleValue( (int)$obj->rc_namespace, $obj->rc_title )
 						);
 				}
