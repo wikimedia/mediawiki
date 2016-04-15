@@ -26,6 +26,8 @@
  * @ingroup Watchlist
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Provides the UI through which users can perform editing
  * operations on their watchlist
@@ -324,7 +326,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function getWatchlist() {
 		$list = [];
 
-		$watchedItems = WatchedItemStore::getDefaultInstance()->getWatchedItemsForUser(
+		$watchedItems = MediaWikiServices::getInstance()->getWatchedItemStore()->getWatchedItemsForUser(
 			$this->getUser(),
 			[ 'forWrite' => $this->getRequest()->wasPosted() ]
 		);
@@ -365,7 +367,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getWatchlistInfo() {
 		$titles = [];
 
-		$watchedItems = WatchedItemStore::getDefaultInstance()
+		$watchedItems = MediaWikiServices::getInstance()->getWatchedItemStore()
 			->getWatchedItemsForUser( $this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ] );
 
 		$lb = new LinkBatch();
@@ -420,7 +422,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$user = $this->getUser();
-		$store = WatchedItemStore::getDefaultInstance();
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 
 		foreach ( $this->badItems as $row ) {
 			list( $title, $namespace, $dbKey ) = $row;
@@ -471,7 +473,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
 		}
 
-		WatchedItemStore::getDefaultInstance()->addWatchBatchForUser(
+		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
 			$this->getUser(),
 			$expandedTargets
 		);
@@ -486,7 +488,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param array $titles Array of strings, or Title objects
 	 */
 	private function unwatchTitles( $titles ) {
-		$store = WatchedItemStore::getDefaultInstance();
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {

@@ -24,6 +24,8 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This module processes the email notifications when the current page is
  * changed. It looks up the table watchlist to find out which users are watching
@@ -91,7 +93,7 @@ class EmailNotification {
 		if ( !$config->get( 'EnotifWatchlist' ) && !$config->get( 'ShowUpdatedMarker' ) ) {
 			return [];
 		}
-		return WatchedItemStore::getDefaultInstance()->updateNotificationTimestamp(
+		return MediaWikiServices::getInstance()->getWatchedItemStore()->updateNotificationTimestamp(
 			$editor,
 			$linkTarget,
 			$timestamp
@@ -124,7 +126,7 @@ class EmailNotification {
 		$config = RequestContext::getMain()->getConfig();
 		$watchers = [];
 		if ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) ) {
-			$watchers = WatchedItemStore::getDefaultInstance()->updateNotificationTimestamp(
+			$watchers = MediaWikiServices::getInstance()->getWatchedItemStore()->updateNotificationTimestamp(
 				$editor,
 				$title,
 				$timestamp
