@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists last changes made to the wiki,
  * limited to user-defined list of titles.
@@ -365,7 +367,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
 			&& $user->getOption( 'shownumberswatching' )
 		) {
-			$watchedItemStore = WatchedItemStore::getDefaultInstance();
+			$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		}
 
 		$s = $list->beginRecentChangesList();
@@ -646,7 +648,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return int
 	 */
 	protected function countItems() {
-		$count = WatchedItemStore::getDefaultInstance()->countWatchedItems( $this->getUser() );
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
 	}
 }

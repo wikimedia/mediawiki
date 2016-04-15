@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Handles the backend logic of moving a page from one title
  * to another.
@@ -369,7 +371,7 @@ class MovePage {
 		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
 		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			$store = WatchedItemStore::getDefaultInstance();
+			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
 

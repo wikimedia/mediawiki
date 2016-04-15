@@ -3500,7 +3500,7 @@ class User implements IDBAccessObject {
 	 */
 	public function isWatched( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( $title->isWatchable() && ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) ) ) {
-			return WatchedItemStore::getDefaultInstance()->isWatched( $this, $title );
+			return MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched( $this, $title );
 		}
 		return false;
 	}
@@ -3514,7 +3514,7 @@ class User implements IDBAccessObject {
 	 */
 	public function addWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			WatchedItemStore::getDefaultInstance()->addWatchBatchForUser(
+			MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
 				$this,
 				[ $title->getSubjectPage(), $title->getTalkPage() ]
 			);
@@ -3531,8 +3531,9 @@ class User implements IDBAccessObject {
 	 */
 	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			WatchedItemStore::getDefaultInstance()->removeWatch( $this, $title->getSubjectPage() );
-			WatchedItemStore::getDefaultInstance()->removeWatch( $this, $title->getTalkPage() );
+			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+			$store->removeWatch( $this, $title->getSubjectPage() );
+			$store->removeWatch( $this, $title->getTalkPage() );
 		}
 		$this->invalidateCache();
 	}
@@ -3601,7 +3602,7 @@ class User implements IDBAccessObject {
 			$force = 'force';
 		}
 
-		WatchedItemStore::getDefaultInstance()
+		MediaWikiServices::getInstance()->getWatchedItemStore()
 			->resetNotificationTimestamp( $this, $title, $force, $oldid );
 	}
 
