@@ -204,7 +204,7 @@
 						deferred.reject( 'ok-but-empty', 'No response from API on upload attempt.' );
 					} else if ( result.error ) {
 						if ( result.error.code === 'badtoken' ) {
-							api.badToken( 'edit' );
+							api.badToken( 'csrf' );
 						}
 
 						deferred.reject( result.error.code, result );
