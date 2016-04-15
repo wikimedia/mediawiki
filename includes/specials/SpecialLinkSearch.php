@@ -299,4 +299,14 @@ class LinkSearchPage extends QueryPage {
 	protected function getGroupName() {
 		return 'redirects';
 	}
+
+	/**
+	 * enwiki complained about low limits on this special page
+	 *
+	 * @see T130058
+	 * @todo FIXME This special page should not use LIMIT for paging
+	 */
+	protected function getMaxResults() {
+		return max( parent::getMaxResults(), 60000 );
+	}
 }
