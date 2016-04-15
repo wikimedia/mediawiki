@@ -52,7 +52,7 @@
 	promises[ defaultOptions.ajax.url ] = {};
 	$.each( mw.user.tokens.get(), function ( key, value ) {
 		// This requires #getToken to use the same key as user.tokens.
-		// Format: token-type + "Token" (eg. editToken, patrolToken, watchToken).
+		// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
 		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
 			.resolve( value )
 			.promise( { abort: function () {} } );
@@ -274,7 +274,7 @@
 		 * If we have a cached token try using that, and if it fails, blank out the
 		 * cached token and start over. For example to change an user option you could do:
 		 *
-		 *     new mw.Api().postWithToken( 'options', {
+		 *     new mw.Api().postWithToken( 'csrf', {
 		 *         action: 'options',
 		 *         optionname: 'gender',
 		 *         optionvalue: 'female'

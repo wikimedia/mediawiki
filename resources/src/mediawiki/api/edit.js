@@ -6,7 +6,7 @@
 	$.extend( mw.Api.prototype, {
 
 		/**
-		 * Post to API with edit token. If we have no token, get one and try to post.
+		 * Post to API with csrf token. If we have no token, get one and try to post.
 		 * If we have a cached token try using that, and if it fails, blank out the
 		 * cached token and start over.
 		 *
@@ -15,18 +15,18 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ajaxOptions ) {
-			return this.postWithToken( 'edit', params, ajaxOptions );
+			return this.postWithToken( 'csrf', params, ajaxOptions );
 		},
 
 		/**
-		 * API helper to grab an edit token.
+		 * API helper to grab a csrf token.
 		 *
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function () {
-			return this.getToken( 'edit' );
+			return this.getToken( 'csrf' );
 		},
 
 		/**
