@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query module to show basic page information.
@@ -759,7 +760,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->watched = [];
 		$this->notificationtimestamps = [];
 
-		$store = WatchedItemStore::getDefaultInstance();
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$timestamps = $store->getNotificationTimestampsBatch( $user, $this->everything );
 
 		if ( $this->fld_watched ) {
@@ -799,7 +800,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$countOptions['minimumWatchers'] = $unwatchedPageThreshold;
 		}
 
-		$this->watchers = WatchedItemStore::getDefaultInstance()->countWatchersMultiple(
+		$this->watchers = MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchersMultiple(
 			$this->everything,
 			$countOptions
 		);
@@ -866,8 +867,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				)
 			);
 		}
-
-		$this->visitingwatchers = WatchedItemStore::getDefaultInstance()->countVisitingWatchersMultiple(
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$this->visitingwatchers = $store->countVisitingWatchersMultiple(
 			$titlesWithThresholds,
 			!$canUnwatchedpages ? $unwatchedPageThreshold : null
 		);

@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Represents a title within MediaWiki.
  * Optionally may contain an interwiki designation or namespace.
@@ -4433,7 +4435,8 @@ class Title implements LinkTarget {
 			$this->mNotificationTimestamp = [];
 		}
 
-		$watchedItem = WatchedItemStore::getDefaultInstance()->getWatchedItem( $user, $this );
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItem = $store->getWatchedItem( $user, $this );
 		if ( $watchedItem ) {
 			$this->mNotificationTimestamp[$uid] = $watchedItem->getNotificationTimestamp();
 		} else {
