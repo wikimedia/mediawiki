@@ -1228,6 +1228,7 @@
 	"recentchangeslinked-page": "Nome d'a vôsce:",
 	"recentchangeslinked-to": "Fa vedè le cangiaminde de le pàggene colleghete a 'na certa pàgene",
 	"recentchanges-page-added-to-category": "[[:$1]] aggiunde a categorije",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] luate da 'a categorije, [[Special:WhatLinksHere/$1|sta vôsce ste sckaffate jndr'à otre pàggene]]",
 	"upload": "Careche 'u file",
 	"uploadbtn": "Careche 'nu fail",
 	"reuploaddesc": "Scangille 'u carecamende e tuerne a 'a schermete de le carecaminde",

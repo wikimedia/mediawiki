@@ -1761,6 +1761,7 @@
 	"apisandbox-examples": "Прыклады",
 	"apisandbox-dynamic-parameters": "Дадатковыя парамэтры",
 	"apisandbox-dynamic-parameters-add-label": "Дадаць парамэтар:",
+	"apisandbox-dynamic-parameters-add-placeholder": "Назва парамэтру",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",

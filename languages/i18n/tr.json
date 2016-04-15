@@ -515,7 +515,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sizin gibi insanlar tarafından geliştirilir.",
 	"createacct-benefit-body1": "{{PLURAL:$1|düzenleme|düzenleme}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|madde|madde}}",
-	"createacct-benefit-body3": "en son {{PLURAL:$1|katkıda bulunan|katkıda bulunan}} kişi sayısı",
+	"createacct-benefit-body3": "yakın zamanda {{PLURAL:$1|katkı yapan|katkı yapan}} kişi",
 	"badretype": "Girdiğiniz şifreler birbirleriyle uyuşmuyor.",
 	"usernameinprogress": "Bu kullanıcı adı için bir hesap oluşturma zaten sürüyor. Lütfen bekleyin.",
 	"userexists": "Girdiğiniz kullanıcı adı zaten kullanımda.\nLütfen farklı bir kullanıcı adı seçiniz.",

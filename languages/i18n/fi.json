@@ -3616,7 +3616,7 @@
 	"log-action-filter-managetags-activate": "Merkkauksen ottaminen käyttöön",
 	"log-action-filter-managetags-deactivate": "Merkkauksen poistaminen käytöstä",
 	"log-action-filter-move-move": "Siirto ilman että ohjaussivu korvataan",
-	"log-action-filter-move-move_redir": "Siirto niin että ohjaussivu korvataan",
+	"log-action-filter-move-move_redir": "Siirto joka korvaa ohjauksen",
 	"log-action-filter-newusers-create": "Luonut rekisteröimätön käyttäjä",
 	"log-action-filter-newusers-create2": "Luonut rekisteröity käyttäjä",
 	"log-action-filter-newusers-autocreate": "Luotu automaattisesti",
