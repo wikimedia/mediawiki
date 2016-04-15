@@ -268,13 +268,9 @@ class Title implements LinkTarget {
 	 * @return Title|null Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
-		if ( is_object( $text ) ) {
-			throw new InvalidArgumentException( '$text must be a string.' );
-		}
 		// DWIM: Integers can be passed in here when page titles are used as array keys.
 		if ( $text !== null && !is_string( $text ) && !is_int( $text ) ) {
-			wfDebugLog( 'T76305', wfGetAllCallers( 5 ) );
-			return null;
+			throw new InvalidArgumentException( '$text must be a string.' );
 		}
 		if ( $text === null ) {
 			return null;
