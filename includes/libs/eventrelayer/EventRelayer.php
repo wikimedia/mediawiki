@@ -18,11 +18,15 @@
  * @file
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerInterface;
 
 /**
  * Base class for reliable event relays
  */
 abstract class EventRelayer {
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
 	 * @param array $params
 	 */
@@ -45,6 +49,24 @@ abstract class EventRelayer {
 	 */
 	final public function notifyMulti( $channel, $events ) {
 		return $this->doNotify( $channel, $events );
+	}
+
+	/**
+	 * Set logger instance.
+	 * @param LoggerInterface $logger
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
+	/**
+	 * Log an error message.
+	 * @param string $message
+	 */
+	protected function logWarning( $message ) {
+		if ( $this->logger ) {
+			$this->logger->warning( $message );
+		}
 	}
 
 	/**
