@@ -94,12 +94,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testGetDefaultInstance() {
-		$instanceOne = WatchedItemStore::getDefaultInstance();
-		$instanceTwo = WatchedItemStore::getDefaultInstance();
-		$this->assertSame( $instanceOne, $instanceTwo );
-	}
-
 	public function testCountWatchedItems() {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 

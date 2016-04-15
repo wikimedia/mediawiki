@@ -121,14 +121,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 		} );
 	}
 
-	/**
-	 * @deprecated use MediaWikiServices::getInstance()->getWatchedItemStore()
-	 * @return self
-	 */
-	public static function getDefaultInstance() {
-		return MediaWikiServices::getInstance()->getWatchedItemStore();
-	}
-
 	private function getCacheKey( User $user, LinkTarget $target ) {
 		return $this->cache->makeKey(
 			(string)$target->getNamespace(),

@@ -22,6 +22,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Displays information about a page.
  *
@@ -677,7 +679,7 @@ class InfoAction extends FormlessAction {
 
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				$watchedItemStore = WatchedItemStore::getDefaultInstance();
+				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 
 				$result = [];
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
