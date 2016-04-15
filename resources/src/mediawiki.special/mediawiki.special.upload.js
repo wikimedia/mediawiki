@@ -74,8 +74,9 @@
 				if ( result.query ) {
 					resultOut = result.query.pages[ result.query.pageids[ 0 ] ].imageinfo[ 0 ];
 				}
-				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
+			} ).always( function () {
+				$spinnerDestCheck.remove();
 			} );
 		},
 
@@ -123,8 +124,9 @@
 				prop: 'text',
 				pst: true
 			} ).done( function ( result ) {
-				$spinnerLicense.remove();
 				uploadLicense.processResult( result, license );
+			} ).always( function () {
+				$spinnerLicense.remove();
 			} );
 		},
 
