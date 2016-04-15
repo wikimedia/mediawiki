@@ -396,3 +396,7 @@
 	path = extensions/Loops
 	url = https://github.com/wikimedia/mediawiki-extensions-Loops.git
 	branch = REL1_26
+[submodule "extensions/NewestPages"]
+	path = extensions/NewestPages
+	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages.git
+	branch = REL1_26
