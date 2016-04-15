@@ -57,22 +57,28 @@
 		},
 
 		timeout: function () {
-			var $spinnerDestCheck;
+			var $spinnerDestCheck, title;
 			if ( !ajaxUploadDestCheck || this.nameToCheck === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
+			title = mw.Title.newFromText( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file );
 
 			( new mw.Api() ).get( {
 				action: 'query',
-				titles: ( new mw.Title( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file ) ).getPrefixedText(),
+				// If title is empty, user input is invalid, the API call will produce details about why
+				titles: title ? title.getPrefixedText() : this.nameToCheck,
 				prop: 'imageinfo',
 				iiprop: 'uploadwarning',
 				indexpageids: true
 			} ).done( function ( result ) {
-				var resultOut = '';
-				if ( result.query ) {
-					resultOut = result.query.pages[ result.query.pageids[ 0 ] ].imageinfo[ 0 ];
+				var
+					resultOut = '',
+					pageId = result.query.pageids[ 0 ];
+				if ( result.query.pages[ pageId ].imageinfo ) {
+					resultOut = result.query.pages[ pageId ].imageinfo[ 0 ].html;
+				} else if ( result.query.pages[ pageId ].invalidreason ) {
+					resultOut = mw.html.escape( result.query.pages[ pageId ].invalidreason );
 				}
 				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
@@ -80,8 +86,8 @@
 		},
 
 		processResult: function ( result, fileName ) {
-			this.setWarning( result.html );
-			this.responseCache[ fileName ] = result.html;
+			this.setWarning( result );
+			this.responseCache[ fileName ] = result;
 		},
 
 		setWarning: function ( warning ) {
