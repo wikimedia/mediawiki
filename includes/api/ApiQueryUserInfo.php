@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query module to get information about the currently logged-in user
  *
@@ -225,7 +227,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['unreadcount'] ) ) {
-			$unreadNotifications = WatchedItemStore::getDefaultInstance()->countUnreadNotifications(
+			$unreadNotifications = MediaWikiServices::getInstance()->getWatchedItemStore()->countUnreadNotifications(
 				$user,
 				self::WL_UNREAD_LIMIT
 			);
