@@ -158,6 +158,10 @@
 				$element.css( sideMargin, -elementWidth );
 				$interface.css( 'width', interfaceWidth );
 			}, 1 );
+			// After the transition is over, allow line-breaking.
+			setTimeout( function ()  {
+				$interface.css( { 'white-space': 'pre-line', width: 'auto' } );
+			}, 2 );
 		} );
 	};
 
