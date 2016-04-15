@@ -102,9 +102,9 @@
 		var api = new mw.Api(),
 			test = this;
 
-		// Get editToken for local wiki, this should not make
+		// Get csrfToken for local wiki, this should not make
 		// a request as it should be retrieved from mw.user.tokens.
-		return api.getToken( 'edit' )
+		return api.getToken( 'csrf' )
 			.then( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			}, function ( err ) {
@@ -285,7 +285,7 @@
 
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' ] );
 
-		return api.postWithToken( 'edit',
+		return api.postWithToken( 'csrf',
 				{ action: 'example' },
 				{
 					headers: {
@@ -296,7 +296,7 @@
 			.then( function () {
 				assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 
-				return api.postWithToken( 'edit',
+				return api.postWithToken( 'csrf',
 					{ action: 'example' },
 					function () {
 						assert.ok( false, 'This parameter cannot be a callback' );
