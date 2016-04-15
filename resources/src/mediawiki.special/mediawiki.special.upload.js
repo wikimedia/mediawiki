@@ -64,15 +64,15 @@
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
 
 			( new mw.Api() ).get( {
+				formatversion: 2,
 				action: 'query',
 				titles: ( new mw.Title( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file ) ).getPrefixedText(),
 				prop: 'imageinfo',
-				iiprop: 'uploadwarning',
-				indexpageids: true
+				iiprop: 'uploadwarning'
 			} ).done( function ( result ) {
 				var resultOut = '';
 				if ( result.query ) {
-					resultOut = result.query.pages[ result.query.pageids[ 0 ] ].imageinfo[ 0 ];
+					resultOut = result.query.pages[ 0 ].imageinfo[ 0 ].html;
 				}
 				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
@@ -80,8 +80,8 @@
 		},
 
 		processResult: function ( result, fileName ) {
-			this.setWarning( result.html );
-			this.responseCache[ fileName ] = result.html;
+			this.setWarning( result );
+			this.responseCache[ fileName ] = result;
 		},
 
 		setWarning: function ( warning ) {
@@ -117,6 +117,7 @@
 			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
 
 			( new mw.Api() ).get( {
+				formatversion: 2,
 				action: 'parse',
 				text: '{{' + license + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
@@ -129,7 +130,7 @@
 		},
 
 		processResult: function ( result, license ) {
-			this.responseCache[ license ] = result.parse.text[ '*' ];
+			this.responseCache[ license ] = result.parse.text;
 			this.showPreview( this.responseCache[ license ] );
 		},
 
