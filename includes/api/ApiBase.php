@@ -1298,7 +1298,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	private function validateUser( $value, $encParamName ) {
 		$title = Title::makeTitleSafe( NS_USER, $value );
-		if ( $title === null ) {
+		if ( $title === null || $title->hasFragment() ) {
 			$this->dieUsage(
 				"Invalid value '$value' for user parameter $encParamName",
 				"baduser_{$encParamName}"
