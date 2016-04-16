@@ -2110,8 +2110,6 @@
 	"categories-submit": "Submit button on [[Special:Categories]]\n{{Identical|Show}}",
 	"categoriespagetext": "{{doc-important|Do not translate or change links.}}\nText displayed in [[Special:Categories]].\n\nIn order to translate \"Unused categories\" and \"wanted categories\" see {{msg-mw|Unusedcategories}} and {{msg-mw|Wantedcategories}}.\n\nParameters:\n* $1 - number of categories",
 	"categoriesfrom": "Used as label for the input box in [[Special:Categories]].\n\nThis message follows the fieldset label {{msg-mw|categories}}, and is followed by the input box.",
-	"special-categories-sort-count": "Commented out at this time.\n\nThis message is used on [[Special:Categories]] to sort the list by the number of members in the categories.\n\nSee also:\n* {{msg-mw|Special-categories-sort-abc}}",
-	"special-categories-sort-abc": "Commented out at this time.\n\nThis message is used on [[Special:Categories]] to sort the list by the category name.\n\nSee also:\n* {{msg-mw|Special-categories-sort-count}}\n{{Identical|Sort alphabetically}}",
 	"deletedcontributions": "The message is shown as a link on [[Special:SpecialPages]] to [[Special:DeletedContributions]].\n\n{{Identical|Deleted user contributions}}",
 	"deletedcontributions-summary": "{{doc-specialpagesummary|deletedcontributions}}",
 	"deletedcontributions-title": "Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.\n\n{{Identical|Deleted user contributions}}",
