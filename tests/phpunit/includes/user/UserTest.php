@@ -342,30 +342,28 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getCanonicalName()
 	 * @dataProvider provideGetCanonicalName
 	 */
-	public function testGetCanonicalName( $name, $expectedArray, $msg ) {
+	public function testGetCanonicalName( $name, $expectedArray ) {
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertEquals(
 				$expected,
-				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
-				$msg . ' (' . $validate . ')'
-			);
+				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ), $validate );
 		}
 	}
 
 	public static function provideGetCanonicalName() {
 		return [
-			[ ' Trailing space ', [ 'creatable' => 'Trailing space' ], 'Trailing spaces' ],
-			// @todo FIXME: Maybe the creatable name should be 'Talk:Username' or false to reject?
-			[ 'Talk:Username', [ 'creatable' => 'Username', 'usable' => 'Username',
-				'valid' => 'Username', 'false' => 'Talk:Username' ], 'Namespace prefix' ],
-			[ ' name with # hash', [ 'creatable' => false, 'usable' => false ], 'With hash' ],
-			[ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
-				'usable' => 'Multi spaces' ], 'Multi spaces' ],
-			[ 'lowercase', [ 'creatable' => 'Lowercase' ], 'Lowercase' ],
-			[ 'in[]valid', [ 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'In[]valid' ], 'Invalid' ],
-			[ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'With / slash' ], 'With slash' ],
+			'Leading space' => [ ' Leading space', [ 'creatable' => 'Leading space' ] ],
+			'Trailing space ' => [ 'Trailing space ', [ 'creatable' => 'Trailing space' ] ],
+			'Namespace prefix' => [ 'Talk:Username', [ 'creatable' => false, 'usable' => false,
+				'valid' => false, 'false' => 'Talk:Username' ] ],
+			'With hash' => [ 'name with # hash', [ 'creatable' => false, 'usable' => false ] ],
+			'Multi spaces' => [ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
+				'usable' => 'Multi spaces' ] ],
+			'Lowercase' => [ 'lowercase', [ 'creatable' => 'Lowercase' ] ],
+			'Invalid character' => [ 'in[]valid', [ 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'In[]valid' ] ],
+			'With slash' => [ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'With / slash' ] ],
 		];
 	}
 
