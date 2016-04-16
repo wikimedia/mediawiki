@@ -1070,9 +1070,9 @@ class User implements IDBAccessObject {
 		// Clean up name according to title rules,
 		// but only when validation is requested (bug 12654)
 		$t = ( $validate !== false ) ?
-			Title::newFromText( $name ) : Title::makeTitle( NS_USER, $name );
+			Title::newFromText( $name, NS_USER ) : Title::makeTitle( NS_USER, $name );
 		// Check for invalid titles
-		if ( is_null( $t ) ) {
+		if ( is_null( $t ) || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
 			return false;
 		}
 
