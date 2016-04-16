@@ -220,7 +220,7 @@
 	"config-admin-password-blank": "输入管理员帐号的密码。",
 	"config-admin-password-mismatch": "两次输入的密码并不相同。",
 	"config-admin-email": "电子邮件地址：",
-	"config-admin-email-help": "在这里输入电子邮件地址可以允许你收到来自本wiki其他用户的电子邮件，重置你的密码和收到你的监视列表中的页面的更改通知。你可以将该字段留空。",
+	"config-admin-email-help": "在这里输入电子邮件地址可以允许您收到来自本wiki其他用户的电子邮件，重置您的密码和收到您的监视列表中的页面的更改通知。您可以将该字段留空。",
 	"config-admin-error-user": "在创建用户名为“<nowiki>$1</nowiki>”的管理员帐号时发生内部错误。",
 	"config-admin-error-password": "在为管理员“<nowiki>$1</nowiki>”设置密码时发生内部错误：<pre>$2</pre>",
 	"config-admin-error-bademail": "您输入了无效的电子邮件地址。",

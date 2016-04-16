@@ -1510,6 +1510,7 @@
 	"uploadstash-badtoken": "A művelet végrehajtása sikertelen volt. Lehetséges, hogy lejártak a szerkesztést hitelesítő adataid. Próbáld újra!",
 	"uploadstash-errclear": "A fájlok törlése nem sikerült.",
 	"uploadstash-refresh": "Fájlok listájának frissítése",
+	"uploadstash-thumbnail": "bélyegkép megjelenítése",
 	"invalid-chunk-offset": "Érvénytelen darab eltolás",
 	"img-auth-accessdenied": "Hozzáférés megtagadva",
 	"img-auth-nopathinfo": "Hiányzó PATH_INFO.\nA szerver nincs beállítva, hogy továbbítsa ezt az információt.\nLehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.\nLásd https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization!",
@@ -1761,6 +1762,7 @@
 	"apisandbox-jsonly": "Az API-homokozó használatához JavaScriptre van szükség.",
 	"apisandbox-api-disabled": "API le van tiltva ezen az oldalon.",
 	"apisandbox-intro": "Ezen az oldalon kísérletezhetsz a <strong>MediaWiki web service API</strong>-val.\nA használattal kapcsolatos további részletek az [[mw:API:Main page|API-dokumentációnál]] találhatók. Példa: [//www.mediawiki.org/wiki/API#A_simple_example olvasd el a főoldal tartalomjegyzékét]. További példákért válassz egy tevékenységet!\n\nFigyelj rá, hogy bár ez csak egy „homokozó”, ettől még az általad végzett műveletek módosíthatják a wikit!",
+	"apisandbox-fullscreen": "Panel kinyitása",
 	"apisandbox-unfullscreen": "Lap mutatása",
 	"apisandbox-submit": "Kérés végrehajtása",
 	"apisandbox-reset": "Törlés",
@@ -3565,5 +3567,7 @@
 	"log-action-filter-all": "Mind",
 	"log-action-filter-block-block": "Blokk",
 	"log-action-filter-block-reblock": "Blokk módosítása",
-	"log-action-filter-block-unblock": "Blokk feloldása"
+	"log-action-filter-block-unblock": "Blokk feloldása",
+	"log-action-filter-newusers-autocreate": "Automatikus létrehozás",
+	"log-action-filter-protect-unprotect": "Védelem feloldása"
 }

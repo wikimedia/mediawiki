@@ -339,7 +339,7 @@
 	"viewdeleted": "Visa $1?",
 	"restorelink": "{{PLURAL:$1|en raderad version|$1 raderade versioner}}",
 	"feedlinks": "Flöde:",
-	"feed-invalid": "Ogiltig flödestyp.",
+	"feed-invalid": "Ogiltig flödestyp för prenumeration.",
 	"feed-unavailable": "Syndikerade flöden är inte tillgängliga",
 	"site-rss-feed": "$1 RSS-flöde",
 	"site-atom-feed": "$1 Atom-flöde",

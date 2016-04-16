@@ -138,7 +138,8 @@
 			"Cl3m3n7",
 			"C13m3n7",
 			"Gnangbade",
-			"Frigory"
+			"Frigory",
+			"Lemondoge"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -3003,6 +3004,7 @@
 	"exif-copyrighted-true": "Soumis au droit d'auteur",
 	"exif-copyrighted-false": "État des droits d’auteur non défini",
 	"exif-photometricinterpretation-1": "Noir et blanc (0 pour le noir)",
+	"exif-photometricinterpretation-4": "Masque de transparence",
 	"exif-unknowndate": "Date inconnue",
 	"exif-orientation-1": "Normale",
 	"exif-orientation-2": "Inversée horizontalement",
