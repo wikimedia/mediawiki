@@ -73,18 +73,49 @@
 			apiPromise = api.get( {
 				action: 'query',
 				list: 'users',
-				ususers: username // '|' in usernames is handled below
-			} )
-				.done( function ( resp ) {
-					var userinfo = resp.query.users[ 0 ];
+				ususers: [ username ], // the array is needed to escape '|' characters in the name
+				usprop: 'cancreate',
+				uselang: mw.config.get( 'wgUserLanguage' )
+			} ).done( function ( resp ) {
+					var error,
+						userinfo = resp.query.users[ 0 ];
 
 					if ( resp.query.users.length !== 1 ) {
-						// Happens if the user types '|' into the field
+						// sanity; should not happen
 						d.resolve( { state: 'invalid', username: null } );
 					} else if ( userinfo.invalid !== undefined ) {
 						d.resolve( { state: 'invalid', username: null } );
 					} else if ( userinfo.userid !== undefined ) {
 						d.resolve( { state: 'taken', username: null } );
+					} else if ( userinfo.cancreateerror ) {
+						// some authentication provider is blocking this name
+						// FIXME localization should be provided in the same query - T78479
+						error = userinfo.cancreateerror[ 0 ];
+						api.get( {
+							formatversion: 2,
+							action: 'query',
+							meta: 'allmessages',
+							ammessages: error.message,
+							amlang: mw.config.get( 'wgUserLanguage' ),
+							amenableparser: true,
+							amincludelocal: true,
+							amargs: error.params
+						} ).done( function ( resp2 ) {
+							var parsedError = resp2.query.allmessages[ 0 ];
+							if ( !parsedError ) {
+								d.resolve( {
+									state: 'cantcreate',
+									username: null,
+									message: '<' + error.message + '>'
+								} );
+							} else {
+								d.resolve( {
+									state: 'cantcreate',
+									username: null,
+									message: parsedError.content
+								} );
+							}
+						} ).fail( d.reject );
 					} else {
 						d.resolve( { state: 'ok', username: username } );
 					}
@@ -127,6 +158,8 @@
 						message = mw.message( 'noname' ).text();
 					} else if ( info.state === 'taken' ) {
 						message = mw.message( 'userexists' ).text();
+					} else if ( info.state === 'cantcreate' ) {
+						message = info.message;
 					}
 
 					statusContainer.setErrors( [ message ] );
