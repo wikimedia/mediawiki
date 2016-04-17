@@ -520,9 +520,11 @@ interface IDatabase {
 	 * for use in field names (e.g. a.user_name).
 	 *
 	 * All of the table names given here are automatically run through
-	 * IDatabase::tableName(), which causes the table prefix (if any) to be
+	 * DatabaseBase::tableName(), which causes the table prefix (if any) to be
 	 * added, and various other table name mappings to be performed.
 	 *
+	 * Do not use untrusted user input as a table name. Alias names should
+	 * not have characters outside of the Basic multilingual plane.
 	 *
 	 * @param string|array $vars
 	 *
@@ -537,6 +539,7 @@ interface IDatabase {
 	 * If an expression is given, care must be taken to ensure that it is
 	 * DBMS-independent.
 	 *
+	 * Untrusted user input must not be passed to this parameter.
 	 *
 	 * @param string|array $conds
 	 *
@@ -563,6 +566,10 @@ interface IDatabase {
 	 *    - IDatabase::buildLike()
 	 *    - IDatabase::conditional()
 	 *
+	 * Untrusted user input is safe in the values of string keys, however untrusted
+	 * input must not be used in the array key names or in the values of numeric keys.
+	 * Escaping of untrusted input used in values of numeric keys should be done via
+	 * IDatabase::addQuotes()
 	 *
 	 * @param string|array $options
 	 *
@@ -628,8 +635,9 @@ interface IDatabase {
 	 *
 	 * The key of the array contains the table name or alias. The value is an
 	 * array with two elements, numbered 0 and 1. The first gives the type of
-	 * join, the second is an SQL fragment giving the join condition for that
-	 * table. For example:
+	 * join, the second is the same as the $conds parameter. Thus it can be
+	 * an SQL fragment, or an array where the string keys are equality and the
+	 * numeric keys are SQL fragments all AND'd together. For example:
 	 *
 	 *    array( 'page' => array( 'LEFT JOIN', 'page_latest=rev_id' ) )
 	 *
@@ -794,7 +802,7 @@ interface IDatabase {
 	 *     IDatabase::affectedRows().
 	 *
 	 * @param string $table Table name. This will be passed through
-	 *   IDatabase::tableName().
+	 *   DatabaseBase::tableName().
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
@@ -807,7 +815,7 @@ interface IDatabase {
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
 	 * @param string $table Name of the table to UPDATE. This will be passed through
-	 *   IDatabase::tableName().
+	 *   DatabaseBase::tableName().
 	 * @param array $values An array of values to SET. For each array element,
 	 *   the key gives the field name, and the value gives the data to set
 	 *   that field to. The data will be quoted by IDatabase::addQuotes().
@@ -1020,7 +1028,7 @@ interface IDatabase {
 	 *
 	 * @since 1.22
 	 *
-	 * @param string $table Table name. This will be passed through IDatabase::tableName().
+	 * @param string $table Table name. This will be passed through DatabaseBase::tableName().
 	 * @param array $rows A single row or list of rows to insert
 	 * @param array $uniqueIndexes List of single field names or field name tuples
 	 * @param array $set An array of values to SET. For each array element, the
