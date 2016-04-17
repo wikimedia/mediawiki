@@ -357,7 +357,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *    'revdelUser': User to use when checking whether to show revision-deleted fields.
 	 * @return array Result array
 	 */
-	public static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
+	public function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
 		global $wgContLang;
 
 		$anyHidden = false;
