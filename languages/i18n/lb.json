@@ -1272,7 +1272,7 @@
 	"recentchangeslinked-page": "Säitennumm:",
 	"recentchangeslinked-to": "Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit",
 	"recentchanges-page-added-to-category": "[[:$1]] an d'Kategorie derbäigesat",
-	"recentchanges-page-added-to-category-bundled": "{{PLURAL:$2|}}[[:$1]] a(n) [[Special:WhatLinksHere/$1|{{PLURAL:$2|eng Säit|$2 Säiten}}]] an d'Kategorie derbäigesat",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] an d'Kategorie dobäigesat, [[Special:WhatLinksHere/$1|dës Säit ass an aner Säiten agebonn]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] erausgeholl aus der Kategorie",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] aus der Kategorie erausgeholl, [[Special:WhatLinksHere/$1|dës Säit ass an aner Säiten agebonn]]",
 	"autochange-username": "Automatesch MediaWiki-Ännerung",

@@ -84,7 +84,8 @@
 			"Expert3222",
 			"Mateuszek045",
 			"Sethakill",
-			"Mateon1"
+			"Mateon1",
+			"Jdx"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -102,6 +103,7 @@
 	"tog-watchdefault": "Dodawaj do obserwowanych strony i pliki, które edytuję",
 	"tog-watchmoves": "Dodawaj do obserwowanych strony i pliki, które przenoszę",
 	"tog-watchdeletion": "Dodawaj do obserwowanych strony i pliki, które usuwam",
+	"tog-watchuploads": "Dodawaj do obserwowanych przesyłane przeze mnie nowe pliki",
 	"tog-watchrollback": "Dodawaj do obserwowanych strony, w których {{GENDER:|wycofałem|wycofałam}} edycję",
 	"tog-minordefault": "Wszystkie edycje domyślnie oznaczaj jako drobne",
 	"tog-previewontop": "Pokazuj podgląd powyżej obszaru edycji",

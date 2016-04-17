@@ -854,7 +854,7 @@
 	"revdelete-unsuppress": "Korlátozások eltávolítása a visszaállított változatokról",
 	"revdelete-log": "Ok:",
 	"revdelete-submit": "Alkalmazás a kiválasztott {{PLURAL:$1|változatra|változatokra}}",
-	"revdelete-success": "'''A változat láthatósága sikeresen frissítve.'''",
+	"revdelete-success": "A változat láthatósága sikeresen frissítve.",
 	"revdelete-failure": "'''Nem sikerült frissíteni a változat láthatóságát:'''\n$1",
 	"logdelete-success": "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
 	"logdelete-failure": "'''Nem sikerült módosítani a naplóbejegyzés láthatóságát:'''\n$1",
@@ -3564,10 +3564,14 @@
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sütialapú munkamenetek",
 	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezd a sütiket, és próbáld meg újra!",
 	"randomrootpage": "Véletlen lap a gyökérből",
+	"log-action-filter-delete": "Törlés típusa:",
+	"log-action-filter-import": "Importálás típusa:",
 	"log-action-filter-all": "Mind",
 	"log-action-filter-block-block": "Blokk",
 	"log-action-filter-block-reblock": "Blokk módosítása",
 	"log-action-filter-block-unblock": "Blokk feloldása",
 	"log-action-filter-newusers-autocreate": "Automatikus létrehozás",
-	"log-action-filter-protect-unprotect": "Védelem feloldása"
+	"log-action-filter-protect-protect": "Lapvédelem",
+	"log-action-filter-protect-unprotect": "Védelem feloldása",
+	"log-action-filter-upload-upload": "Új feltöltés"
 }
