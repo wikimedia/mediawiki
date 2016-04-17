@@ -223,6 +223,40 @@ class Message implements MessageSpecifier, Serializable {
 	protected $message;
 
 	/**
+	 * Transform anything that can represent a message into a proper Message
+	 * @param string|array|MessageSpecifier|Message $value
+	 * @param IContextSource $context
+	 * @return Message
+	 * @throws InvalidArgumentException
+	 */
+	public static function wrap( $value, IContextSource $context = null ) {
+		if ( $value instanceof Message ) {
+			// do not modify the message that's passed in
+			$message = $context ? new Message( $value ) : $value;
+		} elseif ( $value instanceof MessageSpecifier ) {
+			$message = new Message( $value );
+		} elseif( $value instanceof Status ) {
+			$message = $value->getMessage();
+		} elseif( $value instanceof StatusValue ) {
+			$message = Status::wrap( $value )->getMessage();
+		} elseif ( is_array( $value ) ) {
+			$key = array_shift( $value );
+			$message = new Message( $key, $value );
+		} elseif ( is_string( $value ) ) {
+			$message = new Message( $value );
+		} else {
+			throw new InvalidArgumentException( __METHOD__ . ': invalid argument type '
+				. gettype( $value ) );
+		}
+
+		if ( $context ) {
+			$message->setContext( $context );
+		}
+
+		return $message;
+	}
+
+	/**
 	 * @since 1.17
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of
 	 * message keys to try and use the first non-empty message for, or a

@@ -100,7 +100,7 @@ class OOUIHTMLForm extends HTMLForm {
 			if ( $isBadIE ) {
 				$label = $button['value'];
 			} elseif ( isset( $button['label-message'] ) ) {
-				$label = new OOUI\HtmlSnippet( $this->msg( $button['label-message'] )->parse() );
+				$label = new OOUI\HtmlSnippet( $this->getMessage( $button['label-message'] )->parse() );
 			} elseif ( isset( $button['label'] ) ) {
 				$label = $button['label'];
 			} elseif ( isset( $button['label-raw'] ) ) {
@@ -196,18 +196,7 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 
 		foreach ( $errors as &$error ) {
-			if ( is_array( $error ) ) {
-				$msg = array_shift( $error );
-			} else {
-				$msg = $error;
-				$error = [];
-			}
-			// if the error is already a message object, don't use it as a message key
-			if ( !$msg instanceof Message ) {
-				$error = $this->msg( $msg, $error )->parse();
-			} else {
-				$error = $msg->parse();
-			}
+			$error = $this->getMessage( $error )->parse();
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
