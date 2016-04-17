@@ -1119,7 +1119,7 @@ class HTMLForm extends ContextSource {
 			];
 
 			if ( isset( $button['label-message'] ) ) {
-				$label = $this->msg( $button['label-message'] )->parse();
+				$label = $this->getMessage( $button['label-message'] )->parse();
 			} elseif ( isset( $button['label'] ) ) {
 				$label = htmlspecialchars( $button['label'] );
 			} elseif ( isset( $button['label-raw'] ) ) {
@@ -1198,17 +1198,10 @@ class HTMLForm extends ContextSource {
 		$errorstr = '';
 
 		foreach ( $errors as $error ) {
-			if ( is_array( $error ) ) {
-				$msg = array_shift( $error );
-			} else {
-				$msg = $error;
-				$error = [];
-			}
-
 			$errorstr .= Html::rawElement(
 				'li',
 				[],
-				$this->msg( $msg, $error )->parse()
+				$this->getMessage( $error )->parse()
 			);
 		}
 
@@ -1716,5 +1709,15 @@ class HTMLForm extends ContextSource {
 		$this->mAutocomplete = $autocomplete;
 
 		return $this;
+	}
+
+	/**
+	 * Turns a *-message parameter (which could be a MessageSpecifier, or a message name, or a
+	 * name + parameters array) into a Message.
+	 * @param mixed $value
+	 * @return Message
+	 */
+	protected function getMessage( $value ) {
+		return Message::newFromSpecifier( $value )->setContext( $this );
 	}
 }
