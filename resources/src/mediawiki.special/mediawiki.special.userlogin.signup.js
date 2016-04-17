@@ -2,34 +2,6 @@
  * JavaScript for signup form.
  */
 ( function ( mw, $ ) {
-	// When sending password by email, hide the password input fields.
-	$( function () {
-		// Always required if checked, otherwise it depends, so we use the original
-		var $emailLabel = $( 'label[for="wpEmail"]' ),
-			originalText = $emailLabel.text(),
-			requiredText = mw.message( 'createacct-emailrequired' ).text(),
-			$createByMailCheckbox = $( '#wpCreateaccountMail' ),
-			$beforePwds = $( '.mw-row-password:first' ).prev(),
-			$pwds;
-
-		function updateForCheckbox() {
-			var checked = $createByMailCheckbox.prop( 'checked' );
-			if ( checked ) {
-				$pwds = $( '.mw-row-password' ).detach();
-				$emailLabel.text( requiredText );
-			} else {
-				if ( $pwds ) {
-					$beforePwds.after( $pwds );
-					$pwds = null;
-				}
-				$emailLabel.text( originalText );
-			}
-		}
-
-		$createByMailCheckbox.on( 'change', updateForCheckbox );
-		updateForCheckbox();
-	} );
-
 	// Check if the username is invalid or already taken
 	$( function () {
 		var
@@ -37,16 +9,14 @@
 			// value of an <input type=text> field.
 			events = 'keyup keydown change mouseup cut paste focus blur',
 			$input = $( '#wpName2' ),
-			$statusContainer = $( '#mw-createacct-status-area' ),
+			$statusContainer = $( '#userlogin2' ).find( '.mw-htmlform-status-area' ),
 			api = new mw.Api(),
 			currentRequest;
 
 		// Hide any present status messages.
 		function clearStatus() {
 			$statusContainer.slideUp( function () {
-				$statusContainer
-					.removeAttr( 'class' )
-					.empty();
+				$statusContainer.empty();
 			} );
 		}
 
@@ -62,9 +32,10 @@
 			apiPromise = api.get( {
 				action: 'query',
 				list: 'users',
-				ususers: username // '|' in usernames is handled below
-			} )
-				.done( function ( resp ) {
+				ususers: username, // '|' in usernames is handled below
+				usprop: 'cancreate',
+				uselang: mw.config.get( 'wgUserLanguage' )
+			} ).done( function ( resp ) {
 					var userinfo = resp.query.users[ 0 ];
 
 					if ( resp.query.users.length !== 1 ) {
@@ -74,6 +45,10 @@
 						d.resolve( { state: 'invalid', username: null } );
 					} else if ( userinfo.userid !== undefined ) {
 						d.resolve( { state: 'taken', username: null } );
+					} else if ( userinfo['cancreateerror'] !== undefined ) {
+						// some authentication provider is blocking this name
+						d.resolve( { state: 'cantcreate', username: null,
+							message: userinfo['cancreateerror'] } );
 					} else {
 						d.resolve( { state: 'ok', username: username } );
 					}
@@ -116,18 +91,19 @@
 						message = mw.message( 'noname' ).text();
 					} else if ( info.state === 'taken' ) {
 						message = mw.message( 'userexists' ).text();
+					} else if ( info.state === 'cantcreate' ) {
+						message = info.message;
 					}
 
 					$statusContainer
-						.attr( 'class', 'errorbox' )
 						.empty()
 						.append(
 							// Ugh…
-							// TODO Change the HTML structure in includes/templates/Usercreate.php
 							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() ),
 							$( '<br>' ),
 							document.createTextNode( message )
 						)
+						.wrapInner( '<div class="error">' )
 						.slideDown();
 				}
 			} ).fail( function () {

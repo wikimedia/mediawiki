@@ -1201,9 +1201,11 @@ class HTMLForm extends ContextSource {
 			$errorstr = $errors;
 		}
 
-		return $errorstr
-			? Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr )
-			: '';
+		if ( $errorstr ) {
+			$errorstr = Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr );
+		}
+
+		return Html::rawElement( 'div', [ 'class' => 'mw-htmlform-status-area' ], $errorstr );
 	}
 
 	/**

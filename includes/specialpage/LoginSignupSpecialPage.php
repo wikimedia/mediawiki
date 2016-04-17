@@ -622,16 +622,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// should be above the error message but HTMLForm doesn't support that
 		$form->addHeaderText( $fakeTemplate->html( 'header' ) );
 
-		// FIXME the old form used this for error/warning messages which does not play well with
-		// HTMLForm (maybe it could with a subclass?); for now only display it for signups
-		// (where the JS username validation needs it) and alway empty
-		if ( $this->isSignup() ) {
-			// used by the mediawiki.special.userlogin.signup.js module
-			$statusAreaAttribs = [ 'id' => 'mw-createacct-status-area' ];
-			// $statusAreaAttribs += $msg ? [ 'class' => "{$msgType}box" ] : [ 'style' => 'display: none;' ];
-			$form->addHeaderText( Html::element( 'div', $statusAreaAttribs ) );
-		}
-
 		// header used by MobileFrontend
 		$form->addHeaderText( $fakeTemplate->html( 'formheader' ) );
 
