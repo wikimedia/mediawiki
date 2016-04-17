@@ -1095,15 +1095,6 @@ abstract class HTMLFormField {
 	 * @return Message
 	 */
 	protected function getMessage( $value ) {
-		if ( $value instanceof Message ) {
-			return $value;
-		} elseif ( $value instanceof MessageSpecifier ) {
-			return Message::newFromKey( $value );
-		} elseif ( is_array( $value ) ) {
-			$msg = array_shift( $value );
-			return $this->msg( $msg, $value );
-		} else {
-			return $this->msg( $value, [] );
-		}
+		return Message::newFromSpecifier( $value, $this->mParent );
 	}
 }
