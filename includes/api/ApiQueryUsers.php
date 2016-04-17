@@ -262,8 +262,11 @@ class ApiQueryUsers extends ApiQueryBase {
 				} else {
 					$data[$u]['missing'] = true;
 					if ( isset( $this->prop['cancreate'] ) ) {
-						$data[$u]['cancreate'] = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u )
-							->isGood();
+						$status = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u );
+						$data[$u]['cancreate'] = $status->isGood();
+						if ( !$status->isGood() ) {
+							$data[$u]['cancreate-error'] = $status->getMessage();
+						}
 					}
 				}
 			} else {
