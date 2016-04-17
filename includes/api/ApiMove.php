@@ -70,6 +70,11 @@ class ApiMove extends ApiBase {
 			}
 		}
 
+		// Rate limit
+		if ( $user->pingLimiter( 'move' ) ) {
+			$this->dieUsageMsg( 'actionthrottledtext' );
+		}
+
 		// Move the page
 		$toTitleExists = $toTitle->exists();
 		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'] );
