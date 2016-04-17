@@ -49,20 +49,25 @@ class WithoutInterwikiPage extends PageQueryPage {
 		$prefix = $this->prefix;
 		$t = $this->getPageTitle();
 
-		return Html::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) . "\n" .
-			Html::openElement( 'fieldset' ) . "\n" .
-			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
-			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
-			Xml::inputLabel(
-				$this->msg( 'allpagesprefix' )->text(),
-				'prefix',
-				'wiprefix',
-				20,
-				$prefix
-			) . "\n" .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
-			Html::closeElement( 'fieldset' ) . "\n" .
-			Html::closeElement( 'form' );
+		$formDescriptor = array(
+			'prefix' => array(
+				'label-message' => 'allpagesprefix',
+				'name' => 'prefix',
+				'id' => 'wiprefix',
+				'type' => 'text',
+				'size' => 20,
+				'default' => $prefix
+			)
+		);
+
+		$htmlForm = HTMLForm::factory( 'table', $formDescriptor, $this->getContext() );
+		$htmlForm->addHiddenField( 'title', $t->getPrefixedText() )
+			->setWrapperLegendMsg( 'withoutinterwiki-legend' )
+			->setSubmitTextMsg( 'withoutinterwiki-submit' )
+			->setMethod( 'get' )
+			->setAction( wfScript() )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	function sortDescending() {
