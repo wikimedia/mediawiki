@@ -383,6 +383,34 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * Transform a MessageSpecifier or a primitive value used interchangeably with
+	 * specifiers (a message key string, or a key + params array) into a proper Message
+	 * @param string|array|MessageSpecifier $value
+	 * @param IContextSource $context
+	 * @return Message
+	 * @throws InvalidArgumentException
+	 */
+	public static function newFromSpecifier( $value, IContextSource $context = null ) {
+		if ( $value instanceof MessageSpecifier ) {
+			$message = new Message( $value );
+		} elseif ( is_array( $value ) ) {
+			$key = array_shift( $value );
+			$message = new Message( $key, $value );
+		} elseif ( is_string( $value ) ) {
+			$message = new Message( $value );
+		} else {
+			throw new InvalidArgumentException( __METHOD__ . ': invalid argument type '
+				. gettype( $value ) );
+		}
+
+		if ( $context ) {
+			$message->setContext( $context );
+		}
+
+		return $message;
+	}
+
+	/**
 	 * Factory function accepting multiple message keys and returning a message instance
 	 * for the first message which is non-empty. If all messages are empty then an
 	 * instance of the first message key is returned.
