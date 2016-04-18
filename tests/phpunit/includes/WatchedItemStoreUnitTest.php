@@ -17,7 +17,11 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
 	 */
-	private function getMockLoadBalancer( $mockDb, $expectedConnectionType = null ) {
+	private function getMockLoadBalancer(
+		$mockDb,
+		$expectedConnectionType = null,
+		$readOnlyReason = false
+	) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -33,7 +37,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		}
 		$mock->expects( $this->any() )
 			->method( 'getReadOnlyReason' )
-			->will( $this->returnValue( false ) );
+			->will( $this->returnValue( $readOnlyReason ) );
 		return $mock;
 	}
 
@@ -938,6 +942,20 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$store->addWatch(
 			$this->getAnonUser(),
 			Title::newFromText( 'Some_Page' )
+		);
+	}
+
+	public function testAddWatchBatchForUser_readOnlyDBReturnsFalse() {
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $this->getMockDb(), null, 'Some Reason' ),
+			$this->getMockCache()
+		);
+
+		$this->assertFalse(
+			$store->addWatchBatchForUser(
+				$this->getMockNonAnonUserWithId( 1 ),
+				[ new TitleValue( 0, 'Some_Page' ), new TitleValue( 1, 'Some_Page' ) ]
+			)
 		);
 	}
 
