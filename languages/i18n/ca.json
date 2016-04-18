@@ -1809,8 +1809,6 @@
 	"categories-submit": "Mostra",
 	"categoriespagetext": "{{PLURAL:$1|La següent categoria conté|Les següents categories contenen}} pàgines, o fitxers multimèdia.\n[[Special:UnusedCategories|Les categories no usades]] no s'hi mostren.\nVegeu també [[Special:WantedCategories|les categories sol·licitades]].",
 	"categoriesfrom": "Mostra les categories que comencen a:",
-	"special-categories-sort-count": "ordena per recompte",
-	"special-categories-sort-abc": "ordena alfabèticament",
 	"deletedcontributions": "Contribucions esborrades",
 	"deletedcontributions-title": "Contribucions esborrades",
 	"sp-deletedcontributions-contribs": "contribucions",

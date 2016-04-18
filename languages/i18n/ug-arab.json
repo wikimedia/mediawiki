@@ -1498,8 +1498,6 @@
 	"categories": "تۈرلەر",
 	"categoriespagetext": "تۆۋەندىكى {{PLURAL:$1|كاتېگورىيە|كاتېگورىيە}}دە بەت ياكى ۋاسىتە بار.\n[[Special:UnusedCategories|ئىشلىتىلمىگەن كاتېگورىيە]] بۇ جايدا كۆرسىتىلمەيدۇ.\nشۇنىڭ بىلەن بىللە [[Special:WantedCategories|لازىملىق كاتېگورىيە]] نى كۆرۈڭ.",
 	"categoriesfrom": "بۇ كاتېگورىيەدىن باشلانغاننى كۆرسەت:",
-	"special-categories-sort-count": "سانى بويىچە تەرتىپلە",
-	"special-categories-sort-abc": "ئېلىپبە بويىچە تەرتىپلە",
 	"deletedcontributions": "ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى",
 	"deletedcontributions-title": "ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى",
 	"sp-deletedcontributions-contribs": "تۆھپە",

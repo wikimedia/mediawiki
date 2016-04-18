@@ -1815,8 +1815,6 @@
 	"categories-submit": "Monstrar",
 	"categoriespagetext": "Le sequente {{PLURAL:$1|categoria|categorias}} contine paginas o multimedia.\nLe [[Special:UnusedCategories|categorias non usate]] non se monstra hic.\nVide etiam le [[Special:WantedCategories|categorias desirate]].",
 	"categoriesfrom": "Monstrar categorias a partir de:",
-	"special-categories-sort-count": "ordinar per numero",
-	"special-categories-sort-abc": "ordinar alphabeticamente",
 	"deletedcontributions": "Contributiones delite de usatores",
 	"deletedcontributions-title": "Contributiones delite de usatores",
 	"sp-deletedcontributions-contribs": "contributiones",

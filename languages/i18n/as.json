@@ -1609,8 +1609,6 @@
 	"categories": "শ্ৰেণী",
 	"categoriespagetext": "এই {{PLURAL:$1|বিষয়শ্ৰেণীত|বিষয়শ্ৰেণীসমূহত}}  পৃষ্ঠা বা মিডিয়া ফাইল আছে ।\n[[Special:UnusedCategories|অব্যৱহৃত শ্ৰেণীসমূহ]]  ইয়াত দেখুওৱা হোৱা নাই ।\nঅধিক তথ্যৰ বাবে [[Special:WantedCategories|আৱশ্যক শ্ৰেণীসমূহ]] চাওক ।",
 	"categoriesfrom": "ইয়াৰে আৰম্ভ হোৱা শ্ৰেণীসমূহ দেখুৱাওক:",
-	"special-categories-sort-count": "গণনাৰ ভিত্তিত সজাওক",
-	"special-categories-sort-abc": "বৰ্ণানুক্ৰমে সজাওক",
 	"deletedcontributions": "ৰদ কৰা সদস্যৰ বৰঙণিসমূহ",
 	"deletedcontributions-title": "ৰদ কৰা সদস্যৰ বৰঙণিসমূহ",
 	"sp-deletedcontributions-contribs": "বৰঙণিসমূহ",

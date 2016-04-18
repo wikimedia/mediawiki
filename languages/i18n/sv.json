@@ -1872,8 +1872,6 @@
 	"categories-submit": "Visa",
 	"categoriespagetext": "Följande {{PLURAL:$1|kategori|kategorier}} innehåller sidor eller media.\n[[Special:UnusedCategories|Oanvända kategorier]] visas inte här.\nSe även [[Special:WantedCategories|önskade kategorier]].",
 	"categoriesfrom": "Visa kategorier från och med:",
-	"special-categories-sort-count": "sortera efter storlek",
-	"special-categories-sort-abc": "sortera alfabetiskt",
 	"deletedcontributions": "Raderade användarbidrag",
 	"deletedcontributions-title": "Raderade användarbidrag",
 	"sp-deletedcontributions-contribs": "bidrag",

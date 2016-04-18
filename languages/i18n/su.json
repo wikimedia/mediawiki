@@ -1452,8 +1452,6 @@
 	"categories": "Kategori",
 	"categoriespagetext": "{{PLURAL:$1|Kategori|Kategori}} ngandung kaca atawa média.\n[[Special:UnusedCategories|Kategori nu teu kapaké]] henteu ditémbongkeun di dieu.\nBaca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].",
 	"categoriesfrom": "Tembongkeun kategori-kategori dimimitian ku:",
-	"special-categories-sort-count": "ngurut numutkeun jumlah",
-	"special-categories-sort-abc": "runtuykeun dumasar abjad",
 	"deletedcontributions": "Kontribusi nu dihapus",
 	"deletedcontributions-title": "Kontribusi nu dihapus",
 	"sp-deletedcontributions-contribs": "kontribusi",

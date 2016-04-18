@@ -955,8 +955,6 @@
 	"allpages-bad-ns": "Ing {{SITENAME}} ala lang pirinan lagyung (namespace) \"$1\".",
 	"categories": "Kategoriya",
 	"categoriespagetext": "Deng tutuking categoria atin lang bulung o media\n[[Special:UnusedCategories|Unused categories]] are not shown here.\nAlso see [[Special:WantedCategories|wanted categories]].",
-	"special-categories-sort-count": "surian tukituki agpang keng bilang",
-	"special-categories-sort-abc": "surian lang tukituki agpang keng kulitan",
 	"deletedcontributions": "Deng ambag da reng talagamit a mebura",
 	"deletedcontributions-title": "Deng ambag da reng talagamit a mebura",
 	"linksearch": "Suglung palual",

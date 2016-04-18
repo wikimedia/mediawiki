@@ -1356,8 +1356,6 @@
 	"categories": "Categorías",
 	"categoriespagetext": "{{PLURAL:$1|A siguient categoría contién|As siguients categorías contienen}} pachinas u fichers multimedia.\nNo s'amuestran aquí as [[Special:UnusedCategories|categorías no emplegatas]].\nSe veigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 	"categoriesfrom": "Amostrar as categoría que prencipien por:",
-	"special-categories-sort-count": "ordenar por recuento",
-	"special-categories-sort-abc": "ordenar alfabeticament",
 	"deletedcontributions": "Contrebucions d'usuario borratas",
 	"deletedcontributions-title": "Contrebucions d'usuario borradas",
 	"sp-deletedcontributions-contribs": "contrebucions",

@@ -1779,8 +1779,6 @@
 	"categories-submit": "காட்டு",
 	"categoriespagetext": "கீழே கொடுத்துள்ள பக்கங்கள் அல்லது ஊடகங்கள் இந்த {{PLURAL:$1|பகுப்பை|பகுப்புக்களை}} கொண்டுள்ளது.\n[[Special:UnusedCategories|உபயோகப்படுத்தப்படாத  பகுப்புகள்]] இங்கே காண்பிக்கப்படவில்லை.\nஇத்துடன் [[Special:WantedCategories|தேவைப்படும் பகுப்புகளையும்]] பார்க்கவும்.",
 	"categoriesfrom": "இதில் தொடங்கும் பகுப்புக்களைக் காட்டவும்:",
-	"special-categories-sort-count": "எண்ணிக்கையின் படி ஒழுங்குப் படுத்துக",
-	"special-categories-sort-abc": "அகரவரிசைப்படி ஒழுங்குப் படுத்துக",
 	"deletedcontributions": "பயனரின் நீக்கப்பட்ட பங்களிப்புகள்",
 	"deletedcontributions-title": "பயனரின நீக்கப்பட்ட பங்களிப்புக்கள்",
 	"sp-deletedcontributions-contribs": "பங்களிப்புக்கள்",

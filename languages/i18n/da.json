@@ -1723,8 +1723,6 @@
 	"categories": "Kategorier",
 	"categoriespagetext": "Følgende {{PLURAL:$1|kategori|kategorier}} indeholder sider eller media.\n[[Special:UnusedCategories|Ubrugte kategorier]] vises ikke her.\nSe også [[Special:WantedCategories|ønskede kategorier]].",
 	"categoriesfrom": "Vis kategorier startende med:",
-	"special-categories-sort-count": "sorter efter antal",
-	"special-categories-sort-abc": "sorter alfabetisk",
 	"deletedcontributions": "Slettede brugerbidrag",
 	"deletedcontributions-title": "Slettede brugerbidrag",
 	"sp-deletedcontributions-contribs": "bidrag",

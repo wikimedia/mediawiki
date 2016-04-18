@@ -1802,8 +1802,6 @@
 	"categories-submit": "Көрдөр",
 	"categoriespagetext": "Бу {{PLURAL:$1|категория иһигэр|категориялар истэригэр}} сирэйдэр эбэтэр медиа-билэлэр бааллар.\n[[Special:UnusedCategories|Туттуллубат категориялар]] манна көстүбэттэр.\nӨссө маны көр: [[Special:WantedCategories|Баар буолуохтаах категориялар тиһиктэрэ]].",
 	"categoriesfrom": "Мантан саҕаланар категориялары көрдөр:",
-	"special-categories-sort-count": "ахсаанынан бэрээдэктээһин",
-	"special-categories-sort-abc": "алпабыытынан бэрээдэктээһин",
 	"deletedcontributions": "Сотуллубут көннөрүү",
 	"deletedcontributions-title": "Сотуллубут көннөрүү",
 	"sp-deletedcontributions-contribs": "киллэриитэ (суруйуута)",

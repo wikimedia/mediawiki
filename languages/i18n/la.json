@@ -1096,8 +1096,6 @@
 	"cachedspecial-refresh-now": "Recentissima vide.",
 	"categories": "Categoriae",
 	"categoriespagetext": "{{PLURAL:$1|Categoria subter paginas vel fasciculos continet.|Categoriae subter paginas vel fasciculos continent.}}\n[[Special:UnusedCategories|Categoriae non in usu]] non monstrantur.\nVide etiam [[Special:WantedCategories|categorias desideratas]].",
-	"special-categories-sort-count": "ordinare secundum numerum",
-	"special-categories-sort-abc": "ordinare secundum abecedarium",
 	"deletedcontributions": "Conlationes usoris deletae",
 	"deletedcontributions-title": "Conlationes usoris deletae",
 	"sp-deletedcontributions-contribs": "conlationes",

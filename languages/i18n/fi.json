@@ -1814,8 +1814,6 @@
 	"categories-submit": "Näytä",
 	"categoriespagetext": "{{PLURAL:$1|Seuraava luokka sisältää|Seuraavat luokat sisältävät}} sivuja tai mediatiedostoja.\n[[Special:UnusedCategories|Käyttämättömiä luokkia]] ei näytetä.\nKatso myös [[Special:WantedCategories|halutut luokat]].",
 	"categoriesfrom": "Näytä alkaen luokasta",
-	"special-categories-sort-count": "järjestä koon mukaan",
-	"special-categories-sort-abc": "järjestä nimen mukaan",
 	"deletedcontributions": "Poistetut muokkaukset",
 	"deletedcontributions-title": "Poistetut muokkaukset",
 	"sp-deletedcontributions-contribs": "muokkaukset",

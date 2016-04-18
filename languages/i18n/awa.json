@@ -1601,8 +1601,6 @@
 	"categories": "श्रेणी",
 	"categoriespagetext": "निम्नोक्त {{PLURAL:$1|श्रेणी|श्रेणि}} मा पन्ना या मीडिया है।\nजवन श्रेणिन् कय [[Special:UnusedCategories|अप्रयुक्त श्रेणि]] यहँ नाइ देखाई गा हैं।\n[[Special:WantedCategories|वांछित श्रेणि]] भी देखा जाय।",
 	"categoriesfrom": "इ अक्षर से शुरु होय वाला श्रेणी देखावा जाय:",
-	"special-categories-sort-count": "संख्या कय अनुसार क्रमांकित करा जाय",
-	"special-categories-sort-abc": "वर्णानुक्रम कय अनुसार देखावा जाय",
 	"deletedcontributions": "हटावल सदस्य योगदान",
 	"deletedcontributions-title": "हटावल सदस्य योगदान",
 	"sp-deletedcontributions-contribs": "योगदान",

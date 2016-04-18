@@ -1656,8 +1656,6 @@
 	"categories": "Categorìe",
 	"categoriespagetext": "{{PLURAL:$1|Costa categorìa a conten|Coste categorìe a conten-o}} dle pàgine ò dj'archivi.\n[[Special:UnusedCategories|Le categorìe nen dovrà]] a son pa mostrà ambelessì.\nCh'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 	"categoriesfrom": "Smon-e le categorìe an partend da:",
-	"special-categories-sort-count": "ordiné për nùmer",
-	"special-categories-sort-abc": "rangé la lista an órdin alfabétich",
 	"deletedcontributions": "Modìfiche faite da utent scancelà",
 	"deletedcontributions-title": "Modìfiche faite da utent scancelà",
 	"sp-deletedcontributions-contribs": "contribussion",

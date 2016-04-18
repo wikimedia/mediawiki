@@ -89,7 +89,8 @@
 			"Frhdkazan",
 			"Ядерный Трамвай",
 			"Исмаил Садуев",
-			"Lemondoge"
+			"Lemondoge",
+			"SamGold"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1895,8 +1896,6 @@
 	"categories-submit": "Показать",
 	"categoriespagetext": "{{PLURAL:$1|1=Следующая категория содержит|Следующие категории содержат}} страницы или медиафайлы.\nЗдесь не показаны [[Special:UnusedCategories|неиспользуемые категории]].\nСм. также [[Special:WantedCategories|список требуемых категорий]].",
 	"categoriesfrom": "Показать категории, начинающиеся с:",
-	"special-categories-sort-count": "упорядочить по количеству",
-	"special-categories-sort-abc": "упорядочить по алфавиту",
 	"deletedcontributions": "Удалённый вклад участника",
 	"deletedcontributions-title": "Удалённый вклад",
 	"sp-deletedcontributions-contribs": "вклад",
@@ -2755,7 +2754,7 @@
 	"sunday-at": "в воскресенье в $1",
 	"yesterday-at": "Вчера в $1",
 	"bad_image_list": "Формат должен быть следующим:\n\nБудут учитываться только элементы списка (строки, начинающиеся на символ *).\nПервая ссылка строки должна быть ссылкой на запрещённое для вставки изображение.\nПоследующие ссылки в той же строке будут рассматриваться как исключения, то есть статьи, куда изображение может быть включено.",
-	"variantname-zh-hans": "Ганс",
+	"variantname-zh-hans": "его",
 	"metadata": "Метаданные",
 	"metadata-help": "Файл содержит дополнительные данные, обычно добавляемые цифровыми камерами или сканерами. Если файл после создания редактировался, то некоторые параметры могут не соответствовать текущему изображению.",
 	"metadata-expand": "Показать дополнительные данные",
@@ -3744,7 +3743,7 @@
 	"log-action-filter-patrol": "Тип патрулирования:",
 	"log-action-filter-protect": "Тип защиты:",
 	"log-action-filter-rights": "Тип изменения прав",
-	"log-action-filter-suppress": "Тип подавления",
+	"log-action-filter-suppress": "Тип сокрытия",
 	"log-action-filter-upload": "Тип загрузки:",
 	"log-action-filter-all": "Все",
 	"log-action-filter-block-block": "Блокировка",
@@ -3768,6 +3767,8 @@
 	"log-action-filter-protect-unprotect": "Снятие защиты",
 	"log-action-filter-rights-rights": "Ручное изменение",
 	"log-action-filter-rights-autopromote": "Автоматическое изменение",
+	"log-action-filter-suppress-revision": "Сокрытие версии",
+	"log-action-filter-suppress-delete": "Сокрытие страницы",
 	"log-action-filter-upload-upload": "Новая загрузка",
 	"log-action-filter-upload-overwrite": "Повторно загрузить"
 }

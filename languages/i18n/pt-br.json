@@ -1856,8 +1856,6 @@
 	"categories-submit": "Exibir",
 	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria contém|As seguintes contém}} páginas ou mídia.\n[[Special:UnusedCategories|Categorias não utilizadas]] não são mostradas aqui.\nVeja também [[Special:WantedCategories|categorias pedidas]].",
 	"categoriesfrom": "Listar categorias começando por:",
-	"special-categories-sort-count": "ordenar por contagem",
-	"special-categories-sort-abc": "ordenar alfabeticamente",
 	"deletedcontributions": "Edições eliminadas",
 	"deletedcontributions-title": "Contribuições eliminadas",
 	"sp-deletedcontributions-contribs": "contribuições",

@@ -1583,8 +1583,6 @@
 	"categories": "Kategorieë",
 	"categoriespagetext": "Die volgende {{PLURAL:$1|kategorie|kategorieë}} bevat bladsye of media.\n[[Special:UnusedCategories|Ongebruikte kategorieë]] word nie gewys nie.\nSien ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].",
 	"categoriesfrom": "Wys kategorieë vanaf:",
-	"special-categories-sort-count": "sorteer volgens getal",
-	"special-categories-sort-abc": "sorteer alfabeties",
 	"deletedcontributions": "Geskrapte gebruikersbydraes",
 	"deletedcontributions-title": "Geskrapte gebruikersbydraes",
 	"sp-deletedcontributions-contribs": "bydraes",

@@ -1870,8 +1870,6 @@
 	"categories-submit": "表示",
 	"categoriespagetext": "以下の{{PLURAL:$1|カテゴリ}}にはページまたはメディアがあります。\n[[Special:UnusedCategories|使われていないカテゴリ]]はここには表示していません。\n[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。",
 	"categoriesfrom": "最初に表示するカテゴリ:",
-	"special-categories-sort-count": "項目数順に並べ替え",
-	"special-categories-sort-abc": "辞書順に並べ替え",
 	"deletedcontributions": "利用者の削除された投稿",
 	"deletedcontributions-title": "利用者の削除された投稿",
 	"sp-deletedcontributions-contribs": "投稿記録",

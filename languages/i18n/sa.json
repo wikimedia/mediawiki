@@ -1640,8 +1640,6 @@
 	"categories": "वर्गाः",
 	"categoriespagetext": "निम्नोक्ताः {{PLURAL:$1|श्रेणी|श्रेणयः}} पुटानि माध्यमान् वा युक्ताः ।\nयस्याः श्रेण्याः [[Special:UnusedCategories|अप्रयुक्तश्रेण्यः]] अत्र न सन्ति ।\n[[Special:WantedCategories|अपेक्षितश्रेण्यः]] अपि पश्यतु ।",
 	"categoriesfrom": "इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:",
-	"special-categories-sort-count": "गणनानुगुणं वर्गीकरोतु ।",
-	"special-categories-sort-abc": "अकारदिक्रमेण वर्गीकरोतु ।",
 	"deletedcontributions": "अपमर्जितानि योजकयोगदानानि ।",
 	"deletedcontributions-title": "अपमर्जितानि योजकयोगदानानि ।",
 	"sp-deletedcontributions-contribs": "योगदानानि ।",

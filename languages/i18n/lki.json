@@ -1682,8 +1682,6 @@
 	"categories-submit": "نیشان دائن",
 	"categoriespagetext": "{{PLURAL:$1|ردهٔ|رده‌های}} زیر دارای صفحات یا پرونده‌هایی {{PLURAL:$1|است|هستند}}.\n[[Special:UnusedCategories|رده‌های استفاده‌نشده]] در اینجا نمایش داده نشده‌اند.\nهمچنین [[Special:WantedCategories|رده‌های مورد نیاز]] را ببینید.",
 	"categoriesfrom": "نمایش رده‌ها با شروع از:",
-	"special-categories-sort-count": "مرتب کردن بر اساس تعداد",
-	"special-categories-sort-abc": "مرتب کردن الفبایی",
 	"deletedcontributions": "مشارکت‌های حذف‌شده",
 	"deletedcontributions-title": "مشارکت‌های حذف‌شده",
 	"sp-deletedcontributions-contribs": "مشارکت‌ها",

@@ -1837,8 +1837,6 @@
 	"categories-submit": "Xem",
 	"categoriespagetext": "{{PLURAL:$1|Thể loại|Các thể loại}} dưới đây có trang hoặc tập tin phương tiện.\nNhững [[Special:UnusedCategories|thể loại trống]] không được hiển thị tại đây.\nXem thêm [[Special:WantedCategories|thể loại cần thiết]].",
 	"categoriesfrom": "Hiển thị thể loại bằng đầu từ:",
-	"special-categories-sort-count": "xếp theo số trang",
-	"special-categories-sort-abc": "xếp theo vần",
 	"deletedcontributions": "Đóng góp đã bị xóa của thành viên",
 	"deletedcontributions-title": "Đóng góp đã bị xóa của thành viên",
 	"sp-deletedcontributions-contribs": "đóng góp",

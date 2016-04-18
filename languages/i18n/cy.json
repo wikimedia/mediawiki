@@ -1645,8 +1645,6 @@
 	"categories": "Categorïau",
 	"categoriespagetext": "Mae'r {{PLURAL:$1|categori|categori|categorïau|categorïau|categorïau|categorïau}} isod yn cynnwys tudalennau neu ffeiliau amlgyfrwng.\nNi ddangosir [[Special:UnusedCategories|categorïau gwag]] yma.\nGweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 	"categoriesfrom": "Dangos categorïau gan ddechrau gyda:",
-	"special-categories-sort-count": "trefnu yn ôl nifer",
-	"special-categories-sort-abc": "trefnu yn ôl yr wyddor",
 	"deletedcontributions": "Cyfraniadau defnyddiwr i dudalennau dilëedig",
 	"deletedcontributions-title": "Cyfraniadau defnyddiwr i dudalennau dilëedig",
 	"sp-deletedcontributions-contribs": "cyfraniadau",

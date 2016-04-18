@@ -1881,8 +1881,6 @@
 	"categories-submit": "दिखाएँ",
 	"categoriespagetext": "निम्नोक्त {{PLURAL:$1|श्रेणी|श्रेणियों}} में पृष्ठ या मीडिया है।\nजिन श्रेणियों का [[Special:UnusedCategories|अप्रयुक्त श्रेणियाँ]] यहाँ नहीं दिखाई गई हैं।\n[[Special:WantedCategories|वांछित श्रेणियाँ]] भी देखें।",
 	"categoriesfrom": "इस अक्षर से शुरू होने वाली श्रेणीयाँ दर्शायें:",
-	"special-categories-sort-count": "संख्यानुसार शक्रमांकित करें",
-	"special-categories-sort-abc": "वर्णानुक्रम के अनुसार दर्शायें",
 	"deletedcontributions": "हटाए गए सदस्य योगदान",
 	"deletedcontributions-title": "हटाए गए सदस्य योगदान",
 	"sp-deletedcontributions-contribs": "योगदान",

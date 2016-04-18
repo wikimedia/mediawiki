@@ -1825,8 +1825,6 @@
 	"categories-submit": "Mostrar",
 	"categoriespagetext": "{{PLURAL:$1|A seguinte categoría contén|As seguintes categorías conteñen}} páxinas ou contidos multimedia.\nAquí non se mostran as [[Special:UnusedCategories|categorías sen uso]].\nOlle tamén as [[Special:WantedCategories|categorías requiridas]].",
 	"categoriesfrom": "Mostrar as categorías que comecen por:",
-	"special-categories-sort-count": "ordenar por número",
-	"special-categories-sort-abc": "ordenar alfabeticamente",
 	"deletedcontributions": "Contribucións borradas do usuario",
 	"deletedcontributions-title": "Contribucións borradas do usuario",
 	"sp-deletedcontributions-contribs": "contribucións",

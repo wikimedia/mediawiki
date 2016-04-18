@@ -1771,8 +1771,6 @@
 	"categories-submit": "Прикажи",
 	"categoriespagetext": "{{PLURAL:$1|Следната категорија содржи|Следните категории содржат}} страници или мултимедијални податотеки.\n[[Special:UnusedCategories|Неискористените категории]] не се прикажани овде.\nПогледајте ги и [[Special:WantedCategories|потребните категории]].",
 	"categoriesfrom": "Приказ на категории почнувајќи од:",
-	"special-categories-sort-count": "подреди по број",
-	"special-categories-sort-abc": "подреди азбучно",
 	"deletedcontributions": "Избришани кориснички придонеси",
 	"deletedcontributions-title": "Избришани кориснички придонеси",
 	"sp-deletedcontributions-contribs": "придонеси",

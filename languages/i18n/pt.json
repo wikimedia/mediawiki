@@ -1841,8 +1841,6 @@
 	"categories-submit": "Mostrar",
 	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria contém páginas ou ficheiros multimédia|As seguintes categorias contêm páginas ou ficheiros multimédia}}.\nAs [[Special:UnusedCategories|categorias não utilizadas]] não são apresentadas nesta lista.\nVeja também as [[Special:WantedCategories|categorias desejadas]].",
 	"categoriesfrom": "Mostrar categorias que comecem por:",
-	"special-categories-sort-count": "ordenar por contagem",
-	"special-categories-sort-abc": "ordenar alfabeticamente",
 	"deletedcontributions": "Edições eliminadas",
 	"deletedcontributions-title": "Edições eliminadas",
 	"sp-deletedcontributions-contribs": "contribuições",
@@ -3100,7 +3098,7 @@
 	"watchlistedit-raw-done": "A sua lista de páginas vigiadas foi atualizada.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Foi adicionada uma página|Foram adicionadas $1 páginas}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}}:",
-	"watchlistedit-clear-title": "Lista de páginas vigiadas limpa",
+	"watchlistedit-clear-title": "Limpar lista de páginas vigiadas",
 	"watchlistedit-clear-legend": "Limpar lista de páginas vigiadas",
 	"watchlistedit-clear-explain": "Todos os títulos serão removidos da sua lista de páginas vigiadas.",
 	"watchlistedit-clear-titles": "Páginas:",
@@ -3620,6 +3618,7 @@
 	"log-action-filter-rights-rights": "Alteração manual",
 	"log-action-filter-rights-autopromote": "Alteração automática",
 	"log-action-filter-suppress-event": "Supressão de registo",
+	"log-action-filter-suppress-delete": "Supressão de página",
 	"log-action-filter-upload-upload": "Novo carregamento",
 	"log-action-filter-upload-overwrite": "Recarregar"
 }

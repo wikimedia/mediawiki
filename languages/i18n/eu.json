@@ -1602,8 +1602,6 @@
 	"categories-submit": "Erakutsi",
 	"categoriespagetext": "Ondorengo {{PLURAL:$1|kategoria honek|kategoria hauek}} orriak edo fitxategiak {{PLURAL:$1|dauzka|dauzkate}}.\n[[Special:UnusedCategories|Erabili gabeko kategoriak]] ez dira hemen erakusten.\nIkus, gainera, [[Special:WantedCategories|kategoriarik eskatuenak]].",
 	"categoriesfrom": "Honela hasten diren kategoriak erakutsi:",
-	"special-categories-sort-count": "kontatetzearen arabera ordenatu",
-	"special-categories-sort-abc": "alfabetikoki aldatu",
 	"deletedcontributions": "Ezabatutako ekarpenak",
 	"deletedcontributions-title": "Ezabatutako ekarpenak",
 	"sp-deletedcontributions-contribs": "ekarpenak",

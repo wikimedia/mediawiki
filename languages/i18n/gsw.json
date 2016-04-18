@@ -1697,8 +1697,6 @@
 	"categories": "Kategorie",
 	"categoriespagetext": "In {{PLURAL:$1|däre Kategorii|däne Kategorie}} het s Syte oder Dateie.\n[[Special:UnusedCategories|Nit benutzte Kategorie]] wäre do nit ufgfiert.\nLueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].",
 	"categoriesfrom": "Zeig Kategorie ab:",
-	"special-categories-sort-count": "Sortierig no Aazahl",
-	"special-categories-sort-abc": "Sortierig no Alfabet",
 	"deletedcontributions": "Gleschti Bytreg",
 	"deletedcontributions-title": "Gleschti Bytreg",
 	"sp-deletedcontributions-contribs": "Byyträg",

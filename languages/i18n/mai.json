@@ -1666,8 +1666,6 @@
 	"categories": "संवर्ग सभ",
 	"categoriespagetext": "ई {{PLURAL:$1|संवर्गमे अछि|संवर्ग सभमे अछि}} पन्ना वा मीडिया।\n[[Special:UnusedCategories|Unused categories]] एतए देखाएल नै अछि।\nईहो देखू [[Special:WantedCategories|wanted categories]]।",
 	"categoriesfrom": "पन्ना प्रदर्शन प्रारम्भ भेल:",
-	"special-categories-sort-count": "गानि कऽ छाँटू",
-	"special-categories-sort-abc": "वर्णाक्षरानुसार छाँटू",
 	"deletedcontributions": "मेटाएल प्रयोक्ता योगदान सभ",
 	"deletedcontributions-title": "मेटाएल प्रयोक्ता योगदान सभ",
 	"sp-deletedcontributions-contribs": "योगदान सभ",

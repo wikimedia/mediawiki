@@ -1810,8 +1810,6 @@
 	"categories-submit": "Montrar",
 	"categoriespagetext": "{{PLURAL:$1|Cela catègoria-que contint|Celes catègories-que contegnont}} de pâges de mèdiâs.\nLes [[Special:UnusedCategories|catègories pas empleyêes]] sont pas montrâyes ique.\nVêde avouéc les [[Special:WantedCategories|catègories demandâyes]].",
 	"categoriesfrom": "Fâre vêre les catègories dês :",
-	"special-categories-sort-count": "chouèx per comptâjo",
-	"special-categories-sort-abc": "chouèx alfabètico",
 	"deletedcontributions": "Contribucions suprimâyes",
 	"deletedcontributions-title": "Contribucions suprimâyes",
 	"sp-deletedcontributions-contribs": "contribucions",

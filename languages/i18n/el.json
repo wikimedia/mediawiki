@@ -1811,8 +1811,6 @@
 	"categories-submit": "Εμφάνιση",
 	"categoriespagetext": "Οι ακόλουθες {{PLURAL:$1|κατηγορία περιέχει|κατηγορίες περιέχουν}} σελίδες ή μέσα.\nΟι [[Special:UnusedCategories|αχρησιμοποίητες κατηγορίες]] δεν εμφανίζονται εδώ.\nΔείτε επίσης τις [[Special:WantedCategories|ζητούμενες κατηγορίες]].",
 	"categoriesfrom": "Εμφάνιση κατηγοριών που αρχίζουν από:",
-	"special-categories-sort-count": "ταξινόμηση κατά απαρίθμηση",
-	"special-categories-sort-abc": "αλφαβητική ταξινόμηση",
 	"deletedcontributions": "Διαγεγραμμένες συνεισφορές χρήστη",
 	"deletedcontributions-title": "Διαγεγραμμένες συνεισφορές χρήστη",
 	"sp-deletedcontributions-contribs": "συνεισφορές",

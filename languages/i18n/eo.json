@@ -1739,8 +1739,6 @@
 	"categories-submit": "Montri",
 	"categoriespagetext": "La {{PLURAL:$1|jena kategorio|jenaj kategorioj}} ekzistas jam en la vikio.\n[[Special:UnusedCategories|Neuzataj kategorioj]] ne estis montrataj ĉi tie.\nVidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].",
 	"categoriesfrom": "Montri kategoriojn komencante de:",
-	"special-categories-sort-count": "oridigi laŭ nombrado",
-	"special-categories-sort-abc": "ordigi laŭ alfabeto",
 	"deletedcontributions": "Forigitaj kontribuoj de uzantoj",
 	"deletedcontributions-title": "Forigitaj kontribuoj de uzantoj",
 	"sp-deletedcontributions-contribs": "kontribuoj",

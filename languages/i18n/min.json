@@ -1182,8 +1182,6 @@
 	"categories": "Kategori",
 	"categoriespagetext": "{{PLURAL:$1|Isi kategori}} ko ado laman atau media.\n[[Special:UnusedCategories|Kategori nan indak tapakai]] indak nampak di siko.\nLihek pulo [[Special:WantedCategories|kategori nan diinginan]].",
 	"categoriesfrom": "Tunjuakan kategori mulai jo:",
-	"special-categories-sort-count": "uruikan manuruik jumlah",
-	"special-categories-sort-abc": "uruikan manuruik abjad",
 	"deletedcontributions": "Jariah nan dihapuih",
 	"deletedcontributions-title": "Jariah nan dihapuih",
 	"sp-deletedcontributions-contribs": "Jariah",

@@ -1746,8 +1746,6 @@
 	"categories-submit": "Näita",
 	"categoriespagetext": "Vikis on {{PLURAL:$1|järgmine kategooria|järgmised kategooriad}}.\nSiin ei näidata [[Special:UnusedCategories|kasutamata kategooriaid]].\nVaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].",
 	"categoriesfrom": "Näita kategooriaid alates:",
-	"special-categories-sort-count": "järjesta hulga järgi",
-	"special-categories-sort-abc": "järjesta tähestikuliselt",
 	"deletedcontributions": "Kustutatud kaastöö",
 	"deletedcontributions-title": "Kasutaja kustutatud kaastöö",
 	"sp-deletedcontributions-contribs": "kaastöö",

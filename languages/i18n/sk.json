@@ -1672,8 +1672,6 @@
 	"categories-submit": "Zobraziť",
 	"categoriespagetext": "{{PLURAL:$1|Nasledovná kategória obsahuje|Nasledovné kategórie obsahujú}} stránky alebo multimediálne súbory.\nNie sú tu zobrazené [[Special:UnusedCategories|nepoužité kategórie]].\nPozri aj [[Special:WantedCategories|žiadané kategórie]].",
 	"categoriesfrom": "Zobraziť kategórie počnúc:",
-	"special-categories-sort-count": "zoradiť podľa počtu",
-	"special-categories-sort-abc": "zoradiť podľa abecedy",
 	"deletedcontributions": "Zmazané príspevky používateľa",
 	"deletedcontributions-title": "Zmazané príspevky používateľa",
 	"sp-deletedcontributions-contribs": "príspevky",

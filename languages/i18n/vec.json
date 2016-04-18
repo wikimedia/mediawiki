@@ -1504,8 +1504,6 @@
 	"categories": "Categorie",
 	"categoriespagetext": "{{PLURAL:$1|Sta categoria qua soto la|Ste categorie qua soto le}} gà drento pagine o file multimediài.\nLe [[Special:UnusedCategories|categorie mìa doparà]] no le vien mìa fate védar.\nVarda anca le [[Special:WantedCategories|categorie domandà]].",
 	"categoriesfrom": "Mostra le categorie tacando da :",
-	"special-categories-sort-count": "ordina par nùmaro",
-	"special-categories-sort-abc": "ordina alfabeticamente",
 	"deletedcontributions": "Contributi utente scancelà",
 	"deletedcontributions-title": "Contributi utente scancelà",
 	"sp-deletedcontributions-contribs": "contributi",

@@ -1507,8 +1507,6 @@
 	"categories": "Катеґорії",
 	"categoriespagetext": "{{PLURAL:$1|Наслїдуюча катеґорія|Наслїдуючі катеґорії}} {{PLURAL:$1|обсягує|обсягують}} сторінкы або файлы.\nНевказаны суть то [[Special:UnusedCategories|нехоснованы катеґорії]].\nПосмотьте ся тыж на [[Special:WantedCategories|жаданы катеґорії]].",
 	"categoriesfrom": "Вказати сторінкы, што ся зачінають на:",
-	"special-categories-sort-count": "упорядковати за кількостёв",
-	"special-categories-sort-abc": "упорядковати за алфавітом",
 	"deletedcontributions": "Вымазаны приспевкы хоснователя",
 	"deletedcontributions-title": "Вымазаны приспевкы хоснователя",
 	"sp-deletedcontributions-contribs": "приспевкы",

@@ -1267,8 +1267,6 @@
 	"categories": "Kategorijad",
 	"categoriespagetext": "{{PLURAL:$1|Neciš kategorijas|Neniš kategorijoiš }} om lehtpolid vai mediafailoid.\n[[Special:UnusedCategories|Kävumatomid kategorijoid]] ei ozutagoi naku.\nKc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].",
 	"categoriesfrom": "Ozutada kategorijad, necišpäi augotaden:",
-	"special-categories-sort-count": "järgeta lugumäran mödhe",
-	"special-categories-sort-abc": "järgeta kirjamišton mödhe",
 	"deletedcontributions": "Čutud tond",
 	"deletedcontributions-title": "Čutud tond",
 	"sp-deletedcontributions-contribs": "tond",

@@ -1654,8 +1654,6 @@
 	"categories-submit": "చూపించు",
 	"categoriespagetext": "ఈ క్రింది {{PLURAL:$1|వర్గం పేజీలను లేదా మాధ్యమాలను కలిగివుంది|వర్గాలు పేజీలను లేదా మాధ్యమాలను కలిగివున్నాయి}}.\n[[Special:UnusedCategories|వాడుకలో లేని వర్గాలని]] ఇక్కడ చూపించట్లేదు.\n[[Special:WantedCategories|కోరుతున్న వర్గాలను]] కూడా చూడండి.",
 	"categoriesfrom": "ఇక్కడనుండి మొదలుకొని వర్గాలు చూపించు:",
-	"special-categories-sort-count": "సంఖ్యల ప్రకారం క్రమపరచు",
-	"special-categories-sort-abc": "అకారాది క్రమంలో అమర్చు",
 	"deletedcontributions": "తొలగించబడిన వాడుకరి రచనలు",
 	"deletedcontributions-title": "తొలగించబడిన వాడుకరి రచనలు",
 	"sp-deletedcontributions-contribs": "మార్పుచేర్పులు",

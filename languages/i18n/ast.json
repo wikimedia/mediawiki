@@ -1813,8 +1813,6 @@
 	"categories-submit": "Amosar",
 	"categoriespagetext": "{{PLURAL:$1|La siguiente categoría contién|Les siguientes categoríes contienen}} páxines o ficheros multimedia.\nLes [[Special:UnusedCategories|categoríes nun usaes]] nun s'amuesen equí.\nVer tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 	"categoriesfrom": "Amosar categoríes qu'emprimen por:",
-	"special-categories-sort-count": "ordenar por tamañu",
-	"special-categories-sort-abc": "ordenar alfabéticamente",
 	"deletedcontributions": "Contribuciones d'usuariu esborraes",
 	"deletedcontributions-title": "Contribuciones d'usuariu desaniciaes",
 	"sp-deletedcontributions-contribs": "collaboraciones",

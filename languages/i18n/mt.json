@@ -1557,8 +1557,6 @@
 	"categories": "Kategoriji",
 	"categoriespagetext": "Il-{{PLURAL:$1|kategorija segwenti għandha|kategoriji segwenti għandhom}} paġni jew fajls multimedjali.<br />\nIl-[[Special:UnusedCategories|kategoriji vojta]] ma jidhrux hawnhekk.\nAra wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].",
 	"categoriesfrom": "Uri kategoriji minn:",
-	"special-categories-sort-count": "irranġa skont in-numru",
-	"special-categories-sort-abc": "irranġa skont l-alfabett",
 	"deletedcontributions": "Kontribuzzjonijiet imħassra tal-utent",
 	"deletedcontributions-title": "Kontribuzzjonijiet imħassra tal-utent",
 	"sp-deletedcontributions-contribs": "kontribuzzjonijiet",

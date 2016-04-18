@@ -1677,8 +1677,6 @@
 	"categories-submit": "Prikaži",
 	"categoriespagetext": "{{PLURAL:$1|1=Sledeća kategorija sadrži|Sledeće kategorije sadrže}} stranice ili datoteke.\n[[Special:UnusedCategories|Nekorišćene kategorije]] nisu prikazane ovde.\nPogledajte i [[Special:WantedCategories|tražene kategorije]].",
 	"categoriesfrom": "Prikaži kategorije počev od:",
-	"special-categories-sort-count": "poređaj po broju",
-	"special-categories-sort-abc": "poređaj po azbučnom redu",
 	"deletedcontributions": "Obrisani korisnički doprinosi",
 	"deletedcontributions-title": "Obrisani korisnički doprinosi",
 	"sp-deletedcontributions-contribs": "doprinosi",

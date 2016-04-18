@@ -1641,8 +1641,6 @@
 	"categories": "類",
 	"categoriespagetext": "下面嘅{{PLURAL:$1|類}}有版或媒體。\n[[Special:UnusedCategories|未用類]]唔會響呢度列示。\n請同時參閱[[Special:WantedCategories|需要嘅分類]]。",
 	"categoriesfrom": "顯示由呢項起嘅類:",
-	"special-categories-sort-count": "跟數量排",
-	"special-categories-sort-abc": "跟字母排",
 	"deletedcontributions": "已經刪除咗嘅用戶貢獻",
 	"deletedcontributions-title": "已經刪除咗嘅用戶貢獻",
 	"sp-deletedcontributions-contribs": "貢獻",

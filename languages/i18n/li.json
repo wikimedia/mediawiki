@@ -1367,8 +1367,6 @@
 	"categories": "Categorieë",
 	"categoriespagetext": "De volgende {{PLURAL:$1|categorie bevat|categorieë bevatte}} pazjena's of mediabestenj.\n[[Special:UnusedCategories|Óngebroekde categorieë]] waere hie neet weergegaeve.\nZuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezinge]].",
 	"categoriesfrom": "Categorië waergaeve vanaaf:",
-	"special-categories-sort-count": "op aantal sortere",
-	"special-categories-sort-abc": "alfabetisch sortere",
 	"deletedcontributions": "Eweggesjafde gebroekersbiedrages",
 	"deletedcontributions-title": "Eweggesjafde gebroekersbiedrages",
 	"sp-deletedcontributions-contribs": "biedraag",

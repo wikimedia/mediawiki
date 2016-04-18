@@ -1284,8 +1284,6 @@
 	"categories": "تصانيف",
 	"categoriespagetext": "{{PLURAL:$1|التصنيف دا بيحتوى على|التصنيفات دى بتحتوى على}} صفحات او ميديا.\n[[Special:UnusedCategories|التصنيفات اللى مش مستعمله]] مش معروضه  هنا.\nشوف كمان [[Special:WantedCategories|التصنيفات المتعازه]].",
 	"categoriesfrom": "اعرض التصانيف من أول:",
-	"special-categories-sort-count": "رتب بالعدد",
-	"special-categories-sort-abc": "ترتيب ابجدي",
 	"deletedcontributions": "تعديلات اليوزر الممسوحة",
 	"deletedcontributions-title": "تعديلات اليوزر الممسوحة",
 	"sp-deletedcontributions-contribs": "المساهمات",

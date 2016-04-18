@@ -1759,8 +1759,6 @@
 	"categories-submit": "দেখাও",
 	"categoriespagetext": "এই {{PLURAL:$1|বিষয়শ্রেণীতে|বিষয়শ্রেণীসমূহে}} পাতা বা মিডিয়া রয়েছে।\n[[Special:UnusedCategories|অব্যবহৃত বিষয়শ্রেণীসমূহ]] এখানে দেখানো হয়েছে।\nআরও দেখুন [[Special:WantedCategories|আবশ্যক বিষয়শ্রেণীসমূহ]]।",
 	"categoriesfrom": "এই অক্ষর দিয়ে শুরু হওয়া বিষয়শ্রেণীগুলো দেখাও:",
-	"special-categories-sort-count": "গণনার ভিত্তিতে সাজাও",
-	"special-categories-sort-abc": "বর্ণানুক্রমে সাজান",
 	"deletedcontributions": "মুছে ফেলা ব্যবহারকারী অবদান",
 	"deletedcontributions-title": "মুছে ফেলা ব্যবহারকারী অবদান",
 	"sp-deletedcontributions-contribs": "অবদানসমূহ",

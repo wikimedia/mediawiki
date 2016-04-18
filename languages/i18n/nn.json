@@ -1560,8 +1560,6 @@
 	"categories-submit": "Vis",
 	"categoriespagetext": "Følgjande {{PLURAL:$1|category contains|kategoriar inneheld}} sider eller media.\n[[Special:UnusedCategories|Unytta kategoriar]] vert ikkje vist her.\nSjå òg [[Special:WantedCategories|ønska kategoriar]].",
 	"categoriesfrom": "Vis kategoriar frå og med:",
-	"special-categories-sort-count": "sorter etter storleik",
-	"special-categories-sort-abc": "sorter alfabetisk",
 	"deletedcontributions": "Sletta brukarbidrag",
 	"deletedcontributions-title": "Sletta brukarbidrag",
 	"sp-deletedcontributions-contribs": "bidrag",

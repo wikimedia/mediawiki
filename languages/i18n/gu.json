@@ -1538,8 +1538,6 @@
 	"categories": "શ્રેણીઓ",
 	"categoriespagetext": "નીચેની {{PLURAL:$1|શ્રેણી|શ્રેણીઓ}}માં પાના કે અન્ય સભ્યો છે.\n[[Special:UnusedCategories|વણ વપરાયેલી શ્રેણીઓ]] અત્રે દર્શાવવામાં આવી નથી.\n[[Special:WantedCategories|ઈચ્છિત શ્રેણીઓ]] પણ જોઈ જુઓ.",
 	"categoriesfrom": "આનાથી શરૂ થતી શ્રેણી દર્શાવો:",
-	"special-categories-sort-count": "સંખ્યા આધારીત ચઢતા ક્રમમાં વર્ગીકરણ કરો",
-	"special-categories-sort-abc": "મૂળાક્ષરો પ્રમાણે ગોઠવો",
 	"deletedcontributions": "સભ્યનું યોગદાન ભૂંસી નાખો",
 	"deletedcontributions-title": "સભ્યનું ભૂંસેલું યોગદાન",
 	"sp-deletedcontributions-contribs": "યોગદાન",

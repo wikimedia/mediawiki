@@ -1842,8 +1842,6 @@
 	"categories-submit": "ჩვენება",
 	"categoriespagetext": "შემდეგი {{PLURAL:$1|კატეგორია შეიცავს|კატეგორია შეიცავს}} გვერდს ან მედიას.\n[[Special:UnusedCategories|გამოუყენებელი კატეგორიები]] აქ ნაჩვენები არ არის.\nიხ. ასევე [[Special:WantedCategories|მოთხოვნილი კატეგორიები]].",
 	"categoriesfrom": "აჩვენეთ კატეგორიები, რომლებიც იწყება:",
-	"special-categories-sort-count": "დაალაგეთ რაოდენობის მიხედვით",
-	"special-categories-sort-abc": "ანბანზე დალაგება",
 	"deletedcontributions": "მომხმარებლის წაშლილი წვლილი",
 	"deletedcontributions-title": "წაშლილი წვლილი",
 	"sp-deletedcontributions-contribs": "წვლილი",

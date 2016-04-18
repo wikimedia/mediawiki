@@ -1815,8 +1815,6 @@
 	"categories-submit": "Rodyti",
 	"categoriespagetext": "{{PLURAL:$1|Ši kategorija|Šios kategorijos}} turi puslapių ar failų.\n[[Special:UnusedCategories|Nenaudojamos kategorijos]] čia nerodomos.\nTaip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].",
 	"categoriesfrom": "Vaizduoti kategorijas pradedant nuo:",
-	"special-categories-sort-count": "rikiuoti pagal skaičių",
-	"special-categories-sort-abc": "rikiuoti pagal abėcėlę",
 	"deletedcontributions": "Ištrintas naudotojo indėlis",
 	"deletedcontributions-title": "Ištrintas naudotojo indėlis",
 	"sp-deletedcontributions-contribs": "indėlis",

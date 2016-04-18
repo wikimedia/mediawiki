@@ -981,8 +981,6 @@
 	"categories": "Kategoria",
 	"categoriespagetext": "Fulgende {{PLURAL:$1|Kategorie enthält|Kategorien enthaaln}} Seita oder Dateien.\n[[Special:UnusedCategories|Unbenutzte Kategorien]] waan hier nee uffgefiehrt.\nSiehe au de Liste der [[Special:WantedCategories|gewinschta Kategorien]].",
 	"categoriesfrom": "Zeige Kategorien ob:",
-	"special-categories-sort-count": "Sortierung noach Oazoahl",
-	"special-categories-sort-abc": "Sortierung noach Alphabet",
 	"deletedcontributions": "Geläschte Beiträge",
 	"deletedcontributions-title": "Geläschte Beiträge",
 	"linksearch-ns": "Noamensraum:",

@@ -1431,8 +1431,6 @@
 	"categories-submit": "Rādīt",
 	"categoriespagetext": "{{PLURAL:$1|Šīs kategorijas|Šī kategorija|Šīs kategorijas}} satur lapas vai failus.\nŠeit nav parādītas [[Special:UnusedCategories|neizmantotās kategorijas]].\nSkatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 	"categoriesfrom": "Parādīt kategorijas sākot ar:",
-	"special-categories-sort-count": "kārtot pēc skaita",
-	"special-categories-sort-abc": "kārtot alfabētiskā secībā",
 	"deletedcontributions": "Dzēstais dalībnieka devums",
 	"deletedcontributions-title": "Dzēstais dalībnieka devums",
 	"sp-deletedcontributions-contribs": "devums",

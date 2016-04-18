@@ -1774,8 +1774,6 @@
 	"categories-submit": "Afișează",
 	"categoriespagetext": "{{PLURAL:$1|Următoarea categorie conține|Următoarele categorii conțin}} pagini sau fișiere.\n[[Special:UnusedCategories|Categoriile neutilizate]] nu apar aici.\nVedeți și [[Special:WantedCategories|categoriile dorite]].",
 	"categoriesfrom": "Arată categoriile pornind de la:",
-	"special-categories-sort-count": "ordonează după număr",
-	"special-categories-sort-abc": "sortează alfabetic",
 	"deletedcontributions": "Contribuții șterse",
 	"deletedcontributions-title": "Contribuții șterse",
 	"sp-deletedcontributions-contribs": "contribuții",

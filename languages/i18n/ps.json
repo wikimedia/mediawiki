@@ -1415,8 +1415,6 @@
 	"categories-submit": "ښکاره کول",
 	"categoriespagetext": "دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.\nدلته [[Special:UnusedCategories|ناکارېدلې وېشنيزې]] نه دي ښکاره شوي.\n[[Special:WantedCategories|غوښتلې وېشنيزې]] هم وگورۍ.",
 	"categoriesfrom": "هغه وېشنيزې کتل چې پېلېږي په:",
-	"special-categories-sort-count": "د شمېر له مخې اوډل",
-	"special-categories-sort-abc": "د ابېڅو له مخې اوډل",
 	"deletedcontributions": "ړنگېدلې کارن ونډې",
 	"deletedcontributions-title": "ړنگېدلې کارن ونډې",
 	"sp-deletedcontributions-contribs": "ونډې",

@@ -1556,8 +1556,6 @@
 	"categories": "Kategori",
 	"categoriespagetext": "{{PLURAL:$1|kategori ing ngisor iki ngandhut|kategori ing ngisor iki ngandhut}} kaca utawa media.\n[[Special:UnusedCategories|Kategori sing ora dianggo]] ora ditampilaké ing kéné.\nDeleng uga [[Special:WantedCategories|kategori sing diperlokaké]].",
 	"categoriesfrom": "Tampilaké kategori-kategori diwiwiti saka:",
-	"special-categories-sort-count": "urutna miturut angka",
-	"special-categories-sort-abc": "urutna miturut abjad",
 	"deletedcontributions": "Sumbanganing panganggo sing dibusak",
 	"deletedcontributions-title": "Sumbanganing panganggo sing dibusak",
 	"sp-deletedcontributions-contribs": "sumbangan",

@@ -1533,8 +1533,6 @@
 	"categories": "Kategorieën",
 	"categoriespagetext": "De de volgende {{PLURAL:$1|kategorie steet|kategorieën staon}} ziejen of mediabestaanden.\n[[Special:UnusedCategories|ongebruukten kategorieën]] zie'j hier niet.\nZie oek [[Special:WantedCategories|gewunste kategorieën]].",
 	"categoriesfrom": "Laot kategorieën zien vanaof:",
-	"special-categories-sort-count": "op antal sorteren",
-	"special-categories-sort-abc": "alfebeties sorteren",
 	"deletedcontributions": "Vortedaone gebrukersbiedragen",
 	"deletedcontributions-title": "Vortedaone gebrukersbiedragen",
 	"sp-deletedcontributions-contribs": "biedragen",

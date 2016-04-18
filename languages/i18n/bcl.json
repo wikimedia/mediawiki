@@ -1537,8 +1537,6 @@
 	"categories": "Mga Kategoriya",
 	"categoriespagetext": "An minasunod {{PLURAL:$1|kategorya na may laog na|mga kategorya na may laog na}} mga pahina o midya.\n[[Special:UnusedCategories|Dae ginamit na mga kategorya]] dae ipinapahiling digde.\nAsin man hilnga an [[Special:WantedCategories|kinakaipong mga kategorya]].",
 	"categoriesfrom": "Pahilnga an mga kategorya magpoon sa:",
-	"special-categories-sort-count": "salansana sa paagi nin bilang",
-	"special-categories-sort-abc": "salansana sa paagi nin alpabetiko",
 	"deletedcontributions": "Parâon an mga kontribusyon kan parágamit",
 	"deletedcontributions-title": "Parâon an mga kontribusyon kan parágamit",
 	"sp-deletedcontributions-contribs": "mga kontribusyon",

@@ -1597,8 +1597,6 @@
 	"categories": "Categeries",
 	"categoriespagetext": "The follaein {{PLURAL:$1|categerie contains|categeries contain}} pages or media.\n[[Special:UnusedCategories|Onuised categeries]] arna shawn here.\nSee [[Special:WantedCategories|wanted categeries]] ava.",
 	"categoriesfrom": "Displey categeries stairtin at:",
-	"special-categories-sort-count": "sairt bi coont",
-	"special-categories-sort-abc": "sairt bi the alphabet",
 	"deletedcontributions": "Delytit uiser contreebutions",
 	"deletedcontributions-title": "Delytit uiser contreebutions",
 	"sp-deletedcontributions-contribs": "contreebutions",

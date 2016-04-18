@@ -1610,8 +1610,6 @@
 	"categories": "Categorias",
 	"categoriespagetext": "{{PLURAL:$1|La categoria seguenta es utilizada|Las categorias seguentas son utilizadas}} per de paginas o de fichièrs.\n[[Special:UnusedCategories|Las categorias inutilizadas]] son pas afichadas aicí.\nVejatz tanben [[Special:WantedCategories|las categorias demandadas]].",
 	"categoriesfrom": "Afichar las categorias que començan a :",
-	"special-categories-sort-count": "triada per compte",
-	"special-categories-sort-abc": "triada alfabetica",
 	"deletedcontributions": "Contribucions suprimidas d’un utilizaire",
 	"deletedcontributions-title": "Contribucions suprimidas d’un utilizaire",
 	"sp-deletedcontributions-contribs": "contribucions",

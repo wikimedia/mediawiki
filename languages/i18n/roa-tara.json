@@ -1671,8 +1671,6 @@
 	"categories": "Le Categorije",
 	"categoriespagetext": "{{PLURAL:$1|'A seguende categorije tène|Le seguende categorije tènene}} pàggene o media.\n[[Special:UnusedCategories|Categorije non ausate]] non ge se vèdene aqquà.\nVide pure [[Special:WantedCategories|Categorije cercate]].",
 	"categoriesfrom": "Fà vedè le categorije partenne da:",
-	"special-categories-sort-count": "ordere pe condegge",
-	"special-categories-sort-abc": "ordere alfabbeticamende",
 	"deletedcontributions": "Condrebbute de l'utende scangellete",
 	"deletedcontributions-title": "Condrebbute de l'utende scangellate",
 	"sp-deletedcontributions-contribs": "condrebbute",

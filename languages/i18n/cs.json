@@ -1833,8 +1833,6 @@
 	"categories-submit": "Zobrazit",
 	"categoriespagetext": "Následující kategorie {{PLURAL:$1|obsahuje|obsahují}} stránky nebo soubory.\nNezobrazují se tu [[Special:UnusedCategories|nepoužívané kategorie]].\nPodívejte se také na [[Special:WantedCategories|žádané kategorie]].",
 	"categoriesfrom": "Zobrazit kategorie počínaje od:",
-	"special-categories-sort-count": "seřadit podle počtu",
-	"special-categories-sort-abc": "seřadit abecedně",
 	"deletedcontributions": "Smazané editace uživatele",
 	"deletedcontributions-title": "Smazané editace uživatele",
 	"sp-deletedcontributions-contribs": "příspěvky",

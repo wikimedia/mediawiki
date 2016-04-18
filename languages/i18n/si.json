@@ -1689,8 +1689,6 @@
 	"categories-submit": "පෙන්වන්න",
 	"categoriespagetext": "පහත {{PLURAL:$1|ප්‍රවර්ගයෙහි අන්තර්ගතය |ප්‍රවර්ගයන්හි අන්තර්ගතයන්}} වනුයේ පිටු හෝ මාධ්‍යයන්ය.\n[[Special:UnusedCategories|භාවිතනොවූ  ප්‍රවර්ගයන්]] මෙහි පෙන්වා දක්වා නොමැත.\n [[Special:WantedCategories|අවශ්‍ය ප්‍රවර්ගයන්]]ද බලන්න.",
 	"categoriesfrom": "මෙහිදී ඇරඹෙන ප්‍රවර්ග පෙන්වන්න:",
-	"special-categories-sort-count": "ගණණය පරිදි  සුබෙදුම",
-	"special-categories-sort-abc": "අකාරාදියේ පිළිවෙලට සකසන්න",
 	"deletedcontributions": "මකාදැමූ පරිශීලක දායකත්වයන්",
 	"deletedcontributions-title": "මකාදැමූ පරිශීලක දායකත්වයන්",
 	"sp-deletedcontributions-contribs": "දායකත්වයන්",

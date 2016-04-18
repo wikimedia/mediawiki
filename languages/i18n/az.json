@@ -1342,8 +1342,6 @@
 	"allpages-hide-redirects": "Yönləndirmələri gizlət",
 	"categories": "Kateqoriyalar",
 	"categoriespagetext": "Aşağıdakı {{PLURAL:$1|kateqoriyada|kateqoriyalarda}} səhifələr, yaxud media-fayllar var.\n[[Special:UnusedCategories|İstifadə olunmayan kateqoriyalar]] burada göstərilməyib.\nHəmçinin, [[Special:WantedCategories|tələb olunan kateqoriyalara]] baxın.",
-	"special-categories-sort-count": "miqdara görə tənzimlə",
-	"special-categories-sort-abc": "əlifba sırası ilə düz",
 	"deletedcontributions": "Silinmiş istifadəçi fəaliyyətləri",
 	"deletedcontributions-title": "Silinmiş istifadəçi fəaliyyətləri",
 	"sp-deletedcontributions-contribs": "fəaliyyət",

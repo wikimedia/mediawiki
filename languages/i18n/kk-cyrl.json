@@ -1699,8 +1699,6 @@
 	"categories-submit": "Көрсету",
 	"categoriespagetext": "Келесі {{PLURAL:$1|санат ішінде|санаттар ішінде}} беттер немесе медиа бар.\n[[Special:UnusedCategories|Пайдаланылмаған санаттарды]] мынадан қарай аласыз.\nТағы қараңыз [[Special:WantedCategories|басталмаған санаттар]].",
 	"categoriesfrom": "Санаттарды мынадан бастап көрсету:",
-	"special-categories-sort-count": "санымен сұрыптау",
-	"special-categories-sort-abc": "әліпбимен сұрыптау",
 	"deletedcontributions": "Қатысушының жойылған үлесі",
 	"deletedcontributions-title": "Қатысушының жойылған үлесі",
 	"sp-deletedcontributions-contribs": "үлестер",

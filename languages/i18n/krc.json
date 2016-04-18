@@ -1466,8 +1466,6 @@
 	"categories": "Категорияла",
 	"categoriespagetext": "Ызындан келген {{PLURAL:$1|1=категория|категорияла}} бет неда медия-файл тутадыла.\n[[Special:UnusedCategories|Хайырланмагъан категорияла]] былайда кёргюзюлмегендиле.\nДагъыда [[Special:WantedCategories|изленнген категорияла]] гъакъарагъыз.",
 	"categoriesfrom": "Бу бла башланнган категорияланы кёргюз:",
-	"special-categories-sort-count": "санына кёре сафла",
-	"special-categories-sort-abc": "алфавит халда тиз",
 	"deletedcontributions": "Кетерилген къошулуучуну къошхан юлюшю",
 	"deletedcontributions-title": "Кетерилген къошулучуну къошхан юлюшю",
 	"sp-deletedcontributions-contribs": "къошхан юлюш",

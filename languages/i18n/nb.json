@@ -1811,8 +1811,6 @@
 	"categories-submit": "Vis",
 	"categoriespagetext": "Følgende {{PLURAL:$1|kategori|kategorier}} inneholder sider eller media.\n[[Special:UnusedCategories|Ubrukte kategorier]] vises ikke her.\nSe også [[Special:WantedCategories|ønskede kategorier]].",
 	"categoriesfrom": "Vis kategorier fra og med:",
-	"special-categories-sort-count": "soter etter antall",
-	"special-categories-sort-abc": "sorter alfabetisk",
 	"deletedcontributions": "Slettede brukerbidrag",
 	"deletedcontributions-title": "Slettede brukerbidrag",
 	"sp-deletedcontributions-contribs": "bidrag",

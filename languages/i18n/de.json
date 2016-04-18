@@ -1894,8 +1894,6 @@
 	"categories-submit": "Anzeigen",
 	"categoriespagetext": "Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.\n[[Special:UnusedCategories|Verwaiste Kategorien]] werden hier nicht aufgeführt.\nSiehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].",
 	"categoriesfrom": "Zeige Kategorien ab:",
-	"special-categories-sort-count": "Sortierung nach Anzahl",
-	"special-categories-sort-abc": "Sortierung nach Alphabet",
 	"deletedcontributions": "Gelöschte Beiträge",
 	"deletedcontributions-title": "Gelöschte Beiträge",
 	"sp-deletedcontributions-contribs": "Benutzerbeiträge",

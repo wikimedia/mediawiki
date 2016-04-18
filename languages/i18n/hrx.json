@@ -1558,8 +1558,6 @@
 	"categories": "Kategoriee",
 	"categoriespagetext": "Follichende {{PLURAL:$1|Kategorie enthält|Kategorie enthalle}} Seite orrer Dateie.\n[[Special:UnusedCategories|Verwaiste Kategorie]] werre hie net uffgeführt.\nSieh ooch die List von der [[Special:WantedCategories|gewünschte Kategorie]].",
 	"categoriesfrom": "Zeich Kategorie ab:",
-	"special-categories-sort-count": "Sortierung noh Oonzoohl",
-	"special-categories-sort-abc": "Sortierung noh Alphabet",
 	"deletedcontributions": "Abgewischte Beiträch",
 	"deletedcontributions-title": "Abgewischte Beiträch",
 	"sp-deletedcontributions-contribs": "Benutzerbeiträche",

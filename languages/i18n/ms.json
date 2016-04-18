@@ -1709,8 +1709,6 @@
 	"categories": "Kategori",
 	"categoriespagetext": "{{PLURAL:$1|Kategori|Kategori-kategori}} berikut mengandungi laman atau media.\n[[Special:UnusedCategories|Kategori yang tidak digunakan]] tidak dipaparkan di sini.\nLihat juga [[Special:WantedCategories|kategori yang dikehendaki]].",
 	"categoriesfrom": "Paparkan kategori bermula daripada:",
-	"special-categories-sort-count": "susun mengikut tertib bilangan",
-	"special-categories-sort-abc": "susun mengikut tertib abjad",
 	"deletedcontributions": "Sumbangan dihapuskan",
 	"deletedcontributions-title": "Sumbangan dihapuskan",
 	"sp-deletedcontributions-contribs": "sumbangan",

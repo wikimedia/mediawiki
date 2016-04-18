@@ -1787,8 +1787,6 @@
 	"categories-submit": "Ipakita",
 	"categoriespagetext": "Ti sumaganad a {{PLURAL:$1|kategoria ket aglaon|katkategoria ket aglaon}} kadagiti panid wenno midia.\n[[Special:UnusedCategories|Dagiti saan a nausar a kategoria]] ket saan a maiparang ditoy.\nKitaen met [[Special:WantedCategories|dagiti makiddaw a kategoria]].",
 	"categoriesfrom": "Ipakita dagiti kategoria a mangrugi iti:",
-	"special-categories-sort-count": "ilasin babaen ti bilang",
-	"special-categories-sort-abc": "ilasin nga alpabetiko",
 	"deletedcontributions": "Dagiti naikkat a kontribusion ti agar-aramat",
 	"deletedcontributions-title": "Dagiti naikkat a kontribusion ti agar-aramat",
 	"sp-deletedcontributions-contribs": "dagiti kontribusion",

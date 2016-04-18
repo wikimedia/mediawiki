@@ -1548,8 +1548,6 @@
 	"categories": "Kategori",
 	"categoriespagetext": "{{PLURAL:$1|kategoria në vijim përmban|kategoritë në vikim përmbajnë}} faqe ose media.\n[[Special:UnusedCategories|Kategoritë e pa përdorura]] nuk janë të paraqitura këtu.\nShikoni edhe [[Special:WantedCategories|kategoritë e dëshiruara]].",
 	"categoriesfrom": "Paraqit kategoritë duke filluar në:",
-	"special-categories-sort-count": "radhit sipas numrit",
-	"special-categories-sort-abc": "radhiti sipas alfabetit",
 	"deletedcontributions": "Kontribute të grisura",
 	"deletedcontributions-title": "Kontribute të grisura",
 	"sp-deletedcontributions-contribs": "kontributet",

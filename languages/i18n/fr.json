@@ -1947,8 +1947,6 @@
 	"categories-submit": "Lister",
 	"categoriespagetext": "{{PLURAL:$1|La catégorie suivante est utilisée|Les catégories suivantes sont utilisées}} par des pages ou fichiers.\n[[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.\nVoyez aussi [[Special:WantedCategories|les catégories demandées]].",
 	"categoriesfrom": "Afficher les catégories à partir de :",
-	"special-categories-sort-count": "tri par nombre d'éléments",
-	"special-categories-sort-abc": "tri alphabétique",
 	"deletedcontributions": "Contributions supprimées",
 	"deletedcontributions-title": "Contributions supprimées",
 	"sp-deletedcontributions-contribs": "contributions",

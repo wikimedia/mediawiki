@@ -1873,8 +1873,6 @@
 	"categories-submit": "顯示",
 	"categoriespagetext": "下列為包含頁面或媒體的{{PLURAL:$1|分類}}。\n[[Special:UnusedCategories|未使用的分類]] 不會在此顯示。\n請參考 [[Special:WantedCategories|需要的分類]]。",
 	"categoriesfrom": "顯示分類開始於：",
-	"special-categories-sort-count": "依數量排列",
-	"special-categories-sort-abc": "依字母排列",
 	"deletedcontributions": "已刪除的使用者貢獻",
 	"deletedcontributions-title": "已刪除的使用者貢獻",
 	"sp-deletedcontributions-contribs": "貢獻",

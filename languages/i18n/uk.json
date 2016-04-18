@@ -1882,8 +1882,6 @@
 	"categories-submit": "Показати",
 	"categoriespagetext": "{{PLURAL:$1|1=Наступна категорія містить|Наступні категорії містять}} сторінки або медіа-файли.\nТут не показані [[Special:UnusedCategories|категорії, що не використовуються]].\nДив. також [[Special:WantedCategories|список необхідних категорій]].",
 	"categoriesfrom": "Показати категорії, що починаються з:",
-	"special-categories-sort-count": "упорядкувати за кількістю",
-	"special-categories-sort-abc": "упорядкувати за алфавітом",
 	"deletedcontributions": "Вилучений внесок користувача",
 	"deletedcontributions-title": "Вилучений внесок користувача",
 	"sp-deletedcontributions-contribs": "внесок",

@@ -1810,8 +1810,6 @@
 	"categories-submit": "أظهر",
 	"categoriespagetext": "{{PLURAL:$1|التصنيف التالي يحتوي|التصنيفات التالية تحتوي}} على صفحات أو وسائط.\n[[Special:UnusedCategories|التصنيفات غير المستخدمة]] غير معروضة هنا.\nانظر أيضاً [[Special:WantedCategories|التصنيفات المطلوبة]].",
 	"categoriesfrom": "اعرض التصنيفات ابتداء من:",
-	"special-categories-sort-count": "رتب بالعدد",
-	"special-categories-sort-abc": "رتب هجائياً",
 	"deletedcontributions": "مساهمات المستخدم المحذوفة",
 	"deletedcontributions-title": "مساهمات المستخدم المحذوفة",
 	"sp-deletedcontributions-contribs": "مساهمات",

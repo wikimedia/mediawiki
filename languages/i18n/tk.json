@@ -1223,8 +1223,6 @@
 	"categories": "Kategoriýalar",
 	"categoriespagetext": "Aşakdaky {{PLURAL:$1|kategoriýada|kategoriýalarda}} sahypa ýa-da media faýllary bardyr.\n[[Special:UnusedCategories|Ulanylmaýan kategoriýalar]] şu ýerde görkezilmeýär.\nŞeýle-de [[Special:WantedCategories|Talap edilýän kategoriýalara]] serediň.",
 	"categoriesfrom": "Şunuň bilen başlaýan kategoriýalary görkez:",
-	"special-categories-sort-count": "mukdar boýunça tertiple",
-	"special-categories-sort-abc": "elipbiý boýunça tertiple",
 	"deletedcontributions": "Öçürilen ulanyjy goşantlary",
 	"deletedcontributions-title": "Öçürilen ulanyjy goşantlary",
 	"sp-deletedcontributions-contribs": "goşantlar",

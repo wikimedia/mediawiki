@@ -1729,8 +1729,6 @@
 	"categories-submit": "Birta",
 	"categoriespagetext": "Eftirfarandi {{PLURAL:$1|flokkur inniheldur|flokkar innihalda}} síður eða skrár.\n[[Special:UnusedCategories|Ónotaðir flokkar]] birtast ekki hér.\nSjá einnig [[Special:WantedCategories|eftirsótta flokka]].",
 	"categoriesfrom": "Sýna flokka frá:",
-	"special-categories-sort-count": "raða eftir fjölda",
-	"special-categories-sort-abc": "raða í stafrófsröð",
 	"deletedcontributions": "Eyddar breytingar notanda",
 	"deletedcontributions-title": "Eyddar breytingar notanda",
 	"sp-deletedcontributions-contribs": "Framlög",

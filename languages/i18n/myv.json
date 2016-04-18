@@ -1006,8 +1006,6 @@
 	"allpages-bad-ns": "{{SITENAME}} сайтсэнть арась лем потмо \"$1\".",
 	"categories": "Категорият",
 	"categoriespagetext": "{{PLURAL:$1|Те категориясонть|Неть категориятнесэ}} улить лопат эли медият.\n[[Special:UnusedCategories|тевс апак нолда категориятне]] тесэ а невтевить.\nИстяжо ванытя [[Special:WantedCategories|вешема категориятнень]].",
-	"special-categories-sort-count": "аравтомс цётонь коряс",
-	"special-categories-sort-abc": "аравтомс альфавитэнь коряс",
 	"sp-deletedcontributions-contribs": "путовксонзо",
 	"linksearch": "Ушо ёндонь сюлмавомапенень вешнема",
 	"linksearch-pat": "Вешнемкс парцун:",

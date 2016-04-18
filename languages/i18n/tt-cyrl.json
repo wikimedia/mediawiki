@@ -1315,8 +1315,6 @@
 	"categories": "Төркемнәр",
 	"categories-submit": "Күрсәт",
 	"categoriespagetext": "{{PLURAL:$1|1=Әлеге төркем үз өченә|Әлеге төркемнәр  үз өченә}}   битләрне һәм медиа-файлларны ала.\nАста [[Special:UnusedCategories|кулланылмаган төркемнәр]] кәрсәтелгән.\nШулай ук  [[Special:WantedCategories|кирәкле төркемнәр исемлегендә]] карагыз.",
-	"special-categories-sort-count": "исәп буенча тәртипләү",
-	"special-categories-sort-abc": "әлифба буенча тәртипләү",
 	"deletedcontributions": "Кулланучының бетерелгән кертеме",
 	"deletedcontributions-title": "Бетерелгән кертем",
 	"sp-deletedcontributions-contribs": "кертем",

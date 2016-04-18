@@ -1448,8 +1448,6 @@
 	"categories-submit": "نیشاندان",
 	"categoriespagetext": "ئەم {{PLURAL:$1|پۆلە پەڕە یان پەڕگەی|پۆلانە پەڕە یان پەڕگەیان}} لەخۆگرتە.\n[[Special:UnusedCategories|پۆلە بەکارنەھێنراوەکان]] لێرەدا نیشان نەدراون.\n[[Special:WantedCategories|پۆلە خوازراوەکان]]یش ببینە.",
 	"categoriesfrom": "نیشاندانی پۆلەکان بە دستپێکردن لە:",
-	"special-categories-sort-count": "ڕیز کردن بە پێی ژمارە",
-	"special-categories-sort-abc": "ڕیزکردن بە پێی ئەلفوبێ",
 	"deletedcontributions": "بەشدارییە سڕاوەکان",
 	"deletedcontributions-title": "بەشدارییە سڕاوەکانی بەکارھێنەر",
 	"sp-deletedcontributions-contribs": "بەشدارییەکان",

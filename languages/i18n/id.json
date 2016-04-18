@@ -1838,8 +1838,6 @@
 	"categories-submit": "Tampilkan",
 	"categoriespagetext": "{{PLURAL:$1|Kategori berikut|Kategori-kategori berikut}} memiliki isi halaman atau media.\n[[Special:UnusedCategories|Kategori yang tak digunakan]] tidak ditampilkan di sini.\nLihat pula [[Special:WantedCategories|kategori yang diinginkan]].",
 	"categoriesfrom": "Tampilkan kategori-kategori dimulai dengan:",
-	"special-categories-sort-count": "urutkan menurut jumlah",
-	"special-categories-sort-abc": "urutkan menurut abjad",
 	"deletedcontributions": "Kontribusi yang dihapus",
 	"deletedcontributions-title": "Kontribusi yang dihapus",
 	"sp-deletedcontributions-contribs": "kontribusi",

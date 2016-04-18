@@ -1823,8 +1823,6 @@
 	"categories-submit": "Mutat",
 	"categoriespagetext": "A következő {{PLURAL:$1|kategória tartalmaz|kategóriák tartalmaznak}} lapokat vagy fájlokat.\nA [[Special:UnusedCategories|nem használt kategóriák]] nem jelennek meg.\nLásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.",
 	"categoriesfrom": "Kategóriák listázása a következő névtől kezdve:",
-	"special-categories-sort-count": "rendezés elemszám szerint",
-	"special-categories-sort-abc": "rendezés ABC szerint",
 	"deletedcontributions": "Törölt szerkesztések",
 	"deletedcontributions-title": "Törölt szerkesztések",
 	"sp-deletedcontributions-contribs": "közreműködései",
