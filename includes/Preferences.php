@@ -544,12 +544,14 @@ class Preferences {
 				];
 			}
 			if ( $config->get( 'EnotifUserTalk' ) || $config->get( 'EnotifWatchlist' ) ) {
-				$defaultPreferences['enotifminoredits'] = [
-					'type' => 'toggle',
-					'section' => 'personal/email',
-					'label-message' => 'tog-enotifminoredits',
-					'disabled' => $disableEmailPrefs,
-				];
+				if ( $config->get( 'EnotifMinorEdits' ) ) {
+					$defaultPreferences['enotifminoredits'] = [
+						'type' => 'toggle',
+						'section' => 'personal/email',
+						'label-message' => 'tog-enotifminoredits',
+						'disabled' => $disableEmailPrefs,
+					];
+				}
 
 				if ( $config->get( 'EnotifRevealEditorAddress' ) ) {
 					$defaultPreferences['enotifrevealaddr'] = [
