@@ -463,6 +463,10 @@ changes to languages because of Phabricator reports.
 * Skin::tooltipAndAccesskeyAttribs was removed (deprecated since 1.21).
 * Skin::userTalkLink was removed (deprecated since 1.21).
 * Skin::userToolLinksRedContribs was removed (deprecated since 1.21).
+* wikidiff3 is now the default and only PHP diff engine. It provides improved diff
+  performance on complex changes. $wgExternalDiffEngine = 'wikidiff3' therefore
+  makes no difference now. Users are still recommended to use wikidiff2 if possible,
+  though.
 
 == Compatibility ==
 
