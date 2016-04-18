@@ -65,20 +65,20 @@
 			title = mw.Title.newFromText( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file );
 
 			( new mw.Api() ).get( {
+				formatversion: 2,
 				action: 'query',
 				// If title is empty, user input is invalid, the API call will produce details about why
 				titles: title ? title.getPrefixedText() : this.nameToCheck,
 				prop: 'imageinfo',
-				iiprop: 'uploadwarning',
-				indexpageids: true
+				iiprop: 'uploadwarning'
 			} ).done( function ( result ) {
 				var
 					resultOut = '',
-					pageId = result.query.pageids[ 0 ];
-				if ( result.query.pages[ pageId ].imageinfo ) {
-					resultOut = result.query.pages[ pageId ].imageinfo[ 0 ].html;
-				} else if ( result.query.pages[ pageId ].invalidreason ) {
-					resultOut = mw.html.escape( result.query.pages[ pageId ].invalidreason );
+					page = result.query.pages[ 0 ];
+				if ( page.imageinfo ) {
+					resultOut = page.imageinfo[ 0 ].html;
+				} else if ( page.invalidreason ) {
+					resultOut = mw.html.escape( page.invalidreason );
 				}
 				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
@@ -123,6 +123,7 @@
 			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
 
 			( new mw.Api() ).get( {
+				formatversion: 2,
 				action: 'parse',
 				text: '{{' + license + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
@@ -135,7 +136,7 @@
 		},
 
 		processResult: function ( result, license ) {
-			this.responseCache[ license ] = result.parse.text[ '*' ];
+			this.responseCache[ license ] = result.parse.text;
 			this.showPreview( this.responseCache[ license ] );
 		},
 
