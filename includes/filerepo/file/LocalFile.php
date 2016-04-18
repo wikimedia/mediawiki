@@ -2465,8 +2465,9 @@ class LocalFileRestoreBatch {
 
 				// The live (current) version cannot be hidden!
 				if ( !$this->unsuppress && $row->fa_deleted ) {
-					$storeBatch[] = array( $deletedUrl, 'public', $destRel );
-					$this->cleanupBatch[] = $row->fa_storage_key;
+					$status->fatal( 'undeleterevdel' );
+					$this->file->unlock();
+					return $status;
 				}
 			} else {
 				$archiveName = $row->fa_archive_name;
