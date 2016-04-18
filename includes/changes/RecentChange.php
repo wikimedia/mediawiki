@@ -973,7 +973,7 @@ class RecentChange {
 	 *
 	 * @since 1.26
 	 *
-	 * @return array|null
+	 * @return mixed|bool false on failed unserialization
 	 */
 	public function parseParams() {
 		$rcParams = $this->getAttribute( 'rc_params' );
