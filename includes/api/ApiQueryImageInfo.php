@@ -162,7 +162,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$gotOne = true;
 
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $img, $prop, $result,
+						static::getInfo( $img, $prop, $result,
 							$finalThumbParams, $opts
 						)
 					);
@@ -197,7 +197,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
 						$this->addPageSubItem( $pageId,
-							self::getInfo( $oldie, $prop, $result,
+							static::getInfo( $oldie, $prop, $result,
 								$finalThumbParams, $opts
 							)
 						);
@@ -533,11 +533,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
-			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
+			$vals['metadata'] = $metadata ? static::processMetaData( $metadata, $result ) : null;
 		}
 		if ( $commonmeta ) {
 			$metaArray = $file->getCommonMetaArray();
-			$vals['commonmetadata'] = $metaArray ? self::processMetaData( $metaArray, $result ) : [];
+			$vals['commonmetadata'] = $metaArray ? static::processMetaData( $metaArray, $result ) : [];
 		}
 
 		if ( $extmetadata ) {
@@ -601,7 +601,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					ApiResult::META_BC_BOOLS => [ 'value' ],
 				];
 				if ( is_array( $value ) ) {
-					$r['value'] = self::processMetaData( $value, $result );
+					$r['value'] = static::processMetaData( $value, $result );
 				} else {
 					$r['value'] = $value;
 				}
@@ -641,8 +641,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'timestamp|user',
-				ApiBase::PARAM_TYPE => self::getPropertyNames(),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => self::getPropertyMessages(),
+				ApiBase::PARAM_TYPE => static::getPropertyNames(),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => static::getPropertyMessages(),
 			],
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
@@ -703,7 +703,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	public static function getPropertyNames( $filter = [] ) {
-		return array_keys( self::getPropertyMessages( $filter ) );
+		return array_keys( static::getPropertyMessages( $filter ) );
 	}
 
 	/**
@@ -787,7 +787,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public static function getPropertyDescriptions( $filter = [], $modulePrefix = '' ) {
 		return array_merge(
 			[ 'What image information to get:' ],
-			array_values( array_diff_key( self::getProperties( $modulePrefix ), array_flip( $filter ) ) )
+			array_values( array_diff_key( static::getProperties( $modulePrefix ), array_flip( $filter ) ) )
 		);
 	}
 
