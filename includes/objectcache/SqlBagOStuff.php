@@ -27,10 +27,10 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-	/** @var array */
+	/** @var array[] (server index => server config) */
 	protected $serverInfos;
-	/** @var array */
-	protected $serverNames;
+	/** @var string[] (server index => tag/host name) */
+	protected $serverTags;
 	/** @var int */
 	protected $numServers;
 	/** @var int */
@@ -58,9 +58,12 @@ class SqlBagOStuff extends BagOStuff {
 	 *   - server:      A server info structure in the format required by each
 	 *                  element in $wgDBServers.
 	 *
-	 *   - servers:     An array of server info structures describing a set of
-	 *                  database servers to distribute keys to. If this is
-	 *                  specified, the "server" option will be ignored.
+	 *   - servers:     An array of server info structures describing a set of database servers
+	 *                  to distribute keys to. If this is specified, the "server" option will be
+	 *                  ignored. If string keys are used, then they will be used for consistent
+	 *                  hashing *instead* of the host name (from the server config). This is useful
+	 *                  when a cluster is replicated to another site (with different host names)
+	 *                  but each server has a corresponding replica in the other cluster.
 	 *
 	 *   - purgePeriod: The average number of object cache requests in between
 	 *                  garbage collection operations, where expired entries
@@ -89,11 +92,18 @@ class SqlBagOStuff extends BagOStuff {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 		if ( isset( $params['servers'] ) ) {
-			$this->serverInfos = $params['servers'];
-			$this->numServers = count( $this->serverInfos );
-			$this->serverNames = [];
-			foreach ( $this->serverInfos as $i => $info ) {
-				$this->serverNames[$i] = isset( $info['host'] ) ? $info['host'] : "#$i";
+			$this->serverInfos = [];
+			$this->serverTags = [];
+			$this->numServers = count( $params['servers'] );
+			$index = 0;
+			foreach ( $params['servers'] as $tag => $info ) {
+				$this->serverInfos[$index] = $info;
+				if ( is_string( $tag ) ) {
+					$this->serverTags[$index] = $tag;
+				} else {
+					$this->serverTags[$index] = isset( $info['host'] ) ? $info['host'] : "#$index";
+				}
+				++$index;
 			}
 		} elseif ( isset( $params['server'] ) ) {
 			$this->serverInfos = [ $params['server'] ];
@@ -180,7 +190,7 @@ class SqlBagOStuff extends BagOStuff {
 			$tableIndex = 0;
 		}
 		if ( $this->numServers > 1 ) {
-			$sortedServers = $this->serverNames;
+			$sortedServers = $this->serverTags;
 			ArrayUtils::consistentHashSort( $sortedServers, $key );
 			reset( $sortedServers );
 			$serverIndex = key( $sortedServers );

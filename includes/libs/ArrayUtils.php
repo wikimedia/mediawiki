@@ -28,7 +28,7 @@
 class ArrayUtils {
 	/**
 	 * Sort the given array in a pseudo-random order which depends only on the
-	 * given key and each element value. This is typically used for load
+	 * given key and each element value in $array. This is typically used for load
 	 * balancing between servers each with a local cache.
 	 *
 	 * Keys are preserved. The input array is modified in place.
