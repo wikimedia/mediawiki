@@ -809,7 +809,20 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testDuplicateAllAssociatedEntries_somethingToDuplicate() {
+	public function provideLinkTargetPairs() {
+		return [
+			[ Title::newFromText( 'Old_Title' ), Title::newFromText( 'New_Title' ) ],
+			[ new TitleValue( 0, 'Old_Title' ),  new TitleValue( 0, 'New_Title' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLinkTargetPairs
+	 */
+	public function testDuplicateAllAssociatedEntries_somethingToDuplicate(
+		LinkTarget $oldTarget,
+		LinkTarget $newTarget
+	) {
 		$fakeRows = [
 			$this->getFakeRow( [ 'wl_user' => 1, 'wl_notificationtimestamp' => '20151212010101' ] ),
 		];
@@ -824,8 +837,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 					'wl_notificationtimestamp',
 				],
 				[
-					'wl_namespace' => 0,
-					'wl_title' => 'Old_Title',
+					'wl_namespace' => $oldTarget->getNamespace(),
+					'wl_title' => $oldTarget->getDBkey(),
 				]
 			)
 			->will( $this->returnValue( new FakeResultWrapper( $fakeRows ) ) );
@@ -837,8 +850,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				[
 					[
 						'wl_user' => 1,
-						'wl_namespace' => 0,
-						'wl_title' => 'New_Title',
+						'wl_namespace' => $newTarget->getNamespace(),
+						'wl_title' => $newTarget->getDBkey(),
 						'wl_notificationtimestamp' => '20151212010101',
 					],
 				],
@@ -853,8 +866,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 					'wl_notificationtimestamp',
 				],
 				[
-					'wl_namespace' => 1,
-					'wl_title' => 'Old_Title',
+					'wl_namespace' => $oldTarget->getNamespace() + 1,
+					'wl_title' => $oldTarget->getDBkey(),
 				]
 			)
 			->will( $this->returnValue( new FakeResultWrapper( $fakeRows ) ) );
@@ -866,8 +879,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				[
 					[
 						'wl_user' => 1,
-						'wl_namespace' => 1,
-						'wl_title' => 'New_Title',
+						'wl_namespace' => $newTarget->getNamespace() + 1,
+						'wl_title' => $newTarget->getDBkey(),
 						'wl_notificationtimestamp' => '20151212010101',
 					],
 				],
@@ -884,8 +897,8 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$store->duplicateAllAssociatedEntries(
-			Title::newFromText( 'Old_Title' ),
-			Title::newFromText( 'New_Title' )
+			$oldTarget,
+			$newTarget
 		);
 	}
 
