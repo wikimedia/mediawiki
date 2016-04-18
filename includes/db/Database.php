@@ -1226,6 +1226,7 @@ abstract class DatabaseBase implements IDatabase {
 		return '';
 	}
 
+	// See IDatabase::select for the docs for this function
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = [] ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
@@ -1668,6 +1669,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * themselves. Pass the canonical name to such functions. This is only needed
 	 * when calling query() directly.
 	 *
+	 * @note This function does not sanitize user input. It is not safe to use
+	 *   this function to escape user input.
 	 * @param string $name Database table name
 	 * @param string $format One of:
 	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
@@ -1981,6 +1984,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * Returns if the given identifier looks quoted or not according to
 	 * the database convention for quoting identifiers .
 	 *
+	 * @note Do not use this to determine if untrusted input is safe.
+	 *   A malicious user can trick this function.
 	 * @param string $name
 	 * @return bool
 	 */
