@@ -414,6 +414,10 @@ changes to languages because of Phabricator reports.
 * UserMailer::send() no longer accepts $replyto as the 5th argument and $contentType
   as the 6th. These must be passed in the options array now.
 * Title::newFromRedirectRecurse() was removed (deprecated in 1.21).
+* wikidiff3 is now the default and only PHP diff engine. It provides improved diff
+  performance on complex changes. $wgExternalDiffEngine = 'wikidiff3' therefore
+  makes no difference now. Users are still recommended to use wikidiff2 if possible,
+  though.
 
 == Compatibility ==
 

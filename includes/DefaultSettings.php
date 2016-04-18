@@ -7815,9 +7815,9 @@ $wgUpdateRowsPerQuery = 100;
 
 /**
  * Name of the external diff engine to use. Supported values:
- * * false: default PHP implementation, DairikiDiff
+ * * false: default PHP implementation
  * * 'wikidiff2': Wikimedia's fast difference engine implemented as a PHP/HHVM module
- * * 'wikidiff3': newer PHP-based difference engine
+ * * 'wikidiff' and 'wikidiff3' are treated as false for backwards compatibility
  * * any other string is treated as a path to external diff executable
  */
 $wgExternalDiffEngine = false;
