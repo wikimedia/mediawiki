@@ -420,8 +420,11 @@ class Status {
 	 * Returns a list of status messages of the given type, with message and
 	 * params left untouched, like a sane version of getStatusArray
 	 *
-	 * @param string $type
+	 * Each entry is a map of:
+	 *   - message: string message key or MessageSpecifier
+	 *   - params: array list of parameters
 	 *
+	 * @param string $type
 	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
