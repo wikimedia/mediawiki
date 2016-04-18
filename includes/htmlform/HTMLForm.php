@@ -74,7 +74,7 @@
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
  *    'size'                -- the length of text fields
- *    'filter-callback      -- a function name to give you the chance to
+ *    'filter-callback'     -- a function name to give you the chance to
  *                             massage the inputted value before it's processed.
  *                             @see HTMLFormField::filter()
  *    'validation-callback' -- a function name to give you the chance
@@ -295,7 +295,7 @@ class HTMLForm extends ContextSource {
 			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_null( $context ) && $messagePrefix !== '' ) {
+		} elseif ( $context === null && $messagePrefix !== '' ) {
 			$this->mMessagePrefix = $messagePrefix;
 		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
 			// B/C since 1.18
@@ -320,7 +320,7 @@ class HTMLForm extends ContextSource {
 				? $info['section']
 				: '';
 
-			if ( isset( $info['type'] ) && $info['type'] == 'file' ) {
+			if ( isset( $info['type'] ) && $info['type'] === 'file' ) {
 				$this->mUseMultipart = true;
 			}
 
@@ -360,14 +360,14 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setDisplayFormat( $format ) {
 		if (
-			in_array( $format, $this->availableSubclassDisplayFormats ) ||
-			in_array( $this->displayFormat, $this->availableSubclassDisplayFormats )
+			in_array( $format, $this->availableSubclassDisplayFormats, true ) ||
+			in_array( $this->displayFormat, $this->availableSubclassDisplayFormats, true )
 		) {
 			throw new MWException( 'Cannot change display format after creation, ' .
 				'use HTMLForm::factory() instead' );
 		}
 
-		if ( !in_array( $format, $this->availableDisplayFormats ) ) {
+		if ( !in_array( $format, $this->availableDisplayFormats, true ) ) {
 			throw new MWException( 'Display format must be one of ' .
 				print_r( $this->availableDisplayFormats, true ) );
 		}
@@ -459,9 +459,7 @@ class HTMLForm extends ContextSource {
 		# @todo This will throw a fatal error whenever someone try to use
 		# 'class' to feed a CSS class instead of 'cssclass'. Would be
 		# great to avoid the fatal error and show a nice error.
-		$obj = new $class( $descriptor );
-
-		return $obj;
+		return new $class( $descriptor );
 	}
 
 	/**
@@ -473,10 +471,10 @@ class HTMLForm extends ContextSource {
 	 * @throws MWException
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function prepareForm() {
+	public function prepareForm() {
 		# Check if we have the info we need
 		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
-			throw new MWException( "You must call setTitle() on an HTMLForm" );
+			throw new MWException( 'You must call setTitle() on an HTMLForm' );
 		}
 
 		# Load data from the request.
@@ -489,15 +487,15 @@ class HTMLForm extends ContextSource {
 	 * Try submitting, with edit token check first
 	 * @return Status|bool
 	 */
-	function tryAuthorizedSubmit() {
+	public function tryAuthorizedSubmit() {
 		$result = false;
 
 		$submit = false;
-		if ( $this->getMethod() != 'post' ) {
+		if ( $this->getMethod() !== 'post' ) {
 			$submit = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
-			if ( $this->getUser()->isLoggedIn() || $editToken != null ) {
+			if ( $this->getUser()->isLoggedIn() || $editToken !== null ) {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
@@ -521,7 +519,7 @@ class HTMLForm extends ContextSource {
 	 * errors
 	 * @return bool|Status Whether submission was successful.
 	 */
-	function show() {
+	public function show() {
 		$this->prepareForm();
 
 		$result = $this->tryAuthorizedSubmit();
@@ -539,7 +537,7 @@ class HTMLForm extends ContextSource {
 	 * added to the output, no matter, if the validation was good or not.
 	 * @return bool|Status Whether submission was successful.
 	 */
-	function showAlways() {
+	public function showAlways() {
 		$this->prepareForm();
 
 		$result = $this->tryAuthorizedSubmit();
@@ -560,7 +558,7 @@ class HTMLForm extends ContextSource {
 	 *       object, an HTML string, or an array of arrays (message keys and
 	 *       params) or strings (message keys)
 	 */
-	function trySubmit() {
+	public function trySubmit() {
 		$valid = true;
 		$hoistedErrors = [];
 		$hoistedErrors[] = isset( $this->mValidationErrorMessage )
@@ -631,7 +629,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.23
 	 * @return bool
 	 */
-	function wasSubmitted() {
+	public function wasSubmitted() {
 		return $this->mWasSubmitted;
 	}
 
@@ -645,7 +643,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setSubmitCallback( $cb ) {
+	public function setSubmitCallback( $cb ) {
 		$this->mSubmitCallback = $cb;
 
 		return $this;
@@ -659,7 +657,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setValidationErrorMessage( $msg ) {
+	public function setValidationErrorMessage( $msg ) {
 		$this->mValidationErrorMessage = $msg;
 
 		return $this;
@@ -672,7 +670,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setIntro( $msg ) {
+	public function setIntro( $msg ) {
 		$this->setPreText( $msg );
 
 		return $this;
@@ -686,7 +684,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setPreText( $msg ) {
+	public function setPreText( $msg ) {
 		$this->mPre = $msg;
 
 		return $this;
@@ -699,7 +697,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function addPreText( $msg ) {
+	public function addPreText( $msg ) {
 		$this->mPre .= $msg;
 
 		return $this;
@@ -713,8 +711,8 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function addHeaderText( $msg, $section = null ) {
-		if ( is_null( $section ) ) {
+	public function addHeaderText( $msg, $section = null ) {
+		if ( $section === null ) {
 			$this->mHeader .= $msg;
 		} else {
 			if ( !isset( $this->mSectionHeaders[$section] ) ) {
@@ -735,8 +733,8 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setHeaderText( $msg, $section = null ) {
-		if ( is_null( $section ) ) {
+	public function setHeaderText( $msg, $section = null ) {
+		if ( $section === null ) {
 			$this->mHeader = $msg;
 		} else {
 			$this->mSectionHeaders[$section] = $msg;
@@ -752,8 +750,8 @@ class HTMLForm extends ContextSource {
 	 * @since 1.26
 	 * @return string HTML
 	 */
-	function getHeaderText( $section = null ) {
-		if ( is_null( $section ) ) {
+	public function getHeaderText( $section = null ) {
+		if ( $section === null ) {
 			return $this->mHeader;
 		} else {
 			return isset( $this->mSectionHeaders[$section] ) ? $this->mSectionHeaders[$section] : '';
@@ -768,8 +766,8 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function addFooterText( $msg, $section = null ) {
-		if ( is_null( $section ) ) {
+	public function addFooterText( $msg, $section = null ) {
+		if ( $section === null ) {
 			$this->mFooter .= $msg;
 		} else {
 			if ( !isset( $this->mSectionFooters[$section] ) ) {
@@ -790,8 +788,8 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setFooterText( $msg, $section = null ) {
-		if ( is_null( $section ) ) {
+	public function setFooterText( $msg, $section = null ) {
+		if ( $section === null ) {
 			$this->mFooter = $msg;
 		} else {
 			$this->mSectionFooters[$section] = $msg;
@@ -807,8 +805,8 @@ class HTMLForm extends ContextSource {
 	 * @since 1.26
 	 * @return string
 	 */
-	function getFooterText( $section = null ) {
-		if ( is_null( $section ) ) {
+	public function getFooterText( $section = null ) {
+		if ( $section === null ) {
 			return $this->mFooter;
 		} else {
 			return isset( $this->mSectionFooters[$section] ) ? $this->mSectionFooters[$section] : '';
@@ -822,7 +820,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function addPostText( $msg ) {
+	public function addPostText( $msg ) {
 		$this->mPost .= $msg;
 
 		return $this;
@@ -835,7 +833,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setPostText( $msg ) {
+	public function setPostText( $msg ) {
 		$this->mPost = $msg;
 
 		return $this;
@@ -850,7 +848,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function addHiddenField( $name, $value, $attribs = [] ) {
+	public function addHiddenField( $name, $value, array $attribs = [] ) {
 		$attribs += [ 'name' => $name ];
 		$this->mHiddenFields[] = [ $value, $attribs ];
 
@@ -956,7 +954,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return void Nothing, should be last call
 	 */
-	function displayForm( $submitResult ) {
+	public function displayForm( $submitResult ) {
 		$this->getOutput()->addHTML( $this->getHTML( $submitResult ) );
 	}
 
@@ -967,7 +965,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return string HTML
 	 */
-	function getHTML( $submitResult ) {
+	public function getHTML( $submitResult ) {
 		# For good measure (it is the default)
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
@@ -1001,13 +999,13 @@ class HTMLForm extends ContextSource {
 			'method' => $this->getMethod(),
 			'enctype' => $encType,
 		];
-		if ( !empty( $this->mId ) ) {
+		if ( $this->mId ) {
 			$attribs['id'] = $this->mId;
 		}
-		if ( !empty( $this->mAutocomplete ) ) {
+		if ( $this->mAutocomplete ) {
 			$attribs['autocomplete'] = $this->mAutocomplete;
 		}
-		if ( !empty ( $this->mName ) ) {
+		if ( $this->mName ) {
 			$attribs['name'] = $this->mName;
 		}
 		return $attribs;
@@ -1020,7 +1018,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return string Wrapped HTML.
 	 */
-	function wrapForm( $html ) {
+	public function wrapForm( $html ) {
 		# Include a <fieldset> wrapper for style, if requested.
 		if ( $this->mWrapperLegend !== false ) {
 			$legend = is_string( $this->mWrapperLegend ) ? $this->mWrapperLegend : false;
@@ -1038,9 +1036,9 @@ class HTMLForm extends ContextSource {
 	 * Get the hidden fields that should go inside the form.
 	 * @return string HTML.
 	 */
-	function getHiddenFields() {
+	public function getHiddenFields() {
 		$html = '';
-		if ( $this->getMethod() == 'post' ) {
+		if ( $this->getMethod() === 'post' ) {
 			$html .= Html::hidden(
 				'wpEditToken',
 				$this->getUser()->getEditToken( $this->mTokenSalt ),
@@ -1050,7 +1048,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		$articlePath = $this->getConfig()->get( 'ArticlePath' );
-		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() == 'get' ) {
+		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -1066,7 +1064,7 @@ class HTMLForm extends ContextSource {
 	 * Get the submit and (potentially) reset buttons.
 	 * @return string HTML.
 	 */
-	function getButtons() {
+	public function getButtons() {
 		$buttons = '';
 		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 
@@ -1089,9 +1087,9 @@ class HTMLForm extends ContextSource {
 
 			if ( $useMediaWikiUIEverywhere ) {
 				foreach ( $this->mSubmitFlags as $flag ) {
-					array_push( $attribs['class'], 'mw-ui-' . $flag );
+					$attribs['class'][] = 'mw-ui-' . $flag;
 				}
-				array_push( $attribs['class'], 'mw-ui-button' );
+				$attribs['class'][] = 'mw-ui-button';
 			}
 
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
@@ -1103,7 +1101,7 @@ class HTMLForm extends ContextSource {
 				[
 					'type' => 'reset',
 					'value' => $this->msg( 'htmlform-reset' )->text(),
-					'class' => ( $useMediaWikiUIEverywhere ? 'mw-ui-button' : null ),
+					'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button' : null,
 				]
 			) . "\n";
 		}
@@ -1158,7 +1156,7 @@ class HTMLForm extends ContextSource {
 	 * Get the whole body of the form.
 	 * @return string
 	 */
-	function getBody() {
+	public function getBody() {
 		return $this->displaySection( $this->mFieldTree, $this->mTableId );
 	}
 
@@ -1169,7 +1167,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return string
 	 */
-	function getErrors( $errors ) {
+	public function getErrors( $errors ) {
 		if ( $errors instanceof Status ) {
 			if ( $errors->isOK() ) {
 				$errorstr = '';
@@ -1224,7 +1222,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setSubmitText( $t ) {
+	public function setSubmitText( $t ) {
 		$this->mSubmitText = $t;
 
 		return $this;
@@ -1267,10 +1265,8 @@ class HTMLForm extends ContextSource {
 	 * Get the text for the submit button, either customised or a default.
 	 * @return string
 	 */
-	function getSubmitText() {
-		return $this->mSubmitText
-			? $this->mSubmitText
-			: $this->msg( 'htmlform-submit' )->text();
+	public function getSubmitText() {
+		return $this->mSubmitText ?: $this->msg( 'htmlform-submit' )->text();
 	}
 
 	/**
@@ -1303,7 +1299,7 @@ class HTMLForm extends ContextSource {
 	 * @todo FIXME: Integrity of $t is *not* validated
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setSubmitID( $t ) {
+	public function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
 
 		return $this;
@@ -1319,7 +1315,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls
 	 */
-	function suppressDefaultSubmit( $suppressSubmit = true ) {
+	public function suppressDefaultSubmit( $suppressSubmit = true ) {
 		$this->mShowSubmit = !$suppressSubmit;
 
 		return $this;
@@ -1405,7 +1401,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setMessagePrefix( $p ) {
+	public function setMessagePrefix( $p ) {
 		$this->mMessagePrefix = $p;
 
 		return $this;
@@ -1418,7 +1414,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setTitle( $t ) {
+	public function setTitle( $t ) {
 		$this->mTitle = $t;
 
 		return $this;
@@ -1428,7 +1424,7 @@ class HTMLForm extends ContextSource {
 	 * Get the title
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mTitle === false
 			? $this->getContext()->getTitle()
 			: $this->mTitle;
@@ -1491,7 +1487,7 @@ class HTMLForm extends ContextSource {
 
 		// Conveniently, PHP method names are case-insensitive.
 		// For grep: this can call getDiv, getRaw, getInline, getVForm, getOOUI
-		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
+		$getFieldHtmlMethod = $displayFormat === 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
 			if ( $value instanceof HTMLFormField ) {
@@ -1507,7 +1503,7 @@ class HTMLForm extends ContextSource {
 					$html[] = $retval;
 
 					$labelValue = trim( $value->getLabel() );
-					if ( $labelValue != '&#160;' && $labelValue !== '' ) {
+					if ( $labelValue !== '&#160;' && $labelValue !== '' ) {
 						$hasLabel = true;
 					}
 
@@ -1600,7 +1596,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Construct the form fields from the Descriptor array
 	 */
-	function loadData() {
+	public function loadData() {
 		$fieldData = [];
 
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
@@ -1629,7 +1625,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function suppressReset( $suppressReset = true ) {
+	public function suppressReset( $suppressReset = true ) {
 		$this->mShowReset = !$suppressReset;
 
 		return $this;
@@ -1644,7 +1640,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return array
 	 */
-	function filterDataForSubmit( $data ) {
+	public function filterDataForSubmit( $data ) {
 		return $data;
 	}
 
