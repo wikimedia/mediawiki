@@ -55,6 +55,9 @@
 			config.formatter.format = '@' + config.type;
 		}
 
+		// Early properties
+		this.type = config.type;
+
 		// Parent constructor
 		mw.widgets.datetime.DateTimeInputWidget[ 'super' ].call( this, config );
 
@@ -64,7 +67,6 @@
 		OO.ui.mixin.PendingElement.call( this, config );
 
 		// Properties
-		this.type = config.type;
 		this.$handle = $( '<span>' );
 		this.$fields = $( '<span>' );
 		this.fields = [];
