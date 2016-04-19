@@ -154,6 +154,10 @@ return [
 		return $store;
 	},
 
+	'WatchedItemQueryService' => function( MediaWikiServices $services ) {
+		return new WatchedItemQueryService( $services->getDBLoadBalancer() );
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter()
