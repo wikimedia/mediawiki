@@ -376,6 +376,7 @@ class SpecialSearch extends SpecialPage {
 		if ( $textMatches && !$textStatus ) {
 			// output appropriate heading
 			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
+				$out->addHTML( '<div class="visualClear"></div>' );
 				// if no title matches the heading is redundant
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			}
