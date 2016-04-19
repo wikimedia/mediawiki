@@ -139,6 +139,10 @@ return [
 		return $store;
 	},
 
+	'WatchedItemQuery' => function( MediaWikiServices $services ) {
+		return new WatchedItemQuery( $services->getDBLoadBalancer() );
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
