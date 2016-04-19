@@ -10,6 +10,7 @@ use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
+use PageProps;
 use MWException;
 use ResourceLoader;
 use SearchEngine;
@@ -420,6 +421,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return PageProps
+	 */
+	public function getPageProps() {
+		return $this->getService( 'PageProps' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

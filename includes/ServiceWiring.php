@@ -143,6 +143,12 @@ return [
 		return $store;
 	},
 
+	'PageProps' => function( MediaWikiServices $services ) {
+		return new PageProps(
+			new ProcessCacheLRU( 100 )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

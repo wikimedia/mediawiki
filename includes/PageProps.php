@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Gives access to properties of a page.
  *
@@ -29,59 +31,23 @@
 class PageProps {
 
 	/**
-	 * @var PageProps
-	 */
-	private static $instance;
-
-	/**
-	 * Overrides the default instance of this class
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * If this method is used it MUST also be called with null after a test to ensure a new
-	 * default instance is created next time getInstance is called.
-	 *
-	 * @since 1.27
-	 *
-	 * @param PageProps|null $store
-	 *
-	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
-	 */
-	public static function overrideInstance( PageProps $store = null ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
-				'Cannot override ' . __CLASS__ . 'default instance in operation.'
-			);
-		}
-		$previousValue = self::$instance;
-		self::$instance = $store;
-		return new ScopedCallback( function() use ( $previousValue ) {
-			self::$instance = $previousValue;
-		} );
-	}
-
-	/**
+	 * @deprecated in 1.27 get PageProps from MediaWikiServices
 	 * @return PageProps
 	 */
 	public static function getInstance() {
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getPageProps();
 	}
 
-	/** Cache parameters */
 	const CACHE_TTL = 10; // integer; TTL in seconds
-	const CACHE_SIZE = 100; // integer; max cached pages
-
-	/** Property cache */
-	private $cache = null;
 
 	/**
-	 * Create a PageProps object
+	 * Property cache
+	 * @var ProcessCacheLRU
 	 */
-	private function __construct() {
-		$this->cache = new ProcessCacheLRU( self::CACHE_SIZE );
+	private $cache;
+
+	public function __construct( ProcessCacheLRU $cache ) {
+		$this->cache = $cache;
 	}
 
 	/**
