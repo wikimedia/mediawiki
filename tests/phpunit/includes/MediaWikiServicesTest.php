@@ -243,6 +243,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
+			'PageProps' => [ 'PageProps', PageProps::class ],
 		];
 	}
 

@@ -24,11 +24,9 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $title, 'hiddencat' )
 			->will( $this->returnValue( [ ] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertFalse( $categoryPage->isHidden() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function provideCategoryContent() {
@@ -52,10 +50,8 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $categoryTitle, 'hiddencat' )
 			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [ ] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertEquals( $isHidden, $categoryPage->isHidden() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 }

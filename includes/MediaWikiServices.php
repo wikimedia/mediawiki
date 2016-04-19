@@ -11,6 +11,7 @@ use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
+use PageProps;
 use MWException;
 use ResourceLoader;
 use SearchEngine;
@@ -427,6 +428,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkCache() {
 		return $this->getService( 'LinkCache' );
+	}
+
+	/**
+	 * @return PageProps
+	 */
+	public function getPageProps() {
+		return $this->getService( 'PageProps' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

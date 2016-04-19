@@ -4,6 +4,7 @@
  * @group Database
  */
 class RecentChangeTest extends MediaWikiTestCase {
+	/** @var Title */
 	protected $title;
 	protected $target;
 	protected $user;
@@ -163,7 +164,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 			->with( $categoryTitle, 'hiddencat' )
 			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [ ] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$rc = RecentChange::newForCategorization(
 			'0',
@@ -178,7 +179,5 @@ class RecentChangeTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 }
