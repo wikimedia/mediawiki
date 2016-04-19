@@ -72,11 +72,6 @@ class JobQueueRedis extends JobQueue {
 	/** @var string Compression method to use */
 	protected $compression;
 
-	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
-
-	/** @var string Key to prefix the queue keys with (used for testing) */
-	protected $key;
-
 	/**
 	 * @param array $params Possible keys:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
