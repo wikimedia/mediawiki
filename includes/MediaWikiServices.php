@@ -18,6 +18,7 @@ use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
 use WatchedItemStore;
+use WatchedItemQuery;
 use SkinFactory;
 
 /**
@@ -448,6 +449,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return WatchedItemQuery
+	 */
+	public function getWatchedItemQuery() {
+		return $this->getService( 'WatchedItemQuery' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
