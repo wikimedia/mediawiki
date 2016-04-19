@@ -37,6 +37,7 @@ use SpecialPageFactory;
 use Title;
 use User;
 use WatchedItemStore;
+use WatchedItemQuery;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -489,6 +490,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return WatchedItemQuery
+	 */
+	public function getWatchedItemQuery() {
+		return $this->getService( 'WatchedItemQuery' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
