@@ -1561,224 +1561,49 @@ abstract class Skin extends ContextSource {
 	}
 
 	/** @deprecated in 1.21 */
-	public function accesskey() {
-		return call_user_func_array( [ 'Linker', 'accesskey' ], func_get_args() );
+	public function commentBlock( $comment, $title = null, $local = false, $wikiId = null ) {
+		return Linker::commentBlock( $comment, $title, $local, $wikiId );
 	}
+
 	/** @deprecated in 1.21 */
-	public function blockLink() {
-		return call_user_func_array( [ 'Linker', 'blockLink' ], func_get_args() );
+	public function generateRollback(
+		$rev,
+		IContextSource $context = null,
+		$options = [ 'verify' ]
+	) {
+		return Linker::generateRollback( $rev, $context, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function buildRollbackLink() {
-		return call_user_func_array( [ 'Linker', 'buildRollbackLink' ], func_get_args() );
+	public function link($target, $html = null, $customAttribs = [], $query = [], $options = [] ) {
+		return Linker::link( $target, $html, $customAttribs, $query, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function commentBlock() {
-		return call_user_func_array( [ 'Linker', 'commentBlock' ], func_get_args() );
+	public function linkKnown(
+		$target,
+		$html = null,
+		$customAttribs = [ ],
+		$query = [ ],
+		$options = [ 'known', 'noclasses' ]
+	) {
+		return Linker::linkKnown( $target, $html, $customAttribs, $query, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function emailLink() {
-		return call_user_func_array( [ 'Linker', 'emailLink' ], func_get_args() );
+	public function userLink( $userId, $userName, $altUserName = false ) {
+		return Linker::userLink( $userId, $userName, $altUserName );
 	}
+
 	/** @deprecated in 1.21 */
-	public function formatComment() {
-		return call_user_func_array( [ 'Linker', 'formatComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatHiddenCategories() {
-		return call_user_func_array( [ 'Linker', 'formatHiddenCategories' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatLinksInComment() {
-		return call_user_func_array( [ 'Linker', 'formatLinksInComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatRevisionSize() {
-		return call_user_func_array( [ 'Linker', 'formatRevisionSize' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatSize() {
-		return call_user_func_array( [ 'Linker', 'formatSize' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatTemplates() {
-		return call_user_func_array( [ 'Linker', 'formatTemplates' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function generateRollback() {
-		return call_user_func_array( [ 'Linker', 'generateRollback' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function generateTOC() {
-		return call_user_func_array( [ 'Linker', 'generateTOC' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInternalLinkAttributes() {
-		return call_user_func_array( [ 'Linker', 'getInternalLinkAttributes' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInternalLinkAttributesObj() {
-		return call_user_func_array( [ 'Linker', 'getInternalLinkAttributesObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInterwikiLinkAttributes() {
-		return call_user_func_array( [ 'Linker', 'getInterwikiLinkAttributes' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInvalidTitleDescription() {
-		return call_user_func_array( [ 'Linker', 'getInvalidTitleDescription' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getLinkColour() {
-		return call_user_func_array( [ 'Linker', 'getLinkColour' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getRevDeleteLink() {
-		return call_user_func_array( [ 'Linker', 'getRevDeleteLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getRollbackEditCount() {
-		return call_user_func_array( [ 'Linker', 'getRollbackEditCount' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function link() {
-		return call_user_func_array( [ 'Linker', 'link' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function linkKnown() {
-		return call_user_func_array( [ 'Linker', 'linkKnown' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeBrokenImageLinkObj() {
-		return call_user_func_array( [ 'Linker', 'makeBrokenImageLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeCommentLink() {
-		return call_user_func_array( [ 'Linker', 'makeCommentLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeExternalImage() {
-		return call_user_func_array( [ 'Linker', 'makeExternalImage' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeExternalLink() {
-		return call_user_func_array( [ 'Linker', 'makeExternalLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeHeadline() {
-		return call_user_func_array( [ 'Linker', 'makeHeadline' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeImageLink() {
-		return call_user_func_array( [ 'Linker', 'makeImageLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeMediaLinkFile() {
-		return call_user_func_array( [ 'Linker', 'makeMediaLinkFile' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeMediaLinkObj() {
-		return call_user_func_array( [ 'Linker', 'makeMediaLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeSelfLinkObj() {
-		return call_user_func_array( [ 'Linker', 'makeSelfLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeThumbLink2() {
-		return call_user_func_array( [ 'Linker', 'makeThumbLink2' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeThumbLinkObj() {
-		return call_user_func_array( [ 'Linker', 'makeThumbLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function normaliseSpecialPage() {
-		return call_user_func_array( [ 'Linker', 'normaliseSpecialPage' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function normalizeSubpageLink() {
-		return call_user_func_array( [ 'Linker', 'normalizeSubpageLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function processResponsiveImages() {
-		return call_user_func_array( [ 'Linker', 'processResponsiveImages' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revComment() {
-		return call_user_func_array( [ 'Linker', 'revComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revDeleteLink() {
-		return call_user_func_array( [ 'Linker', 'revDeleteLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revDeleteLinkDisabled() {
-		return call_user_func_array( [ 'Linker', 'revDeleteLinkDisabled' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revUserLink() {
-		return call_user_func_array( [ 'Linker', 'revUserLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revUserTools() {
-		return call_user_func_array( [ 'Linker', 'revUserTools' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function specialLink() {
-		return call_user_func_array( [ 'Linker', 'specialLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function splitTrail() {
-		return call_user_func_array( [ 'Linker', 'splitTrail' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function titleAttrib() {
-		return call_user_func_array( [ 'Linker', 'titleAttrib' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocIndent() {
-		return call_user_func_array( [ 'Linker', 'tocIndent' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocLine() {
-		return call_user_func_array( [ 'Linker', 'tocLine' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocLineEnd() {
-		return call_user_func_array( [ 'Linker', 'tocLineEnd' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocList() {
-		return call_user_func_array( [ 'Linker', 'tocList' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocUnindent() {
-		return call_user_func_array( [ 'Linker', 'tocUnindent' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tooltip() {
-		return call_user_func_array( [ 'Linker', 'tooltip' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tooltipAndAccesskeyAttribs() {
-		return call_user_func_array( [ 'Linker', 'tooltipAndAccesskeyAttribs' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userLink() {
-		return call_user_func_array( [ 'Linker', 'userLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userTalkLink() {
-		return call_user_func_array( [ 'Linker', 'userTalkLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userToolLinks() {
-		return call_user_func_array( [ 'Linker', 'userToolLinks' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userToolLinksRedContribs() {
-		return call_user_func_array( [ 'Linker', 'userToolLinksRedContribs' ], func_get_args() );
+	public function userToolLinks(
+		$userId,
+		$userText,
+		$redContribsWhenNoEdits = false,
+		$flags = 0,
+		$edits = null
+	) {
+		return Linker::userToolLinks( $userId, $userText, $redContribsWhenNoEdits, $flags, $edits );
 	}
 
 }
