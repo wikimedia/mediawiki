@@ -3192,7 +3192,7 @@
 	"watchlistedit-raw-done": "Ваш список наблюдения сохранён.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Была добавлена|Были добавлены|Было добавлено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Была удалена|Были удалены|Было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
-	"watchlistedit-clear-title": "Очистка списка наблюдения",
+	"watchlistedit-clear-title": "Очистить список наблюдения",
 	"watchlistedit-clear-legend": "Очистить список наблюдения",
 	"watchlistedit-clear-explain": "Все записи будут удалены из вашего списка наблюдения",
 	"watchlistedit-clear-titles": "Заголовки:",

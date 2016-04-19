@@ -3260,7 +3260,7 @@
 	"watchlistedit-raw-done": "Votre liste de suivi a été mise à jour.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Un titre a été ajouté|$1 titres ont été ajoutés}} :",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Un titre a été retiré|$1 titres ont été retirés}} :",
-	"watchlistedit-clear-title": "Liste de suivi vidée",
+	"watchlistedit-clear-title": "Vider la liste de suivi",
 	"watchlistedit-clear-legend": "Effacer la liste de suivi",
 	"watchlistedit-clear-explain": "Tous les titres seront supprimés de votre liste de suivi",
 	"watchlistedit-clear-titles": "Titres :",

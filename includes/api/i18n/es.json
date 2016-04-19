@@ -502,7 +502,7 @@
 	"apihelp-query+imageinfo-param-prop": "Qué información del archivo se obtendrá:",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Añade el usuario que subió cada versión del archivo.",
 	"apihelp-query+imageinfo-paramvalue-prop-userid": "Añade la ID de usuario que subió cada versión del archivo.",
-	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Agrega la canónica título del archivo.",
+	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Agrega el título canónico del archivo.",
 	"apihelp-query+imageinfo-param-limit": "Cuántos revisiones de archivos se devolverán por perfil.",
 	"apihelp-query+imageinfo-param-urlheight": "Similar a $1urlwidth.",
 	"apihelp-query+imageinfo-param-extmetadatafilter": "Si se especifica y no vacío, sólo estas claves serán devueltos por $1prop=extmetadata.",

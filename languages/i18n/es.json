@@ -3225,7 +3225,7 @@
 	"watchlistedit-raw-done": "Tu lista de seguimiento se ha actualizado.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Se ha añadido una página|Se han añadido $1 páginas}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Una página ha sido borrada|$1 páginas han sido borradas}}:",
-	"watchlistedit-clear-title": "Lista de seguimiento vaciada",
+	"watchlistedit-clear-title": "Vaciar la lista de seguimiento",
 	"watchlistedit-clear-legend": "Vaciar la lista de seguimiento",
 	"watchlistedit-clear-explain": "Todos los títulos serán eliminados de tu lista de seguimiento",
 	"watchlistedit-clear-titles": "Títulos:",
