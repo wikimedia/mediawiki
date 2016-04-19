@@ -82,6 +82,11 @@ interface IJobSpecification {
 	 * @return Title Descriptive title (this can simply be informative)
 	 */
 	public function getTitle();
+
+	/**
+	 * @return bool Whether the job successfully ran
+	 */
+	public function run();
 }
 
 /**
@@ -101,7 +106,7 @@ interface IJobSpecification {
  * @ingroup JobQueue
  * @since 1.23
  */
-class JobSpecification implements IJobSpecification {
+abstract class JobSpecification implements IJobSpecification {
 	/** @var string */
 	protected $type;
 
