@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Factory class to create Skin objects
  *
@@ -42,16 +44,11 @@ class SkinFactory {
 	private $displayNames = [];
 
 	/**
-	 * @var SkinFactory
+	 * @deprecated in 1.27
+	 * @return SkinFactory
 	 */
-	private static $self;
-
 	public static function getDefaultInstance() {
-		if ( !self::$self ) {
-			self::$self = new self;
-		}
-
-		return self::$self;
+		return MediaWikiServices::getInstance()->getSkinFactory();
 	}
 
 	/**
