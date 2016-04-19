@@ -402,6 +402,7 @@ class Block {
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert( $dbw = null ) {
+		global $wgBlockDisablesLogin;
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 
 		if ( $dbw === null ) {
@@ -424,6 +425,11 @@ class Block {
 		$this->mId = $dbw->insertId();
 
 		if ( $affected ) {
+			if ( $wgBlockDisablesLogin && $this->target instanceof User ) {
+				// Change user login token to force them to be logged out.
+				$this->target->setToken();
+				$this->target->saveSettings();
+			}
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
 			return array( 'id' => $this->mId, 'autoIds' => $auto_ipd_ids );
 		}
