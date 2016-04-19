@@ -1557,7 +1557,7 @@ class Language {
 	 *
 	 * @param string $ts
 	 *
-	 * @return string
+	 * @return int[]
 	 */
 	private static function tsToIranian( $ts ) {
 		$gy = substr( $ts, 0, 4 ) -1600;
@@ -1615,7 +1615,7 @@ class Language {
 	 *
 	 * @param string $ts
 	 *
-	 * @return string
+	 * @return int[]
 	 */
 	private static function tsToHijri( $ts ) {
 		$year = substr( $ts, 0, 4 );
@@ -1667,7 +1667,7 @@ class Language {
 	 *
 	 * @param string $ts
 	 *
-	 * @return string
+	 * @return int[]
 	 */
 	private static function tsToHebrew( $ts ) {
 		# Parse date
