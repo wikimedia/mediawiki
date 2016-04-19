@@ -1562,279 +1562,55 @@ abstract class Skin extends ContextSource {
 	}
 
 	/** @deprecated in 1.21 */
-	public function accesskey() {
+	public function commentBlock( $comment, $title = null, $local = false, $wikiId = null ) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'accesskey' ], func_get_args() );
+		return Linker::commentBlock( $comment, $title, $local, $wikiId );
 	}
+
 	/** @deprecated in 1.21 */
-	public function blockLink() {
+	public function generateRollback(
+		$rev,
+		IContextSource $context = null,
+		$options = [ 'verify' ]
+	) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'blockLink' ], func_get_args() );
+		return Linker::generateRollback( $rev, $context, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function buildRollbackLink() {
+	public function link( $target, $html = null, $customAttribs = [], $query = [], $options = [] ) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'buildRollbackLink' ], func_get_args() );
+		return Linker::link( $target, $html, $customAttribs, $query, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function commentBlock() {
+	public function linkKnown(
+		$target,
+		$html = null,
+		$customAttribs = [ ],
+		$query = [ ],
+		$options = [ 'known', 'noclasses' ]
+	) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'commentBlock' ], func_get_args() );
+		return Linker::linkKnown( $target, $html, $customAttribs, $query, $options );
 	}
+
 	/** @deprecated in 1.21 */
-	public function emailLink() {
+	public function userLink( $userId, $userName, $altUserName = false ) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'emailLink' ], func_get_args() );
+		return Linker::userLink( $userId, $userName, $altUserName );
 	}
+
 	/** @deprecated in 1.21 */
-	public function formatComment() {
+	public function userToolLinks(
+		$userId,
+		$userText,
+		$redContribsWhenNoEdits = false,
+		$flags = 0,
+		$edits = null
+	) {
 		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatHiddenCategories() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatHiddenCategories' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatLinksInComment() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatLinksInComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatRevisionSize() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatRevisionSize' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatSize() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatSize' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function formatTemplates() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'formatTemplates' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function generateRollback() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'generateRollback' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function generateTOC() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'generateTOC' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInternalLinkAttributes() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getInternalLinkAttributes' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInternalLinkAttributesObj() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getInternalLinkAttributesObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInterwikiLinkAttributes() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getInterwikiLinkAttributes' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getInvalidTitleDescription() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getInvalidTitleDescription' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getLinkColour() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getLinkColour' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getRevDeleteLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getRevDeleteLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function getRollbackEditCount() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'getRollbackEditCount' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function link() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'link' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function linkKnown() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'linkKnown' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeBrokenImageLinkObj() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeBrokenImageLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeCommentLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeCommentLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeExternalImage() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeExternalImage' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeExternalLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeExternalLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeHeadline() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeHeadline' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeImageLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeImageLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeMediaLinkFile() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeMediaLinkFile' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeMediaLinkObj() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeMediaLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeSelfLinkObj() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeSelfLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeThumbLink2() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeThumbLink2' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function makeThumbLinkObj() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'makeThumbLinkObj' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function normaliseSpecialPage() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'normaliseSpecialPage' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function normalizeSubpageLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'normalizeSubpageLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function processResponsiveImages() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'processResponsiveImages' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revComment() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'revComment' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revDeleteLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'revDeleteLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revDeleteLinkDisabled() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'revDeleteLinkDisabled' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revUserLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'revUserLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function revUserTools() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'revUserTools' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function specialLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'specialLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function splitTrail() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'splitTrail' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function titleAttrib() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'titleAttrib' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocIndent() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tocIndent' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocLine() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tocLine' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocLineEnd() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tocLineEnd' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocList() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tocList' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tocUnindent() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tocUnindent' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tooltip() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tooltip' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function tooltipAndAccesskeyAttribs() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'tooltipAndAccesskeyAttribs' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'userLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userTalkLink() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'userTalkLink' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userToolLinks() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'userToolLinks' ], func_get_args() );
-	}
-	/** @deprecated in 1.21 */
-	public function userToolLinksRedContribs() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return call_user_func_array( [ 'Linker', 'userToolLinksRedContribs' ], func_get_args() );
+		return Linker::userToolLinks( $userId, $userText, $redContribsWhenNoEdits, $flags, $edits );
 	}
 
 }
