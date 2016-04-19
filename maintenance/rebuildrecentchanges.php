@@ -34,15 +34,37 @@ class RebuildRecentchanges extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Rebuild recent changes' );
+
+		$this->addOption(
+			'from',
+			"Don't empty the table, only insert rows in requested time range (in YYYYMMDDHHMMSS format)",
+			false,
+			true
+		);
+		$this->addOption(
+			'to',
+			"Don't empty the table, only insert rows in requested time range (in YYYYMMDDHHMMSS format)",
+			false,
+			true
+		);
 	}
 
 	public function execute() {
+		if (
+			( $this->hasOption( 'from' ) && !$this->hasOption( 'to' ) ) ||
+			( !$this->hasOption( 'from' ) && $this->hasOption( 'to' ) )
+		) {
+			$this->error( "Both 'from' and 'to' must be given, or neither", 1 );
+		}
+
 		$this->rebuildRecentChangesTablePass1();
 		$this->rebuildRecentChangesTablePass2();
 		$this->rebuildRecentChangesTablePass3();
 		$this->rebuildRecentChangesTablePass4();
 		$this->rebuildRecentChangesTablePass5();
-		$this->purgeFeeds();
+		if ( !( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) ) {
+			$this->purgeFeeds();
+		}
 		$this->output( "Done.\n" );
 	}
 
@@ -52,21 +74,29 @@ class RebuildRecentchanges extends Maintenance {
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = $this->getDB( DB_MASTER );
 
-		$dbw->delete( 'recentchanges', '*' );
+		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
+			$this->cutoff = wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
+			$this->cutoffTo = wfTimestamp( TS_UNIX, $this->getOption( 'to' ) );
+		} else {
+			global $wgRCMaxAge;
+
+			$this->output( '$wgRCMaxAge=' . $wgRCMaxAge );
+			$days = $wgRCMaxAge / 24 / 3600;
+			if ( intval( $days ) == $days ) {
+				$this->output( " (" . $days . " days)\n" );
+			} else {
+				$this->output( " (approx. " . intval( $days ) . " days)\n" );
+			}
+
+			$this->cutoff = time() - $wgRCMaxAge;
+			$this->cutoffTo = time();
+
+			$this->output( "Clearing recentchanges table...\n" );
+			$dbw->delete( 'recentchanges', '*' );
+		}
 
 		$this->output( "Loading from page and revision tables...\n" );
 
-		global $wgRCMaxAge;
-
-		$this->output( '$wgRCMaxAge=' . $wgRCMaxAge );
-		$days = $wgRCMaxAge / 24 / 3600;
-		if ( intval( $days ) == $days ) {
-			$this->output( " (" . $days . " days)\n" );
-		} else {
-			$this->output( " (approx. " . intval( $days ) . " days)\n" );
-		}
-
-		$cutoff = time() - $wgRCMaxAge;
 		$dbw->insertSelect( 'recentchanges', [ 'page', 'revision' ],
 			[
 				'rc_timestamp' => 'rev_timestamp',
@@ -90,7 +120,8 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_deleted' => 'rev_deleted'
 			],
 			[
-				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
+				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ),
+				'rev_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 				'rev_page=page_id'
 			],
 			__METHOD__,
@@ -111,6 +142,8 @@ class RebuildRecentchanges extends Maintenance {
 
 		# Fill in the rc_last_oldid field, which points to the previous edit
 		$sql = "SELECT rc_cur_id,rc_this_oldid,rc_timestamp FROM $recentchanges " .
+			"WHERE rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ) . ' ' .
+			"AND rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ) . ' ' .
 			"ORDER BY rc_cur_id,rc_timestamp";
 		$res = $dbw->query( $sql, DB_MASTER );
 
@@ -178,7 +211,6 @@ class RebuildRecentchanges extends Maintenance {
 		// Some logs don't go in RC. This should check for that
 		$basicRCLogs = array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) );
 
-		$cutoff = time() - $wgRCMaxAge;
 		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
 		$dbw->insertSelect(
 			'recentchanges',
@@ -209,7 +241,8 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_deleted' => 'log_deleted'
 			],
 			[
-				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
+				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ),
+				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 				'log_user=user_id',
 				'log_type' => $basicRCLogs,
 			],
@@ -251,7 +284,9 @@ class RebuildRecentchanges extends Maintenance {
 			if ( !empty( $botusers ) ) {
 				$botwhere = implode( ',', $botusers );
 				$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
-					"WHERE rc_user_text IN($botwhere)";
+					"WHERE rc_user_text IN($botwhere) " .
+					"AND rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ) . ' ' .
+					"AND rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) );
 				$dbw->query( $sql2 );
 			}
 		}
@@ -276,7 +311,9 @@ class RebuildRecentchanges extends Maintenance {
 			if ( !empty( $patrolusers ) ) {
 				$patrolwhere = implode( ',', $patrolusers );
 				$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
-					"WHERE rc_user_text IN($patrolwhere)";
+					"WHERE rc_user_text IN($patrolwhere) " .
+					"AND rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ) . ' ' .
+					"AND rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) );
 				$dbw->query( $sql2 );
 			}
 		}
@@ -298,6 +335,8 @@ class RebuildRecentchanges extends Maintenance {
 				'ls_log_id = log_id',
 				'ls_field' => 'associated_rev_id',
 				'log_type' => 'upload',
+				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoff ) ),
+				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 			],
 			__METHOD__
 		);
