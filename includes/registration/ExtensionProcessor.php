@@ -34,6 +34,7 @@ class ExtensionProcessor implements Processor {
 		'LogTypes',
 		'LogRestrictions',
 		'FilterLogTypes',
+		'ActionFilteredLogs',
 		'LogNames',
 		'LogHeaders',
 		'LogActions',
