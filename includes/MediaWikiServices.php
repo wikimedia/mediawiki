@@ -11,6 +11,7 @@ use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
 use SiteLookup;
 use SiteStore;
+use SkinFactory;
 
 /**
  * Service locator for MediaWiki core services.
@@ -150,6 +151,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getStatsdDataFactory() {
 		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @return SkinFactory
+	 */
+	public function getSkinFactory() {
+		return $this->getService( 'SkinFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
