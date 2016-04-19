@@ -322,6 +322,10 @@
 									"type": "string",
 									"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
 								},
+								"skipFunction": {
+									"type": "string",
+									"description": "Modules that provide fallback functionality can provide a \"skip function\". This function, if provided, will be passed along to the module registry on the client. When this module is loaded (either directly or as a dependency of another module), then this function is executed first. If the function returns true, the module will instantly be considered \"ready\" without requesting the associated module resources. The value returned here must be valid javascript for execution in a private function. It must not contain the \"function () {\" and \"}\" wrapper though."
+								},
 								"scripts": {
 									"type": ["string", "array"],
 									"description": "Scripts to always include (array of file paths)",
