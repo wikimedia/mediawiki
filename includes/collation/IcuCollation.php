@@ -234,32 +234,33 @@ class IcuCollation extends Collation {
 
 	/**
 	 * @since 1.16.3
+	 * @return array
 	 */
 	public function getFirstLetterData() {
-		if ( $this->firstLetterData !== null ) {
-			return $this->firstLetterData;
+		if ( $this->firstLetterData === null ) {
+			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+			$cacheKey = $cache->makeKey(
+				'first-letters',
+				$this->locale,
+				$this->digitTransformLanguage->getCode(),
+				self::getICUVersion(),
+				self::FIRST_LETTER_VERSION
+			);
+			$this->firstLetterData = $cache->getWithSetCallback( $cacheKey, $cache::TTL_WEEK, function () {
+				return $this->fetchFirstLetterData();
+			} );
 		}
+		return $this->firstLetterData;
+	}
 
-		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
-		$cacheKey = $cache->makeKey(
-			'first-letters',
-			$this->locale,
-			$this->digitTransformLanguage->getCode(),
-			self::getICUVersion()
-		);
-		$cacheEntry = $cache->get( $cacheKey );
-
-		if ( $cacheEntry && isset( $cacheEntry['version'] )
-			&& $cacheEntry['version'] == self::FIRST_LETTER_VERSION
-		) {
-			$this->firstLetterData = $cacheEntry;
-			return $this->firstLetterData;
-		}
-
+	/**
+	 * @return array
+	 * @throws MWException
+	 */
+	private function fetchFirstLetterData() {
 		// Generate data from serialized data file
-
 		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
-			$letters = wfGetPrecompiledData( "first-letters-root.ser" );
+			$letters = wfGetPrecompiledData( 'first-letters-root.ser' );
 			// Append additional characters
 			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
 			// Remove unnecessary ones, if any
@@ -374,15 +375,11 @@ class IcuCollation extends Collation {
 		$data = [
 			'chars' => array_values( $letterMap ),
 			'keys' => array_keys( $letterMap ),
-			'version' => self::FIRST_LETTER_VERSION,
 		];
 
 		// Reduce memory usage before caching
 		unset( $letterMap );
 
-		// Save to cache
-		$this->firstLetterData = $data;
-		$cache->set( $cacheKey, $data, $cache::TTL_WEEK );
 		return $data;
 	}
 
@@ -390,30 +387,21 @@ class IcuCollation extends Collation {
 	 * @since 1.16.3
 	 */
 	public function getLetterByIndex( $index ) {
-		if ( $this->firstLetterData === null ) {
-			$this->getFirstLetterData();
-		}
-		return $this->firstLetterData['chars'][$index];
+		return $this->getFirstLetterData()['chars'][$index];
 	}
 
 	/**
 	 * @since 1.16.3
 	 */
 	public function getSortKeyByLetterIndex( $index ) {
-		if ( $this->firstLetterData === null ) {
-			$this->getFirstLetterData();
-		}
-		return $this->firstLetterData['keys'][$index];
+		return $this->getFirstLetterData()['keys'][$index];
 	}
 
 	/**
 	 * @since 1.16.3
 	 */
 	public function getFirstLetterCount() {
-		if ( $this->firstLetterData === null ) {
-			$this->getFirstLetterData();
-		}
-		return count( $this->firstLetterData['chars'] );
+		return count( $this->getFirstLetterData()['chars'] );
 	}
 
 	/**
