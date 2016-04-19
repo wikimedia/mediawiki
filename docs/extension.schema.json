@@ -664,6 +664,9 @@
 		"FilterLogTypes": {
 			"type": "object"
 		},
+		"ActionFilteredLogs" {
+			"type": "object"
+		},
 		"LogNames": {
 			"type": "object"
 		},
