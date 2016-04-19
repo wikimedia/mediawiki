@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:41Z
+ * Date: 2016-04-19T21:57:49Z
  */
 ( function ( OO ) {
 
@@ -4079,11 +4079,15 @@ OO.ui.mixin.ClippableElement.prototype.setIdealSize = function ( width, height )
 };
 
 /**
- * Clip element to visible boundaries and allow scrolling when needed. Call this method when
- * the element's natural height changes.
+ * Clip element to visible boundaries and allow scrolling when needed. You should call this method
+ * when the element's natural height changes.
  *
  * Element will be clipped the bottom or right of the element is within 10px of the edge of, or
  * overlapped by, the visible area of the nearest scrollable container.
+ *
+ * Because calling clip() when the natural height changes isn't always possible, we also set
+ * max-height when the element isn't being clipped. This means that if the element tries to grow
+ * beyond the edge, something reasonable will happen before clip() is called.
  *
  * @chainable
  */
@@ -4128,14 +4132,30 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		this.$clippable.css( { overflowX: 'scroll', width: Math.max( 0, allotedWidth ) } );
+		this.$clippable.css( {
+			overflowX: 'scroll',
+			width: Math.max( 0, allotedWidth ),
+			maxWidth: ''
+		} );
 	} else {
-		this.$clippable.css( { width: this.idealWidth ? this.idealWidth - extraWidth : '', overflowX: '' } );
+		this.$clippable.css( {
+			overflowX: '',
+			width: this.idealWidth ? this.idealWidth - extraWidth : '',
+			maxWidth: Math.max( 0, allotedWidth )
+		} );
 	}
 	if ( clipHeight ) {
-		this.$clippable.css( { overflowY: 'scroll', height: Math.max( 0, allotedHeight ) } );
+		this.$clippable.css( {
+			overflowY: 'scroll',
+			height: Math.max( 0, allotedHeight ),
+			maxHeight: ''
+		} );
 	} else {
-		this.$clippable.css( { height: this.idealHeight ? this.idealHeight - extraHeight : '', overflowY: '' } );
+		this.$clippable.css( {
+			overflowY: '',
+			height: this.idealHeight ? this.idealHeight - extraHeight : '',
+			maxHeight: Math.max( 0, allotedHeight )
+		} );
 	}
 
 	// If we stopped clipping in at least one of the dimensions
@@ -7837,7 +7857,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password', 'search',
- *  'email', 'url' or 'date'. Ignored if `multiline` is true.
+ *  'email', 'url', 'date' or 'number'. Ignored if `multiline` is true.
  *
  *  Some values of `type` result in additional behaviors:
  *
@@ -8024,7 +8044,6 @@ OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @fires icon
  */
 OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -8038,7 +8057,6 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @fires indicator
  */
 OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -8280,9 +8298,15 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
  * @protected
  */
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
-	return config.multiline ?
-		$( '<textarea>' ) :
-		$( '<input>' ).attr( 'type', this.getSaneType( config ) );
+	if ( config.multiline ) {
+		return $( '<textarea>' );
+	} else if ( this.getSaneType( config ) === 'number' ) {
+		return $( '<input>' )
+			.attr( 'step', 'any' )
+			.attr( 'type', 'number' );
+	} else {
+		return $( '<input>' ).attr( 'type', this.getSaneType( config ) );
+	}
 };
 
 /**
@@ -8293,9 +8317,16 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  * @private
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
-	var type = [ 'text', 'password', 'search', 'email', 'url', 'date' ].indexOf( config.type ) !== -1 ?
-		config.type :
-		'text';
+	var allowedTypes = [
+			'text',
+			'password',
+			'search',
+			'email',
+			'url',
+			'date',
+			'number'
+		],
+		type = allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
 	return config.multiline ? 'multiline' : type;
 };
 

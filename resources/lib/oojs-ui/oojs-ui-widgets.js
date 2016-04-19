@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:41Z
+ * Date: 2016-04-19T21:57:49Z
  */
 ( function ( OO ) {
 
@@ -3233,8 +3233,10 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.mixin.TabIndexedElement );
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_options
  *
  * @class
- * @extends OO.ui.DecoratedOptionWidget
+ * @extends OO.ui.OptionWidget
  * @mixins OO.ui.mixin.ButtonElement
+ * @mixins OO.ui.mixin.IconElement
+ * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.TabIndexedElement
  * @mixins OO.ui.mixin.TitledElement
  *
@@ -3250,6 +3252,8 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, config );
+	OO.ui.mixin.IconElement.call( this, config );
+	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$button } ) );
 	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
 		$tabIndexed: this.$button,
@@ -3258,14 +3262,16 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonOptionWidget' );
-	this.$button.append( this.$element.contents() );
+	this.$button.append( this.$icon, this.$label, this.$indicator );
 	this.$element.append( this.$button );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.ButtonOptionWidget, OO.ui.DecoratedOptionWidget );
+OO.inheritClass( OO.ui.ButtonOptionWidget, OO.ui.OptionWidget );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.ButtonElement );
+OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.IconElement );
+OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.TabIndexedElement );
 
@@ -5067,7 +5073,8 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	// Properties
 	this.input = new OO.ui.TextInputWidget( $.extend(
 		{
-			disabled: this.isDisabled()
+			disabled: this.isDisabled(),
+			type: 'number'
 		},
 		config.input
 	) );
@@ -5322,35 +5329,37 @@ OO.ui.NumberInputWidget.prototype.onButtonClick = function ( dir ) {
 OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 	var delta = 0;
 
-	// Standard 'wheel' event
-	if ( event.originalEvent.deltaMode !== undefined ) {
-		this.sawWheelEvent = true;
-	}
-	if ( event.originalEvent.deltaY ) {
-		delta = -event.originalEvent.deltaY;
-	} else if ( event.originalEvent.deltaX ) {
-		delta = event.originalEvent.deltaX;
-	}
-
-	// Non-standard events
-	if ( !this.sawWheelEvent ) {
-		if ( event.originalEvent.wheelDeltaX ) {
-			delta = -event.originalEvent.wheelDeltaX;
-		} else if ( event.originalEvent.wheelDeltaY ) {
-			delta = event.originalEvent.wheelDeltaY;
-		} else if ( event.originalEvent.wheelDelta ) {
-			delta = event.originalEvent.wheelDelta;
-		} else if ( event.originalEvent.detail ) {
-			delta = -event.originalEvent.detail;
+	if ( !this.isDisabled() && this.input.$input.is( ':focus' ) ) {
+		// Standard 'wheel' event
+		if ( event.originalEvent.deltaMode !== undefined ) {
+			this.sawWheelEvent = true;
 		}
-	}
+		if ( event.originalEvent.deltaY ) {
+			delta = -event.originalEvent.deltaY;
+		} else if ( event.originalEvent.deltaX ) {
+			delta = event.originalEvent.deltaX;
+		}
 
-	if ( delta ) {
-		delta = delta < 0 ? -1 : 1;
-		this.adjustValue( delta * this.step );
-	}
+		// Non-standard events
+		if ( !this.sawWheelEvent ) {
+			if ( event.originalEvent.wheelDeltaX ) {
+				delta = -event.originalEvent.wheelDeltaX;
+			} else if ( event.originalEvent.wheelDeltaY ) {
+				delta = event.originalEvent.wheelDeltaY;
+			} else if ( event.originalEvent.wheelDelta ) {
+				delta = event.originalEvent.wheelDelta;
+			} else if ( event.originalEvent.detail ) {
+				delta = -event.originalEvent.detail;
+			}
+		}
 
-	return false;
+		if ( delta ) {
+			delta = delta < 0 ? -1 : 1;
+			this.adjustValue( delta * this.step );
+		}
+
+		return false;
+	}
 };
 
 /**

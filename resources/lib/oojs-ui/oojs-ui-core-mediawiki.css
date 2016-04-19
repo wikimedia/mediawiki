@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:44Z
+ * Date: 2016-04-19T21:57:53Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -56,16 +56,8 @@
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-left: 0;
 }
-.oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-	width: 0.9375em;
-	height: 0.9375em;
-}
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	margin-left: 0.46875em;
-}
-.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-	width: 1.875em;
-	height: 1.875em;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.2);
@@ -350,12 +342,20 @@
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
+	min-width: 24px;
+	width: 1.875em;
+	min-height: 24px;
+	height: 1.875em;
 }
 .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
 .oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
+	min-width: 12px;
+	width: 0.9375em;
+	min-height: 12px;
+	height: 0.9375em;
 }
 .oo-ui-labelElement .oo-ui-labelElement-label-highlight {
 	font-weight: bold;
@@ -513,8 +513,6 @@
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
 	left: 0;
 	top: 0.25em;
-	width: 1.875em;
-	height: 1.875em;
 }
 .oo-ui-fieldsetLayout > .oo-ui-popupButtonWidget {
 	margin-right: 0;
@@ -611,11 +609,9 @@
 	height: 100%;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-	width: 1.875em;
 	left: 0.5em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-	width: 0.9375em;
 	right: 0.5em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
@@ -650,8 +646,6 @@
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 2.5em;
-	width: 1.875em;
-	height: 1.875em;
 }
 .oo-ui-iconWidget.oo-ui-widget-disabled {
 	opacity: 0.2;
@@ -660,8 +654,6 @@
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 2.5em;
-	width: 0.9375em;
-	height: 0.9375em;
 	margin: 0.46875em;
 }
 .oo-ui-indicatorWidget.oo-ui-widget-disabled {
@@ -800,11 +792,11 @@
 }
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-frameless > .oo-ui-popupWidget {
 	/* @noflip */
-	left: 1em;
+	left: 0.9375em;
 }
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-framed > .oo-ui-popupWidget {
 	/* @noflip */
-	left: 1.75em;
+	left: 1.5em;
 }
 .oo-ui-inputWidget {
 	margin-right: 0.5em;
@@ -1078,21 +1070,17 @@
 .oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
 	display: block;
 }
-.oo-ui-textInputWidget > .oo-ui-iconElement-icon {
+.oo-ui-textInputWidget > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
 	left: 0;
 }
-.oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator {
+.oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
 	right: 0;
 }
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
 	position: absolute;
 	top: 0;
-}
-.oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
-	right: 0;
-}
-.oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
-	left: 0;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
@@ -1109,8 +1097,7 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
-.oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
-.oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
+.oo-ui-textInputWidget .oo-ui-pendingElement-pending {
 	background-color: transparent;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input,
@@ -1157,7 +1144,7 @@
 	opacity: 0.2;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
-	color: #dddddd;
+	color: #cccccc;
 	text-shadow: 0 1px 1px #ffffff;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
@@ -1166,10 +1153,9 @@
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	left: 0;
-	width: 1.875em;
+	height: 100%;
 	max-height: 2.375em;
 	margin-left: 0.5em;
-	height: 100%;
 	background-position: right center;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
@@ -1177,10 +1163,9 @@
 	padding-right: 2.4875em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-	width: 0.9375em;
+	height: 100%;
 	max-height: 2.375em;
 	margin: 0 0.775em;
-	height: 100%;
 }
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
 	padding: 0.4em;
@@ -1295,14 +1280,10 @@
 }
 .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
 	top: 0;
-	width: 0.9375em;
-	height: 0.9375em;
 	margin: 0.775em;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	top: 0;
-	width: 1.875em;
-	height: 1.875em;
 	margin: 0.3em;
 }
 .oo-ui-dropdownWidget:hover .oo-ui-dropdownWidget-handle {

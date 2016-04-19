@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.5
+ * OOjs UI v0.16.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-07T15:12:44Z
+ * Date: 2016-04-19T21:57:53Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -202,12 +202,6 @@
 	position: static;
 	display: inline-block;
 	vertical-align: middle;
-}
-.oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
-	height: 1.875em;
-}
-.oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-	margin-top: 0;
 }
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
@@ -485,10 +479,7 @@
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
 	position: relative;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName {
-	display: block;
-	float: none;
-}
+.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName,
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
 	display: block;
 	float: none;
@@ -566,13 +557,11 @@
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
 	top: 0;
-	width: 0.9375em;
 	height: 2.3em;
 	margin-right: 0.775em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
 	top: 0;
-	width: 1.875em;
 	height: 2.3em;
 	margin-left: 0.3em;
 }
@@ -804,8 +793,6 @@
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-indicatorElement-indicator,
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-iconElement-icon {
 	position: absolute;
-	background-position: center center;
-	background-repeat: no-repeat;
 }
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-capsuleMultiSelectWidget-content > input {
 	border: none;
@@ -828,8 +815,6 @@
 .oo-ui-capsuleMultiSelectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-indicatorElement-indicator {
 	right: 0;
 	top: 0;
-	width: 0.9375em;
-	height: 0.9375em;
 	margin: 0.775em;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-iconElement .oo-ui-capsuleMultiSelectWidget-handle {
@@ -838,8 +823,6 @@
 .oo-ui-capsuleMultiSelectWidget.oo-ui-iconElement .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-iconElement-icon {
 	left: 0;
 	top: 0;
-	width: 1.875em;
-	height: 1.875em;
 	margin: 0.3em;
 }
 .oo-ui-capsuleMultiSelectWidget:hover .oo-ui-capsuleMultiSelectWidget-handle {
@@ -949,6 +932,14 @@
 }
 .oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
 	width: 100%;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"]::-webkit-outer-spin-button,
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"] {
+	-moz-appearance: textfield;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
 	white-space: nowrap;
