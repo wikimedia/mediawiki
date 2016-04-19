@@ -664,6 +664,10 @@
 		"FilterLogTypes": {
 			"type": "object"
 		},
+		"ActionFilteredLogs": {
+			"type": "object",
+			"description": "List of log types which can be filtered by log actions"
+		},
 		"LogNames": {
 			"type": "object"
 		},
