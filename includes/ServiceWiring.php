@@ -84,6 +84,10 @@ return [
 		);
 	},
 
+	'SkinFactory' => function( MediaWikiServices $services ) {
+		return new SkinFactory();
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

@@ -49,6 +49,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 			'PageProps' => [ 'PageProps', PageProps::class ],
+			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
 		];
 	}
 
