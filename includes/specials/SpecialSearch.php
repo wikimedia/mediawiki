@@ -1225,6 +1225,7 @@ class SpecialSearch extends SpecialPage {
 			'name' => 'search',
 			'autofocus' => trim( $term ) === '',
 			'value' => $term,
+			'dataLocation' => 'content',
 		] );
 
 		$out =
