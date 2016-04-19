@@ -73,7 +73,9 @@
 				// If title is empty, user input is invalid, the API call will produce details about why
 				titles: title ? title.getPrefixedText() : this.nameToCheck,
 				prop: 'imageinfo',
-				iiprop: 'uploadwarning'
+				iiprop: 'uploadwarning',
+				errorformat: 'html',
+				errorlang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
 				var
 					resultOut = '',
@@ -81,7 +83,7 @@
 				if ( page.imageinfo ) {
 					resultOut = page.imageinfo[ 0 ].html;
 				} else if ( page.invalidreason ) {
-					resultOut = mw.html.escape( page.invalidreason );
+					resultOut = page.invalidreason.html;
 				}
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
 			} ).always( function () {
