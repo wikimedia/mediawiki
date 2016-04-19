@@ -414,6 +414,55 @@ changes to languages because of Phabricator reports.
 * UserMailer::send() no longer accepts $replyto as the 5th argument and $contentType
   as the 6th. These must be passed in the options array now.
 * Title::newFromRedirectRecurse() was removed (deprecated in 1.21).
+* Skin::accesskey was removed (deprecated since 1.21).
+* Skin::blockLink was removed (deprecated since 1.21).
+* Skin::buildRollbackLink was removed (deprecated since 1.21).
+* Skin::emailLink was removed (deprecated since 1.21).
+* Skin::formatComment was removed (deprecated since 1.21).
+* Skin::formatHiddenCategories was removed (deprecated since 1.21).
+* Skin::formatLinksInComment was removed (deprecated since 1.21).
+* Skin::formatRevisionSize was removed (deprecated since 1.21).
+* Skin::formatSize was removed (deprecated since 1.21).
+* Skin::formatTemplates was removed (deprecated since 1.21).
+* Skin::generateTOC was removed (deprecated since 1.21).
+* Skin::getInternalLinkAttributes was removed (deprecated since 1.21).
+* Skin::getInternalLinkAttributesObj was removed (deprecated since 1.21).
+* Skin::getInterwikiLinkAttributes was removed (deprecated since 1.21).
+* Skin::getInvalidTitleDescription was removed (deprecated since 1.21).
+* Skin::getLinkColour was removed (deprecated since 1.21).
+* Skin::getRevDeleteLink was removed (deprecated since 1.21).
+* Skin::getRollbackEditCount was removed (deprecated since 1.21).
+* Skin::makeBrokenImageLinkObj was removed (deprecated since 1.21).
+* Skin::makeCommentLink was removed (deprecated since 1.21).
+* Skin::makeExternalImage was removed (deprecated since 1.21).
+* Skin::makeExternalLink was removed (deprecated since 1.21).
+* Skin::makeHeadline was removed (deprecated since 1.21).
+* Skin::makeImageLink was removed (deprecated since 1.21).
+* Skin::makeMediaLinkFile was removed (deprecated since 1.21).
+* Skin::makeMediaLinkObj was removed (deprecated since 1.21).
+* Skin::makeSelfLinkObj was removed (deprecated since 1.21).
+* Skin::makeThumbLink2 was removed (deprecated since 1.21).
+* Skin::makeThumbLinkObj was removed (deprecated since 1.21).
+* Skin::normaliseSpecialPage was removed (deprecated since 1.21).
+* Skin::normalizeSubpageLink was removed (deprecated since 1.21).
+* Skin::processResponsiveImages was removed (deprecated since 1.21).
+* Skin::revComment was removed (deprecated since 1.21).
+* Skin::revDeleteLink was removed (deprecated since 1.21).
+* Skin::revDeleteLinkDisabled was removed (deprecated since 1.21).
+* Skin::revUserLink was removed (deprecated since 1.21).
+* Skin::revUserTools was removed (deprecated since 1.21).
+* Skin::specialLink was removed (deprecated since 1.21).
+* Skin::splitTrail was removed (deprecated since 1.21).
+* Skin::titleAttrib was removed (deprecated since 1.21).
+* Skin::tocIndent was removed (deprecated since 1.21).
+* Skin::tocLine was removed (deprecated since 1.21).
+* Skin::tocLineEnd was removed (deprecated since 1.21).
+* Skin::tocList was removed (deprecated since 1.21).
+* Skin::tocUnindent was removed (deprecated since 1.21).
+* Skin::tooltip was removed (deprecated since 1.21).
+* Skin::tooltipAndAccesskeyAttribs was removed (deprecated since 1.21).
+* Skin::userTalkLink was removed (deprecated since 1.21).
+* Skin::userToolLinksRedContribs was removed (deprecated since 1.21).
 
 == Compatibility ==
 
