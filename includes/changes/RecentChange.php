@@ -851,7 +851,9 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' => ''
+			'rc_params' =>  serialize( [
+				'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
+			] )
 		];
 
 		$rc->mExtra = [
@@ -863,6 +865,19 @@ class RecentChange {
 		];
 
 		return $rc;
+	}
+
+	/**
+	 * Get a parameter value
+	 *
+	 * @since 1.27
+	 *
+	 * @param string $name parameter name
+	 * @return mixed
+	 */
+	public function getParam( $name ) {
+		$params = $this->parseParams();
+		return isset( $params[$name] ) ? $params[$name] : null;
 	}
 
 	/**
