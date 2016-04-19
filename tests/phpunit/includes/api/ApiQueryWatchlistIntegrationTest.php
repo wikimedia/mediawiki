@@ -821,8 +821,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 		$this->watchPages( $user, [ $target ] );
 
-		$resultMinor = $this->doListWatchlistRequest( [ 'wlshow' => 'minor', 'wlprop' => 'flags' ] );
-		$resultNotMinor = $this->doListWatchlistRequest( [ 'wlshow' => '!minor', 'wlprop' => 'flags' ] );
+		$resultMinor = $this->doListWatchlistRequest( [
+			'wlshow' => WatchedItemQueryService::FILTER_MINOR,
+			'wlprop' => 'flags'
+		] );
+		$resultNotMinor = $this->doListWatchlistRequest( [
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_MINOR, 'wlprop' => 'flags'
+		] );
 
 		$this->assertArraySubsetsEqual(
 			$this->getItemsFromApiResponse( $resultMinor ),
@@ -845,8 +850,12 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 		$this->watchPages( $user, [ $target ] );
 
-		$resultBot = $this->doListWatchlistRequest( [ 'wlshow' => 'bot' ] );
-		$resultNotBot = $this->doListWatchlistRequest( [ 'wlshow' => '!bot' ] );
+		$resultBot = $this->doListWatchlistRequest( [
+			'wlshow' => WatchedItemQueryService::FILTER_BOT
+		] );
+		$resultNotBot = $this->doListWatchlistRequest( [
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_BOT
+		] );
 
 		$this->assertArraySubsetsEqual(
 			$this->getItemsFromApiResponse( $resultBot ),
@@ -870,11 +879,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => 'anon'
+			'wlshow' => WatchedItemQueryService::FILTER_ANON
 		] );
 		$resultNotAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => '!anon'
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_ANON
 		] );
 
 		$this->assertArraySubsetsEqual(
@@ -914,11 +923,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultUnread = $this->doListWatchlistRequest( [
 			'wlprop' => 'notificationtimestamp|title',
-			'wlshow' => 'unread'
+			'wlshow' => WatchedItemQueryService::FILTER_UNREAD
 		] );
 		$resultNotUnread = $this->doListWatchlistRequest( [
 			'wlprop' => 'notificationtimestamp|title',
-			'wlshow' => '!unread'
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_UNREAD
 		] );
 
 		$this->assertEquals(
@@ -951,11 +960,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultPatrolled = $this->doListWatchlistRequest( [
 			'wlprop' => 'patrol',
-			'wlshow' => 'patrolled'
+			'wlshow' => WatchedItemQueryService::FILTER_PATROLLED
 		], $user );
 		$resultNotPatrolled = $this->doListWatchlistRequest( [
 			'wlprop' => 'patrol',
-			'wlshow' => '!patrolled'
+			'wlshow' => WatchedItemQueryService::FILTER_NOT_PATROLLED
 		], $user );
 
 		$this->assertEquals(
