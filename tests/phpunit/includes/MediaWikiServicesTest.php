@@ -315,6 +315,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
+			'WatchedItemQueryService' => [ 'WatchedItemQueryService', WatchedItemQueryService::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
