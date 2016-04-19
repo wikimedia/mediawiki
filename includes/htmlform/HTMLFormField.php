@@ -1106,4 +1106,14 @@ abstract class HTMLFormField {
 			return $this->msg( $value, [] );
 		}
 	}
+
+	/**
+	 * Skip this field when collecting data.
+	 * @param WebRequest $request
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function skipLoadData( $request ) {
+		return !empty( $this->mParams['nodata'] );
+	}
 }
