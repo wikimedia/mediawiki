@@ -9,6 +9,7 @@ use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
+use PageProps;
 use SiteLookup;
 use SiteStore;
 
@@ -150,6 +151,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getStatsdDataFactory() {
 		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @return PageProps
+	 */
+	public function getPageProps() {
+		return $this->getService( 'PageProps' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

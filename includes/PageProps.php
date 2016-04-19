@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Gives access to properties of a page.
  *
@@ -29,32 +31,23 @@
 class PageProps {
 
 	/**
-	 * @var PageProps
-	 */
-	private static $instance;
-
-	/**
+	 * @deprecated in 1.27
 	 * @return PageProps
 	 */
 	public static function getInstance() {
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getPageProps();
 	}
 
-	/** Cache parameters */
 	const CACHE_TTL = 10; // integer; TTL in seconds
-	const CACHE_SIZE = 100; // integer; max cached pages
-
-	/** Property cache */
-	private $cache = null;
 
 	/**
-	 * Create a PageProps object
+	 * Property cache
+	 * @var ProcessCacheLRU
 	 */
-	private function __construct() {
-		$this->cache = new ProcessCacheLRU( self::CACHE_SIZE );
+	private $cache;
+
+	public function __construct( ProcessCacheLRU $cache ) {
+		$this->cache = $cache;
 	}
 
 	/**
