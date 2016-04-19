@@ -143,6 +143,9 @@ return [
 		return $store;
 	},
 
+	'PageProps' => function( MediaWikiServices $services ) {
+		return new PageProps(
+			new ProcessCacheLRU( 100 )
 	'LinkCache' => function( MediaWikiServices $services ) {
 		// How many Titles to store per cache.
 		$maxSize = 10000;
