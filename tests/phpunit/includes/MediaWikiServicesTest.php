@@ -29,6 +29,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SearchEngine' => [ 'newSearchEngine', SearchEngine::class ],
 			'SearchEngineFactory' => [ 'getSearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'getSearchEngineConfig', SearchEngineConfig::class ],
+			'SkinFactory' => [ 'getSkinFactory', SkinFactory::class ],
 		];
 	}
 
@@ -56,6 +57,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
+			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
 		];
 	}
 

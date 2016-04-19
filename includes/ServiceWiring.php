@@ -91,7 +91,11 @@ return [
 		// Create a search engine config from main config.
 		$config = $services->getService( 'MainConfig' );
 		return new SearchEngineConfig( $config );
-	}
+	},
+
+	'SkinFactory' => function( MediaWikiServices $services ) {
+		return new SkinFactory();
+	},
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
