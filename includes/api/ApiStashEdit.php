@@ -272,18 +272,18 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			$timeMs = 1000 * max( 0, microtime( true ) - $start );
-			$stats->timing( 'editstash.lock-wait-time', $timeMs );
+			$stats->timing( 'editstash.lock_wait_time', $timeMs );
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
-			$stats->increment( 'editstash.cache-misses' );
+			$stats->increment( 'editstash.cache_misses.no_stash' );
 			$logger->debug( "No cache value for key '$key'." );
 			return false;
 		}
 
 		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
 		if ( ( time() - $time ) <= 3 ) {
-			$stats->increment( 'editstash.cache-hits' );
+			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Timestamp-based cache hit for key '$key'." );
 			return $editInfo; // assume nothing changed
 		}
@@ -312,7 +312,7 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != $templateUses ) {
-				$stats->increment( 'editstash.cache-misses' );
+				$stats->increment( 'editstash.cache_misses.proven_stale' );
 				$logger->info( "Stale cache for key '$key'; template changed." );
 				return false;
 			}
@@ -336,13 +336,13 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != count( $files ) ) {
-				$stats->increment( 'editstash.cache-misses' );
+				$stats->increment( 'editstash.cache_misses.proven_stale' );
 				$logger->info( "Stale cache for key '$key'; file changed." );
 				return false;
 			}
 		}
 
-		$stats->increment( 'editstash.cache-hits' );
+		$stats->increment( 'editstash.cache_hits.proven_fresh' );
 		$logger->debug( "Cache hit for key '$key'." );
 
 		return $editInfo;
