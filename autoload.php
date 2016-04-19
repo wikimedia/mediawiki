@@ -711,6 +711,7 @@ $wgAutoloadLocalClasses = [
 	'LoadMonitorNull' => __DIR__ . '/includes/db/loadbalancer/LoadMonitor.php',
 	'LocalFile' => __DIR__ . '/includes/filerepo/file/LocalFile.php',
 	'LocalFileDeleteBatch' => __DIR__ . '/includes/filerepo/file/LocalFile.php',
+	'LocalFileLockError' => __DIR__ . '/includes/filerepo/file/LocalFile.php',
 	'LocalFileMoveBatch' => __DIR__ . '/includes/filerepo/file/LocalFile.php',
 	'LocalFileRestoreBatch' => __DIR__ . '/includes/filerepo/file/LocalFile.php',
 	'LocalIdLookup' => __DIR__ . '/includes/user/LocalIdLookup.php',

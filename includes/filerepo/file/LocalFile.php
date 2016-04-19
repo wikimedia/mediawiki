@@ -559,11 +559,11 @@ class LocalFile extends File {
 			return;
 		}
 
+		$upgrade = false;
 		if ( is_null( $this->media_type ) ||
 			$this->mime == 'image/svg'
 		) {
-			$this->upgradeRow();
-			$this->upgraded = true;
+			$upgrade = true;
 		} else {
 			$handler = $this->getHandler();
 			if ( $handler ) {
@@ -571,10 +571,18 @@ class LocalFile extends File {
 				if ( $validity === MediaHandler::METADATA_BAD
 					|| ( $validity === MediaHandler::METADATA_COMPATIBLE && $wgUpdateCompatibleMetadata )
 				) {
-					$this->upgradeRow();
-					$this->upgraded = true;
+					$upgrade = true;
 				}
 			}
+		}
+
+		if ( $upgrade ) {
+			try {
+				$this->upgradeRow();
+			} catch ( LocalFileLockError $e ) {
+				// let the other process handle it (or do it next time)
+			}
+			$this->upgraded = true; // avoid rework/retries
 		}
 	}
 
@@ -586,7 +594,6 @@ class LocalFile extends File {
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 */
 	function upgradeRow() {
-
 		$this->lock(); // begin
 
 		$this->loadFromFile();
@@ -1898,18 +1905,16 @@ class LocalFile extends File {
 	/**
 	 * Start a transaction and lock the image for update
 	 * Increments a reference counter if the lock is already held
-	 * @throws MWException Throws an error if the lock was not acquired
+	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
 	function lock() {
-		$dbw = $this->repo->getMasterDB();
-
 		if ( !$this->locked ) {
+			$dbw = $this->repo->getMasterDB();
 			if ( !$dbw->trxLevel() ) {
 				$dbw->begin( __METHOD__ );
 				$this->lockedOwnTrx = true;
 			}
-			$this->locked++;
 			// Bug 54736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
@@ -1917,10 +1922,15 @@ class LocalFile extends File {
 			$lockPaths = [ $this->getPath() ]; // represents all versions of the file
 			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 5 );
 			if ( !$status->isGood() ) {
-				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
+				if ( $this->lockedOwnTrx ) {
+					$dbw->rollback( __METHOD__ );
+				}
+				throw new LocalFileLockError( "Could not acquire lock for '{$this->getName()}.'" );
 			}
+			// Release the lock *after* commit to avoid row-level contention
+			$this->locked++;
 			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths ) {
-				$backend->unlockFiles( $lockPaths, LockManager::LOCK_EX ); // release on commit
+				$backend->unlockFiles( $lockPaths, LockManager::LOCK_EX );
 			} );
 		}
 
@@ -3030,4 +3040,8 @@ class LocalFileMoveBatch {
 
 		$this->file->repo->cleanupBatch( $files );
 	}
+}
+
+class LocalFileLockError extends Exception {
+
 }
