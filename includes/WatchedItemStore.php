@@ -515,6 +515,14 @@ class WatchedItemStore implements StatsdAwareInterface {
 		return $watchedItems;
 	}
 
+	public function getWatchedItemsWithRecentChangeInfo( User $user, array $options = [] ) {
+		$db = $this->getConnection( DB_SLAVE );
+		$watchedItemQuery = new WatchedItemQuery( $db );
+		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $user, $options );
+		$this->reuseConnection( $db );
+		return $items;
+	}
+
 	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
