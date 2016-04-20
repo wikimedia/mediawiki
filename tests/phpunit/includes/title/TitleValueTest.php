@@ -74,7 +74,7 @@ class TitleValueTest extends MediaWikiTestCase {
 	 * @dataProvider fragmentTitleProvider
 	 */
 	public function testCreateFragmentTitle( TitleValue $title, $fragment ) {
-		$fragmentTitle = $title->createFragmentTitle( $fragment );
+		$fragmentTitle = $title->createFragmentTarget( $fragment );
 
 		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
 		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );

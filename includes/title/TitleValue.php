@@ -131,11 +131,12 @@ class TitleValue implements LinkTarget {
 	/**
 	 * Creates a new TitleValue for a different fragment of the same page.
 	 *
+	 * @since 1.27
 	 * @param string $fragment The fragment name, or "" for the entire page.
 	 *
 	 * @return TitleValue
 	 */
-	public function createFragmentTitle( $fragment ) {
+	public function createFragmentTarget( $fragment ) {
 		return new TitleValue( $this->namespace, $this->dbkey, $fragment );
 	}
 

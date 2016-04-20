@@ -1387,6 +1387,23 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Creates a new TitleValue for a different fragment of the same page.
+	 * Interwiki is intentionally not copied over.
+	 *
+	 * @since 1.27
+	 * @param string $fragment
+	 * @return Title
+	 */
+	public function createFragmentTarget( $fragment ) {
+		return self::makeTitle(
+			$this->getNamespace(),
+			$this->getText(),
+			$fragment
+		);
+
+	}
+
+	/**
 	 * Prefix some arbitrary text with the namespace or interwiki prefix
 	 * of this object
 	 *
