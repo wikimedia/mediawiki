@@ -51,7 +51,7 @@ class MessageCache {
 	protected $mCache;
 
 	/**
-	 * Should  mean that database cannot be used, but check
+	 * Should mean that database cannot be used, but check
 	 * @var bool $mDisable
 	 */
 	protected $mDisable;
@@ -355,6 +355,7 @@ class MessageCache {
 			$where[] = 'loading FAILED - cache is disabled';
 			$this->mDisable = true;
 			$this->mCache = false;
+			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died
 		} else {
@@ -1111,6 +1112,22 @@ class MessageCache {
 
 	function enable() {
 		$this->mDisable = false;
+	}
+
+	/**
+	 * Whether DB/cache usage is disabled for determining messages
+	 *
+	 * If so, this typically indicates either:
+	 *   - a) load() failed to find a cached copy nor query the DB
+	 *   - b) we are in a special context or error mode that cannot use the DB
+	 * If the DB is ignored, any derived HTML output or cached objects may be wrong.
+	 * To avoid long-term cache pollution, TTLs can be adjusted accordingly.
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function isDisabled() {
+		return $this->mDisable;
 	}
 
 	/**

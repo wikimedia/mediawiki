@@ -1199,7 +1199,9 @@ abstract class Skin extends ContextSource {
 			$cache = ObjectCache::getMainWANInstance();
 			$sidebar = $cache->getWithSetCallback(
 				$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
-				$wgSidebarCacheExpiry,
+				MessageCache::singleton()->isDisabled()
+					? $cache::TTL_UNCACHEABLE // bug T133069
+					: $wgSidebarCacheExpiry,
 				$callback,
 				[ 'lockTSE' => 30 ]
 			);
