@@ -177,6 +177,7 @@ class CSSMin {
 	 */
 	public static function getMimeType( $file ) {
 		$realpath = realpath( $file );
+
 		if (
 			$realpath
 			&& function_exists( 'finfo_file' )
