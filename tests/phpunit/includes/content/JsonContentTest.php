@@ -6,12 +6,6 @@
  */
 class JsonContentTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-	}
-
 	public static function provideValidConstruction() {
 		return array(
 			array( 'foo', false, null ),

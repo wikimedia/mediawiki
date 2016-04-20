@@ -4737,7 +4737,7 @@ External image
 !! wikitext
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 !! html
-<p>External image: <img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
+<p>External image: <img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/>
 </p>
 !! end
 
@@ -4746,7 +4746,7 @@ External image from https
 !! wikitext
 External image from https: https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 !! html
-<p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
+<p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/>
 </p>
 !! end
 
@@ -4820,7 +4820,7 @@ External links: Clickable images
 !! wikitext
 ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png]
 !! html/php
-<p>ja-style clickable images: <a rel="nofollow" class="external text" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" /></a>
+<p>ja-style clickable images: <a rel="nofollow" class="external text" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/></a>
 </p>
 !! html/parsoid
 <p>ja-style clickable images: <a rel="mw:ExtLink" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" data-parsoid='{"type":"extlink"}'/></a></p>
@@ -20499,7 +20499,7 @@ Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate external images links
 !! wikitext
 http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
 !! html
-<p><img src="http://www.example.org/pic.png" alt="pic.png" />　&lt;-- U+3000 (vim: ^Vu3000)
+<p><img src="http://www.example.org/pic.png" alt="pic.png"/>　&lt;-- U+3000 (vim: ^Vu3000)
 </p>
 !! end
 

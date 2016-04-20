@@ -30,7 +30,6 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgLang' => $langObj,
-			'wgWellFormedXml' => true,
 		) );
 	}
 
@@ -152,7 +151,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -173,7 +172,7 @@ class XmlTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -207,7 +206,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .

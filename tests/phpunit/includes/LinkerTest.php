@@ -13,7 +13,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
 		$this->setMwGlobals( array(
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 		) );
 
 		$this->assertEquals( $expected,
@@ -110,7 +109,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( array(
 			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
 		) );
@@ -273,7 +271,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( array(
 			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
 		) );
