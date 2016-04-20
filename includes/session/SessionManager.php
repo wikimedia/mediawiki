@@ -626,7 +626,7 @@ final class SessionManager implements SessionManagerInterface {
 			}
 			// @codeCoverageIgnoreEnd
 			foreach ( $this->allSessionBackends as $backend ) {
-				$backend->save( true );
+				$backend->shutdown();
 			}
 		}
 	}
