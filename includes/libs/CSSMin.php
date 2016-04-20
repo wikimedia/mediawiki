@@ -177,17 +177,22 @@ class CSSMin {
 	 */
 	public static function getMimeType( $file ) {
 		$realpath = realpath( $file );
+		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+
 		if (
 			$realpath
 			&& function_exists( 'finfo_file' )
 			&& function_exists( 'finfo_open' )
 			&& defined( 'FILEINFO_MIME_TYPE' )
 		) {
-			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
+			$mimeType = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
+			// Prefer Fileinfo over extension for images and extensions not known to this class.
+			if ( !isset( self::$mimeTypes[$ext] ) || strpos( $mimeType, 'image/' ) === 0 ) {
+				return $mimeType;
+			}
 		}
 
 		// Infer the MIME-type from the file extension
-		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
 		if ( isset( self::$mimeTypes[$ext] ) ) {
 			return self::$mimeTypes[$ext];
 		}
