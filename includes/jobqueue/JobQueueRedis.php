@@ -393,12 +393,12 @@ LUA;
 			static $script =
 <<<LUA
 			local kClaimed, kAttempts, kData = unpack(KEYS)
-			local uuid = unpack(ARGV)
+			local id = unpack(ARGV)
 			-- Unmark the job as claimed
-			redis.call('zRem',kClaimed,uuid)
-			redis.call('hDel',kAttempts,uuid)
+			redis.call('zRem',kClaimed,id)
+			redis.call('hDel',kAttempts,id)
 			-- Delete the job data itself
-			return redis.call('hDel',kData,uuid)
+			return redis.call('hDel',kData,id)
 LUA;
 			$res = $conn->luaEval( $script,
 				[
