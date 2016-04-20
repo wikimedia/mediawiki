@@ -914,7 +914,6 @@ class ParserTest {
 			'wgExperimentalHtmlIds' => false,
 			'wgExternalLinkTarget' => false,
 			'wgHtml5' => true,
-			'wgWellFormedXml' => true,
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
