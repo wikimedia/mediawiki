@@ -175,8 +175,13 @@ class JobQueueGroup {
 	 */
 	public static function pushLazyJobs() {
 		foreach ( self::$instances as $group ) {
-			$group->push( $group->bufferedJobs );
-			$group->bufferedJobs = [];
+			try {
+				$group->push( $group->bufferedJobs );
+				$group->bufferedJobs = [];
+			} catch ( Exception $e ) {
+				// Get in as many jobs as possible and let other post-send updates happen
+				MWExceptionHandler::logException( $e );
+			}
 		}
 	}
 
