@@ -393,12 +393,17 @@ LUA;
 			static $script =
 <<<LUA
 			local kClaimed, kAttempts, kData = unpack(KEYS)
-			local uuid = unpack(ARGV)
+			local id = unpack(ARGV)
 			-- Unmark the job as claimed
-			redis.call('zRem',kClaimed,uuid)
-			redis.call('hDel',kAttempts,uuid)
+			local removed = redis.call('zRem',kClaimed,id)
+			-- Check if the job was recycled
+			if removed == 0 then
+				return 0
+			end
+			-- Delete the retry data
+			redis.call('hDel',kAttempts,id)
 			-- Delete the job data itself
-			return redis.call('hDel',kData,uuid)
+			return redis.call('hDel',kData,id)
 LUA;
 			$res = $conn->luaEval( $script,
 				[
