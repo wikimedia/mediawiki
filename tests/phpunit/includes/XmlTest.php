@@ -30,7 +30,6 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( [
 			'wgLang' => $langObj,
-			'wgWellFormedXml' => true,
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 	}
