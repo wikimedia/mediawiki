@@ -3066,7 +3066,6 @@ class OutputPage extends ContextSource {
 		// This must use TYPE_COMBINED instead of only=scripts so that its request is handled by
 		// mw.loader.implement() which ensures that execution is scheduled after the "site" module.
 		if ( $this->getConfig()->get( 'AllowUserJs' )
-			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isJsSubpage()
 			&& $this->userCanPreview()
@@ -3292,6 +3291,11 @@ class OutputPage extends ContextSource {
 		}
 
 		$user = $this->getUser();
+
+		if ( !$this->getUser()->isLoggedIn() ) {
+			// Anons have predictable edit tokens
+			return false;
+		}
 		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			return false;
 		}
