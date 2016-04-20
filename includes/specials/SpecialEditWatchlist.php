@@ -2,6 +2,7 @@
 /**
  * @defgroup Watchlist Users watchlist handling
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * Implements Special:EditWatchlist
