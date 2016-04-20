@@ -96,6 +96,14 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function hasFragment() {
+		return $this->fragment !== '';
+	}
+
+	/**
 	 * Returns the title's DB key, as supplied to the constructor,
 	 * without namespace prefix or fragment.
 	 *
