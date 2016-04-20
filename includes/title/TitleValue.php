@@ -21,6 +21,7 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
+use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
 /**
