@@ -1764,6 +1764,7 @@
 	"apisandbox-dynamic-parameters-add-placeholder": "Назва парамэтру",
 	"apisandbox-dynamic-error-exists": "Парамэтар з назвай «$1» ужо існуе.",
 	"apisandbox-deprecated-parameters": "Састарэлыя парамэтры",
+	"apisandbox-submit-invalid-fields-title": "Некаторыя палі няслушныя",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",

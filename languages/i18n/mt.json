@@ -11,7 +11,8 @@
 			"CharlieTheCabbie",
 			"Leli Forte",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"MTSap"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -2149,7 +2150,7 @@
 	"tooltip-ca-delete": "Ħassar din il-paġna",
 	"tooltip-ca-undelete": "Irkupra l-modifiki magħmula f'din il-paġna qabel ma ġiet imħassra",
 	"tooltip-ca-move": "Mexxi din il-paġna",
-	"tooltip-ca-watch": "Żid din il-paġna mal-lista ta' osservazzjoni tiegħek",
+	"tooltip-ca-watch": "Żid dil-paġna mal-lista ta' dawk li qed isssegwi",
 	"tooltip-ca-unwatch": "Neħħi din il-paġna mill-osservazzjonijiet speċjali tiegħek",
 	"tooltip-search": "Fittex fis-sit: {{SITENAME}}",
 	"tooltip-search-go": "Mur fil-paġna b'dan it-titlu eżatt, jekk teżisti",
@@ -2341,7 +2342,7 @@
 	"metadata-help": "Dan il-fajl fih aktar informazzjoni, aktarx ġie miżjud minn kamera diġitali jew skanner li ġew użati sabiex joħolquh jew biex jagħmluh diġitali.\nJekk il-fajl ġie modifikat mill-istat oriġinali, xi dettalji jistgħu ma jikkorispondux mal-verżjoni kurrenti.",
 	"metadata-expand": "Uri d-dettalji",
 	"metadata-collapse": "Aħbi d-dettalji",
-	"metadata-fields": "Il-metadati tal-istampa mniżżla f'dan il-messaġġ se jiġu inklużi fuq il-paġna tal-sitampa meta t-tabella tal-metadata tkun magħluqa.\nOħrajn jiġu moħbija kif inhu definit oriġinarjament.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Il-lista f'dal-messaġġ tal-metadati tal-istampa  se tiġi inkluża fil-paġna tal-istampa meta t-tabella tal-metadata tingħalaq.\nOħrajn jiġu moħbija skont kif inhu predefinit.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagewidth": "Wisa'",
 	"exif-imagelength": "Għoli",
 	"exif-bitspersample": "Bits għal kull komponent",

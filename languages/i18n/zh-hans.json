@@ -3478,7 +3478,7 @@
 	"log-name-managetags": "标签管理日志",
 	"log-description-managetags": "此页面列出有关[[Special:Tags|标签]]的管理任务。该日志仅包含管理员手工进行的操作；wiki软件可能创建或删除标签而未在此日志中留下记录。",
 	"logentry-managetags-create": "$1{{GENDER:$2|创建了}}标签“$4”",
-	"logentry-managetags-delete": "$1 {{GENDER:$2|删除了}}“$4”标签（已从$5个{{PLURAL:$5|修订版本和/或日志条目}}中移除)",
+	"logentry-managetags-delete": "$1{{GENDER:$2|删除了}}标签“$4”（已从$5个{{PLURAL:$5|修订版本或日志项|修订版本和/或日志项}}中移除）",
 	"logentry-managetags-activate": "$1 {{GENDER:$2|激活了}}“$4”标签供用户和机器人使用",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|停用了}}“$4”标签供用户和机器人使用",
 	"log-name-tag": "标签日志",
