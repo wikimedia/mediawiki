@@ -2120,6 +2120,24 @@ function wfTempDir() {
 			return $tmp;
 		}
 	}
+
+	/**
+	 * PHP on Windows will detect C:\Windows\Temp as not writable even though PHP can write to it
+	 * so create a directory within that called 'mwtmp' with a suffix of the UserID running the
+	 * current process.
+	 * The UserID is included as if various scripts are run by different users they will likely
+	 * not be able to access each others temporary files.
+	 */
+	if ( wfIsWindows() ) {
+		$tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mwtmp' . '-' . posix_geteuid();
+		if ( !file_exists( $tmp ) ) {
+			mkdir( $tmp );
+		}
+		if ( file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
+			return $tmp;
+		}
+	}
+
 	throw new MWException( 'No writable temporary directory could be found. ' .
 		'Please set $wgTmpDirectory to a writable directory.' );
 }
