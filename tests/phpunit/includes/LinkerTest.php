@@ -13,7 +13,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 		] );
 
 		$this->assertEquals( $expected,
@@ -112,7 +111,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
 		] );
@@ -277,7 +275,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
 		] );
@@ -367,7 +364,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testLinkBeginHook( $callback, $expected ) {
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 			'wgServer' => '//example.org',
 			'wgCanonicalServer' => 'http://example.org',
 			'wgScriptPath' => '/w',
@@ -414,7 +410,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testLinkEndHook( $callback, $expected ) {
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgWellFormedXml' => true,
 		] );
 
 		$this->setMwGlobals( 'wgHooks', [ 'LinkEnd' => [ $callback ] ] );
