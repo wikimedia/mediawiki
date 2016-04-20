@@ -12,9 +12,6 @@ class XmlSelectTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgWellFormedXml' => true,
-		] );
 		$this->select = new XmlSelect();
 	}
 
