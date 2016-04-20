@@ -2959,7 +2959,7 @@ $templates
 		);
 
 		// Add user JS if enabled
-		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() && $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
+		if ( $wgAllowUserJs && $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
 			# XXX: additional security check/prompt?
 			// We're on a preview of a JS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
@@ -3164,6 +3164,7 @@ $templates
 	public function userCanPreview() {
 		if ( $this->getRequest()->getVal( 'action' ) != 'submit'
 			|| !$this->getRequest()->wasPosted()
+			|| !$this->getUser()->isLoggedIn()
 			|| !$this->getUser()->matchEditToken(
 				$this->getRequest()->getVal( 'wpEditToken' ) )
 		) {
