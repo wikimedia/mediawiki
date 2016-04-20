@@ -149,14 +149,14 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				// Don't condition wrap raw modules (like the startup module)
 				[ 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ],
-				'<script async src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
+				'<script async="" src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
 			],
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			[
 				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
 
-				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback">'
+				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback"/>'
 			],
 			// Load private module (only=scripts)
 			[
@@ -181,7 +181,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// noscript group
 			[
 				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
-				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"></noscript>'
+				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"/></noscript>'
 			],
 			// Load two modules in separate groups
 			[
@@ -210,8 +210,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgResourceLoaderDebug' => false,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
-			// Affects whether CDATA is inserted
-			'wgWellFormedXml' => false,
 		] );
 		$class = new ReflectionClass( 'OutputPage' );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
