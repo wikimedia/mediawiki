@@ -18,6 +18,7 @@
  * @file
  * @ingroup Watchlist
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * Representation of a pair of user and title for watchlist entries.

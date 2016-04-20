@@ -23,6 +23,7 @@
  * @author Tim Starling
  * @author Luke Welling lwelling@wikimedia.org
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * This module processes the email notifications when the current page is

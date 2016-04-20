@@ -21,6 +21,7 @@
  *
  * @file
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * Represents a title within MediaWiki.
