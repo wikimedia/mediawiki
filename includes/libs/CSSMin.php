@@ -183,7 +183,12 @@ class CSSMin {
 			&& function_exists( 'finfo_open' )
 			&& defined( 'FILEINFO_MIME_TYPE' )
 		) {
-			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
+			$mimeType = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
+			// Do not inline text/plain into CSS. This can happen when an SVG does not start with
+			// the (optional) <?xml ...> header. Instead use the file extension match below.
+			if ( $mimeType !== 'text/plain' ) {
+				return $mimeType;
+			}
 		}
 
 		// Infer the MIME-type from the file extension
