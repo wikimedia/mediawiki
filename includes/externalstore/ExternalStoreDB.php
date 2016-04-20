@@ -33,6 +33,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * The provided URL is in the form of DB://cluster/id
 	 * or DB://cluster/id/itemid for concatened storage.
 	 *
+	 * @param string $url
+	 * @return string|bool False if missing
 	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
 	public function fetchFromURL( $url ) {
@@ -83,11 +85,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $ret;
 	}
 
-	/**
-	 * @see ExternalStoreMedium::store()
-	 */
-	public function store( $cluster, $data ) {
-		$dbw = $this->getMaster( $cluster );
+	public function store( $location, $data ) {
+		$dbw = $this->getMaster( $location );
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ),
 			[ 'blob_id' => $id, 'blob_text' => $data ],
@@ -97,7 +96,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			throw new MWException( __METHOD__ . ': no insert ID' );
 		}
 
-		return "DB://$cluster/$id";
+		return "DB://$location/$id";
 	}
 
 	/**
@@ -175,7 +174,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster
 	 * @param string $id
 	 * @param string $itemID
-	 * @return mixed
+	 * @return HistoryBlob|bool Returns false if missing
 	 * @private
 	 */
 	function fetchBlob( $cluster, $id, $itemID ) {
