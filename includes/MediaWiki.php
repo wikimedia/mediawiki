@@ -585,6 +585,13 @@ class MediaWiki {
 			$request->response()->header( "X-Database-Lagged: true" );
 			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
 		}
+
+		// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
+		if ( MessageCache::singleton()->isDisabled() ) {
+			$maxAge = $config->get( 'CdnMaxageSubstitute' );
+			$context->getOutput()->lowerCdnMaxage( $maxAge );
+			$request->response()->header( "X-Response-Substitute: true" );
+		}
 	}
 
 	/**
