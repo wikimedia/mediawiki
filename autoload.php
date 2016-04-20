@@ -397,6 +397,7 @@ $wgAutoloadLocalClasses = [
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'EventRelayerGroup' => __DIR__ . '/includes/EventRelayerGroup.php',
+	'EventRelayerKafka' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerKafka.php',
 	'EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerNull.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
 	'ExifBitmapHandler' => __DIR__ . '/includes/media/ExifBitmap.php',
