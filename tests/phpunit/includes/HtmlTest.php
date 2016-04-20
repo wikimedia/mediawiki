@@ -37,7 +37,6 @@ class HtmlTest extends MediaWikiTestCase {
 			'wgLanguageCode' => $langCode,
 			'wgContLang' => $langObj,
 			'wgLang' => $langObj,
-			'wgWellFormedXml' => false,
 		) );
 	}
 
@@ -46,7 +45,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testElementBasics() {
 		$this->assertEquals(
-			'<img>',
+			'<img/>',
 			Html::element( 'img', null, '' ),
 			'No close tag for short-tag elements'
 		);
@@ -63,12 +62,10 @@ class HtmlTest extends MediaWikiTestCase {
 			'Close tag for empty element (array, string)'
 		);
 
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
 		$this->assertEquals(
-			'<img />',
+			'<img/>',
 			Html::element( 'img', null, '' ),
-			'Self-closing tag for short-tag elements (wgWellFormedXml = true)'
+			'Self-closing tag for short-tag elements'
 		);
 	}
 
@@ -134,22 +131,20 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			' selected',
+			' selected=""',
 			Html::expandAttributes( array( 'selected' => true ) ),
 			'Boolean attributes have no value when value is true'
 		);
 		$this->assertEquals(
-			' selected',
+			' selected=""',
 			Html::expandAttributes( array( 'selected' ) ),
 			'Boolean attributes have no value when value is true (passed as numerical array)'
 		);
 
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
 		$this->assertEquals(
 			' selected=""',
 			Html::expandAttributes( array( 'selected' => true ) ),
-			'Boolean attributes have empty string value when value is true (wgWellFormedXml)'
+			'Boolean attributes have empty string value when value is true'
 		);
 	}
 
@@ -166,42 +161,19 @@ class HtmlTest extends MediaWikiTestCase {
 			'Empty string is always quoted'
 		);
 		$this->assertEquals(
-			' key=value',
+			' key="value"',
 			Html::expandAttributes( array( 'key' => 'value' ) ),
 			'Simple string value needs no quotes'
 		);
 		$this->assertEquals(
-			' one=1',
+			' one="1"',
 			Html::expandAttributes( array( 'one' => 1 ) ),
 			'Number 1 value needs no quotes'
 		);
 		$this->assertEquals(
-			' zero=0',
-			Html::expandAttributes( array( 'zero' => 0 ) ),
-			'Number 0 value needs no quotes'
-		);
-
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
-		$this->assertEquals(
-			' empty_string=""',
-			Html::expandAttributes( array( 'empty_string' => '' ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Empty string'
-		);
-		$this->assertEquals(
-			' key="value"',
-			Html::expandAttributes( array( 'key' => 'value' ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Simple string'
-		);
-		$this->assertEquals(
-			' one="1"',
-			Html::expandAttributes( array( 'one' => 1 ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Number 1'
-		);
-		$this->assertEquals(
 			' zero="0"',
 			Html::expandAttributes( array( 'zero' => 0 ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Number 0'
+			'Number 0 value needs no quotes'
 		);
 	}
 
@@ -304,48 +276,48 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testNamespaceSelector() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(),
 			'Basic namespace selector without custom options'
 		);
 
 		$this->assertEquals(
-			'<label for=mw-test-namespace>Select a namespace:</label>&#160;' .
-				'<select id=mw-test-namespace name=wpNamespace>' . "\n" .
-				'<option value=all>all</option>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2 selected>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<label for="mw-test-namespace">Select a namespace:</label>&#160;' .
+				'<select id="mw-test-namespace" name="wpNamespace">' . "\n" .
+				'<option value="all">all</option>' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2" selected="">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
 				array( 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ),
@@ -355,24 +327,24 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label for=namespace>Select a namespace:</label>&#160;' .
-				'<select id=namespace name=namespace>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<label for="namespace">Select a namespace:</label>&#160;' .
+				'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
 				array( 'label' => 'Select a namespace:' )
@@ -383,18 +355,18 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
 				array( 'exclude' => array( 0, 1, 3, 100, 101 ) )
@@ -405,23 +377,23 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testCanDisableANamespaces() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option disabled value=0>(Main)</option>' . "\n" .
-				'<option disabled value=1>Talk</option>' . "\n" .
-				'<option disabled value=2>User</option>' . "\n" .
-				'<option disabled value=3>User talk</option>' . "\n" .
-				'<option disabled value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option disabled="" value="0">(Main)</option>' . "\n" .
+				'<option disabled="" value="1">Talk</option>' . "\n" .
+				'<option disabled="" value="2">User</option>' . "\n" .
+				'<option disabled="" value="3">User talk</option>' . "\n" .
+				'<option disabled="" value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector( array(
 				'disable' => array( 0, 1, 2, 3, 4 )
@@ -436,9 +408,9 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
-			'<input type=' . $HTML5InputType . '>',
+			'<input type="' . $HTML5InputType . '"/>',
 			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
-			'In HTML5, HTML::element() should accept type="' . $HTML5InputType . '"'
+			'In HTML5, Html::element() should accept type="' . $HTML5InputType . '"'
 		);
 	}
 
@@ -486,14 +458,14 @@ class HtmlTest extends MediaWikiTestCase {
 		$cases = array();
 
 		### Generic cases, match $attribDefault static array
-		$cases[] = array( '<area>',
+		$cases[] = array( '<area/>',
 			'area', array( 'shape' => 'rect' )
 		);
 
-		$cases[] = array( '<button type=submit></button>',
+		$cases[] = array( '<button type="submit"></button>',
 			'button', array( 'formaction' => 'GET' )
 		);
-		$cases[] = array( '<button type=submit></button>',
+		$cases[] = array( '<button type="submit"></button>',
 			'button', array( 'formenctype' => 'application/x-www-form-urlencoded' )
 		);
 
@@ -511,7 +483,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'canvas', array( 'width' => 300 )
 		);
 
-		$cases[] = array( '<command>',
+		$cases[] = array( '<command/>',
 			'command', array( 'type' => 'command' )
 		);
 
@@ -525,18 +497,18 @@ class HtmlTest extends MediaWikiTestCase {
 			'form', array( 'enctype' => 'application/x-www-form-urlencoded' )
 		);
 
-		$cases[] = array( '<input>',
+		$cases[] = array( '<input/>',
 			'input', array( 'formaction' => 'GET' )
 		);
-		$cases[] = array( '<input>',
+		$cases[] = array( '<input/>',
 			'input', array( 'type' => 'text' )
 		);
 
-		$cases[] = array( '<keygen>',
+		$cases[] = array( '<keygen/>',
 			'keygen', array( 'keytype' => 'rsa' )
 		);
 
-		$cases[] = array( '<link>',
+		$cases[] = array( '<link/>',
 			'link', array( 'media' => 'all' )
 		);
 
@@ -562,43 +534,43 @@ class HtmlTest extends MediaWikiTestCase {
 		### SPECIFIC CASES
 
 		# <link type="text/css">
-		$cases[] = array( '<link>',
+		$cases[] = array( '<link/>',
 			'link', array( 'type' => 'text/css' )
 		);
 
 		# <input> specific handling
-		$cases[] = array( '<input type=checkbox>',
+		$cases[] = array( '<input type="checkbox"/>',
 			'input', array( 'type' => 'checkbox', 'value' => 'on' ),
 			'Default value "on" is stripped of checkboxes',
 		);
-		$cases[] = array( '<input type=radio>',
+		$cases[] = array( '<input type="radio"/>',
 			'input', array( 'type' => 'radio', 'value' => 'on' ),
 			'Default value "on" is stripped of radio buttons',
 		);
-		$cases[] = array( '<input type=submit value=Submit>',
+		$cases[] = array( '<input type="submit" value="Submit"/>',
 			'input', array( 'type' => 'submit', 'value' => 'Submit' ),
 			'Default value "Submit" is kept on submit buttons (for possible l10n issues)',
 		);
-		$cases[] = array( '<input type=color>',
+		$cases[] = array( '<input type="color"/>',
 			'input', array( 'type' => 'color', 'value' => '' ),
 		);
-		$cases[] = array( '<input type=range>',
+		$cases[] = array( '<input type="range"/>',
 			'input', array( 'type' => 'range', 'value' => '' ),
 		);
 
 		# <button> specific handling
 		# see remarks on http://msdn.microsoft.com/en-us/library/ie/ms535211%28v=vs.85%29.aspx
-		$cases[] = array( '<button type=submit></button>',
+		$cases[] = array( '<button type="submit"></button>',
 			'button', array( 'type' => 'submit' ),
 			'According to standard the default type is "submit". Depending on compatibility mode IE might use "button", instead.',
 		);
 
 		# <select> specifc handling
-		$cases[] = array( '<select multiple></select>',
+		$cases[] = array( '<select multiple=""></select>',
 			'select', array( 'size' => '4', 'multiple' => true ),
 		);
 		# .. with numeric value
-		$cases[] = array( '<select multiple></select>',
+		$cases[] = array( '<select multiple=""></select>',
 			'select', array( 'size' => 4, 'multiple' => true ),
 		);
 		$cases[] = array( '<select></select>',
@@ -644,7 +616,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Blacklist form validation attributes.'
 		);
 		$this->assertEquals(
-			' step=any',
+			' step="any"',
 			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 'any' ) ),
 			'Allow special case "step=any".'
 		);
