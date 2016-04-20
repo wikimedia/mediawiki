@@ -2006,6 +2006,33 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		return $title;
 	}
 
+	private function verifyCallbackJob(
+		$callback,
+		LinkTarget $expectedTitle,
+		$expectedUserId,
+		callable $notificationTimestampCondition
+	) {
+		$this->assertInternalType( 'callable', $callback );
+
+		$callbackReflector = new ReflectionFunction( $callback );
+		$vars = $callbackReflector->getStaticVariables();
+		$this->assertArrayHasKey( 'job', $vars );
+		$this->assertInstanceOf( ActivityUpdateJob::class, $vars['job'] );
+
+		/** @var ActivityUpdateJob $job */
+		$job = $vars['job'];
+		$this->assertEquals( $expectedTitle->getDBkey(), $job->getTitle()->getDBkey() );
+		$this->assertEquals( $expectedTitle->getNamespace(), $job->getTitle()->getNamespace() );
+
+		$jobParams = $job->getParams();
+		$this->assertArrayHasKey( 'type', $jobParams );
+		$this->assertEquals( 'updateWatchlistNotification', $jobParams['type'] );
+		$this->assertArrayHasKey( 'userid', $jobParams );
+		$this->assertEquals( $expectedUserId, $jobParams['userid'] );
+		$this->assertArrayHasKey( 'notifTime', $jobParams );
+		$this->assertTrue( $notificationTimestampCondition( $jobParams['notifTime'] ) );
+	}
+
 	public function testResetNotificationTimestamp_oldidSpecifiedLatestRevisionForced() {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 		$oldid = 22;
@@ -2032,12 +2059,12 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			$mockCache
 		);
 
-		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
+		$callback = null;
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$callableCallCounter ) {
+			function( $callable ) use ( &$callableCallCounter, &$callback ) {
 				$callableCallCounter++;
-				$this->assertInternalType( 'callable', $callable );
+				$callback = $callable;
 			}
 		);
 
@@ -2050,6 +2077,14 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 		);
 		$this->assertEquals( 1, $callableCallCounter );
+		$this->verifyCallbackJob(
+			$callback,
+			$title,
+			$user->getId(),
+			function( $time ) {
+				return $time === null;
+			}
+		);
 
 		ScopedCallback::consume( $scopedOverride );
 	}
@@ -2092,12 +2127,12 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			$mockCache
 		);
 
-		// Note: This does not actually assert the job is correct
 		$addUpdateCallCounter = 0;
+		$callback = null;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$addUpdateCallCounter ) {
+			function( $callable ) use ( &$addUpdateCallCounter, &$callback ) {
 				$addUpdateCallCounter++;
-				$this->assertInternalType( 'callable', $callable );
+				$callback = $callable;
 			}
 		);
 
@@ -2119,6 +2154,241 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 		);
 		$this->assertEquals( 1, $addUpdateCallCounter );
+		$this->verifyCallbackJob(
+			$callback,
+			$title,
+			$user->getId(),
+			function( $time ) {
+				return $time !== null && $time > '20151212010101';
+			}
+		);
+
+		$this->assertEquals( 1, $getTimestampCallCounter );
+
+		ScopedCallback::consume( $scopedOverrideDeferred );
+		ScopedCallback::consume( $scopedOverrideRevision );
+	}
+
+	public function testResetNotificationTimestamp_notWatchedPageForced() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$oldid = 22;
+		$title = $this->getMockTitle( 'SomeDbKey' );
+		$title->expects( $this->once() )
+			->method( 'getNextRevisionID' )
+			->with( $oldid )
+			->will( $this->returnValue( 33 ) );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'selectRow' )
+			->with(
+				'watchlist',
+				'wl_notificationtimestamp',
+				[
+					'wl_user' => 1,
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+				]
+			)
+			->will( $this->returnValue( false ) );
+
+		$mockCache = $this->getMockCache();
+		$mockDb->expects( $this->never() )
+			->method( 'get' );
+		$mockDb->expects( $this->never() )
+			->method( 'set' );
+		$mockDb->expects( $this->never() )
+			->method( 'delete' );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$callableCallCounter = 0;
+		$callback = null;
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
+			function( $callable ) use ( &$callableCallCounter, &$callback ) {
+				$callableCallCounter++;
+				$callback = $callable;
+			}
+		);
+
+		$this->assertTrue(
+			$store->resetNotificationTimestamp(
+				$user,
+				$title,
+				'force',
+				$oldid
+			)
+		);
+		$this->assertEquals( 1, $callableCallCounter );
+		$this->verifyCallbackJob(
+			$callback,
+			$title,
+			$user->getId(),
+			function( $time ) {
+				return $time === null;
+			}
+		);
+
+		ScopedCallback::consume( $scopedOverride );
+	}
+
+	public function testResetNotificationTimestamp_futureNotificationTimestampForced() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$oldid = 22;
+		$title = $this->getMockTitle( 'SomeDbKey' );
+		$title->expects( $this->once() )
+			->method( 'getNextRevisionID' )
+			->with( $oldid )
+			->will( $this->returnValue( 33 ) );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'selectRow' )
+			->with(
+				'watchlist',
+				'wl_notificationtimestamp',
+				[
+					'wl_user' => 1,
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+				]
+			)
+			->will( $this->returnValue(
+				$this->getFakeRow( [ 'wl_notificationtimestamp' => '30151212010101' ] )
+			) );
+
+		$mockCache = $this->getMockCache();
+		$mockDb->expects( $this->never() )
+			->method( 'get' );
+		$mockDb->expects( $this->never() )
+			->method( 'set' );
+		$mockDb->expects( $this->never() )
+			->method( 'delete' );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$addUpdateCallCounter = 0;
+		$callback = null;
+		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
+			function( $callable ) use ( &$addUpdateCallCounter, &$callback ) {
+				$addUpdateCallCounter++;
+				$callback = $callable;
+			}
+		);
+
+		$getTimestampCallCounter = 0;
+		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
+			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
+				$getTimestampCallCounter++;
+				$this->assertEquals( $title, $titleParam );
+				$this->assertEquals( $oldid, $oldidParam );
+			}
+		);
+
+		$this->assertTrue(
+			$store->resetNotificationTimestamp(
+				$user,
+				$title,
+				'force',
+				$oldid
+			)
+		);
+		$this->assertEquals( 1, $addUpdateCallCounter );
+		$this->verifyCallbackJob(
+			$callback,
+			$title,
+			$user->getId(),
+			function( $time ) {
+				return $time === '30151212010101';
+			}
+		);
+
+		$this->assertEquals( 1, $getTimestampCallCounter );
+
+		ScopedCallback::consume( $scopedOverrideDeferred );
+		ScopedCallback::consume( $scopedOverrideRevision );
+	}
+
+	public function testResetNotificationTimestamp_futureNotificationTimestampNotForced() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$oldid = 22;
+		$title = $this->getMockTitle( 'SomeDbKey' );
+		$title->expects( $this->once() )
+			->method( 'getNextRevisionID' )
+			->with( $oldid )
+			->will( $this->returnValue( 33 ) );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'selectRow' )
+			->with(
+				'watchlist',
+				'wl_notificationtimestamp',
+				[
+					'wl_user' => 1,
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+				]
+			)
+			->will( $this->returnValue(
+				$this->getFakeRow( [ 'wl_notificationtimestamp' => '30151212010101' ] )
+			) );
+
+		$mockCache = $this->getMockCache();
+		$mockDb->expects( $this->never() )
+			->method( 'get' );
+		$mockDb->expects( $this->never() )
+			->method( 'set' );
+		$mockDb->expects( $this->never() )
+			->method( 'delete' );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$mockCache
+		);
+
+		$addUpdateCallCounter = 0;
+		$callback = null;
+		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
+			function( $callable ) use ( &$addUpdateCallCounter, &$callback ) {
+				$addUpdateCallCounter++;
+				$callback = $callable;
+			}
+		);
+
+		$getTimestampCallCounter = 0;
+		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
+			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
+				$getTimestampCallCounter++;
+				$this->assertEquals( $title, $titleParam );
+				$this->assertEquals( $oldid, $oldidParam );
+			}
+		);
+
+		$this->assertTrue(
+			$store->resetNotificationTimestamp(
+				$user,
+				$title,
+				'',
+				$oldid
+			)
+		);
+		$this->assertEquals( 1, $addUpdateCallCounter );
+		$this->verifyCallbackJob(
+			$callback,
+			$title,
+			$user->getId(),
+			function( $time ) {
+				return $time === false;
+			}
+		);
+
 		$this->assertEquals( 1, $getTimestampCallCounter );
 
 		ScopedCallback::consume( $scopedOverrideDeferred );
