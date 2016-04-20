@@ -905,12 +905,8 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		if ( !$oldTarget instanceof Title ) {
-			$oldTarget = Title::newFromLinkTarget( $oldTarget );
-		}
-		if ( !$newTarget instanceof Title ) {
-			$newTarget = Title::newFromLinkTarget( $newTarget );
-		}
+		$oldTarget = Title::newFromLinkTarget( $oldTarget );
+		$newTarget = Title::newFromLinkTarget( $newTarget );
 
 		$this->duplicateEntry( $oldTarget->getSubjectPage(), $newTarget->getSubjectPage() );
 		$this->duplicateEntry( $oldTarget->getTalkPage(), $newTarget->getTalkPage() );

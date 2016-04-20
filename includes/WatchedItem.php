@@ -140,11 +140,7 @@ class WatchedItem {
 	 */
 	public function getTitle() {
 		if ( !$this->title ) {
-			if ( $this->linkTarget instanceof Title ) {
-				$this->title = $this->linkTarget;
-			} else {
-				$this->title = Title::newFromLinkTarget( $this->linkTarget );
-			}
+			$this->title = Title::newFromLinkTarget( $this->linkTarget );
 		}
 		return $this->title;
 	}

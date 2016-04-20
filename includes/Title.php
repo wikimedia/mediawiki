@@ -248,6 +248,10 @@ class Title implements LinkTarget {
 	 * @return Title
 	 */
 	public static function newFromLinkTarget( LinkTarget $linkTarget ) {
+		if ( $linkTarget instanceof Title ) {
+			// Special case if it's already a Title object
+			return $linkTarget;
+		}
 		return self::makeTitle(
 			$linkTarget->getNamespace(),
 			$linkTarget->getText(),

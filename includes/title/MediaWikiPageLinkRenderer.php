@@ -106,11 +106,8 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 		// TODO: move the logic implemented by Linker here,
 		// using $this->formatter and $this->baseUrl, and
 		// re-implement Linker to use a HtmlPageLinkRenderer.
-		if ( $linkTarget instanceof Title ) {
-			$title = $linkTarget;
-		} else {
-			$title = Title::newFromLinkTarget( $linkTarget );
-		}
+
+		$title = Title::newFromLinkTarget( $linkTarget );
 		$link = Linker::link( $title, htmlspecialchars( $text ) );
 
 		return $link;
