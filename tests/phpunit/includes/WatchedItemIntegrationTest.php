@@ -105,7 +105,7 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 			WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp()
 		);
 		$user->mRights = [];
-		$this->assertFalse( WatchedItem::fromUserTitle( $user, $title )->isWatched() );
+		$this->assertFalse( WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() );
 	}
 
 	public function testRemoveWatch_falseOnNotAllowed() {
@@ -118,6 +118,16 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		$this->assertFalse( WatchedItem::fromUserTitle( $user, $title )->removeWatch() );
 		$user->mRights = $previousRights;
 		$this->assertTrue( WatchedItem::fromUserTitle( $user, $title )->removeWatch() );
+	}
+
+	public function testGetNotificationTimestamp_falseOnNotWatched() {
+		$user = $this->getUser();
+		$title = Title::newFromText( 'WatchedItemIntegrationTestPage' );
+
+		WatchedItem::fromUserTitle( $user, $title )->removeWatch();
+		$this->assertFalse( WatchedItem::fromUserTitle( $user, $title )->isWatched() );
+
+		$this->assertFalse( WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() );
 	}
 
 }
