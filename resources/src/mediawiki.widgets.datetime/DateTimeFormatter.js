@@ -266,6 +266,7 @@
 				}
 				spec = {
 					component: null,
+					calendarComponent: false,
 					editable: false,
 					type: 'static',
 					value: params.slice( 1 ).join( '|' ),
@@ -287,6 +288,7 @@
 						c = params[ 0 ] === '#' ? '' : ':';
 						return {
 							component: 'zone',
+							calendarComponent: false,
 							editable: true,
 							type: 'toggleLocal',
 							size: 5 + c.length,
@@ -322,6 +324,7 @@
 					case 'full':
 						spec = {
 							component: 'zone',
+							calendarComponent: false,
 							editable: true,
 							type: 'toggleLocal',
 							values: params[ 0 ] === 'short' ? this.shortZones : this.fullZones,
