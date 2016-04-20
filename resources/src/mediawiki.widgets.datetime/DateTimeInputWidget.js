@@ -385,6 +385,10 @@
 				$field = $( '<span>' )
 					.width( sz )
 					.data( 'mw-widgets-datetime-dateTimeInputWidget-placeholder', placeholder );
+				if ( spec.type !== 'static' ) {
+					$field.prop( 'tabIndex', -1 );
+					$field.on( 'focus', this.onFieldFocus.bind( this, $field ) );
+				}
 				if ( spec.type === 'static' ) {
 					$field.text( spec.value );
 				} else {
@@ -622,6 +626,8 @@
 	 * @param {jQuery.Event} e Focus event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldFocus = function ( $field ) {
+		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+
 		if ( !this.isDisabled() ) {
 			if ( this.getValueAsDate() === null ) {
 				this.setValue( this.formatter.getDefaultDate() );
@@ -631,7 +637,7 @@
 			}
 
 			if ( this.calendar ) {
-				this.calendar.toggle( true );
+				this.calendar.toggle( !!spec.calendarComponent );
 			}
 		}
 	};

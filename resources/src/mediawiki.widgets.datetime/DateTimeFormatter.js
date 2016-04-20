@@ -245,6 +245,8 @@
 	 *  - 'boolean': The field is a boolean.
 	 *  - 'toggleLocal': The field represents {@link #getLocal this.getLocal()}.
 	 *    Editing should directly call {@link #toggleLocal this.toggleLocal()}.
+	 * @return {boolean} return.calendarComponent  Whether this field is part of a calendar, e.g.
+	 *  part of the date instead of the time.
 	 * @return {number} return.size Maximum number of characters in the field (when
 	 *  the 'intercalary' component is falsey). If 0, the field should be hidden entirely.
 	 * @return {Object.<string,number>} return.intercalarySize Map from
@@ -266,6 +268,7 @@
 				}
 				spec = {
 					component: null,
+					calendarComponent: false,
 					editable: false,
 					type: 'static',
 					value: params.slice( 1 ).join( '|' ),
@@ -287,6 +290,7 @@
 						c = params[ 0 ] === '#' ? '' : ':';
 						return {
 							component: 'zone',
+							calendarComponent: false,
 							editable: true,
 							type: 'toggleLocal',
 							size: 5 + c.length,
@@ -322,6 +326,7 @@
 					case 'full':
 						spec = {
 							component: 'zone',
+							calendarComponent: false,
 							editable: true,
 							type: 'toggleLocal',
 							values: params[ 0 ] === 'short' ? this.shortZones : this.fullZones,
