@@ -1,6 +1,7 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
 /**

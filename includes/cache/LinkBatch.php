@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * Class representing a list of titles
