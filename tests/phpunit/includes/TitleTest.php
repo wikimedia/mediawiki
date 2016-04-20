@@ -665,4 +665,24 @@ class TitleTest extends MediaWikiTestCase {
 			'exists() should re-query database when GAID_FOR_UPDATE is used'
 		);
 	}
+
+	public function provideCreateFragmentTitle() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), 'foo' ],
+			[ Title::makeTitle( NS_TALK, 'Test', 'foo' ), '' ],
+			[ Title::makeTitle( NS_CATEGORY, 'Test', 'foo' ), 'bar' ],
+		];
+	}
+
+	/**
+	 * @covers Title::createFragmentTarget
+	 * @dataProvider provideCreateFragmentTitle
+	 */
+	public function testCreateFragmentTitle( Title $title, $fragment ) {
+		$fragmentTitle = $title->createFragmentTarget( $fragment );
+
+		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
+		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
+		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
+	}
 }
