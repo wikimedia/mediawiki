@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * A query module to show basic page information.

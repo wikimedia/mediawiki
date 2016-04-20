@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Linker\LinkTarget;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
