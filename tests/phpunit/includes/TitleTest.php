@@ -665,4 +665,41 @@ class TitleTest extends MediaWikiTestCase {
 			'exists() should re-query database when GAID_FOR_UPDATE is used'
 		);
 	}
+
+	public function provideCreateFragmentTitle() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), 'foo' ],
+			[ Title::makeTitle( NS_TALK, 'Test', 'foo' ), '' ],
+			[ Title::makeTitle( NS_CATEGORY, 'Test', 'foo' ), 'bar' ],
+			[ Title::makeTitle( NS_MAIN, 'Test1', '', 'interwiki' ), 'baz' ]
+		];
+	}
+
+	/**
+	 * @covers Title::createFragmentTarget
+	 * @dataProvider provideCreateFragmentTitle
+	 */
+	public function testCreateFragmentTitle( Title $title, $fragment ) {
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'InterwikiLoadPrefix' => [
+				function ( $prefix, &$iwdata ) {
+					if ( $prefix === 'interwiki' ) {
+						$iwdata = [
+							'iw_url' => 'http://example.com/',
+							'iw_local' => 0,
+							'iw_trans' => 0,
+						];
+						return false;
+					}
+				},
+			],
+		] );
+
+		$fragmentTitle = $title->createFragmentTarget( $fragment );
+
+		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
+		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
+		$this->assertEquals( $title->getInterwiki(), $fragmentTitle->getInterwiki() );
+		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
+	}
 }
