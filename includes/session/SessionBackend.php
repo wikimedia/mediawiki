@@ -94,6 +94,8 @@ final class SessionBackend {
 	private $usePhpSessionHandling = true;
 	private $checkPHPSessionRecursionGuard = false;
 
+	private $shutdown = false;
+
 	/**
 	 * @param SessionId $id Session ID object
 	 * @param SessionInfo $info Session info to populate from
@@ -181,10 +183,19 @@ final class SessionBackend {
 	 */
 	public function deregisterSession( $index ) {
 		unset( $this->requests[$index] );
-		if ( !count( $this->requests ) ) {
+		if ( !$this->shutdown && !count( $this->requests ) ) {
 			$this->save( true );
 			$this->provider->getManager()->deregisterSessionBackend( $this );
 		}
+	}
+
+	/**
+	 * Shut down a session
+	 * @private For use by \MediaWiki\Session\SessionManager::shutdown() only
+	 */
+	public function shutdown() {
+		$this->save( true );
+		$this->shutdown = true;
 	}
 
 	/**
