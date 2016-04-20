@@ -38,8 +38,6 @@
  *
  * $wgMimeType: If this is set to an xml mimetype then output should be
  *     valid XHTML5.
- * $wgWellFormedXml: If this is set to true, then all output should be
- *     well-formed XML (quotes on attributes, self-closing tags, etc.).
  *
  * This class is meant to be confined to utility functions that are called from
  * trusted code paths.  It does not do enforcement of policy like not allowing
@@ -110,8 +108,7 @@ class Html {
 	 * This is quite similar to Xml::tags(), but it implements some useful
 	 * HTML-specific logic.  For instance, there is no $allowShortTag
 	 * parameter: the closing tag is magically omitted if $element has an empty
-	 * content model.  If $wgWellFormedXml is false, then a few bytes will be
-	 * shaved off the HTML output as well.
+	 * content model.
 	 *
 	 * @param string $element The element's name, e.g., 'a'
 	 * @param array $attribs  Associative array of attributes, e.g., array(
@@ -122,14 +119,10 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
-		global $wgWellFormedXml;
 		$start = self::openElement( $element, $attribs );
 		if ( in_array( $element, self::$voidElements ) ) {
-			if ( $wgWellFormedXml ) {
-				// Silly XML.
-				return substr( $start, 0, -1 ) . ' />';
-			}
-			return $start;
+			// Silly XML.
+			return substr( $start, 0, -1 ) . '/>';
 		} else {
 			return "$start$contents" . self::closeElement( $element );
 		}
@@ -383,8 +376,6 @@ class Html {
 	 * 'http://www.mediawiki.org/' ) becomes something like
 	 * ' href="http://www.mediawiki.org"'.  Again, this is like
 	 * Xml::expandAttributes(), but it implements some HTML-specific logic.
-	 * For instance, it will omit quotation marks if $wgWellFormedXml is false,
-	 * and will treat boolean attributes specially.
 	 *
 	 * Attributes that should contain space-separated lists (such as 'class') array
 	 * values are allowed as well, which will automagically be normalized
@@ -417,8 +408,6 @@ class Html {
 	 *   (starting with a space if at least one attribute is output)
 	 */
 	public static function expandAttributes( $attribs ) {
-		global $wgWellFormedXml;
-
 		$ret = '';
 		$attribs = (array)$attribs;
 		foreach ( $attribs as $key => $value ) {
@@ -502,32 +491,10 @@ class Html {
 				$value = implode( ' ', array_unique( $value ) );
 			}
 
-			// See the "Attributes" section in the HTML syntax part of HTML5,
-			// 9.1.2.3 as of 2009-08-10.  Most attributes can have quotation
-			// marks omitted, but not all.  (Although a literal " is not
-			// permitted, we don't check for that, since it will be escaped
-			// anyway.)
-			#
-			// See also research done on further characters that need to be
-			// escaped: http://code.google.com/p/html5lib/issues/detail?id=93
-			$badChars = "\\x00- '=<>`/\x{00a0}\x{1680}\x{180e}\x{180F}\x{2000}\x{2001}"
-				. "\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}"
-				. "\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}";
-			if ( $wgWellFormedXml || $value === ''
-			|| preg_match( "![$badChars]!u", $value ) ) {
-				$quote = '"';
-			} else {
-				$quote = '';
-			}
+			$quote = '"';
 
 			if ( in_array( $key, self::$boolAttribs ) ) {
-				// In HTML5, we can leave the value empty. If we don't need
-				// well-formed XML, we can omit the = entirely.
-				if ( !$wgWellFormedXml ) {
-					$ret .= " $key";
-				} else {
-					$ret .= " $key=\"\"";
-				}
+				$ret .= " $key=\"\"";
 			} else {
 				// Apparently we need to entity-encode \n, \r, \t, although the
 				// spec doesn't mention that.  Since we're doing strtr() anyway,
@@ -539,22 +506,18 @@ class Html {
 				// don't because we're stubborn and like our marginal savings on
 				// byte size from not having to encode unnecessary quotes.
 				// The only difference between this transform and the one by
-				// Sanitizer::encodeAttribute() is '<' is only encoded here if
-				// $wgWellFormedXml is set, and ' is not encoded.
+				// Sanitizer::encodeAttribute() is ' is not encoded.
 				$map = array(
 					'&' => '&amp;',
 					'"' => '&quot;',
 					'>' => '&gt;',
+					// '<' allegedly allowed per spec
+					// but breaks some tools if not escaped.
+					"<" => '&lt;',
 					"\n" => '&#10;',
 					"\r" => '&#13;',
 					"\t" => '&#9;'
 				);
-				if ( $wgWellFormedXml ) {
-					// This is allowed per spec: <http://www.w3.org/TR/xml/#NT-AttValue>
-					// But reportedly it breaks some XML tools?
-					// @todo FIXME: Is this really true?
-					$map['<'] = '&lt;';
-				}
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}
 		}
@@ -571,11 +534,9 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents ) {
-		global $wgWellFormedXml;
-
 		$attrs = array();
 
-		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
+		if ( preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
 
@@ -605,9 +566,7 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = 'all' ) {
-		global $wgWellFormedXml;
-
-		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
+		if ( preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
 
