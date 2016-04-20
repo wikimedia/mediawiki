@@ -22,6 +22,13 @@ interface LinkTarget {
 	public function getFragment();
 
 	/**
+	 * Whether the link target has a fragment
+	 *
+	 * @return bool
+	 */
+	public function hasFragment();
+
+	/**
 	 * Get the main part with underscores.
 	 *
 	 * @return string Main part of the link, with underscores (for use in href attributes)
