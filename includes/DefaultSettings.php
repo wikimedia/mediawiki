@@ -2590,6 +2590,13 @@ $wgCdnMaxageLagged = 30;
 $wgCdnReboundPurgeDelay = 0;
 
 /**
+ * Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
+ * @see $wgSquidMaxage
+ * @since 1.27
+ */
+$wgCdnMaxageSubstitute = 30;
+
+/**
  * Default maximum age for raw CSS/JS accesses
  *
  * 300 seconds = 5 minutes.
