@@ -145,6 +145,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidemyself', false );
+		$opts->add( 'hideredirect', false );
+		$opts->add( 'onlynew', false );
+		$opts->add( 'onlypatrolled', false );
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$opts->add( 'hidecategorization', false );
@@ -258,6 +261,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			&& $opts['hidecategorization'] === true
 		) {
 			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
+		}
+		if ( $opts['hideredirect'] ) {
+			$conds['page_is_redirect'] = 0;
+		}
+		if ( $opts['onlynew'] ) {
+			$conds['rc_new'] = 1;
+		}
+		if ( $user->useRCPatrol() && $opts['onlypatrolled'] ) {
+			$conds['rc_patrolled'] = 1;
 		}
 
 		// Namespace filtering
