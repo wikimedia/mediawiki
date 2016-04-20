@@ -158,6 +158,9 @@ class ApiFeedRecentChanges extends ApiBase {
 			'hidepatrolled' => false,
 			'hidemyself' => false,
 			'hidecategorization' => false,
+			'hideredirect' => false,
+			'onlynew' => false,
+			'onlypatrolled' => false,
 
 			'tagfilter' => [
 				ApiBase::PARAM_TYPE => 'string',

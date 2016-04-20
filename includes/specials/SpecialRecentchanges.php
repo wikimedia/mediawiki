@@ -84,6 +84,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
 		$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
+		$opts->add( 'hideredirect', false );
+		$opts->add( 'onlynew', false );
+		$opts->add( 'onlypatrolled', false );
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
@@ -141,6 +144,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 			if ( 'hidecategorization' === $bit ) {
 				$opts['hidecategorization'] = true;
+			}
+			if ( 'hideredirect' === $bit ) {
+				$opts['hideredirect'] = true;
+			}
+			if ( 'onlynew' === $bit ) {
+				$opts['onlynew'] = true;
+			}
+			if ( 'onlypatrolled' === $bit ) {
+				$opts['onlypatrolled'] = true;
 			}
 
 			if ( is_numeric( $bit ) ) {
@@ -224,6 +236,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$tables[] = 'page';
 			$fields[] = 'page_latest';
 			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+		}
+
+		if ( $opts['hideredirect'] ) {
+			$fields[] = 'page_is_redirect';
+			if ( !in_array( 'page', $tables ) ) {
+				$tables[] = 'page';
+				$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+			}
 		}
 
 		ChangeTags::modifyDisplayQuery(
