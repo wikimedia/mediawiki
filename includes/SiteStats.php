@@ -202,7 +202,11 @@ class SiteStats {
 	 */
 	static function jobs() {
 		if ( !isset( self::$jobs ) ) {
-			self::$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
+			try{
+				self::$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
+			} catch ( JobQueueError $e ) {
+				self::$jobs = 0;
+			}
 			/**
 			 * Zero rows still do single row read for row that doesn't exist,
 			 * but people are annoyed by that
