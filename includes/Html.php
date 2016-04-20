@@ -619,14 +619,24 @@ class Html {
 
 	/**
 	 * Output a "<style>" tag with the given contents for the given media type
-	 * (if any).  TODO: do some useful escaping as well, like if $contents
-	 * contains literal "</style>" (admittedly unlikely).
+	 * (if any).
 	 *
 	 * @param string $contents CSS
 	 * @param string $media A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = 'all' ) {
+		// Don't escape '>' since that is used
+		// as direct child selector.
+		// Remember, in css, there is no "x" for hexadecimal escapes, and
+		// the space immediately after an escape sequence is swallowed.
+		$contents = strtr( $contents, [
+			'<' => '\3C ',
+			// CDATA end tag for good measure, but the main security
+			// is from escaping the '<'.
+			']]>' => '\5D\5D\3E '
+		] );
+
 		if ( preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
