@@ -1059,7 +1059,6 @@ class LoginForm extends SpecialPage {
 	function processLogin() {
 		global $wgLang, $wgSecureLogin, $wgInvalidPasswordReset;
 
-		$cache = ObjectCache::getLocalClusterInstance();
 		$authRes = $this->authenticateUserData();
 		switch ( $authRes ) {
 			case self::SUCCESS:
