@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt test --color=true",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck"
   },
