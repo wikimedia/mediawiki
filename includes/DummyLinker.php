@@ -5,7 +5,11 @@
  */
 class DummyLinker {
 
+	/**
+	 * @deprecated since 1.27
+	 */
 	public function getInterwikiLinkAttributes( $title, $unused = null, $class = 'external' ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		return Linker::getInterwikiLinkAttributes(
 			$title,
 			$unused,
@@ -13,7 +17,11 @@ class DummyLinker {
 		);
 	}
 
+	/**
+	 * @deprecated since 1.27
+	 */
 	public function getInternalLinkAttributes( $title, $unused = null, $class = '' ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		return Linker::getInternalLinkAttributes(
 			$title,
 			$unused,
@@ -21,12 +29,16 @@ class DummyLinker {
 		);
 	}
 
+	/**
+	 * @deprecated since 1.27
+	 */
 	public function getInternalLinkAttributesObj(
 		$nt,
 		$unused = null,
 		$class = '',
 		$title = false
 	) {
+		wfDeprecated( __METHOD__, '1.27' );
 		return Linker::getInternalLinkAttributesObj(
 			$nt,
 			$unused,
