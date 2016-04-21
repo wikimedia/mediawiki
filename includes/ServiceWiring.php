@@ -38,6 +38,7 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Linker\HtmlPageLinkRenderer;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -157,6 +158,17 @@ return [
 		return new LinkCache(
 			$services->getTitleFormatter()
 		);
+	},
+
+	'HtmlPageLinkRenderer' => function( MediaWikiServices $services ) {
+		global $wgUser;
+
+		$linkRenderer = new HtmlPageLinkRenderer(
+			$services->getTitleFormatter()
+		);
+		$linkRenderer->setStubThreshold( $wgUser->getStubThreshold() );
+
+		return $linkRenderer;
 	},
 
 	'GenderCache' => function( MediaWikiServices $services ) {
