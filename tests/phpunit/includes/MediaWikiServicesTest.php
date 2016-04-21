@@ -1,6 +1,8 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
@@ -315,6 +317,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
+			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
+			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
