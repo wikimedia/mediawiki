@@ -26,12 +26,23 @@
  */
 class TitleValueTest extends MediaWikiTestCase {
 
-	public function testConstruction() {
-		$title = new TitleValue( NS_USER, 'TestThis', 'stuff' );
+	public function goodConstructorProvider() {
+		return [
+			[ NS_USER, 'TestThis', 'stuff', true ],
+			[ NS_USER, 'TestThis', '', false ],
+		];
+	}
 
-		$this->assertEquals( NS_USER, $title->getNamespace() );
-		$this->assertEquals( 'TestThis', $title->getText() );
-		$this->assertEquals( 'stuff', $title->getFragment() );
+	/**
+	 * @dataProvider goodConstructorProvider
+	 */
+	public function testConstruction( $ns, $text, $fragment, $hasFragment ) {
+		$title = new TitleValue( $ns, $text, $fragment );
+
+		$this->assertEquals( $ns, $title->getNamespace() );
+		$this->assertEquals( $text, $title->getText() );
+		$this->assertEquals( $fragment, $title->getFragment() );
+		$this->assertEquals( $hasFragment, $title->hasFragment() );
 	}
 
 	public function badConstructorProvider() {
