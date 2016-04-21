@@ -1572,6 +1572,35 @@ cache.
 $context: An IContextSource object with information about the request being
   served.
 
+'HtmlPageLinkRendererBegin':
+Used when generating internal and interwiki links in
+HtmlPageLinkRenderer, before processing starts.  Return false to skip default
+processing and return $ret.
+$linkRenderer: the HtmlPageLinkRenderer object
+$target: the LinkTarget that the link is pointing to
+&$html: the contents that the <a> tag should have (raw HTML); null means
+  "default".
+&$customAttribs: the HTML attributes that the <a> tag should have, in
+  associative array form, with keys and values unescaped.  Should be merged
+  with default values, with a value of false meaning to suppress the
+  attribute.
+&$query: the query string to add to the generated URL (the bit after the "?"),
+  in associative array form, with keys and values unescaped.
+&$ret: the value to return if your hook returns false.
+
+'HtmlPageLinkRendererEnd':
+Used when generating internal and interwiki links in HtmlPageLinkRenderer,
+just before the function returns a value.  If you return true, an <a> element
+with HTML attributes $attribs and contents $html will be returned.  If you
+return false, $ret will be returned.
+$linkRenderer: the HtmlPageLinkRenderer object
+$target: the LinkTarget object that the link is pointing to
+$isKnown: boolean indicating whether the page is known or not
+&$html: the final (raw HTML) contents of the <a> tag, after processing.
+&$attribs: the final HTML attributes of the <a> tag, after processing, in
+  associative array form.
+&$ret: the value to return if your hook returns false.
+
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 image insertion. You can skip the default logic entirely by returning false, or
 just modify a few things using call-by-reference.
@@ -1760,7 +1789,8 @@ $title: The page's Title.
 $out: The output page.
 $cssClassName: CSS class name of the language selector.
 
-'LinkBegin': Used when generating internal and interwiki links in
+'LinkBegin': DEPRECATED! Use HtmlPageLinkRendererBegin instead.
+Used when generating internal and interwiki links in
 Linker::link(), before processing starts.  Return false to skip default
 processing and return $ret. See documentation for Linker::link() for details on
 the expected meanings of parameters.
@@ -1777,7 +1807,8 @@ $target: the Title that the link is pointing to
 &$options: array of options.  Can include 'known', 'broken', 'noclasses'.
 &$ret: the value to return if your hook returns false.
 
-'LinkEnd': Used when generating internal and interwiki links in Linker::link(),
+'LinkEnd': DEPRECATED! Use HtmlPageLinkRendererEnd hook instead
+Used when generating internal and interwiki links in Linker::link(),
 just before the function returns a value.  If you return true, an <a> element
 with HTML attributes $attribs and contents $html will be returned.  If you
 return false, $ret will be returned.
