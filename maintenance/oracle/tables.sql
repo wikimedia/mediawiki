@@ -448,6 +448,9 @@ CREATE UNIQUE INDEX &mw_prefix.watchlist_u01 ON &mw_prefix.watchlist (wl_user, w
 CREATE INDEX &mw_prefix.watchlist_i01 ON &mw_prefix.watchlist (wl_namespace, wl_title);
 
 
+-- TODO watchlist_props table
+
+
 CREATE TABLE &mw_prefix.searchindex (
   si_page	NUMBER NOT NULL,
   si_title	VARCHAR2(255),
