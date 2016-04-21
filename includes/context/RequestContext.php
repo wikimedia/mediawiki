@@ -22,7 +22,9 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance
@@ -62,11 +64,6 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @var Skin
 	 */
 	private $skin;
-
-	/**
-	 * @var \Liuggio\StatsdClient\Factory\StatsdDataFactory
-	 */
-	private $stats;
 
 	/**
 	 * @var Timing
@@ -138,14 +135,12 @@ class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * Get the Stats object
 	 *
-	 * @return BufferingStatsdDataFactory
+	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
+	 *
+	 * @return StatsdDataFactory
 	 */
 	public function getStats() {
-		if ( $this->stats === null ) {
-			$prefix = rtrim( $this->getConfig()->get( 'StatsdMetricPrefix' ), '.' );
-			$this->stats = new BufferingStatsdDataFactory( $prefix );
-		}
-		return $this->stats;
+		return MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 
 	/**

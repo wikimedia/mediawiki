@@ -5903,7 +5903,7 @@ $wgStatsdServer = false;
 /**
  * Prefix for metric names sent to $wgStatsdServer.
  *
- * @see RequestContext::getStats
+ * @see MediaWikiServices::getStatsdDataFactory
  * @see BufferingStatsdDataFactory
  * @since 1.25
  */
