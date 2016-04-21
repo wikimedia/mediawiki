@@ -111,6 +111,7 @@ $specialPageAliases = [
 	'Specialpages'              => [ 'Speciální_stránky', 'Specialni_stranky' ],
 	'Statistics'                => [ 'Statistika', 'Statistiky' ],
 	'Tags'                      => [ 'Značky', 'Znacky' ],
+	'TrackingCategories'        => [ 'Sledovací_kategorie', 'Sledovaci_kategorie' ],
 	'Unblock'                   => [ 'Odblokování', 'Odblokovani' ],
 	'Uncategorizedcategories'   => [ 'Nekategorizované_kategorie', 'Nekategorizovane_kategorie' ],
 	'Uncategorizedimages'       => [ 'Nekategorizované_soubory', 'Nekategorizovane_soubory' ],
