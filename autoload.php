@@ -780,6 +780,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
 	'MediaWiki\\Languages\\Data\\Names' => __DIR__ . '/languages/data/Names.php',
 	'MediaWiki\\Languages\\Data\\ZhConversion' => __DIR__ . '/languages/data/ZhConversion.php',
+	'MediaWiki\\Linker\\HtmlPageLinkRenderer' => __DIR__ . '/includes/linker/HtmlPageLinkRenderer.php',
 	'MediaWiki\\Linker\\LinkTarget' => __DIR__ . '/includes/linker/LinkTarget.php',
 	'MediaWiki\\Logger\\LegacyLogger' => __DIR__ . '/includes/debug/logger/LegacyLogger.php',
 	'MediaWiki\\Logger\\LegacySpi' => __DIR__ . '/includes/debug/logger/LegacySpi.php',
