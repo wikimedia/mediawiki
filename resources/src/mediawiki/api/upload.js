@@ -347,7 +347,7 @@
 			}
 
 			function finishUpload( moreData ) {
-				api.uploadFromStash( filekey, $.extend( data, moreData ) );
+				return api.uploadFromStash( filekey, $.extend( data, moreData ) );
 			}
 
 			return this.upload( file, { stash: true, filename: data.filename } ).then(
