@@ -19,7 +19,9 @@
  *
  * @file
  */
+use MediaWiki\Linker\HtmlPageLinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -212,53 +214,24 @@ class Linker {
 		}
 		$options = (array)$options;
 
-		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
-
-		$ret = null;
-		if ( !Hooks::run( 'LinkBegin',
-			[ $dummy, $target, &$html, &$customAttribs, &$query, &$options, &$ret ] )
-		) {
-			return $ret;
+		if ( !isset( $options['stubThreshold'] ) ) {
+			global $wgUser;
+			$options['stubThreshold'] = $wgUser->getStubThreshold();
 		}
 
-		# Normalize the Title if it's a special page
-		$target = self::normaliseSpecialPage( $target );
-
-		# If we don't know whether the page exists, let's find out.
-		if ( !in_array( 'known', $options, true ) && !in_array( 'broken', $options, true ) ) {
-			if ( $target->isKnown() ) {
-				$options[] = 'known';
-			} else {
-				$options[] = 'broken';
-			}
-		}
-
-		$oldquery = [];
-		if ( in_array( "forcearticlepath", $options, true ) && $query ) {
-			$oldquery = $query;
-			$query = [];
-		}
-
-		# Note: we want the href attribute first, for prettiness.
-		$attribs = [ 'href' => self::linkUrl( $target, $query, $options ) ];
-		if ( in_array( 'forcearticlepath', $options, true ) && $oldquery ) {
-			$attribs['href'] = wfAppendQuery( $attribs['href'], $oldquery );
-		}
-
-		$attribs = array_merge(
-			$attribs,
-			self::linkAttribs( $target, $customAttribs, $options )
+		$htmlPageLinkRenderer = HtmlPageLinkRenderer::newFromLegacyOptions(
+			MediaWikiServices::getInstance()->getTitleFormatter(),
+			$options,
+			$customAttribs
 		);
-		if ( is_null( $html ) ) {
-			$html = self::linkText( $target );
-		}
 
-		$ret = null;
-		if ( Hooks::run( 'LinkEnd', [ $dummy, $target, $options, &$html, &$attribs, &$ret ] ) ) {
-			$ret = Html::rawElement( 'a', $attribs, $html );
+		if ( in_array( 'known', $options, true ) ) {
+			return $htmlPageLinkRenderer->makeKnownLink( $target, $html, $query );
+		} elseif ( in_array( 'broken', $options, true ) ) {
+			return $htmlPageLinkRenderer->makeBrokenLink( $target, $html, $query );
+		} else {
+			return $htmlPageLinkRenderer->makeLink( $target, $html, $query );
 		}
-
-		return $ret;
 	}
 
 	/**
@@ -272,130 +245,6 @@ class Linker {
 		$query = [], $options = [ 'known', 'noclasses' ]
 	) {
 		return self::link( $target, $html, $customAttribs, $query, $options );
-	}
-
-	/**
-	 * Returns the Url used to link to a Title
-	 *
-	 * @param LinkTarget $target
-	 * @param array $query Query parameters
-	 * @param array $options
-	 * @return string
-	 */
-	private static function linkUrl( LinkTarget $target, $query, $options ) {
-		# We don't want to include fragments for broken links, because they
-		# generally make no sense.
-		if ( in_array( 'broken', $options, true ) && $target->hasFragment() ) {
-			$target = $target->createFragmentTarget( '' );
-		}
-
-		# If it's a broken link, add the appropriate query pieces, unless
-		# there's already an action specified, or unless 'edit' makes no sense
-		# (i.e., for a nonexistent special page).
-		if ( in_array( 'broken', $options, true ) && empty( $query['action'] )
-			&& $target->getNamespace() !== NS_SPECIAL ) {
-			$query['action'] = 'edit';
-			$query['redlink'] = '1';
-		}
-
-		if ( in_array( 'http', $options, true ) ) {
-			$proto = PROTO_HTTP;
-		} elseif ( in_array( 'https', $options, true ) ) {
-			$proto = PROTO_HTTPS;
-		} else {
-			$proto = PROTO_RELATIVE;
-		}
-
-		$title = Title::newFromLinkTarget( $target );
-		$ret = $title->getLinkURL( $query, false, $proto );
-		return $ret;
-	}
-
-	/**
-	 * Returns the array of attributes used when linking to the Title $target
-	 *
-	 * @param Title $target
-	 * @param array $attribs
-	 * @param array $options
-	 *
-	 * @return array
-	 */
-	private static function linkAttribs( $target, $attribs, $options ) {
-		global $wgUser;
-		$defaults = [];
-
-		if ( !in_array( 'noclasses', $options, true ) ) {
-			# Now build the classes.
-			$classes = [];
-
-			if ( in_array( 'broken', $options, true ) ) {
-				$classes[] = 'new';
-			}
-
-			if ( $target->isExternal() ) {
-				$classes[] = 'extiw';
-			}
-
-			if ( !in_array( 'broken', $options, true ) ) { # Avoid useless calls to LinkCache (see r50387)
-				$colour = self::getLinkColour(
-					$target,
-					isset( $options['stubThreshold'] ) ? $options['stubThreshold'] : $wgUser->getStubThreshold()
-				);
-				if ( $colour !== '' ) {
-					$classes[] = $colour; # mw-redirect or stub
-				}
-			}
-			if ( $classes != [] ) {
-				$defaults['class'] = implode( ' ', $classes );
-			}
-		}
-
-		# Get a default title attribute.
-		if ( $target->getPrefixedText() == '' ) {
-			# A link like [[#Foo]].  This used to mean an empty title
-			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( in_array( 'known', $options, true ) ) {
-			$defaults['title'] = $target->getPrefixedText();
-		} else {
-			// This ends up in parser cache!
-			$defaults['title'] = wfMessage( 'red-link-title', $target->getPrefixedText() )
-				->inContentLanguage()
-				->text();
-		}
-
-		# Finally, merge the custom attribs with the default ones, and iterate
-		# over that, deleting all "false" attributes.
-		$ret = [];
-		$merged = Sanitizer::mergeAttributes( $defaults, $attribs );
-		foreach ( $merged as $key => $val ) {
-			# A false value suppresses the attribute, and we don't want the
-			# href attribute to be overridden.
-			if ( $key != 'href' && $val !== false ) {
-				$ret[$key] = $val;
-			}
-		}
-		return $ret;
-	}
-
-	/**
-	 * Default text of the links to the Title $target
-	 *
-	 * @param Title $target
-	 *
-	 * @return string
-	 */
-	private static function linkText( $target ) {
-		if ( !$target instanceof Title ) {
-			wfWarn( __METHOD__ . ': Requires $target to be a Title object.' );
-			return '';
-		}
-		// If the target is just a fragment, with no title, we return the fragment
-		// text.  Otherwise, we return the title text itself.
-		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
-			return htmlspecialchars( $target->getFragment() );
-		}
-
-		return htmlspecialchars( $target->getPrefixedText() );
 	}
 
 	/**
