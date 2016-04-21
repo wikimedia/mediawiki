@@ -321,6 +321,8 @@ class LegacyLogger extends AbstractLogger {
 				$replace['{' . $key . '}'] = self::flatten( $val );
 			}
 			$message = strtr( $message, $replace );
+		} else {
+			$message .= var_export( $context, true );
 		}
 		return $message;
 	}
