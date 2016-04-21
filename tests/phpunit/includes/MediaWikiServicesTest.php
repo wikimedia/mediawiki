@@ -1,5 +1,6 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Linker\HtmlPageLinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\ServiceDisabledException;
 
@@ -244,6 +245,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
+			'HtmlPageLinkRenderer' => [ 'HtmlPageLinkRenderer', HtmlPageLinkRenderer::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
