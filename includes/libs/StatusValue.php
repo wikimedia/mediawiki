@@ -197,7 +197,9 @@ class StatusValue {
 	/**
 	 * Returns a list of status messages of the given type
 	 *
-	 * Each entry is a map of (message:string or MessageSpecifier,params:array))
+	 * Each entry is a map of:
+	 *   - message: string message key or MessageSpecifier
+	 *   - params: array list of parameters
 	 *
 	 * @param string $type
 	 * @return array
