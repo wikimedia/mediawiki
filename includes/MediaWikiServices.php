@@ -11,6 +11,8 @@ use LBFactory;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
 use ObjectCache;
@@ -480,6 +482,25 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkCache() {
 		return $this->getService( 'LinkCache' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return LinkRendererFactory
+	 */
+	public function getLinkRendererFactory() {
+		return $this->getService( 'LinkRendererFactory' );
+	}
+
+	/**
+	 * LinkRenderer instance that can be used
+	 * if no custom options are needed
+	 *
+	 * @since 1.28
+	 * @return LinkRenderer
+	 */
+	public function getLinkRenderer() {
+		return $this->getService( 'LinkRenderer' );
 	}
 
 	/**

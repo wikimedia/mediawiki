@@ -342,7 +342,8 @@ class ParserTest {
 		$services->resetServiceForTesting( 'TitleFormatter' );
 		$services->resetServiceForTesting( 'TitleParser' );
 		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
-
+		$services->resetServiceForTesting( 'LinkRenderer' );
+		$services->resetServiceForTesting( 'LinkRendererFactory' );
 	}
 
 	public function setupRecorder( $options ) {
