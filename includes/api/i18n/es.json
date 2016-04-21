@@ -17,7 +17,8 @@
 			"Eloy",
 			"AlvaroMolina",
 			"Ciencia Al Poder",
-			"Lemondoge"
+			"Lemondoge",
+			"Mgpena"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -79,6 +80,7 @@
 	"apihelp-delete-param-reason": "Motivo de la eliminación. Si no se especifica, se generará uno automáticamente.",
 	"apihelp-delete-param-tags": "Cambio de etiquetas para aplicar a la entrada en la eliminación del registro.",
 	"apihelp-delete-param-watch": "Añadir esta página a la lista de seguimiento del usuario actual.",
+	"apihelp-delete-param-watchlist": "Incondicionalmente agregar o remover la página de la actual watchlist del usuario, usar las preferencias o no cambiar watch.",
 	"apihelp-delete-param-unwatch": "Quitar la página de la lista de seguimiento del usuario actual.",
 	"apihelp-delete-example-simple": "Borrar <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Eliminar <kbd>Main Page</kbd> con el motivo <kbd>Preparing for move</kbd>.",
@@ -121,6 +123,7 @@
 	"apihelp-expandtemplates-param-text": "Sintaxis wiki que se convertirá.",
 	"apihelp-expandtemplates-param-revid": "Revisión de ID, para <nowiki>{{REVISIONID}}</nowiki> y variables similares.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "El wikitexto expandido.",
+	"apihelp-expandtemplates-paramvalue-prop-categories": "Cualquier categoría presente en la entrada que no están representados en el wikitexto resultado.",
 	"apihelp-expandtemplates-paramvalue-prop-properties": "Propiedades de página definidas por palabras mágicas en el wikitexto.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "El tiempo máximo tras el cual deberían invalidarse los resultados en caché.",
 	"apihelp-expandtemplates-paramvalue-prop-jsconfigvars": "Da las variables de configuración JavaScript específicas para la página.",

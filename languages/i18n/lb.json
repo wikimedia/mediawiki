@@ -2951,7 +2951,7 @@
 	"watchlistedit-raw-done": "Är Iwwerwaachungslëscht gouf aktualiséiert.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} derbäigesat:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} erausgeholl:",
-	"watchlistedit-clear-title": "Eidelgemaachten Iwwerwaachungslëscht",
+	"watchlistedit-clear-title": "Iwwerwaachungslëscht eidelmaachen",
 	"watchlistedit-clear-legend": "Iwwerwaachungslëscht eidelmaachen",
 	"watchlistedit-clear-explain": "All D'Säite gi vun Ärer Iwwerwaachungslëscht erofgeholl",
 	"watchlistedit-clear-titles": "Säiten:",
@@ -3368,6 +3368,7 @@
 	"log-action-filter-protect-modify": "Spär-pÄnnerung",
 	"log-action-filter-protect-move_prot": "Geréckelt Spär",
 	"log-action-filter-rights-rights": "Manuell Ännerung",
+	"log-action-filter-rights-autopromote": "Automatesch Ännerung",
 	"log-action-filter-upload-upload": "Neien Upload",
 	"log-action-filter-upload-overwrite": "Nees eroplueden"
 }

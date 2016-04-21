@@ -45,7 +45,8 @@
 			"Matma Rex",
 			"Xð",
 			"Robin van der Vliet",
-			"Zciric"
+			"Zciric",
+			"Psychoslave"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -63,6 +64,7 @@
 	"tog-watchdefault": "Aldoni al mia atentaro paĝojn kaj dosierojn redaktitajn de mi",
 	"tog-watchmoves": "Aldoni paĝojn kaj dosierojn, kiujn mi movas, al mia atentaro",
 	"tog-watchdeletion": "Aldoni paĝojn kaj dosierojn, kiujn mi forigas, al mia atentaro",
+	"tog-watchuploads": "Aldonu novajn dosierojn ke mi alŝutas al mia atentaro",
 	"tog-watchrollback": "Aldoni paĝojn, kie mi amasmalfaris, al mia atentaro.",
 	"tog-minordefault": "Marki defaŭlte ĉiujn redaktojn kiel etajn",
 	"tog-previewontop": "Montri antaŭrigardon antaŭ redaktilo",
@@ -80,6 +82,7 @@
 	"tog-watchlisthidebots": "Kaŝi robotajn redaktojn de la atentaro",
 	"tog-watchlisthideminor": "Kaŝi malgrandajn redaktojn de la atentaro",
 	"tog-watchlisthideliu": "Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro",
+	"tog-watchlistreloadautomatically": "Reŝarĝi la atentaron aŭtomate ĉiam filtro estas ŝanĝita (Necesi Ĝavoskripton)",
 	"tog-watchlisthideanons": "Kaŝi redaktojn de anonimuloj de la atentaro",
 	"tog-watchlisthidepatrolled": "Kaŝi patrolitajn redaktojn de la atentaro",
 	"tog-watchlisthidecategorization": "Kaŝu enkategoriigon de paĝoj",
@@ -345,6 +348,7 @@
 	"databaseerror-query": "Mendo: $1",
 	"databaseerror-function": "Funkcio: $1",
 	"databaseerror-error": "Eraro: $1",
+	"transaction-duration-limit-exceeded": "Por eviti krei egan atendotempon de replikado, tiu transakcio estis ĉesigita pro la skribdaŭro ($1) superigis la limon da $2 {{plural:$2|sekondo|sekondoj}}.",
 	"laggedslavemode": "Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.",
 	"readonly": "Datumbazo ŝlosita, nurlega",
 	"enterlockreason": "Bonvolu klarigi, kial oni ŝlosas la datumbazon, kaj\nla estimatan tempon de malŝlosado.",
