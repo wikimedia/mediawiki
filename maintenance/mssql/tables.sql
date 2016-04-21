@@ -868,6 +868,17 @@ CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_ti
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 
 
+-- Name/value pairs indexed by page_id
+CREATE TABLE /*_*/watchlist_props (
+  wlp_page int NOT NULL REFERENCES /*_*/watchlist(wl_id) ON DELETE CASCADE,
+  wlp_propname nvarchar(60) NOT NULL,
+  wlp_value nvarchar(max) NOT NULL
+);
+
+CREATE UNIQUE INDEX /*i*/wlp_page_propname ON /*_*/watchlist_props (wlp_page,wlp_propname);
+CREATE UNIQUE INDEX /*i*/wlp_propname_page ON /*_*/watchlist_props (wlp_propname,wlp_page);
+
+
 --
 -- Our search index for the builtin MediaWiki search
 --

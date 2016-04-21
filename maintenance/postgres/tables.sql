@@ -461,6 +461,9 @@ CREATE INDEX wl_user ON watchlist (wl_user);
 CREATE INDEX wl_user_notificationtimestamp ON watchlist (wl_user, wl_notificationtimestamp);
 
 
+-- TODO watchlist_props table
+
+
 CREATE TABLE interwiki (
   iw_prefix  TEXT      NOT NULL  UNIQUE,
   iw_url     TEXT      NOT NULL,
