@@ -3523,7 +3523,7 @@
 	"logentry-protect-protect-cascade": "$1 が $3 を {{GENDER:$2|保護}}しました $4 [カスケード]",
 	"logentry-protect-modify": "$1 が $3 の保護レベルを{{GENDER:$2|変更}}しました $4",
 	"logentry-protect-modify-cascade": "$1 が $3 の保護レベルを{{GENDER:$2|変更}}しました $4 [カスケード]",
-	"logentry-rights-rights": "$1 が {{GENDER:$3|$3}} の所属グループを $4 から $5 に{{GENDER:$2|変更しました}}",
+	"logentry-rights-rights": "$1 が {{GENDER:$6|$3}} の所属グループを $4 から $5 に{{GENDER:$2|変更しました}}",
 	"logentry-rights-rights-legacy": "$1 が $3 の所属グループを{{GENDER:$2|変更しました}}",
 	"logentry-rights-autopromote": "$1 が $4 から $5 に自動的に{{GENDER:$2|昇格しました}}",
 	"logentry-upload-upload": "$1 が $3 を {{GENDER:$2|アップロードしました}}",

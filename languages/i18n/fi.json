@@ -3417,7 +3417,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|suojasi}} kohteen $3 $4 [tarttuvasti]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|muutti}} suojauksen tasoa kohteessa $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|muutti}} suojauksen tasoa kohteessa $3 $4 [tarttuvasti]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$3|$3}} oikeudet ryhmistä $4 ryhmiin $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$6|$3}} oikeudet ryhmistä $4 ryhmiin $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|muutti}} käyttäjän $3 jäsenyyttä ryhmässä",
 	"logentry-rights-autopromote": "Käyttäjän $1 oikeudet {{GENDER:$2|muuttuivat}} automaattisesti ryhmistä $4 ryhmiin $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|tallensi}} tiedoston $3",

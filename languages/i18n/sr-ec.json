@@ -3347,7 +3347,7 @@
 	"logentry-protect-protect-cascade": "$1 је {{GENDER:$2|заштитио|заштитила}} $3 $4 [преносива заштита]",
 	"logentry-protect-modify": "$1 је {{GENDER:$2|променио|променила}} степен заштите за $3 $4",
 	"logentry-protect-modify-cascade": "$1 је {{GENDER:$2|променио|променила}} степен заштите за $3 $4 [преносива заштита]",
-	"logentry-rights-rights": "$1 је {{GENDER:$2|променио|променила}} чланство групе за {{GENDER:$3|$3}} из $4 у $5",
+	"logentry-rights-rights": "$1 је {{GENDER:$2|променио|променила}} чланство групе за {{GENDER:$6|$3}} из $4 у $5",
 	"logentry-rights-rights-legacy": "$1 је {{GENDER:$2|променио|променила}} чланство групе за $3",
 	"logentry-rights-autopromote": "$1 је аутоматски {{GENDER:$2|унапређен|унапређена}} из $4 у $5",
 	"logentry-upload-upload": "$1 је {{GENDER:$2|послао|послала}} $3",

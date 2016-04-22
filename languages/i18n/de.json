@@ -3468,7 +3468,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|schützte}} die Seite $3 $4 [kaskadierend]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|änderte}} den Schutzstatus der Seite $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|änderte}} den Schutzstatus der Seite $3 $4 [kaskadierend]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für {{GENDER:$3|$3}} von $4 zu $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für {{GENDER:$6|$3}} von $4 zu $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für $3",
 	"logentry-rights-autopromote": "$1 wurde automatisch von $4 zu $5 {{GENDER:$2|zugeordnet}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|lud}} $3 hoch",

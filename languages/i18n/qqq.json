@@ -176,7 +176,8 @@
 			"Aursani",
 			"Robin van der Vliet",
 			"Conquistador",
-			"Frigory"
+			"Frigory",
+			"Psychoslave"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -725,7 +726,7 @@
 	"botpasswords-label-cancel": "Button label for a button to cancel the creation or edit of a bot password.\n{{Identical|Cancel}}",
 	"botpasswords-label-delete": "Button label for the button to delete a bot password.\n{{Identical|Delete}}",
 	"botpasswords-label-resetpassword": "Label for the checkbox to reset the actual password for the current bot password.",
-	"botpasswords-label-grants": "Label for the checkmatrix for selecting grants allowed when the bot password is used.",
+	"botpasswords-label-grants": "Label for the checkmatrix for selecting grants allowed when the bot password is used.\n\ngrant: Vidu http://komputeko.net/index_en.php?vorto=grant sed \"konced/i\" egale funkcius.",
 	"botpasswords-help-grants": "Help text for the grant selection checkmatrix.",
 	"botpasswords-label-restrictions": "Label for the textarea field in which JSON defining access restrictions (e.g. which IP address ranges are allowed) is entered.",
 	"botpasswords-label-grants-column": "Label for the checkbox column on the checkmatrix for selecting grants allowed when the bot password is used.",
@@ -3966,7 +3967,7 @@
 	"logentry-protect-modify-cascade": "{{Logentry|[[Special:Log/protect]]}}\n\n* $4 - protect expiry (formatted with {{msg-mw|protect-summary-desc}}, multiple possible)\nFor word \"cascading\" see {{msg-mw|protect-summary-cascade}}",
 	"logentry-rights-rights": "* $1 - (see below)\n* $2 - (see below)\n* $3 - target user, like $1\n* $4 - list of user groups or {{msg-mw|Rightsnone}}\n* $5 - list of user groups or {{msg-mw|Rightsnone}}\n* $6 - target user, can be used with GENDER\n----\n{{Logentry|[[Special:Log/rights]]}}",
 	"logentry-rights-rights-legacy": "* $1 - username\n* $2 - (see below)\n* $3 - username\n----\n{{Logentry|[[Special:Log/rights]]}}",
-	"logentry-rights-autopromote": "* $1 - username\n* $2 - (see below)\n* $3 - (see below)\n* $4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}\n* $5 - comma separated list of new user groups\n----\n{{Logentry|[[Special:Log/rights]]}}",
+	"logentry-rights-autopromote": "* $1 - username\n* $2 - (see below)\n* $3 - (see below) - unused\n* $4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}\n* $5 - comma separated list of new user groups\n* $6 - target user, can be used with GENDER for $3 - unused\n----\n{{Logentry|[[Special:Log/rights]]}}",
 	"logentry-upload-upload": "{{Logentry|[[Special:Log/upload]]}}",
 	"logentry-upload-overwrite": "{{Logentry|[[Special:Log/upload]]}}",
 	"logentry-upload-revert": "{{Logentry|[[Special:Log/upload]]}}",
