@@ -7,7 +7,6 @@ use Kafka\Produce;
  * 'relayerConfig' => [ 'class' => 'EventRelayerKafka', 'KafkaEventHost' => 'localhost:9092' ],
  */
 class EventRelayerKafka extends EventRelayer {
-
 	/**
 	 * Configuration.
 	 *
@@ -25,9 +24,11 @@ class EventRelayerKafka extends EventRelayer {
 	/**
 	 * Create Kafka producer.
 	 *
-	 * @param Config $config
+	 * @param array $params
 	 */
 	public function __construct( array $params ) {
+		parent::__construct( $params );
+
 		$this->config = new HashConfig( $params );
 		if ( !$this->config->has( 'KafkaEventHost' ) ) {
 			throw new InvalidArgumentException( "KafkaEventHost must be configured" );
@@ -40,17 +41,12 @@ class EventRelayerKafka extends EventRelayer {
 	 */
 	protected function getKafkaProducer() {
 		if ( !$this->producer ) {
-			$this->producer = Produce::getInstance( null, null, $this->config->get( 'KafkaEventHost' ) );
+			$this->producer = Produce::getInstance(
+				null, null, $this->config->get( 'KafkaEventHost' ) );
 		}
 		return $this->producer;
 	}
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see EventRelayer::doNotify()
-	 *
-	 */
 	protected function doNotify( $channel, array $events ) {
 		$jsonEvents = array_map( 'json_encode', $events );
 		try {
