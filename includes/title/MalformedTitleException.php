@@ -44,9 +44,9 @@ class MalformedTitleException extends Exception {
 		$this->errorMessageParameters = $errorMessageParameters;
 
 		// Supply something useful for Exception::getMessage() to return.
-		$enMsg = wfMessage( $errorMessage, $errorMessageParameters );
-		$enMsg->inLanguage( 'en' )->useDatabase( false );
-		parent::__construct( $enMsg->text() );
+		$msg = wfMessage( $errorMessage, $errorMessageParameters );
+		$msg->useDatabase( false );
+		parent::__construct( $msg->text() );
 	}
 
 	/**

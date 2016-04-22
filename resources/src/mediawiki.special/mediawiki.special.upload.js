@@ -70,7 +70,8 @@
 				// If title is empty, user input is invalid, the API call will produce details about why
 				titles: title ? title.getPrefixedText() : this.nameToCheck,
 				prop: 'imageinfo',
-				iiprop: 'uploadwarning'
+				iiprop: 'uploadwarning',
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
 				var
 					resultOut = '',
