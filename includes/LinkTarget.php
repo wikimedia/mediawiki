@@ -44,4 +44,14 @@ interface LinkTarget {
 	 */
 	public function getText();
 
+	/**
+	 * Creates a new LinkTarget for a different fragment of the same page.
+	 * It is expected that the same type of object will be returned, but the
+	 * only requirement is that it is a LinkTarget.
+	 *
+	 * @param string $fragment The fragment name, or "" for the entire page.
+	 *
+	 * @return LinkTarget
+	 */
+	public function createFragmentTarget( $fragment );
 }

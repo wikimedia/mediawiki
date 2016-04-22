@@ -1376,7 +1376,8 @@ class Title implements LinkTarget {
 	 * specified fragment before setting, so it assumes you're passing it with
 	 * an initial "#".
 	 *
-	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
+	 * Deprecated for public use, use Title::makeTitle() with fragment parameter,
+	 * or Title::createFragmentTarget().
 	 * Still in active use privately.
 	 *
 	 * @private
@@ -1384,6 +1385,23 @@ class Title implements LinkTarget {
 	 */
 	public function setFragment( $fragment ) {
 		$this->mFragment = strtr( substr( $fragment, 1 ), '_', ' ' );
+	}
+
+	/**
+	 * Creates a new Title for a different fragment of the same page.
+	 *
+	 * @since 1.27
+	 * @param string $fragment
+	 * @return Title
+	 */
+	public function createFragmentTarget( $fragment ) {
+		return self::makeTitle(
+			$this->getNamespace(),
+			$this->getText(),
+			$fragment,
+			$this->getInterwiki()
+		);
+
 	}
 
 	/**
