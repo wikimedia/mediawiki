@@ -84,7 +84,7 @@ class Names {
 		'bbc-latn' => 'Batak Toba', # Batak Toba
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
 		'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
-		'be' => 'беларуская', #  Belarusian normative
+		'be' => 'беларуская', # Belarusian normative
 		'be-tarask' => "беларуская (тарашкевіца)\xE2\x80\x8E", # Belarusian in Taraskievica orthography
 		'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E", # (be-tarask compat)
 		'bg' => 'български', # Bulgarian
@@ -384,8 +384,8 @@ class Names {
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian
 		'sr' => 'српски / srpski', # Serbian (multiple scripts - defaults to Cyrillic)
-		'sr-ec' => "српски (ћирилица)\xE2\x80\x8E",	# Serbian Cyrillic ekavian
-		'sr-el' => "srpski (latinica)\xE2\x80\x8E",	# Serbian Latin ekavian
+		'sr-ec' => "српски (ћирилица)\xE2\x80\x8E", # Serbian Cyrillic ekavian
+		'sr-el' => "srpski (latinica)\xE2\x80\x8E", # Serbian Latin ekavian
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
@@ -427,9 +427,9 @@ class Names {
 		'ug-latn' => 'Uyghurche', # Uyghur (Latin script)
 		'uk' => 'українська', # Ukrainian
 		'ur' => 'اردو', # Urdu
-		'uz' => 'oʻzbekcha/ўзбекча',	# Uzbek (multiple scripts - defaults to Latin)
-		'uz-cyrl' => 'ўзбекча',	# Uzbek Cyrillic
-		'uz-latn' => 'oʻzbekcha',	# Uzbek Latin (default)
+		'uz' => 'oʻzbekcha/ўзбекча', # Uzbek (multiple scripts - defaults to Latin)
+		'uz-cyrl' => 'ўзбекча', # Uzbek Cyrillic
+		'uz-latn' => 'oʻzbekcha', # Uzbek Latin (default)
 		've' => 'Tshivenda', # Venda
 		'vec' => 'vèneto', # Venetian
 		'vep' => 'vepsän kel’', # Veps
