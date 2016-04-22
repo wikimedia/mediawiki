@@ -548,7 +548,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
-		$html = Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+		$html = Html::rawElement( 'div', [],
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
@@ -593,7 +593,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setRequest( $this->getRequest() );
 		}
-		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
 		if ( $wgLoginLanguageSelector ) {
@@ -621,16 +621,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// should be above the error message but HTMLForm doesn't support that
 		$form->addHeaderText( $fakeTemplate->get( 'header' ) );
 
-		// FIXME the old form used this for error/warning messages which does not play well with
-		// HTMLForm (maybe it could with a subclass?); for now only display it for signups
-		// (where the JS username validation needs it) and alway empty
-		if ( $this->isSignup() ) {
-			// used by the mediawiki.special.userlogin.signup.js module
-			$statusAreaAttribs = [ 'id' => 'mw-createacct-status-area' ];
-			// $statusAreaAttribs += $msg ? [ 'class' => "{$msgType}box" ] : [ 'style' => 'display: none;' ];
-			$form->addHeaderText( Html::element( 'div', $statusAreaAttribs ) );
-		}
-
 		// header used by MobileFrontend
 		$form->addHeaderText( $fakeTemplate->get( 'formheader' ) );
 
@@ -649,8 +639,21 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// warning header for non-standard workflows (e.g. security reauthentication)
 		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
-			$form->addHeaderText( Html::rawElement( 'div', [ 'class' => 'warningbox' ],
-				$this->msg( $reauthMessage )->params( $this->getUser()->getName() )->parse() ) );
+			$form->addHeaderText(
+				// Generate something that looks consistent with how HTMLForm formats errors and warnings.
+				// This is a bit hacky, ideally we'd perhaps subclass HTMLForm and do this in getBody()...
+				new OOUI\FieldLayout(
+					new OOUI\Widget(),
+					[
+						'align' => 'top',
+						'notices' => [
+							new OOUI\HtmlSnippet(
+								$this->msg( $reauthMessage )->params( $this->getUser()->getName() )->parse()
+							)
+						],
+					]
+				)
+			);
 		}
 
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
@@ -677,24 +680,35 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				}
 
 				$loggedIn = $this->getUser()->isLoggedIn();
-				$createOrLoginHtml = Html::rawElement( 'div',
-					[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
-						'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-					( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
-					. Html::element( 'a',
+				if ( $loggedIn ) {
+					$createOrLoginHtml = Html::rawElement( 'div',
 						[
-							'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
-							'href' => $linkTitle->getLocalURL( $linkq ),
-							'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
-							'tabindex' => 100,
+							'id' => 'mw-createaccount',
+							'class' => 'mw-form-related-link-container',
 						],
-						$this->msg(
-							( $this->getUser()->isLoggedIn() ?
-								'userlogin-createanother' :
-								'userlogin-joinproject'
-							) )->escaped()
-					)
-				);
+						Html::element( 'a', [
+							'id' => 'mw-createaccount-join-loggedin',
+							'href' => $linkTitle->getLocalURL( $linkq ),
+							'tabindex' => 100,
+						], $this->msg( 'userlogin-createanother' )->text() )
+					);
+				} else {
+					$createOrLoginHtml = Html::rawElement( 'div',
+						[
+							'id' => 'mw-createaccount-cta',
+						],
+						Html::element( 'div', [
+							'id' => 'mw-createaccount-cta-text',
+						], $this->msg( 'userlogin-noaccount' )->text() ) .
+						new OOUI\ButtonWidget( [
+							'id' => 'mw-createaccount-join',
+							'href' => $linkTitle->getLocalURL( $linkq ),
+							'flags' => [ 'constructive' ],
+							'tabIndex' => 100,
+							'label' => $this->msg( 'userlogin-joinproject' )->text(),
+						] )
+					);
+				}
 				$form->addFooterText( $createOrLoginHtml );
 			}
 		}
@@ -1006,6 +1020,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
 					'weight' => 100,
+					'flags' => [ 'primary', 'constructive' ],
 				],
 			];
 		} else {
@@ -1035,6 +1050,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
+					'flags' => [ 'primary', 'progressive' ],
 				],
 				'linkcontainer' => [
 					// help link
