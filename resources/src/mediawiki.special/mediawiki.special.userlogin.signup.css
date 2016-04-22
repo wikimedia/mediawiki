@@ -1,11 +1,12 @@
 /* Disable the underline that Vector puts on h2 headings, and bold them. */
-.mw-ui-container h2 {
+.mw-createacct-benefits-container h2 {
 	border: 0;
+	margin-bottom: 30px;
 	font-weight: bold;
 }
 
 /* Benefits column CSS to the right (if it fits) of the form. */
-.mw-ui-container #userloginForm {
+#userloginForm {
 	float: left;
 	/* Override the right margin of the form to give space in case a benefits
 	 * column appears to the side. */
@@ -15,10 +16,6 @@
 div.mw-createacct-benefits-container {
 	/* Keeps this column compact and close to the form, but tends to squish contents. */
 	float: left;
-}
-
-div.mw-createacct-benefits-container h2 {
-	margin-bottom: 30px;
 }
 
 .mw-number-text.icon-edits {
