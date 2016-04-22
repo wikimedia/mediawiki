@@ -121,10 +121,12 @@ class OOUIHTMLForm extends HTMLForm {
 			] + $attrs );
 		}
 
-		$html = Html::rawElement( 'div',
-			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
+		if ( !$buttons ) {
+			return '';
+		}
 
-		return $html;
+		return Html::rawElement( 'div',
+			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 	}
 
 	protected function wrapFieldSetSection( $legend, $section, $attributes ) {

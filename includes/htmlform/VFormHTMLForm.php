@@ -137,9 +137,11 @@ class VFormHTMLForm extends HTMLForm {
 			$buttons .= Html::element( 'input', $attrs ) . "\n";
 		}
 
-		$html = Html::rawElement( 'div',
-			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
+		if ( !$buttons ) {
+			return '';
+		}
 
-		return $html;
+		return Html::rawElement( 'div',
+			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 	}
 }

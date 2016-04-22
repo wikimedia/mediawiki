@@ -1146,10 +1146,12 @@ class HTMLForm extends ContextSource {
 			}
 		}
 
-		$html = Html::rawElement( 'span',
-			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
+		if ( !$buttons ) {
+			return '';
+		}
 
-		return $html;
+		return Html::rawElement( 'span',
+			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 	}
 
 	/**
