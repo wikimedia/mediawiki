@@ -2028,7 +2028,6 @@ return [
 	'mediawiki.special.userlogin.signup.js' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
 		'messages' => [
-			'createacct-error',
 			'createacct-emailrequired',
 			'noname',
 			'userexists',
