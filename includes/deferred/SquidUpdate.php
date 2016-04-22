@@ -128,7 +128,16 @@ class SquidUpdate {
 			foreach ( $chunks as $chunk ) {
 				$client = new SquidPurgeClient( $server );
 				foreach ( $chunk as $url ) {
-					$client->queuePurge( $url );
+					// Miraheze specific PATCH: $device was added
+					// because it's needed to add X-Device upon purge.
+					// When purging an url we call queuePurge twice
+					// with $mobileHeader first being 'desktop', and
+					// the second time being 'phone-tablet'.
+					// Due to Varnish' vcl_hash, this is needed in
+					// order to properly PURGE pages.
+					foreach ( array( 'desktop', 'phone-tablet' ) as $device ) {
+						$client->queuePurge( $url, $device );
+					}
 				}
 				$pool->addClient( $client );
 			}
