@@ -3442,7 +3442,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|zabezpieczył|zabezpieczyła|zabezpieczył(a)}} $3 $4 [kaskadowo]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} poziom zabezpieczenia dla $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} poziom zabezpieczenia dla $3 $4 [kaskadowo]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} przynależność {{GENDER:$3|$3}} do grupy z $4 do $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} przynależność {{GENDER:$6|$3}} do grupy z $4 do $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup",
 	"logentry-rights-autopromote": "$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)",
 	"logentry-upload-upload": "$1 {{GENDER:$2|przesłał|przesłała}} $3",

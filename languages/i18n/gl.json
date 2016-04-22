@@ -3374,7 +3374,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|protexeu}} a $3 $4 [en cascada]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|cambiou}} o nivel de protección de $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|cambiou}} o nivel de protección de $3 $4 [en cascada]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|cambiou}} o grupo ao que pertence {{GENDER:$3|$3}} de $4 a $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|cambiou}} o grupo ao que pertence {{GENDER:$6|$3}} de $4 a $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|cambiou}} o grupo ao que pertence $3",
 	"logentry-rights-autopromote": "$1 foi {{GENDER:$2|promovido|promovida}} automaticamente de $4 a $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|cargou}} \"$3\"",

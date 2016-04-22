@@ -3562,7 +3562,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|захистив|захистила}} $3 $4 [каскадно]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|змінив|змінила}} налаштування захисту $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|змінив|змінила}} налаштування захисту $3 $4 [каскадно]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|змінив|змінила}} членство в групах для {{GENDER:$3|$3}} із $4 на $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|змінив|змінила}} членство в групах для {{GENDER:$6|$3}} із $4 на $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|змінив|змінила}} членство в групах для $3",
 	"logentry-rights-autopromote": "$1 було автоматично переведено із $4 в $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|завантажив|завантажила}} $3",
