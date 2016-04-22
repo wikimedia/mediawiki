@@ -69,10 +69,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $cache;
 	/** @var HashBagOStuff Script instance PHP cache */
 	protected $procCache;
-	/** @var string Cache pool name */
-	protected $pool;
+	/** @var string Purge channel name */
+	protected $purgeChannel;
 	/** @var EventRelayer Bus that handles purge broadcasts */
-	protected $relayer;
+	protected $purgeRelayer;
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -134,25 +134,27 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	const MAX_PC_KEYS = 1000; // max keys to keep in process cache
 
+	const DEFAULT_PURGE_CHANNEL = 'wancache-purge';
+
 	/**
 	 * @param array $params
-	 *   - cache   : BagOStuff object
-	 *   - pool    : pool name
-	 *   - relayer : EventRelayer object
-	 *   - logger  : LoggerInterface object
+	 *   - cache    : BagOStuff object for a persistent cache
+	 *   - channels : Map of (action => channel string). Actions include "purge".
+	 *   - relayers : Map of (action => EventRelayer object). Actions include "purge".
+	 *   - logger   : LoggerInterface object
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
-		$this->pool = $params['pool'];
-		$this->relayer = $params['relayer'];
 		$this->procCache = new HashBagOStuff( [ 'maxKeys' => self::MAX_PC_KEYS ] );
+		$this->purgeChannel = isset( $params['channels']['purge'] )
+			? $params['channels']['purge']
+			: self::DEFAULT_PURGE_CHANNEL;
+		$this->purgeRelayer = isset( $params['relayers']['purge'] )
+			? $params['relayers']['purge']
+			: new EventRelayerNull( [] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 	}
 
-	/**
-	 * Set logger instance.
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -950,7 +952,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			'sbt' => true, // substitute $UNIXTIME$ with actual microtime
 		] );
 
-		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
+		$ok = $this->purgeRelayer->notify( $this->purgeChannel, $event );
 		if ( !$ok ) {
 			$this->lastRelayError = self::ERR_RELAY;
 		}
@@ -970,7 +972,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			'key' => $key,
 		] );
 
-		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
+		$ok = $this->purgeRelayer->notify( $this->purgeChannel, $event );
 		if ( !$ok ) {
 			$this->lastRelayError = self::ERR_RELAY;
 		}
