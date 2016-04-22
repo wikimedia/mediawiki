@@ -2039,7 +2039,6 @@ return [
 	'mediawiki.special.userlogin.signup.js' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
 		'messages' => [
-			'createacct-error',
 			'createacct-emailrequired',
 			'noname',
 			'userexists',
@@ -2048,6 +2047,7 @@ return [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'jquery.throttle-debounce',
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.special.unwatchedPages' => [
