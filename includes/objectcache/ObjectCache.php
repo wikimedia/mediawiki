@@ -298,8 +298,10 @@ class ObjectCache {
 		}
 
 		$params = $wgWANObjectCaches[$id];
-		$class = $params['relayerConfig']['class'];
-		$params['relayer'] = new $class( $params['relayerConfig'] );
+		foreach ( $params['channels'] as $action => $channel ) {
+			$params['relayers'][$action] = EventRelayerGroup::singleton()->getRelayer( $channel );
+			$params['channels'][$action] = $channel;
+		}
 		$params['cache'] = self::newFromId( $params['cacheId'] );
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
