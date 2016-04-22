@@ -562,7 +562,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
-		$html = Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+		$html = Html::rawElement( 'div', [],
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
@@ -607,7 +607,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setRequest( $this->getRequest() );
 		}
-		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
 		if ( $wgLoginLanguageSelector ) {
@@ -839,26 +839,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->mSecureLoginUrl ) {
 			$secureLoginLink = Html::element( 'a', [
 				'href' => $this->mSecureLoginUrl,
-				'class' => 'mw-ui-flush-right mw-secure',
+				'class' => 'mw-aside mw-secure',
 			], $this->msg( 'userlogin-signwithsecure' )->text() );
 		}
 		$usernameHelpLink = '';
 		if ( !$this->msg( 'createacct-helpusername' )->isDisabled() ) {
 			$usernameHelpLink = Html::rawElement( 'span', [
-				'class' => 'mw-ui-flush-right',
+				'class' => 'mw-aside',
 			], $this->msg( 'createacct-helpusername' )->parse() );
 		}
 
 		if ( $this->isSignup() ) {
 			$fieldDefinitions = [
-				'statusarea' => [
-					// used by the mediawiki.special.userlogin.signup.js module for error display
-					// FIXME merge this with HTMLForm's normal status (error) area
-					'type' => 'info',
-					'raw' => true,
-					'default' => Html::element( 'div', [ 'id' => 'mw-createacct-status-area' ] ),
-					'weight' => -105,
-				],
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
@@ -953,6 +945,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
 					'weight' => 100,
+					'flags' => [ 'primary', 'constructive' ],
 				],
 			];
 		} else {
@@ -982,6 +975,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
+					'flags' => [ 'primary', 'progressive' ],
 				],
 				'linkcontainer' => [
 					// help link
@@ -1092,24 +1086,42 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$fieldDefinitions['createOrLogin'] = [
 					'type' => 'info',
 					'raw' => true,
+					'cssclass' => 'mw-form-related-link-container',
 					'linkQuery' => $linkq,
 					'default' => function ( $params ) use ( $loggedIn, $linkTitle ) {
-						return Html::rawElement( 'div',
-							[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
-								'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-							( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
-							. Html::element( 'a',
+						if ( $loggedIn ) {
+							return Html::rawElement( 'div',
 								[
-									'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
-									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
-									'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
-									'tabindex' => 100,
+									'id' => 'mw-createaccount',
 								],
-								$this->msg(
-									$loggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
-								)->escaped()
-							)
-						);
+								Html::element( 'a',
+									[
+										'id' => 'mw-createaccount-join-loggedin',
+										'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
+										'tabindex' => 100,
+									],
+									$this->msg( 'userlogin-createanother' )->text()
+								)
+							);
+						} else {
+							return Html::rawElement( 'div',
+								[
+									'id' => 'mw-createaccount-cta'
+								],
+								Html::element( 'div',
+									[
+										'id' => 'mw-createaccount-cta-text',
+									],
+									$this->msg( 'userlogin-noaccount' )->text()
+								) . new OOUI\ButtonWidget( [
+									'id' => 'mw-createaccount-join',
+									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
+									'flags' => [ 'constructive' ],
+									'tabindex' => 100,
+									'label' => $this->msg( 'userlogin-joinproject' )->text(),
+								] )
+							);
+						}
 					},
 					'weight' => 235,
 				];

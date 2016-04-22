@@ -1,53 +1,55 @@
 /*!
  * JavaScript for signup form.
  */
+/*jshint -W024*/
 ( function ( mw, $ ) {
-	// When sending password by email, hide the password input fields.
+	// When sending password by email, mark the email field as required.
+	// The password input fields are hidden automatically with the 'hide-if' parameters.
 	$( function () {
-		// Always required if checked, otherwise it depends, so we use the original
-		var $emailLabel = $( 'label[for="wpEmail"]' ),
-			originalText = $emailLabel.text(),
-			requiredText = mw.message( 'createacct-emailrequired' ).text(),
-			$createByMailCheckbox = $( '#wpCreateaccountMail' ),
-			$beforePwds = $( '.mw-row-password:first' ).prev(),
-			$pwds;
+		var emailField, emailFieldLayout, originalText, originalRequired, requiredText, createByMail;
+
+		emailField = OO.ui.TextInputWidget.static.infuse( 'wpEmail' );
+		emailFieldLayout = OO.ui.FieldLayout.static.infuse(
+			$( '#wpEmail' ).closest( '.oo-ui-fieldLayout' )
+		);
+		originalText = emailFieldLayout.getLabel();
+		originalRequired = emailField.isRequired();
+		requiredText = mw.message( 'createacct-emailrequired' ).text();
+		createByMail = $( '#wpCreateaccountMail' ).length ?
+			OO.ui.CheckboxInputWidget.static.infuse( 'wpCreateaccountMail' ) :
+			null;
 
 		function updateForCheckbox() {
-			var checked = $createByMailCheckbox.prop( 'checked' );
+			var checked = createByMail.isSelected();
+			// Always required if checked, otherwise it depends, so we use the original
 			if ( checked ) {
-				$pwds = $( '.mw-row-password' ).detach();
-				$emailLabel.text( requiredText );
+				emailFieldLayout.setLabel( requiredText );
+				emailField.setRequired( true );
 			} else {
-				if ( $pwds ) {
-					$beforePwds.after( $pwds );
-					$pwds = null;
-				}
-				$emailLabel.text( originalText );
+				emailFieldLayout.setLabel( originalText );
+				emailField.setRequired( originalRequired );
 			}
 		}
 
-		$createByMailCheckbox.on( 'change', updateForCheckbox );
-		updateForCheckbox();
+		if ( createByMail ) {
+			createByMail.on( 'change', updateForCheckbox );
+			updateForCheckbox();
+		}
 	} );
 
 	// Check if the username is invalid or already taken
 	$( function () {
 		var
-			// We need to hook to all of these events to be sure we are notified of all changes to the
-			// value of an <input type=text> field.
-			events = 'keyup keydown change mouseup cut paste focus blur',
-			$input = $( '#wpName2' ),
-			$statusContainer = $( '#mw-createacct-status-area' ),
+			input = OO.ui.TextInputWidget.static.infuse( 'wpName2' ),
+			statusContainer = OO.ui.FieldLayout.static.infuse(
+				$( '#wpName2' ).closest( '.oo-ui-fieldLayout' )
+			),
 			api = new mw.Api(),
 			currentRequest;
 
 		// Hide any present status messages.
 		function clearStatus() {
-			$statusContainer.slideUp( function () {
-				$statusContainer
-					.removeAttr( 'class' )
-					.empty();
-			} );
+			statusContainer.setErrors( [] );
 		}
 
 		// Returns a promise receiving a { state:, username: } object, where:
@@ -85,7 +87,7 @@
 
 		function updateUsernameStatus() {
 			var
-				username = $.trim( $input.val() ),
+				username = $.trim( input.getValue() ),
 				currentRequestInternal;
 
 			// Abort any pending requests.
@@ -118,23 +120,13 @@
 						message = mw.message( 'userexists' ).text();
 					}
 
-					$statusContainer
-						.attr( 'class', 'errorbox' )
-						.empty()
-						.append(
-							// Ugh…
-							// TODO Change the HTML structure in includes/templates/Usercreate.php
-							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() ),
-							$( '<br>' ),
-							document.createTextNode( message )
-						)
-						.slideDown();
+					statusContainer.setErrors( [ message ] );
 				}
 			} ).fail( function () {
 				clearStatus();
 			} );
 		}
 
-		$input.on( events, $.debounce( 1000, updateUsernameStatus ) );
+		input.on( 'change', $.debounce( 1000, updateUsernameStatus ) );
 	} );
 }( mediaWiki, jQuery ) );
