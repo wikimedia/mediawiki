@@ -548,7 +548,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
-		$html = Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+		$html = Html::rawElement( 'div', [],
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
@@ -593,7 +593,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setRequest( $this->getRequest() );
 		}
-		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
 		if ( $wgLoginLanguageSelector ) {
@@ -680,20 +680,21 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$createOrLoginHtml = Html::rawElement( 'div',
 					[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
 						'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-					( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
-					. Html::element( 'a',
-						[
-							'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
-							'href' => $linkTitle->getLocalURL( $linkq ),
-							'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
-							'tabindex' => 100,
-						],
-						$this->msg(
+					( $loggedIn ?
+						'' :
+						'<strong>' . $this->msg( 'userlogin-noaccount' )->escaped() . '</strong> '
+					) .
+					new \OOUI\ButtonWidget( [
+						'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
+						'href' => $linkTitle->getLocalURL( $linkq ),
+						'flags' => $loggedIn ? [] : [ 'constructive' ],
+						'tabIndex' => 100,
+						'label' => $this->msg(
 							( $this->getUser()->isLoggedIn() ?
 								'userlogin-createanother' :
 								'userlogin-joinproject'
-							) )->escaped()
-					)
+							) )->text()
+					] )
 				);
 				$form->addFooterText( $createOrLoginHtml );
 			}
@@ -1006,6 +1007,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
 					'weight' => 100,
+					'flags' => [ 'primary', 'constructive' ],
 				],
 			];
 		} else {
@@ -1035,6 +1037,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
+					'flags' => [ 'primary', 'progressive' ],
 				],
 				'linkcontainer' => [
 					// help link
