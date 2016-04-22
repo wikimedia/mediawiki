@@ -618,10 +618,9 @@ if ( $wgMainWANCache === false ) {
 	// Sites using multiple datacenters can configure a relayer.
 	$wgMainWANCache = 'mediawiki-main-default';
 	$wgWANObjectCaches[$wgMainWANCache] = [
-		'class'         => 'WANObjectCache',
-		'cacheId'       => $wgMainCacheType,
-		'pool'          => 'mediawiki-main-default',
-		'relayerConfig' => [ 'class' => 'EventRelayerNull' ]
+		'class'    => 'WANObjectCache',
+		'cacheId'  => $wgMainCacheType,
+		'channels' => [ 'purge' => 'mediawiki-main-memcached-purge' ]
 	];
 }
 
