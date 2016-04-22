@@ -2223,27 +2223,24 @@ $wgMainWANCache = false;
  *
  * The format is an associative array where the key is a cache identifier, and
  * the value is an associative array of parameters. The "cacheId" parameter is
- * a cache identifier from $wgObjectCaches. The "relayerConfig" parameter is an
- * array used to construct an EventRelayer object. The "pool" parameter is a
- * string that is used as a PubSub channel prefix. The "loggroup" parameter
- * controls where log events are sent.
+ * a cache identifier from $wgObjectCaches. The "channels" parameter is a map of
+ * actions ('purge') to PubSub channels defined in $wgEventRelayerConfig.
+ * The "loggroup" parameter controls where log events are sent.
  *
  * @since 1.26
  */
 $wgWANObjectCaches = [
 	CACHE_NONE => [
-		'class'         => 'WANObjectCache',
-		'cacheId'       => CACHE_NONE,
-		'pool'          => 'mediawiki-main-none',
-		'relayerConfig' => [ 'class' => 'EventRelayerNull' ]
+		'class'    => 'WANObjectCache',
+		'cacheId'  => CACHE_NONE,
+		'channels' => []
 	]
 	/* Example of a simple single data-center cache:
-	'memcached-php' => array(
-		'class'         => 'WANObjectCache',
-		'cacheId'       => 'memcached-php',
-		'pool'          => 'mediawiki-main-memcached',
-		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
-	)
+	'memcached-php' => [
+		'class'    => 'WANObjectCache',
+		'cacheId'  => 'memcached-php',
+		'channels' => [ 'purge' => 'wancache-main-memcached-purge' ]
+	]
 	*/
 ];
 
