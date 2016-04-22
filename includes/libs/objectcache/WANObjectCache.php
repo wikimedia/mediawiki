@@ -72,7 +72,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var string Cache pool name */
 	protected $pool;
 	/** @var EventRelayer Bus that handles purge broadcasts */
-	protected $relayer;
+	protected $purgeRelayer;
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -136,23 +136,23 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param array $params
-	 *   - cache   : BagOStuff object
-	 *   - pool    : pool name
-	 *   - relayer : EventRelayer object
-	 *   - logger  : LoggerInterface object
+	 *   - cache    : BagOStuff object
+	 *   - pool     : pool name
+	 *   - relayers : Map of (action => EventRelayer object). Actions include "purge".
+	 *   - logger   : LoggerInterface object
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
 		$this->pool = $params['pool'];
-		$this->relayer = $params['relayer'];
 		$this->procCache = new HashBagOStuff( [ 'maxKeys' => self::MAX_PC_KEYS ] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+		if ( isset( $params['relayers']['purge'] ) ) {
+			$this->purgeRelayer = $params['relayers']['purge'];
+		} else {
+			$this->purgeRelayer = new EventRelayerNull( [] );
+		}
 	}
 
-	/**
-	 * Set logger instance.
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -950,7 +950,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			'sbt' => true, // substitute $UNIXTIME$ with actual microtime
 		] );
 
-		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
+		$ok = $this->purgeRelayer->notify( "{$this->pool}:purge", $event );
 		if ( !$ok ) {
 			$this->lastRelayError = self::ERR_RELAY;
 		}
@@ -970,7 +970,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			'key' => $key,
 		] );
 
-		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
+		$ok = $this->purgeRelayer->notify( "{$this->pool}:purge", $event );
 		if ( !$ok ) {
 			$this->lastRelayError = self::ERR_RELAY;
 		}
