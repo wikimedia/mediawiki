@@ -1,67 +1,50 @@
 /* User login and signup forms */
-.mw-ui-vform .mw-form-related-link-container {
-	margin-bottom: 0.5em;
+.mw-form-related-link-container {
+	margin: 0.5em 0;
 	text-align: center;
 }
 
-.mw-ui-vform .mw-secure {
+.mw-form-related-link-container .oo-ui-labelWidget {
+	display: block;
+}
+
+.mw-secure {
 	/* @embed */
 	background: url( images/icon-lock.png ) no-repeat left center;
 	margin: 0 0 0 1px;
 	padding: 0 0 0 11px;
 }
 
-/*
- * When inside the VForm style, disable the border that Vector and other skins
- * put on the div surrounding the login/create account form.
- * Also disable the margin and padding that Vector puts around the form.
- */
-.mw-ui-container #userloginForm,
-.mw-ui-container #userlogin {
-	border: 0;
-	margin: 0;
-	padding: 0;
+.mw-aside {
+	/* This is weird and fragile, but we can't just do 'float: right' due to FieldLayout's styles. */
+	position: absolute;
+	right: 0;
+}
+
+#userloginForm {
+	width: 25em;
 }
 
 /* Reposition and resize language links, which appear on a per-wiki basis */
-.mw-ui-container #languagelinks {
+#languagelinks {
 	margin-bottom: 2em;
 	font-size: 0.8em;
 }
 
-/* Put some space under template's header, which may contain CAPTCHA HTML.*/
-section.mw-form-header {
-	margin-bottom: 10px;
-}
-
-/* shuffled CAPTCHA */
-#wpCaptchaWord {
-	margin-top: 6px;
-}
-
+/* ConfirmEdit's CAPTCHA */
 .fancycaptcha-captcha-container {
 	background-color: #f8f8f8;
 	border: 1px solid #c9c9c9;
 	padding: 10px;
 	text-align: center;
-	margin-bottom: 15px;
 }
 
-.mw-createacct-captcha-assisted {
-	display: block;
-	margin-top: 0.5em;
-}
-
-/* Put a border around the fancycaptcha-image-container. */
-.fancycaptcha-captcha-and-reload {
-	border: 1px solid #c9c9c9;
-	/* Other display formats end up too wide */
-	display: table-cell;
-	width: 270px;
-	background-color: #fff;
-}
-
-/* Make the fancycaptcha-image-container full-width within its parent. */
-.fancycaptcha-image-container {
+/* Make the buttons full-width to overall form. */
+/* Limit to .oo-ui-fieldLayout-body to avoid messing up the "help" icon buttons. */
+.oo-ui-fieldLayout-body .oo-ui-buttonElement,
+.oo-ui-fieldLayout-body .oo-ui-buttonElement-button {
 	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
