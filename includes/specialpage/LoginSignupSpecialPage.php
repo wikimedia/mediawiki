@@ -525,7 +525,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
-		$html = Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+		$html = Html::rawElement( 'div', [],
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
@@ -570,7 +570,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setRequest( $this->getRequest() );
 		}
-		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
 		if ( $wgLoginLanguageSelector ) {
@@ -656,7 +656,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 				if ( $this->getUser()->isLoggedIn() ) {
 					$createOrLoginHtml = Html::rawElement( 'div',
-						[ 'class' => 'mw-ui-vform-field' ],
+						[],
 						Html::element( 'a',
 							[
 								'id' => 'mw-createaccount-join',
@@ -669,18 +669,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					);
 				} else {
 					$createOrLoginHtml = Html::rawElement( 'div',
-						[ 'id' => 'mw-createaccount-cta',
-							'class' => 'mw-ui-vform-field' ],
+						[ 'id' => 'mw-createaccount-cta' ],
 						$this->msg( 'userlogin-noaccount' )->escaped()
-						. Html::element( 'a',
-							[
+						. new \OOUI\ButtonWidget( [
 								'id' => 'mw-createaccount-join',
+								'flags' => [ 'constructive' ],
 								'href' => $createOrLoginHref,
-								'class' => 'mw-ui-button',
-								'tabindex' => 100,
-							],
-							$this->msg( 'userlogin-joinproject' )->escaped()
-						)
+								'tabIndex' => 100,
+								'label' => $this->msg( 'userlogin-joinproject' )->text()
+						] )
 					);
 				}
 				$form->addFooterText( $createOrLoginHtml );
