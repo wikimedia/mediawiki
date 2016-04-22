@@ -270,24 +270,23 @@ class Linker {
 	/**
 	 * Returns the Url used to link to a Title
 	 *
-	 * @param Title $target
+	 * @param LinkTarget $target
 	 * @param array $query Query parameters
 	 * @param array $options
 	 * @return string
 	 */
-	private static function linkUrl( $target, $query, $options ) {
+	private static function linkUrl( LinkTarget $target, $query, $options ) {
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
 		if ( in_array( 'broken', $options, true ) && $target->hasFragment() ) {
-			$target = clone $target;
-			$target->setFragment( '' );
+			$target = $target->createFragmentTarget( '' );
 		}
 
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified, or unless 'edit' makes no sense
 		# (i.e., for a nonexistent special page).
 		if ( in_array( 'broken', $options, true ) && empty( $query['action'] )
-			&& !$target->isSpecialPage() ) {
+			&& $target->getNamespace() !== NS_SPECIAL ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
@@ -300,7 +299,8 @@ class Linker {
 			$proto = PROTO_RELATIVE;
 		}
 
-		$ret = $target->getLinkURL( $query, false, $proto );
+		$title = Title::newFromLinkTarget( $target );
+		$ret = $title->getLinkURL( $query, false, $proto );
 		return $ret;
 	}
 
