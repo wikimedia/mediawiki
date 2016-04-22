@@ -368,6 +368,9 @@ class MWDebug {
 			$sql
 		);
 
+		// last check for invalid utf8
+		$sql = UtfNormal\Validator::cleanUp( $sql );
+
 		self::$query[] = [
 			'sql' => $sql,
 			'function' => $function,
