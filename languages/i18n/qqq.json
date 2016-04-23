@@ -857,7 +857,7 @@
 	"userpage-userdoesnotexist": "Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki.\n\nParameters:\n* $1 - a username\n{{identical|userdoesnotexist}}",
 	"userpage-userdoesnotexist-view": "Shown in user pages of non-existing users. See for example [{{canonicalurl:User:Foo}} User:Foo].\n\nParameters:\n* $1 - a username\n{{identical|userdoesnotexist}}",
 	"blocked-notice-logextract": "{{gender}}\nParameters:\n* $1 - (Optional) the name of the blocked user. Can be used for GENDER.",
-	"clearyourcache": "Text at the top of .js/.css pages",
+	"clearyourcache": "Text at the top of .js/.css pages.\n\nWhen translating browser function names, check how they are translated in the localized versions of these web browsers in your language. If a browser is not translated to it, use English or another language in which browsers are most commonly used by the speakers of your language.",
 	"usercssyoucanpreview": "Text displayed on every CSS page.\n\nSee also:\n* {{msg-mw|Userjsyoucanpreview}}\n* {{msg-mw|Showpreview}}",
 	"userjsyoucanpreview": "Text displayed on every JavaScript page.\n\nSee also:\n* {{msg-mw|Usercssyoucanpreview}}\n* {{msg-mw|Showpreview}}",
 	"usercsspreview": "Text displayed on preview of every user .css subpage.\n\nSee also:\n* {{msg-mw|Sitecsspreview}}",

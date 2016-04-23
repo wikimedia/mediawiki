@@ -3358,7 +3358,7 @@
 	"logentry-protect-protect-cascade": "$1 je {{GENDER:$2|zaščitil|zaščitila|zaščitil(-a)}} $3 $4 [kaskadno]",
 	"logentry-protect-modify": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} stopnjo zaščite $3 $4",
 	"logentry-protect-modify-cascade": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} stopnjo zaščite $3 $4 [kaskadno]",
-	"logentry-rights-rights": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} uporabniške pravice {{GENDER:$3|uporabnika|uporabnice}} $3 z $4 na $5",
+	"logentry-rights-rights": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} uporabniške pravice {{GENDER:$6|uporabnika|uporabnice}} $3 z $4 na $5",
 	"logentry-rights-rights-legacy": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} uporabniške pravice uporabnika $3",
 	"logentry-rights-autopromote": "$1 je {{GENDER:$2|bil samodejno povišan|bila samodejno povišana|bil(-a) samodejno povišan(-a)}} z $4 na $5",
 	"logentry-upload-upload": "$1 je {{GENDER:$2|naložil|naložila|naložil(-a)}} $3",

@@ -3435,7 +3435,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|zamknul|zamknula}} stránku $3 $4 [kaskádovým zámkem]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|změnil|změnila}} úroveň ochrany stránky $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|změnil|změnila}} úroveň ochrany stránky $3 $4 [kaskádový zámek]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|změnil|změnila}} členství {{GENDER:$3|uživatele|uživatelky}} $3 ve skupinách z $4 na $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|změnil|změnila}} členství {{GENDER:$6|uživatele|uživatelky}} $3 ve skupinách z $4 na $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|byl automaticky povýšen|byla automaticky povýšena}} z $4 na $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|načetl|načetla}} $3",
