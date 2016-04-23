@@ -152,6 +152,13 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'StatsdDataFactory' );
 	}
 
+	/**
+	 * @return EventRelayerGroup
+	 */
+	public function getEventRelayerGroup() {
+		return $this->getService( 'EventRelayerGroup' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in
