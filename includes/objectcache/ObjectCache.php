@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Functions to get cache objects
@@ -299,7 +300,8 @@ class ObjectCache {
 
 		$params = $wgWANObjectCaches[$id];
 		foreach ( $params['channels'] as $action => $channel ) {
-			$params['relayers'][$action] = EventRelayerGroup::singleton()->getRelayer( $channel );
+			$params['relayers'][$action] = MediaWikiServices::getInstance()->getEventRelayerGroup()
+				->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
 		}
 		$params['cache'] = self::newFromId( $params['cacheId'] );

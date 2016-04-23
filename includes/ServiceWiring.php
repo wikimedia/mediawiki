@@ -78,6 +78,10 @@ return [
 		);
 	},
 
+	'EventRelayerGroup' => function( MediaWikiServices $services ) {
+		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
