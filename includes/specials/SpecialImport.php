@@ -594,9 +594,13 @@ class ImportReporter extends ContextSource {
 		$this->mPageCount++;
 
 		if ( $successCount > 0 ) {
+			// <bdi> prevents jumbling of the versions count
+			// in RTL wikis in case the page title is LTR
 			$this->getOutput()->addHTML(
 				"<li>" . Linker::linkKnown( $title ) . " " .
+					"<bdi>" .
 					$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
+					"</bdi>" .
 					"</li>\n"
 			);
 
