@@ -23,6 +23,7 @@ class EventRelayerGroup {
 	}
 
 	/**
+	 * @deprecated since 1.27 Use MediaWikiServices::getInstance()->getEventRelayerGroup()
 	 * @return EventRelayerGroup
 	 */
 	public static function singleton() {
