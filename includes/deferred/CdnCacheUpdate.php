@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Assert\Assert;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handles purging appropriate CDN URLs given a title (or titles)
@@ -109,7 +110,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
 		// Reliably broadcast the purge to all edge nodes
-		$relayer = EventRelayerGroup::singleton()->getRelayer( 'cdn-url-purges' );
+		$relayer = MediaWikiServices::getInstance()->getEventRelayerGroup()
+					->getRelayer( 'cdn-url-purges' );
 		$relayer->notify(
 			'cdn-url-purges',
 			[

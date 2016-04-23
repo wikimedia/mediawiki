@@ -18,11 +18,12 @@ class EventRelayerGroup {
 	/**
 	 * @param Config $config
 	 */
-	protected function __construct( Config $config ) {
+	public function __construct( Config $config ) {
 		$this->configByChannel = $config->get( 'EventRelayerConfig' );
 	}
 
 	/**
+	 * @deprecated since 1.27 Use MediaWikiServices::getInstance()->getEventRelayerGroup()
 	 * @return EventRelayerGroup
 	 */
 	public static function singleton() {
