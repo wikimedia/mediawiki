@@ -60,8 +60,8 @@ class Interwiki {
 		$this->mURL = $url;
 		$this->mAPI = $api;
 		$this->mWikiID = $wikiId;
-		$this->mLocal = $local;
-		$this->mTrans = $trans;
+		$this->mLocal = (bool)$local;
+		$this->mTrans = (bool)$trans;
 	}
 
 	/**
@@ -115,7 +115,16 @@ class Interwiki {
 	}
 
 	/**
-	 * Purge the cache for an interwiki prefix
+	 * Resets locally cached Interwiki objects. This is intended for use during testing only.
+	 * This does not invalidate entries in the persistent cache, as invalidateCache() does.
+	 * @since 1.27
+	 */
+	public static function resetLocalCache() {
+		static::$smCache = [];
+	}
+
+	/**
+	 * Purge the cache (local and persistent) for an interwiki prefix.
 	 * @param string $prefix
 	 * @since 1.26
 	 */
@@ -123,6 +132,7 @@ class Interwiki {
 		$cache = ObjectCache::getMainWANInstance();
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$cache->delete( $key );
+		unset( static::$smCache[$prefix] );
 	}
 
 	/**
@@ -141,7 +151,7 @@ class Interwiki {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
-			$s->mLocal = (int)$local;
+			$s->mLocal = (bool)$local;
 		} else {
 			$s = false;
 		}
@@ -262,8 +272,8 @@ class Interwiki {
 		if ( isset( $mc['iw_url'] ) ) {
 			$iw = new Interwiki();
 			$iw->mURL = $mc['iw_url'];
-			$iw->mLocal = isset( $mc['iw_local'] ) ? $mc['iw_local'] : 0;
-			$iw->mTrans = isset( $mc['iw_trans'] ) ? $mc['iw_trans'] : 0;
+			$iw->mLocal = isset( $mc['iw_local'] ) ? (bool)$mc['iw_local'] : false;
+			$iw->mTrans = isset( $mc['iw_trans'] ) ? (bool)$mc['iw_trans'] : false;
 			$iw->mAPI = isset( $mc['iw_api'] ) ? $mc['iw_api'] : '';
 			$iw->mWikiID = isset( $mc['iw_wikiid'] ) ? $mc['iw_wikiid'] : '';
 
@@ -453,7 +463,7 @@ class Interwiki {
 	public function getName() {
 		$msg = wfMessage( 'interwiki-name-' . $this->mPrefix )->inContentLanguage();
 
-		return !$msg->exists() ? '' : $msg;
+		return !$msg->exists() ? '' : $msg->text();
 	}
 
 	/**
@@ -464,7 +474,7 @@ class Interwiki {
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
 
-		return !$msg->exists() ? '' : $msg;
+		return !$msg->exists() ? '' : $msg->text();
 	}
 
 	/**
