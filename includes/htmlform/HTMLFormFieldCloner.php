@@ -271,7 +271,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		$fields = $this->createFieldsForKey( $key );
 		foreach ( $fields as $fieldname => $field ) {
-			$v = isset( $values[$fieldname] )
+			$v = array_key_exists( $fieldname, $values )
 				? $values[$fieldname]
 				: $field->getDefault();
 
