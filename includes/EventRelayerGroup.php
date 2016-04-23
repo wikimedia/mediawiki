@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Factory class for spawning EventRelayer objects using configuration
  *
@@ -12,25 +14,19 @@ class EventRelayerGroup {
 	/** @var EventRelayer[] */
 	protected $relayers = [];
 
-	/** @var EventRelayerGroup */
-	protected static $instance = null;
-
 	/**
-	 * @param Config $config
+	 * @param array[] $config Channel configuration
 	 */
-	protected function __construct( Config $config ) {
-		$this->configByChannel = $config->get( 'EventRelayerConfig' );
+	public function __construct( array $config ) {
+		$this->configByChannel = $config;
 	}
 
 	/**
+	 * @deprecated since 1.27 Use MediaWikiServices::getInstance()->getEventRelayerGroup()
 	 * @return EventRelayerGroup
 	 */
 	public static function singleton() {
-		if ( !self::$instance ) {
-			self::$instance = new self( RequestContext::getMain()->getConfig() );
-		}
-
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getEventRelayerGroup();
 	}
 
 	/**
