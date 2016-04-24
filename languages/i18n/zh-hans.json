@@ -861,7 +861,7 @@
 	"history-feed-item-nocomment": "$2 $1",
 	"history-feed-empty": "所请求的页面不存在。它可能已被删除或重命名。\n尝试[[Special:Search|搜索本站]]获得相关的新建页面。",
 	"history-edit-tags": "编辑选定修订版本的标签",
-	"rev-deleted-comment": "（编辑摘要被删除）",
+	"rev-deleted-comment": "（编辑摘要被移除）",
 	"rev-deleted-user": "（用户名被删除）",
 	"rev-deleted-event": "（日志详情已移除）",
 	"rev-deleted-user-contribs": "[用户名或IP地址被删除 - 编辑在贡献中隐藏]",

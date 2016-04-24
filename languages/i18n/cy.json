@@ -16,7 +16,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Diafol",
-			"Nemo bis"
+			"Nemo bis",
+			"Dafyddt"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -1622,6 +1623,7 @@
 	"specialloguserlabel": "Gwneuthurwr:",
 	"speciallogtitlelabel": "Targed (teitl neu {{ns:user}}:username ar gyfer y defnyddiwr):",
 	"log": "Logiau",
+	"logeventslist-submit": "Dangos",
 	"all-logs-page": "Pob lòg cyhoeddus",
 	"alllogstext": "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.\nGallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig.\nSylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 	"logempty": "Does dim eitemau yn cyfateb yn y lòg.",
@@ -1643,6 +1645,7 @@
 	"cachedspecial-viewing-cached-ts": "Rydych yn edrych ar fersiwn o'r dudalen a roddwyd ar gadw mewn celc. Gall fod yn wahanol i'r fersiwn cyfoes.",
 	"cachedspecial-refresh-now": "Gweld y diwygiad diweddaraf.",
 	"categories": "Categorïau",
+	"categories-submit": "Dangos",
 	"categoriespagetext": "Mae'r {{PLURAL:$1|categori|categori|categorïau|categorïau|categorïau|categorïau}} isod yn cynnwys tudalennau neu ffeiliau amlgyfrwng.\nNi ddangosir [[Special:UnusedCategories|categorïau gwag]] yma.\nGweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 	"categoriesfrom": "Dangos categorïau gan ddechrau gyda:",
 	"deletedcontributions": "Cyfraniadau defnyddiwr i dudalennau dilëedig",
@@ -1746,6 +1749,8 @@
 	"wlheader-showupdated": "Mae tudalennau sydd wedi newid ers i chi eu gweld ddiwethaf wedi'u '''hamlygu'''.",
 	"wlnote": "Isod, {{PLURAL:$1|yw'r golygiad diweddaraf |yw'r golygiadau diweddaraf <strong>$1</strong> changes}} yn y {{PLURAL:$2|hour|<strong>$2</strong> awr}}, fel ag y mae ar $3, $4.",
 	"wlshowlast": "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r newidiadau.",
+	"watchlist-hide": "Cuddio",
+	"watchlist-submit": "Dangos",
 	"wlshowtime": "Dangos y diwethaf:",
 	"wlshowhideminor": "golygiadau bychan",
 	"wlshowhidebots": "botiau",
@@ -1783,6 +1788,7 @@
 	"delete-confirm": "Dileu \"$1\"",
 	"delete-legend": "Dileu",
 	"historywarning": "<strong>Rhybudd:</strong> bu tua $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|o olygiadau}} yn hanes y dudalen rydych ar fin ei dileu:",
+	"historyaction-submit": "Dangos",
 	"confirmdeletetext": "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.\nOs gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 	"actioncomplete": "Wedi cwblhau'r weithred",
 	"actionfailed": "Methodd y weithred",
