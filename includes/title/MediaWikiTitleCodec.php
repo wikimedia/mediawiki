@@ -21,6 +21,7 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * A codec for %MediaWiki page titles.
