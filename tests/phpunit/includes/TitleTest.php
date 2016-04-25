@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @group Title
@@ -144,6 +146,9 @@ class TitleTest extends MediaWikiTestCase {
 				]
 			]
 		] );
+
+		// Reset since we modified $wgLocalInterwikis
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaWikiTitleCodec' );
 	}
 
 	/**
