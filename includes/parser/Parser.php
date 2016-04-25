@@ -739,8 +739,7 @@ class Parser {
 
 		if ( $t->hasFragment() ) {
 			# Strip the fragment to avoid various odd effects
-			$this->mTitle = clone $t;
-			$this->mTitle->setFragment( '' );
+			$this->mTitle = $t->createFragmentTarget( '' );
 		} else {
 			$this->mTitle = $t;
 		}
