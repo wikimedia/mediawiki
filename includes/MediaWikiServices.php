@@ -12,6 +12,8 @@ use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
 use SiteLookup;
 use SiteStore;
+use TitleFormatter;
+use TitleParser;
 
 /**
  * Service locator for MediaWiki core services.
@@ -180,6 +182,20 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSearchEngineConfig() {
 		return $this->getService( 'SearchEngineConfig' );
+	}
+
+	/**
+	 * @return TitleFormatter
+	 */
+	public function getTitleFormatter() {
+		return $this->getService( 'MediaWikiTitleCodec' );
+	}
+
+	/**
+	 * @return TitleParser
+	 */
+	public function getTitleParser() {
+		return $this->getService( 'MediaWikiTitleCodec' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

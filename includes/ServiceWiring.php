@@ -90,7 +90,18 @@ return [
 	'SearchEngineConfig' => function( MediaWikiServices $services ) {
 		// Create a search engine config from main config.
 		$config = $services->getService( 'MainConfig' );
+
 		return new SearchEngineConfig( $config );
+	},
+
+	'MediaWikiTitleCodec' => function( MediaWikiServices $services ) {
+		global $wgContLang;
+
+		return new MediaWikiTitleCodec(
+			$wgContLang,
+			GenderCache::singleton(), // @todo this should be a service thing
+			$services->getMainConfig()->get( 'LocalInterwikis' )
+		);
 	}
 
 	///////////////////////////////////////////////////////////////////////////
