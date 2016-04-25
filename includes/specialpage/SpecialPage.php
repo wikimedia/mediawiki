@@ -59,6 +59,9 @@ class SpecialPage {
 	/**
 	 * Get a localised Title object for a specified special page name
 	 *
+	 * @since 1.9
+	 * @since 1.21 $fragment parameter added
+	 *
 	 * @param string $name
 	 * @param string|bool $subpage Subpage string, or false to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
