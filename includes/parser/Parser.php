@@ -1863,11 +1863,22 @@ class Parser {
 	 */
 	public function getExternalLinkAttribs( $url = false ) {
 		$attribs = [];
-		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
+		$rel = self::getExternalLinkRel( $url, $this->mTitle );
 
-		if ( $this->mOptions->getExternalLinkTarget() ) {
-			$attribs['target'] = $this->mOptions->getExternalLinkTarget();
+		$target = $this->mOptions->getExternalLinkTarget();
+		if ( $target ) {
+			$attribs['target'] = $target;
+			if ( !in_array( $target, [ '_self', '_parent', '_top' ] ) ) {
+				// T133507. New windows can navigate parent cross-origin.
+				// Including noreferrer due to lacking browser
+				// support of noopener. Eventually noreferrer should be removed.
+				if ( $rel !== '' ) {
+					$rel .= ' ';
+				}
+				$rel .= 'noreferrer noopener';
+			}
 		}
+		$attribs['rel'] = $rel;
 		return $attribs;
 	}
 
