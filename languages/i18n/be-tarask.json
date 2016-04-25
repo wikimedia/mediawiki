@@ -1768,6 +1768,7 @@
 	"apisandbox-submit-invalid-fields-message": "Калі ласка, выпраўце пазначаныя палі і паспрабуйце яшчэ раз.",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-sending-request": "Адпраўка API-запыту…",
+	"apisandbox-loading-results": "Атрымліваем API-вынікі…",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",
 	"booksources": "Крыніцы кніг",

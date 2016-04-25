@@ -3071,7 +3071,7 @@
 	"watchlistedit-raw-done": "Jūsų stebimųjų sąrašas buvo atnaujintas.",
 	"watchlistedit-raw-added": "$1 {{PLURAL:$1|puslapis buvo pridėtas|puslapiai buvo pridėti|puslapių buvo pridėta}}:",
 	"watchlistedit-raw-removed": "$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}}:",
-	"watchlistedit-clear-title": "Išvalytas stebimųjų sąrašas",
+	"watchlistedit-clear-title": "Išvalyti stebimųjų sąrašą",
 	"watchlistedit-clear-legend": "Išvalyti stebimųjų sąrašą",
 	"watchlistedit-clear-explain": "Visi pavadinimai bus pašalinti iš jūsų stebimųjų sąrašo",
 	"watchlistedit-clear-titles": "Pavadinimai:",

@@ -2114,7 +2114,7 @@
 	"undeletedrevisions-files": "{{PLURAL:$1|גרסה אחת|$1 גרסאות}} ו{{PLURAL:$2|קובץ אחד|־$2 קבצים}} שוחזרו",
 	"undeletedfiles": "{{PLURAL:$1|שוחזר קובץ אחד|שוחזרו $1 קבצים}}",
 	"cannotundelete": "השחזור נכשל:\n$1",
-	"undeletedpage": "'''הדף $1 שוחזר בהצלחה.'''\n\nראו את [[Special:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושחזורים אחרונים.",
+	"undeletedpage": "<strong>הדף $1 שוחזר</strong>\n\nראו את [[Special:Log/delete|יומן המחיקות]] לרשימה של המחיקות והשחזורים שבוצעו לאחרונה.",
 	"undelete-header": "ראו את [[Special:Log/delete|יומן המחיקות]] לדפים שנמחקו לאחרונה.",
 	"undelete-search-title": "חיפוש דפים שנמחקו",
 	"undelete-search-box": "חיפוש דפים שנמחקו",
