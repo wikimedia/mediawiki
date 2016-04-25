@@ -8057,7 +8057,7 @@ $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
 $wgMaxUserDBWriteDuration = false;
 
 /**
- * Mapping of event channels to EventRelayer configuration.
+ * Mapping of event channels (or channel categories) to EventRelayer configuration.
  *
  * By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class
  * that uses it, MediaWiki can broadcast events to all subscribers. Certain features like WAN
@@ -8065,7 +8065,13 @@ $wgMaxUserDBWriteDuration = false;
  * subscribe to the channel and take actions based on the events. For example, a local daemon
  * can run on each CDN cache node and perfom local purges based on the URL purge channel events.
  *
- * The 'default' channel is for all channels without an explicit entry here.
+ * Some extensions may want to use "channel categories" so that different channels can also share
+ * the same custom relayer instance (e.g. when it's likely to be overriden). They can use
+ * EventRelayerGroup::getRelayer() based on the category but call notify() on various different
+ * actual channels. One reason for this would be that some system have very different performance
+ * vs durability needs, so one system (e.g. Kafka) may not be suitable for all uses.
+ *
+ * The 'default' key is for all channels (or channel categories) without an explicit entry here.
  *
  * @since 1.27
  */
