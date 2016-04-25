@@ -80,8 +80,9 @@
 				} else if ( page.invalidreason ) {
 					resultOut = mw.html.escape( page.invalidreason );
 				}
-				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
+			} ).always( function () {
+				$spinnerDestCheck.remove();
 			} );
 		},
 
@@ -130,8 +131,9 @@
 				prop: 'text',
 				pst: true
 			} ).done( function ( result ) {
-				$spinnerLicense.remove();
 				uploadLicense.processResult( result, license );
+			} ).always( function () {
+				$spinnerLicense.remove();
 			} );
 		},
 
