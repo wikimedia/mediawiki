@@ -27,6 +27,7 @@
  * @file
  * @ingroup Testing
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup Testing
@@ -329,6 +330,18 @@ class ParserTest {
 	 */
 	public static function tearDownInterwikis() {
 		Hooks::clear( 'InterwikiLoadPrefix' );
+	}
+
+	/**
+	 * Reset the Title-related services that need resetting
+	 * for each test
+	 */
+	public static function resetTitleServices() {
+		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'TitleFormatter' );
+		$services->resetServiceForTesting( 'TitleParser' );
+		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
+
 	}
 
 	public function setupRecorder( $options ) {
@@ -957,6 +970,8 @@ class ParserTest {
 		MagicWord::clearCache();
 		MWTidy::destroySingleton();
 		RepoGroup::destroySingleton();
+
+		self::resetTitleServices();
 
 		return $context;
 	}
