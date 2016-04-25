@@ -500,19 +500,19 @@ class MssqlInstaller extends DatabaseInstaller {
 				"CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ),
 				__METHOD__
 			);
-			$conn->selectDB( $dbName );
-			if ( !$this->schemaExists( $schemaName ) ) {
-				$conn->query(
-					"CREATE SCHEMA " . $conn->addIdentifierQuotes( $schemaName ),
-					__METHOD__
-				);
-			}
-			if ( !$this->catalogExists( $schemaName ) ) {
-				$conn->query(
-					"CREATE FULLTEXT CATALOG " . $conn->addIdentifierQuotes( $schemaName ),
-					__METHOD__
-				);
-			}
+		}
+		$conn->selectDB( $dbName );
+		if ( !$this->schemaExists( $schemaName ) ) {
+			$conn->query(
+				"CREATE SCHEMA " . $conn->addIdentifierQuotes( $schemaName ),
+				__METHOD__
+			);
+		}
+		if ( !$this->catalogExists( $schemaName ) ) {
+			$conn->query(
+				"CREATE FULLTEXT CATALOG " . $conn->addIdentifierQuotes( $schemaName ),
+				__METHOD__
+			);
 		}
 		$this->setupSchemaVars();
 

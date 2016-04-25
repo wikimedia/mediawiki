@@ -1,0 +1,1 @@
+﻿ALTER TABLE /*_*/mwuser DROP COLUMN user_options;

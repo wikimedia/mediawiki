@@ -38,7 +38,6 @@ CREATE TABLE /*_*/mwuser (
    user_newpassword  NVARCHAR(255)  NOT NULL DEFAULT '',
    user_newpass_time varchar(14) NULL DEFAULT NULL,
    user_email        NVARCHAR(255)  NOT NULL DEFAULT '',
-   user_options      NVARCHAR(MAX) NOT NULL DEFAULT '',
    user_touched      varchar(14)      NOT NULL DEFAULT '',
    user_token        NCHAR(32)      NOT NULL DEFAULT '',
    user_email_authenticated varchar(14) DEFAULT NULL,
@@ -100,6 +99,20 @@ CREATE TABLE /*_*/user_properties (
 );
 CREATE UNIQUE CLUSTERED INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
 CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
+
+--
+-- This table contains a user's bot passwords: passwords that allow access to
+-- the account via the API with limited rights.
+--
+CREATE TABLE /*_*/bot_passwords (
+	bp_user int NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
+	bp_app_id nvarchar(32) NOT NULL,
+	bp_password nvarchar(255) NOT NULL,
+	bp_token nvarchar(255) NOT NULL,
+	bp_restrictions nvarchar(max) NOT NULL,
+	bp_grants nvarchar(max) NOT NULL,
+	PRIMARY KEY (bp_user, bp_app_id)
+);
 
 
 --
@@ -218,11 +231,13 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 --
 CREATE TABLE /*_*/pagelinks (
    pl_from INT NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+   pl_from_namespace int NOT NULL DEFAULT 0,
    pl_namespace INT NOT NULL DEFAULT 0,
    pl_title NVARCHAR(255) NOT NULL DEFAULT '',
 );
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
 CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_from_namespace,pl_namespace,pl_title,pl_from);
 
 
 --
@@ -230,12 +245,14 @@ CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,p
 --
 CREATE TABLE /*_*/templatelinks (
   tl_from int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+  tl_from_namespace int NOT NULL default 0,
   tl_namespace int NOT NULL default 0,
   tl_title nvarchar(255) NOT NULL default ''
 );
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
 CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_from_namespace,tl_namespace,tl_title,tl_from);
 
 
 --
@@ -246,6 +263,7 @@ CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_tit
 CREATE TABLE /*_*/imagelinks (
   -- Key to page_id of the page containing the image / media link.
   il_from int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+  il_from_namespace int NOT NULL default 0,
 
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
@@ -255,6 +273,7 @@ CREATE TABLE /*_*/imagelinks (
 
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
 CREATE UNIQUE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
+CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_from_namespace,il_to,il_from);
 
 --
 -- Track category inclusions *used inline*
@@ -313,8 +332,8 @@ CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_
 -- Used by the API (and some extensions)
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 
--- FIXME: Not used, delete this
-CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
+-- Used when updating collation (e.g. updateCollation.php)
+CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
 --
 -- Track all existing categories.  Something is a category if 1) it has an en-
@@ -375,6 +394,9 @@ CREATE TABLE /*_*/externallinks (
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index);
+-- el_to index intentionally not added; we cannot index nvarchar(max) columns,
+-- but we also cannot restrict el_to to a smaller column size as the external
+-- link may be larger.
 
 --
 -- Track interlanguage links
@@ -766,11 +788,6 @@ CREATE TABLE /*_*/recentchanges (
   rc_id int NOT NULL PRIMARY KEY IDENTITY,
   rc_timestamp varchar(14) not null default '',
 
-  -- This is no longer used
-  -- Field kept in database for downgrades
-  -- @todo: add drop patch with 1.24
-  rc_cur_time varchar(14) NOT NULL default '',
-
   -- As in revision
   rc_user int NOT NULL default 0 REFERENCES /*_*/mwuser(user_id),
   rc_user_text nvarchar(255) NOT NULL,
@@ -1157,11 +1174,13 @@ CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
   pp_propname nvarchar(60) NOT NULL,
-  pp_value nvarchar(max) NOT NULL
+  pp_value nvarchar(max) NOT NULL,
+  pp_sortkey float DEFAULT NULL
 );
 
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
+CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
 
 -- A table to log updates, one text key row per update.

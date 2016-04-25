@@ -276,7 +276,15 @@ class DatabaseMssql extends Database {
 			$res = $res->result;
 		}
 
-		return sqlsrv_num_rows( $res );
+		$ret = sqlsrv_num_rows( $res );
+
+		if ( $ret === false ) {
+			// we cannot get an amount of rows from this cursor type
+			// has_rows returns bool true/false if the result has rows
+			$ret = (int)sqlsrv_has_rows( $res );
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -696,6 +704,12 @@ class DatabaseMssql extends Database {
 				$row = $ret->fetchObject();
 				if ( is_object( $row ) ) {
 					$this->mInsertId = $row->$identity;
+
+					// it seems that mAffectedRows is -1 sometimes when OUTPUT INSERTED.identity is used
+					// if we got an identity back, we know for sure a row was affected, so adjust that here
+					if ( $this->mAffectedRows == -1 ) {
+						$this->mAffectedRows = 1;
+					}
 				}
 			}
 		}
