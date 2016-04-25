@@ -212,15 +212,16 @@
 				// Prevent jQuery from overriding the Content-Type header
 				ajaxOptions.contentType = false;
 			} else {
-				// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
-				// So let's escape them here. See bug #28235
 				// This works because jQuery accepts data as a query string or as an Object
-				ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
-
+				ajaxOptions.data = $.param( parameters );
 				// If we extracted a token parameter, add it back in.
 				if ( token ) {
 					ajaxOptions.data += '&token=' + encodeURIComponent( token );
 				}
+
+				// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
+				// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
+				ajaxOptions.data = ajaxOptions.data.replace( /\./g, '%2E' );
 
 				if ( ajaxOptions.contentType === 'multipart/form-data' ) {
 					// We were asked to emulate but can't, so drop the Content-Type header, otherwise
