@@ -41,7 +41,7 @@
 		 *     // Place a small inline spinner next to the "Save" button
 		 *     var $spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 		 *     // Alternatively, just `$.createSpinner();` as these are the default options.
-		 *     $( '#wpSave' ).after( $spinner );
+		 *     $( '#wpPublish' ).after( $spinner );
 		 *
 		 *     // The following two are equivalent:
 		 *     $.createSpinner( 'magic' );
