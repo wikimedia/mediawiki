@@ -1697,7 +1697,7 @@ abstract class Installer {
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$page->doEditContent( $content,
+			$status = $page->doEditContent( $content,
 				'',
 				EDIT_NEW,
 				false,
