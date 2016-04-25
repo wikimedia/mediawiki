@@ -30,6 +30,8 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SearchEngineFactory' => [ 'getSearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'getSearchEngineConfig', SearchEngineConfig::class ],
 			'SkinFactory' => [ 'getSkinFactory', SkinFactory::class ],
+			'TitleFormatter' => [ 'getTitleFormatter', TitleFormatter::class ],
+			'TitleParser' => [ 'getTitleParser', TitleParser::class ],
 		];
 	}
 
@@ -58,6 +60,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
 			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
+			'MediaWikiTitleCodec' => [ 'MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 		];
 	}
 
