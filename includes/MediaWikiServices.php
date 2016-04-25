@@ -10,6 +10,7 @@ use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
+use MediaWikiTitleCodec;
 use MWException;
 use ResourceLoader;
 use SearchEngine;
@@ -18,6 +19,8 @@ use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
 use SkinFactory;
+use TitleFormatter;
+use TitleParser;
 
 /**
  * Service locator for MediaWiki core services.
@@ -411,6 +414,27 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return MediaWikiTitleCodec
+	 */
+	public function getMediaWikiTitleCodec() {
+		return $this->getService( 'MediaWikiTitleCodec' );
+	}
+
+	/**
+	 * @return TitleFormatter
+	 */
+	public function getTitleFormatter() {
+		return $this->getService( 'TitleFormatter' );
+	}
+
+	/**
+	 * @return TitleParser
+	 */
+	public function getTitleParser() {
+		return $this->getService( 'TitleParser' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

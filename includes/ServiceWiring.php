@@ -134,6 +134,24 @@ return [
 		return $factory;
 	},
 
+	'MediaWikiTitleCodec' => function( MediaWikiServices $services ) {
+		global $wgContLang;
+
+		return new MediaWikiTitleCodec(
+			$wgContLang,
+			GenderCache::singleton(), // @todo this should be a service thing
+			$services->getMainConfig()->get( 'LocalInterwikis' )
+		);
+	},
+
+	'TitleFormatter' => function( MediaWikiServices $services ) {
+		return $services->getMediaWikiTitleCodec();
+	},
+
+	'TitleParser' => function( MediaWikiServices $services ) {
+		return $services->getMediaWikiTitleCodec();
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
