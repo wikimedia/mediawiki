@@ -200,6 +200,10 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 
 		// All getters should be named just like the service, with "get" added.
 		foreach ( $getServiceCases as $name => $case ) {
+			if ( $name[0] === '_' ) {
+				// Internal service, no getter
+				continue;
+			}
 			list( $service, $class ) = $case;
 			$getterCases[$name] = [
 				'get' . $service,
@@ -239,6 +243,9 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
+			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
+			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
+			'TitleParser' => [ 'TitleParser', TitleParser::class ],
 		];
 	}
 
