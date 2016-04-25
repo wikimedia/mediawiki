@@ -19,6 +19,8 @@ use SiteLookup;
 use SiteStore;
 use WatchedItemStore;
 use SkinFactory;
+use TitleFormatter;
+use TitleParser;
 
 /**
  * Service locator for MediaWiki core services.
@@ -420,6 +422,20 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return TitleFormatter
+	 */
+	public function getTitleFormatter() {
+		return $this->getService( 'TitleFormatter' );
+	}
+
+	/**
+	 * @return TitleParser
+	 */
+	public function getTitleParser() {
+		return $this->getService( 'TitleParser' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

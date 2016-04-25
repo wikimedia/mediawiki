@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @group Title
@@ -144,6 +146,17 @@ class TitleTest extends MediaWikiTestCase {
 				]
 			]
 		] );
+
+		// Reset TitleParser since we modified $wgLocalInterwikis
+		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'TitleParser' );
+		$services->redefineService( 'TitleParser', function () {
+			return new MediaWikiTitleCodec(
+				Language::factory( 'en' ),
+				GenderCache::singleton(),
+				[ 'localtestiw' ]
+			);
+		} );
 	}
 
 	/**

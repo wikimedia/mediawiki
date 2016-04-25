@@ -136,7 +136,26 @@ return [
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+
 		return $store;
+	},
+
+	'_MediaWikiTitleCodec' => function( MediaWikiServices $services ) {
+		global $wgContLang;
+
+		return new MediaWikiTitleCodec(
+			$wgContLang,
+			GenderCache::singleton(), // @todo this should be a service thing
+			$services->getMainConfig()->get( 'LocalInterwikis' )
+		);
+	},
+
+	'TitleFormatter' => function( MediaWikiServices $services ) {
+		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'TitleParser' => function( MediaWikiServices $services ) {
+		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
 	///////////////////////////////////////////////////////////////////////////

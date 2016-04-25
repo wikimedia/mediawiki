@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Although marked as a stub, can work independently.
  *
@@ -179,6 +181,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 	}
 
 	protected function tearDown() {

@@ -27,6 +27,7 @@
  * @file
  * @ingroup Testing
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup Testing
@@ -248,6 +249,9 @@ class ParserTest {
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
 		Language::factory( 'en' )->resetNamespaces();
+
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 	}
 
 	/**
