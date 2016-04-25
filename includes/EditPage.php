@@ -3987,8 +3987,8 @@ HTML
 		$buttons = [];
 
 		$attribs = [
-			'id' => 'wpSave',
-			'name' => 'wpSave',
+			'id' => 'wpPublish',
+			'name' => 'wpPublish',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'publish' );
 		$buttons['save'] = Html::submitButton( wfMessage( 'publishpage' )->text(),
