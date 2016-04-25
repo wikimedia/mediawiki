@@ -3986,12 +3986,13 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
+		// FIXME: The use of the old id/name for a different semantic is bound to cause problems.
 		$attribs = [
 			'id' => 'wpSave',
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
-		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( wfMessage( 'savearticle' )->text(),
+		] + Linker::tooltipAndAccesskeyAttribs( 'publish' );
+		$buttons['save'] = Html::submitButton( wfMessage( 'publishpage' )->text(),
 			$attribs, [ 'mw-ui-constructive' ] );
 
 		++$tabindex; // use the same for preview and live preview
