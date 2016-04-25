@@ -119,6 +119,9 @@ abbr[title],
 /* Comment portions of RC entries */
 span.comment {
 	font-style: italic;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
 }
 
 /**
