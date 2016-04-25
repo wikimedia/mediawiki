@@ -3987,11 +3987,11 @@ HTML
 		$buttons = [];
 
 		$attribs = [
-			'id' => 'wpSave',
-			'name' => 'wpSave',
+			'id' => 'wpPublish',
+			'name' => 'wpPublish',
 			'tabindex' => ++$tabindex,
-		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( wfMessage( 'savearticle' )->text(),
+		] + Linker::tooltipAndAccesskeyAttribs( 'publish' );
+		$buttons['save'] = Html::submitButton( wfMessage( 'publishpage' )->text(),
 			$attribs, [ 'mw-ui-constructive' ] );
 
 		++$tabindex; // use the same for preview and live preview
