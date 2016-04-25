@@ -25,6 +25,8 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteStore' => [ 'getSiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'getSiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'getStatsdDataFactory', StatsdDataFactory::class ],
+			'TitleFormatter' => [ 'getTitleFormatter', TitleFormatter::class ],
+			'TitleParser' => [ 'getTitleParser', TitleParser::class ],
 		];
 	}
 
@@ -49,6 +51,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
+			'MediaWikiTitleCodec' => [ 'MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 		];
 	}
 
