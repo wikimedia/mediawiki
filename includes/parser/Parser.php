@@ -115,7 +115,8 @@ class Parser {
 	const OT_PLAIN = 4; # like extractSections() - portions of the original are returned unchanged.
 
 	# Marker Suffix needs to be accessible staticly.
-	const MARKER_SUFFIX = "-QINU\x7f";
+	# Must have a character that needs escaping in attributes (since 1.25.6)
+	const MARKER_SUFFIX = "-QINU`\"'\x7f";
 
 	# Markers used for wrapping the table of contents
 	const TOC_START = '<mw:toc>';
@@ -346,7 +347,7 @@ class Parser {
 		 * Must not consist of all title characters, or else it will change
 		 * the behavior of <nowiki> in a link.
 		 */
-		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
+		$this->mUniqPrefix = "\x7f'\"`UNIQ" . self::getRandomString();
 		$this->mStripState = new StripState( $this->mUniqPrefix );
 
 		# Clear these on every parse, bug 4549
