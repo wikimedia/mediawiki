@@ -275,8 +275,8 @@ class User implements IDBAccessObject {
 	protected $mImplicitGroups;
 	/** @var array */
 	protected $mFormerGroups;
-	/** @var bool */
-	protected $mBlockedGlobally;
+	/** @var Block */
+	protected $mGlobalBlock;
 	/** @var bool */
 	protected $mLocked;
 	/** @var bool */
@@ -1992,8 +1992,22 @@ class User implements IDBAccessObject {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
-		if ( $this->mBlockedGlobally !== null ) {
-			return $this->mBlockedGlobally;
+		return $this->getGlobalBlock( $ip ) instanceof Block;
+	}
+
+	/**
+	 * Check if user is blocked on all wikis.
+	 * Do not use for actual edit permission checks!
+	 * This is intended for quick UI checks.
+	 *
+	 * @param string $ip IP address, uses current client if none given
+	 * @return Block|null Block object if blocked, null otherwise
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	public function getGlobalBlock( $ip = '' ) {
+		if ( $this->mGlobalBlock !== null ) {
+			return $this->mGlobalBlock ?: null;
 		}
 		// User is already an IP?
 		if ( IP::isIPAddress( $this->getName() ) ) {
@@ -2002,9 +2016,17 @@ class User implements IDBAccessObject {
 			$ip = $this->getRequest()->getIP();
 		}
 		$blocked = false;
-		Hooks::run( 'UserIsBlockedGlobally', [ &$this, $ip, &$blocked ] );
-		$this->mBlockedGlobally = (bool)$blocked;
-		return $this->mBlockedGlobally;
+		$block = null;
+		Hooks::run( 'UserIsBlockedGlobally', [ &$this, $ip, &$blocked, &$block ] );
+
+		if ( $blocked && $block === null ) {
+			// back-compat: UserIsBlockedGlobally didn't have $block param first
+			$block = new Block;
+			$block->setTarget( $ip );
+		}
+
+		$this->mGlobalBlock = $blocked ? $block : false;
+		return $this->mGlobalBlock ?: null;
 	}
 
 	/**
