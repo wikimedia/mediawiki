@@ -153,4 +153,36 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Title power search failed" );
 	}
 
+	public function testAugmentorSearch() {
+		$this->search->setNamespaces( [ 0, 1, 4 ] );
+		$resultSet = $this->search->searchText( 'smithee' );
+		// Not using mock since PHPUnit mocks do not work properly with references in params
+		$this->mergeMwGlobalArrayValue( 'wgHooks',
+			[ 'SearchIndexFields' => [ [ $this, 'addAugmentors' ] ] ] );
+		$this->search->augmentSearchResults( $resultSet );
+		for ( $result = $resultSet->next(); $result; $result = $resultSet->next() ) {
+			$id = $result->getTitle()->getArticleID();
+			$augmentData = "Result:$id:" . $result->getTitle()->getText();
+			$this->assertEquals( [ 'augmentAll' => $augmentData ],
+				$resultSet->getAugmentedData( $result ) );
+			$this->assertEquals( [ 'augmentAll' => $augmentData ], $result->getExtensionData() );
+		}
+	}
+
+	public function addAugmentors( &$setAugmentors, &$rowAugmentors ) {
+		$setAugmentor = $this->getMock( 'ResultSetAugmentor' );
+		$setAugmentor->expects( $this->once() )
+			->method( 'augmentAll' )
+			->willReturnCallback( function ( SearchResultSet $resultSet ) {
+				$data = [];
+				for ( $result = $resultSet->next(); $result; $result = $resultSet->next() ) {
+					$id = $result->getTitle()->getArticleID();
+					$data[$id] = "Result:$id:" . $result->getTitle()->getText();
+				}
+				$resultSet->rewind();
+				return $data;
+			} );
+		$setAugmentors['testSet'] = $setAugmentor;
+	}
+
 }
