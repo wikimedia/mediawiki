@@ -7970,6 +7970,23 @@ $wgPagePropsHaveSortkey = true;
 $wgHttpsPort = 443;
 
 /**
+ * Secret for session storage.
+ * This should be set in LocalSettings.php, otherwise wgSecretKey will
+ * be used.
+ * @since 1.27
+ */
+$wgSessionSecret = false;
+
+/**
+ * If for some reason you can't install the PHP OpenSSL or mcrypt extensions,
+ * you can set this to true to make MediaWiki work again at the cost of storing
+ * sensitive session data insecurely. But it would be much more secure to just
+ * install the OpenSSL extension.
+ * @since 1.27
+ */
+$wgSessionInsecureSecrets = false;
+
+/**
  * Secret for hmac-based key derivation function (fast,
  * cryptographically secure random numbers).
  * This should be set in LocalSettings.php, otherwise wgSecretKey will

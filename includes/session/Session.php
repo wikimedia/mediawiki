@@ -380,6 +380,154 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
+	 * Fetch the secret keys for self::setSecret() and self::getSecret().
+	 * @return string[] Encryption key, HMAC key
+	 */
+	private function getSecretKeys() {
+		global $wgSessionSecret, $wgSecretKey;
+
+		$wikiSecret = $wgSessionSecret ?: $wgSecretKey;
+		$userSecret = $this->get( 'wsSessionSecret', null );
+		if ( $userSecret === null ) {
+			$userSecret = \MWCryptRand::generateHex( 32 );
+			$this->set( 'wsSessionSecret', $userSecret );
+		}
+
+		$keymats = hash_pbkdf2( 'sha256', $wikiSecret, $userSecret, 10001, 64, true );
+		return [
+			substr( $keymats, 0, 32 ),
+			substr( $keymats, 32, 32 ),
+		];
+	}
+
+	/**
+	 * Set a value in the session, encrypted
+	 *
+	 * This relies on the secrecy of $wgSecretKey (by default), or $wgSessionSecret.
+	 *
+	 * @param string|int $key
+	 * @param mixed $value
+	 */
+	public function setSecret( $key, $value ) {
+		global $wgSessionInsecureSecrets;
+
+		list( $encKey, $hmacKey ) = $this->getSecretKeys();
+		$serialized = serialize( $value );
+
+		// The code for encryption (with OpenSSL) and sealing is taken from
+		// Chris Steipp's OATHAuthUtils class in Extension::OATHAuth.
+
+		// Encrypt
+		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
+		$iv = \MWCryptRand::generate( 16, true );
+		if ( function_exists( 'openssl_encrypt' ) ) {
+			$ciphertext = openssl_encrypt( $serialized, 'aes-256-ctr', $encKey, OPENSSL_RAW_DATA, $iv );
+			if ( $ciphertext === false ) {
+				throw new UnexpectedValueException( 'Encryption failed: ' . openssl_error_string() );
+			}
+		} elseif ( function_exists( 'mcrypt_encrypt' ) ) {
+			$ciphertext = mcrypt_encrypt( 'rijndael-128', $encKey, $serialized, 'ctr', $iv );
+			if ( $ciphertext === false ) {
+				throw new UnexpectedValueException( 'Encryption failed' );
+			}
+		} elseif ( $wgSessionInsecureSecrets ) {
+			$ex = new \Exception( 'No encryption is available, storing data as plain text' );
+			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
+			$ciphertext = $serialized;
+		} else {
+			throw new \BadMethodCallException(
+				'Encryption is not available. You really should install the PHP OpenSSL extension, ' .
+				'or failing that the mcrypt extension. But if you really can\'t and you\'re willing ' .
+				'to accept insecure storage of sensitive session data, set ' .
+				'$wgSessionInsecureSecrets = true in LocalSettings.php to make this exception go away.'
+			);
+		}
+
+		// Seal
+		$sealed = base64_encode( $iv ) . '.' . base64_encode( $ciphertext );
+		$hmac = hash_hmac( 'sha256', $sealed, $hmacKey, true );
+		$encrypted = base64_encode( $hmac ) . '.' . $sealed;
+
+		// Store
+		$this->set( $key, $encrypted );
+	}
+
+	/**
+	 * Fetch a value from the session that was set with self::setSecret()
+	 * @param string|int $key
+	 * @param mixed $default Returned if $this->exists( $key ) would be false or decryption fails
+	 * @return mixed
+	 */
+	public function getSecret( $key, $default = null ) {
+		global $wgSessionInsecureSecrets;
+
+		// Fetch
+		$encrypted = $this->get( $key, null );
+		if ( $encrypted === null ) {
+			return $default;
+		}
+
+		// The code for unsealing, checking, and decrypting (with OpenSSL) is
+		// taken from Chris Steipp's OATHAuthUtils class in
+		// Extension::OATHAuth.
+
+		// Unseal and check
+		$pieces = explode( '.', $encrypted );
+		if ( count( $pieces ) !== 3 ) {
+			$ex = new \Exception( 'Invalid sealed-secret format' );
+			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
+			return $default;
+		}
+		list( $hmac, $iv, $ciphertext ) = $pieces;
+		list( $encKey, $hmacKey ) = $this->getSecretKeys();
+		$integCalc = hash_hmac( 'sha256', $iv . '.' . $ciphertext, $hmacKey, true );
+		if ( !hash_equals( $integCalc, base64_decode( $hmac ) ) ) {
+			$ex = new \Exception( 'Sealed secret has been tampered with, aborting.' );
+			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
+			return $default;
+		}
+
+		// Decrypt
+		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
+		if ( function_exists( 'openssl_decrypt' ) ) {
+			$serialized = openssl_decrypt(
+				base64_decode( $ciphertext ), 'aes-256-ctr', $encKey, OPENSSL_RAW_DATA, base64_decode( $iv )
+			);
+			if ( $serialized === false ) {
+				$ex = new \Exception( 'Decyption failed: ' . openssl_error_string() );
+				$this->logger->debug( $ex->getMessage(), [ 'exception' => $ex ] );
+				return $default;
+			}
+		} elseif ( function_exists( 'mcrypt_decrypt' ) ) {
+			$serialized = mcrypt_decrypt(
+				'rijndael-128', $encKey, base64_decode( $ciphertext ), 'ctr', base64_decode( $iv )
+			);
+			if ( $serialized === false ) {
+				$ex = new \Exception( 'Decyption failed' );
+				$this->logger->debug( $ex->getMessage(), [ 'exception' => $ex ] );
+				return $default;
+			}
+		} elseif ( $wgSessionInsecureSecrets ) {
+			$ex = new \Exception( 'No encryption is available, storing data as plain text' );
+			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
+			$serialized = base64_decode( $ciphertext );
+		} else {
+			throw new \BadMethodCallException(
+				'Encryption is not available. You really should install the PHP OpenSSL extension, ' .
+				'or failing that the mcrypt extension. But if you really can\'t and you\'re willing ' .
+				'to accept insecure storage of sensitive session data, set ' .
+				'$wgSessionInsecureSecrets = true in LocalSettings.php to make this exception go away.'
+			);
+		}
+
+		$value = unserialize( $serialized );
+		if ( $value === false && $serialized !== serialize( false ) ) {
+			$value = $default;
+		}
+		return $value;
+	}
+
+	/**
 	 * Delay automatic saving while multiple updates are being made
 	 *
 	 * Calls to save() or clear() will not be delayed.
