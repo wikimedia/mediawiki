@@ -57,14 +57,24 @@ class SearchResult {
 	protected $searchEngine;
 
 	/**
+	 * A set of extension data.
+	 * @var array[]
+	 */
+	protected $extensionData;
+
+	/**
 	 * Return a new SearchResult and initializes it with a title.
 	 *
-	 * @param Title $title
+	 * @param Title           $title
+	 * @param SearchResultSet $parentSet
 	 * @return SearchResult
 	 */
-	public static function newFromTitle( $title ) {
+	public static function newFromTitle( $title, SearchResultSet $parentSet = null ) {
 		$result = new static();
 		$result->initFromTitle( $title );
+		if ( $parentSet ) {
+			$parentSet->augmentResult( $result );
+		}
 		return $result;
 	}
 
@@ -250,4 +260,24 @@ class SearchResult {
 	function isFileMatch() {
 		return false;
 	}
+
+	/**
+	 * Get the extension data as:
+	 * augmentor name => data
+	 * @return array[]
+	 */
+	public function getExtensionData() {
+		return $this->extensionData;
+	}
+
+	/**
+	 * Set extension data for this result.
+	 * The data is:
+	 * augmentor name => data
+	 * @param array[] $extensionData
+	 */
+	public function setExtensionData( array $extensionData ) {
+		$this->extensionData = $extensionData;
+	}
+
 }
