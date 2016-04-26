@@ -649,18 +649,22 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @param OutputPage $out Defaults to $this->getOutput() if left as null
 	 * @return string
 	 */
-	function subPageSubtitle() {
-		$out = $this->getOutput();
+	function subPageSubtitle( $out = null ) {
+		if ( $out === null ) {
+			$out = $this->getOutput();
+		}
+		$title = $out->getTitle();
 		$subpages = '';
 
 		if ( !Hooks::run( 'SkinSubPageSubtitle', [ &$subpages, $this, $out ] ) ) {
 			return $subpages;
 		}
 
-		if ( $out->isArticle() && MWNamespace::hasSubpages( $out->getTitle()->getNamespace() ) ) {
-			$ptext = $this->getTitle()->getPrefixedText();
+		if ( $out->isArticle() && MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+			$ptext = $title->getPrefixedText();
 			if ( preg_match( '/\//', $ptext ) ) {
 				$links = explode( '/', $ptext );
 				array_pop( $links );
