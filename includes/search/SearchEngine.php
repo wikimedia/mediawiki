@@ -136,7 +136,8 @@ abstract class SearchEngine {
 	 * @return SearchNearMatcher
 	 */
 	public function getNearMatcher( Config $config ) {
-		return new SearchNearMatcher( $config );
+		global $wgContLang;
+		return new SearchNearMatcher( $config, $wgContLang );
 	}
 
 	/**
