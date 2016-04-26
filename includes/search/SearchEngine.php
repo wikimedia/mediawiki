@@ -655,6 +655,45 @@ abstract class SearchEngine {
 		return null;
 	}
 
+	/**
+	 * Augment search results with extra data.
+	 *
+	 * @param SearchResultSet $resultSet
+	 */
+	public function augmentSearchResults( SearchResultSet $resultSet ) {
+		$setAugmentors = [];
+		$rowAugmentors = [];
+		Hooks::run( "SearchResultsAugment", [&$setAugmentors, &$rowAugmentors] );
+
+		if ( !$setAugmentors && !$rowAugmentors ) {
+			// We're done here
+			return;
+		}
+
+		foreach($setAugmentors as $name => $augmentor ) {
+			$data = $augmentor->augmentAll( $resultSet );
+			if ( $data ) {
+				$resultSet->setAugmentedData( $name, $data );
+			}
+		}
+
+		if ( $rowAugmentors ) {
+			$resultsArray = $resultSet->extractResults();
+			foreach ( $rowAugmentors as $name => $augmentor ) {
+				$data = [ ];
+				foreach ( $resultsArray as $result ) {
+					$id = $result->getTitle()->getArticleID();
+					if ( !$id ) {
+						continue;
+					}
+					$data[$id] = $augmentor->augment( $result );
+				}
+				if ( $data ) {
+					$resultSet->setAugmentedData( $name, $data );
+				}
+			}
+		}
+	}
 }
 
 /**
