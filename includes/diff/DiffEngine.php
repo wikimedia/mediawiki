@@ -67,6 +67,8 @@ class DiffEngine {
 	}
 
 	/**
+	 * Performs diff
+	 *
 	 * @param string[] $from_lines
 	 * @param string[] $to_lines
 	 *
@@ -138,8 +140,12 @@ class DiffEngine {
 	 * to be the "change".
 	 *
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
+	 *
+	 * @param string[] $lines
+	 * @param string[] $changed
+	 * @param string[] $other_changed
 	 */
-	private function shiftBoundaries( $lines, &$changed, $other_changed ) {
+	private function shiftBoundaries( array $lines, array &$changed, array $other_changed ) {
 		$i = 0;
 		$j = 0;
 
@@ -256,7 +262,11 @@ class DiffEngine {
 		}
 	}
 
-	protected function diffInternal( /*array*/ $from, /*array*/ $to ) {
+	/**
+	 * @param string[] $from
+	 * @param string[] $to
+	 */
+	protected function diffInternal( array $from, array $to ) {
 		// remember initial lengths
 		$m = count( $from );
 		$n = count( $to );
