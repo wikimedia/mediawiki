@@ -695,6 +695,35 @@ abstract class SearchEngine {
 		Hooks::run( 'SearchIndexFields', [ &$fields, $this ] );
 		return $fields;
 	}
+
+	/**
+	 * Augment search results with extra data.
+	 *
+	 * @param SearchResultSet $resultSet
+	 */
+	public function augmentSearchResults( SearchResultSet $resultSet ) {
+		$setAugmentors = [];
+		$rowAugmentors = [];
+		Hooks::run( "SearchResultsAugment", [ &$setAugmentors, &$rowAugmentors ] );
+
+		if ( !$setAugmentors && !$rowAugmentors ) {
+			// We're done here
+			return;
+		}
+
+		// Convert row augmentors to set augmentor
+		foreach ( $rowAugmentors as $name => $row ) {
+			// TODO: should we check for overwrites here?
+			$setAugmentors[$name] = new PerRowAugmentor( $row );
+		}
+
+		foreach ( $setAugmentors as $name => $augmentor ) {
+			$data = $augmentor->augmentAll( $resultSet );
+			if ( $data ) {
+				$resultSet->setAugmentedData( $name, $data );
+			}
+		}
+	}
 }
 
 /**
