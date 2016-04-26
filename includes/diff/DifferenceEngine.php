@@ -870,8 +870,8 @@ class DifferenceEngine extends ContextSource {
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
-		if ( $wgExternalDiffEngine == 'wikidiff' ) {
-			wfDeprecated( 'wikidiff support', '1.27' );
+		if ( $wgExternalDiffEngine == 'wikidiff' || $wgExternalDiffEngine == 'wikidiff3' ) {
+			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.27' );
 			$wgExternalDiffEngine = false;
 		}
 
@@ -884,7 +884,7 @@ class DifferenceEngine extends ContextSource {
 
 				return $text;
 			}
-		} elseif ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
+		} elseif ( $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
 			$tmpDir = wfTempDir();
 			$tempName1 = tempnam( $tmpDir, 'diff_' );
