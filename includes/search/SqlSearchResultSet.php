@@ -37,7 +37,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		}
 
 		return SearchResult::newFromTitle(
-			Title::makeTitle( $row->page_namespace, $row->page_title )
+			Title::makeTitle( $row->page_namespace, $row->page_title ), $this
 		);
 	}
 
