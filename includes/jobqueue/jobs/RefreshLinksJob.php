@@ -185,17 +185,21 @@ class RefreshLinksJob extends Job {
 			}
 
 			if ( $page->getTouched() >= $skewedTimestamp || $opportunistic ) {
-				// Something bumped page_touched since this job was made
-				// or the cache is otherwise suspected to be up-to-date
+				// Something bumped page_touched since this job was made or the cache is
+				// otherwise suspected to be up-to-date. As long as the cache rev ID matches
+				// and it reflects the job's triggering change, then it is usable.
 				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
-				if ( $parserOutput && $parserOutput->getCacheTime() < $skewedTimestamp ) {
+				if ( !$parserOutput
+					|| $parserOutput->getCacheRevisionId() != $revision->getId()
+					|| $parserOutput->getCacheTime() < $skewedTimestamp
+				) {
 					$parserOutput = false; // too stale
 				}
 			}
 		}
 
 		// Fetch the current revision and parse it if necessary...
-		if ( $parserOutput == false ) {
+		if ( !$parserOutput ) {
 			$start = microtime( true );
 			// Revision ID must be passed to the parser output to get revision variables correct
 			$parserOutput = $content->getParserOutput(
