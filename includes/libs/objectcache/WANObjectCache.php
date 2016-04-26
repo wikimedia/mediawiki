@@ -675,12 +675,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
 	 *         },
-	 *         array(
+	 *         [
 	 *             // Calling touchCheckKey() on this key invalidates the cache
-	 *             'checkKeys' => array( $cache->makeKey( 'site-cat-config' ) ),
+	 *             'checkKeys' => [ $cache->makeKey( 'site-cat-config' ) ],
 	 *             // Try to only let one datacenter thread manage cache updates at a time
 	 *             'lockTSE' => 30
-	 *         )
+	 *         ]
 	 *     );
 	 * @endcode
 	 *
@@ -700,15 +700,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
 	 *         },
-	 *         array(
+	 *         [
 	 *              // The "check" keys that represent things the value depends on;
 	 *              // Calling touchCheckKey() on any of them invalidates the cache
-	 *             'checkKeys' => array(
+	 *             'checkKeys' => [
 	 *                 $cache->makeKey( 'sustenance-bowls', $cat->getRoomId() ),
 	 *                 $cache->makeKey( 'people-present', $cat->getHouseId() ),
 	 *                 $cache->makeKey( 'cat-laws', $cat->getCityId() ),
-	 *             )
-	 *         )
+	 *             ]
+	 *         ]
 	 *     );
 	 * @endcode
 	 *
@@ -726,7 +726,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Start off with the last cached list
-	 *             $list = $oldValue ?: array();
+	 *             $list = $oldValue ?: [];
 	 *             // Fetch the last 100 relevant rows in descending order;
 	 *             // only fetch rows newer than $list[0] to reduce scanning
 	 *             $rows = iterator_to_array( $dbr->select( ... ) );
@@ -734,7 +734,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             return array_slice( array_merge( $new, $list ), 0, 100 );
 	 *        },
 	 *        // Try to only let one datacenter thread manage cache updates at a time
-	 *        array( 'lockTSE' => 30 )
+	 *        [ 'lockTSE' => 30 ]
 	 *     );
 	 * @endcode
 	 *
