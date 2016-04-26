@@ -403,6 +403,7 @@ class SpecialSearch extends SpecialPage {
 
 			// show results
 			if ( $numTextMatches > 0 ) {
+				$search->augmentSearchResults( $textMatches );
 				$out->addHTML( $this->showMatches( $textMatches ) );
 			}
 
@@ -716,7 +717,7 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showMatches( &$matches, $interwiki = null ) {
+	protected function showMatches( $matches, $interwiki = null ) {
 		global $wgContLang;
 
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
@@ -725,7 +726,7 @@ class SpecialSearch extends SpecialPage {
 		$pos = $this->offset;
 
 		if ( $result && $interwiki ) {
-			$out .= $this->interwikiHeader( $interwiki, $result );
+			$out .= $this->interwikiHeader( $interwiki, $matches );
 		}
 
 		$out .= "<ul class='mw-search-results'>\n";
@@ -750,7 +751,7 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showHit( $result, $terms, $position ) {
+	protected function showHit( SearchResult $result, $terms, $position ) {
 
 		if ( $result->isBrokenTitle() ) {
 			return '';
