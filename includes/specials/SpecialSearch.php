@@ -393,6 +393,7 @@ class SpecialSearch extends SpecialPage {
 
 			// show results
 			if ( $numTextMatches > 0 ) {
+				$search->augmentSearchResults( $textMatches );
 				$out->addHTML( $this->showMatches( $textMatches ) );
 			}
 
@@ -716,6 +717,7 @@ class SpecialSearch extends SpecialPage {
 
 		$out .= "<ul class='mw-search-results'>\n";
 		while ( $result ) {
+			$matches->getAugmentedData( $result );
 			$out .= $this->showHit( $result, $terms, ++$pos );
 			$result = $matches->next();
 		}
@@ -736,7 +738,7 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showHit( $result, $terms, $position ) {
+	protected function showHit( SearchResult $result, $terms, $position ) {
 
 		if ( $result->isBrokenTitle() ) {
 			return '';
