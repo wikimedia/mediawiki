@@ -195,8 +195,11 @@ class LinkCache {
 		}
 	}
 
+	/**
+	 * @param string $title prefixed dbkey
+	 */
 	public function clearBadLink( $title ) {
-		$this->mBadLinks->clear( [ $title ] );
+		$this->mBadLinks->delete( [ $title ] );
 	}
 
 	/**
