@@ -2,6 +2,7 @@
 namespace MediaWiki;
 
 use ConfigFactory;
+use EventRelayerGroup;
 use GlobalVarConfig;
 use Config;
 use Hooks;
