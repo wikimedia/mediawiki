@@ -117,8 +117,8 @@ abstract class HTMLFormField {
 			$tmp = $m[1];
 		}
 		if ( substr( $tmp, 0, 2 ) == 'wp' &&
-			!isset( $alldata[$tmp] ) &&
-			isset( $alldata[substr( $tmp, 2 )] )
+			!array_key_exists( $tmp, $alldata ) &&
+			array_key_exists( substr( $tmp, 2 ), $alldata )
 		) {
 			// Adjust for name mangling.
 			$tmp = substr( $tmp, 2 );
@@ -139,7 +139,7 @@ abstract class HTMLFormField {
 			$data = $alldata;
 			while ( $keys ) {
 				$key = array_shift( $keys );
-				if ( !is_array( $data ) || !isset( $data[$key] ) ) {
+				if ( !is_array( $data ) || !array_key_exists( $key, $data ) ) {
 					continue 2;
 				}
 				$data = $data[$key];

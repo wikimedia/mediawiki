@@ -1493,7 +1493,7 @@ class HTMLForm extends ContextSource {
 
 		foreach ( $fields as $key => $value ) {
 			if ( $value instanceof HTMLFormField ) {
-				$v = isset( $this->mFieldData[$key] )
+				$v = array_key_exists( $key, $this->mFieldData )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
 
