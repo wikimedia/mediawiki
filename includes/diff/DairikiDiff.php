@@ -216,16 +216,7 @@ class DiffOpChange extends DiffOp {
  * @ingroup DifferenceEngine
  */
 class DiffEngine {
-	const MAX_XREF_LENGTH = 10000;
-
 	protected $xchanged, $ychanged;
-
-	protected $xv = [], $yv = [];
-	protected $xind = [], $yind = [];
-
-	protected $seq = [], $in_seq = [];
-
-	protected $lcs = 0;
 
 	/**
 	 * @param string[] $from_lines
