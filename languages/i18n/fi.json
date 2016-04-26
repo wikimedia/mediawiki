@@ -3647,6 +3647,7 @@
 	"log-action-filter-block-reblock": "Estoasetusten muuttaminen",
 	"log-action-filter-block-unblock": "Eston poistaminen",
 	"log-action-filter-contentmodel-change": "Sisältömallin muuttaminen",
+	"log-action-filter-contentmodel-new": "Luotu sivu, jossa on poikkeava Sisältömalli",
 	"log-action-filter-delete-delete": "Sivun poistaminen",
 	"log-action-filter-delete-restore": "Sivun palauttaminen",
 	"log-action-filter-delete-event": "Lokimerkinnän poistaminen",

@@ -87,7 +87,7 @@
 	"config-mod-security": "<strong>Aviso:</strong> Seu servidor web tem [http://modsecurity.org/ mod_security] habilitado. Se configurado incorretamente, pode causar problemas para o MediaWiki ou outro software que permite aos usuários postar conteúdo arbitrário.\nConsulte a [http://modsecurity.org/documentation/ documentação do mod_security] ou entre em contato com o suporte do seu host se você encontrar erros aleatórios.",
 	"config-diff3-bad": "O GNU diff3 não foi encontrado.",
 	"config-git": "Foi encontrado o software de controle de versão Git: <code>$1</code>.",
-	"config-git-bad": "Não foi encontrado o software de controle de versão Git.",
+	"config-git-bad": "O software de controle de versão Git não foi encontrado.",
 	"config-imagemagick": "ImageMagick encontrado: <code>$1</code> .\nRedimensionamento de imagem será ativado se você permitir uploads.",
 	"config-gd": "Encontrada biblioteca gráfica GD embutida\nO redimensionamento de imagens será habilitado se você permitir uploads.",
 	"config-no-scaling": "Não foi possível encontrar biblioteca GD ou ImageMagick. \nO redimensionamento de imagens será desabilitado.",

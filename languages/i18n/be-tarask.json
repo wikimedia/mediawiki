@@ -1769,6 +1769,7 @@
 	"apisandbox-results": "Вынікі",
 	"apisandbox-sending-request": "Адпраўка API-запыту…",
 	"apisandbox-loading-results": "Атрымліваем API-вынікі…",
+	"apisandbox-results-error": "Адбылася памылка пры загрузцы адказу на API-запыт: $1.",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",
 	"booksources": "Крыніцы кніг",

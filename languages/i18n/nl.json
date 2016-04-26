@@ -3437,7 +3437,7 @@
 	"logentry-protect-protect-cascade": "$1 heeft $3 {{GENDER:$2|beveiligd}} $4 [cascade]",
 	"logentry-protect-modify": "$1 heeft het beveiligingsniveau van $3 {{GENDER:$2|aangepast}} $4",
 	"logentry-protect-modify-cascade": "$1 heeft het beveiligingsniveau van $3 {{GENDER:$2|aangepast}} $4 [cascade]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|heeft}} groepslidmaatschap voor $3 gewijzigd van $4 naar $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|heeft}} groepslidmaatschap voor {{GENDER:$6|$3}} gewijzigd van $4 naar $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|heeft}} het groepslidmaatschap gewijzigd voor $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|is}} automatisch gepromoveerd van $4 naar $5",
 	"logentry-upload-upload": "$1 heeft $3 {{GENDER:$2|geüpload}}",
