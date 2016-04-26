@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.16.6
+ * OOjs UI v0.17.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-19T21:57:53Z
+ * Date: 2016-04-26T21:34:05Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -428,10 +428,7 @@
 	right: 0;
 	text-overflow: ellipsis;
 }
-.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName {
-	float: left;
-}
-.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
+.oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileType {
 	float: right;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
@@ -439,7 +436,7 @@
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	position: absolute;
 }
-.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-clearButton {
 	z-index: 2;
 }
 .oo-ui-selectFileWidget-dropTarget {
@@ -479,8 +476,13 @@
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
 	position: relative;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
+.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileName {
+	display: block;
+	padding-right: 2.375em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileType {
 	display: block;
 	float: none;
 }
@@ -632,6 +634,9 @@
 	font-size: 1.1em;
 	padding: 0.75em;
 }
+.oo-ui-outlineOptionWidget .oo-ui-iconElement-icon {
+	font-size: 90.90909%;
+}
 .oo-ui-outlineOptionWidget.oo-ui-indicatorElement .oo-ui-labelElement-label {
 	padding-right: 1.5em;
 }
@@ -662,9 +667,6 @@
 }
 .oo-ui-outlineOptionWidget.oo-ui-flaggedElement-important {
 	font-weight: bold;
-}
-.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-placeholder {
-	font-style: italic;
 }
 .oo-ui-outlineOptionWidget.oo-ui-flaggedElement-empty .oo-ui-iconElement-icon {
 	opacity: 0.5;
