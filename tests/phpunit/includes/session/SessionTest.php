@@ -267,21 +267,9 @@ class SessionTest extends MediaWikiTestCase {
 	}
 
 	public function testTokens() {
-		$rc = new \ReflectionClass( Session::class );
-		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
-			$this->markTestSkipped(
-				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
-			);
-		}
-
-		// Instead of actually constructing the Session, we use reflection to
-		// bypass the constructor and plug a mock SessionBackend into the
-		// private fields to avoid having to actually create a SessionBackend.
-		$backend = new DummySessionBackend;
-		$session = $rc->newInstanceWithoutConstructor();
+		$session = TestUtils::getDummySession();
 		$priv = \TestingAccessWrapper::newFromObject( $session );
-		$priv->backend = $backend;
-		$priv->index = 42;
+		$backend = $priv->backend;
 
 		$token = \TestingAccessWrapper::newFromObject( $session->getToken() );
 		$this->assertArrayHasKey( 'wsTokenSecrets', $backend->data );
@@ -313,4 +301,72 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertArrayNotHasKey( 'wsTokenSecrets', $backend->data );
 
 	}
+
+	/**
+	 * @dataProvider provideSecretsRoundTripping
+	 * @param mixed $data
+	 */
+	public function testSecretsRoundTripping( $data ) {
+		$session = TestUtils::getDummySession();
+
+		// Simple round-trip
+		$session->setSecret( 'secret', $data );
+		$this->assertNotEquals( $data, $session->get( 'secret' ) );
+		$this->assertEquals( $data, $session->getSecret( 'secret', 'defaulted' ) );
+	}
+
+	public static function provideSecretsRoundTripping() {
+		return [
+			[ 'Foobar' ],
+			[ 42 ],
+			[ [ 'foo', 'bar' => 'baz', 'subarray' => [ 1, 2, 3 ] ] ],
+			[ (object)[ 'foo', 'bar' => 'baz', 'subarray' => [ 1, 2, 3 ] ] ],
+			[ true ],
+			[ false ],
+			[ null ],
+		];
+	}
+
+	public function testSecrets() {
+		$logger = new \TestLogger;
+		$session = TestUtils::getDummySession( null, -1, $logger );
+
+		// Simple defaulting
+		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
+
+		// Bad encrypted data
+		$session->set( 'test', 'foobar' );
+		$logger->setCollect( true );
+		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
+		$logger->setCollect( false );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Invalid sealed-secret format' ]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		// Tampered data
+		$session->setSecret( 'test', 'foobar' );
+		$encrypted = $session->get( 'test' );
+		$session->set( 'test', $encrypted . 'x' );
+		$logger->setCollect( true );
+		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
+		$logger->setCollect( false );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Sealed secret has been tampered with, aborting.' ]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		// Unserializable data
+		$iv = \MWCryptRand::generate( 16, true );
+		list( $encKey, $hmacKey ) = \TestingAccessWrapper::newFromObject( $session )->getSecretKeys();
+		$ciphertext = openssl_encrypt( 'foobar', 'aes-256-ctr', $encKey, OPENSSL_RAW_DATA, $iv );
+		$sealed = base64_encode( $iv ) . '.' . base64_encode( $ciphertext );
+		$hmac = hash_hmac( 'sha256', $sealed, $hmacKey, true );
+		$encrypted = base64_encode( $hmac ) . '.' . $sealed;
+		$session->set( 'test', $encrypted );
+		\MediaWiki\suppressWarnings();
+		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
+		\MediaWiki\restoreWarnings();
+	}
+
 }
