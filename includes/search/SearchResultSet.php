@@ -42,6 +42,25 @@ class SearchResultSet {
 
 	protected $containedSyntax = false;
 
+	/**
+	 * Cache of titles
+	 * @var Title[]
+	 */
+	protected $_titles;
+
+	/**
+	 * Cache of results
+	 * @var SearchResult[]
+	 */
+	protected $_results;
+
+	/**
+	 * Set of result's extra data, indexed per result id
+	 * and then per data item name.
+	 * @var array[]
+	 */
+	protected $extraData = [];
+
 	public function __construct( $containedSyntax = false ) {
 		$this->containedSyntax = $containedSyntax;
 	}
@@ -175,5 +194,70 @@ class SearchResultSet {
 	 */
 	public function searchContainedSyntax() {
 		return $this->containedSyntax;
+	}
+
+	/**
+	 * Extract all the results in the result set as array.
+	 * @return SearchResult[]
+	 */
+	public function extractResults() {
+		if(is_null($this->_results)) {
+			$this->_results = [];
+			if($this->numRows() == 0) {
+				// Don't bother if we've got empty result
+				return $this->_results;
+			}
+			$this->rewind();
+			while(($result = $this->next()) != false) {
+				$this->_results[] = $result;
+			}
+			$this->rewind();
+		}
+		return $this->_results;
+	}
+
+	/**
+	 * Extract all the titles in the result set.
+	 * @return Title[]
+	 */
+	public function extractTitles() {
+		if(is_null($this->_titles)) {
+			$this->_titles = [];
+			if($this->numRows() == 0) {
+				// Don't bother if we've got empty result
+				return $this->_titles;
+			}
+			$this->_titles = array_map(
+				function (SearchResult $result) {
+					return $result->getTitle();
+				},
+				$this->extractResults()
+			);
+		}
+		return $this->_titles;
+	}
+
+	/**
+	 * Sets augmented data for result set.
+	 * @param string $name Extra data item name
+	 * @param array[] $data Extra data as ID => data
+	 */
+	public function setAugmentedData( $name, $data ) {
+		foreach($data as $id => $resultData) {
+			$this->extraData[$id][$name] = $resultData;
+		}
+	}
+
+	/**
+	 * Returns extra data for specific result.
+	 * @param SearchResult $result
+	 * @return array|null List of data as name => value or null if none present.
+	 */
+	public function getAugmentedData( SearchResult $result ) {
+		$id = $result->getTitle()->getArticleID();
+		if( !$id || !isset($this->extraData[$id])) {
+			return null;
+		}
+		return $this->extraData[$id];
 	}
 }

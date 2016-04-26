@@ -630,6 +630,46 @@ abstract class SearchEngine {
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
 	}
 
+	/**
+	 * Augment search results with extra data.
+	 *
+	 * @param SearchResultSet $resultSet
+	 */
+	public function augmentSearchResults( SearchResultSet $resultSet ) {
+		$augmentors = [];
+		Hooks::run( "SearchResultsAugment", [&$augmentors] );
+
+		if ( !$augmentors ) {
+			// We're done here
+			return;
+		}
+
+		$resultsArray = null;
+		foreach ( $augmentors as $name => $augmentor ) {
+			$data = null;
+			if ( $augmentor instanceof ResultSetAugmentor ) {
+				$data = $augmentor->augment( $resultSet );
+			}
+			if ( $augmentor instanceof ResultAugmentor ) {
+				if ( is_null( $resultsArray ) ) {
+					$resultsArray = $resultSet->extractResults();
+				}
+				foreach ( $resultsArray as $result ) {
+					$id = $result->getTitle()->getArticleID();
+					if ( !$id ) {
+						continue;
+					}
+					$data[$id] = $augmentor->augment( $result );
+				}
+			}
+			if ( $data ) {
+				$resultSet->setAugmentedData( $name, $data );
+			}
+		}
+	}
+
+
+
 }
 
 /**
