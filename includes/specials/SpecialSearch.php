@@ -211,8 +211,8 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 		# If there's an exact or very near match, jump right there.
-		$title = $this->newSearchEngine()->
-			getNearMatcher( $this->getConfig() )->getNearMatch( $term );
+		$title = $this->getSearchEngine()
+			->getNearMatcher( $this->getConfig() )->getNearMatch( $term );
 
 		if ( !is_null( $title ) &&
 			Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] )
