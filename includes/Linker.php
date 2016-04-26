@@ -446,19 +446,19 @@ class Linker {
 	}
 
 	/**
-	 * @param Title $title
-	 * @return Title
+	 * @param LinkTarget $target
+	 * @return LinkTarget|Title You will get back the same type you passed in, or a Title object
 	 */
-	static function normaliseSpecialPage( Title $title ) {
-		if ( $title->isSpecialPage() ) {
-			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+	static function normaliseSpecialPage( LinkTarget $target ) {
+		if ( $target->getNamespace() == NS_SPECIAL ) {
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $target->getDBkey() );
 			if ( !$name ) {
-				return $title;
+				return $target;
 			}
-			$ret = SpecialPage::getTitleFor( $name, $subpage, $title->getFragment() );
+			$ret = SpecialPage::getTitleFor( $name, $subpage, $target->getFragment() );
 			return $ret;
 		} else {
-			return $title;
+			return $target;
 		}
 	}
 
