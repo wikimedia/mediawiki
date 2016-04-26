@@ -9,6 +9,7 @@
 		}
 	},
 	"images": {
+		"fullScreen": { "file": "images/icons/fullScreen.svg" },
 		"image": { "file": {
 			"ltr": "images/icons/image-ltr.svg",
 			"rtl": "images/icons/image-rtl.svg"
