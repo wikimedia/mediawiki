@@ -211,7 +211,7 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 		# If there's an exact or very near match, jump right there.
-		$title = $this->newSearchEngine()->
+		$title = MediaWikiServices::getInstance()->newSearchEngine()
 			getNearMatcher( $this->getConfig() )->getNearMatch( $term );
 
 		if ( !is_null( $title ) &&
