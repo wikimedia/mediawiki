@@ -241,6 +241,12 @@ class FileBackendMultiWrite extends FileBackend {
 			return $status; // skip checks
 		}
 
+		// Preload all of the stat info in as few round trips as possible...
+		foreach ( $this->backends as $backend ) {
+			$realPaths = $this->substPaths( $paths, $backend );
+			$backend->preloadFileStat( [ 'srcs' => $realPaths, 'latest' => true ] );
+		}
+
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
 			$params = [ 'src' => $path, 'latest' => true ];
