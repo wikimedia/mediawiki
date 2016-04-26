@@ -511,7 +511,7 @@ class LoginForm extends SpecialPage {
 				"allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+				$key = 'global:acctcreate:ip:' . $ip;
 				$value = $wgMemc->get( $key );
 				if ( !$value ) {
 					$wgMemc->set( $key, 0, 86400 );
@@ -728,7 +728,7 @@ class LoginForm extends SpecialPage {
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+			$throttleKey = 'global:password-throttle:' . $wgRequest->getIP() . ':' . md5( $username );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
@@ -754,7 +754,7 @@ class LoginForm extends SpecialPage {
 		global $wgMemc, $wgRequest;
 		$username = trim( $username ); // sanity
 
-		$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+		$throttleKey = 'global:password-throttle:' . $wgRequest->getIP() . ':' . md5( $username );
 		$wgMemc->delete( $throttleKey );
 	}
 
