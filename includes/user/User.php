@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 
@@ -1534,7 +1535,8 @@ class User implements IDBAccessObject {
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
 		}
-		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
+		$namespaces = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
+		foreach ( $namespaces as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
 		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );

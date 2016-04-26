@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup API
  */
@@ -123,8 +125,7 @@ class ApiOpenSearch extends ApiBase {
 	 * @param array &$results Put results here. Keys have to be integers.
 	 */
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
-
-		$searchEngine = SearchEngine::create();
+		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
 		$searchEngine->setLimitOffset( $limit );
 		$searchEngine->setNamespaces( $namespaces );
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
@@ -350,24 +351,25 @@ class ApiOpenSearch extends ApiBase {
 	 * @throws MWException
 	 */
 	public static function getOpenSearchTemplate( $type ) {
-		global $wgOpenSearchTemplate, $wgCanonicalServer;
+		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
+		$template = $config->getConfig()->get( 'OpenSearchTemplate' );
 
-		if ( $wgOpenSearchTemplate && $type === 'application/x-suggestions+json' ) {
-			return $wgOpenSearchTemplate;
+		if ( $template && $type === 'application/x-suggestions+json' ) {
+			return $template;
 		}
 
-		$ns = implode( '|', SearchEngine::defaultNamespaces() );
+		$ns = implode( '|', $config->defaultNamespaces() );
 		if ( !$ns ) {
 			$ns = '0';
 		}
 
 		switch ( $type ) {
 			case 'application/x-suggestions+json':
-				return $wgCanonicalServer . wfScript( 'api' )
+				return $config->getConfig()->get( 'CanonicalServer' ) . wfScript( 'api' )
 					. '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 
 			case 'application/x-suggestions+xml':
-				return $wgCanonicalServer . wfScript( 'api' )
+				return $config->getConfig()->get( 'CanonicalServer' ) . wfScript( 'api' )
 					. '?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
 
 			default:
