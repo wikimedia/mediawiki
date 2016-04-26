@@ -31,12 +31,16 @@
  *
  * This implementation supports an upper bound on the execution time.
  *
+ * Some ideas (and a bit of code) are from analyze.c, from GNU
+ * diffutils-2.7, which can be found at:
+ *     ftp://gnudist.gnu.org/pub/gnu/diffutils/diffutils-2.7.tar.gz
+ *
  * Complexity: O((M + N)D) worst case time, O(M + N + D^2) expected time, O(M + N) space
  *
- * @author Guy Van den Broeck
+ * @author Guy Van den Broeck, Geoffrey T. Dairiki, Tim Starling
  * @ingroup DifferenceEngine
  */
-class WikiDiff3 {
+class DiffEngine {
 
 	// Input variables
 	private $from;
@@ -62,7 +66,197 @@ class WikiDiff3 {
 		$this->powLimit = $powLimit;
 	}
 
-	public function diff( /*array*/ $from, /*array*/ $to ) {
+	/**
+	 * @param string[] $from_lines
+	 * @param string[] $to_lines
+	 *
+	 * @return DiffOp[]
+	 */
+	public function diff( $from_lines, $to_lines ) {
+
+		// Diff and store locally
+		$this->diffInternal( $from_lines, $to_lines );
+
+		// Merge edits when possible
+		$this->shiftBoundaries( $from_lines, $this->removed, $this->added );
+		$this->shiftBoundaries( $to_lines, $this->added, $this->removed );
+
+		// Compute the edit operations.
+		$n_from = count( $from_lines );
+		$n_to = count( $to_lines );
+
+		$edits = [];
+		$xi = $yi = 0;
+		while ( $xi < $n_from || $yi < $n_to ) {
+			assert( $yi < $n_to || $this->removed[$xi] );
+			assert( $xi < $n_from || $this->added[$yi] );
+
+			// Skip matching "snake".
+			$copy = [];
+			while ( $xi < $n_from && $yi < $n_to
+					&& !$this->removed[$xi] && !$this->added[$yi]
+			) {
+				$copy[] = $from_lines[$xi++];
+				++$yi;
+			}
+			if ( $copy ) {
+				$edits[] = new DiffOpCopy( $copy );
+			}
+
+			// Find deletes & adds.
+			$delete = [];
+			while ( $xi < $n_from && $this->removed[$xi] ) {
+				$delete[] = $from_lines[$xi++];
+			}
+
+			$add = [];
+			while ( $yi < $n_to && $this->added[$yi] ) {
+				$add[] = $to_lines[$yi++];
+			}
+
+			if ( $delete && $add ) {
+				$edits[] = new DiffOpChange( $delete, $add );
+			} elseif ( $delete ) {
+				$edits[] = new DiffOpDelete( $delete );
+			} elseif ( $add ) {
+				$edits[] = new DiffOpAdd( $add );
+			}
+		}
+
+		return $edits;
+	}
+
+	/**
+	 * Adjust inserts/deletes of identical lines to join changes
+	 * as much as possible.
+	 *
+	 * We do something when a run of changed lines include a
+	 * line at one end and has an excluded, identical line at the other.
+	 * We are free to choose which identical line is included.
+	 * `compareseq' usually chooses the one at the beginning,
+	 * but usually it is cleaner to consider the following identical line
+	 * to be the "change".
+	 *
+	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
+	 */
+	private function shiftBoundaries( $lines, &$changed, $other_changed ) {
+		$i = 0;
+		$j = 0;
+
+		assert( count( $lines ) == count( $changed ) );
+		$len = count( $lines );
+		$other_len = count( $other_changed );
+
+		while ( 1 ) {
+			/*
+			 * Scan forwards to find beginning of another run of changes.
+			 * Also keep track of the corresponding point in the other file.
+			 *
+			 * Throughout this code, $i and $j are adjusted together so that
+			 * the first $i elements of $changed and the first $j elements
+			 * of $other_changed both contain the same number of zeros
+			 * (unchanged lines).
+			 * Furthermore, $j is always kept so that $j == $other_len or
+			 * $other_changed[$j] == false.
+			 */
+			while ( $j < $other_len && $other_changed[$j] ) {
+				$j++;
+			}
+
+			while ( $i < $len && !$changed[$i] ) {
+				assert( $j < $other_len && ! $other_changed[$j] );
+				$i++;
+				$j++;
+				while ( $j < $other_len && $other_changed[$j] ) {
+					$j++;
+				}
+			}
+
+			if ( $i == $len ) {
+				break;
+			}
+
+			$start = $i;
+
+			// Find the end of this run of changes.
+			while ( ++$i < $len && $changed[$i] ) {
+				continue;
+			}
+
+			do {
+				/*
+				 * Record the length of this run of changes, so that
+				 * we can later determine whether the run has grown.
+				 */
+				$runlength = $i - $start;
+
+				/*
+				 * Move the changed region back, so long as the
+				 * previous unchanged line matches the last changed one.
+				 * This merges with previous changed regions.
+				 */
+				while ( $start > 0 && $lines[$start - 1] == $lines[$i - 1] ) {
+					$changed[--$start] = 1;
+					$changed[--$i] = false;
+					while ( $start > 0 && $changed[$start - 1] ) {
+						$start--;
+					}
+					assert( $j > 0 );
+					while ( $other_changed[--$j] ) {
+						continue;
+					}
+					assert( $j >= 0 && !$other_changed[$j] );
+				}
+
+				/*
+				 * Set CORRESPONDING to the end of the changed run, at the last
+				 * point where it corresponds to a changed run in the other file.
+				 * CORRESPONDING == LEN means no such point has been found.
+				 */
+				$corresponding = $j < $other_len ? $i : $len;
+
+				/*
+				 * Move the changed region forward, so long as the
+				 * first changed line matches the following unchanged one.
+				 * This merges with following changed regions.
+				 * Do this second, so that if there are no merges,
+				 * the changed region is moved forward as far as possible.
+				 */
+				while ( $i < $len && $lines[$start] == $lines[$i] ) {
+					$changed[$start++] = false;
+					$changed[$i++] = 1;
+					while ( $i < $len && $changed[$i] ) {
+						$i++;
+					}
+
+					assert( $j < $other_len && ! $other_changed[$j] );
+					$j++;
+					if ( $j < $other_len && $other_changed[$j] ) {
+						$corresponding = $i;
+						while ( $j < $other_len && $other_changed[$j] ) {
+							$j++;
+						}
+					}
+				}
+			} while ( $runlength != $i - $start );
+
+			/*
+			 * If possible, move the fully-merged run of changes
+			 * back to a corresponding run in the other file.
+			 */
+			while ( $corresponding < $i ) {
+				$changed[--$start] = 1;
+				$changed[--$i] = 0;
+				assert( $j > 0 );
+				while ( $other_changed[--$j] ) {
+					continue;
+				}
+				assert( $j >= 0 && !$other_changed[$j] );
+			}
+		}
+	}
+
+	protected function diffInternal( /*array*/ $from, /*array*/ $to ) {
 		// remember initial lengths
 		$m = count( $from );
 		$n = count( $to );
