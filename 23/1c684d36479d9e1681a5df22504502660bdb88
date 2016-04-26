@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Code-Review+1: WMDE-Fisch <christoph.fischer@wikimedia.de>
+Code-Review+1: WMDE-leszek <leszek.manicki@wikimedia.de>
+Submitted-by: jenkins-bot
+Submitted-at: Tue, 26 Apr 2016 18:36:47 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/279332
+Project: mediawiki/core
+Branch: refs/heads/master
