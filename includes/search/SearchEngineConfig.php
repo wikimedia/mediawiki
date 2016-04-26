@@ -14,8 +14,15 @@ class SearchEngineConfig {
 	 */
 	private $config;
 
-	public function __construct( Config $config ) {
+	/**
+	 * Current language
+	 * @var Language
+	 */
+	private $language;
+
+	public function __construct( Config $config, Language $lang ) {
 		$this->config = $config;
+		$this->language = $lang;
 	}
 
 	/**
@@ -32,7 +39,7 @@ class SearchEngineConfig {
 	 */
 	public function searchableNamespaces() {
 		$arr = [];
-		foreach ( $this->config->get( 'ContLang' )->getNamespaces() as $ns => $name ) {
+		foreach ( $this->language->getNamespaces() as $ns => $name ) {
 			if ( $ns >= NS_MAIN ) {
 				$arr[$ns] = $name;
 			}
@@ -99,7 +106,7 @@ class SearchEngineConfig {
 	 * @return string[] List of names
 	 */
 	public function namespacesAsText( $namespaces ) {
-		$formatted = array_map( [ $this->config->get( 'ContLang' ), 'getFormattedNsText' ], $namespaces );
+		$formatted = array_map( [ $this->language, 'getFormattedNsText' ], $namespaces );
 		foreach ( $formatted as $key => $ns ) {
 			if ( empty( $ns ) ) {
 				$formatted[$key] = wfMessage( 'blanknamespace' )->text();
