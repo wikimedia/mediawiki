@@ -317,7 +317,7 @@
 	 * @return {OO.ui.Error} Error to display for given state and details.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
-		var message,
+		var message, parsedMessage,
 			state = this.upload.getState(),
 			stateDetails = this.upload.getStateDetails(),
 			error = stateDetails.error,
@@ -351,8 +351,18 @@
 					message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
 				}
 			}
+
+			// `message` is created without params (API error only supplies key
+			// & parsed message, not individual params) so we could have an
+			// incomplete parsed message if it expected params.
+			// In that case, we'll use the parsed error message from the server.
+			parsedMessage = message.parseDom();
+			if ( error.info && /\$[0-9]+/.test( message.parse() ) ) {
+				parsedMessage = error.info;
+			}
+
 			return new OO.ui.Error(
-				$( '<p>' ).append( message.parseDom() ),
+				$( '<p>' ).append( parsedMessage ),
 				{ recoverable: false }
 			);
 		}
