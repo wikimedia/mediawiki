@@ -2557,6 +2557,10 @@ search results.
 $title: Current Title object being displayed in search results.
 &$id: Revision ID (default is false, for latest)
 
+'SearchResultsAugment': Allows extension to add its code to the list of search
+result augmentors. 
+&$augmentors: List of augmentor objects.
+
 'SecondaryDataUpdates': Allows modification of the list of DataUpdates to
 perform when page content is modified. Currently called by
 AbstractContent::getSecondaryDataUpdates.
