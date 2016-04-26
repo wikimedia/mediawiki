@@ -4065,6 +4065,7 @@
 	"api-error-nomodule": "API error message that can be used for client side localisation of API errors.",
 	"api-error-ok-but-empty": "API error message that can be used for client side localisation of API errors.",
 	"api-error-overwrite": "API error message that can be used for client side localisation of API errors.",
+	"api-error-ratelimited": "API error message that can be used for client side localisation of API errors.",
 	"api-error-stashfailed": "API error message that can be used for client side localisation of API errors.",
 	"api-error-publishfailed": "API error message that can be used for client side localisation of API errors.",
 	"api-error-stasherror": "API error message that can be used for client side localisation of API errors.",
