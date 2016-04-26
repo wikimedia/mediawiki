@@ -563,7 +563,10 @@
 		},
 		"TrackingCategories": {
 			"type": "array",
-			"description": "Tracking category message keys"
+			"description": "Tracking category message keys",
+			"items": {
+				"type": "string"
+			}
 		},
 		"DefaultUserOptions": {
 			"type": "object",
@@ -571,15 +574,38 @@
 		},
 		"HiddenPrefs": {
 			"type": "array",
-			"description": "Preferences users cannot set"
+			"description": "Preferences users cannot set",
+			"items": {
+				"type": "string"
+			}
 		},
 		"GroupPermissions": {
 			"type": "object",
-			"description": "Default permissions to give to user groups"
+			"description": "Default permissions to give to user groups",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z]+$": {
+							"type": "boolean"
+						}
+					}
+				}
+			}
 		},
 		"RevokePermissions": {
 			"type": "object",
-			"description": "Default permissions to revoke from user groups"
+			"description": "Default permissions to revoke from user groups",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z]+$": {
+							"type": "boolean"
+						}
+					}
+				}
+			}
 		},
 		"ImplicitGroups": {
 			"type": "array",
@@ -603,11 +629,19 @@
 		},
 		"AvailableRights": {
 			"type": "array",
-			"description": "User rights added by the extension"
+			"description": "User rights added by the extension",
+			"items": {
+				"type": "string"
+			}
 		},
 		"ContentHandlers": {
 			"type": "object",
-			"description": "Mapping of model ID to class name"
+			"description": "Mapping of model ID to class name",
+			"patternProperties": {
+				"^[A-Za-z]+$": {
+					"type": "string"
+				}
+			}
 		},
 		"RateLimits": {
 			"type": "object",
@@ -626,7 +660,10 @@
 				"array",
 				"string"
 			],
-			"description": "Function to call after setup has finished"
+			"description": "Function to call after setup has finished",
+			"items": {
+				"type": "string"
+			}
 		},
 		"ExtensionMessagesFiles": {
 			"type": "object",
