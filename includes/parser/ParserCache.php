@@ -146,14 +146,17 @@ class ParserCache {
 			if ( !$useOutdated && $optionsKey->expired( $article->getTouched() ) ) {
 				wfIncrStats( "pcache.miss.expired" );
 				$cacheTime = $optionsKey->getCacheTime();
-				wfDebug( "Parser options key expired, touched " . $article->getTouched()
+				wfDebugLog( "ParserCache",
+					"Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
 			} elseif ( $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
 				wfIncrStats( "pcache.miss.revid" );
 				$revId = $article->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
-				wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+				wfDebugLog( "ParserCache",
+					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				);
 				return false;
 			}
 
@@ -222,14 +225,15 @@ class ParserCache {
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
-			wfDebug( "ParserOutput key expired, touched $touched, "
+			wfDebugLog( "ParserCache",
+				"ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
 		} elseif ( $value->isDifferentRevision( $article->getLatest() ) ) {
 			wfIncrStats( "pcache.miss.revid" );
 			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
-			wfDebug(
+			wfDebugLog( "ParserCache",
 				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
 			);
 			$value = false;
@@ -237,7 +241,7 @@ class ParserCache {
 			Hooks::run( 'RejectParserCacheValue', [ $value, $wikiPage, $popts ] ) === false
 		) {
 			wfIncrStats( 'pcache.miss.rejected' );
-			wfDebug(
+			wfDebugLog( "ParserCache",
 				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n"
 			);
 			$value = false;
