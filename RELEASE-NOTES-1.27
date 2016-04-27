@@ -190,6 +190,9 @@ HHVM 3.1. Additionally, the following PHP extensions are required:
   is deprecated.
 * (T33313) Add a preference for watching uploads by default, also applies
   to API-based upload tools.
+* $wgJpegPixelFormat was added to override chroma subsampling for JPEG image
+  thumbnails created via ImageMagick. Defaults to 'yuv420', providing bandwidth
+  savings versus the previous behavior on many files.
 
 === External library changes in 1.27 ===
 

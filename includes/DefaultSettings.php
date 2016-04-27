@@ -981,6 +981,27 @@ $wgCustomConvertCommand = false;
 $wgJpegTran = '/usr/bin/jpegtran';
 
 /**
+ * At default setting of 'yuv420', JPEG thumbnails will use 4:2:0 chroma
+ * subsampling to reduce file size, at the cost of possible color fringing
+ * at sharp edges.
+ *
+ * See https://en.wikipedia.org/wiki/Chroma_subsampling
+ *
+ * Supported values:
+ *   false - use scaling system's default (same as pre-1.27 behavior)
+ *   'yuv444' - luma and chroma at same resolution
+ *   'yuv422' - chroma at 1/2 resolution horizontally, full vertically
+ *   'yuv420' - chroma at 1/2 resolution in both dimensions
+ *
+ * This setting is currently supported only for the ImageMagick backend;
+ * others may default to 4:2:0 or 4:4:4 or maintaining the source file's
+ * sampling in the thumbnail.
+ *
+ * @since 1.27
+ */
+$wgJpegPixelFormat = 'yuv420';
+
+/**
  * Some tests and extensions use exiv2 to manipulate the Exif metadata in some
  * image formats.
  */
