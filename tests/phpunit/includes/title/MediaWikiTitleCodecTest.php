@@ -179,6 +179,36 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
+	public static function provideGetPrefixedDBkey() {
+		return [
+			[ NS_MAIN, 'Foo_Bar', '', '', 'en', 'Foo_Bar' ],
+			[ NS_USER, 'Hansi_Maier', 'stuff_and_so_on', '', 'en', 'User:Hansi_Maier' ],
+
+			// No capitalization or normalization is applied while formatting!
+			[ NS_USER_TALK, 'hansi__maier', '', '', 'en', 'User_talk:hansi__maier' ],
+
+			// getGenderCache() provides a mock that considers first
+			// names ending in "a" to be female.
+			[ NS_USER, 'Lisa_Müller', '', '', 'de', 'Benutzerin:Lisa_Müller' ],
+
+			[ NS_MAIN, 'Remote_page', '', 'remotetestiw', 'en', 'remotetestiw:Remote_page' ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetPrefixedDBkey
+	 */
+	public function testGetPrefixedDBkey( $namespace, $dbkey, $fragment,
+		$interwiki, $lang, $expected
+	) {
+		$codec = $this->makeCodec( $lang );
+		$title = new TitleValue( $namespace, $dbkey, $fragment, $interwiki );
+
+		$actual = $codec->getPrefixedDBkey( $title );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
 	public static function provideGetFullText() {
 		return [
 			[ NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ],

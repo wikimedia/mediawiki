@@ -182,6 +182,31 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	}
 
 	/**
+	 * @since 1.27
+	 * @see TitleFormatter::getPrefixedDBkey()
+	 * @param LinkTarget $target
+	 * @return string
+	 */
+	public function getPrefixedDBkey( LinkTarget $target ) {
+		$key = '';
+		if ( $target->isExternal() ) {
+			$key .= $target->getInterwiki() . ':';
+		}
+		$nsName = $this->getNamespaceName(
+			$target->getNamespace(),
+			$target->getText()
+		);
+
+		if ( $nsName !== '' ) {
+			$key .= $nsName . ':';
+		}
+
+		$key .= $target->getText();
+
+		return strtr( $key, ' ', '_' );
+	}
+
+	/**
 	 * @see TitleFormatter::getText()
 	 *
 	 * @param LinkTarget $title
