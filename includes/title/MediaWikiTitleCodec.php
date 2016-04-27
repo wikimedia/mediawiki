@@ -98,11 +98,12 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string $text The page title. Should be valid. Only minimal normalization is applied.
 	 *        Underscores will be replaced.
 	 * @param string $fragment The fragment name (may be empty).
+	 * @param string $interwiki The interwiki name (may be empty).
 	 *
 	 * @throws InvalidArgumentException If the namespace is invalid
 	 * @return string
 	 */
-	public function formatTitle( $namespace, $text, $fragment = '' ) {
+	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' ) {
 		if ( $namespace !== false ) {
 			$namespace = $this->getNamespaceName( $namespace, $text );
 
@@ -113,6 +114,10 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 
 		if ( $fragment !== '' ) {
 			$text = $text . '#' . $fragment;
+		}
+
+		if ( $interwiki !== '' ) {
+			$text = $interwiki . ':' . $text;
 		}
 
 		$text = str_replace( '_', ' ', $text );
@@ -136,17 +141,17 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// be refactored to avoid this.
 		$parts = $this->splitTitleString( $text, $defaultNamespace );
 
-		// Interwiki links are not supported by TitleValue
-		if ( $parts['interwiki'] !== '' ) {
-			throw new MalformedTitleException( 'title-invalid-interwiki', $text );
-		}
-
 		// Relative fragment links are not supported by TitleValue
 		if ( $parts['dbkey'] === '' ) {
 			throw new MalformedTitleException( 'title-invalid-empty', $text );
 		}
 
-		return new TitleValue( $parts['namespace'], $parts['dbkey'], $parts['fragment'] );
+		return new TitleValue(
+			$parts['namespace'],
+			$parts['dbkey'],
+			$parts['fragment'],
+			$parts['interwiki']
+		);
 	}
 
 	/**
@@ -168,7 +173,12 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function getPrefixedText( LinkTarget $title ) {
-		return $this->formatTitle( $title->getNamespace(), $title->getText(), '' );
+		return $this->formatTitle(
+			$title->getNamespace(),
+			$title->getText(),
+			'',
+			$title->getInterwiki()
+		);
 	}
 
 	/**
@@ -179,7 +189,12 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function getFullText( LinkTarget $title ) {
-		return $this->formatTitle( $title->getNamespace(), $title->getText(), $title->getFragment() );
+		return $this->formatTitle(
+			$title->getNamespace(),
+			$title->getText(),
+			$title->getFragment(),
+			$title->getInterwiki()
+		);
 	}
 
 	/**

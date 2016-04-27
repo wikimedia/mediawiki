@@ -73,4 +73,18 @@ interface LinkTarget {
 	 * @return LinkTarget
 	 */
 	public function createFragmentTarget( $fragment );
+
+	/**
+	 * Whether this LinkTarget has an interwiki component
+	 *
+	 * @return bool
+	 */
+	public function isExternal();
+
+	/**
+	 * The interwiki component of this LinkTarget
+	 *
+	 * @return string
+	 */
+	public function getInterwiki();
 }
