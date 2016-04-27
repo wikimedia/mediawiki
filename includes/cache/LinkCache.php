@@ -58,7 +58,7 @@ class LinkCache {
 	 *
 	 * @return LinkCache
 	 */
-	public static function &singleton() {
+	public static function singleton() {
 		if ( !self::$instance ) {
 			self::$instance = new LinkCache;
 		}
