@@ -871,7 +871,9 @@ class Title implements LinkTarget {
 				$this->mTitleValue = new TitleValue(
 					$this->getNamespace(),
 					$this->getDBkey(),
-					$this->getFragment() );
+					$this->getFragment(),
+					$this->getInterwiki()
+				);
 			} catch ( InvalidArgumentException $ex ) {
 				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
 					$this->getPrefixedText() . ']]: ' . $ex->getMessage() . "\n" );
