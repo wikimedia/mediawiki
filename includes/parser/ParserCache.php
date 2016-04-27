@@ -201,6 +201,7 @@ class ParserCache {
 		}
 
 		$casToken = null;
+		/** @var ParserOutput $value */
 		$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
