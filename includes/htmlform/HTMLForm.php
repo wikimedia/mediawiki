@@ -158,7 +158,7 @@ class HTMLForm extends ContextSource {
 		'user' => 'HTMLUserTextField',
 	];
 
-	public $mFieldData;
+	public $mFieldData = [];
 
 	protected $mMessagePrefix;
 
