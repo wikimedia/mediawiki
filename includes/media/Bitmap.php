@@ -105,6 +105,25 @@ class BitmapHandler extends TransformationalImageHandler {
 	}
 
 	/**
+	 * Get ImageMagick subsampling factors for the target JPEG pixel format.
+	 *
+	 * @param string $pixelFormat one of 'yuv444', 'yuv422', 'yuv420'
+	 * @return array of string keys
+	 */
+	protected function imageMagickSubsampling( $pixelFormat ) {
+		switch ( $pixelFormat ) {
+		case 'yuv444':
+			return [ '1x1', '1x1', '1x1' ];
+		case 'yuv422':
+			return [ '2x1', '1x1', '1x1' ];
+		case 'yuv420':
+			return [ '2x2', '1x1', '1x1' ];
+		default:
+			throw new MWException( 'Invalid pixel format for JPEG output' );
+		}
+	}
+
+	/**
 	 * Transform an image using ImageMagick
 	 *
 	 * @param File $image File associated with this thumbnail
@@ -115,7 +134,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgImageMagickTempDir, $wgImageMagickConvertCommand;
+			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgJpegPixelFormat;
 
 		$quality = [];
 		$sharpen = [];
@@ -123,6 +142,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$animation_pre = [];
 		$animation_post = [];
 		$decoderHint = [];
+		$subsampling = [];
 
 		if ( $params['mimeType'] == 'image/jpeg' ) {
 			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
@@ -140,6 +160,10 @@ class BitmapHandler extends TransformationalImageHandler {
 			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
 				$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
+			}
+			if ( $wgJpegPixelFormat ) {
+				$factors = $this->imageMagickSubsampling( $wgJpegPixelFormat );
+				$subsampling = [ '-sampling-factor', implode( ',', $factors ) ];
 			}
 		} elseif ( $params['mimeType'] == 'image/png' ) {
 			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
@@ -225,6 +249,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			[ '-depth', 8 ],
 			$sharpen,
 			[ '-rotate', "-$rotation" ],
+			$subsampling,
 			$animation_post,
 			[ $this->escapeMagickOutput( $params['dstPath'] ) ] ) );
 
@@ -251,7 +276,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgMaxInterlacingAreas;
+			$wgMaxInterlacingAreas, $wgJpegPixelFormat;
 
 		try {
 			$im = new Imagick();
@@ -271,6 +296,10 @@ class BitmapHandler extends TransformationalImageHandler {
 				$im->setCompressionQuality( $qualityVal ?: 80 );
 				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_JPEG );
+				}
+				if ( $wgJpegPixelFormat ) {
+					$factors = $this->imageMagickSubsampling( $wgJpegPixelFormat );
+					$im->setSamplingFactors( $factors );
 				}
 			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
