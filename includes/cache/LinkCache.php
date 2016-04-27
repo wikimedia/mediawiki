@@ -20,7 +20,8 @@
  * @file
  * @ingroup Cache
  */
-
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
  *
@@ -38,6 +39,11 @@ class LinkCache {
 	private $mForUpdate = false;
 
 	/**
+	 * @var TitleFormatter
+	 */
+	private $titleFormatter;
+
+	/**
 	 * How many Titles to store. There are two caches, so the amount actually
 	 * stored in memory can be up to twice this.
 	 */
@@ -51,6 +57,8 @@ class LinkCache {
 	public function __construct() {
 		$this->mGoodLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
 		$this->mBadLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
+		$this->titleFormatter =
+			MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
 	/**
@@ -105,6 +113,15 @@ class LinkCache {
 	}
 
 	/**
+	 * @param LinkTarget $target
+	 * @return string
+	 */
+	private function getPrefixedDBKey( LinkTarget $target ) {
+		$text = $this->titleFormatter->getPrefixedText( $target );
+		return str_replace( ' ', '_', $text );
+	}
+
+	/**
 	 * @param string $title Prefixed DB key
 	 * @return int Page ID or zero
 	 */
@@ -119,12 +136,12 @@ class LinkCache {
 	/**
 	 * Get a field of a title object from cache.
 	 * If this link is not a cached good title, it will return NULL.
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 * @param string $field ('length','redirect','revision','model')
 	 * @return string|int|null
 	 */
-	public function getGoodLinkFieldObj( Title $title, $field ) {
-		$dbkey = $title->getPrefixedDBkey();
+	public function getGoodLinkFieldObj( LinkTarget $target, $field ) {
+		$dbkey = $this->getPrefixedDBKey( $target );
 		$info = $this->mGoodLinks->get( $dbkey );
 		if ( !$info ) {
 			return null;
@@ -145,17 +162,17 @@ class LinkCache {
 	 * Add a link for the title to the link cache
 	 *
 	 * @param int $id Page's ID
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 * @param int $len Text's length
 	 * @param int $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
 	 * @param string|null $model Latest revision's content model ID
 	 * @param string|null $lang Language code of the page, if not the content language
 	 */
-	public function addGoodLinkObj( $id, Title $title, $len = -1, $redir = null,
+	public function addGoodLinkObj( $id, LinkTarget $target, $len = -1, $redir = null,
 		$revision = 0, $model = null, $lang = null
 	) {
-		$dbkey = $title->getPrefixedDBkey();
+		$dbkey = $this->getPrefixedDBKey( $target );
 		$this->mGoodLinks->set( $dbkey, [
 			'id' => (int)$id,
 			'length' => (int)$len,
@@ -169,12 +186,12 @@ class LinkCache {
 	/**
 	 * Same as above with better interface.
 	 * @since 1.19
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 * @param stdClass $row Object which has the fields page_id, page_is_redirect,
 	 *  page_latest and page_content_model
 	 */
-	public function addGoodLinkObjFromRow( Title $title, $row ) {
-		$dbkey = $title->getPrefixedDBkey();
+	public function addGoodLinkObjFromRow( LinkTarget $target, $row ) {
+		$dbkey = $this->getPrefixedDBKey( $target );
 		$this->mGoodLinks->set( $dbkey, [
 			'id' => intval( $row->page_id ),
 			'length' => intval( $row->page_len ),
@@ -186,10 +203,10 @@ class LinkCache {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 */
-	public function addBadLinkObj( Title $title ) {
-		$dbkey = $title->getPrefixedDBkey();
+	public function addBadLinkObj( LinkTarget $target ) {
+		$dbkey = $this->getPrefixedDBKey( $target );
 		if ( !$this->isBadLink( $dbkey ) ) {
 			$this->mBadLinks->set( $dbkey, 1 );
 		}
@@ -203,10 +220,10 @@ class LinkCache {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param LinkTarget $target
 	 */
-	public function clearLink( Title $title ) {
-		$dbkey = $title->getPrefixedDBkey();
+	public function clearLink( LinkTarget $target ) {
+		$dbkey = $this->getPrefixedDBKey( $target );
 		$this->mBadLinks->delete( $dbkey );
 		$this->mGoodLinks->delete( $dbkey );
 	}
@@ -214,6 +231,7 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
+	 * @deprecated since 1.27, unused
 	 * @param string $title Prefixed DB key
 	 * @return int Page ID or zero
 	 */
@@ -228,13 +246,13 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
-	 * @param Title $nt Title object to add
+	 * @param LinkTarget $nt LinkTarget object to add
 	 * @return int Page ID or zero
 	 */
-	public function addLinkObj( Title $nt ) {
+	public function addLinkObj( LinkTarget $nt ) {
 		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
-		$key = $nt->getPrefixedDBkey();
+		$key = $this->getPrefixedDBKey( $nt );
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 			return 0;
 		}
