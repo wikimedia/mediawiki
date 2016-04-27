@@ -22,6 +22,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use MediaWiki\Diff\ComplexityException;
 
 /**
  * This diff implementation is mainly lifted from the LCS algorithm of the Eclipse project which
@@ -51,6 +52,8 @@ class DiffEngine {
 	private $tooLong;
 	private $powLimit;
 
+	protected $bailoutComplexity = 0;
+
 	// State variables
 	private $maxDifferences;
 	private $lcsLengthCorrectedForHeuristic = false;
@@ -71,6 +74,7 @@ class DiffEngine {
 	 *
 	 * @param string[] $from_lines
 	 * @param string[] $to_lines
+	 * @throws ComplexityException
 	 *
 	 * @return DiffOp[]
 	 */
@@ -126,6 +130,14 @@ class DiffEngine {
 		}
 
 		return $edits;
+	}
+
+	/**
+	 * Sets the complexity (in comparison operations) that can't be exceeded
+	 * @param int $value
+	 */
+	public function setBailoutComplexity( $value ) {
+		$this->bailoutComplexity = $value;
 	}
 
 	/**
@@ -265,6 +277,7 @@ class DiffEngine {
 	/**
 	 * @param string[] $from
 	 * @param string[] $to
+	 * @throws ComplexityException
 	 */
 	protected function diffInternal( array $from, array $to ) {
 		// remember initial lengths
@@ -322,6 +335,10 @@ class DiffEngine {
 
 		$this->m = count( $this->from );
 		$this->n = count( $this->to );
+
+		if ( $this->bailoutComplexity > 0 && $this->m * $this->n > $this->bailoutComplexity ) {
+			throw new ComplexityException();
+		}
 
 		$this->removed = $this->m > 0 ? array_fill( 0, $this->m, true ) : [];
 		$this->added = $this->n > 0 ? array_fill( 0, $this->n, true ) : [];
