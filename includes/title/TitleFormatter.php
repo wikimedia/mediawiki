@@ -69,6 +69,18 @@ interface TitleFormatter {
 	public function getPrefixedText( LinkTarget $title );
 
 	/**
+	 * Return the title in prefixed database key form, with interwiki
+	 * and namespace.
+	 *
+	 * @since 1.27
+	 *
+	 * @param LinkTarget $target
+	 *
+	 * @return string
+	 */
+	public function getPrefixedDBkey( LinkTarget $target );
+
+	/**
 	 * Returns the title formatted for display, with namespace and fragment.
 	 *
 	 * @param LinkTarget $title The title to format
