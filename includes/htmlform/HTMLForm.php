@@ -1480,7 +1480,13 @@ class HTMLForm extends ContextSource {
 	public function displaySection( $fields,
 		$sectionName = '',
 		$fieldsetIDPrefix = '',
-		&$hasUserVisibleFields = false ) {
+		&$hasUserVisibleFields = false
+	) {
+		if ( $this->mFieldData === null ) {
+			throw new LogicException( 'HTMLForm::displaySection() called on uninitialized field data. '
+				. 'You probably called displayForm() without calling prepareForm() first.' );
+		}
+
 		$displayFormat = $this->getDisplayFormat();
 
 		$html = [];
