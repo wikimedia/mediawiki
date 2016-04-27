@@ -205,6 +205,11 @@ class Diff {
 	public $edits;
 
 	/**
+	 * @var int If this diff complexity is exceeded,  
+	 */
+	protected $bailoutComplexity = 0;
+
+	/**
 	 * Constructor.
 	 * Computes diff between sequences of strings.
 	 *
