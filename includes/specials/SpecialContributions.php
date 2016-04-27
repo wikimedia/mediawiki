@@ -517,7 +517,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'options' => Xml::getMonthSelectOptions( true ),
 		];
 
-		$form = HTMLForm::factory( 'inline', $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setSubmitText( $this->msg( 'sp-contributions-submit' )->text() );
 		$form->setMethod( 'get' );
 		$form->setSubmitProgressive();
