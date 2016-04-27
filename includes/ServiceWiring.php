@@ -83,14 +83,11 @@ return [
 	},
 
 	'SearchEngineFactory' => function( MediaWikiServices $services ) {
-		// Create search engine
-		return new SearchEngineFactory( $services->getService( 'SearchEngineConfig' ) );
+		return new SearchEngineFactory( $services->getSearchEngineConfig() );
 	},
 
 	'SearchEngineConfig' => function( MediaWikiServices $services ) {
-		// Create a search engine config from main config.
-		$config = $services->getService( 'MainConfig' );
-		return new SearchEngineConfig( $config );
+		return new SearchEngineConfig( $services->getMainConfig() );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
