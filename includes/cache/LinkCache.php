@@ -105,7 +105,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $title Prefixed DB key
 	 * @return int Page ID or zero
 	 */
 	public function getGoodLinkID( $title ) {
@@ -123,7 +123,7 @@ class LinkCache {
 	 * @param string $field ('length','redirect','revision','model')
 	 * @return string|int|null
 	 */
-	public function getGoodLinkFieldObj( $title, $field ) {
+	public function getGoodLinkFieldObj( Title $title, $field ) {
 		$dbkey = $title->getPrefixedDBkey();
 		$info = $this->mGoodLinks->get( $dbkey );
 		if ( !$info ) {
@@ -133,7 +133,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $title Prefixed DB key
 	 * @return bool
 	 */
 	public function isBadLink( $title ) {
@@ -196,7 +196,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param string $title prefixed dbkey
+	 * @param string $title Prefixed DB key
 	 */
 	public function clearBadLink( $title ) {
 		$this->mBadLinks->delete( $title );
@@ -205,7 +205,7 @@ class LinkCache {
 	/**
 	 * @param Title $title
 	 */
-	public function clearLink( $title ) {
+	public function clearLink( Title $title ) {
 		$dbkey = $title->getPrefixedDBkey();
 		$this->mBadLinks->delete( $dbkey );
 		$this->mGoodLinks->delete( $dbkey );
@@ -214,7 +214,7 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
-	 * @param string $title Title to add
+	 * @param string $title Prefixed DB key
 	 * @return int Page ID or zero
 	 */
 	public function addLink( $title ) {
