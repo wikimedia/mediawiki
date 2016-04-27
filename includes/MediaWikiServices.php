@@ -10,6 +10,9 @@ use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
 
