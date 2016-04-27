@@ -42,10 +42,11 @@ interface TitleFormatter {
 	 * @param int|bool $namespace The namespace ID (or false, if the namespace should be ignored)
 	 * @param string $text The page title
 	 * @param string $fragment The fragment name (may be empty).
+	 * @param string $interwiki The interwiki prefix (may be empty).
 	 *
 	 * @return string
 	 */
-	public function formatTitle( $namespace, $text, $fragment = '' );
+	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' );
 
 	/**
 	 * Returns the title text formatted for display, without namespace of fragment.

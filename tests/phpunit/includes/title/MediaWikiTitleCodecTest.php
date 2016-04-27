@@ -87,12 +87,13 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 	public static function provideFormat() {
 		return [
-			[ NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ],
-			[ NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'User:Hansi Maier#stuff and so on' ],
-			[ false, 'Hansi_Maier', '', 'en', 'Hansi Maier' ],
+			[ NS_MAIN, 'Foo_Bar', '', '', 'en', 'Foo Bar' ],
+			[ NS_USER, 'Hansi_Maier', 'stuff_and_so_on', '', 'en', 'User:Hansi Maier#stuff and so on' ],
+			[ false, 'Hansi_Maier', '', '', 'en', 'Hansi Maier' ],
 			[
 				NS_USER_TALK,
 				'hansi__maier',
+				'',
 				'',
 				'en',
 				'User talk:hansi  maier',
@@ -101,20 +102,23 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 			// getGenderCache() provides a mock that considers first
 			// names ending in "a" to be female.
-			[ NS_USER, 'Lisa_Müller', '', 'de', 'Benutzerin:Lisa Müller' ],
+			[ NS_USER, 'Lisa_Müller', '', '', 'de', 'Benutzerin:Lisa Müller' ],
+			[ NS_MAIN, 'FooBar', '', 'remotetestiw', 'en', 'remotetestiw:FooBar' ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideFormat
 	 */
-	public function testFormat( $namespace, $text, $fragment, $lang, $expected, $normalized = null ) {
+	public function testFormat( $namespace, $text, $fragment, $interwiki, $lang, $expected,
+		$normalized = null
+	) {
 		if ( $normalized === null ) {
 			$normalized = $expected;
 		}
 
 		$codec = $this->makeCodec( $lang );
-		$actual = $codec->formatTitle( $namespace, $text, $fragment );
+		$actual = $codec->formatTitle( $namespace, $text, $fragment, $interwiki );
 
 		$this->assertEquals( $expected, $actual, 'formatted' );
 
@@ -123,7 +127,8 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$actual2 = $codec->formatTitle(
 			$parsed->getNamespace(),
 			$parsed->getText(),
-			$parsed->getFragment()
+			$parsed->getFragment(),
+			$parsed->getInterwiki()
 		);
 
 		$this->assertEquals( $normalized, $actual2, 'normalized after round trip' );
@@ -293,7 +298,6 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 			[ 'Talk:File:Foo.jpg' ],
 			[ 'Talk:localtestiw:Foo' ],
-			[ 'remotetestiw:Foo' ],
 			[ '::1' ], // only valid in user namespace
 			[ 'User::x' ], // leading ":" in a user name is only valid of IPv6 addresses
 
