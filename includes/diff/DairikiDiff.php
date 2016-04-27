@@ -205,15 +205,23 @@ class Diff {
 	public $edits;
 
 	/**
+	 * @var int If this diff complexity is exceeded, a ComplexityException is thrown
+	 *          0 means no limit.
+	 */
+	protected $bailoutComplexity = 0;
+
+	/**
 	 * Constructor.
 	 * Computes diff between sequences of strings.
 	 *
 	 * @param string[] $from_lines An array of strings.
 	 *   Typically these are lines from a file.
 	 * @param string[] $to_lines An array of strings.
+	 * @throws \MediaWiki\Diff\ComplexityException
 	 */
 	public function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
+		$eng->setBailoutComplexity( $this->bailoutComplexity );
 		$this->edits = $eng->diff( $from_lines, $to_lines );
 	}
 
