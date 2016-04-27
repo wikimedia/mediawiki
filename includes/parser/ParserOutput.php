@@ -381,6 +381,9 @@ class ParserOutput extends CacheTime {
 		return $this->mTOCHTML;
 	}
 
+	/**
+	 * @return string|null TS_MW timestamp of the revision content
+	 */
 	public function getTimestamp() {
 		return $this->mTimestamp;
 	}
