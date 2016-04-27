@@ -1474,13 +1474,22 @@ class HTMLForm extends ContextSource {
 	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of
 	 *   each subsection, ignored if empty.
 	 * @param bool &$hasUserVisibleFields Whether the section had user-visible fields.
+	 * @throws LogicException When called on uninitialized field data, e.g. When
+	 *  HTMLForm::displayForm was called without calling HTMLForm::prepareForm
+	 *  first.
 	 *
 	 * @return string
 	 */
 	public function displaySection( $fields,
 		$sectionName = '',
 		$fieldsetIDPrefix = '',
-		&$hasUserVisibleFields = false ) {
+		&$hasUserVisibleFields = false
+	) {
+		if ( $this->mFieldData === null ) {
+			throw new LogicException( 'HTMLForm::displaySection() called on uninitialized field data. '
+				. 'You probably called displayForm() without calling prepareForm() first.' );
+		}
+
 		$displayFormat = $this->getDisplayFormat();
 
 		$html = [];
