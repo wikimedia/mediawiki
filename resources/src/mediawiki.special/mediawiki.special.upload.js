@@ -92,16 +92,19 @@
 		},
 
 		setWarning: function ( warning ) {
-			var $warning = $( $.parseHTML( warning ) );
+			var $warningBox = $( '#wpDestFile-warning' ),
+				$warning = $( $.parseHTML( warning ) );
 			mw.hook( 'wikipage.content' ).fire( $warning );
-			$( '#wpDestFile-warning' ).empty().append( $warning );
+			$warningBox.empty().append( $warning );
 
 			// Set a value in the form indicating that the warning is acknowledged and
 			// doesn't need to be redisplayed post-upload
 			if ( !warning ) {
 				$( '#wpDestFileWarningAck' ).val( '' );
+				$warningBox.removeAttr( 'class' );
 			} else {
 				$( '#wpDestFileWarningAck' ).val( '1' );
+				$warningBox.attr( 'class', 'mw-destfile-warning' );
 			}
 
 		}

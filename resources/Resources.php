@@ -1869,6 +1869,7 @@ return [
 			'thumbnail.html' => 'resources/src/mediawiki.special/templates/thumbnail.html',
 		],
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.upload.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.upload.css',
 		'messages' => [
 			'widthheight',
 			'size-bytes',
