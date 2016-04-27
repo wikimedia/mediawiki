@@ -103,7 +103,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * @return Status
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
-	public function setVisibility( $params ) {
+	public function setVisibility( array $params ) {
 		$bitPars = $params['value'];
 		$comment = $params['comment'];
 		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
