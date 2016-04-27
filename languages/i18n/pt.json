@@ -70,7 +70,8 @@
 			"Diniscoelho",
 			"Josep Maria Roca Peña",
 			"Luan",
-			"Gato Preto"
+			"Gato Preto",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -665,6 +666,7 @@
 	"minoredit": "Marcar como edição menor",
 	"watchthis": "Vigiar esta página",
 	"savearticle": "Gravar página",
+	"publishpage": "Publicar página",
 	"preview": "Antevisão",
 	"showpreview": "Antever resultado",
 	"showdiff": "Mostrar alterações",

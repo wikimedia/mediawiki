@@ -59,7 +59,8 @@
 			"BAB ZAA",
 			"ASammour",
 			"Maroen1990",
-			"Sonic N800"
+			"Sonic N800",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -650,6 +651,7 @@
 	"minoredit": "هذا تعديل طفيف",
 	"watchthis": "راقب هذه الصفحة",
 	"savearticle": "احفظ الصفحة",
+	"publishpage": "نشر الصفحة",
 	"preview": "عرض مسبق",
 	"showpreview": "أظهر معاينة",
 	"showdiff": "عرض التغييرات",

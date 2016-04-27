@@ -139,7 +139,8 @@
 			"C13m3n7",
 			"Gnangbade",
 			"Frigory",
-			"Lemondoge"
+			"Lemondoge",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -742,6 +743,7 @@
 	"minoredit": "Modification mineure",
 	"watchthis": "Suivre cette page",
 	"savearticle": "Enregistrer",
+	"publishpage": "Publier",
 	"preview": "Prévisualisation",
 	"showpreview": "Prévisualiser",
 	"showdiff": "Voir les modifications",
