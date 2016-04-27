@@ -43,7 +43,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 === Other changes in 1.28 ===
-
+* (T128697) Improved handling of large diffs.
 
 == Compatibility ==
 
