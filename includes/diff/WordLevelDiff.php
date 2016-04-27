@@ -23,6 +23,7 @@
  * @defgroup DifferenceEngine DifferenceEngine
  */
 
+use MediaWiki\Diff\ComplexityException;
 use MediaWiki\Diff\WordAccumulator;
 
 /**
@@ -31,7 +32,10 @@ use MediaWiki\Diff\WordAccumulator;
  * @ingroup DifferenceEngine
  */
 class WordLevelDiff extends \Diff {
-	const MAX_LINE_LENGTH = 10000;
+	/**
+	 * @inheritdoc
+	 */
+	protected $bailoutComplexity = 40000000;
 
 	/**
 	 * @param string[] $linesBefore
@@ -42,7 +46,11 @@ class WordLevelDiff extends \Diff {
 		list( $wordsBefore, $wordsBeforeStripped ) = $this->split( $linesBefore );
 		list( $wordsAfter, $wordsAfterStripped ) = $this->split( $linesAfter );
 
-		parent::__construct( $wordsBeforeStripped, $wordsAfterStripped );
+		try {
+			parent::__construct( $wordsBeforeStripped, $wordsAfterStripped );
+		} catch ( ComplexityException $ex ) {
+			$this->edits = [ new DiffOpChange( $linesBefore, $linesAfter ) ];
+		}
 
 		$xi = $yi = 0;
 		$editCount = count( $this->edits );
@@ -73,28 +81,20 @@ class WordLevelDiff extends \Diff {
 		$stripped = [];
 		$first = true;
 		foreach ( $lines as $line ) {
-			# If the line is too long, just pretend the entire line is one big word
-			# This prevents resource exhaustion problems
 			if ( $first ) {
 				$first = false;
 			} else {
 				$words[] = "\n";
 				$stripped[] = "\n";
 			}
-			if ( strlen( $line ) > self::MAX_LINE_LENGTH ) {
-				$words[] = $line;
-				$stripped[] = $line;
-			} else {
-				$m = [];
-				if ( preg_match_all( '/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
-					$line, $m )
-				) {
-					foreach ( $m[0] as $word ) {
-						$words[] = $word;
-					}
-					foreach ( $m[1] as $stripped_word ) {
-						$stripped[] = $stripped_word;
-					}
+			$m = [];
+			if ( preg_match_all( '/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
+				$line, $m ) ) {
+				foreach ( $m[0] as $word ) {
+					$words[] = $word;
+				}
+				foreach ( $m[1] as $stripped_word ) {
+					$stripped[] = $stripped_word;
 				}
 			}
 		}
