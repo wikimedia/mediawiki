@@ -2115,7 +2115,13 @@ class WikiPage implements Page, IDBAccessObject {
 			: '';
 		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialFormat ) : '';
 
+		if ( $edit->output ) {
+			$edit->output->setCacheTime( wfTimestampNow() );
+		}
+
+		// Process cache the result
 		$this->mPreparedEdit = $edit;
+
 		return $edit;
 	}
 

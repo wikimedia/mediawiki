@@ -40,6 +40,8 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_CACHE = 'error_cache';
 	const ERROR_UNCACHEABLE = 'uncacheable';
 
+	const PRESUME_FRESH_TTL_SEC = 5;
+
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -281,10 +283,10 @@ class ApiStashEdit extends ApiBase {
 			return false;
 		}
 
-		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
-		if ( ( time() - $time ) <= 3 ) {
+		$age = time() - wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() );
+		if ( $age <= self::PRESUME_FRESH_TTL_SEC ) {
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
-			$logger->debug( "Timestamp-based cache hit for key '$key'." );
+			$logger->debug( "Timestamp-based cache hit for key '$key' (age: $age sec)." );
 			return $editInfo; // assume nothing changed
 		}
 
@@ -313,7 +315,7 @@ class ApiStashEdit extends ApiBase {
 
 			if ( $changed || $res->numRows() != $templateUses ) {
 				$stats->increment( 'editstash.cache_misses.proven_stale' );
-				$logger->info( "Stale cache for key '$key'; template changed." );
+				$logger->info( "Stale cache for key '$key'; template changed. (age: $age sec)" );
 				return false;
 			}
 		}
@@ -337,13 +339,13 @@ class ApiStashEdit extends ApiBase {
 
 			if ( $changed || $res->numRows() != count( $files ) ) {
 				$stats->increment( 'editstash.cache_misses.proven_stale' );
-				$logger->info( "Stale cache for key '$key'; file changed." );
+				$logger->info( "Stale cache for key '$key'; file changed. (age: $age sec)" );
 				return false;
 			}
 		}
 
 		$stats->increment( 'editstash.cache_hits.proven_fresh' );
-		$logger->debug( "Cache hit for key '$key'." );
+		$logger->debug( "Verified cache hit for key '$key' (age: $age sec)." );
 
 		return $editInfo;
 	}
