@@ -684,7 +684,10 @@ class SpecialSearch extends SpecialPage {
 				$user->setOption( 'searchNs' . $n, true );
 			}
 
-			$user->saveSettings();
+			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+				$user->saveSettings();
+			} );
+
 			return true;
 		}
 
