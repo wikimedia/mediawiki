@@ -1749,7 +1749,7 @@
 	"wantedfiles": "Niet-bestaande bestanden met koppelingen",
 	"wantedfiletext-cat": "De volgende bestanden worden gebruikt maar bestaan niet. Bestanden van externe repositories kunnen zijn opgenomen in de lijst, ondanks dat ze bestaan. Dergelijke vals positieven worden <del>doorgehaald weergegeven</del>. Pagina's die niet-bestaande bestanden insluiten staan op de pagina [[:$1]].",
 	"wantedfiletext-cat-noforeign": "De volgende bestanden zijn in gebruik maar bestaan niet. Daarnaast staan pagina's met niet-bestaande bestanden op [[:$1]].",
-	"wantedfiletext-nocat": "De volgende bestanden worden gebruikt maar bestaan niet. Bestanden van externe repositories kunnen zijn opgenomen in de lijst, ondanks dat ze bestaan. Dergelijke vals positieven worden <del>doorgehaald weergegeven</del>.",
+	"wantedfiletext-nocat": "De volgende bestanden worden gebruikt maar bestaan niet. Bestanden van externe repositories kunnen zijn opgenomen in de lijst, ondanks dat ze bestaan. Dergelijke valse positieven worden <del>doorgehaald weergegeven</del>.",
 	"wantedfiletext-nocat-noforeign": "De volgende bestanden zijn in gebruik maar bestaan niet.",
 	"wantedtemplates": "Niet-bestaande sjablonen met koppelingen",
 	"mostlinked": "Pagina's waar het meest naar verwezen wordt",

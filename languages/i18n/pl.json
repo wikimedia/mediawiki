@@ -3654,7 +3654,9 @@
 	"randomrootpage": "Losowa strona (bez podstron)",
 	"log-action-filter-block": "Rodzaj blokady:",
 	"log-action-filter-delete": "Rodzaj usunięcia:",
+	"log-action-filter-patrol": "Rodzaj patrolu:",
 	"log-action-filter-protect": "Rodzaj zabezpieczenia:",
+	"log-action-filter-rights": "Typ zmiany uprawień",
 	"log-action-filter-upload": "Rodzaj przesłanych:",
 	"log-action-filter-all": "Wszystkie",
 	"log-action-filter-block-block": "Zablokowanie",
@@ -3669,9 +3671,13 @@
 	"log-action-filter-managetags-delete": "Usunięcie znacznika",
 	"log-action-filter-managetags-activate": "Aktywacja znacznika",
 	"log-action-filter-managetags-deactivate": "Deaktywacja znacznika",
+	"log-action-filter-patrol-patrol": "Ręczny",
+	"log-action-filter-patrol-autopatrol": "Automatyczny",
 	"log-action-filter-protect-protect": "Zabezpieczenie",
 	"log-action-filter-protect-modify": "Zmiana zabezpieczenia",
 	"log-action-filter-protect-unprotect": "Odbezpieczenie",
+	"log-action-filter-rights-rights": "Ręczna zmiana",
+	"log-action-filter-rights-autopromote": "Automatyczna zmiana",
 	"log-action-filter-upload-upload": "Nowe przesłane",
 	"log-action-filter-upload-overwrite": "Przesłane ponownie"
 }
