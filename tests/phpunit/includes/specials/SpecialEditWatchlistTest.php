@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
  * @author Addshore
@@ -15,7 +16,15 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 	 * @return SpecialPage
 	 */
 	protected function newSpecialPage() {
-		return new SpecialEditWatchlist();
+		/** @var InterwikiLookup $interwikiLookup */
+		$interwikiLookup = $this->getMock( 'MediaWiki\Interwiki\InterwikiLookup' );
+
+		$titleParser = new MediaWikiTitleCodec(
+			Language::factory( 'qqx' ),
+			GenderCache::singleton(),
+			$interwikiLookup
+		);
+		return new SpecialEditWatchlist( $titleParser );
 	}
 
 	public function testNotLoggedIn_throwsException() {

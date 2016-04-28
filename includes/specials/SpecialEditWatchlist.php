@@ -3,7 +3,6 @@
  * @defgroup Watchlist Users watchlist handling
  */
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Implements Special:EditWatchlist
@@ -56,23 +55,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private $titleParser;
 
-	public function __construct() {
+	public function __construct( TitleParser $titleParser ) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
-	}
-
-	/**
-	 * Initialize any services we'll need (unless it has already been provided via a setter).
-	 * This allows for dependency injection even though we don't control object creation.
-	 */
-	private function initServices() {
-		if ( !$this->titleParser ) {
-			$lang = $this->getContext()->getLanguage();
-			$this->titleParser = new MediaWikiTitleCodec(
-				$lang,
-				GenderCache::singleton(),
-				MediaWikiServices::getInstance()->getInterwikiLookup()
-			);
-		}
 	}
 
 	public function doesWrites() {
@@ -85,7 +69,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param int $mode
 	 */
 	public function execute( $mode ) {
-		$this->initServices();
 		$this->setHeaders();
 
 		# Anons don't get a watchlist
