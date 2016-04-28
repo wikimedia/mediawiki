@@ -11,9 +11,15 @@ class SearchNearMatcher {
 	 */
 	protected $config;
 
-	public function __construct( Config $config ) {
+	/**
+	 * Current language
+	 * @var Language
+	 */
+	private $language;
 
+	public function __construct( Config $config, Language $lang ) {
 		$this->config = $config;
+		$this->language = $lang;
 	}
 
 	/**
@@ -47,7 +53,7 @@ class SearchNearMatcher {
 	 * @return null|Title
 	 */
 	protected function getNearMatchInternal( $searchterm ) {
-		$lang = $this->config->get( 'ContLang' );
+		$lang = $this->language;
 
 		$allSearchTerms = [ $searchterm ];
 

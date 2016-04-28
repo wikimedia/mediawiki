@@ -88,9 +88,10 @@ return [
 	},
 
 	'SearchEngineConfig' => function( MediaWikiServices $services ) {
+		global $wgContLang;
 		// Create a search engine config from main config.
 		$config = $services->getService( 'MainConfig' );
-		return new SearchEngineConfig( $config );
+		return new SearchEngineConfig( $config, $wgContLang );
 	},
 
 	'SkinFactory' => function( MediaWikiServices $services ) {
