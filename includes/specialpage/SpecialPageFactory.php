@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  * @defgroup SpecialPage SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -47,138 +48,151 @@ class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
-	private static $coreList = [
-		// Maintenance Reports
-		'BrokenRedirects' => 'BrokenRedirectsPage',
-		'Deadendpages' => 'DeadendPagesPage',
-		'DoubleRedirects' => 'DoubleRedirectsPage',
-		'Longpages' => 'LongPagesPage',
-		'Ancientpages' => 'AncientPagesPage',
-		'Lonelypages' => 'LonelyPagesPage',
-		'Fewestrevisions' => 'FewestrevisionsPage',
-		'Withoutinterwiki' => 'WithoutInterwikiPage',
-		'Protectedpages' => 'SpecialProtectedpages',
-		'Protectedtitles' => 'SpecialProtectedtitles',
-		'Shortpages' => 'ShortPagesPage',
-		'Uncategorizedcategories' => 'UncategorizedCategoriesPage',
-		'Uncategorizedimages' => 'UncategorizedImagesPage',
-		'Uncategorizedpages' => 'UncategorizedPagesPage',
-		'Uncategorizedtemplates' => 'UncategorizedTemplatesPage',
-		'Unusedcategories' => 'UnusedCategoriesPage',
-		'Unusedimages' => 'UnusedimagesPage',
-		'Unusedtemplates' => 'UnusedtemplatesPage',
-		'Unwatchedpages' => 'UnwatchedpagesPage',
-		'Wantedcategories' => 'WantedCategoriesPage',
-		'Wantedfiles' => 'WantedFilesPage',
-		'Wantedpages' => 'WantedPagesPage',
-		'Wantedtemplates' => 'WantedTemplatesPage',
+	private static function getCorePageList() {
+		return [
+			// Maintenance Reports
+			'BrokenRedirects' => 'BrokenRedirectsPage',
+			'Deadendpages' => 'DeadendPagesPage',
+			'DoubleRedirects' => 'DoubleRedirectsPage',
+			'Longpages' => 'LongPagesPage',
+			'Ancientpages' => 'AncientPagesPage',
+			'Lonelypages' => 'LonelyPagesPage',
+			'Fewestrevisions' => 'FewestrevisionsPage',
+			'Withoutinterwiki' => 'WithoutInterwikiPage',
+			'Protectedpages' => 'SpecialProtectedpages',
+			'Protectedtitles' => 'SpecialProtectedtitles',
+			'Shortpages' => 'ShortPagesPage',
+			'Uncategorizedcategories' => 'UncategorizedCategoriesPage',
+			'Uncategorizedimages' => 'UncategorizedImagesPage',
+			'Uncategorizedpages' => 'UncategorizedPagesPage',
+			'Uncategorizedtemplates' => 'UncategorizedTemplatesPage',
+			'Unusedcategories' => 'UnusedCategoriesPage',
+			'Unusedimages' => 'UnusedimagesPage',
+			'Unusedtemplates' => 'UnusedtemplatesPage',
+			'Unwatchedpages' => 'UnwatchedpagesPage',
+			'Wantedcategories' => 'WantedCategoriesPage',
+			'Wantedfiles' => 'WantedFilesPage',
+			'Wantedpages' => 'WantedPagesPage',
+			'Wantedtemplates' => 'WantedTemplatesPage',
 
-		// List of pages
-		'Allpages' => 'SpecialAllPages',
-		'Prefixindex' => 'SpecialPrefixindex',
-		'Categories' => 'SpecialCategories',
-		'Listredirects' => 'ListredirectsPage',
-		'PagesWithProp' => 'SpecialPagesWithProp',
-		'TrackingCategories' => 'SpecialTrackingCategories',
+			// List of pages
+			'Allpages' => 'SpecialAllPages',
+			'Prefixindex' => 'SpecialPrefixindex',
+			'Categories' => 'SpecialCategories',
+			'Listredirects' => 'ListredirectsPage',
+			'PagesWithProp' => 'SpecialPagesWithProp',
+			'TrackingCategories' => 'SpecialTrackingCategories',
 
-		// Login/create account
-		'Userlogin' => 'LoginForm',
-		'CreateAccount' => 'SpecialCreateAccount',
+			// Login/create account
+			'Userlogin' => 'LoginForm',
+			'CreateAccount' => 'SpecialCreateAccount',
 
-		// Users and rights
-		'Block' => 'SpecialBlock',
-		'Unblock' => 'SpecialUnblock',
-		'BlockList' => 'SpecialBlockList',
-		'ChangePassword' => 'SpecialChangePassword',
-		'BotPasswords' => 'SpecialBotPasswords',
-		'PasswordReset' => 'SpecialPasswordReset',
-		'DeletedContributions' => 'DeletedContributionsPage',
-		'Preferences' => 'SpecialPreferences',
-		'ResetTokens' => 'SpecialResetTokens',
-		'Contributions' => 'SpecialContributions',
-		'Listgrouprights' => 'SpecialListGroupRights',
-		'Listgrants' => 'SpecialListGrants',
-		'Listusers' => 'SpecialListUsers',
-		'Listadmins' => 'SpecialListAdmins',
-		'Listbots' => 'SpecialListBots',
-		'Userrights' => 'UserrightsPage',
-		'EditWatchlist' => 'SpecialEditWatchlist',
+			// Users and rights
+			'Block' => 'SpecialBlock',
+			'Unblock' => 'SpecialUnblock',
+			'BlockList' => 'SpecialBlockList',
+			'ChangePassword' => 'SpecialChangePassword',
+			'BotPasswords' => 'SpecialBotPasswords',
+			'PasswordReset' => 'SpecialPasswordReset',
+			'DeletedContributions' => 'DeletedContributionsPage',
+			'Preferences' => 'SpecialPreferences',
+			'ResetTokens' => 'SpecialResetTokens',
+			'Contributions' => 'SpecialContributions',
+			'Listgrouprights' => 'SpecialListGroupRights',
+			'Listgrants' => 'SpecialListGrants',
+			'Listusers' => 'SpecialListUsers',
+			'Listadmins' => 'SpecialListAdmins',
+			'Listbots' => 'SpecialListBots',
+			'Userrights' => 'UserrightsPage',
 
-		// Recent changes and logs
-		'Newimages' => 'SpecialNewFiles',
-		'Log' => 'SpecialLog',
-		'Watchlist' => 'SpecialWatchlist',
-		'Newpages' => 'SpecialNewpages',
-		'Recentchanges' => 'SpecialRecentChanges',
-		'Recentchangeslinked' => 'SpecialRecentChangesLinked',
-		'Tags' => 'SpecialTags',
+			'EditWatchlist' => function() {
+				global $wgContLang; // TODO: get the content language from MediaWikiServices
+				$titleParser = new MediaWikiTitleCodec(
+					$wgContLang,
+					GenderCache::singleton(),
+					MediaWikiServices::getInstance()->getInterwikiLookup()
+				);
 
-		// Media reports and uploads
-		'Listfiles' => 'SpecialListFiles',
-		'Filepath' => 'SpecialFilepath',
-		'MediaStatistics' => 'MediaStatisticsPage',
-		'MIMEsearch' => 'MIMEsearchPage',
-		'FileDuplicateSearch' => 'FileDuplicateSearchPage',
-		'Upload' => 'SpecialUpload',
-		'UploadStash' => 'SpecialUploadStash',
-		'ListDuplicatedFiles' => 'ListDuplicatedFilesPage',
+				return new SpecialEditWatchlist( $titleParser );
+			},
 
-		// Data and tools
-		'ApiSandbox' => 'SpecialApiSandbox',
-		'Statistics' => 'SpecialStatistics',
-		'Allmessages' => 'SpecialAllMessages',
-		'Version' => 'SpecialVersion',
-		'Lockdb' => 'SpecialLockdb',
-		'Unlockdb' => 'SpecialUnlockdb',
+			// Recent changes and logs
+			'Newimages' => 'SpecialNewFiles',
+			'Log' => 'SpecialLog',
+			'Watchlist' => 'SpecialWatchlist',
+			'Newpages' => 'SpecialNewpages',
+			'Recentchanges' => 'SpecialRecentChanges',
+			'Recentchangeslinked' => 'SpecialRecentChangesLinked',
+			'Tags' => 'SpecialTags',
 
-		// Redirecting special pages
-		'LinkSearch' => 'LinkSearchPage',
-		'Randompage' => 'RandomPage',
-		'RandomInCategory' => 'SpecialRandomInCategory',
-		'Randomredirect' => 'SpecialRandomredirect',
-		'Randomrootpage' => 'SpecialRandomrootpage',
+			// Media reports and uploads
+			'Listfiles' => 'SpecialListFiles',
+			'Filepath' => 'SpecialFilepath',
+			'MediaStatistics' => 'MediaStatisticsPage',
+			'MIMEsearch' => 'MIMEsearchPage',
+			'FileDuplicateSearch' => 'FileDuplicateSearchPage',
+			'Upload' => 'SpecialUpload',
+			'UploadStash' => 'SpecialUploadStash',
+			'ListDuplicatedFiles' => 'ListDuplicatedFilesPage',
 
-		// High use pages
-		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
-		'Mostimages' => 'MostimagesPage',
-		'Mostinterwikis' => 'MostinterwikisPage',
-		'Mostlinked' => 'MostlinkedPage',
-		'Mostlinkedtemplates' => 'MostlinkedTemplatesPage',
-		'Mostcategories' => 'MostcategoriesPage',
-		'Mostrevisions' => 'MostrevisionsPage',
+			// Data and tools
+			'ApiSandbox' => 'SpecialApiSandbox',
+			'Statistics' => 'SpecialStatistics',
+			'Allmessages' => 'SpecialAllMessages',
+			'Version' => 'SpecialVersion',
+			'Lockdb' => 'SpecialLockdb',
+			'Unlockdb' => 'SpecialUnlockdb',
 
-		// Page tools
-		'ComparePages' => 'SpecialComparePages',
-		'Export' => 'SpecialExport',
-		'Import' => 'SpecialImport',
-		'Undelete' => 'SpecialUndelete',
-		'Whatlinkshere' => 'SpecialWhatLinksHere',
-		'MergeHistory' => 'SpecialMergeHistory',
-		'ExpandTemplates' => 'SpecialExpandTemplates',
+			// Redirecting special pages
+			'LinkSearch' => 'LinkSearchPage',
+			'Randompage' => 'RandomPage',
+			'RandomInCategory' => 'SpecialRandomInCategory',
+			'Randomredirect' => 'SpecialRandomredirect',
+			'Randomrootpage' => 'SpecialRandomrootpage',
 
-		// Other
-		'Booksources' => 'SpecialBookSources',
+			// High use pages
+			'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
+			'Mostimages' => 'MostimagesPage',
+			'Mostinterwikis' => 'MostinterwikisPage',
+			'Mostlinked' => 'MostlinkedPage',
+			'Mostlinkedtemplates' => 'MostlinkedTemplatesPage',
+			'Mostcategories' => 'MostcategoriesPage',
+			'Mostrevisions' => 'MostrevisionsPage',
 
-		// Unlisted / redirects
-		'ApiHelp' => 'SpecialApiHelp',
-		'Blankpage' => 'SpecialBlankpage',
-		'Diff' => 'SpecialDiff',
-		'EditTags' => 'SpecialEditTags',
-		'Emailuser' => 'SpecialEmailUser',
-		'Movepage' => 'MovePageForm',
-		'Mycontributions' => 'SpecialMycontributions',
-		'MyLanguage' => 'SpecialMyLanguage',
-		'Mypage' => 'SpecialMypage',
-		'Mytalk' => 'SpecialMytalk',
-		'Myuploads' => 'SpecialMyuploads',
-		'AllMyUploads' => 'SpecialAllMyUploads',
-		'PermanentLink' => 'SpecialPermanentLink',
-		'Redirect' => 'SpecialRedirect',
-		'Revisiondelete' => 'SpecialRevisionDelete',
-		'RunJobs' => 'SpecialRunJobs',
-		'Specialpages' => 'SpecialSpecialpages',
-		'Userlogout' => 'SpecialUserlogout',
-	];
+			// Page tools
+			'ComparePages' => 'SpecialComparePages',
+			'Export' => 'SpecialExport',
+			'Import' => 'SpecialImport',
+			'Undelete' => 'SpecialUndelete',
+			'Whatlinkshere' => 'SpecialWhatLinksHere',
+			'MergeHistory' => 'SpecialMergeHistory',
+			'ExpandTemplates' => 'SpecialExpandTemplates',
+
+			// Other
+			'Booksources' => 'SpecialBookSources',
+
+			// Unlisted / redirects
+			'ApiHelp' => 'SpecialApiHelp',
+			'Blankpage' => 'SpecialBlankpage',
+			'Diff' => 'SpecialDiff',
+			'EditTags' => 'SpecialEditTags',
+			'Emailuser' => 'SpecialEmailUser',
+			'Movepage' => 'MovePageForm',
+			'Mycontributions' => 'SpecialMycontributions',
+			'MyLanguage' => 'SpecialMyLanguage',
+			'Mypage' => 'SpecialMypage',
+			'Mytalk' => 'SpecialMytalk',
+			'Myuploads' => 'SpecialMyuploads',
+			'AllMyUploads' => 'SpecialAllMyUploads',
+			'PermanentLink' => 'SpecialPermanentLink',
+			'Redirect' => 'SpecialRedirect',
+			'Revisiondelete' => 'SpecialRevisionDelete',
+			'RunJobs' => 'SpecialRunJobs',
+			'Specialpages' => 'SpecialSpecialpages',
+			'Userlogout' => 'SpecialUserlogout',
+		];
+	}
+
 
 	private static $list;
 	private static $aliases;
@@ -228,7 +242,7 @@ class SpecialPageFactory {
 
 		if ( !is_array( self::$list ) ) {
 
-			self::$list = self::$coreList;
+			self::$list = self::getCorePageList();
 
 			if ( !$wgDisableInternalSearch ) {
 				self::$list['Search'] = 'SpecialSearch';
