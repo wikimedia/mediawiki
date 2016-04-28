@@ -83,15 +83,12 @@ return [
 	},
 
 	'SearchEngineFactory' => function( MediaWikiServices $services ) {
-		// Create search engine
-		return new SearchEngineFactory( $services->getService( 'SearchEngineConfig' ) );
+		return new SearchEngineFactory( $services->getSearchEngineConfig() );
 	},
 
 	'SearchEngineConfig' => function( MediaWikiServices $services ) {
 		global $wgContLang;
-		// Create a search engine config from main config.
-		$config = $services->getService( 'MainConfig' );
-		return new SearchEngineConfig( $config, $wgContLang );
+		return new SearchEngineConfig( $services->getMainConfig(), $wgContLang );
 	},
 
 	'SkinFactory' => function( MediaWikiServices $services ) {
