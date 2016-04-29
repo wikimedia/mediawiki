@@ -518,10 +518,12 @@ END;
 		}
 		$this->output( "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED\n" );
 		$conname = $fi->conname();
-		$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-		$this->db->query( $command );
-		$command = "ALTER TABLE $table ADD CONSTRAINT $conname FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
-		$this->db->query( $command );
+                if ($conname) {
+                    $command = "ALTER TABLE $table DROP CONSTRAINT $conname";
+                    $this->db->query( $command );
+                    $command = "ALTER TABLE $table ADD CONSTRAINT $conname FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
+                    $this->db->query( $command );
+                }
 	}
 
 	protected function convertArchive2() {
