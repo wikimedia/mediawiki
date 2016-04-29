@@ -8,9 +8,20 @@
 class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		parent::__construct();
+		$hookPaths = [];
 		$paths = [];
 		// Extensions can return a list of files or directories
-		Hooks::run( 'UnitTestsList', [ &$paths ] );
+		Hooks::run( 'UnitTestsList', [ &$hookPaths ] );
+		$extRegistrationPaths = ExtensionProcessor::$unitTestsPaths;
+		foreach ( $hookPaths as $name => $unitTestPath ) {
+			if ( is_string( $name ) ) {
+				if ( !isset( $extRegistrationPaths[$name] ) ) {
+					$paths[] = $unitTestPath;
+				}
+			} else {
+				$paths[] = $unitTestPath;
+			}
+		}
 		foreach ( $paths as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.
