@@ -156,6 +156,14 @@ class ExtensionProcessor implements Processor {
 	protected $attributes = [];
 
 	/**
+	 * Holds an array of files to add as unit tests using the UnitTestFiles
+	 * hook.
+	 *
+	 * @var array
+	 */
+	public static $unitTestsPaths = [];
+
+	/**
 	 * @param string $path
 	 * @param array $info
 	 * @param int $version manifest_version for info
@@ -175,6 +183,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
+		$this->extractUnitTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
 		}
@@ -407,6 +416,22 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['ParserTestFiles'] ) ) {
 			foreach ( $info['ParserTestFiles'] as $path ) {
 				$this->globals['wgParserTestFiles'][] = "$dir/$path";
+			}
+		}
+	}
+
+	protected function extractUnitTestFiles( $dir, array $info ) {
+		if ( isset( $info['UnitTests'] ) ) {
+			$unitTests = $info['UnitTests'];
+			if ( !is_array( $unitTests ) && !is_object( $unitTests ) ) {
+				$unitTests = [ $unitTests ];
+			}
+			foreach ( (array) $unitTests as $name => $path ) {
+				if ( is_string( $name ) ) {
+					self::$unitTestsPaths[$name] = "$dir/$path";
+				} else {
+					self::$unitTestsPaths[] = "$dir/$path";
+				}
 			}
 		}
 	}
