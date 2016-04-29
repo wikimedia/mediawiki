@@ -902,6 +902,13 @@
 		"load_composer_autoloader": {
 			"type": "boolean",
 			"description": "Load the composer autoloader for this extension, if one is present"
+		},
+		"UnitTests": {
+			"type": "object",
+			"description": "List of files or directories with phpunit test cases (you can use this instead of the UnitTestsList hook).",
+			"items": {
+				"type": "string"
+			}
 		}
 	}
 }

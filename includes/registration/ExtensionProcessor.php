@@ -175,6 +175,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
+		$this->extractUnitTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
 		}
@@ -407,6 +408,15 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['ParserTestFiles'] ) ) {
 			foreach ( $info['ParserTestFiles'] as $path ) {
 				$this->globals['wgParserTestFiles'][] = "$dir/$path";
+			}
+		}
+	}
+
+	protected function extractUnitTestFiles( $dir, array $info ) {
+		if ( isset( $info['UnitTests'] ) ) {
+			$unitTests = $info['UnitTests'];
+			foreach ( $unitTests as $name => $path ) {
+				$this->attributes['UnitTestsPaths'][$name] = "$dir/$path";
 			}
 		}
 	}
