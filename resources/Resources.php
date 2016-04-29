@@ -1213,6 +1213,8 @@ return [
 			'upload-form-label-usage-filename',
 			'api-error-unknownerror',
 			'api-error-unknown-warning',
+			'api-error-autoblocked',
+			'api-error-blocked',
 			'api-error-badaccess-groups',
 			'api-error-badtoken',
 			'api-error-copyuploaddisabled',
