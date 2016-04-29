@@ -1774,6 +1774,7 @@
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-alert-page": "Палі на гэтай старонцы няслушныя.",
+	"apisandbox-alert-field": "Значэньне гэтага поля зьяўляецца няслушным.",
 	"booksources": "Крыніцы кніг",
 	"booksources-search-legend": "Пошук кніг",
 	"booksources-isbn": "ISBN:",

@@ -1370,7 +1370,7 @@
 	"recentchangeslinked-page": "ページ名:",
 	"recentchangeslinked-to": "このページへのリンク元での変更の表示に切り替え",
 	"recentchanges-page-added-to-category": "[[:$1]]をカテゴリに追加",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]]と他[[Special:WhatLinksHere/$1|{{PLURAL:$2|1ページ|$2ページ}}]]をカテゴリに追加",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]]をカテゴリに追加。[[Special:WhatLinksHere/$1|このページは他のページに含まれています。]]",
 	"recentchanges-page-removed-from-category": "[[:$1]]をカテゴリから除外",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]]と他 [[Special:WhatLinksHere/$1|{{PLURAL:$2|1ページ|$2ページ}}]]をカテゴリから除外",
 	"autochange-username": "メディアウィキ自動変更",
