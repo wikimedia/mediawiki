@@ -433,6 +433,8 @@
 		'fileexists-shared-forbidden',
 		'invalidtitle',
 		'notloggedin',
+		'autoblocked',
+		'blocked',
 
 		// Stash-specific errors - expanded
 		'stashfailed',
