@@ -138,9 +138,13 @@ class CategoryViewer extends ContextSource {
 		}
 
 		$lang = $this->getLanguage();
-		$langAttribs = [ 'lang' => $lang->getHtmlCode(), 'dir' => $lang->getDir() ];
+		$attribs = [
+			'class' => 'mw-category-generated',
+			'lang' => $lang->getHtmlCode(),
+			'dir' => $lang->getDir()
+		];
 		# put a div around the headings which are in the user language
-		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
+		$r = Html::openElement( 'div', $attribs ) . $r . '</div>';
 
 		return $r;
 	}
