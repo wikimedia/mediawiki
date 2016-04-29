@@ -368,7 +368,16 @@ a.new {
 /* @noflip */ .rtl a.external.free,
 .rtl a.external.autonumber {
 	direction: ltr;
-	unicode-bidi: embed;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
+}
+
+/* Fake bidi isolation for Microsoft browsers.
+ * Not done to a.external.free because they can get very
+ * long and not breaking them may be ugly. */
+/* @noflip */ .rtl a.external.autonumber {
+	display: inline-block;
 }
 
 /**
