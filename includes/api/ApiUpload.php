@@ -41,6 +41,16 @@ class ApiUpload extends ApiBase {
 
 		$user = $this->getUser();
 
+		# Check blocks
+		if ( $user->isBlocked() ) {
+			$this->dieBlocked( $user->getBlock() );
+		}
+
+		// Global blocks
+		if ( $user->isBlockedGlobally() ) {
+			$this->dieBlocked( $user->getGlobalBlock() );
+		}
+
 		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
