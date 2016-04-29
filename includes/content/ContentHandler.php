@@ -892,7 +892,7 @@ abstract class ContentHandler {
 	 * have it / want it.
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		// Get the last revision
 		$rev = Revision::newFromTitle( $title );
@@ -922,10 +922,10 @@ abstract class ContentHandler {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$res = $dbw->select( 'revision', 'rev_user_text',
+		$res = $dbr->select( 'revision', 'rev_user_text',
 			[
 				'rev_page' => $title->getArticleID(),
-				$dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
+				$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
 			],
 			__METHOD__,
 			[ 'LIMIT' => 20 ]
@@ -937,7 +937,7 @@ abstract class ContentHandler {
 		}
 
 		$hasHistory = ( $res->numRows() > 1 );
-		$row = $dbw->fetchObject( $res );
+		$row = $dbr->fetchObject( $res );
 
 		if ( $row ) { // $row is false if the only contributor is hidden
 			$onlyAuthor = $row->rev_user_text;
