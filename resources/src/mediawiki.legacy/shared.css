@@ -368,7 +368,9 @@ a.new {
 /* @noflip */ .rtl a.external.free,
 .rtl a.external.autonumber {
 	direction: ltr;
-	unicode-bidi: embed;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
 }
 
 /**
