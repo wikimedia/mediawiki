@@ -379,6 +379,11 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 		}
 
+		if ( !$status->isOK() ) {
+			wfDebugLog( 'FileOperation', get_class( $this ) .
+				" failed to resync: " . FormatJson::encode( $paths ) );
+		}
+
 		return $status;
 	}
 
