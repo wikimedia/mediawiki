@@ -488,6 +488,16 @@ class ApiUpload extends ApiBase {
 
 			$this->dieUsageMsg( 'badaccess-groups' );
 		}
+
+		// Check blocks
+		if ( $user->isBlocked() ) {
+			$this->dieBlocked( $user->getBlock() );
+		}
+
+		// Global blocks
+		if ( $user->isBlockedGlobally() ) {
+			$this->dieBlocked( $user->getGlobalBlock() );
+		}
 	}
 
 	/**
