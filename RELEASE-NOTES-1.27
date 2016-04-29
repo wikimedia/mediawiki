@@ -11,7 +11,7 @@ HHVM 3.1. Additionally, the following PHP extensions are required:
 * ctype
 * iconv
 * json
-* mbstring
+* mbstring (new requirement in 1.27)
 * xml
 The following PHP extensions are strongly recommended:
 * openssl
