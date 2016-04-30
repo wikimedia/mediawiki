@@ -1055,8 +1055,8 @@ class ChangeTags {
 		$tagUsage = self::tagUsageStatistics();
 
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
-				return Status::newFatal( 'tags-manage-no-permission' );
+			if ( !$user->isAllowed( 'deletechangetags' ) ) {
+				return Status::newFatal( 'tags-delete-no-permission' );
 			} elseif ( $user->isBlocked() ) {
 				return Status::newFatal( 'tags-manage-blocked' );
 			}
