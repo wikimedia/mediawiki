@@ -4904,6 +4904,7 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 # $wgGroupPermissions['sysop']['upload_by_url'] = true;
 $wgGroupPermissions['sysop']['mergehistory'] = true;
 $wgGroupPermissions['sysop']['managechangetags'] = true;
+$wgGroupPermissions['sysop']['deletechangetags'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
