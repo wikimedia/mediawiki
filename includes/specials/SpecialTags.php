@@ -77,6 +77,7 @@ class SpecialTags extends SpecialPage {
 
 		$user = $this->getUser();
 		$userCanManage = $user->isAllowed( 'managechangetags' );
+		$userCanDelete = $user->isAllowed( 'deletechangetags' );
 		$userCanEditInterface = $user->isAllowed( 'editinterface' );
 
 		// Show form to create a tag
@@ -154,12 +155,13 @@ class SpecialTags extends SpecialPage {
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage, $userCanEditInterface );
+			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
+				$userCanDelete, $userCanEditInterface );
 		}
 		// Insert tags defined somewhere but never applied
 		foreach ( $definedTags as $tag ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanEditInterface );
+				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
 			}
 		}
 
@@ -170,7 +172,7 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showActions, $showEditLinks ) {
+	function doTagRow( $tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks ) {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
@@ -229,16 +231,17 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', [ 'data-sort-value' => $hitcount ], $hitcountLabel );
 
 		// actions
-		if ( $showActions ) { // we've already checked that the user had the requisite userright
-			$actionLinks = [];
+		$actionLinks = [];
 
-			// delete
-			if ( ChangeTags::canDeleteTag( $tag )->isOK() ) {
-				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'delete' ),
-					$this->msg( 'tags-delete' )->escaped(),
-					[],
-					[ 'tag' => $tag ] );
-			}
+		// delete
+		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
+			$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'delete' ),
+				$this->msg( 'tags-delete' )->escaped(),
+				[],
+				[ 'tag' => $tag ] );
+		}
+
+		if ( $showManageActions ) { // we've already checked that the user had the requisite userright
 
 			// activate
 			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
@@ -319,8 +322,8 @@ class SpecialTags extends SpecialPage {
 
 	protected function showDeleteTagForm( $tag ) {
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'managechangetags' ) ) {
-			throw new PermissionsError( 'managechangetags' );
+		if ( !$user->isAllowed( 'deletechangetags' ) ) {
+			throw new PermissionsError( 'deletechangetags' );
 		}
 
 		$out = $this->getOutput();
