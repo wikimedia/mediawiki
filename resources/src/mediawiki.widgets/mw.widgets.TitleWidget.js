@@ -182,7 +182,7 @@
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
 				description: OO.getProp( suggestionPage, 'terms', 'description' ),
-				// sort index
+				// Sort index
 				index: suggestionPage.index
 			};
 
@@ -198,7 +198,9 @@
 					missing: false,
 					redirect: true,
 					disambiguation: false,
-					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title )
+					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
+					// Sort index, just below its target
+					index: suggestionPage.index + 0.5
 				};
 				titles.push( redirects[ i ] );
 			}
