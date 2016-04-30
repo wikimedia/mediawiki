@@ -29,8 +29,8 @@ class ApiManageTags extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// make sure the user is allowed
-		if ( !$this->getUser()->isAllowed( 'managechangetags' ) ) {
-			$this->dieUsage( "You don't have permission to manage change tags", 'permissiondenied' );
+		if ( !$this->getUser()->isAllowed( 'managechangetags' ) && !$this->getUser()->isAllowed( 'deletechangetags' ) ) {
+			$this->dieUsage( "You don't have permission to manage or delete change tags", 'permissiondenied' );
 		}
 
 		$result = $this->getResult();
@@ -65,6 +65,14 @@ class ApiManageTags extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$operationTypes = [ 'create', 'activate', 'deactivate' ];
+		if ( $this->getUser()->isAllowed( 'deletechangetags' ) && $this->getUser()->isAllowed( 'managechangetags' ) ) {
+			$operationTypes = [ 'create', 'delete', 'activate', 'deactivate' ];
+		} else if ( $this->getUser()->isAllowed( 'managechangetags' ) ) {
+			$operationTypes = [ 'create', 'activate', 'deactivate' ];
+		} else {
+			$operationTypes = [ 'delete']
+		}		
 		return [
 			'operation' => [
 				ApiBase::PARAM_TYPE => [ 'create', 'delete', 'activate', 'deactivate' ],
