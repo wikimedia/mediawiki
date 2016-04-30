@@ -367,8 +367,11 @@ class SpecialUpload extends SpecialPage {
 
 		$sessionKey = $this->mUpload->stashSession();
 
+		// Add styles for the warning, reused from the live preview
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload' );
+
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
-			. '<div class="warningbox"><ul>';
+			. '<div class="mw-destfile-warning"><ul>';
 		foreach ( $warnings as $warning => $args ) {
 			if ( $warning == 'badfilename' ) {
 				$this->mDesiredDestName = Title::makeTitle( NS_FILE, $args )->getText();
