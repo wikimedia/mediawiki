@@ -127,6 +127,7 @@ class User implements IDBAccessObject {
 		'createpage',
 		'createtalk',
 		'delete',
+		'deletechangetags',
 		'deletedhistory',
 		'deletedtext',
 		'deletelogentry',
