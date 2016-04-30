@@ -172,7 +172,7 @@ class CSSMin {
 	}
 
 	/**
-	 * @param $file string
+	 * @param string $file
 	 * @return bool|string
 	 */
 	public static function getMimeType( $file ) {

@@ -3777,7 +3777,7 @@ HTML
 	 * Shows a bulletin board style toolbar for common editing functions.
 	 * It can be disabled in the user preferences.
 	 *
-	 * @param $title Title object for the page being edited (optional)
+	 * @param Title $title Title object for the page being edited (optional)
 	 * @return string
 	 */
 	static function getEditToolbar( $title = null ) {

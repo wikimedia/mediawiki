@@ -380,7 +380,7 @@ abstract class SearchEngine {
 	 * Makes search simple string if it was namespaced.
 	 * Sets namespaces of the search to namespaces extracted from string.
 	 * @param string $search
-	 * @return $string Simplified search string
+	 * @return string Simplified search string
 	 */
 	protected function normalizeNamespaces( $search ) {
 		// Find a Title which is not an interwiki and is in NS_MAIN

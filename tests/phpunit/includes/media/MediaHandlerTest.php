@@ -53,9 +53,9 @@ class MediaHandlerTest extends MediaWikiTestCase {
 	 * out of parameters:
 	 * $width, $height, { $max => $expected, $max2 => $expected2, ... }
 	 *
-	 * @param $width int
-	 * @param $height int
-	 * @param $tests array associative array of $max => $expected values
+	 * @param int $width
+	 * @param int $height
+	 * @param array $tests associative array of $max => $expected values
 	 * @return array
 	 */
 	private static function generateTestFitBoxWidthData( $width, $height, $tests ) {

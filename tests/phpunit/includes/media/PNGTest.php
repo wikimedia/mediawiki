@@ -139,8 +139,8 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @param $filename string
-	 * @param $expectedLength float
+	 * @param string $filename
+	 * @param float $expectedLength
 	 * @dataProvider provideGetLength
 	 */
 	public function testGetLength( $filename, $expectedLength ) {

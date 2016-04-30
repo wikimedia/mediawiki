@@ -109,12 +109,12 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Output the results of the query.
 	 *
-	 * @param $out OutputPage
-	 * @param $skin Skin (deprecated presumably)
-	 * @param $dbr IDatabase
-	 * @param $res ResultWrapper Results from query
-	 * @param $num integer Number of results
-	 * @param $offset integer Paging offset (Should always be 0 in our case)
+	 * @param OutputPage $out
+	 * @param Skin $skin (deprecated presumably)
+	 * @param IDatabase $dbr
+	 * @param ResultWrapper $res Results from query
+	 * @param int $num Number of results
+	 * @param int $offset Paging offset (Should always be 0 in our case)
 	 */
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		$prevMediaType = null;
@@ -168,9 +168,9 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Output a row of the stats table
 	 *
-	 * @param $mime String mime type (e.g. image/jpeg)
-	 * @param $count integer Number of images of this type
-	 * @param $totalBytes integer Total space for images of this type
+	 * @param string $mime mime type (e.g. image/jpeg)
+	 * @param int $count Number of images of this type
+	 * @param int $totalBytes Total space for images of this type
 	 */
 	protected function outputTableRow( $mime, $count, $bytes ) {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
@@ -230,8 +230,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Given a mime type, return a comma separated list of allowed extensions.
 	 *
-	 * @param $mime String mime type
-	 * @return String Comma separated list of allowed extensions (e.g. ".ogg, .oga")
+	 * @param string $mime mime type
+	 * @return string Comma separated list of allowed extensions (e.g. ".ogg, .oga")
 	 */
 	private function getExtensionList( $mime ) {
 		$exts = MimeMagic::singleton()->getExtensionsForType( $mime );
@@ -291,7 +291,7 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Output a header for a new media type section
 	 *
-	 * @param $mediaType string A media type (e.g. from the MEDIATYPE_xxx constants)
+	 * @param string $mediaType A media type (e.g. from the MEDIATYPE_xxx constants)
 	 */
 	protected function outputMediaType( $mediaType ) {
 		$this->getOutput()->addHTML(
@@ -318,8 +318,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * parse the fake title format that this special page abuses querycache with.
 	 *
-	 * @param $fakeTitle String A string formatted as <media type>;<mime type>;<count>;<bytes>
-	 * @return Array The constituant parts of $fakeTitle
+	 * @param string $fakeTitle A string formatted as <media type>;<mime type>;<count>;<bytes>
+	 * @return array The constituant parts of $fakeTitle
 	 */
 	private function splitFakeTitle( $fakeTitle ) {
 		return explode( ';', $fakeTitle, 4 );
@@ -337,8 +337,8 @@ class MediaStatisticsPage extends QueryPage {
 	 * This method isn't used, since we override outputResults, but
 	 * we need to implement since abstract in parent class.
 	 *
-	 * @param $skin Skin
-	 * @param $result stdObject Result row
+	 * @param Skin $skin
+	 * @param stdObject $result Result row
 	 * @return bool|string|void
 	 * @throws MWException
 	 */
@@ -349,8 +349,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Initialize total values so we can figure out percentages later.
 	 *
-	 * @param $dbr IDatabase
-	 * @param $res ResultWrapper
+	 * @param IDatabase $dbr
+	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {
 		$this->totalCount = $this->totalBytes = 0;

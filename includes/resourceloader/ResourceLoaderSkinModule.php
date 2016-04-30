@@ -26,7 +26,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	/* Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
@@ -68,7 +68,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
@@ -78,7 +78,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string: Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {

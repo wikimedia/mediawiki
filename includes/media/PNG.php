@@ -180,7 +180,7 @@ class PNGHandler extends BitmapHandler {
 	 *
 	 * Shown in the &query=imageinfo&iiprop=size api query.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return float The duration of the file.
 	 */
 	public function getLength( $file ) {

@@ -117,11 +117,11 @@ class PasswordPolicyChecks {
 	/**
 	 * Ensure that password isn't in top X most popular passwords
 	 *
-	 * @param $policyVal int Cut off to use. Will automatically shrink to the max
+	 * @param int $policyVal Cut off to use. Will automatically shrink to the max
 	 *   supported for error messages if set to more than max number of passwords on file,
 	 *   so you can use the PHP_INT_MAX constant here safely.
-	 * @param $user User
-	 * @param $password String
+	 * @param User $user
+	 * @param string $password
 	 * @since 1.27
 	 * @return Status
 	 */

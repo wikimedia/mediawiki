@@ -21,10 +21,10 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideIsValidMerge
 	 * @covers MergeHistory::isValidMerge
-	 * @param $source string Source page
-	 * @param $dest string Destination page
-	 * @param $timestamp string|bool Timestamp up to which revisions are merged (or false for all)
-	 * @param $error string|bool Expected error for test (or true for no error)
+	 * @param string $source Source page
+	 * @param string $dest Destination page
+	 * @param string|bool $timestamp Timestamp up to which revisions are merged (or false for all)
+	 * @param string|bool $error Expected error for test (or true for no error)
 	 */
 	public function testIsValidMerge( $source, $dest, $timestamp, $error ) {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );

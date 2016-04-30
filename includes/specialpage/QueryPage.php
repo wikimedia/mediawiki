@@ -513,8 +513,8 @@ abstract class QueryPage extends SpecialPage {
 	 * What is limit to fetch from DB
 	 *
 	 * Used to make it appear the DB stores less results then it actually does
-	 * @param $uiLimit int Limit from UI
-	 * @param $uiOffset int Offset from UI
+	 * @param int $uiLimit Limit from UI
+	 * @param int $uiOffset Offset from UI
 	 * @return int Limit to use for DB (not including extra row to see if at end)
 	 */
 	protected function getDBLimit( $uiLimit, $uiOffset ) {

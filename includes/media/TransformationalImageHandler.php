@@ -288,9 +288,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * Get the source file for the transform
 	 *
-	 * @param $file File
-	 * @param $params Array
-	 * @return Array Array with keys  width, height and path.
+	 * @param File $file
+	 * @param array $params
+	 * @return array Array with keys  width, height and path.
 	 */
 	protected function getThumbnailSource( $file, $params ) {
 		return $file->getThumbnailSource( $params );

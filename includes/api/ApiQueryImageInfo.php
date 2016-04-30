@@ -325,8 +325,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * allows us to catch certain error conditions early (such as missing
 	 * required parameter).
 	 *
-	 * @param $image File
-	 * @param $finalParams array List of parameters to transform image with
+	 * @param File $image
+	 * @param array $finalParams List of parameters to transform image with
 	 */
 	protected function checkParameterNormalise( $image, $finalParams ) {
 		$h = $image->getHandler();
