@@ -112,7 +112,6 @@ abbr[title],
 .mw-plusminus-neg,
 .mw-plusminus-null {
 	unicode-bidi: -moz-isolate;
-	unicode-bidi: -webkit-isolate;
 	unicode-bidi: isolate;
 }
 
@@ -120,7 +119,6 @@ abbr[title],
 span.comment {
 	font-style: italic;
 	unicode-bidi: -moz-isolate;
-	unicode-bidi: -webkit-isolate;
 	unicode-bidi: isolate;
 }
 
