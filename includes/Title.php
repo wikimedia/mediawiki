@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Representation of a title within %MediaWiki.
  *
@@ -32,6 +33,7 @@ use MediaWiki\Linker\LinkTarget;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget {
+
 	/** @var HashBagOStuff */
 	static private $titleCache = null;
 
