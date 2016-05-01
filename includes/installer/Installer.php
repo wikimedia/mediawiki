@@ -351,36 +351,66 @@ abstract class Installer {
 	abstract public function showStatusMessage( Status $status );
 
 	/**
+	 * Constructs a Config object that contains configuration settings that should be
+	 * overwritten for the installation process.
+	 *
+	 * @since 1.27
+	 *
+	 * @param Config $baseConfig
+	 *
+	 * @return Config The config to use during installation.
+	 */
+	public static function getInstallerConfig( Config $baseConfig ) {
+		$configOverrides = new HashConfig();
+
+		// disable (problematic) object cache types explicitly, preserving all other (working) ones
+		// bug T113843
+		$emptyCache = [ 'class' => 'EmptyBagOStuff' ];
+
+		$objectCaches = [
+				CACHE_NONE => $emptyCache,
+				CACHE_DB => $emptyCache,
+				CACHE_ANYTHING => $emptyCache,
+				CACHE_MEMCACHED => $emptyCache,
+			] + $baseConfig->get( 'ObjectCaches' );
+
+		$configOverrides->set( 'ObjectCaches', $objectCaches );
+
+		// Load the installer's i18n.
+		$messageDirs = $baseConfig->get( 'MessagesDirs' );
+		$messageDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
+
+		$configOverrides->set( 'MessagesDirs', $messageDirs );
+
+		return new MultiConfig( [ $configOverrides, $baseConfig ] );
+	}
+
+	/**
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgMessagesDirs, $wgUser;
+		global $wgMemc, $wgUser;
+
+		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
+		$installerConfig = self::getInstallerConfig( $defaultConfig );
+
+		// Reset all services and inject config overrides
+		MediaWiki\MediaWikiServices::resetGlobalInstance( $installerConfig );
 
 		// Don't attempt to load user language options (T126177)
 		// This will be overridden in the web installer with the user-specified language
 		RequestContext::getMain()->setLanguage( 'en' );
 
 		// Disable the i18n cache
+		// TODO: manage LocalisationCache singleton in MediaWikiServices
 		Language::getLocalisationCache()->disableBackend();
-		// Disable LoadBalancer and wfGetDB etc.
-		LBFactory::disableBackend();
+
+		// Disable all global services, since we don't have any configuration yet!
+		MediaWiki\MediaWikiServices::disableStorageBackend();
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		ObjectCache::clear();
-		$emptyCache = [ 'class' => 'EmptyBagOStuff' ];
-		// disable (problematic) object cache types explicitly, preserving all other (working) ones
-		// bug T113843
-		$GLOBALS['wgObjectCaches'] = [
-			CACHE_NONE => $emptyCache,
-			CACHE_DB => $emptyCache,
-			CACHE_ANYTHING => $emptyCache,
-			CACHE_MEMCACHED => $emptyCache,
-		] + $GLOBALS['wgObjectCaches'];
-
-		// Load the installer's i18n.
-		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
+		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
