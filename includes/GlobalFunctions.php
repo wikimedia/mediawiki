@@ -2117,9 +2117,15 @@ function wfTempDir() {
 
 	foreach ( $tmpDir as $tmp ) {
 		if ( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
-			return $tmp;
+			$filename = $tmp . DIRECTORY_SEPARATOR . 'mw_tmpdir_check_' . time();
+			touch( $filename );
+			if ( file_exists( $filename ) ) {
+				unlink( $filename );
+				return $tmp;
+			}
 		}
 	}
+
 	throw new MWException( 'No writable temporary directory could be found. ' .
 		'Please set $wgTmpDirectory to a writable directory.' );
 }
