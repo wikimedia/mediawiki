@@ -60,6 +60,27 @@ MediaWikiServices::getInstance() should ideally be accessed only in "static
 entry points" such as hook handler functions. See "Migration" below.
 
 
+== Service Reset ==
+
+Services get their configuration injected, and changes to global
+configuration variables will not have any effect on services that were already
+instantiated. This would typically be the case for low level services like
+the ConfigFactory or the ObjectCacheManager, which are used during extension
+registration. To address this issue, Setup.php resets the global service
+locator instance by calling MediaWikiServices::resetGlobalInstance() once
+configuration and extension registration is complete.
+
+Note that "unmanaged" legacy services services that manage their own singleton
+must not keep references to services managed by MediaWikiServices, to allow a
+clean reset. After the global MediaWikiServices instance got reset, any such
+references would be stale, and using a stale service will result in an error.
+
+Services should either have all dependencies injected and be themselves managed
+by MediaWikiServices, or they should use the Service Locator pattern, accessing
+service instances via the global MediaWikiServices instance state when needed.
+This ensures that no stale service references remain after a reset.
+
+
 == Configuration ==
 
 When the default MediaWikiServices instance is created, a Config object is
