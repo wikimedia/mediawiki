@@ -1828,7 +1828,7 @@
 	"unwatchthispage": "Fjern overvågning",
 	"notanarticle": "Ikke en artikel",
 	"notvisiblerev": "Versionen er blevet slettet",
-	"watchlist-details": "Du har {{PLURAL:$1|side|sider}} på din overvågningsliste (uden at medregne diskussionssider).",
+	"watchlist-details": "Du har {{PLURAL:$1|$1 side|$1 sider}} på din overvågningsliste (uden at medregne diskussionssider).",
 	"wlheader-enotif": "E-mail-underretning er slået til.",
 	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med '''fed skrift'''.",
 	"wlnote": "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste <strong>$1</strong> ændringer}} i {{PLURAL:$2|den sidste time|de sidste <strong>$2</strong> timer}} op til den $3 kl. $4.",

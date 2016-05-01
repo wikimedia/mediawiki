@@ -2065,7 +2065,7 @@
 	"ipbexpiry": "Gültegkeet:",
 	"ipbreason": "Grond:",
 	"ipbreason-dropdown": "*Heefeg Ursaache fir Benotzer ze spären:\n**Bewosst falsch Informatiounen an eng oder méi Säite gesat\n**Ouni Grond Inhalt vu Säite geläscht\n**Spam-Verknëppunge mat externe Säiten\n**Topereien an d'Säite gesat\n**Beleidegt oder bedréit aner Mataarbechter\n**Mëssbrauch vu verschiddene Benotzernimm\n**Net akzeptabele Benotzernumm",
-	"ipb-hardblock": "Verhënneren datt ageloggte Benotzer vun dëser IP-Adress aus Ännerunge maache kënnen",
+	"ipb-hardblock": "Verhënneren datt ageloggt Benotzer vun dëser IP-Adress aus Ännerunge maache kënnen",
 	"ipbcreateaccount": "Opmaache vun engem Benotzerkont verhënneren",
 	"ipbemailban": "Verhënneren datt de Benotzer E-Maile verschéckt",
 	"ipbenableautoblock": "Automatesch déi lescht IP-Adress spären déi vun dësem Benotzer benotzt gouf, an all IP-Adresse vun denen dëse Benotzer versicht Ännerunge virzehuelen",

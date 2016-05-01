@@ -11,7 +11,8 @@
 			"بىلگە",
 			"아라",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -1526,7 +1527,7 @@
 	"listgrouprights-rights": "ھوقۇق",
 	"listgrouprights-helppage": "Help: گۇرۇپپا ھوقۇقى",
 	"listgrouprights-members": "(ئەزالار تىزىملىكى)",
-	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code>($2)</code></span>",
+	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code dir=\"ltr\">($2)</code></span>",
 	"listgrouprights-right-revoked": "<span class=\"listgrouprights-revoked\">$1 <code>($2)</code></span>",
 	"listgrouprights-addgroup": " {{PLURAL:$2|بىر|بىر قانچە}} گۇرۇپپىغا قوشالايدۇ: $1",
 	"listgrouprights-removegroup": " {{PLURAL:$2|بىر|بىر قانچە}} گۇرۇپپىدىن چىقىرىۋېتەلەيدۇ: $1",

@@ -8,7 +8,8 @@
 			"Mjbmr",
 			"Matma Rex",
 			"Lakzon",
-			"Nemo bis"
+			"Nemo bis",
+			"Amire80"
 		]
 	},
 	"tog-underline": "هوم پئیڤأند زیرخأط دار:",
@@ -1694,7 +1695,7 @@
 	"listgrouprights-rights": "حقوقیا",
 	"listgrouprights-helppage": "هومیاری:حقوق گرو",
 	"listgrouprights-members": "(نوم گه اندومیا)",
-	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code>($2)</code></span>",
+	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code dir=\"ltr\">($2)</code></span>",
 	"listgrouprights-right-revoked": "<span class=\"listgrouprights-revoked\">$1 <code>($2)</code></span>",
 	"listgrouprights-addgroup": "{{PLURAL:$2|جأرغە|جأرغە یا}} نە ئضاف بأکیت: $1",
 	"listgrouprights-removegroup": "{{PLURAL:$2|جأرغە|جأرغە یا}} نە ڤئرداریت: $1",

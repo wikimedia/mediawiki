@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"WongKentir",
-			"Beeyan"
+			"Beeyan",
+			"Rachmat.Wahidi"
 		]
 	},
+	"apihelp-block-description": "Blokir pengguna.",
+	"apihelp-block-param-user": "Nama pengguna, alamat IP, atau rentang alamat IP untuk diblokir.",
 	"apihelp-createaccount-param-name": "Nama pengguna",
 	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
 }

@@ -3435,6 +3435,7 @@
 	"api-error-nomodule": "Notranja napaka: modul nalaganja ni izbran.",
 	"api-error-ok-but-empty": "Notranja napaka: strežnik se ne odziva.",
 	"api-error-overwrite": "Prepisovanje obstoječe datoteke ni dovoljeno.",
+	"api-error-ratelimited": "Poskušate naložiti več datotek v kratkem časovnem obdobju kot to dovoljuje ta wiki. Prosimo, poskusite znova čez nekaj minut.",
 	"api-error-stashfailed": "Notranja napaka: strežnik ni uspel shraniti začasne datoteke.",
 	"api-error-publishfailed": "Notranja napaka: strežnik ni uspel objaviti začasne datoteke.",
 	"api-error-stasherror": "Pri nalaganju datoteke v hrambo je prišlo do napake.",

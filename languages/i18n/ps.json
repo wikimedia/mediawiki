@@ -6,7 +6,8 @@
 			"Umherirrender",
 			"아라",
 			"عثمان خان شاہ",
-			"Macofe"
+			"Macofe",
+			"Amire80"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -535,6 +536,7 @@
 	"minoredit": "دا يو وړوکی سمون دی",
 	"watchthis": "همدا مخ کتل",
 	"savearticle": "مخ خوندي کول",
+	"publishpage": "مخ خپرول",
 	"preview": "مخليدنه",
 	"showpreview": "مخليدنه",
 	"showdiff": "بدلونونه ښکاره کول",
@@ -559,7 +561,7 @@
 	"newarticle": "(نوی)",
 	"newarticletext": "تاسې د يوې داسې تړنې څارنه کړې چې لا تر اوسه پورې نه شته.\nکه همدا مخ ليکل غواړۍ، نو په لانديني چوکاټ کې خپل متن وټاپئ (د لا نورو مالوماتو لپاره د [$1 لارښود مخ] وگورئ).\nکه چېرته تاسې دلته په تېروتنه راغلي ياست، نو يواځې د خپل د کتنمل '''مخ پر شا''' تڼۍ مو وټوکئ.",
 	"anontalkpagetext": "----''دا د يوه ورکنومي کارن چې کارن-نوم نه لري او يا خپل کارن-نوم نه کاروي، د سکالو يوه پاڼه ده. نو د يوه کس د پېژندلو پخاطر موږ د هماغه کارن د انټرنېټ شمېره يا IP پته دلته ثبتوؤ. داسې يوه IP پته د ډېرو کارنانو لخوا هم کارېدلی شي. که تاسې يو ورکنومی کارن ياست او تاسې ته دا څرگندېږي چې تاسې ته نااړونده پېغامونه او تبصرې اشاره شوي، نو د نورو بې نومو کارنانو او ستاسې ترمېنځ د ټکنتوب د مخ نيونې لپاره لطفاً [[Special:UserLogin/signup|يو گڼون جوړ کړۍ]] او يا هم [[Special:UserLogin|غونډال ته ورننوځۍ]].''",
-	"noarticletext": "دم مهال په دې مخ کې څه نشته.\nتاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]] يا\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] وکړی.\nاو يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ سم کړی]</span>.",
+	"noarticletext": "دم مهال په دې مخ کې څه نشته.\nتاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]]،\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] ،\nاو يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ جوړ کړئ]</span>.",
 	"noarticletext-nopermission": "دم مهال په دې مخ کې متن نشته.\nتاسې کولای شی چې [[Special:Search/{{PAGENAME}}|همدا سرليک په نورو مخونو کې وپلټۍ]], يا هم <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>، خو تاسې د دې مخ د جوړولو اجازه نه لرۍ.",
 	"userpage-userdoesnotexist": "د \"<nowiki>$1</nowiki>\" گڼون نه دی ثبت شوی.\nلطفاً ځان ډاډه کړئ چې آيا تاسې په رښتيا همدا مخ جوړول/سمول غواړئ.",
 	"userpage-userdoesnotexist-view": "د \"$1\" گڼون نه دی ثبت شوی.",
@@ -1440,7 +1442,7 @@
 	"listgrouprights-rights": "رښتې",
 	"listgrouprights-helppage": "Help:د ډلې رښتې",
 	"listgrouprights-members": "(د غړو لړليک)",
-	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code>($2)</code></span>",
+	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code dir=\"ltr\">($2)</code></span>",
 	"listgrouprights-right-revoked": "<span class=\"listgrouprights-revoked\">$1 <code>($2)</code></span>",
 	"listgrouprights-addgroup": "{{PLURAL:$2|ډله|ډلې}} ورگډول: $1",
 	"listgrouprights-removegroup": "{{PLURAL:$2|ډله|ډلې}} ليري کول: $1",
@@ -1721,6 +1723,7 @@
 	"ipb-unblock": "له يوه کارن-نوم يا IP پتې بنديز ليري کول",
 	"ipb-blocklist": "شته بنديزونه کتل",
 	"ipb-blocklist-contribs": "د {{GENDER:$1|$1}} ونډې",
+	"ipb-blocklist-duration-left": "$1 پاتې دی",
 	"unblockip": "کارن له بنديزه وېستل",
 	"unblockiptext": "د لاندې فورمې په کارولو سره يو بنديز شوي کارن يا آی پي پتې ته د ليکلو لاسرسی ورکولی شی.",
 	"ipusubmit": "دا بنديز ليرې کول",
