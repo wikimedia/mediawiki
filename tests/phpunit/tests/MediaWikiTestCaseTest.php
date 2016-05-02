@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -97,6 +98,36 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		);
 
 		$this->stashMwGlobals( self::GLOBAL_KEY_NONEXISTING );
+	}
+
+	public function testOverrideMwServices() {
+		$initialServices = MediaWikiServices::getInstance();
+
+		$this->overrideMwServices();
+		$this->assertNotSame( $initialServices, MediaWikiServices::getInstance() );
+
+		$this->tearDown();
+		$this->assertSame( $initialServices, MediaWikiServices::getInstance() );
+	}
+
+	public function testSetService() {
+		$initialServices = MediaWikiServices::getInstance();
+		$initialService = $initialServices->getDBLoadBalancer();
+		$mockService = $this->getMockBuilder( LoadBalancer::class )
+			->disableOriginalConstructor()->getMock();
+
+		$this->setService( 'DBLoadBalancer', $mockService );
+		$this->assertNotSame( $initialServices, MediaWikiServices::getInstance() );
+		$this->assertNotSame(
+			$initialService,
+			MediaWikiServices::getInstance()->getDBLoadBalancer()
+		);
+		$this->assertSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
+
+		$this->tearDown();
+		$this->assertSame( $initialServices, MediaWikiServices::getInstance() );
+		$this->assertNotSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
+		$this->assertSame( $initialService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
 	}
 
 	/**
