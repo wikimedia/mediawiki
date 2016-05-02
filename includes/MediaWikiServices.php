@@ -6,11 +6,13 @@ use ConfigFactory;
 use EventRelayerGroup;
 use GlobalVarConfig;
 use Hooks;
+use Language;
 use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
+use Parser;
 use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
@@ -18,6 +20,7 @@ use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
 use SkinFactory;
+use StubObject;
 
 /**
  * Service locator for MediaWiki core services.
@@ -82,6 +85,7 @@ class MediaWikiServices extends ServiceContainer {
 			// configuration from.
 			$bootstrapConfig = new GlobalVarConfig();
 			self::$instance = self::newInstance( $bootstrapConfig );
+			self::$instance->updateLegacyGlobals();
 		}
 
 		return self::$instance;
@@ -105,6 +109,7 @@ class MediaWikiServices extends ServiceContainer {
 
 		$old = self::getInstance();
 		self::$instance = $services;
+		self::$instance->updateLegacyGlobals();
 
 		return $old;
 	}
@@ -158,6 +163,7 @@ class MediaWikiServices extends ServiceContainer {
 		self::$instance->destroy();
 
 		self::$instance = self::newInstance( $bootstrapConfig );
+		self::$instance->updateLegacyGlobals();
 	}
 
 	/**
@@ -307,6 +313,39 @@ class MediaWikiServices extends ServiceContainer {
 		} );
 	}
 
+	/**
+	 * Sets global variables to new service instances.
+	 *
+	 * Some legacy services are accessed via global variables, e.g. $wgUser and $wgContLang.
+	 * In order to allow such service instances to be managed by MediaWikiServices,
+	 * these global variables need to be kept in sync with the global MediaWikiServices
+	 * instance.
+	 *
+	 * @warning: this should only be called on the global instance!
+	 */
+	private function updateLegacyGlobals() {
+		$bindings = [
+			'wgContLang' => 'ContentLanguage',
+			'wgParser' => 'WikitextParser',
+			// TODO: $wgMemc, $wgParser (stub?), $wgOut
+			// XXX: $wgAuth may be set in LocalSettings.php!
+		];
+
+		// update globals that are set and not stubs
+		foreach ( $bindings as $var => $service) {
+			if ( isset( $GLOBALS[$var] ) && !( $GLOBALS[$var] instanceof StubObject ) ) {
+				$GLOBALS[$var] = $this->getService( $service );
+			}
+		}
+
+		// XXX: initContLang() seems to be unused. Can we remove it?
+		if ( isset( $GLOBALS['wgContLang'] ) ) {
+			$GLOBALS['wgContLang']->initContLang();
+		}
+
+		// TODO: from RequestContext: $wgUser, $wgLang (stub?), $wgRequest, $wgTitle
+	}
+
 	// CONVENIENCE GETTERS ////////////////////////////////////////////////////
 
 	/**
@@ -411,6 +450,20 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return Language The Language object for the site's content language.
+	 */
+	public function getContentLanguage() {
+		return $this->getService( 'ContentLanguage' );
+	}
+
+	/**
+	 * @return Parser
+	 */
+	public function getWikitextParser() {
+		return $this->getService( 'WikitextParser' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

@@ -5,6 +5,7 @@ use MediaWiki\Services\ServiceContainer;
  * @covers MediaWiki\Services\ServiceContainer
  *
  * @group MediaWiki
+ * @group MediaWikiServices
  */
 class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
