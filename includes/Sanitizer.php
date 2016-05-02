@@ -1203,8 +1203,6 @@ class Sanitizer {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		$id = self::decodeCharReferences( $id );
-
 		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
@@ -1313,8 +1311,6 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function escapeIdInternal( $id, $mode ) {
-		$id = self::decodeCharReferences( $id );
-
 		switch ( $mode ) {
 			case 'html5':
 				$id = str_replace( ' ', '_', $id );
