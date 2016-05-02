@@ -153,10 +153,7 @@
 	 */
 	function togglingHandler( $toggle, $collapsible, e, options ) {
 		var wasCollapsed, $textContainer, collapseText, expandText;
-
-		if ( options === undefined ) {
-			options = {};
-		}
+		options = options || {};
 
 		if ( e ) {
 			if (
@@ -241,9 +238,7 @@
 	 * @chainable
 	 */
 	$.fn.makeCollapsible = function ( options ) {
-		if ( options === undefined ) {
-			options = {};
-		}
+		options = options || {};
 
 		this.each( function () {
 			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler, buildDefaultToggleLink,
