@@ -517,6 +517,9 @@ class WebInstaller extends Installer {
 			$wgLanguageCode = $this->getVar( 'wgLanguageCode' );
 			$wgContLang = Language::factory( $wgLanguageCode );
 		}
+
+		// FIXME: we should call MediaWikiServices::resetGlobalInstance() here.
+		// TODO: wrap $this->getVar into a Config object and pass it to resetGlobalInstance
 	}
 
 	/**

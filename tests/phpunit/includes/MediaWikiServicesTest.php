@@ -7,6 +7,7 @@ use MediaWiki\Services\ServiceDisabledException;
  * @covers MediaWiki\MediaWikiServices
  *
  * @group MediaWiki
+ * @group MediaWikiServices
  */
 class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 
@@ -19,6 +20,8 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		$testConfig = new HashConfig();
 		$testConfig->set( 'ServiceWiringFiles', $globalConfig->get( 'ServiceWiringFiles' ) );
 		$testConfig->set( 'ConfigRegistry', $globalConfig->get( 'ConfigRegistry' ) );
+		$testConfig->set( 'ParserConf', $globalConfig->get( 'ParserConf' ) );
+		$testConfig->set( 'LanguageCode', 'en' );
 
 		return $testConfig;
 	}
@@ -235,8 +238,10 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
 			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
-			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
-			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', LBFactory::class ],
+			'DBLoadBalancer' => [ 'DBLoadBalancer', LoadBalancer::class ],
+			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
+			'WikitextParser' => [ 'WikitextParser', Parser::class ],
 		];
 	}
 

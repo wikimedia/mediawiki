@@ -24,6 +24,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\GlobalServiceStub;
 
 /**
  * This file is not a valid entry point, perform no further processing unless
@@ -684,9 +685,7 @@ $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 /**
  * @var Language $wgContLang
  */
-$wgContLang = Language::factory( $wgLanguageCode );
-$wgContLang->initEncoding();
-$wgContLang->initContLang();
+$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
@@ -781,7 +780,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 /**
  * @var Parser $wgParser
  */
-$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
+$wgParser = new GlobalServiceStub( 'wgParser', 'WikitextParser' );
 
 /**
  * @var Title $wgTitle
