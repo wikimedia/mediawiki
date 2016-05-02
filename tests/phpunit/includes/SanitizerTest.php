@@ -376,7 +376,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ '\'', '.27' ],
 			[ '§', '.C2.A7' ],
 			[ 'Test:A & B/Here', 'Test:A_.26_B.2FHere' ],
-			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26C.26amp.3BD.26amp.3Bamp.3BE' ],
+			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE' ],
 		];
 	}
 
