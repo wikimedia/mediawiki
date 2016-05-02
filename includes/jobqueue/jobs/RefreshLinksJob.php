@@ -154,6 +154,13 @@ class RefreshLinksJob extends Job {
 			return false; // just deleted?
 		}
 
+		if ( !$revision->isCurrent() ) {
+			// If the revision isn't current, there's no point in doing a bunch
+			// of work just to fail at the lockAndGetLatest() check later.
+			$this->setLastError( "Revision {$revision->getId()} is not current" );
+			return false;
+		}
+
 		$content = $revision->getContent( Revision::RAW );
 		if ( !$content ) {
 			// If there is no content, pretend the content is empty
