@@ -150,7 +150,7 @@ class ParserCache {
 					"Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+			} elseif ( !$useOutdated && $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
 				wfIncrStats( "pcache.miss.revid" );
 				$revId = $article->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
@@ -230,7 +230,7 @@ class ParserCache {
 				"ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
-		} elseif ( $value->isDifferentRevision( $article->getLatest() ) ) {
+		} elseif ( !$useOutdated && $value->isDifferentRevision( $article->getLatest() ) ) {
 			wfIncrStats( "pcache.miss.revid" );
 			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
