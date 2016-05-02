@@ -76,6 +76,9 @@ class CliInstaller extends Installer {
 			$wgLang = Language::factory( $option['lang'] );
 			$wgLanguageCode = $option['lang'];
 			RequestContext::getMain()->setLanguage( $wgLang );
+
+			// FIXME: we should call MediaWikiServices::resetGlobalInstance() here.
+			// TODO: wrap $this->getVar into a Config object and pass it to resetGlobalInstance
 		}
 
 		$this->setVar( 'wgSitename', $siteName );

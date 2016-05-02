@@ -92,6 +92,22 @@ return [
 		return $services->getConfigFactory()->makeConfig( 'main' );
 	},
 
+	'ContentLanguage' => function( MediaWikiServices $services ) {
+		$code = $services->getBootstrapConfig()->get( 'LanguageCode' );
+
+		// TODO: turn Language::factory into an actual service
+		$lang = Language::factory( $code );
+		$lang->initEncoding();
+		return $lang;
+	},
+
+	'WikitextParser' => function( MediaWikiServices $services ) {
+		$conf = $services->getBootstrapConfig()->get( 'ParserConf' );
+		$class = $conf['class'];
+
+		return new $class( $conf );
+	},
+
 	'StatsdDataFactory' => function( MediaWikiServices $services ) {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
@@ -107,8 +123,10 @@ return [
 	},
 
 	'SearchEngineConfig' => function( MediaWikiServices $services ) {
-		global $wgContLang;
-		return new SearchEngineConfig( $services->getMainConfig(), $wgContLang );
+		return new SearchEngineConfig(
+			$services->getMainConfig(),
+			$services->getContentLanguage()
+		);
 	},
 
 	'SkinFactory' => function( MediaWikiServices $services ) {
