@@ -581,4 +581,29 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertEquals( 'Hauptseite', $msg->plain() );
 	}
+
+	/**
+	 * @covers Message::newFromSpecifier
+	 * @dataProvider provideNewFromSpecifier
+	 */
+	public function testNewFromSpecifier( $value, $expectedText ) {
+		$message = Message::newFromSpecifier( $value );
+		$this->assertInstanceOf( Message::class, $message );
+		$this->assertSame( $expectedText, $message->text() );
+	}
+
+	public function provideNewFromSpecifier() {
+		$messageSpecifier = $this->getMockForAbstractClass( MessageSpecifier::class );
+		$messageSpecifier->expects( $this->any() )->method( 'getKey' )->willReturn( 'mainpage' );
+		$messageSpecifier->expects( $this->any() )->method( 'getParams' )->willReturn( [] );
+
+		return [
+			'string' => [ 'mainpage', 'Main Page' ],
+			'array' => [ [ 'youhavenewmessages', 'foo', 'bar' ], 'You have foo (bar).' ],
+			'Message' => [ new Message( 'youhavenewmessages', [ 'foo', 'bar' ] ), 'You have foo (bar).' ],
+			'RawMessage' => [ new RawMessage( 'foo ($1)', [ 'bar' ] ), 'foo (bar)' ],
+			'MessageSpecifier' => [ $messageSpecifier, 'Main Page' ],
+		];
+	}
 }
+
