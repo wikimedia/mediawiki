@@ -1847,7 +1847,7 @@ abstract class DatabaseBase implements IDatabase {
 		if ( !$alias || (string)$alias === (string)$name ) {
 			return $name;
 		} else {
-			return $name . ' AS ' . $alias; // PostgreSQL needs AS
+			return $name . ' AS ' . $this->addIdentifierQuotes( $alias ); // PostgreSQL needs AS
 		}
 	}
 
