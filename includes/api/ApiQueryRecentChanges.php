@@ -206,7 +206,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieUsage(
-						'You need the patrol right to request the patrolled flag',
+						'You need patrol or patrolmarks permission to request the patrolled flag',
 						'permissiondenied'
 					);
 				}
@@ -277,7 +277,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage(
-					'You need the patrol right to request the patrolled flag',
+					'You need patrol or patrolmarks permission to request the patrolled flag',
 					'permissiondenied'
 				);
 			}
