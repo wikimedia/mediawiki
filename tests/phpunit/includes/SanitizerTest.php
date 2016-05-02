@@ -376,7 +376,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ '\'', '.27' ],
 			[ '§', '.C2.A7' ],
 			[ 'Test:A & B/Here', 'Test:A_.26_B.2FHere' ],
-			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26C.26amp.3BD.26amp.3Bamp.3BE' ],
+			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE' ],
 		];
 	}
 
@@ -453,11 +453,11 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	public function provideEscapeIdForStuff() {
 		// Test inputs and outputs
-		$text = 'foo тест_#%!\'()[]:<>';
-		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E';
-		$html5Encoded = 'foo_тест_#%!\'()[]:<>';
-		$html5Escaped = 'foo_%D1%82%D0%B5%D1%81%D1%82_%23%25%21%27%28%29%5B%5D:%3C%3E';
-		$html5Experimental = 'foo_тест_!_()[]:<>';
+		$text = 'foo тест_#%!\'()[]:<>&&amp;&amp;amp;';
+		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E.26.26amp.3B.26amp.3Bamp.3B';
+		$html5Encoded = 'foo_тест_#%!\'()[]:<>&&amp;&amp;amp;';
+		$html5Escaped = 'foo_%D1%82%D0%B5%D1%81%D1%82_%23%25%21%27%28%29%5B%5D:%3C%3E%26%26amp;%26amp;amp;';
+		$html5Experimental = 'foo_тест_!_()[]:<>__amp;_amp;amp;';
 
 		// Settings: last element is $wgExternalInterwikiFragmentMode, the rest is $wgFragmentMode
 		$legacy = [ 'legacy', 'legacy' ];
