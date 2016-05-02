@@ -52,15 +52,15 @@ class ActiveUsersPager extends UsersPager {
 
 	/**
 	 * @param IContextSource $context
-	 * @param null $group Unused
-	 * @param string $par Parameter passed to the page
+	 * @param FormOptions $opts
 	 */
-	function __construct( IContextSource $context = null, $group = null, $par = null ) {
+	function __construct( IContextSource $context = null, FormOptions $opts ) {
 		parent::__construct( $context );
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
-		$un = $this->getRequest()->getText( 'username', $par );
 		$this->requestedUser = '';
+
+		$un = $opts->getValue( 'username' );
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
 			if ( !is_null( $username ) ) {
@@ -68,21 +68,10 @@ class ActiveUsersPager extends UsersPager {
 			}
 		}
 
-		$this->setupOptions();
-	}
-
-	public function setupOptions() {
-		$this->opts = new FormOptions();
-
-		$this->opts->add( 'hidebots', false, FormOptions::BOOL );
-		$this->opts->add( 'hidesysops', false, FormOptions::BOOL );
-
-		$this->opts->fetchValuesFromRequest( $this->getRequest() );
-
-		if ( $this->opts->getValue( 'hidebots' ) == 1 ) {
+		if ( $opts->getValue( 'hidebots' ) == 1 ) {
 			$this->hideRights[] = 'bot';
 		}
-		if ( $this->opts->getValue( 'hidesysops' ) == 1 ) {
+		if ( $opts->getValue( 'hidesysops' ) == 1 ) {
 			$this->hideGroups[] = 'sysop';
 		}
 	}
@@ -201,54 +190,6 @@ class ActiveUsersPager extends UsersPager {
 		$blocked = $isBlocked ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
 		return Html::rawElement( 'li', [], "{$item} [{$count}]{$blocked}" );
-	}
-
-	function getPageHeader() {
-		$self = $this->getTitle();
-		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
-
-		# Form tag
-		$out = Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] );
-		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
-		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
-
-		# Username field (with autocompletion support)
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-		$out .= Xml::inputLabel(
-				$this->msg( 'activeusers-from' )->text(),
-				'username',
-				'offset',
-				20,
-				$this->requestedUser,
-				[
-					'class' => 'mw-ui-input-inline mw-autocomplete-user',
-					'tabindex' => 1,
-				] + (
-					// Set autofocus on blank input
-				$this->requestedUser === '' ? [ 'autofocus' => '' ] : []
-				)
-			) . '<br />';
-
-		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
-			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ), [ 'tabindex' => 2 ] );
-
-		$out .= Xml::checkLabel(
-				$this->msg( 'activeusers-hidesysops' )->text(),
-				'hidesysops',
-				'hidesysops',
-				$this->opts->getValue( 'hidesysops' ),
-				[ 'tabindex' => 3 ]
-			) . '<br />';
-
-		# Submit button and form bottom
-		$out .= Xml::submitButton(
-				$this->msg( 'activeusers-submit' )->text(),
-				[ 'tabindex' => 4 ]
-			) . "\n";
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
-
-		return $out;
 	}
 
 }
