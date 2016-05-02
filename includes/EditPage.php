@@ -2838,7 +2838,7 @@ class EditPage {
 						'{{fullurl:Special:UserLogin/signup|returnto={{FULLPAGENAMEE}}}}' ]
 				);
 			} else {
-				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\">\n$1</div>",
+				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\" class=\"warningbox\">\n$1</div>",
 					'anonpreviewwarning'
 				);
 			}
