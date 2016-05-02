@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
@@ -37,57 +38,20 @@ class LinkCache {
 	private $mBadLinks;
 	private $mForUpdate = false;
 
-	/**
-	 * How many Titles to store. There are two caches, so the amount actually
-	 * stored in memory can be up to twice this.
-	 */
-	const MAX_SIZE = 10000;
-
-	/**
-	 * @var LinkCache
-	 */
-	protected static $instance;
-
-	public function __construct() {
-		$this->mGoodLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
-		$this->mBadLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
+	public function __construct( BagOStuff $goodLinkCache, BagOStuff $badLinkCache ) {
+		$this->mGoodLinks = $goodLinkCache;
+		$this->mBadLinks = $badLinkCache;
 	}
 
 	/**
 	 * Get an instance of this class.
 	 *
+	 * @deprecated since 1.27 get a LinkCache from MediawikiServices
+	 *
 	 * @return LinkCache
 	 */
 	public static function singleton() {
-		if ( !self::$instance ) {
-			self::$instance = new LinkCache;
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Destroy the singleton instance
-	 *
-	 * A new one will be created next time singleton() is called.
-	 *
-	 * @since 1.22
-	 */
-	public static function destroySingleton() {
-		self::$instance = null;
-	}
-
-	/**
-	 * Set the singleton instance to a given object.
-	 *
-	 * Since we do not have an interface for LinkCache, you have to be sure the
-	 * given object implements all the LinkCache public methods.
-	 *
-	 * @param LinkCache $instance
-	 * @since 1.22
-	 */
-	public static function setSingleton( LinkCache $instance ) {
-		self::$instance = $instance;
+		return MediaWikiServices::getInstance()->getLinkCache();
 	}
 
 	/**

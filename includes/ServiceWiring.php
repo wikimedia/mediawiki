@@ -143,6 +143,15 @@ return [
 		return $store;
 	},
 
+	'LinkCache' => function( MediaWikiServices $services ) {
+		// How many Titles to store per cache.
+		$maxSize = 10000;
+		return new LinkCache(
+			new HashBagOStuff( [ 'maxKeys' => $maxSize ] ),
+			new HashBagOStuff( [ 'maxKeys' => $maxSize ] )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

@@ -7,6 +7,7 @@ use EventRelayerGroup;
 use GlobalVarConfig;
 use Hooks;
 use LBFactory;
+use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
@@ -419,6 +420,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return LinkCache
+	 */
+	public function getLinkCache() {
+		return $this->getService( 'LinkCache' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

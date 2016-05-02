@@ -35,8 +35,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
-		// And LinkCache
-		LinkCache::destroySingleton();
 	}
 
 	protected function tearDown() {
@@ -45,8 +43,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
-		// And LinkCache
-		LinkCache::destroySingleton();
 
 		parent::tearDown();
 	}
