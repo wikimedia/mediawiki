@@ -207,7 +207,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		foreach ( $values as $key => $value ) {
 			$fields = $this->createFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
-				if ( !empty( $field->mParams['nodata'] ) ) {
+				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
 				}
 				if ( $field->cancelSubmit( $value[$fieldname], $alldata ) ) {
@@ -237,7 +237,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		foreach ( $values as $key => $value ) {
 			$fields = $this->createFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
-				if ( !empty( $field->mParams['nodata'] ) ) {
+				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
 				}
 				$ok = $field->validate( $value[$fieldname], $alldata );
