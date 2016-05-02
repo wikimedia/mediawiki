@@ -38,6 +38,7 @@ class DatabaseMssql extends Database {
 	protected $mBinaryColumnCache = null;
 	protected $mBitColumnCache = null;
 	protected $mIgnoreDupKeyErrors = false;
+	protected $mIgnoreErrors = [];
 
 	protected $mPort;
 
@@ -206,35 +207,31 @@ class DatabaseMssql extends Database {
 			$success = (bool)$stmt;
 		}
 
+		// make a copy so that anything we add below does not get reflected in future queries
+		$ignoreErrors = $this->mIgnoreErrors;
+
 		if ( $this->mIgnoreDupKeyErrors ) {
-			// ignore duplicate key errors, but nothing else
+			// ignore duplicate key errors
 			// this emulates INSERT IGNORE in MySQL
-			if ( $success === false ) {
-				$errors = sqlsrv_errors( SQLSRV_ERR_ERRORS );
-				$success = true;
-
-				foreach ( $errors as $err ) {
-					if ( $err['SQLSTATE'] == '23000' && $err['code'] == '2601' ) {
-						continue; // duplicate key error caused by unique index
-					} elseif ( $err['SQLSTATE'] == '23000' && $err['code'] == '2627' ) {
-						continue; // duplicate key error caused by primary key
-					} elseif ( $err['SQLSTATE'] == '01000' && $err['code'] == '3621' ) {
-						continue; // generic "the statement has been terminated" error
-					}
-
-					$success = false; // getting here means we got an error we weren't expecting
-					break;
-				}
-
-				if ( $success ) {
-					$this->mAffectedRows = 0;
-					return $stmt;
-				}
-			}
+			$ignoreErrors[] = '2601'; // duplicate key error caused by unique index
+			$ignoreErrors[] = '2627'; // duplicate key error caused by primary key
+			$ignoreErrors[] = '3621'; // generic "the statement has been terminated" error
 		}
 
 		if ( $success === false ) {
-			return false;
+			$errors = sqlsrv_errors();
+			$success = true;
+
+			foreach ( $errors as $err ) {
+				if ( !in_array( $err['code'], $ignoreErrors ) ) {
+					$success = false;
+					break;
+				}
+			}
+
+			if ( $success === false ) {
+				return false;
+			}
 		}
 		// remember number of rows affected
 		$this->mAffectedRows = sqlsrv_rows_affected( $stmt );
@@ -276,7 +273,15 @@ class DatabaseMssql extends Database {
 			$res = $res->result;
 		}
 
-		return sqlsrv_num_rows( $res );
+		$ret = sqlsrv_num_rows( $res );
+
+		if ( $ret === false ) {
+			// we cannot get an amount of rows from this cursor type
+			// has_rows returns bool true/false if the result has rows
+			$ret = (int)sqlsrv_has_rows( $res );
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -536,8 +541,9 @@ class DatabaseMssql extends Database {
 		# This does not return the same info as MYSQL would, but that's OK
 		# because MediaWiki never uses the returned value except to check for
 		# the existance of indexes.
-		$sql = "sp_helpindex '" . $table . "'";
+		$sql = "sp_helpindex '" . $this->tableName( $table ) . "'";
 		$res = $this->query( $sql, $fname );
+
 		if ( !$res ) {
 			return null;
 		}
@@ -696,6 +702,12 @@ class DatabaseMssql extends Database {
 				$row = $ret->fetchObject();
 				if ( is_object( $row ) ) {
 					$this->mInsertId = $row->$identity;
+
+					// it seems that mAffectedRows is -1 sometimes when OUTPUT INSERTED.identity is used
+					// if we got an identity back, we know for sure a row was affected, so adjust that here
+					if ( $this->mAffectedRows == -1 ) {
+						$this->mAffectedRows = 1;
+					}
 				}
 			}
 		}
@@ -1352,6 +1364,24 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
+	 * Delete a table
+	 * @param string $tableName
+	 * @param string $fName
+	 * @return bool|ResultWrapper
+	 * @since 1.18
+	 */
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
+		if ( !$this->tableExists( $tableName, $fName ) ) {
+			return false;
+		}
+
+		// parent function incorrectly appends CASCADE, which we don't want
+		$sql = "DROP TABLE " . $this->tableName( $tableName );
+
+		return $this->query( $sql, $fName );
+	}
+
+	/**
 	 * Called in the installer and updater.
 	 * Probably doesn't need to be called anywhere else in the codebase.
 	 * @param bool|null $value
@@ -1369,6 +1399,16 @@ class DatabaseMssql extends Database {
 	 */
 	public function scrollableCursor( $value = null ) {
 		return wfSetVar( $this->mScrollableCursor, $value );
+	}
+
+	/**
+	 * Called in the installer and updater.
+	 * Probably doesn't need to be called anywhere else in the codebase.
+	 * @param array|null $value
+	 * @return array|null
+	 */
+	public function ignoreErrors( array $value = null ) {
+		return wfSetVar( $this->mIgnoreErrors, $value );
 	}
 } // end DatabaseMssql class
 
