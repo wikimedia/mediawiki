@@ -86,6 +86,7 @@ class SpecialPageFactory {
 		'CreateAccount' => 'SpecialCreateAccount',
 
 		// Users and rights
+		'Activeusers' => 'SpecialActiveUsers',
 		'Block' => 'SpecialBlock',
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
@@ -253,8 +254,6 @@ class SpecialPageFactory {
 			if ( $wgContentHandlerUseDB ) {
 				self::$list['ChangeContentModel'] = 'SpecialChangeContentModel';
 			}
-
-			self::$list['Activeusers'] = 'SpecialActiveUsers';
 
 			// Add extension special pages
 			self::$list = array_merge( self::$list, $wgSpecialPages );
