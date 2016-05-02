@@ -75,6 +75,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				case 'styles':
 				case 'scripts':
 				case 'group':
+				case 'targets':
 					$this->{$member} = $option;
 					break;
 			}
