@@ -3512,6 +3512,7 @@
 	"api-error-nomodule": "Interní chyba: není nastaven načítací modul.",
 	"api-error-ok-but-empty": "Interní chyba: ze serveru nepřišla odpověď.",
 	"api-error-overwrite": "Není dovoleno přepsat existující soubor.",
+	"api-error-ratelimited": "Pokoušíte se načíst v krátkém časovém rozmezí načíst více souborů, než je na této wiki dovoleno.\nZkuste to znovu za několik minut.",
 	"api-error-stashfailed": "Vnitřní chyba: Serveru se nepodařilo uložit dočasný soubor.",
 	"api-error-publishfailed": "Vnitřní chyba: Serveru se nepodařilo zveřejnit dočasný soubor.",
 	"api-error-stasherror": "Při načítání souboru do skrýše došlo k chybě.",

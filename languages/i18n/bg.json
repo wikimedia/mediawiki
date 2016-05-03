@@ -33,7 +33,8 @@
 			"Matma Rex",
 			"Xð",
 			"Miroslav35232",
-			"Ket"
+			"Ket",
+			"Ricordo.tenerissimo"
 		]
 	},
 	"tog-underline": "Подчертаване на препратките:",
@@ -598,6 +599,7 @@
 	"minoredit": "Това е малка промяна",
 	"watchthis": "Наблюдаване на страницата",
 	"savearticle": "Съхраняване",
+	"publishpage": "Публикуване на страницата",
 	"preview": "Предварителен преглед",
 	"showpreview": "Предварителен преглед",
 	"showdiff": "Показване на промените",
@@ -1580,9 +1582,11 @@
 	"suppress": "Премахване от публичния архив",
 	"querypage-disabled": "Тази специална страница е изключена, защото затруднява производителността на уикито.",
 	"apihelp-no-such-module": "Модул \"$1\" не беше намерен.",
+	"apisandbox-fullscreen": "Разшири полето",
 	"apisandbox-reset": "Изчистване",
 	"apisandbox-examples": "Пример",
-	"apisandbox-results": "Резултат",
+	"apisandbox-dynamic-parameters-add-placeholder": "Име на параметъра",
+	"apisandbox-results": "Резултати",
 	"booksources": "Източници на книги",
 	"booksources-search-legend": "Търсене на информация за книга",
 	"booksources-search": "Търсене",
