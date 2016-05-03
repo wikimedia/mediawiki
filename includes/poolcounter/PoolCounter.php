@@ -81,7 +81,7 @@ abstract class PoolCounter {
 
 	/**
 	 * @param array $conf
-	 * @param string $type
+	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key
 	 */
 	protected function __construct( $conf, $type, $key ) {
@@ -93,8 +93,9 @@ abstract class PoolCounter {
 		}
 
 		if ( $this->slots ) {
-			$key = $this->hashKeyIntoSlots( $key, $this->slots );
+			$key = $this->hashKeyIntoSlots( $type, $key, $this->slots );
 		}
+
 		$this->key = $key;
 		$this->isMightWaitKey = !preg_match( '/^nowait:/', $this->key );
 	}
@@ -102,7 +103,7 @@ abstract class PoolCounter {
 	/**
 	 * Create a Pool counter. This should only be called from the PoolWorks.
 	 *
-	 * @param string $type
+	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key
 	 *
 	 * @return PoolCounter
@@ -192,18 +193,19 @@ abstract class PoolCounter {
 	}
 
 	/**
-	 * Given a key (any string) and the number of lots, returns a slot number (an integer from
-	 * the [0..($slots-1)] range). This is used for a global limit on the number of instances of
-	 * a given type that can acquire a lock. The hashing is deterministic so that
+	 * Given a key (any string) and the number of lots, returns a slot key (a prefix with a suffix
+	 * integer from the [0..($slots-1)] range). This is used for a global limit on the number of
+	 * instances of a given type that can acquire a lock. The hashing is deterministic so that
 	 * PoolCounter::$workers is always an upper limit of how many instances with the same key
 	 * can acquire a lock.
 	 *
+	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key PoolCounter instance key (any string)
 	 * @param int $slots The number of slots (max allowed value is 65536)
-	 * @return int
+	 * @return string Slot key with the type and slot number
 	 */
-	protected function hashKeyIntoSlots( $key, $slots ) {
-		return hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots;
+	protected function hashKeyIntoSlots( $type, $key, $slots ) {
+		return $type . ':' . ( hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots );
 	}
 }
 
