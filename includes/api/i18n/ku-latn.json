@@ -30,6 +30,9 @@
 	"apihelp-login-example-login": "Têkeve.",
 	"apihelp-move-param-reason": "Sedemê bo guherandina nav.",
 	"apihelp-move-param-ignorewarnings": "Guh nede hişyariyan.",
+	"apihelp-opensearch-example-te": "Rûpelên ku bi <kbd>Te</kbd> dest pê dikin bibîne.",
+	"apihelp-parse-example-page": "Rûpelekê analîz bike.",
+	"apihelp-parse-example-summary": "Kurteyekê analîz bike",
 	"apihelp-protect-description": "Asta parastinê ya rûpelekê biguherîne.",
 	"apihelp-protect-example-protect": "Rûpelekê biparêze.",
 	"apihelp-tag-param-reason": "Sedemê bo guherandinê."
