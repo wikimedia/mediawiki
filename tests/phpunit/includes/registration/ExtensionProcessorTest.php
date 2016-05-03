@@ -50,7 +50,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				self::$default,
 				$merge,
 			],
-			// No current hooks, adding one for "FooBaz"
+			// No current hooks, adding one for "FooBaz" in string format
 			[
 				[],
 				[ 'Hooks' => [ 'FooBaz' => 'FooBazCallback' ] ] + self::$default,
@@ -61,6 +61,12 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'FooBaz' => [ 'PriorCallback' ] ],
 				[ 'Hooks' => [ 'FooBaz' => 'FooBazCallback' ] ] + self::$default,
 				[ 'FooBaz' => [ 'PriorCallback', 'FooBazCallback' ] ] + $merge,
+			],
+			// No current hooks, adding one for "FooBaz" in verbose array format
+			[
+				[],
+				[ 'Hooks' => [ 'FooBaz' => [ 'FooBazCallback' ] ] ] + self::$default,
+				[ 'FooBaz' => [ 'FooBazCallback' ] ] + $merge,
 			],
 			// Hook for "BarBaz", adding one for "FooBaz"
 			[

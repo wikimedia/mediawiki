@@ -684,7 +684,7 @@
 			"type": "object"
 		},
 		"Hooks": {
-			"type": "object",
+			"type": [ "string", "object" ],
 			"description": "Hooks this extension uses (mapping of hook name to callback)"
 		},
 		"JobClasses": {

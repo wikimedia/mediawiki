@@ -216,7 +216,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	public function handleHooks( $realName, $value ) {
-		foreach ( $value as $hookName => $handlers ) {
+		foreach ( $value as $hookName => &$handlers ) {
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
 					$this->error( "Error: Closures cannot be converted to JSON. " .
@@ -229,6 +229,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 						"Please move the handler for $hookName inside a class.", 1
 					);
 				}
+			}
+			if ( count( $handlers ) === 1 ) {
+				$handlers = $handlers[0];
 			}
 		}
 		$this->json[$realName] = $value;
