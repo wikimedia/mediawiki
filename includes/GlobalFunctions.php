@@ -501,12 +501,26 @@ function wfAppendQuery( $url, $query ) {
 		$query = wfArrayToCgi( $query );
 	}
 	if ( $query != '' ) {
+		// Remove the fragment, if there is one
+		$fragment = false;
+		$hashPos = strpos( $url, '#' );
+		if ( $hashPos !== false ) {
+			$fragment = substr( $url, $hashPos );
+			$url = substr( $url, 0, $hashPos );
+		}
+
+		// Add parameter
 		if ( false === strpos( $url, '?' ) ) {
 			$url .= '?';
 		} else {
 			$url .= '&';
 		}
 		$url .= $query;
+
+		// Put the fragment back
+		if ( $fragment !== false ) {
+			$url .= $fragment;
+		}
 	}
 	return $url;
 }

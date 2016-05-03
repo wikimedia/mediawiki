@@ -61,6 +61,18 @@ class WfAppendQueryTest extends MediaWikiTestCase {
 				'baz=quux&foo=baz',
 				'http://www.example.org/index.php?foo=bar&baz=quux&foo=baz',
 				'Modify query string'
+			],
+			[
+				'http://www.example.org/index.php#baz',
+				'foo=bar',
+				'http://www.example.org/index.php?foo=bar#baz',
+				'URL with fragment'
+			],
+			[
+				'http://www.example.org/index.php?foo=bar#baz',
+				'quux=blah',
+				'http://www.example.org/index.php?foo=bar&quux=blah#baz',
+				'URL with query string and fragment'
 			]
 		];
 	}
