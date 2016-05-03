@@ -55,6 +55,9 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	/** @var array Map of language codes to titles */
 	public $mInterlangs;
 
+	/** @var array 2-D map of (prefix => DBK => 1) */
+	public $mInterwikis;
+
 	/** @var array Map of arbitrary name to value */
 	public $mProperties;
 
