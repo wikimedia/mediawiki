@@ -84,11 +84,19 @@ pre,
 }
 
 img,
+figure,
+table,
 .wikitable,
 .thumb {
 	/* Pagination */
 	page-break-inside: avoid;
 }
+
+/* But avoid pushing down infoboxes in Chrome */
+.infobox {
+	page-break-inside: auto;
+}
+
 
 img {
 	border: 0;
