@@ -262,7 +262,7 @@ class ParserCache {
 	 */
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
-		if ( $expire > 0 ) {
+		if ( $expire > 0 && !$this->mMemc instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $page->getRevision();
@@ -302,7 +302,7 @@ class ParserCache {
 				'ParserCacheSaveComplete',
 				[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
 			);
-		} else {
+		} elseif ( $expire <= 0 ) {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}
 	}
