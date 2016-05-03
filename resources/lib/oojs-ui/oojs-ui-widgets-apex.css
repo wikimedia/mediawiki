@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.0
+ * OOjs UI v0.17.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-26T21:34:05Z
+ * Date: 2016-05-03T22:58:06Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -442,7 +442,6 @@
 .oo-ui-selectFileWidget-dropTarget {
 	cursor: default;
 	height: 5.5em;
-	text-align: left;
 	padding: 0;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
@@ -490,9 +489,6 @@
 	position: absolute;
 	right: 0.5em;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget {
-	text-align: center;
-}
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel {
 	display: block;
 }
@@ -515,6 +511,12 @@
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-clearButton,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-clearButton {
 	display: none;
+}
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button {
+	cursor: no-drop;
 }
 .oo-ui-selectFileWidget:last-child {
 	margin-right: 0;
