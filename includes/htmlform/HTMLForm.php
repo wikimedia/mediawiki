@@ -569,7 +569,7 @@ class HTMLForm extends ContextSource {
 
 		# Check for cancelled submission
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			if ( !empty( $field->mParams['nodata'] ) ) {
+			if ( !array_key_exists( $fieldname, $this->mFieldData ) ) {
 				continue;
 			}
 			if ( $field->cancelSubmit( $this->mFieldData[$fieldname], $this->mFieldData ) ) {
@@ -580,7 +580,7 @@ class HTMLForm extends ContextSource {
 
 		# Check for validation
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			if ( !empty( $field->mParams['nodata'] ) ) {
+			if ( !array_key_exists( $fieldname, $this->mFieldData ) ) {
 				continue;
 			}
 			if ( $field->isHidden( $this->mFieldData ) ) {
