@@ -57,7 +57,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 			]
 		];
 
-		$htmlForm = HTMLForm::factory( 'inline', $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setWrapperLegendMsg( 'withoutinterwiki-legend' )
 			->setSubmitTextMsg( 'withoutinterwiki-submit' )
 			->setMethod( 'get' )
