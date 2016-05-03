@@ -607,7 +607,7 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function namespacesAsText( $namespaces ) {
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->namespacesAsText();
+		return MediaWikiServices::getInstance()->getSearchEngineConfig()->namespacesAsText( $namespaces );
 	}
 
 	/**
