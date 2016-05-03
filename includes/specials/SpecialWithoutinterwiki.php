@@ -28,15 +28,16 @@
  * @ingroup SpecialPage
  */
 class WithoutInterwikiPage extends PageQueryPage {
-	private $prefix = '';
+	private $prefix;
 
-	function __construct( $name = 'Withoutinterwiki' ) {
-		parent::__construct( $name );
+	function __construct() {
+		parent::__construct( 'Withoutinterwiki' );
 	}
 
 	function execute( $par ) {
 		$this->prefix = Title::capitalize(
 			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
+
 		parent::execute( $par );
 	}
 
@@ -48,16 +49,15 @@ class WithoutInterwikiPage extends PageQueryPage {
 
 		$formDescriptor = [
 			'prefix' => [
-				'label-message' => 'allpagesprefix',
-				'name' => 'prefix',
-				'id' => 'wiprefix',
 				'type' => 'text',
+				'name' => 'prefix',
+				'label-message' => 'allpagesprefix',
+				'value' => $this->prefix,
 				'size' => 20,
-				'default' => $this->prefix
 			]
 		];
 
-		$htmlForm = HTMLForm::factory( 'inline', $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setWrapperLegendMsg( 'withoutinterwiki-legend' )
 			->setSubmitTextMsg( 'withoutinterwiki-submit' )
 			->setMethod( 'get' )
