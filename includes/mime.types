@@ -184,3 +184,5 @@ chemical/x-mdl-sdfile sdf
 chemical/x-mdl-rxnfile rxn
 chemical/x-mdl-rdfile rd
 chemical/x-mdl-rgfile rg
+application/x-amf amf
+application/sla stl
