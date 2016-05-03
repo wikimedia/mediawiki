@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.0
+ * OOjs UI v0.17.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-26T21:34:01Z
+ * Date: 2016-05-03T22:58:02Z
  */
 ( function ( OO ) {
 
@@ -332,74 +332,23 @@ OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
  * @fires reorder
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onDragOver = function ( e ) {
-	var dragOverObj, $optionWidget, itemOffset, itemMidpoint, itemBoundingRect,
-		itemSize, cssOutput, dragPosition, overIndex, itemPosition, after,
-		targetIndex = null,
+	var overIndex, targetIndex,
 		item = this.getDragItem(),
-		dragItemIndex = item.getIndex(),
-		clientX = e.originalEvent.clientX,
-		clientY = e.originalEvent.clientY;
+		dragItemIndex = item.getIndex();
 
 	// Get the OptionWidget item we are dragging over
-	dragOverObj = this.getElementDocument().elementFromPoint( clientX, clientY );
-	$optionWidget = $( dragOverObj ).closest( '.oo-ui-draggableElement' );
-	if ( $optionWidget[ 0 ] ) {
-		itemOffset = $optionWidget.offset();
-		itemBoundingRect = $optionWidget[ 0 ].getBoundingClientRect();
-		itemPosition = $optionWidget.position();
-		overIndex = $optionWidget.data( 'index' );
-	}
+	overIndex = $( e.target ).closest( '.oo-ui-draggableElement' ).data( 'index' );
 
-	if (
-		itemOffset &&
-		overIndex !== dragItemIndex
-	) {
-		if ( this.orientation === 'horizontal' ) {
-			// Calculate where the mouse is relative to the item width
-			itemSize = itemBoundingRect.width;
-			itemMidpoint = itemBoundingRect.left + itemSize / 2;
-			dragPosition = clientX;
-			// Which side of the item we hover over will dictate
-			// where to drop the selected item, on the left or
-			// on the right
-			cssOutput = {
-				left: dragPosition < itemMidpoint ? itemPosition.left : itemPosition.left + itemSize,
-				top: itemPosition.top
-			};
-		} else {
-			// Calculate where the mouse is relative to the item height
-			itemSize = itemBoundingRect.height;
-			itemMidpoint = itemBoundingRect.top + itemSize / 2;
-			dragPosition = clientY;
-			// Which side of the item we hover over will dictate
-			// where to drop the selected item, on the top or
-			// on the bottom
-			cssOutput = {
-				top: dragPosition < itemMidpoint ? itemPosition.top : itemPosition.top + itemSize,
-				left: itemPosition.left
-			};
-		}
-		// Store whether we are before or after an item to rearrange
-		// For horizontal layout, we need to account for RTL, as this is flipped
-		if ( this.orientation === 'horizontal' && this.dir === 'rtl' ) {
-			after = dragPosition < itemMidpoint;
-		} else {
-			after = dragPosition > itemMidpoint;
-		}
-		targetIndex = overIndex + ( after ? 1 : 0 );
-		// Check the targetIndex isn't immediately to the left or right of the current item (a no-op)
-		if ( targetIndex === dragItemIndex || targetIndex === dragItemIndex + 1 ) {
-			targetIndex = null;
-		}
-	}
-	if ( targetIndex !== null ) {
+	if ( overIndex !== undefined && overIndex !== dragItemIndex ) {
+		targetIndex = overIndex + ( overIndex > dragItemIndex ? 1 : 0 );
+
 		if ( targetIndex > 0 ) {
 			this.$group.children().eq( targetIndex - 1 ).after( item.$element );
 		} else {
 			this.$group.prepend( item.$element );
 		}
-		// Move item in itemsOrder array. Needs to account for left shift if the item is moved forward.
-		this.itemsOrder.splice( targetIndex - ( targetIndex > dragItemIndex ? 1 : 0 ), 0,
+		// Move item in itemsOrder array
+		this.itemsOrder.splice( overIndex, 0,
 			this.itemsOrder.splice( dragItemIndex, 1 )[ 0 ]
 		);
 		this.updateIndexes();

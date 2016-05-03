@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.0
+ * OOjs UI v0.17.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-04-26T21:34:01Z
+ * Date: 2016-05-03T22:58:02Z
  */
 ( function ( OO ) {
 
@@ -5021,6 +5021,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 		toggle: 'onToggle'
 	} );
 	this.$element.on( {
+		focus: this.onFocus.bind( this ),
 		mousedown: this.onMouseDown.bind( this ),
 		mouseover: this.onMouseOver.bind( this ),
 		mouseleave: this.onMouseLeave.bind( this )
@@ -5100,6 +5101,19 @@ OO.ui.SelectWidget.static.passAllFilter = function () {
  */
 
 /* Methods */
+
+/**
+ * Handle focus events
+ *
+ * @private
+ * @param {jQuery.Event} event
+ */
+OO.ui.SelectWidget.prototype.onFocus = function () {
+	// The styles for focus state depend on one of the items being selected.
+	if ( !this.getSelectedItem() ) {
+		this.selectItem( this.getFirstSelectableItem() );
+	}
+};
 
 /**
  * Handle mouse down events.
