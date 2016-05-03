@@ -181,6 +181,7 @@ a {
 .mw-body a.external.autonumber:after {
 	content: " (" attr( href ) ")";
 	word-wrap: break-word;
+	word-break: break-all;
 }
 
 /* Expand protocol-relative URLs for printing */
