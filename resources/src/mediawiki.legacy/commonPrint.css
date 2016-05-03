@@ -84,6 +84,8 @@ pre,
 }
 
 img,
+figure,
+table,
 .wikitable,
 .thumb {
 	/* Pagination */
