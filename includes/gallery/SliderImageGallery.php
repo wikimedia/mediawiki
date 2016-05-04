@@ -1,0 +1,190 @@
+<?php
+/**
+ * Slider gallery shows one image at a time with controls to move around.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+class SliderImageGallery extends TraditionalImageGallery {
+	function __construct( $mode = 'traditional', IContextSource $context = null ) {
+		parent::__construct( $mode, $context );
+		// Does not support per row option.
+		$this->mPerRow = 0;
+	}
+
+	function toHTML() {
+		$attribs = Sanitizer::mergeAttributes(
+			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
+
+		$modules = $this->getModules();
+
+		if ( $this->mParser ) {
+			$this->mParser->getOutput()->addModules( $modules );
+			$this->mParser->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
+		} else {
+			$this->getOutput()->addModules( $modules );
+			$this->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
+		}
+		$output = Xml::openElement( 'ul', $attribs );
+		if ( $this->mCaption ) {
+			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+		}
+
+		$lang = $this->getRenderLang();
+		# Output each image...
+		foreach ( $this->mImages as $pair ) {
+			/** @var Title $nt */
+			$nt = $pair[0];
+			$text = $pair[1]; # "text" means "caption" here
+			$alt = $pair[2];
+			$link = $pair[3];
+
+			$descQuery = false;
+			if ( $nt->getNamespace() === NS_FILE ) {
+				# Get the file...
+				if ( $this->mParser instanceof Parser ) {
+					# Give extensions a chance to select the file revision for us
+					$options = [];
+					Hooks::run( 'BeforeParserFetchFileAndTitle',
+						[ $this->mParser, $nt, &$options, &$descQuery ] );
+					# Fetch and register the file (file title may be different via hooks)
+					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
+				} else {
+					$img = wfFindFile( $nt );
+				}
+			} else {
+				$img = false;
+			}
+
+			$params = $this->getThumbParams( $img );
+			// $pair[4] is per image handler options
+			$transformOptions = $params + $pair[4];
+
+			$thumb = false;
+
+			if ( !$img ) {
+				# We're dealing with a non-image, spit out the name and be done with it.
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb">'
+					. htmlspecialchars( $nt->getText() ) . '</div>';
+
+				if ( $this->mParser instanceof Parser ) {
+					$this->mParser->addTrackingCategory( 'broken-file-category' );
+				}
+			} elseif ( $this->mHideBadImages
+				&& wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() )
+			) {
+				# The image is blacklisted, just show it as a text link.
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb">' .
+					Linker::linkKnown(
+						$nt,
+						htmlspecialchars( $nt->getText() )
+					) .
+					'</div>';
+			} else {
+				$thumb = $img->transform( $transformOptions );
+				if ( !$thumb ) {
+					# Error generating thumbnail.
+					$thumbhtml = "\n\t\t\t" . '<div class="thumb">'
+						. htmlspecialchars( $img->getLastError() ) . '</div>';
+				} else {
+					/** @var MediaTransformOutput $thumb */
+					$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
+
+					$imageParameters = [
+						'desc-link' => true,
+						'desc-query' => $descQuery,
+						'alt' => $alt,
+						'custom-url-link' => $link
+					];
+
+					// In the absence of both alt text and caption, fall back on
+					// providing screen readers with the filename as alt text
+					if ( $alt == '' && $text == '' ) {
+						$imageParameters['alt'] = $nt->getText();
+					}
+
+					$this->adjustImageParameters( $thumb, $imageParameters );
+
+					Linker::processResponsiveImages( $img, $thumb, $transformOptions );
+
+					# Set both fixed width and min-height.
+					$thumbhtml = "\n\t\t\t"
+						. '<div class="thumb">'
+						# Auto-margin centering for block-level elements. Needed
+						# now that we have video handlers since they may emit block-
+						# level elements as opposed to simple <img> tags. ref
+						# http://css-discuss.incutio.com/?page=CenteringBlockElement
+						. '<div>'
+						. $thumb->toHtml( $imageParameters ) . '</div></div>';
+
+					// Call parser transform hook
+					/** @var MediaHandler $handler */
+					$handler = $img->getHandler();
+					if ( $this->mParser && $handler ) {
+						$handler->parserTransformHook( $this->mParser, $img );
+					}
+				}
+			}
+
+			// @todo Code is incomplete.
+			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) .
+			// ":{$ut}" );
+			// $ul = Linker::link( $linkTarget, $ut );
+
+			if ( $this->mShowBytes ) {
+				if ( $img ) {
+					$fileSize = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
+				} else {
+					$fileSize = $this->msg( 'filemissing' )->escaped();
+				}
+				$fileSize = "$fileSize<br />\n";
+			} else {
+				$fileSize = '';
+			}
+
+			$textlink = $this->mShowFilename ?
+				Linker::linkKnown(
+					$nt,
+					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) )
+				) . "<br />\n" :
+				'';
+
+			$galleryText = $textlink . $text . $fileSize;
+			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
+
+			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
+			# Can be safely removed if FF2 falls completely out of existence
+			$output .= "\n\t\t" . '<li class="gallerybox">'
+				. '<div>'
+				. $thumbhtml
+				. $galleryText
+				. "\n\t\t</div></li>";
+		}
+		$output .= "\n</ul>";
+
+		return $output;
+	}
+
+	/**
+	 * Add javascript adds interface elements
+	 * @return array
+	 */
+	protected function getModules() {
+		return [ 'mediawiki.page.gallery.slider' ];
+	}
+}
