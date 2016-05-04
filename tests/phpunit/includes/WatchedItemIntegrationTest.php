@@ -13,6 +13,14 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		parent::setUp();
 		self::$users['WatchedItemIntegrationTestUser']
 			= new TestUser( 'WatchedItemIntegrationTestUser' );
+
+		$this->hideDeprecated( 'WatchedItem::fromUserTitle' );
+		$this->hideDeprecated( 'WatchedItem::addWatch' );
+		$this->hideDeprecated( 'WatchedItem::removeWatch' );
+		$this->hideDeprecated( 'WatchedItem::isWatched' );
+		$this->hideDeprecated( 'WatchedItem::resetNotificationTimestamp' );
+		$this->hideDeprecated( 'WatchedItem::duplicateEntries' );
+		$this->hideDeprecated( 'WatchedItem::batchAddWatch' );
 	}
 
 	private function getUser() {
@@ -20,6 +28,7 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 	}
 
 	public function testWatchAndUnWatchItem() {
+
 		$user = $this->getUser();
 		$title = Title::newFromText( 'WatchedItemIntegrationTestPage' );
 		// Cleanup after previous tests
