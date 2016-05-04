@@ -99,3 +99,18 @@ ul.mw-gallery-packed-overlay,
 ul.mw-gallery-packed {
 	text-align: center;
 }
+
+
+/* Slider */
+.mw-gallery-slider .gallerybox > div {
+	max-width: 120px;
+}
+
+ul.mw-gallery-slider li.gallerybox div.thumb {
+	border: none;
+	background: transparent;
+}
+
+ul.mw-gallery-slider li.gallerycarousel {
+	display: block;
+}
