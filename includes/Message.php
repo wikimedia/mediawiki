@@ -388,6 +388,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @param string|array|MessageSpecifier $value
 	 * @return Message
 	 * @throws InvalidArgumentException
+	 * @since 1.27
 	 */
 	public static function newFromSpecifier( $value ) {
 		if ( $value instanceof RawMessage ) {
