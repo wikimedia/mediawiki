@@ -1248,6 +1248,7 @@ $wgAutoloadLocalClasses = [
 	'SkinFallback' => __DIR__ . '/includes/skins/SkinFallback.php',
 	'SkinFallbackTemplate' => __DIR__ . '/includes/skins/SkinFallbackTemplate.php',
 	'SkinTemplate' => __DIR__ . '/includes/skins/SkinTemplate.php',
+	'SliderImageGallery' => __DIR__ . '/includes/gallery/SliderImageGallery.php',
 	'SpecialActiveUsers' => __DIR__ . '/includes/specials/SpecialActiveusers.php',
 	'SpecialAllMessages' => __DIR__ . '/includes/specials/SpecialAllMessages.php',
 	'SpecialAllMyUploads' => __DIR__ . '/includes/specials/SpecialMyRedirectPages.php',
