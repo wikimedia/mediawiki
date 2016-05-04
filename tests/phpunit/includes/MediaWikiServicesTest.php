@@ -242,6 +242,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'DBLoadBalancer' => [ 'DBLoadBalancer', LoadBalancer::class ],
 			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
 			'WikitextParser' => [ 'WikitextParser', Parser::class ],
+			'RequestContext' => [ 'RequestContext', IContextSource::class ],
 		];
 	}
 

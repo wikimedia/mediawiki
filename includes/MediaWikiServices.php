@@ -6,10 +6,12 @@ use ConfigFactory;
 use EventRelayerGroup;
 use GlobalVarConfig;
 use Hooks;
+use IContextSource;
 use Language;
 use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
+use LogicException;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
 use Parser;
@@ -257,7 +259,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @throws MWException if called outside of PHPUnit tests.
 	 */
 	public function resetServiceForTesting( $name, $destroy = true ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( 'resetServiceForTesting() must not be used outside unit tests.' );
 		}
 
@@ -291,6 +293,7 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public static function failIfResetNotAllowed( $method ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' )
+			&& !defined( 'MW_PARSER_TEST' )
 			&& !defined( 'MEDIAWIKI_INSTALL' )
 			&& !defined( 'RUN_MAINTENANCE_IF_MAIN' )
 			&& defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' )
@@ -324,6 +327,14 @@ class MediaWikiServices extends ServiceContainer {
 	 * @warning: this should only be called on the global instance!
 	 */
 	private function updateLegacyGlobals() {
+		if ( $this !== self::getInstance() ) {
+			throw new LogicException(
+				__METHOD__ . ' must be called only on the current '
+				. 'global instance of MediaWikiServices'
+			);
+		}
+
+		// bindings of global variables to service names
 		$bindings = [
 			'wgContLang' => 'ContentLanguage',
 			'wgParser' => 'WikitextParser',
@@ -343,7 +354,22 @@ class MediaWikiServices extends ServiceContainer {
 			$GLOBALS['wgContLang']->initContLang();
 		}
 
-		// TODO: from RequestContext: $wgUser, $wgLang (stub?), $wgRequest, $wgTitle
+		// bindings of global variables to RequestContext getters
+		$bindings = [
+			'wgUser' => 'getUser',
+			'wgLang' => 'getLanguage',
+			'wgRequest' => 'getRequest',
+			'wgTitle' => 'getTitle',
+		];
+
+		$rx = $this->getRequestContext();
+
+		// update globals that are set and not stubs
+		foreach ( $bindings as $var => $getter ) {
+			if ( isset( $GLOBALS[$var] ) && !( $GLOBALS[$var] instanceof StubObject ) ) {
+				$GLOBALS[$var] = $rx->$getter();
+			}
+		}
 	}
 
 	// CONVENIENCE GETTERS ////////////////////////////////////////////////////
@@ -393,6 +419,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteStore() {
 		return $this->getService( 'SiteStore' );
+	}
+
+	/**
+	 * @return IContextSource
+	 */
+	public function getRequestContext() {
+		return $this->getService( 'RequestContext' );
 	}
 
 	/**

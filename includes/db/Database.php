@@ -2533,7 +2533,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	final public function startAtomic( $fname = __METHOD__ ) {
-		if ( !$this->mTrxLevel ) {
+		if ( !$this->mTrxLeveVl ) {
 			$this->begin( $fname );
 			$this->mTrxAutomatic = true;
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result

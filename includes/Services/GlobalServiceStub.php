@@ -29,7 +29,12 @@ use Wikimedia\Assert\Assert;
  * Delayed loading of a global service instance.
  * The service instance will be acquired from MediaWikiServices::getInstance()->getService().
  *
+ * This is similar to a ServicesPromise, with some important differences: GlobalServiceStub
+ * always uses the current global instance of MediaWikiServices, and it sets a global variable
+ * when unstubbing. It also acts as an adapter between MediaWikiServices and StubObject.
+ *
  * @see MediaWikiServices
+ * @see ServicesPromise
  */
 class GlobalServiceStub extends StubObject {
 
