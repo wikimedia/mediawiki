@@ -2366,6 +2366,81 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		ScopedCallback::consume( $scopedOverrideRevision );
 	}
 
+	public function testSetNotificationTimestampsForUser_anonUser() {
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockCache()
+		);
+		$this->assertFalse( $store->setNotificationTimestampsForUser( $this->getAnonUser(), '' ) );
+	}
+
+	public function testSetNotificationTimestampsForUser_allRows() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$timestamp = '20100101010101';
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'update' )
+			->with(
+				'watchlist',
+				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
+				[ 'wl_user' => 1 ]
+			)
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'timestamp' )
+			->will( $this->returnCallback( function( $value ) {
+				return 'TS' . $value . 'TS';
+			} ) );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockCache()
+		);
+
+		$this->assertTrue(
+			$store->setNotificationTimestampsForUser( $user, $timestamp )
+		);
+	}
+
+	public function testSetNotificationTimestampsForUser_specificTargets() {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+		$timestamp = '20100101010101';
+		$targets = [ new TitleValue( 0, 'Foo' ), new TitleValue( 0, 'Bar' ) ];
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'update' )
+			->with(
+				'watchlist',
+				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
+				[ 'wl_user' => 1, 0 => 'makeWhereFrom2d return value' ]
+			)
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'timestamp' )
+			->will( $this->returnCallback( function( $value ) {
+				return 'TS' . $value . 'TS';
+			} ) );
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'Foo' => 1, 'Bar' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockCache()
+		);
+
+		$this->assertTrue(
+			$store->setNotificationTimestampsForUser( $user, $timestamp, $targets )
+		);
+	}
+
 	public function testUpdateNotificationTimestamp_watchersExist() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
