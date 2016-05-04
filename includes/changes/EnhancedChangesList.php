@@ -262,6 +262,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$line ) {
 				// completely ignore this RC entry if we don't want to render it
 				unset( $block[$i] );
+				continue;
 			}
 
 			// Roll up flags
@@ -286,6 +287,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$lines[] = $line;
 		}
+
 		// Further down are some assumptions that $block is a 0-indexed array
 		// with (count-1) as last key. Let's make sure it is.
 		$block = array_values( $block );
