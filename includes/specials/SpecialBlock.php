@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/** @var User User to be blocked, as passed either by parameter (url?wpTarget=Foo)
+	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
@@ -330,8 +330,12 @@ class SpecialBlock extends FormSpecialPage {
 
 		$otherBlockMessages = [];
 		if ( $this->target !== null ) {
+			$targetName = $this->target;
+			if ( $this->target instanceof User ) {
+				$targetName = $this->target->getName();
+			}
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
-			Hooks::run( 'OtherBlockLogLink', [ &$otherBlockMessages, $this->target ] );
+			Hooks::run( 'OtherBlockLogLink', [ &$otherBlockMessages, $targetName ] );
 
 			if ( count( $otherBlockMessages ) ) {
 				$s = Html::rawElement(
