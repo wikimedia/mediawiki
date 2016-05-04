@@ -40,6 +40,7 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an interwiki link.
 	 *
+	 * @since 1.16.3
 	 * @deprecated since 1.25
 	 *
 	 * @param string $title The title text for the link, URL-encoded (???) but
@@ -66,6 +67,7 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal link.
 	 *
+	 * @since 1.16.3
 	 * @deprecated since 1.25
 	 *
 	 * @param string $title The title text for the link, URL-encoded (???) but
@@ -86,6 +88,7 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal
 	 * link, given the Title object for the page we want to link to.
 	 *
+	 * @since 1.16.3
 	 * @deprecated since 1.25
 	 *
 	 * @param Title $nt
@@ -107,6 +110,7 @@ class Linker {
 	/**
 	 * Common code for getLinkAttributesX functions
 	 *
+	 * @since 1.16.3
 	 * @deprecated since 1.25
 	 *
 	 * @param string $title
@@ -132,6 +136,7 @@ class Linker {
 	/**
 	 * Return the CSS colour of a known link
 	 *
+	 * @since 1.16.3
 	 * @param Title $t
 	 * @param int $threshold User defined threshold
 	 * @return string CSS class
@@ -258,6 +263,7 @@ class Linker {
 
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
+	 * @since 1.16.3
 	 * @see Linker::link
 	 * @return string
 	 */
@@ -398,6 +404,7 @@ class Linker {
 	 * same as the other make*LinkObj static functions, despite $query not
 	 * being used.
 	 *
+	 * @since 1.16.3
 	 * @param Title $nt
 	 * @param string $html [optional]
 	 * @param string $query [optional]
@@ -446,10 +453,11 @@ class Linker {
 	}
 
 	/**
+	 * @since 1.16.3
 	 * @param LinkTarget $target
 	 * @return LinkTarget|Title You will get back the same type you passed in, or a Title object
 	 */
-	static function normaliseSpecialPage( LinkTarget $target ) {
+	public static function normaliseSpecialPage( LinkTarget $target ) {
 		if ( $target->getNamespace() == NS_SPECIAL ) {
 			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $target->getDBkey() );
 			if ( !$name ) {
@@ -484,6 +492,7 @@ class Linker {
 	 * Return the code for images which were added via external links,
 	 * via Parser::maybeMakeExternalImage().
 	 *
+	 * @since 1.16.3
 	 * @param string $url
 	 * @param string $alt
 	 *
@@ -901,6 +910,7 @@ class Linker {
 	/**
 	 * Make a "broken" link to an image
 	 *
+	 * @since 1.16.3
 	 * @param Title $title
 	 * @param string $label Link label (plain text)
 	 * @param string $query Query string
@@ -946,6 +956,7 @@ class Linker {
 	/**
 	 * Get the URL to upload a certain file
 	 *
+	 * @since 1.16.3
 	 * @param Title $destFile Title object of the file to upload
 	 * @param string $query Urlencoded query string to prepend
 	 * @return string Urlencoded URL
@@ -970,6 +981,7 @@ class Linker {
 	/**
 	 * Create a direct link to a given uploaded file.
 	 *
+	 * @since 1.16.3
 	 * @param Title $title
 	 * @param string $html Pre-sanitized HTML
 	 * @param string $time MW timestamp of file creation time
@@ -984,6 +996,7 @@ class Linker {
 	 * Create a direct link to a given uploaded file.
 	 * This will make a broken link if $file is false.
 	 *
+	 * @since 1.16.3
 	 * @param Title $title
 	 * @param File|bool $file File object or false
 	 * @param string $html Pre-sanitized HTML
@@ -1027,6 +1040,7 @@ class Linker {
 	 * a message key from the link text.
 	 * Usage example: Linker::specialLink( 'Recentchanges' )
 	 *
+	 * @since 1.16.3
 	 * @param string $name
 	 * @param string $key
 	 * @return string
@@ -1041,6 +1055,7 @@ class Linker {
 
 	/**
 	 * Make an external link
+	 * @since 1.16.3. $title added in 1.21
 	 * @param string $url URL to link to
 	 * @param string $text Text of link
 	 * @param bool $escape Do we escape the link text?
@@ -1088,7 +1103,7 @@ class Linker {
 	 * @param string $userName User name in database.
 	 * @param string $altUserName Text to display instead of the user name (optional)
 	 * @return string HTML fragment
-	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
+	 * @since 1.16.3. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		$classes = 'mw-userlink';
@@ -1112,6 +1127,7 @@ class Linker {
 	/**
 	 * Generate standard user tool links (talk, contributions, block link, etc.)
 	 *
+	 * @since 1.16.3
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
 	 * @param bool $redContribsWhenNoEdits Should the contributions link be
@@ -1171,6 +1187,7 @@ class Linker {
 
 	/**
 	 * Alias for userToolLinks( $userId, $userText, true );
+	 * @since 1.16.3
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
 	 * @param int $edits User edit count (optional, for performance)
@@ -1181,6 +1198,7 @@ class Linker {
 	}
 
 	/**
+	 * @since 1.16.3
 	 * @param int $userId User id in database.
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with user talk link
@@ -1192,6 +1210,7 @@ class Linker {
 	}
 
 	/**
+	 * @since 1.16.3
 	 * @param int $userId Userid
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with block link
@@ -1215,6 +1234,7 @@ class Linker {
 
 	/**
 	 * Generate a user link if the current user is allowed to view it
+	 * @since 1.16.3
 	 * @param Revision $rev
 	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML fragment
@@ -1236,6 +1256,7 @@ class Linker {
 
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
+	 * @since 1.16.3
 	 * @param Revision $rev
 	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML
@@ -1264,6 +1285,7 @@ class Linker {
 	 * auto-generated comments (from section editing) and formats [[wikilinks]].
 	 *
 	 * @author Erik Moeller <moeller@scireview.de>
+	 * @since 1.16.3. $wikiId added in 1.26
 	 *
 	 * Note: there's not always a title to pass to this function.
 	 * Since you can't set a default parameter for a reference, I've turned it
@@ -1389,7 +1411,9 @@ class Linker {
 	 * Formats wiki links and media links in text; all other wiki formatting
 	 * is ignored
 	 *
+	 * @since 1.16.3. $wikiId added in 1.26
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
+	 *
 	 * @param string $comment Text to format links in. WARNING! Since the output of this
 	 *	function is html, $comment must be sanitized for use as html. You probably want
 	 *	to pass $comment through Sanitizer::escapeHtmlAllowEntities() before calling
@@ -1612,6 +1636,7 @@ class Linker {
 	 * Wrap a comment in standard punctuation and formatting if
 	 * it's non-empty, otherwise return empty string.
 	 *
+	 * @since 1.16.3. $wikiId added in 1.26
 	 * @param string $comment
 	 * @param Title|null $title Title object (to generate link to section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
@@ -1639,6 +1664,7 @@ class Linker {
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
 	 *
+	 * @since 1.16.3
 	 * @param Revision $rev
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
@@ -1663,6 +1689,7 @@ class Linker {
 	}
 
 	/**
+	 * @since 1.16.3
 	 * @param int $size
 	 * @return string
 	 */
@@ -1679,6 +1706,7 @@ class Linker {
 	/**
 	 * Add another level to the Table of Contents
 	 *
+	 * @since 1.16.3
 	 * @return string
 	 */
 	public static function tocIndent() {
@@ -1688,6 +1716,7 @@ class Linker {
 	/**
 	 * Finish one or more sublevels on the Table of Contents
 	 *
+	 * @since 1.16.3
 	 * @param int $level
 	 * @return string
 	 */
@@ -1698,6 +1727,7 @@ class Linker {
 	/**
 	 * parameter level defines if we are on an indentation level
 	 *
+	 * @since 1.16.3
 	 * @param string $anchor
 	 * @param string $tocline
 	 * @param string $tocnumber
@@ -1720,6 +1750,7 @@ class Linker {
 	 * End a Table Of Contents line.
 	 * tocUnindent() will be used instead if we're ending a line below
 	 * the new level.
+	 * @since 1.16.3
 	 * @return string
 	 */
 	public static function tocLineEnd() {
@@ -1729,6 +1760,7 @@ class Linker {
 	/**
 	 * Wraps the TOC in a table and provides the hide/collapse javascript.
 	 *
+	 * @since 1.16.3
 	 * @param string $toc Html of the Table Of Contents
 	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
 	 * @return string Full html of the TOC
@@ -1746,6 +1778,7 @@ class Linker {
 	/**
 	 * Generate a table of contents from a section tree.
 	 *
+	 * @since 1.16.3. $lang added in 1.17
 	 * @param array $tree Return value of ParserOutput::getSections()
 	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
 	 * @return string HTML fragment
@@ -1775,6 +1808,7 @@ class Linker {
 	/**
 	 * Create a headline for content
 	 *
+	 * @since 1.16.3
 	 * @param int $level The level of the headline (1-6)
 	 * @param string $attribs Any attributes for the headline, starting with
 	 *   a space and ending with '>'
@@ -1839,6 +1873,8 @@ class Linker {
 	 * as an additional check.
 	 *
 	 * If the option noBrackets is set the rollback link wont be enclosed in []
+	 *
+	 * @since 1.16.3. $context added in 1.20. $options added in 1.21
 	 *
 	 * @param Revision $rev
 	 * @param IContextSource $context Context to use or null for the main context.
@@ -1938,6 +1974,7 @@ class Linker {
 	/**
 	 * Build a raw rollback link, useful for collections of "tool" links
 	 *
+	 * @since 1.16.3. $context added in 1.20. $editCount added in 1.21
 	 * @param Revision $rev
 	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param int $editCount Number of edits that would be reverted
@@ -2021,6 +2058,7 @@ class Linker {
 	 * directly paste it in as the link (escaping needs to be done manually).
 	 * Finally, if $more is a Message, call toString().
 	 *
+	 * @since 1.16.3. $more added in 1.21
 	 * @param Title[] $templates Array of templates
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
@@ -2116,6 +2154,7 @@ class Linker {
 	/**
 	 * Returns HTML for the "hidden categories on this page" list.
 	 *
+	 * @since 1.16.3
 	 * @param array $hiddencats Array of hidden categories from Article::getHiddenCategories
 	 *   or similar
 	 * @return string HTML output
@@ -2144,6 +2183,7 @@ class Linker {
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
 	 *
+	 * @since 1.16.3
 	 * @param int $size Size to format
 	 * @return string
 	 */
@@ -2158,6 +2198,7 @@ class Linker {
 	 * isn't always, because sometimes the accesskey needs to go on a different
 	 * element than the id, for reverse-compatibility, etc.)
 	 *
+	 * @since 1.16.3 $msgParams added in 1.27
 	 * @param string $name Id of the element, minus prefixes.
 	 * @param string|null $options Null or the string 'withaccess' to add an access-
 	 *   key hint
@@ -2204,6 +2245,7 @@ class Linker {
 	 * the id but isn't always, because sometimes the accesskey needs to go on
 	 * a different element than the id, for reverse-compatibility, etc.)
 	 *
+	 * @since 1.16.3
 	 * @param string $name Id of the element, minus prefixes.
 	 * @return string Contents of the accesskey attribute (which you must HTML-
 	 *   escape), or false for no accesskey attribute
@@ -2301,6 +2343,7 @@ class Linker {
 	/**
 	 * Creates a dead (show/hide) link for deleting revisions/log entries
 	 *
+	 * @since 1.16.3
 	 * @param bool $delete Set to true to use (show/hide) rather than (show)
 	 *
 	 * @return string HTML text wrapped in a span to allow for customization
@@ -2318,6 +2361,7 @@ class Linker {
 	/**
 	 * Returns the attributes for the tooltip and access key.
 	 *
+	 * @since 1.16.3. $msgParams introduced in 1.27
 	 * @param string $name
 	 * @param array $msgParams Params for constructing the message
 	 *
@@ -2342,6 +2386,7 @@ class Linker {
 
 	/**
 	 * Returns raw bits of HTML, use titleAttrib()
+	 * @since 1.16.3
 	 * @param string $name
 	 * @param array|null $options
 	 * @return null|string
