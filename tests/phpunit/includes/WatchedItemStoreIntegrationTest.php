@@ -106,7 +106,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testUpdateAndResetNotificationTimestamp() {
+	public function testUpdateResetAndSetNotificationTimestamp() {
 		$user = $this->getUser();
 		$otherUser = ( new TestUser( 'WatchedItemStoreIntegrationTestUser_otherUser' ) )->getUser();
 		$title = Title::newFromText( 'WatchedItemStoreIntegrationTestPage' );
@@ -171,6 +171,24 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->countVisitingWatchersMultiple(
 				[ [ $title, '20150202020202' ] ], $initialVisitingWatchers + 1
 			)
+		);
+
+		// setNotificationTimestampsForUser specifying a title
+		$this->assertTrue(
+			$store->setNotificationTimestampsForUser( $user, '20200202020202', [ $title ] )
+		);
+		$this->assertEquals(
+			'20200202020202',
+			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
+		);
+
+		// setNotificationTimestampsForUser not specifying a title
+		$this->assertTrue(
+			$store->setNotificationTimestampsForUser( $user, '20210202020202' )
+		);
+		$this->assertEquals(
+			'20210202020202',
+			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
 	}
 
