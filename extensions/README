@@ -11,8 +11,7 @@ directory and make a symbolic link:
  mediawiki/extensions$ ln -s ../../extensions-trunk/FooBar
 
 Most extensions are available through Git:
-    https://gerrit.wikimedia.org/r/#/admin/projects/?filter=mediawiki%252Fextensions%252F
-    https://git.wikimedia.org/project/mediawiki
+    https://phabricator.wikimedia.org/diffusion/MEXT/
 
 
 Please note that under POSIX systems (Linux...), parent of a symbolic path
