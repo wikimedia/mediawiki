@@ -1629,6 +1629,16 @@ return [
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.page.gallery.slider' => [
+		'scripts' => 'resources/src/mediawiki/page/gallery-slider.js',
+		'position' => 'top',
+		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.Title',
+			'oojs',
+			'oojs-ui-core'
+		]
+	],
 	'mediawiki.page.ready' => [
 		'scripts' => 'resources/src/mediawiki/page/ready.js',
 		'dependencies' => [
