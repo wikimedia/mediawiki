@@ -152,7 +152,7 @@ class WatchedItem {
 	 *             or WatchedItemStore::loadWatchedItem()
 	 */
 	public static function fromUserTitle( $user, $title, $checkRights = User::CHECK_USER_RIGHTS ) {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		return new self( $user, $title, self::DEPRECATED_USAGE_TIMESTAMP, (bool)$checkRights );
 	}
 
@@ -160,7 +160,7 @@ class WatchedItem {
 	 * @deprecated since 1.27 Use WatchedItemStore::resetNotificationTimestamp()
 	 */
 	public function resetNotificationTimestamp( $force = '', $oldid = 0 ) {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		if ( $this->checkRights && !$this->user->isAllowed( 'editmywatchlist' ) ) {
 			return;
 		}
@@ -176,7 +176,7 @@ class WatchedItem {
 	 * @deprecated since 1.27 Use WatchedItemStore::addWatchBatch()
 	 */
 	public static function batchAddWatch( array $items ) {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		if ( !$items ) {
 			return false;
 		}
@@ -209,7 +209,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function addWatch() {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		$this->user->addWatch( $this->getTitle(), $this->checkRights );
 		return true;
 	}
@@ -219,7 +219,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function removeWatch() {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		if ( $this->checkRights && !$this->user->isAllowed( 'editmywatchlist' ) ) {
 			return false;
 		}
@@ -232,7 +232,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function isWatched() {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		return $this->user->isWatched( $this->getTitle(), $this->checkRights );
 	}
 
@@ -240,7 +240,7 @@ class WatchedItem {
 	 * @deprecated since 1.27 Use WatchedItemStore::duplicateAllAssociatedEntries()
 	 */
 	public static function duplicateEntries( Title $oldTitle, Title $newTitle ) {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$store->duplicateAllAssociatedEntries( $oldTitle, $newTitle );
 	}
