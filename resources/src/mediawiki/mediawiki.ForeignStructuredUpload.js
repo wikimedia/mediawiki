@@ -85,8 +85,7 @@
 	ForeignStructuredUpload.prototype.getText = function () {
 		return (
 			'== {{int:filedesc}} ==\n' +
-			'{{' +
-			this.getTemplateName() +
+			'{{Information' +
 			'\n|description=' +
 			this.getDescriptions() +
 			'\n|date=' +
@@ -115,17 +114,6 @@
 		}
 
 		return this.date.toString();
-	};
-
-	/**
-	 * Gets the name of the template to use for creating the file metadata.
-	 * Override in subclasses for other templates.
-	 *
-	 * @private
-	 * @return {string}
-	 */
-	ForeignStructuredUpload.prototype.getTemplateName = function () {
-		return 'Information';
 	};
 
 	/**
