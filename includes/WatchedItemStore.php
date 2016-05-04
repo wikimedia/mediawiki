@@ -1,7 +1,5 @@
 <?php
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
@@ -13,7 +11,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.27
  */
-class WatchedItemStore implements StatsdAwareInterface {
+class WatchedItemStore {
 
 	const SORT_DESC = 'DESC';
 	const SORT_ASC = 'ASC';
@@ -22,19 +20,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @var LoadBalancer
 	 */
 	private $loadBalancer;
-
-	/**
-	 * @var HashBagOStuff
-	 */
-	private $cache;
-
-	/**
-	 * @var array[] Looks like $cacheIndex[Namespace ID][Target DB Key][User Id] => 'key'
-	 * The index is needed so that on mass changes all relevant items can be un-cached.
-	 * For example: Clearing a users watchlist of all items or updating notification timestamps
-	 *              for all users watching a single target.
-	 */
-	private $cacheIndex = [];
 
 	/**
 	 * @var callable|null
@@ -47,27 +32,14 @@ class WatchedItemStore implements StatsdAwareInterface {
 	private $revisionGetTimestampFromIdCallback;
 
 	/**
-	 * @var StatsdDataFactoryInterface
-	 */
-	private $stats;
-
-	/**
 	 * @param LoadBalancer $loadBalancer
-	 * @param HashBagOStuff $cache
 	 */
 	public function __construct(
-		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache
+		LoadBalancer $loadBalancer
 	) {
 		$this->loadBalancer = $loadBalancer;
-		$this->cache = $cache;
-		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
-	}
-
-	public function setStatsdDataFactory( StatsdDataFactoryInterface $stats ) {
-		$this->stats = $stats;
 	}
 
 	/**
@@ -119,50 +91,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 		return new ScopedCallback( function() use ( $previousValue ) {
 			$this->revisionGetTimestampFromIdCallback = $previousValue;
 		} );
-	}
-
-	private function getCacheKey( User $user, LinkTarget $target ) {
-		return $this->cache->makeKey(
-			(string)$target->getNamespace(),
-			$target->getDBkey(),
-			(string)$user->getId()
-		);
-	}
-
-	private function cache( WatchedItem $item ) {
-		$user = $item->getUser();
-		$target = $item->getLinkTarget();
-		$key = $this->getCacheKey( $user, $target );
-		$this->cache->set( $key, $item );
-		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
-		$this->stats->increment( 'WatchedItemStore.cache' );
-	}
-
-	private function uncache( User $user, LinkTarget $target ) {
-		$this->cache->delete( $this->getCacheKey( $user, $target ) );
-		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
-		$this->stats->increment( 'WatchedItemStore.uncache' );
-	}
-
-	private function uncacheLinkTarget( LinkTarget $target ) {
-		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
-			return;
-		}
-		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
-		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
-			$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget.items' );
-			$this->cache->delete( $key );
-		}
-	}
-
-	/**
-	 * @param User $user
-	 * @param LinkTarget $target
-	 *
-	 * @return WatchedItem|null
-	 */
-	private function getCached( User $user, LinkTarget $target ) {
-		return $this->cache->get( $this->getCacheKey( $user, $target ) );
 	}
 
 	/**
@@ -410,7 +338,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Get an item (may be cached)
+	 * Get an item
 	 *
 	 * @param User $user
 	 * @param LinkTarget $target
@@ -418,16 +346,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return WatchedItem|false
 	 */
 	public function getWatchedItem( User $user, LinkTarget $target ) {
-		if ( $user->isAnon() ) {
-			return false;
-		}
-
-		$cached = $this->getCached( $user, $target );
-		if ( $cached ) {
-			$this->stats->increment( 'WatchedItemStore.getWatchedItem.cached' );
-			return $cached;
-		}
-		$this->stats->increment( 'WatchedItemStore.getWatchedItem.load' );
 		return $this->loadWatchedItem( $user, $target );
 	}
 
@@ -463,7 +381,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 			$target,
 			$row->wl_notificationtimestamp
 		);
-		$this->cache( $item );
 
 		return $item;
 	}
@@ -505,7 +422,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
-			// todo these could all be cached at some point?
 			$watchedItems[] = new WatchedItem(
 				$user,
 				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
@@ -547,24 +463,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 			return $timestamps;
 		}
 
-		$targetsToLoad = [];
-		foreach ( $targets as $target ) {
-			$cachedItem = $this->getCached( $user, $target );
-			if ( $cachedItem ) {
-				$timestamps[$target->getNamespace()][$target->getDBkey()] =
-					$cachedItem->getNotificationTimestamp();
-			} else {
-				$targetsToLoad[] = $target;
-			}
-		}
-
-		if ( !$targetsToLoad ) {
-			return $timestamps;
-		}
-
 		$dbr = $this->getConnection( DB_SLAVE );
 
-		$lb = new LinkBatch( $targetsToLoad );
+		$lb = new LinkBatch( $targets );
 		$res = $dbr->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
@@ -620,7 +521,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp' => null,
 			];
-			$this->uncache( $user, $target );
 		}
 
 		$dbw = $this->getConnection( DB_MASTER );
@@ -650,8 +550,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 		if ( $this->loadBalancer->getReadOnlyReason() !== false || $user->isAnon() ) {
 			return false;
 		}
-
-		$this->uncache( $user, $target );
 
 		$dbw = $this->getConnection( DB_MASTER );
 		$dbw->delete( 'watchlist',
@@ -706,7 +604,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 							'wl_title' => $target->getDBkey(),
 						], $fname
 					);
-					$this->uncacheLinkTarget( $target );
 				}
 			);
 		}
@@ -761,8 +658,6 @@ class WatchedItemStore implements StatsdAwareInterface {
 				$job->run();
 			}
 		);
-
-		$this->uncache( $user, $title );
 
 		return true;
 	}
