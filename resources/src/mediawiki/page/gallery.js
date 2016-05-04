@@ -235,6 +235,19 @@
 		$galleries.each( justify );
 	}
 
+	function makeSlide() {
+		var $gallery = $( this );
+		$gallery.find( '.gallerybox' ).hide();
+		$gallery.find( '.gallerybox:first' ).show();
+
+		$gallery.find( '.gallerybox' ).on( 'click', function () {
+			var $image = $( this );
+			$image
+				.hide()
+				.next( '.gallerybox' ).show();
+		} );
+	}
+
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		if ( isTouchScreen ) {
 			// Always show the caption for a touch screen.
@@ -264,5 +277,8 @@
 					.resize( $.debounce( 300, handleResizeEnd ) );
 			}
 		} );
+
+		var $slideGalleries = $content.find( 'ul.mw-gallery-slide' );
+		$slideGalleries.each( makeSlide );
 	} );
 }( mediaWiki, jQuery ) );

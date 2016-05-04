@@ -42,8 +42,11 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$oldStyle;
 		}
 
-		$attribs = Sanitizer::mergeAttributes(
-			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
+		$classNames ='gallery mw-gallery-' . $this->mMode ;
+		if ( $this->mSlide ) {
+			$classNames .= " mw-gallery-slide";
+		}
+		$attribs = Sanitizer::mergeAttributes( [ 'class' => $classNames ], $this->mAttribs );
 
 		$modules = $this->getModules();
 

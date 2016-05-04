@@ -5341,6 +5341,9 @@ class Parser {
 			$caption = $this->replaceInternalLinks( $caption );
 			$ig->setCaptionHtml( $caption );
 		}
+		if ( isset( $params['slide'] ) ) {
+			$ig->setSlide( $params['slide'] );
+		}
 		if ( isset( $params['perrow'] ) ) {
 			$ig->setPerRow( $params['perrow'] );
 		}

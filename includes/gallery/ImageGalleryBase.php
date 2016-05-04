@@ -138,6 +138,7 @@ abstract class ImageGalleryBase extends ContextSource {
 		$this->mShowFilename = true;
 		$this->mParser = false;
 		$this->mHideBadImages = false;
+		$this->mSlide = false;
 		$this->mPerRow = $galleryOptions['imagesPerRow'];
 		$this->mWidths = $galleryOptions['imageWidth'];
 		$this->mHeights = $galleryOptions['imageHeight'];
@@ -183,6 +184,15 @@ abstract class ImageGalleryBase extends ContextSource {
 	 */
 	public function setCaptionHtml( $caption ) {
 		$this->mCaption = $caption;
+	}
+
+	/**
+	 * Set whether the gallery is a slideshow
+	 *
+	 * @param bool $slide
+	 */
+	public function setSlide( $slide ) {
+		$this->mSlide = !!$slide;
 	}
 
 	/**
