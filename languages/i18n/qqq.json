@@ -2311,6 +2311,8 @@
 	"changecontentmodel-success-text": "Message telling user that their change has been successfully done.\n* $1 - Target page title",
 	"changecontentmodel-cannot-convert": "Error message shown if the content model cannot be changed to the specified type. $1 is the page title, $2 is the localized content model name.",
 	"changecontentmodel-nodirectediting": "Error message shown if the content model does not allow for direct editing. $1 is the localized name of the content model.",
+	"changecontentmodel-emptymodels-title": "Title of the error page shown if the content model cannot be changed to any of the available types.",
+	"changecontentmodel-emptymodels-text": "Text of the error page shown if the content model cannot be changed to any of the available types. $1 is the page title.",
 	"log-name-contentmodel": "{{doc-logpage}}\n\nTitle of [[Special:Log/contentmodel]].",
 	"log-description-contentmodel": "Text in [[Special:Log/contentmodel]].",
 	"logentry-contentmodel-new": "{{Logentry}}\n$4 is not used.\n$5 is the new content model.",
