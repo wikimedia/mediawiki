@@ -1657,6 +1657,23 @@ return [
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.page.gallery.slider' => [
+		'scripts' => 'resources/src/mediawiki/page/gallery-slider.js',
+		'position' => 'top',
+		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.Title',
+			'oojs',
+			'oojs-ui-core',
+			'oojs-ui-widgets',
+			'oojs-ui.styles.icons-media'
+		],
+		'messages' => [
+			"gallery-slider-next",
+			"gallery-slider-previous",
+			"gallery-slider-toggle"
+		]
+	],
 	'mediawiki.page.ready' => [
 		'scripts' => 'resources/src/mediawiki/page/ready.js',
 		'dependencies' => [
