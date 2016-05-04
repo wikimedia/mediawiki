@@ -28,7 +28,7 @@ abstract class HTMLFormField {
 	protected $mShowEmptyLabels = true;
 
 	/**
-	 * @var HTMLForm
+	 * @var HTMLForm|null
 	 */
 	public $mParent;
 
@@ -1095,7 +1095,13 @@ abstract class HTMLFormField {
 	 * @return Message
 	 */
 	protected function getMessage( $value ) {
-		return Message::newFromSpecifier( $value )->setContext( $this->mParent );
+		$message = Message::newFromSpecifier( $value );
+
+		if ( $this->mParent ) {
+			$message->setContext( $this->mParent );
+		}
+
+		return $message;
 	}
 
 	/**
