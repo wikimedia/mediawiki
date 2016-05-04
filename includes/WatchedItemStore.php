@@ -145,13 +145,25 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	private function uncacheLinkTarget( LinkTarget $target ) {
+		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
 		}
-		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
 			$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget.items' );
 			$this->cache->delete( $key );
+		}
+	}
+
+	private function uncacheUser( User $user ) {
+		$this->stats->increment( 'WatchedItemStore.uncacheUser' );
+		foreach ( $this->cacheIndex as $ns => $dbKeyArray ) {
+			foreach ( $dbKeyArray as $dbKey => $userArray ) {
+				if ( isset( $userArray[$user->getId()] ) ) {
+					$this->stats->increment( 'WatchedItemStore.uncacheUser.items' );
+					$this->cache->delete( $userArray[$user->getId()] );
+				}
+			}
 		}
 	}
 
@@ -663,6 +675,41 @@ class WatchedItemStore implements StatsdAwareInterface {
 		);
 		$success = (bool)$dbw->affectedRows();
 		$this->reuseConnection( $dbw );
+
+		return $success;
+	}
+
+	/**
+	 * @param User $user The user to set the timestamp for
+	 * @param string $timestamp Set the update timestamp to this value
+	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
+	 *
+	 * @return bool success
+	 */
+	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
+		// Only loggedin user can have a watchlist
+		if ( $user->isAnon() ) {
+			return false;
+		}
+
+		$dbw = $this->getConnection( DB_MASTER );
+
+		$conds = [ 'wl_user' => $user->getId() ];
+		if ( $targets ) {
+			$batch = new LinkBatch( $targets );
+			$conds[] = $batch->constructSet( 'wl', $dbw );
+		}
+
+		$success = $dbw->update(
+			'watchlist',
+			[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+			$conds,
+			__METHOD__
+		);
+
+		$this->reuseConnection( $dbw );
+
+		$this->uncacheUser( $user );
 
 		return $success;
 	}

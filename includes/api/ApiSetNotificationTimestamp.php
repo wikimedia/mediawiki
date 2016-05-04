@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * API interface for setting the wl_notificationtimestamp field
@@ -98,13 +99,14 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 		}
 
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$apiResult = $this->getResult();
 		$result = [];
 		if ( $params['entirewatchlist'] ) {
 			// Entire watchlist mode: Just update the thing and return a success indicator
-			$dbw->update( 'watchlist', [ 'wl_notificationtimestamp' => $timestamp ],
-				[ 'wl_user' => $user->getId() ],
-				__METHOD__
+			$watchedItemStore->setNotificationTimestampsForUser(
+				$user,
+				$timestamp
 			);
 
 			$result['notificationtimestamp'] = is_null( $timestamp )
@@ -133,14 +135,15 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 			if ( $pageSet->getTitles() ) {
 				// Now process the valid titles
-				$lb = new LinkBatch( $pageSet->getTitles() );
-				$dbw->update( 'watchlist', [ 'wl_notificationtimestamp' => $timestamp ],
-					[ 'wl_user' => $user->getId(), $lb->constructSet( 'wl', $dbw ) ],
-					__METHOD__
+				$watchedItemStore->setNotificationTimestampsForUser(
+					$user,
+					$timestamp,
+					$pageSet->getTitles()
 				);
 
 				// Query the results of our update
 				$timestamps = [];
+				$lb = new LinkBatch( $pageSet->getTitles() );
 				$res = $dbw->select(
 					'watchlist',
 					[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
