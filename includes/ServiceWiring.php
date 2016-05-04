@@ -1,4 +1,4 @@
-<?php
+#<?php
 /**
  * Default wiring for MediaWiki services.
  *
@@ -135,12 +135,7 @@ return [
 	},
 
 	'WatchedItemStore' => function( MediaWikiServices $services ) {
-		$store = new WatchedItemStore(
-			$services->getDBLoadBalancer(),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] )
-		);
-		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
-		return $store;
+		return new WatchedItemStore( $services->getDBLoadBalancer() );
 	},
 
 	///////////////////////////////////////////////////////////////////////////

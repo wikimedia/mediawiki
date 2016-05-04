@@ -43,21 +43,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
-	 */
-	private function getMockCache() {
-		$mock = $this->getMockBuilder( HashBagOStuff::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'makeKey' )
-			->will( $this->returnCallback( function() {
-				return implode( ':', func_get_args() );
-			} ) );
-		return $mock;
-	}
-
-	/**
 	 * @param int $id
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
@@ -87,11 +72,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		return $fakeRow;
 	}
 
-	private function newWatchedItemStore( LoadBalancer $loadBalancer, HashBagOStuff $cache ) {
-		return new WatchedItemStore(
-			$loadBalancer,
-			$cache
-		);
+	private function newWatchedItemStore( LoadBalancer $loadBalancer ) {
+		return new WatchedItemStore( $loadBalancer );
 	}
 
 	public function testCountWatchedItems() {
@@ -110,15 +92,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( 12 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals( 12, $store->countWatchedItems( $user ) );
 	}
@@ -140,15 +114,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( 7 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
 	}
@@ -191,15 +157,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->returnValue( $dbResult )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$expected = [
 			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
@@ -257,15 +215,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->returnValue( $dbResult )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$expected = [
 			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
@@ -305,15 +255,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				return 'TS' . $value . 'TS';
 			} ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals( 7, $store->countVisitingWatchers( $titleValue, '111' ) );
 	}
@@ -384,15 +326,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->returnValue( $dbResult )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$expected = [
 			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
@@ -486,15 +420,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->returnValue( $dbResult )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$expected = [
 			0 => [
@@ -539,15 +465,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->returnValue( [] )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$expected = [
 			0 => [ 'SomeDbKey' => 0, 'OtherDbKey' => 0 ],
@@ -576,15 +494,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( 9 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals( 9, $store->countUnreadNotifications( $user ) );
 	}
@@ -610,15 +520,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( 50 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertSame(
 			true,
@@ -647,15 +549,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( 9 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals(
 			9,
@@ -682,10 +576,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCache()
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$store->duplicateEntry(
 			Title::newFromText( 'Old_Title' ),
@@ -736,14 +627,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$store->duplicateEntry(
 			Title::newFromText( 'Old_Title' ),
@@ -782,14 +666,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$store->duplicateAllAssociatedEntries(
 			Title::newFromText( 'Old_Title' ),
@@ -875,14 +752,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' )
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$store->duplicateAllAssociatedEntries(
 			$oldTarget,
@@ -906,15 +776,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:Some_Page:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$store->addWatch(
 			$this->getMockNonAnonUserWithId( 1 ),
@@ -927,13 +789,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )
-			->method( 'delete' );
-
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$this->getMockLoadBalancer( $mockDb )
 		);
 
 		$store->addWatch(
@@ -944,8 +801,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testAddWatchBatchForUser_readOnlyDBReturnsFalse() {
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb(), null, 'Some Reason' ),
-			$this->getMockCache()
+			$this->getMockLoadBalancer( $this->getMockDb(), null, 'Some Reason' )
 		);
 
 		$this->assertFalse(
@@ -978,20 +834,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->exactly( 2 ) )
-			->method( 'delete' );
-		$mockCache->expects( $this->at( 1 ) )
-			->method( 'delete' )
-			->with( '0:Some_Page:1' );
-		$mockCache->expects( $this->at( 3 ) )
-			->method( 'delete' )
-			->with( '1:Some_Page:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$mockUser = $this->getMockNonAnonUserWithId( 1 );
 
@@ -1008,14 +851,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )
-			->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->addWatchBatchForUser(
@@ -1031,14 +867,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )
-			->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertTrue(
 			$store->addWatchBatchForUser( $user, [] )
@@ -1062,17 +891,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->once() )
-			->method( 'set' )
-			->with(
-				'0:SomeDbKey:1'
-			);
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$watchedItem = $store->loadWatchedItem(
 			$this->getMockNonAnonUserWithId( 1 ),
@@ -1099,14 +918,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->loadWatchedItem(
@@ -1121,14 +933,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->loadWatchedItem(
@@ -1154,16 +959,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'affectedRows' )
 			->will( $this->returnValue( 1 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertTrue(
 			$store->removeWatch(
@@ -1189,16 +985,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'affectedRows' )
 			->will( $this->returnValue( 0 ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->removeWatch(
@@ -1213,15 +1000,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )
-			->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->removeWatch(
@@ -1248,24 +1027,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with(
-				'0:SomeDbKey:1'
-			)
-			->will( $this->returnValue( null ) );
-		$mockCache->expects( $this->once() )
-			->method( 'set' )
-			->with(
-				'0:SomeDbKey:1'
-			);
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$watchedItem = $store->getWatchedItem(
 			$this->getMockNonAnonUserWithId( 1 ),
@@ -1275,39 +1037,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertEquals( 0, $watchedItem->getLinkTarget()->getNamespace() );
-	}
-
-	public function testGetWatchedItem_cachedItem() {
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->never() )
-			->method( 'selectRow' );
-
-		$mockUser = $this->getMockNonAnonUserWithId( 1 );
-		$linkTarget = new TitleValue( 0, 'SomeDbKey' );
-		$cachedItem = new WatchedItem( $mockUser, $linkTarget, '20151212010101' );
-
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with(
-				'0:SomeDbKey:1'
-			)
-			->will( $this->returnValue( $cachedItem ) );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
-
-		$this->assertEquals(
-			$cachedItem,
-			$store->getWatchedItem(
-				$mockUser,
-				$linkTarget
-			)
-		);
 	}
 
 	public function testGetWatchedItem_noItem() {
@@ -1325,18 +1054,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' )
-			->will( $this->returnValue( false ) );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->getWatchedItem(
@@ -1351,15 +1069,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->getWatchedItem(
@@ -1391,15 +1101,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				] ),
 			] ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
 		$watchedItems = $store->getWatchedItemsForUser( $user );
@@ -1431,7 +1133,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 */
 	public function testGetWatchedItemsForUser_optionsAndEmptyResult( $forWrite, $dbType ) {
 		$mockDb = $this->getMockDb();
-		$mockCache = $this->getMockCache();
 		$mockLoadBalancer = $this->getMockLoadBalancer( $mockDb, $dbType );
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
@@ -1446,10 +1147,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$store = $this->newWatchedItemStore(
-			$mockLoadBalancer,
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $mockLoadBalancer );
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
@@ -1459,10 +1157,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb() ),
-			$this->getMockCache()
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $this->getMockDb() ) );
 
 		$this->setExpectedException( 'InvalidArgumentException' );
 		$store->getWatchedItemsForUser(
@@ -1488,22 +1183,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' )
-			->will( $this->returnValue( false ) );
-		$mockCache->expects( $this->once() )
-			->method( 'set' )
-			->with(
-				'0:SomeDbKey:1'
-			);
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertTrue(
 			$store->isWatched(
@@ -1526,20 +1206,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 					'wl_title' => 'SomeDbKey',
 				]
 			)
-			->will( $this->returnValue( [] ) );
+			->will( $this->returnValue( [] ) );;
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' )
-			->will( $this->returnValue( false ) );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->isWatched(
@@ -1554,15 +1223,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->isWatched(
@@ -1615,21 +1276,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( $dbResult ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->exactly( 2 ) )
-			->method( 'get' )
-			->withConsecutive(
-				[ '0:SomeDbKey:1' ],
-				[ '1:AnotherDbKey:1' ]
-			)
-			->will( $this->returnValue( null ) );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals(
 			[
@@ -1668,126 +1315,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( $this->getFakeRow( [] ) ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with( '0:OtherDbKey:1' )
-			->will( $this->returnValue( null ) );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals(
 			[
 				0 => [ 'OtherDbKey' => false, ],
 			],
 			$store->getNotificationTimestampsBatch( $this->getMockNonAnonUserWithId( 1 ), $targets )
-		);
-	}
-
-	public function testGetNotificationTimestampsBatch_cachedItem() {
-		$targets = [
-			new TitleValue( 0, 'SomeDbKey' ),
-			new TitleValue( 1, 'AnotherDbKey' ),
-		];
-
-		$user = $this->getMockNonAnonUserWithId( 1 );
-		$cachedItem = new WatchedItem( $user, $targets[0], '20151212010101' );
-
-		$mockDb = $this->getMockDb();
-
-		$mockDb->expects( $this->once() )
-			->method( 'makeWhereFrom2d' )
-			->with(
-				[ 1 => [ 'AnotherDbKey' => 1 ] ],
-				$this->isType( 'string' ),
-				$this->isType( 'string' )
-			)
-			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
-		$mockDb->expects( $this->once() )
-			->method( 'select' )
-			->with(
-				'watchlist',
-				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-				[
-					'makeWhereFrom2d return value',
-					'wl_user' => 1
-				],
-				$this->isType( 'string' )
-			)
-			->will( $this->returnValue( [
-				$this->getFakeRow(
-					[ 'wl_namespace' => 1, 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
-				)
-			] ) );
-
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->at( 1 ) )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' )
-			->will( $this->returnValue( $cachedItem ) );
-		$mockCache->expects( $this->at( 3 ) )
-			->method( 'get' )
-			->with( '1:AnotherDbKey:1' )
-			->will( $this->returnValue( null ) );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
-
-		$this->assertEquals(
-			[
-				0 => [ 'SomeDbKey' => '20151212010101', ],
-				1 => [ 'AnotherDbKey' => null, ],
-			],
-			$store->getNotificationTimestampsBatch( $user, $targets )
-		);
-	}
-
-	public function testGetNotificationTimestampsBatch_allItemsCached() {
-		$targets = [
-			new TitleValue( 0, 'SomeDbKey' ),
-			new TitleValue( 1, 'AnotherDbKey' ),
-		];
-
-		$user = $this->getMockNonAnonUserWithId( 1 );
-		$cachedItems = [
-			new WatchedItem( $user, $targets[0], '20151212010101' ),
-			new WatchedItem( $user, $targets[1], null ),
-		];
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->never() )->method( $this->anything() );
-
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->at( 1 ) )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' )
-			->will( $this->returnValue( $cachedItems[0] ) );
-		$mockCache->expects( $this->at( 3 ) )
-			->method( 'get' )
-			->with( '1:AnotherDbKey:1' )
-			->will( $this->returnValue( $cachedItems[1] ) );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
-
-		$this->assertEquals(
-			[
-				0 => [ 'SomeDbKey' => '20151212010101', ],
-				1 => [ 'AnotherDbKey' => null, ],
-			],
-			$store->getNotificationTimestampsBatch( $user, $targets )
 		);
 	}
 
@@ -1800,13 +1334,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )->method( $this->anything() );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( $this->anything() );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals(
 			[
@@ -1822,15 +1350,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->resetNotificationTimestamp(
@@ -1855,15 +1375,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertFalse(
 			$store->resetNotificationTimestamp(
@@ -1893,22 +1405,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->once() )
-			->method( 'set' )
-			->with(
-				'0:SomeDbKey:1',
-				$this->isInstanceOf( WatchedItem::class )
-			);
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
@@ -1936,8 +1433,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -1945,10 +1441,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
@@ -2029,8 +1522,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -2038,10 +1530,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$callableCallCounter = 0;
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
@@ -2095,8 +1584,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue(
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -2104,10 +1592,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
@@ -2170,8 +1655,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			)
 			->will( $this->returnValue( false ) );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -2179,10 +1663,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$callableCallCounter = 0;
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
@@ -2236,8 +1717,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue(
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '30151212010101' ] )
 			) );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -2245,10 +1725,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
@@ -2313,8 +1790,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue(
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '30151212010101' ] )
 			) );
-
-		$mockCache = $this->getMockCache();
+		
 		$mockDb->expects( $this->never() )
 			->method( 'get' );
 		$mockDb->expects( $this->never() )
@@ -2322,10 +1798,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
@@ -2404,15 +1877,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$this->assertEquals(
 			[ 2, 3 ],
@@ -2446,15 +1911,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'update' );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'set' );
-		$mockCache->expects( $this->never() )->method( 'get' );
-		$mockCache->expects( $this->never() )->method( 'delete' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
+		$store = $this->newWatchedItemStore( $this->getMockLoadBalancer( $mockDb ) );
 
 		$watchers = $store->updateNotificationTimestamp(
 			$this->getMockNonAnonUserWithId( 1 ),
@@ -2463,59 +1920,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		);
 		$this->assertInternalType( 'array', $watchers );
 		$this->assertEmpty( $watchers );
-	}
-
-	public function testUpdateNotificationTimestamp_clearsCachedItems() {
-		$user = $this->getMockNonAnonUserWithId( 1 );
-		$titleValue = new TitleValue( 0, 'SomeDbKey' );
-
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'selectRow' )
-			->will( $this->returnValue(
-				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
-			) );
-		$mockDb->expects( $this->once() )
-			->method( 'select' )
-			->will(
-				$this->returnValue( [
-					$this->getFakeRow( [ 'wl_user' => '2' ] ),
-					$this->getFakeRow( [ 'wl_user' => '3' ] )
-				] )
-			);
-		$mockDb->expects( $this->once() )
-			->method( 'onTransactionIdle' )
-			->with( $this->isType( 'callable' ) )
-			->will( $this->returnCallback( function( $callable ) {
-				$callable();
-			} ) );
-		$mockDb->expects( $this->once() )
-			->method( 'update' );
-
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->once() )
-			->method( 'set' )
-			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
-		$mockCache->expects( $this->once() )
-			->method( 'get' )
-			->with( '0:SomeDbKey:1' );
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
-		);
-
-		// This will add the item to the cache
-		$store->getWatchedItem( $user, $titleValue );
-
-		$store->updateNotificationTimestamp(
-			$this->getMockNonAnonUserWithId( 1 ),
-			$titleValue,
-			'20151212010101'
-		);
 	}
 
 }
