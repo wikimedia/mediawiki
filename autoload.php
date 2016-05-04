@@ -522,6 +522,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLRadioField' => __DIR__ . '/includes/htmlform/HTMLRadioField.php',
 	'HTMLSelectAndOtherField' => __DIR__ . '/includes/htmlform/HTMLSelectAndOtherField.php',
 	'HTMLSelectField' => __DIR__ . '/includes/htmlform/HTMLSelectField.php',
+	'HTMLSelectLanguageField' => __DIR__ . '/includes/htmlform/HTMLSelectLanguageField.php',
 	'HTMLSelectLimitField' => __DIR__ . '/includes/htmlform/HTMLSelectLimitField.php',
 	'HTMLSelectNamespace' => __DIR__ . '/includes/htmlform/HTMLSelectNamespace.php',
 	'HTMLSelectNamespaceWithButton' => __DIR__ . '/includes/htmlform/HTMLSelectNamespaceWithButton.php',
