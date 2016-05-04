@@ -453,7 +453,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = []
+		$args = [], $extratags = [], $removetags = [], $warnCallback = null
 	) {
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
@@ -604,6 +604,16 @@ class Sanitizer {
 							call_user_func_array( $processCallback, [ &$params, $args ] );
 						}
 
+						if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {
+							// Eventually we'll just remove the self-closing
+							// slash, in order to be consistent with HTML5
+							// semantics.
+							// $brace = '>';
+							// For now, let's just warn authors to clean up.
+							if ( is_callable( $warnCallback ) ) {
+								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
+							}
+						}
 						if ( !Sanitizer::validateTag( $params, $t ) ) {
 							$badtag = true;
 						}
