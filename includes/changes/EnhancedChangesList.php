@@ -262,30 +262,31 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$line ) {
 				// completely ignore this RC entry if we don't want to render it
 				unset( $block[$i] );
-			}
-
-			// Roll up flags
-			foreach ( $line['recentChangesFlagsRaw'] as $key => $value ) {
-				$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
-					$recentChangesFlags[$key]['grouping'] : 'any' );
-				switch ( $flagGrouping ) {
-					case 'all':
-						if ( !$value ) {
-							$collectedRcFlags[$key] = false;
-						}
-						break;
-					case 'any':
-						if ( $value ) {
-							$collectedRcFlags[$key] = true;
-						}
-						break;
-					default:
-						throw new DomainException( "Unknown grouping type \"{$flagGrouping}\"" );
+			} else {
+				// Roll up flags
+				foreach ( $line['recentChangesFlagsRaw'] as $key => $value ) {
+					$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
+						$recentChangesFlags[$key]['grouping'] : 'any' );
+					switch ( $flagGrouping ) {
+						case 'all':
+							if ( !$value ) {
+								$collectedRcFlags[$key] = false;
+							}
+							break;
+						case 'any':
+							if ( $value ) {
+								$collectedRcFlags[$key] = true;
+							}
+							break;
+						default:
+							throw new DomainException( "Unknown grouping type \"{$flagGrouping}\"" );
+					}
 				}
 			}
 
 			$lines[] = $line;
 		}
+
 		// Further down are some assumptions that $block is a 0-indexed array
 		// with (count-1) as last key. Let's make sure it is.
 		$block = array_values( $block );
