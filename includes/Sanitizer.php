@@ -450,10 +450,14 @@ class Sanitizer {
 	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
+	 * @param callable $warnCallback (Deprecated) Callback allowing the
+	 *   addition of a tracking category when bad input is encountered.
+	 *   DO NOT ADD NEW PARAMETERS AFTER $warnCallback, since it will be
+	 *   removed shortly.
 	 * @return string
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = []
+		$args = [], $extratags = [], $removetags = [], $warnCallback = null
 	) {
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
@@ -540,6 +544,14 @@ class Sanitizer {
 							$badtag = true;
 						#  Is it a self closed htmlpair ? (bug 5487)
 						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
+							// Eventually we'll just remove the self-closing
+							// slash, in order to be consistent with HTML5
+							// semantics.
+							// $brace = '>';
+							// For now, let's just warn authors to clean up.
+							if ( is_callable( $warnCallback ) ) {
+								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
+							}
 							$badtag = true;
 						} elseif ( isset( $htmlsingleonly[$t] ) ) {
 							# Hack to force empty tag for unclosable elements
@@ -604,6 +616,16 @@ class Sanitizer {
 							call_user_func_array( $processCallback, [ &$params, $args ] );
 						}
 
+						if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {
+							// Eventually we'll just remove the self-closing
+							// slash, in order to be consistent with HTML5
+							// semantics.
+							// $brace = '>';
+							// For now, let's just warn authors to clean up.
+							if ( is_callable( $warnCallback ) ) {
+								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
+							}
+						}
 						if ( !Sanitizer::validateTag( $params, $t ) ) {
 							$badtag = true;
 						}
