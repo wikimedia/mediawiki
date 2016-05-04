@@ -636,6 +636,7 @@
 	"minoredit": "Tai smulkus pataisymas",
 	"watchthis": "Stebėti šį puslapį",
 	"savearticle": "Išsaugoti puslapį",
+	"publishpage": "Skelbti puslapį",
 	"preview": "Peržiūra",
 	"showpreview": "Rodyti peržiūrą",
 	"showdiff": "Rodyti skirtumus",
@@ -2190,6 +2191,7 @@
 	"ipb-unblock": "Atblokuoti naudotojo vardą arba IP adresą",
 	"ipb-blocklist": "Rodyti egzistuojančius blokavimus",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}} indėlis",
+	"ipb-blocklist-duration-left": "$1 kairėje",
 	"unblockip": "Atblokuoti naudotoją",
 	"unblockiptext": "Naudokite šią formą, kad atkurtumėte redagavimo galimybę\nankščiau užblokuotam IP adresui ar naudotojui.",
 	"ipusubmit": "Atblokuoti šį adresą",
@@ -2490,6 +2492,7 @@
 	"tooltip-ca-nstab-category": "Rodyti kategorijos puslapį",
 	"tooltip-minoredit": "Pažymėti keitimą kaip smulkų",
 	"tooltip-save": "Išsaugoti pakeitimus",
+	"tooltip-publish": "Skelbti jūsų pakeitimus",
 	"tooltip-preview": "Pakeitimų peržiūra, prašome pažiūrėti prieš išsaugant!",
 	"tooltip-diff": "Rodo, kokius pakeitimus padarėte tekste",
 	"tooltip-compareselectedversions": "Žiūrėti dviejų pasirinktų puslapio versijų skirtumus.",
@@ -3554,5 +3557,8 @@
 	"sessionprovider-generic": "$1 sesijos",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesijos su slapukais",
 	"sessionprovider-nocookies": "Slapukai gali būti neaktyvuoti. Įsitikinkite, kad slapukai yra aktyvuoti ir pradėkite vėl.",
-	"randomrootpage": "Atsitiktinis šakninis puslapis"
+	"randomrootpage": "Atsitiktinis šakninis puslapis",
+	"log-action-filter-all": "Visi",
+	"log-action-filter-newusers-autocreate": "Automatinis kūrimas",
+	"log-action-filter-protect-protect": "Apsauga"
 }

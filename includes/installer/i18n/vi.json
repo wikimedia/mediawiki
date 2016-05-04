@@ -67,6 +67,7 @@
 	"config-ctype": "<strong>Lỗi chí tử:</strong> PHP phải được biên dịch với hỗ trợ cho [http://www.php.net/manual/en/ctype.installation.php phần mở rộng Ctype].",
 	"config-iconv": "<strong>Lỗi chí tử:</strong> PHP phải được biên dịch với hỗ trợ cho [http://www.php.net/manual/en/iconv.installation.php phần mở rộng iconv].",
 	"config-json": "<strong>Lỗi chí tử:</strong> PHP được biên dịch mà không có hỗ trợ cho JSON.\nBạn phải cài đặt hoặc phần mở rộng JSON PHP hoặc phần mở rộng [http://pecl.php.net/package/jsonc PECL jsonc] trước khi cài đặt MediaWiki.\n* Phần mở rộng PHP có sẵn trong Red Hat Enterprise Linux (CentOS) 5 và 6 nhưng phải được kích hoạt trong <code>/etc/php.ini</code> hoặc <code>/etc/php.d/json.ini</code>.\n* Một số phiên bản Linux được phát hành sau tháng 5 năm 2013 bỏ qua phần mở rộng PHP và gói lại phần mở rộng PECL là <code>php5-json</code> hoặc <code>php-pecl-jsonc</code> thay thế.",
+	"config-mbstring-absent": "<strong>Lỗi chí tử:</strong> PHP phải được biên dịch với hỗ trợ cho [http://www.php.net/manual/en/mbstring.setup.php phần mở rộng mbstring].",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] đã được cài đặt",
 	"config-apc": "[http://www.php.net/apc APC] đã được cài đặt",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] đã được cài đặt",

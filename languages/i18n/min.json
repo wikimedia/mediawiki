@@ -1584,7 +1584,7 @@
 	"creditspage": "Panghargaan laman",
 	"spam_blanking": "Sado revisi nan ado pautan ka $1, kosong",
 	"spam_deleting": "Sado revisi nan ado pautan ka $1, dihapuih",
-	"simpleantispam-label": "Pamarisoan anti-spam.\nMasukan ko '''DILARANG'''!",
+	"simpleantispam-label": "Pamarisoan anti-spam.\n<strong>Jan</strong> diisi!",
 	"pageinfo-title": "Informasi untuak \"$1\"",
 	"pageinfo-not-current": "Maaf, indak dapek mangagiahan informasi ko ka revisi lamo.",
 	"pageinfo-header-basic": "Informasi dasar",

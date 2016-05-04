@@ -1856,6 +1856,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "Правы, якія дазваляюць удзельніку рэдагаваць",
 	"listgrants": "Дазволы",
 	"listgrants-grant": "Дазвол",
+	"listgrants-rights": "Правы",
 	"trackingcategories": "Катэгорыі, якія патрабуюць увагі",
 	"trackingcategories-summary": "На гэтай старонцы пералічаныя катэгорыя, які патрабуюць увагі і якія аўтаматычна запаўняюцца праграмным забесьяпчэньнем MediaWiki. Іх назвы могуць быць зьмененыя рэдагаваньнем сыстэмных паведамленьняў у прасторы назваў {{ns:8}}.",
 	"trackingcategories-msg": "Катэгорыя, якая патрабуе ўвагі",
