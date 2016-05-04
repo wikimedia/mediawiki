@@ -1264,7 +1264,9 @@ class Parser {
 			$text,
 			[ &$this, 'attributeStripCallback' ],
 			false,
-			array_keys( $this->mTransparentTagHooks )
+			array_keys( $this->mTransparentTagHooks ),
+			[],
+			[ &$this, 'addTrackingCategory' ]
 		);
 		Hooks::run( 'InternalParseBeforeLinks', [ &$this, &$text, &$this->mStripState ] );
 

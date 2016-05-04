@@ -53,6 +53,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		'node-count-exceeded-category',
 		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
+		'deprecated-self-close-category',
 	];
 
 	function execute( $par ) {
