@@ -148,6 +148,7 @@ class HTMLForm extends ContextSource {
 		'checkmatrix' => 'HTMLCheckMatrix',
 		'cloner' => 'HTMLFormFieldCloner',
 		'autocompleteselect' => 'HTMLAutoCompleteSelectField',
+		'language' => 'HTMLSelectLanguageField',
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like range, but
 		// we don't use those at the moment, so no point in adding all of them.
