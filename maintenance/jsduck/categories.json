@@ -64,7 +64,8 @@
 					"mw.Feedback*",
 					"mw.Upload*",
 					"mw.ForeignUpload",
-					"mw.ForeignStructuredUpload*"
+					"mw.ForeignStructuredUpload*",
+					"mw.GallerySlider"
 				]
 			},
 			{
