@@ -566,6 +566,34 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param User $user The user to set the timestamp for
+	 * @param string $timestamp Set the update timestamp to this value
+	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
+	 *
+	 * @return bool success
+	 */
+	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
+		$dbw = $this->getConnection( DB_MASTER );
+
+		$conds = [ 'wl_user' => $user->getId() ];
+		if ( $targets ) {
+			$batch = new LinkBatch( $targets );
+			$conds[] = $batch->constructSet( 'wl', $dbw );
+		}
+
+		$success = $dbw->update(
+			'watchlist',
+			[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+			$conds,
+			__METHOD__
+		);
+
+		$this->reuseConnection( $dbw );
+
+		return $success;
+	}
+
+	/**
 	 * @param User $editor The editor that triggered the update. Their notification
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param LinkTarget $target The target to update timestamps for
