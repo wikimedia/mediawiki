@@ -86,8 +86,7 @@ class ApiOptions extends ApiBase {
 						// We need a dummy HTMLForm for the validate callback...
 						$htmlForm = new HTMLForm( [], $this );
 					}
-					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
-					$field->mParent = $htmlForm;
+					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key], $htmlForm );
 					$validation = $field->validate( $value, $user->getOptions() );
 					break;
 				case 'registered-multiselect':
