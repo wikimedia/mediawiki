@@ -633,6 +633,7 @@ class SpecialPage {
 	/**
 	 * Wrapper around wfMessage that sets the current context.
 	 *
+	 * @since 1.16
 	 * @return Message
 	 * @see wfMessage
 	 */
