@@ -49,6 +49,9 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 	public function doUpdate() {
 		# Page may already be deleted, so don't just getId()
 		$id = $this->pageId;
+		// Make sure all links update threads see the changes of each other.
+		// This handles the case when updates have to batched into several COMMITs.
+		$scopedLock = LinksUpdate::acquirePageLock( $this->mDb, $id );
 
 		# Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
@@ -101,6 +104,11 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
 			}
 		}
+
+		$this->mDb->onTransactionIdle( function() use ( &$scopedLock ) {
+			// Release the lock *after* the final COMMIT for correctness
+			ScopedCallback::consume( $scopedLock );
+		} );
 	}
 
 	public function getAsJobSpecification() {
