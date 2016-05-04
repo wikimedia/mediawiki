@@ -120,12 +120,14 @@ abstract class Action {
 	 * @return string Action name
 	 */
 	final public static function getActionName( IContextSource $context ) {
+		// TODO: move this to RequestContext::getActionName()
 		global $wgActions;
 
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
+		// TODO: move this to MediaWiki::performAction
 		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
 			$actionName = 'nosuchaction';
 		}
@@ -151,6 +153,7 @@ abstract class Action {
 			return 'view';
 		}
 
+		// TODO: move this to MediaWiki::performAction, or just drop
 		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();

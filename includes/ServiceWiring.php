@@ -41,10 +41,6 @@ use MediaWiki\MediaWikiServices;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
-		// backwards compatibility. The preferred way would be to register a
-		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
-		// directly.
 		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
 
 		$class = LBFactory::getLBFactoryClass( $config );
@@ -106,6 +102,12 @@ return [
 		$class = $conf['class'];
 
 		return new $class( $conf );
+	},
+
+	'RequestContext' => function( MediaWikiServices $services ) {
+		$rx = new RequestContext();
+
+		return $rx;
 	},
 
 	'StatsdDataFactory' => function( MediaWikiServices $services ) {

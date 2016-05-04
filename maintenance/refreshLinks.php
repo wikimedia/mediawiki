@@ -34,7 +34,7 @@ class RefreshLinks extends Maintenance {
 		$this->addDescription( 'Refresh link tables' );
 		$this->addOption( 'dfn-only', 'Delete links from nonexistent articles only' );
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
-		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
+		$this->addOption( 'redirects-onlyqu', 'Only fix redirects, not all links' );
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
