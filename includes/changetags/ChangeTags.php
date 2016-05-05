@@ -1134,7 +1134,7 @@ class ChangeTags {
 	public static function listExtensionActivatedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
-			300,
+			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
@@ -1145,8 +1145,8 @@ class ChangeTags {
 			},
 			[
 				'checkKeys' => [ wfMemcKey( 'active-tags' ) ],
-				'lockTSE' => 300,
-				'pcTTL' => 30
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
 	}
@@ -1179,7 +1179,7 @@ class ChangeTags {
 
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-db' ),
-			300,
+			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
@@ -1191,8 +1191,8 @@ class ChangeTags {
 			},
 			[
 				'checkKeys' => [ wfMemcKey( 'valid-tags-db' ) ],
-				'lockTSE' => 300,
-				'pcTTL' => 30
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
 	}
@@ -1209,7 +1209,7 @@ class ChangeTags {
 	public static function listExtensionDefinedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
-			300,
+			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
@@ -1219,8 +1219,8 @@ class ChangeTags {
 			},
 			[
 				'checkKeys' => [ wfMemcKey( 'valid-tags-hook' ) ],
-				'lockTSE' => 300,
-				'pcTTL' => 30
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
 	}
@@ -1264,7 +1264,7 @@ class ChangeTags {
 		$fname = __METHOD__;
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'change-tag-statistics' ),
-			300,
+			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
 
@@ -1287,8 +1287,8 @@ class ChangeTags {
 			},
 			[
 				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
-				'lockTSE' => 300,
-				'pcTTL' => 30
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
 	}

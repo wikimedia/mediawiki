@@ -407,7 +407,7 @@ class JobQueueGroup {
 
 					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];
 				},
-				[ 'pcTTL' => 30 ]
+				[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 			);
 
 			return $value['v'];

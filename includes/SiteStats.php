@@ -193,7 +193,7 @@ class SiteStats {
 					__METHOD__
 				);
 			},
-			[ 'pcTTL' => 10 ]
+			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 		);
 	}
 
