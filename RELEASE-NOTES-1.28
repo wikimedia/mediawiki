@@ -6,7 +6,9 @@ MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.28 ===
-
+* The load.php entry point now enforces the existing policy of not allowing
+  access to session data, which includes the session user and the session
+  user's language. If such access it attempted, an exception will be thrown.
 
 === New features in 1.28 ===
 
