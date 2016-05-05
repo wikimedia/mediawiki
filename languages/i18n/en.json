@@ -43,7 +43,7 @@
 	"tog-ccmeonemails": "Send me copies of emails I send to other users",
 	"tog-diffonly": "Do not show page content below diffs",
 	"tog-showhiddencats": "Show hidden categories",
-	"tog-norollbackdiff": "Omit diff after performing a rollback",
+	"tog-norollbackdiff": "Don't show diff after performing a rollback",
 	"tog-useeditwarning": "Warn me when I leave an edit page with unsaved changes",
 	"tog-prefershttps": "Always use a secure connection when logged in",
 	"underline-always": "Always",
