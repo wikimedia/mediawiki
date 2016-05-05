@@ -172,7 +172,7 @@ class SvgHandler extends ImageHandler {
 		$lang = isset( $params['lang'] ) ? $params['lang'] : $this->getDefaultRenderLanguage( $image );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			return $this->vectorizeThumbnail( $image, new ThumbnailImage( $image, $dstUrl, $dstPath, $params ) );
 		}
 
 		$metadata = $this->unpackMetadata( $image->getMetadata() );
@@ -224,10 +224,24 @@ class SvgHandler extends ImageHandler {
 
 		$status = $this->rasterize( $lnPath, $dstPath, $physicalWidth, $physicalHeight, $lang );
 		if ( $status === true ) {
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			return $this->vectorizeThumbnail( $image, new ThumbnailImage( $image, $dstUrl, $dstPath, $params ) );
 		} else {
 			return $status; // MediaTransformError
 		}
+	}
+
+	/**
+	 * If enabled, add a direct SVG in addition to the rasterization to thumb.
+	 * @param File $image
+	 * @param ThumbnailImage $thumb
+	 * @return ThumbnailImage
+	 */
+	protected function vectorizeThumbnail( $image, $thumb ) {
+		global $wgSVGClientSideRendering;
+		if ( $wgSVGClientSideRendering ) {
+			$thumb->responsiveUrls['1'] = $image->getUrl();
+		}
+		return $thumb;
 	}
 
 	/**

@@ -1057,6 +1057,17 @@ $wgSVGMaxSize = 5120;
 $wgSVGMetadataCutoff = 262144;
 
 /**
+ * Experimental option to serve SVGs directly to browsers supporting it.
+ * A rasterized PNG is still produced and served as a backup.
+ *
+ * Warning: this does not yet correctly handle localized text, and may
+ * have other problems.
+ *
+ * @since 1.28
+ */
+$wgSVGClientSideRendering = false;
+
+/**
  * Disallow <title> element in SVG files.
  *
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic

@@ -886,7 +886,7 @@ class Linker {
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
 		global $wgResponsiveImages;
-		if ( $wgResponsiveImages && $thumb && !$thumb->isError() ) {
+		if ( $wgResponsiveImages && $thumb && !$thumb->isError() && count( $thumb->responsiveUrls ) == 0 ) {
 			$hp15 = $hp;
 			$hp15['width'] = round( $hp['width'] * 1.5 );
 			$hp20 = $hp;
