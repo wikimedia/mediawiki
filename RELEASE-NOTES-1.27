@@ -239,6 +239,8 @@ The following PHP extensions are strongly recommended:
    like changing a password.
 ** Two new globals, $wgChangeCredentialsBlacklist and $wgRemoveCredentialsBlacklist
    can be used to prevent the web UI and the API changing certain authentication data.
+* The file upload dialog (available if you install WikiEditor or VisualEditor)
+  can now be configured using $wgUploadDialog.
 
 === External library changes in 1.27 ===
 
