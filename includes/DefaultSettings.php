@@ -536,6 +536,26 @@ $wgUseInstantCommons = false;
 $wgForeignUploadTargets = [];
 
 /**
+ * 
+ */
+$wgUploadDialog = [
+	'fields' => [
+		'description' => true,
+		'date' => false,
+		'categories' => false,
+	],
+	'licensemsg' => 'generic-local', // 'generic-shared'
+	'comment' => '',
+	'format' => [
+		'filepage' => '$DESCRIPTION',
+		'description' => '$TEXT',
+		'ownwork' => '',
+		'uncategorized' => '',
+		'license' => '',
+	]
+];
+
+/**
  * File backend structure configuration.
  *
  * This is an array of file backend configuration arrays.
