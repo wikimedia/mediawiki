@@ -86,24 +86,24 @@
 			target = this.target || validTargets[ 0 ] || 'local',
 			layout = this;
 
-		// foreign-structured-upload-form-label-own-work-message-local
-		// foreign-structured-upload-form-label-own-work-message-shared
-		ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-' + target );
-		// foreign-structured-upload-form-label-not-own-work-message-local
-		// foreign-structured-upload-form-label-not-own-work-message-shared
-		notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-' + target );
-		// foreign-structured-upload-form-label-not-own-work-local-local
-		// foreign-structured-upload-form-label-not-own-work-local-shared
-		notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-' + target );
+		// upload-form-label-own-work-message-local
+		// upload-form-label-own-work-message-shared
+		ownWorkMessage = mw.message( 'upload-form-label-own-work-message-' + target );
+		// upload-form-label-not-own-work-message-local
+		// upload-form-label-not-own-work-message-shared
+		notOwnWorkMessage = mw.message( 'upload-form-label-not-own-work-message-' + target );
+		// upload-form-label-not-own-work-local-local
+		// upload-form-label-not-own-work-local-shared
+		notOwnWorkLocal = mw.message( 'upload-form-label-not-own-work-local-' + target );
 
 		if ( !ownWorkMessage.exists() ) {
-			ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-default' );
+			ownWorkMessage = mw.message( 'upload-form-label-own-work-message-default' );
 		}
 		if ( !notOwnWorkMessage.exists() ) {
-			notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-default' );
+			notOwnWorkMessage = mw.message( 'upload-form-label-not-own-work-message-default' );
 		}
 		if ( !notOwnWorkLocal.exists() ) {
-			notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-default' );
+			notOwnWorkLocal = mw.message( 'upload-form-label-not-own-work-local-default' );
 		}
 
 		$ownWorkMessage = $( '<p>' ).append( ownWorkMessage.parseDom() )
@@ -132,7 +132,7 @@
 			new OO.ui.FieldLayout( this.ownWorkCheckbox, {
 				align: 'inline',
 				label: $( '<div>' ).append(
-					$( '<p>' ).text( mw.msg( 'foreign-structured-upload-form-label-own-work' ) ),
+					$( '<p>' ).text( mw.msg( 'upload-form-label-own-work' ) ),
 					$ownWorkMessage
 				)
 			} ),
@@ -227,11 +227,11 @@
 				notices: [ mw.msg( 'upload-form-label-infoform-description-tooltip' ) ]
 			} ),
 			new OO.ui.FieldLayout( this.categoriesWidget, {
-				label: mw.msg( 'foreign-structured-upload-form-label-infoform-categories' ),
+				label: mw.msg( 'upload-form-label-infoform-categories' ),
 				align: 'top'
 			} ),
 			new OO.ui.FieldLayout( this.dateWidget, {
-				label: mw.msg( 'foreign-structured-upload-form-label-infoform-date' ),
+				label: mw.msg( 'upload-form-label-infoform-date' ),
 				align: 'top'
 			} )
 		] );
