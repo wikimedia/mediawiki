@@ -3596,7 +3596,7 @@ HTML
 	 */
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
-		global $wgAllowUserCss, $wgAllowUserJs;
+		global $wgAllowUserCss, $wgAllowUserJs, $wgAjaxEditStash;
 
 		$stats = $wgOut->getContext()->getStats();
 
@@ -3708,10 +3708,12 @@ HTML
 
 			# Try to stash the edit for the final submission step
 			# @todo: different date format preferences cause cache misses
-			ApiStashEdit::stashEditFromPreview(
-				$this->getArticle(), $content, $pstContent,
-				$parserOutput, $parserOptions, $parserOptions, wfTimestampNow()
-			);
+			if ( $wgAjaxEditStash ) {
+				ApiStashEdit::stashEditFromPreview(
+					$this->getArticle(), $content, $pstContent,
+					$parserOutput, $parserOptions, $parserOptions, wfTimestampNow()
+				);
+			}
 
 			$parserOutput->setEditSectionTokens( false ); // no section edit links
 			$previewHTML = $parserOutput->getText();
