@@ -20,6 +20,11 @@
  * @file
  */
 
+// This endpoint is supposed to be independent of request cookies and other
+// details of the session. Log warnings for violations of the no-session
+// constraint.
+define( 'MW_NO_SESSION', 'warn' );
+
 require_once __DIR__ . '/includes/WebStart.php';
 
 if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
