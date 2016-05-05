@@ -1114,7 +1114,7 @@
 	"destfilename": "目标文件名:",
 	"watchthisupload": "關注箇文件",
 	"upload-misc-error": "弗識個傳錯誤",
-	"foreign-structured-upload-form-label-infoform-date": "日脚",
+	"upload-form-label-infoform-date": "日脚",
 	"backend-fail-delete": "文件“$1”刪弗爻。",
 	"backend-fail-move": "嘸處畀“$1”移到“$2”。",
 	"backend-fail-opentemp": "臨時文件開弗爻。",
