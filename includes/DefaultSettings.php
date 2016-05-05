@@ -536,6 +536,63 @@ $wgUseInstantCommons = false;
 $wgForeignUploadTargets = [];
 
 /**
+ * Configuration for file uploads using the embeddable upload dialog
+ * (https://www.mediawiki.org/wiki/Upload_dialog).
+ *
+ * This applies also to foreign uploads to this wiki (the configuration is loaded by remote wikis
+ * using the action=query&meta=siteinfo API).
+ *
+ * See below for documentation of each property. None of the properties may be omitted.
+ */
+$wgUploadDialog = [
+	// Fields to make available in the dialog. `true` means that this field is
+	// visible, `false` means that it is hidden. The "Name" field can't be hidden.
+	'fields' => [
+		'description' => true,
+		'date' => false,
+		'categories' => false,
+	],
+	// Suffix of localisation messages used to describe the license under which the uploaded file will
+	// be released. The same value may be set for both 'local' and 'foreign' uploads.
+	'licensemessages' => [
+		// The 'local' messages are used for local uploads on this wiki:
+		// * upload-form-label-own-work-message-generic-local
+		// * upload-form-label-not-own-work-message-generic-local
+		// * upload-form-label-not-own-work-local-generic-local
+		'local' => 'generic-local',
+		// The 'foreign' messages are used for cross-wiki uploads from other wikis to this wiki:
+		// * upload-form-label-own-work-message-generic-foreign
+		// * upload-form-label-not-own-work-message-generic-foreign
+		// * upload-form-label-not-own-work-local-generic-foreign
+		'foreign' => 'generic-foreign',
+	],
+	// Upload comment to use. Available replacements:
+	// * $HOST - domain name from which a cross-wiki upload originates
+	// * $PAGENAME - wiki page name from which an upload originates
+	'comment' => '',
+	// Format of the file page wikitext to be generated from the fields input by the user.
+	'format' => [
+		// Wrapper for the whole page. Available replacements:
+		// * $DESCRIPTION - file description, as input by the user (only if the 'description' field is
+		//   enabled), wrapped as defined below in the 'description' key
+		// * $DATE - file creation date, as input by the user (only if the 'date' field is enabled)
+		// * $SOURCE - as defined below in the 'ownwork' key, may be extended in the future
+		// * $AUTHOR - linked user name, may be extended in the future
+		// * $LICENSE - as defined below in the 'license' key, may be extended in the future
+		// * $CATEGORIES - file categories wikitext, as input by the user (only if the 'categories'
+		//   field is enabled), or if no input, as defined below in the 'uncategorized' key
+		'filepage' => '$DESCRIPTION',
+		// Wrapped for file description. Available replacements:
+		// * $LANGUAGE - source wiki's content language
+		// * $TEXT - input by the user
+		'description' => '$TEXT',
+		'ownwork' => '',
+		'license' => '',
+		'uncategorized' => '',
+	],
+];
+
+/**
  * File backend structure configuration.
  *
  * This is an array of file backend configuration arrays.
