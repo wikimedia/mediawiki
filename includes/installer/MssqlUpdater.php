@@ -83,7 +83,11 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ],
 			[ 'updateSchema', 'oldimage', 'oldimage varchar', 'patch-oldimage-schema.sql' ],
 			[ 'updateSchema', 'filearchive', 'filearchive varchar', 'patch-filearchive-schema.sql' ],
-			[ 'updateSchema', 'image', 'image varchar', 'patch-image-schema.sql' ]
+			[ 'updateSchema', 'image', 'image varchar', 'patch-image-schema.sql' ],
+			[ 'updateSchema', 'recentchanges', 'recentchanges-drop-fks',
+				'patch-recentchanges-drop-fks.sql' ],
+			[ 'updateSchema', 'logging', 'logging-drop-fks', 'patch-logging-drop-fks.sql' ],
+			[ 'updateSchema', 'archive', 'archive-drop-fks', 'patch-archive-drop-fks.sql' ]
 		];
 	}
 
