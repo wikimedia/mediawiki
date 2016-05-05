@@ -69,6 +69,22 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
 			[ 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ],
+			[ 'dropField', 'mwuser', 'user_options', 'patch-drop-user_options.sql' ],
+			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
+			[ 'addField', 'pagelinks', 'pl_from_namespace', 'patch-pl_from_namespace.sql' ],
+			[ 'addField', 'templatelinks', 'tl_from_namespace', 'patch-tl_from_namespace.sql' ],
+			[ 'addField', 'imagelinks', 'il_from_namespace', 'patch-il_from_namespace.sql' ],
+			[ 'dropIndex', 'categorylinks', 'cl_collation', 'patch-kill-cl_collation_index.sql' ],
+			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
+				'patch-add-cl_collation_ext_index.sql' ],
+			[ 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ],
+			[ 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ],
+			[ 'updateSchema', 'oldimage', 'oldimage varchar', 'patch-oldimage-schema.sql' ],
+			[ 'updateSchema', 'filearchive', 'filearchive varchar', 'patch-filearchive-schema.sql' ],
+			[ 'updateSchema', 'image', 'image varchar', 'patch-image-schema.sql' ],
+			[ 'updateSchema', 'recentchanges', 'recentchanges-drop-fks', 'patch-recentchanges-drop-fks.sql' ],
+			[ 'updateSchema', 'logging', 'logging-drop-fks', 'patch-logging-drop-fks.sql' ],
+			[ 'updateSchema', 'archive', 'archive-drop-fks', 'patch-archive-drop-fks.sql' ]
 		];
 	}
 
