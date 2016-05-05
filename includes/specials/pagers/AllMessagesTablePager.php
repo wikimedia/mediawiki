@@ -56,7 +56,7 @@ class AllMessagesTablePager extends TablePager {
 
 		$this->lang = ( $langObj ? $langObj : $wgContLang );
 		$this->langcode = $this->lang->getCode();
-		$this->foreign = $this->langcode !== $wgContLang->getCode();
+		$this->foreign = !$this->lang->equals( $wgContLang );
 
 		$request = $this->getRequest();
 
