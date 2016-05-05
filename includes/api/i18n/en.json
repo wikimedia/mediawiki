@@ -1107,6 +1107,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "Returns a list of variable IDs.",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "Returns a list of protocols that are allowed in external links.",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "Returns the default values for user preferences.",
+	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Returns the upload dialog configuration.",
 	"apihelp-query+siteinfo-param-filteriw": "Return only local or only nonlocal entries of the interwiki map.",
 	"apihelp-query+siteinfo-param-showalldb": "List all database servers, not just the one lagging the most.",
 	"apihelp-query+siteinfo-param-numberingroup": "Lists the number of users in user groups.",
