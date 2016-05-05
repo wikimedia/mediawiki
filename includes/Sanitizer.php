@@ -381,14 +381,17 @@ class Sanitizer {
 				'kbd', 'samp', 'data', 'time', 'mark'
 			];
 			$htmlsingle = [
-				'br', 'wbr', 'hr', 'li', 'dt', 'dd'
-			];
-			$htmlsingleonly = [ # Elements that cannot have close tags
-				'br', 'wbr', 'hr'
+				'br', 'wbr', 'hr', 'li', 'dt', 'dd', 'meta', 'link'
 			];
 
-			$htmlsingle[] = $htmlsingleonly[] = 'meta';
-			$htmlsingle[] = $htmlsingleonly[] = 'link';
+			# Elements that cannot have close tags. This is (not coincidentally)
+			# also the list of tags for which the HTML 5 parsing algorithm
+			# requires you to "acknowledge the token's self-closing flag", i.e.
+			# a self-closing tag like <br/> is not an HTML 5 parse error only
+			# for this list.
+			$htmlsingleonly = [
+				'br', 'wbr', 'hr', 'meta', 'link'
+			];
 
 			$htmlnest = [ # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
@@ -610,6 +613,13 @@ class Sanitizer {
 
 						$newparams = Sanitizer::fixTagAttributes( $params, $t );
 						if ( !$badtag ) {
+							if ( $brace === '/>' && !isset( $htmlsingleonly[$t] ) ) {
+								# Interpret self-closing tags as empty tags even when
+								# HTML 5 would interpret them as start tags. Such input
+								# is commonly seen on Wikimedia wikis with this intention.
+								$brace = "></$t>";
+							}
+
 							$rest = str_replace( '>', '&gt;', $rest );
 							$text .= "<$slash$t$newparams$brace$rest";
 							continue;
