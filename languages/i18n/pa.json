@@ -1143,7 +1143,7 @@
 	"upload-file-error": "ਅੰਦਰੂਨੀ ਗਲਤੀ",
 	"upload-misc-error": "ਅਣਪਛਾਤੀ ਅੱਪਲੋਡ ਗਲਤੀ",
 	"upload-http-error": "ਇੱਕ HTTP ਗ਼ਲਤੀ ਹੋਈ: $1",
-	"foreign-structured-upload-form-label-infoform-date": "ਤਾਰੀਖ਼",
+	"upload-form-label-infoform-date": "ਤਾਰੀਖ਼",
 	"backend-fail-notexists": "ਫ਼ਾਈਲ $1 ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
 	"backend-fail-delete": "ਫ਼ਾਈਲ \"$1\" ਮਿਟਾਈ ਨਹੀਂ ਜਾ ਸਕੀ।",
 	"backend-fail-alreadyexists": "ਫ਼ਾਈਲ \"$1\" ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।",
