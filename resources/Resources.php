@@ -1169,10 +1169,14 @@ return [
 			'upload-foreign-cant-upload',
 		]
 	],
+	'mediawiki.ForeignStructuredUpload.config' => [
+		'class' => 'ResourceLoaderUploadDialogModule',
+	],
 	'mediawiki.ForeignStructuredUpload' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
 		'dependencies' => [
 			'mediawiki.ForeignUpload',
+			'mediawiki.ForeignStructuredUpload.config',
 		],
 	],
 	'mediawiki.Upload.Dialog' => [
@@ -1291,15 +1295,12 @@ return [
 			'upload-form-label-own-work',
 			'upload-form-label-infoform-categories',
 			'upload-form-label-infoform-date',
-			'upload-form-label-own-work-message-default',
-			'upload-form-label-not-own-work-message-default',
-			'upload-form-label-not-own-work-local-default',
-			'upload-form-label-own-work-message-shared',
-			'upload-form-label-not-own-work-message-shared',
-			'upload-form-label-not-own-work-local-shared',
-			'upload-form-label-own-work-message-local',
-			'upload-form-label-not-own-work-message-local',
-			'upload-form-label-not-own-work-local-local',
+			'upload-form-label-own-work-message-generic-local',
+			'upload-form-label-not-own-work-message-generic-local',
+			'upload-form-label-not-own-work-local-generic-local',
+			'upload-form-label-own-work-message-generic-foreign',
+			'upload-form-label-not-own-work-message-generic-foreign',
+			'upload-form-label-not-own-work-local-generic-foreign',
 		],
 	],
 	'mediawiki.toc' => [
