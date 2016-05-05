@@ -176,18 +176,20 @@
 
 		return this.upload.getApi().then(
 			function ( api ) {
-				// If the user can't upload anything, don't give them the option to.
-				return api.getUserInfo().then(
-					function ( userInfo ) {
+				return $.when(
+					booklet.upload.loadConfig(),
+					// If the user can't upload anything, don't give them the option to.
+					api.getUserInfo().then( function ( userInfo ) {
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
 							// TODO Use a better error message when not all logged-in users can upload
 							booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
 						}
 						return $.Deferred().resolve();
-					},
-					function () {
-						return $.Deferred().resolve();
-					}
+					} )
+				).then(
+					null,
+					// Always resolve, never reject
+					function () { return $.Deferred().resolve(); }
 				);
 			},
 			function ( errorMsg ) {
