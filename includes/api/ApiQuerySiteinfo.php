@@ -108,6 +108,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'defaultoptions':
 					$fit = $this->appendDefaultOptions( $p );
 					break;
+				case 'uploaddialog':
+					$fit = $this->appendUploadDialog( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -771,6 +774,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}
 
+	public function appendUploadDialog( $property ) {
+		$config = $this->getConfig()->get( 'UploadDialog' );
+		$config['fields'][ApiResult::META_BC_BOOLS] = array_keys( $config['fields'] );
+		return $this->getResult()->addValue( 'query', $property, $config );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -838,6 +847,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'variables',
 					'protocols',
 					'defaultoptions',
+					'uploaddialog',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
