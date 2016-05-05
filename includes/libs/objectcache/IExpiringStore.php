@@ -29,7 +29,6 @@
  * @since 1.27
  */
 interface IExpiringStore {
-
 	// Constants for TTL values, in seconds
 	const TTL_MINUTE = 60;
 	const TTL_HOUR = 3600;
@@ -37,6 +36,10 @@ interface IExpiringStore {
 	const TTL_WEEK = 604800; // 7 * 24 * 3600
 	const TTL_MONTH = 2592000; // 30 * 24 * 3600
 	const TTL_YEAR = 31536000; // 365 * 24 * 3600
+
+	// Shorthand process cache TTLs (useful for web requests and CLI mode)
+	const TTL_PROC_SHORT = 3; // reasonably strict cache time that last the life of quick requests
+	const TTL_PROC_LONG = 30; // loose cache time that can survive slow web requests
 
 	const TTL_INDEFINITE = 0;
 }
