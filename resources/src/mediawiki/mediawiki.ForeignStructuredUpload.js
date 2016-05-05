@@ -1,4 +1,4 @@
-( function ( mw, OO ) {
+( function ( mw, $, OO ) {
 	/**
 	 * @class mw.ForeignStructuredUpload
 	 * @extends mw.ForeignUpload
@@ -21,10 +21,58 @@
 		this.descriptions = [];
 		this.categories = [];
 
+		// Config for uploads to local wiki.
+		// Can be overridden with foreign wiki config when #loadConfig is called.
+		this.config = mw.config.get( 'wgUploadDialog' );
+
 		mw.ForeignUpload.call( this, target, apiconfig );
 	}
 
 	OO.inheritClass( ForeignStructuredUpload, mw.ForeignUpload );
+
+	/**
+	 * Get the configuration for the form and filepage from the foreign wiki, if any, and use it for
+	 * this upload.
+	 *
+	 * @return {jQuery.Promise} Promise returning config object
+	 */
+	ForeignStructuredUpload.prototype.loadConfig = function () {
+		var deferred,
+			upload = this;
+
+		if ( this.configPromise ) {
+			return this.configPromise;
+		}
+
+		if ( this.target === 'local' ) {
+			deferred = $.Deferred();
+			setTimeout( function () {
+				// Resolve asynchronously, so that it's harder to accidentally write synchronous code that
+				// will break for cross-wiki uploads
+				deferred.resolve( upload.config );
+			} );
+			this.configPromise = deferred.promise();
+		} else {
+			this.configPromise = this.apiPromise.then( function ( api ) {
+				// Get the config from the foreign wiki
+				return api.get( {
+					action: 'query',
+					meta: 'siteinfo',
+					siprop: 'uploaddialog',
+					// For convenient true/false booleans
+					formatversion: 2
+				} ).then( function ( resp ) {
+					// Foreign wiki might be running a pre-1.27 MediaWiki, without support for this
+					if ( resp.query && resp.query.uploaddialog ) {
+						upload.config = resp.query.uploaddialog;
+					}
+					return upload.config;
+				} );
+			} );
+		}
+
+		return this.configPromise;
+	};
 
 	/**
 	 * Add categories to the upload.
@@ -83,23 +131,23 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getText = function () {
-		return (
-			'== {{int:filedesc}} ==\n' +
-			'{{Information' +
-			'\n|description=' +
-			this.getDescriptions() +
-			'\n|date=' +
-			this.getDate() +
-			'\n|source=' +
-			this.getSource() +
-			'\n|author=' +
-			this.getUser() +
-			'\n}}\n\n' +
-			'== {{int:license-header}} ==\n' +
-			this.getLicense() +
-			'\n\n' +
-			this.getCategories()
-		);
+		return this.config.format.filepage
+			// Replace "numbered parameters" with the given information
+			.replace( '$DESCRIPTION', this.getDescriptions() )
+			.replace( '$DATE', this.getDate() )
+			.replace( '$SOURCE', this.getSource() )
+			.replace( '$AUTHOR', this.getUser() )
+			.replace( '$LICENSE', this.getLicense() )
+			.replace( '$CATEGORIES', this.getCategories() );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	ForeignStructuredUpload.prototype.getComment = function () {
+		return this.config.comment
+			.replace( '$PAGENAME', mw.config.get( 'wgPageName' ) )
+			.replace( '$HOST', location.host );
 	};
 
 	/**
@@ -128,7 +176,11 @@
 
 		for ( i = 0; i < this.descriptions.length; i++ ) {
 			desc = this.descriptions[ i ];
-			templateCalls.push( '{{' + desc.language + '|1=' + desc.text + '}}' );
+			templateCalls.push(
+				this.config.format.description
+					.replace( '$LANGUAGE', desc.language )
+					.replace( '$TEXT', desc.text )
+			);
 		}
 
 		return templateCalls.join( '\n' );
@@ -145,7 +197,7 @@
 		var i, cat, categoryLinks = [];
 
 		if ( this.categories.length === 0 ) {
-			return '{{subst:unc}}';
+			return this.config.format.uncategorized;
 		}
 
 		for ( i = 0; i < this.categories.length; i++ ) {
@@ -163,9 +215,7 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getLicense = function () {
-		// Make sure this matches the messages for different targets in
-		// mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm
-		return this.target === 'shared' ? '{{self|cc-by-sa-4.0}}' : '';
+		return this.config.format.license;
 	};
 
 	/**
@@ -175,7 +225,7 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getSource = function () {
-		return '{{own}}';
+		return this.config.format.ownwork;
 	};
 
 	/**
@@ -200,4 +250,4 @@
 	};
 
 	mw.ForeignStructuredUpload = ForeignStructuredUpload;
-}( mediaWiki, OO ) );
+}( mediaWiki, jQuery, OO ) );
