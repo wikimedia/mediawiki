@@ -85,12 +85,6 @@
 		// actual API call methods to wait for the apiPromise to resolve
 		// before continuing.
 		mw.Upload.call( this, null );
-
-		if ( this.target !== 'local' ) {
-			// Keep these untranslated. We don't know the content language of the foreign wiki, best to
-			// stick to English in the text.
-			this.setComment( 'Cross-wiki upload from ' + location.host );
-		}
 	}
 
 	OO.inheritClass( ForeignUpload, mw.Upload );

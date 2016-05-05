@@ -1034,6 +1034,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "{{doc-apihelp-paramvalue|query+siteinfo|prop|variables}}",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "{{doc-apihelp-paramvalue|query+siteinfo|prop|protocols}}",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "{{doc-apihelp-paramvalue|query+siteinfo|prop|defaultoptions}}",
+	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "{{doc-apihelp-paramvalue|query+siteinfo|prop|uploaddialog}}",
 	"apihelp-query+siteinfo-param-filteriw": "{{doc-apihelp-param|query+siteinfo|filteriw}}",
 	"apihelp-query+siteinfo-param-showalldb": "{{doc-apihelp-param|query+siteinfo|showalldb}}",
 	"apihelp-query+siteinfo-param-numberingroup": "{{doc-apihelp-param|query+siteinfo|numberingroup}}",

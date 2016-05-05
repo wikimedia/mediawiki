@@ -42,24 +42,64 @@
 		var booklet = this;
 		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this ).then(
 			function () {
-				// Point the CategorySelector to the right wiki
-				return booklet.upload.getApi().then(
-					function ( api ) {
+				return $.when(
+					// Point the CategorySelector to the right wiki
+					booklet.upload.getApi().then( function ( api ) {
 						// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
 						if ( api.apiUrl ) {
 							// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
 							booklet.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
 						}
 						return $.Deferred().resolve();
-					},
-					function () {
-						return $.Deferred().resolve();
-					}
+					} ),
+					// Set up booklet fields and license messages to match configuration
+					booklet.upload.loadConfig().then( function ( config ) {
+						var
+							msgPromise,
+							isLocal = booklet.upload.target === 'local',
+							fields = config.fields,
+							msgs = config.licensemessages[ isLocal ? 'local' : 'foreign' ];
+
+						// Hide disabled fields
+						booklet.descriptionField.toggle( !!fields.description );
+						booklet.categoriesField.toggle( !!fields.categories );
+						booklet.dateField.toggle( !!fields.date );
+						// Update form validity
+						booklet.onInfoFormChange();
+
+						// Load license messages from the remote wiki if we don't have these messages locally
+						// (this means that we only load messages from the foreign wiki for custom config)
+						if ( mw.message( 'upload-form-label-own-work-message-' + msgs ).exists() ) {
+							msgPromise = $.Deferred().resolve();
+						} else {
+							msgPromise = booklet.upload.apiPromise.then( function ( api ) {
+								return api.loadMessages( [
+									'upload-form-label-own-work-message-' + msgs,
+									'upload-form-label-not-own-work-message-' + msgs,
+									'upload-form-label-not-own-work-local-' + msgs
+								] );
+							} );
+						}
+
+						// Update license messages
+						return msgPromise.then( function () {
+							booklet.$ownWorkMessage
+								.msg( 'upload-form-label-own-work-message-' + msgs )
+								.find( 'a' ).attr( 'target', '_blank' );
+							booklet.$notOwnWorkMessage
+								.msg( 'upload-form-label-not-own-work-message-' + msgs )
+								.find( 'a' ).attr( 'target', '_blank' );
+							booklet.$notOwnWorkLocal
+								.msg( 'upload-form-label-not-own-work-local-' + msgs )
+								.find( 'a' ).attr( 'target', '_blank' );
+						} );
+					} )
 				);
-			},
-			function () {
-				return $.Deferred().resolve();
 			}
+		).then(
+			null,
+			// Always resolve, never reject
+			function () { return $.Deferred().resolve(); }
 		);
 	};
 
@@ -80,45 +120,24 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset, $ownWorkMessage, $notOwnWorkMessage,
-			ownWorkMessage, notOwnWorkMessage, notOwnWorkLocal,
-			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
-			target = this.target || validTargets[ 0 ] || 'local',
+		var fieldset,
 			layout = this;
 
-		// upload-form-label-own-work-message-local
-		// upload-form-label-own-work-message-shared
-		ownWorkMessage = mw.message( 'upload-form-label-own-work-message-' + target );
-		// upload-form-label-not-own-work-message-local
-		// upload-form-label-not-own-work-message-shared
-		notOwnWorkMessage = mw.message( 'upload-form-label-not-own-work-message-' + target );
-		// upload-form-label-not-own-work-local-local
-		// upload-form-label-not-own-work-local-shared
-		notOwnWorkLocal = mw.message( 'upload-form-label-not-own-work-local-' + target );
-
-		if ( !ownWorkMessage.exists() ) {
-			ownWorkMessage = mw.message( 'upload-form-label-own-work-message-default' );
-		}
-		if ( !notOwnWorkMessage.exists() ) {
-			notOwnWorkMessage = mw.message( 'upload-form-label-not-own-work-message-default' );
-		}
-		if ( !notOwnWorkLocal.exists() ) {
-			notOwnWorkLocal = mw.message( 'upload-form-label-not-own-work-local-default' );
-		}
-
-		$ownWorkMessage = $( '<p>' ).append( ownWorkMessage.parseDom() )
+		// These elements are filled with text in #initialize
+		// TODO Refactor this to be in one place
+		this.$ownWorkMessage = $( '<p>' )
 			.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' );
-		$notOwnWorkMessage = $( '<div>' ).append(
-			$( '<p>' ).append( notOwnWorkMessage.parseDom() ),
-			$( '<p>' ).append( notOwnWorkLocal.parseDom() )
-		);
-		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' ).attr( 'target', '_blank' );
+		this.$notOwnWorkMessage = $( '<p>' );
+		this.$notOwnWorkLocal = $( '<p>' );
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget( {
 			showDropTarget: true
 		} );
 		this.messageLabel = new OO.ui.LabelWidget( {
-			label: $notOwnWorkMessage
+			label: $( '<div>' ).append(
+				this.$notOwnWorkMessage,
+				this.$notOwnWorkLocal
+			)
 		} );
 		this.ownWorkCheckbox = new OO.ui.CheckboxInputWidget().on( 'change', function ( on ) {
 			layout.messageLabel.toggle( !on );
@@ -133,7 +152,7 @@
 				align: 'inline',
 				label: $( '<div>' ).append(
 					$( '<p>' ).text( mw.msg( 'upload-form-label-own-work' ) ),
-					$ownWorkMessage
+					this.$ownWorkMessage
 				)
 			} ),
 			new OO.ui.FieldLayout( this.messageLabel, {
@@ -210,30 +229,35 @@
 			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
 		} );
 
+		this.filenameField = new OO.ui.FieldLayout( this.filenameWidget, {
+			label: mw.msg( 'upload-form-label-infoform-name' ),
+			align: 'top',
+			classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
+			notices: [ mw.msg( 'upload-form-label-infoform-name-tooltip' ) ]
+		} );
+		this.descriptionField = new OO.ui.FieldLayout( this.descriptionWidget, {
+			label: mw.msg( 'upload-form-label-infoform-description' ),
+			align: 'top',
+			classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
+			notices: [ mw.msg( 'upload-form-label-infoform-description-tooltip' ) ]
+		} );
+		this.categoriesField = new OO.ui.FieldLayout( this.categoriesWidget, {
+			label: mw.msg( 'upload-form-label-infoform-categories' ),
+			align: 'top'
+		} );
+		this.dateField = new OO.ui.FieldLayout( this.dateWidget, {
+			label: mw.msg( 'upload-form-label-infoform-date' ),
+			align: 'top'
+		} );
+
 		fieldset = new OO.ui.FieldsetLayout( {
 			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
-			new OO.ui.FieldLayout( this.filenameWidget, {
-				label: mw.msg( 'upload-form-label-infoform-name' ),
-				align: 'top',
-				classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
-				notices: [ mw.msg( 'upload-form-label-infoform-name-tooltip' ) ]
-			} ),
-			new OO.ui.FieldLayout( this.descriptionWidget, {
-				label: mw.msg( 'upload-form-label-infoform-description' ),
-				align: 'top',
-				classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
-				notices: [ mw.msg( 'upload-form-label-infoform-description-tooltip' ) ]
-			} ),
-			new OO.ui.FieldLayout( this.categoriesWidget, {
-				label: mw.msg( 'upload-form-label-infoform-categories' ),
-				align: 'top'
-			} ),
-			new OO.ui.FieldLayout( this.dateWidget, {
-				label: mw.msg( 'upload-form-label-infoform-date' ),
-				align: 'top'
-			} )
+			this.filenameField,
+			this.descriptionField,
+			this.categoriesField,
+			this.dateField
 		] );
 		this.infoForm = new OO.ui.FormLayout( {
 			classes: [ 'mw-upload-bookletLayout-infoForm' ],
@@ -256,12 +280,18 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.onInfoFormChange = function () {
-		var layout = this;
-		$.when(
-			this.filenameWidget.getValidity(),
-			this.descriptionWidget.getValidity(),
-			this.dateWidget.getValidity()
-		).done( function () {
+		var layout = this,
+			validityPromises = [];
+
+		validityPromises.push( this.filenameWidget.getValidity() );
+		if ( this.descriptionField.isVisible() ) {
+			validityPromises.push( this.descriptionWidget.getValidity() );
+		}
+		if ( this.dateField.isVisible() ) {
+			validityPromises.push( this.dateWidget.getValidity() );
+		}
+
+		$.when.apply( $, validityPromises ).done( function () {
 			layout.emit( 'infoValid', true );
 		} ).fail( function () {
 			layout.emit( 'infoValid', false );

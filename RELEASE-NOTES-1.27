@@ -198,6 +198,8 @@ The following PHP extensions are strongly recommended:
 * $wgJpegPixelFormat was added to override chroma subsampling for JPEG image
   thumbnails created via ImageMagick. Defaults to 'yuv420', providing bandwidth
   savings versus the previous behavior on many files.
+* The file upload dialog (available if you install WikiEditor or VisualEditor)
+  can now be configured using $wgUploadDialog.
 
 === External library changes in 1.27 ===
 
