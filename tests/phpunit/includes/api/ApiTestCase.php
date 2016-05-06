@@ -158,8 +158,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		$data = $this->doApiRequest( [
 			'action' => 'login',
-			'lgname' => $testUser->username,
-			'lgpassword' => $testUser->password ] );
+			'lgname' => $testUser->getUser()->getName(),
+			'lgpassword' => $testUser->getPassword() ] );
 
 		$token = $data[0]['login']['token'];
 
@@ -167,8 +167,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			[
 				'action' => 'login',
 				'lgtoken' => $token,
-				'lgname' => $testUser->username,
-				'lgpassword' => $testUser->password,
+				'lgname' => $testUser->getUser()->getName(),
+				'lgpassword' => $testUser->getPassword(),
 			],
 			$data[2]
 		);

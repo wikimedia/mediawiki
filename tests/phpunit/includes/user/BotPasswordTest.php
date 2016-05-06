@@ -290,7 +290,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 
 		// Wrong password
 		$status = BotPassword::login(
-			"{$this->testUserName}@BotPassword", $this->testUser->password, new FauxRequest );
+			"{$this->testUserName}@BotPassword", $this->testUser->getPassword(), new FauxRequest );
 		$this->assertEquals( Status::newFatal( 'wrongpassword' ), $status );
 
 		// Success!
