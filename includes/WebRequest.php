@@ -80,6 +80,9 @@ class WebRequest {
 	 */
 	protected $sessionId = null;
 
+	/** @var bool Whether this HTTP request is "safe" (even if it is an HTTP post) */
+	protected $markedAsSafe = false;
+
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
 			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
@@ -318,7 +321,7 @@ class WebRequest {
 	 *
 	 * @param string $path The URL path given from the client
 	 * @param array $bases One or more URLs, optionally with $1 at the end
-	 * @param string $key If provided, the matching key in $bases will be
+	 * @param string|bool $key If provided, the matching key in $bases will be
 	 *    passed on as the value of this URL parameter
 	 * @return array Array of URL variables to interpolate; empty if no match
 	 */
@@ -1022,7 +1025,7 @@ class WebRequest {
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		return $this->getSession()->set( $key, $data );
+		$this->getSession()->set( $key, $data );
 	}
 
 	/**
@@ -1244,5 +1247,51 @@ HTML;
 	 */
 	public function setIP( $ip ) {
 		$this->ip = $ip;
+	}
+
+	/**
+	 * Whether this request should be identified as being "safe"
+	 *
+	 * This means that the client is not requesting any state changes and that database writes
+	 * are not inherently required. Ideally, no visible updates would happen at all. If they
+	 * must, then they should not be publically attributed to the end user.
+	 *
+	 * In more detail:
+	 *   - Cache populations and refreshes MAY occur.
+	 *   - Private user session updates and private server logging MAY occur.
+	 *   - Updates to private viewing activity data MAY occur via DeferredUpdates.
+	 *   - Other updates SHOULD NOT occur (e.g. modifying content assets).
+	 *
+	 * @return bool
+	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+	 * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+	 * @since 1.28
+	 */
+	public function isSafeRequest() {
+		if ( !isset( $_SERVER['REQUEST_METHOD'] ) ) {
+			return false; // CLI mode
+		}
+
+		if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+			return $this->markedAsSafe;
+		} elseif ( in_array( $_SERVER['REQUEST_METHOD'], [ 'GET', 'HEAD', 'OPTIONS' ] ) ) {
+			return true; // HTTP "safe methods"
+		}
+
+		return false; // PUT/DELETE
+	}
+
+	/**
+	 * Mark this request is identified as being nullipotent even if it is a POST request
+	 *
+	 * POST requests are often used due to the need for a client payload, even if the request
+	 * is otherwise equivalent to a "safe method" request.
+	 *
+	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+	 * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+	 * @since 1.28
+	 */
+	public function markAsSafeRequest() {
+		$this->markedAsSafe = true;
 	}
 }
