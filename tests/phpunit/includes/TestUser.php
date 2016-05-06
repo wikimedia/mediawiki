@@ -143,6 +143,7 @@ class TestUser {
 	}
 
 	/**
+	 * @since 1.25
 	 * @return User
 	 */
 	public function getUser() {
@@ -150,6 +151,7 @@ class TestUser {
 	}
 
 	/**
+	 * @since 1.25
 	 * @return string
 	 */
 	public function getPassword() {
