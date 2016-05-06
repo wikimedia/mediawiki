@@ -6,25 +6,19 @@
  */
 class TestUser {
 	/**
-	 * @deprecated Since 1.25. Use TestUser::getUser()->getName()
-	 * @private
 	 * @var string
 	 */
-	public $username;
+	private $username;
 
 	/**
-	 * @deprecated Since 1.25. Use TestUser::getPassword()
-	 * @private
 	 * @var string
 	 */
-	public $password;
+	private $password;
 
 	/**
-	 * @deprecated Since 1.25. Use TestUser::getUser()
-	 * @private
 	 * @var User
 	 */
-	public $user;
+	private $user;
 
 	private function assertNotReal() {
 		global $wgDBprefix;
