@@ -84,12 +84,20 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			],
 		];
 		if ( $this->title ) {
+			$options = $this->getOptionsForTitle( $this->title );
+			if ( empty( $options ) ) {
+				throw new ErrorPageError(
+					'changecontentmodel-emptymodels-title',
+					'changecontentmodel-emptymodels-text',
+					$this->title->getPrefixedText()
+				);
+			}
 			$fields['pagetitle']['readonly'] = true;
 			$fields += [
 				'model' => [
 					'type' => 'select',
 					'name' => 'model',
-					'options' => $this->getOptionsForTitle( $this->title ),
+					'options' => $options,
 					'label-message' => 'changecontentmodel-model-label'
 				],
 				'reason' => [
