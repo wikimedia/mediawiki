@@ -144,7 +144,12 @@ class DeferredUpdates {
 			}
 
 			// Delegate DataUpdate execution to the DataUpdate class
-			DataUpdate::runUpdates( $dataUpdates, $mode );
+			try {
+				DataUpdate::runUpdates( $dataUpdates, $mode );
+			} catch ( Exception $e ) {
+				// Let the other updates occur if these had to rollback
+				MWExceptionHandler::logException( $e );
+			}
 			// Execute the non-DataUpdate tasks
 			foreach ( $otherUpdates as $update ) {
 				try {
