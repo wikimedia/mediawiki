@@ -24,7 +24,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgAuth' => $wgDisableAuthManager ? new AuthPlugin : new MediaWiki\Auth\AuthManagerAuthPlugin,
 			'wgRequest' => new FauxRequest( [] ),
-			'wgUser' => self::$users['sysop']->user,
+			'wgUser' => self::$users['sysop']->getUser(),
 		] );
 
 		$this->apiContext = new ApiTestContext();
@@ -183,11 +183,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $data;
 	}
 
-	protected function getTokenList( $user, $session = null ) {
+	protected function getTokenList( TestUser $user, $session = null ) {
 		$data = $this->doApiRequest( [
 			'action' => 'tokens',
 			'type' => 'edit|delete|protect|move|block|unblock|watch'
-		], $session, false, $user->user );
+		], $session, false, $user->getUser() );
 
 		if ( !array_key_exists( 'tokens', $data[0] ) ) {
 			throw new MWException( 'Api failed to return a token list' );

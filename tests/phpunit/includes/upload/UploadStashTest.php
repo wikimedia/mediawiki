@@ -7,7 +7,7 @@
  */
 class UploadStashTest extends MediaWikiTestCase {
 	/**
-	 * @var array Array of UploadStashTestUser
+	 * @var TestUser[] Array of UploadStashTestUser
 	 */
 	public static $users;
 
@@ -55,7 +55,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug29408() {
-		$this->setMwGlobals( 'wgUser', self::$users['uploader']->user );
+		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$stash = new UploadStash( $repo );
