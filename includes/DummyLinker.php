@@ -54,9 +54,9 @@ class DummyLinker {
 	public function link(
 		$target,
 		$html = null,
-		$customAttribs = [ ],
-		$query = [ ],
-		$options = [ ]
+		$customAttribs = [],
+		$query = [],
+		$options = []
 	) {
 		return Linker::link(
 			$target,
@@ -70,8 +70,8 @@ class DummyLinker {
 	public function linkKnown(
 		$target,
 		$html = null,
-		$customAttribs = [ ],
-		$query = [ ],
+		$customAttribs = [],
+		$query = [],
 		$options = [ 'known', 'noclasses' ]
 	) {
 		return Linker::linkKnown(
@@ -123,8 +123,8 @@ class DummyLinker {
 		Parser $parser,
 		Title $title,
 		$file,
-		$frameParams = [ ],
-		$handlerParams = [ ],
+		$frameParams = [],
+		$handlerParams = [],
 		$time = false,
 		$query = "",
 		$widthOption = null
@@ -147,7 +147,7 @@ class DummyLinker {
 		$label = '',
 		$alt,
 		$align = 'right',
-		$params = [ ],
+		$params = [],
 		$framed = false,
 		$manualthumb = ""
 	) {
@@ -166,8 +166,8 @@ class DummyLinker {
 	public function makeThumbLink2(
 		Title $title,
 		$file,
-		$frameParams = [ ],
-		$handlerParams = [ ],
+		$frameParams = [],
+		$handlerParams = [],
 		$time = false,
 		$query = ""
 	) {
@@ -232,7 +232,7 @@ class DummyLinker {
 		$text,
 		$escape = true,
 		$linktype = '',
-		$attribs = [ ],
+		$attribs = [],
 		$title = null
 	) {
 		return Linker::makeExternalLink(
@@ -329,7 +329,7 @@ class DummyLinker {
 		Title $title,
 		$text,
 		$wikiId = null,
-		$options = [ ]
+		$options = []
 	) {
 		return Linker::makeCommentLink(
 			$title,
@@ -471,7 +471,7 @@ class DummyLinker {
 		return Linker::formatSize( $size );
 	}
 
-	public function titleAttrib( $name, $options = null, array $msgParams = [ ] ) {
+	public function titleAttrib( $name, $options = null, array $msgParams = [] ) {
 		return Linker::titleAttrib(
 			$name,
 			$options,
@@ -503,7 +503,7 @@ class DummyLinker {
 		return Linker::revDeleteLinkDisabled( $delete );
 	}
 
-	public function tooltipAndAccesskeyAttribs( $name, array $msgParams = [ ] ) {
+	public function tooltipAndAccesskeyAttribs( $name, array $msgParams = [] ) {
 		return Linker::tooltipAndAccesskeyAttribs(
 			$name,
 			$msgParams
