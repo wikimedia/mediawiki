@@ -2589,17 +2589,13 @@ abstract class DatabaseBase implements IDatabase {
 			} elseif ( !$this->mTrxAutomatic ) {
 				// We want to warn about inadvertently nested begin/commit pairs, but not about
 				// auto-committing implicit transactions that were started by query() via DBO_TRX
-				$msg = "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-					" performing implicit commit!";
-				wfWarn( $msg );
-				wfLogDBError( $msg,
-					$this->getLogContext( [
-						'method' => __METHOD__,
-						'fname' => $fname,
-					] )
+				throw new DBUnexpectedError(
+					$this,
+					"$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+						" performing implicit commit!"
 				);
 			} else {
-				// if the transaction was automatic and has done write operations
+				// The transaction was automatic and has done write operations
 				if ( $this->mTrxDoneWrites ) {
 					wfDebug( "$fname: Automatic transaction with writes in progress" .
 						" (from {$this->mTrxFname}), performing implicit commit!\n"
