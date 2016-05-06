@@ -206,17 +206,17 @@ CREATE TABLE /*_*/archive (
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
    ar_text NVARCHAR(MAX) NOT NULL,
    ar_comment NVARCHAR(255) NOT NULL,
-   ar_user INT REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
+   ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
    ar_user_text NVARCHAR(255) NOT NULL,
    ar_timestamp varchar(14) NOT NULL default '',
    ar_minor_edit BIT NOT NULL DEFAULT 0,
    ar_flags NVARCHAR(255) NOT NULL,
    ar_rev_id INT NULL, -- NOT a FK, the row gets deleted from revision and moved here
-   ar_text_id INT REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
+   ar_text_id INT CONSTRAINT ar_text_id__old_id__fk FOREIGN KEY REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
    ar_deleted TINYINT NOT NULL DEFAULT 0,
    ar_len INT,
    ar_page_id INT NULL, -- NOT a FK, the row gets deleted from page and moved here
-   ar_parent_id INT NULL REFERENCES /*_*/revision(rev_id),
+   ar_parent_id INT NULL, -- NOT FK
    ar_sha1 nvarchar(32) default null,
    ar_content_model nvarchar(32) DEFAULT NULL,
   ar_content_format nvarchar(64) DEFAULT NULL
@@ -785,11 +785,11 @@ CREATE INDEX /*i*/us_timestamp ON /*_*/uploadstash (us_timestamp);
 -- the last few days, see Article::editUpdates()
 --
 CREATE TABLE /*_*/recentchanges (
-  rc_id int NOT NULL PRIMARY KEY IDENTITY,
+  rc_id int NOT NULL CONSTRAINT recentchanges__pk PRIMARY KEY IDENTITY,
   rc_timestamp varchar(14) not null default '',
 
   -- As in revision
-  rc_user int NOT NULL default 0 REFERENCES /*_*/mwuser(user_id),
+  rc_user int NOT NULL default 0 CONSTRAINT rc_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
   rc_user_text nvarchar(255) NOT NULL,
 
   -- When pages are renamed, their RC entries do _not_ change.
@@ -811,13 +811,13 @@ CREATE TABLE /*_*/recentchanges (
   -- Key to page_id (was cur_id prior to 1.5).
   -- This will keep links working after moves while
   -- retaining the at-the-time name in the changes list.
-  rc_cur_id int REFERENCES /*_*/page(page_id),
+  rc_cur_id int, -- NOT FK
 
   -- rev_id of the given revision
-  rc_this_oldid int REFERENCES /*_*/revision(rev_id),
+  rc_this_oldid int, -- NOT FK
 
   -- rev_id of the prior revision, for generating diff links.
-  rc_last_oldid int REFERENCES /*_*/revision(rev_id),
+  rc_last_oldid int, -- NOT FK
 
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)
   rc_type tinyint NOT NULL default 0,
@@ -986,7 +986,7 @@ CREATE TABLE /*_*/logging (
   log_timestamp varchar(14) NOT NULL default '',
 
   -- The user who performed this action; key to user_id
-  log_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
+  log_user int, -- NOT an FK, if a user is deleted we still want to maintain a record of who did a thing
 
   -- Name of the user who performed this action
   log_user_text nvarchar(255) NOT NULL default '',
@@ -995,7 +995,7 @@ CREATE TABLE /*_*/logging (
   -- this will point to the user page.
   log_namespace int NOT NULL default 0,
   log_title nvarchar(255) NOT NULL default '',
-  log_page int NULL REFERENCES /*_*/page(page_id) ON DELETE SET NULL,
+  log_page int NULL, -- NOT an FK, logging entries are inserted for deleted pages which still reference the deleted page ids
 
   -- Freeform text. Interpreted as edit history comments.
   log_comment nvarchar(255) NOT NULL default '',
@@ -1020,7 +1020,7 @@ CREATE INDEX /*i*/log_user_text_time ON /*_*/logging (log_user_text, log_timesta
 
 INSERT INTO /*_*/logging (log_user,log_page,log_params) VALUES(0,0,'');
 
-ALTER TABLE /*_*/recentchanges ADD CONSTRAINT FK_rc_logid_log_id FOREIGN KEY (rc_logid) REFERENCES /*_*/logging(log_id) ON DELETE CASCADE;
+ALTER TABLE /*_*/recentchanges ADD CONSTRAINT rc_logid__log_id__fk FOREIGN KEY (rc_logid) REFERENCES /*_*/logging(log_id) ON DELETE CASCADE;
 
 CREATE TABLE /*_*/log_search (
   -- The type of ID (rev ID, log ID, rev timestamp, username)
