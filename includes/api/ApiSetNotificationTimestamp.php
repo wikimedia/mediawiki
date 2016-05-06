@@ -142,17 +142,10 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				);
 
 				// Query the results of our update
-				$timestamps = [];
-				$lb = new LinkBatch( $pageSet->getTitles() );
-				$res = $dbw->select(
-					'watchlist',
-					[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-					[ 'wl_user' => $user->getId(), $lb->constructSet( 'wl', $dbw ) ],
-					__METHOD__
+				$timestamps = $watchedItemStore->getNotificationTimestampsBatch(
+					$user,
+					$pageSet->getTitles()
 				);
-				foreach ( $res as $row ) {
-					$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
-				}
 
 				// Now, put the valid titles into the result
 				/** @var $title Title */
