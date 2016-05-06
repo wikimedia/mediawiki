@@ -539,6 +539,7 @@ class SpecialPageFactory {
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			if ( $context->getRequest()->wasPosted() && !$page->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
+				$context->getRequest()->markAsSafeRequest();
 			}
 		}
 
