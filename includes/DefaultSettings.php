@@ -7291,7 +7291,7 @@ $wgActionFilteredLogs = [
 	],
 	'newusers' => [
 		'create' => [ 'create', 'newusers' ],
-		'create2' => ['create2' ],
+		'create2' => [ 'create2' ],
 		'autocreate' => [ 'autocreate' ],
 		'byemail' => [ 'byemail' ],
 	],
@@ -7303,7 +7303,7 @@ $wgActionFilteredLogs = [
 		'protect' => [ 'protect' ],
 		'modify' => [ 'modify' ],
 		'unprotect' => [ 'unprotect' ],
-		'move_prot' => ['move_prot'],
+		'move_prot' => [ 'move_prot' ],
 	],
 	'rights' => [
 		'rights' => [ 'rights' ],

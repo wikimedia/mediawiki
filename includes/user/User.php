@@ -475,7 +475,7 @@ class User implements IDBAccessObject {
 	 */
 	protected static function getInProcessCache() {
 		if ( !self::$inProcessCache ) {
-			self::$inProcessCache = new HashBagOStuff( ['maxKeys' => 10] );
+			self::$inProcessCache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
 		}
 		return self::$inProcessCache;
 	}
