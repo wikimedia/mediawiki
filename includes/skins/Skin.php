@@ -1589,8 +1589,8 @@ abstract class Skin extends ContextSource {
 	public function linkKnown(
 		$target,
 		$html = null,
-		$customAttribs = [ ],
-		$query = [ ],
+		$customAttribs = [],
+		$query = [],
 		$options = [ 'known', 'noclasses' ]
 	) {
 		wfDeprecated( __METHOD__, '1.21' );
