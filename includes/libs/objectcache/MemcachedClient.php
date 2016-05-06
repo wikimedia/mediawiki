@@ -487,7 +487,7 @@ class MemcachedClient {
 	 */
 	public function get_multi( $keys ) {
 		if ( !$this->_active ) {
-			return false;
+			return array();
 		}
 
 		if ( isset( $this->stats['get_multi'] ) ) {
