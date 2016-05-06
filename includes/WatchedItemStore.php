@@ -189,7 +189,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @throws MWException
 	 */
 	private function getConnection( $slaveOrMaster ) {
-		return $this->loadBalancer->getConnection( $slaveOrMaster, [ 'watchlist' ] );
+		return $this->loadBalancer->getConnection( $slaveOrMaster );
 	}
 
 	/**
