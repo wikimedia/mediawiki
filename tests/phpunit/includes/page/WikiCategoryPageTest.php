@@ -22,7 +22,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $title, 'hiddencat' )
-			->will( $this->returnValue( [ ] ) );
+			->will( $this->returnValue( [] ) );
 
 		$scopedOverride = PageProps::overrideInstance( $pageProps );
 
@@ -50,7 +50,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $categoryTitle, 'hiddencat' )
-			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [ ] ) );
+			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] ) );
 
 		$scopedOverride = PageProps::overrideInstance( $pageProps );
 

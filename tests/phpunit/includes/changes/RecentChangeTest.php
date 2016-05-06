@@ -161,7 +161,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $categoryTitle, 'hiddencat' )
-			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [ ] ) );
+			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] ) );
 
 		$scopedOverride = PageProps::overrideInstance( $pageProps );
 
