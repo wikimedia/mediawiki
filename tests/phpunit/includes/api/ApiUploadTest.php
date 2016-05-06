@@ -27,11 +27,13 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 */
 	public function testLogin() {
 		$user = self::$users['uploader'];
+		$userName = $user->getUser()->getName();
+		$password = $user->getPassword();
 
 		$params = [
 			'action' => 'login',
-			'lgname' => $user->username,
-			'lgpassword' => $user->password
+			'lgname' => $userName,
+			'lgpassword' => $password
 		];
 		list( $result, , $session ) = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( "login", $result );
@@ -42,8 +44,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$params = [
 			'action' => 'login',
 			'lgtoken' => $token,
-			'lgname' => $user->username,
-			'lgpassword' => $user->password
+			'lgname' => $userName,
+			'lgpassword' => $password
 		];
 		list( $result, , $session ) = $this->doApiRequest( $params, $session );
 		$this->assertArrayHasKey( "login", $result );
