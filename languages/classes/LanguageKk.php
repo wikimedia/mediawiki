@@ -415,7 +415,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 *
 	 * @return string
 	 */
-	function ucfirst( $string ) {
+	public function ucfirst( $string ) {
 		if ( $string[0] == 'i' ) {
 			$variant = $this->getPreferredVariant();
 			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {

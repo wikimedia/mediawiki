@@ -59,7 +59,7 @@ class LanguageEo extends Language {
 	 * @param string $string Text to be converted
 	 * @return string
 	 */
-	function iconv( $in, $out, $string ) {
+	public function iconv( $in, $out, $string ) {
 		if ( strcasecmp( $in, 'x' ) == 0 && strcasecmp( $out, 'utf-8' ) == 0 ) {
 			return preg_replace_callback(
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
