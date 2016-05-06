@@ -487,6 +487,7 @@ class MediaWiki {
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			if ( $request->wasPosted() && !$action->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
+				$request->markNullipotent();
 			}
 
 			# Let CDN cache things if we can purge them.

@@ -80,6 +80,9 @@ class WebRequest {
 	 */
 	protected $sessionId = null;
 
+	/** @var bool Whether this request is nullipotent (even if it is an HTTP post) */
+	protected $markedNullipotent = false;
+
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
 			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
@@ -318,7 +321,7 @@ class WebRequest {
 	 *
 	 * @param string $path The URL path given from the client
 	 * @param array $bases One or more URLs, optionally with $1 at the end
-	 * @param string $key If provided, the matching key in $bases will be
+	 * @param string|bool $key If provided, the matching key in $bases will be
 	 *    passed on as the value of this URL parameter
 	 * @return array Array of URL variables to interpolate; empty if no match
 	 */
@@ -1022,7 +1025,7 @@ class WebRequest {
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		return $this->getSession()->set( $key, $data );
+		$this->getSession()->set( $key, $data );
 	}
 
 	/**
@@ -1244,5 +1247,42 @@ HTML;
 	 */
 	public function setIP( $ip ) {
 		$this->ip = $ip;
+	}
+
+	/**
+	 * Whether this request should be identified as being nullipotent (or "safe")
+	 *
+	 * This means that the client is not requesting any state changes and database writes are
+	 * not inherently required. Cache updates, logging, and post-send updates may still occur.
+	 *
+	 * @return bool
+	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+	 * @since 1.28
+	 */
+	public function isNullipotent() {
+		if ( !isset( $_SERVER['REQUEST_METHOD'] ) ) {
+			return false; // CLI mode
+		}
+
+		if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+			return $this->markedNullipotent;
+		} elseif ( in_array( $_SERVER['REQUEST_METHOD'], [ 'GET', 'HEAD', 'OPTIONS'] ) ) {
+			return true; // HTTP "safe methods"
+		}
+
+		return false; // PUT/DELETE
+	}
+
+	/**
+	 * Mark this request is identified as being nullipotent even if it is a POST request
+	 *
+	 * POST requests are often used due to the need for a client payload, even if the request
+	 * is otherwise equivalent to a "safe method" request.
+	 *
+	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+	 * @since 1.28
+	 */
+	public function markNullipotent() {
+		$this->markedNullipotent = true;
 	}
 }
