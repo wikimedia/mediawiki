@@ -1355,6 +1355,7 @@ class ApiMain extends ApiBase {
 				$trxProfiler->setExpectations( $limits['POST'], __METHOD__ );
 			} else {
 				$trxProfiler->setExpectations( $limits['POST-nonwrite'], __METHOD__ );
+				$this->getRequest()->markNullipotent();
 			}
 		} else {
 			$trxProfiler->setExpectations( $limits['GET'], __METHOD__ );
