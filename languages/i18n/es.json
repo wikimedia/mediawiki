@@ -183,7 +183,7 @@
 	"tog-ccmeonemails": "Recibir copias de los correos electrónicos que envíe a otros usuarios",
 	"tog-diffonly": "No mostrar el contenido de la página debajo de la lista de diferencias",
 	"tog-showhiddencats": "Mostrar categorías ocultas",
-	"tog-norollbackdiff": "Omitir la lista de diferencias después de revertir",
+	"tog-norollbackdiff": "No mostrar la lista de diferencias después de revertir",
 	"tog-useeditwarning": "Avisarme cuando abandone una página en edición con cambios sin guardar",
 	"tog-prefershttps": "Utilizar siempre conexiones seguras en mis sesiones",
 	"underline-always": "Siempre",

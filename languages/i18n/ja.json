@@ -2248,6 +2248,7 @@
 	"ipb-unblock": "利用者またはIPアドレスのブロックを解除",
 	"ipb-blocklist": "現在有効なブロックを表示",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}の投稿の一覧",
+	"ipb-blocklist-duration-left": "残り $1",
 	"unblockip": "ブロックを解除",
 	"unblockiptext": "以下のフォームで利用者またはIPアドレスのブロックを解除できます。",
 	"ipusubmit": "このブロックを解除",

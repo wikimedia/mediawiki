@@ -46,7 +46,8 @@
 			"Giorgos456",
 			"SucreRouge",
 			"Gts-tg",
-			"Nemo bis"
+			"Nemo bis",
+			"Αντιγόνη"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1699,7 +1700,7 @@
 	"wantedtemplates": "Ζητούμενα πρότυπα",
 	"mostlinked": "Σελίδες με τους περισσότερους συνδέσμους προς αυτές",
 	"mostlinkedcategories": "Κατηγορίες με τους περισσότερους συνδέσμους προς αυτές",
-	"mostlinkedtemplates": "Σελίδες που έχουν ενσωματωθεί περισσότερο από όλες τις άλλες",
+	"mostlinkedtemplates": "Περισσότερο ενσωματωμένες σελίδες",
 	"mostcategories": "Σελίδες με τις περισσότερες κατηγορίες",
 	"mostimages": "Αρχεία με τους περισσότερους συνδέσμους προς αυτά",
 	"mostinterwikis": "Σελίδες με τους περισσότερους διαγλωσσικούς συνδέσμους",
@@ -3320,7 +3321,7 @@
 	"logentry-protect-protect": "$1 {{GENDER:$2|προστατευμένος|προστατευμένη}} $3 $4",
 	"logentry-protect-modify": "$1 {{GENDER:$2|άλλαξε}} επίπεδο προστασίας για $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|άλλαξε}} επίπεδο προστασίας για $3 $4 [διαδοχική]",
-	"logentry-rights-rights": "{{GENDER:$2|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας για {{GENDER:$3|τον|την}} $3 από $4 σε $5",
+	"logentry-rights-rights": "{{GENDER:$2|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας για {{GENDER:$6|τον|την}} $3 από $4 σε $5",
 	"logentry-rights-rights-legacy": "{{GENDER:$2|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας {{GENDER:$1|του|της}} $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|προωθήθηκε}} αυτόματα από το $4 στο $5",
 	"logentry-upload-upload": "{{GENDER:$2|Ο|Η}} $1 ανέβασε το $3",

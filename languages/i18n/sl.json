@@ -54,7 +54,7 @@
 	"tog-ccmeonemails": "Pošlji mi kopijo e-pošt, ki jih pošljem drugim uporabnikom",
 	"tog-diffonly": "Pod primerjavo ne prikaži vsebine strani",
 	"tog-showhiddencats": "Prikaži skrite kategorije",
-	"tog-norollbackdiff": "Ne prikaži primerjave po izvedeni vrnitvi",
+	"tog-norollbackdiff": "Po izvedeni vrnitvi ne prikaži primerjave",
 	"tog-useeditwarning": "Opozori me, ko skušam zapreti urejevalno polje z neshranjenimi spremembami",
 	"tog-prefershttps": "Med prijavo vedno uporabljaj varno povezavo",
 	"underline-always": "Vedno",

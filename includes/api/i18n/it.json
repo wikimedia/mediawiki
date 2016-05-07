@@ -189,6 +189,7 @@
 	"apihelp-paraminfo-description": "Ottieni informazioni sui moduli API.",
 	"apihelp-paraminfo-param-helpformat": "Formato delle stringhe di aiuto.",
 	"apihelp-parse-param-summary": "Oggetto da analizzare.",
+	"apihelp-parse-param-redirects": "Se <var>$1page</var> o <var>$1pageid</var> è impostato come reindirizzamento, lo risolve.",
 	"apihelp-parse-param-prop": "Quali pezzi di informazioni ottenere:",
 	"apihelp-parse-example-text": "Analizza wikitext.",
 	"apihelp-parse-example-texttitle": "Analizza wikitext, specificando il titolo della pagina.",
