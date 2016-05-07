@@ -677,35 +677,45 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnection( DB_MASTER );
-		$res = $dbw->select( [ 'watchlist' ],
-			[ 'wl_user' ],
+
+		$res = $dbw->select(
+			'watchlist',
+			[ 'wl_user', 'wl_id' ],
 			[
 				'wl_user != ' . intval( $editor->getId() ),
 				'wl_namespace' => $target->getNamespace(),
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
-			], __METHOD__
+			],
+			__METHOD__
 		);
 
-		$watchers = [];
+		$watchIds = [];
+		$watchersSeenAll = [];
 		foreach ( $res as $row ) {
-			$watchers[] = intval( $row->wl_user );
+			$watchIds[] = (int)$row->wl_id;
+			$watchersSeenAll[] = (int)$row->wl_user;
 		}
 
-		if ( $watchers ) {
+		if ( $watchIds ) {
 			// Update wl_notificationtimestamp for all watching users except the editor
-			$fname = __METHOD__;
 			$dbw->onTransactionIdle(
-				function () use ( $dbw, $timestamp, $watchers, $target, $fname ) {
-					$dbw->update( 'watchlist',
-						[ /* SET */
-							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-						], [ /* WHERE */
-							'wl_user' => $watchers,
-							'wl_namespace' => $target->getNamespace(),
-							'wl_title' => $target->getDBkey(),
-						], $fname
-					);
+				function () use ( $dbw, $timestamp, $watchIds, $target ) {
+					global $wgUpdateRowsPerQuery;
+
+					$idBatches = array_chunk( $watchIds, $wgUpdateRowsPerQuery );
+					foreach ( $idBatches as $idBatch ) {
+						$dbw->update(
+							'watchlist',
+							[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+							[ 'wl_id' => $idBatch ],
+							__METHOD__
+						);
+						if ( count( $idBatches ) > 1 ) {
+							wfGetLBFactory()->waitForReplication();
+						}
+					}
+
 					$this->uncacheLinkTarget( $target );
 				}
 			);
@@ -713,7 +723,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 		$this->reuseConnection( $dbw );
 
-		return $watchers;
+		return $watchersSeenAll;
 	}
 
 	/**
