@@ -40,7 +40,7 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_CACHE = 'error_cache';
 	const ERROR_UNCACHEABLE = 'uncacheable';
 
-	const PRESUME_FRESH_TTL_SEC = 5;
+	const PRESUME_FRESH_TTL_SEC = 30;
 
 	public function execute() {
 		$user = $this->getUser();
