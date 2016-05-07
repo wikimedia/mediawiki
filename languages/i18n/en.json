@@ -2421,6 +2421,7 @@
 	"lockdbsuccesstext": "The database has been locked.<br />\nRemember to [[Special:UnlockDB|remove the lock]] after your maintenance is complete.",
 	"unlockdbsuccesstext": "The database has been unlocked.",
 	"lockfilenotwritable": "The database lock file is not writable.\nTo lock or unlock the database, this needs to be writable by the web server.",
+	"databaselocked": "The database is already locked.",
 	"databasenotlocked": "The database is not locked.",
 	"lockedbyandtime": "(by {{GENDER:$1|$1}} on $2 at $3)",
 	"move-page": "Move $1",
