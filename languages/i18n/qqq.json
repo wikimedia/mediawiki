@@ -2599,6 +2599,7 @@
 	"lockdbsuccesstext": "Used as message text in [[Special:LockDB]].\n\nSee also:\n* {{msg-mw|Lockdbsuccesssub|subtitle}}\n* {{msg-mw|Lockdbsuccesstext|text}}\n* {{msg-mw|Unlockdbsuccesssub|subtitle}}\n* {{msg-mw|Unlockdbsuccesstext|text}}",
 	"unlockdbsuccesstext": "Used as message text in [[Special:UnlockDB]].\n\nSee also:\n* {{msg-mw|Lockdbsuccesssub|subtitle}}\n* {{msg-mw|Lockdbsuccesstext|text}}\n* {{msg-mw|Unlockdbsuccesssub|subtitle}}\n* {{msg-mw|Unlockdbsuccesstext|text}}",
 	"lockfilenotwritable": "'No longer needed' on wikipedia.",
+	"databaselocked": "Used as error message in [[Special:LockDB]].\nThe title of this error message is {{msg-mw|Lockdb}}.\n\nSee also:\n* {{msg-mw|Lockdb|title}}\n* {{msg-mw|Databaselocked|message}}",
 	"databasenotlocked": "Used as error message in [[Special:UnlockDB]].\nThe title of this error message is {{msg-mw|Lockdb}}.\n\nSee also:\n* {{msg-mw|Lockdb|title}}\n* {{msg-mw|Databasenotlocked|message}}",
 	"lockedbyandtime": "Used as part of the message when a database is locked through [[Special:LockDB]]. Parameters:\n* $1 is the user that locked the database.\n* $2 is the date on which the lock was made\n* $3 is the time at which the lock was made",
 	"move-page": "Used as page title of [[Special:MovePage]] to move pages.\n\nSee example: [[Special:MovePage/Portal:En]].\n\nParameters:\n* $1 - the name of the page to be moved (without link)\n{{Identical|Move}}",

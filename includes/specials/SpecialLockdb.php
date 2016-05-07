@@ -47,6 +47,9 @@ class SpecialLockdb extends FormSpecialPage {
 		if ( !is_writable( dirname( $this->getConfig()->get( 'ReadOnlyFile' ) ) ) ) {
 			throw new ErrorPageError( 'lockdb', 'lockfilenotwritable' );
 		}
+		if ( file_exists( $this->getConfig()->get( 'ReadOnlyFile' ) ) ) {
+			throw new ErrorPageError( 'lockdb', 'databaselocked' );
+		}
 	}
 
 	protected function getFormFields() {
