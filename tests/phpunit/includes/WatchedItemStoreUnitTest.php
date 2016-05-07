@@ -2371,8 +2371,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				[ 'watchlist' ],
-				[ 'wl_user' ],
+				'watchlist',
+				[ 'wl_user', 'wl_id' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
@@ -2382,8 +2382,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will(
 				$this->returnValue( [
-					$this->getFakeRow( [ 'wl_user' => '2' ] ),
-					$this->getFakeRow( [ 'wl_user' => '3' ] )
+					$this->getFakeRow( [ 'wl_user' => '2', 'wl_id' => '20' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3', 'wl_id' => '30' ] )
 				] )
 			);
 		$mockDb->expects( $this->once() )
@@ -2397,11 +2397,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with(
 				'watchlist',
 				[ 'wl_notificationtimestamp' => null ],
-				[
-					'wl_user' => [ 2, 3 ],
-					'wl_namespace' => 0,
-					'wl_title' => 'SomeDbKey',
-				]
+				[ 'wl_id' => [ 20, 30 ] ]
 			);
 
 		$mockCache = $this->getMockCache();
@@ -2429,8 +2425,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				[ 'watchlist' ],
-				[ 'wl_user' ],
+				'watchlist',
+				[ 'wl_user', 'wl_id' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
@@ -2479,8 +2475,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'select' )
 			->will(
 				$this->returnValue( [
-					$this->getFakeRow( [ 'wl_user' => '2' ] ),
-					$this->getFakeRow( [ 'wl_user' => '3' ] )
+					$this->getFakeRow( [ 'wl_user' => '2', 'wl_id' => '20' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3', 'wl_id' => '30' ] )
 				] )
 			);
 		$mockDb->expects( $this->once() )
