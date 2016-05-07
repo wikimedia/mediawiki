@@ -33,7 +33,7 @@ class SpecialUnlockdb extends FormSpecialPage {
 	}
 
 	public function doesWrites() {
-		return true;
+		return false;
 	}
 
 	public function requiresWrite() {
