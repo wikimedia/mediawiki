@@ -4,6 +4,7 @@ namespace MediaWiki;
 use Config;
 use ConfigFactory;
 use EventRelayerGroup;
+use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use LBFactory;
@@ -420,6 +421,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @return GenderCache
+	 */
+	public function getGenderCache() {
+		return $this->getService( 'GenderCache' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

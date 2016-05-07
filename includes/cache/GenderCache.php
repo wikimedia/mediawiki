@@ -21,6 +21,7 @@
  * @author Niklas Laxström
  * @ingroup Cache
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Caches user genders when needed to use correct namespace aliases.
@@ -34,18 +35,11 @@ class GenderCache {
 	protected $missLimit = 1000;
 
 	/**
+	 * @deprecated in 1.28 see MediaWikiServices::getInstance()->getGenderCache()
 	 * @return GenderCache
 	 */
 	public static function singleton() {
-		static $that = null;
-		if ( $that === null ) {
-			$that = new self();
-		}
-
-		return $that;
-	}
-
-	protected function __construct() {
+		return MediaWikiServices::getInstance()->getGenderCache();
 	}
 
 	/**
