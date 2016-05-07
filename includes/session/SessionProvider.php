@@ -484,7 +484,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 			// @codeCoverageIgnoreEnd
 		}
 		if ( strlen( $hash ) >= 40 ) {
-			$hash = wfBaseConvert( $hash, 16, 32, 32 );
+			$hash = \Wikimedia\base_convert( $hash, 16, 32, 32 );
 		}
 		return substr( $hash, -32 );
 	}
