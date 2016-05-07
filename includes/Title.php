@@ -209,6 +209,9 @@ class Title implements LinkTarget {
 		return self::getMediaWikiTitleCodec();
 	}
 
+	/**
+	 * @access protected
+	 */
 	function __construct() {
 	}
 
