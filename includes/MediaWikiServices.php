@@ -66,6 +66,8 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * Returns the global default instance of the top level service locator.
 	 *
+	 * @since 1.27
+	 *
 	 * The default instance is initialized using the service instantiator functions
 	 * defined in ServiceWiring.php.
 	 *
@@ -91,6 +93,8 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * Replaces the global MediaWikiServices instance.
 	 *
+	 * @since 1.28
+	 *
 	 * @note This is for use in PHPUnit tests only!
 	 *
 	 * @throws MWException if called outside of PHPUnit tests.
@@ -114,6 +118,8 @@ class MediaWikiServices extends ServiceContainer {
 	 * Creates a new instance of MediaWikiServices and sets it as the global default
 	 * instance. getInstance() will return a different MediaWikiServices object
 	 * after every call to resetGlobalServiceLocator().
+	 *
+	 * @since 1.28
 	 *
 	 * @warning This should not be used during normal operation. It is intended for use
 	 * when the configuration has changed significantly since bootstrap time, e.g.
@@ -194,6 +200,8 @@ class MediaWikiServices extends ServiceContainer {
 	 * storage layer will result in an error. Use resetGlobalInstance() to restore normal
 	 * operation.
 	 *
+	 * @since 1.28
+	 *
 	 * @warning This is intended for extreme situations only and should never be used
 	 * while serving normal web requests. Legitimate use cases for this method include
 	 * the installation process. Test fixtures may also use this, if the fixture relies
@@ -217,6 +225,8 @@ class MediaWikiServices extends ServiceContainer {
 	 * returns from after pcntl_fork(). It's also safe, but generally unnecessary,
 	 * to call this method from the parent process.
 	 *
+	 * @since 1.28
+	 *
 	 * @note This is intended for use in the context of process forking only!
 	 *
 	 * @see resetGlobalInstance()
@@ -234,6 +244,8 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * Resets the given service for testing purposes.
+	 *
+	 * @since 1.28
 	 *
 	 * @warning This is generally unsafe! Other services may still retain references
 	 * to the stale service instance, leading to failures and inconsistencies. Subclasses
@@ -263,6 +275,8 @@ class MediaWikiServices extends ServiceContainer {
 	 * Convenience method that throws an exception unless it is called during a phase in which
 	 * resetting of global services is allowed. In general, services should not be reset
 	 * individually, since that may introduce inconsistencies.
+	 *
+	 * @since 1.28
 	 *
 	 * This method will throw an exception if:
 	 *
@@ -321,6 +335,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * when creating the MainConfig service. Application logic should
 	 * use getMainConfig() to get a Config instances.
 	 *
+	 * @since 1.27
 	 * @return Config
 	 */
 	public function getBootstrapConfig() {
@@ -328,6 +343,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return ConfigFactory
 	 */
 	public function getConfigFactory() {
@@ -338,6 +354,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * Returns the Config object that provides configuration for MediaWiki core.
 	 * This may or may not be the same object that is returned by getBootstrapConfig().
 	 *
+	 * @since 1.27
 	 * @return Config
 	 */
 	public function getMainConfig() {
@@ -345,6 +362,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SiteLookup
 	 */
 	public function getSiteLookup() {
@@ -352,6 +370,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SiteStore
 	 */
 	public function getSiteStore() {
@@ -359,6 +378,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return StatsdDataFactory
 	 */
 	public function getStatsdDataFactory() {
@@ -366,6 +386,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return EventRelayerGroup
 	 */
 	public function getEventRelayerGroup() {
@@ -373,6 +394,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SearchEngine
 	 */
 	public function newSearchEngine() {
@@ -381,6 +403,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SearchEngineFactory
 	 */
 	public function getSearchEngineFactory() {
@@ -388,6 +411,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SearchEngineConfig
 	 */
 	public function getSearchEngineConfig() {
@@ -395,6 +419,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.27
 	 * @return SkinFactory
 	 */
 	public function getSkinFactory() {
@@ -402,6 +427,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.28
 	 * @return LBFactory
 	 */
 	public function getDBLoadBalancerFactory() {
@@ -409,6 +435,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.28
 	 * @return LoadBalancer The main DB load balancer for the local wiki.
 	 */
 	public function getDBLoadBalancer() {
@@ -416,6 +443,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.28
 	 * @return WatchedItemStore
 	 */
 	public function getWatchedItemStore() {
