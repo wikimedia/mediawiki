@@ -173,6 +173,7 @@ a {
 .mw-body a.external.text:after,
 .mw-body a.external.autonumber:after {
 	content: " (" attr( href ) ")";
+	word-break: break-all;
 	word-wrap: break-word;
 }
 
