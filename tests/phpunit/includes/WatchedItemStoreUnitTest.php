@@ -2444,10 +2444,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testUpdateNotificationTimestamp_watchersExist() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
+			->method( 'select' )
 			->with(
 				'watchlist',
-				'wl_user',
+				[ 'wl_user', 'wl_id' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
@@ -2455,17 +2455,19 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 					'wl_notificationtimestamp IS NULL'
 				]
 			)
-			->will( $this->returnValue( [ '2', '3' ] ) );
+			->will(
+				$this->returnValue( [
+					$this->getFakeRow( [ 'wl_user' => '2', 'wl_id' => '20' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3', 'wl_id' => '30' ] )
+				] )
+			);
 		$mockDb->expects( $this->once() )
 			->method( 'update' )
 			->with(
 				'watchlist',
+				// timestamp() and makeList() return null in mock
 				[ 'wl_notificationtimestamp' => null ],
-				[
-					'wl_user' => [ 2, 3 ],
-					'wl_namespace' => 0,
-					'wl_title' => 'SomeDbKey',
-				]
+				[ 'wl_id' => [ 20, 30 ], null ]
 			);
 
 		$mockCache = $this->getMockCache();
@@ -2491,10 +2493,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testUpdateNotificationTimestamp_noWatchers() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
+			->method( 'select' )
 			->with(
 				'watchlist',
-				'wl_user',
+				[ 'wl_user', 'wl_id' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
@@ -2538,9 +2540,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
 			) );
 		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
+			->method( 'select' )
 			->will(
-				$this->returnValue( [ '2', '3' ] )
+				$this->returnValue( [
+					$this->getFakeRow( [ 'wl_user' => '2', 'wl_id' => '20' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3', 'wl_id' => '30' ] )
+				] )
 			);
 		$mockDb->expects( $this->once() )
 			->method( 'update' );
