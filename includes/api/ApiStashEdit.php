@@ -219,6 +219,9 @@ class ApiStashEdit extends ApiBase {
 			return false;
 		}
 
+		// Set the time the output was generated
+		$pOut->setCacheTime( wfTimestampNow() );
+
 		// Build a value to cache with a proper TTL
 		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp );
 		if ( !$stashInfo ) {
