@@ -719,9 +719,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnection( DB_MASTER );
-		$uids = $dbw->selectFieldValues(
+		$res = $dbw->select(
 			'watchlist',
-			'wl_user',
+			[ 'wl_user', 'wl_id' ],
 			[
 				'wl_user != ' . intval( $editor->getId() ),
 				'wl_namespace' => $target->getNamespace(),
@@ -732,40 +732,53 @@ class WatchedItemStore implements StatsdAwareInterface {
 		);
 		$this->reuseConnection( $dbw );
 
-		$watchers = array_map( 'intval', $uids );
-		if ( $watchers ) {
-			// Update wl_notificationtimestamp for all watching users except the editor
-			$fname = __METHOD__;
-			DeferredUpdates::addCallableUpdate(
-				function () use ( $timestamp, $watchers, $target, $fname ) {
-					global $wgUpdateRowsPerQuery;
-
-					$dbw = $this->getConnection( DB_MASTER );
-
-					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
-					foreach ( $watchersChunks as $watchersChunk ) {
-						$dbw->update( 'watchlist',
-							[ /* SET */
-								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-							], [ /* WHERE - TODO Use wl_id T130067 */
-								'wl_user' => $watchersChunk,
-								'wl_namespace' => $target->getNamespace(),
-								'wl_title' => $target->getDBkey(),
-							], $fname
-						);
-						if ( count( $watchersChunks ) > 1 ) {
-							$dbw->commit( __METHOD__, 'flush' );
-							wfGetLBFactory()->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
-						}
-					}
-					$this->uncacheLinkTarget( $target );
-
-					$this->reuseConnection( $dbw );
-				}
-			);
+		if ( !$res->numRows() ) {
+			return [];
 		}
 
-		return $watchers;
+		$watchIds = [];
+		$watchersSeenAll = [];
+		foreach ( $res as $row ) {
+			$watchIds[] = (int)$row->wl_id;
+			$watchersSeenAll[] = (int)$row->wl_user;
+		}
+
+		// Update wl_notificationtimestamp for all watching users except the editor
+		DeferredUpdates::addCallableUpdate( function () use ( $timestamp, $watchIds, $target ) {
+			global $wgUpdateRowsPerQuery;
+
+			$dbw = $this->getConnection( DB_MASTER );
+			$idBatches = array_chunk( $watchIds, $wgUpdateRowsPerQuery );
+			foreach ( $idBatches as $idBatch ) {
+				$dbw->update(
+					'watchlist',
+					[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+					[
+						'wl_id' => $idBatch,
+						// Handle races by erring on the side of assuming things were unseen
+						$dbw->makeList(
+							[
+								'wl_notificationtimestamp IS NULL',
+								'wl_notificationtimestamp < ' .
+									$dbw->addQuotes( $dbw->timestamp( $timestamp ) )
+							],
+							LIST_OR
+						)
+					],
+					__METHOD__
+				);
+				if ( count( $idBatches ) > 1 ) {
+					$dbw->commit( __METHOD__, 'flush' );
+					wfGetLBFactory()->waitForReplication();
+				}
+			}
+
+			$this->uncacheLinkTarget( $target );
+
+			$this->reuseConnection( $dbw );
+		} );
+
+		return $watchersSeenAll;
 	}
 
 	/**
