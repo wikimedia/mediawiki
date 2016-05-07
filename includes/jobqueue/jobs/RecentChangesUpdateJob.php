@@ -70,7 +70,7 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function purgeExpiredRows() {
-		global $wgRCMaxAge;
+		global $wgRCMaxAge, $wgUpdateRowsPerQuery;
 
 		$lockKey = wfWikiID() . ':recentchanges-prune';
 
@@ -81,14 +81,13 @@ class RecentChangesUpdateJob extends Job {
 			return; // already in progress
 		}
 
-		$batchSize = 100; // avoid slave lag
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
 			$rcIds = $dbw->selectFieldValues( 'recentchanges',
 				'rc_id',
 				[ 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ],
 				__METHOD__,
-				[ 'LIMIT' => $batchSize ]
+				[ 'LIMIT' => $wgUpdateRowsPerQuery ]
 			);
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
@@ -96,7 +95,7 @@ class RecentChangesUpdateJob extends Job {
 			// Commit in chunks to avoid slave lag
 			$dbw->commit( __METHOD__, 'flush' );
 
-			if ( count( $rcIds ) === $batchSize ) {
+			if ( count( $rcIds ) === $wgUpdateRowsPerQuery ) {
 				// There might be more, so try waiting for slaves
 				try {
 					wfGetLBFactory()->waitForReplication( [ 'timeout' => 3 ] );
