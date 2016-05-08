@@ -198,6 +198,7 @@ The following PHP extensions are strongly recommended:
 * $wgJpegPixelFormat was added to override chroma subsampling for JPEG image
   thumbnails created via ImageMagick. Defaults to 'yuv420', providing bandwidth
   savings versus the previous behavior on many files.
+* Added a new hook, 'User::isBot', to aid in determining if a user is a bot.
 
 === External library changes in 1.27 ===
 
