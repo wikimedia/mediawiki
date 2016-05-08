@@ -1274,7 +1274,7 @@
 	"apihelp-upload-param-sessionkey": "与$1filekey相同，基于向后兼容而维护。",
 	"apihelp-upload-param-stash": "如果设置，服务器将临时藏匿文件而不是加入存储库。",
 	"apihelp-upload-param-filesize": "全部上传的文件大小。",
-	"apihelp-upload-param-offset": "块的偏移量（字节）。",
+	"apihelp-upload-param-offset": "数据块的偏移量（字节）。",
 	"apihelp-upload-param-chunk": "大块内容。",
 	"apihelp-upload-param-async": "在可能的情况下，使潜在的大文件操作异步进行。",
 	"apihelp-upload-param-checkstatus": "只检索指定文件密钥的上传状态。",

@@ -1822,6 +1822,7 @@
 	"protect-othertime": "Друг срок:",
 	"protect-othertime-op": "друг срок",
 	"protect-existing-expiry": "Оставащо време: $2, $3",
+	"protect-existing-expiry-infinity": "Existing expiration time: безсрочно",
 	"protect-otherreason": "Друга/допълнителна причина:",
 	"protect-otherreason-op": "Друга причина",
 	"protect-dropdown": "* Стандартни причини за защита на страници\n** Чест обект на вандализъм\n** Чест обект на спам\n** Редакторска война\n** Страница, изискваща много сървърни ресурси",

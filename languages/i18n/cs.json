@@ -2298,6 +2298,7 @@
 	"lockdbsuccesstext": "Databáze {{grammar:2sg|{{SITENAME}}}} byla úspěšně uzamčena.\n<br />Nezapomeňte ji po dokončení údržby [[Special:UnlockDB|odemknout]].",
 	"unlockdbsuccesstext": "Databáze {{grammar:2sg|{{SITENAME}}}} je odemčena.",
 	"lockfilenotwritable": "Do souboru zámku databáze nelze zapisovat. Pro zamčení či odemčení databáze musí mít webový server právo zápisu do tohoto souboru.",
+	"databaselocked": "Databáze je již zamčená.",
 	"databasenotlocked": "Databáze není uzamčena.",
 	"lockedbyandtime": "({{gender:$1|zamkl|zamkla|zamkl}} $1 $2 v $3)",
 	"move-page": "Přesunout „$1“",

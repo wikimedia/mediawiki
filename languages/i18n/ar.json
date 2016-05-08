@@ -3124,7 +3124,7 @@
 	"watchlistedit-raw-done": "قائمة مراقبتك تم تحديثها.",
 	"watchlistedit-raw-added": "تمت إضافة {{PLURAL:$1||عنوان واحد|عنوانين|$1 عناوين|$1 عنوانا|$1 عنوان}}:",
 	"watchlistedit-raw-removed": "تمت إزالة {{PLURAL:$1||عنوان واحد|عنوانين|$1 عناوين|$1 عنوانا|$1 عنوان}}:",
-	"watchlistedit-clear-title": "قائمة مراقبة ممسوحة",
+	"watchlistedit-clear-title": "امسح قائمة المراقبة",
 	"watchlistedit-clear-legend": "امسح قائمة المراقبة",
 	"watchlistedit-clear-explain": "ستحذف جميع الصفحات من قائمة مراقبتك",
 	"watchlistedit-clear-titles": "العناوين:",

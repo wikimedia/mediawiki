@@ -22,7 +22,8 @@
 			"아라",
 			"Calak",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Kumkumuk"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -147,7 +148,7 @@
 	"hidden-category-category": "Kategoriyê nımıtey",
 	"category-subcat-count": "{{PLURAL:$2|Na kategoriya de $1 bınkategoriyay estê.|$2 kategoriyan ra $1 bınkategoriyay asenê.}}",
 	"category-subcat-count-limited": "Na kategoriye de {{PLURAL:$1|ena kategoriya bınêne esta|enê $1 kategoriyê bınêni estê}}.",
-	"category-article-count": "{{PLURAL:$2|Na kategoriye de teyna ena pele esta.|Ebe $2 ra pêro piya {{PLURAL:$1|ena pela na kategoriye dera|$1 enê peli na kategoriye derê.}}",
+	"category-article-count": "{{PLURAL:$2|Na kategoriye de teyna ena pele esta.|Ebe $2 ra pêro piya {{PLURAL:$1|ena pela na kategori de ra|$1 enê peli na kategori de rê.}}}}",
 	"category-article-count-limited": "{{PLURAL:$1|Pela cêrêne|$1 Pelê cêrêni}} na kategoriye derê.",
 	"category-file-count": "<noinclude>{{PLURAL:$2|Na kategoriye tenya dosyayanê cêrênan muhtewa kena.}}</noinclude>\n*Na kategoriye de $2 dosyayan ra {{PLURAL:$1|yew dosya tenêka esta| $1 dosyey asenê}}.",
 	"category-file-count-limited": "{{PLURAL:$1|Dosya cêrêne|$1 Dosyê cêrêni}} na kategoriye derê.",

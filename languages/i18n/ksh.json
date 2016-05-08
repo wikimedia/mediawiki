@@ -3409,6 +3409,7 @@
 	"searchsuggest-containing": "dren änthallde…",
 	"api-error-badaccess-groups": "Do häs nit et Rääsch, Datteije en heh dat Wiki huhzelaade.",
 	"api-error-badtoken": "Fähler: et Kännzeijsche (<i lang=\"en\">token</i>) es kappott.",
+	"api-error-blocked": "Do bes föh et Änndere jeschpächt.",
 	"api-error-copyuploaddisabled": "Et Huhlaade vun enem <i lang=\"en\">URL</i> es op däm ẞööver heh nit zohjelohße.",
 	"api-error-duplicate": "Mer han em Wiki ald {{PLURAL:$1|[en Dattei]|[$1 andere Datteije]|[kein Dattei]}} mem akeraat sellve Enhalldt.",
 	"api-error-duplicate-archive": "Mer hatte {{PLURAL:$1|[en ander Dattei]|[ander Datteije]|[kein ander Dattei]}} heh em Wiki mem sellve Enhalt, ävver se {{PLURAL:$1|es|sen|es}} ald fottjeschmeße woode.",

@@ -4,7 +4,8 @@
 			"Denö",
 			"Hiloin Natoi",
 			"Ilja.mos",
-			"Mashoi7"
+			"Mashoi7",
+			"Misosoof"
 		]
 	},
 	"tog-underline": "Linkien alleviivuamine:",
@@ -419,6 +420,10 @@
 	"resetpass_submit": "Azeta peittosana da kirjuttai sistiemah:",
 	"changepassword-success": "Sinun peittosana on vaihtettu!",
 	"changepassword-throttled": "Olet oppinuh kirjuttuakseh liijan moni kerdua. Ole hyvä, vuota $1 enne ku opit uvvessah.",
+	"botpasswords-label-create": "Luaji",
+	"botpasswords-label-update": "Päivitä",
+	"botpasswords-label-cancel": "Hylgiä",
+	"botpasswords-label-delete": "Poista",
 	"resetpass_forbidden": "Ei voi vaihtua peittosanua",
 	"resetpass-no-info": "Et voi nähtä tädä sivuu kuni et ole kirjutannuhes.",
 	"resetpass-submit-loggedin": "Vaihta peittosana",
