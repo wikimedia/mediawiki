@@ -100,7 +100,7 @@ class OOUIHTMLForm extends HTMLForm {
 			if ( $isBadIE ) {
 				$label = $button['value'];
 			} elseif ( isset( $button['label-message'] ) ) {
-				$label = new OOUI\HtmlSnippet( $this->getMessage( $button['label-message'] )->parse() );
+				$label = new OOUI\HtmlSnippet( $this->msg( $button['label-message'] )->parse() );
 			} elseif ( isset( $button['label'] ) ) {
 				$label = $button['label'];
 			} elseif ( isset( $button['label-raw'] ) ) {
@@ -198,7 +198,18 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 
 		foreach ( $errors as &$error ) {
-			$error = $this->getMessage( $error )->parse();
+			if ( is_array( $error ) ) {
+				$msg = array_shift( $error );
+			} else {
+				$msg = $error;
+				$error = [];
+			}
+			// if the error is already a message object, don't use it as a message key
+			if ( !$msg instanceof Message ) {
+				$error = $this->msg( $msg, $error )->parse();
+			} else {
+				$error = $msg->parse();
+			}
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
@@ -221,22 +232,27 @@ class OOUIHTMLForm extends HTMLForm {
 		// FIXME This only works for forms with no subsections
 		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
 			$classes = [ 'mw-htmlform-ooui-header' ];
-			if ( !$this->mHeader ) {
-				$classes[] = 'mw-htmlform-ooui-header-empty';
-			}
 			if ( $this->oouiErrors ) {
 				$classes[] = 'mw-htmlform-ooui-header-errors';
 			}
-			$fieldset->addItems( [
-				new OOUI\FieldLayout(
-					new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] ),
-					[
-						'align' => 'top',
-						'errors' => $this->oouiErrors,
-						'classes' => $classes,
-					]
-				)
-			], 0 );
+			if ( $this->mHeader || $this->oouiErrors ) {
+				// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
+				if ( $this->mHeader ) {
+					$element = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] );
+				} else {
+					$element = new OOUI\Widget( [] );
+				}
+				$fieldset->addItems( [
+					new OOUI\FieldLayout(
+						$element,
+						[
+							'align' => 'top',
+							'errors' => $this->oouiErrors,
+							'classes' => $classes,
+						]
+					)
+				], 0 );
+			}
 		}
 		return $fieldset;
 	}
