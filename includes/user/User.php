@@ -3399,6 +3399,19 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * @return bool Whether this user is flagged as being a bot role account
+	 * @since 1.27
+	 */
+	public function isBot() {
+		$isBot = false;
+		if ( !Hooks::run( "User::isBot", [ $this, &$isBot ] ) ) {
+			return $isBot;
+		}
+
+		return ( $isBot || in_array( 'bot', $this->getGroups() ) );
+	}
+
+	/**
 	 * Check if user is allowed to access a feature / make an action
 	 *
 	 * @param string ... Permissions to test
