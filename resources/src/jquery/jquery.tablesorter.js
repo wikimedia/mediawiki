@@ -90,6 +90,7 @@
 			config = $( table ).data( 'tablesorter' ).config,
 			cellIndex,
 			nodeValue,
+			nextRow = false,
 			// Start with 1 because 0 is the fallback parser
 			i = 1,
 			lastRowIndex = -1,
@@ -113,24 +114,34 @@
 			if ( nodeValue !== '' ) {
 				if ( parsers[ i ].is( nodeValue, table ) ) {
 					concurrent++;
-					rowIndex++;
+					nextRow = true;
 					if ( concurrent >= needed ) {
 						// Confirmed the parser for multiple cells, let's return it
 						return parsers[ i ];
 					}
+				} else if ( parsers[ i ].id.match( /isoDate/ ) && /^\D*(\d{1,4}) ?(\[.+\])?$/.test( nodeValue ) ) {
+					// For 1-4 digits and maybe reference(s) parser "isoDate" or "number" is possible, check next row
+					empty++;
+					nextRow = true;
 				} else {
 					// Check next parser, reset rows
 					i++;
 					rowIndex = 0;
 					concurrent = 0;
 					empty = 0;
+					nextRow = false;
 				}
 			} else {
 				// Empty cell
 				empty++;
+				nextRow = true;
+			}
+
+			if ( nextRow ) {
+				nextRow = false;
 				rowIndex++;
 				if ( rowIndex >= rows.length ) {
-					if ( concurrent >= rows.length - empty ) {
+					if ( concurrent > 0 && concurrent >= rows.length - empty ) {
 						// Confirmed the parser for all filled cells
 						return parsers[ i ];
 					}
@@ -722,8 +733,8 @@
 				new RegExp( /(https?|ftp|file):\/\// )
 			],
 			isoDate: [
-				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24:?00)?(:?([0-5]\d|60))?([.,]\d+)?)([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
-				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)/ )
+				new RegExp( /^[^-\d]*(-?\d{1,4})-(0\d|1[0-2])(-([0-3]\d))?([T\s]([01]\d|2[0-4]):?(([0-5]\d):?(([0-5]\d|60)([.,]\d{1,3})?)?)?([zZ]|([-+])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
+				new RegExp( /^[^-\d]*(-?\d{1,4})-?(\d\d)?(-?(\d\d))?([T\s](\d\d):?((\d\d)?:?((\d\d)?([.,]\d{1,3})?)?)?([zZ]|([-+])(\d\d):?(\d\d)?)?)?/ )
 			],
 			usLongDate: [
 				new RegExp( /^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/ )
@@ -1128,22 +1139,36 @@
 			return ts.rgx.isoDate[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			var isodate, matches;
-			if ( !Date.prototype.toISOString ) {
-				// Old browsers don't understand iso, Fallback to US date parsing and ignore the time part.
-				matches = $.trim( s ).match( ts.rgx.isoDate[ 1 ] );
-				if ( !matches ) {
-					return $.tablesorter.formatFloat( 0 );
-				}
-				isodate = new Date( matches[ 2 ]  + '/' + matches[ 3 ] + '/' + matches[ 1 ] );
-			} else {
-				matches = s.match( ts.rgx.isoDate[ 0 ] );
-				if ( !matches ) {
-					return $.tablesorter.formatFloat( 0 );
-				}
-				isodate = new Date( $.trim( matches[ 0 ] ) );
+			var match, i, isodate, ms, hOffset, mOffset;
+			match = s.match( ts.rgx.isoDate[ 0 ] );
+			if ( match === null ) {
+				// Otherwise a signed number with 1-4 digit is parsed as isoDate
+				match = s.match( ts.rgx.isoDate[ 1 ] );
 			}
-			return $.tablesorter.formatFloat( ( isodate !== undefined ) ? isodate.getTime() : 0 );
+			if ( !match ) {
+				return 0;
+			}
+			// Month and day
+			for ( i = 2; i <= 4; i += 2 ) {
+				if ( !match[ i ] || match[ i ].length === 0 ) {
+					match[ i ] = 1;
+				}
+			}
+			// Time
+			for ( i = 6; i <= 15; i++ ) {
+				if ( !match[ i ] || match[ i ].length === 0 ) {
+					match[ i ] = '0';
+				}
+			}
+			ms = parseFloat( match[ 11 ].replace( /,/, '.' ) ) * 1000;
+			hOffset = $.tablesorter.formatInt( match[ 13 ] + match[ 14 ] );
+			mOffset = $.tablesorter.formatInt( match[ 13 ] + match[ 15 ] );
+
+			isodate = new Date( 0 );
+			// Because Date constructor changes year 0-99 to 1900-1999, use setUTCFullYear()
+			isodate.setUTCFullYear( match[ 1 ], match[ 2 ] - 1, match[ 4 ] );
+			isodate.setUTCHours( match[ 6 ] - hOffset, match[ 8 ] - mOffset, match[ 10 ], ms );
+			return isodate.getTime();
 		},
 		type: 'numeric'
 	} );
