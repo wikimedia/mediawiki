@@ -18,13 +18,16 @@
 	 * @cfg {boolean} [performSearchOnClick=true] If true, the script will start a search when-
 	 *  ever a user hits a suggestion. If false, the text of the suggestion is inserted into the
 	 *  text field only.
+	 *  @cfg {string} [dataLocation='header'] Where the search input field will be
+	 *  used (header or content).
 	 */
 	mw.widgets.SearchInputWidget = function MwWidgetsSearchInputWidget( config ) {
 		config = $.extend( {
 			type: 'search',
 			icon: 'search',
 			maxLength: undefined,
-			performSearchOnClick: true
+			performSearchOnClick: true,
+			dataLocation: 'header'
 		}, config );
 
 		// Parent constructor

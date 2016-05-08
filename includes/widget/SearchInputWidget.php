@@ -16,6 +16,7 @@ class SearchInputWidget extends TitleInputWidget {
 	protected $performSearchOnClick = true;
 	protected $validateTitle = false;
 	protected $highlightFirst = false;
+	protected $dataLocation = 'header';
 
 	/**
 	 * @param array $config Configuration options
@@ -24,6 +25,8 @@ class SearchInputWidget extends TitleInputWidget {
 	 * @param boolean|null $config['performSearchOnClick'] If true, the script will start a search
 	 *  whenever a user hits a suggestion. If false, the text of the suggestion is inserted into the
 	 *  text field only (default: true)
+	 * @param string $config['dataLocation'] Where the search input field will be
+	 *  used (header or content, default: header)
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
@@ -31,7 +34,6 @@ class SearchInputWidget extends TitleInputWidget {
 			'maxLength' => null,
 			'type' => 'search',
 			'icon' => 'search',
-			'dataLocation' => 'content',
 		], $config );
 
 		// Parent constructor
