@@ -404,3 +404,7 @@
 	path = extensions/HeaderTabs
 	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git
 	branch = REL1_26
+[submodule "extensions/Comments"]
+	path = extensions/Comments
+	url = https://github.com/miraheze/mediawiki-extensions-Comments.git
+	branch = master
