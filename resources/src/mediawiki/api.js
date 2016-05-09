@@ -288,11 +288,12 @@
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
-			var api = this;
+			var api = this,
+				abortable;
 
-			return api.getToken( tokenType, params.assert ).then( function ( token ) {
+			return ( abortable = api.getToken( tokenType, params.assert ) ).then( function ( token ) {
 				params.token = token;
-				return api.post( params, ajaxOptions ).then(
+				return ( abortable = api.post( params, ajaxOptions ) ).then(
 					// If no error, return to caller as-is
 					null,
 					// Error handler
@@ -301,9 +302,9 @@
 							api.badToken( tokenType );
 							// Try again, once
 							params.token = undefined;
-							return api.getToken( tokenType, params.assert ).then( function ( token ) {
+							return ( abortable = api.getToken( tokenType, params.assert ) ).then( function ( token ) {
 								params.token = token;
-								return api.post( params, ajaxOptions );
+								return ( abortable = api.post( params, ajaxOptions ) ).promise();
 							} );
 						}
 
@@ -311,7 +312,9 @@
 						return this;
 					}
 				);
-			} );
+			} ).promise( { abort: function () {
+				abortable.abort();
+			} } );
 		},
 
 		/**
