@@ -84,8 +84,11 @@
 	 * @constructor
 	 * @inheritdoc
 	 */
-	function ForeignTitle() {
-		ForeignTitle.parent.apply( this, arguments );
+	function ForeignTitle( title, namespace ) {
+		// We only need to handle categories here... but we don't know the target language.
+		// So assume that any namespace-like prefix is the 'Category' namespace...
+		title = title.replace( /^(.+?)_*:_*(.*)$/, 'Category:$2' ); // HACK
+		ForeignTitle.parent.call( this, title, namespace );
 	}
 	OO.inheritClass( ForeignTitle, mw.Title );
 	ForeignTitle.prototype.getNamespacePrefix = function () {
