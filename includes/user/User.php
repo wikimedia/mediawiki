@@ -1523,10 +1523,10 @@ class User implements IDBAccessObject {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
 		static $defOpt = null;
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && $defOpt !== null ) {
-			// Disabling this for the unit tests, as they rely on being able to change $wgContLang
-			// mid-request and see that change reflected in the return value of this function.
-			// Which is insane and would never happen during normal MW operation
+		if ( $defOpt !== null && $defOpt['language'] === $wgContLang->getCode() ) {
+			// $wgContLang does not change (and should not change) mid-request,
+			// but the unit tests change it anyway, and expect this method to
+			// return values relevant to the current $wgContLang.
 			return $defOpt;
 		}
 
