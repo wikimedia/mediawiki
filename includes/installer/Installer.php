@@ -135,6 +135,7 @@ abstract class Installer {
 		'envCheckCtype',
 		'envCheckIconv',
 		'envCheckJSON',
+		'envCheckTempDirectory',
 	];
 
 	/**
@@ -1186,6 +1187,30 @@ abstract class Installer {
 		}
 
 		return true;
+	}
+
+    public function envCheckTempDirectory() {
+		$returnStatus = null;
+		try {
+			$tmpDir = wfTempDir();
+			if (is_dir( $tmpDir ) && is_writable( $tmpDir ) ) {
+				$testFile = $tmpDir . DIRECTORY_SEPARATOR . 'mw_tmpdir_test_' . time();
+				// Suppress warning in this extreme case
+				@touch( $testFile );
+				if ( file_exists( $testFile ) ) {
+					$returnStatus = true;
+				}
+				@unlink( $testFile );
+			}
+		} catch ( MWException $e ) {
+			// Nothing. $returnStatus is null.
+		}
+
+		if( $returnStatus === null ) {
+			$this->showMessage( 'config-temp-directory-warning' );
+		}
+
+		return $returnStatus;
 	}
 
 	/**
