@@ -2340,6 +2340,7 @@
 	"lockdbsuccesstext": "Databasen är nu låst.\n<br />Kom ihåg att [[Special:UnlockDB|ta bort låsningen]] när du är färdig med ditt underhåll.",
 	"unlockdbsuccesstext": "Databasen är upplåst.",
 	"lockfilenotwritable": "Det går inte att skriva till databasens låsfil. För att låsa eller låsa upp databasen, så måste webbservern kunna skriva till den filen.",
+	"databaselocked": "Databasen är redan låst.",
 	"databasenotlocked": "Databasen är inte låst.",
 	"lockedbyandtime": "(av $1 den $2 kl. $3)",
 	"move-page": "Flytta $1",

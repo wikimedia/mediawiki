@@ -425,7 +425,7 @@
 	"remembermypassword": "Prisiminti prisijungimo duomenis šiame kompiuteryje (daugiausiai $1 {{PLURAL:$1|dieną|dienas|dienų}})",
 	"userlogin-remembermypassword": "Įsiminti mane",
 	"userlogin-signwithsecure": "Naudoti saugią jungtį",
-	"cannotloginnow-title": "Negalima prisijungti dabar",
+	"cannotloginnow-title": "Dabar negalima prisijungti",
 	"cannotloginnow-text": "Prisijungimas negalimas, kai naudojama $1.",
 	"yourdomainname": "Jūsų domenas:",
 	"password-change-forbidden": "Jus negalite keisti slaptažodžių šioje wiki.",

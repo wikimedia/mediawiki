@@ -140,7 +140,8 @@
 			"Gnangbade",
 			"Frigory",
 			"Lemondoge",
-			"Jdforrester"
+			"Jdforrester",
+			"Yasten"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -156,7 +157,7 @@
 	"tog-editsectiononrightclick": "Activer la modification des sections par un clic droit sur les titres de section",
 	"tog-watchcreations": "Ajouter à ma liste de suivi les pages que je crée et les fichiers que j’importe",
 	"tog-watchdefault": "Ajouter à ma liste de suivi les pages et les fichiers que je modifie",
-	"tog-watchmoves": "Ajouter les pages et les fichiers que je place dans ma liste de suivi",
+	"tog-watchmoves": "Ajouter les pages et les fichiers que je déplace dans ma liste de suivi",
 	"tog-watchdeletion": "Ajouter à ma liste de suivi les pages et les fichiers que je supprime",
 	"tog-watchuploads": "Ajouter les nouveaux fichiers que j’importe à ma liste de suivi",
 	"tog-watchrollback": "Ajouter à ma liste de suivi les pages sur lesquelles j’ai effectué une révocation",

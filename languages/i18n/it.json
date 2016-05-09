@@ -2093,6 +2093,7 @@
 	"changecontentmodel-success-text": "Il tipo di contenuto di [[:$1]] è stato modificato.",
 	"changecontentmodel-cannot-convert": "Il contenuto di [[:$1]] non può essere convertito in tipo $2.",
 	"changecontentmodel-nodirectediting": "Il modello di contenuto $1 non supporta la modifica diretta",
+	"changecontentmodel-emptymodels-title": "Nessun modello di contenuto disponibile",
 	"changecontentmodel-emptymodels-text": "Il contenuto di [[:$1]] non può essere convertito in alcun tipo.",
 	"log-name-contentmodel": "Modifiche del modello contenuti",
 	"log-description-contentmodel": "Eventi relativi al modello di contenuto di una pagina",

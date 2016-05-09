@@ -734,7 +734,7 @@
 	"edit-no-change": "המערכת התעלמה מעריכתך כיוון שלא נעשה שינוי בטקסט.",
 	"postedit-confirmation-created": "הדף נוצר.",
 	"postedit-confirmation-restored": "הדף שוחזר.",
-	"postedit-confirmation-saved": "עריכתך נשמרה.",
+	"postedit-confirmation-saved": "העריכה שלך נשמרה.",
 	"edit-already-exists": "לא ניתן ליצור דף חדש.\nהוא כבר קיים.",
 	"defaultmessagetext": "טקסט ההודעה המקורי",
 	"content-failed-to-parse": "פענוח $2 כתוכן מסוג $1 נכשל: $3",
