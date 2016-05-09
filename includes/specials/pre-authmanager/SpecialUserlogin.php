@@ -894,7 +894,8 @@ class LoginFormPreAuthManager extends SpecialPage {
 	 */
 	public static function incrementLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgRequest;
-		$username = User::getCanonicalName( $username, 'usable' ) ?: $username;
+		$canUsername = User::getCanonicalName( $username, 'usable' );
+		$username = $canUsername !== false ? $canUsername : $username;
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
@@ -979,7 +980,8 @@ class LoginFormPreAuthManager extends SpecialPage {
 	 */
 	public static function clearLoginThrottle( $username ) {
 		global $wgRequest, $wgPasswordAttemptThrottle;
-		$username = User::getCanonicalName( $username, 'usable' ) ?: $username;
+		$canUsername = User::getCanonicalName( $username, 'usable' );
+		$username = $canUsername !== false ? $canUsername : $username;
 
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
 			$throttleConfig = $wgPasswordAttemptThrottle;
