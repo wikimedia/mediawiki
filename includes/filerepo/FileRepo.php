@@ -815,7 +815,6 @@ class FileRepo {
 	 * @param string $dstZone Destination zone
 	 * @param string $dstRel Destination relative path
 	 * @param int $flags Bitwise combination of the following flags:
-	 *   self::DELETE_SOURCE     Delete the source file after upload
 	 *   self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *   self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                           same contents as the source
@@ -838,7 +837,6 @@ class FileRepo {
 	 *
 	 * @param array $triplets (src, dest zone, dest rel) triplets as per store()
 	 * @param int $flags Bitwise combination of the following flags:
-	 *   self::DELETE_SOURCE     Delete the source file after upload
 	 *   self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *   self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                           same contents as the source
@@ -849,11 +847,14 @@ class FileRepo {
 	public function storeBatch( array $triplets, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
+		if ( $flags & self::DELETE_SOURCE ) {
+			throw new InvalidArgumentException( "DELETE_SOURCE not supported in " . __METHOD__ );
+		}
+
 		$status = $this->newGood();
 		$backend = $this->backend; // convenience
 
 		$operations = [];
-		$sourceFSFilesToDelete = []; // cleanup for disk source files
 		// Validate each triplet and get the store operation...
 		foreach ( $triplets as $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
@@ -881,12 +882,9 @@ class FileRepo {
 
 			// Get the appropriate file operation
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
-				$opName = ( $flags & self::DELETE_SOURCE ) ? 'move' : 'copy';
+				$opName = 'copy';
 			} else {
 				$opName = 'store';
-				if ( $flags & self::DELETE_SOURCE ) {
-					$sourceFSFilesToDelete[] = $srcPath;
-				}
 			}
 			$operations[] = [
 				'op' => $opName,
@@ -903,12 +901,6 @@ class FileRepo {
 			$opts['nonLocking'] = true;
 		}
 		$status->merge( $backend->doOperations( $operations, $opts ) );
-		// Cleanup for disk source files...
-		foreach ( $sourceFSFilesToDelete as $file ) {
-			MediaWiki\suppressWarnings();
-			unlink( $file ); // FS cleanup
-			MediaWiki\restoreWarnings();
-		}
 
 		return $status;
 	}
