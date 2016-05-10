@@ -54,6 +54,7 @@ class SessionInfo {
 	private $remembered = false;
 	private $forceHTTPS = false;
 	private $idIsSafe = false;
+	private $forceUse = false;
 
 	/** @var array|null */
 	private $providerMetadata = null;
@@ -76,6 +77,10 @@ class SessionInfo {
 	 *  - idIsSafe: (bool) Set true if the 'id' did not come from the user.
 	 *    Generally you'll use this from SessionProvider::newEmptySession(),
 	 *    and not from any other method.
+	 *  - forceUse: (bool) Set true if the 'id' is from
+	 *    SessionProvider::hashToSessionId() to delete conflicting session
+	 *    store data instead of discarding this SessionInfo. Ignored unless
+	 *    both 'provider' and 'id' are given.
 	 *  - copyFrom: (SessionInfo) SessionInfo to copy other data items from.
 	 */
 	public function __construct( $priority, array $data ) {
@@ -97,6 +102,7 @@ class SessionInfo {
 				'forceHTTPS' => $from->forceHTTPS,
 				'metadata' => $from->providerMetadata,
 				'idIsSafe' => $from->idIsSafe,
+				'forceUse' => $from->forceUse,
 				// @codeCoverageIgnoreStart
 			];
 			// @codeCoverageIgnoreEnd
@@ -110,6 +116,7 @@ class SessionInfo {
 				'forceHTTPS' => false,
 				'metadata' => null,
 				'idIsSafe' => false,
+				'forceUse' => false,
 				// @codeCoverageIgnoreStart
 			];
 			// @codeCoverageIgnoreEnd
@@ -137,9 +144,11 @@ class SessionInfo {
 		if ( $data['id'] !== null ) {
 			$this->id = $data['id'];
 			$this->idIsSafe = $data['idIsSafe'];
+			$this->forceUse = $data['forceUse'] && $this->provider;
 		} else {
 			$this->id = $this->provider->getManager()->generateSessionId();
 			$this->idIsSafe = true;
+			$this->forceUse = false;
 		}
 		$this->priority = (int)$priority;
 		$this->userInfo = $data['userInfo'];
@@ -183,6 +192,20 @@ class SessionInfo {
 	 */
 	final public function isIdSafe() {
 		return $this->idIsSafe;
+	}
+
+	/**
+	 * Force use of this SessionInfo if validation fails
+	 *
+	 * The normal behavior is to discard the SessionInfo if validation against
+	 * the data stored in the session store fails. If this returns true,
+	 * SessionManager will instead delete the session store data so this
+	 * SessionInfo may still be used.
+	 *
+	 * @return bool
+	 */
+	final public function forceUse() {
+		return $this->forceUse;
 	}
 
 	/**

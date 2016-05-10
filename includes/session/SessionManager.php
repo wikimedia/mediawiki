@@ -704,6 +704,20 @@ final class SessionManager implements SessionManagerInterface {
 		$key = wfMemcKey( 'MWSession', $info->getId() );
 		$blob = $this->store->get( $key );
 
+		// If we got data from the store and the SessionInfo says to force use,
+		// "fail" means to delete the data from the store and retry. Otherwise,
+		// "fail" is just return false.
+		if ( $info->forceUse() && $blob !== false ) {
+			$failHandler = function () use ( $key, &$info, $request ) {
+				$this->store->delete( $key );
+				return $this->loadSessionInfoFromStore( $info, $request );
+			};
+		} else {
+			$failHandler = function () {
+				return false;
+			};
+		}
+
 		$newParams = [];
 
 		if ( $blob !== false ) {
@@ -713,7 +727,7 @@ final class SessionManager implements SessionManagerInterface {
 					'session' => $info,
 				] );
 				$this->store->delete( $key );
-				return false;
+				return $failHandler();
 			}
 
 			// Sanity check: blob has data and metadata arrays
@@ -724,7 +738,7 @@ final class SessionManager implements SessionManagerInterface {
 					'session' => $info,
 				] );
 				$this->store->delete( $key );
-				return false;
+				return $failHandler();
 			}
 
 			$data = $blob['data'];
@@ -741,7 +755,7 @@ final class SessionManager implements SessionManagerInterface {
 					'session' => $info,
 				] );
 				$this->store->delete( $key );
-				return false;
+				return $failHandler();
 			}
 
 			// First, load the provider from metadata, or validate it against the metadata.
@@ -756,7 +770,7 @@ final class SessionManager implements SessionManagerInterface {
 						]
 					);
 					$this->store->delete( $key );
-					return false;
+					return $failHandler();
 				}
 			} elseif ( $metadata['provider'] !== (string)$provider ) {
 				$this->logger->warning( 'Session "{session}": Wrong provider ' .
@@ -764,7 +778,7 @@ final class SessionManager implements SessionManagerInterface {
 					[
 						'session' => $info,
 				] );
-				return false;
+				return $failHandler();
 			}
 
 			// Load provider metadata from metadata, or validate it against the metadata
@@ -788,7 +802,7 @@ final class SessionManager implements SessionManagerInterface {
 								'exception' => $ex,
 							] + $ex->getContext()
 						);
-						return false;
+						return $failHandler();
 					}
 				}
 			}
@@ -810,7 +824,7 @@ final class SessionManager implements SessionManagerInterface {
 						'session' => $info,
 						'exception' => $ex,
 					] );
-					return false;
+					return $failHandler();
 				}
 				$newParams['userInfo'] = $userInfo;
 			} else {
@@ -825,7 +839,7 @@ final class SessionManager implements SessionManagerInterface {
 								'uid_a' => $metadata['userId'],
 								'uid_b' => $userInfo->getId(),
 						] );
-						return false;
+						return $failHandler();
 					}
 
 					// If the user was renamed, probably best to fail here.
@@ -839,7 +853,7 @@ final class SessionManager implements SessionManagerInterface {
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
 						] );
-						return false;
+						return $failHandler();
 					}
 
 				} elseif ( $metadata['userName'] !== null ) { // Shouldn't happen, but just in case
@@ -851,7 +865,7 @@ final class SessionManager implements SessionManagerInterface {
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
 						] );
-						return false;
+						return $failHandler();
 					}
 				} elseif ( !$userInfo->isAnon() ) {
 					// Metadata specifies an anonymous user, but the passed-in
@@ -861,7 +875,7 @@ final class SessionManager implements SessionManagerInterface {
 						[
 							'session' => $info,
 					] );
-					return false;
+					return $failHandler();
 				}
 			}
 
@@ -872,7 +886,7 @@ final class SessionManager implements SessionManagerInterface {
 				$this->logger->warning( 'Session "{session}": User token mismatch', [
 					'session' => $info,
 				] );
-				return false;
+				return $failHandler();
 			}
 			if ( !$userInfo->isVerified() ) {
 				$newParams['userInfo'] = $userInfo->verified();
@@ -899,7 +913,7 @@ final class SessionManager implements SessionManagerInterface {
 					[
 						'session' => $info,
 				] );
-				return false;
+				return $failHandler();
 			}
 
 			// If no user was provided and no metadata, it must be anon.
@@ -912,7 +926,7 @@ final class SessionManager implements SessionManagerInterface {
 						[
 							'session' => $info,
 					] );
-					return false;
+					return $failHandler();
 				}
 			} elseif ( !$info->getUserInfo()->isVerified() ) {
 				$this->logger->warning(
@@ -920,7 +934,7 @@ final class SessionManager implements SessionManagerInterface {
 					[
 						'session' => $info,
 				] );
-				return false;
+				return $failHandler();
 			}
 
 			$data = false;
@@ -942,7 +956,7 @@ final class SessionManager implements SessionManagerInterface {
 		// Allow the provider to check the loaded SessionInfo
 		$providerMetadata = $info->getProviderMetadata();
 		if ( !$info->getProvider()->refreshSessionInfo( $info, $request, $providerMetadata ) ) {
-			return false;
+			return $failHandler();
 		}
 		if ( $providerMetadata !== $info->getProviderMetadata() ) {
 			$info = new SessionInfo( $info->getPriority(), [
@@ -962,7 +976,7 @@ final class SessionManager implements SessionManagerInterface {
 			$this->logger->warning( 'Session "{session}": ' . $reason, [
 				'session' => $info,
 			] );
-			return false;
+			return $failHandler();
 		}
 
 		return true;

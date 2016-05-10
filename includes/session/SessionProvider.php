@@ -458,7 +458,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 *
 	 * Generally this will only be used when self::persistsSessionId() is false and
 	 * the provider has to base the session ID on the verified user's identity
-	 * or other static data.
+	 * or other static data. The SessionInfo should then typically have the
+	 * 'forceUse' flag set to avoid persistent session failure if validation of
+	 * the stored data fails.
 	 *
 	 * @param string $data
 	 * @param string|null $key Defaults to $this->config->get( 'SecretKey' )

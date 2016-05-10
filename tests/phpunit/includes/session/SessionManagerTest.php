@@ -1756,5 +1756,21 @@ class SessionManagerTest extends MediaWikiTestCase {
 			[ LogLevel::WARNING, 'Session "{session}": Hook aborted' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionCheckInfo' => [] ] );
+
+		// forceUse deletes bad backend data
+		$this->store->setSessionMeta( $id, [ 'userToken' => 'Bad' ] + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $provider,
+			'id' => $id,
+			'userInfo' => $userInfo,
+			'forceUse' => true,
+		] );
+		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
+		$this->assertFalse( $this->store->getSession( $id ) );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": User token mismatch' ],
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
 	}
 }
