@@ -923,6 +923,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the module's load type.
+	 *
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getType() {
+		$canBeStylesOnly = !(
+			// All options except 'styles', 'skinStyles' and 'debugRaw'
+			$this->scripts
+			|| $this->debugScripts
+			|| $this->templates
+			|| $this->languageScripts
+			|| $this->skinScripts
+			|| $this->dependencies
+			|| $this->messages
+			|| $this->skipFunction
+			|| $this->raw
+		);
+		return $canBeStylesOnly ? self::LOAD_STYLES : self::LOAD_GENERAL;
+	}
+
+	/**
 	 * Compile a LESS file into CSS.
 	 *
 	 * Keeps track of all used files and adds them to localFileRefs.
