@@ -70,7 +70,9 @@ class ProtectionForm {
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
 		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors(
-			'protect', $this->mContext->getUser()
+			'protect',
+			$this->mContext->getUser(),
+			$this->mContext->getRequest()->wasPosted() ? 'secure' : 'full' // T92357
 		);
 		if ( wfReadOnly() ) {
 			$this->mPermErrors[] = [ 'readonlytext', wfReadOnlyReason() ];
