@@ -285,8 +285,12 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	protected function mergeViaCas( $key, $callback, $exptime = 0, $attempts = 10 ) {
 		do {
 			$this->clearLastError();
+			$reportDupes = $this->reportDupes;
+			$this->reportDupes = false;
 			$casToken = null; // passed by reference
 			$currentValue = $this->getWithToken( $key, $casToken, self::READ_LATEST );
+			$this->reportDupes = $reportDupes;
+
 			if ( $this->getLastError() ) {
 				return false; // don't spam retries (retry only on races)
 			}
@@ -342,7 +346,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$this->clearLastError();
+		$reportDupes = $this->reportDupes;
+		$this->reportDupes = false;
 		$currentValue = $this->get( $key, self::READ_LATEST );
+		$this->reportDupes = $reportDupes;
+
 		if ( $this->getLastError() ) {
 			$success = false;
 		} else {
