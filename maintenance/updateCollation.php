@@ -97,6 +97,7 @@ TEXT
 		$options = [
 			'LIMIT' => self::BATCH_SIZE,
 			'ORDER BY' => $orderBy,
+			'STRAIGHT_JOIN' // per T58041
 		];
 
 		if ( $force || $dryRun ) {
