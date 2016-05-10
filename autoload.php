@@ -180,6 +180,7 @@ $wgAutoloadLocalClasses = [
 	'BitmapMetadataHandler' => __DIR__ . '/includes/media/BitmapMetadataHandler.php',
 	'Blob' => __DIR__ . '/includes/db/DatabaseUtility.php',
 	'Block' => __DIR__ . '/includes/Block.php',
+	'BlockLevelPass' => __DIR__ . '/includes/parser/BlockLevelPass.php',
 	'BlockListPager' => __DIR__ . '/includes/specials/pagers/BlockListPager.php',
 	'BlockLogFormatter' => __DIR__ . '/includes/logging/BlockLogFormatter.php',
 	'BmpHandler' => __DIR__ . '/includes/media/BMP.php',
