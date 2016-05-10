@@ -56,17 +56,26 @@ class PoolCounterTest extends MediaWikiTestCase {
 
 		$keysWithTwoSlots = $keysWithFiveSlots = [];
 		foreach ( range( 1, 100 ) as $i ) {
-			$keysWithTwoSlots[] = $hashKeyIntoSlots->invoke( $poolCounter, 'key ' . $i, 2 );
-			$keysWithFiveSlots[] = $hashKeyIntoSlots->invoke( $poolCounter, 'key ' . $i, 5 );
+			$keysWithTwoSlots[] = $hashKeyIntoSlots->invoke( $poolCounter, 'test', 'key ' . $i, 2 );
+			$keysWithFiveSlots[] = $hashKeyIntoSlots->invoke( $poolCounter, 'test', 'key ' . $i, 5 );
 		}
 
-		$this->assertArrayEquals( range( 0, 1 ), array_unique( $keysWithTwoSlots ) );
-		$this->assertArrayEquals( range( 0, 4 ), array_unique( $keysWithFiveSlots ) );
+		$twoSlotKeys = [];
+		for ( $i = 0; $i <= 1; $i++ ) {
+			$twoSlotKeys[] = "test:$i";
+		}
+		$fiveSlotKeys = [];
+		for ( $i = 0; $i <= 4; $i++ ) {
+			$fiveSlotKeys[] = "test:$i";
+		}
+
+		$this->assertArrayEquals( $twoSlotKeys, array_unique( $keysWithTwoSlots ) );
+		$this->assertArrayEquals( $fiveSlotKeys, array_unique( $keysWithFiveSlots ) );
 
 		// make sure it is deterministic
 		$this->assertEquals(
-			$hashKeyIntoSlots->invoke( $poolCounter, 'asdfgh', 1000 ),
-			$hashKeyIntoSlots->invoke( $poolCounter, 'asdfgh', 1000 )
+			$hashKeyIntoSlots->invoke( $poolCounter, 'test', 'asdfgh', 1000 ),
+			$hashKeyIntoSlots->invoke( $poolCounter, 'test', 'asdfgh', 1000 )
 		);
 	}
 }
