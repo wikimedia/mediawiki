@@ -134,7 +134,9 @@ class ApiMain extends ApiBase {
 	private $mModuleMgr, $mResult, $mErrorFormatter, $mContinuationManager;
 	private $mAction;
 	private $mEnableWrite;
-	private $mInternalMode, $mSquidMaxage, $mModule;
+	private $mInternalMode, $mSquidMaxage;
+	/** @var ApiBase */
+	private $mModule;
 
 	private $mCacheMode = 'private';
 	private $mCacheControl = [];
@@ -397,13 +399,7 @@ class ApiMain extends ApiBase {
 		if ( $this->mInternalMode ) {
 			$this->executeAction();
 		} else {
-			$start = microtime( true );
 			$this->executeActionWithErrorHandling();
-			if ( $this->isWriteMode() && $this->getRequest()->wasPosted() ) {
-				$timeMs = 1000 * max( 0, microtime( true ) - $start );
-				$this->getStats()->timing(
-					'api.' . $this->getModuleName() . '.executeTiming', $timeMs );
-			}
 		}
 	}
 
@@ -433,8 +429,12 @@ class ApiMain extends ApiBase {
 		$isError = false;
 		try {
 			$this->executeAction();
-			$this->logRequest( microtime( true ) - $t );
-
+			$runTime = microtime( true ) - $t;
+			$this->logRequest( $runTime );
+			if ( $this->mModule->isWriteMode() && $this->getRequest()->wasPosted() ) {
+				$this->getStats()->timing(
+					'api.' . $this->getModuleName() . '.executeTiming', 1000 * $runTime );
+			}
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
