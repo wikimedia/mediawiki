@@ -1553,7 +1553,6 @@ class Revision implements IDBAccessObject {
 			}
 			$text = $cache->get( $key );
 			if ( is_string( $text ) ) {
-				wfDebug( __METHOD__ . ": got id $textId from cache\n" );
 				$processCache->set( $key, $text );
 				return $text;
 			}
