@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.1
+ * OOjs UI v0.17.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-03T22:58:06Z
+ * Date: 2016-05-10T22:58:31Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -62,9 +62,6 @@
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	margin-left: 0.46875em;
 }
-.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
-	box-shadow: inset 0 0 0 1px #347bff, 0 0 0 1px #347bff;
-}
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
 	margin-right: 0;
 }
@@ -76,6 +73,9 @@
 	padding-left: 0.25em;
 	padding-right: 0.25em;
 	color: #333333;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus {
+	box-shadow: inset 0 0 0 1px #347bff, 0 0 0 1px #347bff;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -120,9 +120,6 @@
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
 	color: #cccccc;
-}
-.oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button:focus {
-	box-shadow: none;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
@@ -1046,9 +1043,7 @@
 	display: none;
 }
 .oo-ui-textInputWidget [type="search"]::-webkit-search-decoration,
-.oo-ui-textInputWidget [type="search"]::-webkit-search-cancel-button,
-.oo-ui-textInputWidget [type="search"]::-webkit-search-results-button,
-.oo-ui-textInputWidget [type="search"]::-webkit-search-results-decoration {
+.oo-ui-textInputWidget [type="search"]::-webkit-search-cancel-button {
 	display: none;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
@@ -1119,7 +1114,7 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
 	outline: 0;
 	border-color: #347bff;
-	box-shadow: inset 0 0 0 0.1em #347bff;
+	box-shadow: inset 0 0 0 1px #347bff;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {

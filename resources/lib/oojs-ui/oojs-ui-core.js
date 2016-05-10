@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.1
+ * OOjs UI v0.17.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-03T22:58:02Z
+ * Date: 2016-05-10T22:58:27Z
  */
 ( function ( OO ) {
 
@@ -2001,10 +2001,13 @@ OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
 /**
  * Set the button's active state.
  *
- * The active state occurs when a {@link OO.ui.ButtonOptionWidget ButtonOptionWidget} or
- * a {@link OO.ui.ToggleButtonWidget ToggleButtonWidget} is pressed. This method does nothing
- * for other button types.
+ * The active state can be set on:
  *
+ *  - {@link OO.ui.ButtonOptionWidget ButtonOptionWidget} when it is selected
+ *  - {@link OO.ui.ToggleButtonWidget ToggleButtonWidget} when it is toggle on
+ *  - {@link OO.ui.ButtonWidget ButtonWidget} when clicking the button would only refresh the page
+ *
+ * @protected
  * @param {boolean} value Make button active
  * @chainable
  */
@@ -2017,6 +2020,7 @@ OO.ui.mixin.ButtonElement.prototype.setActive = function ( value ) {
 /**
  * Check if the button is active
  *
+ * @protected
  * @return {boolean} The button is active
  */
 OO.ui.mixin.ButtonElement.prototype.isActive = function () {
@@ -3332,6 +3336,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.getAccessKey = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [active=false] Whether button should be shown as active
  * @cfg {string} [href] Hyperlink to visit when the button is clicked.
  * @cfg {string} [target] The frame or window in which to open the hyperlink.
  * @cfg {boolean} [noFollow] Search engine traversal hint (default: true)
@@ -3366,6 +3371,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-buttonWidget' )
 		.append( this.$button );
+	this.setActive( config.active );
 	this.setHref( config.href );
 	this.setTarget( config.target );
 	this.setNoFollow( config.noFollow );
@@ -3521,6 +3527,14 @@ OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
 
 	return this;
 };
+
+// Override method visibility hints from ButtonElement
+/**
+ * @method setActive
+ */
+/**
+ * @method isActive
+ */
 
 /**
  * A ButtonGroupWidget groups related buttons and is used together with OO.ui.ButtonWidget and
