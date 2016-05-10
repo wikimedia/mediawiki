@@ -103,6 +103,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $anonInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -118,6 +119,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -132,6 +134,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -150,6 +153,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $anonInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -165,6 +169,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -180,6 +185,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
@@ -231,6 +237,25 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertTrue( $info->isIdSafe() );
 
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY + 5, [
+			'id' => $id,
+			'forceUse' => true,
+		] );
+		$this->assertFalse( $info->forceUse(), 'no provider' );
+
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY + 5, [
+			'provider' => $provider,
+			'forceUse' => true,
+		] );
+		$this->assertFalse( $info->forceUse(), 'no id' );
+
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY + 5, [
+			'provider' => $provider,
+			'id' => $id,
+			'forceUse' => true,
+		] );
+		$this->assertTrue( $info->forceUse(), 'correct use' );
+
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => $id,
 			'forceHTTPS' => 1,
@@ -242,6 +267,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 			'provider' => $provider,
 			'userInfo' => $userInfo,
 			'idIsSafe' => true,
+			'forceUse' => true,
 			'persisted' => true,
 			'remembered' => true,
 			'forceHTTPS' => true,
@@ -255,6 +281,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $provider, $info->getProvider() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertTrue( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
 		$this->assertTrue( $info->forceHTTPS() );
@@ -265,6 +292,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 			'provider' => $provider2,
 			'userInfo' => $unverifiedUserInfo,
 			'idIsSafe' => false,
+			'forceUse' => false,
 			'persisted' => false,
 			'remembered' => false,
 			'forceHTTPS' => false,
@@ -276,6 +304,7 @@ class SessionInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $provider2, $info->getProvider() );
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
 		$this->assertFalse( $info->forceHTTPS() );
