@@ -43,4 +43,11 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 		}
 		return $pages;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return self::LOAD_STYLES;
+	}
 }

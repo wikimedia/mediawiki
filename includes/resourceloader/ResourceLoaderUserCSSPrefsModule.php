@@ -83,4 +83,11 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	public function getGroup() {
 		return 'private';
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return self::LOAD_STYLES;
+	}
 }

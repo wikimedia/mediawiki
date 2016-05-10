@@ -321,7 +321,21 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return $this->titleInfo[$key];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPosition() {
 		return $this->position;
+	}
+
+	/**
+	 * @since 1.28
+	 * @return string
+	 */
+	public function getType() {
+		// Check both because subclasses don't always pass pages via the constructor,
+		// they may also override getPages() instead, in which case we should keep
+		// defaulting to LOAD_GENERAL and allow them to override getType() separately.
+		return ( $this->styles && !$this->scripts ) ? self::LOAD_STYLES : self::LOAD_GENERAL;
 	}
 }
