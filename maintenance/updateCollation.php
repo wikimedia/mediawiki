@@ -70,6 +70,7 @@ TEXT
 		global $wgCategoryCollation;
 
 		$dbw = $this->getDB( DB_MASTER );
+		$dbr = $this->getDB( DB_SLAVE );
 		$force = $this->getOption( 'force' );
 		$dryRun = $this->getOption( 'dry-run' );
 		$verboseStats = $this->getOption( 'verbose-stats' );
@@ -110,7 +111,7 @@ TEXT
 				];
 			}
 
-			$count = $dbw->estimateRowCount(
+			$count = $dbr->estimateRowCount(
 				'categorylinks',
 				'*',
 				$collationConds,
@@ -118,7 +119,7 @@ TEXT
 			);
 			// Improve estimate if feasible
 			if ( $count < 1000000 ) {
-				$count = $dbw->selectField(
+				$count = $dbr->selectField(
 					'categorylinks',
 					'COUNT(*)',
 					$collationConds,
@@ -131,6 +132,7 @@ TEXT
 				return;
 			}
 			$this->output( "Fixing collation for $count rows.\n" );
+			wfWaitForSlaves();
 		}
 		$count = 0;
 		$batchCount = 0;
