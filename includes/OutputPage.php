@@ -2784,6 +2784,17 @@ class OutputPage extends ContextSource {
 				continue;
 			}
 
+			if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
+				if ( $module->getType() !== ResourceLoaderModule::LOAD_STYLES ) {
+					$logger = $resourceLoader->getLogger();
+					$logger->debug( 'Unexpected general module '{module}' in styles queue.', [
+						'module' => $name,
+					] );
+				} else {
+					$links['states'][$name] = 'ready';
+				}
+			}
+
 			$sortedModules[$module->getSource()][$module->getGroup()][$name] = $module;
 		}
 
