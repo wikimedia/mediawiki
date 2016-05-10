@@ -3096,12 +3096,6 @@ class OutputPage extends ContextSource {
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
 		}
 
-		// Group JS is only enabled if site JS is enabled.
-		$links[] = $this->makeResourceLoaderLink(
-			'user.groups',
-			ResourceLoaderModule::TYPE_COMBINED
-		);
-
 		return self::getHtmlFromLoaderLinks( $links );
 	}
 
@@ -3667,7 +3661,6 @@ class OutputPage extends ContextSource {
 		// Per-site custom styles
 		$moduleStyles[] = 'site';
 		$moduleStyles[] = 'noscript';
-		$moduleStyles[] = 'user.groups';
 
 		// Per-user custom styles
 		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage()
