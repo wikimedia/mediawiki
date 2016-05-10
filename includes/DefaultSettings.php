@@ -4281,9 +4281,9 @@ $wgPasswordConfig = array(
 	),
 	'pbkdf2' => array(
 		'class' => 'Pbkdf2Password',
-		'algo' => 'sha256',
-		'cost' => '10000',
-		'length' => '128',
+		'algo' => 'sha512',
+		'cost' => '30000',
+		'length' => '64',
 	),
 );
 
