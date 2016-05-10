@@ -171,7 +171,6 @@ class Interwiki {
 		global $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		static $site;
 
-		wfDebug( __METHOD__ . "( $prefix )\n" );
 		$value = false;
 		try {
 			// Resolve site name
