@@ -227,15 +227,17 @@ class ResourceLoaderContext {
 	 * Get the possibly-cached User object for the specified username
 	 *
 	 * @since 1.25
-	 * @return User|bool false if a valid object cannot be created
+	 * @return User
 	 */
 	public function getUserObj() {
 		if ( $this->userObj === null ) {
 			$username = $this->getUser();
 			if ( $username ) {
-				$this->userObj = User::newFromName( $username );
+				// Use provided username if valid, fallback to anonymous user
+				$this->userObj = User::newFromName( $username ) ?: new User;
 			} else {
-				$this->userObj = new User; // Anonymous user
+				// Anonymous user
+				$this->userObj = new User;
 			}
 		}
 

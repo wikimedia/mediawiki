@@ -43,7 +43,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		}
 
 		$user = $context->getUserObj();
-		if ( !$user || $user->isAnon() ) {
+		if ( $user->isAnon() ) {
 			return [];
 		}
 
