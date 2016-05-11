@@ -775,6 +775,25 @@
 				return result;
 			}
 
+			// <nowiki>...</nowiki> tag. The tags are stripped and the contents are returned unparsed.
+			function nowiki() {
+				var parsedResult, plainText,
+					result = null;
+
+				parsedResult = sequence( [
+					makeStringParser( '<nowiki>' ),
+					// We use a greedy non-backtracking parser, so we must ensure here that we don't take too much
+					makeRegexParser( /^.+?(?=<\/nowiki>)/ ),
+					makeStringParser( '</nowiki>' )
+				] );
+				if ( parsedResult !== null ) {
+					plainText = parsedResult[ 1 ];
+					result = [ 'CONCAT' ].concat( plainText );
+				}
+
+				return result;
+			}
+
 			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
@@ -862,6 +881,7 @@
 				wikilink,
 				extlink,
 				replacement,
+				nowiki,
 				html,
 				literal
 			] );
