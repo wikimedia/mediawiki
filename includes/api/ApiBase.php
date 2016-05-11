@@ -1522,20 +1522,20 @@ abstract class ApiBase extends ContextSource {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
-		$errors = $status->getErrorsArray();
+		$errors = $status->getErrorsByType( 'error' );
 		if ( !$errors ) {
 			// No errors? Assume the warnings should be treated as errors
-			$errors = $status->getWarningsArray();
+			$errors = $status->getErrorsByType( 'warning' );
 		}
 		if ( !$errors ) {
 			// Still no errors? Punt
-			$errors = [ [ 'unknownerror-nocode' ] ];
+			$errors = [ [ 'message' => 'unknownerror-nocode', 'params' => [] ] ];
 		}
 
 		// Cannot use dieUsageMsg() because extensions might return custom
 		// error messages.
-		if ( $errors[0] instanceof Message ) {
-			$msg = $errors[0];
+		if ( $errors[0]['message'] instanceof Message ) {
+			$msg = $errors[0]['message'];
 			if ( $msg instanceof IApiMessage ) {
 				$extraData = $msg->getApiData();
 				$code = $msg->getApiCode();
@@ -1543,8 +1543,8 @@ abstract class ApiBase extends ContextSource {
 				$code = $msg->getKey();
 			}
 		} else {
-			$code = array_shift( $errors[0] );
-			$msg = wfMessage( $code, $errors[0] );
+			$code = $errors[0]['message'];
+			$msg = wfMessage( $code, $errors[0]['params'] );
 		}
 		if ( isset( ApiBase::$messageMap[$code] ) ) {
 			// Translate message to code, for backwards compatibility
