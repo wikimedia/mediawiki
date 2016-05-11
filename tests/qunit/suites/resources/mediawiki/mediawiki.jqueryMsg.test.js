@@ -1087,6 +1087,29 @@
 		);
 	} );
 
+	QUnit.test( 'Nowiki', 3, function ( assert ) {
+		mw.messages.set( 'jquerymsg-nowiki-link', 'Foo <nowiki>[[bar]]</nowiki> baz.' );
+		assert.equal(
+			formatParse( 'jquerymsg-nowiki-link' ),
+			'Foo [[bar]] baz.',
+			'Link inside nowiki is not parsed'
+		);
+
+		mw.messages.set( 'jquerymsg-nowiki-htmltag', 'Foo <nowiki><b>bar</b></nowiki> baz.' );
+		assert.equal(
+			formatParse( 'jquerymsg-nowiki-htmltag' ),
+			'Foo &lt;b&gt;bar&lt;/b&gt; baz.',
+			'HTML inside nowiki is not parsed and escaped'
+		);
+
+		mw.messages.set( 'jquerymsg-nowiki-template', 'Foo <nowiki>{{bar}}</nowiki> baz.' );
+		assert.equal(
+			formatParse( 'jquerymsg-nowiki-template' ),
+			'Foo {{bar}} baz.',
+			'Template inside nowiki is not parsed and does not cause a parse error'
+		);
+	} );
+
 	QUnit.test( 'Behavior in case of invalid wikitext', 3, function ( assert ) {
 		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
 
