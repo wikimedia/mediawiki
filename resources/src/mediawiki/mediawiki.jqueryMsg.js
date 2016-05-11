@@ -534,7 +534,7 @@
 				return result === null ? null : result.join( '' );
 			}
 
-			asciiAlphabetLiteral = makeRegexParser( /[A-Za-z]+/ );
+			asciiAlphabetLiteral = makeRegexParser( /^[A-Za-z]+/ );
 			htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
 			htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
 
