@@ -226,4 +226,18 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 		$this->assertEquals( $rl->getTemplates(), $expected );
 	}
+
+	public function testBomConcatenation() {
+		$basePath = __DIR__ . '/../../data/css';
+		$testModule = new ResourceLoaderFileModule( [
+			'localBasePath' => $basePath,
+			'styles' => [ 'bom.css' ],
+			] );
+		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$this->assertEquals(
+			$testModule->getStyles( $contextLtr ),
+			[ 'all' => ".efbbbf_bom_char_at_start_of_file {}\n" ],
+			"Remove BOM character when contatenating files"
+		);
+	}
 }
