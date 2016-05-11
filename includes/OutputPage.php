@@ -780,7 +780,7 @@ class OutputPage extends ContextSource {
 			// bug 44570: the core page itself may not change, but resources might
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
 		}
-		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes ] );
+		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
 
 		$maxModified = max( $modifiedTimes );
 		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
