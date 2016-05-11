@@ -127,6 +127,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		self::prepareServices( new GlobalVarConfig() );
 	}
 
+	public static function getTestSysop( $mutable = false ) {
+		return self::getTestUser( $mutable, [ 'sysop', 'bureaucrat' ] );
+	}
+
+	public static function getTestUser( $mutable = false, $groups = [] ) {
+		return $mutable
+			? TestUserRegistry::getMutableTestUser( __CLASS__, $groups )
+			: TestUserRegistry::getImmutableTestUser( $groups );
+	}
+
 	/**
 	 * Prepare service configuration for unit testing.
 	 *
@@ -600,6 +610,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Check if we can back up a value by performing a shallow copy.
+	 * Values which fail this test are copied recursively.
+	 *
+	 * @param mixed $value
+	 * @return bool True if a shallow copy will do; false if a deep copy
+	 *  is required.
+	 */
+	protected static function canShallowCopy( $value ) {
+		if ( is_scalar( $value ) || $value === null ) {
+			return true;
+		}
+		if ( is_array( $value ) ) {
+			foreach ( $value as $subValue ) {
+				if ( !is_scalar( $subValue ) && $subValue !== null ) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Stashes the global, will be restored in tearDown()
 	 *
 	 * Individual test functions may override globals through the setMwGlobals() function
@@ -634,13 +667,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
 				// and if is_object but this does account for objects within objects!
-				try {
-					$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
-				}
-					// NOTE; some things such as Closures are not serializable
-					// in this case just set the value!
-				catch ( Exception $e ) {
+				if ( self::canShallowCopy( $GLOBALS[$globalKey] ) ) {
 					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+				} else if (
+					$GLOBALS[$globalKey] instanceof Language    ||
+					$GLOBALS[$globalKey] instanceof User        ||
+					$GLOBALS[$globalKey] instanceof FauxRequest
+				) {
+					$this->mwGlobals[$globalKey] = clone $GLOBALS[$globalKey];
+				} else {
+					try {
+						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
+					} catch ( Exception $e ) {
+						$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+					}
 				}
 			}
 		}
@@ -850,7 +890,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function insertPage( $pageName, $text = 'Sample page for unit test.' ) {
 		$title = Title::newFromText( $pageName, 0 );
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		// Avoid memory leak...?
@@ -901,36 +941,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
-			$this->db->insert( 'user', [
-				'user_id' => 0,
-				'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
+			if ( !$this->db->selectField( 'user', '1', [ 'user_id' => 0 ] ) ) {
+				$this->db->insert( 'user', [
+					'user_id' => 0,
+					'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
+			}
 
 			# Insert 0 page to prevent FK violations
 			# Blank page
-			$this->db->insert( 'page', [
-				'page_id' => 0,
-				'page_namespace' => 0,
-				'page_title' => ' ',
-				'page_restrictions' => null,
-				'page_is_redirect' => 0,
-				'page_is_new' => 0,
-				'page_random' => 0,
-				'page_touched' => $this->db->timestamp(),
-				'page_latest' => 0,
-				'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
+			if ( !$this->db->selectField( 'page', '1', [ 'page_id' => 0 ] ) ) {
+				$this->db->insert( 'page', [
+					'page_id' => 0,
+					'page_namespace' => 0,
+					'page_title' => ' ',
+					'page_restrictions' => null,
+					'page_is_redirect' => 0,
+					'page_is_new' => 0,
+					'page_random' => 0,
+					'page_touched' => $this->db->timestamp(),
+					'page_latest' => 0,
+					'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
+			}
 		}
 
 		User::resetIdByNameCache();
 
 		// Make sysop user
-		$user = User::newFromName( 'UTSysop' );
-
-		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
-			TestUser::setPasswordForUser( $user, 'UTSysopPassword' );
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
-		}
+		$user = TestUserRegistry::getImmutableTestUser( [ 'sysop', 'bureaucrat' ] )->getUser();
 
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -1154,6 +1191,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				TestingAccessWrapper::newFromClass( 'User' )
 					->getInProcessCache()
 					->clear();
+
+				TestUserRegistry::clear();
 			}
 
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
@@ -1518,7 +1557,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return int The ID of the wikitext Namespace
 	 * @since 1.21
 	 */
-	protected function getDefaultWikitextNS() {
+	protected static function getDefaultWikitextNS() {
 		global $wgNamespaceContentModels;
 
 		static $wikitextNS = null; // this is not going to change
