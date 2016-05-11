@@ -42,6 +42,7 @@ class TitleValueTest extends MediaWikiTestCase {
 		$title = new TitleValue( $ns, $text, $fragment, $interwiki );
 
 		$this->assertEquals( $ns, $title->getNamespace() );
+		$this->assertTrue( $title->inNamespace( $ns ) );
 		$this->assertEquals( $text, $title->getText() );
 		$this->assertEquals( $fragment, $title->getFragment() );
 		$this->assertEquals( $hasFragment, $title->hasFragment() );
