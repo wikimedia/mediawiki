@@ -1955,8 +1955,6 @@
 	"activeusers-intro": "This is a list of users who had some kind of activity within the last $1 {{PLURAL:$1|day|days}}.",
 	"activeusers-count": "$1 {{PLURAL:$1|action|actions}} in the last {{PLURAL:$3|day|$3 days}}",
 	"activeusers-from": "Display users starting at:",
-	"activeusers-hidebots": "Hide bots",
-	"activeusers-hidesysops": "Hide administrators",
 	"activeusers-noresult": "No users found.",
 	"activeusers-submit": "Display active users",
 	"listgrouprights": "User group rights",
