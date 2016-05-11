@@ -22,7 +22,6 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
-
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -165,48 +164,10 @@ class Title implements LinkTarget {
 	 * Avoid usage of this singleton by using TitleValue
 	 * and the associated services when possible.
 	 *
-	 * @return MediaWikiTitleCodec
-	 */
-	private static function getMediaWikiTitleCodec() {
-		global $wgContLang, $wgLocalInterwikis;
-
-		static $titleCodec = null;
-		static $titleCodecFingerprint = null;
-
-		// $wgContLang and $wgLocalInterwikis may change (especially while testing),
-		// make sure we are using the right one. To detect changes over the course
-		// of a request, we remember a fingerprint of the config used to create the
-		// codec singleton, and re-create it if the fingerprint doesn't match.
-		$fingerprint = spl_object_hash( $wgContLang ) . '|' . implode( '+', $wgLocalInterwikis );
-
-		if ( $fingerprint !== $titleCodecFingerprint ) {
-			$titleCodec = null;
-		}
-
-		if ( !$titleCodec ) {
-			$titleCodec = new MediaWikiTitleCodec(
-				$wgContLang,
-				GenderCache::singleton(),
-				$wgLocalInterwikis
-			);
-			$titleCodecFingerprint = $fingerprint;
-		}
-
-		return $titleCodec;
-	}
-
-	/**
-	 * B/C kludge: provide a TitleParser for use by Title.
-	 * Ideally, Title would have no methods that need this.
-	 * Avoid usage of this singleton by using TitleValue
-	 * and the associated services when possible.
-	 *
 	 * @return TitleFormatter
 	 */
 	private static function getTitleFormatter() {
-		// NOTE: we know that getMediaWikiTitleCodec() returns a MediaWikiTitleCodec,
-		//      which implements TitleFormatter.
-		return self::getMediaWikiTitleCodec();
+		return MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
 	function __construct() {
@@ -3334,9 +3295,11 @@ class Title implements LinkTarget {
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
-		$titleParser = self::getMediaWikiTitleCodec();
+		// @note: getTitleParser() returns a TitleParser implementation which does not have a
+		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
+		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
-		$parts = $titleParser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
+		$parts = $titleCodec->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );

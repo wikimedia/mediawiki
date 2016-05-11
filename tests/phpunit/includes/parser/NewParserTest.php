@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Although marked as a stub, can work independently.
  *
@@ -179,6 +178,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
+		ParserTest::resetTitleServices();
 	}
 
 	protected function tearDown() {
