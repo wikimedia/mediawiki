@@ -39,6 +39,11 @@ class MWCryptRand {
 	const MSEC_PER_BYTE = 0.5;
 
 	/**
+	 * The Base32 alphabet as defined in RFC 4648.
+	 */
+	const B32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+
+	/**
 	 * Singleton instance for public use
 	 */
 	protected static $singleton = null;
@@ -343,6 +348,29 @@ class MWCryptRand {
 	}
 
 	/**
+	 * @see self::generateBase32()
+	 */
+	public function realGenerateBase32( $chars, $forceStrong = false ) {
+		// The encoding process represents 40-bit groups of input bits as output
+		// strings of 8 encoded characters.
+		$bytesNeeded = ceil( $chars / 8 ) * 5;
+		$bytes = $this->generate( $bytesNeeded, $forceStrong );
+		$b32 = '';
+		foreach ( str_split( $bytes, 5 ) as $chunk ) {
+			$n = 0;
+			for ( $i = 0; $i < 5; $i++ ) {
+				$n <<= 8;
+				$n |= ord( $chunk[$i] );
+			}
+			for ( $i = 0; $i < 8; $i++ ) {
+				$b32 .= substr( self::B32_ALPHABET, $n & 0b1111, 1 );
+				$n >>= 5;
+			}
+		}
+		return substr( $b32, 0, $chars );
+	}
+
+	/**
 	 * @see self::generateHex()
 	 */
 	public function realGenerateHex( $chars, $forceStrong = false ) {
@@ -418,5 +446,21 @@ class MWCryptRand {
 	 */
 	public static function generateHex( $chars, $forceStrong = false ) {
 		return self::singleton()->realGenerateHex( $chars, $forceStrong );
+	}
+
+	/**
+	 * Generate a run of (ideally) cryptographically random data and return
+	 * it in Base32 string format, as defined in RFC 4648.
+	 *
+	 * Base32 uses 20% less space than hex.
+	 *
+	 * @param int $chars The number of hex chars of random data to generate
+	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
+	 *                          strong sources of entropy even if reading from them may steal
+	 *                          more entropy from the system than optimal.
+	 * @return string Hexadecimal random data
+	 */
+	public static function generateBase32( $chars, $forceStrong = false ) {
+		return self::singleton()->realGenerateBase32( $chars, $forceStrong );
 	}
 }
