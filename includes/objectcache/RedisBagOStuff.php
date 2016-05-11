@@ -310,7 +310,17 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return mixed
 	 */
 	protected function unserialize( $data ) {
-		return ctype_digit( $data ) ? intval( $data ) : unserialize( $data );
+		if ( ctype_digit( $data ) ) {
+			return intval( $data );
+		} else {
+			$raw = unserialize( $data );
+			if ( $raw === false ) {
+				throw new MWException( 'Invalid serialized data in Redis T134923' );
+			} else {
+				return $raw;
+			}
+
+		}
 	}
 
 	/**
