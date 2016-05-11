@@ -95,6 +95,15 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
+	 * @since 1.27
+	 * @param int $ns
+	 * @return bool
+	 */
+	public function inNamespace( $ns ) {
+		return $this->namespace == $ns;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getFragment() {
