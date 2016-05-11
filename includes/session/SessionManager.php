@@ -1101,7 +1101,7 @@ final class SessionManager implements SessionManagerInterface {
 	 */
 	public function generateSessionId() {
 		do {
-			$id = \Wikimedia\base_convert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
+			$id = \MWCryptRand::generateBase32( 32 );
 			$key = wfMemcKey( 'MWSession', $id );
 		} while ( isset( $this->allSessionIds[$id] ) || is_array( $this->store->get( $key ) ) );
 		return $id;
