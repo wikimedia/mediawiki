@@ -508,6 +508,10 @@
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
 		},
+		"SessionProviders": {
+			"type": "object",
+			"description": "Session providers"
+		},
 		"CentralIdLookupProviders": {
 			"type": "object",
 			"description": "Central ID lookup providers"

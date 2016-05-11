@@ -23,6 +23,7 @@ class ExtensionProcessor implements Processor {
 		'AvailableRights',
 		'ContentHandlers',
 		'ConfigRegistry',
+		'SessionProviders',
 		'CentralIdLookupProviders',
 		'RateLimits',
 		'RecentChangesFlags',
