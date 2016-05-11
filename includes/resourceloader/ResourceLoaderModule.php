@@ -115,16 +115,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set this module's origin. This is called by ResourceLoader::register()
-	 * when registering the module. Other code should not call this.
-	 *
-	 * @param int $origin Origin
-	 */
-	public function setOrigin( $origin ) {
-		$this->origin = $origin;
-	}
-
-	/**
 	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
