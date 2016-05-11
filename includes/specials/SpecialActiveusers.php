@@ -30,6 +30,9 @@
  */
 class SpecialActiveUsers extends SpecialPage {
 
+	/** @var string */
+	protected $mCacheText;
+
 	/**
 	 * Constructor
 	 */
@@ -51,8 +54,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$opts = new FormOptions();
 
 		$opts->add( 'username', '' );
-		$opts->add( 'hidebots', false, FormOptions::BOOL );
-		$opts->add( 'hidesysops', false, FormOptions::BOOL );
+		$opts->add( 'group', '' );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
@@ -77,45 +79,17 @@ class SpecialActiveUsers extends SpecialPage {
 				$secondsOld = time() - wfTimestamp( TS_UNIX, $rcMin );
 			}
 			if ( $secondsOld > 0 ) {
-				$cacheTxt = '<br>' . $this->msg( 'cachedspecial-viewing-cached-ttl' )
-					->durationParams( $secondsOld );
+				$cacheText = $this->msg( 'cachedspecial-viewing-cached-ttl' )
+					->durationParams( $secondsOld )->parseAsBlock();
 			}
 		}
+
+		$this->mCacheText = $cacheText;
 
 		$pager = new ActiveUsersPager( $this->getContext(), $opts );
 		$usersBody = $pager->getBody();
 
-		$days = $this->getConfig()->get( 'ActiveUserDays' );
-
-		$formDescriptor = [
-			'username' => [
-				'type' => 'user',
-				'name' => 'username',
-				'label-message' => 'activeusers-from',
-			],
-
-			'hidebots' => [
-				'type' => 'check',
-				'name' => 'hidebots',
-				'label-message' => 'activeusers-hidebots',
-				'default' => false,
-			],
-
-			'hidesysops' => [
-				'type' => 'check',
-				'name' => 'hidesysops',
-				'label-message' => 'activeusers-hidesysops',
-				'default' => false,
-			],
-		];
-
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
-			->setIntro( $this->msg( 'activeusers-intro' )->numParams( $days ) . $cacheText )
-			->setWrapperLegendMsg( 'activeusers' )
-			->setSubmitTextMsg( 'activeusers-submit' )
-			->setMethod( 'get' )
-			->prepareForm()
-			->displayForm( false );
+		$this->buildForm();
 
 		if ( $usersBody ) {
 			$out->addHTML(
@@ -126,6 +100,44 @@ class SpecialActiveUsers extends SpecialPage {
 		} else {
 			$out->addWikiMsg( 'activeusers-noresult' );
 		}
+	}
+
+	function buildForm() {
+		$days = $this->getConfig()->get( 'ActiveUserDays' );
+		$groups = User::getAllGroups();
+		$options = [
+			'all' => '',
+		];
+
+		foreach ( $groups as $group ) {
+			$msg = User::getGroupName( $group );
+			$options[$msg] = $group;
+		}
+
+		$formDescriptor = [
+			'username' => [
+				'type' => 'user',
+				'name' => 'username',
+				'label-message' => 'activeusers-from',
+			],
+
+			'group' => [
+				'type' => 'select',
+				'name' => 'group',
+				'label-message' => 'group',
+				'options' => $options,
+			],
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setIntro( $this->msg( 'activeusers-intro' )->numParams( $days ) . $this->mCacheText )
+			->setWrapperLegendMsg( 'activeusers' )
+			->setSubmitTextMsg( 'activeusers-submit' )
+			// prevent setting subpage and 'username' parameter at the same time
+			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setMethod( 'get' )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	protected function getGroupName() {
