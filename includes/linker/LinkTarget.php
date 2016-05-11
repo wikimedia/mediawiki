@@ -34,6 +34,14 @@ interface LinkTarget {
 	public function getNamespace();
 
 	/**
+	 * Convenience function to test if it is in the namespace
+	 *
+	 * @param int $ns
+	 * @return bool
+	 */
+	public function inNamespace( $ns );
+
+	/**
 	 * Get the link fragment (i.e. the bit after the #) in text form.
 	 *
 	 * @return string link fragment
