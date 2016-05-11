@@ -27,6 +27,8 @@ class SessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $manager, $priv->manager );
 		$this->assertSame( $manager, $provider->getManager() );
 
+		$provider->invalidateSessionsForUser( new \User );
+
 		$this->assertSame( [], $provider->getVaryHeaders() );
 		$this->assertSame( [], $provider->getVaryCookies() );
 		$this->assertSame( null, $provider->suggestLoginUsername( new \FauxRequest ) );

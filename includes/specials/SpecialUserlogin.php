@@ -699,7 +699,7 @@ class LoginForm extends SpecialPage {
 
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
-		$u->setToken();
+		SessionManager::singleton()->invalidateSessionsForUser( $u );
 
 		Hooks::run( 'LocalUserCreated', [ $u, $autocreate ] );
 		$oldUser = $u;

@@ -301,6 +301,19 @@ final class SessionManager implements SessionManagerInterface {
 		return $this->getSessionFromInfo( $infos[0], $request );
 	}
 
+	public function invalidateSessionsForUser( User $user ) {
+		global $wgAuth;
+
+		$user->setToken();
+		$user->saveSettings();
+
+		$wgAuth->getUserInstance( $user )->resetAuthToken();
+
+		foreach ( $this->getProviders() as $provider ) {
+			$provider->invalidateSessionsForUser( $user );
+		}
+	}
+
 	public function getVaryHeaders() {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {

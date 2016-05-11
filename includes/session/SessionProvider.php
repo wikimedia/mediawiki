@@ -27,6 +27,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Config;
 use Language;
+use User;
 use WebRequest;
 
 /**
@@ -356,6 +357,19 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 				__METHOD__ . ' must be implmented when canChangeUser() is false'
 			);
 		}
+	}
+
+	/**
+	 * Invalidate existing sessions for a user
+	 *
+	 * If the provider has its own equivalent of CookieSessionProvider's Token
+	 * cookie (and doesn't use User::getToken() to implement it), it should
+	 * reset whatever token it does use here.
+	 *
+	 * @protected For use by \MediaWiki\Session\SessionManager only
+	 * @param User $user;
+	 */
+	public function invalidateSessionsForUser( User $user ) {
 	}
 
 	/**

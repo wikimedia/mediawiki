@@ -2489,9 +2489,9 @@ class User implements IDBAccessObject {
 			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
 		}
 
-		$this->setToken();
 		$this->setOption( 'watchlisttoken', false );
 		$this->setPasswordInternal( $str );
+		SessionManager::singleton()->invalidateSessionsForUser( $this );
 
 		return true;
 	}
@@ -2508,9 +2508,9 @@ class User implements IDBAccessObject {
 		global $wgAuth;
 
 		if ( $wgAuth->allowSetLocalPassword() ) {
-			$this->setToken();
 			$this->setOption( 'watchlisttoken', false );
 			$this->setPasswordInternal( $str );
+			SessionManager::singleton()->invalidateSessionsForUser( $this );
 		}
 	}
 

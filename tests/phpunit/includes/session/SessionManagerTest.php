@@ -642,6 +642,35 @@ class SessionManagerTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testInvalidateSessionsForUser() {
+		$user = User::newFromName( 'UTSysop' );
+		$manager = $this->getManager();
+
+		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( [ 'invalidateSessionsForUser', '__toString' ] );
+
+		$provider1 = $providerBuilder->getMock();
+		$provider1->expects( $this->once() )->method( 'invalidateSessionsForUser' )
+			->with( $this->identicalTo( $user ) );
+		$provider1->expects( $this->any() )->method( '__toString' )
+			->will( $this->returnValue( 'MockProvider1' ) );
+
+		$provider2 = $providerBuilder->getMock();
+		$provider2->expects( $this->once() )->method( 'invalidateSessionsForUser' )
+			->with( $this->identicalTo( $user ) );
+		$provider2->expects( $this->any() )->method( '__toString' )
+			->will( $this->returnValue( 'MockProvider2' ) );
+
+		$this->config->set( 'SessionProviders', [
+			$this->objectCacheDef( $provider1 ),
+			$this->objectCacheDef( $provider2 ),
+		] );
+
+		$oldToken = $user->getToken( true );
+		$manager->invalidateSessionsForUser( $user );
+		$this->assertNotEquals( $oldToken, $user->getToken() );
+	}
+
 	public function testGetVaryHeaders() {
 		$manager = $this->getManager();
 
