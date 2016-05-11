@@ -309,4 +309,48 @@ class LinkerTest extends MediaWikiLangTestCase {
 		];
 		// @codingStandardsIgnoreEnd
 	}
+
+	public static function provideLinkEndHook() {
+		return [
+			// Override $html
+			[
+				function( $dummy, $title, $options, &$html, &$attribs, &$ret ) {
+					$html = 'foobar';
+				},
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">foobar</a>'
+			],
+			// Modify $attribs
+			[
+				function( $dummy, $title, $options, &$html, &$attribs, &$ret ) {
+					$attribs['bar'] = 'baz';
+				},
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage" bar="baz">Special:BlankPage</a>'
+			],
+			// Fully override return value and abort hook
+			[
+				function( $dummy, $title, $options, &$html, &$attribs, &$ret ) {
+					$ret = 'blahblahblah';
+					return false;
+				},
+				'blahblahblah'
+			],
+
+		];
+	}
+
+	/**
+	 * @dataProvider provideLinkEndHook
+	 */
+	public function testLinkEndHook( $callback, $expected ) {
+		$this->setMwGlobals( [
+			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
+		] );
+
+		$this->setMwGlobals( 'wgHooks', [ 'LinkEnd' => [ $callback ] ] );
+
+		$title = SpecialPage::getTitleFor( 'Blankpage' );
+		$out = Linker::link( $title );
+		$this->assertEquals( $expected, $out );
+	}
 }
