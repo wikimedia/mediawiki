@@ -2128,6 +2128,7 @@ $sk: The Skin that called OutputPage::headElement
 since the last visit.
 &$modifiedTimes: array of timestamps.
   The following keys are set: page, user, epoch
+&$out: OutputPage object
 
 'OutputPageMakeCategoryLinks': Links are about to be generated for the page's
 categories. Implementations should return false if they generate the category
