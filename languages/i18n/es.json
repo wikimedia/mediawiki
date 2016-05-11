@@ -141,7 +141,8 @@
 			"Eloy",
 			"Lemondoge",
 			"Jdforrester",
-			"Indiralena"
+			"Indiralena",
+			"Rubentl134"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2136,6 +2137,7 @@
 	"changecontentmodel-success-text": "Se ha cambiado el tipo de contenido de [[:$1]].",
 	"changecontentmodel-cannot-convert": "El contenido de [[:$1]] no se puede convertir a un tipo de $2.",
 	"changecontentmodel-nodirectediting": "El modelo de contenido $1 no admite la edición directa",
+	"changecontentmodel-emptymodels-title": "No hay modelos de contenido disponibles",
 	"log-name-contentmodel": "Registro de cambios del modelo de contenido",
 	"log-description-contentmodel": "Eventos relacionados con los modelos de contenido de una página",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|creó}} la página $3 usando un modelo de contenido no predeterminado \"$5\"",
@@ -2285,7 +2287,7 @@
 	"whatlinkshere-hideredirs": "$1 redirecciones",
 	"whatlinkshere-hidetrans": "$1 inclusiones",
 	"whatlinkshere-hidelinks": "$1 enlaces",
-	"whatlinkshere-hideimages": "$1 enlaces a archivos",
+	"whatlinkshere-hideimages": "Ocultar los vínculos de archivo",
 	"whatlinkshere-filters": "Filtros",
 	"whatlinkshere-submit": "Ir",
 	"autoblockid": "Bloqueo automático #$1",
@@ -2409,6 +2411,7 @@
 	"lockdbsuccesstext": "La base de datos de {{SITENAME}} ha sido bloqueada.\n<br />Recuerde retirar el bloqueo después de completar las tareas de mantenimiento.",
 	"unlockdbsuccesstext": "La base de datos de {{SITENAME}} ha sido desbloqueada.",
 	"lockfilenotwritable": "El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el servidor web.",
+	"databaselocked": "La base de datos ya está bloqueada.",
 	"databasenotlocked": "La base de datos no está bloqueada.",
 	"lockedbyandtime": "(por {{GENDER:$1|$1}} el $2 a las $3)",
 	"move-page": "Trasladar $1",

@@ -1769,7 +1769,7 @@
 	"apisandbox-dynamic-parameters-add-placeholder": "Ονομασία παραμέτρου",
 	"apisandbox-dynamic-error-exists": "Η παράμετρος με την ονομασία \"$1\" υπάρχει ήδη",
 	"apisandbox-submit-invalid-fields-title": "Κάποια από τα πεδία δεν είναι έγκυρα",
-	"apisandbox-submit-invalid-fields-message": "Παρακαλώ διορθώστε τα σημειωμένα πεδία και προσπαθείστε ξανά.",
+	"apisandbox-submit-invalid-fields-message": "Παρακαλώ διορθώστε τα σημειωμένα πεδία και προσπαθήστε ξανά.",
 	"apisandbox-results": "Αποτελέσματα",
 	"apisandbox-sending-request": "Αποστολή αιτήματος API...",
 	"apisandbox-loading-results": "Λήψη αποτελεσμάτων API...",
