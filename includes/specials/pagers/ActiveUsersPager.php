@@ -36,14 +36,9 @@ class ActiveUsersPager extends UsersPager {
 	protected $opts;
 
 	/**
-	 * @var array
+	 * @var string
 	 */
-	protected $hideGroups = [];
-
-	/**
-	 * @var array
-	 */
-	protected $hideRights = [];
+	protected $group;
 
 	/**
 	 * @var array
@@ -68,12 +63,7 @@ class ActiveUsersPager extends UsersPager {
 			}
 		}
 
-		if ( $opts->getValue( 'hidebots' ) == 1 ) {
-			$this->hideRights[] = 'bot';
-		}
-		if ( $opts->getValue( 'hidesysops' ) == 1 ) {
-			$this->hideGroups[] = 'sysop';
-		}
+		$this->group = $opts->getValue( 'group' );
 	}
 
 	function getIndexField() {
@@ -98,6 +88,10 @@ class ActiveUsersPager extends UsersPager {
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
+		if ( $this->group !== '' ) {
+			$conds[] = 'ug_user = user_id';
+			$conds['ug_group'] = $this->group;
+		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
@@ -111,7 +105,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 
 		return [
-			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
+			'tables' => [ 'querycachetwo', 'user', 'user_groups', 'recentchanges' ],
 			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
 			'options' => $options,
 			'conds' => $conds
@@ -154,26 +148,8 @@ class ActiveUsersPager extends UsersPager {
 		$list = [];
 		$user = User::newFromId( $row->user_id );
 
-		// User right filter
-		foreach ( $this->hideRights as $right ) {
-			// Calling User::getRights() within the loop so that
-			// if the hideRights() filter is empty, we don't have to
-			// trigger the lazy-init of the big userrights array in the
-			// User object
-			if ( in_array( $right, $user->getRights() ) ) {
-				return '';
-			}
-		}
-
-		// User group filter
-		// Note: This is a different loop than for user rights,
-		// because we're reusing it to build the group links
-		// at the same time
 		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
 		foreach ( $groups_list as $group ) {
-			if ( in_array( $group, $this->hideGroups ) ) {
-				return '';
-			}
 			$list[] = self::buildGroupLink( $group, $userName );
 		}
 
