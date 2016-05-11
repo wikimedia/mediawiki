@@ -52,6 +52,9 @@ class FormOptionsTest extends MediaWikiTestCase {
 	private function assertGuessString( $data ) {
 		$this->guess( FormOptions::STRING, $data );
 	}
+	private function assertGuessArray( $data ) {
+		$this->guess( FormOptions::ARR, $data );
+	}
 
 	/** Generic helper */
 	private function guess( $expected, $data ) {
@@ -84,15 +87,10 @@ class FormOptionsTest extends MediaWikiTestCase {
 		$this->assertGuessString( '5' );
 		$this->assertGuessString( '0' );
 		$this->assertGuessString( '1.5' );
+
+		$this->assertGuessArray( [ 'foo' ] );
 	}
 
-	/**
-	 * @expectedException MWException
-	 * @covers FormOptions::guessType
-	 */
-	public function testGuessTypeOnArrayThrowException() {
-		$this->object->guessType( [ 'foo' ] );
-	}
 	/**
 	 * @expectedException MWException
 	 * @covers FormOptions::guessType
