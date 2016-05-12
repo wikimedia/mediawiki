@@ -634,6 +634,7 @@
 	"image_tip": "Embedded file",
 	"media_sample": "Example.ogg",
 	"media_tip": "File link",
+	"sig-text": "--$1",
 	"sig_tip": "Your signature with timestamp",
 	"hr_tip": "Horizontal line (use sparingly)",
 	"summary": "Summary:",
