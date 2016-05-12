@@ -3,11 +3,13 @@
 		"authors": [
 			"WongKentir",
 			"Beeyan",
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Kenrick95"
 		]
 	},
 	"apihelp-block-description": "Blokir pengguna.",
 	"apihelp-block-param-user": "Nama pengguna, alamat IP, atau rentang alamat IP untuk diblokir.",
 	"apihelp-createaccount-param-name": "Nama pengguna",
+	"apihelp-login-example-login": "Masuk log.",
 	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
 }

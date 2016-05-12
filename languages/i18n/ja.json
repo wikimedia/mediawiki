@@ -784,7 +784,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "空のオブジェクト",
 	"content-json-empty-array": "空の配列",
-	"duplicate-args-warning": "<strong>警告:</strong> [[:$1]]は「$3」パラメータの値が複数存在する[[:$2]]を呼び出しています。提供されている最後の値のみが使用されます。",
+	"duplicate-args-warning": "<strong>警告:</strong> [[:$1]]は複数の「$3」パラメータを伴って[[:$2]]を呼び出しています。提供されている最後の値のみが使用されます。",
 	"duplicate-args-category": "テンプレート呼び出しで引数が重複しているページ",
 	"duplicate-args-category-desc": "引数が重複したテンプレート呼び出しを含むページ。例: <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>、<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>",
 	"expensive-parserfunction-warning": "<strong>警告:</strong> このページでは、高負荷なパーサー関数の呼び出し回数が多過ぎます。\n\n{{PLURAL:$2|呼び出しを $2 回}}未満にしてください ({{PLURAL:$1|現在は $1 回}})。",

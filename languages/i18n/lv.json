@@ -295,7 +295,7 @@
 	"site-atom-feed": "$1 Atom padeve",
 	"page-rss-feed": "\"$1\" RSS barotne",
 	"page-atom-feed": "\"$1\" Atom barotne",
-	"red-link-title": "$1 (lapa neeksistē)",
+	"red-link-title": "$1 (lapa nepastāv)",
 	"sort-descending": "Kārtot dilstošā secībā",
 	"sort-ascending": "Kārtot augošā secībā",
 	"nstab-main": "Raksts",
@@ -2615,5 +2615,6 @@
 	"special-characters-group-sinhala": "Singāļu",
 	"special-characters-group-gujarati": "Gudžarati",
 	"mw-widgets-dateinput-no-date": "Nav izvēlēts datums",
+	"mw-widgets-titleinput-description-new-page": "lapa vēl nepastāv",
 	"api-error-blacklisted": "Lūdzu, izvēlieties citu, aprakstošu nosaukumu!"
 }
