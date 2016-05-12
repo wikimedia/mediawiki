@@ -377,8 +377,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
+		$now = microtime( true );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
-		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
+		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
 
 		// Do not cache potentially uncommitted data as it might get rolled back
@@ -413,7 +414,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $ttl ) + $wrapExtra;
+		$wrapped = $this->wrap( $value, $ttl, $now ) + $wrapExtra;
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 			return ( is_string( $cWrapped ) )
@@ -1009,14 +1010,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param mixed $value
 	 * @param integer $ttl [0=forever]
+	 * @param float $now Unix Current timestamp just before calling set()
 	 * @return array
 	 */
-	protected function wrap( $value, $ttl ) {
+	protected function wrap( $value, $ttl, $now ) {
 		return [
 			self::FLD_VERSION => self::VERSION,
 			self::FLD_VALUE => $value,
 			self::FLD_TTL => $ttl,
-			self::FLD_TIME => microtime( true )
+			self::FLD_TIME => $now
 		];
 	}
 
@@ -1024,7 +1026,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Do not use this method outside WANObjectCache
 	 *
 	 * @param array|string|bool $wrapped
-	 * @param float $now Unix Current timestamp (preferrable pre-query)
+	 * @param float $now Unix Current timestamp (preferrably pre-query)
 	 * @return array (mixed; false if absent/invalid, current time left)
 	 */
 	protected function unwrap( $wrapped, $now ) {
