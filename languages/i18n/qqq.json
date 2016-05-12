@@ -1372,6 +1372,7 @@
 	"right-ipblock-exempt": "{{doc-right|ipblock-exempt}}\nThis user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain",
 	"right-unblockself": "{{doc-right|unblockself}}",
 	"right-protect": "{{doc-right|protect}}",
+	"right-editcascadeprotected": "{{doc-right|editcascadeprotected}}",
 	"right-editprotected": "{{doc-right|editprotected}}\nRefers to {{msg-mw|Protect-level-sysop}}.\n\nSee also:\n* {{msg-mw|Right-editsemiprotected}}",
 	"right-editsemiprotected": "{{doc-right|editsemiprotected}}\nRefers to {{msg-mw|Protect-level-autoconfirmed}}.\n\nSee also:\n* {{msg-mw|Right-editprotected}}",
 	"right-editcontentmodel": "{{doc-right|editcontentmodel}}",

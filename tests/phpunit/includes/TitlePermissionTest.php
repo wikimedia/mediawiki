@@ -633,7 +633,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			Title::makeTitle( NS_MAIN, "UnBogus" )
 		];
 		$this->title->mCascadingRestrictions = [
-			"bogus" => [ 'bogus', "sysop", "protect", "" ]
+			"bogus" => [ 'bogus', "sysop", "editcascadeprotected", "protect", "" ]
 		];
 
 		$this->assertEquals( false,
