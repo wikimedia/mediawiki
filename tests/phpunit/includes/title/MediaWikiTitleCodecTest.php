@@ -191,7 +191,10 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			// names ending in "a" to be female.
 			[ NS_USER, 'Lisa_Müller', '', '', 'de', 'Benutzerin:Lisa_Müller' ],
 
-			[ NS_MAIN, 'Remote_page', '', 'remotetestiw', 'en', 'remotetestiw:Remote_page' ]
+			[ NS_MAIN, 'Remote_page', '', 'remotetestiw', 'en', 'remotetestiw:Remote_page' ],
+
+			// non-existent namespace
+			[ 10000000, 'Foobar', '', '', 'en', ':Foobar' ],
 		];
 	}
 
