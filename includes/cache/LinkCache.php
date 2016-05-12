@@ -50,11 +50,6 @@ class LinkCache {
 	 */
 	const MAX_SIZE = 10000;
 
-	/**
-	 * @var LinkCache
-	 */
-	protected static $instance;
-
 	public function __construct( TitleFormatter $titleFormatter ) {
 		$this->mGoodLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
 		$this->mBadLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
