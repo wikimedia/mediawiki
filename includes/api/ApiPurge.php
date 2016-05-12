@@ -145,8 +145,7 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		// Anonymous users are not allowed a non-POST request
-		return !$this->getUser()->isAllowed( 'purge' );
+		return true;
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
