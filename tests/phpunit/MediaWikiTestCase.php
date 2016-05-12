@@ -221,6 +221,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
 		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
 
+		// Use a fast hash algorithm to hash passwords.
+		$defaultOverrides->set( 'PasswordDefault', 'A' );
+
 		$testConfig = $customOverrides
 			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
 			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );

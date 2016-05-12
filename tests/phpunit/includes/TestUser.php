@@ -129,14 +129,16 @@ class TestUser {
 			throw new MWException( "Passed User has not been added to the database yet!" );
 		}
 
+		if ( $user->checkPassword( $password ) === true ) {
+			return;  // Nothing to do.
+		}
+
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'A' );
-		$pwhash = $passwordFactory->newFromPlaintext( $password );
+		$passwordHash = $passwordFactory->newFromPlaintext( $password );
 		wfGetDB( DB_MASTER )->update(
 			'user',
-			[ 'user_password' => $pwhash->toString() ],
+			[ 'user_password' => $passwordHash->toString() ],
 			[ 'user_id' => $user->getId() ],
 			__METHOD__
 		);

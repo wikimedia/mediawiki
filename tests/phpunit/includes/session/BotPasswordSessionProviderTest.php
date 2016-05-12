@@ -65,9 +65,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 	public function addDBDataOnce() {
 		$passwordFactory = new \PasswordFactory();
 		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
-		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'A' );
-		$pwhash = $passwordFactory->newFromPlaintext( 'foobaz' );
+		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$userId = \CentralIdLookup::factory( 'local' )->centralIdFromName( 'UTSysop' );
 
@@ -82,7 +80,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 			[
 				'bp_user' => $userId,
 				'bp_app_id' => 'BotPasswordSessionProvider',
-				'bp_password' => $pwhash->toString(),
+				'bp_password' => $passwordHash->toString(),
 				'bp_token' => 'token!',
 				'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
 				'bp_grants' => '["test"]',

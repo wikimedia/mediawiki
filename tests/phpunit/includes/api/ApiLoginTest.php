@@ -226,8 +226,7 @@ class ApiLoginTest extends ApiTestCase {
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'A' );
-		$pwhash = $passwordFactory->newFromPlaintext( 'foobaz' );
+		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
@@ -235,7 +234,7 @@ class ApiLoginTest extends ApiTestCase {
 			[
 				'bp_user' => $centralId,
 				'bp_app_id' => 'foo',
-				'bp_password' => $pwhash->toString(),
+				'bp_password' => $passwordHash->toString(),
 				'bp_token' => '',
 				'bp_restrictions' => MWRestrictions::newDefault()->toJson(),
 				'bp_grants' => '["test"]',
