@@ -23,8 +23,8 @@
 /**
  * User-requested page cache purging.
  *
- * For users with 'purge', this will directly trigger the cache purging and
- * for users without that right, it will show a confirmation form.
+ * Users with the 'purge' right may trigger the purge directly over POST (without a token).
+ * Users without that right need a token which is provided via the confirmation form.
  *
  * @ingroup Actions
  */
@@ -48,10 +48,6 @@ class PurgeAction extends FormAction {
 		return $this->page->doPurge();
 	}
 
-	/**
-	 * purge is slightly weird because it can be either formed or formless depending
-	 * on user permissions
-	 */
 	public function show() {
 		$this->setHeaders();
 
@@ -65,11 +61,7 @@ class PurgeAction extends FormAction {
 			return;
 		}
 
-		if ( $user->isAllowed( 'purge' ) ) {
-			// This will update the database immediately, even on HTTP GET.
-			// Lots of uses may exist for this feature, so just ignore warnings.
-			Profiler::instance()->getTransactionProfiler()->resetExpectations();
-
+		if ( $user->isAllowed( 'purge' ) && $this->getRequest()->wasPosted() ) {
 			$this->redirectParams = wfArrayToCgi( array_diff_key(
 				$this->getRequest()->getQueryValues(),
 				[ 'title' => null, 'action' => null ]
