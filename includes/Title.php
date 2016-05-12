@@ -164,6 +164,8 @@ class Title implements LinkTarget {
 	 * Avoid usage of this singleton by using TitleValue
 	 * and the associated services when possible.
 	 *
+			// @todo: move this into MediaWikiServices
+				MediaWikiServices::getInstance()->getInterwikiLookup(),
 	 * @return TitleFormatter
 	 */
 	private static function getTitleFormatter() {
