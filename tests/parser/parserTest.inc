@@ -211,6 +211,7 @@ class ParserTest {
 		# add a namespace shadowing a interwiki link, to test
 		# proper precedence when resolving links. (bug 51680)
 		$wgExtraNamespaces[100] = 'MemoryAlpha';
+		$wgExtraNamespaces[101] = 'MemoryAlpha talk';
 
 		// XXX: tests won't run without this (for CACHE_DB)
 		if ( $wgMainCacheType === CACHE_DB ) {

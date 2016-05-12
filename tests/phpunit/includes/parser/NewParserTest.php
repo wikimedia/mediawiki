@@ -150,7 +150,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgHooks'] = $tmpHooks;
 		# add a namespace shadowing a interwiki link, to test
 		# proper precedence when resolving links. (bug 51680)
-		$tmpGlobals['wgExtraNamespaces'] = [ 100 => 'MemoryAlpha' ];
+		$tmpGlobals['wgExtraNamespaces'] = [
+			100 => 'MemoryAlpha',
+			101 => 'MemoryAlpha_talk'
+		];
 
 		$tmpGlobals['wgLocalInterwikis'] = [ 'local', 'mi' ];
 		# "extra language links"
