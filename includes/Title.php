@@ -170,6 +170,9 @@ class Title implements LinkTarget {
 		return MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
+	/**
+	 * @access protected
+	 */
 	function __construct() {
 	}
 
