@@ -52,9 +52,9 @@
  */
 class ProfilerXhprof extends Profiler {
 	/**
-	 * @var Xhprof $xhprof
+	 * @var XhprofData|null $xhprofData
 	 */
-	protected $xhprof;
+	protected $xhprofData;
 
 	/**
 	 * Profiler for explicit, arbitrary, frame labels
@@ -68,8 +68,22 @@ class ProfilerXhprof extends Profiler {
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
-		$this->xhprof = new Xhprof( $params );
+
+		$flags = isset( $params['flags'] ) ? $params['flags'] : 0;
+		$options = isset( $params['exclude'] )
+			? [ 'ignored_functions' => $params['exclude'] ] : [];
+		Xhprof::enable( $flags, $options );
 		$this->sprofiler = new SectionProfiler();
+	}
+
+	/**
+	 * @return XhprofData
+	 */
+	public function getXhprofData() {
+		if ( !$this->xhprofData ) {
+			$this->xhprofData = new XhprofData( Xhprof::disable(), $this->params );
+		}
+		return $this->xhprofData;
 	}
 
 	public function scopedProfileIn( $section ) {
@@ -112,7 +126,7 @@ class ProfilerXhprof extends Profiler {
 	}
 
 	public function getFunctionStats() {
-		$metrics = $this->xhprof->getCompleteMetrics();
+		$metrics = $this->getXhprofData()->getCompleteMetrics();
 		$profile = [];
 
 		$main = null; // units in ms
@@ -216,6 +230,6 @@ class ProfilerXhprof extends Profiler {
 	 * @return array
 	 */
 	public function getRawData() {
-		return $this->xhprof->getRawData();
+		return $this->getXhprofData()->getRawData();
 	}
 }
