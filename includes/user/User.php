@@ -133,7 +133,6 @@ class User implements IDBAccessObject {
 		'deletelogentry',
 		'deleterevision',
 		'edit',
-		'editcascadeprotected',
 		'editcontentmodel',
 		'editinterface',
 		'editprotected',

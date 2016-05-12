@@ -4882,7 +4882,6 @@ $wgGroupPermissions['sysop']['move-categorypages'] = true;
 $wgGroupPermissions['sysop']['patrol'] = true;
 $wgGroupPermissions['sysop']['autopatrol'] = true;
 $wgGroupPermissions['sysop']['protect'] = true;
-$wgGroupPermissions['sysop']['editcascadeprotected'] = true;
 $wgGroupPermissions['sysop']['editprotected'] = true;
 $wgGroupPermissions['sysop']['rollback'] = true;
 $wgGroupPermissions['sysop']['upload'] = true;
@@ -5480,7 +5479,6 @@ $wgGrantPermissions['delete']['undelete'] = true;
 
 $wgGrantPermissions['protect'] = $wgGrantPermissions['editprotected'];
 $wgGrantPermissions['protect']['protect'] = true;
-$wgGrantPermissions['protect']['editcascadeprotected'] = true;
 
 $wgGrantPermissions['viewmywatchlist']['viewmywatchlist'] = true;
 
