@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
  * @group Database
@@ -128,6 +129,21 @@ class TitleTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @return InterwikiLookup
+	 */
+	private function getInterwikiLookup() {
+		$lookup = $this->getMock( 'MediaWiki\Interwiki\InterwikiLookup' );
+
+		$lookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->will( $this->returnCallback( function ( $prefix ) {
+				return in_array( $prefix, [ 'localtestiw' ] );
+			} ) );
+
+		return $lookup;
+	}
+
 	private function secureAndSplitGlobals() {
 		$this->setMwGlobals( [
 			'wgLocalInterwikis' => [ 'localtestiw' ],
@@ -149,6 +165,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->setService( 'TitleParser', new MediaWikiTitleCodec(
 				Language::factory( 'en' ),
 				new GenderCache(),
+				$this->getInterwikiLookup(),
 				[ 'localtestiw' ]
 		) );
 	}

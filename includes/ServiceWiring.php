@@ -163,6 +163,7 @@ return [
 		return new MediaWikiTitleCodec(
 			$wgContLang,
 			$services->getGenderCache(),
+			$services->getInterwikiLookup(),
 			$services->getMainConfig()->get( 'LocalInterwikis' )
 		);
 	},
