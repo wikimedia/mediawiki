@@ -127,10 +127,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const ERR_RELAY = 4; // relay broadcast failed
 
 	const VALUE_KEY_PREFIX = 'WANCache:v:';
-	const STASH_KEY_PREFIX = 'WANCache:s:';
+	const INTERIM_KEY_PREFIX = 'WANCache:i:';
 	const TIME_KEY_PREFIX = 'WANCache:t:';
 
 	const PURGE_VAL_PREFIX = 'PURGED:';
+
+	const VFLD_DATA = 'WOC:d'; // key to the value of versioned data
+	const VFLD_VERSION = 'WOC:v'; // key to the version of the value present
 
 	const MAX_PC_KEYS = 1000; // max keys to keep in process cache
 
@@ -207,14 +210,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
 	 * @param string $key Cache key
-	 * @param mixed $curTTL Approximate TTL left on the key if present [returned]
+	 * @param mixed $curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param array $checkKeys List of "check" keys
+	 * @param float &$asOf Key generation UNIX timestamp or null [returned]
 	 * @return mixed Value of cache key or false on failure
 	 */
-	final public function get( $key, &$curTTL = null, array $checkKeys = [] ) {
+	final public function get( $key, &$curTTL = null, array $checkKeys = [], &$asOf = null ) {
 		$curTTLs = [];
-		$values = $this->getMulti( [ $key ], $curTTLs, $checkKeys );
+		$asOfs = [];
+		$values = $this->getMulti( [ $key ], $curTTLs, $checkKeys, $asOfs );
 		$curTTL = isset( $curTTLs[$key] ) ? $curTTLs[$key] : null;
+		$asOf = isset( $asOfs[$key] ) ? $asOfs[$key] : null;
 
 		return isset( $values[$key] ) ? $values[$key] : false;
 	}
@@ -228,13 +234,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
 	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
 	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
+	 * @param float[] &$asOfs Map of (key => generation UNIX timestamp or null)
 	 * @return array Map of (key => value) for keys that exist
 	 */
 	final public function getMulti(
-		array $keys, &$curTTLs = [], array $checkKeys = []
+		array $keys, &$curTTLs = [], array $checkKeys = [], array &$asOfs = []
 	) {
 		$result = [];
 		$curTTLs = [];
+		$asOfs = [];
 
 		$vPrefixLen = strlen( self::VALUE_KEY_PREFIX );
 		$valueKeys = self::prefixCacheKeys( $keys, self::VALUE_KEY_PREFIX );
@@ -297,6 +305,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				}
 			}
 			$curTTLs[$key] = $curTTL;
+			$asOfs[$key] = ( $value !== false ) ? $wrappedValues[$vKey][self::FLD_TIME] : null;
 		}
 
 		return $result;
@@ -760,13 +769,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      higher this is set, the higher the worst-case staleness can be.
 	 *      Use WANObjectCache::TSE_NONE to disable this logic.
 	 *      Default: WANObjectCache::TSE_NONE.
-	 *   - pcTTL : process cache the value in this PHP instance with this TTL. This avoids
+	 *   - pcTTL : Process cache the value in this PHP instance with this TTL. This avoids
 	 *      network I/O when a key is read several times. This will not cache if the callback
 	 *      returns false however. Note that any purges will not be seen while process cached;
 	 *      since the callback should use slave DBs and they may be lagged or have snapshot
 	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
-	 * @return mixed Value to use for the key
+	 *   - version : Integer version number. If set, this allows for callers to make breaking
+	 *      changes to how values are stored while maintaining compatability and correct cache
+	 *      purges. New versions are stored alongside older versions concurrently. Avoid storing
+	 *      class objects however, as this reduces compatibility (due to serialization).
+	 * @return mixed Value found or written to the key
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
@@ -776,7 +789,39 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		if ( $value === false ) {
 			// Fetch the value over the network
-			$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $opts );
+			if ( isset( $opts['version'] ) ) {
+				$version = $opts['version'];
+				$asOf = 0.0;
+				$cur = $this->doGetWithSetCallback(
+					$key,
+					$ttl,
+					function ( $oldValue, &$ttl, &$setOpts ) use ( $callback, $version ) {
+						$oldData = $oldValue ? $oldValue[self::VFLD_DATA] : false;
+						return [
+							self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts ),
+							self::VFLD_VERSION => $version
+						];
+					},
+					$opts,
+					$asOf
+				);
+				if ( $cur[self::VFLD_VERSION] === $version ) {
+					// Value created or existed before with version; use it
+					$value = $cur[self::VFLD_DATA];
+				} else {
+					// Value existed before with a different version; use variant key.
+					// Reflect purges to $key by requiring than this key value be newer.
+					$value = $this->doGetWithSetCallback(
+						'wan-cache-variant:' . md5( $key ) . ":$version",
+						$ttl,
+						$callback,
+						$opts + [ 'minTime' => $asOf ] // regenerate if not newer than $key
+					);
+				}
+			} else {
+				$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $opts );
+			}
+
 			// Update the process cache if enabled
 			if ( $pcTTL >= 0 && $value !== false ) {
 				$this->procCache->set( $key, $value, $pcTTL );
@@ -795,20 +840,27 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param integer $ttl
 	 * @param callback $callback
 	 * @param array $opts
+	 * @param float &$asOf
 	 * @return mixed
 	 */
-	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts ) {
+	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts, &$asOf = 0.0 ) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		$minTime = isset( $opts['minTime'] ) ? $opts['minTime'] : 0.0;
+		$versioned = isset( $opts['version'] );
 
 		// Get the current key value
 		$curTTL = null;
-		$cValue = $this->get( $key, $curTTL, $checkKeys ); // current value
+		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
 		$value = $cValue; // return value
 
 		// Determine if a regeneration is desired
-		if ( $value !== false && $curTTL > 0 && !$this->worthRefresh( $curTTL, $lowTTL ) ) {
+		if ( $value !== false
+			&& $curTTL > 0
+			&& $this->isValid( $value, $versioned, $asOf, $minTime )
+			&& !$this->worthRefresh( $curTTL, $lowTTL )
+		) {
 			return $value;
 		}
 
@@ -828,15 +880,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			if ( $this->cache->lock( $key, 0, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread should update the key
 				$lockAcquired = true;
-			} elseif ( $value !== false ) {
+			} elseif ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
 				// If it cannot be acquired; then the stale value can be used
 				return $value;
 			} else {
-				// Use the stash value for tombstoned keys to reduce regeneration load.
+				// Use the INTERIM value for tombstoned keys to reduce regeneration load.
 				// For hot keys, either another thread has the lock or the lock failed;
-				// use the stash value from the last thread that regenerated it.
-				$value = $this->cache->get( self::STASH_KEY_PREFIX . $key );
-				if ( $value !== false ) {
+				// use the INTERIM value from the last thread that regenerated it.
+				$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
+				$value = $this->unwrap( $wrapped, microtime( true ) );
+				if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+					$asOf = $wrapped[self::FLD_TIME];
+
 					return $value;
 				}
 			}
@@ -849,11 +904,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		// Generate the new value from the callback...
 		$setOpts = [];
 		$value = call_user_func_array( $callback, [ $cValue, &$ttl, &$setOpts ] );
+		$asOf = microtime( true );
 		// When delete() is called, writes are write-holed by the tombstone,
-		// so use a special stash key to pass the new value around threads.
+		// so use a special INTERIM key to pass the new value around threads.
 		if ( $useMutex && $value !== false && $ttl >= 0 ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
-			$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
+			$wrapped = $this->wrap( $value, $tempTTL );
+			$this->cache->set( self::INTERIM_KEY_PREFIX . $key, $wrapped, $tempTTL );
 		}
 
 		if ( $lockAcquired ) {
@@ -1002,6 +1059,23 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$chance = ( 1 - $curTTL / $lowTTL );
 
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
+	}
+
+	/**
+	 * @param array $value
+	 * @param bool $versioned
+	 * @param float $asOf The time $value was generated
+	 * @param float $minTime The last time the main value was generated (0.0 if unknown)
+	 * @return bool Whether $value is versioned or $version is false
+	 */
+	protected function isValid( $value, $versioned, $asOf, $minTime ) {
+		if ( $versioned && !isset( $value[self::VFLD_VERSION] ) ) {
+			return false;
+		} elseif ( $minTime > 0 && $asOf <= $minTime ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
