@@ -65,11 +65,7 @@ class PurgeAction extends FormAction {
 			return;
 		}
 
-		if ( $user->isAllowed( 'purge' ) ) {
-			// This will update the database immediately, even on HTTP GET.
-			// Lots of uses may exist for this feature, so just ignore warnings.
-			Profiler::instance()->getTransactionProfiler()->resetExpectations();
-
+		if ( $user->isAllowed( 'purge' ) && $this->getRequest()->wasPosted() ) {
 			$this->redirectParams = wfArrayToCgi( array_diff_key(
 				$this->getRequest()->getQueryValues(),
 				[ 'title' => null, 'action' => null ]
