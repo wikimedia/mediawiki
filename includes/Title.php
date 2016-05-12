@@ -22,6 +22,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -168,6 +169,18 @@ class Title implements LinkTarget {
 	 */
 	private static function getTitleFormatter() {
 		return MediaWikiServices::getInstance()->getTitleFormatter();
+	}
+
+	/**
+	 * B/C kludge: provide an InterwikiLookup for use by Title.
+	 * Ideally, Title would have no methods that need this.
+	 * Avoid usage of this singleton by using TitleValue
+	 * and the associated services when possible.
+	 *
+	 * @return InterwikiLookup
+	 */
+	private static function getInterwikiLookup() {
+		return MediaWikiServices::getInstance()->getInterwikiLookup();
 	}
 
 	function __construct() {
@@ -757,7 +770,7 @@ class Title implements LinkTarget {
 	 */
 	public function isLocal() {
 		if ( $this->isExternal() ) {
-			$iw = Interwiki::fetch( $this->mInterwiki );
+			$iw = self::getInterwikiLookup()->fetch( $this->mInterwiki );
 			if ( $iw ) {
 				return $iw->isLocal();
 			}
@@ -805,7 +818,7 @@ class Title implements LinkTarget {
 			return false;
 		}
 
-		return Interwiki::fetch( $this->mInterwiki )->isTranscludable();
+		return self::getInterwikiLookup()->fetch( $this->mInterwiki )->isTranscludable();
 	}
 
 	/**
@@ -818,7 +831,7 @@ class Title implements LinkTarget {
 			return false;
 		}
 
-		return Interwiki::fetch( $this->mInterwiki )->getWikiID();
+		return self::getInterwikiLookup()->fetch( $this->mInterwiki )->getWikiID();
 	}
 
 	/**
@@ -1672,7 +1685,7 @@ class Title implements LinkTarget {
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
-		$interwiki = Interwiki::fetch( $this->mInterwiki );
+		$interwiki = self::getInterwikiLookup()->fetch( $this->mInterwiki );
 		if ( $interwiki ) {
 			$namespace = $this->getNsText();
 			if ( $namespace != '' ) {
