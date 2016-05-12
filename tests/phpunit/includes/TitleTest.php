@@ -709,4 +709,42 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $title->getInterwiki(), $fragmentTitle->getInterwiki() );
 		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
 	}
+
+	public function provideGetPrefixedText() {
+		return [
+			// ns = 0
+			[
+				Title::makeTitle( NS_MAIN, 'Foobar' ),
+				'Foobar'
+			],
+			// ns = 2
+			[
+				Title::makeTitle( NS_USER, 'Foobar' ),
+				'User:Foobar'
+			],
+			// fragment not included
+			[
+				Title::makeTitle( NS_MAIN, 'Foobar', 'fragment' ),
+				'Foobar'
+			],
+			// ns = -2
+			[
+				Title::makeTitle( NS_MEDIA, 'Foobar' ),
+				'Media:Foobar'
+			],
+			// non-existent namespace
+			[
+				Title::makeTitle( 100000, 'Foobar' ),
+				':Foobar'
+			],
+		];
+	}
+
+	/**
+	 * @covers Title::getPrefixedText
+	 * @dataProvider provideGetPrefixedText
+	 */
+	public function testGetPrefixedText( Title $title, $expected ) {
+		$this->assertEquals( $expected, $title->getPrefixedText() );
+	}
 }
