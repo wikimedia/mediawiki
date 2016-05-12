@@ -192,12 +192,18 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		if ( $target->isExternal() ) {
 			$key .= $target->getInterwiki() . ':';
 		}
-		$nsName = $this->getNamespaceName(
-			$target->getNamespace(),
-			$target->getText()
-		);
+		// Try to get a namespace name, but fallback
+		// to empty string if it doesn't exist
+		try {
+			$nsName = $this->getNamespaceName(
+				$target->getNamespace(),
+				$target->getText()
+			);
+		} catch ( InvalidArgumentException $e ) {
+			$nsName = '';
+		}
 
-		if ( $nsName !== '' ) {
+		if ( $target->getNamespace() !== 0 ) {
 			$key .= $nsName . ':';
 		}
 
