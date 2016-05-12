@@ -65,39 +65,10 @@ class LinkCache {
 	 * Get an instance of this class.
 	 *
 	 * @return LinkCache
+	 * @deprecated since 1.28, use MediaWikiServices instead
 	 */
 	public static function singleton() {
-		if ( !self::$instance ) {
-			self::$instance = new LinkCache(
-				MediaWikiServices::getInstance()->getTitleFormatter()
-			);
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Destroy the singleton instance
-	 *
-	 * A new one will be created next time singleton() is called.
-	 *
-	 * @since 1.22
-	 */
-	public static function destroySingleton() {
-		self::$instance = null;
-	}
-
-	/**
-	 * Set the singleton instance to a given object.
-	 *
-	 * Since we do not have an interface for LinkCache, you have to be sure the
-	 * given object implements all the LinkCache public methods.
-	 *
-	 * @param LinkCache $instance
-	 * @since 1.22
-	 */
-	public static function setSingleton( LinkCache $instance ) {
-		self::$instance = $instance;
+		return MediaWikiServices::getInstance()->getLinkCache();
 	}
 
 	/**

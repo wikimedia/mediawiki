@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group ContentHandler
@@ -36,7 +37,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
 		// And LinkCache
-		LinkCache::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 	}
 
 	protected function tearDown() {
@@ -46,7 +47,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
 		// And LinkCache
-		LinkCache::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 
 		parent::tearDown();
 	}
