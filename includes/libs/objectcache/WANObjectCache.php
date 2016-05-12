@@ -110,12 +110,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Cache format version number */
 	const VERSION = 1;
 
-	const FLD_VERSION = 0;
-	const FLD_VALUE = 1;
-	const FLD_TTL = 2;
-	const FLD_TIME = 3;
-	const FLD_FLAGS = 4;
-	const FLD_HOLDOFF = 5;
+	const FLD_VERSION = 0; // key to cache version number
+	const FLD_VALUE = 1; // key to the cached value
+	const FLD_TTL = 2; // key to the original TTL
+	const FLD_TIME = 3; // key to the cache time
+	const FLD_FLAGS = 4; // key to the flags bitfield
+	const FLD_HOLDOFF = 5; // key to any hold-off TTL
 
 	/** @var integer Treat this value as expired-on-arrival */
 	const FLG_STALE = 1;
