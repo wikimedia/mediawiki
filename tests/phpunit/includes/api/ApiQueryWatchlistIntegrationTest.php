@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
@@ -235,7 +236,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getTitleFormatter() {
-		return new MediaWikiTitleCodec( Language::factory( 'en' ), GenderCache::singleton() );
+		return new MediaWikiTitleCodec(
+			Language::factory( 'en' ),
+			GenderCache::singleton(),
+			$this->getMock( InterwikiLookup::class )
+		);
 	}
 
 	private function getPrefixedText( LinkTarget $target ) {

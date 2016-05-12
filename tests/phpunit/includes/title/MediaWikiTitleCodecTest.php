@@ -18,6 +18,7 @@
  * @file
  * @author Daniel Kinzler
  */
+use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
  * @covers MediaWikiTitleCodec
@@ -37,21 +38,6 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			'wgMetaNamespace' => 'Project',
 			'wgLocalInterwikis' => [ 'localtestiw' ],
 			'wgCapitalLinks' => true,
-
-			// NOTE: this is why global state is evil.
-			// TODO: refactor access to the interwiki codes so it can be injected.
-			'wgHooks' => [
-				'InterwikiLoadPrefix' => [
-					function ( $prefix, &$data ) {
-						if ( $prefix === 'localtestiw' ) {
-							$data = [ 'iw_url' => 'localtestiw' ];
-						} elseif ( $prefix === 'remotetestiw' ) {
-							$data = [ 'iw_url' => 'remotetestiw' ];
-						}
-						return false;
-					}
-				]
-			]
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
@@ -77,12 +63,41 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		return $genderCache;
 	}
 
+	/**
+	 * @return InterwikiLookup
+	 */
+	private function getInterwikiLookup() {
+		$lookup = $this->getMock( 'MediaWiki\Interwiki\InterwikiLookup' );
+
+		$lookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->will( $this->returnCallback( function ( $prefix ) {
+				return in_array( $prefix, [ 'localtestiw', 'remotetestiw' ] );
+			} ) );
+
+		return $lookup;
+	}
+
 	protected function makeCodec( $lang ) {
 		$gender = $this->getGenderCache();
+		$interwikiLookup = $this->getInterwikiLookup();
 		$lang = Language::factory( $lang );
 		// language object can came from cache, which does not respect test settings
 		$lang->resetNamespaces();
-		return new MediaWikiTitleCodec( $lang, $gender );
+		return new MediaWikiTitleCodec( $lang, $gender, $interwikiLookup );
+	}
+
+	public function testConstructor_legacy() {
+		$lang = Language::factory( 'en' );
+		$gender = $this->getGenderCache();
+
+		MediaWiki\suppressWarnings();
+		new MediaWikiTitleCodec( $lang, $gender, [] );
+		new MediaWikiTitleCodec( $lang, $gender );
+		MediaWiki\restoreWarnings();
+
+		$this->setExpectedException( 'PHPUnit_Framework_Error_Notice' );
+		new MediaWikiTitleCodec( $lang, $gender, [] );
 	}
 
 	public static function provideFormat() {
@@ -411,4 +426,5 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $name );
 	}
+
 }

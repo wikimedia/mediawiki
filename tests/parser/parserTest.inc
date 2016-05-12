@@ -339,10 +339,10 @@ class ParserTest {
 	 */
 	public static function resetTitleServices() {
 		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'InterwikiLookup' );
 		$services->resetServiceForTesting( 'TitleFormatter' );
 		$services->resetServiceForTesting( 'TitleParser' );
 		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
-
 	}
 
 	public function setupRecorder( $options ) {
