@@ -18,6 +18,7 @@
  * @file
  * @author Daniel Kinzler
  */
+use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
  * @covers MediaWikiPageLinkRenderer
@@ -52,6 +53,21 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 		return $genderCache;
 	}
 
+	/**
+	 * @return InterwikiLookup
+	 */
+	private function getInterwikiLookup() {
+		$lookup = $this->getMock( 'MediaWiki\Interwiki\InterwikiLookup' );
+
+		$lookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->will( $this->returnCallback( function ( $prefix ) {
+				return in_array( $prefix, [ 'en', 'de' ] );
+			} ) );
+
+		return $lookup;
+	}
+
 	public static function provideGetPageUrl() {
 		return [
 			[
@@ -78,7 +94,11 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 
 		$lang = Language::factory( 'en' );
 
-		$formatter = new MediaWikiTitleCodec( $lang, $this->getGenderCache() );
+		$formatter = new MediaWikiTitleCodec(
+			$lang,
+			$this->getGenderCache(),
+			$this->getInterwikiLookup()
+		);
 		$renderer = new MediaWikiPageLinkRenderer( $formatter, '/' );
 		$actual = $renderer->getPageUrl( $title, $params );
 
@@ -120,7 +140,11 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 
 		$lang = Language::factory( 'en' );
 
-		$formatter = new MediaWikiTitleCodec( $lang, $this->getGenderCache() );
+		$formatter = new MediaWikiTitleCodec(
+			$lang,
+			$this->getGenderCache(),
+			$this->getInterwikiLookup()
+		);
 		$renderer = new MediaWikiPageLinkRenderer( $formatter );
 		$actual = $renderer->renderHtmlLink( $title, $text );
 
