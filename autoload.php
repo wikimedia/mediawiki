@@ -1465,6 +1465,7 @@ $wgAutoloadLocalClasses = [
 	'XMPReader' => __DIR__ . '/includes/media/XMP.php',
 	'XMPValidate' => __DIR__ . '/includes/media/XMPValidate.php',
 	'Xhprof' => __DIR__ . '/includes/libs/Xhprof.php',
+	'XhprofData' => __DIR__ . '/includes/libs/XhprofData.php',
 	'Xml' => __DIR__ . '/includes/Xml.php',
 	'XmlDumpWriter' => __DIR__ . '/includes/export/XmlDumpWriter.php',
 	'XmlJsCode' => __DIR__ . '/includes/Xml.php',
