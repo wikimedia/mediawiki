@@ -1920,12 +1920,15 @@ class LocalFile extends File {
 			// Also, that would cause contention on INSERT of similarly named rows.
 			$backend = $this->getRepo()->getBackend();
 			$lockPaths = [ $this->getPath() ]; // represents all versions of the file
-			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 5 );
+			$start = microtime( true );
+			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 10 );
+			$waited = microtime( true ) - $start;
 			if ( !$status->isGood() ) {
 				if ( $this->lockedOwnTrx ) {
 					$dbw->rollback( __METHOD__ );
 				}
-				throw new LocalFileLockError( "Could not acquire lock for '{$this->getName()}.'" );
+				throw new LocalFileLockError(
+					"Could not acquire lock for '{$this->getName()}' ($waited sec)." );
 			}
 			// Release the lock *after* commit to avoid row-level contention
 			$this->locked++;
