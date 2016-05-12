@@ -217,19 +217,13 @@ class CookieSessionProvider extends SessionProvider {
 			[ 'prefix' => '' ] + $options
 		);
 
-		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
-		$extendedExpiry = $this->config->get( 'ExtendedLoginCookieExpiration' );
-
 		foreach ( $cookies as $key => $value ) {
 			if ( $value === false ) {
 				$response->clearCookie( $key, $options );
 			} else {
-				if ( $extendedExpiry !== null && in_array( $key, $extendedCookies ) ) {
-					$expiry = time() + (int)$extendedExpiry;
-				} else {
-					$expiry = 0; // Default cookie expiration
-				}
-				$response->setCookie( $key, (string)$value, $expiry, $options );
+				$expirationDuration = static::getLoginCookieExpiration( $key );
+				$expiration = $expirationDuration ? $expirationDuration + time() : null;
+				$response->setCookie( $key, (string)$value, $expiration, $options );
 			}
 		}
 
@@ -396,4 +390,32 @@ class CookieSessionProvider extends SessionProvider {
 		return wfMessage( 'sessionprovider-nocookies' );
 	}
 
+	/**
+	 * Returns the lifespan of the login cookies, in seconds. 0 means untile the end of the session.
+	 * @param string|null $cookieName Name of the cookie. If omitted, returns expiration time of
+	 *   the extended login cookies.
+	 * @return int Cookie expiration time in seconds; 0 for session cookies
+	 */
+	public static function getLoginCookieExpiration( $cookieName = null ) {
+		// try to do the right thing if the provider has been set up to use something other
+		// than the normal config settings
+		/** @var CookieSessionProvider|null $provider */
+		$provider = SessionManager::singleton()->getProvider( static::class );
+		if ( $provider ) {
+			$normalExpiration = $provider->config->get( 'CookieExpiration' );
+			$extendedExpiration = $provider->config->get( 'ExtendedLoginCookieExpiration' );
+			$extendedCookies = $provider->config->get( 'ExtendedLoginCookies' );
+		} else {
+			global $wgCookieExpiration, $wgExtendedLoginCookieExpiration, $wgExtendedLoginCookies;
+			$normalExpiration = $wgCookieExpiration;
+			$extendedExpiration = $wgExtendedLoginCookieExpiration;
+			$extendedCookies = $wgExtendedLoginCookies;
+		}
+
+		if ( $cookieName !== null && !in_array( $cookieName, $extendedCookies, true ) ) {
+			return (int)$normalExpiration;
+		}
+
+		return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
+	}
 }
