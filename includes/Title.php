@@ -2156,9 +2156,7 @@ class Title implements LinkTarget {
 			}
 			if ( !$user->isAllowed( $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $this->mCascadeRestriction &&
-				!$user->isAllowedAny( 'editcascadeprotected', 'protect' ) )
-			{
+			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
 			}
 		}
@@ -2199,9 +2197,7 @@ class Title implements LinkTarget {
 					if ( $right == 'autoconfirmed' ) {
 						$right = 'editsemiprotected';
 					}
-					if ( $right != '' && !$user->isAllowed( $right ) &&
-						!$user->isAllowedAny( 'editcascadeprotected', 'protect' ) )
-					{
+					if ( $right != '' && !$user->isAllowedAll( 'protect', $right ) ) {
 						$pages = '';
 						foreach ( $cascadingSources as $page ) {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
