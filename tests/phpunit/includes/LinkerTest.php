@@ -310,6 +310,76 @@ class LinkerTest extends MediaWikiLangTestCase {
 		// @codingStandardsIgnoreEnd
 	}
 
+	public static function provideLinkBeginHook() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		return [
+			// Modify $html
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$html = 'foobar';
+				},
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">foobar</a>'
+			],
+			// Modify $attribs
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$attribs['bar'] = 'baz';
+				},
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage" bar="baz">Special:BlankPage</a>'
+			],
+			// Modify $query
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$query['bar'] = 'baz';
+				},
+				'<a href="/w/index.php?title=Special:BlankPage&amp;bar=baz" title="Special:BlankPage">Special:BlankPage</a>'
+			],
+			// Force HTTP $options
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$options = [ 'http' ];
+				},
+				'<a href="http://example.org/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>'
+			],
+			// Force 'forcearticlepath' in $options
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$options = [ 'forcearticlepath' ];
+					$query['foo'] = 'bar';
+				},
+				'<a href="/wiki/Special:BlankPage?foo=bar" title="Special:BlankPage">Special:BlankPage</a>'
+			],
+			// Abort early
+			[
+				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+					$ret = 'foobar';
+					return false;
+				},
+				'foobar'
+			],
+		];
+		// @codingStandardsIgnoreEnd
+	}
+
+	/**
+	 * @dataProvider provideLinkBeginHook
+	 */
+	public function testLinkBeginHook( $callback, $expected ) {
+		$this->setMwGlobals( [
+			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
+			'wgServer' => '//example.org',
+			'wgCanonicalServer' => 'http://example.org',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+		] );
+
+		$this->setMwGlobals( 'wgHooks', [ 'LinkBegin' => [ $callback ] ] );
+		$title = SpecialPage::getTitleFor( 'Blankpage' );
+		$out = Linker::link( $title );
+		$this->assertEquals( $expected, $out );
+	}
+
 	public static function provideLinkEndHook() {
 		return [
 			// Override $html
