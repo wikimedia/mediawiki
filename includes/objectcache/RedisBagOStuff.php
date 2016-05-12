@@ -310,7 +310,8 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return mixed
 	 */
 	protected function unserialize( $data ) {
-		return ctype_digit( $data ) ? intval( $data ) : unserialize( $data );
+		$int = intval( $data );
+		return $data === (string)$int ? $int : unserialize( $data );
 	}
 
 	/**
