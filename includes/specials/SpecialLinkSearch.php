@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  * @author Brion Vibber
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Special:LinkSearch to search the external-links table.
@@ -70,7 +71,11 @@ class LinkSearchPage extends QueryPage {
 	private function initServices() {
 		global $wgContLang;
 		if ( !$this->linkRenderer ) {
-			$titleFormatter = new MediaWikiTitleCodec( $wgContLang, GenderCache::singleton() );
+			$titleFormatter = new MediaWikiTitleCodec(
+				$wgContLang,
+				GenderCache::singleton(),
+				MediaWikiServices::getInstance()->getInterwikiLookup()
+			);
 			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
 		}
 	}
