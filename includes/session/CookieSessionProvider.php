@@ -217,19 +217,13 @@ class CookieSessionProvider extends SessionProvider {
 			[ 'prefix' => '' ] + $options
 		);
 
-		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
-		$extendedExpiry = $this->config->get( 'ExtendedLoginCookieExpiration' );
-
 		foreach ( $cookies as $key => $value ) {
 			if ( $value === false ) {
 				$response->clearCookie( $key, $options );
 			} else {
-				if ( $extendedExpiry !== null && in_array( $key, $extendedCookies ) ) {
-					$expiry = time() + (int)$extendedExpiry;
-				} else {
-					$expiry = 0; // Default cookie expiration
-				}
-				$response->setCookie( $key, (string)$value, $expiry, $options );
+				$expirationDuration = static::getLoginCookieExpirationInternal( $key, $this );
+				$expiration = $expirationDuration ? $expirationDuration + time() : null;
+				$response->setCookie( $key, (string)$value, $expiration, $options );
 			}
 		}
 
@@ -396,4 +390,38 @@ class CookieSessionProvider extends SessionProvider {
 		return wfMessage( 'sessionprovider-nocookies' );
 	}
 
+	/**
+	 * Returns the lifespan of the login cookies, in seconds. 0 means untile the end of the session.
+	 * @param string|null $cookieName Name of the cookie. If omitted, returns expiration time of
+	 *   the extended login cookies.
+	 * @return int Cookie expiration time in seconds; 0 for session cookies
+	 */
+	public static function getLoginCookieExpiration( $cookieName = null ) {
+		// ugly hack to fit three cases as well as possible:
+		// - a CookieSessionProvider should always use its own config
+		// - external callers should get the settings of the CookieSessionProvider
+		// - if somehow no CookieSessionProvider is configured, things should still work
+		$provider = SessionManager::singleton()->getProvider( static::class );
+		return static::getLoginCookieExpirationInternal( $cookieName, $provider );
+	}
+
+	protected static function getLoginCookieExpirationInternal(
+		$cookieName = null, CookieSessionProvider $provider = null
+	) {
+		if ( $provider ) {
+			$config = $provider->config;
+		} else {
+			$config = \RequestContext::getMain()->getConfig();
+		}
+
+		$normalExpiration = $config->get( 'CookieExpiration' );
+		$extendedExpiration = $config->get( 'ExtendedLoginCookieExpiration' );
+		$extendedCookies = $config->get( 'ExtendedLoginCookies' );
+
+		if ( $cookieName !== null && !in_array( $cookieName, $extendedCookies, true ) ) {
+			return (int)$normalExpiration;
+		}
+
+		return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
+	}
 }

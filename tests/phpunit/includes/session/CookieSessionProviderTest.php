@@ -22,6 +22,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'CookieSecure' => true,
 			'CookieHttpOnly' => true,
 			'SessionName' => false,
+			'CookieExpiration' => $wgCookieExpiration,
 			'ExtendedLoginCookies' => [ 'UserID', 'Token' ],
 			'ExtendedLoginCookieExpiration' => $wgCookieExpiration * 2,
 		] );
@@ -783,4 +784,23 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertNull( $provider->getCookie( $request, 'Baz', 'x' ) );
 	}
 
+	public function testGetLoginCookieExpiration() {
+		$this->setMwGlobals( [
+			'wgCookieExpiration' => 123,
+			'wgExtendedLoginCookieExpiration' => 456,
+			'wgExtendedLoginCookies' => [ 'Token' ],
+		] );
+		$this->assertSame( 456, CookieSessionProvider::getLoginCookieExpiration() );
+		$this->assertSame( 456, CookieSessionProvider::getLoginCookieExpiration( 'Token' ) );
+		$this->assertSame( 123, CookieSessionProvider::getLoginCookieExpiration( 'User' ) );
+
+		$this->setMwGlobals( [
+			'wgCookieExpiration' => 123,
+			'wgExtendedLoginCookieExpiration' => null,
+			'wgExtendedLoginCookies' => [ 'Token' ],
+		] );
+		$this->assertSame( 123, CookieSessionProvider::getLoginCookieExpiration() );
+		$this->assertSame( 123, CookieSessionProvider::getLoginCookieExpiration( 'Token' ) );
+		$this->assertSame( 123, CookieSessionProvider::getLoginCookieExpiration( 'User' ) );
+	}
 }

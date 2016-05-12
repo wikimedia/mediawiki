@@ -21,9 +21,11 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Session\CookieSessionProvider;
+
 /**
  * This is an authentication request added by AuthManager to show a "remember
- * me" checkbox.
+ * me" checkbox. When checked, it will take more time for the authenticated session to expire.
  * @ingroup Auth
  * @since 1.27
  */
@@ -35,8 +37,13 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	public $rememberMe = false;
 
 	public function getFieldInfo() {
-		global $wgCookieExpiration;
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+		$expiration = CookieSessionProvider::getLoginCookieExpiration();
+		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
+
+		if ( $expiration === 0 ) {
+			// token cookie would expire at the end of the browser session; no point in showing this
+			return [];
+		}
 
 		return [
 			'rememberMe' => [
