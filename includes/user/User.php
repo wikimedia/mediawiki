@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\Auth\AuthManager;
@@ -3629,14 +3630,15 @@ class User implements IDBAccessObject {
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 */
 	protected function setExtendedLoginCookie( $name, $value, $secure ) {
-		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
-
 		wfDeprecated( __METHOD__, '1.27' );
 
-		$exp = time();
-		$exp += $wgExtendedLoginCookieExpiration !== null
-			? $wgExtendedLoginCookieExpiration
-			: $wgCookieExpiration;
+		$expirationDuration = CookieSessionProvider::getLoginCookieExpiration();
+
+		if ( $expirationDuration !== 0 ) {
+			$exp = time() + $expirationDuration;
+		} else {
+			$exp = null;
+		}
 
 		$this->setCookie( $name, $value, $exp, $secure );
 	}
