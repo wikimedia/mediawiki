@@ -3408,7 +3408,11 @@ class User implements IDBAccessObject {
 			return $isBot;
 		}
 
-		return ( $isBot || in_array( 'bot', $this->getGroups() ) );
+		if ( $isBot ) {
+			return true;
+		}
+
+		return ( in_array( 'bot', $this->getGroups() ) && $this->isAllowed( 'bot' ) );
 	}
 
 	/**
