@@ -243,6 +243,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
+			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],

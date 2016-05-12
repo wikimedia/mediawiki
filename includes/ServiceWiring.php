@@ -139,6 +139,12 @@ return [
 		return $store;
 	},
 
+	'LinkCache' => function( MediaWikiServices $services ) {
+		return new LinkCache(
+			$services->getTitleFormatter()
+		);
+	},
+
 	'GenderCache' => function( MediaWikiServices $services ) {
 		return new GenderCache();
 	},

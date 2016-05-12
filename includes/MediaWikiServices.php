@@ -8,6 +8,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use LBFactory;
+use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
@@ -460,6 +461,15 @@ class MediaWikiServices extends ServiceContainer {
 	public function getGenderCache() {
 		return $this->getService( 'GenderCache' );
 	}
+
+	/**
+	 * @since 1.28
+	 * @return LinkCache
+	 */
+	public function getLinkCache() {
+		return $this->getService( 'LinkCache' );
+	}
+
 	/**
 	 * @since 1.28
 	 * @return TitleFormatter
