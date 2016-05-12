@@ -10,6 +10,7 @@ use Hooks;
 use LBFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
+use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
 use ResourceLoader;
@@ -87,7 +88,7 @@ class MediaWikiServices extends ServiceContainer {
 			// even if it's just a file name or database credentials to load
 			// configuration from.
 			$bootstrapConfig = new GlobalVarConfig();
-			self::$instance = self::newInstance( $bootstrapConfig );
+			self::$instance = self::newInstance( $bootstrapConfig, 'load' );
 		}
 
 		return self::$instance;
@@ -120,7 +121,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * Creates a new instance of MediaWikiServices and sets it as the global default
 	 * instance. getInstance() will return a different MediaWikiServices object
-	 * after every call to resetGlobalServiceLocator().
+	 * after every call to resetGlobalInstance().
 	 *
 	 * @since 1.28
 	 *
@@ -128,7 +129,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * when the configuration has changed significantly since bootstrap time, e.g.
 	 * during the installation process or during testing.
 	 *
-	 * @warning Calling resetGlobalServiceLocator() may leave the application in an inconsistent
+	 * @warning Calling resetGlobalInstance() may leave the application in an inconsistent
 	 * state. Calling this is only safe under the ASSUMPTION that NO REFERENCE to
 	 * any of the services managed by MediaWikiServices exist. If any service objects
 	 * managed by the old MediaWikiServices instance remain in use, they may INTERFERE
@@ -149,11 +150,14 @@ class MediaWikiServices extends ServiceContainer {
 	 *        was no previous instance, a new GlobalVarConfig object will be used to
 	 *        bootstrap the services.
 	 *
+	 * @param string $quick Set this to "quick" to allow expensive resources to be re-used.
+	 * See SalvageableService for details.
+	 *
 	 * @throws MWException If called after MW_SERVICE_BOOTSTRAP_COMPLETE has been defined in
 	 *         Setup.php (unless MW_PHPUNIT_TEST or MEDIAWIKI_INSTALL or RUN_MAINTENANCE_IF_MAIN
 	 *          is defined).
 	 */
-	public static function resetGlobalInstance( Config $bootstrapConfig = null ) {
+	public static function resetGlobalInstance( Config $bootstrapConfig = null, $quick = '' ) {
 		if ( self::$instance === null ) {
 			// no global instance yet, nothing to reset
 			return;
@@ -165,9 +169,38 @@ class MediaWikiServices extends ServiceContainer {
 			$bootstrapConfig = self::$instance->getBootstrapConfig();
 		}
 
-		self::$instance->destroy();
+		$oldInstance = self::$instance;
 
 		self::$instance = self::newInstance( $bootstrapConfig );
+		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
+
+		if ( $quick === 'quick' ) {
+			self::$instance->salvage( $oldInstance );
+		} else {
+			$oldInstance->destroy();
+		}
+
+	}
+
+	/**
+	 * Salvages the state of any salvageable service instances in $other.
+	 *
+	 * @note $other will have been destroyed when salvage() returns.
+	 *
+	 * @param MediaWikiServices $other
+	 */
+	private function salvage( self $other ) {
+		foreach ( $this->getServiceNames() as $name ) {
+			$oldService = $other->peekService( $name );
+
+			if ( $oldService instanceof SalvageableService ) {
+				/** @var SalvageableService $newService */
+				$newService = $this->getService( $name );
+				$newService->salvage( $oldService );
+			}
+		}
+
+		$other->destroy();
 	}
 
 	/**
@@ -176,21 +209,23 @@ class MediaWikiServices extends ServiceContainer {
 	 * ServiceWiringFiles setting are loaded, and the MediaWikiServices hook is called.
 	 *
 	 * @param Config|null $bootstrapConfig The Config object to be registered as the
-	 *        'BootstrapConfig' service. This has to contain at least the information
-	 *        needed to set up the 'ConfigFactory' service. If not provided, any call
-	 *        to getBootstrapConfig(), getConfigFactory, or getMainConfig will fail.
-	 *        A MediaWikiServices instance without access to configuration is called
-	 *        "primordial".
+	 *        'BootstrapConfig' service.
+	 *
+	 * @param string $loadWiring set this to 'load' to load the wiring files specified
+	 *        in the 'ServiceWiringFiles' setting in $bootstrapConfig.
 	 *
 	 * @return MediaWikiServices
 	 * @throws MWException
+	 * @throws \FatalError
 	 */
-	private static function newInstance( Config $bootstrapConfig ) {
+	private static function newInstance( Config $bootstrapConfig, $loadWiring = '' ) {
 		$instance = new self( $bootstrapConfig );
 
 		// Load the default wiring from the specified files.
-		$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
-		$instance->loadWiringFiles( $wiringFiles );
+		if ( $loadWiring ) {
+			$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
+			$instance->loadWiringFiles( $wiringFiles );
+		}
 
 		// Provide a traditional hook point to allow extensions to configure services.
 		Hooks::run( 'MediaWikiServices', [ $instance ] );
