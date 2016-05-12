@@ -3403,12 +3403,14 @@ class User implements IDBAccessObject {
 	 * @since 1.28
 	 */
 	public function isBot() {
-		$isBot = false;
-		if ( !Hooks::run( "UserIsBot", [ $this, &$isBot ] ) ) {
-			return $isBot;
+		if ( in_array( 'bot', $this->getGroups() ) && $this->isAllowed( 'bot' ) ) {
+			return true;
 		}
 
-		return ( $isBot || in_array( 'bot', $this->getGroups() ) );
+		$isBot = false;
+		Hooks::run( "UserIsBot", [ $this, &$isBot ] );
+
+		return $isBot;
 	}
 
 	/**
