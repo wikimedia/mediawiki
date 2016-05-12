@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 100; // Number of rows to process in one batch
-	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
+	const SYNC_INTERVAL = 5; // Wait for slaves after this many batches
 
 	public $sizeHistogram = [];
 
