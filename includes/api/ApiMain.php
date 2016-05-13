@@ -1135,7 +1135,7 @@ class ApiMain extends ApiBase {
 									TS_MW, time() - $this->getConfig()->get( 'SquidMaxage' )
 								);
 							}
-							Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes ] );
+							Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this->getOutput() ] );
 							$lastMod = max( $modifiedTimes );
 							$return304 = wfTimestamp( TS_MW, $lastMod ) <= $ts->getTimestamp( TS_MW );
 						}
