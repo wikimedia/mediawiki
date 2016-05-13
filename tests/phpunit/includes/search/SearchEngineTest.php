@@ -153,4 +153,52 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Title power search failed" );
 	}
 
+	/**
+	 * @covers SearchEngine::getSearchIndexFields
+	 */
+	public function testSearchIndexFields() {
+		/**
+		 * @var $mockEngine SearchEngine
+		 */
+		$mockEngine = $this->getMock( 'SearchEngine' );
+
+		$mockFieldBuilder = function ( $name, $type ) {
+			$mockField =
+				$this->getMockBuilder( 'SearchIndexFieldDefinition' )->setConstructorArgs( [
+					$name,
+					$type
+				] )->getMock();
+			$mockField->expects( $this->atLeastOnce() )->method( 'getMapping' )->willReturn( [
+				'testData' => 'test',
+				'name' => $name,
+				'type' => $type,
+			] );
+			return $mockField;
+		};
+
+		$mockEngine->expects( $this->atLeastOnce() )
+			->method( 'makeSearchFieldMapping' )
+			->willReturnCallback( $mockFieldBuilder );
+
+		$mockHook = $this->getMock( 'stdClass', [ 'onSearchIndexFields' ] );
+		$mockHook->expects( $this->once() )
+			->method( 'onSearchIndexFields' )
+			->with( $this->anything(), $mockEngine )
+			->willReturnCallback( function ( &$fields, $engine ) use ( $mockFieldBuilder ) {
+				$fields['testField'] =
+					$mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
+			} );
+
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SearchIndexFields' => [ $mockHook ] ] );
+
+		$fields = $mockEngine->getSearchIndexFields();
+		$this->assertArrayHasKey( 'language', $fields );
+		$this->assertArrayHasKey( 'text', $fields );
+		$this->assertArrayHasKey( 'category', $fields );
+		$this->assertInstanceOf( 'SearchIndexField', $fields['testField'] );
+
+		$mapping = $fields['testField']->getMapping( $mockEngine );
+		$this->assertArrayHasKey( 'testData', $mapping );
+		$this->assertEquals( 'test', $mapping['testData'] );
+	}
 }
