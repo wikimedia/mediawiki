@@ -20,6 +20,9 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\Linker\HtmlArmor;
+use MediaWiki\Linker\HtmlPageLinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @defgroup Parser Parser
@@ -242,6 +245,11 @@ class Parser {
 
 	/** @var SectionProfiler */
 	protected $mProfiler;
+
+	/**
+	 * @var HtmlPageLinkRenderer
+	 */
+	protected $mHtmlPageLinkRenderer;
 
 	/**
 	 * @param array $conf
@@ -881,6 +889,25 @@ class Parser {
 			$this->mPreprocessor = new $class( $this );
 		}
 		return $this->mPreprocessor;
+	}
+
+	/**
+	 * Get a HtmlPageLinkRenderer instance to make links with
+	 *
+	 * @since 1.28
+	 * @return HtmlPageLinkRenderer
+	 */
+	public function getHtmlPageLinkRenderer() {
+		if ( !$this->mHtmlPageLinkRenderer ) {
+			$this->mHtmlPageLinkRenderer = new HtmlPageLinkRenderer(
+				MediaWikiServices::getInstance()->getTitleFormatter()
+			);
+			$this->mHtmlPageLinkRenderer->setStubThreshold(
+				$this->getOptions()->getStubThreshold()
+			);
+		}
+
+		return $this->mHtmlPageLinkRenderer;
 	}
 
 	/**
@@ -2346,7 +2373,9 @@ class Parser {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 
-		$link = Linker::linkKnown( $nt, "$prefix$text$inside", [], $query );
+		$link = $this->getHtmlPageLinkRenderer()->makeKnownLink(
+			$nt, new HtmlArmor( "$prefix$text$inside" ), $query
+		);
 
 		return $this->armorLinks( $link ) . $trail;
 	}
