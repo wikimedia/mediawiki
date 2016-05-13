@@ -758,6 +758,7 @@ $wgAutoloadLocalClasses = [
 	'MagicWord' => __DIR__ . '/includes/MagicWord.php',
 	'MagicWordArray' => __DIR__ . '/includes/MagicWordArray.php',
 	'MailAddress' => __DIR__ . '/includes/mail/MailAddress.php',
+	'MainConfigDependency' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'Maintenance' => __DIR__ . '/maintenance/Maintenance.php',
 	'MaintenanceFormatInstallDoc' => __DIR__ . '/maintenance/formatInstallDoc.php',
 	'MakeTestEdits' => __DIR__ . '/maintenance/makeTestEdits.php',

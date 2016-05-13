@@ -23,6 +23,7 @@
 use Cdb\Reader as CdbReader;
 use Cdb\Writer as CdbWriter;
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class for caching the contents of localisation files, Messages*.php
@@ -802,12 +803,15 @@ class LocalisationCache {
 	 * @return array
 	 */
 	public function getMessagesDirs() {
-		global $wgMessagesDirs, $IP;
+		global $IP;
+
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$messagesDirs = $config->get( 'MessagesDirs' );
 		return [
 			'core' => "$IP/languages/i18n",
 			'api' => "$IP/includes/api/i18n",
 			'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
-		] + $wgMessagesDirs;
+		] + $messagesDirs;
 	}
 
 	/**
@@ -958,8 +962,9 @@ class LocalisationCache {
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
-		// $wgMessagesDirs is used in LocalisationCache::getMessagesDirs()
-		$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
+		// The 'MessagesDirs' config setting is used in LocalisationCache::getMessagesDirs().
+		// We use the key 'wgMessagesDirs' for historical reasons.
+		$deps['wgMessagesDirs'] = new MainConfigDependency( 'MessagesDirs' );
 		$deps['version'] = new ConstantDependency( 'LocalisationCache::VERSION' );
 
 		# Add dependencies to the cache entry
