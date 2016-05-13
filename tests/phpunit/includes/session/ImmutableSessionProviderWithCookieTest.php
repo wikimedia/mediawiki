@@ -249,7 +249,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			}
 			$this->assertEquals( [
 				'value' => 'true',
-				'expire' => $remember ? 100 : null,
+				'expire' => null,
 				'path' => 'CookiePath',
 				'domain' => 'CookieDomain',
 				'secure' => false,
