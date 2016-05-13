@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\ServiceDisabledException;
 
 /**
  * Functions to get cache objects
@@ -226,7 +227,17 @@ class ObjectCache {
 				return self::getInstance( $candidate );
 			}
 		}
-		return self::getInstance( CACHE_DB );
+
+		try {
+			// Make sure we actually have a DB backend before falling back to CACHE_DB
+			MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$candidate = CACHE_DB;
+		} catch ( ServiceDisabledException $e ) {
+			// The LoadBalancer is disabled, probably because MediaWikiServices::disableStorageBackend was called.
+			$candidate = CACHE_NONE;
+		}
+
+		return self::getInstance( $candidate );
 	}
 
 	/**

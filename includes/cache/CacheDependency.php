@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class stores an arbitrary value along with its dependencies.
@@ -241,6 +242,34 @@ class GlobalDependency extends CacheDependency {
 		}
 
 		return $GLOBALS[$this->name] != $this->value;
+	}
+}
+
+/**
+ * @ingroup Cache
+ */
+class MainConfigDependency extends CacheDependency {
+	private $name;
+	private $value;
+
+	function __construct( $name ) {
+		$this->name = $name;
+		$this->value = $this->getConfig()->get( $this->name );
+	}
+
+	private function getConfig() {
+		return MediaWikiServices::getInstance()->getMainConfig();
+	}
+
+	/**
+	 * @return bool
+	 */
+	function isExpired() {
+		if ( !$this->getConfig()->has( $this->name ) ) {
+			return true;
+		}
+
+		return $this->getConfig()->get( $this->name ) != $this->value;
 	}
 }
 
