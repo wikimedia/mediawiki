@@ -553,6 +553,7 @@ class LogEventsList extends ContextSource {
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
 	 * - useMaster boolean Use master DB
+	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -567,6 +568,7 @@ class LogEventsList extends ContextSource {
 			'flags' => 0,
 			'useRequestParams' => false,
 			'useMaster' => false,
+			'extraUrlParams' => false,
 		];
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -578,6 +580,8 @@ class LogEventsList extends ContextSource {
 		$msgKey = $param['msgKey'];
 		$wrap = $param['wrap'];
 		$flags = $param['flags'];
+		$extraUrlParams = $param['extraUrlParams'];
+
 		$useRequestParams = $param['useRequestParams'];
 		if ( !is_array( $msgKey ) ) {
 			$msgKey = [ $msgKey ];
@@ -664,7 +668,11 @@ class LogEventsList extends ContextSource {
 				$urlParam['type'] = $types[0];
 			}
 
-			$s .= Linker::link(
+			if ( $extraUrlParams !== false ) {
+				$urlParam = array_merge( $urlParam, $extraUrlParams );
+			}
+
+			$s .= Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
 				$context->msg( 'log-fulllog' )->escaped(),
 				[],
