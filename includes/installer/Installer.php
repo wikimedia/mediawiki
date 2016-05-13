@@ -20,6 +20,7 @@
  * @file
  * @ingroup Deployment
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This documentation group collects source code files with deployment functionality.
@@ -383,14 +384,24 @@ abstract class Installer {
 
 		$configOverrides->set( 'MessagesDirs', $messageDirs );
 
-		return new MultiConfig( [ $configOverrides, $baseConfig ] );
+		$installerConfig = new MultiConfig( [ $configOverrides, $baseConfig ] );
+
+		// make sure we use the installer config as the main config
+		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
+		$configRegistry['main'] = function() use ( $installerConfig ) {
+			return $installerConfig;
+		};
+
+		$configOverrides->set( 'ConfigRegistry', $configRegistry );
+
+		return $installerConfig;
 	}
 
 	/**
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgMemc, $wgUser;
+		global $wgMemc, $wgUser, $wgObjectCaches;
 
 		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
@@ -411,6 +422,7 @@ abstract class Installer {
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
+		$wgObjectCaches = MediaWikiServices::getInstance()->getMainConfig()->get( 'ObjectCaches' );
 		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().

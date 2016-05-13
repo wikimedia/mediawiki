@@ -13,6 +13,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
+use ObjectCache;
 use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
@@ -222,6 +223,8 @@ class MediaWikiServices extends ServiceContainer {
 		foreach ( $destroy as $name ) {
 			$services->disableService( $name );
 		}
+
+		ObjectCache::clear();
 	}
 
 	/**
