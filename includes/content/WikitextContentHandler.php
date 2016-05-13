@@ -108,4 +108,40 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		$fields = [];
+
+		$fields['category'] =
+			$engine->makeSearchFieldMapping( 'category', SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		$fields['external_link'] =
+			$engine->makeSearchFieldMapping( 'external_link', SearchIndexField::INDEX_TYPE_KEYWORD );
+
+		$fields['heading'] =
+			$engine->makeSearchFieldMapping( 'heading', SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['heading']->setFlag( SearchIndexField::FLAG_SCORING );
+
+		$fields['auxiliary_text'] =
+			$engine->makeSearchFieldMapping( 'auxiliary_text', SearchIndexField::INDEX_TYPE_TEXT );
+
+		$fields['opening_text'] =
+			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING );
+
+		$fields['outgoing_link'] =
+			$engine->makeSearchFieldMapping( 'outgoing_link', SearchIndexField::INDEX_TYPE_KEYWORD );
+
+		$fields['template'] =
+			$engine->makeSearchFieldMapping( 'template', SearchIndexField::INDEX_TYPE_KEYWORD );
+		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		// FIXME: this really belongs in separate file handler but files
+		// do not have separate handler. Sadness.
+		$fields['file_text'] =
+			$engine->makeSearchFieldMapping( 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
+
+		return $fields;
+	}
+
 }

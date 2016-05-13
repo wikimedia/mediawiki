@@ -1248,4 +1248,26 @@ abstract class ContentHandler {
 
 		return $ok;
 	}
+
+	/**
+	 * Get fields definition for search index
+	 * @param SearchEngine $engine
+	 * @return SearchIndexField[] List of fields this content handler can provide.
+	 * @since 1.28
+	 */
+	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		/* Default fields:
+		/*
+		 * namespace
+		 * namespace_text
+		 * redirect
+		 * source_text
+		 * suggest
+		 * timestamp
+		 * title
+		 * text
+		 * text_bytes
+		 */
+		return [];
+	}
 }
