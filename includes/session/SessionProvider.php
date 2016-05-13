@@ -276,6 +276,16 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	abstract public function canChangeUser();
 
 	/**
+	 * Returns the duration (in seconds) for which users will be remembered when
+	 * Session::setRememberUser() is set. Null means setting the remember flag will
+	 * have no effect (and endpoints should not offer that option).
+	 * @return int|null
+	 */
+	public function getRememberUserDuration() {
+		return null;
+	}
+
+	/**
 	 * Notification that the session ID was reset
 	 *
 	 * No need to persist here, persistSession() will be called if appropriate.
