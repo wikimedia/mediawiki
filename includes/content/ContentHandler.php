@@ -1243,4 +1243,39 @@ abstract class ContentHandler {
 
 		return $ok;
 	}
+
+	/**
+	 * Get fields definition for search index
+	 * @return SearchIndexFieldDefinition[] List of fields this content handler can provide.
+	 */
+	public function getFieldsForSearchIndex() {
+		/* Default fields:
+		/*
+		 * all
+		 * all_near_match
+		 *
+		 * namespace
+		 * namespace_text
+		 * redirect
+		 * source_text
+		 * suggest
+		 * timestamp
+		 * title
+		 * text
+		 * text_bytes
+		 */
+		return [];
+	}
+
+	/**
+	 * Add new field definition to array.
+	 * @param SearchIndexFieldDefinition[] $fields
+	 * @param string $name
+	 * @param int $type
+	 * @return SearchIndexFieldDefinition[] new field defs
+	 */
+	protected function addSearchField( &$fields, $name, $type ) {
+		$fields[$name] = new SearchIndexFieldDefinition( $name, $type );
+		return $fields;
+	}
 }
