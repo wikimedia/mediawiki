@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers RCCacheEntryFactory
  *
@@ -14,6 +17,11 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $testRecentChangesHelper;
 
+	/**
+	 * @var LinkRenderer;
+	 */
+	private $linkRenderer;
+
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
@@ -26,6 +34,10 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1'
 		] );
+
+		$this->linkRenderer = new LinkRenderer(
+			MediaWikiServices::getInstance()->getTitleFormatter()
+		);
 	}
 
 	/**
@@ -34,7 +46,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	public function testNewFromRecentChange( $expected, $context, $messages,
 		$recentChange, $watched
 	) {
-		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
+		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages, $this->linkRenderer );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
 		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
@@ -88,7 +100,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider deleteChangeProvider
 	 */
 	public function testNewForDeleteChange( $expected, $context, $messages, $recentChange, $watched ) {
-		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
+		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages, $this->linkRenderer );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
 		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
@@ -141,7 +153,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	public function testNewForRevUserDeleteChange( $expected, $context, $messages,
 		$recentChange, $watched
 	) {
-		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
+		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages, $this->linkRenderer );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
 		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
