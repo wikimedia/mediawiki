@@ -115,7 +115,10 @@ class WebInstallerOutput {
 
 	public function output() {
 		$this->flush();
-		$this->outputFooter();
+
+		if ( !$this->redirectTarget ) {
+			$this->outputFooter();
+		}
 	}
 
 	/**
