@@ -33,6 +33,8 @@ class SessionProviderTest extends MediaWikiTestCase {
 
 		$this->assertSame( get_class( $provider ), (string)$provider );
 
+		$this->assertNull( $provider->getRememberUserDuration() );
+
 		$this->assertNull( $provider->whyNoSession() );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
