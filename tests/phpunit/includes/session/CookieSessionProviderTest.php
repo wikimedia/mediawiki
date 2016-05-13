@@ -14,7 +14,6 @@ use Psr\Log\LogLevel;
 class CookieSessionProviderTest extends MediaWikiTestCase {
 
 	private function getConfig() {
-		global $wgCookieExpiration;
 		return new \HashConfig( [
 			'CookiePrefix' => 'CookiePrefix',
 			'CookiePath' => 'CookiePath',
@@ -22,8 +21,9 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'CookieSecure' => true,
 			'CookieHttpOnly' => true,
 			'SessionName' => false,
+			'CookieExpiration' => 100,
 			'ExtendedLoginCookies' => [ 'UserID', 'Token' ],
-			'ExtendedLoginCookieExpiration' => $wgCookieExpiration * 2,
+			'ExtendedLoginCookieExpiration' => 200,
 		] );
 	}
 
@@ -377,8 +377,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testPersistSession() {
-		$this->setMwGlobals( [ 'wgCookieExpiration' => 100 ] );
-
 		$provider = new CookieSessionProvider( [
 			'priority' => 1,
 			'sessionName' => 'MySessionName',
@@ -461,7 +459,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	 */
 	public function testCookieData( $secure, $remember ) {
 		$this->setMwGlobals( [
-			'wgCookieExpiration' => 100,
 			'wgSecureLogin' => false,
 		] );
 
@@ -783,4 +780,39 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertNull( $provider->getCookie( $request, 'Baz', 'x' ) );
 	}
 
+	public function testGetRememberUserDuration() {
+		$config = $this->getConfig();
+		$provider = new CookieSessionProvider( [ 'priority' => 10 ] );
+		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setConfig( $config );
+		$provider->setManager( SessionManager::singleton() );
+
+		$this->assertSame( 200, $provider->getRememberUserDuration() );
+
+		$config->set( 'ExtendedLoginCookieExpiration', null );
+
+		$this->assertSame( 100, $provider->getRememberUserDuration() );
+
+		$config->set( 'ExtendedLoginCookieExpiration', 0 );
+
+		$this->assertSame( null, $provider->getRememberUserDuration() );
+	}
+
+	public function testGetLoginCookieExpiration() {
+		$config = $this->getConfig();
+		$provider = \TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
+			'priority' => 10
+		] ) );
+		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setConfig( $config );
+		$provider->setManager( SessionManager::singleton() );
+
+		$this->assertSame( 200, $provider->getLoginCookieExpiration( 'Token' ) );
+		$this->assertSame( 100, $provider->getLoginCookieExpiration( 'User' ) );
+
+		$config->set( 'ExtendedLoginCookieExpiration', null );
+
+		$this->assertSame( 100, $provider->getLoginCookieExpiration( 'Token' ) );
+		$this->assertSame( 100, $provider->getLoginCookieExpiration( 'User' ) );
+	}
 }
