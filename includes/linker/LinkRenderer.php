@@ -266,8 +266,7 @@ class LinkRenderer {
 			if ( $target->isExternal() ) {
 				$classes[] = 'extiw';
 			}
-			$title = Title::newFromLinkTarget( $target );
-			$colour = Linker::getLinkColour( $title, $this->stubThreshold );
+			$colour = Linker::getLinkColour( $target, $this->stubThreshold );
 			if ( $colour !== '' ) {
 				$classes[] = $colour;
 			}
