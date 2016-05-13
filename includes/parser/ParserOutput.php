@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Output of the PHP parser.
  *
@@ -21,6 +20,10 @@
  * @file
  * @ingroup Parser
  */
+
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
+
 class ParserOutput extends CacheTime {
 	/**
 	 * @var string $mText The output text
@@ -521,10 +524,10 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
-	public function addLink( Title $title, $id = null ) {
+	public function addLink( LinkTarget $title, $id = null ) {
 		if ( $title->isExternal() ) {
 			// Don't record interwikis in pagelinks
 			$this->addInterwikiLink( $title );
@@ -547,7 +550,8 @@ class ParserOutput extends CacheTime {
 			$this->mLinks[$ns] = [];
 		}
 		if ( is_null( $id ) ) {
-			$id = $title->getArticleID();
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$id = $linkCache->addLinkObj( $title );
 		}
 		$this->mLinks[$ns][$dbk] = $id;
 	}
@@ -587,10 +591,10 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @param Title $title Title object, must be an interwiki link
+	 * @param LinkTarget $title LinkTarget object, must be an interwiki link
 	 * @throws MWException If given invalid input
 	 */
-	public function addInterwikiLink( $title ) {
+	public function addInterwikiLink( LinkTarget $title ) {
 		if ( !$title->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
