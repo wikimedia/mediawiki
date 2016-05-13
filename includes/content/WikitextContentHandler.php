@@ -108,4 +108,36 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	/**
+	 * Get fields definition for search index
+	 * @return SearchIndexFieldDefinition[] List of fields this content handler can provide.
+	 */
+	public function getFieldsForSearchIndex() {
+		$fields = [];
+
+		$this->addSearchField( $fields, 'category', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$fields['category']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
+
+		$this->addSearchField( $fields, 'external_link',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, 'heading', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		// FIXME: 'heading' => MappingConfigBuilder::SPEED_UP_HIGHLIGHTING, // -> no norms
+		$this->addSearchField( $fields, 'auxiliary_text',
+			SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$this->addSearchField( $fields, 'opening_text',
+			SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$fields['opening_text']->setFlag( SearchIndexFieldDefinition::FLAG_SECONDARY );
+		$this->addSearchField( $fields, 'outgoing_link',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, 'template',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$fields['template']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
+
+		// FIXME: this really belongs in separate file handler but files
+		// do not have separate handler. Sadness.
+		$this->addSearchField( $fields, 'file_text', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+
+		return $fields;
+	}
+
 }

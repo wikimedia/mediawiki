@@ -631,6 +631,34 @@ abstract class SearchEngine {
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
 	}
 
+	/**
+	 * Get fields for search index
+	 *
+	 * @return SearchIndexFieldDefinition[] Index field definitions for all content handlers
+	 */
+	public function getSearchIndexFields() {
+		$models = ContentHandler::getContentModels();
+		$fields = [];
+		foreach ( $models as $model ) {
+			$handler = ContentHandler::getForModelID( $model );
+			$handlerFields = $handler->getFieldsForSearchIndex();
+			foreach ( $handlerFields as $fieldName => $fieldData ) {
+				if ( empty( $fields[$fieldName] ) ) {
+					$fields[$fieldName] = $fieldData;
+				} else {
+					// TODO: do we allow some clashes with the same type or reject all of them?
+					$mergeDef = $fields[$fieldName]->merge( $fieldData );
+					if ( !$mergeDef ) {
+						throw new InvalidArgumentException( "Duplicate field $fieldName for model $model" );
+					}
+					$fields[$fieldName] = $mergeDef;
+				}
+			}
+		}
+		// Hook to allow extensions to produce global fields
+		Hooks::run( 'SearchIndexFields', [ &$fields, $this ] );
+		return $fields;
+	}
 }
 
 /**
