@@ -504,9 +504,6 @@ class LinkHolderArray {
 				}
 
 				$variantTitle = Title::makeTitle( $ns, $textVariant );
-				if ( is_null( $variantTitle ) ) {
-					continue;
-				}
 
 				// Self-link checking for mixed/different variant titles. At this point, we
 				// already know the exact title does not exist, so the link cannot be to a
