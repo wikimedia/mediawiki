@@ -31,8 +31,7 @@
 class TextContentHandler extends ContentHandler {
 
 	// @codingStandardsIgnoreStart bug 57585
-	public function __construct( $modelId = CONTENT_MODEL_TEXT,
-		$formats = [ CONTENT_FORMAT_TEXT ] ) {
+	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = [ CONTENT_FORMAT_TEXT ] ) {
 		parent::__construct( $modelId, $formats );
 	}
 	// @codingStandardsIgnoreEnd
@@ -41,7 +40,7 @@ class TextContentHandler extends ContentHandler {
 	 * Returns the content's text as-is.
 	 *
 	 * @param Content $content
-	 * @param string $format The serialization format to check
+	 * @param string  $format The serialization format to check
 	 *
 	 * @return mixed
 	 */
@@ -143,4 +142,10 @@ class TextContentHandler extends ContentHandler {
 		return true;
 	}
 
+	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		$fields = [];
+		$fields['language'] =
+			$engine->makeSearchFieldMapping( 'language', SearchIndexField::INDEX_TYPE_KEYWORD );
+		return $fields;
+	}
 }
