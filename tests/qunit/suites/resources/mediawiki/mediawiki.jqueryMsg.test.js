@@ -908,7 +908,7 @@
 	} );
 
 	// HTML in wikitext
-	QUnit.test( 'HTML', 32, function ( assert ) {
+	QUnit.test( 'HTML', 33, function ( assert ) {
 		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
 		assertBothModes( assert, [ 'jquerymsg-italics-msg' ], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
@@ -1046,6 +1046,13 @@
 			formatParse( 'jquerymsg-self-closing-tag' ),
 			'Foo&lt;tag/&gt;bar',
 			'Self-closing tags don\'t cause a parse error'
+		);
+
+		mw.messages.set( 'jquerymsg-asciialphabetliteral-regression', '<b >>>="dir">asd</b>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-asciialphabetliteral-regression' ),
+			'<b>&gt;&gt;="dir"&gt;asd</b>',
+			'Regression test for bad "asciiAlphabetLiteral" definition'
 		);
 
 		mw.messages.set( 'jquerymsg-entities1', 'A&B' );
