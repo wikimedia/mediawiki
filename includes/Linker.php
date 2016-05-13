@@ -140,22 +140,30 @@ class Linker {
 	 * Return the CSS colour of a known link
 	 *
 	 * @since 1.16.3
-	 * @param Title $t
+	 * @param LinkTarget $t
 	 * @param int $threshold User defined threshold
 	 * @return string CSS class
 	 */
-	public static function getLinkColour( $t, $threshold ) {
-		$colour = '';
-		if ( $t->isRedirect() ) {
+	public static function getLinkColour( LinkTarget $t, $threshold ) {
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		// Make sure the target is in the cache
+		$id = $linkCache->addLinkObj( $t );
+		if ( $id == 0 ) {
+			// Doesn't exist
+			return '';
+		}
+
+		if ( $linkCache->getGoodLinkFieldObj( $t, 'redirect' ) ) {
 			# Page is a redirect
-			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 && $t->isContentPage() &&
-			$t->exists() && $t->getLength() < $threshold
+			return 'mw-redirect';
+		} elseif ( $threshold > 0 && MWNamespace::isContent( $t->getNamespace() )
+			&& $linkCache->getGoodLinkFieldObj( $t, 'length' ) < $threshold
 		) {
 			# Page is a stub
-			$colour = 'stub';
+			return 'stub';
 		}
-		return $colour;
+
+		return '';
 	}
 
 	/**
