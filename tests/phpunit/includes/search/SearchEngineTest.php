@@ -157,4 +157,49 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Title power search failed" );
 	}
 
+	/**
+	 * @covers SearchEngine::getSearchIndexFields
+	 */
+	public function testSearchIndexFields() {
+		/**
+		 * @var $mockEngine SearchEngine
+		 */
+		$mockEngine = $this->getMock( 'SearchEngine', [ 'makeSearchFieldMapping' ] );
+
+		$mockFieldBuilder = function ( $name, $type ) {
+			$mockField =
+				$this->getMockBuilder( 'SearchIndexFieldDefinition' )->setConstructorArgs( [
+					$name,
+					$type
+				] )->getMock();
+			$mockField->expects( $this->any() )->method( 'getMapping' )->willReturn( [
+				'testData' => 'test',
+				'name' => $name,
+				'type' => $type,
+			] );
+			return $mockField;
+		};
+
+		$mockEngine->expects( $this->atLeastOnce() )
+			->method( 'makeSearchFieldMapping' )
+			->willReturnCallback( $mockFieldBuilder );
+
+		// Not using mock since PHPUnit mocks do not work properly with references in params
+		$this->mergeMwGlobalArrayValue( 'wgHooks',
+			[ 'SearchIndexFields' => [ [ $this, 'hookSearchIndexFields', $mockFieldBuilder ] ] ] );
+
+		$fields = $mockEngine->getSearchIndexFields();
+		$this->assertArrayHasKey( 'language', $fields );
+		$this->assertArrayHasKey( 'category', $fields );
+		$this->assertInstanceOf( 'SearchIndexField', $fields['testField'] );
+
+		$mapping = $fields['testField']->getMapping( $mockEngine );
+		$this->assertArrayHasKey( 'testData', $mapping );
+		$this->assertEquals( 'test', $mapping['testData'] );
+	}
+
+	public function hookSearchIndexFields( $mockFieldBuilder, &$fields, SearchEngine $engine ) {
+		$fields['testField'] = $mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
+		return true;
+	}
 }
