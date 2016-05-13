@@ -1141,6 +1141,7 @@ $wgAutoloadLocalClasses = [
 	'SearchEngineFactory' => __DIR__ . '/includes/search/SearchEngineFactory.php',
 	'SearchExactMatchRescorer' => __DIR__ . '/includes/search/SearchExactMatchRescorer.php',
 	'SearchHighlighter' => __DIR__ . '/includes/search/SearchHighlighter.php',
+	'SearchIndexFieldDefinition' => __DIR__ . '/includes/search/SearchIndexFieldDefinition.php',
 	'SearchMssql' => __DIR__ . '/includes/search/SearchMssql.php',
 	'SearchMySQL' => __DIR__ . '/includes/search/SearchMySQL.php',
 	'SearchNearMatchResultSet' => __DIR__ . '/includes/search/SearchNearMatchResultSet.php',
