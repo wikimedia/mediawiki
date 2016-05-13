@@ -108,4 +108,31 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		$fields = [];
+
+		$this->addSearchField( $fields, $engine, 'category', SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		$this->addSearchField( $fields, $engine, 'external_link',
+			SearchIndexField::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, $engine, 'heading', SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['heading']->setFlag( SearchIndexField::FLAG_SCORING );
+		$this->addSearchField( $fields, $engine, 'auxiliary_text',
+			SearchIndexField::INDEX_TYPE_TEXT );
+		$this->addSearchField( $fields, $engine, 'opening_text',
+			SearchIndexField::INDEX_TYPE_TEXT );
+		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING );
+		$this->addSearchField( $fields, $engine, 'outgoing_link',
+			SearchIndexField::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, $engine, 'template', SearchIndexField::INDEX_TYPE_KEYWORD );
+		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		// FIXME: this really belongs in separate file handler but files
+		// do not have separate handler. Sadness.
+		$this->addSearchField( $fields, $engine, 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
+
+		return $fields;
+	}
+
 }
