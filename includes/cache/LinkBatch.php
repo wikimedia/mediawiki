@@ -179,8 +179,6 @@ class LinkBatch {
 	 * @return bool|ResultWrapper
 	 */
 	public function doQuery() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
-
 		if ( $this->isEmpty() ) {
 			return false;
 		}
@@ -188,15 +186,10 @@ class LinkBatch {
 		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = wfGetDB( DB_SLAVE );
 		$table = 'page';
-		$fields = [ 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest' ];
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
+		$fields = array_merge(
+			LinkCache::getSelectFields(),
+			[ 'page_namespace', 'page_title' ]
+		);
 
 		$conds = $this->constructSet( 'page', $dbr );
 

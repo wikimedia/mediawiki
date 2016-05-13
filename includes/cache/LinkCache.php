@@ -203,14 +203,32 @@ class LinkCache {
 	}
 
 	/**
+	 * Fields that LinkCache needs to select
+	 *
+	 * @since 1.28
+	 * @return array
+	 */
+	public static function getSelectFields() {
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+
+		$fields = [ 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ];
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
+		}
+
+		return $fields;
+	}
+
+	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
 	 * @param LinkTarget $nt LinkTarget object to add
 	 * @return int Page ID or zero
 	 */
 	public function addLinkObj( LinkTarget $nt ) {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
-
 		$key = $this->titleFormatter->getPrefixedDBkey( $nt );
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 			return 0;
@@ -227,15 +245,7 @@ class LinkCache {
 		// Some fields heavily used for linking...
 		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 
-		$fields = [ 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ];
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
-
-		$row = $db->selectRow( 'page', $fields,
+		$row = $db->selectRow( 'page', self::getSelectFields(),
 			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
 			__METHOD__
 		);

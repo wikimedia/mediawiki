@@ -282,7 +282,7 @@ class LinkHolderArray {
 			return;
 		}
 
-		global $wgContLang, $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		global $wgContLang;
 
 		$colours = [];
 		$linkCache = LinkCache::singleton();
@@ -333,15 +333,10 @@ class LinkHolderArray {
 			}
 		}
 		if ( !$lb->isEmpty() ) {
-			$fields = [ 'page_id', 'page_namespace', 'page_title',
-				'page_is_redirect', 'page_len', 'page_latest' ];
-
-			if ( $wgContentHandlerUseDB ) {
-				$fields[] = 'page_content_model';
-			}
-			if ( $wgPageLanguageUseDB ) {
-				$fields[] = 'page_lang';
-			}
+			$fields = array_merge(
+				LinkCache::getSelectFields(),
+				[ 'page_namespace', 'page_title' ]
+			);
 
 			$res = $dbr->select(
 				'page',
@@ -454,7 +449,7 @@ class LinkHolderArray {
 	 * @param array $colours
 	 */
 	protected function doVariants( &$colours ) {
-		global $wgContLang, $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		global $wgContLang;
 		$linkBatch = new LinkBatch();
 		$variantMap = []; // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
@@ -540,15 +535,10 @@ class LinkHolderArray {
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
-			$fields = [ 'page_id', 'page_namespace', 'page_title',
-				'page_is_redirect', 'page_len', 'page_latest' ];
-
-			if ( $wgContentHandlerUseDB ) {
-				$fields[] = 'page_content_model';
-			}
-			if ( $wgPageLanguageUseDB ) {
-				$fields[] = 'page_lang';
-			}
+			$fields = array_merge(
+				LinkCache::getSelectFields(),
+				[ 'page_namespace', 'page_title' ]
+			);
 
 			$varRes = $dbr->select( 'page',
 				$fields,
