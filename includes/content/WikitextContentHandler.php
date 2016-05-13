@@ -108,4 +108,47 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	/**
+	 * Get fields definition for search index
+	 * @return SearchIndexFieldDefinition[] List of fields this content handler can provide.
+	 */
+	public function getFieldsForSearchIndex() {
+		$fields = [];
+
+		$this->addSearchField( $fields, 'category', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$fields['category']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
+
+		// FIXME: should be combo option
+		$this->addSearchField( $fields, 'coordinates',
+			SearchIndexFieldDefinition::INDEX_TYPE_GEOPOINT );
+		$this->addSearchField( $fields, 'external_link',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, 'heading', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		// FIXME: 'heading' => MappingConfigBuilder::SPEED_UP_HIGHLIGHTING, // -> no norms
+		$this->addSearchField( $fields, 'incoming_links',
+			SearchIndexFieldDefinition::INDEX_TYPE_INTEGER );
+		$this->addSearchField( $fields, 'auxiliary_text',
+			SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$this->addSearchField( $fields, 'opening_text',
+			SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$fields['opening_text']->setFlag( SearchIndexFieldDefinition::FLAG_SECONDARY );
+		$this->addSearchField( $fields, 'outgoing_link',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$this->addSearchField( $fields, 'popularity_score',
+			SearchIndexFieldDefinition::INDEX_TYPE_NUMBER );
+		$this->addSearchField( $fields, 'template',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$fields['template']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
+		$this->addSearchField( $fields, 'wikibase_item',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+
+		// FIXME: this really belongs in separate file handler but files do not have separate handler. Sadness.
+		$this->addSearchField( $fields, 'file_text', SearchIndexFieldDefinition::INDEX_TYPE_TEXT );
+		$this->addSearchField( $fields, 'local_sites_with_dupe',
+			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
+		$fields['local_sites_with_dupe']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
+
+		return $fields;
+	}
+
 }
