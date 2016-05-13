@@ -297,7 +297,9 @@ class LinkHolderArray {
 		$linkcolour_ids = [];
 
 		# Generate query
-		$queries = [];
+		$lb = new LinkBatch();
+		$lb->setCaller( __METHOD__ );
+
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $entry ) {
 				/** @var Title $title */
@@ -325,23 +327,12 @@ class LinkHolderArray {
 						$colours[$pdbk] = 'new';
 					} else {
 						# Not in the link cache, add it to the query
-						$queries[$ns][] = $title->getDBkey();
+						$lb->addObj( $title );
 					}
 				}
 			}
 		}
-		if ( $queries ) {
-			$where = [];
-			foreach ( $queries as $ns => $pages ) {
-				$where[] = $dbr->makeList(
-					[
-						'page_namespace' => $ns,
-						'page_title' => array_unique( $pages ),
-					],
-					LIST_AND
-				);
-			}
-
+		if ( !$lb->isEmpty() ) {
 			$fields = [ 'page_id', 'page_namespace', 'page_title',
 				'page_is_redirect', 'page_len', 'page_latest' ];
 
@@ -355,7 +346,7 @@ class LinkHolderArray {
 			$res = $dbr->select(
 				'page',
 				$fields,
-				$dbr->makeList( $where, LIST_OR ),
+				$lb->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
 
