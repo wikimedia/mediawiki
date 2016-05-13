@@ -21,6 +21,9 @@
  *
  * @file
  */
+use MediaWiki\Linker\HtmlArmor;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 class ChangesList extends ContextSource {
 	/**
@@ -40,6 +43,11 @@ class ChangesList extends ContextSource {
 	protected $watchMsgCache;
 
 	/**
+	 * @var LinkRenderer
+	 */
+	protected $linkRenderer;
+
+	/**
 	 * Changeslist constructor
 	 *
 	 * @param Skin|IContextSource $obj
@@ -54,6 +62,10 @@ class ChangesList extends ContextSource {
 		}
 		$this->preCacheMessages();
 		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
+		$linkRendererFactory = MediaWikiServices::getInstance()
+			->getLinkRendererFactory();
+		$this->linkRenderer = $linkRendererFactory->create();
+		$this->linkRenderer->setNoClasses( true );
 	}
 
 	/**
@@ -337,8 +349,10 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
-		$logname = $page->getName()->setContext( $this->getContext() )->escaped();
-		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
+		$logname = $page->getName()->setContext( $this->getContext() )->text();
+		$s .= $this->msg( 'parentheses' )->rawParams(
+			$this->linkRenderer->makeKnownLink( $title, $logname )
+		)->escaped();
 	}
 
 	/**
@@ -363,9 +377,9 @@ class ChangesList extends ContextSource {
 				'oldid' => $rc->mAttribs['rc_last_oldid']
 			];
 
-			$diffLink = Linker::linkKnown(
+			$diffLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
-				$this->message['diff'],
+				new HtmlArmor( $this->message['diff'] ),
 				[ 'tabindex' => $rc->counter ],
 				$query
 			);
@@ -375,9 +389,9 @@ class ChangesList extends ContextSource {
 		} else {
 			$diffhist = $diffLink . $this->message['pipe-separator'];
 			# History link
-			$diffhist .= Linker::linkKnown(
+			$diffhist .= $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
-				$this->message['hist'],
+				new HtmlArmor( $this->message['hist'] ),
 				[],
 				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
@@ -415,7 +429,7 @@ class ChangesList extends ContextSource {
 			$params = [ 'redirect' => 'no' ];
 		}
 
-		$articlelink = Linker::link(
+		$articlelink = $this->linkRenderer->makeLink(
 			$rc->getTitle(),
 			null,
 			[ 'class' => 'mw-changeslist-title' ],
