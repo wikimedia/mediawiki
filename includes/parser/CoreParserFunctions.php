@@ -456,10 +456,18 @@ class CoreParserFunctions {
 						$converter->markNoConversion( wfEscapeWikiText( $text ) )
 					)->inContentLanguage()->text() .
 					'</span>';
+			} else {
+				return '';
 			}
+		} else {
+			$converter = $parser->getConverterLanguage()->getConverter();
+			return '<span class="error">' .
+				wfMessage( 'restricted-displaytitle',
+					// Message should be parsed, but this param should only be escaped.
+					$converter->markNoConversion( wfEscapeWikiText( $text ) )
+				)->inContentLanguage()->text() .
+				'</span>';
 		}
-
-		return '';
 	}
 
 	/**
