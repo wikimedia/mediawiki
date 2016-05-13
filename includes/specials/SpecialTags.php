@@ -259,6 +259,9 @@ class SpecialTags extends SpecialPage {
 					[ 'tag' => $tag ] );
 			}
 
+		}
+
+		if ( $showManageActions || $showDeleteActions) {
 			$newRow .= Xml::tags( 'td', null, $this->getLanguage()->pipeList( $actionLinks ) );
 		}
 
