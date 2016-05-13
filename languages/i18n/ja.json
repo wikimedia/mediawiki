@@ -69,7 +69,8 @@
 			"Sujiniku",
 			"Azeha",
 			"Kana Higashikawa",
-			"Shield-9"
+			"Shield-9",
+			"Waiesu"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2210,10 +2211,10 @@
 	"whatlinkshere-prev": "前の$1件",
 	"whatlinkshere-next": "次の$1件",
 	"whatlinkshere-links": "← リンク",
-	"whatlinkshere-hideredirs": "転送ページを$1",
-	"whatlinkshere-hidetrans": "参照読み込みを$1",
-	"whatlinkshere-hidelinks": "リンクを$1",
-	"whatlinkshere-hideimages": "ファイルへのリンクを$1",
+	"whatlinkshere-hideredirs": "転送ページを非表示",
+	"whatlinkshere-hidetrans": "参照読み込みを非表示",
+	"whatlinkshere-hidelinks": "リンクを非表示",
+	"whatlinkshere-hideimages": "ファイルへのリンクを非表示",
 	"whatlinkshere-filters": "絞り込み",
 	"whatlinkshere-submit": "実行",
 	"autoblockid": "自動ブロック #$1",
@@ -3399,6 +3400,7 @@
 	"tags-delete-not-found": "タグ「$1」は存在しません。",
 	"tags-delete-too-many-uses": "タグ「$1」は少なくとも$2版に付与されており、削除できません。",
 	"tags-delete-warnings-after-delete": "タグ「$1」の削除しましたが、以下の{{PLURAL:$2|警告}}が発生しました：",
+	"tags-delete-no-permission": "変更タグを削除する権限がありません。",
 	"tags-activate-title": "タグの有効化",
 	"tags-activate-question": "タグ「$1」を有効化しようとしています。",
 	"tags-activate-reason": "理由:",
