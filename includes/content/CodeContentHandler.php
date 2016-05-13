@@ -63,4 +63,13 @@ abstract class CodeContentHandler extends TextContentHandler {
 	protected function getContentClass() {
 		throw new MWException( 'Subclass must override' );
 	}
+
+	/**
+	 * Get fields definition for search index
+	 *
+	 * @return SearchIndexFieldDefinition[] List of fields this content handler can provide.
+	 */
+	public function getFieldsForSearchIndex() {
+		return [];
+	}
 }
