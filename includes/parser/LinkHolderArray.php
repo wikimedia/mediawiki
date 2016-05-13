@@ -443,11 +443,9 @@ class LinkHolderArray {
 		# Make interwiki link HTML
 		$output = $this->parent->getOutput();
 		$replacePairs = [];
-		$options = [
-			'stubThreshold' => $this->parent->getOptions()->getStubThreshold(),
-		];
+		$htmlPageLinkRenderer = $this->parent->getHtmlPageLinkRenderer();
 		foreach ( $this->interwikis as $key => $link ) {
-			$replacePairs[$key] = Linker::link( $link['title'], $link['text'], [], [], $options );
+			$replacePairs[$key] = $htmlPageLinkRenderer->makeLink( $link['title'], $link['text'] );
 			$output->addInterwikiLink( $link['title'] );
 		}
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
