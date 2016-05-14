@@ -675,6 +675,7 @@ class User implements IDBAccessObject {
 	 *  - steal: Whether to reset the account's password and email if it
 	 *    already exists, default false
 	 * @return User|null
+	 * @since 1.27
 	 */
 	public static function newSystemUser( $name, $options = [] ) {
 		$options += [
