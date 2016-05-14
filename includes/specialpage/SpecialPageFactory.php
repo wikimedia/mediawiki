@@ -97,7 +97,7 @@ class SpecialPageFactory {
 		'BlockList' => 'SpecialBlockList',
 		'ChangePassword' => 'SpecialChangePasswordPreAuthManager',
 		'BotPasswords' => 'SpecialBotPasswords',
-		'PasswordReset' => 'SpecialPasswordResetPreAuthManager',
+		'RecoverAccount' => 'SpecialPasswordResetPreAuthManager',
 		'DeletedContributions' => 'DeletedContributionsPage',
 		'Preferences' => 'SpecialPreferences',
 		'ResetTokens' => 'SpecialResetTokens',
@@ -266,6 +266,7 @@ class SpecialPageFactory {
 				self::$list = array_map( function ( $class ) {
 					return preg_replace( '/PreAuthManager$/', '', $class );
 				}, self::$list );
+				self::$list['RecoverAccount'] = 'SpecialRecoverAccount';
 			} else {
 				self::$list['Userlogin'] = 'LoginForm';
 				self::$list = array_diff_key( self::$list, array_fill_keys( [
