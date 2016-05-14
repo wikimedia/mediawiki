@@ -27,7 +27,7 @@ use MediaWiki\Auth\AuthManager;
  *
  * @ingroup API
  */
-class ApiResetPassword extends ApiBase {
+class ApiRecoverAccount extends ApiBase {
 
 	private $hasAnyRoutes = null;
 
@@ -45,7 +45,7 @@ class ApiResetPassword extends ApiBase {
 
 	protected function getDescriptionMessage() {
 		if ( !$this->hasAnyRoutes() ) {
-			return 'apihelp-resetpassword-description-noroutes';
+			return 'apihelp-recoveraccount-description-noroutes';
 		}
 		return parent::getDescriptionMessage();
 	}
@@ -79,12 +79,12 @@ class ApiResetPassword extends ApiBase {
 		}
 
 		$result = $this->getResult();
-		$result->addValue( [ 'resetpassword' ], 'status', 'success' );
+		$result->addValue( [ 'recoveraccount' ], 'status', 'success' );
 		if ( $params['capture'] ) {
 			$passwords = $status->getValue() ?: [];
 			ApiResult::setArrayType( $passwords, 'kvp', 'user' );
 			ApiResult::setIndexedTagName( $passwords, 'p' );
-			$result->addValue( [ 'resetpassword' ], 'passwords', $passwords );
+			$result->addValue( [ 'recoveraccount' ], 'passwords', $passwords );
 		}
 	}
 
@@ -130,11 +130,11 @@ class ApiResetPassword extends ApiBase {
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 
 		if ( !empty( $resetRoutes['username'] ) ) {
-			$ret['action=resetpassword&user=Example&token=123ABC'] = 'apihelp-resetpassword-example-user';
+			$ret['action=recoveraccount&user=Example&token=123ABC'] = 'apihelp-recoveraccount-example-user';
 		}
 		if ( !empty( $resetRoutes['email'] ) ) {
-			$ret['action=resetpassword&user=user@example.com&token=123ABC'] =
-				'apihelp-resetpassword-example-email';
+			$ret['action=recoveraccount&user=user@example.com&token=123ABC'] =
+				'apihelp-recoveraccount-example-email';
 		}
 
 		return $ret;

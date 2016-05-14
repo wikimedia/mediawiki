@@ -459,7 +459,7 @@ if ( $wgDisableAuthManager ) {
 		'unlinkaccount' => 'ApiDisabled',
 		'changeauthenticationdata' => 'ApiDisabled',
 		'removeauthenticationdata' => 'ApiDisabled',
-		'resetpassword' => 'ApiDisabled',
+		'recoveraccount' => 'ApiDisabled',
 	];
 	$wgAPIMetaModules += [
 		'authmanagerinfo' => 'ApiQueryDisabled',

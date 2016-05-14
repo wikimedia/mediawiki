@@ -768,6 +768,7 @@
 	"resetpass-expired": "Generic error message shown on [[Special:ChangePassword]] when a user's password is expired",
 	"resetpass-expired-soft": "Generic warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time",
 	"resetpass-validity-soft": "Warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, because their password is not valid.\n\nRefers to {{msg-mw|Resetpass-submit-cancel}}.\n\nParameters:\n* $1 - error message",
+	"recoveraccount": "Title of [[Special:RecoverAccount]].",
 	"passwordreset": "Title of [[Special:PasswordReset]].\n{{Identical|Reset password}}",
 	"passwordreset-text-one": "Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.\n\n{{msg-mw|Passwordreset-text-many}} will be used, when there are multiple ways of resetting the password.",
 	"passwordreset-text-many": "Text on [[Special:PasswordReset]] that appears when there are multiple ways of resetting the password.\n\nParameters:\n* $1 - the number of password reset routes\n\n{{msg-mw|Passwordreset-text-one}} will be used, when there is only one way of resetting the password.",
