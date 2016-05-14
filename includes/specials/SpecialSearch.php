@@ -1240,17 +1240,21 @@ class SpecialSearch extends SpecialPage {
 			'value' => $term,
 			'dataLocation' => 'content',
 		] );
+		$layout = new OOUI\FieldLayout( $searchWidget );
+		$layout->addClasses( [ 'mw-search-fieldLayout' ] );
+		$layout->appendContent(
+			new OOUI\ButtonInputWidget( [
+				'type' => 'submit',
+				'label' => $this->msg( 'searchbutton' )->text(),
+				'flags' => [ 'progressive', 'primary' ],
+			] )
+		);
 
 		$out =
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Html::hidden( 'profile', $this->profile ) .
 			Html::hidden( 'fulltext', 'Search' ) .
-			$searchWidget .
-			new OOUI\ButtonInputWidget( [
-				'type' => 'submit',
-				'label' => $this->msg( 'searchbutton' )->text(),
-				'flags' => [ 'progressive', 'primary' ],
-			] );
+			$layout;
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
