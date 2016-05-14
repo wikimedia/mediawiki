@@ -1968,6 +1968,19 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * MySQL allows the comparison of integers to strings, in which case the numeric-looking
+ 	 * prefix of the string is parsed to an integer.  Other databases generally do not allow
+	 * this.  This adaptor takes a column name (or an already-quoted string literal) and emits 
+	 * the SQL needed to convert it to an integer in a manner compatible with MySQL semantics.
+	 *
+	 * @param string $s
+	 * @return string
+	 */
+	public function extractInteger( $s ) {
+      return $s;
+	}
+
+	/**
 	 * Quotes an identifier using `backticks` or "double quotes" depending on the database type.
 	 * MySQL uses `backticks` while basically everything else uses double quotes.
 	 * Since MySQL is the odd one out here the double quotes are our generic

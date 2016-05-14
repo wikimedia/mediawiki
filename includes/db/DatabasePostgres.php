@@ -600,6 +600,19 @@ class DatabasePostgres extends Database {
 	}
 
 	/**
+	 * MySQL allows the comparison of integers to strings, in which case the numeric-looking
+ 	 * prefix of the string is parsed to an integer.  Other databases generally do not allow
+	 * this.  This adaptor takes a column name (or an already-quoted string literal) and emits 
+	 * the SQL needed to convert it to an integer in a manner compatible with MySQL semantics.
+	 *
+	 * @param string $s
+	 * @return string
+	 */
+	public function extractInteger( $s ) {
+      return "substring(" . $s . " from '\s*([-+]?\d+)' ) :: integer";
+	}
+
+	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on EXPLAIN output
 	 * This is not necessarily an accurate estimate, so use sparingly
