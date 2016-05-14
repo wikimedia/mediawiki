@@ -2304,7 +2304,7 @@ class Title implements LinkTarget {
 			$whitelisted = true;
 		} elseif ( $this->isSpecial( 'Userlogin' )
 			|| $this->isSpecial( 'ChangePassword' )
-			|| $this->isSpecial( 'PasswordReset' )
+			|| $this->isSpecial( 'RecoverAccount' )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.

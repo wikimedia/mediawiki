@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:PasswordReset
+ * Implements Special:RecoverAccount
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ use MediaWiki\Auth\AuthManager;
  *
  * @ingroup SpecialPage
  */
-class SpecialPasswordReset extends FormSpecialPage {
+class SpecialRecoverAccount extends FormSpecialPage {
 	/** @var PasswordReset */
 	private $passwordReset;
 
@@ -52,7 +52,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	private $method;
 
 	public function __construct() {
-		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
+		parent::__construct( 'RecoverAccount', 'editmyprivateinfo' );
 		$this->passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
 	}
 
