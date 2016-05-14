@@ -537,7 +537,7 @@ class ProtectedPagesPager extends TablePager {
 			'join_conds' => [
 				'log_search' => [
 					'LEFT JOIN', [
-						'ls_field' => 'pr_id', 'ls_value = pr_id'
+						'ls_field' => 'pr_id', $this->mDb->extractInteger( 'ls_value' ) . ' = pr_id'
 					]
 				],
 				'logging' => [
