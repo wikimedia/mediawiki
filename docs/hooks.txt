@@ -2895,7 +2895,7 @@ $name: name of the special page
 &$form: HTMLForm object
 
 'SpecialPasswordResetOnSubmit': When executing a form submission on
-Special:PasswordReset.
+Special:RecoverAccount.
 &$users: array of User objects.
 $data: array of data submitted by the user
 &$error: string, error code (message key) used to describe to error (out
