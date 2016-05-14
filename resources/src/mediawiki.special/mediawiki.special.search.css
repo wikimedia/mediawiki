@@ -169,6 +169,10 @@ div.searchdidyoumean em {
 .searchmatch {
 	font-weight: bold;
 }
+.mw-search-fieldLayout {
+	display: inline-block;
+	width: 70%;
+}
 /* Advanced PowerSearch box */
 td#mw-search-togglebox {
 	text-align: right;
