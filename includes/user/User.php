@@ -499,7 +499,10 @@ class User implements IDBAccessObject {
 		$data = $processCache->get( $key );
 		if ( !is_array( $data ) ) {
 			$data = $cache->get( $key );
-			if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
+			if ( !is_array( $data )
+				|| !isset( $data['mVersion'] )
+				|| $data['mVersion'] < self::VERSION
+			) {
 				// Object is expired
 				return false;
 			}
