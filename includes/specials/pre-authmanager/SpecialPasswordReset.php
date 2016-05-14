@@ -48,7 +48,7 @@ class SpecialPasswordResetPreAuthManager extends FormSpecialPage {
 	private $method;
 
 	public function __construct() {
-		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
+		parent::__construct( 'RecoverAccount', 'editmyprivateinfo' );
 	}
 
 	public function doesWrites() {

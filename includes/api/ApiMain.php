@@ -56,7 +56,7 @@ class ApiMain extends ApiBase {
 		'unlinkaccount' => 'ApiRemoveAuthenticationData',
 		'changeauthenticationdata' => 'ApiChangeAuthenticationData',
 		'removeauthenticationdata' => 'ApiRemoveAuthenticationData',
-		'resetpassword' => 'ApiResetPassword',
+		'recoveraccount' => 'ApiRecoverAccount',
 		'query' => 'ApiQuery',
 		'expandtemplates' => 'ApiExpandTemplates',
 		'parse' => 'ApiParse',
