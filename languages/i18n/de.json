@@ -3213,6 +3213,7 @@
 	"timezone-local": "Lokal",
 	"duplicate-defaultsort": "Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.",
 	"duplicate-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$2“ überschreibt den früheren Anzeigetitel „$1“.",
+	"restricted-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$1“ wurde ignoriert, da er nicht mit dem tatsächlichen Seitentitel gleichwertig ist.",
 	"invalid-indicator-name": "<strong>Fehler:</strong> Das Attribut <code>name</code> des Seitenstatusindikators darf nicht leer sein.",
 	"version": "Version",
 	"version-extensions": "Installierte Erweiterungen",

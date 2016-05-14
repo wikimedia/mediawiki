@@ -72,6 +72,7 @@
 	"config-ctype": "<strong>치명</strong>: PHP는 [http://www.php.net/manual/en/ctype.installation.php Ctype 확장 기능]을 지원하도록 하여 컴파일해야 합니다.",
 	"config-iconv": "<strong>치명</strong>: PHP는 [http://www.php.net/manual/en/iconv.installation.php iconv 확장 기능]을 지원하도록 하여 컴파일해야 합니다.",
 	"config-json": "<strong>치명:</strong> PHP가 JSON 지원이 없이 컴파일되었습니다.\n미디어위키를 설치하기 전에 PHP JSON 확장 기능이나 [http://pecl.php.net/package/jsonc PECL jsonc] 확장 기능 중 하나를 설치해야 합니다.\n* PHP 확장 기능은 Red Hat Enterprise Linux (CentOS) 5와 6에 포함되어 있지만, <code>/etc/php.ini</code>나 <code>/etc/php.d/json.ini</code>에서 활성화해야 합니다.\n* 2013년 5월 이후에 출시된 일부 리눅스 배포판은 PHP 확장 기능이 생략된 대신, <code>php5-json</code>이나 <code>php-pecl-jsonc</code>로 PECL 확장 기능이 포장되어 있습니다.",
+	"config-mbstring-absent": "<strong>치명적 오류:</strong> PHP는 [http://www.php.net/manual/en/mbstring.setup.php mbstring 확장]을 지원하도록 컴파일되어야 합니다.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache]가 설치되었습니다",
 	"config-apc": "[http://www.php.net/apc APC]가 설치되었습니다",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache]가 설치되었습니다",

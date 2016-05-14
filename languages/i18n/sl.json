@@ -3104,6 +3104,7 @@
 	"timezone-local": "Krajevno",
 	"duplicate-defaultsort": "'''Opozorilo:''' Privzeti ključ razvrščanja »$2« prepiše prejšnji privzeti ključ razvrščanja »$1«.",
 	"duplicate-displaytitle": "<strong>Opozorilo:</strong> Prikazni naslov »$2« prepiše prejšnji prikazni naslov »$1«.",
+	"restricted-displaytitle": "<strong>Opozorilo:</strong> Prikazni naslov »$1« smo prezrli, saj ni enak dejanskemu naslovu strani.",
 	"invalid-indicator-name": "<strong>Napaka:</strong> Atribut <code>name</code> indikatorjev stanja strani ne sme biti prazen.",
 	"version": "Različica",
 	"version-extensions": "Nameščene razširitve",

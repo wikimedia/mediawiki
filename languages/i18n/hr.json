@@ -3221,5 +3221,9 @@
 	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
 	"mw-widgets-titleinput-description-new-page": "stranica još ne postoji",
-	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1"
+	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1",
+	"log-action-filter-upload": "Vrsta postavljanja:",
+	"log-action-filter-all": "sve",
+	"log-action-filter-upload-upload": "novo postavljanje",
+	"log-action-filter-upload-overwrite": "ponovno postavljanje"
 }

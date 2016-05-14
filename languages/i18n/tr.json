@@ -84,7 +84,8 @@
 			"HakanIST",
 			"Imabadplayer",
 			"İnternion",
-			"Hbseren"
+			"Hbseren",
+			"Kumkumuk"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -2124,9 +2125,9 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|önceki|önceki $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|sonraki|sonraki $1}}",
 	"whatlinkshere-links": "← bağlantılar",
-	"whatlinkshere-hideredirs": "Yönlendirmeleri $1",
-	"whatlinkshere-hidetrans": "Dönüştürmeleri $1",
-	"whatlinkshere-hidelinks": "Bağlantıları $1",
+	"whatlinkshere-hideredirs": "Yönlendirmeleri gizle",
+	"whatlinkshere-hidetrans": "Dönüştürmeleri gizle",
+	"whatlinkshere-hidelinks": "Bağlantıları gizle",
 	"whatlinkshere-hideimages": "Dosya bağlantılarını $1",
 	"whatlinkshere-filters": "Süzgeçler",
 	"autoblockid": "Otomatik engelleme #$1",

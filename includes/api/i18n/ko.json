@@ -66,6 +66,7 @@
 	"apihelp-delete-description": "문서 삭제",
 	"apihelp-delete-param-pageid": "삭제할 문서의 ID. <var>$1title</var>과 함께 사용할 수 없습니다.",
 	"apihelp-delete-param-reason": "삭제의 이유. 설정하지 않으면 자동 생성되는 이유를 사용합니다.",
+	"apihelp-delete-param-watch": "문서를 현재 사용자의 주시문서 목록에 추가합니다.",
 	"apihelp-delete-param-unwatch": "문서를 현재 사용자의 주시문서 목록에서 제거합니다.",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",
 	"apihelp-disabled-description": "이 모듈은 해제되었습니다.",
