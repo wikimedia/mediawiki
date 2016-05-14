@@ -147,13 +147,15 @@ class ApiStashEdit extends ApiBase {
 			Hooks::run( 'ParserOutputStashForEdit', [ $page, $content, $editInfo->output ] );
 
 			list( $stashInfo, $ttl ) = self::buildStashValue(
-				$editInfo->pstContent, $editInfo->output, $editInfo->timestamp
+				$editInfo->pstContent,
+				$editInfo->output,
+				$editInfo->timestamp,
+				$user
 			);
 
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-
 					$logger->debug( "Cached parser output for key '$key'." );
 					return self::ERROR_NONE;
 				} else {
@@ -223,7 +225,7 @@ class ApiStashEdit extends ApiBase {
 		$pOut->setCacheTime( wfTimestampNow() );
 
 		// Build a value to cache with a proper TTL
-		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp );
+		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp, $user );
 		if ( !$stashInfo ) {
 			$logger->info( "Uncacheable parser output for key '$key' (rev/TTL)." );
 			return false;
@@ -291,6 +293,10 @@ class ApiStashEdit extends ApiBase {
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Timestamp-based cache hit for key '$key' (age: $age sec)." );
 			return $editInfo; // assume nothing changed
+		} elseif ( isset( $editInfo->edits ) && $editInfo->edits === $user->getEditCount() ) {
+			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
+			$logger->debug( "Edit count based cache hit for key '$key' (age: $age sec)." );
+			return $editInfo; // use made no local upload/template edits in the meantime
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -385,12 +391,14 @@ class ApiStashEdit extends ApiBase {
 	 * @param Content $pstContent
 	 * @param ParserOutput $parserOutput
 	 * @param string $timestamp TS_MW
+	 * @param User $user
 	 * @return array (stash info array, TTL in seconds) or (null, 0)
 	 */
 	protected static function buildStashValue(
-		Content $pstContent, ParserOutput $parserOutput, $timestamp
+		Content $pstContent, ParserOutput $parserOutput, $timestamp, User $user
 	) {
-		// If an item is renewed, mind the cache TTL determined by config and parser functions
+		// If an item is renewed, mind the cache TTL determined by config and parser functions.
+		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
 		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
 
@@ -399,7 +407,8 @@ class ApiStashEdit extends ApiBase {
 			$stashInfo = (object)[
 				'pstContent' => $pstContent,
 				'output'     => $parserOutput,
-				'timestamp'  => $timestamp
+				'timestamp'  => $timestamp,
+				'edits'      => $user->getEditCount()
 			];
 			return [ $stashInfo, $ttl ];
 		}
