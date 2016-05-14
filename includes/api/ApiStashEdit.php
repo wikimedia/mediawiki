@@ -294,9 +294,17 @@ class ApiStashEdit extends ApiBase {
 			$logger->debug( "Timestamp-based cache hit for key '$key' (age: $age sec)." );
 			return $editInfo; // assume nothing changed
 		} elseif ( isset( $editInfo->edits ) && $editInfo->edits === $user->getEditCount() ) {
+			// Logged-in user made no local upload/template edits in the meantime
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Edit count based cache hit for key '$key' (age: $age sec)." );
-			return $editInfo; // use made no local upload/template edits in the meantime
+			return $editInfo;
+		} elseif ( $user->isAnon()
+			&& self::lastEditTime( $user ) < $editInfo->output->getCacheTime()
+		) {
+			// Logged-out user made no local upload/template edits in the meantime
+			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
+			$logger->debug( "Edit check based cache hit for key '$key' (age: $age sec)." );
+			return $editInfo;
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -360,6 +368,21 @@ class ApiStashEdit extends ApiBase {
 	}
 
 	/**
+	 * @param User $user
+	 * @return string|null TS_MW timestamp or null
+	 */
+	private static function lastEditTime( User $user ) {
+		$time = wfGetDB( DB_SLAVE )->selectField(
+			'recentchanges',
+			'MAX(rc_timestamp)',
+			[ 'rc_user_text' => $user->getName() ],
+			__METHOD__
+		);
+
+		return wfTimestampOrNull( TS_MW, $time );
+	}
+
+	/**
 	 * Get the temporary prepared edit stash key for a user
 	 *
 	 * This key can be used for caching prepared edits provided:
@@ -371,7 +394,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param User $user User to get parser options from
 	 * @return string
 	 */
-	protected static function getStashKey( Title $title, Content $content, User $user ) {
+	private static function getStashKey( Title $title, Content $content, User $user ) {
 		$hash = sha1( implode( ':', [
 			$content->getModel(),
 			$content->getDefaultFormat(),
@@ -394,7 +417,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param User $user
 	 * @return array (stash info array, TTL in seconds) or (null, 0)
 	 */
-	protected static function buildStashValue(
+	private static function buildStashValue(
 		Content $pstContent, ParserOutput $parserOutput, $timestamp, User $user
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
