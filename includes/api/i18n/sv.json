@@ -260,6 +260,8 @@
 	"apihelp-query+allcategories-param-min": "Returnera endast kategorier med minst så här många medlemmar.",
 	"apihelp-query+allcategories-param-max": "Returnera endast kategorier med som mest så här många medlemmar.",
 	"apihelp-query+allcategories-param-limit": "Hur många kategorier att returnera.",
+	"apihelp-query+allcategories-paramvalue-prop-size": "Lägger till antal sidor i kategorin.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "Märker kategorier som är dolda med <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+alldeletedrevisions-description": "Lista alla raderade revisioner av en användare or inom en namnrymd.",
 	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "Kan endast användas med <var>$3user</var>.",
 	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "Kan inte användas med <var>$3user</var>.",
