@@ -820,23 +820,6 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		# generalizeSQL will probably cut down the query to reasonable
-		# logging size most of the time. The substr is really just a sanity check.
-		if ( $isMaster ) {
-			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query-master';
-		} else {
-			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query';
-		}
-		# Include query transaction state
-		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
-
-		$profiler = Profiler::instance();
-		if ( !$profiler instanceof ProfilerStub ) {
-			$totalProfSection = $profiler->scopedProfileIn( $totalProf );
-			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
-		}
 
 		if ( $this->debug() ) {
 			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
@@ -853,7 +836,7 @@ abstract class DatabaseBase implements IDatabase {
 		$queryRuntime = microtime( true ) - $startTime;
 		# Log the query time and feed it into the DB trx profiler
 		$this->getTransactionProfiler()->recordQueryCompletion(
-			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
+			$sql, $startTime, $isWriteQuery, $this->affectedRows(), $isMaster, $this->mTrxShortId );
 
 		MWDebug::queryTime( $queryId );
 
@@ -889,7 +872,7 @@ abstract class DatabaseBase implements IDatabase {
 					$queryRuntime = microtime( true ) - $startTime;
 					# Log the query time and feed it into the DB trx profiler
 					$this->getTransactionProfiler()->recordQueryCompletion(
-						$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
+						$sql, $startTime, $isWriteQuery, $this->affectedRows(), $isMaster );
 				}
 			} else {
 				wfDebug( "Failed\n" );
@@ -902,10 +885,6 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$res = $this->resultObject( $ret );
-
-		// Destroy profile sections in the opposite order to their creation
-		ScopedCallback::consume( $queryProfSection );
-		ScopedCallback::consume( $totalProfSection );
 
 		if ( $isWriteQuery && $this->mTrxLevel ) {
 			$this->mTrxWriteDuration += $queryRuntime;
@@ -1334,35 +1313,6 @@ abstract class DatabaseBase implements IDatabase {
 		return $rows;
 	}
 
-	/**
-	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
-	 * It's only slightly flawed. Don't use for anything important.
-	 *
-	 * @param string $sql A SQL Query
-	 *
-	 * @return string
-	 */
-	protected static function generalizeSQL( $sql ) {
-		# This does the same as the regexp below would do, but in such a way
-		# as to avoid crashing php on some large strings.
-		# $sql = preg_replace( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql );
-
-		$sql = str_replace( "\\\\", '', $sql );
-		$sql = str_replace( "\\'", '', $sql );
-		$sql = str_replace( "\\\"", '', $sql );
-		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
-		$sql = preg_replace( '/".*"/s', "'X'", $sql );
-
-		# All newlines, tabs, etc replaced by single space
-		$sql = preg_replace( '/\s+/', ' ', $sql );
-
-		# All numbers => N,
-		# except the ones surrounded by characters, e.g. l10n
-		$sql = preg_replace( '/-?\d+(,-?\d+)+/s', 'N,...,N', $sql );
-		$sql = preg_replace( '/(?<![a-zA-Z])-?\d+(?![a-zA-Z])/s', 'N', $sql );
-
-		return $sql;
-	}
 
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$info = $this->fieldInfo( $table, $field );
