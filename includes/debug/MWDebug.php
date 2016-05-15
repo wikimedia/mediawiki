@@ -76,6 +76,15 @@ class MWDebug {
 	}
 
 	/**
+	 * Disable the debugger.
+	 *
+	 * @since 1.28
+	 */
+	public static function deinit() {
+		self::$enabled = false;
+	}
+
+	/**
 	 * Add ResourceLoader modules to the OutputPage object if debugging is
 	 * enabled.
 	 *
