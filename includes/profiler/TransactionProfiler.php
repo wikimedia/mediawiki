@@ -129,6 +129,36 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
+	 * It's only slightly flawed. Don't use for anything important.
+	 *
+	 * @param string $sql A SQL Query
+	 *
+	 * @return string
+	 */
+	protected static function generalizeSQL( $sql ) {
+		# This does the same as the regexp below would do, but in such a way
+		# as to avoid crashing php on some large strings.
+		# $sql = preg_replace( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql );
+
+		$sql = str_replace( "\\\\", '', $sql );
+		$sql = str_replace( "\\'", '', $sql );
+		$sql = str_replace( "\\\"", '', $sql );
+		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
+		$sql = preg_replace( '/".*"/s', "'X'", $sql );
+
+		# All newlines, tabs, etc replaced by single space
+		$sql = preg_replace( '/\s+/', ' ', $sql );
+
+		# All numbers => N,
+		# except the ones surrounded by characters, e.g. l10n
+		$sql = preg_replace( '/-?\d+(,-?\d+)+/s', 'N,...,N', $sql );
+		$sql = preg_replace( '/(?<![a-zA-Z])-?\d+(?![a-zA-Z])/s', 'N', $sql );
+
+		return $sql;
+	}
+
+	/**
 	 * Mark a DB as having been connected to with a new handle
 	 *
 	 * Note that there can be multiple connections to a single DB.
@@ -178,18 +208,41 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 *
 	 * This assumes that all queries are synchronous (non-overlapping)
 	 *
-	 * @param string $query Function name or generalized SQL
+	 * @param string $query SQL query
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
 	 * @param integer $n Number of affected rows
+	 * @param bool $isMaster Whether this is a query of the master database
+	 * @param string $id ID string of transaction, if any
 	 */
-	public function recordQueryCompletion( $query, $sTime, $isWrite = false, $n = 0 ) {
+	public function recordQueryCompletion( $query, $sTime, $isWrite, $n = 0, $isMaster = false, $id = '' ) {
 		$eTime = microtime( true );
 		$elapsed = ( $eTime - $sTime );
 
+		$profiler = Profiler::instance();
+		if ( !$profiler instanceof ProfilerStub ) {
+			// generalizeSQL will probably cut down the query to reasonable
+			// logging size most of the time. The substr is really just a sanity check.
+			if ( $isMaster ) {
+				$queryProf = 'query-m: ';
+				$totalProf = 'DatabaseBase::query-master';
+			} else {
+				$queryProf = 'query: ';
+				$totalProf = 'DatabaseBase::query';
+			}
+			$queryProf .= substr( self::generalizeSQL( $sql ), 0, 255 );
+			// Include query transaction state
+			$queryProf .= $id ? " [TRX#{$id}]" : "";
+			$totalProfSection = $profiler->scopedProfileIn( $totalProf );
+			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
+			// Destroy profile sections in the opposite order to their creation
+			ScopedCallback::consume( $queryProfSection );
+			ScopedCallback::consume( $totalProfSection );
+
+		}
+
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
-			$this->logger->info( "Query affected $n row(s):\n" . $query . "\n" .
-				wfBacktrace( true ) );
+			$this->reportExpectationViolated( 'maxAffected', $query, $n );
 		}
 
 		// Report when too many writes/queries happen...
@@ -302,13 +355,17 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string|float|int $actual [optional]
 	 */
 	protected function reportExpectationViolated( $expect, $query, $actual = null ) {
-		$n = $this->expect[$expect];
-		$by = $this->expectBy[$expect];
-		$actual = ( $actual !== null ) ? " (actual: $actual)" : "";
+		$query = self::generalizeSQL( $query );
 
-		$this->logger->info(
-			"Expectation ($expect <= $n) by $by not met$actual:\n$query\n" .
-			wfBacktrace( true )
-		);
+		$msg = "Expectation ($expect <= {$this->expect[$expect]})";
+		if ( isset( $this->expectBy[$expect] ) ) {
+			$msg .= " by {$this->expectBy[$expect]}";
+		}
+		$msg .= ' not met';
+		if ( $actual !== null ) {
+			$msg .= " (actual: $actual)";
+		}
+		$msg .= ":\n$query\n" . wfBacktrace( true );
+		$this->logger->info( $msg );
 	}
 }
