@@ -17,6 +17,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 	protected function tearDown() {
 		MediaWiki\restoreWarnings();
+		MWDebug::deinit();
 		parent::tearDown();
 	}
 
