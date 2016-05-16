@@ -135,4 +135,54 @@ class WikitextContentHandler extends TextContentHandler {
 		return $fields;
 	}
 
+	/**
+	 * Extract text of the file
+	 * TODO: probably should go to file handler?
+	 * @param Title $title
+	 * @return string|null
+	 */
+	private function getFileText( Title $title ) {
+		$file = wfLocalFile( $title );
+		if ( $file && $file->exists() ) {
+			return $file->getHandler()->getEntireText( $file );
+		}
+
+		return null;
+	}
+
+	/**
+	 * Return parser output, potentially using cache if possible.
+	 * @param WikiPage $page
+	 * @return bool|ParserOutput
+	 */
+	private function getPageOutput( WikiPage $page ) {
+		$options = $page->makeParserOptions( 'canonical' );
+		return $page->getParserOutput( $options, $page->getRevision()->getId() );
+	}
+
+	public function getDataForSearchIndex( WikiPage $page, SearchEngine $engine ) {
+		$fields = parent::getDataForSearchIndex( $page, $engine );
+
+		$parserOutput = $this->getPageOutput( $page );
+		if ( $parserOutput ) {
+			$structure = new WikiTextStructure( $parserOutput );
+			$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
+			$fields['category'] = $structure->categories();
+			$fields['heading'] = $structure->headings();
+			$fields['outgoing_link'] = $structure->outgoingLinks();
+			$fields['template'] = $structure->templates();
+			// text fields
+			$fields['opening_text'] = $structure->getOpeningText();
+			$fields['text'] = $structure->getMainText();
+			$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		}
+		$title = $page->getTitle();
+		if ( NS_FILE == $title->getNamespace() ) {
+			$fileText = $this->getFileText( $title );
+			if ( $fileText ) {
+				$fields['file_text'] = $fileText;
+			}
+		}
+		return $fields;
+	}
 }

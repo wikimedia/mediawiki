@@ -181,8 +181,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			->willReturnCallback( $mockFieldBuilder );
 
 		// Not using mock since PHPUnit mocks do not work properly with references in params
-		$this->mergeMwGlobalArrayValue( 'wgHooks',
-			[ 'SearchIndexFields' => [ [ $this, 'hookSearchIndexFields', $mockFieldBuilder ] ] ] );
+		$this->setTemporaryHook('SearchIndexFields', [ $this, 'hookSearchIndexFields', $mockFieldBuilder ] );
 
 		$fields = $mockEngine->getSearchIndexFields();
 		$this->assertArrayHasKey( 'language', $fields );
@@ -197,5 +196,23 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	public function hookSearchIndexFields( $mockFieldBuilder, &$fields, SearchEngine $engine ) {
 		$fields['testField'] = $mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
 		return true;
+	}
+
+	public function testDataIndexFields() {
+		$mockEngine = $this->getMock( 'SearchEngine' );
+		$title = Title::newFromText( "Not_Main_Page", NS_MAIN );
+		$page = new WikiPage( $title );
+
+		$this->setTemporaryHook( 'SearchDataForIndex',
+			function ( &$fields, ContentHandler $handler, WikiPage $page, SearchEngine $engine ) {
+				$fields['testDataField'] = 'test content';
+			} );
+
+		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $mockEngine );
+		$this->assertArrayHasKey( 'text', $data );
+		$this->assertArrayHasKey( 'text_bytes', $data );
+		$this->assertArrayHasKey( 'language', $data );
+		$this->assertArrayHasKey( 'testDataField', $data );
+		$this->assertEquals( 'test content', $data['testDataField'] );
 	}
 }
