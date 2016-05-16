@@ -1455,6 +1455,7 @@ $wgAutoloadLocalClasses = [
 	'WikiReference' => __DIR__ . '/includes/WikiMap.php',
 	'WikiRevision' => __DIR__ . '/includes/import/WikiRevision.php',
 	'WikiStatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
+	'WikiTextStructure' => __DIR__ . '/includes/content/WikiTextStructure.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
 	'WinCacheBagOStuff' => __DIR__ . '/includes/libs/objectcache/WinCacheBagOStuff.php',
