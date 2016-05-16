@@ -766,6 +766,10 @@ class CoreParserFunctions {
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $title );
 		$length = $rev ? $rev->getSize() : 0;
+		if ( $length === null ) {
+			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
+			$length = 0;
+		}
 		return self::formatRaw( $length, $raw );
 	}
 
