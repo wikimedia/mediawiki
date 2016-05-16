@@ -1775,4 +1775,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $buffer;
 	}
 
+	/**
+	 * Create a temporary hook handler which will be reset by tearDown.
+	 * This replaces other handlers for the same hook.
+	 * @param string $hookName Hook name
+	 * @param mixed $handler Value suitable for a hook handler
+	 * @since 1.28
+	 */
+	protected function setTemporaryHook( $hookName, $handler ) {
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ $hookName => [ $handler ] ] );
+	}
+
 }
