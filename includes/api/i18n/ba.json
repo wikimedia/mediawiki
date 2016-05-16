@@ -12,7 +12,8 @@
 			"Гульчатай",
 			"Ilmira",
 			"Гизатуллина",
-			"Танзиля Кутлугильдина"
+			"Танзиля Кутлугильдина",
+			"Ләйсән"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почта таратыу]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce  API яңылыҡтары]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R  Хаталар һәм яуаптар]\n</div>\n<strong>Статус:</strong> Был биттә  күрһәтелгән бар функциялар ҙа эшләргә тейеш,  шулай ҙа  API әүҙем эшкәртеү хәлендә тора һәм теләгән бер ваҡытта үҙгәрергә мөмкин. Яңыртылыуҙарҙы һәр саҡ белеп торор өсөн [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почта таратыу mediawiki-api-announce], ошоға яҙыл.\n\n<strong>Хаталы һоратыуҙар:</strong> Әгәр API хаталы һоратыу алһа,     HTTP баш һүҙе   «MediaWiki-API-Error» асҡысы менән кире ҡайтарыла,  бынан һуң баш һүҙҙең мәғәнәһе һәм хата  коды кире ебәреләсәк һәм кире шул уҡ мәғәнәлә кире ҡуйыласаҡ. Киңерәк мәғлүмәтте ошонан ҡара  [[mw:API:Errors_and_warnings|API:Хаталар һәм иҫкәртеүҙәр]].\n\n<strong>Тестлау:</strong>   API-һоратыуҙарҙы тестлау уңайлы булһын өсөн ҡара. [[Special:ApiSandbox]]",
@@ -102,7 +103,7 @@
 	"apihelp-edit-param-appendtext": "Был тексты биттең аҙағынаса өҫтәгеҙ.$1text алмаштыра.\n$1section -ды файҙаланығыҙ = яңы, яңы бүлек өҫтәү өсөн, ә был параметрға түгел.",
 	"apihelp-edit-param-undo": "Был версияны кире алырға. $1text,$1prependtext,$1appendtext алмаштыра.",
 	"apihelp-edit-param-undoafter": "$1undo- нан алып барлыҡ үҙгәртеүҙәрҙе кире алырға. Әгәр ул ҡуйылмаған булһа, бер тикшереүҙе кире алыу ҙа етә.",
-	"apihelp-edit-param-redirect": "Автоматик йүнәлтәүҙе рөхсәт итергә.",
+	"apihelp-edit-param-redirect": "Автоматик йүнәлтеүҙе рөхсәт итергә.",
 	"apihelp-edit-param-contentformat": "Текстҡа ҡуйыу өсөн йөкмәткенең сериализация форматы.",
 	"apihelp-edit-param-contentmodel": "Яңы йөкмәткенең контент моделе.",
 	"apihelp-edit-param-token": "Маркер һуңғы параметр сифатында ебәрелергә тейеш, йәки, һәрхәлдә $1text параметрынан һуң.",

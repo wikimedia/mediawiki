@@ -388,7 +388,7 @@
 	"noname": "Tö ei olgoi kirjutanuded lasktud kävutajan nimed.",
 	"loginsuccesstitle": "Tulend sistemha om lopnus satusekahas.",
 	"loginsuccess": "'''Tö radat nügüd' {{SITENAME}}-saital kut \"$1\".'''",
-	"nosuchuser": "Ei ole kävutajad \"$1\"-nimenke.\nKävutajan nimiden oigedkirjutamine rippub kirjamiden registraspäi.\nKodvgat teiden oigedkirjutamine, vai [[Special:UserLogin/signup|säkat uz' registracii]].",
+	"nosuchuser": "Ei ole kävutajad \"$1\"-nimenke.\nKävutajan nimiden oigedkirjutamine rippub kirjamiden registraspäi.\nKodvgat teiden oigedkirjutamine, vai [[Special:CreateAccount|säkat uz' registracii]].",
 	"nosuchusershort": "Ei ole kävutajad \"$1\"-nimenke.\nKodvgat teiden oigedkirjutamine.",
 	"nouserspecified": "Pidab kirjutada kävutajan nimi.",
 	"login-userblocked": "Nece kävutai om blokiruidud. Tulend sistemha om kel'tud.",

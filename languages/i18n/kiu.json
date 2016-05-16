@@ -333,7 +333,7 @@
 	"noname": "Ebe namê do vêrdoği ra cınêkota.",
 	"loginsuccesstitle": "Cıkotene biye ra",
 	"loginsuccess": "'''Sıta {{SITENAME}} de ebe namê karberi \"$1\" kota cı.'''",
-	"nosuchuser": "Ebe namê \"$1\"i jü karber çino.\nNustena namunê karberu de herfa pil u qıze rê diqet kerê.\nNustena ho qonrol kerê, ya ki [[Special:UserLogin/signup|jü hesabo newe rakerê]].",
+	"nosuchuser": "Ebe namê \"$1\"i jü karber çino.\nNustena namunê karberu de herfa pil u qıze rê diqet kerê.\nNustena ho qonrol kerê, ya ki [[Special:CreateAccount|jü hesabo newe rakerê]].",
 	"nosuchusershort": "Karberê do ebe namê \"$1\" çino.\nNustena cı qontrol ke.",
 	"nouserspecified": "Gunê namê jü karberi bıdekernê.",
 	"login-userblocked": "No karber engel biyo. Cıkotene rê mısade cı nêdino.",

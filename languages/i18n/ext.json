@@ -318,7 +318,7 @@
 	"noname": "Nu as escrebiu un nombri d'usuáriu corretu.",
 	"loginsuccesstitle": "Yeu, lo cúmu va esu?",
 	"loginsuccess": "'''Acabihas d'entral en {{SITENAME}} con el nombri \"$1\".'''",
-	"nosuchuser": "Nu dessisti dengún usuáriu anombrau \"$1\".\nCompreba que lo aigas escritu bien, u [[Special:UserLogin/signup|cria una cuenta nueva]].",
+	"nosuchuser": "Nu dessisti dengún usuáriu anombrau \"$1\".\nCompreba que lo aigas escritu bien, u [[Special:CreateAccount|cria una cuenta nueva]].",
 	"nosuchusershort": "Nu ai dengún usuáriu llamau \"$1\". Compreba qu'esté bien escritu.",
 	"nouserspecified": "Ebis escribil un nombri d'usuáriu.",
 	"wrongpassword": "La consínia escrebia nu es correta. Pol favol, preba otra vezi.",

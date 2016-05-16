@@ -386,7 +386,7 @@
 	"noname": "Þū nafast gewriten gengne brūcendes naman.",
 	"loginsuccesstitle": "Inmeldung gesǣlde",
 	"loginsuccess": "'''Þu eart nū inmeldod tō {{SITENAME}} tō \"$1\".'''",
-	"nosuchuser": "Þǣr nis nān brūcend þe hæfþ þone naman \"$1\".\nStafena micelnessa sind hefiga and ānlica on brūcendnamum.\nScēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe reccinge]].",
+	"nosuchuser": "Þǣr nis nān brūcend þe hæfþ þone naman \"$1\".\nStafena micelnessa sind hefiga and ānlica on brūcendnamum.\nScēawa þīne wrītunge eft, oþþe [[Special:CreateAccount|sciepp nīwe reccinge]].",
 	"nosuchusershort": "Þǣr nis nān brūcend mid þǣm naman \"$1\".  Scēawa þīne wrītunge.",
 	"nouserspecified": "Þū scealt wrītan brūcendes naman.",
 	"login-userblocked": "Þes brūcend is fortȳned. Inmeldung nis gelīfed.",

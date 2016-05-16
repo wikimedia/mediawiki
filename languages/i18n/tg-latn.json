@@ -319,7 +319,7 @@
 	"noname": "Nomi korbari durustero şumo peşnihod nakarded.",
 	"loginsuccesstitle": "Vurud bo muvaffaqijat",
 	"loginsuccess": "'''Şumo aknun ba Vikipedia hamcun \"$1\". vurud karded'''",
-	"nosuchuser": "Korbare bo nomi \"$1\" vuçud nadorad.\nAmali nomro barrasi kuned, jo [[Special:UserLogin/signup|hisobi çadidero eçod kuned]].",
+	"nosuchuser": "Korbare bo nomi \"$1\" vuçud nadorad.\nAmali nomro barrasi kuned, jo [[Special:CreateAccount|hisobi çadidero eçod kuned]].",
 	"nosuchusershort": "Jagon korbare bo nomi \"$1\" vuçud nadorad. Tarzi navişti nomro sançed.",
 	"nouserspecified": "Şumo bojad jak nomi korbarī muşaxxas kuned.",
 	"login-userblocked": "In korbar basta şudaast. Vurud man' ast.",

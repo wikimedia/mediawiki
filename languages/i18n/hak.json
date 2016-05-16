@@ -414,7 +414,7 @@
 	"noname": "汝還吂輸入一隻有效嘅用戶名。",
 	"loginsuccesstitle": "登入成功",
 	"loginsuccess": "汝今下以\"$1\"嘅身份在{{SITENAME}}登入。",
-	"nosuchuser": "尋毋到用戶 \"$1\"。\n用戶名稱係有大小寫區分嘅。\n檢查汝嘅拼寫，或者用下面嘅表格[[Special:UserLogin/signup|建立一隻新賬號]]。",
+	"nosuchuser": "尋毋到用戶 \"$1\"。\n用戶名稱係有大小寫區分嘅。\n檢查汝嘅拼寫，或者用下面嘅表格[[Special:CreateAccount|建立一隻新賬號]]。",
 	"nosuchusershort": "無有喊做“$1”嘅用戶。請檢查汝輸入嘅文字係毋係有差錯。",
 	"nouserspecified": "汝愛指定一隻用戶名。",
 	"login-userblocked": "邇隻用戶已分封鎖。毋做得登入。",

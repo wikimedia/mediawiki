@@ -243,7 +243,7 @@
 	"noname": "Naʻe ʻikai te ke ʻoatu hao hingoa ʻetita ʻoku totonu.",
 	"loginsuccesstitle": "Kuo ola ʻa e kau-ki-ai",
 	"loginsuccess": "'''ʻOku ke kau-ki-ai he taimí ni ki he {{SITENAME}} hangē \"$1\".'''",
-	"nosuchuser": "ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa \"$1\". Sivi hoʻo sipela pe [[Special:UserLogin/signup|fakatupu haʻo kau-ki-ai foʻou]].",
+	"nosuchuser": "ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa \"$1\". Sivi hoʻo sipela pe [[Special:CreateAccount|fakatupu haʻo kau-ki-ai foʻou]].",
 	"nosuchusershort": "ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa \"$1\". Sivi hoʻo sipela.",
 	"nouserspecified": "ʻOku pau te ke ʻoatu ha hingoa ʻo e ʻetita.",
 	"wrongpassword": "ʻOku ʻikai totonu ʻa e leatapu, kātaki ʻe toki feinga.",

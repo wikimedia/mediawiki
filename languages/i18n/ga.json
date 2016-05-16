@@ -363,7 +363,7 @@
 	"noname": "Níor thug tú ainm úsáideora bailí.",
 	"loginsuccesstitle": "Logáladh isteach thú",
 	"loginsuccess": "'''Tá tú logáilte isteach anois sa {{SITENAME}} mar \"<nowiki>$1</nowiki>\".'''",
-	"nosuchuser": "Níl aon úsáideoir ann leis an ainm \"$1\".\nTá ainmneacha úsáideoir cásíogair.\nCinntigh do litriú, nó [[Special:UserLogin/signup|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.",
+	"nosuchuser": "Níl aon úsáideoir ann leis an ainm \"$1\".\nTá ainmneacha úsáideoir cásíogair.\nCinntigh do litriú, nó [[Special:CreateAccount|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.",
 	"nosuchusershort": "Níl aon úsáideoir ann leis an ainm \"$1\". Cinntigh do litriú.",
 	"nouserspecified": "Caithfidh ainm úsáideoir a shonrú.",
 	"login-userblocked": "Tá an t-úsáideoir seo faoi bhac. Níl cead aige/aici logáil isteach.",

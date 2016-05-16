@@ -306,7 +306,7 @@
 	"createaccounterror": "$1 ur as tufit at kcmt",
 	"loginsuccesstitle": "Tkcmt mzyan (tllit ɣil ɣ ifalan)",
 	"loginsuccess": "Tllit ɣilad ɣ ifalan (tzdit d tuqqna) {{GENDER:$1|||}} ar {{SITENAME}} zund « $1 ».",
-	"nosuchuser": "Asqdac « $1 » ur illi.\nUssaɣ n isqdacn ḥiln hlli.\nẒṛ daɣ ist turit mzyan mayad, niɣd [[Special:UserLogin/signup|tmmurẓmt amiḍan amaynu]].",
+	"nosuchuser": "Asqdac « $1 » ur illi.\nUssaɣ n isqdacn ḥiln hlli.\nẒṛ daɣ ist turit mzyan mayad, niɣd [[Special:CreateAccount|tmmurẓmt amiḍan amaynu]].",
 	"nosuchusershort": "Ur illa umsaws lli ilan assaɣ « $1 ». Ẓṛ ist turit mzyan mayad.",
 	"nouserspecified": "Illa fllak ad tarat assaɣ nk.",
 	"login-userblocked": "Asqdac ad ur as yufi ad ikcm. Tazdayt ɣ ifalan uras ttuyskar",

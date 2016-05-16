@@ -438,7 +438,7 @@
 	"noname": "Lí phah--ê iōng-chiá-miâ boē-sái.",
 	"loginsuccesstitle": "Teng-ji̍p sêng-kong",
 	"loginsuccess": "Lí hiān-chhú-sî í-keng teng-ji̍p {{SITENAME}} chò \"$1\".",
-	"nosuchuser": "Chia bô iōng-chiá hō-chò \"$1\".\nIiōng-chiá hō-chò ū hun toā-jī sè-jī.\nChhiáⁿ kiám-cha lí ê phèng-im, a̍h-sī  [[Special:UserLogin/signup|khui sin iōng-chiá ê kháu-chō.]]",
+	"nosuchuser": "Chia bô iōng-chiá hō-chò \"$1\".\nIiōng-chiá hō-chò ū hun toā-jī sè-jī.\nChhiáⁿ kiám-cha lí ê phèng-im, a̍h-sī  [[Special:CreateAccount|khui sin iōng-chiá ê kháu-chō.]]",
 	"nosuchusershort": "Bô \"$1\" chit ê iōng-chiá miâ.\nTùi khoàⁿ-māi,  lí phah--ê.",
 	"nouserspecified": "Lí ài chí-tēng chi̍t ê iōng-chiá miâ.",
 	"login-userblocked": "這個用者已經予人封鎖，袂使登入。",

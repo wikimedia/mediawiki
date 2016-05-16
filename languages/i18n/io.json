@@ -286,7 +286,7 @@
 	"noname": "Vu ne donis valida uzantonomo.",
 	"loginsuccesstitle": "Eniro sucesoza",
 	"loginsuccess": "'''Vu eniris a {{SITENAME}} kom \"$1\".'''",
-	"nosuchuser": "Ne existas uzanto \"$1\".\nUzanto-nomi esas mayu/minuskulo-distingenda.\nKontrolez vua espelado, o [[Special:UserLogin/signup|krear nova konto]].",
+	"nosuchuser": "Ne existas uzanto \"$1\".\nUzanto-nomi esas mayu/minuskulo-distingenda.\nKontrolez vua espelado, o [[Special:CreateAccount|krear nova konto]].",
 	"nosuchusershort": "Esas nula uzanto \"$1\".\nKontrolez la espelado.",
 	"nouserspecified": "Vu mustas specigar uzantonomo.",
 	"wrongpassword": "La skribita pasovorto esis nekorekta. Voluntez probar itere.",

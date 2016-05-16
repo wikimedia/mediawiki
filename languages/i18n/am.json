@@ -354,7 +354,7 @@
 	"noname": "የተወሰነው ብዕር ስም ትክክለኛ አይደለም።",
 	"loginsuccesstitle": "መግባትዎ ተከናወነ!",
 	"loginsuccess": "እንደ «$1» ሆነው አሁን {{SITENAME}}ን ገብተዋል።",
-	"nosuchuser": "«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ ወይም [[Special:UserLogin/signup|አዲስ ብዕር ስም ያውጡ]]።",
+	"nosuchuser": "«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ ወይም [[Special:CreateAccount|አዲስ ብዕር ስም ያውጡ]]።",
 	"nosuchusershort": "«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ።",
 	"nouserspecified": "አንድ ብዕር ስም መጠቆም ያስፈልጋል።",
 	"login-userblocked": "ተጠቃሚው አሁን የታገደ ነው። መግባት አልተፈቀደም።",

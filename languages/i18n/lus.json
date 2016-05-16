@@ -343,7 +343,7 @@
 	"noname": "Hmangtu hming dik a ziak lo.",
 	"loginsuccesstitle": "Hlawhtling takin i lût tâ e.",
 	"loginsuccess": "'''{{SITENAME}}-ah \"$1\" hming puin a i lût ta.'''",
-	"nosuchuser": "Hmingtuhming \"$1\" a awm lo.\nHmangtuhming hi hawrawppui leh të thliar hran a ngai a ni (entirna: Thara leh thara an inang lo).\nI thilziah enfiah rawh, a nih loh pawhin [[Special:UserLogin/signup|siangchan thar siam rawh]].",
+	"nosuchuser": "Hmingtuhming \"$1\" a awm lo.\nHmangtuhming hi hawrawppui leh të thliar hran a ngai a ni (entirna: Thara leh thara an inang lo).\nI thilziah enfiah rawh, a nih loh pawhin [[Special:CreateAccount|siangchan thar siam rawh]].",
 	"nosuchusershort": "Hmangtu hming \"$1\" a awm lo.\nI thilziah enfiah rawh.",
 	"nouserspecified": "Hmangtuhming i ziah a ngai.",
 	"login-userblocked": "Hë hmangtu hi danbeh a ni. Luh phalsak a ni lo.",

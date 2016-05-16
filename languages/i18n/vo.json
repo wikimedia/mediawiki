@@ -376,7 +376,7 @@
 	"noname": "No egivol gebananemi lonöföl.",
 	"loginsuccesstitle": "Enunädol oli benosekiko",
 	"loginsuccess": "'''Binol anu in {{SITENAME}} as \"$1\".'''",
-	"nosuchuser": "No dabinon geban labü nem: \"$1\".\nGebananems distidons mayudis i minudis.\nKoräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]].",
+	"nosuchuser": "No dabinon geban labü nem: \"$1\".\nGebananems distidons mayudis i minudis.\nKoräkolös tonatami nema at, u [[Special:CreateAccount|jafolös kali nulik]].",
 	"nosuchusershort": "No dabinon geban labü nem: \"$1\". Koräkolös tonatami nema at.",
 	"nouserspecified": "Mutol välön gebananemi.",
 	"wrongpassword": "Letavöd neveräton. Steifülolös dönu.",

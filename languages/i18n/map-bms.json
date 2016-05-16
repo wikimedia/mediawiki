@@ -414,7 +414,7 @@
 	"noname": "Jeneng panganggo sing Rika lebokna ora sah.",
 	"loginsuccesstitle": "Sukses mlebu log",
 	"loginsuccess": "'''Rika sekiye mlebu log nang {{SITENAME}} nganggo jeneng \"$1\".'''",
-	"nosuchuser": "Ora ana panganggo sing jenenge \"$1\".\nJeneng panganggo kuwe mbedakna kapitalisasi.\nPriksa maning ejaane Rika, utawa [[Special:UserLogin/signup|gawe akun anyar]]",
+	"nosuchuser": "Ora ana panganggo sing jenenge \"$1\".\nJeneng panganggo kuwe mbedakna kapitalisasi.\nPriksa maning ejaane Rika, utawa [[Special:CreateAccount|gawe akun anyar]]",
 	"nosuchusershort": "Ora ana panganggo sing jenenge \"$1\".\nJajal dipriksa maning ejaane Rika.",
 	"nouserspecified": "Rika kudu nglebokna jeneng panganggo.",
 	"login-userblocked": "Panganggo kiye diblok. Ora olih mlebu log.",
