@@ -1,4 +1,4 @@
-@chrome @firefox @vagrant
+@chrome @firefox @skip @vagrant
 Feature: Edit Page
 
   Scenario: Create and edit page
