@@ -2,8 +2,14 @@
 
 /**
  * @group ContentHandler
+ * @group Database
  */
 class TextContentHandlerTest extends MediaWikiLangTestCase {
+	public function addDBDataOnce() {
+		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
+		$this->insertPage( 'Smithee', 'A smithee is one who smiths. See also [[Alan Smithee]]' );
+	}
+
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
@@ -50,4 +56,39 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'language', $mappedFields['language']['name'] );
 	}
 
+	/**
+	 * @covers ContentHandler::getDataForSearchIndex
+	 */
+	public function testDataIndexFields() {
+		$mockEngine = $this->getMock( 'SearchEngine' );
+		$title = Title::newFromText( 'Not_Main_Page', NS_MAIN );
+		$page = new WikiPage( $title );
+
+		$this->setTemporaryHook( 'SearchDataForIndex',
+			function ( &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output,
+			           SearchEngine $engine ) {
+				$fields['testDataField'] = 'test content';
+			} );
+
+
+		$output = $page->getContent()->getParserOutput( $title );
+		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $output, $mockEngine );
+		$this->assertArrayHasKey( 'text', $data );
+		$this->assertArrayHasKey( 'text_bytes', $data );
+		$this->assertArrayHasKey( 'language', $data );
+		$this->assertArrayHasKey( 'testDataField', $data );
+		$this->assertEquals( 'test content', $data['testDataField'] );
+	}
+
+	/**
+	 * @covers ContentHandler::getParserOutputForIndexing
+	 */
+	public function testParserOutputForIndexing() {
+		$title = Title::newFromText( 'Smithee', NS_MAIN );
+		$page = new WikiPage( $title );
+
+		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
+		$this->assertInstanceOf( ParserOutput::class, $out );
+		$this->assertContains( 'one who smiths', $out->getRawText() );
+	}
 }
