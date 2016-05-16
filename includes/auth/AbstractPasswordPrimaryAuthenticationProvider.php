@@ -34,7 +34,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	extends AbstractPrimaryAuthenticationProvider
 {
 	/** @var bool Whether this provider should ABSTAIN (false) or FAIL (true) on password failure */
-	protected $authoritative = true;
+	protected $authoritative;
 
 	private $passwordFactory = null;
 
