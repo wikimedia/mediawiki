@@ -1,4 +1,4 @@
-@chrome @firefox @vagrant
+@chrome @firefox @skip @vagrant
 Feature: View History
 
   Scenario: Edit page and view history
