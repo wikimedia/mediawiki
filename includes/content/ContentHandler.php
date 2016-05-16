@@ -1284,4 +1284,51 @@ abstract class ContentHandler {
 		$fields[$name] = $engine->makeSearchFieldMapping( $name, $type );
 		return $fields;
 	}
+
+	/**
+	 * Return fields to be indexed by search engine
+	 * as representation of this document.
+	 * Overriding class should call parent function or take care of calling
+	 * the SearchDataForIndex hook.
+	 * @param WikiPage     $page Page to index
+	 * @param ParserOutput $output
+	 * @param SearchEngine $engine Search engine for which we are indexing
+	 * @return array Map of name=>value for fields
+	 * @since 1.28
+	 */
+	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
+	                                       SearchEngine $engine ) {
+		$fields = [];
+		$content = $page->getContent();
+		$text = $content->getTextForSearchIndex();
+		$fields['text'] = $text;
+		$fields['source_text'] = $text;
+		$fields['text_bytes'] = $content->getSize();
+		Hooks::run( 'SearchDataForIndex', [ &$fields, $this, $page, $output, $engine ] );
+		return $fields;
+	}
+
+	/**
+	 * Produce page output suitable for indexing.
+	 *
+	 * Specific content handlers may override it if they need different content handling.
+	 *
+	 * @param WikiPage $page
+	 * @param bool     $forceParse
+	 * @return ParserOutput
+	 */
+	public function getParserOutputForIndexing( WikiPage $page, $forceParse = false ) {
+		$parserOptions = $page->makeParserOptions( 'canonical' );
+		$revId = $page->getRevision()->getId();
+		if ( !$forceParse ) {
+			$parserOutput = ParserCache::singleton()->get( $page, $parserOptions );
+		}
+		if ( empty( $parserOutput ) ) {
+			$parserOutput =
+				$page->getContent()->getParserOutput( $page->getTitle(), $revId, $parserOptions );
+			ParserCache::singleton()->save( $parserOutput, $page, $parserOptions );
+		}
+		return $parserOutput;
+	}
+
 }
