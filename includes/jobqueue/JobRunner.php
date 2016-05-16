@@ -268,13 +268,19 @@ class JobRunner implements LoggerAwareInterface {
 
 			DeferredUpdates::doUpdates();
 			$this->commitMasterChanges( $job );
-			$job->teardown();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
 			$error = get_class( $e ) . ': ' . $e->getMessage();
 			MWExceptionHandler::logException( $e );
 		}
+		// Always attempt to call teardown() even if Job throws exception.
+		try {
+			$job->teardown();
+		} catch( Exception $e ) {
+			MWExceptionHandler::logException( $e );
+		}
+
 		// Commit all outstanding connections that are in a transaction
 		// to get a fresh repeatable read snapshot on every connection.
 		// Note that jobs are still responsible for handling slave lag.
