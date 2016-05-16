@@ -33,7 +33,6 @@ class AssembleUploadChunksJob extends Job {
 	}
 
 	public function run() {
-		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = RequestContext::importScopedSession( $this->params['session'] );
 		$this->addTeardownCallback( function () use ( &$scope ) {
 			ScopedCallback::consume( $scope ); // T126450
