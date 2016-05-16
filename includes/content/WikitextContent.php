@@ -368,4 +368,57 @@ class WikitextContent extends TextContent {
 		return $word->match( $this->getNativeData() );
 	}
 
+	/**
+	 * Extract text of the file
+	 * TODO: probably should go to file handler?
+	 * @param Title $title
+	 * @return string|null
+	 */
+	private function getFileText( Title $title ) {
+		$file = wfLocalFile( $title );
+		if ( $file && $file->exists() ) {
+			return $file->getHandler()->getEntireText( $file );
+		}
+
+		return null;
+	}
+
+	/**
+	 * Return parser output, potentially using cache if possible.
+	 * @param Title $title
+	 * @return bool|ParserOutput
+	 * @throws MWException
+	 */
+	private function getPageOutput( Title $title ) {
+		// FIXME: should we use $this->getParserOutput() instead?
+		// That however does not cache...
+		$page = WikiPage::factory( $title );
+		$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+		return $page->getParserOutput( $options );
+	}
+
+	public function getFieldsForSearchIndex( Title $title ) {
+		$fields = parent::getFieldsForSearchIndex( $title );
+		// TODO: what about revisions? Do we need WikiPage here instead of Title?
+		$parserOutput = $this->getPageOutput( $title );
+		if ( $parserOutput ) {
+			$structure = new WikiTextStructure( $parserOutput );
+			$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
+			$fields['category'] = $structure->categories();
+			$fields['heading'] = $structure->headings();
+			$fields['outgoing_link'] = $structure->outgoingLinks();
+			$fields['template'] = $structure->templates();
+			// text fields
+			$fields['opening_text'] = $structure->getOpeningText();
+			$fields['text'] = $structure->getMainText();
+			$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		}
+		if ( $title->getNamespace() === NS_FILE ) {
+			$fileText = $this->getFileText( $title );
+			if ( $fileText ) {
+				$fields['file_text'] = $fileText;
+			}
+		}
+		return $fields;
+	}
 }
