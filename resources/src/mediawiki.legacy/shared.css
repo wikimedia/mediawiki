@@ -534,6 +534,7 @@ table.mw_metadata caption {
 
 table.mw_metadata th {
 	font-weight: normal;
+	text-align: center;
 }
 
 table.mw_metadata td {
@@ -547,7 +548,6 @@ table.mw_metadata {
 
 table.mw_metadata td,
 table.mw_metadata th {
-	text-align: center;
 	border: 1px solid #aaaaaa;
 	padding-left: 5px;
 	padding-right: 5px;
