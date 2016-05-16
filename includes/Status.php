@@ -116,6 +116,14 @@ class Status {
 	}
 
 	/**
+	 * Returns the wrapped StatusValue object
+	 * @return StatusValue
+	 */
+	public function getStatusValue() {
+		return $this->sv;
+	}
+
+	/**
 	 * Returns whether the operation completed and didn't have any error or
 	 * warnings
 	 *
