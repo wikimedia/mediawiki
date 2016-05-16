@@ -303,4 +303,13 @@ class TextContent extends AbstractContent {
 		return $converted;
 	}
 
+	public function getFieldsForSearchIndex( Title $title ) {
+		$text = $this->getTextForSearchIndex();
+		return [
+			"text" => $text,
+			"text_bytes" => $this->getSize(),
+			"source_text" => $text,
+		    "language" => $this->getContentHandler()->getPageLanguage( $title, $this ),
+		];
+	}
 }

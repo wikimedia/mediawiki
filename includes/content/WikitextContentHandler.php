@@ -134,8 +134,6 @@ class WikitextContentHandler extends TextContentHandler {
 		$this->addSearchField( $fields, 'template',
 			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
 		$fields['template']->setFlag( SearchIndexFieldDefinition::FLAG_CASEFOLD );
-		$this->addSearchField( $fields, 'wikibase_item',
-			SearchIndexFieldDefinition::INDEX_TYPE_KEYWORD );
 
 		// FIXME: this really belongs in separate file handler but files
 		// do not have separate handler. Sadness.

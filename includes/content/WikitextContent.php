@@ -368,4 +368,41 @@ class WikitextContent extends TextContent {
 		return $word->match( $this->getNativeData() );
 	}
 
+	/**
+	 * Extract text of the file
+	 * TODO: probably should go to file handler?
+	 * @param Title $title
+	 * @return string|null
+	 */
+	private function getFileText( Title $title ) {
+		$file = wfLocalFile( $title );
+		if ( $file && $file->exists() ) {
+			return $file->getHandler()->getEntireText( $file );
+		}
+
+		return null;
+	}
+
+	public function getFieldsForSearchIndex( Title $title ) {
+		$fields = parent::getFieldsForSearchIndex( $title );
+		// TODO: caching like in Updater.php?
+		$parserOutput = $this->getParserOutput( $title );
+		$structure = new WikiTextStructure( $parserOutput );
+		$fields['external_link'] = $parserOutput->getExternalLinks();
+		$fields['category'] = $structure->categories();
+		$fields['heading'] = $structure->headings();
+		$fields['outgoing_link'] = $structure->outgoingLinks();
+		$fields['template'] = $structure->templates();
+		// text fields
+		$fields['opening_text'] = $structure->getOpeningText();
+		$fields['text'] = $structure->getMainText();
+		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		if ( $title->getNamespace() === NS_FILE ) {
+			$fileText = $this->getFileText( $title );
+			if ( $fileText ) {
+				$fields['file_text'] = $fileText;
+			}
+		}
+		return $fields;
+	}
 }

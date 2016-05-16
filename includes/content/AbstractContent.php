@@ -529,4 +529,15 @@ abstract class AbstractContent implements Content {
 		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
 		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
 	}
+
+	/**
+	 * Return fields to be indexed by search engine
+	 * as representation of this document.
+	 * @since 1.28
+	 * @param Title $title
+	 * @return array
+	 */
+	public function getFieldsForSearchIndex( Title $title ) {
+		return [];
+	}
 }
