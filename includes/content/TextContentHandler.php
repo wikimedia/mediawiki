@@ -147,4 +147,11 @@ class TextContentHandler extends ContentHandler {
 		$this->addSearchField( $fields, $engine, 'language', SearchIndexField::INDEX_TYPE_KEYWORD );
 		return $fields;
 	}
+
+	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output, SearchEngine $engine ) {
+		$fields = parent::getDataForSearchIndex( $page, $output, $engine );
+		$fields['language'] = $this->getPageLanguage( $page->getTitle(), $page->getContent() )->getCode();
+		return $fields;
+	}
+
 }
