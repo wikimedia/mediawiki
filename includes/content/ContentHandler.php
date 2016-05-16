@@ -1255,7 +1255,6 @@ abstract class ContentHandler {
 		 * namespace_text
 		 * redirect
 		 * source_text
-		 * suggest
 		 * timestamp
 		 * title
 		 * text
