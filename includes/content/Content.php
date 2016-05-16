@@ -523,4 +523,13 @@ interface Content {
 	//   config to set the class which handles syntax highlighting
 	//   [12:00] <vvv> And default it to a DummyHighlighter
 
+	/**
+	 * Return fields to be indexed by search engine
+	 * as representation of this document.
+	 * @param Title $title Title for which we are making output.
+	 * This is required since we need it to get parser output.
+	 * @since 1.28
+	 * @return array
+	 */
+	public function getFieldsForSearchIndex( Title $title );
 }
