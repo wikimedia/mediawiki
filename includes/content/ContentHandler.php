@@ -1284,4 +1284,20 @@ abstract class ContentHandler {
 		$fields[$name] = $engine->makeSearchFieldMapping( $name, $type );
 		return $fields;
 	}
+
+	/**
+	 * Return fields to be indexed by search engine
+	 * as representation of this document.
+	 * Overriding class should call parent function or take care of calling
+	 * the SearchDataForIndex hook.
+	 * @param WikiPage $page Page to index
+	 * @param SearchEngine $engine Search engine for which we are indexing
+	 * @return array Map of name=>value for fields
+	 * @since 1.28
+	 */
+	public function getDataForSearchIndex( WikiPage $page, SearchEngine $engine ) {
+		$fields = [];
+		Hooks::run( 'SearchDataForIndex', [ &$fields, $this, $page, $engine ] );
+		return $fields;
+	}
 }

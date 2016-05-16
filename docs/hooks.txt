@@ -2609,6 +2609,17 @@ search results.
 $title: Current Title object being displayed in search results.
 &$id: Revision ID (default is false, for latest)
 
+'SearchIndexFields': Add fields to search index mapping.
+&$fields: Array of fields, all implement SearchIndexField
+$engine: SearchEngine instance for which mapping is being built.
+
+'SearchDataForIndex': Add data to search document. Allows to add any data to
+the field map used to index the document.
+&$fields: Array of name => value pairs for fields
+$handler: Content handler for the content being indexed
+$page: WikiPage that is being indexed
+$engine: SearchEngine for which the indexing is intended
+
 'SecondaryDataUpdates': Allows modification of the list of DataUpdates to
 perform when page content is modified. Currently called by
 AbstractContent::getSecondaryDataUpdates.
