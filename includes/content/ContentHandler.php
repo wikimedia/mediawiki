@@ -1270,4 +1270,69 @@ abstract class ContentHandler {
 		 */
 		return [];
 	}
+
+	/**
+	 * Add new field definition to array.
+	 * @param SearchIndexField[] $fields
+	 * @param SearchEngine       $engine
+	 * @param string             $name
+	 * @param int                $type
+	 * @return SearchIndexField[] new field defs
+	 * @since 1.28
+	 */
+	protected function addSearchField( &$fields, SearchEngine $engine, $name, $type ) {
+		$fields[$name] = $engine->makeSearchFieldMapping( $name, $type );
+		return $fields;
+	}
+
+	/**
+	 * Return fields to be indexed by search engine
+	 * as representation of this document.
+	 * Overriding class should call parent function or take care of calling
+	 * the SearchDataForIndex hook.
+	 * @param WikiPage     $page Page to index
+	 * @param ParserOutput $output
+	 * @param SearchEngine $engine Search engine for which we are indexing
+	 * @return array Map of name=>value for fields
+	 * @since 1.28
+	 */
+	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
+	                                       SearchEngine $engine ) {
+		$fields = [];
+		$content = $page->getContent();
+		if ( $content ) {
+			$text = $content->getTextForSearchIndex();
+			$fields['text'] = $text;
+			$fields['source_text'] = $text;
+			$fields['text_bytes'] = $content->getSize();
+		}
+		Hooks::run( 'SearchDataForIndex', [ &$fields, $this, $page, $output, $engine ] );
+		return $fields;
+	}
+
+	/**
+	 * Produce page output suitable for indexing.
+	 *
+	 * Specific content handlers may override it if they need different content handling.
+	 *
+	 * @param WikiPage    $page
+	 * @param ParserCache $cache
+	 * @return ParserOutput
+	 */
+	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {
+		$parserOptions = $page->makeParserOptions( 'canonical' );
+		$revId = $page->getRevision()->getId();
+		if ( $cache ) {
+			$parserOutput = $cache->get( $page, $parserOptions );
+		}
+		if ( empty( $parserOutput ) ) {
+			$parserOutput =
+				$page->getContent()->getParserOutput( $page->getTitle(), $revId, $parserOptions );
+			if ( $cache ) {
+				$cache->save( $parserOutput, $page, $parserOptions );
+			}
+		}
+		return $parserOutput;
+	}
+
 }
