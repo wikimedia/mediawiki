@@ -145,4 +145,44 @@ class WikitextContentHandler extends TextContentHandler {
 		return $fields;
 	}
 
+	/**
+	 * Extract text of the file
+	 * TODO: probably should go to file handler?
+	 * @param Title $title
+	 * @return string|null
+	 */
+	protected function getFileText( Title $title ) {
+		$file = wfLocalFile( $title );
+		if ( $file && $file->exists() ) {
+			return $file->getHandler()->getEntireText( $file );
+		}
+
+		return null;
+	}
+
+	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
+	                                       SearchEngine $engine ) {
+		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
+
+		$structure = new WikiTextStructure( $parserOutput );
+		$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
+		$fields['category'] = $structure->categories();
+		$fields['heading'] = $structure->headings();
+		$fields['outgoing_link'] = $structure->outgoingLinks();
+		$fields['template'] = $structure->templates();
+		// text fields
+		$fields['opening_text'] = $structure->getOpeningText();
+		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
+		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+
+		$title = $page->getTitle();
+		if ( NS_FILE == $title->getNamespace() ) {
+			$fileText = $this->getFileText( $title );
+			if ( $fileText ) {
+				$fields['file_text'] = $fileText;
+			}
+		}
+		return $fields;
+	}
+
 }
