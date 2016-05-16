@@ -67,4 +67,6 @@ abstract class CodeContentHandler extends TextContentHandler {
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		return [];
 	}
+
+	// TODO: do we need to override getDataForSearchIndex here?
 }
