@@ -373,6 +373,7 @@ $magicWords = [
 	'url_path'                => [ 0, 'PATH' ],
 	'url_wiki'                => [ 0, 'WIKI' ],
 	'url_query'               => [ 0, 'QUERY' ],
+	'url_reencode_path'       => [ 0, 'REPATH' ],
 	'defaultsort_noerror'     => [ 0, 'noerror' ],
 	'defaultsort_noreplace'   => [ 0, 'noreplace' ],
 	'displaytitle_noerror'    => [ 0, 'noerror' ],

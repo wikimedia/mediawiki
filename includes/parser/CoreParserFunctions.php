@@ -170,7 +170,7 @@ class CoreParserFunctions {
 	public static function urlencode( $parser, $s = '', $arg = null ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( [ 'url_path', 'url_query', 'url_wiki' ] );
+			$magicWords = new MagicWordArray( [ 'url_path', 'url_query', 'url_wiki', 'url_reencode_path' ] );
 		}
 		switch ( $magicWords->matchStartToEnd( $arg ) ) {
 
@@ -185,6 +185,10 @@ class CoreParserFunctions {
 				$func = 'rawurlencode';
 				break;
 
+			case 'url_reencode_path':
+				$func = [ __CLASS__, 'reEncodePath' ];
+				break;
+
 			// Encode for HTTP query, '+' for ' '.
 			case 'url_query':
 			default:
@@ -193,6 +197,16 @@ class CoreParserFunctions {
 		// See T105242, where the choice to kill markers and various
 		// other options were discussed.
 		return $func( $parser->killMarkers( $s ) );
+	}
+
+	/**
+	 * Given an html-encoded string, decode it and re-encode for usage in url paths
+	 * See T129346, T129901
+	 * @param string $s
+	 * @return string
+	 */
+	public static function reEncodePath( $s ) {
+		return rawurlencode( html_entity_decode( $s ) );
 	}
 
 	public static function lcfirst( $parser, $s = '' ) {
