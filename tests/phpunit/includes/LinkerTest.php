@@ -16,8 +16,10 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgWellFormedXml' => true,
 		] );
 
-		$this->assertEquals( $expected,
-			Linker::userLink( $userId, $userName, $altUserName, $msg )
+		$this->assertEquals(
+			$expected,
+			Linker::userLink( $userId, $userName, $altUserName ),
+			$msg
 		);
 	}
 
