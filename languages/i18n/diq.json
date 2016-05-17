@@ -448,7 +448,7 @@
 	"noname": "Yew nameyo maqbul bınuse.",
 	"loginsuccesstitle": "Hesab abıya",
 	"loginsuccess": "'''{{SITENAME}} dı name dê \"$1\" şıma hesab akerdo.'''",
-	"nosuchuser": "Ebe namey \"$1\"i yew karber çıniyo.\nNuştışê namanê karberan de herfa pil u qıce rê diqet kerên.\nNuştışê xo qonrol kerên, ya zi [[Special:CreateAccount|yew hesabo newe akerên]].",
+	"nosuchuser": "\"$1\" ya yew namey karberi çıniyo.\nNuştışê namanê karberan de herfa pil u qıce rê diqet kerên.\nNuştışê xo qontrol kerên, ya zi [[Special:CreateAccount|yew hesabo newe akerê]].",
 	"nosuchusershort": "No \"$1\" name de yew ten çino. Kontrolê nuştışi bıkere.",
 	"nouserspecified": "Şıma gani yew name bıde.",
 	"login-userblocked": "No karber/na karbere blokekerdeyo/blokekerdiya. Cıkewtışi rê musade çıniyo.",

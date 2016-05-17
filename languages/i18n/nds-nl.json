@@ -835,6 +835,7 @@
 	"powersearch-togglelabel": "Selekteren:",
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Gien",
+	"powersearch-remember": "Keuze onthouwen veur toekomstige zeukopdrachten",
 	"search-external": "Extern zeuken",
 	"searchdisabled": "Zeuken in {{SITENAME}} is niet meugelik. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin misschien niet bie-ewörken.",
 	"search-error": "Der is wat mis-egaon bie t zeuken: $1",

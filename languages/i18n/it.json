@@ -626,6 +626,7 @@
 	"botpasswords-invalid-name": "Il nome utente indicato non contiene il separatore per password bot (\"$1\").",
 	"botpasswords-not-exist": "L'utente \"$1\" non dispone di una password bot chiamata \"$2\".",
 	"resetpass_forbidden": "Non è possibile modificare le password",
+	"resetpass_forbidden-reason": "Non è possibile modificare le password: $1",
 	"resetpass-no-info": "Devi aver effettuato l'accesso per accedere a questa pagina direttamente.",
 	"resetpass-submit-loggedin": "Cambia password",
 	"resetpass-submit-cancel": "Annulla",
@@ -727,7 +728,7 @@
 	"accmailtext": "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2. Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 	"newarticle": "(Nuovo)",
 	"newarticletext": "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.\nSe vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [$1 pagina di aiuto] per maggiori informazioni).\nSe il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante <strong>Indietro</strong> del proprio browser.",
-	"anontalkpagetext": "----\n''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
+	"anontalkpagetext": "----\n<em>Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando.</em>\nPer identificarlo è quindi necessario usare il numero del suo indirizzo IP.\nGli indirizzi IP possono però essere condivisi da più utenti.\nSe sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.",
 	"noarticletext": "In questo momento la pagina richiesta è vuota.\nPuoi [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} creare questa pagina]</span>.",
 	"noarticletext-nopermission": "In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.",
 	"missing-revision": "La versione #$1 della pagina \"{{FULLPAGENAME}}\" non esiste.\n\nQuesto si verifica solitamente seguendo un collegamento a una pagina cancellata, in una cronologia non aggiornata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
@@ -3732,5 +3733,12 @@
 	"log-action-filter-suppress-block": "Soppressione utente da blocco",
 	"log-action-filter-suppress-reblock": "Soppressione utente da ri-blocco",
 	"log-action-filter-upload-upload": "Nuovo caricamento",
-	"log-action-filter-upload-overwrite": "Ricaricamento"
+	"log-action-filter-upload-overwrite": "Ricaricamento",
+	"authmanager-userdoesnotexist": "L'utenza \"$1\" non è registrata.",
+	"authmanager-email-help": "Indirizzo email",
+	"authmanager-realname-help": "Nome reale dell'utente",
+	"authform-newtoken": "Token mancante. $1",
+	"changecredentials-submit-cancel": "Annulla",
+	"removecredentials-submit": "Rimuovi",
+	"removecredentials-submit-cancel": "Annulla"
 }

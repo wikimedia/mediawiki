@@ -3572,5 +3572,9 @@
 	"log-action-filter-protect-modify": "Яңынан тейәү",
 	"log-action-filter-protect-unprotect": "Һаҡты алып ташлау",
 	"log-action-filter-upload-upload": "Яңы күсереү",
-	"log-action-filter-upload-overwrite": "Ҡабаттан тейәү"
+	"log-action-filter-upload-overwrite": "Ҡабаттан тейәү",
+	"authmanager-email-label": "Электрон почта адресы",
+	"authmanager-realname-label": "Ысын исемегеҙ",
+	"changecredentials-submit": "Үҙгәртергә",
+	"removecredentials-submit-cancel": "Кире алырға"
 }

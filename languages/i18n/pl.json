@@ -3682,5 +3682,20 @@
 	"log-action-filter-rights-rights": "Ręczna zmiana",
 	"log-action-filter-rights-autopromote": "Automatyczna zmiana",
 	"log-action-filter-upload-upload": "Nowe przesłane",
-	"log-action-filter-upload-overwrite": "Przesłane ponownie"
+	"log-action-filter-upload-overwrite": "Przesłane ponownie",
+	"authmanager-authplugin-setpass-denied": "Wtyczka uwierzytelniania nie zezwala na zmianę haseł.",
+	"authmanager-userdoesnotexist": "Konto użytkownika „$1” nie jest zarejestrowane.",
+	"authmanager-password-help": "Hasło do uwierzytelniania.",
+	"authmanager-email-label": "E-mail",
+	"authmanager-email-help": "Adres e‐mail",
+	"authmanager-realname-help": "Prawdziwe imię i nazwisko użytkownika",
+	"authprovider-resetpass-skip-label": "Pomiń",
+	"authform-notoken": "Brakujący token",
+	"authform-wrongtoken": "Nieprawidłowy token",
+	"specialpage-securitylevel-not-allowed": "Niestety, nie możesz korzystać z tej strony, ponieważ twoja tożsamość nie może zostać zweryfikowana.",
+	"authpage-cannot-login-continue": "Nie można kontynuować logowania. Sesja najprawdopodobniej wygasła.",
+	"cannotauth-not-allowed-title": "Brak dostępu",
+	"removecredentials-submit": "Usuń",
+	"removecredentials-submit-cancel": "Anuluj",
+	"credentialsform-account": "Nazwa konta:"
 }
