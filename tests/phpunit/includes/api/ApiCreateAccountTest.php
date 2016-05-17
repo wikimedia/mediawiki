@@ -137,7 +137,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	public function testExistingUser() {
 		$this->doApiRequest( [
 			'action' => 'createaccount',
-			'name' => 'Apitestsysop',
+			'name' => self::$users['sysop']->getUser()->getName(),
 			'token' => LoginForm::getCreateaccountToken()->toString(),
 			'password' => 'password',
 			'email' => 'test@domain.test',

@@ -127,14 +127,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		self::prepareServices( new GlobalVarConfig() );
 	}
 
-	public static function getTestSysop( $mutable = false ) {
-		return self::getTestUser( $mutable, [ 'sysop', 'bureaucrat' ] );
-	}
-
+	/**
+	 * Convenience method for getting a test user
+	 *
+	 * @param bool $mutable If true, get a mutable test user. If false,
+	 *  immutable.
+	 * @param string[] $groups Groups the test user should be added to.
+	 * @return TestUser
+	 */
 	public static function getTestUser( $mutable = false, $groups = [] ) {
 		return $mutable
 			? TestUserRegistry::getMutableTestUser( __CLASS__, $groups )
 			: TestUserRegistry::getImmutableTestUser( $groups );
+	}
+
+	/**
+	 * Convenience method for getting an admin test user
+	 *
+	 * @param bool $mutable If true, get a mutable test user. If false,
+	 *  immutable.
+	 * @param string[] $groups Groups the test user should be added to.
+	 * @return TestUser
+	 */
+	public static function getTestSysop( $mutable = false ) {
+		return self::getTestUser( $mutable, [ 'sysop', 'bureaucrat' ] );
 	}
 
 	/**
