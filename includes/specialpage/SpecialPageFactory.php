@@ -83,7 +83,7 @@ class SpecialPageFactory {
 
 		// Authentication
 		'Userlogin' => 'SpecialUserLogin',
-		'Userlogout' => 'SpecialUserLogoutPreAuthManager',
+		'Userlogout' => 'SpecialUserlogoutPreAuthManager',
 		'CreateAccount' => 'SpecialCreateAccountPreAuthManager',
 		'LinkAccounts' => 'SpecialLinkAccounts',
 		'UnlinkAccounts' => 'SpecialUnlinkAccounts',
@@ -266,6 +266,7 @@ class SpecialPageFactory {
 				self::$list = array_map( function ( $class ) {
 					return preg_replace( '/PreAuthManager$/', '', $class );
 				}, self::$list );
+				self::$list['Userlogout'] = 'SpecialUserLogout'; // case matters
 			} else {
 				self::$list['Userlogin'] = 'LoginForm';
 				self::$list = array_diff_key( self::$list, array_fill_keys( [
