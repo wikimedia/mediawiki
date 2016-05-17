@@ -756,6 +756,7 @@ return [
 			'de' => 'resources/lib/moment/locale/de.js',
 			'de-at' => 'resources/lib/moment/locale/de-at.js',
 			'el' => 'resources/lib/moment/locale/el.js',
+			'en' => 'resources/src/moment-dmy.js',
 			'en-au' => 'resources/lib/moment/locale/en-au.js',
 			'en-ca' => 'resources/lib/moment/locale/en-ca.js',
 			'en-gb' => 'resources/lib/moment/locale/en-gb.js',
