@@ -48,7 +48,7 @@
 
 	"apihelp-clientlogin-description": "Log in to the wiki using the interactive flow.",
 	"apihelp-clientlogin-example-login": "Start the process of logging in to the wiki as user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
-	"apihelp-clientlogin-example-login2": "Continue logging in after a UI response for two-factor auth, supplying an <var>OATHToken</var> of <kbd>987654</kbd>.",
+	"apihelp-clientlogin-example-login2": "Continue logging in after a <kbd>UI</kbd> response for two-factor auth, supplying an <var>OATHToken</var> of <kbd>987654</kbd>.",
 
 	"apihelp-compare-description": "Get the difference between 2 pages.\n\nA revision number, a page title, or a page ID for both \"from\" and \"to\" must be passed.",
 	"apihelp-compare-param-fromtitle": "First title to compare.",
