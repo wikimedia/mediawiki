@@ -1218,7 +1218,7 @@
 	"upload-form-label-own-work": "ائ ني جیندئ کار اینت",
 	"upload-form-label-infoform-categories": "تهرئان",
 	"upload-form-label-infoform-date": "تاریخ",
-	"upload-form-label-own-work-message-local": "من ایشیرا قبولا کنین که من ائ فایلا بُرزا کنین گۆ استفاده ئی شرایطان شه  جوازئ شینک  بوتینا و خدماتئ سیاستان به {{SITENAME}} تا.",
+	"upload-form-label-own-work-message-generic-local": "من ایشیرا قبولا کنین که من ائ فایلا بُرزا کنین گۆ استفاده ئی شرایطان شه  جوازئ شینک  بوتینا و خدماتئ سیاستان به {{SITENAME}} تا.",
 	"backend-fail-stream": "نه توانن $1 ئی فایلا دیم دهین.",
 	"backend-fail-backup": "نتنوانن پُشتوانی نخسه یی په $1 فایلا جۆڑ کنن.",
 	"backend-fail-notexists": " $1 ئی فایل وجود نداریت.",
