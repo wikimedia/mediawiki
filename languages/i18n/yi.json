@@ -1357,7 +1357,7 @@
 	"upload-form-label-own-work": "דאס איז מיין אייגענע ארבעט.",
 	"upload-form-label-infoform-categories": "קאַטעגאריעס",
 	"upload-form-label-infoform-date": "דאַטע",
-	"upload-form-label-not-own-work-local-local": "אפשר ווילט איר פרובירן [[Special:Upload|דעם גרונטלעכן ארויפלאד־בלאט]].",
+	"upload-form-label-not-own-work-local-generic-local": "אפשר ווילט איר פרובירן [[Special:Upload|דעם גרונטלעכן ארויפלאד־בלאט]].",
 	"backend-fail-stream": "קען נישט מאכן שטראמען טעקע $1.",
 	"backend-fail-notexists": "נישט פֿאראן די טעקע $1.",
 	"backend-fail-notsame": "א נישט־אידענטישע טעקע עקזיסטירט שוין ביי \"$1\".",
