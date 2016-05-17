@@ -15,8 +15,10 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 		] );
 
-		$this->assertEquals( $expected,
-			Linker::userLink( $userId, $userName, $altUserName, $msg )
+		$this->assertEquals(
+			$expected,
+			Linker::userLink( $userId, $userName, $altUserName ),
+			$msg
 		);
 	}
 
