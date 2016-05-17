@@ -252,10 +252,12 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	abstract public function delete( $key );
 
 	/**
-	 * Merge changes into the existing cache value (possibly creating a new one).
+	 * Merge changes into the existing cache value (possibly creating a new one)
+	 *
 	 * The callback function returns the new value given the current value
 	 * (which will be false if not present), and takes the arguments:
-	 * (this BagOStuff, cache key, current value).
+	 * (this BagOStuff, cache key, current value, TTL).
+	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
 	 *
 	 * @param string $key
 	 * @param callable $callback Callback method to be executed
@@ -296,7 +298,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			}
 
 			// Derive the new value from the old value
-			$value = call_user_func( $callback, $this, $key, $currentValue );
+			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
 
 			$this->clearLastError();
 			if ( $value === false ) {
@@ -355,7 +357,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$success = false;
 		} else {
 			// Derive the new value from the old value
-			$value = call_user_func( $callback, $this, $key, $currentValue );
+			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
 			if ( $value === false ) {
 				$success = true; // do nothing
 			} else {
