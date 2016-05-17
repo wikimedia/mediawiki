@@ -1513,7 +1513,7 @@
 	"upload-form-label-own-work": "Isto é o meu próprio trabalho",
 	"upload-form-label-infoform-categories": "Categorias",
 	"upload-form-label-infoform-date": "Data",
-	"upload-form-label-not-own-work-local-local": "Você pode também querer tentar [[Special:Upload|the default upload page]]",
+	"upload-form-label-not-own-work-local-generic-local": "Você pode também querer tentar [[Special:Upload|the default upload page]]",
 	"backend-fail-stream": "Não foi possível transmitir o arquivo  $1.",
 	"backend-fail-backup": "Não foi possível fazer backup do arquivo  $1 .",
 	"backend-fail-notexists": "O arquivo $1 não existe.",

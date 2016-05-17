@@ -1420,7 +1420,7 @@
 	"upload-form-label-own-work": "Daytoy ket bukodko nga obra",
 	"upload-form-label-infoform-categories": "Katkategoria",
 	"upload-form-label-infoform-date": "Petsa",
-	"upload-form-label-not-own-work-local-local": "Mabalinmo pay a padasen [[Special:Upload|ti kasisigud a pagikargaan a panid]].",
+	"upload-form-label-not-own-work-local-generic-local": "Mabalinmo pay a padasen [[Special:Upload|ti kasisigud a pagikargaan a panid]].",
 	"backend-fail-stream": "Saan a maipan ti papeles $1.",
 	"backend-fail-backup": "Saan a makaidulin ti kapada ti papeles ti $1.",
 	"backend-fail-notexists": "Awan ti papeles ti $1.",
