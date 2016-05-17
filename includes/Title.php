@@ -2971,6 +2971,8 @@ class Title implements LinkTarget {
 
 	/**
 	 * Purge expired restrictions from the page_restrictions table
+	 *
+	 * This will purge no more than $wgUpdateRowsPerQuery page_restrictions rows
 	 */
 	static function purgeExpiredRestrictions() {
 		if ( wfReadOnly() ) {
@@ -2981,11 +2983,24 @@ class Title implements LinkTarget {
 			wfGetDB( DB_MASTER ),
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) {
-				$dbw->delete(
+				$config = MediaWikiServices::getInstance()->getMainConfig();
+				$ids = $dbw->selectFieldValues(
 					'page_restrictions',
+					'pr_id',
 					[ 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
-					$fname
+					$fname,
+					[ 'LIMIT' => $config->get( 'UpdateRowsPerQuery' ) ] // T135470
 				);
+				if ( $ids ) {
+					$dbw->delete( 'page_restrictions', [ 'pr_id' => $ids ], $fname );
+				}
+			}
+		) );
+
+		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+			wfGetDB( DB_MASTER ),
+			__METHOD__,
+			function ( IDatabase $dbw, $fname ) {
 				$dbw->delete(
 					'protected_titles',
 					[ 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
