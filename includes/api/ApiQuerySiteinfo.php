@@ -485,7 +485,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = [];
 		$result = $this->getResult();
-		$allGroups = User::getAllGroups();
+		$allGroups = array_values( User::getAllGroups() );
 		foreach ( $config->get( 'GroupPermissions' ) as $group => $permissions ) {
 			$arr = [
 				'name' => $group,
@@ -512,7 +512,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			foreach ( $groupArr as $type => $rights ) {
 				if ( isset( $rights[$group] ) ) {
-					$groups = array_intersect( $rights[$group], $allGroups );
+					if ( $rights[$group] === true ) {
+						$groups = $allGroups;
+					} else {
+						$groups = array_intersect( $rights[$group], $allGroups );
+					}
 					if ( $groups ) {
 						$arr[$type] = $groups;
 						ApiResult::setArrayType( $arr[$type], 'BCarray' );
