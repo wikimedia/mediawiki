@@ -83,7 +83,7 @@ class SpecialPageFactory {
 
 		// Authentication
 		'Userlogin' => 'SpecialUserLogin',
-		'Userlogout' => 'SpecialUserLogoutPreAuthManager',
+		'Userlogout' => 'SpecialUserlogoutPreAuthManager',
 		'CreateAccount' => 'SpecialCreateAccountPreAuthManager',
 		'LinkAccounts' => 'SpecialLinkAccounts',
 		'UnlinkAccounts' => 'SpecialUnlinkAccounts',
