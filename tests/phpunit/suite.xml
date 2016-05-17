@@ -67,4 +67,7 @@
 			<directory suffix=".php">../../skins</directory>
 		</whitelist>
 	</filter>
+	<listeners>
+		<listener class="PHPUnit\XHProfTestListener\XHProfTestListener"></listener>
+	</listeners>
 </phpunit>
