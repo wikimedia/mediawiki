@@ -451,7 +451,7 @@
 				RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
 				RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
-			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) !== -1;
+			return ( new RegExp( '^' + RE_IP_ADD + block + '$' ).test( address ) );
 		},
 
 		/**
@@ -476,15 +476,18 @@
 			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
 			')';
 
-			if ( address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1 ) {
+			if ( new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) ) {
 				return true;
 			}
 
-			RE_IPV6_ADD = // contains one "::" in the middle (single '::' check below)
-				'[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
+			// contains one "::" in the middle (single '::' check below)
+			RE_IPV6_ADD = '[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
 
-			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
-				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
+			return (
+				new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address )
+				&& /::/.test( address )
+				&& !/::.*::/.test( address )
+			);
 		},
 
 		/**
