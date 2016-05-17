@@ -1197,7 +1197,7 @@ class LoginFormPreAuthManager extends SpecialPage {
 	protected function resetLoginForm( Message $msg ) {
 		// Allow hooks to explain this password reset in more detail
 		Hooks::run( 'LoginPasswordResetMessage', [ &$msg, $this->mUsername ] );
-		$reset = new SpecialChangePassword();
+		$reset = new SpecialChangePasswordPreAuthManager();
 		$derivative = new DerivativeContext( $this->getContext() );
 		$derivative->setTitle( $reset->getPageTitle() );
 		$reset->setContext( $derivative );
