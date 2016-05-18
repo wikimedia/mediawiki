@@ -3662,5 +3662,8 @@
 	"log-action-filter-protect-unprotect": "رفع الحماية",
 	"log-action-filter-rights-rights": "تغيير يدوي",
 	"log-action-filter-upload-upload": "رفع جديد",
-	"log-action-filter-upload-overwrite": "إعادة الرفع"
+	"log-action-filter-upload-overwrite": "إعادة الرفع",
+	"authmanager-email-help": "عنوان البريد الإلكتروني",
+	"linkaccounts": "ربط الحسابات",
+	"unlinkaccounts": "إزالة ربط الحسابات"
 }

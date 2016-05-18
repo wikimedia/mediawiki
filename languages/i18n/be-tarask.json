@@ -443,6 +443,7 @@
 	"createacct-reason-ph": "Зь якой мэтай вы ствараеце іншы рахунак",
 	"createacct-submit": "Стварыць рахунак",
 	"createacct-another-submit": "Стварыць рахунак",
+	"createacct-continue-submit": "Працягнуць стварэньне рахунку",
 	"createacct-benefit-heading": "{{SITENAME}} створаная людзьмі, такімі як вы.",
 	"createacct-benefit-body1": "{{PLURAL:$1|праўка|праўкі|правак}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|старонка|старонкі|старонак}}",
