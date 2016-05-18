@@ -59,7 +59,7 @@ class RecompressTracked {
 	public $reportingInterval = 10;
 	public $numProcs = 1;
 	public $numBatches = 0;
-	public $useDiff, $pageBlobClass, $orphanBlobClass;
+	public $pageBlobClass, $orphanBlobClass;
 	public $slavePipes, $slaveProcs, $prevSlaveId;
 	public $copyOnly = false;
 	public $isChild = false;
@@ -112,8 +112,8 @@ class RecompressTracked {
 		} elseif ( $this->slaveId !== false ) {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->slaveId}: ";
 		}
-		$this->useDiff = function_exists( 'xdiff_string_bdiff' );
-		$this->pageBlobClass = $this->useDiff ? 'DiffHistoryBlob' : 'ConcatenatedGzipHistoryBlob';
+		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
+			'DiffHistoryBlob' : 'ConcatenatedGzipHistoryBlob';
 		$this->orphanBlobClass = 'ConcatenatedGzipHistoryBlob';
 	}
 
