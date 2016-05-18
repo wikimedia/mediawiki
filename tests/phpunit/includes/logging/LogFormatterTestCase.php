@@ -10,12 +10,19 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 		$row = $this->expandDatabaseRow( $row, $this->isLegacy( $extra ) );
 
 		$formatter = LogFormatter::newFromRow( $row );
-
-		$this->assertEquals(
-			$extra['text'],
-			self::removeSomeHtml( $formatter->getActionText() ),
-			'Action text is equal to expected text'
-		);
+		if ( preg_match( '/^\/.*\/$/', $extra['text'] ) ) {
+			$this->assertRegexp(
+				$extra['text'],
+				self::removeSomeHtml( $formatter->getActionText() ),
+				'Action text is equal to expected text'
+			);
+		} else {
+			$this->assertEquals(
+				$extra['text'],
+				self::removeSomeHtml( $formatter->getActionText() ),
+				'Action text is equal to expected text'
+			);
+		}
 
 		$this->assertSame( // ensure types and array key order
 			$extra['api'],
