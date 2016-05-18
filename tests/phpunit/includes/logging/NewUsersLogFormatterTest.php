@@ -113,7 +113,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User account UTSysop was created by User',
+					'text' => '/User account .* was created by User/',
 					'api' => [
 						'userid' => 1,
 					],
@@ -151,7 +151,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User account UTSysop was created by Sysop and password was sent by email',
+					'text' => '/User account .* was created by Sysop and password was sent by email/',
 					'api' => [
 						'userid' => 1,
 					],
