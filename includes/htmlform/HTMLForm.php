@@ -1226,17 +1226,25 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Identify that the submit button in the form has a destructive action
 	 * @since 1.24
+	 *
+	 * @return HTMLForm $this for chaining calls (since 1.28)
 	 */
 	public function setSubmitDestructive() {
 		$this->mSubmitFlags = [ 'destructive', 'primary' ];
+
+		return $this;
 	}
 
 	/**
 	 * Identify that the submit button in the form has a progressive action
 	 * @since 1.25
+	 *
+	 * @return HTMLForm $this for chaining calls (since 1.28)
 	 */
 	public function setSubmitProgressive() {
 		$this->mSubmitFlags = [ 'progressive', 'primary' ];
+
+		return $this;
 	}
 
 	/**
