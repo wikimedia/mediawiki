@@ -46,41 +46,58 @@ function Router() {
 	this.routes = {};
 	this.enabled = true;
 	this.oldHash = this.getPath();
+	this.hasPushState = window.history && window.history.pushState;
 
-	$( window ).on( 'popstate', function () {
-		self.emit( 'popstate' );
-	} );
-
-	$( window ).on( 'hashchange', function () {
-		self.emit( 'hashchange' );
-	} );
-
-	this.on( 'hashchange', function () {
-		// ev.originalEvent.newURL is undefined on Android 2.x
-		var routeEv;
-
-		if ( self.enabled ) {
-			routeEv = $.Event( 'route', {
-				path: self.getPath()
-			} );
-			self.emit( 'route', routeEv );
-
-			if ( !routeEv.isDefaultPrevented() ) {
-				self.checkRoute();
-			} else {
-				// if route was prevented, ignore the next hash change and revert the
-				// hash to its old value
-				self.enabled = false;
-				self.navigate( self.oldHash );
-			}
-		} else {
-			self.enabled = true;
-		}
-
-		self.oldHash = self.getPath();
+	$( window ).on( this.hasPushState ? 'popstate' : 'hashchange', function () {
+		self.checkRoute();
 	} );
 }
 OO.mixinClass( Router, OO.EventEmitter );
+
+/**
+ * Check the current route and tries to navigate to it, otherwise revert back
+ * to the previous route.
+ *
+ * @method
+ */
+Router.prototype.checkRoute = function () {
+	var routeEv,
+		path = this.getPath();
+
+	if ( this.enabled ) {
+		routeEv = $.Event( 'route', {
+			path: path
+		} );
+		this.emit( 'route', routeEv );
+
+		if ( !routeEv.isDefaultPrevented() ) {
+			this.loadRoute( path );
+		} else {
+			// if route was prevented, ignore the next hash change and revert the
+			// hash to its old value
+			this.enabled = false;
+			this.replace( this.oldHash );
+		}
+	} else {
+		this.enabled = true;
+	}
+
+	this.oldHash = self.getPath();
+};
+
+/**
+ * Check the route and run appropriate callback if it matches.
+ *
+ * @param {string} [hash] Route (hash without #).
+ * @method
+ */
+Router.prototype.loadRoute = function ( hash ) {
+	hash = hash || this.getPath();
+
+	$.each( this.routes, function ( id, entry ) {
+		return !matchRoute( hash, entry );
+	} );
+};
 
 /**
  * Check the current route and run appropriate callback if it matches.
@@ -123,19 +140,27 @@ Router.prototype.route = function ( path, callback ) {
  * Navigate to a specific route.
  *
  * @method
- * @param {string} path string with a route (hash without #).
+ * @param {string} path Route (hash without #).
+ * @param {Object} [options]
+ * @param {boolean} [options.replace] If set to `true`, the current entry in
+ *   the history will be replaced, instead of creating a new one.
  */
-Router.prototype.navigate = function ( path ) {
-	var history = window.history;
+Router.prototype.navigate = function ( path, options ) {
 	// Take advantage of `pushState` when available, to clear the hash and
 	// not leave `#` in the history. An entry with `#` in the history has
 	// the side-effect of resetting the scroll position when navigating the
 	// history.
-	if ( path === '' && history && history.pushState ) {
+	var href = window.location.href.replace( /#.*$/, '' ),
+		url = ( path === '' ) ? href : href + '#' + path;
+
+	options = options || {};
+
+	if ( this.hasPushState ) {
 		// To clear the hash we need to cut the hash from the URL.
-		path = window.location.href.replace( /#.*$/, '' );
-		history.pushState( null, document.title, path );
+		window.history[ options.replace ? 'replaceState' : 'pushState' ]( null, document.title, url );
 		this.checkRoute();
+	} else if ( options.replace ) {
+		window.location.replace( url );
 	} else {
 		window.location.hash = path;
 	}
@@ -146,38 +171,6 @@ Router.prototype.navigate = function ( path ) {
  */
 Router.prototype.goBack = function () {
 	window.history.back();
-};
-
-/**
- * Navigate to the previous route. This is a wrapper for window.history.back
- *
- * @method
- * @return {jQuery.Deferred}
- */
-Router.prototype.back = function () {
-	var deferredRequest = $.Deferred(),
-		self = this,
-		timeoutID;
-
-	this.once( 'popstate', function () {
-		clearTimeout( timeoutID );
-		deferredRequest.resolve();
-	} );
-
-	this.goBack();
-
-	// If for some reason (old browser, bug in IE/windows 8.1, etc) popstate doesn't fire,
-	// resolve manually. Since we don't know for sure which browsers besides IE10/11 have
-	// this problem, it's better to fall back this way rather than singling out browsers
-	// and resolving the deferred request for them individually.
-	// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
-	// Give browser a few ms to update its history.
-	timeoutID = setTimeout( function () {
-		self.off( 'popstate' );
-		deferredRequest.resolve();
-	}, 50 );
-
-	return deferredRequest;
 };
 
 /**
