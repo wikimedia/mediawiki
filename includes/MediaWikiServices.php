@@ -265,7 +265,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * instances to clean up.
 	 *
 	 * @param string $name
-	 * @param string $destroy Whether the service instance should be destroyed if it exists.
+	 * @param bool $destroy Whether the service instance should be destroyed if it exists.
 	 *        When set to false, any existing service instance will effectively be detached
 	 *        from the container.
 	 *
