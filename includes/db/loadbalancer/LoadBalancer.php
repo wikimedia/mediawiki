@@ -1402,7 +1402,7 @@ class LoadBalancer {
 		}
 
 		$pos = $pos ?: $this->getConnection( DB_MASTER )->getMasterPos();
-		if ( !$pos ) {
+		if ( !( $pos instanceof DBMasterPos ) ) {
 			return false; // something is misconfigured
 		}
 
