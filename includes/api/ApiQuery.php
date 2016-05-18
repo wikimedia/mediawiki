@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
@@ -39,85 +40,100 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query prop modules
-	 * @var array
+	 * @return array
 	 */
-	private static $QueryPropModules = [
-		'categories' => 'ApiQueryCategories',
-		'categoryinfo' => 'ApiQueryCategoryInfo',
-		'contributors' => 'ApiQueryContributors',
-		'deletedrevisions' => 'ApiQueryDeletedRevisions',
-		'duplicatefiles' => 'ApiQueryDuplicateFiles',
-		'extlinks' => 'ApiQueryExternalLinks',
-		'fileusage' => 'ApiQueryBacklinksprop',
-		'images' => 'ApiQueryImages',
-		'imageinfo' => 'ApiQueryImageInfo',
-		'info' => 'ApiQueryInfo',
-		'links' => 'ApiQueryLinks',
-		'linkshere' => 'ApiQueryBacklinksprop',
-		'iwlinks' => 'ApiQueryIWLinks',
-		'langlinks' => 'ApiQueryLangLinks',
-		'pageprops' => 'ApiQueryPageProps',
-		'redirects' => 'ApiQueryBacklinksprop',
-		'revisions' => 'ApiQueryRevisions',
-		'stashimageinfo' => 'ApiQueryStashImageInfo',
-		'templates' => 'ApiQueryLinks',
-		'transcludedin' => 'ApiQueryBacklinksprop',
-	];
+	private static function getQueryPropModules() {
+		return [
+			'categories' => 'ApiQueryCategories',
+			'categoryinfo' => 'ApiQueryCategoryInfo',
+			'contributors' => 'ApiQueryContributors',
+			'deletedrevisions' => 'ApiQueryDeletedRevisions',
+			'duplicatefiles' => 'ApiQueryDuplicateFiles',
+			'extlinks' => 'ApiQueryExternalLinks',
+			'fileusage' => 'ApiQueryBacklinksprop',
+			'images' => 'ApiQueryImages',
+			'imageinfo' => 'ApiQueryImageInfo',
+			'info' => 'ApiQueryInfo',
+			'links' => 'ApiQueryLinks',
+			'linkshere' => 'ApiQueryBacklinksprop',
+			'iwlinks' => 'ApiQueryIWLinks',
+			'langlinks' => 'ApiQueryLangLinks',
+			'pageprops' => 'ApiQueryPageProps',
+			'redirects' => 'ApiQueryBacklinksprop',
+			'revisions' => 'ApiQueryRevisions',
+			'stashimageinfo' => 'ApiQueryStashImageInfo',
+			'templates' => 'ApiQueryLinks',
+			'transcludedin' => 'ApiQueryBacklinksprop',
+		];
+	}
 
 	/**
 	 * List of Api Query list modules
-	 * @var array
+	 * @return array
 	 */
-	private static $QueryListModules = [
-		'allcategories' => 'ApiQueryAllCategories',
-		'alldeletedrevisions' => 'ApiQueryAllDeletedRevisions',
-		'allfileusages' => 'ApiQueryAllLinks',
-		'allimages' => 'ApiQueryAllImages',
-		'alllinks' => 'ApiQueryAllLinks',
-		'allpages' => 'ApiQueryAllPages',
-		'allredirects' => 'ApiQueryAllLinks',
-		'allrevisions' => 'ApiQueryAllRevisions',
-		'mystashedfiles' => 'ApiQueryMyStashedFiles',
-		'alltransclusions' => 'ApiQueryAllLinks',
-		'allusers' => 'ApiQueryAllUsers',
-		'backlinks' => 'ApiQueryBacklinks',
-		'blocks' => 'ApiQueryBlocks',
-		'categorymembers' => 'ApiQueryCategoryMembers',
-		'deletedrevs' => 'ApiQueryDeletedrevs',
-		'embeddedin' => 'ApiQueryBacklinks',
-		'exturlusage' => 'ApiQueryExtLinksUsage',
-		'filearchive' => 'ApiQueryFilearchive',
-		'imageusage' => 'ApiQueryBacklinks',
-		'iwbacklinks' => 'ApiQueryIWBacklinks',
-		'langbacklinks' => 'ApiQueryLangBacklinks',
-		'logevents' => 'ApiQueryLogEvents',
-		'pageswithprop' => 'ApiQueryPagesWithProp',
-		'pagepropnames' => 'ApiQueryPagePropNames',
-		'prefixsearch' => 'ApiQueryPrefixSearch',
-		'protectedtitles' => 'ApiQueryProtectedTitles',
-		'querypage' => 'ApiQueryQueryPage',
-		'random' => 'ApiQueryRandom',
-		'recentchanges' => 'ApiQueryRecentChanges',
-		'search' => 'ApiQuerySearch',
-		'tags' => 'ApiQueryTags',
-		'usercontribs' => 'ApiQueryContributions',
-		'users' => 'ApiQueryUsers',
-		'watchlist' => 'ApiQueryWatchlist',
-		'watchlistraw' => 'ApiQueryWatchlistRaw',
-	];
+	private static function getQueryListModules() {
+		return [
+			'allcategories' => 'ApiQueryAllCategories',
+			'alldeletedrevisions' => 'ApiQueryAllDeletedRevisions',
+			'allfileusages' => 'ApiQueryAllLinks',
+			'allimages' => 'ApiQueryAllImages',
+			'alllinks' => 'ApiQueryAllLinks',
+			'allpages' => 'ApiQueryAllPages',
+			'allredirects' => 'ApiQueryAllLinks',
+			'allrevisions' => 'ApiQueryAllRevisions',
+			'mystashedfiles' => 'ApiQueryMyStashedFiles',
+			'alltransclusions' => 'ApiQueryAllLinks',
+			'allusers' => 'ApiQueryAllUsers',
+			'backlinks' => 'ApiQueryBacklinks',
+			'blocks' => 'ApiQueryBlocks',
+			'categorymembers' => 'ApiQueryCategoryMembers',
+			'deletedrevs' => 'ApiQueryDeletedrevs',
+			'embeddedin' => 'ApiQueryBacklinks',
+			'exturlusage' => 'ApiQueryExtLinksUsage',
+			'filearchive' => 'ApiQueryFilearchive',
+			'imageusage' => 'ApiQueryBacklinks',
+			'iwbacklinks' => 'ApiQueryIWBacklinks',
+			'langbacklinks' => 'ApiQueryLangBacklinks',
+			'logevents' => 'ApiQueryLogEvents',
+			'pageswithprop' => 'ApiQueryPagesWithProp',
+			'pagepropnames' => 'ApiQueryPagePropNames',
+			'prefixsearch' => 'ApiQueryPrefixSearch',
+			'protectedtitles' => 'ApiQueryProtectedTitles',
+			'querypage' => 'ApiQueryQueryPage',
+			'random' => 'ApiQueryRandom',
+			'recentchanges' => 'ApiQueryRecentChanges',
+			'search' => 'ApiQuerySearch',
+			'tags' => 'ApiQueryTags',
+			'usercontribs' => 'ApiQueryContributions',
+			'users' => 'ApiQueryUsers',
+			'watchlist' => 'ApiQueryWatchlist',
+			'watchlistraw' => 'ApiQueryWatchlistRaw',
+		];
+	}
 
 	/**
 	 * List of Api Query meta modules
-	 * @var array
+	 * @return array
 	 */
-	private static $QueryMetaModules = [
-		'allmessages' => 'ApiQueryAllMessages',
-		'authmanagerinfo' => 'ApiQueryAuthManagerInfo',
-		'siteinfo' => 'ApiQuerySiteinfo',
-		'userinfo' => 'ApiQueryUserInfo',
-		'filerepoinfo' => 'ApiQueryFileRepoInfo',
-		'tokens' => 'ApiQueryTokens',
-	];
+	private static function getQueryMetaModules() {
+		return [
+			'allmessages' => 'ApiQueryAllMessages',
+			'authmanagerinfo' => 'ApiQueryAuthManagerInfo',
+			'siteinfo' => [
+				'class' => 'ApiQuerySiteinfo',
+				'factory' => function ( ApiQuery $query, $moduleName ) {
+					return new ApiQuerySiteinfo(
+						MediaWikiServices::getInstance()->getInterwikiLookup(),
+						$query,
+						$moduleName
+					);
+				}
+			],
+			'userinfo' => 'ApiQueryUserInfo',
+			'filerepoinfo' => 'ApiQueryFileRepoInfo',
+			'tokens' => 'ApiQueryTokens',
+		];
+	}
 
 	/**
 	 * @var ApiPageSet
@@ -137,13 +153,18 @@ class ApiQuery extends ApiBase {
 
 		$this->mModuleMgr = new ApiModuleManager( $this );
 
-		// Allow custom modules to be added in LocalSettings.php
+		// @todo: Move this into an ApiQueryModuleManagerFactory. Or better inject an
+		//        ApiQueryModuleManager singleton created by MediaWikiServices.
+		//        But ApiQueryModuleManager isn't a singleton, because it needs an ApiQuery
+		//        in the constructor. Needs more thought to resolve the hen-and-egg issue.
 		$config = $this->getConfig();
-		$this->mModuleMgr->addModules( self::$QueryPropModules, 'prop' );
+		$this->mModuleMgr->addModules( self::getQueryPropModules(), 'prop' );
+		$this->mModuleMgr->addModules( self::getQueryListModules(), 'list' );
+		$this->mModuleMgr->addModules( self::getQueryMetaModules(), 'meta' );
+
+		// Allow custom modules to be added in LocalSettings.php
 		$this->mModuleMgr->addModules( $config->get( 'APIPropModules' ), 'prop' );
-		$this->mModuleMgr->addModules( self::$QueryListModules, 'list' );
 		$this->mModuleMgr->addModules( $config->get( 'APIListModules' ), 'list' );
-		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
 		Hooks::run( 'ApiQuery::moduleManager', [ $this->mModuleMgr ] );
