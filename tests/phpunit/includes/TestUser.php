@@ -129,19 +129,28 @@ class TestUser {
 			throw new MWException( "Passed User has not been added to the database yet!" );
 		}
 
-		if ( $user->checkPassword( $password ) === true ) {
-			return;  // Nothing to do.
+		$dbw = wfGetDB( DB_MASTER );
+		$row = $dbw->selectRow(
+			'user',
+			[ 'user_password' ],
+			[ 'user_id' => $user->getId() ],
+			__METHOD__
+		);
+		if ( !$row ) {
+			throw new MWException( "Passed User has an ID but is not in the database?" );
 		}
 
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$passwordHash = $passwordFactory->newFromPlaintext( $password );
-		wfGetDB( DB_MASTER )->update(
-			'user',
-			[ 'user_password' => $passwordHash->toString() ],
-			[ 'user_id' => $user->getId() ],
-			__METHOD__
-		);
+		if ( !$passwordFactory->newFromCiphertext( $row->user_password )->equals( $password ) ) {
+			$passwordHash = $passwordFactory->newFromPlaintext( $password );
+			$dbw->update(
+				'user',
+				[ 'user_password' => $passwordHash->toString() ],
+				[ 'user_id' => $user->getId() ],
+				__METHOD__
+			);
+		}
 	}
 
 	/**
