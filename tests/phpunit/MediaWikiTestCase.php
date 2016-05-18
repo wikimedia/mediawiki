@@ -601,6 +601,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Check if we can back up a value by performing a shallow copy.
+	 * Values which fail this test are copied recursively.
+	 *
+	 * @param mixed $value
+	 * @return bool True if a shallow copy will do; false if a deep copy
+	 *  is required.
+	 */
+	private static function canShallowCopy( $value ) {
+		if ( is_scalar( $value ) || $value === null ) {
+			return true;
+		}
+		if ( is_array( $value ) ) {
+			foreach ( $value as $subValue ) {
+				if ( !is_scalar( $subValue ) && $subValue !== null ) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Stashes the global, will be restored in tearDown()
 	 *
 	 * Individual test functions may override globals through the setMwGlobals() function
@@ -635,13 +658,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
 				// and if is_object but this does account for objects within objects!
-				try {
-					$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
-				}
-					// NOTE; some things such as Closures are not serializable
-					// in this case just set the value!
-				catch ( Exception $e ) {
+				if ( self::canShallowCopy( $GLOBALS[$globalKey] ) ) {
 					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+				} elseif (
+					// Many MediaWiki types are safe to clone. These are the
+					// ones that are most commonly stashed.
+					$GLOBALS[$globalKey] instanceof Language ||
+					$GLOBALS[$globalKey] instanceof User ||
+					$GLOBALS[$globalKey] instanceof FauxRequest
+				) {
+					$this->mwGlobals[$globalKey] = clone $GLOBALS[$globalKey];
+				} else {
+					try {
+						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
+					} catch ( Exception $e ) {
+						$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+					}
 				}
 			}
 		}
