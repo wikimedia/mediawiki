@@ -21,23 +21,17 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		self::$users['ApiQueryWatchlistIntegrationTestUser']
-			= new TestUser( 'ApiQueryWatchlistIntegrationTestUser' );
-		self::$users['ApiQueryWatchlistIntegrationTestUser2']
-			= new TestUser( 'ApiQueryWatchlistIntegrationTestUser2' );
+		self::$users['ApiQueryWatchlistIntegrationTestUser'] = $this->getTestUser( true );
+		self::$users['ApiQueryWatchlistIntegrationTestUser2'] = $this->getTestUser( true );
 		$this->doLogin( 'ApiQueryWatchlistIntegrationTestUser' );
 	}
 
-	private function getTestUser() {
+	private function getLoggedInTestUser() {
 		return self::$users['ApiQueryWatchlistIntegrationTestUser']->getUser();
 	}
 
 	private function getNonLoggedInTestUser() {
 		return self::$users['ApiQueryWatchlistIntegrationTestUser2']->getUser();
-	}
-
-	private function getSysopTestUser() {
-		return self::$users['sysop']->getUser();
 	}
 
 	private function doPageEdit( User $user, LinkTarget $target, $content, $summary ) {
@@ -244,7 +238,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function cleanTestUsersWatchlist() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$store = $this->getWatchedItemStore();
 		$items = $store->getWatchedItemsForUser( $user );
 		foreach ( $items as $item ) {
@@ -257,7 +251,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		// the user with the same user ID as user used here as the test user
 		$this->cleanTestUsersWatchlist();
 
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -290,7 +284,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testIdsPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -311,7 +305,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testTitlePropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
@@ -351,7 +345,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testFlagsPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$normalEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$minorEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPageM' );
 		$botEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPageB' );
@@ -412,7 +406,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testUserPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$userEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$anonEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPageA' );
 		$this->doPageEdit(
@@ -447,7 +441,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testUserIdPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$userEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$anonEditTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPageA' );
 		$this->doPageEdit(
@@ -484,7 +478,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testCommentPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -508,7 +502,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testParsedCommentPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -532,7 +526,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testTimestampPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -551,7 +545,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testSizesPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -585,7 +579,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'Create the page'
 		);
 		$store = $this->getWatchedItemStore();
-		$store->addWatch( $this->getTestUser(), $target );
+		$store->addWatch( $this->getLoggedInTestUser(), $target );
 		$store->updateNotificationTimestamp(
 			$otherUser,
 			$target,
@@ -620,7 +614,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testPatrolPropParameter() {
-		$user = $this->getSysopTestUser();
+		$user = $this->getTestSysop()->getUser();
 		$this->setupPatrolledSpecificFixtures( $user );
 
 		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'patrol', ], $user );
@@ -639,7 +633,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 	private function createPageAndDeleteIt( LinkTarget $target ) {
 		$this->doPageEdit(
-			$this->getTestUser(),
+			$this->getLoggedInTestUser(),
 			$target,
 			'Some Content',
 			'Create the page that will be deleted'
@@ -651,7 +645,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->createPageAndDeleteIt( $target );
 
-		$this->watchPages( $this->getTestUser(), [ $target ] );
+		$this->watchPages( $this->getLoggedInTestUser(), [ $target ] );
 
 		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'loginfo', ] );
 
@@ -671,7 +665,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testEmptyPropParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -694,7 +688,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testNamespaceParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
@@ -729,7 +723,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testUserParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$otherUser = $this->getNonLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
@@ -766,7 +760,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testExcludeUserParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$otherUser = $this->getNonLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
@@ -803,7 +797,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowMinorParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
 			$user,
@@ -837,7 +831,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowBotParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doBotPageEdit(
 			$user,
@@ -861,7 +855,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowAnonParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doAnonPageEdit(
 			$target,
@@ -890,7 +884,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowUnreadParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$otherUser = $this->getNonLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
@@ -948,7 +942,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowPatrolledParams() {
-		$user = $this->getSysopTestUser();
+		$user = $this->getTestSysop()->getUser();
 		$this->setupPatrolledSpecificFixtures( $user );
 
 		$resultPatrolled = $this->doListWatchlistRequest( [
@@ -974,7 +968,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testNewAndEditTypeParameters() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
@@ -1025,7 +1019,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testLogTypeParameters() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->createPageAndDeleteIt( $subjectTarget );
@@ -1093,7 +1087,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testExternalTypeParameters() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
@@ -1129,7 +1123,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testCategorizeTypeParameter() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$categoryTarget = new TitleValue( NS_CATEGORY, 'ApiQueryWatchlistIntegrationTestCategory' );
 		$this->doPageEdits(
@@ -1180,7 +1174,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testLimitParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target1 = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$target2 = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$target3 = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage2' );
@@ -1249,7 +1243,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testAllRevParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
 			$user,
@@ -1299,7 +1293,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testDirParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$talkTarget = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
@@ -1355,7 +1349,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testStartEndParams() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -1390,7 +1384,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testContinueParam() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target1 = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$target2 = new TitleValue( 1, 'ApiQueryWatchlistIntegrationTestPage' );
 		$target3 = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage2' );
@@ -1456,7 +1450,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	public function testOwnerAndTokenParams() {
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
-			$this->getTestUser(),
+			$this->getLoggedInTestUser(),
 			$target,
 			'Some Content',
 			'Create the page'
@@ -1509,7 +1503,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testGeneratorWatchlistPropInfo_returnsWatchedPages() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdit(
 			$user,
@@ -1541,7 +1535,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testGeneratorWatchlistPropRevisions_returnsWatchedItemsRevisions() {
-		$user = $this->getTestUser();
+		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doPageEdits(
 			$user,

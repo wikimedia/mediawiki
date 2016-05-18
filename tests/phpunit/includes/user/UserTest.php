@@ -213,11 +213,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getEditCount
 	 */
 	public function testEditCount() {
-		$user = User::newFromName( 'UnitTestUser' );
-
-		if ( !$user->getId() ) {
-			$user->addToDatabase();
-		}
+		$user = $this->getTestUser( true )->getUser();
 
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
@@ -249,17 +245,13 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getOption
 	 */
 	public function testOptions() {
-		$user = User::newFromName( 'UnitTestUser' );
-
-		if ( !$user->getId() ) {
-			$user->addToDatabase();
-		}
+		$user = $this->getTestUser( true )->getUser();
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'cols', 200 );
 		$user->saveSettings();
 
-		$user = User::newFromName( 'UnitTestUser' );
+		$user = User::newFromName( $user->getName() );
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'cols' ) );
 	}
@@ -298,7 +290,7 @@ class UserTest extends MediaWikiTestCase {
 						'MinimalPasswordLength' => 6,
 						'PasswordCannotMatchUsername' => true,
 						'PasswordCannotMatchBlacklist' => true,
-						'MaximalPasswordLength' => 30,
+						'MaximalPasswordLength' => 40,
 					],
 				],
 				'checks' => [
@@ -311,7 +303,8 @@ class UserTest extends MediaWikiTestCase {
 			],
 		] );
 
-		$user = User::newFromName( 'Useruser' );
+		$user = $this->getTestUser()->getUser();
+
 		// Sanity
 		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
 
@@ -322,18 +315,19 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( 'passwordtooshort', $user->getPasswordValidity( 'a' ) );
 
 		// Maximum length
-		$longPass = str_repeat( 'a', 31 );
+		$longPass = str_repeat( 'a', 41 );
 		$this->assertFalse( $user->isValidPassword( $longPass ) );
 		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isGood() );
 		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isOK() );
 		$this->assertEquals( 'passwordtoolong', $user->getPasswordValidity( $longPass ) );
 
 		// Matches username
-		$this->assertFalse( $user->checkPasswordValidity( 'Useruser' )->isGood() );
-		$this->assertTrue( $user->checkPasswordValidity( 'Useruser' )->isOK() );
-		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( 'Useruser' ) );
+		$this->assertFalse( $user->checkPasswordValidity( $user->getName() )->isGood() );
+		$this->assertTrue( $user->checkPasswordValidity( $user->getName() )->isOK() );
+		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( $user->getName() ) );
 
 		// On the forbidden list
+		$user = User::newFromName( 'Useruser' );
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
 		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
 	}
@@ -389,29 +383,23 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::equals
 	 */
 	public function testEquals() {
-		$first = User::newFromName( 'EqualUser' );
-		$second = User::newFromName( 'EqualUser' );
+		$first = $this->getTestUser( true )->getUser();
+		$second = User::newFromName( $first->getName() );
 
 		$this->assertTrue( $first->equals( $first ) );
 		$this->assertTrue( $first->equals( $second ) );
 		$this->assertTrue( $second->equals( $first ) );
 
-		$third = User::newFromName( '0' );
-		$fourth = User::newFromName( '000' );
+		$third = $this->getTestUser( true )->getUser();
+		$fourth = $this->getTestUser( true )->getUser();
 
 		$this->assertFalse( $third->equals( $fourth ) );
 		$this->assertFalse( $fourth->equals( $third ) );
 
 		// Test users loaded from db with id
-		$user = User::newFromName( 'EqualUnitTestUser' );
-		if ( !$user->getId() ) {
-			$user->addToDatabase();
-		}
-
-		$id = $user->getId();
-
-		$fifth = User::newFromId( $id );
-		$sixth = User::newFromName( 'EqualUnitTestUser' );
+		$user = $this->getTestUser( true )->getUser();
+		$fifth = User::newFromId( $user->getId() );
+		$sixth = User::newFromName( $user->getName() );
 		$this->assertTrue( $fifth->equals( $sixth ) );
 	}
 
@@ -419,7 +407,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getId
 	 */
 	public function testGetId() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestUser()->getUser();
 		$this->assertTrue( $user->getId() > 0 );
 
 	}
@@ -429,7 +417,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isAnon
 	 */
 	public function testLoggedIn() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestUser( true )->getUser();
 		$this->assertTrue( $user->isLoggedIn() );
 		$this->assertFalse( $user->isAnon() );
 
@@ -447,7 +435,8 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::checkAndSetTouched
 	 */
 	public function testCheckAndSetTouched() {
-		$user = TestingAccessWrapper::newFromObject( User::newFromName( 'UTSysop' ) );
+		$user = $this->getTestUser( true )->getUser();
+		$user = TestingAccessWrapper::newFromObject( $user );
 		$this->assertTrue( $user->isLoggedIn() );
 
 		$touched = $user->getDBTouched();

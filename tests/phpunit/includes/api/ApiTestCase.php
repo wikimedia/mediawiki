@@ -8,10 +8,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
-	/**
-	 * @var array
-	 */
-	protected $tablesUsed = [ 'user', 'user_groups', 'user_properties' ];
+	public function needsDB() {
+		return true;
+	}
 
 	protected function setUp() {
 		global $wgServer, $wgDisableAuthManager;
@@ -22,18 +21,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
 
 		self::$users = [
-			'sysop' => new TestUser(
-				'Apitestsysop',
-				'Api Test Sysop',
-				'api_test_sysop@example.com',
-				[ 'sysop' ]
-			),
-			'uploader' => new TestUser(
-				'Apitestuser',
-				'Api Test User',
-				'api_test_user@example.com',
-				[]
-			)
+			'sysop' => $this->getTestSysop( true ),
+			'uploader' => $this->getTestUser( true ),
 		];
 
 		$this->setMwGlobals( [
@@ -163,6 +152,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected function doLogin( $user = 'sysop' ) {
+		if ( $user === null ) {
+			$user = $this->getTestSysop();
+		}
 		if ( !array_key_exists( $user, self::$users ) ) {
 			throw new MWException( "Can not log in to undefined user $user" );
 		}
