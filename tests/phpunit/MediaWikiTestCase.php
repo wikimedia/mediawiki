@@ -128,6 +128,42 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Convenience method for getting an immutable test user
+	 *
+	 * @since 1.28
+	 *
+	 * @param string[] $groups Groups the test user should be in.
+	 * @return TestUser
+	 */
+	public static function getTestUser( $groups = [] ) {
+		return TestUserRegistry::getImmutableTestUser( $groups );
+	}
+
+	/**
+	 * Convenience method for getting a mutable test user
+	 *
+	 * @since 1.28
+	 *
+	 * @param string[] $groups Groups the test user should be added in.
+	 * @return TestUser
+	 */
+	public static function getMutableTestUser( $groups = [] ) {
+		return TestUserRegistry::getMutableTestUser( __CLASS__, $groups );
+	}
+
+	/**
+	 * Convenience method for getting an immutable admin test user
+	 *
+	 * @since 1.28
+	 *
+	 * @param string[] $groups Groups the test user should be added to.
+	 * @return TestUser
+	 */
+	public static function getTestSysop() {
+		return self::getTestUser( [ 'sysop', 'bureaucrat' ] );
+	}
+
+	/**
 	 * Prepare service configuration for unit testing.
 	 *
 	 * This calls MediaWikiServices::resetGlobalInstance() to allow some critical services
@@ -321,7 +357,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$needsResetDB = false;
 
-		if ( $this->needsDB() ) {
+		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
@@ -883,7 +919,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function insertPage( $pageName, $text = 'Sample page for unit test.' ) {
 		$title = Title::newFromText( $pageName, 0 );
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		// Avoid memory leak...?
@@ -934,36 +970,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
-			$this->db->insert( 'user', [
-				'user_id' => 0,
-				'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
+			if ( !$this->db->selectField( 'user', '1', [ 'user_id' => 0 ] ) ) {
+				$this->db->insert( 'user', [
+					'user_id' => 0,
+					'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
+			}
 
 			# Insert 0 page to prevent FK violations
 			# Blank page
-			$this->db->insert( 'page', [
-				'page_id' => 0,
-				'page_namespace' => 0,
-				'page_title' => ' ',
-				'page_restrictions' => null,
-				'page_is_redirect' => 0,
-				'page_is_new' => 0,
-				'page_random' => 0,
-				'page_touched' => $this->db->timestamp(),
-				'page_latest' => 0,
-				'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
+			if ( !$this->db->selectField( 'page', '1', [ 'page_id' => 0 ] ) ) {
+				$this->db->insert( 'page', [
+					'page_id' => 0,
+					'page_namespace' => 0,
+					'page_title' => ' ',
+					'page_restrictions' => null,
+					'page_is_redirect' => 0,
+					'page_is_new' => 0,
+					'page_random' => 0,
+					'page_touched' => $this->db->timestamp(),
+					'page_latest' => 0,
+					'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
+			}
 		}
 
 		User::resetIdByNameCache();
 
 		// Make sysop user
-		$user = User::newFromName( 'UTSysop' );
-
-		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
-			TestUser::setPasswordForUser( $user, 'UTSysopPassword' );
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
-		}
+		$user = TestUserRegistry::getImmutableTestUser( [ 'sysop', 'bureaucrat' ] )->getUser();
 
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -1187,6 +1220,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				TestingAccessWrapper::newFromClass( 'User' )
 					->getInProcessCache()
 					->clear();
+
+				TestUserRegistry::clear();
 			}
 
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
