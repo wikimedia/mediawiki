@@ -45,7 +45,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			$this->getMockForAbstractClass( 'CentralIdLookup' )
 		);
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = static::getTestSysop()->getUser();
 		$this->assertSame( $user, $mock->checkAudience( $user ) );
 
 		$user = $mock->checkAudience( CentralIdLookup::AUDIENCE_PUBLIC );

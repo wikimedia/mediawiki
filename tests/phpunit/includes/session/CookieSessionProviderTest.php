@@ -165,7 +165,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$provider->setConfig( $this->getConfig() );
 		$provider->setManager( new SessionManager() );
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = static::getTestSysop()->getUser();
 		$id = $user->getId();
 		$name = $user->getName();
 		$token = $user->getToken( true );
@@ -390,7 +390,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();
-		$user = User::newFromName( 'UTSysop' );
+		$user = static::getTestSysop()->getUser();
 		$anon = new User;
 
 		$backend = new SessionBackend(
@@ -475,7 +475,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$provider->setManager( SessionManager::singleton() );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$user = User::newFromName( 'UTSysop' );
+		$user = static::getTestSysop()->getUser();
 		$this->assertFalse( $user->requiresHTTPS(), 'sanity check' );
 
 		$backend = new SessionBackend(
@@ -577,7 +577,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();
-		$user = User::newFromName( 'UTSysop' );
+		$user = static::getTestSysop()->getUser();
 		$anon = new User;
 
 		$backend = new SessionBackend(
