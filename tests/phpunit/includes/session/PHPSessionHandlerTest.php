@@ -173,14 +173,6 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			$this->assertSame( $expect, $_SESSION );
 		}
 
-		// Test expiry
-		session_write_close();
-		ini_set( 'session.gc_divisor', 1 );
-		ini_set( 'session.gc_probability', 1 );
-		sleep( 3 );
-		session_start();
-		$this->assertSame( [], $_SESSION );
-
 		// Re-fill the session, then test that session_destroy() works.
 		$_SESSION['AuthenticationSessionTest'] = $rand;
 		session_write_close();
