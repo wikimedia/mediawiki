@@ -283,13 +283,15 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $request->unpersist1 );
 		$this->assertFalse( $request->unpersist2 );
 
+		$userName = $this->getTestSysop()->getUser()->getName();
+
 		// Unusable session info
 		$this->logger->setCollect( true );
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => true,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
+			'userInfo' => UserInfo::newFromName( $userName, false ),
 			'idIsSafe' => true,
 		] );
 		$request->info2 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
@@ -317,7 +319,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'provider' => $provider2,
 			'id' => ( $id2 = $manager->generateSessionId() ),
 			'persisted' => true,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', false ),
+			'userInfo' => UserInfo::newFromName( $userName, false ),
 			'idIsSafe' => true,
 		] );
 		$session = $manager->getSessionForRequest( $request );
@@ -333,7 +335,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'provider' => $provider1,
 			'id' => ( $id1 = $manager->generateSessionId() ),
 			'persisted' => false,
-			'userInfo' => UserInfo::newFromName( 'UTSysop', true ),
+			'userInfo' => UserInfo::newFromName( $userName, true ),
 			'idIsSafe' => true,
 		] );
 		$request->info2 = null;
@@ -368,7 +370,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->logger->setCollect( true );
 		$id = $manager->generateSessionId();
 		$this->store->setSession( $id, [ 'metadata' => [
-			'userId' => User::idFromName( 'UTSysop' ),
+			'userId' => $this->getTestSysop()->getUser()->getId(),
 			'userToken' => 'bad',
 		] ] );
 
@@ -643,7 +645,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 	}
 
 	public function testInvalidateSessionsForUser() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$manager = $this->getManager();
 
 		$providerBuilder = $this->getMockBuilder( 'DummySessionProvider' )
@@ -901,11 +903,12 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = SessionManager::getGlobalSession();
 
 		// Can't create an already-existing user
-		$user = User::newFromName( 'UTSysop' );
+		$user = User::newFromName( $this->getTestSysop()->getUser()->getName() );
 		$id = $user->getId();
+		$name = $user->getName();
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( $id, $user->getId() );
-		$this->assertSame( 'UTSysop', $user->getName() );
+		$this->assertSame( $name, $user->getName() );
 		$this->assertSame( [], $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1199,8 +1202,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 			return $rMethod->invokeArgs( $manager, [ &$info, $request ] );
 		};
 
-		$userInfo = UserInfo::newFromName( 'UTSysop', true );
-		$unverifiedUserInfo = UserInfo::newFromName( 'UTSysop', false );
+		$userName = $this->getTestSysop()->getUser()->getName();
+		$userInfo = UserInfo::newFromName( $userName, true );
+		$unverifiedUserInfo = UserInfo::newFromName( $userName, false );
 
 		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$metadata = [
@@ -1544,7 +1548,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Lookup user by name
 		$this->store->setSessionMeta(
-			$id, [ 'userId' => 0, 'userName' => 'UTSysop', 'userToken' => null ] + $metadata
+			$id, [ 'userId' => 0, 'userName' => $userName, 'userToken' => null ] + $metadata
 		);
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $provider,

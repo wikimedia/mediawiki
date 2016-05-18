@@ -360,7 +360,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 	}
 
 	public function testSetUser() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 
 		$this->provider = $this->getMock( 'DummySessionProvider', [ 'canChangeUser' ] );
 		$this->provider->expects( $this->any() )->method( 'canChangeUser' )
@@ -484,7 +484,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 	}
 
 	public function testSave() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->store = new TestBagOStuff();
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
@@ -733,7 +733,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 	}
 
 	public function testRenew() {
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$this->store = new TestBagOStuff();
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
@@ -829,7 +829,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			$handler->enable = true;
 		}
 
-		$backend = $this->getBackend( User::newFromName( 'UTSysop' ) );
+		$backend = $this->getBackend( $this->getTestSysop()->getUser() );
 		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
 		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
