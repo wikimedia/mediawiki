@@ -18,18 +18,14 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 	public function addDBData() {
 		for ( $i = 1; $i <= 4; $i++ ) {
-			$user = User::newFromName( "UTLocalIdLookup$i" );
-			if ( $user->getId() == 0 ) {
-				$user->addToDatabase();
-			}
-			$this->localUsers["UTLocalIdLookup$i"] = $user->getId();
+			$this->localUsers[] = $this->getMutableTestUser()->getUser();
 		}
 
-		User::newFromName( 'UTLocalIdLookup1' )->addGroup( 'local-id-lookup-test' );
+		$sysop = static::getTestSysop()->getUser();
 
 		$block = new Block( [
-			'address' => 'UTLocalIdLookup3',
-			'by' => User::idFromName( 'UTSysop' ),
+			'address' => $this->localUsers[2]->getName(),
+			'by' => $sysop->getId(),
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => false,
@@ -37,8 +33,8 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$block->insert();
 
 		$block = new Block( [
-			'address' => 'UTLocalIdLookup4',
-			'by' => User::idFromName( 'UTSysop' ),
+			'address' => $this->localUsers[3]->getName(),
+			'by' => $sysop->getId(),
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => true,
@@ -46,9 +42,14 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$block->insert();
 	}
 
+	public function getLookupUser() {
+		return static::getTestUser( [ 'local-id-lookup-test' ] )->getUser();
+	}
+
 	public function testLookupCentralIds() {
 		$lookup = new LocalIdLookup();
-		$user1 = User::newFromName( 'UTLocalIdLookup1' );
+
+		$user1 = $this->getLookupUser();
 		$user2 = User::newFromName( 'UTLocalIdLookup2' );
 
 		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
@@ -56,12 +57,15 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 		$this->assertSame( [], $lookup->lookupCentralIds( [] ) );
 
-		$expect = array_flip( $this->localUsers );
-		$expect[123] = 'X';
+		$expect = [];
+		foreach ( $this->localUsers as $localUser ) {
+			$expect[$localUser->getId()] = $localUser->getName();
+		}
+		$expect[12345] = 'X';
 		ksort( $expect );
 
 		$expect2 = $expect;
-		$expect2[$this->localUsers['UTLocalIdLookup4']] = '';
+		$expect2[$this->localUsers[3]->getId()] = '';
 
 		$arg = array_fill_keys( array_keys( $expect ), 'X' );
 
@@ -73,7 +77,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 	public function testLookupUserNames() {
 		$lookup = new LocalIdLookup();
-		$user1 = User::newFromName( 'UTLocalIdLookup1' );
+		$user1 = $this->getLookupUser();
 		$user2 = User::newFromName( 'UTLocalIdLookup2' );
 
 		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
@@ -81,12 +85,15 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 		$this->assertSame( [], $lookup->lookupUserNames( [] ) );
 
-		$expect = $this->localUsers;
+		$expect = [];
+		foreach ( $this->localUsers as $localUser ) {
+			$expect[$localUser->getName()] = $localUser->getId();
+		}
 		$expect['UTDoesNotExist'] = 'X';
 		ksort( $expect );
 
 		$expect2 = $expect;
-		$expect2['UTLocalIdLookup4'] = 'X';
+		$expect2[$this->localUsers[3]->getName()] = 'X';
 
 		$arg = array_fill_keys( array_keys( $expect ), 'X' );
 
@@ -98,7 +105,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 	public function testIsAttached() {
 		$lookup = new LocalIdLookup();
-		$user1 = User::newFromName( 'UTLocalIdLookup1' );
+		$user1 = $this->getLookupUser();
 		$user2 = User::newFromName( 'DoesNotExist' );
 
 		$this->assertTrue( $lookup->isAttached( $user1 ) );
@@ -130,7 +137,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$lookup = new LocalIdLookup();
 		$this->assertSame(
 			$sharedDB && $sharedTable && $localDBSet,
-			$lookup->isAttached( User::newFromName( 'UTLocalIdLookup1' ), 'shared' )
+			$lookup->isAttached( $this->getLookupUser(), 'shared' )
 		);
 	}
 
