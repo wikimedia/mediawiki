@@ -324,7 +324,21 @@ class NewParserTest extends MediaWikiTestCase {
 			], $this->db->timestamp( '20010115123500' ), $user );
 		}
 
-		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
+		if ( !$this->db->selectField( 'image', '1', [ 'img_name' => $image->getName() ] ) ) {
+			$image->recordUpload2( '', 'An awesome hitsong ', 'Will it play', [
+					'size'        => 12345,
+					'width'       => 0,
+					'height'      => 0,
+					'bits'        => 0,
+					'media_type'  => MEDIATYPE_AUDIO,
+					'mime'        => 'application/ogg',
+					'metadata'    => serialize( [] ),
+					'sha1'        => Wikimedia\base_convert( '', 16, 36, 32 ),
+					'fileExists'  => true
+			], $this->db->timestamp( '20010115123500' ), $user );
+		}
+
 		# A DjVu file
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
 		if ( !$this->db->selectField( 'image', '1', [ 'img_name' => $image->getName() ] ) ) {
