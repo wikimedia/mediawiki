@@ -97,13 +97,12 @@ class MergeHistoryTest extends MediaWikiTestCase {
 		);
 
 		// Sysop with mergehistory permission
-		$sysop = User::newFromName( 'UTSysop' );
+		$sysop = static::getTestSysop()->getUser();
 		$status = $mh->checkPermissions( $sysop, '' );
 		$this->assertTrue( $status->isOK() );
 
 		// Normal user
-		$notSysop = User::newFromName( 'UTNotSysop' );
-		$notSysop->addToDatabase();
+		$notSysop = static::getTestUser()->getUser();
 		$status = $mh->checkPermissions( $notSysop, '' );
 		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
 	}
@@ -118,7 +117,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 			Title::newFromText( 'Merge2' )
 		);
 
-		$mh->merge( User::newFromName( 'UTSysop' ) );
+		$sysop = static::getTestSysop()->getUser();
+		$mh->merge( $sysop );
 		$this->assertEquals( $mh->getMergedRevisionCount(), 1 );
 	}
 }
