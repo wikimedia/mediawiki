@@ -908,7 +908,9 @@ class Title implements LinkTarget {
 	 * @return string Content model id
 	 */
 	public function getContentModel( $flags = 0 ) {
-		if ( !$this->mContentModel && $this->getArticleID( $flags ) ) {
+		if ( ( !$this->mContentModel || $flags === Title::GAID_FOR_UPDATE ) &&
+			$this->getArticleID( $flags )
+		) {
 			$linkCache = LinkCache::singleton();
 			$linkCache->addLinkObj( $this ); # in case we already had an article ID
 			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
