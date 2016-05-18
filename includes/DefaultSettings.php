@@ -4862,7 +4862,7 @@ $wgSessionProviders = [
 	MediaWiki\Session\BotPasswordSessionProvider::class => [
 		'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 		'args' => [ [
-			'priority' => 40,
+			'priority' => 75,
 		] ],
 	],
 ];
