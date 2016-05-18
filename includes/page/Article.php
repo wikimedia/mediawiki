@@ -2204,7 +2204,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::getActionOverrides
+	 * @see ContentHandler::getActionOverrides
 	 */
 	public function getActionOverrides() {
 		return $this->mPage->getActionOverrides();

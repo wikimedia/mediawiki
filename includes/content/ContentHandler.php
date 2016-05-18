@@ -641,7 +641,12 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @return array Always an empty array.
+	 * @return array An array mapping action names (typically "view", "edit", "history" etc.) to
+	 *  either the full qualified class name of an Action class, a callable taking ( Page $page,
+	 *  IContextSource $context = null ) as parameters and returning an Action object, or an actual
+	 *  Action object. An empty array in this default implementation.
+	 *
+	 * @see Action::factory
 	 */
 	public function getActionOverrides() {
 		return [];
