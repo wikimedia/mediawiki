@@ -796,24 +796,26 @@
 				 */
 				jobs = [],
 
-				// Selector cache for the marker element. Use getMarker() to get/use the marker!
-				$marker = null,
+				// For getMarker()
+				marker = null,
 
-				// For #addEmbeddedCSS
+				// For addEmbeddedCSS()
 				cssBuffer = '',
 				cssBufferTimer = null,
-				cssCallbacks = $.Callbacks();
+				cssCallbacks = $.Callbacks(),
+				isIEto9 = 'documentMode' in document && document.documentMode <= 9,
+				isIE9 = document.documentMode === 9;
 
 			function getMarker() {
-				if ( !$marker ) {
+				if ( !marker ) {
 					// Cache
-					$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
-					if ( !$marker.length ) {
-						mw.log( 'No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically' );
-						$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
+					if ( !marker ) {
+						mw.log( 'Create <meta name="ResourceLoaderDynamicStyles"> dynamically' );
+						marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' )[ 0 ];
 					}
 				}
-				return $marker;
+				return marker;
 			}
 
 			/**
@@ -821,16 +823,16 @@
 			 *
 			 * @private
 			 * @param {string} text CSS text
-			 * @param {HTMLElement|jQuery} [nextnode=document.head] The element where the style tag
+			 * @param {Node} [nextNode] The element where the style tag
 			 *  should be inserted before
 			 * @return {HTMLElement} Reference to the created style element
 			 */
-			function newStyleTag( text, nextnode ) {
+			function newStyleTag( text, nextNode ) {
 				var s = document.createElement( 'style' );
 				// Support: IE
-				// Must attach to document before setting cssText (bug 33305)
-				if ( nextnode ) {
-					$( nextnode ).before( s );
+				// Must attach style element to the document before setting cssText (T35305)
+				if ( nextNode && nextNode.parentNode ) {
+					nextNode.parentNode.insertBefore( s, nextNode );
 				} else {
 					document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 				}
@@ -901,29 +903,25 @@
 					cssBuffer = '';
 				}
 
-				// By default, always create a new <style>. Appending text to a <style>
-				// tag is bad as it means the contents have to be re-parsed (bug 45810).
+				// By default, always create a new <style>. Appending text to a <style> tag is
+				// is a performance anti-pattern as it requires CSS to be reparsed (T47810).
 				//
-				// Except, of course, in IE 9 and below. In there we default to re-using and
-				// appending to a <style> tag due to the IE stylesheet limit (bug 31676).
-				if ( 'documentMode' in document && document.documentMode <= 9 ) {
-
-					$style = getMarker().prev();
-					// Verify that the element before the marker actually is a
-					// <style> tag and one that came from ResourceLoader
-					// (not some other style tag or even a `<meta>` or `<script>`).
+				// Support: IE 6-9
+				// Try to re-use existing <style> tags due to the IE stylesheet limit (T33676).
+				if ( isIEto9 ) {
+					$style = $( getMarker() ).prev();
+					// Verify that the element before the marker actually is a <style> tag created
+					// by mw.loader (not some oth er style tag, or e.g. a <meta> tag).
 					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) ) {
-						// There's already a dynamic <style> tag present and
-						// we are able to append more to it.
-						styleEl = $style.get( 0 );
-						// Support: IE6-10
+						styleEl = $style[ 0 ];
+						// Support: IE 6-10
 						if ( styleEl.styleSheet ) {
 							try {
-								// Support: IE9
-								// We can't do styleSheet.cssText += cssText, since IE9 mangles this property on
-								// write, dropping @media queries from the CSS text. If we read it and used its
-								// value, we would accidentally apply @media-specific styles to all media. (T108727)
-								if ( document.documentMode === 9 ) {
+								// Support: IE 9
+								// We can't do styleSheet.cssText += cssText in IE9 becuase it mangles cssText on
+								// write (removes @media queries). If we read it and used its value, we'd
+								// accidentally apply @media-specific styles to all media. (T108727)
+								if ( isIE9 ) {
 									newCssText = $style.data( 'ResourceLoaderDynamicStyleTag' ) + cssText;
 									styleEl.styleSheet.cssText = newCssText;
 									$style.data( 'ResourceLoaderDynamicStyleTag', newCssText );
@@ -939,16 +937,17 @@
 						fireCallbacks();
 						return;
 					}
+					// Else: No existing tag to reuse. Continue below and create the first one.
 				}
 
 				$style = $( newStyleTag( cssText, getMarker() ) );
 
-				if ( document.documentMode === 9 ) {
-					// Support: IE9
-					// Preserve original CSS text because IE9 mangles it on write
-					$style.data( 'ResourceLoaderDynamicStyleTag', cssText );
-				} else {
-					$style.data( 'ResourceLoaderDynamicStyleTag', true );
+				if ( isIEto9 ) {
+					if ( isIE9 ) {
+						$style.data( 'ResourceLoaderDynamicStyleTag', cssText );
+					} else {
+						$style.data( 'ResourceLoaderDynamicStyleTag', true );
+					}
 				}
 
 				fireCallbacks();
@@ -1227,7 +1226,7 @@
 				var el = document.createElement( 'link' );
 				// Support: IE
 				// Insert in document *before* setting href
-				getMarker().before( el );
+				$( getMarker() ).before( el );
 				el.rel = 'stylesheet';
 				if ( media && media !== 'all' ) {
 					el.media = media;
