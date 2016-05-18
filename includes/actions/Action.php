@@ -62,7 +62,7 @@ abstract class Action {
 	 * the action is disabled, or null if it's not recognised
 	 * @param string $action
 	 * @param array $overrides
-	 * @return bool|null|string|callable
+	 * @return bool|null|string|callable|Action
 	 */
 	final private static function getClass( $action, array $overrides ) {
 		global $wgActions;
