@@ -121,7 +121,7 @@ fieldset#mw-searchoptions table td {
 }
 fieldset#mw-searchoptions div.divider {
 	clear: both;
-	border-bottom: 1px solid #DDDDDD;
+	border-bottom: 1px solid #ddd;
 	padding-top: 0.5em;
 	margin-bottom: 0.5em;
 }
@@ -132,7 +132,7 @@ td#mw-search-menu {
 div#mw-search-interwiki {
 	float: right;
 	width: 18em;
-	border: 1px solid #AAAAAA;
+	border: 1px solid #aaa;
 	margin-top: 2ex;
 }
 div#mw-search-interwiki li {
@@ -152,7 +152,7 @@ div#mw-search-interwiki-caption {
 	text-align: left;
 	padding: 0.15em 0.15em 0.2em 0.2em;
 	background-color: #ececec;
-	border-top: 1px solid #BBBBBB;
+	border-top: 1px solid #bbb;
 }
 span.searchalttitle {
 	font-size: 95%;
