@@ -14,7 +14,7 @@
 	$( function () {
 		var $patrolLinks = $( '.patrollink a' );
 		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, href, rcid, apiRequest;
+			var $spinner, rcid, apiRequest;
 
 			// Start preloading the notification module (normally loaded by mw.notify())
 			mw.loader.load( 'mediawiki.notification' );
@@ -26,8 +26,7 @@
 			} );
 			$( this ).hide().after( $spinner );
 
-			href = $( this ).attr( 'href' );
-			rcid = mw.util.getParamValue( 'rcid', href );
+			rcid = mw.util.getParamValue( 'rcid', this.href );
 			apiRequest = new mw.Api();
 
 			apiRequest.postWithToken( 'patrol', {
