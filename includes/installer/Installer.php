@@ -1,6 +1,9 @@
 <?php
 /**
  * Base code for MediaWiki installer.
+ * 
+ * DO NOT PATCH THIS FILE IF YOU NEED TO CHANGE INSTALLER BEHAVIOR IN YOUR PACKAGE!
+ * See mw-config/overrides/README for details.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
