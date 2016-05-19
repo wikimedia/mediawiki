@@ -41,15 +41,32 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$timestamps[] = $db->timestamp( $id );
 		}
 
-		return $db->select( 'archive', Revision::selectArchiveFields(),
-				[
-					'ar_namespace' => $this->title->getNamespace(),
-					'ar_title' => $this->title->getDBkey(),
-					'ar_timestamp' => $timestamps
-				],
-				__METHOD__,
-				[ 'ORDER BY' => 'ar_timestamp DESC' ]
-			);
+		$tables = [ 'archive' ];
+		$fields = Revision::selectArchiveFields();
+		$conds = [
+			'ar_namespace' => $this->title->getNamespace(),
+			'ar_title' => $this->title->getDBkey(),
+			'ar_timestamp' => $timestamps,
+		];
+		$join_conds = [];
+		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
+
+		ChangeTags::modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$options,
+			''
+		);
+
+		return $db->select( $tables,
+			$fields,
+			$conds,
+			__METHOD__,
+			$options,
+			$join_conds
+		);
 	}
 
 	public function newItem( $row ) {
