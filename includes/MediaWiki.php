@@ -324,7 +324,7 @@ class MediaWiki {
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
 
-		if ( $request->getVal( 'action', 'view' ) != 'view'
+		if ( Action::getActionName( $this->context ) !== 'view'
 			|| $request->wasPosted()
 			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
 			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
@@ -410,7 +410,7 @@ class MediaWiki {
 
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$action = $request->getVal( 'action', 'view' );
+		$action = Action::getActionName( $this->context );
 		$file = ( $page instanceof WikiFilePage ) ? $page->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
 			&& !$request->getVal( 'oldid' ) // ... and are not old revisions
