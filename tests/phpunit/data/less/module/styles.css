@@ -1,6 +1,5 @@
 /* @noflip */
 .unit-tests {
   color: #008000;
-  /* Linting disabled on following line because we don't auto-compress LESS output */
-  border: 2px solid #eeeeee; /* stylelint-disable-line color-hex-length */
+  border: 2px solid #eee;
 }

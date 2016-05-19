@@ -1606,6 +1606,7 @@ MESSAGE;
 			array_fill_keys( $this->config->get( 'ResourceLoaderLESSImportPaths' ), '' )
 		);
 		$parser->SetOption( 'relativeUrls', false );
+		$parser->SetOption( 'compress', true );
 		$parser->SetCacheDir( $this->config->get( 'CacheDirectory' ) ?: wfTempDir() );
 
 		return $parser;
