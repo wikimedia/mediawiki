@@ -18,22 +18,22 @@
 	cursor: pointer;
 
 	opacity: 0;
-	-webkit-transform: translateX(35px);
-	transform: translateX(35px);
+	-webkit-transform: translateX( 35px );
+	transform: translateX( 35px );
 	-webkit-transition: opacity 0.35s ease-in-out, -webkit-transform 0.35s ease-in-out;
 	transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 }
 
 .mw-notification-visible {
 	opacity: 1;
-	-webkit-transform: translateX(0);
-	transform: translateX(0);
+	-webkit-transform: translateX( 0 );
+	transform: translateX( 0 );
 }
 
 .mw-notification-replaced {
 	opacity: 0;
-	-webkit-transform: translateY(-35px);
-	transform: translateY(-35px);
+	-webkit-transform: translateY( -35px );
+	transform: translateY( -35px );
 	pointer-events: none;
 }
 

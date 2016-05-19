@@ -38,7 +38,7 @@ table.filehistory td.filehistory-selected {
 .filehistory a img,
 #file img:hover {
 	/* @embed */
-	background: #fff url(images/checker.png) repeat;
+	background: #fff url( images/checker.png ) repeat;
 }
 
 /*
