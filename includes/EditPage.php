@@ -2833,9 +2833,14 @@ class EditPage {
 					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
-						'{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}',
+						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
+							'returnto' => $this->getTitle()->getPrefixedDBkey()
+						] ),
 						// Sign-up link
-						'{{fullurl:Special:CreateAccount|returnto={{FULLPAGENAMEE}}}}' ]
+						SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
+							'returnto' => $this->getTitle()->getPrefixedDBkey()
+						] )
+					]
 				);
 			} else {
 				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\" class=\"warningbox\">\n$1</div>",
