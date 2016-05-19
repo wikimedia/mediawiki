@@ -38,7 +38,7 @@ table.filehistory td.filehistory-selected {
 .filehistory a img,
 #file img:hover {
 	/* @embed */
-	background: white url(images/checker.png) repeat;
+	background: #fff url(images/checker.png) repeat;
 }
 
 /*
@@ -46,7 +46,7 @@ table.filehistory td.filehistory-selected {
  */
 ul#filetoc {
 	text-align: center;
-	border: 1px solid #aaaaaa;
+	border: 1px solid #aaa;
 	background-color: #f9f9f9;
 	padding: 5px;
 	font-size: 95%;

@@ -11,7 +11,7 @@
 
 .mw-badge-content {
 	font-weight: bold;
-	color: white;
+	color: #fff;
 	vertical-align: baseline;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.4);
 }
@@ -32,5 +32,5 @@
 }
 
 .mw-badge-important {
-	background-color: #cc0000;
+	background-color: #c00;
 }

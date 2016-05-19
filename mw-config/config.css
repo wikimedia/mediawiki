@@ -114,7 +114,7 @@
 }
 
 .error {
-	color: red;
+	color: #f00;
 	background-color: #fff;
 	font-weight: bold;
 	left: 1em;
@@ -137,7 +137,7 @@
 .success-message {
 	font-weight: bold;
 	font-size: 110%;
-	color: green;
+	color: #0f0;
 }
 
 .success-box {
