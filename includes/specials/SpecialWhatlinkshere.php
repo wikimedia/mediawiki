@@ -75,7 +75,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->target = Title::newFromText( $opts->getValue( 'target' ) );
 		if ( !$this->target ) {
 			if ( !$this->including() ) {
-				$this->buildForm();
+				$out->addHTML( $this->whatlinkshereForm() );
 			}
 
 			return;
@@ -200,8 +200,12 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		) {
 			if ( 0 == $level ) {
 				if ( !$this->including() ) {
-					$this->buildForm();
+					$out->addHTML( $this->whatlinkshereForm() );
 
+					// Show filters only if there are links
+					if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
+						$out->addHTML( $this->getFilterPanel() );
+					}
 					$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 					$out->setStatusCode( 404 );
@@ -265,7 +269,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		if ( $level == 0 ) {
 			if ( !$this->including() ) {
-				$this->buildForm();
+				$out->addHTML( $this->whatlinkshereForm() );
+				$out->addHTML( $this->getFilterPanel() );
 				$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
 				$prevnext = $this->getPrevNext( $prevId, $nextId );
@@ -439,7 +444,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return $this->msg( 'viewprevnext' )->rawParams( $prev, $next, $nums )->escaped();
 	}
 
-	protected function buildForm() {
+	function whatlinkshereForm() {
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
 		// Reset these for new requests
@@ -450,57 +455,88 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$nsinvert = $this->opts->consumeValue( 'invert' );
 
 		# Build up the form
+		$f = Xml::openElement( 'form', [ 'action' => wfScript() ] );
 
-		$hiddenFields = [
-			'title' => $this->getPageTitle()->getPrefixedDBkey(),
-		];
+		# Values that should not be forgotten
+		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
+		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
+			$f .= Html::hidden( $name, $value );
+		}
 
-		$formDescriptor = [
-			'target' => [
-				'type' => 'title',
-				'name' => 'target',
-				'label-message' => 'whatlinkshere-page',
-				'default' => $this->opts->getValue( 'target' ),
-			],
+		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
 
-			'namespace' => [
-				'type' => 'namespaceselect',
-				'name' => 'namespace',
-				'label-message' => 'namespace',
+		# Target input (.mw-searchInput enables suggestions)
+		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
+			'mw-whatlinkshere-target', 40, $target, [ 'class' => 'mw-searchInput' ] );
+
+		$f .= ' ';
+
+		# Namespace selector
+		$f .= Html::namespaceSelector(
+			[
+				'selected' => $namespace,
 				'all' => '',
-			],
+				'label' => $this->msg( 'namespace' )->text()
+			], [
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'class' => 'namespaceselector',
+			]
+		);
 
-			'invert' => [
-				'type' => 'check',
-				'name' => 'invert',
-				'label-message' => 'invert',
-				'default' => false,
-			],
-		];
+		$f .= '&#160;' .
+			Xml::checkLabel(
+				$this->msg( 'invert' )->text(),
+				'invert',
+				'nsinvert',
+				$nsinvert,
+				[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
+			);
 
-		$filters = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
-		if ( $this->target instanceof Title &&
-			$this->target->getNamespace() == NS_FILE ) {
-			$filters[] = 'hideimages';
+		$f .= ' ';
+
+		# Submit
+		$f .= Xml::submitButton( $this->msg( 'whatlinkshere-submit' )->text() );
+
+		# Close
+		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
+
+		return $f;
+	}
+
+	/**
+	 * Create filter panel
+	 *
+	 * @return string HTML fieldset and filter panel with the show/hide links
+	 */
+	function getFilterPanel() {
+		$show = $this->msg( 'show' )->escaped();
+		$hide = $this->msg( 'hide' )->escaped();
+
+		$changed = $this->opts->getChangedValues();
+		unset( $changed['target'] ); // Already in the request title
+
+		$links = [];
+		$types = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
+		if ( $this->target->getNamespace() == NS_FILE ) {
+			$types[] = 'hideimages';
 		}
 
-		foreach ( $filters as $filter ) {
-			$formDescriptor[$filter] = [
-				'type' => 'check',
-				'name' => $filter,
-				'label' => $this->msg( 'whatlinkshere-' . $filter ),
-				'value' => false,
-			];
+		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans',
+		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
+		// To be sure they will be found by grep
+		foreach ( $types as $type ) {
+			$chosen = $this->opts->getValue( $type );
+			$msg = $chosen ? $show : $hide;
+			$overrides = [ $type => !$chosen ];
+			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
+				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
 
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
-			->addHiddenFields( $hiddenFields )
-			->setWrapperLegendMsg( 'whatlinkshere' )
-			->setSubmitTextMsg( 'whatlinkshere-submit' )
-			->setAction( $this->getPageTitle()->getLocalURL() )
-			->setMethod( 'get' )
-			->prepareForm()
-			->displayForm( false );
+		return Xml::fieldset(
+			$this->msg( 'whatlinkshere-filters' )->text(),
+			$this->getLanguage()->pipeList( $links )
+		);
 	}
 
 	/**
