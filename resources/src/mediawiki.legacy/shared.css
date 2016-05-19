@@ -44,8 +44,8 @@
 
 /* User-Agent styles for new HTML5 elements */
 mark {
-	background-color: yellow;
-	color: black;
+	background-color: #ff0;
+	color: #000;
 }
 
 /* Helper for wbr element on IE 8+; in HTML5, but not supported by default as of IE 11. */
@@ -156,7 +156,7 @@ span.history-deleted {
 
 .unpatrolled {
 	font-weight: bold;
-	color: red;
+	color: #f00;
 }
 
 div.patrollink {
@@ -288,7 +288,7 @@ p.mw-delete-editreasons {
 
 /* The auto-generated edit comments */
 .autocomment {
-	color: gray;
+	color: #808080;
 }
 
 #pagehistory .history-user {
@@ -297,7 +297,7 @@ p.mw-delete-editreasons {
 }
 
 #pagehistory li {
-	border: 1px solid white;
+	border: 1px solid #fff;
 }
 
 #pagehistory li.selected {
@@ -378,7 +378,7 @@ table.wikitable {
 	background-color: #f9f9f9;
 	border: 1px solid #aaa;
 	border-collapse: collapse;
-	color: black;
+	color: #000;
 }
 
 table.wikitable > tr > th,
@@ -407,7 +407,7 @@ table.wikitable > caption {
 }
 
 .error {
-	color: #cc0000;
+	color: #c00;
 }
 
 .warning {
@@ -441,7 +441,7 @@ table.wikitable > caption {
 }
 
 .errorbox {
-	color: #cc0000;
+	color: #c00;
 	border-color: #fac5c5;
 	background-color: #fae3e3;
 }
@@ -504,20 +504,20 @@ table.wikitable > caption {
 .mw-datatable,
 .mw-datatable td,
 .mw-datatable th {
-	border: 1px solid #aaaaaa;
+	border: 1px solid #aaa;
 	padding: 0 0.15em 0 0.15em;
 }
 
 .mw-datatable th {
-	background-color: #ddddff;
+	background-color: #ddf;
 }
 
 .mw-datatable td {
-	background-color: #ffffff;
+	background-color: #fff;
 }
 
 .mw-datatable tr:hover td {
-	background-color: #eeeeff;
+	background-color: #eef;
 }
 
 /* Classes for Exif data display */
@@ -548,7 +548,7 @@ table.mw_metadata {
 
 table.mw_metadata td,
 table.mw_metadata th {
-	border: 1px solid #aaaaaa;
+	border: 1px solid #aaa;
 	padding-left: 5px;
 	padding-right: 5px;
 }

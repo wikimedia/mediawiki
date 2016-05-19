@@ -4,7 +4,7 @@
 .suggestions a.mw-searchSuggest-link:hover,
 .suggestions a.mw-searchSuggest-link:active,
 .suggestions a.mw-searchSuggest-link:focus {
-	color: black;
+	color: #000;
 	text-decoration: none;
 }
 
@@ -12,7 +12,7 @@
 .suggestions-result-current a.mw-searchSuggest-link:hover,
 .suggestions-result-current a.mw-searchSuggest-link:active,
 .suggestions-result-current a.mw-searchSuggest-link:focus {
-	color: white;
+	color: #fff;
 }
 
 .suggestions a.mw-searchSuggest-link .special-query {

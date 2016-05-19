@@ -13,7 +13,7 @@
 
 .mw-json th,
 .mw-json td {
-	border: 1px solid gray;
+	border: 1px solid #808080;
 	font-size: 16px;
 	padding: 0.5em 1em;
 }
@@ -50,7 +50,7 @@
 }
 
 .mw-json table caption {
-	color: gray;
+	color: #808080;
 	display: inline-block;
 	font-size: 10px;
 	font-style: italic;

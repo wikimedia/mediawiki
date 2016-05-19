@@ -3,7 +3,7 @@
 .mw-email-none .mw-input{
 	border: 1px solid #fde29b;
 	background-color: #fdf1d1;
-	color: #000000;
+	color: #000;
 }
 /* Authenticated email field has its own class too. Unstyled by default */
 /*

@@ -5,7 +5,7 @@ table.mw-htmlform-nolabel td.mw-label {
 }
 
 .mw-htmlform-invalid-input td.mw-input input {
-	border-color: red;
+	border-color: #f00;
 }
 
 .mw-htmlform-flatlist div.mw-htmlform-flatlist-item {
