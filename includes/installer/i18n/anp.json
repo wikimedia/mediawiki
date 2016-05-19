@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Angpradesh"
+		]
+	},
+	"config-desc": "मिडियाविकि लेली इंस्टॉलर",
+	"config-title": "मीडियाविकी  $1 इंस्टॉलेशन",
+	"config-information": "जानकारी",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> फ़ाइल पैलऽ गेलै ।\nई स्थापना क॑ अपग्रेड करै लेली , नीचाँ देलऽ गेलऽ बॉक्स म॑ <code>$wgUpgradeKey</code>  के मान दर्ज करऽ।\nआपन॑ क॑ <code>LocalSettings.php</code> म॑ मिली जैतै ।",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> फ़ाइल पैलऽ गेलऽ छै ।\nई स्थापना क॑ अपग्रेड करै लेली , बदला म॑ कृपया करी क॑ ई चलाबऽ <code>update.php</code>",
+	"config-localsettings-key": "नवीनीकरण कुंजी"
+}

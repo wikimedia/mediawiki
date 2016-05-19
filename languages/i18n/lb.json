@@ -3375,5 +3375,16 @@
 	"log-action-filter-rights-rights": "Manuell Ännerung",
 	"log-action-filter-rights-autopromote": "Automatesch Ännerung",
 	"log-action-filter-upload-upload": "Neien Upload",
-	"log-action-filter-upload-overwrite": "Nees eroplueden"
+	"log-action-filter-upload-overwrite": "Nees eroplueden",
+	"authmanager-retype-help": "Passwuert nach eng Kéier fir ze konfirméieren",
+	"authmanager-email-help": "E-Mail-Adress",
+	"authmanager-realname-label": "Richtegen Numm",
+	"authmanager-realname-help": "Richtegen Numm vum Benotzer",
+	"authmanager-provider-temporarypassword": "Temporäert Passwuert:",
+	"authprovider-resetpass-skip-label": "Iwwersprangen",
+	"specialpage-securitylevel-not-allowed-title": "Net erlaabt",
+	"changecredentials-submit": "Änneren",
+	"changecredentials-submit-cancel": "Ofbriechen",
+	"removecredentials-submit": "Ewechhuelen",
+	"removecredentials-submit-cancel": "Ofbriechen"
 }

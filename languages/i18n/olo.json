@@ -5,7 +5,8 @@
 			"Hiloin Natoi",
 			"Ilja.mos",
 			"Mashoi7",
-			"Misosoof"
+			"Misosoof",
+			"Ghiutun"
 		]
 	},
 	"tog-underline": "Linkien alleviivuamine:",
@@ -845,9 +846,9 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|ielline|ielline $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|tulii|tulii $1}}",
 	"whatlinkshere-links": "← linkat",
-	"whatlinkshere-hideredirs": "$1 uvvellehohjavukset",
-	"whatlinkshere-hidetrans": "$1 sižällyttämizet",
-	"whatlinkshere-hidelinks": "$1 linkat",
+	"whatlinkshere-hideredirs": "Peitä uvvellehohjavukset",
+	"whatlinkshere-hidetrans": "Peitä sižällyttämizet",
+	"whatlinkshere-hidelinks": "Peitä linkat",
 	"whatlinkshere-filters": "Filtrat",
 	"blocklink": "Lukiče",
 	"contribslink": "kohendukset",
