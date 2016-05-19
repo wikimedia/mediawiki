@@ -150,6 +150,8 @@ $wgAutoloadClasses += [
 	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/media/MediaWikiMediaTestCase.php",
 
 	# tests/phpunit/mocks
+	'CloakingLBFactory' => "$testDir/phpunit/mocks/CloakingLBFactory.php",
+	'CloakingLoadBalancer' => "$testDir/phpunit/mocks/CloakingLoadBalancer.php",
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",

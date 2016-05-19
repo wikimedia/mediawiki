@@ -1077,6 +1077,10 @@ class LoadBalancer implements ILoadBalancer {
 		$this->disabled = true;
 	}
 
+	public function isDisabled() {
+		return $this->disabled;
+	}
+
 	public function closeAll() {
 		$this->forEachOpenConnection( function ( IDatabase $conn ) {
 			$host = $conn->getServer();
