@@ -536,6 +536,8 @@ changes to languages because of Phabricator reports.
 * User::isPasswordReminderThrottled() was deprecated.
 * Bot-oriented parameters to Special:UserLogin (wpCookieCheck, wpSkipCookieCheck)
   were removed.
+* Installer can now be customized without patching MediaWiki code, see
+  mw-config/overrides/README for details.
 
 == Compatibility ==
 
