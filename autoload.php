@@ -164,6 +164,7 @@ $wgAutoloadLocalClasses = [
 	'BacklinkJobUtils' => __DIR__ . '/includes/jobqueue/utils/BacklinkJobUtils.php',
 	'BackupDumper' => __DIR__ . '/maintenance/backup.inc',
 	'BackupReader' => __DIR__ . '/maintenance/importDump.php',
+	'BadRequestError' => __DIR__ . '/includes/exception/BadRequestError.php',
 	'BadTitleError' => __DIR__ . '/includes/exception/BadTitleError.php',
 	'BagOStuff' => __DIR__ . '/includes/libs/objectcache/BagOStuff.php',
 	'BaseDump' => __DIR__ . '/maintenance/backupPrefetch.inc',
