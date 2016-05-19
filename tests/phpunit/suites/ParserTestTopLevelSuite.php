@@ -10,7 +10,7 @@ use Wikimedia\ScopedCallback;
  * @group ParserTests
  * @group Database
  */
-class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
+class ParserTestTopLevelSuite extends MediaWikiTestCase {
 	/** @var ParserTestRunner */
 	private $ptRunner;
 
@@ -130,13 +130,9 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	public function setUp() {
+		parent::setUp();
 		wfDebug( __METHOD__ );
-		$db = wfGetDB( DB_MASTER );
-		$type = $db->getType();
-		$prefix = $type === 'oracle' ?
-			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
-		MediaWikiTestCase::setupTestDB( $db, $prefix );
-		$teardown = $this->ptRunner->setDatabase( $db );
+		$teardown = $this->ptRunner->setDatabase( $this->db );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
 	}
@@ -146,6 +142,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}
+		parent::tearDown();
 	}
 
 	/**

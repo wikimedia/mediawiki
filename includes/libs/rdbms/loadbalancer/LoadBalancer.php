@@ -609,7 +609,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i
 	 * @param array $groups
-	 * @param bool $domain
+	 * @param string|bool $domain
 	 * @return Database
 	 * @throws DBConnectionError
 	 */
@@ -1075,6 +1075,10 @@ class LoadBalancer implements ILoadBalancer {
 	public function disable() {
 		$this->closeAll();
 		$this->disabled = true;
+	}
+
+	public function isDisabled() {
+		return $this->disabled;
 	}
 
 	public function closeAll() {
