@@ -44,7 +44,7 @@ module.exports = function ( grunt ) {
 			options: {
 				syntax: 'less'
 			},
-			src: '{resources/src/*,{mw-config,tests}/**}/*.{css,less}'
+			src: '{resources/src/*,mw-config/**}/*.{css,less}'
 		},
 		watch: {
 			files: [

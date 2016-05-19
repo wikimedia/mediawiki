@@ -198,7 +198,7 @@ div.magnify a {
 }
 
 img.thumbborder {
-	border: 1px solid #dddddd;
+	border: 1px solid #ddd;
 }
 
 /* Directionality-specific styles for thumbnails - their positioning depends on content language */

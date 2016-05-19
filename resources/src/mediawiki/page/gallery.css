@@ -84,7 +84,7 @@ ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
 ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
 	position: absolute;
-	background: white;
+	background: #fff;
 	background: rgba(255, 255, 255, 0.8);
 	padding: 5px 10px;
 	bottom: 0;

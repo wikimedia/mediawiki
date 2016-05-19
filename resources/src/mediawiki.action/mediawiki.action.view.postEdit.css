@@ -61,15 +61,15 @@
 	font-size: 1.25em;
 	font-weight: bold;
 	line-height: 2.3em;
-	color: black;
-	text-shadow: 0 0.0625em 0 white;
+	color: #000;
+	text-shadow: 0 0.0625em 0 #fff;
 	text-decoration: none;
 	opacity: 0.2;
 	filter: alpha(opacity=20);
 }
 
 .postedit-close:hover {
-	color: black;
+	color: #000;
 	text-decoration: none;
 	opacity: 0.4;
 	filter: alpha(opacity=40);

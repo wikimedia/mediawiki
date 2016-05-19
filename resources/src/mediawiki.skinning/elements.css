@@ -34,7 +34,7 @@ a:lang(ur) {
 }
 
 a.stub {
-	color: #772233;
+	color: #723;
 }
 
 a.new, #p-personal a.new {
@@ -97,7 +97,7 @@ h3,
 h4,
 h5,
 h6 {
-	color: black;
+	color: #000;
 	background: none;
 	font-weight: normal;
 	margin: 0;
@@ -199,7 +199,7 @@ pre, code, tt, kbd, samp, .mw-code {
 }
 
 code {
-	color: black;
+	color: #000;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 2px;
@@ -208,7 +208,7 @@ code {
 
 pre,
 .mw-code {
-	color: black;
+	color: #000;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	padding: 1em;

@@ -28,7 +28,7 @@ div.apihelp-linktrail {
 .apihelp-flags {
 	font-size: smaller;
 	float: right;
-	border: 1px solid black;
+	border: 1px solid #000;
 	padding: 0.25em;
 	width: 20em;
 }
@@ -36,7 +36,7 @@ div.apihelp-linktrail {
 .apihelp-deprecated, .apihelp-flag-deprecated,
 .apihelp-flag-internal strong {
 	font-weight: bold;
-	color: red;
+	color: #f00;
 }
 
 .apihelp-unknown {

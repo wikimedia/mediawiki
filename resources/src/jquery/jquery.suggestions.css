@@ -14,9 +14,9 @@
 
 .suggestions-special {
 	position: relative;
-	background-color: white;
+	background-color: #fff;
 	cursor: pointer;
-	border: solid 1px #aaaaaa;
+	border: solid 1px #aaa;
 	padding: 0;
 	margin: 0;
 	margin-top: -2px;
@@ -26,15 +26,15 @@
 }
 
 .suggestions-results {
-	background-color: white;
+	background-color: #fff;
 	cursor: pointer;
-	border: solid 1px #aaaaaa;
+	border: solid 1px #aaa;
 	padding: 0;
 	margin: 0;
 }
 
 .suggestions-result {
-	color: black;
+	color: #000;
 	margin: 0;
 	line-height: 1.5em;
 	padding: 0.01em 0.25em;
@@ -48,27 +48,27 @@
 
 .suggestions-result-current {
 	background-color: #4c59a6;
-	color: white;
+	color: #fff;
 }
 
 .suggestions-special .special-label {
-	color: gray;
+	color: #808080;
 	text-align: left;
 }
 
 .suggestions-special .special-query {
-	color: black;
+	color: #000;
 	font-style: italic;
 	text-align: left;
 }
 
 .suggestions-special .special-hover {
-	background-color: silver;
+	background-color: #c0c0c0;
 }
 
 .suggestions-result-current .special-label,
 .suggestions-result-current .special-query {
-	color: white;
+	color: #fff;
 }
 
 .highlight {
