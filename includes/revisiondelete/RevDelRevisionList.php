@@ -94,13 +94,33 @@ class RevDelRevisionList extends RevDelList {
 			return $live;
 		}
 
-		// Check if any requested revisions are available fully deleted.
-		$archived = $db->select( [ 'archive' ], Revision::selectArchiveFields(),
-			[
-				'ar_rev_id' => $ids
+		$archiveQueryInfo = [
+			'tables' => [ 'archive' ],
+			'fields' => Revision::selectArchiveFields(),
+			'conds' => [
+				'ar_rev_id' => $ids,
 			],
+			'options' => [ 'ORDER BY' => 'ar_rev_id DESC' ],
+			'join_conds' => [],
+		];
+
+		ChangeTags::modifyDisplayQuery(
+			$archiveQueryInfo['tables'],
+			$archiveQueryInfo['fields'],
+			$archiveQueryInfo['conds'],
+			$archiveQueryInfo['join_conds'],
+			$archiveQueryInfo['options'],
+			''
+		);
+
+		// Check if any requested revisions are available fully deleted.
+		$archived = $db->select(
+			$archiveQueryInfo['tables'],
+			$archiveQueryInfo['fields'],
+			$archiveQueryInfo['conds'],
 			__METHOD__,
-			[ 'ORDER BY' => 'ar_rev_id DESC' ]
+			$archiveQueryInfo['options'],
+			$archiveQueryInfo['join_conds']
 		);
 
 		if ( $archived->numRows() == 0 ) {
