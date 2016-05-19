@@ -1222,6 +1222,8 @@
 	"apihelp-resetpassword-description-noroutes": "Aucun chemin pour réinitialiser le mot de passe n’est disponible.\n\nActiver les chemins dans <var>[[mw:Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var> pour utiliser ce module.",
 	"apihelp-resetpassword-param-user": "Utilisateur ayant été réinitialisé.",
 	"apihelp-resetpassword-param-email": "Adresse courriel de l’utilisateur ayant été réinitialisé.",
+	"apihelp-resetpassword-param-capture": "Renvoyer les mots de passe temporaires déjà envoyés. Nécessite le droit utilisateur <code>passwordreset</code>.",
+	"apihelp-resetpassword-example-user": "Envoyer un courriel de réinitialisation du mot de passe à l’utilisateur <kbd>Exemple</kbd>.",
 	"apihelp-resetpassword-example-email": "Envoyer un courriel pour la réinitialisation de mot de passe à tous les utilisateurs avec une adresse email <kbd>user@example.com</kbd>.",
 	"apihelp-revisiondelete-description": "Supprimer et annuler la suppression des révisions.",
 	"apihelp-revisiondelete-param-type": "Type de suppression de révision en cours de traitement.",
@@ -1291,6 +1293,8 @@
 	"apihelp-undelete-param-watchlist": "Ajouter ou supprimer la page de la liste de suivi de l’utilisateur actuel sans condition, utiliser les préférences ou ne pas modifier le suivi.",
 	"apihelp-undelete-example-page": "Annuler la suppression de la page <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Annuler la suppression de deux révisions de la page <kbd>Main Page</kbd>.",
+	"apihelp-unlinkaccount-description": "Supprimer un compte tiers lié de l’utilisateur actuel.",
+	"apihelp-unlinkaccount-example-simple": "Essayer de supprimer le lien de l’utilisateur actuel pour le fournisseur associé avec <kbd>FooAuthenticationRequest</kbd>.",
 	"apihelp-upload-description": "Téléverser un fichier, ou obtenir l’état des téléversements en cours.\n\nPlusieurs méthodes sont disponibles :\n* Téléverser directement le contenu du fichier, en utilisant le paramètre <var>$1file</var>.\n* Téléverser le fichier par morceaux, en utilisant les paramètres <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var>.\n* Pour que le serveur MédiaWiki cherche un fichier depuis une URL, utilisez le paramètre <var>$1url</var>.\n* Terminer un téléversement précédent qui a échoué à cause d’avertissements, en utilisant le paramètre <var>$1filekey</var>.\nNoter que le POST HTTP doit être fait comme un téléversement de fichier (par ex. en utilisant <code>multipart/form-data</code>) en envoyant le <code>multipart/form-data</code>.",
 	"apihelp-upload-param-filename": "Nom de fichier cible.",
 	"apihelp-upload-param-comment": "Télécharger le commentaire. Utilisé aussi comme texte de la page initiale pour les nouveaux fichiers si <var>$1text</var> n’est pas spécifié.",
@@ -1400,6 +1404,10 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Accordé à}} : $2",
 	"api-help-right-apihighlimits": "Utiliser des valeurs plus hautes dans les requêtes de l’API (requêtes lentes : $1 ; requêtes rapides : $2). Les limites pour les requêtes lentes s’appliquent aussi aux paramètres multivalués.",
 	"api-help-open-in-apisandbox": "<small>[ouvrir dans le bac à sable]</small>",
+	"api-help-authmanager-general-usage": "La procédure générale pour utiliser ce module est la suivante :\n# Récupérer les champs disponibles avec <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> avec <kbd>amirequestsfor=$4</kbd>, et un jeton <kbd>$5</kbd> avec <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]].\n# Présenter les champs à l’utilisateur, et les lui faire soumettre.\n# Faire un envoi à ce module, en fournissant <var>$1returnurl</var> et les champs appropriés.\n# Vérifier le <samp>status</samp> dans la réponse.\n#* Si vous avez reçu <samp>PASS</samp> ou <samp>FAIL</samp>, c’est terminé. L’opération a soit réussi, soit échoué.\n#* Si vous avez reçu <samp>UI</samp>, affichez les nouveaux champs à l’utilisateur et faites-les-lui soumettre. Puis envoyez-les à ce module avec <var>$1continue</var> et l’ensemble des champs appropriés, et recommencez l’étape 4.\n#* Si vous avez reçu <samp>REDIRECT</samp>, envoyez l’utilisateur vers la cible <samp>redirecttarget</samp> et attendez le retour vers <var>$1returnurl</var>. Puis envoyez à ce module avec <var>$1continue</var> et tous les champs passés à l’URL de retour, puis répétez l’étape 4.\n#* Si vous avez reçu <samp>RESTART</samp>, cela veut dire que l’authentification a fonctionné, mais nous n’avons pas de compte utilisateur lié. Vous pouvez traiter cela comme un <samp>UI</samp> ou un <samp>FAIL</samp>.",
+	"api-help-authmanagerhelper-messageformat": "Format à utiliser pour retourner les messages.",
+	"api-help-authmanagerhelper-mergerequestfields": "Fusionner dans un tableau le champ information de toutes les demandes d'authentification.",
+	"api-help-authmanagerhelper-preservestate": "Conserver l'état d'une précédente tentative de connexion qui a échoué, si possible.",
 	"api-credits-header": "Remerciements",
 	"api-credits": "Développeurs de l’API :\n* Roan Kattouw (développeur en chef Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (créateur, développeur en chef Sept. 2006–Sept. 2007)\n* Brad Jorsch (développeur en chef depuis 2013)\n\nVeuillez envoyer vos commentaires, suggestions et questions à mediawiki-api@lists.wikimedia.org\nou remplir un rapport de bogue sur https://phabricator.wikimedia.org/."
 }

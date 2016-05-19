@@ -4,7 +4,8 @@
 			"Paul Beppler",
 			"Midnight Gambler",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Ghiutun"
 		]
 	},
 	"tog-underline": "Links (Verbinnunge) unnerstreiche:",
@@ -2206,7 +2207,7 @@
 	"spam_reverting": "Letzte Version ohne Links zu $1 wiederheargestellt.",
 	"spam_blanking": "Alle Versione mit enem Link zu $1 woorre bereinicht.",
 	"spam_deleting": "Alle Versione mit enem Link zu $1 woorre abgewischt.",
-	"simpleantispam-label": "Spamschutzprüfung.\nHier '''NIX''' introohn!",
+	"simpleantispam-label": "Spamschutzprüfung.\nHier <strong>NIX</strong> introohn!",
 	"pageinfo-title": "Informatione zu \"$1\"",
 	"pageinfo-not-current": "Die Information kann leider net für alte Versione zur Verfüchung gestellt sin.",
 	"pageinfo-header-basic": "Basisinformatione",

@@ -18,7 +18,8 @@
 			"AlvaroMolina",
 			"Ciencia Al Poder",
 			"Lemondoge",
-			"Mgpena"
+			"Mgpena",
+			"Rubentl134"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -425,6 +426,7 @@
 	"apihelp-query+allusers-param-limit": "Cuántos nombres de usuario se devolverán.",
 	"apihelp-query+allusers-param-activeusers": "Solo listar usuarios activos en {{PLURAL:$1|el último día|los $1 últimos días}}.",
 	"apihelp-query+allusers-example-Y": "Listar usuarios que empiecen por <kbd>Y</kbd>.",
+	"apihelp-query+filerepoinfo-example-login": "Captura de las solicitudes que puede ser utilizadas al comienzo de inicio de sesión.",
 	"apihelp-query+backlinks-param-pageid": "Identificador de página que buscar. No puede usarse junto con <var>$1title</var>",
 	"apihelp-query+backlinks-param-limit": "Cuántas páginas en total se devolverán. Si está activo <var>$1redirect</var>, el límite aplica a cada nivel por separado (lo que significa que se pueden devolver hasta 2 * <var>$1limit</var> resultados).",
 	"apihelp-query+backlinks-example-simple": "Mostrar enlaces a <kbd>Main page</kbd>.",

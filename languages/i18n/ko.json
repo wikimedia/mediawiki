@@ -3726,7 +3726,11 @@
 	"authpage-cannot-create-continue": "계정 만들기를 계속할 수 없습니다. 사용자 세션의 시간이 초과되었을 가능성이 높습니다.",
 	"authpage-cannot-link": "계정 연결을 시작할 수 없습니다.",
 	"authpage-cannot-link-continue": "계정 연결을 계속할 수 없습니다. 사용자 세션의 시간이 초과되었을 가능성이 높습니다.",
+	"changecredentials-submit": "수정",
 	"changecredentials-submit-cancel": "취소",
 	"removecredentials-submit": "제거",
-	"removecredentials-submit-cancel": "취소"
+	"removecredentials-submit-cancel": "취소",
+	"credentialsform-account": "계정 이름:",
+	"cannotlink-no-provider-title": "연결할 수 있는 계정이 없음",
+	"cannotlink-no-provider": "연결할 수 있는 계정이 없습니다."
 }
