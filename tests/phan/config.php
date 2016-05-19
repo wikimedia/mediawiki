@@ -53,6 +53,8 @@ return [
 			'maintenance/userOptions.inc',
 			'maintenance/language/checkLanguage.inc',
 			'maintenance/language/languages.inc',
+			'tests/phpunit/mocks/CloakingLBFactory.php',
+			'tests/phpunit/mocks/CloakingLoadBalancer.php',
 		]
 	),
 
