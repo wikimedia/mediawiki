@@ -52,6 +52,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
+	'MediaWikiTestEnvironment' => "$testDir/phpunit/MediaWikiTestEnvironment.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
 	'ResourceLoaderTestCase' => "$testDir/phpunit/ResourceLoaderTestCase.php",
@@ -150,6 +151,8 @@ $wgAutoloadClasses += [
 	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/media/MediaWikiMediaTestCase.php",
 
 	# tests/phpunit/mocks
+	'CloakingLBFactory' => "$testDir/phpunit/mocks/CloakingLBFactory.php",
+	'CloakingLoadBalancer' => "$testDir/phpunit/mocks/CloakingLoadBalancer.php",
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",
