@@ -42,10 +42,25 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	/**
-	 * @param bool|string $wiki
+	 * Returns a new LoadBalancer instance.
+	 * Subclasses may override this to use a different LoadBalancer implementation.
+	 *
+	 * @param array $params passed to the constructor
+	 *
 	 * @return LoadBalancer
 	 */
-	public function newMainLB( $wiki = false ) {
+	protected function newLoadBalancer( array $params ) {
+		return new LoadBalancer( $params );
+	}
+
+	/**
+	 * Returns the database server configuration from $wgDBservers and friends.
+	 *
+	 * @note This is for use during testing only! Application logic should not rely on this knowledge!
+	 *
+	 * @return array[]
+	 */
+	public static function getConfiguredDBServers() {
 		global $wgDBservers;
 
 		if ( is_array( $wgDBservers ) ) {
@@ -84,7 +99,16 @@ class LBFactorySimple extends LBFactory {
 			] ];
 		}
 
-		return new LoadBalancer( [
+		return $servers;
+	}
+
+	/**
+	 * @param bool|string $wiki
+	 * @return LoadBalancer
+	 */
+	public function newMainLB( $wiki = false ) {
+		$servers = self::getConfiguredDBServers();
+		return $this->newLoadBalancer( [
 			'servers' => $servers,
 			'loadMonitor' => $this->loadMonitorClass,
 			'readOnlyReason' => $this->readOnlyReason,
@@ -118,7 +142,7 @@ class LBFactorySimple extends LBFactory {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
-		return new LoadBalancer( [
+		return $this->newLoadBalancer( [
 			'servers' => $wgExternalServers[$cluster],
 			'loadMonitor' => $this->loadMonitorClass,
 			'readOnlyReason' => $this->readOnlyReason,
