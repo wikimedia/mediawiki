@@ -4,5 +4,10 @@
 		"color-hex-length": [ "short" ],
 		"color-named": [ "never" ],
 		"color-no-invalid-hex": true,
+
+		"declaration-bang-space-after": [ "never" ],
+		"declaration-bang-space-before": [ "always" ],
+		"declaration-colon-space-after": [ "always" ],
+		"declaration-colon-space-before": [ "never" ],
 	}
 }
