@@ -13944,7 +13944,7 @@ Redirected image
 !! wikitext
 [[Image:Barfoo.jpg]]
 !! html/php
-<p><a href="/wiki/File:Barfoo.jpg" title="File:Barfoo.jpg">File:Barfoo.jpg</a>
+<p><a href="/wiki/File:Barfoo.jpg" title="File:Barfoo.jpg" class="mw-redirect">File:Barfoo.jpg</a>
 </p>
 !! end
 

@@ -269,7 +269,7 @@ class Linker {
 	 */
 	public static function linkKnown(
 		$target, $html = null, $customAttribs = [],
-		$query = [], $options = [ 'known', 'noclasses' ]
+		$query = [], $options = [ 'known' ]
 	) {
 		return self::link( $target, $html, $customAttribs, $query, $options );
 	}
@@ -940,7 +940,15 @@ class Linker {
 			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
 			if ( $redir ) {
-				return self::linkKnown( $title, $encLabel, [], wfCgiToArray( $query ) );
+				// We already know it's a redirect, so mark it
+				// accordingly
+				return self::link(
+					$title,
+					$encLabel,
+					[ 'class' => 'mw-redirect' ],
+					wfCgiToArray( $query ),
+					[ 'known', 'noclasses' ]
+				);
 			}
 
 			$href = self::getUploadUrl( $title, $query );
