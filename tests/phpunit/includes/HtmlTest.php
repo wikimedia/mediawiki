@@ -46,7 +46,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<img/>',
 			Html::element( 'img', null, '' ),
-			'No close tag for short-tag elements'
+			'Self-closing tag for short-tag elements'
 		);
 
 		$this->assertEquals(
@@ -59,12 +59,6 @@ class HtmlTest extends MediaWikiTestCase {
 			'<element></element>',
 			Html::element( 'element', [], '' ),
 			'Close tag for empty element (array, string)'
-		);
-
-		$this->assertEquals(
-			'<img/>',
-			Html::element( 'img', null, '' ),
-			'Self-closing tag for short-tag elements'
 		);
 	}
 
@@ -139,12 +133,6 @@ class HtmlTest extends MediaWikiTestCase {
 			' selected=""',
 			Html::expandAttributes( [ 'selected' ] ),
 			'Boolean attributes have no value when value is true (passed as numerical array)'
-		);
-
-		$this->assertEquals(
-			' selected=""',
-			Html::expandAttributes( [ 'selected' => true ] ),
-			'Boolean attributes have empty string value when value is true'
 		);
 	}
 
