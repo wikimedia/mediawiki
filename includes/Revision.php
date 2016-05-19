@@ -825,6 +825,11 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
+		$wfWikiId = wfWikiID();
+		// This is the general issue...
+		// $wfWikiId = 'default';
+		// $this->>mWiki = 'default-unittest_';
+
 		if ( $this->mWiki === false || $this->mWiki === wfWikiID() ) {
 			// Loading by ID is best, though not possible for foreign titles
 			if ( !$this->mTitle && $this->mPage !== null && $this->mPage > 0 ) {
