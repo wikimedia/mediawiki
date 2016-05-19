@@ -314,6 +314,13 @@ interface ILoadBalancer {
 	public function disable();
 
 	/**
+	 * @since 1.30
+	 *
+	 * @return bool true if and only if disable() was called on this instance
+	 */
+	public function isDisabled();
+
+	/**
 	 * Close all open connections
 	 */
 	public function closeAll();

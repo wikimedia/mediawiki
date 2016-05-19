@@ -126,6 +126,8 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var integer Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
+
+
 	public function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			throw new InvalidArgumentException( __CLASS__ . ': missing servers parameter' );
@@ -135,14 +137,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
-		// In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
-		// always true, gracefully handle the case when they fail to account for escaping.
-		if ( $this->localDomain->getTablePrefix() != '' ) {
-			$this->localDomainIdAlias =
-				$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
-		} else {
-			$this->localDomainIdAlias = $this->localDomain->getDatabase();
-		}
+		$this->calculateLocalDomainIdAlias();
 
 		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
 
@@ -218,6 +213,19 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( isset( $params['chronologyProtector'] ) ) {
 			$this->chronProt = $params['chronologyProtector'];
+		}
+	}
+
+	/**
+	 * In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
+	 * always true, gracefully handle the case when they fail to account for escaping.
+	 */
+	private function calculateLocalDomainIdAlias() {
+		if ( $this->localDomain->getTablePrefix() != '' ) {
+			$this->localDomainIdAlias =
+				$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
+		} else {
+			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
 	}
 
@@ -609,7 +617,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i
 	 * @param array $groups
-	 * @param bool $domain
+	 * @param string|bool $domain
 	 * @return Database
 	 * @throws DBConnectionError
 	 */
@@ -1075,6 +1083,10 @@ class LoadBalancer implements ILoadBalancer {
 	public function disable() {
 		$this->closeAll();
 		$this->disabled = true;
+	}
+
+	public function isDisabled() {
+		return $this->disabled;
 	}
 
 	public function closeAll() {
@@ -1637,6 +1649,8 @@ class LoadBalancer implements ILoadBalancer {
 			null,
 			$prefix
 		);
+
+		$this->calculateLocalDomainIdAlias();
 
 		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 			$db->tablePrefix( $prefix );

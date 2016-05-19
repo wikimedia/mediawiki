@@ -131,11 +131,11 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 
 	public function setUp() {
 		wfDebug( __METHOD__ );
+
+		$testEnvironment = new MediaWikiTestEnvironment();
+		$testEnvironment->setupTestDB();
 		$db = wfGetDB( DB_MASTER );
-		$type = $db->getType();
-		$prefix = $type === 'oracle' ?
-			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
-		MediaWikiTestCase::setupTestDB( $db, $prefix );
+
 		$teardown = $this->ptRunner->setDatabase( $db );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
