@@ -16,7 +16,7 @@
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
 	beStrictAboutTestSize="true"
-	verbose="true">
+	verbose="false">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>
