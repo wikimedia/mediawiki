@@ -25,6 +25,7 @@
  */
 
 class CloneDatabase {
+
 	/** @var string Table prefix for cloning */
 	private $newTablePrefix = '';
 
@@ -82,10 +83,10 @@ class CloneDatabase {
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
 
-			self::changePrefix( $this->oldTablePrefix );
+			$this->db->tablePrefix( $this->oldTablePrefix );
 			$oldTableName = $this->db->tableName( $tbl, 'raw' );
 
-			self::changePrefix( $this->newTablePrefix );
+			$this->db->tablePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl, 'raw' );
 
 			if ( $this->dropCurrentTables
@@ -113,41 +114,41 @@ class CloneDatabase {
 	 */
 	public function destroy( $dropTables = false ) {
 		if ( $dropTables ) {
-			self::changePrefix( $this->newTablePrefix );
+			$this->db->tablePrefix( $this->newTablePrefix );
 			foreach ( $this->tablesToClone as $tbl ) {
 				$this->db->dropTable( $tbl );
 			}
 		}
-		self::changePrefix( $this->oldTablePrefix );
+		$this->db->tablePrefix( $this->oldTablePrefix );
 	}
 
 	/**
-	 * Change the table prefix on all open DB connections/
+	 * Change the table prefix on all open DB connections.
+	 *
+	 * @note This only works if a CloakingLBFactory has been installed as the global
+	 *       DBLoadBalancerFactory service. This is done by MediaWikiTestCase and PHPUnitMaintClass
+	 *       when setting up the environment for unit testing.
+	 *
+	 * @deprecated since 1.27, use CloakingLBFactory::cloakDatabase() or
+	 *             CloakingLBFactory::changePrefix() instead, or rely
+	 *             on MediaWikiTestCase::setupTestDB.
 	 *
 	 * @param string $prefix
-	 * @return void
+	 *
+	 * @throws MWException
 	 */
 	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( [ 'CloneDatabase', 'changeLBPrefix' ], [ $prefix ] );
+		$lbFactory = \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		if ( !( $lbFactory instanceof CloakingLBFactory ) ) {
+			throw new MWException(
+				'Changing the database prefix is only possible with a CloakingLBFactory'
+			);
+		}
+
+		$lbFactory->changePrefix( $prefix );
 		$wgDBprefix = $prefix;
 	}
 
-	/**
-	 * @param LoadBalancer $lb
-	 * @param string $prefix
-	 * @return void
-	 */
-	public static function changeLBPrefix( $lb, $prefix ) {
-		$lb->forEachOpenConnection( [ 'CloneDatabase', 'changeDBPrefix' ], [ $prefix ] );
-	}
-
-	/**
-	 * @param DatabaseBase $db
-	 * @param string $prefix
-	 * @return void
-	 */
-	public static function changeDBPrefix( $db, $prefix ) {
-		$db->tablePrefix( $prefix );
-	}
 }

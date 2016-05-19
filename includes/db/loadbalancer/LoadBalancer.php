@@ -1001,6 +1001,15 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @return bool true if and only if disable() was called on this instance
+	 *
+	 * @since 1.28
+	 */
+	public function isDisabled() {
+		return $this->disabled;
+	}
+
+	/**
 	 * Close all open connections
 	 */
 	public function closeAll() {
