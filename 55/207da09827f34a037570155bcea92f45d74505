@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review-1: Jdlrobson <jrobson@wikimedia.org>
+Code-Review+2: Zfilipin <zfilipin@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 19 May 2016 09:17:51 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/288958
+Project: mediawiki/core
+Branch: refs/heads/master
