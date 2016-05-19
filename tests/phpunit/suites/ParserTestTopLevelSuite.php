@@ -135,7 +135,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		$type = $db->getType();
 		$prefix = $type === 'oracle' ?
 			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
-		MediaWikiTestCase::setupTestDB( $db, $prefix );
+		MediaWikiLegacyTestDBHelper::setupTestDB( $db, $prefix );
 		$teardown = $this->ptRunner->setDatabase( $db );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
