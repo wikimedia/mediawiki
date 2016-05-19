@@ -1,11 +1,6 @@
 <?php
 /**
- * MediaWiki installer overrides.
- * Modify this file if you are a packager who needs to modify the behavior of
- * the MediaWiki installer. Altering it is preferred over changing anything in
- * /includes.
- *
- * Note: this file doesn't gets included from a global scope, don't use globals directly.
+ * MediaWiki installer overrides. See mw-config/overrides/README for details.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,38 +20,36 @@
  * @file
  */
 
-/*
-
-Example of modifications:
-
-	public static function getLocalSettingsGenerator( Installer $installer ) {
-		return new MyLocalSettingsGenerator( $installer );
-	}
-
-Then add the following to the bottom of this file:
-
-class MyLocalSettingsGenerator extends LocalSettingsGenerator {
-	function getText() {
-		// Modify an existing setting
-		$this->values['wgDefaultSkin'] = 'vector';
-		// add a new setting
-		$ls = parent::getText();
-		return $ls . "\n\$wgUseTex = true;\n";
-	}
-}
-*/
-
 /**
  * @since 1.20
  */
 class InstallerOverrides {
+	private static function getOverrides() {
+		global $IP;
+		static $overrides;
+
+		if ( !$overrides ) {
+			$overrides = [
+				'LocalSettingsGenerator' => 'LocalSettingsGenerator',
+				'WebInstaller' => 'WebInstaller',
+				'CliInstaller' => 'CliInstaller',
+			];
+			foreach ( glob( "$IP/mw-config/overrides/*.php" ) as $file ) {
+				require $file;
+			}
+		}
+
+		return $overrides;
+	}
+
 	/**
 	 * Instantiates and returns an instance of LocalSettingsGenerator or its descendant classes
 	 * @param Installer $installer
 	 * @return LocalSettingsGenerator
 	 */
 	public static function getLocalSettingsGenerator( Installer $installer ) {
-		return new LocalSettingsGenerator( $installer );
+		$className = self::getOverrides()['LocalSettingsGenerator'];
+		return new $className( $installer );
 	}
 
 	/**
@@ -65,7 +58,8 @@ class InstallerOverrides {
 	 * @return WebInstaller
 	 */
 	public static function getWebInstaller( WebRequest $request ) {
-		return new WebInstaller( $request );
+		$className = self::getOverrides()['WebInstaller'];
+		return new $className( $request );
 	}
 
 	/**
@@ -76,6 +70,7 @@ class InstallerOverrides {
 	 * @return CliInstaller
 	 */
 	public static function getCliInstaller( $siteName, $admin = null, array $options = [] ) {
-		return new CliInstaller( $siteName, $admin, $options );
+		$className = self::getOverrides()['CliInstaller'];
+		return new $className( $siteName, $admin, $options );
 	}
 }
