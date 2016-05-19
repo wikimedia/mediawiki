@@ -72,7 +72,7 @@ td.diff-deletedline {
 td.diff-context {
 	background: #f9f9f9;
 	border-color: #e6e6e6;
-	color: #333333;
+	color: #333;
 }
 
 .diffchange {

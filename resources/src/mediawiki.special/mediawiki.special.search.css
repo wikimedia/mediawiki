@@ -44,13 +44,13 @@ div.searchresult {
 	font-size: 108%;
 }
 .mw-search-result-data {
-	color: green;
+	color: #0f0;
 	font-size: 97%;
 }
 .mw-search-profile-tabs {
 	background-color: #f3f3f3;
 	margin-top: 1em;
-	border: 1px solid silver;
+	border: 1px solid #c0c0c0;
 }
 .mw-search-profile-tabs div.search-types {
 	float: left;
@@ -71,7 +71,7 @@ div.searchresult {
 	padding: 0.5em;
 }
 .mw-search-profile-tabs div.search-types ul li.current a {
-	color: #333333;
+	color: #333;
 	cursor: default;
 }
 .mw-search-profile-tabs div.search-types ul li.current a:hover {
@@ -90,7 +90,7 @@ fieldset#mw-searchoptions {
 	padding: 0.5em 0.75em 0.75em 0.75em;
 	border: none;
 	background-color: #f9f9f9;
-	border: 1px solid silver;
+	border: 1px solid #c0c0c0;
 	border-top-width: 0;
 }
 fieldset#mw-searchoptions legend {
