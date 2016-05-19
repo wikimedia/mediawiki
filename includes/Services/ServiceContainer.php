@@ -56,6 +56,11 @@ class ServiceContainer implements DestructibleService {
 	private $serviceInstantiators = [];
 
 	/**
+	 * @var boolean[] disabled status, per service name
+	 */
+	private $disabled = [];
+
+	/**
 	 * @var array
 	 */
 	private $extraInstantiationParams;
@@ -124,6 +129,28 @@ class ServiceContainer implements DestructibleService {
 		foreach ( $serviceInstantiators as $name => $instantiator ) {
 			$this->defineService( $name, $instantiator );
 		}
+	}
+
+	/**
+	 * Imports all wiring defined in $container. Wiring defined in $container
+	 * will override any wiring already defined locally. However, already
+	 * existing service instances will be preserved.
+	 *
+	 * @since 1.28
+	 *
+	 * @param ServiceContainer $container
+	 * @param string[] $skip A list of service names to skip during import
+	 */
+	public function importWiring( ServiceContainer $container, $skip = [] ) {
+		$newInstantiators = array_diff_key(
+			$container->serviceInstantiators,
+			array_flip( $skip )
+		);
+
+		$this->serviceInstantiators = array_merge(
+			$this->serviceInstantiators,
+			$newInstantiators
+		);
 	}
 
 	/**
@@ -220,6 +247,7 @@ class ServiceContainer implements DestructibleService {
 		}
 
 		$this->serviceInstantiators[$name] = $instantiator;
+		unset( $this->disabled[$name] );
 	}
 
 	/**
@@ -244,9 +272,7 @@ class ServiceContainer implements DestructibleService {
 	public function disableService( $name ) {
 		$this->resetService( $name );
 
-		$this->redefineService( $name, function() use ( $name ) {
-			throw new ServiceDisabledException( $name );
-		} );
+		$this->disabled[$name] = true;
 	}
 
 	/**
@@ -282,6 +308,7 @@ class ServiceContainer implements DestructibleService {
 		}
 
 		unset( $this->services[$name] );
+		unset( $this->disabled[$name] );
 	}
 
 	/**
@@ -299,13 +326,18 @@ class ServiceContainer implements DestructibleService {
 	 * @param string $name The service name
 	 *
 	 * @throws NoSuchServiceException if $name is not a known service.
-	 * @throws ServiceDisabledException if this container has already been destroyed.
+	 * @throws ContainerDisabledException if this container has already been destroyed.
+	 * @throws ServiceDisabledException if the requested service has been disabled.
 	 *
 	 * @return object The service instance
 	 */
 	public function getService( $name ) {
 		if ( $this->destroyed ) {
 			throw new ContainerDisabledException();
+		}
+
+		if ( isset( $this->disabled[$name] ) ) {
+			throw new ServiceDisabledException( $name );
 		}
 
 		if ( !isset( $this->services[$name] ) ) {
@@ -327,6 +359,7 @@ class ServiceContainer implements DestructibleService {
 				$this->serviceInstantiators[$name],
 				array_merge( [ $this ], $this->extraInstantiationParams )
 			);
+			// NOTE: when adding more wiring logic here, make sure copyWiring() is kept in sync!
 		} else {
 			throw new NoSuchServiceException( $name );
 		}
