@@ -269,7 +269,7 @@ class Linker {
 	 */
 	public static function linkKnown(
 		$target, $html = null, $customAttribs = [],
-		$query = [], $options = [ 'known', 'noclasses' ]
+		$query = [], $options = [ 'known' ]
 	) {
 		return self::link( $target, $html, $customAttribs, $query, $options );
 	}
