@@ -13,6 +13,7 @@
 	timeoutForSmallTests="10"
 	timeoutForMediumTests="30"
 	timeoutForLargeTests="60"
+	beStrictAboutChangesToGlobalState="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
 	beStrictAboutTestSize="true"
