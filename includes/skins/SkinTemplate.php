@@ -862,7 +862,7 @@ class SkinTemplate extends Skin {
 		];
 
 		// parameters
-		$action = $request->getVal( 'action', 'view' );
+		$action = Action::getActionName( $this );
 
 		$userCanRead = $title->quickUserCan( 'read', $user );
 
@@ -1082,7 +1082,7 @@ class SkinTemplate extends Skin {
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $pageLang->getPreferredVariant();
-					if ( Action::getActionName( $this ) === 'view' ) {
+					if ( $action === 'view' ) {
 						$params = $request->getQueryValues();
 						unset( $params['title'] );
 					} else {
