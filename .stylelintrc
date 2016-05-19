@@ -9,5 +9,8 @@
 		"declaration-bang-space-before": [ "always" ],
 		"declaration-colon-space-after": [ "always" ],
 		"declaration-colon-space-before": [ "never" ],
+
+		"font-family-name-quotes": [ "single-unless-keyword" ],
+		"font-weight-notation": [ "named-where-possible" ]
 	}
 }
