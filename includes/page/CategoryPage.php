@@ -71,13 +71,13 @@ class CategoryPage extends Article {
 		}
 
 		$title = $this->getTitle();
-		if ( NS_CATEGORY == $title->getNamespace() ) {
+		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$this->openShowCategory();
 		}
 
 		parent::view();
 
-		if ( NS_CATEGORY == $title->getNamespace() ) {
+		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$this->closeShowCategory();
 		}
 	}
