@@ -408,3 +408,7 @@
 	path = extensions/Comments
 	url = https://github.com/miraheze/mediawiki-extensions-Comments.git
 	branch = master
+[submodule "extensions/ScratchBlocks"]
+	path = extensions/ScratchBlocks
+	url = https://github.com/tjvr/wiki-scratchblocks.git
+	branch = master
