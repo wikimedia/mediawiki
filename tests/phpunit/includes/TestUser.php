@@ -78,6 +78,12 @@ class TestUser {
 			$this->user->removeGroup( $group );
 		}
 		if ( $change ) {
+			// Disable CAS check before saving. The User object may have been initialized from cached
+			// information that may be out of whack with the database during testing. If tests were
+			// perfectly isolated, this would not happen. But if it does happen, let's just ignore the
+			// inconsistency, and just write the data we want - during testing, we are not worried
+			// about data loss.
+			$this->user->mTouched = '';
 			$this->user->saveSettings();
 		}
 	}
