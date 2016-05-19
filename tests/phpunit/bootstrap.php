@@ -17,7 +17,7 @@ EOF;
 class MediaWikiPHPUnitBootstrap {
 	public function __destruct() {
 		// Return to real wiki db, so profiling data is preserved
-		MediaWikiTestCase::teardownTestDB();
+		MediaWikiTestEnvironment::teardownTestDB();
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();

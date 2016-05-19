@@ -123,7 +123,7 @@ class LBFactorySimple extends LBFactory {
 		return $lbs;
 	}
 
-	private function newLoadBalancer( array $servers ) {
+	protected function newLoadBalancer( array $servers ) {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams(),
 			[

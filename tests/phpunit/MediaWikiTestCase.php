@@ -6,6 +6,7 @@ use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\Database;
 
 /**
  * @since 1.18
@@ -50,15 +51,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $db;
 
 	/**
-	 * @var array
+	 * @var array tables with data
 	 * @since 1.19
 	 */
-	protected $tablesUsed = []; // tables with data
-
-	private static $useTemporaryTables = true;
-	private static $reuseDB = false;
-	private static $dbSetup = false;
-	private static $oldTablePrefix = '';
+	protected $tablesUsed = [];
 
 	/**
 	 * Original value of PHP's error_reporting setting.
@@ -97,27 +93,27 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $loggers = [];
 
 	/**
-	 * Table name prefixes. Oracle likes it shorter.
+	 * @var MediaWikiTestEnvironment
 	 */
-	const DB_PREFIX = 'unittest_';
-	const ORA_DB_PREFIX = 'ut_';
+	protected $testEnvironment;
 
 	/**
-	 * @var array
-	 * @since 1.18
+	 * Table name prefixes. Oracle likes it shorter.
+	 * @deprecated use prefixes from MediaWikiTestEnvironment directly
 	 */
-	protected $supportedDBs = [
-		'mysql',
-		'sqlite',
-		'postgres',
-		'oracle'
-	];
+	const DB_PREFIX = MediaWikiTestEnvironment::DB_PREFIX;
+	const ORA_DB_PREFIX = MediaWikiTestEnvironment::ORA_DB_PREFIX;
 
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
+		$this->called['__construct'] = true;
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
+		$this->testEnvironment = new MediaWikiTestEnvironment(
+			$this->usesTemporaryTables(),
+			$this->reusesDB()
+		);
 	}
 
 	public function __destruct() {
@@ -184,7 +180,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @note This is called by PHPUnitMaintClass::finalSetup.
 	 *
-	 * @see MediaWikiServices::resetGlobalInstance()
+	 * @see resetGlobalServices()
 	 *
 	 * @param Config $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices. Only used for the first call to this method.
@@ -194,203 +190,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		static $services = null;
 
 		if ( !$services ) {
-			$services = self::resetGlobalServices( $bootstrapConfig );
+			$services = MediaWikiTestEnvironment::resetGlobalServices( $bootstrapConfig );
 		}
 		return $services;
 	}
 
-	/**
-	 * Reset global services, and install testing environment.
-	 * This is the testing equivalent of MediaWikiServices::resetGlobalInstance().
-	 * This should only be used to set up the testing environment, not when
-	 * running unit tests. Use MediaWikiTestCase::overrideMwServices() for that.
-	 *
-	 * @see MediaWikiServices::resetGlobalInstance()
-	 * @see prepareServices()
-	 * @see MediaWikiTestCase::overrideMwServices()
-	 *
-	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
-	 *        MediaWikiServices.
-	 */
-	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
-		$oldServices = MediaWikiServices::getInstance();
-		$oldConfigFactory = $oldServices->getConfigFactory();
-
-		$testConfig = self::makeTestConfig( $bootstrapConfig );
-
-		MediaWikiServices::resetGlobalInstance( $testConfig );
-
-		$serviceLocator = MediaWikiServices::getInstance();
-		self::installTestServices(
-			$oldConfigFactory,
-			$serviceLocator
-		);
-		return $serviceLocator;
-	}
-
-	/**
-	 * Create a config suitable for testing, based on a base config, default overrides,
-	 * and custom overrides.
-	 *
-	 * @param Config|null $baseConfig
-	 * @param Config|null $customOverrides
-	 *
-	 * @return Config
-	 */
-	private static function makeTestConfig(
-		Config $baseConfig = null,
-		Config $customOverrides = null
-	) {
-		$defaultOverrides = new HashConfig();
-
-		if ( !$baseConfig ) {
-			$baseConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
-		}
-
-		/* Some functions require some kind of caching, and will end up using the db,
-		 * which we can't allow, as that would open a new connection for mysql.
-		 * Replace with a HashBag. They would not be going to persist anyway.
-		 */
-		$hashCache = [ 'class' => 'HashBagOStuff', 'reportDupes' => false ];
-		$objectCaches = [
-				CACHE_DB => $hashCache,
-				CACHE_ACCEL => $hashCache,
-				CACHE_MEMCACHED => $hashCache,
-				'apc' => $hashCache,
-				'apcu' => $hashCache,
-				'xcache' => $hashCache,
-				'wincache' => $hashCache,
-			] + $baseConfig->get( 'ObjectCaches' );
-
-		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
-		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
-		$defaultOverrides->set( 'JobTypeConf', [ 'default' => [ 'class' => 'JobQueueMemory' ] ] );
-
-		// Use a fast hash algorithm to hash passwords.
-		$defaultOverrides->set( 'PasswordDefault', 'A' );
-
-		$testConfig = $customOverrides
-			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
-			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );
-
-		return $testConfig;
-	}
-
-	/**
-	 * @param ConfigFactory $oldConfigFactory
-	 * @param MediaWikiServices $newServices
-	 *
-	 * @throws MWException
-	 */
-	private static function installTestServices(
-		ConfigFactory $oldConfigFactory,
-		MediaWikiServices $newServices
-	) {
-		// Use bootstrap config for all configuration.
-		// This allows config overrides via global variables to take effect.
-		$bootstrapConfig = $newServices->getBootstrapConfig();
-		$newServices->resetServiceForTesting( 'ConfigFactory' );
-		$newServices->redefineService(
-			'ConfigFactory',
-			self::makeTestConfigFactoryInstantiator(
-				$oldConfigFactory,
-				[ 'main' =>  $bootstrapConfig ]
-			)
-		);
-	}
-
-	/**
-	 * @param ConfigFactory $oldFactory
-	 * @param Config[] $configurations
-	 *
-	 * @return Closure
-	 */
-	private static function makeTestConfigFactoryInstantiator(
-		ConfigFactory $oldFactory,
-		array $configurations
-	) {
-		return function( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
-			$factory = new ConfigFactory();
-
-			// clone configurations from $oldFactory that are not overwritten by $configurations
-			$namesToClone = array_diff(
-				$oldFactory->getConfigNames(),
-				array_keys( $configurations )
-			);
-
-			foreach ( $namesToClone as $name ) {
-				$factory->register( $name, $oldFactory->makeConfig( $name ) );
-			}
-
-			foreach ( $configurations as $name => $config ) {
-				$factory->register( $name, $config );
-			}
-
-			return $factory;
-		};
-	}
-
-	/**
-	 * Resets some well known services that typically have state that may interfere with unit tests.
-	 * This is a lightweight alternative to resetGlobalServices().
-	 *
-	 * @note There is no guarantee that no references remain to stale service instances destroyed
-	 * by a call to doLightweightServiceReset().
-	 *
-	 * @throws MWException if called outside of PHPUnit tests.
-	 *
-	 * @see resetGlobalServices()
-	 */
-	private function doLightweightServiceReset() {
-		global $wgRequest;
-
-		JobQueueGroup::destroySingletons();
-		ObjectCache::clear();
-		$services = MediaWikiServices::getInstance();
-		$services->resetServiceForTesting( 'MainObjectStash' );
-		$services->resetServiceForTesting( 'LocalServerObjectCache' );
-		$services->getMainWANObjectCache()->clearProcessCache();
-		FileBackendGroup::destroySingleton();
-
-		// TODO: move global state into MediaWikiServices
-		RequestContext::resetMain();
-		if ( session_id() !== '' ) {
-			session_write_close();
-			session_id( '' );
-		}
-
-		$wgRequest = new FauxRequest();
-		MediaWiki\Session\SessionManager::resetCache();
-	}
-
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		// Reset all caches between tests.
-		$this->doLightweightServiceReset();
+		$this->testEnvironment->doLightweightServiceReset();
 
 		$needsResetDB = false;
 
-		if ( !self::$dbSetup || $this->needsDB() ) {
+		if ( $this->needsDB() ) {
 			// set up a DB connection for this test to use
+			$this->testEnvironment->setupTestDB();
 
-			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-			self::$reuseDB = $this->getCliArg( 'reuse-db' );
-
+			// Init DB connection for use by tests.
 			$this->db = wfGetDB( DB_MASTER );
 
-			$this->checkDbIsSupported();
-
-			if ( !self::$dbSetup ) {
-				$this->setupAllTestDBs();
-				$this->addCoreDBData();
-
-				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-					$this->resetDB( $this->db, $this->tablesUsed );
-				}
+			if ( ( $this->db->getType() == 'oracle' || $this->usesTemporaryTables() )
+				&& $this->reusesDB()
+			) {
+				$this->resetDB( $this->db, $this->tablesUsed );
 			}
 
-			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
-			// is available in subclass's setUpBeforeClass() and setUp() methods.
-			// This would also remove the need for the HACK that is oncePerClass().
+			// NOTE: do this only once per database cloak
+			$this->addCoreDBData();
+
 			if ( $this->oncePerClass() ) {
 				$this->addDBDataOnce();
 			}
@@ -428,7 +254,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return bool
 	 */
 	public function usesTemporaryTables() {
-		return self::$useTemporaryTables;
+		return !$this->getCliArg( 'use-normal-tables' );
+	}
+
+	/**
+	 * @since 1.27
+	 *
+	 * @return bool
+	 */
+	public function reusesDB() {
+		return (bool)$this->getCliArg( 'reuse-db' );
 	}
 
 	/**
@@ -597,6 +432,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Make sure MediaWikiTestCase extending classes have called their
+	 * parent __construct method
+	 *
+	 * With strict coverage activated in PHP_CodeCoverage, this test would be
+	 * marked as risky without the following annotation (T152923).
+	 * @coversNothing
+	 */
+	final public function testMediaWikiTestCaseParentConstructCalled() {
+		$this->assertArrayHasKey( '__construct', $this->called,
+			static::class . '::__construct() must call parent::__construct()'
+		);
+	}
+
+	/**
 	 * Sets a service, maintaining a stashed version of the previous service to be
 	 * restored in tearDown
 	 *
@@ -608,7 +457,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function setService( $name, $object ) {
 		// If we did not yet override the service locator, so so now.
 		if ( MediaWikiServices::getInstance() === self::$serviceLocator ) {
-			$this->overrideMwServices();
+			$this->testEnvironment->overrideMwServices();
 		}
 
 		MediaWikiServices::getInstance()->disableService( $name );
@@ -809,49 +658,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Stashes the global instance of MediaWikiServices, and installs a new one,
-	 * allowing test cases to override settings and services.
-	 * The previous instance of MediaWikiServices will be restored on tearDown.
-	 *
 	 * @since 1.27
-	 *
-	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
-	 * @param callable[] $services An associative array of services to re-define. Keys are service
-	 *        names, values are callables.
-	 *
-	 * @return MediaWikiServices
-	 * @throws MWException
+	 * @see MediaWikiTestEnvironment::overrideMwServices
+	 * @deprecated use MediaWikiTestEnvironment directly
 	 */
 	protected function overrideMwServices( Config $configOverrides = null, array $services = [] ) {
-		if ( !$configOverrides ) {
-			$configOverrides = new HashConfig();
-		}
-
-		$oldInstance = MediaWikiServices::getInstance();
-		$oldConfigFactory = $oldInstance->getConfigFactory();
-
-		$testConfig = self::makeTestConfig( null, $configOverrides );
-		$newInstance = new MediaWikiServices( $testConfig );
-
-		// Load the default wiring from the specified files.
-		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance.
-		$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
-		$newInstance->loadWiringFiles( $wiringFiles );
-
-		// Provide a traditional hook point to allow extensions to configure services.
-		Hooks::run( 'MediaWikiServices', [ $newInstance ] );
-
-		foreach ( $services as $name => $callback ) {
-			$newInstance->redefineService( $name, $callback );
-		}
-
-		self::installTestServices(
-			$oldConfigFactory,
-			$newInstance
-		);
-		MediaWikiServices::forceGlobalInstance( $newInstance );
-
-		return $newInstance;
+		return $this->testEnvironment->overrideMwServices( $configOverrides, $services );
 	}
 
 	/**
@@ -944,7 +756,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.18
 	 */
 	public function dbPrefix() {
-		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
+		$db = $this->db ? $this->db :  wfGetDB( DB_MASTER );
+		return $db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
 
 	/**
@@ -1088,173 +901,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Restores MediaWiki to using the table set (table prefix) it was using before
-	 * setupTestDB() was called. Useful if we need to perform database operations
-	 * after the test run has finished (such as saving logs or profiling info).
-	 *
-	 * @since 1.21
-	 */
-	public static function teardownTestDB() {
-		global $wgJobClasses;
-
-		if ( !self::$dbSetup ) {
-			return;
-		}
-
-		foreach ( $wgJobClasses as $type => $class ) {
-			// Delete any jobs under the clone DB (or old prefix in other stores)
-			JobQueueGroup::singleton()->get( $type )->delete();
-		}
-
-		CloneDatabase::changePrefix( self::$oldTablePrefix );
-
-		self::$oldTablePrefix = false;
-		self::$dbSetup = false;
-	}
-
-	/**
-	 * Setups a database with the given prefix.
-	 *
-	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
-	 * Otherwise, it will clone the tables and change the prefix.
-	 *
-	 * Clones all tables in the given database (whatever database that connection has
-	 * open), to versions with the test prefix.
-	 *
-	 * @param IMaintainableDatabase $db Database to use
-	 * @param string $prefix Prefix to use for test tables
-	 * @return bool True if tables were cloned, false if only the prefix was changed
-	 */
-	protected static function setupDatabaseWithTestPrefix( IMaintainableDatabase $db, $prefix ) {
-		$tablesCloned = self::listTables( $db );
-		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
-		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-			CloneDatabase::changePrefix( $prefix );
-
-			return false;
-		} else {
-			$dbClone->cloneTableStructure();
-			return true;
-		}
-	}
-
-	/**
-	 * Set up all test DBs
-	 */
-	public function setupAllTestDBs() {
-		global $wgDBprefix;
-
-		self::$oldTablePrefix = $wgDBprefix;
-
-		$testPrefix = $this->dbPrefix();
-
-		// switch to a temporary clone of the database
-		self::setupTestDB( $this->db, $testPrefix );
-
-		if ( self::isUsingExternalStoreDB() ) {
-			self::setupExternalStoreTestDBs( $testPrefix );
-		}
-	}
-
-	/**
-	 * Creates an empty skeleton of the wiki database by cloning its structure
-	 * to equivalent tables using the given $prefix. Then sets MediaWiki to
-	 * use the new set of tables (aka schema) instead of the original set.
-	 *
-	 * This is used to generate a dummy table set, typically consisting of temporary
-	 * tables, that will be used by tests instead of the original wiki database tables.
-	 *
-	 * @since 1.21
-	 *
-	 * @note the original table prefix is stored in self::$oldTablePrefix. This is used
-	 * by teardownTestDB() to return the wiki to using the original table set.
-	 *
-	 * @note this method only works when first called. Subsequent calls have no effect,
-	 * even if using different parameters.
-	 *
-	 * @param Database $db The database connection
-	 * @param string $prefix The prefix to use for the new table set (aka schema).
-	 *
-	 * @throws MWException If the database table prefix is already $prefix
-	 */
-	public static function setupTestDB( Database $db, $prefix ) {
-		if ( self::$dbSetup ) {
-			return;
-		}
-
-		if ( $db->tablePrefix() === $prefix ) {
-			throw new MWException(
-				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
-		}
-
-		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
-		// and Database no longer use global state.
-
-		self::$dbSetup = true;
-
-		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
-			return;
-		}
-
-		// Assuming this isn't needed for External Store database, and not sure if the procedure
-		// would be available there.
-		if ( $db->getType() == 'oracle' ) {
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-		}
-	}
-
-	/**
-	 * Clones the External Store database(s) for testing
-	 *
-	 * @param string $testPrefix Prefix for test tables
-	 */
-	protected static function setupExternalStoreTestDBs( $testPrefix ) {
-		$connections = self::getExternalStoreDatabaseConnections();
-		foreach ( $connections as $dbw ) {
-			// Hack: cloneTableStructure sets $wgDBprefix to the unit test
-			// prefix,.  Even though listTables now uses tablePrefix, that
-			// itself is populated from $wgDBprefix by default.
-
-			// We have to set it back, or we won't find the original 'blobs'
-			// table to copy.
-
-			$dbw->tablePrefix( self::$oldTablePrefix );
-			self::setupDatabaseWithTestPrefix( $dbw, $testPrefix );
-		}
-	}
-
-	/**
-	 * Gets master database connections for all of the ExternalStoreDB
-	 * stores configured in $wgDefaultExternalStore.
-	 *
-	 * @return Database[] Array of Database master connections
-	 */
-
-	protected static function getExternalStoreDatabaseConnections() {
-		global $wgDefaultExternalStore;
-
-		/** @var ExternalStoreDB $externalStoreDB */
-		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
-		$defaultArray = (array)$wgDefaultExternalStore;
-		$dbws = [];
-		foreach ( $defaultArray as $url ) {
-			if ( strpos( $url, 'DB://' ) === 0 ) {
-				list( $proto, $cluster ) = explode( '://', $url, 2 );
-				// Avoid getMaster() because setupDatabaseWithTestPrefix()
-				// requires Database instead of plain DBConnRef/IDatabase
-				$dbws[] = $externalStoreDB->getMaster( $cluster );
-			}
-		}
-
-		return $dbws;
-	}
-
-	/**
-	 * Check whether ExternalStoreDB is being used
-	 *
-	 * @return bool True if it's being used
+	 * Empty all tables so they can be repopulated for tests
 	 */
 	protected static function isUsingExternalStoreDB() {
 		global $wgDefaultExternalStore;
@@ -1352,60 +999,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// New in phpunit-mock-objects 3.2 (phpunit 5.4.0)
 			// ->disallowMockingUnknownTypes()
 			->getMock();
-	}
-
-	private static function unprefixTable( &$tableName, $ind, $prefix ) {
-		$tableName = substr( $tableName, strlen( $prefix ) );
-	}
-
-	private static function isNotUnittest( $table ) {
-		return strpos( $table, 'unittest_' ) !== 0;
-	}
-
-	/**
-	 * @since 1.18
-	 *
-	 * @param IMaintainableDatabase $db
-	 *
-	 * @return array
-	 */
-	public static function listTables( IMaintainableDatabase $db ) {
-		$prefix = $db->tablePrefix();
-		$tables = $db->listTables( $prefix, __METHOD__ );
-
-		if ( $db->getType() === 'mysql' ) {
-			static $viewListCache = null;
-			if ( $viewListCache === null ) {
-				$viewListCache = $db->listViews( null, __METHOD__ );
-			}
-			// T45571: cannot clone VIEWs under MySQL
-			$tables = array_diff( $tables, $viewListCache );
-		}
-		array_walk( $tables, [ __CLASS__, 'unprefixTable' ], $prefix );
-
-		// Don't duplicate test tables from the previous fataled run
-		$tables = array_filter( $tables, [ __CLASS__, 'isNotUnittest' ] );
-
-		if ( $db->getType() == 'sqlite' ) {
-			$tables = array_flip( $tables );
-			// these are subtables of searchindex and don't need to be duped/dropped separately
-			unset( $tables['searchindex_content'] );
-			unset( $tables['searchindex_segdir'] );
-			unset( $tables['searchindex_segments'] );
-			$tables = array_flip( $tables );
-		}
-
-		return $tables;
-	}
-
-	/**
-	 * @throws MWException
-	 * @since 1.18
-	 */
-	protected function checkDbIsSupported() {
-		if ( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
-			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
-		}
 	}
 
 	/**
