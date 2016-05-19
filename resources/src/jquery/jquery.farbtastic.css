@@ -35,13 +35,13 @@
 }
 .farbtastic .wheel {
 	/* @embed */
-	background: url(images/wheel.png) no-repeat;
+	background: url( images/wheel.png ) no-repeat;
 	width: 195px;
 	height: 195px;
 }
 .farbtastic .overlay {
 	/* @embed */
-	background: url(images/mask.png) no-repeat;
+	background: url( images/mask.png ) no-repeat;
 }
 .farbtastic .marker {
 	width: 17px;
@@ -49,5 +49,5 @@
 	margin: -8px 0 0 -8px;
 	overflow: hidden;
 	/* @embed */
-	background: url(images/marker.png) no-repeat;
+	background: url( images/marker.png ) no-repeat;
 }

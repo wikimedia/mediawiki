@@ -6,41 +6,41 @@
  * and using the .background-image-svg mixin. */
 
 /* SVG support using a transparent gradient to guarantee cross-browser
- * compatibility (browsers able to understand gradient syntax support also SVG).
+ * compatibility ( browsers able to understand gradient syntax support also SVG ).
  * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 
 .mw-body a.external,
 .link-https {
-	background: url(images/external-ltr.png) center right no-repeat;
+	background: url( images/external-ltr.png ) center right no-repeat;
 	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/external-ltr.svg);
+	background-image: -webkit-linear-gradient( transparent, transparent ), url( images/external-ltr.svg );
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/external-ltr.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/external-ltr.svg );
 	padding-right: 15px;
 }
 
 .mw-body a.external[href^="mailto:"],
 .link-mailto {
-	background: url(images/mail.png) center right no-repeat;
+	background: url( images/mail.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/mail.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/mail.svg );
 	padding-right: 15px;
 }
 
 .mw-body a.external[href^="ftp://"],
 .link-ftp {
-	background: url(images/ftp-ltr.png) center right no-repeat;
+	background: url( images/ftp-ltr.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/ftp-ltr.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/ftp-ltr.svg );
 	padding-right: 15px;
 }
 
 .mw-body a.external[href^="irc://"],
 .mw-body a.external[href^="ircs://"],
 .link-irc {
-	background: url(images/chat-ltr.png) center right no-repeat;
+	background: url( images/chat-ltr.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/chat-ltr.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/chat-ltr.svg );
 	padding-right: 15px;
 }
 
@@ -51,9 +51,9 @@
 .mw-body a.external[href$=".wav"], .mw-body a.external[href$=".WAV"],
 .mw-body a.external[href$=".wma"], .mw-body a.external[href$=".WMA"],
 .link-audio {
-	background: url(images/audio-ltr.png) center right no-repeat;
+	background: url( images/audio-ltr.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/audio-ltr.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/audio-ltr.svg );
 	padding-right: 15px;
 }
 
@@ -62,9 +62,9 @@
 .mw-body a.external[href$=".mpeg"], .mw-body a.external[href$=".MPEG"],
 .mw-body a.external[href$=".mpg"], .mw-body a.external[href$=".MPG"],
 .link-video {
-	background: url(images/video.png) center right no-repeat;
+	background: url( images/video.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/video.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/video.svg );
 	padding-right: 15px;
 }
 
@@ -72,9 +72,9 @@
 .mw-body a.external[href*=".pdf#"], .mw-body a.external[href*=".PDF#"],
 .mw-body a.external[href*=".pdf?"], .mw-body a.external[href*=".PDF?"],
 .link-document {
-	background: url(images/document-ltr.png) center right no-repeat;
+	background: url( images/document-ltr.png ) center right no-repeat;
 	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/document-ltr.svg);
+	background-image: linear-gradient( transparent, transparent ), url( images/document-ltr.svg );
 	padding-right: 15px;
 }
 

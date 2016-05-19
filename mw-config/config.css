@@ -84,7 +84,7 @@
 	display: list-item;
 	line-height: 1.5em;
 	/* @embed */
-	list-style-image: url(images/bullet.gif);
+	list-style-image: url( images/bullet.gif );
 	list-style-type: square;
 }
 
@@ -161,7 +161,7 @@
 }
 
 .config-download-link a {
-	background: url(images/download-32.png) no-repeat center left;
+	background: url( images/download-32.png ) no-repeat center left;
 	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
 	height: 32px; /* provide enough vertical room for the image */
 	display: inline-block; /* allow the height property (above) to work */
@@ -180,7 +180,7 @@
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
 	/* @embed */
-	background-image: url(images/help-question.gif);
+	background-image: url( images/help-question.gif );
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -191,7 +191,7 @@
 
 .config-help-field-hint:hover {
 	/* @embed */
-	background-image: url(images/help-question-hover.gif);
+	background-image: url( images/help-question-hover.gif );
 }
 
 .config-help-field-data {

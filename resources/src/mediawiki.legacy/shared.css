@@ -613,7 +613,7 @@ table.mw_metadata ul.metadata-langlist {
 }
 
 .mw-ajax-loader {
-	background-image: url(images/ajax-loader.gif);
+	background-image: url( images/ajax-loader.gif );
 	background-position: center center;
 	background-repeat: no-repeat;
 	padding: 16px;
@@ -624,7 +624,7 @@ table.mw_metadata ul.metadata-langlist {
 .mw-small-spinner {
 	padding: 10px !important;
 	margin-right: 0.6em;
-	background-image: url(images/spinner.gif);
+	background-image: url( images/spinner.gif );
 	background-position: center center;
 	background-repeat: no-repeat;
 }
@@ -763,7 +763,7 @@ ol:lang(or) li {
 	margin-left: 2px;
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
-	background-image: url(images/help-question.gif);
+	background-image: url( images/help-question.gif );
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -773,7 +773,7 @@ ol:lang(or) li {
 }
 
 .mw-help-field-hint:hover {
-	background-image: url(images/help-question-hover.gif);
+	background-image: url( images/help-question-hover.gif );
 }
 
 .mw-help-field-data {

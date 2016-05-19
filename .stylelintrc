@@ -11,6 +11,16 @@
 		"declaration-colon-space-before": [ "never" ],
 
 		"font-family-name-quotes": [ "single-unless-keyword" ],
-		"font-weight-notation": [ "named-where-possible" ]
+		"font-weight-notation": [ "named-where-possible" ],
+
+		"function-calc-no-unspaced-operator": true,
+		"function-comma-newline-after": "never-multi-line",
+		"function-comma-newline-before": "never-multi-line",
+		"function-comma-space-after": [ "always" ],
+		"function-comma-space-before": [ "never" ],
+		"function-parentheses-newline-inside": [ "never-multi-line" ],
+		"function-parentheses-space-inside": [ "always" ],
+		"function-url-quotes": [ "none" ],
+		"function-whitespace-after": [ "always" ],
 	}
 }

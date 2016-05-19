@@ -69,10 +69,10 @@
 	counter-increment: list-item;
 }
 .hlist ol > li:before {
-	content: counter(list-item) " ";
+	content: counter( list-item ) " ";
 }
 .hlist dd ol > li:first-child:before,
 .hlist dt ol > li:first-child:before,
 .hlist li ol > li:first-child:before {
-	content: "(" counter(list-item) " ";
+	content: "(" counter( list-item ) " ";
 }
