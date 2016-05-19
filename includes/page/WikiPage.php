@@ -512,7 +512,29 @@ class WikiPage implements Page, IDBAccessObject {
 				$cache->makeKey( 'page', 'content-model', $this->getLatest() ),
 				$cache::TTL_MONTH,
 				function () {
-					$rev = $this->getRevision();
+					// Old code
+					$revOldCode = $this->getRevision();
+					// New code
+					$revNewCode = Revision::newFromId( $this->getTitle()->getLatestRevID() );
+
+					if ( $revOldCode->getId() != $revNewCode->getId() ) {
+						// DEBUG BREAKPOINT (Both Ids will be the same)
+						sleep( 1 );
+					}
+
+					// OLD code object does NOT have mTitle set
+					// New code object DOES have mTitle set
+
+					// OLD code has mRefreshMutableFields = 1
+					// NEW code has mRefreshMutableFields = null?
+
+					// RESULT.
+					// The old code calls Revision->getTitle
+
+					// If $rev (the new one) is used the test passes.
+					// If $revOldCode is used the test fails
+					$rev = $revOldCode;
+
 					if ( $rev ) {
 						// Look at the revision's actual content model
 						return $rev->getContentModel();
