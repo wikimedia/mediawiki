@@ -42,11 +42,11 @@
 }
 
 .mw-notification-type-warn {
-	border-color: #F5BE00; /* yellow */
-	background-color: #FFFFE8;
+	border-color: #f5be00; /* yellow */
+	background-color: #ffffe8;
 }
 
 .mw-notification-type-error {
-	border-color: #EB3941; /* red */
-	background-color: #FFF8F8;
+	border-color: #eb3941; /* red */
+	background-color: #fff8f8;
 }
