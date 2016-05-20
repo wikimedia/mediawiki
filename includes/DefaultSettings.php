@@ -4457,7 +4457,7 @@ $wgPasswordPolicy = [
  * @since 1.27
  * @deprecated since 1.27, for use during development only
  */
-$wgDisableAuthManager = false;
+$wgDisableAuthManager = true;
 
 /**
  * Configure AuthManager
