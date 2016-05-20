@@ -28,23 +28,73 @@
 interface SiteLookup {
 
 	/**
-	 * Returns the site with provided global id, or null if there is no such site.
+	 * Returns the site with provided id in the given scope,
+	 * or null if there no such site is known.
 	 *
 	 * @since 1.25
 	 *
-	 * @param string $globalId
+	 * @param string $id The ID within the given scope.
+	 * @param string $scope The ID's scope.  See the Site::ID_XXX constants for possible values.
+	 *        Parameter supported since 1.28.
 	 *
 	 * @return Site|null
 	 */
-	public function getSite( $globalId );
+	public function getSite( $id, $scope = 'global' );
+
+	/**
+	 * Checks if a site is known.
+	 *
+	 * @since 1.28
+	 *
+	 * @param string $id The ID within the given scope.
+	 * @param string $scope The ID's scope. See the Site::ID_XXX constants for possible values.
+	 *
+	 * @return bool True if a site with the given $id in the given
+	 * $scope is know, false otherwise.
+	 */
+	public function hasSite( $id, $scope = 'global' );
 
 	/**
 	 * Returns a list of all sites.
 	 *
 	 * @since 1.25
 	 *
+	 * @param string[]|null $ids Global IDs of the sites to return. null for all.
+	 *        Parameter supported since 1.28.
+	 *
 	 * @return SiteList
 	 */
-	public function getSites();
+	public function getSites( $ids = null );
+
+	/**
+	 * List IDs of sites in a group.
+	 *
+	 * @since 1.28
+	 *
+	 * @example for the "wikipedia" group in the "family" scope, sites listed may be
+	 *        "enwiki", "dewiki", "zhwiki", etc.
+	 *
+	 * @param string $group The group ID (within the given scope).
+	 * @param string $scope The group ID's scope. See the Site::GROUP_XXX constants
+	 *        for possible values.
+	 *
+	 * @return string[] Global IDs of the sites in the given group, for use with getSies().
+	 */
+	public function listSitesInGroup( $group, $scope = 'family' );
+
+	/**
+	 * Lists names of groups in a scope.
+	 *
+	 * @since 1.28
+	 *
+	 * @example for the "family" scope, the groups "wikipedia", "wiktionary", and
+	 *          "wikisource" may exist.
+	 *
+	 * @param string $scope The group ID's scope. See the Site::GROUP_XXX constants
+	 *        for possible values.
+	 *
+	 * @return string[] Names of groups in the given scope.
+	 */
+	public function listGroups( $scope = 'family' );
 
 }

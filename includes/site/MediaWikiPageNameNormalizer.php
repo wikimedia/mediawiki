@@ -88,33 +88,33 @@ class MediaWikiPageNameNormalizer {
 		$ret = Http::get( $url, [], __METHOD__ );
 
 		if ( $ret === false ) {
-			wfDebugLog( "MediaWikiSite", "call to external site failed: $url" );
+			wfDebugLog( __CLASS__, "call to external site failed: $url" );
 			return false;
 		}
 
 		$data = FormatJson::decode( $ret, true );
 
 		if ( !is_array( $data ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned bad json: " . $ret );
+			wfDebugLog( __CLASS__, "call to <$url> returned bad json: " . $ret );
 			return false;
 		}
 
 		$page = static::extractPageRecord( $data, $pageName );
 
 		if ( isset( $page['missing'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for a missing page title! "
+			wfDebugLog( __CLASS__, "call to <$url> returned a marker for a missing page title! "
 				. $ret );
 			return false;
 		}
 
 		if ( isset( $page['invalid'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for an invalid page title! "
+			wfDebugLog( __CLASS__, "call to <$url> returned a marker for an invalid page title! "
 				. $ret );
 			return false;
 		}
 
 		if ( !isset( $page['title'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> did not return a page title! " . $ret );
+			wfDebugLog( __CLASS__, "call to <$url> did not return a page title! " . $ret );
 			return false;
 		}
 
