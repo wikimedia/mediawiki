@@ -271,10 +271,9 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extensions to override.
-		$this->lacksSameOriginSecurity = !Hooks::run( 'RequestHasSameOriginSecurity', array( $request ) );
+		$this->lacksSameOriginSecurity = !Hooks::run( 'RequestHasSameOriginSecurity', [ $request ] );
 		return $this->lacksSameOriginSecurity;
 	}
-
 
 	/**
 	 * Get the ApiErrorFormatter object associated with current request

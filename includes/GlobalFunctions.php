@@ -2461,7 +2461,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 	// accomodating, because very long commands probably include user
 	// input. See T129506.
 	if ( strlen( $cmd ) > SHELL_MAX_ARG_STRLEN ) {
-		throw new Exception( __METHOD__ . '(): total length of $cmd must not exceed SHELL_MAX_ARG_STRLEN' );
+		throw new Exception( __METHOD__ .
+			'(): total length of $cmd must not exceed SHELL_MAX_ARG_STRLEN' );
 	}
 
 	$desc = [
