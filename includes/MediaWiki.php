@@ -667,10 +667,10 @@ class MediaWiki {
 		$trxLimits = $this->config->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		if ( $request->wasPosted() ) {
-			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
-		} else {
+		if ( $request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
+		} else {
+			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user
