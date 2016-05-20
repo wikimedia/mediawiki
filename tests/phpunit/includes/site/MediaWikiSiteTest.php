@@ -28,7 +28,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MediaWikiSiteTest extends SiteTest {
+class MediaWikiMutableSiteTest extends MutableSiteTest {
 
 	public function testNormalizePageTitle() {
 		$this->setMwGlobals( [
