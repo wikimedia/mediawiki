@@ -485,7 +485,7 @@ class MediaWiki {
 			// Narrow DB query expectations for this HTTP request
 			$trxLimits = $this->config->get( 'TrxProfilerLimits' );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
-			if ( $request->wasPosted() && !$action->doesWrites() ) {
+			if ( !$request->hasSafeMethod() && !$action->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
 				$request->markAsSafeRequest();
 			}
@@ -667,7 +667,7 @@ class MediaWiki {
 		$trxLimits = $this->config->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		if ( $request->wasPosted() ) {
+		if ( !$request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		} else {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );

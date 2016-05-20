@@ -1356,7 +1356,7 @@ class ApiMain extends ApiBase {
 	protected function setRequestExpectations( ApiBase $module ) {
 		$limits = $this->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		if ( $this->getRequest()->wasPosted() ) {
+		if ( !$this->getRequest()->hasSafeMethod() ) {
 			if ( $module->isWriteMode() ) {
 				$trxProfiler->setExpectations( $limits['POST'], __METHOD__ );
 			} else {

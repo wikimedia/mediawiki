@@ -555,7 +555,7 @@ class SpecialPageFactory {
 			// Narrow DB query expectations for this HTTP request
 			$trxLimits = $context->getConfig()->get( 'TrxProfilerLimits' );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
-			if ( $context->getRequest()->wasPosted() && !$page->doesWrites() ) {
+			if ( !$context->getRequest()->hasSafeMethod() && !$page->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
 				$context->getRequest()->markAsSafeRequest();
 			}
