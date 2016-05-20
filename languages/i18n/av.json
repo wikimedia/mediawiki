@@ -312,5 +312,7 @@
 	"movearticle": "Гьумералъул цӀар хисизе:",
 	"movepagebtn": "Гьумералъул цlар хисизе",
 	"lastmodifiedatby": "Ахирисеб нухалъ гьаб гьумералъул хиса-баси гьабуна:  $2, $1. Хисизабуна гьас: $3.",
-	"specialpages": "Хассал гьумерал"
+	"specialpages": "Хассал гьумерал",
+	"whatlinkshere-hidelinks": "$1 линкал",
+	"whatlinkshere-hideredirs": "$1 редиректал"
 }

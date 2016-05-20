@@ -281,5 +281,7 @@
 	"watchlistedit-clear-titles": "Elɛanawin",
 	"watchlistedit-too-many": "Famma barcha pajet w'manajmouch nħotouhom lkol lahné",
 	"specialpages": "Safḩât spêsyâl",
-	"searchsuggest-search": "Lawwij"
+	"searchsuggest-search": "Lawwij",
+	"whatlinkshere-hidelinks": "lyeñēt mtēģ $1",
+	"whatlinkshere-hideredirs": "$1 taḩwīlēt"
 }

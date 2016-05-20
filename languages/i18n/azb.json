@@ -1932,7 +1932,7 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|قاباقکی|قاباقکی $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|سونراکی|سونراکی $1}}",
 	"whatlinkshere-links": "← باغلانتیلار",
-	"whatlinkshere-hideredirs": "یول‌لاندیرمالاری گیزلت",
+	"whatlinkshere-hideredirs": "یول‌لاندیرمالاری $1",
 	"whatlinkshere-hidetrans": "علاوه‌لری $1",
 	"whatlinkshere-hidelinks": "باغلانتیلاری $1",
 	"whatlinkshere-hideimages": "فایل باغلانتیلارینی $1",
