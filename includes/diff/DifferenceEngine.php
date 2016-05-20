@@ -867,7 +867,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $ntext New text, must be already segmented
 	 * @return bool|string
 	 */
-	protected function textDiff( $otext, $ntext ) {
+	public function textDiff( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
