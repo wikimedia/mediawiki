@@ -7,6 +7,7 @@ require_once __DIR__ . '/NewParserTest.php';
  * an PHPUnit_Framework_Test object
  *
  * @group Parser
+ * @group ParserTests
  * @group Database
  */
 class MediaWikiParserTest {

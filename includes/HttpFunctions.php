@@ -779,7 +779,22 @@ class CurlHttpRequest extends MWHttpRequest {
 			$this->curlOptions[CURLOPT_HEADER] = true;
 		} elseif ( $this->method == 'POST' ) {
 			$this->curlOptions[CURLOPT_POST] = true;
-			$this->curlOptions[CURLOPT_POSTFIELDS] = $this->postData;
+			$postData = $this->postData;
+			// Don't interpret POST parameters starting with '@' as file uploads, because this
+			// makes it impossible to POST plain values starting with '@' (and causes security
+			// issues potentially exposing the contents of local files).
+			// The PHP manual says this option was introduced in PHP 5.5 defaults to true in PHP 5.6,
+			// but we support lower versions, and the option doesn't exist in HHVM 5.6.99.
+			if ( defined( 'CURLOPT_SAFE_UPLOAD' ) ) {
+				$this->curlOptions[CURLOPT_SAFE_UPLOAD] = true;
+			} else if ( is_array( $postData ) ) {
+				// In PHP 5.2 and later, '@' is interpreted as a file upload if POSTFIELDS
+				// is an array, but not if it's a string. So convert $req['body'] to a string
+				// for safety.
+				$postData = wfArrayToCgi( $postData );
+			}
+			$this->curlOptions[CURLOPT_POSTFIELDS] = $postData;
+
 			// Suppress 'Expect: 100-continue' header, as some servers
 			// will reject it with a 417 and Curl won't auto retry
 			// with HTTP 1.0 fallback

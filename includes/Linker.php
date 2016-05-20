@@ -1073,7 +1073,16 @@ class Linker {
 		if ( !$title ) {
 			$title = $wgTitle;
 		}
-		$attribs['rel'] = Parser::getExternalLinkRel( $url, $title );
+		$newRel = Parser::getExternalLinkRel( $url, $title );
+		if ( !isset( $attribs['rel'] ) || $attribs['rel'] === '' ) {
+			$attribs['rel'] = $newRel;
+		} elseif( $newRel !== '' ) {
+			// Merge the rel attributes.
+			$newRels = explode( ' ', $newRel );
+			$oldRels = explode( ' ', $attribs['rel'] );
+			$combined = array_unique( array_merge( $newRels, $oldRels ) );
+			$attribs['rel'] = implode( ' ', $combined );
+		}
 		$link = '';
 		$success = Hooks::run( 'LinkerMakeExternalLink',
 			array( &$url, &$text, &$link, &$attribs, $linktype ) );
