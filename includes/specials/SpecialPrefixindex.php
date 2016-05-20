@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements Special:Prefixindex
@@ -191,7 +192,10 @@ class SpecialPrefixindex extends SpecialAllPages {
 			}
 
 			$res = $dbr->select( 'page',
-				[ 'page_namespace', 'page_title', 'page_is_redirect' ],
+				array_merge(
+					[ 'page_namespace', 'page_title' ],
+					LinkCache::getSelectFields()
+				),
 				$conds,
 				__METHOD__,
 				[
@@ -206,26 +210,27 @@ class SpecialPrefixindex extends SpecialAllPages {
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-prefixindex-list' ] );
+				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 				$prefixLength = strlen( $prefix );
-				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
-					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
-					if ( $t ) {
-						$displayed = $t->getText();
-						// Try not to generate unclickable links
-						if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
-							$displayed = substr( $displayed, $prefixLength );
-						}
-						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-							Linker::linkKnown(
-								$t,
-								htmlspecialchars( $displayed ),
-								$s->page_is_redirect ? [ 'class' => 'mw-redirect' ] : []
-							) .
-							( $s->page_is_redirect ? '</div>' : '' );
-					} else {
-						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
+				foreach ( $res as $row ) {
+					if ( $n >= $this->maxPerPage ) {
+						break;
 					}
+					$title = Title::newFromRow( $row );
+					// Make sure it gets into LinkCache
+					$linkCache->addGoodLinkObjFromRow( $title, $row );
+					$displayed = $title->getText();
+					// Try not to generate unclickable links
+					if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
+						$displayed = substr( $displayed, $prefixLength );
+					}
+					$link = ( $title->isRedirect() ? '<div class="allpagesredirect">' : '' ) .
+						Linker::linkKnown(
+							$title,
+							htmlspecialchars( $displayed )
+						) .
+						( $title->isRedirect() ? '</div>' : '' );
 
 					$out .= "<li>$link</li>\n";
 					$n++;
