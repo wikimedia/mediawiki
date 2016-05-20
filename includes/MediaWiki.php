@@ -37,6 +37,11 @@ class MediaWiki {
 	private $config;
 
 	/**
+	 * @var String Cache what action this request is
+	 */
+	private $action;
+
+	/**
 	 * @param IContextSource|null $context
 	 */
 	public function __construct( IContextSource $context = null ) {
@@ -133,13 +138,11 @@ class MediaWiki {
 	 * @return string Action
 	 */
 	public function getAction() {
-		static $action = null;
-
-		if ( $action === null ) {
-			$action = Action::getActionName( $this->context );
+		if ( $this->action === null ) {
+			$this->action = Action::getActionName( $this->context );
 		}
 
-		return $action;
+		return $this->action;
 	}
 
 	/**
@@ -155,7 +158,7 @@ class MediaWiki {
 	 * @return void
 	 */
 	private function performRequest() {
-		global $wgTitle;
+		global $wgTitle, $wgHideIdentifiableRedirects;
 
 		$request = $this->context->getRequest();
 		$requestTitle = $title = $this->context->getTitle();
@@ -221,63 +224,128 @@ class MediaWiki {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 				throw new BadTitleError();
 			}
-		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null
-				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
-			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
-		) {
+		// Handle any other redirects.
+		// Redirect loops, titleless URL, $wgUsePathInfo URLs, and URLs with a variant
+		} elseif ( !$this->tryNormaliseRedirect( $title ) ) {
+			// Prevent information leak via Special:MyPage et al (T109724)
 			if ( $title->isSpecialPage() ) {
-				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
-				if ( $name ) {
-					$title = SpecialPage::getTitleFor( $name, $subpage );
+				$specialPage = SpecialPageFactory::getPage( $title->getDBKey() );
+				if ( $specialPage instanceof RedirectSpecialPage
+					&& $wgHideIdentifiableRedirects
+					&& $specialPage->personallyIdentifiableTarget()
+				) {
+					list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBKey() );
+					$target = $specialPage->getRedirect( $subpage );
+					// target can also be true. We let that case fall through to normal processing.
+					if ( $target instanceof Title ) {
+						$query = $specialPage->getRedirectQuery() ?: array();
+						$request = new DerivativeRequest( $this->context->getRequest(), $query );
+						$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
+						$this->context->setRequest( $request );
+						// Do not varnish cache these. May vary even for anons
+						$this->context->getOutput()->lowerCdnMaxage( 0 );
+						$this->context->setTitle( $target );
+						$wgTitle = $target;
+						// Reset action type cache. (Special pages have only view)
+						$this->action = null;
+						$title = $target;
+						$output->addJsConfigVars( array(
+							'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
+						) );
+						$output->addModules( 'mediawiki.action.view.redirect' );
+					}
 				}
 			}
-			$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-			// Redirect to canonical url, make it a 301 to allow caching
-			if ( $targetUrl == $request->getFullRequestURL() ) {
-				$message = "Redirect loop detected!\n\n" .
-					"This means the wiki got confused about what page was " .
-					"requested; this sometimes happens when moving a wiki " .
-					"to a new server or changing the server configuration.\n\n";
 
-				if ( $this->config->get( 'UsePathInfo' ) ) {
-					$message .= "The wiki is trying to interpret the page " .
-						"title from the URL path portion (PATH_INFO), which " .
-						"sometimes fails depending on the web server. Try " .
-						"setting \"\$wgUsePathInfo = false;\" in your " .
-						"LocalSettings.php, or check that \$wgArticlePath " .
-						"is correct.";
+			// Special pages ($title may have changed since if statement above)
+			if ( NS_SPECIAL == $title->getNamespace() ) {
+				// Actions that need to be made when we have a special pages
+				SpecialPageFactory::executePath( $title, $this->context );
+			} else {
+				// ...otherwise treat it as an article view. The article
+				// may still be a wikipage redirect to another article or URL.
+				$article = $this->initializeArticle();
+				if ( is_object( $article ) ) {
+					$this->performAction( $article, $requestTitle );
+				} elseif ( is_string( $article ) ) {
+					$output->redirect( $article );
 				} else {
-					$message .= "Your web server was detected as possibly not " .
-						"supporting URL path components (PATH_INFO) correctly; " .
-						"check your LocalSettings.php for a customized " .
-						"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
-						"to true.";
+					throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
+						. " returned neither an object nor a URL" );
 				}
-				throw new HttpError( 500, $message );
-			} else {
-				$output->setSquidMaxage( 1200 );
-				$output->redirect( $targetUrl, '301' );
-			}
-		// Special pages
-		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
-			// Actions that need to be made when we have a special pages
-			SpecialPageFactory::executePath( $title, $this->context );
-		} else {
-			// ...otherwise treat it as an article view. The article
-			// may be a redirect to another article or URL.
-			$article = $this->initializeArticle();
-			if ( is_object( $article ) ) {
-				$this->performAction( $article, $requestTitle );
-			} elseif ( is_string( $article ) ) {
-				$output->redirect( $article );
-			} else {
-				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
-					. " returned neither an object nor a URL" );
 			}
 		}
+	}
+
+	/**
+	 * Handle redirects for uncanonical title requests.
+	 *
+	 * Handles:
+	 * - Redirect loops.
+	 * - No title in URL.
+	 * - $wgUsePathInfo URLs.
+	 * - URLs with a variant.
+	 * - Other non-standard URLs (as long as they have no extra query parameters).
+	 *
+	 * Behaviour:
+	 * - Normalise title values:
+	 *   /wiki/Foo%20Bar -> /wiki/Foo_Bar
+	 * - Normalise empty title:
+	 *   /wiki/ -> /wiki/Main
+	 *   /w/index.php?title= -> /wiki/Main
+	 * - Don't redirect anything with query parameters other than 'title' or 'action=view'.
+	 *
+	 * @param Title $title
+	 * @return bool True if a redirect was set.
+	 * @throws HttpError
+	 */
+	private function tryNormaliseRedirect( Title $title ) {
+		$request = $this->context->getRequest();
+		$output = $this->context->getOutput();
+
+		if ( $request->getVal( 'action', 'view' ) != 'view'
+			|| $request->wasPosted()
+			|| ( $request->getVal( 'title' ) !== null
+				&& $title->getPrefixedDBkey() == $request->getVal( 'title' ) )
+			|| count( $request->getValueNames( array( 'action', 'title' ) ) )
+			|| !Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+		) {
+			return false;
+		}
+
+		if ( $title->isSpecialPage() ) {
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			if ( $name ) {
+				$title = SpecialPage::getTitleFor( $name, $subpage );
+			}
+		}
+		// Redirect to canonical url, make it a 301 to allow caching
+		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+		if ( $targetUrl == $request->getFullRequestURL() ) {
+			$message = "Redirect loop detected!\n\n" .
+				"This means the wiki got confused about what page was " .
+				"requested; this sometimes happens when moving a wiki " .
+				"to a new server or changing the server configuration.\n\n";
+
+			if ( $this->config->get( 'UsePathInfo' ) ) {
+				$message .= "The wiki is trying to interpret the page " .
+					"title from the URL path portion (PATH_INFO), which " .
+					"sometimes fails depending on the web server. Try " .
+					"setting \"\$wgUsePathInfo = false;\" in your " .
+					"LocalSettings.php, or check that \$wgArticlePath " .
+					"is correct.";
+			} else {
+				$message .= "Your web server was detected as possibly not " .
+					"supporting URL path components (PATH_INFO) correctly; " .
+					"check your LocalSettings.php for a customized " .
+					"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
+					"to true.";
+			}
+			throw new HttpError( 500, $message );
+		}
+		$output->setSquidMaxage( 1200 );
+		$output->redirect( $targetUrl, '301' );
+		return true;
 	}
 
 	/**

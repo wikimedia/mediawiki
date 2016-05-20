@@ -5,7 +5,6 @@
 	// wondering, would it be simpler to make it easy to clone the api object,
 	// change error handling, and use that instead?
 	var defaultOptions = {
-
 			// Query parameters for API requests
 			parameters: {
 				action: 'query',
@@ -21,6 +20,7 @@
 				dataType: 'json'
 			}
 		},
+
 		// Keyed by ajax url and symbolic name for the individual request
 		promises = {};
 

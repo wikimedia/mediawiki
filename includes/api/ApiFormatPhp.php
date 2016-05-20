@@ -65,7 +65,7 @@ class ApiFormatPhp extends ApiFormatBase {
 		// just be broken in a useful manner.
 		if ( $this->getConfig()->get( 'MangleFlashPolicy' ) &&
 			in_array( 'wfOutputHandler', ob_list_handlers(), true ) &&
-			preg_match( '/\<\s*cross-domain-policy\s*\>/i', $text )
+			preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $text )
 		) {
 			$this->dieUsage(
 				'This response cannot be represented using format=php. See https://bugzilla.wikimedia.org/show_bug.cgi?id=66776',

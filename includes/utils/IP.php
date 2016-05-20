@@ -130,8 +130,9 @@ class IP {
 
 	/**
 	 * Convert an IP into a verbose, uppercase, normalized form.
-	 * IPv6 addresses in octet notation are expanded to 8 words.
-	 * IPv4 addresses are just trimmed.
+	 * Both IPv4 and IPv6 addresses are trimmed. Additionally,
+	 * IPv6 addresses in octet notation are expanded to 8 words;
+	 * IPv4 addresses have leading zeros, in each octet, removed.
 	 *
 	 * @param string $ip IP address in quad or octet form (CIDR or not).
 	 * @return string
@@ -141,8 +142,16 @@ class IP {
 		if ( $ip === '' ) {
 			return null;
 		}
-		if ( self::isIPv4( $ip ) || !self::isIPv6( $ip ) ) {
-			return $ip; // nothing else to do for IPv4 addresses or invalid ones
+		/* If not an IP, just return trimmed value, since sanitizeIP() is called
+		 * in a number of contexts where usernames are supplied as input.
+		 */
+		if ( !self::isIPAddress($ip) ) {
+			return $ip;
+		}
+		if ( self::isIPv4( $ip ) ) {
+			// Remove leading 0's from octet representation of IPv4 address
+			$ip = preg_replace( '/(?:^|(?<=\.))0+(?=[1-9]|0\.|0$)/', '', $ip );
+			return $ip;
 		}
 		// Remove any whitespaces, convert to upper case
 		$ip = strtoupper( $ip );
@@ -395,8 +404,9 @@ class IP {
 		if ( self::isIPv6( $ip ) ) {
 			$n = 'v6-' . self::IPv6ToRawHex( $ip );
 		} elseif ( self::isIPv4( $ip ) ) {
-			// Bug 60035: an IP with leading 0's fails in ip2long sometimes (e.g. *.08)
-			$ip = preg_replace( '/(?<=\.)0+(?=[1-9])/', '', $ip );
+			// T62035/T97897: An IP with leading 0's fails in ip2long sometimes (e.g. *.08),
+			// also double/triple 0 needs to be changed to just a single 0 for ip2long.
+			$ip = self::sanitizeIP( $ip );
 			$n = ip2long( $ip );
 			if ( $n < 0 ) {
 				$n += pow( 2, 32 );

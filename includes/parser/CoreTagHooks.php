@@ -56,9 +56,14 @@ class CoreTagHooks {
 		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $text, 'i' );
 
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
-		return Xml::openElement( 'pre', $attribs ) .
-			Xml::escapeTagsOnly( $content ) .
-			'</pre>';
+		// We need to let both '"' and '&' through,
+		// for strip markers and entities respectively.
+		$content = str_replace(
+			array( '>', '<' ),
+			array( '&gt;', '&lt;' ),
+			$content
+		);
+		return Html::rawElement( 'pre', $attribs, $content );
 	}
 
 	/**
@@ -98,8 +103,17 @@ class CoreTagHooks {
 	 * @return array
 	 */
 	public static function nowiki( $content, $attributes, $parser ) {
-		$content = strtr( $content, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
-		return array( Xml::escapeTagsOnly( $content ), 'markerType' => 'nowiki' );
+		$content = strtr( $content, array(
+			// lang converter
+			'-{' => '-&#123;',
+			'}-' => '&#125;-',
+			// html tags
+			'<' => '&lt;',
+			'>' => '&gt;'
+			// Note: Both '"' and '&' are not converted.
+			// This allows strip markers and entities through.
+		) );
+		return array( $content, 'markerType' => 'nowiki' );
 	}
 
 	/**
