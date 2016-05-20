@@ -35,7 +35,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  *
  * @ingroup Site
  */
-class MediaWikiSite extends Site {
+class MediaWikiSite extends MutableSite {
 	const PATH_FILE = 'file_path';
 	const PATH_PAGE = 'page_path';
 
