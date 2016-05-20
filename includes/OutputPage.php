@@ -610,20 +610,6 @@ class OutputPage extends ContextSource {
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
-		// T97420
-		$resourceLoader = $this->getResourceLoader();
-
-		foreach ( $this->mModuleStyles as $val ) {
-			$module = $resourceLoader->getModule( $val );
-
-			if ( $module instanceof ResourceLoaderModule && $module->isPositionDefault() ) {
-				$warning = __METHOD__ . ': style module should define its position explicitly: ' .
-					$val . ' ' . get_class( $module );
-				wfDebugLog( 'resourceloader', $warning );
-				wfLogWarning( $warning );
-			}
-		}
-
 		return $this->getModules( $filter, $position, 'mModuleStyles' );
 	}
 
@@ -2044,6 +2030,11 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getVaryHeader() {
+		// If we vary on cookies, let's make sure it's always included here too.
+		if ( $this->getCacheVaryCookies() ) {
+			$this->addVaryHeader( 'Cookie' );
+		}
+
 		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
 	}
 
@@ -3074,10 +3065,6 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_SCRIPTS
 		);
 
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_STYLES
-		);
-
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the bottom
 		$modules = $this->getModules( true, 'bottom' );
@@ -3140,9 +3127,6 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	function getBottomScripts() {
-		// In case the skin wants to add bottom CSS
-		$this->getSkin()->setupSkinUserCss( $this );
-
 		return $this->getScriptsForBottomQueue();
 	}
 
@@ -3665,7 +3649,7 @@ class OutputPage extends ContextSource {
 		$otherTags = array(); // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
 
-		$moduleStyles = $this->getModuleStyles( true, 'top' );
+		$moduleStyles = $this->getModuleStyles();
 
 		// Per-site custom styles
 		$moduleStyles[] = 'site';

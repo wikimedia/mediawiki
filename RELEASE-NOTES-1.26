@@ -6,8 +6,28 @@ turn it off. MediaWiki will not work with it enabled.
 This is a maintenance release of the MediaWiki 1.26 branch.
 
 == Changes since 1.26.2 ==
+* (T116266) Fixed undefined property notices in DairikiDiff under HHVM.
 * (T123166) Fix fatal error when importing pages to titles which cannot be
   created, such as invalid titles or titles the user is not allowed to edit.
+* (T122056) Old tokens are remaining valid within a new session
+* (T127114) Login throttle can be tricked using non-canonicalized usernames
+* (T123653) Cross-domain policy regexp is too narrow
+* (T123071) Incorrectly identifying http link in a's href attributes, due to
+  m modifier in regex
+* (T129506) MediaWiki:Gadget-popups.js isn't renderable
+* (T125283) Users occasionally logged in as different users after
+  SessionManager deployment
+* (T103239) Patrol allows click catching and patrolling of any page
+* (T122807) [tracking] Check php crypto primatives
+* (T98313) Graphs can leak tokens, leading to CSRF
+* (T130947) Diff generation should use PoolCounter
+* (T133507) Careless use of $wgExternalLinkTarget is insecure
+* (T132874) API action=move is not rate limited
+* (T110143) strip markers can be used to get around html attribute escaping in
+  (many?) parser tags
+* (T116030) Increase pbkdf2 parameter strengths
+* (T127420) Pbkdf2Password does not check if hash_pbkdf2() succeeded
+* (T126685) Globally throttle password attempts
 
 == MediaWiki 1.26.2 ==
 

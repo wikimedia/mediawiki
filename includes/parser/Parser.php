@@ -129,9 +129,14 @@ class Parser {
 	 *
 	 * Must not consist of all title characters, or else it will change
 	 * the behavior of <nowiki> in a link.
+	 *
+	 * Must have a character that needs escaping in attributes, otherwise
+	 * someone could put a strip marker in an attribute, to get around
+	 * escaping quote marks, and break out of the attribute. Thus we add
+	 * `'".
 	 */
-	const MARKER_SUFFIX = "-QINU\x7f";
-	const MARKER_PREFIX = "\x7fUNIQ-";
+	const MARKER_SUFFIX = "-QINU`\"'\x7f";
+	const MARKER_PREFIX = "\x7f'\"`UNIQ-";
 
 	# Markers used for wrapping the table of contents
 	const TOC_START = '<mw:toc>';
@@ -1862,11 +1867,22 @@ class Parser {
 	 */
 	public function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
-		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
+		$rel = self::getExternalLinkRel( $url, $this->mTitle );
 
-		if ( $this->mOptions->getExternalLinkTarget() ) {
-			$attribs['target'] = $this->mOptions->getExternalLinkTarget();
+		$target = $this->mOptions->getExternalLinkTarget();
+		if ( $target ) {
+			$attribs['target'] = $target;
+			if ( !in_array( $target, array( '_self', '_parent', '_top' ) ) ) {
+				// T133507. New windows can navigate parent cross-origin.
+				// Including noreferrer due to lacking browser
+				// support of noopener. Eventually noreferrer should be removed.
+				if ( $rel !== '' ) {
+					$rel .= ' ';
+				}
+				$rel .= 'noreferrer noopener';
+			}
 		}
+		$attribs['rel'] = $rel;
 		return $attribs;
 	}
 

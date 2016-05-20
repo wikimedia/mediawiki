@@ -27,8 +27,6 @@
 	// and assuming failure.
 	QUnit.config.testTimeout = 30 * 1000;
 
-	QUnit.config.requireExpects = true;
-
 	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
 	QUnit.config.urlConfig.push( {
 		id: 'debug',

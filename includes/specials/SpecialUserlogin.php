@@ -628,7 +628,7 @@ class LoginForm extends SpecialPage {
 				"allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+				$key = wfGlobalCacheKey( 'acctcreate', 'ip', $ip );
 				$value = $wgMemc->get( $key );
 				if ( !$value ) {
 					$wgMemc->set( $key, 0, 86400 );
@@ -862,11 +862,12 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function incLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgMemc, $wgRequest;
-		$username = trim( $username ); // sanity
+		$canUsername = User::getCanonicalName( $username, 'usable' );
+		$username = $canUsername !== false ? $canUsername : $username;
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+			$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
@@ -890,9 +891,10 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearLoginThrottle( $username ) {
 		global $wgMemc, $wgRequest;
-		$username = trim( $username ); // sanity
+		$canUsername = User::getCanonicalName( $username, 'usable' );
+		$username = $canUsername !== false ? $canUsername : $username;
 
-		$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+		$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 		$wgMemc->delete( $throttleKey );
 	}
 
@@ -1608,7 +1610,8 @@ class LoginForm extends SpecialPage {
 		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
 			$wgCookieSecure = false;
 		}
-
+		// Always make sure edit token is regenerated. (T114419)
+		$this->getRequest()->setSessionData( 'wsEditToken', null );
 		wfResetSessionID();
 	}
 

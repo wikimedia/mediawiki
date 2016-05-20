@@ -1168,7 +1168,7 @@ class Article implements Page {
 		$link = Linker::linkKnown(
 			$this->getTitle(),
 			wfMessage( 'markaspatrolledtext' )->escaped(),
-			array(),
+			array( 'class' => 'mw-patrollink' ),
 			array(
 				'action' => 'markpatrolled',
 				'rcid' => $rcid,
