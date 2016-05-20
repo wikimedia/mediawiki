@@ -474,16 +474,17 @@ class DifferenceEngine extends ContextSource {
 			if ( !$linkInfo ) {
 				$this->mMarkPatrolledLink = '';
 			} else {
-				$this->mMarkPatrolledLink = ' <span class="patrollink" data-mw="interface">[' . Linker::linkKnown(
-					$this->mNewPage,
-					$this->msg( 'markaspatrolleddiff' )->escaped(),
-					[],
-					[
-						'action' => 'markpatrolled',
-						'rcid' => $linkInfo['rcid'],
-						'token' => $linkInfo['token'],
-					]
-				) . ']</span>';
+				$this->mMarkPatrolledLink = ' <span class="patrollink" data-mw="interface">[' .
+					Linker::linkKnown(
+						$this->mNewPage,
+						$this->msg( 'markaspatrolleddiff' )->escaped(),
+						[],
+						[
+							'action' => 'markpatrolled',
+							'rcid' => $linkInfo['rcid'],
+							'token' => $linkInfo['token'],
+						]
+					) . ']</span>';
 			}
 		}
 		return $this->mMarkPatrolledLink;

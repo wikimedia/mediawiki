@@ -258,26 +258,26 @@ class ApiMainTest extends ApiTestCase {
 	 */
 	public function testLacksSameOriginSecurity() {
 		// Basic test
-		$main = new ApiMain( new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) ) );
+		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
 		$this->assertFalse( $main->lacksSameOriginSecurity(), 'Basic test, should have security' );
 
 		// JSONp
 		$main = new ApiMain(
-			new FauxRequest( array( 'action' => 'query', 'format' => 'xml', 'callback' => 'foo'  ) )
+			new FauxRequest( [ 'action' => 'query', 'format' => 'xml', 'callback' => 'foo' ] )
 		);
 		$this->assertTrue( $main->lacksSameOriginSecurity(), 'JSONp, should lack security' );
 
 		// Header
-		$request = new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) );
+		$request = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
 		$request->setHeader( 'TrEaT-As-UnTrUsTeD', '' ); // With falsey value!
 		$main = new ApiMain( $request );
 		$this->assertTrue( $main->lacksSameOriginSecurity(), 'Header supplied, should lack security' );
 
 		// Hook
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'RequestHasSameOriginSecurity' => array( function () { return false; } )
-		) );
-		$main = new ApiMain( new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) ) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'RequestHasSameOriginSecurity' => [ function () { return false; } ]
+		] );
+		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
 		$this->assertTrue( $main->lacksSameOriginSecurity(), 'Hook, should lack security' );
 	}
 }
