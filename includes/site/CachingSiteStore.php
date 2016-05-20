@@ -89,7 +89,7 @@ class CachingSiteStore implements SiteStore {
 	 */
 	private function getCacheKey() {
 		if ( $this->cacheKey === null ) {
-			$type = 'SiteList#' . SiteList::getSerialVersionId();
+			$type = $this->sites->getSerializationModelId(); // FIXME
 			$this->cacheKey = wfMemcKey( "sites/$type" );
 		}
 
@@ -103,13 +103,14 @@ class CachingSiteStore implements SiteStore {
 	 *
 	 * @return SiteList
 	 */
-	public function getSites() {
+	public function getSites() { // FIXME
 		if ( $this->sites === null ) {
 			$this->sites = $this->cache->get( $this->getCacheKey() );
 
 			if ( !is_object( $this->sites ) ) {
 				$this->sites = $this->siteStore->getSites();
 
+				// FIXME: really drop Serializable from SiteList? should be a separate patch!
 				$this->cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
 			}
 		}

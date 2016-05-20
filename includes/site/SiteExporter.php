@@ -87,10 +87,6 @@ class SiteExporter {
 			fwrite( $this->sink, "\t\t" . Xml::element( 'group', null, $site->getGroup() ) . "\n" );
 		}
 
-		if ( $site->getSource() !== Site::SOURCE_LOCAL ) {
-			fwrite( $this->sink, "\t\t" . Xml::element( 'source', null, $site->getSource() ) . "\n" );
-		}
-
 		if ( $site->shouldForward() ) {
 			fwrite( $this->sink, "\t\t" . Xml::element( 'forward', null, '' ) . "\n" );
 		}

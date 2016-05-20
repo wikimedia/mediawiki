@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Site\MutableSite;
 
 /**
  * Utility for importing site entries from XML.
@@ -118,21 +119,12 @@ class SiteImporter {
 	private function makeSiteList( DOMElement $root ) {
 		$sites = [];
 
-		// Old sites, to get the row IDs that correspond to the global site IDs.
-		// TODO: Get rid of internal row IDs, they just get in the way. Get rid of ORMRow, too.
-		$oldSites = $this->store->getSites();
-
 		$current = $root->firstChild;
 		while ( $current ) {
 			if ( $current instanceof DOMElement && $current->tagName === 'site' ) {
 				try {
 					$site = $this->makeSite( $current );
 					$key = $site->getGlobalId();
-
-					if ( $oldSites->hasSite( $key ) ) {
-						$oldSite = $oldSites->getSite( $key );
-						$site->setInternalId( $oldSite->getInternalId() );
-					}
 
 					$sites[$key] = $site;
 				} catch ( Exception $ex ) {
@@ -158,12 +150,12 @@ class SiteImporter {
 		}
 
 		$type = $this->getAttributeValue( $siteElement, 'type', Site::TYPE_UNKNOWN );
-		$site = Site::newForType( $type );
+		$id = $this->getChildText( $siteElement, 'globalid' );
+
+		$site = new MutableSite( $id, $type );
 
 		$site->setForward( $this->hasChild( $siteElement, 'forward' ) );
-		$site->setGlobalId( $this->getChildText( $siteElement, 'globalid' ) );
-		$site->setGroup( $this->getChildText( $siteElement, 'group', Site::GROUP_NONE ) );
-		$site->setSource( $this->getChildText( $siteElement, 'source', Site::SOURCE_LOCAL ) );
+		$site->setGroups( Site::GROUP_FAMILY, $this->getChildText( $siteElement, 'group', Site::GROUP_NONE ) );
 
 		$pathTags = $siteElement->getElementsByTagName( 'path' );
 		for ( $i = 0; $i < $pathTags->length; $i++ ) {

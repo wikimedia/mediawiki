@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Site\MutableSite;
 
 /**
  * Tests for the SiteImporter class.
@@ -63,24 +64,20 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideImportFromXML() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
-		$foo->setGlobalId( 'Foo' );
+		$foo = new MutableSite( 'Foo', Site::TYPE_UNKNOWN );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
-		$acme->setGlobalId( 'acme.com' );
-		$acme->setGroup( 'Test' );
+		$acme = new MutableSite( 'acme.com', Site::TYPE_UNKNOWN );
+		$acme->setGroups( Site::GROUP_FAMILY, [ 'Test' ] );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
-		$dewiki->setGlobalId( 'dewiki' );
-		$dewiki->setGroup( 'wikipedia' );
+		$dewiki = new MutableSite( 'dewiki', Site::TYPE_MEDIAWIKI );
+		$dewiki->setGroups( Site::GROUP_FAMILY, [ 'wikipedia' ] );
 		$dewiki->setForward( true );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );
-		$dewiki->setPath( MediaWikiSite::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
-		$dewiki->setSource( 'meta.wikimedia.org' );
+		$dewiki->setPath( Site::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
 
 		return [
 			'empty' => [
@@ -154,24 +151,20 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testImportFromFile() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
-		$foo->setGlobalId( 'Foo' );
+		$foo = new MutableSite( 'Foo', Site::TYPE_UNKNOWN );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
-		$acme->setGlobalId( 'acme.com' );
-		$acme->setGroup( 'Test' );
+		$acme = new MutableSite( 'acme.com', Site::TYPE_UNKNOWN );
+		$acme->setGroups( Site::GROUP_FAMILY, [ 'Test' ] );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
-		$dewiki->setGlobalId( 'dewiki' );
-		$dewiki->setGroup( 'wikipedia' );
+		$dewiki = new MutableSite( 'dewiki', Site::TYPE_MEDIAWIKI );
+		$dewiki->setGroups( Site::GROUP_FAMILY, [ 'wikipedia' ] );
 		$dewiki->setForward( true );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );
-		$dewiki->setPath( MediaWikiSite::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
-		$dewiki->setSource( 'meta.wikimedia.org' );
+		$dewiki->setPath( Site::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
 
 		$importer = $this->newSiteImporter( [ $foo, $acme, $dewiki ], 0 );
 

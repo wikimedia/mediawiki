@@ -32,92 +32,206 @@
 class HashSiteStore implements SiteStore {
 
 	/**
-	 * @var Site[]
+	 * @var array[]
 	 */
-	private $sites = [];
+	private $siteData = [];
 
 	/**
-	 * @param array $sites
+	 * @var array[]
 	 */
-	public function __construct( $sites = [] ) {
-		$this->saveSites( $sites );
+	private $idIndex = [];
+
+	/**
+	 * @var array[]
+	 */
+	private $groupIndex = [];
+
+	public function clear() {
+		$this->siteData = [];
+		$this->idIndex = [];
+		$this->groupIndex = [];
+	}
+
+	public function addSiteData( array $siteData, $reindex = 'reindex' ) {
+		$this->siteData = array_merge_recursive( $this->siteData, $siteData );
+
+		if ( $reindex === 'reindex' ) {
+			$this->updateIndex();
+		}
+	}
+
+	private function updateIndex() {
+		foreach ( $this->siteData as $id => $site ) {
+			if ( !isset( $site['ids'] ) ) {
+				$this->indexAllIds( $id, $site['ids'] );
+			}
+			if ( !isset( $site['groups'] ) ) {
+				$this->indexAllGroups( $id, $site['groups'] );
+			}
+		}
+	}
+
+	private function indexAllIds( $globalId, array $allIds ) {
+		$allIds[ Site::ID_GLOBAL ][] = $globalId;
+
+		foreach ( $allIds as $scope => $idsInScope ) {
+			foreach ( $idsInScope as $id ) {
+				$this->idIndex[$scope][$id] = $globalId;
+			}
+		}
+	}
+
+	private function indexAllGroups( $globalId, array $allGroups ) {
+		foreach ( $allGroups as $scope => $groupsInScope ) {
+			foreach ( $groupsInScope as $group ) {
+				$this->groupIndex[$scope][$group][] = $globalId;
+			}
+		}
+	}
+
+	/**
+	 * @param string $scope
+	 * @param string $id
+	 *
+	 * @return string|null
+	 */
+	private function resolveId( $scope, $id ) {
+		if ( !isset( $this->idIndex[$scope][$id] ) ) {
+			return null;
+		}
+
+		return $this->idIndex[$scope][$id];
+	}
+
+	/**
+	 * @param string $scope
+	 * @param string $name
+	 *
+	 * @return string[]
+	 */
+	private function resolveGroup( $scope, $name ) {
+		if ( !isset( $this->idIndex[$scope][$name] ) ) {
+			return [];
+		}
+
+		return $this->idIndex[$scope][$name];
+	}
+
+	/**
+	 * Returns the site with provided id in the given scope,
+	 * or null if there no such site is known.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $id The ID within the given scope.
+	 * @param string $scope The ID's scope.  See the Site::ID_XXX constants for possible values.
+	 *        Parameter supported since 1.28.
+	 *
+	 * @return Site|null
+	 */
+	public function getSite( $id, $scope = 'global' ) {
+		$id = $this->resolveId( $scope, $id );
+
+		if ( $id === null ) {
+			return null;
+		}
+
+		return $this->newSiteObject( $this->siteData[$id] );
+	}
+
+	/**
+	 * Checks if a site is known.
+	 *
+	 * @since 1.28
+	 *
+	 * @param string $id The ID within the given scope.
+	 * @param string $scope The ID's scope. See the Site::ID_XXX constants for possible values.
+	 *
+	 * @return bool True if a site with the given $id in the given
+	 * $scope is know, false otherwise.
+	 */
+	public function hasSite( $id, $scope = 'global' ) {
+		return $this->resolveId( $scope, $id ) !== null;
+	}
+
+	/**
+	 * Returns a list of all sites.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string[]|null $ids Global IDs of the sites to return. null for all.
+	 *        Parameter supported since 1.28.
+	 *
+	 * @return SiteList
+	 */
+	public function getSites( array $ids = null ) {
+		if ( $ids === null ) {
+			$ids = array_keys( $this->siteData );site
+		}
+
+		$sites = new SiteList();
+		foreach( $ids as $id ) {
+			$sites[] = $this->getSite( $id );
+		}
+
+		return $sites;
+	}
+
+	/**
+	 * List IDs of sites in a group.
+	 *
+	 * @example for the "wikipedia" group in the "family" scope, sites listed may be
+	 *        "enwiki", "dewiki", "zhwiki", etc.
+	 *
+	 * @param string $group The group ID (within the given scope).
+	 * @param string $scope The group ID's scope. See the Site::GROUP_XXX constants
+	 *        for possible values.
+	 *
+	 * @return string[] Global IDs of the sites in the given group, for use with getSies().
+	 */
+	public function listSitesInGroup( $group, $scope = 'family' ) {
+		$ids = $this->resolveGroup( $scope, $group );
+		return $this->getSites( $ids );
+	}
+
+	/**
+	 * Lists names of groups in a scope.
+	 *
+	 * @example for the "family" scope, the groups "wikipedia", "wiktionary", and
+	 *          "wikisource" may exist.
+	 *
+	 * @param string $scope The group ID's scope. See the Site::GROUP_XXX constants
+	 *        for possible values.
+	 *
+	 * @return string[] Names of groups in the given scope.
+	 */
+	public function listGroups( $scope = 'family' ) {
+		// TODO: Implement listGroups() method.
 	}
 
 	/**
 	 * Saves the provided site.
 	 *
-	 * @since 1.25
+	 * @since 1.21
 	 *
 	 * @param Site $site
 	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
-		$this->sites[$site->getGlobalId()] = $site;
-
-		return true;
+		// TODO: Implement saveSite() method.
 	}
 
 	/**
 	 * Saves the provided sites.
 	 *
-	 * @since 1.25
+	 * @since 1.21
 	 *
 	 * @param Site[] $sites
 	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
-		foreach ( $sites as $site ) {
-			$this->saveSite( $site );
-		}
-
-		return true;
+		// TODO: Implement saveSites() method.
 	}
-
-	/**
-	 * Returns the site with provided global id, or null if there is no such site.
-	 *
-	 * @since 1.25
-	 *
-	 * @param string $globalId
-	 * @param string $source either 'cache' or 'recache'.
-	 *                       If 'cache', the values can (but not obliged) come from a cache.
-	 *
-	 * @return Site|null
-	 */
-	public function getSite( $globalId, $source = 'cache' ) {
-		if ( isset( $this->sites[$globalId] ) ) {
-			return $this->sites[$globalId];
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns a list of all sites. By default this site is
-	 * fetched from the cache, which can be changed to loading
-	 * the list from the database using the $useCache parameter.
-	 *
-	 * @since 1.25
-	 *
-	 * @param string $source either 'cache' or 'recache'.
-	 *                       If 'cache', the values can (but not obliged) come from a cache.
-	 *
-	 * @return SiteList
-	 */
-	public function getSites( $source = 'cache' ) {
-		return new SiteList( $this->sites );
-	}
-
-	/**
-	 * Deletes all sites from the database. After calling clear(), getSites() will return an empty
-	 * list and getSite() will return null until saveSite() or saveSites() is called.
-	 */
-	public function clear() {
-		$this->sites = [];
-
-		return true;
-	}
-
 }

@@ -19,6 +19,7 @@
  *
  * @license GNU GPL v2+
  */
+use MediaWiki\Site\MutableSite;
 
 /**
  * Provides a file-based cache of a SiteStore. The sites are stored in
@@ -30,7 +31,7 @@
  *
  * @since 1.25
  */
-class FileBasedSiteLookup implements SiteLookup {
+class FileBasedSiteLookup implements SiteLookup { // FIXME drop??
 
 	/**
 	 * @var SiteList
@@ -119,13 +120,11 @@ class FileBasedSiteLookup implements SiteLookup {
 	 */
 	private function newSiteFromArray( array $data ) {
 		$siteType = array_key_exists( 'type', $data ) ? $data['type'] : Site::TYPE_UNKNOWN;
-		$site = Site::newForType( $siteType );
+		$site = new MutableSite( $data['globalid'], $siteType );
 
-		$site->setGlobalId( $data['globalid'] );
 		$site->setForward( $data['forward'] );
 		$site->setGroup( $data['group'] );
 		$site->setLanguageCode( $data['language'] );
-		$site->setSource( $data['source'] );
 		$site->setExtraData( $data['data'] );
 		$site->setExtraConfig( $data['config'] );
 

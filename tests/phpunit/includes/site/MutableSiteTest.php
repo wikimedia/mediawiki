@@ -25,10 +25,11 @@
  * @ingroup Test
  *
  * @group Site
+ * @covers MediaWiki\Site\MutableSite
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteTest extends MediaWikiTestCase {
+class MutableSiteTest extends MediaWikiTestCase {
 
 	public function instanceProvider() {
 		return $this->arrayWrap( TestSites::getSites() );

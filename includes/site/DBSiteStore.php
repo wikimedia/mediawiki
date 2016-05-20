@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Site\MutableSite;
 
 /**
  * Represents the site configuration of a wiki.
@@ -30,6 +31,8 @@
  */
 class DBSiteStore implements SiteStore {
 
+	const ID_DB_ROW = '_db_row';
+
 	/**
 	 * @var SiteList|null
 	 */
@@ -59,10 +62,12 @@ class DBSiteStore implements SiteStore {
 	 *
 	 * @return SiteList
 	 */
-	public function getSites() {
-		$this->loadSites();
+	public function getSites( array $ids = null ) {
+		if ( !$this->sites ) {
+			$this->loadSites();
+		}
 
-		return $this->sites;
+		return $this->sites->getSublist( $ids );
 	}
 
 	/**
@@ -95,10 +100,12 @@ class DBSiteStore implements SiteStore {
 			[ 'ORDER BY' => 'site_global_key' ]
 		);
 
+		/** @var MutableSite[] @byInternalId */
+		$byInternalId = [];
+
 		foreach ( $res as $row ) {
-			$site = Site::newForType( $row->site_type );
-			$site->setGlobalId( $row->site_global_key );
-			$site->setInternalId( (int)$row->site_id );
+			$site = new MutableSite( $row->site_global_key, $row->site_type );
+			$site->setIds( self::ID_DB_ROW, [ $row->site_id ] );
 			$site->setForward( (bool)$row->site_forward );
 			$site->setGroup( $row->site_group );
 			$site->setLanguageCode( $row->site_language === ''
@@ -106,9 +113,11 @@ class DBSiteStore implements SiteStore {
 				: $row->site_language
 			);
 			$site->setSource( $row->site_source );
-			$site->setExtraData( unserialize( $row->site_data ) );
-			$site->setExtraConfig( unserialize( $row->site_config ) );
+			$site->setExtraData( unserialize( $row->site_data ) ); // FIXME
+			$site->setExtraConfig( unserialize( $row->site_config ) ); // FIXME
+
 			$this->sites[] = $site;
+			$byInternalId[$row->site_id] = $site;
 		}
 
 		// Batch load the local site identifiers.
@@ -124,8 +133,8 @@ class DBSiteStore implements SiteStore {
 		);
 
 		foreach ( $ids as $id ) {
-			if ( $this->sites->hasInternalId( $id->si_site ) ) {
-				$site = $this->sites->getSiteByInternalId( $id->si_site );
+			if ( isset( $byInternalId[$id->si_site] ) ) {
+				$site = $byInternalId[$id->si_site];
 				$site->addLocalId( $id->si_type, $id->si_key );
 				$this->sites->setSite( $site );
 			}
@@ -188,28 +197,23 @@ class DBSiteStore implements SiteStore {
 		$localIds = [];
 
 		foreach ( $sites as $site ) {
-			if ( $site->getInternalId() !== null ) {
-				$internalIds[] = $site->getInternalId();
-			}
-
 			$fields = [
 				// Site data
 				'site_global_key' => $site->getGlobalId(), // TODO: check not null
 				'site_type' => $site->getType(),
 				'site_group' => $site->getGroup(),
-				'site_source' => $site->getSource(),
 				'site_language' => $site->getLanguageCode() === null ? '' : $site->getLanguageCode(),
 				'site_protocol' => $site->getProtocol(),
 				'site_domain' => strrev( $site->getDomain() ) . '.',
-				'site_data' => serialize( $site->getExtraData() ),
+				'site_data' => serialize( $site->getExtraData() ), // FIXME: save pathes!
 
 				// Site config
 				'site_forward' => $site->shouldForward() ? 1 : 0,
-				'site_config' => serialize( $site->getExtraConfig() ),
+				'site_config' => serialize( $site->getExtraConfig() ), // FIXME: save pathes!
 			];
 
-			$rowId = $site->getInternalId();
-			if ( $rowId !== null ) {
+			$rowId = reset( $site->getIds( self::ID_DB_ROW ) );
+			if ( $rowId ) {
 				$success = $dbw->update(
 					'sites', $fields, [ 'site_id' => $rowId ], __METHOD__
 				) && $success;
@@ -217,10 +221,12 @@ class DBSiteStore implements SiteStore {
 				$rowId = $dbw->nextSequenceValue( 'sites_site_id_seq' );
 				$fields['site_id'] = $rowId;
 				$success = $dbw->insert( 'sites', $fields, __METHOD__ ) && $success;
+
 				$rowId = $dbw->insertId();
 			}
 
-			foreach ( $site->getLocalIds() as $idType => $ids ) {
+			$internalIds[] = $rowId;
+			foreach ( $site->getAllIds() as $idType => $ids ) {
 				foreach ( $ids as $id ) {
 					$localIds[] = [ $rowId, $idType, $id ];
 				}

@@ -27,14 +27,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteList extends GenericArrayObject {
-	/**
-	 * Internal site identifiers pointing to their sites offset value.
-	 *
-	 * @since 1.21
-	 *
-	 * @var array Array of integer
-	 */
-	protected $byInternalId = [];
 
 	/**
 	 * Global site identifiers pointing to their sites offset value.
@@ -82,7 +74,6 @@ class SiteList extends GenericArrayObject {
 		}
 
 		$this->byGlobalId[$site->getGlobalId()] = $index;
-		$this->byInternalId[$site->getInternalId()] = $index;
 
 		$ids = $site->getNavigationIds();
 		foreach ( $ids as $navId ) {
@@ -107,7 +98,6 @@ class SiteList extends GenericArrayObject {
 			$site = $this->offsetGet( $index );
 
 			unset( $this->byGlobalId[$site->getGlobalId()] );
-			unset( $this->byInternalId[$site->getInternalId()] );
 
 			$ids = $site->getNavigationIds();
 			foreach ( $ids as $navId ) {
@@ -176,43 +166,6 @@ class SiteList extends GenericArrayObject {
 	 */
 	public function isEmpty() {
 		return $this->byGlobalId === [];
-	}
-
-	/**
-	 * Returns if the list contains the site with the provided site id.
-	 *
-	 * @param int $id
-	 *
-	 * @return bool
-	 */
-	public function hasInternalId( $id ) {
-		return array_key_exists( $id, $this->byInternalId );
-	}
-
-	/**
-	 * Returns the Site with the provided site id.
-	 * The site needs to exist, so if not sure, call has first.
-	 *
-	 * @since 1.21
-	 *
-	 * @param int $id
-	 *
-	 * @return Site
-	 */
-	public function getSiteByInternalId( $id ) {
-		return $this->offsetGet( $this->byInternalId[$id] );
-	}
-
-	/**
-	 * Removes the site with the specified site id.
-	 * The site needs to exist, so if not sure, call has first.
-	 *
-	 * @since 1.21
-	 *
-	 * @param int $id
-	 */
-	public function removeSiteByInternalId( $id ) {
-		$this->offsetUnset( $this->byInternalId[$id] );
 	}
 
 	/**
@@ -289,64 +242,26 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * A version ID that identifies the serialization structure used by getSerializationData()
-	 * and unserialize(). This is useful for constructing cache keys in cases where the cache relies
-	 * on serialization for storing the SiteList.
+	 * Retrieves a subset of sites.
 	 *
-	 * @var string A string uniquely identifying the version of the serialization structure,
-	 *             not including any sub-structures.
+	 * @since 1.28
+	 *
+	 * @param array $ids The global IDs of the sites to get
+	 *
+	 * @return SiteList
+	 *
 	 */
-	const SERIAL_VERSION_ID = '2014-03-17';
+	public function getSublist( array $ids = null ) {
+		if ( $ids === null ) {
+			return clone $this;
+		}
 
-	/**
-	 * Returns the version ID that identifies the serialization structure used by
-	 * getSerializationData() and unserialize(), including the structure of any nested structures.
-	 * This is useful for constructing cache keys in cases where the cache relies
-	 * on serialization for storing the SiteList.
-	 *
-	 * @return string A string uniquely identifying the version of the serialization structure,
-	 *                including any sub-structures.
-	 */
-	public static function getSerialVersionId() {
-		return self::SERIAL_VERSION_ID . '+Site:' . Site::SERIAL_VERSION_ID;
+		$sub = new self();
+		foreach ( $ids as $id ) {
+			$sub[] = $this->getSite( $id );
+		}
+
+		return $sub;
 	}
 
-	/**
-	 * @see GenericArrayObject::getSerializationData
-	 *
-	 * @since 1.21
-	 *
-	 * @return array
-	 */
-	protected function getSerializationData() {
-		// NOTE: When changing the structure, either implement unserialize() to handle the
-		//      old structure too, or update SERIAL_VERSION_ID to kill any caches.
-		return array_merge(
-			parent::getSerializationData(),
-			[
-				'internalIds' => $this->byInternalId,
-				'globalIds' => $this->byGlobalId,
-				'navigationIds' => $this->byNavigationId
-			]
-		);
-	}
-
-	/**
-	 * @see GenericArrayObject::unserialize
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $serialization
-	 *
-	 * @return array
-	 */
-	public function unserialize( $serialization ) {
-		$serializationData = parent::unserialize( $serialization );
-
-		$this->byInternalId = $serializationData['internalIds'];
-		$this->byGlobalId = $serializationData['globalIds'];
-		$this->byNavigationId = $serializationData['navigationIds'];
-
-		return $serializationData;
-	}
 }
