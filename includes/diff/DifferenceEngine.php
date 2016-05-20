@@ -851,7 +851,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $ntext New text, must be already segmented
 	 * @return bool|string
 	 */
-	protected function textDiff( $otext, $ntext ) {
+	public function textDiff( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		$otext = str_replace( "\r\n", "\n", $otext );
