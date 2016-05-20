@@ -59,6 +59,16 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}
 
+		if ( $this->mShowFilename ) {
+			// Preload LinkCache info for when generating links
+			// of the filename below
+			$lb = new LinkBatch();
+			foreach ( $this->mImages as $img ) {
+				$lb->addObj( $img[0] );
+			}
+			$lb->execute();
+		}
+
 		$lang = $this->getRenderLang();
 		# Output each image...
 		foreach ( $this->mImages as $pair ) {
@@ -176,6 +186,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$textlink = $this->mShowFilename ?
+				// Preloaded into LinkCache above
 				Linker::linkKnown(
 					$nt,
 					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) )
