@@ -89,7 +89,8 @@
 			"Nbdd0121",
 			"Apflu",
 			"飞舞回堂前",
-			"Cosine02"
+			"Cosine02",
+			"Arthur2e5"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1075,7 +1076,7 @@
 	"rows": "行数：",
 	"columns": "列数：",
 	"searchresultshead": "搜索",
-	"stub-threshold": "短链接格式阈值（$1）：",
+	"stub-threshold": "小作品链接格式阈值（$1）：",
 	"stub-threshold-sample-link": "样例",
 	"stub-threshold-disabled": "停用",
 	"recentchangesdays": "最近更改中显示的天数：",
@@ -2252,10 +2253,10 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|前|前$1个}}",
 	"whatlinkshere-next": "{{PLURAL:$1|后|后$1个}}",
 	"whatlinkshere-links": "←链接",
-	"whatlinkshere-hideredirs": "隐藏重定向",
-	"whatlinkshere-hidetrans": "隐藏嵌入",
-	"whatlinkshere-hidelinks": "隐藏链接",
-	"whatlinkshere-hideimages": "隐藏文件链接",
+	"whatlinkshere-hideredirs": "$1重定向",
+	"whatlinkshere-hidetrans": "$1嵌入",
+	"whatlinkshere-hidelinks": "$1链接",
+	"whatlinkshere-hideimages": "$1文件链接",
 	"whatlinkshere-filters": "过滤器",
 	"whatlinkshere-submit": "提交",
 	"autoblockid": "自动封禁#$1",

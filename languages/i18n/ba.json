@@ -25,7 +25,8 @@
 			"Айсар",
 			"Lizalizaufa",
 			"Кутлубаева Кунсулу Закиевна",
-			"Вильданова Гюзель"
+			"Вильданова Гюзель",
+			"Ilmira"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -3573,7 +3574,9 @@
 	"log-action-filter-protect-unprotect": "Һаҡты алып ташлау",
 	"log-action-filter-upload-upload": "Яңы күсереү",
 	"log-action-filter-upload-overwrite": "Ҡабаттан тейәү",
+	"authmanager-userdoesnotexist": "\"$1\" иҫәп яҙмаһы теркәлмәгән.",
 	"authmanager-email-label": "Электрон почта адресы",
+	"authmanager-email-help": "Электрон почта адресы",
 	"authmanager-realname-label": "Ысын исемегеҙ",
 	"changecredentials-submit": "Үҙгәртергә",
 	"removecredentials-submit-cancel": "Кире алырға"

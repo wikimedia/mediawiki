@@ -2097,7 +2097,7 @@
 	"whatlinkshere-hideredirs": "de Ömleijdonge $1",
 	"whatlinkshere-hidetrans": "de Oproofe $1",
 	"whatlinkshere-hidelinks": "de nommahle Lengks $1",
-	"whatlinkshere-hideimages": "$1 de Lengks op Datteihje",
+	"whatlinkshere-hideimages": "de Lengks op Datteihje $1",
 	"whatlinkshere-filters": "Ußsööke",
 	"whatlinkshere-submit": "Lohß jonn!",
 	"autoblockid": "Automattesche Sperr Nommer $1",
@@ -3566,5 +3566,6 @@
 	"mw-widgets-titleinput-description-redirect": "ömleijde op „$1“",
 	"api-error-blacklisted": "Söhk Der ene anndere Nahme uß, dä mih drövver säht.",
 	"randomrootpage": "Zofällige Aanfangs-Sigg",
-	"log-action-filter-delete-delete": "En Sigg wohd fott jeschmeße"
+	"log-action-filter-delete-delete": "En Sigg wohd fott jeschmeße",
+	"authmanager-userdoesnotexist": "Ene Metmaacher mem Nahme „$1“ es nit ennjedrahre."
 }

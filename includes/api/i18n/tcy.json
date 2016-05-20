@@ -2,9 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Bharathesha Alasandemajalu",
-			"Vishwanatha Badikana"
+			"Vishwanatha Badikana",
+			"VASANTH S.N."
 		]
 	},
+	"apihelp-createaccount-param-name": "ಸದಸ್ಯೆರ್ನ ಪುದರ್:",
+	"apihelp-delete-description": "ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ",
+	"apihelp-edit-param-minor": "ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲು",
+	"apihelp-edit-example-edit": "ಪುಟೊನ್ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ",
+	"apihelp-feedcontributions-param-year": "ಈ ಒರ್ಸೊರ್ದು(ಬೊಕ್ಕ ದುಂಬುದ):",
+	"apihelp-feedcontributions-param-month": "ಈ ತಿಂಗೊಲುರ್ದ್ (ಬೊಕ್ಕ ದುಂಬುದ):",
+	"apihelp-feedrecentchanges-example-simple": "ಇಂಚಿಪದ ಬದಲಾವಣೆಲೆನ್ ತೋಜಾಲೆ.",
+	"apihelp-login-param-name": "ಸದಸ್ಯೆರೆನ ಪುದರ್",
+	"apihelp-login-param-password": "ಪ್ರವೇಶ ಪದೊ",
+	"apihelp-login-example-login": "ಲಾಗಿನ್ ಆಲೆ",
 	"apihelp-query+watchlist-param-type": "ವಾ ನಮೂನೆದ ಬದಲಾವಣೆ ತೊಜವೋಡು",
 	"apihelp-query+watchlist-paramvalue-type-external": "ಪಿದಯೀದ ಬದಲಾವಣೇ",
 	"apihelp-query+watchlist-paramvalue-type-new": "ಪುಟೊ ಉಂಡುಮಾನ್ಪುನಾ"

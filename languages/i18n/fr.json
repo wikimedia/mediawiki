@@ -143,7 +143,8 @@
 			"Jdforrester",
 			"Yasten",
 			"Psychoslave",
-			"Trial"
+			"Trial",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -718,7 +719,7 @@
 	"passwordreset-nosuchcaller": "L’appelant n’existe pas : $1",
 	"passwordreset-ignored": "La réinitialisation du mot de passe n’a pas été gérée. Peut-être aucun fournisseur n’a été configuré ?",
 	"passwordreset-invalideamil": "Adresse de messagerie non valide",
-	"passwordreset-nodata": "Aucun nom d’utilisateur ni d’adresse de messagerie n’a été fourni",
+	"passwordreset-nodata": "Aucun nom d’utilisateur ni adresse de messagerie n’a été fourni",
 	"changeemail": "Changer ou supprimer l’adresse de courriel",
 	"changeemail-header": "Complétez ce formulaire pour modifier votre adresse de courriel. Si vous voulez supprimer l’association d’une adresse de courriel avec votre compte, laissez la nouvelle adresse de courriel vide lors de la soumission du formulaire.",
 	"changeemail-passwordrequired": "Vous devrez saisir votre mot de passe pour confirmer cette modification.",
@@ -3891,7 +3892,7 @@
 	"authmanager-create-not-in-progress": "La création de compte n’est pas en cours, ou les données de session ont été perdues. Veuillez recommencer depuis le début.",
 	"authmanager-create-no-primary": "Les informations d’identification fournies n’ont pas pu être utilisées pour la création de compte.",
 	"authmanager-link-no-primary": "Les informations d’identification fournies n’ont pas pu être utilisées pour lier un compte.",
-	"authmanager-link-not-in-progress": "La liaison de compte n’est pas en cours ou les données de session ont été perdues. Veuillez redémarrer depuis le début.",
+	"authmanager-link-not-in-progress": "La liaison de compte n’est pas en cours ou les données de session ont été perdues. Veuillez recommencer depuis le début.",
 	"authmanager-authplugin-setpass-failed-title": "Échec du changement de mot de passe",
 	"authmanager-authplugin-setpass-failed-message": "Le module d’authentification a refusé le changement de mot de passe.",
 	"authmanager-authplugin-create-fail": "Le module d’authentification a refusé la création de compte.",

@@ -27,7 +27,8 @@
 			"Matma Rex",
 			"Goshaproject",
 			"Nemo bis",
-			"SamGold"
+			"SamGold",
+			"Liashko"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -1767,6 +1768,8 @@
 	"apisandbox-dynamic-parameters-add-placeholder": "Назва параметра",
 	"apisandbox-dynamic-error-exists": "Параметр з назвай \"$1\" ужо існуе.",
 	"apisandbox-deprecated-parameters": "Састарэлыя параметры",
+	"apisandbox-submit-invalid-fields-title": "Некаторыя палі недапушчальныя",
+	"apisandbox-submit-invalid-fields-message": "Калі ласка, выпраўце адзначаныя палі і паспрабуйце ізноў.",
 	"apisandbox-results": "Вынікі",
 	"apisandbox-alert-page": "Палі на гэтай старонцы недапушчальныя.",
 	"apisandbox-alert-field": "Значэнне гэтага поля недапушчальнае.",
@@ -1787,6 +1790,8 @@
 	"log-edit-tags": "Правіць біркі да выбраных запісаў журнала",
 	"checkbox-select": "Выбраць: $1",
 	"checkbox-all": "Усе",
+	"checkbox-none": "Нічога",
+	"checkbox-invert": "Інвертаваць",
 	"allpages": "Усе старонкі",
 	"nextpage": "Наступная старонка ($1)",
 	"prevpage": "Папярэдняя старонка ($1)",
@@ -1846,6 +1851,7 @@
 	"listgrouprights-namespaceprotection-header": "Абмежаванні прасторы назваў",
 	"listgrouprights-namespaceprotection-namespace": "Прастора назваў",
 	"listgrouprights-namespaceprotection-restrictedto": "Дазвол(ы), неабходныя для праўкі",
+	"listgrants-rights": "Правы",
 	"trackingcategories": "Катэгорыі для асочвання",
 	"trackingcategories-summary": "На гэтай старонцы пералічаны катэгорыі для асочвання, якія аўтаматычна напаўняюцца праграмным забеспячэннем MediaWiki. Іх можна перайменаваць, змяніўшы адпаведныя сістэмныя паведамленні ў прасторы назваў {{ns:8}}.",
 	"trackingcategories-msg": "Катэгорыя для асочвання",

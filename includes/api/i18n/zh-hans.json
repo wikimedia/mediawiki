@@ -1049,6 +1049,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "返回变量ID列表。",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "返回外部链接中允许的协议列表。",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "返回用户设置的默认值。",
+	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "返回上传对话框的配置。",
 	"apihelp-query+siteinfo-param-filteriw": "只返回跨wiki地图中的本地或非本地记录。",
 	"apihelp-query+siteinfo-param-showalldb": "列出所有数据库服务器，不只是最落后的那个。",
 	"apihelp-query+siteinfo-param-numberingroup": "列出用户组中的用户数。",
