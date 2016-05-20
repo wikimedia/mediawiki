@@ -309,5 +309,5 @@ define( 'CONTENT_FORMAT_XML', 'application/xml' );
 /**@{
  * Max string length for shell invocations; based on binfmts.h
  */
-define( 'SHELL_MAX_ARG_STRLEN', '100000');
+define( 'SHELL_MAX_ARG_STRLEN', '100000' );
 /**@}*/
