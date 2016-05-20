@@ -40,6 +40,9 @@ if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
 		. 'for help on how to disable magic quotes.' );
 }
 
+if ( ini_get( 'mbstring.func_overload' ) ) {
+       die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
+}
 
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry

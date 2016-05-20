@@ -391,7 +391,13 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	public function lacksSameOriginSecurity() {
-		return $this->getMain()->getRequest()->getVal( 'callback' ) !== null;
+		// Main module has this method overridden
+		// Safety - avoid infinite loop:
+		if ( $this->isMain() ) {
+			ApiBase::dieDebug( __METHOD__, 'base method was called on main module.' );
+		}
+
+		return $this->getMain()->lacksSameOriginSecurity();
 	}
 
 	/**

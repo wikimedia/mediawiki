@@ -1,7 +1,7 @@
 /**
  * Remote Scripting Library
  * Copyright 2005 modernmethod, inc
- * Under the open source BSD license
+ * Under the 3-clause BSD license
  * http://www.modernmethod.com/sajax/
  */
 

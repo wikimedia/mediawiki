@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.25.3';
+$wgVersion = '1.25.6';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -4086,7 +4086,13 @@ $wgDebugTidy = false;
 $wgRawHtml = false;
 
 /**
- * Set a default target for external links, e.g. _blank to pop up a new window
+ * Set a default target for external links, e.g. _blank to pop up a new window.
+ *
+ * This will also set the "noreferrer" and "noopener" link rel to prevent the
+ * attack described at https://mathiasbynens.github.io/rel-noopener/ .
+ * Some older browsers may not support these link attributes, hence
+ * setting $wgExternalLinkTarget to _blank may represent a security risk
+ * to some of your users.
  */
 $wgExternalLinkTarget = false;
 
@@ -4281,9 +4287,9 @@ $wgPasswordConfig = array(
 	),
 	'pbkdf2' => array(
 		'class' => 'Pbkdf2Password',
-		'algo' => 'sha256',
-		'cost' => '10000',
-		'length' => '128',
+		'algo' => 'sha512',
+		'cost' => '30000',
+		'length' => '64',
 	),
 );
 
@@ -4520,6 +4526,12 @@ $wgWhitelistReadRegexp = false;
  * address before being allowed to edit?
  */
 $wgEmailConfirmToEdit = false;
+
+/**
+ * Should MediaWiki attempt to protect user's privacy when doing redirects?
+ * Keep this true if access counts to articles are made public.
+ */
+$wgHideIdentifiableRedirects = true;
 
 /**
  * Permission keys given to users in each group.

@@ -42,5 +42,9 @@ class MWSaltedPassword extends ParameterizedPassword {
 		}
 
 		$this->hash = md5( $this->args[0] . '-' . md5( $plaintext ) );
+
+		if ( !is_string( $this->hash ) || strlen( $this->hash ) < 32 ) {
+			throw new PasswordError( 'Error when hashing password.' );
+		}
 	}
 }

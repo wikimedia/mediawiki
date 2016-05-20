@@ -2125,6 +2125,15 @@ Entities inside <pre>
 !! end
 
 !! test
+<nowiki> inside of #tag:pre
+!! wikitext
+{{#tag:pre|Foo <nowiki>&rarr;bar</nowiki>}}
+!! html
+<pre>Foo &#8594;bar</pre>
+
+!! end
+
+!! test
 <nowiki> and <pre> preference (first one wins)
 !! wikitext
 <pre>
@@ -12106,7 +12115,7 @@ Image with link parameter, wgExternalLinkTarget
 !! config
 wgExternalLinkTarget='foobar'
 !! html
-<p><a href="http://example.com/" target="foobar" rel="nofollow"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<p><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
@@ -12139,7 +12148,7 @@ Image with link parameter, wgExternalLinkTarget, unnamed parameter
 !! config
 wgExternalLinkTarget='foobar'
 !! html
-<p><a href="http://example.com/" title="Title" target="foobar" rel="nofollow"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<p><a href="http://example.com/" title="Title" target="foobar" rel="nofollow noreferrer noopener"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 

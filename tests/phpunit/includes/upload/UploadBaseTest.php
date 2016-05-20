@@ -374,6 +374,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with external entity'
 			),
+			array(
+				"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <g> <a xlink:href=\"javascript:alert('1&#10;https://google.com')\"> <rect width=\"300\" height=\"100\" style=\"fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)\" /> </a> </g> </svg>",
+				true,
+				true,
+				'SVG with javascript <a> link with newline (T122653)'
+			),
 
 			// Test good, but strange files that we want to allow
 			array(
