@@ -27,7 +27,7 @@
  */
 
 if ( ini_get( 'mbstring.func_overload' ) ) {
-       die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
+	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
 }
 
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this

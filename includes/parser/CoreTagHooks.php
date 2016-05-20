@@ -59,8 +59,8 @@ class CoreTagHooks {
 		// We need to let both '"' and '&' through,
 		// for strip markers and entities respectively.
 		$content = str_replace(
-			array( '>', '<' ),
-			array( '&gt;', '&lt;' ),
+			[ '>', '<' ],
+			[ '&gt;', '&lt;' ],
 			$content
 		);
 		return Html::rawElement( 'pre', $attribs, $content );
@@ -103,7 +103,7 @@ class CoreTagHooks {
 	 * @return array
 	 */
 	public static function nowiki( $content, $attributes, $parser ) {
-		$content = strtr( $content, array(
+		$content = strtr( $content, [
 			// lang converter
 			'-{' => '-&#123;',
 			'}-' => '&#125;-',
@@ -112,8 +112,8 @@ class CoreTagHooks {
 			'>' => '&gt;'
 			// Note: Both '"' and '&' are not converted.
 			// This allows strip markers and entities through.
-		) );
-		return array( $content, 'markerType' => 'nowiki' );
+		] );
+		return [ $content, 'markerType' => 'nowiki' ];
 	}
 
 	/**
