@@ -94,6 +94,12 @@ class RawAction extends FormlessAction {
 
 		$response = $request->response();
 
+		// Set standard Vary headers so cache varies on cookies and such (T125283)
+		$response->header( $this->getOutput()->getVaryHeader() );
+		if ( $config->get( 'UseXVO' ) ) {
+			$response->header( $this->getOutput()->getXVO() );
+		}
+
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis

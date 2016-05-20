@@ -270,12 +270,34 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Improve IP::sanitizeIP() code coverage
-	 * @todo Most probably incomplete
+	 * @covers IP::sanitizeIP
+	 * @dataProvider provideSanitizeIP
 	 */
-	public function testSanitizeIP() {
-		$this->assertNull( IP::sanitizeIP( '' ) );
-		$this->assertNull( IP::sanitizeIP( ' ' ) );
+	public function testSanitizeIP( $expected, $input ) {
+		$result = IP::sanitizeIP( $input );
+		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * Provider for IP::testSanitizeIP()
+	 */
+	public static function provideSanitizeIP() {
+		return array(
+			array( '0.0.0.0', '0.0.0.0' ),
+			array( '0.0.0.0', '00.00.00.00' ),
+			array( '0.0.0.0', '000.000.000.000' ),
+			array( '141.0.11.253', '141.000.011.253' ),
+			array( '1.2.4.5', '1.2.4.5' ),
+			array( '1.2.4.5', '01.02.04.05' ),
+			array( '1.2.4.5', '001.002.004.005' ),
+			array( '10.0.0.1', '010.0.000.1' ),
+			array( '80.72.250.4', '080.072.250.04' ),
+			array( 'Foo.1000.00', 'Foo.1000.00'),
+			array( 'Bar.01', 'Bar.01'),
+			array( 'Bar.010', 'Bar.010'),
+			array( null, ''),
+			array( null, ' ')
+		);
 	}
 
 	/**
@@ -299,6 +321,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			array( '80000000', '128.0.0.0' ),
 			array( 'DEADCAFE', '222.173.202.254' ),
 			array( 'FFFFFFFF', '255.255.255.255' ),
+			array( '8D000BFD', '141.000.11.253' ),
 			array( false, 'IN.VA.LI.D' ),
 			array( 'v6-00000000000000000000000000000001', '::1' ),
 			array( 'v6-20010DB885A3000000008A2E03707334', '2001:0db8:85a3:0000:0000:8a2e:0370:7334' ),

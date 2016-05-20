@@ -100,9 +100,9 @@ class ApiFormatJson extends ApiFormatBase {
 		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 		// Flash, but what it does isn't friendly for the API, so we need to
 		// work around it.
-		if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
+		if ( preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $json ) ) {
 			$json = preg_replace(
-				'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
+				'/\<(\s*cross-domain-policy(?=\s|\>))/i', '\\u003C$1', $json
 			);
 		}
 

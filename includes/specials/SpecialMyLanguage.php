@@ -95,4 +95,15 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			return $base;
 		}
 	}
+
+	/**
+	 * Target can identify a specific user's language preference.
+	 *
+	 * @see T109724
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
+	}
 }

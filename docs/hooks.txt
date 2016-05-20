@@ -2346,6 +2346,12 @@ IContextSource $context: The RequestContext the skin is being created for.
 &$skin: A variable reference you may set a Skin instance or string key on to
   override the skin that will be used for the context.
 
+'RequestHasSameOriginSecurity': Called to determine if the request is somehow
+flagged to lack same-origin security. Return false to indicate the lack. Note
+if the "somehow" involves HTTP headers, you'll probably need to make sure
+the header is varied on.
+WebRequest $request: The request.
+
 'ResetPasswordExpiration': Allow extensions to set a default password expiration
 $user: The user having their password expiration reset
 &$newExpire: The new expiration date
