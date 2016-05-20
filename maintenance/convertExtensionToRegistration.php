@@ -94,6 +94,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$globalSettings = $this->getAllGlobals();
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
+			if ( $realName === false ) {
+				continue;
+			}
 
 			// If it's an empty array that we likely set, skip it
 			if ( is_array( $value ) && count( $value ) === 0 && in_array( $realName, $__settings ) ) {
