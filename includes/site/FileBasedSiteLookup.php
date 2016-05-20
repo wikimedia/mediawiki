@@ -54,12 +54,16 @@ class FileBasedSiteLookup implements SiteLookup {
 	 *
 	 * @return SiteList
 	 */
-	public function getSites() {
+	public function getSites( $ids = null ) {
 		if ( $this->sites === null ) {
 			$this->sites = $this->loadSitesFromCache();
 		}
 
-		return $this->sites;
+		if ( $ids === null ) {
+			return $this->sites;
+		} else {
+			$this->sites->getSubList( $ids );
+		}
 	}
 
 	/**

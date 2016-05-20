@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Site\MutableSite;
 
 /**
  * Tests for the SiteList class.
@@ -74,6 +75,21 @@ class SiteListTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers SiteList::getSubList
+	 */
+	public function testGetSubList() {
+		$sites = new SiteList();
+
+		$sites[] = new MutableSite( 'foo' );
+		$sites[] = new MutableSite( 'bar' );
+
+		$sub = $sites->getSubList( [ 'xoo', 'bar' ] );
+
+		$this->assertNotNull( $sub->getSite( 'bar' ) );
+		$this->assertFalse( $sub->hasSite( 'foo' ) );
+	}
+
+	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
 	 * @covers SiteList::getSite
@@ -84,24 +100,6 @@ class SiteListTest extends MediaWikiTestCase {
 		 */
 		foreach ( $sites as $site ) {
 			$this->assertEquals( $site, $sites->getSite( $site->getGlobalId() ) );
-		}
-
-		$this->assertTrue( true );
-	}
-
-	/**
-	 * @dataProvider siteListProvider
-	 * @param SiteList $sites
-	 * @covers SiteList::getSiteByInternalId
-	 */
-	public function testGetSiteByInternalId( $sites ) {
-		/**
-		 * @var Site $site
-		 */
-		foreach ( $sites as $site ) {
-			if ( is_integer( $site->getInternalId() ) ) {
-				$this->assertEquals( $site, $sites->getSiteByInternalId( $site->getInternalId() ) );
-			}
 		}
 
 		$this->assertTrue( true );
@@ -133,7 +131,6 @@ class SiteListTest extends MediaWikiTestCase {
 	 */
 	public function testHasGlobalId( $sites ) {
 		$this->assertFalse( $sites->hasSite( 'non-existing-global-id' ) );
-		$this->assertFalse( $sites->hasInternalId( 720101010 ) );
 
 		if ( !$sites->isEmpty() ) {
 			/**
@@ -143,24 +140,6 @@ class SiteListTest extends MediaWikiTestCase {
 				$this->assertTrue( $sites->hasSite( $site->getGlobalId() ) );
 			}
 		}
-	}
-
-	/**
-	 * @dataProvider siteListProvider
-	 * @param SiteList $sites
-	 * @covers SiteList::hasInternalId
-	 */
-	public function testHasInternallId( $sites ) {
-		/**
-		 * @var Site $site
-		 */
-		foreach ( $sites as $site ) {
-			if ( is_integer( $site->getInternalId() ) ) {
-				$this->assertTrue( $site, $sites->hasInternalId( $site->getInternalId() ) );
-			}
-		}
-
-		$this->assertFalse( $sites->hasInternalId( -1 ) );
 	}
 
 	/**
@@ -204,36 +183,4 @@ class SiteListTest extends MediaWikiTestCase {
 		$this->assertArrayEquals( $expected, $identifiers );
 	}
 
-	/**
-	 * @dataProvider siteListProvider
-	 *
-	 * @since 1.21
-	 *
-	 * @param SiteList $list
-	 * @covers SiteList::getSerializationData
-	 * @covers SiteList::unserialize
-	 */
-	public function testSerialization( SiteList $list ) {
-		$serialization = serialize( $list );
-		/**
-		 * @var SiteList $copy
-		 */
-		$copy = unserialize( $serialization );
-
-		$this->assertArrayEquals( $list->getGlobalIdentifiers(), $copy->getGlobalIdentifiers() );
-
-		/**
-		 * @var Site $site
-		 */
-		foreach ( $list as $site ) {
-			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
-
-			foreach ( $site->getNavigationIds() as $navId ) {
-				$this->assertTrue(
-					$copy->hasNavigationId( $navId ),
-					'unserialized data expects nav id ' . $navId . ' for site ' . $site->getGlobalId()
-				);
-			}
-		}
-	}
 }

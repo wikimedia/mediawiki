@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Site\MutableSite;
 
 /**
  * Holds sites for testing purposes.
@@ -38,37 +39,34 @@ class TestSites {
 	public static function getSites() {
 		$sites = [];
 
-		$site = new Site();
-		$site->setGlobalId( 'foobar' );
+		$site = new MutableSite( 'foobar' );
 		$sites[] = $site;
 
-		$site = new MediaWikiSite();
+		$site = new MutableSite( 'enwiktionary', Site::TYPE_MEDIAWIKI );
 		$site->setGlobalId( 'enwiktionary' );
 		$site->setGroup( 'wiktionary' );
 		$site->setLanguageCode( 'en' );
 		$site->addNavigationId( 'enwiktionary' );
-		$site->setPath( MediaWikiSite::PATH_PAGE, "https://en.wiktionary.org/wiki/$1" );
-		$site->setPath( MediaWikiSite::PATH_FILE, "https://en.wiktionary.org/w/$1" );
+		$site->setPath( Site::PATH_PAGE, "https://en.wiktionary.org/wiki/$1" );
+		$site->setPath( Site::PATH_FILE, "https://en.wiktionary.org/w/$1" );
 		$sites[] = $site;
 
-		$site = new MediaWikiSite();
-		$site->setGlobalId( 'dewiktionary' );
+		$site = new MutableSite( 'dewiktionary', Site::TYPE_MEDIAWIKI );
 		$site->setGroup( 'wiktionary' );
 		$site->setLanguageCode( 'de' );
 		$site->addInterwikiId( 'dewiktionary' );
 		$site->addInterwikiId( 'wiktionaryde' );
-		$site->setPath( MediaWikiSite::PATH_PAGE, "https://de.wiktionary.org/wiki/$1" );
-		$site->setPath( MediaWikiSite::PATH_FILE, "https://de.wiktionary.org/w/$1" );
+		$site->setPath( Site::PATH_PAGE, "https://de.wiktionary.org/wiki/$1" );
+		$site->setPath( Site::PATH_FILE, "https://de.wiktionary.org/w/$1" );
 		$sites[] = $site;
 
-		$site = new Site();
-		$site->setGlobalId( 'spam' );
+		$site = new MutableSite( 'spam', Site::TYPE_MEDIAWIKI );
 		$site->setGroup( 'spam' );
 		$site->setLanguageCode( 'en' );
 		$site->addNavigationId( 'spam' );
 		$site->addNavigationId( 'spamz' );
 		$site->addInterwikiId( 'spamzz' );
-		$site->setLinkPath( "http://spamzz.test/testing/" );
+		$site->setPath( Site::PATH_LINK, "http://spamzz.test/testing/" );
 		$sites[] = $site;
 
 		/**
@@ -87,14 +85,13 @@ class TestSites {
 			'sv',
 		];
 		foreach ( $languageCodes as $langCode ) {
-			$site = new MediaWikiSite();
-			$site->setGlobalId( $langCode . 'wiki' );
+			$site = new MutableSite( $langCode . 'wiki', Site::TYPE_MEDIAWIKI );
 			$site->setGroup( 'wikipedia' );
 			$site->setLanguageCode( $langCode );
 			$site->addInterwikiId( $langCode );
 			$site->addNavigationId( $langCode );
-			$site->setPath( MediaWikiSite::PATH_PAGE, "https://$langCode.wikipedia.org/wiki/$1" );
-			$site->setPath( MediaWikiSite::PATH_FILE, "https://$langCode.wikipedia.org/w/$1" );
+			$site->setPath( Site::PATH_PAGE, "https://$langCode.wikipedia.org/wiki/$1" );
+			$site->setPath( Site::PATH_FILE, "https://$langCode.wikipedia.org/w/$1" );
 			$sites[] = $site;
 		}
 

@@ -8146,15 +8146,6 @@ $wgTextModelsToParse = [
 $wgRequirePasswordforEmailChange = true;
 
 /**
- * Register handlers for specific types of sites.
- *
- * @since 1.20
- */
-$wgSiteTypes = [
-	'mediawiki' => 'MediaWikiSite',
-];
-
-/**
  * Whether the page_props table has a pp_sortkey column. Set to false in case
  * the respective database schema change was not applied.
  * @since 1.23

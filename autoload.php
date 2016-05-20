@@ -874,6 +874,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Session\\Token' => __DIR__ . '/includes/session/Token.php',
 	'MediaWiki\\Session\\UserInfo' => __DIR__ . '/includes/session/UserInfo.php',
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
+	'MediaWiki\\Site\\MutableSite' => __DIR__ . '/includes/site/MutableSite.php',
 	'MediaWiki\\Tidy\\Html5Depurate' => __DIR__ . '/includes/tidy/Html5Depurate.php',
 	'MediaWiki\\Tidy\\RaggettBase' => __DIR__ . '/includes/tidy/RaggettBase.php',
 	'MediaWiki\\Tidy\\RaggettExternal' => __DIR__ . '/includes/tidy/RaggettExternal.php',

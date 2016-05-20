@@ -145,7 +145,6 @@ $wgAutoloadClasses += [
 	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
 
 	# tests/phpunit/includes/site
-	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 
 	# tests/phpunit/includes/specialpage
