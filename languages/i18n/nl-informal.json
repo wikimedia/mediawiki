@@ -284,5 +284,9 @@
 	"api-error-hookaborted": "De wijziging die je probeert te maken is afgebroken door een uitbreiding.",
 	"api-error-internal-error": "Interne fout: er is iets misgegaan tijdens het verwerken van je upload door de wiki.",
 	"api-error-mustbeloggedin": "Je moet aangemeld zijn om bestanden te kunnen uploaden.",
-	"api-error-unknown-error": "Interne fout: er is iets misgegaan tijdens het uploaden van je bestand."
+	"api-error-unknown-error": "Interne fout: er is iets misgegaan tijdens het uploaden van je bestand.",
+	"whatlinkshere-hideimages": "Bestandskoppelingen $1",
+	"whatlinkshere-hidelinks": "koppelingen $1",
+	"whatlinkshere-hideredirs": "doorverwijzingen $1",
+	"whatlinkshere-hidetrans": "Transclusies $1"
 }

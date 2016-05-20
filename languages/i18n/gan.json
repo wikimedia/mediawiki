@@ -1,12 +1,15 @@
 {
-    "@metadata": {
-        "authors": [
-            "Philip <philip.npc@gmail.com>",
-            "Symane",
-            "Vipuser"
-        ]
-    },
-    "variantname-gan-hans": "简体",
-    "variantname-gan-hant": "繁體",
-    "variantname-gan": "贛語原文"
+	"@metadata": {
+		"authors": [
+			"Philip <philip.npc@gmail.com>",
+			"Symane",
+			"Vipuser"
+		]
+	},
+	"variantname-gan-hans": "简体",
+	"variantname-gan-hant": "繁體",
+	"variantname-gan": "贛語原文",
+	"whatlinkshere-hidelinks": "$1連結",
+	"whatlinkshere-hideredirs": "$1重定向",
+	"whatlinkshere-hidetrans": "$1含到"
 }
