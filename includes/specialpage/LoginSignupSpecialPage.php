@@ -47,6 +47,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mEntryErrorType = 'error';
 
 	protected $mLoaded = false;
+	protected $mLoadedRequest = false;
 	protected $mSecureLoginUrl;
 
 	/** @var string */
@@ -90,18 +91,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * Load data from request.
-	 * @private
-	 * @param string $subPage Subpage of Special:Userlogin
+	 * Load basic request parameters for this Special page.
+	 * @param $subPage
 	 */
-	protected function load( $subPage ) {
-		global $wgSecureLogin;
-
-		if ( $this->mLoaded ) {
+	private function loadRequestParameters( $subPage ) {
+		if ( $this->mLoadedRequest ) {
 			return;
 		}
-		$this->mLoaded = true;
-
+		$this->mLoadedRequest = true;
 		$request = $this->getRequest();
 
 		$this->mPosted = $request->wasPosted();
@@ -114,6 +111,22 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+	}
+
+	/**
+	 * Load data from request.
+	 * @private
+	 * @param string $subPage Subpage of Special:Userlogin
+	 */
+	protected function load( $subPage ) {
+		global $wgSecureLogin;
+
+		if ( $this->mLoaded ) {
+			return;
+		}
+		$this->mLoaded = true;
+		$request = $this->getRequest();
+		$this->loadRequestParameters( $subPage );
 
 		$securityLevel = $this->getRequest()->getText( 'force' );
 		if (
@@ -183,6 +196,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
 		return $params;
+	}
+
+	protected function beforeExecute( $subPage ) {
+		// finish initializing the class before processing the request - T135924
+		$this->loadRequestParameters( $subPage );
+		return parent::beforeExecute( $subPage );
 	}
 
 	/**
