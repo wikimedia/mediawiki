@@ -3100,6 +3100,7 @@
 	"timezone-local": "Helyi",
 	"duplicate-defaultsort": "Figyelem: a(z) „$2” rendezőkulcs felülírja a korábbit („$1”).",
 	"duplicate-displaytitle": "<strong>Figyelmeztetés:</strong> A lapcímváltoztató (<tt>DISPLAYTITLE</tt>) „$2” felülírja a korábbi „$1”-t.",
+	"restricted-displaytitle": "<strong>Figyelmeztetés:</strong> A megjelenítendő cím „$1” figyelmen kívül lett hagyva, mert nem egyezik a lap tényleges címével.",
 	"invalid-indicator-name": "<strong>Hiba:</strong> A lapstátuszjelző <code>name</code> attribútuma nem lehet üres.",
 	"version": "Névjegy",
 	"version-extensions": "Telepített kiterjesztések",

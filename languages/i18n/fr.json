@@ -3920,7 +3920,7 @@
 	"authprovider-confirmlink-ok-help": "Continuer après l’affichage des messages d’échec de liaison.",
 	"authprovider-resetpass-skip-label": "Sauter",
 	"authprovider-resetpass-skip-help": "Sauter la réinitialisation du mot de passe.",
-	"authform-nosession-login": "L’authentification aréussi, mais votre navigateur ne peut pas se « souvenir » d’avoir été connecté.\n\n$1",
+	"authform-nosession-login": "L’authentification a réussi, mais votre navigateur ne peut pas se « souvenir » d’avoir été connecté.\n\n$1",
 	"authform-nosession-signup": "Le compte a été créé, mais votre navigateur ne peut pas se « souvenir » avoir été connecté.\n\n$1",
 	"authform-newtoken": "Jeton manquant. $1",
 	"authform-notoken": "Jeton manquant",

@@ -1230,7 +1230,7 @@
 	"columns": "Used on [[Special:Preferences]], \"Editing\" section in the \"Size of editing window\" fieldset.\n{{Identical|Column}}",
 	"searchresultshead": "Replaced by {{msg-mw|prefs-searchoptions}}, though may still be used in some extensions. DEPRECATED.\n\n{{Identical|Search}}",
 	"stub-threshold": "Used in [[Special:Preferences]], \"Advanced options\" section. The setting allows the user to select a threshold value, in bytes, from a predefined list of options. Any links that lead to pages smaller than the threshold (\"stub links\") will be styled differently.\n\nParameters:\n* $1: the text of {{msg-mw|stub-threshold-sample-link}}, styled as a stub link",
-	"stub-threshold-sample-link": "Passed as a parameter to the {{msg-mw|stub-threshold}} message.",
+	"stub-threshold-sample-link": "Passed as a parameter to the {{msg-mw|stub-threshold}} message.\n{{Identical|Sample}}",
 	"stub-threshold-disabled": "Used in [[Special:Preferences]].\n{{Identical|Disabled}}",
 	"recentchangesdays": "Used in [[Special:Preferences]], tab \"Recent changes\".",
 	"recentchangesdays-max": "Shown as hint in [[Special:Preferences]], tab \"Recent changes\". Parameters:\n* $1 - number of days\nSee also:\n* {{msg-mw|Prefs-watchlist-days-max}}",

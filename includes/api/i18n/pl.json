@@ -302,6 +302,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Dodaje znacznik czasu edycji.",
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Dodaje starą i nową długość strony.",
 	"apihelp-resetpassword-description": "Wyślij użytkownikowi e-mail do resetowania hasła.",
+	"apihelp-resetpassword-example-email": "Wyślij e-mail do resetowania hasła do wszystkich użytkowników posiadających adres <kbd>user@example.com</kbd>.",
 	"apihelp-stashedit-param-title": "Tytuł edytowanej strony.",
 	"apihelp-stashedit-param-sectiontitle": "Tytuł nowej sekcji.",
 	"apihelp-stashedit-param-text": "Zawartość strony.",

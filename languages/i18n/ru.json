@@ -3811,7 +3811,14 @@
 	"authmanager-provider-temporarypassword": "Временный пароль",
 	"authprovider-resetpass-skip-label": "Пропустить",
 	"authprovider-resetpass-skip-help": "Пропустить сброс пароля.",
+	"cannotauth-not-allowed-title": "Доступ запрещён",
+	"cannotauth-not-allowed": "Вы не можете использовать эту страницу",
+	"changecredentials": "Изменение учётных данных",
 	"changecredentials-submit": "Изменить",
 	"changecredentials-submit-cancel": "Отмена",
+	"changecredentials-invalidsubpage": "$1 является недопустимым типом учётных данных.",
+	"changecredentials-success": "Ваши учётные данные были изменены.",
+	"removecredentials": "Удалить учётные данные",
+	"removecredentials-submit": "Удалить",
 	"removecredentials-submit-cancel": "Отмена"
 }

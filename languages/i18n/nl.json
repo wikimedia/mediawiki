@@ -491,6 +491,7 @@
 	"userlogin-resetpassword-link": "Wachtwoord vergeten?",
 	"userlogin-helplink2": "Hulp bij aanmelden",
 	"userlogin-loggedin": "U bent al aangemeld als {{GENDER:$1|$1}}.\nGebruik het onderstaande formulier om aan te melden als een andere gebruiker.",
+	"userlogin-reauth": "U moet opnieuw inloggen om te bevestigen dat u {{GENDER:$1|$1}} bent.",
 	"userlogin-createanother": "Een andere account registreren",
 	"createacct-emailrequired": "E-mailadres",
 	"createacct-emailoptional": "E-mailadres (optioneel)",

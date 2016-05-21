@@ -70,7 +70,8 @@
 			"Pipetricker",
 			"Dammråtta",
 			"Mgr",
-			"Matma Rex"
+			"Matma Rex",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -485,7 +486,7 @@
 	"userlogin-resetpassword-link": "Glömt ditt lösenord?",
 	"userlogin-helplink2": "Hjälp med inloggning",
 	"userlogin-loggedin": "Du är redan inloggad som {{GENDER:$1|$1}}.\nAnvänd formuläret nedan för att logga in som en annan användare.",
-	"userlogin-reauth": "Du måste logga in för att verifiera att du är {{GENDER:$1|$1}}.",
+	"userlogin-reauth": "Du måste logga in igen för att verifiera att du är {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Skapa ett annat konto",
 	"createacct-emailrequired": "E-postadress",
 	"createacct-emailoptional": "E-postadress (valfritt)",
