@@ -1388,7 +1388,7 @@ class Linker {
 							$sectionTitle = Title::newFromText( '#' . $section );
 						} else {
 							$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-								$title->getDBkey(), $section );
+								$title->getDBkey(), Sanitizer::decodeCharReferences( $section ) );
 						}
 						if ( $sectionTitle ) {
 							$link = Linker::makeCommentLink( $sectionTitle, $wgLang->getArrow(), $wikiId, 'noclasses' );

@@ -1542,7 +1542,7 @@ class HTMLForm extends ContextSource {
 
 					$attributes = [];
 					if ( $fieldsetIDPrefix ) {
-						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
+						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key", 'noentities' );
 					}
 					$subsectionHtml .= $this->wrapFieldSetSection( $legend, $section, $attributes );
 				} else {
@@ -1591,7 +1591,7 @@ class HTMLForm extends ContextSource {
 		];
 
 		if ( $sectionName ) {
-			$attribs['id'] = Sanitizer::escapeId( $sectionName );
+			$attribs['id'] = Sanitizer::escapeId( $sectionName, 'noentities' );
 		}
 
 		if ( $displayFormat === 'table' ) {

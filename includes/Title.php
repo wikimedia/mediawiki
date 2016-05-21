@@ -745,7 +745,7 @@ class Title implements LinkTarget {
 		# fragments appear not to work in IE (at least up to 7) or in at least
 		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
 		# to care if they aren't encoded.
-		return Sanitizer::escapeId( $fragment, 'noninitial' );
+		return Sanitizer::escapeId( $fragment, [ 'noninitial', 'noentities' ] );
 	}
 
 	/**
