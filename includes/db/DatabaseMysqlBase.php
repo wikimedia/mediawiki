@@ -36,6 +36,8 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $lagDetectionMethod;
 	/** @var array Method to detect slave lag */
 	protected $lagDetectionOptions = [];
+	/** @var bool bool Whether to use GTID methods */
+	protected $useGTIDs = false;
 
 	/** @var string|null */
 	private $serverVersion = null;
@@ -43,13 +45,14 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
-	 *                          pt-heartbeat assumes the table is at heartbeat.heartbeat
-	 *                          and uses UTC timestamps in the heartbeat.ts column.
-	 *                          (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
+	 *       pt-heartbeat assumes the table is at heartbeat.heartbeat
+	 *       and uses UTC timestamps in the heartbeat.ts column.
+	 *       (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
 	 *   - lagDetectionOptions : if using pt-heartbeat, this can be set to an array map to change
-	 *                           the default behavior. Normally, the heartbeat row with the server
-	 *                           ID of this server's master will be used. Set the "conds" field to
-	 *                           override the query conditions, e.g. ['shard' => 's1'].
+	 *       the default behavior. Normally, the heartbeat row with the server
+	 *       ID of this server's master will be used. Set the "conds" field to
+	 *       override the query conditions, e.g. ['shard' => 's1'].
+	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
 	 * @param array $params
 	 */
 	function __construct( array $params ) {
@@ -61,6 +64,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->lagDetectionOptions = isset( $params['lagDetectionOptions'] )
 			? $params['lagDetectionOptions']
 			: [];
+		$this->useGTIDs = !empty( $params['useGTIDs' ] );
 	}
 
 	/**
@@ -788,13 +792,20 @@ abstract class DatabaseMysqlBase extends Database {
 			return 0; // already reached this point for sure
 		}
 
-		# Commit any open transactions
+		// Commit any open transactions
 		$this->commit( __METHOD__, 'flush' );
 
-		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		$encFile = $this->addQuotes( $pos->file );
-		$encPos = intval( $pos->pos );
-		$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
+		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
+		if ( $this->useGTIDs && $pos->gtids ) {
+			// Wait on the GTID set (MariaDB only)
+			$gtidArg = implode( ',', $pos->gtids );
+			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+		} else {
+			// Wait on the binlog coordinates
+			$encFile = $this->addQuotes( $pos->file );
+			$encPos = intval( $pos->pos );
+			$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
+		}
 
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
@@ -827,15 +838,23 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	function getSlavePos() {
-		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
+		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
 		if ( $row ) {
 			$pos = isset( $row->Exec_master_log_pos )
 				? $row->Exec_master_log_pos
 				: $row->Exec_Master_Log_Pos;
+			// Also fetch the last-applied GTID set (MariaDB)
+			if ( $this->useGTIDs ) {
+				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
+				$gtidRow = $this->fetchObject( $res );
+				$gtidSet = $gtidRow ? $gtidRow->Value : '';
+			} else {
+				$gtidSet = '';
+			}
 
-			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
+			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos, $gtidSet );
 		} else {
 			return false;
 		}
@@ -847,11 +866,20 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	function getMasterPos() {
-		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
+		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
 		if ( $row ) {
-			return new MySQLMasterPos( $row->File, $row->Position );
+			// Also fetch the last-written GTID set (MariaDB)
+			if ( $this->useGTIDs ) {
+				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_binlog_pos'", __METHOD__ );
+				$gtidRow = $this->fetchObject( $res );
+				$gtidSet = $gtidRow ? $gtidRow->Value : '';
+			} else {
+				$gtidSet = '';
+			}
+
+			return new MySQLMasterPos( $row->File, $row->Position, $gtidSet );
 		} else {
 			return false;
 		}
@@ -1443,18 +1471,41 @@ class MySQLField implements Field {
 	}
 }
 
+/**
+ * DBMasterPos class for MySQL/MariaDB
+ *
+ * Note that master positions and sync logic here make some assumptions:
+ *  - Binlog-based usage assumes single-source replication and non-hierarchical replication.
+ *  - GTID-based usage allows getting/syncing with multi-source replication. It is assumed
+ *    that GTID sets are complete (e.g. include all domains on the server).
+ */
 class MySQLMasterPos implements DBMasterPos {
-	/** @var string */
+	/** @var string Binlog file */
 	public $file;
-	/** @var int Position */
+	/** @var int Binglog file position */
 	public $pos;
+	/** @var string[] GTID list */
+	public $gtids = [];
 	/** @var float UNIX timestamp */
 	public $asOfTime = 0.0;
 
-	function __construct( $file, $pos ) {
+	/**
+	 * @param string $file Binlog file name
+	 * @param integer $pos Binlog position
+	 * @param string $gtid Comma separated GTID set [optional]
+	 */
+	function __construct( $file, $pos, $gtid = '' ) {
 		$this->file = $file;
 		$this->pos = $pos;
+		$this->gtids = array_map( 'trim', explode( ',', $gtid ) );
 		$this->asOfTime = microtime( true );
+	}
+
+	/**
+	 * @return string <binlog file>/<position>, e.g db1034-bin.000976/843431247
+	 */
+	function __toString() {
+		return "{$this->file}/{$this->pos}";
 	}
 
 	function asOfTime() {
@@ -1466,10 +1517,29 @@ class MySQLMasterPos implements DBMasterPos {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
 
-		$thisPos = $this->getCoordinates();
-		$thatPos = $pos->getCoordinates();
+		// Prefer GTID comparisons, which work with multi-tier replication
+		$thisPosByDomain = $this->getGtidCoordinates();
+		$thatPosByDomain = $pos->getGtidCoordinates();
+		if ( $thisPosByDomain && $thatPosByDomain ) {
+			$reached = true;
+			// Check that this has positions GTE all of those in $pos for all domains in $pos
+			foreach ( $thatPosByDomain as $domain => $thatPos ) {
+				$thisPos = isset( $thisPosByDomain[$domain] ) ? $thisPosByDomain[$domain] : -1;
+				$reached = $reached && ( $thatPos <= $thisPos );
+			}
 
-		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
+			return $reached;
+		}
+
+		// Fallback to the binlog file comparisons
+		$thisBinPos = $this->getBinlogCoordinates();
+		$thatBinPos = $pos->getBinlogCoordinates();
+		if ( $thisBinPos && $thatBinPos && $thisBinPos['binlog'] === $thatBinPos['binlog'] ) {
+			return ( $thisBinPos['pos'] >= $thatBinPos['pos'] );
+		}
+
+		// Comparing totally different binlogs does not make sense
+		return false;
 	}
 
 	function channelsMatch( DBMasterPos $pos ) {
@@ -1477,36 +1547,56 @@ class MySQLMasterPos implements DBMasterPos {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
 
-		$thisBinlog = $this->getBinlogName();
-		$thatBinlog = $pos->getBinlogName();
-
-		return ( $thisBinlog !== false && $thisBinlog === $thatBinlog );
-	}
-
-	function __toString() {
-		// e.g db1034-bin.000976/843431247
-		return "{$this->file}/{$this->pos}";
-	}
-
-	/**
-	 * @return string|bool
-	 */
-	protected function getBinlogName() {
-		$m = [];
-		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
-			return $m[1];
+		// Prefer GTID comparisons, which work with multi-tier replication
+		$thisPosDomains = array_keys( $this->getGtidCoordinates() );
+		$thatPosDomains = array_keys( $pos->getGtidCoordinates() );
+		if ( $thisPosDomains && $thatPosDomains ) {
+			// Check that this has GTIDs for all domains in $pos
+			return !array_diff( $thatPosDomains, $thisPosDomains );
 		}
 
-		return false;
+		// Fallback to the binlog file comparisons
+		$thisBinPos = $this->getBinlogCoordinates();
+		$thatBinPos = $pos->getBinlogCoordinates();
+
+		return ( $thisBinPos && $thatBinPos && $thisBinPos['binlog'] === $thatBinPos['binlog'] );
 	}
 
 	/**
-	 * @return array|bool (int, int)
+	 * @note: this returns false for multi-source replication GTID sets
+	 * @see https://mariadb.com/kb/en/mariadb/gtid
+	 * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
+	 * @return array Map of (domain => integer position) or false
 	 */
-	protected function getCoordinates() {
+	protected function getGtidCoordinates() {
+		$gtidInfos = [];
+		foreach ( $this->gtids as $gtid ) {
+			$m = [];
+			// MariaDB style: <domain>-<server id>-<sequence number>
+			if ( preg_match( '!^(\d+)-\d+-(\d+)$!', $gtid, $m ) ) {
+				$gtidInfos[(int)$m[1]] = (int)$m[2];
+			// MySQL style: <UUID domain>:<sequence number>
+			} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(\d+)$!', $gtid, $m ) ) {
+				$gtidInfos[$m[1]] = (int)$m[2];
+			} else {
+				$gtidInfos = [];
+				break; // unrecognized GTID
+			}
+
+		}
+
+		return $gtidInfos;
+	}
+
+	/**
+	 * @see http://dev.mysql.com/doc/refman/5.7/en/show-master-status.html
+	 * @see http://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html
+	 * @return array|bool (binlog, (integer file number, integer position)) or false
+	 */
+	protected function getBinlogCoordinates() {
 		$m = [];
-		if ( preg_match( '!\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
-			return [ (int)$m[1], (int)$m[2] ];
+		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
+			return [ 'binlog' => $m[1], 'pos' => [ (int)$m[2], (int)$m[3] ] ];
 		}
 
 		return false;
