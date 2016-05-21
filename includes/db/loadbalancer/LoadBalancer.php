@@ -1334,7 +1334,7 @@ class LoadBalancer {
 
 		$lagTimes = $this->getLagTimes( $wiki );
 		foreach ( $lagTimes as $i => $lag ) {
-			if ( $lag > $maxLag ) {
+			if ( $this->mLoads[$i] > 0 && $lag > $maxLag ) {
 				$maxLag = $lag;
 				$host = $this->mServers[$i]['host'];
 				$maxIndex = $i;
