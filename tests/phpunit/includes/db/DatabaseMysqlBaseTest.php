@@ -250,26 +250,71 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideComparePositions
 	 */
-	function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos ) {
-		$this->assertTrue( $higherPos->hasReached( $lowerPos ) );
-		$this->assertTrue( $higherPos->hasReached( $higherPos ) );
-		$this->assertTrue( $lowerPos->hasReached( $lowerPos ) );
-		$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
+	function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match ) {
+		if ( $match ) {
+			$this->assertTrue( $lowerPos->channelsMatch( $higherPos ) );
+
+			$this->assertTrue( $higherPos->hasReached( $lowerPos ) );
+			$this->assertTrue( $higherPos->hasReached( $higherPos ) );
+			$this->assertTrue( $lowerPos->hasReached( $lowerPos ) );
+			$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
+		} else { // channels don't match
+			$this->assertFalse( $lowerPos->channelsMatch( $higherPos ) );
+
+			$this->assertFalse( $higherPos->hasReached( $lowerPos ) );
+			$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
+		}
 	}
 
 	function provideComparePositions() {
 		return [
+			// Binlog style
 			[
 				new MySQLMasterPos( 'db1034-bin.000976', '843431247' ),
-				new MySQLMasterPos( 'db1034-bin.000976', '843431248' )
+				new MySQLMasterPos( 'db1034-bin.000976', '843431248' ),
+				true
 			],
 			[
 				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
-				new MySQLMasterPos( 'db1034-bin.000976', '1000' )
+				new MySQLMasterPos( 'db1034-bin.000976', '1000' ),
+				true
 			],
 			[
 				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
-				new MySQLMasterPos( 'db1035-bin.000976', '1000' )
+				new MySQLMasterPos( 'db1035-bin.000976', '1000' ),
+				false
+			],
+			// MySQL GTID style
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:23' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '3E11FA47-71CA-11E1-9E33-C80AA9429562:24' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '3E11FA47-71CA-11E1-9E33-C80AA9429562:100' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '1E11FA47-71CA-11E1-9E33-C80AA9429562:100' ),
+				false
+			],
+			// MariaDB GTID style
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-23' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '255-11-24' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-99' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '255-11-100' ),
+				true
+			],
+			[
+				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-999' ),
+				new MySQLMasterPos( 'db1-bin.2', '2', '254-11-1000' ),
+				false
 			],
 		];
 	}
