@@ -3630,13 +3630,10 @@ class User implements IDBAccessObject {
 		$this->clearInstanceCache( 'defaults' );
 
 		$this->getRequest()->setSessionData( 'wsUserID', 0 );
-		$this->getRequest()->setSessionData( 'wsEditToken', null );
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
 		$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
-
-		wfResetSessionID();
 
 		// Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
