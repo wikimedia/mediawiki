@@ -652,37 +652,25 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				if ( $wgLoginLanguageSelector && $this->mLanguage ) {
 					$linkq .= '&uselang=' . $this->mLanguage;
 				}
-				$createOrLoginHref = $linkTitle->getLocalURL( $linkq );
 
-				if ( $this->getUser()->isLoggedIn() ) {
-					$createOrLoginHtml = Html::rawElement( 'div',
-						[ 'class' => 'mw-ui-vform-field' ],
-						Html::element( 'a',
-							[
-								'id' => 'mw-createaccount-join',
-								'href' => $createOrLoginHref,
-								// put right after all auth inputs in the tab order
-								'tabindex' => 100,
-							],
-							$this->msg( 'userlogin-createanother' )->escaped()
-						)
-					);
-				} else {
-					$createOrLoginHtml = Html::rawElement( 'div',
-						[ 'id' => 'mw-createaccount-cta',
-							'class' => 'mw-ui-vform-field' ],
-						$this->msg( 'userlogin-noaccount' )->escaped()
-						. Html::element( 'a',
-							[
-								'id' => 'mw-createaccount-join',
-								'href' => $createOrLoginHref,
-								'class' => 'mw-ui-button',
-								'tabindex' => 100,
-							],
-							$this->msg( 'userlogin-joinproject' )->escaped()
-						)
-					);
-				}
+				$createOrLoginHtml = Html::rawElement( 'div',
+					[ 'id' => 'mw-createaccount-cta',
+						'class' => 'mw-ui-vform-field' ],
+					( $this->getUser()->isLoggedIn() ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
+					. Html::element( 'a',
+						[
+							'id' => 'mw-createaccount-join',
+							'href' => $linkTitle->getLocalURL( $linkq ),
+							'class' => 'mw-ui-button',
+							'tabindex' => 100,
+						],
+						$this->msg(
+							( $this->getUser()->isLoggedIn() ?
+								'userlogin-createanother' :
+								'userlogin-joinproject'
+							) )->escaped()
+					)
+				);
 				$form->addFooterText( $createOrLoginHtml );
 			}
 		}
