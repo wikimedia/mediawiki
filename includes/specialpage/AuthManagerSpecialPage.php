@@ -495,12 +495,19 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @return array
 	 */
 	protected function getPreservedParams( $withToken = false ) {
+		$request = $this->getRequest();
 		$params = [];
 		if ( $this->authAction !== $this->getDefaultAction( $this->subPage ) ) {
 			$params['authAction'] = $this->getContinueAction( $this->authAction );
 		}
 		if ( $withToken ) {
 			$params[$this->getTokenName()] = $this->getToken()->toString();
+		}
+		if ( $request->getVal( 'returnto' ) ) {
+			$params['returnto'] = $request->getVal( 'returnto' );
+		}
+		if ( $request->getVal( 'returntoquery' ) ) {
+			$params['returntoquery'] = $request->getVal( 'returntoquery' );
 		}
 		return $params;
 	}
