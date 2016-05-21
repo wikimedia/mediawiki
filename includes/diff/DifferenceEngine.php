@@ -828,9 +828,8 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
-		$self = $this;
-		$diff = function() use ( $self, $otext, $ntext ) {
-			return $self->textDiff( $otext, $ntext );
+		$diff = function() use ( $otext, $ntext ) {
+			return $this->textDiff( $otext, $ntext );
 		};
 
 		$error = function( $status ) {
