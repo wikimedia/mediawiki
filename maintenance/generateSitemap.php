@@ -376,6 +376,9 @@ class GenerateSitemap extends Maintenance {
 						);
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
+
+						// bug T65098: variant entries should also be counted for url limit
+						$i++;
 					}
 				}
 			}
