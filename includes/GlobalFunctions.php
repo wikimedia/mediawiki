@@ -3458,7 +3458,9 @@ function wfResetSessionID() {
 		session_regenerate_id( false );
 	} else {
 		$tmp = $_SESSION;
+		wfSuppressWarnings(); // hide warnings for unit tests
 		session_destroy();
+		wfRestoreWarnings();
 		wfSetupSession( MWCryptRand::generateHex( 32 ) );
 		$_SESSION = $tmp;
 	}
