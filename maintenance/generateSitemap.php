@@ -325,6 +325,16 @@ class GenerateSitemap extends Maintenance {
 
 		fwrite( $this->findex, $this->openIndex() );
 
+		$hasVariant = $wgContLang->hasVariants();
+
+		if ( $hasVariant ) {
+			$variantCount = count( $wgContLang->getVariants() );
+		} else {
+			$variantCount = 1;
+		}
+
+		$variantTimesLimit = $this->limit[1] * $variantCount;
+
 		foreach ( $this->namespaces as $namespace ) {
 			$res = $this->getPageRes( $namespace );
 			$this->file = false;
@@ -342,8 +352,8 @@ class GenerateSitemap extends Maintenance {
 				}
 
 				if ( $i++ === 0
-					|| $i === $this->url_limit + 1
-					|| $length + $this->limit[1] + $this->limit[2] > $this->size_limit
+					|| $i + $variantCount > $this->url_limit + 1
+					|| $length + $variantTimesLimit + $this->limit[2] > $this->size_limit
 				) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
@@ -363,7 +373,7 @@ class GenerateSitemap extends Maintenance {
 				$length += strlen( $entry );
 				$this->write( $this->file, $entry );
 				// generate pages for language variants
-				if ( $wgContLang->hasVariants() ) {
+				if ( $hasVariant ) {
 					$variants = $wgContLang->getVariants();
 					foreach ( $variants as $vCode ) {
 						if ( $vCode == $wgContLang->getCode() ) {
@@ -376,6 +386,9 @@ class GenerateSitemap extends Maintenance {
 						);
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
+
+						// bug T65098: variant entries should also be counted for url limit
+						$i++;
 					}
 				}
 			}
