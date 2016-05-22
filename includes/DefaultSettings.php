@@ -5631,7 +5631,6 @@ $wgGrantPermissions = [];
 
 $wgGrantPermissions['basic']['autoconfirmed'] = true;
 $wgGrantPermissions['basic']['autopatrol'] = true;
-$wgGrantPermissions['basic']['autoreview'] = true;
 $wgGrantPermissions['basic']['editsemiprotected'] = true;
 $wgGrantPermissions['basic']['ipblock-exempt'] = true;
 $wgGrantPermissions['basic']['nominornewtalk'] = true;
@@ -5639,7 +5638,6 @@ $wgGrantPermissions['basic']['patrolmarks'] = true;
 $wgGrantPermissions['basic']['purge'] = true;
 $wgGrantPermissions['basic']['read'] = true;
 $wgGrantPermissions['basic']['skipcaptcha'] = true;
-$wgGrantPermissions['basic']['torunblocked'] = true;
 $wgGrantPermissions['basic']['writeapi'] = true;
 
 $wgGrantPermissions['highvolume']['bot'] = true;
