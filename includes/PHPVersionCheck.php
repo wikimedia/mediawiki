@@ -33,6 +33,14 @@ function wfEntryPointCheck( $entryPoint ) {
 	$mwVersion = '1.27';
 	$minimumVersionPHP = '5.5.9';
 	$phpVersion = PHP_VERSION;
+	$minimumVersionHHVM = '3.6.5';
+	$hhvmVersion = HHVM_VERSION;
+
+	if ( !function_exists( 'version_compare' )
+		|| defined( 'HHVM_VERSION' ) && version_compare( $hhvmVersion, $minimumVersionHHVM ) < 0
+	) {
+		wfHHVMVersionError( $entryPoint, $mwVersion, $minimumVersionHHVM, $hhvmVersion );
+	}
 
 	if ( !function_exists( 'version_compare' )
 		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
@@ -173,6 +181,35 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 			for details of which versions are compatible with prior versions of PHP.
 HTML;
 	wfGenericError( $type, $mwVersion, 'Supported PHP versions', $shortText, $longText, $longHtml );
+}
+
+/**
+ * Display an error for the minimum PHP and HHVM version requirement not being satisfied.
+ *
+ * @param string $type See wfGenericError
+ * @param string $mwVersion See wfGenericError
+ * @param string $minimumVersionHHVM The minimum HHVM version supported by MediaWiki
+ * @param string $hhvmVersion The current HHVM version
+ */
+function wfHHVMVersionError( $type, $mwVersion, $minimumVersionHHVM, $hhvmVersion ) {
+	$shortText = "MediaWiki $mwVersion requires at least "
+		. "HHVM version $minimumVersionHHVM, you are using HHVM $hhvmVersion.";
+
+	$longText = "Error: You might be using on older HHVM version. \n"
+		. "MediaWiki $mwVersion needs HHVM $minimumVersionHHVM or higher.\n\n";
+
+	$longHtml = <<<HTML
+			Please consider <a href="https://docs.hhvm.com/hhvm/installation/introduction">
+			upgrading your copy of HHVM</a>.
+		</p>
+		<p>
+			If for some reason you are unable to upgrade your HHVM version, you will need to
+			<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
+			of MediaWiki from our website.  See our
+			<a href="https://www.mediawiki.org/wiki/Compatibility#HHVM">compatibility page</a>
+			for details of which versions are compatible with prior versions of HHVM.
+HTML;
+	wfGenericError( $type, $mwVersion, 'Supported HHVM versions', $shortText, $longText, $longHtml );
 }
 
 /**
