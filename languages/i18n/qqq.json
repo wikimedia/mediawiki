@@ -2184,6 +2184,8 @@
 	"trackingcategories-msg": "Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.\n{{Identical|Tracking category}}",
 	"trackingcategories-name": "Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the name of the tracking category in the content language.",
 	"trackingcategories-desc": "Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the inclusion criteria for the category.",
+	"restricted-displaytitle-ignored": "This message is used as a category name for a [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages are placed automatically if a page has an ignored display title.\n\nSee also:\n* {{msg-mw|restricted-displaytitle-ignored-desc}}\n*{{msg-mw|restricted-displaytitle}}",
+	"restricted-displaytitle-ignored-desc": "Pages with ignored display titles category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|restricted-displaytitle-ignored}}",
 	"noindex-category-desc": "No-index category-description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Noindex-category}}",
 	"index-category-desc": "Index category-description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Index-category}}",
 	"post-expand-template-inclusion-category-desc": "Post expand template inclusion category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Post-expand-template-inclusion-category}}",
