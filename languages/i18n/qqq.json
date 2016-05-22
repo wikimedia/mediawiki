@@ -3711,7 +3711,7 @@
 	"timezone-local": "Label to indicate that a time is in the user's local timezone.\n{{Identical|Local}}",
 	"duplicate-defaultsort": "See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:\n* $1 - old default sort key\n* $2 - new default sort key",
 	"duplicate-displaytitle": "Warning shown when a page has its display title set multiple times. Parameters:\n* $1 - old display title\n* $2 - new display title",
-	"restricted-displaytitle": "Warning shown a display title is ignored because it is not equivalent to its actual title. Parameters:\n* $1 - the ignored display title",
+	"restricted-displaytitle": "Warning shown when a display title is ignored because it is not equivalent to its actual title. Parameters:\n* $1 - the ignored display title",
 	"invalid-indicator-name": "Warning shown when the [https://www.mediawiki.org/wiki/Help:Page_status_indicators &lt;indicator name=\"''unique-identifier''\">''content''&lt;/indicator>] parser tag is used incorrectly.",
 	"version": "{{doc-special|Version}}\n{{Identical|Version}}",
 	"version-summary": "{{doc-specialpagesummary|version}}",
