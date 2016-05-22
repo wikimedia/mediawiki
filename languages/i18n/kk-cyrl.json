@@ -1252,7 +1252,7 @@
 	"recentchangeslinked-page": "Бет атауы:",
 	"recentchangeslinked-to": "Керісінше, келтірілген бетке сілтейтін беттердегі өзгерістерді көрсет",
 	"recentchanges-page-added-to-category": "[[:$1]] бетіне санат қосты",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] және [[Special:WhatLinksHere/$1|{{PLURAL:$2|бір бет|$2 бет}}]] санатқа қосылды",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] санатқа қосылды, [[Special:WhatLinksHere/$1|{{PLURAL:$1|бұл бет басқа беттердің ішіне кірістірілген}}]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] санаттан алынды",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] және [[Special:WhatLinksHere/$1|{{PLURAL:$2|бір бет|$2 бет}}]] санаттан алынды",
 	"autochange-username": "МедиаУики өздікті өзгерісі",
