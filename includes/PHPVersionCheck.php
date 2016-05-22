@@ -32,9 +32,15 @@
 function wfEntryPointCheck( $entryPoint ) {
 	$mwVersion = '1.28';
 	$minimumVersionPHP = '5.5.9';
+	$minimumVersionHHVM = '3.6.5';
 	$phpVersion = PHP_VERSION;
+	$hhvmVersion = HHVM_VERSION;
 
 	if ( !function_exists( 'version_compare' )
+		|| defined( 'HHVM_VERSION' ) && version_compare( $hhvmVersion, $minimumVersionHHVM ) < 0
+	) {
+		wfHHVMVersionError( $entryPoint, $mwVersion, $minimumVersionHHVM, $hhvmVersion );
+	} elseif ( !function_exists( 'version_compare' )
 		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
 	) {
 		wfPHPVersionError( $entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion );
@@ -179,7 +185,7 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 	$shortText = "MediaWiki $mwVersion requires at least "
 		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
 
-	$longText = "Error: You might be using on older PHP version. \n"
+	$longText = "Error: You might be using an older PHP version. \n"
 		. "MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher.\n\n"
 		. "Check if you have a newer php executable with a different name, such as php5.\n\n";
 
@@ -196,6 +202,37 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 			for details of which versions are compatible with prior versions of PHP.
 HTML;
 	wfGenericError( $type, $mwVersion, 'Supported PHP versions', $shortText, $longText, $longHtml );
+}
+
+/**
+ * Display an error for the minimum HHVM version requirement not being satisfied.
+ *
+ * @param string $type See wfGenericError
+ * @param string $mwVersion See wfGenericError
+ * @param string $minimumVersionHHVM The minimum HHVM version supported by MediaWiki
+ * @param string $hhvmVersion The current HHVM version
+ */
+function wfHHVMVersionError( $type, $mwVersion, $minimumVersionHHVM, $hhvmVersion ) {
+	$shortText = "MediaWiki $mwVersion requires at least "
+		. "HHVM version $minimumVersionHHVM, you are using HHVM $hhvmVersion.";
+
+	$longText = "Error: You might be using an older HHVM version. \n"
+		. "MediaWiki $mwVersion needs HHVM $minimumVersionHHVM or higher.\n\n";
+
+	$longHtml = <<<HTML
+			Please consider <a href="https://docs.hhvm.com/hhvm/installation/introduction">
+			upgrading your copy of HHVM</a>.
+			HHVM versions less than 3.6.5 are no longer supported by Facebook and will not receive
+			security or bugfixes updates.
+		</p>
+		<p>
+			If for some reason you are unable to upgrade your HHVM version, you will need to
+			<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
+			of MediaWiki from our website.  See our
+			<a href="https://www.mediawiki.org/wiki/Compatibility#HHVM">compatibility page</a>
+			for details of which versions are compatible with prior versions of HHVM.
+HTML;
+	wfGenericError( $type, $mwVersion, 'Supported HHVM versions', $shortText, $longText, $longHtml );
 }
 
 /**
