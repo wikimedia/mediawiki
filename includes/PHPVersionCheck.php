@@ -33,11 +33,22 @@ function wfEntryPointCheck( $entryPoint ) {
 	$mwVersion = '1.28';
 	$minimumVersionPHP = '5.5.9';
 	$phpVersion = PHP_VERSION;
+	$minimumVersionHHVM = '3.6.5';
 
 	if ( !function_exists( 'version_compare' )
 		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
 	) {
-		wfPHPVersionError( $entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion );
+		wfPHPVersionError(
+			$entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion, 'PHP', true
+		);
+	}
+
+	if ( !function_exists( 'version_compare' )
+		|| defined( 'HHVM_VERSION' ) && version_compare( HHVM_VERSION, $minimumVersionHHVM ) < 0
+	) {
+		wfPHPVersionError(
+			$entryPoint, $mwVersion, $minimumVersionHHVM, HHVM_VERSION, 'HHVM', false
+		);
 	}
 
 	// @codingStandardsIgnoreStart MediaWiki.Usage.DirUsage.FunctionFound
@@ -172,30 +183,52 @@ HTML;
  *
  * @param string $type See wfGenericError
  * @param string $mwVersion See wfGenericError
- * @param string $minimumVersionPHP The minimum PHP version supported by MediaWiki
- * @param string $phpVersion The current PHP version
+ * @param string $minimumVersionPHPorHHVM The minimum PHP Or HHVM version supported by MediaWiki
+ * @param string $phpOrhhvmVersion The current PHP Or HHVM version
+ * @param string $phpOrhhvmText returns PHP or HHVM
+ * @param string $phpImpl true if it detects wrong php version
  */
-function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion ) {
+function wfPHPVersionError(
+	$type, $mwVersion, $minimumVersionPHPorHHVM, $phpOrhhvmVersion, $phpOrhhvmText, $phpImpl
+) {
 	$shortText = "MediaWiki $mwVersion requires at least "
-		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+		. "$phpOrhhvmText version $minimumVersionPHPorHHVM,
+			you are using $phpOrhhvmText $phpOrhhvmVersion.";
 
-	$longText = "Error: You might be using on older PHP version. \n"
-		. "MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher.\n\n"
+	$longText = "Error: You might be using an older $phpOrhhvmText version. \n"
+		. "MediaWiki $mwVersion needs $phpOrhhvmText $minimumVersionPHPorHHVM or higher.\n\n"
 		. "Check if you have a newer php executable with a different name, such as php5.\n\n";
-
-	$longHtml = <<<HTML
-			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than 5.5.0 are no longer supported by the PHP Group and will not receive
-			security or bugfix updates.
-		</p>
-		<p>
-			If for some reason you are unable to upgrade your PHP version, you will need to
-			<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
-			of MediaWiki from our website.  See our
-			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
-			for details of which versions are compatible with prior versions of PHP.
+	if ( $phpImpl === 'zend' || $phpImpl === 'true' || $phpImpl === 'php' ) {
+		$longHtml = <<<HTML
+				Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
+				PHP versions less than 5.5.0 are no longer supported by the PHP Group and will not receive
+				security or bugfix updates.
+			</p>
+			<p>
+				If for some reason you are unable to upgrade your PHP version, you will need to
+				<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
+				of MediaWiki from our website.  See our
+				<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
+				for details of which versions are compatible with prior versions of PHP.
 HTML;
-	wfGenericError( $type, $mwVersion, 'Supported PHP versions', $shortText, $longText, $longHtml );
+	} else {
+		$longHtml = <<<HTML
+				Please consider <a href="https://docs.hhvm.com/hhvm/installation/introduction">
+				upgrading your copy of HHVM</a>.
+				HHVM versions less than 3.6.5 are no longer supported by Facebook and will not receive
+				security or bugfix updates.
+			</p>
+			<p>
+				If for some reason you are unable to upgrade your HHVM version, you will need to
+				<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
+				of MediaWiki from our website.  See our
+				<a href="https://www.mediawiki.org/wiki/Compatibility#HHVM">compatibility page</a>
+				for details of which versions are compatible with prior versions of HHVM.
+HTML;
+	}
+	wfGenericError(
+		$type, $mwVersion, "Supported $phpOrhhvmText versions", $shortText, $longText, $longHtml
+	);
 }
 
 /**
