@@ -122,7 +122,6 @@
 	"config-db-charset": "Fieldset label for MySQL database character set choice.",
 	"config-charset-mysql5-binary": "Option for MySQL database character set choice.",
 	"config-charset-mysql5": "Option for MySQL database character set choice.",
-	"config-charset-mysql4": "Option for MySQL database character set choice.",
 	"config-charset-help": "Help text for database character set.",
 	"config-mysql-old": "Used as error message. Parameters:\n* $1 - minimum version\n* $2 - the version of MySQL that has been installed\n{{Related|Config-old}}",
 	"config-db-port": "Field label in MediaWiki installer for database port.",
