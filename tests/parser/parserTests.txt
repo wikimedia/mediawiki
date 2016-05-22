@@ -20655,7 +20655,6 @@ this is not the the title
 !! html/php
 Screen
 <p>this is not the the title
-<span class="error"><strong>Warning:</strong> Display title "whatever" was ignored since it is not equivalent to the page's actual title.</span>
 </p>
 !! end
 
