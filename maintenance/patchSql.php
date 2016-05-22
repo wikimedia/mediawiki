@@ -30,6 +30,9 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class PatchSql extends Maintenance {
+
+	public $minimumVersion = '5.6';
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Run an SQL file into the DB, replacing prefix and charset vars' );
@@ -46,11 +49,30 @@ class PatchSql extends Maintenance {
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $this->mArgs as $arg ) {
-			$files = [
-				$arg,
-				$dbw->patchPath( $arg ),
-				$dbw->patchPath( "patch-$arg.sql" ),
-			];
+			$status = Status::newGood();
+			$conn = $status->value;
+			$version = $conn->getServerVersion();
+			if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
+				$files = [
+					$arg,
+					$dbw->patchPath( $arg ),
+					$dbw->patchPath( "patch-$arg.sql" ),
+					$dbw->patchPath( "mysql-5.6-patch-$arg.sql" ),
+				];
+			} elseif ( version_compare( '5.5', '5.0.3' ) < 0 ) {
+				$files = [
+					$arg,
+					$dbw->patchPath( $arg ),
+					$dbw->patchPath( "patch-$arg.sql" ),
+					$dbw->patchPath( "mysql-5.0-5.5-patch-$arg.sql" ),
+				];
+			} else {
+				$files = [
+					$arg,
+					$dbw->patchPath( $arg ),
+					$dbw->patchPath( "patch-$arg.sql" ),
+				];
+			}
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
 					$this->output( "$file ...\n" );
