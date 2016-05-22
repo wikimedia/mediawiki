@@ -30,7 +30,7 @@
  * version are hardcoded here
  */
 function wfEntryPointCheck( $entryPoint ) {
-	$mwVersion = '1.27';
+	$mwVersion = '1.28';
 	$minimumVersionPHP = '5.5.9';
 	$phpVersion = PHP_VERSION;
 
