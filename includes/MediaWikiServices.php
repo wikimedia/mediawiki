@@ -15,7 +15,6 @@ use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
 use ObjectCache;
-use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
