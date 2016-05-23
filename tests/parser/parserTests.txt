@@ -22256,7 +22256,7 @@ parsoid
 * <nowiki><td></nowiki>
 !! html
 <ul><li> &lt;div&gt;foo&lt;/div&gt;</li>
-<li> &lt;div style=&quot;color:red&quot;&gt;foo&lt;/div&gt;</li>
+<li> &lt;div style="color:red"&gt;foo&lt;/div&gt;</li>
 <li> &lt;td&gt;</li></ul>
 
 !! end
