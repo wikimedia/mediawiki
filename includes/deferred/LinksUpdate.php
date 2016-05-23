@@ -84,8 +84,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 */
 	private $user;
 
-	const BATCH_SIZE = 500; // try to keep typical updates in a single transaction
-
 	/**
 	 * Constructor
 	 *
@@ -338,6 +336,8 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $insertions Rows to insert
 	 */
 	private function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
+		$bSize = RequestContext::getMain()->getConfig()->get( 'UpdateRowsPerQuery' );
+
 		if ( $table === 'page_props' ) {
 			$fromField = 'pp_page';
 		} else {
@@ -354,7 +354,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			foreach ( $deletions as $ns => $dbKeys ) {
 				foreach ( $dbKeys as $dbKey => $unused ) {
 					$curDeletionBatch[$ns][$dbKey] = 1;
-					if ( ++$curBatchSize >= self::BATCH_SIZE ) {
+					if ( ++$curBatchSize >= $bSize ) {
 						$deletionBatches[] = $curDeletionBatch;
 						$curDeletionBatch = [];
 						$curBatchSize = 0;
@@ -380,7 +380,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 				$toField = $prefix . '_to';
 			}
 
-			$deletionBatches = array_chunk( array_keys( $deletions ), self::BATCH_SIZE );
+			$deletionBatches = array_chunk( array_keys( $deletions ), $bSize );
 			foreach ( $deletionBatches as $deletionBatch ) {
 				$deleteWheres[] = [ $fromField => $this->mId, $toField => $deletionBatch ];
 			}
@@ -392,7 +392,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
 		}
 
-		$insertBatches = array_chunk( $insertions, self::BATCH_SIZE );
+		$insertBatches = array_chunk( $insertions, $bSize );
 		foreach ( $insertBatches as $insertBatch ) {
 			$this->mDb->insert( $table, $insertBatch, __METHOD__, 'IGNORE' );
 			$this->mDb->commit( __METHOD__, 'flush' );
