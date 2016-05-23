@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class representing a list of titles
@@ -116,7 +117,7 @@ class LinkBatch {
 	 * @return array Mapping PDBK to ID
 	 */
 	public function execute() {
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		return $this->executeInto( $linkCache );
 	}
@@ -151,23 +152,26 @@ class LinkBatch {
 			return [];
 		}
 
+		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
 		$ids = [];
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
 			$cache->addGoodLinkObjFromRow( $title, $row );
-			$ids[$title->getPrefixedDBkey()] = $row->page_id;
+			$pdbk = $titleFormatter->getPrefixedDBkey( $title );
+			$ids[$pdbk] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
 
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $unused ) {
-				$title = Title::makeTitle( $ns, $dbkey );
+				$title = new TitleValue( (int)$ns, $dbkey );
 				$cache->addBadLinkObj( $title );
-				$ids[$title->getPrefixedDBkey()] = 0;
+				$pdbk = $titleFormatter->getPrefixedDBkey( $title );
+				$ids[$pdbk] = 0;
 			}
 		}
 
@@ -218,7 +222,7 @@ class LinkBatch {
 			return false;
 		}
 
-		$genderCache = GenderCache::singleton();
+		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		$genderCache->doLinkBatch( $this->data, $this->caller );
 
 		return true;
