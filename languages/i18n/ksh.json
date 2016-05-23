@@ -3591,5 +3591,10 @@
 	"api-error-blacklisted": "Söhk Der ene anndere Nahme uß, dä mih drövver säht.",
 	"randomrootpage": "Zofällige Aanfangs-Sigg",
 	"log-action-filter-delete-delete": "En Sigg wohd fott jeschmeße",
-	"authmanager-userdoesnotexist": "Ene Metmaacher mem Nahme „$1“ es nit ennjedrahre."
+	"authmanager-userdoesnotexist": "Ene Metmaacher mem Nahme „$1“ es nit ennjedrahre.",
+	"authmanager-domain-help": "De Domäijn för de Zohjangsdaht vun ußerhallef beschtähtech ze krijje.",
+	"authmanager-email-help": "De Addräß för de <i lang=\"en\">e-mail</i>",
+	"authprovider-resetpass-skip-label": "Övverjonn",
+	"changecredentials-submit-cancel": "Ophüre",
+	"removecredentials-submit": "Fott nämme"
 }

@@ -179,7 +179,8 @@
 			"Frigory",
 			"Psychoslave",
 			"Guycn2",
-			"2axterix2"
+			"2axterix2",
+			"Ата"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1434,7 +1435,7 @@
 	"grant-group-customization": "{{Related|Grant-group}}",
 	"grant-group-administration": "{{Related|Grant-group}}",
 	"grant-group-other": "{{Related|Grant-group}}",
-	"grant-blockusers": "Name for grant \"blockusers\".\n{{Related|grant}}",
+	"grant-blockusers": "Name for grant \"blockusers\".\n{{Related|Grant}}",
 	"grant-createaccount": "Name for grant \"createaccount\".\n{{Related|grant}}",
 	"grant-createeditmovepage": "Name for grant \"createeditmovepage\".\n{{Related|grant}}",
 	"grant-delete": "Name for grant \"delete\".\n{{Related|grant}}",
@@ -2488,7 +2489,7 @@
 	"whatlinkshere-prev": "This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the first argument of {{msg-mw|Viewprevnext}}.\n\nParameters:\n* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.\nSpecial pages use {{msg-mw|Prevn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).\n\nSee also:\n* {{msg-mw|Whatlinkshere-next}}\n{{Identical|Previous}}",
 	"whatlinkshere-next": "This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the second argument of {{msg-mw|Viewprevnext}}.\n\nParameters:\n* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.\nSpecial pages use {{msg-mw|Nextn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).\n\nSee also:\n* {{msg-mw|Whatlinkshere-prev}}\n{{Identical|Next}}",
 	"whatlinkshere-links": "Used on [[Special:WhatLinksHere]]. It is a link to the WhatLinksHere page of that page.\n\nExample line:\n* [[Main Page]] ([[Special:WhatLinksHere/Main Page|{{int:whatlinkshere-links}}]])\n{{Identical|Link}}",
-	"whatlinkshere-hideredirs": "Filter option in [[Special:WhatLinksHere]].",
+	"whatlinkshere-hideredirs": "Filter option in [[Special:WhatLinksHere]].\n\nParameters:\n* $1 - {{msg-mw|hide}}/{{msg-mw|show}}",
 	"whatlinkshere-hidetrans": "First filter option in [[Special:WhatLinksHere]]. Parameters:\n* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}",
 	"whatlinkshere-hidelinks": "Filter option in [[Special:WhatLinksHere]].",
 	"whatlinkshere-hideimages": "Filter option in [[Special:WhatLinksHere]].\n\nSee also:\n*{{msg-mw|Isimage}}\n*{{msg-mw|Media tip}}",
@@ -3711,7 +3712,7 @@
 	"timezone-local": "Label to indicate that a time is in the user's local timezone.\n{{Identical|Local}}",
 	"duplicate-defaultsort": "See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:\n* $1 - old default sort key\n* $2 - new default sort key",
 	"duplicate-displaytitle": "Warning shown when a page has its display title set multiple times. Parameters:\n* $1 - old display title\n* $2 - new display title",
-	"restricted-displaytitle": "Warning shown a display title is ignored because it is not equivalent to its actual title. Parameters:\n* $1 - the ignored display title",
+	"restricted-displaytitle": "Warning shown when a display title is ignored because it is not equivalent to its actual title. Parameters:\n* $1 - the ignored display title",
 	"invalid-indicator-name": "Warning shown when the [https://www.mediawiki.org/wiki/Help:Page_status_indicators &lt;indicator name=\"''unique-identifier''\">''content''&lt;/indicator>] parser tag is used incorrectly.",
 	"version": "{{doc-special|Version}}\n{{Identical|Version}}",
 	"version-summary": "{{doc-specialpagesummary|version}}",

@@ -1906,6 +1906,8 @@
 	"trackingcategories-msg": "קטגוריית מעקב",
 	"trackingcategories-name": "שם ההודעה",
 	"trackingcategories-desc": "הקריטריון להכללה בקטגוריה",
+	"restricted-displaytitle-ignored": "דפים שכותרת התצוגה שלהן אינה מופעלת",
+	"restricted-displaytitle-ignored-desc": "בדף הזה מוגדרת כותרת תצוגה (<code><nowiki>{{DISPLAYTITLE}}</nowiki></code>) שאינה מופעלת, כי היא אינה שוות־ערך לשם האמתי של הדף.",
 	"noindex-category-desc": "הדף אינו מאונדקס על‏‏־ידי רובוטים כיוון שהוא כולל את מילת הקסם <code><nowiki>__NOINDEX__</nowiki></code> והוא במרחב שם שבו דגל כזה מותר לשימוש.",
 	"index-category-desc": "הדף כולל את מילת הקסם <code><nowiki>__INDEX__</nowiki></code> (והוא במרחב שם שבו דגל כזה מותר לשימוש), ולכן הוא מאונדקס על‏‏֫־ידי רובוטים אף שכברירת מחדל הוא לא היה מאונדקס על ידם.",
 	"post-expand-template-inclusion-category-desc": "גודל הדף גדול מ‏‏־<code>$wgMaxArticleSize</code> לאחר הרחבת כל התבניות, ולכן כמה תבניות לא הורחבו.",

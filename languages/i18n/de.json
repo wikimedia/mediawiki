@@ -1960,6 +1960,8 @@
 	"trackingcategories-msg": "Tracking-Kategorie",
 	"trackingcategories-name": "Name der Nachricht",
 	"trackingcategories-desc": "Kategorieeinbindungskriterien",
+	"restricted-displaytitle-ignored": "Seiten mit ignorierten Anzeigetiteln",
+	"restricted-displaytitle-ignored-desc": "Die Seite hat einen ignorierten <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, da er nicht mit dem tatsächlichen Seitentitel äquivalent ist.",
 	"noindex-category-desc": "Die Seite wird nicht von Bots indexiert, da sie das magische Wort <code><nowiki>__NOINDEX__</nowiki></code> enthält und sich in einem Namensraum befindet, wo dieses Flag erlaubt ist.",
 	"index-category-desc": "Die Seite enthält ein <code><nowiki>__INDEX__</nowiki></code> und befindet sich in einem Namensraum, in dem dieses Flag erlaubt ist. Daher wird sie ausnahmsweise von Bots indiziert.",
 	"post-expand-template-inclusion-category-desc": "Die Seitengröße ist nach dem Expandieren aller Vorlagen größer als <code>$wgMaxArticleSize</code>, so dass einige Vorlagen nicht expandiert wurden.",

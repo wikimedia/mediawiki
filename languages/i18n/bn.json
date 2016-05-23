@@ -1803,6 +1803,8 @@
 	"trackingcategories-msg": "বিষয়শ্রেণী অনুসরণ করা হচ্ছে",
 	"trackingcategories-name": "বার্তা নাম",
 	"trackingcategories-desc": "বিষয়শ্রেণী অন্তর্ভুক্তির মানদণ্ড",
+	"restricted-displaytitle-ignored": "উপেক্ষিত প্রদর্শন শিরোনামসহ পাতা",
+	"restricted-displaytitle-ignored-desc": "পাতাটি একটি <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> উপেক্ষা করেছে কারণ এটা পাতাটির আসল শিরোনামের সাথে সমতুল্য নয়।",
 	"broken-file-category-desc": "এই পাতায় একটি ভাঙ্গা ফাইলের লিঙ্ক রয়েছে (একটি ফাইল এম্বেড করার জন্য একটি লিঙ্ক যখন ফাইলটির অস্তিত্ব নেই)",
 	"trackingcategories-nodesc": "কোন বর্ণনা নেই।",
 	"trackingcategories-disabled": "বিষয়শ্রেণীটি বিকল",
@@ -3494,5 +3496,10 @@
 	"log-action-filter-protect-unprotect": "অসুরক্ষা",
 	"log-action-filter-rights-autopromote": "স্বয়ংক্রিয় পরিবর্তন",
 	"log-action-filter-upload-upload": "নতুন আপলোড",
-	"log-action-filter-upload-overwrite": "পুনঃআপলোড"
+	"log-action-filter-upload-overwrite": "পুনঃআপলোড",
+	"authmanager-userdoesnotexist": "ব্যবহারকারী অ্যাকাউন্ট \"$1\" অনিবন্ধিত।",
+	"authmanager-email-help": "ইমেইল ঠিকানা",
+	"authform-wrongtoken": "ভুল টোকেন",
+	"changecredentials-submit-cancel": "বাতিল",
+	"linkaccounts": "অ্যাকাউন্ট সংযোগ করুন"
 }

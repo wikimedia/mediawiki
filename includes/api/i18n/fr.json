@@ -64,7 +64,7 @@
 	"apihelp-clearhasmsg-example-1": "Effacer le drapeau <code>hasmsg</code> pour l’utilisateur courant",
 	"apihelp-clientlogin-description": "Se connecter au wiki en utilisant le flux interactif.",
 	"apihelp-clientlogin-example-login": "Commencer le processus de connexion au wiki en tant qu’utilisateur <kbd>Exemple</kbd> avec le mot de passe <kbd>ExempleMotDePasse</kbd>.",
-	"apihelp-clientlogin-example-login2": "Continuer la connexion après une réponse de l’IHM pour l’authentification à deux facteurs, en fournissant un <var>OATHToken</var> valant <kbd>987654</kbd>.",
+	"apihelp-clientlogin-example-login2": "Continuer la connexion après une réponse de l’<samp>IHM</samp> pour l’authentification à deux facteurs, en fournissant un <var>OATHToken</var> valant <kbd>987654</kbd>.",
 	"apihelp-compare-description": "Obtenir la différence entre 2 pages.\n\nVous devez passer un numéro de révision, un titre de page, ou un ID de page, à la fois pour « from » et « to ».",
 	"apihelp-compare-param-fromtitle": "Premier titre à comparer.",
 	"apihelp-compare-param-fromid": "ID de la première page à comparer.",

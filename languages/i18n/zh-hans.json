@@ -1962,6 +1962,8 @@
 	"trackingcategories-msg": "追踪分类",
 	"trackingcategories-name": "信息名",
 	"trackingcategories-desc": "分类收录标准",
+	"restricted-displaytitle-ignored": "有忽略显示标题的页面",
+	"restricted-displaytitle-ignored-desc": "页面有被忽略的<code><nowiki>{{DISPLAYTITLE}}</nowiki></code>，因为它不等同于页面的实际标题。",
 	"noindex-category-desc": "因为页面上有魔术字<code><nowiki>__NOINDEX__</nowiki></code>并位于允许该标记的名字空间，而不被机器人索引的页面。",
 	"index-category-desc": "页面上有魔术字<code><nowiki>__INDEX__</nowiki></code>（并位于允许该标记的名字空间），并因此被机器人索引，但通常不应被索引。",
 	"post-expand-template-inclusion-category-desc": "在展开所有模板后，页面大小大于<code>$wgMaxArticleSize</code>，所以某些模板未展开。",
