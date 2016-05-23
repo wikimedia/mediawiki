@@ -1738,4 +1738,17 @@ class LanguageTest extends LanguageClassesTestCase {
 			],
 		];
 	}
+
+	public function testEquals() {
+		$en1 = new Language();
+		$en1->setCode( 'en' );
+
+		$en2 = Language::factory( 'en' );
+		$en2->setCode( 'en' );
+
+		$this->assertTrue( $en1->equals( $en2 ), 'en equals en' );
+
+		$fr = Language::factory( 'fr' );
+		$this->assertFalse( $en1->equals( $fr ), 'en not equals fr' );
+	}
 }
