@@ -2407,6 +2407,7 @@
 	"undeletehistorynoadmin": "Used in [[Special:Undelete]].\n\nSee also:\n* {{msg-mw|Undeletehistory}}\n* {{msg-mw|Undeleterevdel}}",
 	"undelete-revision": "Shown in \"View and restore deleted pages\" ([[Special:Undelete/$1]]).\nParameters:\n* $1 - deleted page name\n* $2 - (unused)\n* $3 - username (author of revision, not who deleted it)\n* $4 - date of the revision (localized)\n* $5 - time of the revision (localized)\nExample (in English):\n* Deleted revision of [[Main Page]] (as of 14 September 2013, at 08:17) by [[User:Username|Username]]:",
 	"undeleterevision-missing": "Used as warning when undeleting the revision.",
+	"undeleterevision-duplicate-revid": "Used as warning when some revisions could not be undeleted due to <code>rev_id</code> collisions.  Parameters:\n* - Number of revisions that could not be restored for this reason."
 	"undelete-nodiff": "Used in [[Special:Undelete]].",
 	"undeletebtn": "Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).\n\n{{Identical|Restore}}",
 	"undeletelink": "Display name of link to undelete a page used on [[Special:Log/delete]]\n\n{{Identical|View}}\n{{Identical|Restore}}",
