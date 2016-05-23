@@ -744,15 +744,23 @@ class WatchedItemStore implements StatsdAwareInterface {
 			$fname = __METHOD__;
 			$dbw->onTransactionIdle(
 				function () use ( $dbw, $timestamp, $watchers, $target, $fname ) {
-					$dbw->update( 'watchlist',
-						[ /* SET */
-							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-						], [ /* WHERE */
-							'wl_user' => $watchers,
-							'wl_namespace' => $target->getNamespace(),
-							'wl_title' => $target->getDBkey(),
-						], $fname
-					);
+					global $wgUpdateRowsPerQuery;
+
+					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
+					foreach ( $watchersChunks as $watchersChunk ) {
+						$dbw->update( 'watchlist',
+							[ /* SET */
+								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+							], [ /* WHERE - TODO Use wl_id T130067 */
+								'wl_user' => $watchersChunk,
+								'wl_namespace' => $target->getNamespace(),
+								'wl_title' => $target->getDBkey(),
+							], $fname
+						);
+						if ( count( $watchersChunks ) > 1 ) {
+							wfGetLBFactory()->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
+						}
+					}
 					$this->uncacheLinkTarget( $target );
 				}
 			);
