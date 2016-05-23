@@ -704,7 +704,8 @@ $revision: New Revision of the article
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
-'ArticleUndelete': When one or more revisions of an article are restored.
+'ArticleUndelete': When one or more revisions of an article are restored,
+after the atomic section ends.
 &$title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created (i.e. it
   didn't exist before).
