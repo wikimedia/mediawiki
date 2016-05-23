@@ -354,6 +354,9 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
+	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
+	 * (depending what operations are attempted).
+	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
 	 * @param string $comment
@@ -439,9 +442,8 @@ class PageArchive {
 	}
 
 	/**
-	 * This is the meaty bit -- restores archived revisions of the given page
-	 * to the cur/old tables. If the page currently exists, all revisions will
-	 * be stuffed into old, otherwise the most recent will go into cur.
+	 * This is the meaty bit -- It restores archived revisions of the given page
+	 * to the revision table.
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
@@ -508,6 +510,7 @@ class PageArchive {
 		}
 
 		$fields = [
+			'ar_id',
 			'ar_rev_id',
 			'ar_text',
 			'ar_comment',
@@ -597,13 +600,18 @@ class PageArchive {
 		$revision = null;
 		$restored = 0;
 
+		// We use ar_id because there can be duplicate ar_rev_id even for the same
+		// page.  In this case, we may be able to restore the first one.
+		$restoreFailedArIds = [];
+
 		foreach ( $result as $row ) {
 			// Check for key dupes due to needed archive integrity.
 			if ( $row->ar_rev_id ) {
 				$exists = $dbw->selectField( 'revision', '1',
 					[ 'rev_id' => $row->ar_rev_id ], __METHOD__ );
 				if ( $exists ) {
-					continue; // don't throw DB errors
+					$restoreFailedArIds[] = $row->ar_id;
+					continue;
 				}
 			}
 			// Insert one revision at a time...maintaining deletion status
@@ -620,14 +628,30 @@ class PageArchive {
 
 			Hooks::run( 'ArticleRevisionUndeleted', [ &$this->title, $revision, $row->ar_page_id ] );
 		}
-		# Now that it's safely stored, take it out of the archive
+
+		$status = Status::newGood( $restored );
+
+		// Now that it's safely stored, take it out of the archive
+		// Don't delete rows that we failed to restore
+		$toDeleteConds = $oldWhere;
+		$failedRevisionCount = count( $restoreFailedArIds );
+		if ( $failedRevisionCount > 0 ) {
+			$toDeleteConds[] = 'ar_id NOT IN ( ' . $dbw->makeList( $restoreFailedArIds ) . ' )';
+			$status->warning( wfMessage( 'undeleterevision-duplicate-revid', $failedRevisionCount ) );
+		}
+
 		$dbw->delete( 'archive',
-			$oldWhere,
+			$toDeleteConds,
 			__METHOD__ );
 
 		// Was anything restored at all?
 		if ( $restored == 0 ) {
-			return Status::newGood( 0 );
+			if ( $makepage ) {
+				// We made a page, which now has no revisions, so we need
+				// to remove it.
+				$dbw->delete( 'page', [ 'page_id' => $pageId ], __METHOD__ );
+			}
+			return $status;
 		}
 
 		$created = (bool)$newid;
@@ -653,7 +677,7 @@ class PageArchive {
 			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->title, 'imagelinks' ) );
 		}
 
-		return Status::newGood( $restored );
+		return $status;
 	}
 
 	/**
