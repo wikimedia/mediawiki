@@ -290,9 +290,17 @@ class IcuCollation extends Collation {
 		 *
 		 * We also take this opportunity to remove primary collisions.
 		 */
-		$letterMap = [];
+		$keyMap = [];
+		MediaWiki\suppressWarnings();
 		foreach ( $letters as $letter ) {
-			$key = $this->getPrimarySortKey( $letter );
+			$keyMap[$letter] = $this->getPrimarySortKey( $letter );
+		}
+		MediaWiki\restoreWarnings();
+
+		$letterMap = [];
+
+		foreach ( $letters as $letter ) {
+			$key = $keyMap[$letter];
 			if ( isset( $letterMap[$key] ) ) {
 				// Primary collision
 				// Keep whichever one sorts first in the main collator
