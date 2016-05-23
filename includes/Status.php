@@ -118,6 +118,7 @@ class Status {
 	/**
 	 * Returns the wrapped StatusValue object
 	 * @return StatusValue
+	 * @since 1.27
 	 */
 	public function getStatusValue() {
 		return $this->sv;
