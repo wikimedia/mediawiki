@@ -32,8 +32,7 @@ class InitEditCount extends Maintenance {
 		avoids locking tables or lagging slaves with large updates;
 		calculates counts on a slave if possible.
 
-Background mode will be automatically used if the server is MySQL 4.0
-(which does not support subqueries) or if multiple servers are listed
+Background mode will be automatically used if multiple servers are listed
 in the load balancer, usually indicating a replication environment.' );
 		$this->addDescription( 'Batch-recalculate user_editcount fields from the revision table' );
 	}
@@ -46,13 +45,12 @@ in the load balancer, usually indicating a replication environment.' );
 		$dbver = $dbw->getServerVersion();
 
 		// Autodetect mode...
-		$backgroundMode = wfGetLB()->getServerCount() > 1 ||
-			( $dbw instanceof DatabaseMysql );
-
 		if ( $this->hasOption( 'background' ) ) {
 			$backgroundMode = true;
 		} elseif ( $this->hasOption( 'quick' ) ) {
 			$backgroundMode = false;
+		} else {
+			$backgroundMode = wfGetLB()->getServerCount() > 1;
 		}
 
 		if ( $backgroundMode ) {
@@ -96,7 +94,6 @@ in the load balancer, usually indicating a replication environment.' );
 				wfWaitForSlaves();
 			}
 		} else {
-			// Subselect should work on modern MySQLs etc
 			$this->output( "Using single-query mode...\n" );
 			$sql = "UPDATE $user SET user_editcount=(SELECT COUNT(*) FROM $revision WHERE rev_user=user_id)";
 			$dbw->query( $sql );

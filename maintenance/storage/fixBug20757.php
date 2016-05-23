@@ -57,10 +57,8 @@ class FixBug20757 extends Maintenance {
 
 		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
 
-		if ( $dbr->getType() == 'mysql' ) {
-			// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
-			$lowerLeft = 'LOWER(CONVERT(LEFT(old_text,22) USING latin1))';
-		}
+		// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
+		$lowerLeft = 'LOWER(CONVERT(LEFT(old_text,22) USING latin1))';
 
 		while ( true ) {
 			print "ID: $startId / $totalRevs\r";
