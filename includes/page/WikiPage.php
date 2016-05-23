@@ -1145,7 +1145,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param IDatabase $dbw
 	 * @param int|null $pageId Custom page ID that will be used for the insert statement
 	 *
-	 * @return bool|int The newly created page_id key; false if the title already existed
+	 * @return bool|int The newly created page_id key; false if the row was not
+	 *   inserted, e.g. because the title already existed or because the specified
+	 *   page ID is already in use.
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
 		$pageIdForInsert = $pageId ?: $dbw->nextSequenceValue( 'page_page_id_seq' );
