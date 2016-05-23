@@ -354,6 +354,9 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
+	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
+	 * (depending what operations are attempted).
+	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
 	 * @param string $comment
@@ -439,9 +442,8 @@ class PageArchive {
 	}
 
 	/**
-	 * This is the meaty bit -- restores archived revisions of the given page
-	 * to the cur/old tables. If the page currently exists, all revisions will
-	 * be stuffed into old, otherwise the most recent will go into cur.
+	 * This is the meaty bit -- It restores archived revisions of the given page
+	 * to the revision table.
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
@@ -451,12 +453,17 @@ class PageArchive {
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( 'SpecialUndelete::undeleteRevisions' );
+		$scopedTrx = new ScopedCallback( function() use ( $dbw ) {
+			$dbw->endAtomic( 'SpecialUndelete::undeleteRevisions' );
+		} );
+
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
 
 		$restoreAll = empty( $timestamps );
-		$dbw = wfGetDB( DB_MASTER );
 
 		# Does this page already exist? We'll have to update it...
 		$article = WikiPage::factory( $this->title );
@@ -508,7 +515,9 @@ class PageArchive {
 		}
 
 		$fields = [
+			'ar_id',
 			'ar_rev_id',
+			'rev_id',
 			'ar_text',
 			'ar_comment',
 			'ar_user',
@@ -531,11 +540,13 @@ class PageArchive {
 		/**
 		 * Select each archived revision...
 		 */
-		$result = $dbw->select( 'archive',
+		$result = $dbw->select(
+			array( 'archive', 'revision' ),
 			$fields,
 			$oldWhere,
 			__METHOD__,
-			/* options */ [ 'ORDER BY' => 'ar_timestamp' ]
+			/* options */ [ 'ORDER BY' => 'ar_timestamp' ],
+			array( 'revision' => array( 'LEFT JOIN', 'ar_rev_id=rev_id' ) )
 		);
 
 		$rev_count = $result->numRows();
@@ -548,86 +559,140 @@ class PageArchive {
 			return $status;
 		}
 
-		$result->seek( $rev_count - 1 ); // move to last
-		$row = $result->fetchObject(); // get newest archived rev
-		$oldPageId = (int)$row->ar_page_id; // pass this to ArticleUndelete hook
-		$result->seek( 0 ); // move back
+		// We use ar_id because there can be duplicate ar_rev_id even for the same
+		// page.  In this case, we may be able to restore the first one.
+		$restoreFailedArIds = [];
 
-		// grab the content to check consistency with global state before restoring the page.
-		$revision = Revision::newFromArchiveRow( $row,
-			[
-				'title' => $article->getTitle(), // used to derive default content model
-			]
-		);
-		$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
-		$content = $revision->getContent( Revision::RAW );
+		// Map rev_id to the ar_id that is allowed to use it.  When checking later,
+		// if it doesn't match, the current ar_id can not be restored.
+		//
+		// Value can be an ar_id or -1 (-1 means no ar_id can use it, since the
+		// rev_id is taken before we even start the restore).
+		$allowedRevIdToArIdMap = [];
 
-		// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
-		$status = $content->prepareSave( $article, 0, -1, $user );
-
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		if ( $makepage ) {
-			// Check the state of the newest to-be version...
-			if ( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
-				return Status::newFatal( "undeleterevdel" );
-			}
-			// Safe to insert now...
-			$newid = $article->insertOn( $dbw, $row->ar_page_id );
-			if ( $newid === false ) {
-				// The old ID is reserved; let's pick another
-				$newid = $article->insertOn( $dbw );
-			}
-			$pageId = $newid;
-		} else {
-			// Check if a deleted revision will become the current revision...
-			if ( $row->ar_timestamp > $previousTimestamp ) {
-				// Check the state of the newest to-be version...
-				if ( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
-					return Status::newFatal( "undeleterevdel" );
-				}
-			}
-
-			$newid = false;
-			$pageId = $article->getId();
-		}
-
-		$revision = null;
-		$restored = 0;
+		$latestRestorableRow = null;
 
 		foreach ( $result as $row ) {
-			// Check for key dupes due to needed archive integrity.
 			if ( $row->ar_rev_id ) {
-				$exists = $dbw->selectField( 'revision', '1',
-					[ 'rev_id' => $row->ar_rev_id ], __METHOD__ );
-				if ( $exists ) {
-					continue; // don't throw DB errors
+				// rev_id is taken even before we start restoring.
+				if ( $row->ar_rev_id === $row->rev_id ) {
+					$restoreFailedArIds[] = $row->ar_id;
+					$allowedRevIdToArIdMap[$row->ar_rev_id] = -1;
+				} else {
+					// rev_id is not taken yet in the DB, but it might be taken
+					// by a prior revision in the same restore operation. If
+					// not, we need to reserve it.
+					if ( isset( $allowedRevIdToArIdMap[$row->ar_rev_id] ) ) {
+						$restoreFailedArIds[] = $row->ar_id;
+					} else {
+						$allowedRevIdToArIdMap[$row->ar_rev_id] = $row->ar_id;
+						$latestRestorableRow = $row;
+					}
 				}
+			} else {
+				// If ar_rev_id is null, there can't be a collision, and a
+				// rev_id will be chosen automatically.
+				$latestRestorableRow = $row;
 			}
-			// Insert one revision at a time...maintaining deletion status
-			// unless we are specifically removing all restrictions...
-			$revision = Revision::newFromArchiveRow( $row,
-				[
-					'page' => $pageId,
-					'title' => $this->title,
-					'deleted' => $unsuppress ? 0 : $row->ar_deleted
-				] );
-
-			$revision->insertOn( $dbw );
-			$restored++;
-
-			Hooks::run( 'ArticleRevisionUndeleted', [ &$this->title, $revision, $row->ar_page_id ] );
 		}
-		# Now that it's safely stored, take it out of the archive
-		$dbw->delete( 'archive',
-			$oldWhere,
-			__METHOD__ );
+
+		$result->seek( 0 ); // move back
+
+		if ( $latestRestorableRow !== null ) {
+			$oldPageId = (int)$latestRestorableRow->ar_page_id; // pass this to ArticleUndelete hook
+
+			// grab the content to check consistency with global state before restoring the page.
+			$revision = Revision::newFromArchiveRow( $latestRestorableRow,
+				[
+					'title' => $article->getTitle(), // used to derive default content model
+				]
+			);
+			$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
+			$content = $revision->getContent( Revision::RAW );
+
+			// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
+			$status = $content->prepareSave( $article, 0, -1, $user );
+
+			if ( !$status->isOK() ) {
+				return $status;
+			}
+		}
+
+		$restored = 0;
+
+		// If there are no restorable revisions, we can skip most of the steps.
+		if ( $latestRestorableRow === null ) {
+			$failedRevisionCount = $rev_count;
+		} else {
+			if ( $makepage ) {
+				// Check the state of the newest to-be version...
+				if ( !$unsuppress && ( $latestRestorableRow->ar_deleted & Revision::DELETED_TEXT ) ) {
+					return Status::newFatal( "undeleterevdel" );
+				}
+				// Safe to insert now...
+				$newid = $article->insertOn( $dbw, $latestRestorableRow->ar_page_id );
+				if ( $newid === false ) {
+					// The old ID is reserved; let's pick another
+					$newid = $article->insertOn( $dbw );
+				}
+				$pageId = $newid;
+			} else {
+				// Check if a deleted revision will become the current revision...
+				if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
+					// Check the state of the newest to-be version...
+					if ( !$unsuppress && ( $latestRestorableRow->ar_deleted & Revision::DELETED_TEXT ) ) {
+						return Status::newFatal( "undeleterevdel" );
+					}
+				}
+
+				$newid = false;
+				$pageId = $article->getId();
+			}
+
+			$revision = null;
+
+			foreach ( $result as $row ) {
+				// Check for key dupes due to needed archive integrity.
+				if ( $row->ar_rev_id && $allowedRevIdToArIdMap[$row->ar_rev_id] !== $row->ar_id ) {
+					continue;
+				}
+				// Insert one revision at a time...maintaining deletion status
+				// unless we are specifically removing all restrictions...
+				$revision = Revision::newFromArchiveRow( $row,
+					[
+						'page' => $pageId,
+						'title' => $this->title,
+						'deleted' => $unsuppress ? 0 : $row->ar_deleted
+					] );
+
+				$revision->insertOn( $dbw );
+				$restored++;
+
+				Hooks::run( 'ArticleRevisionUndeleted', [ &$this->title, $revision, $row->ar_page_id ] );
+			}
+
+			// Now that it's safely stored, take it out of the archive
+			// Don't delete rows that we failed to restore
+			$toDeleteConds = $oldWhere;
+			$failedRevisionCount = count( $restoreFailedArIds );
+			if ( $failedRevisionCount > 0 ) {
+				$toDeleteConds[] = 'ar_id NOT IN ( ' . $dbw->makeList( $restoreFailedArIds ) . ' )';
+			}
+
+			$dbw->delete( 'archive',
+				$toDeleteConds,
+				__METHOD__ );
+		}
+
+		$status = Status::newGood( $restored );
+
+		if ( $failedRevisionCount > 0 ) {
+			$status->warning( wfMessage( 'undeleterevision-duplicate-revid', $failedRevisionCount ) );
+		}
 
 		// Was anything restored at all?
 		if ( $restored == 0 ) {
-			return Status::newGood( 0 );
+			return $status;
 		}
 
 		$created = (bool)$newid;
@@ -653,7 +718,7 @@ class PageArchive {
 			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->title, 'imagelinks' ) );
 		}
 
-		return Status::newGood( $restored );
+		return $status;
 	}
 
 	/**
