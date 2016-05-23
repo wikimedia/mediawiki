@@ -6,7 +6,7 @@
 
 .mw-spinner-small {
 	/* @embed */
-	background-image: url(images/spinner.gif);
+	background-image: url( images/spinner.gif );
 	height: 20px;
 	width: 20px;
 	/* Avoid issues with .mw-spinner-block when floated without width. */
@@ -15,7 +15,7 @@
 
 .mw-spinner-large {
 	/* @embed */
-	background-image: url(images/spinner-large.gif);
+	background-image: url( images/spinner-large.gif );
 	height: 32px;
 	width: 32px;
 	/* Avoid issues with .mw-spinner-block when floated without width. */

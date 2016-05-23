@@ -20,9 +20,9 @@
 }
 
 .jquery-confirmable-element {
-	transition: margin 250ms cubic-bezier(0.2, 0.8, 0.2, 0.8);
+	transition: margin 250ms cubic-bezier( 0.2, 0.8, 0.2, 0.8 );
 }
 
 .jquery-confirmable-interface {
-	transition: width 250ms cubic-bezier(0.2, 0.8, 0.2, 0.8);
+	transition: width 250ms cubic-bezier( 0.2, 0.8, 0.2, 0.8 );
 }

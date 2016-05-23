@@ -25,13 +25,13 @@
 }
 
 .oo-ui-transition( @value1, @value2: X, ... ) {
-	@value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+	@value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`; // stylelint-disable-line function-comma-space-after, function-parentheses-space-inside, function-whitespace-after
 	-webkit-transition: @value;
 	-moz-transition: @value;
 	transition: @value;
 }
 
-@indicator-size: unit(12 / 16 / 0.8, em);
-@icon-size: unit(24 / 16 / 0.8, em);
+@indicator-size: unit( 12 / 16 / 0.8, em );
+@icon-size: unit( 24 / 16 / 0.8, em );
 @quick-ease: 100ms ease;
 @progressive: #347bff;
