@@ -1729,7 +1729,7 @@ class Title implements LinkTarget {
 				if ( $url === false
 					&& $wgVariantArticlePath
 					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
-					&& $wgContLang->getCode() === $this->getPageLanguage()->getCode()
+					&& $this->getPageLanguage()->equals( $wgContLang )
 					&& $this->getPageLanguage()->hasVariants()
 				) {
 					$variant = urldecode( $matches[1] );

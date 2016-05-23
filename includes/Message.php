@@ -447,12 +447,12 @@ class Message implements MessageSpecifier, Serializable {
 	public function getTitle() {
 		global $wgContLang, $wgForceUIMsgAsContentMsg;
 
-		$code = $this->getLanguage()->getCode();
 		$title = $this->key;
 		if (
-			$wgContLang->getCode() !== $code
+			!$this->language->equals( $wgContLang )
 			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
 		) {
+			$code = $this->language->getCode();
 			$title .= '/' . $code;
 		}
 
