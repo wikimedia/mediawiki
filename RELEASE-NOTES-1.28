@@ -18,7 +18,7 @@ production.
 === External library changes in 1.28 ===
 
 ==== Upgraded external libraries ====
-
+* Updated es5-shim from v4.1.5 to v4.5.8
 
 ==== New external libraries ====
 
