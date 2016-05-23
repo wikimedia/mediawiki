@@ -254,6 +254,10 @@ class RefreshLinksJob extends Job {
 					}
 					$update->setTriggeringUser( $user );
 				}
+				if ( !empty( $this->params['triggeringRevisionId'] ) ) {
+					$revision = Revision::newFromId( $this->params['triggeringRevisionId'] );
+					$update->setRevision( $revision );
+				}
 			}
 		}
 
