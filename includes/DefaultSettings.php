@@ -7057,6 +7057,7 @@ $wgExtensionCredits = [];
 /**
  * Authentication plugin.
  * @var $wgAuth AuthPlugin
+ * @deprecated since 1.27 use $wgAuthManagerConfig instead
  */
 $wgAuth = null;
 
