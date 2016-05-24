@@ -38,6 +38,8 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Linker\FileLinkRenderer;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -185,6 +187,13 @@ return [
 		} else {
 			return $services->getLinkRendererFactory()->createForUser( $wgUser );
 		}
+	},
+
+	'FileLinkRenderer' => function( MediaWikiServices $services ) {
+		return new FileLinkRenderer(
+			$services->getLinkRenderer(),
+			$services->getTitleFormatter()
+		);
 	},
 
 	'GenderCache' => function( MediaWikiServices $services ) {

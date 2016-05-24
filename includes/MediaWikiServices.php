@@ -12,6 +12,7 @@ use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
 use MediaHandlerFactory;
+use MediaWiki\Linker\FileLinkRenderer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
@@ -554,6 +555,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRenderer() {
 		return $this->getService( 'LinkRenderer' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return FileLinkRenderer
+	 */
+	public function getFileLinkRenderer() {
+		return $this->getService( 'FileLinkRenderer' );
 	}
 
 	/**
