@@ -1928,7 +1928,9 @@ class LocalFile extends File {
 					$dbw->rollback( __METHOD__ );
 				}
 				throw new LocalFileLockError(
-					"Could not acquire lock for '{$this->getName()}' ($waited sec)." );
+					"Could not acquire lock for '{$this->getName()} ($waited sec): " .
+					$status->getWikiText( false, false, 'en' )
+				);
 			}
 			// Release the lock *after* commit to avoid row-level contention
 			$this->locked++;
