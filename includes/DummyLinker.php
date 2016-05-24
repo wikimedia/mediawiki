@@ -72,7 +72,7 @@ class DummyLinker {
 		$html = null,
 		$customAttribs = [],
 		$query = [],
-		$options = [ 'known', 'noclasses' ]
+		$options = [ 'known' ]
 	) {
 		return Linker::linkKnown(
 			$target,
