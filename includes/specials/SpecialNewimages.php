@@ -22,6 +22,9 @@
  */
 
 class SpecialNewFiles extends IncludableSpecialPage {
+	/** @var FormOptions */
+	protected $opts;
+
 	public function __construct() {
 		parent::__construct( 'Newimages' );
 	}
@@ -33,19 +36,83 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:New images' );
 
-		$pager = new NewFilesPager( $this->getContext(), $par );
+		$opts = new FormOptions();
+
+		$opts->add( 'like', '' );
+		$opts->add( 'showbots', false );
+		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'limit', 50 );
+		$opts->add( 'offset', '' );
+
+		$opts->fetchValuesFromRequest( $this->getRequest() );
+
+		if ( $par !== null ) {
+			$opts->setValue( is_numeric( $par ) ? 'limit' : 'like', $par );
+		}
+
+		$opts->validateIntBounds( 'limit', 0, 500 );
+
+		$this->opts = $opts;
 
 		if ( !$this->including() ) {
-			$this->setTopText();
-			$form = $pager->getForm();
-			$form->prepareForm();
-			$form->displayForm( '' );
+			$this->buildForm();
 		}
+
+		$pager = new NewFilesPager( $this->getContext(), $opts );
 
 		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {
 			$out->addHTML( $pager->getNavigationBar() );
 		}
+	}
+
+	protected function buildForm() {
+		$formDescriptor = [
+			'like' => [
+				'type' => 'text',
+				'label-message' => 'newimages-label',
+				'name' => 'like',
+			],
+
+			'showbots' => [
+				'type' => 'check',
+				'label-message' => 'newimages-showbots',
+				'name' => 'showbots',
+			],
+
+			'hidepatrolled' => [
+				'type' => 'check',
+				'label-message' => 'newimages-hidepatrolled',
+				'name' => 'hidepatrolled',
+			],
+
+			'limit' => [
+				'type' => 'hidden',
+				'default' => $this->opts->getValue( 'limit' ),
+				'name' => 'limit',
+			],
+
+			'offset' => [
+				'type' => 'hidden',
+				'default' => $this->opts->getValue( 'offset' ),
+				'name' => 'offset',
+			],
+		];
+
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			unset( $formDescriptor['like'] );
+		}
+
+		if ( !$this->getUser()->useFilePatrol() ) {
+			unset( $formDescriptor['hidepatrolled'] );
+		}
+
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setWrapperLegendMsg( 'newimages-legend' )
+			->setSubmitTextMsg( 'ilsubmit' )
+			->setMethod( 'get' )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	protected function getGroupName() {
