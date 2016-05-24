@@ -251,8 +251,16 @@
 		 *         e.preventDefault();
 		 *     } );
 		 *
+		 *     Or equivalently:
+		 *
+		 *     mw.util.addPortletLink(
+		 *         'p-tb',
+		 *         function () { console.log( 'Example' ) },
+		 *         'Example'
+		 *     );
+		 *
 		 * @param {string} portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
-		 * @param {string} href Link URL
+		 * @param {string|Function} href Link URL or handler for click event
 		 * @param {string} text Link text
 		 * @param {string} [id] ID of the new item, should be unique and preferably have
 		 *  the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
@@ -268,16 +276,28 @@
 		 * depending on the skin) or null if no element was added to the document.
 		 */
 		addPortletLink: function ( portlet, href, text, id, tooltip, accesskey, nextnode ) {
-			var $item, $link, $portlet, $ul;
+			var $item, $link, $portlet, $ul, actualHref;
 
 			// Check if there's at least 3 arguments to prevent a TypeError
 			if ( arguments.length < 3 ) {
 				return null;
 			}
+
+			if ( $.isFunction( href ) ) {
+				actualHref = '#';
+			} else {
+				actualHref = href;
+			}
 			// Setup the anchor tag
-			$link = $( '<a>' ).attr( 'href', href ).text( text );
+			$link = $( '<a>' ).attr( 'href', actualHref ).text( text );
 			if ( tooltip ) {
 				$link.attr( 'title', tooltip );
+			}
+			if ( $.isFunction( href ) ) {
+				$link.click( function ( e ) {
+					e.preventDefault();
+					href.apply( this, arguments );
+				} );
 			}
 
 			// Select the specified portlet
