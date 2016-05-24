@@ -1466,9 +1466,14 @@ class Parser {
 				'x' => 'X',
 			] );
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
-			return '<a href="' .
-				htmlspecialchars( $titleObj->getLocalURL() ) .
-				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
+			return $this->getLinkRenderer()->makeKnownLink(
+				SpecialPage::getTitleFor( 'Booksources', $num ),
+				"ISBN $isbn",
+				[
+					'class' => 'internal mw-magiclink-isbn',
+					'title' => false // suppress title attribute
+				]
+			);
 		} else {
 			return $m[0];
 		}
