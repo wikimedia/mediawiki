@@ -541,9 +541,7 @@
 	 * Add the appropriate prefix to the accesskey shown in the tooltip.
 	 *
 	 * If the `$nodes` parameter is given, only those nodes are updated;
-	 * otherwise, depending on browser support, we update either all elements
-	 * with accesskeys on the page or a bunch of elements which are likely to
-	 * have them on core skins.
+	 * otherwise we update all elements with accesskeys on the page.
 	 *
 	 * @method updateTooltipAccessKeys
 	 * @param {Array|jQuery} [$nodes] A jQuery object, or array of nodes to update.
@@ -551,19 +549,7 @@
 	 */
 	mw.log.deprecate( util, 'updateTooltipAccessKeys', function ( $nodes ) {
 		if ( !$nodes ) {
-			if ( document.querySelectorAll ) {
-				// If we're running on a browser where we can do this efficiently,
-				// just find all elements that have accesskeys. We can't use jQuery's
-				// polyfill for the selector since looping over all elements on page
-				// load might be too slow.
-				$nodes = $( document.querySelectorAll( '[accesskey]' ) );
-			} else {
-				// Otherwise go through some elements likely to have accesskeys rather
-				// than looping over all of them. Unfortunately this will not fully
-				// work for custom skins with different HTML structures. Input, label
-				// and button should be rare enough that no optimizations are needed.
-				$nodes = $( '#column-one a, #mw-head a, #mw-panel a, #p-logo a, input, label, button' );
-			}
+			$nodes = $( '[accesskey]' );
 		} else if ( !( $nodes instanceof $ ) ) {
 			$nodes = $( $nodes );
 		}
