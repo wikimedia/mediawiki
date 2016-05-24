@@ -1468,6 +1468,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Builds update conditions. Additional conditions may be added to $conditions to
+	 * protected against race conditions using a compare-and-set (CAS) mechanism
+	 * based on comparing $this->mTouched with the user_touched field.
+	 *
+	 * @param DatabaseBase $db
+	 * @param array $conditions WHERE conditions for use with DatabaseBase::update
+	 * @return array WHERE conditions for use with DatabaseBase::update
+	 */
+	protected function makeUpdateConditions( DatabaseBase $db, array $conditions ) {
+		if ( $this->mTouched ) {
+			// CAS check: only update if the row wasn't changed sicne it was loaded.
+			$conditions['user_touched'] = $db->timestamp( $this->mTouched );
+		}
+
+		return $conditions;
+	}
+
+	/**
 	 * Bump user_touched if it didn't change since this object was loaded
 	 *
 	 * On success, the mTouched field is updated.
@@ -1484,16 +1502,14 @@ class User implements IDBAccessObject {
 		}
 
 		// Get a new user_touched that is higher than the old one
-		$oldTouched = $this->mTouched;
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			[ 'user_touched' => $dbw->timestamp( $newTouched ) ],
-			[
+			$this->makeUpdateConditions( $dbw, [
 				'user_id' => $this->mId,
-				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
-			],
+			] ),
 			__METHOD__
 		);
 		$success = ( $dbw->affectedRows() > 0 );
@@ -3908,7 +3924,6 @@ class User implements IDBAccessObject {
 		// Get a new user_touched that is higher than the old one.
 		// This will be used for a CAS check as a last-resort safety
 		// check against race conditions and slave lag.
-		$oldTouched = $this->mTouched;
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -3922,10 +3937,9 @@ class User implements IDBAccessObject {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-			], [ /* WHERE */
+			], $this->makeUpdateConditions( $dbw, [ /* WHERE */
 				'user_id' => $this->mId,
-				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
-			], __METHOD__
+			] ), __METHOD__
 		);
 
 		if ( !$dbw->affectedRows() ) {
