@@ -452,6 +452,15 @@ abstract class LBFactory implements DestructibleService {
 			}
 		} );
 	}
+
+	/**
+	 * Close all open database connections on all open load balancers.
+	 * @since 1.28
+	 */
+	public function closeAll() {
+		$this->forEachLBCallMethod( 'closeAll', [] );
+	}
+
 }
 
 /**
