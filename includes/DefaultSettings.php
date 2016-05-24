@@ -1902,6 +1902,7 @@ $wgSharedSchema = false;
  *                                    if available
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
+ *   - is static:   (optional) Set to true if the dataset is static and no replication is used.
  *
  *   These and any other user-defined properties will be assigned to the mLBInfo member
  *   variable of the Database object.

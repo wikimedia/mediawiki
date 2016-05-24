@@ -782,8 +782,10 @@ abstract class DatabaseMysqlBase extends Database {
 			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
 		}
 
-		if ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
-			return 0;
+		if ( $this->getLBInfo( 'is static' ) === true ) {
+			return 0; // this is a copy of a read-only dataset with no master DB
+		} elseif ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
+			return 0; // already reached this point for sure
 		}
 
 		# Commit any open transactions
