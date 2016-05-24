@@ -786,49 +786,21 @@ class Linker {
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
 
-		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		if ( $label == '' ) {
-			$label = $title->getPrefixedText();
-		}
-		$encLabel = htmlspecialchars( $label );
-		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
-
-		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
-			&& !$currentExists
-		) {
-			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
-
-			if ( $redir ) {
-				// We already know it's a redirect, so mark it
-				// accordingly
-				return self::link(
-					$title,
-					$encLabel,
-					[ 'class' => 'mw-redirect' ],
-					wfCgiToArray( $query ),
-					[ 'known', 'noclasses' ]
-				);
-			}
-
-			$href = self::getUploadUrl( $title, $query );
-
-			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-				$encLabel . '</a>';
-		}
-
-		return self::link( $title, $encLabel, [], wfCgiToArray( $query ), [ 'known', 'noclasses' ] );
+		return MediaWikiServices::getInstance()->getFileLinkRenderer()->makeBrokenFileLink(
+			$title, $label, strlen( $query ) ? wfCgiToArray( $query ) : [], $time
+		);
 	}
 
 	/**
 	 * Get the URL to upload a certain file
 	 *
 	 * @since 1.16.3
+	 * @private Only public for use in FileLinkRenderer
 	 * @param Title $destFile Title object of the file to upload
 	 * @param string $query Urlencoded query string to prepend
 	 * @return string Urlencoded URL
 	 */
-	protected static function getUploadUrl( $destFile, $query = '' ) {
+	public static function getUploadUrl( $destFile, $query = '' ) {
 		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		$q = 'wpDestFile=' . $destFile->getPartialURL();
 		if ( $query != '' ) {
