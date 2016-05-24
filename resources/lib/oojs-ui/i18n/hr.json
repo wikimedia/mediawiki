@@ -19,5 +19,6 @@
 	"ooui-dialog-process-dismiss": "Zatvori",
 	"ooui-dialog-process-retry": "Pokušajte ponovo",
 	"ooui-selectfile-button-select": "Odaberi datoteku",
-	"ooui-selectfile-placeholder": "Datoteka nije označena"
+	"ooui-selectfile-placeholder": "Datoteka nije označena",
+	"ooui-selectfile-dragdrop-placeholder": "Povucite datoteku ovdje"
 }

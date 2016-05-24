@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.2
+ * OOjs UI v0.17.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-10T22:58:31Z
+ * Date: 2016-05-24T22:46:36Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -44,7 +44,6 @@
 	vertical-align: top;
 	text-align: center;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	cursor: default;
@@ -130,7 +129,7 @@
 .oo-ui-buttonElement-framed.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-	color: black;
+	color: #000000;
 	border-color: #c9c9c9;
 	background-color: #eeeeee;
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #dddddd), color-stop(100%, #ffffff));
@@ -383,7 +382,7 @@
 	position: relative;
 	margin: 0;
 	padding: 0;
-	border: none;
+	border: 0;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
 	display: block;
@@ -475,7 +474,7 @@
 	position: relative;
 	display: block;
 	padding: 0.25em 0.5em;
-	border: none;
+	border: 0;
 }
 .oo-ui-optionWidget.oo-ui-widget-enabled {
 	cursor: pointer;
@@ -850,9 +849,9 @@
 	font-size: inherit;
 	font-family: inherit;
 	background-color: #ffffff;
-	color: black;
+	color: #000000;
 	border: 1px solid #cccccc;
-	box-shadow: 0 0 0 white, inset 0 0.1em 0.2em #dddddd;
+	box-shadow: 0 0 0 #ffffff, inset 0 0.1em 0.2em #dddddd;
 	border-radius: 0.25em;
 	-webkit-transition: border-color 250ms ease, box-shadow 250ms ease;
 	   -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
@@ -866,7 +865,7 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
 	outline: none;
 	border-color: #a7dcff;
-	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #ffffff;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
@@ -1003,22 +1002,18 @@
 	border-color: rgba(0, 0, 0, 0.2);
 }
 .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
-	right: 0;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
-	left: 0.25em;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
-	line-height: 2.5em;
-	margin: 0 0.5em;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
 	top: 0;
+	right: 0;
 	margin: 0.775em;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	top: 0;
+	left: 0.25em;
 	margin: 0.3em;
+}
+.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
+	line-height: 2.5em;
+	margin: 0 0.5em;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
 	color: #cccccc;

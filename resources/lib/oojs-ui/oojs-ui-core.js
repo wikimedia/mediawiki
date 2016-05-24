@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.2
+ * OOjs UI v0.17.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-10T22:58:27Z
+ * Date: 2016-05-24T22:46:32Z
  */
 ( function ( OO ) {
 
@@ -4797,8 +4797,10 @@ OO.ui.mixin.ItemWidget.prototype.setElementGroup = function ( group ) {
  *
  * @class
  * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.ItemWidget
  * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.FlaggedElement
+ * @mixins OO.ui.mixin.AccessKeyedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -4814,6 +4816,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	OO.ui.mixin.ItemWidget.call( this );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
+	OO.ui.mixin.AccessKeyedElement.call( this, config );
 
 	// Properties
 	this.selected = false;
@@ -4823,6 +4826,8 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	// Initialization
 	this.$element
 		.data( 'oo-ui-optionWidget', this )
+		// Allow programmatic focussing (and by accesskey), but not tabbing
+		.attr( 'tabindex', '-1' )
 		.attr( 'role', 'option' )
 		.attr( 'aria-selected', 'false' )
 		.addClass( 'oo-ui-optionWidget' )
@@ -4835,6 +4840,7 @@ OO.inheritClass( OO.ui.OptionWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.mixin.ItemWidget );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.mixin.FlaggedElement );
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.mixin.AccessKeyedElement );
 
 /* Static Properties */
 
@@ -5035,7 +5041,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 		toggle: 'onToggle'
 	} );
 	this.$element.on( {
-		focus: this.onFocus.bind( this ),
+		focusin: this.onFocus.bind( this ),
 		mousedown: this.onMouseDown.bind( this ),
 		mouseover: this.onMouseOver.bind( this ),
 		mouseleave: this.onMouseLeave.bind( this )
@@ -5122,10 +5128,18 @@ OO.ui.SelectWidget.static.passAllFilter = function () {
  * @private
  * @param {jQuery.Event} event
  */
-OO.ui.SelectWidget.prototype.onFocus = function () {
-	// The styles for focus state depend on one of the items being selected.
-	if ( !this.getSelectedItem() ) {
-		this.selectItem( this.getFirstSelectableItem() );
+OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
+	if ( event.target === this.$element[ 0 ] ) {
+		// This widget was focussed, e.g. by the user tabbing to it.
+		// The styles for focus state depend on one of the items being selected.
+		if ( !this.getSelectedItem() ) {
+			this.selectItem( this.getFirstSelectableItem() );
+		}
+	} else {
+		// One of the options got focussed (and the event bubbled up here).
+		// They can't be tabbed to, but they can be activated using accesskeys.
+		this.selectItem( this.getTargetItem( event ) );
+		this.$element.focus();
 	}
 };
 
@@ -6002,7 +6016,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  *  the text the user types. This config is used by {@link OO.ui.ComboBoxInputWidget ComboBoxInputWidget}
  *  and {@link OO.ui.mixin.LookupElement LookupElement}
  * @cfg {jQuery} [$input] Text input used to implement option highlighting for menu items that match
- *  the text the user types. This config is used by {@link OO.ui.CapsuleMultiSelectWidget CapsuleMultiSelectWidget}
+ *  the text the user types. This config is used by {@link OO.ui.CapsuleMultiselectWidget CapsuleMultiselectWidget}
  * @cfg {OO.ui.Widget} [widget] Widget associated with the menu's active state. If the user clicks the mouse
  *  anywhere on the page outside of this widget, the menu is hidden. For example, if there is a button
  *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
@@ -6463,9 +6477,6 @@ OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	// Parent constructor
 	OO.ui.RadioOptionWidget.parent.call( this, config );
 
-	// Events
-	this.radio.$input.on( 'focus', this.onInputFocus.bind( this ) );
-
 	// Initialization
 	// Remove implicit role, we're handling it ourselves
 	this.radio.$input.attr( 'role', 'presentation' );
@@ -6492,15 +6503,6 @@ OO.ui.RadioOptionWidget.static.pressable = false;
 OO.ui.RadioOptionWidget.static.tagName = 'label';
 
 /* Methods */
-
-/**
- * @param {jQuery.Event} e Focus event
- * @private
- */
-OO.ui.RadioOptionWidget.prototype.onInputFocus = function () {
-	this.radio.$input.blur();
-	this.$element.parent().focus();
-};
 
 /**
  * @inheritdoc
@@ -8346,16 +8348,15 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
 	var allowedTypes = [
-			'text',
-			'password',
-			'search',
-			'email',
-			'url',
-			'date',
-			'number'
-		],
-		type = allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
-	return config.multiline ? 'multiline' : type;
+		'text',
+		'password',
+		'search',
+		'email',
+		'url',
+		'date',
+		'number'
+	];
+	return allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
 };
 
 /**
