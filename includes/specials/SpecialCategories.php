@@ -26,11 +26,6 @@
  */
 class SpecialCategories extends SpecialPage {
 
-	/**
-	 * @var PageLinkRenderer
-	 */
-	protected $linkRenderer = null;
-
 	public function __construct() {
 		parent::__construct( 'Categories' );
 
@@ -39,42 +34,18 @@ class SpecialCategories extends SpecialPage {
 		// using the initServices() method.
 	}
 
-	/**
-	 * Initialize or override the PageLinkRenderer SpecialCategories collaborates with.
-	 * Useful mainly for testing.
-	 *
-	 * @todo the pager should also be injected, and de-coupled from the rendering logic.
-	 *
-	 * @param PageLinkRenderer $linkRenderer
-	 */
-	public function setPageLinkRenderer(
-		PageLinkRenderer $linkRenderer
-	) {
-		$this->linkRenderer = $linkRenderer;
-	}
-
-	/**
-	 * Initialize any services we'll need (unless it has already been provided via a setter).
-	 * This allows for dependency injection even though we don't control object creation.
-	 */
-	private function initServices() {
-		if ( !$this->linkRenderer ) {
-			$lang = $this->getContext()->getLanguage();
-			$titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
-			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
-		}
-	}
-
 	public function execute( $par ) {
-		$this->initServices();
-
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
 		$from = $this->getRequest()->getText( 'from', $par );
 
-		$cap = new CategoryPager( $this->getContext(), $from, $this->linkRenderer );
+		$cap = new CategoryPager(
+			$this->getContext(),
+			$from,
+			$this->getLinkRenderer()
+		);
 		$cap->doQuery();
 
 		$this->getOutput()->addHTML(
