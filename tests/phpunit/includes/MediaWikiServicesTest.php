@@ -1,6 +1,7 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Linker\FileLinkRenderer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
@@ -320,6 +321,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
+			'FileLinkRenderer' => [ 'FileLinkRenderer', FileLinkRenderer::class ],
 			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],

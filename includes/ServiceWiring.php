@@ -187,6 +187,12 @@ return [
 		}
 	},
 
+	'FileLinkRenderer' => function( MediaWikiServices $services ) {
+		return $services->getLinkRendererFactory()->createFile(
+			$services->getLinkRenderer()
+		);
+	},
+
 	'GenderCache' => function( MediaWikiServices $services ) {
 		return new GenderCache();
 	},

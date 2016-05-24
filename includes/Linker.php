@@ -416,136 +416,8 @@ class Linker {
 		$file, $frameParams = [], $handlerParams = [], $time = false,
 		$query = "", $widthOption = null
 	) {
-		$res = null;
-		$dummy = new DummyLinker;
-		if ( !Hooks::run( 'ImageBeforeProduceHTML', [ &$dummy, &$title,
-			&$file, &$frameParams, &$handlerParams, &$time, &$res ] ) ) {
-			return $res;
-		}
-
-		if ( $file && !$file->allowInlineDisplay() ) {
-			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display\n" );
-			return self::link( $title );
-		}
-
-		// Clean up parameters
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
-		if ( !isset( $frameParams['align'] ) ) {
-			$frameParams['align'] = '';
-		}
-		if ( !isset( $frameParams['alt'] ) ) {
-			$frameParams['alt'] = '';
-		}
-		if ( !isset( $frameParams['title'] ) ) {
-			$frameParams['title'] = '';
-		}
-		if ( !isset( $frameParams['class'] ) ) {
-			$frameParams['class'] = '';
-		}
-
-		$prefix = $postfix = '';
-
-		if ( 'center' == $frameParams['align'] ) {
-			$prefix = '<div class="center">';
-			$postfix = '</div>';
-			$frameParams['align'] = 'none';
-		}
-		if ( $file && !isset( $handlerParams['width'] ) ) {
-			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
-				// If its a vector image, and user only specifies height
-				// we don't want it to be limited by its "normal" width.
-				global $wgSVGMaxSize;
-				$handlerParams['width'] = $wgSVGMaxSize;
-			} else {
-				$handlerParams['width'] = $file->getWidth( $page );
-			}
-
-			if ( isset( $frameParams['thumbnail'] )
-				|| isset( $frameParams['manualthumb'] )
-				|| isset( $frameParams['framed'] )
-				|| isset( $frameParams['frameless'] )
-				|| !$handlerParams['width']
-			) {
-				global $wgThumbLimits, $wgThumbUpright;
-
-				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
-					$widthOption = User::getDefaultOption( 'thumbsize' );
-				}
-
-				// Reduce width for upright images when parameter 'upright' is used
-				if ( isset( $frameParams['upright'] ) && $frameParams['upright'] == 0 ) {
-					$frameParams['upright'] = $wgThumbUpright;
-				}
-
-				// For caching health: If width scaled down due to upright
-				// parameter, round to full __0 pixel to avoid the creation of a
-				// lot of odd thumbs.
-				$prefWidth = isset( $frameParams['upright'] ) ?
-					round( $wgThumbLimits[$widthOption] * $frameParams['upright'], -1 ) :
-					$wgThumbLimits[$widthOption];
-
-				// Use width which is smaller: real image width or user preference width
-				// Unless image is scalable vector.
-				if ( !isset( $handlerParams['height'] ) && ( $handlerParams['width'] <= 0 ||
-						$prefWidth < $handlerParams['width'] || $file->isVectorized() ) ) {
-					$handlerParams['width'] = $prefWidth;
-				}
-			}
-		}
-
-		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
-			|| isset( $frameParams['framed'] )
-		) {
-			# Create a thumbnail. Alignment depends on the writing direction of
-			# the page content language (right-aligned for LTR languages,
-			# left-aligned for RTL languages)
-			# If a thumbnail width has not been provided, it is set
-			# to the default user option as specified in Language*.php
-			if ( $frameParams['align'] == '' ) {
-				$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
-			}
-			return $prefix .
-				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query ) .
-				$postfix;
-		}
-
-		if ( $file && isset( $frameParams['frameless'] ) ) {
-			$srcWidth = $file->getWidth( $page );
-			# For "frameless" option: do not present an image bigger than the
-			# source (for bitmap-style images). This is the same behavior as the
-			# "thumb" option does it already.
-			if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
-				$handlerParams['width'] = $srcWidth;
-			}
-		}
-
-		if ( $file && isset( $handlerParams['width'] ) ) {
-			# Create a resized image, without the additional thumbnail features
-			$thumb = $file->transform( $handlerParams );
-		} else {
-			$thumb = false;
-		}
-
-		if ( !$thumb ) {
-			$s = self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
-		} else {
-			self::processResponsiveImages( $file, $thumb, $handlerParams );
-			$params = [
-				'alt' => $frameParams['alt'],
-				'title' => $frameParams['title'],
-				'valign' => isset( $frameParams['valign'] ) ? $frameParams['valign'] : false,
-				'img-class' => $frameParams['class'] ];
-			if ( isset( $frameParams['border'] ) ) {
-				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
-			}
-			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
-
-			$s = $thumb->toHtml( $params );
-		}
-		if ( $frameParams['align'] != '' ) {
-			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
-		}
-		return str_replace( "\n", ' ', $prefix . $s . $postfix );
+		// This doesn't pass on $widthOption, will use ParserOptions::getThumbSize()
+		return $parser->buildImageLink( $title, $file, $frameParams, $handlerParams, $time, $query );
 	}
 
 	/**
@@ -556,7 +428,7 @@ class Linker {
 	 * @param Parser|null $parser
 	 * @return array
 	 */
-	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
+	public static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
 		$mtoParams = [];
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
@@ -584,6 +456,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated since 1.28, call FileLinkRenderer::makeThumbLink() directly
+	 *
 	 * Make HTML for a thumbnail including image, border and caption
 	 * @param Title $title
 	 * @param File|bool $file File object or false if it doesn't exist
@@ -614,7 +488,7 @@ class Linker {
 
 	/**
 	 * @param Title $title
-	 * @param File $file
+	 * @param File|bool $file
 	 * @param array $frameParams
 	 * @param array $handlerParams
 	 * @param bool $time
@@ -624,115 +498,9 @@ class Linker {
 	public static function makeThumbLink2( Title $title, $file, $frameParams = [],
 		$handlerParams = [], $time = false, $query = ""
 	) {
-		$exists = $file && $file->exists();
-
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
-		if ( !isset( $frameParams['align'] ) ) {
-			$frameParams['align'] = 'right';
-		}
-		if ( !isset( $frameParams['alt'] ) ) {
-			$frameParams['alt'] = '';
-		}
-		if ( !isset( $frameParams['title'] ) ) {
-			$frameParams['title'] = '';
-		}
-		if ( !isset( $frameParams['caption'] ) ) {
-			$frameParams['caption'] = '';
-		}
-
-		if ( empty( $handlerParams['width'] ) ) {
-			// Reduce width for upright images when parameter 'upright' is used
-			$handlerParams['width'] = isset( $frameParams['upright'] ) ? 130 : 180;
-		}
-		$thumb = false;
-		$noscale = false;
-		$manualthumb = false;
-
-		if ( !$exists ) {
-			$outerWidth = $handlerParams['width'] + 2;
-		} else {
-			if ( isset( $frameParams['manualthumb'] ) ) {
-				# Use manually specified thumbnail
-				$manual_title = Title::makeTitleSafe( NS_FILE, $frameParams['manualthumb'] );
-				if ( $manual_title ) {
-					$manual_img = wfFindFile( $manual_title );
-					if ( $manual_img ) {
-						$thumb = $manual_img->getUnscaledThumb( $handlerParams );
-						$manualthumb = true;
-					} else {
-						$exists = false;
-					}
-				}
-			} elseif ( isset( $frameParams['framed'] ) ) {
-				// Use image dimensions, don't scale
-				$thumb = $file->getUnscaledThumb( $handlerParams );
-				$noscale = true;
-			} else {
-				# Do not present an image bigger than the source, for bitmap-style images
-				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
-				$srcWidth = $file->getWidth( $page );
-				if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
-					$handlerParams['width'] = $srcWidth;
-				}
-				$thumb = $file->transform( $handlerParams );
-			}
-
-			if ( $thumb ) {
-				$outerWidth = $thumb->getWidth() + 2;
-			} else {
-				$outerWidth = $handlerParams['width'] + 2;
-			}
-		}
-
-		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
-		# So we don't need to pass it here in $query. However, the URL for the
-		# zoom icon still needs it, so we make a unique query for it. See bug 14771
-		$url = $title->getLocalURL( $query );
-		if ( $page ) {
-			$url = wfAppendQuery( $url, [ 'page' => $page ] );
-		}
-		if ( $manualthumb
-			&& !isset( $frameParams['link-title'] )
-			&& !isset( $frameParams['link-url'] )
-			&& !isset( $frameParams['no-link'] ) ) {
-			$frameParams['link-url'] = $url;
-		}
-
-		$s = "<div class=\"thumb t{$frameParams['align']}\">"
-			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
-
-		if ( !$exists ) {
-			$s .= self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
-			$zoomIcon = '';
-		} elseif ( !$thumb ) {
-			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
-			$zoomIcon = '';
-		} else {
-			if ( !$noscale && !$manualthumb ) {
-				self::processResponsiveImages( $file, $thumb, $handlerParams );
-			}
-			$params = [
-				'alt' => $frameParams['alt'],
-				'title' => $frameParams['title'],
-				'img-class' => ( isset( $frameParams['class'] ) && $frameParams['class'] !== ''
-					? $frameParams['class'] . ' '
-					: '' ) . 'thumbimage'
-			];
-			$params = self::getImageLinkMTOParams( $frameParams, $query ) + $params;
-			$s .= $thumb->toHtml( $params );
-			if ( isset( $frameParams['framed'] ) ) {
-				$zoomIcon = "";
-			} else {
-				$zoomIcon = Html::rawElement( 'div', [ 'class' => 'magnify' ],
-					Html::rawElement( 'a', [
-						'href' => $url,
-						'class' => 'internal',
-						'title' => wfMessage( 'thumbnail-more' )->text() ],
-						"" ) );
-			}
-		}
-		$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . "</div></div></div>";
-		return str_replace( "\n", ' ', $s );
+		return MediaWikiServices::getInstance()->getFileLinkRenderer()->makeThumbLink(
+			$title, $file, $frameParams, $handlerParams, $time, wfCgiToArray( $query )
+		);
 	}
 
 	/**
@@ -786,38 +554,9 @@ class Linker {
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
 
-		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		if ( $label == '' ) {
-			$label = $title->getPrefixedText();
-		}
-		$encLabel = htmlspecialchars( $label );
-		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
-
-		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
-			&& !$currentExists
-		) {
-			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
-
-			if ( $redir ) {
-				// We already know it's a redirect, so mark it
-				// accordingly
-				return self::link(
-					$title,
-					$encLabel,
-					[ 'class' => 'mw-redirect' ],
-					wfCgiToArray( $query ),
-					[ 'known', 'noclasses' ]
-				);
-			}
-
-			$href = self::getUploadUrl( $title, $query );
-
-			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-				$encLabel . '</a>';
-		}
-
-		return self::link( $title, $encLabel, [], wfCgiToArray( $query ), [ 'known', 'noclasses' ] );
+		return MediaWikiServices::getInstance()->getFileLinkRenderer()->makeBrokenFileLink(
+			$title, $label, strlen( $query ) ? wfCgiToArray( $query ) : [], $time
+		);
 	}
 
 	/**
@@ -829,20 +568,8 @@ class Linker {
 	 * @return string Urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
-		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		$q = 'wpDestFile=' . $destFile->getPartialURL();
-		if ( $query != '' ) {
-			$q .= '&' . $query;
-		}
-
-		if ( $wgUploadMissingFileUrl ) {
-			return wfAppendQuery( $wgUploadMissingFileUrl, $q );
-		} elseif ( $wgUploadNavigationUrl ) {
-			return wfAppendQuery( $wgUploadNavigationUrl, $q );
-		} else {
-			$upload = SpecialPage::getTitleFor( 'Upload' );
-			return $upload->getLocalURL( $q );
-		}
+		return MediaWikiServices::getInstance()->getFileLinkRenderer()
+			->getUploadUrl( $destFile, wfCgiToArray( $query ) );
 	}
 
 	/**

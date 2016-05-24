@@ -93,4 +93,15 @@ class LinkRendererFactory {
 
 		return $linkRenderer;
 	}
+
+	/**
+	 * @param LinkRenderer $linkRenderer
+	 * @return FileLinkRenderer
+	 */
+	public function createFile( LinkRenderer $linkRenderer ) {
+		return new FileLinkRenderer(
+			$linkRenderer,
+			$this->titleFormatter
+		);
+	}
 }

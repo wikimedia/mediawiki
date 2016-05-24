@@ -256,6 +256,11 @@ class Parser {
 	protected $mLinkRenderer;
 
 	/**
+	 * @var \MediaWiki\Linker\FileLinkRenderer
+	 */
+	protected $mFileLinkRenderer;
+
+	/**
 	 * @param array $conf
 	 */
 	public function __construct( $conf = [] ) {
@@ -897,6 +902,21 @@ class Parser {
 		}
 
 		return $this->mLinkRenderer;
+	}
+
+	/**
+	 * @since 1.28
+	 * @return \MediaWiki\Linker\FileLinkRenderer
+	 */
+	public function getFileLinkRenderer() {
+		if ( !$this->mFileLinkRenderer ) {
+			$this->mFileLinkRenderer = MediaWikiServices::getInstance()
+				->getLinkRendererFactory()->createFile(
+					$this->getLinkRenderer()
+				);
+		}
+
+		return $this->mFileLinkRenderer;
 	}
 
 	/**
@@ -5090,6 +5110,7 @@ class Parser {
 		Hooks::run( 'BeforeParserFetchFileAndTitle',
 			[ $this, $title, &$options, &$descQuery ] );
 		# Fetch and register the file (file title may be different via hooks)
+		/** @var File|bool $file */
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
 
 		# Get parameter map
@@ -5254,8 +5275,10 @@ class Parser {
 
 		# Linker does the rest
 		$time = isset( $options['time'] ) ? $options['time'] : false;
-		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
-			$time, $descQuery, $this->mOptions->getThumbSize() );
+		if ( $descQuery === false ) {
+			$descQuery = '';
+		}
+		$ret = $this->buildImageLink( $title, $file, $params['frame'], $params['handler'], $time, $descQuery );
 
 		# Give the handler a chance to modify the parser object
 		if ( $handler ) {
@@ -5263,6 +5286,143 @@ class Parser {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param File|bool $file
+	 * @param array $frameParams
+	 * @param array $handlerParams
+	 * @param $time
+	 * @param $descQuery
+	 * @return string
+	 */
+	public function buildImageLink( Title $title, $file, array $frameParams, array $handlerParams, $time, $descQuery ) {
+		$res = null;
+		$dummy = new DummyLinker;
+		if ( !Hooks::run( 'ImageBeforeProduceHTML', [ &$dummy, &$title,
+			&$file, &$frameParams, &$handlerParams, &$time, &$res ] ) ) {
+			return $res;
+		}
+
+		if ( $file && !$file->allowInlineDisplay() ) {
+			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display\n" );
+			return $this->getLinkRenderer()->makeLink( $title );
+		}
+
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$frameParams += [
+			'align' => '',
+			'alt' => '',
+			'title' => '',
+			'class' => '',
+		];
+		$prefix = $postfix = '';
+
+		if ( $frameParams['align'] == 'center' ) {
+			// Use center class instead of align
+			$prefix = '<div class="center">';
+			$postfix = '</div>';
+			$frameParams['align'] = 'none';
+		}
+
+		// If a width isn't set, figure one out
+		if ( $file && !isset( $handlerParams['width'] ) ) {
+			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
+				// If its a vector image, and user only specifies height
+				// we don't want it to be limited by its "normal" width.
+				global $wgSVGMaxSize;
+				$handlerParams['width'] = $wgSVGMaxSize;
+			} else {
+				$handlerParams['width'] = $file->getWidth( $page );
+			}
+
+			if ( isset( $frameParams['thumbnail'] )
+				|| isset( $frameParams['manualthumb'] )
+				|| isset( $frameParams['framed'] )
+				|| isset( $frameParams['frameless'] )
+				|| !$handlerParams['width']
+			) {
+				global $wgThumbLimits, $wgThumbUpright;
+
+				// Reduce width for upright images when parameter 'upright' is used
+				if ( isset( $frameParams['upright'] ) && $frameParams['upright'] == 0 ) {
+					$frameParams['upright'] = $wgThumbUpright;
+				}
+
+				// For caching health: If width scaled down due to upright
+				// parameter, round to full __0 pixel to avoid the creation of a
+				// lot of odd thumbs.
+				$widthOption = $this->mOptions->getThumbSize();
+				$prefWidth = isset( $frameParams['upright'] ) ?
+					round( $wgThumbLimits[$widthOption] * $frameParams['upright'], -1 ) :
+					$wgThumbLimits[$widthOption];
+
+				// Use width which is smaller: real image width or user preference width
+				// Unless image is scalable vector.
+				if ( !isset( $handlerParams['height'] ) && ( $handlerParams['width'] <= 0 ||
+						$prefWidth < $handlerParams['width'] || $file->isVectorized() ) ) {
+					$handlerParams['width'] = $prefWidth;
+				}
+			}
+		}
+
+		$fileLinkRenderer = $this->getFileLinkRenderer();
+
+		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
+			|| isset( $frameParams['framed'] )
+		) {
+			# Create a thumbnail. Alignment depends on the writing direction of
+			# the page content language (right-aligned for LTR languages,
+			# left-aligned for RTL languages)
+			# If a thumbnail width has not been provided, it is set
+			# to the default user option as specified in Language*.php
+			if ( $frameParams['align'] == '' ) {
+				$frameParams['align'] = $this->getTargetLanguage()->alignEnd();
+			}
+			return $prefix .
+				$fileLinkRenderer->makeThumbLink( $title, $file, $frameParams, $handlerParams, $time, wfCgiToArray( $descQuery ) ) .
+				$postfix;
+		}
+
+		if ( $file && isset( $frameParams['frameless'] ) ) {
+			$srcWidth = $file->getWidth( $page );
+			# For "frameless" option: do not present an image bigger than the
+			# source (for bitmap-style images). This is the same behavior as the
+			# "thumb" option does it already.
+			if ( $srcWidth && !$file->mustRender() && $handlerParams['width'] > $srcWidth ) {
+				$handlerParams['width'] = $srcWidth;
+			}
+		}
+
+		if ( $file && isset( $handlerParams['width'] ) ) {
+			# Create a resized image, without the additional thumbnail features
+			$thumb = $file->transform( $handlerParams );
+		} else {
+			$thumb = false;
+		}
+
+		if ( !$thumb ) {
+			$s = $fileLinkRenderer->makeBrokenFileLink( $title, $frameParams['title'], [], $time == true );
+		} else {
+			Linker::processResponsiveImages( $file, $thumb, $handlerParams );
+			$params = [
+				'alt' => $frameParams['alt'],
+				'title' => $frameParams['title'],
+				'valign' => isset( $frameParams['valign'] ) ? $frameParams['valign'] : false,
+				'img-class' => $frameParams['class'] ];
+			if ( isset( $frameParams['border'] ) ) {
+				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
+			}
+			$params = Linker::getImageLinkMTOParams( $frameParams, $descQuery, $this ) + $params;
+
+			$s = $thumb->toHtml( $params );
+		}
+		if ( $frameParams['align'] != '' ) {
+			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
+		}
+		return str_replace( "\n", ' ', $prefix . $s . $postfix );
+
 	}
 
 	/**
