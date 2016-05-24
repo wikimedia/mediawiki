@@ -9,7 +9,7 @@
 		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
-	 * Category selector widget. Displays an OO.ui.CapsuleMultiSelectWidget
+	 * Category selector widget. Displays an OO.ui.CapsuleMultiselectWidget
 	 * and autocompletes with available categories.
 	 *
 	 *     var selector = new mw.widgets.CategorySelector( {
@@ -25,7 +25,7 @@
 	 *
 	 * @class mw.widgets.CategorySelector
 	 * @uses mw.Api
-	 * @extends OO.ui.CapsuleMultiSelectWidget
+	 * @extends OO.ui.CapsuleMultiselectWidget
 	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
@@ -67,7 +67,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiSelectWidget );
+	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiselectWidget );
 	OO.mixinClass( CategorySelector, OO.ui.mixin.PendingElement );
 	CSP = CategorySelector.prototype;
 

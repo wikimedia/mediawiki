@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.2
+ * OOjs UI v0.17.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-10T22:58:31Z
+ * Date: 2016-05-24T22:46:36Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -44,7 +44,6 @@
 	vertical-align: top;
 	text-align: center;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	cursor: default;
@@ -1273,21 +1272,17 @@
 	border-radius: 2px;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
-	right: 0;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
-	left: 0.25em;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
-	margin: 0 1em;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
 	top: 0;
+	right: 0;
 	margin: 0.775em;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	top: 0;
+	left: 0.25em;
 	margin: 0.3em;
+}
+.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
+	margin: 0 1em;
 }
 .oo-ui-dropdownWidget:hover .oo-ui-dropdownWidget-handle {
 	border-color: #aaaaaa;
