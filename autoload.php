@@ -843,6 +843,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
 	'MediaWiki\\Languages\\Data\\Names' => __DIR__ . '/languages/data/Names.php',
 	'MediaWiki\\Languages\\Data\\ZhConversion' => __DIR__ . '/languages/data/ZhConversion.php',
+	'MediaWiki\\Linker\\FileLinkRenderer' => __DIR__ . '/includes/linker/FileLinkRenderer.php',
 	'MediaWiki\\Linker\\LinkRenderer' => __DIR__ . '/includes/linker/LinkRenderer.php',
 	'MediaWiki\\Linker\\LinkRendererFactory' => __DIR__ . '/includes/linker/LinkRendererFactory.php',
 	'MediaWiki\\Linker\\LinkTarget' => __DIR__ . '/includes/linker/LinkTarget.php',

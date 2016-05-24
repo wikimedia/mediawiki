@@ -398,7 +398,16 @@ class LinkRenderer {
 		return $prefixedText;
 	}
 
-	private function getLinkURL( LinkTarget $target, array $query = [] ) {
+	/**
+	 * For use when you need to pass a plain URL to something,
+	 * but wish to respect the options for URL expansion and
+	 * forcing article path.
+	 *
+	 * @param LinkTarget $target
+	 * @param array $query
+	 * @return string
+	 */
+	public function getLinkURL( LinkTarget $target, array $query = [] ) {
 		// TODO: Use a LinkTargetResolver service instead of Title
 		$title = Title::newFromLinkTarget( $target );
 		if ( $this->forceArticlePath ) {
