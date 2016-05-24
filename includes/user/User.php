@@ -674,12 +674,26 @@ class User implements IDBAccessObject {
 	 * This can optionally create the user if it doesn't exist, and "steal" the
 	 * account if it does exist.
 	 *
+	 * "Stealing" an existing user is intended to make it impossible for normal
+	 * authentication processes to use the account, effectively disabling the
+	 * account for normal use:
+	 * - Email is invalidated, to prevent account recovery by emailing a
+	 *   temporary password and to disassociate the account from the existing
+	 *   human.
+	 * - The token is set to a magic invalid value, to kill existing sessions
+	 *   and to prevent $this->setToken() calls from resetting the token to a
+	 *   valid value.
+	 * - SessionManager is instructed to prevent new sessions for the user, to
+	 *   do things like deauthorizing OAuth consumers.
+	 * - AuthManager is instructed to revoke access, to invalidate or remove
+	 *   passwords and other credentials.
+	 *
 	 * @param string $name Username
 	 * @param array $options Options are:
 	 *  - validate: As for User::getCanonicalName(), default 'valid'
 	 *  - create: Whether to create the user if it doesn't already exist, default true
-	 *  - steal: Whether to reset the account's password and email if it
-	 *    already exists, default false
+	 *  - steal: Whether to "disable" the account for normal use if it already
+	 *    exists, default false
 	 * @return User|null
 	 * @since 1.27
 	 */
@@ -715,9 +729,8 @@ class User implements IDBAccessObject {
 		}
 		$user = self::newFromRow( $row );
 
-		// A user is considered to exist as a non-system user if it has a
-		// password set, or a temporary password set, or an email set, or a
-		// non-invalid token.
+		// A user is considered to exist as a non-system user if it can
+		// authenticate, or has an email set, or has a non-invalid token.
 		if ( !$user->mEmail && $user->mToken === self::INVALID_TOKEN ) {
 			if ( $wgDisableAuthManager ) {
 				$passwordFactory = new PasswordFactory();
