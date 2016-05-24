@@ -12,7 +12,8 @@
 			"Macofe",
 			"Nemo bis",
 			"JackLantern",
-			"Urielejh"
+			"Urielejh",
+			"Matteocng"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione]] (in inglese)\n* [[mw:API:FAQ|FAQ]] (in inglese)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma le API sono ancora in fase attiva di sviluppo, e potrebbero cambiare in qualsiasi momento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].",
@@ -41,6 +42,7 @@
 	"apihelp-checktoken-example-simple": "Verifica la validità di un token <kbd>csrf</kbd>.",
 	"apihelp-clearhasmsg-description": "Cancella il flag <code>hasmsg</code> per l'utente corrente.",
 	"apihelp-clearhasmsg-example-1": "Cancella il flag <code>hasmsg</code> per l'utente corrente.",
+	"apihelp-clientlogin-example-login2": "Continua l'accesso dopo una risposta dell'<samp>UI</samp> per l'autenticazione a due fattori, fornendo un <var>OATHToken</var> di <kbd>987654</kbd>.",
 	"apihelp-compare-description": "Ottieni le differenze tra 2 pagine.\n\nUn numero di revisione, il titolo di una pagina, o un ID di pagina deve essere indicato sia per il \"da\" che per lo \"a\".",
 	"apihelp-compare-param-fromtitle": "Primo titolo da confrontare.",
 	"apihelp-compare-param-fromid": "Primo ID di pagina da confrontare.",
@@ -613,5 +615,6 @@
 	"api-help-examples": "{{PLURAL:$1|Esempio|Esempi}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permesso|Permessi}}:",
 	"api-help-open-in-apisandbox": "<small>[apri in una sandbox]</small>",
+	"api-help-authmanager-general-usage": "La procedura generale per usare questo modulo é:\n# Ottenere i campi disponibili da <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> con <kbd>amirequestsfor=$4</kbd>, e un token <kbd>$5</kbd> da <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.\n# Mostra i campi all'utente e ottieni i dati che invia.\n# Esegui un post a questo modulo, fornendo <var>$1returnurl</var> e ogni campo rilevante.\n# Controlla <samp>status</samp> nella response.\n#* Se hai ricevuto <samp>PASS</samp> o <samp>FAIL</samp>, hai finito. L'operazione nel primo caso è andata a buon fine, nel secondo no.\n#* Se hai ricevuto <samp>UI</samp>, mostra i nuovi campi all'utente e ottieni i dati che invia. Esegui un post a questo modulo con <var>$1continue</var> e i campi rilevanti settati, quindi ripeti il punto 4.\n#* Se hai ricevuto <samp>REDIRECT</samp>, dirigi l'utente a <samp>redirecttarget</samp> e aspetta che ritorni a <var>$1returnurl</var>. A quel punto esegui un post a questo modulo con <var>$1continue</var> e ogni campo passato all'URL di ritorno, e ripeti il punto 4.\n#* Se hai ricevuto <samp>RESTART</samp>, vuol dire che l'autenticazione ha funzionato ma non abbiamo un account collegato. Potresti considerare questo caso come <samp>UI</samp> o come <samp>FAIL</samp>.",
 	"api-credits-header": "Crediti"
 }

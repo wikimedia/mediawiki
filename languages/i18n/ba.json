@@ -3031,6 +3031,7 @@
 	"confirm-watch-top": "Был битте күҙәтеү исемлегенә өҫтәргәме?",
 	"confirm-unwatch-button": "Тамам",
 	"confirm-unwatch-top": "Был битте күҙәтеү исемлегенән сығарырғамы?",
+	"confirm-rollback-button": "Яҡшы",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← алдағы бит",
 	"imgmultipagenext": "киләһе бит →",
@@ -3578,6 +3579,9 @@
 	"authmanager-email-label": "Электрон почта адресы",
 	"authmanager-email-help": "Электрон почта адресы",
 	"authmanager-realname-label": "Ысын исемегеҙ",
+	"authprovider-resetpass-skip-label": "Ҡалдырып торорға",
 	"changecredentials-submit": "Үҙгәртергә",
+	"changecredentials-submit-cancel": "Кире алырға",
+	"removecredentials-submit": "Юйырға",
 	"removecredentials-submit-cancel": "Кире алырға"
 }

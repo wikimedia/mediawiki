@@ -371,7 +371,7 @@
 	"viewsource": "Vaata lähteteksti",
 	"viewsource-title": "Lehekülje $1 lähteteksti vaatamine",
 	"actionthrottled": "Toiming nurjus",
-	"actionthrottledtext": "Väärtarvituse vastase meetmena pole sul lühikse aja jooksul seda toimingut liiga palju kordi lubatud sooritada. Sa oled lühikse aja jooskul seda toimingut liiga palju kordi sooritanud.\nPalun proovi mõne minuti pärast uuesti.",
+	"actionthrottledtext": "Väärtarvituse vastase meetmena pole sul lubatud lühikese aja jooksul seda toimingut liiga palju kordi sooritada. Oled piirangu ületanud. Palun proovi mõne aja pärast uuesti.",
 	"protectedpagetext": "See lehekülg on lukustatud, et ei tehtaks muudatusi ega sooritataks muid toiminguid.",
 	"viewsourcetext": "Saad vaadata ja kopeerida selle lehekülje lähteteksti.",
 	"viewyourtext": "Saad vaadata ja kopeerida sellel leheküljel tehtud <strong>enda muudatuste</strong> lähteteksti.",

@@ -2051,6 +2051,7 @@
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による編集を [[User:$1|$1]] による直前の版へ差し戻しました",
 	"revertpage-nouser": "非表示の利用者による編集を {{GENDER:$1|[[User:$1|$1]]}} による直前の版へ差し戻しました",
 	"rollback-success": "$1による編集を差し戻しました。\n$2による直前の版へ変更されました。",
+	"rollback-success-notify": "$1による編集を差し戻しました。\n$2による直前の版へ変更されました。[$3 変更を表示]",
 	"sessionfailure-title": "セッションの失敗",
 	"sessionfailure": "ログインのセッションに問題が発生しました。\nセッション乗っ取りを防ぐため、操作を取り消しました。\n前のページへ戻って再度読み込んだ後に、もう一度試してください。",
 	"changecontentmodel": "ページのコンテンツ・モデルの変更",
@@ -2337,6 +2338,7 @@
 	"lockdbsuccesstext": "データベースをロックしました。<br />\nメンテナンスが完了したら、忘れずに[[Special:UnlockDB|ロックを除去]]してください。",
 	"unlockdbsuccesstext": "データベースのロックを解除しました。",
 	"lockfilenotwritable": "データベースのロック ファイルが書き込み禁止です。\nデータベースをロックまたはロック解除するには、ウェブ サーバーがこれに書き込める必要があります。",
+	"databaselocked": "データベースは既にロックされています。",
 	"databasenotlocked": "データベースはロックされていません。",
 	"lockedbyandtime": "($1 が $2 $3 から)",
 	"move-page": "「$1」の移動",
@@ -3752,5 +3754,7 @@
 	"log-action-filter-protect-modify": "保護の設定変更",
 	"log-action-filter-protect-unprotect": "保護解除",
 	"log-action-filter-upload-upload": "新規アップロード",
-	"log-action-filter-upload-overwrite": "再アップロード"
+	"log-action-filter-upload-overwrite": "再アップロード",
+	"authmanager-authn-autocreate-failed": "ローカルアカウントの自動作成が失敗しました: $1",
+	"authmanager-userdoesnotexist": "利用者アカウント「$1」は登録されていません。"
 }

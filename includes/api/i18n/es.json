@@ -429,6 +429,7 @@
 	"apihelp-query+allusers-example-Y": "Listar usuarios que empiecen por <kbd>Y</kbd>.",
 	"apihelp-query+filerepoinfo-example-login": "Captura de las solicitudes que puede ser utilizadas al comienzo de inicio de sesión.",
 	"apihelp-query+backlinks-param-pageid": "Identificador de página que buscar. No puede usarse junto con <var>$1title</var>",
+	"apihelp-query+backlinks-param-filterredir": "Cómo filtrar redirecciones. Si se establece a <kbd>nonredirects</kbd> cuando está activo <var>$1redirect</var>, esto sólo se aplica al segundo nivel.",
 	"apihelp-query+backlinks-param-limit": "Cuántas páginas en total se devolverán. Si está activo <var>$1redirect</var>, el límite aplica a cada nivel por separado (lo que significa que se pueden devolver hasta 2 * <var>$1limit</var> resultados).",
 	"apihelp-query+backlinks-example-simple": "Mostrar enlaces a <kbd>Main page</kbd>.",
 	"apihelp-query+backlinks-example-generator": "Obtener información acerca de las páginas enlazadas a <kbd>Main page</kbd>.",

@@ -1834,7 +1834,7 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|veurige|veurige $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|volgende|volgende $1}}",
 	"whatlinkshere-links": "← verwiezingen",
-	"whatlinkshere-hideredirs": "Redirects $1",
+	"whatlinkshere-hideredirs": "$1 deurverwiezingen",
 	"whatlinkshere-hidetrans": "Vörlageninbinnungen $1",
 	"whatlinkshere-hidelinks": "Lenken $1",
 	"whatlinkshere-hideimages": "$1 bestaandsverwiezingen",
