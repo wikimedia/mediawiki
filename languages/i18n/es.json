@@ -3202,6 +3202,8 @@
 	"confirm-watch-top": "¿Añadir esta página a tu lista de seguimiento?",
 	"confirm-unwatch-button": "Aceptar",
 	"confirm-unwatch-top": "¿Quitar esta página de tu lista de seguimiento?",
+	"confirm-rollback-button": "Aceptar",
+	"confirm-rollback-top": "¿Revertir las ediciones a esta página?",
 	"comma-separator": ",&#32;",
 	"percent": "$1 %",
 	"quotation-marks": "«$1»",

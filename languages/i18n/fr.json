@@ -2143,7 +2143,7 @@
 	"rollbacklinkcount": "révoquer $1 {{PLURAL:$1|modification|modifications}}",
 	"rollbacklinkcount-morethan": "révoquer plus de $1 {{PLURAL:$1|modification|modifications}}",
 	"rollbackfailed": "La révocation a échoué",
-	"rollback-missingparam": "il manque des paramètres nécessaires à la demande.",
+	"rollback-missingparam": "Paramètres nécessaires à la demande manquants.",
 	"cantrollback": "Impossible de révoquer la modification ;\nle dernier contributeur est le seul auteur de cette page.",
 	"alreadyrolled": "Impossible de révoquer la dernière modification de la page « [[:$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;\nquelqu'un d'autre a déjà modifié ou révoqué la page.\n\nLa dernière modification de la page a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Le résumé de la modification était : <em>$1</em>.",
