@@ -366,7 +366,7 @@ class ChangesList extends ContextSource {
 			$diffLink = Linker::linkKnown(
 				$rc->getTitle(),
 				$this->message['diff'],
-				[ 'tabindex' => $rc->counter ],
+				[],
 				$query
 			);
 		}

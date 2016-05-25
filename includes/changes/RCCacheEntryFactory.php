@@ -174,7 +174,7 @@ class RCCacheEntryFactory {
 			$curLink = $curMessage;
 		} else {
 			$curUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
-			$curLink = "<a href=\"$curUrl\" tabindex=\"$counter\">$curMessage</a>";
+			$curLink = "<a href=\"$curUrl\">$curMessage</a>";
 		}
 
 		return $curLink;
@@ -217,10 +217,10 @@ class RCCacheEntryFactory {
 				return $diffMessage;
 			}
 			$diffUrl = htmlspecialchars( $pageTitle->getLinkURL( $queryParams ) );
-			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";
+			$diffLink = "<a href=\"$diffUrl\">$diffMessage</a>";
 		} else {
 			$diffUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
-			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";
+			$diffLink = "<a href=\"$diffUrl\">$diffMessage</a>";
 		}
 
 		return $diffLink;
