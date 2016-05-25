@@ -825,7 +825,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
 		$coreFieldDescriptors = $this->getFieldDefinitions( $this->fakeTemplate );
-		$specialFields = array_merge( [ 'extraInput', 'linkcontainer' ],
+		$specialFields = array_merge( [ 'extraInput', 'linkcontainer', 'entryError' ],
 			array_keys( $this->fakeTemplate->getExtraInputDefinitions() ) );
 
 		// keep the ordering from getCoreFieldDescriptors() where there is no explicit weight
@@ -1027,8 +1027,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'linkcontainer' => [
 					// help link
 					'type' => 'info',
-					'cssclass' => 'mw-form-related-link-container',
-					'id' => 'mw-userlogin-help',
+					'cssclass' => 'mw-form-related-link-container mw-userlogin-help',
+					// 'id' => 'mw-userlogin-help', // FIXME HTMLInfoField ignores this
 					'raw' => true,
 					'default' => Html::element( 'a', [
 						'href' => Skin::makeInternalOrExternalUrl( wfMessage( 'helplogin-url' )
@@ -1054,6 +1054,17 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'size' => 20,
 			// 'required' => true,
 		];
+
+		if ( $this->mEntryError ) {
+			$fieldDefinitions['entryError'] = [
+				'type' => 'info',
+				'default' => Html::rawElement( 'div', [ 'class' => $this->mEntryErrorType . 'box', ],
+					$this->mEntryError ),
+				'raw' => true,
+				'rawrow' => true,
+				'weight' => -100,
+			];
+		}
 
 		if ( !$this->showExtraInformation() ) {
 			unset( $fieldDefinitions['linkcontainer'] );
