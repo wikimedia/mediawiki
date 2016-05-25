@@ -67,10 +67,6 @@ class LinkRendererFactory {
 	public function createFromLegacyOptions( array $options ) {
 		$linkRenderer = $this->create();
 
-		if ( in_array( 'noclasses', $options, true ) ) {
-			$linkRenderer->setNoClasses( true );
-		}
-
 		if ( in_array( 'forcearticlepath', $options, true ) ) {
 			$linkRenderer->setForceArticlePath( true );
 		}
