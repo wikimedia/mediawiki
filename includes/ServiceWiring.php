@@ -38,7 +38,6 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -170,7 +169,11 @@ return [
 	'LinkRenderer' => function( MediaWikiServices $services ) {
 		global $wgUser;
 
-		return $services->getLinkRendererFactory()->createForUser( $wgUser );
+		if ( defined( 'MW_NO_SESSION' ) ) {
+			return $services->getLinkRendererFactory()->create();
+		} else {
+			return $services->getLinkRendererFactory()->createForUser( $wgUser );
+		}
 	},
 
 	'GenderCache' => function( MediaWikiServices $services ) {

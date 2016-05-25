@@ -217,8 +217,8 @@ class Linker {
 		if ( $options ) {
 			// Custom options, create new LinkRenderer
 			if ( !isset( $options['stubThreshold'] ) ) {
-				global $wgUser;
-				$options['stubThreshold'] = $wgUser->getStubThreshold();
+				$defaultLinkRenderer = $services->getLinkRenderer();
+				$options['stubThreshold'] = $defaultLinkRenderer->getStubThreshold();
 			}
 			$linkRenderer = $services->getLinkRendererFactory()
 				->createFromLegacyOptions( $options );
