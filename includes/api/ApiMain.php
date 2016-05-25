@@ -471,7 +471,8 @@ class ApiMain extends ApiBase {
 			$this->logRequest( $runTime );
 			if ( $this->mModule->isWriteMode() && $this->getRequest()->wasPosted() ) {
 				$this->getStats()->timing(
-					'api.' . $this->getModuleName() . '.executeTiming', 1000 * $runTime );
+					'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
+				);
 			}
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
