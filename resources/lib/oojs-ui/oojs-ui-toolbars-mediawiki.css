@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.2
+ * OOjs UI v0.17.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-10T22:58:31Z
+ * Date: 2016-05-24T22:46:36Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -22,7 +22,7 @@
 	margin: 0;
 }
 .oo-ui-toolGroupTool > .oo-ui-toolGroup {
-	border-right: none;
+	border-right: 0;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle {
 	height: 2.5em;
@@ -51,7 +51,7 @@
 	margin-left: 0;
 }
 .oo-ui-toolGroup .oo-ui-toolGroup .oo-ui-widget-enabled {
-	border-right: none !important;
+	border-right: 0 !important;
 }
 .oo-ui-barToolGroup > .oo-ui-iconElement-icon,
 .oo-ui-barToolGroup > .oo-ui-labelElement-label {

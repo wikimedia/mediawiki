@@ -22,5 +22,6 @@
 	"ooui-dialog-process-continue": "Jarraitu",
 	"ooui-selectfile-button-select": "Fitxategi bat aukeratu",
 	"ooui-selectfile-not-supported": "Fitxategi aukeraketa ez da onartzen",
-	"ooui-selectfile-placeholder": "Ez da fitxategirik hautatu"
+	"ooui-selectfile-placeholder": "Ez da fitxategirik hautatu",
+	"ooui-selectfile-dragdrop-placeholder": "Fitxategia hemen utzi"
 }

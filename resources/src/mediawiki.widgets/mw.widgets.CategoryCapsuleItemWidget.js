@@ -125,7 +125,7 @@
 			.text( this.label )
 			.attr( 'target', '_blank' )
 			.on( 'click', function ( e ) {
-				// CapsuleMultiSelectWidget really wants to prevent you from clicking the link, don't let it
+				// CapsuleMultiselectWidget really wants to prevent you from clicking the link, don't let it
 				e.stopPropagation();
 			} );
 

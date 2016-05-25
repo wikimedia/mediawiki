@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.2
+ * OOjs UI v0.17.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-10T22:58:31Z
+ * Date: 2016-05-24T22:46:36Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -284,7 +284,7 @@
 	top: 2.5em;
 	margin: 0 -1px;
 	border: 1px solid #cccccc;
-	background-color: white;
+	background-color: #ffffff;
 	box-shadow: 0 0.3125em 1.25em rgba(0, 0, 0, 0.25);
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
@@ -481,7 +481,7 @@
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
-	border: none;
+	border: 0;
 	background: none;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonElement-framed,

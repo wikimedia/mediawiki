@@ -304,7 +304,7 @@
 							}
 						} );
 					} else if ( Util.apiBool( pi.multi ) ) {
-						widget = new OO.ui.CapsuleMultiSelectWidget( {
+						widget = new OO.ui.CapsuleMultiselectWidget( {
 							allowArbitrary: true
 						} );
 						widget.paramInfo = pi;
@@ -413,7 +413,7 @@
 						return a.data - b.data;
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
-						widget = new OO.ui.CapsuleMultiSelectWidget( {
+						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items }
 						} );
 						widget.paramInfo = pi;
@@ -436,7 +436,7 @@
 						return new OO.ui.MenuOptionWidget( { data: String( v ), label: String( v ) } );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
-						widget = new OO.ui.CapsuleMultiSelectWidget( {
+						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items }
 						} );
 						widget.paramInfo = pi;
@@ -480,7 +480,7 @@
 						throw new Error( 'Unknown multiMode "' + multiMode + '"' );
 				}
 
-				widget = new OO.ui.CapsuleMultiSelectWidget( {
+				widget = new OO.ui.CapsuleMultiselectWidget( {
 					allowArbitrary: true,
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
@@ -1314,10 +1314,10 @@
 						}
 						if ( Util.apiBool( pi.parameters[ i ].multi ) ) {
 							tmp = [];
-							if ( flag && !( widget instanceof OO.ui.CapsuleMultiSelectWidget ) &&
+							if ( flag && !( widget instanceof OO.ui.CapsuleMultiselectWidget ) &&
 								!(
 									widget instanceof OptionalWidget &&
-									widget.widget instanceof OO.ui.CapsuleMultiSelectWidget
+									widget.widget instanceof OO.ui.CapsuleMultiselectWidget
 								)
 							) {
 								tmp.push( mw.message( 'api-help-param-multi-separate' ).parse() );
