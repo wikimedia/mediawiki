@@ -152,6 +152,7 @@ div.thumbinner {
 	background-color: #f9f9f9;
 	font-size: 94%;
 	text-align: center;
+	overflow: hidden;
 }
 
 html .thumbimage {
@@ -163,8 +164,6 @@ html .thumbcaption {
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;
-	overflow: hidden;
-	word-wrap: break-word;
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	text-align: left;
 }
