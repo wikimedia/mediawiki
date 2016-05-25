@@ -59,6 +59,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert',
 			/* $required = */ true );
 		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );
+		$this->addOption( 'config-prefix', 'Custom prefix for configuration settings', false, true );
 	}
 
 	protected function getAllGlobals() {
@@ -92,6 +93,10 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->dir = dirname( realpath( $this->getArg( 0 ) ) );
 		$this->json = [];
 		$globalSettings = $this->getAllGlobals();
+		$configPrefix = $this->getOption( 'config-prefix', 'wg' );
+		if ( $configPrefix !== 'wg' ) {
+			$this->json['config']['_prefix'] = $configPrefix;
+		}
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
 			if ( $realName === false ) {
@@ -113,9 +118,14 @@ class ConvertExtensionToRegistration extends Maintenance {
 					$this->noLongerSupportedGlobals[$realName] . '). ' .
 					"Please update the entry point before convert to registration.\n" );
 				$this->hasWarning = true;
-			} elseif ( strpos( $name, 'wg' ) === 0 ) {
+			} elseif ( strpos( $name, $configPrefix ) === 0 ) {
 				// Most likely a config setting
-				$this->json['config'][$realName] = $value;
+				$this->json['config'][substr( $name, strlen( $configPrefix ) )] = $value;
+			} elseif ( $configPrefix !== 'wg' && strpos( $name, 'wg' ) === 0 ) {
+				// Warn about this
+				$this->output( 'Warning: Skipped global "' . $name . '" (' .
+					'config prefix is "' . $configPrefix . '"). ' .
+					"Please check that this setting isn't needed.\n" );
 			}
 		}
 
