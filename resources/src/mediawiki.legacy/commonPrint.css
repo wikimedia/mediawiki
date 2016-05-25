@@ -249,6 +249,8 @@ div.thumbinner {
 	padding: 3px !important;
 	font-size: 94%;
 	text-align: center;
+	/* new block formatting context,
+	 * to clear background from floating content  */
 	overflow: hidden;
 }
 
