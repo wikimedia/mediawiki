@@ -860,15 +860,20 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
 		$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
 		if ( $wgDisableAuthManager ) {
-			MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
+			$res = MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
 		} else {
-			MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
+			$res = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
 				$sessionUser,
-				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSSION,
+				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
 				true
 			);
 		}
 		Profiler::instance()->scopedProfileOut( $ps_autocreate );
+		\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Autocreation attempt', [
+			'event' => 'autocreate',
+			'status' => $res,
+		] );
+		unset( $res );
 	}
 	unset( $sessionUser );
 }
