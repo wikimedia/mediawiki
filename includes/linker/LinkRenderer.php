@@ -213,7 +213,11 @@ class LinkRenderer {
 		$ret = null;
 		$dummy = new DummyLinker();
 		$title = Title::newFromLinkTarget( $target );
-		$realHtml = $html = HtmlArmor::getHtml( $text );
+		if ( $text !== null ) {
+			$realHtml = $html = HtmlArmor::getHtml( $text );
+		} else {
+			$realHtml = $html = null;
+		}
 		if ( !Hooks::run( 'LinkBegin',
 			[ $dummy, $title, &$html, &$extraAttribs, &$query, &$options, &$ret ] )
 		) {
