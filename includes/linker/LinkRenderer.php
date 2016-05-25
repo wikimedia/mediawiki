@@ -53,13 +53,6 @@ class LinkRenderer {
 	private $expandUrls = false;
 
 	/**
-	 * Whether extra classes should be added
-	 *
-	 * @var bool
-	 */
-	private $noClasses = false;
-
-	/**
 	 * @var int
 	 */
 	private $stubThreshold = 0;
@@ -112,20 +105,6 @@ class LinkRenderer {
 	}
 
 	/**
-	 * @param bool $no
-	 */
-	public function setNoClasses( $no ) {
-		$this->noClasses = $no;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function getNoClasses() {
-		return $this->noClasses;
-	}
-
-	/**
 	 * @param int $threshold
 	 */
 	public function setStubThreshold( $threshold ) {
@@ -172,9 +151,6 @@ class LinkRenderer {
 	 */
 	private function getLegacyOptions( $isKnown ) {
 		$options = [ 'stubThreshold' => $this->stubThreshold ];
-		if ( $this->noClasses ) {
-			$options[] = 'noclasses';
-		}
 		if ( $this->forceArticlePath ) {
 			$options[] = 'forcearticlepath';
 		}
@@ -245,14 +221,18 @@ class LinkRenderer {
 	}
 
 	/**
+	 * If you have already looked up the proper CSS classes using Linker::getLinkColour()
+	 * or some other method, use this to avoid looking it up again.
+	 *
 	 * @param LinkTarget $target
 	 * @param string|HtmlArmor|null $text
+	 * @param string $classes CSS classes to add
 	 * @param array $extraAttribs
 	 * @param array $query
 	 * @return string
 	 */
-	public function makeKnownLink(
-		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
+	public function makePreloadedLink(
+		LinkTarget $target, $text = null, $classes, array $extraAttribs = [], array $query = []
 	) {
 		// Run begin hook
 		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query, true );
@@ -261,22 +241,7 @@ class LinkRenderer {
 		}
 		$target = $this->normalizeTarget( $target );
 		$url = $this->getLinkURL( $target, $query );
-		$attribs = [];
-		if ( !$this->noClasses ) {
-			$classes = [];
-			if ( $target->isExternal() ) {
-				$classes[] = 'extiw';
-			}
-			$title = Title::newFromLinkTarget( $target );
-			$colour = Linker::getLinkColour( $title, $this->stubThreshold );
-			if ( $colour !== '' ) {
-				$classes[] = $colour;
-			}
-			if ( $classes ) {
-				$attribs['class'] = implode( ' ', $classes );
-			}
-		}
-
+		$attribs = [ 'class' => $classes ];
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		if ( $prefixedText !== '' ) {
 			$attribs['title'] = $prefixedText;
@@ -291,6 +256,35 @@ class LinkRenderer {
 		}
 
 		return $this->buildAElement( $target, $text, $attribs, true );
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 * @param string|HtmlArmor|null $text
+	 * @param array $extraAttribs
+	 * @param array $query
+	 * @return string
+	 */
+	public function makeKnownLink(
+		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
+	) {
+		$classes = [];
+		if ( $target->isExternal() ) {
+			$classes[] = 'extiw';
+		}
+		$title = Title::newFromLinkTarget( $target );
+		$colour = Linker::getLinkColour( $title, $this->stubThreshold );
+		if ( $colour !== '' ) {
+			$classes[] = $colour;
+		}
+
+		return $this->makePreloadedLink(
+			$target,
+			$text,
+			$classes ? implode( ' ', $classes ) : '',
+			$extraAttribs,
+			$query
+		);
 	}
 
 	/**
@@ -322,7 +316,7 @@ class LinkRenderer {
 		}
 
 		$url = $this->getLinkURL( $target, $query );
-		$attribs = $this->noClasses ? [] : [ 'class' => 'new' ];
+		$attribs = [ 'class' => 'new' ];
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		if ( $prefixedText !== '' ) {
 			// This ends up in parser cache!
