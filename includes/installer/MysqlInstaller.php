@@ -540,7 +540,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 			foreach ( $createHostList as $host ) {
 				$fullName = $this->buildFullUserName( $dbUser, $host );
-				if ( !$this->userDefinitelyExists( $dbUser, $host ) ) {
+				if ( !$this->userDefinitelyExists( $host, $dbUser ) ) {
 					try {
 						$this->db->begin( __METHOD__ );
 						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
