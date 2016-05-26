@@ -259,6 +259,10 @@ class ApiStashEdit extends ApiBase {
 	 * @return stdClass|bool Returns false on cache miss
 	 */
 	public static function checkCache( Title $title, Content $content, User $user ) {
+		if ( $user->isBot() ) {
+			return false; // bots never stash - don't pollute stats
+		}
+
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 		$stats = RequestContext::getMain()->getStats();
