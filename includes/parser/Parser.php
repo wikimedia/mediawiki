@@ -2354,7 +2354,7 @@ class Parser {
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
-				$s .= $this->makeKnownLinkHolder( $nt, $text, [], $trail, $prefix );
+				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
 				$s .= $holders->makeHolder( $nt, $text, [], $trail, $prefix );
@@ -2372,23 +2372,19 @@ class Parser {
 	 *
 	 * @param Title $nt
 	 * @param string $text
-	 * @param array|string $query
 	 * @param string $trail
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	public function makeKnownLinkHolder( $nt, $text = '', $query = [], $trail = '', $prefix = '' ) {
+	protected function makeKnownLinkHolder( $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
-		if ( is_string( $query ) ) {
-			$query = wfCgiToArray( $query );
-		}
 		if ( $text == '' ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
-			$nt, new HtmlArmor( "$prefix$text$inside" ), [], $query
+			$nt, new HtmlArmor( "$prefix$text$inside" )
 		);
 
 		return $this->armorLinks( $link ) . $trail;
