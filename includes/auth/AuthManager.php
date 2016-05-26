@@ -231,6 +231,12 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Start an authentication flow
+	 *
+	 * In addition to the AuthenticationRequests returned by
+	 * $this->getAuthenticationRequests(), a client might include a
+	 * CreateFromLoginAuthenticationRequest from a previous login attempt to
+	 * preserve state.
+	 *
 	 * @param AuthenticationRequest[] $reqs
 	 * @param string $returnToUrl Url that REDIRECT responses should eventually
 	 *  return to.
@@ -344,8 +350,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * Return values are interpreted as follows:
 	 * - status FAIL: Authentication failed. If $response->createRequest is
 	 *   set, that may be passed to self::beginAuthentication() or to
-	 *   self::beginAccountCreation() (after adding a username, if necessary)
-	 *   to preserve state.
+	 *   self::beginAccountCreation() to preserve state.
 	 * - status REDIRECT: The client should be redirected to the contained URL,
 	 *   new AuthenticationRequests should be made (if any), then
 	 *   AuthManager::continueAuthentication() should be called.
@@ -950,6 +955,17 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Start an account creation flow
+	 *
+	 * In addition to the AuthenticationRequests returned by
+	 * $this->getAuthenticationRequests(), a client might include a
+	 * CreateFromLoginAuthenticationRequest from a previous login attempt. If
+	 * <code>
+	 * $createFromLoginAuthenticationRequest->hasPrimaryStateForAction( AuthManager::ACTION_CREATE )
+	 * </code>
+	 * returns true, any AuthenticationRequest::PRIMARY_REQUIRED requests
+	 * should be omitted. If the CreateFromLoginAuthenticationRequest has a
+	 * username set, that username must be used for all other requests.
+	 *
 	 * @param User $creator User doing the account creation
 	 * @param AuthenticationRequest[] $reqs
 	 * @param string $returnToUrl Url that REDIRECT responses should eventually
@@ -1038,44 +1054,10 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $req ) {
 			$state['maybeLink'] = $req->maybeLink;
 
-			// If we get here, the user didn't submit a form with any of the
-			// usual AuthenticationRequests that are needed for an account
-			// creation. So we need to determine if there are any and return a
-			// UI response if so.
 			if ( $req->createRequest ) {
-				// We have a createRequest from a
-				// PrimaryAuthenticationProvider, so don't ask.
-				$providers = $this->getPreAuthenticationProviders() +
-					$this->getSecondaryAuthenticationProviders();
-			} else {
-				// We're only preserving maybeLink, so ask for primary fields
-				// too.
-				$providers = $this->getPreAuthenticationProviders() +
-					$this->getPrimaryAuthenticationProviders() +
-					$this->getSecondaryAuthenticationProviders();
+				$reqs[] = $req->createRequest;
+				$state['reqs'][] = $req->createRequest;
 			}
-			$reqs = $this->getAuthenticationRequestsInternal(
-				self::ACTION_CREATE,
-				[],
-				$providers
-			);
-			// See if we need any requests to begin
-			foreach ( (array)$reqs as $r ) {
-				if ( !$r instanceof UsernameAuthenticationRequest &&
-					!$r instanceof UserDataAuthenticationRequest &&
-					!$r instanceof CreationReasonAuthenticationRequest
-				) {
-					// Needs some reqs, so request them
-					$reqs[] = new CreateFromLoginAuthenticationRequest( $req->createRequest, [] );
-					$state['continueRequests'] = $reqs;
-					$session->setSecret( 'AuthManager::accountCreationState', $state );
-					$session->persist();
-					return AuthenticationResponse::newUI( $reqs, wfMessage( 'authmanager-create-from-login' ) );
-				}
-			}
-			// No reqs needed, so we can just continue.
-			$req->createRequest->returnToUrl = $returnToUrl;
-			$reqs = [ $req->createRequest ];
 		}
 
 		$session->setSecret( 'AuthManager::accountCreationState', $state );
@@ -1211,15 +1193,6 @@ class AuthManager implements LoggerAwareInterface {
 			foreach ( $reqs as $req ) {
 				$req->returnToUrl = $state['returnToUrl'];
 				$req->username = $state['username'];
-			}
-
-			// If we're coming in from a create-from-login UI response, we need
-			// to extract the createRequest (if any).
-			$req = AuthenticationRequest::getRequestByClass(
-				$reqs, CreateFromLoginAuthenticationRequest::class
-			);
-			if ( $req && $req->createRequest ) {
-				$reqs[] = $req->createRequest;
 			}
 
 			// Run pre-creation tests, if we haven't already
