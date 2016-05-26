@@ -1250,6 +1250,26 @@ HTML;
 	}
 
 	/**
+	 * Check if this request uses a "safe" HTTP method
+	 *
+	 * Safe methods are verbs (e.g. GET/HEAD/OPTIONS) used for obtaining content. Such requests
+	 * are not expected to mutate content, especially in ways attributable to the client. Verbs
+	 * like POST and PUT are typical of non-safe requests which often change content.
+	 *
+	 * @return bool
+	 * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+	 * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+	 * @since 1.28
+	 */
+	public function hasSafeMethod() {
+		if ( !isset( $_SERVER['REQUEST_METHOD'] ) ) {
+			return false; // CLI mode
+		}
+
+		return in_array( $_SERVER['REQUEST_METHOD'], [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+	}
+
+	/**
 	 * Whether this request should be identified as being "safe"
 	 *
 	 * This means that the client is not requesting any state changes and that database writes
@@ -1268,21 +1288,15 @@ HTML;
 	 * @since 1.28
 	 */
 	public function isSafeRequest() {
-		if ( !isset( $_SERVER['REQUEST_METHOD'] ) ) {
-			return false; // CLI mode
+		if ( $this->markedAsSafe && $this->wasPosted() ) {
+			return true; // marked as a "safe" POST
 		}
 
-		if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-			return $this->markedAsSafe;
-		} elseif ( in_array( $_SERVER['REQUEST_METHOD'], [ 'GET', 'HEAD', 'OPTIONS' ] ) ) {
-			return true; // HTTP "safe methods"
-		}
-
-		return false; // PUT/DELETE
+		return $this->hasSafeMethod();
 	}
 
 	/**
-	 * Mark this request is identified as being nullipotent even if it is a POST request
+	 * Mark this request as identified as being nullipotent even if it is a POST request
 	 *
 	 * POST requests are often used due to the need for a client payload, even if the request
 	 * is otherwise equivalent to a "safe method" request.
