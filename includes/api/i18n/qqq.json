@@ -62,6 +62,7 @@
 	"apihelp-compare-param-torev": "{{doc-apihelp-param|compare|torev}}",
 	"apihelp-compare-example-1": "{{doc-apihelp-example|compare}}",
 	"apihelp-createaccount-description": "{{doc-apihelp-description|createaccount}}",
+	"apihelp-createaccount-param-preservestate": "{{doc-apihelp-param|createaccount|preservestate|info=This message is displayed in addition to {{msg-mw|api-help-authmanagerhelper-preservestate}}.}}",
 	"apihelp-createaccount-example-create": "{{doc-apihelp-example|createaccount}}",
 	"apihelp-createaccount-param-name": "{{doc-apihelp-param|createaccount|name}}\n{{Identical|Username}}",
 	"apihelp-createaccount-param-password": "{{doc-apihelp-param|createaccount|password}}",

@@ -25,7 +25,8 @@ namespace MediaWiki\Auth;
  * This transfers state between the login and account creation flows.
  *
  * AuthManager::getAuthenticationRequests() won't return this type, but it
- * may be passed to AuthManager::beginAccountCreation() anyway.
+ * may be passed to AuthManager::beginAuthentication() or
+ * AuthManager::beginAccountCreation() anyway.
  *
  * @ingroup Auth
  * @since 1.27
@@ -50,6 +51,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	) {
 		$this->createRequest = $createRequest;
 		$this->maybeLink = $maybeLink;
+		$this->username = $createRequest ? $createRequest->username : null;
 	}
 
 	public function getFieldInfo() {
@@ -58,5 +60,37 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 
 	public function loadFromSubmission( array $data ) {
 		return true;
+	}
+
+	/**
+	 * Indicate whether this request contains any state for the specified
+	 * action.
+	 * @param string $action One of the AuthManager::ACTION_* constants
+	 * @return boolean
+	 */
+	public function hasStateForAction( $action ) {
+		switch ( $action ) {
+			case AuthManager::ACTION_LOGIN:
+				return (bool)$this->maybeLink;
+			case AuthManager::ACTION_CREATE:
+				return $this->maybeLink || $this->createRequest;
+			default:
+				return false;
+		}
+	}
+
+	/**
+	 * Indicate whether this request contains state for the specified
+	 * action sufficient to replace other primary-required requests.
+	 * @param string $action One of the AuthManager::ACTION_* constants
+	 * @return boolean
+	 */
+	public function hasPrimaryStateForAction( $action ) {
+		switch ( $action ) {
+			case AuthManager::ACTION_CREATE:
+				return (bool)$this->createRequest;
+			default:
+				return false;
+		}
 	}
 }
