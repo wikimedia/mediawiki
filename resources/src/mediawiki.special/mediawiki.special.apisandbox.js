@@ -557,7 +557,7 @@
 	*
 	* @class mw.special.ApiSandbox
 	*/
-	mw.special.ApiSandbox = ApiSandbox = {
+	ApiSandbox = {
 		/**
 		 * Initialize the UI
 		 *
@@ -1673,5 +1673,7 @@
 	};
 
 	$( ApiSandbox.init );
+
+	module.exports = ApiSandbox;
 
 }( jQuery, mediaWiki, OO ) );
