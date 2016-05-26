@@ -34,6 +34,6 @@
 
 	$( rc.init );
 
-	mw.special.recentchanges = rc;
+	module.exports = rc;
 
 }( mediaWiki, jQuery ) );
