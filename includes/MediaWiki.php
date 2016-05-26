@@ -680,6 +680,8 @@ class MediaWiki {
 		// isLoggedIn() will do all sorts of weird stuff.
 		if (
 			$request->getProtocol() == 'http' &&
+			// switch to HTTPS only when supported by the server
+			preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) &&
 			(
 				$request->getSession()->shouldForceHTTPS() ||
 				// Check the cookie manually, for paranoia
