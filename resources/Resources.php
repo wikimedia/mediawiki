@@ -1060,14 +1060,17 @@ return [
 			// @todo Load this message in content language
 			'colon-separator',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.styles' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.css',
 		'position' => 'top',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.css',
 		'position' => 'top',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.icon' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
