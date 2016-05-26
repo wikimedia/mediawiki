@@ -932,8 +932,14 @@ class SpecialSearch extends SpecialPage {
 			$prev = null;
 			$result = $set->next();
 			while ( $result ) {
-				$out .= $this->showInterwikiHit( $result, $prev, $query );
-				$prev = $result->getInterwikiPrefix();
+				try {
+					$out .= $this->showInterwikiHit( $result, $prev, $query );
+					$prev = $result->getInterwikiPrefix();
+				} catch ( InvalidArgumentException $e ) {
+					// Temporary hack. There is a bug in CirrusSearch that returns titles
+					// from another wiki using that wiki's namespace id, and that namespace
+					// might not exist on this wiki
+				}
 				$result = $set->next();
 			}
 		}
