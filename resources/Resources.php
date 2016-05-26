@@ -1880,7 +1880,6 @@ return [
 	],
 	'mediawiki.special.recentchanges' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
-		'dependencies' => 'mediawiki.special',
 		'position' => 'top',
 	],
 	'mediawiki.special.search' => [
