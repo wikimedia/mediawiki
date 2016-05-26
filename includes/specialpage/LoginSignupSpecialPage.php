@@ -638,7 +638,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					[ 'class' => 'mw-ui-vform-field mw-form-related-link-container' ],
 					Linker::link(
 						SpecialPage::getTitleFor( 'PasswordReset' ),
-						$this->msg( 'userlogin-resetpassword-link' )->escaped()
+						$this->msg( 'userlogin-resetpassword-link' )->escaped(),
+						[ 'class' => 'mw-ui-button mw-ui-progressive mw-ui-quiet' ]
 					)
 				) );
 			}
@@ -662,7 +663,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						[
 							'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
 							'href' => $linkTitle->getLocalURL( $linkq ),
-							'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
+							'class' => ( $loggedIn ?
+								'mw-ui-button mw-ui-progressive mw-ui-quiet' :
+								'mw-ui-button'
+							),
 							'tabindex' => 100,
 						],
 						$this->msg(
@@ -1023,6 +1027,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						'href' => Skin::makeInternalOrExternalUrl( wfMessage( 'helplogin-url' )
 							->inContentLanguage()
 							->text() ),
+						'class' => 'mw-ui-button mw-ui-progressive mw-ui-quiet',
 					], $this->msg( 'userlogin-helplink2' )->text() ),
 					'weight' => 200,
 				],
