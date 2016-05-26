@@ -249,6 +249,7 @@ div.thumbinner {
 	padding: 3px !important;
 	font-size: 94%;
 	text-align: center;
+	overflow: hidden;
 }
 
 html .thumbimage {
@@ -261,8 +262,6 @@ html .thumbcaption {
 	line-height: 1.4em;
 	padding: 3px !important;
 	font-size: 94%;
-	overflow: hidden;
-	word-wrap: break-word;
 }
 
 /* @noflip */
