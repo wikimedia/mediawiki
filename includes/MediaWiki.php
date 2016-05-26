@@ -691,7 +691,9 @@ class MediaWiki {
 					$this->context->getUser()->isLoggedIn()
 					&& $this->context->getUser()->requiresHTTPS()
 				)
-			)
+			) &&
+			// switch to HTTPS only when supported by the server
+			preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) )
 		) {
 			$oldUrl = $request->getFullRequestURL();
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
