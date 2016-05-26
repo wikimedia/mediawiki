@@ -409,7 +409,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @param int $timeout Optional
 	 */
 	public function resetTimeout( Redis $conn, $timeout = null ) {
-		$conn->setOption( Redis::OPT_READ_TIMEOUT, ( $timeout !== null ? $timeout : $this->readTimeout ) );
+		$conn->setOption(
+			Redis::OPT_READ_TIMEOUT,
+			( $timeout !== null ? $timeout : $this->readTimeout )
+		);
 	}
 
 	/**
@@ -508,11 +511,13 @@ class RedisConnRef {
 	 * @throws	RedisException
 	 */
 	public function __call( $name, $arguments ) {
-		//Work around https://github.com/nicolasff/phpredis/issues/70
+		// Work around https://github.com/nicolasff/phpredis/issues/70
 		$lname = strtolower( $name );
-		if ( ( $lname === 'blpop' || $lname === 'brpop' || $lname === 'brpoplpush' ) && count($arguments) > 1 ) {
-			$timeout = end( $arguments ); //Pull the timeout off the end since the timeout is always required and the preceding argument length can vary.
-			$this->pool->resetTimeout( $this->conn, ( $timeout > 0 ? $timeout + 1 : $timeout ) ); //Only give the additional one second buffer if not requesting an infinite timeout.
+		if ( ( $lname === 'blpop' || $lname === 'brpop' || $lname === 'brpoplpush' ) && count( $arguments ) > 1 ) {
+			// Get timeout off the end since the timeout is always required and argument length can vary.
+			$timeout = end( $arguments );
+			///Only give the additional one second buffer if not requesting an infinite timeout.
+			$this->pool->resetTimeout( $this->conn, ( $timeout > 0 ? $timeout + 1 : $timeout ) );
 		}
 
 		$res = $this->tryCall( $name, $arguments );
@@ -532,10 +537,10 @@ class RedisConnRef {
 	private function tryCall( $method, $arguments ) {
 		$this->conn->clearLastError();
 		try {
-			$res = call_user_func_array( array( $this->conn, $method ), $arguments );
+			$res = call_user_func_array( [ $this->conn, $method ], $arguments );
 			$authError = $this->handleAuthError();
 			if ( $authError === self::AUTH_ERROR_TEMPORARY ) {
-				$res = call_user_func_array( array( $this->conn, $method ), $arguments );
+				$res = call_user_func_array( [ $this->conn, $method ], $arguments );
 			}
 			if ( $authError === self::AUTH_ERROR_PERMANENT ) {
 				throw new RedisException( "There was a permanent failure reauthenticating to Redis." );
@@ -562,7 +567,7 @@ class RedisConnRef {
 	 * @return	array	Results for this pass.
 	 */
 	public function scan( &$iterator, $pattern = null, $count = null ) {
-		$res = $this->tryCall( 'scan', array( &$iterator, $pattern, $count ) );
+		$res = $this->tryCall( 'scan', [ &$iterator, $pattern, $count ] );
 
 		return $res;
 	}
@@ -580,7 +585,7 @@ class RedisConnRef {
 	 * @return	array	Results for this pass.
 	 */
 	public function sScan( $key, &$iterator, $pattern = null, $count = null ) {
-		$res = $this->tryCall( 'sScan', array( $key, &$iterator, $pattern, $count ) );
+		$res = $this->tryCall( 'sScan', [ $key, &$iterator, $pattern, $count ] );
 
 		return $res;
 	}
@@ -598,7 +603,7 @@ class RedisConnRef {
 	 * @return	array	Results for this pass.
 	 */
 	public function hScan( $key, &$iterator, $pattern = null, $count = null ) {
-		$res = $this->tryCall( 'hScan', array( $key, &$iterator, $pattern, $count ) );
+		$res = $this->tryCall( 'hScan', [ $key, &$iterator, $pattern, $count ] );
 
 		return $res;
 	}
@@ -616,7 +621,7 @@ class RedisConnRef {
 	 * @return	array	Results for this pass.
 	 */
 	public function zScan( $key, &$iterator, $pattern = null, $count = null ) {
-		$res = $this->tryCall( 'zScan', array( $key, &$iterator, $pattern, $count ) );
+		$res = $this->tryCall( 'zScan', [ $key, &$iterator, $pattern, $count ] );
 
 		return $res;
 	}
@@ -635,7 +640,7 @@ class RedisConnRef {
 			$this->conn->clearLastError();
 			$this->logger->info(
 				"Used automatic re-authentication for Redis.",
-				array( 'redis_server' => $this->server )
+				[ 'redis_server' => $this->server ]
 			);
 			return self::AUTH_ERROR_TEMPORARY;
 		}
@@ -651,7 +656,8 @@ class RedisConnRef {
 	private function postCallCleanup() {
 		$this->lastError = $this->conn->getLastError() ?: $this->lastError;
 
-		$this->pool->resetTimeout( $this->conn ); //Restore original timeout in the case of blocking calls.
+		// Restore original timeout in the case of blocking calls.
+		$this->pool->resetTimeout( $this->conn );
 	}
 
 	/**
