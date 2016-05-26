@@ -235,6 +235,8 @@ class Linker {
 			return $linkRenderer->makeKnownLink( $target, $text, $customAttribs, $query );
 		} elseif ( in_array( 'broken', $options, true ) ) {
 			return $linkRenderer->makeBrokenLink( $target, $text, $customAttribs, $query );
+		} elseif ( in_array( 'noclasses', $options, true ) ) {
+			return $linkRenderer->makePreloadedLink( $target, $text, '', $customAttribs, $query );
 		} else {
 			return $linkRenderer->makeLink( $target, $text, $customAttribs, $query );
 		}

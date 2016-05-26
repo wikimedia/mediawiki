@@ -22,11 +22,6 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	public static function provideCreateFromLegacyOptions() {
 		return [
 			[
-				[ 'noclasses' ],
-				'getNoClasses',
-				true
-			],
-			[
 				[ 'forcearticlepath' ],
 				'getForceArticlePath',
 				true
