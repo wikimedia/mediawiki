@@ -127,6 +127,8 @@ class ApiStashEdit extends ApiBase {
 			$status = 'busy';
 		}
 
+		$this->getStats()->increment( "editstash.cache_stores.$status" );
+
 		$this->getResult()->addValue( null, $this->getModuleName(), [ 'status' => $status ] );
 	}
 
