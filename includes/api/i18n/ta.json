@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"AntanO",
-			"கலைவாணன்"
+			"கலைவாணன்",
+			"Info-farmer"
 		]
 	},
+	"apihelp-main-param-action": "எச்செயலை செயற்படுத்த",
+	"apihelp-main-param-format": "பெற விரும்பும்  கோப்பு வடிவம்",
+	"apihelp-main-param-requestid": "இங்கு கொடுக்கப்படும் மதிப்பானது, விளைவில் இணையும். கோரிக்கைகளை வேறுபடுத்தப் பயன்படலாம்.",
 	"apihelp-import-param-namespace": "இதனைப் பெயர்வெளிக்கு இறக்குமதி செய்யவும். <kbd>$1rootpage</kbd> அளவுருவை மீறச்செய்யும்.",
 	"apihelp-import-param-rootpage": "இப்பக்கத்தின் துணைப்பக்கமாக இறக்குமதி செய்யவும். <kbd>$1namespace</kbd> அளவுரு வழங்கப்பட்டிருந்தால் இது புறக்கணிக்கப்படும்.",
 	"api-help-source": "மூலம்: $1",

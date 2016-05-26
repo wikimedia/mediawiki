@@ -50,7 +50,8 @@
 			"Olimar",
 			"Mikahama",
 			"01miki10",
-			"Matma Rex"
+			"Matma Rex",
+			"BiscuitMan"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -492,7 +493,7 @@
 	"noname": "Et ole määritellyt kelvollista käyttäjänimeä.",
 	"loginsuccesstitle": "Olet kirjautunut sisään",
 	"loginsuccess": "'''Olet kirjautunut sivustolle {{SITENAME}} käyttäjänä $1.'''",
-	"nosuchuser": "Käyttäjää ”$1” ei ole olemassa. Nimet ovat kirjainkoosta riippuvaisia. Tarkista kirjoititko nimen oikein, tai [[Special:CreateAccount|luo uusi käyttäjätunnus]].",
+	"nosuchuser": "Käyttäjää \"$1\" ei ole olemassa.\nNimet ovat kirjainkoosta riippuvaisia. \nTarkista kirjoititko nimen oikein, tai [[Special:CreateAccount|luo uusi käyttäjätunnus]].",
 	"nosuchusershort": "Käyttäjää nimeltä ”$1” ei ole. Kirjoititko nimen oikein?",
 	"nouserspecified": "Käyttäjätunnusta ei ole määritelty.",
 	"login-userblocked": "Tämä käyttäjä on estetty. Kirjautuminen ei ole sallittua.",

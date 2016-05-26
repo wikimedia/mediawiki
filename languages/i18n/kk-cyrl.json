@@ -1569,7 +1569,7 @@
 	"fewestrevisions": "Ең аз түзетілген беттер",
 	"nbytes": "$1 {{PLURAL:$1|байт|байт}}",
 	"ncategories": "$1 {{PLURAL:$1|Санат|Санаттар}}",
-	"ninterwikis": "$1 {{PLURAL:$1|интеруики|интеруикилер}}",
+	"ninterwikis": "$1 {{PLURAL:$1|интеруики|интеруики}}",
 	"nlinks": "$1 сілтеме",
 	"nmembers": "$1 {{PLURAL:$1|мүше|мүше}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|мүше|мүше}}",

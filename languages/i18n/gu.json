@@ -266,7 +266,7 @@
 	"versionrequired": "મીડીયાવિકિનું $1 સંસ્કરણ જરૂરી",
 	"versionrequiredtext": "આ પાનાના વપરાશ માટે મીડિયાવિકિનું $1 સંસ્કરણ જરૂરી.\n\nજુઓ [[Special:Version|સંસ્કરણ પાનું]].",
 	"ok": "મંજૂર",
-	"retrievedfrom": "\"$1\"થી લીધેલું",
+	"retrievedfrom": "\"$1\" થી મેળવેલ",
 	"youhavenewmessages": "{{PLURAL:$3|તમારી પાસે}} $1 ($2).",
 	"youhavenewmessagesfromusers": "આપને માટે {{PLURAL:$3|અન્ય સભ્ય|$3 અન્ય સભ્યો}} તરફથી $1 છે. ($2).",
 	"youhavenewmessagesmanyusers": "આપને માટે ઘણાં સભ્યો તરફથી $1 છે ($2).",

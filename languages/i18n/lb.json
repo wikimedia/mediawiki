@@ -2919,6 +2919,8 @@
 	"confirm-watch-top": "Dës Säit op Är Iwwerwaachungslëscht bäisetzen?",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Dës Säit vun Ärer Iwwerwaachungslëscht erofhuelen?",
+	"confirm-rollback-button": "OK",
+	"confirm-rollback-top": "Ännerunge vun dëser Säit zrécksetzen?",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← Vireg Säit",
 	"imgmultipagenext": "nächst Säit →",
@@ -3397,5 +3399,7 @@
 	"removecredentials-submit": "Ewechhuelen",
 	"removecredentials-submit-cancel": "Ofbriechen",
 	"credentialsform-account": "Numm vum Kont:",
-	"linkaccounts": "Benotzerkonte verbannen"
+	"cannotlink-no-provider-title": "Et gëtt keng Benotzerkonte fir ze verlinken",
+	"linkaccounts": "Benotzerkonte verbannen",
+	"linkaccounts-submit": "Benotzerkonte verbannen"
 }

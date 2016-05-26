@@ -10,7 +10,8 @@
 			"Macofe",
 			"Mix Gerder",
 			"Piramidion",
-			"Andriykopanytsia"
+			"Andriykopanytsia",
+			"Максим Підліснюк"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].",
@@ -39,6 +40,7 @@
 	"apihelp-block-param-watchuser": "Спостерігати за сторінкою користувача чи IP-адреси і сторінкою обговорення.",
 	"apihelp-block-example-ip-simple": "Блокувати IP-адресу <kbd>192.0.2.5</kbd> на три дні з причиною <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Блокувати користувача<kbd>Vandal</kbd> на невизначений термін з причиною <kbd>Vandalism</kbd> і заборонити створення нових облікових записів та надсилання електронної пошти.",
+	"apihelp-changeauthenticationdata-description": "Зміна параметрів аутентифікації для поточного користувача.",
 	"apihelp-checktoken-description": "Перевірити коректність токена з <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Тип токена, який тестується.",
 	"apihelp-checktoken-param-token": "Токен для тесту.",
@@ -1032,6 +1034,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "Видає список змінних ID.",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "Видає список протоколів, дозволених у зовнішніх посиланнях.",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "Видає значення налаштувань користувача за замовчуванням.",
+	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Повертає конфігурацію діалогу завантаження.",
 	"apihelp-query+siteinfo-param-filteriw": "Видати лише локальні або лише нелокальні елементи карти інтервікі.",
 	"apihelp-query+siteinfo-param-showalldb": "Перелічити усі сервери баз даних, а не лише той, який робить найбільшу затримку.",
 	"apihelp-query+siteinfo-param-numberingroup": "Перераховує кількість користувачів у групах користувачів.",

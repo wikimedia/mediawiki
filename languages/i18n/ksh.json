@@ -3029,6 +3029,7 @@
 	"confirm-watch-top": "Sulle mer di Sigg en Ding Oppaßleß opnämme?",
 	"confirm-unwatch-button": "Lohß Jonn!",
 	"confirm-unwatch-top": "Sulle mer di Sigg uß Dinger Oppaßleß erußnämme?",
+	"confirm-rollback-button": "Lohß Jonn!",
 	"semicolon-separator": ";",
 	"word-separator": "&#32;",
 	"ellipsis": "&nbsp;…",
@@ -3591,10 +3592,18 @@
 	"api-error-blacklisted": "Söhk Der ene anndere Nahme uß, dä mih drövver säht.",
 	"randomrootpage": "Zofällige Aanfangs-Sigg",
 	"log-action-filter-delete-delete": "En Sigg wohd fott jeschmeße",
+	"authmanager-authplugin-setpass-failed-title": "Dat Paßwoot ze änndere hät nit jeflupp",
 	"authmanager-userdoesnotexist": "Ene Metmaacher mem Nahme „$1“ es nit ennjedrahre.",
 	"authmanager-domain-help": "De Domäijn för de Zohjangsdaht vun ußerhallef beschtähtech ze krijje.",
+	"authmanager-email-label": "<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>",
 	"authmanager-email-help": "De Addräß för de <i lang=\"en\">e-mail</i>",
+	"authmanager-realname-label": "Der „reeschteje“ Nahme",
+	"authmanager-provider-temporarypassword": "Zweschepasswood:",
 	"authprovider-resetpass-skip-label": "Övverjonn",
+	"specialpage-securitylevel-not-allowed-title": "Nit zohjelohße",
+	"cannotauth-not-allowed-title": "Zohjang verbodde.",
+	"changecredentials-submit": "Ändere",
 	"changecredentials-submit-cancel": "Ophüre",
-	"removecredentials-submit": "Fott nämme"
+	"removecredentials-submit": "Fott nämme",
+	"removecredentials-submit-cancel": "Ophüre"
 }
