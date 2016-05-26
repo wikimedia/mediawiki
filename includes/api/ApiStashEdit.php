@@ -46,6 +46,10 @@ class ApiStashEdit extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
+		if ( $user->isBot() ) { // sanity
+			$this->dieUsage( 'This interface is not supported for bots', 'botsnotsupported' );
+		}
+
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
 
