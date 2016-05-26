@@ -1737,7 +1737,6 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.css',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.js',
 		'dependencies' => [
-			'mediawiki.special',
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'oojs-ui',
