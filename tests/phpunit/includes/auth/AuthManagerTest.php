@@ -781,6 +781,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$userReq = new UsernameAuthenticationRequest;
 		$userReq->username = 'UTDummy';
 
+		$req1->returnToUrl = 'http://localhost/';
+		$req2->returnToUrl = 'http://localhost/';
+		$req3->returnToUrl = 'http://localhost/';
+		$req3->username = 'UTDummy';
+		$userReq->returnToUrl = 'http://localhost/';
+
 		// Passing one into beginAuthentication(), and an immediate FAIL
 		$primary = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
 		$this->primaryauthMocks = [ $primary ];
@@ -824,71 +830,29 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( $req2, $ret->createRequest->createRequest );
 		$this->assertEquals( [], $ret->createRequest->maybeLink );
 
-		// Pass into beginAccountCreation(), no createRequest, primary needs reqs
-		$primary = $this->getMockBuilder( AbstractPrimaryAuthenticationProvider::class )
-			->setMethods( [ 'testForAccountCreation' ] )
-			->getMockForAbstractClass();
+		// Pass into beginAccountCreation(), see that maybeLink and createRequest get copied
+		$primary = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
 		$this->primaryauthMocks = [ $primary ];
 		$this->initializeManager( true );
+		$createReq = new CreateFromLoginAuthenticationRequest( $req3, [ $req2 ] );
+		$createReq->returnToUrl = 'http://localhost/';
+		$createReq->username = 'UTDummy';
+		$res = AuthenticationResponse::newUI( [ $req1 ], wfMessage( 'foo' ) );
+		$primary->expects( $this->any() )->method( 'beginPrimaryAccountCreation' )
+			->with( $this->anything(), $this->anything(), [ $userReq, $createReq, $req3 ] )
+			->will( $this->returnValue( $res ) );
 		$primary->expects( $this->any() )->method( 'accountCreationType' )
 			->will( $this->returnValue( PrimaryAuthenticationProvider::TYPE_CREATE ) );
-		$primary->expects( $this->any() )->method( 'getAuthenticationRequests' )
-			->will( $this->returnValue( [ $req1 ] ) );
-		$primary->expects( $this->any() )->method( 'testForAccountCreation' )
-			->will( $this->returnValue( StatusValue::newFatal( 'fail' ) ) );
-		$createReq = new CreateFromLoginAuthenticationRequest(
-			null, [ $req2->getUniqueId() => $req2 ]
-		);
 		$this->logger->setCollect( true );
 		$ret = $this->manager->beginAccountCreation(
 			$user, [ $userReq, $createReq ], 'http://localhost/'
 		);
 		$this->logger->setCollect( false );
 		$this->assertSame( AuthenticationResponse::UI, $ret->status );
-		$this->assertCount( 4, $ret->neededRequests );
-		$this->assertSame( $req1, $ret->neededRequests[0] );
-		$this->assertInstanceOf( UsernameAuthenticationRequest::class, $ret->neededRequests[1] );
-		$this->assertInstanceOf( UserDataAuthenticationRequest::class, $ret->neededRequests[2] );
-		$this->assertInstanceOf( CreateFromLoginAuthenticationRequest::class, $ret->neededRequests[3] );
-		$this->assertSame( null, $ret->neededRequests[3]->createRequest );
-		$this->assertEquals( [], $ret->neededRequests[3]->maybeLink );
-
-		// Pass into beginAccountCreation(), with createRequest, primary needs reqs
-		$createReq = new CreateFromLoginAuthenticationRequest( $req2, [] );
-		$this->logger->setCollect( true );
-		$ret = $this->manager->beginAccountCreation(
-			$user, [ $userReq, $createReq ], 'http://localhost/'
-		);
-		$this->logger->setCollect( false );
-		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
-		$this->assertSame( 'fail', $ret->message->getKey() );
-
-		// Again, with a secondary needing reqs too
-		$secondary = $this->getMockBuilder( AbstractSecondaryAuthenticationProvider::class )
-			->getMockForAbstractClass();
-		$this->secondaryauthMocks = [ $secondary ];
-		$this->initializeManager( true );
-		$secondary->expects( $this->any() )->method( 'getAuthenticationRequests' )
-			->will( $this->returnValue( [ $req3 ] ) );
-		$createReq = new CreateFromLoginAuthenticationRequest( $req2, [] );
-		$this->logger->setCollect( true );
-		$ret = $this->manager->beginAccountCreation(
-			$user, [ $userReq, $createReq ], 'http://localhost/'
-		);
-		$this->logger->setCollect( false );
-		$this->assertSame( AuthenticationResponse::UI, $ret->status );
-		$this->assertCount( 4, $ret->neededRequests );
-		$this->assertSame( $req3, $ret->neededRequests[0] );
-		$this->assertInstanceOf( UsernameAuthenticationRequest::class, $ret->neededRequests[1] );
-		$this->assertInstanceOf( UserDataAuthenticationRequest::class, $ret->neededRequests[2] );
-		$this->assertInstanceOf( CreateFromLoginAuthenticationRequest::class, $ret->neededRequests[3] );
-		$this->assertSame( $req2, $ret->neededRequests[3]->createRequest );
-		$this->assertEquals( [], $ret->neededRequests[3]->maybeLink );
-		$this->logger->setCollect( true );
-		$ret = $this->manager->continueAccountCreation( $ret->neededRequests );
-		$this->logger->setCollect( false );
-		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
-		$this->assertSame( 'fail', $ret->message->getKey() );
+		$state = $this->request->getSession()->getSecret( 'AuthManager::accountCreationState' );
+		$this->assertNotNull( $state );
+		$this->assertEquals( [ $userReq, $createReq, $req3 ], $state['reqs'] );
+		$this->assertEquals( [ $req2 ], $state['maybeLink'] );
 	}
 
 	/**
