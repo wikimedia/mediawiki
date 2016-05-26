@@ -673,6 +673,7 @@ class MediaWiki {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
 		}
 
+		$url = $oldUrl = $request->getFullRequestURL();
 		// If the user has forceHTTPS set to true, or if the user
 		// is in a group requiring HTTPS, or if they have the HTTPS
 		// preference set, redirect them to HTTPS.
@@ -693,33 +694,35 @@ class MediaWiki {
 				)
 			)
 		) {
-			$oldUrl = $request->getFullRequestURL();
-			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
-
+			$url = wfExpandUrl( preg_replace( '#^http://#', '//', $oldUrl ), PROTO_HTTPS );
 			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-			if ( Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
-
-				if ( $request->wasPosted() ) {
-					// This is weird and we'd hope it almost never happens. This
-					// means that a POST came in via HTTP and policy requires us
-					// redirecting to HTTPS. It's likely such a request is going
-					// to fail due to post data being lost, but let's try anyway
-					// and just log the instance.
-
-					// @todo FIXME: See if we could issue a 307 or 308 here, need
-					// to see how clients (automated & browser) behave when we do
-					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
-				}
-				// Setup dummy Title, otherwise OutputPage::redirect will fail
-				$title = Title::newFromText( 'REDIR', NS_MAIN );
-				$this->context->setTitle( $title );
-				$output = $this->context->getOutput();
-				// Since we only do this redir to change proto, always send a vary header
-				$output->addVaryHeader( 'X-Forwarded-Proto' );
-				$output->redirect( $redirUrl );
-				$output->output();
-				return;
+			if ( !Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$url ] ) ) {
+				// hook abort, bail out of redirect
+				$url = $oldUrl;
 			}
+		}
+
+		if ( $url !== $oldUrl ) {
+			if ( $request->wasPosted() ) {
+				// This is weird and we'd hope it almost never happens. This
+				// means that a POST came in via HTTP and policy requires us
+				// redirecting to HTTPS. It's likely such a request is going
+				// to fail due to post data being lost, but let's try anyway
+				// and just log the instance.
+
+				// @todo FIXME: See if we could issue a 307 or 308 here, need
+				// to see how clients (automated & browser) behave when we do
+				wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
+			}
+			// Setup dummy Title, otherwise OutputPage::redirect will fail
+			$title = Title::newFromText( 'REDIR', NS_MAIN );
+			$this->context->setTitle( $title );
+			$output = $this->context->getOutput();
+			// Since we only do this redir to change proto, always send a vary header
+			$output->addVaryHeader( 'X-Forwarded-Proto' );
+			$output->redirect( $url );
+			$output->output();
+			return;
 		}
 
 		if ( $this->config->get( 'UseFileCache' ) && $title->getNamespace() >= 0 ) {
