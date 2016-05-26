@@ -43,7 +43,6 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 			'canauthenticatenow' => $manager->canAuthenticateNow(),
 			'cancreateaccounts' => $manager->canCreateAccounts(),
 			'canlinkaccounts' => $manager->canLinkAccounts(),
-			'haspreservedstate' => $helper->getPreservedRequest() !== null,
 		];
 
 		if ( $params['securitysensitiveoperation'] !== null ) {
@@ -53,10 +52,27 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		}
 
 		if ( $params['requestsfor'] ) {
-			$reqs = $manager->getAuthenticationRequests( $params['requestsfor'], $this->getUser() );
+			$action = $params['requestsfor'];
+
+			$preservedReq = $helper->getPreservedRequest();
+			if ( $preservedReq ) {
+				$ret += [
+					'haspreservedstate' => $preservedReq->hasStateForAction( $action ),
+					'hasprimarypreservedstate' => $preservedReq->hasPrimaryStateForAction( $action ),
+					'preservedusername' => (string)$preservedReq->username,
+				];
+			} else {
+				$ret += [
+					'haspreservedstate' => false,
+					'hasprimarypreservedstate' => false,
+					'preservedusername' => '',
+				];
+			}
+
+			$reqs = $manager->getAuthenticationRequests( $action, $this->getUser() );
 
 			// Filter out blacklisted requests, depending on the action
-			switch ( $params['requestsfor'] ) {
+			switch ( $action ) {
 				case AuthManager::ACTION_CHANGE:
 					$reqs = ApiAuthManagerHelper::blacklistAuthenticationRequests(
 						$reqs, $this->getConfig()->get( 'ChangeCredentialsBlacklist' )
