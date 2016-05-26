@@ -1726,7 +1726,6 @@ return [
 
 	'mediawiki.special' => [
 		'position' => 'top',
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
