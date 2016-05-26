@@ -188,20 +188,11 @@ class IcuCollation extends Collation {
 	}
 
 	public function getSortKey( $string ) {
-		// intl extension produces non null-terminated
-		// strings. Appending '' fixes it so that it doesn't generate
-		// a warning on each access in debug php.
-		MediaWiki\suppressWarnings();
-		$key = $this->mainCollator->getSortKey( $string ) . '';
-		MediaWiki\restoreWarnings();
-		return $key;
+		return $this->mainCollator->getSortKey( $string );
 	}
 
 	public function getPrimarySortKey( $string ) {
-		MediaWiki\suppressWarnings();
-		$key = $this->primaryCollator->getSortKey( $string ) . '';
-		MediaWiki\restoreWarnings();
-		return $key;
+		return $this->primaryCollator->getSortKey( $string );
 	}
 
 	public function getFirstLetter( $string ) {
