@@ -934,6 +934,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	}
 
 	/**
+	 * @since 1.28
+	 * @return null|Revision
+	 */
+	public function getRevision() {
+		return $this->mRevision;
+	}
+
+	/**
 	 * Set the User who triggered this LinksUpdate
 	 *
 	 * @since 1.27

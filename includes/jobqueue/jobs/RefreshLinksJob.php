@@ -244,6 +244,7 @@ class RefreshLinksJob extends Job {
 			// Needed by things like Echo notifications which need
 			// to know which user caused the links update
 			if ( $update instanceof LinksUpdate ) {
+				$update->setRevision( $revision );
 				if ( !empty( $this->params['triggeringUser'] ) ) {
 					$userInfo = $this->params['triggeringUser'];
 					if ( $userInfo['userId'] ) {
