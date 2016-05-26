@@ -90,6 +90,8 @@ div.thumbinner {
 	background-color: #f9f9f9;
 	font-size: 94%;
 	text-align: center;
+	/* new block formatting context,
+	 * to clear background from floating content  */
 	overflow: hidden;
 }
 
