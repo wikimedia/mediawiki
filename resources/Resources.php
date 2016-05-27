@@ -1894,6 +1894,10 @@ return [
 			'powersearch-togglenone',
 		],
 	],
+	'mediawiki.special.search.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	],
