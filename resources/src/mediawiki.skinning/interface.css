@@ -15,6 +15,11 @@
 	clear: both;
 }
 
+textarea {
+	/* Support Firefox: Border rule required to override system appearance on Linux */
+	border: 1px solid #c0c0c0;
+}
+
 .editOptions {
 	background-color: #f0f0f0;
 	border: 1px solid #c0c0c0;
