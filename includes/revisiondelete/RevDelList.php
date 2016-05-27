@@ -125,7 +125,13 @@ abstract class RevDelList extends RevisionListBase {
 			$status->itemStatuses = [];
 		}
 
+		// For multi-item deletions, set the old/new bitfields in log_params such that "hid X"
+		// shows in logs if field X was hidden from ANY item and likewise for "unhid Y". Note the
+		// form does not let the same field get hidden and unhidden in different items at once.
+		$virtualOldBits = 0;
+		$virtualNewBits = 0;
 		$logType = 'delete';
+
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
@@ -187,6 +193,11 @@ abstract class RevDelList extends RevisionListBase {
 				if ( ( $oldBits | $newBits ) & $this->getSuppressBit() ) {
 					$logType = 'suppress';
 				}
+				// Track which fields where (un)hidden for each item
+				$addedBits = ( $oldBits ^ $newBits ) & $newBits;
+				$removedBits = ( $oldBits ^ $newBits ) & $oldBits;
+				$virtualNewBits |= $addedBits;
+				$virtualOldBits |= $removedBits;
 
 				$status->successCount++;
 				if ( $item->getAuthorId() > 0 ) {
@@ -228,14 +239,13 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		// Log it
-		// @FIXME: $newBits/$oldBits set in for loop, makes IDE warnings too
 		$this->updateLog(
 			$logType,
 			[
 				'title' => $this->title,
 				'count' => $successCount,
-				'newBits' => $newBits,
-				'oldBits' => $oldBits,
+				'newBits' => $virtualNewBits,
+				'oldBits' => $virtualOldBits,
 				'comment' => $comment,
 				'ids' => $idsForLog,
 				'authorIds' => $authorIds,
