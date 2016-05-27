@@ -61,6 +61,7 @@ class DeleteLogFormatter extends LogFormatter {
 					&& in_array( $params[3], [ 'revision', 'archive', 'oldimage', 'filearchive' ] )
 				)
 			) {
+				// See RevDelList::getLogParams()/RevDelLogList::getLogParams()
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
 				$old = $this->parseBitField( $params[$paramStart + 1] );
