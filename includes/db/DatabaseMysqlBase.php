@@ -1254,6 +1254,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
+
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace(
@@ -1261,6 +1262,17 @@ abstract class DatabaseMysqlBase extends Database {
 			'CHARSET=binary',
 			$vars['wgDBTableOptions']
 		);
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'TYPE',
+				'ENGINE',
+				$GLOBALS['wgDBTableOptions']
+			);
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'CHARSET=mysql4',
+				'CHARSET=binary',
+				$vars['wgDBTableOptionsSearch']
+			);
+
 
 		return $vars;
 	}
