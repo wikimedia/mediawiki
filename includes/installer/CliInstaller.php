@@ -38,6 +38,7 @@ class CliInstaller extends Installer {
 		'dbpass' => 'wgDBpassword',
 		'dbprefix' => 'wgDBprefix',
 		'dbtableoptions' => 'wgDBTableOptions',
+		'dbtableoptionssearch' => 'wgDBTableOptions',
 		'dbmysql5' => 'wgDBmysql5',
 		'dbport' => 'wgDBport',
 		'dbschema' => 'wgDBmwschema',
