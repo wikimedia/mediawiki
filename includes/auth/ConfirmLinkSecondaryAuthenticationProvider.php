@@ -134,7 +134,7 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 				$combinedStatus->error( wfMessage( 'authprovider-confirmlink-success-line', $description ) );
 			} else {
 				$combinedStatus->error( wfMessage(
-					'authprovider-confirmlink-failure-line', $description, $status->getMessage()->text()
+					'authprovider-confirmlink-failed-line', $description, $status->getMessage()->text()
 				) );
 			}
 		}
