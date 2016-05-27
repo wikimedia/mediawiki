@@ -484,6 +484,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ObjectCache::getMainWANInstance()->clearProcessCache();
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
+
+		$groups = $this->getTestSysop()->getUser()->getGroups();
+		sort( $groups );
+		if ( $groups !== [ 'bureaucrat', 'sysop' ] ) {
+			$user = $this->getTestSysop()->getUser();
+			foreach ( array_diff( $groups, [ 'bureaucrat', 'sysop' ] ) as $group ) {
+				$user->removeGroup( $group );
+			}
+			foreach ( array_diff( [ 'bureaucrat', 'sysop' ], $groups ) as $group ) {
+				$user->addGroup( $group );
+			}
+			echo 'UTSysop groups were wrong in setUp: ' . join( ', ', $groups ) . "\n";
+		}
 	}
 
 	protected function addTmpFiles( $files ) {
@@ -550,6 +563,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				. "was 0x$oldHex before test, 0x$newHex after test!";
 
 			$this->fail( $message );
+		}
+
+		$groups = $this->getTestSysop()->getUser()->getGroups();
+		sort( $groups );
+		if ( $groups !== [ 'bureaucrat', 'sysop' ] ) {
+			$user = $this->getTestSysop()->getUser();
+			foreach ( array_diff( $groups, [ 'bureaucrat', 'sysop' ] ) as $group ) {
+				$user->removeGroup( $group );
+			}
+			foreach ( array_diff( [ 'bureaucrat', 'sysop' ], $groups ) as $group ) {
+				$user->addGroup( $group );
+			}
+			$this->fail( 'Test changed UTSysop groups to ' . join( ', ', $groups ) );
 		}
 
 		parent::tearDown();
