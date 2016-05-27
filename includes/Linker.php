@@ -1756,8 +1756,6 @@ class Linker {
 	 *
 	 * If the option noBrackets is set the rollback link wont be enclosed in "[]".
 	 *
-	 * See the "mediawiki.page.rollback" module for the client-side handling of this link.
-	 *
 	 * @since 1.16.3. $context added in 1.20. $options added in 1.21
 	 *
 	 * @param Revision $rev
@@ -1785,8 +1783,6 @@ class Linker {
 		if ( !in_array( 'noBrackets', $options, true ) ) {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
-
-		$context->getOutput()->addModules( 'mediawiki.page.rollback' );
 
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
 	}
@@ -1882,6 +1878,7 @@ class Linker {
 		$query = [
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
+			'token' => $context->getUser()->getEditToken( 'rollback' ),
 		];
 		$attrs = [
 			'data-mw' => 'interface',
