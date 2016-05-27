@@ -18,16 +18,18 @@
 	margin: 1em 0 1em .4em;
 }
 /* needs extra specificity to override `.mw-body p` selector */
-.mw-body p.mw-search-nonefound {
+.mw-body .mw-search-nonefound {
 	margin: 0;
 }
-.mw-search-interwiki-header {
+.mw-search-interwiki-header,
+.searchdidyoumean em,
+.searchmatch {
 	font-weight: bold;
 }
 .mw-search-nonefound + .mw-search-interwiki-header {
 	margin-top: 0;
 }
-div.searchresult {
+.searchresult {
 	font-size: 95%;
 	width: 38em;
 }
@@ -55,32 +57,32 @@ div.searchresult {
 	margin-top: 1em;
 	border: 1px solid #c0c0c0;
 }
-.mw-search-profile-tabs div.search-types {
+.search-types {
 	float: left;
 	padding-left: 0.25em;
 }
-.mw-search-profile-tabs div.search-types ul {
+.search-types ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
-.mw-search-profile-tabs div.search-types ul li {
+.search-types li {
 	float: left;
 	margin: 0;
 	padding: 0;
 }
-.mw-search-profile-tabs div.search-types ul li a {
+.search-types a {
 	display: block;
 	padding: 0.5em;
 }
-.mw-search-profile-tabs div.search-types ul li.current a {
+.search-types .current a {
 	color: #333;
 	cursor: default;
 }
-.mw-search-profile-tabs div.search-types ul li.current a:hover {
+.search-types .current a:hover {
 	text-decoration: none;
 }
-#mw-search-top-table div.results-info {
+.results-info {
 	float: right;
 	padding: 0.5em;
 	padding-right: 0.75em;
@@ -91,55 +93,55 @@ div.searchresult {
 	float: left;
 	width: 100%;
 }
-fieldset#mw-searchoptions {
+#mw-searchoptions {
 	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em;
-	border: none;
 	background-color: #f9f9f9;
 	border: 1px solid #c0c0c0;
 	border-top-width: 0;
 }
-fieldset#mw-searchoptions legend {
+#mw-searchoptions legend {
 	display: none;
 }
-fieldset#mw-searchoptions h4 {
+#mw-searchoptions h4 {
 	padding: 0;
 	margin: 0;
 	float: left;
 }
-fieldset#mw-searchoptions table {
+#mw-searchoptions table {
 	float: left;
 	margin-right: 3em;
 	border-collapse: collapse;
 }
-fieldset#mw-searchoptions table td {
+#mw-searchoptions table td {
 	padding: 0 1em 0 0;
 	white-space: nowrap;
 }
-fieldset#mw-searchoptions div.divider {
+#mw-searchoptions .divider {
 	clear: both;
 	border-bottom: 1px solid #ddd;
 	padding-top: 0.5em;
 	margin-bottom: 0.5em;
 }
-td#mw-search-menu {
+#mw-search-menu {
 	padding-left: 6em;
 	font-size: 85%;
 }
-div#mw-search-interwiki {
+#mw-search-interwiki {
 	float: right;
 	width: 18em;
 	border: 1px solid #aaa;
 	margin-top: 2ex;
 }
-div#mw-search-interwiki li {
+.searchalttitle,
+#mw-search-interwiki li {
 	font-size: 95%;
 }
 .mw-search-interwiki-more {
 	float: right;
 	font-size: 90%;
 }
-div#mw-search-interwiki-caption {
+#mw-search-interwiki-caption {
 	text-align: center;
 	font-weight: bold;
 	font-size: 95%;
@@ -151,18 +153,9 @@ div#mw-search-interwiki-caption {
 	background-color: #ececec;
 	border-top: 1px solid #bbb;
 }
-span.searchalttitle {
-	font-size: 95%;
-}
-div.searchdidyoumean {
+.searchdidyoumean {
 	font-size: 127%;
 	margin-top: 0.8em;
 	/* Note that this color won't affect the link, as desired. */
 	color: #c00;
-}
-div.searchdidyoumean em {
-	font-weight: bold;
-}
-.searchmatch {
-	font-weight: bold;
 }
