@@ -85,6 +85,10 @@ div.searchresult {
 	font-size: 95%;
 }
 
+#mw-search-top-table .oo-ui-fieldLayout-field {
+	width: 100%;
+}
+
 fieldset#mw-searchoptions {
 	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em;
