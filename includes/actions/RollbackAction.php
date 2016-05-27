@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormAction {
+class RollbackAction extends FormlessAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,37 +35,20 @@ class RollbackAction extends FormAction {
 		return 'rollback';
 	}
 
-	protected function preText() {
-		return $this->msg( 'confirm-rollback-top' )->parse();
-	}
-
-	protected function alterForm( HTMLForm $form ) {
-		$form->setSubmitTextMsg( 'confirm-rollback-button' );
-		$form->setTokenSalt( 'rollback' );
-
-		// Copy parameters from GET to confirmation form
-		$from = $this->getRequest()->getVal( 'from' );
-		if ( $from === null ) {
-			throw new BadRequestError( 'rollbackfailed', 'rollback-missingparam' );
-		}
-		foreach ( [ 'from', 'bot', 'hidediff', 'summary' ] as $param ) {
-			$val = $this->getRequest()->getVal( $param );
-			if ( $val !== null ) {
-				$form->addHiddenField( $param, $val );
-			}
-		}
-	}
+	/**
+	 * Temporarily unused message keys due to T88044/T136375:
+	 * - confirm-rollback-top
+	 * - confirm-rollback-button
+	 * - rollbackfailed
+	 * - rollback-missingparam
+	 */
 
 	/**
-	 * This must return true so that HTMLForm::show() will not display the form again after
-	 * submission. For rollback, display either the form or the result (success/error)
-	 * not both.
-	 *
-	 * @return bool
 	 * @throws ErrorPageError
 	 */
-	public function onSubmit( $data ) {
-		$this->useTransactionalTimeLimit();
+	public function onView() {
+		// TODO: use $this->useTransactionalTimeLimit(); when POST only
+		wfTransactionalTimeLimit();
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -86,8 +69,7 @@ class RollbackAction extends FormAction {
 		$errors = $this->page->doRollback(
 			$from,
 			$request->getText( 'summary' ),
-			// Provided by HTMLForm
-			$request->getVal( 'wpEditToken' ),
+			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
 			$data,
 			$this->getUser()
@@ -161,11 +143,6 @@ class RollbackAction extends FormAction {
 			$de->showDiff( '', '' );
 		}
 		return true;
-	}
-
-	public function onSuccess() {
-		// Required by parent class, but redundant because onSubmit already shows
-		// the success message when needed.
 	}
 
 	protected function getDescription() {
