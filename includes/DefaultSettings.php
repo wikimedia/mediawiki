@@ -4545,9 +4545,40 @@ $wgAuthManagerAutoConfig = [
 ];
 
 /**
- * If it has been this long since the last authentication, recommend
- * re-authentication before security-sensitive operations (e.g. password or
- * email changes). Set negative to disable.
+ * Time frame for re-authentication.
+ *
+ * With only password-based authentication, you'd just ask the user to re-enter
+ * their password to verify certain operations like changing the password or
+ * changing the account's email address. But under AuthManager, the user might
+ * not have a password (you might even have to redirect the browser to a
+ * third-party service or something complex like that), you might want to have
+ * both factors of a two-factor authentication, and so on. So, the options are:
+ * - Incorporate the whole multi-step authentication flow within everything
+ *   that needs to do this.
+ * - Consider it good if they used Special:UserLogin during this session within
+ *   the last X seconds.
+ * - Come up with a third option.
+ *
+ * MediaWiki currently takes the second option. This setting configures the
+ * "X seconds".
+ *
+ * This allows for configuring different time frames for different
+ * "operations". The operations used in MediaWiki core include:
+ * - LinkAccounts
+ * - UnlinkAccount
+ * - ChangeCredentials
+ * - RemoveCredentials
+ * - ChangeEmail
+ *
+ * Additional operations may be used by extensions, either explicitly by
+ * calling AuthManager::securitySensitiveOperationStatus(),
+ * ApiAuthManagerHelper::securitySensitiveOperation() or
+ * SpecialPage::checkLoginSecurityLevel(), or implicitly by overriding
+ * SpecialPage::getLoginSecurityLevel() or by subclassing
+ * AuthManagerSpecialPage.
+ *
+ * The key 'default' is used if a requested operation isn't defined in the array.
+ *
  * @since 1.27
  * @var int[] operation => time in seconds. A 'default' key must always be provided.
  */
@@ -4556,8 +4587,18 @@ $wgReauthenticateTime = [
 ];
 
 /**
- * Whether to allow security-sensitive operations when authentication is not possible.
+ * Whether to allow security-sensitive operations when re-authentication is not possible.
+ *
+ * If AuthManager::canAuthenticateNow() is false (e.g. the current
+ * SessionProvider is not able to change users, such as when OAuth is in use),
+ * AuthManager::securitySensitiveOperationStatus() cannot sensibly return
+ * SEC_REAUTH. Setting an operation true here will have it return SEC_OK in
+ * that case, while setting it false will have it return SEC_FAIL.
+ *
+ * The key 'default' is used if a requested operation isn't defined in the array.
+ *
  * @since 1.27
+ * @see $wgReauthenticateTime
  * @var bool[] operation => boolean. A 'default' key must always be provided.
  */
 $wgAllowSecuritySensitiveOperationIfCannotReauthenticate = [
