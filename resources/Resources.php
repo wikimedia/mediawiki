@@ -1883,10 +1883,13 @@ return [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
 		'position' => 'top',
 	],
+	'mediawiki.special.search.styles' => [
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
+	],
 	'mediawiki.special.search' => [
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
 		'messages' => [
 			'powersearch-togglelabel',
