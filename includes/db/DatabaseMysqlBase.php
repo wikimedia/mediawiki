@@ -1254,13 +1254,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
+		$status = Status::newGood();
+		$conn = $status->value;
+		$version = $conn->getServerVersion();
 		$vars = parent::getDefaultSchemaVars();
-		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
-		$vars['wgDBTableOptions'] = str_replace(
-			'CHARSET=mysql4',
-			'CHARSET=binary',
-			$vars['wgDBTableOptions']
-		);
 
 		return $vars;
 	}
