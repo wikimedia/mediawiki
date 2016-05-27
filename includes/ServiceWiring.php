@@ -162,7 +162,8 @@ return [
 
 	'LinkRendererFactory' => function( MediaWikiServices $services ) {
 		return new LinkRendererFactory(
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			$services->getLinkCache()
 		);
 	},
 
