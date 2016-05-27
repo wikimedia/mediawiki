@@ -1105,7 +1105,7 @@
 	"gender-female": "kobieta",
 	"prefs-help-gender": "Podanie płci nie jest obowiązkowe. Jeśli zdecydujesz się ją określić, oprogramowanie dostosuje do niej interfejs. Informacja o Twojej płci będzie widoczna dla wszystkich.",
 	"email": "E‐mail",
-	"prefs-help-realname": "Imię i nazwisko jest opcjonalne.\nJeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.",
+	"prefs-help-realname": "Imię i nazwisko jest opcjonalne.\nJeśli zdecydujesz się je podać, zostaną użyte, by udokumentować twoje autorstwo.",
 	"prefs-help-email": "Podanie adresu e‐mail nie jest obowiązkowe, lecz jest konieczne do zresetowania zapomnianego hasła.",
 	"prefs-help-email-others": "Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).",
 	"prefs-help-email-required": "Wymagany jest adres e‐mail.",
@@ -3707,8 +3707,9 @@
 	"specialpage-securitylevel-not-allowed": "Niestety, nie możesz korzystać z tej strony, ponieważ twoja tożsamość nie może zostać zweryfikowana.",
 	"authpage-cannot-login-continue": "Nie można kontynuować logowania. Sesja najprawdopodobniej wygasła.",
 	"cannotauth-not-allowed-title": "Brak dostępu",
+	"changecredentials-submit": "Zmień poświadczenia",
 	"changecredentials-submit-cancel": "Anuluj",
-	"removecredentials-submit": "Usuń",
+	"removecredentials-submit": "Usuń poświadczenia",
 	"removecredentials-submit-cancel": "Anuluj",
 	"credentialsform-account": "Nazwa konta:"
 }

@@ -534,6 +534,7 @@
 	"createacct-another-realname-tip": "Vapaaehtoinen.\nNimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.",
 	"pt-login": "Kirjaudu sisään",
 	"pt-login-button": "Kirjaudu sisään",
+	"pt-login-continue-button": "Jatka kirjautumista",
 	"pt-createaccount": "Luo tunnus",
 	"pt-userlogout": "Kirjaudu ulos",
 	"php-mail-error-unknown": "Tuntematon virhe PHP:n mail()-funktiossa",
@@ -3692,5 +3693,7 @@
 	"log-action-filter-suppress-block": "Käyttäjätunnuksen häivyttäminen estämällä se",
 	"log-action-filter-suppress-reblock": "Käyttäjätunnuksen häivyttäminen uudella estolla",
 	"log-action-filter-upload-upload": "Uusi tallennus",
-	"log-action-filter-upload-overwrite": "Päälletallennus"
+	"log-action-filter-upload-overwrite": "Päälletallennus",
+	"authmanager-provider-temporarypassword": "Väliaikainen salasana",
+	"authprovider-resetpass-skip-label": "Ohita"
 }

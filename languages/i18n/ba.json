@@ -3580,8 +3580,8 @@
 	"authmanager-email-help": "Электрон почта адресы",
 	"authmanager-realname-label": "Ысын исемегеҙ",
 	"authprovider-resetpass-skip-label": "Ҡалдырып торорға",
-	"changecredentials-submit": "Үҙгәртергә",
+	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"changecredentials-submit-cancel": "Кире алырға",
-	"removecredentials-submit": "Юйырға",
+	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit-cancel": "Кире алырға"
 }

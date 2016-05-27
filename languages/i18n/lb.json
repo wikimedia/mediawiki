@@ -3393,6 +3393,7 @@
 	"authprovider-resetpass-skip-help": "D'Zrécksetze vum Passwuert iwwersprangen",
 	"specialpage-securitylevel-not-allowed-title": "Net erlaabt",
 	"cannotauth-not-allowed-title": "Erlaabnes refuséiert",
+	"cannotauth-not-allowed": "Dir däerft dës Säit net benotzen",
 	"changecredentials-submit": "Änneren",
 	"changecredentials-submit-cancel": "Ofbriechen",
 	"changecredentials-success": "Är Idendifikatiounsinformatioune goufe geännert.",
