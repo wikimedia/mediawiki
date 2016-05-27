@@ -5,7 +5,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
- * @covers LinkRendererFactory
+ * @covers MediaWiki\Linker\LinkRendererFactory
  */
 class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 
