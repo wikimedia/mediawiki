@@ -1241,16 +1241,19 @@ class SpecialSearch extends SpecialPage {
 			'dataLocation' => 'content',
 		] );
 
+		$layout = new OOUI\ActionFieldLayout( $searchWidget, new OOUI\ButtonInputWidget( [
+			'type' => 'submit',
+			'label' => $this->msg( 'searchbutton' )->text(),
+			'flags' => [ 'progressive', 'primary' ],
+		] ), [
+			'align' => 'top',
+		] );
+
 		$out =
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Html::hidden( 'profile', $this->profile ) .
 			Html::hidden( 'fulltext', 'Search' ) .
-			$searchWidget .
-			new OOUI\ButtonInputWidget( [
-				'type' => 'submit',
-				'label' => $this->msg( 'searchbutton' )->text(),
-				'flags' => [ 'progressive', 'primary' ],
-			] );
+			$layout;
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
