@@ -1254,6 +1254,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
+		$status = Status::newGood();
+		$conn = $status->value;
+		$version = $conn->getServerVersion();
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace(
@@ -1261,6 +1264,28 @@ abstract class DatabaseMysqlBase extends Database {
 			'CHARSET=binary',
 			$vars['wgDBTableOptions']
 		);
+		if ( version_compare( $version, '5.6' ) < 0 ) {	
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'TYPE',
+				'ENGINE',
+				$GLOBALS['wgDBTableOptions']
+			);
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'CHARSET=mysql4',
+				'CHARSET=binary',
+				$vars['wgDBTableOptions']
+			);
+		} else {
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'TYPE',
+				'ENGINE',
+				"ENGINE=MyISAM, DEFAULT CHARSET=utf8"
+			);
+			$vars['wgDBTableOptionsSearch'] = str_replace(
+				'CHARSET=utf8',
+				"ENGINE=MyISAM, DEFAULT CHARSET=utf8"
+			);
+		}
 
 		return $vars;
 	}
