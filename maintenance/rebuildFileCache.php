@@ -48,7 +48,7 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
+		global $wgUseFileCache, $wgReadOnly, $wgRequestTime;
 		global $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
@@ -94,7 +94,7 @@ class RebuildFileCache extends Maintenance {
 		while ( $blockEnd <= $end ) {
 			// Get the pages
 			$res = $dbr->select( 'page', [ 'page_namespace', 'page_title', 'page_id' ],
-				[ 'page_namespace' => $wgContentNamespaces,
+				[ 'page_namespace' => MWNamespace::getContentNamespaces(),
 					"page_id BETWEEN $blockStart AND $blockEnd" ],
 				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]
 			);
