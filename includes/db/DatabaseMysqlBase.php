@@ -40,6 +40,8 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var string|null */
 	private $serverVersion = null;
 
+	public $minimumVersion = '5.6';
+
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
@@ -1254,6 +1256,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
+		$status = Status::newGood();
+		$conn = $status->value;
+		$version = $conn->getServerVersion();
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace(
@@ -1261,6 +1266,11 @@ abstract class DatabaseMysqlBase extends Database {
 			'CHARSET=binary',
 			$vars['wgDBTableOptions']
 		);
+		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {	
+			$vars['wgDBTableOptionsSearch'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
+		} else {
+			$vars['wgDBTableOptionsSearch'] = str_replace( 'TYPE', 'ENGINE', "ENGINE=MyISAM, DEFAULT CHARSET=utf8" );
+		}
 
 		return $vars;
 	}
