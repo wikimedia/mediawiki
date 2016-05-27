@@ -14,9 +14,15 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $titleFormatter;
 
+	/**
+	 * @var LinkCache
+	 */
+	private $linkCache;
+
 	public function setUp() {
 		parent::setUp();
 		$this->titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+		$this->linkCache = MediaWikiServices::getInstance()->getLinkCache();
 	}
 
 	public static function provideCreateFromLegacyOptions() {
@@ -48,7 +54,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCreateFromLegacyOptions
 	 */
 	public function testCreateFromLegacyOptions( $options, $func, $val ) {
-		$factory = new LinkRendererFactory( $this->titleFormatter );
+		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
 		);
@@ -57,16 +63,17 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCreate() {
-		$factory = new LinkRendererFactory( $this->titleFormatter );
+		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
 		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
 	}
 
 	public function testCreateForUser() {
+		/** @var PHPUnit_Framework_MockObject_MockObject|User $user */
 		$user = $this->getMock( User::class, [ 'getStubThreshold' ] );
 		$user->expects( $this->once() )
 			->method( 'getStubThreshold' )
 			->willReturn( 15 );
-		$factory = new LinkRendererFactory( $this->titleFormatter );
+		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
 		$linkRenderer = $factory->createForUser( $user );
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
 		$this->assertEquals( 15, $linkRenderer->getStubThreshold() );
