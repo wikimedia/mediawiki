@@ -40,6 +40,8 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var string|null */
 	private $serverVersion = null;
 
+	public $minimumVersion = '5.6';
+
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
@@ -1261,6 +1263,15 @@ abstract class DatabaseMysqlBase extends Database {
 			'CHARSET=binary',
 			$vars['wgDBTableOptions']
 		);
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$conn = $status->value;
+		$version = $conn->getServerVersion();
+
+			$vars['wgDBTableOptionsSearch'] = "ENGINE=MyISAM DEFAULT CHARSET=utf8";
+		
 
 		return $vars;
 	}
