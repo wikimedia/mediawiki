@@ -97,7 +97,7 @@ class RollbackAction extends FormlessAction {
 				}
 			}
 
-			return true;
+			return;
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
@@ -142,7 +142,7 @@ class RollbackAction extends FormlessAction {
 			);
 			$de->showDiff( '', '' );
 		}
-		return true;
+		return;
 	}
 
 	protected function getDescription() {
