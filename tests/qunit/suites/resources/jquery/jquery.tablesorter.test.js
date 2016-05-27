@@ -1390,6 +1390,24 @@
 		]
 	);
 
+	QUnit.test( 'bug T114604 - Rowspan td until footer row', 1, function ( assert ) {
+		var $table, parsers;
+		$table = $(
+			'<table class="sortable">' +
+				'<tr><th>A</th><th>B</th><th>C</th></tr>' +
+				'<tr><td>a1</td><td rowspan="3">b1-3</td><td rowspan="2">c1-2</td></tr>' +
+				'<tr><td>a2</td></tr>' +
+				'<tr><th>a3</th><th>c3</th></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		assert.equal(
+			$table.find( 'tbody > tr' ).length + '+' + $table.find( 'tfoot > tr' ).length,
+			'3+0',
+			'body have 3 rows and no footer row'
+		);
+	} );
+
 	QUnit.test( 'bug 105731 - incomplete rows in table body', 3, function ( assert ) {
 		var $table, parsers;
 		$table = $(

@@ -250,7 +250,8 @@
 	 */
 	function emulateTHeadAndFoot( $table ) {
 		var $thead, $tfoot, i, len,
-			$rows = $table.find( '> tbody > tr' );
+			$rows = $table.find( '> tbody > tr' ),
+			lastRowWithTd = 0;
 		if ( !$table.get( 0 ).tHead ) {
 			$thead = $( '<thead>' );
 			$rows.each( function () {
@@ -266,7 +267,11 @@
 		if ( !$table.get( 0 ).tFoot ) {
 			$tfoot = $( '<tfoot>' );
 			len = $rows.length;
-			for ( i = len - 1; i >= 0; i-- ) {
+			// Calculate the last row that a <td> span, this row can not be a footer row
+			$rows.find( '> td[rowspan]' ).each( function ( i, cell ) {
+				lastRowWithTd = Math.max( lastRowWithTd, cell.parentElement.rowIndex + cell.rowSpan - 1 );
+			} );
+			for ( i = len - 1; i > lastRowWithTd; i-- ) {
 				if ( $( $rows[ i ] ).children( 'td' ).length ) {
 					break;
 				}
