@@ -125,6 +125,7 @@ abstract class RevDelList extends RevisionListBase {
 			$status->itemStatuses = [];
 		}
 
+		$logType = 'delete';
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
@@ -144,7 +145,8 @@ abstract class RevDelList extends RevisionListBase {
 			$newBits = RevisionDeleter::extractBitfield( $bitPars, $oldBits );
 
 			if ( $oldBits == $newBits ) {
-				$itemStatus->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
+				$itemStatus->warning(
+					'revdelete-no-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			} elseif ( $oldBits == 0 && $newBits != 0 ) {
@@ -157,21 +159,21 @@ abstract class RevDelList extends RevisionListBase {
 
 			if ( $item->isHideCurrentOp( $newBits ) ) {
 				// Cannot hide current version text
-				$itemStatus->error( 'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
+				$itemStatus->error(
+					'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
-			}
-			if ( !$item->canView() ) {
+			} elseif ( !$item->canView() ) {
 				// Cannot access this revision
 				$msg = ( $opType == 'show' ) ?
 					'revdelete-show-no-access' : 'revdelete-modify-no-access';
 				$itemStatus->error( $msg, $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
-			}
 			// Cannot just "hide from Sysops" without hiding any fields
-			if ( $newBits == Revision::DELETED_RESTRICTED ) {
-				$itemStatus->warning( 'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
+			} elseif ( $newBits == Revision::DELETED_RESTRICTED ) {
+				$itemStatus->warning(
+					'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
@@ -181,6 +183,11 @@ abstract class RevDelList extends RevisionListBase {
 
 			if ( $ok ) {
 				$idsForLog[] = $item->getId();
+				// If any item field was suppressed or unsupressed
+				if ( ( $oldBits | $newBits ) & $this->getSuppressBit() ) {
+					$logType = 'suppress';
+				}
+
 				$status->successCount++;
 				if ( $item->getAuthorId() > 0 ) {
 					$authorIds[] = $item->getAuthorId();
@@ -188,7 +195,8 @@ abstract class RevDelList extends RevisionListBase {
 					$authorIPs[] = $item->getAuthorName();
 				}
 			} else {
-				$itemStatus->error( 'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
+				$itemStatus->error(
+					'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 			}
 		}
@@ -221,16 +229,19 @@ abstract class RevDelList extends RevisionListBase {
 
 		// Log it
 		// @FIXME: $newBits/$oldBits set in for loop, makes IDE warnings too
-		$this->updateLog( [
-			'title' => $this->title,
-			'count' => $successCount,
-			'newBits' => $newBits,
-			'oldBits' => $oldBits,
-			'comment' => $comment,
-			'ids' => $idsForLog,
-			'authorIds' => $authorIds,
-			'authorIPs' => $authorIPs
-		] );
+		$this->updateLog(
+			$logType,
+			[
+				'title' => $this->title,
+				'count' => $successCount,
+				'newBits' => $newBits,
+				'oldBits' => $oldBits,
+				'comment' => $comment,
+				'ids' => $idsForLog,
+				'authorIds' => $authorIds,
+				'authorIPs' => $authorIPs
+			]
+		);
 
 		// Clear caches
 		$that = $this;
@@ -254,6 +265,7 @@ abstract class RevDelList extends RevisionListBase {
 
 	/**
 	 * Record a log entry on the action
+	 * @param string $logType One of (delete,suppress)
 	 * @param array $params Associative array of parameters:
 	 *     newBits:         The new value of the *_deleted bitfield
 	 *     oldBits:         The old value of the *_deleted bitfield.
@@ -264,17 +276,11 @@ abstract class RevDelList extends RevisionListBase {
 	 *     authorsIPs:      The array of the IP/anon user offenders
 	 * @throws MWException
 	 */
-	protected function updateLog( $params ) {
+	private function updateLog( $logType, $params ) {
 		// Get the URL param's corresponding DB field
 		$field = RevisionDeleter::getRelationType( $this->getType() );
 		if ( !$field ) {
 			throw new MWException( "Bad log URL param type!" );
-		}
-		// Put things hidden from sysops in the suppression log
-		if ( ( $params['newBits'] | $params['oldBits'] ) & $this->getSuppressBit() ) {
-			$logType = 'suppress';
-		} else {
-			$logType = 'delete';
 		}
 		// Add params for affected page and ids
 		$logParams = $this->getLogParams( $params );
