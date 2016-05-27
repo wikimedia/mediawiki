@@ -108,13 +108,14 @@
 		$links.click( function ( e ) {
 			var action, api, $link;
 
-			// Preload the notification module for mw.notify
+			// Start preloading the notification module (normally loaded by mw.notify())
 			mw.loader.load( 'mediawiki.notification' );
 
 			action = mwUriGetAction( this.href );
 
 			if ( action !== 'watch' && action !== 'unwatch' ) {
-				// Let native browsing handle the link
+				// Could not extract target action from link url,
+				// let native browsing handle it further
 				return true;
 			}
 			e.preventDefault();

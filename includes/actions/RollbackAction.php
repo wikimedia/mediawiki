@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormAction {
+class RollbackAction extends FormlessAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,79 +35,39 @@ class RollbackAction extends FormAction {
 		return 'rollback';
 	}
 
-	protected function preText() {
-		return $this->msg( 'confirm-rollback-top' )->parse();
-	}
+	public function onView() {
+		// TODO: use $this->useTransactionalTimeLimit(); when POST only
+		wfTransactionalTimeLimit();
 
-	protected function alterForm( HTMLForm $form ) {
-		$form->setSubmitTextMsg( 'confirm-rollback-button' );
-		$form->setTokenSalt( 'rollback' );
-
-		// Copy parameters from GET to confirmation form
-		$from = $this->getRequest()->getVal( 'from' );
-		if ( $from === null ) {
-			throw new BadRequestError( 'rollbackfailed', 'rollback-missingparam' );
-		}
-		foreach ( [ 'from', 'bot', 'hidediff', 'summary' ] as $param ) {
-			$val = $this->getRequest()->getVal( $param );
-			if ( $val !== null ) {
-				$form->addHiddenField( $param, $val );
-			}
-		}
-	}
-
-	/**
-	 * This must return true so that HTMLForm::show() will not display the form again after
-	 * submission. For rollback, display either the form or the result (success/error)
-	 * not both.
-	 *
-	 * @return bool
-	 * @throws ErrorPageError
-	 */
-	public function onSubmit( $data ) {
-		$this->useTransactionalTimeLimit();
+		$details = null;
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
-		$from = $request->getVal( 'from' );
-		$rev = $this->page->getRevision();
-		if ( $from === null || $from === '' ) {
-			throw new ErrorPageError( 'rollbackfailed', 'rollback-missingparam' );
-		}
-		if ( $from !== $rev->getUserText() ) {
-			throw new ErrorPageError( 'rollbackfailed', 'alreadyrolled', [
-				$this->getTitle()->getPrefixedText(),
-				$from,
-				$rev->getUserText()
-			] );
-		}
 
-		$data = null;
-		$errors = $this->page->doRollback(
-			$from,
+		$result = $this->page->doRollback(
+			$request->getVal( 'from' ),
 			$request->getText( 'summary' ),
-			// Provided by HTMLForm
-			$request->getVal( 'wpEditToken' ),
+			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
-			$data,
+			$details,
 			$this->getUser()
 		);
 
-		if ( in_array( [ 'actionthrottledtext' ], $errors ) ) {
+		if ( in_array( [ 'actionthrottledtext' ], $result ) ) {
 			throw new ThrottledError;
 		}
 
-		if ( isset( $errors[0][0] ) &&
-			( $errors[0][0] == 'alreadyrolled' || $errors[0][0] == 'cantrollback' )
+		if ( isset( $result[0][0] ) &&
+			( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' )
 		) {
 			$this->getOutput()->setPageTitle( $this->msg( 'rollbackfailed' ) );
-			$errArray = $errors[0];
+			$errArray = $result[0];
 			$errMsg = array_shift( $errArray );
 			$this->getOutput()->addWikiMsgArray( $errMsg, $errArray );
 
-			if ( isset( $data['current'] ) ) {
+			if ( isset( $details['current'] ) ) {
 				/** @var Revision $current */
-				$current = $data['current'];
+				$current = $details['current'];
 
 				if ( $current->getComment() != '' ) {
 					$this->getOutput()->addHTML( $this->msg( 'editcomment' )->rawParams(
@@ -115,24 +75,25 @@ class RollbackAction extends FormAction {
 				}
 			}
 
-			return true;
+			return;
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
-		if ( $errors == [ [ 'readonlytext' ] ] ) {
+
+		if ( $result == [ [ 'readonlytext' ] ] ) {
 			throw new ReadOnlyError;
 		}
 
 		# XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
-		#      Right now, we only show the first error
-		foreach ( $errors as $error ) {
+		#     Right now, we only show the first error
+		foreach ( $result as $error ) {
 			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );
 		}
 
 		/** @var Revision $current */
-		$current = $data['current'];
-		$target = $data['target'];
-		$newId = $data['newid'];
+		$current = $details['current'];
+		$target = $details['target'];
+		$newId = $details['newid'];
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
@@ -160,12 +121,6 @@ class RollbackAction extends FormAction {
 			);
 			$de->showDiff( '', '' );
 		}
-		return true;
-	}
-
-	public function onSuccess() {
-		// Required by parent class, but redundant because onSubmit already shows
-		// the success message when needed.
 	}
 
 	protected function getDescription() {
