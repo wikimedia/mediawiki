@@ -104,7 +104,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' ) {
-		if ( $namespace !== false ) {
+		if ( $namespace !== false && $interwiki === '' ) {
 			// Try to get a namespace name, but fallback
 			// to empty string if it doesn't exist
 			try {
@@ -116,6 +116,17 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			if ( $namespace !== 0 ) {
 				$text = $nsName . ':' . $text;
 			}
+		} elseif ( $namespace !== false && $interwiki !== '' ) {
+			// TODO: do we need something special here?
+			// If it's an interwiki link then maybe the
+			// namespace provided here is :
+			// - not available on this wiki causing InvalidArgumentException
+			// - conflict: 102 is "Progetto" itwiki, "Autore" on itwikisource
+			// - the namespace text may be localized and won't be
+			//   available in this form on the target wiki, should
+			//   we always fallback to english?
+			// So basically should we support interwiki links only for core namespaces
+			// and always force english as namespace text?
 		}
 
 		if ( $fragment !== '' ) {
