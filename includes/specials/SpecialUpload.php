@@ -368,7 +368,7 @@ class SpecialUpload extends SpecialPage {
 		$sessionKey = $this->mUpload->stashSession();
 
 		// Add styles for the warning, reused from the live preview
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
 
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
 			. '<div class="mw-destfile-warning"><ul>';
