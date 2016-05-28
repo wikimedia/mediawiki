@@ -3503,6 +3503,9 @@ HTML
 			$cancelParams['oldid'] = $this->oldid;
 		}
 		$attrs = [ 'id' => 'mw-editform-cancel' ];
+		if ( $this->getContextTitle()->isRedirect() ) {
+			$attrs['redirect'] = 'no';
+		}
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
