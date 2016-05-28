@@ -113,6 +113,51 @@
 		test.clock.tick( 500 );
 	} );
 
+	QUnit.test( 'basic operation (<table>) with <thead> and <tfoot>', 13, function ( assert ) {
+		var test = this,
+			$collapsible = prepareCollapsible(
+				'<table class="mw-collapsible">' +
+					'<thead><tr><th colspan="2">' + loremIpsum + '</th></tr>' +
+					'       <tr><th>' + loremIpsum + '</th><th>' + loremIpsum + '</th></tr></thead>' +
+					'<tbody><tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+					'       <tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr></tbody>' +
+					'<tfoot><tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr></tfoot>' +
+				'</table>'
+			),
+			$headerRow1 = $collapsible.find( 'tr:eq(0)' ),
+			$headerRow2 = $collapsible.find( 'tr:eq(1)' ),
+			$contentRow = $collapsible.find( 'tr:eq(2)' ),
+			$footerRow = $collapsible.find( 'tr:last' ),
+			$toggle = $headerRow1.find( '.mw-collapsible-toggle' );
+
+		assert.equal( $toggle.length, 1, 'toggle is added to the cell of first row' );
+
+		assert.assertTrue( $headerRow1.is( ':visible' ), 'headerRow1 is visible' );
+		assert.assertTrue( $headerRow2.is( ':visible' ), 'headerRow2 is visible' );
+		assert.assertTrue( $contentRow.is( ':visible' ), 'contentRow is visible' );
+		assert.assertTrue( $footerRow.is( ':visible' ), 'footerRow is visible' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $headerRow1.is( ':visible' ), 'after collapsing: headerRow1 is still visible' );
+			assert.assertTrue( $headerRow2.is( ':hidden' ), 'after collapsing: headerRow2 is hidden' );
+			assert.assertTrue( $contentRow.is( ':hidden' ), 'after collapsing: contentRow is hidden' );
+			assert.assertTrue( $footerRow.is( ':hidden' ), 'after collapsing: footerRow is hidden' );
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $headerRow1.is( ':visible' ), 'after expanding: headerRow1 is still visible' );
+				assert.assertTrue( $headerRow2.is( ':visible' ), 'after expanding: headerRow2 is visible' );
+				assert.assertTrue( $contentRow.is( ':visible' ), 'after expanding: contentRow is visible' );
+				assert.assertTrue( $footerRow.is( ':visible' ), 'after expanding: footerRow is visible' );
+			} );
+
+			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
+		} );
+
+		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
+	} );
+
 	function tableWithCaptionTest( $collapsible, test, assert ) {
 		var $caption = $collapsible.find( 'caption' ),
 			$headerRow = $collapsible.find( 'tr:first' ),
@@ -155,13 +200,13 @@
 		), this, assert );
 	} );
 
-	QUnit.test( 'basic operation (<table> with caption and <thead>)', 10, function ( assert ) {
+	QUnit.test( 'basic operation (<table> with caption and <thead> and <tfoot>)', 10, function ( assert ) {
 		tableWithCaptionTest( prepareCollapsible(
 			'<table class="mw-collapsible">' +
 				'<caption>' + loremIpsum + '</caption>' +
 				'<thead><tr><th>' + loremIpsum + '</th><th>' + loremIpsum + '</th></tr></thead>' +
-				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
-				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+				'       <tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+				'<tfoot><tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr></tfoot>' +
 			'</table>'
 		), this, assert );
 	} );

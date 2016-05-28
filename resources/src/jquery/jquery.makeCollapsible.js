@@ -54,12 +54,7 @@
 
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
-			// If there is a caption, hide all rows; otherwise, only hide body rows
-			if ( $collapsible.find( '> caption' ).length ) {
-				$containers = $collapsible.find( '> * > tr' );
-			} else {
-				$containers = $collapsible.find( '> tbody > tr' );
-			}
+			$containers = $collapsible.find( '> * > tr' );
 			if ( $defaultToggle ) {
 				// Exclude table row containing togglelink
 				$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
