@@ -75,7 +75,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
-		global $wgSessionProviders;
+		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
 		global $wgAuthManagerConfig, $wgAuth, $wgDisableAuthManager;
 
@@ -124,6 +124,9 @@ class PHPUnitMaintClass extends Maintenance {
 				] ],
 			],
 		];
+
+		// Single-iteration PBKDF2 session secret derivation, for speed.
+		$wgSessionPbkdf2Iterations = 1;
 
 		// Generic AuthManager configuration for testing
 		$wgAuthManagerConfig = [
