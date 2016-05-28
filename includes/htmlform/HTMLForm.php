@@ -71,6 +71,11 @@
  *    'help-messages'       -- array of message keys/objects. As above, each item can
  *                             be an array of msg key and then parameters.
  *                             Overwrites 'help'.
+ *    'notice'              -- message text for a message to use as a notice in the field.
+ *                             Currently used by OOUI form fields only.
+ *    'notice-messages'     -- array of message keys/objects to use for notice.
+ *                             Overrides 'notice'.
+ *    'notice-message'      -- message key or object to use as a notice.
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
  *    'size'                -- the length of text fields

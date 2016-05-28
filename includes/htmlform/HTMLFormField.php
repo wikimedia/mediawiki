@@ -603,6 +603,7 @@ abstract class HTMLFormField {
 			'align' => $this->getLabelAlignOOUI(),
 			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'errors' => $errors,
+			'notices' => $this->getNotices(),
 			'infusable' => $infusable,
 		];
 
@@ -838,6 +839,30 @@ abstract class HTMLFormField {
 		}
 
 		return $errors;
+	}
+
+	/**
+	 * Determine notices to display for the field.
+	 *
+	 * @since 1.28
+	 * @return string[]
+	 */
+	function getNotices() {
+		$notices = [];
+
+		if ( isset( $this->mParams['notice-message'] ) ) {
+			$notices[] = $this->getMessage( $this->mParams['notice-message'] )->parse();
+		}
+
+		if ( isset( $this->mParams['notice-messages'] ) ) {
+			foreach ( $this->mParams['notice-messages'] as $msg ) {
+				$notices[] = $this->getMessage( $msg )->parse();
+			}
+		} elseif ( isset( $this->mParams['notice'] ) ) {
+			$notices[] = $this->mParams['notice'];
+		}
+
+		return $notices;
 	}
 
 	/**
