@@ -1906,7 +1906,6 @@ return [
 			'thumbnail.html' => 'resources/src/mediawiki.special/templates/thumbnail.html',
 		],
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.upload.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.upload.css',
 		'messages' => [
 			'widthheight',
 			'size-bytes',
@@ -1919,6 +1918,7 @@ return [
 			'prefs-editing',
 		],
 		'dependencies' => [
+			'mediawiki.special.upload.styles',
 			'jquery.spinner',
 			'mediawiki.jqueryMsg',
 			'mediawiki.api',
@@ -1928,6 +1928,9 @@ return [
 			'mediawiki.confirmCloseWindow',
 			'user.options',
 		],
+	],
+	'mediawiki.special.upload.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.upload.css',
 	],
 	'mediawiki.special.userlogin.common.styles' => [
 		'styles' => [
