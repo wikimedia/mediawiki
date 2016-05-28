@@ -1154,7 +1154,7 @@ CREATE TABLE /*_*/watchlist (
   -- of the page, which means that they should be sent an e-mail on the next change.
   wl_notificationtimestamp varbinary(14)
 
-) /*$wgDBTableOptions*/;
+) ENGINE=Innodb DEFAULT CHARSET=binary;
 
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
@@ -1178,7 +1178,7 @@ CREATE TABLE /*_*/searchindex (
 
   -- Munged version of body text
   si_text mediumtext NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
 CREATE FULLTEXT INDEX /*i*/si_title ON /*_*/searchindex (si_title);
