@@ -1262,6 +1262,8 @@ abstract class DatabaseMysqlBase extends Database {
 			$vars['wgDBTableOptions']
 		);
 
+		$vars['wgDBTableOptionsSearch'] = "ENGINE=MyISAM DEFAULT CHARSET=utf8";
+
 		return $vars;
 	}
 
