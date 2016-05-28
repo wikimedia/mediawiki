@@ -3499,10 +3499,12 @@ HTML
 	 */
 	public function getCancelLink() {
 		$cancelParams = [];
+		$attrs = [ 'id' => 'mw-editform-cancel' ];
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
+		} elseif ( $this->getContextTitle()->isRedirect() ) {
+			$attrs['redirect'] = 'no';
 		}
-		$attrs = [ 'id' => 'mw-editform-cancel' ];
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
