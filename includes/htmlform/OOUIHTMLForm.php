@@ -117,6 +117,7 @@ class OOUIHTMLForm extends HTMLForm {
 				'value' => $button['value'],
 				'label' => $label,
 				'flags' => $button['flags'],
+				'framed' => $button['framed'],
 				'useInputTag' => $isBadIE,
 			] + $attrs );
 		}

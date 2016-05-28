@@ -894,6 +894,7 @@ class HTMLForm extends ContextSource {
 	 *  - id: (string, optional) DOM id for the button.
 	 *  - attribs: (array, optional) Additional HTML attributes.
 	 *  - flags: (string|string[], optional) OOUI flags.
+	 *  - framed: (boolean=true, optional) OOUI framed attribute.
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addButton( $data ) {
@@ -922,6 +923,7 @@ class HTMLForm extends ContextSource {
 			'id' => null,
 			'attribs' => null,
 			'flags' => null,
+			'framed' => true,
 		];
 
 		return $this;
