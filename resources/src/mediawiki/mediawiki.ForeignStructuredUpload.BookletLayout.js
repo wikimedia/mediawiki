@@ -83,15 +83,26 @@
 
 						// Update license messages
 						return msgPromise.then( function () {
-							booklet.$ownWorkMessage
-								.msg( 'upload-form-label-own-work-message-' + msgs )
-								.find( 'a' ).attr( 'target', '_blank' );
-							booklet.$notOwnWorkMessage
-								.msg( 'upload-form-label-not-own-work-message-' + msgs )
-								.find( 'a' ).attr( 'target', '_blank' );
-							booklet.$notOwnWorkLocal
-								.msg( 'upload-form-label-not-own-work-local-' + msgs )
-								.find( 'a' ).attr( 'target', '_blank' );
+							var $labels;
+							booklet.$ownWorkMessage.msg( 'upload-form-label-own-work-message-' + msgs );
+							booklet.$notOwnWorkMessage.msg( 'upload-form-label-not-own-work-message-' + msgs );
+							booklet.$notOwnWorkLocal.msg( 'upload-form-label-not-own-work-local-' + msgs );
+
+							$labels = $( [
+								booklet.$ownWorkMessage[ 0 ],
+								booklet.$notOwnWorkMessage[ 0 ],
+								booklet.$notOwnWorkLocal[ 0 ]
+							] );
+
+							// Improve the behavior of links inside these labels, which may point to important
+							// things like licensing requirements or terms of use
+							$labels.find( 'a' )
+								.attr( 'target', '_blank' )
+								.on( 'click', function ( e ) {
+									// OO.ui.FieldLayout#onLabelClick is trying to prevent default on all clicks,
+									// which causes the links to not be openable. Don't let it do that.
+									e.stopPropagation();
+								} );
 						} );
 					} )
 				);
