@@ -3,7 +3,6 @@
 	visibility: hidden;
 }
 
-span.updatedmarker {
-	color: #000;
-	background-color: #0f0;
+.updatedmarker {
+	background-color: #b7f430;
 }
