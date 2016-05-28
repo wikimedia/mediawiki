@@ -2386,6 +2386,14 @@ $wgSessionHandler = null;
  */
 $wgPHPSessionHandling = 'enable';
 
+
+/**
+ * Number of internal PBKDF2 iterations to use when deriving session secrets.
+ *
+ * @since 1.28
+ */
+$wgSessionPbkdf2Iterations = 10001;
+
 /**
  * If enabled, will send MemCached debugging information to $wgDebugLogFile
  */

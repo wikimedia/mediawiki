@@ -260,6 +260,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// Use a fast hash algorithm to hash passwords.
 		$defaultOverrides->set( 'PasswordDefault', 'A' );
 
+		// Single-iteration PBKDF2 session secret derivation, also for speed.
+		$defaultOverrides->set( 'SessionPbkdf2Iterations', 1 );
+
 		$testConfig = $customOverrides
 			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
 			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );
