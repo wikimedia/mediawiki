@@ -1254,12 +1254,19 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
+		$GLOBALS['wgDBTableOptionsSearch'] = "ENGINE=MyISAM, DEFAULT CHARSET=utf8"
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace(
 			'CHARSET=mysql4',
 			'CHARSET=binary',
 			$vars['wgDBTableOptions']
+		);
+
+		$vars['wgDBTableOptionsSearch'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptionsSearch'] );
+		$vars['wgDBTableOptionsSearch'] = str_replace(
+			'CHARSET=utf8',
+			$vars['wgDBTableOptionsSearch']
 		);
 
 		return $vars;
