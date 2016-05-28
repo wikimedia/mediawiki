@@ -363,6 +363,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers MediaWiki\Linker\LinkRenderer::runLegacyBeginHook
 	 * @dataProvider provideLinkBeginHook
 	 */
 	public function testLinkBeginHook( $callback, $expected ) {
@@ -409,6 +410,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers MediaWiki\Linker\LinkRenderer::buildAElement
 	 * @dataProvider provideLinkEndHook
 	 */
 	public function testLinkEndHook( $callback, $expected ) {
