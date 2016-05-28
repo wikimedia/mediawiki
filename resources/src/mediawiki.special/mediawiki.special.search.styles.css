@@ -160,13 +160,3 @@ div.searchdidyoumean em {
 .searchmatch {
 	font-weight: bold;
 }
-/* Advanced PowerSearch box */
-td#mw-search-togglebox {
-	text-align: right;
-}
-table#mw-search-powertable {
-	width: 100%;
-}
-form#powersearch {
-	clear: both;
-}
