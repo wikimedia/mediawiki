@@ -759,6 +759,8 @@
 	"exif-orientation-1": "सामान्य",
 	"namespacesall": "सगळें",
 	"monthsall": "सगळे",
+	"confirm-rollback-button": "बरें",
+	"confirm-rollback-top": "ह्या पाना वयलें संपादन आशिल्ले तशें करात?",
 	"watchlisttools-view": "प्रस्तूत बदल पळयात.",
 	"watchlisttools-edit": "सादुरवळेरी पळय आनी संपादीत करात",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|उलयात]])",

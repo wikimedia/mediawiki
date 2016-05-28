@@ -45,7 +45,8 @@
 			"WongKentir",
 			"Rachmat.Wahidi",
 			"Arief",
-			"Nemo bis"
+			"Nemo bis",
+			"Mbrt"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -2040,6 +2041,7 @@
 	"revertpage": "←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dibatalkan ke versi terakhir oleh [[User:$1|$1]]",
 	"revertpage-nouser": "Mengembalikan suntingan oleh (nama pengguna dihapus) ke suntingan terakhir oleh [[User:$1|$1]]",
 	"rollback-success": "Pembatalan suntingan oleh $1; dibatalkan ke versi terakhir oleh $2.",
+	"rollback-success-notify": "Mengembalikan suntingan oleh $1; rubah kembali untuk revisi terakhir oleh $2. [$3 Lihat perubahan]",
 	"sessionfailure-title": "Kegagalan sesi",
 	"sessionfailure": "Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silakan tekan tombol \"kembali\" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.",
 	"changecontentmodel": "Ubah model isi sebuah halaman",

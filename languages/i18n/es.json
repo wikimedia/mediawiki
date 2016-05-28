@@ -3808,6 +3808,7 @@
 	"authprovider-resetpass-skip-label": "Omitir",
 	"authform-nosession-login": "La autenticación fue exitosa, pero tu navegador no puede \"recordar\" haber iniciado sesión.\n\n$1",
 	"authform-nosession-signup": "La cuenta ha sido creada, pero tu navegador no \"recuerda\" haber iniciado sesión.\n\n$1",
+	"specialpage-securitylevel-not-allowed-title": "No está permitido",
 	"specialpage-securitylevel-not-allowed": "Lo siento, no tienes permitido usar esta página, porque tu identidad no pudo verificarse.",
 	"authpage-cannot-login-continue": "No se puede continuar con el inicio de sesión. Lo más probable es que tu sesión haya expirado.",
 	"authpage-cannot-create": "No se puede iniciar la creación de la cuenta.",

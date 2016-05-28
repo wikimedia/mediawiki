@@ -1111,7 +1111,7 @@
 	"right-override-export-depth": "izvoz stranica uključujući i povazene stranice do dubine od pet veza",
 	"right-sendemail": "slanje e-poruka drugim korisnicima",
 	"right-passwordreset": "pregledanje poruka za obnavljanje lozinke",
-	"right-managechangetags": "pravljenje i/ili brisanje [[Special:Tags|oznaka]] iz baze podataka",
+	"right-managechangetags": "pravljenje i (de)aktiviranje [[Special:Tags|oznaka]]",
 	"grant-group-page-interaction": "Uređivanje stranica",
 	"grant-group-file-interaction": "Uređivanje datoteka",
 	"grant-group-watchlist-interaction": "Uređivanje vašeg spiska nadgledanja",

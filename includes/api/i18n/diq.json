@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gorizon",
-			"Mirzali"
+			"Mirzali",
+			"Kumkumuk"
 		]
 	},
+	"apihelp-block-description": "Enê karberi bloqe ke",
 	"apihelp-createaccount-param-name": "Nameyê karberi.",
 	"apihelp-delete-description": "Pele bestere.",
 	"apihelp-disabled-description": "Eno modul aktiv niyo.",
@@ -25,6 +27,9 @@
 	"apihelp-feedrecentchanges-param-hidebots": "Vurnayışanê botan bınımne.",
 	"apihelp-feedrecentchanges-param-hideanons": "Vurnayışanê karberanê anoniman bınımne.",
 	"apihelp-feedrecentchanges-param-hideliu": "Vurnayışanê karberanê qeydınan bınımne.",
+	"apihelp-feedrecentchanges-param-tagfilter": "Filtrey etiketi",
+	"apihelp-feedrecentchanges-example-simple": "Vurnayışê peyênan bıvin",
+	"apihelp-feedrecentchanges-example-30days": "Peyni vurnayışanê 30 raco bımosne",
 	"apihelp-login-param-name": "Nameyê karberi.",
 	"apihelp-login-param-password": "Parola.",
 	"apihelp-login-param-domain": "Domain (optional).",

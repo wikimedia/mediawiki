@@ -2239,6 +2239,7 @@
 	"lockdbsuccesstext": "Baza de date a fost blocată.<br />\nNu uitați să o [[Special:UnlockDB|deblocați]] la terminarea operațiilor administrative.",
 	"unlockdbsuccesstext": "Baza de date a fost deblocată.",
 	"lockfilenotwritable": "Fișierul bazei de date închise nu poate fi scris.\nPentru a închide sau deschide baza de date, acesta trebuie să poată fi scris de serverul web.",
+	"databaselocked": "Baza de date este deja blocată.",
 	"databasenotlocked": "Baza de date nu este blocată.",
 	"lockedbyandtime": "(de $1, pe $2, la $3 )",
 	"move-page": "Redenumire $1",
