@@ -1262,6 +1262,8 @@ abstract class DatabaseMysqlBase extends Database {
 			$vars['wgDBTableOptions']
 		);
 
+		$vars['wgDBTableOptionsSearch'] = str_replace( 'TYPE', 'ENGINE', "ENGINE=MyISAM" );
+
 		return $vars;
 	}
 
