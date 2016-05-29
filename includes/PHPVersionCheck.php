@@ -31,7 +31,7 @@
  */
 function wfEntryPointCheck( $entryPoint ) {
 	$mwVersion = '1.28';
-	$minimumVersionPHP = '5.5.9';
+	$minimumVersionPHP = '5.6.9';
 	$phpVersion = PHP_VERSION;
 
 	if ( !function_exists( 'version_compare' )
