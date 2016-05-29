@@ -1931,6 +1931,7 @@
 	"trackingcategories-name": "메시지 이름",
 	"trackingcategories-desc": "분류 포함 기준",
 	"restricted-displaytitle-ignored": "제목 표시가 무시된 문서",
+	"restricted-displaytitle-ignored-desc": "문서의 실제 제목과 일치하지 않기 때문에 무시된 <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>이 있는 문서입니다.",
 	"noindex-category-desc": "문서는 그것과 그 플래그가 허용된 곳에 있는 이름공간에서 <code><nowiki>__NOINDEX__</nowiki></code> 특수 명령이 있기 때문에 로봇이 색인하지 않습니다.",
 	"index-category-desc": "문서는 그것(과 플래그가 허용된 곳에 있는 이름공간에 있는 것)에 <code><nowiki>__INDEX__</nowiki></code>가 있어서, 정상적이지 않을 곳에 로봇에 의해 색인됩니다.",
 	"post-expand-template-inclusion-category-desc": "모든 틀을 전개하였을 때, 문서 크기가 <code>$wgMaxArticleSize</code>보다 커지므로, 어떤 틀은 전개하지 않았습니다.",

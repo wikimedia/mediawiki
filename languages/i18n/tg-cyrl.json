@@ -2104,5 +2104,7 @@
 	"expand_templates_remove_comments": "Ҳазфи тавзеҳот",
 	"expand_templates_generate_xml": "Намоиши дарахти таҷзеҳи XML",
 	"expand_templates_preview": "Пешнамоиш",
-	"randomrootpage": "Саҳифаи решавии тасодуфӣ"
+	"randomrootpage": "Саҳифаи решавии тасодуфӣ",
+	"changecredentials-submit": "Тағйири ҳисоби корбарӣ",
+	"removecredentials-submit": "Хориҷи эътиборнома"
 }
