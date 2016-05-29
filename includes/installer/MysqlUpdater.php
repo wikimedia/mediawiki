@@ -32,6 +32,27 @@ use MediaWiki\MediaWikiServices;
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
+		$dbType = $this->db->getType();
+
+		if ( $dbType === 'mysql' && $this->db->getServerVersion() >= '5.6.4' ) {
+			$SearchIndexAddTable1 = [
+				'addTable', 'searchindex_old', 'patch-mysql-5.6-copy-searchindex.sql'
+			];
+			$SearchIndexDrop1 = [
+				'dropTable',
+				'searchindex'
+			];
+			$SearchIndexAddTable2 = [
+				'addTable',
+				'searchindex',
+				'patch-mysql-5.6-searchindex.sql'
+			];
+			$SearchIndexDrop2 = [
+				'dropTable',
+				'searchindex_old'
+			];
+		}
+
 		return [
 			[ 'disableContentHandlerUseDB' ],
 
@@ -305,6 +326,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+
+			$SearchIndexAddTable1,
+			$SearchIndexDrop1,
+			$SearchIndexAddTable2,
+			$SearchIndexDrop2,
 		];
 	}
 
