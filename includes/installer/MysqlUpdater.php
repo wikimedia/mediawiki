@@ -28,7 +28,30 @@
  * @since 1.17
  */
 class MysqlUpdater extends DatabaseUpdater {
+
+	private $serverVersion = null;
+
+	/**
+	 * Duplicated from DatabaseMysqlBase so
+	 * we can use it here.
+	 */
+	public function getServerVersion() {
+		if ( $this->serverVersion === null ) {
+			$this->serverVersion = $this->selectField( '', 'VERSION()', '', __METHOD__ );
+		}
+		return $this->serverVersion;
+	}
+
 	protected function getCoreUpdateList() {
+		$version = $this->getServerVersion();
+
+		if ( version_compare( $version, '5.6' ) < 0 ) {
+			$SearchIndexDrop = [ 'dropTable', 'searchindex' ];
+			$SearchIndexAddTable = [ 'addTable', 'searchindex', 'patch-mysql-5.6-searchindex.sql' ];
+		} else {
+			$SearchIndexDrop = [ '' ];
+			$SearchIndexAddTable = [ '' ];
+		}
 		return [
 			[ 'disableContentHandlerUseDB' ],
 
@@ -283,6 +306,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
 				'patch-add-cl_collation_ext_index.sql' ],
 			[ 'doCollationUpdate' ],
+			$SearchIndexDrop,
+			$SearchIndexAddTable,
 		];
 	}
 
