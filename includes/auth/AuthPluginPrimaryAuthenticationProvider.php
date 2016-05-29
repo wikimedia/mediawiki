@@ -329,7 +329,7 @@ class AuthPluginPrimaryAuthenticationProvider
 				if ( $req->domain === null ) {
 					return \StatusValue::newGood( 'ignored' );
 				}
-				if ( !$this->auth->validDomain( $domain ) ) {
+				if ( !$this->auth->validDomain( $req->domain ) ) {
 					return \StatusValue::newFatal( 'authmanager-authplugin-setpass-bad-domain' );
 				}
 			}
