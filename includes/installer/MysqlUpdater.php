@@ -29,6 +29,27 @@
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
+		$dbType = $this->db->getType();
+
+		if ( $dbType === 'mysql' && $this->db->getServerVersion() >= '5.6.4' ) {
+			$SearchIndexAddTable1 = [
+				'addTable', 'searchindex_old', 'patch-mysql-5.6-copy-searchindex.sql'
+			];
+			$SearchIndexDrop = [
+				'dropTable',
+				'searchindex'
+			];
+			$SearchIndexAddTable2 = [
+				'addTable',
+				'searchindex',
+				'patch-mysql-5.6-searchindex.sql'
+			];
+		} else {
+			$SearchIndexAddTable1 = [ '' ];
+			$SearchIndexDrop = [ '' ];
+			$SearchIndexAddTable2 = [ '' ];
+		}
+
 		return [
 			[ 'disableContentHandlerUseDB' ],
 
@@ -283,6 +304,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
 				'patch-add-cl_collation_ext_index.sql' ],
 			[ 'doCollationUpdate' ],
+			$SearchIndexAddTable1,
+			$SearchIndexDrop,
+			$SearchIndexAddTable2,
 		];
 	}
 
