@@ -412,3 +412,7 @@
 	path = extensions/ScratchBlocks
 	url = https://github.com/tjvr/wiki-scratchblocks.git
 	branch = master
+[submodule "extensions/VoteNY"]
+	path = extensions/VoteNY
+	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
+	branch = REL1_26
