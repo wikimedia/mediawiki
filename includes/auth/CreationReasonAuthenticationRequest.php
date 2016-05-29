@@ -10,6 +10,8 @@ class CreationReasonAuthenticationRequest extends AuthenticationRequest {
 	/** @var string Account creation reason (only used when creating for someone else) */
 	public $reason;
 
+	public $required = self::OPTIONAL;
+
 	public function getFieldInfo() {
 		return [
 			'reason' => [
