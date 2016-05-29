@@ -281,6 +281,21 @@ abstract class AuthenticationRequest {
 	public static function mergeFieldInfo( array $reqs ) {
 		$merged = [];
 
+		// fields that are required by some primary providers but not others are not actually required
+		$primaryRequests = array_filter( $reqs, function ( $req ) {
+			return $req->required === AuthenticationRequest::PRIMARY_REQUIRED;
+		} );
+		$sharedRequiredPrimaryFields = array_reduce( $primaryRequests, function ( $shared, $req ) {
+			$required = array_keys( array_filter( $req->getFieldInfo(), function ( $options ) {
+				return empty( $options['optional'] );
+			} ) );
+			if ( $shared === null ) {
+				return $required;
+			} else {
+				return array_intersect( $shared, $required );
+			}
+		}, null );
+
 		foreach ( $reqs as $req ) {
 			$info = $req->getFieldInfo();
 			if ( !$info ) {
@@ -288,8 +303,14 @@ abstract class AuthenticationRequest {
 			}
 
 			foreach ( $info as $name => $options ) {
-				if ( $req->required !== self::REQUIRED ) {
+				if (
 					// If the request isn't required, its fields aren't required either.
+					$req->required === self::OPTIONAL
+					// If there is a primary not requiring this field, no matter how many others do,
+					// authentication can proceed without it.
+					|| $req->required === self::PRIMARY_REQUIRED
+						&& !in_array( $name, $sharedRequiredPrimaryFields, true )
+				) {
 					$options['optional'] = true;
 				} else {
 					$options['optional'] = !empty( $options['optional'] );
