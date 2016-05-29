@@ -1,7 +1,6 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
@@ -81,14 +80,12 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
-	public function overrideDeferredUpdatesAddCallableUpdateCallback( $callback ) {
+	public function overrideDeferredUpdatesAddCallableUpdateCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException(
 				'Cannot override DeferredUpdates::addCallableUpdate callback in operation.'
 			);
 		}
-		Assert::parameterType( 'callable', $callback, '$callback' );
-
 		$previousValue = $this->deferredUpdatesAddCallableUpdateCallback;
 		$this->deferredUpdatesAddCallableUpdateCallback = $callback;
 		return new ScopedCallback( function() use ( $previousValue ) {
@@ -106,14 +103,12 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
-	public function overrideRevisionGetTimestampFromIdCallback( $callback ) {
+	public function overrideRevisionGetTimestampFromIdCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException(
 				'Cannot override Revision::getTimestampFromId callback in operation.'
 			);
 		}
-		Assert::parameterType( 'callable', $callback, '$callback' );
-
 		$previousValue = $this->revisionGetTimestampFromIdCallback;
 		$this->revisionGetTimestampFromIdCallback = $callback;
 		return new ScopedCallback( function() use ( $previousValue ) {
