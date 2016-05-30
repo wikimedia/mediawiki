@@ -243,18 +243,21 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		$req1->required = AuthenticationRequest::PRIMARY_REQUIRED;
 
-		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1 ] );
-		$expect = $req1->getFieldInfo();
-		foreach ( $expect as $name => &$options ) {
-			$options['optional'] = true;
-		}
-		unset( $options );
-		$this->assertEquals( $expect, $fields );
-
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
 		$expect += $req2->getFieldInfo();
 		$expect['string1']['optional'] = false;
 		$expect['string3']['optional'] = false;
+		$expect['select']['optional'] = false;
+		$expect['select']['options']['bar'] = $msg;
+		$this->assertEquals( $expect, $fields );
+
+		$req2->required = AuthenticationRequest::PRIMARY_REQUIRED;
+
+		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
+		$expect = $req1->getFieldInfo() + $req2->getFieldInfo();
+		$expect['string1']['optional'] = false;
+		$expect['string2']['optional'] = true;
+		$expect['string3']['optional'] = true;
 		$expect['select']['optional'] = false;
 		$expect['select']['options']['bar'] = $msg;
 		$this->assertEquals( $expect, $fields );
