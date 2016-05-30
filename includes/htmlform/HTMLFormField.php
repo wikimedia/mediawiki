@@ -350,6 +350,20 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Can we assume that the request is an attempt to submit a HTMLForm, as opposed to an attempt to
+	 * just view it? This can't normally be distinguished for e.g. checkboxes.
+	 *
+	 * Returns true if the request has a field for a CSRF token (wpEditToken) or a form identifier
+	 * (wpFormIdentifier).
+	 *
+	 * @param WebRequest $request
+	 * @return boolean
+	 */
+	protected function isSubmitAttempt( WebRequest $request ) {
+		return $request->getCheck( 'wpEditToken' ) || $request->getCheck( 'wpFormIdentifier' );
+	}
+
+	/**
 	 * Get the value that this input has been set to from a posted form,
 	 * or the input's default value if it has not been set.
 	 *

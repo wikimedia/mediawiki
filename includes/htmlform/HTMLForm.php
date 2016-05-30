@@ -190,6 +190,7 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
+	protected $mFormIdentifier;
 	protected $mTitle;
 	protected $mMethod = 'post';
 	protected $mWasSubmitted = false;
@@ -480,7 +481,14 @@ class HTMLForm extends ContextSource {
 		}
 
 		# Load data from the request.
-		$this->loadData();
+		if (
+			$this->mFormIdentifier === null ||
+			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier
+		) {
+			$this->loadData();
+		} else {
+			$this->mFieldData = [];
+		}
 
 		return $this;
 	}
@@ -492,22 +500,29 @@ class HTMLForm extends ContextSource {
 	public function tryAuthorizedSubmit() {
 		$result = false;
 
-		$submit = false;
+		$identOkay = false;
+		if ( $this->mFormIdentifier === null ) {
+			$identOkay = true;
+		} else {
+			$identOkay = $this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier;
+		}
+
+		$tokenOkay = false;
 		if ( $this->getMethod() !== 'post' ) {
-			$submit = true; // no session check needed
+			$tokenOkay = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
 			if ( $this->getUser()->isLoggedIn() || $editToken !== null ) {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
-				$submit = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
+				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
 			} else {
-				$submit = true;
+				$tokenOkay = true;
 			}
 		}
 
-		if ( $submit ) {
+		if ( $tokenOkay && $identOkay ) {
 			$this->mWasSubmitted = true;
 			$result = $this->trySubmit();
 		}
@@ -1042,6 +1057,12 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getHiddenFields() {
 		$html = '';
+		if ( $this->mFormIdentifier !== null ) {
+			$html .= Html::hidden(
+				'wpFormIdentifier',
+				$this->mFormIdentifier
+			) . "\n";
+		}
 		if ( $this->getMethod() === 'post' ) {
 			$html .= Html::hidden(
 				'wpEditToken',
@@ -1323,6 +1344,27 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
+
+		return $this;
+	}
+
+	/**
+	 * Set an internal identifier for this form. It will be submitted as a hidden form field, allowing
+	 * HTMLForm to determine whether the form was submitted (or merely viewed). Setting this serves
+	 * two purposes:
+	 *
+	 * - If you use two or more forms on one page, it allows HTMLForm to identify which of the forms
+	 *   was submitted, and not attempt to validate the other ones.
+	 * - If you use checkbox or multiselect fields inside a form using the GET method, it allows
+	 *   HTMLForm to distinguish between the initial page view and a form submission with all
+	 *   checkboxes or select options unchecked.
+	 *
+	 * @since 1.28
+	 * @param string $ident
+	 * @return $this
+	 */
+	public function setFormIdentifier( $ident ) {
+		$this->mFormIdentifier = $ident;
 
 		return $this;
 	}
