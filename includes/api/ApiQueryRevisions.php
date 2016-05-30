@@ -80,8 +80,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			return false;
 		}
 
-		return $wgUser->getEditToken(
-			[ $title->getPrefixedText(), $rev->getUserText() ] );
+		return $wgUser->getEditToken( 'rollback' );
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
