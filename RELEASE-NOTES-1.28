@@ -9,6 +9,8 @@ production.
 * The load.php entry point now enforces the existing policy of not allowing
   access to session data, which includes the session user and the session
   user's language. If such access is attempted, an exception will be thrown.
+* The number of internal PBKDF2 iterations used to derive the session secret
+  is configurable via $wgSessionPbkdf2Iterations.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

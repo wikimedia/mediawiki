@@ -384,7 +384,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @return string[] Encryption key, HMAC key
 	 */
 	private function getSecretKeys() {
-		global $wgSessionSecret, $wgSecretKey;
+		global $wgSessionSecret, $wgSecretKey, $wgSessionPbkdf2Iterations;
 
 		$wikiSecret = $wgSessionSecret ?: $wgSecretKey;
 		$userSecret = $this->get( 'wsSessionSecret', null );
@@ -392,8 +392,13 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 			$userSecret = \MWCryptRand::generateHex( 32 );
 			$this->set( 'wsSessionSecret', $userSecret );
 		}
+		$iterations = $this->get( 'wsSessionPbkdf2Iterations', null );
+		if ( $iterations === null ) {
+			$iterations = $wgSessionPbkdf2Iterations;
+			$this->set( 'wsSessionPbkdf2Iterations', $iterations );
+		}
 
-		$keymats = hash_pbkdf2( 'sha256', $wikiSecret, $userSecret, 10001, 64, true );
+		$keymats = hash_pbkdf2( 'sha256', $wikiSecret, $userSecret, $iterations, 64, true );
 		return [
 			substr( $keymats, 0, 32 ),
 			substr( $keymats, 32, 32 ),
