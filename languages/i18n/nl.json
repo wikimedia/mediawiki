@@ -3110,6 +3110,7 @@
 	"confirm-watch-top": "Deze pagina toevoegen aan uw volglijst?",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Deze pagina verwijderen uit uw volglijst?",
+	"confirm-rollback-button": "OK",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← vorige pagina",
 	"imgmultipagenext": "volgende pagina →",
@@ -3675,5 +3676,6 @@
 	"log-action-filter-rights-rights": "Handmatige aanpassing",
 	"log-action-filter-rights-autopromote": "Automatische aanpassing",
 	"log-action-filter-upload-upload": "Nieuwe upload",
-	"log-action-filter-upload-overwrite": "Herupload"
+	"log-action-filter-upload-overwrite": "Herupload",
+	"authmanager-email-label": "E-mail"
 }

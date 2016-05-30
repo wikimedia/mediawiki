@@ -3481,5 +3481,15 @@
 	"mw-widgets-titleinput-description-new-page": "stranica još ne postoji",
 	"mw-widgets-titleinput-description-redirect": "preusmjerava na $1",
 	"api-error-blacklisted": "Molimo izaberite drugačiji, deskriptivniji naziv.",
-	"randomrootpage": "Slučajna root stranica"
+	"randomrootpage": "Slučajna root stranica",
+	"log-action-filter-block": "Vrsta blokiranja:",
+	"log-action-filter-delete": "Vrsta brisanja:",
+	"log-action-filter-all": "Sve",
+	"log-action-filter-block-block": "Blokiranje",
+	"log-action-filter-block-reblock": "Izmjena blokiranja",
+	"log-action-filter-block-unblock": "Deblokiranje",
+	"log-action-filter-delete-delete": "Brisanje stranice",
+	"log-action-filter-delete-restore": "Vraćanje obrisane stranice",
+	"log-action-filter-delete-event": "Brisanje unosa u zapisniku",
+	"log-action-filter-delete-revision": "Brisanje izmjene"
 }

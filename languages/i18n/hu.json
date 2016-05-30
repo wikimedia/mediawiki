@@ -1335,7 +1335,7 @@
 	"recentchangeslinked-page": "Lap neve:",
 	"recentchangeslinked-to": "Inkább az erre linkelő lapok változtatásait mutasd",
 	"recentchanges-page-added-to-category": "[[:$1]] hozzáadva a kategóriához",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] és [[Special:WhatLinksHere/$1|{{PLURAL:$2|egy oldal|$2 oldal}}]] hozzáadva a kategóriához",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] hozzáadva a kategóriához, [[Special:WhatLinksHere/$1|ez a lap be van illesztve más lapokra]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] eltávolítva a kategóriából",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] és {{PLURAL:$2|egy oldal|$2 oldal}} eltávolítva a kategóriából",
 	"upload": "Fájl feltöltése",
