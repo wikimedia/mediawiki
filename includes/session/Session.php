@@ -425,15 +425,22 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		// Encrypt
 		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
 		$iv = \MWCryptRand::generate( 16, true );
-		if ( function_exists( 'openssl_encrypt' ) ) {
+		if (
+			function_exists( 'openssl_encrypt' )
+			&& in_array( 'aes-256-ctr', openssl_get_cipher_methods(), true )
+		) {
 			$ciphertext = openssl_encrypt( $serialized, 'aes-256-ctr', $encKey, OPENSSL_RAW_DATA, $iv );
 			if ( $ciphertext === false ) {
-				throw new UnexpectedValueException( 'Encryption failed: ' . openssl_error_string() );
+				throw new \UnexpectedValueException( 'Encryption failed: ' . openssl_error_string() );
 			}
-		} elseif ( function_exists( 'mcrypt_encrypt' ) ) {
+		} elseif (
+			function_exists( 'mcrypt_encrypt' )
+			&& in_array( 'rijndael-128', mcrypt_list_algorithms(), true )
+			&& in_array( 'ctr', mcrypt_list_modes(), true )
+		) {
 			$ciphertext = mcrypt_encrypt( 'rijndael-128', $encKey, $serialized, 'ctr', $iv );
 			if ( $ciphertext === false ) {
-				throw new UnexpectedValueException( 'Encryption failed' );
+				throw new \UnexpectedValueException( 'Encryption failed' );
 			}
 		} elseif ( $wgSessionInsecureSecrets ) {
 			$ex = new \Exception( 'No encryption is available, storing data as plain text' );
