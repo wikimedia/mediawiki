@@ -554,23 +554,34 @@ class ApiQuery extends ApiBase {
 	}
 
 	public function isReadMode() {
-		// We need to make an exception for ApiQueryTokens so login tokens can
-		// be fetched on private wikis. Restrict that exception as much as
-		// possible: no other modules allowed, and no pageset parameters
-		// either. We do allow the 'rawcontinue' and 'indexpageids' parameters
-		// since frameworks might add these unconditionally and they can't
-		// expose anything here.
+		// We need to make an exception for certain meta modules that should be
+		// accessible even without the 'read' right. Restrict the exception as
+		// much as possible: no other modules allowed, and no pageset
+		// parameters either. We do allow the 'rawcontinue' and 'indexpageids'
+		// parameters since frameworks might add these unconditionally and they
+		// can't expose anything here.
+		$this->mParams = $this->extractRequestParams();
 		$params = array_filter(
 			array_diff_key(
-				$this->extractRequestParams() + $this->getPageSet()->extractRequestParams(),
+				$this->mParams + $this->getPageSet()->extractRequestParams(),
 				[ 'rawcontinue' => 1, 'indexpageids' => 1 ]
 			)
 		);
-		if ( $params === [ 'meta' => [ 'tokens' ] ] ) {
-			return false;
+		if ( array_keys( $params ) !== [ 'meta' ] ) {
+			return true;
 		}
 
-		return true;
+		// Ask each module if it requires read mode. Any true => this returns
+		// true.
+		$modules = [];
+		$this->instantiateModules( $modules, 'meta' );
+		foreach ( $modules as $module ) {
+			if ( $module->isReadMode() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	protected function getExamplesMessages() {

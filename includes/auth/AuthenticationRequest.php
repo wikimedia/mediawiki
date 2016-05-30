@@ -92,14 +92,12 @@ abstract class AuthenticationRequest {
 	 *     - select: <select>
 	 *     - checkbox: <input type="checkbox">
 	 *     - multiselect: More a grid of checkboxes than <select multi>
-	 *     - button: <input type="image"> if 'image' is set, otherwise <input type="submit">
-	 *       (uses 'label' as button text)
+	 *     - button: <input type="submit"> (uses 'label' as button text)
 	 *     - hidden: Not visible to the user, but needs to be preserved for the next request
 	 *     - null: No widget, just display the 'label' message.
 	 *  - options: (array) Maps option values to Messages for the
 	 *      'select' and 'multiselect' types.
 	 *  - value: (string) Value (for 'null' and 'hidden') or default value (for other types).
-	 *  - image: (string) URL of an image to use in connection with the input
 	 *  - label: (Message) Text suitable for a label in an HTML form
 	 *  - help: (Message) Text suitable as a description of what the field is
 	 *  - optional: (bool) If set and truthy, the field may be left empty

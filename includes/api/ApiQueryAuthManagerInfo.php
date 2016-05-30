@@ -75,8 +75,8 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		$this->getResult()->addValue( [ 'query' ], $this->getModuleName(), $ret );
 	}
 
-	public function getCacheMode( $params ) {
-		return 'public';
+	public function isReadMode() {
+		return false;
 	}
 
 	public function getAllowedParams() {
@@ -95,7 +95,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 					AuthManager::ACTION_UNLINK,
 				],
 			],
-		] + ApiAuthManagerHelper::getStandardParams( '', 'mergerequestfields' );
+		] + ApiAuthManagerHelper::getStandardParams( '', 'mergerequestfields', 'messageformat' );
 	}
 
 	protected function getExamplesMessages() {
