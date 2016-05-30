@@ -3501,6 +3501,8 @@ HTML
 		$cancelParams = [];
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
+		} elseif ( $this->getContextTitle()->isRedirect() ) {
+			$cancelParams['redirect'] = 'no';
 		}
 		$attrs = [ 'id' => 'mw-editform-cancel' ];
 
