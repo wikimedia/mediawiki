@@ -118,9 +118,9 @@ class HTMLCheckField extends HTMLFormField {
 
 		// GetCheck won't work like we want for checks.
 		// Fetch the value in either one of the two following case:
-		// - we have a valid token (form got posted or GET forged by the user)
+		// - we have a valid submit attempt (form was just submitted, or a GET URL forged by the user)
 		// - checkbox name has a value (false or true), ie is not null
-		if ( $request->getCheck( 'wpEditToken' ) || $request->getVal( $this->mName ) !== null ) {
+		if ( $this->isSubmitAttempt( $request ) || $request->getVal( $this->mName ) !== null ) {
 			return $invert
 				? !$request->getBool( $this->mName )
 				: $request->getBool( $this->mName );
