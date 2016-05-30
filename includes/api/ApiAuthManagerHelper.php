@@ -244,7 +244,7 @@ class ApiAuthManagerHelper {
 			$describe = $req->describeCredentials();
 			$reqInfo = [
 				'id' => $req->getUniqueId(),
-				'metadata' => $req->getMetadata(),
+				'metadata' => $req->getMetadata() + [ ApiResult::META_TYPE => 'assoc' ],
 			];
 			switch ( $req->required ) {
 				case AuthenticationRequest::OPTIONAL:
@@ -283,7 +283,6 @@ class ApiAuthManagerHelper {
 	private function formatFields( array $fields ) {
 		static $copy = [
 			'type' => true,
-			'image' => true,
 			'value' => true,
 		];
 
