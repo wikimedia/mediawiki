@@ -461,14 +461,19 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @param StatusValue $expect
 	 */
 	public function testProviderAllowsAuthenticationDataChange( $type, $allow, $expect ) {
+		$domains = $type instanceof PasswordDomainAuthenticationRequest ? [ 'foo', 'bar' ] : [];
 		$plugin = $this->getMock( 'AuthPlugin' );
-		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
+		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( $domains );
 		$plugin->expects( $allow === null ? $this->never() : $this->once() )
 			->method( 'allowPasswordChange' )->will( $this->returnValue( $allow ) );
+		$plugin->expects( $this->any() )->method( 'validDomain' )
+			->willReturnCallback( function ( $d ) use ( $domains ) {
+				return in_array( $d, $domains, true );
+			} );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 
-		if ( $type === PasswordAuthenticationRequest::class ) {
-			$req = new $type();
+		if ( is_object( $type ) ) {
+			$req = $type;
 		} else {
 			$req = $this->getMock( $type );
 		}
@@ -480,13 +485,27 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public static function provideProviderAllowsAuthenticationDataChange() {
+		$domains = [ 'foo', 'bar' ];
+		$reqNoDomain = new PasswordDomainAuthenticationRequest( $domains );
+		$reqValidDomain = new PasswordDomainAuthenticationRequest( $domains );
+		$reqValidDomain->domain = 'foo';
+		$reqInvalidDomain = new PasswordDomainAuthenticationRequest( $domains );
+		$reqInvalidDomain->domain = 'invalid';
+
 		return [
 			[ AuthenticationRequest::class, null, \StatusValue::newGood( 'ignored' ) ],
-			[ PasswordAuthenticationRequest::class, true, \StatusValue::newGood() ],
+			[ new PasswordAuthenticationRequest, true, \StatusValue::newGood() ],
 			[
-				PasswordAuthenticationRequest::class,
+				new PasswordAuthenticationRequest,
 				false,
 				\StatusValue::newFatal( 'authmanager-authplugin-setpass-denied' )
+			],
+			[ $reqNoDomain, true, \StatusValue::newGood( 'ignored' ) ],
+			[ $reqValidDomain, true, \StatusValue::newGood() ],
+			[
+				$reqInvalidDomain,
+				true,
+				\StatusValue::newFatal( 'authmanager-authplugin-setpass-bad-domain' )
 			],
 		];
 	}
