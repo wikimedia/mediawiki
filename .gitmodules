@@ -420,3 +420,7 @@
 	path = skins/Metrolook
 	url = https://github.com/wikimedia/mediawiki-skins-Metrolook.git
 	branch = REL1_26
+[submodule "extensions/AJAXPoll"]
+	path = extensions/AJAXPoll
+	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
+	branch = REL1_26
