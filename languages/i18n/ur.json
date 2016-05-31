@@ -25,7 +25,8 @@
 			"عثمان خان شاہ",
 			"Syedalinaqinaqvi",
 			"محمد افضل",
-			"Macofe"
+			"Macofe",
+			"Hindustanilanguage"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -1411,6 +1412,7 @@
 	"monthsall": "تمام",
 	"deletedwhileediting": "انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!",
 	"confirm_purge_button": "جی!",
+	"confirm-rollback-button": "ٹھیک ہے",
 	"semicolon-separator": "؛&#32;",
 	"imgmultipageprev": "← پچھلا",
 	"imgmultipagenext": "اگلا →",

@@ -1416,5 +1416,6 @@
 	"specialpages": "Kaca-kaca khusus",
 	"external_image_whitelist": " #Jorna baen larikan kiye apa anané<pre>\n#Gunakna fragmèn èksprèsi regular (mung bagéyan nang antarane //) nang ngisor\n#Fragmèn kiye bakal dicocogna karo URL sekang gambar-gambar èksternal\n#Fragmèn sing cocog bakal ditampilna minangka gambar, nék ora ya mung pranala maring gambare baen sing ditampilna\n#Larikan sing diwiwiti nganggo # dianggep minangka komentar\n#Kiye ora mbédakna aksara gedhé/cilik\n\n#Sogna kabèh fragmèn èksprèsi regular nang dhuwuré larikan kiye. Jorna baen larikan kiye apa anané</pre>",
 	"tag-filter": "Filter [[Special:Tags|Tag]]:",
-	"rightsnone": "(ora ana)"
+	"rightsnone": "(ora ana)",
+	"searchsuggest-search": "Golet"
 }

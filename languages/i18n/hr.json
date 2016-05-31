@@ -587,7 +587,7 @@
 	"showdiff": "Prikaži promjene",
 	"blankarticle": "<strong>Upozorenje:</strong> Stvorili ste stranicu koja je prazna.\nAko iznova pritisnete na \"{{int:savearticle}}\", stranica će biti stvorena bez ikakvog sadržaja.",
 	"anoneditwarning": "<strong>Upozorenje:</strong> niste prijavljeni. Ako napravite uređivanje, Vaša IP adresa će biti javno vidljiva. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 stvorite račun]</strong>, Vaša uređivanja će biti pridružena suradničkom imenu, zajedno s ostalim pogodnostima.",
-	"anonpreviewwarning": "''Niste prijavljeni. Spremanjem će Vaše IP adrese ostati zabilježene u starim izmjenama ove stranice.''",
+	"anonpreviewwarning": "<em>Niste prijavljeni. Spremanjem izmjena Vaša će IP adresa ostati zabilježena u povijesti uređivanja ove stranice.</em>",
 	"missingsummary": "'''Podsjetnik:''' Niste unijeli sažetak promjena. Ako ponovno kliknete na \"Sačuvaj stranicu\", Vaše će promjene biti snimljene bez sažetka.",
 	"selfredirect": "<strong>Upozorenje:</strong> Stvarate preusmjeravanje na isti članak.\nMožda ste izabrali pogrješnu odredišnu stranicu za preusmjeravanje ili uređujete pogrješnu stranicu.\nAko pritisnete na \"{{int:savearticle}}\" još jednom, preusmjeravanje će svejedno biti stvoreno.",
 	"missingcommenttext": "Molim unesite sažetak.",
