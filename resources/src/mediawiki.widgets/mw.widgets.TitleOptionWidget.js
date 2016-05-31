@@ -49,6 +49,7 @@
 
 		// Initialization
 		this.$label.attr( 'href', config.url );
+		this.$label.attr( 'dir', 'auto' );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// OOUI OptionWidgets make an effort to not be tab accessible, but
