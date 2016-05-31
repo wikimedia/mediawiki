@@ -425,7 +425,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * list item directly so they will not be passed to makeLink
 	 * (however the link will still support a tooltip and accesskey from it)
 	 * If you need an id or class on a single link you should include a "links"
-	 * array with just one link item inside of it. If you want to add a title
+	 * array with just one link item inside of it. You can also set "link-class" in
+	 * $item to set a class on the link itself. If you want to add a title
 	 * to the list item itself, you can set "itemtitle" to the value.
 	 * $options is also passed on to makeLink calls
 	 *
@@ -449,6 +450,12 @@ abstract class BaseTemplate extends QuickTemplate {
 				// but makeSidebarLink still needs to know what id to use when
 				// generating tooltips and accesskeys.
 				$link['single-id'] = $item['id'];
+			}
+			if ( isset( $link['link-class'] ) ) {
+				// link-class should be set on the <a> itself,
+				// so pass it in as 'class'
+				$link['class'] = $link['link-class'];
+				unset( $link['link-class'] );
 			}
 			$html = $this->makeLink( $key, $link, $options );
 		}

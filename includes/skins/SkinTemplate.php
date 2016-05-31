@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base class for template-based skins.
@@ -749,6 +750,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		$linkClass = MediaWikiServices::getInstance()->getLinkRenderer()->getLinkClasses( $title );
+
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
 		// or just a single key
 		$msg = wfMessageFallback( $message )->setContext( $this->getContext() );
@@ -771,11 +774,16 @@ class SkinTemplate extends Skin {
 			return $result;
 		}
 
-		return [
+		$result = [
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
 			'href' => $title->getLocalURL( $query ),
 			'primary' => true ];
+		if ( $linkClass !== '' ) {
+			$result['link-class'] = $linkClass;
+		}
+
+		return $result;
 	}
 
 	function makeTalkUrlDetails( $name, $urlaction = '' ) {
