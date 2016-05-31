@@ -109,9 +109,12 @@ class ApiAMCreateAccount extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_CREATE,
+		$ret = ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_CREATE,
 			'requests', 'messageformat', 'mergerequestfields', 'preservestate', 'returnurl', 'continue'
 		);
+		$ret['preservestate'][ApiBase::PARAM_HELP_MSG_APPEND][] =
+			'apihelp-createaccount-param-preservestate';
+		return $ret;
 	}
 
 	public function dynamicParameterDocumentation() {
