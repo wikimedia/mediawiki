@@ -49,6 +49,7 @@
 
 		// Initialization
 		this.$label.attr( 'href', config.url );
+		this.$label.attr( 'dir', 'auto' );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// Allow opening the link in new tab, but not regular navigation.
