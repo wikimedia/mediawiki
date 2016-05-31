@@ -28,12 +28,14 @@ class ResourcesTest extends MediaWikiTestCase {
 	 * @dataProvider provideMediaStylesheets
 	 */
 	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
-		$cssText = CSSMin::minify( $css->cssText );
+		if ( !in_array( '--testsuite skins', $_SERVER['argv'] ) ) {
+			$cssText = CSSMin::minify( $css->cssText );
 
-		$this->assertTrue(
-			strpos( $cssText, '@media' ) === false,
-			'Stylesheets should not both specify "media" and contain @media'
-		);
+			$this->assertTrue(
+				strpos( $cssText, '@media' ) === false,
+				'Stylesheets should not both specify "media" and contain @media'
+			);
+		}
 	}
 
 	public function testVersionHash() {
