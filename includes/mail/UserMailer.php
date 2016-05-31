@@ -190,7 +190,7 @@ class UserMailer {
 	}
 
 	/**
-	 * Helper function fo UserMailer::send() which does the actual sending. It expects a $to
+	 * Helper function of UserMailer::send() which does the actual sending. It expects a $to
 	 * list which the UserMailerSplitTo hook would not split further.
 	 * @param MailAddress[] $to Array of recipients' email addresses
 	 * @param MailAddress $from Sender's email
