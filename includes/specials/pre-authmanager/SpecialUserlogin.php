@@ -1718,6 +1718,7 @@ class LoginFormPreAuthManager extends SpecialPage {
 		}
 
 		SessionManager::getGlobalSession()->resetId();
+		SessionManager::getGlobalSession()->resetAllTokens();
 	}
 
 	/**
