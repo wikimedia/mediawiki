@@ -3865,6 +3865,7 @@ class User implements IDBAccessObject {
 			$session->setLoggedOutTimestamp( time() );
 			$session->setUser( new User );
 			$session->set( 'wsUserID', 0 ); // Other code expects this
+			$session->resetAllTokens();
 			ScopedCallback::consume( $delay );
 		}
 	}
