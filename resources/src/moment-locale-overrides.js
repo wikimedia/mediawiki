@@ -27,7 +27,7 @@ moment.locale( moment.locale(), {
 		if ( mw.config.get( 'wgTranslateNumerals' ) ) {
 			for ( i = 0; i < 10; i++ ) {
 				if ( table[ i ] !== undefined ) {
-					s = s.replace( new RegExp( mw.RegExp.escape( i ), 'g' ), table[ i ] );
+					s = s.replace( new RegExp( i, 'g' ), table[ i ] );
 				}
 			}
 		}
