@@ -65,21 +65,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 	protected function getOneCheckbox( $checked, $attribs, $label ) {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
-			if ( $this->mOptionsLabelsNotFromMessage ) {
-				$label = new OOUI\HtmlSnippet( $label );
-			}
-			return new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
-					'name' => "{$this->mName}[]",
-					'selected' => $checked,
-				] + OOUI\Element::configFromHtmlAttributes(
-					$attribs
-				) ),
-				[
-					'label' => $label,
-					'align' => 'inline',
-				]
-			);
+			throw new MWException( 'HTMLMultiSelectField#getOneCheckbox() is not supported' );
 		} else {
 			$elementFunc = [ 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 			$checkbox =
@@ -97,6 +83,38 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 			return $checkbox;
 		}
+	}
+
+	/**
+	 * Get the OOUI version of this field.
+	 *
+	 * @since 1.28
+	 * @param string[] $value
+	 * @return OOUI\CheckboxMultiselectInputWidget
+	 */
+	public function getInputOOUI( $value ) {
+		$attr = $this->getTooltipAndAccessKey();
+		$attr['id'] = $this->mID;
+		$attr['name'] = "{$this->mName}[]";
+
+		$attr['value'] = $value;
+		$attr['options'] = $this->getOptionsOOUI();
+
+		if ( $this->mOptionsLabelsNotFromMessage ) {
+			foreach ( $attr['options'] as &$option ) {
+				$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
+			}
+		}
+
+		$attr += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'tabindex' ] )
+		);
+
+		if ( $this->mClass !== '' ) {
+			$attr['classes'] = [ $this->mClass ];
+		}
+
+		return new OOUI\CheckboxMultiselectInputWidget( $attr );
 	}
 
 	/**
