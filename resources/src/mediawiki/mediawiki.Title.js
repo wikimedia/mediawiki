@@ -664,11 +664,11 @@
 				// Thumbnails
 				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[^\s\/]+-[^\s\/]*$/,
 
-				// Thumbnails in non-hashed upload directories
-				/\/([^\s\/]+)\/[^\s\/]+-(?:\1|thumbnail)[^\s\/]*$/,
-
 				// Full size images
 				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)$/,
+
+				// Thumbnails in non-hashed upload directories
+				/\/([^\s\/]+)\/[^\s\/]+-(?:\1|thumbnail)[^\s\/]*$/,
 
 				// Full-size images in non-hashed upload directories
 				/\/([^\s\/]+)$/
