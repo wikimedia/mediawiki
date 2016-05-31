@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.3
+ * OOjs UI v0.17.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-24T22:46:36Z
+ * Date: 2016-05-31T21:50:56Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -16,6 +16,7 @@
 	display: inline-block;
 	vertical-align: middle;
 	font: inherit;
+	line-height: normal;
 	white-space: nowrap;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -37,16 +38,11 @@
 	vertical-align: middle;
 }
 .oo-ui-buttonElement-frameless {
-	display: inline-block;
 	position: relative;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
 	vertical-align: top;
 	text-align: center;
-}
-.oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-	cursor: default;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
 	font-weight: bold;
@@ -163,6 +159,9 @@
 	background-color: #dddddd;
 	color: #ffffff;
 	border: 1px solid #dddddd;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-disabled + .oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+	border-left-color: #ffffff;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
 	color: #555555;
@@ -887,6 +886,15 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check-invert.png");
 }
+.oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
+	margin-bottom: 0;
+}
+.oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
+	padding: 0.25em 0;
+}
+.oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body .oo-ui-labelElement-label {
+	line-height: 1.5em;
+}
 .oo-ui-dropdownInputWidget {
 	position: relative;
 	vertical-align: middle;
@@ -1337,4 +1345,41 @@
 .oo-ui-comboBoxInputWidget input,
 .oo-ui-comboBoxInputWidget textarea {
 	height: 2.35em;
+}
+.oo-ui-multioptionWidget {
+	position: relative;
+	display: block;
+}
+.oo-ui-multioptionWidget.oo-ui-widget-enabled {
+	cursor: pointer;
+}
+.oo-ui-multioptionWidget.oo-ui-widget-disabled {
+	cursor: default;
+}
+.oo-ui-multioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.oo-ui-multioptionWidget .oo-ui-labelElement-label {
+	line-height: 1.5em;
+}
+.oo-ui-multioptionWidget.oo-ui-widget-disabled {
+	color: #cccccc;
+}
+.oo-ui-checkboxMultioptionWidget {
+	cursor: default;
+	padding: 0.25em 0;
+}
+.oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+	display: inline-block;
+	vertical-align: middle;
+}
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+	padding: 0.25em 0.25em 0.25em 1em;
+}
+.oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
+	margin-right: 0;
 }

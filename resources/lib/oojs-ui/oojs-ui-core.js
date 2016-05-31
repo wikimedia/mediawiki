@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.3
+ * OOjs UI v0.17.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-24T22:46:32Z
+ * Date: 2016-05-31T21:50:52Z
  */
 ( function ( OO ) {
 
@@ -4697,19 +4697,19 @@ OO.ui.PopupButtonWidget.prototype.onAction = function () {
  * @private
  * @abstract
  * @class
- * @extends OO.ui.mixin.GroupElement
+ * @mixins OO.ui.mixin.GroupElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
  */
 OO.ui.mixin.GroupWidget = function OoUiMixinGroupWidget( config ) {
-	// Parent constructor
-	OO.ui.mixin.GroupWidget.parent.call( this, config );
+	// Mixin constructors
+	OO.ui.mixin.GroupElement.call( this, config );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.mixin.GroupWidget, OO.ui.mixin.GroupElement );
+OO.mixinClass( OO.ui.mixin.GroupWidget, OO.ui.mixin.GroupElement );
 
 /* Methods */
 
@@ -5059,15 +5059,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.SelectWidget, OO.ui.Widget );
-
-// Need to mixin base class as well
-OO.mixinClass( OO.ui.SelectWidget, OO.ui.mixin.GroupElement );
 OO.mixinClass( OO.ui.SelectWidget, OO.ui.mixin.GroupWidget );
-
-/* Static */
-OO.ui.SelectWidget.static.passAllFilter = function () {
-	return true;
-};
 
 /* Events */
 
@@ -5129,16 +5121,28 @@ OO.ui.SelectWidget.static.passAllFilter = function () {
  * @param {jQuery.Event} event
  */
 OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
+	var item;
 	if ( event.target === this.$element[ 0 ] ) {
 		// This widget was focussed, e.g. by the user tabbing to it.
 		// The styles for focus state depend on one of the items being selected.
 		if ( !this.getSelectedItem() ) {
-			this.selectItem( this.getFirstSelectableItem() );
+			item = this.getFirstSelectableItem();
 		}
 	} else {
 		// One of the options got focussed (and the event bubbled up here).
 		// They can't be tabbed to, but they can be activated using accesskeys.
-		this.selectItem( this.getTargetItem( event ) );
+		item = this.getTargetItem( event );
+	}
+
+	if ( item ) {
+		if ( item.constructor.static.highlightable ) {
+			this.highlightItem( item );
+		} else {
+			this.selectItem( item );
+		}
+	}
+
+	if ( event.target !== this.$element[ 0 ] ) {
 		this.$element.focus();
 	}
 };
@@ -5394,7 +5398,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 		item = this.getRelativeSelectableItem( item, 1, filter );
 	}
 	if ( item ) {
-		if ( item.constructor.static.highlightable ) {
+		if ( this.isVisible() && item.constructor.static.highlightable ) {
 			this.highlightItem( item );
 		} else {
 			this.chooseItem( item );
@@ -5720,7 +5724,7 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
  *
  * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
  * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
- * @param {Function} filter Only consider items for which this function returns
+ * @param {Function} [filter] Only consider items for which this function returns
  *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
@@ -5728,10 +5732,6 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
 	var currentIndex, nextIndex, i,
 		increase = direction > 0 ? 1 : -1,
 		len = this.items.length;
-
-	if ( !$.isFunction( filter ) ) {
-		filter = OO.ui.SelectWidget.static.passAllFilter;
-	}
 
 	if ( item instanceof OO.ui.OptionWidget ) {
 		currentIndex = this.items.indexOf( item );
@@ -5744,7 +5744,10 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
 
 	for ( i = 0; i < len; i++ ) {
 		item = this.items[ nextIndex ];
-		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() && filter( item ) ) {
+		if (
+			item instanceof OO.ui.OptionWidget && item.isSelectable() &&
+			( !filter || filter( item ) )
+		) {
 			return item;
 		}
 		nextIndex = ( nextIndex + increase + len ) % len;
@@ -5759,16 +5762,7 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
  * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
  */
 OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
-	var i, len, item;
-
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		item = this.items[ i ];
-		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() ) {
-			return item;
-		}
-	}
-
-	return null;
+	return this.getRelativeSelectableItem( null, 1 );
 };
 
 /**
@@ -6357,7 +6351,10 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Events
 	this.$handle.on( {
 		click: this.onClick.bind( this ),
-		keydown: this.onKeyDown.bind( this )
+		keydown: this.onKeyDown.bind( this ),
+		// Hack? Handle type-to-search when menu is not expanded and not handling its own events
+		keypress: this.menu.onKeyPressHandler,
+		blur: this.menu.clearKeyPressBuffer.bind( this.menu )
 	} );
 	this.menu.connect( this, { select: 'onMenuSelect' } );
 
@@ -6592,6 +6589,428 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 
 OO.inheritClass( OO.ui.RadioSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.mixin.TabIndexedElement );
+
+/**
+ * MultioptionWidgets are special elements that can be selected and configured with data. The
+ * data is often unique for each option, but it does not have to be. MultioptionWidgets are used
+ * with OO.ui.SelectWidget to create a selection of mutually exclusive options. For more information
+ * and examples, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Multioptions
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.ItemWidget
+ * @mixins OO.ui.mixin.LabelElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {boolean} [selected=false] Whether the option is initially selected
+ */
+OO.ui.MultioptionWidget = function OoUiMultioptionWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.MultioptionWidget.parent.call( this, config );
+
+	// Mixin constructors
+	OO.ui.mixin.ItemWidget.call( this );
+	OO.ui.mixin.LabelElement.call( this, config );
+
+	// Properties
+	this.selected = null;
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-multioptionWidget' )
+		.append( this.$label );
+	this.setSelected( config.selected );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.MultioptionWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.MultioptionWidget, OO.ui.mixin.ItemWidget );
+OO.mixinClass( OO.ui.MultioptionWidget, OO.ui.mixin.LabelElement );
+
+/* Events */
+
+/**
+ * @event change
+ *
+ * A change event is emitted when the selected state of the option changes.
+ *
+ * @param {boolean} selected Whether the option is now selected
+ */
+
+/* Methods */
+
+/**
+ * Check if the option is selected.
+ *
+ * @return {boolean} Item is selected
+ */
+OO.ui.MultioptionWidget.prototype.isSelected = function () {
+	return this.selected;
+};
+
+/**
+ * Set the option’s selected state. In general, all modifications to the selection
+ * should be handled by the SelectWidget’s {@link OO.ui.SelectWidget#selectItem selectItem( [item] )}
+ * method instead of this method.
+ *
+ * @param {boolean} [state=false] Select option
+ * @chainable
+ */
+OO.ui.MultioptionWidget.prototype.setSelected = function ( state ) {
+	state = !!state;
+	if ( this.selected !== state ) {
+		this.selected = state;
+		this.emit( 'change', state );
+		this.$element.toggleClass( 'oo-ui-multioptionWidget-selected', state );
+	}
+	return this;
+};
+
+/**
+ * MultiselectWidget allows selecting multiple options from a list.
+ *
+ * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ *
+ * @class
+ * @abstract
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.GroupWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {OO.ui.MultioptionWidget[]} [items] An array of options to add to the multiselect.
+ */
+OO.ui.MultiselectWidget = function OoUiMultiselectWidget( config ) {
+	// Parent constructor
+	OO.ui.MultiselectWidget.parent.call( this, config );
+
+	// Configuration initialization
+	config = config || {};
+
+	// Mixin constructors
+	OO.ui.mixin.GroupWidget.call( this, config );
+
+	// Events
+	this.aggregate( { change: 'select' } );
+	// This is mostly for compatibility with CapsuleMultiselectWidget... normally, 'change' is emitted
+	// by GroupElement only when items are added/removed
+	this.connect( this, { select: [ 'emit', 'change' ] } );
+
+	// Initialization
+	if ( config.items ) {
+		this.addItems( config.items );
+	}
+	this.$group.addClass( 'oo-ui-multiselectWidget-group' );
+	this.$element.addClass( 'oo-ui-multiselectWidget' )
+		.append( this.$group );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.MultiselectWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.MultiselectWidget, OO.ui.mixin.GroupWidget );
+
+/* Events */
+
+/**
+ * @event change
+ *
+ * A change event is emitted when the set of items changes, or an item is selected or deselected.
+ */
+
+/**
+ * @event select
+ *
+ * A select event is emitted when an item is selected or deselected.
+ */
+
+/* Methods */
+
+/**
+ * Get options that are selected.
+ *
+ * @return {OO.ui.MultioptionWidget[]} Selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItems = function () {
+	return this.items.filter( function ( item ) {
+		return item.isSelected();
+	} );
+};
+
+/**
+ * Get the data of options that are selected.
+ *
+ * @return {Object[]|string[]} Values of selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItemsData = function () {
+	return this.getSelectedItems().map( function ( item ) {
+		return item.data;
+	} );
+};
+
+/**
+ * Select options by reference. Options not mentioned in the `items` array will be deselected.
+ *
+ * @param {OO.ui.MultioptionWidget[]} items Items to select
+ * @chainable
+ */
+OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
+	this.items.forEach( function ( item ) {
+		var selected = items.indexOf( item ) !== -1;
+		item.setSelected( selected );
+	} );
+	return this;
+};
+
+/**
+ * Select items by their data. Options not mentioned in the `datas` array will be deselected.
+ *
+ * @param {Object[]|string[]} datas Values of items to select
+ * @chainable
+ */
+OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
+	var items,
+		widget = this;
+	items = datas.map( function ( data ) {
+		return widget.getItemFromData( data );
+	} );
+	this.selectItems( items );
+	return this;
+};
+
+/**
+ * CheckboxMultioptionWidget is an option widget that looks like a checkbox.
+ * The class is used with OO.ui.CheckboxMultiselectWidget to create a selection of checkbox options.
+ * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_option
+ *
+ * @class
+ * @extends OO.ui.MultioptionWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.CheckboxMultioptionWidget = function OoUiCheckboxMultioptionWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties (must be done before parent constructor which calls #setDisabled)
+	this.checkbox = new OO.ui.CheckboxInputWidget();
+
+	// Parent constructor
+	OO.ui.CheckboxMultioptionWidget.parent.call( this, config );
+
+	// Events
+	this.checkbox.on( 'change', this.onCheckboxChange.bind( this ) );
+	this.$element.on( 'keydown', this.onKeyDown.bind( this ) );
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-checkboxMultioptionWidget' )
+		.prepend( this.checkbox.$element );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CheckboxMultioptionWidget, OO.ui.MultioptionWidget );
+
+/* Static Properties */
+
+OO.ui.CheckboxMultioptionWidget.static.tagName = 'label';
+
+/* Methods */
+
+/**
+ * Handle checkbox selected state change.
+ *
+ * @private
+ */
+OO.ui.CheckboxMultioptionWidget.prototype.onCheckboxChange = function () {
+	this.setSelected( this.checkbox.isSelected() );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultioptionWidget.prototype.setSelected = function ( state ) {
+	OO.ui.CheckboxMultioptionWidget.parent.prototype.setSelected.call( this, state );
+	this.checkbox.setSelected( state );
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultioptionWidget.prototype.setDisabled = function ( disabled ) {
+	OO.ui.CheckboxMultioptionWidget.parent.prototype.setDisabled.call( this, disabled );
+	this.checkbox.setDisabled( this.isDisabled() );
+	return this;
+};
+
+/**
+ * Focus the widget.
+ */
+OO.ui.CheckboxMultioptionWidget.prototype.focus = function () {
+	this.checkbox.focus();
+};
+
+/**
+ * Handle key down events.
+ *
+ * @protected
+ * @param {jQuery.Event} e
+ */
+OO.ui.CheckboxMultioptionWidget.prototype.onKeyDown = function ( e ) {
+	var
+		element = this.getElementGroup(),
+		nextItem;
+
+	if ( e.keyCode === OO.ui.Keys.LEFT || e.keyCode === OO.ui.Keys.UP ) {
+		nextItem = element.getRelativeFocusableItem( this, -1 );
+	} else if ( e.keyCode === OO.ui.Keys.RIGHT || e.keyCode === OO.ui.Keys.DOWN ) {
+		nextItem = element.getRelativeFocusableItem( this, 1 );
+	}
+
+	if ( nextItem ) {
+		e.preventDefault();
+		nextItem.focus();
+	}
+};
+
+/**
+ * CheckboxMultiselectWidget is a {@link OO.ui.MultiselectWidget multiselect widget} that contains
+ * checkboxes and is used together with OO.ui.CheckboxMultioptionWidget. The
+ * CheckboxMultiselectWidget provides an interface for adding, removing and selecting options.
+ * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
+ *
+ * If you want to use this within a HTML form, such as a OO.ui.FormLayout, use
+ * OO.ui.CheckboxMultiselectInputWidget instead.
+ *
+ *     @example
+ *     // A CheckboxMultiselectWidget with CheckboxMultioptions.
+ *     var option1 = new OO.ui.CheckboxMultioptionWidget( {
+ *         data: 'a',
+ *         selected: true,
+ *         label: 'Selected checkbox'
+ *     } );
+ *
+ *     var option2 = new OO.ui.CheckboxMultioptionWidget( {
+ *         data: 'b',
+ *         label: 'Unselected checkbox'
+ *     } );
+ *
+ *     var multiselect=new OO.ui.CheckboxMultiselectWidget( {
+ *         items: [ option1, option2 ]
+ *      } );
+ *
+ *     $( 'body' ).append( multiselect.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ *
+ * @class
+ * @extends OO.ui.MultiselectWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.CheckboxMultiselectWidget = function OoUiCheckboxMultiselectWidget( config ) {
+	// Parent constructor
+	OO.ui.CheckboxMultiselectWidget.parent.call( this, config );
+
+	// Properties
+	this.$lastClicked = null;
+
+	// Events
+	this.$group.on( 'click', this.onClick.bind( this ) );
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-checkboxMultiselectWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CheckboxMultiselectWidget, OO.ui.MultiselectWidget );
+
+/* Methods */
+
+/**
+ * Get an option by its position relative to the specified item (or to the start of the option array,
+ * if item is `null`). The direction in which to search through the option array is specified with a
+ * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
+ * `null` if there are no options in the array.
+ *
+ * @param {OO.ui.CheckboxMultioptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
+ * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
+ * @return {OO.ui.CheckboxMultioptionWidget|null} Item at position, `null` if there are no items in the select
+ */
+OO.ui.CheckboxMultiselectWidget.prototype.getRelativeFocusableItem = function ( item, direction ) {
+	var currentIndex, nextIndex, i,
+		increase = direction > 0 ? 1 : -1,
+		len = this.items.length;
+
+	if ( item ) {
+		currentIndex = this.items.indexOf( item );
+		nextIndex = ( currentIndex + increase + len ) % len;
+	} else {
+		// If no item is selected and moving forward, start at the beginning.
+		// If moving backward, start at the end.
+		nextIndex = direction > 0 ? 0 : len - 1;
+	}
+
+	for ( i = 0; i < len; i++ ) {
+		item = this.items[ nextIndex ];
+		if ( item && !item.isDisabled() ) {
+			return item;
+		}
+		nextIndex = ( nextIndex + increase + len ) % len;
+	}
+	return null;
+};
+
+/**
+ * Handle click events on checkboxes.
+ *
+ * @param {jQuery.Event} e
+ */
+OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
+	var $options, checked,
+		$lastClicked = this.$lastClicked,
+		$nowClicked = $( e.target ).closest( '.oo-ui-checkboxMultioptionWidget' )
+			.not( '.oo-ui-widget-disabled' );
+
+	// Allow selecting multiple options at once by Shift-clicking them
+	if ( $lastClicked && $nowClicked.length && e.shiftKey ) {
+		$options = this.$group.find( '.oo-ui-checkboxMultioptionWidget' );
+		checked = $nowClicked.find( 'input' ).prop( 'checked' );
+
+		$options
+			.slice(
+				Math.min( $options.index( $lastClicked ), $options.index( $nowClicked ) ),
+				Math.max( $options.index( $lastClicked ), $options.index( $nowClicked ) ) + 1
+			)
+			.find( 'input' )
+			.filter( function () {
+				return !this.disabled;
+			} )
+			.prop( 'checked', checked )
+			.trigger( 'change' );
+	}
+
+	if ( $nowClicked.length ) {
+		this.$lastClicked = $nowClicked;
+	}
+};
 
 /**
  * Element that will stick under a specified container, even when it is inserted elsewhere in the
@@ -7854,6 +8273,186 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 			this.setValue( options[ 0 ].data );
 		}
 	}
+
+	return this;
+};
+
+/**
+ * CheckboxMultiselectInputWidget is a
+ * {@link OO.ui.CheckboxMultiselectWidget CheckboxMultiselectWidget} intended to be used within a
+ * HTML form, such as a OO.ui.FormLayout. The selected values are synchronized with the value of
+ * HTML `<input type=checkbox>` tags. Please see the [OOjs UI documentation on MediaWiki][1] for
+ * more information about input widgets.
+ *
+ *     @example
+ *     // Example: A CheckboxMultiselectInputWidget with three options
+ *     var multiselectInput = new OO.ui.CheckboxMultiselectInputWidget( {
+ *         options: [
+ *             { data: 'a', label: 'First' },
+ *             { data: 'b', label: 'Second'},
+ *             { data: 'c', label: 'Third' }
+ *         ]
+ *     } );
+ *     $( 'body' ).append( multiselectInput.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ *
+ * @class
+ * @extends OO.ui.InputWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
+ */
+OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties (must be done before parent constructor which calls #setDisabled)
+	this.checkboxMultiselectWidget = new OO.ui.CheckboxMultiselectWidget();
+
+	// Parent constructor
+	OO.ui.CheckboxMultiselectInputWidget.parent.call( this, config );
+
+	// Properties
+	this.inputName = config.name;
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-checkboxMultiselectInputWidget' )
+		.append( this.checkboxMultiselectWidget.$element );
+	// We don't use this.$input, but rather the CheckboxInputWidgets inside each option
+	this.$input.detach();
+	this.setOptions( config.options || [] );
+	// Have to repeat this from parent, as we need options to be set up for this to make sense
+	this.setValue( config.value );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CheckboxMultiselectInputWidget, OO.ui.InputWidget );
+
+/* Static Properties */
+
+OO.ui.CheckboxMultiselectInputWidget.static.supportsSimpleLabel = false;
+
+/* Static Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.static.gatherPreInfuseState = function ( node, config ) {
+	var state = OO.ui.CheckboxMultiselectInputWidget.parent.static.gatherPreInfuseState( node, config );
+	state.value = $( node ).find( '.oo-ui-checkboxInputWidget .oo-ui-inputWidget-input:checked' )
+		.toArray().map( function ( el ) { return el.value; } );
+	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+	config = OO.ui.CheckboxMultiselectInputWidget.parent.static.reusePreInfuseDOM( node, config );
+	// Cannot reuse the `<input type=checkbox>` set
+	delete config.$input;
+	return config;
+};
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ * @protected
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.getInputElement = function () {
+	// Actually unused
+	return $( '<div>' );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.getValue = function () {
+	var value = this.$element.find( '.oo-ui-checkboxInputWidget .oo-ui-inputWidget-input:checked' )
+		.toArray().map( function ( el ) { return el.value; } );
+	if ( this.value !== value ) {
+		this.setValue( value );
+	}
+	return this.value;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.setValue = function ( value ) {
+	value = this.cleanUpValue( value );
+	this.checkboxMultiselectWidget.selectItemsByData( value );
+	OO.ui.CheckboxMultiselectInputWidget.parent.prototype.setValue.call( this, value );
+	return this;
+};
+
+/**
+ * Clean up incoming value.
+ *
+ * @param {string[]} value Original value
+ * @return {string[]} Cleaned up value
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value ) {
+	var i, singleValue,
+		cleanValue = [];
+	if ( !Array.isArray( value ) ) {
+		return cleanValue;
+	}
+	for ( i = 0; i < value.length; i++ ) {
+		singleValue =
+			OO.ui.CheckboxMultiselectInputWidget.parent.prototype.cleanUpValue.call( this, value[ i ] );
+		// Remove options that we don't have here
+		if ( !this.checkboxMultiselectWidget.getItemFromData( singleValue ) ) {
+			continue;
+		}
+		cleanValue.push( singleValue );
+	}
+	return cleanValue;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.setDisabled = function ( state ) {
+	this.checkboxMultiselectWidget.setDisabled( state );
+	OO.ui.CheckboxMultiselectInputWidget.parent.prototype.setDisabled.call( this, state );
+	return this;
+};
+
+/**
+ * Set the options available for this input.
+ *
+ * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
+ * @chainable
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options ) {
+	var widget = this;
+
+	// Rebuild the checkboxMultiselectWidget menu
+	this.checkboxMultiselectWidget
+		.clearItems()
+		.addItems( options.map( function ( opt ) {
+			var optValue, item;
+			optValue =
+				OO.ui.CheckboxMultiselectInputWidget.parent.prototype.cleanUpValue.call( widget, opt.data );
+			item = new OO.ui.CheckboxMultioptionWidget( {
+				data: optValue,
+				label: opt.label !== undefined ? opt.label : optValue
+			} );
+			// Set the 'name' and 'value' for form submission
+			item.checkbox.$input.attr( 'name', widget.inputName );
+			item.checkbox.setValue( optValue );
+			return item;
+		} ) );
+
+	// Re-set the value, checking the checkboxes as needed.
+	// This will also get rid of any stale options that we just removed.
+	this.setValue( this.getValue() );
 
 	return this;
 };

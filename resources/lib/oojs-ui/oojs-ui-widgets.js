@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.3
+ * OOjs UI v0.17.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-24T22:46:32Z
+ * Date: 2016-05-31T21:50:52Z
  */
 ( function ( OO ) {
 
@@ -539,6 +539,7 @@ OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
  *
  * @class
  * @abstract
+ * @mixins OO.ui.mixin.RequestManager
  *
  * @constructor
  * @param {Object} [config] Configuration options

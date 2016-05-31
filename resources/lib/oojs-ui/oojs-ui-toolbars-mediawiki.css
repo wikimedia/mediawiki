@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.3
+ * OOjs UI v0.17.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-24T22:46:36Z
+ * Date: 2016-05-31T21:50:56Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -46,6 +46,12 @@
 }
 .oo-ui-toolGroup .oo-ui-tool-link {
 	text-decoration: none;
+	cursor: pointer;
+}
+.oo-ui-toolGroup.oo-ui-widget-disabled .oo-ui-tool-link,
+.oo-ui-toolGroup .oo-ui-widget-disabled > .oo-ui-tool-link {
+	outline: 0;
+	cursor: default;
 }
 .oo-ui-toolbar-narrow .oo-ui-toolGroup + .oo-ui-toolGroup {
 	margin-left: 0;
@@ -56,9 +62,6 @@
 .oo-ui-barToolGroup > .oo-ui-iconElement-icon,
 .oo-ui-barToolGroup > .oo-ui-labelElement-label {
 	display: none;
-}
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
-	cursor: pointer;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool {
 	display: inline-block;
@@ -80,10 +83,6 @@
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement.oo-ui-tool-with-label > .oo-ui-tool-link .oo-ui-tool-title {
 	display: inline;
-}
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link {
-	outline: 0;
-	cursor: default;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
 	height: 1.875em;
@@ -182,7 +181,7 @@
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
 	text-align: right;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not(:empty) {
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
 	padding-left: 3em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup {
@@ -296,12 +295,6 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
-.oo-ui-listToolGroup .oo-ui-tool-link {
-	cursor: pointer;
-}
-.oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link {
-	cursor: default;
-}
 .oo-ui-listToolGroup.oo-ui-popupToolGroup-active {
 	border-color: rgba(0, 0, 0, 0.2);
 }
@@ -345,12 +338,6 @@
 }
 .oo-ui-menuToolGroup .oo-ui-tool {
 	display: block;
-}
-.oo-ui-menuToolGroup .oo-ui-tool-link {
-	cursor: pointer;
-}
-.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link {
-	cursor: default;
 }
 .oo-ui-menuToolGroup .oo-ui-popupToolGroup-handle {
 	min-width: 10em;
