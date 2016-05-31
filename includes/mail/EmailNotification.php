@@ -509,4 +509,16 @@ class EmailNotification {
 		] );
 	}
 
+	public static function transformContentToHTML ( $content ){
+		$body['text'] = $content;
+		$content = htmlspecialchars( $content );
+		$pattern = '/(' . wfUrlProtocols() . ')[^\s\'\"]+/';
+		$replace = '<a href="$0">$0</a>';
+		$content = preg_replace($pattern, $replace, $content);
+		$content = nl2br( $content );
+		$content = "<html><body>" . $content . "</body></html>";
+		$body['html'] = $content;
+		return $body;
+	}
+
 }
