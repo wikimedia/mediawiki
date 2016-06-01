@@ -353,11 +353,6 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @return bool Success
 	 */
 	public function gc( $maxlifetime ) {
-		if ( self::$instance !== $this ) {
-			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
-		}
-		$before = date( 'YmdHis', time() );
-		$this->store->deleteObjectsExpiringBefore( $before );
 		return true;
 	}
 }
