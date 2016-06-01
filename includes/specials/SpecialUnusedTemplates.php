@@ -115,12 +115,7 @@ class SpecialUnusedTemplates extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
-		$pageLink = $linkRenderer->makeKnownLink(
-			$title,
-			null,
-			[],
-			[ 'redirect' => 'no' ]
-		);
+		$pageLink = $linkRenderer->makeKnownLink( $title );
 		$wlhLink = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() ),
 			$this->msg( 'unusedtemplateswlh' )->text()
