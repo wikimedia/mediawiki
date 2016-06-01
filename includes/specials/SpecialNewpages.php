@@ -20,6 +20,8 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that list newly created pages
@@ -34,6 +36,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected $customFilters;
 
 	protected $showNavigation = false;
+
+	/**
+	 * @var LinkRenderer
+	 */
+	private $linkRenderer;
 
 	public function __construct() {
 		parent::__construct( 'Newpages' );
@@ -124,6 +131,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		$this->showNavigation = !$this->including(); // Maybe changed in setup
 		$this->setup( $par );
 
@@ -190,7 +199,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$self = $this->getPageTitle();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
-			$link = Linker::link( $self, $showhide[$onoff], [],
+			$link = $this->linkRenderer->makeLink(
+				$self,
+				new HtmlArmor( $showhide[$onoff] ),
+				[],
 				[ $key => $onoff ] + $changed
 			);
 			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
@@ -307,28 +319,24 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$spanTime = Html::element( 'span', [ 'class' => 'mw-newpages-time' ],
 			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
 		);
-		$time = Linker::linkKnown(
+		$time = $this->linkRenderer->makeKnownLink(
 			$title,
-			$spanTime,
+			new HtmlArmor( $spanTime ),
 			[],
-			[ 'oldid' => $result->rc_this_oldid ],
-			[]
+			[ 'oldid' => $result->rc_this_oldid ]
 		);
 
 		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
 
-		// Linker::linkKnown() uses 'known' and 'noclasses' options.
-		// This breaks the colouration for stubs.
-		$plink = Linker::link(
+		$plink = $this->linkRenderer->makeKnownLink(
 			$title,
 			null,
 			[ 'class' => 'mw-newpages-pagename' ],
-			$query,
-			[ 'known' ]
+			$query
 		);
-		$histLink = Linker::linkKnown(
+		$histLink = $this->linkRenderer->makeKnownLink(
 			$title,
-			$this->msg( 'hist' )->escaped(),
+			$this->msg( 'hist' )->text(),
 			[],
 			[ 'action' => 'history' ]
 		);
