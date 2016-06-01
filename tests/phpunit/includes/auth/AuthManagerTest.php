@@ -1059,6 +1059,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			} else {
 				$this->assertNotNull( $session->getSecret( 'AuthManager::authnState' ),
 					"Response $i, session state" );
+				foreach ( $ret->neededRequests as $neededReq ) {
+					$this->assertEquals( AuthManager::ACTION_LOGIN, $neededReq->action,
+						"Response $i, neededRequest action" );
+				}
 				$this->assertEquals(
 					$ret->neededRequests,
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN_CONTINUE ),
@@ -1114,6 +1118,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$restartResponse2->createRequest = new CreateFromLoginAuthenticationRequest(
 			null, [ $req->getUniqueId() => $req ]
 		);
+		$restartResponse2->createRequest->action = AuthManager::ACTION_LOGIN;
 		$restartResponse2->neededRequests = [ $rememberReq, $restartResponse2->createRequest ];
 
 		return [
@@ -2102,6 +2107,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 					$this->request->getSession()->getSecret( 'AuthManager::accountCreationState' ),
 					"Response $i, session state"
 				);
+				foreach ( $ret->neededRequests as $neededReq ) {
+					$this->assertEquals( AuthManager::ACTION_CREATE, $neededReq->action,
+						"Response $i, neededRequest action" );
+				}
 				$this->assertEquals(
 					$ret->neededRequests,
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_CREATE_CONTINUE ),
@@ -3525,6 +3534,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 					$this->request->getSession()->getSecret( 'AuthManager::accountLinkState' ),
 					"Response $i, session state"
 				);
+				foreach ( $ret->neededRequests as $neededReq ) {
+					$this->assertEquals( AuthManager::ACTION_LINK, $neededReq->action,
+						"Response $i, neededRequest action" );
+				}
 				$this->assertEquals(
 					$ret->neededRequests,
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_LINK_CONTINUE ),
