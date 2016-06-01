@@ -1773,12 +1773,13 @@ class Title implements LinkTarget {
 	 *
 	 * @param array $query
 	 * @param bool $query2
-	 * @param string $proto Protocol to use; setting this will cause a full URL to be used
+	 * @param string|int|bool $proto A PROTO_* constant on how the URL should be expanded,
+	 *                               or false for no expansion
 	 * @see self::getLocalURL for the arguments.
 	 * @return string The URL
 	 */
-	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
-		if ( $this->isExternal() || $proto !== PROTO_RELATIVE ) {
+	public function getLinkURL( $query = '', $query2 = false, $proto = false ) {
+		if ( $this->isExternal() || $proto !== false ) {
 			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->hasFragment() ) {
 			$ret = $this->getFragmentForURL();
