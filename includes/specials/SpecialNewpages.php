@@ -188,9 +188,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 		unset( $changed['offset'] ); // Reset offset if query type changes
 
 		$self = $this->getPageTitle();
+		$linkRenderer = $this->getLinkRenderer();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
-			$link = Linker::link( $self, $showhide[$onoff], [],
+			$link = $linkRenderer->makeLink(
+				$self,
+				new HtmlArmor( $showhide[$onoff] ),
+				[],
 				[ $key => $onoff ] + $changed
 			);
 			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
@@ -307,28 +311,25 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$spanTime = Html::element( 'span', [ 'class' => 'mw-newpages-time' ],
 			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
 		);
-		$time = Linker::linkKnown(
+		$linkRenderer = $this->getLinkRenderer();
+		$time = $linkRenderer->makeKnownLink(
 			$title,
-			$spanTime,
+			new HtmlArmor( $spanTime ),
 			[],
-			[ 'oldid' => $result->rc_this_oldid ],
-			[]
+			[ 'oldid' => $result->rc_this_oldid ]
 		);
 
 		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
 
-		// Linker::linkKnown() uses 'known' and 'noclasses' options.
-		// This breaks the colouration for stubs.
-		$plink = Linker::link(
+		$plink = $linkRenderer->makeKnownLink(
 			$title,
 			null,
 			[ 'class' => 'mw-newpages-pagename' ],
-			$query,
-			[ 'known' ]
+			$query
 		);
-		$histLink = Linker::linkKnown(
+		$histLink = $linkRenderer->makeKnownLink(
 			$title,
-			$this->msg( 'hist' )->escaped(),
+			$this->msg( 'hist' )->text(),
 			[],
 			[ 'action' => 'history' ]
 		);
