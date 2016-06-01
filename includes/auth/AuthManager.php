@@ -442,6 +442,7 @@ class AuthManager implements LoggerAwareInterface {
 						case AuthenticationResponse::REDIRECT;
 						case AuthenticationResponse::UI;
 							$this->logger->debug( "Primary login with $id returned $res->status" );
+							$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 							$state['primary'] = $id;
 							$state['continueRequests'] = $res->neededRequests;
 							$session->setSecret( 'AuthManager::authnState', $state );
@@ -504,6 +505,7 @@ class AuthManager implements LoggerAwareInterface {
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
 						$this->logger->debug( "Primary login with $id returned $res->status" );
+						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 						$state['continueRequests'] = $res->neededRequests;
 						$session->setSecret( 'AuthManager::authnState', $state );
 						return $res;
@@ -556,6 +558,7 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$ret->neededRequests[] = $ret->createRequest;
 				}
+				$this->fillRequests( $ret->neededRequests, self::ACTION_LOGIN, null );
 				$session->setSecret( 'AuthManager::authnState', [
 					'reqs' => [], // Will be filled in later
 					'primary' => null,
@@ -625,6 +628,7 @@ class AuthManager implements LoggerAwareInterface {
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
 						$this->logger->debug( "Secondary login with $id returned " . $res->status );
+						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $user->getName() );
 						$state['secondary'][$id] = false;
 						$state['continueRequests'] = $res->neededRequests;
 						$session->setSecret( 'AuthManager::authnState', $state );
@@ -1259,6 +1263,7 @@ class AuthManager implements LoggerAwareInterface {
 								'user' => $user->getName(),
 								'creator' => $creator->getName(),
 							] );
+							$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 							$state['primary'] = $id;
 							$state['continueRequests'] = $res->neededRequests;
 							$session->setSecret( 'AuthManager::accountCreationState', $state );
@@ -1321,6 +1326,7 @@ class AuthManager implements LoggerAwareInterface {
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
 						] );
+						$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 						$state['continueRequests'] = $res->neededRequests;
 						$session->setSecret( 'AuthManager::accountCreationState', $state );
 						return $res;
@@ -1416,6 +1422,7 @@ class AuthManager implements LoggerAwareInterface {
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
 						] );
+						$this->fillRequests( $res->neededRequests, self::ACTION_CREATE, null );
 						$state['secondary'][$id] = false;
 						$state['continueRequests'] = $res->neededRequests;
 						$session->setSecret( 'AuthManager::accountCreationState', $state );
@@ -1784,6 +1791,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->logger->debug( __METHOD__ . ": Account linking $res->status by $id", [
 						'user' => $user->getName(),
 					] );
+					$this->fillRequests( $res->neededRequests, self::ACTION_LINK, $user->getName() );
 					$state['primary'] = $id;
 					$state['continueRequests'] = $res->neededRequests;
 					$session->setSecret( 'AuthManager::accountLinkState', $state );
@@ -1886,6 +1894,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->logger->debug( __METHOD__ . ": Account linking $res->status by $id", [
 						'user' => $user->getName(),
 					] );
+					$this->fillRequests( $res->neededRequests, self::ACTION_LINK, $user->getName() );
 					$state['continueRequests'] = $res->neededRequests;
 					$session->setSecret( 'AuthManager::accountLinkState', $state );
 					return $res;
@@ -2047,12 +2056,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Fill in reqs data
-		foreach ( $reqs as $req ) {
-			$req->action = $providerAction;
-			if ( $req->username === null ) {
-				$req->username = $options['username'];
-			}
-		}
+		$this->fillRequests( $reqs, $providerAction, $options['username'] );
 
 		// For self::ACTION_CHANGE, filter out any that something else *doesn't* allow changing
 		if ( $providerAction === self::ACTION_CHANGE || $providerAction === self::ACTION_REMOVE ) {
@@ -2062,6 +2066,21 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		return array_values( $reqs );
+	}
+
+	/**
+	 * Set values in an array of requests
+	 * @param AuthenticationRequest[] &$reqs
+	 * @param string $action
+	 * @param string|null $username
+	 */
+	private function fillRequests( array &$reqs, $action, $username ) {
+		foreach ( $reqs as $req ) {
+			$req->action = $action;
+			if ( $req->username === null ) {
+				$req->username = $username;
+			}
+		}
 	}
 
 	/**
