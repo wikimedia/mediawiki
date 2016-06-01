@@ -2310,6 +2310,7 @@ class AuthManager implements LoggerAwareInterface {
 		$delay = $session->delaySave();
 
 		$session->resetId();
+		$session->resetAllTokens();
 		if ( $session->canSetUser() ) {
 			$session->setUser( $user );
 		}
