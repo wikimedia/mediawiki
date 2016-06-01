@@ -1366,7 +1366,7 @@ abstract class Skin extends ContextSource {
 				$uTalkTitle,
 				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
 				[],
-				[ 'redirect' => 'no' ]
+				$uTalkTitle->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
 
 			$newMessagesDiffLink = Linker::linkKnown(
