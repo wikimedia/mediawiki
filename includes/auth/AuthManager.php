@@ -2102,6 +2102,37 @@ class AuthManager implements LoggerAwareInterface {
 		return true;
 	}
 
+	/**
+	 * Get a provider by ID
+	 * @note This is public so extensions can check whether their own provider
+	 *  is installed and so they can read its configuration if necessary.
+	 *  Other uses are not recommended.
+	 * @param string $id
+	 * @return AuthenticationProvider|null
+	 */
+	public function getAuthenticationProvider( $id ) {
+		// Fast version
+		if ( isset( $this->allAuthenticationProviders[$id] ) ) {
+			return $this->allAuthenticationProviders[$id];
+		}
+
+		// Slow version: instantiate each kind and check
+		$providers = $this->getPrimaryAuthenticationProviders();
+		if ( isset( $providers[$id] ) ) {
+			return $providers[$id];
+		}
+		$providers = $this->getSecondaryAuthenticationProviders();
+		if ( isset( $providers[$id] ) ) {
+			return $providers[$id];
+		}
+		$providers = $this->getPreAuthenticationProviders();
+		if ( isset( $providers[$id] ) ) {
+			return $providers[$id];
+		}
+
+		return null;
+	}
+
 	/**@}*/
 
 	/**
@@ -2249,34 +2280,6 @@ class AuthManager implements LoggerAwareInterface {
 			);
 		}
 		return $this->secondaryAuthenticationProviders;
-	}
-
-	/**
-	 * Get a provider by ID
-	 * @param string $id
-	 * @return AuthenticationProvider|null
-	 */
-	protected function getAuthenticationProvider( $id ) {
-		// Fast version
-		if ( isset( $this->allAuthenticationProviders[$id] ) ) {
-			return $this->allAuthenticationProviders[$id];
-		}
-
-		// Slow version: instantiate each kind and check
-		$providers = $this->getPrimaryAuthenticationProviders();
-		if ( isset( $providers[$id] ) ) {
-			return $providers[$id];
-		}
-		$providers = $this->getSecondaryAuthenticationProviders();
-		if ( isset( $providers[$id] ) ) {
-			return $providers[$id];
-		}
-		$providers = $this->getPreAuthenticationProviders();
-		if ( isset( $providers[$id] ) ) {
-			return $providers[$id];
-		}
-
-		return null;
 	}
 
 	/**
