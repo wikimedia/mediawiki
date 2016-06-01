@@ -1279,7 +1279,7 @@ abstract class Installer {
 			$command = $path . DIRECTORY_SEPARATOR . $name;
 
 			MediaWiki\suppressWarnings();
-			$file_exists = file_exists( $command );
+			$file_exists = is_executable( $command );
 			MediaWiki\restoreWarnings();
 
 			if ( $file_exists ) {
