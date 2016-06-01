@@ -166,6 +166,8 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
 		$namespaces = $wgContLang->getNamespaces();
 		$res = null;
+		$n = 0;
+		$nextRow = null;
 
 		if ( !$prefixList || !$fromList ) {
 			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
@@ -207,7 +209,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			// @todo FIXME: Side link to previous
 
-			$n = 0;
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-prefixindex-list' ] );
 				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
@@ -215,6 +216,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				$prefixLength = strlen( $prefix );
 				foreach ( $res as $row ) {
 					if ( $n >= $this->maxPerPage ) {
+						$nextRow = $row;
 						break;
 					}
 					$title = Title::newFromRow( $row );
@@ -259,9 +261,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 		$topOut = $this->namespacePrefixForm( $namespace, $prefix );
 
-		if ( $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+		if ( $res && ( $n == $this->maxPerPage ) && $nextRow ) {
 			$query = [
-				'from' => $s->page_title,
+				'from' => $nextRow->page_title,
 				'prefix' => $prefix,
 				'hideredirects' => $this->hideRedirects,
 				'stripprefix' => $this->stripPrefix,
@@ -275,7 +277,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			$nextLink = Linker::linkKnown(
 				$this->getPageTitle(),
-				$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
+				$this->msg( 'nextpage', str_replace( '_', ' ', $nextRow->page_title ) )->escaped(),
 				[],
 				$query
 			);
