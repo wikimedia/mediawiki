@@ -891,7 +891,7 @@ class ParserTest {
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
-			'wgNoFollowDomainExceptions' => [],
+			'wgNoFollowDomainExceptions' => [ 'no-nofollow.org' ],
 			'wgThumbnailScriptPath' => false,
 			'wgUseImageResize' => true,
 			'wgSVGConverter' => 'null',

@@ -4783,6 +4783,15 @@ ok-<a rel="nofollow" class="external free" href="http://example.com">http://exam
 !! end
 
 !! test
+External links: nofollow domain exception
+!! wikitext
+A [https://no-nofollow.org/foobar link], and another [https://example.org link].
+!! html
+<p>A <a class="external text" href="https://no-nofollow.org/foobar">link</a>, and another <a rel="nofollow" class="external text" href="https://example.org">link</a>.
+</p>
+!!end
+
+!! test
 External image
 !! wikitext
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
