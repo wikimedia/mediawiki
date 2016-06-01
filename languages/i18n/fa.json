@@ -843,7 +843,7 @@
 	"rev-suppressed-unhide-diff": "یکی از نسخه‌های این تفاوت '''فرونشانی شده‌است'''.\nممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page=سیاههٔ فرونشانی{{FULLPAGENAMEE}}}}] موجود باشد.\nشما کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
 	"rev-deleted-diff-view": "یکی از نسخه‌های این تفاوت '''حذف شده‌است'''.\nشما می‌توانید این تفاوت را ببینید؛ ممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 	"rev-suppressed-diff-view": "یکی از نسخه‌های این تفاوت '''فرونشانی شده‌است'''.\nشما می‌توانید این تفاوت را ببینید؛ ممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.",
-	"rev-delundel": "نمایش/نهفتن",
+	"rev-delundel": "تغییر پیدایی",
 	"rev-showdeleted": "نمایش",
 	"revisiondelete": "حذف/احیای نسخه‌ها",
 	"revdelete-nooldid-title": "نسخهٔ هدف نامجاز",

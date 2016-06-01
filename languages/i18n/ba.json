@@ -1179,6 +1179,7 @@
 	"right-managechangetags": "[[Special:Tags|билдәләр]] мәғлүмәттәр базаһында төҙөү һәм юйыу",
 	"right-applychangetags": " [[Special:Tags|тамғаһын]] үҙегеҙҙең төҙөтеү менән ҡулланырға",
 	"right-changetags": "Айырым үҙгәртеүҙәрҙә һәм журнал яҙмаланыда[[Special:Tags|тамғаһын]] өҫтәү һәм юйыу",
+	"right-deletechangetags": "[[Special:Tags|билдәләр]] мәғлүмәттәр базаһында төҙөү һәм юйыу",
 	"grant-generic": "Хоҡуҡтар йыйынтығы «$1»",
 	"grant-group-page-interaction": "Башҡа биттәр менән бәйләнеш",
 	"grant-group-file-interaction": "Медиафайлдар менән бәйләнеш",
@@ -3581,8 +3582,12 @@
 	"authmanager-email-help": "Электрон почта адресы",
 	"authmanager-realname-label": "Ысын исемегеҙ",
 	"authprovider-resetpass-skip-label": "Ҡалдырып торорға",
+	"cannotauth-not-allowed": "Һеҙ был битте ҡуллана алмайһығыҙ.",
+	"changecredentials": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"changecredentials-submit-cancel": "Кире алырға",
+	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"removecredentials-submit-cancel": "Кире алырға"
+	"removecredentials-submit-cancel": "Кире алырға",
+	"credentialsform-account": "Иҫәп хужаһы"
 }

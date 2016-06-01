@@ -3127,7 +3127,7 @@
 	"timezone-local": "Local",
 	"duplicate-defaultsort": "Aviso: A chave de ordenação padrão \"$2\" sobrepõe-se à anterior chave de ordenação padrão \"$1\".",
 	"duplicate-displaytitle": "<strong>Aviso:</strong> O título exibido \"$2\" substituí o título anterior \"$1\".",
-	"restricted-displaytitle": "<Strong>Aviso:</Strong> O título de exibição “$1” foi ignorado devido a não ser equivalente ao título verdadeiro da página.",
+	"restricted-displaytitle": "<strong>Aviso:</strong> O título de exibição “$1” foi ignorado devido a não ser equivalente ao título verdadeiro da página.",
 	"invalid-indicator-name": "<strong>Erro:</strong> O atributo indicador do status da página <code>name</code> não deve estar vazio.",
 	"version": "Versão",
 	"version-extensions": "Extensões instaladas",

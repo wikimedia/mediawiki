@@ -55,6 +55,7 @@
 	"apihelp-compare-param-torev": "Seconda revisione da confrontare.",
 	"apihelp-compare-example-1": "Crea un diff tra revisione 1 e revisione 2.",
 	"apihelp-createaccount-description": "Crea un nuovo account utente.",
+	"apihelp-createaccount-param-preservestate": "Se <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> ha restituito true per <samp>hasprimarypreservedstate</samp>, le richieste contrassegnate come <samp>primary-required</samp> dovrebbero essere omesse. Se invece ha restituito un valore non vuoto per <samp>preservedusername</samp>, quel nome utente deve essere utilizzato per il parametro <var>username</var>.",
 	"apihelp-createaccount-example-create": "Avvia il processo di creazione utente <kbd>Example</kbd> con password <kbd>ExamplePassword</kbd>.",
 	"apihelp-createaccount-param-name": "Nome utente.",
 	"apihelp-createaccount-param-password": "Password (verrà ignorata se è impostato <var>$1mailpassword</var>).",
