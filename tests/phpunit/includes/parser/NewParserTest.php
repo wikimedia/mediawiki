@@ -94,7 +94,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgParserCacheType'] = CACHE_NONE;
 		$tmpGlobals['wgCapitalLinks'] = true;
 		$tmpGlobals['wgNoFollowLinks'] = true;
-		$tmpGlobals['wgNoFollowDomainExceptions'] = [];
+		$tmpGlobals['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];
 		$tmpGlobals['wgExternalLinkTarget'] = false;
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgUseImageResize'] = true;
