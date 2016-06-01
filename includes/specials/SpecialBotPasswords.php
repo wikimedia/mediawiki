@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Let users manage bot passwords
@@ -162,6 +163,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			];
 
 		} else {
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$dbr = BotPassword::getDB( DB_SLAVE );
 			$res = $dbr->select(
 				'bot_passwords',
@@ -174,12 +176,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 					'section' => 'existing',
 					'type' => 'info',
 					'raw' => true,
-					'default' => Linker::link(
+					'default' => $linkRenderer->makeKnownLink(
 						$this->getPageTitle( $row->bp_app_id ),
-						htmlspecialchars( $row->bp_app_id ),
-						[],
-						[],
-						[ 'known' ]
+						$row->bp_app_id
 					),
 				];
 			}
