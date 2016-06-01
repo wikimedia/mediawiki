@@ -1882,11 +1882,11 @@ class Parser {
 	 * (depending on configuration, namespace, and the URL's domain) and/or a
 	 * target attribute (depending on configuration).
 	 *
-	 * @param string|bool $url Optional URL, to extract the domain from for rel =>
+	 * @param string $url URL to extract the domain from for rel =>
 	 *   nofollow if appropriate
 	 * @return array Associative array of HTML attributes
 	 */
-	public function getExternalLinkAttribs( $url = false ) {
+	public function getExternalLinkAttribs( $url ) {
 		$attribs = [];
 		$rel = self::getExternalLinkRel( $url, $this->mTitle );
 
