@@ -537,6 +537,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLSelectNamespace' => __DIR__ . '/includes/htmlform/HTMLSelectNamespace.php',
 	'HTMLSelectNamespaceWithButton' => __DIR__ . '/includes/htmlform/HTMLSelectNamespaceWithButton.php',
 	'HTMLSelectOrOtherField' => __DIR__ . '/includes/htmlform/HTMLSelectOrOtherField.php',
+	'HTMLSizeFilterField' => __DIR__ . '/includes/htmlform/HTMLSizeFilterField.php',
 	'HTMLSubmitField' => __DIR__ . '/includes/htmlform/HTMLSubmitField.php',
 	'HTMLTagFilter' => __DIR__ . '/includes/htmlform/HTMLTagFilter.php',
 	'HTMLTextAreaField' => __DIR__ . '/includes/htmlform/HTMLTextAreaField.php',
