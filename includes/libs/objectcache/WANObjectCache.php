@@ -58,7 +58,7 @@ use Psr\Log\NullLogger;
  * to avoid collisions with keys that are not wrapped as metadata arrays. The
  * prefixes are as follows:
  *   - a) "WANCache:v" : used for regular value keys
- *   - b) "WANCache:s" : used for temporarily storing values of tombstoned keys
+ *   - b) "WANCache:i" : used for temporarily storing values of tombstoned keys
  *   - c) "WANCache:t" : used for storing timestamp "check" keys
  *
  * @ingroup Cache
