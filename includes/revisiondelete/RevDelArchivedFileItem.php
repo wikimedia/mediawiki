@@ -107,8 +107,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 						'target' => $this->list->title->getPrefixedText(),
 						'file' => $file->getKey(),
 						'token' => $user->getEditToken( $file->getKey() )
-					],
-					false, PROTO_RELATIVE
+					]
 				),
 			];
 		}
