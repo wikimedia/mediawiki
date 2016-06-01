@@ -59,6 +59,8 @@ class HTMLRadioField extends HTMLFormField {
 	}
 
 	function formatOptions( $options, $value ) {
+		global $wgUseMediaWikiUIEverywhere;
+
 		$html = '';
 
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
@@ -71,12 +73,16 @@ class HTMLRadioField extends HTMLFormField {
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
+				$classes = [ 'mw-htmlform-flatlist-item' ];
+				if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
+					$classes[] = 'mw-ui-radio';
+				}
 				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + [ 'id' => $id ] );
 				$radio .= '&#160;' . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',
-					[ 'class' => 'mw-htmlform-flatlist-item mw-ui-radio' ],
+					[ 'class' => $classes ],
 					$radio
 				);
 			}
