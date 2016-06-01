@@ -20,6 +20,8 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to change page titles
@@ -58,6 +60,11 @@ class MovePageForm extends UnlistedSpecialPage {
 
 	private $watch = false;
 
+	/**
+	 * @var LinkRenderer
+	 */
+	private $linkRenderer;
+
 	public function __construct() {
 		parent::__construct( 'Movepage' );
 	}
@@ -73,6 +80,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		$request = $this->getRequest();
 		$target = !is_null( $par ) ? $par : $request->getVal( 'target' );
@@ -601,13 +609,13 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'pagemovedsub' ) );
 
-		$oldLink = Linker::link(
+		$oldLink = $this->linkRenderer->makeLink(
 			$ot,
 			null,
 			[ 'id' => 'movepage-oldlink' ],
 			[ 'redirect' => 'no' ]
 		);
-		$newLink = Linker::linkKnown(
+		$newLink = $this->linkRenderer->makeKnownLink(
 			$nt,
 			null,
 			[ 'id' => 'movepage-newlink' ]
@@ -723,7 +731,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 			if ( !$newSubpage ) {
-				$oldLink = Linker::linkKnown( $oldSubpage );
+				$oldLink = $this->linkRenderer->makeKnownLink( $oldSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink )
 					->params( Title::makeName( $newNs, $newPageName ) )->escaped();
 				continue;
@@ -731,7 +739,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			# This was copy-pasted from Renameuser, bleh.
 			if ( $newSubpage->exists() && !$oldSubpage->isValidMoveTarget( $newSubpage ) ) {
-				$link = Linker::linkKnown( $newSubpage );
+				$link = $this->linkRenderer->makeKnownLink( $newSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
 			} else {
 				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason, $createRedirect );
@@ -740,14 +748,14 @@ class MovePageForm extends UnlistedSpecialPage {
 					if ( $this->fixRedirects ) {
 						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
 					}
-					$oldLink = Linker::link(
+					$oldLink = $this->linkRenderer->makeLink(
 						$oldSubpage,
 						null,
 						[],
 						[ 'redirect' => 'no' ]
 					);
 
-					$newLink = Linker::linkKnown( $newSubpage );
+					$newLink = $this->linkRenderer->makeKnownLink( $newSubpage );
 					$extraOutput[] = $this->msg( 'movepage-page-moved' )
 						->rawParams( $oldLink, $newLink )->escaped();
 					++$count;
@@ -759,8 +767,8 @@ class MovePageForm extends UnlistedSpecialPage {
 						break;
 					}
 				} else {
-					$oldLink = Linker::linkKnown( $oldSubpage );
-					$newLink = Linker::link( $newSubpage );
+					$oldLink = $this->linkRenderer->makeKnownLink( $oldSubpage );
+					$newLink = $this->linkRenderer->makeLink( $newSubpage );
 					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
 						->rawParams( $oldLink, $newLink )->escaped();
 				}
@@ -805,7 +813,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addHTML( "<ul>\n" );
 
 		foreach ( $subpages as $subpage ) {
-			$link = Linker::link( $subpage );
+			$link = $this->linkRenderer->makeLink( $subpage );
 			$out->addHTML( "<li>$link</li>\n" );
 		}
 		$out->addHTML( "</ul>\n" );
