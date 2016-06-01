@@ -25,6 +25,26 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $xml = null;
 
+	/** @var bool|null Whether the 'gzip' utility is available */
+	protected static $hasGzip = null;
+
+	/**
+	 * Skip the test if 'gzip' is not in $PATH.
+	 *
+	 * @return bool
+	 */
+	protected function checkHasGzip() {
+		if ( self::$hasGzip === null ) {
+			self::$hasGzip = ( Installer::locateExecutableInDefaultPaths( 'gzip' ) !== false );
+		}
+
+		if ( !self::$hasGzip ) {
+			$this->markTestSkipped( "Skip test, requires the gzip utility in PATH" );
+		}
+
+		return self::$hasGzip;
+	}
+
 	/**
 	 * Adds a revision to a page, while returning the resuting revision's id
 	 *
