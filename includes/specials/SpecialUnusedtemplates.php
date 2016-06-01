@@ -76,7 +76,7 @@ class UnusedtemplatesPage extends QueryPage {
 			$title,
 			null,
 			[],
-			[ 'redirect' => 'no' ]
+			$title->isRedirect() : [ 'redirect' => 'no' ] : []
 		);
 		$wlhLink = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() ),
