@@ -699,7 +699,7 @@ class LoginFormPreAuthManager extends SpecialPage {
 
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
-		SessionManager::singleton()->invalidateSessionsForUser( $u );
+		$u->setToken();
 
 		Hooks::run( 'LocalUserCreated', [ $u, $autocreate ] );
 		$oldUser = $u;
