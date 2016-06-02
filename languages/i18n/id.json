@@ -46,7 +46,8 @@
 			"Rachmat.Wahidi",
 			"Arief",
 			"Nemo bis",
-			"Mbrt"
+			"Mbrt",
+			"Beeyan"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1307,6 +1308,7 @@
 	"action-managechangetags": "Membuat dan menghapus tag dari basis data",
 	"action-applychangetags": "terapkan tag bersamaan dengan perubahan Anda",
 	"action-changetags": "menambah dan menghapus tag semaunya pada revisi individu dan entri log",
+	"action-deletechangetags": "hapus tag dari basis data",
 	"nchanges": "$1 {{PLURAL:$1|perubahan|perubahan}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|sejak kunjungan terakhir}}",
 	"enhancedrc-history": "riwayat",

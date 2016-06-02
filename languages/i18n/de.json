@@ -3831,7 +3831,7 @@
 	"removecredentials-invalidsubpage": "$1 ist kein gültiger Typ für Anmeldeinformationen.",
 	"removecredentials-success": "Deine Anmeldeinformationen wurden entfernt.",
 	"credentialsform-provider": "Typ der Anmeldeinformationen:",
-	"credentialsform-account": "Benutzerkontenname:",
+	"credentialsform-account": "Benutzername:",
 	"cannotlink-no-provider-title": "Es gibt keine verknüpfbaren Benutzerkonten",
 	"cannotlink-no-provider": "Es gibt keine verknüpfbaren Benutzerkonten.",
 	"linkaccounts": "Benutzerkonten verknüpfen",

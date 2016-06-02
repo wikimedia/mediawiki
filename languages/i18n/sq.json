@@ -2835,7 +2835,7 @@
 	"api-error-badtoken": "Gabim i brendshëm: Shenjë e keqe.",
 	"api-error-copyuploaddisabled": "Ngarkimi nga URL-ja është çaktivizuar në këtë server.",
 	"api-error-duplicate": "{{PLURAL:$1|Ekziston një skedë tjetër|Ekzistojnë disa skeda të tjera}} me të njëjtën përmbajtje.",
-	"api-error-duplicate-archive": "{{Ekzistonte një skedë tjetër|Ekzistonin disa skeda të tjera}} me të njëjtën përmbajtje, por {{PLURAL:$1|ajo është|ato janë}} fshirë.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Ekzistonte një skedë tjetër|Ekzistonin disa skeda të tjera}} me të njëjtën përmbajtje, por {{PLURAL:$1|ajo është|ato janë}} fshirë.",
 	"api-error-empty-file": "Skeda që paraqitët ishte bosh.",
 	"api-error-emptypage": "Nuk lejohet krijimi i faqeve të reja bosh.",
 	"api-error-fetchfileerror": "Gabim i brendshëm: Diçka shkoi keq gjatë marrjes së skedës.",
