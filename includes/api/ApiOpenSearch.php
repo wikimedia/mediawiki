@@ -272,20 +272,7 @@ class ApiOpenSearch extends ApiBase {
 		if ( $this->allowedParams !== null ) {
 			return $this->allowedParams;
 		}
-		$this->allowedParams = [
-			'search' => null,
-			'limit' => [
-				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => 100,
-				ApiBase::PARAM_MAX2 => 100
-			],
-			'namespace' => [
-				ApiBase::PARAM_DFLT => NS_MAIN,
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_ISMULTI => true
-			],
+		$this->allowedParams = $this->buildCommonApiParams( false ) + [
 			'suggest' => false,
 			'redirects' => [
 				ApiBase::PARAM_TYPE => [ 'return', 'resolve' ],
@@ -297,19 +284,21 @@ class ApiOpenSearch extends ApiBase {
 			'warningsaserror' => false,
 		];
 
-		$profileParam = $this->buildProfileApiParam( SearchEngine::COMPLETION_PROFILE_TYPE,
-			'apihelp-query+prefixsearch-param-profile' );
-		if ( $profileParam ) {
-			$this->allowedParams['profile'] = $profileParam;
-		}
+		// Use open search specific default limit
+		$this->allowedParams['limit'][ApiBase::PARAM_DFLT] = $this->getConfig()->get(
+			'OpenSearchDefaultLimit'
+		);
+
 		return $this->allowedParams;
 	}
 
 	public function getSearchProfileParams() {
-		if ( isset( $this->getAllowedParams()['profile'] ) ) {
-			return [ SearchEngine::COMPLETION_PROFILE_TYPE => 'profile' ];
-		}
-		return [];
+		return [
+			'qiprofile' => [
+				'profile-type' => SearchEngine::COMPLETION_PROFILE_TYPE,
+				'help-message' => 'apihelp-query+prefixsearch-param-profile'
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
