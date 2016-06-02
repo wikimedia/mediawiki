@@ -1118,7 +1118,6 @@ class HTMLForm extends ContextSource {
 			$buttons .= Html::element(
 					'a',
 					[
-						'type' => 'reset',
 						'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button' : null,
 						'href' => $target,
 					],
