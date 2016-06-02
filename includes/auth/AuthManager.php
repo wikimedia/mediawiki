@@ -2333,7 +2333,7 @@ class AuthManager implements LoggerAwareInterface {
 	private function setDefaultUserOptions( User $user, $useContextLang ) {
 		global $wgContLang;
 
-		\MediaWiki\Session\SessionManager::singleton()->invalidateSessionsForUser( $user );
+		$user->setToken();
 
 		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $wgContLang;
 		$user->setOption( 'language', $lang->getPreferredVariant() );
