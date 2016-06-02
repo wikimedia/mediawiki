@@ -3231,7 +3231,7 @@
 	"confirm-watch-top": "Ajouter cette page à votre liste de suivi ?",
 	"confirm-unwatch-button": "Valider",
 	"confirm-unwatch-top": "Supprimer cette page de votre liste de suivi ?",
-	"confirm-rollback-button": "Valider",
+	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Révoquer les modifications de cette page ?",
 	"semicolon-separator": "&nbsp;;&#32;",
 	"colon-separator": "&nbsp;:&#32;",

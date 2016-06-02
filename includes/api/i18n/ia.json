@@ -26,6 +26,7 @@
 	"apihelp-checktoken-param-type": "Typo de indicio a testar.",
 	"apihelp-checktoken-param-token": "Indicio a testar.",
 	"apihelp-createaccount-param-name": "Nomine de usator.",
+	"apihelp-query+prefixsearch-param-profile": "Le profilo de recerca a usar.",
 	"apihelp-query+revisions-example-first5-not-localhost": "Obtener le prime 5 versiones del \"Pagina principal\" que non ha essite facite per le usator anonyme \"127.0.0.1\"",
 	"api-credits": "Programmatores del API:\n* Roan Kattouw (programmator dirigente Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creator, programmator dirigente Sept. 2006–Sept. 2007)\n* Brad Jorsch (programmator dirigente 2013–presente)\n\nInvia tu commentos, suggestiones e questiones a mediawiki-api@lists.wikimedia.org\no insere un reportage de bug a https://phabricator.wikimedia.org/."
 }
