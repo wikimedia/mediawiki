@@ -124,7 +124,6 @@ class VFormHTMLForm extends HTMLForm {
 			$buttons .= Html::element(
 					'a',
 					[
-						'type' => 'reset',
 						'class' => 'mw-ui-button mw-ui-big mw-ui-block',
 						'href' => $target,
 					],
