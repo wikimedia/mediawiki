@@ -930,6 +930,21 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Add a cancel button to the form.
+	 * This is a convenience wrapper for addButton.
+	 * @param string $messageKey
+	 */
+	public function addCancelButton( $messageKey = 'cancel' ) {
+		$this->addButton( [
+			'name' => 'wpCancel',
+			'value' => $this->msg( $messageKey )->text(),
+			'attribs' => [
+				'formnovalidate' => true,
+			],
+		] );
+	}
+
+	/**
 	 * Set the salt for the edit token.
 	 *
 	 * Only useful when the method is "post".

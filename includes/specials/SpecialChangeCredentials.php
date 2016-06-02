@@ -151,10 +151,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		// messages used: changecredentials-submit removecredentials-submit
 		// changecredentials-submit-cancel removecredentials-submit-cancel
 		$form->setSubmitTextMsg( static::$messagePrefix . '-submit' );
-		$form->addButton( [
-			'name' => 'wpCancel',
-			'value' => $this->msg( static::$messagePrefix . '-submit-cancel' )->text()
-		] );
+		$form->addCancelButton( static::$messagePrefix . '-submit-cancel' );
 
 		return $form;
 	}
