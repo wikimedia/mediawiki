@@ -460,14 +460,14 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
 			$converter = $parser->getConverterLanguage()->getConverter();
-			return '<span class="error">' .
+			$parser->getOutput()->addWarning(
 				wfMessage( 'restricted-displaytitle',
 					// Message should be parsed, but this param should only be escaped.
 					$converter->markNoConversion( wfEscapeWikiText( $text ) )
-				)->inContentLanguage()->text() .
-				'</span>';
+				)->text()
+			);
+			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
 		}
 	}
 
