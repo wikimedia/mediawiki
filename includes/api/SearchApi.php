@@ -86,7 +86,7 @@ trait SearchApi {
 			$type = isset( $params['backend'] ) ? $params['backend'] : null;
 			$searchEngine = MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
 			$limit = $params['limit'];
-			$namespaces = $params['namespace'];
+			$searchEngine->setNamespaces( $params['namespace'] );
 			$offset = null;
 			if ( isset( $params['offset'] ) ) {
 				// If the API supports offset then it probably
