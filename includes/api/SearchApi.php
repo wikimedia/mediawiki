@@ -26,6 +26,40 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 trait SearchApi {
+
+	/**
+	 * The set of api parameters that are shared between api calls that
+	 * call the SearchEngine. Primarily this defines parameters that 
+	 * are utilized by self::buildSearchEngine().
+	 *
+	 * @return array
+	 */
+	public function buildCommonApiParams() {
+		return [
+			'search' => [
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+			],
+			'namespace' => [
+				ApiBase::PARAM_DFLT => NS_MAIN,
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_ISMULTI => true,
+			],
+			'limit' => [
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => 100,
+				ApiBase::PARAM_MAX2 => 200,
+			],
+			'offset' => [
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			]
+		];
+	}
+
 	/**
 	 * Build the profile api param definitions.
 	 *
