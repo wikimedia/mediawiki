@@ -1352,6 +1352,7 @@
 	 *
 	 * This method is only available when jqueryMsg is loaded.
 	 *
+	 * @since 1.27
 	 * @method parseDom
 	 * @member mw.Message
 	 * @return {jQuery}
