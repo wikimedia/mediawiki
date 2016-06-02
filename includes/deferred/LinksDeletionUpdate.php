@@ -42,48 +42,95 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		} elseif ( $pageId ) {
 			$this->pageId = $pageId;
 		} else {
-			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
+			throw new InvalidArgumentException( "Page ID not known. Page doesn't exist?" );
 		}
 	}
 
 	public function doUpdate() {
-		# Page may already be deleted, so don't just getId()
+		$config = RequestContext::getMain()->getConfig();
+		$batchSize = $config->get( 'UpdateRowsPerQuery' );
+
+		// Page may already be deleted, so don't just getId()
 		$id = $this->pageId;
 		// Make sure all links update threads see the changes of each other.
 		// This handles the case when updates have to batched into several COMMITs.
 		$scopedLock = LinksUpdate::acquirePageLock( $this->mDb, $id );
 
-		# Delete restrictions for it
+		// Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
 
-		# Fix category table counts
+		// Fix category table counts
 		$cats = $this->mDb->selectFieldValues(
 			'categorylinks',
 			'cl_to',
 			[ 'cl_from' => $id ],
 			__METHOD__
 		);
-		$this->page->updateCategoryCounts( [], $cats );
+		$catBatches = array_chunk( $cats, $batchSize );
+		foreach ( $catBatches as $catBatch ) {
+			$this->page->updateCategoryCounts( [], $catBatch );
+			if ( count( $catBatches ) > 1 ) {
+				$this->mDb->commit( __METHOD__, 'flush' );
+				wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+			}
+		}
 
-		# If using cascading deletes, we can skip some explicit deletes
+		// If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
-			# Delete outgoing links
-			$this->mDb->delete( 'pagelinks', [ 'pl_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'imagelinks', [ 'il_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'categorylinks', [ 'cl_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'templatelinks', [ 'tl_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'externallinks', [ 'el_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'langlinks', [ 'll_from' => $id ], __METHOD__ );
-			$this->mDb->delete( 'iwlinks', [ 'iwl_from' => $id ], __METHOD__ );
+			// Delete outgoing links
+			$this->batchDeleteByPK(
+				'pagelinks',
+				[ 'pl_from' => $id ],
+				[ 'pl_from', 'pl_namespace', 'pl_title' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'imagelinks',
+				[ 'il_from' => $id ],
+				[ 'il_from', 'il_to' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'categorylinks',
+				[ 'cl_from' => $id ],
+				[ 'cl_from', 'cl_to' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'templatelinks',
+				[ 'tl_from' => $id ],
+				[ 'tl_from', 'tl_namespace', 'tl_title' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'externallinks',
+				[ 'el_from' => $id ],
+				[ 'el_id' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'langlinks',
+				[ 'il_from' => $id ],
+				[ 'il_from', 'll_lang' ],
+				$batchSize
+			);
+			$this->batchDeleteByPK(
+				'iwlinks',
+				[ 'il_from' => $id ],
+				[ 'iwl_from', 'iwl_prefix', 'iwl_title' ],
+				$batchSize
+			);
+			// Delete any redirect entry or page props entries
 			$this->mDb->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
 			$this->mDb->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
 		}
 
-		# If using cleanup triggers, we can skip some manual deletes
+		// If using cleanup triggers, we can skip some manual deletes
 		if ( !$this->mDb->cleanupTriggers() ) {
 			$title = $this->page->getTitle();
-			# Find recentchanges entries to clean up...
-			$rcIdsForTitle = $this->mDb->selectFieldValues( 'recentchanges',
+			// Find recentchanges entries to clean up...
+			$rcIdsForTitle = $this->mDb->selectFieldValues(
+				'recentchanges',
 				'rc_id',
 				[
 					'rc_type != ' . RC_LOG,
@@ -92,16 +139,21 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 				],
 				__METHOD__
 			);
-			$rcIdsForPage = $this->mDb->selectFieldValues( 'recentchanges',
+			$rcIdsForPage = $this->mDb->selectFieldValues(
+				'recentchanges',
 				'rc_id',
 				[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
 				__METHOD__
 			);
 
-			# T98706: delete PK to avoid lock contention with RC delete log insertions
-			$rcIds = array_merge( $rcIdsForTitle, $rcIdsForPage );
-			if ( $rcIds ) {
-				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
+			// T98706: delete by PK to avoid lock contention with RC delete log insertions
+			$rcIdBatches = array_chunk( array_merge( $rcIdsForTitle, $rcIdsForPage ), $batchSize );
+			foreach ( $rcIdBatches as $rcIdBatch ) {
+				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
+				if ( count( $rcIdBatches ) > 1 ) {
+					$this->mDb->commit( __METHOD__, 'flush' );
+					wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+				}
 			}
 		}
 
@@ -109,6 +161,26 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			// Release the lock *after* the final COMMIT for correctness
 			ScopedCallback::consume( $scopedLock );
 		} );
+	}
+
+	private function batchDeleteByPK( $table, array $conds, array $pk, $bSize ) {
+		$dbw = $this->mDb; // convenience
+		$res = $dbw->select( $table, $pk, $conds, __METHOD__ );
+
+		$pkDeleteConds = [];
+		foreach ( $res as $row ) {
+			$pkDeleteConds[] = $this->mDb->makeList( (array)$row, LIST_AND );
+			if ( count( $pkDeleteConds ) >= $bSize ) {
+				$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
+				$dbw->commit( __METHOD__, 'flush' );
+				wfGetLBFactory()->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
+				$pkDeleteConds = [];
+			}
+		}
+
+		if ( $pkDeleteConds ) {
+			$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
+		}
 	}
 
 	public function getAsJobSpecification() {
