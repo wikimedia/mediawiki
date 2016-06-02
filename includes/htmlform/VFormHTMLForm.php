@@ -116,6 +116,22 @@ class VFormHTMLForm extends HTMLForm {
 			) . "\n";
 		}
 
+		if ( $this->mShowCancel ) {
+			$target = $this->mCancelTarget ?: Title::newMainPage();
+			if ( $target instanceof Title ) {
+				$target = $target->getLocalURL();
+			}
+			$buttons .= Html::element(
+					'a',
+					[
+						'type' => 'reset',
+						'class' => 'mw-ui-button mw-ui-big mw-ui-block',
+						'href' => $target,
+					],
+					$this->msg( 'cancel' )->text()
+				) . "\n";
+		}
+
 		foreach ( $this->mButtons as $button ) {
 			$attrs = [
 				'type' => 'submit',

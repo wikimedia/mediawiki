@@ -169,6 +169,8 @@ class HTMLForm extends ContextSource {
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
 	protected $mSubmitFlags = [ 'constructive', 'primary' ];
+	protected $mShowCancel = false;
+	protected $mCancelTarget;
 
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
@@ -1108,6 +1110,22 @@ class HTMLForm extends ContextSource {
 			) . "\n";
 		}
 
+		if ( $this->mShowCancel ) {
+			$target = $this->mCancelTarget ?: Title::newMainPage();
+			if ( $target instanceof Title ) {
+				$target = $target->getLocalURL();
+			}
+			$buttons .= Html::element(
+					'a',
+					[
+						'type' => 'reset',
+						'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button' : null,
+						'href' => $target,
+					],
+					$this->msg( 'cancel' )->text()
+				) . "\n";
+		}
+
 		// IE<8 has bugs with <button>, so we'll need to avoid them.
 		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
 
@@ -1323,6 +1341,28 @@ class HTMLForm extends ContextSource {
 	public function suppressDefaultSubmit( $suppressSubmit = true ) {
 		$this->mShowSubmit = !$suppressSubmit;
 
+		return $this;
+	}
+
+	/**
+	 * Show a cancel button (or prevent it). The button is not shown by default.
+	 * @param bool $show
+	 * @return HTMLForm $this for chaining calls
+	 * @since 1.27
+	 */
+	public function showCancel( $show = true ) {
+		$this->mShowCancel = $show;
+		return $this;
+	}
+
+	/**
+	 * Sets the target where the user is redirected to after clicking cancel.
+	 * @param Title|string $target Target as a Title object or an URL
+	 * @return HTMLForm $this for chaining calls
+	 * @since 1.27
+	 */
+	public function setCancelTarget( $target ) {
+		$this->mCancelTarget = $target;
 		return $this;
 	}
 
