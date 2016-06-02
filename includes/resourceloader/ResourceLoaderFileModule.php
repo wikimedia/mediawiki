@@ -468,7 +468,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( !file_exists( $localPath ) ) {
 			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
 		}
-		$contents = file_get_contents( $localPath );
+		$contents = $this->stripBom( file_get_contents( $localPath ) );
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
 			$contents = $this->validateScriptFile( $localPath, $contents );
 		}
@@ -810,7 +810,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( !file_exists( $localPath ) ) {
 				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
-			$contents = file_get_contents( $localPath );
+			$contents = $this->stripBom( file_get_contents( $localPath ) );
 			if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
 				// Static files don't really need to be checked as often; unlike
 				// on-wiki module they shouldn't change unexpectedly without
@@ -882,7 +882,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$style = $this->compileLessFile( $localPath, $context );
 			$this->hasGeneratedStyles = true;
 		} else {
-			$style = file_get_contents( $localPath );
+			$style = $this->stripBom( file_get_contents( $localPath ) );
 		}
 
 		if ( $flip ) {
@@ -990,7 +990,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$localPath = $this->getLocalPath( $templatePath );
 			if ( file_exists( $localPath ) ) {
 				$content = file_get_contents( $localPath );
-				$templates[$alias] = $content;
+				$templates[$alias] = $this->stripBom( $content );
 			} else {
 				$msg = __METHOD__ . ": template file not found: \"$localPath\"";
 				wfDebugLog( 'resourceloader', $msg );
@@ -998,5 +998,21 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 		return $templates;
+	}
+
+	/**
+	 * Takes an input string and removes the UTF-8 BOM character if present
+	 *
+	 * We need to remove these after reading a file, because we concatenate our files and
+	 * the BOM character is not valid in the middle of a string.
+	 * We already assume UTF-8 everywhere, so this should be safe.
+	 *
+	 * @return string input minus the intial BOM char
+	 */
+	protected function stripBom( $input ) {
+		if ( substr_compare( "\xef\xbb\xbf", $input, 0, 3 ) === 0 ) {
+			return substr( $input, 3 );
+		}
+		return $input;
 	}
 }
