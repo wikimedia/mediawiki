@@ -68,6 +68,172 @@ class KafkaHandler extends AbstractProcessingHandler {
 		'alias' => [], // map from monolog channel to kafka topic
 		'swallowExceptions' => false, // swallow exceptions sending records
 		'logExceptions' => null, // A PSR3 logger to inform about errors
+		'requireAck' => 0,
+	];
+
+	/**
+	 * The kafka protocol documentation didn't list the possible errors, so these
+	 * are extracted from apache/kafka@e6ca328 from the file:
+	 *   clients/src/main/java/org/apache/kafka/common/protocol/Errors.java
+	 * It seems likely this should be part of nmred/kafka-php rather than this
+	 * file, but this will work for now.
+	 *
+	 * @var array
+	 */
+	private static $errors = [
+	    -1 => [
+	        'UNKNOWN',
+	        'The server experienced an unexpected error when processing the request',
+	    ],
+	    0 => [
+	        'NONE',
+	        null
+	    ],
+	    1 => [
+	        'OFFSET_OUT_OF_RANGE',
+	        'The requested offset is not within the range of offsets maintained by the server.',
+	    ],
+	    2 => [
+	        'CORRUPT_MESSAGE',
+			'This message has failed its CRC checksum, exceeds the valid size, or ' .
+			'is otherwise corrupt.',
+	    ],
+	    3 => [
+	        'UNKNOWN_TOPIC_OR_PARTITION',
+	        'This server does not host this topic-partition.',
+	    ],
+	    4 => [
+	        'INVALID_FETCH_SIZE',
+	        'The requested fetch size is invalid.',
+	    ],
+	    5 => [
+	        'LEADER_NOT_AVAILABLE',
+			'There is no leader for this topic-partition as we are in the middle ' .
+			'of a leadership election.',
+	    ],
+	    6 => [
+	        'NOT_LEADER_FOR_PARTITION',
+	        'This server is not the leader for that topic-partition.',
+	    ],
+	    7 => [
+	        'REQUEST_TIMED_OUT',
+	        'The request timed out.',
+	    ],
+	    8 => [
+	        'BROKER_NOT_AVAILABLE',
+	        'The broker is not available.',
+	    ],
+	    9 => [
+	        'REPLICA_NOT_AVAILABLE',
+	        'The replica is not available for the requested topic-partition',
+	    ],
+	    10 => [
+	        'MESSAGE_TOO_LARGE',
+	        'The request included a message larger than the max message size the server will accept.',
+	    ],
+	    11 => [
+	        'STALE_CONTROLLER_EPOCH',
+	        'The controller moved to another broker.',
+	    ],
+	    12 => [
+	        'OFFSET_METADATA_TOO_LARGE',
+	        'The metadata field of the offset request was too large.',
+	    ],
+	    13 => [
+	        'NETWORK_EXCEPTION',
+	        'The server disconnected before a response was received.',
+	    ],
+	    14 => [
+	        'GROUP_LOAD_IN_PROGRESS',
+	        'The coordinator is loading and hence can\'t process requests for this group.',
+	    ],
+	    15 => [
+	        'GROUP_COORDINATOR_NOT_AVAILABLE',
+	        'The group coordinator is not available.',
+	    ],
+	    16 => [
+	        'NOT_COORDINATOR_FOR_GROUP',
+	        'This is not the correct coordinator for this group.',
+	    ],
+	    17 => [
+	        'INVALID_TOPIC_EXCEPTION',
+	        'The request attempted to perform an operation on an invalid topic.',
+	    ],
+	    18 => [
+	        'RECORD_LIST_TOO_LARGE',
+			'The request included message batch larger than the configured ' .
+			'segment size on the server.',
+	    ],
+	    19 => [
+	        'NOT_ENOUGH_REPLICAS',
+	        'Messages are rejected since there are fewer in-sync replicas than required.',
+	    ],
+	    20 => [
+	        'NOT_ENOUGH_REPLICAS_AFTER_APPEND',
+	        'Messages are written to the log, but to fewer in-sync replicas than required.',
+	    ],
+	    21 => [
+	        'INVALID_REQUIRED_ACKS',
+	        'Produce request specified an invalid value for required acks.',
+	    ],
+	    22 => [
+	        'ILLEGAL_GENERATION',
+	        'Specified group generation id is not valid.',
+	    ],
+	    23 => [
+	        'INCONSISTENT_GROUP_PROTOCOL',
+	        'The group member\'s supported protocols are incompatible with those of existing members.',
+	    ],
+	    24 => [
+	        'INVALID_GROUP_ID',
+	        'The configured groupId is invalid',
+	    ],
+	    25 => [
+	        'UNKNOWN_MEMBER_ID',
+	        'The coordinator is not aware of this member.',
+	    ],
+	    26 => [
+	        'INVALID_SESSION_TIMEOUT',
+			'The session timeout is not within the range allowed by the broker ' .
+			'(as configured by group.min.session.timeout.ms and ' .
+			'group.max.session.timeout.ms).',
+	    ],
+	    27 => [
+	        'REBALANCE_IN_PROGRESS',
+	        'The group is rebalancing, so a rejoin is needed.',
+	    ],
+	    28 => [
+	        'INVALID_COMMIT_OFFSET_SIZE',
+	        'The committing offset data size is not valid',
+	    ],
+	    29 => [
+	        'TOPIC_AUTHORIZATION_FAILED',
+	        'Topic authorization failed.',
+	    ],
+	    30 => [
+	        'GROUP_AUTHORIZATION_FAILED',
+	        'Group authorization failed.',
+	    ],
+	    31 => [
+	        'CLUSTER_AUTHORIZATION_FAILED',
+	        'Cluster authorization failed.',
+	    ],
+	    32 => [
+	        'INVALID_TIMESTAMP',
+	        'The timestamp of the message is out of acceptable range.',
+	    ],
+	    33 => [
+	        'UNSUPPORTED_SASL_MECHANISM',
+	        'The broker does not support the requested SASL mechanism.',
+	    ],
+	    34 => [
+	        'ILLEGAL_SASL_STATE',
+	        'Request is not valid given the current SASL state.',
+	    ],
+	    35 => [
+	        'UNSUPPORTED_VERSION',
+	        'The version of API is not supported.',
+	    ],
 	];
 
 	/**
@@ -118,6 +284,10 @@ class KafkaHandler extends AbstractProcessingHandler {
 			$options['logExceptions'] = LoggerFactory::getInstance( $options['logExceptions'] );
 		}
 
+		if ( isset( $options['requireAck'] ) ) {
+			$produce->setRequireAck( $options['requireAck'] );
+		}
+
 		return new self( $produce, $options, $level, $bubble );
 	}
 
@@ -165,13 +335,51 @@ class KafkaHandler extends AbstractProcessingHandler {
 	 */
 	protected function send() {
 		try {
-			$this->produce->send();
+			$response = $this->produce->send();
 		} catch ( \Kafka\Exception $e ) {
 			$ignore = $this->warning(
 				'Error sending records to kafka: {exception}',
 				[ 'exception' => $e ] );
 			if ( !$ignore ) {
 				throw $e;
+			} else {
+				return;
+			}
+		}
+
+		if ( is_bool( $response ) ) {
+			if ( !$response ) {
+				// ...
+			}
+			return;
+		}
+
+		$errors = [];
+		foreach ( $response as $topicName => $partitionResponse ) {
+			foreach ( $partitionResponse as $partition => $info ) {
+				if ( $info['errCode'] === 0 ) {
+					// no error
+					continue;
+				}
+				if ( isset( self::$errors[$info['errCode']] ) ) {
+					$error = self::$errors[$info['errCode']];
+				} else {
+					$error = self::$errors[-1];
+				}
+
+				$errors[] = sprintf(
+					'Error producing to %s (errno %d): %s',
+					$topicName,
+					$info['errCode'],
+					$error[1]
+				);
+			}
+		}
+
+		if ( $errors ) {
+			$error = implode( "\n", $errors );
+			if ( $this->warning( $error ) ) {
+				throw new \RuntimeException( $error );
 			}
 		}
 	}
