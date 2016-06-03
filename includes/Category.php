@@ -95,7 +95,11 @@ class Category {
 		# and should not be kept, and 2) we *probably* don't have to scan many
 		# rows to obtain the correct figure, so let's risk a one-time recount.
 		if ( $this->mPages < 0 || $this->mSubcats < 0 || $this->mFiles < 0 ) {
-			$this->refreshCounts();
+			$this->mPages = max( $this->mPages, 0 );
+			$this->mSubcats = max( $this->mSubcats, 0 );
+			$this->mFiles = max( $this->mFiles, 0 );
+
+			DeferredUpdates::addCallableUpdate( array( $this, 'refreshCounts' ) );
 		}
 
 		return true;
