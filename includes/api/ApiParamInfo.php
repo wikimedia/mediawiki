@@ -348,6 +348,20 @@ class ApiParamInfo extends ApiBase {
 					$item['type'] = array_values( $item['type'] );
 					ApiResult::setIndexedTagName( $item['type'], 't' );
 				}
+
+				// Add 'allspecifier' if applicable
+				if ( $item['type'] === 'namespace' ) {
+					$allowAll = true;
+					$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
+				} else {
+					$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
+						? $settings[ApiBase::PARAM_ALL]
+						: false;
+					$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+				}
+				if ( ( $item['multi'] && is_array( $item['type'] ) ) || $item['type'] === 'namespace' ) {
+					$item['allspecifier'] = ( $allowAll ? $allSpecifier : null );
+				}
 			}
 			if ( isset( $settings[ApiBase::PARAM_MAX] ) ) {
 				$item['max'] = $settings[ApiBase::PARAM_MAX];
