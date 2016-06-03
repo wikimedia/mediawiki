@@ -84,6 +84,9 @@ div.searchresult {
 	color: #666;
 	font-size: 95%;
 }
+#mw-search-top-table div.oo-ui-actionFieldLayout {
+	float: left;
+}
 fieldset#mw-searchoptions {
 	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em;
