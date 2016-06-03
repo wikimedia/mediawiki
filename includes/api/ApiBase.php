@@ -171,7 +171,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
+	/**
+	 * (boolean|string) When PARAM_TYPE has a defined set of values and PARAM_ISMULTI is true,
+	 * this allows for an asterisk ('*') to be passed in place of a pipe-separated list of
+	 * every possible value. If a string is set, it will be used in place of the asterisk.
+	 * @since 1.27
+	 */
+	const PARAM_ALL = 17;
+
 	/**@}*/
+
+	const ALL_DEFAULT_STRING = '*';
 
 	/** Fast query, standard limit. */
 	const LIMIT_BIG1 = 500;
@@ -887,6 +897,7 @@ abstract class ApiBase extends ContextSource {
 			$dupes = false;
 			$deprecated = false;
 			$required = false;
+			$allowAll = false;
 		} else {
 			$default = isset( $paramSettings[self::PARAM_DFLT] )
 				? $paramSettings[self::PARAM_DFLT]
@@ -905,6 +916,9 @@ abstract class ApiBase extends ContextSource {
 				: false;
 			$required = isset( $paramSettings[self::PARAM_REQUIRED] )
 				? $paramSettings[self::PARAM_REQUIRED]
+				: false;
+			$allowAll = isset( $paramSettings[self::PARAM_ALL] )
+				? $paramSettings[self::PARAM_ALL]
 				: false;
 
 			// When type is not given, and no choices, the type is the same as $default
@@ -959,6 +973,9 @@ abstract class ApiBase extends ContextSource {
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();
+				// By default, namespace parameters allow ALL_DEFAULT_STRING to be used to specify
+				// all namespaces.
+				$allowAll = true;
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
 				if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
@@ -974,7 +991,8 @@ abstract class ApiBase extends ContextSource {
 				$encParamName,
 				$value,
 				$multi,
-				is_array( $type ) ? $type : null
+				is_array( $type ) ? $type : null,
+				$allowAll
 			);
 		}
 
@@ -1123,11 +1141,19 @@ abstract class ApiBase extends ContextSource {
 	 *  separated by '|'?
 	 * @param string[]|null $allowedValues An array of values to check against. If
 	 *  null, all values are accepted.
+	 * @param string|boolean $allowAll String to use to specify all allowed values. If true,
+	 *  the default (ALL_DEFAULT_STRING) is used
 	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
 	 */
-	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues ) {
+	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
+	  $allowAll = false ) {
 		if ( trim( $value ) === '' && $allowMultiple ) {
 			return [];
+		}
+
+		$allSpecifier = ( is_string( $allowAll ) ? $allowAll : self::ALL_DEFAULT_STRING );
+		if ( $allowMultiple && $allowAll && $value === $allSpecifier ) {
+			return $allowedValues;
 		}
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()

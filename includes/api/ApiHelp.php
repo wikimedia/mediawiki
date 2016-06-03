@@ -637,6 +637,16 @@ class ApiHelp extends ApiBase {
 							if ( $extra ) {
 								$info[] = implode( ' ', $extra );
 							}
+
+							$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
+								? $settings[ApiBase::PARAM_ALL]
+								: false;
+							if ( $allowAll || $settings[ApiBase::PARAM_TYPE] === 'namespace' ) {
+								$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+								$info[] = $context->msg( 'api-help-param-multi-all' )
+								  ->params( "'" . $allSpecifier . "'" )
+									->parse();
+							}
 						}
 					}
 

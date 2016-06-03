@@ -1387,6 +1387,7 @@
 	"api-help-param-upload": "{{technical}} Used to indicate that an 'upload'-type parameter must be posted as a file upload using multipart/form-data",
 	"api-help-param-multi-separate": "Used to indicate how to separate multiple values. Not used with {{msg-mw|api-help-param-list}}.",
 	"api-help-param-multi-max": "Used to indicate the maximum number of values accepted for a multi-valued parameter.\n\nParameters:\n* $1 - Maximum value without the apihighlimits right\n* $2 - Maximum value with the apihighlimits right",
+	"api-help-param-multi-all": "Used to indicate what string can be used to specify all possible values of a multi-valued parameter. \n\nParameters:\n* $1 - String (wrapped in quotes) to specify all possible values of the parameter",
 	"api-help-param-default": "Used to display the default value for an API parameter\n\nParameters:\n* $1 - Default value\n\nSee also:\n* {{msg-mw|api-help-param-default-empty}}\n{{Identical|Default}}",
 	"api-help-param-default-empty": "Used to display the default value for an API parameter when that default is an empty value\n\nSee also:\n* {{msg-mw|api-help-param-default}}",
 	"api-help-param-token": "{{doc-apihelp-param|description=any 'token' parameter|paramstart=2|params=\n* $1 - Token type|noseealso=1}}",
