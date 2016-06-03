@@ -3712,8 +3712,6 @@
 	"authpage-cannot-login-continue": "Nie można kontynuować logowania. Sesja najprawdopodobniej wygasła.",
 	"cannotauth-not-allowed-title": "Brak dostępu",
 	"changecredentials-submit": "Zmień poświadczenia",
-	"changecredentials-submit-cancel": "Anuluj",
 	"removecredentials-submit": "Usuń poświadczenia",
-	"removecredentials-submit-cancel": "Anuluj",
 	"credentialsform-account": "Nazwa konta:"
 }

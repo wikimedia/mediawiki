@@ -3585,9 +3585,7 @@
 	"cannotauth-not-allowed": "Һеҙ был битте ҡуллана алмайһығыҙ.",
 	"changecredentials": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
-	"changecredentials-submit-cancel": "Кире алырға",
 	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"removecredentials-submit-cancel": "Кире алырға",
 	"credentialsform-account": "Иҫәп хужаһы"
 }

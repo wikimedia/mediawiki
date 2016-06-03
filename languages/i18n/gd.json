@@ -1185,7 +1185,7 @@
 	"rcshowhidemine-hide": "Falaich",
 	"rclinks": "Seall {{PLURAL:$1|an $1 mhùthadh|an $1 mhùthadh|na $1 mùthaidhean|am $1 mùthadh}} mu dheireadh thairis air {{PLURAL:$2|an $2 latha|an $2 latha|na $2 làithean|am $2 latha}} mu dheireadh<br />$3",
 	"diff": "diofar",
-	"hist": "eachd",
+	"hist": "eachdr",
 	"hide": "Falaich",
 	"show": "Seall",
 	"minoreditletter": "b",

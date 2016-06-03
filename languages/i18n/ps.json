@@ -2615,8 +2615,6 @@
 	"authmanager-realname-help": "د کارن اصلي نوم",
 	"authprovider-resetpass-skip-label": "تېرېدل",
 	"changecredentials-submit": "بدلول",
-	"changecredentials-submit-cancel": "ناگارل",
 	"removecredentials-submit": "غورځول",
-	"removecredentials-submit-cancel": "ناگارل",
 	"credentialsform-account": "گڼون نوم:"
 }

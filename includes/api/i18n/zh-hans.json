@@ -898,6 +898,7 @@
 	"apihelp-query+prefixsearch-param-limit": "要返回的结果最大数。",
 	"apihelp-query+prefixsearch-param-offset": "跳过的结果数。",
 	"apihelp-query+prefixsearch-example-simple": "搜索以<kbd>meaning</kbd>开头的页面标题。",
+	"apihelp-query+prefixsearch-param-profile": "搜索要使用的配置文件。",
 	"apihelp-query+protectedtitles-description": "列出所有被限制创建的标题。",
 	"apihelp-query+protectedtitles-param-namespace": "只列出这些名字空间的标题。",
 	"apihelp-query+protectedtitles-param-level": "只列出带这些保护级别的标题。",

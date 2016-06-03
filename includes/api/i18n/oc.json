@@ -51,7 +51,7 @@
 	"apihelp-login-param-password": "Senhal.",
 	"apihelp-login-param-domain": "Domeni (facultatiu).",
 	"apihelp-login-example-login": "Se connectar.",
-	"apihelp-managetags-description": "Efectuar de prètzfaches de gestion relatius a la modificacion de las balisas.",
+	"apihelp-managetags-description": "Efectuar de prètzfaits de gestion relatius a la modificacion de las balisas.",
 	"apihelp-move-description": "Desplaçar una pagina.",
 	"apihelp-opensearch-param-search": "Cadena de recèrca.",
 	"apihelp-parse-example-page": "Analisar una pagina.",

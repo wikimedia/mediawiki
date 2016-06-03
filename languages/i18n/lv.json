@@ -2650,7 +2650,5 @@
 	"authmanager-realname-label": "Tavs īstais vārds",
 	"authmanager-realname-help": "Dalībnieka īstais vārds",
 	"authprovider-resetpass-skip-label": "Izlaist",
-	"specialpage-securitylevel-not-allowed-title": "Nav atļauts",
-	"changecredentials-submit-cancel": "Atcelt",
-	"removecredentials-submit-cancel": "Atcelt"
+	"specialpage-securitylevel-not-allowed-title": "Nav atļauts"
 }

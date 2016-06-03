@@ -3512,9 +3512,7 @@
 	"authprovider-resetpass-skip-label": "উপেক্ষা করো",
 	"authprovider-resetpass-skip-help": "পাসওয়ার্ড পুনঃস্থাপন করা উপেক্ষা করুন।",
 	"authform-wrongtoken": "ভুল টোকেন",
-	"changecredentials-submit-cancel": "বাতিল",
 	"removecredentials-submit": "পরিচয়পত্র সরান",
-	"removecredentials-submit-cancel": "বাতিল",
 	"credentialsform-account": "অ্যাকাউন্টের নাম:",
 	"linkaccounts": "অ্যাকাউন্ট সংযোগ করুন"
 }

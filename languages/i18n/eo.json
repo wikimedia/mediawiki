@@ -3691,9 +3691,7 @@
 	"authmanager-realname-label": "Vera nomo",
 	"authmanager-realname-help": "Vera nomo de la uzanto",
 	"changecredentials-submit": "Ŝanĝi",
-	"changecredentials-submit-cancel": "Nuligi",
 	"removecredentials-submit": "Forigi",
-	"removecredentials-submit-cancel": "Nuligi",
 	"linkaccounts": "Ligi kontojn",
 	"linkaccounts-submit": "Ligi kontojn"
 }
