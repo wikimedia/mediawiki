@@ -136,8 +136,9 @@ class BatchRowIterator implements RecursiveIterator {
 	 */
 	public function extractPrimaryKeys( $row ) {
 		$pk = [];
-		foreach ( $this->primaryKey as $column ) {
-			$pk[$column] = $row->$column;
+		foreach ( $this->primaryKey as $alias => $column ) {
+			$name = is_numeric( $alias ) ? $column : $alias;
+			$pk[$name] = $row->{$name};
 		}
 		return $pk;
 	}
@@ -228,8 +229,9 @@ class BatchRowIterator implements RecursiveIterator {
 
 		$maxRow = end( $this->current );
 		$maximumValues = [];
-		foreach ( $this->primaryKey as $column ) {
-			$maximumValues[$column] = $this->db->addQuotes( $maxRow->$column );
+		foreach ( $this->primaryKey as $alias => $column ) {
+			$name = is_numeric( $alias ) ? $column : $alias;
+			$maximumValues[$column] = $this->db->addQuotes( $maxRow->{$name} );
 		}
 
 		$pkConditions = [];
