@@ -558,7 +558,7 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$ret->neededRequests[] = $ret->createRequest;
 				}
-				$this->fillRequests( $ret->neededRequests, self::ACTION_LOGIN, null );
+				$this->fillRequests( $ret->neededRequests, self::ACTION_LOGIN, null, true );
 				$session->setSecret( 'AuthManager::authnState', [
 					'reqs' => [], // Will be filled in later
 					'primary' => null,
@@ -2056,7 +2056,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Fill in reqs data
-		$this->fillRequests( $reqs, $providerAction, $options['username'] );
+		$this->fillRequests( $reqs, $providerAction, $options['username'], true );
 
 		// For self::ACTION_CHANGE, filter out any that something else *doesn't* allow changing
 		if ( $providerAction === self::ACTION_CHANGE || $providerAction === self::ACTION_REMOVE ) {
@@ -2073,10 +2073,13 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param AuthenticationRequest[] &$reqs
 	 * @param string $action
 	 * @param string|null $username
+	 * @param boolean $forceAction
 	 */
-	private function fillRequests( array &$reqs, $action, $username ) {
+	private function fillRequests( array &$reqs, $action, $username, $forceAction = false ) {
 		foreach ( $reqs as $req ) {
-			$req->action = $action;
+			if ( !$req->action || $forceAction ) {
+				$req->action = $action;
+			}
 			if ( $req->username === null ) {
 				$req->username = $username;
 			}
