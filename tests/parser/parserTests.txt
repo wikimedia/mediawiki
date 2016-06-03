@@ -7170,6 +7170,79 @@ parsoid={
 |}
 !!end
 
+!! test
+Testing selser after addition of new row before first row (T125419)
+!! options
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    [ "tr", "before", "<tr><td>X</td></tr>" ]
+  ]
+}
+!! wikitext
+{|
+|a
+|}
+!! wikitext/edited
+{|
+|X
+|-
+|a
+|}
+!! end
+
+!! test
+Serialize new table rows in a HTML table using HTML tags
+!! options
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    [ "tr", "before", "<tr><td>X</td></tr>" ]
+  ]
+}
+!! wikitext
+<table><tr><td>a</td></tr></table>
+!! wikitext/edited
+<table><tr><td>X</td></tr><tr><td>a</td></tr></table>
+!! end
+
+!! test
+Serialize new table cells in a HTML row using HTML tags
+!! options
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    [ "td", "before", "<td>X</td>" ]
+  ]
+}
+!! wikitext
+<table><tr><td>a</td></tr></table>
+!! wikitext/edited
+<table><tr><td>X</td><td>a</td></tr></table>
+!! end
+
+!! test
+Wikitext tables can be nested inside HTML tables
+!! options
+parsoid=html2wt
+!! html
+<table data-parsoid='{"stx":"html"}'>
+<tr><td>
+<table>
+<tr><td>foo</td></tr>
+</table>
+</td></tr>
+</table>
+!! wikitext
+<table>
+<tr><td>
+{|
+|foo
+|}
+</td></tr>
+</table>
+!! end
+
 ###
 ### Internal links
 ###
