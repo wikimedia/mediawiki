@@ -540,6 +540,7 @@ class ApiHelp extends ApiBase {
 
 								case 'namespace':
 									$namespaces = MWNamespace::getValidNamespaces();
+									$namespaces[] = 'all';
 									$count = count( $namespaces );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )

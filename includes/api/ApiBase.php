@@ -958,7 +958,11 @@ abstract class ApiBase extends ContextSource {
 			$value = $this->getMain()->getVal( $encParamName, $default );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
-				$type = MWNamespace::getValidNamespaces();
+				if ( $value === 'all' ) {
+					$value = MWNamespace::getValidNamespaces();
+				} else {
+					$type = MWNamespace::getValidNamespaces();
+				}
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
 				if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
@@ -969,7 +973,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
-		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
+		if ( isset( $value ) && !is_array( $value ) && ( $multi || is_array( $type ) ) ) {
 			$value = $this->parseMultiValue(
 				$encParamName,
 				$value,
@@ -1079,6 +1083,8 @@ abstract class ApiBase extends ContextSource {
 						if ( !$tagsStatus->isGood() ) {
 							$this->dieStatus( $tagsStatus );
 						}
+						break;
+					case 'namespace': // nothing to do
 						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
@@ -2785,6 +2791,8 @@ abstract class ApiBase extends ContextSource {
 								$desc .= $paramPrefix . $prompt;
 								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
 									100, $descWordwrap );
+								// "all" can be specified to select all namespaces
+								$desc .= ', all';
 								$hintPipeSeparated = false;
 								break;
 							case 'limit':
