@@ -34,5 +34,5 @@
 	"config-db-password": "Pasa-taramon nin datos-sarayan:",
 	"config-db-password-empty": "Pakilaog nin sarong pasa-taramon para sa baguhong paragamit nin datos-sarayan: $1.\nMantang ini posibleng makamukna nin mga paragamit na mayong mga pasa-taramon, bako po ining segurado.",
 	"mainpagetext": "'''Instalado na an MediaWiki.'''",
-	"mainpagedocfooter": "Konsultarón tabì an [//meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.\n\n== Pagpopoon ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+	"mainpagedocfooter": "Konsultarón tabì an [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.\n\n== Pagpopoon ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
 }

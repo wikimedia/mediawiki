@@ -184,7 +184,7 @@ class SpecialVersion extends SpecialPage {
 				wfMessage( 'version-poweredby-others' )->text() . ']]';
 		}
 
-		$translatorsLink = '[//translatewiki.net/wiki/Translating:MediaWiki/Credits ' .
+		$translatorsLink = '[https://translatewiki.net/wiki/Translating:MediaWiki/Credits ' .
 			wfMessage( 'version-poweredby-translators' )->text() . ']';
 
 		$authorList = [

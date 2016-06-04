@@ -328,7 +328,7 @@
 	"protectedpagetext": "Huic paginae protectio data est, ne redigatur neu aliter tractetur.",
 	"viewsourcetext": "Fontem videas et exscribeas:",
 	"protectedinterface": "Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.",
-	"editinginterface": "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [//translatewiki.net/wiki/Main_Page?setlang=la translatewiki.net].",
+	"editinginterface": "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [https://translatewiki.net/wiki/Main_Page?setlang=la translatewiki.net].",
 	"namespaceprotected": "Tibi non licet paginas spatii nominalis '''$1''' recensere.",
 	"ns-specialprotected": "Paginae speciales recenseri non possunt.",
 	"titleprotected": "Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.\nRatio data est <em>$2</em>.",

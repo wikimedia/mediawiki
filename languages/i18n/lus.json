@@ -297,7 +297,7 @@
 	"protectedpagetext": "He phêk hi khawih danglam theih emaw tihchingpen theih loh nana venhim hrih a ni.",
 	"viewsourcetext": "A hnar i lachhawngin i en thei ang:",
 	"viewyourtext": "'''I siamţhatte''' chu he phêkah hian i enin i lachhawng thei ang.",
-	"protectedinterface": "He phêk hian khawlthluak tan hmangtu-ţawng a phuhru a, hman khawloh a nih loh nan venhim hrih a ni. Lehlinna tidanglam tur emaw belh tur chuan [//translatewiki.net/ translatewiki.net], MediaWiki lehzauna hmachhawp hi i hmang dawn nia.",
+	"protectedinterface": "He phêk hian khawlthluak tan hmangtu-ţawng a phuhru a, hman khawloh a nih loh nan venhim hrih a ni. Lehlinna tidanglam tur emaw belh tur chuan [https://translatewiki.net/ translatewiki.net], MediaWiki lehzauna hmachhawp hi i hmang dawn nia.",
 	"cascadeprotected": "He phêk hi siam danglam phal a ni hrih lo, a chhan chu {{PLURAL:$1|he phêk|hêng phêk}}, \"a huhova venhim\" tih hmanga ven chhunga awm a nih vang a ni: \n$2",
 	"namespaceprotected": "'''$1''' tih hminghmun chhunga phêkte siamţhat phalna i nei lo.",
 	"customcssprotected": "Hmangtu dang mimal thil a awm avangin he CSS phêk hi siam danglam phal a ni lo.",

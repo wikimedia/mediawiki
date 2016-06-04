@@ -44,7 +44,7 @@
 	"config-help-restart": "Ar norite ištrinti visus išsaugotus duomenis, kuriuos jūs įvedėte ir iš naujo paleisti diegimo procesą?",
 	"config-restart": "Taip, paleiskite jį iš naujo",
 	"config-welcome": "== Aplinkos patikrinimas ==\nDabar bus atlikti pagrindiniai patikrinimai, po kurių paaiškės, ar ši aplinka yra tinkama MediaWiki įrangai.\nNepamirškite įtraukti šią informaciją, jeigu norite gauti pagalbos, kaip užbaigti įdiegimą.",
-	"config-sidebar": "* [//www.mediawiki.org MediaWiki namų tinklalapis]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vartotojo gidas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administratoriaus gidas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ DUK]\n----\n* <doclink href=Readme>Skaityk mane</doclink>\n* <doclink href=ReleaseNotes>Leidimo pastabos</doclink>\n* <doclink href=Copying>Kopijavimas</doclink>\n* <doclink href=UpgradeDoc>Atnaujinimas</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org MediaWiki namų tinklalapis]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vartotojo gidas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administratoriaus gidas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ DUK]\n----\n* <doclink href=Readme>Skaityk mane</doclink>\n* <doclink href=ReleaseNotes>Leidimo pastabos</doclink>\n* <doclink href=Copying>Kopijavimas</doclink>\n* <doclink href=UpgradeDoc>Atnaujinimas</doclink>",
 	"config-env-good": "Aplinka buvo patikrinta.\nJūs galite įdiegti MediaWiki.",
 	"config-env-bad": "Aplinka buvo patikrinta.\nJūs negalite įdiegti MediaWiki.",
 	"config-env-php": "PHP $1 yra įdiegtas.",
@@ -160,5 +160,5 @@
 	"config-help-tooltip": "spustelėkite išplėtimui",
 	"config-nofile": "Failas \"$1\" nerastas. Ar jis buvo ištrintas?",
 	"mainpagetext": "'''MediaWiki sėkmingai įdiegta.'''",
-	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [//meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
+	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [https://meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
 }

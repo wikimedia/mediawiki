@@ -287,7 +287,7 @@
 	"protectedpagetext": "Naka-lock ang kining panid aron mapugngan ang pag-usab.",
 	"viewsourcetext": "Puyde nimo tan-awon ug kopyahon ang ginikanan ning panid:",
 	"protectedinterface": "Ang kining panid mohatag og interface text para sa software, ug naka-lock aron mapugngan ang pag-abuso.",
-	"editinginterface": "'''Pahibalo:''' Imo nang usbon ang panid nga gigamit sa paghatag og interface text para sa software.\nAng mga pag-usab niining panid moapekto sa appearance sa user interface nga alang sa ubang gumagamit.\nPara sa mga paghubad, palihog ikonsider ang paggamit sa [//translatewiki.net/wiki/Main_Page?setlang=ceb translatewiki.net], ang MediaWiki localisation project.",
+	"editinginterface": "'''Pahibalo:''' Imo nang usbon ang panid nga gigamit sa paghatag og interface text para sa software.\nAng mga pag-usab niining panid moapekto sa appearance sa user interface nga alang sa ubang gumagamit.\nPara sa mga paghubad, palihog ikonsider ang paggamit sa [https://translatewiki.net/wiki/Main_Page?setlang=ceb translatewiki.net], ang MediaWiki localisation project.",
 	"cascadeprotected": "Ang kining panid giprotektahan sa pag-usab tungod kay nahiapil kini sa mosunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} giprotektahan pinaagi sa pag-turn on gamit ang \"cascading\" nga opsyon:\n$2",
 	"namespaceprotected": "Wala kay permiso nga mag-usab sa mga panid sa '''$1''' nga ngalang espasyo.",
 	"ns-specialprotected": "Ang mga espesyal nga panid dili mausban.",

@@ -12,5 +12,5 @@
 	"config-localsettings-key": "Sandi apgréd:",
 	"config-localsettings-badkey": "Sandi anu diasupkeun salah.",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
-	"mainpagedocfooter": "Mangga tingal ''[//meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
+	"mainpagedocfooter": "Mangga tingal ''[https://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }

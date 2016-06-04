@@ -1978,7 +1978,7 @@
 	"allmessagesname": "Isem",
 	"allmessagesdefault": "Aḍris ameslugen",
 	"allmessagescurrent": "Aḍris n tura",
-	"allmessagestext": "Wagi d-umuɣ n inzan yestufan deg tallunt MediaWiki.\nẒeṛ [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] dɣa [//translatewiki.net translatewiki.net] ma tebɣiḍ ad ɛiweneḍ i usideg imcettel n MediaWiki.",
+	"allmessagestext": "Wagi d-umuɣ n inzan yestufan deg tallunt MediaWiki.\nẒeṛ [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] dɣa [https://translatewiki.net translatewiki.net] ma tebɣiḍ ad ɛiweneḍ i usideg imcettel n MediaWiki.",
 	"allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''$wgUseDatabaseMessages''' yettwakkes.",
 	"allmessages-filter-legend": "Tastayt",
 	"allmessages-filter": "Ṣeffi s addad n ubeddil :",

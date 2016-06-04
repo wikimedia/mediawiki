@@ -1743,7 +1743,7 @@
 	"allmessagesname": "Ad",
 	"allmessagesdefault": "İlkin mətn",
 	"allmessagescurrent": "İndiki mətn",
-	"allmessagestext": "Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.",
+	"allmessagestext": "Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] və [https://translatewiki.net translatewiki.net]-ə baş çəkin.",
 	"allmessages-filter-legend": "Filtr",
 	"allmessages-filter-unmodified": "Dəyişdirilməmiş",
 	"allmessages-filter-all": "Hamısı",

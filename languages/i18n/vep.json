@@ -321,7 +321,7 @@
 	"protectedpagetext": "Nece lehtpol' om luklostadud, miše kaita se redaktiruindaspäi da toižis tegendoišpäi.",
 	"viewsourcetext": "Sab lugeda da kopiruida necen lehtpolen augotižtekst:",
 	"protectedinterface": "Necil lehtpolel om programman interfeistedotuz. Se om luklostadud, miše kaita se vandalizmaspäi.",
-	"editinginterface": "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.\nMugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.\nKändmižen täht om paremb kävutada [//translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
+	"editinginterface": "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.\nMugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.\nKändmižen täht om paremb kävutada [https://translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
 	"namespaceprotected": "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
 	"customcssprotected": "Teil ei ole oiktust redaktiruida nece CSS-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.",
 	"customjsprotected": "Teil ei ole oiktust redaktiruida nece JavaScript-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.",

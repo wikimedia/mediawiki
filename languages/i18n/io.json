@@ -906,7 +906,7 @@
 	"export-addcat": "Adjuntar",
 	"allmessages": "Omna sistemo-mesaji",
 	"allmessagesname": "Nomo",
-	"allmessagestext": "Ico esas listo di omna sistemo-mesaji disponebla en la MediaWiki nomaro.\nVoluntez vizitar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Lokizado] e [//translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.",
+	"allmessagestext": "Ico esas listo di omna sistemo-mesaji disponebla en la MediaWiki nomaro.\nVoluntez vizitar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Lokizado] e [https://translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.",
 	"allmessages-language": "Linguo:",
 	"thumbnail-more": "Grandigar",
 	"thumbnail_error": "Ne sucesas krear imajeto: $1",

@@ -31,7 +31,7 @@
 	"config-page-upgradedoc": "தரமுயர்த்தப்படுகிறது",
 	"config-page-existingwiki": "இருக்கின்ற விக்கி",
 	"config-restart": "ஆம், மறுமுறை துவங்கு",
-	"config-sidebar": "* [//www.mediawiki.org மீடியாவிக்கி முகப்பு]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents பயனரின் கையேடு]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents மேலாளரின் கையேடு]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ அகேகே]\n----\n* <doclink href=Readme>என்னை வாசிக்கவும்</doclink>\n* <doclink href=ReleaseNotes>வெளியீட்டுக் குறிப்புகள்</doclink>\n* <doclink href=Copying>படியெடுத்தல்</doclink>\n* <doclink href=UpgradeDoc>நிகழ்நிலைப்படுத்தல்</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org மீடியாவிக்கி முகப்பு]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents பயனரின் கையேடு]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents மேலாளரின் கையேடு]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ அகேகே]\n----\n* <doclink href=Readme>என்னை வாசிக்கவும்</doclink>\n* <doclink href=ReleaseNotes>வெளியீட்டுக் குறிப்புகள்</doclink>\n* <doclink href=Copying>படியெடுத்தல்</doclink>\n* <doclink href=UpgradeDoc>நிகழ்நிலைப்படுத்தல்</doclink>",
 	"config-db-type": "தரவுத்தள வகை:",
 	"config-db-wiki-settings": "இந்த விக்கியைக் கண்டுபிடி",
 	"config-db-name": "தரவுதளப் பெயர்:",
@@ -86,5 +86,5 @@
 	"config-download-localsettings": "<code>LocalSettings.php</code>ஐத் தரவிறக்கவும்",
 	"config-help": "உதவி",
 	"mainpagetext": "'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''",
-	"mainpagedocfooter": "விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [//meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.\n\n== தொடக்கப்படிகள் ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings அமைப்புக்களை மாற்றம் செய்தல்]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ மிடியாவிக்கி பொதுவான கேள்விகள்]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]"
+	"mainpagedocfooter": "விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [https://meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.\n\n== தொடக்கப்படிகள் ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings அமைப்புக்களை மாற்றம் செய்தல்]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ மிடியாவிக்கி பொதுவான கேள்விகள்]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]"
 }

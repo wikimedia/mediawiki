@@ -348,7 +348,7 @@
 	"protectedpagetext": "Kaca kiye uwis dikunci ben ora teyeng disunting utawa aksi liyane (pokoke ora teyeng diapa-apakna maning).",
 	"viewsourcetext": "Rika teyeng ndeleng lan nyalin sumbere kaca kiye.",
 	"viewyourtext": "Rika teyeng ndeleng lan nyalin sumbere <strong>suntingane Rika</strong> meng kaca kiye:",
-	"protectedinterface": "Kaca kiye isine teks antarmuka ding dienggo piranti alus nang wiki kiye, lan uwis dikunci nggo menghindari kasalahan.\nKanggo nambaih utawa ngowaih terjemahan nang kabeh wiki, monggo gunakna [//translatewiki.net/ translatewiki.net], proyek lokalisasi MediaWiki.",
+	"protectedinterface": "Kaca kiye isine teks antarmuka ding dienggo piranti alus nang wiki kiye, lan uwis dikunci nggo menghindari kasalahan.\nKanggo nambaih utawa ngowaih terjemahan nang kabeh wiki, monggo gunakna [https://translatewiki.net/ translatewiki.net], proyek lokalisasi MediaWiki.",
 	"editinginterface": "'''Penget:''' Rika nyunting kaca sing dienggo nyedyakna teks antarmuka kanggo piranti alus.\nPangowahan kaca kiye engko aweh pangaruh maring tampilan antarmuka panganggo duweke panganggo liyane nang wiki kiye.",
 	"cascadeprotected": "Kaca kiye wis direksa sekang penyuntingan jalaran melu mlebu nang {{PLURAL:$1|kaca|kaca-kaca}} nang ngisor kiye sing wis direksa nganggo opsi \"runtun\":\n$2",
 	"namespaceprotected": "Rika ora duwe hak akses kanggo nyunting kaca nang bilik jeneng '''$1'''.",

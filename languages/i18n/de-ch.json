@@ -34,7 +34,7 @@
 	"cannotdelete": "Die Seite oder Datei «$1» kann nicht gelöscht werden.\nMöglicherweise wurde sie bereits von jemand anderem gelöscht.",
 	"cannotdelete-title": "Seite «$1» kann nicht gelöscht werden",
 	"actionthrottledtext": "Im Rahmen einer Anti-Spam-Massnahme oder aufgrund eines Missbrauchsfilters kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.\nBitte versuche es in ein paar Minuten erneut.",
-	"editinginterface": "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.\nÄnderungen auf dieser Seite wirken sich auf die Benutzeroberfläche dieses Wikis aus.\nNutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",
+	"editinginterface": "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.\nÄnderungen auf dieser Seite wirken sich auf die Benutzeroberfläche dieses Wikis aus.\nNutze bitte [https://translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",
 	"titleprotected": "Eine Seite mit diesem Namen kann nicht angelegt werden.\nDie Sperre wurde durch [[User:$1|$1]] mit der Begründung ''«$2»'' eingerichtet.",
 	"filereadonlyerror": "Die Datei «$1» kann nicht verändert werden, da auf das Dateirepositorium «$2» nur Lesezugriff möglich ist.\n\nDer Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: «$3».",
 	"createacct-realname": "Richtiger Name (optional)",

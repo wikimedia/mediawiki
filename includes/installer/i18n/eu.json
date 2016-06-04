@@ -35,7 +35,7 @@
 	"config-page-upgradedoc": "Eguneratu",
 	"config-page-existingwiki": "Existitzen den wikia",
 	"config-restart": "Bai, berriz hasi",
-	"config-sidebar": "* [//www.mediawiki.org MediaWiki nagusia]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Erabiltzaileentzako Gida]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administratzaileentzako Gida]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MEG]\n----\n* <doclink href=Readme>Irakur nazazu</doclink>\n* <doclink href=ReleaseNotes>Oharren argitalpena</doclink>\n* <doclink href=Copying>Kopiaketa</doclink>\n* <doclink href=UpgradeDoc>Eguneratzea</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org MediaWiki nagusia]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Erabiltzaileentzako Gida]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administratzaileentzako Gida]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MEG]\n----\n* <doclink href=Readme>Irakur nazazu</doclink>\n* <doclink href=ReleaseNotes>Oharren argitalpena</doclink>\n* <doclink href=Copying>Kopiaketa</doclink>\n* <doclink href=UpgradeDoc>Eguneratzea</doclink>",
 	"config-env-php": "PHP $1 instalatuta dago.",
 	"config-env-hhvm": "HHVM $1 instalatuta dago.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] instalatuta dago",
@@ -115,5 +115,5 @@
 	"config-help": "Laguntza",
 	"config-help-tooltip": "sakatu zabaltzeko",
 	"mainpagetext": "'''MediaWiki arrakastaz instalatu da.'''",
-	"mainpagedocfooter": "Ikus [//meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]"
+	"mainpagedocfooter": "Ikus [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]"
 }

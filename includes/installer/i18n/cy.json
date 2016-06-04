@@ -11,5 +11,5 @@
 	"config-information": "Gwybodaeth",
 	"config-localsettings-upgrade": "Rydym wedi canfod ffeil <code>LocalSettings.php</code>.\nI uwchraddio'r gosodiad yma, rhowch fanylion y<code>$wgUpgradeKey</code> yn y blwch isod.\nFe'i cewch yn <code>LocalSettings.php</code>.",
 	"mainpagetext": "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
-	"mainpagedocfooter": "\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Rhestr osodiadau wrth gyflunio]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lleoleiddiwch MediaWiki ar gyfer eich iaith]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dysgwch sut i ymladd sbam ar eich wici]"
+	"mainpagedocfooter": "\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Rhestr osodiadau wrth gyflunio]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lleoleiddiwch MediaWiki ar gyfer eich iaith]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dysgwch sut i ymladd sbam ar eich wici]"
 }

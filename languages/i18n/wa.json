@@ -1306,7 +1306,7 @@
 	"allmessagesname": "No del variåve",
 	"allmessagesdefault": "Tecse prémetou",
 	"allmessagescurrent": "Tecse pol moumint",
-	"allmessagestext": "Çouchal est ene djivêye des messaedjes sistinme k' i gn a dins l' espåce di lomaedje ''MediaWiki:''.\nLoukîz les pådjes sol [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Locålijhaedje di MediaWiki] et \n[//translatewiki.net/ translatewiki.net] si vos vloz pårticiper avou l' ratournaeje djenerike di MediaWiki.",
+	"allmessagestext": "Çouchal est ene djivêye des messaedjes sistinme k' i gn a dins l' espåce di lomaedje ''MediaWiki:''.\nLoukîz les pådjes sol [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Locålijhaedje di MediaWiki] et \n[https://translatewiki.net/ translatewiki.net] si vos vloz pårticiper avou l' ratournaeje djenerike di MediaWiki.",
 	"allmessagesnotsupportedDB": "'''{{ns:special}}:AllMessages''' n' est nén sopoirté paski '''$wgUseDatabaseMessages''' est dismetou.",
 	"allmessages-filter-legend": "Passete",
 	"allmessages-filter": "Sorlon l' estat d' candjaedje:",

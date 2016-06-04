@@ -296,7 +296,7 @@
 	"protectedpagetext": "Dis piej protek fi privent editin.",
 	"viewsourcetext": "Yu kiahn vyuu ahn kapi di suos a dis piej:",
 	"protectedinterface": "Dis piej provaid intafies tex fi di saafwier, ahn iprotek fi privent abyuus.",
-	"editinginterface": "'''Waanin:''' Yu de edit page we yuuz fi provaid intafies tex fi di saafwier.\nChienj tu dis piej wi afek di apierans a di yuuza intafies fi ada yuuzadem.\nFi chranslieshan, begyu kansida fi yuuz [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], di MediaWiki luokalaizieshan projek.",
+	"editinginterface": "'''Waanin:''' Yu de edit page we yuuz fi provaid intafies tex fi di saafwier.\nChienj tu dis piej wi afek di apierans a di yuuza intafies fi ada yuuzadem.\nFi chranslieshan, begyu kansida fi yuuz [https://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], di MediaWiki luokalaizieshan projek.",
 	"cascadeprotected": "Dis piej protek frahn edit, bikaa i'inkluud ina di falarin {{PLURAL:$1|piej, ush|piejdem, ush}} protek wid di \"kiaskiedn\" apshan ton aan:\n$2",
 	"namespaceprotected": "Yu no gat no pomishan fi edit piej ina di '''$1''' niemspies.",
 	"ns-specialprotected": "Peshal piejdem kyaahn edit.",

@@ -784,7 +784,7 @@
 	"allmessagesname": "Erinnya",
 	"allmessagesdefault": "Ebigambo ebya bulijjo",
 	"allmessagescurrent": "Ebiriwo kakano",
-	"allmessagestext": "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkuŋŋaanizo erya MediaWiki.\n\nOb'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] ne [//translatewiki.net translatewiki.net].",
+	"allmessagestext": "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkuŋŋaanizo erya MediaWiki.\n\nOb'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] ne [https://translatewiki.net translatewiki.net].",
 	"allmessages-filter-legend": "Ensunsula",
 	"allmessages-filter": "Londamu:",
 	"allmessages-filter-unmodified": "Ebitannakyusibwamu",

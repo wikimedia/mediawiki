@@ -656,7 +656,7 @@
 	"allmessagesname": "Sebu",
 	"allmessagesdefault": "Selt orge",
 	"allmessagescurrent": "Selt nca",
-	"allmessagestext": "Bye mukoloko sa mukoloko di mulumiwani di MediaWiki poo.\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
+	"allmessagestext": "Bye mukoloko sa mukoloko di mulumiwani di MediaWiki poo.\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [https://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
 	"thumbnail-more": "Pusize",
 	"thumbnail_error": "Bufosi hloli tumbneli: $1",
 	"import": "Petulo import",
