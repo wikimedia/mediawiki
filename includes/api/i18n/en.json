@@ -1441,6 +1441,11 @@
 	"apihelp-xml-param-includexmlnamespace": "If specified, adds an XML namespace.",
 	"apihelp-xmlfm-description": "Output data in XML format (pretty-print in HTML).",
 
+	"apihelp-setpagelanguage-description": "Set the page content language for a page.",
+	"apihelp-setpagelanguage-param-lang": "Language code to set the page language. Skip for using default wiki language.",
+	"apihelp-setpagelanguage-example-setpagelanguage": "Set page language for <kbd>Title1</kbd> and <kbd>Title2</kbd> to hindi(hi).",
+	"apihelp-setpagelanguage-example-setdefaultlanguage": "Set page language for <kbd>Title</kbd> as the default wiki language.",
+
 	"api-format-title": "MediaWiki API result",
 	"api-format-prettyprint-header": "This is the HTML representation of the $1 format. HTML is good for debugging, but is unsuitable for application use.\n\nSpecify the <var>format</var> parameter to change the output format. To see the non-HTML representation of the $1 format, set <kbd>format=$2</kbd>.\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
 	"api-format-prettyprint-header-only-html": "This is an HTML representation intended for debugging, and is unsuitable for application use.\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
