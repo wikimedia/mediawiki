@@ -18,7 +18,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		AuthManager::ACTION_LOGIN, AuthManager::ACTION_LOGIN_CONTINUE,
 		AuthManager::ACTION_CREATE, AuthManager::ACTION_CREATE_CONTINUE,
 		AuthManager::ACTION_LINK, AuthManager::ACTION_LINK_CONTINUE,
-		AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE, AuthManager::ACTION_UNLINK,
+		AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE,
 	];
 
 	/** @var array Customized messages */
@@ -325,7 +325,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				return $authManager->canLinkAccounts();
 			case AuthManager::ACTION_CHANGE:
 			case AuthManager::ACTION_REMOVE:
-			case AuthManager::ACTION_UNLINK:
 				return true;
 			default:
 				// should never reach here but makes static code analyzers happy
@@ -364,7 +363,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				return $authManager->continueAccountLink( $requests );
 			case AuthManager::ACTION_CHANGE:
 			case AuthManager::ACTION_REMOVE:
-			case AuthManager::ACTION_UNLINK:
 				if ( count( $requests ) > 1 ) {
 					throw new InvalidArgumentException( 'only one auth request can be changed at a time' );
 				} elseif ( !$requests ) {
@@ -462,7 +460,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		}
 
 		$changeActions = [
-			AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE, AuthManager::ACTION_UNLINK
+			AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE
 		];
 		if ( in_array( $this->authAction, $changeActions, true ) && $status && !$status->isOK() ) {
 			Hooks::run( 'ChangeAuthenticationDataAudit', [ reset( $this->authRequests ), $status ] );
