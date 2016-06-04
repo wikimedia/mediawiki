@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ "x$BASH_SOURCE" == "x" ]; then echo '$BASH_SOURCE not set'; exit 1; fi
-DEV=$(cd -P "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+DEV=$(cd -P -- "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 set -e # DO NOT USE PIPES unless this is rewritten
 
-. "$DEV/includes/php.sh"
+. -- "$DEV/includes/php.sh"
 
 if [ "x$PHP" != "x" -a -x "$PHP" ]; then
 	echo "PHP is already installed"
@@ -15,7 +15,7 @@ fi
 TAR=php5.4-latest.tar.gz
 PHPURL="http://snaps.php.net/$TAR"
 
-cd "$DEV"
+cd -- "$DEV"
 
 echo "Preparing to download and install a local copy of PHP 5.4, note that this can take some time to do."
 echo "If you wish to avoid re-doing this for uture dev installations of MediaWiki we suggest installing php in ~/.mediawiki/php"
@@ -36,7 +36,7 @@ esac
 echo -n "Downloading PHP 5.4"
 if command -v wget &>/dev/null; then
 	echo "- using wget"
-	wget "$PHPURL"
+	wget -- "$PHPURL"
 elif command -v curl &>/dev/null; then
 	echo "- using curl"
 	curl -O "$PHPURL"
@@ -47,7 +47,7 @@ else
 fi
 
 echo "Extracting php 5.4"
-tar -xzf "$TAR"
+tar -xzf -- "$TAR"
 
 cd php5.4-*/
 
