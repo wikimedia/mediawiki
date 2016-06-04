@@ -506,6 +506,7 @@
 	"createacct-another-realname-tip": "Сапраўднае імя паведамляць неабавязкова.\nКалі Вы яго пазначыце, яно будзе выкарыстоўвацца для пазначэньня Вашай працы.",
 	"pt-login": "Увайсьці",
 	"pt-login-button": "Увайсьці",
+	"pt-login-continue-button": "Працягваць уваход",
 	"pt-createaccount": "Стварыць рахунак",
 	"pt-userlogout": "Выйсьці",
 	"php-mail-error-unknown": "Узьнікла невядомая памылка ў функцыі PHP mail()",
