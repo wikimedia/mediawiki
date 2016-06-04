@@ -46,6 +46,8 @@ production.
   of the page being parsed.
 * Added JavaScript that provides as-you-type suggestions for reason
   on the block, delete and protect forms.
+* Special:UnlinkAccounts was removed to be less confusing. You can use Special:RemoveCredentials
+  instead.
 
 === External library changes in 1.29 ===
 
@@ -90,6 +92,7 @@ production.
   no longer returns a 'message' on success.
 * Added action=validatepassword to validate passwords for the account creation
   and password change forms.
+* action=unlinkaccount was removed, use action=removeauthenticationdata instead.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n

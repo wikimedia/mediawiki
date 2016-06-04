@@ -35,12 +35,8 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action );
 
-		$this->authAction = $action === 'unlinkaccount'
-			? AuthManager::ACTION_UNLINK
-			: AuthManager::ACTION_REMOVE;
-		$this->operation = $action === 'unlinkaccount'
-			? 'UnlinkAccount'
-			: 'RemoveCredentials';
+		$this->authAction = AuthManager::ACTION_REMOVE;
+		$this->operation = 'RemoveCredentials';
 	}
 
 	public function execute() {
