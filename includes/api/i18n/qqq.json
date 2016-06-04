@@ -1369,8 +1369,6 @@
 	"apihelp-undelete-param-watchlist": "{{doc-apihelp-param|undelete|watchlist}}",
 	"apihelp-undelete-example-page": "{{doc-apihelp-example|undelete}}",
 	"apihelp-undelete-example-revisions": "{{doc-apihelp-example|undelete}}",
-	"apihelp-unlinkaccount-summary": "{{doc-apihelp-summary|unlinkaccount}}",
-	"apihelp-unlinkaccount-example-simple": "{{doc-apihelp-example|unlinkaccount}}",
 	"apihelp-upload-summary": "{{doc-apihelp-summary|upload}}",
 	"apihelp-upload-extended-description": "{{doc-apihelp-extended-description|upload}}",
 	"apihelp-upload-param-filename": "{{doc-apihelp-param|upload|filename}}",

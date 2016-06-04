@@ -39,6 +39,8 @@ production.
   the ParserOutput::getText() post-cache transformations.
 * Added a hook, UploadForm:getInitialPageText, to allow extensions to alter the
   initial page text for file uploads.
+* Special:UnlinkAccounts was removed to be less confusing. You can use Special:RemoveCredentials
+  instead. A redirect from Special:UnlinkAccounts to Special:RemoveCredentials has been kept.
 
 === External library changes in 1.31 ===
 
