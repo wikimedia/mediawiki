@@ -18,7 +18,8 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		AuthManager::ACTION_LOGIN, AuthManager::ACTION_LOGIN_CONTINUE,
 		AuthManager::ACTION_CREATE, AuthManager::ACTION_CREATE_CONTINUE,
 		AuthManager::ACTION_LINK, AuthManager::ACTION_LINK_CONTINUE,
-		AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE, AuthManager::ACTION_UNLINK,
+		AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE,
+		AuthManager::ACTION_UNLINK,
 	];
 
 	/** @var array Customized messages */
