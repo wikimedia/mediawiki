@@ -213,6 +213,11 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		if ( $returnUrl ) {
 			$out->redirect( $returnUrl );
 		} else {
+			$out->addSubtitle( Html::element(
+				'a',
+				[ 'href' => $this->getPageTitle()->getLocalURL() ],
+				$this->getTitle()->getPrefixedText()
+			) );
 			// messages used: changecredentials-success removecredentials-success
 			$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", static::$messagePrefix
 				. '-success' );
