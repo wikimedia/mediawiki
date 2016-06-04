@@ -29,20 +29,6 @@ use MediaWiki\Auth\AuthManager;
  */
 class ApiRemoveAuthenticationData extends ApiBase {
 
-	private $authAction;
-	private $operation;
-
-	public function __construct( ApiMain $main, $action ) {
-		parent::__construct( $main, $action );
-
-		$this->authAction = $action === 'unlinkaccount'
-			? AuthManager::ACTION_UNLINK
-			: AuthManager::ACTION_REMOVE;
-		$this->operation = $action === 'unlinkaccount'
-			? 'UnlinkAccount'
-			: 'RemoveCredentials';
-	}
-
 	public function execute() {
 		if ( !$this->getUser()->isLoggedIn() ) {
 			$this->dieWithError( 'apierror-mustbeloggedin-removeauth', 'notloggedin' );
@@ -52,15 +38,13 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		$manager = AuthManager::singleton();
 
 		// Check security-sensitive operation status
-		ApiAuthManagerHelper::newForModule( $this )->securitySensitiveOperation( $this->operation );
+		ApiAuthManagerHelper::newForModule( $this )->securitySensitiveOperation( 'RemoveCredentials' );
 
 		// Fetch the request. No need to load from the request, so don't use
 		// ApiAuthManagerHelper's method.
-		$blacklist = $this->authAction === AuthManager::ACTION_REMOVE
-			? array_flip( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ) )
-			: [];
+		$blacklist = array_flip( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ) );
 		$reqs = array_filter(
-			$manager->getAuthenticationRequests( $this->authAction, $this->getUser() ),
+			$manager->getAuthenticationRequests( AuthManager::ACTION_REMOVE, $this->getUser() ),
 			function ( $req ) use ( $params, $blacklist ) {
 				return $req->getUniqueId() === $params['request'] &&
 					!isset( $blacklist[get_class( $req )] );
@@ -91,7 +75,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return ApiAuthManagerHelper::getStandardParams( $this->authAction,
+		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_REMOVE,
 			'request'
 		);
 	}

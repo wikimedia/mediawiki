@@ -99,8 +99,6 @@ class AuthManager implements LoggerAwareInterface {
 	const ACTION_CHANGE = 'change';
 	/** Remove a user's credentials */
 	const ACTION_REMOVE = 'remove';
-	/** Like ACTION_REMOVE but for linking providers only */
-	const ACTION_UNLINK = 'unlink';
 
 	/** Security-sensitive operations are ok. */
 	const SEC_OK = 'ok';
@@ -2028,15 +2026,6 @@ class AuthManager implements LoggerAwareInterface {
 				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
 					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
 				} );
-				break;
-
-			case self::ACTION_UNLINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
-
-				// To providers, unlink and remove are identical.
-				$providerAction = self::ACTION_REMOVE;
 				break;
 
 			case self::ACTION_LINK_CONTINUE:
