@@ -272,7 +272,7 @@
 	"viewsourcetext": "Unga langutisa naswona u kopa xihlovo xa tluka leri.",
 	"viewyourtext": "Unga langutisa naswona ukopa xihlovo xa \"mindzulamiso yawena\" eka tluka leri.",
 	"protectedinterface": "Tluka leri rina xihlanganisi xa software, naswona risirheleriwile kusivela kuthyakisiwa.",
-	"editinginterface": "'''Tivonele:''' ulekululamiseni tlika leri tirhisiwaka ku komba matsalwa yo hlanganisa ya software.\nKucinca eka tluka leri kunga onha kulanguteka ka matluka eka vatirhisi van'wana.\nLeswaku uvona kuhundzuluxa langutisa [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], Phurojeki yo hundzuluxa tindzimi ya MediaWiki.",
+	"editinginterface": "'''Tivonele:''' ulekululamiseni tlika leri tirhisiwaka ku komba matsalwa yo hlanganisa ya software.\nKucinca eka tluka leri kunga onha kulanguteka ka matluka eka vatirhisi van'wana.\nLeswaku uvona kuhundzuluxa langutisa [https://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], Phurojeki yo hundzuluxa tindzimi ya MediaWiki.",
 	"cascadeprotected": "Tluka leri risirheleriwile eka mindzulamiso, hikwalaho kaleswi rikatsiweke eka {{PLURAL:$1|tluka, leri|matluka, lama}} sirheleriweke nswona mangana nhlawulo wo \"katsakanya\" lowu hlawuriweke:\n$2",
 	"namespaceprotected": "Uhava mfumelelo wo lulamisa matluka eka maviti-vundzawu bya '''$1'''.",
 	"customcssprotected": "Uhava mpfumelelo wo ulamisa tluka leri ra CSS, hikuva rina minhlawulo ya mutirhisi un'wana.",

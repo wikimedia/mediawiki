@@ -7,5 +7,5 @@
 	"config-information": "文訊",
 	"config-page-language": "語",
 	"mainpagetext": "'''共筆臺已立'''",
-	"mainpagedocfooter": "欲識維基，見[//meta.wikimedia.org/wiki/Help:Contents User's Guide]\n\n== 始 ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+	"mainpagedocfooter": "欲識維基，見[https://meta.wikimedia.org/wiki/Help:Contents User's Guide]\n\n== 始 ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
 }

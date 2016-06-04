@@ -42,7 +42,7 @@
 	"config-page-existingwiki": "Postojeća wiki",
 	"config-help-restart": "Da li želite očistiti sve spremljene podatke koje ste unijeli i da započnete ponovo proces instalacije?",
 	"config-restart": "Da, pokreni ponovo",
-	"config-sidebar": "* [//www.mediawiki.org MediaWiki Početna strana]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodič za administratore]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ NPP]\n----\n* <doclink href=Readme>Pročitaj me</doclink>\n* <doclink href=ReleaseNotes>Napomene izdanja</doclink>\n* <doclink href=Copying>Kopiranje</doclink>\n* <doclink href=UpgradeDoc>Poboljšavanje</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org MediaWiki Početna strana]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodič za administratore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ NPP]\n----\n* <doclink href=Readme>Pročitaj me</doclink>\n* <doclink href=ReleaseNotes>Napomene izdanja</doclink>\n* <doclink href=Copying>Kopiranje</doclink>\n* <doclink href=UpgradeDoc>Poboljšavanje</doclink>",
 	"config-env-good": "Okruženje je provjereno.\nMožete instalirati MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
 	"config-env-hhvm": "HHVM $1 je instaliran.",
@@ -89,5 +89,5 @@
 	"config-help": "pomoć",
 	"config-help-tooltip": "klikni za proširenje",
 	"mainpagetext": "'''MediaWiki softver je uspješno instaliran.'''",
-	"mainpagedocfooter": "Kontaktirajte [//meta.wikimedia.org/wiki/Help:Sadržaj uputstva za korisnike] za informacije o upotrebi wiki programa.\n\n== Početak ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki najčešće postavljana pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]"
+	"mainpagedocfooter": "Kontaktirajte [https://meta.wikimedia.org/wiki/Help:Sadržaj uputstva za korisnike] za informacije o upotrebi wiki programa.\n\n== Početak ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki najčešće postavljana pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]"
 }

@@ -63,5 +63,5 @@
 	"config-help": "सहायता",
 	"config-nofile": "फ़ाइल \"$1\" नहीं पाई जा सकी। क्या इसे हटा दिया गया है?",
 	"mainpagetext": "'''मीडियाविकिका इन्स्टॉलेशन पूरा हो गया हैं ।'''",
-	"mainpagedocfooter": "विकि सॉफ्टवेयरके इस्तेमाल के लिये [//meta.wikimedia.org/wiki/Help:Contents उपयोगकर्ता गाईड] देखें ।\n\n== शुरुवात करें ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]"
+	"mainpagedocfooter": "विकि सॉफ्टवेयरके इस्तेमाल के लिये [https://meta.wikimedia.org/wiki/Help:Contents उपयोगकर्ता गाईड] देखें ।\n\n== शुरुवात करें ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]"
 }

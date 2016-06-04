@@ -25,5 +25,5 @@
 	"config-ns-other-default": "MyWiki",
 	"config-profile-private": "Джабыкъ вики",
 	"mainpagetext": "'''«MediaWiki» тыйыншлы салынды.'''",
-	"mainpagedocfooter": "Бу вики бла къалай ишлерге ангылатхан информацияны [//meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.\n\n== Файдалы ресурсла ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола]."
+	"mainpagedocfooter": "Бу вики бла къалай ишлерге ангылатхан информацияны [https://meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.\n\n== Файдалы ресурсла ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола]."
 }

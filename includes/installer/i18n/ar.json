@@ -156,5 +156,5 @@
 	"config-help-tooltip": "اضغط للتوسيع",
 	"config-nofile": "لا يمكن العثور على الملف \"$1\". هل حُذف؟",
 	"mainpagetext": "<strong>تم تثبيت ميدياويكي بنجاح.</strong>",
-	"mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
+	"mainpagedocfooter": "استشر [https://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
 }

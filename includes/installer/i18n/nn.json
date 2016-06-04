@@ -39,5 +39,5 @@
 	"config-logo": "Logo-URL:",
 	"config-help": "hjelp",
 	"mainpagetext": "'''MediaWiki er no installert.'''",
-	"mainpagedocfooter": "Sjå [//meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]"
+	"mainpagedocfooter": "Sjå [https://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]"
 }

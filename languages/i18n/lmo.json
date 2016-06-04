@@ -338,7 +338,7 @@
 	"actionthrottled": "Asiù ritardàda",
 	"protectedpagetext": "Chela pagina chi l'è stata blucàda per impedinn la mudifica o altre azion.",
 	"viewsourcetext": "L'è pussibil vèd e cupià el codes surgent de chela pagina chí:",
-	"editinginterface": "'''Ocio''': Te see adree a mudifegà una pàgina che la se dröva per generà 'l test de l'interfacia del prugrama. Ogna mudìfega fada la cambierà l'interfacia de tüt i druvadur. Se te gh'hee intenzión de fà una tradüzión, per piasì cunsiderà la pussibilità de druvà [//translatewiki.net/ translatewiki.net], 'l pruget de lucalizazión de MediaWiki.",
+	"editinginterface": "'''Ocio''': Te see adree a mudifegà una pàgina che la se dröva per generà 'l test de l'interfacia del prugrama. Ogna mudìfega fada la cambierà l'interfacia de tüt i druvadur. Se te gh'hee intenzión de fà una tradüzión, per piasì cunsiderà la pussibilità de druvà [https://translatewiki.net/ translatewiki.net], 'l pruget de lucalizazión de MediaWiki.",
 	"namespaceprotected": "Te g'hét mìa 'l permès nesesàre per mudificà le pàgine del namespace <strong>$1</strong>.",
 	"mypreferencesprotected": "Te g'hét mìa i permès nesesàre per mudificà le tò preferènse",
 	"ns-specialprotected": "I paginn special i pören mía vess mudifegaa",

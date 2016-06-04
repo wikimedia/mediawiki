@@ -244,7 +244,7 @@
 	"protectedpagetext": "Jan páhina coccebj lockom neticpatlöx pos-poop.",
 	"viewsourcetext": "Mecohuatlöx ö copynom sourcenam zode jan páhina:",
 	"protectedinterface": "Jan páhina coccebj textuade interface software zo 'de ö coccebj lockom neticpatlöx abusenam.",
-	"editinginterface": "'''Warning:''' You are editing a page which is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users.\nFor translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
+	"editinginterface": "'''Warning:''' You are editing a page which is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users.\nFor translations, please consider using [https://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 	"cascadeprotected": "Jan páhina coccebj protectöxde ticpatlöx, zo coccebj cascadande jan {{PLURAL:$1|páhina|páhinám}}, jan coccebj protëctox cascadanöx opcion zo mii:\n$2",
 	"namespaceprotected": "Me necoccebj permiccion ticpatlöx páhinám '''$1''' ipartuatl zo iti.",
 	"ns-specialprotected": "Páhinámde {{ns:special}} zo iti neticpatlöx.",

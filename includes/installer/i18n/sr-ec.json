@@ -85,5 +85,5 @@
 	"config-help": "помоћ",
 	"config-help-tooltip": "кликните да проширите",
 	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [//meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
+	"mainpagedocfooter": "Погледајте [https://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
 }

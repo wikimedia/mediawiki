@@ -300,7 +300,7 @@
 	"protectedpagetext": "Cette page est barrée pour empêcher des changements.",
 	"viewsourcetext": "Vous pouvez voir et copier la source de cette page:",
 	"protectedinterface": "Cette page crée le texte de l'interface pour le software, et est barrée pour empêcher l'abus.",
-	"editinginterface": "'''Warning:''' You are editing a page which is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users.\nFor translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
+	"editinginterface": "'''Warning:''' You are editing a page which is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users.\nFor translations, please consider using [https://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 	"cascadeprotected": "Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :\n$2",
 	"namespaceprotected": "Vous avez pas la permission de changer les pages dans l'espace de noms \"$1\".",
 	"ns-specialprotected": "Vous pouvez pas changer les pages dans l'espace de noms {{ns:special}}.",
