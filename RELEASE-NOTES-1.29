@@ -35,6 +35,8 @@ production.
   exceptions, largely so the API can handle them more sensibly.
 * Blocks created automatically by MediaWiki, such as for configured proxies or
   dnsbls, are now indicated as such and use a new i18n message when displayed.
+* Special:UnlinkAccounts was removed to be less confusing. You can use Special:RemoveCredentials
+  instead.
 
 === External library changes in 1.29 ===
 
@@ -79,6 +81,7 @@ production.
   no longer returns a 'message' on success.
 * Added action=validatepassword to validate passwords for the account creation
   and password change forms.
+* action=unlinkaccount was removed, use action=removeauthenticationdata instead.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
