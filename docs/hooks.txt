@@ -938,6 +938,16 @@ No return data is accepted; this hook is for auditing only.
 $req: AuthenticationRequest object describing the change (and target user)
 $status: StatusValue with the result of the action
 
+'ChangePageLanguage': Called before a user can change content language for a
+page. The status object can be used to allow/cancel the change.
+$title: Title object of the page
+$langOld: The old language code for the page language (null for default wiki
+  language)
+$langNew: The new language code for the page language (null for default wiki
+  language)
+$user: The user making the change
+$status: Status object with the result of the action
+
 'ChangePasswordForm': DEPRECATED! Use AuthChangeFormFields or security levels.
 For extensions that need to add a field to the ChangePassword form via the
 Preferences form.

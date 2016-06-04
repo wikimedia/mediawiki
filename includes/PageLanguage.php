@@ -75,6 +75,13 @@ class PageLanguage {
 		$logOld = $langOld ? $langOld : $defLang . '[def]';
 		$logNew = $langNew ? $langNew : $defLang . '[def]';
 
+		Hooks::run( 'ChangePageLanguage', array( $title, $langOld, $langNew,
+			$user, $status ) );
+
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 		// Writing new page language to database
 		$dbw->update(
