@@ -2826,7 +2826,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$req = $this->createMock( AuthenticationRequest::class );
 			$req->expects( $this->any() )->method( 'getUniqueId' )
 				->will( $this->returnValue( $key ) );
-			$req->action = $action === AuthManager::ACTION_UNLINK ? AuthManager::ACTION_REMOVE : $action;
+			$req->action = $action;
 			$req->key = $key;
 			return $req;
 		};
@@ -2983,10 +2983,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				AuthManager::ACTION_REMOVE,
 				[ 'primary-none-remove', 'primary-create-remove', 'primary-link-remove',
 					'secondary-remove' ],
-			],
-			[
-				AuthManager::ACTION_UNLINK,
-				[ 'primary-link-remove' ],
 			],
 			[
 				AuthManager::ACTION_LOGIN_CONTINUE,
