@@ -108,7 +108,6 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 					AuthManager::ACTION_LINK_CONTINUE,
 					AuthManager::ACTION_CHANGE,
 					AuthManager::ACTION_REMOVE,
-					AuthManager::ACTION_UNLINK,
 				],
 			],
 		] + ApiAuthManagerHelper::getStandardParams( '', 'mergerequestfields', 'messageformat' );

@@ -70,6 +70,8 @@ production.
   This will be removed later and OOjs UI will become the only option.
   To make testing easier, users can also force either mode by adding
   &ooui=true or &ooui=false to the action=edit URL.
+* Special:UnlinkAccounts was removed to be less confusing. You can use Special:RemoveCredentials
+  instead. A redirect from Special:UnlinkAccounts to Special:RemoveCredentials has been kept.
 
 === External library changes in 1.29 ===
 
@@ -152,6 +154,7 @@ production.
 * action=query&query=allpages will no longer filter redirects using a database
   query in miser mode. This may result in less results being returned than were
   requested.
+* action=unlinkaccount was removed, use action=removeauthenticationdata instead.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n

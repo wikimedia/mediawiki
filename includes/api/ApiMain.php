@@ -62,7 +62,6 @@ class ApiMain extends ApiBase {
 		'logout' => 'ApiLogout',
 		'createaccount' => 'ApiAMCreateAccount',
 		'linkaccount' => 'ApiLinkAccount',
-		'unlinkaccount' => 'ApiRemoveAuthenticationData',
 		'changeauthenticationdata' => 'ApiChangeAuthenticationData',
 		'removeauthenticationdata' => 'ApiRemoveAuthenticationData',
 		'resetpassword' => 'ApiResetPassword',

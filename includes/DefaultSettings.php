@@ -4626,7 +4626,6 @@ $wgAuthManagerAutoConfig = [
  * This allows for configuring different time frames for different
  * "operations". The operations used in MediaWiki core include:
  * - LinkAccounts
- * - UnlinkAccount
  * - ChangeCredentials
  * - RemoveCredentials
  * - ChangeEmail
