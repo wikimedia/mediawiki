@@ -131,6 +131,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 			return false;
 		}
 
+		// Check if user is allowed to edit the page
+		if( !$title->userCan( 'edit' ) ) {
+			return false;
+		}
+
 		// Load the page language from DB
 		$dbw = wfGetDB( DB_MASTER );
 		$langOld = $dbw->selectField(
