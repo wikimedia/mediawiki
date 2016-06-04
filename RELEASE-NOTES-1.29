@@ -50,6 +50,8 @@ production.
   browsers had poor support for them, but modern browsers handle them fine.
   This might affect some forms that used them and only worked because the
   attributes were not actually being set.
+* Special:UnlinkAccounts was removed to be less confusing. You can use Special:RemoveCredentials
+  instead.
 
 === External library changes in 1.29 ===
 
@@ -94,6 +96,7 @@ production.
   no longer returns a 'message' on success.
 * Added action=validatepassword to validate passwords for the account creation
   and password change forms.
+* action=unlinkaccount was removed, use action=removeauthenticationdata instead.
 
 === Action API internal changes in 1.29 ===
 * New methods were added to ApiBase to handle errors and warnings using i18n
