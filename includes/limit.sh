@@ -16,13 +16,13 @@ cleanup() {
 	else
 		GARBAGE="$MW_CGROUP"/garbage-`id -un`
 		if [ ! -e "$GARBAGE" ]; then
-			mkdir -m 0700 "$GARBAGE"
+			mkdir -m 0700 -- "$GARBAGE"
 		fi
 	fi
 	echo $BASHPID > "$GARBAGE"/tasks
 
 	# Suppress errors in case the cgroup has disappeared due to a release script
-	rmdir "$MW_CGROUP"/$$ 2>/dev/null
+	rmdir -- "$MW_CGROUP"/$$ 2>/dev/null
 }
 
 updateTaskCount() {
@@ -63,7 +63,7 @@ fi
 if [ "$MW_MEM_LIMIT" -gt 0 ]; then
 	if [ -n "$MW_CGROUP" ]; then
 		# Create cgroup
-		if ! mkdir -m 0700 "$MW_CGROUP"/$$; then
+		if ! mkdir -m 0700 -- "$MW_CGROUP"/$$; then
 			log "failed to create the cgroup."
 			MW_CGROUP=""
 		fi
@@ -96,7 +96,7 @@ if [ "$MW_WALL_CLOCK_LIMIT" -gt 0 -a -x "/usr/bin/timeout" ]; then
 		log "timed out executing command \"$1\""
 	fi
 else
-	eval "$1" 3>&-
+	eval -- "$1" 3>&-
 	STATUS="$?"
 fi
 
