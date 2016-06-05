@@ -3790,7 +3790,7 @@
 	"authmanager-provider-password": "Autenticazione basata su password",
 	"authmanager-provider-password-domain": "Autenticazione con password o basata su dominio",
 	"authmanager-provider-temporarypassword": "Password temporanea",
-	"authprovider-confirmlink-message": "Basandosi sui recenti tentativi di accesso, le seguenti utenze possono essere collegate al tuo account wiki. Collegarli ti consente di effettuare l'accesso tramite di esse. Si prega di selezionare quelli che devono essere collegate.",
+	"authprovider-confirmlink-message": "Basandosi sui recenti tentativi di accesso, le seguenti utenze possono essere collegate al tuo account wiki. Collegarle ti consente di effettuare l'accesso tramite di esse. Si prega di selezionare quelle che devono essere collegate.",
 	"authprovider-confirmlink-request-label": "Utenze che dovrebbero essere collegate",
 	"authprovider-confirmlink-success-line": "$1: collegato correttamente.",
 	"authprovider-confirmlink-failed": "Il collegamento dell'utenza non è pienamente riuscito: $1",

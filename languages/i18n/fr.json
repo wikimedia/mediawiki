@@ -2019,7 +2019,7 @@
 	"trackingcategories-name": "Nom du message",
 	"trackingcategories-desc": "Critère d’inclusion de la catégorie",
 	"restricted-displaytitle-ignored": "Pages avec des titres d'affichage ignorés",
-	"restricted-displaytitle-ignored-desc": "La page a un <code><nowiki>{{DISPLAYTITLE}}</nowiki> </code> ignoré parce qu'il n'est pas équivalent au titre actuel de la page.",
+	"restricted-displaytitle-ignored-desc": "La page a un <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ignoré parce qu'il n'est pas équivalent au titre actuel de la page.",
 	"noindex-category-desc": "La page contient <code><nowiki>__NOINDEX__</nowiki></code> et est dans un espace de noms où ce marquage est autorisé ; elle ne sera donc pas indexée par les robots.",
 	"index-category-desc": "La page contient <code><nowiki>__INDEX__</nowiki></code> et est dans un espace de noms où ce marquage est autorisé ; elle sera donc indexée par les robots alors qu’elle ne l’aurait pas été normalement.",
 	"post-expand-template-inclusion-category-desc": "La taille de la page dépasse <code>$wgMaxArticleSize</code> après le développement de tous ses modèles ; certains n’ont donc pas été développés.",

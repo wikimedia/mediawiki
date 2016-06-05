@@ -1011,6 +1011,7 @@
 	"apihelp-query+search-param-what": "要执行的搜索类型。",
 	"apihelp-query+search-param-info": "要返回的元数据。",
 	"apihelp-query+search-param-prop": "要返回的属性：",
+	"apihelp-query+search-param-qiprofile": "查询要使用的独立描述（影响排序算法）。",
 	"apihelp-query+search-paramvalue-prop-size": "添加页面大小，单位为字节。",
 	"apihelp-query+search-paramvalue-prop-wordcount": "添加页面的字数。",
 	"apihelp-query+search-paramvalue-prop-timestamp": "添加页面上次编辑时的时间戳。",

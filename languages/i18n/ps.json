@@ -2250,6 +2250,7 @@
 	"confirm-watch-top": "همدا مخ خپل کتنلړ کې ورگډوې؟",
 	"confirm-unwatch-button": "ښه",
 	"confirm-unwatch-top": "همدا مخ خپل کتنلړ څخه لرې کوې؟",
+	"confirm-rollback-button": "هوکې",
 	"percent": "$1%",
 	"parentheses": "($1)",
 	"brackets": "[$1]",

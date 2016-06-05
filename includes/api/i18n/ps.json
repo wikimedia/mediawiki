@@ -12,7 +12,7 @@
 	"apihelp-block-param-nocreate": "د گڼون جوړولو مخ نيول.",
 	"apihelp-createaccount-param-name": "کارن-نوم.",
 	"apihelp-delete-description": "يو مخ ړنگول.",
-	"apihelp-delete-example-simple": "<kbd>Main Page</kbd> ړنگول.",
+	"apihelp-delete-example-simple": "<kbd>لومړی مخ</kbd> ړنگول.",
 	"apihelp-edit-description": "مخونه جوړول او سمول.",
 	"apihelp-edit-param-sectiontitle": "د يوې نوې برخې سرليک.",
 	"apihelp-edit-param-text": "مخ مېنځپانگه.",
