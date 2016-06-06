@@ -828,6 +828,9 @@ return [
 				'resources/src/moment-locale-overrides.js',
 			],
 		],
+		'dependencies' => [
+			'mediawiki.language',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
