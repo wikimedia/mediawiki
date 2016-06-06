@@ -35,8 +35,8 @@ return [
 	'site' => [
 		'class' => 'ResourceLoaderWikiModule',
 		'allowVariables' => true,
-		'styles' => [ 'MediaWiki:Common.css', 'MediaWiki:{skin}.css' ],
 		'scripts' => [ 'MediaWiki:Common.js', 'MediaWiki:{skin}.js' ],
+		'dependencies' => 'site.styles',
 	],
 	'site.styles' => [
 		'class' => 'ResourceLoaderWikiModule',
