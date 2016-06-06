@@ -192,6 +192,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
 		}
 		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
+		$flags |= EDIT_INTERNAL;
 		if ( $user->isAllowed( 'bot' ) ) {
 			$flags |= EDIT_FORCE_BOT;
 		}
