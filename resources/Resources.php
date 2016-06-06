@@ -33,6 +33,7 @@ return [
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => [ 'class' => 'ResourceLoaderSiteModule' ],
+	'site.styles' => [ 'class' => 'ResourceLoaderSiteStylesModule' ],
 	'noscript' => [
 		'class' => 'ResourceLoaderWikiModule',
 		'styles' => [ 'MediaWiki:Noscript.css' ],

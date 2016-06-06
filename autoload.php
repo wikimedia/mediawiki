@@ -1148,6 +1148,7 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoaderOOUIImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIImageModule.php',
 	'ResourceLoaderRawFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderRawFileModule.php',
 	'ResourceLoaderSiteModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSiteModule.php',
+	'ResourceLoaderSiteStylesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSiteStylesModule.php',
 	'ResourceLoaderSkinModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSkinModule.php',
 	'ResourceLoaderSpecialCharacterDataModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSpecialCharacterDataModule.php',
 	'ResourceLoaderStartUpModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderStartUpModule.php',
