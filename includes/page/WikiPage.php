@@ -1628,7 +1628,8 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Get the pre-save transform content and final parser output
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat );
+		$useCache = !( $flags & EDIT_FORCE_BOT ); // avoid statsd noise (T136678)
+		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, $useCache );
 		$pstContent = $editInfo->pstContent; // Content object
 		$meta = [
 			'bot' => ( $flags & EDIT_FORCE_BOT ),
