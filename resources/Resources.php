@@ -32,7 +32,12 @@ return [
 	'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
-	'site' => [ 'class' => 'ResourceLoaderSiteModule' ],
+	'site' => [
+		'class' => 'ResourceLoaderWikiModule',
+		'allowVariables' => true,
+		'styles' => [ 'MediaWiki:Common.css', 'MediaWiki:{skin}.css' ],
+		'scripts' => [ 'MediaWiki:Common.js', 'MediaWiki:{skin}.js' ],
+	],
 	'noscript' => [
 		'class' => 'ResourceLoaderWikiModule',
 		'styles' => [ 'MediaWiki:Noscript.css' ],
