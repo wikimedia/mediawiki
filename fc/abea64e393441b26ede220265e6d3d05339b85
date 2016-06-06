@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+1: Jforrester <jforrester@wikimedia.org>
+Code-Review+2: Thcipriani <tcipriani@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Mon, 06 Jun 2016 15:33:34 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/292944
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.28.0-wmf.4
