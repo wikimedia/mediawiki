@@ -1480,6 +1480,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          Mark the edit a "bot" edit regardless of user rights
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
+	 *      EDIT_INTERNAL
+	 *          Signal that the page retrieve/save cycle happened entirely in this request.
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
 	 * article will be detected. If EDIT_UPDATE is specified and the article
@@ -1540,6 +1542,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          Mark the edit a "bot" edit regardless of user rights
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
+	 *      EDIT_INTERNAL
+	 *          Signal that the page retrieve/save cycle happened entirely in this request.
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
 	 * article will be detected. If EDIT_UPDATE is specified and the article
@@ -1627,8 +1631,14 @@ class WikiPage implements Page, IDBAccessObject {
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
+		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
+		if ( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) ) {
+			$useCache = false;
+		} else {
+			$useCache = true;
+		}
+
 		// Get the pre-save transform content and final parser output
-		$useCache = !( $flags & EDIT_FORCE_BOT ); // avoid statsd noise (T136678)
 		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, $useCache );
 		$pstContent = $editInfo->pstContent; // Content object
 		$meta = [
@@ -3142,7 +3152,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$summary = $wgContLang->truncate( $summary, 255 );
 
 		// Save
-		$flags = EDIT_UPDATE;
+		$flags = EDIT_UPDATE | EDIT_INTERNAL;
 
 		if ( $guser->isAllowed( 'minoredit' ) ) {
 			$flags |= EDIT_MINOR;
