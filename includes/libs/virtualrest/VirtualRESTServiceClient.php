@@ -282,7 +282,7 @@ class VirtualRESTServiceClient {
 		// This maintains the original order of $reqs.
 		foreach ( $reqs as $origIndex => $req ) {
 			$index = $armoredIndexMap[$origIndex];
-			if ( !isset( $doneReqs[$index] ) ) {
+			if ( !isset( $doneReqs[$index] ) || !isset( $doneReqs[$index]['response'] ) ) {
 				throw new UnexpectedValueException( "Response for request '$index' is NULL." );
 			}
 			$responses[$origIndex] = $doneReqs[$index]['response'];

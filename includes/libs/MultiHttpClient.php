@@ -57,6 +57,12 @@ class MultiHttpClient {
 	protected $proxy;
 	/** @var string */
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
+	/** @var integer retry_count */
+	protected $retry_count = 0;
+	/** @var integer retry_interval */
+	protected $retry_interval = 100;
+	/** @var array retry_on */
+	protected $retry_on = [ 0, '5xx' ];
 
 	/**
 	 * @param array $options
@@ -66,6 +72,9 @@ class MultiHttpClient {
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 *   - userAgent       : The User-Agent header value to send
+	 *   - retry_count     : the maximum number of times to retry a request (default: no retries)
+	 *   - retry_interval  : the minimum amount of time (in ms) between two retry attempts for a req
+	 *   - retry_on        : array of status codes to retry requests for
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -76,7 +85,8 @@ class MultiHttpClient {
 			}
 		}
 		static $opts = [
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent'
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent',
+			'retry_count', 'retry_interval'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -102,6 +112,11 @@ class MultiHttpClient {
 	 * @param array $opts
 	 *   - connTimeout    : connection timeout per request (seconds)
 	 *   - reqTimeout     : post-connection timeout per request (seconds)
+	 *   - usePipelining   : whether to use HTTP pipelining if possible
+	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - retry_count     : the maximum number of times to retry a request (default: no retries)
+	 *   - retry_interval  : the minimum amount of time (in ms) between two retry attempts for a req
+	 *   - retry_on        : array of status codes to retry requests for
 	 * @return array Response array for request
 	 */
 	final public function run( array $req, array $opts = [] ) {
@@ -131,10 +146,80 @@ class MultiHttpClient {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - retry_count     : the maximum number of times to retry a request (default: no retries)
+	 *   - retry_interval  : the minimum amount of time (in ms) between two retry attempts for a req
+	 *   - retry_on        : array of status codes to retry requests for
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {
+		$no_reqs = count( $reqs );
+		if ( $no_reqs  === 0 ) {
+			return $reqs;
+		}
+		$retry_attempt = 0;
+		$retry_count = isset( $opts['retry_count'] ) ? $opts['retry_count'] : $this->retry_count;
+		$retry_interval = isset( $opts['retry_interval'] ) ?
+			$opts['retry_interval'] : $this->retry_interval;
+		$retry_on = isset( $opts['retry_on'] ) ? $opts['retry_on'] : $this->retry_on;
+		// normalise $retry_on
+		if ( !is_array( $retry_on ) ) {
+			if ( !is_null( $retry_on ) ) {
+				$retry_on = [ $retry_on ];
+			} else {
+				// ensure some sane defaults
+				$retry_on = [ 0, '5xx' ];
+			}
+		}
+		$len_retry_on = count( $retry_on );
+		// short-circuit when no retries should be done
+		if ( $retry_count === 0 || $len_retry_on === 0 ) {
+			return $this->runSingleTry( $reqs, $opts );
+		};
+		// convert into regexes
+		for ( $idx = 0; $idx < $len_retry_on; $idx++ ) {
+			$retry_on[$idx] = '/^' . str_replace( 'x', '\d', $retry_on[$idx] ) . '$/';
+		}
+		// track the original requests' ordering
+		for ( $idx = 0; $idx < $no_reqs; $idx++ ) {
+			$reqs[$idx]['index'] = $idx;
+		}
+		$remaining_reqs = $reqs;
+		$reqs = array_fill( 0, $no_reqs, null );
+		while ( true ) {
+			$remaining_reqs = $this->runSingleTry( $remaining_reqs, $opts );
+			foreach ( $remaining_reqs as $idx => $req ) {
+				if ( !$this->shouldRetry( $retry_on, $req ) ) {
+					unset( $remaining_reqs[$idx] );
+					$reqs[$req['index']] = $req;
+				}
+			}
+			if ( count( $remaining_reqs ) === 0 || $retry_attempt >= $this->retry_count ) {
+				break;
+			}
+			usleep( $this->retry_interval * pow( 2, $retry_attempt++ ) * 1000 );
+		}
+		foreach ( $remaining_reqs as $req ) {
+			$reqs[$req['index']] = $req;
+			unset( $req['index'] );
+		}
+		return $reqs;
+	}
+
+	protected function shouldRetry( array $retry_on, $req ) {
+		if ( !isset( $req['response'] ) || !isset( $req['response']['code'] ) ) {
+			// this should never happen, but if it does, retry the request
+			return true;
+		}
+		foreach ( $retry_on as $retry_cond ) {
+			if ( preg_match( $retry_cond, $req['response']['code'] ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected function runSingleTry( array $reqs, array $opts ) {
 		$chm = $this->getCurlMulti();
 
 		// Normalize $reqs and add all of the required cURL handles...
