@@ -553,6 +553,7 @@
 	"botpasswords-invalid-name": "Пададзенае імя ўдзельніка ня ўтрымлівае падзяляльнік для паролю робата («$1»).",
 	"botpasswords-not-exist": "Удзельнік «$1» ня мае паролю для робата з назвай «$2».",
 	"resetpass_forbidden": "Пароль ня можа быць зьменены",
+	"resetpass_forbidden-reason": "Паролі ня могуць быць зьмененыя: $1",
 	"resetpass-no-info": "Для непасрэднага доступу да гэтай старонкі Вам неабходна ўвайсьці ў сыстэму.",
 	"resetpass-submit-loggedin": "Зьмяніць пароль",
 	"resetpass-submit-cancel": "Скасаваць",
