@@ -108,6 +108,9 @@ input[type="number"],
 .mw-ui-input-inline {
 	display: inline-block;
 	width: auto;
+	// Make sure we limit the width to no more than the parent
+	// because in case of textfields, width:auto equals size attribute.
+	max-width: 100%;
 }
 
 // mw-ui-input-large
