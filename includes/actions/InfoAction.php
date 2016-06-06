@@ -478,16 +478,18 @@ class InfoAction extends FormlessAction {
 		if ( $firstRev ) {
 			$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
 			if ( $firstRevUser !== '' ) {
-				$batch->add( NS_USER, $firstRevUser );
-				$batch->add( NS_USER_TALK, $firstRevUser );
+				$firstRevUserTitle = Title::makeTitle( NS_USER, $firstRevUser );
+				$batch->addObj( $firstRevUserTitle );
+				$batch->addObj( $firstRevUserTitle->getTalkPage() );
 			}
 		}
 
 		if ( $lastRev ) {
 			$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
 			if ( $lastRevUser !== '' ) {
-				$batch->add( NS_USER, $lastRevUser );
-				$batch->add( NS_USER_TALK, $lastRevUser );
+				$lastRevUserTitle = Title::makeTitle( NS_USER, $lastRevUser );
+				$batch->addObj( $lastRevUserTitle );
+				$batch->addObj( $lastRevUserTitle->getTalkPage() );
 			}
 		}
 
