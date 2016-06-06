@@ -3664,7 +3664,7 @@ class OutputPage extends ContextSource {
 		$moduleStyles = $this->getModuleStyles();
 
 		// Per-site custom styles
-		$moduleStyles[] = 'site';
+		$moduleStyles[] = 'site.styles';
 		$moduleStyles[] = 'noscript';
 
 		// Per-user custom styles

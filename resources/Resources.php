@@ -38,6 +38,11 @@ return [
 		'styles' => [ 'MediaWiki:Common.css', 'MediaWiki:{skin}.css' ],
 		'scripts' => [ 'MediaWiki:Common.js', 'MediaWiki:{skin}.js' ],
 	],
+	'site.styles' => [
+		'class' => 'ResourceLoaderWikiModule',
+		'allowVariables' => true,
+		'styles' => [ 'MediaWiki:Common.css', 'MediaWiki:{skin}.css' ],
+	],
 	'noscript' => [
 		'class' => 'ResourceLoaderWikiModule',
 		'styles' => [ 'MediaWiki:Noscript.css' ],
