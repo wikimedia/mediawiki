@@ -1791,10 +1791,6 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => 'mediawiki.util',
 	],
-	'mediawiki.special.blocklist' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.blocklist.css',
-		'position' => 'top',
-	],
 	'mediawiki.special.changeslist' => [
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',

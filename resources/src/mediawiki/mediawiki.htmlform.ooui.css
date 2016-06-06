@@ -18,3 +18,9 @@
 	margin-right: 5%;
 	width: 39%;
 }
+
+.mw-htmlform-flatlist .oo-ui-optionWidget,
+.mw-htmlform-flatlist .oo-ui-multioptionWidget {
+	display: inline-block;
+	margin-right: 1em;
+}

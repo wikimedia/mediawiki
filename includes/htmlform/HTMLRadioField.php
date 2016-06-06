@@ -52,7 +52,6 @@ class HTMLRadioField extends HTMLFormField {
 			'id' => $this->mID,
 			'value' => $value,
 			'options' => $options,
-			'classes' => 'mw-htmlform-flatlist-item',
 		] + OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );

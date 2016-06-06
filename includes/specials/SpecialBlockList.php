@@ -46,7 +46,7 @@ class SpecialBlockList extends SpecialPage {
 		$out = $this->getOutput();
 		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
-		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.special.blocklist' ] );
+		$out->addModuleStyles( [ 'mediawiki.special' ] );
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
