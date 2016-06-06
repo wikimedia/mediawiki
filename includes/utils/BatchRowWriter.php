@@ -37,14 +37,23 @@ class BatchRowWriter {
 	protected $clusterName;
 
 	/**
-	 * @param IDatabase $db The database to write to
-	 * @param string       $table       The name of the table to update
-	 * @param string|bool  $clusterName A cluster name valid for use with LBFactory
+	 * @var bool $useTransaction Whether to wrap the updates in a transaction
 	 */
-	public function __construct( IDatabase $db, $table, $clusterName = false ) {
+	protected $useTransaction;
+
+	/**
+	 * @param IDatabase    $db The database to write to
+	 * @param string       $table          The name of the table to update
+	 * @param string|bool  $clusterName    A cluster name valid for use with LBFactory
+	 * @param bool         $useTransaction Wrap the updates in a transaction
+	 */
+	public function __construct(
+		IDatabase $db, $table, $clusterName = false, $useTransaction = true
+	) {
 		$this->db = $db;
 		$this->table = $table;
 		$this->clusterName = $clusterName;
+		$this->useTransaction = $useTransaction;
 	}
 
 	/**
@@ -54,7 +63,9 @@ class BatchRowWriter {
 	 *  names to update values to apply to the row.
 	 */
 	public function write( array $updates ) {
-		$this->db->begin();
+		if ( $this->useTransaction ) {
+			$this->db->begin();
+		}
 
 		foreach ( $updates as $update ) {
 			$this->db->update(
@@ -65,7 +76,9 @@ class BatchRowWriter {
 			);
 		}
 
-		$this->db->commit();
+		if ( $this->useTransaction ) {
+			$this->db->commit();
+		}
 		wfGetLBFactory()->waitForReplication();
 	}
 }
