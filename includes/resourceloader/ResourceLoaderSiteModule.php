@@ -39,12 +39,13 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 			$pages['MediaWiki:Common.js'] = [ 'type' => 'script' ];
 			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.js'] = [ 'type' => 'script' ];
 		}
-		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
-			$pages['MediaWiki:Common.css'] = [ 'type' => 'style' ];
-			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = [ 'type' => 'style' ];
-			$pages['MediaWiki:Print.css'] = [ 'type' => 'style', 'media' => 'print' ];
-
-		}
 		return $pages;
+	}
+
+	/*
+	 * @return array
+	 */
+	public function getDependencies( ResourceLoaderContext $context = null ) {
+		return [ 'site.styles' ];
 	}
 }
