@@ -73,8 +73,8 @@ class LinkBatch {
 	 * @param string $dbkey
 	 */
 	public function add( $ns, $dbkey ) {
-		if ( $ns < 0 ) {
-			return;
+		if ( $ns < 0 || $dbkey === '' ) {
+			return; // T137083
 		}
 		if ( !array_key_exists( $ns, $this->data ) ) {
 			$this->data[$ns] = [];
