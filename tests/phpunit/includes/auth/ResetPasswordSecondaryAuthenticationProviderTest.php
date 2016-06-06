@@ -216,7 +216,9 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 		$this->assertSame( AuthenticationResponse::UI, $res->status );
 		$this->assertEquals( $msg, $res->message );
 		$this->assertCount( 2, $res->neededRequests );
-		$this->assertEquals( $passReq, $res->neededRequests[0] );
+		$expectedPassReq = clone $passReq;
+		$expectedPassReq->required = AuthenticationRequest::OPTIONAL;
+		$this->assertEquals( $expectedPassReq, $res->neededRequests[0] );
 		$this->assertEquals( $skipReq, $res->neededRequests[1] );
 		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertFalse( $passReq->done );
@@ -304,7 +306,9 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 		$this->assertSame( AuthenticationResponse::UI, $res->status );
 		$this->assertEquals( $msg, $res->message );
 		$this->assertCount( 2, $res->neededRequests );
-		$this->assertEquals( $passReq2, $res->neededRequests[0] );
+		$expectedPassReq = clone $passReq2;
+		$expectedPassReq->required = AuthenticationRequest::OPTIONAL;
+		$this->assertEquals( $expectedPassReq, $res->neededRequests[0] );
 		$this->assertEquals( $skipReq, $res->neededRequests[1] );
 		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertFalse( $passReq->done );
