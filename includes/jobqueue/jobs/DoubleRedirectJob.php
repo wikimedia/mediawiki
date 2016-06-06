@@ -167,7 +167,8 @@ class DoubleRedirectJob extends Job {
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
-		$article->doEditContent( $newContent, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $user );
+		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
+		$article->doEditContent( $newContent, $reason, $flags, false, $user );
 		$wgUser = $oldUser;
 
 		return true;
