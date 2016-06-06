@@ -145,9 +145,10 @@ class ApiStashEdit extends ApiBase {
 
 		$format = $content->getDefaultFormat();
 		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+		$title = $page->getTitle();
 
 		if ( $editInfo && $editInfo->output ) {
-			$key = self::getStashKey( $page->getTitle(), $content, $user );
+			$key = self::getStashKey( $title, $content, $user );
 
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit', [ $page, $content, $editInfo->output ] );
@@ -162,14 +163,14 @@ class ApiStashEdit extends ApiBase {
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-					$logger->debug( "Cached parser output for key '$key'." );
+					$logger->debug( "Cached parser output for key '$key' ('$title')." );
 					return self::ERROR_NONE;
 				} else {
-					$logger->error( "Failed to cache parser output for key '$key'." );
+					$logger->error( "Failed to cache parser output for key '$key' ('$title')." );
 					return self::ERROR_CACHE;
 				}
 			} else {
-				$logger->info( "Uncacheable parser output for key '$key'." );
+				$logger->info( "Uncacheable parser output for key '$key' ('$title')." );
 				return self::ERROR_UNCACHEABLE;
 			}
 		}
@@ -215,7 +216,8 @@ class ApiStashEdit extends ApiBase {
 		// PST parser options are for the user (handles signatures, etc...)
 		$user = $pstOpts->getUser();
 		// Get a key based on the source text, format, and user preferences
-		$key = self::getStashKey( $page->getTitle(), $content, $user );
+		$title = $page->getTitle();
+		$key = self::getStashKey( $title, $content, $user );
 
 		// Parser output options must match cannonical options.
 		// Treat some options as matching that are different but don't matter.
@@ -223,7 +225,7 @@ class ApiStashEdit extends ApiBase {
 		$canonicalPOpts->setIsPreview( true ); // force match
 		$canonicalPOpts->setTimestamp( $pOpts->getTimestamp() ); // force match
 		if ( !$pOpts->matches( $canonicalPOpts ) ) {
-			$logger->info( "Uncacheable preview output for key '$key' (options)." );
+			$logger->info( "Uncacheable preview output for key '$key' ('$title') [options]." );
 			return false;
 		}
 
@@ -233,13 +235,13 @@ class ApiStashEdit extends ApiBase {
 		// Build a value to cache with a proper TTL
 		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp, $user );
 		if ( !$stashInfo ) {
-			$logger->info( "Uncacheable parser output for key '$key' (rev/TTL)." );
+			$logger->info( "Uncacheable parser output for key '$key' ('$title') [rev/TTL]." );
 			return false;
 		}
 
 		$ok = $cache->set( $key, $stashInfo, $ttl );
 		if ( !$ok ) {
-			$logger->error( "Failed to cache preview parser output for key '$key'." );
+			$logger->error( "Failed to cache preview parser output for key '$key' ('$title')." );
 		} else {
 			$logger->debug( "Cached preview output for key '$key'." );
 		}
@@ -294,7 +296,7 @@ class ApiStashEdit extends ApiBase {
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
 			$stats->increment( 'editstash.cache_misses.no_stash' );
-			$logger->debug( "No cache value for key '$key'." );
+			$logger->debug( "Empty cache for key '$key' ('$title'); user '{$user->getName()}'." );
 			return false;
 		}
 
