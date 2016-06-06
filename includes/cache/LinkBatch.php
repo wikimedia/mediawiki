@@ -168,6 +168,9 @@ class LinkBatch {
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $unused ) {
+				if ( (string)$dbkey === '' ) {
+					continue; // T137083
+				}
 				$title = new TitleValue( (int)$ns, (string)$dbkey );
 				$cache->addBadLinkObj( $title );
 				$pdbk = $titleFormatter->getPrefixedDBkey( $title );
