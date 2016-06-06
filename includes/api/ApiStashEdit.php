@@ -406,11 +406,15 @@ class ApiStashEdit extends ApiBase {
 	 */
 	private static function getStashKey( Title $title, Content $content, User $user ) {
 		$hash = sha1( implode( ':', [
+			// Account for the edit model/text
 			$content->getModel(),
 			$content->getDefaultFormat(),
 			sha1( $content->serialize( $content->getDefaultFormat() ) ),
-			$user->getId() ?: md5( $user->getName() ), // account for user parser options
-			$user->getId() ? $user->getDBTouched() : '-' // handle preference change races
+			// Account for user name related variables like signatures
+			$user->getId(),
+			md5( $user->getName() ),
+			(string)$user->getOption( 'nickname' ),
+			(int)$user->getBoolOption( 'fancysig' )
 		] ) );
 
 		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
