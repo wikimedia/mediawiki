@@ -112,7 +112,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->unlock( $key );
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		return $this->writeStore->merge( $key, $callback, $exptime, $attempts, $flags );
 	}
 
