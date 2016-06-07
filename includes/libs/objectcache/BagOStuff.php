@@ -267,11 +267,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 * @throws InvalidArgumentException
 	 */
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		if ( !is_callable( $callback ) ) {
-			throw new InvalidArgumentException( "Got invalid callback." );
-		}
-
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		return $this->mergeViaLock( $key, $callback, $exptime, $attempts, $flags );
 	}
 

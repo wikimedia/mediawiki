@@ -433,7 +433,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function doAtomicSection( $fname, $callback ) {
+	public function doAtomicSection( $fname, callable $callback ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

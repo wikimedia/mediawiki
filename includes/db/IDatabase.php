@@ -1313,7 +1313,7 @@ interface IDatabase {
 	 * @throws UnexpectedValueException
 	 * @since 1.27
 	 */
-	public function doAtomicSection( $fname, $callback );
+	public function doAtomicSection( $fname, callable $callback );
 
 	/**
 	 * Begin a transaction. If a transaction is already in progress,

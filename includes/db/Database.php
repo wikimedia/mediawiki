@@ -2561,11 +2561,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
-	final public function doAtomicSection( $fname, $callback ) {
-		if ( !is_callable( $callback ) ) {
-			throw new UnexpectedValueException( "Invalid callback." );
-		};
-
+	final public function doAtomicSection( $fname, callable $callback ) {
 		$this->startAtomic( $fname );
 		try {
 			call_user_func_array( $callback, [ $this, $fname ] );
