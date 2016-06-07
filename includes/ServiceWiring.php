@@ -61,6 +61,9 @@ return [
 
 	'SiteStore' => function( MediaWikiServices $services ) {
 		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
+		$rawSiteStore->setLanguageCodeMapping(
+			$services->getMainConfig()->get( 'DummyLanguageCodes' ) ?: []
+		);
 
 		// TODO: replace wfGetCache with a CacheFactory service.
 		// TODO: replace wfIsHHVM with a capabilities service.
