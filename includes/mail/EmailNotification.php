@@ -509,15 +509,53 @@ class EmailNotification {
 		] );
 	}
 
-	public static function transformContentToHTML ( $content ) {
-		$body['text'] = $content;
-		$content = htmlspecialchars( $content );
-		$pattern = '/(' . wfUrlProtocols() . ')[^\s\'\"]+/';
-		$replace = '<a href="$0">$0</a>';
-		$content = preg_replace($pattern, $replace, $content);
-		$content = nl2br( $content );
-		$content = "<html><body>" . $content . "</body></html>";
-		$body['html'] = $content;
+	public static function transformContentToHTML ( $key, $parameters = NULL ) {
+		global $wgCoreHTMLEmail;
+		if ( is_array( $parameters ) ) {
+			$params = array_merge( [ $key ] , $parameters );
+			$msg = call_user_func_array( 'wfMessage', $params );
+		} else{
+			$msg = wfMessage( $key );
+		}
+		$content = $msg->text();
+		if ( !$wgCoreHTMLEmail ) {
+			return $content;
+		}
+		$htmlKey = substr( $key, -5 ) === '-html';
+		if ( $htmlKey ) {
+			$html = $content;
+			$textKey = substr( $key, 0, -5 );
+			if ( is_array( $parameters ) ) {
+				$parameters = array_merge( [ $textKey ], $parameters );
+				$text = call_user_func_array( 'wfMessage', $parameters );
+				$text = $text->text();
+			} else {
+				$text = wfMessage( $textKey )->text();
+			}
+			if ( $msg->exists() ) {
+				$body['text'] = $text;
+				$body['html'] = '<html><body>' . $html . '</body></html>';
+			} else {
+				$content = $text;
+				$body['text'] = $content;
+				$content = htmlspecialchars( $content );
+				$pattern = '/(' . wfUrlProtocols() . ')[^\s\'\"]+[^\s\'\",]/';
+				$replace = '<a href="$0">$0</a>';
+				$content = preg_replace( $pattern, $replace, $content );
+				$content = nl2br( $content );
+				$content = '<html><body>' . $content . '</body></html>';
+				$body['html'] = $content;
+			}
+		} else {
+			$body['text'] = $content;
+			$content = htmlspecialchars( $content );
+			$pattern = '/(' . wfUrlProtocols() . ')[^\s\'\"]+[^\s\'\",]/';
+			$replace = '<a href="$0">$0</a>';
+			$content = preg_replace( $pattern, $replace, $content );
+			$content = nl2br( $content );
+			$content = '<html><body>' . $content . '</body></html>';
+			$body['html'] = $content;
+		}
 		return $body;
 	}
 
