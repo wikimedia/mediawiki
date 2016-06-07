@@ -296,7 +296,7 @@ class Preferences {
 
 		$allowPasswordChange = $wgDisableAuthManager ? $wgAuth->allowPasswordChange()
 			: AuthManager::singleton()->allowsAuthenticationDataChange(
-				new PasswordAuthenticationRequest(), false );
+				new PasswordAuthenticationRequest(), false )->isGood();
 		if ( $canEditPrivateInfo && $allowPasswordChange ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), [],
