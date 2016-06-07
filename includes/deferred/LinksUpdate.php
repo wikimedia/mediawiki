@@ -155,10 +155,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		Hooks::run( 'LinksUpdate', [ &$this ] );
 		$this->doIncrementalUpdate();
 
-		$this->mDb->onTransactionIdle( function() use ( &$scopedLock ) {
+		// Commit and release the lock
+		ScopedCallback::consume( $scopedLock );
+		// Run post-commit hooks without DBO_TRX
+		$this->mDb->onTransactionIdle( function() {
 			Hooks::run( 'LinksUpdateComplete', [ &$this ] );
-			// Release the lock *after* the final COMMIT for correctness
-			ScopedCallback::consume( $scopedLock );
 		} );
 	}
 
@@ -243,15 +244,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
 		$this->invalidateProperties( $changed );
 
-		# Update the links table freshness for this title
-		$this->updateLinksTimestamp();
-
 		# Refresh links of all pages including this page
 		# This will be in a separate transaction
 		if ( $this->mRecursive ) {
 			$this->queueRecursiveJobs();
 		}
 
+		# Update the links table freshness for this title
+		$this->updateLinksTimestamp();
 	}
 
 	/**
