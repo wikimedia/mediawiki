@@ -412,9 +412,7 @@ class ApiStashEdit extends ApiBase {
 			sha1( $content->serialize( $content->getDefaultFormat() ) ),
 			// Account for user name related variables like signatures
 			$user->getId(),
-			md5( $user->getName() ),
-			(string)$user->getOption( 'nickname' ),
-			(int)$user->getBoolOption( 'fancysig' )
+			md5( $user->getName() )
 		] ) );
 
 		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
