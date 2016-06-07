@@ -375,7 +375,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				$req = reset( $requests );
 				$status = $authManager->allowsAuthenticationDataChange( $req );
 				Hooks::run( 'ChangeAuthenticationDataAudit', [ $req, $status ] );
-				if ( !$status->isOK() ) {
+				if ( !$status->isGood() ) {
 					return AuthenticationResponse::newFail( $status->getMessage() );
 				}
 				$authManager->changeAuthenticationData( $req );
