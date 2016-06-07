@@ -391,15 +391,18 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.27
 	 */
 	public static function newFromSpecifier( $value ) {
+		$params = [];
+		if ( is_array( $value ) ) {
+			$params = $value;
+			$value = array_shift( $params );
+		}
+
 		if ( $value instanceof RawMessage ) {
 			$message = new RawMessage( $value->getKey(), $value->getParams() );
 		} elseif ( $value instanceof MessageSpecifier ) {
 			$message = new Message( $value );
-		} elseif ( is_array( $value ) ) {
-			$key = array_shift( $value );
-			$message = new Message( $key, $value );
 		} elseif ( is_string( $value ) ) {
-			$message = new Message( $value );
+			$message = new Message( $value, $params );
 		} else {
 			throw new InvalidArgumentException( __METHOD__ . ': invalid argument type '
 				. gettype( $value ) );
