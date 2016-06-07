@@ -56,6 +56,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 
 		// Make the change
 		$status = $manager->allowsAuthenticationDataChange( $req, true );
+		Hooks::run( 'ChangeAuthenticationDataAudit', [ $req, $status ] );
 		if ( !$status->isGood() ) {
 			$this->dieStatus( $status );
 		}
