@@ -131,7 +131,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 		$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
 		foreach ( $reqs as $req ) {
 			$status = AuthManager::singleton()->allowsAuthenticationDataChange( $req );
-			if ( !$status->isOk() ) {
+			if ( !$status->isGood() ) {
 				$this->logger->info( __METHOD__ . ': Password change rejected: {reason}', [
 					'username' => $data['username'],
 					'reason' => $status->getWikiText( null, null, 'en' ),
