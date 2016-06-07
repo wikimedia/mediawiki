@@ -7,16 +7,17 @@
  * @file
  *
  * @author Darshan kandolkar
+ * @author The Discoverer
  */
 
 $fallback = 'hi';
 
 $namespaceNames = [
-	NS_MEDIA            => 'मिडिया',
+	NS_MEDIA            => 'माध्यम',
 	NS_SPECIAL          => 'विशेश',
 	NS_TALK             => 'चर्चा',
-	NS_USER             => 'उपेगकर्तो',
-	NS_USER_TALK        => 'उपेगकर्तो_चर्चा',
+	NS_USER             => 'वापरपी',
+	NS_USER_TALK        => 'वापरपी_चर्चा',
 	NS_PROJECT_TALK     => '$1_चर्चा',
 	NS_FILE             => 'फायल',
 	NS_FILE_TALK        => 'फायल_चर्चा',
@@ -24,8 +25,18 @@ $namespaceNames = [
 	NS_MEDIAWIKI_TALK   => 'मिडियाविकी_चर्चा',
 	NS_TEMPLATE         => 'प्रारूप',
 	NS_TEMPLATE_TALK    => 'प्रारूप_चर्चा',
-	NS_HELP             => 'मजत',
-	NS_HELP_TALK        => 'मजत_चर्चा',
-	NS_CATEGORY         => 'श्रेणी',
-	NS_CATEGORY_TALK    => 'श्रेणी_चर्चा',
+	NS_HELP             => 'आदार',
+	NS_HELP_TALK        => 'आदार_चर्चा',
+	NS_CATEGORY         => 'वर्ग',
+	NS_CATEGORY_TALK    => 'वर्ग_चर्चा',
+];
+
+$namespaceAliases = [
+	'मजत' => NS_HELP,
+	'मजत_चर्चा' => NS_HELP_TALK,
+	'श्रेणी' => NS_CATEGORY,
+	'श्रेणी_चर्चा' => NS_CATEGORY_TALK,
+	'मिडिया' => NS_MEDIA,
+	'उपेगकर्तो' => NS_USER,
+	'उपेगकर्तो चर्चा' => NS_USER_TALK
 ];
