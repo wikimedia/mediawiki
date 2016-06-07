@@ -603,6 +603,7 @@ class MessageTest extends MediaWikiLangTestCase {
 			'Message' => [ new Message( 'youhavenewmessages', [ 'foo', 'bar' ] ), 'You have foo (bar).' ],
 			'RawMessage' => [ new RawMessage( 'foo ($1)', [ 'bar' ] ), 'foo (bar)' ],
 			'MessageSpecifier' => [ $messageSpecifier, 'Main Page' ],
+			'nested RawMessage' => [ [ new RawMessage( 'foo ($1)', [ 'bar' ] ) ], 'foo (bar)' ],
 		];
 	}
 }
