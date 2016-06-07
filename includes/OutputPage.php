@@ -1277,15 +1277,10 @@ class OutputPage extends ContextSource {
 
 		# Fetch existence plus the hiddencat property
 		$dbr = wfGetDB( DB_SLAVE );
-		$fields = [ 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest', 'pp_value' ];
-
-		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'page_content_model';
-		}
-		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
-			$fields[] = 'page_lang';
-		}
+		$fields = array_merge(
+			LinkCache::getSelectFields(),
+			[ 'page_namespace', 'page_title', 'pp_value' ]
+		);
 
 		$res = $dbr->select( [ 'page', 'page_props' ],
 			$fields,
