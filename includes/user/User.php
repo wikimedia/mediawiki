@@ -2601,7 +2601,7 @@ class User implements IDBAccessObject {
 			$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
 			foreach ( $reqs as $req ) {
 				$status = $manager->allowsAuthenticationDataChange( $req );
-				if ( !$status->isOk() ) {
+				if ( !$status->isGood() ) {
 					\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
 						->info( __METHOD__ . ': Password change rejected: ' . $status->getWikiText() );
 					return false;
