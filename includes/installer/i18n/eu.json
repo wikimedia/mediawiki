@@ -50,8 +50,6 @@
 	"config-db-name-oracle": "Datu-baseko eskema:",
 	"config-db-username": "Datu-base lankide izena:",
 	"config-db-password": "Datu-base pasahitza:",
-	"config-charset-mysql5-binary": "MySQL 4.1/5.0 bitarra",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-db-port": "Datu-basearen ataka:",
 	"config-db-schema": "MediaWikirako eskema:",
 	"config-type-mysql": "MySQL (edo bateragarria)",

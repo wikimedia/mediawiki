@@ -37,8 +37,6 @@
 	"config-db-name-oracle": "მონაცემთა ბაზის სქემა:",
 	"config-db-username": "მონაცემთა ბაზის მომხმარებლის სახელი:",
 	"config-db-password": "მონაცემთა ბაზის პაროლი:",
-	"config-charset-mysql5-binary": "MySQL 4.1/5.0 ორობითი",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-db-port": "მონაცემთა ბაზის პორტი:",
 	"config-db-schema": "მედიავიკის სქემა:",
 	"config-type-mssql": "Microsoft SQL Server",

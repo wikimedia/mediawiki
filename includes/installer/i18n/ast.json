@@ -69,7 +69,6 @@
 	"config-db-username": "Nome d'usuariu de base de datos:",
 	"config-db-password": "Contraseña de base de datos:",
 	"config-db-install-username": "Introduz un nome d'usuariu que s'usará pa coneutase cola base de datos nel procesu d'instalación. Esti nun ye'l nome d'usuariu de la cuenta MediaWiki, ye'l nome d'usuariu de la to base de datos.",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-invalid-db-type": "Triba non válida de base de datos.",

@@ -3603,7 +3603,5 @@
 	"specialpage-securitylevel-not-allowed-title": "Nit zohjelohße",
 	"cannotauth-not-allowed-title": "Zohjang verbodde.",
 	"changecredentials-submit": "Ändere",
-	"changecredentials-submit-cancel": "Ophüre",
-	"removecredentials-submit": "Fott nämme",
-	"removecredentials-submit-cancel": "Ophüre"
+	"removecredentials-submit": "Fott nämme"
 }

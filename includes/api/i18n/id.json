@@ -11,5 +11,7 @@
 	"apihelp-block-param-user": "Nama pengguna, alamat IP, atau rentang alamat IP untuk diblokir.",
 	"apihelp-createaccount-param-name": "Nama pengguna",
 	"apihelp-login-example-login": "Masuk log.",
+	"apihelp-query+prefixsearch-param-profile": "Cari profil untuk digunakan.",
+	"apihelp-query+search-param-qiprofile": "Meminta profil independen untuk digunakan (berefek pada algoritma peringkat).",
 	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
 }

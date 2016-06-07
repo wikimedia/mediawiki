@@ -1636,7 +1636,7 @@
 	"listgrouprights-key": "Legenda :\n*<span class=\"listgrouprights-granted\">Dreit autrejat</span>\n*<span class=\"listgrouprights-revoked\">Dreit revocat</span>",
 	"listgrouprights-group": "Grop",
 	"listgrouprights-rights": "Dreits associats",
-	"listgrouprights-helppage": "Help:Dreches dels gropes",
+	"listgrouprights-helppage": "Help:Dreits dels gropes",
 	"listgrouprights-members": "(lista dels membres)",
 	"listgrouprights-addgroup": "Pòt apondre $2 {{PLURAL:$2|grop|gropes}} : $1",
 	"listgrouprights-removegroup": "Pòt levar $2 {{PLURAL:$2|gropa|gropes}} : $1",

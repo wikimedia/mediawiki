@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Thuvack",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Hlanganisa nkhwatiheto:",
@@ -278,7 +279,7 @@
 	"customcssprotected": "Uhava mpfumelelo wo ulamisa tluka leri ra CSS, hikuva rina minhlawulo ya mutirhisi un'wana.",
 	"customjsprotected": "Uhava mpfumelelo wolulamisa tluka-xirhumiwa xa Java, hiuva ringava rikhome minhlawulo yamutirhisi un'wana.",
 	"ns-specialprotected": "Matluka yohlawuleka amalulamisiwi.",
-	"titleprotected": "Nhlokomhaka leyi yisirheleriwile ekutumbuluxiwa hi [[User:$1|$1]].\nHikwlaho ka xivangelo xa \"''$2''\".",
+	"titleprotected": "Nhlokomhaka leyi yisirheleriwile ekutumbuluxiwa hi [[User:$1|$1]].\nHikwlaho ka xivangelo xa <em>$2</em>.",
 	"logouttext": "'''Uhumile eka wiki leyi.'''\n\nUngaya emahlweni utirhisa {{SITENAME}} handle ko tipaluxa, kumbe unga <span class='plainlinks'>[$1 pfula unghena nakambe]</span> tani hi mutirhisa un'wana kumbe kumbe hivuxokoxoko bya wena.\nTsundzuka leswaku matluka man'wana mangaha komba onge upfule unghena eka wiki, loko ungasi sula tluka rakhompuyuta leri tsundzukaka matluka lawa uma vhakeleke.",
 	"yourname": "Vito ra vutirhisi",
 	"yourpassword": "Vito-mpfungulo:",

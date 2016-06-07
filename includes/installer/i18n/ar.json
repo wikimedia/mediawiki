@@ -60,7 +60,6 @@
 	"config-db-username": "اسم مستخدم قاعدة البيانات:",
 	"config-db-password": "كلمة سر قاعدة البيانات:",
 	"config-db-prefix": "بادئة جدول قاعدة البيانات:",
-	"config-db-charset": "مجموعة محارف قاعدة البيانات",
 	"config-db-port": "منفذ قاعدة البيانات:",
 	"config-db-schema": "سكيما لميدياويكي",
 	"config-type-mysql": "MySQL (أو متوافق)",

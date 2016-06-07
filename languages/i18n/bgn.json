@@ -1672,7 +1672,7 @@
 	"protect-level-sysop": "فقط مدیر هان",
 	"protect-summary-cascade": "آپشاری",
 	"protect-expiring": "پوره بوتین ئی وخت $1 (UTC)",
-	"protect-expiring-local": "پوره بوته ئین $1",
+	"protect-expiring-local": "وختئ پوره بوتین $1",
 	"protect-expiry-indefinite": "بی‌پایان",
 	"protect-cantedit": "شما ئه نه توانیت ای تاکدیمی قُلپئ وضیعتا تغیر بدهیت، چون که شما آیی ایڈیٹ ئی اجازه ئا نداریت.",
 	"protect-othertime": "دیگه وخت:",

@@ -44,8 +44,6 @@
 	"config-db-name-oracle": "د اومتوکبنسټ طرحه:",
 	"config-db-username": "د توکبنسټ کارن-نوم:",
 	"config-db-password": "د توکبنسټ پټنوم:",
-	"config-charset-mysql5-binary": "مای اس کيو ال 4.1/5.0 دوييز",
-	"config-charset-mysql5": "مای اس کيو ال 4.1/5.0 يو ټي اف-8",
 	"config-db-port": "د توکبنسټ ور:",
 	"config-db-schema": "د مېډياويکي طرحه:",
 	"config-type-mssql": "مايکروسافټ SQL پالنگر",

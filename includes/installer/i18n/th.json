@@ -53,7 +53,6 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] ติดตั้งแล้ว",
 	"config-apc": "[http://www.php.net/apc APC] ติดตั้งแล้ว",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] ติดตั้งแล้ว",
-	"config-no-cache": "<strong>คำเตือน:</strong> ไม่พบ [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] หรือ [http://www.iis.net/download/WinCacheForPhp WinCache]\nการแคชอ็อบเจกต์จะไม่ถูกเปิดใช้งาน",
 	"config-mod-security": "<strong>คำเตือน:</strong> เว็บเซิร์ฟเวอร์ของคุณมี [http://modsecurity.org/ mod_security]/mod_security2 เปิดใช้งานอยู่ การตั้งค่าทั่วไปหลายอย่างของสิ่งนี้จะก่อให้เกิดปัญหาสำหรับมีเดียวิกิ และซอฟต์แวร์อื่นที่อนุญาตให้ผู้ใช้สามารถโพสต์เนื้อหาได้ตามใจ\nหากเป็นไปได้ สิ่งนี้ควรปิดใช้งาน หรือมิฉะนั้นก็ อ้างไปยัง[http://modsecurity.org/documentation/ เอกสารกำกับการใช้งาน mod_security] หรือติดต่อการสนับสนุนจากโฮสต์ของคุณ ถ้าคุณพบความผิดพลาดโดยสุ่ม",
 	"config-diff3-bad": "ไม่พบ GNU diff3",
 	"config-git": "พบซอฟต์แวร์ควบคุมรุ่น Git: <code>$1</code>",

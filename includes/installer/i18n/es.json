@@ -28,7 +28,8 @@
 			"FuzzyDice",
 			"Legoktm",
 			"Matiia",
-			"AlvaroMolina"
+			"AlvaroMolina",
+			"Indiralena"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -130,11 +131,6 @@
 	"config-db-wiki-help": "Escribe el nombre de usuario y la contraseña que se utilizarán para acceder a la base de datos durante la operación normal del wiki.\nSi esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.",
 	"config-db-prefix": "Prefijo de tablas de la base de datos:",
 	"config-db-prefix-help": "Si necesitas compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puedes optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos.\nNo utilices espacios.\n\nNormalmente se deja este campo vacío.",
-	"config-db-charset": "Conjunto de caracteres de la base de datos",
-	"config-charset-mysql5-binary": "MySQL 4.1/5.0 binario",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
-	"config-charset-mysql4": "MySQL 4.0 retrocompatible UTF-8",
-	"config-charset-help": "'''Atención:''' Si emplea '''backwards-compatible UTF-8''' en MySQL 4.1+ y posteriormente hace copia de seguridad de la base de datos con <code>mysqldump</code> , puede destruir todos los caracteres no-ASCII, ¡dañando irreversiblemente sus copias de seguridad!\n\nEn '''modo binario''', MediaWiki almacena texto UTF-8 en la base de datos en campos binarios.\nEsto es más eficiente que el modo UTF-8 de MySQL, y le permite utilizar la gama completa de caracteres Unicode.\nEn ''' modo UTF-8'' ', MySQL sabrá el juego de caracteres de sus datos y puede presentarlos y convertirlos apropiadamente,\npero no le permitirá almacenar caracteres por encima del [https://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
 	"config-mysql-old": "Se necesita MySQL $1 o posterior. Tienes $2.",
 	"config-db-port": "Puerto de la base de datos:",
 	"config-db-schema": "Esquema para MediaWiki",

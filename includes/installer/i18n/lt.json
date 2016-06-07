@@ -71,8 +71,6 @@
 	"config-db-password": "Duomenų bazės slaptažodis:",
 	"config-db-wiki-account": "Vartotojo paskyra normaliai operacijai",
 	"config-db-prefix": "Duomenų bazės lentelės priešdėlis:",
-	"config-db-charset": "Duomenų bazės simbolių rinkinys",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-mysql-old": "MySQL $1 ar vėlesnė yra reikalinga. Jūs turite $2.",
 	"config-db-port": "Duomenų bazės prievadas:",
 	"config-db-schema": "MediaWiki schema:",

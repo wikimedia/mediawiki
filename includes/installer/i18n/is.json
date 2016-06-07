@@ -46,8 +46,6 @@
 	"config-db-name-oracle": "Gagnagrunnsskema:",
 	"config-db-username": "Notandanafn á gagnagrunni:",
 	"config-db-password": "Lykilorð gagnagrunns:",
-	"config-charset-mysql5-binary": "MySQL 4.1/5.0 keyrsluskrá",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-db-port": "Gátt gagnagrunns:",
 	"config-sqlite-dir": "Gagnamappa SQLite:",
 	"config-type-mysql": "MySQL (eða samhæft)",

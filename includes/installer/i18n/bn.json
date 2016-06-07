@@ -55,8 +55,6 @@
 	"config-db-password": "ডেটাবেজের পাসওয়ার্ড:",
 	"config-db-wiki-account": "সাধারণ অভিযানের জন্য ব্যবহারকারী একাউন্ট",
 	"config-db-prefix": "উপাত্তশালা ছক প্রিফিক্স:",
-	"config-db-charset": "ডেটাবেজের অক্ষর সেট",
-	"config-charset-mysql5-binary": "MySQL ৪.১/৫.০ বাইনারি",
 	"config-db-port": "ডেটাবেজ পোর্ট:",
 	"config-db-schema": "মিডিয়াউইকির স্কিমা",
 	"config-pg-test-error": "উপাত্তশালা $1-এর সাথে সংযোগ দেয়া সম্ভব হয়নি। কারন:$2",
