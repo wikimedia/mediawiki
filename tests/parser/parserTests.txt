@@ -26863,3 +26863,12 @@ Empty LI (T49673)
 <li>b</li>
 </ul>
 !! end
+
+!! test
+unclosed internal link XSS (T137264)
+!! wikitext
+[[#%3Cscript%3Ealert(1)%3C/script%3E|
+!! html
+<p>[[#&lt;script&gt;alert(1)&lt;/script&gt;|
+</p>
+!! end
