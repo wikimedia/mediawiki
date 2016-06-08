@@ -529,11 +529,12 @@ $wgUseInstantCommons = false;
  * Array of foreign file repo names (set in $wgForeignFileRepos above) that
  * are allowable upload targets. These wikis must have some method of
  * authentication (i.e. CentralAuth), and be CORS-enabled for this wiki.
+ * The string 'local' signifies the default local file repository.
  *
  * Example:
  * $wgForeignUploadTargets = array( 'shared' );
  */
-$wgForeignUploadTargets = [];
+$wgForeignUploadTargets = [ 'local' ];
 
 /**
  * Configuration for file uploads using the embeddable upload dialog
