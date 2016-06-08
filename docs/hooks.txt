@@ -2865,6 +2865,12 @@ $id: User id number, only provided for backwards-compatibility
 $user: User object representing user contributions are being fetched for
 $sp: SpecialPage instance, providing context
 
+'SpecialContributions::formatRow::flags': Called before rendering a
+Special:Contributions row.
+$context: IContextSource object
+$row: Revision information from the database
+&$flags: List of flags on this row
+
 'SpecialContributions::getForm::filters': Called with a list of filters to render
 on Special:Contributions.
 $sp: SpecialContributions object, for context

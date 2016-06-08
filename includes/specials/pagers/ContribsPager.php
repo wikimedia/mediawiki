@@ -478,6 +478,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			);
 			$classes = array_merge( $classes, $newClasses );
 
+			Hooks::run( 'SpecialContributions::formatRow::flags', [ $this, $row, &$flags ] );
+
 			$templateParams = [
 				'del' => $del,
 				'timestamp' => $d,
@@ -505,7 +507,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		// Let extensions add data
-		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes ] );
+		Hooks::run( 'ContributionsLineEnding', [ $this->getContext(), &$ret, $row, &$classes ] );
 
 		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
 		// receiving empty rows?
