@@ -65,8 +65,12 @@
 					// Foreign wiki might be running a pre-1.27 MediaWiki, without support for this
 					if ( resp.query && resp.query.uploaddialog ) {
 						upload.config = resp.query.uploaddialog;
+						return upload.config;
+					} else {
+						return $.Deferred().reject( 'upload-foreign-cant-load-config' );
 					}
-					return upload.config;
+				}, function () {
+					return $.Deferred().reject( 'upload-foreign-cant-load-config' );
 				} );
 			} );
 		}
