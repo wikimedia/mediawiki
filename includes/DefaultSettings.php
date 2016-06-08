@@ -567,10 +567,14 @@ $wgUploadDialog = [
 		// * upload-form-label-not-own-work-local-generic-foreign
 		'foreign' => 'generic-foreign',
 	],
-	// Upload comment to use. Available replacements:
+	// Upload comments to use for 'local' and 'foreign' uploads. This can also be set to a single
+	// string value, in which case it is used for both kinds of uploads. Available replacements:
 	// * $HOST - domain name from which a cross-wiki upload originates
 	// * $PAGENAME - wiki page name from which an upload originates
-	'comment' => '',
+	'comment' => [
+		'local' => '',
+		'foreign' => '',
+	],
 	// Format of the file page wikitext to be generated from the fields input by the user.
 	'format' => [
 		// Wrapper for the whole page. Available replacements:

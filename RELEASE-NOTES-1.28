@@ -11,6 +11,8 @@ production.
   user's language. If such access is attempted, an exception will be thrown.
 * The number of internal PBKDF2 iterations used to derive the session secret
   is configurable via $wgSessionPbkdf2Iterations.
+* Upload dialog's file upload log comment can now be configured separately for
+  local and foreign uploads.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
@@ -23,18 +25,13 @@ production.
 
 ==== New external libraries ====
 
-
 ==== Removed and replaced external libraries ====
-
 
 === Bug fixes in 1.28 ===
 
-
 === Action API changes in 1.28 ===
 
-
 === Action API internal changes in 1.28 ===
-
 
 === Languages updated in 1.28 ===
 

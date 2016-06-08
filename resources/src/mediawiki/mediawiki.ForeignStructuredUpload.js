@@ -149,7 +149,12 @@
 	 * @inheritdoc
 	 */
 	ForeignStructuredUpload.prototype.getComment = function () {
-		return this.config.comment
+		var
+			isLocal = this.target === 'local',
+			comment = typeof this.config.comment === 'string' ?
+				this.config.comment :
+				this.config.comment[ isLocal ? 'local' : 'foreign' ];
+		return comment
 			.replace( '$PAGENAME', mw.config.get( 'wgPageName' ) )
 			.replace( '$HOST', location.host );
 	};
