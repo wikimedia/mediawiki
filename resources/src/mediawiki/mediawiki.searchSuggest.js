@@ -170,6 +170,16 @@
 			return true;
 		}
 
+		function highlightFunction( context ) {
+			var index = context.config.suggestions.indexOf( this.data( 'text' ) );
+
+			mw.track( 'mediawiki.searchSuggest', {
+				action: 'highlight',
+				$form: context.data.$textbox.closest( 'form' ),
+				index: index >= 0 ? index + 1 : -1
+			} );
+		}
+
 		function specialRenderFunction( query, context ) {
 			var $el = this,
 				formData = getFormData( context );
@@ -241,6 +251,9 @@
 					before: onBeforeUpdate,
 					after: onAfterUpdate
 				},
+				highlight: {
+					select: highlightFunction
+				},
 				cache: true,
 				highlightInput: true
 			} )
@@ -285,6 +298,9 @@
 						.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) );
 					return true; // allow the form to be submitted
 				}
+			},
+			highlight: {
+				select: highlightFunction
 			},
 			$region: $searchRegion
 		} );

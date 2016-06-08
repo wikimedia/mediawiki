@@ -63,6 +63,10 @@
  *
  * @param {jQuery} [options.$region=this] The element to place the suggestions below and match width of.
  *
+ * @param {Object} [options.highlight] Set of callbacks for listening to highlighting updates
+ *
+ * @param {Function} options.highlight.select Called in context of the suggestions-result-current element
+ *
  * @param {string[]} [options.suggestions] Array of suggestions to display.
  *
  * @param {number} [options.maxRows=10] Maximum number of suggestions to display at one time.
@@ -262,6 +266,7 @@
 				case 'special':
 				case 'result':
 				case 'update':
+				case 'highlight':
 				case '$region':
 				case 'expandFrom':
 					context.config[ property ] = value;
@@ -497,6 +502,9 @@
 					// .val() doesn't call any event handlers, so
 					// let the world know what happened
 					context.data.$textbox.change();
+				}
+				if ( $.isFunction( context.config.highlight.select ) ) {
+					context.config.highlight.select.call( result, context );
 				}
 				context.data.$textbox.trigger( 'change' );
 			}
