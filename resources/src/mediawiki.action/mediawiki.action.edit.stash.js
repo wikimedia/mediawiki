@@ -8,46 +8,56 @@
 			pending = null,
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
+			$summary = $form.find( '#wpSummary' ),
 			data = {},
 			timer = null;
 
-		function stashEdit( token ) {
-			data = $form.serializeObject();
+		/**
+		 * Send a request to stash the edit to the API.
+		 * If a request is in progress, abort it since its payload is stale and the API
+		 * may limit concurrent stash parses.
+		 */
+		function stashEdit() {
+			if ( pending ) {
+				pending.abort();
+			}
 
-			pending = api.post( {
-				action: 'stashedit',
-				token: token,
-				title: mw.config.get( 'wgPageName' ),
-				section: data.wpSection,
-				sectiontitle: '',
-				text: data.wpTextbox1,
-				contentmodel: data.model,
-				contentformat: data.format,
-				baserevid: data.parentRevId
+			api.getToken( 'csrf' ).then( function ( token ) {
+				data = $form.serializeObject();
+
+				pending = api.post( {
+					action: 'stashedit',
+					token: token,
+					title: mw.config.get( 'wgPageName' ),
+					section: data.wpSection,
+					sectiontitle: '',
+					text: data.wpTextbox1,
+					contentmodel: data.model,
+					contentformat: data.format,
+					baserevid: data.parentRevId
+				} );
 			} );
 		}
 
-		/* Has the edit body text changed since the last stashEdit() call? */
+		/**
+		 * Check if edit body text changed since the last stashEdit() call or if no edit
+		 * stash calls have yet been made
+		 */
 		function isChanged() {
 			// Normalize line endings to CRLF, like $.fn.serializeObject does.
 			var newText = $text.val().replace( /\r?\n/g, '\r\n' );
 			return newText !== data.wpTextbox1;
 		}
 
-		function onEditChanged() {
+		function onTextChanged() {
 			if ( !isChanged() ) {
 				return;
 			}
 
-			// If a request is in progress, abort it; its payload is stale.
-			if ( pending ) {
-				pending.abort();
-			}
-
-			api.getToken( 'csrf' ).then( stashEdit );
+			stashEdit();
 		}
 
-		function onKeyPress( e ) {
+		function onTextKeyPress( e ) {
 			// Ignore keystrokes that don't modify text, like cursor movements.
 			// See <http://stackoverflow.com/q/2284844>.
 			if ( e.which === 0 ) {
@@ -60,7 +70,15 @@
 				pending.abort();
 			}
 
-			timer = setTimeout( onEditChanged, idleTimeout );
+			timer = setTimeout( onTextChanged, idleTimeout );
+		}
+
+		function onFormLoaded() {
+			// Reverts may involve use (undo) links; stash as they review the diff.
+			// Since the form has a pre-filled summary, stash the edit immediately.
+			if ( mw.util.getParamValue( 'undo' ) !== null ) {
+				stashEdit();
+			}
 		}
 
 		// We don't attempt to stash new section edits because in such cases
@@ -70,7 +88,9 @@
 			return;
 		}
 
-		$text.on( { change: onEditChanged, keypress: onKeyPress } );
+		$text.on( { change: onTextChanged, keypress: onTextKeyPress } );
+		$summary.on( { focus: onTextChanged } );
+		onFormLoaded();
 
 	} );
 }( mediaWiki, jQuery ) );
