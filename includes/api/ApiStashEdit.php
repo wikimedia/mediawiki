@@ -41,6 +41,7 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_UNCACHEABLE = 'uncacheable';
 
 	const PRESUME_FRESH_TTL_SEC = 30;
+	const MAX_CACHE_TTL = 300; // 5 minutes
 
 	public function execute() {
 		$user = $this->getUser();
@@ -319,64 +320,10 @@ class ApiStashEdit extends ApiBase {
 			return $editInfo;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$stats->increment( 'editstash.cache_misses.proven_stale' );
+		$logger->info( "Stale cache for key '$key'; old key with outside edits. (age: $age sec)" );
 
-		$templates = []; // conditions to find changes/creations
-		$templateUses = 0; // expected existing templates
-		foreach ( $editInfo->output->getTemplateIds() as $ns => $stuff ) {
-			foreach ( $stuff as $dbkey => $revId ) {
-				$templates[(string)$ns][$dbkey] = (int)$revId;
-				++$templateUses;
-			}
-		}
-		// Check that no templates used in the output changed...
-		if ( count( $templates ) ) {
-			$res = $dbr->select(
-				'page',
-				[ 'ns' => 'page_namespace', 'dbk' => 'page_title', 'page_latest' ],
-				$dbr->makeWhereFrom2d( $templates, 'page_namespace', 'page_title' ),
-				__METHOD__
-			);
-			$changed = false;
-			foreach ( $res as $row ) {
-				$changed = $changed || ( $row->page_latest != $templates[$row->ns][$row->dbk] );
-			}
-
-			if ( $changed || $res->numRows() != $templateUses ) {
-				$stats->increment( 'editstash.cache_misses.proven_stale' );
-				$logger->info( "Stale cache for key '$key'; template changed. (age: $age sec)" );
-				return false;
-			}
-		}
-
-		$files = []; // conditions to find changes/creations
-		foreach ( $editInfo->output->getFileSearchOptions() as $name => $options ) {
-			$files[$name] = (string)$options['sha1'];
-		}
-		// Check that no files used in the output changed...
-		if ( count( $files ) ) {
-			$res = $dbr->select(
-				'image',
-				[ 'name' => 'img_name', 'img_sha1' ],
-				[ 'img_name' => array_keys( $files ) ],
-				__METHOD__
-			);
-			$changed = false;
-			foreach ( $res as $row ) {
-				$changed = $changed || ( $row->img_sha1 != $files[$row->name] );
-			}
-
-			if ( $changed || $res->numRows() != count( $files ) ) {
-				$stats->increment( 'editstash.cache_misses.proven_stale' );
-				$logger->info( "Stale cache for key '$key'; file changed. (age: $age sec)" );
-				return false;
-			}
-		}
-
-		$stats->increment( 'editstash.cache_hits.proven_fresh' );
-		$logger->debug( "Verified cache hit for key '$key' (age: $age sec)." );
-
-		return $editInfo;
+		return false;
 	}
 
 	/**
@@ -437,7 +384,7 @@ class ApiStashEdit extends ApiBase {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
 		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
-		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
+		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
 
 		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
 			// Only store what is actually needed
