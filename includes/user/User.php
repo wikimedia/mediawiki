@@ -2560,23 +2560,15 @@ class User implements IDBAccessObject {
 				throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
 			}
 
-			$data = [
+			$status = $this->changeAuthenticationData( [
 				'username' => $this->getName(),
 				'password' => $str,
 				'retype' => $str,
-			];
-			$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_CHANGE, $this );
-			$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
-			foreach ( $reqs as $req ) {
-				$status = $manager->allowsAuthenticationDataChange( $req );
-				if ( !$status->isGood() ) {
-					\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
-						->info( __METHOD__ . ': Password change rejected: ' . $status->getWikiText() );
-					return false;
-				}
-			}
-			foreach ( $reqs as $req ) {
-				$manager->changeAuthenticationData( $req );
+			] );
+			if ( !$status->isGood() ) {
+				\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+					->info( __METHOD__ . ': Password change rejected: ' . $status->getWikiText() );
+				return false;
 			}
 
 			$this->setOption( 'watchlisttoken', false );
@@ -2585,6 +2577,45 @@ class User implements IDBAccessObject {
 		SessionManager::singleton()->invalidateSessionsForUser( $this );
 
 		return true;
+	}
+
+	/**
+	 * Changes credentials of the user.
+	 *
+	 * This is a convenience wrapper around AuthManager::changeAuthenticationData.
+	 * Note that this can return a status that isOK() but not isGood() on certain types of failures,
+	 * e.g. when no provider handled the change.
+	 *
+	 * @param array $data A set of authentication data in fieldname => value format. This is the
+	 *   same data you would pass the changeauthenticationdata API - 'username', 'password' etc.
+	 * @return Status
+	 * @since 1.27
+	 */
+	public function changeAuthenticationData( array $data ) {
+		global $wgDisableAuthManager;
+		if ( $wgDisableAuthManager ) {
+			throw new LogicException( __METHOD__ . ' cannot be called when $wgDisableAuthManager '
+				. 'is true' );
+		}
+
+		$manager = AuthManager::singleton();
+		$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_CHANGE, $this );
+		$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
+
+		$status = Status::newGood( 'ignored' );
+		foreach ( $reqs as $req ) {
+			$status->merge( $manager->allowsAuthenticationDataChange( $req ), true );
+		}
+		if ( $status->getValue() === 'ignored' ) {
+			$status->warning( 'authenticationdatachange-ignored' );
+		}
+
+		if ( $status->isGood() ) {
+			foreach ( $reqs as $req ) {
+				$manager->changeAuthenticationData( $req );
+			}
+		}
+		return $status;
 	}
 
 	/**
