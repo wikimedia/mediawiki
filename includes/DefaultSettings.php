@@ -5978,6 +5978,12 @@ $wgTrxProfilerLimits = [
 		'writes' => 0,
 		'readQueryTime' => 5
 	],
+	// Deferred updates that run after HTTP response is sent
+	'PostSend' => [
+		'readQueryTime' => 5,
+		'writeQueryTime' => 1,
+		'maxAffected' => 500
+	],
 	// Background job runner
 	'JobRunner' => [
 		'readQueryTime' => 30,

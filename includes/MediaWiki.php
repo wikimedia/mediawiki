@@ -764,9 +764,13 @@ class MediaWiki {
 		// Assure deferred updates are not in the main transaction
 		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
-		// Ignore things like master queries/connections on GET requests
-		// as long as they are in deferred updates (which catch errors).
-		Profiler::instance()->getTransactionProfiler()->resetExpectations();
+		// Loosen DB query expectations since the HTTP client is unblocked
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->resetExpectations();
+		$trxProfiler->setExpectations(
+			$this->config->get( 'TrxProfilerLimits' )['PostSend'],
+			__METHOD__
+		);
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'enqueue' );
