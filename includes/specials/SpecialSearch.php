@@ -1162,7 +1162,8 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function searchProfileTabs( $term ) {
-		$out = Xml::openElement( 'div', [ 'class' => 'mw-search-profile-tabs' ] );
+		$out = Html::element( 'div', [ 'class' => 'visualClear' ] ) .
+			Xml::openElement( 'div', [ 'class' => 'mw-search-profile-tabs' ] );
 
 		$bareterm = $term;
 		if ( $this->startsWithImage( $term ) ) {
@@ -1261,8 +1262,7 @@ class SpecialSearch extends SpecialPage {
 				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
 				->numParams( $resultsShown )
 				->parse();
-			$out .= Xml::tags( 'div', [ 'class' => 'results-info' ], $top ) .
-				Xml::element( 'div', [ 'style' => 'clear:both' ], '', false );
+			$out .= Xml::tags( 'div', [ 'class' => 'results-info' ], $top );
 		}
 
 		return $out;
