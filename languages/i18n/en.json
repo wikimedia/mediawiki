@@ -4183,5 +4183,6 @@
 	"linkaccounts-success-text": "The account was linked.",
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
-	"unlinkaccounts-success": "The account was unlinked."
+	"unlinkaccounts-success": "The account was unlinked.",
+	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?"
 }
