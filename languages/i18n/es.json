@@ -145,7 +145,8 @@
 			"Rubentl134",
 			"Codynguyen1116",
 			"2axterix2",
-			"Matma Rex"
+			"Matma Rex",
+			"Dgstranz"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -694,8 +695,8 @@
 	"resetpass-temp-password": "Contraseña temporal:",
 	"resetpass-abort-generic": "Una extensión ha cancelado el cambio de la contraseña.",
 	"resetpass-expired": "Tu contraseña ha caducado. Por favor, establece una nueva contraseña para iniciar sesión.",
-	"resetpass-expired-soft": "Tu contraseña ha caducado, por lo que debes restablecerla. Cámbiala ahora por una nueva, o haz clic en \"{{int:resetpass-submit-cancel}}\" para restablecerla más adelante.",
-	"resetpass-validity-soft": "Tu contraseña no es válida: $1\n\nCámbiala ahora por una nueva, o haz clic en \"{{int:resetpass-submit-cancel}}\" para cambiarla más tarde.",
+	"resetpass-expired-soft": "Tu contraseña ha caducado, por lo que debes restablecerla. Cámbiala ahora por una nueva, o haz clic en \"{{int:authprovider-resetpass-skip-label}}\" para restablecerla más adelante.",
+	"resetpass-validity-soft": "Tu contraseña no es válida: $1\n\nCámbiala ahora por una nueva, o haz clic en \"{{int:authprovider-resetpass-skip-label}}\" para cambiarla más tarde.",
 	"passwordreset": "Restablecer contraseña",
 	"passwordreset-text-one": "Completa este formulario para recibir una contraseña temporal por correo electrónico.",
 	"passwordreset-text-many": "{{PLURAL:$1|Elige una de las opciones para recibir una contraseña temporal por correo electrónico.}}",
@@ -2010,6 +2011,7 @@
 	"trackingcategories-msg": "Categoría de seguimiento",
 	"trackingcategories-name": "Nombre del mensaje",
 	"trackingcategories-desc": "Criterios de inclusión de categoría",
+	"restricted-displaytitle-ignored": "Páginas con títulos de visualización ignorados",
 	"restricted-displaytitle-ignored-desc": "Esta página tiene una plantilla <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ignorada porque no es equivalente al título verdadero de la página.",
 	"noindex-category-desc": "La página contiene la palabra mágica <code><nowiki>__NOINDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots no la indizan.",
 	"index-category-desc": "La página contiene la palabra mágica <code><nowiki>__INDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots la indizarán.",
@@ -2155,6 +2157,7 @@
 	"changecontentmodel-cannot-convert": "El contenido de [[:$1]] no se puede convertir a un tipo de $2.",
 	"changecontentmodel-nodirectediting": "El modelo de contenido $1 no admite la edición directa",
 	"changecontentmodel-emptymodels-title": "No hay modelos de contenido disponibles",
+	"changecontentmodel-emptymodels-text": "El contenido de [[:$1]] no se puede convertir a ningún tipo.",
 	"log-name-contentmodel": "Registro de cambios del modelo de contenido",
 	"log-description-contentmodel": "Eventos relacionados con los modelos de contenido de una página",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|creó}} la página $3 usando un modelo de contenido no predeterminado \"$5\"",
@@ -3267,6 +3270,7 @@
 	"timezone-local": "Local",
 	"duplicate-defaultsort": "<strong>Advertencia:</strong> la clave de ordenamiento predeterminada «$2» anula la clave de ordenamiento anterior «$1».",
 	"duplicate-displaytitle": "<strong>Advertencia:</strong> El título visualizado \"$2\" sobreescribe al anterior \"$1\".",
+	"restricted-displaytitle": "<strong>Atención:</strong> El título mostrado \"$1\" se ignoró porque no es equivalente al título real de la página.",
 	"invalid-indicator-name": "<strong>Error:</strong> el atributo <code>name</code> de los indicadores de estado de página no debe estar vacío.",
 	"version": "Versión",
 	"version-extensions": "Extensiones instaladas",
@@ -3576,6 +3580,7 @@
 	"feedback-useragent": "Agente de usuario:",
 	"searchsuggest-search": "Buscar",
 	"searchsuggest-containing": "que contiene...",
+	"api-error-autoblocked": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por un usuario bloqueado.",
 	"api-error-badaccess-groups": "No puedes cargar archivos en este wiki.",
 	"api-error-badtoken": "Error interno: Símbolo incorrecto.",
 	"api-error-copyuploaddisabled": "La subida por URL está desactivada en este servidor.",
@@ -3792,7 +3797,9 @@
 	"log-action-filter-suppress-reblock": "Usuario supresión de rebloqueo",
 	"log-action-filter-upload-upload": "Subida nueva",
 	"log-action-filter-upload-overwrite": "Volver a subir",
+	"authmanager-authn-no-primary": "Las credenciales proporcionadas no se han podido autentificar.",
 	"authmanager-authn-no-local-user": "Las credenciales suministradas no están asociadas con ningún usuario en este wiki.",
+	"authmanager-authn-no-local-user-link": "Las credenciales suministradas son válidas, pero no están asociadas con ningún usuario de este wiki. Inicia sesión con un usuario diferente, o crea un nuevo usuario, para poder vincular tus credenciales anteriores a esa cuenta.",
 	"authmanager-authn-autocreate-failed": "Falló la creación automática de una cuenta local: $1",
 	"authmanager-create-disabled": "Está desactivada la creación de cuentas.",
 	"authmanager-create-from-login": "Para crear tu cuenta, completa los campos a continuación.",
@@ -3812,6 +3819,7 @@
 	"authmanager-realname-label": "Nombre real",
 	"authmanager-realname-help": "Nombre real del usuario",
 	"authmanager-provider-password": "Autenticación basada en contraseña",
+	"authmanager-provider-password-domain": "Autenticación basada en contraseña y dominio",
 	"authmanager-provider-temporarypassword": "Contraseña temporal",
 	"authprovider-confirmlink-success-line": "$1: vinculado exitosamente.",
 	"authprovider-resetpass-skip-label": "Omitir",
@@ -3835,5 +3843,6 @@
 	"linkaccounts": "Vincular cuentas",
 	"linkaccounts-success-text": "La cuenta fue vinculada.",
 	"linkaccounts-submit": "Vincular cuentas",
-	"unlinkaccounts": "Desvincular cuentas"
+	"unlinkaccounts": "Desvincular cuentas",
+	"unlinkaccounts-success": "Se ha desvinculado la cuenta."
 }

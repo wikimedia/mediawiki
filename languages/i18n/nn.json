@@ -502,7 +502,7 @@
 	"resetpass-wrong-oldpass": "Feil mellombels eller noverande passord.\nDu kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels passord.",
 	"resetpass-temp-password": "Mellombels passord:",
 	"resetpass-abort-generic": "Passordbytet vart stogga av ei utviding.",
-	"resetpass-validity-soft": "Passordet ditt er ikkje gyldig: $1\n\nGjer vel å velja eit nytt passord no, eller klikk «{{int:resetpass-submit-cancel}}» for å endra det seinare.",
+	"resetpass-validity-soft": "Passordet ditt er ikkje gyldig: $1\n\nGjer vel å velja eit nytt passord no, eller klikk «{{int:authprovider-resetpass-skip-label}}» for å endra det seinare.",
 	"passwordreset": "Attendestilling av passord",
 	"passwordreset-text-one": "Fyll ut dette skjemaet for å attendestilla passordet ditt.",
 	"passwordreset-disabled": "↓Tilbakestilling av passord er ikkje aktivert på denne wikien",

@@ -26,7 +26,8 @@
 			"Orlodrim",
 			"Cl3m3n7",
 			"C13m3n7",
-			"The RedBurn"
+			"The RedBurn",
+			"Trial"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -73,7 +74,7 @@
 	"config-env-php": "PHP $1 est installé.",
 	"config-env-hhvm": "HHVM $1 est installé.",
 	"config-unicode-using-intl": "Utilisation de [http://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
-	"config-unicode-pure-php-warning": "<strong>Attention</strong> : L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d’Unicode, retour à la version lente implémentée en PHP.\nSi votre site web sera très fréquenté, vous devriez lire ceci : [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
+	"config-unicode-pure-php-warning": "<strong>Attention :</strong> L’[http://pecl.php.net/intl extension PECL intl] n’est pas disponible pour la normalisation d’Unicode, retour à la version lente implémentée en PHP.\nSi votre site web sera très fréquenté, vous devriez lire ceci : [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
 	"config-unicode-update-warning": "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].\nVous devriez faire une [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations mise à jour] si vous êtes tout à fait concerné par l'usage d'Unicode.",
 	"config-no-db": "Impossible de trouver un pilote de base de données approprié ! Vous devez installer un pilote de base de données pour PHP. {{PLURAL:$2|Le type suivant|Les types suivants}} de bases de données {{PLURAL:$2|est reconnu|sont reconnus}} : $1.\n\nSi vous avez compilé PHP vous-même, reconfigurez-le avec un client de base de données actif, par exemple en utilisant <code>./configure --with-mysqli</code>. Si vous avez installé PHP depuis un paquet Debian ou Ubuntu, alors vous devrez aussi installer, par exemple, le paquet <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "'''Attention''': vous avez SQLite $1, qui est inférieur à la version minimale requise $2. SQLite sera indisponible.",
@@ -103,7 +104,7 @@
 	"config-no-cli-uri": "'''Attention''': Aucun <code>--scriptpath</code> n'a été spécifié; <code>$1</code> sera utilisé par défaut",
 	"config-using-server": "Utilisation du nom de serveur \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Utilisation de l'URL de serveur \"<nowiki>$1$2</nowiki>\".",
-	"config-uploads-not-safe": "'''Attention:''' Votre répertoire par défaut pour les téléchargements, <code>$1</code>, est vulnérable, car il peut exécuter n'importe quel script.\nBien que MediaWiki vérifie tous les fichiers téléchargés, il est fortement recommandé de [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security fermer cette vulnérabilité de sécurité] (texte en anglais) avant d'activer les téléchargements.",
+	"config-uploads-not-safe": "<strong>Attention :</strong> Votre répertoire par défaut pour les téléversements, <code>$1</code>, est vulnérable, car il peut exécuter n’importe quel script.\nBien que MediaWiki vérifie tous les fichiers téléversés, il est fortement recommandé de [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security fermer cette faille de sécurité] (texte en anglais) avant d’activer les téléversements.",
 	"config-no-cli-uploads-check": "'''Attention:''' Votre répertoire par défaut pour les imports(<code>$1</code>) n'est pas contrôlé concernant la vulnérabilité d'exécution de scripts arbitraires lors de l'installation CLI.",
 	"config-brokenlibxml": "Votre système utilise une combinaison de versions de PHP et libxml2 qui est boguée et peut engendrer des corruptions cachées de données dans MediaWiki et d’autres applications web.\nVeuillez mettre à jour votre système vers libxml2 2.7.3 ou plus récent ([https://bugs.php.net/bug.php?id=45996 bogue déposé auprès de PHP]).\nInstallation interrompue.",
 	"config-suhosin-max-value-length": "Suhosin est installé et limite la <code>longueur</code> du paramètre GET à $1 octets.\nLe composant ResourceLoader de MediaWiki va répondre en respectant cette limite, mais ses performances seront dégradées. Si possible, vous devriez définir <code>suhosin.get.max_value_length</code> à 1024 ou plus dans le fichier <code>php.ini</code>, et fixer <code>$wgResourceLoaderMaxQueryLength</code> à la même valeur dans <code>LocalSettings.php</code>.",
@@ -263,13 +264,13 @@
 	"config-email-sender-help": "Entrez l'adresse de courriel à utiliser comme adresse de retour des courriels sortant.\nLes courriels rejetés y seront envoyés.\nDe nombreux serveurs de courriels exigent au moins un [http://fr.wikipedia.org/wiki/Nom_de_domaine nom de domaine] valide.",
 	"config-upload-settings": "Téléchargement des images et des fichiers",
 	"config-upload-enable": "Activer le téléchargement des fichiers",
-	"config-upload-help": "Le téléchargement des fichiers expose votre serveur à des risques de sécurité.\nPour plus d'informations, lire la section [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security ''Security''] du manuel d'installation (en anglais).\n\nPour autoriser le téléchargement des fichiers, modifier le mode du sous-répertoire <code>images</code> qui se situe sous le répertoire racine de MediaWiki de sorte à ce que le serveur web puisse écrire dedans.\nEnsuite, activez cette option.",
+	"config-upload-help": "Le téléversement de fichiers expose votre serveur à des risques de sécurité.\nPour plus d'informations, lire la section [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security ''Security''] du manuel d'installation (en anglais).\n\nPour autoriser le téléversement de fichiers, modifier les permissions du sous-répertoire <code>images</code> qui se situe sous le répertoire racine de MediaWiki de sorte à ce que le serveur web puisse écrire dedans.\nEnsuite, activez cette option.",
 	"config-upload-deleted": "Répertoire pour les fichiers supprimés :",
 	"config-upload-deleted-help": "Choisissez un répertoire qui servira à archiver les fichiers supprimés.\nIdéalement, il ne devrait pas être accessible depuis le web.",
 	"config-logo": "URL du logo :",
 	"config-logo-help": "L’habillage par défaut de MediaWiki comprend l’espace pour un logo de 135x160 pixels au-dessus de la barre de menu latérale.\nTéléchargez une image de la taille appropriée, et entrez son URL ici.\n\nVous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo est relatif à ces chemins.\n\nSi vous ne voulez pas de logo, laissez cette case vide.",
 	"config-instantcommons": "Activer ''InstantCommons''",
-	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [https://commons.wikimedia.org/ Wikimedia Commons].\nPour se faire, il faut que MediaWiki accède à Internet.\n\nPour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel] (en anglais).",
+	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons/fr InstantCommons] est un service qui permet d’utiliser les images, les sons et les autres médias disponibles sur le site [https://meta.wikimedia.org/wiki/Wikimedia_Commons/fr Wikimédia Commons].\nPour ce faire, il faut que MediaWiki accède à Internet.\n\nPour plus d’informations sur ce service, y compris les instructions sur la façon de le configurer pour d’autres wikis que Wikimedia Commons, consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel].",
 	"config-cc-error": "Le sélection d'une licence ''Creative Commons'' n'a donné aucun résultat.\nEntrez le nom de la licence manuellement.",
 	"config-cc-again": "Choisissez à nouveau...",
 	"config-cc-not-chosen": "Choisissez la licence ''Creative Commons'' que vous désirez et cliquez sur « proceed ».",
@@ -335,7 +336,7 @@
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",
 	"config-nofile": "Le fichier « $1 » est introuvable. A-t-il été supprimé ?",
-	"config-extension-link": "Saviez-vous que votre wiki supporte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie].",
+	"config-extension-link": "Saviez-vous que votre wiki supporte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie] ou la [https://www.mediawiki.org/wiki/Extension_Matrix matrice des extensions] pour voir la liste complète des extensions.",
 	"mainpagetext": "<strong>MediaWiki a été installé.</strong>",
 	"mainpagedocfooter": "Consultez le [https://meta.wikimedia.org/wiki/Help:Contents/fr Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
 }

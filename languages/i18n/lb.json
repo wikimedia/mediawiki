@@ -543,7 +543,7 @@
 	"resetpass-temp-password": "Temporäert Passwuert:",
 	"resetpass-abort-generic": "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
 	"resetpass-expired": "Äert Passwuert ass ofgelaf. Gitt w.e.g. en neit Passwuert u fir Iech anzeloggen.",
-	"resetpass-expired-soft": "Äert Passwuert ass ofgelaf a muss zeréckgesat. Sicht w.e.g. elo en neit Passwuert eraus oder klickt  \"{{int:resetpass-submit-cancel}}\" fir et spéider zeréckzesetzen.",
+	"resetpass-expired-soft": "Äert Passwuert ass ofgelaf a muss zeréckgesat. Sicht w.e.g. elo en neit Passwuert eraus oder klickt  \"{{int:authprovider-resetpass-skip-label}}\" fir et spéider zeréckzesetzen.",
 	"resetpass-validity-soft": "Ärt Passwuert ass net valabel: $1",
 	"passwordreset": "Passwuert zrécksetzen",
 	"passwordreset-text-one": "Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.",

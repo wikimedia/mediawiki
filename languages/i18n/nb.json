@@ -586,7 +586,7 @@
 	"resetpass-temp-password": "Midlertidig passord:",
 	"resetpass-abort-generic": "Endring av passord har blitt avbrutt av en utvidelse.",
 	"resetpass-expired": "Passordet ditt har utløpt. Vær vennlig å angi et nytt passord for å logge inn.",
-	"resetpass-expired-soft": "Passordet ditt har utløpt og må endres. Vær vennlig å angi et nytt passord, eller klikk \"{{int:resetpass-submit-cancel}}\" for å endre det senere.",
+	"resetpass-expired-soft": "Passordet ditt har utløpt og må endres. Vær vennlig å angi et nytt passord, eller klikk \"{{int:authprovider-resetpass-skip-label}}\" for å endre det senere.",
 	"resetpass-validity-soft": "Ditt passord er ikke gyldig: $1",
 	"passwordreset": "Tilbakestilling av passord",
 	"passwordreset-text-one": "Fyll ut skjemaet for å tilbakestille passordet",

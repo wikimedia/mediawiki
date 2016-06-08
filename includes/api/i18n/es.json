@@ -20,7 +20,8 @@
 			"Lemondoge",
 			"Mgpena",
 			"Rubentl134",
-			"2axterix2"
+			"2axterix2",
+			"Dgstranz"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -130,6 +131,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "El tiempo máximo tras el cual deberían invalidarse los resultados en caché.",
 	"apihelp-expandtemplates-paramvalue-prop-jsconfigvars": "Da las variables de configuración JavaScript específicas para la página.",
 	"apihelp-expandtemplates-paramvalue-prop-encodedjsconfigvars": "Da las variables de configuración JavaScript específicas para la página como una cadena JSON.",
+	"apihelp-expandtemplates-param-includecomments": "Incluir o no los comentarios HTML en la salida.",
 	"apihelp-expandtemplates-param-generatexml": "Generar un árbol de análisis XML (remplazado por $1prop=parsetree).",
 	"apihelp-expandtemplates-example-simple": "Expandir el wikitexto <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 	"apihelp-feedcontributions-description": "Devuelve el canal de contribuciones de un usuario.",
@@ -308,6 +310,7 @@
 	"apihelp-protect-example-protect": "Proteger una página",
 	"apihelp-protect-example-unprotect": "Desproteger una página estableciendo la restricción a <kbd>all</kbd>.",
 	"apihelp-protect-example-unprotect2": "Desproteger una página anulando las restricciones.",
+	"apihelp-purge-description": "Purgar la caché de los títulos proporcionados.\n\nSe requiere una solicitud POST si el usuario no ha iniciado sesión.",
 	"apihelp-purge-param-forcelinkupdate": "Actualizar las tablas de enlaces.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Actualizar la tabla de enlaces y todas las tablas de enlaces de cualquier página que use esta página como una plantilla.",
 	"apihelp-purge-example-simple": "Purgar la <kbd>Main Page</kbd> y la página <kbd>API</kbd>.",
@@ -415,6 +418,7 @@
 	"apihelp-query+mystashedfiles-param-limit": "Cuántos archivos obtener.",
 	"apihelp-query+alltransclusions-param-prefix": "Buscar todos los títulos transcluidos que comiencen con este valor.",
 	"apihelp-query+alltransclusions-param-prop": "Qué piezas de información incluir:",
+	"apihelp-query+alltransclusions-paramvalue-prop-title": "Añade el título de la transclusión.",
 	"apihelp-query+alltransclusions-example-unique": "Listar títulos transcluidos de forma única.",
 	"apihelp-query+alltransclusions-example-unique-generator": "Obtiene todos los títulos transcluidos, marcando los que faltan.",
 	"apihelp-query+allusers-description": "Enumerar todos los usuarios registrados.",

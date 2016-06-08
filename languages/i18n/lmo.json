@@ -461,7 +461,7 @@
 	"resetpass-temp-password": "Password temporànea:",
 	"resetpass-abort-generic": "La mudìfica de la password l'è stàda blocàda de 'n estensiù.",
 	"resetpass-expired": "La tò password l'è scadìda. Te g'harèset de defenéser 'na password nöa semài che te öt autenticàt.",
-	"resetpass-validity-soft": "La tò password l'è mìa bùna: $1\n\nTe g'harèset de catà fò 'n ótra password o clicà sö \"{{int:resetpass-submit-cancel}}\" per turnà a definìla piö tàrde.",
+	"resetpass-validity-soft": "La tò password l'è mìa bùna: $1\n\nTe g'harèset de catà fò 'n ótra password o clicà sö \"{{int:authprovider-resetpass-skip-label}}\" per turnà a definìla piö tàrde.",
 	"passwordreset": "Tùrna a defenéser la password",
 	"passwordreset-text-one": "Empenés chèsto mòdulo per turnà a defenéser la tò password.",
 	"passwordreset-disabled": "La ridefinisiù de la password l'è mìa atìva sö chèsta wiki",

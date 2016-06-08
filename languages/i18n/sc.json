@@ -471,7 +471,7 @@
 	"resetpass-temp-password": "Password temporànea:",
 	"resetpass-abort-generic": "Su càmbiu de sa password est istadu arreadu dae un'estensione.",
 	"resetpass-expired": "Sa password tua est iscadida. Pro piaghere inserta una password noa pro intrare.",
-	"resetpass-validity-soft": "Sa password password tua no est bàlida: $1\n\nPro piaghere issèbera una password noa como, o carca \"{{int:resetpass-submit-cancel}}\" pro lu fàghere prus a tardu.",
+	"resetpass-validity-soft": "Sa password password tua no est bàlida: $1\n\nPro piaghere issèbera una password noa como, o carca \"{{int:authprovider-resetpass-skip-label}}\" pro lu fàghere prus a tardu.",
 	"passwordreset": "Reseta sa password",
 	"passwordreset-disabled": "Non si podent cambiare sas passwords in custa wiki.",
 	"passwordreset-emaildisabled": "Is funtzionalidades de email sunt istadas disabilitadas in custa wiki.",

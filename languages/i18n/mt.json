@@ -506,7 +506,7 @@
 	"resetpass-abort-generic": "Estensjoni ħassret il-bidla tal-password",
 	"resetpass-expired": "Il-password skadiet. Jekk jogħġbok issettja password ġdida biex tidħol.",
 	"resetpass-expired-soft": "Il-password skadiet u jeħtieġ li terġa' tissettjaha. Agħżel password ġdida issa, jew ikklikkja \"{{int:resetpass-tissottometti-tikkanċella}}\" biex tissettjaha aktar tard.",
-	"resetpass-validity-soft": "Il-password tiegħek mhijiex valida $1 \n\nAgħżel password ġdida issa, jew ikklikkja \"{{int:resetpass-submit-cancel}}\" biex tibdilha dan aktar.",
+	"resetpass-validity-soft": "Il-password tiegħek mhijiex valida $1 \n\nAgħżel password ġdida issa, jew ikklikkja \"{{int:authprovider-resetpass-skip-label}}\" biex tibdilha dan aktar.",
 	"passwordreset": "Irrisettja l-password",
 	"passwordreset-text-one": "Imla din il-formola sabiex tirrisettja l-password.",
 	"passwordreset-text-many": "{{PLURAL:$1|Imla wieħed mill-oqsma biex tirċievi password temporanja permezz ta' ittra elettronika.}}",

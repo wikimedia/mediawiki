@@ -484,7 +484,7 @@
 	"resetpass-temp-password": "Temporaryong sekretong panlaog:",
 	"resetpass-abort-generic": "Pagliwat kan sikretong panlaog ipinagpauntok kan sarong ekstensyon.",
 	"resetpass-expired": "An saimong pasa-taramon nagpalso na. Tabi man pakikaag nin sarong baguhong pasa-taramon tanganing makalaog ka.",
-	"resetpass-expired-soft": "An saimong pasa-taramon nagpalso na, asin kinakaipuhan na baguhon. Tabi man pakipili nin sarong baguhong pasa-taramon ngunyan, o i-klik an \"{{int:resetpass-submit-cancel}}\" kun baguhon sa aro-atyan.",
+	"resetpass-expired-soft": "An saimong pasa-taramon nagpalso na, asin kinakaipuhan na baguhon. Tabi man pakipili nin sarong baguhong pasa-taramon ngunyan, o i-klik an \"{{int:authprovider-resetpass-skip-label}}\" kun baguhon sa aro-atyan.",
 	"passwordreset": "Pakibago kan sekretong panlaog",
 	"passwordreset-text-one": "Kumpletuhon ining porma sa pagliwat otro kan saimong pasa-taramon.",
 	"passwordreset-text-many": "{{PLURAL:$1|Kaagi an saro sa mga kaaganan tanganing makaresibe nin sarong temporaryong pasa-taramon sa paagi kan e-surat.}}",

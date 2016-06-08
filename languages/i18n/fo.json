@@ -498,7 +498,7 @@
 	"resetpass-temp-password": "Fyribils loyniorð",
 	"resetpass-abort-generic": "Broyting av loyniorði bleiv avbrotin av einari víðkan.",
 	"resetpass-expired": "Títt loyniorð er útgingið. Vinarliga vel tær eitt nýtt, so tú kanst rita inn.",
-	"resetpass-expired-soft": "Títt loyniorð er útgingið og má broytast. Vinarliga vel tær eitt nýtt nú ella trýst á \"{{int:resetpass-submit-cancel}}\" fyri at broyta tað seinni.",
+	"resetpass-expired-soft": "Títt loyniorð er útgingið og má broytast. Vinarliga vel tær eitt nýtt nú ella trýst á \"{{int:authprovider-resetpass-skip-label}}\" fyri at broyta tað seinni.",
 	"passwordreset": "Nullstilla loyniorðið",
 	"passwordreset-text-one": "Útfyll henda teigin fyri at nullstilla títt loyniorð.",
 	"passwordreset-text-many": "{{PLURAL:$1|Útfyll í ein av teigunum fyri at móttaka eitt fyribils loyniorð við telduposti.}}",

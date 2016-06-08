@@ -610,8 +610,8 @@
 	"resetpass-temp-password": "仮パスワード:",
 	"resetpass-abort-generic": "拡張機能により、パスワードの変更は取り消されました。",
 	"resetpass-expired": "パスワードの有効期限が切れました。ログインするには新しいパスワードを設定してください。",
-	"resetpass-expired-soft": "パスワードの有効期限が切れたため、再設定する必要があります。新しいパスワードを今すぐ設定するか、または「{{int:resetpass-submit-cancel}}」をクリックしてあとで再設定してください。",
-	"resetpass-validity-soft": "あなたのパスワードは無効です: $1\n\n今すぐ新しいパスワードに変更するか、「{{int:resetpass-submit-cancel}}」をクリックして後で再設定してください。",
+	"resetpass-expired-soft": "パスワードの有効期限が切れたため、再設定する必要があります。新しいパスワードを今すぐ設定するか、または「{{int:authprovider-resetpass-skip-label}}」をクリックしてあとで再設定してください。",
+	"resetpass-validity-soft": "あなたのパスワードは無効です: $1\n\n今すぐ新しいパスワードに変更するか、「{{int:authprovider-resetpass-skip-label}}」をクリックして後で再設定してください。",
 	"passwordreset": "パスワードの再設定",
 	"passwordreset-text-one": "仮パスワードをメールで受け取るにはこのフォームに記入してください。",
 	"passwordreset-text-many": "{{PLURAL:$1|仮パスワードをメールで受け取るにはいずれかの欄に記入してください。}}",
@@ -709,7 +709,7 @@
 	"userpage-userdoesnotexist": "「$1」という利用者アカウントは登録されていません。\nこのページの作成/編集が適切かご確認ください。",
 	"userpage-userdoesnotexist-view": "利用者アカウント「$1」は登録されていません。",
 	"blocked-notice-logextract": "この利用者は現在ブロックされています。\n参考のために最新のブロック記録項目を以下に表示します:",
-	"clearyourcache": "<strong>注意:</strong> 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。\n* <strong>Firefox / Safari:</strong> <em>Shift</em> を押しながら <em>再読み込み</em> をクリックするか、<em>Ctrl-F5</em> または <em>Ctrl-R</em> を押してください (Mac では <em>&#x2318;-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> を押してください (Mac では <em>&#x2318;-Shift-R</em>)\n* <strong>Internet Explorer:</strong> <em>Ctrl</em> を押しながら <em>最新の情報に更新</em> をクリックするか、<em>Ctrl-F5</em> を押してください\n* <strong>Opera:</strong> <em>ツール → 設定</em> からキャッシュをクリアしてください。",
+	"clearyourcache": "<strong>注意:</strong> 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。\n* <strong>Firefox / Safari:</strong> <em>Shift</em> を押しながら <em>再読み込み</em> をクリックするか、<em>Ctrl-F5</em> または <em>Ctrl-R</em> を押してください (Mac では <em>&#x2318;-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> を押してください (Mac では <em>&#x2318;-Shift-R</em>)\n* <strong>Internet Explorer:</strong> <em>Ctrl</em> を押しながら <em>最新の情報に更新</em> をクリックするか、<em>Ctrl-F5</em> を押してください\n* <strong>Opera:</strong> <em>メニュー → 設定</em> (Mac では <em>Opera → 環境設定</em>) に移動し、<em>プライバシーとセキュリティ → 閲覧データを消去 → キャッシュされた画像およびファイル</em> からキャッシュをクリアしてください。",
 	"usercssyoucanpreview": "<strong>ヒント:</strong>「{{int:showpreview}}」ボタンを使うと、保存前に新しいCSSを試験できます。",
 	"userjsyoucanpreview": "<strong>ヒント:</strong>「{{int:showpreview}}」ボタンを使うと、保存前に新しいJavaScriptを試験できます。",
 	"usercsspreview": "<strong>利用者CSSをプレビューしているだけに過ぎません。</strong>\n<strong>まだ保存されていません!</strong>",
@@ -3146,6 +3146,8 @@
 	"confirm-watch-top": "このページをウォッチリストに追加しますか?",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "このページをウォッチリストから除去しますか?",
+	"confirm-rollback-button": "OK",
+	"confirm-rollback-top": "このページの編集を差し戻しますか？",
 	"semicolon-separator": ";&#32;",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
@@ -3774,5 +3776,8 @@
 	"log-action-filter-upload-upload": "新規アップロード",
 	"log-action-filter-upload-overwrite": "再アップロード",
 	"authmanager-authn-autocreate-failed": "ローカルアカウントの自動作成が失敗しました: $1",
-	"authmanager-userdoesnotexist": "利用者アカウント「$1」は登録されていません。"
+	"authmanager-authplugin-setpass-bad-domain": "無効なドメインです。",
+	"authmanager-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
+	"authmanager-email-label": "メールアドレス",
+	"authmanager-email-help": "メールアドレス"
 }

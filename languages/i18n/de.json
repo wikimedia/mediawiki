@@ -87,7 +87,8 @@
 			"FriedhelmW",
 			"Schniggendiller",
 			"Predatorix",
-			"Matma Rex"
+			"Matma Rex",
+			"ThePiscin"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -636,8 +637,8 @@
 	"resetpass-temp-password": "Temporäres Passwort:",
 	"resetpass-abort-generic": "Die Passwortänderung wurde durch eine Erweiterung abgebrochen.",
 	"resetpass-expired": "Dein Passwort ist abgelaufen. Bitte lege ein neues Passwort zur Anmeldung fest.",
-	"resetpass-expired-soft": "Dein Passwort ist abgelaufen und muss zurückgesetzt werden. Bitte wähle jetzt ein neues Passwort aus oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.",
-	"resetpass-validity-soft": "Dein Passwort ist nicht gültig: $1\n\nBitte wähle jetzt ein neues Passwort oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.",
+	"resetpass-expired-soft": "Dein Passwort ist abgelaufen und muss zurückgesetzt werden. Bitte wähle jetzt ein neues Passwort aus oder klicke auf „{{int:authprovider-resetpass-skip-label}}“, um es später zurückzusetzen.",
+	"resetpass-validity-soft": "Dein Passwort ist ungültig: $1\n\nBitte wähle jetzt ein neues Passwort oder klicke auf „{{int:authprovider-resetpass-skip-label}}“, um es später zurückzusetzen.",
 	"passwordreset": "Passwort zurücksetzen",
 	"passwordreset-text-one": "Fülle dieses Formular aus, um ein temporäres Passwort per E-Mail zu erhalten.",
 	"passwordreset-text-many": "{{PLURAL:$1|Fülle eines der Felder aus, um ein temporäres Passwort per E-Mail zugesandt zu bekommen.}}",
