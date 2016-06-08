@@ -800,7 +800,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 					$key,
 					$ttl,
 					function ( $oldValue, &$ttl, &$setOpts ) use ( $callback, $version ) {
-						$oldData = $oldValue ? $oldValue[self::VFLD_DATA] : false;
+						if ( is_array( $oldValue )
+							&& array_key_exists( self::VFLD_DATA, $oldValue )
+						) {
+							$oldData = $oldValue[self::VFLD_DATA];
+						} else {
+							// VFLD_DATA is not set if an old, unversioned, key is present
+							$oldData = false;
+						}
+
 						return [
 							self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts ),
 							self::VFLD_VERSION => $version
