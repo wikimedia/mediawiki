@@ -110,13 +110,13 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			);
 			$this->batchDeleteByPK(
 				'langlinks',
-				[ 'il_from' => $id ],
-				[ 'il_from', 'll_lang' ],
+				[ 'll_from' => $id ],
+				[ 'll_from', 'll_lang' ],
 				$batchSize
 			);
 			$this->batchDeleteByPK(
 				'iwlinks',
-				[ 'il_from' => $id ],
+				[ 'iwl_from' => $id ],
 				[ 'iwl_from', 'iwl_prefix', 'iwl_title' ],
 				$batchSize
 			);
