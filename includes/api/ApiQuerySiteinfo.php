@@ -268,6 +268,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$providerIds = array_keys( $this->getConfig()->get( 'CentralIdLookupProviders' ) );
 		$data['allcentralidlookupproviders'] = $providerIds;
 
+		$data['interwikimagic'] = (bool)$config->get( 'InterwikiMagic' );
+
 		Hooks::run( 'APIQuerySiteInfoGeneralInfo', [ $this, &$data ] );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
