@@ -8,6 +8,8 @@
 			pending = null,
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
+			$summary = $form.find( '#wpSummary'),
+			autoStash = ( $form.find( 'input[name=oldid]' ).val() !== '0' ),
 			data = {},
 			timer = null;
 
@@ -34,7 +36,7 @@
 			return newText !== data.wpTextbox1;
 		}
 
-		function onEditChanged() {
+		function onTextChanged() {
 			if ( !isChanged() ) {
 				return;
 			}
@@ -47,7 +49,7 @@
 			api.getToken( 'csrf' ).then( stashEdit );
 		}
 
-		function onKeyPress( e ) {
+		function onTextKeyPress( e ) {
 			// Ignore keystrokes that don't modify text, like cursor movements.
 			// See <http://stackoverflow.com/q/2284844>.
 			if ( e.which === 0 ) {
@@ -60,7 +62,32 @@
 				pending.abort();
 			}
 
-			timer = setTimeout( onEditChanged, idleTimeout );
+			timer = setTimeout( onTextChanged, idleTimeout );
+		}
+
+		function onSummaryKeyPress( e ) {
+			// Reverts may involve loading an old version and saving it with no text changes
+			if ( !autoStash || e.which === 0 ) {
+				return;
+			}
+
+			if ( pending ) {
+				pending.abort();
+			}
+
+			autoStash = false;
+			api.getToken( 'csrf' ).then( stashEdit );
+		}
+
+		function onFormLoaded() {
+			// Reverts may involve use (undo) links; stash as they review the diff
+			if ( mw.util.getParamValue( 'undo' ) !== null ) {
+				if ( pending ) {
+					pending.abort();
+				}
+
+				api.getToken( 'csrf' ).then( stashEdit );
+			}
 		}
 
 		// We don't attempt to stash new section edits because in such cases
@@ -70,7 +97,9 @@
 			return;
 		}
 
-		$text.on( { change: onEditChanged, keypress: onKeyPress } );
+		$text.on( { change: onTextChanged, keypress: onTextKeyPress } );
+		$summary.on( { keypress: onSummaryKeyPress } );
+		$form.ready( onFormLoaded );
 
 	} );
 }( mediaWiki, jQuery ) );
