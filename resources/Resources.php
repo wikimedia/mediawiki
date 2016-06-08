@@ -1195,6 +1195,9 @@ return [
 			'mediawiki.ForeignUpload',
 			'mediawiki.ForeignStructuredUpload.config',
 		],
+		'messages' => [
+			'upload-foreign-cant-load-config',
+		],
 	],
 	'mediawiki.Upload.Dialog' => [
 		'scripts' => [

@@ -177,7 +177,13 @@
 		return this.upload.getApi().then(
 			function ( api ) {
 				return $.when(
-					booklet.upload.loadConfig(),
+					booklet.upload.loadConfig().then(
+						null,
+						function ( errorMsg ) {
+							booklet.getPage( 'upload' ).$element.msg( errorMsg );
+							return $.Deferred().resolve();
+						}
+					),
 					// If the user can't upload anything, don't give them the option to.
 					api.getUserInfo().then( function ( userInfo ) {
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
