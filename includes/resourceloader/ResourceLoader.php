@@ -313,6 +313,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *   not registered
 	 */
 	public function register( $name, $info = null ) {
+		$moduleSkinStyles = $this->config->get( 'ResourceModuleSkinStyles' );
 
 		// Allow multiple modules to be registered in one call
 		$registrations = is_array( $name ) ? $name : [ $name => $info ];
@@ -351,7 +352,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 			// Apply custom skin-defined styles to existing modules.
 			if ( $this->isFileModule( $name ) ) {
-				foreach ( $this->config->get( 'ResourceModuleSkinStyles' ) as $skinName => $skinStyles ) {
+				foreach ( $moduleSkinStyles as $skinName => $skinStyles ) {
 					// If this module already defines skinStyles for this skin, ignore $wgResourceModuleSkinStyles.
 					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
 						continue;
