@@ -136,7 +136,7 @@
 	 */
 	ForeignStructuredUpload.prototype.getText = function () {
 		return this.config.format.filepage
-			// Replace "numbered parameters" with the given information
+			// Replace "named parameters" with the given information
 			.replace( '$DESCRIPTION', this.getDescriptions() )
 			.replace( '$DATE', this.getDate() )
 			.replace( '$SOURCE', this.getSource() )
