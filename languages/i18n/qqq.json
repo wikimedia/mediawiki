@@ -4349,5 +4349,6 @@
 	"linkaccounts-success-text": "Text shown on top of the form after a successful action.",
 	"linkaccounts-submit": "Text of the main submit button on [[Special:LinkAccounts]] (when there is one)",
 	"unlinkaccounts": "Title of the special page [[Special:UnlinkAccounts]] which allows the user to remove linked remote accounts.",
-	"unlinkaccounts-success": "Account unlinking form success message"
+	"unlinkaccounts-success": "Account unlinking form success message",
+	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems."
 }
