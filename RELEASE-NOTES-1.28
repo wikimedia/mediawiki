@@ -13,6 +13,9 @@ production.
   is configurable via $wgSessionPbkdf2Iterations.
 * Upload dialog's file upload log comment can now be configured separately for
   local and foreign uploads.
+* $wgForeignUploadTargets now defaults to `[ '' ]`, where the `''` (empty
+  string) signifies local uploads. A value of `[]` (empty array) now means that
+  no upload targets are allowed, effectively disabling the upload dialog.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
