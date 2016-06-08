@@ -183,6 +183,7 @@ define( 'EDIT_SUPPRESS_RC', 8 );
 define( 'EDIT_FORCE_BOT', 16 );
 define( 'EDIT_DEFER_UPDATES', 32 ); // Unused since 1.27
 define( 'EDIT_AUTOSUMMARY', 64 );
+define( 'EDIT_INTERNAL', 128 );
 /**@}*/
 
 /**@{
