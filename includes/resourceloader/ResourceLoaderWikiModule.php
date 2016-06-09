@@ -61,9 +61,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Group of module
 	protected $group;
 
-	// Whether to enable variable expansion (e.g. "{skin}")
-	protected $allowVariables = false;
-
 	/**
 	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
 	 */
@@ -79,7 +76,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				case 'scripts':
 				case 'group':
 				case 'targets':
-				case 'allowVariables':
 					$this->{$member} = $option;
 					break;
 			}
@@ -109,28 +105,17 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// Filter out pages from origins not allowed by the current wiki configuration.
 		if ( $config->get( 'UseSiteJs' ) ) {
 			foreach ( $this->scripts as $script ) {
-				$page = $this->expandVariables( $context, $script );
-				$pages[$page] = [ 'type' => 'script' ];
+				$pages[$script] = [ 'type' => 'script' ];
 			}
 		}
 
 		if ( $config->get( 'UseSiteCss' ) ) {
 			foreach ( $this->styles as $style ) {
-				$page = $this->expandVariables( $context, $style );
-				$pages[$page] = [ 'type' => 'style' ];
+				$pages[$style] = [ 'type' => 'style' ];
 			}
 		}
 
 		return $pages;
-	}
-
-	private function expandVariables( ResourceLoaderContext $context, $pageName ) {
-		if ( !$this->allowVariables ) {
-			return $pageName;
-		}
-		return strtr( $pageName, [
-			'{skin}' => $context->getSkin()
-		] );
 	}
 
 	/**
