@@ -2242,10 +2242,6 @@ class EditPage {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
-		if ( $wgAjaxEditStash ) {
-			$wgOut->addModules( 'mediawiki.action.edit.stash' );
-		}
-
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
@@ -2273,7 +2269,10 @@ class EditPage {
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
 		# Transmit the name of the message to JavaScript for live preview
 		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
-		$wgOut->addJsConfigVars( 'wgEditMessage', $msg );
+		$wgOut->addJsConfigVars( [
+			'wgEditMessage' => $msg,
+			'wgAjaxEditStash' => $wgAjaxEditStash,
+		] );
 	}
 
 	/**

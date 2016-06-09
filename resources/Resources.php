@@ -1406,12 +1406,16 @@ return [
 	/* MediaWiki Action */
 
 	'mediawiki.action.edit' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.js',
+		'scripts' => [
+			'resources/src/mediawiki.action/mediawiki.action.edit.js',
+			'resources/src/mediawiki.action/mediawiki.action.edit.stash.js',
+		],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'mediawiki.api',
 		],
 		'position' => 'top',
 	],
@@ -1452,13 +1456,6 @@ return [
 			'subject-preview',
 			'parentheses',
 			'previewerrortext',
-		],
-	],
-	'mediawiki.action.edit.stash' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.stash.js',
-		'dependencies' => [
-			'jquery.getAttrs',
-			'mediawiki.api',
 		],
 	],
 	'mediawiki.action.history' => [
