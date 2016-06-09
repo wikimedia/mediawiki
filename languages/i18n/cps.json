@@ -4,7 +4,8 @@
 			"Capisano",
 			"Oxyzen",
 			"Reedy",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Kuritan sa idalum ang mga link",
@@ -297,7 +298,7 @@
 	"cascadeprotected": "Ginprotektahan ang mini nga pahina sa pagpangilis, tungod naupod ini sa mga gasunod nga {{PLURAL:$1|pahina, nga|mga pahina, nga}} protektado upod ang \"cascading\" nga pilili-an nga naga-andar:\n$2",
 	"namespaceprotected": "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
 	"ns-specialprotected": "Indi pwede bag-uhon ang mga pinasahi nga pahina.",
-	"titleprotected": "Naprotektahan ang mini nga titulo halin sa pag-ubra ni [[User:$1|$1]].\nMini ang ginhatag nga kabangdanan \"''$2''\".",
+	"titleprotected": "Naprotektahan ang mini nga titulo halin sa pag-ubra ni [[User:$1|$1]].\nMini ang ginhatag nga kabangdanan <em>$2</em>.",
 	"virus-badscanner": "Sala nga konpigurasyon: wala nakilal-an nga manugsala sang virus: ''$1''",
 	"virus-scanfailed": "palpak ang pagscan (code $1)",
 	"virus-unknownscanner": "wala makilal-an nga pangontra-bayrus:",
@@ -605,7 +606,6 @@
 	"block-log-flags-nocreate": "pag-ubra sang account ginbawalan",
 	"movepagetext": "Gamit ang pormas sa idalum magala-in ang ngalan sang pahina, masaylo ang tanan nga kasaysayan niya sa bag-o niya nga pangalan.\nAng daan nga titulo mangin isa ka pahina sang pagdirekta sa bag-o nga titulo.\nPwede mo ma-update ang mga pagdirekta nga gakadto sa orihinal nga titulo sang diretso.\nKung indi mo gusto, siguraduhon nga may [[Special:DoubleRedirects|doble]] ukon [[Special:BrokenRedirects|bali nga pangdirekta]].\nIkaw ang responsable sa pagsiguro nga ang mga links nagapadayon sa pagtudlo kung sa diin sila dapat makadto.\n\nTandaan nga ang pahina '''indi''' masaylo kung may ara na sang pahina sa bag-o nga titulo, kung indi man wala mini sang unod ukon may pagdirekta kag wala mini sang nagligad nga kasayasayan sa pag-ilis.\nAnbot silingon sini nga pwede mo man ma-islan ngalan ang pahina pabalik sa kung diin mini gin-ngalanan kung nagsala ikaw, kag indi mo matapakan sulat ang mini nga na-una nga pahina.\n\n'''Paandam!'''\nMini mangin isa ka mala-in kag wala gina-ekspektaran nga pagbag-o para sa isa ka sikat nga pahina;\nsiguraduhon nga na-intyendihan mo ang paga-abtan sini antes magpadayun.",
 	"movepagetalktext": "Ang na-upod nga pahina sang istoryahanay diretso nga ma-upod sa iya '''apang:'''\n*Ang indi blangko ngapahina sang istoryahanay ara na nga bal-an sa idalum sa bag-o nga ngalan, ukon\n*Wala mo nachekan ang mga kahon sa idalum.\n\nSa mga mini nga kaso, kinahanglan mo hulagon ang pahina nga ikaw mismo, kung gusto mo.",
-	"movearticle": "Sayluhon mining pahina:",
 	"newtitle": "Pakadto sa bag-o nga titulo:",
 	"move-watch": "Bantayan ang mini nga pahina",
 	"movepagebtn": "Sayluhon mini nga pahina",

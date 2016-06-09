@@ -597,6 +597,7 @@
 	"passwordreset-emailsentusername": "Ha ehhez a felhasználónévhez tartozik e-mail cím, akkor egy jelszó-visszaállító levelet küld a rendszer.",
 	"passwordreset-emailsent-capture": "Az alább látható jelszó-visszaállító e-mail lett elküldve.",
 	"passwordreset-emailerror-capture": "A jelszó-visszaállító e-mail generálása megtörtént, mint az alább látszik, de elküldése a {{GENDER:$2|szerkesztőnek}} nem sikerült: $1",
+	"passwordreset-invalideamil": "Érvénytelen e-mail cím",
 	"changeemail": "E-mail cím megváltoztatása vagy eltávolítása",
 	"changeemail-header": "Töltsd ki ezt az űrlapot az e-mail-címed megváltoztatásához. Ha nem szeretnél semmilyen e-mail-címet kapcsolni a fiókodhoz, hagyd üresen az új e-mail-cím mezőjét az űrlap elküldésekor.",
 	"changeemail-passwordrequired": "Meg kell adnod a jelszavadat ennek a változtatásnak a végrehajtásához.",

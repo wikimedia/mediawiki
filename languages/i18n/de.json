@@ -1523,6 +1523,7 @@
 	"upload-http-error": "Ein HTTP-Fehler ist aufgetreten: $1",
 	"upload-copy-upload-invalid-domain": "Als Kopie hochladbare Dateien sind über diese Domain nicht verfügbar.",
 	"upload-foreign-cant-upload": "Dieses Wiki ist nicht konfiguriert, um Dateien auf das gewünschte fremde Dateirepositorium hochzuladen.",
+	"upload-foreign-cant-load-config": "Das Laden der Dateiuploadkonfiguration für das fremde Dateirepositorium ist fehlgeschlagen.",
 	"upload-dialog-title": "Datei hochladen",
 	"upload-dialog-button-cancel": "Abbrechen",
 	"upload-dialog-button-done": "Schließen",
@@ -3837,5 +3838,6 @@
 	"linkaccounts-success-text": "Das Benutzerkonto wurde verknüpft.",
 	"linkaccounts-submit": "Benutzerkonten verknüpfen",
 	"unlinkaccounts": "Benutzerkonten trennen",
-	"unlinkaccounts-success": "Das Benutzerkonto wurde getrennt."
+	"unlinkaccounts-success": "Das Benutzerkonto wurde getrennt.",
+	"authenticationdatachange-ignored": "Die Änderung der Authentifizierungsdaten wurde nicht bearbeitet. Vielleicht wurde kein Anbieter konfiguriert?"
 }

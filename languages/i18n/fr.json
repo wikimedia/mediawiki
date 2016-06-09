@@ -498,7 +498,7 @@
 	"viewyourtext": "Vous pouvez voir et copier le contenu de <strong>vos modifications</strong> à cette page.",
 	"protectedinterface": "Cette page fournit du texte d’interface pour le logiciel sur ce wiki et est protégée pour éviter les abus.\nPour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [https://translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.",
 	"editinginterface": "<strong>Attention :</strong> vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel.\nLes changements sur cette page se répercuteront sur l’apparence de l’interface utilisateur pour les autres utilisateurs de ce wiki.",
-	"translateinterface": "Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [https://translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.",
+	"translateinterface": "Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [https://translatewiki.net/ translatewiki.net], le projet de régionalisation de MediaWiki.",
 	"cascadeprotected": "Cette page est protégée contre les modifications car elle est transcluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :\n$2",
 	"namespaceprotected": "Vous n’avez pas la permission de modifier les pages de l’espace de noms « <strong>$1</strong> ».",
 	"customcssprotected": "Vous n’avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d’un autre utilisateur.",
@@ -1578,6 +1578,7 @@
 	"upload-http-error": "Une erreur HTTP est survenue : $1",
 	"upload-copy-upload-invalid-domain": "La copie des téléversements n’est pas disponible depuis ce domaine.",
 	"upload-foreign-cant-upload": "Ce wiki n’est pas configuré pour télécharger des fichiers vers le dépôt de fichiers externe demandé.",
+	"upload-foreign-cant-load-config": "Le chargement de la configuration de téléversement de fichier pour le référentiel de fichiers étranger a échoué.",
 	"upload-dialog-title": "Téléverser un fichier",
 	"upload-dialog-button-cancel": "Annuler",
 	"upload-dialog-button-done": "Terminé",
@@ -2518,7 +2519,7 @@
 	"allmessagesname": "Nom du message",
 	"allmessagesdefault": "Message par défaut",
 	"allmessagescurrent": "Message actuel",
-	"allmessagestext": "Ceci est la liste des messages disponibles dans l’espace MediaWiki.\nVeuillez visiter la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Localisation de MediaWiki] et [https://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
+	"allmessagestext": "Ceci est la liste des messages disponibles dans l’espace MediaWiki.\nVeuillez visiter la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Régionalisation de MediaWiki] et [https://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la régionalisation générique de MediaWiki.",
 	"allmessagesnotsupportedDB": "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''$wgUseDatabaseMessages''' a été désactivé.",
 	"allmessages-filter-legend": "Filtrer",
 	"allmessages-filter": "Filtrer par état de modification :",
@@ -3958,5 +3959,6 @@
 	"linkaccounts-success-text": "Le compte a été lié.",
 	"linkaccounts-submit": "Lier les comptes",
 	"unlinkaccounts": "Dissocier les comptes",
-	"unlinkaccounts-success": "Le compte a été dissocié."
+	"unlinkaccounts-success": "Le compte a été dissocié.",
+	"authenticationdatachange-ignored": "Les modifications de données d’authentification n’ont pas été gérées. Peut-être aucun fournisseur n’a-t-il été configuré ?"
 }

@@ -525,6 +525,8 @@
 	"resetpass-recycled": "Parolaya şımaya newiye wa paroloya şımaya verêne ra ferqıne bo.",
 	"resetpass-temp-password": "parolayo muweqet:",
 	"resetpass-abort-generic": "Vurnayışê parola terefê yew niçıki ra texeliya.",
+	"resetpass-expired-soft": "Wahdey patolanda şıma qedya yo u vurnayış icab keno. Xorê yu parola weçinê yana bahdo weçinayışi rê butona \"{{int:authprovider-resetpass-skip-label}}\" 'i bıploğnê",
+	"resetpass-validity-soft": "Parolay şıma ravêrdi niya: $1\n\nXorê yu parola nışan bıkerê  uana bahdo sıfır kerdışi rê grey \"{{int:authprovider-resetpass-skip-label}}\" bıploğnê.",
 	"passwordreset": "Parola reset ke",
 	"passwordreset-text-one": "Na form de parola reset kerdış temamiye",
 	"passwordreset-text-many": "{{PLURAL:$1|Qande parola yana e-posta reset kerdışi cayanra taynın pırkeri.}}",

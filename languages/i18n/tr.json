@@ -620,7 +620,7 @@
 	"resetpass-abort-generic": "Parola değişikliği bir uzantı tarafından iptal edildi.",
 	"resetpass-expired": "Parolanızın süresi bitti. Lütfen, giriş için yeni bir parola oluşturun.",
 	"resetpass-expired-soft": "Parolanızın süresi bitti ve değiştirilmesi gerekiyor. Lütfen, yeni bir parola seçin veya daha sonra oluşturmak için \"{{int:authprovider-resetpass-skip-label}}\" butonuna tıklayın.",
-	"resetpass-validity-soft": "Parolanız geçerli değiş: $1\n\nLütfen yeni bir şifre belirleyin veya daha sonra sıfırlamak için \"{{int:authprovider-resetpass-skip-label}}\" bağlantısını tıklayın.",
+	"resetpass-validity-soft": "Parolanız geçerli değil: $1\n\nLütfen yeni bir şifre belirleyin ya da daha sonra sıfırlamak için \"{{int:authprovider-resetpass-skip-label}}\" bağlantısını tıklayın.",
 	"passwordreset": "Parola sıfırlama",
 	"passwordreset-text-one": "Parolanızı sıfırlamak için bu formu doldurun.",
 	"passwordreset-text-many": "{{PLURAL:$1|E-posta ile geçici bir parola almak için alanlardan birini doldurun.}}",

@@ -551,7 +551,6 @@
 	"blocklogentry": "[[$1]]-ta chay pachakaman wichkarka: $2 $3",
 	"unblocklogentry": "$1 rurakpa wichkayta kishpichirka",
 	"block-log-flags-nocreate": "Mushuk rurak shutipa kamayta wichkashkami",
-	"movearticle": "Kay pankama mushuk shutita karapana:",
 	"newtitle": "Kay mushuk shutiman",
 	"move-watch": "Kay ishkay pankakunata rikukuna",
 	"movepagebtn": "Kay pankaman mushuk shutita karapana:",

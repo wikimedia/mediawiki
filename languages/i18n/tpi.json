@@ -7,14 +7,15 @@
 			"Wantok",
 			"Wytukaze",
 			"לערי ריינהארט",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Putim lain ananit long ol link:",
 	"tog-hideminor": "Noken soim ol liklik senis insait long ol nupela senis",
 	"tog-hidepatrolled": "Noken soim ol lukluk senis insait long ol nupela senis",
 	"tog-newpageshidepatrolled": "Noken soim ol lukluk senis insait long ol nupela pes",
-	"tog-extendwatchlist": " Larim lukautbuk i go longpela long soim olgeta senis, long halivim tasol bihain tru",
+	"tog-extendwatchlist": "Larim lukautbuk i go longpela long soim olgeta senis, long halivim tasol bihain tru",
 	"tog-usenewrc": "Moa beta stail bilong nupela senis na lukautbuk (i nidim JavaScript)",
 	"tog-numberheadings": "Putim ol namba i go long wanwan hap bilong pes",
 	"tog-showtoolbar": "Soim ol liklik link long wokim senis kwiktaim (i nidim JavaScript)",
@@ -443,7 +444,6 @@
 	"listgrouprights-group": "Grup",
 	"listgrouprights-members": "(lista bilong ol memba)",
 	"emailuser": "E-mel dispela yusa",
-	"emailpage": "E-mel yusa",
 	"defemailsubject": "{{SITENAME}} e-mel",
 	"noemailtitle": "Nogat e-mel",
 	"emailfrom": "I kam long:",
@@ -525,7 +525,6 @@
 	"blocklogpage": "Ripot long pasim ol yusa",
 	"move-page": "Surikim $1",
 	"move-page-legend": "Surikim pes",
-	"movearticle": "Surikim pes:",
 	"newtitle": "Nupela nem bilong pes:",
 	"movepagebtn": "Surikim",
 	"pagemovedsub": "Pes i surik pinis",

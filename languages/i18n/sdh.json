@@ -557,7 +557,6 @@
 	"metadata-help": "ئەی پەڕگە زانیاری فرەێگ لەتێیە، ک گەھا دۊردۊن (camera) یا ئسکەنێر (scanner) خستۊە سەری. ئەگەر پەڕگەگە لە حاڵەتە سەرەتاییەگەیەو دەسکاری کریاۊد، گاھەس بڕێگ لە وردەکاریەیل، زانیارەگان وێنە گووڕیاێەگە وە تەواوی نیشان نەدەن.",
 	"metadata-fields": "کاڵگەگان (fields) میتادەیتاێ وێنە ک لە ئەی پەیامە وەڕزارەو کریانە، کاتێگ جەدوەل میتادەیتا کووکریاێ بوود لە پەڕەی وێنە نیشان دەریەن.\nکاڵگەگان تر لە حاڵەتی بنەڕەتی شاریاێن.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagedescription": "ناونیشان وێنە",
-	"exif-pixelydimension": "بەرزی وێنە",
 	"exif-flash": "فلەش",
 	"exif-keywords": "کلیل‌وشەیل",
 	"exif-writer": "نۊسەر",
