@@ -43,11 +43,6 @@ class FileBasedSiteLookup implements SiteLookup {
 	private $cacheFile;
 
 	/**
-	 * @var string[]
-	 */
-	private $languageCodeMapping = [];
-
-	/**
 	 * @param string $cacheFile
 	 */
 	public function __construct( $cacheFile ) {
@@ -123,18 +118,13 @@ class FileBasedSiteLookup implements SiteLookup {
 	 * @return Site
 	 */
 	private function newSiteFromArray( array $data ) {
-		$languageCode = $data['language'];
-		if ( isset( $this->languageCodeMapping[ $languageCode ] ) ) {
-			$languageCode = $this->languageCodeMapping[ $languageCode ];
-		}
-
 		$siteType = array_key_exists( 'type', $data ) ? $data['type'] : Site::TYPE_UNKNOWN;
 		$site = Site::newForType( $siteType );
 
 		$site->setGlobalId( $data['globalid'] );
 		$site->setForward( $data['forward'] );
 		$site->setGroup( $data['group'] );
-		$site->setLanguageCode( $languageCode );
+		$site->setLanguageCode( $data['language'] );
 		$site->setSource( $data['source'] );
 		$site->setExtraData( $data['data'] );
 		$site->setExtraConfig( $data['config'] );
@@ -144,15 +134,6 @@ class FileBasedSiteLookup implements SiteLookup {
 		}
 
 		return $site;
-	}
-
-	/**
-	 * Provide an array that maps language codes
-	 *
-	 * @param string[] $newMapping
-	 */
-	public function setLanguageCodeMapping( array $newMapping ) {
-		$this->languageCodeMapping = $newMapping;
 	}
 
 }
