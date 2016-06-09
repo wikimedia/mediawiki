@@ -3642,6 +3642,15 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
 $wgIncludeLegacyJavaScript = false;
 
 /**
+ * Whether to include the jQuery Migrate library, which lets legacy JS that
+ * requires jQuery 1.11.x to work and breaks with 3.x+.
+ *
+ * @since 1.28
+ * @deprecated since 1.28, to be removed in 1.29
+ */
+$wgIncludejQueryMigrate = false;
+
+/**
  * Whether or not to assign configuration variables to the global window object.
  *
  * If this is set to false, old code using deprecated variables will no longer
