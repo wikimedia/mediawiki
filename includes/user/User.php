@@ -477,7 +477,7 @@ class User implements IDBAccessObject {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 				wfDebug( "User: cache miss for user {$this->mId}\n" );
 
-				$this->loadFromDatabase();
+				$this->loadFromDatabase( self::READ_NORMAL );
 				$this->loadGroups();
 				$this->loadOptions();
 
