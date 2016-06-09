@@ -645,8 +645,10 @@ class SpecialBlock extends FormSpecialPage {
 				return [ 'ipb-blockingself', 'ipb-confirmaction' ];
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
+			$user = null;
 			$userId = 0;
 		} elseif ( $type == Block::TYPE_IP ) {
+			$user = null;
 			$target = $target->getName();
 			$userId = 0;
 		} else {
@@ -729,6 +731,7 @@ class SpecialBlock extends FormSpecialPage {
 			return $reason;
 		}
 
+		$currentBlock = null;
 		# Try to insert block. Is there a conflicting block?
 		$status = $block->insert();
 		if ( !$status ) {
@@ -786,7 +789,7 @@ class SpecialBlock extends FormSpecialPage {
 			$logaction = 'block';
 		}
 
-		Hooks::run( 'BlockIpComplete', [ $block, $performer ] );
+		Hooks::run( 'BlockIpComplete', [ $block, $performer, $currentBlock ] );
 
 		# Set *_deleted fields if requested
 		if ( $data['HideUser'] ) {
