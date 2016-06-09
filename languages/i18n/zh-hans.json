@@ -1522,6 +1522,7 @@
 	"upload-http-error": "发生HTTP错误：$1",
 	"upload-copy-upload-invalid-domain": "不能从该域名上载文件副本。",
 	"upload-foreign-cant-upload": "此wiki未配置为上传文件至请求的外部文件存储库。",
+	"upload-foreign-cant-load-config": "加载外部文件存储库的文件上传配置失败。",
 	"upload-dialog-title": "上传文件",
 	"upload-dialog-button-cancel": "取消",
 	"upload-dialog-button-done": "完成",
@@ -3831,5 +3832,6 @@
 	"linkaccounts-success-text": "账户已链接。",
 	"linkaccounts-submit": "链接帐户",
 	"unlinkaccounts": "取消链接账户",
-	"unlinkaccounts-success": "账户已取消链接。"
+	"unlinkaccounts-success": "账户已取消链接。",
+	"authenticationdatachange-ignored": "身份验证数据更改未处理。也许没有配置的提供者？"
 }
