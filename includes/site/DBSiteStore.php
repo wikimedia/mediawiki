@@ -41,11 +41,6 @@ class DBSiteStore implements SiteStore {
 	private $dbLoadBalancer;
 
 	/**
-	 * @var string[]
-	 */
-	private $languageCodeMapping = [];
-
-	/**
 	 * @since 1.27
 	 *
 	 * @todo: inject some kind of connection manager that is aware of the target wiki,
@@ -101,17 +96,15 @@ class DBSiteStore implements SiteStore {
 		);
 
 		foreach ( $res as $row ) {
-			$languageCode = $row->site_language === '' ? null : $row->site_language;
-			if ( isset( $this->languageCodeMapping[ $languageCode ] ) ) {
-				$languageCode = $this->languageCodeMapping[ $languageCode ];
-			}
-
 			$site = Site::newForType( $row->site_type );
 			$site->setGlobalId( $row->site_global_key );
 			$site->setInternalId( (int)$row->site_id );
 			$site->setForward( (bool)$row->site_forward );
 			$site->setGroup( $row->site_group );
-			$site->setLanguageCode( $languageCode );
+			$site->setLanguageCode( $row->site_language === ''
+				? null
+				: $row->site_language
+			);
 			$site->setSource( $row->site_source );
 			$site->setExtraData( unserialize( $row->site_data ) );
 			$site->setExtraConfig( unserialize( $row->site_config ) );
@@ -292,15 +285,6 @@ class DBSiteStore implements SiteStore {
 		$this->reset();
 
 		return $ok;
-	}
-
-	/**
-	 * Provide an array that maps language codes
-	 *
-	 * @param string[] $newMapping
-	 */
-	public function setLanguageCodeMapping( array $newMapping ) {
-		$this->languageCodeMapping = $newMapping;
 	}
 
 }
