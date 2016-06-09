@@ -1379,11 +1379,9 @@ return [
 	],
 	'mediawiki.checkboxtoggle' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.js',
-		'position' => 'top',
 	],
 	'mediawiki.checkboxtoggle.styles' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.css',
-		'position' => 'top',
 	],
 	'mediawiki.cookie' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
