@@ -1,8 +1,8 @@
 /*!
- * jQuery UI Position 1.9.2
+ * jQuery UI Position 1.10.4
  * http://jqueryui.com
  *
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -18,19 +18,50 @@ var cachedScrollbarWidth,
 	round = Math.round,
 	rhorizontal = /left|center|right/,
 	rvertical = /top|center|bottom/,
-	roffset = /[\+\-]\d+%?/,
+	roffset = /[\+\-]\d+(\.[\d]+)?%?/,
 	rposition = /^\w+/,
 	rpercent = /%$/,
 	_position = $.fn.position;
 
 function getOffsets( offsets, width, height ) {
 	return [
-		parseInt( offsets[ 0 ], 10 ) * ( rpercent.test( offsets[ 0 ] ) ? width / 100 : 1 ),
-		parseInt( offsets[ 1 ], 10 ) * ( rpercent.test( offsets[ 1 ] ) ? height / 100 : 1 )
+		parseFloat( offsets[ 0 ] ) * ( rpercent.test( offsets[ 0 ] ) ? width / 100 : 1 ),
+		parseFloat( offsets[ 1 ] ) * ( rpercent.test( offsets[ 1 ] ) ? height / 100 : 1 )
 	];
 }
+
 function parseCss( element, property ) {
 	return parseInt( $.css( element, property ), 10 ) || 0;
+}
+
+function getDimensions( elem ) {
+	var raw = elem[0];
+	if ( raw.nodeType === 9 ) {
+		return {
+			width: elem.width(),
+			height: elem.height(),
+			offset: { top: 0, left: 0 }
+		};
+	}
+	if ( $.isWindow( raw ) ) {
+		return {
+			width: elem.width(),
+			height: elem.height(),
+			offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
+		};
+	}
+	if ( raw.preventDefault ) {
+		return {
+			width: 0,
+			height: 0,
+			offset: { top: raw.pageY, left: raw.pageX }
+		};
+	}
+	return {
+		width: elem.outerWidth(),
+		height: elem.outerHeight(),
+		offset: elem.offset()
+	};
 }
 
 $.position = {
@@ -39,7 +70,7 @@ $.position = {
 			return cachedScrollbarWidth;
 		}
 		var w1, w2,
-			div = $( "<div style='display:block;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>" ),
+			div = $( "<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>" ),
 			innerDiv = div.children()[0];
 
 		$( "body" ).append( div );
@@ -57,23 +88,27 @@ $.position = {
 		return (cachedScrollbarWidth = w1 - w2);
 	},
 	getScrollInfo: function( within ) {
-		var overflowX = within.isWindow ? "" : within.element.css( "overflow-x" ),
-			overflowY = within.isWindow ? "" : within.element.css( "overflow-y" ),
+		var overflowX = within.isWindow || within.isDocument ? "" :
+				within.element.css( "overflow-x" ),
+			overflowY = within.isWindow || within.isDocument ? "" :
+				within.element.css( "overflow-y" ),
 			hasOverflowX = overflowX === "scroll" ||
 				( overflowX === "auto" && within.width < within.element[0].scrollWidth ),
 			hasOverflowY = overflowY === "scroll" ||
 				( overflowY === "auto" && within.height < within.element[0].scrollHeight );
 		return {
-			width: hasOverflowX ? $.position.scrollbarWidth() : 0,
-			height: hasOverflowY ? $.position.scrollbarWidth() : 0
+			width: hasOverflowY ? $.position.scrollbarWidth() : 0,
+			height: hasOverflowX ? $.position.scrollbarWidth() : 0
 		};
 	},
 	getWithinInfo: function( element ) {
 		var withinElement = $( element || window ),
-			isWindow = $.isWindow( withinElement[0] );
+			isWindow = $.isWindow( withinElement[0] ),
+			isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
 		return {
 			element: withinElement,
 			isWindow: isWindow,
+			isDocument: isDocument,
 			offset: withinElement.offset() || { left: 0, top: 0 },
 			scrollLeft: withinElement.scrollLeft(),
 			scrollTop: withinElement.scrollTop(),
@@ -91,32 +126,21 @@ $.fn.position = function( options ) {
 	// make a copy, we don't want to modify arguments
 	options = $.extend( {}, options );
 
-	var atOffset, targetWidth, targetHeight, targetOffset, basePosition,
+	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
 		target = $( options.of ),
 		within = $.position.getWithinInfo( options.within ),
 		scrollInfo = $.position.getScrollInfo( within ),
-		targetElem = target[0],
 		collision = ( options.collision || "flip" ).split( " " ),
 		offsets = {};
 
-	if ( targetElem.nodeType === 9 ) {
-		targetWidth = target.width();
-		targetHeight = target.height();
-		targetOffset = { top: 0, left: 0 };
-	} else if ( $.isWindow( targetElem ) ) {
-		targetWidth = target.width();
-		targetHeight = target.height();
-		targetOffset = { top: target.scrollTop(), left: target.scrollLeft() };
-	} else if ( targetElem.preventDefault ) {
+	dimensions = getDimensions( target );
+	if ( target[0].preventDefault ) {
 		// force left top to allow flipping
 		options.at = "left top";
-		targetWidth = targetHeight = 0;
-		targetOffset = { top: targetElem.pageY, left: targetElem.pageX };
-	} else {
-		targetWidth = target.outerWidth();
-		targetHeight = target.outerHeight();
-		targetOffset = target.offset();
 	}
+	targetWidth = dimensions.width;
+	targetHeight = dimensions.height;
+	targetOffset = dimensions.offset;
 	// clone to reuse original targetOffset later
 	basePosition = $.extend( {}, targetOffset );
 
@@ -229,10 +253,6 @@ $.fn.position = function( options ) {
 				});
 			}
 		});
-
-		if ( $.fn.bgiframe ) {
-			elem.bgiframe();
-		}
 
 		if ( options.using ) {
 			// adds feedback as second argument to using callback, if present
@@ -420,7 +440,7 @@ $.ui.position = {
 				}
 			}
 			else if ( overBottom > 0 ) {
-				newOverTop = position.top -  data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
+				newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
 				if ( ( position.top + myOffset + atOffset + offset) > overBottom && ( newOverTop > 0 || abs( newOverTop ) < overBottom ) ) {
 					position.top += myOffset + atOffset + offset;
 				}
@@ -477,41 +497,5 @@ $.ui.position = {
 	testElement.innerHTML = "";
 	testElementParent.removeChild( testElement );
 })();
-
-// DEPRECATED
-if ( $.uiBackCompat !== false ) {
-	// offset option
-	(function( $ ) {
-		var _position = $.fn.position;
-		$.fn.position = function( options ) {
-			if ( !options || !options.offset ) {
-				return _position.call( this, options );
-			}
-			var offset = options.offset.split( " " ),
-				at = options.at.split( " " );
-			if ( offset.length === 1 ) {
-				offset[ 1 ] = offset[ 0 ];
-			}
-			if ( /^\d/.test( offset[ 0 ] ) ) {
-				offset[ 0 ] = "+" + offset[ 0 ];
-			}
-			if ( /^\d/.test( offset[ 1 ] ) ) {
-				offset[ 1 ] = "+" + offset[ 1 ];
-			}
-			if ( at.length === 1 ) {
-				if ( /left|center|right/.test( at[ 0 ] ) ) {
-					at[ 1 ] = "center";
-				} else {
-					at[ 1 ] = at[ 0 ];
-					at[ 0 ] = "center";
-				}
-			}
-			return _position.call( this, $.extend( options, {
-				at: at[ 0 ] + offset[ 0 ] + " " + at[ 1 ] + offset[ 1 ],
-				offset: undefined
-			} ) );
-		};
-	}( jQuery ) );
-}
 
 }( jQuery ) );

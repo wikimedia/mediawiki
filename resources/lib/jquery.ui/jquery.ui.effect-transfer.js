@@ -1,8 +1,8 @@
 /*!
- * jQuery UI Effects Transfer 1.9.2
+ * jQuery UI Effects Transfer 1.10.4
  * http://jqueryui.com
  *
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -28,7 +28,7 @@ $.effects.effect.transfer = function( o, done ) {
 			width: target.innerWidth()
 		},
 		startPosition = elem.offset(),
-		transfer = $( '<div class="ui-effects-transfer"></div>' )
+		transfer = $( "<div class='ui-effects-transfer'></div>" )
 			.appendTo( document.body )
 			.addClass( o.className )
 			.css({

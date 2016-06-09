@@ -1,8 +1,8 @@
 /*!
- * jQuery UI Menu 1.9.2
+ * jQuery UI Menu 1.10.4
  * http://jqueryui.com
  *
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15,10 +15,8 @@
  */
 (function( $, undefined ) {
 
-var mouseHandled = false;
-
 $.widget( "ui.menu", {
-	version: "1.9.2",
+	version: "1.10.4",
 	defaultElement: "<ul>",
 	delay: 300,
 	options: {
@@ -40,6 +38,9 @@ $.widget( "ui.menu", {
 
 	_create: function() {
 		this.activeMenu = this.element;
+		// flag used to prevent firing of the click handler
+		// as the event bubbles up through nested menus
+		this.mouseHandled = false;
 		this.element
 			.uniqueId()
 			.addClass( "ui-menu ui-widget ui-widget-content ui-corner-all" )
@@ -73,14 +74,19 @@ $.widget( "ui.menu", {
 			},
 			"click .ui-menu-item:has(a)": function( event ) {
 				var target = $( event.target ).closest( ".ui-menu-item" );
-				if ( !mouseHandled && target.not( ".ui-state-disabled" ).length ) {
-					mouseHandled = true;
-
+				if ( !this.mouseHandled && target.not( ".ui-state-disabled" ).length ) {
 					this.select( event );
+
+					// Only set the mouseHandled flag if the event will bubble, see #9469.
+					if ( !event.isPropagationStopped() ) {
+						this.mouseHandled = true;
+					}
+
 					// Open submenu on click
 					if ( target.has( ".ui-menu" ).length ) {
 						this.expand( event );
-					} else if ( !this.element.is( ":focus" ) ) {
+					} else if ( !this.element.is( ":focus" ) && $( this.document[ 0 ].activeElement ).closest( ".ui-menu" ).length ) {
+
 						// Redirect focus to the menu
 						this.element.trigger( "focus", [ true ] );
 
@@ -130,7 +136,7 @@ $.widget( "ui.menu", {
 				}
 
 				// Reset the mouseHandled flag
-				mouseHandled = false;
+				this.mouseHandled = false;
 			}
 		});
 	},
@@ -139,7 +145,7 @@ $.widget( "ui.menu", {
 		// Destroy (sub)menus
 		this.element
 			.removeAttr( "aria-activedescendant" )
-			.find( ".ui-menu" ).andSelf()
+			.find( ".ui-menu" ).addBack()
 				.removeClass( "ui-menu ui-widget ui-widget-content ui-corner-all ui-menu-icons" )
 				.removeAttr( "role" )
 				.removeAttr( "tabIndex" )
@@ -281,6 +287,8 @@ $.widget( "ui.menu", {
 			icon = this.options.icons.submenu,
 			submenus = this.element.find( this.options.menus );
 
+		this.element.toggleClass( "ui-menu-icons", !!this.element.find( ".ui-icon" ).length );
+
 		// Initialize nested menus
 		submenus.filter( ":not(.ui-menu)" )
 			.addClass( "ui-menu ui-widget ui-widget-content ui-corner-all" )
@@ -321,7 +329,7 @@ $.widget( "ui.menu", {
 		menus.children( ":not(.ui-menu-item)" ).each(function() {
 			var item = $( this );
 			// hyphen, em dash, en dash
-			if ( !/[^\-—–\s]/.test( item.text() ) ) {
+			if ( !/[^\-\u2014\u2013\s]/.test( item.text() ) ) {
 				item.addClass( "ui-widget-content ui-menu-divider" );
 			}
 		});
@@ -340,6 +348,15 @@ $.widget( "ui.menu", {
 			menu: "menuitem",
 			listbox: "option"
 		}[ this.options.role ];
+	},
+
+	_setOption: function( key, value ) {
+		if ( key === "icons" ) {
+			this.element.find( ".ui-menu-icon" )
+				.removeClass( this.options.icons.submenu )
+				.addClass( value.submenu );
+		}
+		this._super( key, value );
 	},
 
 	focus: function( event, item ) {
@@ -372,7 +389,7 @@ $.widget( "ui.menu", {
 		}
 
 		nested = item.children( ".ui-menu" );
-		if ( nested.length && ( /^mouse/.test( event.type ) ) ) {
+		if ( nested.length && event && ( /^mouse/.test( event.type ) ) ) {
 			this._startOpening(nested);
 		}
 		this.activeMenu = item.parent();

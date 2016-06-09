@@ -1,8 +1,8 @@
 /*!
- * jQuery UI Spinner 1.9.2
+ * jQuery UI Spinner 1.10.4
  * http://jqueryui.com
  *
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -27,7 +27,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "1.9.2",
+	version: "1.10.4",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -55,8 +55,12 @@ $.widget( "ui.spinner", {
 		this._setOption( "min", this.options.min );
 		this._setOption( "step", this.options.step );
 
-		// format the value, but don't constrain
-		this._value( this.element.val(), true );
+		// Only format if there is a value, prevents the field from being marked
+		// as invalid in Firefox, see #9573.
+		if ( this.value() !== "" ) {
+			// Format the value, but don't constrain.
+			this._value( this.element.val(), true );
+		}
 
 		this._draw();
 		this._on( this._events );
@@ -102,6 +106,7 @@ $.widget( "ui.spinner", {
 				return;
 			}
 
+			this._stop();
 			this._refresh();
 			if ( this.previous !== this.element.val() ) {
 				this._trigger( "change", event );
@@ -368,6 +373,14 @@ $.widget( "ui.spinner", {
 				value = this._parse( value );
 			}
 		}
+		if ( key === "icons" ) {
+			this.buttons.first().find( ".ui-icon" )
+				.removeClass( this.options.icons.up )
+				.addClass( value.up );
+			this.buttons.last().find( ".ui-icon" )
+				.removeClass( this.options.icons.down )
+				.addClass( value.down );
+		}
 
 		this._super( key, value );
 
@@ -445,14 +458,20 @@ $.widget( "ui.spinner", {
 		this._stepUp( steps );
 	}),
 	_stepUp: function( steps ) {
-		this._spin( (steps || 1) * this.options.step );
+		if ( this._start() ) {
+			this._spin( (steps || 1) * this.options.step );
+			this._stop();
+		}
 	},
 
 	stepDown: modifier(function( steps ) {
 		this._stepDown( steps );
 	}),
 	_stepDown: function( steps ) {
-		this._spin( (steps || 1) * -this.options.step );
+		if ( this._start() ) {
+			this._spin( (steps || 1) * -this.options.step );
+			this._stop();
+		}
 	},
 
 	pageUp: modifier(function( pages ) {
