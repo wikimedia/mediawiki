@@ -1092,6 +1092,7 @@ $wgAutoloadLocalClasses = [
 	'RCDatabaseLogEntry' => __DIR__ . '/includes/logging/LogEntry.php',
 	'RCFeedEngine' => __DIR__ . '/includes/rcfeed/RCFeedEngine.php',
 	'RCFeedFormatter' => __DIR__ . '/includes/rcfeed/RCFeedFormatter.php',
+	'RESTBagOStuff' => __DIR__ . '/includes/libs/objectcache/RESTBagOStuff.php',
 	'RSSFeed' => __DIR__ . '/includes/Feed.php',
 	'RandomPage' => __DIR__ . '/includes/specials/SpecialRandompage.php',
 	'RangeDifference' => __DIR__ . '/includes/diff/DiffEngine.php',
