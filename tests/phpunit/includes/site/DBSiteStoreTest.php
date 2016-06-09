@@ -68,20 +68,6 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DBSiteStore::getSites
-	 * @covers DBSiteStore::setLanguageCodeMapping
-	 */
-	public function testLanguageCodeMapping() {
-		TestSites::insertIntoDb();
-
-		$store = $this->newDBSiteStore();
-		$store->setLanguageCodeMapping( [ 'no' => 'nb' ] );
-
-		$site = $store->getSite( 'nowiki' );
-		$this->assertEquals( $site->getLanguageCode(), 'nb' );
-	}
-
-	/**
 	 * @covers DBSiteStore::saveSites
 	 */
 	public function testSaveSites() {
