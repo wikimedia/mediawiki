@@ -20,6 +20,7 @@ production.
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
+* Update jQuery to 3.0.
 
 === External library changes in 1.28 ===
 
