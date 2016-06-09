@@ -139,9 +139,15 @@ return [
 	/* jQuery */
 
 	'jquery' => [
-		'scripts' => [
-			'resources/lib/jquery/jquery.js',
-		],
+		'scripts' => ( $GLOBALS['wgIncludejQueryMigrate'] ?
+			[
+				'resources/lib/jquery/jquery.js',
+				'resources/lib/jquery/jquery.migrate.js'
+			] :
+			[
+				'resources/lib/jquery/jquery.js'
+			]
+		),
 		'raw' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
