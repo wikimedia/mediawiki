@@ -175,7 +175,12 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$this->assertCount( 1, $res->neededRequests );
 		$req = $res->neededRequests[0];
 		$this->assertInstanceOf( ConfirmLinkAuthenticationRequest::class, $req );
-		$this->assertEquals( $reqs, \TestingAccessWrapper::newFromObject( $req )->linkRequests );
+		$expectReqs = $this->getLinkRequests();
+		foreach ( $expectReqs as $r ) {
+			$r->action = AuthManager::ACTION_CHANGE;
+			$r->username = $user->getName();
+		}
+		$this->assertEquals( $expectReqs, \TestingAccessWrapper::newFromObject( $req )->linkRequests );
 	}
 
 	public function testContinueLinkAttempt() {
