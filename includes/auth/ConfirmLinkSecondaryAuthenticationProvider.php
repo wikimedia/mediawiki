@@ -51,7 +51,11 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$maybeLink = array_filter( $state['maybeLink'], function ( $req ) {
+		$maybeLink = array_filter( $state['maybeLink'], function ( $req ) use ( $user ) {
+			if ( !$req->action ) {
+				$req->action = AuthManager::ACTION_CHANGE;
+			}
+			$req->username = $user->getName();
 			return $this->manager->allowsAuthenticationDataChange( $req )->isGood();
 		} );
 		if ( !$maybeLink ) {
