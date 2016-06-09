@@ -17,8 +17,5 @@ foreach ( glob( $base . '/*.php' ) as $file ) {
 	$generator->readFile( $file );
 }
 
-// This class is not defined, but might be added by the installer
-$generator->forceClassPath( 'MyLocalSettingsGenerator', "$base/mw-config/overrides.php" );
-
 // Write out the autoload
 $generator->generateAutoload( 'maintenance/generateLocalAutoload.php' );
