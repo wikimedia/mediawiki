@@ -2,6 +2,10 @@
  * Scripts for pre-emptive edit preparing on action=edit
  */
 ( function ( mw, $ ) {
+	if ( !mw.config.get( 'wgAjaxEditStash' ) ) {
+		return;
+	}
+
 	$( function () {
 		var idleTimeout = 3000,
 			api = new mw.Api(),
