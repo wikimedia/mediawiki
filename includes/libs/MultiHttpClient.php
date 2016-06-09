@@ -104,7 +104,7 @@ class MultiHttpClient {
 	 *   - reqTimeout     : post-connection timeout per request (seconds)
 	 * @return array Response array for request
 	 */
-	final public function run( array $req, array $opts = [] ) {
+	public function run( array $req, array $opts = [] ) {
 		return $this->runMulti( [ $req ], $opts )[0]['response'];
 	}
 
