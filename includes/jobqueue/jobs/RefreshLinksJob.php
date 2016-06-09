@@ -40,13 +40,13 @@ class RefreshLinksJob extends Job {
 	const PARSE_THRESHOLD_SEC = 1.0;
 	/** @var integer Lag safety margin when comparing root job times to last-refresh times */
 	const CLOCK_FUDGE = 10;
+	/** @var integer How many seconds to wait for slaves to catch up */
+	const LAG_WAIT_TIMEOUT = 15;
 
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// Avoid the overhead of de-duplication when it would be pointless
 		$this->removeDuplicates = (
-			// Master positions won't match
-			!isset( $params['masterPos'] ) &&
 			// Ranges rarely will line up
 			!isset( $params['range'] ) &&
 			// Multiple pages per job make matches unlikely
@@ -83,20 +83,22 @@ class RefreshLinksJob extends Job {
 
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
+			// When the base job branches, wait for the slaves to catch up to the master.
+			// From then on, we know that any template changes at the time the base job was
+			// enqueued will be reflected in backlink page parses when the leaf jobs run.
+			if ( !isset( $params['range'] ) ) {
+				try {
+					wfGetLBFactory()->waitForReplication( [
+						'wiki'    => wfWikiID(),
+						'timeout' => self::LAG_WAIT_TIMEOUT
+					] );
+				} catch ( DBReplicationWaitError $e ) { // only try so hard
+					$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+					$stats->increment( 'refreshlinks.lag_wait_failed' );
+				}
+			}
 			// Carry over information for de-duplication
 			$extraParams = $this->getRootJobParams();
-			// Avoid slave lag when fetching templates.
-			// When the outermost job is run, we know that the caller that enqueued it must have
-			// committed the relevant changes to the DB by now. At that point, record the master
-			// position and pass it along as the job recursively breaks into smaller range jobs.
-			// Hopefully, when leaf jobs are popped, the slaves will have reached that position.
-			if ( isset( $this->params['masterPos'] ) ) {
-				$extraParams['masterPos'] = $this->params['masterPos'];
-			} elseif ( wfGetLB()->getServerCount() > 1 ) {
-				$extraParams['masterPos'] = wfGetLB()->getMasterPos();
-			} else {
-				$extraParams['masterPos'] = false;
-			}
 			$extraParams['triggeredRecursive'] = true;
 			// Convert this into no more than $wgUpdateRowsPerJob RefreshLinks per-title
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
@@ -109,27 +111,16 @@ class RefreshLinksJob extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
-			$this->waitForMasterPosition();
 			foreach ( $this->params['pages'] as $pageId => $nsAndKey ) {
 				list( $ns, $dbKey ) = $nsAndKey;
 				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
 			}
 		// Job to update link tables for a given title
 		} else {
-			$this->waitForMasterPosition();
 			$this->runForTitle( $this->title );
 		}
 
 		return true;
-	}
-
-	protected function waitForMasterPosition() {
-		if ( !empty( $this->params['masterPos'] ) && wfGetLB()->getServerCount() > 1 ) {
-			// Wait for the current/next slave DB handle to catch up to the master.
-			// This way, we get the correct page_latest for templates or files that just
-			// changed milliseconds ago, having triggered this job to begin with.
-			wfGetLB()->waitFor( $this->params['masterPos'] );
-		}
 	}
 
 	/**
