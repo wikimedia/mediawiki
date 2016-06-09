@@ -492,7 +492,6 @@
 	"block-log-flags-nocreate": "hesabi okʼidu geinkʼilu",
 	"movepagetext": "Tude na ren formi oxmarute butʼkʼaşi coxo iktirinen. Edo xolo mteli golaxteri kʼayitʼepeti ağani coxos itiren.\nMcveşi coxo, ağani coxoşa redirektʼi xali aqʼven.\nOtomatikurot mcveşi stʼatʼiaşa na ixvenen redirektʼepe gaktirinen.\nAm dulya otomatikurot oxvenu va ginonna [[Special:DoubleRedirects|tʼkʼubi]] varna [[Special:BrokenRedirects|tʼaxeri]] na renan redirektʼepe ti-skani kʼala oktiruşi re. Na qʼvare am oktirobate mteli kʼontʼaktʼepe dido kʼai oçalişu ren, amuşen si sorumli re.\n\nEger ağani coxos ar butʼkʼa zate korenna coxoşi oktiroba '''var ixvenasen'''. Amuş metʼi, coxoşi oktirobaşen pişmani qʼvi na, am oktiroba ipʼtʼali gaxvenen, aşoten başka butʼkʼapeşati zarari meçameri va gaqʼven.\n\n'''KʼUN3Xİ!'''\nAm ktira, populeri na ren a butʼkʼa şeni pʼatʼi mutxanepe axvenen; mu iqʼven ipti, aya giçkitʼas do ukʼule mutxanepe doktiri.",
 	"movepagetalktext": "Okʼokʼatineri na ren oğarğaluşi butʼkʼati (eger korenna) otʼomatikurot ağani coxos itirinasen. Mara am situa3yonepes '''var itirinen''':\n\n*Ağani coxos ar oğarğaluşi butʼkʼa zaten korenna,\n*Tude na ren çʼitʼa boksi va ixmarit na.\n\nAm situa3yonepes, butʼkʼa skanişkʼelen otiruşi ren.",
-	"movearticle": "Mcveşi coxo:",
 	"newtitle": "Ağani coxo:",
 	"move-watch": "Am butʼkʼa gatxozi",
 	"movepagebtn": "Coxo-muşi doktiri",
@@ -577,5 +576,8 @@
 	"watchlisttools-edit": "Gotxozu listʼe koz*iri do doktiri",
 	"watchlisttools-raw": "Kʼobo gotxozu listʼe doktiri",
 	"specialpages": "Doxmeli butʼkʼape",
-	"rightsnone": "(Va ren)"
+	"rightsnone": "(Va ren)",
+	"special-characters-group-latin": "Lat'ini",
+	"special-characters-group-greek": "Xorumi",
+	"special-characters-group-arabic": "Arabuli"
 }

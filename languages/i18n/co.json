@@ -5,7 +5,8 @@
 			"Ale Mister (on co.wikipedia.org)",
 			"Img (on co.wikipedia.org)",
 			"Paulu",
-			"아라"
+			"아라",
+			"Jun Misugi"
 		]
 	},
 	"tog-hideminor": "Piattà e mudifiche minore in l'ultime mudifiche",
@@ -184,6 +185,7 @@
 	"nstab-template": "Mudellu",
 	"nstab-help": "Pagina d'aiutu",
 	"nstab-category": "Categuria",
+	"mainpage-nstab": "Pàgina maestra",
 	"error": "Errore",
 	"missingarticle-rev": "(numeru di a versione: $1)",
 	"internalerror": "Errore internu",
@@ -215,6 +217,7 @@
 	"accountcreated": "Registramentu fattu",
 	"accountcreatedtext": "U registramentu di l'utilizatore $1 hè statu fattu.",
 	"loginlanguagelabel": "Lingua: $1",
+	"pt-login": "Cunnessione",
 	"retypenew": "Scrive torna a nova parulla secreta:",
 	"resetpass-submit-cancel": "Cancillà",
 	"bold_sample": "Grassettu",
@@ -492,7 +495,6 @@
 	"block-log-flags-nocreate": "registramentu pruibitu",
 	"block-log-flags-nousertalk": "ùn pò mudificà a so propria pagina di discussione",
 	"move-page-legend": "Move a pagina",
-	"movearticle": "Move a pagina",
 	"move-watch": "Fighjulà issa pagina",
 	"movepagebtn": "Move a pagina",
 	"movelogpagetext": "Elencu di e pagine mosse.",
@@ -606,5 +608,6 @@
 	"logentry-move-move": "$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4",
 	"logentry-newusers-create": "U participante $3 hè statu creatu da $1",
 	"rightsnone": "(nessunu)",
+	"searchsuggest-search": "Ricerca",
 	"expand_templates_output": "Risultatu"
 }

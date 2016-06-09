@@ -3737,5 +3737,6 @@
 	"linkaccounts-success-text": "A conta foi vinculada.",
 	"linkaccounts-submit": "Vincular contas",
 	"unlinkaccounts": "Desvincular contas",
-	"unlinkaccounts-success": "A conta foi desvinculada."
+	"unlinkaccounts-success": "A conta foi desvinculada.",
+	"authenticationdatachange-ignored": "Os cambios de datos de autenticación non foron xerados. Está configurado o provedor?"
 }

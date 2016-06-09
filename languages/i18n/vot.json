@@ -464,7 +464,6 @@
 	"deletecomment": "Süü",
 	"deleteotherreason": "Muu vai lisä süü",
 	"deletereasonotherlist": "Muu süü",
-	"rollback_short": "Vääntega",
 	"rollbacklink": "vääntega",
 	"protectlogpage": "Varjõtud cüľľed",
 	"protectedarticle": "\"[[$1]]\" on nüd varjõttu",
@@ -549,7 +548,6 @@
 	"block-log-flags-nocreate": "lukuloomin piäteltü",
 	"movepagetext": "Alla õlõvall ruumõll võitta anta cüľľelle uutt nimiä; kõik cüľľee istori leeb liikutõttu uuvvõ nimee alle.\nVanass cüľľess nõizõb tulõma mešaituzcülci, kumpa näütteeb uuvvõsõ cülcese.\nVõitta obnovoittaa cülcese silmell lüüvvävä mešaituhsõd avtomaattisessi uuvõllõ nimelle.\nKui että taho sitä tehävää avtomaattisessi, mälehtega ettsiää [[Special:DoubleRedirects|kahskõrtaissit]] vai [[Special:BrokenRedirects|katciit]] mešaituhsiit.\nÕlõtta vastuussa sihee, jot linkid näütteeväd sinne, kuhõõ ned pitäiziväd näütellää.\n\nCülciä '''eb''' nõizõ liikuttama, kui uusi nimi on jo cäütennü, muut kuiva kui cülci on tühjä vai on mešaituz, kummall ebõõ muutuzistoria.\nSee täheteb sitä, jot võitta liikuttaa cüľľee takaz vanalle nimelle kui öhsünettä, mutta että või cirjuttaa eloz õlõvaa cüľľee päälle.\n\nSee saattab õlla suuri ja oottõmizõtoi muutuz populaarnoille cüľľelle. Õlka nii üvä, obespecoittõga, jot saatta arvoa sledstvijäd ennee kui liikutta cüľľee.",
 	"movepagetalktext": "Cülci ja sene juttucülci leeväd liikutõtud ühez, '''va kui''':\n*Tseeľicüľľell on eloz juttucülci, kumpa ebõõ tühjä, vai\n*Jätättä all õlõvaa ruuoo merkkittämättä.\n\nNeill kõhtoill piättä liikuttaa vai ühissää cüľľee cäzi.",
-	"movearticle": "Liikut cülci",
 	"newtitle": "Uusi nimi cüľľelee",
 	"move-watch": "Katso sitä cülciä",
 	"movepagebtn": "Liikut cülci",
@@ -665,7 +663,7 @@
 	"tags-edit": "muuttaa",
 	"htmlform-selectorother-other": "Muu",
 	"rightsnone": "(eb õõ)",
-	"feedback-message": "Ilmottamin:",
 	"feedback-cancel": "Otmeńoit",
-	"feedback-close": "On tehtü"
+	"feedback-close": "On tehtü",
+	"feedback-message": "Ilmottamin:"
 }

@@ -1,0 +1,40 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dantman",
+            "FrigidNinja",
+            "Nemo bis",
+            "Shirayuki",
+            "Techman224",
+            "គីមស៊្រុន"
+        ]
+    },
+    "talkpagelinktext": "Talk",
+    "talk": "Discussion",
+    "aboutsite": "About {{SITENAME}}",
+    "mainpage": "Main Page",
+    "editsection": "edit",
+    "editsectionhint": "Edit section: $1",
+    "red-link-title": "$1 (page does not exist)",
+    "uploadstash-summary": "This page provides access to files which are uploaded (or in process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.",
+    "sessionfailure": "There seems to be a problem with your login session;\nthis action has been cancelled as a precaution against session hijacking.\nGo back to the previous page, reload that page and then try again.",
+    "ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behaviour/harassment\n** Abusing multiple accounts\n** Unacceptable username",
+    "exif-ycbcrcoefficients": "Colour space transformation matrix coefficients",
+    "exif-colorspace": "Colour space",
+    "exif-licenseurl": "URL for copyright licence",
+    "exif-subjectdistance-value": "$1 metres",
+    "exif-meteringmode-2": "Centre weighted average",
+    "exif-sensingmethod-2": "One-chip colour area sensor",
+    "exif-sensingmethod-3": "Two-chip colour area sensor",
+    "exif-sensingmethod-4": "Three-chip colour area sensor",
+    "exif-sensingmethod-5": "Colour sequential area sensor",
+    "exif-sensingmethod-8": "Colour sequential linear sensor",
+    "exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|metre|metres}} above sea level",
+    "exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|metre|metres}} below sea level",
+    "exif-gpsspeed-k": "Kilometres per hour",
+    "exif-gpsdestdistance-k": "Kilometres",
+    "exif-ycbcrpositioning-1": "Centred",
+    "confirmemail_invalidated": "Email address confirmation cancelled",
+    "version-license": "Licence",
+    "version-license-info": "MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation; either version 2 of the Licence, or (at your option) any later version.\n\nMediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public Licence for more details.\n\nYou should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public Licence] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online]."
+}
