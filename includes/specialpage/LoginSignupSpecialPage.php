@@ -1050,6 +1050,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					], $this->msg( 'userlogin-helplink2' )->text() ),
 					'weight' => 200,
 				],
+				// button for ResetPasswordSecondaryAuthenticationProvider
+				'skipReset' => [
+					'weight' => 110,
+					'flags' => [],
+				],
 			];
 		}
 		$fieldDefinitions['username'] += [
