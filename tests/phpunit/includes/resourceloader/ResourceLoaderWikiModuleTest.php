@@ -49,12 +49,6 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			'scripts' => [ 'MediaWiki:Common.js' ],
 		];
 
-		$variableParams = [
-			'allowVariables' => true,
-			'styles' => [ 'MediaWiki:Common.css', 'MediaWiki:{skin}.css' ],
-			'scripts' => [ 'MediaWiki:Common.js', 'MediaWiki:{skin}.js' ],
-		];
-
 		return [
 			[ [], new HashConfig( $settings ), [] ],
 			[ $params, new HashConfig( $settings ), [
@@ -73,12 +67,6 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 				),
 				[]
 			],
-			[ $variableParams, new HashConfig( $settings ), [
-				'MediaWiki:Common.js' => [ 'type' => 'script' ],
-				'MediaWiki:vector.js' => [ 'type' => 'script' ],
-				'MediaWiki:Common.css' => [ 'type' => 'style' ],
-				'MediaWiki:vector.css' => [ 'type' => 'style' ]
-			] ],
 		];
 	}
 

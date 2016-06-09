@@ -30,9 +30,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			// For ResourceLoader::inDebugMode since it doesn't have context
 			'ResourceLoaderDebug' => true,
 
-			// For ResourceLoaderContext::newDummyContext()
-			'DefaultSkin' => 'vector',
-
 			// Avoid influence from wgInvalidateCacheOnLocalSettingsChange
 			'CacheEpoch' => '20140101000000',
 
