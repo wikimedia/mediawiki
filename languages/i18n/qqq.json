@@ -2474,6 +2474,7 @@
 	"sp-contributions-username": "This message appears whenever someone requests [[Special:Contributions]].\n{{Identical|IP address or username}}",
 	"sp-contributions-toponly": "A checkbox at [[Special:Mycontributions|Special:Contributions]]",
 	"sp-contributions-newonly": "Used as checkbox label at [[Special:Mycontributions|Special:Contributions]].\n\n\"page creation\" means the \"first revision\" of a page.\n\nPreceded by {{msg-mw|Sp-contributions-toponly}}.",
+	"sp-contributions-hideminor": "Used as checkbox label at [[Special:Mycontributions|Special:Contributions]].\n\nSee also:\n* {{msg-mw|Tog-hideminor}}",
 	"sp-contributions-submit": "{{Identical|Search}}",
 	"sp-contributions-explain": "{{optional}}",
 	"sp-contributions-footer": "{{ignored}}This is the footer for users that are not anonymous or newbie on [[Special:Contributions]].",

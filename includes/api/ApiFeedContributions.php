@@ -79,6 +79,7 @@ class ApiFeedContributions extends ApiBase {
 			'deletedOnly' => $params['deletedonly'],
 			'topOnly' => $params['toponly'],
 			'newOnly' => $params['newonly'],
+			'hideMinor' => $params['hideminor'],
 			'showSizeDiff' => $params['showsizediff'],
 		] );
 
@@ -208,6 +209,7 @@ class ApiFeedContributions extends ApiBase {
 			'deletedonly' => false,
 			'toponly' => false,
 			'newonly' => false,
+			'hideminor' => false,
 			'showsizediff' => [
 				ApiBase::PARAM_DFLT => false,
 			],

@@ -64,6 +64,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
 		$this->newOnly = !empty( $options['newOnly'] );
+		$this->hideMinor = !empty( $options['hideMinor'] );
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
@@ -244,6 +245,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		if ( $this->newOnly ) {
 			$condition[] = 'rev_parent_id = 0';
+		}
+
+		if ( $this->hideMinor ) {
+			$condition[] = 'rev_minor_edit = 0';
 		}
 
 		return [ $tables, $index, $condition, $join_conds ];

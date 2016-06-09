@@ -151,6 +151,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "{{doc-apihelp-param|feedcontributions|deletedonly}}",
 	"apihelp-feedcontributions-param-toponly": "{{doc-apihelp-param|feedcontributions|toponly}}",
 	"apihelp-feedcontributions-param-newonly": "{{doc-apihelp-param|feedcontributions|newonly}}",
+	"apihelp-feedcontributions-param-hideminor": "{{doc-apihelp-param|feedcontributions|hideminor}}",
 	"apihelp-feedcontributions-param-showsizediff": "{{doc-apihelp-param|feedcontributions|showsizediff}}",
 	"apihelp-feedcontributions-example-simple": "{{doc-apihelp-example|feedcontributions}}",
 	"apihelp-feedrecentchanges-description": "{{doc-apihelp-description|feedrecentchanges}}",
