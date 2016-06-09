@@ -245,7 +245,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['uploadsenabled'] = UploadBase::isEnabled();
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
-		$data['minuploadchunksize'] = (int)$this->getConfig()->get( 'MinUploadChunkSize' );
+		$data['minuploadchunksize'] = (int)$config->get( 'MinUploadChunkSize' );
 
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
 		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );
@@ -264,8 +264,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['favicon'] = wfExpandUrl( $favicon, PROTO_RELATIVE );
 		}
 
-		$data['centralidlookupprovider'] = $this->getConfig()->get( 'CentralIdLookupProvider' );
-		$providerIds = array_keys( $this->getConfig()->get( 'CentralIdLookupProviders' ) );
+		$data['centralidlookupprovider'] = $config->get( 'CentralIdLookupProvider' );
+		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
 		$data['allcentralidlookupproviders'] = $providerIds;
 
 		$data['interwikimagic'] = (bool)$config->get( 'InterwikiMagic' );
