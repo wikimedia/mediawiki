@@ -570,7 +570,8 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			} elseif ( array_key_exists( 'type', $item ) ) {
 				$class = HTMLForm::$typeMappings[$item['type']];
 			}
-			return !in_array( $class, [ 'HTMLInfoField', 'HTMLSubmitField' ], true );
+			return !is_a( $class, \HTMLInfoField::class, true ) &&
+				!is_a( $class, \HTMLSubmitField::class, true );
 		} );
 	}
 
