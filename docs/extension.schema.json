@@ -630,6 +630,29 @@
 				}
 			}
 		},
+		"GrantPermissions": {
+			"type": "object",
+			"description": "Map of permissions granted to authorized consumers to their bundles, called 'grants'",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z]+$": {
+							"type": "boolean"
+						}
+					}
+				}
+			}
+		},
+		"GrantPermissionGroups": {
+			"type": "object",
+			"description": "Map of grants to their UI grouping",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "string"
+				}
+			}
+		},
 		"ImplicitGroups": {
 			"type": "array",
 			"description": "Implicit groups"
