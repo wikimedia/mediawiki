@@ -1147,6 +1147,8 @@ class EditPage {
 									$this->undidRev = $undo;
 								}
 								$this->formtype = 'diff';
+
+								$this->queuePreemptiveStash( $content );
 							}
 						}
 					} else {
@@ -1164,11 +1166,28 @@ class EditPage {
 
 				if ( $content === false ) {
 					$content = $this->getOriginalContent( $wgUser );
+					if ( $this->oldid ) {
+						$this->queuePreemptiveStash( $content );
+					}
 				}
 			}
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Stash the edit on the assumption that the user may submit it without changing the text
+	 *
+	 * This is useful for undo/oldid reversions
+	 *
+	 * @param Content $content
+	 */
+	private function queuePreemptiveStash( Content $content ) {
+		$user = RequestContext::getMain()->getUser();
+		DeferredUpdates::addCallableUpdate( function () use ( $content, $user ) {
+			ApiStashEdit::parseAndStash( $this->page, $content, $user );
+		} );
 	}
 
 	/**
