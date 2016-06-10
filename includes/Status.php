@@ -250,12 +250,22 @@ class Status {
 	}
 
 	/**
-	 * Get the error list as a Message object
+	 * Get a bullet list of the errors as a Message object.
 	 *
-	 * @param string|string[] $shortContext A short enclosing context message name (or an array of
-	 * message names), to be used when there is a single error.
-	 * @param string|string[] $longContext A long enclosing context message name (or an array of
-	 * message names), for a list.
+	 * $shortContext and $longContext can be used to wrap the error list in some text.
+	 * $shortContext will be preferred when there is a single error; $longContext will be
+	 * preferred when there are multiple ones. In either case, $1 will be replaced with
+	 * the list of errors.
+	 *
+	 * $shortContext is assumed to use $1 as an inline parameter: if there is a single item,
+	 * it will not be made into a list; if there are multiple items, newlines will be inserted
+	 * around the list.
+	 * $longContext is assumed to use $1 as a standalone parameter; it will always receive a list.
+	 *
+	 * If both parameters are missing, and there is only one error, no bullet will be added.
+	 *
+	 * @param string|string[] $shortContext A message name or an array of message names.
+	 * @param string|string[] $longContext A message name or an array of message names.
 	 * @param string|Language $lang Language to use for processing messages
 	 * @return Message
 	 */
@@ -285,10 +295,6 @@ class Status {
 		} else {
 			$msgs = $this->getErrorMessageArray( $rawErrors, $lang );
 			$msgCount = count( $msgs );
-
-			if ( $shortContext ) {
-				$msgCount++;
-			}
 
 			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
 			$s->params( $msgs )->parse();
