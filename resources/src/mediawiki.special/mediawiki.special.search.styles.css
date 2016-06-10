@@ -17,6 +17,9 @@
 .searchresults {
 	margin: 1em 0 1em .4em;
 }
+.mw-search-createlink {
+	margin: 0.5em 0 0 .4em;
+}
 /* needs extra specificity to override `.mw-body p` selector */
 .mw-body .mw-search-nonefound {
 	margin: 0;
@@ -82,16 +85,15 @@
 .search-types .current a:hover {
 	text-decoration: none;
 }
+
 .results-info {
 	float: right;
-	padding: 0.5em;
-	padding-right: 0.75em;
 	color: #666;
 	font-size: 95%;
 }
-#mw-search-top-table div.oo-ui-actionFieldLayout {
-	float: left;
-	width: 100%;
+#mw-search-results-top {
+	padding: 0.5em 0.5em 0;
+	padding-right: 0.75em;
 }
 #mw-searchoptions {
 	margin: 0;
