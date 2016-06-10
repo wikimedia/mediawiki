@@ -2648,9 +2648,9 @@ class Parser {
 				break;
 			case 'revisionuser':
 				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-revision...\n" );
+				# *after* a revision ID has been assigned for null edits.
+				$this->mOutput->setFlag( 'vary-user' );
+				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user...\n" );
 				$value = $this->getRevisionUser();
 				break;
 			case 'revisionsize':
