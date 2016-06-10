@@ -315,7 +315,7 @@ class FindHooks extends Maintenance {
 		foreach ( $iterator as $info ) {
 			// Ignore directories, ignore json (installer and api i18n),
 			// ignore extension-less files like HISTORY
-			if ( $info->isFile() && $info->getExtension() !== 'json' && $info->getExtension()
+			if ( $info->isFile() && $info->getExtension() === 'php'
 				// Skip this file as it contains text that looks like a bad wfRunHooks() call
 				&& $info->getRealPath() !== __FILE__
 			) {
