@@ -683,6 +683,10 @@ $oldPageID: the page ID of the revision when archived (may be null)
 revisions of an article.
 $title: Title object of the article
 $ids: Ids to set the visibility for
+$visibilityChangeMap: Map of revision id to oldBits and newBits.  This array can be
+  examined to determine exactly what visibility bits have changed for each
+  revision.  This array is of the form
+  [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
 
 'ArticleRollbackComplete': After an article rollback is completed.
 $wikiPage: the WikiPage that was edited

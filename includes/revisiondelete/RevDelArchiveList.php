@@ -77,7 +77,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 		return Status::newGood();
 	}
 
-	public function doPostCommitUpdates() {
+	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		return Status::newGood();
 	}
 }

@@ -132,6 +132,10 @@ abstract class RevDelList extends RevisionListBase {
 		$virtualNewBits = 0;
 		$logType = 'delete';
 
+		// Will be filled with id => [old, new bits] information and
+		// passed to doPostCommitUpdates().
+		$visibilityChangeMap = [];
+
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
@@ -205,6 +209,13 @@ abstract class RevDelList extends RevisionListBase {
 				} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
 					$authorIPs[] = $item->getAuthorName();
 				}
+
+				// Save the old and new bits in $visibilityChangeMap for
+				// later use.
+				$visibilityChangeMap[$item->getId()] = [
+					'oldBits' => $oldBits,
+					'newBits' => $newBits,
+				];
 			} else {
 				$itemStatus->error(
 					'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
@@ -255,8 +266,8 @@ abstract class RevDelList extends RevisionListBase {
 
 		// Clear caches
 		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that ) {
-			$that->doPostCommitUpdates();
+		$dbw->onTransactionIdle( function() use ( $that, $visibilityChangeMap ) {
+			$that->doPostCommitUpdates( $visibilityChangeMap );
 		} );
 
 		$dbw->endAtomic( __METHOD__ );
@@ -351,9 +362,10 @@ abstract class RevDelList extends RevisionListBase {
 	/**
 	 * A hook for setVisibility(): do any necessary updates post-commit.
 	 * STUB
+	 * @param array [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
 	 * @return Status
 	 */
-	public function doPostCommitUpdates() {
+	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		return Status::newGood();
 	}
 
