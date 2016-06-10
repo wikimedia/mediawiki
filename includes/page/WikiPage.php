@@ -1794,8 +1794,12 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTimestamp = $now;
 		} else {
 			// Bug 32948: revision ID must be set to page {{REVISIONID}} and
-			// related variables correctly
+			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
 			$revision->setId( $this->getLatest() );
+			$revision->setUserIdAndName(
+				$this->getUser( Revision::RAW ),
+				$this->getUserText( Revision::RAW )
+			);
 		}
 
 		if ( $changed ) {
@@ -2071,7 +2075,7 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			$edit->timestamp = wfTimestampNow();
 		}
-		// @note: $cachedEdit is not used if the rev ID was referenced in the text
+		// @note: $cachedEdit is safely not used if the rev ID was referenced in the text
 		$edit->revid = $revid;
 
 		if ( $cachedEdit ) {
@@ -2164,15 +2168,24 @@ class WikiPage implements Page, IDBAccessObject {
 		];
 		$content = $revision->getContent();
 
-		// Parse the text
-		// Be careful not to do pre-save transform twice: $text is usually
-		// already pre-save transformed once.
-		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
-			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareContentForEdit( $content, $revision, $user );
+		// See if the parser output before $revision was inserted is still valid
+		$editInfo = false;
+		if ( !$this->mPreparedEdit ) {
+			wfDebug( __METHOD__ . ": No prepared edit...\n" );
+		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
+			wfDebug( __METHOD__ . ": Prepared edit has vary-revision...\n" );
+		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
+			wfDebug( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
 		} else {
-			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
+			wfDebug( __METHOD__ . ": Using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
+		}
+
+		if ( !$editInfo ) {
+			// Parse the text again if needed. Be careful not to do pre-save transform twice:
+			// $text is usually already pre-save transformed once. Avoid using the edit stash
+			// as any prepared content from there or in doEditContent() was already rejected.
+			$editInfo = $this->prepareContentForEdit( $content, $revision, $user, null, false );
 		}
 
 		// Save it to the parser cache.
