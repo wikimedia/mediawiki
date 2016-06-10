@@ -132,6 +132,10 @@ abstract class RevDelList extends RevisionListBase {
 		$virtualNewBits = 0;
 		$logType = 'delete';
 
+		// Will be filled with id => [old, new bits] information and
+		// passed to doPostCommitUpdates().
+		$visibilityChangeMap = [];
+
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
@@ -183,6 +187,12 @@ abstract class RevDelList extends RevisionListBase {
 				$status->failCount++;
 				continue;
 			}
+
+			// Save the old and new bits in $visibilityChangeMap for later use.
+			$visibilityChangeMap[ $item->getId() ] = [
+				'old-bits' => $oldBits,
+				'new-bits' => $newBits,
+			];
 
 			// Update the revision
 			$ok = $item->setBits( $newBits );
@@ -255,8 +265,8 @@ abstract class RevDelList extends RevisionListBase {
 
 		// Clear caches
 		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that ) {
-			$that->doPostCommitUpdates();
+		$dbw->onTransactionIdle( function() use ( $that, $visibilityChangeMap ) {
+			$that->doPostCommitUpdates( $visibilityChangeMap );
 		} );
 
 		$dbw->endAtomic( __METHOD__ );
@@ -351,9 +361,12 @@ abstract class RevDelList extends RevisionListBase {
 	/**
 	 * A hook for setVisibility(): do any necessary updates post-commit.
 	 * STUB
+	 * @param array [id => ['old-bits' => $oldBits, 'new-bits' => $newBits], ... ]
+	 * TODO: are old-bits and new-bits good key names?  Should this
+	 *       just be a tuple?
 	 * @return Status
 	 */
-	public function doPostCommitUpdates() {
+	public function doPostCommitUpdates( $visibilityChangeMap = [] ) {
 		return Status::newGood();
 	}
 
