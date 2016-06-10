@@ -2656,8 +2656,6 @@ class Parser {
 			case 'revisionsize':
 				# Let the edit saving system know we should parse the page
 				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONSIZE}} used, setting vary-revision...\n" );
 				$value = $this->getRevisionSize();
 				break;
 			case 'namespace':
@@ -5637,7 +5635,7 @@ class Parser {
 			# will change the size.
 			if ( $revObject ) {
 				$this->mRevisionSize = $revObject->getSize();
-			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
+			} else {
 				$this->mRevisionSize = $this->mInputSize;
 			}
 		}
