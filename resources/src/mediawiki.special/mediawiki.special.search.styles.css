@@ -89,6 +89,7 @@ div.searchresult {
 }
 #mw-search-top-table div.oo-ui-actionFieldLayout {
 	float: left;
+	width: 100%;
 }
 fieldset#mw-searchoptions {
 	margin: 0;
