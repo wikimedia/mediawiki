@@ -333,28 +333,6 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
-		$out->enableOOUI();
-		$out->addHTML(
-			# This is an awful awful ID name. It's not a table, but we
-			# named it poorly from when this was a table so now we're
-			# stuck with it
-			Xml::openElement( 'div', [ 'id' => 'mw-search-top-table' ] ) .
-			$this->shortDialog( $term, $num, $totalRes ) .
-			Xml::closeElement( 'div' ) .
-			$this->searchProfileTabs( $term ) .
-			$this->searchOptions( $term ) .
-			Xml::closeElement( 'form' ) .
-			$didYouMeanHtml
-		);
-
-		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
-		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
-			// Empty query -- straight view of search form
-			return;
-		}
-
-		$out->addHTML( "<div class='searchresults'>" );
-
 		// prev/next links
 		$prevnext = null;
 		if ( $num || $this->offset ) {
@@ -373,6 +351,30 @@ class SpecialSearch extends SpecialPage {
 				);
 			}
 		}
+
+		$out->enableOOUI();
+		$out->addHTML(
+			# This is an awful awful ID name. It's not a table, but we
+			# named it poorly from when this was a table so now we're
+			# stuck with it
+			Xml::openElement( 'div', [ 'id' => 'mw-search-top-table' ] ) .
+			$this->shortDialog( $term ) .
+			Xml::closeElement( 'div' ) .
+			$this->searchProfileTabs( $term ) .
+			$this->getResultTopInfoText( $num, $totalRes, $prevnext ) .
+			$this->searchOptions( $term ) .
+			Xml::closeElement( 'form' ) .
+			$didYouMeanHtml
+		);
+
+		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
+		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
+			// Empty query -- straight view of search form
+			return;
+		}
+
+		$out->addHTML( "<div class='searchresults'>" );
+
 		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
 
 		$out->parserOptions()->setEditSection( false );
@@ -445,6 +447,33 @@ class SpecialSearch extends SpecialPage {
 
 		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
 
+	}
+
+	/**
+	 * Returns a html string of the top info text for the results seaction.
+	 *
+	 * @param $resultsShown
+	 * @param $totalNum
+	 * @param $prevNext
+	 * @return string
+	 */
+	private function getResultTopInfoText( $resultsShown, $totalNum, $prevNext ) {
+		// Results-info
+		$result = '';
+		if ( $totalNum > 0 && $this->offset < $totalNum ) {
+			$top = $this->msg( 'search-showingresults' )
+				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
+				->numParams( $resultsShown )
+				->parse();
+			$result .= Xml::tags( 'div', [ 'class' => 'results-info' ], $top );
+		}
+
+		if ( $result || $prevNext ) {
+			return Html::openElement( 'div', [ 'id' => 'mw-search-results-top' ] ) .
+				( $prevNext ? $prevNext : '' ) .
+				( $result ? $result : '' ) .
+				Html::closeElement( 'div' );
+		}
 	}
 
 	/**
@@ -1229,11 +1258,9 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @param string $term
-	 * @param int $resultsShown
-	 * @param int $totalNum
 	 * @return string
 	 */
-	protected function shortDialog( $term, $resultsShown, $totalNum ) {
+	protected function shortDialog( $term ) {
 		$searchWidget = new MediaWiki\Widget\SearchInputWidget( [
 			'id' => 'searchText',
 			'name' => 'search',
@@ -1255,15 +1282,6 @@ class SpecialSearch extends SpecialPage {
 			Html::hidden( 'profile', $this->profile ) .
 			Html::hidden( 'fulltext', 'Search' ) .
 			$layout;
-
-		// Results-info
-		if ( $totalNum > 0 && $this->offset < $totalNum ) {
-			$top = $this->msg( 'search-showingresults' )
-				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
-				->numParams( $resultsShown )
-				->parse();
-			$out .= Xml::tags( 'div', [ 'class' => 'results-info' ], $top );
-		}
 
 		return $out;
 	}

@@ -77,15 +77,14 @@ div.searchresult {
 .mw-search-profile-tabs div.search-types ul li.current a:hover {
 	text-decoration: none;
 }
-#mw-search-top-table div.results-info {
-	float: right;
-	padding: 0.5em;
+#mw-search-results-top {
+	padding: 0.5em 0.5em 0;
 	padding-right: 0.75em;
+}
+#mw-search-results-top div.results-info {
+	float: right;
 	color: #666;
 	font-size: 95%;
-}
-#mw-search-top-table div.oo-ui-actionFieldLayout {
-	float: left;
 }
 fieldset#mw-searchoptions {
 	margin: 0;
