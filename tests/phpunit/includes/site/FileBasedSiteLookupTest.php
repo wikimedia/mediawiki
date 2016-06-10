@@ -98,4 +98,15 @@ class FileBasedSiteLookupTest extends PHPUnit_Framework_TestCase {
 		return tempnam( sys_get_temp_dir(), 'mw-test-sitelist' );
 	}
 
+	public function testLanguageCodeMapping() {
+		$sites = $this->getSites();
+		$cacheBuilder = $this->newSitesCacheFileBuilder( $sites );
+		$cacheBuilder->build();
+
+		$cache = new FileBasedSiteLookup( $this->cacheFile );
+		$cache->setLanguageCodeMapping( [ 'en' => 'fa' ] );
+
+		$this->assertEquals( $cache->getSite( 'enwiktionary' )->getLanguageCode(), 'fa' );
+	}
+
 }
