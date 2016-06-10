@@ -328,12 +328,11 @@ class FindHooks extends Maintenance {
 	}
 
 	/**
-	 * Nicely output the array
+	 * Nicely sort an print an array
 	 * @param string $msg A message to show before the value
 	 * @param array $arr
-	 * @param bool $sort Whether to sort the array (Default: true)
 	 */
-	private function printArray( $msg, $arr, $sort = true ) {
+	private function printArray( $msg, $arr ) {
 		if ( $sort ) {
 			asort( $arr );
 		}
