@@ -865,7 +865,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					!isset( $coreField['baseField'] )
 					|| !isset( $fieldInfo[$coreField['baseField']] )
 				) && !in_array( $fieldName, $specialFields, true )
-				&& $coreField['type'] !== 'submit'
+				&& ( !isset( $coreField['type'] ) || $coreField['type'] !== 'submit' )
 			) {
 				$coreFieldDescriptors[$fieldName] = null;
 				continue;
