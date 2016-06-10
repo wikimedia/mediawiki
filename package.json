@@ -14,12 +14,12 @@
     "grunt-jscs": "2.8.0",
     "grunt-jsonlint": "1.0.7",
     "grunt-karma": "0.12.2",
-    "grunt-stylelint": "0.3.0",
+    "grunt-stylelint": "0.4.0",
     "karma": "0.13.22",
     "karma-chrome-launcher": "0.2.2",
     "karma-firefox-launcher": "0.1.7",
     "karma-qunit": "0.1.9",
     "qunitjs": "1.22.0",
-    "stylelint-config-wikimedia": "0.1.0"
+    "stylelint-config-wikimedia": "0.2.2"
   }
 }
