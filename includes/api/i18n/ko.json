@@ -12,7 +12,8 @@
 			"Revi",
 			"Yearning",
 			"Priviet",
-			"Ykhwong"
+			"Ykhwong",
+			"Jonghaya"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|설명문서]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 알림 사항]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청]\n</div>\n<strong>상태:</strong> 이 페이지에 보여지는 모든 기능은 정상적으로 작동하지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 변경될 수 있습니다. 업데이트 공지를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 HTTP 헤더에서 \"MediaWiki-API-Error\" 키를 보내고, 헤더 값과 오류 코드가 같게 설정됩니다. 자세한 정보에 대해서는 [[mw:API:Errors_and_warnings|API:오류와 경고]]를 참조하십시오.\n\n<strong>테스트하기:</strong> API 요청을 테스트의 편의를 위해, [[Special:ApiSandbox]]를 보세요.",
@@ -142,6 +143,8 @@
 	"apihelp-query+pageswithprop-param-limit": "나타낼 문서의 최대 수입니다.",
 	"apihelp-query+pageswithprop-param-dir": "정렬 순서",
 	"apihelp-query+prefixsearch-param-search": "문자열 검색",
+	"apihelp-query+prefixsearch-param-profile": "검색 프로파일 사용",
+	"apihelp-query+search-param-qiprofile": "쿼리 독립적인 프로파일 사용(순위 알고리즘에 영향있음)",
 	"apihelp-rollback-param-tags": "되돌리기를 적용하기 위해 태그합니다.",
 	"apihelp-unblock-description": "사용자를 차단 해제합니다.",
 	"apihelp-rawfm-description": "출력 데이터, 디버깅 요소를 포함, (HTML에 포함된)JSON형식.",

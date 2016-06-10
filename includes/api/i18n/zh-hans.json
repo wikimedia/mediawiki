@@ -18,7 +18,8 @@
 			"Umherirrender",
 			"Apflu",
 			"Hzy980512",
-			"PhiLiP"
+			"PhiLiP",
+			"Arthur2e5"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文档]]\n* [[mw:API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:API:Errors_and_warnings|API: 错误与警告]]。\n\n<strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。",
@@ -157,6 +158,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "仅显示已删除的贡献。",
 	"apihelp-feedcontributions-param-toponly": "仅仅显示那些作为最新修订的编辑。",
 	"apihelp-feedcontributions-param-newonly": "仅仅显示那些作为页面创建的编辑。",
+	"apihelp-feedcontributions-param-hideminor": "隐藏小编辑。",
 	"apihelp-feedcontributions-param-showsizediff": "显示修订版本之间的大小差别。",
 	"apihelp-feedcontributions-example-simple": "返回用户<kbd>Example</kbd>的贡献。",
 	"apihelp-feedrecentchanges-description": "返回最近更改的摘要。",
@@ -1365,7 +1367,7 @@
 	"api-help-license-noname": "许可协议：[[$1|参见链接]]",
 	"api-help-license-unknown": "许可协议：<span class=\"apihelp-unknown\">未知</span>",
 	"api-help-parameters": "{{PLURAL:$1|参数}}：",
-	"api-help-param-deprecated": "不推荐使用。",
+	"api-help-param-deprecated": "已弃用。",
 	"api-help-param-required": "这个参数是必须的。",
 	"api-help-datatypes-header": "数据类型",
 	"api-help-datatypes": "一些在API请求中的参数类型需要更进一步解释：\n;boolean\n:布尔参数就像HTML复选框一样工作：如果指定参数，无论何值都被认为是真。如果要假值，则可完全忽略参数。\n;timestamp\n:时间戳可被指定为很多格式。推荐使用ISO 8601日期和时间标准。所有时间为UTC时间，包含的任何时区会被忽略。\n:* ISO 8601日期和时间，<kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>Z</kbd>（标点和<kbd>Z</kbd>是可选项）\n:* 带小数秒（会被忽略）的ISO 8601日期和时间，<kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>.<var>00001</var>Z</kbd>（破折号、括号和<kbd>Z</kbd>是可选的）\n:* MediaWiki格式，<kbd><var>2001</var><var>01</var><var>15</var><var>14</var><var>56</var><var>00</var></kbd>\n:* 一般数字格式，<kbd><var>2001</var>-<var>01</var>-<var>15</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>（<kbd>GMT</kbd>、<kbd>+<var>##</var></kbd>或<kbd>-<var>##</var></kbd>的可选时区会被忽略）\n:* EXIF格式，<kbd><var>2001</var>:<var>01</var>:<var>15</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>\n:* RFC 2822格式（时区可能会被省略），<kbd><var>Mon</var>, <var>15</var> <var>Jan</var> <var>2001</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>\n:* RFC 850格式（时区可能会被省略），<kbd><var>Monday</var>, <var>15</var>-<var>Jan</var>-<var>2001</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>\n:* C ctime格式，<kbd><var>Mon</var> <var>Jan</var> <var>15</var> <var>14</var>:<var>56</var>:<var>00</var> <var>2001</var></kbd>\n:* 秒数是从1970-01-01T00:00:00Z开始，作为1到13位数的整数（除了<kbd>0</kbd>）\n:* 字符串<kbd>now</kbd>",

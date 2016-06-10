@@ -2172,6 +2172,7 @@
 	"sp-contributions-username": "Enderezo IP ou nome de usuario:",
 	"sp-contributions-toponly": "Mostrar só as últimas revisións",
 	"sp-contributions-newonly": "Mostrar só as edicións que crearon páxinas",
+	"sp-contributions-hideminor": "Ocultar edicións menores",
 	"sp-contributions-submit": "Procurar",
 	"whatlinkshere": "Páxinas que ligan con esta",
 	"whatlinkshere-title": "Páxinas que ligan con \"$1\"",

@@ -149,6 +149,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "Nur gelöschte Beiträge anzeigen.",
 	"apihelp-feedcontributions-param-toponly": "Nur aktuelle Versionen anzeigen.",
 	"apihelp-feedcontributions-param-newonly": "Nur Seitenerstellungen anzeigen.",
+	"apihelp-feedcontributions-param-hideminor": "Blendet Kleinigkeiten aus.",
 	"apihelp-feedcontributions-param-showsizediff": "Zeigt den Größenunterschied zwischen Versionen an.",
 	"apihelp-feedcontributions-example-simple": "Beiträge für die Benutzer <kbd>Beispiel<kbd> zurückgeben",
 	"apihelp-feedrecentchanges-description": "Gibt einen Letzte-Änderungen-Feed zurück.",

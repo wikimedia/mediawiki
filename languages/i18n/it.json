@@ -2249,6 +2249,7 @@
 	"sp-contributions-username": "Indirizzo IP o nome utente:",
 	"sp-contributions-toponly": "Mostra solo i contributi che sono le ultime versioni per la pagina",
 	"sp-contributions-newonly": "Visualizza solo le modifiche che sono creazioni di pagina",
+	"sp-contributions-hideminor": "Nascondi le modifiche minori",
 	"sp-contributions-submit": "Ricerca",
 	"whatlinkshere": "Puntano qui",
 	"whatlinkshere-title": "Pagine che puntano a \"$1\"",

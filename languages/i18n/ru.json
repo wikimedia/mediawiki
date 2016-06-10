@@ -2237,6 +2237,7 @@
 	"sp-contributions-username": "IP-адрес или имя участника:",
 	"sp-contributions-toponly": "Показывать только правки, являющиеся последними версиями",
 	"sp-contributions-newonly": "Показывать только правки, являющиеся созданием страниц",
+	"sp-contributions-hideminor": "Скрыть малые правки",
 	"sp-contributions-submit": "Найти",
 	"whatlinkshere": "Ссылки сюда",
 	"whatlinkshere-title": "Страницы, ссылающиеся на «$1»",

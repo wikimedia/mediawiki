@@ -150,6 +150,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "הצגת תרומות שנמחקו בלבד.",
 	"apihelp-feedcontributions-param-toponly": "הצגת עריכות שהן הגרסה העדכנית ביותר בלבד.",
 	"apihelp-feedcontributions-param-newonly": "להציג רק עריכות שהן יצירות דפים.",
+	"apihelp-feedcontributions-param-hideminor": "הסתרת עריכות משניות.",
 	"apihelp-feedcontributions-param-showsizediff": "להציג את ההבדל בגודל בין גרסאות.",
 	"apihelp-feedcontributions-example-simple": "החזרת תרומות עבור המשתמש <kbd>Example</kbd>.",
 	"apihelp-feedrecentchanges-description": "להחזיר הזנת שינויים אחרונים.",

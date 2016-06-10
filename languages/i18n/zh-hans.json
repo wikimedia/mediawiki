@@ -2245,6 +2245,7 @@
 	"sp-contributions-username": "IP地址或用户名：",
 	"sp-contributions-toponly": "仅显示最后版本的编辑",
 	"sp-contributions-newonly": "仅显示创建页面的编辑",
+	"sp-contributions-hideminor": "隐藏小编辑",
 	"sp-contributions-submit": "搜索",
 	"whatlinkshere": "链入页面",
 	"whatlinkshere-title": "链接至“$1”的页面",

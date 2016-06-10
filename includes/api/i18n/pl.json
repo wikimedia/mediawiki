@@ -90,6 +90,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "Pokazuj tylko usunięty wkład.",
 	"apihelp-feedcontributions-param-toponly": "Pokazuj tylko edycje będące ostatnią zmianą strony.",
 	"apihelp-feedcontributions-param-newonly": "Pokazuj tylko edycje tworzące stronę.",
+	"apihelp-feedcontributions-param-hideminor": "Ukryj drobne zmiany.",
 	"apihelp-feedcontributions-param-showsizediff": "Pokaż różnicę rozmiaru między wersjami.",
 	"apihelp-feedrecentchanges-param-feedformat": "Format danych wyjściowych.",
 	"apihelp-feedrecentchanges-param-namespace": "Przestrzeń nazw, do której ograniczone są wyniki.",

@@ -2244,6 +2244,7 @@
 	"sp-contributions-username": "IP-Adresse oder Benutzername:",
 	"sp-contributions-toponly": "Nur aktuelle Versionen zeigen",
 	"sp-contributions-newonly": "Nur Seitenerstellungen anzeigen",
+	"sp-contributions-hideminor": "Kleine Bearbeitungen ausblenden",
 	"sp-contributions-submit": "Suchen",
 	"whatlinkshere": "Links auf diese Seite",
 	"whatlinkshere-title": "Seiten, die auf „$1“ verlinken",

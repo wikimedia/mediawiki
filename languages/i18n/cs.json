@@ -2180,6 +2180,7 @@
 	"sp-contributions-username": "IP adresa nebo uživatelské jméno:",
 	"sp-contributions-toponly": "Zobrazit pouze editace na aktuální revizi",
 	"sp-contributions-newonly": "Zobrazit pouze editace zakládající stránku",
+	"sp-contributions-hideminor": "Skrýt malé editace",
 	"sp-contributions-submit": "Zobrazit",
 	"whatlinkshere": "Odkazuje sem",
 	"whatlinkshere-title": "Stránky odkazující na „$1“",

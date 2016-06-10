@@ -129,6 +129,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "zeijsch blohß de fottjeschmeße Beijdrähsch.",
 	"apihelp-feedcontributions-param-toponly": "Zeich blohß de Änderonge, di och de neußte sin.",
 	"apihelp-feedcontributions-param-newonly": "Zeich blohß de Änderonge, woh Sigge neu aanjelaat woode sin.",
+	"apihelp-feedcontributions-param-hideminor": "Donn kein Minni-Ännderonge ennblände.",
 	"apihelp-feedcontributions-param-showsizediff": "Zeijsch de Ongerscheijd en de Jrühße zwesche de Väsjohne.",
 	"apihelp-feedcontributions-example-simple": "Zeijsch de Änderonge vum Metmaacher <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Example</kbd>.",
 	"apihelp-feedrecentchanges-description": "Donn ene Kannahl för de neuste Änderonge ußjävve.",

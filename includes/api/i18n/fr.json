@@ -164,6 +164,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "Afficher uniquement les contributions supprimées.",
 	"apihelp-feedcontributions-param-toponly": "Afficher uniquement les modifications qui sont les dernières révisions.",
 	"apihelp-feedcontributions-param-newonly": "Afficher uniquement les modifications qui sont des créations de page.",
+	"apihelp-feedcontributions-param-hideminor": "Masquer les modifications mineures.",
 	"apihelp-feedcontributions-param-showsizediff": "Afficher la différence de taille entre les révisions.",
 	"apihelp-feedcontributions-example-simple": "Renvoyer les contributions de l'utilisateur <kbd>Exemple</kbd>.",
 	"apihelp-feedrecentchanges-description": "Renvoie un fil de modifications récentes.",
