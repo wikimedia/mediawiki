@@ -729,6 +729,10 @@ class SpecialBlock extends FormSpecialPage {
 			return $reason;
 		}
 
+		# This will be filled in with the 'current' block state if there
+		# is a conflicting block already in the database for this target.
+		$previousBlock = null;
+
 		# Try to insert block. Is there a conflicting block?
 		$status = $block->insert();
 		if ( !$status ) {
@@ -748,6 +752,10 @@ class SpecialBlock extends FormSpecialPage {
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
 				$currentBlock = Block::newFromTarget( $target );
+
+				# Make a copy of the currentBlock so we can pass the previous
+				# state to the BlockIPComplete hook later.
+				$previousBlock = clone $currentBlock;
 
 				if ( $block->equals( $currentBlock ) ) {
 					return [ [ 'ipb_already_blocked', $block->getTarget() ] ];
@@ -786,7 +794,7 @@ class SpecialBlock extends FormSpecialPage {
 			$logaction = 'block';
 		}
 
-		Hooks::run( 'BlockIpComplete', [ $block, $performer ] );
+		Hooks::run( 'BlockIpComplete', [ $block, $performer, $previousBlock ] );
 
 		# Set *_deleted fields if requested
 		if ( $data['HideUser'] ) {
