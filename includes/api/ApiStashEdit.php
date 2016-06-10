@@ -39,6 +39,8 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_PARSE = 'error_parse';
 	const ERROR_CACHE = 'error_cache';
 	const ERROR_UNCACHEABLE = 'uncacheable';
+	const ERROR_RATELIMITED = 'ratelimited';
+	const ERROR_BUSY = 'busy';
 
 	const PRESUME_FRESH_TTL_SEC = 30;
 	const MAX_CACHE_TTL = 300; // 5 minutes
@@ -119,13 +121,11 @@ class ApiStashEdit extends ApiBase {
 		// Get a key based on the source text, format, and user preferences
 		$key = self::getStashKey( $title, $content, $user );
 		// De-duplicate requests on the same key
-		if ( $user->pingLimiter( 'stashedit' ) ) {
-			$status = 'ratelimited';
-		} elseif ( $dbw->lock( $key, __METHOD__, 1 ) ) {
+		if ( $dbw->lock( $key, __METHOD__, 1 ) ) {
 			$status = self::parseAndStash( $page, $content, $user );
 			$dbw->unlock( $key, __METHOD__ );
 		} else {
-			$status = 'busy';
+			$status = self::ERROR_BUSY;
 		}
 
 		$this->getStats()->increment( "editstash.cache_stores.$status" );
@@ -141,7 +141,11 @@ class ApiStashEdit extends ApiBase {
 	 * @since 1.25
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user ) {
-		$cache = ObjectCache::getLocalClusterInstance();
+		if ( $user->pingLimiter( 'stashedit' ) ) {
+			return self::ERROR_RATELIMITED;
+		}
+
+		$cache = ObjectCache::getMainStashInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		$format = $content->getDefaultFormat();
@@ -202,7 +206,7 @@ class ApiStashEdit extends ApiBase {
 		Page $page, Content $content, Content $pstContent, ParserOutput $pOut,
 		ParserOptions $pstOpts, ParserOptions $pOpts, $timestamp
 	) {
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = ObjectCache::getMainStashInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		// getIsPreview() controls parser function behavior that references things
@@ -272,7 +276,7 @@ class ApiStashEdit extends ApiBase {
 			return false; // bots never stash - don't pollute stats
 		}
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = ObjectCache::getMainStashInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 		$stats = RequestContext::getMain()->getStats();
 
