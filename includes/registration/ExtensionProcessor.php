@@ -15,6 +15,8 @@ class ExtensionProcessor implements Processor {
 		'HiddenPrefs',
 		'GroupPermissions',
 		'RevokePermissions',
+		'GrantPermissions',
+		'GrantPermissionGroups',
 		'ImplicitGroups',
 		'GroupsAddToSelf',
 		'GroupsRemoveFromSelf',
@@ -61,6 +63,7 @@ class ExtensionProcessor implements Processor {
 	protected static $mergeStrategies = [
 		'wgGroupPermissions' => 'array_plus_2d',
 		'wgRevokePermissions' => 'array_plus_2d',
+		'wgGrantPermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
 		'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
