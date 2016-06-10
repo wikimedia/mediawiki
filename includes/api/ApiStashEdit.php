@@ -154,7 +154,7 @@ class ApiStashEdit extends ApiBase {
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit', [ $page, $content, $editInfo->output ] );
 
-			list( $stashInfo, $ttl ) = self::buildStashValue(
+			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
 				$editInfo->pstContent,
 				$editInfo->output,
 				$editInfo->timestamp,
@@ -171,7 +171,7 @@ class ApiStashEdit extends ApiBase {
 					return self::ERROR_CACHE;
 				}
 			} else {
-				$logger->info( "Uncacheable parser output for key '$key' ('$title')." );
+				$logger->info( "Uncacheable parser output for key '$key' ('$title') [$code]." );
 				return self::ERROR_UNCACHEABLE;
 			}
 		}
@@ -376,7 +376,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param ParserOutput $parserOutput
 	 * @param string $timestamp TS_MW
 	 * @param User $user
-	 * @return array (stash info array, TTL in seconds) or (null, 0)
+	 * @return array (stash info array, TTL in seconds, info code) or (null, 0, info code)
 	 */
 	private static function buildStashValue(
 		Content $pstContent, ParserOutput $parserOutput, $timestamp, User $user
@@ -385,19 +385,21 @@ class ApiStashEdit extends ApiBase {
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
 		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
-
-		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
-			// Only store what is actually needed
-			$stashInfo = (object)[
-				'pstContent' => $pstContent,
-				'output'     => $parserOutput,
-				'timestamp'  => $timestamp,
-				'edits'      => $user->getEditCount()
-			];
-			return [ $stashInfo, $ttl ];
+		if ( $ttl <= 0 ) {
+			return [ null, 0, 'no_ttl' ];
+		} elseif ( $parserOutput->getFlag( 'vary-revision' ) ) {
+			return [ null, 0, 'vary_revision' ];
 		}
 
-		return [ null, 0 ];
+		// Only store what is actually needed
+		$stashInfo = (object)[
+			'pstContent' => $pstContent,
+			'output'     => $parserOutput,
+			'timestamp'  => $timestamp,
+			'edits'      => $user->getEditCount()
+		];
+
+		return [ $stashInfo, $ttl, 'ok' ];
 	}
 
 	public function getAllowedParams() {
