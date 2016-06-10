@@ -244,11 +244,11 @@ class FindHooks extends Maintenance {
 				// Comma for second argument
 				'(?:\s*(,))?' .
 				// Second argument must start with array to be processed
-				'(?:\s*array\s*\(' .
+				'(?:\s*(?:array\s*\(|\[)' .
 				// Matching inside array - allows one deep of brackets
-				'((?:[^\(\)]|\([^\(\)]*\))*)' .
+				'((?:[^\(\)\[\]]|\((?-1)\)|\[(?-1)\])*)' .
 				// End
-				'\))?/',
+				'[\)\]])?/',
 			$content,
 			$m,
 			PREG_SET_ORDER
