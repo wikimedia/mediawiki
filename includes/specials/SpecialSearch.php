@@ -1216,7 +1216,7 @@ class SpecialSearch extends SpecialPage {
 		$opts = [];
 		$opts['profile'] = $this->profile;
 
-		if ( $this->isPowerSearch() ) {
+		if ( $term === '' || $this->isPowerSearch() ) {
 			$out .= $this->powerSearchBox( $term, $opts );
 		} else {
 			$form = '';
