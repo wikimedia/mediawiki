@@ -35,6 +35,9 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* (T2424) Added direct unwatch links to entries in Special:Watchlist. With
+  JavaScript enabled, these links toggle so the user can also re-watch pages
+  that have just been unwatched.
 
 === Languages updated in 1.30 ===
 
