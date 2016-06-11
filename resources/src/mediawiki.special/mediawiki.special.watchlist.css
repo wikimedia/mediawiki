@@ -1,0 +1,7 @@
+/*!
+ * Styling for Special:Watchlist
+ */
+.mw-changelist-line-inner-unwatched {
+    text-decoration: line-through;
+    opacity: 0.5;
+}

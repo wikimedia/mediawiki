@@ -323,6 +323,11 @@ class EnhancedChangesList extends ChangesList {
 			implode( $this->message['semicolon-separator'], $users )
 		)->escaped();
 
+		$prefix = '';
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $block[0], $this );
+		}
+
 		$templateParams = [
 			'articleLink' => $articleLink,
 			'charDifference' => $charDifference,
@@ -331,6 +336,7 @@ class EnhancedChangesList extends ChangesList {
 			'lines' => $lines,
 			'logText' => $logText,
 			'numberofWatchingusers' => $numberofWatchingusers,
+			'prefix' => $prefix,
 			'rev-deleted-event' => $revDeletedMsg,
 			'tableClasses' => $tableClasses,
 			'timestamp' => $block[0]->timestamp,
@@ -672,9 +678,17 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
+		$prefix = '';
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $rcObj, $this );
+		}
+
 		$line = Html::openElement( 'table', [ 'class' => $classes ] ) .
 			Html::openElement( 'tr' );
-		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
+		$line .= Html::rawElement( 'td', [], '<span class="mw-enhancedchanges-arrow-space"></span>' );
+		$line .= Html::rawElement( 'td', [ 'class' => 'mw-enhanced-prefix' ], $prefix . '&#160;' );
+		$line .= '<td class="mw-enhanced-rc">';
+
 
 		if ( isset( $data['recentChangesFlags'] ) ) {
 			$line .= $this->recentChangesFlags( $data['recentChangesFlags'] );
@@ -685,7 +699,7 @@ class EnhancedChangesList extends ChangesList {
 			$line .= '&#160;' . $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
-		$line .= '&#160;</td><td>';
+		$line .= '&#160;</td><td class="mw-changeslist-line-inner">';
 
 		// everything else: makes it easier for extensions to add or remove data
 		$line .= implode( '', $data );
