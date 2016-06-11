@@ -585,7 +585,12 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
-		$data = [];
+		$data = [ Linker::linkKnown( // TODO only show when on watchlist
+			$rcObj->getTitle(),
+			'&times;',
+			[ 'class' => 'mw-unwatch-link' ],
+			[ 'action' => 'unwatch' ]
+		) ];
 
 		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
