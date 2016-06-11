@@ -2193,6 +2193,8 @@
 	"watching": "Watching...",
 	"unwatching": "Unwatching...",
 	"watcherrortext": "An error occurred while changing your watchlist settings for \"$1\".",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Mark all pages visited",
 	"enotif_impersonal_salutation": "{{SITENAME}} user",
 	"enotif_subject_deleted": "{{SITENAME}} page $1 has been {{GENDER:$2|deleted}} by $2",
