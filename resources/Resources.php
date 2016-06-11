@@ -1985,6 +1985,10 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'dependencies' => 'mediawiki.api.watch',
+	],
+	'mediawiki.special.watchlist.autoReload' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.autoReload.js',
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
