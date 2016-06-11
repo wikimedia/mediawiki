@@ -144,6 +144,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "Mostrar solo las contribuciones borradas.",
 	"apihelp-feedcontributions-param-toponly": "Mostrar solo ediciones que son últimas revisiones.",
 	"apihelp-feedcontributions-param-newonly": "Mostrar solo ediciones que son creaciones de páginas.",
+	"apihelp-feedcontributions-param-hideminor": "Ocultar ediciones menores.",
 	"apihelp-feedcontributions-param-showsizediff": "Mostrar la diferencia de tamaño entre revisiones.",
 	"apihelp-feedcontributions-example-simple": "Devolver las contribuciones del usuario <kbd>Example</kbd>.",
 	"apihelp-feedrecentchanges-description": "Devuelve un canal de cambios recientes.",

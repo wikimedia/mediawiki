@@ -3611,7 +3611,7 @@
 	"api-error-nomodule": "Error interno: No hay un módulo de carga configurado.",
 	"api-error-ok-but-empty": "Error interno: No hay respuesta del servidor.",
 	"api-error-overwrite": "No se permite sobrescribir un archivo existente.",
-	"api-error-ratelimited": "Estás tratando de subir más archivos en un corto periodo de tiempo de los que este wiki permite.\nPor favor, inténtalo de nuevo dentro de algunos minutos.",
+	"api-error-ratelimited": "Estás tratando de subir, en un corto periodo de tiempo, más archivos de los que este wiki permite.\nPor favor, inténtalo de nuevo dentro de algunos minutos.",
 	"api-error-stashfailed": "Error interno: El servidor no pudo almacenar el archivo temporal.",
 	"api-error-publishfailed": "Error interno: el servidor no pudo publicar el archivo temporal.",
 	"api-error-stasherror": "Ha ocurrido un error al subir el archivo al depósito.",

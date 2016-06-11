@@ -2231,6 +2231,7 @@
 	"sp-contributions-username": "IP-адреса або ім'я користувача:",
 	"sp-contributions-toponly": "Показувати тільки редагування, що є останніми версіями",
 	"sp-contributions-newonly": "Показувати тільки редагування, які є створеннями сторінок",
+	"sp-contributions-hideminor": "Приховати малі правки",
 	"sp-contributions-submit": "Пошук",
 	"whatlinkshere": "Посилання сюди",
 	"whatlinkshere-title": "Сторінки, що посилаються на «$1»",
@@ -3914,11 +3915,11 @@
 	"cannotauth-not-allowed-title": "Доступ заборонено",
 	"cannotauth-not-allowed": "Вам не дозволено використовувати цю сторінку",
 	"changecredentials": "Зміна облікових даних",
-	"changecredentials-submit": "Змінити",
+	"changecredentials-submit": "Змінити облікові дані",
 	"changecredentials-invalidsubpage": "«$1» не є коректним типом облікових даних.",
 	"changecredentials-success": "Ваші облікові дані змінено.",
 	"removecredentials": "Вилучити облікові дані",
-	"removecredentials-submit": "Вилучити",
+	"removecredentials-submit": "Вилучити облікові дані",
 	"removecredentials-invalidsubpage": "$1 не є коректним типом облікових даних.",
 	"removecredentials-success": "Ваші облікові дані вилучено.",
 	"credentialsform-provider": "Тип облікових даних:",
@@ -3929,5 +3930,6 @@
 	"linkaccounts-success-text": "Обліковий запис було пов'язано.",
 	"linkaccounts-submit": "Пов'язати облікові записи",
 	"unlinkaccounts": "Відв'язати облікові записи",
-	"unlinkaccounts-success": "Обліковий запис було відв'язано."
+	"unlinkaccounts-success": "Обліковий запис було відв'язано.",
+	"authenticationdatachange-ignored": "Неопрацьована зміна облікових даних. Можливо, жоден з провайдерів не був налаштований?"
 }

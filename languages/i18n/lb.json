@@ -2040,6 +2040,7 @@
 	"sp-contributions-username": "IP-Adress oder Benotzernumm:",
 	"sp-contributions-toponly": "Nëmmen Ännerunge weisen déi déi lescht Versioun sinn",
 	"sp-contributions-newonly": "Nëmmen Ännerunge weisen déi Säiten uleeën",
+	"sp-contributions-hideminor": "Kleng Ännerunge verstoppen",
 	"sp-contributions-submit": "Sichen",
 	"whatlinkshere": "Linken op dës Säit",
 	"whatlinkshere-title": "Säiten, déi mat \"$1\" verlinkt sinn",

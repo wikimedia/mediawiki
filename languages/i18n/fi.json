@@ -1098,7 +1098,7 @@
 	"prefs-tabs-navigation-hint": "Vihje: Voit käyttää vasenta ja oikeata nuolinäppäintä liikkumiseen välilehtien välillä.",
 	"userrights": "Käyttöoikeuksien hallinta",
 	"userrights-lookup-user": "Hallinnoi käyttäjän ryhmiä",
-	"userrights-user-editname": "Käyttäjätunnus",
+	"userrights-user-editname": "Käyttäjätunnus:",
 	"editusergroup": "Muokkaa {{GENDER:$1|käyttäjän}} ryhmiä",
 	"editinguser": "Muutetaan {{GENDER:$1|käyttäjän}} <strong>[[User:$1|$1]]</strong> $2 oikeuksia",
 	"userrights-editusergroup": "Muuta käyttäjän ryhmiä",

@@ -8,7 +8,8 @@
 			"Inkbug",
 			"Yona b",
 			"Rotemliss",
-			"Macofe"
+			"Macofe",
+			"Guycn2"
 		]
 	},
 	"config-desc": "תכנית ההתקנה של מדיה־ויקי",
@@ -55,7 +56,7 @@
 	"config-env-php": "מותקנת <span dir=\"ltr\">PHP $1</span>.",
 	"config-env-hhvm": "מותקנת <span dir=\"ltr\">HHVM $1</span>.",
 	"config-unicode-using-intl": "משתמש ב[http://pecl.php.net/intl הרחבת intl PECL] לנרמול יוניקוד.",
-	"config-unicode-pure-php-warning": "'''אזהרה''': [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.\nאם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
+	"config-unicode-pure-php-warning": "<strong>אזהרה:</strong> [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.\nאם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
 	"config-unicode-update-warning": "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].\nכדאי [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations לעדכן] אם הטיפול ביוניקוד חשוב לך.",
 	"config-no-db": "לא נמצא דרייבר מסד נתונים מתאים. יש להתקין דרייבר מסד נתונים ל־PHP.\n{{PLURAL:$2|נתמך הסוג הבא של מסד נתונים|נתמכים הסוגים הבאים של מסדי נתונים}}: $1.\n\nאם קִמפלת את PHP בעצמך, יש להגדיר אותו מחדש ולהפעיל את לקוח מסד נתונים, למשל באמצעות <code dir=\"ltr\">./configure --with-mysqli</code>.\nאם התקנת את PHP מחבילה של דביאן או של אובונטו, יש להתקין, למשל, גם את המודול <code dir=\"ltr\">php5-mysql</code>.",
 	"config-outdated-sqlite": "'''אזהרה''': במערכת מתוקן SQLite $1. גרסה זו לא נתמכת ולשימוש ב־SQLite נדרשת גרסה $2 לפחות. SQLlite לא יהיה זמין.",
@@ -242,7 +243,7 @@
 	"config-email-sender-help": "הכניסו את כתובת הדוא״ל שתשמש ככתובת לתשובה לכל הדואר היוצא.\nלשם יישלחו תגובות שגיאה (bounce).\nשרתי דוא״ל רבים דורשים שלפחות החלק של המתחם יהיה תקין.",
 	"config-upload-settings": "העלאת קבצים ותמונות",
 	"config-upload-enable": "להפעיל העלאת קבצים",
-	"config-upload-help": "העלאות קבצים חושפות את השרת שלכם לסיכוני אבטחה.\nלמידע נוסף, קִראו את [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security חלק האבטחה] בספר ההדרכה.\n\nכדי להפעיל העלאת קבצים שנו את ההרשאות של התיקייה <code>images</code> תחת תיקיית השורש של מדיה־ויקי כך ששרת הווב יוכל לכתוב אליה.\nזה מפעיל את האפשרות הזאת.",
+	"config-upload-help": "העלאת קבצים חושפת את השרת שלך לסיכוני אבטחה.\nלמידע נוסף, אפשר לקרוא את [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security המדריך הזה].\n\nכדי לאפשר העלאות של קבצים, יש לשנות את ההרשאות של התיקייה <code>images</code> תחת תיקיית השורש של מדיה־ויקי כדי ששרת ה־web יוכל לכתוב אליה.\nלאחר מכן יש להפעיל את האפשרות הזאת.",
 	"config-upload-deleted": "תיקיית לקבצים שנמחקו:",
 	"config-upload-deleted-help": "בחרו את התיקייה לארכוב קבצים מחוקים.\nכדאי שזה לא יהיה נגיש לכל העולם דרך הרשת.",
 	"config-logo": "כתובת הסמל:",
