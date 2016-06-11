@@ -1988,6 +1988,16 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'messages' => [
+			'addedwatchtext',
+			'removedwatchtext',
+			'watchlist-unwatch-undo',
+		],
+		'dependencies' => [
+			'mediawiki.api.watch',
+			'mediawiki.jqueryMsg',
+			'user.options',
+		],
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',

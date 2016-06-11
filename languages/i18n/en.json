@@ -2055,6 +2055,7 @@
 	"mywatchlist": "Watchlist",
 	"watchlistfor2": "For $1 $2",
 	"nowatchlist": "You have no items on your watchlist.",
+	"watchlist-unwatch-undo": "[[:$1|Undo?]]",
 	"watchlistanontext": "Please log in to view or edit items on your watchlist.",
 	"watchnologin": "Not logged in",
 	"addwatch": "Add to watchlist",
