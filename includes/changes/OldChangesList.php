@@ -134,6 +134,12 @@ class OldChangesList extends ChangesList {
 			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
+		$html = Html::rawElement( 'span', [ 'class' => 'mw-changeslist-line-inner' ], $html );
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $rc, $this );
+			$html = $prefix . $html;
+		}
+
 		return $html;
 	}
 }
