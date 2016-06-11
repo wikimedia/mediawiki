@@ -56,6 +56,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'mediawiki.special.changeslist.visitedstatus',
 			'mediawiki.special.watchlist',
 		] );
+		$output->addModuleStyles( [ 'mediawiki.special.watchlist.styles' ] );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
@@ -425,6 +426,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
+		$list->setChangeLinePrefixer( function ( RecentChange $rc, ChangesList $cl, $grouped ) {
+			// Don't show unwatch link if the line is a grouped log entry using EnhancedChangesList,
+			// since EnhancedChangesList groups log entries by performer rather than by target article
+			if ( $rc->mAttribs['rc_type'] == RC_LOG && $cl instanceof EnhancedChangesList && $grouped ) {
+				return '';
+			} else {
+				return $this->getLinkRenderer()->makeKnownLink(
+					$rc->getTitle(),
+					$this->msg( 'watchlist-unwatch' )->text(),
+					[ 'class' => 'mw-unwatch-link', 'title' => $this->msg( 'tooltip-ca-unwatch' )->text() ],
+					[ 'action' => 'unwatch' ]
+				) . '&#160;';
+			}
+		} );
 		$dbr->dataSeek( $rows, 0 );
 
 		if ( $this->getConfig()->get( 'RCShowWatchingUsers' )

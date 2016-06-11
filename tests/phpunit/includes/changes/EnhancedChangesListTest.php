@@ -74,6 +74,47 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '', $html );
 	}
 
+	public function testRecentChangesPrefix() {
+		$mockContext = $this->getMockBuilder( RequestContext::class )
+			->setMethods( [ 'getTitle' ] )
+			->getMock();
+		$mockContext->method( 'getTitle' )
+			->will( $this->returnValue( Title::newFromText( 'Expected Context Title' ) ) );
+
+		// One group of two lines
+		$enhancedChangesList = $this->newEnhancedChangesList();
+		$enhancedChangesList->setContext( $mockContext );
+		$enhancedChangesList->setChangeLinePrefixer( function ( $rc, $changesList ) {
+			// Make sure RecentChange and ChangesList objects are the same
+			$this->assertEquals( 'Expected Context Title', $changesList->getContext()->getTitle() );
+			$this->assertTrue( $rc->getTitle() == 'Cat' || $rc->getTitle() == 'Dog' );
+			return 'Hello world prefix';
+		} );
+		$enhancedChangesList->beginRecentChangesList();
+
+		$recentChange = $this->getEditChange( '20131103092153' );
+		$enhancedChangesList->recentChangesLine( $recentChange );
+		$recentChange = $this->getEditChange( '20131103092154' );
+		$enhancedChangesList->recentChangesLine( $recentChange );
+
+		$html = $enhancedChangesList->endRecentChangesList();
+
+		$this->assertRegExp( '/Hello world prefix/', $html );
+
+		// Two separate lines
+		$enhancedChangesList->beginRecentChangesList();
+
+		$recentChange = $this->getEditChange( '20131103092153' );
+		$enhancedChangesList->recentChangesLine( $recentChange );
+		$recentChange = $this->getEditChange( '20131103092154', 'Dog' );
+		$enhancedChangesList->recentChangesLine( $recentChange );
+
+		$html = $enhancedChangesList->endRecentChangesList();
+
+		preg_match_all( '/Hello world prefix/', $html, $matches );
+		$this->assertCount( 2, $matches[0] );
+	}
+
 	public function testCategorizationLineFormatting() {
 		$html = $this->createCategorizationLine(
 			$this->getCategorizationChange( '20150629191735', 0, 0 )
@@ -105,6 +146,9 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 
 		preg_match_all( '/td class="mw-enhanced-rc-nested"/', $html, $matches );
 		$this->assertCount( 2, $matches[0] );
+
+		preg_match_all( '/data-target-page="Cat"/', $html, $matches );
+		$this->assertCount( 2, $matches[0] );
 	}
 
 	/**
@@ -120,10 +164,10 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	/**
 	 * @return RecentChange
 	 */
-	private function getEditChange( $timestamp ) {
+	private function getEditChange( $timestamp, $pageTitle = 'Cat' ) {
 		$user = $this->getMutableTestUser()->getUser();
 		$recentChange = $this->testRecentChangesHelper->makeEditRecentChange(
-			$user, 'Cat', $timestamp, 5, 191, 190, 0, 0
+			$user, $pageTitle, $timestamp, 5, 191, 190, 0, 0
 		);
 
 		return $recentChange;
