@@ -2132,11 +2132,27 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'messages' => [
+			'addedwatchtext',
+			'addedwatchtext-talk',
+			'removedwatchtext',
+			'removedwatchtext-talk',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
+			'watchlist-unwatch',
+			'watchlist-unwatch-undo',
+		],
 		'dependencies' => [
-			'mediawiki.api',
+			'mediawiki.api.watch',
+			'mediawiki.jqueryMsg',
+			'mediawiki.Title',
+			'mediawiki.util',
 			'oojs-ui-core',
 			'user.options',
-		]
+		],
+	],
+	'mediawiki.special.watchlist.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.css',
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
