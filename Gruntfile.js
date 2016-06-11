@@ -26,6 +26,9 @@ module.exports = function ( grunt ) {
 			all: '.'
 		},
 		jsonlint: {
+			options: {
+				reporter: 'jshint'
+			},
 			all: [
 				'.jscsrc',
 				'**/*.json',
