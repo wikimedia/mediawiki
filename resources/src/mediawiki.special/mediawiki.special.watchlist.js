@@ -3,7 +3,9 @@
  */
 ( function ( mw, $, OO ) {
 	$( function () {
-		var $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		var api = new mw.Api(),
+			$progressBar,
+			$resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
@@ -28,7 +30,7 @@
 
 			// Use action=setnotificationtimestamp to mark all as visited,
 			// then set all watchlist lines accordingly
-			new mw.Api().postWithToken( 'csrf', {
+			api.postWithToken( 'csrf', {
 				formatversion: 2,
 				action: 'setnotificationtimestamp',
 				entirewatchlist: true
@@ -56,6 +58,64 @@
 				$( '#mw-watchlist-form' ).submit();
 			} );
 		}
+
+		// add a listener on all form elements in the header form
+		$( '.mw-unwatch-link' ).click( function ( event ) {
+			var $unwatchLink = $( this ),
+				// EnhancedChangesList uses <tbody> for each row, while
+				// OldChangesList uses <li> for each row
+				$watchlistLine = $unwatchLink.closest( 'li, tbody' ),
+				$title = $watchlistLine.find( '.mw-title' ),
+				pageTitle = $title.text(),
+				watched = $watchlistLine.data( 'watched' );
+
+			if ( watched === undefined ) {
+				watched = true;
+			}
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			if ( watched ) {
+				api.unwatch( pageTitle )
+					.done( function () {
+						// hide all watchlist entries with matching title and show undo link
+						$( '.mw-title' ).each( function ( index, titleEl ) {
+							var $row, $titleEl = $( titleEl ), $unwatch;
+							if ( $titleEl.text() === pageTitle ) {
+								$row = $titleEl.closest( 'li, tbody' );
+								$unwatch = $row.find( '.mw-unwatch-link' );
+
+								$unwatch.text( '+' );
+								$row.data( 'watched', false );
+								$row.find( '.mw-changeslist-line-inner, .mw-enhanced-rc-nested' )
+									.addClass( 'mw-changelist-line-inner-unwatched' );
+							}
+						} );
+
+						mw.notify( mw.message( 'removedwatchtext', pageTitle ), { tag: 'watch-self' } );
+					} );
+			} else {
+				api.watch( pageTitle )
+					.done( function () {
+						// hide all watchlist entries with matching title and show undo link
+						$( '.mw-title' ).each( function ( index, titleEl ) {
+							var $row, $titleEl = $( titleEl ), $unwatch;
+							if ( $titleEl.text() === pageTitle ) {
+								$row = $titleEl.closest( 'li, tbody' );
+								$unwatch = $row.find( '.mw-unwatch-link' );
+
+								$unwatch.text( '×' );
+								$row.data( 'watched', true );
+								$row.find( '.mw-changelist-line-inner-unwatched' )
+									.removeClass( 'mw-changelist-line-inner-unwatched' );
+							}
+						} );
+
+						mw.notify( mw.message( 'addedwatchtext', pageTitle ), { tag: 'watch-self' } );
+					} );
+			}
+		} );
 	} );
 
 }( mediaWiki, jQuery, OO ) );

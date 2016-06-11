@@ -38,6 +38,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var callable */
+	protected $changeLinePrefixer;
+
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
@@ -700,6 +703,10 @@ class ChangesList extends ContextSource {
 	protected function isCategorizationWithoutRevision( $rcObj ) {
 		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+	}
+
+	public function setChangeLinePrefixer( $prefixer ) {
+		$this->changeLinePrefixer = $prefixer;
 	}
 
 }
