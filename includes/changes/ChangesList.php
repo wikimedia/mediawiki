@@ -38,6 +38,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var callable */
+	protected $changeLinePrefixer;
+
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
@@ -156,13 +159,15 @@ class ChangesList extends ContextSource {
 	 * @return array of classes
 	 */
 	protected function getHTMLClasses( $rc, $watched ) {
-		$classes = [];
 		$logType = $rc->mAttribs['rc_log_type'];
 		$prefix = 'mw-changeslist-';
+		$classes = [ $prefix . 'line' ];
 
 		if ( $logType ) {
+			$classes[] = $prefix . 'log';
 			$classes[] = Sanitizer::escapeClass( $prefix . 'log-' . $logType );
 		} else {
+			$classes[] = $prefix . 'edit';
 			$classes[] = Sanitizer::escapeClass( $prefix . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
@@ -726,6 +731,17 @@ class ChangesList extends ContextSource {
 	protected function isCategorizationWithoutRevision( $rcObj ) {
 		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+	}
+
+	/**
+	 * Sets the callable that generates a change line prefix added to the beginning of each line.
+	 *
+	 * @param callable $prefixer Callable to run that generates the change line prefix.
+	 *     Takes three parameters: a RecentChange object, a ChangesList object,
+	 *     and whether the current entry is a grouped entry.
+	 */
+	public function setChangeLinePrefixer( callable $prefixer ) {
+		$this->changeLinePrefixer = $prefixer;
 	}
 
 }
