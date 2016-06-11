@@ -3,7 +3,9 @@
  */
 ( function ( mw, $, OO ) {
 	$( function () {
-		var $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		var api = new mw.Api(),
+			$progressBar,
+			$resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
@@ -28,7 +30,7 @@
 
 			// Use action=setnotificationtimestamp to mark all as visited,
 			// then set all watchlist lines accordingly
-			new mw.Api().postWithToken( 'csrf', {
+			api.postWithToken( 'csrf', {
 				formatversion: 2,
 				action: 'setnotificationtimestamp',
 				entirewatchlist: true
@@ -56,6 +58,85 @@
 				$( '#mw-watchlist-form' ).submit();
 			} );
 		}
+
+		// Utility function for looping through each watchlist line that matches
+		// a certain page or its associated page (e.g. Talk)
+		function forEachMatchingTitle( title, callback ) {
+			var titleObj = mw.Title.newFromText( title ),
+				pageNamespaceId = titleObj.getNamespaceId(),
+				isTalk = pageNamespaceId % 2 === 1,
+				associatedTitle = new mw.Title( titleObj.getMainText(),
+					isTalk ? pageNamespaceId - 1 : pageNamespaceId + 1 ).getPrefixedText();
+
+			$( '.mw-title' ).each( function ( index, titleEl ) {
+				var $row, $titleEl = $( titleEl ), $unwatchLink;
+
+				if ( $titleEl.text() === title || $titleEl.text() === associatedTitle ) {
+
+					$row = $titleEl.closest( 'li, tbody' );
+					$unwatchLink = $row.find( '.mw-unwatch-link, .mw-watch-link' );
+
+					callback( $titleEl.text(), $row, $unwatchLink );
+				}
+			} );
+		}
+
+		// Watch/unwatch toggle link:
+		// If a page is on the watchlist, a '×' is shown which, when clicked, removes the page from the watchlist.
+		// After unwatching a page, the '×' becomes a '+', which if clicked re-watches the page.
+		// Unwatched page entries are struck through and have lowered opacity.
+		$( '.mw-unwatch-link, .mw-watch-link' ).click( function ( event ) {
+			var $unwatchLink = $( this ),
+				// EnhancedChangesList uses <tbody> for each row, while
+				// OldChangesList uses <li> for each row
+				$watchlistLine = $unwatchLink.closest( 'li, tbody' ),
+				pageTitle = $watchlistLine.find( '.mw-title' ).text(),
+				isTalk = mw.Title.newFromText( pageTitle ).getNamespaceId() % 2 === 1;
+
+			event.preventDefault();
+			event.stopPropagation();
+
+
+
+			// Depending on whether we are watching or unwatching, for each entry of the page (and its associated page i.e. Talk),
+			// change the text, tooltip, and non-JS href of the (un)watch button,
+			// and update the styling of the watchlist entry.
+			if ( $unwatchLink.hasClass( 'mw-unwatch-link' ) ) {
+				api.unwatch( pageTitle )
+					.done( function () {
+						forEachMatchingTitle( pageTitle, function ( rowPageTitle, $row, $rowUnwatchLink ) {
+							$rowUnwatchLink
+								.text( '+' )
+								.attr( 'title', mw.msg( 'tooltip-ca-watch' ) )
+								.attr( 'href', mw.util.getUrl( rowPageTitle, { action: 'watch' } ) )
+								.removeClass( 'mw-unwatch-link' )
+								.addClass( 'mw-watch-link' );
+							$row.find( '.mw-changeslist-line-inner, .mw-enhanced-rc-nested' )
+								.addClass( 'mw-changelist-line-inner-unwatched' );
+						} );
+
+						mw.notify( mw.message( 'removedwatchtext' + ( isTalk ? '-talk' : '' ),
+							pageTitle ), { tag: 'watch-self' } );
+					} );
+			} else {
+				api.watch( pageTitle )
+					.done( function () {
+						forEachMatchingTitle( pageTitle, function ( rowPageTitle, $row, $rowUnwatchLink ) {
+							$rowUnwatchLink
+								.text( '×' )
+								.attr( 'title', mw.msg( 'tooltip-ca-unwatch' ) )
+								.attr( 'href', mw.util.getUrl( rowPageTitle, { action: 'unwatch' } ) )
+								.removeClass( 'mw-watch-link' )
+								.addClass( 'mw-unwatch-link' );
+							$row.find( '.mw-changelist-line-inner-unwatched' )
+								.removeClass( 'mw-changelist-line-inner-unwatched' );
+						} );
+
+						mw.notify( mw.message( 'addedwatchtext' + ( isTalk ? '-talk' : '' ),
+							pageTitle ), { tag: 'watch-self' } );
+					} );
+			}
+		} );
 	} );
 
 }( mediaWiki, jQuery, OO ) );

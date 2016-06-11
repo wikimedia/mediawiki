@@ -363,6 +363,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
+		$list->setChangeLinePrefixer( function ( $rc ) {
+			return $this->getLinkRenderer()->makeKnownLink(
+				$rc->getTitle(),
+				'×',
+				[ 'class' => 'mw-unwatch-link', 'title' => $this->msg( 'tooltip-ca-unwatch' )->text() ],
+				[ 'action' => 'unwatch' ]
+			) . ' ';
+		} );
 		$dbr->dataSeek( $rows, 0 );
 
 		if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
