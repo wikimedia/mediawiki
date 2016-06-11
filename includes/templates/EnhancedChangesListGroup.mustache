@@ -3,8 +3,9 @@
 		<td>
 			<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>
 		</td>
+		<td class="mw-changeslist-line-prefix">{{{ prefix }}}</td>
 		<td class="mw-enhanced-rc">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
-		<td>
+		<td class="mw-changeslist-line-inner">
 			{{# rev-deleted-event }}<span class="history-deleted">{{{ . }}}</span>{{/ rev-deleted-event }}
 			{{{ articleLink }}}{{{ languageDirMark }}}{{{ logText }}}
 			<span class="mw-changeslist-separator">. .</span>
@@ -16,8 +17,9 @@
 	{{# lines }}
 	<tr class="{{# classes }}{{ . }} {{/ classes }}">
 		<td></td>
+		<td></td>
 		<td class="mw-enhanced-rc">{{{ recentChangesFlags }}}&#160;</td>
-		<td class="mw-enhanced-rc-nested">
+		<td class="mw-enhanced-rc-nested" data-target-page="{{ targetTitle }}">
 			{{# timestampLink }}
 			<span class="mw-enhanced-rc-time">{{{ . }}}</span>
 			{{/ timestampLink }}
