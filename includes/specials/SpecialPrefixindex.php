@@ -98,56 +98,39 @@ class SpecialPrefixindex extends SpecialAllPages {
 	 * @return string
 	 */
 	protected function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
-		$out = Xml::openElement( 'div', [ 'class' => 'namespaceoptions' ] );
-		$out .= Xml::openElement(
-			'form',
-			[ 'method' => 'get', 'action' => $this->getConfig()->get( 'Script' ) ]
-		);
-		$out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
-		$out .= Xml::openElement( 'table', [ 'id' => 'nsselect', 'class' => 'allpages' ] );
-		$out .= "<tr>
-				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
-			"</td>
-				<td class='mw-input'>" .
-			Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), [ 'id' => 'nsfrom' ] ) .
-			"</td>
-			</tr>
-			<tr>
-			<td class='mw-label'>" .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-			"</td>
-				<td class='mw-input'>" .
-			Html::namespaceSelector( [
-				'selected' => $namespace,
-			], [
+		$fields = [
+			'prefix' => [
+				'label-message' =>  'allpagesprefix'  ,
+				'type' => 'text',
+				'size' => '30' ,
+			],
+			'namespace' => [
+				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			] ) .
-			Xml::checkLabel(
-				$this->msg( 'allpages-hide-redirects' )->text(),
-				'hideredirects',
-				'hideredirects',
-				$this->hideRedirects
-			) . ' ' .
-			Xml::checkLabel(
-				$this->msg( 'prefixindex-strip' )->text(),
-				'stripprefix',
-				'stripprefix',
-				$this->stripPrefix
-			) . ' ' .
-			Xml::submitButton( $this->msg( 'prefixindex-submit' )->text() ) .
-			"</td>
-			</tr>";
-		$out .= Xml::closeElement( 'table' );
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
-		$out .= Xml::closeElement( 'div' );
+				'label-message' => 'namespace',
+				'all' => null,
+				'value' => $namespace,
+			],
+			'hidedirects' => [
+				'class' => 'HTMLCheckField',
+				'label-message' =>  'allpages-hide-redirects' ,
+			],
+			'stripprefix' => [
+				'class' => 'HTMLCheckField',
+				'label-message' => 'prefixindex-strip',
+			],
 
-		return $out;
+
+		];
+		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
+		$form->setMethod( 'get' )
+			->setWrapperLegendMsg( 'allpages' )
+			->setSubmitTextMsg( 'prefixindex-submit' )
+			->prepareForm()
+			->displayForm( false);
+
+
 	}
 
 	/**
