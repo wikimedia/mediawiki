@@ -2406,6 +2406,8 @@
 	"watching": "Text displayed when clicked on the watch tab: {{msg-mw|Watch}}. It means the wiki is adding that page to your watchlist.",
 	"unwatching": "Text displayed when clicked on the unwatch tab: {{msg-mw|Unwatch}}. It means the wiki is removing that page from your watchlist.",
 	"watcherrortext": "When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed.\n\nThis message is used raw and should not contain wikitext.\n\nParameters:\n* $1 - ...\nSee also:\n* {{msg-mw|Addedwatchtext}}",
+	"watchlist-unwatch": "Symbol used for the link to unwatch a page from the watchlist.",
+	"watchlist-unwatch-undo": "Symbol used for the link to re-watch a page that has been unwatched from the watchlist.",
 	"enotif_reset": "Used in [[Special:Watchlist]].\n\nThis should be translated as \"Mark all pages '''as''' visited\".\n\nSee also:\n* {{msg-mw|Watchlist-options|fieldset}}\n* {{msg-mw|Watchlist-details|watchlist header}}\n* {{msg-mw|Wlheader-enotif|watchlist header}}",
 	"enotif_impersonal_salutation": "Used for impersonal e-mail notifications, suitable for bulk mailing.",
 	"enotif_subject_deleted": "Email notification subject for deleted pages. Parameters:\n* $1 - page title\n* $2 - username who has deleted the page, can be used for GENDER",
