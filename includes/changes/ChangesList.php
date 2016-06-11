@@ -38,6 +38,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var callable */
+	protected $changeLinePrefixer;
+
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
@@ -700,6 +703,16 @@ class ChangesList extends ContextSource {
 	protected function isCategorizationWithoutRevision( $rcObj ) {
 		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+	}
+
+	/**
+	 * Sets the callable that generates a change line prefix added to the beginning of each line.
+	 *
+	 * @param $prefixer Callable to run that generates the change line prefix.
+	 *     Takes two parameters: a RecentChange object and a ChangesList object.
+	 */
+	public function setChangeLinePrefixer( $prefixer ) {
+		$this->changeLinePrefixer = $prefixer;
 	}
 
 }
