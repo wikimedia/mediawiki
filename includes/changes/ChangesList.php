@@ -38,6 +38,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var callable */
+	protected $changeLinePrefixer;
+
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
@@ -156,12 +159,14 @@ class ChangesList extends ContextSource {
 	 * @return array of classes
 	 */
 	protected function getHTMLClasses( $rc, $watched ) {
-		$classes = [];
+		$classes = [ 'mw-changeslist-line' ];
 		$logType = $rc->mAttribs['rc_log_type'];
 
 		if ( $logType ) {
+			$classes[] = 'mw-changeslist-log';
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
 		} else {
+			$classes[] = 'mw-changeslist-edit';
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
@@ -350,7 +355,7 @@ class ChangesList extends ContextSource {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->setContext( $this->getContext() )->text();
 		$s .= $this->msg( 'parentheses' )->rawParams(
-			$this->linkRenderer->makeKnownLink( $title, $logname )
+			$this->linkRenderer->makeKnownLink( $title, $logname, [ 'class' => 'mw-log-page' ] )
 		)->escaped();
 	}
 
@@ -700,6 +705,17 @@ class ChangesList extends ContextSource {
 	protected function isCategorizationWithoutRevision( $rcObj ) {
 		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+	}
+
+	/**
+	 * Sets the callable that generates a change line prefix added to the beginning of each line.
+	 *
+	 * @param callable $prefixer Callable to run that generates the change line prefix.
+	 *     Takes three parameters: a RecentChange object, a ChangesList object,
+	 *     and whether the current entry is a grouped entry.
+	 */
+	public function setChangeLinePrefixer( callable $prefixer ) {
+		$this->changeLinePrefixer = $prefixer;
 	}
 
 }

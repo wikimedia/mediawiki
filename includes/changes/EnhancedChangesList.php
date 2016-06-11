@@ -164,12 +164,14 @@ class EnhancedChangesList extends ChangesList {
 		$recentChangesFlags = $this->getConfig()->get( 'RecentChangesFlags' );
 
 		# Add the namespace and title of the block as part of the class
-		$tableClasses = [ 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' ];
+		$tableClasses = [ 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc', 'mw-changeslist-line' ];
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
+			$tableClasses[] = 'mw-changeslist-log';
 			$tableClasses[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
 				. $block[0]->mAttribs['rc_log_type'] );
 		} else {
+			$tableClasses[] = 'mw-changeslist-edit';
 			$tableClasses[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
 				. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
@@ -323,6 +325,11 @@ class EnhancedChangesList extends ChangesList {
 			implode( $this->message['semicolon-separator'], $users )
 		)->escaped();
 
+		$prefix = '';
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $block[0], $this, true );
+		}
+
 		$templateParams = [
 			'articleLink' => $articleLink,
 			'charDifference' => $charDifference,
@@ -331,6 +338,7 @@ class EnhancedChangesList extends ChangesList {
 			'lines' => $lines,
 			'logText' => $logText,
 			'numberofWatchingusers' => $numberofWatchingusers,
+			'prefix' => $prefix,
 			'rev-deleted-event' => $revDeletedMsg,
 			'tableClasses' => $tableClasses,
 			'timestamp' => $block[0]->timestamp,
@@ -361,7 +369,7 @@ class EnhancedChangesList extends ChangesList {
 		$classes = [ 'mw-enhanced-rc' ];
 		$type = $rcObj->mAttribs['rc_type'];
 		$data = [];
-		$lineParams = [];
+		$lineParams = [ 'targetTitle' => $rcObj->getTitle() ];
 
 		if ( $rcObj->watched
 			&& $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
@@ -598,8 +606,10 @@ class EnhancedChangesList extends ChangesList {
 
 		if ( $logType ) {
 			# Log entry
+			$classes[] = 'mw-changeslist-log';
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
 		} else {
+			$classes[] = 'mw-changeslist-edit';
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 				$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
@@ -622,7 +632,7 @@ class EnhancedChangesList extends ChangesList {
 			$logName = $logPage->getName()->text();
 			$data['logLink'] = $this->msg( 'parentheses' )
 				->rawParams(
-					$this->linkRenderer->makeKnownLink( $logTitle, $logName )
+					$this->linkRenderer->makeKnownLink( $logTitle, $logName, [ 'class' => 'mw-log-page' ] )
 				)->escaped();
 		} else {
 			$data['articleLink'] = $this->getArticleLink( $rcObj, $rcObj->unpatrolled, $rcObj->watched );
@@ -672,9 +682,16 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
+		$prefix = '';
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $rcObj, $this, false );
+		}
+
 		$line = Html::openElement( 'table', [ 'class' => $classes ] ) .
 			Html::openElement( 'tr' );
-		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
+		$line .= Html::rawElement( 'td', [], '<span class="mw-enhancedchanges-arrow-space"></span>' );
+		$line .= Html::rawElement( 'td', [ 'class' => 'mw-changeslist-line-prefix' ], $prefix );
+		$line .= '<td class="mw-enhanced-rc">';
 
 		if ( isset( $data['recentChangesFlags'] ) ) {
 			$line .= $this->recentChangesFlags( $data['recentChangesFlags'] );
@@ -685,7 +702,8 @@ class EnhancedChangesList extends ChangesList {
 			$line .= '&#160;' . $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
-		$line .= '&#160;</td><td>';
+		$line .= '&#160;</td><td class="mw-changeslist-line-inner" data-target-page="' .
+			$rcObj->getTitle() . '">'; // Used for reliable determination of the affiliated page
 
 		// everything else: makes it easier for extensions to add or remove data
 		$line .= implode( '', $data );
