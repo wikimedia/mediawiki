@@ -141,6 +141,10 @@ The following PHP extensions are strongly recommended:
    those via the web UI. Use UserLoggedIn if you need to do something on all
    logins.
 ** $wgRequirePasswordforEmailChange is removed.
+* (T137642) If $wgCategoryCollation is set to a value other than "uppercase"
+  or "identity", and your site ran a PHP version older than 5.3.15 or 5.4.5,
+  or any version of HHVM, you should run maintenance/updateCollation.php
+  (with the --force option) after upgrading.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user

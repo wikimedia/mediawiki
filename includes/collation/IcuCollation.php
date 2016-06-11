@@ -22,7 +22,7 @@
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 2;
+	const FIRST_LETTER_VERSION = 3;
 
 	/** @var Collator */
 	private $primaryCollator;
@@ -193,11 +193,27 @@ class IcuCollation extends Collation {
 	}
 
 	public function getSortKey( $string ) {
-		return $this->mainCollator->getSortKey( $string );
+		global $wgAppendNullToUcaSortKeys;
+
+		// Remove the null terminator byte if one is present
+		// https://github.com/facebook/hhvm/issues/7106
+		$sortKey = rtrim( $this->mainCollator->getSortKey( $string ), "\0" );
+		if ( $wgAppendNullToUcaSortKeys ) {
+			$sortKey .= "\0";
+		}
+		return $sortKey;
 	}
 
 	public function getPrimarySortKey( $string ) {
-		return $this->primaryCollator->getSortKey( $string );
+		global $wgAppendNullToUcaSortKeys;
+
+		// Remove the null terminator byte if one is present
+		// https://github.com/facebook/hhvm/issues/7106
+		$sortKey = rtrim( $this->primaryCollator->getSortKey( $string ), "\0" );
+		if ( $wgAppendNullToUcaSortKeys ) {
+			$sortKey .= "\0";
+		}
+		return $sortKey;
 	}
 
 	public function getFirstLetter( $string ) {
@@ -289,6 +305,9 @@ class IcuCollation extends Collation {
 		$letterMap = [];
 		foreach ( $letters as $letter ) {
 			$key = $this->getPrimarySortKey( $letter );
+			if ( $wgAppendNullToUcaSortKeys ) {
+				$key = rtrim( $key, "\0" );
+			}
 			if ( isset( $letterMap[$key] ) ) {
 				// Primary collision
 				// Keep whichever one sorts first in the main collator
@@ -338,11 +357,8 @@ class IcuCollation extends Collation {
 		$prev = false;
 		$duplicatePrefixes = [];
 		foreach ( $letterMap as $key => $value ) {
-			// Remove terminator byte. Otherwise the prefix
-			// comparison will get hung up on that.
-			$trimmedKey = rtrim( $key, "\0" );
 			if ( $prev === false || $prev === '' ) {
-				$prev = $trimmedKey;
+				$prev = $key;
 				// We don't yet have a collation element
 				// to compare against, so continue.
 				continue;
@@ -354,14 +370,14 @@ class IcuCollation extends Collation {
 			// An element "X" will always sort directly
 			// before "XZ" (Unless we have "XY", but we
 			// do not update $prev in that case).
-			if ( substr( $trimmedKey, 0, strlen( $prev ) ) === $prev ) {
+			if ( substr( $key, 0, strlen( $prev ) ) === $prev ) {
 				$duplicatePrefixes[] = $key;
 				// If this is an expansion, we don't want to
 				// compare the next element to this element,
 				// but to what is currently $prev
 				continue;
 			}
-			$prev = $trimmedKey;
+			$prev = $key;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
 			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );

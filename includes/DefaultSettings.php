@@ -7328,6 +7328,27 @@ $wgCategoryPagingLimit = 200;
  */
 $wgCategoryCollation = 'uppercase';
 
+/**
+ * If the wiki uses a UCA collation, whether to append a null byte to each
+ * sort key.
+ *
+ * Because of a bug, some old versions of PHP's intl extension (including
+ * some versions of HHVM) return the sort key's null terminator as the
+ * last character of the string. Until 1.27, MediaWiki did not strip off
+ * that null byte, which made the sort key not merely dependent on ICU
+ * version, but also on PHP extension version. This has changed.
+ *
+ * This setting is a migration flag, intended for use on large wiki farms,
+ * to allow administrators to schedule the necessary database updates
+ * independently of each other and of MediaWiki updates. It will be
+ * removed in the next MediaWiki version.
+ *
+ * @deprecated since 1.27
+ * @since 1.27
+ * @see https://phabricator.wikimedia.org/T137642
+ */
+$wgAppendNullToUcaSortKeys = false;
+
 /** @} */ # End categories }
 
 /*************************************************************************//**
