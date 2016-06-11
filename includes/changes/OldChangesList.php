@@ -143,6 +143,15 @@ class OldChangesList extends ChangesList {
 			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
+		$html = Html::rawElement( 'span', [
+			'class' => 'mw-changeslist-line-inner',
+			'data-target-page' => $rc->getTitle(), // Used for reliable determination of the affiliated page
+		], $html );
+		if ( is_callable( $this->changeLinePrefixer ) ) {
+			$prefix = call_user_func( $this->changeLinePrefixer, $rc, $this, false );
+			$html = Html::rawElement( 'span', [ 'class' => 'mw-changeslist-line-prefix' ], $prefix ) . $html;
+		}
+
 		return $html;
 	}
 }
