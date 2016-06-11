@@ -1044,6 +1044,11 @@ class Preferences {
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlistreloadautomatically',
 		];
+		$defaultPreferences['watchlistunwatchlinks'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlistunwatchlinks',
+		];
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['watchlisthidecategorization'] = [

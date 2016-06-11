@@ -4933,6 +4933,7 @@ $wgDefaultUserOptions = [
 	'watchlisthidepatrolled' => 0,
 	'watchlisthidecategorization' => 1,
 	'watchlistreloadautomatically' => 0,
+	'watchlistunwatchlinks' => 0,
 	'watchmoves' => 0,
 	'watchrollback' => 0,
 	'wllimit' => 250,

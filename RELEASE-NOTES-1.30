@@ -49,6 +49,10 @@ section).
 * Added RecentChangesPurgeRows hook to allow extensions to purge data that
   depends on the recentchanges table.
 * Added JS config values wgDiffOldId/wgDiffNewId to the output of diff pages.
+* (T2424) Added direct unwatch links to entries in Special:Watchlist (if the
+  'watchlistunwatchlinks' preference option is enabled). With JavaScript
+  enabled, these links toggle so the user can also re-watch pages that have
+  just been unwatched.
 
 === Languages updated in 1.30 ===
 
