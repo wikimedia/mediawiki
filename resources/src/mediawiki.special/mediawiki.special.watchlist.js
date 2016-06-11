@@ -3,7 +3,9 @@
  */
 ( function ( mw, $, OO ) {
 	$( function () {
-		var $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		var api = new mw.Api(),
+			$progressBar,
+			$resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
@@ -28,7 +30,7 @@
 
 			// Use action=setnotificationtimestamp to mark all as visited,
 			// then set all watchlist lines accordingly
-			new mw.Api().postWithToken( 'csrf', {
+			api.postWithToken( 'csrf', {
 				formatversion: 2,
 				action: 'setnotificationtimestamp',
 				entirewatchlist: true
@@ -56,6 +58,84 @@
 				$( '#mw-watchlist-form' ).submit();
 			} );
 		}
+
+		// Utility function for looping through each watchlist line that matches certain titles
+		function forEachMatchingTitle( titles, callback ) {
+			$( '.mw-title' ).each( function ( index, titleEl ) {
+				var $row, $titleEl = $( titleEl ), $unwatchLink;
+
+				if ( $.inArray( $titleEl.text(), titles ) > -1 ) {
+
+					$row = $titleEl.closest( 'li, tbody' );
+					$unwatchLink = $row.find( '.mw-unwatch-link' );
+
+					callback( $titleEl.text(), $row, $unwatchLink );
+				}
+			} );
+		}
+
+		// Watch/unwatch toggle link:
+		// If a page is on the watchlist, a '×' is shown which, when clicked, removes the page from the watchlist.
+		// After unwatching a page, the '×' becomes a '+', which if clicked re-watches the page.
+		// Unwatched page entries are struck through and have lowered opacity.
+		$( '.mw-unwatch-link' ).click( function ( event ) {
+			var $unwatchLink = $( this ),
+				// EnhancedChangesList uses <tbody> for each row, while
+				// OldChangesList uses <li> for each row
+				$watchlistLine = $unwatchLink.closest( 'li, tbody' ),
+				// Toggle state of watch/unwatch link
+				watched = $watchlistLine.data( 'watched' ),
+				pageTitle = $watchlistLine.find( '.mw-title' ).text(),
+				pageTitleObj = mw.Title.newFromText( pageTitle ),
+				pageNamespaceId = pageTitleObj.getNamespaceId(),
+				isTalk = pageNamespaceId % 2 === 1,
+				associatedPageTitle = new mw.Title( pageTitleObj.getMainText(),
+					isTalk ? pageNamespaceId - 1 : pageNamespaceId + 1 ).getPrefixedText();
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			if ( watched === undefined ) {
+				watched = true;
+			}
+
+			// Depending on whether we are watching or unwatching, for each entry of the page (and its associated page i.e. Talk),
+			// change the text, tooltip, and non-JS href of the (un)watch button,
+			// and update the styling of the watchlist entry.
+			if ( watched ) {
+				api.unwatch( pageTitle )
+					.done( function () {
+						forEachMatchingTitle( [ pageTitle, associatedPageTitle ], function ( rowPageTitle, $row, $rowUnwatchLink ) {
+							$rowUnwatchLink
+								.text( '+' )
+								.attr( 'title', mw.msg( 'tooltip-ca-watch' ) )
+								.attr( 'href', mw.util.getUrl( rowPageTitle, { action: 'watch' } ) );
+							$row.data( 'watched', false );
+							$row.find( '.mw-changeslist-line-inner, .mw-enhanced-rc-nested' )
+								.addClass( 'mw-changelist-line-inner-unwatched' );
+						} );
+
+						mw.notify( mw.message( 'removedwatchtext' + ( isTalk ? '-talk' : '' ),
+							pageTitle ), { tag: 'watch-self' } );
+					} );
+			} else {
+				api.watch( pageTitle )
+					.done( function () {
+						forEachMatchingTitle( [ pageTitle, associatedPageTitle ], function ( rowPageTitle, $row, $rowUnwatchLink ) {
+							$rowUnwatchLink
+								.text( '×' )
+								.attr( 'title', mw.msg( 'tooltip-ca-unwatch' ) )
+								.attr( 'href', mw.util.getUrl( rowPageTitle, { action: 'unwatch' } ) );
+							$row.data( 'watched', true );
+							$row.find( '.mw-changelist-line-inner-unwatched' )
+								.removeClass( 'mw-changelist-line-inner-unwatched' );
+						} );
+
+						mw.notify( mw.message( 'addedwatchtext' + ( isTalk ? '-talk' : '' ),
+							pageTitle ), { tag: 'watch-self' } );
+					} );
+			}
+		} );
 	} );
 
 }( mediaWiki, jQuery, OO ) );
