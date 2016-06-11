@@ -2033,9 +2033,15 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'messsages' => [
+			'addedwatchtext',
+			'removedwatchtext',
+		    'watchlist-unwatch-undo',
+		],
 		'dependencies' => [
+			'mediawiki.api.watch',
 			'user.options',
-		]
+		],
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
