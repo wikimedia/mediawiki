@@ -3,7 +3,9 @@
  */
 ( function ( mw, $, OO ) {
 	$( function () {
-		var $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		var api = new mw.Api,
+			$progressBar,
+			$resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
@@ -28,7 +30,7 @@
 
 			// Use action=setnotificationtimestamp to mark all as visited,
 			// then set all watchlist lines accordingly
-			new mw.Api().postWithToken( 'csrf', {
+			api.postWithToken( 'csrf', {
 				formatversion: 2,
 				action: 'setnotificationtimestamp',
 				entirewatchlist: true
@@ -56,6 +58,65 @@
 				$( '#mw-watchlist-form' ).submit();
 			} );
 		}
+
+		// add a listener on all form elements in the header form
+		$( '.mw-unwatch-link' ).click( function ( event ) {
+			var $unwatchLink = $( this ),
+				$watchlistLine = $unwatchLink.parent(),
+				$title = $watchlistLine.find( '.mw-title' ),
+				pageTitle = $title.text();
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			api.unwatch( pageTitle )
+				.done( function () {
+					// hide all watchlist entries with matching title and show undo link
+					$( '.mw-title' ).each( function ( index, titleEl ) {
+						var $row, $titleEl = $( titleEl );
+						if ( $titleEl.text() === pageTitle ) {
+							$row = $titleEl.parent();
+							$row.hide();
+							$row.parent().append( $( '<td>' ).append(
+								$( '<span>' ).html(
+									mw.message( 'removedwatchtext', pageTitle ).parse() + ' '
+								).addClass( 'mw-unwatch-text' )
+							).append(
+								$( '<span>' ).html(
+									mw.message( 'watchlist-unwatch-undo', pageTitle ).parse()
+								).addClass( 'mw-unwatch-undo-link' )
+							) );
+						}
+					} );
+
+					mw.notify( mw.message( 'removedwatchtext', pageTitle ), { tag: 'watch-self' } );
+				} );
+		} );
+
+		$( '.mw-changeslist' ).on( 'click', '.mw-unwatch-undo-link', function ( event ) {
+			var $watchLink = $( this ),
+				$title = $watchLink.parent().parent().find( '.mw-title' ),
+				pageTitle = $title.text(),
+				api = new mw.Api();
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			api.watch( pageTitle )
+				.done( function () {
+					// unhide all watchlist entries with matching title
+					$( '.mw-title' ).each( function ( index, titleEl ) {
+						var $row, $titleEl = $( titleEl );
+						if ( $titleEl.text() === pageTitle ) {
+							$row = $titleEl.parent();
+							$row.show();
+							$row.parent().find( '.mw-unwatch-undo-link' ).parent().remove();
+						}
+					} );
+
+					mw.notify( mw.message( 'addedwatchtext', pageTitle ), { tag: 'watch-self' } );
+				} );
+		} );
 	} );
 
 }( mediaWiki, jQuery, OO ) );
