@@ -151,6 +151,40 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$this->assertRegExp( "/watchlist-0-Cat/", $line );
 	}
 
+	public function testRecentChangesLine_dataAttribute() {
+		$oldChangesList = $this->getOldChangesList();
+		$oldChangesList->setWatchlistDivs( true );
+
+		$recentChange = $this->getEditChange();
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( '/data-target-page=\"Cat\"/', $line );
+
+		$recentChange = $this->getLogChange( 'delete', 'delete' );
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( '/data-target-page="Abc"/', $line );
+	}
+
+	public function testRecentChangesLine_prefix() {
+		$mockContext = $this->getMockBuilder( RequestContext::class )
+			->setMethods( [ 'getTitle' ] )
+			->getMock();
+		$mockContext->method( 'getTitle' )
+			->will( $this->returnValue( Title::newFromText( 'Expected Context Title' ) ) );
+
+		$oldChangesList = $this->getOldChangesList();
+		$oldChangesList->setContext( $mockContext );
+		$recentChange = $this->getEditChange();
+
+		$oldChangesList->setChangeLinePrefixer( function ( $rc, $changesList ) {
+			// Make sure RecentChange and ChangesList objects are the same
+			$this->assertEquals( 'Expected Context Title', $changesList->getContext()->getTitle() );
+			$this->assertEquals( 'Cat', $rc->getTitle() );
+			return 'I am a prefix';
+		} );
+		$line = $oldChangesList->recentChangesLine( $recentChange );
+		$this->assertRegExp( "/I am a prefix/", $line );
+	}
+
 	private function getNewBotEditChange() {
 		$user = $this->getMutableTestUser()->getUser();
 
