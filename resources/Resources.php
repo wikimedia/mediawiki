@@ -2068,11 +2068,18 @@ return [
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.css',
+		'messages' => [
+			'addedwatchtext',
+			'removedwatchtext',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
+		],
 		'dependencies' => [
-			'mediawiki.api',
+			'mediawiki.api.watch',
 			'oojs-ui-core',
 			'user.options',
-		]
+		],
 	],
 	'mediawiki.special.version' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
