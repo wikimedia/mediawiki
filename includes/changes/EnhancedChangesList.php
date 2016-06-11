@@ -585,7 +585,12 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
-		$data = [];
+		$data = [ $this->linkRenderer->makeKnownLink( // TODO only show when on watchlist
+			$rcObj->getTitle(),
+			new HtmlArmor( '&times;' ),
+			[ 'class' => 'mw-unwatch-link' ],
+			[ 'action' => 'unwatch' ]
+		) ];
 
 		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
