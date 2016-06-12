@@ -4777,6 +4777,7 @@ $wgReservedUsernames = [
  */
 $wgDefaultUserOptions = [
 	'ccmeonemails' => 0,
+	'plaintextemailonly' => 1,
 	'cols' => 80,
 	'date' => 'default',
 	'diffonly' => 0,

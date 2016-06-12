@@ -4519,7 +4519,7 @@ class User implements IDBAccessObject {
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		global $wgPasswordSender;
+		global $wgPasswordSender, $wgAllowHTMLEmail, $wgCoreHTMLEmail;
 
 		if ( $from instanceof User ) {
 			$sender = MailAddress::newFromUser( $from );
@@ -4527,6 +4527,12 @@ class User implements IDBAccessObject {
 			$sender = new MailAddress( $wgPasswordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		}
+		if ( is_array( $body ) && isset( $body['html'] ) ){
+			if ( $this->getOption('plaintextemailonly') ){
+				$body = $body['text'];
+			}
+		}
+
 		$to = MailAddress::newFromUser( $this );
 
 		return UserMailer::send( $to, $sender, $subject, $body, [
