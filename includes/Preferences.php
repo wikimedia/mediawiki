@@ -207,7 +207,8 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser, $wgDisableAuthManager;
+		global $wgAuth, $wgContLang, $wgParser, $wgDisableAuthManager, $wgAllowHTMLEmail,
+		$wgCoreHTMLEmail;
 
 		$config = $context->getConfig();
 		// retrieving user name for GENDER and misc.
@@ -536,6 +537,14 @@ class Preferences {
 					'label-message' => 'tog-ccmeonemails',
 					'disabled' => $disableEmailPrefs,
 				];
+				if ( $wgAllowHTMLEmail ) {
+					$defaultPreferences['plaintextemailonly'] = [
+						'type' => 'toggle',
+						'section' => 'personal/email',
+						'label-message' => 'tog-plaintextemailonly',
+						'disabled' => $disableEmailPrefs,
+					];
+				}
 			}
 
 			if ( $config->get( 'EnotifWatchlist' ) ) {

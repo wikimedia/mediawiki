@@ -46,6 +46,7 @@
 	"tog-norollbackdiff": "Don't show diff after performing a rollback",
 	"tog-useeditwarning": "Warn me when I leave an edit page with unsaved changes",
 	"tog-prefershttps": "Always use a secure connection when logged in",
+	"tog-plaintextemailonly": "Receive Emails in plaintext only",
 	"underline-always": "Always",
 	"underline-never": "Never",
 	"underline-default": "Skin or browser default",
