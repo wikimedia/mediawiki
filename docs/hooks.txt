@@ -2533,7 +2533,7 @@ $context: (IContextSource) The RequestContext the skin is being created for.
 flagged to lack same-origin security. Return false to indicate the lack. Note
 if the "somehow" involves HTTP headers, you'll probably need to make sure
 the header is varied on.
-WebRequest $request: The request.
+$request: The WebRequest object.
 
 'ResetPasswordExpiration': Allow extensions to set a default password expiration
 $user: The user having their password expiration reset
