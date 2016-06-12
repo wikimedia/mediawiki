@@ -305,17 +305,16 @@ class FindHooks extends Maintenance {
 
 		if ( $recurse === self::FIND_RECURSIVE ) {
 			$iterator = new RecursiveIteratorIterator(
-				new RecursiveDirectoryIterator( $dir ),
-				RecursiveIteratorIterator::SELF_FIRST | RecursiveDirectoryIterator::SKIP_DOTS
+				new RecursiveDirectoryIterator( $dir, RecursiveDirectoryIterator::SKIP_DOTS ),
+				RecursiveIteratorIterator::SELF_FIRST
 			);
 		} else {
 			$iterator = new DirectoryIterator( $dir );
 		}
 
 		foreach ( $iterator as $info ) {
-			// Ignore directories, ignore json (installer and api i18n),
-			// ignore extension-less files like HISTORY
-			if ( $info->isFile() && $info->getExtension() === 'php'
+			// Ignore directories, work only on php files,
+			if ( $info->isFile() && in_array( $info->getExtension(), [ 'php', 'php5', 'inc' ] )
 				// Skip this file as it contains text that looks like a bad wfRunHooks() call
 				&& $info->getRealPath() !== __FILE__
 			) {
