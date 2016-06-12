@@ -1841,7 +1841,7 @@ $file: the File object or false if broken link
 &$attribs: the attributes to be applied
 &$ret: the value to return if your hook returns false
 
-'LinkRendererBegin':
+'HtmlPageLinkRendererBegin':
 Used when generating internal and interwiki links in
 LinkRenderer, before processing starts.  Return false to skip default
 processing and return $ret.
@@ -1857,7 +1857,7 @@ $target: the LinkTarget that the link is pointing to
   in associative array form, with keys and values unescaped.
 &$ret: the value to return if your hook returns false.
 
-'LinkRendererEnd':
+'HtmlPageLinkRendererEnd':
 Used when generating internal and interwiki links in LinkRenderer,
 just before the function returns a value.  If you return true, an <a> element
 with HTML attributes $attribs and contents $html will be returned.  If you
