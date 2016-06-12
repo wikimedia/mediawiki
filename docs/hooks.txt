@@ -2993,9 +2993,9 @@ $t: title object searched for
 canceled and a normal search will be performed. Returning true without setting
 $url does a standard redirect to $title. Setting $url redirects to the
 specified URL.
-$term - The string the user searched for
-$title - The title the 'go' feature has decided to forward the user to
-&$url - Initially null, hook subscribers can set this to specify the final url to redirect to
+$term: The string the user searched for
+$title: The title the 'go' feature has decided to forward the user to
+&$url: Initially null, hook subscribers can set this to specify the final url to redirect to
 
 'SpecialSearchNogomatch': Called when user clicked the "Go" button but the
 target doesn't exist.
