@@ -3383,6 +3383,7 @@ $title: Title of the page in question
 &$user: User object
 $ip: User's IP address
 &$blocked: Whether the user is blocked, to be modified by the hook
+&$block: The actually block object, to be modified by the hook
 
 'UserIsEveryoneAllowed': Check if all users are allowed some user right; return
 false if a UserGetRights hook might remove the named right.
