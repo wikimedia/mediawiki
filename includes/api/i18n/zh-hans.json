@@ -19,7 +19,8 @@
 			"Apflu",
 			"Hzy980512",
 			"PhiLiP",
-			"Arthur2e5"
+			"Arthur2e5",
+			"損齋"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文档]]\n* [[mw:API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:API:Errors_and_warnings|API: 错误与警告]]。\n\n<strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。",
@@ -1160,6 +1161,7 @@
 	"apihelp-query+users-paramvalue-prop-emailable": "Tags if the user can and wants to receive email through [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "标记用户性别。返回“male”、“female”或“unknown”。",
 	"apihelp-query+users-paramvalue-prop-centralids": "添加中心ID并为用户附加状态。",
+	"apihelp-query+users-paramvalue-prop-cancreate": "表示有效但尚未注册的用户名是否可以注册账号。",
 	"apihelp-query+users-param-attachedwiki": "与<kbd>$1prop=centralids</kbd>一起使用，表明用户是否附加于此ID定义的wiki。",
 	"apihelp-query+users-param-users": "要获取信息的用户列表。",
 	"apihelp-query+users-param-token": "请改用<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>。",

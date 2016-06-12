@@ -593,7 +593,7 @@
 	"changepassword-success": "Twoje hasło zostało zmienione!",
 	"changepassword-throttled": "Ostatnio zbyt wiele razy próbowałeś zalogować się na to konto.\nOdczekaj $1, zanim ponowisz próbę.",
 	"botpasswords": "Hasła bota",
-	"botpasswords-summary": "<em>Hasła bota</em> pozwalają na dostęp do konta użytkownika za pośrednictwem interfejsu API bez korzystania z danych konta. Uprawnienia uczestnika przy użyciu hasła bota mogą być ograniczone.\n\nJeśli nie wiesz, dlaczego miałbyś je tworzyć, nie powinieneś tego robić. Nikt nie powinien prosić Cię o utworzyć i podanie tego hasła.",
+	"botpasswords-summary": "<em>Hasła bota</em> pozwalają na dostęp do konta użytkownika za pośrednictwem interfejsu API bez korzystania z danych konta. Uprawnienia użytkownika przy użyciu hasła bota mogą być ograniczone.\n\nJeśli nie wiesz, dlaczego miałbyś je tworzyć, nie powinieneś tego robić. Nikt nie powinien prosić Cię o utworzenie i podanie tego hasła.",
 	"botpasswords-disabled": "Hasła robotów zostały wyłączone.",
 	"botpasswords-no-central-id": "Aby użyć hasła robotów, musisz być zalogowany na koncie uniwersalnym.",
 	"botpasswords-existing": "Istniejące hasło bota",
