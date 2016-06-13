@@ -1183,6 +1183,7 @@ return [
 		],
 		'messages' => [
 			'uploaddisabledtext',
+			'upload-dialog-disabled',
 			'upload-foreign-cant-upload',
 		]
 	],

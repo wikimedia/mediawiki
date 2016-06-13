@@ -1695,6 +1695,7 @@
 	"upload-copy-upload-invalid-domain": "Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).\n\nSee also:\n* {{msg-mw|http-invalid-url}}\n* {{msg-mw|tmp-create-error}}\n* {{msg-mw|tmp-write-error}}",
 	"upload-foreign-cant-upload": "Error message shown when a user is trying to upload a file to foreign repository that is not configured to receive file uploads from current wiki.",
 	"upload-foreign-cant-load-config": "Error message shown when a user is trying to upload a file to foreign repository and the foreign wiki is down or otherwise unable to respond to API requests.",
+	"upload-dialog-disabled": "Message shown when the upload dialog functionality is disabled. (This doesn't mean that uploads in general are disabled, only this specific method of uploading.)",
 	"upload-dialog-title": "Title of the upload dialog box\n{{Identical|Upload file}}",
 	"upload-dialog-button-cancel": "Button to cancel the dialog\n{{Identical|Cancel}}",
 	"upload-dialog-button-done": "Button to close the dialog once upload is complete\n{{Identical|Done}}",
