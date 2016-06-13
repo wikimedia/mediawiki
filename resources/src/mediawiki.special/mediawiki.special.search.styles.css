@@ -35,6 +35,9 @@ div.searchresult {
 	margin-left: 0;
 	float: left;
 }
+.mw-search-interwiki-header {
+	clear: both;
+}
 .mw-search-results li {
 	padding-bottom: 1.2em;
 	list-style: none;
