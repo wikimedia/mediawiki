@@ -569,7 +569,16 @@
 					}
 					break;
 				default:
-					$.suggestions.update( context, true );
+					// Everything <= 45 is a special key, such as ctrl, end, capslock, etc. for
+					// the most part we don't want to handle those except a few. There are plenty
+					// of special keys higher than this as well (ex. win key is 91 from linux), but
+					// an exhaustive list would be excessive.
+					// 8: backspace
+					// 32: spacebar
+					// 46: delete
+					if ( key > 45 || key === 8 || key === 32 ) {
+						$.suggestions.update( context, true );
+					}
 					break;
 			}
 			if ( preventDefault ) {
@@ -746,8 +755,9 @@
 					} )
 					.keyup( function ( e ) {
 						// Some browsers won't throw keypress() for arrow keys. If we got a keydown and a keyup without a
-						// keypress in between, solve it
-						if ( context.data.keypressedCount === 0 ) {
+						// keypress in between, solve it. Don't trigger this on a keyup we didn't get a keydown for, like
+						// ctrl-tab though.
+						if ( context.data.keypressedCount === 0 && e.which === context.data.keypressed ) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
 					} )
