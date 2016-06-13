@@ -133,14 +133,6 @@
 			// linkParams object is modified and reused
 			formData.linkParams[ formData.textParam ] = text;
 
-			// Allow trackers to attach tracking information, such
-			// as wprov, to clicked links.
-			mw.track( 'mediawiki.searchSuggest', {
-				action: 'render-one',
-				formData: formData,
-				index: context.config.suggestions.indexOf( text ) + 1
-			} );
-
 			// this is the container <div>, jQueryfied
 			this.text( text );
 
@@ -281,6 +273,7 @@
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input ) {
+					selectFunction( $input );
 					$input.closest( 'form' )
 						.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) );
 					return true; // allow the form to be submitted
@@ -297,7 +290,10 @@
 					action: 'submit-form',
 					numberOfResults: context.config.suggestions.length,
 					$form: context.config.$region.closest( 'form' ),
-					inputLocation: getInputLocation( context )
+					inputLocation: getInputLocation( context ),
+					index: context.config.suggestions.indexOf( 
+						context.data.$textbox.val()
+					)
 				} );
 			} )
 			// If the form includes any fallback fulltext search buttons, remove them

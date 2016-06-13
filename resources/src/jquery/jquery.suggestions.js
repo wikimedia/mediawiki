@@ -663,6 +663,12 @@
 				context.data.$container = $( '<div>' )
 					.css( 'display', 'none' )
 					.addClass( 'suggestions' )
+					// convert all click events into form submissions
+					// @todo does this catch too many?
+					.on( 'click', function ( e ) {
+						e.preventDefault();
+						context.data.$textbox.closest( 'form' ).submit();
+					} )
 					.append(
 						$( '<div>' ).addClass( 'suggestions-results' )
 							// Can't use click() because the container div is hidden when the
@@ -679,12 +685,12 @@
 								if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 									return;
 								}
+								$.suggestions.highlight( context, $result, true );
+								if ( typeof context.config.result.select === 'function' ) {
+									context.config.result.select.call( $result, context.data.$textbox );
+								}
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
-									$.suggestions.highlight( context, $result, true );
-									if ( typeof context.config.result.select === 'function' ) {
-										context.config.result.select.call( $result, context.data.$textbox );
-									}
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (bug 62858).
 									setTimeout( function () {
