@@ -1,0 +1,10 @@
+diff a/languages/i18n/qqq.json b/languages/i18n/qqq.json	(rejected hunks)
+@@ -4423,5 +4423,7 @@
+ 	"restrictionsfield-label": "Field label shown for restriction fields (e.g. on Special:BotPassword).",
+ 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
+ 	"edit-error-short": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-long}}\n{{Identical|Error}}",
+-	"edit-error-long": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-short}}\n{{Identical|Error}}"
++	"edit-error-long": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-short}}\n{{Identical|Error}}",
++	"undelete-cantedit": "Shown if the user tries to undelete a page that they cannot edit",
++	"undelete-cantcreate": "Shown if the user tries to undelete a page which currently does not exist, and they are not allowed to create it. This could for example happen on a wiki with custom protection levels where the page name has been create-protected and the user has the right to undelete but not the right to edit protected pages."
+ }

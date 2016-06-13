@@ -31,6 +31,8 @@ This is not a release yet!
   in it's fallback chain when trying to work out where to write the cache.
 * (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
   syntax's link parameter.
+* (T108138) SECURITY: Sysops can undelete pages, although the page is protected against
+  it.
 
 == MediaWiki 1.28 ==
 

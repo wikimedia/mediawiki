@@ -1,0 +1,10 @@
+diff a/languages/i18n/en.json b/languages/i18n/en.json	(rejected hunks)
+@@ -4239,5 +4239,7 @@
+ 	"restrictionsfield-label": "Allowed IP ranges:",
+ 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use<br><code>0.0.0.0/0</code><br><code>::/0</code>",
+ 	"edit-error-short": "Error: $1",
+-	"edit-error-long": "Errors:\n\n$1"
++	"edit-error-long": "Errors:\n\n$1",
++	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
++	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page."
+ }
