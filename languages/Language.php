@@ -30,8 +30,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-mb_internal_encoding( 'UTF-8' );
-
 use CLDRPluralRuleParser\Evaluator;
 
 /**
