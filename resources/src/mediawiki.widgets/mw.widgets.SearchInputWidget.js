@@ -22,6 +22,8 @@
 	 *  used (header or content).
 	 */
 	mw.widgets.SearchInputWidget = function MwWidgetsSearchInputWidget( config ) {
+		var self = this;
+
 		config = $.extend( {
 			type: 'search',
 			icon: 'search',
@@ -46,6 +48,28 @@
 			this.performSearchOnClick = config.performSearchOnClick;
 		}
 		this.setLookupsDisabled( !this.suggestions );
+
+		// Element hasn't been attached to DOM yet so we can't find
+		// the relevant form. 
+		setTimeout( 
+			$.proxy( function () {
+				this.$element.closest( 'form' ).on( 'submit', function () {
+					var items = self.lookupMenu.items.map( function ( item ) {
+						return item.data;
+					} );
+					mw.track( 'mw.widgets.SearchInputWidget', {
+						action: 'submit-form',
+						numberOfResults: items.length,
+						$form: $( this ),
+						inputLocation: self.dataLocation || 'header',
+						index: items.indexOf(
+							$( this ).find( 'input[type=search]' ).val()
+						)
+					} );
+				} );
+			}, this ),
+			0
+		);
 	};
 
 	/* Setup */
@@ -147,18 +171,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
-		var items;
-
-		// get items which was suggested before the input changes
-		items = this.lookupMenu.items;
-
 		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
-
-		mw.track( 'mw.widgets.SearchInputWidget', {
-			action: 'click-result',
-			numberOfResults: items.length,
-			clickIndex: items.indexOf( item ) + 1
-		} );
 
 		if ( this.performSearchOnClick ) {
 			this.$element.closest( 'form' ).submit();
