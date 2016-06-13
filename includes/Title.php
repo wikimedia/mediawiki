@@ -2277,6 +2277,17 @@ class Title {
 			) {
 				$errors[] = array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) );
 			}
+		} elseif ( $action === 'undelete' ) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
+				// Undeleting implies editing
+				$errors[] = [ 'undelete-cantedit' ];
+			}
+			if ( !$this->exists()
+				&& count( $this->getUserPermissionsErrorsInternal( 'create', $user, $doExpensiveQueries, true ) )
+			) {
+				// Undeleting where nothing currently exists implies creating
+				$errors[] = [ 'undelete-cantcreate' ];
+			}
 		}
 		return $errors;
 	}

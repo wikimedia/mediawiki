@@ -32,17 +32,18 @@ class ApiUndelete extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		if ( !$this->getUser()->isAllowed( 'undelete' ) ) {
-			$this->dieUsageMsg( 'permdenied-undelete' );
-		}
-
-		if ( $this->getUser()->isBlocked() ) {
+		$user = $this->getUser();
+		if ( $user->isBlocked() ) {
 			$this->dieUsageMsg( 'blockedtext' );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		}
+
+		if ( !$titleObj->userCan( 'undelete', $user, true ) ) {
+			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
 		// Convert timestamps
@@ -62,7 +63,7 @@ class ApiUndelete extends ApiBase {
 			$params['reason'],
 			array(),
 			false,
-			$this->getUser()
+			$user
 		);
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( 'cannotundelete' );
@@ -70,7 +71,7 @@ class ApiUndelete extends ApiBase {
 
 		if ( $retval[1] ) {
 			wfRunHooks( 'FileUndeleteComplete',
-				array( $titleObj, array(), $this->getUser(), $params['reason'] ) );
+				array( $titleObj, array(), $user, $params['reason'] ) );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );
