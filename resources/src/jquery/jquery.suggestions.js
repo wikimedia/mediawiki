@@ -569,7 +569,11 @@
 					}
 					break;
 				default:
-					$.suggestions.update( context, true );
+					// Everything <= 46 is a special key, such as ctrl, end, capslock, etc. that we
+					// don't want to handle.
+					if ( key > 46 ) {
+						$.suggestions.update( context, true );
+					}
 					break;
 			}
 			if ( preventDefault ) {
@@ -746,8 +750,9 @@
 					} )
 					.keyup( function ( e ) {
 						// Some browsers won't throw keypress() for arrow keys. If we got a keydown and a keyup without a
-						// keypress in between, solve it
-						if ( context.data.keypressedCount === 0 ) {
+						// keypress in between, solve it. Don't trigger this on a keyup we didn't get a keydown for, like
+						// ctrl-tab though.
+						if ( context.data.keypressedCount === 0 && e.which === context.data.keypressed ) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
 					} )
