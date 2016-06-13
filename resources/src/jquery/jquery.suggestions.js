@@ -754,8 +754,9 @@
 					} )
 					.keyup( function ( e ) {
 						// Some browsers won't throw keypress() for arrow keys. If we got a keydown and a keyup without a
-						// keypress in between, solve it
-						if ( context.data.keypressedCount === 0 ) {
+						// keypress in between, solve it. Don't trigger this on a keyup we didn't get a keydown for, like
+						// ctrl-tab though.
+						if ( context.data.keypressedCount === 0 && e.which === context.data.keypressed ) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
 					} )
