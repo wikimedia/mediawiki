@@ -44,6 +44,13 @@ if ( !isset( $wgVersion ) ) {
 	die( 1 );
 }
 
+if ( function_exists( 'mb_internal_encoding' ) ) {
+	mb_internal_encoding( 'UTF-8' );
+} elseif ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+	echo "Error: the mbstring PHP extension is required\n";
+	die( 1 );
+}
+
 // Set various default paths sensibly...
 $ps_default = Profiler::instance()->scopedProfileIn( $fname . '-defaults' );
 
