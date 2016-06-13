@@ -423,7 +423,7 @@ class FormatMetadata extends ContextSource {
 							'mode' => ( $val & bindec( '00011000' ) ) >> 3,
 							'function' => ( $val & bindec( '00100000' ) ) >> 5,
 							'redeye' => ( $val & bindec( '01000000' ) ) >> 6,
-// 						'reserved' => ($val & bindec( '10000000' )) >> 7,
+							// 'reserved' => ( $val & bindec( '10000000' ) ) >> 7,
 						];
 						$flashMsgs = [];
 						# We do not need to handle unknown values since all are used.
