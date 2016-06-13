@@ -122,7 +122,7 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} elseif ( $dbw->lock( $key, __METHOD__, 1 ) ) {
-			$status = self::parseAndStash( $page, $content, $user );
+			$status = self::parseAndStash( $page, $content, $user, $params['summary'] );
 			$dbw->unlock( $key, __METHOD__ );
 		} else {
 			$status = 'busy';
@@ -135,12 +135,13 @@ class ApiStashEdit extends ApiBase {
 
 	/**
 	 * @param WikiPage $page
-	 * @param Content $content
+	 * @param Content $content Edit content
 	 * @param User $user
+	 * @param string $summary Edit summary
 	 * @return integer ApiStashEdit::ERROR_* constant
 	 * @since 1.25
 	 */
-	public static function parseAndStash( WikiPage $page, Content $content, User $user ) {
+	public static function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
@@ -152,7 +153,8 @@ class ApiStashEdit extends ApiBase {
 			$key = self::getStashKey( $title, $content, $user );
 
 			// Let extensions add ParserOutput metadata or warm other caches
-			Hooks::run( 'ParserOutputStashForEdit', [ $page, $content, $editInfo->output ] );
+			Hooks::run( 'ParserOutputStashForEdit',
+				[ $page, $content, $editInfo->output, $summary, $user ] );
 
 			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
 				$editInfo->pstContent,
@@ -417,6 +419,9 @@ class ApiStashEdit extends ApiBase {
 			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true
+			],
+			'summary' => [
+				ApiBase::PARAM_TYPE => 'string',
 			],
 			'contentmodel' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),

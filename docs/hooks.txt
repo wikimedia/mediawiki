@@ -2402,6 +2402,8 @@ that tests continue to run properly.
 $page: the WikiPage of the candidate edit
 $content: the Content object of the candidate edit
 $output: the ParserOutput result of the candidate edit
+$summary: the change summary of the candidate edit
+$user: the User considering the edit
 
 'PasswordPoliciesForUser': Alter the effective password policy for a user.
 $user: User object whose policy you are modifying
