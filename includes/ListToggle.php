@@ -41,6 +41,7 @@ class ListToggle {
 
 	private function checkboxLink( $checkboxType ) {
 		return Html::element(
+			// CSS classes: mw-checkbox-all, mw-checkbox-none, mw-checkbox-invert
 			'a', [ 'href' => '#', 'class' => 'mw-checkbox-' . $checkboxType ],
 			$this->output->msg( 'checkbox-' . $checkboxType )->text()
 		);
