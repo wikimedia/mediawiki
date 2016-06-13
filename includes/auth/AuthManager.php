@@ -1650,7 +1650,7 @@ class AuthManager implements LoggerAwareInterface {
 			throw $ex;
 		}
 
-		$this->setDefaultUserOptions( $user, true );
+		$this->setDefaultUserOptions( $user, false );
 
 		// Inform the providers
 		$this->callMethodOnProviders( 6, 'autoCreatedAccount', [ $user, $source ] );
