@@ -661,7 +661,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $out->isArticle() && MWNamespace::hasSubpages( $out->getTitle()->getNamespace() ) ) {
 			$ptext = $this->getTitle()->getPrefixedText();
-			if ( preg_match( '/\//', $ptext ) ) {
+			if ( strpos( $ptext, '/' ) !== false ) {
 				$links = explode( '/', $ptext );
 				array_pop( $links );
 				$c = 0;
