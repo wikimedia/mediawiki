@@ -314,7 +314,7 @@ class FindHooks extends Maintenance {
 
 		foreach ( $iterator as $info ) {
 			// Ignore directories, work only on php files,
-			if ( $info->isFile() && in_array( $info->getExtension(), [ 'php', 'php5', 'inc' ] )
+			if ( $info->isFile() && in_array( $info->getExtension(), [ 'php', 'inc' ] )
 				// Skip this file as it contains text that looks like a bad wfRunHooks() call
 				&& $info->getRealPath() !== __FILE__
 			) {
