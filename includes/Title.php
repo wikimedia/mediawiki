@@ -2300,6 +2300,17 @@ class Title implements LinkTarget {
 			) {
 				$errors[] = [ 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ];
 			}
+		} elseif ( $action === 'undelete' ) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $rigor, true ) ) ) {
+				// Undeleting implies editing
+				$errors[] = [ 'undelete-cantedit' ];
+			}
+			if ( !$this->exists()
+				&& count( $this->getUserPermissionsErrorsInternal( 'create', $user, $rigor, true ) )
+			) {
+				// Undeleting where nothing currently exists implies creating
+				$errors[] = [ 'undelete-cantcreate' ];
+			}
 		}
 		return $errors;
 	}
