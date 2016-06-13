@@ -30,6 +30,7 @@
 					section: data.wpSection,
 					sectiontitle: '',
 					text: data.wpTextbox1,
+					summary: data.wpSummary,
 					contentmodel: data.model,
 					contentformat: data.format,
 					baserevid: data.parentRevId

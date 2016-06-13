@@ -1256,6 +1256,7 @@
 	"apihelp-stashedit-param-contentmodel": "{{doc-apihelp-param|stashedit|contentmodel}}",
 	"apihelp-stashedit-param-contentformat": "{{doc-apihelp-param|stashedit|contentformat}}",
 	"apihelp-stashedit-param-baserevid": "{{doc-apihelp-param|stashedit|baserevid}}",
+	"apihelp-stashedit-param-summary": "{{doc-apihelp-param|stashedit|summary}}",
 	"apihelp-tag-description": "{{doc-apihelp-description|tag}}",
 	"apihelp-tag-param-rcid": "{{doc-apihelp-param|tag|rcid}}",
 	"apihelp-tag-param-revid": "{{doc-apihelp-param|tag|revid}}",

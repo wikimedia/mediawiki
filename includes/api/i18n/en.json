@@ -1350,6 +1350,7 @@
 	"apihelp-stashedit-param-contentmodel": "Content model of the new content.",
 	"apihelp-stashedit-param-contentformat": "Content serialization format used for the input text.",
 	"apihelp-stashedit-param-baserevid": "Revision ID of the base revision.",
+	"apihelp-stashedit-param-summary": "Change summary.",
 
 	"apihelp-tag-description": "Add or remove change tags from individual revisions or log entries.",
 	"apihelp-tag-param-rcid": "One or more recent changes IDs from which to add or remove the tag.",
