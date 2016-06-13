@@ -36,6 +36,12 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	private function checkReadPermissions( Title $title ) {
+		if ( !$title->userCan( 'read', $this->getUser() ) ) {
+			$this->dieUsage( "You don't have permission to view this page", 'permissiondenied' );
+		}
+	}
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -102,6 +108,8 @@ class ApiParse extends ApiBase {
 				if ( !$rev ) {
 					$this->dieUsage( "There is no revision ID $oldid", 'missingrev' );
 				}
+
+				$this->checkReadPermissions( $rev->getTitle() );
 				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->dieUsage( "You don't have permission to view deleted revisions", 'permissiondenied' );
 				}
@@ -161,6 +169,8 @@ class ApiParse extends ApiBase {
 				if ( !$titleObj || !$titleObj->exists() ) {
 					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
 				}
+
+				$this->checkReadPermissions( $titleObj );
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {
