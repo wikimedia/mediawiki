@@ -2654,8 +2654,6 @@ class Parser {
 				$value = $this->getRevisionUser();
 				break;
 			case 'revisionsize':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
 				$value = $this->getRevisionSize();
 				break;
 			case 'namespace':
