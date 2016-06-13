@@ -33,7 +33,6 @@ class ApiUndelete extends ApiBase {
 		$this->useTransactionalTimeLimit();
 
 		$params = $this->extractRequestParams();
-		$this->checkUserRightsAny( 'undelete' );
 
 		$user = $this->getUser();
 		if ( $user->isBlocked() ) {
@@ -43,6 +42,10 @@ class ApiUndelete extends ApiBase {
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+		}
+
+		if ( !$titleObj->userCan( 'undelete', $user, 'secure' ) ) {
+			$this->dieWithError( 'permdenied-undelete' );
 		}
 
 		// Check if user can add tags

@@ -4478,5 +4478,7 @@
 	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page.",
 	"gotointerwiki": "{{doc-special|GoToInterwiki}}\n\nSpecial:GoToInterwiki is a warning page displayed before redirecting users to external interwiki links. Its triggered by people going to something like [[Special:Search/google:foo]].",
 	"gotointerwiki-invalid": "Message shown on Special:GoToInterwiki if given an invalid title.",
-	"gotointerwiki-external": "Message shown on Special:GoToInterwiki if given a external interwiki link (e.g. [[Special:GoToInterwiki/Google:Foo]]). $1 is the full url the user is trying to get to. $2 is the text of the interwiki link (e.g. \"Google:foo\")."
+	"gotointerwiki-external": "Message shown on Special:GoToInterwiki if given a external interwiki link (e.g. [[Special:GoToInterwiki/Google:Foo]]). $1 is the full url the user is trying to get to. $2 is the text of the interwiki link (e.g. \"Google:foo\").",
+	"undelete-cantedit": "Shown if the user tries to undelete a page that they cannot edit",
+	"undelete-cantcreate": "Shown if the user tries to undelete a page which currently does not exist, and they are not allowed to create it. This could for example happen on a wiki with custom protection levels where the page name has been create-protected and the user has the right to undelete but not the right to edit protected pages."
 }
