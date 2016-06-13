@@ -37,10 +37,10 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		parent::__construct( false ); // no implicit transaction
 
 		$this->page = $page;
-		if ( $page->exists() ) {
+		if ( $pageId ) {
+			$this->pageId = $pageId; // page ID at time of deletion
+		} elseif ( $page->exists() ) {
 			$this->pageId = $page->getId();
-		} elseif ( $pageId ) {
-			$this->pageId = $pageId;
 		} else {
 			throw new InvalidArgumentException( "Page ID not known. Page doesn't exist?" );
 		}
