@@ -753,10 +753,23 @@
 						$.suggestions.keypress( e, context, context.data.keypressed );
 					} )
 					.keyup( function ( e ) {
-						// Some browsers won't throw keypress() for arrow keys. If we got a keydown and a keyup without a
-						// keypress in between, solve it. Don't trigger this on a keyup we didn't get a keydown for, like
-						// ctrl-tab though.
-						if ( context.data.keypressedCount === 0 && e.which === context.data.keypressed ) {
+						// The keypress event is fired when a key is pressed down and that key normally
+						// produces a character value. We also want to handle some keys that don't
+						// produce a character value so we also attach to the keydown/keyup events.
+						// List of codes sourced from
+						// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+						var allowed = [
+							40, // up arrow
+							38, // down arrow
+							27, // escape
+							13, // enter
+							46, // delete
+							8   // backspace
+						];
+						if ( context.data.keypressedCount === 0
+							&& e.which === context.data.keypressed
+							&& $.inArray( e.which, allowed ) !== -1
+						) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
 					} )
