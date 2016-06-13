@@ -2170,7 +2170,7 @@
 	"undelete-error-long": "Er zijn fouten opgetreden bij het herstellen van het bestand:\n\n$1",
 	"undelete-show-file-confirm": "Weet u zeker dat u een verwijderde versie van het bestand \"<nowiki>$1</nowiki>\" van $2 om $3 wilt bekijken?",
 	"undelete-show-file-submit": "Ja",
-	"namespace": "Naamruimte:&nbsp;",
+	"namespace": "Naamruimte:",
 	"invert": "Selectie omkeren",
 	"tooltip-invert": "Selecteer dit om wijzigingen te verbergen in de geselecteerde naamruimte (en de gekoppelde naamruimte indien aangevinkt)",
 	"tooltip-whatlinkshere-invert": "Selecteer dit vakje om koppelingen van pagina's in de geselecteerde naamruimte te verbergen.",

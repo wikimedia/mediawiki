@@ -26,7 +26,8 @@
 			"Syedalinaqinaqvi",
 			"محمد افضل",
 			"Macofe",
-			"Hindustanilanguage"
+			"Hindustanilanguage",
+			"امین اکبر"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -1135,7 +1136,7 @@
 	"wlshowlast": "دکھائیں آخری $1 گھنٹے $2 دن",
 	"watchlist-hide": "چھپائیں",
 	"watchlist-submit": "دکھائیں",
-	"wlshowtime": "وقت کی مدت، جو ظاہر کرنی ہے:",
+	"wlshowtime": "ظاہر ہونے کی مدت:",
 	"wlshowhideminor": "معمولی ترامیم",
 	"wlshowhidebots": "روبہ جات",
 	"wlshowhideliu": "مندرج صارفین",

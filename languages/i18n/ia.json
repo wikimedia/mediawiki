@@ -1445,6 +1445,7 @@
 	"upload-http-error": "Un error HTTP occurreva: $1",
 	"upload-copy-upload-invalid-domain": "Le incargamento de copias non es disponibile ab iste dominio.",
 	"upload-foreign-cant-upload": "Iste wiki non es configurate pro incargar files al repositorio de files externe demandate.",
+	"upload-foreign-cant-load-config": "Le cargamento del configuration pro le incargamento de files al repositorio de files externe ha fallite.",
 	"upload-dialog-title": "Incargar file",
 	"upload-dialog-button-cancel": "Cancellar",
 	"upload-dialog-button-done": "Facite",
@@ -2163,6 +2164,7 @@
 	"sp-contributions-username": "Adresse IP o nomine de usator:",
 	"sp-contributions-toponly": "Monstrar solmente le versiones recente",
 	"sp-contributions-newonly": "Monstrar solmente le modificationes que es creationes de pagina",
+	"sp-contributions-hideminor": "Celar modificationes minor",
 	"sp-contributions-submit": "Cercar",
 	"whatlinkshere": "Paginas ligate a iste",
 	"whatlinkshere-title": "Paginas con ligamines verso $1",
@@ -3062,6 +3064,7 @@
 	"confirm-watch-top": "Adder iste pagina a tu observatorio?",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Remover iste pagina de tu observatorio?",
+	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Reverter le modificationes a iste pagina?",
 	"quotation-marks": "“$1”",
 	"imgmultipageprev": "← precedente pagina",
@@ -3715,5 +3718,6 @@
 	"linkaccounts-success-text": "Le conto ha essite ligate.",
 	"linkaccounts-submit": "Ligar contos",
 	"unlinkaccounts": "Disligar contos",
-	"unlinkaccounts-success": "Le conto ha essite disligate."
+	"unlinkaccounts-success": "Le conto ha essite disligate.",
+	"authenticationdatachange-ignored": "Le cambiamento del datos de authentication non ha succedite. Pote esser que nulle fornitor ha essite configurate?"
 }

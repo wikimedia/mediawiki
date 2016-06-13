@@ -11,7 +11,7 @@
 	"config-information": "Informacions",
 	"config-localsettings-key": "Clau de mesa a jorn :",
 	"config-localsettings-badkey": "La clau de mesa a jorn qu'avètz provesida es incorrècta",
-	"config-session-error": "Error al moment de l'aviada de la sesilha : $1",
+	"config-session-error": "Error al moment de l'aviada de la session : $1",
 	"config-your-language": "Vòstra lenga :",
 	"config-your-language-help": "Seleccionatz la lenga d'utilizar pendent lo processus d'installacion.",
 	"config-wiki-language": "Lenga del wiki :",
