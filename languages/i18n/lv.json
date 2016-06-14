@@ -182,6 +182,7 @@
 	"tagline": "No ''{{grammar:ģenitīvs|{{SITENAME}}}}''",
 	"help": "Palīdzība",
 	"search": "Meklēt",
+	"search-ignored-headings": " #<!-- atstāt šo rindiņu tādu, kāda tā ir --> <pre>\n#Virsraksti, kas tiks ignorēti meklējot.\n#Izmaiņas stāsies spēkā, kad lapa ar virsrakstiem ir indeksēta.\n#Jūs varat piespiest lapai tikt indeksētai vēlreiz ar nulles labojumu.\n#Sintakse:\n# * Jebkas no \"#\" zīmes līdz rindiņas beigām ir komentārs.\n# * Katra līnija ir precīzs ignorējamais virsraksts, ieskaitot lielos / mazos burtus.\nAtsauces\nĀrējās saites\nSkatīt arī\n #</pre> <!-- atstāt šo rindiņu tādu, kāda tā ir -->",
 	"searchbutton": "Meklēt",
 	"go": "Aiziet!",
 	"searcharticle": "Aiziet!",

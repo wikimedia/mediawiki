@@ -170,6 +170,7 @@
 	"tagline": "z {{GRAMMAR:genitiw|{{SITENAME}}}}",
 	"help": "Pomoc",
 	"search": "Pytać",
+	"search-ignored-headings": " #<!-- njezměń tutu linku --> <pre>\n# Nadpisma, kotrež pytanje ignoruje.\n# Tute změny budu so wuskutkować, po tym zo strona bě so indikowała.\n# Móžeš indikowanje stronow wunuzować, přewjedujo prózdnu změnu.\n# Syntaksa:\n#   * Wšitko, štož znamješku \"#\" hač do kónca linki slěduje, je komentar\n#   * Kózda njeprózdna linka je eksaktny titul, kotryž dyrbi so ignorować\nŽórła\nEksterne wotkazy\nHlej tež\n #</pre> <!-- njezměń tutu linku -->",
 	"searchbutton": "Pytać",
 	"go": "Pytać",
 	"searcharticle": "Pytać",

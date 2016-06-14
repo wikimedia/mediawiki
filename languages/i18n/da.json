@@ -220,6 +220,7 @@
 	"tagline": "Fra {{SITENAME}}",
 	"help": "Hjælp",
 	"search": "Søg",
+	"search-ignored-headings": " #<!-- lad denne linje være præcis som den er --> <pre>\n# Overskrifter, der vil blive ignoreret af søgning.\n# Ændringer til dette træder i kraft så snart siden med overskriften er indekseret.\n# Du kan tvinge siden til genindeksering ved at lave en nul redigering.\n# syntaksen er som følger:\n#   * Alt fra en tegnet \"#\" til slutningen af linjen er en kommentar\n#   * Hver ikke-tomme linje er den nøjagtige titel der skal ignoreres, der skelnes også mellem store og små bogstaver\nReferencer\nEksterne henvisninger\nSe også\nKilder og henvisninger\nEksterne kilder/henvisninger\nKilder\n #</pre> <!-- lad denne linje være præcis som den er -->",
 	"searchbutton": "Søg",
 	"go": "Gå til",
 	"searcharticle": "Gå til",

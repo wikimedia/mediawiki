@@ -162,9 +162,12 @@ class WikiTextStructure {
 	private function getIgnoredHeadings() {
 		static $ignoredHeadings = null;
 		if ( $ignoredHeadings === null ) {
-			// FIXME: will be renamed in next patches to search-ignored-headings
-			$source = wfMessage( 'cirrussearch-ignored-headings' )->inContentLanguage();
 			$ignoredHeadings = [];
+			$source = wfMessage( 'search-ignored-headings' )->inContentLanguage();
+			if ( $source->isBlank() ) {
+				// Try old version too, just in case
+				$source = wfMessage( 'cirrussearch-ignored-headings' )->inContentLanguage();
+			}
 			if ( !$source->isDisabled() ) {
 				$lines = self::parseSettingsInMessage( $source->plain() );
 				$ignoredHeadings = $lines;               // Now we just have headings!

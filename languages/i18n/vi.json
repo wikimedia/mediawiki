@@ -196,6 +196,7 @@
 	"tagline": "Từ {{SITENAME}}",
 	"help": "Trợ giúp",
 	"search": "Tìm kiếm",
+	"search-ignored-headings": " #<!-- để yên dòng này --> <pre>\n# Công cụ tìm kiếm sẽ bỏ qua các đề mục này.\n# Các thay đổi trên danh sách này sẽ có hiệu lực một khi trang có đề mục được đưa vào chỉ mục.\n# Để bắt trang phải được đưa lại vào chỉ mục, thực hiện một sửa đổi vô hiệu quả.\n# Cú pháp:\n#   * Tất cả mọi thứ từ ký hiệu “#” để cuối dòng là chú thích.\n#   * Mỗi dòng có nội dung là đúng tên đề mục để bỏ qua, phân biệt chữ hoa/thường.\nTham khảo\nChú thích\nLiên kết ngoài\nXem thêm\nĐọc thêm\n #</pre> <!-- để yên dòng này -->",
 	"searchbutton": "Tìm kiếm",
 	"go": "Xem",
 	"searcharticle": "Xem",

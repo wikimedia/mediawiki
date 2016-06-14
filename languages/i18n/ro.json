@@ -191,6 +191,7 @@
 	"tagline": "De la {{SITENAME}}",
 	"help": "Ajutor",
 	"search": "Căutare",
+	"search-ignored-headings": " #<!-- nu modificați acest rând --> <pre>\n# Titluri de secțiuni care vor fi ignorate de motorul de căutare.\n# Modificările efectuate aici își vor face efectul de îndată ce pagina care conține titlul de secțiune va fi indexată.\n# Puteți forța reindexarea paginii efectuând o modificare vidă.\n# Sintaxa este următoarea:\n#   * Orice rând precedat de caracterul „#” reprezintă un comentariu.\n#   * Orice rând nevid reprezintă exact titlu de secțiune de ignorat.\nReferințe\nLegături externe\nVezi și\n #</pre> <!-- nu modificați acest rând -->",
 	"searchbutton": "Căutare",
 	"go": "Salt",
 	"searcharticle": "Du-te",

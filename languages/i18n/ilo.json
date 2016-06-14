@@ -170,6 +170,7 @@
 	"tagline": "Manipud iti {{SITENAME}}",
 	"help": "Tulong",
 	"search": "Biruken",
+	"search-ignored-headings": " #<!-- saan a kutkutien daytoy a linia --> <pre>\n# Dagiti paulo a saanto nga ikaskaso babaen ti panagbiruk.\n# Dagiti panagbalbaliw mabalinton intono ti panid nga addaan ti paulo ket maipasurotan.\n# Mabalinmo a piliten ti panangisurot manen iti panid babaen ti awan linaon a panagurnos.\n# Ti eskritu ket kasla dagiti sumaganad:\n#   * Amin manipud ti karater ti \"#\" aginggana ti gibus ti linia ket komentario.\n#   * Amin a saan a blanko a linia ket eksakto a titulo a saan nga maikaskaso, kadakkel ti letra ken amin.\nDagiti reperensia\nDagiti silpo ti ruar\nKitaen pay\n #</pre> <!-- saan a kutkutien daytoy a linia -->",
 	"searchbutton": "Biruken",
 	"go": "Inkan",
 	"searcharticle": "Inkan",
