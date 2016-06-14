@@ -184,6 +184,7 @@
 	"tagline": "De {{SITENAME}}",
 	"help": "Axuda",
 	"search": "Procura",
+	"search-ignored-headings": " #<!-- Deixe esta liña tal e como está --> <pre>\n# Cabeceiras que serán ignoradas nas buscas.\n# Os cambios feitos aquí realízanse en canto se indexa a páxina coa cabeceira.\n# Pode forzar o reindexado da páxina facendo unha edición baleira.\n# A sintaxe é a seguinte:\n#   * Todo o que vaia despois dun carácter \"#\" ata o final da liña é un comentario\n#   * Toda liña que non estea en branco é o título exacto que ignorar, coas maiúsculas e minúsculas\nReferencias\nLigazóns externas\nVéxase tamén\n #</pre> <!-- Deixe esta liña tal e como está -->",
 	"searchbutton": "Procurar",
 	"go": "Mostrar",
 	"searcharticle": "Artigo",

@@ -233,6 +233,7 @@
 	"tagline": "Från {{SITENAME}}",
 	"help": "Hjälp",
 	"search": "Sök",
+	"search-ignored-headings": "#<!-- lämna denna rad precis som den är --> <pre>\n# Rubriker som kommer att ignoreras av sökningen.\n# Ändringar till detta kommer att gälla så fort sidan med rubriken är indexerad.\n# Du kan tvinga sidan att indexeras om genom att göra en null-redigering.\n# Syntaxen är som följer:\n#  * Allt från ett \"#\" tecken till slutet av raden är en kommentar.\n#  * Varje icke-tom rad är den exakta titeln som ska ignoreras, shiftläge och allt.\nReferenser\nKällor\nExterna länkar\nSe även\n #</pre> <!-- lämna denna rad precis som den är -->",
 	"searchbutton": "Sök",
 	"go": "Gå till",
 	"searcharticle": "Gå till",
