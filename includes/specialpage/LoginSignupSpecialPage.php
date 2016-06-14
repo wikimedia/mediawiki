@@ -1025,6 +1025,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'rememberMe' => [
 					// option for saving the user token to a cookie
 					'type' => 'check',
+					'name' => 'wpRemember',
 					'label-message' => $this->msg( 'userlogin-remembermypassword' )
 						->numParams( $expirationDays ),
 					'id' => 'wpRemember',
@@ -1032,7 +1033,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'loginattempt' => [
 					// submit button
 					'type' => 'submit',
-					'name' => 'wpRemember',
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
