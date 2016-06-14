@@ -76,18 +76,30 @@ class MockOggHandler extends OggHandlerTMH {
 	}
 
 	function getLength( $file ) {
+		if ( $this->isAudio( $file ) ) {
+			return 0.99875;
+		}
 		return 4.3666666666667;
 	}
 
 	function getBitRate( $file ) {
+		if ( $this->isAudio( $file ) ) {
+			return 41107;
+		}
 		return 590013;
 	}
 
 	function getWebType( $file ) {
+		if ( $this->isAudio( $file ) ) {
+			return "audio/ogg; codecs=\"vorbis\"";
+		}
 		return "video/ogg; codecs=\"theora\"";
 	}
 
 	function getFramerate( $file ) {
+		if ( $this->isAudio( $file ) ) {
+			return 0;
+		}
 		return 30;
 	}
 }

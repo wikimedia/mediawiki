@@ -1137,6 +1137,19 @@ class ParserTest {
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123500' ), $user );
 
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
+		$image->recordUpload2( '', 'An awesome hitsong', 'Will it play', [
+			'size' => 12345,
+			'width' => 0,
+			'height' => 0,
+			'bits' => 0,
+			'media_type' => MEDIATYPE_AUDIO,
+			'mime' => 'application/ogg',
+			'metadata' => serialize( [] ),
+			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+			'fileExists' => true
+		], $this->db->timestamp( '20010115123500' ), $user );
+
 		# A DjVu file
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
 		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', [
@@ -1252,6 +1265,8 @@ class ParserTest {
 		copy( "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
 		wfMkdirParents( $dir . '/0/00', null, __METHOD__ );
 		copy( "$IP/tests/phpunit/data/parser/320x240.ogv", "$dir/0/00/Video.ogv" );
+		wfMkdirParents( $dir . '/4/41', null, __METHOD__ );
+		copy( "$IP/tests/phpunit/data/media/say-test.ogg", "$dir/4/41/Audio.oga" );
 
 		return;
 	}
@@ -1301,6 +1316,7 @@ class ParserTest {
 				"$dir/thumb/0/00/Video.ogv/270px--Video.ogv.jpg",
 				"$dir/thumb/0/00/Video.ogv/320px-seek=2-Video.ogv.jpg",
 				"$dir/thumb/0/00/Video.ogv/320px-seek=3.3666666666667-Video.ogv.jpg",
+				"$dir/4/41/Audio.oga",
 			]
 		);
 
@@ -1330,6 +1346,8 @@ class ParserTest {
 				"$dir/thumb/5/5f",
 				"$dir/thumb/5",
 				"$dir/thumb",
+				"$dir/4/41",
+				"$dir/4",
 				"$dir/math/f/a/5",
 				"$dir/math/f/a",
 				"$dir/math/f",

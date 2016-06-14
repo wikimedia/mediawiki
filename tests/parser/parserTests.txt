@@ -9870,7 +9870,7 @@ Magic Word: {{NUMBEROFFILES}}
 !! wikitext
 {{NUMBEROFFILES}}
 !! html
-<p>6
+<p>7
 </p>
 !! end
 
