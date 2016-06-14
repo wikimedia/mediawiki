@@ -80,8 +80,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->mTargetObj = $targetObj;
 		$this->mDestObj = $destObj;
 
-		if ( $opts->getValue( 'merge' ) && $targetObj &&
-			$destObj && $opts->getValue( 'mergepoint' ) !== '' ) {
+		if ( $opts->getValue( 'merge' ) && $targetObj && $destObj ) {
 			$this->merge();
 
 			return;
