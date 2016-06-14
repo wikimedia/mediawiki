@@ -147,6 +147,7 @@
 	"tagline": "Ka {{SITENAME}}",
 	"help": "Caawinaad",
 	"search": "Raadi",
+	"search-ignored-headings": " #<!-- Udaa sadarkaan sida uu yahay --> <pre>\n# Waxaa dhacaysa in la iska iloowo madaxqorkiisa inta lagu gudajiro raadinta.\n# Isbedeleda waxay aadi doonaan halkii loogu talo galay ee hordhaca bogga uu ku jiro madaxqorkiisa.\n# Waxaa kuu suurtagal ah inaad howl hordhac ah usameeyso bogga adigoo bedela bogga banaan.\n# Weeraynta waa sidaan soo socota:\n#   * wax kasta oo gadaasheeda lagu qoro \"#\" sadarka dhammaadkiis waxaa loo qaadanaa faallo\n#   * Sadarkasta ee banaan wuxuu qaadanayaa ciwaankii laga tagay, isagii iyo wax kabedelan\nReferences\nLinkiyada dibadda\nSidoo kale eeg\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Raadi",
 	"go": "Soco",
 	"searcharticle": "Soco",
