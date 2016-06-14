@@ -165,6 +165,7 @@
 	"tagline": "Da {{SITENAME}}",
 	"help": "Ajute",
 	"search": "Cirche",
+	"search-ignored-headings": " #<!-- lasse sta linèe accume ste --> <pre>\n# Testate ca avène scettate jndr'à le ricerche.\n# Le cangiaminde devendane effettive quanne 'a pàgene avène indicizzate.\n# Tu puè forzà 'a reindicizzazzione d'a pàgene facenne 'nu cangiamende vecande.\n# 'A sindasse jè 'a seguende:\n#   * Ogneccose da 'u carattere \"#\" 'nzigne a fine d'a linèe jè 'nu commende\n#   * Ogne linèa chiene jè 'u titole esatte da ignorà, case e ogneccose\nRefereminde\nCollegaminde de fore\n'Ndruche pure\n #</pre> <!-- lasse sta linèe accume ste -->",
 	"searchbutton": "Cirche",
 	"go": "Véje",
 	"searcharticle": "Véje",

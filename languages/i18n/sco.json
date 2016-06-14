@@ -181,6 +181,7 @@
 	"tagline": "Fae {{SITENAME}}",
 	"help": "Help",
 	"search": "Rake",
+	"search-ignored-headings": " #<!-- lea this line exactly aes it is --> <pre>\n# Heidins that will be ignored bi rake.\n# Chynges til this tak effect aes suin aes the page wi the heiding is index't.\n# Ye can force page reindexin bi daeing ae null edit.\n# Syntax is aes follaes:\n#   * Awthin fae ae \"#\" chairacter til the end o the line is ae comment\n#   * Ilka no-blank line is the exact title tae ignore, case an awthin\nReferences\nExternal links\nSee ava\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Rake",
 	"go": "Gang",
 	"searcharticle": "Gang",

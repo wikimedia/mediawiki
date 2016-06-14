@@ -312,6 +312,7 @@
 	"tagline": "De {{SITENAME}}",
 	"help": "Ayuda",
 	"search": "Buscar",
+	"search-ignored-headings": " #<!-- deje esta línea tal y como está --> <pre>\n# Títulos que serán ignorados por la búsqueda.\n# Los cambios estarán en vigor tan pronto como la página con el título esté indexada.\n# Puede forzar la página a ser reindexada haciendo una edición nula.\n# La sintaxis es la siguiente: .N!\n#   * Todo, desde un carácter \"#\" al final de la línea es un comentario\n#   * Todas las líneas en blanco es un título exacto para ignorar, caso y cualquier \nReferencia\nEnlaces externos\nVéase también\n #</pre> <!-- deje esta línea tal y como está -->",
 	"searchbutton": "Buscar",
 	"go": "Ir",
 	"searcharticle": "Ir",

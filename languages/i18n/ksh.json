@@ -173,6 +173,7 @@
 	"tagline": "Uß {{GRAMMAR:Dativ | {{ucfirst:{{SITENAME}}}}}}",
 	"help": "Hölp",
 	"search": "Söhke",
+	"search-ignored-headings": " #<!-- Lohß heh di Reih jenou esu, wi se es --> <pre>\n# Övverschreffte, di beim Söhke överjange wähde.\n# Änderonge werke vun däm Momang aan, woh di Sigg met dä Övverschreff neu önersöhk weed.\n# Dat kann De sellver aanstivvelle, endäm dat De di Sigg afscheijschere deihß, derbei moß De nix draan verändert han.\n# Syntax:\n#   * Alles, wat en ener reih henger „#“ schteiht, bedüüg nix.\n#   * Läddeje Reihje bedüüge nix.\n#   * Reije met jät dren sin jenou de Övverschreffte, di nit opjenumme wääde, met jruuße un kleine Schreff.\nWäbsigge\nLohr och noh\n #</pre> <!-- Lohß heh di Reihj jenou esu, wi se es -->",
 	"searchbutton": "em Tex",
 	"go": "Lohß Jonn!",
 	"searcharticle": "Sigg",

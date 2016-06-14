@@ -175,6 +175,7 @@
 	"tagline": "'A {{SITENAME}}.",
 	"help": "Ajùto",
 	"search": "Truova",
+	"search-ignored-headings": " #<!-- lassa sta linea comme sta --> <pre>\n# Testate ca se sarranno gnurate int' 'a ricerca.\n# Cagnamiente a chesto addeventarranno affettive quanno 'a paggena sarrà innecizzata.\n# Vuje putite forzà 'a reinnecezzazzione d' 'a paggena facenno nu cagnamiento abbacante.\n# 'A sintasse è 'a seguente:\n#   * Ogneccosa 'a 'o carattere \"#\" 'nzegna 'a fine d' 'a linea è 'nu cummanno\n#   * Ogne linea chiena è 'o titolo esatto 'a gnurà, case e tutteccose\nRiferimente\nJonte 'e fore\nVide pure\n #</pre> <!-- lassa sta linea comme sta  -->",
 	"searchbutton": "Truova",
 	"go": "Vàje",
 	"searcharticle": "Vàje",

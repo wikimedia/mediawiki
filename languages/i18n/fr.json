@@ -307,6 +307,7 @@
 	"tagline": "De {{SITENAME}}",
 	"help": "Aide",
 	"search": "Rechercher",
+	"search-ignored-headings": " #<!-- laisser cette ligne comme telle --> <pre>\n# Titres de sections qui seront ignorés par la recherche\n# Les changements effectués ici prennent effet dès lors que la page avec le titre est indexée.\n# Vous pouvez forcer la réindexation de la page en effectuant une modification vide\n# La syntaxe est la suivante :\n#   * Toute ligne précédée d’un « # » est un commentaire\n#   * Toute ligne non-vide est le titre exact à ignorer, casse comprise\nRéférences\nLiens externes\nVoir aussi\n #</pre> <!-- laisser cette ligne comme telle -->",
 	"searchbutton": "Rechercher",
 	"go": "Consulter",
 	"searcharticle": "Lire",

@@ -175,6 +175,7 @@
 	"tagline": "De {{SITENAME}}",
 	"help": "Ayuda",
 	"search": "Buscar",
+	"search-ignored-headings": " #<!-- dexar esta llinia exactamente como ta --> <pre>\n# Testeres que nun se tendrán en cuenta na gueta.\n# Los cambios fechos equí son efeutivos nel momentu que s'indexa la páxina cola testera.\n# Pue forzar el reindexáu d'una páxina faciendo una edición nula.\n# La sintaxis ye la siguiente:\n#   * Tolo qu'hai dende un caráuter \"#\" al fin de llinia ye un comentariu\n#   * Cada llinia nun-balera ye'l títulu exactu a descartar, incluyendo mayúscules y demás\nReferencies\nEnllaces esternos\nVer tamién\n #</pre> <!-- dexar esta llinia exactamente como ta -->",
 	"searchbutton": "Guetar",
 	"go": "Dir",
 	"searcharticle": "Dir",

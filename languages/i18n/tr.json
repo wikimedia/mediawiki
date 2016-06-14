@@ -248,6 +248,7 @@
 	"tagline": "{{SITENAME}} sitesinden",
 	"help": "Yardım",
 	"search": "Ara",
+	"search-ignored-headings": " #<!-- bu satırı olduğu gibi bırakın --> <pre>\n# Başlıklar aramada göz ardı edilecektir.\n# Bu değişiklikler başlık ve sayfa endeksli şekilde en kısa sürede yürürlüğe girecektir.\n# Boş bir düzenleme yaparak, yeniden dizin oluşturulmasını zorlayabilirsiniz.\n# Sözdizimi aşağıdaki gibidir:\n#   * \"#\" karakteri ile başlayan her satır, satır sonuna kadar bir yorumdur.\n#   * Boş olmayan her türlü satırın tam başlığı her durumda görmezden gelinir.\nKaynaklar\nDış bağlantılar\nAyrıca bakınız\n #</pre> <!-- bu satırları olduğu gibi bırakın-->",
 	"searchbutton": "Ara",
 	"go": "Git",
 	"searcharticle": "Git",
