@@ -45,6 +45,29 @@ function wfEntryPointCheck( $entryPoint ) {
 		// @codingStandardsIgnoreEnd
 		wfMissingVendorError( $entryPoint, $mwVersion );
 	}
+
+	// List of functions and their associated PHP extension to check for
+	// @codingStandardsIgnoreStart Generic.Arrays.DisallowLongArraySyntax
+	$extensions = array(
+		'mb_substr'   => 'mbstring',
+		'utf8_encode' => 'xml',
+		'ctype_digit' => 'ctype',
+		'json_decode' => 'json',
+		'iconv'       => 'iconv',
+	);
+	// List of extensions we're missing
+	$missingExtensions = array();
+	// @codingStandardsIgnoreEnd
+
+	foreach ( $extensions as $function => $extension ) {
+		if ( !function_exists( $function ) ) {
+			$missingExtensions[] = $extension;
+		}
+	}
+
+	if ( $missingExtensions ) {
+		wfMissingExtensions( $entryPoint, $mwVersion, $missingExtensions );
+	}
 }
 
 /**
@@ -107,7 +130,7 @@ function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $long
 				padding: 2em;
 				text-align: center;
 			}
-			p, img, h1, h2 {
+			p, img, h1, h2, ul  {
 				text-align: left;
 				margin: 0.5em 0 1em;
 			}
@@ -200,4 +223,39 @@ HTML;
 	// @codingStandardsIgnoreEnd
 
 	wfGenericError( $type, $mwVersion, 'External dependencies', $shortText, $longText, $longHtml );
+}
+
+/**
+ * Display an error for a PHP extension not existing.
+ *
+ * @param string $type See wfGenericError
+ * @param string $mwVersion See wfGenericError
+ * @param array $missingExts The extensions we're missing
+ */
+function wfMissingExtensions( $type, $mwVersion, $missingExts ) {
+	$shortText = "Installing some PHP extensions is required.";
+
+	$missingExtText = '';
+	$missingExtHtml = '';
+	$baseUrl = 'https://secure.php.net';
+	foreach ( $missingExts as $ext ) {
+		$missingExtText .= " * $ext <$baseUrl/$ext>\n";
+		$missingExtHtml .= "<li><b>$ext</b> "
+			. "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
+	}
+
+	$cliText = "Error: Missing one or more required components of PHP.\n"
+		. "You are missing a required extension to PHP that MediaWiki needs.\n"
+		. "Please install:\n" . $missingExtText;
+
+	$longHtml = <<<HTML
+		You are missing a required extension to PHP that MediaWiki
+		requires to run. Please install:
+		<ul>
+		$missingExtHtml
+		</ul>
+HTML;
+
+	wfGenericError( $type, $mwVersion, 'Required components', $shortText,
+		$cliText, $longHtml );
 }
