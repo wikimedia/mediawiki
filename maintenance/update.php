@@ -25,7 +25,6 @@
  * @ingroup Maintenance
  */
 
-$wgUseMasterForMaintenance = true;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
