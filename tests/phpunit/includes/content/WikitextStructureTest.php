@@ -91,8 +91,9 @@ More text
 and more text
 == Wikitext '''in''' [[Heading]] and also <b>html</b> ==
 more text
+==== See also ====
+* Also things to see!
 END;
-// FIXME: add test for ==== See also ==== after cirrussearch-ignored-headings is renamed
 		$struct = $this->getStructure( $text );
 		$headings = $struct->headings();
 		$this->assertCount( 4, $headings );

@@ -174,6 +174,7 @@
 	"tagline": "Z {{GRAMMAR:genitiw|{{SITENAME}}}}",
 	"help": "Pomoc",
 	"search": "Pytaś",
+	"search-ignored-headings": " #<!-- njezměń toś tu smužku --> <pre>\n# Nadpisma, kótarež pytanje ignorěrujo.\n# Toś te změny budu se wustatkowaś, za tym až bok jo se indicěrował.\n# Móžoš indicěrowanje bokow wunuźiś, z tym až pśewjedujoš proznu změnu.\n# Syntaksa:\n#   * Wšykno, což slědujo znamušku \"#\" až do kóńca smužki, jo komentar\n#   * Kuzda njeprozna smužka jo eksaktny titel, kótaryž ma se ignorěrowaś\nŽrědła\nEksterne wótkaze\nGlědaj teke\n #</pre> <!-- njezměń toś tu smužku -->",
 	"searchbutton": "Pytaś",
 	"go": "Nastawk",
 	"searcharticle": "Nastawk",

@@ -213,6 +213,7 @@
 	"tagline": "Kohteesta {{SITENAME}}",
 	"help": "Ohje",
 	"search": "Haku",
+	"search-ignored-headings": "#<!-- jätä tämä rivi sellaiseksi kuin se on --> <pre>\n# Otsikot, jotka haku ohittaa.\n# Muutokset tulevat voimaan heti, kun otsikon sivu indeksoidaan.\n# Voit pakottaa sivun indeksoimisen tekemällä nollamuokkauksen.\n# Syntaksi on seuraava:\n#   * Kaikki \"#\"-merkistä rivin loppuun asti on kommenttia\n#   * Kaikki ei-tyhjät rivit ovat otsikoita, jotka ohitetaan.\nLähteet\nAiheesta muualla\nKatso myös\n#</pre> <!-- jätä tämä rivi sellaiseksi kuin se on -->",
 	"searchbutton": "Hae",
 	"go": "Siirry",
 	"searcharticle": "Siirry",
