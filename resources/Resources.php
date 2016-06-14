@@ -2351,7 +2351,5 @@ return [
 	],
 
 	/* OOjs UI */
-	// WARNING: OOjs-UI is NOT TESTED with older browsers and is likely to break
-	// if loaded in browsers that don't support ES5
 	// @see ResourcesOOUI.php
 ];
