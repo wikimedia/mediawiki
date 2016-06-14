@@ -5,7 +5,7 @@
 [submodule "extensions/Wikidata"]
 	path = extensions/Wikidata
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikidata.git
-	branch = wmf/1.28.0-wmf.3
+	branch = wmf/1.28.0-wmf.6
 [submodule "extensions/SemanticMediaWiki"]
 	path = extensions/SemanticMediaWiki
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticMediaWiki.git
