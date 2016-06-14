@@ -45,6 +45,22 @@ function wfEntryPointCheck( $entryPoint ) {
 		// @codingStandardsIgnoreEnd
 		wfMissingVendorError( $entryPoint, $mwVersion );
 	}
+
+	if ( !function_exists( 'mb_substr' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'mbstring' );
+	}
+	if ( !function_exists( 'utf8_encode' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'xml' );
+	}
+	if ( !function_exists( 'ctype_digit' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'ctype' );
+	}
+	if ( !function_exists( 'json_decode' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'json' );
+	}
+	if ( !function_exists( 'iconv' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'iconv' );
+	}
 }
 
 /**
@@ -200,4 +216,29 @@ HTML;
 	// @codingStandardsIgnoreEnd
 
 	wfGenericError( $type, $mwVersion, 'External dependencies', $shortText, $longText, $longHtml );
+}
+
+/**
+ * Display an error for a PHP extension not existing.
+ *
+ * @param string $type See wfGenericError
+ * @param string $mwVersion See wfGenericError
+ */
+function wfMissingExtension( $type, $mwVersion, $missingExt ) {
+	$shortText = "Installing some PHP extensions is required.";
+
+	$longText = "Error: You are missing a required component of PHP.\n"
+		. "You are missing a required extension to PHP that\n"
+		. "MediaWiki needs to run. Please install '$missingExtension.'\n"
+		. "More details available: <https://secure.php.net/$missingExt>";
+
+	// @codingStandardsIgnoreStart Generic.Files.LineLength
+	$longHtml = <<<HTML
+		You are missing a required extension to PHP that
+		MediaWiki requires to run. Please install <b>$missingExt</b>.
+		More details available <a href="https://secure.php.net/$missingExt">PHP.net</a>.
+HTML;
+	// @codingStandardsIgnoreEnd
+
+	wfGenericError( $type, $mwVersion, 'Required components', $shortText, $longText, $longHtml );
 }
