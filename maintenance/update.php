@@ -82,13 +82,6 @@ class UpdateMediaWiki extends Maintenance {
 				"ABORTING (see https://bugs.php.net/bug.php?id=45996).\n",
 				true );
 		}
-
-		if ( !function_exists( 'mb_strlen' ) ) {
-			$this->error(
-				"MediaWiki now requires the mbstring PHP extension, your system doesn't have it.\n"
-				. "ABORTING.\n",
-				true );
-		}
 	}
 
 	function execute() {
