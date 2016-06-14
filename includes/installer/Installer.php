@@ -120,8 +120,6 @@ abstract class Installer {
 	protected $envChecks = [
 		'envCheckDB',
 		'envCheckBrokenXML',
-		'envCheckMbstring',
-		'envCheckXML',
 		'envCheckPCRE',
 		'envCheckMemory',
 		'envCheckCache',
@@ -135,9 +133,6 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
-		'envCheckCtype',
-		'envCheckIconv',
-		'envCheckJSON',
 	];
 
 	/**
@@ -750,40 +745,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for mbstring.func_overload.
-	 * @return bool
-	 */
-	protected function envCheckMbstring() {
-		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
-			$this->showError( 'config-mbstring' );
-
-			return false;
-		}
-
-		if ( !function_exists( 'mb_substr' ) ) {
-			$this->showError( 'config-mbstring-absent' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for the XML module.
-	 * @return bool
-	 */
-	protected function envCheckXML() {
-		if ( !function_exists( "utf8_encode" ) ) {
-			$this->showError( 'config-xml-bad' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Environment check for the PCRE module.
 	 *
 	 * @note If this check were to fail, the parser would
@@ -1133,45 +1094,6 @@ abstract class Installer {
 				$this->showMessage( 'config-unicode-update-warning' );
 			}
 		}
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function envCheckCtype() {
-		if ( !function_exists( 'ctype_digit' ) ) {
-			$this->showError( 'config-ctype' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function envCheckIconv() {
-		if ( !function_exists( 'iconv' ) ) {
-			$this->showError( 'config-iconv' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function envCheckJSON() {
-		if ( !function_exists( 'json_decode' ) ) {
-			$this->showError( 'config-json' );
-
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
