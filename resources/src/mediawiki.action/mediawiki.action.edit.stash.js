@@ -45,7 +45,7 @@
 			return newText !== data.wpTextbox1;
 		}
 
-		function onTextChanged() {
+		function onEditorIdle() {
 			if ( !isChanged() ) {
 				return;
 			}
@@ -53,20 +53,22 @@
 			stashEdit();
 		}
 
-		function onTextKeyPress( e ) {
+		function onTextKeyUp( e ) {
 			// Ignore keystrokes that don't modify text, like cursor movements.
-			// See <http://stackoverflow.com/q/2284844>.
-			if ( e.which === 0 ) {
+			// See <http://www.javascripter.net/faq/keycodes.htm> and
+			// <http://www.quirksmode.org/js/keys.html>. We don't have to be
+			// exhaustive, because the cost of misfiring is low.
+			if ( ( e.which >= 33 && e.which <= 40 ) || ( e.which >= 16 && e.which <= 18 ) ) {
 				return;
 			}
 
 			clearTimeout( timer );
 
-			if ( pending ) {
+			if ( pending && !isChanged() ) {
 				pending.abort();
 			}
 
-			timer = setTimeout( onTextChanged, idleTimeout );
+			timer = setTimeout( onEditorIdle, idleTimeout );
 		}
 
 		function onFormLoaded() {
@@ -84,8 +86,8 @@
 			return;
 		}
 
-		$text.on( { change: onTextChanged, keypress: onTextKeyPress } );
-		$summary.on( { focus: onTextChanged } );
+		$text.on( { change: onEditorIdle, keyup: onTextKeyUp } );
+		$summary.on( { focus: onEditorIdle } );
 		onFormLoaded();
 
 	} );
