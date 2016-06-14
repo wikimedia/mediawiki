@@ -61,6 +61,9 @@ function wfEntryPointCheck( $entryPoint ) {
 	if ( !function_exists( 'iconv' ) ) {
 		wfMissingExtension( $entryPoint, $mwVersion, 'iconv' );
 	}
+	if ( !function_exists( 'curl_multi_exec' ) ) {
+		wfMissingExtension( $entryPoint, $mwVersion, 'curl' );
+	}
 }
 
 /**
