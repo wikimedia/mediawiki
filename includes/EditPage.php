@@ -2690,6 +2690,18 @@ class EditPage {
 			}
 		}
 
+		// Set a hidden field so JS knows what edit form mode we are in
+		if ( $this->isConflict ) {
+			$mode = 'conflict';
+		} elseif ( $this->preview ) {
+			$mode = 'preview';
+		} elseif ( $this->diff ) {
+			$mode = 'diff';
+		} else {
+			$mode = 'text';
+		}
+		$wgOut->addHTML( Html::hidden( 'mode', $mode, [ 'id' => 'mw-edit-mode' ] ) );
+
 		// Marker for detecting truncated form data.  This must be the last
 		// parameter sent in order to be of use, so do not move me.
 		$wgOut->addHTML( Html::hidden( 'wpUltimateParam', true ) );
@@ -3603,7 +3615,7 @@ HTML
 	 */
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
-		global $wgAllowUserCss, $wgAllowUserJs, $wgAjaxEditStash;
+		global $wgAllowUserCss, $wgAllowUserJs;
 
 		$stats = $wgOut->getContext()->getStats();
 
@@ -3712,15 +3724,6 @@ HTML
 			$scopedCallback = $parserOptions->setupFakeRevision(
 				$this->mTitle, $pstContent, $wgUser );
 			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
-
-			# Try to stash the edit for the final submission step
-			# @todo: different date format preferences cause cache misses
-			if ( $wgAjaxEditStash ) {
-				ApiStashEdit::stashEditFromPreview(
-					$this->getArticle(), $content, $pstContent,
-					$parserOutput, $parserOptions, $parserOptions, wfTimestampNow()
-				);
-			}
 
 			$parserOutput->setEditSectionTokens( false ); // no section edit links
 			$previewHTML = $parserOutput->getText();
