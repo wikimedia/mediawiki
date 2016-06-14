@@ -242,6 +242,34 @@ class BalanceSets {
 			'title' => true
 		]
 	];
+
+	// For tidy compatibility.
+	public static $tidyPWrapSet = [
+		self::HTML_NAMESPACE => [
+			'body' => true, 'blockquote' => true,
+			// We parse with <body> as the fragment context, but the top-level
+			// element on the stack is actually <html>.  We could use the
+			// "adjusted current node" everywhere to work around this, but it's
+			// easier just to add <html> to the p-wrap set.
+			'html' => true,
+		],
+	];
+	public static $tidyInlineSet = [
+		self::HTML_NAMESPACE => [
+			'a' => true, 'abbr' => true, 'acronym' => true, 'applet' => true,
+			'b' => true, 'basefont' => true, 'bdo' => true, 'big' => true,
+			'br' => true, 'button' => true, 'cite' => true, 'code' => true,
+			'dfn' => true, 'em' => true, 'font' => true, 'i' => true,
+			'iframe' => true, 'img' => true, 'input' => true, 'kbd' => true,
+			'label' => true, 'legend' => true, 'map' => true, 'object' => true,
+			'param' => true, 'q' => true, 'rb' => true, 'rbc' => true,
+			'rp' => true, 'rt' => true, 'rtc' => true, 'ruby' => true,
+			's' => true, 'samp' => true, 'select' => true, 'small' => true,
+			'span' => true, 'strike' => true, 'strong' => true, 'sub' => true,
+			'sup' => true, 'textarea' => true, 'tt' => true, 'u' => true,
+			'var' => true,
+		],
+	];
 }
 
 /**
@@ -405,14 +433,37 @@ class BalanceElement {
 	 *
 	 * @see __toString()
 	 */
-	public function flatten() {
+	public function flatten( $tidyCompat = false ) {
 		Assert::parameter( $this->parent !== null, '$this', 'must be a child' );
 		Assert::parameter( $this->parent !== 'flat', '$this', 'already flat' );
 		$idx = array_search( $this, $this->parent->children, true );
 		Assert::parameter(
 			$idx !== false, '$this', 'must be a child of its parent'
 		);
-		$flat = "{$this}";
+		if ( $tidyCompat ) {
+			$blank = true;
+			foreach ( $this->children as $elt ) {
+				if ( !is_string( $elt ) ) {
+					$elt = $elt->flatten( $tidyCompat );
+				}
+				if ( $blank && preg_match( '/[^\t\n\f\r ]/', $elt ) ) {
+					$blank = false;
+				}
+			}
+			if ( $this->isA( 'mw:p-wrap' ) ) {
+				$this->localName = 'p';
+			} elseif ( $blank ) {
+				// Add 'mw-empty-elt' class so elements can be hidden via CSS
+				// for compatibility with legacy tidy.
+				if ( $this->attribs === '' ) {
+					$this->attribs = ' class="mw-empty-elt"';
+				}
+				$blank = false;
+			}
+			$flat = $blank ? '' : "{$this}";
+		} else {
+			$flat = "{$this}";
+		}
 		$this->parent->children[$idx] = $flat;
 		$this->parent = 'flat'; # for assertion checking
 		return $flat;
@@ -537,6 +588,10 @@ class BalanceStack implements IteratorAggregate {
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#foster-parent
 	 */
 	public $fosterParentMode = false;
+	/**
+	 * Tidy compatibility mode, determines behavior of body/blockquote
+	 */
+	public $tidyCompat = false;
 
 	/**
 	 * Create a new BalanceStack with a single BalanceElement on it,
@@ -559,7 +614,8 @@ class BalanceStack implements IteratorAggregate {
 		// Don't include the outer '<html>....</html>'
 		$out = '';
 		foreach ( $this->elements[0]->children as $elt ) {
-			$out .= is_string( $elt ) ? $elt : $elt->flatten();
+			$out .= is_string( $elt ) ? $elt :
+				$elt->flatten( $this->tidyCompat );
 		}
 		return $out;
 	}
@@ -576,6 +632,12 @@ class BalanceStack implements IteratorAggregate {
 			$this->currentNode()->isA( BalanceSets::$tableSectionRowSet )
 		) {
 			$this->fosterParent( $value );
+		} elseif (
+			$this->tidyCompat &&
+			$this->currentNode()->isA( BalanceSets::$tidyPWrapSet )
+		) {
+			$this->insertHTMLELement( 'mw:p-wrap', '' );
+			return $this->insertText( $value );
 		} else {
 			$this->currentNode()->appendChild( $value );
 		}
@@ -619,6 +681,13 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function insertElement( $elt ) {
 		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
+		if (
+			$this->currentNode()->isA( 'mw:p-wrap' ) &&
+			!$elt->isA( BalanceSets::$tidyInlineSet )
+		) {
+			// Tidy compatibility.
+			$this->pop();
+		}
 		if (
 			$this->fosterParentMode &&
 			$this->currentNode()->isA( BalanceSets::$tableSectionRowSet )
@@ -797,7 +866,9 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function pop() {
 		$elt = array_pop( $this->elements );
-		$elt->flatten();
+		if ( !$elt->isA( 'mw:p-wrap' ) ) {
+			$elt->flatten( $this->tidyCompat );
+		}
 	}
 
 	/**
@@ -868,7 +939,7 @@ class BalanceStack implements IteratorAggregate {
 			// otherwise, it will eventually serialize when the parent
 			// is serialized, we just hold onto the memory for its
 			// tree of objects a little longer.
-			$elt->flatten();
+			$elt->flatten( $this->tidyCompat );
 		}
 		Assert::postcondition(
 			array_search( $elt, $this->elements, true ) === false,
@@ -915,6 +986,32 @@ class BalanceStack implements IteratorAggregate {
 		} else {
 			$parent = $this->elements[0]; // the `html` element.
 		}
+
+		if ( $this->tidyCompat ) {
+			if ( is_string( $elt ) ) {
+				// We're fostering text: do we need a p-wrapper?
+				if ( $parent->isA( BalanceSets::$tidyPWrapSet ) ) {
+					$this->insertHTMLElement( 'mw:p-wrap', '' );
+					$this->insertText( $elt );
+					return $elt;
+				}
+			} else {
+				// We're fostering an element; do we need to merge p-wrappers?
+				if ( $elt->isA( 'mw:p-wrap' ) ) {
+					$idx = $before ?
+						array_search( $before, $parent->children, true ) :
+						count( $parent->children );
+					$after = $idx > 0 ? $parent->children[$idx - 1] : '';
+					if (
+						$after instanceof BalanceElement &&
+						$after->isA( 'mw:p-wrap' )
+					) {
+						return $after; // Re-use existing p-wrapper.
+					}
+				}
+			}
+		}
+
 		if ( $before ) {
 			$parent->insertBefore( $before, $elt );
 		} else {
@@ -1402,6 +1499,7 @@ class Balancer {
 	private $afe;
 	private $stack;
 	private $strict;
+	private $tidyCompat;
 
 	private $textIntegrationMode = false;
 	private $pendingTableText;
@@ -1420,14 +1518,22 @@ class Balancer {
 	 *         When present, the keys of this associative array give
 	 *         the acceptable HTML tag names.  When not present, no
 	 *         tag sanitization is done.
+	 *     'tidyCompat' : boolean, defaults to false.
+	 *         When true, the serialization algorithm is tweaked to
+	 *         provide historical compatibility with the old "tidy"
+	 *         program: <p>-wrapping is done to the children of
+	 *         <body> and <blockquote> elements, and empty elements
+	 *         are removed.
 	 */
 	public function __construct( array $config ) {
 		$config = $config + [
 			'strict' => false,
 			'allowedHtmlElements' => null,
+			'tidyCompat' => false,
 		];
 		$this->allowedHtmlElements = $config['allowedHtmlElements'];
 		$this->strict = $config['strict'];
+		$this->tidyCompat = $config['tidyCompat'];
 		if ( $this->allowedHtmlElements !== null ) {
 			# Sanity check!
 			$bad = array_uintersect_assoc(
@@ -1467,6 +1573,7 @@ class Balancer {
 		$this->bitsIterator = new ExplodeIterator( '<', $text );
 		$this->afe = new BalanceActiveFormattingElements();
 		$this->stack = new BalanceStack();
+		$this->stack->tidyCompat = $this->tidyCompat;
 		$this->processingCallback = $processingCallback;
 		$this->processingArgs = $processingArgs;
 
