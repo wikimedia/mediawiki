@@ -3155,7 +3155,8 @@ class Parser {
 						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
 						$found = true;
 						$isHTML = true;
-						$this->disableCache();
+						// Severely reduce cache time to keep content dynamic
+						$this->mOutput->updateCacheExpiry( 30 );
 					}
 				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
