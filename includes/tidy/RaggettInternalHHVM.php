@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tidy;
 
+use Exception;
+
 class RaggettInternalHHVM extends RaggettBase {
 	/**
 	 * Use the HTML tidy extension to use the tidy library in-process,
