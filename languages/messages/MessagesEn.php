@@ -381,6 +381,7 @@ $magicWords = [
 	'pagesincategory_pages'   => [ 0, 'pages' ],
 	'pagesincategory_subcats' => [ 0, 'subcats' ],
 	'pagesincategory_files'   => [ 0, 'files' ],
+	'previewmode'             => [ 1, 'PREVIEWMODE' ]
 ];
 
 /**

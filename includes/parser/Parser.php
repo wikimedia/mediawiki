@@ -2775,6 +2775,8 @@ class Parser {
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
+			case 'previewmode':
+				return $this->getOptions()->getIsPreview() ? 'preview' : '';
 			default:
 				$ret = null;
 				Hooks::run(
