@@ -79,11 +79,14 @@ class CacheTime {
 
 	/**
 	 * Sets the number of seconds after which this object should expire.
+	 *
 	 * This value is used with the ParserCache.
 	 * If called with a value greater than the value provided at any previous call,
 	 * the new call has no effect. The value returned by getCacheExpiry is smaller
 	 * or equal to the smallest number that was provided as an argument to
 	 * updateCacheExpiry().
+	 *
+	 * Avoid using 0 if at all possible. Consider JavaScript for highly dynamic content.
 	 *
 	 * @param int $seconds
 	 */
