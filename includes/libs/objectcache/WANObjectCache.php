@@ -902,7 +902,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				// For hot keys, either another thread has the lock or the lock failed;
 				// use the INTERIM value from the last thread that regenerated it.
 				$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
-				$value = $this->unwrap( $wrapped, microtime( true ) );
+				list( $value ) = $this->unwrap( $wrapped, microtime( true ) );
 				if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
 					$asOf = $wrapped[self::FLD_TIME];
 

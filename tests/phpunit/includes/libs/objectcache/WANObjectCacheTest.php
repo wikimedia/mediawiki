@@ -217,9 +217,23 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->lock( $key, 0 );
-		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
+
+		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
+
+		$cache->delete( $key );
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] ); // should use interim value
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 2, $calls, 'Callback was used' );
+
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 2, $calls, 'Callback was not used; used interim' );
 	}
 
 	/**
