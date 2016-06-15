@@ -186,12 +186,14 @@ class SpecialPage {
 	 *  false to use the parent page's cache settings
 	 */
 	public function maxIncludeCacheTime() {
-		global $wgMiserMode;
-		if ( !$wgMiserMode ) {
-			return 0;
-		} else {
-			return 60*60;
-		}
+		return $this->getConfig()->get( 'MiserMode' ) ? $this->getCacheTTL() : 0;
+	}
+
+	/**
+	 * @return int Seconds that this page can be cached
+	 */
+	protected function getCacheTTL() {
+		return 60 * 60;
 	}
 
 	/**
