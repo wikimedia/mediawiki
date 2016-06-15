@@ -1461,6 +1461,8 @@
 	"upload-http-error": "Došlo k chybě HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Načítání kopírováním není dostupné z této domény.",
 	"upload-foreign-cant-upload": "Tato wiki není nakonfigurována, aby načítala soubory na požadované vzdálené úložiště souborů.",
+	"upload-foreign-cant-load-config": "Nepodařilo se získat konfiguraci načítání souborů na vzdálené úložiště souborů.",
+	"upload-dialog-disabled": "Načítání souborů pomocí tohoto dialogu je na této wiki vypnuto.",
 	"upload-dialog-title": "Načtení souboru",
 	"upload-dialog-button-cancel": "Storno",
 	"upload-dialog-button-done": "Hotovo",
@@ -3801,5 +3803,6 @@
 	"linkaccounts-success-text": "Účet byl propojen.",
 	"linkaccounts-submit": "Propojit účty",
 	"unlinkaccounts": "Zrušení propojení účtů",
-	"unlinkaccounts-success": "Propojení účtu bylo zrušeno."
+	"unlinkaccounts-success": "Propojení účtu bylo zrušeno.",
+	"authenticationdatachange-ignored": "Změna autentizačních údajů nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?"
 }

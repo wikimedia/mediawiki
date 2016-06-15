@@ -1446,6 +1446,7 @@
 	"upload-copy-upload-invalid-domain": "Le incargamento de copias non es disponibile ab iste dominio.",
 	"upload-foreign-cant-upload": "Iste wiki non es configurate pro incargar files al repositorio de files externe demandate.",
 	"upload-foreign-cant-load-config": "Le cargamento del configuration pro le incargamento de files al repositorio de files externe ha fallite.",
+	"upload-dialog-disabled": "Le incargamento de files con iste dialogo es disactivate in iste wiki.",
 	"upload-dialog-title": "Incargar file",
 	"upload-dialog-button-cancel": "Cancellar",
 	"upload-dialog-button-done": "Facite",

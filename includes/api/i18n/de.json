@@ -767,6 +767,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-sha1": "SHA-1-Prüfsumme (Basis 16) der Version.",
 	"apihelp-query+revisions+base-paramvalue-prop-contentmodel": "Inhaltsmodell-Kennung der Version.",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Text der Version.",
+	"apihelp-query+revisions+base-paramvalue-prop-tags": "Markierungen für die Version.",
 	"apihelp-query+search-param-what": "Welcher Suchtyp ausgeführt werden soll.",
 	"apihelp-query+search-param-info": "Welche Metadaten zurückgegeben werden sollen.",
 	"apihelp-query+search-param-prop": "Eigenschaften zur Rückgabe:",

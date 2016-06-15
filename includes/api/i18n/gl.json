@@ -1253,6 +1253,7 @@
 	"apihelp-stashedit-param-contentmodel": "Modelo de contido para o novo contido.",
 	"apihelp-stashedit-param-contentformat": "Formato de serialización de contido utilizado para o texto de entrada.",
 	"apihelp-stashedit-param-baserevid": "Identificador da revisión da revisión de base.",
+	"apihelp-stashedit-param-summary": "Resumo do cambio.",
 	"apihelp-tag-description": "Engadir ou eliminar etiquetas de cambio de revisións individuais ou entradas de rexistro.",
 	"apihelp-tag-param-rcid": "Identificadores de un ou máis cambios recentes nos que engadir ou eliminar a etiqueta.",
 	"apihelp-tag-param-revid": "Identificadores de unha ou máis revisións nas que engadir ou eliminar a etiqueta.",

@@ -1269,6 +1269,7 @@
 	"apihelp-stashedit-param-contentmodel": "Modèle de contenu du nouveau contenu.",
 	"apihelp-stashedit-param-contentformat": "Format de sérialisation de contenu utilisé pour le texte saisi.",
 	"apihelp-stashedit-param-baserevid": "ID de révision de la révision de base.",
+	"apihelp-stashedit-param-summary": "Résumé du changement",
 	"apihelp-tag-description": "Ajouter ou enlever des balises de modification aux révisions ou ou aux entrées de journal individuelles.",
 	"apihelp-tag-param-rcid": "Un ou plus IDs de modification récente à partir desquels ajouter ou supprimer la balise.",
 	"apihelp-tag-param-revid": "Un ou plus IDs de révision à partir desquels ajouter ou supprimer la balise.",

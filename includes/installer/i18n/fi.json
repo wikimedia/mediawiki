@@ -69,7 +69,6 @@
 	"config-unicode-using-intl": "Käyttää [http://pecl.php.net/intl intl PECL-laajennusta] Unicode-normalisaatioon.",
 	"config-no-db": "Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajurit PHP:lle.\nSeuraavat tietokantatyypit ovat tuettuja: $1.",
 	"config-outdated-sqlite": "<strong>Varoitus:</strong> sinulla on käytössä SQLite $1, joke on vanhempi kuin vähintään vaadittava versio $2. SQLite ei ole saatavilla.",
-	"config-xml-bad": "PHP:n XML-moduulia ei löydy.\nMediaWiki käyttää tämän moduulin funktioita, eikä toimi tässä kokoonpanossa.\nJos käytät Mandrakea, asenna php-xml paketti.",
 	"config-pcre-old": "<strong>Tärkeää:</strong> PCRE $1 tai uudempi versio tarvitaan.\nPHP-binäärisi on linkitetty versiolla PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Lisätietoja].",
 	"config-memory-raised": "PHP:n <code>memory_limit</code> on $1, nostetaan arvoon $2.",
 	"config-memory-bad": "'''Varoitus:''' PHP:n <code>memory_limit</code> on $1.\nTämä on luultavasti liian alhainen.\nAsennus saattaa epäonnistua!",

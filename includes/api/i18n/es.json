@@ -743,6 +743,7 @@
 	"apihelp-stashedit-param-contentmodel": "Modelo del contenido nuevo.",
 	"apihelp-stashedit-param-contentformat": "Formato de serialización de contenido utilizado para el texto de entrada.",
 	"apihelp-stashedit-param-baserevid": "Identificador de la revisión de base.",
+	"apihelp-stashedit-param-summary": "Resumen de cambios.",
 	"apihelp-tag-param-logid": "Uno o más identificadores de entradas del registro a los que agregar o eliminar la etiqueta.",
 	"apihelp-tag-param-reason": "Motivo del cambio.",
 	"apihelp-tag-example-rev": "Añadir la etiqueta <kbd>vandalism</kbd> al identificador de revisión 123 sin especificar un motivo",

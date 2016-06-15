@@ -1524,6 +1524,7 @@
 	"upload-copy-upload-invalid-domain": "Als Kopie hochladbare Dateien sind über diese Domain nicht verfügbar.",
 	"upload-foreign-cant-upload": "Dieses Wiki ist nicht konfiguriert, um Dateien auf das gewünschte fremde Dateirepositorium hochzuladen.",
 	"upload-foreign-cant-load-config": "Das Laden der Dateiuploadkonfiguration für das fremde Dateirepositorium ist fehlgeschlagen.",
+	"upload-dialog-disabled": "Dateiuploads mit diesem Dialog sind auf diesem Wiki deaktiviert.",
 	"upload-dialog-title": "Datei hochladen",
 	"upload-dialog-button-cancel": "Abbrechen",
 	"upload-dialog-button-done": "Schließen",

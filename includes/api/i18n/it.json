@@ -581,6 +581,7 @@
 	"apihelp-stashedit-param-sectiontitle": "Il titolo per una nuova sezione.",
 	"apihelp-stashedit-param-text": "Contenuto della pagina.",
 	"apihelp-stashedit-param-contentmodel": "Modello di contenuto dei nuovi contenuti.",
+	"apihelp-stashedit-param-summary": "Modifica riepilogo.",
 	"apihelp-tag-param-reason": "Motivo per la modifica.",
 	"apihelp-tokens-param-type": "Tipi di token da richiedere.",
 	"apihelp-tokens-example-edit": "Recupera un token di modifica (il predefinito).",

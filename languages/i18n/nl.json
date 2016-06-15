@@ -77,7 +77,8 @@
 			"Nemo bis",
 			"Lemondoge",
 			"Dinosaur918",
-			"Jdforrester"
+			"Jdforrester",
+			"Jeleniccz"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -474,6 +475,7 @@
 	"password-change-forbidden": "U kunt uw wachtwoord niet wijzigen in deze wiki.",
 	"externaldberror": "Er is een fout opgetreden bij het aanmelden bij de database of u hebt geen toestemming uw externe gebruiker bij te werken.",
 	"login": "Aanmelden",
+	"login-security": "Het verifiëren van uw identiteit",
 	"nav-login-createaccount": "Aanmelden / registreren",
 	"userlogin": "Aanmelden / registreren",
 	"userloginnocreate": "Aanmelden",

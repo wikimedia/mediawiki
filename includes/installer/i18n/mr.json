@@ -52,8 +52,6 @@
 	"config-outdated-sqlite": "<strong>इशारा:</strong> आपणापाशी SQLite $1 आहे, जी किमान आवश्यक आवृत्ती $2 पेक्षा, निम्न आहे. SQLite अनुपलब्ध राहील.",
 	"config-memory-raised": "पीएचपीची <code>memory_limit</code> ही $1 आहे, त्यास $2 ला वाढविली.",
 	"config-memory-bad": "पीएचपीची <code>memory_limit</code> ही $1 आहे.\nही बरीच खालच्या स्तरावरची आहे.\nउभारणी अयशस्वी होऊ शकते!",
-	"config-ctype": "<strong>घातक:</strong> पीएचपीचे [http://www.php.net/manual/en/ctype.installation.php Ctype या विस्तारकाशी] साहाय्य करण्यास संकलन करावे लागेल.",
-	"config-iconv": "<strong>घातक:</strong> पीएचपीचे [http://www.php.net/manual/en/iconv.installation.php iconv या विस्तारकाशी]साहाय्य करण्यास संकलन करावे लागेल.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] उभारली",
 	"config-apc": "[http://www.php.net/apc APC] उभारली आहे",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] उभारली आहे",

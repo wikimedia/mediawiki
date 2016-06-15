@@ -55,8 +55,6 @@
 	"config-no-db": "¡Nun pudo alcontrase un controlador de base de datos afayadizu! Necesites instalar un controlador de base de datos pa PHP.\n{{PLURAL:$2|Tien sofitu el tipu de base de datos siguiente|Tienen sofitu los tipos de base de datos siguientes}}: $1.\n\nSi compilasti PHP tu mesmu, reconfigúralu con un cliente de base de datos activáu, por exemplu, usando <code>./configure --with-mysqli</code>.\nSi instalasti PHP dende un paquete de Debian o Ubuntu, necesites instalar tamién,por exemplu, el paquete <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "'''Avisu:''' tien SQLite $1, que ye inferior a la versión mínima necesaria $2. SQLite nun tará disponible.",
 	"config-no-fts3": "'''Avisu:''' SQLite ta compiláu ensin el [//sqlite.org/fts3.html módulu FTS3]; les funciones de gueta nun tarán disponibles nesti sistema.",
-	"config-mbstring": "<strong>Fatal: ¡[@http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] ta activáu!</strong>\nEsta opción causa errores y pué corromper los datos de mou imprevisible.\nNun puedes instalar o utilizar MediaWiki nun siendo que esta opción tea desactivada.",
-	"config-xml-bad": "Falta'l módulu XML de PHP.\nMediaWiki rique funciones d'esti módulu y nun va funcionar con esta configuración.\nSeique precises instalar el paquete RPM llamáu php-xml.",
 	"config-pcre-old": "<strong>Fatal:</strong> Ríquese PCRE $1 o posterior.\nEl binariu de PHP ta enllazáu con PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Más información].",
 	"config-apc": "[http://www.php.net/apc APC] ta instaláu",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] ta instaláu",

@@ -1528,6 +1528,7 @@
 	"upload-http-error": "Si è verificato un errore HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Non è consentito il caricamento di copie da questo dominio.",
 	"upload-foreign-cant-upload": "Questo wiki non è configurato per caricare i file nel repository di file esterno richiesto.",
+	"upload-dialog-disabled": "Il caricamento di file tramite questa finestra di dialogo è disabilitato in questa wiki.",
 	"upload-dialog-title": "Carica file",
 	"upload-dialog-button-cancel": "Annulla",
 	"upload-dialog-button-done": "Fatto",

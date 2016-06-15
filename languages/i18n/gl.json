@@ -1453,6 +1453,7 @@
 	"upload-copy-upload-invalid-domain": "A copia de cargas non está dispoñible neste dominio.",
 	"upload-foreign-cant-upload": "Este wiki non está configurado para subir ficheiros ao repositorio de ficheiros externo solicitado.",
 	"upload-foreign-cant-load-config": "A carga da configuración de carga de ficheiros para o repositorio de ficheiros externo fallou.",
+	"upload-dialog-disabled": "As cargas de ficheiros usando esta pantalla están desactivadas neste wiki.",
 	"upload-dialog-title": "Subir un ficheiro",
 	"upload-dialog-button-cancel": "Cancelar",
 	"upload-dialog-button-done": "Feito",

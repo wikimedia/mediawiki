@@ -1766,6 +1766,7 @@
 	"rollback-success": "Anullacion de las modificacions de $1 ; retorn a la version de $2.",
 	"sessionfailure-title": "La session a fracassat",
 	"sessionfailure": "Vòstra session de connexion sembla aver de problèmas ;\naquesta accion es estada anullada en prevencion d’un piratatge de session.\nClicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.",
+	"changecontentmodel": "Modificar lo modèl de contengut d’una pagina",
 	"changecontentmodel-title-label": "Títol de la pagina",
 	"changecontentmodel-model-label": "Novèl modèl de contengut",
 	"changecontentmodel-reason-label": "Motiu :",
@@ -3182,5 +3183,6 @@
 	"special-characters-title-endash": "jonhent anglés",
 	"special-characters-title-emdash": "jonhent em",
 	"special-characters-title-minus": "signe mens",
-	"randomrootpage": "Pagina raiç aleatòria"
+	"randomrootpage": "Pagina raiç aleatòria",
+	"changecredentials": "Modificar las informacions d’identificacion"
 }

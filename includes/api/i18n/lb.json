@@ -160,6 +160,7 @@
 	"apihelp-stashedit-param-title": "Titel vun der Säit déi geännert gëtt.",
 	"apihelp-stashedit-param-sectiontitle": "Den Titel fir en neien Abschnitt.",
 	"apihelp-stashedit-param-text": "Inhalt vun der Säit",
+	"apihelp-stashedit-param-summary": "Resumé änneren",
 	"apihelp-tag-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-unblock-description": "D'Spär vun engem Benotzer ophiewen.",
 	"apihelp-unblock-param-reason": "Grond fir d'Spär opzehiewen",
