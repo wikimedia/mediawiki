@@ -3,7 +3,7 @@
  *
  * This file is where we decide whether to initialise the modern run-time.
  */
-/*jshint unused: false, evil: true */
+/*jshint unused: false */
 /*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
 
 var mediaWikiLoadStart = ( new Date() ).getTime(),
