@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tidy;
 
+use MWException;
+
 /**
  * Base class for HTML cleanup utilities
  */
