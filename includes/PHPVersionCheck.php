@@ -49,11 +49,12 @@ function wfEntryPointCheck( $entryPoint ) {
 	// List of functions and their associated PHP extension to check for
 	// @codingStandardsIgnoreStart Generic.Arrays.DisallowLongArraySyntax
 	$extensions = array(
-		'mb_substr'   => 'mbstring',
-		'utf8_encode' => 'xml',
-		'ctype_digit' => 'ctype',
-		'json_decode' => 'json',
-		'iconv'       => 'iconv',
+		'mb_substr'       => 'mbstring',
+		'utf8_encode'     => 'xml',
+		'ctype_digit'     => 'ctype',
+		'json_decode'     => 'json',
+		'iconv'           => 'iconv',
+		'curl_multi_exec' => 'curl',
 	);
 	// List of extensions we're missing
 	$missingExtensions = array();
