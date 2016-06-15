@@ -620,7 +620,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// add pre/post text
 		// header used by ConfirmEdit, CondfirmAccount, Persona, WikimediaIncubator, SemanticSignup
 		// should be above the error message but HTMLForm doesn't support that
-		$form->addHeaderText( $fakeTemplate->html( 'header' ) );
+		$form->addHeaderText( $fakeTemplate->get( 'header' ) );
 
 		// FIXME the old form used this for error/warning messages which does not play well with
 		// HTMLForm (maybe it could with a subclass?); for now only display it for signups
@@ -633,7 +633,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// header used by MobileFrontend
-		$form->addHeaderText( $fakeTemplate->html( 'formheader' ) );
+		$form->addHeaderText( $fakeTemplate->get( 'formheader' ) );
 
 		// blank signup footer for site customization
 		if ( $this->isSignup() && $this->showExtraInformation() ) {

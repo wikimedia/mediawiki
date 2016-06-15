@@ -103,7 +103,6 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
-	 * @return string
 	 */
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
@@ -112,7 +111,6 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
-	 * @return string
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
@@ -121,7 +119,6 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
-	 * @return string
 	 */
 	function msg( $str ) {
 		echo htmlspecialchars( $this->translator->translate( $str ) );
@@ -130,7 +127,6 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
-	 * @return string
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
@@ -140,7 +136,6 @@ abstract class QuickTemplate {
 	 * An ugly, ugly hack.
 	 * @private
 	 * @param string $str
-	 * @return string
 	 */
 	function msgWiki( $str ) {
 		global $wgOut;
