@@ -479,17 +479,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		return 'changes';
 	}
 
-	/**
-	 * How long to cache page when it is being included.
-	 *
-	 * @return int Time in seconds, 0 to disable caching altogether
-	 */
-	public function maxIncludeCacheTime() {
-		global $wgMiserMode;
-		if ( !$wgMiserMode ) {
-			return 0;
-		} else {
-			return 60*5;
-		}
+	protected function getCacheTTL() {
+		return 60 * 5;
 	}
 }
