@@ -1,5 +1,4 @@
 /*global CompletenessTest, sinon */
-/*jshint evil: true */
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
