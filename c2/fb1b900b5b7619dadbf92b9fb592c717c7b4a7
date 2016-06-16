@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+1: Anomie <bjorsch@wikimedia.org>
+Code-Review+2: Dpatrick <dpatrick@wikimedia.org>
+Submitted-by: Dpatrick <dpatrick@wikimedia.org>
+Submitted-at: Thu, 16 Jun 2016 16:04:40 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/294528
+Project: mediawiki/core
+Branch: refs/heads/master
