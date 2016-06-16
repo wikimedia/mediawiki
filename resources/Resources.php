@@ -1464,9 +1464,12 @@ return [
 		],
 	],
 	'mediawiki.action.history' => [
-		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
+	],
+	'mediawiki.action.history.styles' => [
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
 	'mediawiki.action.history.diff' => [
 		'position' => 'top',
