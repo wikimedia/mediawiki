@@ -478,6 +478,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			);
 			$classes = array_merge( $classes, $newClasses );
 
+			Hooks::run( 'SpecialContributions::formatRow::flags', [ $this->getContext(), $row, &$flags ] );
+
 			$templateParams = [
 				'del' => $del,
 				'timestamp' => $d,
