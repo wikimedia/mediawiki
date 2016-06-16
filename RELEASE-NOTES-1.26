@@ -12,7 +12,7 @@ This is a maintenance release of the MediaWiki 1.26 branch.
 
 This is a maintenance release of the MediaWiki 1.26 branch.
 
-== Changes since 1.26.2 ==
+=== Changes since 1.26.2 ===
 * (T116266) Fixed undefined property notices in DairikiDiff under HHVM.
 * (T123166) Fix fatal error when importing pages to titles which cannot be
   created, such as invalid titles or titles the user is not allowed to edit.
@@ -40,7 +40,7 @@ This is a maintenance release of the MediaWiki 1.26 branch.
 
 This is a maintenance release of the MediaWiki 1.26 branch.
 
-== Changes since 1.26.1 ==
+=== Changes since 1.26.1 ===
 * (T121892) Fix fatal error on some Special pages, introduced in 1.26.1.
 
 == MediaWiki 1.26.1 ==
