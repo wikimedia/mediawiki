@@ -796,7 +796,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	protected function getCacheTTL() {
-		return 60 * 50;
+		return 60 * 5;
 	}
 
 }
