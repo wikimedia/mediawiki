@@ -83,9 +83,17 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 *   into such.
 	 * @param bool|string $autocreate False if this is not an auto-creation, or
 	 *  the source of the auto-creation passed to AuthManager::autoCreateUser().
+	 * @param array $options
+	 *  - flags: (int) Bitfield of User:READ_* constants, default User::READ_NORMAL
+	 *  - creating: (bool) If false (or missing), this call is only testing if
+	 *    a user could be created. If set, this (non-autocreation) is for
+	 *    actually creating an account and will be followed by a call to
+	 *    testForAccountCreation(). In this case, the provider might return
+	 *    StatusValue::newGood() here and let the later call to
+	 *    testForAccountCreation() do a more thorough test.
 	 * @return StatusValue
 	 */
-	public function testUserForCreation( $user, $autocreate );
+	public function testUserForCreation( $user, $autocreate, array $options = [] );
 
 	/**
 	 * Post-creation callback
