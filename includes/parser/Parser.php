@@ -2452,7 +2452,7 @@ class Parser {
 	 * @return string
 	 */
 	public function getVariableValue( $index, $frame = false ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
+		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgMiserMode;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
 		if ( is_null( $this->mTitle ) ) {
@@ -2464,10 +2464,8 @@ class Parser {
 				. ' called while parsing (no title set)' );
 		}
 
-		/**
-		 * Some of these require message or data lookups and can be
-		 * expensive to check many times.
-		 */
+		// Some of these require message or data lookups and can be
+		// expensive to check many times.
 		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$this, &$this->mVarCache ] ) ) {
 			if ( isset( $this->mVarCache[$index] ) ) {
 				return $this->mVarCache[$index];
@@ -2476,6 +2474,20 @@ class Parser {
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		Hooks::run( 'ParserGetVariableValueTs', [ &$this, &$ts ] );
+
+		// In miser mode, disable words that always cause double-parses on page save (T137900)
+		static $slowVaryWords = [
+			'revisionid' => true,
+			'revisiontimestamp' => true,
+			'revisionday' => true,
+			'revisionday2' => true,
+			'revisionmonth' => true,
+			'revisionmonth1' => true,
+			'revisionyear' => true
+		];
+		if ( $wgMiserMode && isset( $slowVaryWords[$index] ) ) {
+			return $this->mRevisionId ? '-' : '';
+		};
 
 		$pageLang = $this->getFunctionLang();
 
