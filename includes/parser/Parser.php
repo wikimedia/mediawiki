@@ -2592,6 +2592,18 @@ class Parser {
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
 
+		// In miser mode, disable words that always cause double-parses on page save (T137900)
+		static $slowRevWords = [ 'revisionid' => true ]; // @TODO: 'revisiontimestamp'
+		if (
+			isset( $slowRevWords[$index] ) &&
+			$this->siteConfig->get( 'MiserMode' ) &&
+			!$this->mOptions->getInterfaceMessage() &&
+			// @TODO: disallow this word on all namespaces
+			MWNamespace::isContent( $this->mTitle->getNamespace() )
+		) {
+			return $this->mRevisionId ? '-' : '';
+		};
+
 		$pageLang = $this->getFunctionLang();
 
 		switch ( $index ) {
