@@ -56,7 +56,7 @@ class ImportTextFiles extends Maintenance {
 		$prefix = $this->getOption( 'prefix', '' );
 
 		// Get all the arguments. A loop is required since Maintenance doesn't
-		// suppport an arbitrary number of arguments.
+		// support an arbitrary number of arguments.
 		$files = [];
 		$i = 0;
 		while ( $arg = $this->getArg( $i++ ) ) {

@@ -3796,7 +3796,7 @@
 	"log-action-filter-suppress-event": "Supresión de registros",
 	"log-action-filter-suppress-revision": "Supresión de revisiones",
 	"log-action-filter-suppress-delete": "Supresión de páginas",
-	"log-action-filter-suppress-block": "Usuario supppression por bloque",
+	"log-action-filter-suppress-block": "Usuario supresión por bloque",
 	"log-action-filter-suppress-reblock": "Usuario supresión de rebloqueo",
 	"log-action-filter-upload-upload": "Subida nueva",
 	"log-action-filter-upload-overwrite": "Volver a subir",

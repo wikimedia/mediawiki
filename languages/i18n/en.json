@@ -4108,7 +4108,7 @@
 	"log-action-filter-suppress-event": "Log suppression",
 	"log-action-filter-suppress-revision": "Revision suppression",
 	"log-action-filter-suppress-delete": "Page suppression",
-	"log-action-filter-suppress-block": "User supppression by block",
+	"log-action-filter-suppress-block": "User suppression by block",
 	"log-action-filter-suppress-reblock": "User suppression by reblock",
 	"log-action-filter-upload-upload": "New upload",
 	"log-action-filter-upload-overwrite": "Reupload",
