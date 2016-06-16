@@ -22,6 +22,12 @@
 	 *  used (header or content).
 	 */
 	mw.widgets.SearchInputWidget = function MwWidgetsSearchInputWidget( config ) {
+		// The parent constructors will detach this from the DOM, and won't
+		// be reattached until after this function is completed. As such
+		// grab a handle here. If no config.$input is passed tracking of
+		// form submissions won't work.
+		var $form = config.$input ? config.$input.closest( 'form' ) : $();
+
 		config = $.extend( {
 			type: 'search',
 			icon: 'search',
@@ -36,6 +42,7 @@
 		// Initialization
 		this.$element.addClass( 'mw-widget-searchInputWidget' );
 		this.lookupMenu.$element.addClass( 'mw-widget-searchWidget-menu' );
+		this.lastLookupItems = [];
 		if ( !config.pushPending ) {
 			this.pushPending = false;
 		}
@@ -46,6 +53,18 @@
 			this.performSearchOnClick = config.performSearchOnClick;
 		}
 		this.setLookupsDisabled( !this.suggestions );
+
+		$form.on( 'submit', function () {
+			mw.track( 'mw.widgets.SearchInputWidget', {
+				action: 'submit-form',
+				numberOfResults: this.lastLookupItems.length,
+				$form: $form,
+				inputLocation: this.dataLocation || 'header',
+				index: this.lastLookupItems.indexOf(
+					this.$input.val()
+				)
+			} );
+		}.bind( this ) );
 	};
 
 	/* Setup */
@@ -146,23 +165,27 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
-		var items;
-
-		// get items which was suggested before the input changes
-		items = this.lookupMenu.items;
-
+	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function () {
 		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
-
-		mw.track( 'mw.widgets.SearchInputWidget', {
-			action: 'click-result',
-			numberOfResults: items.length,
-			clickIndex: items.indexOf( item ) + 1
-		} );
 
 		if ( this.performSearchOnClick ) {
 			this.$element.closest( 'form' ).submit();
 		}
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SearchInputWidget.prototype.getLookupMenuOptionsFromData = function () {
+		var items = mw.widgets.SearchInputWidget.parent.prototype.getLookupMenuOptionsFromData.apply(
+			this, arguments
+		);
+
+		this.lastLookupItems = items.map( function ( item ) {
+			return item.data;
+		} );
+
+		return items;
 	};
 
 }( jQuery, mediaWiki ) );
