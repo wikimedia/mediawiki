@@ -563,14 +563,14 @@
 					} else if ( selected.is( '.suggestions-special' ) ) {
 						if ( typeof context.config.special.select === 'function' ) {
 							// Allow the callback to decide whether to prevent default or not
-							if ( context.config.special.select.call( selected, context.data.$textbox ) === true ) {
+							if ( context.config.special.select.call( selected, context.data.$textbox, 'keyboard' ) === true ) {
 								preventDefault = false;
 							}
 						}
 					} else {
 						if ( typeof context.config.result.select === 'function' ) {
 							// Allow the callback to decide whether to prevent default or not
-							if ( context.config.result.select.call( selected, context.data.$textbox ) === true ) {
+							if ( context.config.result.select.call( selected, context.data.$textbox, 'keyboard' ) === true ) {
 								preventDefault = false;
 							}
 						}
@@ -685,7 +685,7 @@
 								}
 								$.suggestions.highlight( context, $result, true );
 								if ( typeof context.config.result.select === 'function' ) {
-									context.config.result.select.call( $result, context.data.$textbox );
+									context.config.result.select.call( $result, context.data.$textbox, 'mouse' );
 								}
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
@@ -719,7 +719,7 @@
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									if ( typeof context.config.special.select === 'function' ) {
-										context.config.special.select.call( $special, context.data.$textbox );
+										context.config.special.select.call( $special, context.data.$textbox, 'mouse' );
 									}
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (bug 62858).
