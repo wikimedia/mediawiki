@@ -163,7 +163,7 @@
 			mw.track( 'mediawiki.searchSuggest', {
 				action: 'click-result',
 				numberOfResults: context.config.suggestions.length,
-				clickIndex: context.config.suggestions.indexOf( text ) + 1
+				index: context.config.suggestions.indexOf( text ) + 1
 			} );
 
 			// allow the form to be submitted
@@ -281,6 +281,7 @@
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input ) {
+					selectFunction( $input );
 					$input.closest( 'form' )
 						.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) );
 					return true; // allow the form to be submitted
@@ -297,7 +298,10 @@
 					action: 'submit-form',
 					numberOfResults: context.config.suggestions.length,
 					$form: context.config.$region.closest( 'form' ),
-					inputLocation: getInputLocation( context )
+					inputLocation: getInputLocation( context ),
+					index: context.config.suggestions.indexOf(
+						context.data.$textbox.val()
+					)
 				} );
 			} )
 			// If the form includes any fallback fulltext search buttons, remove them
