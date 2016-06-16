@@ -531,6 +531,7 @@
 	"botpasswords-updated-body": "דאס באט פאסווארט פאר באט־נאמען \"$1\" פון באניצער \"$2\" איז דערהיינטיקט געווארן.",
 	"botpasswords-deleted-title": "באט פאסווארט אויסגעמעקט",
 	"resetpass_forbidden": "פאסווערטער קענען נישט ווערן געטוישט",
+	"resetpass_forbidden-reason": "פאסווערטער קענען נישט ווערן געטוישט: $1",
 	"resetpass-no-info": "איר דארפֿט זיין אריינלאגירט צוצוקומען גלייך צו דעם דאזיגן בלאט.",
 	"resetpass-submit-loggedin": "טוישן פאסווארט",
 	"resetpass-submit-cancel": "אַנולירן",

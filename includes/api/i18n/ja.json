@@ -512,6 +512,7 @@
 	"apihelp-query+deletedrevisions-param-excludeuser": "この利用者による版を一覧表示しない。",
 	"apihelp-query+deletedrevisions-example-titles": "ページ <kbd>Main Page</kbd> および <kbd>Talk:Main Page</kbd> の削除された版とその内容を一覧表示する。",
 	"apihelp-query+deletedrevisions-example-revids": "削除された版 <kbd>123456</kbd> に関する情報を一覧表示する。",
+	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|モード}}: $2",
 	"apihelp-query+deletedrevs-param-start": "列挙の始点となるタイムスタンプ。",
 	"apihelp-query+deletedrevs-param-end": "列挙の終点となるタイムスタンプ。",
 	"apihelp-query+deletedrevs-param-from": "列挙の始点となるページ名。",

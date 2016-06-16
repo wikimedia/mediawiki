@@ -1573,6 +1573,7 @@
 	"upload-http-error": "Ha ocurrido un error HTTP: $1",
 	"upload-copy-upload-invalid-domain": "No se pueden realizar subidas remotas desde este dominio.",
 	"upload-foreign-cant-upload": "Este wiki no está configurado para subir archivos al repositorio de archivos externo solicitado.",
+	"upload-dialog-disabled": "En este wiki están desactivadas las subidas de archivos mediante este cuadro de diálogo.",
 	"upload-dialog-title": "Subir archivo",
 	"upload-dialog-button-cancel": "Cancelar",
 	"upload-dialog-button-done": "Hecho",

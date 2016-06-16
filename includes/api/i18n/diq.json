@@ -34,5 +34,6 @@
 	"apihelp-login-param-password": "Parola.",
 	"apihelp-login-param-domain": "Domain (optional).",
 	"apihelp-login-example-login": "Dekew.",
-	"apihelp-move-description": "Yew pele bere."
+	"apihelp-move-description": "Yew pele bere.",
+	"apihelp-query+alllinks-paramvalue-prop-title": "Sernamey rê link dek"
 }

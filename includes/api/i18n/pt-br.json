@@ -7,7 +7,9 @@
 			"Rhcastilhos",
 			"Macofe",
 			"Almondega",
-			"Raphaelras"
+			"Raphaelras",
+			"Caçador de Palavras",
+			"LucyDiniz"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -343,6 +345,7 @@
 	"apihelp-stashedit-param-text": "Conteúdo da página",
 	"apihelp-stashedit-param-contentmodel": "Modelo de conteúdo do novo conteúdo.",
 	"apihelp-stashedit-param-contentformat": "Formato de serialização de conteúdo usado para o texto de entrada.",
+	"apihelp-stashedit-param-summary": "Mudar sumário.",
 	"apihelp-tag-param-reason": "Motivo para a mudança.",
 	"apihelp-unblock-description": "Desbloquear usuário",
 	"apihelp-unblock-param-id": "ID do bloco para desbloquear (obtido através de <kbd>list=blocks</kbd>). Não pode ser usado em conjunto com <var>$1user</var>.",

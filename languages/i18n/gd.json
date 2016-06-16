@@ -507,7 +507,7 @@
 	"passwordreset-text-one": "Lìon am foirm seo gus am facal-faire agad ath-shuidheachadh.",
 	"passwordreset-text-many": "Lìon {{PLURAL:$1|an raon|aon dhe na raointean}} gus facal-faire sealach fhaighinn air a' phost-d.",
 	"passwordreset-disabled": "Chaidh ath-shuidheachadh nam faclan-faire a chur à comas air an uicidh seo.",
-	"passwordreset-emaildisabled": "Chaidh gleusan a' phuist-d a chur à comas san uicidh seo.",
+	"passwordreset-emaildisabled": "Chaidh feartan a' phuist-d a chur à comas san uicidh seo.",
 	"passwordreset-username": "Ainm-cleachdaiche:",
 	"passwordreset-domain": "Àrainn-lìn:",
 	"passwordreset-capture": "A bheil thu airson coimhead air a' phost-d?",

@@ -149,6 +149,7 @@
 	"config-extensions": "Extensions",
 	"config-skins": "Abilhatges",
 	"config-skins-use-as-default": "Utilizar aqueste abilhatge per defaut",
+	"config-skins-must-enable-some": "Vos cal seleccionar almens un tèma per activar.",
 	"config-install-step-done": "fait",
 	"config-install-step-failed": "fracàs",
 	"config-install-extensions": "Inclusion de las extensions",
@@ -173,6 +174,6 @@
 	"config-download-localsettings": "Telecargar <code>LocalSettings.php</code>",
 	"config-help": "ajuda",
 	"config-help-tooltip": "clicar per agrandir",
-	"mainpagetext": "'''MediaWiki es estat installat amb succès.'''",
+	"mainpagetext": "<strong>MediaWiki es estat installat amb succès.<strong>",
 	"mainpagedocfooter": "Consultatz lo [https://meta.wikimedia.org/wiki/Help:Contents/fr Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial de wiki.\n\n== Per començar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista dels paramètres de configuracion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/oc FAQ MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las distribucions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptatz MediaWiki dins vòstra lenga]"
 }
