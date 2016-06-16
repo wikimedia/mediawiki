@@ -1513,7 +1513,7 @@
 	"upload-http-error": "An HTTP error occurred: $1",
 	"upload-copy-upload-invalid-domain": "Copy uploads are not available from this domain.",
 	"upload-foreign-cant-upload": "This wiki is not configured to upload files to the requested foreign file repository.",
-	"upload-foreign-cant-load-config": "Loading file upload configuration for the foreign file repository failed.",
+	"upload-foreign-cant-load-config": "Failed to load the configuration for file uploads to the foreign file repository.",
 	"upload-dialog-disabled": "File uploads using this dialog are disabled on this wiki.",
 	"upload-dialog-title": "Upload file",
 	"upload-dialog-button-cancel": "Cancel",
