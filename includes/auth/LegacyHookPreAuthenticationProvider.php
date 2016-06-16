@@ -96,7 +96,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 		return StatusValue::newGood();
 	}
 
-	public function testUserForCreation( $user, $autocreate ) {
+	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		if ( $autocreate !== false ) {
 			$abortError = '';
 			if ( !\Hooks::run( 'AbortAutoAccount', [ $user, &$abortError ] ) ) {
