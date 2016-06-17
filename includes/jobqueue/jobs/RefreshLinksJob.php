@@ -264,6 +264,15 @@ class RefreshLinksJob extends Job {
 
 		InfoAction::invalidateCache( $title );
 
+		// Update CDN
+		$u = CdnCacheUpdate::newSimplePurge( $title );
+		$u->doUpdate();
+
+		// Update file cache
+		if ( $wgUseFileCache ) {
+			HTMLFileCache::clearFileCache( $title );
+		}
+
 		return true;
 	}
 
