@@ -535,7 +535,7 @@ class SpecialUpload extends SpecialPage {
 		);
 
 		if ( !$status->isGood() ) {
-			$this->showUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
+			$this->showRecoverableUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
 
 			return;
 		}

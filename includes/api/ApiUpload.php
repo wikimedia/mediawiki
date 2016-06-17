@@ -350,9 +350,10 @@ class ApiUpload extends ApiBase {
 	 * @param array $error Error array suitable for passing to dieUsageMsg()
 	 * @param string $parameter Parameter that needs revising
 	 * @param array $data Optional extra data to pass to the user
+	 * @param string $code Error code to use if the error is unknown
 	 * @throws UsageException
 	 */
-	private function dieRecoverableError( $error, $parameter, $data = [] ) {
+	private function dieRecoverableError( $error, $parameter, $data = [], $code = 'unknownerror' ) {
 		try {
 			$data['filekey'] = $this->performStash();
 			$data['sessionkey'] = $data['filekey'];
@@ -364,6 +365,9 @@ class ApiUpload extends ApiBase {
 		$parsed = $this->parseMsg( $error );
 		if ( isset( $parsed['data'] ) ) {
 			$data = array_merge( $data, $parsed['data'] );
+		}
+		if ( $parsed['code'] === 'unknownerror' ) {
+			$parsed['code'] = $code;
 		}
 
 		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $data );
@@ -754,9 +758,14 @@ class ApiUpload extends ApiBase {
 				$this->mParams['text'], $watch, $this->getUser(), $this->mParams['tags'] );
 
 			if ( !$status->isGood() ) {
-				$error = $status->getErrorsArray();
-				ApiResult::setIndexedTagName( $error, 'error' );
-				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
+				// Is there really no better way to do this?
+				$errors = $status->getErrorsByType( 'error' );
+				$msg = array_merge( [ $errors[0]['message'] ], $errors[0]['params'] );
+				$data = $status->getErrorsArray();
+				ApiResult::setIndexedTagName( $data, 'error' );
+				// For backwards-compatibility, we use the 'internal-error' fallback key and merge $data
+				// into the root of the response (rather than something sane like [ 'details' => $data ]).
+				$this->dieRecoverableError( $msg, null, $data, 'internal-error' );
 			}
 			$result['result'] = 'Success';
 		}
