@@ -73,7 +73,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		);
 		$catBatches = array_chunk( $cats, $batchSize );
 		foreach ( $catBatches as $catBatch ) {
-			$this->page->updateCategoryCounts( [], $catBatch );
+			$this->page->updateCategoryCounts( [], $catBatch, $id );
 			if ( count( $catBatches ) > 1 ) {
 				$this->mDb->commit( __METHOD__, 'flush' );
 				wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );

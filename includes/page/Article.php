@@ -2601,8 +2601,8 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::updateCategoryCounts
 	 */
-	public function updateCategoryCounts( array $added, array $deleted ) {
-		return $this->mPage->updateCategoryCounts( $added, $deleted );
+	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
+		return $this->mPage->updateCategoryCounts( $added, $deleted, $id );
 	}
 
 	/**

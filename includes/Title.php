@@ -4371,7 +4371,6 @@ class Title implements LinkTarget {
 		$conds = $this->pageCond();
 		$dbw->onTransactionIdle( function () use ( $dbw, $conds, $method, $purgeTime ) {
 			$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
-
 			$dbw->update(
 				'page',
 				[ 'page_touched' => $dbTimestamp ],
