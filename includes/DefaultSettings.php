@@ -2279,7 +2279,7 @@ $wgObjectCaches = [
 	'wincache' => [ 'class' => 'WinCacheBagOStuff', 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
 	'memcached-pecl' => [ 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ],
-	'hash' => [ 'class' => 'HashBagOStuff', 'reportDupes' => false ],
+	'hash' => [ 'class' => 'HashBagOStuff', 'reportDupes' => false, 'maxKeys' => 10000 ],
 ];
 
 /**
