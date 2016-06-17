@@ -234,27 +234,34 @@ class ApiStashEdit extends ApiBase {
 
 		$age = time() - wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() );
 		if ( $age <= self::PRESUME_FRESH_TTL_SEC ) {
+			// Assume nothing changed in this time
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Timestamp-based cache hit for key '$key' (age: $age sec)." );
-			return $editInfo; // assume nothing changed
 		} elseif ( isset( $editInfo->edits ) && $editInfo->edits === $user->getEditCount() ) {
 			// Logged-in user made no local upload/template edits in the meantime
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Edit count based cache hit for key '$key' (age: $age sec)." );
-			return $editInfo;
 		} elseif ( $user->isAnon()
 			&& self::lastEditTime( $user ) < $editInfo->output->getCacheTime()
 		) {
 			// Logged-out user made no local upload/template edits in the meantime
 			$stats->increment( 'editstash.cache_hits.presumed_fresh' );
 			$logger->debug( "Edit check based cache hit for key '$key' (age: $age sec)." );
-			return $editInfo;
+		} else {
+			// User may have changed included content
+			$editInfo = false;
 		}
 
-		$stats->increment( 'editstash.cache_misses.proven_stale' );
-		$logger->info( "Stale cache for key '$key'; old key with outside edits. (age: $age sec)" );
+		if ( !$editInfo ) {
+			$stats->increment( 'editstash.cache_misses.proven_stale' );
+			$logger->info( "Stale cache for key '$key'; old key with outside edits. (age: $age sec)" );
+		} elseif ( $editInfo->output->getFlag( 'vary-revision' ) ) {
+			// This can be used for the initial parse, e.g. for filters or doEditContent(),
+			// but a second parse will be triggered in doEditUpdates(). This is not optimal.
+			$logger->info( "Partially usable cache for key '$key' ('$title') [vary_revision]." );
+		}
 
-		return false;
+		return $editInfo;
 	}
 
 	/**
@@ -318,8 +325,6 @@ class ApiStashEdit extends ApiBase {
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
 		if ( $ttl <= 0 ) {
 			return [ null, 0, 'no_ttl' ];
-		} elseif ( $parserOutput->getFlag( 'vary-revision' ) ) {
-			return [ null, 0, 'vary_revision' ];
 		}
 
 		// Only store what is actually needed
