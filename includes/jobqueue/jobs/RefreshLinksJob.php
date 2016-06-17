@@ -130,6 +130,8 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
+		global $wgUseFileCache;
+
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
@@ -282,6 +284,15 @@ class RefreshLinksJob extends Job {
 		// Commit any writes here in case this method is called in a loop.
 		// In that case, the scoped lock will fail to be acquired.
 		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
+		// Update CDN
+		$u = new CdnCacheUpdate( $title->getCdnUrls() );
+		$u->doUpdate();
+
+		// Update file cache
+		if ( $wgUseFileCache ) {
+			HTMLFileCache::clearFileCache( $title );
+		}
 
 		return true;
 	}
