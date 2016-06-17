@@ -102,18 +102,15 @@ class HTMLCacheUpdateJob extends Job {
 			return;
 		}
 
-		// The page_touched field will need to be bumped for these pages.
-		// Only bump it to the present time if no "rootJobTimestamp" was known.
-		// If it is known, it can be used instead, which avoids invalidating output
-		// that was in fact generated *after* the relevant dependency change time
-		// (e.g. template edit). This is particularily useful since refreshLinks jobs
-		// save back parser output and usually run along side htmlCacheUpdate jobs;
-		// their saved output would be invalidated by using the current timestamp.
-		if ( isset( $this->params['rootJobTimestamp'] ) ) {
-			$touchTimestamp = $this->params['rootJobTimestamp'];
-		} else {
-			$touchTimestamp = wfTimestampNow();
-		}
+		// Bump page_touched to the current timestamp. This used to use the root job timestamp
+		// (e.g. template/file edit time), which was a bit more efficient when template edits are
+		// rare and don't effect the same pages much. However, this way allows for better
+		// de-duplication, which is much more useful for wikis with high edit rates. Note that
+		// RefreshLinksJob, which is enqueued alongside HTMLCacheUpdateJob, saves the parser output
+		// since it has to parse anyway. We assume that vast majority of the cache jobs finish
+		// before the link jobs, so using the current timestamp instead of the root timestamp is
+		// not expected to invalidate these cache entries too often.
+		$touchTimestamp = wfTimestampNow();
 
 		$dbw = wfGetDB( DB_MASTER );
 		// Update page_touched (skipping pages already touched since the root job).
