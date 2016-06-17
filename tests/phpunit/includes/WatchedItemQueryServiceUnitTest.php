@@ -141,6 +141,14 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		return $mock;
 	}
 
+	private function getMockAnonUser() {
+		$mock = $this->getMock( User::class );
+		$mock->expects( $this->any() )
+			->method( 'isAnon' )
+			->will( $this->returnValue( true ) );
+		return $mock;
+	}
+
 	private function getFakeRow( array $rowValues ) {
 		$fakeRow = new stdClass();
 		foreach ( $rowValues as $valueName => $value ) {
@@ -1008,6 +1016,297 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			$user,
 			[ 'watchlistOwner' => $otherUser, 'watchlistOwnerToken' => $token ]
 		);
+	}
+
+	public function testGetWatchedItemsForUser() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				[ 'wl_user' => 1 ]
+			)
+			->will( $this->returnValue( [
+				$this->getFakeRow( [
+					'wl_namespace' => 0,
+					'wl_title' => 'Foo1',
+					'wl_notificationtimestamp' => '20151212010101',
+				] ),
+				$this->getFakeRow( [
+					'wl_namespace' => 1,
+					'wl_title' => 'Foo2',
+					'wl_notificationtimestamp' => null,
+				] ),
+			] ) );
+
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$items = $queryService->getWatchedItemsForUser( $user );
+
+		$this->assertInternalType( 'array', $items );
+		$this->assertCount( 2, $items );
+		$this->assertContainsOnlyInstancesOf( WatchedItem::class, $items );
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			$items[0]
+		);
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			$items[1]
+		);
+	}
+
+	public function provideGetWatchedItemsForUserOptions() {
+		return [
+			[
+				[ 'namespaceIds' => [ 0, 1 ], ],
+				[ 'wl_namespace' => [ 0, 1 ], ],
+				[]
+			],
+			[
+				[ 'sort' => WatchedItemQueryService::SORT_ASC, ],
+				[],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0 ],
+					'sort' => WatchedItemQueryService::SORT_ASC,
+				],
+				[ 'wl_namespace' => [ 0 ], ],
+				[ 'ORDER BY' => 'wl_title ASC' ]
+			],
+			[
+				[ 'limit' => 10 ],
+				[],
+				[ 'LIMIT' => 10 ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0, "1; DROP TABLE watchlist;\n--" ],
+					'limit' => "10; DROP TABLE watchlist;\n--",
+				],
+				[ 'wl_namespace' => [ 0, 1 ], ],
+				[ 'LIMIT' => 10 ]
+			],
+			[
+				[ 'filter' => WatchedItemQueryService::FILTER_CHANGED ],
+				[ 'wl_notificationtimestamp IS NOT NULL' ],
+				[]
+			],
+			[
+				[ 'filter' => WatchedItemQueryService::FILTER_NOT_CHANGED ],
+				[ 'wl_notificationtimestamp IS NULL' ],
+				[]
+			],
+			[
+				[ 'sort' => WatchedItemQueryService::SORT_DESC, ],
+				[],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'namespaceIds' => [ 0 ],
+					'sort' => WatchedItemQueryService::SORT_DESC,
+				],
+				[ 'wl_namespace' => [ 0 ], ],
+				[ 'ORDER BY' => 'wl_title DESC' ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetWatchedItemsForUserOptions
+	 */
+	public function testGetWatchedItemsForUser_optionsAndEmptyResult(
+		array $options,
+		array $expectedConds,
+		array $expectedDbOptions
+	) {
+		$mockDb = $this->getMockDb();
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				$expectedConds,
+				$this->isType( 'string' ),
+				$expectedDbOptions
+			)
+			->will( $this->returnValue( [] ) );
+
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+
+		$items = $queryService->getWatchedItemsForUser( $user, $options );
+		$this->assertEmpty( $items );
+	}
+
+	public function provideGetWatchedItemsForUser_fromUntilStartFromOptions() {
+		return [
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_ASC
+				],
+				[ "(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_DESC,
+				],
+				[ "(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_ASC
+				],
+				[ "(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_DESC
+				],
+				[ "(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))", ],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'AnotherDbKey' ),
+					'until' => new TitleValue( 0, 'SomeOtherDbKey' ),
+					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_ASC
+				],
+				[
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'AnotherDbKey'))",
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeOtherDbKey'))",
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'SomeDbKey'))",
+				],
+				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
+			],
+			[
+				[
+					'from' => new TitleValue( 0, 'SomeOtherDbKey' ),
+					'until' => new TitleValue( 0, 'AnotherDbKey' ),
+					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'sort' => WatchedItemQueryService::SORT_DESC
+				],
+				[
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeOtherDbKey'))",
+					"(wl_namespace > 0) OR ((wl_namespace = 0) AND (wl_title >= 'AnotherDbKey'))",
+					"(wl_namespace < 0) OR ((wl_namespace = 0) AND (wl_title <= 'SomeDbKey'))",
+				],
+				[ 'ORDER BY' => [ 'wl_namespace DESC', 'wl_title DESC' ] ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetWatchedItemsForUser_fromUntilStartFromOptions
+	 */
+	public function testGetWatchedItemsForUser_fromUntilStartFromOptions(
+		array $options,
+		array $expectedConds,
+		array $expectedDbOptions
+	) {
+		$user = $this->getMockNonAnonUserWithId( 1 );
+
+		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->any() )
+			->method( 'addQuotes' )
+			->will( $this->returnCallback( function( $value ) {
+				return "'$value'";
+			} ) );
+		$mockDb->expects( $this->any() )
+			->method( 'makeList' )
+			->with(
+				$this->isType( 'array' ),
+				$this->isType( 'int' )
+			)
+			->will( $this->returnCallback( function( $a, $conj ) {
+				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
+				return join( $sqlConj, array_map( function( $s ) {
+					return '(' . $s . ')';
+				}, $a
+				) );
+			} ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+				$expectedConds,
+				$this->isType( 'string' ),
+				$expectedDbOptions
+			)
+			->will( $this->returnValue( [] ) );
+
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+
+		$items = $queryService->getWatchedItemsForUser( $user, $options );
+		$this->assertEmpty( $items );
+	}
+
+	public function getWatchedItemsForUserInvalidOptionsProvider() {
+		return [
+			[
+				[ 'sort' => 'foo' ],
+				'Bad value for parameter $options[\'sort\']'
+			],
+			[
+				[ 'filter' => 'foo' ],
+				'Bad value for parameter $options[\'filter\']'
+			],
+			[
+				[ 'from' => new TitleValue( 0, 'SomeDbKey' ), ],
+				'Bad value for parameter $options[\'sort\']: must be provided'
+			],
+			[
+				[ 'until' => new TitleValue( 0, 'SomeDbKey' ), ],
+				'Bad value for parameter $options[\'sort\']: must be provided'
+			],
+			[
+				[ 'startFrom' => new TitleValue( 0, 'SomeDbKey' ), ],
+				'Bad value for parameter $options[\'sort\']: must be provided'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider getWatchedItemsForUserInvalidOptionsProvider
+	 */
+	public function testGetWatchedItemsForUser_invalidOptionThrowsException(
+		array $options,
+		$expectedInExceptionMessage
+	) {
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $this->getMockDb() ) );
+
+		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
+		$queryService->getWatchedItemsForUser( $this->getMockNonAnonUserWithId( 1 ), $options );
+	}
+
+	public function testGetWatchedItemsForUser_userNotAllowedToViewWatchlist() {
+		$mockDb = $this->getMockDb();
+
+		$mockDb->expects( $this->never() )
+			->method( $this->anything() );
+
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+
+		$items = $queryService->getWatchedItemsForUser( $this->getMockAnonUser() );
+		$this->assertEmpty( $items );
 	}
 
 }
