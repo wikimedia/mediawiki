@@ -834,7 +834,7 @@
 	"watchlisttools-view": "Vyuu rilivant chienjdem",
 	"watchlisttools-edit": "Vyuu ahn edit wachlis",
 	"watchlisttools-raw": "Edit raa wachlis",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskoshan]])‎",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|taak]])‎",
 	"specialpages": "Peshal piej",
 	"tag-filter": "[[Special:Tags|Tag]] filta:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",

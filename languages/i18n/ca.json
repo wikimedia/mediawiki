@@ -3603,6 +3603,16 @@
 	"log-action-filter-protect-unprotect": "Desprotecció",
 	"log-action-filter-upload-upload": "Nova càrrega",
 	"log-action-filter-upload-overwrite": "Torna a carregar",
+	"authmanager-authn-not-in-progress": "L'autenticació no està en curs o les dades de sessió s'han perdut. Comenceu de nou des del principi.",
+	"authmanager-authn-no-primary": "Les dades credencials no s'han pogut autenticar.",
+	"authmanager-authn-autocreate-failed": "Ha fallat la creació automàtica d'un compte local: $1",
 	"authmanager-realname-label": "Nom real",
-	"authmanager-realname-help": "Nom real de l'usuari"
+	"authmanager-realname-help": "Nom real de l'usuari",
+	"authprovider-resetpass-skip-label": "Omet",
+	"authpage-cannot-login-continue": "No es pot continuar amb l'inicio de sessió. Probablement la vostra sessió ha expirat.",
+	"authpage-cannot-create-continue": "No es pot prosseguir la creació del compte. Probablement la vostra sessió ha expirat.",
+	"changecredentials": "Canvi de dades credencials",
+	"changecredentials-submit": "Canvia les dades credencials",
+	"credentialsform-provider": "Tipus de dades credencials:",
+	"credentialsform-account": "Nom del compte:"
 }

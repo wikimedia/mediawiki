@@ -3559,7 +3559,7 @@
 	"logentry-move-move_redir-noredirect": "$1 がページ「$3」をリダイレクトの「$4」に、リダイレクトを残さずに{{GENDER:$2|移動しました}}",
 	"logentry-patrol-patrol": "$1 がページ「$3」の版 $4 を巡回済みと{{GENDER:$2|しました}}",
 	"logentry-patrol-patrol-auto": "$1 が自動的にページ「$3」の版 $4 を巡回済みと{{GENDER:$2|しました}}",
-	"logentry-newusers-newusers": "利用者アカウント $1 が{{GENDER:$2|作成されました}}",
+	"logentry-newusers-newusers": "$1 によって利用者アカウントが{{GENDER:$2|作成されました}}",
 	"logentry-newusers-create": "利用者アカウント $1 が{{GENDER:$2|作成されました}}",
 	"logentry-newusers-create2": "利用者アカウント $3 が $1 により{{GENDER:$2|作成されました}}",
 	"logentry-newusers-byemail": "利用者アカウント $3 が $1 によって{{GENDER:$2|作成され}}、そのパスワードがメールで送信されました",

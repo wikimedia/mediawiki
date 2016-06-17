@@ -82,7 +82,7 @@
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
-	"tog-hideminor": "Kleine wijzigingen verbergen in recente wijzigingen",
+	"tog-hideminor": "Kleine bewerkingen verbergen in recente wijzigingen",
 	"tog-hidepatrolled": "Gemarkeerde wijzigingen verbergen in recente wijzigingen",
 	"tog-newpageshidepatrolled": "Gemarkeerde pagina's verbergen in de lijst met nieuwe pagina's",
 	"tog-hidecategorization": "Categorisatie van pagina's verbergen",
@@ -2205,6 +2205,7 @@
 	"sp-contributions-username": "IP-adres of gebruikersnaam:",
 	"sp-contributions-toponly": "Alleen nieuwste versies weergeven",
 	"sp-contributions-newonly": "Alleen nieuwe pagina's weergeven",
+	"sp-contributions-hideminor": "Verberg kleine bewerkingen",
 	"sp-contributions-submit": "Bekijken",
 	"whatlinkshere": "Koppelingen naar deze pagina",
 	"whatlinkshere-title": "Pagina's die verwijzen naar \"$1\"",

@@ -2030,6 +2030,7 @@
 	"sp-contributions-username": "IP adresa ili korisničko ime:",
 	"sp-contributions-toponly": "Prikaži samo najnovije izmjene",
 	"sp-contributions-newonly": "Prikaži samo izmjene kojima su napravljene nove stranice",
+	"sp-contributions-hideminor": "Sakrij manje izmjene",
 	"sp-contributions-submit": "Traži",
 	"whatlinkshere": "Šta vodi ovamo",
 	"whatlinkshere-title": "Stranice koje vode na \"$1\"",

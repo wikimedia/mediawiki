@@ -2521,7 +2521,7 @@
 	"allmessagesname": "Nom du message",
 	"allmessagesdefault": "Message par défaut",
 	"allmessagescurrent": "Message actuel",
-	"allmessagestext": "Ceci est la liste des messages disponibles dans l’espace MediaWiki.\nVeuillez visiter la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Régionalisation de MediaWiki] et [https://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la régionalisation générique de MediaWiki.",
+	"allmessagestext": "Ceci est la liste des messages système disponibles dans l’espace de noms MediaWiki.\nVeuillez visiter la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Régionalisation de MediaWiki] et [https://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la régionalisation générique de MediaWiki.",
 	"allmessagesnotsupportedDB": "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''$wgUseDatabaseMessages''' a été désactivé.",
 	"allmessages-filter-legend": "Filtrer",
 	"allmessages-filter": "Filtrer par état de modification :",

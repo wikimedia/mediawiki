@@ -98,5 +98,6 @@
 	"apihelp-query+watchlist-paramvalue-type-log": "नोंद प्रविष्ट्या",
 	"apihelp-query+watchlist-paramvalue-type-categorize": "वर्ग सदस्यता बदलते.",
 	"apihelp-stashedit-param-title": "पानाच्या मथळ्याचे संपादन होत आहे.",
-	"apihelp-stashedit-param-sectiontitle": "नविन विभागाचा मथळा"
+	"apihelp-stashedit-param-sectiontitle": "नविन विभागाचा मथळा",
+	"apihelp-stashedit-param-summary": "सारांश बदला."
 }

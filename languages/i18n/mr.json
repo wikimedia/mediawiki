@@ -1731,7 +1731,7 @@
 	"apihelp-no-such-module": "मॉड्यूल \"$1\" सापडत नाही.",
 	"apisandbox": "एपीआय(API) धूळपाटी",
 	"apisandbox-api-disabled": "या संकेतस्थळावर एपीआय अक्षम केला आहे.",
-	"apisandbox-intro": "\"मिडियाविकि वेब सर्व्हीस एपीआय\" वर प्रयोग करण्यासाठी या पानाचा वापर करा. एपीआय वापरण्याच्या अधिक तपशिलासाठी [https://www.mediawiki.org/wiki/API:Main_page एपीआय दस्ताऐवजीकरण] हे पान बघा. उदाहरणार्थ:[https://www.mediawiki.org/wiki/API#A_simple_example मुख्य पानाचा आशय मिळवा]. अधिक उदाहरणे बघण्यास एखादी क्रिया निवडा.\n\n\"याची नोंद घ्या कि ही धूळपाटी असली तरी, या पानावर आपण केलेल्या क्रियांद्वारे विकिवर फेरफार होऊ शकतो.\"",
+	"apisandbox-intro": "<strong>मिडियाविकि वेब सर्व्हीस एपीआय</strong> वर प्रयोग करण्यासाठी या पानाचा वापर करा. एपीआय वापरण्याच्या अधिक तपशिलासाठी  [[mw:API:Main page| एपीआय दस्ताऐवजीकरण]] हे पान बघा. उदाहरणार्थ:[https://www.mediawiki.org/wiki/API#A_simple_example मुख्य पानाचा आशय मिळवा]. अधिक उदाहरणे बघण्यास एखादी क्रिया निवडा.\n\nयाची नोंद घ्या कि ही धूळपाटी असली तरी, या पानावर आपण केलेल्या क्रियांद्वारे विकिवर फेरफार होऊ शकतो.",
 	"apisandbox-submit": "विनंती करा",
 	"apisandbox-reset": "हटवा",
 	"apisandbox-examples": "उदाहरण",
@@ -3372,5 +3372,6 @@
 	"sessionprovider-generic": "$1 सत्रे",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "कुकी-आधारीत सत्रे",
 	"sessionprovider-nocookies": "कुकिज अक्षम असू शकतात. याची खात्री करा कि कुकिज सक्षम केल्या आहेत व पुन्हा सुरुवात करा.",
-	"randomrootpage": "अविशिष्ट मूळ पान"
+	"randomrootpage": "अविशिष्ट मूळ पान",
+	"log-action-filter-suppress-block": "रोधामार्फत सदस्य दाबणे"
 }
