@@ -919,6 +919,7 @@ $wikiPage: WikiPage that was added
 'CategoryAfterPageRemoved': After a page is removed from a category.
 $category: Category that page was removed from
 $wikiPage: WikiPage that was removed
+$id: the page ID (original ID in case of page deletions)
 
 'CategoryPageView': Before viewing a categorypage in CategoryPage::view.
 &$catpage: CategoryPage instance

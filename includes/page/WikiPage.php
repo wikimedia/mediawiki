@@ -3427,16 +3427,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param array $added The names of categories that were added
 	 * @param array $deleted The names of categories that were deleted
+	 * @param integer $id Page ID (this should be the original deleted page ID)
 	 */
-	public function updateCategoryCounts( array $added, array $deleted ) {
-		$that = $this;
-		$method = __METHOD__;
+	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
+		$id = $id ?: $this->getId();
 		$dbw = wfGetDB( DB_MASTER );
-
 		// Do this at the end of the commit to reduce lock wait timeouts
 		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $dbw, $that, $method, $added, $deleted ) {
-				$ns = $that->getTitle()->getNamespace();
+			function () use ( $dbw, $added, $deleted, $id ) {
+				$ns = $this->getTitle()->getNamespace();
 
 				$addFields = [ 'cat_pages = cat_pages + 1' ];
 				$removeFields = [ 'cat_pages = cat_pages - 1' ];
@@ -3484,7 +3483,7 @@ class WikiPage implements Page, IDBAccessObject {
 							$insertRows,
 							[ 'cat_title' ],
 							$addFields,
-							$method
+							__METHOD__
 						);
 					}
 				}
@@ -3494,18 +3493,18 @@ class WikiPage implements Page, IDBAccessObject {
 						'category',
 						$removeFields,
 						[ 'cat_title' => $deleted ],
-						$method
+						__METHOD__
 					);
 				}
 
 				foreach ( $added as $catName ) {
 					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageAdded', [ $cat, $that ] );
+					Hooks::run( 'CategoryAfterPageAdded', [ $cat, $this ] );
 				}
 
 				foreach ( $deleted as $catName ) {
 					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $that ] );
+					Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
 				}
 			}
 		);
