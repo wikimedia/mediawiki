@@ -71,8 +71,13 @@ class InvalidateUserSesssions extends Maintenance {
 			$i++;
 			$user = User::newFromName( $username );
 			if ( $user->getId() ) {
-				$sessionManager->invalidateSessionsForUser( $user );
-				$this->output( "Invalidated sessions for user $username\n" );
+				try {
+					$sessionManager->invalidateSessionsForUser( $user );
+					$this->output( "Invalidated sessions for user $username\n" );
+				} catch ( Exception $e ) {
+					$this->output( "Failed to invalidate sessions for user $username | "
+						. str_replace( [ "\r", "\n" ], ' ', $e->getMessage() ) );
+				}
 			} else {
 				$this->output( "Could not find user $username\n" );
 			}
