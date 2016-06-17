@@ -717,13 +717,20 @@ abstract class UploadBase {
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user, $tags = [] ) {
 		$this->getLocalFile()->load( File::READ_LATEST );
+		$props = $this->mFileProps;
+
+		$error = null;
+		Hooks::run( 'UploadVerifyUpload', [ $this, $user, $props, $comment, $pageText, &$error ] );
+		if ( $error ) {
+			return call_user_func_array( 'Status::newFatal', $error );
+		}
 
 		$status = $this->getLocalFile()->upload(
 			$this->mTempPath,
 			$comment,
 			$pageText,
 			File::DELETE_SOURCE,
-			$this->mFileProps,
+			$props,
 			false,
 			$user,
 			$tags
