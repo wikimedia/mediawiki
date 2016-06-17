@@ -94,7 +94,7 @@ class HTMLCacheUpdateJob extends Job {
 	 * @param array $pages Map of (page ID => (namespace, DB key)) entries
 	 */
 	protected function invalidateTitles( array $pages ) {
-		global $wgUpdateRowsPerQuery, $wgUseFileCache;
+		global $wgUpdateRowsPerQuery;
 
 		// Get all page IDs in this query into an array
 		$pageIds = array_keys( $pages );
@@ -130,24 +130,6 @@ class HTMLCacheUpdateJob extends Job {
 				],
 				__METHOD__
 			);
-		}
-		// Get the list of affected pages (races only mean something else did the purge)
-		$titleArray = TitleArray::newFromResult( $dbw->select(
-			'page',
-			[ 'page_namespace', 'page_title' ],
-			[ 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $touchTimestamp ) ],
-			__METHOD__
-		) );
-
-		// Update CDN
-		$u = CdnCacheUpdate::newFromTitles( $titleArray );
-		$u->doUpdate();
-
-		// Update file cache
-		if ( $wgUseFileCache ) {
-			foreach ( $titleArray as $title ) {
-				HTMLFileCache::clearFileCache( $title );
-			}
 		}
 	}
 
