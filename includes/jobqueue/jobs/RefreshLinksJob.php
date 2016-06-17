@@ -128,6 +128,7 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
+		global $wgUseFileCache;
 		$page = WikiPage::factory( $title );
 		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 			// Fetch the specified revision; lockAndGetLatest() below detects if the page
@@ -263,6 +264,15 @@ class RefreshLinksJob extends Job {
 		DataUpdate::runUpdates( $updates );
 
 		InfoAction::invalidateCache( $title );
+
+		// Update CDN
+		$u = CdnCacheUpdate::newSimplePurge( $title );
+		$u->doUpdate();
+
+		// Update file cache
+		if ( $wgUseFileCache ) {
+			HTMLFileCache::clearFileCache( $title );
+		}
 
 		return true;
 	}
