@@ -130,6 +130,8 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
+		global $wgUseFileCache;
+
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
@@ -278,6 +280,15 @@ class RefreshLinksJob extends Job {
 		}
 
 		InfoAction::invalidateCache( $title );
+
+		// Update CDN
+		$u = new CdnCacheUpdate( $title->getCdnUrls() );
+		$u->doUpdate();
+
+		// Update file cache
+		if ( $wgUseFileCache ) {
+			HTMLFileCache::clearFileCache( $title );
+		}
 
 		return true;
 	}
