@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This query action allows clients to retrieve a list of pages
  * on the logged-in user's watchlist.
@@ -49,95 +51,78 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
-		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
-
 		$params = $this->extractRequestParams();
 
 		$user = $this->getWatchlistUser( $params );
 
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
-		if ( isset( $show['changed'] ) && isset( $show['!changed'] ) ) {
+		if ( isset( $show[WatchedItemQueryService::FILTER_CHANGED] )
+			&& isset( $show[WatchedItemQueryService::FILTER_NOT_CHANGED] )
+		) {
 			$this->dieUsageMsg( 'show' );
 		}
 
-		$this->addTables( 'watchlist' );
-		$this->addFields( [ 'wl_namespace', 'wl_title' ] );
-		$this->addFieldsIf( 'wl_notificationtimestamp', isset( $prop['changed'] ) );
-		$this->addWhereFld( 'wl_user', $user->getId() );
-		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
-		$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['changed'] ) );
-		$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!changed'] ) );
+		$options = [];
+		if ( $params['namespace'] ) {
+			$options['namespaceIds'] = $params['namespace'];
+		}
+		if ( isset( $show[WatchedItemQueryService::FILTER_CHANGED] ) ) {
+			$options['filter'] = WatchedItemQueryService::FILTER_CHANGED;
+		}
+		if ( isset( $show[WatchedItemQueryService::FILTER_NOT_CHANGED] ) ) {
+			$options['filter'] = WatchedItemQueryService::FILTER_NOT_CHANGED;
+		}
 
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$ns = intval( $cont[0] );
 			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
-			$title = $this->getDB()->addQuotes( $cont[1] );
-			$op = $params['dir'] == 'ascending' ? '>' : '<';
-			$this->addWhere(
-				"wl_namespace $op $ns OR " .
-				"(wl_namespace = $ns AND " .
-				"wl_title $op= $title)"
-			);
+			$title = $cont[1];
+			$options['startFrom'] = new TitleValue( $ns, $title );
 		}
 
 		if ( isset( $params['fromtitle'] ) ) {
 			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['fromtitle'] );
-			$title = $this->getDB()->addQuotes( $title );
-			$op = $params['dir'] == 'ascending' ? '>' : '<';
-			$this->addWhere(
-				"wl_namespace $op $ns OR " .
-				"(wl_namespace = $ns AND " .
-				"wl_title $op= $title)"
-			);
+			$options['from'] = new TitleValue( $ns, $title );
 		}
 
 		if ( isset( $params['totitle'] ) ) {
 			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['totitle'] );
-			$title = $this->getDB()->addQuotes( $title );
-			$op = $params['dir'] == 'ascending' ? '<' : '>'; // Reversed from above!
-			$this->addWhere(
-				"wl_namespace $op $ns OR " .
-				"(wl_namespace = $ns AND " .
-				"wl_title $op= $title)"
-			);
+			$options['until'] = new TitleValue( $ns, $title );
 		}
 
-		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		// Don't ORDER BY wl_namespace if it's constant in the WHERE clause
-		if ( count( $params['namespace'] ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
-		} else {
-			$this->addOption( 'ORDER BY', [
-				'wl_namespace' . $sort,
-				'wl_title' . $sort
-			] );
+		$options['sort'] = WatchedItemStore::SORT_ASC;
+		if ( $params['dir'] === 'descending' ) {
+			$options['sort'] = WatchedItemStore::SORT_DESC;
 		}
-		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$res = $this->select( __METHOD__ );
+		$options['limit'] = $params['limit'] + 1;
 
 		$titles = [];
 		$count = 0;
-		foreach ( $res as $row ) {
+		$items = MediaWikiServices::getInstance()->getWatchedItemQueryService()
+			->getWatchedItemsForUser( $user, $options );
+		foreach ( $items as $item ) {
+			$ns = $item->getLinkTarget()->getNamespace();
+			$dbKey = $item->getLinkTarget()->getDBkey();
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
+				$this->setContinueEnumParameter( 'continue', $ns . '|' . $dbKey );
 				break;
 			}
-			$t = Title::makeTitle( $row->wl_namespace, $row->wl_title );
+			$t = Title::makeTitle( $ns, $dbKey );
 
 			if ( is_null( $resultPageSet ) ) {
 				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $t );
-				if ( isset( $prop['changed'] ) && !is_null( $row->wl_notificationtimestamp ) ) {
-					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
+				if ( isset( $prop['changed'] ) && !is_null( $item->getNotificationTimestamp() ) ) {
+					$vals['changed'] = wfTimestamp( TS_ISO_8601, $item->getNotificationTimestamp() );
 				}
 				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
+					$this->setContinueEnumParameter( 'continue', $ns . '|' . $dbKey );
 					break;
 				}
 			} else {
@@ -177,8 +162,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => [
-					'changed',
-					'!changed',
+					WatchedItemQueryService::FILTER_CHANGED,
+					WatchedItemQueryService::FILTER_NOT_CHANGED
 				]
 			],
 			'owner' => [

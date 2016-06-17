@@ -138,10 +138,10 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		);
 
 		$resultChanged = $this->doListWatchlistRawRequest(
-			[ 'wrprop' => 'changed', 'wrshow' => 'changed' ]
+			[ 'wrprop' => 'changed', 'wrshow' => WatchedItemQueryService::FILTER_CHANGED ]
 		);
 		$resultNotChanged = $this->doListWatchlistRawRequest(
-			[ 'wrprop' => 'changed', 'wrshow' => '!changed' ]
+			[ 'wrprop' => 'changed', 'wrshow' => WatchedItemQueryService::FILTER_NOT_CHANGED ]
 		);
 
 		$this->assertEquals(

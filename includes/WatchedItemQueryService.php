@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -25,8 +26,8 @@ class WatchedItemQueryService {
 	const INCLUDE_SIZES = 'sizes';
 	const INCLUDE_LOG_INFO = 'loginfo';
 
-	// FILTER_* constants are part of public API (are used
-	// in ApiQueryWatchlist class) and should not be changed.
+	// FILTER_* constants are part of public API (are used in ApiQueryWatchlist and
+	// ApiQueryWatchlistRaw classes) and should not be changed.
 	// Changing values of those constants will result in a breaking change in the API
 	const FILTER_MINOR = 'minor';
 	const FILTER_NOT_MINOR = '!minor';
@@ -38,6 +39,11 @@ class WatchedItemQueryService {
 	const FILTER_NOT_PATROLLED = '!patrolled';
 	const FILTER_UNREAD = 'unread';
 	const FILTER_NOT_UNREAD = '!unread';
+	const FILTER_CHANGED = 'changed';
+	const FILTER_NOT_CHANGED = '!changed';
+
+	const SORT_ASC = 'ASC';
+	const SORT_DESC = 'DESC';
 
 	/**
 	 * @var LoadBalancer
@@ -161,10 +167,10 @@ class WatchedItemQueryService {
 
 		$db = $this->getConnection();
 
-		$fields = $this->getFields( $options );
-		$conds = $this->getConds( $db, $user, $options );
-		$dbOptions = $this->getDbOptions( $options );
-		$joinConds = $this->getJoinConds( $options );
+		$fields = $this->getWatchedItemsWithRCInfoQueryFields( $options );
+		$conds = $this->getWatchedItemsWithRCInfoQueryConds( $db, $user, $options );
+		$dbOptions = $this->getWatchedItemsWithRCInfoQueryDbOptions( $options );
+		$joinConds = $this->getWatchedItemsWithRCInfoQueryJoinConds( $options );
 
 		$res = $db->select(
 			$tables,
@@ -192,6 +198,81 @@ class WatchedItemQueryService {
 		return $items;
 	}
 
+	/**
+	 * For simple listing of user's watchlist items, see WatchedItemStore::getWatchedItemsForUser
+	 *
+	 * @param User $user
+	 * @param array $options Allowed keys:
+	 *        'sort'         => string optional sorting by namespace ID and title
+	 *                          one of the self::SORT_* constants
+	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
+	 *        'limit'        => int maximum number of items to return
+	 *        'filter'       => string optional filter, one of the self::FILTER_* contants
+	 *        'from'         => LinkTarget requires 'sort' key, only return items starting from
+	 *                          those related to the link target
+	 *        'until'        => LinkTarget requires 'sort' key, only return items until
+	 *                          those related to the link target
+	 *        'startFrom'    => LinkTarget requires 'sort' key, only return items starting from
+	 *                          those related to the link target, allows to skip some link targets
+	 *                          specified using the form option
+	 * @return WatchedItem[]
+	 */
+	public function getWatchedItemsForUser( User $user, array $options = [] ) {
+		if ( $user->isAnon() ) {
+			// TODO: should this just return an empty array or rather complain loud at this point
+			// as e.g. ApiBase::getWatchlistUser does?
+			return [];
+		}
+
+		$options += [ 'namespaceIds' => [] ];
+
+		Assert::parameter(
+			!isset( $options['sort'] ) || in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ),
+			'$options[\'sort\']',
+			'must be SORT_ASC or SORT_DESC'
+		);
+		Assert::parameter(
+			!isset( $options['filter'] ) || in_array(
+				$options['filter'], [ self::FILTER_CHANGED, self::FILTER_NOT_CHANGED ]
+			),
+			'$options[\'filter\']',
+			'must be FILTER_CHANGED or FILTER_NOT_CHANGED'
+		);
+		Assert::parameter(
+			!isset( $options['from'] ) && !isset( $options['until'] ) && !isset( $options['startFrom'] )
+			|| isset( $options['sort'] ),
+			'$options[\'sort\']',
+			'must be provided if any of "from", "until", "startFrom" options is provided'
+		);
+
+		$db = $this->getConnection();
+
+		$conds = $this->getWatchedItemsForUserQueryConds( $db, $user, $options );
+		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
+
+		$res = $db->select(
+			'watchlist',
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			$conds,
+			__METHOD__,
+			$dbOptions
+		);
+
+		$this->reuseConnection( $db );
+
+		$watchedItems = [];
+		foreach ( $res as $row ) {
+			// todo these could all be cached at some point?
+			$watchedItems[] = new WatchedItem(
+				$user,
+				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
+				$row->wl_notificationtimestamp
+			);
+		}
+
+		return $watchedItems;
+	}
+
 	private function getRecentChangeFieldsFromRow( stdClass $row ) {
 		// This can be simplified to single array_filter call filtering by key value,
 		// once we stop supporting PHP 5.5
@@ -205,7 +286,7 @@ class WatchedItemQueryService {
 		return array_intersect_key( $allFields, array_flip( $rcKeys ) );
 	}
 
-	private function getFields( array $options ) {
+	private function getWatchedItemsWithRCInfoQueryFields( array $options ) {
 		$fields = [
 			'rc_id',
 			'rc_namespace',
@@ -255,7 +336,11 @@ class WatchedItemQueryService {
 		return $fields;
 	}
 
-	private function getConds( DatabaseBase $db, User $user, array $options ) {
+	private function getWatchedItemsWithRCInfoQueryConds(
+		DatabaseBase $db,
+		User $user,
+		array $options
+	) {
 		$watchlistOwnerId = $this->getWatchlistOwnerId( $user, $options );
 		$conds = [ 'wl_user' => $watchlistOwnerId ];
 
@@ -274,7 +359,10 @@ class WatchedItemQueryService {
 			$conds['rc_type'] = array_map( 'intval',  $options['rcTypes'] );
 		}
 
-		$conds = array_merge( $conds, $this->getFilterConds( $user, $options ) );
+		$conds = array_merge(
+			$conds,
+			$this->getWatchedItemsWithRCInfoQueryFilterConds( $user, $options )
+		);
 
 		$conds = array_merge( $conds, $this->getStartEndConds( $db, $options ) );
 
@@ -316,7 +404,7 @@ class WatchedItemQueryService {
 		return $user->getId();
 	}
 
-	private function getFilterConds( User $user, array $options ) {
+	private function getWatchedItemsWithRCInfoQueryFilterConds( User $user, array $options ) {
 		$conds = [];
 
 		if ( in_array( self::FILTER_MINOR, $options['filters'] ) ) {
@@ -441,7 +529,62 @@ class WatchedItemQueryService {
 		);
 	}
 
-	private function getDbOptions( array $options ) {
+	private function getWatchedItemsForUserQueryConds( DatabaseBase $db, User $user, array $options ) {
+		$conds = [ 'wl_user' => $user->getId() ];
+		if ( $options['namespaceIds'] ) {
+			$conds['wl_namespace'] = array_map( 'intval', $options['namespaceIds'] );
+		}
+		if ( isset( $options['filter'] ) ) {
+			$filter = $options['filter'];
+			if ( $filter ===  self::FILTER_CHANGED ) {
+				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
+			} else {
+				$conds[] = 'wl_notificationtimestamp IS NULL';
+			}
+		}
+
+		if ( isset( $options['from'] ) ) {
+			$op = $options['sort'] === self::SORT_ASC ? '>' : '<';
+			$conds[] = $this->getFromUntilTargetConds( $db, $options['from'], $op );
+		}
+		if ( isset( $options['until'] ) ) {
+			$op = $options['sort'] === self::SORT_ASC ? '<' : '>';
+			$conds[] = $this->getFromUntilTargetConds( $db, $options['until'], $op );
+		}
+		if ( isset( $options['startFrom'] ) ) {
+			$op = $options['sort'] === self::SORT_ASC ? '>' : '<';
+			$conds[] = $this->getFromUntilTargetConds( $db, $options['startFrom'], $op );
+		}
+
+		return $conds;
+	}
+
+	/**
+	 * Creates a query condition part for getting only items before or after the given link target
+	 * (while ordering using $sort mode)
+	 *
+	 * @param DatabaseBase $db
+	 * @param LinkTarget $target
+	 * @param string $op comparison operator to use in the conditions
+	 * @return string
+	 */
+	private function getFromUntilTargetConds( DatabaseBase $db, LinkTarget $target, $op ) {
+		return $db->makeList(
+			[
+				"wl_namespace $op " . $target->getNamespace(),
+				$db->makeList(
+					[
+						'wl_namespace = ' . $target->getNamespace(),
+						"wl_title $op= " . $db->addQuotes( $target->getDBkey() )
+					],
+					LIST_AND
+				)
+			],
+			LIST_OR
+		);
+	}
+
+	private function getWatchedItemsWithRCInfoQueryDbOptions( array $options ) {
 		$dbOptions = [];
 
 		if ( array_key_exists( 'dir', $options ) ) {
@@ -456,7 +599,24 @@ class WatchedItemQueryService {
 		return $dbOptions;
 	}
 
-	private function getJoinConds( array $options ) {
+	private function getWatchedItemsForUserQueryDbOptions( array $options ) {
+		$dbOptions = [];
+		if ( array_key_exists( 'sort', $options ) ) {
+			$dbOptions['ORDER BY'] = [
+				"wl_namespace {$options['sort']}",
+				"wl_title {$options['sort']}"
+			];
+			if ( count( $options['namespaceIds'] ) === 1 ) {
+				$dbOptions['ORDER BY'] = "wl_title {$options['sort']}";
+			}
+		}
+		if ( array_key_exists( 'limit', $options ) ) {
+			$dbOptions['LIMIT'] = (int)$options['limit'];
+		}
+		return $dbOptions;
+	}
+
+	private function getWatchedItemsWithRCInfoQueryJoinConds( array $options ) {
 		$joinConds = [
 			'watchlist' => [ 'INNER JOIN',
 				[
