@@ -131,24 +131,6 @@ class HTMLCacheUpdateJob extends Job {
 				__METHOD__
 			);
 		}
-		// Get the list of affected pages (races only mean something else did the purge)
-		$titleArray = TitleArray::newFromResult( $dbw->select(
-			'page',
-			[ 'page_namespace', 'page_title' ],
-			[ 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $touchTimestamp ) ],
-			__METHOD__
-		) );
-
-		// Update CDN
-		$u = CdnCacheUpdate::newFromTitles( $titleArray );
-		$u->doUpdate();
-
-		// Update file cache
-		if ( $wgUseFileCache ) {
-			foreach ( $titleArray as $title ) {
-				HTMLFileCache::clearFileCache( $title );
-			}
-		}
 	}
 
 	public function workItemCount() {
