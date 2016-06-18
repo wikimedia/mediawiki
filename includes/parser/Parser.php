@@ -5302,6 +5302,7 @@ class Parser {
 	/**
 	 * Set a flag in the output object indicating that the content is dynamic and
 	 * shouldn't be cached.
+	 * @deprecated since 1.28; use getOutput()->updateCacheExpiry()
 	 */
 	public function disableCache() {
 		wfDebug( "Parser output marked as uncacheable.\n" );
