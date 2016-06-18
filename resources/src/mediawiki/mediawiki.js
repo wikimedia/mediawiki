@@ -803,7 +803,6 @@
 				cssBuffer = '',
 				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks(),
-				isIEto9 = 'documentMode' in document && document.documentMode <= 9,
 				isIE9 = document.documentMode === 9;
 
 			function getMarker() {
@@ -829,21 +828,14 @@
 			 */
 			function newStyleTag( text, nextNode ) {
 				var s = document.createElement( 'style' );
-				// Support: IE
-				// Must attach style element to the document before setting cssText (T35305)
+
+				s.appendChild( document.createTextNode( text ) );
 				if ( nextNode && nextNode.parentNode ) {
 					nextNode.parentNode.insertBefore( s, nextNode );
 				} else {
 					document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 				}
-				if ( s.styleSheet ) {
-					// Support: IE6-10
-					// Old IE ignores appended text nodes, access stylesheet directly.
-					s.styleSheet.cssText = text;
-				} else {
-					// Standard behaviour
-					s.appendChild( document.createTextNode( text ) );
-				}
+
 				return s;
 			}
 
@@ -858,7 +850,7 @@
 			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				var $style, styleEl, newCssText;
+				var $style, styleEl;
 
 				function fireCallbacks() {
 					var oldCallbacks = cssCallbacks;
@@ -908,32 +900,13 @@
 				//
 				// Support: IE 6-9
 				// Try to re-use existing <style> tags due to the IE stylesheet limit (T33676).
-				if ( isIEto9 ) {
+				if ( isIE9 ) {
 					$style = $( getMarker() ).prev();
 					// Verify that the element before the marker actually is a <style> tag created
 					// by mw.loader (not some other style tag, or e.g. a <meta> tag).
 					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) ) {
 						styleEl = $style[ 0 ];
-						// Support: IE 6-10
-						if ( styleEl.styleSheet ) {
-							try {
-								// Support: IE 9
-								// We can't do styleSheet.cssText += cssText in IE9 because it mangles cssText on
-								// write (removes @media queries). If we read it and used its value, we'd
-								// accidentally apply @media-specific styles to all media. (T108727)
-								if ( isIE9 ) {
-									newCssText = $style.data( 'ResourceLoaderDynamicStyleTag' ) + cssText;
-									styleEl.styleSheet.cssText = newCssText;
-									$style.data( 'ResourceLoaderDynamicStyleTag', newCssText );
-								} else {
-									styleEl.styleSheet.cssText += cssText;
-								}
-							} catch ( e ) {
-								mw.track( 'resourceloader.exception', { exception: e, source: 'stylesheet' } );
-							}
-						} else {
-							styleEl.appendChild( document.createTextNode( cssText ) );
-						}
+						styleEl.appendChild( document.createTextNode( cssText ) );
 						fireCallbacks();
 						return;
 					}
@@ -942,12 +915,8 @@
 
 				$style = $( newStyleTag( cssText, getMarker() ) );
 
-				if ( isIEto9 ) {
-					if ( isIE9 ) {
-						$style.data( 'ResourceLoaderDynamicStyleTag', cssText );
-					} else {
-						$style.data( 'ResourceLoaderDynamicStyleTag', true );
-					}
+				if ( isIE9 ) {
+					$style.data( 'ResourceLoaderDynamicStyleTag', true );
 				}
 
 				fireCallbacks();
@@ -1224,9 +1193,7 @@
 			 */
 			function addLink( media, url ) {
 				var el = document.createElement( 'link' );
-				// Support: IE
-				// Insert in document *before* setting href
-				$( getMarker() ).before( el );
+
 				el.rel = 'stylesheet';
 				if ( media && media !== 'all' ) {
 					el.media = media;
@@ -1234,6 +1201,8 @@
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
 				// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
 				el.href = url;
+
+				$( getMarker() ).before( el );
 			}
 
 			/**
