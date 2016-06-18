@@ -1337,7 +1337,7 @@
 	"recentchanges-submit": "Weergeven",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
 	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",
-	"rcshowhideminor": "Kleine wijzigingen $1",
+	"rcshowhideminor": "Kleine bewerkingen $1",
 	"rcshowhideminor-show": "weergeven",
 	"rcshowhideminor-hide": "verbergen",
 	"rcshowhidebots": "bots $1",

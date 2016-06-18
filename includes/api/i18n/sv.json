@@ -404,6 +404,7 @@
 	"apihelp-query+langbacklinks-example-simple": "Hämta sidor som länkar till [[:fr:Test]].",
 	"apihelp-query+langlinks-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+links-param-dir": "Riktningen att lista mot.",
+	"apihelp-query+prefixsearch-param-profile": "Sök profil att använda.",
 	"apihelp-query+protectedtitles-param-limit": "Hur många sidor att returnera totalt.",
 	"apihelp-query+protectedtitles-example-simple": "Lista skyddade titlar.",
 	"apihelp-query+recentchanges-example-simple": "Lista de senaste ändringarna.",

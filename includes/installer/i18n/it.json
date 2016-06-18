@@ -17,7 +17,8 @@
 			"Sannita",
 			"C.R.",
 			"Macofe",
-			"Matteocng"
+			"Matteocng",
+			"Einreiher"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -245,7 +246,7 @@
 	"config-email-sender-help": "Inserisci l'indirizzo email da utilizzare come indirizzo di ritorno per la posta in uscita.\nQuesto è dove verranno inviati gli eventuali errori.\nMolti server di posta richiedono che almeno la parte del nome di dominio sia valido.",
 	"config-upload-settings": "Caricamenti di immagini e file",
 	"config-upload-enable": "Consentire il caricamento di file",
-	"config-upload-help": "Il caricamento di file può potenzialmente esporre il tuo server a rischi di sicurezza.\nPer ulteriori informazioni, leggi la  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sezione sulla sicurezza] nel manuale.\n\nPer consentire il caricamento di file, modificare la modalità nella sottodirectory <code>images</code> della directory principale di MediaWiki affinché il server web possa scriverci.\nPoi attivare questa opzione.",
+	"config-upload-help": "Il caricamento di file potrebbe esporre il tuo server a rischi di sicurezza.\nPer ulteriori informazioni, leggi la  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sezione sulla sicurezza] nel manuale.\n\nPer consentire il caricamento di file, modifica la modalità nella sottodirectory <code>images</code> della directory principale di MediaWiki affinché il server web possa scrivere lì.\nPoi attiva questa opzione.",
 	"config-upload-deleted": "Directory per i file cancellati:",
 	"config-upload-deleted-help": "Scegli una directory in cui archiviare i file cancellati.\nIdealmente, questa non dovrebbe essere accessibile dal web.",
 	"config-logo": "URL del logo:",

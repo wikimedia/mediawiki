@@ -2052,6 +2052,7 @@
 	"sp-contributions-username": "ИП адреса или корисничко име:",
 	"sp-contributions-toponly": "Само најновије измене",
 	"sp-contributions-newonly": "Само измене којима су направљене нове странице",
+	"sp-contributions-hideminor": "Сакриј мање измене",
 	"sp-contributions-submit": "Претражи",
 	"whatlinkshere": "Шта води овде",
 	"whatlinkshere-title": "Странице које су повезане са „$1“",

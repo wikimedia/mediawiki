@@ -98,7 +98,8 @@
 			"Mpiva",
 			"Urielejh",
 			"Matma Rex",
-			"Matteocng"
+			"Matteocng",
+			"Einreiher"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -765,8 +766,8 @@
 	"previewnote": "'''Ricorda che questa è solo un'anteprima.'''\nLe tue modifiche NON sono ancora state salvate!",
 	"continue-editing": "Vai all'area di modifica",
 	"previewconflict": "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di salvarla in questo momento.",
-	"session_fail_preview": "Spiacenti! Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.\n\nPotresti essere stato disconnesso. <strong>Verifica che sei ancora collegato e riprova</strong>.\nSe il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso, e controllare che il tuo browser accetti i cookie da questo sito.",
-	"session_fail_preview_html": "Spiacenti! Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.\n\n<em>Poiché {{SITENAME}} ha dell'HTML grezzo attivato e c'è stata una perdita dei dati della sessione, l'anteprima è nascosta come precauzione contro gli attacchi JavaScript.</em>\n\n<strong>Se si tratta di un normale tentativo d'anteprima, riprova.</strong> \nSe il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso, e controllare che il tuo browser accetti i cookie da questo sito.",
+	"session_fail_preview": "Spiacenti. Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.\n\nPotresti essere stato disconnesso. <strong>Verifica di essere ancora collegato e riprova</strong>.\nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] e ad effettuare un nuovo accesso, controllando che il tuo browser accetti i cookie da questo sito.",
+	"session_fail_preview_html": "Spiacenti. Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.\n\n<em>Siccome {{SITENAME}} ha dell'HTML grezzo attivato e c'è stata una perdita dei dati della sessione, l'anteprima è nascosta come precauzione contro gli attacchi JavaScript.</em>\n\n<strong>Se si tratta di un normale tentativo d'anteprima, riprova.</strong> \nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] e ad effettuare un nuovo accesso, controllando che il tuo browser accetti i cookie da questo sito.",
 	"token_suffix_mismatch": "'''La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.'''",
 	"edit_form_incomplete": "'''Alcune parti del modulo di modifica non hanno raggiunto il server; controllare che le modifiche siano intatte e riprovare.'''",
 	"editing": "Modifica di $1",
@@ -1528,7 +1529,7 @@
 	"upload-http-error": "Si è verificato un errore HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Non è consentito il caricamento di copie da questo dominio.",
 	"upload-foreign-cant-upload": "Questo wiki non è configurato per caricare i file nel repository di file esterno richiesto.",
-	"upload-dialog-disabled": "Il caricamento di file tramite questa finestra di dialogo è disabilitato in questa wiki.",
+	"upload-dialog-disabled": "Il caricamento di file tramite questa finestra di dialogo è disabilitato in questo wiki.",
 	"upload-dialog-title": "Carica file",
 	"upload-dialog-button-cancel": "Annulla",
 	"upload-dialog-button-done": "Fatto",
@@ -2529,7 +2530,7 @@
 	"import-nonewrevisions": "Nessuna versione importata (erano già tutte presenti, o saltate a causa di errori)",
 	"xml-error-string": "$1 a riga $2, colonna $3 (byte $4): $5",
 	"import-upload": "Carica dati XML",
-	"import-token-mismatch": "I dati relativi alla sessione sono andati persi. Riprovare.\n\nPotresti essere stato disconnesso. <strong>Verifica che sei ancora collegato e riprova</strong>.\nSe il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso, e controllare che il tuo browser accetti i cookie da questo sito.",
+	"import-token-mismatch": "I dati relativi alla sessione sono andati persi. Riprovare.\n\nPotresti essere stato disconnesso. <strong>Verifica di essere ancora collegato e riprova</strong>.\nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] ed effettuare un nuovo l'accesso, controllando che il tuo browser accetti i cookie da questo sito.",
 	"import-invalid-interwiki": "Impossibile importare dal progetto wiki indicato.",
 	"import-error-edit": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a modificarla.",
 	"import-error-create": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a crearla.",

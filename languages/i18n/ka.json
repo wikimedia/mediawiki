@@ -1331,7 +1331,7 @@
 	"rcshowhidemine": "ჩემი რედაქტირების $1",
 	"rcshowhidemine-show": "ჩვენება",
 	"rcshowhidemine-hide": "დამალვა",
-	"rcshowhidecategorization": "$1 გვერდის კატეგორიზაცია",
+	"rcshowhidecategorization": "გვერდის კატეგორიზაციის $1",
 	"rcshowhidecategorization-show": "ჩვენება",
 	"rcshowhidecategorization-hide": "დამალვა",
 	"rclinks": "ბოლო $1 ცვლილების ჩვენება უკანასკნელი $2 დღის მანძილზე<br />$3",
