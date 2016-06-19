@@ -1744,10 +1744,6 @@
 						}
 						return;
 					}
-					// Validate input
-					if ( typeof module !== 'string' ) {
-						throw new Error( 'module must be a string, not a ' + typeof module );
-					}
 					if ( hasOwn.call( registry, module ) ) {
 						throw new Error( 'module already registered: ' + module );
 					}
@@ -1801,22 +1797,6 @@
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
 				implement: function ( module, script, style, messages, templates ) {
-					// Validate input
-					if ( typeof module !== 'string' ) {
-						throw new Error( 'module must be of type string, not ' + typeof module );
-					}
-					if ( script && !$.isFunction( script ) && !$.isArray( script ) && typeof script !== 'string' ) {
-						throw new Error( 'script must be of type function, array, or script; not ' + typeof script );
-					}
-					if ( style && !$.isPlainObject( style ) ) {
-						throw new Error( 'style must be of type object, not ' + typeof style );
-					}
-					if ( messages && !$.isPlainObject( messages ) ) {
-						throw new Error( 'messages must be of type object, not a ' + typeof messages );
-					}
-					if ( templates && !$.isPlainObject( templates ) ) {
-						throw new Error( 'templates must be of type object, not a ' + typeof templates );
-					}
 					// Automatically register module
 					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
@@ -1861,9 +1841,6 @@
 					// Allow calling with a single dependency as a string
 					if ( typeof dependencies === 'string' ) {
 						dependencies = [ dependencies ];
-					} else if ( !$.isArray( dependencies ) ) {
-						// Invalid input
-						throw new Error( 'Dependencies must be a string or an array' );
 					}
 
 					if ( ready ) {
@@ -1904,10 +1881,6 @@
 				load: function ( modules, type ) {
 					var filtered, l;
 
-					// Validate input
-					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
-						throw new Error( 'modules must be a string or an array, not a ' + typeof modules );
-					}
 					// Allow calling with a url or single dependency as a string
 					if ( typeof modules === 'string' ) {
 						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
