@@ -20,6 +20,8 @@
  * @file
  */
 
+use \MediaWiki\Logger\LoggerFactory;
+
 /**
  * Class representing a MediaWiki article and history.
  *
@@ -2106,6 +2108,9 @@ class WikiPage implements Page, IDBAccessObject {
 						}
 					}
 				);
+			} else {
+				// Try to avoid a second parse if {{REVISIONID}} is used
+				$edit->popts->setSpeculativeRevIdCallback( 'Revision::guessNextRevId' );
 			}
 			$edit->output = $edit->pstContent
 				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
@@ -2168,14 +2173,20 @@ class WikiPage implements Page, IDBAccessObject {
 		];
 		$content = $revision->getContent();
 
+		$logger = LoggerFactory::getInstance( 'SaveParse' );
+
 		// See if the parser output before $revision was inserted is still valid
 		$editInfo = false;
 		if ( !$this->mPreparedEdit ) {
-			wfDebug( __METHOD__ . ": No prepared edit...\n" );
+			$logger->debug( __METHOD__ . ": No prepared edit...\n" );
 		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
-			wfDebug( __METHOD__ . ": Prepared edit has vary-revision...\n" );
+			$logger->info( __METHOD__ . ": Prepared edit has vary-revision...\n" );
+		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision-id' )
+			&& $this->mPreparedEdit->output->getSpeculativeRevIdUsed() !== $revision->getId()
+		) {
+			$logger->info( __METHOD__ . ": Prepared edit has vary-revision-id with wrong ID...\n" );
 		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
-			wfDebug( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
+			$logger->info( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
 		} else {
 			wfDebug( __METHOD__ . ": Using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;

@@ -2596,9 +2596,13 @@ class Parser {
 			case 'revisionid':
 				# Let the edit saving system know we should parse the page
 				# *after* a revision ID has been assigned.
-				$this->mOutput->setFlag( 'vary-revision' );
+				$this->mOutput->setFlag( 'vary-revision-id' );
 				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision...\n" );
 				$value = $this->mRevisionId;
+				if ( !$value && $this->mOptions->getSpeculativeRevIdCallback() ) {
+					$value = call_user_func( $this->mOptions->getSpeculativeRevIdCallback() );
+					$this->mOutput->setSpeculativeRevIdUsed( $value );
+				}
 				break;
 			case 'revisionday':
 				# Let the edit saving system know we should parse the page
