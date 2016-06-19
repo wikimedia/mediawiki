@@ -258,7 +258,10 @@ class ApiStashEdit extends ApiBase {
 		} elseif ( $editInfo->output->getFlag( 'vary-revision' ) ) {
 			// This can be used for the initial parse, e.g. for filters or doEditContent(),
 			// but a second parse will be triggered in doEditUpdates(). This is not optimal.
-			$logger->info( "Partially usable cache for key '$key' ('$title') [vary_revision]." );
+			$logger->info( "Cache for key '$key' ('$title') has vary_revision." );
+		} elseif ( $editInfo->output->getFlag( 'vary-revision-id' ) ) {
+			// Similar to the above if we didn't guess the ID correctly.
+			$logger->info( "Cache for key '$key' ('$title') has vary_revision_id." );
 		}
 
 		return $editInfo;
