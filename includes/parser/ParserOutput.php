@@ -208,6 +208,9 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = [];
 
+	/** @var integer|null Assumed rev ID for {{REVISIONID}} if no revision is set */
+	private $mSpeculativeRevId;
+
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -270,6 +273,19 @@ class ParserOutput extends CacheTime {
 			);
 		}
 		return $text;
+	}
+
+	/**
+	 * @param integer $id
+	 * @since 1.28
+	 */
+	public function setSpeculativeRevIdUsed( $id ) {
+		$this->mSpeculativeRevId = $id;
+	}
+
+	/** @since 1.28 */
+	public function getSpeculativeRevIdUsed() {
+		return $this->mSpeculativeRevId;
 	}
 
 	public function &getLanguageLinks() {

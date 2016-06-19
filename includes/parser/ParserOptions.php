@@ -117,16 +117,21 @@ class ParserOptions {
 	private $mRemoveComments = true;
 
 	/**
-	 * Callback for current revision fetching. Used as first argument to call_user_func().
+	 * @var callable Callback for current revision fetching; first argument to call_user_func().
 	 */
 	private $mCurrentRevisionCallback =
 		[ 'Parser', 'statelessFetchRevision' ];
 
 	/**
-	 * Callback for template fetching. Used as first argument to call_user_func().
+	 * @var callable Callback for template fetching; first argument to call_user_func().
 	 */
 	private $mTemplateCallback =
 		[ 'Parser', 'statelessFetchTemplate' ];
+
+	/**
+	 * @var callable|null Callback to generate a guess for {{REVISIONID}}
+	 */
+	private $mSpeculativeRevIdCallback;
 
 	/**
 	 * Enable limit report in an HTML comment on output
@@ -300,6 +305,11 @@ class ParserOptions {
 
 	public function getTemplateCallback() {
 		return $this->mTemplateCallback;
+	}
+
+	/** @since 1.28 */
+	public function getSpeculativeRevIdCallback() {
+		return $this->mSpeculativeRevIdCallback;
 	}
 
 	public function getEnableLimitReport() {
@@ -481,6 +491,11 @@ class ParserOptions {
 	/* @since 1.24 */
 	public function setCurrentRevisionCallback( $x ) {
 		return wfSetVar( $this->mCurrentRevisionCallback, $x );
+	}
+
+	/** @since 1.28 */
+	public function setSpeculativeRevIdCallback( $x ) {
+		return wfSetVar( $this->mSpeculativeRevIdCallback, $x );
 	}
 
 	public function setTemplateCallback( $x ) {
