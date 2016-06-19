@@ -37,7 +37,7 @@ class MWNamespace {
 	 * forevermore. Historically, they could've probably been lowercased too,
 	 * but some things are just too ingrained now. :)
 	 */
-	private static $alwaysCapitalizedNamespaces = [ NS_SPECIAL, NS_USER, NS_MEDIAWIKI ];
+	private static $alwaysCapitalizedNamespaces = [ NS_SPECIAL, NS_MEDIAWIKI ];
 
 	/**
 	 * Throw an exception when trying to get the subject or talk page
