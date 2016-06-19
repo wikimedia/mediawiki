@@ -1850,4 +1850,18 @@ class Revision implements IDBAccessObject {
 		}
 		return true;
 	}
+
+	/**
+	 * @return int Next rev_id likely to be used; used for REVISIONID magic word
+	 * @since 1.28
+	 */
+	public static function guessNextRevId() {
+		return 1 + (int)wfGetDB( DB_MASTER )->selectField(
+			'revision',
+			'MAX(rev_id)',
+			array(),
+			__METHOD__
+		);
+	}
+
 }
