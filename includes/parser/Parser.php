@@ -5210,7 +5210,7 @@ class Parser {
 
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
-					$parsedWidthParam = $this->parseWidthParam( $value );
+					$parsedWidthParam = self::parseWidthParam( $value );
 					if ( isset( $parsedWidthParam['width'] ) ) {
 						$width = $parsedWidthParam['width'];
 						if ( $handler->validateParam( 'width', $width ) ) {
@@ -6053,11 +6053,12 @@ class Parser {
 	 * Parsed a width param of imagelink like 300px or 200x300px
 	 *
 	 * @param string $value
+	 * @param bool $parseHeight
 	 *
 	 * @return array
 	 * @since 1.20
 	 */
-	public function parseWidthParam( $value ) {
+	public static function parseWidthParam( $value, $parseHeight = true ) {
 		$parsedWidthParam = [];
 		if ( $value === '' ) {
 			return $parsedWidthParam;
@@ -6065,7 +6066,7 @@ class Parser {
 		$m = [];
 		# (T15500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
-		if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
+		if ( $parseHeight && preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
 			$width = intval( $m[1] );
 			$height = intval( $m[2] );
 			$parsedWidthParam['width'] = $width;

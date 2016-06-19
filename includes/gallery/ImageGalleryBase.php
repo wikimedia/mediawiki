@@ -207,22 +207,26 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how wide each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setWidths( $num ) {
-		if ( $num > 0 ) {
-			$this->mWidths = (int)$num;
+		$parsed = Parser::parseWidthParam( $num, false );
+		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
+			$this->mWidths = $parsed['width'];
 		}
 	}
 
 	/**
 	 * Set how high each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setHeights( $num ) {
-		if ( $num > 0 ) {
-			$this->mHeights = (int)$num;
+		$parsed = Parser::parseWidthParam( $num, false );
+		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
+			$this->mHeights = $parsed['width'];
 		}
 	}
 
