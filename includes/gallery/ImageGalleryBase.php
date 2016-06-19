@@ -203,7 +203,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param int $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setWidths( $num ) {
-		if ( $num > 0 ) {
+		if ( $num > 0 && $this->numHasPxUnit( $num ) ) {
 			$this->mWidths = (int)$num;
 		}
 	}
@@ -214,9 +214,22 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param int $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setHeights( $num ) {
-		if ( $num > 0 ) {
+		if ( $num > 0 && $this->numHasPxUnit( $num) ) {
 			$this->mHeights = (int)$num;
 		}
+	}
+
+	/**
+	 * Check if the given value has 'px' unit
+	 *
+	 * @param int $num
+	 * @return bool
+	 */
+	private function numHasPxUnit( $num ) {
+		// TODO: Should we throw an error when this returns false?
+		return ( strrpos( $num, 'px' ) !== false && // Has px units
+			strlen($num) - strrpos( $num, 'px') === 2 ); // The px unit is at the end
+
 	}
 
 	/**
