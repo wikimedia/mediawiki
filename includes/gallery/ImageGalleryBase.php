@@ -201,10 +201,11 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how wide each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setWidths( $num ) {
-		if ( $num > 0 ) {
+		if ( $num > 0 && $this->numIsNumericOrHasPxUnit( $num ) ) {
 			$this->mWidths = (int)$num;
 		}
 	}
@@ -212,12 +213,31 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how high each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setHeights( $num ) {
-		if ( $num > 0 ) {
+		if ( $num > 0 && $this->numIsNumericOrHasPxUnit( $num ) ) {
 			$this->mHeights = (int)$num;
 		}
+	}
+
+	/**
+	 * Check if the given value has 'px' unit
+	 *
+	 * @param string $num
+	 * @return bool
+	 */
+	private function numIsNumericOrHasPxUnit( $num ) {
+		// TODO: Should we throw an error when this returns false?
+		return ( is_numeric( $num ) == true ) ||
+			(
+				// Has px units
+				strrpos( $num, 'px' ) !== false &&
+				// The px unit is at the end
+				strlen( $num ) - strrpos( $num, 'px' ) === 2
+			);
+
 	}
 
 	/**
