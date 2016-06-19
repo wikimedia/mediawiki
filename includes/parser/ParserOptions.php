@@ -129,6 +129,11 @@ class ParserOptions {
 		[ 'Parser', 'statelessFetchTemplate' ];
 
 	/**
+	 * Callback to generate a guess for {{REVISIONID}}
+	 */
+	private $mSpeculativeRevIdCallback;
+
+	/**
 	 * Enable limit report in an HTML comment on output
 	 */
 	private $mEnableLimitReport = false;
@@ -300,6 +305,11 @@ class ParserOptions {
 
 	public function getTemplateCallback() {
 		return $this->mTemplateCallback;
+	}
+
+	/** @since 1.28 */
+	public function getSpeculativeRevIdCallback() {
+		return $this->mSpeculativeRevIdCallback;
 	}
 
 	public function getEnableLimitReport() {
@@ -481,6 +491,11 @@ class ParserOptions {
 	/* @since 1.24 */
 	public function setCurrentRevisionCallback( $x ) {
 		return wfSetVar( $this->mCurrentRevisionCallback, $x );
+	}
+
+	/** @since 1.28 */
+	public function setSpeculativeRevIdCallback( $x ) {
+		return wfSetVar( $this->mSpeculativeRevIdCallback, $x );
 	}
 
 	public function setTemplateCallback( $x ) {
