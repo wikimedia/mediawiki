@@ -72,7 +72,8 @@
 			"Bbslam",
 			"Zerng07",
 			"Reke",
-			"Kly"
+			"Kly",
+			"Cosine02"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1053,8 +1054,8 @@
 	"saveprefs": "儲存",
 	"restoreprefs": "還原所有預設設定 (所有項目)",
 	"prefs-editing": "編輯",
-	"rows": "列數：",
-	"columns": "欄數：",
+	"rows": "橫行數：",
+	"columns": "直行數：",
 	"searchresultshead": "搜尋",
 	"stub-threshold": "短頁面連結格式門檻值 ($1)：",
 	"stub-threshold-sample-link": "樣本",

@@ -2138,6 +2138,7 @@
 	"sp-contributions-username": "عنوان أيبي أو اسم مستخدم:",
 	"sp-contributions-toponly": "أظهر أعلى المراجعات فقط",
 	"sp-contributions-newonly": "أظهر إنشاء الصفحات فقط",
+	"sp-contributions-hideminor": "أخف التعديلات الطفيفة",
 	"sp-contributions-submit": "بحث",
 	"whatlinkshere": "ماذا يصل هنا",
 	"whatlinkshere-title": "الصفحات التي تصل إلى \"$1\"",

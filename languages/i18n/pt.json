@@ -600,6 +600,7 @@
 	"botpasswords-newpassword": "A nova palavra-passe para iniciar sessão com <strong>$1</strong> é <strong>$2</strong>. Por favor, recorde-se dela para futura referência.</em>",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider não está disponível.",
 	"resetpass_forbidden": "Não é possível alterar palavras-passe",
+	"resetpass_forbidden-reason": "As palavras-passe não podem ser alteradas: $1",
 	"resetpass-no-info": "Precisa de iniciar sessão para aceder diretamente a esta página.",
 	"resetpass-submit-loggedin": "Alterar palavra-passe",
 	"resetpass-submit-cancel": "Cancelar",
