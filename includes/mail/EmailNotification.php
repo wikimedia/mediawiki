@@ -508,6 +508,19 @@ class EmailNotification {
 			'replyTo' => $this->replyto,
 		] );
 	}
+	/**
+	* Transform the message associated with the given key into basic HTML, assuming
+	* the key given is the body of an email. If the key ends with '-html', it is
+	* assumed that the message conatins html tags, and if not, the message is assumed
+	* to be the plaintext version of the body of the email. The second parameter of the
+	* function is the parameters, if any, that are to be passed to wfMessage along with
+	* the key.
+	*
+	* @param string $key
+	* @param array|null $parameters
+	*
+	* @return array|string
+	*/
 
 	public static function transformContentToHTML ( $key, $parameters = NULL ) {
 		global $wgCoreHTMLEmail;
