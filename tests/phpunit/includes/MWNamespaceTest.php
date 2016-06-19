@@ -492,7 +492,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		// hardcoded namespaces (see above function) are still capitalized:
 		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		// setting is correctly applied
@@ -525,7 +524,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$wgCapitalLinkOverrides[NS_MEDIAWIKI] = false;
 
 		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		$wgCapitalLinkOverrides[NS_PROJECT] = false;
