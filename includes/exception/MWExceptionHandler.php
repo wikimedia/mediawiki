@@ -93,10 +93,11 @@ class MWExceptionHandler {
 				}
 			}
 		} else {
-			$message = "Exception encountered, of type \"" . get_class( $e ) . "\"";
-
-			if ( $wgShowExceptionDetails ) {
-				$message .= "\n" . self::getLogMessage( $e ) . "\nBacktrace:\n" .
+			if ( !$wgShowExceptionDetails ) {
+				$message = self::getPublicLogMessage( $e );
+			} else {
+				$message = self::getLogMessage( $e ) .
+					"\nBacktrace:\n" .
 					self::getRedactedTraceAsString( $e ) . "\n";
 			}
 
@@ -492,7 +493,7 @@ TXT;
 		$type = get_class( $e );
 		return '[' . $reqId . '] '
 			. gmdate( 'Y-m-d H:i:s' ) . ': '
-			. 'Fatal exception of type ' . $type;
+			. 'Fatal exception of type "' . $type . '"';
 	}
 
 	/**
