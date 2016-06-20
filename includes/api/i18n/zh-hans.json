@@ -558,6 +558,8 @@
 	"apihelp-query+allusers-param-attachedwiki": "与<kbd>$1prop=centralids</kbd>一起使用，也表明用户是否附加于此ID定义的wiki。",
 	"apihelp-query+allusers-example-Y": "列出以<kbd>Y</kbd>开头的用户。",
 	"apihelp-query+authmanagerinfo-description": "检索有关当前身份验证状态的信息。",
+	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "测试用户当前的身份验证状态是否足够用于指定的安全敏感操作。",
+	"apihelp-query+authmanagerinfo-param-requestsfor": "获取指定身份验证操作所需的有关身份验证请求的信息。",
 	"apihelp-query+filerepoinfo-example-login": "检索当开始登录时可能使用的请求。",
 	"apihelp-query+filerepoinfo-example-login-merged": "检索当开始登录时可能使用的请求，并合并表单字段。",
 	"apihelp-query+filerepoinfo-example-securitysensitiveoperation": "测试身份验证对操作<kbd>foo</kbd>是否足够。",

@@ -7,6 +7,9 @@
 		]
 	},
 	"apihelp-block-description": "Enê karberi bloqe ke",
+	"apihelp-block-param-reason": "Sebeba Bloqey",
+	"apihelp-block-param-nocreate": "Hesab viraştişi bloqe ke.",
+	"apihelp-checktoken-param-token": "Jetona test ke",
 	"apihelp-createaccount-param-name": "Nameyê karberi.",
 	"apihelp-delete-description": "Pele bestere.",
 	"apihelp-disabled-description": "Eno modul aktiv niyo.",
@@ -34,6 +37,11 @@
 	"apihelp-login-param-password": "Parola.",
 	"apihelp-login-param-domain": "Domain (optional).",
 	"apihelp-login-example-login": "Dekew.",
+	"apihelp-mergehistory-description": "Verorê pela yew ke",
 	"apihelp-move-description": "Yew pele bere.",
-	"apihelp-query+alllinks-paramvalue-prop-title": "Sernamey rê link dek"
+	"apihelp-parse-example-page": "Peler analiz ke",
+	"apihelp-parse-example-text": "Wikimetini analiz ke",
+	"apihelp-parse-example-summary": "Xulasay analiz ke",
+	"apihelp-query+alllinks-paramvalue-prop-title": "Sernamey rê link dek",
+	"apihelp-query+blocks-example-simple": "Listey bloqeyan"
 }

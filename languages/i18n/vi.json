@@ -2184,6 +2184,7 @@
 	"sp-contributions-username": "Địa chỉ IP hay tên thành viên:",
 	"sp-contributions-toponly": "Chỉ hiện các phiên bản mới nhất",
 	"sp-contributions-newonly": "Chỉ hiện các sửa đổi tạo trang",
+	"sp-contributions-hideminor": "Ẩn các sửa đổi nhỏ",
 	"sp-contributions-submit": "Tìm kiếm",
 	"whatlinkshere": "Các liên kết đến đây",
 	"whatlinkshere-title": "Các trang liên kết đến “$1”",
