@@ -77,6 +77,11 @@ class ApiExpandTemplates extends ApiBase {
 			$options->setRemoveComments( false );
 		}
 
+		$reset = null;
+		$suppressCache = false;
+		Hooks::run( 'ApiMakeParserOptions',
+			[ $options, $title_obj, $params, $this, &$reset, &$suppressCache ] );
+
 		$retval = [];
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {

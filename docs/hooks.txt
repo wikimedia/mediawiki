@@ -443,6 +443,15 @@ an exception is thrown during API action execution.
 $apiMain: Calling ApiMain instance.
 $e: Exception object.
 
+'ApiMakeParserOptions': Called from ApiParse and ApiExpandTemplates to allow
+extensions to adjust the ParserOptions before parsing.
+$options: ParserOptions object
+$title: Title to be parsed
+$params: Parameter array for the API module
+$module: API module (which is also a ContextSource)
+&$reset: Set to a ScopedCallback used to reset any hooks after the parse is done.
+&$suppressCache: Set true if cache should be suppressed.
+
 'ApiOpenSearchSuggest': Called when constructing the OpenSearch results. Hooks
 can alter or append to the array.
 &$results: array with integer keys to associative arrays. Keys in associative

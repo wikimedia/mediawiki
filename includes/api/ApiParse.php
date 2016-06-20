@@ -109,13 +109,13 @@ class ApiParse extends ApiBase {
 				$titleObj = $rev->getTitle();
 				$wgTitle = $titleObj;
 				$pageObj = WikiPage::factory( $titleObj );
-				$popts = $this->makeParserOptions( $pageObj, $params );
+				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				// Deliberately comparing $pageObj->getLatest() with $rev->getId(), rather than
 				// checking $rev->isCurrent(), because $pageObj is what actually ends up being used,
 				// and if its ->getLatest() is outdated, $rev->isCurrent() won't tell us that.
-				if ( $rev->getId() == $pageObj->getLatest() ) {
+				if ( !$suppressCache && $rev->getId() == $pageObj->getLatest() ) {
 					// May get from/save to parser cache
 					$p_result = $this->getParsedContent( $pageObj, $popts,
 						$pageid, isset( $prop['wikitext'] ) );
@@ -167,12 +167,12 @@ class ApiParse extends ApiBase {
 					$oldid = $pageObj->getLatest();
 				}
 
-				$popts = $this->makeParserOptions( $pageObj, $params );
+				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
 
 				// Don't pollute the parser cache when setting options that aren't
 				// in ParserOptions::optionsHash()
 				/// @todo: This should be handled closer to the actual cache instead of here, see T110269
-				$suppressCache =
+				$suppressCache = $suppressCache ||
 					$params['disablepp'] ||
 					$params['disablelimitreport'] ||
 					$params['preview'] ||
@@ -202,7 +202,7 @@ class ApiParse extends ApiBase {
 				$pageObj = $article->getPage();
 			}
 
-			$popts = $this->makeParserOptions( $pageObj, $params );
+			list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
 			$textProvided = !is_null( $text );
 
 			if ( !$textProvided ) {
@@ -470,10 +470,9 @@ class ApiParse extends ApiBase {
 	 * @param WikiPage $pageObj
 	 * @param array $params
 	 *
-	 * @return ParserOptions
+	 * @return array [ ParserOptions, ScopedCallback, bool $suppressCache ]
 	 */
 	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
-
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
 		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
@@ -483,7 +482,12 @@ class ApiParse extends ApiBase {
 			$popts->setTidy( false );
 		}
 
-		return $popts;
+		$reset = null;
+		$suppressCache = false;
+		Hooks::run( 'ApiMakeParserOptions',
+			[ $popts, $pageObj->getTitle(), $params, $this, &$reset, &$suppressCache ] );
+
+		return [ $popts, $reset, $suppressCache ];
 	}
 
 	/**
