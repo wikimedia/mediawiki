@@ -70,11 +70,17 @@ class InvalidateUserSesssions extends Maintenance {
 		foreach ( $usernames as $username ) {
 			$i++;
 			$user = User::newFromName( $username );
-			if ( $user->getId() ) {
+			try {
 				$sessionManager->invalidateSessionsForUser( $user );
-				$this->output( "Invalidated sessions for user $username\n" );
-			} else {
-				$this->output( "Could not find user $username\n" );
+				if ( $user->getId() ) {
+					$this->output( "Invalidated sessions for user $username\n" );
+				} else {
+					# session invalidation might still work if there is a central identity provider
+					$this->output( "Could not find user $username, tried to invalidate anyway\n" );
+				}
+			} catch ( Exception $e ) {
+				$this->output( "Failed to invalidate sessions for user $username | "
+					. str_replace( [ "\r", "\n" ], ' ', $e->getMessage() ) . "\n" );
 			}
 
 			if ( $i % $this->mBatchSize ) {
