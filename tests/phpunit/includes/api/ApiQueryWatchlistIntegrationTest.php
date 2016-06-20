@@ -229,7 +229,10 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getTitleFormatter() {
-		return new MediaWikiTitleCodec( Language::factory( 'en' ), GenderCache::singleton() );
+		return new MediaWikiTitleCodec(
+			Language::factory( 'en' ),
+			MediaWikiServices::getInstance()->getGenderCache()
+		);
 	}
 
 	private function getPrefixedText( LinkTarget $target ) {
