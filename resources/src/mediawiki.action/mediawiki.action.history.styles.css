@@ -1,5 +1,23 @@
 /* Basic styles for the history page */
 
+#pagehistory .history-user {
+	margin-left: 0.4em;
+	margin-right: 0.2em;
+}
+
+#pagehistory li {
+	border: 1px solid #fff;
+}
+
+#pagehistory li.selected {
+	background-color: #f9f9f9;
+	border: 1px dashed #aaa;
+}
+
+.mw-history-revisionactions {
+	float: right;
+}
+
 .updatedmarker {
 	background-color: #b7f430;
 }
