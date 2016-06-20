@@ -1291,6 +1291,7 @@
 	"apihelp-query+watchlistraw-param-show": "Only list items that meet these criteria.",
 	"apihelp-query+watchlistraw-param-owner": "Used along with $1token to access a different user's watchlist.",
 	"apihelp-query+watchlistraw-param-token": "A security token (available in the user's [[Special:Preferences#mw-prefsection-watchlist|preferences]]) to allow access to another user's watchlist.",
+	"apihelp-query+watchlistraw-param-dir": "The direction in which to list.",
 	"apihelp-query+watchlistraw-param-fromtitle": "Title (with namespace prefix) to begin enumerating from.",
 	"apihelp-query+watchlistraw-param-totitle": "Title (with namespace prefix) to stop enumerating at.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the current user's watchlist.",

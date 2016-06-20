@@ -1204,6 +1204,7 @@
 	"apihelp-query+watchlistraw-param-show": "{{doc-apihelp-param|query+watchlistraw|show}}",
 	"apihelp-query+watchlistraw-param-owner": "{{doc-apihelp-param|query+watchlistraw|owner}}",
 	"apihelp-query+watchlistraw-param-token": "{{doc-apihelp-param|query+watchlistraw|token}}",
+	"apihelp-query+watchlistraw-param-dir": "{{doc-apihelp-param|query+watchlistraw|dir}}",
 	"apihelp-query+watchlistraw-param-fromtitle": "{{doc-apihelp-param|query+watchlistraw|fromtitle}}",
 	"apihelp-query+watchlistraw-param-totitle": "{{doc-apihelp-param|query+watchlistraw|totitle}}",
 	"apihelp-query+watchlistraw-example-simple": "{{doc-apihelp-example|query+watchlistraw}}",
