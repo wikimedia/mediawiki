@@ -126,8 +126,10 @@ class DeferredUpdates {
 	}
 
 	public static function execute( array &$queue, $mode ) {
-		$updates = $queue; // snapshot of queue
+		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$method = RequestContext::getMain()->getRequest()->getMethod();
 
+		$updates = $queue; // snapshot of queue
 		// Keep doing rounds of updates until none get enqueued
 		while ( count( $updates ) ) {
 			$queue = []; // clear the queue
@@ -141,6 +143,7 @@ class DeferredUpdates {
 				} else {
 					$otherUpdates[] = $update;
 				}
+				$stats->increment( 'deferred_updates.' . $method . '.' . get_class( $update ) );
 			}
 
 			// Delegate DataUpdate execution to the DataUpdate class
