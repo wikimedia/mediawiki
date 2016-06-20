@@ -106,27 +106,6 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 					$user, $user, LoginForm::ABORTED, $abortError, 'AbortAutoAccount'
 				);
 			}
-		} else {
-			$abortError = '';
-			$abortStatus = null;
-			if ( !\Hooks::run( 'AbortNewAccount', [ $user, &$abortError, &$abortStatus ] ) ) {
-				// Hook point to add extra creation throttles and blocks
-				$this->logger->debug( __METHOD__ . ': a hook blocked creation' );
-				if ( $abortStatus === null ) {
-					// Report back the old string as a raw message status.
-					// This will report the error back as 'createaccount-hook-aborted'
-					// with the given string as the message.
-					// To return a different error code, return a StatusValue object.
-					$msg = wfMessage( 'createaccount-hook-aborted' )->rawParams( $abortError );
-					return StatusValue::newFatal( $msg );
-				} else {
-					// For MediaWiki 1.23+ and updated hooks, return the Status object
-					// returned from the hook.
-					$ret = StatusValue::newGood();
-					$ret->merge( $abortStatus );
-					return $ret;
-				}
-			}
 		}
 
 		return StatusValue::newGood();
