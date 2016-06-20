@@ -116,7 +116,6 @@ class HistoryAction extends FormlessAction {
 		// Setup page variables.
 		$out->setFeedAppendQuery( 'action=history' );
 		$out->addModules( 'mediawiki.action.history' );
-		$out->addModuleStyles( 'mediawiki.action.history.styles' );
 		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out = $this->getOutput();
 			$out->addModuleStyles( [
