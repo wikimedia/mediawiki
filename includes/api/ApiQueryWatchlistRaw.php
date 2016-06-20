@@ -193,7 +193,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					'ascending',
 					'descending'
 				],
-				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			],
 			'fromtitle' => [
 				ApiBase::PARAM_TYPE => 'string'
