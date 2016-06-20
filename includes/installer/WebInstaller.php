@@ -1157,6 +1157,20 @@ class WebInstaller extends Installer {
 	}
 
 	/**
+	 * If the software package wants the LocalSettings.php file
+	 * to be placed in a specific location, override this function
+	 * (see mw-config/overrides/README) to return the path of
+	 * where the file should be saved, or false for a generic
+	 * "in the base of your install"
+	 *
+	 * @since 1.27
+	 * @return string|bool
+	 */
+	public function getLocalSettingsLocation() {
+		return false;
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function envCheckPath() {
