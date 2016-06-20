@@ -37,13 +37,20 @@ class WebInstallerComplete extends WebInstallerPage {
 
 		$this->startForm();
 		$this->parent->disableLinkPopups();
+		$location = $this->parent->getLocalSettingsLocation();
+		$msg = 'config-install-done';
+		if ( $location !== false ) {
+			// config-install-done-path
+			$msg .= '-path';
+		}
 		$this->addHTML(
 			$this->parent->getInfoBox(
-				wfMessage( 'config-install-done',
+				wfMessage( $msg,
 					$lsUrl,
 					$this->getVar( 'wgServer' ) .
 					$this->getVar( 'wgScriptPath' ) . '/index.php',
-					'<downloadlink/>'
+					'<downloadlink/>',
+					$location ?: ''
 				)->plain(), 'tick-32.png'
 			)
 		);
