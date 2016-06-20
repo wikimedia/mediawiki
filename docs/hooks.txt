@@ -3283,7 +3283,9 @@ $mime: (string) The uploaded file's MIME type, as detected by MediaWiki.
   Handlers will typically only apply for specific MIME types.
 &$error: (object) output: true if the file is valid. Otherwise, an indexed array
   representing the problem with the file, where the first element is the message
-  key and the remaining elements are used as parameters to the message.
+  key or MessageSpecifier instance (you might want to use ApiMessage to provide
+  machine-readable details for the API) and the remaining elements are used as
+  parameters to the message.
 
 'UploadVerifyUpload': Upload verification, based on both file properties like
 MIME type (same as UploadVerifyFile) and the information entered by the user

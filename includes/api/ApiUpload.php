@@ -567,12 +567,28 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( $msg, 'filetype-banned', 0, $extradata );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
-				$params = $verification['details'];
-				$key = array_shift( $params );
-				$msg = $this->msg( $key, $params )->inLanguage( 'en' )->useDatabase( false )->text();
-				ApiResult::setIndexedTagName( $verification['details'], 'detail' );
-				$this->dieUsage( "This file did not pass file verification: $msg", 'verification-error',
-					0, [ 'details' => $verification['details'] ] );
+				$parsed = $this->parseMsg( $verification['details'] );
+				$info = "This file did not pass file verification: {$parsed['info']}";
+				if ( $verification['details'][0] instanceof MessageSpecifier ) {
+					$code = $parsed['code'];
+				} else {
+					// For backwards-compatibility, all of the errors from UploadBase::verifyFile() are
+					// reported as 'verification-error', and the real error code is reported in 'details'.
+					$code = 'verification-error';
+				}
+				if ( $verification['details'][0] instanceof MessageSpecifier ) {
+					$msg = $verification['details'][0];
+					$details = array_merge_recursive( [ $msg->getKey() ], $msg->getParams() );
+				} else {
+					$details = $verification['details'];
+				}
+				ApiResult::setIndexedTagName( $details, 'detail' );
+				$data = [ 'details' => $details ];
+				if ( isset( $parsed['data'] ) ) {
+					$data = array_merge( $data, $parsed['data'] );
+				}
+
+				$this->dieUsage( $info, $code, 0, $data );
 				break;
 			case UploadBase::HOOK_ABORTED:
 				if ( is_array( $verification['error'] ) ) {
