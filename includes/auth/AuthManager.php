@@ -878,10 +878,22 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Determine whether a particular account can be created
 	 * @param string $username
-	 * @param int $flags Bitfield of User:READ_* constants
+	 * @param array $options
+	 *  - flags: (int) Bitfield of User:READ_* constants, default User::READ_NORMAL
+	 *  - creating: (bool) For internal use only. Never specify this.
 	 * @return Status
 	 */
-	public function canCreateAccount( $username, $flags = User::READ_NORMAL ) {
+	public function canCreateAccount( $username, $options = [] ) {
+		// Back compat
+		if ( is_int( $options ) ) {
+			$options = [ 'flags' => $options ];
+		}
+		$options += [
+			'flags' => User::READ_NORMAL,
+			'creating' => false,
+		];
+		$flags = $options['flags'];
+
 		if ( !$this->canCreateAccounts() ) {
 			return Status::newFatal( 'authmanager-create-disabled' );
 		}
@@ -905,7 +917,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->getPrimaryAuthenticationProviders() +
 			$this->getSecondaryAuthenticationProviders();
 		foreach ( $providers as $provider ) {
-			$status = $provider->testUserForCreation( $user, false );
+			$status = $provider->testUserForCreation( $user, false, $options );
 			if ( !$status->isGood() ) {
 				return Status::wrap( $status );
 			}
@@ -1010,7 +1022,9 @@ class AuthManager implements LoggerAwareInterface {
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
 
-		$status = $this->canCreateAccount( $username, User::READ_LOCKING );
+		$status = $this->canCreateAccount(
+			$username, [ 'flags' => User::READ_LOCKING, 'creating' => true ]
+		);
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {user} cannot be created: {reason}', [
 				'user' => $username,
@@ -1575,11 +1589,15 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Denied by providers?
+		$options = [
+			'flags' => User::READ_LATEST,
+			'creating' => true,
+		];
 		$providers = $this->getPreAuthenticationProviders() +
 			$this->getPrimaryAuthenticationProviders() +
 			$this->getSecondaryAuthenticationProviders();
 		foreach ( $providers as $provider ) {
-			$status = $provider->testUserForCreation( $user, $source );
+			$status = $provider->testUserForCreation( $user, $source, $options );
 			if ( !$status->isGood() ) {
 				$ret = Status::wrap( $status );
 				$this->logger->debug( __METHOD__ . ': Provider denied creation of {username}: {reason}', [

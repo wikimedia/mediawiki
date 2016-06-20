@@ -75,7 +75,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 		return AuthenticationResponse::newAbstain();
 	}
 
-	public function testUserForCreation( $user, $autocreate ) {
+	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		$block = $user->isBlockedFromCreateAccount();
 		if ( $block ) {
 			$errorParams = [
