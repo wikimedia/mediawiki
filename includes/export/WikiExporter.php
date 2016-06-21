@@ -134,13 +134,21 @@ class WikiExporter {
 	 * @param int $start Inclusive lower limit (this id is included)
 	 * @param int $end Exclusive upper limit (this id is not included)
 	 *   If 0, no upper limit.
+	 * @param bool $orderRevs order revisions within pages in ascending order
 	 */
-	public function pagesByRange( $start, $end ) {
-		$condition = 'page_id >= ' . intval( $start );
-		if ( $end ) {
-			$condition .= ' AND page_id < ' . intval( $end );
+	public function pagesByRange( $start, $end, $orderRevs ) {
+		if ( $orderRevs ) {
+			$condition = 'rev_page >= ' . intval( $start );
+			if ( $end ) {
+				$condition .= ' AND rev_page < ' . intval( $end );
+			}
+		} else {
+			$condition = 'page_id >= ' . intval( $start );
+			if ( $end ) {
+				$condition .= ' AND page_id < ' . intval( $end );
+			}
 		}
-		$this->dumpFrom( $condition );
+		$this->dumpFrom( $condition, $orderRevs );
 	}
 
 	/**
@@ -245,7 +253,7 @@ class WikiExporter {
 	 * @throws MWException
 	 * @throws Exception
 	 */
-	protected function dumpFrom( $cond = '' ) {
+	protected function dumpFrom( $cond = '', $orderRevs = false ) {
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
 			$where = [ 'user_id = log_user' ];
@@ -332,7 +340,16 @@ class WikiExporter {
 				}
 			} elseif ( $this->history & WikiExporter::FULL ) {
 				# Full history dumps...
-				$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page' ];
+				# query optimization for history stub dumps
+				if ( $this->text == WikiExporter::STUB && $orderRevs ) {
+					$tables = [ 'revision', 'page' ];
+				        $opts[] = 'STRAIGHT_JOIN';
+					$opts['ORDER BY'] = [ 'rev_page ASC', 'rev_id ASC' ];
+					$opts['USE INDEX']['revision'] = 'rev_page_id';
+					$join['page'] = [ 'INNER JOIN', 'rev_page=page_id' ];
+				} else {
+					$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page' ];
+				}
 			} elseif ( $this->history & WikiExporter::CURRENT ) {
 				# Latest revision dumps...
 				if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
@@ -369,7 +386,6 @@ class WikiExporter {
 			if ( $this->buffer == WikiExporter::STREAM ) {
 				$prev = $this->db->bufferResults( false );
 			}
-
 			$result = null; // Assuring $result is not undefined, if exception occurs early
 			try {
 				Hooks::run( 'ModifyExportQuery',
