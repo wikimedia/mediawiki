@@ -420,3 +420,7 @@
 	path = extensions/AJAXPoll
 	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
 	branch = REL1_26
+[submodule "extensions/BlogPage"]
+	path = extensions/BlogPage
+	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
+	branch = REL1_26
