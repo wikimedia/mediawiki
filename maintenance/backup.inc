@@ -41,6 +41,7 @@ class BackupDumper extends Maintenance {
 	public $revEndId = 0;
 	public $dumpUploads = false;
 	public $dumpUploadFileContents = false;
+	public $orderRevs = false;
 
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
@@ -271,7 +272,7 @@ class BackupDumper extends Maintenance {
 		} elseif ( is_null( $this->pages ) ) {
 			# Page dumps: all or by page ID range
 			if ( $this->startId || $this->endId ) {
-				$exporter->pagesByRange( $this->startId, $this->endId );
+				$exporter->pagesByRange( $this->startId, $this->endId, $this->orderRevs );
 			} elseif ( $this->revStartId || $this->revEndId ) {
 				$exporter->revsByRange( $this->revStartId, $this->revEndId );
 			} else {
