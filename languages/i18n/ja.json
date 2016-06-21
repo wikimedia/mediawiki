@@ -1933,6 +1933,7 @@
 	"trackingcategories-msg": "追跡用カテゴリ",
 	"trackingcategories-name": "メッセージ名",
 	"trackingcategories-desc": "カテゴリに入る基準",
+	"restricted-displaytitle-ignored-desc": "実際のページ名と等価でないために <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> が無視されているページ。",
 	"noindex-category-desc": "このページは <code><nowiki>__NOINDEX__</nowiki></code> というマジックワードを含んでおり、その印が有効になっている名前空間にあるため、ロボットによる収集の対象になりません。",
 	"index-category-desc": "このページは <code><nowiki>__INDEX__</nowiki></code> というマジックワードを含んでおり、その印が有効になっている名前空間にあるため、通常と異なり、ロボットによる収集の対象になります。",
 	"post-expand-template-inclusion-category-desc": "テンプレートを展開したあとのページ サイズが <code>$wgMaxArticleSize</code> よりも大きいため、一部のテンプレートが展開されなかった",

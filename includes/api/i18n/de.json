@@ -782,6 +782,7 @@
 	"apihelp-query+tags-example-simple": "Verfügbare Tags auflisten",
 	"apihelp-query+templates-param-dir": "Die Auflistungsrichtung.",
 	"apihelp-query+transcludedin-param-prop": "Zurückzugebende Eigenschaften:",
+	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Seitenkennung jeder Seite.",
 	"apihelp-query+usercontribs-description": "Alle Bearbeitungen von einem Benutzer abrufen.",
 	"apihelp-query+usercontribs-param-limit": "Die maximale Anzahl der zurückzugebenden Beiträge.",
 	"apihelp-query+usercontribs-param-start": "Der zurückzugebende Start-Zeitstempel.",

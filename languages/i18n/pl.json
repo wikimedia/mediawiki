@@ -1816,7 +1816,7 @@
 	"apisandbox": "Środowisko testowe API",
 	"apisandbox-jsonly": "Do korzystania z brudnopisu API wymagany jest JavaScript.",
 	"apisandbox-api-disabled": "API jest wyłączone na tej stronie.",
-	"apisandbox-intro": "Użyj tej strony do eksperymentowania z <strong>serwisem API MediaWiki</strong>.\nWięcej szczegółów na temat wykorzystywania API można znaleźć w [[mw:API:Main page|dokumentacji API]]. Przykład: [https://www.mediawiki.org/wiki/API#A_simple_example pobranie zawartości strony głównej]. Wybierz akcję, by zobaczyć więcej przykładów.\n\nZwróć uwagę, że chociaż jest to brudnopis, to działania, które można przeprowadzać na tej stronie, mogą zmienić wiki.",
+	"apisandbox-intro": "Użyj tej strony do eksperymentowania z <strong>serwisem API MediaWiki</strong>.\nWięcej szczegółów na temat wykorzystywania API można znaleźć w [[mw:API:Main page|dokumentacji API]]. Przykład: [https://www.mediawiki.org/wiki/API#A_simple_example pobranie zawartości strony głównej]. Wybierz akcję, by zobaczyć więcej przykładów.\n\nZwróć uwagę, że chociaż jest to środowisko testowa, to działania, które można przeprowadzać na tej stronie, mogą zmienić zawartość wiki.",
 	"apisandbox-fullscreen": "Rozszerz panel",
 	"apisandbox-fullscreen-tooltip": "Rozszerz panel środowiska testowego, aby zajmował całe okno przeglądarki.",
 	"apisandbox-unfullscreen": "Pokaż stronę",

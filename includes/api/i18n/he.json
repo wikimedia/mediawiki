@@ -1203,6 +1203,7 @@
 	"apihelp-query+watchlistraw-param-show": "לרשום רק פריטים שעונים על אמות המידה האלו.",
 	"apihelp-query+watchlistraw-param-owner": "משמש יחד עם $1token לגישה לרשימת מעקב של משתמש אחר.",
 	"apihelp-query+watchlistraw-param-token": "אסימון אבטחה (זמין ב־[[Special:Preferences#mw-prefsection-watchlist|העדפות]]) שמאפשר לגשת לרשימת מעקב של משתמש אחר.",
+	"apihelp-query+watchlistraw-param-dir": "באיזה כיוון לרשום.",
 	"apihelp-query+watchlistraw-param-fromtitle": "מאיזו כותרת (עם תחילית מרחב שם) להתחיל למנות.",
 	"apihelp-query+watchlistraw-param-totitle": "באיזו כותרת (עם תחילית מרחב שם) להפסיק למנות.",
 	"apihelp-query+watchlistraw-example-simple": "לרשום דפים ברשימת המעקב של המשתמש הנוכחי.",

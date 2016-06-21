@@ -310,7 +310,7 @@
 	"config-help": "дапамога",
 	"config-help-tooltip": "націсьніце, каб разгарнуць",
 	"config-nofile": "Файл «$1» ня знойдзены. Ці быў ён выдалены?",
-	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў].",
+	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў] або [https://www.mediawiki.org/wiki/Extension_Matrix матрыцу пашырэньняў], каб пабачыць поўны сьпіс.",
 	"mainpagetext": "<strong>MediaWiki была ўсталяваная.</strong>",
 	"mainpagedocfooter": "Глядзіце [https://meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
 }

@@ -1522,7 +1522,7 @@
 	"upload-http-error": "发生HTTP错误：$1",
 	"upload-copy-upload-invalid-domain": "不能从该域名上载文件副本。",
 	"upload-foreign-cant-upload": "此wiki未配置为上传文件至请求的外部文件存储库。",
-	"upload-foreign-cant-load-config": "加载外部文件存储库的文件上传配置失败。",
+	"upload-foreign-cant-load-config": "未能加载用于上传至外部文件存储库的文件配置。",
 	"upload-dialog-disabled": "使用此对话框的文件上传在此wiki已禁用。",
 	"upload-dialog-title": "上传文件",
 	"upload-dialog-button-cancel": "取消",

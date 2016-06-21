@@ -35,6 +35,7 @@
 	"apihelp-expandtemplates-param-title": "Título da página.",
 	"apihelp-feedcontributions-param-feedformat": "O formato do feed.",
 	"apihelp-feedcontributions-param-deletedonly": "Mostrar apenas contribuições eliminadas.",
+	"apihelp-feedcontributions-param-hideminor": "Ocultar edições menores.",
 	"apihelp-feedcontributions-param-showsizediff": "Mostrar diferença de tamanho entre edições.",
 	"apihelp-feedrecentchanges-param-feedformat": "O formato do feed.",
 	"apihelp-feedrecentchanges-param-limit": "Número máximo de resultados a apresentar.",

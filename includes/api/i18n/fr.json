@@ -1217,6 +1217,7 @@
 	"apihelp-query+watchlistraw-param-show": "Lister uniquement les éléments correspondant à ces critères.",
 	"apihelp-query+watchlistraw-param-owner": "Utilisé avec $1token pour accéder à la liste de suivi d’un autre utilisateur.",
 	"apihelp-query+watchlistraw-param-token": "Un jeton de sécurité (disponible dans les [[Special:Preferences#mw-prefsection-watchlist|préférences]] de l’utilisateur) pour permettre l’accès à la liste de suivi d’un autre utilisateur.",
+	"apihelp-query+watchlistraw-param-dir": "Le sens dans lequel lister.",
 	"apihelp-query+watchlistraw-param-fromtitle": "Démarrer l'énumération avec ce Titre (inclure le préfixe d'espace de noms) :",
 	"apihelp-query+watchlistraw-param-totitle": "Terminer l'énumération avec ce Titre (inclure le préfixe d'espace de noms) :",
 	"apihelp-query+watchlistraw-example-simple": "Lister les pages dans la liste de suivi de l’utilisateur actuel",

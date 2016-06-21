@@ -30,7 +30,8 @@
 			"Macofe",
 			"Urbanecm",
 			"LordMsz",
-			"Matma Rex"
+			"Matma Rex",
+			"Dvorapa"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -237,7 +238,7 @@
 	"categorypage": "Prohlédnout si stránku kategorie",
 	"viewtalkpage": "Prohlédnout si diskusi",
 	"otherlanguages": "V jiných jazycích",
-	"redirectedfrom": "(Přesměrováno z $1)",
+	"redirectedfrom": "(přesměrováno z $1)",
 	"redirectpagesub": "Přesměrování",
 	"redirectto": "Přesměrování na:",
 	"lastmodifiedat": "Stránka byla naposledy editována $1 v $2.",

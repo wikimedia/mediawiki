@@ -2176,6 +2176,7 @@
 	"sp-contributions-username": "Endereço de IP ou utilizador(a):",
 	"sp-contributions-toponly": "Mostrar apenas as edições mais recentes",
 	"sp-contributions-newonly": "Mostrar só edições que são criações de páginas",
+	"sp-contributions-hideminor": "Ocultar edições menores",
 	"sp-contributions-submit": "Pesquisar",
 	"whatlinkshere": "Páginas afluentes",
 	"whatlinkshere-title": "Páginas com ligações para \"$1\"",

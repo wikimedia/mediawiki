@@ -1578,7 +1578,7 @@
 	"upload-http-error": "Une erreur HTTP est survenue : $1",
 	"upload-copy-upload-invalid-domain": "La copie des téléversements n’est pas disponible depuis ce domaine.",
 	"upload-foreign-cant-upload": "Ce wiki n’est pas configuré pour télécharger des fichiers vers le dépôt de fichiers externe demandé.",
-	"upload-foreign-cant-load-config": "Le chargement de la configuration de téléversement de fichier pour le référentiel de fichiers étranger a échoué.",
+	"upload-foreign-cant-load-config": "Échec au chargement de la configuration du téléversement des fichiers vers le référentiel de fichiers étrangers.",
 	"upload-dialog-disabled": "Les téléversements de fichier utilisant cette boîte de dialogue sont désactivés sur ce wiki.",
 	"upload-dialog-title": "Téléverser un fichier",
 	"upload-dialog-button-cancel": "Annuler",

@@ -1523,7 +1523,7 @@
 	"upload-http-error": "Ein HTTP-Fehler ist aufgetreten: $1",
 	"upload-copy-upload-invalid-domain": "Als Kopie hochladbare Dateien sind über diese Domain nicht verfügbar.",
 	"upload-foreign-cant-upload": "Dieses Wiki ist nicht konfiguriert, um Dateien auf das gewünschte fremde Dateirepositorium hochzuladen.",
-	"upload-foreign-cant-load-config": "Das Laden der Dateiuploadkonfiguration für das fremde Dateirepositorium ist fehlgeschlagen.",
+	"upload-foreign-cant-load-config": "Die Konfiguration für Dateiuploads in das fremde Dateirepositorium konnte nicht geladen werden.",
 	"upload-dialog-disabled": "Dateiuploads mit diesem Dialog sind auf diesem Wiki deaktiviert.",
 	"upload-dialog-title": "Datei hochladen",
 	"upload-dialog-button-cancel": "Abbrechen",

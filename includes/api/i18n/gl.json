@@ -1201,6 +1201,7 @@
 	"apihelp-query+watchlistraw-param-show": "Só listar os elementos que cumplen estos criterios.",
 	"apihelp-query+watchlistraw-param-owner": "Usado con $1token para acceder á lista de páxinas de vixiancia doutro usuario.",
 	"apihelp-query+watchlistraw-param-token": "Identificador de seguridade (dispoñible nas [[Special:Preferences#mw-prefsection-watchlist|preferencias]] de usuario) para permitir o acceso a outros á súa páxina de vixiancia.",
+	"apihelp-query+watchlistraw-param-dir": "Dirección na cal listar.",
 	"apihelp-query+watchlistraw-param-fromtitle": "Título (co prefixo de espazo de nomes) dende o que comezar a enumerar.",
 	"apihelp-query+watchlistraw-param-totitle": "Título (co prefixo de espazo de nomes) no que rematar de enumerar.",
 	"apihelp-query+watchlistraw-example-simple": "Listar páxinas na lista de vixiancia do usuario actual.",
