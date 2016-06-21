@@ -402,8 +402,8 @@ class Message implements MessageSpecifier, Serializable {
 			$value = array_shift( $params );
 		}
 
-		if ( $value instanceof RawMessage ) {
-			$message = new RawMessage( $value->getKey(), $value->getParams() );
+		if ( $value instanceof Message ) { // Message, RawMessage, ApiMessage, etc
+			$message = clone( $value );
 		} elseif ( $value instanceof MessageSpecifier ) {
 			$message = new Message( $value );
 		} elseif ( is_string( $value ) ) {
