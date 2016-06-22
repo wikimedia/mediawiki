@@ -542,10 +542,6 @@
 			"type": "object",
 			"description": "ResourceLoader LESS variables"
 		},
-		"ResourceLoaderLESSImportPaths": {
-			"type": "object",
-			"description": "ResourceLoader import paths"
-		},
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
