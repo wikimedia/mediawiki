@@ -42,6 +42,13 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
+Removed ContentHandler::getPageViewLanguage(). Use Title::getPageViewLanguage instead.
+
+Added ParserOptions::setInputLanguage() and ParserOptions::getInputLanguage(), and changed the
+semantics of ParserOptions::setTargetLanguage() and ParserOptions::getTargetLanguage().
+
+Added ParserOutput::setLanguage() and ParserOutput::getLanguage()
+
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
 

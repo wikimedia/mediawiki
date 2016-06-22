@@ -1029,7 +1029,7 @@ class MessageCache {
 		if ( $parser ) {
 			$popts = $this->getParserOptions();
 			$popts->setInterfaceMessage( $interface );
-			$popts->setTargetLanguage( $language );
+			$popts->setInputLanguage( $language );
 
 			$userlang = $popts->setUserLang( $language );
 			$this->mInParser = true;
@@ -1084,7 +1084,7 @@ class MessageCache {
 		if ( is_string( $language ) ) {
 			$language = Language::factory( $language );
 		}
-		$popts->setTargetLanguage( $language );
+		$popts->setInputLanguage( $language );
 
 		if ( !$title || !$title instanceof Title ) {
 			global $wgTitle;

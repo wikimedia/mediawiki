@@ -28,6 +28,11 @@ class ParserOutput extends CacheTime {
 	public $mText;
 
 	/**
+	 * @var string|null $mLanguage The language of the output.
+	 */
+	private $mLanguage;
+
+	/**
 	 * @var array $mLanguageLinks List of the full text of language links,
 	 *  in the order they appear.
 	 */
@@ -270,6 +275,28 @@ class ParserOutput extends CacheTime {
 			);
 		}
 		return $text;
+	}
+
+	/**
+	 * The language of the output
+	 *
+	 * @return string a ISO language code
+	 */
+	public function getLanguage() {
+		global $wgContLang;
+
+		if ( $this->mLanguage === null ) {
+			return $wgContLang->getCode();
+		} else {
+			return $this->mLanguage;
+		}
+	}
+
+	/**
+	 * @param string $lang an ISO language code
+	 */
+	public function setLanguage( $lang ) {
+		$this->mLanguage = $lang;
 	}
 
 	public function &getLanguageLinks() {
