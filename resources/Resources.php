@@ -841,7 +841,6 @@ return [
 		'class' => 'ResourceLoaderRawFileModule',
 		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => [
-			'resources/lib/phpjs-sha1/sha1.js',
 			'resources/src/mediawiki/mediawiki.js',
 			'resources/src/mediawiki/mediawiki.requestIdleCallback.js',
 			'resources/src/mediawiki/mediawiki.errorLogger.js',
