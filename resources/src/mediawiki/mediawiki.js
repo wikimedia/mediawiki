@@ -8,7 +8,6 @@
  * @singleton
  */
 /*jshint latedef:false */
-/*global sha1 */
 ( function ( $ ) {
 	'use strict';
 
@@ -18,6 +17,36 @@
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackHandlers = [],
 		trackQueue = [];
+
+	/**
+	 * FNV132 hash function
+	 *
+	 * This function implements the 32-bit version of FNV-1.
+	 * It is equivalent to hash( 'fnv1a32', ... ) in PHP, except
+	 * its output is base 36 rather than hex.
+	 * See <https://en.wikipedia.org/wiki/FNV_hash_function>
+	 *
+	 * @private
+	 * @param {string} str String to hash
+	 * @return {string} hash as an seven-character base 36 string
+	 */
+	function fnv1a32( str ) {
+		/*jshint bitwise:false */
+		var hash = 0x811C9DC5,
+			i;
+
+		for ( i = 0; i < str.length; i++ ) {
+			hash ^= str.charCodeAt( i );
+			hash += ( hash << 1 ) + ( hash << 4 ) + ( hash << 7 ) + ( hash << 8 ) + ( hash << 24 );
+		}
+
+		hash = ( hash >>> 0 ).toString( 36 );
+		while ( hash.length < 7 ) {
+			hash = '0' + hash;
+		}
+
+		return hash;
+	}
 
 	/**
 	 * Create an object that can be read from or written to from methods that allow
@@ -931,10 +960,7 @@
 				var hashes = $.map( modules, function ( module ) {
 					return registry[ module ].version;
 				} );
-				// Trim for consistency with server-side ResourceLoader::makeHash. It also helps
-				// save precious space in the limited query string. Otherwise modules are more
-				// likely to require multiple HTTP requests.
-				return sha1( hashes.join( '' ) ).slice( 0, 12 );
+				return fnv132( hashes.join( '' ) );
 			}
 
 			/**
