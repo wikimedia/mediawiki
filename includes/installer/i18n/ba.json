@@ -23,7 +23,7 @@
 	"config-localsettings-badkey": "Дөрөҫ булмаған асҡыс күрһәттегеҙ",
 	"config-upgrade-key-missing": "Ҡуйылған MediaWiki копияһы булыуы асыҡланды. Яңыртыу өсөн файл аҙағында ҡуйығыҙ: <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Ғәмәлдәге <code>LocalSettings.php</code> файла тулған. $1 билдәләнмәгән. Зинһар өсөн <code>LocalSettings.php</code> кодын үҙгәртегеҙ. Һуңынан ошонда сиртегеҙ «{{int:Config-continue}}».",
-	"config-localsettings-connection-error": "<code>LocalSettings.php</code> көйләүҙәрендә хата китте йәки <code>AdminSettings.php</code> көйләүҙәрендә хата. Зинһар өсөн, көйләүҙәрҙе тәҙәтегеҙ, яңынан эшләп ҡарағыҙ\n$1",
+	"config-localsettings-connection-error": "<code>LocalSettings.php</code> көйләүҙәрендә хата китте йәки <code>LocalSettings.php</code> көйләүҙәрендә хата. Зинһар өсөн, көйләүҙәрҙе тәҙәтегеҙ, яңынан эшләп ҡарағыҙ\n$1",
 	"config-session-error": "Эш башлағанда сыҡҡан хата: $1",
 	"config-session-expired": "Һеҙҙең ваҡыт үтте. Сессия $1 оҙонлоғона көйләнгән. Уны оҙайтыу өсөн php.ini. эсендә <code>session.gc_maxlifetime</code> кодын үҙгәртегеҙ.\nУрынлаштырыу процессын яңынан башлағыҙ.",
 	"config-no-session": "Был сессия юғалған!\nҮҙегеҙҙең php.ini тикшерегеҙ, \n<code>session.save_path</code> коды тейешле каталогҡа урынлаштырылған икәненә ышынғыҙ.",

@@ -19,7 +19,7 @@
 	"config-localsettings-badkey": "Oppgraderingsnøkkelen du oppga er feil.",
 	"config-upgrade-key-missing": "En eksisterende installasjon av MediaWiki er funnet.\nFor å oppgradere denne installasjonen, vær vennlig å legge til følgende linje helt til slutt i din ''<code>LocalSettings.php</code>''-fil:\n\n$1",
 	"config-localsettings-incomplete": "Den eksisterende ''<code>LocalSettings.php</code>'' ser ut til å være ufullstendig.\nVariabelen $1 har ingen verdi.\nVær vennlig å endre ''<code>LocalSettings.php</code>'' slik at variabelen får en verdi, og klikk ''{{int:Config-continue}}''.",
-	"config-localsettings-connection-error": "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''<code>LocalSettings.php</code>'' eller ''<code>AdminSettings.php</code>''. Vær vennlig å rette opp disse innstillingene og prøv igjen.\n\n$1",
+	"config-localsettings-connection-error": "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''<code>LocalSettings.php</code>'' eller ''<code>LocalSettings.php</code>''. Vær vennlig å rette opp disse innstillingene og prøv igjen.\n\n$1",
 	"config-session-error": "Feil under oppstart av økt: $1",
 	"config-session-expired": "Dine øktdata ser ut til å ha utløpt.\nØkter er konfigurert for en levetid på $1.\nDu kan øke dette ved å sette <code>session.gc_maxlifetime</code> i php.ini.\nStart installasjonsprosessen på nytt.",
 	"config-no-session": "Dine øktdata ble tapt!\nSjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en passende mappe.",

@@ -33,7 +33,7 @@
 	"config-localsettings-badkey": "Вы указали неправильный ключ обновления",
 	"config-upgrade-key-missing": "Обнаружена существующая установленная копия MediaWiki.\nЧтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Похоже, что существующий файл <code>LocalSettings.php</code> неполон.\nНе установлена переменная $1.\nПожалуйста, измените <code>LocalSettings.php</code> так, чтобы значение этой переменной было задано, затем нажмите «{{int:Config-continue}}».",
-	"config-localsettings-connection-error": "Произошла ошибка при подключении к базе данных с помощью настроек, указанных в <code>LocalSettings.php</code> или <code>AdminSettings.php</code>. Пожалуйста, исправьте эти настройки и повторите попытку.\n\n$1",
+	"config-localsettings-connection-error": "Произошла ошибка при подключении к базе данных с помощью настроек, указанных в <code>LocalSettings.php</code> или <code>LocalSettings.php</code>. Пожалуйста, исправьте эти настройки и повторите попытку.\n\n$1",
 	"config-session-error": "Ошибка при запуске сессии: $1",
 	"config-session-expired": "Ваша сессия истекла.\nСессии настроены на длительность $1.\nВы её можете увеличить, изменив <code>session.gc_maxlifetime</code> в php.ini.\nПерезапустите процесс установки.",
 	"config-no-session": "Данные сессии потеряны!\nПроверьте ваш php.ini и убедитесь, что <code>session.save_path</code> установлен в соответствующий каталог.",
