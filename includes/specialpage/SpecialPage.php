@@ -1,6 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
-
 /**
  * Parent class for all special pages.
  *
@@ -24,6 +22,8 @@ use MediaWiki\MediaWikiServices;
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Parent class for all special pages.
@@ -59,6 +59,11 @@ class SpecialPage {
 	 * @var IContextSource
 	 */
 	protected $mContext;
+
+	/**
+	 * @var LinkRenderer|null
+	 */
+	private $linkRenderer;
 
 	/**
 	 * Get a localised Title object for a specified special page name
@@ -825,5 +830,25 @@ class SpecialPage {
 		if ( $this->getRequest()->wasPosted() ) {
 			wfTransactionalTimeLimit();
 		}
+	}
+
+	/**
+	 * @since 1.28
+	 * @return LinkRenderer
+	 */
+	protected function getLinkRenderer() {
+		if ( $this->linkRenderer ) {
+			return $this->linkRenderer;
+		} else {
+			return MediaWikiServices::getInstance()->getLinkRenderer();
+		}
+	}
+
+	/**
+	 * @since 1.28
+	 * @param LinkRenderer $linkRenderer
+	 */
+	public function setLinkRenderer( LinkRenderer $linkRenderer ) {
+		$this->linkRenderer = $linkRenderer;
 	}
 }
