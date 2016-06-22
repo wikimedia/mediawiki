@@ -243,7 +243,6 @@ class SpecialExpandTemplates extends SpecialPage {
 		global $wgParser;
 
 		$popts = ParserOptions::newFromContext( $this->getContext() );
-		$popts->setTargetLanguage( $title->getPageLanguage() );
 		return $wgParser->parse( $text, $title, $popts );
 	}
 

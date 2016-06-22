@@ -4622,10 +4622,20 @@ class Title implements LinkTarget {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
+		global $wgContLang, $wgLang, $wgLanguageCode;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
+		}
+
+		if ( $this->inNamespace( NS_MEDIAWIKI ) ) {
+			if ( preg_match( '!/([^/]+)$!', $this->getText(), $m ) ) {
+				// The page language is given by the title suffix
+				return Language::factory( $m[1] );
+			} else {
+				// No title suffix, assume content language
+				return $wgContLang;
+			}
 		}
 
 		// Checking if DB language is set
@@ -4659,6 +4669,8 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 * @return Language
 	 */
+	// @todo Revisit all usages. some can probably be replaced by
+	// ParserOutput::getLanguage or some such
 	public function getPageViewLanguage() {
 		global $wgLang;
 
@@ -4676,21 +4688,31 @@ class Title implements LinkTarget {
 		// Checking if DB language is set
 		$dbPageLanguage = $this->getDbPageLanguageCode();
 		if ( $dbPageLanguage ) {
-			$pageLang = wfGetLangObj( $dbPageLanguage );
-			$variant = $pageLang->getPreferredVariant();
-			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
+			$viewLanguage = wfGetLangObj( $dbPageLanguage );
+			$variant = $viewLanguage->getPreferredVariant();
+			if ( $viewLanguage->getCode() !== $variant ) {
+				$viewLanguage = Language::factory( $variant );
 			}
 
-			return $pageLang;
+			return $viewLanguage;
 		}
 
 		// @note Can't be cached persistently, depends on user settings.
 		// @note ContentHandler::getPageViewLanguage() may need to load the
 		//   content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
-		return $pageLang;
+		$viewLanguage = $this->getPageLanguage();
+
+		if ( $this->getNamespace() !== NS_MEDIAWIKI ) {
+			// If the user chooses a variant, the content is actually
+			// in a language whose code is the variant code.
+			$variant = $viewLanguage->getPreferredVariant();
+			if ( $viewLanguage->getCode() !== $variant ) {
+				$viewLanguage = Language::factory( $variant );
+			}
+		}
+
+		return $viewLanguage;
 	}
 
 	/**

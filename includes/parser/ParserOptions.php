@@ -77,9 +77,14 @@ class ParserOptions {
 	private $mInterfaceMessage = false;
 
 	/**
-	 * Overrides $mInterfaceMessage with arbitrary language
+	 * @var Language|null Specifies the desired target language.
 	 */
 	private $mTargetLanguage = null;
+
+	/**
+	 * @var Language|null Overrides the assumed input language.
+	 */
+	private $mInputLanguage = null;
 
 	/**
 	 * Maximum size of template expansions, in bytes
@@ -260,8 +265,18 @@ class ParserOptions {
 		return $this->mInterfaceMessage;
 	}
 
+	/**
+	 * @return Language|null
+	 */
 	public function getTargetLanguage() {
 		return $this->mTargetLanguage;
+	}
+
+	/**
+	 * @return Language|null
+	 */
+	public function getInputLanguage() {
+		return $this->mInputLanguage;
 	}
 
 	public function getMaxIncludeSize() {
@@ -449,7 +464,42 @@ class ParserOptions {
 		return wfSetVar( $this->mInterfaceMessage, $x );
 	}
 
+	/**
+	 * Set the language to assume the parser's input is written in.
+	 *
+	 * @see Parser::getInputLanguage
+	 * @see Parser::getTargetLanguage
+	 * @since 1.28. In 1.27 or earlier, use setTargetLanguage instead.
+	 *
+	 * @param Language|string|null $x
+	 *
+	 * @return Language|null The previous input language
+	 */
+	public function setInputLanguage( $x ) {
+		if ( is_string( $x ) ) {
+			$x = Language::factory( $x );
+		}
+
+		return wfSetVar( $this->mInputLanguage, $x, true );
+	}
+
+	/**
+	 * Set the desired target language for a parser run. The Parser could implement some sort
+	 * of variant conversion based on this information.
+	 *
+	 * @note In 1.27 and earlier, this served the function now covered by setInputLanguage.
+	 *
+	 * @see Parser::getTargetLanguage
+	 *
+	 * @param Language|string|null $x
+	 *
+	 * @return Language|null The previous target language
+	 */
 	public function setTargetLanguage( $x ) {
+		if ( is_string( $x ) ) {
+			$x = Language::factory( $x );
+		}
+
 		return wfSetVar( $this->mTargetLanguage, $x, true );
 	}
 

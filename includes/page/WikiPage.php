@@ -1981,7 +1981,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
+		global $wgContLang;
+
 		$options = $this->getContentHandler()->makeParserOptions( $context );
+
+		// TODO: for multilingual wikis, do $options->setTargetLanguage( $context->getLanguage() )
+
+		if ( $wgContLang->getPreferredVariant() !== $wgContLang->getCode() ) {
+			$options->setTargetLanguage( $wgContLang->getPreferredVariant() );
+		}
 
 		if ( $this->getTitle()->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so

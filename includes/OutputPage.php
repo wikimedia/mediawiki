@@ -1873,7 +1873,7 @@ class OutputPage extends ContextSource {
 	 * @throws MWException
 	 * @return string HTML
 	 */
-	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
+	public function parse( $text, $linestart = true, $interface = false, Language $language = null ) {
 		global $wgParser;
 
 		if ( is_null( $this->getTitle() ) ) {
@@ -1885,7 +1885,7 @@ class OutputPage extends ContextSource {
 			$popts->setInterfaceMessage( true );
 		}
 		if ( $language !== null ) {
-			$oldLang = $popts->setTargetLanguage( $language );
+			$oldLang = $popts->setInputLanguage( $language );
 		}
 
 		$parserOutput = $wgParser->getFreshParser()->parse(
@@ -1897,7 +1897,7 @@ class OutputPage extends ContextSource {
 			$popts->setInterfaceMessage( false );
 		}
 		if ( $language !== null ) {
-			$popts->setTargetLanguage( $oldLang );
+			$popts->setInputLanguage( $oldLang );
 		}
 
 		return $parserOutput->getText();
