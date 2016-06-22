@@ -15,3 +15,34 @@
 .mw-changeslist .mw-title {
 	unicode-bidi: embed;
 }
+
+/* Colored watchlist and recent changes numbers */
+.mw-plusminus-pos {
+	color: #006400; /* dark green */
+}
+
+.mw-plusminus-neg {
+	color: #8b0000; /* dark red */
+}
+
+.mw-plusminus-null {
+	color: #aaa; /* gray */
+}
+
+/*
+ * Bidi-isolate these numbers.
+ * See https://phabricator.wikimedia.org/T93484
+ */
+.mw-plusminus-pos,
+.mw-plusminus-neg,
+.mw-plusminus-null {
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: isolate;
+}
+
+/* Comment portions of RC entries */
+span.comment {
+	font-style: italic;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: isolate;
+}
