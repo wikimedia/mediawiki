@@ -51,6 +51,8 @@ changes to languages because of Phabricator reports.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
+* [BREAKING CHANGE] $wgExtendedLoginCookies has been removed.  You can
+  use or update a custom session provider if needed.
 
 == Compatibility ==
 
