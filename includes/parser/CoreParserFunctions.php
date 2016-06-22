@@ -94,6 +94,10 @@ class CoreParserFunctions {
 	 */
 	public static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
+			// TODO: for multilingual wikis, once WikiPage::makeParserOptions sets
+			// $options->setTargetLanguage( $context->getLanguage() ), we should use
+			// ->inLanguage( $parser->getFunctionLang() )!
+
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )
 				->inLanguage( $parser->getOptions()->getUserLangObj() );

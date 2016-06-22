@@ -37,8 +37,14 @@ production.
 === Action API changes in 1.28 ===
 
 === Action API internal changes in 1.28 ===
-* Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
-  interact with ApiParse and ApiExpandTemplates.
+
+* (T114640, T109705) Added a new hook, 'ApiMakeParserOptions', to allow
+  extensions to better interact with ApiParse and ApiExpandTemplates. Removed
+  ContentHandler::getPageViewLanguage(). Use Title::getPageViewLanguage instead.
+  Added ParserOptions::setInputLanguage() and ParserOptions::getInputLanguage(),
+  and changed the semantics of ParserOptions::setTargetLanguage() and
+  ParserOptions::getTargetLanguage(). Added ParserOutput::setLanguage() and
+  ParserOutput::getLanguage().
 
 === Languages updated in 1.28 ===
 

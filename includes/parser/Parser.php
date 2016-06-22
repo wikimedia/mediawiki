@@ -560,6 +560,7 @@ class Parser {
 			}
 		}
 		$this->mOutput->setText( $text );
+		$this->mOutput->setLanguage( $this->getFunctionLang() );
 
 		$this->mRevisionId = $oldRevisionId;
 		$this->mRevisionObject = $oldRevisionObject;
@@ -839,8 +840,34 @@ class Parser {
 	}
 
 	/**
-	 * Get the target language for the content being parsed. This is usually the
-	 * language that the content is in.
+	 * The language the input text is assumed to be written in.
+	 * This is the page language of the page the text is stored on,
+	 * unless overwritten via ParserOptions::setInputLanguage.
+	 *
+	 * @return Language
+	 */
+	public function getInputLanguage() {
+		$inputLanguage = $this->mOptions->getInputLanguage();
+
+		if ( $inputLanguage !== null ) {
+			return $inputLanguage;
+		} else {
+			if ( is_null( $this->mTitle ) ) {
+				throw new MWException( __METHOD__ . ': $this->mTitle is null' );
+			}
+
+			return $this->mTitle->getPageLanguage();
+		}
+	}
+
+	/**
+	 * Get the target language for the content being parsed.
+	 *
+	 * Generally, this is the same as $this->getInputLanguage(), since the generated HTML
+	 * is assumed to be in the same language as the input wikitext. However, if
+	 * ParserOptions::getTargetLanguage() was set to a language to which the input language
+	 * can be converted, ParserOptions::getTargetLanguage() is used as the parser's target
+	 * language.
 	 *
 	 * @since 1.19
 	 *
@@ -848,17 +875,43 @@ class Parser {
 	 * @return Language
 	 */
 	public function getTargetLanguage() {
-		$target = $this->mOptions->getTargetLanguage();
+		// Generally, the generated HTML is in the same language as the input wikitext.
+		$inputLang = $this->getInputLanguage();
 
-		if ( $target !== null ) {
-			return $target;
-		} elseif ( $this->mOptions->getInterfaceMessage() ) {
-			return $this->mOptions->getUserLangObj();
-		} elseif ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
+		$targetLang = $this->mOptions->getTargetLanguage();
+
+		// If content conversion is allowed and we can convert to the desired language,
+		// use it as the target language.
+		if ( $targetLang !== null && $this->getLanguageConversionAllowed() ) {
+			if ( $inputLang->hasVariant( $targetLang->getCode() ) ) {
+				return $targetLang;
+			}
 		}
 
-		return $this->mTitle->getPageLanguage();
+		return $inputLang;
+	}
+
+	/**
+	 * Language conversion is allowed unless:
+	 *
+	 * a) It's disabled
+	 * b) Content isn't converted
+	 * c) It's a conversion table
+	 * d) it is an interface message (which is in the user language)
+	 */
+	protected function getLanguageConversionAllowed() {
+		// NOTE: this is called by getTargetLanguage(), so it must not call getTargetLanguage()
+		// or getConverterLanguage().
+
+		if ( !( $this->mOptions->getDisableContentConversion()
+			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
+		) {
+			if ( !$this->mOptions->getInterfaceMessage() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -1324,22 +1377,11 @@ class Parser {
 
 		$this->replaceLinkHolders( $text );
 
-		/**
-		 * The input doesn't get language converted if
-		 * a) It's disabled
-		 * b) Content isn't converted
-		 * c) It's a conversion table
-		 * d) it is an interface message (which is in the user language)
-		 */
-		if ( !( $this->mOptions->getDisableContentConversion()
-			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
-		) {
-			if ( !$this->mOptions->getInterfaceMessage() ) {
-				# The position of the convert() call should not be changed. it
-				# assumes that the links are all replaced and the only thing left
-				# is the <nowiki> mark.
-				$text = $this->getConverterLanguage()->convert( $text );
-			}
+		if ( $this->getLanguageConversionAllowed() ) {
+			# The position of the convert() call should not be changed. it
+			# assumes that the links are all replaced and the only thing left
+			# is the <nowiki> mark.
+			$text = $this->getConverterLanguage()->convert( $text );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );

@@ -674,6 +674,7 @@ abstract class Installer {
 		global $wgParser;
 
 		try {
+
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText();
 		} catch ( DBAccessError $e ) {
@@ -1318,7 +1319,7 @@ abstract class Installer {
 	 * @param Language $lang
 	 */
 	public function setParserLanguage( $lang ) {
-		$this->parserOptions->setTargetLanguage( $lang );
+		$this->parserOptions->setInputLanguage( $lang );
 		$this->parserOptions->setUserLang( $lang );
 	}
 
