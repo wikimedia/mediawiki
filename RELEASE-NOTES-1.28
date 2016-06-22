@@ -6,6 +6,8 @@ MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.28 ===
+* $wgEnableEmailLogin is added. The default value is true. This option can be
+  configured during the installation process.
 * The load.php entry point now enforces the existing policy of not allowing
   access to session data, which includes the session user and the session
   user's language. If such access is attempted, an exception will be thrown.
@@ -18,6 +20,8 @@ production.
   no upload targets are allowed, effectively disabling the upload dialog.
 
 === New features in 1.28 ===
+* Now users can login with their email if $wgEmailAuthentication and
+  $wgEnableEmailLogin is true.
 * User::isBot() method for checking if an account is a bot role account.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
@@ -35,6 +39,8 @@ production.
 === Bug fixes in 1.28 ===
 
 === Action API changes in 1.28 ===
+* Login api will not return 'NotExists' and 'WrongPass' anymore.
+  It will return 'WrongInput' in both case.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better

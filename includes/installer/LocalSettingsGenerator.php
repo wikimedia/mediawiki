@@ -64,7 +64,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion',
+				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgEnableEmailLogin',
 			],
 			$db->getGlobalNames()
 		);
@@ -72,7 +72,8 @@ class LocalSettingsGenerator {
 		$unescaped = [ 'wgRightsIcon', 'wgLogo' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
-			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons'
+			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableEmailLogin',
+			'wgEnableUploads', 'wgUseInstantCommons'
 		];
 
 		foreach ( $confItems as $c ) {
@@ -341,6 +342,7 @@ ${serverSetting}
 ## UPO means: this is also a user preference option
 
 \$wgEnableEmail = {$this->values['wgEnableEmail']};
+\$wgEnableEmailLogin = {$this->values['wgEnableEmailLogin']};
 \$wgEnableUserEmail = {$this->values['wgEnableUserEmail']}; # UPO
 
 \$wgEmergencyContact = \"{$this->values['wgEmergencyContact']}\";

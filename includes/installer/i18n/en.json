@@ -225,7 +225,7 @@
 	"config-email-watchlist": "Enable watchlist notification",
 	"config-email-watchlist-help": "Allow users to receive notifications about their watched pages if they have enabled it in their preferences.",
 	"config-email-auth": "Enable email authentication",
-	"config-email-auth-help": "If this option is enabled, users have to confirm their email address using a link sent to them whenever they set or change it.\nOnly authenticated email addresses can receive emails from other users or change notification emails.\nSetting this option is <strong>recommended</strong> for public wikis because of potential abuse of the email features.",
+	"config-email-auth-help": "If this option is enabled, users have to confirm their email address using a link sent to them whenever they set or change it.\nOnly authenticated email addresses can receive emails from other users or change notification emails or use in login.\nSetting this option is <strong>recommended</strong> for public wikis because of potential abuse of the email features.",
 	"config-email-sender": "Return email address:",
 	"config-email-sender-help": "Enter the email address to use as the return address on outbound email.\nThis is where bounces will be sent.\nMany mail servers require at least the domain name part to be valid.",
 	"config-upload-settings": "Images and file uploads",

@@ -161,6 +161,7 @@ abstract class Installer {
 		'wgRightsText',
 		'wgRightsUrl',
 		'wgEnableEmail',
+		'wgEnableEmailLogin',
 		'wgEnableUserEmail',
 		'wgEnotifUserTalk',
 		'wgEnotifWatchlist',

@@ -1390,6 +1390,12 @@ $user: User the list is being fetched for
 &$list: List object (defaults to NULL, change it to an object instance and
   return false override the list derivative used)
 
+'FetchUserNamesByEmail': When fetching user names by email addresses in
+User::newFromEmail.
+For third party authentication extensions which control email addresses seperately like CentralAuth.
+$email: Email address to find a user
+&usernames: Array of user names (default value: empty array)
+
 'FileDeleteComplete': When a file is deleted.
 &$file: reference to the deleted file
 &$oldimage: in case of the deletion of an old image, the name of the old file

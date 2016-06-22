@@ -67,6 +67,44 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertEquals( $wgDisableAuthManager ? 'WrongPass' : 'Failed', $a );
 	}
 
+	public function testApiLoginBadInput() {
+		global $wgServer;
+
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
+		}
+		$ret = $this->doApiRequest( [
+			"action" => "login",
+			"lgname" => "evil@hell.com",
+			"lgpassword" => "bad",
+		] );
+
+		$result = $ret[0];
+
+		$this->assertNotInternalType( "bool", $result );
+		$a = $result["login"]["result"];
+		$this->assertEquals( "NeedToken", $a );
+
+		$token = $result["login"]["token"];
+
+		$ret = $this->doApiRequest(
+			[
+				"action" => "login",
+				"lgtoken" => $token,
+				"lgname" => "evil@hell.com",
+				"lgpassword" => "badnowayinhell",
+			],
+			$ret[2]
+		);
+
+		$result = $ret[0];
+
+		$this->assertNotInternalType( "bool", $result );
+		$a = $result["login"]["result"];
+
+		$this->assertEquals( "WrongInput", $a );
+	}
+
 	public function testApiLoginGoodPass() {
 		global $wgServer;
 
