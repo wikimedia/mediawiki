@@ -18,7 +18,7 @@
 	"config-localsettings-badkey": "Hindi tama ang susing ibinigay mo.",
 	"config-upgrade-key-missing": "Napansin ang isang umiiral na pagtatalaga ng MediaWiki.\nUpang isapanahon ang katalagahang ito, mangyaring ilagay ang sumusunod na guhit sa ilalim ng iyong <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Lumilitaw na hindi pa buo ang umiiral na <code>LocalSettings.php</code>.\nAng pabagu-bagong $1 ay hindi nakatakda.\nMangyaring baguhin ang  <code>LocalSettings.php</code> upang ang maitakda ang pagpapabagu-bagong ito, at pindutin ang \"{{int:Config-continue}}\".",
-	"config-localsettings-connection-error": "Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng <code>LocalSettings.php</code> o\n<code>AdminSettings.php</code>. Paki kumpunihin ang mga katakdaang ito at subukang muli.\n\n$1",
+	"config-localsettings-connection-error": "Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng <code>LocalSettings.php</code> o\n<code>LocalSettings.php</code>. Paki kumpunihin ang mga katakdaang ito at subukang muli.\n\n$1",
 	"config-session-error": "Kamalian sa pagsisimula ng sesyon: $1",
 	"config-session-expired": "Tila nagwakas na ang inilaan sa iyong panahon ng dato.\nAng inilaang mga panahon ay iniayos para sa isang panahon ng buhay na $1.\nMapapataas mo ito sa pamamagitan ng pagtatakda ng <code>session.gc_maxlifetime</code> sa loob ng php.ini.\nMuling simulan ang proseso ng pagluluklok.",
 	"config-no-session": "Nawala ang iyong datos ng sesyon!\nSuriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.",

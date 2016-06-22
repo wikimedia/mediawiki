@@ -20,7 +20,7 @@
 	"config-localsettings-badkey": "مفتاح الترقية الذي قدمته غير صحيح.",
 	"config-upgrade-key-missing": "تنصيب موجود للميدياويكي قد تم اكتشافه.\nلترقية هذا التنصيب، الرجاء وضع السطر أسفل <code>LocalSettings.php</code> الخاصة بك:\n\n$1",
 	"config-localsettings-incomplete": "صفحة <code>LocalSettings.php</code> يبدو أنها ناقصة.\nالمتغير $1 لم يتم تعيينه.\nالرجاء تغيير <code>LocalSettings.php</code> لكي يتم تعيين المتغير، ثم اضغط على \"{{int:Config-continue}}\".",
-	"config-localsettings-connection-error": "تمت مصادفة خطأ أثناء الاتصال بقاعدة البيانات باستخدام الإعدادات المحددة في <code>LocalSettings.php</code> أو <code>AdminSettings.php</code>. الرجاء إصلاح هذه الإعدادات وحاول مجددًا.\n\n$1",
+	"config-localsettings-connection-error": "تمت مصادفة خطأ أثناء الاتصال بقاعدة البيانات باستخدام الإعدادات المحددة في <code>LocalSettings.php</code> أو <code>LocalSettings.php</code>. الرجاء إصلاح هذه الإعدادات وحاول مجددًا.\n\n$1",
 	"config-session-error": "خطأ في بدء الجلسة: $1",
 	"config-session-expired": "يبدو أن بيانات جلستك قد انتهت صلاحيتها.\nالجلسات مكونة مدى الحياة من $1.\nيمكنك زيادة هذه بتعيين <code>session.gc_maxlifetime</code> في php.ini.\nأعد تشغيل عميل التثبيت.",
 	"config-no-session": "بيانات جلستك قد ضاعت!\nتحقق من php.ini للتأكد أن <code>session.save_path</code> تم تعيينه كدليل مناسب.",
