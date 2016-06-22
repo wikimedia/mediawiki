@@ -40,7 +40,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$data = self::getAllModules();
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$version = $module->getVersionHash( $data['context'] );
-			$this->assertEquals( 8, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
+			$this->assertEquals( 7, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
 		}
 	}
 

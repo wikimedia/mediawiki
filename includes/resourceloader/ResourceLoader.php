@@ -601,10 +601,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Hash
 	 */
 	public static function makeHash( $value ) {
-		// Use base64 to output more entropy in a more compact string (default hex is only base16).
-		// The first 8 chars of a base64 encoded digest represent the same binary as
-		// the first 12 chars of a hex encoded digest.
-		return substr( base64_encode( sha1( $value, true ) ), 0, 8 );
+		$hash = hash( 'fnv132', $value );
+		return Wikimedia\base_convert( $hash, 16, 36, 7 );
 	}
 
 	/**
