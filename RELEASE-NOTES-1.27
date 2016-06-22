@@ -6,8 +6,8 @@ MediaWiki 1.27 is an alpha-quality branch and is not recommended for use in
 production.
 
 === PHP version requirement ===
-As of 1.27, MediaWiki now requires PHP 5.5.9 or higher. This corresponds with
-HHVM 3.1. Additionally, the following PHP extensions are required:
+As of 1.27, MediaWiki now requires PHP 5.5.9 or higher (see Compatibility
+section). Additionally, the following PHP extensions are required:
 * ctype
 * iconv
 * json
