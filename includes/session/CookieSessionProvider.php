@@ -402,6 +402,16 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/**
+	 * Gets the list of cookies that must be set to the 'remember me' duration,
+	 * if $wgExtendedLoginCookieExpiration is in use.
+	 *
+	 * @return string[] Array of unprefixed cookie keys
+	 */
+	protected function getExtendedLoginCookies() {
+		return [ 'UserID', 'UserName', 'Token' ];
+	}
+
+	/**
 	 * Returns the lifespan of the login cookies, in seconds. 0 means until the end of the session.
 	 * @param string $cookieName
 	 * @return int Cookie expiration time in seconds; 0 for session cookies
@@ -409,7 +419,7 @@ class CookieSessionProvider extends SessionProvider {
 	protected function getLoginCookieExpiration( $cookieName ) {
 		$normalExpiration = $this->config->get( 'CookieExpiration' );
 		$extendedExpiration = $this->config->get( 'ExtendedLoginCookieExpiration' );
-		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
+		$extendedCookies = $this->getExtendedLoginCookies();
 
 		if ( !in_array( $cookieName, $extendedCookies, true ) ) {
 			return (int)$normalExpiration;

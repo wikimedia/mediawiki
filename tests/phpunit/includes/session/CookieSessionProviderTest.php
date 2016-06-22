@@ -22,7 +22,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'CookieHttpOnly' => true,
 			'SessionName' => false,
 			'CookieExpiration' => 100,
-			'ExtendedLoginCookies' => [ 'UserID', 'Token' ],
 			'ExtendedLoginCookieExpiration' => 200,
 		] );
 	}
@@ -508,8 +507,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		];
 		$extendedExpiry = $config->get( 'ExtendedLoginCookieExpiration' );
 		$extendedExpiry = (int)( $extendedExpiry === null ? 0 : $extendedExpiry );
-		$this->assertEquals( [ 'UserID', 'Token' ], $config->get( 'ExtendedLoginCookies' ),
-			'sanity check' );
 		$expect = [
 			'MySessionName' => [
 				'value' => (string)$sessionId,
