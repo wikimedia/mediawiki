@@ -1087,7 +1087,7 @@ class Language {
 	 * @throws MWException
 	 * @return string
 	 */
-	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = null ) {
+	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = 'unused' ) {
 		$s = '';
 		$raw = false;
 		$roman = false;
@@ -1452,7 +1452,9 @@ class Language {
 			}
 		}
 
-		if ( $usedSecond ) {
+		if ( $ttl === 'unused' ) {
+			// No need to calculate the TTL, the caller wont use it anyway.
+		} elseif ( $usedSecond ) {
 			$ttl = 1;
 		} elseif ( $usedMinute ) {
 			$ttl = 60 - substr( $ts, 12, 2 );
