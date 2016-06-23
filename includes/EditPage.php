@@ -3052,7 +3052,11 @@ class EditPage implements IEditObject {
 		# ####
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
-		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
+		if (
+			$this->missingSummary ||
+			( $this->section == 'new' && $this->nosummary ) ||
+			$this->allowBlankSummary
+		) {
 			$out->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
