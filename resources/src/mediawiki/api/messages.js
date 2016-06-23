@@ -44,6 +44,25 @@
 		 */
 		loadMessages: function ( messages ) {
 			return this.getMessages( messages ).then( $.proxy( mw.messages, 'set' ) );
+		},
+
+		/**
+		 * Loads a set of mesages and add them to mw.messages. Only messages that are not already known
+		 * are loaded. If all messages are known, the returned promise is resolved immediately.
+		 *
+		 * @param {Array} messages Messages to retrieve
+		 * @return {jQuery.Promise}
+		 */
+		loadMessagesIfMissing: function ( messages ) {
+			var missing = messages.filter( function ( msg ) {
+				return !mw.message( msg ).exists();
+			} );
+
+			if ( missing.length === 0 ) {
+				return $.Deferred().resolve();
+			}
+
+			return this.getMessages( missing ).then( $.proxy( mw.messages, 'set' ) );
 		}
 	} );
 
