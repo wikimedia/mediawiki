@@ -1,6 +1,6 @@
 ( function ( mw, $ ) {
 	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
-		expectedListUsersSitename, expectedEntrypoints,
+		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
 		mwLanguageCache = {},
 		hasOwn = Object.hasOwnProperty;
 
@@ -16,6 +16,8 @@
 			this.parserDefaults = mw.jqueryMsg.getParserDefaults();
 			mw.jqueryMsg.setParserDefaults( {
 				magic: {
+					PAGENAME: '2 + 2',
+					PAGENAMEE: mw.util.wikiUrlencode( '2 + 2' ),
 					SITENAME: 'Wiki'
 				}
 			} );
@@ -25,6 +27,7 @@
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
 			expectedListUsersSitename = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户' +
 				'Wiki</a>';
+			expectedLinkPagenamee = '<a href="https://example.org/wiki/Foo?bar=baz#val/2_%2B_2">Test</a>';
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 
@@ -77,6 +80,7 @@
 
 			'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
 			'jquerymsg-test-statistics-users-sitename': '注册[[Special:ListUsers|用户{{SITENAME}}]]',
+			'jquerymsg-test-link-pagenamee': '[https://example.org/wiki/Foo?bar=baz#val/{{PAGENAMEE}} Test]',
 
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
@@ -385,7 +389,7 @@
 		process( tasks );
 	} );
 
-	QUnit.test( 'Links', 14, function ( assert ) {
+	QUnit.test( 'Links', 15, function ( assert ) {
 		var testCases,
 			expectedDisambiguationsText,
 			expectedMultipleBars,
@@ -466,6 +470,12 @@
 			formatParse( 'jquerymsg-test-statistics-users-sitename' ),
 			expectedListUsersSitename,
 			'Piped wikilink with parser function in the text'
+		);
+
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-test-link-pagenamee' ),
+			expectedLinkPagenamee,
+			'External link with parser function in the URL'
 		);
 
 		testCases = [

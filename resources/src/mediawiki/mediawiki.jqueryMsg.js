@@ -15,6 +15,8 @@
 		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic: {
+				PAGENAME: mw.config.get( 'wgPageName' ),
+				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
 				SITENAME: mw.config.get( 'wgSiteName' )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
