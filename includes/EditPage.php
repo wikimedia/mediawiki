@@ -2600,7 +2600,7 @@ class EditPage {
 	 * use the EditPage::showEditForm:fields hook instead.
 	 */
 	public function showEditForm( $formCallback = null ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgRequest;
 
 		# need to parse the preview early so that we know which templates are used,
 		# otherwise users with "show preview after edit box" will get a blank list
@@ -2729,7 +2729,11 @@ class EditPage {
 		# ####
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
-		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
+		if (
+			$this->missingSummary ||
+			$wgRequest->getBool( 'wpIgnoreBlankSummary' ) ||
+			( $this->section == 'new' && $this->nosummary )
+		) {
 			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
