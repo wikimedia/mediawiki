@@ -53,7 +53,7 @@ define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
 define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 
-// This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
+// This might be useful for regexps used elsewhere, matches any IPv4 or IPv6 address or network
 define( 'IP_ADDRESS_STRING',
 	'(?:' .
 		RE_IP_ADD . '(?:\/' . RE_IP_PREFIX . ')?' . // IPv4
