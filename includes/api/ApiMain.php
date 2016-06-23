@@ -72,6 +72,7 @@ class ApiMain extends ApiBase {
 		'tokens' => 'ApiTokens',
 		'checktoken' => 'ApiCheckToken',
 		'cspreport' => 'ApiCSPReport',
+		'reformat' => 'ApiReformat',
 
 		// Write modules
 		'purge' => 'ApiPurge',
