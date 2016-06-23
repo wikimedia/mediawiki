@@ -1494,6 +1494,7 @@
 	"upload-too-many-redirects": "そのURLに含まれるリダイレクトが多すぎます",
 	"upload-http-error": "HTTP エラー発生: $1",
 	"upload-copy-upload-invalid-domain": "このドメインからのアップロードは許可されていません。",
+	"upload-foreign-cant-load-config": "外部ファイルリポジトリへのファイルアップロードに使用される設定の読み込みに失敗しました。",
 	"upload-dialog-title": "ファイルをアップロード",
 	"upload-dialog-button-cancel": "中止",
 	"upload-dialog-button-done": "完了",

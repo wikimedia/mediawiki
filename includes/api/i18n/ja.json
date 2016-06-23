@@ -824,6 +824,7 @@
 	"apihelp-query+watchlistraw-description": "現在の利用者のウォッチリストにあるすべてのページを取得します。",
 	"apihelp-query+watchlistraw-param-namespace": "この名前空間に含まれるページのみを一覧表示します。",
 	"apihelp-query+watchlistraw-param-prop": "追加で取得するプロパティ:",
+	"apihelp-query+watchlistraw-param-dir": "一覧表示する方向。",
 	"apihelp-query+watchlistraw-example-generator": "現在の利用者のウォッチリスト上のページに関する情報を取得する。",
 	"apihelp-revisiondelete-description": "版の削除および復元を行います。",
 	"apihelp-revisiondelete-param-reason": "削除または復元の理由。",

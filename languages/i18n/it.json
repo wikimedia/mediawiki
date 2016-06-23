@@ -3433,7 +3433,7 @@
 	"htmlform-float-invalid": "Il valore specificato non è un numero.",
 	"htmlform-int-toolow": "Il valore specificato è inferiore al minimo di $1",
 	"htmlform-int-toohigh": "Il valore specificato è superiore al massimo di $1",
-	"htmlform-required": "Questo valore è obligatorio.",
+	"htmlform-required": "Questo valore è obbligatorio.",
 	"htmlform-submit": "Invia",
 	"htmlform-reset": "Annulla modifiche",
 	"htmlform-selectorother-other": "Altro",

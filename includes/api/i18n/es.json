@@ -728,6 +728,7 @@
 	"apihelp-query+watchlist-paramvalue-type-log": "Entradas del registro.",
 	"apihelp-query+watchlistraw-param-prop": "Qué propiedades adicionales se obtendrán:",
 	"apihelp-query+watchlistraw-param-show": "Sólo listar los elementos que cumplen estos criterios.",
+	"apihelp-query+watchlistraw-param-dir": "La dirección en la que se listará.",
 	"apihelp-query+watchlistraw-param-fromtitle": "Título (con el prefijo de espacio de nombres) desde el que se empezará a enumerar.",
 	"apihelp-query+watchlistraw-param-totitle": "Título (con el prefijo de espacio de nombres) desde el que se dejará de enumerar.",
 	"apihelp-query+watchlistraw-example-simple": "Listar las páginas de la lista de seguimiento del usuario actual.",

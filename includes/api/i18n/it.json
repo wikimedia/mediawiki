@@ -568,6 +568,7 @@
 	"apihelp-query+watchlistraw-param-limit": "Numero totale di risultati da restituire per ogni richiesta.",
 	"apihelp-query+watchlistraw-param-prop": "Quali proprietà aggiuntive ottenere:",
 	"apihelp-query+watchlistraw-paramvalue-prop-changed": "Aggiunge data e ora dell'ultima notifica all'utente riguardo la modifica.",
+	"apihelp-query+watchlistraw-param-dir": "La direzione in cui elencare.",
 	"apihelp-query+watchlistraw-param-fromtitle": "Il titolo (con prefisso namespace) da cui iniziare l'elenco.",
 	"apihelp-query+watchlistraw-param-totitle": "Il titolo (con prefisso namespace) al quale interrompere l'elenco.",
 	"apihelp-query+watchlistraw-example-simple": "Elenca le pagine fra gli osservati speciali dell'utente attuale.",
