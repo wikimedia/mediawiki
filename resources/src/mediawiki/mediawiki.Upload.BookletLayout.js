@@ -260,10 +260,9 @@
 			layout.emit( 'fileUploaded' );
 		}, function () {
 			// These errors will be thrown while the user is on the info page.
-			// Pretty sure it's impossible to get a warning other than 'stashfailed' here, which should
-			// really be an error...
-			var errorMessage = layout.getErrorMessageForStateDetails();
-			deferred.reject( errorMessage );
+			layout.getErrorMessageForStateDetails().then( function ( errorMessage ) {
+				deferred.reject( errorMessage );
+			} );
 		}, function ( progress ) {
 			var elapsedTime = new Date() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
@@ -309,8 +308,9 @@
 				deferred.resolve();
 				layout.emit( 'fileSaved', layout.upload.getImageInfo() );
 			}, function () {
-				var errorMessage = layout.getErrorMessageForStateDetails();
-				deferred.reject( errorMessage );
+				layout.getErrorMessageForStateDetails().then( function ( errorMessage ) {
+					deferred.reject( errorMessage );
+				} );
 			} );
 		} );
 
@@ -322,7 +322,7 @@
 	 * state and state details.
 	 *
 	 * @protected
-	 * @return {OO.ui.Error} Error to display for given state and details.
+	 * @return {jQuery.Promise} A Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
 		var message,
@@ -334,21 +334,34 @@
 		if ( state === mw.Upload.State.ERROR ) {
 			if ( !error ) {
 				// If there's an 'exception' key, this might be a timeout, or other connection problem
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
 					{ recoverable: false }
-				);
+				) );
 			}
 
-			// HACK We should either have a hook here to allow TitleBlacklist to handle this, or just have
-			// TitleBlacklist produce sane error messages that can be displayed without arcane knowledge
-			if ( error.info === 'TitleBlacklist prevents this title from being created' ) {
-				// HACK Apparently the only reliable way to determine whether TitleBlacklist was involved
-				return new OO.ui.Error(
-					// HACK TitleBlacklist doesn't have a sensible message, this one is from UploadWizard
-					$( '<p>' ).msg( 'api-error-blacklisted' ),
-					{ recoverable: false }
-				);
+			// Errors in this format are produced by TitleBlacklist and AbuseFilter. Perhaps other
+			// extensions will follow this format in the future.
+			if ( error.message ) {
+				return this.upload.getApi()
+					.then( function ( api ) {
+						return api.loadMessagesIfMissing( [ error.message.key ] ).then( function () {
+							if ( !mw.message( error.message.key ).exists() ) {
+								return $.Deferred().reject();
+							}
+							return new OO.ui.Error(
+								$( '<p>' ).msg( error.message.key, error.message.params || [] ),
+								{ recoverable: false }
+							);
+						} );
+					} )
+					.then( null, function () {
+						// We failed when loading the error message, or it doesn't actually exist, fall back
+						return $.Deferred().resolve( new OO.ui.Error(
+							$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
+							{ recoverable: false }
+						) );
+					} );
 			}
 
 			if ( error.code === 'protectedpage' ) {
@@ -359,10 +372,10 @@
 					message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
 				}
 			}
-			return new OO.ui.Error(
+			return $.Deferred().resolve( new OO.ui.Error(
 				$( '<p>' ).append( message.parseDom() ),
 				{ recoverable: false }
-			);
+			) );
 		}
 
 		if ( state === mw.Upload.State.WARNING ) {
@@ -370,63 +383,63 @@
 			// of importance. For example fixing the thumbnail like file name
 			// won't help the fact that the file already exists.
 			if ( warnings.stashfailed !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-stashfailed' ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings.exists !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'fileexists', 'File:' + warnings.exists ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'exists-normalized' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'fileexists', 'File:' + warnings[ 'exists-normalized' ] ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'page-exists' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'filepageexists', 'File:' + warnings[ 'page-exists' ] ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings.duplicate !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-duplicate', warnings.duplicate.length ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'thumb-name' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'filename-thumb-name' ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'bad-prefix' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'filename-bad-prefix', warnings[ 'bad-prefix' ] ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-duplicate-archive', 1 ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings[ 'was-deleted' ] !== undefined ) {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'api-error-was-deleted' ),
 					{ recoverable: false }
-				);
+				) );
 			} else if ( warnings.badfilename !== undefined ) {
 				// Change the name if the current name isn't acceptable
 				// TODO This might not really be the best place to do this
 				this.setFilename( warnings.badfilename );
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'badfilename', warnings.badfilename )
-				);
+				) );
 			} else {
-				return new OO.ui.Error(
+				return $.Deferred().resolve( new OO.ui.Error(
 					// Let's get all the help we can if we can't pin point the error
 					$( '<p>' ).msg( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ),
 					{ recoverable: false }
-				);
+				) );
 			}
 		}
 	};
