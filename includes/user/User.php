@@ -806,7 +806,7 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Does the string match an anonymous IPv4 address?
+	 * Does the string match an anonymous IP address?
 	 *
 	 * This function exists for username validation, in order to reject
 	 * usernames which are similar in form to IP addresses. Strings such
