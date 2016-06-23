@@ -50,6 +50,10 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			return;
 		}
 
+		// Reset the search type back to default - some extensions may have
+		// overridden it.
+		$this->setMwGlobals( [ 'wgSearchType' => null ] );
+
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
 		$this->insertPage(
 			'Talk:Not_Main_Page',
