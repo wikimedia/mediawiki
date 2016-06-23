@@ -50,6 +50,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			return;
 		}
 
+		$searchType = $this->db->getSearchEngine();
+		$this->setMwGlobals( [
+			'wgSearchType' => $searchType
+		] );
+
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
 		$this->insertPage(
 			'Talk:Not_Main_Page',
