@@ -52,24 +52,6 @@ class MWTidy {
 	}
 
 	/**
-	 * Get CSS modules needed if HTML from the current driver is to be displayed.
-	 *
-	 * This is just a migration tool to allow some changes expected as part of
-	 * Tidy replacement (T89331) to be exposed on the client side via user
-	 * scripts, without actually replacing tidy. See T49673.
-	 *
-	 * @return array
-	 */
-	public static function getModuleStyles() {
-		$driver = self::singleton();
-		if ( $driver && $driver instanceof MediaWiki\Tidy\RaggettBase ) {
-			return [ 'mediawiki.raggett' ];
-		} else {
-			return [];
-		}
-	}
-
-	/**
 	 * Check HTML for errors, used if $wgValidateAllHtml = true.
 	 *
 	 * @param string $text
