@@ -54,7 +54,7 @@ class RaggettWrapper {
 		// Preserve empty li elements (T49673) by abusing Tidy's datafld hack
 		// The whitespace class is as in TY_(InitMap)
 		$wrappedtext = preg_replace( "!<li>([ \r\n\t\f]*)</li>!",
-			'<li datafld="" class="mw-empty-li">\1</li>', $wrappedtext );
+			'<li datafld="" class="mw-empty-elt">\1</li>', $wrappedtext );
 
 		// Wrap the whole thing in a doctype and body for Tidy.
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"' .

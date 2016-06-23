@@ -253,3 +253,10 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Hide elements that are marked as "empty" according to legacy Tidy rules,
+ * except if a client script removes the mw-hide-empty-elt class from the body
+ */
+body.mw-hide-empty-elt .mw-empty-elt, body.mw-hide-empty-elt .mw-empty-li {
+	display: none;
+}
