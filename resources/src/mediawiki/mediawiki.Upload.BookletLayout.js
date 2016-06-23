@@ -263,7 +263,13 @@
 			// Pretty sure it's impossible to get a warning other than 'stashfailed' here, which should
 			// really be an error...
 			var errorMessage = layout.getErrorMessageForStateDetails();
-			deferred.reject( errorMessage );
+			if ( errorMessage.then ) {
+				errorMessage.then( function ( realErrorMessage ) {
+					deferred.reject( realErrorMessage );
+				} );
+			} else {
+				deferred.reject( errorMessage );
+			}
 		}, function ( progress ) {
 			var elapsedTime = new Date() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
@@ -310,7 +316,13 @@
 				layout.emit( 'fileSaved', layout.upload.getImageInfo() );
 			}, function () {
 				var errorMessage = layout.getErrorMessageForStateDetails();
-				deferred.reject( errorMessage );
+				if ( errorMessage.then ) {
+					errorMessage.then( function ( realErrorMessage ) {
+						deferred.reject( realErrorMessage );
+					} );
+				} else {
+					deferred.reject( errorMessage );
+				}
 			} );
 		} );
 
@@ -322,7 +334,8 @@
 	 * state and state details.
 	 *
 	 * @protected
-	 * @return {OO.ui.Error} Error to display for given state and details.
+	 * @return {OO.ui.Error|jQuery.Promise} Error to display for given state and details,
+	 *   or a Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
 		var message,
@@ -340,15 +353,26 @@
 				);
 			}
 
-			// HACK We should either have a hook here to allow TitleBlacklist to handle this, or just have
-			// TitleBlacklist produce sane error messages that can be displayed without arcane knowledge
-			if ( error.info === 'TitleBlacklist prevents this title from being created' ) {
-				// HACK Apparently the only reliable way to determine whether TitleBlacklist was involved
-				return new OO.ui.Error(
-					// HACK TitleBlacklist doesn't have a sensible message, this one is from UploadWizard
-					$( '<p>' ).msg( 'api-error-blacklisted' ),
-					{ recoverable: false }
-				);
+			// Errors in this format are produced by TitleBlacklist and AbuseFilter. Perhaps other
+			// extensions will follow this format in the future.
+			if ( error.message ) {
+				return this.upload.getApi().then( function ( api ) {
+					return api.loadMessagesIfMissing( [ error.message ] ).then( function () {
+						if ( !mw.message( error.message ).exists() ) {
+							return $.Deferred().reject();
+						}
+						return new OO.ui.Error(
+							$( '<p>' ).msg( error.message ),
+							{ recoverable: false }
+						);
+					} );
+				} ).then( null, function () {
+					// We failed when loading the error message, fall back
+					return $.Deferred().resolve( new OO.ui.Error(
+						$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
+						{ recoverable: false }
+					) );
+				} );
 			}
 
 			if ( error.code === 'protectedpage' ) {
