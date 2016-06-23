@@ -129,6 +129,7 @@ $wgAutoloadLocalClasses = [
 	'ApiQueryWatchlist' => __DIR__ . '/includes/api/ApiQueryWatchlist.php',
 	'ApiQueryWatchlistRaw' => __DIR__ . '/includes/api/ApiQueryWatchlistRaw.php',
 	'ApiRawMessage' => __DIR__ . '/includes/api/ApiMessage.php',
+	'ApiReformat' => __DIR__ . '/includes/api/ApiReformat.php',
 	'ApiRemoveAuthenticationData' => __DIR__ . '/includes/api/ApiRemoveAuthenticationData.php',
 	'ApiResetPassword' => __DIR__ . '/includes/api/ApiResetPassword.php',
 	'ApiResult' => __DIR__ . '/includes/api/ApiResult.php',
