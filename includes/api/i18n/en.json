@@ -1297,6 +1297,14 @@
 	"apihelp-query+watchlistraw-example-simple": "List pages on the current user's watchlist.",
 	"apihelp-query+watchlistraw-example-generator": "Fetch page info for pages on the current user's watchlist.",
 
+	"apihelp-reformat-description": "Allows to convert between two different formats of the same content model or normalize the serialization of a given content",
+	"apihelp-reformat-param-text": "The content serialization to convert",
+	"apihelp-reformat-param-contentmodel": "The content model to work with",
+	"apihelp-reformat-param-inputcontentformat": "The content format of the inputted serialization",
+	"apihelp-reformat-param-outputcontentformat": "The content format of the outputted serialization",
+	"apihelp-reformat-example-structured": "Converts a JSON serialization to a YAML one of the 'structured' fake content model",
+	"apihelp-reformat-example-wikitext": "Normalize the 'foobar' wikitext content and return it also in wikitext",
+
 	"apihelp-removeauthenticationdata-description": "Remove authentication data for the current user.",
 	"apihelp-removeauthenticationdata-example-simple": "Attempt to remove the current user's data for <kbd>FooAuthenticationRequest</kbd>.",
 
