@@ -71,6 +71,7 @@ class ApiMain extends ApiBase {
 		'compare' => 'ApiComparePages',
 		'tokens' => 'ApiTokens',
 		'checktoken' => 'ApiCheckToken',
+		'reformat' => 'ApiReformat',
 
 		// Write modules
 		'purge' => 'ApiPurge',
