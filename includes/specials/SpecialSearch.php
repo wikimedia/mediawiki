@@ -485,7 +485,9 @@ class SpecialSearch extends SpecialPage {
 	protected function getDidYouMeanHtml( SearchResultSet $textMatches ) {
 		# mirror Go/Search behavior of original request ..
 		$params = [ 'search' => $textMatches->getSuggestionQuery() ];
-		if ( $this->fulltext != null ) {
+		if ( $this->fulltext === null ) {
+			$params['fulltext'] = 'Search';
+		} else {
 			$params['fulltext'] = $this->fulltext;
 		}
 		$stParams = array_merge( $params, $this->powerSearchOptions() );
@@ -519,7 +521,9 @@ class SpecialSearch extends SpecialPage {
 		// Search instead for '$orig'
 
 		$params = [ 'search' => $textMatches->getQueryAfterRewrite() ];
-		if ( $this->fulltext != null ) {
+		if ( $this->fulltext === null ) {
+			$params['fulltext'] = 'Search';
+		} else {
 			$params['fulltext'] = $this->fulltext;
 		}
 		$stParams = array_merge( $params, $this->powerSearchOptions() );
