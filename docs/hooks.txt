@@ -371,7 +371,8 @@ $user: Current user
 &$message: API usage message to die with, as a message key or array
   as accepted by ApiBase::dieUsageMsg.
 
-'APIEditBeforeSave': Before saving a page with api.php?action=edit, after
+'APIEditBeforeSave': DEPRECATED! Use EditFilterMergedContent instead.
+Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
 Unlike for example 'EditFilterMergedContent' this also being run on undo.

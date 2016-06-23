@@ -401,6 +401,7 @@ class ApiEditPage extends ApiBase {
 		// Run hooks
 		// Handle APIEditBeforeSave parameters
 		$r = [];
+		// Deprecated in favour of EditFilterMergedContent
 		if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ] ) ) {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
