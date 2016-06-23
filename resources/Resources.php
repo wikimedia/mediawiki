@@ -1400,10 +1400,6 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.raggett' => [
-		'styles' => 'resources/src/mediawiki/mediawiki.raggett.css',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 
 	/* MediaWiki Action */
 
