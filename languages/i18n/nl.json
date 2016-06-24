@@ -3671,7 +3671,10 @@
 	"log-action-filter-block-unblock": "Opheffing van blokkade",
 	"log-action-filter-delete-delete": "Verwijderen van pagina",
 	"log-action-filter-delete-restore": "Terugplaatsen van pagina",
+	"log-action-filter-newusers-create": "Aangemaakt door een anonieme gebruiker",
+	"log-action-filter-newusers-create2": "Aangemaakt door een geregistreerde gebruiker",
 	"log-action-filter-newusers-autocreate": "Automatische aanmaak",
+	"log-action-filter-newusers-byemail": "Aangemaakt met wachtwoord verzonden via e-mail",
 	"log-action-filter-patrol-patrol": "Handmatige markering",
 	"log-action-filter-patrol-autopatrol": "Automatische markering",
 	"log-action-filter-protect-protect": "Beveiliging",
@@ -3682,8 +3685,11 @@
 	"log-action-filter-rights-autopromote": "Automatische aanpassing",
 	"log-action-filter-upload-upload": "Nieuwe upload",
 	"log-action-filter-upload-overwrite": "Herupload",
+	"authmanager-authn-autocreate-failed": "Het automatisch aanmaken van een lokaal account is mislukt: $1",
+	"authmanager-create-disabled": "Het aanmaken van accounts is uitgeschakeld.",
 	"authmanager-email-label": "E-mail",
 	"authmanager-email-help": "E-mailadres",
 	"authmanager-realname-label": "Echte naam",
+	"authmanager-realname-help": "Echte naam van de gebruiker",
 	"authmanager-provider-temporarypassword": "Tijdelijk wachtwoord"
 }

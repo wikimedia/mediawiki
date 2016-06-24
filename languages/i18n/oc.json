@@ -585,7 +585,7 @@
 	"loginreqlink": "connectar",
 	"loginreqpagetext": "Vos cal vos $1 per veire las autras paginas.",
 	"accmailtitle": "Senhal mandat.",
-	"accmailtext": "Un senhal generat aleatòriament per [[User talk:$1|$1]] es estat mandat a $2.\nLo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|Cambiament de senhal]]'' aprèp s'èsser connectat.",
+	"accmailtext": "Un senhal generat aleatòriament per [[User talk:$1|$1]] es estat mandat a $2.\nLo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|Cambiament de senhal]]'' aprèp connexion.",
 	"newarticle": "(Novèl)",
 	"newarticletext": "Avètz seguit un ligam cap a una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].\nPer crear aquesta pagina, picatz vòstre tèxte dins la bóstia çaijós (podètz consultar [$1 la pagina d’ajuda] per mai d’entresenhas).\nSe sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre navigador.",
 	"anontalkpagetext": "---- ''Sètz sus la pagina de discussion d'un utilizaire anonim qu'a pas encara creat un compte o que n'utiliza pas.\nPer aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça d'aqueste tipe pòt èsser partejada entre mantun utilizaire. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:CreateAccount|crear un compte]] o [[Special:UserLogin|vos connectar]] per evitar tota confusion venenta amb d’autres contributors anonims.''",

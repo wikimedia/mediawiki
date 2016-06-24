@@ -3731,6 +3731,7 @@
 	"authmanager-authplugin-setpass-failed-message": "Varmennuslisäosa esti salasanan muuttamisen.",
 	"authmanager-authplugin-create-fail": "Varmennuslisäosa esti tunnuksen luonnin.",
 	"authmanager-authplugin-setpass-denied": "Varmennuslisäosa ei salli salasanojen muuttamista.",
+	"authmanager-authplugin-setpass-bad-domain": "Virheellinen domain.",
 	"authmanager-autocreate-noperm": "Automaattinen tunnustenluonti ei ole sallittu.",
 	"authmanager-autocreate-exception": "Automaattinen tunnuksenluonti on tilapäisesti poistettu käytöstä aikaisempien virheiden vuoksi.",
 	"authmanager-userdoesnotexist": "Käyttäjätunnusta ”$1” ei ole rekisteröity.",

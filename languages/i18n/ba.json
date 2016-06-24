@@ -3584,7 +3584,7 @@
 	"log-action-filter-block-block": "Бикләргә",
 	"log-action-filter-block-reblock": "Бикте үҙгәртеү",
 	"log-action-filter-block-unblock": "Бикте алырға",
-	"log-action-filter-contentmodel-change": "Модель эстәлеген үҙгәртергә",
+	"log-action-filter-contentmodel-change": "Эстәлек моделен үҙгәртергә",
 	"log-action-filter-delete-delete": "Битте юйыуҙар",
 	"log-action-filter-delete-restore": "Битте тергеҙеү",
 	"log-action-filter-delete-event": "Журналды юйыу",
@@ -3616,5 +3616,5 @@
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"credentialsform-account": "Иҫәп хужаһы"
+	"credentialsform-account": "Иҫәп яҙмаһы исеме:"
 }
