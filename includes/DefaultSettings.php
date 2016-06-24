@@ -284,10 +284,10 @@ $wgLogo = false;
  *
  * @par Example:
  * @code
- * $wgLogoHD = array(
+ * $wgLogoHD = [
  *	"1.5x" => "path/to/1.5x_version.png",
  *	"2x" => "path/to/2x_version.png"
- * );
+ * ];
  * @endcode
  *
  * @since 1.25
@@ -532,7 +532,7 @@ $wgUseInstantCommons = false;
  * The string 'local' signifies the default local file repository.
  *
  * Example:
- * $wgForeignUploadTargets = array( 'shared' );
+ * $wgForeignUploadTargets = [ 'shared' ];
  */
 $wgForeignUploadTargets = [ 'local' ];
 
@@ -755,10 +755,10 @@ $wgCopyUploadTimeout = false;
  *
  * @par Example:
  * @code
- * $wgMaxUploadSize = array(
+ * $wgMaxUploadSize = [
  *     '*' => 250 * 1024,
  *     'url' => 500 * 1024,
- * );
+ * ];
  * @endcode
  * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
  * will have a maximum of 500 kB.
@@ -1321,7 +1321,7 @@ $wgTrivialMimeDetection = false;
 
 /**
  * Additional XML types we can allow via MIME-detection.
- * array = ( 'rootElement' => 'associatedMimeType' )
+ * array = [ 'rootElement' => 'associatedMimeType' ]
  */
 $wgXMLMimeTypes = [
 	'http://www.w3.org/2000/svg:svg' => 'image/svg+xml',
@@ -1378,7 +1378,7 @@ $wgThumbnailBuckets = null;
  * needs in order to be used as the reference for a given thumbnail. For example, with the
  * following buckets:
  *
- * $wgThumbnailBuckets = array ( 128, 256, 512 );
+ * $wgThumbnailBuckets = [ 128, 256, 512 ];
  *
  * and a distance of 50:
  *
@@ -1624,14 +1624,14 @@ $wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
  * Default to false or fill an array :
  *
  * @code
- * $wgSMTP = array(
+ * $wgSMTP = [
  *     'host'     => 'SMTP domain',
  *     'IDHost'   => 'domain for MessageID',
  *     'port'     => '25',
  *     'auth'     => [true|false],
  *     'username' => [SMTP username],
  *     'password' => [SMTP password],
- * );
+ * ];
  * @endcode
  */
 $wgSMTP = false;
@@ -2068,7 +2068,7 @@ $wgCompressRevisions = false;
  *
  * Short names of ExternalStore classes may be specified in an array here:
  * @code
- * $wgExternalStores = array("http","file","custom")...
+ * $wgExternalStores = [ "http","file","custom" ]...
  * @endcode
  *
  * CAUTION: Access to database might lead to code execution
@@ -2081,9 +2081,9 @@ $wgExternalStores = [];
  * @par Example:
  * Create a cluster named 'cluster1' containing three servers:
  * @code
- * $wgExternalServers = array(
- *     'cluster1' => array( 'srv28', 'srv29', 'srv30' )
- * );
+ * $wgExternalServers = [
+ *     'cluster1' => [ 'srv28', 'srv29', 'srv30' ]
+ * ];
  * @endcode
  *
  * Used by LBFactorySimple, may be ignored if $wgLBFactoryConf is set to
@@ -2100,7 +2100,7 @@ $wgExternalServers = [];
  *
  * @par Example:
  * @code
- * $wgDefaultExternalStore = array( 'DB://cluster1', 'DB://cluster2' );
+ * $wgDefaultExternalStore = [ 'DB://cluster1', 'DB://cluster2' ];
  * @endcode
  *
  * @var array
@@ -2744,16 +2744,16 @@ $wgSquidPurgeUseHostHeader = true;
  * @par Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * @code
- * $wgHTCPRouting = array(
- *         '|^https?://upload\.wikimedia\.org|' => array(
+ * $wgHTCPRouting = [
+ *         '|^https?://upload\.wikimedia\.org|' => [
  *                 'host' => '239.128.0.113',
  *                 'port' => 4827,
- *         ),
- *         '' => array(
+ *         ],
+ *         '' => [
  *                 'host' => '239.128.0.112',
  *                 'port' => 4827,
- *         ),
- * );
+ *         ],
+ * ];
  * @endcode
  *
  * You can also pass an array of hosts to send purges too. This is useful when
@@ -2762,16 +2762,16 @@ $wgSquidPurgeUseHostHeader = true;
  *
  * @par Example of sending purges to multiple hosts:
  * @code
- * $wgHTCPRouting = array(
- *     '' => array(
+ * $wgHTCPRouting = [
+ *     '' => [
  *         // Purges to text caches using multicast
- *         array( 'host' => '239.128.0.114', 'port' => '4827' ),
+ *         [ 'host' => '239.128.0.114', 'port' => '4827' ],
  *         // Purges to a hardcoded list of caches
- *         array( 'host' => '10.88.66.1', 'port' => '4827' ),
- *         array( 'host' => '10.88.66.2', 'port' => '4827' ),
- *         array( 'host' => '10.88.66.3', 'port' => '4827' ),
- *     ),
- * );
+ *         [ 'host' => '10.88.66.1', 'port' => '4827' ],
+ *         [ 'host' => '10.88.66.2', 'port' => '4827' ],
+ *         [ 'host' => '10.88.66.3', 'port' => '4827' ],
+ *     ],
+ * ];
  * @endcode
  *
  * @since 1.22
@@ -3094,7 +3094,7 @@ $wgLoginLanguageSelector = false;
  * To allow language-specific main page and community
  * portal:
  * @code
- *     $wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+ *     $wgForceUIMsgAsContentMsg = [ 'mainpage', 'portal-url' ];
  * @endcode
  */
 $wgForceUIMsgAsContentMsg = [];
@@ -3464,13 +3464,13 @@ $wgMangleFlashPolicy = true;
  *
  * @par Example:
  * @code
- *   $wgResourceModules['ext.myExtension'] = array(
+ *   $wgResourceModules['ext.myExtension'] = [
  *      'scripts' => 'myExtension.js',
  *      'styles' => 'myExtension.css',
- *      'dependencies' => array( 'jquery.cookie', 'jquery.tabIndex' ),
+ *      'dependencies' => [ 'jquery.cookie', 'jquery.tabIndex' ],
  *      'localBasePath' => __DIR__,
  *      'remoteExtPath' => 'MyExtension',
- *   );
+ *   ];
  * @endcode
  */
 $wgResourceModules = [];
@@ -3485,27 +3485,27 @@ $wgResourceModules = [];
  *
  * @par Example:
  * @code
- *   $wgResourceModules['bar'] = array(
+ *   $wgResourceModules['bar'] = [
  *     'scripts' => 'resources/bar/bar.js',
  *     'styles' => 'resources/bar/main.css',
- *   );
+ *   ];
  *
- *   $wgResourceModuleSkinStyles['foo'] = array(
+ *   $wgResourceModuleSkinStyles['foo'] = [
  *     'bar' => 'skins/Foo/bar.css',
- *   );
+ *   ];
  * @endcode
  *
  * This is mostly equivalent to:
  *
  * @par Equivalent:
  * @code
- *   $wgResourceModules['bar'] = array(
+ *   $wgResourceModules['bar'] = [
  *     'scripts' => 'resources/bar/bar.js',
  *     'styles' => 'resources/bar/main.css',
- *     'skinStyles' => array(
+ *     'skinStyles' => [
  *       'foo' => skins/Foo/bar.css',
- *     ),
- *   );
+ *     ],
+ *   ];
  * @endcode
  *
  * If the module already defines its own entry in `skinStyles` for a given skin, then
@@ -3516,34 +3516,34 @@ $wgResourceModules = [];
  *
  * @par Example:
  * @code
- *   $wgResourceModules['bar'] = array(
- *     'scripts' => 'resources/bar/bar.js',
+ *   $wgResourceModules['bar'] = 
+ *    [ 'scripts' => 'resources/bar/bar.js',
  *     'styles' => 'resources/bar/basic.css',
- *     'skinStyles' => array(
- *       'default' => 'resources/bar/additional.css',
- *     ),
- *   );
+ *     'skinStyles' =>
+ *     [ 'default' => 'resources/bar/additional.css',
+ *     ],
+ *   ];
  *   // Note the '+' character:
- *   $wgResourceModuleSkinStyles['foo'] = array(
+ *   $wgResourceModuleSkinStyles['foo'] = [
  *     '+bar' => 'skins/Foo/bar.css',
- *   );
+ *   ];
  * @endcode
  *
  * This is mostly equivalent to:
  *
  * @par Equivalent:
  * @code
- *   $wgResourceModules['bar'] = array(
+ *   $wgResourceModules['bar'] = [
  *     'scripts' => 'resources/bar/bar.js',
  *     'styles' => 'resources/bar/basic.css',
- *     'skinStyles' => array(
+ *     'skinStyles' => [
  *       'default' => 'resources/bar/additional.css',
- *       'foo' => array(
+ *       'foo' => [
  *         'resources/bar/additional.css',
  *         'skins/Foo/bar.css',
- *       ),
- *     ),
- *   );
+ *       ],
+ *     ],
+ *   ];
  * @endcode
  *
  * In other words, as a module author, use the `styles` list for stylesheets that may not be
@@ -3555,12 +3555,12 @@ $wgResourceModules = [];
  *
  * @par Example:
  * @code
- *   $wgResourceModuleSkinStyles['foo'] = array(
- *     'bar' => 'bar.css',
+ *   $wgResourceModuleSkinStyles['foo'] = 
+ *   [  'bar' => 'bar.css',
  *     'quux' => 'quux.css',
  *     'remoteSkinPath' => 'Foo',
  *     'localBasePath' => __DIR__,
- *   );
+ *   ];
  * @endcode
  */
 $wgResourceModuleSkinStyles = [];
@@ -3717,11 +3717,11 @@ $wgResourceLoaderValidateStaticJS = false;
  *
  * @par Example:
  * @code
- *   $wgResourceLoaderLESSVars = array(
- *     'baseFontSize'  => '1em',
+ *   $wgResourceLoaderLESSVars = 
+ *   [  'baseFontSize'  => '1em',
  *     'smallFontSize' => '0.75em',
  *     'WikimediaBlue' => '#006699',
- *   );
+ *   ];
  * @endcode
  * @since 1.22
  */
@@ -3819,12 +3819,12 @@ $wgMetaNamespaceTalk = false;
  *
  * @par Example:
  * @code
- * $wgExtraNamespaces = array(
- *    100 => "Hilfe",
+ * $wgExtraNamespaces = 
+ * [  100 => "Hilfe",
  *    101 => "Hilfe_Diskussion",
  *    102 => "Aide",
  *    103 => "Discussion_Aide"
- * );
+ * ];
  * @endcode
  *
  * @todo Add a note about maintenance/namespaceDupes.php
@@ -3851,10 +3851,10 @@ $wgExtraGenderNamespaces = [];
  *
  * @par Example:
  * @code
- *    $wgNamespaceAliases = array(
- *        'Wikipedian' => NS_USER,
+ *    $wgNamespaceAliases =
+ *       ['Wikipedian' => NS_USER,
  *        'Help' => 100,
- *    );
+ *    ];
  * @endcode
  */
 $wgNamespaceAliases = [];
@@ -4303,8 +4303,8 @@ $wgNoFollowNsExceptions = [];
  * (or any subdomains) will not be set to rel="nofollow" regardless of the
  * value of $wgNoFollowLinks.  For instance:
  *
- * $wgNoFollowDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org',
- * 'mediawiki.org' );
+ * $wgNoFollowDomainExceptions = [ 'en.wikipedia.org', 'wiktionary.org',
+ * 'mediawiki.org' ];
  *
  * This would add rel="nofollow" to links to de.wikipedia.org, but not
  * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
@@ -5198,13 +5198,13 @@ $wgImplicitGroups = [ '*', 'user', 'autoconfirmed' ];
  * @par Example:
  * To allow sysops to add themselves to the "bot" group:
  * @code
- *    $wgGroupsAddToSelf = array( 'sysop' => array( 'bot' ) );
+ *    $wgGroupsAddToSelf = [ 'sysop' => [ 'bot' ] ];
  * @endcode
  *
  * @par Example:
  * Implicit groups may be used for the source group, for instance:
  * @code
- *    $wgGroupsRemoveFromSelf = array( '*' => true );
+ *    $wgGroupsRemoveFromSelf = [ '*' => true ];
  * @endcode
  * This allows users in the '*' group (i.e. any user) to remove themselves from
  * any group that they happen to be in.
@@ -5322,18 +5322,18 @@ $wgAutoConfirmCount = 0;
  * @todo Redocument $wgAutopromote
  *
  * The format is
- *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
+ *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
  * where cond1, cond2, ... are themselves conditions; *OR*
  *   APCOND_EMAILCONFIRMED, *OR*
- *   array( APCOND_EMAILCONFIRMED ), *OR*
- *   array( APCOND_EDITCOUNT, number of edits ), *OR*
- *   array( APCOND_AGE, seconds since registration ), *OR*
- *   array( APCOND_INGROUPS, group1, group2, ... ), *OR*
- *   array( APCOND_ISIP, ip ), *OR*
- *   array( APCOND_IPINRANGE, range ), *OR*
- *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
- *   array( APCOND_BLOCKED ), *OR*
- *   array( APCOND_ISBOT ), *OR*
+ *   [ APCOND_EMAILCONFIRMED ], *OR*
+ *   [ APCOND_EDITCOUNT, number of edits ], *OR*
+ *   [ APCOND_AGE, seconds since registration ], *OR*
+ *   [ APCOND_INGROUPS, group1, group2, ... ], *OR*
+ *   [ APCOND_ISIP, ip ), *OR*
+ *   [ APCOND_IPINRANGE, range ], *OR*
+ *   [ APCOND_AGE_FROM_EDIT, seconds since first edit ], *OR*
+ *   [ APCOND_BLOCKED ], *OR*
+ *   [ APCOND_ISBOT ], *OR*
  *   similar constructs defined by extensions.
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
@@ -5385,15 +5385,15 @@ $wgAutopromoteOnceLogInRC = true;
  * @endcode
  * Bureaucrats can only remove bots and sysops:
  * @code
- * $wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop' );
+ * $wgRemoveGroups['bureaucrat'] = [ 'bot', 'sysop' ];
  * @endcode
  * Sysops can make bots:
  * @code
- * $wgAddGroups['sysop'] = array( 'bot' );
+ * $wgAddGroups['sysop'] = [ 'bot' ];
  * @endcode
  * Sysops can disable other sysops in an emergency, and disable bots:
  * @code
- * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' );
+ * $wgRemoveGroups['sysop'] = [ 'sysop', 'bot' ];
  * @endcode
  */
 $wgAddGroups = [];
@@ -5464,15 +5464,15 @@ $wgEnableDnsBlacklist = false;
  *
  * @par Example:
  * @code
- * $wgDnsBlacklistUrls = array(
+ * $wgDnsBlacklistUrls = [
  *   // String containing URL
  *   'http.dnsbl.sorbs.net.',
  *   // Array with URL and key, for services that require a key
- *   array( 'dnsbl.httpbl.net.', 'mykey' ),
+ *   [ 'dnsbl.httpbl.net.', 'mykey' ],
  *   // Array with just the URL. While this works, it is recommended that you
  *   // just use a string as shown above
- *   array( 'opm.tornevall.org.' )
- * );
+ *   [ 'opm.tornevall.org.' ]
+ * ];
  * @endcode
  *
  * @note You should end the domain name with a . to avoid searching your
@@ -5504,21 +5504,21 @@ $wgApplyIpBlocksToXff = false;
  * @par Example:
  * To set a generic maximum of 4 hits in 60 seconds:
  * @code
- *     $wgRateLimits = array( 4, 60 );
+ *     $wgRateLimits = [ 4, 60 ];
  * @endcode
  *
  * @par Example:
  * You could also limit per action and then type of users.
  * @code
- *     $wgRateLimits = array(
- *         'edit' => array(
- *             'anon' => array( x, y ), // any and all anonymous edits (aggregate)
- *             'user' => array( x, y ), // each logged-in user
- *             'newbie' => array( x, y ), // each new autoconfirmed accounts; overrides 'user'
- *             'ip' => array( x, y ), // each anon and recent account
- *             'subnet' => array( x, y ), // ... within a /24 subnet in IPv4 or /64 in IPv6
- *         )
- *     )
+ *     $wgRateLimits = [
+ *         'edit' => [
+ *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
+ *             'user' => [ x, y ], // each logged-in user
+ *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
+ *             'ip' => [ x, y ], // each anon and recent account
+ *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *         ]
+ *     ]
  * @endcode
  *
  * @warning Requires that $wgMainCacheType is set to something persistent
@@ -6038,7 +6038,7 @@ $wgDebugLogGroups = [];
  *
  * @par To completely disable logging:
  * @code
- * $wgMWLoggerDefaultSpi = array( 'class' => '\\MediaWiki\\Logger\\NullSpi' );
+ * $wgMWLoggerDefaultSpi = [ 'class' => '\\MediaWiki\\Logger\\NullSpi' ];
  * @endcode
  *
  * @since 1.25
@@ -6348,10 +6348,10 @@ $wgSitemapNamespaces = false;
  * This should be a map of namespace IDs to priority
  * @par Example:
  * @code
- *  $wgSitemapNamespacesPriorities = array(
- *      NS_USER => '0.9',
+ *  $wgSitemapNamespacesPriorities =
+ *    [ NS_USER => '0.9',
  *      NS_HELP => '0.0',
- *  );
+ *  ];
  * @endcode
  */
 $wgSitemapNamespacesPriorities = false;
@@ -6558,18 +6558,17 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  *  The JSON-specific options are:
  *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
- * @example $wgRCFeeds['example'] = array(
- *		'formatter' => 'JSONRCFeedFormatter',
+ * @example $wgRCFeeds['example'] =
+ *	[	'formatter' => 'JSONRCFeedFormatter',
  *		'uri' => "udp://localhost:1336",
  *		'add_interwiki_prefix' => false,
  *		'omit_bots' => true,
- *	);
- * @example $wgRCFeeds['exampleirc'] = array(
- *		'formatter' => 'IRCColourfulRCFeedFormatter',
- *		'uri' => "udp://localhost:1338",
- *		'add_interwiki_prefix' => false,
- *		'omit_bots' => true,
- *	);
+ *	];
+ * @example $wgRCFeeds['exampleirc'] =  [ 'formatter' => 'IRCColourfulRCFeedFormatter',
+ *		                          'uri' => "udp://localhost:1338",
+ *		                          'add_interwiki_prefix' => false,
+ *		                          'omit_bots' => true, ];
+ *		
  * @since 1.22
  */
 $wgRCFeeds = [];
@@ -6731,7 +6730,7 @@ $wgUnwatchedPageThreshold = false;
  *
  * To register a new one:
  * @code
- * $wgRecentChangesFlags['flag'] => array(
+ * $wgRecentChangesFlags['flag'] => [
  *   // message for the letter displayed next to rows on changes lists
  *   'letter' => 'letter-msg',
  *   // message for the tooltip of the letter
@@ -6744,7 +6743,7 @@ $wgUnwatchedPageThreshold = false;
  *   // will set the top-level flag if any line contains the flag, 'all' will
  *   // only be set if all lines contain the flag.
  *   'grouping' => 'any',
- * );
+ * ];
  * @endcode
  *
  * @since 1.22
@@ -6850,11 +6849,11 @@ $wgShowCreditsIfMax = true;
  * subprojects on the interwiki map of the target wiki, or a mix of the two,
  * e.g.
  * @code
- *     $wgImportSources = array(
- *         'wikipedia' => array( 'cs', 'en', 'fr', 'zh' ),
+ *     $wgImportSources = [
+ *         'wikipedia' => [ 'cs', 'en', 'fr', 'zh' ],
  *         'wikispecies',
- *         'wikia' => array( 'animanga', 'brickipedia', 'desserts' ),
- *     );
+ *         'wikia' => [ 'animanga', 'brickipedia', 'desserts' ],
+ *     ];
  * @endcode
  *
  * If you have a very complex import sources setup, you can lazy-load it using
@@ -6982,11 +6981,11 @@ $wgExtensionMessagesFiles = [];
  *
  * @par Complex example:
  * @code
- *    $wgMessagesDirs['Example'] = array(
+ *    $wgMessagesDirs['Example'] = [
  *        __DIR__ . '/lib/ve/i18n',
  *        __DIR__ . '/lib/oojs-ui/i18n',
  *        __DIR__ . '/i18n',
- *    )
+ *    ]
  * @endcode
  * @since 1.23
  */
@@ -7056,18 +7055,18 @@ $wgAutoloadAttemptLowercase = true;
  * All but 'name', 'path' and 'author' can be omitted.
  *
  * @code
- * $wgExtensionCredits[$type][] = array(
+ * $wgExtensionCredits[$type][] = [
  *     'path' => __FILE__,
  *     'name' => 'Example extension',
  *     'namemsg' => 'exampleextension-name',
- *     'author' => array(
+ *     'author' => [
  *         'Foo Barstein',
- *     ),
+ *     ],
  *     'version' => '1.9.0',
  *     'url' => 'http://example.org/example-extension/',
  *     'descriptionmsg' => 'exampleextension-desc',
  *     'license-name' => 'GPL-2.0+',
- * );
+ * ];
  * @endcode
  *
  * The extensions are listed on Special:Version. This page also looks for a file
@@ -7126,11 +7125,11 @@ $wgAuth = null;
  * @endcode
  * - A function with some data:
  * @code
- *     $wgHooks['event_name'][] = array( $function, $data );
+ *     $wgHooks['event_name'][] = [ $function, $data ];
  * @endcode
  * - A an object method:
  * @code
- *     $wgHooks['event_name'][] = array( $object, 'method' );
+ *     $wgHooks['event_name'][] = [ $object, 'method' ];
  * @endcode
  * - A closure:
  * @code
@@ -7255,7 +7254,7 @@ $wgSpecialPageCacheUpdates = [
  * Hooks that are used for outputting exceptions.  Format is:
  *   $wgExceptionHooks[] = $funcname
  * or:
- *   $wgExceptionHooks[] = array( $class, $funcname )
+ *   $wgExceptionHooks[] = [ $class, $funcname ]
  * Hooks should return strings or false
  */
 $wgExceptionHooks = [];
@@ -7371,10 +7370,7 @@ $wgLogRestrictions = [
  *
  * @par Example:
  * @code
- *   $wgFilterLogTypes = array(
- *      'move' => true,
- *      'import' => false,
- *   );
+ *   $wgFilterLogTypes = [ 'move' => true, 'move' => true, ];
  * @endcode
  *
  * Will display show/hide links for the move and import logs. Move logs will be
