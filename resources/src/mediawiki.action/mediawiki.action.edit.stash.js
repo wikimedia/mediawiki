@@ -13,7 +13,11 @@
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
-			data = {},
+			section = $form.find( '#wpSection' ).val(),
+			model = $form.find( '#model' ).val(),
+			format = $form.find( '#format' ).val(),
+			revId = $form.find( '#parentRevId' ).val(),
+			lastText = $text.textSelection( 'getContents' ),
 			timer = null;
 
 		// Send a request to stash the edit to the API.
@@ -25,19 +29,19 @@
 			}
 
 			api.getToken( 'csrf' ).then( function ( token ) {
-				data = $form.serializeObject();
+				lastText = $text.textSelection( 'getContents' );
 
 				pending = api.post( {
 					action: 'stashedit',
 					token: token,
 					title: mw.config.get( 'wgPageName' ),
-					section: data.wpSection,
+					section: section,
 					sectiontitle: '',
-					text: data.wpTextbox1,
-					summary: data.wpSummary,
-					contentmodel: data.model,
-					contentformat: data.format,
-					baserevid: data.parentRevId
+					text: lastText,
+					summary: $summary.textSelection( 'getContents' ),
+					contentmodel: model,
+					contentformat: format,
+					baserevid: revId
 				} );
 			} );
 		}
@@ -45,9 +49,8 @@
 		// Check if edit body text changed since the last stashEdit() call or if no edit
 		// stash calls have yet been made
 		function isChanged() {
-			// Normalize line endings to CRLF, like $.fn.serializeObject does.
-			var newText = $text.val().replace( /\r?\n/g, '\r\n' );
-			return newText !== data.wpTextbox1;
+			var newText = $text.textSelection( 'getContents' );
+			return newText !== lastText;
 		}
 
 		function onEditorIdle() {
