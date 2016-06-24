@@ -3694,7 +3694,7 @@ class OutputPage extends ContextSource {
 			if ( !$module ) {
 				continue;
 			}
-			if ( $name === 'site' ) {
+			if ( $name === 'site.styles' ) {
 				// HACK: The site module shouldn't be fragmented with a cache group and
 				// http request. But in order to ensure its styles are separated and after the
 				// ResourceLoaderDynamicStyles marker, pretend it is in a group called 'site'.
