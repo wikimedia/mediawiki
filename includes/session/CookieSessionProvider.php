@@ -221,7 +221,7 @@ class CookieSessionProvider extends SessionProvider {
 			if ( $value === false ) {
 				$response->clearCookie( $key, $options );
 			} else {
-				$expirationDuration = $this->getLoginCookieExpiration( $key );
+				$expirationDuration = $this->getLoginCookieExpiration( $key, $session->shouldRememberUser() );
 				$expiration = $expirationDuration ? $expirationDuration + time() : null;
 				$response->setCookie( $key, (string)$value, $expiration, $options );
 			}
@@ -271,7 +271,10 @@ class CookieSessionProvider extends SessionProvider {
 		$response = $request->response();
 		if ( $set ) {
 			if ( $backend->shouldRememberUser() ) {
-				$expirationDuration = $this->getLoginCookieExpiration( 'forceHTTPS' );
+				$expirationDuration = $this->getLoginCookieExpiration(
+					'forceHTTPS',
+					true
+				);
 				$expiration = $expirationDuration ? $expirationDuration + time() : null;
 			} else {
 				$expiration = null;
@@ -397,23 +400,40 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function getRememberUserDuration() {
-		return min( $this->getLoginCookieExpiration( 'UserID' ),
-			$this->getLoginCookieExpiration( 'Token' ) ) ?: null;
+		return min( $this->getLoginCookieExpiration( 'UserID', true ),
+			$this->getLoginCookieExpiration( 'Token', true ) ) ?: null;
+	}
+
+	/**
+	 * Gets the list of cookies that must be set to the 'remember me' duration,
+	 * if $wgExtendedLoginCookieExpiration is in use.
+	 *
+	 * @return string[] Array of unprefixed cookie keys
+	 */
+	protected function getExtendedLoginCookies() {
+		return [ 'UserID', 'UserName', 'Token' ];
 	}
 
 	/**
 	 * Returns the lifespan of the login cookies, in seconds. 0 means until the end of the session.
+	 *
+	 * Cookies that are session-length do not call this function.
+	 *
 	 * @param string $cookieName
+	 * @param boolean $shouldRememberUser Whether the user should be remembered
+	 *   long-term
 	 * @return int Cookie expiration time in seconds; 0 for session cookies
 	 */
-	protected function getLoginCookieExpiration( $cookieName ) {
+	protected function getLoginCookieExpiration( $cookieName, $shouldRememberUser ) {
+		$extendedCookies = $this->getExtendedLoginCookies();
 		$normalExpiration = $this->config->get( 'CookieExpiration' );
-		$extendedExpiration = $this->config->get( 'ExtendedLoginCookieExpiration' );
-		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
 
-		if ( !in_array( $cookieName, $extendedCookies, true ) ) {
+		if ( $shouldRememberUser && in_array( $cookieName, $extendedCookies, true ) ) {
+			$extendedExpiration = $this->config->get( 'ExtendedLoginCookieExpiration' );
+
+			return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
+		} else {
 			return (int)$normalExpiration;
 		}
-		return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
 	}
 }
