@@ -28,6 +28,8 @@ class ExtensionProcessor implements Processor {
 		'SessionProviders',
 		'AuthManagerAutoConfig',
 		'CentralIdLookupProviders',
+		'ChangeCredentialsBlacklist',
+		'RemoveCredentialsBlacklist',
 		'RateLimits',
 		'RecentChangesFlags',
 		'MediaHandlers',

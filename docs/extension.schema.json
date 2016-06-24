@@ -535,6 +535,14 @@
 			"type": "object",
 			"description": "Central ID lookup providers"
 		},
+		"ChangeCredentialsBlacklist": {
+			"type": "object",
+			"description": "AuthenticationRequest classes which can only be used internally for credentials change"
+		},
+		"RemoveCredentialsBlacklist": {
+			"type": "object",
+			"description": "AuthenticationRequest classes which can only be used internally for credentials removal"
+		},
 		"namespaces": {
 			"type": "array",
 			"description": "Method to add extra namespaces",
