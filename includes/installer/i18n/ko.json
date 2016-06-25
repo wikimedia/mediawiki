@@ -246,7 +246,7 @@
 	"config-logo": "로고 URL:",
 	"config-logo-help": "미디어위키의 기본 스킨은 사이드바 메뉴 위에 135×160 픽셀의 로고의 공간을 포함하고 있습니다.\n적당한 크기로 그림을 올리고 여기에 URL을 입력하세요.\n\n로고가 상대적인 경로에 있으면 <code>$wgStylePath</code>나 <code>$wgScriptPath</code>를 사용할 수 있습니다.\n\n로고 사용을 원하지 않으면 이 상자를 비우세요.",
 	"config-instantcommons": "인스턴트 공용 기능 활성화",
-	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons 인스턴트 공용]은 [https://commons.wikimedia.org/ 위키미디어 공용] 사이트에서 찾을 수 있는 그림, 소리 및 다른 미디어를 위키에서 사용할 수 있도록 하는 기능입니다.\n이렇게 하려면 미디어위키가 인터넷 연결을 필요로 합니다..\n\n위키미디어 공용 이외에 다른 위키에서 이를 설정하는 방법에 대한 지침을 포함한, 기능에 대한 자세한 내용은 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 매뉴얼]을 참조하세요.",
+	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons 인스턴트 공용]은 [https://commons.wikimedia.org/ 위키미디어 공용] 사이트에서 찾을 수 있는 그림, 소리 및 다른 미디어를 위키에서 사용할 수 있도록 하는 기능입니다.\n이렇게 하려면 미디어위키가 인터넷 연결을 필요로 합니다.\n\n위키미디어 공용 이외에 다른 위키에서 이를 설정하는 방법에 대한 지침을 포함한, 기능에 대한 자세한 내용은 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 매뉴얼]을 참조하세요.",
 	"config-cc-error": "크리에이티브 커먼즈 라이선스 선택기에 결과가 없습니다.\n수동으로 라이선스 이름을 입력하세요.",
 	"config-cc-again": "다시 선택...",
 	"config-cc-not-chosen": "원하는 크리에이티브 커먼즈 라이선스를 선택하고 \"proceed\"을 클릭하세요.",

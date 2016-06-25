@@ -563,6 +563,7 @@
 	"createacct-another-realname-tip": "Echte naam is optioneel.\nAls u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor uw werk.",
 	"pt-login": "Aanmelden",
 	"pt-login-button": "Aanmelden",
+	"pt-login-continue-button": "Doorgaan met aanmelden",
 	"pt-createaccount": "Registreren",
 	"pt-userlogout": "Afmelden",
 	"php-mail-error-unknown": "Er is een onbekende fout opgetreden in de mail()-functie van PHP",
@@ -610,6 +611,7 @@
 	"botpasswords-invalid-name": "De gebruikersnaam bevat niet het scheidingsteken van het botwachtwoord (\"$1\").",
 	"botpasswords-not-exist": "Gebruiker \"$1\" heeft geen botwachtwoord genaamd \"$2\"",
 	"resetpass_forbidden": "Wachtwoorden kunnen niet gewijzigd worden",
+	"resetpass_forbidden-reason": "Wachtwoorden kunnen niet gewijzigd worden: $1",
 	"resetpass-no-info": "U dient aangemeld zijn voordat u deze pagina kunt gebruiken.",
 	"resetpass-submit-loggedin": "Wachtwoord wijzigen",
 	"resetpass-submit-cancel": "Annuleren",
@@ -3691,5 +3693,7 @@
 	"authmanager-email-help": "E-mailadres",
 	"authmanager-realname-label": "Echte naam",
 	"authmanager-realname-help": "Echte naam van de gebruiker",
-	"authmanager-provider-temporarypassword": "Tijdelijk wachtwoord"
+	"authmanager-provider-temporarypassword": "Tijdelijk wachtwoord",
+	"authprovider-resetpass-skip-label": "Overslaan",
+	"specialpage-securitylevel-not-allowed-title": "Niet toegestaan"
 }

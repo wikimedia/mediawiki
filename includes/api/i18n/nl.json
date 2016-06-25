@@ -29,6 +29,7 @@
 	"apihelp-block-description": "Gebruiker blokkeren.",
 	"apihelp-block-param-user": "Gebruikersnaam, IP-adres of IP-range om te blokkeren.",
 	"apihelp-block-param-reason": "Reden voor blokkade.",
+	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (uitschakelen van anonieme bewerkingen via dit IP-adres)",
 	"apihelp-block-param-nocreate": "Voorkom registeren van accounts.",
 	"apihelp-block-param-autoblock": "Blokkeer automatisch het laatst gebruikte IP-adres en ieder volgend IP-adres van waaruit ze proberen aan te melden.",
 	"apihelp-block-param-reblock": "De huidige blokkade aanpassen als de gebruiker al geblokkeerd is.",
