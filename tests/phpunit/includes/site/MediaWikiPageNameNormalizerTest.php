@@ -29,36 +29,15 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  */
 class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
 
-	protected function setUp() {
-		parent::setUp();
-
-		static $connectivity = null;
-
-		if ( $connectivity === null ) {
-			// Check whether we have (reasonable fast) connectivity
-			$res = Http::get(
-				'https://www.wikidata.org/w/api.php?action=query&meta=siteinfo&format=json',
-				[ 'timeout' => 3 ],
-				__METHOD__
-			);
-
-			if ( $res === false || strpos( $res, '"sitename":"Wikidata"' ) === false ) {
-				$connectivity = false;
-			} else {
-				$connectivity = true;
-			}
-		}
-
-		if ( !$connectivity ) {
-			$this->markTestSkipped( 'MediaWikiPageNameNormalizerTest needs internet connectivity.' );
-		}
-	}
-
 	/**
 	 * @dataProvider normalizePageTitleProvider
 	 */
-	public function testNormalizePageTitle( $expected, $pageName ) {
-		$normalizer = new MediaWikiPageNameNormalizer();
+	public function testNormalizePageTitle( $expected, $pageName, $getResponse ) {
+		MediaWikiPageNameNormalizerTestMockHttp::$response = $getResponse;
+
+		$normalizer = new MediaWikiPageNameNormalizer(
+			new MediaWikiPageNameNormalizerTestMockHttp()
+		);
 
 		$this->assertSame(
 			$expected,
@@ -67,19 +46,70 @@ class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function normalizePageTitleProvider() {
-		// Note: This makes (very conservative) assumptions about pages on Wikidata
-		// existing or not.
+		// Response are taken from wikidata and kkwiki using the following API request
+		// api.php?action=query&prop=info&redirects=1&converttitles=1&format=json&titles=…
 		return [
 			'universe (Q1)' => [
-				'Q1', 'Q1'
+				'Q1',
+				'Q1',
+				'{"batchcomplete":"","query":{"pages":{"129":{"pageid":129,"ns":0,'
+				. '"title":"Q1","contentmodel":"wikibase-item","pagelanguage":"en",'
+				. '"pagelanguagehtmlcode":"en","pagelanguagedir":"ltr",'
+				. '"touched":"2016-06-23T05:11:21Z","lastrevid":350004448,"length":58001}}}}'
 			],
 			'Q404 redirects to Q395' => [
-				'Q395', 'Q404'
+				'Q395',
+				'Q404',
+				'{"batchcomplete":"","query":{"redirects":[{"from":"Q404","to":"Q395"}],"pages"'
+				. ':{"601":{"pageid":601,"ns":0,"title":"Q395","contentmodel":"wikibase-item",'
+				. '"pagelanguage":"en","pagelanguagehtmlcode":"en","pagelanguagedir":"ltr",'
+				. '"touched":"2016-06-23T08:00:20Z","lastrevid":350021914,"length":60108}}}}'
+			],
+			'D converted to Д (Latin to Cyrillic) (taken from kkwiki)' => [
+				'Д',
+				'D',
+				'{"batchcomplete":"","query":{"converted":[{"from":"D","to":"\u0414"}],'
+				. '"pages":{"510541":{"pageid":510541,"ns":0,"title":"\u0414",'
+				. '"contentmodel":"wikitext","pagelanguage":"kk","pagelanguagehtmlcode":"kk",'
+				. '"pagelanguagedir":"ltr","touched":"2015-11-22T09:16:18Z",'
+				. '"lastrevid":2373618,"length":3501}}}}'
 			],
 			'there is no Q0' => [
-				false, 'Q0'
-			]
+				false,
+				'Q0',
+				'{"batchcomplete":"","query":{"pages":{"-1":{"ns":0,"title":"Q0",'
+				. '"missing":"","contentmodel":"wikibase-item","pagelanguage":"en",'
+				. '"pagelanguagehtmlcode":"en","pagelanguagedir":"ltr"}}}}'
+			],
+			'invalid title' => [
+				false,
+				'{{',
+				'{"batchcomplete":"","query":{"pages":{"-1":{"title":"{{",'
+				. '"invalidreason":"The requested page title contains invalid '
+				. 'characters: \"{\".","invalid":""}}}}'
+			],
+			'error on get' => [ false, 'ABC', false ]
 		];
 	}
 
+}
+
+/**
+ * @private
+ * @see Http
+ */
+class MediaWikiPageNameNormalizerTestMockHttp extends Http {
+
+	/**
+	 * @var mixed
+	 */
+	public static $response;
+
+	public static function get( $url, $options = [], $caller = __METHOD__ ) {
+		PHPUnit_Framework_Assert::assertInternalType( 'string', $url );
+		PHPUnit_Framework_Assert::assertInternalType( 'array', $options );
+		PHPUnit_Framework_Assert::assertInternalType( 'string', $caller );
+
+		return self::$response;
+	}
 }
