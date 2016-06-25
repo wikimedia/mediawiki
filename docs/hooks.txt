@@ -606,7 +606,7 @@ $outputPage: OutputPage that can be used to append the output.
 &$user: the user that deleted the article
 $reason: the reason the article was deleted
 $id: id of the article that was deleted
-$content: the Content of the deleted page
+$content: the Content of the deleted page (or null, when deleting a broken page)
 $logEntry: the ManualLogEntry used to record the deletion
 
 'ArticleEditUpdateNewTalk': Before updating user_newtalk when a user talk page
@@ -3621,7 +3621,8 @@ a page is deleted. Called in WikiPage::getDeletionUpdates(). Note that updates
 specific to a content model should be provided by the respective Content's
 getDeletionUpdates() method.
 $page: the WikiPage
-$content: the Content to generate updates for
+$content: the Content to generate updates for (or null, if the Content could not be loaded
+due to an error)
 &$updates: the array of DataUpdate objects. Hook function may want to add to it.
 
 'XmlDumpWriterOpenPage': Called at the end of XmlDumpWriter::openPage, to allow
