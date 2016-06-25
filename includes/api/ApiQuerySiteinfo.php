@@ -221,6 +221,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 		$data['writeapi'] = (bool)$config->get( 'EnableWriteAPI' );
 
+		$data['maxarticlesize'] = $config->get( 'MaxArticleSize' ) * 1024;
+
 		$tz = $config->get( 'Localtimezone' );
 		$offset = $config->get( 'LocalTZoffset' );
 		if ( is_null( $tz ) ) {
