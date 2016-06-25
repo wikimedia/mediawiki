@@ -7379,6 +7379,23 @@ Piped link with no link text
 !! end
 
 !! test
+Piped link with empty link text
+!! wikitext
+[[Main Page|<nowiki />]] - empty nowiki
+[[Main Page| ]] - empty space
+[[Main Page|&nbsp;]] - empty non breaking space
+!! html/php
+<p><a href="/wiki/Main_Page" title="Main Page"></a> - empty nowiki
+<a href="/wiki/Main_Page" title="Main Page"> </a> - empty space
+<a href="/wiki/Main_Page" title="Main Page">&#160;</a> - empty non breaking space
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="Main_Page" title="Main Page"></a>
+<a rel="mw:WikiLink" href="Main_Page" title="Main Page"> </a>
+<a rel="mw:WikiLink" href="Main_Page" title="Main Page">&#160;</a></p>
+!! end
+
+!! test
 Broken link
 !! wikitext
 [[Zigzagzogzagzig]]
