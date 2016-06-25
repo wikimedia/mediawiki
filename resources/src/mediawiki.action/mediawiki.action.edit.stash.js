@@ -13,10 +13,10 @@
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
-			section = $form.find( '#wpSection' ).val(),
-			model = $form.find( '#model' ).val(),
-			format = $form.find( '#format' ).val(),
-			revId = $form.find( '#parentRevId' ).val(),
+			section = $form.find( '[name=wpSection]' ).val(),
+			model = $form.find( '[name=model]' ).val(),
+			format = $form.find( '[name=format]' ).val(),
+			revId = $form.find( '[name=parentRevId]' ).val(),
 			lastText = $text.textSelection( 'getContents' ),
 			timer = null;
 
