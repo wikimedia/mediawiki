@@ -2848,7 +2848,14 @@ class WikiPage implements Page, IDBAccessObject {
 		// unless they actually try to catch exceptions (which is rare).
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
-		$content = $this->getContent( Revision::RAW );
+		try {
+			$content = $this->getContent( Revision::RAW );
+		} catch ( Exception $ex ) {
+			wfLogWarning( __METHOD__ . ': failed to load content during deletion! '
+				. $ex->getMessage() );
+
+			$content = null;
+		}
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
@@ -2982,8 +2989,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   may already return null when the page proper was deleted.
 	 */
 	public function doDeleteUpdates( $id, Content $content = null ) {
+		try {
+			$countable = $this->isCountable();
+		} catch ( Exception $ex ) {
+			// fallback for deleting broken pages for which we cannot load the content for
+			// some reason. Note that doDeleteArticleReal() already logged this problem.
+			$countable = false;
+		}
+
 		// Update site status
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$countable, -1 ) );
 
 		// Delete pagelinks, update secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $content );
@@ -3575,7 +3590,14 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( !$content ) {
 			// load content object, which may be used to determine the necessary updates.
 			// XXX: the content may not be needed to determine the updates.
-			$content = $this->getContent( Revision::RAW );
+			try {
+				$content = $this->getContent( Revision::RAW );
+			} catch ( Exception $ex ) {
+				// If we can't load the content, something is wrong. Perhaps that's why
+				// the user is trying to delete the page, so let's not fail in that case.
+				// Note that doDeleteArticleRead will already have logged an issue with
+				// loading the content.
+			}
 		}
 
 		if ( !$content ) {
