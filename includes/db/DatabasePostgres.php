@@ -1530,6 +1530,15 @@ SQL;
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.28
+	 */
+	public function buildStringCast( $field ) {
+		return $field . '::text';
+	}
+
 	public function getSearchEngine() {
 		return 'SearchPostgres';
 	}
