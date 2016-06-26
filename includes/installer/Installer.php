@@ -133,7 +133,6 @@ abstract class Installer {
 		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
-		'envCheckSuhosinMaxValueLength',
 	];
 
 	/**
@@ -1059,21 +1058,6 @@ abstract class Installer {
 
 		if ( !$safe ) {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Checks if suhosin.get.max_value_length is set, and if so generate
-	 * a warning because it decreases ResourceLoader performance.
-	 * @return bool
-	 */
-	protected function envCheckSuhosinMaxValueLength() {
-		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-		if ( $maxValueLength > 0 && $maxValueLength < 1024 ) {
-			// Only warn if the value is below the sane 1024
-			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
 		}
 
 		return true;

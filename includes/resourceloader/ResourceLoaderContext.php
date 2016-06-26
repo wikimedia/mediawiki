@@ -63,8 +63,13 @@ class ResourceLoaderContext {
 		$this->logger = $resourceLoader->getLogger();
 
 		// List of modules
-		$modules = $request->getVal( 'modules' );
-		$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
+		$moduleHash = $request->getVal( 'hash' );
+		if ( $moduleHash ) {
+			$this->modules = $resourceLoader->resolveModuleHash( $moduleHash );
+		} else {
+			$modules = $request->getVal( 'modules' );
+			$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
+		}
 
 		// Various parameters
 		$this->user = $request->getVal( 'user' );

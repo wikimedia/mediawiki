@@ -104,7 +104,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
 			'wgCookiePath' => $conf->get( 'CookiePath' ),
 			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
-			'wgResourceLoaderMaxQueryLength' => $conf->get( 'ResourceLoaderMaxQueryLength' ),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
@@ -311,7 +310,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$moduleNames = self::getStartupModules();
 
 		$query = [
-			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
+			'hash' => ResourceLoader::makePackedModulesString( $moduleNames ),
 			'only' => 'scripts',
 			'lang' => $context->getLanguage(),
 			'skin' => $context->getSkin(),

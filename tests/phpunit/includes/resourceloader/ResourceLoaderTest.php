@@ -89,15 +89,15 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @dataProvider providePackedModules
 	 * @covers ResourceLoader::makePackedModulesString
 	 */
-	public function testMakePackedModulesString( $desc, $modules, $packed ) {
-		$this->assertEquals( $packed, ResourceLoader::makePackedModulesString( $modules ), $desc );
+	public function testMakePackedModulesString( $desc, $modules, $packed, $hash ) {
+		$this->assertEquals( $hash, ResourceLoader::makePackedModulesString( $modules ), $desc );
 	}
 
 	/**
 	 * @dataProvider providePackedModules
 	 * @covers ResourceLoaderContext::expandModuleNames
 	 */
-	public function testexpandModuleNames( $desc, $modules, $packed ) {
+	public function testexpandModuleNames( $desc, $modules, $packed, $hash ) {
 		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
 	}
 
@@ -107,21 +107,25 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'Example from makePackedModulesString doc comment',
 				[ 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ],
 				'foo.bar,baz|bar.baz,quux',
+				'7d012b3e7d012b3651f985214b182353',
 			],
 			[
 				'Example from expandModuleNames doc comment',
 				[ 'jquery.foo', 'jquery.bar', 'jquery.ui.baz', 'jquery.ui.quux' ],
 				'jquery.foo,bar|jquery.ui.baz,quux',
+				'870bb391a9015c5a1f6bec5c7521758c',
 			],
 			[
 				'Regression fixed in r88706 with dotless names',
 				[ 'foo', 'bar', 'baz' ],
 				'foo,bar,baz',
+				'408f5e131e99b6201e99b628',
 			],
 			[
 				'Prefixless modules after a prefixed module',
 				[ 'single.module', 'foobar', 'foobaz' ],
 				'single.module|foobar,foobaz',
+				'58b8faad31f0b26231f0b26a',
 			],
 		];
 	}

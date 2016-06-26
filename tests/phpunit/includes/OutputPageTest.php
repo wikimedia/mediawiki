@@ -143,20 +143,20 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026hash=495853b3\u0026lang=en\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
 			],
 			[
 				// Don't condition wrap raw modules (like the startup module)
 				[ 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ],
-				'<script async="" src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
+				'<script async="" src="http://127.0.0.1:8080/w/load.php?debug=false&amp;hash=473a3bd5&amp;lang=en&amp;only=scripts&amp;skin=fallback"></script>'
 			],
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			[
 				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
 
-				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback"/>'
+				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;hash=2762abc02762abc8495853b3&amp;lang=en&amp;only=styles&amp;skin=fallback"/>'
 			],
 			// Load private module (only=scripts)
 			[
@@ -181,16 +181,16 @@ class OutputPageTest extends MediaWikiTestCase {
 			// noscript group
 			[
 				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
-				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"/></noscript>'
+				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;hash=e1d2a625&amp;lang=en&amp;only=styles&amp;skin=fallback"/></noscript>'
 			],
 			// Load two modules in separate groups
 			[
 				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026hash=c20c404f\u0026lang=en\u0026skin=fallback");'
 					. "});</script>\n"
 					. "<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026hash=d4155680\u0026lang=en\u0026skin=fallback");'
 					. "});</script>"
 			],
 		];

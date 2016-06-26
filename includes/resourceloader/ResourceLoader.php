@@ -55,6 +55,12 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected $moduleInfos = [];
 
+	/**
+	 * Associative array mapping module name to info associative array
+	 * @var array
+	 */
+	protected $moduleNameHashes = [];
+
 	/** @var Config $config */
 	private $config;
 
@@ -334,6 +340,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 
 			// Attach module
+			$nameHash = self::makeHash( $name );
+			$this->moduleNameHashes[ $nameHash ][] = $name;
+
 			if ( $info instanceof ResourceLoaderModule ) {
 				$this->moduleInfos[$name] = [ 'object' => $info ];
 				$info->setName( $name );
@@ -467,6 +476,23 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		$this->sources[$id] = $loadUrl;
+	}
+
+	/**
+	 * Get a list of module names.
+	 *
+	 * @return array List of module names
+	 */
+	public function resolveModuleHash( $moduleHash ) {
+		$hashLength = strlen( self::makeHash( '' ) );
+		$modules = [];
+		foreach ( str_split( $moduleHash, $hashLength ) as $hash ) {
+			if ( !isset( $this->moduleNameHashes[ $hash ] ) ) {
+				continue;
+			}
+			$modules = array_merge( $modules, $this->moduleNameHashes[ $hash ] );
+		}
+		return $modules;
 	}
 
 	/**
@@ -1398,29 +1424,19 @@ MESSAGE;
 	}
 
 	/**
-	 * Convert an array of module names to a packed query string.
+	 * Construct a hash string from an array of module names.
 	 *
-	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
-	 * becomes 'foo.bar,baz|bar.baz,quux'
+	 * Each module name is hashed, and then the hashes are concatenated
+	 * to a single string. Since the hashes have a uniform width, there
+	 * are no separators.
+	 *
 	 * @param array $modules List of module names (strings)
 	 * @return string Packed query string
 	 */
 	public static function makePackedModulesString( $modules ) {
-		$groups = []; // array( prefix => array( suffixes ) )
-		foreach ( $modules as $module ) {
-			$pos = strrpos( $module, '.' );
-			$prefix = $pos === false ? '' : substr( $module, 0, $pos );
-			$suffix = $pos === false ? $module : substr( $module, $pos + 1 );
-			$groups[$prefix][] = $suffix;
-		}
-
-		$arr = [];
-		foreach ( $groups as $prefix => $suffixes ) {
-			$p = $prefix === '' ? '' : $prefix . '.';
-			$arr[] = $p . implode( ',', $suffixes );
-		}
-		$str = implode( '|', $arr );
-		return $str;
+		return array_reduce( $modules, function ( $hash, $module ) {
+			return $hash . self::makeHash( $module );
+		}, '' );
 	}
 
 	/**
@@ -1541,11 +1557,17 @@ MESSAGE;
 		$handheld = false, $extraQuery = []
 	) {
 		$query = [
-			'modules' => self::makePackedModulesString( $modules ),
 			'lang' => $lang,
 			'skin' => $skin,
 			'debug' => $debug ? 'true' : 'false',
 		];
+
+		if ( $debug ) {
+			$query['modules'] = implode( '|', $modules );
+		} else {
+			$query['hash'] = self::makePackedModulesString( $modules );
+		}
+
 		if ( $user !== null ) {
 			$query['user'] = $user;
 		}

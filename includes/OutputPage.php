@@ -2875,7 +2875,7 @@ class OutputPage extends ContextSource {
 					$query['version'] = $resourceLoader->getCombinedVersion( $context, array_keys( $grpModules ) );
 				}
 
-				$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
+				$query['hash'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
 				$moduleContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				$url = $resourceLoader->createLoaderURL( $source, $moduleContext, $extraQuery );
 
