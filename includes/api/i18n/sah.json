@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"София"
+			"София",
+			"HalanTul"
 		]
 	},
-	"apihelp-stashedit-param-summary": "Резюмены уларыт"
+	"apihelp-stashedit-param-summary": "Түмүгү уларыт."
 }

@@ -1331,7 +1331,7 @@
 	"rcshowhidecategorization": "$1 שינויים בקטגוריות",
 	"rcshowhidecategorization-show": "הצגת",
 	"rcshowhidecategorization-hide": "הסתרת",
-	"rclinks": "הצגת $1 שינויים אחרונים ב־$2 הימים האחרונים.<br /> $3",
+	"rclinks": "הצגת $1 השינויים האחרונים ב־$2 הימים האחרונים<br />$3",
 	"diff": "הבדל",
 	"hist": "היסטוריה",
 	"hide": "הסתרת",
