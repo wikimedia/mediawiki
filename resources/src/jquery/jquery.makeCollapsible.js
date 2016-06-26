@@ -314,7 +314,10 @@
 				// If this is not a custom case, do the default: wrap the
 				// contents and add the toggle link. Different elements are
 				// treated differently.
-				if ( $collapsible.is( 'table' ) ) {
+				if ( $collapsible.parent().is( 'li' ) && $collapsible.parent().children('.mw-collapsible').size() == 1 ) { // special case of one collapsible in <li> tag
+                                        $toggleLink = buildDefaultToggleLink();
+                                        $collapsible.before( $toggleLink );
+                                } else if ( $collapsible.is( 'table' ) ) {
 
 					// If the table has a caption, collapse to the caption
 					// as opposed to the first row
