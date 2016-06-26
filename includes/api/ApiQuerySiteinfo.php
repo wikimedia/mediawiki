@@ -181,6 +181,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['legaltitlechars'] = Title::legalChars();
 		$data['invalidusernamechars'] = $config->get( 'InvalidUsernameCharacters' );
 
+		$data['allunicodefixes'] = (bool)$config->get( 'AllUnicodeFixes' );
+		$data['fixarabicunicode'] = (bool)$config->get( 'FixArabicUnicode' );
+		$data['fixmalayalamunicode'] = (bool)$config->get( 'FixMalayalamUnicode' );
+
 		global $IP;
 		$git = SpecialVersion::getGitHeadSha1( $IP );
 		if ( $git ) {
