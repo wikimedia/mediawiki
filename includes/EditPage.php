@@ -3648,7 +3648,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
+		global $wgOut, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		$stats = $wgOut->getContext()->getStats();
@@ -3702,10 +3702,6 @@ HTML
 				$note = wfMessage( 'previewnote' )->plain() . ' ' . $continueEditing;
 			}
 
-			$parserOptions = $this->page->makeParserOptions( $this->mArticle->getContext() );
-			$parserOptions->setIsPreview( true );
-			$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
-
 			# don't parse non-wikitext pages, show message about preview
 			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
 				if ( $this->mTitle->isCssJsSubpage() ) {
@@ -3749,18 +3745,9 @@ HTML
 			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
 			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
 
-			$parserOptions->enableLimitReport();
-
-			# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
-			# But it's now deprecated, so never mind
-
-			$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-			$scopedCallback = $parserOptions->setupFakeRevision(
-				$this->mTitle, $pstContent, $wgUser );
-			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
-
-			$parserOutput->setEditSectionTokens( false ); // no section edit links
-			$previewHTML = $parserOutput->getText();
+			$parserResult = $this->doPreviewParse( $content );
+			$parserOutput = $parserResult['parserOutput'];
+			$previewHTML = $parserResult['html'];
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
 
@@ -3768,7 +3755,6 @@ HTML
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
 			}
 
-			ScopedCallback::consume( $scopedCallback );
 		} catch ( MWContentSerializationException $ex ) {
 			$m = wfMessage(
 				'content-failed-to-parse',
@@ -3797,6 +3783,41 @@ HTML
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
+	}
+
+	/**
+	 * Get parser options for a preview
+	 * @return ParserOptions
+	 */
+	protected function getPreviewParserOptions() {
+		$parserOptions = $this->page->makeParserOptions( $this->mArticle->getContext() );
+		$parserOptions->setIsPreview( true );
+		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
+		$parserOptions->enableLimitReport();
+		return $parserOptions;
+	}
+
+	/**
+	 * Parse the page for a preview. Subclasses may override this class, in order
+	 * to parse with different options, or to otherwise modify the preview HTML.
+	 *
+	 * @param Content @content The page content
+	 * @return Associative array with keys:
+	 *   - parserOutput: The ParserOutput object
+	 *   - html: The HTML to be displayed
+	 */
+	protected function doPreviewParse( Content $content ) {
+		global $wgUser;
+		$parserOptions = $this->getPreviewParserOptions();
+		$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+		$scopedCallback = $parserOptions->setupFakeRevision(
+			$this->mTitle, $pstContent, $wgUser );
+		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
+		ScopedCallback::consume( $scopedCallback );
+		$parserOutput->setEditSectionTokens( false ); // no section edit links
+		return [
+			'parserOutput' => $parserOutput,
+			'html' => $parserOutput->getText() ];
 	}
 
 	/**
