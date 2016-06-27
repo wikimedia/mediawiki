@@ -9,7 +9,6 @@
 	$( function () {
 		var idleTimeout = 3000,
 			api = new mw.Api(),
-			pending = null,
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
@@ -18,39 +17,43 @@
 			format = $form.find( '[name=format]' ).val(),
 			revId = $form.find( '[name=parentRevId]' ).val(),
 			lastText = $text.textSelection( 'getContents' ),
-			timer = null;
+			timer,
+			stashReq;
+
+		// We don't attempt to stash new section edits because in such cases
+		// the parser output varies on the edit summary (since it determines
+		// the new section's name).
+		if ( !$form.length || section === 'new' ) {
+			return;
+		}
 
 		// Send a request to stash the edit to the API.
 		// If a request is in progress, abort it since its payload is stale and the API
 		// may limit concurrent stash parses.
 		function stashEdit() {
-			if ( pending ) {
-				pending.abort();
+			if ( stashReq ) {
+				stashReq.abort();
 			}
 
-			api.getToken( 'csrf' ).then( function ( token ) {
-				lastText = $text.textSelection( 'getContents' );
-
-				pending = api.post( {
-					action: 'stashedit',
-					token: token,
-					title: mw.config.get( 'wgPageName' ),
-					section: section,
-					sectiontitle: '',
-					text: lastText,
-					summary: $summary.textSelection( 'getContents' ),
-					contentmodel: model,
-					contentformat: format,
-					baserevid: revId
-				} );
+			lastText = $text.textSelection( 'getContents' );
+			stashReq = api.postWithToken( 'csrf', {
+				action: 'stashedit',
+				title: mw.config.get( 'wgPageName' ),
+				section: section,
+				sectiontitle: '',
+				text: lastText,
+				summary: $summary.textSelection( 'getContents' ),
+				contentmodel: model,
+				contentformat: format,
+				baserevid: revId
 			} );
 		}
 
 		// Check if edit body text changed since the last stashEdit() call or if no edit
 		// stash calls have yet been made
+		// TODO: Should summary change also invalidate stash?
 		function isChanged() {
-			var newText = $text.textSelection( 'getContents' );
-			return newText !== lastText;
+			return $text.textSelection( 'getContents' ) !== lastText;
 		}
 
 		function onEditorIdle() {
@@ -76,29 +79,18 @@
 			timer = setTimeout( onEditorIdle, idleTimeout );
 		}
 
-		function onFormLoaded() {
-			if (
-				// Reverts may involve use (undo) links; stash as they review the diff.
-				// Since the form has a pre-filled summary, stash the edit immediately.
-				mw.util.getParamValue( 'undo' ) !== null
-				// Pressing "show changes" and "preview" also signify that the user will
-				// probably save the page soon
-				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
-			) {
-				stashEdit();
-			}
-		}
-
-		// We don't attempt to stash new section edits because in such cases
-		// the parser output varies on the edit summary (since it determines
-		// the new section's name).
-		if ( $form.find( 'input[name=wpSection]' ).val() === 'new' ) {
-			return;
-		}
-
 		$text.on( { change: onEditorIdle, keyup: onTextKeyUp } );
-		$summary.on( { focus: onEditorIdle } );
-		onFormLoaded();
+		$summary.on( 'focus', onEditorIdle );
 
+		if (
+			// Reverts may involve use (undo) links; stash as they review the diff.
+			// Since the form has a pre-filled summary, stash the edit immediately.
+			mw.util.getParamValue( 'undo' ) !== null
+			// Pressing "show changes" and "preview" also signify that the user will
+			// probably save the page soon
+			|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
+		) {
+			stashEdit();
+		}
 	} );
 }( mediaWiki, jQuery ) );
