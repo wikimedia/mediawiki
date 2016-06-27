@@ -467,7 +467,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
+		global $wgUseFileCache, $wgDebugToolbar, $wgMaxRedirects;
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -520,10 +520,6 @@ class Article implements Page {
 
 		# Try client and file cache
 		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
-			if ( $wgUseETag ) {
-				$outputPage->setETag( $parserCache->getETag( $this->mPage, $parserOptions ) );
-			}
-
 			# Use the greatest of the page's timestamp or the timestamp of any
 			# redirect in the chain (bug 67849)
 			$timestamp = $this->mPage->getTouched();
