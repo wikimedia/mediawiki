@@ -1901,6 +1901,14 @@ class UsageException extends MWException {
 		parent::__construct( $message, $code );
 		$this->mCodestr = $codestr;
 		$this->mExtraData = $extradata;
+
+		// This should never happen, so throw an exception about it that will
+		// hopefully get logged with a backtrace (T138585)
+		if ( !is_string( $codestr ) || $codestr === '' ) {
+			throw new InvalidArgumentException( 'Invalid $codestr, was ' .
+				( $codestr === '' ? 'empty string' : gettype( $codestr ) )
+			);
+		}
 	}
 
 	/**
