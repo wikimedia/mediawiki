@@ -104,21 +104,10 @@ class OutputPage extends ContextSource {
 	protected $mStatusCode;
 
 	/**
-	 * @var string Variable mLastModified and mEtag are used for sending cache control.
+	 * @var string Used for sending cache control.
 	 *   The whole caching system should probably be moved into its own class.
 	 */
 	protected $mLastModified = '';
-
-	/**
-	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
-	 * as a unique identifier for the content. It is later used by the client
-	 * to compare its cached version with the server version. Client sends
-	 * headers If-Match and If-None-Match containing its locally cached ETAG value.
-	 *
-	 * To get more information, you will have to look at HTTP/1.1 protocol which
-	 * is properly described in RFC 2616 : http://tools.ietf.org/html/rfc2616
-	 */
-	private $mETag = false;
 
 	/** @var array */
 	protected $mCategoryLinks = [];
@@ -694,12 +683,10 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the value of the ETag HTTP header, only used if $wgUseETag is true
-	 *
-	 * @param string $tag Value of "ETag" header
+	 * @deprecated since 1.28 Obsolete - wgUseETag experiment was removed.
+	 * @param string $tag
 	 */
-	function setETag( $tag ) {
-		$this->mETag = $tag;
+	public function setETag( $tag ) {
 	}
 
 	/**
@@ -2156,9 +2143,6 @@ class OutputPage extends ContextSource {
 	public function sendCacheControl() {
 		$response = $this->getRequest()->response();
 		$config = $this->getConfig();
-		if ( $config->get( 'UseETag' ) && $this->mETag ) {
-			$response->header( "ETag: $this->mETag" );
-		}
 
 		$this->addVaryHeader( 'Cookie' );
 		$this->addAcceptLanguage();
