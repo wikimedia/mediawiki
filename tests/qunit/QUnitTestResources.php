@@ -84,6 +84,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.viewport.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.category.test.js',
+			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.edit.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.messages.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.options.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.parse.test.js',
