@@ -2552,12 +2552,6 @@ $wgSidebarCacheExpiry = 86400;
 $wgUseGzip = false;
 
 /**
- * Whether MediaWiki should send an ETag header. Seems to cause
- * broken behavior with Squid 2.6, see bug 7098.
- */
-$wgUseETag = false;
-
-/**
  * Clock skew or the one-second resolution of time() can occasionally cause cache
  * problems when the user requests two pages within a short period of time. This
  * variable adds a given number of seconds to vulnerable timestamps, thereby giving
