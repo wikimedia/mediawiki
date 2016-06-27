@@ -1416,7 +1416,10 @@ abstract class UploadBase {
 				return [ 'uploaded-event-handler-on-svg', $attrib, $value ];
 			}
 
-			# href with non-local target (don't allow http://, javascript:, etc)
+			# Do not allow relative links, or unsafe url schemas.
+			# For <a> tags, only data:, http: and https: and same-document
+			# fragment links are allowed. For all other tags, only data:
+			# and fragment are allowed.
 			if ( $stripped == 'href'
 				&& strpos( $value, 'data:' ) !== 0
 				&& strpos( $value, '#' ) !== 0
