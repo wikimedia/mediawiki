@@ -113,17 +113,18 @@ function getAccessKeyLabel( element ) {
  * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
  */
 function updateTooltipOnElement( element, titleElement ) {
-	var array = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' ),
-		regexp = new RegExp( $.map( array, mw.RegExp.escape ).join( '.*?' ) + '$' ),
-		oldTitle = titleElement.title,
-		rawTitle = oldTitle.replace( regexp, '' ),
-		newTitle = rawTitle,
-		accessKeyLabel = getAccessKeyLabel( element );
+	var oldTitle, parts, regexp, newTitle, accessKeyLabel;
 
-	// don't add a title if the element didn't have one before
+	oldTitle = titleElement.title;
 	if ( !oldTitle ) {
+		// don't add a title if the element didn't have one before
 		return;
 	}
+
+	parts = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' );
+	regexp = new RegExp( $.map( parts, mw.RegExp.escape ).join( '.*?' ) + '$' );
+	newTitle = oldTitle.replace( regexp, '' );
+	accessKeyLabel = getAccessKeyLabel( element );
 
 	if ( accessKeyLabel ) {
 		// Should be build the same as in Linker::titleAttrib
