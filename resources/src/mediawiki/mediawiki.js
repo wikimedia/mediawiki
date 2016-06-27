@@ -277,7 +277,7 @@
 		},
 
 		/**
-		 * Add (does not replace) parameters for `N$` placeholder values.
+		 * Add (does not replace) parameters for `$N` placeholder values.
 		 *
 		 * @param {Array} parameters
 		 * @chainable
