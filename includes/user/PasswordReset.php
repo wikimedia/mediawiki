@@ -153,7 +153,7 @@ class PasswordReset {
 			'Capture' => $displayPassword ? '1' : null,
 		];
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
-			return StatusValue::newFatal( wfMessage( $error ) );
+			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
 		if ( !$users ) {
