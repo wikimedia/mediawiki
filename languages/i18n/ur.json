@@ -1378,6 +1378,8 @@
 	"tooltip-summary": "مختصر خلاصہ درج کریں",
 	"anonymous": "{{SITENAME}} گمنام صارف",
 	"others": "دیگر",
+	"pageinfo-visiting-watchers": "تعداد ناظرین جنہوں نے حالیہ ترامیم کا مشاہدہ کیا",
+	"pageinfo-hidden-categories": "پوشیدہ {{PLURAL:$1|زمرہ|زمرہ جات}} ($1)",
 	"pageinfo-toolboxlink": "معلومات صفحہ",
 	"markaspatrolledtext": "اس صفحہ کو بطور مراجعت شدہ نشان زد کریں",
 	"deletedrevision": "حذف شدہ پرانی ترمیم $1۔",

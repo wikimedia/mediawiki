@@ -15,6 +15,7 @@
 	"apihelp-emailuser-param-subject": "Хьедаран корта.",
 	"apihelp-emailuser-param-text": "Кехатан чулацам",
 	"apihelp-expandtemplates-param-title": "АгӀонан корта.",
+	"apihelp-feedrecentchanges-param-hideminor": "Къайладаха жима нисдарш.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Тегийн луьттург.",
 	"apihelp-login-example-login": "ЧугӀо",
 	"apihelp-logout-description": "ЧугӀой сессийн хаамаш дӀацӀанбе.",

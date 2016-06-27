@@ -3185,7 +3185,7 @@
 	"timezone-local": "Lokale tijd",
 	"duplicate-defaultsort": "'''Waarschuwing:''' de standaardsortering \"$2\" krijgt voorrang voor de sortering \"$1\".",
 	"duplicate-displaytitle": "<strong>Waarschuwing:</strong>Titelweergave \"$2\" overschrijft eerdere titelweergave \"$1\".",
-	"restricted-displaytitle": "<strong>Waarschuwing:</strong> weergegeven paginanaam \"$1\" is genegeerd omdat deze niet overeenkomt met de werkelijke paginanaam.",
+	"restricted-displaytitle": "<strong>Waarschuwing:</strong> Titelweergave \"$1\" werd genegeerd omdat deze niet overeenkomt met de werkelijke paginatitel.",
 	"invalid-indicator-name": "<strong>Fout:</strong> de eigenschap <code>name</code> van de paginastatusindicators mag niet leeg zijn.",
 	"version": "Versie",
 	"version-extensions": "Geïnstalleerde uitbreidingen",

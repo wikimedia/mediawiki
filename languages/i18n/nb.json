@@ -1855,6 +1855,7 @@
 	"trackingcategories-msg": "Sporingskategori",
 	"trackingcategories-name": "Beskjednavn",
 	"trackingcategories-desc": "Kategori-inklusjonskriterium",
+	"restricted-displaytitle-ignored": "Sider med ignorerte visningstitler",
 	"noindex-category-desc": "Denne siden indekseres ikke av roboter fordi den er merket med det magiske ordet <code><nowiki>__NOINDEX__</nowiki></code> og er i navnerom der dette flagget tillates.",
 	"index-category-desc": "Denne siden er påført det magiske ordet <code><nowiki>__INDEX__</nowiki></code> (og er i et navnerom hvor flagget er tillatt), og vil derfor bli indeksert av roboter selv når det normalt ikke ville skjedd.",
 	"post-expand-template-inclusion-category-desc": "Sidestørrelsen er større enn <code>$wgMaxArticleSize</code> etter at alle maler er utvidet, så noen maler ble ikke utvidet.",

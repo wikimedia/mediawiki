@@ -1246,8 +1246,8 @@
 	"rightslogtext": "Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.",
 	"action-read": "đọc trang này",
 	"action-edit": "sửa đổi trang này",
-	"action-createpage": "tạo trang",
-	"action-createtalk": "tạo trang thảo luận",
+	"action-createpage": "tạo trang này",
+	"action-createtalk": "tạo trang thảo luận này",
 	"action-createaccount": "mở tài khoản này",
 	"action-autocreateaccount": "tự động tạo tài khoản người dùng bên ngoài này",
 	"action-history": "xem lịch sử của trang này",
@@ -1465,6 +1465,8 @@
 	"upload-http-error": "Xảy ra lỗi HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Không có sẵn các bản sao tải lên tại tên miền này.",
 	"upload-foreign-cant-upload": "Wiki này không được thiết lập để tải tập tin lên kho tập tin chung bên ngoài được chỉ định.",
+	"upload-foreign-cant-load-config": "Thất bại khi tải cấu hình cho tập tin tải lên kho tập tin bên ngoài.",
+	"upload-dialog-disabled": "Chức năng tải lên tập tin qua hộp thoại này bị tắt trong wiki này.",
 	"upload-dialog-title": "Tải tập tin lên",
 	"upload-dialog-button-cancel": "Hủy bỏ",
 	"upload-dialog-button-done": "Xong",
@@ -3847,5 +3849,6 @@
 	"linkaccounts-success-text": "Đã liên kết tài khoản.",
 	"linkaccounts-submit": "Liên kết tài khoản",
 	"unlinkaccounts": "Gỡ liên kết tài khoản",
-	"unlinkaccounts-success": "Đã gỡ liên kết tài khoản."
+	"unlinkaccounts-success": "Đã gỡ liên kết tài khoản.",
+	"authenticationdatachange-ignored": "Tác vụ thay đổi dữ liệu xác thực không được xử lý. Có lẽ nhà cung cấp chưa được cấu hình?"
 }

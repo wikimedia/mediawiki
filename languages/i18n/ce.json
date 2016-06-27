@@ -15,7 +15,7 @@
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
-	"tog-hideminor": "Къайладаха кигийра нисдарш оц могӀама керла хийцамехь",
+	"tog-hideminor": "Къайладаха жима нисдарш керла могӀам юкъара",
 	"tog-hidepatrolled": "Къайладаха гӀаролладина нисдарш оц могӀама керла нисдаршкахь",
 	"tog-newpageshidepatrolled": "Къайлаяха гӀароллайина агӀонаш оьцу могӀама керла агӀонашкахь",
 	"tog-hidecategorization": "Къайлаяха агӀонийн категореш",
@@ -1844,6 +1844,7 @@
 	"sp-contributions-username": "IP-адрес я декъашхочун цӀе:",
 	"sp-contributions-toponly": "Гайта тӀаьххьарлера хийцамаш",
 	"sp-contributions-newonly": "АгӀонаш кхоллар бен ма гайта",
+	"sp-contributions-hideminor": "Къайладаха жима нисдарш",
 	"sp-contributions-submit": "Лахар",
 	"whatlinkshere": "Кхуза хьажоргаш",
 	"whatlinkshere-title": "«$1» тӀе хьажоргаш йолу агӀонаш",
