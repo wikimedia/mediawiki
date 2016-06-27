@@ -259,9 +259,6 @@ class EditPage {
 	public $tooBig = false;
 
 	/** @var bool */
-	public $kblength = false;
-
-	/** @var bool */
 	public $missingComment = false;
 
 	/** @var bool */
@@ -393,6 +390,9 @@ class EditPage {
 
 	/** @var bool */
 	protected $edit;
+
+	/** @var bool|int */
+	protected $contentLength = false;
 
 	/**
 	 * @var bool Set in ApiEditPage, based on ContentHandler::allowsDirectApiEditing
@@ -1750,8 +1750,8 @@ class EditPage {
 			return $status;
 		}
 
-		$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
-		if ( $this->kblength > $wgMaxArticleSize ) {
+		$this->contentLength = strlen( $this->textbox1 );
+		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
@@ -2038,8 +2038,8 @@ class EditPage {
 		}
 
 		// Check for length errors again now that the section is merged in
-		$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
-		if ( $this->kblength > $wgMaxArticleSize ) {
+		$this->contentLength = strlen( $this->toEditText( $content ) );
+		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
 			return $status;
@@ -2944,15 +2944,15 @@ class EditPage {
 					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
 		}
 
-		if ( $this->kblength === false ) {
-			$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
+		if ( $this->contentLength === false ) {
+			$this->contentLength = strlen( $this->textbox1 );
 		}
 
-		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
+		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
 			$wgOut->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				[
 					'longpageerror',
-					$wgLang->formatNum( $this->kblength ),
+					$wgLang->formatNum( round( $this->contentLength / 1024, 3 ) ),
 					$wgLang->formatNum( $wgMaxArticleSize )
 				]
 			);
