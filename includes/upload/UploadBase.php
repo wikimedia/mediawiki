@@ -353,7 +353,7 @@ abstract class UploadBase {
 
 		$error = '';
 		if ( !Hooks::run( 'UploadVerification',
-			[ $this->mDestName, $this->mTempPath, &$error ] )
+			[ $this->mDestName, $this->mTempPath, &$error ], '1.28' )
 		) {
 			return [ 'status' => self::HOOK_ABORTED, 'error' => $error ];
 		}

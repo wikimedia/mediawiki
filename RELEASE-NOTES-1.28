@@ -54,6 +54,7 @@ changes to languages because of Phabricator reports.
 * [BREAKING CHANGE] $wgExtendedLoginCookies has been removed.  You can
   use or update a custom session provider if needed.
 * Deprecated APIEditBeforeSave hook in favor of EditFilterMergedContent.
+* The 'UploadVerification' hook is deprecated. Use 'UploadVerifyFile' instead.
 
 == Compatibility ==
 
