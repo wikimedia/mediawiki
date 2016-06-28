@@ -35,10 +35,6 @@ class NewParserTest extends MediaWikiTestCase {
 	 * @var DjVuSupport
 	 */
 	private $djVuSupport;
-	/**
-	 * @var TidySupport
-	 */
-	private $tidySupport;
 
 	protected $file = false;
 
@@ -162,13 +158,8 @@ class NewParserTest extends MediaWikiTestCase {
 		// DjVu support
 		$this->djVuSupport = new DjVuSupport();
 		// Tidy support
-		$this->tidySupport = new TidySupport();
 		$tmpGlobals['wgTidyConfig'] = null;
 		$tmpGlobals['wgUseTidy'] = false;
-		$tmpGlobals['wgDebugTidy'] = false;
-		$tmpGlobals['wgTidyConf'] = $IP . '/includes/tidy/tidy.conf';
-		$tmpGlobals['wgTidyOpts'] = '';
-		$tmpGlobals['wgTidyInternal'] = $this->tidySupport->isInternal();
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -452,7 +443,6 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
-			'wgUseTidy' => isset( $opts['tidy'] ),
 		];
 
 		if ( $config ) {
@@ -772,11 +762,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 
 		if ( isset( $opts['tidy'] ) ) {
-			if ( !$this->tidySupport->isEnabled() ) {
-				$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
-			} else {
-				$options->setTidy( true );
-			}
+			$options->setTidy( true );
 		}
 
 		if ( isset( $opts['pst'] ) ) {
