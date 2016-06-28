@@ -362,7 +362,7 @@
 							return $.Deferred().reject();
 						}
 						return new OO.ui.Error(
-							$( '<p>' ).msg( error.message ),
+							$( '<p>' ).msg( error.message, error.messageParams || [] ),
 							{ recoverable: false }
 						);
 					} );
