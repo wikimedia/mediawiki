@@ -4,14 +4,6 @@
  * @group Parser
  */
 class TidyTest extends MediaWikiTestCase {
-
-	protected function setUp() {
-		parent::setUp();
-		if ( !MWTidy::isEnabled() ) {
-			$this->markTestSkipped( 'Tidy not found' );
-		}
-	}
-
 	/**
 	 * @dataProvider provideTestWrapping
 	 */

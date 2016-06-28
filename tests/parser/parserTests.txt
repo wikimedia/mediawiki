@@ -650,30 +650,22 @@ Italics and bold: 2-quote opening sequence: (2,4) w/ nowiki
 </p>
 !! end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 2-quote opening sequence: (2,5)
 !! options
 parsoid=wt2html
 !! wikitext
 ''foo'''''
-!! html/php
-<p><i>foo</i>
-</p>
-!! html/parsoid
+!! html
 <p><i>foo</i><b></b>
 </p>
 !!end
 
-# same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
 Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
 !! wikitext
 ''foo'''''<nowiki/>'''
-!! html/php
-<p><i>foo</i>
-</p>
-!! html/parsoid
+!! html
 <p><i>foo</i><b></b>
 </p>
 !! end
@@ -710,30 +702,22 @@ Italics and bold: 3-quote opening sequence: (3,4)
 </p>
 !!end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 3-quote opening sequence: (3,5)
 !! options
 parsoid=wt2html
 !! wikitext
 '''foo'''''
-!! html/php
-<p><b>foo</b>
-</p>
-!! html/parsoid
+!! html
 <p><b>foo</b><i></i>
 </p>
 !!end
 
-# same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
 Italics and bold: 3-quote opening sequence: (3,5+2) w/ nowiki
 !! wikitext
 '''foo'''''<nowiki/>''
-!! html/php
-<p><b>foo</b>
-</p>
-!! html/parsoid
+!! html
 <p><b>foo</b><i></i>
 </p>
 !! end
@@ -794,17 +778,13 @@ Italics and bold: 4-quote opening sequence: (4,4) w/ nowiki
 </p>
 !! end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 4-quote opening sequence: (4,5)
 !! options
 parsoid=wt2html
 !! wikitext
 ''''foo'''''
-!! html/php
-<p>'<b>foo</b>
-</p>
-!! html/parsoid
+!! html
 <p>'<b>foo</b><i></i>
 </p>
 !!end
@@ -814,10 +794,7 @@ parsoid=wt2html
 Italics and bold: 4-quote opening sequence: (4,5+2) w/ nowiki
 !! wikitext
 '<nowiki/>'''foo'''''<nowiki/>''
-!! html/php
-<p>'<b>foo</b>
-</p>
-!! html/parsoid
+!! html
 <p>'<b>foo</b><i></i>
 </p>
 !! end
@@ -907,7 +884,10 @@ Italics and bold: multiple quote sequences: (2,4,2)
 parsoid=wt2html
 !! wikitext
 ''foo''''bar''
-!! html/*
+!! html/php
+<p><i>foo'<b>bar</b></i><b></b>
+</p>
+!! html/parsoid
 <p><i>foo'<b>bar</b></i>
 </p>
 !!end
@@ -970,17 +950,13 @@ Italics and bold: multiple quote sequences: (2,4,4+2) w/ nowiki
 !! end
 
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,2)
 !! options
 parsoid=wt2html
 !! wikitext
 '''foo''''bar''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<i></i>
 </p>
 !!end
@@ -993,7 +969,7 @@ parsoid
 !! wikitext
 '''<nowiki>foo'</nowiki>'''bar''<nowiki/>''
 !! html/php
-<p><b>foo'</b>bar
+<p><b>foo'</b>bar<i></i>
 </p>
 !! html/parsoid
 <p><b><span typeof="mw:Nowiki">foo'</span></b>bar<i></i>
@@ -1001,17 +977,13 @@ parsoid
 !! end
 
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,3)
 !! options
 parsoid=wt2html
 !! wikitext
 '''foo''''bar'''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<b></b>
 </p>
 !!end
@@ -1022,7 +994,7 @@ Italics and bold: multiple quote sequences: (3,4,3+3) w/ nowiki
 !! wikitext
 '''<nowiki>foo'</nowiki>'''bar'''<nowiki/>'''
 !! html/php
-<p><b>foo'</b>bar
+<p><b>foo'</b>bar<b></b>
 </p>
 !! html/parsoid
 <p><b><span typeof="mw:Nowiki">foo'</span></b>bar<b></b>
@@ -1118,13 +1090,13 @@ parsoid=wt2html,wt2wt
 |}
 !! html/php+tidy
 <table>
-<tr>
+<tbody><tr>
 <th><i>a</i></th>
-<th><i>b</i></th>
+<th><i>b</i>
+</th>
 <td><i>a</i></td>
-<td><i>b</i></td>
-</tr>
-</table>
+<td><i>b</i>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th><i>a</i></th><th><i>b</i></th>
@@ -1157,7 +1129,7 @@ Non-html5 tags should be accepted
 <wbr> is valid wikitext (bug 52468)
 !! wikitext
 <wbr>
-!! html
+!! html+tidy
 <p><wbr />
 </p>
 !! end
@@ -1267,7 +1239,6 @@ Ruby markup (W3C-style)
 </p>
 !! end
 
-# The next two test different paths in the sanitizer.
 !! test
 Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! wikitext
@@ -1282,40 +1253,14 @@ Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 <s.foo> doesn't terminate </s.foo>
 
 <sub-ID#1>
-!! html
-<p>&lt;blockquote|&gt;a&lt;/blockquote&gt;
+!! html+tidy
+<p>&lt;blockquote|&gt;a
 </p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
 </p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
 </p><p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;
 </p><p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;
 </p><p>&lt;sub-ID#1&gt;
 </p>
-!! end
-
-# There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
-# If the non-word-character tag made it through the sanitizer, tidy
-# would munge it up.
-!! test
-Non-word characters don't terminate tag names + tidy
-!! wikitext
-<blockquote|>a</blockquote>
-
-<b→> doesn't terminate </b→>
-
-<bä> doesn't terminate </bä>
-
-<boo> doesn't terminate </boo>
-
-<s.foo> doesn't terminate </s.foo>
-
-<sub-ID#1>
-!! html+tidy
-<p>&lt;blockquote|&gt;a</p>
-<p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;</p>
-<p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;</p>
-<p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;</p>
-<p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;</p>
-<p>&lt;sub-ID#1&gt;</p>
 !! end
 
 ###
@@ -1859,11 +1804,8 @@ a <blockquote>foo</blockquote>
 <p>b
 </p>
 !! html+tidy
-<p>a</p>
-<blockquote>
-<p>foo</p>
-</blockquote>
-<p>b</p>
+<p>a </p><blockquote><p>foo</p></blockquote><p>b
+</p>
 !! end
 
 !! test
@@ -1894,14 +1836,8 @@ a <blockquote>foo</blockquote>
 b <blockquote>foo</blockquote>
 
 !! html+tidy
-<p>a</p>
-<blockquote>
-<p>foo</p>
-</blockquote>
-<p>b</p>
-<blockquote>
-<p>foo</p>
-</blockquote>
+<p>a </p><blockquote><p>foo</p></blockquote><p>
+b </p><blockquote><p>foo</p></blockquote>
 !! end
 
 !! test
@@ -2194,9 +2130,7 @@ Bug 15491: <ins>/<del> in blockquote (2)
 </blockquote>
 
 !! html+tidy
-<blockquote>
-<p>Foo</p>
-<del>bar</del> <ins>baz</ins> quux</blockquote>
+<blockquote><p>Foo </p><del>bar</del><ins>baz</ins><p> quux</p></blockquote>
 !! end
 
 !! test
@@ -2292,7 +2226,7 @@ Entities inside <pre>
 </nowiki>
 </pre>
 
-!! html/php
+!! html/php+tidy
 <pre>
 &lt;nowiki&gt;
 </pre>
@@ -5142,7 +5076,7 @@ External links: wiki links within external link (Bug 3695)
 parsoid=wt2html,html2html
 !! wikitext
 [http://example.com [[wikilink]] embedded in ext link]
-!! html/php
+!! html/php+tidy
 <p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a><a rel="nofollow" class="external text" href="http://example.com"> embedded in ext link</a>
 </p>
 !! html/parsoid
@@ -5332,7 +5266,7 @@ Some [http://example.com/ pretty ''italics'' and stuff]!
 External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check)
 !! wikitext
 ''Some [http://example.com/ pretty ''italics'' and stuff]!''
-!! html
+!! html/php+tidy
 <p><i>Some </i><a rel="nofollow" class="external text" href="http://example.com/"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
 </p>
 !! end
@@ -5754,7 +5688,7 @@ Plain ''italic'''s plain
 <p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
 </p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
-</p><p>..spanning two paragraphs (should not work).
+</p><p>..spanning two paragraphs (should not work).<b></b>
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
@@ -8818,7 +8752,7 @@ Incorrecly removing closing slashes from correctly formed XHTML
 !! wikitext
 <br style="clear:both;" />
 !! html
-<p><br style="clear:both;" />
+<p><br style="clear:both;"/>
 </p>
 !! end
 
@@ -8828,7 +8762,7 @@ Failing to transform badly formed HTML into correct XHTML
 <br style="clear: left;">
 <br style="clear: right;">
 <br style="clear: both;">
-!! html
+!! html+tidy
 <p><br style="clear: left;" />
 <br style="clear: right;" />
 <br style="clear: both;" />
@@ -11931,12 +11865,9 @@ a
 <tr><td></td></tr></table>
 
 !! html+tidy
-<p>a</p>
-<table>
-<tr>
-<td></td>
-</tr>
-</table>
+<p>
+a
+</p><table><tbody><tr><td></td></tr></tbody></table>
 !! end
 
 !!test
@@ -16861,7 +16792,7 @@ Sanitizer: Closing of open tags
 Sanitizer: Closing of open but not closed tags
 !! wikitext
 <s>foo
-!! html
+!! html+tidy
 <p><s>foo</s>
 </p>
 !! end
@@ -16931,7 +16862,7 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 	<link rel="stylesheet" href="{{SERVER}}">
 	<link rel="stylesheet" itemprop="hello" href="{{SERVER}}">
 </div>
-!! html
+!! html+tidy
 <div itemscope="">
 <p>	<meta itemprop="hello" content="world" />
 	&lt;meta http-equiv="refresh" content="5"&gt;
@@ -17515,15 +17446,14 @@ Parsing optional HTML elements (Bug 6171)
     <td> And yet som tabular data</td>
   </tr>
 </table>
-!! html
+!! html+tidy
 <table>
-  <tr>
+  <tbody><tr>
     <td> Some tabular data</td>
     <td> More tabular data ...
     </td><td> And yet som tabular data</td>
   </tr>
-</table>
-
+</tbody></table>
 !! end
 
 !! test
@@ -18547,7 +18477,7 @@ parsoid=wt2wt,html2wt
 !! wikitext
 '''''<nowiki/>'''''
 !! html/php
-<p><i></i>
+<p><i><b></b></i>
 </p>
 !! html/parsoid
 <p><b><i></i></b></p>
@@ -18559,7 +18489,7 @@ parsoid=wt2wt,html2wt
 !! wikitext
 '''''<nowiki/>'''''
 !! html/php
-<p><i></i>
+<p><i><b></b></i>
 </p>
 !! html/parsoid
 <p><i><b></b></i></p>
@@ -19322,9 +19252,8 @@ Definition list code coverage
 Don't fall for the self-closing div
 !! wikitext
 <div>hello world</div/>
-!! html
+!! html+tidy
 <div>hello world</div>
-
 !! end
 
 !! test
@@ -20349,9 +20278,8 @@ Line two</blockquote>
 Line two</blockquote>
 
 !! html+tidy
-<blockquote>
-<p>Line one Line two</p>
-</blockquote>
+<blockquote><p>Line one
+Line two</p></blockquote>
 !! end
 
 !! test
@@ -20368,9 +20296,9 @@ Line two</blockquote>
 Line two</blockquote>
 
 !! html+tidy
-<blockquote>
-<p>Line one</p>
-Line two</blockquote>
+<blockquote><p>Line one
+</p><p>Line two
+</p></blockquote>
 !! end
 
 !! test
@@ -20387,10 +20315,9 @@ Line two
 </blockquote>
 
 !! html+tidy
-<blockquote>
-<p>Line one</p>
-<p>Line two</p>
-</blockquote>
+<blockquote><p>Line one
+</p><p>Line two
+</p></blockquote>
 !! end
 
 !! test
@@ -20946,7 +20873,7 @@ showindicators
 <indicator name="10">Two
 
 paragraphs</indicator>
-!! html
+!! html+tidy
 01=hello world
 02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 03=<img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" />
@@ -21287,21 +21214,13 @@ __TOC__
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html+tidy
-<p></p>
-<div id="toc" class="toc">
-<div id="toctitle">
-<h2>Contents</h2>
-</div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
 </div>
 <p></p>
-<h2><span class="mw-headline" id="Quote"></span></h2>
-<blockquote>
-<p><span class="mw-headline" id="Quote">Quote</span></p>
-</blockquote>
-<p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></p>
+<h2><span class="mw-headline" id="Quote"></span></h2><blockquote><p><span class="mw-headline" id="Quote">Quote</span></p></blockquote><p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></p>
 !! end
 
 !! test
@@ -23119,16 +23038,14 @@ parsoid=html2wt
 |x<div><nowiki>a|b</nowiki></div>
 |}
 !! html/php+tidy
-<table>
+<table><tbody>
 <tr>
 <td>foo|bar</td>
 </tr>
 <tr>
 <td>x
 <div>a|b</div>
-</td>
-</tr>
-</table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -26078,7 +25995,7 @@ parsoid=html2wt,wt2wt
 |}
 !! html/php+tidy
 <table>
-<tr>
+<tbody><tr>
 <th>-</th>
 <th>-</th>
 </tr>
@@ -26095,7 +26012,7 @@ parsoid=html2wt,wt2wt
 <p>-</p>
 </td>
 </tr>
-</table>
+</tbody></table>
 !! end
 
 !! test
