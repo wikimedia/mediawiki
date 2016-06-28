@@ -3736,6 +3736,8 @@
 	"log-action-filter-managetags-activate": "Активирање на ознаки",
 	"log-action-filter-managetags-deactivate": "Деактивирање на ознаки",
 	"log-action-filter-move-move": "Преместување без запис врз пренасочувања",
+	"log-action-filter-upload-upload": "Ново подигање",
+	"log-action-filter-upload-overwrite": "Преподигање",
 	"authmanager-authplugin-setpass-bad-domain": "Неважечки домен.",
 	"authmanager-autocreate-noperm": "Автоматското создавање на сметки не е дозволено.",
 	"authmanager-autocreate-exception": "Автоматското создавање на сметки е привремено оневозможено поради претходни грешки.",

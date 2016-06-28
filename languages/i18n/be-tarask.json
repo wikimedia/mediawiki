@@ -1269,6 +1269,7 @@
 	"action-managechangetags": "стварэньне і (дэ)актывацыю метак",
 	"action-applychangetags": "дадаваньне метак пры рэдагаваньні",
 	"action-changetags": "дадаваньне і выдаленьне адвольных метак да асобных вэрсіяў і запісаў у журнале падзеяў",
+	"action-deletechangetags": "выдаленьне метак з базы зьвестак",
 	"nchanges": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|з апошняга візыту}}",
 	"enhancedrc-history": "гісторыя",

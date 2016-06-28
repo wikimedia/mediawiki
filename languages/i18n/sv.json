@@ -1502,7 +1502,7 @@
 	"upload-http-error": "Ett HTTP-fel uppstod: $1",
 	"upload-copy-upload-invalid-domain": "Uppladdning av kopior är inte tillgängligt från denna domän.",
 	"upload-foreign-cant-upload": "Denna wiki är inte konfigurerad för att ladda upp filer till det begärda externa filförvaret.",
-	"upload-foreign-cant-load-config": "Misslyckades att läsa in filuppladdningskonfigurationen för det externa filförvaret.",
+	"upload-foreign-cant-load-config": "Misslyckades att läsa in konfigurationen för filuppladdningar till det externa filförvaret.",
 	"upload-dialog-disabled": "Filuppladdningar med denna dialogruta har inaktiverats på denna wiki.",
 	"upload-dialog-title": "Ladda upp fil",
 	"upload-dialog-button-cancel": "Avbryt",

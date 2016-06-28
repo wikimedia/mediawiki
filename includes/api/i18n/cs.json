@@ -9,7 +9,8 @@
 			"Utar",
 			"Macofe",
 			"Danny B.",
-			"LordMsz"
+			"LordMsz",
+			"Dvorapa"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Dokumentace]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete [[mw:API:Errors_and_warnings|v dokumentaci]].\n\n<strong>Testování:</strong> Pro jednoduché testování požadavků na API zkuste [[Special:ApiSandbox]].",
@@ -74,7 +75,7 @@
 	"apihelp-edit-param-text": "Obsah stránky.",
 	"apihelp-edit-param-minor": "Malá editace.",
 	"apihelp-edit-param-notminor": "Nemalá editace.",
-	"apihelp-edit-param-bot": "Označit tuto editaci jako editaci bota.",
+	"apihelp-edit-param-bot": "Označit tuto editaci jako editaci robota.",
 	"apihelp-edit-param-createonly": "Needitovat stránku, pokud již existuje.",
 	"apihelp-edit-param-nocreate": "Pokud stránka neexistuje, vrátit chybu.",
 	"apihelp-edit-param-watch": "Přidat stránku na seznam sledovaných.",
