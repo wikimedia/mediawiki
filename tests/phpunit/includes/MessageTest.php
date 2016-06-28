@@ -589,6 +589,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testNewFromSpecifier( $value, $expectedText ) {
 		$message = Message::newFromSpecifier( $value );
 		$this->assertInstanceOf( Message::class, $message );
+		if ( $value instanceof Message ) {
+			$this->assertInstanceOf( get_class( $value ), $message );
+			$this->assertEquals( $value, $message );
+		}
 		$this->assertSame( $expectedText, $message->text() );
 	}
 
@@ -602,6 +606,7 @@ class MessageTest extends MediaWikiLangTestCase {
 			'array' => [ [ 'youhavenewmessages', 'foo', 'bar' ], 'You have foo (bar).' ],
 			'Message' => [ new Message( 'youhavenewmessages', [ 'foo', 'bar' ] ), 'You have foo (bar).' ],
 			'RawMessage' => [ new RawMessage( 'foo ($1)', [ 'bar' ] ), 'foo (bar)' ],
+			'ApiMessage' => [ new ApiMessage( [ 'mainpage' ], 'code', [ 'data' ] ), 'Main Page' ],
 			'MessageSpecifier' => [ $messageSpecifier, 'Main Page' ],
 			'nested RawMessage' => [ [ new RawMessage( 'foo ($1)', [ 'bar' ] ) ], 'foo (bar)' ],
 		];

@@ -2093,7 +2093,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Output the error message related to a certain array
-	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
+	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
 	 * @throws UsageException always
 	 */
 	public function dieUsageMsg( $error ) {
@@ -2110,7 +2110,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Will only set a warning instead of failing if the global $wgDebugAPI
 	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
-	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
+	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
 	 * @throws UsageException
 	 * @since 1.21
 	 */
@@ -2143,32 +2143,38 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Return the error message related to a certain array
-	 * @param array $error Element of a getUserPermissionsErrors()-style array
+	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
 	 */
 	public function parseMsg( $error ) {
-		$error = (array)$error; // It seems strings sometimes make their way in here
-		$key = array_shift( $error );
-
-		// Check whether the error array was nested
-		// array( array( <code>, <params> ), array( <another_code>, <params> ) )
-		if ( is_array( $key ) ) {
-			$error = $key;
-			$key = array_shift( $error );
+		// Check whether someone passed the whole array, instead of one element as
+		// documented. This breaks if it's actually an array of fallback keys, but
+		// that's long-standing misbehavior introduced in r87627 to incorrectly
+		// fix T30797.
+		if ( is_array( $error ) ) {
+			$first = reset( $error );
+			if ( is_array( $first ) ) {
+				wfDebug( __METHOD__ . ' was passed an array of arrays. ' . wfGetAllCallers( 5 ) );
+				$error = $first;
+			}
 		}
 
-		if ( $key instanceof IApiMessage ) {
+		$msg = Message::newFromSpecifier( $error );
+
+		if ( $msg instanceof IApiMessage ) {
 			return [
-				'code' => $key->getApiCode(),
-				'info' => $key->inLanguage( 'en' )->useDatabase( false )->text(),
-				'data' => $key->getApiData()
+				'code' => $msg->getApiCode(),
+				'info' => $msg->inLanguage( 'en' )->useDatabase( false )->text(),
+				'data' => $msg->getApiData()
 			];
 		}
 
+		$key = $msg->getKey();
 		if ( isset( self::$messageMap[$key] ) ) {
+			$params = $msg->getParams();
 			return [
-				'code' => wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
-				'info' => wfMsgReplaceArgs( self::$messageMap[$key]['info'], $error )
+				'code' => wfMsgReplaceArgs( self::$messageMap[$key]['code'], $params ),
+				'info' => wfMsgReplaceArgs( self::$messageMap[$key]['info'], $params )
 			];
 		}
 

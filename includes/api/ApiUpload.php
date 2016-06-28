@@ -347,7 +347,7 @@ class ApiUpload extends ApiBase {
 	 * Throw an error that the user can recover from by providing a better
 	 * value for $parameter
 	 *
-	 * @param array $error Error array suitable for passing to dieUsageMsg()
+	 * @param array|string|MessageSpecifier $error Error suitable for passing to dieUsageMsg()
 	 * @param string $parameter Parameter that needs revising
 	 * @param array $data Optional extra data to pass to the user
 	 * @throws UsageException
