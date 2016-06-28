@@ -70,11 +70,6 @@ class ParserTest {
 	 */
 	private $djVuSupport;
 
-	/**
-	 * @var TidySupport
-	 */
-	private $tidySupport;
-
 	private $maxFuzzTestLength = 300;
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
@@ -149,10 +144,6 @@ class ParserTest {
 		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
-		$this->tidySupport = new TidySupport();
-		if ( !$this->tidySupport->isEnabled() ) {
-			echo "Warning: tidy is not installed, skipping some tests\n";
-		}
 
 		if ( !extension_loaded( 'gd' ) ) {
 			echo "Warning: GD extension is not present, thumbnailing tests will probably fail\n";
@@ -625,11 +616,7 @@ class ParserTest {
 		}
 
 		if ( isset( $opts['tidy'] ) ) {
-			if ( !$this->tidySupport->isEnabled() ) {
-				return $this->showSkipped();
-			} else {
-				$options->setTidy( true );
-			}
+			$options->setTidy( true );
 		}
 
 		if ( isset( $opts['title'] ) ) {
@@ -919,12 +906,9 @@ class ParserTest {
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
 			// Tidy options.
-			'wgUseTidy' => isset( $opts['tidy'] ),
+			'wgUseTidy' => false,
 			'wgTidyConfig' => null,
 			'wgDebugTidy' => false,
-			'wgTidyConf' => $IP . '/includes/tidy/tidy.conf',
-			'wgTidyOpts' => '',
-			'wgTidyInternal' => $this->tidySupport->isInternal(),
 		];
 
 		if ( $config ) {
@@ -1280,7 +1264,6 @@ class ParserTest {
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
 		LinkCache::singleton()->clear();
-		MWTidy::destroySingleton();
 
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;

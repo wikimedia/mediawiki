@@ -91,27 +91,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Sanitizer::removeHTMLtags
-	 * @dataProvider provideHtml5Tags
-	 *
-	 * @param string $tag Name of an HTML5 element (ie: 'video')
-	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
-	 */
-	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
-		MWTidy::setInstance( false );
-
-		if ( $escaped ) {
-			$this->assertEquals( "&lt;$tag&gt;",
-				Sanitizer::removeHTMLtags( "<$tag>" )
-			);
-		} else {
-			$this->assertEquals( "<$tag></$tag>\n",
-				Sanitizer::removeHTMLtags( "<$tag>" )
-			);
-		}
-	}
-
-	/**
 	 * Provide HTML5 tags
 	 */
 	public static function provideHtml5Tags() {
@@ -153,15 +132,6 @@ class SanitizerTest extends MediaWikiTestCase {
 				'<abbr> inside <dfn>',
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider dataRemoveHTMLtags
-	 * @covers Sanitizer::removeHTMLtags
-	 */
-	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
-		MWTidy::setInstance( false );
-		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
 
 	/**
