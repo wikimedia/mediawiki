@@ -468,188 +468,47 @@ class Sanitizer {
 		$text = Sanitizer::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
-		if ( !MWTidy::isEnabled() ) {
-			$tagstack = $tablestack = [];
-			foreach ( $bits as $x ) {
-				$regs = [];
-				# $slash: Does the current element start with a '/'?
-				# $t: Current element name
-				# $params: String between element name and >
-				# $brace: Ending '>' or '/>'
-				# $rest: Everything until the next element of $bits
-				if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
-					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
-				} else {
-					$slash = $t = $params = $brace = $rest = null;
-				}
+		foreach ( $bits as $x ) {
+			if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
+				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 
 				$badtag = false;
 				$t = strtolower( $t );
 				if ( isset( $htmlelements[$t] ) ) {
-					# Check our stack
-					if ( $slash && isset( $htmlsingleonly[$t] ) ) {
-						$badtag = true;
-					} elseif ( $slash ) {
-						# Closing a tag... is it the one we just opened?
-						MediaWiki\suppressWarnings();
-						$ot = array_pop( $tagstack );
-						MediaWiki\restoreWarnings();
-
-						if ( $ot != $t ) {
-							if ( isset( $htmlsingleallowed[$ot] ) ) {
-								# Pop all elements with an optional close tag
-								# and see if we find a match below them
-								$optstack = [];
-								array_push( $optstack, $ot );
-								MediaWiki\suppressWarnings();
-								$ot = array_pop( $tagstack );
-								MediaWiki\restoreWarnings();
-								while ( $ot != $t && isset( $htmlsingleallowed[$ot] ) ) {
-									array_push( $optstack, $ot );
-									MediaWiki\suppressWarnings();
-									$ot = array_pop( $tagstack );
-									MediaWiki\restoreWarnings();
-								}
-								if ( $t != $ot ) {
-									# No match. Push the optional elements back again
-									$badtag = true;
-									MediaWiki\suppressWarnings();
-									$ot = array_pop( $optstack );
-									MediaWiki\restoreWarnings();
-									while ( $ot ) {
-										array_push( $tagstack, $ot );
-										MediaWiki\suppressWarnings();
-										$ot = array_pop( $optstack );
-										MediaWiki\restoreWarnings();
-									}
-								}
-							} else {
-								MediaWiki\suppressWarnings();
-								array_push( $tagstack, $ot );
-								MediaWiki\restoreWarnings();
-
-								# <li> can be nested in <ul> or <ol>, skip those cases:
-								if ( !isset( $htmllist[$ot] ) || !isset( $listtags[$t] ) ) {
-									$badtag = true;
-								}
-							}
-						} else {
-							if ( $t == 'table' ) {
-								$tagstack = array_pop( $tablestack );
-							}
-						}
-						$newparams = '';
-					} else {
-						# Keep track for later
-						if ( isset( $tabletags[$t] ) && !in_array( 'table', $tagstack ) ) {
-							$badtag = true;
-						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
-							$badtag = true;
-						#  Is it a self closed htmlpair ? (bug 5487)
-						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
-							// Eventually we'll just remove the self-closing
-							// slash, in order to be consistent with HTML5
-							// semantics.
-							// $brace = '>';
-							// For now, let's just warn authors to clean up.
-							if ( is_callable( $warnCallback ) ) {
-								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
-							}
-							$badtag = true;
-						} elseif ( isset( $htmlsingleonly[$t] ) ) {
-							# Hack to force empty tag for unclosable elements
-							$brace = '/>';
-						} elseif ( isset( $htmlsingle[$t] ) ) {
-							# Hack to not close $htmlsingle tags
-							$brace = null;
-							# Still need to push this optionally-closed tag to
-							# the tag stack so that we can match end tags
-							# instead of marking them as bad.
-							array_push( $tagstack, $t );
-						} elseif ( isset( $tabletags[$t] ) && in_array( $t, $tagstack ) ) {
-							// New table tag but forgot to close the previous one
-							$text .= "</$t>";
-						} else {
-							if ( $t == 'table' ) {
-								array_push( $tablestack, $tagstack );
-								$tagstack = [];
-							}
-							array_push( $tagstack, $t );
-						}
-
-						# Replace any variables or template parameters with
-						# plaintext results.
-						if ( is_callable( $processCallback ) ) {
-							call_user_func_array( $processCallback, [ &$params, $args ] );
-						}
-
-						if ( !Sanitizer::validateTag( $params, $t ) ) {
-							$badtag = true;
-						}
-
-						# Strip non-approved attributes from the tag
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+					if ( is_callable( $processCallback ) ) {
+						call_user_func_array( $processCallback, [ &$params, $args ] );
 					}
+
+					if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {
+						// Eventually we'll just remove the self-closing
+						// slash, in order to be consistent with HTML5
+						// semantics.
+						// $brace = '>';
+						// For now, let's just warn authors to clean up.
+						if ( is_callable( $warnCallback ) ) {
+							call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
+						}
+					}
+					if ( !Sanitizer::validateTag( $params, $t ) ) {
+						$badtag = true;
+					}
+
+					$newparams = Sanitizer::fixTagAttributes( $params, $t );
 					if ( !$badtag ) {
+						if ( $brace === '/>' && !isset( $htmlsingleonly[$t] ) ) {
+							# Interpret self-closing tags as empty tags even when
+							# HTML 5 would interpret them as start tags. Such input
+							# is commonly seen on Wikimedia wikis with this intention.
+							$brace = "></$t>";
+						}
+
 						$rest = str_replace( '>', '&gt;', $rest );
-						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
-						$text .= "<$slash$t$newparams$close>$rest";
+						$text .= "<$slash$t$newparams$brace$rest";
 						continue;
 					}
 				}
-				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 			}
-			# Close off any remaining tags
-			while ( is_array( $tagstack ) && ( $t = array_pop( $tagstack ) ) ) {
-				$text .= "</$t>\n";
-				if ( $t == 'table' ) {
-					$tagstack = array_pop( $tablestack );
-				}
-			}
-		} else {
-			# this might be possible using tidy itself
-			foreach ( $bits as $x ) {
-				if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
-					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
-
-					$badtag = false;
-					$t = strtolower( $t );
-					if ( isset( $htmlelements[$t] ) ) {
-						if ( is_callable( $processCallback ) ) {
-							call_user_func_array( $processCallback, [ &$params, $args ] );
-						}
-
-						if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {
-							// Eventually we'll just remove the self-closing
-							// slash, in order to be consistent with HTML5
-							// semantics.
-							// $brace = '>';
-							// For now, let's just warn authors to clean up.
-							if ( is_callable( $warnCallback ) ) {
-								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
-							}
-						}
-						if ( !Sanitizer::validateTag( $params, $t ) ) {
-							$badtag = true;
-						}
-
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
-						if ( !$badtag ) {
-							if ( $brace === '/>' && !isset( $htmlsingleonly[$t] ) ) {
-								# Interpret self-closing tags as empty tags even when
-								# HTML 5 would interpret them as start tags. Such input
-								# is commonly seen on Wikimedia wikis with this intention.
-								$brace = "></$t>";
-							}
-
-							$rest = str_replace( '>', '&gt;', $rest );
-							$text .= "<$slash$t$newparams$brace$rest";
-							continue;
-						}
-					}
-				}
-				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
-			}
+			$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 		}
 		return $text;
 	}

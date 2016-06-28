@@ -1703,7 +1703,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// of tidy. In that case however, we can not reliably detect whether a failing validation
 		// is due to malformed HTML, or caused by tidy not being installed as a command line tool.
 		// That would cause all HTML assertions to fail on a system that has no tidy installed.
-		if ( !$GLOBALS['wgTidyInternal'] || !MWTidy::isEnabled() ) {
+		if ( !( MWTidy::singleton() instanceof MediaWiki\Tidy\RaggettInternalPHP ) ) {
 			$this->markTestSkipped( 'Tidy extension not installed' );
 		}
 
