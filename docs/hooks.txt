@@ -3284,8 +3284,8 @@ added to the descriptor
 &$radio: Boolean, if source type should be shown as radio button
 $selectedSourceType: The selected source type
 
-'UploadVerification': Additional chances to reject an uploaded file. Consider
-using UploadVerifyFile instead.
+'UploadVerification': DEPRECATED! Use UploadVerifyFile instead.
+Additional chances to reject an uploaded file.
 $saveName: (string) destination file name
 $tempName: (string) filesystem path to the temporary file for checks
 &$error: (string) output: message key for message to show if upload canceled by
