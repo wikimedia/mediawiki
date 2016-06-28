@@ -141,10 +141,8 @@ abstract class Skin extends ContextSource {
 	/**
 	 * @param OutputPage $out
 	 */
-	function initPage( OutputPage $out ) {
-
+	public function initPage( OutputPage $out ) {
 		$this->preloadExistence();
-
 	}
 
 	/**
@@ -199,30 +197,29 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
-	function preloadExistence() {
+	protected function preloadExistence() {
 		$titles = [];
 
-		$user = $this->getUser();
-		$title = $this->getRelevantTitle();
-
 		// User/talk link
+		$user = $this->getUser();
 		if ( $user->isLoggedIn() ) {
 			$titles[] = $user->getUserPage();
 			$titles[] = $user->getTalkPage();
 		}
 
 		// Check, if the page can hold some kind of content, otherwise do nothing
-		if ( !$title->canExist() ) {
-			// nothing
-		} elseif ( $title->isTalkPage() ) {
-			$titles[] = $title->getSubjectPage();
-		} else {
-			$titles[] = $title->getTalkPage();
+		$title = $this->getRelevantTitle();
+		if ( $title->canExist() ) {
+			if ( $title->isTalkPage() ) {
+				$titles[] = $title->getSubjectPage();
+			} else {
+				$titles[] = $title->getTalkPage();
+			}
 		}
 
 		Hooks::run( 'SkinPreloadExistence', [ &$titles, $this ] );
 
-		if ( count( $titles ) ) {
+		if ( $titles ) {
 			$lb = new LinkBatch( $titles );
 			$lb->setCaller( __METHOD__ );
 			$lb->execute();
