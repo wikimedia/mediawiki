@@ -162,6 +162,7 @@ class ApiParamInfo extends ApiBase {
 						'key' => $m->getKey(),
 						'params' => $m->getParams(),
 					];
+					ApiResult::setIndexedTagName( $a['params'], 'param' );
 					if ( $m instanceof ApiHelpParamValueMessage ) {
 						$a['forvalue'] = $m->getParamValue();
 					}
