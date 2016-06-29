@@ -1640,7 +1640,7 @@ class Linker {
 	}
 
 	/**
-	 * Wraps the TOC in a table and provides the hide/collapse javascript.
+	 * Wraps the TOC in a navigation div and provides the hide/collapse javascript.
 	 *
 	 * @since 1.16.3
 	 * @param string $toc Html of the Table Of Contents
@@ -1651,8 +1651,8 @@ class Linker {
 		$lang = wfGetLangObj( $lang );
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
-		return '<div id="toc" class="toc">'
-			. '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
+		return '<div role="navigation" id="toc" class="toc" aria-labelledby="tocheading">'
+			. '<div id="toctitle"><h2 id="tocheading">' . $title . "</h2></div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
