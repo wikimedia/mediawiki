@@ -2266,13 +2266,18 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		global $wgEmailConfirmToEdit, $wgBlockDisablesLogin;
 		// Account creation blocks handled at userlogin.
 		// Unblocking handled in SpecialUnblock
 		if ( !$doExpensiveQueries || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
 			return $errors;
 		}
 
-		global $wgEmailConfirmToEdit;
+		// Optimize for a very common case
+		if ( $action === 'read' && !$wgBlockDisablesLogin ) {
+			return $errors;
+		}
+
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = array( 'confirmedittext' );
@@ -2415,6 +2420,7 @@ class Title {
 			$checks = array(
 				'checkPermissionHooks',
 				'checkReadPermissions',
+				'checkUserBlock', // for wgBlockDisablesLogin
 			);
 		} else {
 			$checks = array(
