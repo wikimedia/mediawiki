@@ -4187,5 +4187,16 @@
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
 	"unlinkaccounts-success": "The account was unlinked.",
-	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?"
+	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?",
+	"action-editsummary": "change summary",
+	"editsummary-diff-text": "<strong>Selected revision of $1:</strong>",
+	"editsummary-error-invalidtarget": "You have either not specified any target revision on which to perform this function, or the specified revision does not exist.",
+	"editsummary-error-revision": "This is not current revision, or you are not the contributor of this revision, or summary was deleted.",
+	"editsummary-error-same": "Summaries are the same.",
+	"editsummary-success": "Summary updated.",
+	"editsummary-text": "change summary",
+	"log-name-editsummary": "Summary change log",
+	"log-description-editsummary": "",
+	"logentry-editsummary-edit": "$1 {{GENDER:$2|changed}} summary of a revision on page $3 from $4 to $5",
+	"right-editsummary": "Edit summary of the revision"
 }

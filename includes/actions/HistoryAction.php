@@ -743,6 +743,21 @@ class HistoryPager extends ReverseChronologicalPager {
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
+		if ( $latest && $user->isAllowed( 'editsummary' ) &&
+			!$rev->isDeleted( Revision::DELETED_COMMENT ) &&
+			$rev->getUserText( Revision::RAW ) === $this->getUser()->getName()
+		) {
+			$editSummaryLink = Linker::linkKnown(
+				$this->getTitle(),
+				$this->msg( 'editsummary-text' )->escaped(),
+				[],
+				[
+					'action' => 'editsummary',
+					'id' => $rev->getId(),
+				]
+			);
+			$tools[] = "<span class=\"mw-history-editsummary\">{$editSummaryLink}</span>";
+		}
 		// Allow extension to add their own links here
 		Hooks::run( 'HistoryRevisionTools', [ $rev, &$tools, $prevRev, $user ] );
 

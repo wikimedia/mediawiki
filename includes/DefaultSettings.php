@@ -5080,6 +5080,7 @@ $wgGroupPermissions['user']['purge'] = true; // can use ?action=purge without cl
 $wgGroupPermissions['user']['sendemail'] = true;
 $wgGroupPermissions['user']['applychangetags'] = true;
 $wgGroupPermissions['user']['changetags'] = true;
+$wgGroupPermissions['user']['editsummary'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
@@ -7349,6 +7350,7 @@ $wgLogTypes = [
 	'tag',
 	'managetags',
 	'contentmodel',
+	'editsummary',
 ];
 
 /**
@@ -7459,6 +7461,7 @@ $wgLogActionsHandlers = [
 	'delete/event' => 'DeleteLogFormatter',
 	'delete/restore' => 'DeleteLogFormatter',
 	'delete/revision' => 'DeleteLogFormatter',
+	'editsummary/edit' => 'EditsummaryLogFormatter',
 	'import/interwiki' => 'ImportLogFormatter',
 	'import/upload' => 'ImportLogFormatter',
 	'managetags/activate' => 'LogFormatter',
@@ -7615,6 +7618,7 @@ $wgActions = [
 	'delete' => true,
 	'edit' => true,
 	'editchangetags' => 'SpecialPageAction',
+	'editsummary' => true,
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,
