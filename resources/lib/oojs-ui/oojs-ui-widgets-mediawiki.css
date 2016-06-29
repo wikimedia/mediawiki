@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.4
+ * OOjs UI v0.17.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-31T21:50:56Z
+ * Date: 2016-06-29T13:27:11Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -17,7 +17,6 @@
 	cursor:         grab;
 }
 .oo-ui-draggableElement-handle:active {
-	cursor: move;
 	cursor: url(images/grabbing.cur );
 	cursor: -webkit-grabbing;
 	cursor:    -moz-grabbing;
@@ -261,21 +260,6 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
-.oo-ui-toggleSwitchWidget .oo-ui-toggleSwitchWidget-glow {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
-	display: none;
-}
 .oo-ui-toggleSwitchWidget:last-child {
 	margin-right: 0;
 }
@@ -283,17 +267,22 @@
 	content: "";
 	display: block;
 	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	right: 1px;
 	border: 1px solid transparent;
 	border-radius: 1em;
 	z-index: 1;
+	-webkit-transition: border-color 100ms;
+	   -moz-transition: border-color 100ms;
+	        transition: border-color 100ms;
 }
 .oo-ui-toggleSwitchWidget-grip {
 	top: 0.35em;
+	min-width: 16px;
 	width: 1.2em;
+	min-height: 16px;
 	height: 1.2em;
 	border-radius: 1.2em;
 	background-color: #555555;
@@ -304,13 +293,13 @@
 .oo-ui-toggleSwitchWidget-glow {
 	display: none;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-	left: 1.9em;
-	margin-left: -2px;
-}
 .oo-ui-toggleSwitchWidget.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
 	left: 0.4em;
 	margin-left: 0;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
+	left: 1.9em;
+	margin-left: -2px;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on {
 	background-color: #347bff;
@@ -462,6 +451,14 @@
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	position: absolute;
 }
+.oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-clearButton {
 	z-index: 2;
 }
@@ -537,6 +534,14 @@
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileWidget-dropLabel {
 	display: block;
+}
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget,

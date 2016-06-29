@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.4
+ * OOjs UI v0.17.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-31T21:50:52Z
+ * Date: 2016-06-29T13:27:08Z
  */
 ( function ( OO ) {
 
@@ -3114,7 +3114,11 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 		.append( this.$errors );
 	this.$navigation
 		.addClass( 'oo-ui-processDialog-navigation' )
-		.append( this.$safeActions, this.$location, this.$primaryActions );
+		// Note: Order of appends below is important. These are in the order
+		// we want tab to go through them. Display-order is handled entirely
+		// by CSS absolute-positioning. As such, primary actions like "done"
+		// should go first.
+		.append( this.$primaryActions, this.$location, this.$safeActions );
 	this.$head.append( this.$navigation );
 	this.$foot.append( this.$otherActions );
 };

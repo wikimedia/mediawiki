@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.4
+ * OOjs UI v0.17.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-05-31T21:50:56Z
+ * Date: 2016-06-29T13:27:11Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -17,7 +17,6 @@
 	cursor:         grab;
 }
 .oo-ui-draggableElement-handle:active {
-	cursor: move;
 	cursor: url(images/grabbing.cur );
 	cursor: -webkit-grabbing;
 	cursor:    -moz-grabbing;
@@ -251,26 +250,15 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
-.oo-ui-toggleSwitchWidget .oo-ui-toggleSwitchWidget-glow {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
-	display: none;
-}
 .oo-ui-toggleSwitchWidget:last-child {
 	margin-right: 0;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	opacity: 0.5;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
+	border-color: #aaaaaa;
 }
 .oo-ui-toggleSwitchWidget-grip {
 	top: 0.25em;
@@ -291,11 +279,12 @@
 	background-image:         linear-gradient(to bottom, #ffffff 0, #dddddd 100%);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover,
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
-	border-color: #aaaaaa;
-}
-.oo-ui-toggleSwitchWidget .oo-ui-toggleSwitchWidget-glow {
+.oo-ui-toggleSwitchWidget-glow {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
 	border-radius: 1em;
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
 	-webkit-transition: opacity 250ms ease;
@@ -307,6 +296,18 @@
 	background-image:    -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
 	background-image:         linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
+	opacity: 0;
+}
+.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
+	left: 0.25em;
+	margin-left: 0;
 }
 .oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-glow {
 	opacity: 1;
@@ -314,14 +315,6 @@
 .oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
 	left: 2.25em;
 	margin-left: -2px;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
-	display: block;
-	opacity: 0;
-}
-.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
-	left: 0.25em;
-	margin-left: 0;
 }
 .oo-ui-progressBarWidget {
 	max-width: 50em;
@@ -435,6 +428,14 @@
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	position: absolute;
 }
+.oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-clearButton {
 	z-index: 2;
 }
@@ -510,6 +511,14 @@
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileWidget-dropLabel {
 	display: block;
+}
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 .oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget,

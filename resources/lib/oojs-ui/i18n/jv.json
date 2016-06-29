@@ -8,18 +8,20 @@
 			"Meursault2004"
 		]
 	},
-	"ooui-outline-control-move-down": "Pindhahaken butir mangandhap",
-	"ooui-outline-control-move-up": "Pindhah kara menyang dhuwur",
-	"ooui-outline-control-remove": "Busak kara",
-	"ooui-toolbar-more": "Manèh",
-	"ooui-toolgroup-expand": "Manèh",
-	"ooui-toolgroup-collapse": "Suda",
-	"ooui-dialog-message-accept": "Oké",
-	"ooui-dialog-message-reject": "Batal",
+	"ooui-outline-control-move-down": "Lih barang mangisor",
+	"ooui-outline-control-move-up": "Lih barang mandhuwur",
+	"ooui-outline-control-remove": "Buwang barang",
+	"ooui-toolbar-more": "Liyané",
+	"ooui-toolgroup-expand": "Liyané",
+	"ooui-toolgroup-collapse": "Sacukupé",
+	"ooui-dialog-message-accept": "Ha'a",
+	"ooui-dialog-message-reject": "Wurungaké",
 	"ooui-dialog-process-error": "Ana sing klèru",
 	"ooui-dialog-process-dismiss": "Tutup",
 	"ooui-dialog-process-retry": "Jajal manèh",
-	"ooui-dialog-process-continue": "Tutug",
-	"ooui-selectfile-not-supported": "Pilihan berkas ora disokong",
-	"ooui-selectfile-placeholder": "Ora ana berkas sing kapilih"
+	"ooui-dialog-process-continue": "Banjuraké",
+	"ooui-selectfile-button-select": "Pilih barkas",
+	"ooui-selectfile-not-supported": "Barkas pilihan ora disengkuyung",
+	"ooui-selectfile-placeholder": "Ora ana barkas sing dipilih",
+	"ooui-selectfile-dragdrop-placeholder": "Dèkèk barkas ing kéné"
 }
