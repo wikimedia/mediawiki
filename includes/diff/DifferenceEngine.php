@@ -236,11 +236,13 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	public function showDiffPage( $diffOnly = false ) {
-
 		# Allow frames except in certain special cases
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 		$out->setRobotPolicy( 'noindex,nofollow' );
+
+		// Allow extensions to add any extra output here
+		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
 
 		if ( !$this->loadRevisionData() ) {
 			$this->showMissingRevision();
@@ -283,6 +285,8 @@ class DifferenceEngine extends ContextSource {
 			$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
 			$samePage = true;
 			$oldHeader = '';
+			// Allow extensions to change the $oldHeader variable
+			Hooks::run( 'DifferenceEngineOldHeaderNoOldRev', [ &$oldHeader ] );
 		} else {
 			Hooks::run( 'DiffViewHeader', [ $this, $this->mOldRev, $this->mNewRev ] );
 
@@ -352,6 +356,10 @@ class DifferenceEngine extends ContextSource {
 				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
+			// Allow extensions to change the $oldHeader variable
+			Hooks::run( 'DifferenceEngineOldHeader', [ $this, &$oldHeader, $prevlink, $oldminor,
+				$diffOnly, $ldel, $this->unhide ] );
+
 			if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$deleted = true; // old revisions text is hidden
 				if ( $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
@@ -412,6 +420,10 @@ class DifferenceEngine extends ContextSource {
 			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
+
+		// Allow extensions to change the $newHeader variable
+		Hooks::run( 'DifferenceEngineNewHeader', [ $this, &$newHeader, $formattedRevisionTools,
+			$nextlink, $rollback, $newminor, $diffOnly, $rdel, $this->unhide ] );
 
 		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$deleted = true; // new revisions text is hidden
@@ -485,6 +497,9 @@ class DifferenceEngine extends ContextSource {
 							'token' => $linkInfo['token'],
 						]
 					) . ']</span>';
+				// Allow extensions to change the markpatrolled link
+				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $this,
+					&$this->mMarkPatrolledLink, $linkInfo['rcid'], $linkInfo['token'] ] );
 			}
 		}
 		return $this->mMarkPatrolledLink;
@@ -528,6 +543,13 @@ class DifferenceEngine extends ContextSource {
 				// If the user could patrol this it already would be patrolled
 				$rcid = 0;
 			}
+
+			// Allow extensions to possibly change the rcid here
+			// For example the rcid might be set to zero due to the user
+			// being the same as the performer of the change but an extension
+			// might still want to show it under certain conditions
+			Hooks::run( 'DifferenceEngineMarkPatrolledRCID', [ &$rcid, $this, $change, $user ] );
+
 			// Build the link
 			if ( $rcid ) {
 				$this->getOutput()->preventClickjacking();
@@ -615,15 +637,20 @@ class DifferenceEngine extends ContextSource {
 
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if ( $parserOutput ) {
-					$out->addParserOutput( $parserOutput );
+					// Allow extensions to change parser output here
+					if ( !Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $this, $out, $parserOutput, $wikiPage ] ) ) {
+						$out->addParserOutput( $parserOutput );
+					}
 				}
 			}
 		}
 		# @codingStandardsIgnoreEnd
 
-		# Add redundant patrol link on bottom...
-		$out->addHTML( $this->markPatrolledLink() );
-
+		// Allow extensions to optionally not show the final patrolled link
+		if ( Hooks::run( 'DifferenceEngineRenderRevisionShowFinalPatrolLink' ) ) {
+			# Add redundant patrol link on bottom...
+			$out->addHTML( $this->markPatrolledLink() );
+		}
 	}
 
 	protected function getParserOutput( WikiPage $page, Revision $rev ) {
@@ -649,6 +676,9 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool
 	 */
 	public function showDiff( $otitle, $ntitle, $notice = '' ) {
+		// Allow extensions to affect the output here
+		Hooks::run( 'DifferenceEngineShowDiff', [ $this ] );
+
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
 			$this->showMissingRevision();
@@ -718,7 +748,9 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getId() == $this->mNewRev->getId() )
 		) {
-			return '';
+			if ( !Hooks::run( 'DifferenceEngineShowEmptyOldContent', [ $this ] ) ) {
+				return '';
+			}
 		}
 		// Cacheable?
 		$key = false;
