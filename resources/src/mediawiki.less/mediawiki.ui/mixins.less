@@ -15,7 +15,6 @@
 	cursor: pointer;
 	vertical-align: bottom;
 	line-height: normal;
-
 	font-weight: normal;
 
 	& > input[type="checkbox"],
@@ -37,25 +36,25 @@
 	background: @bgColor;
 
 	&:hover {
-		// The inner bottom bevel should match the active background color.
 		background-color: @highlightColor;
 	}
 
 	&:focus {
 		border-color: @colorWhite;
-		box-shadow: 0 0 0 1px @highlightColor;
+		box-shadow: inset 0 0 0 1px @bgColor, inset 0 0 0 2px @colorWhite;
+		outline-width: 0;
 
-		outline: none;
-		// remove outline in Firefox
+		// Remove the inner border and padding in Firefox.
 		&::-moz-focus-inner {
 			border-color: transparent;
+			padding: 0;
 		}
 	}
 
 	&:active,
 	&.is-on,
 	&.mw-ui-checked {
-		background: @activeColor;
+		background-color: @activeColor;
 		box-shadow: none;
 	}
 }
@@ -95,7 +94,7 @@
 	text-shadow: 0 1px rgba(0, 0, 0, .1);
 
 	&:disabled {
-		background: @colorGray13;
+		background-color: @colorGray13;
 		border-color: @colorGray13;
 
 		// make sure disabled buttons don't have hover and active states
@@ -114,7 +113,7 @@
 
 	&:hover,
 	&:focus {
-		background: transparent;
+		background-color: transparent;
 		color: @textColor;
 	}
 
