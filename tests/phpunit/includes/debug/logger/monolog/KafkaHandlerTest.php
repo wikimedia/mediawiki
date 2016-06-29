@@ -55,6 +55,9 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		$produce->expects( $this->once() )
 			->method( 'setMessages' )
 			->with( $expect, $this->anything(), $this->anything() );
+		$produce->expects( $this->any() )
+			->method( 'send' )
+			->will( $this->returnValue( true ) );
 
 		$handler = new KafkaHandler( $produce, $options );
 		$handler->handle( [
@@ -86,6 +89,9 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
 			->will( $this->throwException( new \Kafka\Exception ) );
+		$produce->expects( $this->any() )
+			->method( 'send' )
+			->will( $this->returnValue( true ) );
 
 		if ( $expectException ) {
 			$this->setExpectedException( 'Kafka\Exception' );
@@ -144,6 +150,9 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->will( $this->returnValue( [ 'A' ] ) );
 		$mockMethod = $produce->expects( $this->exactly( 2 ) )
 			->method( 'setMessages' );
+		$produce->expects( $this->any() )
+			->method( 'send' )
+			->will( $this->returnValue( true ) );
 		// evil hax
 		\TestingAccessWrapper::newFromObject( $mockMethod )->matcher->parametersMatcher =
 			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( [
@@ -178,6 +187,9 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		$produce->expects( $this->once() )
 			->method( 'setMessages' )
 			->with( $this->anything(), $this->anything(), [ 'words', 'lines' ] );
+		$produce->expects( $this->any() )
+			->method( 'send' )
+			->will( $this->returnValue( true ) );
 
 		$formatter = $this->getMock( 'Monolog\Formatter\FormatterInterface' );
 		$formatter->expects( $this->any() )
