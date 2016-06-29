@@ -2637,7 +2637,7 @@
 	"pageinfo-category-files": "Số tập tin",
 	"markaspatrolleddiff": "Đánh dấu tuần tra",
 	"markaspatrolledtext": "Đánh dấu tuần tra trang này",
-	"markaspatrolledtext-file": "Đánh dấu phiên bản fiel này là đã kiểm tra",
+	"markaspatrolledtext-file": "Đánh dấu đã tuần tra phiên bản file này",
 	"markedaspatrolled": "Đã đánh dấu tuần tra",
 	"markedaspatrolledtext": "Phiên bản được chọn của [[:$1]] đã được đánh dấu tuần tra.",
 	"rcpatroldisabled": "“Thay đổi gần đây” của các trang tuần tra không bật",

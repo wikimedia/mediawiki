@@ -2267,7 +2267,7 @@
 	"ipblocklist-localblock": "חסימה מקומית",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|חסימה אחרת|חסימות אחרות}}",
 	"infiniteblock": "ללא הגבלת זמן",
-	"expiringblock": "החסימה פוקעת ב{{GRAMMAR:תחילית|$1}} בשעה $2",
+	"expiringblock": "החסימה פוקעת ב־$1 בשעה $2",
 	"anononlyblock": "משתמשים אנונימיים בלבד",
 	"noautoblockblock": "חסימה אוטומטית מבוטלת",
 	"createaccountblock": "יצירת חשבונות נחסמה",

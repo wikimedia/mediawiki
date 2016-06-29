@@ -3732,6 +3732,8 @@
 	"authmanager-create-disabled": "Utworzenie konta jest wyłączone.",
 	"authmanager-create-from-login": "Aby utworzyć konto, wypełnij poniższe pola.",
 	"authmanager-authplugin-setpass-failed-title": "Zmiana hasła nie powiodła się",
+	"authmanager-authplugin-setpass-failed-message": "Wtyczka do uwierzytelniania uniemożliwiła zmianę hasła.",
+	"authmanager-authplugin-create-fail": "Wtyczka do uwierzytelniania uniemożliwiła utworzenie konta.",
 	"authmanager-authplugin-setpass-denied": "Wtyczka uwierzytelniania nie zezwala na zmianę haseł.",
 	"authmanager-authplugin-setpass-bad-domain": "Niepoprawna domena.",
 	"authmanager-autocreate-noperm": "Automatyczne tworzenie konta jest niedozwolone.",

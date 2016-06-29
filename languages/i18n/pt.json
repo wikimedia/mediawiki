@@ -114,7 +114,7 @@
 	"tog-ccmeonemails": "Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores",
 	"tog-diffonly": "Não mostrar o conteúdo da página ao comparar duas edições",
 	"tog-showhiddencats": "Mostrar categorias ocultas",
-	"tog-norollbackdiff": "Omitir diferenças depois de reverter edições em bloco",
+	"tog-norollbackdiff": "Ocultar diferenças depois de reverter edições em bloco",
 	"tog-useeditwarning": "Avisar-me ao abandonar uma página editada sem gravar as alterações.",
 	"tog-prefershttps": "Usar sempre uma ligação segura enquanto tiver sessão iniciada",
 	"underline-always": "Sempre",
