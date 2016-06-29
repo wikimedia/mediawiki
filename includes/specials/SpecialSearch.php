@@ -720,7 +720,7 @@ class SpecialSearch extends SpecialPage {
 
 		$out .= "<ul class='mw-search-results'>\n";
 		while ( $result ) {
-			$out .= $this->showHit( $result, $terms, ++$pos );
+			$out .= $this->showHit( $result, $terms, $pos++ );
 			$result = $matches->next();
 		}
 		$out .= "</ul>\n";
