@@ -11,9 +11,9 @@
 
 		assert.strictEqual( $( '.toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
 
-		tocHtml = '<div id="toc" class="toc">' +
+		tocHtml = '<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading">' +
 			'<div class="toctitle" lang="en" dir="ltr">' +
-			'<h2>Contents</h2>' +
+			'<h2 id="mw-toc-heading">Contents</h2>' +
 			'</div>' +
 			'<ul><li></li></ul>' +
 			'</div>';

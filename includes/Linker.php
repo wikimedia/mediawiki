@@ -1666,7 +1666,7 @@ class Linker {
 	}
 
 	/**
-	 * Wraps the TOC in a table and provides the hide/collapse javascript.
+	 * Wraps the TOC in a div with ARIA navigation role and provides the hide/collapse JavaScript.
 	 *
 	 * @since 1.16.3
 	 * @param string $toc Html of the Table Of Contents
@@ -1678,7 +1678,7 @@ class Linker {
 
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
-		return '<div id="toc" class="toc">'
+		return '<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading">'
 			. Html::element( 'input', [
 				'type' => 'checkbox',
 				'role' => 'button',
@@ -1691,7 +1691,7 @@ class Linker {
 				'lang' => $lang->getHtmlCode(),
 				'dir' => $lang->getDir(),
 			] )
-			. "<h2>$title</h2>"
+			. '<h2 id="mw-toc-heading">' . $title . '</h2>'
 			. '<span class="toctogglespan">'
 			. Html::label( '', 'toctogglecheckbox', [
 				'class' => 'toctogglelabel',

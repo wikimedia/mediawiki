@@ -85,6 +85,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   respectively. When linked to, its subpage is used as the target. Otherwise,
   it displays a basic interface to allow the end user to specify the target
   manually.
+* (T139221) The generated table of contents is now a navigation landmark role
+  for assistive technologies.
 * …
 
 === New developer features in 1.35 ===
