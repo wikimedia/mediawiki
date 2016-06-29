@@ -1417,6 +1417,7 @@ return [
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'jquery.getAttrs',
 			'mediawiki.api',
 		],
 		'position' => 'top',
