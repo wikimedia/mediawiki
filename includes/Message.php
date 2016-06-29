@@ -802,10 +802,13 @@ class Message implements MessageSpecifier, Serializable {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			if ( $this->format === 'plain' || $this->format === 'text' ) {
-				return '<' . $this->key . '>';
-			}
-			return '&lt;' . htmlspecialchars( $this->key ) . '&gt;';
+			// Err on the side of safety, ensure that the output
+			// is always html safe in the event the message key is
+			// missing, since in that case its highly likely the
+			// message key is user-controlled.
+			// '⧼' is used instead of '<' to side-step any
+			// double-escaping issues.
+			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
 		# Replace $* with a list of parameters for &uselang=qqx.
