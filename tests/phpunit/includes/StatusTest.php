@@ -376,9 +376,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->warning( 'fooBar!' );
 		$testCases['1StringWarning'] = [
 			$status,
-			"<fooBar!>",
+			"⧼fooBar!⧽",
 			"(wrap-short: (fooBar!))",
-			"<p>&lt;fooBar!&gt;\n</p>",
+			"<p>⧼fooBar!⧽\n</p>",
 			"<p>(wrap-short: (fooBar!))\n</p>",
 		];
 
@@ -387,9 +387,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->warning( 'fooBar2!' );
 		$testCases['2StringWarnings'] = [
 			$status,
-			"* <fooBar!>\n* <fooBar2!>\n",
+			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
 			"(wrap-long: * (fooBar!)\n* (fooBar2!)\n)",
-			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
+			"<ul><li> ⧼fooBar!⧽</li>\n<li> ⧼fooBar2!⧽</li></ul>\n",
 			"<p>(wrap-long: * (fooBar!)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
@@ -397,9 +397,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->warning( new Message( 'fooBar!', [ 'foo', 'bar' ] ) );
 		$testCases['1MessageWarning'] = [
 			$status,
-			"<fooBar!>",
+			"⧼fooBar!⧽",
 			"(wrap-short: (fooBar!: foo, bar))",
-			"<p>&lt;fooBar!&gt;\n</p>",
+			"<p>⧼fooBar!⧽\n</p>",
 			"<p>(wrap-short: (fooBar!: foo, bar))\n</p>",
 		];
 
@@ -408,9 +408,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->warning( new Message( 'fooBar2!' ) );
 		$testCases['2MessageWarnings'] = [
 			$status,
-			"* <fooBar!>\n* <fooBar2!>\n",
+			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
 			"(wrap-long: * (fooBar!: foo, bar)\n* (fooBar2!)\n)",
-			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
+			"<ul><li> ⧼fooBar!⧽</li>\n<li> ⧼fooBar2!⧽</li></ul>\n",
 			"<p>(wrap-long: * (fooBar!: foo, bar)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
