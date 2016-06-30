@@ -19,6 +19,10 @@ production.
 * The deprecated $wgEditEncoding variable has been removed; it was only used
   for Esperanto language character conversion. You are now recommended to use
   input methods provided by the UniversalLanguageSelector extension.
+* When $wgPingback is true, MediaWiki will periodically ping
+  https://www.mediawiki.org/beacon with basic information about the local
+  MediaWiki installation.  This data includes, for example, the type of system,
+  PHP version, and chosen database backend. This behavior is off by default.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
