@@ -1027,6 +1027,7 @@ $wgAutoloadLocalClasses = [
 	'PermissionsError' => __DIR__ . '/includes/exception/PermissionsError.php',
 	'PhpHttpRequest' => __DIR__ . '/includes/HttpFunctions.php',
 	'PhpXmlBugTester' => __DIR__ . '/includes/installer/PhpBugTests.php',
+	'Pingback' => __DIR__ . '/includes/Pingback.php',
 	'PoolCounter' => __DIR__ . '/includes/poolcounter/PoolCounter.php',
 	'PoolCounterRedis' => __DIR__ . '/includes/poolcounter/PoolCounterRedis.php',
 	'PoolCounterWork' => __DIR__ . '/includes/poolcounter/PoolCounterWork.php',

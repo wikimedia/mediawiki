@@ -16,6 +16,10 @@ production.
 * $wgForeignUploadTargets now defaults to `[ 'local' ]`, where `'local'`
   signifies local uploads. A value of `[]` (empty array) now means that
   no upload targets are allowed, effectively disabling the upload dialog.
+* When $wgPingback is true, MediaWiki will periodically ping
+  https://www.mediawiki.org/beacon with basic information about the local
+  MediaWiki installation.  This data includes, for example, the type of system,
+  PHP version, and chosen database backend. This behavior is off by default.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

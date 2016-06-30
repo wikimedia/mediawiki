@@ -64,7 +64,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion',
+				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
 			],
 			$db->getGlobalNames()
 		);
@@ -72,7 +72,8 @@ class LocalSettingsGenerator {
 		$unescaped = [ 'wgRightsIcon', 'wgLogo' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
-			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons'
+			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons',
+			'wgPingback',
 		];
 
 		foreach ( $confItems as $c ) {
@@ -371,6 +372,11 @@ ${serverSetting}
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 \$wgUseInstantCommons = {$this->values['wgUseInstantCommons']};
+
+# Periodically send a pingback to https://www.mediawiki.org/ with basic data
+# about this MediaWiki instance. The Wikimedia Foundation shares this data
+# with MediaWiki developers to help guide future development efforts.
+\$wgPingback = {$this->values['wgPingback']};
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
