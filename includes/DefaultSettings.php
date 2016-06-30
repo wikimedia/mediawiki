@@ -3196,6 +3196,15 @@ $wgHTMLFormAllowTableFormat = true;
 $wgUseMediaWikiUIEverywhere = false;
 
 /**
+ * Whether to label the store-to-database-and-show-to-others button in the editor
+ * as "Save page"/"Save changes" if false (the default) or, if true, instead as
+ * "Publish page"/"Publish changes".
+ *
+ * @since 1.28
+ */
+$wgEditButtonPublishNotSave = false;
+
+/**
  * Permit other namespaces in addition to the w3.org default.
  *
  * Use the prefix for the key and the namespace for the value.
