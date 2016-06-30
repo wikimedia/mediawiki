@@ -232,15 +232,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$totalhits = null;
 		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
 			foreach ( $matches->getInterwikiResults() as $interwikiMatches ) {
-				$currentMatches = $interwikiMatches->getInterwikiResults();
 				$hasInterwikiResults = true;
 
 				// Include number of results if requested
 				if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
-					$totalhits += $currentMatches->getTotalHits();
+					$totalhits += $interwikiMatches->getTotalHits();
 				}
 
-				$result = $currentMatches->next();
+				$result = $interwikiMatches->next();
 				while ( $result ) {
 					$title = $result->getTitle();
 
@@ -267,7 +266,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$titles[] = $title;
 					}
 
-					$result = $currentMatches->next();
+					$result = $interwikiMatches->next();
 				}
 			}
 			if ( $totalhits !== null ) {
