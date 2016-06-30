@@ -2,32 +2,32 @@
  * File description page
  */
 
-div.mw-filepage-resolutioninfo {
+.mw-filepage-resolutioninfo {
 	font-size: smaller;
 }
 
 /*
  * File histories
  */
-h2#filehistory {
+#filehistory {
 	clear: both;
 }
 
-table.filehistory th,
-table.filehistory td {
+.filehistory th,
+.filehistory td {
 	vertical-align: top;
 }
 
-table.filehistory th {
+.filehistory th {
 	text-align: left;
 }
 
-table.filehistory td.mw-imagepage-filesize,
-table.filehistory th.mw-imagepage-filesize {
+.filehistory td.mw-imagepage-filesize,
+.filehistory th.mw-imagepage-filesize {
 	white-space: nowrap;
 }
 
-table.filehistory td.filehistory-selected {
+.filehistory td.filehistory-selected {
 	font-weight: bold;
 }
 
@@ -44,7 +44,7 @@ table.filehistory td.filehistory-selected {
 /*
  * filetoc
  */
-ul#filetoc {
+#filetoc {
 	text-align: center;
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
@@ -72,47 +72,47 @@ ul#filetoc {
 /*
  * Classes for Exif data display
  */
-table.mw_metadata {
+.mw_metadata {
 	font-size: 0.8em;
 	margin-left: 0.5em;
 	margin-bottom: 0.5em;
 	width: 400px;
 }
 
-table.mw_metadata caption {
+.mw_metadata caption {
 	font-weight: bold;
 }
 
-table.mw_metadata th {
+.mw_metadata th {
 	font-weight: normal;
 	text-align: center;
 }
 
-table.mw_metadata td {
+.mw_metadata td {
 	padding: 0.1em;
 }
 
-table.mw_metadata {
+.mw_metadata {
 	border: none;
 	border-collapse: collapse;
 }
 
-table.mw_metadata td,
-table.mw_metadata th {
+.mw_metadata td,
+.mw_metadata th {
 	border: 1px solid #aaa;
 	padding-left: 5px;
 	padding-right: 5px;
 }
 
-table.mw_metadata th {
+.mw_metadata th {
 	background-color: #f9f9f9;
 }
 
-table.mw_metadata td {
+.mw_metadata td {
 	background-color: #fcfcfc;
 }
 
-table.mw_metadata ul.metadata-langlist {
+.mw_metadata ul.metadata-langlist {
 	list-style-type: none;
 	list-style-image: none;
 	padding-right: 5px;
