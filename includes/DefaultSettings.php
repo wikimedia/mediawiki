@@ -8341,6 +8341,21 @@ $wgEventRelayerConfig = [
 ];
 
 /**
+ * Share data about this installation with MediaWiki developers
+ *
+ * When set to true, MediaWiki will periodically ping https://www.mediawiki.org/ with basic
+ * data about this MediaWiki instance. This data includes, for example, the type of system,
+ * PHP version, and chosen database backend. The Wikimedia Foundation shares this data with
+ * MediaWiki developers to help guide future development efforts.
+ *
+ * For details about what data is sent, see: https://www.mediawiki.org/wiki/Pingback
+ *
+ * @var bool
+ * @since 1.28
+ */
+$wgPingback = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

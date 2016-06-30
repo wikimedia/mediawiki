@@ -871,6 +871,10 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	unset( $sessionUser );
 }
 
+if ( $wgRequest->wasPosted() ) {
+	DeferredUpdates::addCallableUpdate( 'Pingback::sendPingback' );
+}
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
