@@ -164,6 +164,7 @@ return [
 	'jquery.arrowSteps' => [
 		'scripts' => 'resources/src/jquery/jquery.arrowSteps.js',
 		'styles' => 'resources/src/jquery/jquery.arrowSteps.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
@@ -328,6 +329,7 @@ return [
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery/jquery.spinner.js',
 		'styles' => 'resources/src/jquery/jquery.spinner.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
@@ -378,6 +380,7 @@ return [
 		'dependencies' => [
 			'jquery.ui.core.styles',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.core.styles' => [
@@ -388,6 +391,7 @@ return [
 				'resources/lib/jquery.ui/themes/smoothness/jquery.ui.theme.css',
 			],
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.accordion' => [
@@ -554,6 +558,7 @@ return [
 	'jquery.ui.mouse' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.mouse.js',
 		'dependencies' => 'jquery.ui.widget',
+		'targets' => [ 'desktop', 'mobile' ],
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.position' => [
@@ -593,6 +598,7 @@ return [
 		'skinStyles' => [
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.selectable.css',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.slider' => [
@@ -653,6 +659,7 @@ return [
 	],
 	'jquery.ui.widget' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.widget.js',
+		'targets' => [ 'desktop', 'mobile' ],
 		'group' => 'jquery.ui',
 	],
 	// Effects
@@ -1011,6 +1018,7 @@ return [
 			'feedback-thanks-title',
 			'feedback-useragent'
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.feedlink' => [
 		'position' => 'top',
@@ -1078,6 +1086,7 @@ return [
 	],
 	'mediawiki.icon' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.inspect' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
@@ -1638,6 +1647,7 @@ return [
 
 	'mediawiki.libs.jpegmeta' => [
 		'scripts' => 'resources/src/mediawiki.libs/mediawiki.libs.jpegmeta.js',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* MediaWiki Page */
