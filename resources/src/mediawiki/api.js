@@ -289,11 +289,19 @@
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			var api = this,
-				abortable;
+				abortable,
+				aborted;
 
-			return ( abortable = api.getToken( tokenType, params.assert ) ).then( function ( token ) {
+			return api.getToken( tokenType, params.assert ).then( function ( token ) {
 				params.token = token;
-				return ( abortable = api.post( params, ajaxOptions ) ).then(
+				abortable = api.post( params, ajaxOptions );
+				// Request was aborted while token request was running, but we
+				// don't want to unnecessarily abort token requests, so immediately
+				// abort the actual request, so it does not actually run
+				if ( aborted ) {
+					abortable.abort();
+				}
+				return abortable.then(
 					// If no error, return to caller as-is
 					null,
 					// Error handler
@@ -302,9 +310,13 @@
 							api.badToken( tokenType );
 							// Try again, once
 							params.token = undefined;
-							return ( abortable = api.getToken( tokenType, params.assert ) ).then( function ( token ) {
+							return api.getToken( tokenType, params.assert ).then( function ( token ) {
 								params.token = token;
-								return ( abortable = api.post( params, ajaxOptions ) ).promise();
+								abortable = api.post( params, ajaxOptions );
+								if ( aborted ) {
+									abortable.abort();
+								}
+								return abortable;
 							} );
 						}
 
@@ -313,7 +325,10 @@
 					}
 				);
 			} ).promise( { abort: function () {
-				abortable.abort();
+				if ( abortable ) {
+					abortable.abort();
+				}
+				aborted = true;
 			} } );
 		},
 
