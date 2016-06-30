@@ -223,13 +223,13 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testToStringKey() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->text() );
-		$this->assertEquals( '<i-dont-exist-evar>', wfMessage( 'i-dont-exist-evar' )->text() );
-		$this->assertEquals( '<i<dont>exist-evar>', wfMessage( 'i<dont>exist-evar' )->text() );
-		$this->assertEquals( '<i-dont-exist-evar>', wfMessage( 'i-dont-exist-evar' )->plain() );
-		$this->assertEquals( '<i<dont>exist-evar>', wfMessage( 'i<dont>exist-evar' )->plain() );
-		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->escaped() );
+		$this->assertEquals( '⧼i-dont-exist-evar⧽', wfMessage( 'i-dont-exist-evar' )->text() );
+		$this->assertEquals( '⧼i&lt;dont&gt;exist-evar⧽', wfMessage( 'i<dont>exist-evar' )->text() );
+		$this->assertEquals( '⧼i-dont-exist-evar⧽', wfMessage( 'i-dont-exist-evar' )->plain() );
+		$this->assertEquals( '⧼i&lt;dont&gt;exist-evar⧽', wfMessage( 'i<dont>exist-evar' )->plain() );
+		$this->assertEquals( '⧼i-dont-exist-evar⧽', wfMessage( 'i-dont-exist-evar' )->escaped() );
 		$this->assertEquals(
-			'&lt;i&lt;dont&gt;exist-evar&gt;',
+			'⧼i&lt;dont&gt;exist-evar⧽',
 			wfMessage( 'i<dont>exist-evar' )->escaped()
 		);
 	}
@@ -237,8 +237,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	public static function provideToString() {
 		return [
 			[ 'mainpage', 'Main Page' ],
-			[ 'i-dont-exist-evar', '<i-dont-exist-evar>' ],
-			[ 'i-dont-exist-evar', '&lt;i-dont-exist-evar&gt;', 'escaped' ],
+			[ 'i-dont-exist-evar', '⧼i-dont-exist-evar⧽' ],
+			[ 'i-dont-exist-evar', '⧼i-dont-exist-evar⧽', 'escaped' ],
+			[ 'script>alert(1)</script', '⧼script&gt;alert(1)&lt;/script⧽', 'escaped' ],
+			[ 'script>alert(1)</script', '⧼script&gt;alert(1)&lt;/script⧽' ],
 		];
 	}
 

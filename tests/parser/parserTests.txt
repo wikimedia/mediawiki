@@ -11013,7 +11013,7 @@ int keyword - non-existing message
 !! wikitext
 {{int:var}}
 !! html
-<p>&lt;var&gt;
+<p>⧼var⧽
 </p>
 !! end
 
