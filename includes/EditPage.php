@@ -4032,7 +4032,13 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
-		$buttonLabelKey = $this->isNew ? 'savearticle' : 'savechanges';
+		$labelAsPublish = $this->mArticle->getContext()->getConfig()->get( 'EditButtonPublishNotSave' )
+		$outputPage->addJsConfigVars( [ 'wgEditButtonPublishNotSave' => $labelAsPublish ] );
+		if ( $labelAsPublish ) {
+			$buttonLabelKey = $this->isNew ? 'publishpage' : 'publishchanges';
+		} else {
+			$buttonLabelKey = $this->isNew ? 'savearticle' : 'savechanges';
+		}
 		$buttonLabel = wfMessage( $buttonLabelKey )->text();
 		$attribs = [
 			'id' => 'wpSave',
