@@ -53,6 +53,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'lh',
 			'prefix' => 'pl',
 			'linktable' => 'pagelinks',
+			'indexes' => [ 'pl_namespace', 'pl_backlinks_namespace' ],
 			'from_namespace' => true,
 			'showredirects' => true,
 		],
@@ -60,6 +61,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'ti',
 			'prefix' => 'tl',
 			'linktable' => 'templatelinks',
+			'indexes' => [ 'tl_namespace', 'tl_backlinks_namespace' ],
 			'from_namespace' => true,
 			'showredirects' => true,
 		],
@@ -67,6 +69,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'fu',
 			'prefix' => 'il',
 			'linktable' => 'imagelinks',
+			'indexes' => [ 'il_to', 'il_backlinks_namespace' ],
 			'from_namespace' => true,
 			'to_namespace' => NS_FILE,
 			'exampletitle' => 'File:Example.jpg',
@@ -248,6 +251,18 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Override any ORDER BY from above with what we calculated earlier.
 		$this->addOption( 'ORDER BY', array_keys( $sortby ) );
+
+		// MySQL's optimizer chokes if we have too many values in "$bl_title IN
+		// (...)" and chooses the wrong index, so specify the correct index to
+		// use for the query. See T139056 for details.
+		if ( !empty( $settings['indexes'] ) ) {
+			list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'];
+			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
+				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
+			} else {
+				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxNoFromNS ] );
+			}
+		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
