@@ -62,10 +62,6 @@ class CopyFileBackend extends Maintenance {
 
 		$rateFile = $this->getOption( 'ratefile' );
 
-		if ( $this->hasOption( 'utf8only' ) && !extension_loaded( 'mbstring' ) ) {
-			$this->error( "Cannot check for UTF-8, mbstring extension missing.", 1 ); // die
-		}
-
 		foreach ( $containers as $container ) {
 			if ( $subDir != '' ) {
 				$backendRel = "$container/$subDir";
