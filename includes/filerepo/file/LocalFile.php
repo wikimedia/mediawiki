@@ -21,6 +21,8 @@
  * @ingroup FileAbstraction
  */
 
+use \MediaWiki\Logger\LoggerFactory;
+
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
@@ -1910,6 +1912,7 @@ class LocalFile extends File {
 	 */
 	function lock() {
 		if ( !$this->locked ) {
+			$logger = LoggerFactory::getInstance( 'LocalFile' );
 			$dbw = $this->repo->getMasterDB();
 			if ( !$dbw->trxLevel() ) {
 				$dbw->begin( __METHOD__ );
@@ -1925,12 +1928,17 @@ class LocalFile extends File {
 				if ( $this->lockedOwnTrx ) {
 					$dbw->rollback( __METHOD__ );
 				}
+				$logger->warning( "Failed to lock '{file}'", [ 'file' => $this->name ] );
+
 				throw new LocalFileLockError( $status );
 			}
 			// Release the lock *after* commit to avoid row-level contention
 			$this->locked++;
-			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths ) {
-				$backend->unlockFiles( $lockPaths, LockManager::LOCK_EX );
+			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths, $logger ) {
+				$status = $backend->unlockFiles( $lockPaths, LockManager::LOCK_EX );
+				if ( !$status->isGood() ) {
+					$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
+				}
 			} );
 		}
 
