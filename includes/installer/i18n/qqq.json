@@ -214,6 +214,8 @@
 	"config-subscribe": "Used as label for the installer checkbox",
 	"config-subscribe-help": "\"Low-volume\" in this context means that there will be few e-mails to that mailing list per time period.",
 	"config-subscribe-noemail": "Error text in MediaWiki installer.",
+	"config-pingback": "Option in the MediaWiki installer to submit data about this installation to MediaWiki.org.",
+	"config-pingback-help": "Explains what data will be shared if the user chooses to submit data to MediaWiki.org.",
 	"config-almost-done": "Status message in the MediaWiki installer.",
 	"config-optional-continue": "Option in the MediaWiki installer to make a more fine-tuned installation.",
 	"config-optional-skip": "Option in the MediaWiki installer to start executing the actual installation and stop asking questions.",

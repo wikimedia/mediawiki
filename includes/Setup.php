@@ -871,6 +871,10 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	unset( $sessionUser );
 }
 
+if ( !$wgCommandLineMode ) {
+	Pingback::schedulePingback();
+}
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 

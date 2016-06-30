@@ -100,6 +100,12 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => 'config-subscribe',
 				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			] ) .
+			$this->parent->getCheckBox( [
+				'var' => 'wgPingback',
+				'label' => 'config-pingback',
+				'help' => $this->parent->getHelpBox( 'config-pingback-help' ),
+				'value' => true,
+			] ) .
 			$this->getFieldsetEnd() .
 			$this->parent->getInfoBox( wfMessage( 'config-almost-done' )->text() ) .
 			// getRadioSet() builds a set of labeled radio buttons.
@@ -129,7 +135,7 @@ class WebInstallerName extends WebInstallerPage {
 		$retVal = true;
 		$this->parent->setVarsFromRequest( [ 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
-			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ] );
+			'_Subscribe', '_SkipOptional', 'wgMetaNamespace', 'wgPingback' ] );
 
 		// Validate site name
 		if ( strval( $this->getVar( 'wgSitename' ) ) === '' ) {
