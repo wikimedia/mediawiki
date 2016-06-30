@@ -1617,7 +1617,53 @@ abstract class Installer {
 			$this->subscribeToMediaWikiAnnounce( $status );
 		}
 
+		if ( $this->getVar( '_Pingback' ) ) {
+			try {
+				$this->sendPingback();
+			} catch ( Exception $e ) { }
+		}
+
 		return $status;
+	}
+
+	/**
+	 * Send information about this MediaWiki instance to MediaWiki.org.
+	 *
+	 * The data is structured and serialized to match the expectations of
+	 * EventLogging, a software suite used by the Wikimedia Foundation for
+	 * logging and processing analytic data.
+	 *
+	 * Compare:
+	 * <https://github.com/wikimedia/mediawiki-extensions-EventLogging/
+	 *   blob/7e5fe4f1ef/includes/EventLogging.php#L32-L74>
+	 *
+	 * The schema for the data is located at:
+	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiInstallPingback>
+	 */
+	private function sendPingback() {
+		global $wgVersion;
+
+		$event = [
+			'schema'           => 'MediaWikiInstallPingback',
+			'revision'         => 15732959,
+			'wiki'             => 'Installer',
+			'event'            => [
+				'database'  => $this->getVar( 'wgDBtype' ),
+				'MediaWiki' => $wgVersion,
+				'PHP'       => PHP_VERSION,
+				'OS'        => PHP_OS . ' ' . php_uname( 'r' ),
+				'arch'      => PHP_INT_SIZE === 8 ? 64 : 32,
+				'curl'      => extension_loaded( 'curl' ),
+				'machine'   => php_uname( 'm' ),
+				'webServer' => isset( $_SERVER['SERVER_SOFTWARE'] )
+					?  $_SERVER['SERVER_SOFTWARE']
+					: PHP_SAPI,
+			],
+		];
+		$json = str_replace( ' ', '\u0020', FormatJson::encode( $event ) );
+		$url = 'https://www.mediawiki.org/beacon/event?' . rawurlencode( $json ) . ';';
+
+		Http::post( $url );
 	}
 
 	/**
