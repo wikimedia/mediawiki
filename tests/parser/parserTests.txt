@@ -18761,7 +18761,7 @@ parsoid
 <div style="color:red">foo</div></nowiki>
 !! html
 <p>&lt;div&gt;foo&lt;/div&gt;
-&lt;div style=&quot;color:red&quot;&gt;foo&lt;/div&gt;
+&lt;div style="color:red"&gt;foo&lt;/div&gt;
 </p>
 !! end
 
