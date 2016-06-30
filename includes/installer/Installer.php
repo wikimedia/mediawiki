@@ -180,6 +180,7 @@ abstract class Installer {
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
 		'wgDefaultSkin',
+		'wgPingback',
 	];
 
 	/**

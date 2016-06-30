@@ -196,6 +196,8 @@
 	"config-subscribe": "Subscribe to the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].",
 	"config-subscribe-help": "This is a low-volume mailing list used for release announcements, including important security announcements.\nYou should subscribe to it and update your MediaWiki installation when new versions come out.",
 	"config-subscribe-noemail": "You tried to subscribe to the release announcements mailing list without providing an email address.\nPlease provide an email address if you wish to subscribe to the mailing list.",
+	"config-pingback": "Share data about this installation with MediaWiki developers.",
+	"config-pingback-help": "If you select this option, MediaWiki will periodically ping https://www.mediawiki.org with basic data about this MediaWiki instance. This data includes, for example, the type of system, PHP version, and chosen database backend. The Wikimedia Foundation shares this data with MediaWiki developers to help guide future development efforts.",
 	"config-almost-done": "You are almost done!\nYou can now skip the remaining configuration and install the wiki right now.",
 	"config-optional-continue": "Ask me more questions.",
 	"config-optional-skip": "I'm bored already, just install the wiki.",
