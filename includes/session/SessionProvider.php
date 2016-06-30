@@ -456,7 +456,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * @warning This will be called early during MediaWiki startup. Do not
 	 *  use $wgUser, $wgLang, $wgOut, $wgParser, or their equivalents via
 	 *  RequestContext from this method!
-	 * @return Message
+	 * @return \Message
 	 */
 	protected function describeMessage() {
 		return wfMessage(

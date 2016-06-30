@@ -14,7 +14,7 @@ class RaggettInternalHHVM extends RaggettBase {
 	 */
 	protected function cleanWrapped( $text, $stderr = false, &$retval = null ) {
 		if ( $stderr ) {
-			throw new Exception( "\$stderr cannot be used with RaggettInternalHHVM" );
+			throw new \Exception( "\$stderr cannot be used with RaggettInternalHHVM" );
 		}
 		$cleansource = tidy_repair_string( $text, $this->config['tidyConfigFile'], 'utf8' );
 		if ( $cleansource === false ) {

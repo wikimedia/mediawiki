@@ -156,7 +156,7 @@ class MWCryptHKDF {
 
 	/**
 	 * Return a singleton instance, based on the global configs.
-	 * @return HKDF
+	 * @return self
 	 * @throws MWException
 	 */
 	protected static function singleton() {
