@@ -996,7 +996,8 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
 
 		$html = ''
-			. $this->getErrors( $submitResult )
+			. $this->getErrorsOrWarnings( $submitResult, 'error' )
+			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
 			. $this->getHeaderText()
 			. $this->getBody()
 			. $this->getHiddenFields()
@@ -1212,23 +1213,45 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string|array|Status $errors
 	 *
+	 * @deprecated since 1.28, use getErrorsOrWarnings() instead
+	 *
 	 * @return string
 	 */
 	public function getErrors( $errors ) {
-		if ( $errors instanceof Status ) {
-			if ( $errors->isOK() ) {
-				$errorstr = '';
+		wfDeprecated( __METHOD__ );
+		return $this->getErrorsOrWarnings( $errors, 'error' );
+	}
+
+	/**
+	 * Returns a formatted list of errors or warnings from the given elements.
+	 *
+	 * @param string|array|Status $elements The set of errors/warnings to process.
+	 * @param string $elementsType Should warnings or errors be returned
+	 * @return string
+	 */
+	public function getErrorsOrWarnings( $elements, $elementsType ) {
+		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
+			throw new DomainException( $elementsType . ' is not a valid type.' );
+		}
+		$elementstr = false;
+		if ( $elements instanceof Status ) {
+			list( $errorStatus, $warningStatus ) = $elements->splitByErrorType();
+			$status = $elementsType === 'error' ? $errorStatus : $warningStatus;
+			if ( $status->isGood() ) {
+				$elementstr = '';
 			} else {
-				$errorstr = $this->getOutput()->parse( $errors->getWikiText() );
+				$elementstr = $this->getOutput()->parse(
+					$status->getWikiText()
+				);
 			}
-		} elseif ( is_array( $errors ) ) {
-			$errorstr = $this->formatErrors( $errors );
-		} else {
-			$errorstr = $errors;
+		} elseif ( is_array( $elements ) && $elementsType === 'error' ) {
+			$elementstr = $this->formatErrors( $elements );
+		} elseif ( $elementsType === 'error' ) {
+			$elementstr = $elements;
 		}
 
-		return $errorstr
-			? Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr )
+		return $elementstr
+			? Html::rawElement( 'div', [ 'class' => $elementsType ], $elementstr )
 			: '';
 	}
 
