@@ -645,4 +645,66 @@ class StatusTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideErrorsWarningsOnly
+	 * @covers Status::getErrorsOnlyStatus
+	 * @covers Status::getWarningsOnlyStatus
+	 */
+	public function testGetErrorsWarningsOnlyStatus( $errorText, $warningText, $type, $errorResult,
+		$warningResult
+	) {
+		$status = Status::newGood();
+		if ( $errorText ) {
+			$status->fatal( $errorText );
+		}
+		if ( $warningText ) {
+			$status->warning( $warningText );
+		}
+		$testStatus = $status->splitByErrorType()[$type];
+		$this->assertEquals( $errorResult, $testStatus->getErrorsByType( 'error' ) );
+		$this->assertEquals( $warningResult, $testStatus->getErrorsByType( 'warning' ) );
+	}
+
+	public static function provideErrorsWarningsOnly() {
+		return [
+			[
+				'Just an error',
+				'Just a warning',
+				0,
+				[
+					0 => [
+						'type' => 'error',
+						'message' => 'Just an error',
+						'params' => []
+					],
+				],
+				[],
+			], [
+				'Just an error',
+				'Just a warning',
+				1,
+				[],
+				[
+					0 => [
+						'type' => 'warning',
+						'message' => 'Just a warning',
+						'params' => []
+					],
+				],
+			], [
+				null,
+				null,
+				1,
+				[],
+				[],
+			], [
+				null,
+				null,
+				0,
+				[],
+				[],
+			]
+		];
+	}
+
 }
