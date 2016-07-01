@@ -46,6 +46,9 @@ use WebRequest;
  * @since 1.27
  */
 final class Session implements \Countable, \Iterator, \ArrayAccess {
+	/** @var null|string[] Encryption algorithm to use */
+	private static $encryptionAlgorithm = null;
+
 	/** @var SessionBackend Session backend */
 	private $backend;
 
@@ -409,24 +412,42 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * Decide what type of encryption to use, based on system capabilities.
 	 * @return array
 	 */
-	private function getEncryptionAlgorithm() {
+	private static function getEncryptionAlgorithm() {
 		global $wgSessionInsecureSecrets;
 
-		if (
-			function_exists( 'openssl_encrypt' )
-			&& in_array( 'aes-256-ctr', openssl_get_cipher_methods(), true )
-		) {
-			return [ 'openssl', 'aes-256-ctr' ];
-		} elseif (
-			function_exists( 'mcrypt_encrypt' )
-			&& in_array( 'rijndael-128', mcrypt_list_algorithms(), true )
-			&& in_array( 'ctr', mcrypt_list_modes(), true )
-		) {
-			return [ 'mcrypt', 'rijndael-128', 'ctr' ];
-		} elseif ( $wgSessionInsecureSecrets ) {
-			// @todo: import a pure-PHP library for AES instead of this
-			return [ 'insecure' ];
-		} else {
+		if ( self::$encryptionAlgorithm === null ) {
+			if ( function_exists( 'openssl_encrypt' ) ) {
+				$methods = openssl_get_cipher_methods();
+				if ( in_array( 'aes-256-ctr', $methods, true ) ) {
+					self::$encryptionAlgorithm = [ 'openssl', 'aes-256-ctr' ];
+					return self::$encryptionAlgorithm;
+				}
+				if ( in_array( 'aes-256-cbc', $methods, true ) ) {
+					self::$encryptionAlgorithm = [ 'openssl', 'aes-256-cbc' ];
+					return self::$encryptionAlgorithm;
+				}
+			}
+
+			if ( function_exists( 'mcrypt_encrypt' )
+				&& in_array( 'rijndael-128', mcrypt_list_algorithms(), true )
+			) {
+				$modes = mcrypt_list_modes();
+				if ( in_array( 'ctr', $modes, true ) ) {
+					self::$encryptionAlgorithm = [ 'mcrypt', 'rijndael-128', 'ctr' ];
+					return self::$encryptionAlgorithm;
+				}
+				if ( in_array( 'cbc', $modes, true ) ) {
+					self::$encryptionAlgorithm = [ 'mcrypt', 'rijndael-128', 'cbc' ];
+					return self::$encryptionAlgorithm;
+				}
+			}
+
+			if ( $wgSessionInsecureSecrets ) {
+				// @todo: import a pure-PHP library for AES instead of this
+				self::$encryptionAlgorithm = [ 'insecure' ];
+				return self::$encryptionAlgorithm;
+			}
+
 			throw new \BadMethodCallException(
 				'Encryption is not available. You really should install the PHP OpenSSL extension, ' .
 				'or failing that the mcrypt extension. But if you really can\'t and you\'re willing ' .
@@ -435,6 +456,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 			);
 		}
 
+		return self::$encryptionAlgorithm;
 	}
 
 	/**
@@ -455,7 +477,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		// Encrypt
 		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
 		$iv = \MWCryptRand::generate( 16, true );
-		$algorithm = $this->getEncryptionAlgorithm();
+		$algorithm = self::getEncryptionAlgorithm();
 		switch ( $algorithm[0] ) {
 			case 'openssl':
 				$ciphertext = openssl_encrypt( $serialized, $algorithm[1], $encKey, OPENSSL_RAW_DATA, $iv );
@@ -464,6 +486,11 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 				}
 				break;
 			case 'mcrypt':
+				// PKCS7 padding
+				$blocksize = mcrypt_get_block_size( $algorithm[1], $algorithm[2] );
+				$pad = $blocksize - ( strlen( $serialized ) % $blocksize );
+				$serialized .= str_repeat( chr( $pad ), $pad );
+
 				$ciphertext = mcrypt_encrypt( $algorithm[1], $encKey, $serialized, $algorithm[2], $iv );
 				if ( $ciphertext === false ) {
 					throw new \UnexpectedValueException( 'Encryption failed' );
@@ -521,7 +548,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		}
 
 		// Decrypt
-		$algorithm = $this->getEncryptionAlgorithm();
+		$algorithm = self::getEncryptionAlgorithm();
 		switch ( $algorithm[0] ) {
 			case 'openssl':
 				$serialized = openssl_decrypt( base64_decode( $ciphertext ), $algorithm[1], $encKey,
@@ -540,6 +567,10 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 					$this->logger->debug( $ex->getMessage(), [ 'exception' => $ex ] );
 					return $default;
 				}
+
+				// Remove PKCS7 padding
+				$pad = ord( substr( $serialized, -1 ) );
+				$serialized = substr( $serialized, 0, -$pad );
 				break;
 			case 'insecure':
 				$ex = new \Exception(
