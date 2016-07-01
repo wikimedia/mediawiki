@@ -47,6 +47,9 @@ class PPFuzzTester {
 	public $entryPoints = [ 'testSrvus', 'testPst', 'testPreprocess' ];
 	public $verbose = false;
 
+	/**
+	 * @var bool|PPFuzzTest
+	 */
 	private static $currentTest = false;
 
 	function execute() {
