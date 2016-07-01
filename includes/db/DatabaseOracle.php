@@ -432,7 +432,7 @@ class DatabaseOracle extends Database {
 
 	/**
 	 * Frees resources associated with the LOB descriptor
-	 * @param ResultWrapper|resource $res
+	 * @param ResultWrapper|ORAResult $res
 	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -443,7 +443,7 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|stdClass $res
+	 * @param ResultWrapper|ORAResult $res
 	 * @return mixed
 	 */
 	function fetchObject( $res ) {
@@ -454,6 +454,10 @@ class DatabaseOracle extends Database {
 		return $res->fetchObject();
 	}
 
+	/**
+	 * @param ResultWrapper|ORAResult $res
+	 * @return mixed
+	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -462,6 +466,10 @@ class DatabaseOracle extends Database {
 		return $res->fetchRow();
 	}
 
+	/**
+	 * @param ResultWrapper|ORAResult $res
+	 * @return int
+	 */
 	function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -470,6 +478,10 @@ class DatabaseOracle extends Database {
 		return $res->numRows();
 	}
 
+	/**
+	 * @param ResultWrapper|ORAResult $res
+	 * @return int
+	 */
 	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
