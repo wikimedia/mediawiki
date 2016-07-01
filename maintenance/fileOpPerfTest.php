@@ -42,8 +42,6 @@ class TestFileOpPerformance extends Maintenance {
 	}
 
 	public function execute() {
-		Profiler::setInstance( new ProfilerSimpleText( [] ) ); // clear
-
 		$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b1' ) );
 		$this->doPerfTest( $backend );
 
@@ -51,9 +49,6 @@ class TestFileOpPerformance extends Maintenance {
 			$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b2' ) );
 			$this->doPerfTest( $backend );
 		}
-
-		Profiler::instance()->setTemplated( true );
-		// NOTE: as of MW1.21, $profiler->logData() is called implicitly by doMaintenance.php.
 	}
 
 	protected function doPerfTest( FileBackend $backend ) {
