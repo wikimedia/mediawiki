@@ -103,6 +103,7 @@
 	//
 	// Styleguide 5.2.
 	.error,
+	.warning,
 	.errorbox,
 	.warningbox,
 	.successbox {
@@ -119,6 +120,13 @@
 		border: 1px solid #fac5c5;
 		background-color: #fae3e3;
 		text-shadow: 0 1px #fae3e3;
+	}
+
+	.warning {
+		color: @colorWarningText;
+		border: 1px solid lighten(@colorWarningText, 30%);
+		background-color: lighten(@colorWarningText, 55%);
+		text-shadow: 0 1px lighten(@colorWarningText, 55%);
 	}
 
 	// This specifies styling for individual field validation error messages.

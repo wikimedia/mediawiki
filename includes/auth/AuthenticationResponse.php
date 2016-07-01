@@ -81,6 +81,9 @@ class AuthenticationResponse {
 	/** @var Message|null I18n message to display in case of UI or FAIL */
 	public $message = null;
 
+	/** @var string Whether the $message is an error or warning message, for styling reasons */
+	public $messageType = 'warning';
+
 	/**
 	 * @var string|null Local user name from authentication.
 	 * May be null if the authentication passed but no local user is known.
@@ -144,6 +147,7 @@ class AuthenticationResponse {
 		$ret = new AuthenticationResponse;
 		$ret->status = AuthenticationResponse::FAIL;
 		$ret->message = $msg;
+		$ret->messageType = 'error';
 		return $ret;
 	}
 
@@ -172,18 +176,23 @@ class AuthenticationResponse {
 	/**
 	 * @param AuthenticationRequest[] $reqs AuthenticationRequests needed to continue
 	 * @param Message $msg
+	 * @param string $msgtype
 	 * @return AuthenticationResponse
 	 * @see AuthenticationResponse::UI
 	 */
-	public static function newUI( array $reqs, Message $msg ) {
+	public static function newUI( array $reqs, Message $msg, $msgtype = 'warning' ) {
 		if ( !$reqs ) {
 			throw new \InvalidArgumentException( '$reqs may not be empty' );
+		}
+		if ( $msgtype !== 'warning' && $msgtype !== 'error' ) {
+			throw new \InvalidArgumentException( $msgtype . ' is not a valid message type.' );
 		}
 
 		$ret = new AuthenticationResponse;
 		$ret->status = AuthenticationResponse::UI;
 		$ret->neededRequests = $reqs;
 		$ret->message = $msg;
+		$ret->messageType = $msgtype;
 		return $ret;
 	}
 
