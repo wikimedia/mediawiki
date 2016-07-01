@@ -71,3 +71,4 @@ Thumbs.db
 /tags
 /.htaccess
 /.htpasswd
+.phan/issues

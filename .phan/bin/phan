@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Root directory of project
+export ROOT="$(git rev-parse --show-toplevel)"
+
+# Phan's directory for executables
+export BIN="${ROOT}/.phan/bin"
+
+# Phan's issues directory
+export ISSUES="${ROOT}/.phan/issues"
+
+mkdir -p "${ISSUES}"
+
+# Go to the root of this git repo
+cd "$ROOT"
+
+# Get the current hash of HEAD
+export REV="$(git rev-parse HEAD)"
+
+# Destination for issues found
+export RUN="${ISSUES}/issues-${REV}"
+
+# Run the analysis, emitting output to the
+# issues file.
+# .inc files are explicitly added, as phan only
+# automatically handles .php
+docker run \
+    "--volume=${ROOT}:/mnt/src" \
+    --rm \
+    cloudflare/phan:edge \
+    --progress-bar \
+    --project-root-directory "/mnt/src" \
+    --output "/mnt/src/.phan/issues/issues-${REV}" \
+    -j 4 \
+    maintenance/7zip.inc maintenance/backupPrefetch.inc maintenance/commandLine.inc maintenance/sqlite.inc maintenance/userOptions.inc \
+    maintenance/backup.inc maintenance/cleanupTable.inc maintenance/importImages.inc maintenance/userDupes.inc maintenance/language/checkLanguage.inc \
+    maintenance/language/languages.inc
+
+# Re-link the latest directory
+rm -f "${ISSUES}/latest"
+ln -s "${RUN}" "${ISSUES}/latest"
+
+# Output any issues that were found
+cat "${RUN}"
