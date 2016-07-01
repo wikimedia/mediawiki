@@ -74,6 +74,9 @@ class TextPassDumper extends BackupDumper {
 	 */
 	protected $spawnErr = false;
 
+	/**
+	 * @var bool|XmlDumpWriter
+	 */
 	protected $xmlwriterobj = false;
 
 	protected $timeExceeded = false;

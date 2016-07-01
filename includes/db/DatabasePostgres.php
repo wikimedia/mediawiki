@@ -1383,6 +1383,11 @@ SQL;
 		return (bool)$exists;
 	}
 
+	/**
+	 * @var string $table
+	 * @var string $field
+	 * @return PostgresField|null
+	 */
 	function fieldInfo( $table, $field ) {
 		return PostgresField::fromText( $this, $table, $field );
 	}

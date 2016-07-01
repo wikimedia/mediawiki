@@ -533,11 +533,10 @@ class FileRepo {
 	public function findFileFromKey( $sha1, $options = [] ) {
 		$time = isset( $options['time'] ) ? $options['time'] : false;
 		# First try to find a matching current version of a file...
-		if ( $this->fileFactoryKey ) {
-			$img = call_user_func( $this->fileFactoryKey, $sha1, $this, $time );
-		} else {
+		if ( !$this->fileFactoryKey ) {
 			return false; // find-by-sha1 not supported
 		}
+		$img = call_user_func( $this->fileFactoryKey, $sha1, $this, $time );
 		if ( $img && $img->exists() ) {
 			return $img;
 		}

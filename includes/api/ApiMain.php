@@ -138,7 +138,9 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult, $mErrorFormatter, $mContinuationManager;
+	private $mModuleMgr, $mResult, $mErrorFormatter;
+	/** @var ApiContinuationManager|null */
+	private $mContinuationManager;
 	private $mAction;
 	private $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage;
