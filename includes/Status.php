@@ -105,6 +105,27 @@ class Status {
 		return new self( $sv );
 	}
 
+	public static function getErrorsOnlyStatus( Status $status ) {
+		return self::getStatusOnlyWith( $status, 'error' );
+	}
+
+	public static function getWarningsOnlyStatus( Status $status ) {
+		return self::getStatusOnlyWith( $status, 'warning' );
+	}
+
+	private static function getStatusOnlyWith( Status $status, $type ) {
+		if ( !in_array( $type, [ 'error', 'warning' ] ) ) {
+			throw new DomainException( 'Expected $type to be error or warning, ' . $type .
+				' given.' );
+		}
+		$newStatus = new Status();
+		foreach ( $status->getErrorsByType( $type ) as $msg ) {
+			$newStatus->$type( $msg['message'] );
+		}
+
+		return $newStatus;
+	}
+
 	/**
 	 * Change operation result
 	 *
@@ -314,6 +335,7 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
+	 *
 	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the

@@ -996,7 +996,8 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
 
 		$html = ''
-			. $this->getErrors( $submitResult )
+			. $this->getErrorsOrWarnings( $submitResult, 'error' )
+			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
 			. $this->getHeaderText()
 			. $this->getBody()
 			. $this->getHiddenFields()
@@ -1208,29 +1209,40 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Format and display an error message stack.
+	 * Returns a formatted list of errors or warnings from the given elements.
 	 *
-	 * @param string|array|Status $errors
-	 *
+	 * @param string|array|Status $elements The set of errors/warnings to process.
+	 * @param string $elementsType Should warnings or errors be returned
 	 * @return string
 	 */
-	public function getErrors( $errors ) {
-		if ( $errors instanceof Status ) {
-			if ( $errors->isOK() ) {
-				$errorstr = '';
+	public function getErrorsOrWarnings( $elements, $elementsType ) {
+		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
+			throw new DomainException( $elementsType . ' is not a valid type.' );
+		}
+		if ( $elements instanceof Status ) {
+			if ( $elementsType === 'error' ) {
+				$status = Status::getErrorsOnlyStatus( $elements );
 			} else {
-				$errorstr = $this->getOutput()->parse( $errors->getWikiText() );
+				$status = Status::getWarningsOnlyStatus( $elements );
 			}
-		} elseif ( is_array( $errors ) ) {
-			$errorstr = $this->formatErrors( $errors );
+			if ( $status->isGood() ) {
+				$elementstr = '';
+			} else {
+				$elementstr = $this->getOutput()->parse(
+					$status->getWikiText()
+				);
+			}
+		} elseif ( is_array( $elements ) ) {
+			$elementstr = $this->formatErrors( $elements );
 		} else {
-			$errorstr = $errors;
+			$elementstr = $elements;
 		}
 
-		return $errorstr
-			? Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr )
+		return $elementstr
+			? Html::rawElement( 'div', [ 'class' => $elementsType ], $elementstr )
 			: '';
 	}
+
 
 	/**
 	 * Format a stack of error messages into a single HTML string
