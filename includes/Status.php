@@ -106,6 +106,28 @@ class Status {
 	}
 
 	/**
+	 * Returns a nearly identical Status object to this one, with the exception, that only error
+	 * messages are preserved. All other messages are removed.
+	 *
+	 * @return Status The new Status object with error messages only
+	 */
+	public function getErrorsOnlyStatus() {
+		$splittedStatusValue = $this->sv->splitByErrorType();
+		return new Status( $splittedStatusValue[0] );
+	}
+
+	/**
+	 * Returns a nearly identical Status object to this one, with the exception, that only warning
+	 * messages are preserved. All other messages are removed.
+	 *
+	 * @return Status The new Status object with warning messages only
+	 */
+	public function getWarningsOnlyStatus() {
+		$splittedStatusValue = $this->sv->splitByErrorType();
+		return new Status( $splittedStatusValue[1] );
+	}
+
+	/**
 	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
@@ -314,6 +336,7 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
+	 *
 	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
