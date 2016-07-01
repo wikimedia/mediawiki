@@ -25,6 +25,7 @@ class AuthenticationResponseTest extends \MediaWikiTestCase {
 	public function testConstructors( $constructor, $args, $expect ) {
 		if ( is_array( $expect ) ) {
 			$res = new AuthenticationResponse();
+			$res->messageType = 'warning';
 			foreach ( $expect as $field => $value ) {
 				$res->$field = $value;
 			}
@@ -60,6 +61,7 @@ class AuthenticationResponseTest extends \MediaWikiTestCase {
 			[ 'newFail', [ $msg ], [
 				'status' => AuthenticationResponse::FAIL,
 				'message' => $msg,
+				'messageType' => 'error',
 			] ],
 
 			[ 'newRestart', [ $msg ], [
@@ -75,6 +77,21 @@ class AuthenticationResponseTest extends \MediaWikiTestCase {
 				'status' => AuthenticationResponse::UI,
 				'neededRequests' => [ $req ],
 				'message' => $msg,
+				'messageType' => 'warning',
+			] ],
+
+			[ 'newUI', [ [ $req ], $msg, 'warning' ], [
+				'status' => AuthenticationResponse::UI,
+				'neededRequests' => [ $req ],
+				'message' => $msg,
+				'messageType' => 'warning',
+			] ],
+
+			[ 'newUI', [ [ $req ], $msg, 'error' ], [
+				'status' => AuthenticationResponse::UI,
+				'neededRequests' => [ $req ],
+				'message' => $msg,
+				'messageType' => 'error',
 			] ],
 			[ 'newUI', [ [], $msg ],
 				new \InvalidArgumentException( '$reqs may not be empty' )
