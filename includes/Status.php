@@ -314,6 +314,7 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
+	 * @see getMessageFromArray
 	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
@@ -322,19 +323,33 @@ class Status {
 	 * @return Message
 	 */
 	protected function getErrorMessage( $error, $lang = null ) {
-		if ( is_array( $error ) ) {
-			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
-				$msg = $error['message'];
-			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				$msg = wfMessage( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ) );
+		return $this->getMessageFromArray( $error, $lang );
+	}
+
+	/**
+	 * Return the message for a single error or warning.
+	 *
+	 * @param mixed $element With an array & two values keyed by
+	 * 'message' and 'params', use those keys-value pairs.
+	 * Otherwise, if its an array, just use the first value as the
+	 * message and the remaining items as the params.
+	 * @param string|Language $lang Language to use for processing messages
+	 * @return Message
+	 */
+	public function getMessageFromArray( $element, $lang = null ) {
+		if ( is_array( $element ) ) {
+			if ( isset( $element['message'] ) && $element['message'] instanceof Message ) {
+				$msg = $element['message'];
+			} elseif ( isset( $element['message'] ) && isset( $element['params'] ) ) {
+				$msg = wfMessage( $element['message'],
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $element['params'] ) ) );
 			} else {
-				$msgName = array_shift( $error );
+				$msgName = array_shift( $element );
 				$msg = wfMessage( $msgName,
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $element ) ) );
 			}
 		} else {
-			$msg = wfMessage( $error );
+			$msg = wfMessage( $element );
 		}
 
 		$msg->inLanguage( $this->languageFromParam( $lang ) );
