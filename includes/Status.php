@@ -105,6 +105,20 @@ class Status {
 		return new self( $sv );
 	}
 
+	public static function getErrorsOnlyStatus( Status $status ) {
+		return new Status( StatusValue::getStatusValueOnlyWith(
+			$status->getStatusValue(),
+			'error'
+		) );
+	}
+
+	public static function getWarningsOnlyStatus( Status $status ) {
+		return new Status( StatusValue::getStatusValueOnlyWith(
+			$status->getStatusValue(),
+			'warning'
+		) );
+	}
+
 	/**
 	 * Change operation result
 	 *
@@ -314,6 +328,7 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
+	 *
 	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the

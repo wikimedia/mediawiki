@@ -79,6 +79,24 @@ class StatusValue {
 		return $result;
 	}
 
+	public static function getStatusValueOnlyWith( StatusValue $statusValue, $type ) {
+		if ( !in_array( $type, [ 'error', 'warning' ] ) ) {
+			throw new DomainException( 'Expected $type to be error or warning, ' . $type .
+				' given.' );
+		}
+		$newStatusValue = clone $statusValue;
+		if ( $type === 'warning' ) {
+			$newStatusValue->ok = true;
+		}
+		$newStatusValue->errors = array_filter( $newStatusValue->errors, function ( $item ) use( $type ) {
+			if ( $item['type'] === $type ) {
+				return true;
+			}
+		} );
+
+		return $newStatusValue;
+	}
+
 	/**
 	 * Returns whether the operation completed and didn't have any error or
 	 * warnings
