@@ -48,7 +48,7 @@ class SearchInputWidget extends TitleInputWidget {
 			$this->performSearchOnClick = $config['performSearchOnClick'];
 		}
 
-		if ( $config['dataLocation'] ) {
+		if ( isset( $config['dataLocation'] ) ) {
 			// identifies the location of the search bar for tracking purposes
 			$this->dataLocation = $config['dataLocation'];
 		}
