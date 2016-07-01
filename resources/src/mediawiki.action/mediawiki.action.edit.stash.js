@@ -64,8 +64,10 @@
 		function onTextKeyUp( e ) {
 			// Ignore keystrokes that don't modify text, like cursor movements.
 			// See <http://www.javascripter.net/faq/keycodes.htm> and
-			// <http://www.quirksmode.org/js/keys.html>. We don't have to be
-			// exhaustive, because the cost of misfiring is low.
+			// <http://www.quirksmode.org/js/keys.html>. We don't have to be exhaustive,
+			// because the cost of misfiring is low.
+			// * Key code 33-40: Page Up/Down, End, Home, arrow keys.
+			// * Key code 16-18: Shift, Ctrl, Alt.
 			if ( ( e.which >= 33 && e.which <= 40 ) || ( e.which >= 16 && e.which <= 18 ) ) {
 				return;
 			}
