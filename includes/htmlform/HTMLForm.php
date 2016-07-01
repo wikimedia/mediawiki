@@ -977,6 +977,7 @@ class HTMLForm extends ContextSource {
 
 		$html = ''
 			. $this->getErrors( $submitResult )
+			. $this->getWarnings( $submitResult )
 			. $this->getHeaderText()
 			. $this->getBody()
 			. $this->getHiddenFields()
@@ -1189,21 +1190,58 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getErrors( $errors ) {
-		if ( $errors instanceof Status ) {
-			if ( $errors->isOK() ) {
-				$errorstr = '';
+		return $this->getErrorsOrWarnings( $errors, 'error' );
+	}
+
+	/**
+	 * Format and display an error message stack.
+	 *
+	 * @param string|array|Status $errors
+	 *
+	 * @return string
+	 */
+	public function getWarnings( $warnings ) {
+		return $this->getErrorsOrWarnings( $warnings, 'warning' );
+	}
+
+	public function getErrorsOrWarnings( $elements, $elementsType ) {
+		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
+			throw new DomainException( $elementsType . ' is not a valid error or warnings type.' );
+		}
+		if ( $elements instanceof Status ) {
+			if ( $elementsType === 'error' ? $elements->isOK() : $elements->isGood() ) {
+				$elementstr = '';
 			} else {
-				$errorstr = $this->getOutput()->parse( $errors->getWikiText() );
+				if ( $elementsType === 'warning' ) {
+					$elementstr = $this->getOutput()->parse(
+						$this->getWikitextFromStatusWarnings(
+							$elements
+						)
+					);
+				} else {
+					$elementstr = $elements->getWikiText();
+				}
 			}
-		} elseif ( is_array( $errors ) ) {
-			$errorstr = $this->formatErrors( $errors );
+		} elseif ( is_array( $elements ) ) {
+			$elementstr = $this->formatErrors( $elements );
 		} else {
-			$errorstr = $errors;
+			$elementstr = $elements;
 		}
 
-		return $errorstr
-			? Html::rawElement( 'div', [ 'class' => 'error' ], $errorstr )
+		return $elementstr
+			? Html::rawElement( 'div', [ 'class' => $elementsType ], $elementstr )
 			: '';
+	}
+
+	private function getWikitextFromStatusWarnings( Status $status) {
+		if ( $status->isGood() ) {
+			return '';
+		}
+		$warnings = '';
+		foreach ( $status->getErrorsByType( 'warning' ) as $warning ) {
+			$warnings .= $warning['message'];
+		}
+		return $warnings;
 	}
 
 	/**

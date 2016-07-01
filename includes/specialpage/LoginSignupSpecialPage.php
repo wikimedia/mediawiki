@@ -495,7 +495,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$form = $this->getAuthForm( $requests, $this->authAction, $msg, $msgtype );
 		$form->prepareForm();
-		$formHtml = $form->getHTML( $msg ? Status::newFatal( $msg ) : false );
+		$submitStatus = false;
+		if ( $msg ) {
+			$submitStatus = Status::newGood();
+			$submitStatus->warning( $msg );
+		}
+		$formHtml = $form->getHTML( $submitStatus );
 
 		$out->addHTML( $this->getPageHtml( $formHtml ) );
 	}
