@@ -5612,11 +5612,11 @@ $wgQueryPageDefaultLimit = 50;
  */
 $wgPasswordAttemptThrottle = [
 	// Short term limit
-	[ 'count' => 5, 'seconds' => 300 ],
+	#[ 'count' => 5, 'seconds' => 300 ],
 	// Long term limit. We need to balance the risk
 	// of somebody using this as a DoS attack to lock someone
 	// out of their account, and someone doing a brute force attack.
-	[ 'count' => 150, 'seconds' => 60*60*48 ],
+	#[ 'count' => 150, 'seconds' => 60*60*48 ],
 ];
 
 /**
