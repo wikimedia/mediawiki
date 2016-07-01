@@ -6572,13 +6572,15 @@ T107652: <ref>s in templates that also generate table cell attributes should be 
 
 !! test
 Table with row followed by newlines and table heading
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 |-
 
 ! foo
 |}
-!! html
+!! html/*
 <table>
 
 
@@ -6590,13 +6592,15 @@ Table with row followed by newlines and table heading
 
 !! test
 Table with empty line following the start tag
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 
 |-
 | foo
 |}
-!! html
+!! html/*
 <table>
 
 
@@ -7082,8 +7086,9 @@ parsoid=wt2html
 </tbody></table>
 !! end
 
+# T137406: Whitespace in the HTML
 !! test
-Strip unsupported table tags, but introduce row wikitext as required
+1. Generate correct wikitext for tables with thead/tbody/tfoot
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -7115,22 +7120,17 @@ parsoid=html2wt
 !! wikitext
 {|
 |+Test
-
 !Month
 !Savings
-
 |-
 |January
 |$100
-
 |-
 |February
 |$80
-
 |-
 |Sum
 |$180
-
 |}
 !! html/php+tidy
 <table>
@@ -7152,6 +7152,21 @@ parsoid=html2wt
 <td>$180</td>
 </tr>
 </table>
+!! end
+
+# T137406: No whitespace in the HTML
+!! test
+2. Generate correct wikitext for tables with thead/tbody/tfoot
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><thead><tr><th>heading</th></tr></thead><tbody><tr><td>foo</td></tr></tbody></table>
+!! wikitext
+{|
+!heading
+|-
+|foo
+|}
 !! end
 
 !! test
@@ -8335,8 +8350,6 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Interlanguage link
-!! options
-parsoid=wt2html,wt2wt,html2html
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
@@ -8365,8 +8378,6 @@ Blah blah blah
 
 !! test
 Double interlanguage link
-!! options
-parsoid=wt2html,wt2wt,html2html
 !! wikitext
 Blah blah blah
 [[es:Spanish]]
@@ -23165,14 +23176,12 @@ Tables: 2c. Nested in td -- no escaping needed
 parsoid=html2wt
 !! html/*
 <table>
-
 <tr>
 <td>foo!!bar
 </td></tr></table>
 
 !! wikitext
 {|
-
 |foo!!bar
 |}
 !! end
@@ -23183,14 +23192,12 @@ Tables: 3a. Nested in th
 parsoid=html2wt
 !! html/*
 <table>
-
 <tr>
 <th>foo!bar
 </th></tr></table>
 
 !! wikitext
 {|
-
 !foo!bar
 |}
 !! end
@@ -23257,7 +23264,6 @@ Tables: 4a. Escape -
 parsoid=html2wt
 !! html/*
 <table>
-
 <tr>
 <th>-bar
 </th></tr>
@@ -23267,9 +23273,7 @@ parsoid=html2wt
 
 !! wikitext
 {|
-
 !-bar
-
 |-
 |<nowiki>-bar</nowiki>
 |}
@@ -23281,7 +23285,6 @@ Tables: 4b. Escape +
 parsoid=html2wt
 !! html/*
 <table>
-
 <tr>
 <th>+bar
 </th></tr>
@@ -23291,9 +23294,7 @@ parsoid=html2wt
 
 !! wikitext
 {|
-
 !+bar
-
 |-
 |<nowiki>+bar</nowiki>
 |}
