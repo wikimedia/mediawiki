@@ -22,7 +22,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"ਪ੍ਰਚਾਰਕ"
+			"ਪ੍ਰਚਾਰਕ",
+			"Tow"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -160,7 +161,7 @@
 	"morenotlisted": "ਇਹ ਸੂਚੀ ਪੂਰੀ ਨਹੀਂ ਹੈ।",
 	"mypage": "ਸਫ਼ਾ",
 	"mytalk": "ਗੱਲ-ਬਾਤ",
-	"anontalk": "ਇਸ IP ਲਈ ਗੱਲ-ਬਾਤ",
+	"anontalk": "ਗੱਲ-ਬਾਤ",
 	"navigation": "ਫੇਰੀ ਪਾਓ",
 	"and": "&#32;ਅਤੇ",
 	"qbfind": "ਖੋਜ",
@@ -1772,7 +1773,7 @@
 	"tooltip-t-recentchangeslinked": "ਇਸ ਸਫ਼ੇ ਤੋਂ ਲਿੰਕ ਕੀਤੇ ਸਫ਼ਿਆਂ ਵਿਚ ਤਾਜ਼ਾ ਤਬਦੀਲੀਆਂ",
 	"tooltip-feed-rss": "ਇਸ ਸਫ਼ੇ ਲਈ RSS ਫ਼ੀਡ",
 	"tooltip-feed-atom": "ਇਸ ਸਫ਼ੇ ਦੀ ਐਟਮ ਫ਼ੀਡ",
-	"tooltip-t-contributions": "ਇਸ ਵਰਤੋਂਕਾਰ ਦੀ ਯੋਗਦਾਨ ਸੂਚੀ",
+	"tooltip-t-contributions": "{{GENDER:$1|}} ਦੀ ਯੋਗਦਾਨ ਸੂਚੀ",
 	"tooltip-t-emailuser": "ਇਸ ਵਰਤੋਂਕਾਰ ਨੂੰ ਈ-ਮੇਲ ਭੇਜੋ",
 	"tooltip-t-upload": "ਫ਼ਾਈਲਾਂ ਅਪਲੋਡ ਕਰੋ",
 	"tooltip-t-specialpages": "ਸਾਰੇ ਖ਼ਾਸ ਸਫ਼ਿਆਂ ਦੀ ਲਿਸਟ",

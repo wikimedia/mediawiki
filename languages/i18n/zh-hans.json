@@ -2722,7 +2722,7 @@
 	"filedelete-archive-read-only": "存档目录“$1”在网页服务器中不可写。",
 	"previousdiff": "←上一编辑",
 	"nextdiff": "下一编辑→",
-	"mediawarning": "'''警告'''：该文件类型可能含有恶意代码。执行后你的系统可能受损。",
+	"mediawarning": "<strong>警告：</strong>该文件类型可能含有恶意代码。执行后您的系统可能受损。",
 	"imagemaxsize": "图像尺寸限制：<br />''（文件说明页面）''",
 	"thumbsize": "缩略图尺寸：",
 	"widthheightpage": "$1×$2，$3页",

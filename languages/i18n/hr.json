@@ -2378,7 +2378,7 @@
 	"svg-long-error": "Nevaljana SVG datoteka: $1",
 	"show-big-image": "Vidi sliku u punoj veličini",
 	"show-big-image-preview": "Veličina ovog prikaza: $1.",
-	"show-big-image-preview-differ": "Veličina ovog $3 pretpregleda ove $2 datoteke: $1.",
+	"show-big-image-preview-differ": "Veličina ovog $3 prikaza ove $2 datoteke: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Druga rezolucija|Ostale rezolucije}}: $1.",
 	"show-big-image-size": "$1 × $2 piksela",
 	"file-info-gif-looped": "animacija se ponavlja",

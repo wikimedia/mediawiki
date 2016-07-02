@@ -910,6 +910,7 @@
 	"sharedupload": "Pún tóng-on lòi-chhṳ yî $1, khî khó-nèn chhai khì-thâ kie-va̍k hong-muk tú fûn-ngìn yin-yung.",
 	"sharedupload-desc-here": "邇文件來自於$1，其可能在其它計劃項目肚分應用。\n其在[$2文件描述頁面]介片上嘅描述在下背展示。",
 	"uploadnewversion-linktext": "上傳邇隻文件嘅新版本",
+	"shared-repo-name-wikimediacommons": "Wikimedia Commons",
 	"upload-disallowed-here": "Ngì mò-fap fu̍k-koi liá-chak tóng-on.",
 	"filedelete-submit": "刪除",
 	"mimesearch": "MIME搜尋",
