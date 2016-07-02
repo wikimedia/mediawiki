@@ -3687,7 +3687,7 @@ class Parser {
 			return $obj->tc_contents;
 		}
 
-		$req = MWHttpRequest::factory( $url, [], __METHOD__ );
+		$req = MWHttpRequest::factory( $url, array( 'sslVerifyCert' => false ), __METHOD__ );
 		$status = $req->execute(); // Status object
 		if ( $status->isOK() ) {
 			$text = $req->getContent();
