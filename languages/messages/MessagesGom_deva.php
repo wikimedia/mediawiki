@@ -38,5 +38,5 @@ $namespaceAliases = [
 	'श्रेणी_चर्चा' => NS_CATEGORY_TALK,
 	'मिडिया' => NS_MEDIA,
 	'उपेगकर्तो' => NS_USER,
-	'उपेगकर्तो चर्चा' => NS_USER_TALK
+	'उपेगकर्तो_चर्चा' => NS_USER_TALK
 ];
