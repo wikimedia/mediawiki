@@ -925,15 +925,15 @@ class DifferenceEngine extends ContextSource {
 			$wgExternalDiffEngine = false;
 		}
 
-		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
-			if ( function_exists( 'wikidiff2_do_diff' ) ) {
-				# Better external diff engine, the 2 may some day be dropped
-				# This one does the escaping and segmenting itself
-				$text = wikidiff2_do_diff( $otext, $ntext, 2 );
-				$text .= $this->debug( 'wikidiff2' );
+		if ( function_exists( 'wikidiff2_do_diff' )
+			&& ( $wgExternalDiffEngine == false || $wgExternalDiffEngine == 'wikidiff2' )
+		) {
+			# Better external diff engine, the 2 may some day be dropped
+			# This one does the escaping and segmenting itself
+			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+			$text .= $this->debug( 'wikidiff2' );
 
-				return $text;
-			}
+			return $text;
 		} elseif ( $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
 			$tmpDir = wfTempDir();
