@@ -174,22 +174,53 @@ class ApiMain extends ApiBase {
 
 		if ( isset( $request ) ) {
 			$this->getContext()->setRequest( $request );
+		} else {
+			$request = $this->getRequest();
 		}
 
-		$this->mInternalMode = ( $this->getRequest() instanceof FauxRequest );
+		$this->mInternalMode = ( $request instanceof FauxRequest );
 
 		// Special handling for the main module: $parent === $this
 		parent::__construct( $this, $this->mInternalMode ? 'main_int' : 'main' );
 
-		if ( !$this->mInternalMode ) {
-			// Impose module restrictions.
-			// If the current user cannot read,
-			// Remove all modules other than login
-			global $wgUser;
+		$config = $this->getConfig();
 
+		if ( !$this->mInternalMode ) {
+			// Log if a request with a non-whitelisted Origin header is seen
+			// with session cookies.
+			$originHeader = $request->getHeader( 'Origin' );
+			if ( $originHeader === false ) {
+				$origins = [];
+			} else {
+				$originHeader = trim( $originHeader );
+				$origins = preg_split( '/\s+/', $originHeader );
+			}
+			$sessionCookies = array_intersect(
+				array_keys( $_COOKIE ),
+				MediaWiki\Session\SessionManager::singleton()->getVaryCookies()
+			);
+			if ( $origins && $sessionCookies && (
+				count( $origins ) !== 1 || !self::matchOrigin(
+					$origins[0],
+					$config->get( 'CrossSiteAJAXdomains' ),
+					$config->get( 'CrossSiteAJAXdomainExceptions' )
+				)
+			) ) {
+				MediaWiki\Logger\LoggerFactory::getInstance( 'cors' )->warning(
+					'Non-whitelisted CORS request with session cookies', [
+						'origin' => $originHeader,
+						'cookies' => $sessionCookies,
+						'ip' => $request->getIP(),
+						'userAgent' => $this->getUserAgent(),
+						'wiki' => wfWikiID(),
+					]
+				);
+			}
+
+			// If we're in a mode that breaks the same-origin policy, strip
+			// user credentials for security.
 			if ( $this->lacksSameOriginSecurity() ) {
-				// If we're in a mode that breaks the same-origin policy, strip
-				// user credentials for security.
+				global $wgUser;
 				wfDebug( "API: stripping user credentials when the same-origin policy is not applied\n" );
 				$wgUser = new User();
 				$this->getContext()->setUser( $wgUser );
@@ -214,7 +245,6 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		$config = $this->getConfig();
 		$this->mModuleMgr = new ApiModuleManager( $this );
 		$this->mModuleMgr->addModules( self::$Modules, 'action' );
 		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
