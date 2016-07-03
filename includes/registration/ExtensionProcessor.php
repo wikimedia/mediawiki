@@ -7,7 +7,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected static $globalSettings = array(
+	protected static $globalSettings = [
 		'ResourceLoaderSources',
 		'ResourceLoaderLESSVars',
 		'ResourceLoaderLESSImportPaths',
@@ -23,6 +23,9 @@ class ExtensionProcessor implements Processor {
 		'AvailableRights',
 		'ContentHandlers',
 		'ConfigRegistry',
+		'SessionProviders',
+		'AuthManagerAutoConfig',
+		'CentralIdLookupProviders',
 		'RateLimits',
 		'RecentChangesFlags',
 		'MediaHandlers',
@@ -33,6 +36,7 @@ class ExtensionProcessor implements Processor {
 		'LogTypes',
 		'LogRestrictions',
 		'FilterLogTypes',
+		'ActionFilteredLogs',
 		'LogNames',
 		'LogHeaders',
 		'LogActions',
@@ -44,7 +48,8 @@ class ExtensionProcessor implements Processor {
 		'APIPropModules',
 		'APIListModules',
 		'ValidSkinNames',
-	);
+		'FeedClasses',
+	];
 
 	/**
 	 * Mapping of global settings to their specific merge strategies.
@@ -53,25 +58,26 @@ class ExtensionProcessor implements Processor {
 	 * @see getExtractedInfo
 	 * @var array
 	 */
-	protected static $mergeStrategies = array(
+	protected static $mergeStrategies = [
 		'wgGroupPermissions' => 'array_plus_2d',
 		'wgRevokePermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
-		// credits are handled in the ExtensionRegistry
-		//'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',
 		'wgNamespaceProtection' => 'array_plus',
 		'wgCapitalLinkOverrides' => 'array_plus',
-	);
+		'wgRateLimits' => 'array_plus_2d',
+		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+	];
 
 	/**
 	 * Keys that are part of the extension credits
 	 *
 	 * @var array
 	 */
-	protected static $creditsAttributes = array(
+	protected static $creditsAttributes = [
 		'name',
 		'namemsg',
 		'author',
@@ -80,7 +86,7 @@ class ExtensionProcessor implements Processor {
 		'description',
 		'descriptionmsg',
 		'license-name',
-	);
+	];
 
 	/**
 	 * Things that are not 'attributes', but are not in
@@ -88,7 +94,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected static $notAttributes = array(
+	protected static $notAttributes = [
 		'callback',
 		'Hooks',
 		'namespaces',
@@ -102,7 +108,8 @@ class ExtensionProcessor implements Processor {
 		'ParserTestFiles',
 		'AutoloadClasses',
 		'manifest_version',
-	);
+		'load_composer_autoloader',
+	];
 
 	/**
 	 * Stuff that is going to be set to $GLOBALS
@@ -111,29 +118,29 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected $globals = array(
-		'wgExtensionMessagesFiles' => array(),
-		'wgMessagesDirs' => array(),
-	);
+	protected $globals = [
+		'wgExtensionMessagesFiles' => [],
+		'wgMessagesDirs' => [],
+	];
 
 	/**
 	 * Things that should be define()'d
 	 *
 	 * @var array
 	 */
-	protected $defines = array();
+	protected $defines = [];
 
 	/**
 	 * Things to be called once registration of these extensions are done
 	 *
 	 * @var callable[]
 	 */
-	protected $callbacks = array();
+	protected $callbacks = [];
 
 	/**
 	 * @var array
 	 */
-	protected $credits = array();
+	protected $credits = [];
 
 	/**
 	 * Any thing else in the $info that hasn't
@@ -141,7 +148,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected $attributes = array();
+	protected $attributes = [];
 
 	/**
 	 * @param string $path
@@ -165,12 +172,12 @@ class ExtensionProcessor implements Processor {
 		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
 			if ( in_array( $key, self::$globalSettings ) ) {
-				$this->storeToArray( "wg$key", $val, $this->globals );
+				$this->storeToArray( $path, "wg$key", $val, $this->globals );
 			// Ignore anything that starts with a @
 			} elseif ( $key[0] !== '@' && !in_array( $key, self::$notAttributes )
 				&& !in_array( $key, self::$creditsAttributes )
 			) {
-				$this->storeToArray( $key, $val, $this->attributes );
+				$this->storeToArray( $path, $key, $val, $this->attributes );
 			}
 		}
 	}
@@ -183,17 +190,17 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		return array(
+		return [
 			'globals' => $this->globals,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
 			'attributes' => $this->attributes,
-		);
+		];
 	}
 
 	public function getRequirements( array $info ) {
-		$requirements = array();
+		$requirements = [];
 		$key = ExtensionRegistry::MEDIAWIKI_CORE;
 		if ( isset( $info['requires'][$key] ) ) {
 			$requirements[$key] = $info['requires'][$key];
@@ -205,8 +212,12 @@ class ExtensionProcessor implements Processor {
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
 			foreach ( $info['Hooks'] as $name => $value ) {
-				foreach ( (array)$value as $callback ) {
-					$this->globals['wgHooks'][$name][] = $callback;
+				if ( is_array( $value ) ) {
+					foreach ( $value as $callback ) {
+						$this->globals['wgHooks'][$name][] = $callback;
+					}
+				} else {
+					$this->globals['wgHooks'][$name][] = $value;
 				}
 			}
 		}
@@ -250,14 +261,24 @@ class ExtensionProcessor implements Processor {
 			? $info['ResourceFileModulePaths']
 			: false;
 		if ( isset( $defaultPaths['localBasePath'] ) ) {
-			$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
+			if ( $defaultPaths['localBasePath'] === '' ) {
+				// Avoid double slashes (e.g. /extensions/Example//path)
+				$defaultPaths['localBasePath'] = $dir;
+			} else {
+				$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
+			}
 		}
 
-		foreach ( array( 'ResourceModules', 'ResourceModuleSkinStyles' ) as $setting ) {
+		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles' ] as $setting ) {
 			if ( isset( $info[$setting] ) ) {
 				foreach ( $info[$setting] as $name => $data ) {
 					if ( isset( $data['localBasePath'] ) ) {
-						$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+						if ( $data['localBasePath'] === '' ) {
+							// Avoid double slashes (e.g. /extensions/Example//path)
+							$data['localBasePath'] = $dir;
+						} else {
+							$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+						}
 					}
 					if ( $defaultPaths ) {
 						$data += $defaultPaths;
@@ -293,18 +314,34 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	/**
+	 * @param string $path
+	 * @param array $info
+	 * @throws Exception
+	 */
 	protected function extractCredits( $path, array $info ) {
-		$credits = array(
+		$credits = [
 			'path' => $path,
 			'type' => isset( $info['type'] ) ? $info['type'] : 'other',
-		);
+		];
 		foreach ( self::$creditsAttributes as $attr ) {
 			if ( isset( $info[$attr] ) ) {
 				$credits[$attr] = $info[$attr];
 			}
 		}
 
-		$this->credits[$credits['name']] = $credits;
+		$name = $credits['name'];
+
+		// If someone is loading the same thing twice, throw
+		// a nice error (T121493)
+		if ( isset( $this->credits[$name] ) ) {
+			$firstPath = $this->credits[$name]['path'];
+			$secondPath = $credits['path'];
+			throw new Exception( "It was attempted to load $name twice, from $firstPath and $secondPath." );
+		}
+
+		$this->credits[$name] = $credits;
+		$this->globals['wgExtensionCredits'][$credits['type']][] = $credits;
 	}
 
 	/**
@@ -338,19 +375,31 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
+	 * @param string $path
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
 	 * @throws InvalidArgumentException
 	 */
-	protected function storeToArray( $name, $value, &$array ) {
+	protected function storeToArray( $path, $name, $value, &$array ) {
 		if ( !is_array( $value ) ) {
-			throw new InvalidArgumentException( "The value for '$name' should be an array" );
+			throw new InvalidArgumentException( "The value for '$name' should be an array (from $path)" );
 		}
 		if ( isset( $array[$name] ) ) {
 			$array[$name] = array_merge_recursive( $array[$name], $value );
 		} else {
 			$array[$name] = $value;
 		}
+	}
+
+	public function getExtraAutoloaderPaths( $dir, array $info ) {
+		$paths = [];
+		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
+			$path = "$dir/vendor/autoload.php";
+			if ( file_exists( $path ) ) {
+				$paths[] = $path;
+			}
+		}
+		return $paths;
 	}
 }

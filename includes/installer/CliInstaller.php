@@ -30,7 +30,7 @@
 class CliInstaller extends Installer {
 	private $specifiedScriptPath = false;
 
-	private $optionMap = array(
+	private $optionMap = [
 		'dbtype' => 'wgDBtype',
 		'dbserver' => 'wgDBserver',
 		'dbname' => 'wgDBname',
@@ -44,7 +44,7 @@ class CliInstaller extends Installer {
 		'dbpath' => 'wgSQLiteDataDir',
 		'server' => 'wgServer',
 		'scriptpath' => 'wgScriptPath',
-	);
+	];
 
 	/**
 	 * Constructor.
@@ -53,7 +53,7 @@ class CliInstaller extends Installer {
 	 * @param string $admin
 	 * @param array $option
 	 */
-	function __construct( $siteName, $admin = null, array $option = array() ) {
+	function __construct( $siteName, $admin = null, array $option = [] ) {
 		global $wgContLang;
 
 		parent::__construct();
@@ -75,6 +75,7 @@ class CliInstaller extends Installer {
 			$wgContLang = Language::factory( $option['lang'] );
 			$wgLang = Language::factory( $option['lang'] );
 			$wgLanguageCode = $option['lang'];
+			RequestContext::getMain()->setLanguage( $wgLang );
 		}
 
 		$this->setVar( 'wgSitename', $siteName );
@@ -130,8 +131,8 @@ class CliInstaller extends Installer {
 		}
 
 		$this->performInstallation(
-			array( $this, 'startStage' ),
-			array( $this, 'endStage' )
+			[ $this, 'startStage' ],
+			[ $this, 'endStage' ]
 		);
 	}
 
@@ -194,11 +195,11 @@ class CliInstaller extends Installer {
 
 		if ( count( $warnings ) !== 0 ) {
 			foreach ( $warnings as $w ) {
-				call_user_func_array( array( $this, 'showMessage' ), $w );
+				call_user_func_array( [ $this, 'showMessage' ], $w );
 			}
 		}
 
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			echo "\n";
 			exit( 1 );
 		}

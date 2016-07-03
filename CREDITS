@@ -1,6 +1,6 @@
 {{int:version-credits-summary}}
 <!--
-MediaWiki 1.26 is a collaborative project released under the
+MediaWiki 1.27 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 -->
@@ -138,6 +138,7 @@ following names for their contribution to the product.
 * Erwin Dokter
 * Étienne Beaulé
 * Federico Leva
+* Florian Schmidt
 * fomafix
 * FunPika
 * Gabriel Wicke
@@ -169,6 +170,7 @@ following names for their contribution to the product.
 * Louperivois
 * Lucas Garczewski
 * Luigi Corsaro
+* Luke Faraone
 * Lupo
 * Madman
 * Manuel Menal

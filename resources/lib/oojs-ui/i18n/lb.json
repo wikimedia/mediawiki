@@ -23,6 +23,7 @@
 	"ooui-dialog-process-retry": "Nach eng Kéier probéieren",
 	"ooui-dialog-process-continue": "Virufueren",
 	"ooui-selectfile-button-select": "E Fichier eraussichen",
+	"ooui-selectfile-not-supported": "D'Eraussiche vu Fichiere gëtt net ënnerstëtzt.",
 	"ooui-selectfile-placeholder": "Et ass kee Fichier erausgesicht",
 	"ooui-selectfile-dragdrop-placeholder": "Fichier hei ofleeën"
 }

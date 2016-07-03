@@ -2,7 +2,7 @@
 
 /**
  * @covers UserNotLoggedIn
- * @author Adam Shorland
+ * @author Addshore
  */
 class UserNotLoggedInTest extends MediaWikiTestCase {
 
@@ -10,7 +10,7 @@ class UserNotLoggedInTest extends MediaWikiTestCase {
 		$e = new UserNotLoggedIn();
 		$this->assertEquals( 'exception-nologin', $e->title );
 		$this->assertEquals( 'exception-nologin-text', $e->msg );
-		$this->assertEquals( array(), $e->params );
+		$this->assertEquals( [], $e->params );
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstraction for resource loader modules which pull from wiki pages.
+ * Abstraction for ResourceLoader modules that pull from wiki pages.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  */
 
 /**
- * Abstraction for resource loader modules which pull from wiki pages
+ * Abstraction for ResourceLoader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
  * because of its dependence on the functionality of Title::isCssJsSubpage.
@@ -50,13 +50,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
 	// In-process cache for title info
-	protected $titleInfo = array();
+	protected $titleInfo = [];
 
 	// List of page names that contain CSS
-	protected $styles = array();
+	protected $styles = [];
 
 	// List of page names that contain JavaScript
-	protected $scripts = array();
+	protected $scripts = [];
 
 	// Group of module
 	protected $group;
@@ -75,6 +75,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				case 'styles':
 				case 'scripts':
 				case 'group':
+				case 'targets':
 					$this->{$member} = $option;
 					break;
 			}
@@ -99,18 +100,18 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$config = $this->getConfig();
-		$pages = array();
+		$pages = [];
 
 		// Filter out pages from origins not allowed by the current wiki configuration.
 		if ( $config->get( 'UseSiteJs' ) ) {
 			foreach ( $this->scripts as $script ) {
-				$pages[$script] = array( 'type' => 'script' );
+				$pages[$script] = [ 'type' => 'script' ];
 			}
 		}
 
 		if ( $config->get( 'UseSiteCss' ) ) {
 			foreach ( $this->styles as $style ) {
-				$pages[$style] = array( 'type' => 'style' );
+				$pages[$style] = [ 'type' => 'style' ];
 			}
 		}
 
@@ -199,7 +200,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		$styles = array();
+		$styles = [];
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
 			if ( $options['type'] !== 'style' ) {
 				continue;
@@ -212,9 +213,10 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$style = CSSMin::remap( $style, false, $this->getConfig()->get( 'ScriptPath' ), true );
+			$style = MemoizedCallable::call( 'CSSMin::remap',
+				[ $style, false, $this->getConfig()->get( 'ScriptPath' ), true ] );
 			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = array();
+				$styles[$media] = [];
 			}
 			$style = ResourceLoader::makeComment( $titleText ) . $style;
 			$styles[$media][] = $style;
@@ -242,11 +244,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = array(
+		$summary[] = [
 			'pages' => $this->getPages( $context ),
 			// Includes SHA1 of content
 			'titleInfo' => $this->getTitleInfo( $context ),
-		);
+		];
 		return $summary;
 	}
 
@@ -283,34 +285,36 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$dbr = $this->getDB();
 		if ( !$dbr ) {
 			// We're dealing with a subclass that doesn't have a DB
-			return array();
+			return [];
 		}
 
 		$pages = $this->getPages( $context );
 		$key = implode( '|', array_keys( $pages ) );
 		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = array();
+			$this->titleInfo[$key] = [];
 			$batch = new LinkBatch;
 			foreach ( $pages as $titleText => $options ) {
 				$batch->addObj( Title::newFromText( $titleText ) );
 			}
 
 			if ( !$batch->isEmpty() ) {
-				$res = $dbr->select( array( 'page', 'revision' ),
-					array( 'page_namespace', 'page_title', 'rev_len', 'rev_sha1' ),
+				$res = $dbr->select( [ 'page', 'revision' ],
+					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
+					[ 'page_namespace', 'page_title', 'page_touched', 'rev_len', 'rev_sha1' ],
 					$batch->constructSet( 'page', $dbr ),
 					__METHOD__,
-					array(),
-					array( 'revision' => array( 'INNER JOIN', array( 'page_latest=rev_id' ) ) )
+					[],
+					[ 'revision' => [ 'INNER JOIN', [ 'page_latest=rev_id' ] ] ]
 				);
 				foreach ( $res as $row ) {
 					// Avoid including ids or timestamps of revision/page tables so
 					// that versions are not wasted
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-					$this->titleInfo[$key][$title->getPrefixedText()] = array(
+					$this->titleInfo[$key][$title->getPrefixedText()] = [
 						'rev_len' => $row->rev_len,
 						'rev_sha1' => $row->rev_sha1,
-					);
+						'page_touched' => $row->page_touched,
+					];
 				}
 			}
 		}

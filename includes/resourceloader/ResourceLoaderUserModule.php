@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for user customizations.
+ * ResourceLoader module for user customizations.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,25 +39,25 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		$allowUserJs = $this->getConfig()->get( 'AllowUserJs' );
 		$allowUserCss = $this->getConfig()->get( 'AllowUserCss' );
 		if ( !$allowUserJs && !$allowUserCss ) {
-			return array();
+			return [];
 		}
 
 		$user = $context->getUserObj();
 		if ( !$user || $user->isAnon() ) {
-			return array();
+			return [];
 		}
 
 		// Needed so $excludepages works
 		$userPage = $user->getUserPage()->getPrefixedDBkey();
 
-		$pages = array();
+		$pages = [];
 		if ( $allowUserJs ) {
-			$pages["$userPage/common.js"] = array( 'type' => 'script' );
-			$pages["$userPage/" . $context->getSkin() . '.js'] = array( 'type' => 'script' );
+			$pages["$userPage/common.js"] = [ 'type' => 'script' ];
+			$pages["$userPage/" . $context->getSkin() . '.js'] = [ 'type' => 'script' ];
 		}
 		if ( $allowUserCss ) {
-			$pages["$userPage/common.css"] = array( 'type' => 'style' );
-			$pages["$userPage/" . $context->getSkin() . '.css'] = array( 'type' => 'style' );
+			$pages["$userPage/common.css"] = [ 'type' => 'style' ];
+			$pages["$userPage/" . $context->getSkin() . '.css'] = [ 'type' => 'style' ];
 		}
 
 		// Hack for bug 26283: if we're on a preview page for a CSS/JS page,

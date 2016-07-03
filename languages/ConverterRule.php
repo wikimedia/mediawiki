@@ -31,11 +31,11 @@ class ConverterRule {
 	public $mRuleTitle = false;
 	public $mRules = '';// string : the text of the rules
 	public $mRulesAction = 'none';
-	public $mFlags = array();
-	public $mVariantFlags = array();
-	public $mConvTable = array();
-	public $mBidtable = array();// array of the translation in each variant
-	public $mUnidtable = array();// array of the translation in each variant
+	public $mFlags = [];
+	public $mVariantFlags = [];
+	public $mConvTable = [];
+	public $mBidtable = [];// array of the translation in each variant
+	public $mUnidtable = [];// array of the translation in each variant
 
 	/**
 	 * Constructor
@@ -73,8 +73,8 @@ class ConverterRule {
 	 */
 	function parseFlags() {
 		$text = $this->mText;
-		$flags = array();
-		$variantFlags = array();
+		$flags = [];
+		$variantFlags = [];
 
 		$sepPos = strpos( $text, '|' );
 		if ( $sepPos !== false ) {
@@ -92,16 +92,16 @@ class ConverterRule {
 		if ( !$flags ) {
 			$flags['S'] = true;
 		} elseif ( isset( $flags['R'] ) ) {
-			$flags = array( 'R' => true );// remove other flags
+			$flags = [ 'R' => true ];// remove other flags
 		} elseif ( isset( $flags['N'] ) ) {
-			$flags = array( 'N' => true );// remove other flags
+			$flags = [ 'N' => true ];// remove other flags
 		} elseif ( isset( $flags['-'] ) ) {
-			$flags = array( '-' => true );// remove other flags
+			$flags = [ '-' => true ];// remove other flags
 		} elseif ( count( $flags ) == 1 && isset( $flags['T'] ) ) {
 			$flags['H'] = true;
 		} elseif ( isset( $flags['H'] ) ) {
 			// replace A flag, and remove other flags except T
-			$temp = array( '+' => true, 'H' => true );
+			$temp = [ '+' => true, 'H' => true ];
 			if ( isset( $flags['T'] ) ) {
 				$temp['T'] = true;
 			}
@@ -122,7 +122,7 @@ class ConverterRule {
 			$variantFlags = array_intersect( array_keys( $flags ), $this->mConverter->mVariants );
 			if ( $variantFlags ) {
 				$variantFlags = array_flip( $variantFlags );
-				$flags = array();
+				$flags = [];
 			}
 		}
 		$this->mVariantFlags = $variantFlags;
@@ -136,8 +136,8 @@ class ConverterRule {
 	 */
 	function parseRules() {
 		$rules = $this->mRules;
-		$bidtable = array();
-		$unidtable = array();
+		$bidtable = [];
+		$unidtable = [];
 		$variants = $this->mConverter->mVariants;
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
@@ -167,15 +167,15 @@ class ConverterRule {
 					&& !is_array( $unidtable[$v] )
 					&& $from !== ''
 					&& in_array( $v, $variants ) ) {
-					$unidtable[$v] = array( $from => $to );
+					$unidtable[$v] = [ $from => $to ];
 				} elseif ( $from !== '' && in_array( $v, $variants ) ) {
 					$unidtable[$v][$from] = $to;
 				}
 			}
 			// syntax error, pass
 			if ( !isset( $this->mConverter->mVariantNames[$v] ) ) {
-				$bidtable = array();
-				$unidtable = array();
+				$bidtable = [];
+				$unidtable = [];
 				break;
 			}
 		}
@@ -228,18 +228,14 @@ class ConverterRule {
 			}
 			// or display current variant in unidirectional array
 			if ( $disp === false && array_key_exists( $variant, $unidtable ) ) {
-				$disp = array_values( $unidtable[$variant] );
-				$disp = $disp[0];
+				$disp = array_values( $unidtable[$variant] )[0];
 			}
 			// or display frist text under disable manual convert
 			if ( $disp === false && $this->mConverter->mManualLevel[$variant] == 'disable' ) {
 				if ( count( $bidtable ) > 0 ) {
-					$disp = array_values( $bidtable );
-					$disp = $disp[0];
+					$disp = array_values( $bidtable )[0];
 				} else {
-					$disp = array_values( $unidtable );
-					$disp = array_values( $disp[0] );
-					$disp = $disp[0];
+					$disp = array_values( array_values( $unidtable )[0] )[0];
 				}
 			}
 			return $disp;
@@ -267,8 +263,7 @@ class ConverterRule {
 				return $disp;
 			}
 			if ( array_key_exists( $variant, $this->mUnidtable ) ) {
-				$disp = array_values( $this->mUnidtable[$variant] );
-				$disp = $disp[0];
+				$disp = array_values( $this->mUnidtable[$variant] )[0];
 			}
 			// Assigned above or still false.
 			return $disp;
@@ -284,7 +279,7 @@ class ConverterRule {
 	function generateConvTable() {
 		// Special case optimisation
 		if ( !$this->mBidtable && !$this->mUnidtable ) {
-			$this->mConvTable = array();
+			$this->mConvTable = [];
 			return;
 		}
 
@@ -292,7 +287,7 @@ class ConverterRule {
 		$unidtable = $this->mUnidtable;
 		$manLevel = $this->mConverter->mManualLevel;
 
-		$vmarked = array();
+		$vmarked = [];
 		foreach ( $this->mConverter->mVariants as $v ) {
 			/* for bidirectional array
 				fill in the missing variants, if any,
@@ -373,7 +368,7 @@ class ConverterRule {
 					}
 				}
 			}
-			$this->mFlags = $flags = array( 'R' => true );
+			$this->mFlags = $flags = [ 'R' => true ];
 		}
 
 		if ( !isset( $flags['R'] ) && !isset( $flags['N'] ) ) {
@@ -392,7 +387,7 @@ class ConverterRule {
 					}
 				}
 			} elseif ( !isset( $flags['N'] ) && !isset( $flags['T'] ) ) {
-				$this->mFlags = $flags = array( 'R' => true );
+				$this->mFlags = $flags = [ 'R' => true ];
 			}
 		}
 

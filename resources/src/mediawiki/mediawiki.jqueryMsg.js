@@ -53,7 +53,6 @@
 			// applies to direct calls to jqueryMsg. The default for mediawiki.js itself
 			// is 'text', including when it uses jqueryMsg.
 			format: 'parse'
-
 		};
 
 	/**
@@ -133,10 +132,9 @@
 	 * @return {jQuery} return.return
 	 */
 	function getFailableParserFn( options ) {
-		var parser = new mw.jqueryMsg.parser( options );
-
 		return function ( args ) {
 			var fallback,
+				parser = new mw.jqueryMsg.parser( options ),
 				key = args[ 0 ],
 				argsArray = $.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 			try {
@@ -162,9 +160,19 @@
 	 * @param {Object} data
 	 */
 	mw.jqueryMsg.setParserDefaults = function ( data ) {
-		if ( data.allowedHtmlElements ) {
-			parserDefaults.allowedHtmlElements = data.allowedHtmlElements;
-		}
+		$.extend( parserDefaults, data );
+	};
+
+	/**
+	 * Get current parser defaults.
+	 *
+	 * Primarily used for the unit test. Returns a copy.
+	 *
+	 * @private
+	 * @return {Object}
+	 */
+	mw.jqueryMsg.getParserDefaults = function () {
+		return $.extend( {}, parserDefaults );
 	};
 
 	/**
@@ -256,6 +264,7 @@
 	mw.jqueryMsg.parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
 		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
+		this.astCache = {};
 
 		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
 	};
@@ -271,7 +280,8 @@
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
-			return this.emitter.emit( this.getAst( key ), replacements );
+			var ast = this.getAst( key );
+			return this.emitter.emit( ast, replacements );
 		},
 
 		/**
@@ -282,11 +292,16 @@
 		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			var wikiText = this.settings.messages.get( key );
-			if ( typeof wikiText !== 'string' ) {
-				wikiText = '\\[' + key + '\\]';
+			var wikiText;
+
+			if ( !this.astCache.hasOwnProperty( key ) ) {
+				wikiText = this.settings.messages.get( key );
+				if ( typeof wikiText !== 'string' ) {
+					wikiText = '\\[' + key + '\\]';
+				}
+				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
-			return this.wikiTextToAst( wikiText );
+			return this.astCache[ key ];
 		},
 
 		/**
@@ -979,7 +994,7 @@
 		 *
 		 * @param {Array} nodes List of one element, integer, n >= 0
 		 * @param {Array} replacements List of at least n strings
-		 * @return {String} replacement
+		 * @return {string} replacement
 		 */
 		replace: function ( nodes, replacements ) {
 			var index = parseInt( nodes[ 0 ], 10 );
@@ -1004,7 +1019,7 @@
 		 * from the server, since the replacement is done at save time.
 		 * It may, though, if the wikitext appears in extension-controlled content.
 		 *
-		 * @param {String[]} nodes
+		 * @param {string[]} nodes
 		 */
 		wikilink: function ( nodes ) {
 			var page, anchor, url, $el;
@@ -1073,7 +1088,7 @@
 		 *
 		 * TODO: throw an error if nodes.length > 2 ?
 		 *
-		 * @param {Array} nodes List of two elements, {jQuery|Function|String} and {String}
+		 * @param {Array} nodes List of two elements, {jQuery|Function|String} and {string}
 		 * @return {jQuery}
 		 */
 		extlink: function ( nodes ) {
@@ -1094,7 +1109,7 @@
 					$el.attr( 'href', textify( arg ) );
 				}
 			}
-			return appendWithoutParsing( $el, contents );
+			return appendWithoutParsing( $el.empty(), contents );
 		},
 
 		/**
@@ -1203,6 +1218,22 @@
 		},
 
 		/**
+		 * Get localized namespace name from canonical name or namespace number.
+		 * Invoked by putting `{{ns:foo}}` into a message
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} Localized namespace name
+		 */
+		ns: function ( nodes ) {
+			var ns = $.trim( textify( nodes[ 0 ] ) );
+			if ( !/^\d+$/.test( ns ) ) {
+				ns = mw.config.get( 'wgNamespaceIds' )[ ns.replace( / /g, '_' ).toLowerCase() ];
+			}
+			ns = mw.config.get( 'wgFormattedNamespaces' )[ ns ];
+			return ns || '';
+		},
+
+		/**
 		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
 		 * and outputs it in the localized digit script and formatted with decimal
 		 * separator, according to the current language.
@@ -1215,6 +1246,48 @@
 				number = nodes[ 0 ];
 
 			return this.language.convertNumber( number, isInteger );
+		},
+
+		/**
+		 * Lowercase text
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, all in lowercase
+		 */
+		lc: function ( nodes ) {
+			return textify( nodes[ 0 ] ).toLowerCase();
+		},
+
+		/**
+		 * Uppercase text
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, all in uppercase
+		 */
+		uc: function ( nodes ) {
+			return textify( nodes[ 0 ] ).toUpperCase();
+		},
+
+		/**
+		 * Lowercase first letter of input, leaving the rest unchanged
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, with the first character in lowercase
+		 */
+		lcfirst: function ( nodes ) {
+			var text = textify( nodes[ 0 ] );
+			return text.charAt( 0 ).toLowerCase() + text.slice( 1 );
+		},
+
+		/**
+		 * Uppercase first letter of input, leaving the rest unchanged
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, with the first character in uppercase
+		 */
+		ucfirst: function ( nodes ) {
+			var text = textify( nodes[ 0 ] );
+			return text.charAt( 0 ).toUpperCase() + text.slice( 1 );
 		}
 	};
 
@@ -1235,23 +1308,35 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
-		var messageFunction;
-
-		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
-		// Caching is somewhat problematic, because we do need different message functions for different maps, so
-		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
-		// Do not use mw.jqueryMsg unless required
-		if ( this.format === 'plain' || !/\{\{|[\[<>]/.test( this.map.get( this.key ) ) ) {
+		if ( this.format === 'plain' || !/\{\{|[\[<>&]/.test( this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
 
-		messageFunction = mw.jqueryMsg.getMessageFunction( {
-			messages: this.map,
-			// For format 'escaped', escaping part is handled by mediawiki.js
-			format: this.format
-		} );
-		return messageFunction( this.key, this.parameters );
+		if ( !this.map.hasOwnProperty( this.format ) ) {
+			this.map[ this.format ] = mw.jqueryMsg.getMessageFunction( {
+				messages: this.map,
+				// For format 'escaped', escaping part is handled by mediawiki.js
+				format: this.format
+			} );
+		}
+		return this.map[ this.format ]( this.key, this.parameters );
 	};
+
+	/**
+	 * Parse the message to DOM nodes, rather than HTML string like #parse.
+	 *
+	 * This method is only available when jqueryMsg is loaded.
+	 *
+	 * @method parseDom
+	 * @member mw.Message
+	 * @return {jQuery}
+	 */
+	mw.Message.prototype.parseDom = ( function () {
+		var reusableParent = $( '<div>' );
+		return function () {
+			return reusableParent.msg( this.key, this.parameters ).contents().detach();
+		};
+	} )();
 
 }( mediaWiki, jQuery ) );

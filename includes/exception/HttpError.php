@@ -88,11 +88,11 @@ class HttpError extends MWException {
 			$content = $content->text();
 		}
 
-		$context = array(
+		$context = [
 			'file' => $this->getFile(),
 			'line' => $this->getLine(),
 			'http_code' => $this->httpCode,
-		);
+		];
 
 		$logMsg = "$content ({http_code}) from {file}:{line}";
 

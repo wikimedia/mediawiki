@@ -20,13 +20,19 @@ class MockSearch extends SearchEngine {
  */
 class SearchUpdateTest extends MediaWikiTestCase {
 
+	/**
+	 * @var SearchUpdate
+	 */
+	private $su;
+
 	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgSearchType', 'MockSearch' );
+		$this->su = new SearchUpdate( 0, "" );
 	}
 
 	public function updateText( $text ) {
-		return trim( SearchUpdate::updateText( $text ) );
+		return trim( $this->su->updateText( $text ) );
 	}
 
 	/**

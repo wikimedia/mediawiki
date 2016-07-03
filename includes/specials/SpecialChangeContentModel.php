@@ -6,6 +6,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @var Title|null
 	 */
@@ -37,6 +41,11 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		if ( !$this->title ) {
 			$form->setMethod( 'GET' );
 		}
+
+		$this->addHelpLink( 'Help:ChangeContentModel' );
+
+		// T120576
+		$form->setSubmitTextMsg( 'changecontentmodel-submit' );
 	}
 
 	public function validateTitle( $title ) {
@@ -64,40 +73,39 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		$that = $this;
-		$fields = array(
-			'pagetitle' => array(
+		$fields = [
+			'pagetitle' => [
 				'type' => 'title',
 				'creatable' => true,
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',
-				'validation-callback' => array( $this, 'validateTitle' ),
-			),
-		);
+				'validation-callback' => [ $this, 'validateTitle' ],
+			],
+		];
 		if ( $this->title ) {
 			$fields['pagetitle']['readonly'] = true;
-			$fields += array(
-				'model' => array(
+			$fields += [
+				'model' => [
 					'type' => 'select',
 					'name' => 'model',
 					'options' => $this->getOptionsForTitle( $this->title ),
 					'label-message' => 'changecontentmodel-model-label'
-				),
-				'reason' => array(
+				],
+				'reason' => [
 					'type' => 'text',
 					'name' => 'reason',
-					'validation-callback' => function( $reason ) use ( $that ) {
+					'validation-callback' => function( $reason ) {
 						$match = EditPage::matchSummarySpamRegex( $reason );
 						if ( $match ) {
-							return $that->msg( 'spamprotectionmatch', $match )->parse();
+							return $this->msg( 'spamprotectionmatch', $match )->parse();
 						}
 
 						return true;
 					},
 					'label-message' => 'changecontentmodel-reason-label',
-				),
-			);
+				],
+			];
 		}
 
 		return $fields;
@@ -105,7 +113,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	private function getOptionsForTitle( Title $title = null ) {
 		$models = ContentHandler::getContentModels();
-		$options = array();
+		$options = [];
 		foreach ( $models as $model ) {
 			$handler = ContentHandler::getForModelID( $model );
 			if ( !$handler->supportsDirectEditing() ) {
@@ -139,7 +147,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			throw new RuntimeException( "Form submission was not POSTed" );
 		}
 
-		$this->title = Title::newFromText( $data['pagetitle' ] );
+		$this->title = Title::newFromText( $data['pagetitle'] );
 		$user = $this->getUser();
 		// Check permissions and make sure the user has permission to edit the specific page
 		$errors = $this->title->getUserPermissionsErrors( 'editcontentmodel', $user );
@@ -148,7 +156,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionsErrorMessage( $errors );
 			// Hack to get our wikitext parsed
-			return Status::newFatal( new RawMessage( '$1', array( $wikitext ) ) );
+			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
 
 		$page = WikiPage::factory( $this->title );
@@ -180,14 +188,14 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
-		$log = new ManualLogEntry( 'contentmodel', 'change' );
+		$log = new ManualLogEntry( 'contentmodel', $this->oldRevision ? 'change' : 'new' );
 		$log->setPerformer( $user );
 		$log->setTarget( $this->title );
 		$log->setComment( $data['reason'] );
-		$log->setParameters( array(
+		$log->setParameters( [
 			'4::oldmodel' => $oldModel,
 			'5::newmodel' => $data['model']
-		) );
+		] );
 
 		$formatter = LogFormatter::newFromEntry( $log );
 		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );
@@ -219,5 +227,21 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'changecontentmodel-success-title' ) );
 		$out->addWikiMsg( 'changecontentmodel-success-text', $this->title );
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset );
+	}
+
+	protected function getGroupName() {
+		return 'pagetools';
 	}
 }

@@ -1,12 +1,39 @@
 {
 	"@metadata": {
 		"authors": [
-			"HalanTul"
+			"HalanTul",
+			"Мария Олесова"
 		]
 	},
 	"config-desc": "MediaWiki инсталлятора",
 	"config-title": "MediaWiki $1 туруоруу",
 	"config-information": "Бу туһунан",
+	"config-localsettings-key": "Саҥатытыы күлүүһэ:",
+	"config-localsettings-badkey": "Саҥатытыыга сыыһа күлүүһү ыйдыҥ.",
+	"config-your-language-help": "Туруоруу кэмигэр туттуллар тылы тал.",
+	"config-wiki-language": "Биики туттуохтаах тыла:",
+	"config-back": "← Төттөрү",
+	"config-continue": "Салгыы →",
+	"config-page-language": "Тыла",
+	"config-page-dbconnect": "Билии олоҕор холбонуу",
+	"config-page-upgrade": "Баар туруорууну саҥатытыы",
+	"config-page-dbsettings": "Билии олоҕун бэлэмнээһин",
+	"config-page-name": "Аат",
+	"config-page-options": "Туруоруулар",
+	"config-page-install": "Туруоруу",
+	"config-page-complete": "Бэлэм!",
+	"config-page-restart": "Туруорууну саҥаттан саҕалыырга",
+	"config-page-upgradedoc": "Саҥардыы",
+	"config-page-existingwiki": "Баар биики",
+	"config-help-restart": "Харайыллыбыт көрдөрүүлэри сотуоххун уонна туруоруу кэмин саҥаттан ыытыаххын баҕараҕын дуо?",
+	"config-restart": "Сөп, саҥаттан саҕалыырга",
+	"config-env-good": "Тас кэккэ бэрэбиэркэтэ ситиһиилээхтик ыытылынна. \nMediaWiki туруоруоххун сөп.",
+	"config-db-type": "Билии олоҕун көрүҥэ:",
+	"config-db-wiki-settings": "Бу биики тэҥнэбилэ",
+	"config-db-name": "Билии олоҕун аата:",
+	"config-db-name-oracle": "Билии олоҕун исхиэмэтэ:",
+	"config-db-install-account": "Туруорууга анаммыт бэлиэ-аат",
+	"config-db-username": "Билии олоҕун туһанааччы аата:",
 	"mainpagetext": "'''«MediaWiki» сөпкө туруорулунна.'''",
 	"mainpagedocfooter": "Биики программатын туһунан [//meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.\n\n== Саҕаланыыта ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]"
 }

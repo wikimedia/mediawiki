@@ -40,9 +40,8 @@ class LanguageTr extends Language {
 	function ucfirst( $string ) {
 		if ( strlen( $string ) && $string[0] == 'i' ) {
 			return 'İ' . substr( $string, 1 );
-		} else {
-			return parent::ucfirst( $string );
 		}
+		return parent::ucfirst( $string );
 	}
 
 	/**
@@ -52,9 +51,8 @@ class LanguageTr extends Language {
 	function lcfirst( $string ) {
 		if ( strlen( $string ) && $string[0] == 'I' ) {
 			return 'ı' . substr( $string, 1 );
-		} else {
-			return parent::lcfirst( $string );
 		}
+		return parent::lcfirst( $string );
 	}
 
 }

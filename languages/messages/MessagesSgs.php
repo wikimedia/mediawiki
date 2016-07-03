@@ -16,7 +16,7 @@
 
 $fallback = 'lt';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Medėjė',
 	NS_SPECIAL          => 'Specēlos',
 	NS_TALK             => 'Aptarėms',
@@ -33,12 +33,12 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Pagelbas_aptarėms',
 	NS_CATEGORY         => 'Kateguorėjė',
 	NS_CATEGORY_TALK    => 'Kateguorėjės_aptarėms',
-);
+];
 
 /**
  * Aliases from the fallback language 'lt' to avoid breakage of links
  */
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Specialus'             => NS_SPECIAL,
 	'Aptarimas'             => NS_TALK,
 	'Naudotojas'            => NS_USER,
@@ -53,7 +53,7 @@ $namespaceAliases = array(
 	'Pagalbos_aptarimas'    => NS_HELP_TALK,
 	'Kategorija'            => NS_CATEGORY,
 	'Kategorijos_aptarimas' => NS_CATEGORY_TALK,
-);
+];
 
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

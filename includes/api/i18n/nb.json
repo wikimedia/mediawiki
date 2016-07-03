@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jeblad",
-			"Chameleon222"
+			"Chameleon222",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "Hvilken handling skal utføres",
@@ -44,8 +45,8 @@
 	"apihelp-delete-param-reason": "Årsak for slettingen. Dersom ikke satt vil en automatisk generert årsak bli brukt.",
 	"apihelp-delete-param-watch": "Legg til siden til aktuell brukers overvåkningsliste.",
 	"apihelp-delete-param-unwatch": "Fjern siden fra aktuell brukers overvåkningsliste.",
-	"apihelp-delete-example-simple": "Slett <kbd>Hovedside</kbd>.",
-	"apihelp-delete-example-reason": "Slett <kbd>Hovedside</kbd> med grunnen <kbd>Forbereder flytting</kbd>.",
+	"apihelp-delete-example-simple": "Slett <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-reason": "Slett <kbd>Main Page</kbd> med grunnen <kbd>Preparing for move</kbd>.",
 	"apihelp-disabled-description": "Denne modulen har blitt deaktivert",
 	"apihelp-edit-description": "Opprett og rediger sider.",
 	"apihelp-edit-param-title": "Tittelen til siden som skal redigeres. Kan ikke brukes sammen med <var>$1pageid</var>.",
@@ -99,8 +100,6 @@
 	"apihelp-move-description": "Flytt en side.",
 	"apihelp-dbg-description": "Resultatdata i PHP's var_export() format.",
 	"apihelp-dbgfm-description": "Resultatdata i PHP's var_export() format (pen utskrift i HTML).",
-	"apihelp-dump-description": "Resultatdata i PHP's var_export() format.",
-	"apihelp-dumpfm-description": "Resultatdata i PHP's var_export() format (pen utskrift i HTML).",
 	"apihelp-json-description": "Resultatdata i JSON-format.",
 	"apihelp-none-description": "Ingen resultat.",
 	"api-help-flag-readrights": "Denne modulen krever lesetilgang.",

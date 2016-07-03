@@ -8,10 +8,10 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideRightsLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'rights',
 					'action' => 'rights',
 					'comment' => 'rights comment',
@@ -19,24 +19,24 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'User',
-					'params' => array(
-						'4::oldgroups' => array(),
-						'5::newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-				array(
-					'text' => 'Sysop changed group membership for User:User from (none) to '
+					'params' => [
+						'4::oldgroups' => [],
+						'5::newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+				[
+					'text' => 'Sysop changed group membership for User from (none) to '
 						. 'administrator and bureaucrat',
-					'api' => array(
-						'oldgroups' => array(),
-						'newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-			),
+					'api' => [
+						'oldgroups' => [],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'rights',
 					'action' => 'rights',
 					'comment' => 'rights comment',
@@ -44,25 +44,25 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'User',
-					'params' => array(
+					'params' => [
 						'',
 						'sysop, bureaucrat',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop changed group membership for User:User from (none) to '
+					'text' => 'Sysop changed group membership for User from (none) to '
 						. 'administrator and bureaucrat',
-					'api' => array(
-						'oldgroups' => array(),
-						'newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-			),
+					'api' => [
+						'oldgroups' => [],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+			],
 
 			// Really old entry
-			array(
-				array(
+			[
+				[
 					'type' => 'rights',
 					'action' => 'rights',
 					'comment' => 'rights comment',
@@ -70,15 +70,15 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'User',
-					'params' => array(),
-				),
-				array(
+					'params' => [],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop changed group membership for User:User',
-					'api' => array(),
-				),
-			),
-		);
+					'text' => 'Sysop changed group membership for User',
+					'api' => [],
+				],
+			],
+		];
 	}
 
 	/**
@@ -94,10 +94,10 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideAutopromoteLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'rights',
 					'action' => 'autopromote',
 					'comment' => 'rights comment',
@@ -105,24 +105,24 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Sysop',
-					'params' => array(
-						'4::oldgroups' => array( 'sysop' ),
-						'5::newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-				array(
+					'params' => [
+						'4::oldgroups' => [ 'sysop' ],
+						'5::newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+				[
 					'text' => 'Sysop was automatically promoted from administrator to '
 						. 'administrator and bureaucrat',
-					'api' => array(
-						'oldgroups' => array( 'sysop' ),
-						'newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-			),
+					'api' => [
+						'oldgroups' => [ 'sysop' ],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'rights',
 					'action' => 'autopromote',
 					'comment' => 'rights comment',
@@ -130,22 +130,22 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Sysop',
-					'params' => array(
+					'params' => [
 						'sysop',
 						'sysop, bureaucrat',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
 					'text' => 'Sysop was automatically promoted from administrator to '
 						. 'administrator and bureaucrat',
-					'api' => array(
-						'oldgroups' => array( 'sysop' ),
-						'newgroups' => array( 'sysop', 'bureaucrat' ),
-					),
-				),
-			),
-		);
+					'api' => [
+						'oldgroups' => [ 'sysop' ],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+			],
+		];
 	}
 
 	/**

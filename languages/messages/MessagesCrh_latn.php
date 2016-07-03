@@ -10,7 +10,7 @@
 
 $fallback8bitEncoding = 'windows-1254';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Mahsus',
 	NS_TALK             => 'Muzakere',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yardım_muzakeresi',
 	NS_CATEGORY         => 'Kategoriya',
 	NS_CATEGORY_TALK    => 'Kategoriya_muzakeresi',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	# Aliases to Cyrillic (crh-cyrl) namespaces
 	"Медиа"                  => NS_MEDIA,
 	"Махсус"                 => NS_SPECIAL,
@@ -49,27 +49,27 @@ $namespaceAliases = array(
 	'Разговор_о_помоћи'      => NS_HELP_TALK,
 	'Категория'              => NS_CATEGORY,
 	'Категория_музакереси'   => NS_CATEGORY_TALK
-);
+];
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'mdy',
 	'dmy',
 	'ymd',
 	'yyyy-mm-dd',
 	'ISO 8601',
-);
+];
 
 $defaultDateFormat = 'ymd';
 
-$datePreferenceMigrationMap = array(
+$datePreferenceMigrationMap = [
 	'default',
 	'mdy',
 	'dmy',
 	'ymd'
-);
+];
 
-$dateFormats = array(
+$dateFormats = [
 	'mdy time' => 'H:i',
 	'mdy date' => 'F j Y "s."',
 	'mdy both' => 'H:i, F j Y "s."',
@@ -89,9 +89,9 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY.xnm.xnd',
 	'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
-);
+];
 
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„';
 

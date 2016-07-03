@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Zygimantus"
+		]
+	},
+	"apihelp-createaccount-param-name": "Naudotojo vardas.",
+	"apihelp-createaccount-param-realname": "Vardas (nebūtina).",
+	"apihelp-delete-description": "Ištrinti puslapį.",
+	"apihelp-edit-param-text": "Puslapio turinys.",
+	"apihelp-emailuser-description": "Siųsti el. laišką naudotojui.",
+	"apihelp-expandtemplates-param-title": "Puslapio pavadinimas.",
+	"apihelp-feedrecentchanges-example-simple": "Parodyti naujausius keitimus.",
+	"apihelp-query+alldeletedrevisions-example-user": "Sąrašas paskutinių 50 ištrintų indėlių pagal vartotoją\n<kbd>Pavyzdys</kbd>.",
+	"apihelp-query+allrevisions-param-namespace": "Rodyti puslapius tik šioje vardų srityje.",
+	"apihelp-query+backlinks-example-simple": "Rodyti nuorodas <kbd>Pagrindinis puslapis</kbd>.",
+	"apihelp-query+watchlist-paramvalue-type-external": "Išoriniai keitimai.",
+	"apihelp-query+watchlist-paramvalue-type-new": "Puslapio sukūrimai.",
+	"apihelp-stashedit-param-title": "Puslapio pavadinimas buvo redaguotas.",
+	"apihelp-stashedit-param-sectiontitle": "Naujo skyriaus pavadinimas.",
+	"apihelp-stashedit-param-text": "Puslapio turinys."
+}

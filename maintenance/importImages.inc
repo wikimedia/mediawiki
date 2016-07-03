@@ -35,7 +35,7 @@ function findFiles( $dir, $exts, $recurse = false ) {
 	if ( is_dir( $dir ) ) {
 		$dhl = opendir( $dir );
 		if ( $dhl ) {
-			$files = array();
+			$files = [];
 			while ( ( $file = readdir( $dhl ) ) !== false ) {
 				if ( is_file( $dir . '/' . $file ) ) {
 					list( /* $name */, $ext ) = splitFilename( $dir . '/' . $file );
@@ -49,10 +49,10 @@ function findFiles( $dir, $exts, $recurse = false ) {
 
 			return $files;
 		} else {
-			return array();
+			return [];
 		}
 	} else {
-		return array();
+		return [];
 	}
 }
 
@@ -68,7 +68,7 @@ function splitFilename( $filename ) {
 	unset( $parts[count( $parts ) - 1] );
 	$fname = implode( '.', $parts );
 
-	return array( $fname, $ext );
+	return [ $fname, $ext ];
 }
 
 /**
@@ -117,7 +117,7 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
-	$body = Http::get( $url, array(), __METHOD__ );
+	$body = Http::get( $url, [], __METHOD__ );
 	if ( preg_match( '#<ii comment="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;
 	}
@@ -128,11 +128,10 @@ function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 function getFileUserFromSourceWiki( $wiki_host, $file ) {
 	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
-	$body = Http::get( $url, array(), __METHOD__ );
+	$body = Http::get( $url, [], __METHOD__ );
 	if ( preg_match( '#<ii user="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;
 	}
 
 	return html_entity_decode( $matches[1] );
 }
-

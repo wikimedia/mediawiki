@@ -53,7 +53,7 @@ class RevertAction extends FormAction {
 			|| strpos( $oldimage, '/' ) !== false
 			|| strpos( $oldimage, '\\' ) !== false
 		) {
-			throw new ErrorPageError( 'internalerror', 'unexpected', array( 'oldimage', $oldimage ) );
+			throw new ErrorPageError( 'internalerror', 'unexpected', [ 'oldimage', $oldimage ] );
 		}
 
 		$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
@@ -70,7 +70,7 @@ class RevertAction extends FormAction {
 		$form->setWrapperLegendMsg( 'filerevert-legend' );
 		$form->setSubmitTextMsg( 'filerevert-submit' );
 		$form->addHiddenField( 'oldimage', $this->getRequest()->getText( 'oldimage' ) );
-		$form->setTokenSalt( array( 'revert', $this->getTitle()->getPrefixedDBkey() ) );
+		$form->setTokenSalt( [ 'revert', $this->getTitle()->getPrefixedDBkey() ] );
 	}
 
 	protected function getFormFields() {
@@ -82,11 +82,14 @@ class RevertAction extends FormAction {
 		$lang = $this->getLanguage();
 		$userDate = $lang->userDate( $timestamp, $user );
 		$userTime = $lang->userTime( $timestamp, $user );
-		$siteDate = $wgContLang->date( $timestamp, false, false );
-		$siteTime = $wgContLang->time( $timestamp, false, false );
+		$siteTs = MWTimestamp::getLocalInstance( $timestamp );
+		$ts = $siteTs->format( 'YmdHis' );
+		$siteDate = $wgContLang->date( $ts, false, false );
+		$siteTime = $wgContLang->time( $ts, false, false );
+		$tzMsg = $siteTs->getTimezoneMessage()->inContentLanguage()->text();
 
-		return array(
-			'intro' => array(
+		return [
+			'intro' => [
 				'type' => 'info',
 				'vertical-label' => true,
 				'raw' => true,
@@ -96,14 +99,14 @@ class RevertAction extends FormAction {
 						$this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 						PROTO_CURRENT
 					) )->parseAsBlock()
-			),
-			'comment' => array(
+			],
+			'comment' => [
 				'type' => 'text',
 				'label-message' => 'filerevert-comment',
-				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime
-					)->inContentLanguage()->text()
-			)
-		);
+				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime,
+					$tzMsg )->inContentLanguage()->text()
+			]
+		];
 	}
 
 	public function onSubmit( $data ) {
@@ -147,5 +150,9 @@ class RevertAction extends FormAction {
 
 	protected function getDescription() {
 		return OutputPage::buildBacklinkSubtitle( $this->getTitle() );
+	}
+
+	public function doesWrites() {
+		return true;
 	}
 }

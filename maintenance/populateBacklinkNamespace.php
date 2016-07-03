@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populate the *_from_namespace fields";
+		$this->addDescription( 'Populate the *_from_namespace fields' );
 		$this->addOption( 'lastUpdatedId', "Highest page_id with updated links", false, true );
 	}
 
@@ -67,21 +67,21 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd";
-			$res = $db->select( 'page', array( 'page_id', 'page_namespace' ), $cond, __METHOD__ );
+			$res = $db->select( 'page', [ 'page_id', 'page_namespace' ], $cond, __METHOD__ );
 			foreach ( $res as $row ) {
 				$db->update( 'pagelinks',
-					array( 'pl_from_namespace' => $row->page_namespace ),
-					array( 'pl_from' => $row->page_id ),
+					[ 'pl_from_namespace' => $row->page_namespace ],
+					[ 'pl_from' => $row->page_id ],
 					__METHOD__
 				);
 				$db->update( 'templatelinks',
-					array( 'tl_from_namespace' => $row->page_namespace ),
-					array( 'tl_from' => $row->page_id ),
+					[ 'tl_from_namespace' => $row->page_namespace ],
+					[ 'tl_from' => $row->page_id ],
 					__METHOD__
 				);
 				$db->update( 'imagelinks',
-					array( 'il_from_namespace' => $row->page_namespace ),
-					array( 'il_from' => $row->page_id ),
+					[ 'il_from_namespace' => $row->page_namespace ],
+					[ 'il_from' => $row->page_id ],
 					__METHOD__
 				);
 			}

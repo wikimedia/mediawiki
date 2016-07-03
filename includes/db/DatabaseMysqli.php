@@ -322,7 +322,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return string
 	 */
 	public function __toString() {
-		if ( $this->mConn instanceof Mysqli ) {
+		if ( $this->mConn instanceof mysqli ) {
 			return (string)$this->mConn->thread_id;
 		} else {
 			// mConn might be false or something.

@@ -19,7 +19,7 @@
  */
 
 class PoolWorkArticleView extends PoolCounterWork {
-	/** @var Page */
+	/** @var WikiPage */
 	private $page;
 
 	/** @var string */
@@ -44,7 +44,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $error = false;
 
 	/**
-	 * @param Page $page
+	 * @param WikiPage $page
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param int $revid ID of the revision being parsed.
 	 * @param bool $useParserCache Whether to use the parser cache.
@@ -52,7 +52,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param Content|string $content Content to parse or null to load it; may
 	 *   also be given as a wikitext string, for BC.
 	 */
-	public function __construct( Page $page, ParserOptions $parserOptions,
+	public function __construct( WikiPage $page, ParserOptions $parserOptions,
 		$revid, $useParserCache, $content = null
 	) {
 		if ( is_string( $content ) ) { // BC: old style call
@@ -144,10 +144,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
 			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
-			$logger->info( '{time} {title}', array(
+			$logger->info( '{time} {title}', [
 				'time' => number_format( $time, 2 ),
 				'title' => $this->page->getTitle()->getPrefixedDBkey(),
-			) );
+				'trigger' => 'view',
+			] );
 		}
 
 		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {

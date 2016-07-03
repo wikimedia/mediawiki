@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for user customizations.
+ * ResourceLoader module for user customizations.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @param ResourceLoaderContext $context
@@ -36,24 +36,24 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 		$useSiteJs = $this->getConfig()->get( 'UseSiteJs' );
 		$useSiteCss = $this->getConfig()->get( 'UseSiteCss' );
 		if ( !$useSiteJs && !$useSiteCss ) {
-			return array();
+			return [];
 		}
 
 		$user = $context->getUserObj();
 		if ( !$user || $user->isAnon() ) {
-			return array();
+			return [];
 		}
 
-		$pages = array();
+		$pages = [];
 		foreach ( $user->getEffectiveGroups() as $group ) {
 			if ( $group == '*' ) {
 				continue;
 			}
 			if ( $useSiteJs ) {
-				$pages["MediaWiki:Group-$group.js"] = array( 'type' => 'script' );
+				$pages["MediaWiki:Group-$group.js"] = [ 'type' => 'script' ];
 			}
 			if ( $useSiteCss ) {
-				$pages["MediaWiki:Group-$group.css"] = array( 'type' => 'style' );
+				$pages["MediaWiki:Group-$group.css"] = [ 'type' => 'style' ];
 			}
 		}
 		return $pages;

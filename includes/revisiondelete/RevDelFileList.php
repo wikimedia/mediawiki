@@ -53,7 +53,7 @@ class RevDelFileList extends RevDelList {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
-		$archiveNames = array();
+		$archiveNames = [];
 		foreach ( $this->ids as $timestamp ) {
 			$archiveNames[] = $timestamp . '!' . $this->title->getDBkey();
 		}
@@ -61,12 +61,12 @@ class RevDelFileList extends RevDelList {
 		return $db->select(
 			'oldimage',
 			OldLocalFile::selectFields(),
-			array(
+			[
 				'oi_name' => $this->title->getDBkey(),
 				'oi_archive_name' => $archiveNames
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'oi_timestamp DESC' )
+			[ 'ORDER BY' => 'oi_timestamp DESC' ]
 		);
 	}
 
@@ -75,9 +75,9 @@ class RevDelFileList extends RevDelList {
 	}
 
 	public function clearFileOps() {
-		$this->deleteBatch = array();
-		$this->storeBatch = array();
-		$this->cleanupBatch = array();
+		$this->deleteBatch = [];
+		$this->storeBatch = [];
+		$this->cleanupBatch = [];
 	}
 
 	public function doPreCommitUpdates() {
@@ -108,16 +108,18 @@ class RevDelFileList extends RevDelList {
 		$file = wfLocalFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
-		$purgeUrls = array();
+
+		// Purge full images from cache
+		$purgeUrls = [];
 		foreach ( $this->ids as $timestamp ) {
 			$archiveName = $timestamp . '!' . $this->title->getDBkey();
 			$file->purgeOldThumbnails( $archiveName );
 			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
 		}
-		if ( $this->getConfig()->get( 'UseSquid' ) ) {
-			// purge full images from cache
-			SquidUpdate::purge( $purgeUrls );
-		}
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdate( $purgeUrls ),
+			DeferredUpdates::PRESEND
+		);
 
 		return Status::newGood();
 	}

@@ -38,23 +38,32 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'page' ),
-			'fields' => array(
+		$tables = [ 'page' ];
+		$conds = [
+			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_is_redirect' => 0
+		];
+		$joinConds = [];
+		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];
+
+		// Allow extensions to modify the query
+		Hooks::run( 'ShortPagesQuery', [ &$tables, &$conds, &$joinConds, &$options ] );
+
+		return [
+			'tables' => $tables,
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_len'
-			),
-			'conds' => array(
-				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_is_redirect' => 0
-			),
-			'options' => array( 'USE INDEX' => 'page_redirect_namespace_len' )
-		);
+			],
+			'conds' => $conds,
+			'join_conds' => $joinConds,
+			'options' => $options
+		];
 	}
 
 	function getOrderFields() {
-		return array( 'page_len' );
+		return [ 'page_len' ];
 	}
 
 	/**
@@ -91,15 +100,15 @@ class ShortPagesPage extends QueryPage {
 
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
 		$hlink = Linker::linkKnown(
 			$title,
 			$this->msg( 'hist' )->escaped(),
-			array(),
-			array( 'action' => 'history' )
+			[],
+			[ 'action' => 'history' ]
 		);
 		$hlinkInParentheses = $this->msg( 'parentheses' )->rawParams( $hlink )->escaped();
 

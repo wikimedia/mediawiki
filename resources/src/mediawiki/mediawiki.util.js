@@ -59,6 +59,18 @@
 		},
 
 		/**
+		 * Encode the string like Sanitizer::escapeId in PHP
+		 *
+		 * @param {string} str String to be encoded.
+		 */
+		escapeId: function ( str ) {
+			str = String( str );
+			return util.rawurlencode( str.replace( / /g, '_' ) )
+				.replace( /%3A/g, ':' )
+				.replace( /%/g, '.' );
+		},
+
+		/**
 		 * Encode page titles for use in a URL
 		 *
 		 * We want / and : to be included as literal characters in our title URLs
@@ -89,19 +101,39 @@
 		/**
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
-		 * @param {string|null} [str=wgPageName] Page name
+		 * @param {string|null} [pageName=wgPageName] Page name
 		 * @param {Object} [params] A mapping of query parameter names to values,
 		 *  e.g. `{ action: 'edit' }`
-		 * @return {string} Url of the page with name of `str`
+		 * @return {string} Url of the page with name of `pageName`
 		 */
-		getUrl: function ( str, params ) {
-			var url = mw.config.get( 'wgArticlePath' ).replace(
-				'$1',
-				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) )
-			);
+		getUrl: function ( pageName, params ) {
+			var titleFragmentStart, url, query,
+				fragment = '',
+				title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
-			if ( params && !$.isEmptyObject( params ) ) {
-				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) + $.param( params );
+			// Find any fragment
+			titleFragmentStart = title.indexOf( '#' );
+			if ( titleFragmentStart !== -1 ) {
+				fragment = title.slice( titleFragmentStart + 1 );
+				// Exclude the fragment from the page name
+				title = title.slice( 0, titleFragmentStart );
+			}
+
+			// Produce query string
+			if ( params ) {
+				query = $.param( params );
+			}
+			if ( query ) {
+				url = title
+					? util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query
+					: util.wikiScript() + '?' + query;
+			} else {
+				url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( title ) );
+			}
+
+			// Append the encoded fragment
+			if ( fragment.length ) {
+				url += '#' + util.escapeId( fragment );
 			}
 
 			return url;
@@ -122,8 +154,7 @@
 			} else if ( str === 'load' ) {
 				return mw.config.get( 'wgLoadScript' );
 			} else {
-				return mw.config.get( 'wgScriptPath' ) + '/' + str +
-					mw.config.get( 'wgScriptExtension' );
+				return mw.config.get( 'wgScriptPath' ) + '/' + str + '.php';
 			}
 		},
 
@@ -206,9 +237,19 @@
 		 * (e.g. `'#foobar'`) for that item.
 		 *
 		 *     mw.util.addPortletLink(
-		 *         'p-tb', 'http://mediawiki.org/',
-		 *         'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
+		 *         'p-tb', 'https://www.mediawiki.org/',
+		 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
 		 *     );
+		 *
+		 *     var node = mw.util.addPortletLink(
+		 *         'p-tb',
+		 *         new mw.Title( 'Special:Example' ).getUrl(),
+		 *         'Example'
+		 *     );
+		 *     $( node ).on( 'click', function ( e ) {
+		 *         console.log( 'Example' );
+		 *         e.preventDefault();
+		 *     } );
 		 *
 		 * @param {string} portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
 		 * @param {string} href Link URL

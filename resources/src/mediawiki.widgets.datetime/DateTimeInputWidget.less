@@ -1,0 +1,155 @@
+@import "mediawiki.widgets.datetime.definitions";
+
+.mw-widgets-datetime-dateTimeInputWidget {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+
+	&-fields {
+		position: relative;
+		display: table;
+		z-index: 2;
+		.oo-ui-unselectable();
+
+		> .mw-widgets-datetime-dateTimeInputWidget-field {
+			.oo-ui-box-sizing(border-box);
+
+			display: table-cell;
+			white-space: pre;
+		}
+	}
+
+	&-handle {
+		width: 100%;
+		display: inline-block;
+		overflow: hidden;
+
+		// Needed for proper behavior with overflow: hidden.
+		vertical-align: bottom;
+
+		.oo-ui-unselectable();
+		.oo-ui-box-sizing(border-box);
+
+		> .oo-ui-indicatorElement-indicator,
+		> .oo-ui-iconElement-icon {
+			position: absolute;
+			background-position: center center;
+			background-repeat: no-repeat;
+			z-index: 1;
+		}
+	}
+
+	margin: 0.25em 0;
+	width: 100%;
+	max-width: 50em;
+
+	.oo-ui-inline-spacing(0.5em);
+
+	&-handle {
+		height: 2.5em;
+		border: 1px solid #ccc;
+		padding: 0 1em;
+		margin: 0;
+		background-color: #fff;
+		color: black;
+		border: solid 1px #ccc;
+		box-shadow: inset 0 0 0 0 @progressive;
+		border-radius: 0.1em;
+		.oo-ui-transition(box-shadow @quick-ease);
+		.oo-ui-box-sizing(border-box);
+
+		> .oo-ui-indicatorElement-indicator {
+			right: 0;
+		}
+
+		> .oo-ui-iconElement-icon {
+			left: 0.25em;
+		}
+
+		> .oo-ui-indicatorElement-indicator {
+			top: 0;
+			width: @indicator-size;
+			height: @indicator-size;
+			margin: 0.775em;
+		}
+
+		> .oo-ui-iconElement-icon {
+			top: 0;
+			width: @icon-size;
+			height: @icon-size;
+			margin: 0.3em;
+		}
+	}
+
+	&-empty &-handle {
+		color: #777;
+	}
+
+	&-field {
+		padding: 0;
+		margin: 0;
+		font-size: inherit;
+		font-family: inherit;
+		background-color: transparent;
+		color: inherit;
+		border: none;
+		box-shadow: none;
+		text-align: center;
+		vertical-align: middle;
+		.oo-ui-box-sizing(border-box);
+	}
+
+	&.oo-ui-widget-disabled {
+		.mw-widgets-datetime-dateTimeInputWidget-handle {
+			color: #ccc;
+			text-shadow: 0 1px 1px #fff;
+			border-color: #ddd;
+			background-color: #f3f3f3;
+
+			> .oo-ui-iconElement-icon,
+			> .oo-ui-indicatorElement-indicator {
+				opacity: 0.2;
+			}
+		}
+	}
+
+	&.oo-ui-widget-enabled {
+		.mw-widgets-datetime-dateTimeInputWidget-editField:hover {
+			background-color: #eee;
+		}
+
+		&.oo-ui-flaggedElement-invalid {
+			.mw-widgets-datetime-dateTimeInputWidget-handle {
+				border-color: red;
+				box-shadow: inset 0 0 0 0 red;
+			}
+
+			.mw-widgets-datetime-dateTimeInputWidget-handle:focus {
+				border-color: red;
+				box-shadow: inset 0 0 0 0.1em red;
+			}
+		}
+	}
+
+	input.mw-widgets-datetime-dateTimeInputWidget-field {
+		padding: 0.5em 0;
+	}
+
+	&-editField.mw-widgets-datetime-dateTimeInputWidget-invalid {
+		border: 1px solid red;
+		box-shadow: inset 0 0 0 0 red;
+
+		&:focus {
+			border: 1px solid red;
+			box-shadow: inset 0 0 0 0.1em red;
+		}
+	}
+
+	&.oo-ui-iconElement .mw-widgets-datetime-dateTimeInputWidget-handle {
+		padding-left: 3em;
+	}
+
+	&.oo-ui-indicatorElement .mw-widgets-datetime-dateTimeInputWidget-handle {
+		padding-right: 2em;
+	}
+}

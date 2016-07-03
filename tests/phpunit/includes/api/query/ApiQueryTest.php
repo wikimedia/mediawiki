@@ -12,28 +12,28 @@ class ApiQueryTest extends ApiTestCase {
 		$this->doLogin();
 
 		// Setup apiquerytestiw: as interwiki prefix
-		$this->setMwGlobals( 'wgHooks', array(
-			'InterwikiLoadPrefix' => array(
+		$this->setMwGlobals( 'wgHooks', [
+			'InterwikiLoadPrefix' => [
 				function ( $prefix, &$data ) {
 					if ( $prefix == 'apiquerytestiw' ) {
-						$data = array( 'iw_url' => 'wikipedia' );
+						$data = [ 'iw_url' => 'wikipedia' ];
 					}
 					return false;
 				}
-			)
-		) );
+			]
+		] );
 	}
 
 	public function testTitlesGetNormalized() {
 		global $wgMetaNamespace;
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
-		) );
+		] );
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'query',
-			'titles' => 'Project:articleA|article_B' ) );
+			'titles' => 'Project:articleA|article_B' ] );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'normalized', $data[0]['query'] );
@@ -42,18 +42,18 @@ class ApiQueryTest extends ApiTestCase {
 		$to = Title::newFromText( $wgMetaNamespace . ':ArticleA' );
 
 		$this->assertEquals(
-			array(
+			[
 				'from' => 'Project:articleA',
 				'to' => $to->getPrefixedText(),
-			),
+			],
 			$data[0]['query']['normalized'][0]
 		);
 
 		$this->assertEquals(
-			array(
+			[
 				'from' => 'article_B',
 				'to' => 'Article B'
-			),
+			],
 			$data[0]['query']['normalized'][1]
 		);
 	}
@@ -61,12 +61,12 @@ class ApiQueryTest extends ApiTestCase {
 	public function testTitlesAreRejectedIfInvalid() {
 		$title = false;
 		while ( !$title || Title::newFromText( $title )->exists() ) {
-			$title = md5( mt_rand( 0, 10000 ) + rand( 0, 999000 ) );
+			$title = md5( mt_rand( 0, 100000 ) );
 		}
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'query',
-			'titles' => $title . '|Talk:' ) );
+			'titles' => $title . '|Talk:' ] );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
@@ -89,9 +89,9 @@ class ApiQueryTest extends ApiTestCase {
 	 * @dataProvider provideTestTitlePartToKey
 	 */
 	function testTitlePartToKey( $titlePart, $namespace, $expected, $expectException ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
-		) );
+		] );
 
 		$api = new MockApiQueryBase();
 		$exceptionCaught = false;
@@ -105,16 +105,16 @@ class ApiQueryTest extends ApiTestCase {
 	}
 
 	function provideTestTitlePartToKey() {
-		return array(
-			array( 'a  b  c', NS_MAIN, 'A_b_c', false ),
-			array( 'x', NS_MAIN, 'X', false ),
-			array( 'y ', NS_MAIN, 'Y_', false ),
-			array( 'template:foo', NS_CATEGORY, 'Template:foo', false ),
-			array( 'apiquerytestiw:foo', NS_CATEGORY, 'Apiquerytestiw:foo', false ),
-			array( "\xF7", NS_MAIN, null, true ),
-			array( 'template:foo', NS_MAIN, null, true ),
-			array( 'apiquerytestiw:foo', NS_MAIN, null, true ),
-		);
+		return [
+			[ 'a  b  c', NS_MAIN, 'A_b_c', false ],
+			[ 'x', NS_MAIN, 'X', false ],
+			[ 'y ', NS_MAIN, 'Y_', false ],
+			[ 'template:foo', NS_CATEGORY, 'Template:foo', false ],
+			[ 'apiquerytestiw:foo', NS_CATEGORY, 'Apiquerytestiw:foo', false ],
+			[ "\xF7", NS_MAIN, null, true ],
+			[ 'template:foo', NS_MAIN, null, true ],
+			[ 'apiquerytestiw:foo', NS_MAIN, null, true ],
+		];
 	}
 
 	/**
@@ -127,7 +127,7 @@ class ApiQueryTest extends ApiTestCase {
 		$classes = $wgAutoloadLocalClasses + $wgAutoloadClasses;
 
 		$api = new ApiMain(
-			new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) )
+			new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] )
 		);
 		$queryApi = new ApiQuery( $api, 'query' );
 		$modules = $queryApi->getModuleManager()->getNamesWithClasses();

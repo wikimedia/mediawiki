@@ -45,7 +45,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$NS = $request->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
+		$pager = new ProtectedTitlesPager( $this, [], $type, $level, $NS, $sizetype, $size );
 
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 
@@ -71,10 +71,10 @@ class SpecialProtectedtitles extends SpecialPage {
 		if ( !$title ) {
 			return Html::rawElement(
 				'li',
-				array(),
+				[],
 				Html::element(
 					'span',
-					array( 'class' => 'mw-invalidtitle' ),
+					[ 'class' => 'mw-invalidtitle' ],
 					Linker::getInvalidTitleDescription(
 						$this->getContext(),
 						$row->pt_namespace,
@@ -85,7 +85,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		}
 
 		$link = Linker::link( $title );
-		$description_items = array();
+		$description_items = [];
 		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 		$description_items[] = $protType;
@@ -122,11 +122,11 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), $this->msg( 'protectedtitles' )->text() ) .
+			Xml::element( 'legend', [], $this->msg( 'protectedtitles' )->text() ) .
 			Html::hidden( 'title', $special ) . "&#160;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
 			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			"&#160;" . Xml::submitButton( $this->msg( 'protectedtitles-submit' )->text() ) . "\n" .
 			"</fieldset></form>";
 	}
 
@@ -139,15 +139,15 @@ class SpecialProtectedtitles extends SpecialPage {
 	 */
 	function getNamespaceMenu( $namespace = null ) {
 		return Html::namespaceSelector(
-			array(
+			[
 				'selected' => $namespace,
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
-			), array(
+			], [
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'class' => 'namespaceselector',
-			)
+			]
 		);
 	}
 
@@ -158,8 +158,8 @@ class SpecialProtectedtitles extends SpecialPage {
 	 */
 	function getLevelMenu( $pr_level ) {
 		// Temporary array
-		$m = array( $this->msg( 'restriction-level-all' )->text() => 0 );
-		$options = array();
+		$m = [ $this->msg( 'restriction-level-all' )->text() => 0 ];
+		$options = [];
 
 		// First pass to load the log names
 		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
@@ -182,82 +182,11 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
 			Xml::tags( 'select',
-				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
+				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
 				implode( "\n", $options ) );
 	}
 
 	protected function getGroupName() {
 		return 'maintenance';
-	}
-}
-
-/**
- * @todo document
- * @ingroup Pager
- */
-class ProtectedTitlesPager extends AlphabeticPager {
-	public $mForm, $mConds;
-
-	function __construct( $form, $conds = array(), $type, $level, $namespace,
-		$sizetype = '', $size = 0
-	) {
-		$this->mForm = $form;
-		$this->mConds = $conds;
-		$this->level = $level;
-		$this->namespace = $namespace;
-		$this->size = intval( $size );
-		parent::__construct( $form->getContext() );
-	}
-
-	function getStartBody() {
-		# Do a link batch query
-		$this->mResult->seek( 0 );
-		$lb = new LinkBatch;
-
-		foreach ( $this->mResult as $row ) {
-			$lb->add( $row->pt_namespace, $row->pt_title );
-		}
-
-		$lb->execute();
-
-		return '';
-	}
-
-	/**
-	 * @return Title
-	 */
-	function getTitle() {
-		return $this->mForm->getTitle();
-	}
-
-	function formatRow( $row ) {
-		return $this->mForm->formatRow( $row );
-	}
-
-	/**
-	 * @return array
-	 */
-	function getQueryInfo() {
-		$conds = $this->mConds;
-		$conds[] = 'pt_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
-			' OR pt_expiry IS NULL';
-		if ( $this->level ) {
-			$conds['pt_create_perm'] = $this->level;
-		}
-
-		if ( !is_null( $this->namespace ) ) {
-			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
-		}
-
-		return array(
-			'tables' => 'protected_titles',
-			'fields' => array( 'pt_namespace', 'pt_title', 'pt_create_perm',
-				'pt_expiry', 'pt_timestamp' ),
-			'conds' => $conds
-		);
-	}
-
-	function getIndexField() {
-		return 'pt_timestamp';
 	}
 }

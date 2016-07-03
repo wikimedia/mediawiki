@@ -1,13 +1,17 @@
 /*!
- * OOjs UI v0.12.12
+ * OOjs UI v0.17.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2015 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-13T20:38:18Z
+ * Date: 2016-05-03T22:58:02Z
  */
+( function ( OO ) {
+
+'use strict';
+
 /**
  * @class
  * @extends OO.ui.Theme
@@ -45,11 +49,15 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
 		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
 		if (
-			( isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) ) ||
-			( !isFramed && element.hasFlag( 'primary' ) )
+			( isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) )
 		) {
+			// Button with a dark background, use white icon
 			variants.invert = true;
+		} else if ( !isFramed && element.isDisabled() ) {
+			// Frameless disabled button, always use black icon regardless of flags
+			variants.invert = false;
 		} else {
+			// Any other kind of button, use the right colored icon if available
 			variants.progressive = element.hasFlag( 'progressive' );
 			variants.constructive = element.hasFlag( 'constructive' );
 			variants.destructive = element.hasFlag( 'destructive' );
@@ -67,3 +75,5 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 /* Instantiation */
 
 OO.ui.theme = new OO.ui.MediaWikiTheme();
+
+}( OO ) );

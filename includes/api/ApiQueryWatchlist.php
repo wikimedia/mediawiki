@@ -85,31 +85,31 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$this->addFields( array(
+		$this->addFields( [
 			'rc_id',
 			'rc_namespace',
 			'rc_title',
 			'rc_timestamp',
 			'rc_type',
 			'rc_deleted',
-		) );
+		] );
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->addFields( array(
+			$this->addFields( [
 				'rc_cur_id',
 				'rc_this_oldid',
 				'rc_last_oldid',
-			) );
+			] );
 
-			$this->addFieldsIf( array( 'rc_type', 'rc_minor', 'rc_bot' ), $this->fld_flags );
+			$this->addFieldsIf( [ 'rc_type', 'rc_minor', 'rc_bot' ], $this->fld_flags );
 			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
-			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
-			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
+			$this->addFieldsIf( [ 'rc_patrolled', 'rc_log_type' ], $this->fld_patrol );
+			$this->addFieldsIf( [ 'rc_old_len', 'rc_new_len' ], $this->fld_sizes );
 			$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
 			$this->addFieldsIf(
-				array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ),
+				[ 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ],
 				$this->fld_loginfo
 			);
 		} elseif ( $params['allrev'] ) {
@@ -118,19 +118,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFields( 'rc_cur_id' );
 		}
 
-		$this->addTables( array(
+		$this->addTables( [
 			'recentchanges',
 			'watchlist',
-		) );
+		] );
 
 		$userId = $wlowner->getId();
-		$this->addJoinConds( array( 'watchlist' => array( 'INNER JOIN',
-			array(
+		$this->addJoinConds( [ 'watchlist' => [ 'INNER JOIN',
+			[
 				'wl_user' => $userId,
 				'wl_namespace=rc_namespace',
 				'wl_title=rc_title'
-			)
-		) ) );
+			]
+		] ] );
 
 		$db = $this->getDB();
 
@@ -156,7 +156,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( !$params['allrev'] ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', 'rc_cur_id=page_id' ) ) );
+			$this->addJoinConds( [ 'page' => [ 'LEFT JOIN', 'rc_cur_id=page_id' ] ] );
 			$this->addWhere( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG );
 		}
 
@@ -192,8 +192,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
-			$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['unread'] ) );
-			$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!unread'] ) );
+			$this->addWhereIf( 'rc_timestamp >= wl_notificationtimestamp', isset( $show['unread'] ) );
+			$this->addWhereIf(
+				'wl_notificationtimestamp IS NULL OR rc_timestamp < wl_notificationtimestamp',
+				isset( $show['!unread'] )
+			);
 		}
 
 		if ( !is_null( $params['type'] ) ) {
@@ -244,15 +247,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$bitmask = 0;
 		}
 		if ( $bitmask ) {
-			$this->addWhere( $this->getDB()->makeList( array(
+			$this->addWhere( $this->getDB()->makeList( [
 				'rc_type != ' . RC_LOG,
 				$this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
-			), LIST_OR ) );
+			], LIST_OR ) );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
-		$ids = array();
+		$ids = [];
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 
@@ -266,7 +269,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			if ( is_null( $resultPageSet ) ) {
 				$vals = $this->extractRowInfo( $row );
-				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
@@ -282,7 +285,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$this->getResult()->addIndexedTagName(
-				array( 'query', $this->getModuleName() ),
+				[ 'query', $this->getModuleName() ],
 				'item'
 			);
 		} elseif ( $params['allrev'] ) {
@@ -298,7 +301,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$user = $this->getUser();
 
 		/* Our output data. */
-		$vals = array();
+		$vals = [];
 		$type = intval( $row->rc_type );
 		$vals['type'] = RecentChange::parseFromRCType( $type );
 		$anyHidden = false;
@@ -415,44 +418,44 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'allrev' => false,
-			'start' => array(
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'user' => array(
+			],
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'excludeuser' => array(
+			],
+			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiHelp::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|flags',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'title',
 					'flags',
@@ -465,11 +468,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'sizes',
 					'notificationtimestamp',
 					'loginfo',
-				)
-			),
-			'show' => array(
+				]
+			],
+			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'minor',
 					'!minor',
 					'bot',
@@ -480,32 +483,28 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!patrolled',
 					'unread',
 					'!unread',
-				)
-			),
-			'type' => array(
-				ApiBase::PARAM_DFLT => 'edit|new|log',
+				]
+			],
+			'type' => [
+				ApiBase::PARAM_DFLT => 'edit|new|log|categorize',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
-					'edit',
-					'external',
-					'new',
-					'log',
-				)
-			),
-			'owner' => array(
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
+			],
+			'owner' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string'
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=watchlist'
 				=> 'apihelp-query+watchlist-example-simple',
 			'action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment'
@@ -518,7 +517,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				=> 'apihelp-query+watchlist-example-generator-rev',
 			'action=query&list=watchlist&wlowner=Example&wltoken=123ABC'
 				=> 'apihelp-query+watchlist-example-wlowner',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

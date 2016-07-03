@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  *
  * @group Diff
  */
@@ -29,7 +29,7 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 		return $diff;
 	}
 
-	private function getMockDiffOp( $type = null, $orig = array(), $closing = array() ) {
+	private function getMockDiffOp( $type = null, $orig = [], $closing = [] ) {
 		$diffOp = $this->getMockBuilder( 'DiffOp' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -55,78 +55,78 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 	}
 
 	public function provideTestFormat() {
-		$emptyArrayTestCases = array(
-			$this->getMockDiff( array() ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'delete' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'change' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'copy' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'FOOBARBAZ' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add', 'line' ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'delete', array(), array( 'line' ) ) ) ),
-			$this->getMockDiff( array( $this->getMockDiffOp( 'copy', array(), array( 'line' ) ) ) ),
-		);
+		$emptyArrayTestCases = [
+			$this->getMockDiff( [] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'add' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'delete' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'change' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'copy' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'FOOBARBAZ' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'add', 'line' ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'delete', [], [ 'line' ] ) ] ),
+			$this->getMockDiff( [ $this->getMockDiffOp( 'copy', [], [ 'line' ] ) ] ),
+		];
 
-		$otherTestCases = array();
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array(), array( 'a1' ) ) ) ),
-			array( array( 'action' => 'add', 'new' => 'a1', 'newline' => 1 ) ),
-		);
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array(), array( 'a1', 'a2' ) ) ) ),
-			array(
-				array( 'action' => 'add', 'new' => 'a1', 'newline' => 1 ),
-				array( 'action' => 'add', 'new' => 'a2', 'newline' => 2 ),
-			),
-		);
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'delete', array( 'd1' ) ) ) ),
-			array( array( 'action' => 'delete', 'old' => 'd1', 'oldline' => 1 ) ),
-		);
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'delete', array( 'd1', 'd2' ) ) ) ),
-			array(
-				array( 'action' => 'delete', 'old' => 'd1', 'oldline' => 1 ),
-				array( 'action' => 'delete', 'old' => 'd2', 'oldline' => 2 ),
-			),
-		);
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'change', array( 'd1' ), array( 'a1' ) ) ) ),
-			array( array(
+		$otherTestCases = [];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp( 'add', [], [ 'a1' ] ) ] ),
+			[ [ 'action' => 'add', 'new' => 'a1', 'newline' => 1 ] ],
+		];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp( 'add', [], [ 'a1', 'a2' ] ) ] ),
+			[
+				[ 'action' => 'add', 'new' => 'a1', 'newline' => 1 ],
+				[ 'action' => 'add', 'new' => 'a2', 'newline' => 2 ],
+			],
+		];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp( 'delete', [ 'd1' ] ) ] ),
+			[ [ 'action' => 'delete', 'old' => 'd1', 'oldline' => 1 ] ],
+		];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp( 'delete', [ 'd1', 'd2' ] ) ] ),
+			[
+				[ 'action' => 'delete', 'old' => 'd1', 'oldline' => 1 ],
+				[ 'action' => 'delete', 'old' => 'd2', 'oldline' => 2 ],
+			],
+		];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp( 'change', [ 'd1' ], [ 'a1' ] ) ] ),
+			[ [
 				'action' => 'change',
 				'old' => 'd1',
 				'new' => 'mockLine',
 				'newline' => 1, 'oldline' => 1
-			) ),
-		);
-		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp(
+			] ],
+		];
+		$otherTestCases[] = [
+			$this->getMockDiff( [ $this->getMockDiffOp(
 				'change',
-				array( 'd1', 'd2' ),
-				array( 'a1', 'a2' )
-			) ) ),
-			array(
-				array(
+				[ 'd1', 'd2' ],
+				[ 'a1', 'a2' ]
+			) ] ),
+			[
+				[
 					'action' => 'change',
 					'old' => 'd1',
 					'new' => 'mockLine',
 					'newline' => 1, 'oldline' => 1
-				),
-				array(
+				],
+				[
 					'action' => 'change',
 					'old' => 'd2',
 					'new' => 'mockLine',
 					'newline' => 2, 'oldline' => 2
-				),
-			),
-		);
+				],
+			],
+		];
 
-		$testCases = array();
+		$testCases = [];
 		foreach ( $emptyArrayTestCases as $testCase ) {
-			$testCases[] = array( $testCase, array() );
+			$testCases[] = [ $testCase, [] ];
 		}
 		foreach ( $otherTestCases as $testCase ) {
-			$testCases[] = array( $testCase[0], $testCase[1] );
+			$testCases[] = [ $testCase[0], $testCase[1] ];
 		}
 		return $testCases;
 	}

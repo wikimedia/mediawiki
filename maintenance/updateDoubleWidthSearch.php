@@ -34,7 +34,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to normalize double-byte latin UTF-8 characters";
+		$this->addDescription( 'Script to normalize double-byte latin UTF-8 characters' );
 		$this->addOption( 'q', 'quiet', false, true );
 		$this->addOption(
 			'l',
@@ -51,13 +51,13 @@ class UpdateDoubleWidthSearch extends Maintenance {
 	public function execute() {
 		$maxLockTime = $this->getOption( 'l', 20 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		if ( $dbw->getType() !== 'mysql' ) {
 			$this->error( "This change is only needed on MySQL, quitting.\n", true );
 		}
 
 		$res = $this->findRows( $dbw );
-		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
+		$this->updateSearchIndex( $maxLockTime, [ $this, 'searchIndexUpdateCallback' ], $dbw, $res );
 
 		$this->output( "Done\n" );
 	}

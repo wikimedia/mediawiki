@@ -50,18 +50,18 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$propnames = $this->getExistingPropNames();
 
-		$form = new HTMLForm( array(
-			'propname' => array(
-				'type' => 'selectorother',
+		$form = HTMLForm::factory( 'ooui', [
+			'propname' => [
+				'type' => 'combobox',
 				'name' => 'propname',
 				'options' => $propnames,
 				'default' => $propname,
 				'label-message' => 'pageswithprop-prop',
 				'required' => true,
-			),
-		), $this->getContext() );
+			],
+		], $this->getContext() );
 		$form->setMethod( 'get' );
-		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
+		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
 		$form->setWrapperLegendMsg( 'pageswithprop-legend' );
 		$form->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() );
 		$form->setSubmitTextMsg( 'pageswithprop-submit' );
@@ -101,9 +101,9 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'page_props', 'page' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'page_props', 'page' ],
+			'fields' => [
 				'page_id' => 'pp_page',
 				'page_namespace',
 				'page_title',
@@ -111,19 +111,19 @@ class SpecialPagesWithProp extends QueryPage {
 				'page_is_redirect',
 				'page_latest',
 				'pp_value',
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'pp_propname' => $this->propName,
-			),
-			'join_conds' => array(
-				'page' => array( 'INNER JOIN', 'page_id = pp_page' )
-			),
-			'options' => array()
-		);
+			],
+			'join_conds' => [
+				'page' => [ 'INNER JOIN', 'page_id = pp_page' ]
+			],
+			'options' => []
+		];
 	}
 
 	function getOrderFields() {
-		return array( 'page_id' );
+		return [ 'page_id' ];
 	}
 
 	/**
@@ -133,7 +133,7 @@ class SpecialPagesWithProp extends QueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromRow( $result );
-		$ret = Linker::link( $title, null, array(), array(), array( 'known' ) );
+		$ret = Linker::link( $title, null, [], [], [ 'known' ] );
 		if ( $result->pp_value !== '' ) {
 			// Do not show very long or binary values on the special page
 			$valueLength = strlen( $result->pp_value );
@@ -145,9 +145,9 @@ class SpecialPagesWithProp extends QueryPage {
 					->msg( $isBinary ? 'pageswithprop-prophidden-binary' : 'pageswithprop-prophidden-long' )
 					->params( $this->getLanguage()->formatSize( $valueLength ) );
 
-				$propValue = Html::element( 'span', array( 'class' => 'prop-value-hidden' ), $message->text() );
+				$propValue = Html::element( 'span', [ 'class' => 'prop-value-hidden' ], $message->text() );
 			} else {
-				$propValue = Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value );
+				$propValue = Html::element( 'span', [ 'class' => 'prop-value' ], $result->pp_value );
 			}
 
 			$ret .= $this->msg( 'colon-separator' )->escaped() . $propValue;
@@ -164,9 +164,9 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	protected function queryExistingProps( $limit = null, $offset = 0 ) {
-		$opts = array(
+		$opts = [
 			'DISTINCT', 'ORDER BY' => 'pp_propname'
-		);
+		];
 		if ( $limit ) {
 			$opts['LIMIT'] = $limit;
 		}
@@ -182,7 +182,7 @@ class SpecialPagesWithProp extends QueryPage {
 			$opts
 		);
 
-		$propnames = array();
+		$propnames = [];
 		foreach ( $res as $row ) {
 			$propnames[$row->pp_propname] = $row->pp_propname;
 		}

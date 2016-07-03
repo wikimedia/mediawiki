@@ -32,32 +32,103 @@ class ProtectLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'move_prot' ) {
 			$params = $this->extractParameters();
-			return array( Title::newFromText( $params[3] ) );
+			return [ Title::newFromText( $params[3] ) ];
 		}
-		return array();
+		return [];
+	}
+
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		$params = $this->extractParameters();
+		if ( isset( $params[4] ) && $params[4] ) {
+			// Messages: logentry-protect-protect-cascade, logentry-protect-modify-cascade
+			$key .= '-cascade';
+		}
+
+		return $key;
 	}
 
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
 		$subtype = $this->entry->getSubtype();
-		if ( $subtype === 'move_prot' ) {
-			$oldname = $this->makePageLink( Title::newFromText( $params[3] ), array( 'redirect' => 'no' ) );
+		if ( $subtype === 'protect' || $subtype === 'modify' ) {
+			$rawParams = $this->entry->getParameters();
+			if ( isset( $rawParams['details'] ) ) {
+				$params[3] = $this->createProtectDescription( $rawParams['details'] );
+			} elseif ( isset( $params[3] ) ) {
+				// Old way of Restrictions and expiries
+				$params[3] = $this->context->getLanguage()->getDirMark() . $params[3];
+			} else {
+				// Very old way (nothing set)
+				$params[3] = '';
+			}
+			// Cascading flag
+			if ( isset( $params[4] ) ) {
+				// handled in getMessageKey
+				unset( $params[4] );
+			}
+		} elseif ( $subtype === 'move_prot' ) {
+			$oldname = $this->makePageLink( Title::newFromText( $params[3] ), [ 'redirect' => 'no' ] );
 			$params[3] = Message::rawParam( $oldname );
 		}
 
 		return $params;
 	}
 
+	public function getActionLinks() {
+		$subtype = $this->entry->getSubtype();
+		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
+			|| $subtype === 'move_prot' // the move log entry has the right action link
+		) {
+			return '';
+		}
+
+		// Show history link for all changes after the protection
+		$title = $this->entry->getTarget();
+		$links = [
+			Linker::link( $title,
+				$this->msg( 'hist' )->escaped(),
+				[],
+				[
+					'action' => 'history',
+					'offset' => $this->entry->getTimestamp(),
+				]
+			)
+		];
+
+		// Show change protection link
+		if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
+			$links[] = Linker::linkKnown(
+				$title,
+				$this->msg( 'protect_change' )->escaped(),
+				[],
+				[ 'action' => 'protect' ]
+			);
+		}
+
+		return $this->msg( 'parentheses' )->rawParams(
+			$this->context->getLanguage()->pipeList( $links ) )->escaped();
+	}
+
 	protected function getParametersForApi() {
 		$entry = $this->entry;
+		$subtype = $this->entry->getSubtype();
 		$params = $entry->getParameters();
 
-		static $map = array(
-			// param keys for move_prot sub type
-			'4:title:oldtitle',
-			'4::oldtitle' => '4:title:oldtitle',
-		);
+		$map = [];
+		if ( $subtype === 'protect' || $subtype === 'modify' ) {
+			$map = [
+				'4::description',
+				'5:bool:cascade',
+				'details' => ':array:details',
+			];
+		} elseif ( $subtype === 'move_prot' ) {
+			$map = [
+				'4:title:oldtitle',
+				'4::oldtitle' => '4:title:oldtitle',
+			];
+		}
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];
@@ -65,6 +136,78 @@ class ProtectLogFormatter extends LogFormatter {
 			}
 		}
 
+		// Change string to explicit boolean
+		if ( isset( $params['5:bool:cascade'] ) && is_string( $params['5:bool:cascade'] ) ) {
+			$params['5:bool:cascade'] = $params['5:bool:cascade'] === 'cascade';
+		}
+
 		return $params;
 	}
+
+	public function formatParametersForApi() {
+		global $wgContLang;
+
+		$ret = parent::formatParametersForApi();
+		if ( isset( $ret['details'] ) && is_array( $ret['details'] ) ) {
+			foreach ( $ret['details'] as &$detail ) {
+				if ( isset( $detail['expiry'] ) ) {
+					$detail['expiry'] = $wgContLang->formatExpiry( $detail['expiry'], TS_ISO_8601, 'infinite' );
+				}
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Create the protect description to show in the log formatter
+	 *
+	 * @param array $details
+	 * @return string
+	 */
+	public function createProtectDescription( array $details ) {
+		$protectDescription = '';
+
+		foreach ( $details as $param ) {
+			$expiryText = $this->formatExpiry( $param['expiry'] );
+
+			// Messages: restriction-edit, restriction-move, restriction-create,
+			// restriction-upload
+			$action = $this->context->msg( 'restriction-' . $param['type'] )->escaped();
+
+			$protectionLevel = $param['level'];
+			// Messages: protect-level-autoconfirmed, protect-level-sysop
+			$message = $this->context->msg( 'protect-level-' . $protectionLevel );
+			if ( $message->isDisabled() ) {
+				// Require "$1" permission
+				$restrictions = $this->context->msg( "protect-fallback", $protectionLevel )->parse();
+			} else {
+				$restrictions = $message->escaped();
+			}
+
+			if ( $protectDescription !== '' ) {
+				$protectDescription .= $this->context->msg( 'word-separator' )->escaped();
+			}
+
+			$protectDescription .= $this->context->msg( 'protect-summary-desc' )
+				->params( $action, $restrictions, $expiryText )->escaped();
+		}
+
+		return $protectDescription;
+	}
+
+	private function formatExpiry( $expiry ) {
+		if ( wfIsInfinity( $expiry ) ) {
+			return $this->context->msg( 'protect-expiry-indefinite' )->text();
+		}
+		$lang = $this->context->getLanguage();
+		$user = $this->context->getUser();
+		return $this->context->msg(
+			'protect-expiring-local',
+			$lang->userTimeAndDate( $expiry, $user ),
+			$lang->userDate( $expiry, $user ),
+			$lang->userTime( $expiry, $user )
+		)->text();
+	}
+
 }

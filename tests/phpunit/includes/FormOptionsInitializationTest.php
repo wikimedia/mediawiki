@@ -50,14 +50,14 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 	public function testAddStringOption() {
 		$this->object->add( 'foo', 'string value' );
 		$this->assertEquals(
-			array(
-				'foo' => array(
+			[
+				'foo' => [
 					'default' => 'string value',
 					'consumed' => false,
 					'type' => FormOptions::STRING,
 					'value' => null,
-				)
-			),
+				]
+			],
 			$this->object->getOptions()
 		);
 	}
@@ -69,20 +69,20 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 		$this->object->add( 'one', 1 );
 		$this->object->add( 'negone', -1 );
 		$this->assertEquals(
-			array(
-				'negone' => array(
+			[
+				'negone' => [
 					'default' => -1,
 					'value' => null,
 					'consumed' => false,
 					'type' => FormOptions::INT,
-				),
-				'one' => array(
+				],
+				'one' => [
 					'default' => 1,
 					'value' => null,
 					'consumed' => false,
 					'type' => FormOptions::INT,
-				)
-			),
+				]
+			],
 			$this->object->getOptions()
 		);
 	}

@@ -26,6 +26,8 @@
  */
 class ApiFeedRecentChanges extends ApiBase {
 
+	private $params;
+
 	/**
 	 * This module uses a custom feed wrapper printer.
 	 *
@@ -79,7 +81,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		$rc->setContext( $context );
 		$rows = $rc->getRows();
 
-		$feedItems = $rows ? ChangesFeed::buildItems( $rows ) : array();
+		$feedItems = $rows ? ChangesFeed::buildItems( $rows ) : [];
 
 		ApiFormatFeedWrapper::setResult( $this->getResult(), $formatter, $feedItems );
 	}
@@ -96,7 +98,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		if ( $specialClass === 'SpecialRecentchangeslinked' ) {
 			$title = Title::newFromText( $this->params['target'] );
 			if ( !$title ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $this->params['target'] ) );
+				$this->dieUsageMsg( [ 'invalidtitle', $this->params['target'] ] );
 			}
 
 			$feed = new ChangesFeed( $feedFormat, false );
@@ -122,32 +124,32 @@ class ApiFeedRecentChanges extends ApiBase {
 		$config = $this->getConfig();
 		$feedFormatNames = array_keys( $config->get( 'FeedClasses' ) );
 
-		$ret = array(
-			'feedformat' => array(
+		$ret = [
+			'feedformat' => [
 				ApiBase::PARAM_DFLT => 'rss',
 				ApiBase::PARAM_TYPE => $feedFormatNames,
-			),
+			],
 
-			'namespace' => array(
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace',
-			),
+			],
 			'invert' => false,
 			'associated' => false,
 
-			'days' => array(
+			'days' => [
 				ApiBase::PARAM_DFLT => 7,
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 50,
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => $config->get( 'FeedLimit' ),
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'from' => array(
+			],
+			'from' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-			),
+			],
 
 			'hideminor' => false,
 			'hidebots' => false,
@@ -155,36 +157,37 @@ class ApiFeedRecentChanges extends ApiBase {
 			'hideliu' => false,
 			'hidepatrolled' => false,
 			'hidemyself' => false,
+			'hidecategorization' => false,
 
-			'tagfilter' => array(
+			'tagfilter' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
+			],
 
-			'target' => array(
+			'target' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
+			],
 			'showlinkedto' => false,
-		);
+		];
 
 		if ( $config->get( 'AllowCategorizedRecentChanges' ) ) {
-			$ret += array(
-				'categories' => array(
+			$ret += [
+				'categories' => [
 					ApiBase::PARAM_TYPE => 'string',
 					ApiBase::PARAM_ISMULTI => true,
-				),
+				],
 				'categories_any' => false,
-			);
+			];
 		}
 
 		return $ret;
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=feedrecentchanges'
 				=> 'apihelp-feedrecentchanges-example-simple',
 			'action=feedrecentchanges&days=30'
 				=> 'apihelp-feedrecentchanges-example-30days',
-		);
+		];
 	}
 }

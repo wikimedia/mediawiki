@@ -284,7 +284,7 @@
 		 */
 		params: function ( parameters ) {
 			var i;
-			for ( i = 0; i < parameters.length; i += 1 ) {
+			for ( i = 0; i < parameters.length; i++ ) {
 				this.parameters.push( parameters[ i ] );
 			}
 			return this;
@@ -415,8 +415,8 @@
 		 * Used by Message#parser().
 		 *
 		 * @since 1.25
-		 * @param {string} fmt Format string
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {string} formatString Format string
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {string} Formatted string
 		 */
 		format: function ( formatString ) {
@@ -554,11 +554,11 @@
 		/**
 		 * Get a message object.
 		 *
-		 * Shorcut for `new mw.Message( mw.messages, key, parameters )`.
+		 * Shortcut for `new mw.Message( mw.messages, key, parameters )`.
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
 		message: function ( key ) {
@@ -573,7 +573,7 @@
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {string}
 		 */
 		msg: function () {
@@ -588,7 +588,8 @@
 		log: ( function () {
 			// Also update the restoration of methods in mediawiki.log.js
 			// when adding or removing methods here.
-			var log = function () {};
+			var log = function () {},
+				console = window.console;
 
 			/**
 			 * @class mw.log
@@ -596,33 +597,27 @@
 			 */
 
 			/**
-			 * Write a message the console's warning channel.
+			 * Write a message to the console's warning channel.
 			 * Actions not supported by the browser console are silently ignored.
 			 *
-			 * @param {string...} msg Messages to output to console
+			 * @param {...string} msg Messages to output to console
 			 */
-			log.warn = function () {
-				var console = window.console;
-				if ( console && console.warn && console.warn.apply ) {
-					console.warn.apply( console, arguments );
-				}
-			};
+			log.warn = console && console.warn && Function.prototype.bind ?
+				Function.prototype.bind.call( console.warn, console ) :
+				$.noop;
 
 			/**
-			 * Write a message the console's error channel.
+			 * Write a message to the console's error channel.
 			 *
 			 * Most browsers provide a stacktrace by default if the argument
 			 * is a caught Error object.
 			 *
 			 * @since 1.26
-			 * @param {Error|string...} msg Messages to output to console
+			 * @param {Error|...string} msg Messages to output to console
 			 */
-			log.error = function () {
-				var console = window.console;
-				if ( console && console.error && console.error.apply ) {
-					console.error.apply( console, arguments );
-				}
-			};
+			log.error = console && console.error && Function.prototype.bind ?
+				Function.prototype.bind.call( console.error, console ) :
+				$.noop;
 
 			/**
 			 * Create a property in a host object that, when accessed, will produce
@@ -637,27 +632,21 @@
 				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-				// Support: IE8
-				// Can throw on Object.defineProperty.
-				try {
-					Object.defineProperty( obj, key, {
-						configurable: true,
-						enumerable: true,
-						get: function () {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							return val;
-						},
-						set: function ( newVal ) {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							val = newVal;
-						}
-					} );
-				} catch ( err ) {
-					// Fallback to creating a copy of the value to the object.
-					obj[ key ] = val;
-				}
+				Object.defineProperty( obj, key, {
+					configurable: true,
+					enumerable: true,
+					get: function () {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						return val;
+					},
+					set: function ( newVal ) {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						val = newVal;
+					}
+				} );
+
 			};
 
 			return log;
@@ -725,6 +714,7 @@
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null
+			 *             'module': export Object
 			 *
 			 *             // Set from execute() or mw.loader.state()
 			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
@@ -778,6 +768,10 @@
 				// List of modules which will be loaded as when ready
 				batch = [],
 
+				// Pending queueModuleScript() requests
+				handlingPendingRequests = false,
+				pendingRequests = [],
+
 				// List of modules to be loaded
 				queue = [],
 
@@ -805,10 +799,9 @@
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null,
 
-				// Buffer for #addEmbeddedCSS
+				// For #addEmbeddedCSS
 				cssBuffer = '',
-
-				// Callbacks for #addEmbeddedCSS
+				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks();
 
 			function getMarker() {
@@ -877,40 +870,35 @@
 					cssCallbacks.add( callback );
 				}
 
-				// Yield once before inserting the <style> tag. There are likely
-				// more calls coming up which we can combine this way.
-				// Appending a stylesheet and waiting for the browser to repaint
-				// is fairly expensive, this reduces that (bug 45810)
+				// Yield once before creating the <style> tag. This lets multiple stylesheets
+				// accumulate into one buffer, allowing us to reduce how often new stylesheets
+				// are inserted in the browser. Appending a stylesheet and waiting for the
+				// browser to repaint is fairly expensive. (T47810)
 				if ( cssText ) {
-					// Be careful not to extend the buffer with css that needs a new stylesheet.
-					// cssText containing `@import` rules needs to go at the start of a buffer,
-					// since those only work when placed at the start of a stylesheet; bug 35562.
+					// Don't extend the buffer if the item needs its own stylesheet.
+					// Keywords like `@import` are only valid at the start of a stylesheet (T37562).
 					if ( !cssBuffer || cssText.slice( 0, '@import'.length ) !== '@import' ) {
 						// Linebreak for somewhat distinguishable sections
-						// (the rl-cachekey comment separating each)
 						cssBuffer += '\n' + cssText;
-						// TODO: Use requestAnimationFrame in the future which will
-						// perform even better by not injecting styles while the browser
-						// is painting.
-						setTimeout( function () {
-							// Can't pass addEmbeddedCSS to setTimeout directly because Firefox
-							// (below version 13) has the non-standard behaviour of passing a
-							// numerical "lateness" value as first argument to this callback
-							// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
-							addEmbeddedCSS();
-						} );
+						// TODO: Using requestAnimationFrame would perform better by not injecting
+						// styles while the browser is busy painting.
+						if ( !cssBufferTimer ) {
+							cssBufferTimer = setTimeout( function () {
+								// Support: Firefox < 13
+								// Firefox 12 has non-standard behaviour of passing a number
+								// as first argument to a setTimeout callback.
+								// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
+								addEmbeddedCSS();
+							} );
+						}
 						return;
 					}
 
-				// This is a delayed call and we got a buffer still
-				} else if ( cssBuffer ) {
+				// This is a scheduled flush for the buffer
+				} else {
+					cssBufferTimer = null;
 					cssText = cssBuffer;
 					cssBuffer = '';
-
-				} else {
-					// This is a delayed call, but buffer was already cleared by
-					// another delayed call.
-					return;
 				}
 
 				// By default, always create a new <style>. Appending text to a <style>
@@ -986,7 +974,7 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} module Names of modules to be checked
+			 * @param {Array} modules Names of modules to be checked
 			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
 			function allReady( modules ) {
@@ -1021,7 +1009,7 @@
 			/**
 			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update
 			 * pending jobs and modules that depend upon this module. If the given module failed,
-			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead an execute
+			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead and execute
 			 * all jobs/modules now having their dependencies satisfied.
 			 *
 			 * Jobs that depend on a failed module, will have their error callback ran (if any).
@@ -1050,7 +1038,7 @@
 				}
 
 				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
-				for ( j = 0; j < jobs.length; j += 1 ) {
+				for ( j = 0; j < jobs.length; j++ ) {
 					hasErrors = anyFailed( jobs[ j ].dependencies );
 					if ( hasErrors || allReady( jobs[ j ].dependencies ) ) {
 						// All dependencies satisfied, or some have errors
@@ -1102,7 +1090,7 @@
 			 * @throws {Error} If any unregistered module or a dependency loop is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var n, deps, len, skip;
+				var i, deps, skip;
 
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Unknown dependency: ' + module );
@@ -1139,31 +1127,29 @@
 				}
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
-				len = deps.length;
-				for ( n = 0; n < len; n += 1 ) {
-					if ( $.inArray( deps[ n ], resolved ) === -1 ) {
-						if ( unresolved[ deps[ n ] ] ) {
-							throw new Error(
-								'Circular reference detected: ' + module +
-								' -> ' + deps[ n ]
-							);
+				for ( i = 0; i < deps.length; i++ ) {
+					if ( $.inArray( deps[ i ], resolved ) === -1 ) {
+						if ( unresolved[ deps[ i ] ] ) {
+							throw new Error( mw.format(
+								'Circular reference detected: $1 -> $2',
+								module,
+								deps[ i ]
+							) );
 						}
 
 						// Add to unresolved
 						unresolved[ module ] = true;
-						sortDependencies( deps[ n ], resolved, unresolved );
-						delete unresolved[ module ];
+						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
-				resolved[ resolved.length ] = module;
+				resolved.push( module );
 			}
 
 			/**
-			 * Get a list of module names that a module depends on in their proper dependency
-			 * order.
+			 * Get names of module that a module depends on, in their proper dependency order.
 			 *
 			 * @private
-			 * @param {string[]} module Array of string module names
+			 * @param {string[]} modules Array of string module names
 			 * @return {Array} List of dependencies, including 'module'.
 			 */
 			function resolve( modules ) {
@@ -1175,7 +1161,7 @@
 			}
 
 			/**
-			 * Load and execute a script with callback.
+			 * Load and execute a script.
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
@@ -1193,6 +1179,43 @@
 					crossDomain: true,
 					cache: true
 				} );
+			}
+
+			/**
+			 * Queue the loading and execution of a script for a particular module.
+			 *
+			 * @private
+			 * @param {string} src URL of the script
+			 * @param {string} [moduleName] Name of currently executing module
+			 * @return {jQuery.Promise}
+			 */
+			function queueModuleScript( src, moduleName ) {
+				var r = $.Deferred();
+
+				pendingRequests.push( function () {
+					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
+						window.require = mw.loader.require;
+						window.module = registry[ moduleName ].module;
+					}
+					addScript( src ).always( function () {
+						// Clear environment
+						delete window.require;
+						delete window.module;
+						r.resolve();
+
+						// Start the next one (if any)
+						if ( pendingRequests[ 0 ] ) {
+							pendingRequests.shift()();
+						} else {
+							handlingPendingRequests = false;
+						}
+					} );
+				} );
+				if ( !handlingPendingRequests && pendingRequests[ 0 ] ) {
+					handlingPendingRequests = true;
+					pendingRequests.shift()();
+				}
+				return r.promise();
 			}
 
 			/**
@@ -1245,7 +1268,7 @@
 							handlePending( module );
 						};
 						nestedAddScript = function ( arr, callback, i ) {
-							// Recursively call addScript() in its own callback
+							// Recursively call queueModuleScript() in its own callback
 							// for each element of arr.
 							if ( i >= arr.length ) {
 								// We're at the end of the array
@@ -1253,7 +1276,7 @@
 								return;
 							}
 
-							addScript( arr[ i ] ).always( function () {
+							queueModuleScript( arr[ i ], module ).always( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1268,10 +1291,11 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								script( $, $, mw.loader.require, registry[ module ].module );
 								markModuleReady();
+
 							} else if ( typeof script === 'string' ) {
-								// Site and user modules are a legacy scripts that run in the global scope.
+								// Site and user modules are legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
 								// to use string manipulation to undo the function wrapper.
 								if ( module === 'user' ) {
@@ -1362,7 +1386,7 @@
 						// Array of css strings in key 'css',
 						// or back-compat array of urls from media-type
 						if ( $.isArray( value ) ) {
-							for ( i = 0; i < value.length; i += 1 ) {
+							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
 									addLink( media, value[ i ] );
@@ -1377,7 +1401,7 @@
 							// { "url": { <media>: [url, ..] } }
 							for ( media in value ) {
 								urls = value[ media ];
-								for ( i = 0; i < urls.length; i += 1 ) {
+								for ( i = 0; i < urls.length; i++ ) {
 									addLink( media, urls[ i ] );
 								}
 							}
@@ -1391,7 +1415,7 @@
 			}
 
 			/**
-			 * Adds a dependencies to the queue with optional callbacks to be run
+			 * Adds all dependencies to the queue with optional callbacks to be run
 			 * when the dependencies are ready or fail
 			 *
 			 * @private
@@ -1448,7 +1472,7 @@
 					}
 				}
 				a.sort();
-				for ( key = 0; key < a.length; key += 1 ) {
+				for ( key = 0; key < a.length; key++ ) {
 					sorted[ a[ key ] ] = o[ a[ key ] ];
 				}
 				return sorted;
@@ -1547,12 +1571,12 @@
 					maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 					// Appends a list of modules from the queue to the batch
-					for ( q = 0; q < queue.length; q += 1 ) {
+					for ( q = 0; q < queue.length; q++ ) {
 						// Only request modules which are registered
 						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( $.inArray( queue[ q ], batch ) === -1 ) {
-								batch[ batch.length ] = queue[ q ];
+								batch.push( queue[ q ] );
 								// Mark registered modules as loading
 								registry[ queue[ q ] ].state = 'loading';
 							}
@@ -1609,7 +1633,7 @@
 					batch.sort();
 
 					// Split batch by source and by group.
-					for ( b = 0; b < batch.length; b += 1 ) {
+					for ( b = 0; b < batch.length; b++ ) {
 						bSource = registry[ batch[ b ] ].source;
 						bGroup = registry[ batch[ b ] ].group;
 						if ( !hasOwn.call( splits, bSource ) ) {
@@ -1619,7 +1643,7 @@
 							splits[ bSource ][ bGroup ] = [];
 						}
 						bSourceGroup = splits[ bSource ][ bGroup ];
-						bSourceGroup[ bSourceGroup.length ] = batch[ b ];
+						bSourceGroup.push( batch[ b ] );
 					}
 
 					// Clear the batch - this MUST happen before we append any
@@ -1653,7 +1677,7 @@
 
 							moduleMap = {}; // { prefix: [ suffixes ] }
 
-							for ( i = 0; i < modules.length; i += 1 ) {
+							for ( i = 0; i < modules.length; i++ ) {
 								// Determine how many bytes this module would add to the query string
 								lastDotIndex = modules[ i ].lastIndexOf( '.' );
 
@@ -1692,14 +1716,13 @@
 				/**
 				 * Register a source.
 				 *
-				 * The #work method will use this information to split up requests by source.
+				 * The #work() method will use this information to split up requests by source.
 				 *
 				 *     mw.loader.addSource( 'mediawikiwiki', '//www.mediawiki.org/w/load.php' );
 				 *
-				 * @param {string} id Short string representing a source wiki, used internally for
-				 *  registered modules to indicate where they should be loaded from (usually lowercase a-z).
-				 * @param {Object|string} loadUrl load.php url, may be an object for backwards-compatibility
-				 * @return {boolean}
+				 * @param {string|Object} id Source ID, or object mapping ids to load urls
+				 * @param {string} loadUrl Url to a load.php end point
+				 * @throws {Error} If source id is already registered
 				 */
 				addSource: function ( id, loadUrl ) {
 					var source;
@@ -1708,20 +1731,14 @@
 						for ( source in id ) {
 							mw.loader.addSource( source, id[ source ] );
 						}
-						return true;
+						return;
 					}
 
 					if ( hasOwn.call( sources, id ) ) {
 						throw new Error( 'source already registered: ' + id );
 					}
 
-					if ( typeof loadUrl === 'object' ) {
-						loadUrl = loadUrl.loadScript;
-					}
-
 					sources[ id ] = loadUrl;
-
-					return true;
 				},
 
 				/**
@@ -1744,11 +1761,11 @@
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
 				register: function ( module, version, dependencies, group, source, skip ) {
-					var i, len;
+					var i;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
 						resolveIndexedDependencies( module );
-						for ( i = 0, len = module.length; i < len; i++ ) {
+						for ( i = 0; i < module.length; i++ ) {
 							// module is an array of module names
 							if ( typeof module[ i ] === 'string' ) {
 								mw.loader.register( module[ i ] );
@@ -1768,6 +1785,11 @@
 					}
 					// List the module as registered
 					registry[ module ] = {
+						// Exposed to execute() for mw.loader.implement() closures.
+						// Import happens via require().
+						module: {
+							exports: {}
+						},
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -1791,10 +1813,8 @@
 				 * When #load or #using requests one or more modules, the server
 				 * response contain calls to this function.
 				 *
-				 * All arguments are required.
-				 *
 				 * @param {string} module Name of module
-				 * @param {Function|Array} script Function with module code or Array of URLs to
+				 * @param {Function|Array} [script] Function with module code or Array of URLs to
 				 *  be used as the src attribute of a new `<script>` tag.
 				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
@@ -2038,6 +2058,26 @@
 				},
 
 				/**
+				 * Get the exported value of a module.
+				 *
+				 * Module provide this value via their local `module.exports`.
+				 *
+				 * @since 1.27
+				 * @return {Array}
+				 */
+				require: function ( moduleName ) {
+					var state = mw.loader.getState( moduleName );
+
+					// Only ready mudules can be required
+					if ( state !== 'ready' ) {
+						// Module may've forgotten to declare a dependency
+						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
+					}
+
+					return registry[ moduleName ].module.exports;
+				},
+
+				/**
 				 * @inheritdoc mw.inspect#runReports
 				 * @method
 				 */
@@ -2062,9 +2102,7 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
-					// Modules whose string representation exceeds 100 kB are ineligible
-					// for storage due to bug T66721.
-					MODULE_SIZE_MAX: 100000,
+					MODULE_SIZE_MAX: 100 * 1000,
 
 					// The contents of the store, mapping '[module name]@[version]' keys
 					// to module implementations.
@@ -2135,8 +2173,15 @@
 							return;
 						}
 
-						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) ) {
+						if (
+							// Disabled because localStorage quotas are tight and (in Firefox's case)
+							// shared by multiple origins.
+							// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
+							/Firefox|Opera/.test( navigator.userAgent ) ||
+
 							// Disabled by configuration.
+							!mw.config.get( 'wgResourceLoaderStorageEnabled' )
+						) {
 							// Clear any previous store to free up space. (T66721)
 							mw.loader.store.clear();
 							mw.loader.store.enabled = false;
@@ -2278,19 +2323,19 @@
 					 */
 					clear: function () {
 						mw.loader.store.items = {};
-						localStorage.removeItem( mw.loader.store.getStoreKey() );
+						try {
+							localStorage.removeItem( mw.loader.store.getStoreKey() );
+						} catch ( ignored ) {}
 					},
 
 					/**
-					 * Sync modules to localStorage.
+					 * Sync in-memory store back to localStorage.
 					 *
-					 * This function debounces localStorage updates. When called multiple times in
-					 * quick succession, the calls are coalesced into a single update operation.
-					 * This allows us to call #update without having to consider the module load
-					 * queue; the call to localStorage.setItem will be naturally deferred until the
-					 * page is quiescent.
+					 * This function debounces updates. When called with a flush already pending,
+					 * the call is coalesced into the pending update. The call to
+					 * localStorage.setItem will be naturally deferred until the page is quiescent.
 					 *
-					 * Because localStorage is shared by all pages with the same origin, if multiple
+					 * Because localStorage is shared by all pages from the same origin, if multiple
 					 * pages are loaded with different module sets, the possibility exists that
 					 * modules saved by one page will be clobbered by another. But the impact would
 					 * be minor and the problem would be corrected by subsequent page views.
@@ -2298,16 +2343,16 @@
 					 * @method
 					 */
 					update: ( function () {
-						var timer;
+						var hasPendingWrite = false;
 
-						function flush() {
-							var data,
-								key = mw.loader.store.getStoreKey();
-
-							if ( !mw.loader.store.enabled ) {
-								return false;
+						function flushWrites() {
+							var data, key;
+							if ( !hasPendingWrite || !mw.loader.store.enabled ) {
+								return;
 							}
+
 							mw.loader.store.prune();
+							key = mw.loader.store.getStoreKey();
 							try {
 								// Replacing the content of the module store might fail if the new
 								// contents would exceed the browser's localStorage size limit. To
@@ -2319,11 +2364,15 @@
 							} catch ( e ) {
 								mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-update' } );
 							}
+
+							hasPendingWrite = false;
 						}
 
 						return function () {
-							clearTimeout( timer );
-							timer = setTimeout( flush, 2000 );
+							if ( !hasPendingWrite ) {
+								hasPendingWrite = true;
+								mw.requestIdleCallback( flushWrites );
+							}
 						};
 					}() )
 				}
@@ -2382,30 +2431,32 @@
 				 * Create an HTML element string, with safe escaping.
 				 *
 				 * @param {string} name The tag name.
-				 * @param {Object} attrs An object with members mapping element names to values
-				 * @param {Mixed} contents The contents of the element. May be either:
+				 * @param {Object} [attrs] An object with members mapping element names to values
+				 * @param {string|mw.html.Raw|mw.html.Cdata|null} [contents=null] The contents of the element.
 				 *
-				 *  - string: The string is escaped.
-				 *  - null or undefined: The short closing form is used, e.g. `<br/>`.
-				 *  - this.Raw: The value attribute is included without escaping.
-				 *  - this.Cdata: The value attribute is included, and an exception is
-				 *    thrown if it contains an illegal ETAGO delimiter.
-				 *    See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
+				 *  - string: Text to be escaped.
+				 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
+				 *  - this.Raw: The raw value is directly included.
+				 *  - this.Cdata: The raw value is directly included. An exception is
+				 *    thrown if it contains any illegal ETAGO delimiter.
+				 *    See <http://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {
 					var v, attrName, s = '<' + name;
 
-					for ( attrName in attrs ) {
-						v = attrs[ attrName ];
-						// Convert name=true, to name=name
-						if ( v === true ) {
-							v = attrName;
-						// Skip name=false
-						} else if ( v === false ) {
-							continue;
+					if ( attrs ) {
+						for ( attrName in attrs ) {
+							v = attrs[ attrName ];
+							// Convert name=true, to name=name
+							if ( v === true ) {
+								v = attrName;
+							// Skip name=false
+							} else if ( v === false ) {
+								continue;
+							}
+							s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 						}
-						s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 					}
 					if ( contents === undefined || contents === null ) {
 						// Self close tag
@@ -2462,9 +2513,19 @@
 			};
 		}() ),
 
-		// Skeleton user object. mediawiki.user.js extends this
+		// Skeleton user object, extended by the 'mediawiki.user' module.
+		/**
+		 * @class mw.user
+		 * @singleton
+		 */
 		user: {
+			/**
+			 * @property {mw.Map}
+			 */
 			options: new Map(),
+			/**
+			 * @property {mw.Map}
+			 */
 			tokens: new Map()
 		},
 
@@ -2530,7 +2591,7 @@
 					/**
 					 * Register a hook handler
 					 *
-					 * @param {Function...} handler Function to bind.
+					 * @param {...Function} handler Function to bind.
 					 * @chainable
 					 */
 					add: list.add,
@@ -2538,7 +2599,7 @@
 					/**
 					 * Unregister a hook handler
 					 *
-					 * @param {Function...} handler Function to unbind.
+					 * @param {...Function} handler Function to unbind.
 					 * @chainable
 					 */
 					remove: list.remove,
@@ -2546,7 +2607,7 @@
 					/**
 					 * Run a hook.
 					 *
-					 * @param {Mixed...} data
+					 * @param {...Mixed} data
 					 * @chainable
 					 */
 					fire: function () {
@@ -2564,7 +2625,7 @@
 	/**
 	 * Log a message to window.console, if possible.
 	 *
-	 * Useful to force logging of some  errors that are otherwise hard to detect (i.e., this logs
+	 * Useful to force logging of some errors that are otherwise hard to detect (i.e., this logs
 	 * also in production mode). Gets console references in each invocation instead of caching the
 	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
 	 *
@@ -2591,9 +2652,9 @@
 			msg += ( e ? ':' : '.' );
 			console.log( msg );
 
-			// If we have an exception object, log it to the error channel to trigger a
-			// proper stacktraces in browsers that support it. No fallback as we have no browsers
-			// that don't support error(), but do support log().
+			// If we have an exception object, log it to the error channel to trigger
+			// proper stacktraces in browsers that support it. No fallback as we have
+			// no browsers that don't support error(), but do support log().
 			if ( e && console.error ) {
 				console.error( String( e ), e );
 			}

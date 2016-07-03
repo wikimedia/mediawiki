@@ -10,7 +10,7 @@
 
 $fallback = 'id';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Astamiwa',
 	NS_TALK             => 'Dhiskusi',
@@ -27,13 +27,13 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Dhiskusi_Pitulung',
 	NS_CATEGORY         => 'Kategori',
 	NS_CATEGORY_TALK    => 'Dhiskusi_Kategori',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Gambar_Dhiskusi' => NS_FILE_TALK,
 	'MediaWiki_Dhiskusi' => NS_MEDIAWIKI_TALK,
 	'Cithakan_Dhiskusi' => NS_TEMPLATE_TALK,
 	'Pitulung_Dhiskusi' => NS_HELP_TALK,
 	'Kategori_Dhiskusi' => NS_CATEGORY_TALK,
-);
+];
 

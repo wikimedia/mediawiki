@@ -32,10 +32,10 @@ class EncryptedPassword extends ParameterizedPassword {
 	}
 
 	protected function getDefaultParams() {
-		return array(
+		return [
 			'cipher' => $this->config['cipher'],
 			'secret' => count( $this->config['secrets'] ) - 1
-		);
+		];
 	}
 
 	public function crypt( $password ) {
@@ -55,7 +55,7 @@ class EncryptedPassword extends ParameterizedPassword {
 
 		$this->hash = openssl_encrypt(
 			$underlyingPassword->toString(), $this->params['cipher'], $secret, 0, $iv );
-		$this->args = array( base64_encode( $iv ) );
+		$this->args = [ base64_encode( $iv ) ];
 	}
 
 	/**
@@ -91,7 +91,7 @@ class EncryptedPassword extends ParameterizedPassword {
 				0,
 				$iv
 			) );
-		$this->args = array( base64_encode( $iv ) );
+		$this->args = [ base64_encode( $iv ) ];
 
 		return true;
 	}

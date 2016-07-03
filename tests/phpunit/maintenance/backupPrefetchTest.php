@@ -109,8 +109,8 @@ class BaseDumpTest extends MediaWikiTestCase {
 	}
 
 	function testSequentialAcrossFiles() {
-		$fname1 = $this->setUpPrefetch( array( 1 ) );
-		$fname2 = $this->setUpPrefetch( array( 2, 4 ) );
+		$fname1 = $this->setUpPrefetch( [ 1 ] );
+		$fname2 = $this->setUpPrefetch( [ 2, 4 ] );
 		$this->dump = new BaseDump( $fname1 . ";" . $fname2 );
 
 		$this->assertPrefetchEquals( "BackupDumperTestP1Text1", 1, 1 );
@@ -120,9 +120,9 @@ class BaseDumpTest extends MediaWikiTestCase {
 	}
 
 	function testSynchronizeSkipAcrossFile() {
-		$fname1 = $this->setUpPrefetch( array( 1 ) );
-		$fname2 = $this->setUpPrefetch( array( 2 ) );
-		$fname3 = $this->setUpPrefetch( array( 4 ) );
+		$fname1 = $this->setUpPrefetch( [ 1 ] );
+		$fname2 = $this->setUpPrefetch( [ 2 ] );
+		$fname3 = $this->setUpPrefetch( [ 4 ] );
 		$this->dump = new BaseDump( $fname1 . ";" . $fname2 . ";" . $fname3 );
 
 		$this->assertPrefetchEquals( "BackupDumperTestP1Text1", 1, 1 );
@@ -130,8 +130,8 @@ class BaseDumpTest extends MediaWikiTestCase {
 	}
 
 	function testSynchronizeMissInWholeFirstFile() {
-		$fname1 = $this->setUpPrefetch( array( 1 ) );
-		$fname2 = $this->setUpPrefetch( array( 2 ) );
+		$fname1 = $this->setUpPrefetch( [ 1 ] );
+		$fname2 = $this->setUpPrefetch( [ 2 ] );
 		$this->dump = new BaseDump( $fname1 . ";" . $fname2 );
 
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
@@ -146,7 +146,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 *    go into the prefetch file. 1,2,4 are available.
 	 * @return string The file name of the created temporary file
 	 */
-	private function setUpPrefetch( $requested_pages = array( 1, 2, 4 ) ) {
+	private function setUpPrefetch( $requested_pages = [ 1, 2, 4 ] ) {
 		// The file name, where we store the prepared prefetch file
 		$fname = $this->getNewTempFile();
 
@@ -183,7 +183,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		// @codingStandardsIgnoreEnd
 
 		// An array holding the pages that are available for prefetch
-		$available_pages = array();
+		$available_pages = [];
 
 		// Simple plain page
 		$available_pages[1] = '  <page>

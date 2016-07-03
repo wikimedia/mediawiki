@@ -21,10 +21,10 @@
 		$row = $( '<tr class="mw-metadata-show-hide-extended"></tr>' );
 		$col = $( '<td colspan="2"></td>' );
 
-		$link = $( '<a>', {
-			text: showText,
-			href: '#'
-		} ).click( function () {
+		$link = $( '<a>' )
+		.text( showText )
+		.attr( 'href', '#' )
+		.click( function () {
 			if ( $table.hasClass( 'collapsed' ) ) {
 				$( this ).text( hideText );
 			} else {

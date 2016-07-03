@@ -17,12 +17,12 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 		$page = WikiPage::factory( $title );
 		$page->doEdit( 'Some text', 'inserting content' );
 
-		$apiResult = $this->doApiRequest( array(
+		$apiResult = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'revisions',
 			'titles' => $pageName,
 			'rvprop' => 'content',
-		) );
+		] );
 		$this->assertArrayHasKey( 'query', $apiResult[0] );
 		$this->assertArrayHasKey( 'pages', $apiResult[0]['query'] );
 		foreach ( $apiResult[0]['query']['pages'] as $page ) {

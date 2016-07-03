@@ -3,7 +3,8 @@
 		"authors": [
 			"Bonevarluri",
 			"علی ساکی لرستانی",
-			"Mjbmr"
+			"Mjbmr",
+			"Hosseinblue"
 		]
 	},
 	"tog-underline": "لینکیا خط وه دومن",
@@ -281,6 +282,7 @@
 	"nstab-template": "ئۉلگوٙ",
 	"nstab-help": "بلگه هومیاری",
 	"nstab-category": "دسە",
+	"mainpage-nstab": "بألگە أصلی",
 	"nosuchaction": "چنی دستوری موجود نی",
 	"nosuchspecialpage": "چنو بلگه مخصوصی نی",
 	"error": "خطا",
@@ -362,8 +364,6 @@
 	"createaccountreason": "دلیل:",
 	"createacct-reason": "دلیل",
 	"createacct-reason-ph": "سیچه داریت یه اکانت دیه ایسازیت",
-	"createacct-captcha": "چیک کیردأن أمنیأتی",
-	"createacct-imgcaptcha-ph": "ئی نشتنە کە دوٙمین سیل کی ڤارید کۉ",
 	"createacct-submit": "حسآۉ خۉتۉنه راس کنیت",
 	"createacct-another-submit": "یه اکانت دیه بساز",
 	"createacct-benefit-heading": "{{SITENAME}} ۉا بجلی کپ خۉتۉن راسھ بیه.",
@@ -505,7 +505,7 @@
 	"recentchanges-label-bot": "ئی ئیصلاح تأڤأسۉط یە روٙبات انجام ڤابیە",
 	"recentchanges-label-unpatrolled": "ئی ئیصلاح هۉنۉ گأشت نأڤابیدھ",
 	"recentchanges-label-plusminus": "أندازھ بألگە ڤا ئی تیعداد بایت تأغییر دادھ بیە",
-	"recentchanges-legend-heading": "'''تأغییرل نۉ :'''",
+	"recentchanges-legend-heading": "<strong>تأغییرل نۉ :</strong>",
 	"recentchanges-legend-newpage": "{{عۉضڤل أنجوٙمأن:تأغییرل أخیر-بأرچأسب-بألگە نۉ}} (هأنی سل کۉ [[Special:NewPages|لیست بألگل نۉ]])",
 	"rclistfrom": "نیشۉ دائن تأغییرل نۉ ڤا شۉرۉ زھ $3 $2",
 	"rcshowhideminor": "ئیصلاحل کچک $1",

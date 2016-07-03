@@ -43,7 +43,7 @@ class GitInfo {
 	/**
 	 * Cached git information.
 	 */
-	protected $cache = array();
+	protected $cache = [];
 
 	/**
 	 * Map of repo URLs to viewer URLs. Access via static method getViewers().
@@ -96,7 +96,7 @@ class GitInfo {
 	 *
 	 * @param string $repoDir The root directory of the repo where .git can be found
 	 * @return string Path to GitInfo cache file in $wgGitInfoCacheDirectory or
-	 * null if $wgGitInfoCacheDirectory is false (cache disabled).
+	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
 	protected static function getCacheFilePath( $repoDir ) {
@@ -119,9 +119,13 @@ class GitInfo {
 			// a filename
 			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
 			$fileName = 'info' . $repoName . '.json';
-			return "{$wgGitInfoCacheDirectory}/{$fileName}";
+			$cachePath = "{$wgGitInfoCacheDirectory}/{$fileName}";
+			if ( is_readable( $cachePath ) ) {
+				return $cachePath;
+			}
 		}
-		return null;
+
+		return "$repoDir/gitinfo.json";
 	}
 
 	/**
@@ -211,7 +215,7 @@ class GitInfo {
 				is_executable( $wgGitBin ) &&
 				$this->getHead() !== false
 			) {
-				$environment = array( "GIT_DIR" => $this->basedir );
+				$environment = [ "GIT_DIR" => $this->basedir ];
 				$cmd = wfEscapeShellArg( $wgGitBin ) .
 					" show -s --format=format:%ct HEAD";
 				$retc = false;
@@ -253,19 +257,17 @@ class GitInfo {
 		if ( $url === false ) {
 			return false;
 		}
-		if ( substr( $url, -4 ) !== '.git' ) {
-			$url .= '.git';
-		}
 		foreach ( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
 			if ( preg_match( $pattern, $url, $matches ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
 				$headSHA1 = $this->getHeadSHA1();
-				$replacements = array(
+				$replacements = [
 					'%h' => substr( $headSHA1, 0, 7 ),
 					'%H' => $headSHA1,
 					'%r' => urlencode( $matches[1] ),
-				);
+					'%R' => $matches[1],
+				];
 				return strtr( $viewerUrl, $replacements );
 			}
 		}
@@ -392,7 +394,7 @@ class GitInfo {
 
 		if ( self::$viewers === false ) {
 			self::$viewers = $wgGitRepositoryViewers;
-			Hooks::run( 'GitViewers', array( &self::$viewers ) );
+			Hooks::run( 'GitViewers', [ &self::$viewers ] );
 		}
 
 		return self::$viewers;

@@ -33,13 +33,10 @@ class ProfilerOutputDb extends ProfilerOutput {
 
 	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
-		global $wgProfilePerHost;
 
 		// Initialize per-host profiling from config, back-compat if available
 		if ( isset( $this->params['perHost'] ) ) {
 			$this->perHost = $this->params['perHost'];
-		} elseif ( $wgProfilePerHost ) {
-			$this->perHost = $wgProfilePerHost;
 		}
 	}
 
@@ -69,19 +66,19 @@ class ProfilerOutputDb extends ProfilerOutput {
 				$memorySum = $memorySum >= 0 ? $memorySum : 0;
 
 				$dbw->upsert( 'profiling',
-					array(
+					[
 						'pf_name' => $name,
 						'pf_count' => $eventCount,
 						'pf_time' => $timeSum,
 						'pf_memory' => $memorySum,
 						'pf_server' => $pfhost
-					),
-					array( array( 'pf_name', 'pf_server' ) ),
-					array(
+					],
+					[ [ 'pf_name', 'pf_server' ] ],
+					[
 						"pf_count=pf_count+{$eventCount}",
 						"pf_time=pf_time+{$timeSum}",
 						"pf_memory=pf_memory+{$memorySum}",
-					),
+					],
 					__METHOD__
 				);
 			}

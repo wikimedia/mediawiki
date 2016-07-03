@@ -8,7 +8,7 @@
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
-		var isDiff, api, request, postData, copySelectors, section,
+		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section,
 			$wikiPreview, $wikiDiff, $editform, $textbox, $summary, $copyElements, $spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
@@ -41,6 +41,7 @@
 
 		copySelectors = [
 			// Main
+			'.mw-indicators',
 			'#firstHeading',
 			'#wikiPreview',
 			'#wikiDiff',
@@ -74,62 +75,64 @@
 
 		api = new mw.Api();
 		postData = {
+			formatversion: 2,
 			action: 'parse',
-			uselang: mw.config.get( 'wgUserLanguage' ),
 			title: mw.config.get( 'wgPageName' ),
-			text: $textbox.textSelection( 'getContents' ),
-			summary: $summary.textSelection( 'getContents' )
+			summary: $summary.textSelection( 'getContents' ),
+			prop: ''
 		};
-
-		if ( section !== '' ) {
-			postData.sectionpreview = '';
-			if ( section === 'new' ) {
-				postData.section = section;
-				postData.sectiontitle = postData.summary;
-			}
-		}
 
 		if ( isDiff ) {
 			$wikiPreview.hide();
 
-			// First PST the input, then diff it
-			postData.onlypst = '';
-			request = api.post( postData );
-			request.done( function ( response ) {
-				var postData;
-				postData = {
-					action: 'query',
-					indexpageids: '',
-					prop: 'revisions',
-					titles: mw.config.get( 'wgPageName' ),
-					rvdifftotext: response.parse.text[ '*' ],
-					rvprop: ''
-				};
-				if ( section !== '' ) {
-					postData.rvsection = section;
+			if ( postData.summary ) {
+				parseRequest = api.post( postData );
+			}
+
+			diffRequest = api.post( {
+				formatversion: 2,
+				action: 'query',
+				prop: 'revisions',
+				titles: mw.config.get( 'wgPageName' ),
+				rvdifftotext: $textbox.textSelection( 'getContents' ),
+				rvdifftotextpst: true,
+				rvprop: '',
+				rvsection: section === '' ? undefined : section
+			} );
+
+			// Wait for the summary before showing the diff so the page doesn't jump twice
+			$.when( diffRequest, parseRequest ).done( function ( response ) {
+				var diffHtml;
+				try {
+					diffHtml = response[ 0 ].query.pages[ 0 ]
+						.revisions[ 0 ].diff.body;
+					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
+					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
+				} catch ( e ) {
+					// "result.blah is undefined" error, ignore
+					mw.log.warn( e );
 				}
-				return api.post( postData ).done( function ( result2 ) {
-					try {
-						var diffHtml = result2.query.pages[ result2.query.pageids[ 0 ] ]
-							.revisions[ 0 ].diff[ '*' ];
-						$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
-					} catch ( e ) {
-						// "result.blah is undefined" error, ignore
-						mw.log.warn( e );
-					}
-					$wikiDiff.show();
-				} );
+				$wikiDiff.show();
 			} );
 		} else {
 			$wikiDiff.hide();
+
 			$.extend( postData, {
-				pst: '',
-				preview: '',
-				prop: 'text|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
-				disableeditsection: true
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
+				text: $textbox.textSelection( 'getContents' ),
+				pst: true,
+				preview: true,
+				sectionpreview: section !== '',
+				disableeditsection: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} );
-			request = api.post( postData );
-			request.done( function ( response ) {
+			if ( section === 'new' ) {
+				postData.section = 'new';
+				postData.sectiontitle = postData.summary;
+			}
+
+			parseRequest = api.post( postData );
+			parseRequest.done( function ( response ) {
 				var li, newList, $displaytitle, $content, $parent, $list;
 				if ( response.parse.jsconfigvars ) {
 					mw.config.set( response.parse.jsconfigvars );
@@ -137,9 +140,25 @@
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
-						response.parse.modulestyles,
-						response.parse.modulemessages ) );
+						response.parse.modulestyles
+					) );
 				}
+
+				newList = [];
+				$.each( response.parse.indicators, function ( name, indicator ) {
+					newList.push(
+						$( '<div>' )
+							.addClass( 'mw-indicator' )
+							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + name ) )
+							.html( indicator )
+							.get( 0 ),
+						// Add a whitespace between the <div>s because
+						// they get displayed with display: inline-block
+						document.createTextNode( '\n' )
+					);
+				} );
+				$( '.mw-indicators' ).empty().append( newList );
+
 				if ( response.parse.displaytitle ) {
 					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
 					$( '#firstHeading' ).msg(
@@ -155,7 +174,9 @@
 					);
 				}
 				if ( response.parse.categorieshtml ) {
-					$( '#catlinks' ).replaceWith( response.parse.categorieshtml[ '*' ] );
+					$content = $( $.parseHTML( response.parse.categorieshtml ) );
+					mw.hook( 'wikipage.categories' ).fire( $content );
+					$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
@@ -163,10 +184,10 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									href: mw.util.getUrl( template[ '*' ] ),
-									'class': ( template.exists !== undefined ? '' : 'new' )
+									href: mw.util.getUrl( template.title ),
+									'class': ( template.exists ? '' : 'new' )
 								} )
-								.text( template[ '*' ] )
+								.text( template.title )
 							);
 						newList.push( li );
 					} );
@@ -174,7 +195,7 @@
 					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
 				}
 				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml[ '*' ] );
+					$( '.limitreport' ).html( response.parse.limitreporthtml );
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = [];
@@ -184,7 +205,7 @@
 							.append( $( '<a>' )
 								.attr( {
 									href: langlink.url,
-									title: langlink[ '*' ] + ' - ' + langlink.langname,
+									title: langlink.title + ' - ' + langlink.langname,
 									lang: langlink.lang,
 									hreflang: langlink.lang
 								} )
@@ -197,11 +218,11 @@
 					$list.detach().empty().append( newList ).prependTo( $parent );
 				}
 
-				if ( response.parse.text[ '*' ] ) {
+				if ( response.parse.text ) {
 					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
 					$content
 						.detach()
-						.html( response.parse.text[ '*' ] );
+						.html( response.parse.text );
 
 					mw.hook( 'wikipage.content' ).fire( $content );
 
@@ -209,35 +230,34 @@
 					$wikiPreview.append( $content );
 
 					$wikiPreview.show();
-
 				}
 			} );
 		}
-		request.done( function ( response ) {
-			var isSubject = ( section === 'new' ),
+		$.when( parseRequest, diffRequest ).done( function ( parseResp ) {
+			var parse = parseResp && parseResp[ 0 ].parse,
+				isSubject = ( section === 'new' ),
 				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
 				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
-			if ( response.parse.parsedsummary && response.parse.parsedsummary[ '*' ] !== '' ) {
+			if ( parse && parse.parsedsummary ) {
 				$summaryPreview.append(
 					mw.message( summaryMsg ).parse(),
 					' ',
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams
 						mw.message( 'parentheses' ).escaped()
-							.replace( '$1', response.parse.parsedsummary[ '*' ] )
+							.replace( '$1', parse.parsedsummary )
 					)
 				);
 			}
 			mw.hook( 'wikipage.editform' ).fire( $editform );
-		} );
-		request.always( function () {
+		} ).always( function () {
 			$spinner.hide();
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
-		} );
-		request.fail( function ( code, result ) {
-			var errorMsg = 'API error: ' +  code;
+		} ).fail( function ( code, result ) {
+			// This just shows the error for whatever request failed first
+			var errorMsg = 'API error: ' + code;
 			if ( code === 'http' ) {
 				errorMsg = 'HTTP error: ';
 				if ( result.exception ) {
@@ -274,7 +294,6 @@
 					'class': 'portal',
 					id: 'p-lang',
 					role: 'navigation',
-					title: mw.msg( 'tooltip-p-lang' ),
 					'aria-labelledby': 'p-lang-label'
 				} )
 				.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )

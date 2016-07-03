@@ -26,6 +26,7 @@
  *
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
 class DBSiteStore implements SiteStore {
 
@@ -35,21 +36,20 @@ class DBSiteStore implements SiteStore {
 	protected $sites = null;
 
 	/**
-	 * @var ORMTable
+	 * @var LoadBalancer
 	 */
-	protected $sitesTable;
+	private $dbLoadBalancer;
 
 	/**
-	 * @since 1.25
+	 * @since 1.27
 	 *
-	 * @param ORMTable|null $sitesTable
+	 * @todo: inject some kind of connection manager that is aware of the target wiki,
+	 * instead of injecting a LoadBalancer.
+	 *
+	 * @param LoadBalancer $dbLoadBalancer
 	 */
-	public function __construct( ORMTable $sitesTable = null ) {
-		if ( $sitesTable === null ) {
-			$sitesTable = $this->newSitesTable();
-		}
-
-		$this->sitesTable = $sitesTable;
+	public function __construct( LoadBalancer $dbLoadBalancer ) {
+		$this->dbLoadBalancer = $dbLoadBalancer;
 	}
 
 	/**
@@ -66,86 +66,6 @@ class DBSiteStore implements SiteStore {
 	}
 
 	/**
-	 * Returns a new Site object constructed from the provided ORMRow.
-	 *
-	 * @since 1.25
-	 *
-	 * @param ORMRow $siteRow
-	 *
-	 * @return Site
-	 */
-	protected function siteFromRow( ORMRow $siteRow ) {
-
-		$site = Site::newForType( $siteRow->getField( 'type', Site::TYPE_UNKNOWN ) );
-
-		$site->setGlobalId( $siteRow->getField( 'global_key' ) );
-
-		$site->setInternalId( $siteRow->getField( 'id' ) );
-
-		if ( $siteRow->hasField( 'forward' ) ) {
-			$site->setForward( $siteRow->getField( 'forward' ) );
-		}
-
-		if ( $siteRow->hasField( 'group' ) ) {
-			$site->setGroup( $siteRow->getField( 'group' ) );
-		}
-
-		if ( $siteRow->hasField( 'language' ) ) {
-			$site->setLanguageCode( $siteRow->getField( 'language' ) === ''
-				? null
-				: $siteRow->getField( 'language' )
-			);
-		}
-
-		if ( $siteRow->hasField( 'source' ) ) {
-			$site->setSource( $siteRow->getField( 'source' ) );
-		}
-
-		if ( $siteRow->hasField( 'data' ) ) {
-			$site->setExtraData( $siteRow->getField( 'data' ) );
-		}
-
-		if ( $siteRow->hasField( 'config' ) ) {
-			$site->setExtraConfig( $siteRow->getField( 'config' ) );
-		}
-
-		return $site;
-	}
-
-	/**
-	 * Get a new ORMRow from a Site object
-	 *
-	 * @since 1.25
-	 *
-	 * @param Site $site
-	 *
-	 * @return ORMRow
-	 */
-	protected function getRowFromSite( Site $site ) {
-		$fields = array(
-			// Site data
-			'global_key' => $site->getGlobalId(), // TODO: check not null
-			'type' => $site->getType(),
-			'group' => $site->getGroup(),
-			'source' => $site->getSource(),
-			'language' => $site->getLanguageCode() === null ? '' : $site->getLanguageCode(),
-			'protocol' => $site->getProtocol(),
-			'domain' => strrev( $site->getDomain() ) . '.',
-			'data' => $site->getExtraData(),
-
-			// Site config
-			'forward' => $site->shouldForward(),
-			'config' => $site->getExtraConfig(),
-		);
-
-		if ( $site->getInternalId() !== null ) {
-			$fields['id'] = $site->getInternalId();
-		}
-
-		return new ORMRow( $this->sitesTable, $fields );
-	}
-
-	/**
 	 * Fetches the site from the database and loads them into the sites field.
 	 *
 	 * @since 1.25
@@ -153,23 +73,53 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$siteRows = $this->sitesTable->select( null, array(), array(
-			'ORDER BY' => 'site_global_key'
-		) );
+		$dbr = $this->dbLoadBalancer->getConnection( DB_SLAVE );
 
-		foreach ( $siteRows as $siteRow ) {
-			$this->sites[] = $this->siteFromRow( $siteRow );
+		$res = $dbr->select(
+			'sites',
+			[
+				'site_id',
+				'site_global_key',
+				'site_type',
+				'site_group',
+				'site_source',
+				'site_language',
+				'site_protocol',
+				'site_domain',
+				'site_data',
+				'site_forward',
+				'site_config',
+			],
+			'',
+			__METHOD__,
+			[ 'ORDER BY' => 'site_global_key' ]
+		);
+
+		foreach ( $res as $row ) {
+			$site = Site::newForType( $row->site_type );
+			$site->setGlobalId( $row->site_global_key );
+			$site->setInternalId( (int)$row->site_id );
+			$site->setForward( (bool)$row->site_forward );
+			$site->setGroup( $row->site_group );
+			$site->setLanguageCode( $row->site_language === ''
+				? null
+				: $row->site_language
+			);
+			$site->setSource( $row->site_source );
+			$site->setExtraData( unserialize( $row->site_data ) );
+			$site->setExtraConfig( unserialize( $row->site_config ) );
+			$this->sites[] = $site;
 		}
 
 		// Batch load the local site identifiers.
-		$ids = wfGetDB( $this->sitesTable->getReadDb() )->select(
+		$ids = $dbr->select(
 			'site_identifiers',
-			array(
+			[
 				'si_site',
 				'si_type',
 				'si_key',
-			),
-			array(),
+			],
+			[],
 			__METHOD__
 		);
 
@@ -180,6 +130,8 @@ class DBSiteStore implements SiteStore {
 				$this->sites->setSite( $site );
 			}
 		}
+
+		$this->dbLoadBalancer->reuseConnection( $dbr );
 	}
 
 	/**
@@ -209,7 +161,7 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
-		return $this->saveSites( array( $site ) );
+		return $this->saveSites( [ $site ] );
 	}
 
 	/**
@@ -226,34 +178,59 @@ class DBSiteStore implements SiteStore {
 			return true;
 		}
 
-		$dbw = $this->sitesTable->getWriteDbConnection();
+		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
 		$success = true;
 
-		$internalIds = array();
-		$localIds = array();
+		$internalIds = [];
+		$localIds = [];
 
 		foreach ( $sites as $site ) {
 			if ( $site->getInternalId() !== null ) {
 				$internalIds[] = $site->getInternalId();
 			}
 
-			$siteRow = $this->getRowFromSite( $site );
-			$success = $siteRow->save( __METHOD__ ) && $success;
+			$fields = [
+				// Site data
+				'site_global_key' => $site->getGlobalId(), // TODO: check not null
+				'site_type' => $site->getType(),
+				'site_group' => $site->getGroup(),
+				'site_source' => $site->getSource(),
+				'site_language' => $site->getLanguageCode() === null ? '' : $site->getLanguageCode(),
+				'site_protocol' => $site->getProtocol(),
+				'site_domain' => strrev( $site->getDomain() ) . '.',
+				'site_data' => serialize( $site->getExtraData() ),
+
+				// Site config
+				'site_forward' => $site->shouldForward() ? 1 : 0,
+				'site_config' => serialize( $site->getExtraConfig() ),
+			];
+
+			$rowId = $site->getInternalId();
+			if ( $rowId !== null ) {
+				$success = $dbw->update(
+					'sites', $fields, [ 'site_id' => $rowId ], __METHOD__
+				) && $success;
+			} else {
+				$rowId = $dbw->nextSequenceValue( 'sites_site_id_seq' );
+				$fields['site_id'] = $rowId;
+				$success = $dbw->insert( 'sites', $fields, __METHOD__ ) && $success;
+				$rowId = $dbw->insertId();
+			}
 
 			foreach ( $site->getLocalIds() as $idType => $ids ) {
 				foreach ( $ids as $id ) {
-					$localIds[] = array( $siteRow->getId(), $idType, $id );
+					$localIds[] = [ $rowId, $idType, $id ];
 				}
 			}
 		}
 
-		if ( $internalIds !== array() ) {
+		if ( $internalIds !== [] ) {
 			$dbw->delete(
 				'site_identifiers',
-				array( 'si_site' => $internalIds ),
+				[ 'si_site' => $internalIds ],
 				__METHOD__
 			);
 		}
@@ -261,16 +238,18 @@ class DBSiteStore implements SiteStore {
 		foreach ( $localIds as $localId ) {
 			$dbw->insert(
 				'site_identifiers',
-				array(
+				[
 					'si_site' => $localId[0],
 					'si_type' => $localId[1],
 					'si_key' => $localId[2],
-				),
+				],
 				__METHOD__
 			);
 		}
 
 		$dbw->endAtomic( __METHOD__ );
+
+		$this->dbLoadBalancer->reuseConnection( $dbw );
 
 		$this->reset();
 
@@ -294,56 +273,18 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success
 	 */
 	public function clear() {
-		$dbw = $this->sitesTable->getWriteDbConnection();
+		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
 		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
 		$dbw->endAtomic( __METHOD__ );
 
+		$this->dbLoadBalancer->reuseConnection( $dbw );
+
 		$this->reset();
 
 		return $ok;
-	}
-
-	/**
-	 * @since 1.25
-	 *
-	 * @return ORMTable
-	 */
-	protected function newSitesTable() {
-		return new ORMTable(
-			'sites',
-			array(
-				'id' => 'id',
-
-				// Site data
-				'global_key' => 'str',
-				'type' => 'str',
-				'group' => 'str',
-				'source' => 'str',
-				'language' => 'str',
-				'protocol' => 'str',
-				'domain' => 'str',
-				'data' => 'array',
-
-				// Site config
-				'forward' => 'bool',
-				'config' => 'array',
-			),
-			array(
-				'type' => Site::TYPE_UNKNOWN,
-				'group' => Site::GROUP_NONE,
-				'source' => Site::SOURCE_LOCAL,
-				'data' => array(),
-
-				'forward' => false,
-				'config' => array(),
-				'language' => '',
-			),
-			'ORMRow',
-			'site_'
-		);
 	}
 
 }

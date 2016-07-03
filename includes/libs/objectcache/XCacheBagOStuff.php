@@ -28,7 +28,7 @@
  * @ingroup Cache
  */
 class XCacheBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
@@ -44,7 +44,7 @@ class XCacheBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	public function set( $key, $value, $expire = 0 ) {
+	public function set( $key, $value, $expire = 0, $flags = 0 ) {
 		if ( !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
 		}

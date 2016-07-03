@@ -46,9 +46,9 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	 */
 	public function __construct( array $params ) {
 		// set up defaults and merge them with the given params
-		$mparams = array_merge( array(
+		$mparams = array_merge( [
 			'name' => 'swift'
-		), $params );
+		], $params );
 		parent::__construct( $mparams );
 	}
 
@@ -74,10 +74,10 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 		$this->authSessionTimestamp = 0;
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
 		if ( $rcode >= 200 && $rcode <= 299 ) { // OK
-			$this->authCreds = array(
+			$this->authCreds = [
 				'auth_token'  => $rhdrs['x-auth-token'],
 				'storage_url' => $rhdrs['x-storage-url']
-			);
+			];
 			$this->authSessionTimestamp = time();
 			return true;
 		} elseif ( $rcode === 403 ) {
@@ -94,7 +94,7 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	}
 
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
-		$result = array();
+		$result = [];
 		$firstReq = reset( $reqs );
 		if ( $firstReq && count( $reqs ) == 1 && isset( $firstReq['isAuth'] ) ) {
 			// This was an authentication request for work requests...
@@ -105,29 +105,29 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 			if ( $needsAuth === true ) {
 				// These are work requests and we don't have any token to use.
 				// Replace the work requests with an authentication request.
-				$result = array(
-					$idGeneratorFunc() => array(
+				$result = [
+					$idGeneratorFunc() => [
 						'method'  => 'GET',
 						'url'     => $this->params['swiftAuthUrl'] . "/v1.0",
-						'headers' => array(
+						'headers' => [
 							'x-auth-user' => $this->params['swiftUser'],
-							'x-auth-key'  => $this->params['swiftKey'] ),
+							'x-auth-key'  => $this->params['swiftKey'] ],
 						'isAuth'  => true,
 						'chain'   => $reqs
-					)
-				);
+					]
+				];
 			} elseif ( $needsAuth !== false ) {
 				// These are work requests and authentication has previously failed.
 				// It is most efficient to just give failed pseudo responses back for
 				// the original work requests.
 				foreach ( $reqs as $key => $req ) {
-					$req['response'] = array(
+					$req['response'] = [
 						'code'     => $this->authCachedStatus,
 						'reason'   => $this->authCachedReason,
-						'headers'  => array(),
+						'headers'  => [],
 						'body'     => '',
 						'error'    => ''
-					);
+					];
 					$result[$key] = $req;
 				}
 			} else {
@@ -151,7 +151,7 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	public function onResponses( array $reqs, Closure $idGeneratorFunc ) {
 		$firstReq = reset( $reqs );
 		if ( $firstReq && count( $reqs ) == 1 && isset( $firstReq['isAuth'] ) ) {
-			$result = array();
+			$result = [];
 			// This was an authentication request for work requests...
 			if ( $this->applyAuthResponse( $firstReq ) ) {
 				// If it succeeded, we can subsitute the work requests back.
@@ -161,13 +161,13 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 				// If it failed, it is most efficient to just give failing
 				// pseudo-responses back for the actual work requests.
 				foreach ( $firstReq['chain'] as $key => $req ) {
-					$req['response'] = array(
+					$req['response'] = [
 						'code'     => $this->authCachedStatus,
 						'reason'   => $this->authCachedReason,
-						'headers'  => array(),
+						'headers'  => [],
 						'body'     => '',
 						'error'    => ''
-					);
+					];
 					$result[$key] = $req;
 				}
 			}

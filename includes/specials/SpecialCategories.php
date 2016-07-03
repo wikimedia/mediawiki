@@ -78,7 +78,7 @@ class SpecialCategories extends SpecialPage {
 		$cap->doQuery();
 
 		$this->getOutput()->addHTML(
-			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
+			Html::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) .
 				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
 				$cap->getStartForm( $from ) .
 				$cap->getNavigationBar() .
@@ -90,111 +90,5 @@ class SpecialCategories extends SpecialPage {
 
 	protected function getGroupName() {
 		return 'pages';
-	}
-}
-
-/**
- * TODO: Allow sorting by count.  We need to have a unique index to do this
- * properly.
- *
- * @ingroup SpecialPage Pager
- */
-class CategoryPager extends AlphabeticPager {
-
-	/**
-	 * @var PageLinkRenderer
-	 */
-	protected $linkRenderer;
-
-	/**
-	 * @param IContextSource $context
-	 * @param string $from
-	 * @param PageLinkRenderer $linkRenderer
-	 */
-	public function __construct( IContextSource $context, $from, PageLinkRenderer $linkRenderer
-	) {
-		parent::__construct( $context );
-		$from = str_replace( ' ', '_', $from );
-		if ( $from !== '' ) {
-			$from = Title::capitalize( $from, NS_CATEGORY );
-			$this->setOffset( $from );
-			$this->setIncludeOffset( true );
-		}
-
-		$this->linkRenderer = $linkRenderer;
-	}
-
-	function getQueryInfo() {
-		return array(
-			'tables' => array( 'category' ),
-			'fields' => array( 'cat_title', 'cat_pages' ),
-			'conds' => array( 'cat_pages > 0' ),
-			'options' => array( 'USE INDEX' => 'cat_title' ),
-		);
-	}
-
-	function getIndexField() {
-#		return array( 'abc' => 'cat_title', 'count' => 'cat_pages' );
-		return 'cat_title';
-	}
-
-	function getDefaultQuery() {
-		parent::getDefaultQuery();
-		unset( $this->mDefaultQuery['from'] );
-
-		return $this->mDefaultQuery;
-	}
-
-#	protected function getOrderTypeMessages() {
-#		return array( 'abc' => 'special-categories-sort-abc',
-#			'count' => 'special-categories-sort-count' );
-#	}
-
-	protected function getDefaultDirections() {
-#		return array( 'abc' => false, 'count' => true );
-		return false;
-	}
-
-	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
-	public function getBody() {
-		$batch = new LinkBatch;
-
-		$this->mResult->rewind();
-
-		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cat_title ) );
-		}
-		$batch->execute();
-		$this->mResult->rewind();
-
-		return parent::getBody();
-	}
-
-	function formatRow( $result ) {
-		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
-		$text = $title->getText();
-		$link = $this->linkRenderer->renderHtmlLink( $title, $text );
-
-		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
-		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
-	}
-
-	public function getStartForm( $from ) {
-		return Xml::tags(
-			'form',
-			array( 'method' => 'get', 'action' => wfScript() ),
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset(
-					$this->msg( 'categories' )->text(),
-					Xml::inputLabel(
-						$this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from, array( 'class' => 'mw-ui-input-inline' ) ) .
-						' ' .
-						Html::submitButton(
-							$this->msg( 'allpagessubmit' )->text(),
-							array(), array( 'mw-ui-progressive' )
-						)
-				)
-		);
 	}
 }

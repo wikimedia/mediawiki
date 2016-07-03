@@ -27,7 +27,7 @@ class AutoloadGenerator {
 	/**
 	 * @var array Map of file shortpath to list of FQCN detected within file
 	 */
-	protected $classes = array();
+	protected $classes = [];
 
 	/**
 	 * @var string The global variable to write output to
@@ -37,7 +37,7 @@ class AutoloadGenerator {
 	/**
 	 * @var array Map of FQCN to relative path(from self::$basepath)
 	 */
-	protected $overrides = array();
+	protected $overrides = [];
 
 	/**
 	 * @param string $basepath Root path of the project being scanned for classes
@@ -46,9 +46,9 @@ class AutoloadGenerator {
 	 *  local - If this flag is set $wgAutoloadLocalClasses will be build instead
 	 *          of $wgAutoloadClasses
 	 */
-	public function __construct( $basepath, $flags = array() ) {
+	public function __construct( $basepath, $flags = [] ) {
 		if ( !is_array( $flags ) ) {
-			$flags = array( $flags );
+			$flags = [ $flags ];
 		}
 		$this->basepath = self::normalizePathSeparator( realpath( $basepath ) );
 		$this->collector = new ClassCollector;
@@ -162,7 +162,7 @@ class AutoloadGenerator {
 	 */
 	protected function generatePHPAutoload( $commandName, $filename ) {
 		// No existing JSON file found; update/generate PHP file
-		$content = array();
+		$content = [];
 
 		// We need to generate a line each rather than exporting the
 		// full array so __DIR__ can be prepended to all the paths
@@ -206,9 +206,9 @@ class AutoloadGenerator {
 // @codingStandardsIgnoreFile
 global \${$this->variableName};
 
-\${$this->variableName} {$op} array(
+\${$this->variableName} {$op} [
 	{$output}
-);
+];
 
 EOD
 		);
@@ -282,9 +282,9 @@ class ClassCollector {
 	 */
 	public function getClasses( $code ) {
 		$this->namespace = '';
-		$this->classes = array();
+		$this->classes = [];
 		$this->startToken = null;
-		$this->tokens = array();
+		$this->tokens = [];
 
 		foreach ( token_get_all( $code ) as $token ) {
 			if ( $this->startToken === null ) {
@@ -310,6 +310,8 @@ class ClassCollector {
 		case T_NAMESPACE:
 		case T_CLASS:
 		case T_INTERFACE:
+		case T_TRAIT:
+		case T_DOUBLE_COLON:
 			$this->startToken = $token;
 		}
 	}
@@ -321,6 +323,11 @@ class ClassCollector {
 	 */
 	protected function tryEndExpect( $token ) {
 		switch ( $this->startToken[0] ) {
+		case T_DOUBLE_COLON:
+			// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
+			// "self::static" which accesses the class name. It doens't define a new class.
+			$this->startToken = null;
+			break;
 		case T_NAMESPACE:
 			if ( $token === ';' || $token === '{' ) {
 				$this->namespace = $this->implodeTokens() . '\\';
@@ -331,6 +338,7 @@ class ClassCollector {
 
 		case T_CLASS:
 		case T_INTERFACE:
+		case T_TRAIT:
 			$this->tokens[] = $token;
 			if ( is_array( $token ) && $token[0] === T_STRING ) {
 				$this->classes[] = $this->namespace . $this->implodeTokens();
@@ -345,12 +353,12 @@ class ClassCollector {
 	 * @return string
 	 */
 	protected function implodeTokens() {
-		$content = array();
+		$content = [];
 		foreach ( $this->tokens as $token ) {
 			$content[] = is_string( $token ) ? $token : $token[1];
 		}
 
-		$this->tokens = array();
+		$this->tokens = [];
 		$this->startToken = null;
 
 		return trim( implode( '', $content ), " \n\t" );

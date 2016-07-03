@@ -6,13 +6,16 @@ class HtmlTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$langCode = 'en';
-		$langObj = Language::factory( $langCode );
+		$this->setMwGlobals( [
+			'wgUseMediaWikiUIEverywhere' => false,
+		] );
+
+		$langObj = Language::factory( 'en' );
 
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
 		// can be properly evaluated.
-		$langObj->setNamespaces( array(
+		$langObj->setNamespaces( [
 			-2 => 'Media',
 			-1 => 'Special',
 			0 => '',
@@ -31,14 +34,9 @@ class HtmlTest extends MediaWikiTestCase {
 			15 => 'Category_talk',
 			100 => 'Custom',
 			101 => 'Custom_talk',
-		) );
-
-		$this->setMwGlobals( array(
-			'wgLanguageCode' => $langCode,
-			'wgContLang' => $langObj,
-			'wgLang' => $langObj,
-			'wgWellFormedXml' => false,
-		) );
+		] );
+		$this->setUserLang( $langObj );
+		$this->setContentLang( $langObj );
 	}
 
 	/**
@@ -46,7 +44,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testElementBasics() {
 		$this->assertEquals(
-			'<img>',
+			'<img/>',
 			Html::element( 'img', null, '' ),
 			'No close tag for short-tag elements'
 		);
@@ -59,35 +57,33 @@ class HtmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<element></element>',
-			Html::element( 'element', array(), '' ),
+			Html::element( 'element', [], '' ),
 			'Close tag for empty element (array, string)'
 		);
 
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
 		$this->assertEquals(
-			'<img />',
+			'<img/>',
 			Html::element( 'img', null, '' ),
-			'Self-closing tag for short-tag elements (wgWellFormedXml = true)'
+			'Self-closing tag for short-tag elements'
 		);
 	}
 
 	public function dataXmlMimeType() {
-		return array(
+		return [
 			// ( $mimetype, $isXmlMimeType )
 			# HTML is not an XML MimeType
-			array( 'text/html', false ),
+			[ 'text/html', false ],
 			# XML is an XML MimeType
-			array( 'text/xml', true ),
-			array( 'application/xml', true ),
+			[ 'text/xml', true ],
+			[ 'application/xml', true ],
 			# XHTML is an XML MimeType
-			array( 'application/xhtml+xml', true ),
+			[ 'application/xhtml+xml', true ],
 			# Make sure other +xml MimeTypes are supported
 			# SVG is another random MimeType even though we don't use it
-			array( 'image/svg+xml', true ),
+			[ 'image/svg+xml', true ],
 			# Complete random other MimeTypes are not XML
-			array( 'text/plain', false ),
-		);
+			[ 'text/plain', false ],
+		];
 	}
 
 	/**
@@ -99,84 +95,82 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesSkipsNullAndFalse() {
 
-		### EMPTY ########
+		# ## EMPTY ########
 		$this->assertEmpty(
-			Html::expandAttributes( array( 'foo' => null ) ),
+			Html::expandAttributes( [ 'foo' => null ] ),
 			'skip keys with null value'
 		);
 		$this->assertEmpty(
-			Html::expandAttributes( array( 'foo' => false ) ),
+			Html::expandAttributes( [ 'foo' => false ] ),
 			'skip keys with false value'
 		);
 		$this->assertEquals(
 			' foo=""',
-			Html::expandAttributes( array( 'foo' => '' ) ),
+			Html::expandAttributes( [ 'foo' => '' ] ),
 			'keep keys with an empty string'
 		);
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForBooleans() {
 		$this->assertEquals(
 			'',
-			Html::expandAttributes( array( 'selected' => false ) ),
+			Html::expandAttributes( [ 'selected' => false ] ),
 			'Boolean attributes do not generates output when value is false'
 		);
 		$this->assertEquals(
 			'',
-			Html::expandAttributes( array( 'selected' => null ) ),
+			Html::expandAttributes( [ 'selected' => null ] ),
 			'Boolean attributes do not generates output when value is null'
 		);
 
 		$this->assertEquals(
-			' selected',
-			Html::expandAttributes( array( 'selected' => true ) ),
+			' selected=""',
+			Html::expandAttributes( [ 'selected' => true ] ),
 			'Boolean attributes have no value when value is true'
 		);
 		$this->assertEquals(
-			' selected',
-			Html::expandAttributes( array( 'selected' ) ),
+			' selected=""',
+			Html::expandAttributes( [ 'selected' ] ),
 			'Boolean attributes have no value when value is true (passed as numerical array)'
 		);
 
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
 		$this->assertEquals(
 			' selected=""',
-			Html::expandAttributes( array( 'selected' => true ) ),
-			'Boolean attributes have empty string value when value is true (wgWellFormedXml)'
+			Html::expandAttributes( [ 'selected' => true ] ),
+			'Boolean attributes have empty string value when value is true'
 		);
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForNumbers() {
 		$this->assertEquals(
-			' value=1',
-			Html::expandAttributes( array( 'value' => 1 ) ),
+			' value="1"',
+			Html::expandAttributes( [ 'value' => 1 ] ),
 			'Integer value is cast to a string'
 		);
 		$this->assertEquals(
-			' value=1.1',
-			Html::expandAttributes( array( 'value' => 1.1 ) ),
+			' value="1.1"',
+			Html::expandAttributes( [ 'value' => 1.1 ] ),
 			'Float value is cast to a string'
 		);
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForObjects() {
 		$this->assertEquals(
-			' value=stringValue',
-			Html::expandAttributes( array( 'value' => new HtmlTestValue() ) ),
+			' value="stringValue"',
+			Html::expandAttributes( [ 'value' => new HtmlTestValue() ] ),
 			'Object value is converted to a string'
 		);
 	}
@@ -187,50 +181,28 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesVariousExpansions() {
-		### NOT EMPTY ####
+		# ## NOT EMPTY ####
 		$this->assertEquals(
 			' empty_string=""',
-			Html::expandAttributes( array( 'empty_string' => '' ) ),
+			Html::expandAttributes( [ 'empty_string' => '' ] ),
 			'Empty string is always quoted'
 		);
 		$this->assertEquals(
-			' key=value',
-			Html::expandAttributes( array( 'key' => 'value' ) ),
+			' key="value"',
+			Html::expandAttributes( [ 'key' => 'value' ] ),
 			'Simple string value needs no quotes'
 		);
 		$this->assertEquals(
-			' one=1',
-			Html::expandAttributes( array( 'one' => 1 ) ),
+			' one="1"',
+			Html::expandAttributes( [ 'one' => 1 ] ),
 			'Number 1 value needs no quotes'
 		);
 		$this->assertEquals(
-			' zero=0',
-			Html::expandAttributes( array( 'zero' => 0 ) ),
+			' zero="0"',
+			Html::expandAttributes( [ 'zero' => 0 ] ),
 			'Number 0 value needs no quotes'
 		);
 
-		$this->setMwGlobals( 'wgWellFormedXml', true );
-
-		$this->assertEquals(
-			' empty_string=""',
-			Html::expandAttributes( array( 'empty_string' => '' ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Empty string'
-		);
-		$this->assertEquals(
-			' key="value"',
-			Html::expandAttributes( array( 'key' => 'value' ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Simple string'
-		);
-		$this->assertEquals(
-			' one="1"',
-			Html::expandAttributes( array( 'one' => 1 ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Number 1'
-		);
-		$this->assertEquals(
-			' zero="0"',
-			Html::expandAttributes( array( 'zero' => 0 ) ),
-			'Attribute values are always quoted (wgWellFormedXml): Number 0'
-		);
 	}
 
 	/**
@@ -240,48 +212,48 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesListValueAttributes() {
-		### STRING VALUES
+		# ## STRING VALUES
 		$this->assertEquals(
 			' class="redundant spaces here"',
-			Html::expandAttributes( array( 'class' => ' redundant  spaces  here  ' ) ),
+			Html::expandAttributes( [ 'class' => ' redundant  spaces  here  ' ] ),
 			'Normalization should strip redundant spaces'
 		);
 		$this->assertEquals(
 			' class="foo bar"',
-			Html::expandAttributes( array( 'class' => 'foo bar foo bar bar' ) ),
+			Html::expandAttributes( [ 'class' => 'foo bar foo bar bar' ] ),
 			'Normalization should remove duplicates in string-lists'
 		);
-		### "EMPTY" ARRAY VALUES
+		# ## "EMPTY" ARRAY VALUES
 		$this->assertEquals(
 			' class=""',
-			Html::expandAttributes( array( 'class' => array() ) ),
+			Html::expandAttributes( [ 'class' => [] ] ),
 			'Value with an empty array'
 		);
 		$this->assertEquals(
 			' class=""',
-			Html::expandAttributes( array( 'class' => array( null, '', ' ', '  ' ) ) ),
+			Html::expandAttributes( [ 'class' => [ null, '', ' ', '  ' ] ] ),
 			'Array with null, empty string and spaces'
 		);
-		### NON-EMPTY ARRAY VALUES
+		# ## NON-EMPTY ARRAY VALUES
 		$this->assertEquals(
 			' class="foo bar"',
-			Html::expandAttributes( array( 'class' => array(
+			Html::expandAttributes( [ 'class' => [
 				'foo',
 				'bar',
 				'foo',
 				'bar',
 				'bar',
-			) ) ),
+			] ] ),
 			'Normalization should remove duplicates in the array'
 		);
 		$this->assertEquals(
 			' class="foo bar"',
-			Html::expandAttributes( array( 'class' => array(
+			Html::expandAttributes( [ 'class' => [
 				'foo bar',
 				'bar foo',
 				'foo',
 				'bar bar',
-			) ) ),
+			] ] ),
 			'Normalization should remove duplicates in string-lists in the array'
 		);
 	}
@@ -294,7 +266,7 @@ class HtmlTest extends MediaWikiTestCase {
 	public function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
 		$this->assertEquals(
 			' class="booltrue one"',
-			Html::expandAttributes( array( 'class' => array(
+			Html::expandAttributes( [ 'class' => [
 				'booltrue' => true,
 				'one' => 1,
 
@@ -304,7 +276,7 @@ class HtmlTest extends MediaWikiTestCase {
 				'boolfalse' => false,
 				'zero' => 0,
 				'null' => null,
-			) ) )
+			] ] )
 		);
 	}
 
@@ -319,11 +291,11 @@ class HtmlTest extends MediaWikiTestCase {
 	public function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
 		$this->assertEquals(
 			' class=""',
-			Html::expandAttributes( array( 'class' => array(
+			Html::expandAttributes( [ 'class' => [
 				'GREEN',
 				'GREEN' => false,
 				'GREEN',
-			) ) )
+			] ] )
 		);
 	}
 
@@ -334,12 +306,12 @@ class HtmlTest extends MediaWikiTestCase {
 	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
 		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
 		// when used with an outdated BetaFeatures extension (see Gerrit deda1e7)
-		Html::expandAttributes( array(
-			'src' => array(
+		Html::expandAttributes( [
+			'src' => [
 				'ltr' => 'ltr.svg',
 				'rtl' => 'rtl.svg'
-			)
-		) );
+			]
+		] );
 	}
 
 	/**
@@ -347,78 +319,78 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testNamespaceSelector() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(),
 			'Basic namespace selector without custom options'
 		);
 
 		$this->assertEquals(
-			'<label for=mw-test-namespace>Select a namespace:</label>&#160;' .
-				'<select id=mw-test-namespace name=wpNamespace>' . "\n" .
-				'<option value=all>all</option>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2 selected>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<label for="mw-test-namespace">Select a namespace:</label>&#160;' .
+				'<select id="mw-test-namespace" name="wpNamespace">' . "\n" .
+				'<option value="all">all</option>' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2" selected="">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
-				array( 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ),
-				array( 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' )
+				[ 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ],
+				[ 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' ]
 			),
 			'Basic namespace selector with custom values'
 		);
 
 		$this->assertEquals(
-			'<label for=namespace>Select a namespace:</label>&#160;' .
-				'<select id=namespace name=namespace>' . "\n" .
-				'<option value=0>(Main)</option>' . "\n" .
-				'<option value=1>Talk</option>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=3>User talk</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<label for="namespace">Select a namespace:</label>&#160;' .
+				'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="1">Talk</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="3">User talk</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
-				array( 'label' => 'Select a namespace:' )
+				[ 'label' => 'Select a namespace:' ]
 			),
 			'Basic namespace selector with a custom label but no id attribtue for the <select>'
 		);
@@ -426,21 +398,21 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option value=2>User</option>' . "\n" .
-				'<option value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
 				'</select>',
 			Html::namespaceSelector(
-				array( 'exclude' => array( 0, 1, 3, 100, 101 ) )
+				[ 'exclude' => [ 0, 1, 3, 100, 101 ] ]
 			),
 			'Namespace selector namespace filtering.'
 		);
@@ -448,27 +420,27 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testCanDisableANamespaces() {
 		$this->assertEquals(
-			'<select id=namespace name=namespace>' . "\n" .
-				'<option disabled value=0>(Main)</option>' . "\n" .
-				'<option disabled value=1>Talk</option>' . "\n" .
-				'<option disabled value=2>User</option>' . "\n" .
-				'<option disabled value=3>User talk</option>' . "\n" .
-				'<option disabled value=4>MyWiki</option>' . "\n" .
-				'<option value=5>MyWiki Talk</option>' . "\n" .
-				'<option value=6>File</option>' . "\n" .
-				'<option value=7>File talk</option>' . "\n" .
-				'<option value=8>MediaWiki</option>' . "\n" .
-				'<option value=9>MediaWiki talk</option>' . "\n" .
-				'<option value=10>Template</option>' . "\n" .
-				'<option value=11>Template talk</option>' . "\n" .
-				'<option value=14>Category</option>' . "\n" .
-				'<option value=15>Category talk</option>' . "\n" .
-				'<option value=100>Custom</option>' . "\n" .
-				'<option value=101>Custom talk</option>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option disabled="" value="0">(Main)</option>' . "\n" .
+				'<option disabled="" value="1">Talk</option>' . "\n" .
+				'<option disabled="" value="2">User</option>' . "\n" .
+				'<option disabled="" value="3">User talk</option>' . "\n" .
+				'<option disabled="" value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'<option value="100">Custom</option>' . "\n" .
+				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector( array(
-				'disable' => array( 0, 1, 2, 3, 4 )
-			) ),
+			Html::namespaceSelector( [
+				'disable' => [ 0, 1, 2, 3, 4 ]
+			] ),
 			'Namespace selector namespace disabling'
 		);
 	}
@@ -479,9 +451,9 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
-			'<input type=' . $HTML5InputType . '>',
-			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
-			'In HTML5, HTML::element() should accept type="' . $HTML5InputType . '"'
+			'<input type="' . $HTML5InputType . '"/>',
+			Html::element( 'input', [ 'type' => $HTML5InputType ] ),
+			'In HTML5, Html::element() should accept type="' . $HTML5InputType . '"'
 		);
 	}
 
@@ -490,7 +462,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * Full list at http://www.w3.org/TR/html-markup/input.html
 	 */
 	public static function provideHtml5InputTypes() {
-		$types = array(
+		$types = [
 			'datetime',
 			'datetime-local',
 			'date',
@@ -504,10 +476,10 @@ class HtmlTest extends MediaWikiTestCase {
 			'search',
 			'tel',
 			'color',
-		);
-		$cases = array();
+		];
+		$cases = [];
 		foreach ( $types as $type ) {
-			$cases[] = array( $type );
+			$cases[] = [ $type ];
 		}
 
 		return $cases;
@@ -526,154 +498,154 @@ class HtmlTest extends MediaWikiTestCase {
 		# Use cases in a concise format:
 		# <expected>, <element name>, <array of attributes> [, <message>]
 		# Will be mapped to Html::element()
-		$cases = array();
+		$cases = [];
 
-		### Generic cases, match $attribDefault static array
-		$cases[] = array( '<area>',
-			'area', array( 'shape' => 'rect' )
-		);
+		# ## Generic cases, match $attribDefault static array
+		$cases[] = [ '<area/>',
+			'area', [ 'shape' => 'rect' ]
+		];
 
-		$cases[] = array( '<button type=submit></button>',
-			'button', array( 'formaction' => 'GET' )
-		);
-		$cases[] = array( '<button type=submit></button>',
-			'button', array( 'formenctype' => 'application/x-www-form-urlencoded' )
-		);
+		$cases[] = [ '<button type="submit"></button>',
+			'button', [ 'formaction' => 'GET' ]
+		];
+		$cases[] = [ '<button type="submit"></button>',
+			'button', [ 'formenctype' => 'application/x-www-form-urlencoded' ]
+		];
 
-		$cases[] = array( '<canvas></canvas>',
-			'canvas', array( 'height' => '150' )
-		);
-		$cases[] = array( '<canvas></canvas>',
-			'canvas', array( 'width' => '300' )
-		);
+		$cases[] = [ '<canvas></canvas>',
+			'canvas', [ 'height' => '150' ]
+		];
+		$cases[] = [ '<canvas></canvas>',
+			'canvas', [ 'width' => '300' ]
+		];
 		# Also check with numeric values
-		$cases[] = array( '<canvas></canvas>',
-			'canvas', array( 'height' => 150 )
-		);
-		$cases[] = array( '<canvas></canvas>',
-			'canvas', array( 'width' => 300 )
-		);
+		$cases[] = [ '<canvas></canvas>',
+			'canvas', [ 'height' => 150 ]
+		];
+		$cases[] = [ '<canvas></canvas>',
+			'canvas', [ 'width' => 300 ]
+		];
 
-		$cases[] = array( '<command>',
-			'command', array( 'type' => 'command' )
-		);
+		$cases[] = [ '<command/>',
+			'command', [ 'type' => 'command' ]
+		];
 
-		$cases[] = array( '<form></form>',
-			'form', array( 'action' => 'GET' )
-		);
-		$cases[] = array( '<form></form>',
-			'form', array( 'autocomplete' => 'on' )
-		);
-		$cases[] = array( '<form></form>',
-			'form', array( 'enctype' => 'application/x-www-form-urlencoded' )
-		);
+		$cases[] = [ '<form></form>',
+			'form', [ 'action' => 'GET' ]
+		];
+		$cases[] = [ '<form></form>',
+			'form', [ 'autocomplete' => 'on' ]
+		];
+		$cases[] = [ '<form></form>',
+			'form', [ 'enctype' => 'application/x-www-form-urlencoded' ]
+		];
 
-		$cases[] = array( '<input>',
-			'input', array( 'formaction' => 'GET' )
-		);
-		$cases[] = array( '<input>',
-			'input', array( 'type' => 'text' )
-		);
+		$cases[] = [ '<input/>',
+			'input', [ 'formaction' => 'GET' ]
+		];
+		$cases[] = [ '<input/>',
+			'input', [ 'type' => 'text' ]
+		];
 
-		$cases[] = array( '<keygen>',
-			'keygen', array( 'keytype' => 'rsa' )
-		);
+		$cases[] = [ '<keygen/>',
+			'keygen', [ 'keytype' => 'rsa' ]
+		];
 
-		$cases[] = array( '<link>',
-			'link', array( 'media' => 'all' )
-		);
+		$cases[] = [ '<link/>',
+			'link', [ 'media' => 'all' ]
+		];
 
-		$cases[] = array( '<menu></menu>',
-			'menu', array( 'type' => 'list' )
-		);
+		$cases[] = [ '<menu></menu>',
+			'menu', [ 'type' => 'list' ]
+		];
 
-		$cases[] = array( '<script></script>',
-			'script', array( 'type' => 'text/javascript' )
-		);
+		$cases[] = [ '<script></script>',
+			'script', [ 'type' => 'text/javascript' ]
+		];
 
-		$cases[] = array( '<style></style>',
-			'style', array( 'media' => 'all' )
-		);
-		$cases[] = array( '<style></style>',
-			'style', array( 'type' => 'text/css' )
-		);
+		$cases[] = [ '<style></style>',
+			'style', [ 'media' => 'all' ]
+		];
+		$cases[] = [ '<style></style>',
+			'style', [ 'type' => 'text/css' ]
+		];
 
-		$cases[] = array( '<textarea></textarea>',
-			'textarea', array( 'wrap' => 'soft' )
-		);
+		$cases[] = [ '<textarea></textarea>',
+			'textarea', [ 'wrap' => 'soft' ]
+		];
 
-		### SPECIFIC CASES
+		# ## SPECIFIC CASES
 
 		# <link type="text/css">
-		$cases[] = array( '<link>',
-			'link', array( 'type' => 'text/css' )
-		);
+		$cases[] = [ '<link/>',
+			'link', [ 'type' => 'text/css' ]
+		];
 
 		# <input> specific handling
-		$cases[] = array( '<input type=checkbox>',
-			'input', array( 'type' => 'checkbox', 'value' => 'on' ),
+		$cases[] = [ '<input type="checkbox"/>',
+			'input', [ 'type' => 'checkbox', 'value' => 'on' ],
 			'Default value "on" is stripped of checkboxes',
-		);
-		$cases[] = array( '<input type=radio>',
-			'input', array( 'type' => 'radio', 'value' => 'on' ),
+		];
+		$cases[] = [ '<input type="radio"/>',
+			'input', [ 'type' => 'radio', 'value' => 'on' ],
 			'Default value "on" is stripped of radio buttons',
-		);
-		$cases[] = array( '<input type=submit value=Submit>',
-			'input', array( 'type' => 'submit', 'value' => 'Submit' ),
+		];
+		$cases[] = [ '<input type="submit" value="Submit"/>',
+			'input', [ 'type' => 'submit', 'value' => 'Submit' ],
 			'Default value "Submit" is kept on submit buttons (for possible l10n issues)',
-		);
-		$cases[] = array( '<input type=color>',
-			'input', array( 'type' => 'color', 'value' => '' ),
-		);
-		$cases[] = array( '<input type=range>',
-			'input', array( 'type' => 'range', 'value' => '' ),
-		);
+		];
+		$cases[] = [ '<input type="color"/>',
+			'input', [ 'type' => 'color', 'value' => '' ],
+		];
+		$cases[] = [ '<input type="range"/>',
+			'input', [ 'type' => 'range', 'value' => '' ],
+		];
 
 		# <button> specific handling
 		# see remarks on http://msdn.microsoft.com/en-us/library/ie/ms535211%28v=vs.85%29.aspx
-		$cases[] = array( '<button type=submit></button>',
-			'button', array( 'type' => 'submit' ),
+		$cases[] = [ '<button type="submit"></button>',
+			'button', [ 'type' => 'submit' ],
 			'According to standard the default type is "submit". '
 				. 'Depending on compatibility mode IE might use "button", instead.',
-		);
+		];
 
 		# <select> specific handling
-		$cases[] = array( '<select multiple></select>',
-			'select', array( 'size' => '4', 'multiple' => true ),
-		);
+		$cases[] = [ '<select multiple=""></select>',
+			'select', [ 'size' => '4', 'multiple' => true ],
+		];
 		# .. with numeric value
-		$cases[] = array( '<select multiple></select>',
-			'select', array( 'size' => 4, 'multiple' => true ),
-		);
-		$cases[] = array( '<select></select>',
-			'select', array( 'size' => '1', 'multiple' => false ),
-		);
+		$cases[] = [ '<select multiple=""></select>',
+			'select', [ 'size' => 4, 'multiple' => true ],
+		];
+		$cases[] = [ '<select></select>',
+			'select', [ 'size' => '1', 'multiple' => false ],
+		];
 		# .. with numeric value
-		$cases[] = array( '<select></select>',
-			'select', array( 'size' => 1, 'multiple' => false ),
-		);
+		$cases[] = [ '<select></select>',
+			'select', [ 'size' => 1, 'multiple' => false ],
+		];
 
 		# Passing an array as value
-		$cases[] = array( '<a class="css-class-one css-class-two"></a>',
-			'a', array( 'class' => array( 'css-class-one', 'css-class-two' ) ),
+		$cases[] = [ '<a class="css-class-one css-class-two"></a>',
+			'a', [ 'class' => [ 'css-class-one', 'css-class-two' ] ],
 			"dropDefaults accepts values given as an array"
-		);
+		];
 
 		# FIXME: doDropDefault should remove defaults given in an array
 		# Expected should be '<a></a>'
-		$cases[] = array( '<a class=""></a>',
-			'a', array( 'class' => array( '', '' ) ),
+		$cases[] = [ '<a class=""></a>',
+			'a', [ 'class' => [ '', '' ] ],
 			"dropDefaults accepts values given as an array"
-		);
+		];
 
 		# Craft the Html elements
-		$ret = array();
+		$ret = [];
 		foreach ( $cases as $case ) {
-			$ret[] = array(
+			$ret[] = [
 				$case[0],
 				$case[1], $case[2],
 				isset( $case[3] ) ? $case[3] : ''
-			);
+			];
 		}
 
 		return $ret;
@@ -684,25 +656,25 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testFormValidationBlacklist() {
 		$this->assertEmpty(
-			Html::expandAttributes( array(
+			Html::expandAttributes( [
 				'min' => 1,
 				'max' => 100,
 				'pattern' => 'abc',
 				'required' => true,
 				'step' => 2
-			) ),
+			] ),
 			'Blacklist form validation attributes.'
 		);
 		$this->assertEquals(
-			' step=any',
+			' step="any"',
 			Html::expandAttributes(
-				array(
+				[
 					'min' => 1,
 					'max' => 100,
 					'pattern' => 'abc',
 					'required' => true,
 					'step' => 'any'
-				),
+				],
 				'Allow special case "step=any".'
 			)
 		);
@@ -710,12 +682,12 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testWrapperInput() {
 		$this->assertEquals(
-			'<input type=radio value=testval name=testname>',
+			'<input type="radio" value="testval" name="testname"/>',
 			Html::input( 'testname', 'testval', 'radio' ),
 			'Input wrapper with type and value.'
 		);
 		$this->assertEquals(
-			'<input name=testname>',
+			'<input name="testname"/>',
 			Html::input( 'testname' ),
 			'Input wrapper with all default values.'
 		);
@@ -723,62 +695,62 @@ class HtmlTest extends MediaWikiTestCase {
 
 	public function testWrapperCheck() {
 		$this->assertEquals(
-			'<input type=checkbox value=1 name=testname>',
+			'<input type="checkbox" value="1" name="testname"/>',
 			Html::check( 'testname' ),
 			'Checkbox wrapper unchecked.'
 		);
 		$this->assertEquals(
-			'<input checked type=checkbox value=1 name=testname>',
+			'<input checked="" type="checkbox" value="1" name="testname"/>',
 			Html::check( 'testname', true ),
 			'Checkbox wrapper checked.'
 		);
 		$this->assertEquals(
-			'<input type=checkbox value=testval name=testname>',
-			Html::check( 'testname', false, array( 'value' => 'testval' ) ),
+			'<input type="checkbox" value="testval" name="testname"/>',
+			Html::check( 'testname', false, [ 'value' => 'testval' ] ),
 			'Checkbox wrapper with a value override.'
 		);
 	}
 
 	public function testWrapperRadio() {
 		$this->assertEquals(
-			'<input type=radio value=1 name=testname>',
+			'<input type="radio" value="1" name="testname"/>',
 			Html::radio( 'testname' ),
 			'Radio wrapper unchecked.'
 		);
 		$this->assertEquals(
-			'<input checked type=radio value=1 name=testname>',
+			'<input checked="" type="radio" value="1" name="testname"/>',
 			Html::radio( 'testname', true ),
 			'Radio wrapper checked.'
 		);
 		$this->assertEquals(
-			'<input type=radio value=testval name=testname>',
-			Html::radio( 'testname', false, array( 'value' => 'testval' ) ),
+			'<input type="radio" value="testval" name="testname"/>',
+			Html::radio( 'testname', false, [ 'value' => 'testval' ] ),
 			'Radio wrapper with a value override.'
 		);
 	}
 
 	public function testWrapperLabel() {
 		$this->assertEquals(
-			'<label for=testid>testlabel</label>',
+			'<label for="testid">testlabel</label>',
 			Html::label( 'testlabel', 'testid' ),
 			'Label wrapper'
 		);
 	}
 
 	public static function provideSrcSetImages() {
-		return array(
-			array( array(), '', 'when there are no images, return empty string' ),
-			array(
-				array( '1x' => '1x.png', '1.5x' => '1_5x.png', '2x' => '2x.png' ),
+		return [
+			[ [], '', 'when there are no images, return empty string' ],
+			[
+				[ '1x' => '1x.png', '1.5x' => '1_5x.png', '2x' => '2x.png' ],
 				'1x.png 1x, 1_5x.png 1.5x, 2x.png 2x',
 				'pixel depth keys may include a trailing "x"'
-			),
-			array(
-				array( '1'  => '1x.png', '1.5' => '1_5x.png', '2'  => '2x.png' ),
+			],
+			[
+				[ '1'  => '1x.png', '1.5' => '1_5x.png', '2'  => '2x.png' ],
 				'1x.png 1x, 1_5x.png 1.5x, 2x.png 2x',
 				'pixel depth keys may omit a trailing "x"'
-			),
-		);
+			],
+		];
 	}
 
 	/**

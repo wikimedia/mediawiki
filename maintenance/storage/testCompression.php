@@ -21,7 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-$optionsWithArgs = array( 'start', 'limit', 'type' );
+$optionsWithArgs = [ 'start', 'limit', 'type' ];
 require __DIR__ . '/../commandLine.inc';
 
 if ( !isset( $args[0] ) ) {
@@ -30,10 +30,11 @@ if ( !isset( $args[0] ) ) {
 	exit( 1 );
 }
 
+$lang = Language::factory( 'en' );
 $title = Title::newFromText( $args[0] );
 if ( isset( $options['start'] ) ) {
 	$start = wfTimestamp( TS_MW, strtotime( $options['start'] ) );
-	echo "Starting from " . $wgLang->timeanddate( $start ) . "\n";
+	echo "Starting from " . $lang->timeanddate( $start ) . "\n";
 } else {
 	$start = '19700101000000';
 }
@@ -46,22 +47,22 @@ if ( isset( $options['limit'] ) ) {
 }
 $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
 
-$dbr = wfGetDB( DB_SLAVE );
+$dbr = $this->getDB( DB_SLAVE );
 $res = $dbr->select(
-	array( 'page', 'revision', 'text' ),
+	[ 'page', 'revision', 'text' ],
 	'*',
-	array(
+	[
 		'page_namespace' => $title->getNamespace(),
 		'page_title' => $title->getDBkey(),
 		'page_id=rev_page',
 		'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $start ) ),
 		'rev_text_id=old_id'
-	), __FILE__, array( 'LIMIT' => $limit )
+	], __FILE__, [ 'LIMIT' => $limit ]
 );
 
 $blob = new $type;
-$hashes = array();
-$keys = array();
+$hashes = [];
+$keys = [];
 $uncompressedSize = 0;
 $t = -microtime( true );
 foreach ( $res as $row ) {
@@ -83,7 +84,7 @@ printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n",
 	$type,
 	count( $hashes ),
 	$uncompressedSize / strlen( $serialized ),
-	$wgLang->formatSize( $uncompressedSize ),
+	$lang->formatSize( $uncompressedSize ),
 	strlen( $serialized )
 );
 printf( "Compression time: %5.2f ms\n", $t * 1000 );

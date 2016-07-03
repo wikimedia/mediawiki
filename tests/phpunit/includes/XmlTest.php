@@ -9,7 +9,7 @@ class XmlTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$langObj = Language::factory( 'en' );
-		$langObj->setNamespaces( array(
+		$langObj->setNamespaces( [
 			-2 => 'Media',
 			-1 => 'Special',
 			0 => '',
@@ -26,12 +26,12 @@ class XmlTest extends MediaWikiTestCase {
 			11 => 'Template_talk',
 			100 => 'Custom',
 			101 => 'Custom_talk',
-		) );
+		] );
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgLang' => $langObj,
-			'wgWellFormedXml' => true,
-		) );
+			'wgUseMediaWikiUIEverywhere' => false,
+		] );
 	}
 
 	/**
@@ -41,7 +41,7 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertNull( Xml::expandAttributes( null ),
 			'Converting a null list of attributes'
 		);
-		$this->assertEquals( '', Xml::expandAttributes( array() ),
+		$this->assertEquals( '', Xml::expandAttributes( [] ),
 			'Converting an empty list of attributes'
 		);
 	}
@@ -113,7 +113,7 @@ class XmlTest extends MediaWikiTestCase {
 	public function testElementAttributes() {
 		$this->assertEquals(
 			'<element key="value" <>="&lt;&gt;">',
-			Xml::element( 'element', array( 'key' => 'value', '<>' => '<>' ), null ),
+			Xml::element( 'element', [ 'key' => 'value', '<>' => '<>' ], null ),
 			'Element attributes, keys are not escaped'
 		);
 	}
@@ -124,7 +124,7 @@ class XmlTest extends MediaWikiTestCase {
 	public function testOpenElement() {
 		$this->assertEquals(
 			'<element k="v">',
-			Xml::openElement( 'element', array( 'k' => 'v' ) ),
+			Xml::openElement( 'element', [ 'k' => 'v' ] ),
 			'openElement() shortcut'
 		);
 	}
@@ -152,7 +152,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -173,7 +173,7 @@ class XmlTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -207,7 +207,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" name="year" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" name="year"/> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select name="month" id="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -267,27 +267,27 @@ class XmlTest extends MediaWikiTestCase {
 	public function testLabelAttributeCanOnlyBeClassOrTitle() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
-			Xml::label( 'name', 'id', array( 'generated' => true ) ),
+			Xml::label( 'name', 'id', [ 'generated' => true ] ),
 			'label() can not be given a generated attribute'
 		);
 		$this->assertEquals(
 			'<label for="id" class="nice">name</label>',
-			Xml::label( 'name', 'id', array( 'class' => 'nice' ) ),
+			Xml::label( 'name', 'id', [ 'class' => 'nice' ] ),
 			'label() can get a class attribute'
 		);
 		$this->assertEquals(
 			'<label for="id" title="nice tooltip">name</label>',
-			Xml::label( 'name', 'id', array( 'title' => 'nice tooltip' ) ),
+			Xml::label( 'name', 'id', [ 'title' => 'nice tooltip' ] ),
 			'label() can get a title attribute'
 		);
 		$this->assertEquals(
 			'<label for="id" class="nice" title="nice tooltip">name</label>',
-			Xml::label( 'name', 'id', array(
+			Xml::label( 'name', 'id', [
 					'generated' => true,
 					'class' => 'nice',
 					'title' => 'nice tooltip',
 					'anotherattr' => 'value',
-				)
+				]
 			),
 			'label() skip all attributes but "class" and "title"'
 		);
@@ -298,7 +298,7 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testLanguageSelector() {
 		$select = Xml::languageSelector( 'en', true, null,
-			array( 'id' => 'testlang' ), wfMessage( 'yourlanguage' ) );
+			[ 'id' => 'testlang' ], wfMessage( 'yourlanguage' ) );
 		$this->assertEquals(
 			'<label for="testlang">Language:</label>',
 			$select[0]
@@ -344,12 +344,12 @@ class XmlTest extends MediaWikiTestCase {
 	public function testEncodeJsVarArray() {
 		$this->assertEquals(
 			'["a",1]',
-			Xml::encodeJsVar( array( 'a', 1 ) ),
+			Xml::encodeJsVar( [ 'a', 1 ] ),
 			'encodeJsVar() with array'
 		);
 		$this->assertEquals(
 			'{"a":"a","b":1}',
-			Xml::encodeJsVar( array( 'a' => 'a', 'b' => 1 ) ),
+			Xml::encodeJsVar( [ 'a' => 'a', 'b' => 1 ] ),
 			'encodeJsVar() with associative array'
 		);
 	}
@@ -360,7 +360,7 @@ class XmlTest extends MediaWikiTestCase {
 	public function testEncodeJsVarObject() {
 		$this->assertEquals(
 			'{"a":"a","b":1}',
-			Xml::encodeJsVar( (object)array( 'a' => 'a', 'b' => 1 ) ),
+			Xml::encodeJsVar( (object)[ 'a' => 'a', 'b' => 1 ] ),
 			'encodeJsVar() with object'
 		);
 	}

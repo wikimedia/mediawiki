@@ -28,7 +28,7 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 		RevDelItem::__construct( $list, $row );
 
 		$this->revision = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->list->title->getArticleID() ) );
+			[ 'page' => $this->list->title->getArticleID() ] );
 	}
 
 	public function getIdField() {
@@ -42,10 +42,10 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'archive',
-			array( 'ar_deleted' => $bits ),
-			array( 'ar_rev_id' => $this->row->ar_rev_id,
+			[ 'ar_deleted' => $bits ],
+			[ 'ar_rev_id' => $this->row->ar_rev_id,
 				'ar_deleted' => $this->getBits()
-			),
+			],
 			__METHOD__ );
 
 		return (bool)$dbw->affectedRows();

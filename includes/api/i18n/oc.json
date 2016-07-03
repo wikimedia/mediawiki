@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "Quina accion cal efectuar.",
@@ -21,7 +22,7 @@
 	"apihelp-createaccount-param-password": "Senhal (ignorat se <var>$1mailpassword</var> es definit).",
 	"apihelp-createaccount-param-realname": "Nom vertadièr de l’utilizaire (facultatiu).",
 	"apihelp-delete-description": "Suprimir una pagina.",
-	"apihelp-delete-example-simple": "Suprimir la <kbd>Pagina principala</kbd>.",
+	"apihelp-delete-example-simple": "Suprimir la <kbd>Main Page</kbd>.",
 	"apihelp-disabled-description": "Aqueste modul es estat desactivat.",
 	"apihelp-edit-description": "Crear e modificar las paginas.",
 	"apihelp-edit-param-text": "Contengut de la pagina.",
@@ -81,7 +82,7 @@
 	"api-help-license-noname": "Licéncia : [[$1|Veire lo ligam]]",
 	"api-help-license-unknown": "Licéncia : <span class=\"apihelp-unknown\">desconeguda</span>",
 	"api-help-parameters": "{{PLURAL:$1|Paramètre|Paramètres}} :",
-	"api-help-param-deprecated": "Obsolet.",
+	"api-help-param-deprecated": "Obsolèt.",
 	"api-help-datatypes-header": "Tipe de donadas",
 	"api-help-param-default": "Per defaut : $1",
 	"api-credits-header": "Mercejaments"

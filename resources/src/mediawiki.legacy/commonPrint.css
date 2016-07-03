@@ -1,12 +1,10 @@
 /**
- * MediaWiki Print style sheet for CSS2-capable browsers.
- * Copyright Gabriel Wicke, http://www.aulinx.de/
+ * MediaWiki print style sheet
+ * Largely based on work by Gabriel Wicke
  *
- * Derived from the plone (http://plone.org/) styles
+ * Originally derived from Plone (https://plone.org/) styles
  * Copyright Alexander Limi
  */
-
-/* Thanks to A List Apart (http://alistapart.com/) for useful extras */
 
 /**
  * Hide all the elements irrelevant for printing
@@ -18,75 +16,83 @@ div.top,
 div#column-one,
 .mw-editsection,
 .mw-editsection-like,
-.toctoggle,
-#toc.tochidden,
-div#f-poweredbyico,
-div#f-copyrightico,
-li#about,
-li#disclaimer,
-li#mobileview,
-li#privacy,
 #footer-places,
 .mw-hidden-catlinks,
 .usermessage,
 .patrollink,
 .ns-0 .mw-redirectedfrom,
+div.magnify,
 #mw-navigation,
-#siteNotice {
+#siteNotice,
+/* Deprecated, changed in core */
+div#f-poweredbyico,
+div#f-copyrightico,
+li#about,
+li#disclaimer,
+li#mobileview,
+li#privacy {
 	display: none;
-}
-
-/**
- * Pagination
- */
-.wikitable, .thumb, img {
-	page-break-inside: avoid;
-}
-
-h2, h3, h4, h5, h6 {
-	page-break-after: avoid;
-}
-
-p {
-	widows: 3;
-	orphans: 3;
 }
 
 /**
  * Generic HTML elements
  */
 body {
-	background: white;
-	color: black;
+	background: #fff;
+	color: #000;
 	margin: 0;
 	padding: 0;
 }
 
-ul {
-	list-style-type: square;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: bold;
+	/* Pagination */
+	page-break-after: avoid;
 }
 
 dt {
 	font-weight: bold;
 }
 
+ul {
+	list-style-type: square;
+}
+
 p {
 	margin: 1em 0;
 	line-height: 1.2em;
+	/* Pagination */
+	orphans: 3;
+	widows: 3;
 }
 
-pre, .mw-code {
-	border: 1pt dashed black;
-	white-space: pre;
-	font-size: 8pt;
-	overflow: auto;
+pre,
+.mw-code {
+	background: #fff;
+	color: #000;
+	border: 1pt dashed #000;
 	padding: 1em 0;
-	background: white;
-	color: black;
+	font-size: 8pt;
+	white-space: pre;
+	word-wrap: break-word;
+	overflow: auto;
+}
+
+img,
+.wikitable,
+.thumb {
+	/* Pagination */
+	page-break-inside: avoid;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
 }
 
 /**
@@ -98,12 +104,12 @@ pre, .mw-code {
 }
 
 .mw-body {
-	background: white;
-	border: none !important;
+	background: #fff;
+	color: #000;
+	border: 0 !important;
 	padding: 0 !important;
 	margin: 0 !important;
 	direction: ltr;
-	color: black;
 }
 
 #column-content {
@@ -116,65 +122,63 @@ pre, .mw-code {
 }
 
 #toc {
-	border: 1px solid #aaaaaa;
 	background-color: #f9f9f9;
+	border: 1pt solid #aaa;
 	padding: 5px;
-	display: inline-block;
 	display: table;
-	/* IE7 and earlier */
-	zoom: 1;
-	*display: inline;
+}
+
+/* Separate columns for tocnumber and toctext */
+.tocnumber,
+.toctext {
+	display: table-cell;
+}
+
+/* Space between the columns for tocnumber and toctext */
+.tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-ltr .tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-rtl .tocnumber {
+	padding-left: 0.5em;
+	padding-right: 0;
 }
 
 #footer {
-	background: white;
-	color: black;
+	background: #fff;
+	color: #000;
 	margin-top: 1em;
-	border-top: 1px solid #AAA;
+	border-top: 1pt solid #aaa;
 	direction: ltr;
-}
-
-img {
-	border: none;
-	vertical-align: middle;
-}
-
-/* math */
-span.texhtml {
-	font-family: serif;
 }
 
 /**
  * Links
  */
-a.stub,
-a.new {
-	color: #ba0000;
-	text-decoration: none;
-}
-
 a {
-	color: black !important;
 	background: none !important;
 	padding: 0 !important;
-}
-
-a:link, a:visited {
-	color: #520;
-	background: transparent;
-	text-decoration: underline;
 }
 
 /* Expand URLs for printing */
 .mw-body a.external.text:after,
 .mw-body a.external.autonumber:after {
-	content: " (" attr(href) ")";
+	content: " (" attr( href ) ")";
+	word-wrap: break-word;
 }
 
 /* Expand protocol-relative URLs for printing */
 .mw-body a.external.text[href^='//']:after,
 .mw-body a.external.autonumber[href^='//']:after {
-	content: " (https:" attr(href) ")";
+	content: " (https:" attr( href ) ")";
 }
 
 /* MSIE/Win doesn't understand 'inherit' */
@@ -182,7 +186,7 @@ a,
 a.external,
 a.new,
 a.stub {
-	color: black !important;
+	color: #000 !important;
 	text-decoration: none !important;
 }
 
@@ -230,24 +234,24 @@ div.center {
  * Thumbnails
  */
 div.thumb {
-	border: none;
+	background-color: transparent;
+	border: 0;
 	width: auto;
 	margin-top: 0.5em;
 	margin-bottom: 0.8em;
-	background-color: transparent;
 }
 
 div.thumbinner {
-	border: 1px solid #cccccc;
+	background-color: #fff;
+	border: 1pt solid #ccc;
 	padding: 3px !important;
-	background-color: White;
 	font-size: 94%;
 	text-align: center;
 	overflow: hidden;
 }
 
 html .thumbimage {
-	border: 1px solid #cccccc;
+	border: 1pt solid #ccc;
 }
 
 html .thumbcaption {
@@ -256,10 +260,6 @@ html .thumbcaption {
 	line-height: 1.4em;
 	padding: 3px !important;
 	font-size: 94%;
-}
-
-div.magnify {
-	display: none;
 }
 
 /* @noflip */
@@ -277,7 +277,7 @@ div.tleft {
 }
 
 img.thumbborder {
-	border: 1px solid #dddddd;
+	border: 1pt solid #ddd;
 }
 
 /**
@@ -286,25 +286,28 @@ img.thumbborder {
  */
 table.wikitable,
 table.mw_metadata {
+	background: #fff;
 	margin: 1em 0;
-	border: 1px #aaa solid;
-	background: white;
+	border: 1pt solid #aaa;
 	border-collapse: collapse;
 }
 
-table.wikitable > tr > th, table.wikitable > tr > td,
-table.wikitable > * > tr > th, table.wikitable > * > tr > td,
-.mw_metadata th, .mw_metadata td {
-	border: 1px #aaa solid;
+table.wikitable > tr > th,
+table.wikitable > tr > td,
+table.wikitable > * > tr > th,
+table.wikitable > * > tr > td,
+.mw_metadata th,
+.mw_metadata td {
+	border: 1pt solid #aaa;
 	padding: 0.2em;
 }
 
 table.wikitable > tr > th,
 table.wikitable > * > tr > th,
 .mw_metadata th {
-	text-align: center;
-	background: white;
+	background: #fff;
 	font-weight: bold;
+	text-align: center;
 }
 
 table.wikitable > caption,
@@ -314,7 +317,7 @@ table.wikitable > caption,
 
 table.listing,
 table.listing td {
-	border: 1pt solid black;
+	border: 1pt solid #000;
 	border-collapse: collapse;
 }
 
@@ -327,29 +330,23 @@ a.sortheader {
  */
 .catlinks ul {
 	display: inline;
-	margin: 0;
 	padding: 0;
-	list-style: none;
-	list-style-type: none;
-	list-style-image: none;
-	vertical-align: middle !ie;
+	list-style: none none;
 }
 
 .catlinks li {
 	display: inline-block;
 	line-height: 1.15em;
 	padding: 0 .4em;
-	border-left: 1px solid #AAA;
+	border-left: 1pt solid #aaa;
 	margin: 0.1em 0;
-	zoom: 1;
-	display: inline !ie;
 }
 
 .catlinks li:first-child {
 	padding-left: .2em;
-	border-left: none;
+	border-left: 0;
 }
 
 .printfooter {
-	padding: 1em 0 1em 0;
+	padding: 1em 0;
 }

@@ -18,7 +18,7 @@
 
 $fallback = 'de';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Spezial',
 	NS_TALK             => 'Diskussion',
@@ -35,10 +35,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hälpe_Diskussion',
 	NS_CATEGORY         => 'Kategorie',
 	NS_CATEGORY_TALK    => 'Kategorie_Diskussion',
-);
+];
 
-$namespaceGenderAliases = array(
-	NS_USER => array( 'male' => 'Benutser', 'female' => 'Benutserske' ),
-	NS_USER_TALK => array( 'male' => 'Benutser_Diskussion', 'female' => 'Benutserske_Diskussion' ),
-);
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Benutser', 'female' => 'Benutserske' ],
+	NS_USER_TALK => [ 'male' => 'Benutser_Diskussion', 'female' => 'Benutserske_Diskussion' ],
+];
 

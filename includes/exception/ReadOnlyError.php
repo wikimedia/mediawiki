@@ -30,7 +30,7 @@ class ReadOnlyError extends ErrorPageError {
 		parent::__construct(
 			'readonly',
 			'readonlytext',
-			wfReadOnlyReason() ?: array()
+			wfReadOnlyReason() ?: []
 		);
 	}
 }

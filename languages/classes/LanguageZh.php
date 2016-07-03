@@ -21,9 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-require_once __DIR__ . '/LanguageZh_hans.php';
-
 /**
  * @ingroup Language
  */
@@ -37,10 +34,10 @@ class ZhConverter extends LanguageConverter {
 	 * @param array $manualLevel
 	 */
 	function __construct( $langobj, $maincode,
-								$variants = array(),
-								$variantfallbacks = array(),
-								$flags = array(),
-								$manualLevel = array() ) {
+								$variants = [],
+								$variantfallbacks = [],
+								$flags = [],
+								$manualLevel = [] ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 		parent::__construct( $langobj, $maincode,
@@ -48,7 +45,7 @@ class ZhConverter extends LanguageConverter {
 									$variantfallbacks,
 									$flags,
 									$manualLevel );
-		$names = array(
+		$names = [
 			'zh' => '原文',
 			'zh-hans' => '简体',
 			'zh-hant' => '繁體',
@@ -58,23 +55,22 @@ class ZhConverter extends LanguageConverter {
 			'zh-mo' => '澳門',
 			'zh-sg' => '新加坡',
 			'zh-my' => '大马',
-		);
+		];
 		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
 	function loadDefaultTables() {
-		require __DIR__ . "/../../includes/ZhConversion.php";
-		$this->mTables = array(
-			'zh-hans' => new ReplacementArray( $zh2Hans ),
-			'zh-hant' => new ReplacementArray( $zh2Hant ),
-			'zh-cn' => new ReplacementArray( $zh2CN ),
-			'zh-hk' => new ReplacementArray( $zh2HK ),
-			'zh-mo' => new ReplacementArray( $zh2HK ),
-			'zh-my' => new ReplacementArray( $zh2CN ),
-			'zh-sg' => new ReplacementArray( $zh2CN ),
-			'zh-tw' => new ReplacementArray( $zh2TW ),
+		$this->mTables = [
+			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
+			'zh-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
+			'zh-cn' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-hk' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
+			'zh-mo' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
+			'zh-my' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-sg' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-tw' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2TW ),
 			'zh' => new ReplacementArray
-		);
+		];
 	}
 
 	function postLoadTables() {
@@ -115,11 +111,9 @@ class ZhConverter extends LanguageConverter {
  */
 class LanguageZh extends LanguageZh_hans {
 	function __construct() {
-		global $wgHooks;
-
 		parent::__construct();
 
-		$variants = array(
+		$variants = [
 			'zh',
 			'zh-hans',
 			'zh-hant',
@@ -129,31 +123,29 @@ class LanguageZh extends LanguageZh_hans {
 			'zh-my',
 			'zh-sg',
 			'zh-tw'
-		);
+		];
 
-		$variantfallbacks = array(
-			'zh' => array( 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ),
-			'zh-hans' => array( 'zh-cn', 'zh-sg', 'zh-my' ),
-			'zh-hant' => array( 'zh-tw', 'zh-hk', 'zh-mo' ),
-			'zh-cn' => array( 'zh-hans', 'zh-sg', 'zh-my' ),
-			'zh-sg' => array( 'zh-hans', 'zh-cn', 'zh-my' ),
-			'zh-my' => array( 'zh-hans', 'zh-sg', 'zh-cn' ),
-			'zh-tw' => array( 'zh-hant', 'zh-hk', 'zh-mo' ),
-			'zh-hk' => array( 'zh-hant', 'zh-mo', 'zh-tw' ),
-			'zh-mo' => array( 'zh-hant', 'zh-hk', 'zh-tw' ),
-		);
-		$ml = array(
+		$variantfallbacks = [
+			'zh' => [ 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ],
+			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my' ],
+			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo' ],
+			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my' ],
+			'zh-sg' => [ 'zh-hans', 'zh-cn', 'zh-my' ],
+			'zh-my' => [ 'zh-hans', 'zh-sg', 'zh-cn' ],
+			'zh-tw' => [ 'zh-hant', 'zh-hk', 'zh-mo' ],
+			'zh-hk' => [ 'zh-hant', 'zh-mo', 'zh-tw' ],
+			'zh-mo' => [ 'zh-hant', 'zh-hk', 'zh-tw' ],
+		];
+		$ml = [
 			'zh' => 'disable',
 			'zh-hans' => 'unidirectional',
 			'zh-hant' => 'unidirectional',
-		);
+		];
 
 		$this->mConverter = new ZhConverter( $this, 'zh',
 								$variants, $variantfallbacks,
-								array(),
+								[],
 								$ml );
-
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

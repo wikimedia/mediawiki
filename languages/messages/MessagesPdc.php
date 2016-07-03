@@ -15,7 +15,7 @@
 
 $fallback = 'de';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_TALK             => 'Dischbedutt',
 	NS_USER             => 'Yuuser',
 	NS_USER_TALK        => 'Yuuser_Dischbedutt',
@@ -29,9 +29,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hilf_Dischbedutt',
 	NS_CATEGORY         => 'Abdeeling',
 	NS_CATEGORY_TALK    => 'Abdeeling_Dischbedutt',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	# German namespaces
 	'Medium'               => NS_MEDIA,
 	'Spezial'              => NS_SPECIAL,
@@ -48,14 +48,14 @@ $namespaceAliases = array(
 	'Hilfe_Diskussion'     => NS_HELP_TALK,
 	'Kategorie'            => NS_CATEGORY,
 	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
-);
+];
 
 // Remove German aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 
-$specialPageAliases = array(
-	'Listadmins'                => array( 'Verwalter', 'Administratoren' ),
-	'Listbots'                  => array( 'Waddefresser', 'Bots' ),
-	'Search'                    => array( 'Uffgucke', 'Suche' ),
-);
+$specialPageAliases = [
+	'Listadmins'                => [ 'Verwalter', 'Administratoren' ],
+	'Listbots'                  => [ 'Waddefresser', 'Bots' ],
+	'Search'                    => [ 'Uffgucke', 'Suche' ],
+];
 

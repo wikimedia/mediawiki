@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"David1010"
+			"David1010",
+			"Silovan"
 		]
 	},
 	"ooui-outline-control-move-down": "ელემენტის ქვემოთ გადატანა",
@@ -15,5 +16,9 @@
 	"ooui-dialog-process-error": "მოხდა რაღაც შეცდომა",
 	"ooui-dialog-process-dismiss": "დამალვა",
 	"ooui-dialog-process-retry": "კიდევ სცადეთ",
-	"ooui-dialog-process-continue": "გაგრძელება"
+	"ooui-dialog-process-continue": "გაგრძელება",
+	"ooui-selectfile-button-select": "გეგშაგორით ფაილი",
+	"ooui-selectfile-not-supported": "ფაილიშ აშაგორუა ვა რე ხენწყილი",
+	"ooui-selectfile-placeholder": "ფაილი ვა რე გიშაგორილი",
+	"ooui-selectfile-dragdrop-placeholder": "ქინაჸათით ფაილი ათაქ"
 }

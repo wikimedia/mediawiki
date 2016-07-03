@@ -4,41 +4,20 @@
  */
 ( function ( mw, $ ) {
 	var i,
-		deferreds = {},
+		userInfoPromise,
 		byteToHex = [];
 
 	/**
 	 * Get the current user's groups or rights
 	 *
 	 * @private
-	 * @param {string} info One of 'groups' or 'rights'
 	 * @return {jQuery.Promise}
 	 */
-	function getUserInfo( info ) {
-		var api;
-		if ( !deferreds[ info ] ) {
-
-			deferreds.rights = $.Deferred();
-			deferreds.groups = $.Deferred();
-
-			api = new mw.Api();
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'rights|groups'
-			} ).always( function ( data ) {
-				var rights, groups;
-				if ( data.query && data.query.userinfo ) {
-					rights = data.query.userinfo.rights;
-					groups = data.query.userinfo.groups;
-				}
-				deferreds.rights.resolve( rights || [] );
-				deferreds.groups.resolve( groups || [] );
-			} );
-
+	function getUserInfo() {
+		if ( !userInfoPromise ) {
+			userInfoPromise = new mw.Api().getUserInfo();
 		}
-
-		return deferreds[ info ].promise();
+		return userInfoPromise;
 	}
 
 	// Map from numbers 0-255 to a hex string (with padding)
@@ -262,7 +241,10 @@
 		 * @return {jQuery.Promise}
 		 */
 		getGroups: function ( callback ) {
-			return getUserInfo( 'groups' ).done( callback );
+			var userGroups = mw.config.get( 'wgUserGroups', [] );
+
+			// Uses promise for backwards compatibility
+			return $.Deferred().resolve( userGroups ).done( callback );
 		},
 
 		/**
@@ -272,7 +254,10 @@
 		 * @return {jQuery.Promise}
 		 */
 		getRights: function ( callback ) {
-			return getUserInfo( 'rights' ).done( callback );
+			return getUserInfo().then(
+				function ( userInfo ) { return userInfo.rights; },
+				function () { return []; }
+			).done( callback );
 		}
 	} );
 

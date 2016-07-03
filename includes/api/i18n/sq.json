@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ammartivari"
+			"Ammartivari",
+			"Kosovastar"
 		]
 	},
 	"apihelp-block-param-reason": "Arsyeja për bllokim.",
 	"apihelp-move-param-reason": "Arsyeja për riemërtim.",
+	"apihelp-query+siteinfo-paramvalue-prop-statistics": "Kthehet në faqen e statistikave.",
 	"apihelp-tag-param-reason": "Arsyeja për ndërrimin.",
 	"apihelp-unblock-description": "Zhblloko një përdorues.",
-	"apihelp-userrights-description": "Ndërro anëtarësinë e grupit e një përdoruesit."
+	"apihelp-upload-param-file": "Përmbajtja e skedave.",
+	"apihelp-userrights-description": "Ndërro anëtarësinë e grupit të një përdoruesit."
 }

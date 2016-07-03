@@ -8,11 +8,11 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext();
 
-		$baseParams = array(
-			'scripts' => array( 'foo.js', 'bar.js' ),
-			'dependencies' => array( 'jquery', 'mediawiki' ),
-			'messages' => array( 'hello', 'world' ),
-		);
+		$baseParams = [
+			'scripts' => [ 'foo.js', 'bar.js' ],
+			'dependencies' => [ 'jquery', 'mediawiki' ],
+			'messages' => [ 'hello', 'world' ],
+		];
 
 		$module = new ResourceLoaderFileModule( $baseParams );
 		$version = json_encode( $module->getVersionHash( $context ) );
@@ -26,9 +26,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Re-order dependencies
-		$module = new ResourceLoaderFileModule( array(
-			'dependencies' => array( 'mediawiki', 'jquery' ),
-		) + $baseParams );
+		$module = new ResourceLoaderFileModule( [
+			'dependencies' => [ 'mediawiki', 'jquery' ],
+		] + $baseParams );
 		$this->assertEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -36,9 +36,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Re-order messages
-		$module = new ResourceLoaderFileModule( array(
-			'messages' => array( 'world', 'hello' ),
-		) + $baseParams );
+		$module = new ResourceLoaderFileModule( [
+			'messages' => [ 'world', 'hello' ],
+		] + $baseParams );
 		$this->assertEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -46,9 +46,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Re-order scripts
-		$module = new ResourceLoaderFileModule( array(
-			'scripts' => array( 'bar.js', 'foo.js' ),
-		) + $baseParams );
+		$module = new ResourceLoaderFileModule( [
+			'scripts' => [ 'bar.js', 'foo.js' ],
+		] + $baseParams );
 		$this->assertNotEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -68,24 +68,66 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderModule::validateScriptFile
 	 */
 	public function testValidateScriptFile() {
+		$this->setMwGlobals( 'wgResourceLoaderValidateJS', true );
+
 		$context = $this->getResourceLoaderContext();
 
-		$module = new ResourceLoaderTestModule( array(
+		$module = new ResourceLoaderTestModule( [
 			'script' => "var a = 'this is';\n {\ninvalid"
-		) );
+		] );
 		$this->assertEquals(
 			$module->getScript( $context ),
-			'mw.log.error("JavaScript parse error: Parse error: Unexpected token; token } expected in file \'input\' on line 3");',
+			'mw.log.error(' .
+				'"JavaScript parse error: Parse error: Unexpected token; ' .
+				'token } expected in file \'input\' on line 3"' .
+			');',
 			'Replace invalid syntax with error logging'
 		);
 
-		$module = new ResourceLoaderTestModule( array(
+		$module = new ResourceLoaderTestModule( [
 			'script' => "\n'valid';"
-		) );
+		] );
 		$this->assertEquals(
 			$module->getScript( $context ),
 			"\n'valid';",
 			'Leave valid scripts as-is'
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderModule::getRelativePaths
+	 * @covers ResourceLoaderModule::expandRelativePaths
+	 */
+	public function testPlaceholderize() {
+		$getRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'getRelativePaths' );
+		$getRelativePaths->setAccessible( true );
+		$expandRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'expandRelativePaths' );
+		$expandRelativePaths->setAccessible( true );
+
+		$this->setMwGlobals( [
+			'IP' => '/srv/example/mediawiki/core',
+		] );
+		$raw = [
+				'/srv/example/mediawiki/core/resources/foo.js',
+				'/srv/example/mediawiki/core/extensions/Example/modules/bar.js',
+				'/srv/example/mediawiki/skins/Example/baz.css',
+				'/srv/example/mediawiki/skins/Example/images/quux.png',
+		];
+		$canonical = [
+				'resources/foo.js',
+				'extensions/Example/modules/bar.js',
+				'../skins/Example/baz.css',
+				'../skins/Example/images/quux.png',
+		];
+		$this->assertEquals(
+			$getRelativePaths->invoke( null, $raw ),
+			$canonical,
+			'Insert placeholders'
+		);
+		$this->assertEquals(
+			$expandRelativePaths->invoke( null, $canonical ),
+			$raw,
+			'Substitute placeholders'
 		);
 	}
 }

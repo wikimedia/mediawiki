@@ -42,7 +42,7 @@ class RebuildTextIndex extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Rebuild search index table from scratch";
+		$this->addDescription( 'Rebuild search index table from scratch' );
 	}
 
 	public function getDbType() {
@@ -51,12 +51,11 @@ class RebuildTextIndex extends Maintenance {
 
 	public function execute() {
 		// Shouldn't be needed for Postgres
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = $this->getDB( DB_MASTER );
 		if ( $this->db->getType() == 'postgres' ) {
 			$this->error( "This script is not needed when using Postgres.\n", true );
 		}
 
-		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'sqlite' ) {
 			if ( !DatabaseSqlite::getFulltextSearchModule() ) {
 				$this->error( "Your version of SQLite module for PHP doesn't "
@@ -105,8 +104,8 @@ class RebuildTextIndex extends Maintenance {
 			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 
-			$res = $this->db->select( array( 'page', 'revision', 'text' ), $fields,
-				array( "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ),
+			$res = $this->db->select( [ 'page', 'revision', 'text' ], $fields,
+				[ "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ],
 				__METHOD__
 			);
 

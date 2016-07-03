@@ -30,11 +30,8 @@
  *       subclasses can override the beginTransaction() and commitTransaction() methods.
  */
 abstract class DataUpdate implements DeferrableUpdate {
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
-		# noop
+		// noop
 	}
 
 	/**
@@ -42,7 +39,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function beginTransaction() {
-		//noop
+		// noop
 	}
 
 	/**
@@ -50,7 +47,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function commitTransaction() {
-		//noop
+		// noop
 	}
 
 	/**
@@ -58,7 +55,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function rollbackTransaction() {
-		//noop
+		// noop
 	}
 
 	/**
@@ -73,21 +70,22 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This allows for limited transactional logic across multiple backends for storing
 	 * secondary data.
 	 *
-	 * @param array $updates A list of DataUpdate instances
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 * @throws Exception|null
 	 */
-	public static function runUpdates( $updates ) {
-		if ( empty( $updates ) ) {
-			return; # nothing to do
+	public static function runUpdates( array $updates, $mode = 'run' ) {
+		if ( $mode === 'enqueue' ) {
+			// When possible, push updates as jobs instead of calling doUpdate()
+			$updates = self::enqueueUpdates( $updates );
 		}
 
-		$open_transactions = array();
-		$exception = null;
+		if ( !count( $updates ) ) {
+			return; // nothing to do
+		}
 
-		/**
-		 * @var $update DataUpdate
-		 * @var $trans DataUpdate
-		 */
+		$open_transactions = [];
+		$exception = null;
 
 		try {
 			// begin transactions
@@ -122,4 +120,42 @@ abstract class DataUpdate implements DeferrableUpdate {
 			throw $exception; // rethrow after cleanup
 		}
 	}
+
+	/**
+	 * Enqueue jobs for every DataUpdate that support enqueueUpdate()
+	 * and return the remaining DataUpdate objects (those that do not)
+	 *
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @return DataUpdate[]
+	 * @since 1.27
+	 */
+	protected static function enqueueUpdates( array $updates ) {
+		$remaining = [];
+
+		foreach ( $updates as $update ) {
+			if ( $update instanceof EnqueueableDataUpdate ) {
+				$spec = $update->getAsJobSpecification();
+				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+			} else {
+				$remaining[] = $update;
+			}
+		}
+
+		return $remaining;
+	}
+}
+
+/**
+ * Interface that marks a DataUpdate as enqueuable via the JobQueue
+ *
+ * Such updates must be representable using IJobSpecification, so that
+ * they can be serialized into jobs and enqueued for later execution
+ *
+ * @since 1.27
+ */
+interface EnqueueableDataUpdate {
+	/**
+	 * @return array (wiki => wiki ID, job => IJobSpecification)
+	 */
+	public function getAsJobSpecification();
 }

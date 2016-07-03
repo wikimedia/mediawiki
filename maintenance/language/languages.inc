@@ -64,7 +64,7 @@ class Languages {
 	 */
 	function __construct() {
 		Hooks::run( 'LocalisationIgnoredOptionalMessages',
-			array( &$this->mIgnoredMessages, &$this->mOptionalMessages ) );
+			[ &$this->mIgnoredMessages, &$this->mOptionalMessages ] );
 
 		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		sort( $this->mLanguages );
@@ -112,12 +112,12 @@ class Languages {
 		) {
 			return;
 		}
-		$this->mRawMessages[$code] = array();
+		$this->mRawMessages[$code] = [];
 		$this->mFallback[$code] = '';
-		$this->mNamespaceNames[$code] = array();
-		$this->mNamespaceAliases[$code] = array();
-		$this->mMagicWords[$code] = array();
-		$this->mSpecialPageAliases[$code] = array();
+		$this->mNamespaceNames[$code] = [];
+		$this->mNamespaceAliases[$code] = [];
+		$this->mMagicWords[$code] = [];
+		$this->mSpecialPageAliases[$code] = [];
 
 		$jsonfilename = Language::getJsonMessagesFileName( $code );
 		if ( file_exists( $jsonfilename ) ) {
@@ -167,10 +167,10 @@ class Languages {
 		$this->loadFile( $code );
 		$this->loadGeneralMessages();
 		$this->mMessages[$code]['all'] = $this->mRawMessages[$code];
-		$this->mMessages[$code]['required'] = array();
-		$this->mMessages[$code]['optional'] = array();
-		$this->mMessages[$code]['obsolete'] = array();
-		$this->mMessages[$code]['translated'] = array();
+		$this->mMessages[$code]['required'] = [];
+		$this->mMessages[$code]['optional'] = [];
+		$this->mMessages[$code]['obsolete'] = [];
+		$this->mMessages[$code]['translated'] = [];
 		foreach ( $this->mMessages[$code]['all'] as $key => $value ) {
 			if ( isset( $this->mGeneralMessages['required'][$key] ) ) {
 				$this->mMessages[$code]['required'][$key] = $value;
@@ -201,10 +201,10 @@ class Languages {
 		}
 		$this->loadFile( 'en' );
 		$this->mGeneralMessages['all'] = $this->mRawMessages['en'];
-		$this->mGeneralMessages['required'] = array();
-		$this->mGeneralMessages['optional'] = array();
-		$this->mGeneralMessages['ignored'] = array();
-		$this->mGeneralMessages['translatable'] = array();
+		$this->mGeneralMessages['required'] = [];
+		$this->mGeneralMessages['optional'] = [];
+		$this->mGeneralMessages['ignored'] = [];
+		$this->mGeneralMessages['translatable'] = [];
 		foreach ( $this->mGeneralMessages['all'] as $key => $value ) {
 			if ( in_array( $key, $this->mIgnoredMessages ) ) {
 				$this->mGeneralMessages['ignored'][$key] = $value;
@@ -348,7 +348,7 @@ class Languages {
 	public function getDuplicateMessages( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$duplicateMessages = array();
+		$duplicateMessages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( $this->mGeneralMessages['translatable'][$key] == $value ) {
 				$duplicateMessages[$key] = $value;
@@ -382,8 +382,8 @@ class Languages {
 	public function getMessagesWithMismatchVariables( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
-		$mismatchMessages = array();
+		$variables = [ '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' ];
+		$mismatchMessages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			$missing = false;
 			foreach ( $variables as $var ) {
@@ -416,7 +416,7 @@ class Languages {
 	public function getMessagesWithoutPlural( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$messagesWithoutPlural = array();
+		$messagesWithoutPlural = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( stripos( $this->mGeneralMessages['translatable'][$key], '{{plural:' ) !== false &&
 				stripos( $value, '{{plural:' ) === false
@@ -438,7 +438,7 @@ class Languages {
 	public function getEmptyMessages( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$emptyMessages = array();
+		$emptyMessages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( $value === '' || $value === '-' ) {
 				$emptyMessages[$key] = $value;
@@ -458,7 +458,7 @@ class Languages {
 	public function getMessagesWithWhitespace( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$messagesWithWhitespace = array();
+		$messagesWithWhitespace = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( $this->mGeneralMessages['translatable'][$key] !== '' && $value !== rtrim( $value ) ) {
 				$messagesWithWhitespace[$key] = $value;
@@ -478,16 +478,16 @@ class Languages {
 	public function getNonXHTMLMessages( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$wrongPhrases = array(
+		$wrongPhrases = [
 			'<hr *\\?>',
 			'<br *\\?>',
 			'<hr/>',
 			'<br/>',
 			'<hr>',
 			'<br>',
-		);
+		];
 		$wrongPhrases = '~(' . implode( '|', $wrongPhrases ) . ')~sDu';
-		$nonXHTMLMessages = array();
+		$nonXHTMLMessages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( preg_match( $wrongPhrases, $value ) ) {
 				$nonXHTMLMessages[$key] = $value;
@@ -507,7 +507,7 @@ class Languages {
 	public function getMessagesWithWrongChars( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$wrongChars = array(
+		$wrongChars = [
 			'[LRM]' => "\xE2\x80\x8E",
 			'[RLM]' => "\xE2\x80\x8F",
 			'[LRE]' => "\xE2\x80\xAA",
@@ -520,9 +520,9 @@ class Languages {
 			'[WJ]' => "\xE2\x81\xA0",
 			'[BOM]' => "\xEF\xBB\xBF",
 			'[FFFD]' => "\xEF\xBF\xBD",
-		);
+		];
 		$wrongRegExp = '/(' . implode( '|', array_values( $wrongChars ) ) . ')/sDu';
-		$wrongCharsMessages = array();
+		$wrongCharsMessages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			if ( preg_match( $wrongRegExp, $value ) ) {
 				foreach ( $wrongChars as $viewableChar => $hiddenChar ) {
@@ -546,9 +546,9 @@ class Languages {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
 		$tc = Title::legalChars() . '#%{}';
-		$messages = array();
+		$messages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
-			$matches = array();
+			$matches = [];
 			preg_match_all( "/\[\[([{$tc}]+)(?:\\|(.+?))?]]/sDu", $value, $matches );
 			$numMatches = count( $matches[0] );
 			for ( $i = 0; $i < $numMatches; $i++ ) {
@@ -575,7 +575,7 @@ class Languages {
 	public function getMessagesWithUnbalanced( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
-		$messages = array();
+		$messages = [];
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			$a = $b = $c = $d = 0;
 			foreach ( preg_split( '//', $value ) as $char ) {
@@ -630,7 +630,7 @@ class Languages {
 	 */
 	public function getProblematicProjectTalks( $code ) {
 		$this->loadFile( $code );
-		$namespaces = array();
+		$namespaces = [];
 
 		# Check default namespace name
 		if ( isset( $this->mNamespaceNames[$code][NS_PROJECT_TALK] ) ) {
@@ -660,7 +660,7 @@ class Languages {
 	public function getUntranslatedMagicWords( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$magicWords = array();
+		$magicWords = [];
 		foreach ( $this->mMagicWords['en'] as $key => $value ) {
 			if ( !isset( $this->mMagicWords[$code][$key] ) ) {
 				$magicWords[$key] = $value[1];
@@ -680,7 +680,7 @@ class Languages {
 	public function getObsoleteMagicWords( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$magicWords = array();
+		$magicWords = [];
 		foreach ( $this->mMagicWords[$code] as $key => $value ) {
 			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
 				$magicWords[$key] = $value[1];
@@ -700,7 +700,7 @@ class Languages {
 	public function getOverridingMagicWords( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$magicWords = array();
+		$magicWords = [];
 		foreach ( $this->mMagicWords[$code] as $key => $local ) {
 			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
 				# Unrecognized magic word
@@ -730,7 +730,7 @@ class Languages {
 	public function getCaseMismatchMagicWords( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$magicWords = array();
+		$magicWords = [];
 		foreach ( $this->mMagicWords[$code] as $key => $local ) {
 			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
 				# Unrecognized magic word
@@ -754,7 +754,7 @@ class Languages {
 	public function getUntraslatedSpecialPages( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$specialPageAliases = array();
+		$specialPageAliases = [];
 		foreach ( $this->mSpecialPageAliases['en'] as $key => $value ) {
 			if ( !isset( $this->mSpecialPageAliases[$code][$key] ) ) {
 				$specialPageAliases[$key] = $value[0];
@@ -774,7 +774,7 @@ class Languages {
 	public function getObsoleteSpecialPages( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		$specialPageAliases = array();
+		$specialPageAliases = [];
 		foreach ( $this->mSpecialPageAliases[$code] as $key => $value ) {
 			if ( !isset( $this->mSpecialPageAliases['en'][$key] ) ) {
 				$specialPageAliases[$key] = $value[0];
@@ -820,7 +820,7 @@ class ExtensionLanguages extends Languages {
 		if ( !isset( $this->mRawMessages[$code] ) ) {
 			$this->mRawMessages[$code] = $this->mMessageGroup->load( $code );
 			if ( empty( $this->mRawMessages[$code] ) ) {
-				$this->mRawMessages[$code] = array();
+				$this->mRawMessages[$code] = [];
 			}
 		}
 	}

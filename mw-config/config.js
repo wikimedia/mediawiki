@@ -96,9 +96,9 @@
 		$( '#config_wgSitename' ).on( 'keyup change', syncText ).each( syncText );
 
 		// Show/Hide memcached servers when needed
-		$( 'input[name$="config_wgMainCacheType"]' ).change( function () {
+		$( 'input[name$="config__MainCacheType"]' ).change( function () {
 			var $memc = $( '#config-memcachewrapper' );
-			if ( $( 'input[name$="config_wgMainCacheType"]:checked' ).val() === 'memcached' ) {
+			if ( $( 'input[name$="config__MainCacheType"]:checked' ).val() === 'memcached' ) {
 				$memc.show( 'slow' );
 			} else {
 				$memc.hide( 'slow' );

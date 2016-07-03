@@ -2,6 +2,10 @@
 	'use strict';
 
 	/**
+	 * Fired after an edit was successfully saved.
+	 *
+	 * Does not fire for null edits.
+	 *
 	 * @event postEdit
 	 * @member mw.hook
 	 * @param {Object} [data] Optional data

@@ -16,12 +16,12 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgExtraNamespaces' => $wgExtraNamespaces,
 			'wgNamespaceContentModels' => $wgNamespaceContentModels,
 			'wgContentHandlers' => $wgContentHandlers,
 			'wgContLang' => $wgContLang,
-		) );
+		] );
 
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
@@ -43,36 +43,36 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideExtractSectionTitle() {
-		return array(
-			array(
+		return [
+			[
 				"== Test ==\n\nJust a test section.",
 				"Test"
-			),
-			array(
+			],
+			[
 				"An initial section, no header.",
 				false
-			),
-			array(
+			],
+			[
 				"An initial section with a fake heder (bug 32617)\n\n== Test == ??\nwtf",
 				false
-			),
-			array(
+			],
+			[
 				"== Section ==\nfollowed by a fake == Non-section == ??\nnoooo",
 				"Section"
-			),
-			array(
+			],
+			[
 				"== Section== \t\r\n followed by whitespace (bug 35051)",
 				'Section',
-			),
-		);
+			],
+		];
 	}
 
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'revision',
-			array( 'rev_timestamp' => $dbw->timestamp( $timestamp ) ),
-			array( 'rev_id' => $page->getLatest() ) );
+			[ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ],
+			[ 'rev_id' => $page->getLatest() ] );
 
 		$page->clear();
 	}
@@ -86,7 +86,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @param string $msg
 	 */
 	protected function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
-		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
+		$this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
 	}
 
 	/**
@@ -138,7 +138,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$page->doEditContent( $content, "base text for test" );
 			$this->forceRevisionDate( $page, '20120101000000' );
 
-			//sanity check
+			// sanity check
 			$page->clear();
 			$currentText = ContentHandler::getContentText( $page->getContent() );
 
@@ -203,66 +203,66 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCreatePages() {
-		return array(
-			array( 'expected article being created',
+		return [
+			[ 'expected article being created',
 				'EditPageTest_testCreatePage',
 				null,
 				'Hello World!',
 				EditPage::AS_SUCCESS_NEW_ARTICLE,
 				'Hello World!'
-			),
-			array( 'expected article not being created if empty',
+			],
+			[ 'expected article not being created if empty',
 				'EditPageTest_testCreatePage',
 				null,
 				'',
 				EditPage::AS_BLANK_ARTICLE,
 				null
-			),
-			array( 'expected MediaWiki: page being created',
+			],
+			[ 'expected MediaWiki: page being created',
 				'MediaWiki:January',
 				'UTSysop',
 				'Not January',
 				EditPage::AS_SUCCESS_NEW_ARTICLE,
 				'Not January'
-			),
-			array( 'expected not-registered MediaWiki: page not being created if empty',
+			],
+			[ 'expected not-registered MediaWiki: page not being created if empty',
 				'MediaWiki:EditPageTest_testCreatePage',
 				'UTSysop',
 				'',
 				EditPage::AS_BLANK_ARTICLE,
 				null
-			),
-			array( 'expected registered MediaWiki: page being created even if empty',
+			],
+			[ 'expected registered MediaWiki: page being created even if empty',
 				'MediaWiki:January',
 				'UTSysop',
 				'',
 				EditPage::AS_SUCCESS_NEW_ARTICLE,
 				''
-			),
-			array( 'expected registered MediaWiki: page whose default content is empty'
+			],
+			[ 'expected registered MediaWiki: page whose default content is empty'
 					. ' not being created if empty',
 				'MediaWiki:Ipb-default-expiry',
 				'UTSysop',
 				'',
 				EditPage::AS_BLANK_ARTICLE,
 				''
-			),
-			array( 'expected MediaWiki: page not being created if text equals default message',
+			],
+			[ 'expected MediaWiki: page not being created if text equals default message',
 				'MediaWiki:January',
 				'UTSysop',
 				'January',
 				EditPage::AS_BLANK_ARTICLE,
 				null
-			),
-			array( 'expected empty article being created',
+			],
+			[ 'expected empty article being created',
 				'EditPageTest_testCreatePage',
 				null,
 				'',
 				EditPage::AS_SUCCESS_NEW_ARTICLE,
 				'',
 				true
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -272,7 +272,26 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
-		$edit = array( 'wpTextbox1' => $editText );
+		$checkId = null;
+
+		$this->setMwGlobals( 'wgHooks', [
+			'PageContentInsertComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ],
+			'PageContentSaveComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkId ) {
+				$checkId = $status->value['revision']->getId();
+				// types/refs checked
+			} ],
+		] );
+
+		$edit = [ 'wpTextbox1' => $editText ];
 		if ( $ignoreBlank ) {
 			$edit['wpIgnoreBlankArticle'] = 1;
 		}
@@ -280,32 +299,168 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page = $this->assertEdit( $pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$latest = $page->getLatest();
 			$page->doDeleteArticleReal( $pageTitle );
+
+			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
+			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
+		}
+	}
+
+	/**
+	 * @dataProvider provideCreatePages
+	 * @covers EditPage
+	 */
+	public function testCreatePageTrx(
+		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
+	) {
+		$checkIds = [];
+		$this->setMwGlobals( 'wgHooks', [
+			'PageContentInsertComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ],
+			'PageContentSaveComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ],
+		] );
+
+		wfGetDB( DB_MASTER )->begin( __METHOD__ );
+
+		$edit = [ 'wpTextbox1' => $editText ];
+		if ( $ignoreBlank ) {
+			$edit['wpIgnoreBlankArticle'] = 1;
+		}
+
+		$page = $this->assertEdit(
+			$pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
+
+		$pageTitle2 = (string)$pageTitle . '/x';
+		$page2 = $this->assertEdit(
+			$pageTitle2, null, $user, $edit, $expectedCode, $expectedText, $desc );
+
+		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+
+		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$latest = $page->getLatest();
+			$page->doDeleteArticleReal( $pageTitle );
+
+			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
+			$this->assertEquals( $latest, $checkIds[0], "Revision #1 in Status for hook" );
+
+			$latest2 = $page2->getLatest();
+			$page2->doDeleteArticleReal( $pageTitle2 );
+
+			$this->assertGreaterThan( 0, $latest2, "Page #2 revision ID updated in object" );
+			$this->assertEquals( $latest2, $checkIds[1], "Revision #2 in Status for hook" );
 		}
 	}
 
 	public function testUpdatePage() {
+		$checkIds = [];
+
+		$this->setMwGlobals( 'wgHooks', [
+			'PageContentInsertComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ],
+			'PageContentSaveComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ],
+		] );
+
 		$text = "one";
-		$edit = array(
+		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => 'first update',
-		);
+		];
 
 		$page = $this->assertEdit( 'EditPageTest_testUpdatePage', "zero", null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
+
+		$this->forceRevisionDate( $page, '20120101000000' );
+
+		$text = "two";
+		$edit = [
+			'wpTextbox1' => $text,
+			'wpSummary' => 'second update',
+		];
+
+		$this->assertEdit( 'EditPageTest_testUpdatePage', null, null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
+		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
+	}
+
+	public function testUpdatePageTrx() {
+		$text = "one";
+		$edit = [
+			'wpTextbox1' => $text,
+			'wpSummary' => 'first update',
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testTrxUpdatePage', "zero", null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
 
 		$this->forceRevisionDate( $page, '20120101000000' );
 
+		$checkIds = [];
+		$this->setMwGlobals( 'wgHooks', [
+			'PageContentSaveComplete' => [ function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ],
+		] );
+
+		wfGetDB( DB_MASTER )->begin( __METHOD__ );
+
 		$text = "two";
-		$edit = array(
+		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => 'second update',
-		);
+		];
 
-		$this->assertEdit( 'EditPageTest_testUpdatePage', null, null, $edit,
+		$this->assertEdit( 'EditPageTest_testTrxUpdatePage', null, null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
+
+		$text = "three";
+		$edit = [
+			'wpTextbox1' => $text,
+			'wpSummary' => 'third update',
+		];
+
+		$this->assertEdit( 'EditPageTest_testTrxUpdatePage', null, null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+
+		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+
+		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
+		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
+		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
 	}
 
 	public static function provideSectionEdit() {
@@ -334,31 +489,31 @@ hello
 
 		$textWithNewSectionAdded = "$text\n$newSection";
 
-		return array(
-			array( #0
+		return [
+			[ # 0
 				$text,
 				'',
 				'hello',
 				'replace all',
 				'hello'
-			),
+			],
 
-			array( #1
+			[ # 1
 				$text,
 				'1',
 				$sectionOne,
 				'replace first section',
 				$textWithNewSectionOne,
-			),
+			],
 
-			array( #2
+			[ # 2
 				$text,
 				'new',
 				'hello',
 				'new section',
 				$textWithNewSectionAdded,
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -366,11 +521,11 @@ hello
 	 * @covers EditPage
 	 */
 	public function testSectionEdit( $base, $section, $text, $summary, $expected ) {
-		$edit = array(
+		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => $summary,
 			'wpSection' => $section,
-		);
+		];
 
 		$this->assertEdit( 'EditPageTest_testSectionEdit', $base, null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $expected,
@@ -378,39 +533,39 @@ hello
 	}
 
 	public static function provideAutoMerge() {
-		$tests = array();
+		$tests = [];
 
-		$tests[] = array( #0: plain conflict
+		$tests[] = [ # 0: plain conflict
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( #adam's edit
+			[ # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
-			),
-			array( #berta's edit
+			],
+			[ # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
-			),
+			],
 			EditPage::AS_CONFLICT_DETECTED, # expected code
 			"ONE\n\ntwo\n\nthree\n", # expected text
 			'expected edit conflict', # message
-		);
+		];
 
-		$tests[] = array( #1: successful merge
+		$tests[] = [ # 1: successful merge
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( #adam's edit
+			[ # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
-			),
-			array( #berta's edit
+			],
+			[ # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => "one\n\ntwo\n\nTHREE\n",
-			),
+			],
 			EditPage::AS_SUCCESS_UPDATE, # expected code
 			"ONE\n\ntwo\n\nTHREE\n", # expected text
 			'expected automatic merge', # message
-		);
+		];
 
 		$text = "Intro\n\n";
 		$text .= "== first section ==\n\n";
@@ -424,23 +579,23 @@ hello
 		// generate expected text after merge
 		$expected = str_replace( 'one', 'ONE', str_replace( 'three', 'THREE', $text ) );
 
-		$tests[] = array( #2: merge in section
+		$tests[] = [ # 2: merge in section
 			"Elmo", # base edit user
 			$text,
-			array( #adam's edit
+			[ # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
 				'wpSection' => '1'
-			),
-			array( #berta's edit
+			],
+			[ # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
 				'wpSection' => '1'
-			),
+			],
 			EditPage::AS_SUCCESS_UPDATE, # expected code
 			$expected, # expected text
 			'expected automatic section merge', # message
-		);
+		];
 
 		// see whether it makes a difference who did the base edit
 		$testsWithAdam = array_map( function ( $test ) {
@@ -463,9 +618,9 @@ hello
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
 		$expectedCode, $expectedText, $message = null
 	) {
-		$this->checkHasDiff3();
+		$this->markTestSkippedIfNoDiff3();
 
-		//create page
+		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
 		$page = WikiPage::factory( $title );
@@ -474,9 +629,9 @@ hello
 			$page->doDeleteArticle( "clean slate for testing" );
 		}
 
-		$baseEdit = array(
+		$baseEdit = [
 			'wpTextbox1' => $text,
-		);
+		];
 
 		$page = $this->assertEdit( 'EditPageTest_testAutoMerge', null,
 			$baseUser, $baseEdit, null, null, __METHOD__ );
@@ -536,12 +691,12 @@ hello
 
 		$user = $GLOBALS['wgUser'];
 
-		$edit = array(
+		$edit = [
 			'wpTextbox1' => serialize( 'non-text content' ),
 			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
 			'wpStarttime' => wfTimestampNow()
-		);
+		];
 
 		$req = new FauxRequest( $edit, true );
 		$ep->importFormData( $req );

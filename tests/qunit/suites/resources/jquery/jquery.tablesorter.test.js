@@ -154,6 +154,24 @@
 			[ 'January 01 2010' ],
 			[ 'January 16 2010' ],
 			[ 'February 05 2010' ]
+		],
+		isoDateSorting = [
+			[ '2010-02-01' ],
+			[ '2009-12-25T12:30:45.001Z' ],
+			[ '2010-01-31' ],
+			[ '2009' ],
+			[ '2009-12-25T12:30:45' ],
+			[ '2009-12-25T12:30:45.111' ],
+			[ '2009-12-25T12:30:45+01:00' ]
+		],
+		isoDateSortingSorted = [
+			[ '2009' ],
+			[ '2009-12-25T12:30:45' ],
+			[ '2009-12-25T12:30:45+01:00' ],
+			[ '2009-12-25T12:30:45.001Z' ],
+			[ '2009-12-25T12:30:45.111' ],
+			[ '2010-01-31' ],
+			[ '2010-02-01' ]
 		];
 
 	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
@@ -191,8 +209,8 @@
 	 * Create an HTML table from an array of row arrays containing text strings.
 	 * First row will be header row. No fancy rowspan/colspan stuff.
 	 *
-	 * @param {String[]} header
-	 * @param {String[][]} data
+	 * @param {string[]} header
+	 * @param {string[][]} data
 	 * @return {jQuery}
 	 */
 	function tableCreate( header, data ) {
@@ -224,7 +242,7 @@
 	 * Extract text from table.
 	 *
 	 * @param {jQuery} $table
-	 * @return {String[][]}
+	 * @return {string[][]}
 	 */
 	function tableExtract( $table ) {
 		var data = [];
@@ -243,10 +261,10 @@
 	 * Run a table test by building a table with the given data,
 	 * running some callback on it, then checking the results.
 	 *
-	 * @param {String} msg text to pass on to qunit for the comparison
-	 * @param {String[]} header cols to make the table
-	 * @param {String[][]} data rows/cols to make the table
-	 * @param {String[][]} expected rows/cols to compare against at end
+	 * @param {string} msg text to pass on to qunit for the comparison
+	 * @param {string[]} header cols to make the table
+	 * @param {string[][]} data rows/cols to make the table
+	 * @param {string[][]} expected rows/cols to compare against at end
 	 * @param {function($table)} callback something to do with the table before we compare
 	 */
 	function tableTest( msg, header, data, expected, callback ) {
@@ -268,10 +286,10 @@
 	 * Run a table test by building a table with the given HTML,
 	 * running some callback on it, then checking the results.
 	 *
-	 * @param {String} msg text to pass on to qunit for the comparison
-	 * @param {String} HTML to make the table
-	 * @param {String[][]} expected rows/cols to compare against at end
-	 * @param {function($table)} callback something to do with the table before we compare
+	 * @param {string} msg text to pass on to qunit for the comparison
+	 * @param {string} html HTML to make the table
+	 * @param {string[][]} expected Rows/cols to compare against at end
+	 * @param {function($table)} callback Something to do with the table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
 		QUnit.test( msg, 1, function ( assert ) {
@@ -1070,6 +1088,19 @@
 		}
 	);
 
+	tableTest(
+		'ISO date sorting',
+		[ 'isoDate' ],
+		isoDateSorting,
+		isoDateSortingSorted,
+		function ( $table ) {
+			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+
 	QUnit.test( 'Sorting images using alt text', 1, function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
@@ -1392,6 +1423,41 @@
 			0,
 			'empty cell is sorted as number 0'
 		);
-
 	} );
+
+	QUnit.test( 'bug T114721 - use of expand-child class', 2, function ( assert ) {
+		var $table, parsers;
+		$table = $(
+			'<table class="sortable">' +
+				'<tr><th>A</th><th>B</th></tr>' +
+				'<tr><td>b</td><td>4</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">some text follow b</td></tr>' +
+				'<tr><td>a</td><td>2</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">some text follow a</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">more text</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+
+		assert.deepEqual(
+			tableExtract( $table ),
+			[
+				[ 'a', '2' ],
+				[ 'some text follow a' ],
+				[ 'more text' ],
+				[ 'b', '4' ],
+				[ 'some text follow b' ]
+			],
+			'row with expand-child class follow above row'
+		);
+
+		parsers = $table.data( 'tablesorter' ).config.parsers;
+		assert.equal(
+			parsers[ 1 ].id,
+			'number',
+			'detectParserForColumn() detect parser.id "number" for second column'
+		);
+	} );
+
 }( jQuery, mediaWiki ) );

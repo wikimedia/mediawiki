@@ -24,19 +24,13 @@
  * @ingroup Dump Maintenance
  */
 
-/**
- * @ingroup Dump Maintenance
- */
-class DumpDBZip2Output extends DumpPipeOutput {
-	function __construct( $file ) {
-		parent::__construct( "dbzip2", $file );
-	}
-}
+require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/../includes/export/DumpFilter.php';
 
 /**
  * @ingroup Dump Maintenance
  */
-class BackupDumper {
+class BackupDumper extends Maintenance {
 	public $reporting = true;
 	public $pages = null; // all pages
 	public $skipHeader = false; // don't output <mediawiki> and <siteinfo>
@@ -57,8 +51,8 @@ class BackupDumper {
 	protected $pageCountLast = 0;
 	protected $revCountLast = 0;
 
-	protected $outputTypes = array();
-	protected $filterTypes = array();
+	protected $outputTypes = [];
+	protected $filterTypes = [];
 
 	protected $ID = 0;
 
@@ -67,7 +61,7 @@ class BackupDumper {
 	 *
 	 * @var DatabaseBase|null
 	 *
-	 * @see self::setDb
+	 * @see self::setDB
 	 */
 	protected $forcedDb = null;
 
@@ -77,7 +71,11 @@ class BackupDumper {
 	// @todo Unused?
 	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
 
-	function __construct( $args ) {
+	/**
+	 * @param array $args For backward compatibility
+	 */
+	function __construct( $args = null ) {
+		parent::__construct();
 		$this->stderr = fopen( "php://stderr", "wt" );
 
 		// Built-in output and filter plugins
@@ -91,7 +89,25 @@ class BackupDumper {
 		$this->registerFilter( 'notalk', 'DumpNotalkFilter' );
 		$this->registerFilter( 'namespace', 'DumpNamespaceFilter' );
 
-		$this->sink = $this->processArgs( $args );
+		// These three can be specified multiple times
+		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].',
+			false, true, false, true );
+		$this->addOption( 'output', 'Begin a filtered output stream; Specify as <type>:<file>. ' .
+			'<type>s: file, gzip, bzip2, 7zip, dbzip2', false, true, false, true );
+		$this->addOption( 'filter', 'Add a filter on an output branch. Specify as ' .
+			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
+		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
+			'Default: 100.', false, true );
+		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
+		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
+			'-mx option to 7za command.', false, true );
+
+		if ( $args ) {
+			// Args should be loaded and processed so that dump() can be called directly
+			// instead of execute()
+			$this->loadWithArgv( $args );
+			$this->processOptions();
+		}
 	}
 
 	/**
@@ -121,69 +137,96 @@ class BackupDumper {
 		if ( $file != '' ) {
 			require_once $file;
 		}
-		$register = array( $class, 'register' );
-		call_user_func_array( $register, array( &$this ) );
+		$register = [ $class, 'register' ];
+		call_user_func_array( $register, [ $this ] );
+	}
+
+	function execute() {
+		throw new MWException( 'execute() must be overridden in subclasses' );
 	}
 
 	/**
-	 * @param array $args
-	 * @return array
+	 * Processes arguments and sets $this->$sink accordingly
 	 */
-	function processArgs( $args ) {
+	function processOptions() {
 		$sink = null;
-		$sinks = array();
-		foreach ( $args as $arg ) {
-			$matches = array();
-			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
-				MediaWiki\suppressWarnings();
-				list( /* $full */, $opt, $val, $param ) = $matches;
-				MediaWiki\restoreWarnings();
+		$sinks = [];
 
-				switch ( $opt ) {
-					case "plugin":
-						$this->loadPlugin( $val, $param );
-						break;
-					case "output":
-						if ( !is_null( $sink ) ) {
-							$sinks[] = $sink;
-						}
-						if ( !isset( $this->outputTypes[$val] ) ) {
-							$this->fatalError( "Unrecognized output sink type '$val'" );
-						}
-						$type = $this->outputTypes[$val];
-						$sink = new $type( $param );
-						break;
-					case "filter":
-						if ( is_null( $sink ) ) {
-							$sink = new DumpOutput();
-						}
-						if ( !isset( $this->filterTypes[$val] ) ) {
-							$this->fatalError( "Unrecognized filter type '$val'" );
-						}
-						$type = $this->filterTypes[$val];
-						$filter = new $type( $sink, $param );
+		$options = $this->orderedOptions;
+		foreach ( $options as $arg ) {
+			$opt = $arg[0];
+			$param = $arg[1];
 
-						// references are lame in php...
-						unset( $sink );
-						$sink = $filter;
+			switch ( $opt ) {
+				case 'plugin':
+					$val = explode( ':', $param );
 
-						break;
-					case "report":
-						$this->reportingInterval = intval( $val );
-						break;
-					case "server":
-						$this->server = $val;
-						break;
-					case "force-normal":
-						if ( !function_exists( 'utf8_normalize' ) ) {
-							$this->fatalError( "UTF-8 normalization extension not loaded. " .
-								"Install or remove --force-normal parameter to use slower code." );
-						}
-						break;
-					default:
-						$this->processOption( $opt, $val, $param );
-				}
+					if ( count( $val ) === 1 ) {
+						$this->loadPlugin( $val[0] );
+					} elseif ( count( $val ) === 2 ) {
+						$this->loadPlugin( $val[0], $val[1] );
+					} else {
+						$this->fatalError( 'Invalid plugin parameter' );
+						return;
+					}
+
+					break;
+				case 'output':
+					$split = explode( ':', $param, 2 );
+					if ( count( $split ) !== 2 ) {
+						$this->fatalError( 'Invalid output parameter' );
+					}
+					list( $type, $file ) = $split;
+					if ( !is_null( $sink ) ) {
+						$sinks[] = $sink;
+					}
+					if ( !isset( $this->outputTypes[$type] ) ) {
+						$this->fatalError( "Unrecognized output sink type '$type'" );
+					}
+					$class = $this->outputTypes[$type];
+					if ( $type === "7zip" ) {
+						$sink = new $class( $file, intval( $this->getOption( '7ziplevel' ) ) );
+					} else {
+						$sink = new $class( $file );
+					}
+
+					break;
+				case 'filter':
+					if ( is_null( $sink ) ) {
+						$sink = new DumpOutput();
+					}
+
+					$split = explode( ':', $param );
+					$key = $split[0];
+
+					if ( !isset( $this->filterTypes[$key] ) ) {
+						$this->fatalError( "Unrecognized filter type '$key'" );
+					}
+
+					$type = $this->filterTypes[$key];
+
+					if ( count( $split ) === 1 ) {
+						$filter = new $type( $sink );
+					} elseif ( count( $split ) === 2 ) {
+						$filter = new $type( $sink, $split[1] );
+					} else {
+						$this->fatalError( 'Invalid filter parameter' );
+					}
+
+					// references are lame in php...
+					unset( $sink );
+					$sink = $filter;
+
+					break;
 			}
+		}
+
+		if ( $this->hasOption( 'report' ) ) {
+			$this->reportingInterval = intval( $this->getOption( 'report' ) );
+		}
+
+		if ( $this->hasOption( 'server' ) ) {
+			$this->server = $this->getOption( 'server' );
 		}
 
 		if ( is_null( $sink ) ) {
@@ -192,14 +235,10 @@ class BackupDumper {
 		$sinks[] = $sink;
 
 		if ( count( $sinks ) > 1 ) {
-			return new DumpMultiWriter( $sinks );
+			$this->sink = new DumpMultiWriter( $sinks );
 		} else {
-			return $sink;
+			$this->sink = $sink;
 		}
-	}
-
-	function processOption( $opt, $val, $param ) {
-		// extension point for subclasses to add options
 	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
@@ -286,7 +325,7 @@ class BackupDumper {
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
-		$db->setSessionOptions( array( 'connTimeout' => 3600 * 24 ) );
+		$db->setSessionOptions( [ 'connTimeout' => 3600 * 24 ] );
 
 		return $db;
 	}
@@ -298,7 +337,8 @@ class BackupDumper {
 	 * @param DatabaseBase|null $db (Optional) the database connection to use. If null, resort to
 	 *   use the globally provided ways to get database connections.
 	 */
-	function setDb( DatabaseBase $db = null ) {
+	function setDB( IDatabase $db = null ) {
+		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}
 
@@ -371,12 +411,13 @@ class BackupDumper {
 	}
 
 	function progress( $string ) {
-		fwrite( $this->stderr, $string . "\n" );
+		if ( $this->reporting ) {
+			fwrite( $this->stderr, $string . "\n" );
+		}
 	}
 
 	function fatalError( $msg ) {
-		$this->progress( "$msg\n" );
-		die( 1 );
+		$this->error( "$msg\n", 1 );
 	}
 }
 

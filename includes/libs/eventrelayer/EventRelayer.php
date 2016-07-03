@@ -18,15 +18,22 @@
  * @file
  * @author Aaron Schulz
  */
+use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Base class for reliable event relays
  */
-abstract class EventRelayer {
+abstract class EventRelayer implements LoggerAwareInterface {
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
+		$this->logger = new NullLogger();
 	}
 
 	/**
@@ -35,7 +42,7 @@ abstract class EventRelayer {
 	 * @return bool Success
 	 */
 	final public function notify( $channel, $event ) {
-		return $this->doNotify( $channel, array( $event ) );
+		return $this->doNotify( $channel, [ $event ] );
 	}
 
 	/**
@@ -47,6 +54,10 @@ abstract class EventRelayer {
 		return $this->doNotify( $channel, $events );
 	}
 
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
 	/**
 	 * @param string $channel
 	 * @param array $events List of event data maps
@@ -55,11 +66,3 @@ abstract class EventRelayer {
 	abstract protected function doNotify( $channel, array $events );
 }
 
-/**
- * No-op class for publishing messages into a PubSub system
- */
-class EventRelayerNull extends EventRelayer {
-	public function doNotify( $channel, array $events ) {
-		return true;
-	}
-}

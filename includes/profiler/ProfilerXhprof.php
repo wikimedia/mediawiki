@@ -66,7 +66,7 @@ class ProfilerXhprof extends Profiler {
 	 * @param array $params
 	 * @see Xhprof::__construct()
 	 */
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 		$this->xhprof = new Xhprof( $params );
 		$this->sprofiler = new SectionProfiler();
@@ -113,7 +113,7 @@ class ProfilerXhprof extends Profiler {
 
 	public function getFunctionStats() {
 		$metrics = $this->xhprof->getCompleteMetrics();
-		$profile = array();
+		$profile = [];
 
 		$main = null; // units in ms
 		foreach ( $metrics as $fname => $stats ) {
@@ -121,7 +121,7 @@ class ProfilerXhprof extends Profiler {
 				continue;
 			}
 			// Convert elapsed times from μs to ms to match interface
-			$entry = array(
+			$entry = [
 				'name' => $fname,
 				'calls' => $stats['ct'],
 				'real' => $stats['wt']['total'] / 1000,
@@ -132,7 +132,7 @@ class ProfilerXhprof extends Profiler {
 				'%memory' => isset( $stats['mu'] ) ? $stats['mu']['percent'] : 0,
 				'min_real' => $stats['wt']['min'] / 1000,
 				'max_real' => $stats['wt']['max'] / 1000
-			);
+			];
 			$profile[] = $entry;
 			if ( $fname === 'main()' ) {
 				$main = $entry;
@@ -192,7 +192,7 @@ class ProfilerXhprof extends Profiler {
 		$width = 140;
 		$nameWidth = $width - 65;
 		$format = "%-{$nameWidth}s %6d %9d %9d %9d %9d %7.3f%% %9d";
-		$out = array();
+		$out = [];
 		$out[] = sprintf( "%-{$nameWidth}s %6s %9s %9s %9s %9s %7s %9s",
 			'Name', 'Calls', 'Total', 'Min', 'Each', 'Max', '%', 'Mem'
 		);

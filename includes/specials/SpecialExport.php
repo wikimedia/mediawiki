@@ -65,7 +65,10 @@ class SpecialExport extends SpecialPage {
 					 */
 					$catpages = $this->getPagesFromCategory( $t );
 					if ( $catpages ) {
-						$page .= "\n" . implode( "\n", $catpages );
+						if ( $page !== '' ) {
+							$page .= "\n";
+						}
+						$page .= implode( "\n", $catpages );
 					}
 				}
 			}
@@ -106,11 +109,11 @@ class SpecialExport extends SpecialPage {
 			$maxHistory = $config->get( 'ExportMaxHistory' );
 			$limit = $request->getInt( 'limit' );
 			$dir = $request->getVal( 'dir' );
-			$history = array(
+			$history = [
 				'dir' => 'asc',
 				'offset' => false,
 				'limit' => $maxHistory,
-			);
+			];
 			$historyCheck = $request->getCheck( 'history' );
 
 			if ( $this->curonly ) {
@@ -165,6 +168,7 @@ class SpecialExport extends SpecialPage {
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
 			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
+			$request->response()->header( "X-Robots-Tag: noindex,nofollow" );
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
@@ -186,8 +190,8 @@ class SpecialExport extends SpecialPage {
 			$categoryName = '';
 		}
 
-		$formDescriptor = array(
-			'catname' => array(
+		$formDescriptor = [
+			'catname' => [
 				'type' => 'textwithbutton',
 				'name' => 'catname',
 				'horizontal-label' => true,
@@ -197,11 +201,11 @@ class SpecialExport extends SpecialPage {
 				'buttontype' => 'submit',
 				'buttonname' => 'addcat',
 				'buttondefault' => $this->msg( 'export-addcat' )->text(),
-			),
-		);
+			],
+		];
 		if ( $config->get( 'ExportFromNamespaces' ) ) {
-			$formDescriptor += array(
-				'nsindex' => array(
+			$formDescriptor += [
+				'nsindex' => [
 					'type' => 'namespaceselectwithbutton',
 					'default' => $nsindex,
 					'label-message' => 'export-addnstext',
@@ -212,93 +216,93 @@ class SpecialExport extends SpecialPage {
 					'buttontype' => 'submit',
 					'buttonname' => 'addns',
 					'buttondefault' => $this->msg( 'export-addns' )->text(),
-				),
-			);
+				],
+			];
 		}
 
 		if ( $config->get( 'ExportAllowAll' ) ) {
-			$formDescriptor += array(
-				'exportall' => array(
+			$formDescriptor += [
+				'exportall' => [
 					'type' => 'check',
 					'label-message' => 'exportall',
 					'name' => 'exportall',
 					'id' => 'exportall',
 					'default' => $request->wasPosted() ? $request->getCheck( 'exportall' ) : false,
-				),
-			);
+				],
+			];
 		}
 
-		$formDescriptor += array(
-			'textarea' => array(
+		$formDescriptor += [
+			'textarea' => [
 				'class' => 'HTMLTextAreaField',
 				'name' => 'pages',
+				'label-message' => 'export-manual',
 				'nodata' => true,
-				'cols' => 40,
 				'rows' => 10,
 				'default' => $page,
-			),
-		);
+			],
+		];
 
 		if ( $config->get( 'ExportAllowHistory' ) ) {
-			$formDescriptor += array(
-				'curonly' => array(
+			$formDescriptor += [
+				'curonly' => [
 					'type' => 'check',
 					'label-message' => 'exportcuronly',
 					'name' => 'curonly',
 					'id' => 'curonly',
 					'default' => $request->wasPosted() ? $request->getCheck( 'curonly' ) : true,
-				),
-			);
+				],
+			];
 		} else {
 			$out->addWikiMsg( 'exportnohistory' );
 		}
 
-		$formDescriptor += array(
-			'templates' => array(
+		$formDescriptor += [
+			'templates' => [
 				'type' => 'check',
 				'label-message' => 'export-templates',
 				'name' => 'templates',
 				'id' => 'wpExportTemplates',
 				'default' => $request->wasPosted() ? $request->getCheck( 'templates' ) : false,
-			),
-		);
+			],
+		];
 
 		if ( $config->get( 'ExportMaxLinkDepth' ) || $this->userCanOverrideExportDepth() ) {
-			$formDescriptor += array(
-				'pagelink-depth' => array(
+			$formDescriptor += [
+				'pagelink-depth' => [
 					'type' => 'text',
 					'name' => 'pagelink-depth',
 					'id' => 'pagelink-depth',
 					'label-message' => 'export-pagelinks',
 					'default' => '0',
 					'size' => 20,
-				),
-			);
+				],
+			];
 		}
 
-		$formDescriptor += array(
-			'wpDownload' => array(
+		$formDescriptor += [
+			'wpDownload' => [
 				'type' => 'check',
 				'name' =>'wpDownload',
 				'id' => 'wpDownload',
 				'default' => $request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true,
 				'label-message' => 'export-download',
-			),
-		);
+			],
+		];
 
 		if ( $config->get( 'ExportAllowListContributors' ) ) {
-			$formDescriptor += array(
-				'listauthors' => array(
+			$formDescriptor += [
+				'listauthors' => [
 					'type' => 'check',
 					'label-message' => 'exportlistauthors',
 					'default' => $request->wasPosted() ? $request->getCheck( 'listauthors' ) : false,
 					'name' => 'listauthors',
 					'id' => 'listauthors',
-				),
-			);
+				],
+			];
 		}
 
-		$htmlForm = HTMLForm::factory( 'div', $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setSubmitTextMsg( 'export-submit' );
 		$htmlForm->prepareForm()->displayForm( false );
 		$this->addHelpLink( 'Help:Export' );
@@ -326,7 +330,7 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$history = WikiExporter::FULL;
 		} else {
-			$pageSet = array(); // Inverted index of all pages to look up
+			$pageSet = []; // Inverted index of all pages to look up
 
 			// Split up and normalize input
 			foreach ( explode( "\n", $page ) as $pageName ) {
@@ -385,7 +389,7 @@ class SpecialExport extends SpecialPage {
 			$exporter->allPages();
 		} else {
 			foreach ( $pages as $page ) {
-				#Bug 8824: Only export pages the user can read
+				# Bug 8824: Only export pages the user can read
 				$title = Title::newFromText( $page );
 				if ( is_null( $title ) ) {
 					// @todo Perhaps output an <error> tag or something.
@@ -415,18 +419,20 @@ class SpecialExport extends SpecialPage {
 	private function getPagesFromCategory( $title ) {
 		global $wgContLang;
 
+		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
+
 		$name = $title->getDBkey();
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
-			array( 'page', 'categorylinks' ),
-			array( 'page_namespace', 'page_title' ),
-			array( 'cl_from=page_id', 'cl_to' => $name ),
+			[ 'page', 'categorylinks' ],
+			[ 'page_namespace', 'page_title' ],
+			[ 'cl_from=page_id', 'cl_to' => $name ],
 			__METHOD__,
-			array( 'LIMIT' => '5000' )
+			[ 'LIMIT' => $maxPages ]
 		);
 
-		$pages = array();
+		$pages = [];
 
 		foreach ( $res as $row ) {
 			$n = $row->page_title;
@@ -448,16 +454,18 @@ class SpecialExport extends SpecialPage {
 	private function getPagesFromNamespace( $nsindex ) {
 		global $wgContLang;
 
+		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			'page',
-			array( 'page_namespace', 'page_title' ),
-			array( 'page_namespace' => $nsindex ),
+			[ 'page_namespace', 'page_title' ],
+			[ 'page_namespace' => $nsindex ],
 			__METHOD__,
-			array( 'LIMIT' => '5000' )
+			[ 'LIMIT' => $maxPages ]
 		);
 
-		$pages = array();
+		$pages = [];
 
 		foreach ( $res as $row ) {
 			$n = $row->page_title;
@@ -482,8 +490,8 @@ class SpecialExport extends SpecialPage {
 	private function getTemplates( $inputPages, $pageSet ) {
 		return $this->getLinks( $inputPages, $pageSet,
 			'templatelinks',
-			array( 'namespace' => 'tl_namespace', 'title' => 'tl_title' ),
-			array( 'page_id=tl_from' )
+			[ 'namespace' => 'tl_namespace', 'title' => 'tl_title' ],
+			[ 'page_id=tl_from' ]
 		);
 	}
 
@@ -526,8 +534,8 @@ class SpecialExport extends SpecialPage {
 			// @codingStandardsIgnoreEnd
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
-				array( 'namespace' => 'pl_namespace', 'title' => 'pl_title' ),
-				array( 'page_id=pl_from' )
+				[ 'namespace' => 'pl_namespace', 'title' => 'pl_title' ],
+				[ 'page_id=pl_from' ]
 			);
 			$inputPages = array_keys( $pageSet );
 		}
@@ -555,14 +563,14 @@ class SpecialExport extends SpecialPage {
 				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
 				$result = $dbr->select(
-					array( 'page', $table ),
+					[ 'page', $table ],
 					$fields,
 					array_merge(
 						$join,
-						array(
+						[
 							'page_namespace' => $title->getNamespace(),
 							'page_title' => $title->getDBkey()
-						)
+						]
 					),
 					__METHOD__
 				);

@@ -15,10 +15,10 @@ use MediaWiki\Widget\UserInputWidget;
  */
 class HTMLUserTextField extends HTMLTextField {
 	public function __construct( $params ) {
-		$params += array(
+		$params += [
 			'exists' => false,
 			'ipallowed' => false,
-		);
+		];
 
 		parent::__construct( $params );
 	}
@@ -43,5 +43,14 @@ class HTMLUserTextField extends HTMLTextField {
 		$this->mParent->getOutput()->addModules( 'mediawiki.widgets.UserInputWidget' );
 
 		return new UserInputWidget( $params );
+	}
+
+	public function getInputHtml( $value ) {
+		// add the required module and css class for user suggestions in non-OOUI mode
+		$this->mParent->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$this->mClass .= ' mw-autocomplete-user';
+
+		// return parent html
+		return parent::getInputHTML( $value );
 	}
 }

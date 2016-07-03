@@ -15,5 +15,9 @@
 	"ooui-dialog-process-error": "Бірдеңеден қате кетті",
 	"ooui-dialog-process-dismiss": "Тоқтату",
 	"ooui-dialog-process-retry": "Қайта байқап көріңіз",
-	"ooui-dialog-process-continue": "Жалғастыру"
+	"ooui-dialog-process-continue": "Жалғастыру",
+	"ooui-selectfile-button-select": "Файлды таңдау",
+	"ooui-selectfile-not-supported": "Файл таңдауды қолдамайды",
+	"ooui-selectfile-placeholder": "Файл таңдалмады",
+	"ooui-selectfile-dragdrop-placeholder": "Файлды мында жылжыту"
 }

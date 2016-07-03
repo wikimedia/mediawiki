@@ -18,7 +18,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	 */
 	private $testRecentChangesHelper;
 
-	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
@@ -27,10 +27,10 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
-			'wgLang' => Language::factory( 'qqx' )
-		) );
+		] );
+		$this->setUserLang( 'qqx' );
 	}
 
 	/**
@@ -46,10 +46,10 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	}
 
 	public function recentChangesLine_CssForLineNumberProvider() {
-		return array(
-			array( '/mw-line-odd/', 1, 'odd line number' ),
-			array( '/mw-line-even/', 2, 'even line number' )
-		);
+		return [
+			[ '/mw-line-odd/', 1, 'odd line number' ],
+			[ '/mw-line-even/', 2, 'even line number' ]
+		];
 	}
 
 	public function testRecentChangesLine_NotWatchedCssClass() {
@@ -108,13 +108,13 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
 		$this->assertContains(
-			"<abbr class='newpage' title='(recentchanges-label-newpage)'>(newpageletter)</abbr>",
+			'<abbr class="newpage" title="(recentchanges-label-newpage)">(newpageletter)</abbr>',
 			$line,
 			'new page flag'
 		);
 
 		$this->assertContains(
-			"<abbr class='botedit' title='(recentchanges-label-bot)'>(boteditletter)</abbr>",
+			'<abbr class="botedit" title="(recentchanges-label-bot)">(boteditletter)</abbr>',
 			$line,
 			'bot flag'
 		);
@@ -129,6 +129,25 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 		$this->assertRegExp( '/<li class="[\w\s-]*mw-tag-vandalism[\w\s-]*">/', $line );
 		$this->assertRegExp( '/<li class="[\w\s-]*mw-tag-newbie[\w\s-]*">/', $line );
+	}
+
+	public function testRecentChangesLine_numberOfWatchingUsers() {
+		$oldChangesList = $this->getOldChangesList();
+
+		$recentChange = $this->getEditChange();
+		$recentChange->numberofWatchingusers = 100;
+
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( "/(number_of_watching_users_RCview: 100)/", $line );
+	}
+
+	public function testRecentChangesLine_watchlistCssClass() {
+		$oldChangesList = $this->getOldChangesList();
+		$oldChangesList->setWatchlistDivs( true );
+
+		$recentChange = $this->getEditChange();
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( "/watchlist-0-Cat/", $line );
 	}
 
 	private function getNewBotEditChange() {
@@ -178,7 +197,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	private function getContext() {
 		$user = $this->getTestUser();
 		$context = $this->testRecentChangesHelper->getTestContext( $user );
-		$context->setLanguage( Language::factory( 'qqx' ) );
+		$context->setLanguage( 'qqx' );
 
 		return $context;
 	}

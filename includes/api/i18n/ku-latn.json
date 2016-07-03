@@ -1,14 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"George Animal"
+			"George Animal",
+			"Macofe",
+			"Ghybu"
 		]
 	},
 	"apihelp-block-description": "Bikarhênerekî asteng bike.",
 	"apihelp-block-param-reason": "Sedemê bo astengkirinê.",
 	"apihelp-createaccount-param-name": "Navê bikarhêner.",
 	"apihelp-delete-description": "Rûpelekê jê bibe.",
-	"apihelp-delete-example-simple": "<kbd>Destpêk</kbd>ê Jê bibe.",
+	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>ê jê bibe.",
+	"apihelp-edit-description": "Rûpelan çêke û biguherîne.",
 	"apihelp-edit-param-sectiontitle": "Sernavê bo beşeke nû.",
 	"apihelp-edit-param-text": "Naveroka rûpelê.",
 	"apihelp-edit-param-minor": "Guhertina biçûk.",
@@ -20,11 +23,17 @@
 	"apihelp-feedcontributions-param-deletedonly": "Tenê beşdariyên jêbirî nîşan bide.",
 	"apihelp-feedrecentchanges-example-simple": "Guherandinên dawî nîşan bide.",
 	"apihelp-feedrecentchanges-example-30days": "Guherandinên dawî yên 30 rojan nîşan bide",
+	"apihelp-filerevert-param-comment": "Şîroveyê bar bike.",
 	"apihelp-help-example-recursive": "Hemû alîkarî di rûpelekê de.",
 	"apihelp-login-param-name": "Navê bikarhêner.",
 	"apihelp-login-param-password": "Şîfre.",
 	"apihelp-login-example-login": "Têkeve.",
 	"apihelp-move-param-reason": "Sedemê bo guherandina nav.",
 	"apihelp-move-param-ignorewarnings": "Guh nede hişyariyan.",
+	"apihelp-opensearch-example-te": "Rûpelên ku bi <kbd>Te</kbd> dest pê dikin bibîne.",
+	"apihelp-parse-example-page": "Rûpelekê analîz bike.",
+	"apihelp-parse-example-summary": "Kurteyekê analîz bike",
+	"apihelp-protect-description": "Asta parastinê ya rûpelekê biguherîne.",
+	"apihelp-protect-example-protect": "Rûpelekê biparêze.",
 	"apihelp-tag-param-reason": "Sedemê bo guherandinê."
 }

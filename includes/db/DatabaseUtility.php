@@ -113,11 +113,11 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * Fetch the next row from the given result object, in object form.
-	 * Fields can be retrieved with $row->fieldname, with fields acting like
-	 * member variables.
+	 * Fetch the next row from the given result object, in object form. Fields can be retrieved with
+	 * $row->fieldname, with fields acting like member variables. If no more rows are available,
+	 * false is returned.
 	 *
-	 * @return stdClass
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
@@ -125,10 +125,10 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * Fetch the next row from the given result object, in associative array
-	 * form. Fields are retrieved with $row['fieldname'].
+	 * Fetch the next row from the given result object, in associative array form. Fields are
+	 * retrieved with $row['fieldname']. If no more rows are available, false is returned.
 	 *
-	 * @return array
+	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
@@ -210,7 +210,7 @@ class ResultWrapper implements Iterator {
  */
 class FakeResultWrapper extends ResultWrapper {
 	/** @var array */
-	public $result = array();
+	public $result = [];
 
 	/** @var null And it's going to stay that way :D */
 	protected $db = null;
@@ -221,6 +221,9 @@ class FakeResultWrapper extends ResultWrapper {
 	/** @var array|stdClass|bool */
 	protected $currentRow = null;
 
+	/**
+	 * @param array $array
+	 */
 	function __construct( $array ) {
 		$this->result = $array;
 	}
@@ -318,6 +321,27 @@ class LikeMatch {
 interface DBMasterPos {
 	/**
 	 * @return float UNIX timestamp
+	 * @since 1.25
 	 */
 	public function asOfTime();
+
+	/**
+	 * @param DBMasterPos $pos
+	 * @return bool Whether this position is at or higher than $pos
+	 * @since 1.27
+	 */
+	public function hasReached( DBMasterPos $pos );
+
+	/**
+	 * @param DBMasterPos $pos
+	 * @return bool Whether this position appears to be for the same channel as another
+	 * @since 1.27
+	 */
+	public function channelsMatch( DBMasterPos $pos );
+
+	/**
+	 * @return string
+	 * @since 1.27
+	 */
+	public function __toString();
 }

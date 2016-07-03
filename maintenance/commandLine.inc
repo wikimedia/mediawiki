@@ -25,19 +25,26 @@ require_once __DIR__ . '/Maintenance.php';
 
 // @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 global $optionsWithArgs;
+global $optionsWithoutArgs;
 // @codingStandardsIgnoreEnd
 if ( !isset( $optionsWithArgs ) ) {
-	$optionsWithArgs = array();
+	$optionsWithArgs = [];
+}
+if ( !isset( $optionsWithoutArgs ) ) {
+	$optionsWithoutArgs = [];
 }
 
 class CommandLineInc extends Maintenance {
 	public function __construct() {
 		// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
-		global $optionsWithArgs;
+		global $optionsWithArgs, $optionsWithoutArgs;
 		// @codingStandardsIgnoreEnd
 		parent::__construct();
 		foreach ( $optionsWithArgs as $name ) {
 			$this->addOption( $name, '', false, true );
+		}
+		foreach ( $optionsWithoutArgs as $name ) {
+			$this->addOption( $name, '', false, false );
 		}
 	}
 
@@ -63,4 +70,3 @@ class CommandLineInc extends Maintenance {
 
 $maintClass = 'CommandLineInc';
 require RUN_MAINTENANCE_IF_MAIN;
-

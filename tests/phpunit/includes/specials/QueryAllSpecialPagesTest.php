@@ -14,9 +14,9 @@
 class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 
 	/** List query pages that can not be tested automatically */
-	protected $manualTest = array(
+	protected $manualTest = [
 		'LinkSearchPage'
-	);
+	];
 
 	/**
 	 * Pages whose query use the same DB table more than once.
@@ -24,9 +24,9 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	 * which does not support reopening a temporary table. See upstream bug:
 	 * http://bugs.mysql.com/bug.php?id=10327
 	 */
-	protected $reopensTempTable = array(
+	protected $reopensTempTable = [
 		'BrokenRedirects',
-	);
+	];
 
 	/**
 	 * Initialize all query page objects

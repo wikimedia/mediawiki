@@ -13,5 +13,7 @@
 	"ooui-toolgroup-collapse": "КӀезиг",
 	"ooui-dialog-message-accept": "ХӀаъ",
 	"ooui-dialog-message-reject": "Цаоьшу",
-	"ooui-dialog-process-continue": "Кхин дӀа"
+	"ooui-dialog-process-continue": "Кхин дӀа",
+	"ooui-selectfile-button-select": "Харжа файл",
+	"ooui-selectfile-placeholder": "Файл хаьржина яц"
 }

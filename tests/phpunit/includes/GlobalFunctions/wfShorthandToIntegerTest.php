@@ -17,15 +17,15 @@ class WfShorthandToIntegerTest extends MediaWikiTestCase {
 	}
 
 	public static function provideABunchOfShorthands() {
-		return array(
-			array( '', -1, 'Empty string' ),
-			array( '     ', -1, 'String of spaces' ),
-			array( '1G', 1024 * 1024 * 1024, 'One gig uppercased' ),
-			array( '1g', 1024 * 1024 * 1024, 'One gig lowercased' ),
-			array( '1M', 1024 * 1024, 'One meg uppercased' ),
-			array( '1m', 1024 * 1024, 'One meg lowercased' ),
-			array( '1K', 1024, 'One kb uppercased' ),
-			array( '1k', 1024, 'One kb lowercased' ),
-		);
+		return [
+			[ '', -1, 'Empty string' ],
+			[ '     ', -1, 'String of spaces' ],
+			[ '1G', 1024 * 1024 * 1024, 'One gig uppercased' ],
+			[ '1g', 1024 * 1024 * 1024, 'One gig lowercased' ],
+			[ '1M', 1024 * 1024, 'One meg uppercased' ],
+			[ '1m', 1024 * 1024, 'One meg lowercased' ],
+			[ '1K', 1024, 'One kb uppercased' ],
+			[ '1k', 1024, 'One kb lowercased' ],
+		];
 	}
 }

@@ -1,0 +1,35 @@
+.mw-upload-bookletLayout-filePreview {
+	width: 100%;
+	height: 1em;
+	background-color: #eee;
+	background-size: cover;
+	background-position: center center;
+	padding: 1.5em;
+	margin: -1.5em;
+	margin-bottom: 1.5em;
+	position: relative;
+}
+
+.mw-upload-bookletLayout-infoForm.mw-upload-bookletLayout-hasThumbnail .mw-upload-bookletLayout-filePreview {
+	height: 10em;
+}
+
+.mw-upload-bookletLayout-filePreview p {
+	line-height: 1em;
+	margin: 0;
+}
+
+.mw-upload-bookletLayout-filePreview .oo-ui-progressBarWidget {
+	border: none;
+	border-radius: 0;
+	background-color: transparent;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.mw-upload-bookletLayout-filePreview .oo-ui-progressBarWidget-bar {
+	background-color: #347bff;
+	height: 0.5em;
+}

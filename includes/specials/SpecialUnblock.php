@@ -36,6 +36,10 @@ class SpecialUnblock extends SpecialPage {
 		parent::__construct( 'Unblock', 'block' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -53,11 +57,11 @@ class SpecialUnblock extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'unblockip' ) );
-		$out->addModules( array( 'mediawiki.special', 'mediawiki.userSuggest' ) );
+		$out->addModules( [ 'mediawiki.special', 'mediawiki.userSuggest' ] );
 
 		$form = new HTMLForm( $this->getFields(), $this->getContext() );
 		$form->setWrapperLegendMsg( 'unblockip' );
-		$form->setSubmitCallback( array( __CLASS__, 'processUIUnblock' ) );
+		$form->setSubmitCallback( [ __CLASS__, 'processUIUnblock' ] );
 		$form->setSubmitTextMsg( 'ipusubmit' );
 		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
@@ -81,24 +85,24 @@ class SpecialUnblock extends SpecialPage {
 	}
 
 	protected function getFields() {
-		$fields = array(
-			'Target' => array(
+		$fields = [
+			'Target' => [
 				'type' => 'text',
 				'label-message' => 'ipaddressorusername',
 				'autofocus' => true,
 				'size' => '45',
 				'required' => true,
 				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-			),
-			'Name' => array(
+			],
+			'Name' => [
 				'type' => 'info',
 				'label-message' => 'ipaddressorusername',
-			),
-			'Reason' => array(
+			],
+			'Reason' => [
 				'type' => 'text',
 				'label-message' => 'ipbreason',
-			)
-		);
+			]
+		];
 
 		if ( $this->block instanceof Block ) {
 			list( $target, $type ) = $this->block->getTargetAndType();
@@ -165,6 +169,9 @@ class SpecialUnblock extends SpecialPage {
 	/**
 	 * Process the form
 	 *
+	 * Change tags can be provided via $data['Tags'], but the calling function
+	 * must check if the tags can be added by the user prior to this function.
+	 *
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @throws ErrorPageError
@@ -176,7 +183,7 @@ class SpecialUnblock extends SpecialPage {
 		$block = Block::newFromTarget( $data['Target'] );
 
 		if ( !$block instanceof Block ) {
-			return array( array( 'ipb_cant_unblock', $target ) );
+			return [ [ 'ipb_cant_unblock', $target ] ];
 		}
 
 		# bug 15810: blocked admins should have limited access here.  This
@@ -193,25 +200,25 @@ class SpecialUnblock extends SpecialPage {
 		if ( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
 			$range = $block->getTarget();
 
-			return array( array( 'ipb_blocked_as_range', $target, $range ) );
+			return [ [ 'ipb_blocked_as_range', $target, $range ] ];
 		}
 
 		# If the name was hidden and the blocking user cannot hide
 		# names, then don't allow any block removals...
 		if ( !$performer->isAllowed( 'hideuser' ) && $block->mHideName ) {
-			return array( 'unblock-hideuser' );
+			return [ 'unblock-hideuser' ];
 		}
 
 		# Delete block
 		if ( !$block->delete() ) {
-			return array( 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) );
+			return [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ];
 		}
 
 		# Unset _deleted fields as needed
 		if ( $block->mHideName ) {
 			# Something is deeply FUBAR if this is not a User object, but who knows?
 			$id = $block->getTarget() instanceof User
-				? $block->getTarget()->getID()
+				? $block->getTarget()->getId()
 				: User::idFromName( $block->getTarget() );
 
 			RevisionDeleteUser::unsuppressUserName( $block->getTarget(), $id );
@@ -222,7 +229,7 @@ class SpecialUnblock extends SpecialPage {
 			$page = Title::makeTitle( NS_USER, '#' . $block->getId() );
 		} else {
 			$page = $block->getTarget() instanceof User
-				? $block->getTarget()->getUserpage()
+				? $block->getTarget()->getUserPage()
 				: Title::makeTitle( NS_USER, $block->getTarget() );
 		}
 
@@ -231,10 +238,31 @@ class SpecialUnblock extends SpecialPage {
 		$logEntry->setTarget( $page );
 		$logEntry->setComment( $data['Reason'] );
 		$logEntry->setPerformer( $performer );
+		if ( isset( $data['Tags'] ) ) {
+			$logEntry->setTags( $data['Tags'] );
+		}
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
 		return true;
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$user = User::newFromName( $search );
+		if ( !$user ) {
+			// No prefix suggestion for invalid user
+			return [];
+		}
+		// Autocomplete subpage as user list - public to allow caching
+		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

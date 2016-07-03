@@ -44,9 +44,15 @@ mkdir -p "$REPO_DIR/$TARGET_DIR/i18n"
 mkdir -p "$REPO_DIR/$TARGET_DIR/images"
 mkdir -p "$REPO_DIR/$TARGET_DIR/themes/mediawiki/images"
 mkdir -p "$REPO_DIR/$TARGET_DIR/themes/apex/images"
-cp ./node_modules/oojs-ui/dist/oojs-ui.js "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/{oojs-ui-mediawiki-noimages.css,oojs-ui-mediawiki.js} "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/{oojs-ui-apex-noimages.css,oojs-ui-apex.js} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-core.js "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-core-{mediawiki,apex}.css "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-widgets.js "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-widgets-{mediawiki,apex}.css "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars.js "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars-{mediawiki,apex}.css "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-windows.js "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-windows-{mediawiki,apex}.css "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-{mediawiki,apex}.js "$REPO_DIR/$TARGET_DIR"
 cp -R ./node_modules/oojs-ui/dist/i18n "$REPO_DIR/$TARGET_DIR"
 cp -R ./node_modules/oojs-ui/dist/images "$REPO_DIR/$TARGET_DIR"
 cp -R ./node_modules/oojs-ui/dist/themes/mediawiki/images "$REPO_DIR/$TARGET_DIR/themes/mediawiki"
@@ -64,7 +70,7 @@ COMMITMSG=$(cat <<END
 Update OOjs UI to v$OOJSUI_VERSION
 
 Release notes:
- https://git.wikimedia.org/blob/oojs%2Fui.git/v$OOJSUI_VERSION/History.md
+ https://phabricator.wikimedia.org/diffusion/GOJU/browse/master/History.md;v$OOJSUI_VERSION
 END
 )
 

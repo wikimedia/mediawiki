@@ -1,13 +1,17 @@
 /*!
- * OOjs UI v0.12.12
+ * OOjs UI v0.17.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2015 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-13T20:38:18Z
+ * Date: 2016-05-03T22:58:02Z
  */
+( function ( OO ) {
+
+'use strict';
+
 /**
  * @class
  * @extends OO.ui.Theme
@@ -26,3 +30,5 @@ OO.inheritClass( OO.ui.ApexTheme, OO.ui.Theme );
 /* Instantiation */
 
 OO.ui.theme = new OO.ui.ApexTheme();
+
+}( OO ) );

@@ -119,9 +119,9 @@ abstract class TablePager extends IndexPager {
 		// Make table header
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
-				$s .= Html::rawElement( 'th', array(), '&#160;' ) . "\n";
+				$s .= Html::rawElement( 'th', [], '&#160;' ) . "\n";
 			} elseif ( $this->isFieldSortable( $field ) ) {
-				$query = array( 'sort' => $field, 'limit' => $this->mLimit );
+				$query = [ 'sort' => $field, 'limit' => $this->mLimit ];
 				$linkType = null;
 				$class = null;
 
@@ -142,17 +142,17 @@ abstract class TablePager extends IndexPager {
 				}
 
 				$link = $this->makeLink( htmlspecialchars( $name ), $query, $linkType );
-				$s .= Html::rawElement( 'th', array( 'class' => $class ), $link ) . "\n";
+				$s .= Html::rawElement( 'th', [ 'class' => $class ], $link ) . "\n";
 			} else {
-				$s .= Html::element( 'th', array(), $name ) . "\n";
+				$s .= Html::element( 'th', [], $name ) . "\n";
 			}
 		}
 
 		$tableClass = $this->getTableClass();
-		$ret = Html::openElement( 'table', array(
-			'class' => "mw-datatable $tableClass" )
+		$ret = Html::openElement( 'table', [
+			'class' => "mw-datatable $tableClass" ]
 		);
-		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
+		$ret .= Html::rawElement( 'thead', [], Html::rawElement( 'tr', [], "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
 
 		return $ret;
@@ -173,8 +173,8 @@ abstract class TablePager extends IndexPager {
 	function getEmptyBody() {
 		$colspan = count( $this->getFieldNames() );
 		$msgEmpty = $this->msg( 'table_pager_empty' )->text();
-		return Html::rawElement( 'tr', array(),
-			Html::element( 'td', array( 'colspan' => $colspan ), $msgEmpty ) );
+		return Html::rawElement( 'tr', [],
+			Html::element( 'td', [ 'colspan' => $colspan ], $msgEmpty ) );
 	}
 
 	/**
@@ -227,9 +227,9 @@ abstract class TablePager extends IndexPager {
 		$class = $this->getRowClass( $row );
 		if ( $class === '' ) {
 			// Return an empty array to avoid clutter in HTML like class=""
-			return array();
+			return [];
 		} else {
-			return array( 'class' => $this->getRowClass( $row ) );
+			return [ 'class' => $this->getRowClass( $row ) ];
 		}
 	}
 
@@ -252,7 +252,7 @@ abstract class TablePager extends IndexPager {
 	 * @return array Array of attr => value
 	 */
 	function getCellAttrs( $field, $value ) {
-		return array( 'class' => 'TablePager_col_' . $field );
+		return [ 'class' => 'TablePager_col_' . $field ];
 	}
 
 	/**
@@ -264,26 +264,23 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getTableClass() {
+	protected function getTableClass() {
 		return 'TablePager';
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getNavClass() {
+	protected function getNavClass() {
 		return 'TablePager_nav';
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getSortHeaderClass() {
+	protected function getSortHeaderClass() {
 		return 'TablePager_sort';
 	}
 
@@ -296,15 +293,15 @@ abstract class TablePager extends IndexPager {
 			return '';
 		}
 
-		$labels = array(
+		$labels = [
 			'first' => 'table_pager_first',
 			'prev' => 'table_pager_prev',
 			'next' => 'table_pager_next',
 			'last' => 'table_pager_last',
-		);
+		];
 
-		$linkTexts = array();
-		$disabledTexts = array();
+		$linkTexts = [];
+		$disabledTexts = [];
 		foreach ( $labels as $type => $label ) {
 			$msgLabel = $this->msg( $label )->escaped();
 			$linkTexts[$type] = "<div class='TablePager_nav-enabled'>$msgLabel</div>";
@@ -312,7 +309,7 @@ abstract class TablePager extends IndexPager {
 		}
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 
-		$s = Html::openElement( 'table', array( 'class' => $this->getNavClass() ) );
+		$s = Html::openElement( 'table', [ 'class' => $this->getNavClass() ] );
 		$s .= Html::openElement( 'tr' ) . "\n";
 		$width = 100 / count( $links ) . '%';
 		foreach ( $labels as $type => $label ) {
@@ -320,7 +317,7 @@ abstract class TablePager extends IndexPager {
 			// but it only works if we specify the width of a cell or the table and we don't want to.
 			// There is no better way. <http://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
 			$s .= Html::rawElement( 'td',
-				array( 'style' => "width: $width;", 'class' => "TablePager_nav-$type" ),
+				[ 'style' => "width: $width;", 'class' => "TablePager_nav-$type" ],
 				$links[$type] ) . "\n";
 		}
 		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
@@ -333,7 +330,7 @@ abstract class TablePager extends IndexPager {
 	 * @return string[]
 	 */
 	public function getModuleStyles() {
-		return array( 'mediawiki.pager.tablePager' );
+		return [ 'mediawiki.pager.tablePager' ];
 	}
 
 	/**
@@ -342,7 +339,7 @@ abstract class TablePager extends IndexPager {
 	 * @param string $attribs Extra attributes to set
 	 * @return string HTML fragment
 	 */
-	public function getLimitSelect( $attribs = array() ) {
+	public function getLimitSelect( $attribs = [] ) {
 		$select = new XmlSelect( 'limit', false, $this->mLimit );
 		$select->addOptions( $this->getLimitSelectList() );
 		foreach ( $attribs as $name => $value ) {
@@ -365,7 +362,7 @@ abstract class TablePager extends IndexPager {
 			$this->mLimitsShown[] = $this->mLimit;
 			sort( $this->mLimitsShown );
 		}
-		$ret = array();
+		$ret = [];
 		foreach ( $this->mLimitsShown as $key => $value ) {
 			# The pair is either $index => $limit, in which case the $value
 			# will be numeric, or $limit => $text, in which case the $value
@@ -390,7 +387,7 @@ abstract class TablePager extends IndexPager {
 	 * @param array $blacklist Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment
 	 */
-	function getHiddenFields( $blacklist = array() ) {
+	function getHiddenFields( $blacklist = [] ) {
 		$blacklist = (array)$blacklist;
 		$query = $this->getRequest()->getQueryValues();
 		foreach ( $blacklist as $name ) {
@@ -411,10 +408,10 @@ abstract class TablePager extends IndexPager {
 	function getLimitForm() {
 		return Html::rawElement(
 			'form',
-			array(
+			[
 				'method' => 'get',
 				'action' => wfScript(),
-			),
+			],
 			"\n" . $this->getLimitDropdown()
 		) . "\n";
 	}
@@ -431,7 +428,7 @@ abstract class TablePager extends IndexPager {
 		return $this->msg( 'table_pager_limit' )
 			->rawParams( $this->getLimitSelect() )->escaped() .
 			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
-			$this->getHiddenFields( array( 'limit' ) );
+			$this->getHiddenFields( [ 'limit' ] );
 	}
 
 	/**

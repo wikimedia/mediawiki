@@ -19,87 +19,99 @@
  *
  * @file
  */
-
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
-class LinksDeletionUpdate extends SqlDataUpdate {
-	/** @var WikiPage The WikiPage that was deleted */
-	protected $mPage;
+class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
+	/** @var WikiPage */
+	protected $page;
+	/** @var integer */
+	protected $pageId;
 
 	/**
-	 * Constructor
-	 *
 	 * @param WikiPage $page Page we are updating
+	 * @param integer|null $pageId ID of the page we are updating [optional]
 	 * @throws MWException
 	 */
-	function __construct( WikiPage $page ) {
+	function __construct( WikiPage $page, $pageId = null ) {
 		parent::__construct( false ); // no implicit transaction
 
-		$this->mPage = $page;
-
-		if ( !$page->exists() ) {
+		$this->page = $page;
+		if ( $page->exists() ) {
+			$this->pageId = $page->getId();
+		} elseif ( $pageId ) {
+			$this->pageId = $pageId;
+		} else {
 			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
 	}
 
-	/**
-	 * Do some database updates after deletion
-	 */
 	public function doUpdate() {
-		$title = $this->mPage->getTitle();
-		$id = $this->mPage->getId();
+		# Page may already be deleted, so don't just getId()
+		$id = $this->pageId;
 
 		# Delete restrictions for it
-		$this->mDb->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
+		$this->mDb->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
 
 		# Fix category table counts
-		$cats = array();
-		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$cats[] = $row->cl_to;
-		}
-
-		$this->mPage->updateCategoryCounts( array(), $cats );
+		$cats = $this->mDb->selectFieldValues(
+			'categorylinks',
+			'cl_to',
+			[ 'cl_from' => $id ],
+			__METHOD__
+		);
+		$this->page->updateCategoryCounts( [], $cats );
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
 			# Delete outgoing links
-			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
+			$this->mDb->delete( 'pagelinks', [ 'pl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'imagelinks', [ 'il_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'categorylinks', [ 'cl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'templatelinks', [ 'tl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'externallinks', [ 'el_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'langlinks', [ 'll_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'iwlinks', [ 'iwl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
 		if ( !$this->mDb->cleanupTriggers() ) {
+			$title = $this->page->getTitle();
 			# Find recentchanges entries to clean up...
 			$rcIdsForTitle = $this->mDb->selectFieldValues( 'recentchanges',
 				'rc_id',
-				array(
+				[
 					'rc_type != ' . RC_LOG,
 					'rc_namespace' => $title->getNamespace(),
 					'rc_title' => $title->getDBkey()
-				),
+				],
 				__METHOD__
 			);
 			$rcIdsForPage = $this->mDb->selectFieldValues( 'recentchanges',
 				'rc_id',
-				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+				[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
 				__METHOD__
 			);
 
 			# T98706: delete PK to avoid lock contention with RC delete log insertions
 			$rcIds = array_merge( $rcIdsForTitle, $rcIdsForPage );
 			if ( $rcIds ) {
-				$this->mDb->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
+				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
 			}
 		}
+	}
+
+	public function getAsJobSpecification() {
+		return [
+			'wiki' => $this->mDb->getWikiID(),
+			'job'  => new JobSpecification(
+				'deleteLinks',
+				[ 'pageId' => $this->pageId ],
+				[ 'removeDuplicates' => true ],
+				$this->page->getTitle()
+			)
+		];
 	}
 }

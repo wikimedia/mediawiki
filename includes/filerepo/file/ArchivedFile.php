@@ -155,7 +155,7 @@ class ArchivedFile {
 		if ( $this->dataLoaded ) {
 			return true;
 		}
-		$conds = array();
+		$conds = [];
 
 		if ( $this->id > 0 ) {
 			$conds['fa_id'] = $this->id;
@@ -183,7 +183,7 @@ class ArchivedFile {
 				self::selectFields(),
 				$conds,
 				__METHOD__,
-				array( 'ORDER BY' => 'fa_timestamp DESC' )
+				[ 'ORDER BY' => 'fa_timestamp DESC' ]
 			);
 			if ( !$row ) {
 				// this revision does not exist?
@@ -218,7 +218,7 @@ class ArchivedFile {
 	 * @return array
 	 */
 	static function selectFields() {
-		return array(
+		return [
 			'fa_id',
 			'fa_name',
 			'fa_archive_name',
@@ -239,7 +239,7 @@ class ArchivedFile {
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
-		);
+		];
 	}
 
 	/**

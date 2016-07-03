@@ -81,9 +81,9 @@ abstract class FileJournal {
 		for ( $i = 0; $i < 5; $i++ ) {
 			$s .= mt_rand( 0, 2147483647 );
 		}
-		$s = wfBaseConvert( sha1( $s ), 16, 36, 31 );
+		$s = Wikimedia\base_convert( sha1( $s ), 16, 36, 31 );
 
-		return substr( wfBaseConvert( wfTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
+		return substr( Wikimedia\base_convert( wfTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
 	}
 
 	/**
@@ -238,7 +238,7 @@ class NullFileJournal extends FileJournal {
 	 * @return array
 	 */
 	protected function doGetChangeEntries( $start, $limit ) {
-		return array();
+		return [];
 	}
 
 	/**

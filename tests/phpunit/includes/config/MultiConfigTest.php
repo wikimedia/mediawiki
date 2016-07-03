@@ -8,11 +8,11 @@ class MultiConfigTest extends MediaWikiTestCase {
 	 * @covers MultiConfig::get
 	 */
 	public function testGet() {
-		$multi = new MultiConfig( array(
-			new HashConfig( array( 'foo' => 'bar' ) ),
-			new HashConfig( array( 'foo' => 'baz', 'bar' => 'foo' ) ),
-			new HashConfig( array( 'bar' => 'baz' ) ),
-		) );
+		$multi = new MultiConfig( [
+			new HashConfig( [ 'foo' => 'bar' ] ),
+			new HashConfig( [ 'foo' => 'baz', 'bar' => 'foo' ] ),
+			new HashConfig( [ 'bar' => 'baz' ] ),
+		] );
 
 		$this->assertEquals( 'bar', $multi->get( 'foo' ) );
 		$this->assertEquals( 'foo', $multi->get( 'bar' ) );
@@ -24,11 +24,11 @@ class MultiConfigTest extends MediaWikiTestCase {
 	 * @covers MultiConfig::has
 	 */
 	public function testHas() {
-		$conf = new MultiConfig( array(
-			new HashConfig( array( 'foo' => 'foo' ) ),
-			new HashConfig( array( 'something' => 'bleh' ) ),
-			new HashConfig( array( 'meh' => 'eh' ) ),
-		) );
+		$conf = new MultiConfig( [
+			new HashConfig( [ 'foo' => 'foo' ] ),
+			new HashConfig( [ 'something' => 'bleh' ] ),
+			new HashConfig( [ 'meh' => 'eh' ] ),
+		] );
 
 		$this->assertTrue( $conf->has( 'foo' ) );
 		$this->assertTrue( $conf->has( 'something' ) );

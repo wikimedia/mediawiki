@@ -37,7 +37,7 @@ class MWNamespace {
 	 * forevermore. Historically, they could've probably been lowercased too,
 	 * but some things are just too ingrained now. :)
 	 */
-	private static $alwaysCapitalizedNamespaces = array( NS_SPECIAL, NS_USER, NS_MEDIAWIKI );
+	private static $alwaysCapitalizedNamespaces = [ NS_SPECIAL, NS_USER, NS_MEDIAWIKI ];
 
 	/**
 	 * Throw an exception when trying to get the subject or talk page
@@ -72,7 +72,7 @@ class MWNamespace {
 		/**
 		 * @since 1.20
 		 */
-		Hooks::run( 'NamespaceIsMovable', array( $index, &$result ) );
+		Hooks::run( 'NamespaceIsMovable', [ $index, &$result ] );
 
 		return $result;
 	}
@@ -209,13 +209,13 @@ class MWNamespace {
 		static $namespaces = null;
 		if ( $namespaces === null || $rebuild ) {
 			global $wgExtraNamespaces, $wgCanonicalNamespaceNames;
-			$namespaces = array( NS_MAIN => '' ) + $wgCanonicalNamespaceNames;
+			$namespaces = [ NS_MAIN => '' ] + $wgCanonicalNamespaceNames;
 			// Add extension namespaces
 			$namespaces += ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' );
 			if ( is_array( $wgExtraNamespaces ) ) {
 				$namespaces += $wgExtraNamespaces;
 			}
-			Hooks::run( 'CanonicalNamespaces', array( &$namespaces ) );
+			Hooks::run( 'CanonicalNamespaces', [ &$namespaces ] );
 		}
 		return $namespaces;
 	}
@@ -245,7 +245,7 @@ class MWNamespace {
 	public static function getCanonicalIndex( $name ) {
 		static $xNamespaces = false;
 		if ( $xNamespaces === false ) {
-			$xNamespaces = array();
+			$xNamespaces = [];
 			foreach ( self::getCanonicalNamespaces() as $i => $text ) {
 				$xNamespaces[strtolower( $text )] = $i;
 			}
@@ -271,6 +271,8 @@ class MWNamespace {
 					$mValidNamespaces[] = $ns;
 				}
 			}
+			// T109137: sort numerically
+			sort( $mValidNamespaces, SORT_NUMERIC );
 		}
 
 		return $mValidNamespaces;
@@ -337,11 +339,11 @@ class MWNamespace {
 	 */
 	public static function getContentNamespaces() {
 		global $wgContentNamespaces;
-		if ( !is_array( $wgContentNamespaces ) || $wgContentNamespaces === array() ) {
-			return array( NS_MAIN );
+		if ( !is_array( $wgContentNamespaces ) || $wgContentNamespaces === [] ) {
+			return [ NS_MAIN ];
 		} elseif ( !in_array( NS_MAIN, $wgContentNamespaces ) ) {
 			// always force NS_MAIN to be part of array (to match the algorithm used by isContent)
-			return array_merge( array( NS_MAIN ), $wgContentNamespaces );
+			return array_merge( [ NS_MAIN ], $wgContentNamespaces );
 		} else {
 			return $wgContentNamespaces;
 		}
@@ -470,7 +472,7 @@ class MWNamespace {
 		}
 
 		// First, get the list of groups that can edit this namespace.
-		$namespaceGroups = array();
+		$namespaceGroups = [];
 		$combine = 'array_merge';
 		foreach ( (array)$wgNamespaceProtection[$index] as $right ) {
 			if ( $right == 'sysop' ) {
@@ -489,7 +491,7 @@ class MWNamespace {
 		// Now, keep only those restriction levels where there is at least one
 		// group that can edit the namespace but would be blocked by the
 		// restriction.
-		$usableLevels = array( '' );
+		$usableLevels = [ '' ];
 		foreach ( $wgRestrictionLevels as $level ) {
 			$right = $level;
 			if ( $right == 'sysop' ) {

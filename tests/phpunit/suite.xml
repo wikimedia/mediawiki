@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-Colors don't work on Windows!
-phpunit.php enables colors for other OSs at runtime
--->
 <phpunit bootstrap="./bootstrap.php"
-	colors="false"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+
+	colors="true"
 	backupGlobals="false"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
@@ -15,7 +13,9 @@ phpunit.php enables colors for other OSs at runtime
 	timeoutForSmallTests="10"
 	timeoutForMediumTests="30"
 	timeoutForLargeTests="60"
-	strict="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	beStrictAboutOutputDuringTests="true"
+	beStrictAboutTestSize="true"
 	verbose="true">
 	<testsuites>
 		<testsuite name="includes">
@@ -30,6 +30,8 @@ phpunit.php enables colors for other OSs at runtime
 		</testsuite>
 		<testsuite name="skins">
 			<directory>skins</directory>
+			<directory>structure</directory>
+			<file>suites/LessTestSuite.php</file>
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the
 		     name "maintenance" directly -->

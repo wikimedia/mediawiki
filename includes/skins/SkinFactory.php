@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Factory class to create Skin objects
  *
@@ -32,26 +34,21 @@ class SkinFactory {
 	 * Map of name => callback
 	 * @var array
 	 */
-	private $factoryFunctions = array();
+	private $factoryFunctions = [];
 	/**
 	 * Map of name => fallback human-readable name, used when the 'skinname-<skin>' message is not
 	 * available
 	 *
 	 * @var array
 	 */
-	private $displayNames = array();
+	private $displayNames = [];
 
 	/**
-	 * @var SkinFactory
+	 * @deprecated in 1.27
+	 * @return SkinFactory
 	 */
-	private static $self;
-
 	public static function getDefaultInstance() {
-		if ( !self::$self ) {
-			self::$self = new self;
-		}
-
-		return self::$self;
+		return MediaWikiServices::getInstance()->getSkinFactory();
 	}
 
 	/**

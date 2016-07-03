@@ -12,11 +12,10 @@ directory and make a symbolic link:
  mediawiki/skins$ ln -s ../../skins-trunk/FooBar
 
 The default skin Vector can be installed by cloning from Git:
-    git clone https://git.wikimedia.org/git/mediawiki/skins/Vector.git
+    git clone https://phabricator.wikimedia.org/diffusion/SVEC/Vector
 
 Other skins are also available:
-    https://gerrit.wikimedia.org/r/#/admin/projects/?filter=mediawiki%252Fskins%252F
-    https://git.wikimedia.org/project/mediawiki
+    https://phabricator.wikimedia.org/diffusion/SKIN/
 
 
 Please note that under POSIX systems (Linux...), parent of a symbolic path

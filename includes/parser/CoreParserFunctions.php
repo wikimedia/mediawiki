@@ -38,7 +38,7 @@ class CoreParserFunctions {
 		#  function callback,
 		#  optional Parser::SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
 		#    instead of {{#int:...}})
-		$noHashFunctions = array(
+		$noHashFunctions = [
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
 			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'bidi',
@@ -46,7 +46,7 @@ class CoreParserFunctions {
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
-			'pagesincategory', 'pagesize', 'protectionlevel',
+			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
 			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
 			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
@@ -55,25 +55,33 @@ class CoreParserFunctions {
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
 			'revisiontimestamp', 'revisionuser', 'cascadingsources',
-		);
+		];
 		foreach ( $noHashFunctions as $func ) {
-			$parser->setFunctionHook( $func, array( __CLASS__, $func ), Parser::SFH_NO_HASH );
+			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), Parser::SFH_NO_HASH );
-		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), Parser::SFH_NO_HASH );
-		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
-		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
-		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), Parser::SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
+		$parser->setFunctionHook(
+			'namespace',
+			[ __CLASS__, 'mwnamespace' ],
+			Parser::SFH_NO_HASH
+		);
+		$parser->setFunctionHook( 'int', [ __CLASS__, 'intFunction' ], Parser::SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', [ __CLASS__, 'special' ] );
+		$parser->setFunctionHook( 'speciale', [ __CLASS__, 'speciale' ] );
+		$parser->setFunctionHook( 'tag', [ __CLASS__, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', [ __CLASS__, 'formatDate' ] );
 
 		if ( $wgAllowDisplayTitle ) {
-			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), Parser::SFH_NO_HASH );
+			$parser->setFunctionHook(
+				'displaytitle',
+				[ __CLASS__, 'displaytitle' ],
+				Parser::SFH_NO_HASH
+			);
 		}
 		if ( $wgAllowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
-				array( __CLASS__, 'pagesinnamespace' ),
+				[ __CLASS__, 'pagesinnamespace' ],
 				Parser::SFH_NO_HASH
 			);
 		}
@@ -94,9 +102,9 @@ class CoreParserFunctions {
 				// and can result in a tag, therefore escape the angles
 				return $message->escaped();
 			}
-			return array( $message->plain(), 'noparse' => false );
+			return [ $message->plain(), 'noparse' => false ];
 		} else {
-			return array( 'found' => false );
+			return [ 'found' => false ];
 		}
 	}
 
@@ -121,7 +129,7 @@ class CoreParserFunctions {
 			$pref = $defaultPref;
 		}
 
-		$date = $df->reformat( $pref, $date, array( 'match-whole' ) );
+		$date = $df->reformat( $pref, $date, [ 'match-whole' ] );
 		return $date;
 	}
 
@@ -135,7 +143,7 @@ class CoreParserFunctions {
 		if ( $index !== false ) {
 			return $wgContLang->getFormattedNsText( $index );
 		} else {
-			return array( 'found' => false );
+			return [ 'found' => false ];
 		}
 	}
 
@@ -162,7 +170,7 @@ class CoreParserFunctions {
 	public static function urlencode( $parser, $s = '', $arg = null ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( array( 'url_path', 'url_query', 'url_wiki' ) );
+			$magicWords = new MagicWordArray( [ 'url_path', 'url_query', 'url_wiki' ] );
 		}
 		switch ( $magicWords->matchStartToEnd( $arg ) ) {
 
@@ -204,7 +212,7 @@ class CoreParserFunctions {
 	 */
 	public static function lc( $parser, $s = '' ) {
 		global $wgContLang;
-		return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
+		return $parser->markerSkipCallback( $s, [ $wgContLang, 'lc' ] );
 	}
 
 	/**
@@ -214,7 +222,7 @@ class CoreParserFunctions {
 	 */
 	public static function uc( $parser, $s = '' ) {
 		global $wgContLang;
-		return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
+		return $parser->markerSkipCallback( $s, [ $wgContLang, 'uc' ] );
 	}
 
 	public static function localurl( $parser, $s = '', $arg = null ) {
@@ -277,7 +285,7 @@ class CoreParserFunctions {
 			}
 			return $text;
 		} else {
-			return array( 'found' => false );
+			return [ 'found' => false ];
 		}
 	}
 
@@ -289,11 +297,11 @@ class CoreParserFunctions {
 	 */
 	public static function formatnum( $parser, $num = '', $arg = null ) {
 		if ( self::matchAgainstMagicword( 'rawsuffix', $arg ) ) {
-			$func = array( $parser->getFunctionLang(), 'parseFormattedNumber' );
+			$func = [ $parser->getFunctionLang(), 'parseFormattedNumber' ];
 		} elseif ( self::matchAgainstMagicword( 'nocommafysuffix', $arg ) ) {
-			$func = array( $parser->getFunctionLang(), 'formatNumNoSeparators' );
+			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
 		} else {
-			$func = array( $parser->getFunctionLang(), 'formatNum' );
+			$func = [ $parser->getFunctionLang(), 'formatNum' ];
 		}
 		return $parser->markerSkipCallback( $num, $func );
 	}
@@ -382,7 +390,7 @@ class CoreParserFunctions {
 
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( array( 'displaytitle_noerror', 'displaytitle_noreplace' ) );
+			$magicWords = new MagicWordArray( [ 'displaytitle_noerror', 'displaytitle_noreplace' ] );
 		}
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
@@ -394,8 +402,8 @@ class CoreParserFunctions {
 
 		// list of disallowed tags for DISPLAYTITLE
 		// these will be escaped even though they are allowed in normal wiki text
-		$bad = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'blockquote', 'ol', 'ul', 'li', 'hr',
-			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rtc', 'rp', 'br' );
+		$bad = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'blockquote', 'ol', 'ul', 'li', 'hr',
+			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rtc', 'rp', 'br' ];
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
 		if ( $wgRestrictDisplayTitle ) {
@@ -424,8 +432,8 @@ class CoreParserFunctions {
 		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags(
 			$text,
 			$htmlTagsCallback,
-			array(),
-			array(),
+			[],
+			[],
 			$bad
 		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
@@ -626,7 +634,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getRootText() ) ) );
+		return wfEscapeWikiText( wfUrlencode( str_replace( ' ', '_', $t->getRootText() ) ) );
 	}
 	public static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -640,7 +648,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) ) );
+		return wfEscapeWikiText( wfUrlencode( str_replace( ' ', '_', $t->getBaseText() ) ) );
 	}
 	public static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -685,26 +693,26 @@ class CoreParserFunctions {
 		global $wgContLang;
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( array(
+			$magicWords = new MagicWordArray( [
 				'pagesincategory_all',
 				'pagesincategory_pages',
 				'pagesincategory_subcats',
 				'pagesincategory_files'
-			) );
+			] );
 		}
-		static $cache = array();
+		static $cache = [];
 
 		// split the given option to its variable
 		if ( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
-			//{{pagesincategory:|raw[|type]}}
+			// {{pagesincategory:|raw[|type]}}
 			$raw = $arg1;
 			$type = $magicWords->matchStartToEnd( $arg2 );
 		} else {
-			//{{pagesincategory:[|type[|raw]]}}
+			// {{pagesincategory:[|type[|raw]]}}
 			$type = $magicWords->matchStartToEnd( $arg1 );
 			$raw = $arg2;
 		}
-		if ( !$type ) { //backward compatibility
+		if ( !$type ) { // backward compatibility
 			$type = 'pagesincategory_all';
 		}
 
@@ -764,8 +772,8 @@ class CoreParserFunctions {
 	/**
 	 * Returns the requested protection level for the current page. This
 	 * is an expensive parser function and can't be called too many times
-	 * per page, unless the protection levels for the given title have
-	 * already been retrieved
+	 * per page, unless the protection levels/expiries for the given title
+	 * have already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -783,6 +791,35 @@ class CoreParserFunctions {
 			# Title::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
 			return implode( $restrictions, ',' );
+		}
+		return '';
+	}
+
+	/**
+	 * Returns the requested protection expiry for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels/expiries for the given title
+	 * have already been retrieved
+	 *
+	 * @param Parser $parser
+	 * @param string $type
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	public static function protectionexpiry( $parser, $type = '', $title = '' ) {
+		$titleObject = Title::newFromText( $title );
+		if ( !( $titleObject instanceof Title ) ) {
+			$titleObject = $parser->mTitle;
+		}
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$expiry = $titleObject->getRestrictionExpiry( strtolower( $type ) );
+			// getRestrictionExpiry() returns false on invalid type; trying to
+			// match protectionlevel() function that returns empty string instead
+			if ( $expiry === false ) {
+				$expiry = '';
+			}
+			return $expiry;
 		}
 		return '';
 	}
@@ -810,7 +847,9 @@ class CoreParserFunctions {
 	 * @param int $direction
 	 * @return string
 	 */
-	public static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+	public static function pad(
+		$parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT
+	) {
 		$padding = $parser->killMarkers( $padding );
 		$lengthOfPadding = mb_strlen( $padding );
 		if ( $lengthOfPadding == 0 ) {
@@ -881,7 +920,7 @@ class CoreParserFunctions {
 	public static function defaultsort( $parser, $text, $uarg = '' ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( array( 'defaultsort_noerror', 'defaultsort_noreplace' ) );
+			$magicWords = new MagicWordArray( [ 'defaultsort_noerror', 'defaultsort_noreplace' ] );
 		}
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
@@ -945,7 +984,7 @@ class CoreParserFunctions {
 				}
 			}
 			if ( $isNowiki ) {
-				return array( $url, 'nowiki' => true );
+				return [ $url, 'nowiki' => true ];
 			}
 			return $url;
 		} else {
@@ -972,7 +1011,7 @@ class CoreParserFunctions {
 			$inner = null;
 		}
 
-		$attributes = array();
+		$attributes = [];
 		foreach ( $args as $arg ) {
 			$bits = $arg->splitArg();
 			if ( strval( $bits['index'] ) === '' ) {
@@ -998,12 +1037,12 @@ class CoreParserFunctions {
 			return "<$tagName$attrText>$inner</$tagName>";
 		}
 
-		$params = array(
+		$params = [
 			'name' => $tagName,
 			'inner' => $inner,
 			'attributes' => $attributes,
 			'close' => "</$tagName>",
-		);
+		];
 		return $parser->extensionSubstitution( $params, $frame );
 	}
 
@@ -1254,7 +1293,7 @@ class CoreParserFunctions {
 		if ( $titleObject->areCascadeProtectionSourcesLoaded()
 			|| $parser->incrementExpensiveFunctionCount()
 		) {
-			$names = array();
+			$names = [];
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
 				$names[] = $sourceTitle->getPrefixedText();

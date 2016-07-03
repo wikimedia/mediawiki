@@ -31,11 +31,11 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
 			'/Xmp-exif-multilingual_test.jpg' );
 
-		$expected = array(
+		$expected = [
 			'x-default' => 'right(iptc)',
 			'en' => 'right translation',
 			'_type' => 'lang'
-		);
+		];
 
 		$this->assertArrayHasKey( 'ImageDescription', $meta,
 			'Did not extract any ImageDescription info?!' );
@@ -103,23 +103,23 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testMerging() {
 		$merger = new BitmapMetadataHandler();
-		$merger->addMetadata( array( 'foo' => 'xmp' ), 'xmp-general' );
-		$merger->addMetadata( array( 'bar' => 'xmp' ), 'xmp-general' );
-		$merger->addMetadata( array( 'baz' => 'xmp' ), 'xmp-general' );
-		$merger->addMetadata( array( 'fred' => 'xmp' ), 'xmp-general' );
-		$merger->addMetadata( array( 'foo' => 'iptc (hash)' ), 'iptc-good-hash' );
-		$merger->addMetadata( array( 'bar' => 'iptc (bad hash)' ), 'iptc-bad-hash' );
-		$merger->addMetadata( array( 'baz' => 'iptc (bad hash)' ), 'iptc-bad-hash' );
-		$merger->addMetadata( array( 'fred' => 'iptc (no hash)' ), 'iptc-no-hash' );
-		$merger->addMetadata( array( 'baz' => 'exif' ), 'exif' );
+		$merger->addMetadata( [ 'foo' => 'xmp' ], 'xmp-general' );
+		$merger->addMetadata( [ 'bar' => 'xmp' ], 'xmp-general' );
+		$merger->addMetadata( [ 'baz' => 'xmp' ], 'xmp-general' );
+		$merger->addMetadata( [ 'fred' => 'xmp' ], 'xmp-general' );
+		$merger->addMetadata( [ 'foo' => 'iptc (hash)' ], 'iptc-good-hash' );
+		$merger->addMetadata( [ 'bar' => 'iptc (bad hash)' ], 'iptc-bad-hash' );
+		$merger->addMetadata( [ 'baz' => 'iptc (bad hash)' ], 'iptc-bad-hash' );
+		$merger->addMetadata( [ 'fred' => 'iptc (no hash)' ], 'iptc-no-hash' );
+		$merger->addMetadata( [ 'baz' => 'exif' ], 'exif' );
 
 		$actual = $merger->getMetadataArray();
-		$expected = array(
+		$expected = [
 			'foo' => 'xmp',
 			'bar' => 'iptc (bad hash)',
 			'baz' => 'exif',
 			'fred' => 'xmp',
-		);
+		];
 		$this->assertEquals( $expected, $actual );
 	}
 
@@ -131,18 +131,18 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			$this->markTestSkipped( "This test needs the xml extension." );
 		}
 		$handler = new BitmapMetadataHandler();
-		$result = $handler->png( $this->filePath . 'xmp.png' );
-		$expected = array(
+		$result = $handler->PNG( $this->filePath . 'xmp.png' );
+		$expected = [
 			'frameCount' => 0,
 			'loopCount' => 1,
 			'duration' => 0,
 			'bitDepth' => 1,
 			'colorType' => 'index-coloured',
-			'metadata' => array(
+			'metadata' => [
 				'SerialNumber' => '123456789',
 				'_MW_PNG_VERSION' => 1,
-			),
-		);
+			],
+		];
 		$this->assertEquals( $expected, $result );
 	}
 
@@ -151,7 +151,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testPNGNative() {
 		$handler = new BitmapMetadataHandler();
-		$result = $handler->png( $this->filePath . 'Png-native-test.png' );
+		$result = $handler->PNG( $this->filePath . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
 		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] );
 	}

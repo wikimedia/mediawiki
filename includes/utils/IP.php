@@ -73,7 +73,7 @@ class IP {
 	/**
 	 * Determine if a string is as valid IP address or network (CIDR prefix).
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -84,7 +84,7 @@ class IP {
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv6 only.
-	 * Note: Unlike isValid(), this looks for networks too.
+	 * @note Unlike isValid(), this looks for networks too.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -95,7 +95,7 @@ class IP {
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv4 only.
-	 * Note: Unlike isValid(), this looks for networks too.
+	 * @note Unlike isValid(), this looks for networks too.
 	 *
 	 * @param string $ip Possible IP address
 	 * @return bool
@@ -107,7 +107,7 @@ class IP {
 	/**
 	 * Validate an IP address. Ranges are NOT considered valid.
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ip
 	 * @return bool True if it is valid
@@ -120,7 +120,7 @@ class IP {
 	/**
 	 * Validate an IP Block (valid address WITH a valid prefix).
 	 * SIIT IPv4-translated addresses are rejected.
-	 * Note: canonicalize() tries to convert translated addresses to IPv4.
+	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
 	 * @param string $ipblock
 	 * @return bool True if it is valid
@@ -147,7 +147,7 @@ class IP {
 		/* If not an IP, just return trimmed value, since sanitizeIP() is called
 		 * in a number of contexts where usernames are supplied as input.
 		 */
-		if ( !self::isIPAddress($ip) ) {
+		if ( !self::isIPAddress( $ip ) ) {
 			return $ip;
 		}
 		if ( self::isIPv4( $ip ) ) {
@@ -207,7 +207,7 @@ class IP {
 			if ( strpos( $ip, '/' ) !== false ) {
 				list( $ip, $cidr ) = explode( '/', $ip, 2 );
 			} else {
-				list( $ip, $cidr ) = array( $ip, '' );
+				list( $ip, $cidr ) = [ $ip, '' ];
 			}
 			// Get the largest slice of words with multiple zeros
 			$offset = 0;
@@ -257,9 +257,9 @@ class IP {
 		if ( substr( $both, 0, 1 ) === '[' ) {
 			if ( preg_match( '/^\[(' . RE_IPV6_ADD . ')\](?::(?P<port>\d+))?$/', $both, $m ) ) {
 				if ( isset( $m['port'] ) ) {
-					return array( $m[1], intval( $m['port'] ) );
+					return [ $m[1], intval( $m['port'] ) ];
 				} else {
-					return array( $m[1], false );
+					return [ $m[1], false ];
 				}
 			} else {
 				// Square bracket found but no IPv6
@@ -270,7 +270,7 @@ class IP {
 		if ( $numColons >= 2 ) {
 			// Is it a bare IPv6 address?
 			if ( preg_match( '/^' . RE_IPV6_ADD . '$/', $both ) ) {
-				return array( $both, false );
+				return [ $both, false ];
 			} else {
 				// Not valid IPv6, but too many colons for anything else
 				return false;
@@ -280,7 +280,7 @@ class IP {
 			// Host:port?
 			$bits = explode( ':', $both );
 			if ( preg_match( '/^\d+/', $bits[1] ) ) {
-				return array( $bits[0], intval( $bits[1] ) );
+				return [ $bits[0], intval( $bits[1] ) ];
 			} else {
 				// Not a valid port
 				return false;
@@ -288,7 +288,7 @@ class IP {
 		}
 
 		// Plain hostname
-		return array( $both, false );
+		return [ $both, false ];
 	}
 
 	/**
@@ -378,7 +378,7 @@ class IP {
 	public static function isPublic( $ip ) {
 		static $privateSet = null;
 		if ( !$privateSet ) {
-			$privateSet = new IPSet( array(
+			$privateSet = new IPSet( [
 				'10.0.0.0/8', # RFC 1918 (private)
 				'172.16.0.0/12', # RFC 1918 (private)
 				'192.168.0.0/16', # RFC 1918 (private)
@@ -388,7 +388,7 @@ class IP {
 				'0:0:0:0:0:0:0:1', # loopback
 				'169.254.0.0/16', # link-local
 				'fe80::/10', # link-local
-			) );
+			] );
 		}
 		return !$privateSet->match( $ip );
 	}
@@ -421,7 +421,7 @@ class IP {
 				}
 			}
 			if ( $n !== false ) {
-				# Floating points can handle the conversion; faster than wfBaseConvert()
+				# Floating points can handle the conversion; faster than Wikimedia\base_convert()
 				$n = strtoupper( str_pad( base_convert( $n, 10, 16 ), 8, '0', STR_PAD_LEFT ) );
 			}
 		} else {
@@ -463,7 +463,7 @@ class IP {
 		}
 		$parts = explode( '/', $range, 2 );
 		if ( count( $parts ) != 2 ) {
-			return array( false, false );
+			return [ false, false ];
 		}
 		list( $network, $bits ) = $parts;
 		$network = ip2long( $network );
@@ -482,7 +482,7 @@ class IP {
 			$bits = false;
 		}
 
-		return array( $network, $bits );
+		return [ $network, $bits ];
 	}
 
 	/**
@@ -533,9 +533,9 @@ class IP {
 			$start = $end = self::toHex( $range );
 		}
 		if ( $start === false || $end === false ) {
-			return array( false, false );
+			return [ false, false ];
 		} else {
-			return array( $start, $end );
+			return [ $start, $end ];
 		}
 	}
 
@@ -551,7 +551,7 @@ class IP {
 		# Explode into <expanded IP,range>
 		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
-			return array( false, false );
+			return [ false, false ];
 		}
 		list( $network, $bits ) = $parts;
 		$network = self::IPv6ToRawHex( $network );
@@ -561,18 +561,18 @@ class IP {
 			} else {
 				# Native 32 bit functions WONT work here!!!
 				# Convert to a padded binary number
-				$network = wfBaseConvert( $network, 16, 2, 128 );
+				$network = Wikimedia\base_convert( $network, 16, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with zeros
 				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
 				# Convert back to an integer
-				$network = wfBaseConvert( $network, 2, 10 );
+				$network = Wikimedia\base_convert( $network, 2, 10 );
 			}
 		} else {
 			$network = false;
 			$bits = false;
 		}
 
-		return array( $network, (int)$bits );
+		return [ $network, (int)$bits ];
 	}
 
 	/**
@@ -597,13 +597,13 @@ class IP {
 			if ( $network === false ) {
 				$start = $end = false;
 			} else {
-				$start = wfBaseConvert( $network, 10, 16, 32, false );
+				$start = Wikimedia\base_convert( $network, 10, 16, 32, false );
 				# Turn network to binary (again)
-				$end = wfBaseConvert( $network, 10, 2, 128 );
+				$end = Wikimedia\base_convert( $network, 10, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with ones
 				$end = str_pad( substr( $end, 0, $bits ), 128, 1, STR_PAD_RIGHT );
 				# Convert to hex
-				$end = wfBaseConvert( $end, 2, 16, 32, false );
+				$end = Wikimedia\base_convert( $end, 2, 16, 32, false );
 				# see toHex() comment
 				$start = "v6-$start";
 				$end = "v6-$end";
@@ -621,9 +621,9 @@ class IP {
 			$start = $end = self::toHex( $range );
 		}
 		if ( $start === false || $end === false ) {
-			return array( false, false );
+			return [ false, false ];
 		} else {
-			return array( $start, $end );
+			return [ $start, $end ];
 		}
 	}
 
@@ -633,6 +633,9 @@ class IP {
 	 * @param string $addr The address to check against the given range.
 	 * @param string $range The range to check the given address against.
 	 * @return bool Whether or not the given address is in the given range.
+	 *
+	 * @note This can return unexpected results for invalid arguments!
+	 *       Make sure you pass a valid IP address and IP range.
 	 */
 	public static function isInRange( $addr, $range ) {
 		$hexIP = self::toHex( $addr );
@@ -669,7 +672,7 @@ class IP {
 	 * unusual representations may be added later.
 	 *
 	 * @param string $addr Something that might be an IP address
-	 * @return string Valid dotted quad IPv4 address or null
+	 * @return string|null Valid dotted quad IPv4 address or null
 	 */
 	public static function canonicalize( $addr ) {
 		// remove zone info (bug 35738)
@@ -686,7 +689,7 @@ class IP {
 			}
 		}
 		// IPv6 loopback address
-		$m = array();
+		$m = [];
 		if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) ) {
 			return '127.0.0.1';
 		}
@@ -723,7 +726,7 @@ class IP {
 	/**
 	 * Checks if an IP is a trusted proxy provider.
 	 * Useful to tell if X-Forwarded-For data is possibly bogus.
-	 * Squid cache servers for the site are whitelisted.
+	 * CDN cache servers for the site are whitelisted.
 	 * @since 1.24
 	 *
 	 * @param string $ip
@@ -731,7 +734,7 @@ class IP {
 	 */
 	public static function isTrustedProxy( $ip ) {
 		$trusted = self::isConfiguredProxy( $ip );
-		Hooks::run( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+		Hooks::run( 'IsTrustedProxy', [ &$ip, &$trusted ] );
 		return $trusted;
 	}
 
@@ -765,5 +768,24 @@ class IP {
 	 */
 	public static function clearCaches() {
 		self::$proxyIpSet = null;
+	}
+
+	/**
+	 * Returns the subnet of a given IP
+	 *
+	 * @param string $ip
+	 * @return string|false
+	 */
+	public static function getSubnet( $ip ) {
+		$matches = [];
+		$subnet = false;
+		if ( IP::isIPv6( $ip ) ) {
+			$parts = IP::parseRange( "$ip/64" );
+			$subnet = $parts[0];
+		} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+			// IPv4
+			$subnet = $matches[1];
+		}
+		return $subnet;
 	}
 }

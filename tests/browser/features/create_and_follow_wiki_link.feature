@@ -1,4 +1,4 @@
-@chrome @clean @firefox @login @phantomjs
+@chrome @firefox @vagrant
 Feature: Create Page With Wiki Link
 
   Scenario: Create Page With Wiki Link

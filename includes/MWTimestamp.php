@@ -32,7 +32,7 @@ class MWTimestamp {
 	/**
 	 * Standard gmdate() formats for the different timestamp types.
 	 */
-	private static $formats = array(
+	private static $formats = [
 		TS_UNIX => 'U',
 		TS_MW => 'YmdHis',
 		TS_DB => 'Y-m-d H:i:s',
@@ -42,7 +42,7 @@ class MWTimestamp {
 		TS_RFC2822 => 'D, d M Y H:i:s',
 		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
 		TS_POSTGRES => 'Y-m-d H:i:s',
-	);
+	];
 
 	/**
 	 * The actual timestamp being wrapped (DateTime object).
@@ -74,8 +74,8 @@ class MWTimestamp {
 	 * @throws TimestampException
 	 */
 	public function setTimestamp( $ts = false ) {
-		$m = array();
-		$da = array();
+		$m = [];
+		$da = [];
 		$strtime = '';
 
 		// We want to catch 0, '', null... but not date strings starting with a letter.
@@ -106,7 +106,7 @@ class MWTimestamp {
 			$ts,
 			$da
 		) ) {
-			#TS_ISO_8601_BASIC
+			# TS_ISO_8601_BASIC
 		} elseif ( preg_match(
 			'/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d*[\+\- ](\d\d)$/',
 			$ts,
@@ -203,11 +203,15 @@ class MWTimestamp {
 	 * @deprecated since 1.26 Use Language::getHumanTimestamp directly
 	 *
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
-	 * @param Language|null $lang Language to use to make the human timestamp (or null to use main context's language)
+	 * @param User|null $user User the timestamp is being generated for
+	 *  (or null to use main context's user)
+	 * @param Language|null $lang Language to use to make the human timestamp
+	 *  (or null to use main context's language)
 	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp( MWTimestamp $relativeTo = null, User $user = null, Language $lang = null ) {
+	public function getHumanTimestamp(
+		MWTimestamp $relativeTo = null, User $user = null, Language $lang = null
+	) {
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
 		}
@@ -295,7 +299,7 @@ class MWTimestamp {
 		MWTimestamp $relativeTo = null,
 		User $user = null,
 		Language $lang = null,
-		array $chosenIntervals = array()
+		array $chosenIntervals = []
 	) {
 		if ( $relativeTo === null ) {
 			$relativeTo = new self;
@@ -311,7 +315,7 @@ class MWTimestamp {
 		$diff = $this->diff( $relativeTo );
 		if ( Hooks::run(
 			'GetRelativeTimestamp',
-			array( &$ts, &$diff, $this, $relativeTo, $user, $lang )
+			[ &$ts, &$diff, $this, $relativeTo, $user, $lang ]
 		) ) {
 			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
 			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )
@@ -365,6 +369,26 @@ class MWTimestamp {
 	 */
 	public function getTimezone() {
 		return $this->timestamp->getTimezone();
+	}
+
+	/**
+	 * Get the localized timezone message, if available.
+	 *
+	 * Premade translations are not shipped as format() may return whatever the
+	 * system uses, localized or not, so translation must be done through wiki.
+	 *
+	 * @since 1.27
+	 * @return Message The localized timezone message
+	 */
+	public function getTimezoneMessage() {
+		$tzMsg = $this->format( 'T' );  // might vary on DST changeover!
+		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
+		$msg = wfMessage( $key );
+		if ( $msg->exists() ) {
+			return $msg;
+		} else {
+			return new RawMessage( $tzMsg );
+		}
 	}
 
 	/**

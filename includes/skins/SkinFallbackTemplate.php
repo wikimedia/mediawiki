@@ -46,8 +46,8 @@ class SkinFallbackTemplate extends BaseTemplate {
 		$enabledSkins = array_change_key_case( $enabledSkins, CASE_LOWER );
 
 		if ( $installedSkins ) {
-			$skinsInstalledText = array();
-			$skinsInstalledSnippet = array();
+			$skinsInstalledText = [];
+			$skinsInstalledSnippet = [];
 
 			foreach ( $installedSkins as $skin ) {
 				$normalizedKey = strtolower( $skin );
@@ -105,7 +105,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 		<form action="<?php $this->text( 'wgScript' ) ?>">
 			<input type="hidden" name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
 			<h3><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
-			<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ) ?>
+			<?php echo $this->makeSearchInput( [ "id" => "searchInput" ] ) ?>
 			<?php echo $this->makeSearchButton( 'go' ) ?>
 		</form>
 

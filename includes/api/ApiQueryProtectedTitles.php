@@ -51,7 +51,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$this->addTables( 'protected_titles' );
-		$this->addFields( array( 'pt_namespace', 'pt_title', 'pt_timestamp' ) );
+		$this->addFields( [ 'pt_namespace', 'pt_title', 'pt_timestamp' ] );
 
 		$prop = array_flip( $params['prop'] );
 		$this->addFieldsIf( 'pt_user', isset( $prop['user'] ) || isset( $prop['userid'] ) );
@@ -87,9 +87,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		if ( isset( $prop['user'] ) ) {
 			$this->addTables( 'user' );
 			$this->addFields( 'user_name' );
-			$this->addJoinConds( array( 'user' => array( 'LEFT JOIN',
+			$this->addJoinConds( [ 'user' => [ 'LEFT JOIN',
 				'user_id=pt_user'
-			) ) );
+			] ] );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -98,7 +98,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 
-		$titles = array();
+		$titles = [];
 
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
@@ -112,7 +112,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 			$title = Title::makeTitle( $row->pt_namespace, $row->pt_title );
 			if ( is_null( $resultPageSet ) ) {
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->pt_timestamp );
@@ -143,7 +143,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					$vals['level'] = $row->pt_create_perm;
 				}
 
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue',
 						"$row->pt_timestamp|$row->pt_namespace|$row->pt_title"
@@ -157,7 +157,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->addIndexedTagName(
-				array( 'query', $this->getModuleName() ),
+				[ 'query', $this->getModuleName() ],
 				$this->getModulePrefix()
 			);
 		} else {
@@ -175,40 +175,40 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'namespace' => array(
+		return [
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
-			),
-			'level' => array(
+			],
+			'level' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), array( '' ) )
-			),
-			'limit' => array(
+				ApiBase::PARAM_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), [ '' ] )
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'start' => array(
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'timestamp|level',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'timestamp',
 					'user',
 					'userid',
@@ -216,22 +216,22 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'parsedcomment',
 					'expiry',
 					'level'
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'continue' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=protectedtitles'
 				=> 'apihelp-query+protectedtitles-example-simple',
 			'action=query&generator=protectedtitles&gptnamespace=0&prop=linkshere'
 				=> 'apihelp-query+protectedtitles-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

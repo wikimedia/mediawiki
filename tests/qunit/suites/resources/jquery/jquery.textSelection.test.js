@@ -11,7 +11,7 @@
 	 * @param {string} options.output Output
 	 * @param {int} options.start Starting char for selection
 	 * @param {int} options.end Ending char for selection
-	 * @param {object} options.params Additional parameters for $().textSelection( 'encapsulateText' )
+	 * @param {Object} options.params Additional parameters for $().textSelection( 'encapsulateText' )
 	 */
 	function encapsulateTest( options ) {
 		var opt = $.extend( {

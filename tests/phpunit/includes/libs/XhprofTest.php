@@ -42,14 +42,14 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideSplitKey() {
-		return array(
-			array( 'main()', array( null, 'main()' ) ),
-			array( 'foo==>bar', array( 'foo', 'bar' ) ),
-			array( 'bar@1==>bar@2', array( 'bar@1', 'bar@2' ) ),
-			array( 'foo==>bar==>baz', array( 'foo', 'bar==>baz' ) ),
-			array( '==>bar', array( '', 'bar' ) ),
-			array( '', array( null, '' ) ),
-		);
+		return [
+			[ 'main()', [ null, 'main()' ] ],
+			[ 'foo==>bar', [ 'foo', 'bar' ] ],
+			[ 'bar@1==>bar@2', [ 'bar@1', 'bar@2' ] ],
+			[ 'foo==>bar==>baz', [ 'foo', 'bar==>baz' ] ],
+			[ '==>bar', [ '', 'bar' ] ],
+			[ '', [ null, '' ] ],
+		];
 	}
 
 	/**
@@ -59,7 +59,7 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideRawData
 	 */
 	public function testRawData( $flags, $keys ) {
-		$xhprof = new Xhprof( array( 'flags' => $flags ) );
+		$xhprof = new Xhprof( [ 'flags' => $flags ] );
 		$raw = $xhprof->getRawData();
 		$this->assertArrayHasKey( 'main()', $raw );
 		foreach ( $keys as $key ) {
@@ -68,20 +68,20 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideRawData() {
-		$tests = array(
-			array( 0, array( 'ct', 'wt' ) ),
-		);
+		$tests = [
+			[ 0, [ 'ct', 'wt' ] ],
+		];
 
 		if ( defined( 'XHPROF_FLAGS_CPU' ) && defined( 'XHPROF_FLAGS_CPU' ) ) {
-			$tests[] = array( XHPROF_FLAGS_MEMORY, array(
+			$tests[] = [ XHPROF_FLAGS_MEMORY, [
 				'ct', 'wt', 'mu', 'pmu',
-			) );
-			$tests[] = array( XHPROF_FLAGS_CPU, array(
+			] ];
+			$tests[] = [ XHPROF_FLAGS_CPU, [
 				'ct', 'wt', 'cpu',
-			) );
-			$tests[] = array( XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_CPU, array(
+			] ];
+			$tests[] = [ XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_CPU, [
 					'ct', 'wt', 'mu', 'pmu', 'cpu',
-				) );
+				] ];
 		}
 
 		return $tests;
@@ -91,9 +91,9 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 * @covers Xhprof::pruneData
 	 */
 	public function testInclude() {
-		$xhprof = $this->getXhprofFixture( array(
-			'include' => array( 'main()' ),
-		) );
+		$xhprof = $this->getXhprofFixture( [
+			'include' => [ 'main()' ],
+		] );
 		$raw = $xhprof->getRawData();
 		$this->assertArrayHasKey( 'main()', $raw );
 		$this->assertArrayHasKey( 'main()==>foo', $raw );
@@ -110,21 +110,21 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 * @covers Xhprof::getInclusiveMetrics
 	 */
 	public function testInclusiveMetricsStructure() {
-		$metricStruct = array(
+		$metricStruct = [
 			'ct' => 'int',
 			'wt' => 'array',
 			'cpu' => 'array',
 			'mu' => 'array',
 			'pmu' => 'array',
-		);
-		$statStruct = array(
+		];
+		$statStruct = [
 			'total' => 'numeric',
 			'min' => 'numeric',
 			'mean' => 'numeric',
 			'max' => 'numeric',
 			'variance' => 'numeric',
 			'percent' => 'numeric',
-		);
+		];
 
 		$xhprof = $this->getXhprofFixture();
 		$metrics = $xhprof->getInclusiveMetrics();
@@ -152,7 +152,7 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 * @covers Xhprof::getCompleteMetrics
 	 */
 	public function testCompleteMetricsStructure() {
-		$metricStruct = array(
+		$metricStruct = [
 			'ct' => 'int',
 			'wt' => 'array',
 			'cpu' => 'array',
@@ -160,9 +160,9 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 			'pmu' => 'array',
 			'calls' => 'array',
 			'subcalls' => 'array',
-		);
-		$statsMetrics = array( 'wt', 'cpu', 'mu', 'pmu' );
-		$statStruct = array(
+		];
+		$statsMetrics = [ 'wt', 'cpu', 'mu', 'pmu' ];
+		$statStruct = [
 			'total' => 'numeric',
 			'min' => 'numeric',
 			'mean' => 'numeric',
@@ -170,7 +170,7 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 			'variance' => 'numeric',
 			'percent' => 'numeric',
 			'exclusive' => 'numeric',
-		);
+		];
 
 		$xhprof = $this->getXhprofFixture();
 		$metrics = $xhprof->getCompleteMetrics();
@@ -198,14 +198,14 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testEdges() {
 		$xhprof = $this->getXhprofFixture();
-		$this->assertSame( array(), $xhprof->getCallers( 'main()' ) );
-		$this->assertSame( array( 'foo', 'xhprof_disable' ),
+		$this->assertSame( [], $xhprof->getCallers( 'main()' ) );
+		$this->assertSame( [ 'foo', 'xhprof_disable' ],
 			$xhprof->getCallees( 'main()' )
 		);
-		$this->assertSame( array( 'main()' ),
+		$this->assertSame( [ 'main()' ],
 			$xhprof->getCallers( 'foo' )
 		);
-		$this->assertSame( array(), $xhprof->getCallees( 'strlen' ) );
+		$this->assertSame( [], $xhprof->getCallees( 'strlen' ) );
 	}
 
 	/**
@@ -253,52 +253,52 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 *
 	 * @return Xhprof
 	 */
-	protected function getXhprofFixture( array $opts = array() ) {
+	protected function getXhprofFixture( array $opts = [] ) {
 		$xhprof = new Xhprof( $opts );
-		$xhprof->loadRawData( array(
-			'foo==>bar' => array(
+		$xhprof->loadRawData( [
+			'foo==>bar' => [
 				'ct' => 2,
 				'wt' => 57,
 				'cpu' => 92,
 				'mu' => 1896,
 				'pmu' => 0,
-			),
-			'foo==>strlen' => array(
+			],
+			'foo==>strlen' => [
 				'ct' => 2,
 				'wt' => 21,
 				'cpu' => 141,
 				'mu' => 752,
 				'pmu' => 0,
-			),
-			'bar==>bar@1' => array(
+			],
+			'bar==>bar@1' => [
 				'ct' => 1,
 				'wt' => 18,
 				'cpu' => 19,
 				'mu' => 752,
 				'pmu' => 0,
-			),
-			'main()==>foo' => array(
+			],
+			'main()==>foo' => [
 				'ct' => 1,
 				'wt' => 304,
 				'cpu' => 307,
 				'mu' => 4008,
 				'pmu' => 0,
-			),
-			'main()==>xhprof_disable' => array(
+			],
+			'main()==>xhprof_disable' => [
 				'ct' => 1,
 				'wt' => 8,
 				'cpu' => 10,
 				'mu' => 768,
 				'pmu' => 392,
-			),
-			'main()' => array(
+			],
+			'main()' => [
 				'ct' => 1,
 				'wt' => 353,
 				'cpu' => 351,
 				'mu' => 6112,
 				'pmu' => 1424,
-			),
-		) );
+			],
+		] );
 		return $xhprof;
 	}
 

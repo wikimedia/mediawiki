@@ -9,7 +9,8 @@
 			"Talha Samil Cakir",
 			"TurkishStyles",
 			"Sayginer",
-			"Meelo"
+			"Meelo",
+			"McAang"
 		]
 	},
 	"ooui-outline-control-move-down": "Ögeyi aşağı taşı",
@@ -23,5 +24,6 @@
 	"ooui-dialog-process-error": "Bir şeyler yanlış gitti",
 	"ooui-dialog-process-dismiss": "Kapat",
 	"ooui-dialog-process-retry": "Tekrar dene",
-	"ooui-dialog-process-continue": "Devam et"
+	"ooui-dialog-process-continue": "Devam et",
+	"ooui-selectfile-placeholder": "Herhangi bir dosya seçilmedi"
 }

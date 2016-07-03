@@ -61,7 +61,7 @@ class ApiFormatXml extends ApiFormatBase {
 			// This allows API output of other XML types like Atom, RSS, RSD.
 			$result->addValue( null, 'xmlns', self::$namespace, ApiResult::NO_SIZE_CHECK );
 		}
-		$data = $result->getResultData( null, array(
+		$data = $result->getResultData( null, [
 			'Custom' => function ( &$data, &$metadata ) {
 				if ( isset( $metadata[ApiResult::META_TYPE] ) ) {
 					// We want to use non-BC for BCassoc to force outputting of _idx.
@@ -72,9 +72,9 @@ class ApiFormatXml extends ApiFormatBase {
 					}
 				}
 			},
-			'BC' => array( 'nobool', 'no*', 'nosub' ),
-			'Types' => array( 'ArmorKVP' => '_name' ),
-		) );
+			'BC' => [ 'nobool', 'no*', 'nosub' ],
+			'Types' => [ 'ArmorKVP' => '_name' ],
+		] );
 
 		$this->printText(
 			static::recXmlPrint( $this->mRootElemName,
@@ -93,7 +93,7 @@ class ApiFormatXml extends ApiFormatBase {
 	 * @param array $attributes Additional attributes
 	 * @return string
 	 */
-	public static function recXmlPrint( $name, $value, $indent, $attributes = array() ) {
+	public static function recXmlPrint( $name, $value, $indent, $attributes = [] ) {
 		$retval = '';
 		if ( $indent !== null ) {
 			if ( $name !== null ) {
@@ -113,7 +113,7 @@ class ApiFormatXml extends ApiFormatBase {
 				: '*';
 			$subelementKeys = isset( $value[ApiResult::META_SUBELEMENTS] )
 				? $value[ApiResult::META_SUBELEMENTS]
-				: array();
+				: [];
 			if ( isset( $value[ApiResult::META_BC_SUBELEMENTS] ) ) {
 				$subelementKeys = array_merge(
 					$subelementKeys, $value[ApiResult::META_BC_SUBELEMENTS]
@@ -121,20 +121,20 @@ class ApiFormatXml extends ApiFormatBase {
 			}
 			$preserveKeys = isset( $value[ApiResult::META_PRESERVE_KEYS] )
 				? $value[ApiResult::META_PRESERVE_KEYS]
-				: array();
+				: [];
 			$indexedTagName = isset( $value[ApiResult::META_INDEXED_TAG_NAME] )
 				? self::mangleName( $value[ApiResult::META_INDEXED_TAG_NAME], $preserveKeys )
 				: '_v';
 			$bcBools = isset( $value[ApiResult::META_BC_BOOLS] )
 				? $value[ApiResult::META_BC_BOOLS]
-				: array();
+				: [];
 			$indexSubelements = isset( $value[ApiResult::META_TYPE] )
 				? $value[ApiResult::META_TYPE] !== 'array'
 				: false;
 
 			$content = null;
-			$subelements = array();
-			$indexedSubelements = array();
+			$subelements = [];
+			$indexedSubelements = [];
 			foreach ( $value as $k => $v ) {
 				if ( ApiResult::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
 					continue;
@@ -152,11 +152,11 @@ class ApiFormatXml extends ApiFormatBase {
 				} elseif ( is_array( $v ) || is_object( $v ) ) {
 					$subelements[self::mangleName( $k, $preserveKeys )] = $v;
 				} elseif ( in_array( $k, $subelementKeys, true ) || $name === null ) {
-					$subelements[self::mangleName( $k, $preserveKeys )] = array(
+					$subelements[self::mangleName( $k, $preserveKeys )] = [
 						'content' => $v,
 						ApiResult::META_CONTENT => 'content',
 						ApiResult::META_TYPE => 'assoc',
-					);
+					];
 				} elseif ( is_bool( $oldv ) ) {
 					if ( $oldv ) {
 						$attributes[self::mangleName( $k, $preserveKeys )] = '';
@@ -168,16 +168,16 @@ class ApiFormatXml extends ApiFormatBase {
 
 			if ( $content !== null ) {
 				if ( $subelements || $indexedSubelements ) {
-					$subelements[self::mangleName( $contentKey, $preserveKeys )] = array(
+					$subelements[self::mangleName( $contentKey, $preserveKeys )] = [
 						'content' => $content,
 						ApiResult::META_CONTENT => 'content',
 						ApiResult::META_TYPE => 'assoc',
-					);
+					];
 					$content = null;
 				} elseif ( is_scalar( $content ) ) {
 					// Add xml:space="preserve" to the element so XML parsers
 					// will leave whitespace in the content alone
-					$attributes += array( 'xml:space' => 'preserve' );
+					$attributes += [ 'xml:space' => 'preserve' ];
 				}
 			}
 
@@ -206,7 +206,7 @@ class ApiFormatXml extends ApiFormatBase {
 				}
 				foreach ( $indexedSubelements as $k => $v ) {
 					$retval .= static::recXmlPrint( $indexedTagName, $v, $indent,
-						$indexSubelements ? array( '_idx' => $k ) : array()
+						$indexSubelements ? [ '_idx' => $k ] : []
 					);
 				}
 				if ( $name !== null ) {
@@ -232,7 +232,7 @@ class ApiFormatXml extends ApiFormatBase {
 	 * @param array $preserveKeys Names to not mangle
 	 * @return string Mangled name
 	 */
-	private static function mangleName( $name, $preserveKeys = array() ) {
+	private static function mangleName( $name, $preserveKeys = [] ) {
 		static $nsc = null, $nc = null;
 
 		if ( in_array( $name, $preserveKeys, true ) ) {
@@ -266,7 +266,7 @@ class ApiFormatXml extends ApiFormatBase {
 		);
 	}
 
-	function addXslt() {
+	protected function addXslt() {
 		$nt = Title::newFromText( $this->mXslt );
 		if ( is_null( $nt ) || !$nt->exists() ) {
 			$this->setWarning( 'Invalid or non-existent stylesheet specified' );
@@ -288,14 +288,14 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'xslt' => array(
+		return parent::getAllowedParams() + [
+			'xslt' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-xslt',
-			),
-			'includexmlnamespace' => array(
+			],
+			'includexmlnamespace' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-includexmlnamespace',
-			),
-		);
+			],
+		];
 	}
 }

@@ -63,6 +63,17 @@
 	UP = Upload.prototype;
 
 	/**
+	 * Get the mw.Api instance used by this Upload object.
+	 *
+	 * @return {jQuery.Promise}
+	 * @return {Function} return.done
+	 * @return {mw.Api} return.done.api
+	 */
+	UP.getApi = function () {
+		return $.Deferred().resolve( this.api ).promise();
+	};
+
+	/**
 	 * Set the text of the file page, to be created on file upload.
 	 *
 	 * @param {string} text
@@ -78,6 +89,20 @@
 	 */
 	UP.setFilename = function ( filename ) {
 		this.filename = filename;
+	};
+
+	/**
+	 * Set the stashed file to finish uploading.
+	 *
+	 * @param {string} filekey
+	 */
+	UP.setFilekey = function ( filekey ) {
+		var upload = this;
+
+		this.setState( Upload.State.STASHED );
+		this.stashPromise = $.Deferred().resolve( function ( data ) {
+			return upload.api.uploadFromStash( filekey, data );
+		} );
 	};
 
 	/**
@@ -103,7 +128,7 @@
 	/**
 	 * Set the file to be uploaded.
 	 *
-	 * @param {HTMLInputElement|File} file
+	 * @param {HTMLInputElement|File|Blob} file
 	 */
 	UP.setFile = function ( file ) {
 		this.file = file;
@@ -148,7 +173,7 @@
 	/**
 	 * Get the file being uploaded.
 	 *
-	 * @return {HTMLInputElement|File}
+	 * @return {HTMLInputElement|File|Blob}
 	 */
 	UP.getFile = function () {
 		return this.file;

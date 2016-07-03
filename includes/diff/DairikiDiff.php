@@ -26,7 +26,11 @@
  */
 
 /**
- * @todo document
+ * The base class for all other DiffOp classes.
+ *
+ * The classes that extend DiffOp are: DiffOpCopy, DiffOpDelete, DiffOpAdd and
+ * DiffOpChange. FakeDiffOp also extends DiffOp, but it is not located in this file.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -93,7 +97,9 @@ abstract class DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * copied from one string array to the other.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -117,7 +123,9 @@ class DiffOpCopy extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * deleted from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -138,7 +146,9 @@ class DiffOpDelete extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * added from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -159,7 +169,9 @@ class DiffOpAdd extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * changed from the first string array (both added and subtracted).
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -208,10 +220,10 @@ class DiffEngine {
 
 	protected $xchanged, $ychanged;
 
-	protected $xv = array(), $yv = array();
-	protected $xind = array(), $yind = array();
+	protected $xv = [], $yv = [];
+	protected $xind = [], $yind = [];
 
-	protected $seq = array(), $in_seq = array();
+	protected $seq = [], $in_seq = [];
 
 	protected $lcs = 0;
 
@@ -234,14 +246,14 @@ class DiffEngine {
 		$n_from = count( $from_lines );
 		$n_to = count( $to_lines );
 
-		$edits = array();
+		$edits = [];
 		$xi = $yi = 0;
 		while ( $xi < $n_from || $yi < $n_to ) {
 			assert( $yi < $n_to || $this->xchanged[$xi] );
 			assert( $xi < $n_from || $this->ychanged[$yi] );
 
 			// Skip matching "snake".
-			$copy = array();
+			$copy = [];
 			while ( $xi < $n_from && $yi < $n_to
 				&& !$this->xchanged[$xi] && !$this->ychanged[$yi]
 			) {
@@ -253,12 +265,12 @@ class DiffEngine {
 			}
 
 			// Find deletes & adds.
-			$delete = array();
+			$delete = [];
 			while ( $xi < $n_from && $this->xchanged[$xi] ) {
 				$delete[] = $from_lines[$xi++];
 			}
 
-			$add = array();
+			$add = [];
 			while ( $yi < $n_to && $this->ychanged[$yi] ) {
 				$add[] = $to_lines[$yi++];
 			}
@@ -280,288 +292,10 @@ class DiffEngine {
 	 * @param string[] $to_lines
 	 */
 	private function diffLocal( $from_lines, $to_lines ) {
-		global $wgExternalDiffEngine;
-
-		if ( $wgExternalDiffEngine == 'wikidiff3' ) {
-			// wikidiff3
-			$wikidiff3 = new WikiDiff3();
-			$wikidiff3->diff( $from_lines, $to_lines );
-			$this->xchanged = $wikidiff3->removed;
-			$this->ychanged = $wikidiff3->added;
-			unset( $wikidiff3 );
-		} else {
-			// old diff
-			$n_from = count( $from_lines );
-			$n_to = count( $to_lines );
-			$this->xchanged = $this->ychanged = array();
-			$this->xv = $this->yv = array();
-			$this->xind = $this->yind = array();
-			$this->seq = array();
-			$this->in_seq = array();
-			$this->lcs = 0;
-
-			// Skip leading common lines.
-			for ( $skip = 0; $skip < $n_from && $skip < $n_to; $skip++ ) {
-				if ( $from_lines[$skip] !== $to_lines[$skip] ) {
-					break;
-				}
-				$this->xchanged[$skip] = $this->ychanged[$skip] = false;
-			}
-			// Skip trailing common lines.
-			$xi = $n_from;
-			$yi = $n_to;
-			for ( $endskip = 0; --$xi > $skip && --$yi > $skip; $endskip++ ) {
-				if ( $from_lines[$xi] !== $to_lines[$yi] ) {
-					break;
-				}
-				$this->xchanged[$xi] = $this->ychanged[$yi] = false;
-			}
-
-			// Ignore lines which do not exist in both files.
-			for ( $xi = $skip; $xi < $n_from - $endskip; $xi++ ) {
-				$xhash[$this->lineHash( $from_lines[$xi] )] = 1;
-			}
-
-			for ( $yi = $skip; $yi < $n_to - $endskip; $yi++ ) {
-				$line = $to_lines[$yi];
-				if ( ( $this->ychanged[$yi] = empty( $xhash[$this->lineHash( $line )] ) ) ) {
-					continue;
-				}
-				$yhash[$this->lineHash( $line )] = 1;
-				$this->yv[] = $line;
-				$this->yind[] = $yi;
-			}
-			for ( $xi = $skip; $xi < $n_from - $endskip; $xi++ ) {
-				$line = $from_lines[$xi];
-				if ( ( $this->xchanged[$xi] = empty( $yhash[$this->lineHash( $line )] ) ) ) {
-					continue;
-				}
-				$this->xv[] = $line;
-				$this->xind[] = $xi;
-			}
-
-			// Find the LCS.
-			$this->compareSeq( 0, count( $this->xv ), 0, count( $this->yv ) );
-		}
-	}
-
-	/**
-	 * Returns the whole line if it's small enough, or the MD5 hash otherwise
-	 *
-	 * @param string $line
-	 *
-	 * @return string
-	 */
-	private function lineHash( $line ) {
-		if ( strlen( $line ) > self::MAX_XREF_LENGTH ) {
-			return md5( $line );
-		} else {
-			return $line;
-		}
-	}
-
-	/**
-	 * Divide the Largest Common Subsequence (LCS) of the sequences
-	 * [XOFF, XLIM) and [YOFF, YLIM) into NCHUNKS approximately equally
-	 * sized segments.
-	 *
-	 * Returns (LCS, PTS). LCS is the length of the LCS. PTS is an
-	 * array of NCHUNKS+1 (X, Y) indexes giving the diving points between
-	 * sub sequences.  The first sub-sequence is contained in [X0, X1),
-	 * [Y0, Y1), the second in [X1, X2), [Y1, Y2) and so on.  Note
-	 * that (X0, Y0) == (XOFF, YOFF) and
-	 * (X[NCHUNKS], Y[NCHUNKS]) == (XLIM, YLIM).
-	 *
-	 * This function assumes that the first lines of the specified portions
-	 * of the two files do not match, and likewise that the last lines do not
-	 * match.  The caller must trim matching lines from the beginning and end
-	 * of the portions it is going to specify.
-	 *
-	 * @param int $xoff
-	 * @param int $xlim
-	 * @param int $yoff
-	 * @param int $ylim
-	 * @param int $nchunks
-	 *
-	 * @return array List of two elements, integer and array[].
-	 */
-	private function diag( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
-		$flip = false;
-
-		if ( $xlim - $xoff > $ylim - $yoff ) {
-			// Things seems faster (I'm not sure I understand why)
-			// when the shortest sequence in X.
-			$flip = true;
-			list( $xoff, $xlim, $yoff, $ylim ) = array( $yoff, $ylim, $xoff, $xlim );
-		}
-
-		if ( $flip ) {
-			for ( $i = $ylim - 1; $i >= $yoff; $i-- ) {
-				$ymatches[$this->xv[$i]][] = $i;
-			}
-		} else {
-			for ( $i = $ylim - 1; $i >= $yoff; $i-- ) {
-				$ymatches[$this->yv[$i]][] = $i;
-			}
-		}
-
-		$this->lcs = 0;
-		$this->seq[0] = $yoff - 1;
-		$this->in_seq = array();
-		$ymids[0] = array();
-
-		$numer = $xlim - $xoff + $nchunks - 1;
-		$x = $xoff;
-		for ( $chunk = 0; $chunk < $nchunks; $chunk++ ) {
-			if ( $chunk > 0 ) {
-				for ( $i = 0; $i <= $this->lcs; $i++ ) {
-					$ymids[$i][$chunk - 1] = $this->seq[$i];
-				}
-			}
-
-			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
-			// @codingStandardsIgnoreFile Ignore Squiz.WhiteSpace.SemicolonSpacing.Incorrect
-			for ( ; $x < $x1; $x++ ) {
-				// @codingStandardsIgnoreEnd
-				$line = $flip ? $this->yv[$x] : $this->xv[$x];
-				if ( empty( $ymatches[$line] ) ) {
-					continue;
-				}
-
-				$k = 0;
-				$matches = $ymatches[$line];
-				reset( $matches );
-				while ( list( , $y ) = each( $matches ) ) {
-					if ( empty( $this->in_seq[$y] ) ) {
-						$k = $this->lcsPos( $y );
-						assert( $k > 0 );
-						$ymids[$k] = $ymids[$k - 1];
-						break;
-					}
-				}
-
-				while ( list( , $y ) = each( $matches ) ) {
-					if ( $y > $this->seq[$k - 1] ) {
-						assert( $y < $this->seq[$k] );
-						// Optimization: this is a common case:
-						//	next match is just replacing previous match.
-						$this->in_seq[$this->seq[$k]] = false;
-						$this->seq[$k] = $y;
-						$this->in_seq[$y] = 1;
-					} elseif ( empty( $this->in_seq[$y] ) ) {
-						$k = $this->lcsPos( $y );
-						assert( $k > 0 );
-						$ymids[$k] = $ymids[$k - 1];
-					}
-				}
-			}
-		}
-
-		$seps[] = $flip ? array( $yoff, $xoff ) : array( $xoff, $yoff );
-		$ymid = $ymids[$this->lcs];
-		for ( $n = 0; $n < $nchunks - 1; $n++ ) {
-			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $n ) / $nchunks );
-			$y1 = $ymid[$n] + 1;
-			$seps[] = $flip ? array( $y1, $x1 ) : array( $x1, $y1 );
-		}
-		$seps[] = $flip ? array( $ylim, $xlim ) : array( $xlim, $ylim );
-
-		return array( $this->lcs, $seps );
-	}
-
-	/**
-	 * @param int $ypos
-	 *
-	 * @return int
-	 */
-	private function lcsPos( $ypos ) {
-		$end = $this->lcs;
-		if ( $end == 0 || $ypos > $this->seq[$end] ) {
-			$this->seq[++$this->lcs] = $ypos;
-			$this->in_seq[$ypos] = 1;
-
-			return $this->lcs;
-		}
-
-		$beg = 1;
-		while ( $beg < $end ) {
-			$mid = (int)( ( $beg + $end ) / 2 );
-			if ( $ypos > $this->seq[$mid] ) {
-				$beg = $mid + 1;
-			} else {
-				$end = $mid;
-			}
-		}
-
-		assert( $ypos != $this->seq[$end] );
-
-		$this->in_seq[$this->seq[$end]] = false;
-		$this->seq[$end] = $ypos;
-		$this->in_seq[$ypos] = 1;
-
-		return $end;
-	}
-
-	/**
-	 * Find LCS of two sequences.
-	 *
-	 * The results are recorded in the vectors $this->{x,y}changed[], by
-	 * storing a 1 in the element for each line that is an insertion
-	 * or deletion (ie. is not in the LCS).
-	 *
-	 * The subsequence of file 0 is [XOFF, XLIM) and likewise for file 1.
-	 *
-	 * Note that XLIM, YLIM are exclusive bounds.
-	 * All line numbers are origin-0 and discarded lines are not counted.
-	 *
-	 * @param int $xoff
-	 * @param int $xlim
-	 * @param int $yoff
-	 * @param int $ylim
-	 */
-	private function compareSeq( $xoff, $xlim, $yoff, $ylim ) {
-		// Slide down the bottom initial diagonal.
-		while ( $xoff < $xlim && $yoff < $ylim && $this->xv[$xoff] == $this->yv[$yoff] ) {
-			++$xoff;
-			++$yoff;
-		}
-
-		// Slide up the top initial diagonal.
-		while ( $xlim > $xoff && $ylim > $yoff
-			&& $this->xv[$xlim - 1] == $this->yv[$ylim - 1]
-		) {
-			--$xlim;
-			--$ylim;
-		}
-
-		if ( $xoff == $xlim || $yoff == $ylim ) {
-			$lcs = 0;
-		} else {
-			// This is ad hoc but seems to work well.
-			// $nchunks = sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5);
-			// $nchunks = max(2,min(8,(int)$nchunks));
-			$nchunks = min( 7, $xlim - $xoff, $ylim - $yoff ) + 1;
-			list( $lcs, $seps ) = $this->diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
-		}
-
-		if ( $lcs == 0 ) {
-			// X and Y sequences have no common subsequence:
-			// mark all changed.
-			while ( $yoff < $ylim ) {
-				$this->ychanged[$this->yind[$yoff++]] = 1;
-			}
-			while ( $xoff < $xlim ) {
-				$this->xchanged[$this->xind[$xoff++]] = 1;
-			}
-		} else {
-			// Use the partitions to split this problem into subproblems.
-			reset( $seps );
-			$pt1 = $seps[0];
-			while ( $pt2 = next( $seps ) ) {
-				$this->compareSeq( $pt1[0], $pt2[0], $pt1[1], $pt2[1] );
-				$pt1 = $pt2;
-			}
-		}
+		$wikidiff3 = new WikiDiff3();
+		$wikidiff3->diff( $from_lines, $to_lines );
+		$this->xchanged = $wikidiff3->removed;
+		$this->ychanged = $wikidiff3->added;
 	}
 
 	/**
@@ -581,7 +315,7 @@ class DiffEngine {
 		$i = 0;
 		$j = 0;
 
-		assert( count($lines) == count($changed) );
+		assert( count( $lines ) == count( $changed ) );
 		$len = count( $lines );
 		$other_len = count( $other_changed );
 
@@ -741,7 +475,7 @@ class Diff {
 	 */
 	public function reverse() {
 		$rev = $this;
-		$rev->edits = array();
+		$rev->edits = [];
 		/** @var DiffOp $edit */
 		foreach ( $this->edits as $edit ) {
 			$rev->edits[] = $edit->reverse();
@@ -792,7 +526,7 @@ class Diff {
 	 * @return string[] The original sequence of strings.
 	 */
 	public function orig() {
-		$lines = array();
+		$lines = [];
 
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->orig ) {
@@ -812,7 +546,7 @@ class Diff {
 	 * @return string[] The sequence of strings.
 	 */
 	public function closing() {
-		$lines = array();
+		$lines = [];
 
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->closing ) {
@@ -889,7 +623,7 @@ class HWLDFWordAccumulator {
 	public $insClass = ' class="diffchange diffchange-inline"';
 	public $delClass = ' class="diffchange diffchange-inline"';
 
-	private $lines = array();
+	private $lines = [];
 	private $line = '';
 	private $group = '';
 	private $tag = '';
@@ -988,8 +722,8 @@ class WordLevelDiff extends MappedDiff {
 	 */
 	private function split( $lines ) {
 
-		$words = array();
-		$stripped = array();
+		$words = [];
+		$stripped = [];
 		$first = true;
 		foreach ( $lines as $line ) {
 			# If the line is too long, just pretend the entire line is one big word
@@ -1004,7 +738,7 @@ class WordLevelDiff extends MappedDiff {
 				$words[] = $line;
 				$stripped[] = $line;
 			} else {
-				$m = array();
+				$m = [];
 				if ( preg_match_all( '/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 					$line, $m )
 				) {
@@ -1018,7 +752,7 @@ class WordLevelDiff extends MappedDiff {
 			}
 		}
 
-		return array( $words, $stripped );
+		return [ $words, $stripped ];
 	}
 
 	/**

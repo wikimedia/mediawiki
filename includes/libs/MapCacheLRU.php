@@ -33,17 +33,17 @@ use Wikimedia\Assert\Assert;
  */
 class MapCacheLRU {
 	/** @var array */
-	protected $cache = array(); // (key => value)
+	protected $cache = []; // (key => value)
 
 	protected $maxCacheKeys; // integer; max entries
 
 	/**
 	 * @param int $maxKeys Maximum number of entries allowed (min 1).
-	 * @throws Exception When $maxCacheKeys is not an int or =< 0.
+	 * @throws Exception When $maxCacheKeys is not an int or not above zero.
 	 */
 	public function __construct( $maxKeys ) {
 		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
-		Assert::parameter( $maxKeys >= 1, '$maxKeys', 'must be >= 1' );
+		Assert::parameter( $maxKeys > 0, '$maxKeys', 'must be above zero' );
 
 		$this->maxCacheKeys = $maxKeys;
 	}
@@ -59,7 +59,7 @@ class MapCacheLRU {
 	 */
 	public function set( $key, $value ) {
 		if ( array_key_exists( $key, $this->cache ) ) {
-			$this->ping( $key ); // push to top
+			$this->ping( $key );
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
 			reset( $this->cache );
 			$evictKey = key( $this->cache );
@@ -87,12 +87,11 @@ class MapCacheLRU {
 	 * @return mixed
 	 */
 	public function get( $key ) {
-		if ( array_key_exists( $key, $this->cache ) ) {
-			$this->ping( $key ); // push to top
-			return $this->cache[$key];
-		} else {
+		if ( !array_key_exists( $key, $this->cache ) ) {
 			return null;
 		}
+		$this->ping( $key );
+		return $this->cache[$key];
 	}
 
 	/**
@@ -111,7 +110,7 @@ class MapCacheLRU {
 	 */
 	public function clear( $keys = null ) {
 		if ( $keys === null ) {
-			$this->cache = array();
+			$this->cache = [];
 		} else {
 			foreach ( (array)$keys as $key ) {
 				unset( $this->cache[$key] );

@@ -33,12 +33,12 @@ class CleanupBlocks extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Cleanup user blocks with user names not matching the 'user' table";
+		$this->addDescription( "Cleanup user blocks with user names not matching the 'user' table" );
 		$this->setBatchSize( 1000 );
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 
 		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
 
@@ -47,29 +47,29 @@ class CleanupBlocks extends Maintenance {
 			$to = min( $max, $from + $this->mBatchSize - 1 );
 			$this->output( "Cleaning up duplicate ipb_user ($from-$to of $max)\n" );
 
-			$delete = array();
+			$delete = [];
 
 			$res = $db->select(
 				'ipblocks',
-				array( 'ipb_user' ),
-				array(
+				[ 'ipb_user' ],
+				[
 					"ipb_user >= $from",
 					"ipb_user <= $to",
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'GROUP BY' => 'ipb_user',
 					'HAVING' => 'COUNT(*) > 1',
-				)
+				]
 			);
 			foreach ( $res as $row ) {
 				$bestBlock = null;
 				$res2 = $db->select(
 					'ipblocks',
 					'*',
-					array(
+					[
 						'ipb_user' => $row->ipb_user,
-					)
+					]
 				);
 				foreach ( $res2 as $row2 ) {
 					$block = Block::newFromRow( $row2 );
@@ -87,7 +87,7 @@ class CleanupBlocks extends Maintenance {
 						$keep = $block->getExpiry() > $bestBlock->getExpiry();
 					}
 					if ( $keep === null ) {
-						foreach ( array( 'createaccount', 'sendemail', 'editownusertalk' ) as $action ) {
+						foreach ( [ 'createaccount', 'sendemail', 'editownusertalk' ] as $action ) {
 							if ( $block->prevents( $action ) xor $bestBlock->prevents( $action ) ) {
 								$keep = $block->prevents( $action );
 								break;
@@ -107,7 +107,7 @@ class CleanupBlocks extends Maintenance {
 			if ( $delete ) {
 				$db->delete(
 					'ipblocks',
-					array( 'ipb_id' => $delete ),
+					[ 'ipb_id' => $delete ],
 					__METHOD__
 				);
 			}
@@ -119,21 +119,21 @@ class CleanupBlocks extends Maintenance {
 			$this->output( "Cleaning up mismatched user name ($from-$to of $max)\n" );
 
 			$res = $db->select(
-				array( 'ipblocks', 'user' ),
-				array( 'ipb_id', 'user_name' ),
-				array(
+				[ 'ipblocks', 'user' ],
+				[ 'ipb_id', 'user_name' ],
+				[
 					'ipb_user = user_id',
 					"ipb_user >= $from",
 					"ipb_user <= $to",
 					'ipb_address != user_name',
-				),
+				],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
 				$db->update(
 					'ipblocks',
-					array( 'ipb_address' => $row->user_name ),
-					array( 'ipb_id' => $row->ipb_id ),
+					[ 'ipb_address' => $row->user_name ],
+					[ 'ipb_id' => $row->ipb_id ],
 					__METHOD__
 				);
 			}

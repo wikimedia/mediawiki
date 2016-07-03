@@ -12,7 +12,7 @@
  * @author Urhixidur
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Amóhùnmáwòrán',
 	NS_SPECIAL          => 'Pàtàkì',
 	NS_TALK             => 'Ọ̀rọ̀',
@@ -29,25 +29,25 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ọ̀rọ̀_ìrànlọ́wọ́',
 	NS_CATEGORY         => 'Ẹ̀ka',
 	NS_CATEGORY_TALK    => 'Ọ̀rọ̀_ẹ̀ka',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Àwòrán'       => NS_FILE,
 	'Ọ̀rọ̀_àwòrán' => NS_FILE_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'GbogboÀwọnOjúewé' ),
-	'Categories'                => array( 'ÀwọnẸ̀ka' ),
-	'Contributions'             => array( 'ÀwọnÀfikún' ),
-	'Mycontributions'           => array( 'ÀwọnÀfikúnMi' ),
-	'Mypage'                    => array( 'OjúwéMi' ),
-	'Mytalk'                    => array( 'Ọ̀rọ̀Mi' ),
-	'Newpages'                  => array( 'ÀwọnOjúewéTuntun' ),
-	'Preferences'               => array( 'ÀwọnÌfẹ́ràn' ),
-	'Recentchanges'             => array( 'ÀwọnÀtúnṣeTuntun' ),
-	'Specialpages'              => array( 'ÀwọnOjúewéPàtàkì' ),
-	'Userlogin'                 => array( 'ÌwọléOníse' ),
-	'Userlogout'                => array( 'Ìbọ̀sódeOníṣe' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'GbogboÀwọnOjúewé' ],
+	'Categories'                => [ 'ÀwọnẸ̀ka' ],
+	'Contributions'             => [ 'ÀwọnÀfikún' ],
+	'Mycontributions'           => [ 'ÀwọnÀfikúnMi' ],
+	'Mypage'                    => [ 'OjúwéMi' ],
+	'Mytalk'                    => [ 'Ọ̀rọ̀Mi' ],
+	'Newpages'                  => [ 'ÀwọnOjúewéTuntun' ],
+	'Preferences'               => [ 'ÀwọnÌfẹ́ràn' ],
+	'Recentchanges'             => [ 'ÀwọnÀtúnṣeTuntun' ],
+	'Specialpages'              => [ 'ÀwọnOjúewéPàtàkì' ],
+	'Userlogin'                 => [ 'ÌwọléOníse' ],
+	'Userlogout'                => [ 'Ìbọ̀sódeOníṣe' ],
+];
 

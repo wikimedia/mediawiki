@@ -14,7 +14,7 @@
  * @author לערי ריינהארט
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Sipesol',
 	NS_TALK             => 'Toktok',
 	NS_USER             => 'Yusa',
@@ -30,21 +30,21 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Toktok_bilong_halivim',
 	NS_CATEGORY         => 'Grup',
 	NS_CATEGORY_TALK    => 'Toktok_bilong_grup',
-);
+];
 
-$specialPageAliases = array(
-	'Confirmemail'              => array( 'Orait long imel' ),
-	'Contributions'             => array( 'Ol senis bilong yusa' ),
-	'CreateAccount'             => array( 'Mekim nupela login' ),
-	'Emailuser'                 => array( 'Imel yusa' ),
-	'Preferences'               => array( 'Ol laik bilong mi' ),
-	'Randompage'                => array( 'Soim wanpela pes' ),
-	'Recentchanges'             => array( 'Nupela senis' ),
-	'Specialpages'              => array( 'Sipesol pes' ),
-	'Upload'                    => array( 'Salim media fail' ),
-	'Userlogin'                 => array( 'Yusa login' ),
-	'Userlogout'                => array( 'Yusa logaut' ),
-	'Watchlist'                 => array( 'Lukautbuk' ),
-	'Whatlinkshere'             => array( 'Ol link ikam long hia' ),
-);
+$specialPageAliases = [
+	'Confirmemail'              => [ 'Orait long imel' ],
+	'Contributions'             => [ 'Ol senis bilong yusa' ],
+	'CreateAccount'             => [ 'Mekim nupela login' ],
+	'Emailuser'                 => [ 'Imel yusa' ],
+	'Preferences'               => [ 'Ol laik bilong mi' ],
+	'Randompage'                => [ 'Soim wanpela pes' ],
+	'Recentchanges'             => [ 'Nupela senis' ],
+	'Specialpages'              => [ 'Sipesol pes' ],
+	'Upload'                    => [ 'Salim media fail' ],
+	'Userlogin'                 => [ 'Yusa login' ],
+	'Userlogout'                => [ 'Yusa logaut' ],
+	'Watchlist'                 => [ 'Lukautbuk' ],
+	'Whatlinkshere'             => [ 'Ol link ikam long hia' ],
+];
 

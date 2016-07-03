@@ -103,7 +103,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * @return Status
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
-	public function setVisibility( $params ) {
+	public function setVisibility( array $params ) {
 		$bitPars = $params['value'];
 		$comment = $params['comment'];
 		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
@@ -118,11 +118,11 @@ abstract class RevDelList extends RevisionListBase {
 		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
-		$idsForLog = array();
-		$authorIds = $authorIPs = array();
+		$idsForLog = [];
+		$authorIds = $authorIPs = [];
 
 		if ( $perItemStatus ) {
-			$status->itemStatuses = array();
+			$status->itemStatuses = [];
 		}
 
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
@@ -221,7 +221,7 @@ abstract class RevDelList extends RevisionListBase {
 
 		// Log it
 		// @FIXME: $newBits/$oldBits set in for loop, makes IDE warnings too
-		$this->updateLog( array(
+		$this->updateLog( [
 			'title' => $this->title,
 			'count' => $successCount,
 			'newBits' => $newBits,
@@ -230,7 +230,7 @@ abstract class RevDelList extends RevisionListBase {
 			'ids' => $idsForLog,
 			'authorIds' => $authorIds,
 			'authorIPs' => $authorIPs
-		) );
+		] );
 
 		// Clear caches
 		$that = $this;
@@ -285,11 +285,11 @@ abstract class RevDelList extends RevisionListBase {
 		$logEntry->setParameters( $logParams );
 		$logEntry->setPerformer( $this->getUser() );
 		// Allow for easy searching of deletion log items for revision/log items
-		$logEntry->setRelations( array(
+		$logEntry->setRelations( [
 			$field => $params['ids'],
 			'target_author_id' => $params['authorIds'],
 			'target_author_ip' => $params['authorIPs'],
-		) );
+		] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}
@@ -308,12 +308,12 @@ abstract class RevDelList extends RevisionListBase {
 	 * @return array
 	 */
 	public function getLogParams( $params ) {
-		return array(
+		return [
 			'4::type' => $this->getType(),
 			'5::ids' => $params['ids'],
 			'6::ofield' => $params['oldBits'],
 			'7::nfield' => $params['newBits'],
-		);
+		];
 	}
 
 	/**

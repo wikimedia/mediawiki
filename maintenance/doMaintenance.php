@@ -60,7 +60,7 @@ require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/profiler/ProfilerFunctions.php";
 
 # Start the profiler
-$wgProfiler = array();
+$wgProfiler = [];
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }
@@ -106,12 +106,12 @@ $maintenance->execute();
 $maintenance->globals();
 
 // Perform deferred updates.
-DeferredUpdates::doUpdates( 'commit' );
+DeferredUpdates::doUpdates();
 
 // log profiling info
 wfLogProfilingData();
 
 // Commit and close up!
 $factory = wfGetLBFactory();
-$factory->commitMasterChanges();
+$factory->commitMasterChanges( 'doMaintenance' );
 $factory->shutdown();

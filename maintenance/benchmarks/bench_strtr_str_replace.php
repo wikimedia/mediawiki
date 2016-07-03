@@ -41,16 +41,16 @@ function bfNormalizeTitleStrReplace( $str ) {
 class BenchStrtrStrReplace extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark for strtr() vs str_replace().";
+		$this->addDescription( 'Benchmark for strtr() vs str_replace().' );
 	}
 
 	public function execute() {
-		$this->bench( array(
-			array( 'function' => array( $this, 'benchstrtr' ) ),
-			array( 'function' => array( $this, 'benchstr_replace' ) ),
-			array( 'function' => array( $this, 'benchstrtr_indirect' ) ),
-			array( 'function' => array( $this, 'benchstr_replace_indirect' ) ),
-		) );
+		$this->bench( [
+			[ 'function' => [ $this, 'benchstrtr' ] ],
+			[ 'function' => [ $this, 'benchstr_replace' ] ],
+			[ 'function' => [ $this, 'benchstrtr_indirect' ] ],
+			[ 'function' => [ $this, 'benchstr_replace_indirect' ] ],
+		] );
 		print $this->getFormattedResults();
 	}
 

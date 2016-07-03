@@ -11,7 +11,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array( 'user', 'user_groups', 'user_properties' );
+	protected $tablesUsed = [ 'user', 'user_groups', 'user_properties' ];
 
 	protected function setUp() {
 		global $wgServer;
@@ -21,38 +21,33 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
 
-		self::$users = array(
+		self::$users = [
 			'sysop' => new TestUser(
 				'Apitestsysop',
 				'Api Test Sysop',
 				'api_test_sysop@example.com',
-				array( 'sysop' )
+				[ 'sysop' ]
 			),
 			'uploader' => new TestUser(
 				'Apitestuser',
 				'Api Test User',
 				'api_test_user@example.com',
-				array()
+				[]
 			)
-		);
+		];
 
-		$this->setMwGlobals( array(
-			'wgMemc' => new EmptyBagOStuff(),
-			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
-			'wgRequest' => new FauxRequest( array() ),
+		$this->setMwGlobals( [
+			'wgAuth' => new MediaWiki\Auth\AuthManagerAuthPlugin,
+			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->user,
-		) );
+		] );
 
 		$this->apiContext = new ApiTestContext();
 	}
 
 	protected function tearDown() {
 		// Avoid leaking session over tests
-		if ( session_id() != '' ) {
-			global $wgUser;
-			$wgUser->logout();
-			session_destroy();
-		}
+		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
 
 		parent::tearDown();
 	}
@@ -106,6 +101,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( $params, true, $session );
 		RequestContext::getMain()->setRequest( $wgRequest );
 		RequestContext::getMain()->setUser( $wgUser );
+		MediaWiki\Auth\AuthManager::resetCache();
 
 		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
@@ -116,11 +112,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$module->execute();
 
 		// construct result
-		$results = array(
-			$module->getResult()->getResultData( null, array( 'Strip' => 'all' ) ),
+		$results = [
+			$module->getResult()->getResultData( null, [ 'Strip' => 'all' ] ),
 			$context->getRequest(),
 			$context->getRequest()->getSessionArray()
-		);
+		];
 
 		if ( $appendModule ) {
 			$results[] = $module;
@@ -153,12 +149,12 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( isset( $session['wsToken'] ) && $session['wsToken'] ) {
 			// @todo Why does this directly mess with the session? Fix that.
 			// add edit token to fake session
-			$session['wsEditToken'] = $session['wsToken'];
+			$session['wsTokenSecrets']['default'] = $session['wsToken'];
 			// add token to request parameters
 			$timestamp = wfTimestamp();
 			$params['token'] = hash_hmac( 'md5', $timestamp, $session['wsToken'] ) .
 				dechex( $timestamp ) .
-				User::EDIT_TOKEN_SUFFIX;
+				MediaWiki\Session\Token::SUFFIX;
 
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {
@@ -171,31 +167,38 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			throw new MWException( "Can not log in to undefined user $user" );
 		}
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => self::$users[$user]->username,
-			'lgpassword' => self::$users[$user]->password ) );
+			'lgpassword' => self::$users[$user]->password ] );
 
 		$token = $data[0]['login']['token'];
 
 		$data = $this->doApiRequest(
-			array(
+			[
 				'action' => 'login',
 				'lgtoken' => $token,
 				'lgname' => self::$users[$user]->username,
 				'lgpassword' => self::$users[$user]->password,
-			),
+			],
 			$data[2]
 		);
+
+		if ( $data[0]['login']['result'] === 'Success' ) {
+			// DWIM
+			global $wgUser;
+			$wgUser = self::$users[$user]->getUser();
+			RequestContext::getMain()->setUser( $wgUser );
+		}
 
 		return $data;
 	}
 
 	protected function getTokenList( $user, $session = null ) {
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'tokens',
 			'type' => 'edit|delete|protect|move|block|unblock|watch'
-		), $session, false, $user->user );
+		], $session, false, $user->user );
 
 		if ( !array_key_exists( 'tokens', $data[0] ) ) {
 			throw new MWException( 'Api failed to return a token list' );

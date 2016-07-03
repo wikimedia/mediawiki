@@ -4,6 +4,24 @@ class HTMLTextAreaField extends HTMLFormField {
 	const DEFAULT_COLS = 80;
 	const DEFAULT_ROWS = 25;
 
+	protected $mPlaceholder = '';
+
+	/**
+	 * @param array $params
+	 *   - cols, rows: textarea size
+	 *   - placeholder/placeholder-message: set HTML placeholder attribute
+	 *   - spellcheck: set HTML spellcheck attribute
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		if ( isset( $params['placeholder-message'] ) ) {
+			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->parse();
+		} elseif ( isset( $params['placeholder'] ) ) {
+			$this->mPlaceholder = $params['placeholder'];
+		}
+	}
+
 	function getCols() {
 		return isset( $this->mParams['cols'] ) ? $this->mParams['cols'] : static::DEFAULT_COLS;
 	}
@@ -22,25 +40,27 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
-		$attribs = array(
+		$attribs = [
 				'id' => $this->mID,
 				'cols' => $this->getCols(),
 				'rows' => $this->getRows(),
 				'spellcheck' => $this->getSpellCheck(),
-			) + $this->getTooltipAndAccessKey();
+			] + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
-		$allowedParams = array(
-			'placeholder',
+		$allowedParams = [
 			'tabindex',
 			'disabled',
 			'readonly',
 			'required',
 			'autofocus'
-		);
+		];
 
 		$attribs += $this->getAttributes( $allowedParams );
 		return Html::textarea( $this->mName, $value, $attribs );
@@ -54,29 +74,30 @@ class HTMLTextAreaField extends HTMLFormField {
 		$attribs = $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
-			$attribs['classes'] = array( $this->mClass );
+			$attribs['classes'] = [ $this->mClass ];
+		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
 		}
 
-		$allowedParams = array(
-			'placeholder',
+		$allowedParams = [
 			'tabindex',
 			'disabled',
 			'readonly',
 			'required',
 			'autofocus',
+		];
+
+		$attribs += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
 		);
 
-		$attribs += $this->getAttributes( $allowedParams, array(
-			'tabindex' => 'tabIndex',
-			'readonly' => 'readOnly',
-		) );
-
-		return new OOUI\TextInputWidget( array(
+		return new OOUI\TextInputWidget( [
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'multiline' => true,
 			'value' => $value,
 			'rows' => $this->getRows(),
-		) + $attribs );
+		] + $attribs );
 	}
 }

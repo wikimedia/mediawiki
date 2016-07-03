@@ -33,7 +33,7 @@
  * @file
  */
 class MWMessagePack {
-	/** @var boolean|null Whether current system is bigendian. **/
+	/** @var bool|null Whether current system is bigendian. **/
 	public static $bigendian = null;
 
 	/**

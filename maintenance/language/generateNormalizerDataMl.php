@@ -33,7 +33,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class GenerateNormalizerDataMl extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Generate the normalizer data file for Malayalam';
+		$this->addDescription( 'Generate the normalizer data file for Malayalam' );
 	}
 
 	public function getDbType() {
@@ -41,7 +41,7 @@ class GenerateNormalizerDataMl extends Maintenance {
 	}
 
 	public function execute() {
-		$hexPairs = array(
+		$hexPairs = [
 			# From http://unicode.org/versions/Unicode5.1.0/#Malayalam_Chillu_Characters
 			'0D23 0D4D 200D' => '0D7A',
 			'0D28 0D4D 200D' => '0D7B',
@@ -51,9 +51,9 @@ class GenerateNormalizerDataMl extends Maintenance {
 
 			# From http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/46413
 			'0D15 0D4D 200D' => '0D7F',
-		);
+		];
 
-		$pairs = array();
+		$pairs = [];
 		foreach ( $hexPairs as $hexSource => $hexDest ) {
 			$source = UtfNormal\Utils::hexSequenceToUtf8( $hexSource );
 			$dest = UtfNormal\Utils::hexSequenceToUtf8( $hexDest );

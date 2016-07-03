@@ -17,7 +17,7 @@ class FauxRequestTest extends MediaWikiTestCase {
 		$this->assertEquals( $request->getHeader( 'accept' ), $value );
 		$this->assertEquals(
 			$request->getHeader( 'Accept', WebRequest::GETHEADER_LIST ),
-			array( 'text/plain', 'text/html' )
+			[ 'text/plain', 'text/html' ]
 		);
 	}
 
@@ -30,7 +30,7 @@ class FauxRequestTest extends MediaWikiTestCase {
 		$request = new FauxRequest();
 
 		$this->assertEquals(
-			array(),
+			[],
 			$request->getAllHeaders()
 		);
 	}

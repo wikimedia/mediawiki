@@ -32,16 +32,16 @@ class Digit2Html extends Maintenance {
 
 	# A list of unicode numerals is available at:
 	# http://www.fileformat.info/info/unicode/category/Nd/list.htm
-	private $mLangs = array(
+	private $mLangs = [
 		'Ar', 'As', 'Bh', 'Bo', 'Dz',
 		'Fa', 'Gu', 'Hi', 'Km', 'Kn',
 		'Ks', 'Lo', 'Ml', 'Mr', 'Ne',
 		'New', 'Or', 'Pa', 'Pi', 'Sa'
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check digit transformation";
+		$this->addDescription( 'Check digit transformation' );
 	}
 
 	public function execute() {

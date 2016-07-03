@@ -7,7 +7,8 @@
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
 		isPageReady = false,
-		preReadyNotifQueue = [];
+		preReadyNotifQueue = [],
+		rAF = window.requestAnimationFrame || setTimeout;
 
 	/**
 	 * A Notification object for 1 message.
@@ -15,11 +16,12 @@
 	 * The underscore in the name is to avoid a bug <https://github.com/senchalabs/jsduck/issues/304>.
 	 * It is not part of the actual class name.
 	 *
+	 * The constructor is not publicly accessible; use mw.notification#notify instead.
+	 * This does not insert anything into the document (see #start).
+	 *
 	 * @class mw.Notification_
 	 * @alternateClassName mw.Notification
-	 *
-	 * @constructor The constructor is not publicly accessible; use mw.notification#notify instead.
-	 *  This does not insert anything into the document (see #start).
+	 * @constructor
 	 * @private
 	 */
 	function Notification( message, options ) {
@@ -92,17 +94,7 @@
 	 * @private
 	 */
 	Notification.prototype.start = function () {
-		var
-			// Local references
-			$notification, options,
-			// Original opacity so that we can animate back to it later
-			opacity,
-			// Other notification elements matching the same tag
-			$tagMatches,
-			outerHeight,
-			placeholderHeight,
-			autohideCount,
-			notif;
+		var options, $notification, $tagMatches, autohideCount;
 
 		$area.show();
 
@@ -116,109 +108,43 @@
 		options = this.options;
 		$notification = this.$notification;
 
-		opacity = this.$notification.css( 'opacity' );
-
-		// Set the opacity to 0 so we can fade in later.
-		$notification.css( 'opacity', 0 );
-
 		if ( options.tag ) {
-			// Check to see if there are any tagged notifications with the same tag as the new one
+			// Find notifications with the same tag
 			$tagMatches = $area.find( '.mw-notification-tag-' + options.tag );
 		}
 
-		// If we found a tagged notification use the replacement pattern instead of the new
-		// notification fade-in pattern.
+		// If we found existing notification with the same tag, replace them
 		if ( options.tag && $tagMatches.length ) {
 
-			// Iterate over the tag matches to find the outerHeight we should use
-			// for the placeholder.
-			outerHeight = 0;
+			// While there can be only one "open" notif with a given tag, there can be several
+			// matches here because they remain in the DOM until the animation is finished.
 			$tagMatches.each( function () {
 				var notif = $( this ).data( 'mw.notification' );
-				if ( notif ) {
-					// Use the notification's height + padding + border + margins
-					// as the placeholder height.
-					outerHeight = notif.$notification.outerHeight( true );
-					if ( notif.$replacementPlaceholder ) {
-						// Grab the height of a placeholder that has not finished animating.
-						placeholderHeight = notif.$replacementPlaceholder.height();
-						// Remove any placeholders added by a previous tagged
-						// notification that was in the middle of replacing another.
-						// This also makes sure that we only grab the placeholderHeight
-						// for the most recent notification.
-						notif.$replacementPlaceholder.remove();
-						delete notif.$replacementPlaceholder;
-					}
-					// Close the previous tagged notification
-					// Since we're replacing it do this with a fast speed and don't output a placeholder
-					// since we're taking care of that transition ourselves.
-					notif.close( { speed: 'fast', placeholder: false } );
+				if ( notif && notif.isOpen ) {
+					// Detach from render flow with position absolute so that the new tag can
+					// occupy its space instead.
+					notif.$notification
+						.css( {
+							position: 'absolute',
+							width: notif.$notification.width()
+						} )
+						.css( notif.$notification.position() )
+						.addClass( 'mw-notification-replaced' );
+					notif.close();
 				}
 			} );
-			if ( placeholderHeight !== undefined ) {
-				// If the other tagged notification was in the middle of replacing another
-				// tagged notification, continue from the placeholder's height instead of
-				// using the outerHeight of the notification.
-				outerHeight = placeholderHeight;
-			}
 
 			$notification
-				// Insert the new notification before the tagged notification(s)
 				.insertBefore( $tagMatches.first() )
-				.css( {
-					// Use an absolute position so that we can use a placeholder to gracefully push other notifications
-					// into the right spot.
-					position: 'absolute',
-					width: $notification.width()
-				} )
-				// Fade-in the notification
-				.animate( { opacity: opacity },
-					{
-						duration: 'slow',
-						complete: function () {
-							// After we've faded in clear the opacity and let css take over
-							$( this ).css( { opacity: '' } );
-						}
-					} );
-
-			notif = this;
-
-			// Create a clear placeholder we can use to make the notifications around the notification that is being
-			// replaced expand or contract gracefully to fit the height of the new notification.
-			notif.$replacementPlaceholder = $( '<div>' )
-				// Set the height to the space the previous notification or placeholder took
-				.css( 'height', outerHeight )
-				// Make sure that this placeholder is at the very end of this tagged notification group
-				.insertAfter( $tagMatches.eq( -1 ) )
-				// Animate the placeholder height to the space that this new notification will take up
-				.animate( { height: $notification.outerHeight( true ) },
-					{
-						// Do space animations fast
-						speed: 'fast',
-						complete: function () {
-							// Reset the notification position after we've finished the space animation
-							// However do not do it if the placeholder was removed because another tagged
-							// notification went and closed this one.
-							if ( notif.$replacementPlaceholder ) {
-								$notification.css( 'position', '' );
-							}
-							// Finally, remove the placeholder from the DOM
-							$( this ).remove();
-						}
-					} );
+				.addClass( 'mw-notification-visible' );
 		} else {
-			// Append to the notification area and fade in to the original opacity.
-			$notification
-				.appendTo( $area )
-				.animate( { opacity: opacity },
-					{
-						duration: 'fast',
-						complete: function () {
-							// After we've faded in clear the opacity and let css take over
-							$( this ).css( 'opacity', '' );
-						}
-					}
-				);
+			$area.append( $notification );
+			rAF( function () {
+				// This frame renders the element in the area (invisible)
+				rAF( function () {
+					$notification.addClass( 'mw-notification-visible' );
+				} );
+			} );
 		}
 
 		// By default a notification is paused.
@@ -267,26 +193,20 @@
 	};
 
 	/**
-	 * Close/hide the notification.
-	 *
-	 * @param {Object} options An object containing options for the closing of the notification.
-	 *
-	 *  - speed: Use a close speed different than the default 'slow'.
-	 *  - placeholder: Set to false to disable the placeholder transition.
+	 * Close the notification.
 	 */
-	Notification.prototype.close = function ( options ) {
+	Notification.prototype.close = function () {
+		var notif = this;
+
 		if ( !this.isOpen ) {
 			return;
 		}
+
 		this.isOpen = false;
 		openNotificationCount--;
+
 		// Clear any remaining timeout on close
 		this.pause();
-
-		options = $.extend( {
-			speed: 'slow',
-			placeholder: true
-		}, options );
 
 		// Remove the mw-notification-autohide class from the notification to avoid
 		// having a half-closed notification counted as a notification to resume
@@ -297,56 +217,22 @@
 		// notification that has now become one of the first {autoHideLimit} notifications.
 		notification.resume();
 
-		this.$notification
-			.css( {
-				// Don't trigger any mouse events while fading out, just in case the cursor
-				// happens to be right above us when we transition upwards.
-				pointerEvents: 'none',
-				// Set an absolute position so we can move upwards in the animation.
-				// Notification replacement doesn't look right unless we use an animation like this.
-				position: 'absolute',
-				// We must fix the width to avoid it shrinking horizontally.
-				width: this.$notification.width()
-			} )
-			// Fix the top/left position to the current computed position from which we
-			// can animate upwards.
-			.css( this.$notification.position() );
+		rAF( function () {
+			notif.$notification.removeClass( 'mw-notification-visible' );
 
-		// This needs to be done *after* notification's position has been made absolute.
-		if ( options.placeholder ) {
-			// Insert a placeholder with a height equal to the height of the
-			// notification plus it's vertical margins in place of the notification
-			var $placeholder = $( '<div>' )
-				.css( 'height', this.$notification.outerHeight( true ) )
-				.insertBefore( this.$notification );
-		}
-
-		// Animate opacity and top to create fade upwards animation for notification closing
-		this.$notification
-			.animate( {
-				opacity: 0,
-				top: '-=35'
-			}, {
-				duration: options.speed,
-				complete: function () {
-					// Remove the notification
-					$( this ).remove();
-					// Hide the area manually after closing the last notification, since it has padding,
-					// causing it to obscure whatever is behind it in spite of being invisible (bug 52659).
-					// It's okay to do this before getting rid of the placeholder, as it's invisible as well.
-					if ( openNotificationCount === 0 ) {
-						$area.hide();
-					}
-					if ( options.placeholder ) {
-						// Use a fast slide up animation after closing to make it look like the notifications
-						// below slide up into place when the notification disappears
-						$placeholder.slideUp( 'fast', function () {
-							// Remove the placeholder
-							$( this ).remove();
-						} );
-					}
+			setTimeout( function () {
+				if ( openNotificationCount === 0 ) {
+					// Hide the area after the last notification closes. Otherwise, the padding on
+					// the area can be obscure content, despite the area being empty/invisible (T54659). // FIXME
+					$area.hide();
+					notif.$notification.remove();
+				} else {
+					notif.$notification.slideUp( 'fast',  function () {
+						$( this ).remove();
+					} );
 				}
-			} );
+			}, 500 );
+		} );
 	};
 
 	/**

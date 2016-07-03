@@ -1,4 +1,8 @@
 <?php
+use MediaWiki\Logger\LegacySpi;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\MonologSpi;
+use Psr\Log\LoggerInterface;
 
 /**
  * @since 1.18
@@ -16,7 +20,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * This property must be private, we do not want child to override it,
 	 * they should call the appropriate parent method instead.
 	 */
-	private $called = array();
+	private $called = [];
 
 	/**
 	 * @var TestUser[]
@@ -25,6 +29,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static $users;
 
 	/**
+	 * Primary database
+	 *
 	 * @var DatabaseBase
 	 * @since 1.18
 	 */
@@ -34,7 +40,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var array
 	 * @since 1.19
 	 */
-	protected $tablesUsed = array(); // tables with data
+	protected $tablesUsed = []; // tables with data
 
 	private static $useTemporaryTables = true;
 	private static $reuseDB = false;
@@ -54,7 +60,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @var array
 	 */
-	private $tmpFiles = array();
+	private $tmpFiles = [];
 
 	/**
 	 * Holds original values of MediaWiki configuration settings
@@ -62,7 +68,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * See also setMwGlobals().
 	 * @var array
 	 */
-	private $mwGlobals = array();
+	private $mwGlobals = [];
+
+	/**
+	 * Holds original loggers which have been replaced by setLogger()
+	 * @var LoggerInterface[]
+	 */
+	private $loggers = [];
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -74,14 +86,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var array
 	 * @since 1.18
 	 */
-	protected $supportedDBs = array(
+	protected $supportedDBs = [
 		'mysql',
 		'sqlite',
 		'postgres',
 		'oracle'
-	);
+	];
 
-	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;
@@ -92,7 +104,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// Complain if self::setUp() was called, but not self::tearDown()
 		// $this->called['setUp'] will be checked by self::testMediaWikiTestCaseParentSetupCalled()
 		if ( isset( $this->called['setUp'] ) && !isset( $this->called['tearDown'] ) ) {
-			throw new MWException( get_called_class() . "::tearDown() must call parent::tearDown()" );
+			throw new MWException( static::class . "::tearDown() must call parent::tearDown()" );
 		}
 	}
 
@@ -102,6 +114,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+
+		// Sandbox APC by replacing with in-process hash instead.
+		// Ensures values are removed between tests.
+		ObjectCache::$instances['apc'] =
+		ObjectCache::$instances['xcache'] =
+		ObjectCache::$instances['wincache'] = new HashBagOStuff;
 
 		$needsResetDB = false;
 
@@ -116,14 +134,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {
-				// switch to a temporary clone of the database
-				self::setupTestDB( $this->db, $this->dbPrefix() );
+				$this->setupAllTestDBs();
+				$this->addCoreDBData();
 
 				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-					$this->resetDB();
+					$this->resetDB( $this->db, $this->tablesUsed );
 				}
 			}
-			$this->addCoreDBData();
+
+			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
+			// is available in subclass's setUpBeforeClass() and setUp() methods.
+			// This would also remove the need for the HACK that is oncePerClass().
+			if ( $this->oncePerClass() ) {
+				$this->addDBDataOnce();
+			}
+
 			$this->addDBData();
 			$needsResetDB = true;
 		}
@@ -131,8 +156,24 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		parent::run( $result );
 
 		if ( $needsResetDB ) {
-			$this->resetDB();
+			$this->resetDB( $this->db, $this->tablesUsed );
 		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function oncePerClass() {
+		// Remember current test class in the database connection,
+		// so we know when we need to run addData.
+
+		$class = static::class;
+
+		$first = !isset( $this->db->_hasDataForTestClass )
+			|| $this->db->_hasDataForTestClass !== $class;
+
+		$this->db->_hasDataForTestClass = $class;
+		return $first;
 	}
 
 	/**
@@ -175,7 +216,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$fileName = $this->getNewTempFile();
 
 		// Converting the temporary /file/ to a /directory/
-		//
 		// The following is not atomic, but at least we now have a single place,
 		// where temporary directory creation is bundled and can be improved
 		unlink( $fileName );
@@ -202,11 +242,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback();
+				$this->db->rollback( __METHOD__, 'flush' );
 			}
 		}
 
 		DeferredUpdates::clearPendingUpdates();
+		ObjectCache::getMainWANInstance()->clearProcessCache();
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
@@ -216,8 +257,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
+		global $wgRequest;
+
 		$status = ob_get_status();
-		if ( isset( $status['name'] ) && $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+		if ( isset( $status['name'] ) &&
+			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
+		) {
 			ob_end_flush();
 		}
 
@@ -234,7 +279,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback();
+				$this->db->rollback( __METHOD__, 'flush' );
 			}
 		}
 
@@ -242,9 +287,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
-		$this->mwGlobals = array();
+		$this->mwGlobals = [];
+		$this->restoreLoggers();
 		RequestContext::resetMain();
 		MediaHandler::resetCache();
+		if ( session_id() !== '' ) {
+			session_write_close();
+			session_id( '' );
+		}
+		$wgRequest = new FauxRequest();
+		MediaWiki\Session\SessionManager::resetCache();
+		MediaWiki\Auth\AuthManager::resetCache();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
@@ -268,7 +321,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	final public function testMediaWikiTestCaseParentSetupCalled() {
 		$this->assertArrayHasKey( 'setUp', $this->called,
-			get_called_class() . "::setUp() must call parent::setUp()"
+			static::class . '::setUp() must call parent::setUp()'
 		);
 	}
 
@@ -306,7 +359,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
 		if ( is_string( $pairs ) ) {
-			$pairs = array( $pairs => $value );
+			$pairs = [ $pairs => $value ];
 		}
 
 		$this->stashMwGlobals( array_keys( $pairs ) );
@@ -333,7 +386,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
-			$globalKeys = array( $globalKeys );
+			$globalKeys = [ $globalKeys ];
 		}
 
 		foreach ( $globalKeys as $globalKey ) {
@@ -390,6 +443,88 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @since 1.27
+	 * @param string|Language $lang
+	 */
+	public function setUserLang( $lang ) {
+		RequestContext::getMain()->setLanguage( $lang );
+		$this->setMwGlobals( 'wgLang', RequestContext::getMain()->getLanguage() );
+	}
+
+	/**
+	 * @since 1.27
+	 * @param string|Language $lang
+	 */
+	public function setContentLang( $lang ) {
+		if ( $lang instanceof Language ) {
+			$langCode = $lang->getCode();
+			$langObj = $lang;
+		} else {
+			$langCode = $lang;
+			$langObj = Language::factory( $langCode );
+		}
+		$this->setMwGlobals( [
+			'wgLanguageCode' => $langCode,
+			'wgContLang' => $langObj,
+		] );
+	}
+
+	/**
+	 * Sets the logger for a specified channel, for the duration of the test.
+	 * @since 1.27
+	 * @param string $channel
+	 * @param LoggerInterface $logger
+	 */
+	protected function setLogger( $channel, LoggerInterface $logger ) {
+		$provider = LoggerFactory::getProvider();
+		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
+		$singletons = $wrappedProvider->singletons;
+		if ( $provider instanceof MonologSpi ) {
+			if ( !isset( $this->loggers[$channel] ) ) {
+				$this->loggers[$channel] = isset( $singletons['loggers'][$channel] )
+					? $singletons['loggers'][$channel] : null;
+			}
+			$singletons['loggers'][$channel] = $logger;
+		} elseif ( $provider instanceof LegacySpi ) {
+			if ( !isset( $this->loggers[$channel] ) ) {
+				$this->loggers[$channel] = isset( $singletons[$channel] ) ? $singletons[$channel] : null;
+			}
+			$singletons[$channel] = $logger;
+		} else {
+			throw new LogicException( __METHOD__ . ': setting a logger for ' . get_class( $provider )
+				. ' is not implemented' );
+		}
+		$wrappedProvider->singletons = $singletons;
+	}
+
+	/**
+	 * Restores loggers replaced by setLogger().
+	 * @since 1.27
+	 */
+	private function restoreLoggers() {
+		$provider = LoggerFactory::getProvider();
+		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
+		$singletons = $wrappedProvider->singletons;
+		foreach ( $this->loggers as $channel => $logger ) {
+			if ( $provider instanceof MonologSpi ) {
+				if ( $logger === null ) {
+					unset( $singletons['loggers'][$channel] );
+				} else {
+					$singletons['loggers'][$channel] = $logger;
+				}
+			} elseif ( $provider instanceof LegacySpi ) {
+				if ( $logger === null ) {
+					unset( $singletons[$channel] );
+				} else {
+					$singletons[$channel] = $logger;
+				}
+			}
+		}
+		$wrappedProvider->singletons = $singletons;
+		$this->loggers = [];
+	}
+
+	/**
 	 * @return string
 	 * @since 1.18
 	 */
@@ -432,22 +567,39 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$user = User::newFromName( 'UTSysop' );
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
-		// Avoid memory leak...?
-		// LinkCache::singleton()->clear();
-		// Maybe.  But doing this absolutely breaks $title->isRedirect() when called during unit tests....
-
 		$page = WikiPage::factory( $title );
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
 
-		return array(
+		return [
 			'title' => $title,
 			'id' => $page->getId(),
-		);
+		];
 	}
 
 	/**
-	 * Stub. If a test needs to add additional data to the database, it should
-	 * implement this method and do so
+	 * Stub. If a test suite needs to add additional data to the database, it should
+	 * implement this method and do so. This method is called once per test suite
+	 * (i.e. once per class).
+	 *
+	 * Note data added by this method may be removed by resetDB() depending on
+	 * the contents of $tablesUsed.
+	 *
+	 * To add additional data between test function runs, override prepareDB().
+	 *
+	 * @see addDBData()
+	 * @see resetDB()
+	 *
+	 * @since 1.27
+	 */
+	public function addDBDataOnce() {
+	}
+
+	/**
+	 * Stub. Subclasses may override this to prepare the database.
+	 * Called before every test run (test function or data set).
+	 *
+	 * @see addDBDataOnce()
+	 * @see resetDB()
 	 *
 	 * @since 1.18
 	 */
@@ -459,13 +611,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
-			$this->db->insert( 'user', array(
+			$this->db->insert( 'user', [
 				'user_id' => 0,
-				'user_name' => 'Anonymous' ), __METHOD__, array( 'IGNORE' ) );
+				'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
 
 			# Insert 0 page to prevent FK violations
 			# Blank page
-			$this->db->insert( 'page', array(
+			$this->db->insert( 'page', [
 				'page_id' => 0,
 				'page_namespace' => 0,
 				'page_title' => ' ',
@@ -475,7 +627,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_random' => 0,
 				'page_touched' => $this->db->timestamp(),
 				'page_latest' => 0,
-				'page_len' => 0 ), __METHOD__, array( 'IGNORE' ) );
+				'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
 		}
 
 		User::resetIdByNameCache();
@@ -485,11 +637,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTSysopPassword' );
-
+			TestUser::setPasswordForUser( $user, 'UTSysopPassword' );
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
-			$user->saveSettings();
 		}
 
 		// Make 1 page with 1 revision
@@ -502,6 +652,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				false,
 				$user
 			);
+
+			// doEditContent() probably started the session via
+			// User::loadFromSession(). Close it now.
+			if ( session_id() !== '' ) {
+				session_write_close();
+				session_id( '' );
+			}
 		}
 	}
 
@@ -513,14 +670,67 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.21
 	 */
 	public static function teardownTestDB() {
+		global $wgJobClasses;
+
 		if ( !self::$dbSetup ) {
 			return;
+		}
+
+		foreach ( $wgJobClasses as $type => $class ) {
+			// Delete any jobs under the clone DB (or old prefix in other stores)
+			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;
 		self::$dbSetup = false;
+	}
+
+	/**
+	 * Setups a database with the given prefix.
+	 *
+	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
+	 * Otherwise, it will clone the tables and change the prefix.
+	 *
+	 * Clones all tables in the given database (whatever database that connection has
+	 * open), to versions with the test prefix.
+	 *
+	 * @param DatabaseBase $db Database to use
+	 * @param string $prefix Prefix to use for test tables
+	 * @return bool True if tables were cloned, false if only the prefix was changed
+	 */
+	protected static function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix ) {
+		$tablesCloned = self::listTables( $db );
+		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+			CloneDatabase::changePrefix( $prefix );
+
+			return false;
+		} else {
+			$dbClone->cloneTableStructure();
+			return true;
+		}
+	}
+
+	/**
+	 * Set up all test DBs
+	 */
+	public function setupAllTestDBs() {
+		global $wgDBprefix;
+
+		self::$oldTablePrefix = $wgDBprefix;
+
+		$testPrefix = $this->dbPrefix();
+
+		// switch to a temporary clone of the database
+		self::setupTestDB( $this->db, $testPrefix );
+
+		if ( self::isUsingExternalStoreDB() ) {
+			self::setupExternalStoreTestDBs( $testPrefix );
+		}
 	}
 
 	/**
@@ -545,8 +755,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
-		global $wgDBprefix;
-		if ( $wgDBprefix === $prefix ) {
+		if ( $db->tablePrefix() === $prefix ) {
 			throw new MWException(
 				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
 		}
@@ -555,50 +764,128 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return;
 		}
 
-		$tablesCloned = self::listTables( $db );
-		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
 		self::$dbSetup = true;
-		self::$oldTablePrefix = $wgDBprefix;
 
-		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-			CloneDatabase::changePrefix( $prefix );
-
+		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
 			return;
-		} else {
-			$dbClone->cloneTableStructure();
 		}
 
+		// Assuming this isn't needed for External Store database, and not sure if the procedure
+		// would be available there.
 		if ( $db->getType() == 'oracle' ) {
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
 	}
 
 	/**
-	 * Empty all tables so they can be repopulated for tests
+	 * Clones the External Store database(s) for testing
+	 *
+	 * @param string $testPrefix Prefix for test tables
 	 */
-	private function resetDB() {
-		if ( $this->db ) {
-			if ( $this->db->getType() == 'oracle' ) {
-				if ( self::$useTemporaryTables ) {
-					wfGetLB()->closeAll();
-					$this->db = wfGetDB( DB_MASTER );
+	protected static function setupExternalStoreTestDBs( $testPrefix ) {
+		$connections = self::getExternalStoreDatabaseConnections();
+		foreach ( $connections as $dbw ) {
+			// Hack: cloneTableStructure sets $wgDBprefix to the unit test
+			// prefix,.  Even though listTables now uses tablePrefix, that
+			// itself is populated from $wgDBprefix by default.
+
+			// We have to set it back, or we won't find the original 'blobs'
+			// table to copy.
+
+			$dbw->tablePrefix( self::$oldTablePrefix );
+			self::setupDatabaseWithTestPrefix( $dbw, $testPrefix );
+		}
+	}
+
+	/**
+	 * Gets master database connections for all of the ExternalStoreDB
+	 * stores configured in $wgDefaultExternalStore.
+	 *
+	 * @return array Array of DatabaseBase master connections
+	 */
+
+	protected static function getExternalStoreDatabaseConnections() {
+		global $wgDefaultExternalStore;
+
+		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
+		$defaultArray = (array) $wgDefaultExternalStore;
+		$dbws = [];
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				list( $proto, $cluster ) = explode( '://', $url, 2 );
+				$dbw = $externalStoreDB->getMaster( $cluster );
+				$dbws[] = $dbw;
+			}
+		}
+
+		return $dbws;
+	}
+
+	/**
+	 * Check whether ExternalStoreDB is being used
+	 *
+	 * @return bool True if it's being used
+	 */
+	protected static function isUsingExternalStoreDB() {
+		global $wgDefaultExternalStore;
+		if ( !$wgDefaultExternalStore ) {
+			return false;
+		}
+
+		$defaultArray = (array) $wgDefaultExternalStore;
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Empty all tables so they can be repopulated for tests
+	 *
+	 * @param DatabaseBase $db|null Database to reset
+	 * @param array $tablesUsed Tables to reset
+	 */
+	private function resetDB( $db, $tablesUsed ) {
+		if ( $db ) {
+			$userTables = [ 'user', 'user_groups', 'user_properties' ];
+			$coreDBDataTables = array_merge( $userTables, [ 'page', 'revision' ] );
+
+			// If any of the user tables were marked as used, we should clear all of them.
+			if ( array_intersect( $tablesUsed, $userTables ) ) {
+				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
+
+				// Totally clear User class in-process cache to avoid CAS errors
+				TestingAccessWrapper::newFromClass( 'User' )
+					->getInProcessCache()
+					->clear();
+			}
+
+			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
+			foreach ( $tablesUsed as $tbl ) {
+				// TODO: reset interwiki table to its original content.
+				if ( $tbl == 'interwiki' ) {
+					continue;
+				}
+
+				if ( $truncate ) {
+					$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tbl ), __METHOD__ );
 				} else {
-					foreach ( $this->tablesUsed as $tbl ) {
-						if ( $tbl == 'interwiki' ) {
-							continue;
-						}
-						$this->db->query( 'TRUNCATE TABLE ' . $this->db->tableName( $tbl ), __METHOD__ );
-					}
+					$db->delete( $tbl, '*', __METHOD__ );
 				}
-			} else {
-				foreach ( $this->tablesUsed as $tbl ) {
-					if ( $tbl == 'interwiki' || $tbl == 'user' ) {
-						continue;
-					}
-					$this->db->delete( $tbl, '*', __METHOD__ );
+
+				if ( $tbl === 'page' ) {
+					// Forget about the pages since they don't
+					// exist in the DB.
+					LinkCache::singleton()->clear();
 				}
+			}
+
+			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
+				// Re-add core DB data that was deleted
+				$this->addCoreDBData();
 			}
 		}
 	}
@@ -613,12 +900,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException
 	 */
 	public function __call( $func, $args ) {
-		static $compatibility = array(
+		static $compatibility = [
 			'assertEmpty' => 'assertEmpty2', // assertEmpty was added in phpunit 3.7.32
-		);
+		];
 
 		if ( isset( $compatibility[$func] ) ) {
-			return call_user_func_array( array( $this, $compatibility[$func] ), $args );
+			return call_user_func_array( [ $this, $compatibility[$func] ], $args );
 		} else {
 			throw new MWException( "Called non-existent $func method on "
 				. get_class( $this ) );
@@ -634,10 +921,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $value == '', $msg );
 	}
 
-	private static function unprefixTable( $tableName ) {
-		global $wgDBprefix;
-
-		return substr( $tableName, strlen( $wgDBprefix ) );
+	private static function unprefixTable( &$tableName, $ind, $prefix ) {
+		$tableName = substr( $tableName, strlen( $prefix ) );
 	}
 
 	private static function isNotUnittest( $table ) {
@@ -652,19 +937,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return array
 	 */
 	public static function listTables( $db ) {
-		global $wgDBprefix;
-
-		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
+		$prefix = $db->tablePrefix();
+		$tables = $db->listTables( $prefix, __METHOD__ );
 
 		if ( $db->getType() === 'mysql' ) {
 			# bug 43571: cannot clone VIEWs under MySQL
-			$views = $db->listViews( $wgDBprefix, __METHOD__ );
+			$views = $db->listViews( $prefix, __METHOD__ );
 			$tables = array_diff( $tables, $views );
 		}
-		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
+		array_walk( $tables, [ __CLASS__, 'unprefixTable' ], $prefix );
 
 		// Don't duplicate test tables from the previous fataled run
-		$tables = array_filter( $tables, array( __CLASS__, 'isNotUnittest' ) );
+		$tables = array_filter( $tables, [ __CLASS__, 'isNotUnittest' ] );
 
 		if ( $db->getType() == 'sqlite' ) {
 			$tables = array_flip( $tables );
@@ -747,7 +1031,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$res = $db->select( $table, $fields, $condition, wfGetCaller(), array( 'ORDER BY' => $fields ) );
+		$res = $db->select( $table, $fields, $condition, wfGetCaller(), [ 'ORDER BY' => $fields ] );
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;
@@ -782,7 +1066,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function arrayWrap( array $elements ) {
 		return array_map(
 			function ( $element ) {
-				return array( $element );
+				return [ $element ];
 			},
 			$elements
 		);
@@ -814,8 +1098,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		call_user_func_array(
-			array( $this, 'assertEquals' ),
-			array_merge( array( $expected, $actual ), array_slice( func_get_args(), 4 ) )
+			[ $this, 'assertEquals' ],
+			array_merge( [ $expected, $actual ], array_slice( func_get_args(), 4 ) )
 		);
 	}
 
@@ -957,13 +1241,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// NOTE: prefer content namespaces
 		$namespaces = array_unique( array_merge(
 			MWNamespace::getContentNamespaces(),
-			array( NS_MAIN, NS_HELP, NS_PROJECT ), // prefer these
+			[ NS_MAIN, NS_HELP, NS_PROJECT ], // prefer these
 			MWNamespace::getValidNamespaces()
 		) );
 
-		$namespaces = array_diff( $namespaces, array(
+		$namespaces = array_diff( $namespaces, [
 			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
-		) );
+		] );
 
 		$talk = array_filter( $namespaces, function ( $ns ) {
 			return MWNamespace::isTalk( $ns );
@@ -997,7 +1281,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.21
 	 */
-	protected function checkHasDiff3() {
+	protected function markTestSkippedIfNoDiff3() {
 		global $wgDiff3;
 
 		# This check may also protect against code injection in
@@ -1052,33 +1336,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		return $loaded;
-	}
-
-	/**
-	 * Asserts that an exception of the specified type occurs when running
-	 * the provided code.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.22 Use setExpectedException
-	 *
-	 * @param callable $code
-	 * @param string $expected
-	 * @param string $message
-	 */
-	protected function assertException( $code, $expected = 'Exception', $message = '' ) {
-		$pokemons = null;
-
-		try {
-			call_user_func( $code );
-		} catch ( Exception $pokemons ) {
-			// Gotta Catch 'Em All!
-		}
-
-		if ( $message === '' ) {
-			$message = 'An exception of type "' . $expected . '" should have been thrown';
-		}
-
-		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
 
 	/**
@@ -1151,7 +1408,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Note: we are overriding this method to remove the deprecated error
-	 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=69505
+	 * @see https://phabricator.wikimedia.org/T71505
 	 * @see https://github.com/sebastianbergmann/phpunit/issues/1292
 	 * @deprecated
 	 *
@@ -1161,7 +1418,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param bool $isHtml
 	 */
 	public static function assertTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertTrue( self::tagMatch( $matcher, $actual, $isHtml ), $message );
 	}
@@ -1176,7 +1433,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param bool $isHtml
 	 */
 	public static function assertNotTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertFalse( self::tagMatch( $matcher, $actual, $isHtml ), $message );
 	}
@@ -1188,4 +1445,5 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function wfResetOutputBuffersBarrier( $buffer ) {
 		return $buffer;
 	}
+
 }

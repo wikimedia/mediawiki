@@ -30,59 +30,70 @@
 
 /**
  * Interface for log entries. Every log entry has these methods.
+ *
  * @since 1.19
  */
 interface LogEntry {
+
 	/**
 	 * The main log type.
+	 *
 	 * @return string
 	 */
 	public function getType();
 
 	/**
 	 * The log subtype.
+	 *
 	 * @return string
 	 */
 	public function getSubtype();
 
 	/**
 	 * The full logtype in format maintype/subtype.
+	 *
 	 * @return string
 	 */
 	public function getFullType();
 
 	/**
 	 * Get the extra parameters stored for this message.
+	 *
 	 * @return array
 	 */
 	public function getParameters();
 
 	/**
 	 * Get the user for performed this action.
+	 *
 	 * @return User
 	 */
 	public function getPerformer();
 
 	/**
 	 * Get the target page of this action.
+	 *
 	 * @return Title
 	 */
 	public function getTarget();
 
 	/**
 	 * Get the timestamp when the action was executed.
+	 *
 	 * @return string
 	 */
 	public function getTimestamp();
 
 	/**
 	 * Get the user provided comment.
+	 *
 	 * @return string
 	 */
 	public function getComment();
 
 	/**
 	 * Get the access restriction.
+	 *
 	 * @return string
 	 */
 	public function getDeleted();
@@ -96,9 +107,11 @@ interface LogEntry {
 
 /**
  * Extends the LogEntryInterface with some basic functionality
+ *
  * @since 1.19
  */
 abstract class LogEntryBase implements LogEntry {
+
 	public function getFullType() {
 		return $this->getType() . '/' . $this->getSubtype();
 	}
@@ -110,6 +123,7 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Whether the parameters for this log are stored in new or
 	 * old format.
+	 *
 	 * @return bool
 	 */
 	public function isLegacy() {
@@ -119,9 +133,9 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Create a blob from a parameter array
 	 *
+	 * @since 1.26
 	 * @param array $params
 	 * @return string
-	 * @since 1.26
 	 */
 	public static function makeParamBlob( $params ) {
 		return serialize( (array)$params );
@@ -130,9 +144,9 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Extract a parameter array from a blob
 	 *
+	 * @since 1.26
 	 * @param string $blob
 	 * @return array
-	 * @since 1.26
 	 */
 	public static function extractParams( $blob ) {
 		return unserialize( $blob );
@@ -141,44 +155,46 @@ abstract class LogEntryBase implements LogEntry {
 
 /**
  * This class wraps around database result row.
+ *
  * @since 1.19
  */
 class DatabaseLogEntry extends LogEntryBase {
-	// Static->
 
 	/**
 	 * Returns array of information that is needed for querying
 	 * log entries. Array contains the following keys:
 	 * tables, fields, conds, options and join_conds
+	 *
 	 * @return array
 	 */
 	public static function getSelectQueryData() {
-		$tables = array( 'logging', 'user' );
-		$fields = array(
+		$tables = [ 'logging', 'user' ];
+		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_user', 'log_user_text',
 			'log_namespace', 'log_title', // unused log_page
 			'log_comment', 'log_params', 'log_deleted',
 			'user_id', 'user_name', 'user_editcount',
-		);
+		];
 
-		$joins = array(
-			// IP's don't have an entry in user table
-			'user' => array( 'LEFT JOIN', 'log_user=user_id' ),
-		);
+		$joins = [
+			// IPs don't have an entry in user table
+			'user' => [ 'LEFT JOIN', 'log_user=user_id' ],
+		];
 
-		return array(
+		return [
 			'tables' => $tables,
 			'fields' => $fields,
-			'conds' => array(),
-			'options' => array(),
+			'conds' => [],
+			'options' => [],
 			'join_conds' => $joins,
-		);
+		];
 	}
 
 	/**
 	 * Constructs new LogEntry from database result row.
 	 * Supports rows from both logging and recentchanges table.
+	 *
 	 * @param stdClass|array $row
 	 * @return DatabaseLogEntry
 	 */
@@ -191,17 +207,19 @@ class DatabaseLogEntry extends LogEntryBase {
 		}
 	}
 
-	// Non-static->
-
 	/** @var stdClass Database result row. */
 	protected $row;
 
 	/** @var User */
 	protected $performer;
 
-	/** @var bool Whether the parameters for this log entry are stored in new
-	 *    or old format.
-	 */
+	/** @var array Parameters for log entry */
+	protected $params;
+
+	/** @var int A rev id associated to the log entry */
+	protected $revId = null;
+
+	/** @var bool Whether the parameters for this log entry are stored in new or old format. */
 	protected $legacy;
 
 	protected function __construct( $row ) {
@@ -210,6 +228,7 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	/**
 	 * Returns the unique database id.
+	 *
 	 * @return int
 	 */
 	public function getId() {
@@ -218,22 +237,18 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	/**
 	 * Returns whatever is stored in the database field.
+	 *
 	 * @return string
 	 */
 	protected function getRawParameters() {
 		return $this->row->log_params;
 	}
 
-	// LogEntryBase->
-
 	public function isLegacy() {
-		// This does the check
+		// This extracts the property
 		$this->getParameters();
-
 		return $this->legacy;
 	}
-
-	// LogEntry->
 
 	public function getType() {
 		return $this->row->log_type;
@@ -256,21 +271,34 @@ class DatabaseLogEntry extends LogEntryBase {
 				$this->params = LogPage::extractParams( $blob );
 				$this->legacy = true;
 			}
+
+			if ( isset( $this->params['associated_rev_id'] ) ) {
+				$this->revId = $this->params['associated_rev_id'];
+				unset( $this->params['associated_rev_id'] );
+			}
 		}
 
 		return $this->params;
 	}
 
+	public function getAssociatedRevId() {
+		// This extracts the property
+		$this->getParameters();
+		return $this->revId;
+	}
+
 	public function getPerformer() {
 		if ( !$this->performer ) {
 			$userId = (int)$this->row->log_user;
-			if ( $userId !== 0 ) { // logged-in users
+			if ( $userId !== 0 ) {
+				// logged-in users
 				if ( isset( $this->row->user_name ) ) {
 					$this->performer = User::newFromRow( $this->row );
 				} else {
 					$this->performer = User::newFromId( $userId );
 				}
-			} else { // IP users
+			} else {
+				// IP users
 				$userText = $this->row->log_user_text;
 				$this->performer = User::newFromName( $userText, false );
 			}
@@ -310,7 +338,9 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->row->rc_params;
 	}
 
-	// LogEntry->
+	public function getAssociatedRevId() {
+		return $this->row->rc_this_oldid;
+	}
 
 	public function getType() {
 		return $this->row->rc_log_type;
@@ -357,8 +387,8 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 }
 
 /**
- * Class for creating log entries manually, for
- * example to inject them into the database.
+ * Class for creating log entries manually, to inject them into the database.
+ *
  * @since 1.19
  */
 class ManualLogEntry extends LogEntryBase {
@@ -369,10 +399,10 @@ class ManualLogEntry extends LogEntryBase {
 	protected $subtype;
 
 	/** @var array Parameters for log entry */
-	protected $parameters = array();
+	protected $parameters = [];
 
 	/** @var array */
-	protected $relations = array();
+	protected $relations = [];
 
 	/** @var User Performer of the action for the log entry */
 	protected $performer;
@@ -386,11 +416,20 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var string Comment for the log entry */
 	protected $comment = '';
 
+	/** @var int A rev id associated to the log entry */
+	protected $revId = 0;
+
+	/** @var array Change tags add to the log entry */
+	protected $tags = null;
+
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
 
 	/** @var int ID of the log entry */
 	protected $id;
+
+	/** @var Can this log entry be patrolled? */
+	protected $isPatrollable = false;
 
 	/** @var bool Whether this is a legacy log entry */
 	protected $legacy = false;
@@ -399,7 +438,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Constructor.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $type
 	 * @param string $subtype
 	 */
@@ -414,15 +452,19 @@ class ManualLogEntry extends LogEntryBase {
 	 * You can pass params to the log action message by prefixing the keys with
 	 * a number and optional type, using colons to separate the fields. The
 	 * numbering should start with number 4, the first three parameters are
-	 * hardcoded for every message. Example:
-	 * $entry->setParameters(
-	 *   '4::color' => 'blue',
-	 *   '5:number:count' => 3000,
-	 *   'animal' => 'dog'
-	 * );
+	 * hardcoded for every message.
+	 *
+	 * If you want to store stuff that should not be available in messages, don't
+	 * prefix the array key with a number and don't use the colons.
+	 *
+	 * Example:
+	 *   $entry->setParameters(
+	 *     '4::color' => 'blue',
+	 *     '5:number:count' => 3000,
+	 *     'animal' => 'dog'
+	 *   );
 	 *
 	 * @since 1.19
-	 *
 	 * @param array $parameters Associative array
 	 */
 	public function setParameters( $parameters ) {
@@ -444,7 +486,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the user that performed the action being logged.
 	 *
 	 * @since 1.19
-	 *
 	 * @param User $performer
 	 */
 	public function setPerformer( User $performer ) {
@@ -455,7 +496,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the title of the object changed.
 	 *
 	 * @since 1.19
-	 *
 	 * @param Title $target
 	 */
 	public function setTarget( Title $target ) {
@@ -466,7 +506,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the timestamp of when the logged action took place.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $timestamp
 	 */
 	public function setTimestamp( $timestamp ) {
@@ -477,11 +516,49 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set a comment associated with the action being logged.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $comment
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
+	}
+
+	/**
+	 * Set an associated revision id.
+	 *
+	 * For example, the ID of the revision that was inserted to mark a page move
+	 * or protection, file upload, etc.
+	 *
+	 * @since 1.27
+	 * @param int $revId
+	 */
+	public function setAssociatedRevId( $revId ) {
+		$this->revId = $revId;
+	}
+
+	/**
+	 * Set change tags for the log entry.
+	 *
+	 * @since 1.27
+	 * @param string|string[] $tags
+	 */
+	public function setTags( $tags ) {
+		if ( is_string( $tags ) ) {
+			$tags = [ $tags ];
+		}
+		$this->tags = $tags;
+	}
+
+	/**
+	 * Set whether this log entry should be made patrollable
+	 * This shouldn't depend on config, only on whether there is full support
+	 * in the software for patrolling this log entry.
+	 * False by default
+	 *
+	 * @since 1.27
+	 * @param bool $patrollable
+	 */
+	public function setIsPatrollable( $patrollable ) {
+		$this->isPatrollable = (bool)$patrollable;
 	}
 
 	/**
@@ -495,18 +572,18 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * TODO: document
+	 * Set the 'deleted' flag.
 	 *
 	 * @since 1.19
-	 *
-	 * @param int $deleted
+	 * @param int $deleted One of LogPage::DELETED_* bitfield constants
 	 */
 	public function setDeleted( $deleted ) {
 		$this->deleted = $deleted;
 	}
 
 	/**
-	 * Inserts the entry into the logging table.
+	 * Insert the entry into the `logging` table.
+	 *
 	 * @param IDatabase $dbw
 	 * @return int ID of the log entry
 	 * @throws MWException
@@ -521,13 +598,23 @@ class ManualLogEntry extends LogEntryBase {
 			$this->timestamp = wfTimestampNow();
 		}
 
-		# Trim spaces on user supplied text
+		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() );
 
-		# Truncate for whole multibyte characters.
+		// Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
 
-		$data = array(
+		$params = $this->getParameters();
+		$relations = $this->relations;
+
+		// Additional fields for which there's no space in the database table schema
+		$revId = $this->getAssociatedRevId();
+		if ( $revId ) {
+			$params['associated_rev_id'] = $revId;
+			$relations['associated_rev_id'] = $revId;
+		}
+
+		$data = [
 			'log_id' => $id,
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
@@ -538,8 +625,8 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
-			'log_params' => LogEntryBase::makeParamBlob( $this->getParameters() ),
-		);
+			'log_params' => LogEntryBase::makeParamBlob( $params ),
+		];
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
 		}
@@ -547,22 +634,22 @@ class ManualLogEntry extends LogEntryBase {
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
 
-		$rows = array();
-		foreach ( $this->relations as $tag => $values ) {
+		$rows = [];
+		foreach ( $relations as $tag => $values ) {
 			if ( !strlen( $tag ) ) {
 				throw new MWException( "Got empty log search tag." );
 			}
 
 			if ( !is_array( $values ) ) {
-				$values = array( $values );
+				$values = [ $values ];
 			}
 
 			foreach ( $values as $value ) {
-				$rows[] = array(
+				$rows[] = [
 					'ls_field' => $tag,
 					'ls_value' => $value,
 					'ls_log_id' => $this->id
-				);
+				];
 			}
 		}
 		if ( count( $rows ) ) {
@@ -574,6 +661,7 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Get a RecentChanges object for the log entry
+	 *
 	 * @param int $newId
 	 * @return RecentChange
 	 * @since 1.23
@@ -587,10 +675,8 @@ class ManualLogEntry extends LogEntryBase {
 		$user = $this->getPerformer();
 		$ip = "";
 		if ( $user->isAnon() ) {
-			/*
-			 * "MediaWiki default" and friends may have
-			 * no IP address in their name
-			 */
+			// "MediaWiki default" and friends may have
+			// no IP address in their name
 			if ( IP::isIPAddress( $user->getName() ) ) {
 				$ip = $user->getName();
 			}
@@ -608,19 +694,23 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getComment(),
 			LogEntryBase::makeParamBlob( $this->getParameters() ),
 			$newId,
-			$formatter->getIRCActionComment() // Used for IRC feeds
+			$formatter->getIRCActionComment(), // Used for IRC feeds
+			$this->getAssociatedRevId(), // Used for e.g. moves and uploads
+			$this->getIsPatrollable()
 		);
 	}
 
 	/**
-	 * Publishes the log entry.
+	 * Publish the log entry.
+	 *
 	 * @param int $newId Id of the log entry.
 	 * @param string $to One of: rcandudp (default), rc, udp
+	 * @return RecentChange|null
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );
 		if ( $log->isRestricted() ) {
-			return;
+			return null;
 		}
 
 		$rc = $this->getRecentChange( $newId );
@@ -632,9 +722,23 @@ class ManualLogEntry extends LogEntryBase {
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
 			$rc->notifyRCFeeds();
 		}
-	}
 
-	// LogEntry->
+		// Log the autopatrol if the log entry is patrollable
+		if ( $this->getIsPatrollable() &&
+			$rc->getAttribute( 'rc_patrolled' ) === 1 ) {
+			PatrolLog::record( $rc, true, $this->getPerformer() );
+		}
+
+		// Add change tags to the log entry and (if applicable) the associated revision
+		$tags = $this->getTags();
+		if ( !is_null( $tags ) ) {
+			$rcId = $rc->getAttribute( 'rc_id' );
+			$revId = $this->getAssociatedRevId(); // Use null if $revId is 0
+			ChangeTags::addTags( $tags, $rcId, $revId > 0 ? $revId : null, $newId );
+		}
+
+		return $rc;
+	}
 
 	public function getType() {
 		return $this->type;
@@ -670,6 +774,32 @@ class ManualLogEntry extends LogEntryBase {
 
 	public function getComment() {
 		return $this->comment;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return int
+	 */
+	public function getAssociatedRevId() {
+		return $this->revId;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return array
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	/**
+	 * Whether this log entry is patrollable
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function getIsPatrollable() {
+		return $this->isPatrollable;
 	}
 
 	/**

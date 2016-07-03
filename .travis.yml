@@ -12,9 +12,9 @@ matrix:
   fast_finish: true
   include:
     - env: dbtype=mysql
-      php: 5.3
+      php: 5.5
     - env: dbtype=postgres
-      php: 5.3
+      php: 5.5
     - env: dbtype=mysql
       php: hhvm
     - env: dbtype=mysql
@@ -24,16 +24,13 @@ services:
   - mysql
 
 branches:
-  # Test changes in master, in Wikimedia's production and in arbitrary
-  # Travis CI branches.  The latter allows developers to enable Travis
-  # CI in their GitHub fork of wikimedia/mediawiki and then push
-  # changes they like to test to branches like
-  # "travis-ci/test-this-awesome-change" without having to mess up the
-  # master and wmf/* branches and their defined meaning.
+  # Test changes in master and arbitrary Travis CI branches only.
+  # The latter allows developers to enable Travis CI in their GitHub fork of
+  # wikimedia/mediawiki and then push changes they like to test to branches like
+  # "travis-ci/test-this-awesome-change".
   only:
     - master
     - /^travis-ci\/.*$/
-    - /^wmf\/.*$/
 
 before_install:
   - sudo apt-get install -qq djvulibre-bin tidy

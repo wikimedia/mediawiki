@@ -30,8 +30,8 @@ use Monolog\Logger;
  * Monolog's SyslogUdpHandler creates a partial RFC 5424 header (PRI and
  * VERSION) and relies on the associated formatter to complete the header and
  * message payload. This makes using it with a fixed format formatter like
- * Monolog\Formatter\LogstashFormatter impossible. Additionally, the direct
- * syslog input for Logstash only handles RFC 3164 syslog packets.
+ * \Monolog\Formatter\LogstashFormatter impossible. Additionally, the
+ * direct syslog input for Logstash only handles RFC 3164 syslog packets.
  *
  * This Handler should work with any Formatter. The formatted message will be
  * prepended with an RFC 3164 message header and a partial message body. The
@@ -57,7 +57,6 @@ class SyslogHandler extends SyslogUdpHandler {
 	 * @var string $hostname
 	 */
 	private $hostname;
-
 
 	/**
 	 * @param string $appname Application name to report to syslog

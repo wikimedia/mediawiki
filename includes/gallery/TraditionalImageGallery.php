@@ -43,7 +43,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
-			array( 'class' => 'gallery mw-gallery-' . $this->mMode ), $this->mAttribs );
+			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
 
 		$modules = $this->getModules();
 
@@ -73,9 +73,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				# Get the file...
 				if ( $this->mParser instanceof Parser ) {
 					# Give extensions a chance to select the file revision for us
-					$options = array();
+					$options = [];
 					Hooks::run( 'BeforeParserFetchFileAndTitle',
-						array( $this->mParser, $nt, &$options, &$descQuery ) );
+						[ $this->mParser, $nt, &$options, &$descQuery ] );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {
@@ -111,48 +111,51 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						htmlspecialchars( $nt->getText() )
 					) .
 					'</div>';
-			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
-				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
-					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
-					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				/** @var MediaTransformOutput $thumb */
-				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
+				$thumb = $img->transform( $transformOptions );
+				if ( !$thumb ) {
+					# Error generating thumbnail.
+					$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
+						. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
+						. htmlspecialchars( $img->getLastError() ) . '</div>';
+				} else {
+					/** @var MediaTransformOutput $thumb */
+					$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
-				$imageParameters = array(
-					'desc-link' => true,
-					'desc-query' => $descQuery,
-					'alt' => $alt,
-					'custom-url-link' => $link
-				);
+					$imageParameters = [
+						'desc-link' => true,
+						'desc-query' => $descQuery,
+						'alt' => $alt,
+						'custom-url-link' => $link
+					];
 
-				// In the absence of both alt text and caption, fall back on
-				// providing screen readers with the filename as alt text
-				if ( $alt == '' && $text == '' ) {
-					$imageParameters['alt'] = $nt->getText();
-				}
+					// In the absence of both alt text and caption, fall back on
+					// providing screen readers with the filename as alt text
+					if ( $alt == '' && $text == '' ) {
+						$imageParameters['alt'] = $nt->getText();
+					}
 
-				$this->adjustImageParameters( $thumb, $imageParameters );
+					$this->adjustImageParameters( $thumb, $imageParameters );
 
-				Linker::processResponsiveImages( $img, $thumb, $transformOptions );
+					Linker::processResponsiveImages( $img, $thumb, $transformOptions );
 
-				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t"
-					. '<div class="thumb" style="width: '
-					. $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
-					# Auto-margin centering for block-level elements. Needed
-					# now that we have video handlers since they may emit block-
-					# level elements as opposed to simple <img> tags. ref
-					# http://css-discuss.incutio.com/?page=CenteringBlockElement
-					. '<div style="margin:' . $vpad . 'px auto;">'
-					. $thumb->toHtml( $imageParameters ) . '</div></div>';
+					# Set both fixed width and min-height.
+					$thumbhtml = "\n\t\t\t"
+						. '<div class="thumb" style="width: '
+						. $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
+						# Auto-margin centering for block-level elements. Needed
+						# now that we have video handlers since they may emit block-
+						# level elements as opposed to simple <img> tags. ref
+						# http://css-discuss.incutio.com/?page=CenteringBlockElement
+						. '<div style="margin:' . $vpad . 'px auto;">'
+						. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
-				// Call parser transform hook
-				/** @var MediaHandler $handler */
-				$handler = $img->getHandler();
-				if ( $this->mParser && $handler ) {
-					$handler->parserTransformHook( $this->mParser, $img );
+					// Call parser transform hook
+					/** @var MediaHandler $handler */
+					$handler = $img->getHandler();
+					if ( $this->mParser && $handler ) {
+						$handler->parserTransformHook( $this->mParser, $img );
+					}
 				}
 			}
 
@@ -274,10 +277,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
-		return array(
+		return [
 			'width' => $this->mWidths,
 			'height' => $this->mHeights
-		);
+		];
 	}
 
 	/**
@@ -313,7 +316,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return array Modules to include
 	 */
 	protected function getModules() {
-		return array();
+		return [];
 	}
 
 	/**

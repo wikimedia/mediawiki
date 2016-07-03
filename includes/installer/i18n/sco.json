@@ -3,7 +3,9 @@
 		"authors": [
 			"AmaryllisGardener",
 			"John Reid",
-			"Seb35"
+			"Seb35",
+			"Macofe",
+			"Aursani"
 		]
 	},
 	"config-desc": "The installer fer MediaWiki",
@@ -101,8 +103,6 @@
 	"config-db-install-account": "Uiser accoont fer installâtion",
 	"config-db-username": "Database uisername:",
 	"config-db-password": "Database passwaird:",
-	"config-db-password-empty": "Please enter ae passwaird fer the new database uiser: $1.\nWhile it micht be possible tae mak uisers wi naw passwairds, it's naw secure.",
-	"config-db-username-empty": "Ye maun enter ae value fer \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Enter the uisername that will be uised tae connect til the database durin the installâtion process.\nThis isna the uisername o the MediaWiki accont; this is the uisername fr yer database.",
 	"config-db-install-password": "Enter the passwaird that will be uised tae connect til the database durin the installâtion process.\nThis isna the passwaird fer the MediaWiki accoont; this is the passwaird fer yer database.",
 	"config-db-install-help": "Enter the uisername an passwaird that will be uised tae connect til the database durin the installâtion process.",
@@ -164,7 +164,7 @@
 	"config-upgrade-done": "Upgrade compleate.\n\nYe can nou [$1 stert uising yer wiki].\n\nGif ye wish tae regenerate yer <code>LocalSettings.php</code> file, clap the button ablow.\nThis <strong> isna recommended</strong> onless ye'r haein problems wi yer wiki.",
 	"config-upgrade-done-no-regenerate": "Upgrade compleate.\n\nYe can nou [$1 stert uising yer wiki].",
 	"config-regenerate": "Regênerate LocalSettings.php →",
-	"config-show-table-status": "<code>SHAW BUIRD STATUS</code> speirin failed!",
+	"config-show-table-status": "<code>SHOW TABLE STATUS</code> speirin failed!",
 	"config-unknown-collation": "<strong>Warnishment:</strong> Database is uisin onrecognized collation.",
 	"config-db-web-account": "Database accoont fer wab access",
 	"config-db-web-help": "Select the uisername n passwaird that the wab server will uise tae connect til the database server, durin ordinair operation o the wiki.",

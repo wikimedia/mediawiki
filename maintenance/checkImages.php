@@ -31,21 +31,21 @@ class CheckImages extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check images to see if they exist, are readable, etc";
+		$this->addDescription( 'Check images to see if they exist, are readable, etc' );
 		$this->setBatchSize( 1000 );
 	}
 
 	public function execute() {
 		$start = '';
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$numImages = 0;
 		$numGood = 0;
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		do {
-			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ),
-				__METHOD__, array( 'LIMIT' => $this->mBatchSize ) );
+			$res = $dbr->select( 'image', '*', [ 'img_name > ' . $dbr->addQuotes( $start ) ],
+				__METHOD__, [ 'LIMIT' => $this->mBatchSize ] );
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;

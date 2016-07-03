@@ -57,34 +57,34 @@ class DeadendPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'page', 'pagelinks' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'page', 'pagelinks' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'pl_from IS NULL',
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
-			),
-			'join_conds' => array(
-				'pagelinks' => array(
+			],
+			'join_conds' => [
+				'pagelinks' => [
 					'LEFT JOIN',
-					array( 'page_id=pl_from' )
-				)
-			)
-		);
+					[ 'page_id=pl_from' ]
+				]
+			]
+		];
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
 		if ( count( MWNamespace::getContentNamespaces() ) > 1 ) {
-			return array( 'page_namespace', 'page_title' );
+			return [ 'page_namespace', 'page_title' ];
 		} else {
-			return array( 'page_title' );
+			return [ 'page_title' ];
 		}
 	}
 

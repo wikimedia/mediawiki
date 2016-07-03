@@ -37,81 +37,86 @@ class OracleUpdater extends DatabaseUpdater {
 	protected $db;
 
 	protected function getCoreUpdateList() {
-		return array(
-			array( 'disableContentHandlerUseDB' ),
+		return [
+			[ 'disableContentHandlerUseDB' ],
 
 			// 1.17
-			array( 'doNamespaceDefaults' ),
-			array( 'doFKRenameDeferr' ),
-			array( 'doFunctions17' ),
-			array( 'doSchemaUpgrade17' ),
-			array( 'doInsertPage0' ),
-			array( 'doRemoveNotNullEmptyDefaults' ),
-			array( 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ),
+			[ 'doNamespaceDefaults' ],
+			[ 'doFKRenameDeferr' ],
+			[ 'doFunctions17' ],
+			[ 'doSchemaUpgrade17' ],
+			[ 'doInsertPage0' ],
+			[ 'doRemoveNotNullEmptyDefaults' ],
+			[ 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ],
 
 			// 1.18
-			array( 'addIndex', 'user', 'i02', 'patch-user_email_index.sql' ),
-			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
-			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
-			array( 'doRecentchangesFK2Cascade' ),
+			[ 'addIndex', 'user', 'i02', 'patch-user_email_index.sql' ],
+			[ 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ],
+			[ 'addTable', 'uploadstash', 'patch-uploadstash.sql' ],
+			[ 'doRecentchangesFK2Cascade' ],
 
 			// 1.19
-			array( 'addIndex', 'logging', 'i05', 'patch-logging_type_action_index.sql' ),
-			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ),
-			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
-			array( 'doRemoveNotNullEmptyDefaults2' ),
-			array( 'addIndex', 'page', 'i03', 'patch-page_redirect_namespace_len.sql' ),
-			array( 'addField', 'uploadstash', 'us_chunk_inx', 'patch-us_chunk_inx_field.sql' ),
-			array( 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ),
-			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
-			array( 'doPageRestrictionsPKUKFix' ),
+			[ 'addIndex', 'logging', 'i05', 'patch-logging_type_action_index.sql' ],
+			[ 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ],
+			[ 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ],
+			[ 'doRemoveNotNullEmptyDefaults2' ],
+			[ 'addIndex', 'page', 'i03', 'patch-page_redirect_namespace_len.sql' ],
+			[ 'addField', 'uploadstash', 'us_chunk_inx', 'patch-us_chunk_inx_field.sql' ],
+			[ 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ],
+			[ 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ],
+			[ 'doPageRestrictionsPKUKFix' ],
 
 			// 1.20
-			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
-			array( 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ),
-			array( 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ),
+			[ 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ],
+			[ 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ],
+			[ 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ],
 
 			// 1.21
-			array( 'addField', 'revision', 'rev_content_format',
-				'patch-revision-rev_content_format.sql' ),
-			array( 'addField', 'revision', 'rev_content_model',
-				'patch-revision-rev_content_model.sql' ),
-			array( 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ),
-			array( 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ),
-			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
-			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
-			array( 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ),
-			array( 'enableContentHandlerUseDB' ),
-			array( 'dropField', 'site_stats', 'ss_admins', 'patch-ss_admins.sql' ),
-			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
-			array( 'addTable', 'sites', 'patch-sites.sql' ),
-			array( 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ),
-			array( 'addField', 'job', 'job_token', 'patch-job_token.sql' ),
-			array( 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ),
-			array( 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ),
-			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
-			array( 'modifyField', 'user_former_groups', 'ufg_group',
-				'patch-ufg_group-length-increase-255.sql' ),
+			[ 'addField', 'revision', 'rev_content_format',
+				'patch-revision-rev_content_format.sql' ],
+			[ 'addField', 'revision', 'rev_content_model',
+				'patch-revision-rev_content_model.sql' ],
+			[ 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
+			[ 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
+			[ 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ],
+			[ 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ],
+			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
+			[ 'enableContentHandlerUseDB' ],
+			[ 'dropField', 'site_stats', 'ss_admins', 'patch-ss_admins.sql' ],
+			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],
+			[ 'addTable', 'sites', 'patch-sites.sql' ],
+			[ 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ],
+			[ 'addField', 'job', 'job_token', 'patch-job_token.sql' ],
+			[ 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ],
+			[ 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ],
+			[ 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ],
+			[ 'modifyField', 'user_former_groups', 'ufg_group',
+				'patch-ufg_group-length-increase-255.sql' ],
 
 			// 1.23
-			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
-			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
-			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
-			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
-			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			[ 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ],
+			[ 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ],
+			[ 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ],
+			[ 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ],
+			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
 
 			// 1.24
-			array( 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ),
+			[ 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ],
 
 			// 1.25
-			array( 'dropTable', 'hitcounter' ),
-			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
-			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
+			[ 'dropTable', 'hitcounter' ],
+			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
+			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
+
+			// 1.27
+			[ 'dropTable', 'msg_resource_links' ],
+			[ 'dropTable', 'msg_resource' ],
+			[ 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
-			array( 'doRebuildDuplicateFunction' ),
+			[ 'doRebuildDuplicateFunction' ],
 
-		);
+		];
 	}
 
 	/**
@@ -173,7 +178,7 @@ class OracleUpdater extends DatabaseUpdater {
 	 */
 	protected function doInsertPage0() {
 		$this->output( "Inserting page 0 if missing ... " );
-		$row = array(
+		$row = [
 			'page_id' => 0,
 			'page_namespace' => 0,
 			'page_title' => ' ',
@@ -183,8 +188,8 @@ class OracleUpdater extends DatabaseUpdater {
 			'page_touched' => $this->db->timestamp(),
 			'page_latest' => 0,
 			'page_len' => 0
-		);
-		$this->db->insert( 'page', $row, 'OracleUpdater:doInserPage0', array( 'IGNORE' ) );
+		];
+		$this->db->insert( 'page', $row, 'OracleUpdater:doInserPage0', [ 'IGNORE' ] );
 		$this->output( "ok\n" );
 	}
 
@@ -270,7 +275,7 @@ class OracleUpdater extends DatabaseUpdater {
 	 *
 	 * @param array $what
 	 */
-	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
+	public function doUpdates( $what = [ 'core', 'extensions', 'purge', 'stats' ] ) {
 		parent::doUpdates( $what );
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );

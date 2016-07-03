@@ -24,7 +24,7 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__;
 
-$wgAutoloadClasses += array(
+$wgAutoloadClasses += [
 
 	# tests
 	'DbTestPreviewer' => "$testDir/testHelpers.inc",
@@ -32,6 +32,7 @@ $wgAutoloadClasses += array(
 	'DelayedParserTest' => "$testDir/testHelpers.inc",
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'TestFileIterator' => "$testDir/testHelpers.inc",
+	'TestFileDataProvider' => "$testDir/testHelpers.inc",
 	'TestRecorder' => "$testDir/testHelpers.inc",
 	'ITestRecorder' => "$testDir/testHelpers.inc",
 	'DjVuSupport' => "$testDir/testHelpers.inc",
@@ -48,7 +49,9 @@ $wgAutoloadClasses += array(
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
 	# tests/phpunit/includes
+	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
 	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
+	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
@@ -62,11 +65,16 @@ $wgAutoloadClasses += array(
 	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",
 	'RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
 
+	# tests/phpunit/includes/auth
+	'MediaWiki\\Auth\\AuthenticationRequestTestCase' =>
+		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
+
 	# tests/phpunit/includes/changes
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 
 	# tests/phpunit/includes/content
-	'DummyContentHandlerForTesting' => "$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
+	'DummyContentHandlerForTesting' =>
+		"$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
 	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
 	'DummyNonTextContentHandler' => "$testDir/phpunit/mocks/content/DummyNonTextContentHandler.php",
 	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
@@ -76,9 +84,6 @@ $wgAutoloadClasses += array(
 	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
 
 	# tests/phpunit/includes/db
-	'ORMRowTest' => "$testDir/phpunit/includes/db/ORMRowTest.php",
-	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
-	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
 	# tests/phpunit/includes/diff
@@ -87,15 +92,25 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
+	# tests/phpunit/includes/page
+	'WikiPageTest' => "$testDir/phpunit/includes/page/WikiPageTest.php",
+
 	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
 	# tests/phpunit/includes/resourceloader
-	'ResourceLoaderImageModuleTest' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
-	'ResourceLoaderImageModuleTestable' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTest' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTestable' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+
+	# tests/phpunit/includes/session
+	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
+	'MediaWiki\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
 
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
+	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
@@ -117,7 +132,11 @@ $wgAutoloadClasses += array(
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
+	'MockOggHandler' => "$testDir/phpunit/mocks/media/MockOggHandler.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
+	'MediaWiki\\Session\\DummySessionBackend'
+		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",
+	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 
 	# tests/parser
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
@@ -131,4 +150,4 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
-);
+];

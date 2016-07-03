@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Leeheonjin"
+			"Leeheonjin",
+			"Macofe"
 		]
 	},
+	"apihelp-feedrecentchanges-param-categories": "Ipakita lamang ang mga pagbababgo sa mga pahina sa lahat ng mga kategoriyang ito.",
+	"apihelp-feedrecentchanges-param-categories_any": "Ipakita na lang ang mga pagbabago sa mga pahina sa kahit na anong mga kategoriya.",
 	"apihelp-feedrecentchanges-example-simple": "Ipakit ang mga kamakailangang pagbabago.",
 	"apihelp-feedrecentchanges-example-30days": "Ipakita ang mga huling pagbabago sa loob para sa 30 araw.",
 	"apihelp-help-example-main": "Tulong para sa pangunahing modulo.",
@@ -16,7 +19,7 @@
 	"apihelp-query+alllinks-example-generator": "Kinukuha ang mga pahinang naglalaman ng mga kawing.",
 	"apihelp-query+allpages-example-B": "Ipakita ang talaan ng mga pahinang nagsisimula sa titik <kbd>B</kbd>.",
 	"apihelp-query+alltransclusions-example-generator": "Kinukuha ang mga pahinang naglalaman ng mga transklusyon.",
-	"apihelp-query+backlinks-example-simple": "Ipakita ang mga kawing sa <kbd>Unang pahina<kbd>.",
+	"apihelp-query+backlinks-example-simple": "Ipakita ang mga kawing sa <kbd>Main page</kbd>.",
 	"apihelp-query+categoryinfo-example-simple": "Kumuha ng impormasyon tungkol sa <kbd>Kategorya:Foo</kbd> at <kbd>Kategorya:Bar</kbd>.",
 	"apihelp-query+duplicatefiles-example-simple": "Maghanap para sa mga duplika ng [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+duplicatefiles-example-generated": "Hanapin ang mga duplika ng lahat ng talakasan.",
@@ -31,5 +34,5 @@
 	"apihelp-query+watchlist-example-simple": "Itala ang mga punong pagbabago ng mga kasalukuyang binagong pahina sa kasalukuyang listahan ng binabantayan ng tagagamit.",
 	"apihelp-revisiondelete-example-revision": "Itago ang nilalaman para sa pagbabago ng <kbd>12345</kbd> sa pahinang <kbd>Unang Pahina</kbd>.",
 	"apihelp-upload-example-url": "Mag-karga mula sa URL.",
-	"apihelp-watch-example-watch": "Bantayan ang pahinang <kbd>Unang Pahina</kbd>."
+	"apihelp-watch-example-watch": "Bantayan ang pahinang <kbd>Main Page</kbd>."
 }

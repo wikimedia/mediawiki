@@ -19,7 +19,7 @@
  * @author Викиней
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Атайын',
 	NS_TALK             => 'Баарлашуу',
@@ -31,5 +31,5 @@ $namespaceNames = array(
 	NS_TEMPLATE         => 'Калып',
 	NS_HELP             => 'Жардам',
 	NS_CATEGORY         => 'Категория',
-);
+];
 

@@ -11,12 +11,11 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	/** @var string */
 	protected $filePath;
 
-
 	protected function setUp() {
 		parent::setUp();
 
 		$this->filePath = $this->getFilePath();
-		$containers = array( 'data' => $this->filePath );
+		$containers = [ 'data' => $this->filePath ];
 		if ( $this->createsThumbnails() ) {
 			// We need a temp directory for the thumbnails
 			// the container is named 'temp-thumb' because it is the
@@ -24,11 +23,11 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 			$containers['temp-thumb'] = $this->getNewTempDirectory();
 		}
 
-		$this->backend = new FSFileBackend( array(
+		$this->backend = new FSFileBackend( [
 			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
+			'wikiId' => wfWikiID(),
 			'containerPaths' => $containers
-		) );
+		] );
 		$this->repo = new FSRepo( $this->getRepoOptions() );
 	}
 
@@ -36,11 +35,11 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 * @return array Argument for FSRepo constructor
 	 */
 	protected function getRepoOptions() {
-		return array(
+		return [
 			'name' => 'temp',
 			'url' => 'http://localhost/thumbtest',
 			'backend' => $this->backend
-		);
+		];
 	}
 
 	/**

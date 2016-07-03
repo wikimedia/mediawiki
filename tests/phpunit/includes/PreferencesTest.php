@@ -35,51 +35,51 @@ class PreferencesTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgEnableEmail' => true,
 			'wgEmailAuthentication' => true,
-		) );
+		] );
 	}
 
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserHasNoEmail() {
+	public function testEmailAuthenticationFieldWhenUserHasNoEmail() {
 		$prefs = $this->prefsFor( 'noemail' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-none', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-none', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserEmailNotAuthenticated() {
+	public function testEmailAuthenticationFieldWhenUserEmailNotAuthenticated() {
 		$prefs = $this->prefsFor( 'notauth' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserEmailIsAuthenticated() {
+	public function testEmailAuthenticationFieldWhenUserEmailIsAuthenticated() {
 		$prefs = $this->prefsFor( 'auth' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-authenticated', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-authenticated', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/** Helper */
 	protected function prefsFor( $user_key ) {
-		$preferences = array();
+		$preferences = [];
 		Preferences::profilePreferences(
 			$this->prefUsers[$user_key],
 			$this->context,

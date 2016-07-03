@@ -1,22 +1,23 @@
 {
-	"prefix": "oo-ui-icon",
+	"selectorWithoutVariant": ".oo-ui-icon-{name}",
+	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {
-			"color": "#FFFFFF",
+			"color": "#ffffff",
 			"global": true
 		},
 		"progressive": {
-			"color": "#347BFF"
+			"color": "#347bff"
 		},
 		"constructive": {
-			"color": "#00AF89"
+			"color": "#347bff"
 		},
 		"destructive": {
-			"color": "#D11D13"
+			"color": "#d11d13"
 		},
 		"warning": {
-			"color": "#FF5D00"
+			"color": "#ff5d00"
 		}
 	},
 	"images": {
@@ -44,7 +45,7 @@
 			},
 			"variants": [ "progressive" ]
 		},
-		"star": { "file": "images/icons/star.svg", "variants": [ "constructive" ] },
+		"star": { "file": "images/icons/star.svg", "variants": [ "constructive", "progressive" ] },
 		"trash": { "file": "images/icons/trash.svg" },
 		"trashUndo": { "file": {
 			"ltr": "images/icons/trashUndo-ltr.svg",
@@ -54,6 +55,6 @@
 			"ltr": "images/icons/unLock-ltr.svg",
 			"rtl": "images/icons/unLock-rtl.svg"
 		}, "variants": [ "destructive" ] },
-		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive" ] }
+		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] }
 	}
 }

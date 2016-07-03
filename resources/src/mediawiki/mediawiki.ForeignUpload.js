@@ -46,11 +46,12 @@
 		if ( this.target === 'local' ) {
 			// If local uploads were requested, but they are disabled, fail.
 			if ( !mw.config.get( 'wgEnableUploads' ) ) {
-				throw new Error( 'Local uploads are disabled' );
+				this.apiPromise = $.Deferred().reject( 'uploaddisabledtext' );
+			} else {
+				// We'll ignore the CORS and centralauth stuff if the target is
+				// the local wiki.
+				this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
 			}
-			// We'll ignore the CORS and centralauth stuff if the target is
-			// the local wiki.
-			this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
 		} else {
 			api = new mw.Api();
 			this.apiPromise = api.get( {
@@ -76,7 +77,7 @@
 					}
 				}
 
-				throw new Error( 'Can not upload to requested foreign repo' );
+				return $.Deferred().reject( 'upload-foreign-cant-upload' );
 			} );
 		}
 
@@ -84,12 +85,6 @@
 		// actual API call methods to wait for the apiPromise to resolve
 		// before continuing.
 		mw.Upload.call( this, null );
-
-		if ( this.target !== 'local' ) {
-			// Keep these untranslated. We don't know the content language of the foreign wiki, best to
-			// stick to English in the text.
-			this.setComment( 'Cross-wiki upload from ' + location.host );
-		}
 	}
 
 	OO.inheritClass( ForeignUpload, mw.Upload );
@@ -108,6 +103,13 @@
 	 * Defaults to the first available foreign upload target,
 	 * or to local uploads if no foreign target is configured.
 	 */
+
+	/**
+	 * @inheritdoc
+	 */
+	ForeignUpload.prototype.getApi = function () {
+		return this.apiPromise;
+	};
 
 	/**
 	 * Override from mw.Upload to make sure the API info is found and allowed

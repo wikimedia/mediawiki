@@ -82,10 +82,10 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 	 * @covers ExifBitmapHandler::convertMetadataVersion
 	 */
 	public function testConvertMetadataLatest() {
-		$metadata = array(
-			'foo' => array( 'First', 'Second', '_type' => 'ol' ),
+		$metadata = [
+			'foo' => [ 'First', 'Second', '_type' => 'ol' ],
 			'MEDIAWIKI_EXIF_VERSION' => 2
-		);
+		];
 		$res = $this->handler->convertMetadataVersion( $metadata, 2 );
 		$this->assertEquals( $metadata, $res );
 	}
@@ -94,20 +94,20 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 	 * @covers ExifBitmapHandler::convertMetadataVersion
 	 */
 	public function testConvertMetadataToOld() {
-		$metadata = array(
-			'foo' => array( 'First', 'Second', '_type' => 'ol' ),
-			'bar' => array( 'First', 'Second', '_type' => 'ul' ),
-			'baz' => array( 'First', 'Second' ),
+		$metadata = [
+			'foo' => [ 'First', 'Second', '_type' => 'ol' ],
+			'bar' => [ 'First', 'Second', '_type' => 'ul' ],
+			'baz' => [ 'First', 'Second' ],
 			'fred' => 'Single',
 			'MEDIAWIKI_EXIF_VERSION' => 2,
-		);
-		$expected = array(
+		];
+		$expected = [
 			'foo' => "\n#First\n#Second",
 			'bar' => "\n*First\n*Second",
 			'baz' => "\n*First\n*Second",
 			'fred' => 'Single',
 			'MEDIAWIKI_EXIF_VERSION' => 1,
-		);
+		];
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
 	}
@@ -116,14 +116,14 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 	 * @covers ExifBitmapHandler::convertMetadataVersion
 	 */
 	public function testConvertMetadataSoftware() {
-		$metadata = array(
-			'Software' => array( array( 'GIMP', '1.1' ) ),
+		$metadata = [
+			'Software' => [ [ 'GIMP', '1.1' ] ],
 			'MEDIAWIKI_EXIF_VERSION' => 2,
-		);
-		$expected = array(
+		];
+		$expected = [
 			'Software' => 'GIMP (Version 1.1)',
 			'MEDIAWIKI_EXIF_VERSION' => 1,
-		);
+		];
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
 	}
@@ -132,23 +132,25 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 	 * @covers ExifBitmapHandler::convertMetadataVersion
 	 */
 	public function testConvertMetadataSoftwareNormal() {
-		$metadata = array(
-			'Software' => array( "GIMP 1.2", "vim" ),
+		$metadata = [
+			'Software' => [ "GIMP 1.2", "vim" ],
 			'MEDIAWIKI_EXIF_VERSION' => 2,
-		);
-		$expected = array(
+		];
+		$expected = [
 			'Software' => "\n*GIMP 1.2\n*vim",
 			'MEDIAWIKI_EXIF_VERSION' => 1,
-		);
+		];
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
 	}
 
 	/**
 	 * @dataProvider provideSwappingICCProfile
-	 * @covers BitmapHandler::swapICCProfile
+	 * @covers ExifBitmapHandler::swapICCProfile
 	 */
-	public function testSwappingICCProfile( $sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName ) {
+	public function testSwappingICCProfile(
+		$sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName
+	) {
 		global $wgExiftool;
 
 		if ( !$wgExiftool || !is_file( $wgExiftool ) ) {
@@ -167,17 +169,35 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 		$file = $this->dataFile( $sourceFilename, 'image/jpeg' );
 		$this->handler->swapICCProfile( $filepath, $oldProfileName, $profileFilepath );
 
-		$this->assertEquals( sha1( file_get_contents( $filepath ) ), sha1( file_get_contents( $controlFilepath ) ) );
+		$this->assertEquals(
+			sha1( file_get_contents( $filepath ) ),
+			sha1( file_get_contents( $controlFilepath ) )
+		);
 	}
 
 	public function provideSwappingICCProfile() {
-		return array(
+		return [
 			// File with sRGB should end up with TinyRGB
-			array( 'srgb.jpg', 'tinyrgb.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' ),
+			[
+				'srgb.jpg',
+				'tinyrgb.jpg',
+				'tinyrgb.icc',
+				'IEC 61966-2.1 Default RGB colour space - sRGB'
+			],
 			// File with TinyRGB should be left unchanged
-			array( 'tinyrgb.jpg', 'tinyrgb.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' ),
+			[
+				'tinyrgb.jpg',
+				'tinyrgb.jpg',
+				'tinyrgb.icc',
+				'IEC 61966-2.1 Default RGB colour space - sRGB'
+			],
 			// File with no profile should be left unchanged
-			array( 'test.jpg', 'test.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' )
-		);
+			[
+				'test.jpg',
+				'test.jpg',
+				'tinyrgb.icc',
+				'IEC 61966-2.1 Default RGB colour space - sRGB'
+			]
+		];
 	}
 }

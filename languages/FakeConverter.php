@@ -41,7 +41,7 @@ class FakeConverter {
 	}
 
 	function autoConvertToAllVariants( $text ) {
-		return array( $this->mLang->getCode() => $text );
+		return [ $this->mLang->getCode() => $text ];
 	}
 
 	function convert( $t ) {
@@ -65,7 +65,7 @@ class FakeConverter {
 	}
 
 	function getVariants() {
-		return array( $this->mLang->getCode() );
+		return [ $this->mLang->getCode() ];
 	}
 
 	function getVariantFallbacks( $variant ) {
@@ -107,16 +107,14 @@ class FakeConverter {
 		return $key;
 	}
 
-	/** @deprecated since 1.22 is no longer used */
-	function armourMath( $text ) {
-		return $text;
-	}
-
 	function validateVariant( $variant = null ) {
 		return $variant === $this->mLang->getCode() ? $variant : null;
 	}
 
 	function translate( $text, $variant ) {
 		return $text;
+	}
+
+	public function updateConversionTable( Title $title ) {
 	}
 }

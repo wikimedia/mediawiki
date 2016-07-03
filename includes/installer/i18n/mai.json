@@ -3,7 +3,8 @@
 		"authors": [
 			"Umeshberma",
 			"बिप्लब आनन्द",
-			"Bijay chaurasia"
+			"Bijay chaurasia",
+			"Tulsi Bhagat"
 		]
 	},
 	"config-desc": "मेडिया-विकी के लेल इंस्टॉलर",
@@ -24,8 +25,15 @@
 	"config-page-complete": "पूर्ण!",
 	"config-page-restart": "स्थापनाके पुनारम्भ करु",
 	"config-page-readme": "पढू",
+	"config-page-releasenotes": "रिलीज नोट्स",
+	"config-page-copying": "अनुकरण",
+	"config-page-upgradedoc": "उपारोपण भऽ रहल अछि।",
 	"config-page-existingwiki": "रहल विकी",
 	"config-restart": "हँ, एकरा पुन: सुरु कएल जाए",
-	"mainpagetext": "'''मेडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
+	"config-sidebar": "* [//www.mediawiki.org MediaWiki home]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administrator's Guide]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]\n----\n* <doclink href=Readme>Read me</doclink>\n* <doclink href=ReleaseNotes>Release notes</doclink>\n* <doclink href=Copying>Copying</doclink>\n* <doclink href=UpgradeDoc>Upgrading</doclink>",
+	"config-env-good": "पर्यावरण क जाँच कएल गेल अछि।\nआहाँ मीडियाविकि स्थापित कर सकै चिए।",
+	"config-env-bad": "पर्यावरण क जाँच कएल गेल अछि।\nआहाँ मीडियाविकि स्थापित नै कर सकै चिए।",
+	"config-env-php": "PHP $1 स्थापित कएल ग्याल अछि।",
+	"mainpagetext": "<strong>मेडियाविकी नीक जकाँ प्रस्थापित भेल।</strong>",
 	"mainpagedocfooter": "सम्पर्क करू [//meta.wikimedia.org/wiki/Help:Contents User's Guide] विकि तंत्रांशक प्रयोगक जानकारी लेल।\n\n==प्रारम्भ कोना करी==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
 }

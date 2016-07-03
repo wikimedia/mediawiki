@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"David1010"
+			"David1010",
+			"BRUTE"
 		]
 	},
 	"config-information": "ინფორმაცია",
@@ -24,6 +25,8 @@
 	"config-page-existingwiki": "არსებული ვიკი",
 	"config-restart": "დიახ, თავიდან დაიწყეთ",
 	"config-sidebar": "* [//www.mediawiki.org მედიავიკის ვებ-გვერდი]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/ka მომხმარებლების დახმარება]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents/ka ადმინისტრატორების დახმარება]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ka FAQ]\n----\n* <doclink href=Readme>წამიკითხე</doclink>\n* <doclink href=ReleaseNotes>ინფორმაცია გამოშვებაზე</doclink>\n* <doclink href=Copying>ლიცენზია</doclink>\n* <doclink href=UpgradeDoc>განახლება</doclink>",
+	"config-env-php": "PHP $1 დაინსტალირებულია",
+	"config-env-hhvm": "HHVM $1 დაინსტალირებულია.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] დაყენდა",
 	"config-apc": "[http://www.php.net/apc APC] დაყენდა",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] დაყენდა",
@@ -38,6 +41,7 @@
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-db-port": "მონაცემთა ბაზის პორტი:",
 	"config-db-schema": "მედიავიკის სქემა:",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL-ის პარამეტრები",
 	"config-header-postgres": "PostgreSQL-ის პარამეტრები",
 	"config-header-sqlite": "SQLite-ის პარამეტრები",
@@ -64,6 +68,7 @@
 	"config-admin-email": "ელ. ფოსტის მისამართი:",
 	"config-admin-error-bademail": "თქვენ მიერ შეყვანილი ელ.ფოსტა არასწორია.",
 	"config-subscribe": "გამოიწერეთ [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის ახალი ვერსიის გამოსვლის სიახლეები].",
+	"config-optional-continue": "მკითხე მეტი.",
 	"config-profile": "მომხმარებელთა უფლებების პროფილი:",
 	"config-profile-wiki": "ღია ვიკი",
 	"config-profile-no-anon": "საჭიროა ანგარიშის შექმნა",
@@ -80,6 +85,7 @@
 	"config-email-settings": "ელ. ფოსტის პარამეტრები",
 	"config-upload-settings": "სურათებისა და ფაილების ატვირთვა",
 	"config-upload-enable": "ფაილების ატვირთვის ჩართვა",
+	"config-upload-deleted": "წაშლილი ფაილების დირექტორია:",
 	"config-logo": "ლოგოს URL:",
 	"config-cc-again": "აირჩიეთ კიდევ ერთხელ...",
 	"config-advanced-settings": "დამატებითი კონფიგურაცია",
@@ -87,6 +93,7 @@
 	"config-install-step-done": "შესრულდა",
 	"config-install-step-failed": "ვერ მოხერხდა",
 	"config-install-schema": "სქემის შექმნა",
+	"config-install-user-alreadyexists": "მომხმარებელი \"$1\" უკვე არსებობს",
 	"config-install-tables": "ცხრილების შექმნა",
 	"config-install-interwiki-list": "ვერ მოიძებნა ფაილი <code>interwiki.list</code>.",
 	"config-download-localsettings": "<code>LocalSettings.php</code>-ის გადმოწერა",

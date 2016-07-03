@@ -36,7 +36,7 @@ class TestSites {
 	 * @return array
 	 */
 	public static function getSites() {
-		$sites = array();
+		$sites = [];
 
 		$site = new Site();
 		$site->setGlobalId( 'foobar' );
@@ -76,16 +76,16 @@ class TestSites {
 		 * aeb, ar, arc, arz, azb, bcc, bqi, ckb, dv, en_rtl, fa, glk, he, khw, kk_arab, kk_cn,
 		 * ks_arab, ku_arab, lrc, mzn, pnb, ps, sd, ug_arab, ur, yi).
 		 */
-		$languageCodes = array(
+		$languageCodes = [
 			'de',
 			'en',
-			'fa', //right-to-left
+			'fa', // right-to-left
 			'nl',
 			'nn',
 			'no',
 			'sr',
 			'sv',
-		);
+		];
 		foreach ( $languageCodes as $langCode ) {
 			$site = new MediaWikiSite();
 			$site->setGlobalId( $langCode . 'wiki' );
@@ -107,7 +107,7 @@ class TestSites {
 	 * @since 0.1
 	 */
 	public static function insertIntoDb() {
-		$sitesTable = new DBSiteStore();
+		$sitesTable = \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
 		$sitesTable->clear();
 		$sitesTable->saveSites( TestSites::getSites() );
 	}

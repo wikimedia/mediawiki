@@ -11,7 +11,7 @@
 $rtl = true;
 $fallback8bitEncoding = 'windows-1256';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'میدیا',
 	NS_SPECIAL          => 'تایبەت',
 	NS_TALK             => 'وتووێژ',
@@ -28,9 +28,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'وتووێژی_یارمەتی',
 	NS_CATEGORY         => 'پۆل',
 	NS_CATEGORY_TALK    => 'وتووێژی_پۆل',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'لێدوان'            => NS_TALK,
 	'قسەی_بەکارھێنەر'   => NS_USER_TALK,
 	'لێدوانی_پەڕگە'     => NS_FILE_TALK,
@@ -40,86 +40,86 @@ $namespaceAliases = array(
 	'لێدوانی_داڕێژە'    => NS_TEMPLATE_TALK,
 	'لێدوانی_یارمەتی'   => NS_HELP_TALK,
 	'لێدوانی_پۆل'       => NS_CATEGORY_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Activeusers'               => array( 'بەکارھێنەرە_چالاکەکان' ),
-	'Allmessages'               => array( 'ھەموو_پەیامەکان' ),
-	'Allpages'                  => array( 'ھەموو_پەڕەکان' ),
-	'Ancientpages'              => array( 'پەڕە_کۆنەکان' ),
-	'Blankpage'                 => array( 'پەڕەی_واڵا' ),
-	'Booksources'               => array( 'سەرچاوەکانی_کتێب' ),
-	'BrokenRedirects'           => array( 'ڕەوانکەرە_شکاوەکان' ),
-	'Categories'                => array( 'پۆلەکان' ),
-	'ChangePassword'            => array( 'تێپەڕوشەگۆڕان،ڕێکخستنەوەی_تێپەڕوشە' ),
-	'Confirmemail'              => array( 'بڕواکردن_ئیمەیل' ),
-	'Contributions'             => array( 'بەشدارییەکان' ),
-	'CreateAccount'             => array( 'دروستکردنی_ھەژمار' ),
-	'Deadendpages'              => array( 'پەڕە_بەربەستراوەکان' ),
-	'DoubleRedirects'           => array( 'ڕەوانکەرە_دووپاتکراوەکان' ),
-	'Emailuser'                 => array( 'ئیمەیل_بەکارھێنەر' ),
-	'Export'                    => array( 'ھەناردن' ),
-	'Fewestrevisions'           => array( 'کەمترین_پێداچوونەوەکان' ),
-	'Import'                    => array( 'ھاوردن' ),
-	'Listadmins'                => array( 'لیستی_بەڕێوبەران' ),
-	'Listbots'                  => array( 'لیستی_بۆتەکان' ),
-	'Listfiles'                 => array( 'لیستی_پەڕگەکان' ),
-	'Listusers'                 => array( 'لیستی_بەکارھێنەران' ),
-	'Log'                       => array( 'لۆگ' ),
-	'Lonelypages'               => array( 'پەڕە_تاکەکان،_پەڕە_ھەتیوکراوەکان' ),
-	'Longpages'                 => array( 'پەڕە_درێژەکان' ),
-	'MergeHistory'              => array( 'کردنەیەکی_مێژوو' ),
-	'Mostcategories'            => array( 'زیاترین_پۆلەکان' ),
-	'Mostimages'                => array( 'پەڕگەکانی_زیاترین_بەستەردراون،_زیاترین_پەڕگەکان،_زیاترین_وێنەکان' ),
-	'Mostlinked'                => array( 'پەڕەکانی_زیاترین_بەستەردراون،_زیاترین_بەستەردراون' ),
-	'Mostlinkedcategories'      => array( 'پۆلەکانی_زیاترین_بەستەردراون،_پۆلەکانی_زیاترین_بەکارھێنراون' ),
-	'Mostlinkedtemplates'       => array( 'داڕێژەکانی_زیاترین_بەستەردراون،_داڕێژەکانی_زیاترین_بەکارھێنراون' ),
-	'Mostrevisions'             => array( 'زیاترین_پێداچوونەوەکان' ),
-	'Movepage'                  => array( 'گواستنەوەی_پەڕە' ),
-	'Mycontributions'           => array( 'بەشدارییەکانم' ),
-	'Mypage'                    => array( 'پەڕەکەم' ),
-	'Mytalk'                    => array( 'لێدوانەکەم' ),
-	'Newimages'                 => array( 'پەڕگە_نوێکان' ),
-	'Newpages'                  => array( 'پەڕە_نوێکان' ),
-	'Preferences'               => array( 'ھەڵبژاردەکان' ),
-	'Protectedpages'            => array( 'پەڕە_پارێزراوەکان' ),
-	'Protectedtitles'           => array( 'بابەتە_پارێزراوەکان' ),
-	'Randompage'                => array( 'ھەڵکەوت،پەڕەی_بە_ھەرمەکی' ),
-	'Recentchanges'             => array( 'دوایین_گۆڕانکارییەکان' ),
-	'Search'                    => array( 'گەڕان' ),
-	'Shortpages'                => array( 'پەڕە‌_کورتەکان' ),
-	'Specialpages'              => array( 'پەڕە_تایبەتەکان' ),
-	'Statistics'                => array( 'ئامارەکان' ),
-	'Unblock'                   => array( 'کردنەوە' ),
-	'Uncategorizedcategories'   => array( 'پۆلە_پۆلێننەکراوەکان' ),
-	'Uncategorizedimages'       => array( 'پەڕگە_پۆلێننەکراوەکان،_وێنە_پۆلێننەکراوەکان' ),
-	'Uncategorizedpages'        => array( 'پەڕە_پۆلێننەکراوەکان' ),
-	'Uncategorizedtemplates'    => array( 'داڕێژە_پۆلێننەکراوەکان' ),
-	'Unusedcategories'          => array( 'پۆلە_بەکارنەھێنراوەکان' ),
-	'Unusedimages'              => array( 'پەڕگە_بەکارنەھێنراوەکان،_وێنە_بەکارنەھێنراوەکان' ),
-	'Upload'                    => array( 'بارکردن' ),
-	'Userlogin'                 => array( 'چوونەژوورەوەی_بەکارھێنەر' ),
-	'Version'                   => array( 'وەشان' ),
-	'Wantedcategories'          => array( 'پۆلە_پێویستەکان' ),
-	'Wantedfiles'               => array( 'پەڕگە_پێویستەکان' ),
-	'Wantedpages'               => array( 'پەڕە_پێویستەکان،_بەستەرە_شکاوەکان' ),
-	'Wantedtemplates'           => array( 'داڕێژە_پێویستەکان' ),
-	'Watchlist'                 => array( 'لیستی_چاودێری' ),
-	'Whatlinkshere'             => array( 'چی_بەستەری_داوە_بێرە' ),
-);
+$specialPageAliases = [
+	'Activeusers'               => [ 'بەکارھێنەرە_چالاکەکان' ],
+	'Allmessages'               => [ 'ھەموو_پەیامەکان' ],
+	'Allpages'                  => [ 'ھەموو_پەڕەکان' ],
+	'Ancientpages'              => [ 'پەڕە_کۆنەکان' ],
+	'Blankpage'                 => [ 'پەڕەی_واڵا' ],
+	'Booksources'               => [ 'سەرچاوەکانی_کتێب' ],
+	'BrokenRedirects'           => [ 'ڕەوانکەرە_شکاوەکان' ],
+	'Categories'                => [ 'پۆلەکان' ],
+	'ChangePassword'            => [ 'تێپەڕوشەگۆڕان،ڕێکخستنەوەی_تێپەڕوشە' ],
+	'Confirmemail'              => [ 'بڕواکردن_ئیمەیل' ],
+	'Contributions'             => [ 'بەشدارییەکان' ],
+	'CreateAccount'             => [ 'دروستکردنی_ھەژمار' ],
+	'Deadendpages'              => [ 'پەڕە_بەربەستراوەکان' ],
+	'DoubleRedirects'           => [ 'ڕەوانکەرە_دووپاتکراوەکان' ],
+	'Emailuser'                 => [ 'ئیمەیل_بەکارھێنەر' ],
+	'Export'                    => [ 'ھەناردن' ],
+	'Fewestrevisions'           => [ 'کەمترین_پێداچوونەوەکان' ],
+	'Import'                    => [ 'ھاوردن' ],
+	'Listadmins'                => [ 'لیستی_بەڕێوبەران' ],
+	'Listbots'                  => [ 'لیستی_بۆتەکان' ],
+	'Listfiles'                 => [ 'لیستی_پەڕگەکان' ],
+	'Listusers'                 => [ 'لیستی_بەکارھێنەران' ],
+	'Log'                       => [ 'لۆگ' ],
+	'Lonelypages'               => [ 'پەڕە_تاکەکان،_پەڕە_ھەتیوکراوەکان' ],
+	'Longpages'                 => [ 'پەڕە_درێژەکان' ],
+	'MergeHistory'              => [ 'کردنەیەکی_مێژوو' ],
+	'Mostcategories'            => [ 'زیاترین_پۆلەکان' ],
+	'Mostimages'                => [ 'پەڕگەکانی_زیاترین_بەستەردراون،_زیاترین_پەڕگەکان،_زیاترین_وێنەکان' ],
+	'Mostlinked'                => [ 'پەڕەکانی_زیاترین_بەستەردراون،_زیاترین_بەستەردراون' ],
+	'Mostlinkedcategories'      => [ 'پۆلەکانی_زیاترین_بەستەردراون،_پۆلەکانی_زیاترین_بەکارھێنراون' ],
+	'Mostlinkedtemplates'       => [ 'داڕێژەکانی_زیاترین_بەستەردراون،_داڕێژەکانی_زیاترین_بەکارھێنراون' ],
+	'Mostrevisions'             => [ 'زیاترین_پێداچوونەوەکان' ],
+	'Movepage'                  => [ 'گواستنەوەی_پەڕە' ],
+	'Mycontributions'           => [ 'بەشدارییەکانم' ],
+	'Mypage'                    => [ 'پەڕەکەم' ],
+	'Mytalk'                    => [ 'لێدوانەکەم' ],
+	'Newimages'                 => [ 'پەڕگە_نوێکان' ],
+	'Newpages'                  => [ 'پەڕە_نوێکان' ],
+	'Preferences'               => [ 'ھەڵبژاردەکان' ],
+	'Protectedpages'            => [ 'پەڕە_پارێزراوەکان' ],
+	'Protectedtitles'           => [ 'بابەتە_پارێزراوەکان' ],
+	'Randompage'                => [ 'ھەڵکەوت،پەڕەی_بە_ھەرمەکی' ],
+	'Recentchanges'             => [ 'دوایین_گۆڕانکارییەکان' ],
+	'Search'                    => [ 'گەڕان' ],
+	'Shortpages'                => [ 'پەڕە‌_کورتەکان' ],
+	'Specialpages'              => [ 'پەڕە_تایبەتەکان' ],
+	'Statistics'                => [ 'ئامارەکان' ],
+	'Unblock'                   => [ 'کردنەوە' ],
+	'Uncategorizedcategories'   => [ 'پۆلە_پۆلێننەکراوەکان' ],
+	'Uncategorizedimages'       => [ 'پەڕگە_پۆلێننەکراوەکان،_وێنە_پۆلێننەکراوەکان' ],
+	'Uncategorizedpages'        => [ 'پەڕە_پۆلێننەکراوەکان' ],
+	'Uncategorizedtemplates'    => [ 'داڕێژە_پۆلێننەکراوەکان' ],
+	'Unusedcategories'          => [ 'پۆلە_بەکارنەھێنراوەکان' ],
+	'Unusedimages'              => [ 'پەڕگە_بەکارنەھێنراوەکان،_وێنە_بەکارنەھێنراوەکان' ],
+	'Upload'                    => [ 'بارکردن' ],
+	'Userlogin'                 => [ 'چوونەژوورەوەی_بەکارھێنەر' ],
+	'Version'                   => [ 'وەشان' ],
+	'Wantedcategories'          => [ 'پۆلە_پێویستەکان' ],
+	'Wantedfiles'               => [ 'پەڕگە_پێویستەکان' ],
+	'Wantedpages'               => [ 'پەڕە_پێویستەکان،_بەستەرە_شکاوەکان' ],
+	'Wantedtemplates'           => [ 'داڕێژە_پێویستەکان' ],
+	'Watchlist'                 => [ 'لیستی_چاودێری' ],
+	'Whatlinkshere'             => [ 'چی_بەستەری_داوە_بێرە' ],
+];
 
-$magicWords = array(
-	'img_thumbnail'             => array( '1', 'وێنۆک', 'thumbnail', 'thumb' ),
-	'img_right'                 => array( '1', 'ڕاست', 'right' ),
-	'img_left'                  => array( '1', 'چەپ', 'left' ),
-	'img_width'                 => array( '1', '$1پیکسڵ', '$1px' ),
-	'img_center'                => array( '1', 'ناوەڕاست', 'center', 'centre' ),
-	'img_framed'                => array( '1', 'چوارچێوە', 'framed', 'enframed', 'frame' ),
-	'img_frameless'             => array( '1', 'بێچوارچێوە', 'frameless' ),
-	'img_border'                => array( '1', 'سنوور', 'border' ),
-);
+$magicWords = [
+	'img_thumbnail'             => [ '1', 'وێنۆک', 'thumb', 'thumbnail' ],
+	'img_right'                 => [ '1', 'ڕاست', 'right' ],
+	'img_left'                  => [ '1', 'چەپ', 'left' ],
+	'img_width'                 => [ '1', '$1پیکسڵ', '$1px' ],
+	'img_center'                => [ '1', 'ناوەڕاست', 'center', 'centre' ],
+	'img_framed'                => [ '1', 'چوارچێوە', 'frame', 'framed', 'enframed' ],
+	'img_frameless'             => [ '1', 'بێچوارچێوە', 'frameless' ],
+	'img_border'                => [ '1', 'سنوور', 'border' ],
+];
 
-$digitTransformTable = array(
+$digitTransformTable = [
 	'0' => '٠', # &#x0660;
 	'1' => '١', # &#x0661;
 	'2' => '٢', # &#x0662;
@@ -132,26 +132,26 @@ $digitTransformTable = array(
 	'9' => '٩', # &#x0669;
 	'.' => '٫', # &#x066b; wrong table ?
 	',' => '٬', # &#x066c;
-);
+];
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'dmy',
 	'ymd',
 	'persian',
 	'hijri',
-);
+];
 
 $defaultDateFormat = 'dmy';
 
-$datePreferenceMigrationMap = array(
+$datePreferenceMigrationMap = [
 	'default',
 	'dmy', // migrate users off mdy - not present in this language
 	'dmy',
 	'ymd'
-);
+];
 
-$dateFormats = array(
+$dateFormats = [
 	# Please be cautious not to delete the invisible RLM from the beginning of the strings.
 	'dmy time' => '‏H:i',
 	'dmy date' => '‏jی xg Y',
@@ -168,6 +168,6 @@ $dateFormats = array(
 	'hijri time' => '‏H:i',
 	'hijri date' => '‏xmjی xmFی xmY',
 	'hijri both' => '‏H:i، xmjی xmFی xmY',
-);
+];
 
 $linkTrail = "/^([ئابپتجچحخدرڕزژسشعغفڤقکگلڵمنوۆهھەیێ‌]+)(.*)$/sDu";

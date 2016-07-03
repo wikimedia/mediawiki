@@ -13,7 +13,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = [ 'one', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -22,9 +22,9 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural() {
-		$forms = array( 'one', 'few', 'many', 'other', '12=dozen' );
+		$forms = [ 'one', 'few', 'many', 'other', '12=dozen' ];
 		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
-		$forms = array( 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' );
+		$forms = [ 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' ];
 		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );
 	}
 
@@ -37,19 +37,19 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'one', 1 ),
-			array( 'many', 11 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-			array( 'few', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 4 ),
-			array( 'few', 334 ),
-			array( 'many', 5 ),
-			array( 'many', 15 ),
-			array( 'many', 120 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'many', 11 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+			[ 'few', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 4 ],
+			[ 'few', 334 ],
+			[ 'many', 5 ],
+			[ 'many', 15 ],
+			[ 'many', 120 ],
+		];
 	}
 
 	/**
@@ -57,17 +57,17 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( '1=one', 'other' );
+		$forms = [ '1=one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'other', 91 ),
-			array( 'other', 121 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'other', 91 ],
+			[ 'other', 121 ],
+		];
 	}
 
 	/**
@@ -79,37 +79,102 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerGrammar() {
-		return array(
-			array(
+		return [
+			[
 				'Википедии',
 				'Википедия',
 				'genitive',
-			),
-			array(
+			],
+			[
 				'Викитеки',
 				'Викитека',
 				'genitive',
-			),
-			array(
+			],
+			[
 				'Викитеке',
 				'Викитека',
 				'prepositional',
-			),
-			array(
+			],
+			[
 				'Викисклада',
 				'Викисклад',
 				'genitive',
-			),
-			array(
+			],
+			[
 				'Викискладе',
 				'Викисклад',
 				'prepositional',
-			),
-			array(
+			],
+			[
 				'Викиданных',
 				'Викиданные',
 				'prepositional',
-			),
-		);
+			],
+			[
+				'русского',
+				'русский',
+				'languagegen',
+			],
+			[
+				'немецкого',
+				'немецкий',
+				'languagegen',
+			],
+			[
+				'иврита',
+				'иврит',
+				'languagegen',
+			],
+			[
+				'эсперанто',
+				'эсперанто',
+				'languagegen',
+			],
+			[
+				'русском',
+				'русский',
+				'languageprep',
+			],
+			[
+				'немецком',
+				'немецкий',
+				'languageprep',
+			],
+			[
+				'идише',
+				'идиш',
+				'languageprep',
+			],
+			[
+				'эсперанто',
+				'эсперанто',
+				'languageprep',
+			],
+			[
+				'по-русски',
+				'русский',
+				'languageadverb',
+			],
+			[
+				'по-немецки',
+				'немецкий',
+				'languageadverb',
+			],
+			[
+				'на иврите',
+				'иврит',
+				'languageadverb',
+			],
+			[
+				'на эсперанто',
+				'эсперанто',
+				'languageadverb',
+			],
+			[
+				'на языке гуарани',
+				'гуарани',
+				'languageadverb',
+			],
+		];
 	}
 }

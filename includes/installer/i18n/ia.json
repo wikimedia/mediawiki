@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"McDutchie",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"config-desc": "Le installator de MediaWiki",
@@ -54,12 +55,7 @@
 	"config-no-db": "Non poteva trovar un driver appropriate pro le base de datos! Es necessari installar un driver de base de datos pro PHP.\nLe sequente {{PLURAL:$2|typo|typos}} de base de datos es supportate: $1.\n\nSi tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo, usante <code>./configure --with-mysqli</code>.\nSi tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe etiam installar, per exemplo, le modulo <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "'''Attention''': tu ha SQLite $1, que es inferior al version minimal requirite, $2. SQLite essera indisponibile.",
 	"config-no-fts3": "'''Attention''': SQLite es compilate sin [//sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
-	"config-register-globals-error": "<strong>Error: Le option <code>[http://php.net/register_globals register_globals]</code> de PHP es active.\nIllo debe esser disactivate pro continuar le installation.</strong>\nVide [https://www.mediawiki.org/wiki/register_globals https://www.mediawiki.org/wiki/register_globals] pro obtener adjuta sur como facer lo.",
-	"config-magic-quotes-gpc": "<strong>Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-gpc magic_quotes_gpc] es active!</strong>\nIste option corrumpe le datos entrate de maniera imprevisibile.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
-	"config-magic-quotes-runtime": "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] es active!'''\nIste option corrumpe le entrata de datos imprevisibilemente.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
-	"config-magic-quotes-sybase": "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] es active!'''\nIste option corrumpe le entrata de datos imprevisibilemente.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
 	"config-mbstring": "'''Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] es active!'''\nIste option causa errores e pote corrumper datos imprevisibilemente.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
-	"config-safe-mode": "'''Aviso:''' Le [http://www.php.net/features.safe-mode modo secur] de PHP es active.\nIsto pote causar problemas, particularmente si es usate le incargamento de files e le supporto de <code>math</code>.",
 	"config-xml-bad": "Le modulo XML de PHP es mancante.\nMediaWiki require functiones de iste modulo e non functionara in iste configuration.\nEs possibile que tu debe installar le pacchetto RPM php-xml.",
 	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 o plus tarde es necessari.\nTu binario de PHP binary es ligate con PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Plus information].",
 	"config-pcre-no-utf8": "'''Fatal''': Le modulo PCRE de PHP pare haber essite compilate sin supporto de PCRE_UTF8.\nMediaWiki require supporto de UTF-8 pro functionar correctemente.",
@@ -71,7 +67,6 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] es installate",
 	"config-apc": "[http://www.php.net/apc APC] es installate",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] es installate",
-	"config-no-cache": "'''Aviso:''' Non poteva trovar [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nLe cache de objectos non es activate.",
 	"config-mod-security": "'''Attention''': [http://modsecurity.org/ mod_security] es active in tu servitor web. Si mal configurate, isto pote causar problemas pro MediaWiki o altere software que permitte al usatores de publicar contento arbitrari.\nConsulta le [http://modsecurity.org/documentation/ documentation de mod_security] o contacta le servicio de adjuta de tu host si tu incontra estranie errores.",
 	"config-diff3-bad": "GNU diff3 non trovate.",
 	"config-git": "Systema de controlo de version Git trovate: <code>$1</code>",
@@ -257,7 +252,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [//commons.wikimedia.org/ Wikimedia Commons].\nPro poter facer isto, MediaWiki require accesso a Internet.\n\nPro plus information super iste function, includente instructiones super como configurar lo pro wikis altere que Wikimedia Commons, consulta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos le manual].",
 	"config-cc-error": "Le selector de licentia Creative Commons non dava un resultato.\nEntra le nomine del licentia manualmente.",
 	"config-cc-again": "Selige de novo…",
-	"config-cc-not-chosen": "Selige le licentia Creative Commons que tu prefere e clicca \"proceder\".",
+	"config-cc-not-chosen": "Selige le licentia Creative Commons que tu prefere e clicca \"proceed\".",
 	"config-advanced-settings": "Configuration avantiate",
 	"config-cache-options": "Configuration del cache de objectos:",
 	"config-cache-help": "Le cache de objectos es usate pro meliorar le rapiditate de MediaWiki per immagazinar le datos frequentemente usate.\nLe sitos medie o grande es multo incoragiate de activar isto, ma anque le sitos parve percipera le beneficios.",
@@ -321,6 +316,6 @@
 	"config-help-tooltip": "clicca pro displicar",
 	"config-nofile": "Le file \"$1\" non poteva esser trovate. Ha illo essite delite?",
 	"config-extension-link": "Sapeva tu que tu wiki supporta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nTu pote explorar le [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensiones per category] o le [//www.mediawiki.org/wiki/Extension_Matrix matrice de extensiones] pro vider le lista complete de extensiones.",
-	"mainpagetext": "'''MediaWiki ha essite installate con successo.'''",
+	"mainpagetext": "<strong>MediaWiki ha essite installate.</strong>",
 	"mainpagedocfooter": "Consulta le [//meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.\n\n== Pro initiar ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de configurationes]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ a proposito de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducer MediaWiki in tu lingua]"
 }

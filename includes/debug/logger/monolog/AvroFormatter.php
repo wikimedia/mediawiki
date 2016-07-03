@@ -38,6 +38,10 @@ use Monolog\Formatter\FormatterInterface;
  */
 class AvroFormatter implements FormatterInterface {
 	/**
+	 * @var Magic byte to encode schema revision id.
+	 */
+	const MAGIC = 0x0;
+	/**
 	 * @var array Map from schema name to schema definition
 	 */
 	protected $schemas;
@@ -80,7 +84,8 @@ class AvroFormatter implements FormatterInterface {
 	public function format( array $record ) {
 		$this->io->truncate();
 		$schema = $this->getSchema( $record['channel'] );
-		if ( $schema === null ) {
+		$revId = $this->getSchemaRevisionId( $record['channel'] );
+		if ( $schema === null || $revId === null ) {
 			trigger_error( "The schema for channel '{$record['channel']}' is not available" );
 			return null;
 		}
@@ -92,7 +97,7 @@ class AvroFormatter implements FormatterInterface {
 			trigger_error( "Avro failed to serialize record for {$record['channel']} : {$json}" );
 			return null;
 		}
-		return $this->io->string();
+		return chr( self::MAGIC ) . $this->encodeLong( $revId ) . $this->io->string();
 	}
 
 	/**
@@ -103,7 +108,7 @@ class AvroFormatter implements FormatterInterface {
 	 * @return string[]
 	 */
 	public function formatBatch( array $records ) {
-		$result = array();
+		$result = [];
 		foreach ( $records as $record ) {
 			$message = $this->format( $record );
 			if ( $message !== null ) {
@@ -117,23 +122,53 @@ class AvroFormatter implements FormatterInterface {
 	 * Get the writer for the named channel
 	 *
 	 * @var string $channel Name of the schema to fetch
-	 * @return AvroSchema|null
+	 * @return \AvroSchema|null
 	 */
 	protected function getSchema( $channel ) {
 		if ( !isset( $this->schemas[$channel] ) ) {
 			return null;
 		}
-		if ( !$this->schemas[$channel] instanceof AvroSchema ) {
-			if ( is_string( $this->schemas[$channel] ) ) {
-				$this->schemas[$channel] = AvroSchema::parse( $this->schemas[$channel] );
+		if ( !isset( $this->schemas[$channel]['revision'], $this->schemas[$channel]['schema'] ) ) {
+			return null;
+		}
+
+		if ( !$this->schemas[$channel]['schema'] instanceof AvroSchema ) {
+			$schema = $this->schemas[$channel]['schema'];
+			if ( is_string( $schema ) ) {
+				$this->schemas[$channel]['schema'] = AvroSchema::parse( $schema );
 			} else {
-				$this->schemas[$channel] = AvroSchema::real_parse(
-					$this->schemas[$channel],
+				$this->schemas[$channel]['schema'] = AvroSchema::real_parse(
+					$schema,
 					null,
 					new AvroNamedSchemata()
 				);
 			}
 		}
-		return $this->schemas[$channel];
+		return $this->schemas[$channel]['schema'];
+	}
+
+	/**
+	 * Get the writer for the named channel
+	 *
+	 * @var string $channel Name of the schema
+	 * @return int|null
+	 */
+	public function getSchemaRevisionId( $channel ) {
+		if ( isset( $this->schemas[$channel]['revision'] ) ) {
+			return (int) $this->schemas[$channel]['revision'];
+		}
+		return null;
+	}
+
+	/**
+	 * convert an integer to a 64bits big endian long (Java compatible)
+	 * NOTE: certainly only compatible with PHP 64bits
+	 * @param int $id
+	 * @return string the binary representation of $id
+	 */
+	private function encodeLong( $id ) {
+		$high   = ( $id & 0xffffffff00000000 ) >> 32;
+		$low    = $id & 0x00000000ffffffff;
+		return pack( 'NN', $high, $low );
 	}
 }

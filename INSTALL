@@ -6,7 +6,7 @@ Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
 "in-place", as long as you have the necessary prerequisites available.
 
 Required software:
-* Web server with PHP 5.3.3 or higher.
+* Web server with PHP 5.5.9 or higher.
 * A SQL server, the following types are supported
 ** MySQL 5.0.3 or higher
 ** PostgreSQL 8.3 or higher
@@ -18,8 +18,7 @@ MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
 work on Windows as well.
 
 If your PHP is configured as a CGI plug-in rather than an Apache module you may
-experience problems, as this configuration is not well tested. safe_mode is also
-not tested and unlikely to work.
+experience problems, as this configuration is not well tested.
 
 Support for rendering mathematical formulas requires installing the Math extension,
 see https://www.mediawiki.org/wiki/Extension:Math

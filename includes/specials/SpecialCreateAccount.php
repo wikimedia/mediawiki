@@ -1,6 +1,6 @@
 <?php
 /**
- * Redirect page: Special:CreateAccount --> Special:UserLogin/signup.
+ * Implements Special:CreateAccount
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,24 +21,32 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LogLevel;
+
 /**
- * Redirect page: Special:CreateAccount --> Special:UserLogin/signup.
- * @todo FIXME: This (and the rest of the login frontend) needs to die a horrible painful death
+ * Implements Special:CreateAccount
  *
  * @ingroup SpecialPage
  */
-class SpecialCreateAccount extends SpecialRedirectToSpecial {
-	function __construct() {
-		parent::__construct(
-			'CreateAccount',
-			'Userlogin',
-			'signup',
-			array( 'returnto', 'returntoquery', 'uselang' )
-		);
+class SpecialCreateAccount extends LoginSignupSpecialPage {
+	protected static $allowedActions = [
+		AuthManager::ACTION_CREATE,
+		AuthManager::ACTION_CREATE_CONTINUE
+	];
+
+	protected static $messages = [
+		'authform-newtoken' => 'nocookiesfornew',
+		'authform-notoken' => 'sessionfailure',
+		'authform-wrongtoken' => 'sessionfailure',
+	];
+
+	public function __construct() {
+		parent::__construct( 'CreateAccount' );
 	}
 
-	// No reason to hide this link on Special:Specialpages
-	public function isListed() {
+	public function doesWrites() {
 		return true;
 	}
 
@@ -50,7 +58,112 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 		return $user->isAllowed( 'createaccount' );
 	}
 
+	public function checkPermissions() {
+		parent::checkPermissions();
+
+		$user = $this->getUser();
+		$status = AuthManager::singleton()->checkAccountCreatePermissions( $user );
+		if ( !$status->isGood() ) {
+			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
+		}
+	}
+
+	protected function getLoginSecurityLevel() {
+		return false;
+	}
+
+	protected function getDefaultAction( $subPage ) {
+		return AuthManager::ACTION_CREATE;
+	}
+
+	public function getDescription() {
+		return $this->msg( 'createaccount' )->text();
+	}
+
+	protected function isSignup() {
+		return true;
+	}
+
+	/**
+	 * Run any hooks registered for logins, then display a message welcoming
+	 * the user.
+	 * @param bool $direct True if the action was successful just now; false if that happened
+	 *    pre-redirection (so this handler was called already)
+	 * @param StatusValue|null $extraMessages
+	 */
+	protected function successfulAction( $direct = false, $extraMessages = null ) {
+		$session = $this->getRequest()->getSession();
+		$user = $this->targetUser ?: $this->getUser();
+
+		if ( $direct ) {
+			# Only save preferences if the user is not creating an account for someone else.
+			if ( !$this->proxyAccountCreation ) {
+				Hooks::run( 'AddNewAccount', [ $user, false ] );
+
+				// If the user does not have a session cookie at this point, they probably need to
+				// do something to their browser.
+				if ( !$this->hasSessionCookie() ) {
+					$this->mainLoginForm( [ /*?*/ ], $session->getProvider()->whyNoSession() );
+					// TODO something more specific? This used to use nocookiesnew
+					// FIXME should redirect to login page instead?
+					return;
+				}
+			} else {
+				$byEmail = false; // FIXME no way to set this
+
+				Hooks::run( 'AddNewAccount', [ $user, $byEmail ] );
+
+				$out = $this->getOutput();
+				$out->setPageTitle( $this->msg( $byEmail ? 'accmailtitle' : 'accountcreated' ) );
+				if ( $byEmail ) {
+					$out->addWikiMsg( 'accmailtext', $user->getName(), $user->getEmail() );
+				} else {
+					$out->addWikiMsg( 'accountcreatedtext', $user->getName() );
+				}
+				$out->addReturnTo( $this->getPageTitle() );
+				return;
+			}
+		}
+
+		$this->clearToken();
+
+		# Run any hooks; display injected HTML
+		$injected_html = '';
+		$welcome_creation_msg = 'welcomecreation-msg';
+		Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html ] );
+
+		/**
+		 * Let any extensions change what message is shown.
+		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforeWelcomeCreation
+		 * @since 1.18
+		 */
+		Hooks::run( 'BeforeWelcomeCreation', [ &$welcome_creation_msg, &$injected_html ] );
+
+		$this->showSuccessPage( 'signup', $this->msg( 'welcomeuser', $this->getUser()->getName() ),
+			$welcome_creation_msg, $injected_html, $extraMessages );
+	}
+
+	protected function getToken() {
+		return $this->getRequest()->getSession()->getToken( '', 'createaccount' );
+	}
+
+	protected function clearToken() {
+		return $this->getRequest()->getSession()->resetToken( 'createaccount' );
+	}
+
+	protected function getTokenName() {
+		return 'wpCreateaccountToken';
+	}
+
 	protected function getGroupName() {
 		return 'login';
+	}
+
+	protected function logAuthResult( $success, $status = null ) {
+		LoggerFactory::getInstance( 'authmanager-stats' )->info( 'Account creation attempt', [
+			'event' => 'accountcreation',
+			'successful' => $success,
+			'status' => $status,
+		] );
 	}
 }

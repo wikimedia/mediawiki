@@ -17,6 +17,8 @@
 	"ooui-dialog-process-dismiss": "Didi",
 	"ooui-dialog-process-retry": "Itti deebi'ii yaali",
 	"ooui-dialog-process-continue": "Itti fufi",
+	"ooui-selectfile-button-select": "Faayilii filadhu",
 	"ooui-selectfile-not-supported": "Faayilii filachuun hin danda'amu.",
-	"ooui-selectfile-placeholder": "Faayiliin wayiiyyuu hin filatamne"
+	"ooui-selectfile-placeholder": "Faayiliin wayiiyyuu hin filatamne",
+	"ooui-selectfile-dragdrop-placeholder": "Faayilii as kaa'i"
 }

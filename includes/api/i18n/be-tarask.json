@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Renessaince"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Дакумэнтацыя]]\n* [[mw:API:FAQ|Частыя пытаньні]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Сьпіс рассылкі]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-аб’явы]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Памылкі і запыты]\n</div>\n<strong>Статус:</strong> усе магчымасьці на гэтай старонцы павінны працаваць, але API знаходзіцца ў актыўнай распрацоўцы і можа зьмяняцца ў любы момант. Падпісвайцеся на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ рассылку mediawiki-api-announce] дзеля паведамленьняў пра абнаўленьні.\n\n<strong>Памылковыя запыты:</strong> калі да API дасылаюцца памылковыя запыты, HTTP-загаловак будзе дасланы з ключом «MediaWiki-API-Error», а потым значэньне загалоўку і код памылкі будуць выстаўленыя на аднолькавае значэньне. Дзеля дадатковай інфармацыі глядзіце [[mw:API:Errors_and_warnings|API: Памылкі і папярэджаньні]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Дакумэнтацыя]]\n* [[mw:API:FAQ|Частыя пытаньні]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Сьпіс рассылкі]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-аб’явы]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Памылкі і запыты]\n</div>\n<strong>Статус:</strong> усе магчымасьці на гэтай старонцы павінны працаваць, але API знаходзіцца ў актыўнай распрацоўцы і можа зьмяняцца ў любы момант. Падпісвайцеся на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ рассылку mediawiki-api-announce] дзеля паведамленьняў пра абнаўленьні.\n\n<strong>Памылковыя запыты:</strong> калі да API дасылаюцца памылковыя запыты, HTTP-загаловак будзе дасланы з ключом «MediaWiki-API-Error», а потым значэньне загалоўку і код памылкі будуць выстаўленыя на аднолькавае значэньне. Дзеля дадатковай інфармацыі глядзіце [[mw:API:Errors_and_warnings|API: Памылкі і папярэджаньні]].\n\n<strong>Тэставаньне:</strong> для зручнасьці праверкі API-запытаў, глядзіце [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Дзеяньне для выкананьня.",
 	"apihelp-main-param-format": "Фармат вываду.",
 	"apihelp-main-param-maxlag": "Максымальная затрымка можа ўжывацца, калі MediaWiki ўсталяваная ў клястэр з рэплікаванай базай зьвестак. Дзеля захаваньня дзеяньняў, якія выклікаюць затрымку рэплікацыі, гэты парамэтар можа прымусіць кліента чакаць, пакуль затрымка рэплікацыі меншая за яго значэньне. У выпадку доўгай затрымкі, вяртаецца код памылкі <samp>maxlag</samp> з паведамленьнем кшталту <samp>Чаканьне $host: $lag сэкундаў затрымкі</samp>.<br />Глядзіце [[mw:Manual:Maxlag_parameter|Інструкцыя:Парамэтар maxlag]] дзеля дадатковай інфармацыі.",
@@ -15,7 +16,7 @@
 	"apihelp-main-param-servedby": "Уключае ў вынік назву сэрвэра, які апрацаваў запыт.",
 	"apihelp-main-param-curtimestamp": "Уключае ў вынік пазнаку актуальнага часу.",
 	"apihelp-main-param-origin": "Пры звароце да API з дапамогай міждамэннага AJAX-запыту (CORS), выстаўце парамэтру значэньне зыходнага дамэну. Ён мусіць быць уключаны ў кожны папярэдні запыт і такім чынам мусіць быць часткай URI-запыту (ня цела POST). Ён мусіць супадаць з адной з крыніц у загалоўку <code>Origin</code>, павінна быць зададзена нешта кшталту <kbd>https://en.wikipedia.org</kbd> або <kbd>https://meta.wikimedia.org</kbd>. Калі парамэтар не супадае з загалоўкам <code>Origin</code>, будзе вернуты адказ з кодам памылкі 403. Калі парамэтар супадае з загалоўкам <code>Origin</code> і крыніца знаходзіцца ў белым сьпісе, будзе выстаўлены загаловак <code>Access-Control-Allow-Origin</code>.",
-	"apihelp-main-param-uselang": "Мова для выкарыстаньня ў перакладах паведамленьняў. Сьпіс кодаў можа быць атрыманы з <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> з <kbd>siprop=languages</kbd>, або трэба вызначыць <kbd>user</kbd>, каб ужываць наладкі мовы цяперашняга карыстальніка, або вызначыць <kbd>content</kbd>, каб ужываць мову зьместу гэтай вікі.",
+	"apihelp-main-param-uselang": "Мова для выкарыстаньня ў перакладах паведамленьняў. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> з <kbd>siprop=languages</kbd> вяртае сьпіс кодаў мовы, або трэба вызначыць <kbd>user</kbd>, каб ужываць налады мовы цяперашняга карыстальніка, або вызначыць <kbd>content</kbd>, каб ужываць мову зьместу гэтай вікі.",
 	"apihelp-block-description": "Блякаваньне ўдзельніка.",
 	"apihelp-block-param-user": "Імя ўдзельніка, IP-адрас або IP-дыяпазон, якія вы хочаце заблякаваць.",
 	"apihelp-block-param-expiry": "Час заканчэньня. Можа быць адносным (напрыклад, <kbd>5 months</kbd> або <kbd>2 weeks</kbd>) ці абсалютным (напрыклад, <kbd>2014-09-18T12:34:56Z</kbd>). Калі выстаўлены на <kbd>infinite</kbd>, <kbd>indefinite</kbd> ці <kbd>never</kbd>, блякаваньне будзе бестэрміновым.",
@@ -51,5 +52,8 @@
 	"apihelp-createaccount-param-reason": "Неабавязковая прычына стварэньня рахунку, якая будзе запісаная ў журнал.",
 	"apihelp-createaccount-param-language": "Моўны код, які будзе выстаўлены ўдзельніку па змоўчаньні (неабавязкова, па змоўчаньні мова зьместу).",
 	"apihelp-createaccount-example-pass": "Стварэньне ўдзельніка <kbd>testuser</kbd> з паролем <kbd>test123</kbd>.",
-	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка <kbd>testmailuser</kbd> і адпраўка выпадковага паролю электроннай поштай."
+	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка <kbd>testmailuser</kbd> і адпраўка выпадковага паролю электроннай поштай.",
+	"apihelp-query+transcludedin-paramvalue-prop-title": "Назва кожнай старонкі.",
+	"apihelp-query+transcludedin-param-limit": "Колькі вяртаць.",
+	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублюе загаловак <code>Accept-Language</code>, адасланы кліентам у структураваным фармаце."
 }

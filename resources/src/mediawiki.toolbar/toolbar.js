@@ -115,7 +115,7 @@
 		 *     addButtons( [ { .. }, { .. }, { .. } ] );
 		 *     addButtons( { .. }, { .. } );
 		 *
-		 * @param {Object|Array...} [buttons] An array of button objects or the first
+		 * @param {...Object|Array} [buttons] An array of button objects or the first
 		 *  button object in a list of variadic arguments.
 		 */
 		addButtons: function ( buttons ) {

@@ -37,7 +37,7 @@ abstract class MediaHandler {
 	const MAX_ERR_LOG_SIZE = 65535;
 
 	/** @var MediaHandler[] Instance cache with array of MediaHandler */
-	protected static $handlers = array();
+	protected static $handlers = [];
 
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
@@ -68,14 +68,14 @@ abstract class MediaHandler {
 	 * Resets all static caches
 	 */
 	public static function resetCache() {
-		self::$handlers = array();
+		self::$handlers = [];
 	}
 
 	/**
 	 * Get an associative array mapping magic word IDs to parameter names.
 	 * Will be used by the parser to identify parameters.
 	 */
-	abstract function getParamMap();
+	abstract public function getParamMap();
 
 	/**
 	 * Validate a thumbnail parameter at parse time.
@@ -85,7 +85,7 @@ abstract class MediaHandler {
 	 * @param string $name
 	 * @param mixed $value
 	 */
-	abstract function validateParam( $name, $value );
+	abstract public function validateParam( $name, $value );
 
 	/**
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
@@ -93,7 +93,7 @@ abstract class MediaHandler {
 	 * @param array $params Array of parameters that have been through normaliseParams.
 	 * @return string
 	 */
-	abstract function makeParamString( $params );
+	abstract public function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
@@ -101,7 +101,7 @@ abstract class MediaHandler {
 	 * @param string $str The parameter string without file name (e.g. 122px)
 	 * @return array|bool Array of parameters or false on failure.
 	 */
-	abstract function parseParamString( $str );
+	abstract public function parseParamString( $str );
 
 	/**
 	 * Changes the parameter array as necessary, ready for transformation.
@@ -161,8 +161,8 @@ abstract class MediaHandler {
 	 * @return string Version string
 	 */
 	static function getMetadataVersion() {
-		$version = array( '2' ); // core metadata version
-		Hooks::run( 'GetMetadataVersion', array( &$version ) );
+		$version = [ '2' ]; // core metadata version
+		Hooks::run( 'GetMetadataVersion', [ &$version ] );
 
 		return implode( ';', $version );
 	}
@@ -180,7 +180,7 @@ abstract class MediaHandler {
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
 
-			//unserialize to keep return parameter consistent.
+			// unserialize to keep return parameter consistent.
 			MediaWiki\suppressWarnings();
 			$ret = unserialize( $metadata );
 			MediaWiki\restoreWarnings();
@@ -317,13 +317,13 @@ abstract class MediaHandler {
 			// recognize the MIME type
 			$extensions = $magic->getExtensionsForType( $mime );
 			if ( $extensions ) {
-				return array( strtok( $extensions, ' ' ), $mime );
+				return [ strtok( $extensions, ' ' ), $mime ];
 			}
 		}
 
 		// The extension is correct (true) or the MIME type is unknown to
 		// MediaWiki (null)
-		return array( $ext, $mime );
+		return [ $ext, $mime ];
 	}
 
 	/**
@@ -333,7 +333,7 @@ abstract class MediaHandler {
 	 * @return array
 	 */
 	public function getStreamHeaders( $metadata ) {
-		return array();
+		return [];
 	}
 
 	/**
@@ -342,7 +342,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canRender( $file ) {
+	public function canRender( $file ) {
 		return true;
 	}
 
@@ -353,7 +353,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return false;
 	}
 
@@ -363,7 +363,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isMultiPage( $file ) {
+	public function isMultiPage( $file ) {
 		return false;
 	}
 
@@ -373,7 +373,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function pageCount( $file ) {
+	function pageCount( File $file ) {
 		return false;
 	}
 
@@ -434,13 +434,13 @@ abstract class MediaHandler {
 	 * @param int $page What page to get dimensions of
 	 * @return array|bool
 	 */
-	function getPageDimensions( $image, $page ) {
+	function getPageDimensions( File $image, $page ) {
 		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
 		if ( $gis ) {
-			return array(
+			return [
 				'width' => $gis[0],
 				'height' => $gis[1]
-			);
+			];
 		} else {
 			return false;
 		}
@@ -454,7 +454,7 @@ abstract class MediaHandler {
 	 * @return bool|string Page text or false when no text found or if
 	 *   unsupported.
 	 */
-	function getPageText( $image, $page ) {
+	function getPageText( File $image, $page ) {
 		return false;
 	}
 
@@ -525,10 +525,10 @@ abstract class MediaHandler {
 	 * @return array Array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray, $context = false ) {
-		$result = array(
-			'visible' => array(),
-			'collapsed' => array()
-		);
+		$result = [
+			'visible' => [],
+			'collapsed' => []
+		];
 
 		$formatted = FormatMetadata::getFormattedData( $metadataArray, $context );
 		// Sort fields into visible and collapsed
@@ -592,11 +592,11 @@ abstract class MediaHandler {
 			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
 			$name = wfEscapeWikiText( $id );
 		}
-		$array[$visibility][] = array(
+		$array[$visibility][] = [
 			'id' => "$type-$id",
 			'name' => $name,
 			'value' => $value
-		);
+		];
 	}
 
 	/**
@@ -800,7 +800,7 @@ abstract class MediaHandler {
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages( File $file ) {
-		return array();
+		return [];
 	}
 
 	/**
@@ -866,14 +866,21 @@ abstract class MediaHandler {
 	 * Gets configuration for the file warning message. Return value of
 	 * the following structure:
 	 *   array(
-	 *     'module' => 'example.filewarning.messages', // Required, module with messages loaded for the client
-	 *     'messages' => array( // Required, array of names of messages
-	 *       'main' => 'example-filewarning-main', // Required, main warning message
-	 *       'header' => 'example-filewarning-header', // Optional, header for warning dialog
-	 *       'footer' => 'example-filewarning-footer', // Optional, footer for warning dialog
-	 *       'info' => 'example-filewarning-info', // Optional, text for more-information link (see below)
+	 *     // Required, module with messages loaded for the client
+	 *     'module' => 'example.filewarning.messages',
+	 *     // Required, array of names of messages
+	 *     'messages' => array(
+	 *       // Required, main warning message
+	 *       'main' => 'example-filewarning-main',
+	 *       // Optional, header for warning dialog
+	 *       'header' => 'example-filewarning-header',
+	 *       // Optional, footer for warning dialog
+	 *       'footer' => 'example-filewarning-footer',
+	 *       // Optional, text for more-information link (see below)
+	 *       'info' => 'example-filewarning-info',
 	 *     ),
-	 *     'link' => 'http://example.com', // Optional, link for more information
+	 *     // Optional, link for more information
+	 *     'link' => 'http://example.com',
 	 *   )
 	 *
 	 * Returns null if no warning is necessary.

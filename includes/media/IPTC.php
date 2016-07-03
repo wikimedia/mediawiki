@@ -39,20 +39,20 @@ class IPTC {
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
-		$data = array();
+		$data = [];
 		if ( !is_array( $parsed ) ) {
 			return $data;
 		}
 
 		$c = '';
-		//charset info contained in tag 1:90.
+		// charset info contained in tag 1:90.
 		if ( isset( $parsed['1#090'] ) && isset( $parsed['1#090'][0] ) ) {
 			$c = self::getCharset( $parsed['1#090'][0] );
 			if ( $c === false ) {
-				//Unknown charset. refuse to parse.
-				//note: There is a different between
-				//unknown and no charset specified.
-				return array();
+				// Unknown charset. refuse to parse.
+				// note: There is a different between
+				// unknown and no charset specified.
+				return [];
 			}
 			unset( $parsed['1#090'] );
 		}
@@ -81,7 +81,7 @@ class IPTC {
 					if ( isset( $parsed['2#085'] ) ) {
 						$titles = self::convIPTC( $parsed['2#085'], $c );
 					} else {
-						$titles = array();
+						$titles = [];
 					}
 
 					$titleCount = count( $titles );
@@ -165,18 +165,18 @@ class IPTC {
 					$software = self::convIPTC( $val, $c );
 
 					if ( count( $software ) !== 1 ) {
-						//according to iim standard this cannot have multiple values
-						//so if there is more than one, something weird is happening,
-						//and we skip it.
+						// according to iim standard this cannot have multiple values
+						// so if there is more than one, something weird is happening,
+						// and we skip it.
 						wfDebugLog( 'iptc', 'IPTC: Wrong count on 2:65 Software field' );
 						break;
 					}
 
 					if ( isset( $parsed['2#070'] ) ) {
-						//if a version is set for the software.
+						// if a version is set for the software.
 						$softwareVersion = self::convIPTC( $parsed['2#070'], $c );
 						unset( $parsed['2#070'] );
-						$data['Software'] = array( array( $software[0], $softwareVersion[0] ) );
+						$data['Software'] = [ [ $software[0], $softwareVersion[0] ] ];
 					} else {
 						$data['Software'] = $software;
 					}
@@ -220,12 +220,12 @@ class IPTC {
 				// according to spec.
 				// Should potentially store timezone as well.
 				case '2#055':
-					//Date created (not date digitized).
-					//Maps to exif DateTimeOriginal
+					// Date created (not date digitized).
+					// Maps to exif DateTimeOriginal
 					if ( isset( $parsed['2#060'] ) ) {
 						$time = $parsed['2#060'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -234,12 +234,12 @@ class IPTC {
 					break;
 
 				case '2#062':
-					//Date converted to digital representation.
-					//Maps to exif DateTimeDigitized
+					// Date converted to digital representation.
+					// Maps to exif DateTimeDigitized
 					if ( isset( $parsed['2#063'] ) ) {
 						$time = $parsed['2#063'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -248,11 +248,11 @@ class IPTC {
 					break;
 
 				case '2#030':
-					//Date released.
+					// Date released.
 					if ( isset( $parsed['2#035'] ) ) {
 						$time = $parsed['2#035'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -261,11 +261,11 @@ class IPTC {
 					break;
 
 				case '2#037':
-					//Date expires.
+					// Date expires.
 					if ( isset( $parsed['2#038'] ) ) {
 						$time = $parsed['2#038'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -275,10 +275,10 @@ class IPTC {
 
 				case '2#000': /* iim version */
 					// unlike other tags, this is a 2-byte binary number.
-					//technically this is required if there is iptc data
-					//but in practise it isn't always there.
+					// technically this is required if there is iptc data
+					// but in practise it isn't always there.
 					if ( strlen( $val[0] ) == 2 ) {
-						//if is just to be paranoid.
+						// if is just to be paranoid.
 						$versionValue = ord( substr( $val[0], 0, 1 ) ) * 256;
 						$versionValue += ord( substr( $val[0], 1, 1 ) );
 						$data['iimVersion'] = $versionValue;
@@ -295,7 +295,7 @@ class IPTC {
 					// in iim 4.1, but not in the XMP
 					// stuff. We're going to just
 					// extract the first value.
-					$con = self::ConvIPTC( $val, $c );
+					$con = self::convIPTC( $val, $c );
 					if ( strlen( $con[0] ) < 5 ) {
 						wfDebugLog( 'iptc', 'IPTC: '
 							. '2:04 too short. '
@@ -335,7 +335,7 @@ class IPTC {
 				case '2#085':
 				case '2#038':
 				case '2#035':
-					//ignore. Handled elsewhere.
+					// ignore. Handled elsewhere.
 					break;
 
 				default:
@@ -358,8 +358,8 @@ class IPTC {
 	 */
 	private static function timeHelper( $date, $time, $c ) {
 		if ( count( $date ) === 1 ) {
-			//the standard says this should always be 1
-			//just double checking.
+			// the standard says this should always be 1
+			// just double checking.
 			list( $date ) = self::convIPTC( $date, $c );
 		} else {
 			return null;
@@ -369,7 +369,7 @@ class IPTC {
 			list( $time ) = self::convIPTC( $time, $c );
 			$dateOnly = false;
 		} else {
-			$time = '000000+0000'; //placeholder
+			$time = '000000+0000'; // placeholder
 			$dateOnly = true;
 		}
 
@@ -379,7 +379,7 @@ class IPTC {
 			&& substr( $date, 4, 2 ) !== '00'
 			&& substr( $date, 6, 2 ) !== '00'
 		) ) {
-			//something wrong.
+			// something wrong.
 			// Note, this rejects some valid dates according to iptc spec
 			// for example: the date 00000400 means the photo was taken in
 			// April, but the year and day is unknown. We don't process these
@@ -410,7 +410,7 @@ class IPTC {
 			return null;
 		}
 		if ( $dateOnly ) {
-			//return the date only
+			// return the date only
 			return substr( $finalTimestamp, 0, 10 );
 		} else {
 			return $finalTimestamp;
@@ -453,12 +453,12 @@ class IPTC {
 				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );
 			}
 		} else {
-			//treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
+			// treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
 			// most of the time if there is no 1:90 tag, it is either ascii, latin1, or utf-8
 			$oldData = $data;
-			UtfNormal\Validator::quickIsNFCVerify( $data ); //make $data valid utf-8
+			UtfNormal\Validator::quickIsNFCVerify( $data ); // make $data valid utf-8
 			if ( $data === $oldData ) {
-				return $data; //if validation didn't change $data
+				return $data; // if validation didn't change $data
 			} else {
 				return self::convIPTCHelper( $oldData, 'Windows-1252' );
 			}
@@ -477,39 +477,39 @@ class IPTC {
 	 */
 	static function getCharset( $tag ) {
 
-		//According to iim standard, charset is defined by the tag 1:90.
-		//in which there are iso 2022 escape sequences to specify the character set.
-		//the iim standard seems to encourage that all necessary escape sequences are
-		//in the 1:90 tag, but says it doesn't have to be.
+		// According to iim standard, charset is defined by the tag 1:90.
+		// in which there are iso 2022 escape sequences to specify the character set.
+		// the iim standard seems to encourage that all necessary escape sequences are
+		// in the 1:90 tag, but says it doesn't have to be.
 
-		//This is in need of more testing probably. This is definitely not complete.
-		//however reading the docs of some other iptc software, it appears that most iptc software
-		//only recognizes utf-8. If 1:90 tag is not present content is
+		// This is in need of more testing probably. This is definitely not complete.
+		// however reading the docs of some other iptc software, it appears that most iptc software
+		// only recognizes utf-8. If 1:90 tag is not present content is
 		// usually ascii or iso-8859-1 (and sometimes utf-8), but no guarantee.
 
-		//This also won't work if there are more than one escape sequence in the 1:90 tag
-		//or if something is put in the G2, or G3 charsets, etc. It will only reliably recognize utf-8.
+		// This also won't work if there are more than one escape sequence in the 1:90 tag
+		// or if something is put in the G2, or G3 charsets, etc. It will only reliably recognize utf-8.
 
 		// This is just going through the charsets mentioned in appendix C of the iim standard.
 
 		//  \x1b = ESC.
 		switch ( $tag ) {
-			case "\x1b%G": //utf-8
-			//Also call things that are compatible with utf-8, utf-8 (e.g. ascii)
+			case "\x1b%G": // utf-8
+			// Also call things that are compatible with utf-8, utf-8 (e.g. ascii)
 			case "\x1b(B": // ascii
 			case "\x1b(@": // iso-646-IRV (ascii in latest version, $ different in older version)
 				$c = 'UTF-8';
 				break;
-			case "\x1b(A": //like ascii, but british.
+			case "\x1b(A": // like ascii, but british.
 				$c = 'ISO646-GB';
 				break;
-			case "\x1b(C": //some obscure sweedish/finland encoding
+			case "\x1b(C": // some obscure sweedish/finland encoding
 				$c = 'ISO-IR-8-1';
 				break;
 			case "\x1b(D":
 				$c = 'ISO-IR-8-2';
 				break;
-			case "\x1b(E": //some obscure danish/norway encoding
+			case "\x1b(E": // some obscure danish/norway encoding
 				$c = 'ISO-IR-9-1';
 				break;
 			case "\x1b(F":
@@ -533,22 +533,22 @@ class IPTC {
 			case "\x1b(K":
 				$c = "ISO646-DE";
 				break;
-			case "\x1b(N": //crylic
+			case "\x1b(N": // crylic
 				$c = "ISO_5427";
 				break;
-			case "\x1b(`": //iso646-NO
+			case "\x1b(`": // iso646-NO
 				$c = "NS_4551-1";
 				break;
-			case "\x1b(f": //iso646-FR
+			case "\x1b(f": // iso646-FR
 				$c = "NF_Z_62-010";
 				break;
 			case "\x1b(g":
-				$c = "PT2"; //iso646-PT2
+				$c = "PT2"; // iso646-PT2
 				break;
 			case "\x1b(h":
 				$c = "ES2";
 				break;
-			case "\x1b(i": //iso646-HU
+			case "\x1b(i": // iso646-HU
 				$c = "MSZ_7795.3";
 				break;
 			case "\x1b(w":
@@ -594,7 +594,7 @@ class IPTC {
 				break;
 			default:
 				wfDebugLog( 'iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
-				//at this point just give up and refuse to parse iptc?
+				// at this point just give up and refuse to parse iptc?
 				$c = false;
 		}
 		return $c;

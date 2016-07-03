@@ -5,8 +5,8 @@
 //
 // Styling checkboxes in a way that works cross browser is a tricky problem to solve.
 // In MediaWiki UI put a checkbox and label inside a mw-ui-checkbox div.
-// This renders in all browsers except IE6-8 which do not support the :checked selector;
-// these are kept backwards-compatible using the :not(#noop) selector.
+// This renders in all browsers except IE 6-8 which do not support the :checked selector;
+// these are kept backwards-compatible using the `:not( #noop )` selector.
 // You should give the checkbox and label matching "id" and "for" attributes, respectively.
 //
 // Markup:
@@ -33,13 +33,11 @@
 	vertical-align: middle;
 }
 
-@checkboxSize: 2em;
-
 // We use the not selector to cancel out styling on IE 8 and below
-// We also disable this styling on javascript disabled devices. This fixes the issue with
+// We also disable this styling on JavaScript disabled devices. This fixes the issue with
 // Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
 // more capable browsers with unstyled checkboxes.
-.client-js .mw-ui-checkbox:not(#noop) {
+.client-js .mw-ui-checkbox:not( #noop ) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
 	display: table;
@@ -62,8 +60,7 @@
 		height: @checkboxSize;
 		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
 		max-width: none;
-		margin: 0;
-		margin-right: 0.4em;
+		margin: 0 0.4em 0 0;
 		display: table-cell;
 
 		& + label {
@@ -72,32 +69,30 @@
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label::before {
-			.transition( 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) );
 			content: '';
-			cursor: pointer;
-			.box-sizing(border-box);
-			position: absolute;
-			left: 0;
-			border-radius: @borderRadius;
-			width: @checkboxSize;
-			height: @checkboxSize;
-			line-height: @checkboxSize;
 			background-color: #fff;
-			border: 1px solid @colorGray7;
-			// align the checkbox to middle of the text
-			top: 50%;
-			margin-top: -1em;
-			.background-image-svg('images/checked.svg', 'images/checked.png');
-			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
-			background-repeat: no-repeat;
+			.background-image-svg( 'images/checked.svg', 'images/checked.png' );
 			background-position: center center;
 			background-origin: border-box;
-			background-size: 0 0;
+			background-repeat: no-repeat;
+			.background-size( 0, 0 );
+			.box-sizing( border-box );
+			position: absolute;
+			// align the checkbox to middle of the text
+			top: 50%;
+			left: 0;
+			width: @checkboxSize;
+			height: @checkboxSize;
+			margin-top: -1em;
+			border: 1px solid @colorGray7;
+			border-radius: @borderRadius;
+			line-height: @checkboxSize;
+			cursor: pointer;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
 		&:checked + label::before {
-			background-size: 100% 100%;
+			.background-size( 100%, 100% );
 		}
 
 		&:active + label::before {
@@ -123,7 +118,7 @@
 
 		// disabled and checked checkboxes have a white circle
 		&:disabled:checked + label::before {
-			.background-image-svg('images/checked_disabled.svg', 'images/checked_disabled.png');
+			.background-image-svg( 'images/checked_disabled.svg', 'images/checked_disabled.png' );
 		}
 	}
 }

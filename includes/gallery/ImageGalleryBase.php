@@ -70,7 +70,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $contextTitle = false;
 
 	/** @var array */
-	protected $mAttribs = array();
+	protected $mAttribs = [];
 
 	/** @var bool */
 	static private $modeMapping = false;
@@ -91,14 +91,15 @@ abstract class ImageGalleryBase extends ContextSource {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
 		}
 		if ( !$mode ) {
-			$galleryOpions = $context->getConfig()->get( 'GalleryOptions' );
-			$mode = $galleryOpions['mode'];
+			$galleryOptions = $context->getConfig()->get( 'GalleryOptions' );
+			$mode = $galleryOptions['mode'];
 		}
 
 		$mode = $wgContLang->lc( $mode );
 
 		if ( isset( self::$modeMapping[$mode] ) ) {
-			return new self::$modeMapping[$mode]( $mode, $context );
+			$class = self::$modeMapping[$mode];
+			return new $class( $mode, $context );
 		} else {
 			throw new MWException( "No gallery class registered for mode $mode" );
 		}
@@ -106,15 +107,15 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	private static function loadModes() {
 		if ( self::$modeMapping === false ) {
-			self::$modeMapping = array(
+			self::$modeMapping = [
 				'traditional' => 'TraditionalImageGallery',
 				'nolines' => 'NolinesImageGallery',
 				'packed' => 'PackedImageGallery',
 				'packed-hover' => 'PackedHoverImageGallery',
 				'packed-overlay' => 'PackedOverlayImageGallery',
-			);
+			];
 			// Allow extensions to make a new gallery format.
-			Hooks::run( 'GalleryGetModes', array( &self::$modeMapping ) );
+			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );
 		}
 	}
 
@@ -132,7 +133,7 @@ abstract class ImageGalleryBase extends ContextSource {
 		}
 
 		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
-		$this->mImages = array();
+		$this->mImages = [];
 		$this->mShowBytes = $galleryOptions['showBytes'];
 		$this->mShowFilename = true;
 		$this->mParser = false;
@@ -238,12 +239,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
+	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = array( $title, $html, $alt, $link, $handlerOpts );
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts ];
 		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
@@ -257,12 +258,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
-	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
+	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, array( &$title, $html, $alt, $link, $handlerOpts ) );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts ] );
 	}
 
 	/**

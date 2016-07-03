@@ -35,10 +35,10 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideIsAnimated() {
-		return array(
-			array( 'animated.gif', true ),
-			array( 'nonanimated.gif', false ),
-		);
+		return [
+			[ 'animated.gif', true ],
+			[ 'nonanimated.gif', false ],
+		];
 	}
 
 	/**
@@ -54,10 +54,10 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetImageArea() {
-		return array(
-			array( 'animated.gif', 5400 ),
-			array( 'nonanimated.gif', 1350 ),
-		);
+		return [
+			[ 'animated.gif', 5400 ],
+			[ 'nonanimated.gif', 1350 ],
+		];
 	}
 
 	/**
@@ -72,15 +72,18 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideIsMetadataValid() {
-		return array(
-			array( GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ),
-			array( '', GIFHandler::METADATA_BAD ),
-			array( null, GIFHandler::METADATA_BAD ),
-			array( 'Something invalid!', GIFHandler::METADATA_BAD ),
+		return [
+			[ GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ],
+			[ '', GIFHandler::METADATA_BAD ],
+			[ null, GIFHandler::METADATA_BAD ],
+			[ 'Something invalid!', GIFHandler::METADATA_BAD ],
 			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-			array( 'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}', GIFHandler::METADATA_GOOD ),
+			[
+				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}',
+				GIFHandler::METADATA_GOOD
+			],
 			// @codingStandardsIgnoreEnd
-		);
+		];
 	}
 
 	/**
@@ -96,12 +99,18 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetMetadata() {
-		return array(
+		return [
 			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-			array( 'nonanimated.gif', 'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}' ),
-			array( 'animated-xmp.gif', 'a:4:{s:10:"frameCount";i:4;s:6:"looped";b:1;s:8:"duration";d:2.399999999999999911182158029987476766109466552734375;s:8:"metadata";a:5:{s:6:"Artist";s:7:"Bawolff";s:16:"ImageDescription";a:2:{s:9:"x-default";s:18:"A file to test GIF";s:5:"_type";s:4:"lang";}s:15:"SublocationDest";s:13:"The interwebs";s:14:"GIFFileComment";a:1:{i:0;s:16:"GIƒ·test·file";}s:15:"_MW_GIF_VERSION";i:1;}}' ),
+			[
+				'nonanimated.gif',
+				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}'
+			],
+			[
+				'animated-xmp.gif',
+				'a:4:{s:10:"frameCount";i:4;s:6:"looped";b:1;s:8:"duration";d:2.399999999999999911182158029987476766109466552734375;s:8:"metadata";a:5:{s:6:"Artist";s:7:"Bawolff";s:16:"ImageDescription";a:2:{s:9:"x-default";s:18:"A file to test GIF";s:5:"_type";s:4:"lang";}s:15:"SublocationDest";s:13:"The interwebs";s:14:"GIFFileComment";a:1:{i:0;s:16:"GIƒ·test·file";}s:15:"_MW_GIF_VERSION";i:1;}}'
+			],
 			// @codingStandardsIgnoreEnd
-		);
+		];
 	}
 
 	/**
@@ -117,26 +126,46 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetIndependentMetaArray() {
-		return array(
-			array( 'nonanimated.gif', array(
-				'GIFFileComment' => array(
+		return [
+			[ 'nonanimated.gif', [
+				'GIFFileComment' => [
 					'GIF test file ⁕ Created with GIMP',
-				),
-			) ),
-			array( 'animated-xmp.gif',
-				array(
+				],
+			] ],
+			[ 'animated-xmp.gif',
+				[
 					'Artist' => 'Bawolff',
-					'ImageDescription' => array(
+					'ImageDescription' => [
 						'x-default' => 'A file to test GIF',
 						'_type' => 'lang',
-					),
+					],
 					'SublocationDest' => 'The interwebs',
 					'GIFFileComment' =>
-					array(
+					[
 						'GIƒ·test·file',
-					),
-				)
-			),
-		);
+					],
+				]
+			],
+		];
+	}
+
+	/**
+	 * @param string $filename
+	 * @param float $expectedLength
+	 * @dataProvider provideGetLength
+	 */
+	public function testGetLength( $filename, $expectedLength ) {
+		$file = $this->dataFile( $filename, 'image/gif' );
+		$actualLength = $file->getLength();
+		$this->assertEquals( $expectedLength, $actualLength, '', 0.00001 );
+	}
+
+	public function provideGetLength() {
+		return [
+			[ 'animated.gif', 2.4 ],
+			[ 'animated-xmp.gif', 2.4 ],
+			[ 'nonanimated', 0.0 ],
+			[ 'Bishzilla_blink.gif', 1.4 ],
+		];
 	}
 }

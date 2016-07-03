@@ -7,7 +7,8 @@
 			"Magalahi",
 			"MisterWiki",
 			"Shirayuki",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Na'raya i inachetton:",
@@ -238,7 +239,7 @@
 	"viewsourcetext": "Siña un li'e' yan kopia i code ni påhina:",
 	"namespaceprotected": "Ti nahong nibet-mu petmisu tumulaika i påhina siha ni mafa'na'an '''$1'''.",
 	"ns-specialprotected": "Ti siña un tulaika i manespesiat na påhina.",
-	"titleprotected": "Prinetehi este na titulo ginen fina'tinas-ña as  [[User:$1|$1]].\nHa nå'i i rason ''$2''.",
+	"titleprotected": "Prinetehi este na titulo ginen fina'tinas-ña as  [[User:$1|$1]].\nHa nå'i i rason <em>$2</em>.",
 	"logouttext": "'''Malog-out hao på'go.'''\n\nSiña hao kumontinua manu'usa {{SITENAME}} sin nå'an, pat siña uma'log ta'lo pat siña un usa otra na nå'an muna'sesetbi.\nFanapunta na pålu na påhina siha para u na'annok na ma'log-in hao, asta ki un funas iyo-mu browser cache.",
 	"yourname": "Nå'an ni muna'setbi:",
 	"yourpassword": "Password:",
@@ -427,7 +428,7 @@
 	"mergehistory-go": "Na'annok i mandañayon na tinilaika siha",
 	"mergehistory-submit": "Na'daña i ribision siha",
 	"mergehistory-empty": "Tåya' mandañayon na ribision siha.",
-	"mergehistory-success": "Munhåyan muna'daña [[:$2]] yan i $3 {{PLURAL:$3|na ribision|na ribision siha}} gi [[:$1]].",
+	"mergehistory-done": "Munhåyan muna'daña [[:$2]] yan i $3 {{PLURAL:$3|na ribision|na ribision siha}} gi $1.",
 	"mergehistory-fail": "Ti siña muna'daña i historia siha, pot fabot ripåra ta'lo i påhina yan i ora pine'lo.",
 	"mergehistory-no-source": "Tåya' na påhina mo'na $1.",
 	"mergehistory-no-destination": "Tåya' na påhina destinasion $1.",
@@ -557,6 +558,7 @@
 	"listredirects": "Na'lista eyu i manmadirihi ta'lo",
 	"unusedtemplates": "Plantiyas siha ti ma'usa",
 	"randompage": "Maseha håfa na påhina",
+	"randomincategory-submit": "Hånao",
 	"randomredirect": "Muna'dirihi maseha manu guatu",
 	"doubleredirects": "Mandoble na inachetton ma'dirihi siha",
 	"brokenredirects": "Manmayulang na muna'dirihi siha",
@@ -680,7 +682,6 @@
 	"blocklogentry": "ha chomma' [[$1]] ya u funhayan gi $2 $3",
 	"movepagetext": "U'usa i sigiente fotma para u matulaika i na'an i påhina, tumulaika historia-ña para i nuebu na nå'an.\nPara u madirihi i titulon orihinåt para i nuebu.\nSiña ha' un tulaika i påhina siha ni manmadirihi guatu i titulon orihinåt.\nYanggen munga hao, na'seguro na un chek i pahinan madirihi [[Special:DoubleRedirects|doble]] pat [[Special:BrokenRedirects|manmayamak]] siha.\nHågu ha' responsible muna'seguro na manmakontinua para i destinasion-ñiha i inachetton siha.\n\nFanapunta fan na anggen guåha esta otru påhina mafa'na'an i titulo nuebu, '''ti''' para makånya i påhina, solu tåya' ha' gi sanhalom destinasion pat tåya' historia-ña tinilika eyu ni mana'dirihi.\nKumeke'ilek-ña este na siña un tulaika tatte i na'an i påhina an guåha linachi-mu, ya ti siña un na'overwrite i påhina siha ni manggaige esta.\n\n'''Adahi!'''\nFa'na'an tinilaika dinidok yan ti maekspekta sempre anggen mageftungo' i påhina;\nna'seguro fan na un komprende i humuyongña i bidada-mu sempre.",
 	"movepagetalktext": "Para u kånya i påhinan kombetsasion ni i påhina \"solo:\"\n*Guåha esta un påhinan kombetsasion ni parehu i na'an-ña, pat\n*Un funas i matka gi sanpapa' na kahon.\n\nPot sienkasu i hilo', nesesario ha' na un kånya pat un na'daña i påhina yanggen malago'-mu.",
-	"movearticle": "Kånya i påhina:",
 	"newtitle": "Para i nuebu na titulo:",
 	"move-watch": "Pulan este na påhina",
 	"movepagebtn": "Kånya i påhina",

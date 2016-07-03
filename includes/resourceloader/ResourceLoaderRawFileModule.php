@@ -31,7 +31,7 @@ class ResourceLoaderRawFileModule extends ResourceLoaderFileModule {
 	/**
 	 * Enable raw mode to omit mw.loader.state() call as mw.loader
 	 * does not yet exist when these modules execute.
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $raw = true;
 

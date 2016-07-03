@@ -16,11 +16,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	private $the_page;
 
-	function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
-			array( 'page',
+			[ 'page',
 				'revision',
 				'text',
 
@@ -34,7 +34,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 				'externallinks',
 				'imagelinks',
 				'templatelinks',
-				'iwlinks' ) );
+				'iwlinks' ] );
 	}
 
 	protected function setUp() {
@@ -57,6 +57,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 				CONTENT_MODEL_WIKITEXT
 			);
 		}
+
+		$this->tablesUsed[] = 'archive';
 	}
 
 	protected function tearDown() {
@@ -76,7 +78,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 	protected function makeRevision( $props = null ) {
 		if ( $props === null ) {
-			$props = array();
+			$props = [];
 		}
 
 		if ( !isset( $props['content'] ) && !isset( $props['text'] ) ) {
@@ -93,7 +95,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$rev = new Revision( $props );
 
-		$dbw = wfgetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$rev->insertOn( $dbw );
 
 		return $rev;
@@ -143,8 +145,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testConstructFromRow() {
 		$orig = $this->makeRevision();
 
-		$dbr = wfgetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', '*', array( 'rev_id' => $orig->getId() ) );
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -161,8 +163,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testNewFromRow() {
 		$orig = $this->makeRevision();
 
-		$dbr = wfgetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', '*', array( 'rev_id' => $orig->getId() ) );
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -185,8 +187,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $page->getRevision();
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
-		$dbr = wfgetDB( DB_SLAVE );
-		$res = $dbr->select( 'archive', '*', array( 'ar_rev_id' => $orig->getId() ) );
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'archive', '*', [ 'ar_rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -226,8 +228,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$res = Revision::fetchRevision( $page->getTitle() );
 
-		#note: order is unspecified
-		$rows = array();
+		# note: order is unspecified
+		$rows = [];
 		while ( ( $row = $res->fetchObject() ) ) {
 			$rows[$row->rev_id] = $row;
 		}
@@ -266,7 +268,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testGetPage() {
 		$page = $this->the_page;
 
-		$orig = $this->makeRevision( array( 'page' => $page->getId() ) );
+		$orig = $this->makeRevision( [ 'page' => $page->getId() ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( $page->getId(), $rev->getPage() );
@@ -278,7 +280,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function testGetText() {
 		$this->hideDeprecated( 'Revision::getText' );
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
+		$orig = $this->makeRevision( [ 'text' => 'hello hello.' ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( 'hello hello.', $rev->getText() );
@@ -288,16 +290,16 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent_failure() {
-		$rev = new Revision( array(
+		$rev = new Revision( [
 			'page' => $this->the_page->getId(),
 			'content_model' => $this->the_page->getContentModel(),
 			'text_id' => 123456789, // not in the test DB
-		) );
+		] );
 
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
 
-		//NOTE: check this twice, once for lazy initialization, and once with the cached value.
+		// NOTE: check this twice, once for lazy initialization, and once with the cached value.
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
 	}
@@ -306,22 +308,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent() {
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
+		$orig = $this->makeRevision( [ 'text' => 'hello hello.' ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( 'hello hello.', $rev->getContent()->getNativeData() );
-	}
-
-	/**
-	 * @covers Revision::getRawText
-	 */
-	public function testGetRawText() {
-		$this->hideDeprecated( 'Revision::getRawText' );
-
-		$orig = $this->makeRevision( array( 'text' => 'hello hello raw.' ) );
-		$rev = Revision::newFromId( $orig->getId() );
-
-		$this->assertEquals( 'hello hello raw.', $rev->getRawText() );
 	}
 
 	/**
@@ -334,8 +324,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
-			'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
+		$orig = $this->makeRevision( [ 'text' => 'hello hello.',
+			'content_model' => CONTENT_MODEL_JAVASCRIPT ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -351,11 +341,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array(
+		$orig = $this->makeRevision( [
 			'text' => 'hello hello.',
 			'content_model' => CONTENT_MODEL_JAVASCRIPT,
 			'content_format' => CONTENT_FORMAT_JAVASCRIPT
-		) );
+		] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_FORMAT_JAVASCRIPT, $rev->getContentFormat() );
@@ -461,20 +451,20 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideUserWasLastToEdit() {
-		return array(
-			array( #0
+		return [
+			[ # 0
 				3, true, # actually the last edit
-			),
-			array( #1
+			],
+			[ # 1
 				2, true, # not the current edit, but still by this user
-			),
-			array( #2
+			],
+			[ # 2
 				1, false, # edit by another user
-			),
-			array( #3
+			],
+			[ # 3
 				0, false, # first edit, by this user, but another user edited in the mean time
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -495,7 +485,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$ns = $this->getDefaultWikitextNS();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$revisions = array();
+		$revisions = [];
 
 		// create revisions -----------------------------
 		$page = WikiPage::factory( Title::newFromText(
@@ -503,7 +493,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page->insertOn( $dbw );
 
 		# zero
-		$revisions[0] = new Revision( array(
+		$revisions[0] = new Revision( [
 			'page' => $page->getId(),
 			// we need the title to determine the page's default content model
 			'title' => $page->getTitle(),
@@ -512,11 +502,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
 			'summary' => 'edit zero'
-		) );
+		] );
 		$revisions[0]->insertOn( $dbw );
 
 		# one
-		$revisions[1] = new Revision( array(
+		$revisions[1] = new Revision( [
 			'page' => $page->getId(),
 			// still need the title, because $page->getId() is 0 (there's no entry in the page table)
 			'title' => $page->getTitle(),
@@ -525,11 +515,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'text' => 'one',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
 			'summary' => 'edit one'
-		) );
+		] );
 		$revisions[1]->insertOn( $dbw );
 
 		# two
-		$revisions[2] = new Revision( array(
+		$revisions[2] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
 			'timestamp' => '20120101000200',
@@ -537,11 +527,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'text' => 'two',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
 			'summary' => 'edit two'
-		) );
+		] );
 		$revisions[2]->insertOn( $dbw );
 
 		# three
-		$revisions[3] = new Revision( array(
+		$revisions[3] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
 			'timestamp' => '20120101000300',
@@ -549,11 +539,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'text' => 'three',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
 			'summary' => 'edit three'
-		) );
+		] );
 		$revisions[3]->insertOn( $dbw );
 
 		# four
-		$revisions[4] = new Revision( array(
+		$revisions[4] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
 			'timestamp' => '20120101000200',
@@ -561,7 +551,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
 			'summary' => 'edit four'
-		) );
+		] );
 		$revisions[4]->insertOn( $dbw );
 
 		// test it ---------------------------------

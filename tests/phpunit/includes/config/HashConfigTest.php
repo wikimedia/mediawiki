@@ -18,9 +18,9 @@ class HashConfigTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( 'HashConfig', $conf );
 
 		// Test passing arguments to the constructor
-		$conf2 = new HashConfig( array(
+		$conf2 = new HashConfig( [
 			'one' => '1',
-		) );
+		] );
 		$this->assertEquals( '1', $conf2->get( 'one' ) );
 	}
 
@@ -28,9 +28,9 @@ class HashConfigTest extends MediaWikiTestCase {
 	 * @covers HashConfig::get
 	 */
 	public function testGet() {
-		$conf = new HashConfig( array(
+		$conf = new HashConfig( [
 			'one' => '1',
-		) );
+		] );
 		$this->assertEquals( '1', $conf->get( 'one' ) );
 		$this->setExpectedException( 'ConfigException', 'HashConfig::get: undefined option' );
 		$conf->get( 'two' );
@@ -40,9 +40,9 @@ class HashConfigTest extends MediaWikiTestCase {
 	 * @covers HashConfig::has
 	 */
 	public function testHas() {
-		$conf = new HashConfig( array(
+		$conf = new HashConfig( [
 			'one' => '1',
-		) );
+		] );
 		$this->assertTrue( $conf->has( 'one' ) );
 		$this->assertFalse( $conf->has( 'two' ) );
 	}
@@ -51,9 +51,9 @@ class HashConfigTest extends MediaWikiTestCase {
 	 * @covers HashConfig::set
 	 */
 	public function testSet() {
-		$conf = new HashConfig( array(
+		$conf = new HashConfig( [
 			'one' => '1',
-		) );
+		] );
 		$conf->set( 'two', '2' );
 		$this->assertEquals( '2', $conf->get( 'two' ) );
 		// Check that set overwrites

@@ -58,19 +58,19 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		}
 
 		/** Put them into a sortable array */
-		$groups = array();
+		$groups = [];
 		/** @var SpecialPage $page */
 		foreach ( $pages as $page ) {
 			if ( $page->isListed() ) {
 				$group = $page->getFinalGroupName();
 				if ( !isset( $groups[$group] ) ) {
-					$groups[$group] = array();
+					$groups[$group] = [];
 				}
-				$groups[$group][$page->getDescription()] = array(
+				$groups[$group][$page->getDescription()] = [
 					$page->getPageTitle(),
 					$page->isRestricted(),
 					$page->isCached()
-				);
+				];
 			}
 		}
 
@@ -102,13 +102,13 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				"specialpages-group-$group"
 			);
 			$out->addHTML(
-				Html::openElement( 'div', array( 'class' => 'mw-specialpages-list' ) )
+				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
 				. '<ul>'
 			);
 			foreach ( $sortedPages as $desc => $specialpage ) {
 				list( $title, $restricted, $cached ) = $specialpage;
 
-				$pageClasses = array();
+				$pageClasses = [];
 				if ( $cached ) {
 					$includesCachedPages = true;
 					$pageClasses[] = 'mw-specialpagecached';
@@ -121,7 +121,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
 				$out->addHTML( Html::rawElement(
 						'li',
-						array( 'class' => implode( ' ', $pageClasses ) ),
+						[ 'class' => implode( ' ', $pageClasses ) ],
 						$link
 					) . "\n" );
 			}

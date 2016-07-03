@@ -53,7 +53,7 @@ class RollbackAction extends FormlessAction {
 			$this->getUser()
 		);
 
-		if ( in_array( array( 'actionthrottledtext' ), $result ) ) {
+		if ( in_array( [ 'actionthrottledtext' ], $result ) ) {
 			throw new ThrottledError;
 		}
 
@@ -78,13 +78,13 @@ class RollbackAction extends FormlessAction {
 			return;
 		}
 
-		#NOTE: Permission errors already handled by Action::checkExecute.
+		# NOTE: Permission errors already handled by Action::checkExecute.
 
-		if ( $result == array( array( 'readonlytext' ) ) ) {
+		if ( $result == [ [ 'readonlytext' ] ] ) {
 			throw new ReadOnlyError;
 		}
 
-		#XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
+		# XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
 		#     Right now, we only show the first error
 		foreach ( $result as $error ) {
 			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );
@@ -103,13 +103,13 @@ class RollbackAction extends FormlessAction {
 			->parseAsBlock() );
 
 		if ( $user->getBoolOption( 'watchrollback' ) ) {
-			$user->addWatch( $this->page->getTitle(), WatchedItem::IGNORE_USER_RIGHTS );
+			$user->addWatch( $this->page->getTitle(), User::IGNORE_USER_RIGHTS );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) &&
-			!$this->getUser()->getBoolOption( 'norollbackdiff', false )
+			!$this->getUser()->getBoolOption( 'norollbackdiff' )
 		) {
 			$contentHandler = $current->getContentHandler();
 			$de = $contentHandler->createDifferenceEngine(
@@ -125,5 +125,9 @@ class RollbackAction extends FormlessAction {
 
 	protected function getDescription() {
 		return '';
+	}
+
+	public function doesWrites() {
+		return true;
 	}
 }

@@ -41,7 +41,7 @@ use UDPTransport;
  * See documentation in DefaultSettings.php for detailed explanations of each
  * variable.
  *
- * @see \\MediaWiki\\Logger\\LoggerFactory
+ * @see \MediaWiki\Logger\LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -54,12 +54,12 @@ class LegacyLogger extends AbstractLogger {
 	protected $channel;
 
 	/**
-	 * Convert Psr\\Log\\LogLevel constants into int for sane comparisons
+	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
 	 * These are the same values that Monlog uses
 	 *
 	 * @var array $levelMapping
 	 */
-	protected static $levelMapping = array(
+	protected static $levelMapping = [
 		LogLevel::DEBUG => 100,
 		LogLevel::INFO => 200,
 		LogLevel::NOTICE => 250,
@@ -68,8 +68,7 @@ class LegacyLogger extends AbstractLogger {
 		LogLevel::CRITICAL => 500,
 		LogLevel::ALERT => 550,
 		LogLevel::EMERGENCY => 600,
-	);
-
+	];
 
 	/**
 	 * @param string $channel
@@ -85,23 +84,24 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $message
 	 * @param array $context
 	 */
-	public function log( $level, $message, array $context = array() ) {
+	public function log( $level, $message, array $context = [] ) {
 		if ( self::shouldEmit( $this->channel, $message, $level, $context ) ) {
 			$text = self::format( $this->channel, $message, $context );
 			$destination = self::destination( $this->channel, $message, $context );
 			self::emit( $text, $destination );
 		}
-		// Add to debug toolbar
-		MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+		if ( !isset( $context['private'] ) || !$context['private'] ) {
+			// Add to debug toolbar if not marked as "private"
+			MWDebug::debugMsg( $message, [ 'channel' => $this->channel ] + $context );
+		}
 	}
-
 
 	/**
 	 * Determine if the given message should be emitted or not.
 	 *
 	 * @param string $channel
 	 * @param string $message
-	 * @param string|int $level Psr\\Log\\LogEvent constant or Monlog level int
+	 * @param string|int $level \Psr\Log\LogEvent constant or Monlog level int
 	 * @param array $context
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
@@ -117,6 +117,13 @@ class LegacyLogger extends AbstractLogger {
 		} elseif ( $channel === 'wfErrorLog' ) {
 			// All messages on the wfErrorLog channel should be emitted.
 			$shouldEmit = true;
+
+		} elseif ( $channel === 'wfDebug' ) {
+			// wfDebug messages are emitted if a catch all logging file has
+			// been specified. Checked explicitly so that 'private' flagged
+			// messages are not discarded by unset $wgDebugLogGroups channel
+			// handling below.
+			$shouldEmit = $wgDebugLogFile != '';
 
 		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {
 			$logConfig = $wgDebugLogGroups[$channel];
@@ -153,7 +160,6 @@ class LegacyLogger extends AbstractLogger {
 
 		return $shouldEmit;
 	}
-
 
 	/**
 	 * Format a message.
@@ -239,7 +245,6 @@ class LegacyLogger extends AbstractLogger {
 		return self::interpolate( $text, $context );
 	}
 
-
 	/**
 	 * Format a message as `wfDebug()` would have formatted it.
 	 *
@@ -261,7 +266,6 @@ class LegacyLogger extends AbstractLogger {
 		return "{$text}\n";
 	}
 
-
 	/**
 	 * Format a message as `wfLogDBError()` would have formatted it.
 	 *
@@ -278,13 +282,7 @@ class LegacyLogger extends AbstractLogger {
 			$cachedTimezone = new DateTimeZone( $wgDBerrorLogTZ );
 		}
 
-		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.6
-		if ( $cachedTimezone === null ) {
-			$d = date_create( 'now' );
-		} else {
-			$d = date_create( 'now', $cachedTimezone );
-		}
+		$d = date_create( 'now', $cachedTimezone );
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$host = wfHostname();
@@ -293,7 +291,6 @@ class LegacyLogger extends AbstractLogger {
 		$text = "{$date}\t{$host}\t{$wiki}\t{$message}\n";
 		return $text;
 	}
-
 
 	/**
 	 * Format a message as `wfDebugLog() would have formatted it.
@@ -310,7 +307,6 @@ class LegacyLogger extends AbstractLogger {
 		return $text;
 	}
 
-
 	/**
 	 * Interpolate placeholders in logging message.
 	 *
@@ -320,7 +316,7 @@ class LegacyLogger extends AbstractLogger {
 	 */
 	public static function interpolate( $message, array $context ) {
 		if ( strpos( $message, '{' ) !== false ) {
-			$replace = array();
+			$replace = [];
 			foreach ( $context as $key => $val ) {
 				$replace['{' . $key . '}'] = self::flatten( $val );
 			}
@@ -328,7 +324,6 @@ class LegacyLogger extends AbstractLogger {
 		}
 		return $message;
 	}
-
 
 	/**
 	 * Convert a logging context element to a string suitable for
@@ -357,7 +352,7 @@ class LegacyLogger extends AbstractLogger {
 		}
 
 		if ( is_scalar( $item ) ) {
-			return (string) $item;
+			return (string)$item;
 		}
 
 		if ( is_array( $item ) ) {
@@ -376,7 +371,7 @@ class LegacyLogger extends AbstractLogger {
 
 		if ( is_object( $item ) ) {
 			if ( method_exists( $item, '__toString' ) ) {
-				return (string) $item;
+				return (string)$item;
 			}
 
 			return '[Object ' . get_class( $item ) . ']';
@@ -388,7 +383,6 @@ class LegacyLogger extends AbstractLogger {
 
 		return '[Unknown ' . gettype( $item ) . ']';
 	}
-
 
 	/**
 	 * Select the appropriate log output destination for the given log event.
@@ -429,7 +423,6 @@ class LegacyLogger extends AbstractLogger {
 
 		return $destination;
 	}
-
 
 	/**
 	* Log to a file without getting "file size exceeded" signals.

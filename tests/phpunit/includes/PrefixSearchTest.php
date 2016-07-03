@@ -4,8 +4,9 @@
  * @group Database
  */
 class PrefixSearchTest extends MediaWikiLangTestCase {
+	private $originalHandlers;
 
-	public function addDBData() {
+	public function addDBDataOnce() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			// tests are skipped if NS_MAIN is not wikitext
 			return;
@@ -40,108 +41,124 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		}
 
 		// Avoid special pages from extensions interferring with the tests
-		$this->setMwGlobals( 'wgSpecialPages', array() );
+		$this->setMwGlobals( [
+			'wgSpecialPages' => [],
+			'wgHooks' => [],
+		] );
+
+		$this->originalHandlers = TestingAccessWrapper::newFromClass( 'Hooks' )->handlers;
+		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = [];
+
+		SpecialPageFactory::resetList();
 	}
 
-	protected function searchProvision( Array $results = null ) {
+	public function tearDown() {
+		parent::tearDown();
+
+		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = $this->originalHandlers;
+
+		SpecialPageFactory::resetList();
+	}
+
+	protected function searchProvision( array $results = null ) {
 		if ( $results === null ) {
-			$this->setMwGlobals( 'wgHooks', array() );
+			$this->setMwGlobals( 'wgHooks', [] );
 		} else {
-			$this->setMwGlobals( 'wgHooks', array(
-				'PrefixSearchBackend' => array(
+			$this->setMwGlobals( 'wgHooks', [
+				'PrefixSearchBackend' => [
 					function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
 						$srchres = $results;
 						return false;
 					}
-				),
-			) );
+				],
+			] );
 		}
 	}
 
 	public static function provideSearch() {
-		return array(
-			array( array(
+		return [
+			[ [
 				'Empty string',
 				'query' => '',
-				'results' => array(),
-			) ),
-			array( array(
+				'results' => [],
+			] ],
+			[ [
 				'Main namespace with title prefix',
 				'query' => 'Ex',
-				'results' => array(
+				'results' => [
 					'Example',
 					'Example/Baz',
 					'Example Bar',
-				),
+				],
 				// Third result when testing offset
-				'offsetresult' => array(
+				'offsetresult' => [
 					'Example Foo',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Talk namespace prefix',
 				'query' => 'Talk:',
-				'results' => array(
+				'results' => [
 					'Talk:Example',
 					'Talk:Sandbox',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'User namespace prefix',
 				'query' => 'User:',
-				'results' => array(
+				'results' => [
 					'User:Example',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Special namespace prefix',
 				'query' => 'Special:',
-				'results' => array(
+				'results' => [
 					'Special:ActiveUsers',
 					'Special:AllMessages',
 					'Special:AllMyFiles',
-				),
+				],
 				// Third result when testing offset
-				'offsetresult' => array(
+				'offsetresult' => [
 					'Special:AllMyUploads',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Special namespace with prefix',
 				'query' => 'Special:Un',
-				'results' => array(
+				'results' => [
 					'Special:Unblock',
 					'Special:UncategorizedCategories',
 					'Special:UncategorizedFiles',
-				),
+				],
 				// Third result when testing offset
-				'offsetresult' => array(
+				'offsetresult' => [
 					'Special:UncategorizedImages',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Special page name',
 				'query' => 'Special:EditWatchlist',
-				'results' => array(
+				'results' => [
 					'Special:EditWatchlist',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Special page subpages',
 				'query' => 'Special:EditWatchlist/',
-				'results' => array(
+				'results' => [
 					'Special:EditWatchlist/clear',
 					'Special:EditWatchlist/raw',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Special page subpages with prefix',
 				'query' => 'Special:EditWatchlist/cl',
-				'results' => array(
+				'results' => [
 					'Special:EditWatchlist/clear',
-				),
-			) ),
-		);
+				],
+			] ],
+		];
 	}
 
 	/**
@@ -149,7 +166,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearch( Array $case ) {
+	public function testSearch( array $case ) {
 		$this->searchProvision( null );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3 );
@@ -165,10 +182,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchWithOffset( Array $case ) {
+	public function testSearchWithOffset( array $case ) {
 		$this->searchProvision( null );
 		$searcher = new StringPrefixSearch;
-		$results = $searcher->search( $case['query'], 3, array(), 1 );
+		$results = $searcher->search( $case['query'], 3, [], 1 );
 
 		// We don't expect the first result when offsetting
 		array_shift( $case['results'] );
@@ -185,120 +202,120 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideSearchBackend() {
-		return array(
-			array( array(
+		return [
+			[ [
 				'Simple case',
-				'provision' => array(
+				'provision' => [
 					'Bar',
 					'Barcelona',
 					'Barbara',
-				),
+				],
 				'query' => 'Bar',
-				'results' => array(
+				'results' => [
 					'Bar',
 					'Barcelona',
 					'Barbara',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Exact match not on top (bug 70958)',
-				'provision' => array(
+				'provision' => [
 					'Barcelona',
 					'Bar',
 					'Barbara',
-				),
+				],
 				'query' => 'Bar',
-				'results' => array(
+				'results' => [
 					'Bar',
 					'Barcelona',
 					'Barbara',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Exact match missing (bug 70958)',
-				'provision' => array(
+				'provision' => [
 					'Barcelona',
 					'Barbara',
 					'Bart',
-				),
+				],
 				'query' => 'Bar',
-				'results' => array(
+				'results' => [
 					'Bar',
 					'Barcelona',
 					'Barbara',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				'Exact match missing and not existing',
-				'provision' => array(
+				'provision' => [
 					'Exile',
 					'Exist',
 					'External',
-				),
+				],
 				'query' => 'Ex',
-				'results' => array(
+				'results' => [
 					'Exile',
 					'Exist',
 					'External',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				"Exact match shouldn't override already found match if " .
 					"exact is redirect and found isn't",
-				'provision' => array(
+				'provision' => [
 					// Target of the exact match is low in the list
 					'Redirect Test Worse Result',
 					'Redirect Test',
-				),
+				],
 				'query' => 'redirect test',
-				'results' => array(
+				'results' => [
 					// Redirect target is pulled up and exact match isn't added
 					'Redirect Test',
 					'Redirect Test Worse Result',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				"Exact match shouldn't override already found match if " .
 					"both exact match and found match are redirect",
-				'provision' => array(
+				'provision' => [
 					// Another redirect to the same target as the exact match
 					// is low in the list
 					'Redirect Test2 Worse Result',
 					'Redirect test2',
-				),
+				],
 				'query' => 'redirect TEST2',
-				'results' => array(
+				'results' => [
 					// Found redirect is pulled to the top and exact match isn't
 					// added
 					'Redirect test2',
 					'Redirect Test2 Worse Result',
-				),
-			) ),
-			array( array(
+				],
+			] ],
+			[ [
 				"Exact match should override any already found matches that " .
 					"are redirects to it",
-				'provision' => array(
+				'provision' => [
 					// Another redirect to the same target as the exact match
 					// is low in the list
 					'Redirect Test Worse Result',
 					'Redirect test',
-				),
+				],
 				'query' => 'Redirect Test',
-				'results' => array(
+				'results' => [
 					// Found redirect is pulled to the top and exact match isn't
 					// added
 					'Redirect Test',
 					'Redirect Test Worse Result',
-				),
-			) ),
-		);
+				],
+			] ],
+		];
 	}
 
 	/**
 	 * @dataProvider provideSearchBackend
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchBackend( Array $case ) {
+	public function testSearchBackend( array $case ) {
 		$this->searchProvision( $case['provision'] );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3 );

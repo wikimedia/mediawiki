@@ -19,7 +19,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	protected $mButtonValue;
 
 	/** @var string $mButtonType Value for the button in this field */
-	protected $mButtonFlags = array( 'primary', 'progressive' );
+	protected $mButtonFlags = [ 'progressive' ];
 
 	public function __construct( $info ) {
 		if ( isset( $info['buttonclass'] ) ) {
@@ -44,21 +44,23 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	}
 
 	public function getInputHTML( $value ) {
-		$attr = array(
+		$attr = [
 			'class' => 'mw-htmlform-submit ' . $this->mButtonClass,
 			'id' => $this->mButtonId,
-		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		return Html::input( $this->mButtonName, $this->mButtonValue, $this->mButtonType, $attr );
 	}
 
 	public function getInputOOUI( $value ) {
-		return new OOUI\ButtonInputWidget( array(
+		return new OOUI\ButtonInputWidget( [
 			'name' => $this->mButtonName,
 			'value' => $this->mButtonValue,
 			'type' => $this->mButtonType,
 			'label' => $this->mButtonValue,
 			'flags' => $this->mButtonFlags,
+		] + OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
 	}
 

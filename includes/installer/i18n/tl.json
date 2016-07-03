@@ -5,7 +5,8 @@
 			"Sky Harbor",
 			"아라",
 			"Amire80",
-			"Jojit fb"
+			"Jojit fb",
+			"Macofe"
 		]
 	},
 	"config-desc": "Ang tagapagluklok para sa MediaWiki",
@@ -17,7 +18,7 @@
 	"config-localsettings-badkey": "Hindi tama ang susing ibinigay mo.",
 	"config-upgrade-key-missing": "Napansin ang isang umiiral na pagtatalaga ng MediaWiki.\nUpang isapanahon ang katalagahang ito, mangyaring ilagay ang sumusunod na guhit sa ilalim ng iyong <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Lumilitaw na hindi pa buo ang umiiral na <code>LocalSettings.php</code>.\nAng pabagu-bagong $1 ay hindi nakatakda.\nMangyaring baguhin ang  <code>LocalSettings.php</code> upang ang maitakda ang pagpapabagu-bagong ito, at pindutin ang \"{{int:Config-continue}}\".",
-	"config-localsettings-connection-error": "Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng <code>LocalSettings.php</code> o\n<code>AdminSettings.php</code>. Paki kumpunihin ang mga katakdaang ito at subukang muli.\n\n$1",
+	"config-localsettings-connection-error": "Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng <code>LocalSettings.php</code> o\n<code>LocalSettings.php</code>. Paki kumpunihin ang mga katakdaang ito at subukang muli.\n\n$1",
 	"config-session-error": "Kamalian sa pagsisimula ng sesyon: $1",
 	"config-session-expired": "Tila nagwakas na ang inilaan sa iyong panahon ng dato.\nAng inilaang mga panahon ay iniayos para sa isang panahon ng buhay na $1.\nMapapataas mo ito sa pamamagitan ng pagtatakda ng <code>session.gc_maxlifetime</code> sa loob ng php.ini.\nMuling simulan ang proseso ng pagluluklok.",
 	"config-no-session": "Nawala ang iyong datos ng sesyon!\nSuriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.",
@@ -50,7 +51,6 @@
 	"config-env-good": "Nasuri na ang kapaligiran.\nMailuluklok mo ang MediaWiki.",
 	"config-env-bad": "Nasuri na ang kapaligiran.\nHindi mo mailuklok ang MediaWiki.",
 	"config-env-php": "Naitalaga ang PHP na $1.",
-	"config-unicode-using-utf8": "Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.",
 	"config-unicode-using-intl": "Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.",
 	"config-unicode-pure-php-warning": "'''Babala''': Ang [http://pecl.php.net/intl dugtong ng internasyunal na PECL] ay hindi makukuha upang makapanghawak ng pagpapanormal ng Unikodigo, na babagsak na pabalik sa mabagal na pagsasakatuparan ng dalisay na PHP.\nKapag nagpapatakbo ka ng isang pook na mataas ang trapiko, dapat kang bumasa ng kaunti hinggil sa [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations pagpapanormal ng Unikodigo].",
 	"config-unicode-update-warning": "'''Babala''': Ang nakaluklok na bersiyon ng pambalot ng pagpapanormal ng Unikodigo ay gumagamit ng isang mas matandang bersiyon ng aklatan ng [http://site.icu-project.org/ proyekto ng ICU].\nDapat kang [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations magtaas ng uri] kung may pag-aalala ka hinggil sa paggamit ng Unikodigo.",
@@ -96,7 +96,6 @@
 	"config-db-install-account": "Account ng tagagamit para sa pagluluklok",
 	"config-db-username": "Pangalang pangtagagamit ng kalipunan ng dato:",
 	"config-db-password": "Password sa kalipunan ng dato:",
-	"config-db-password-empty": "Paki magpasok ng isang password para sa bagong tagagamit ng databas: $1.\nHabang maging maaari na makalikha ng mga tagagamit na walang mga passwrod, hindi ito ligtas.",
 	"config-db-install-username": "Ipasok ang pangalan ng tagagamit na gagamitin upang kumabit sa database habang isinasagawa ang pag-install.\nHindi ito ang pangalan ng tagagamit ng account ng MediaWiki; ito ang pangalan ng tagagamit para sa iyong database.",
 	"config-db-install-password": "Ipasok ang password na gagamitin upang maka-connect sa database habang isinasagawa ang pag-install.\nHindi ito ang password para sa account ng MediaWiki; ito ang password para sa iyong database.",
 	"config-db-install-help": "Ipasok ang pangalan ng tagagamit at password na gagamitin upang umugnay sa databasehabang isinasagawa ang pag-install.",
@@ -244,7 +243,7 @@
 	"config-instantcommons-help": "Ang [//www.mediawiki.org/wiki/InstantCommons Instant Commons] ay isang tampok na nagpapahintulot sa mga wiki upang gumamit ng mga imahe, mga tunog at iba pang mga midyang matatagpuan sa pook ng [//commons.wikimedia.org/ Wikimedia Commons].\nUpang magawa ito, nangangailangan ang MediaWiki ng pagka nakakapunta sa Internet.\n\nPara sa mas marami pang kabatiran hinggil sa tampok na ito, kabilang na ang mga tagubilin sa kung paano ito itakda para sa mga wiki na bukod pa kaysa sa Wikimedia Commons, sumangguni sa [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos gabay].",
 	"config-cc-error": "Hindi nagbigay ng resulta ang pampili ng lisensiya ng Malikhaing Pangkaraniwan.\nIpasok na kinakamay ang pangalan ng lisensiya.",
 	"config-cc-again": "Pumili uli...",
-	"config-cc-not-chosen": "Piliin kung anong lisensiya ng Malikhaing mga Pangkaraniwan ang nais mo at pindutin ang \"magpatuloy\".",
+	"config-cc-not-chosen": "Piliin kung anong lisensiya ng Malikhaing mga Pangkaraniwan ang nais mo at pindutin ang \"proceed\".",
 	"config-advanced-settings": "Mas masulong na pagkakaayos",
 	"config-cache-options": "Mga katakdaan para sa pagtatago ng bagay:",
 	"config-cache-help": "Ang pagtatago ng bagay ay ginagamit upang mapainam ang tulin ng MediaWiki sa pamamagitan ng pagtatago ng madalas gamiting dato.\nAng mga pook na bahagya hanggang malalaki ang sukat ay labis na hinihikayat na paganahin ito, at ang mga pook na maliliit ay makakakita rin ng mga kapakinabangan.",

@@ -67,12 +67,12 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addTables( 'filearchive' );
 
 		$this->addFields( ArchivedFile::selectFields() );
-		$this->addFields( array( 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ) );
+		$this->addFields( [ 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ] );
 		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
-		$this->addFieldsIf( array( 'fa_user', 'fa_user_text' ), $fld_user );
-		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
+		$this->addFieldsIf( [ 'fa_user', 'fa_user_text' ], $fld_user );
+		$this->addFieldsIf( [ 'fa_height', 'fa_width', 'fa_size' ], $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
-		$this->addFieldsIf( array( 'fa_major_mime', 'fa_minor_mime' ), $fld_mime );
+		$this->addFieldsIf( [ 'fa_major_mime', 'fa_minor_mime' ], $fld_mime );
 		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
@@ -114,7 +114,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				if ( !$this->validateSha1Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 				}
-				$sha1 = wfBaseConvert( $sha1, 16, 36, 31 );
+				$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
 				$sha1 = strtolower( $params['sha1base36'] );
 				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
@@ -141,11 +141,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		$this->addOption( 'ORDER BY', array(
+		$this->addOption( 'ORDER BY', [
 			'fa_name' . $sort,
 			'fa_timestamp' . $sort,
 			'fa_id' . $sort,
-		) );
+		] );
 
 		$res = $this->select( __METHOD__ );
 
@@ -161,7 +161,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				break;
 			}
 
-			$file = array();
+			$file = [];
 			$file['id'] = (int)$row->fa_id;
 			$file['name'] = $row->fa_name;
 			$title = Title::makeTitle( NS_FILE, $row->fa_name );
@@ -183,7 +183,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_sha1 ) {
-				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
+				$file['sha1'] = Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
@@ -231,7 +231,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['suppressed'] = true;
 			}
 
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
+			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $file );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter(
 					'continue', "$row->fa_name|$row->fa_timestamp|$row->fa_id"
@@ -240,27 +240,27 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'fa' );
+		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'fa' );
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'from' => null,
 			'to' => null,
 			'prefix' => null,
-			'dir' => array(
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				)
-			),
+				]
+			],
 			'sha1' => null,
 			'sha1base36' => null,
-			'prop' => array(
+			'prop' => [
 				ApiBase::PARAM_DFLT => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'sha1',
 					'timestamp',
 					'user',
@@ -273,27 +273,27 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'metadata',
 					'bitdepth',
 					'archivename',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'limit' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=filearchive'
 				=> 'apihelp-query+filearchive-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

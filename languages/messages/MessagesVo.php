@@ -15,7 +15,7 @@
  * @author לערי ריינהארט
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Nünamakanäd',
 	NS_SPECIAL          => 'Patikos',
 	NS_TALK             => 'Bespik',
@@ -32,23 +32,23 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yufibespik',
 	NS_CATEGORY         => 'Klad',
 	NS_CATEGORY_TALK    => 'Kladibespik',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Magod' => NS_FILE,
 	'Magodibespik' => NS_FILE_TALK,
-);
+];
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'vo',
 	'vo plain',
 	'ISO 8601',
-);
+];
 
 $defaultDateFormat = 'vo';
 
-$dateFormats = array(
+$dateFormats = [
 	'vo time' => 'H:i',
 	'vo date' => 'Y F j"id"',
 	'vo both' => 'H:i, Y F j"id"',
@@ -56,57 +56,57 @@ $dateFormats = array(
 	'vo plain time' => 'H:i',
 	'vo plain date' => 'Y F j',
 	'vo plain both' => 'H:i, Y F j',
-);
+];
 
-$specialPageAliases = array(
-	'Allmessages'               => array( 'Nünsvalik' ),
-	'Allpages'                  => array( 'Padsvalik' ),
-	'Ancientpages'              => array( 'Padsbäldik' ),
-	'Blankpage'                 => array( 'PadVagik' ),
-	'BrokenRedirects'           => array( 'Lüodükömsdädik', 'Lüodüköms dädik' ),
-	'Categories'                => array( 'Klads' ),
-	'Confirmemail'              => array( 'Fümedönladeti' ),
-	'Contributions'             => array( 'Keblünots' ),
-	'DoubleRedirects'           => array( 'Lüodükömstelik', 'Lüodüköms telik' ),
-	'Listfiles'                 => array( 'Ragivalised', 'Magodalised' ),
-	'Listusers'                 => array( 'Gebanalised' ),
-	'Log'                       => array( 'Jenotalised', 'Jenotaliseds' ),
-	'Lonelypages'               => array( 'Padssoelöl', 'Pads soelöl' ),
-	'Longpages'                 => array( 'Padslunik' ),
-	'Mostimages'                => array( 'Ragivs suvüno peyümöls' ),
-	'Mostlinked'                => array( 'Suvüno peyümöls' ),
-	'Mostlinkedcategories'      => array( 'Klads suvüno peyümöls' ),
-	'Mostlinkedtemplates'       => array( 'Samafomots suvüno peyümöls' ),
-	'Movepage'                  => array( 'Topätükön' ),
-	'Mycontributions'           => array( 'Keblünotsobik' ),
-	'Mypage'                    => array( 'Padobik' ),
-	'Mytalk'                    => array( 'Bespikobik' ),
-	'Newimages'                 => array( 'Ragivsnulik', 'Magodsnulik', 'Magods nulik' ),
-	'Newpages'                  => array( 'Padsnulik' ),
-	'Preferences'               => array( 'Buükams' ),
-	'Protectedpages'            => array( 'Padspejelöl' ),
-	'Protectedtitles'           => array( 'Tiädspejelöl' ),
-	'Randompage'                => array( 'Padfädik', 'Pad fädik', 'Fädik' ),
-	'Recentchanges'             => array( 'Votükamsnulik' ),
-	'Search'                    => array( 'Suk' ),
-	'Shortpages'                => array( 'Padsbrefik' ),
-	'Specialpages'              => array( 'Padspatik' ),
-	'Statistics'                => array( 'Statits' ),
-	'Uncategorizedcategories'   => array( 'Kladsnenklads', 'Klads nen klads' ),
-	'Uncategorizedimages'       => array( 'Ragivsnenklads', 'Magodsnenklads', 'Magods nen klads' ),
-	'Uncategorizedpages'        => array( 'Padsnenklads', 'Pads nen klads' ),
-	'Uncategorizedtemplates'    => array( 'Samafomotsnenklads', 'Samafomots nen klads' ),
-	'Unusedcategories'          => array( 'Kladsnopageböls', 'Klad no pageböls' ),
-	'Unusedimages'              => array( 'Ragivsnopageböls', 'Magodsnopageböls', 'Magods no pageböls' ),
-	'Upload'                    => array( 'Löpükön' ),
-	'Userlogin'                 => array( 'Gebananunäd' ),
-	'Userlogout'                => array( 'Gebanasenunäd' ),
-	'Version'                   => array( 'Fomam' ),
-	'Wantedcategories'          => array( 'Klads mekabik', 'Kladsmekabik', 'Kladspavilöl', 'Klads pavilöl' ),
-	'Wantedfiles'               => array( 'Ragivsmekabik' ),
-	'Wantedpages'               => array( 'Pads mekabik', 'Padsmekabik', 'Padspavilöl', 'Yümsdädik', 'Pads pavilöl', 'Yüms dädik' ),
-	'Wantedtemplates'           => array( 'Samafomotsmekabik' ),
-	'Watchlist'                 => array( 'Galädalised' ),
-	'Whatlinkshere'             => array( 'Yümsisio', 'Isio' ),
-);
+$specialPageAliases = [
+	'Allmessages'               => [ 'Nünsvalik' ],
+	'Allpages'                  => [ 'Padsvalik' ],
+	'Ancientpages'              => [ 'Padsbäldik' ],
+	'Blankpage'                 => [ 'PadVagik' ],
+	'BrokenRedirects'           => [ 'Lüodükömsdädik', 'Lüodüköms dädik' ],
+	'Categories'                => [ 'Klads' ],
+	'Confirmemail'              => [ 'Fümedönladeti' ],
+	'Contributions'             => [ 'Keblünots' ],
+	'DoubleRedirects'           => [ 'Lüodükömstelik', 'Lüodüköms telik' ],
+	'Listfiles'                 => [ 'Ragivalised', 'Magodalised' ],
+	'Listusers'                 => [ 'Gebanalised' ],
+	'Log'                       => [ 'Jenotalised', 'Jenotaliseds' ],
+	'Lonelypages'               => [ 'Padssoelöl', 'Pads soelöl' ],
+	'Longpages'                 => [ 'Padslunik' ],
+	'Mostimages'                => [ 'Ragivs suvüno peyümöls' ],
+	'Mostlinked'                => [ 'Suvüno peyümöls' ],
+	'Mostlinkedcategories'      => [ 'Klads suvüno peyümöls' ],
+	'Mostlinkedtemplates'       => [ 'Samafomots suvüno peyümöls' ],
+	'Movepage'                  => [ 'Topätükön' ],
+	'Mycontributions'           => [ 'Keblünotsobik' ],
+	'Mypage'                    => [ 'Padobik' ],
+	'Mytalk'                    => [ 'Bespikobik' ],
+	'Newimages'                 => [ 'Ragivsnulik', 'Magodsnulik', 'Magods nulik' ],
+	'Newpages'                  => [ 'Padsnulik' ],
+	'Preferences'               => [ 'Buükams' ],
+	'Protectedpages'            => [ 'Padspejelöl' ],
+	'Protectedtitles'           => [ 'Tiädspejelöl' ],
+	'Randompage'                => [ 'Padfädik', 'Pad fädik', 'Fädik' ],
+	'Recentchanges'             => [ 'Votükamsnulik' ],
+	'Search'                    => [ 'Suk' ],
+	'Shortpages'                => [ 'Padsbrefik' ],
+	'Specialpages'              => [ 'Padspatik' ],
+	'Statistics'                => [ 'Statits' ],
+	'Uncategorizedcategories'   => [ 'Kladsnenklads', 'Klads nen klads' ],
+	'Uncategorizedimages'       => [ 'Ragivsnenklads', 'Magodsnenklads', 'Magods nen klads' ],
+	'Uncategorizedpages'        => [ 'Padsnenklads', 'Pads nen klads' ],
+	'Uncategorizedtemplates'    => [ 'Samafomotsnenklads', 'Samafomots nen klads' ],
+	'Unusedcategories'          => [ 'Kladsnopageböls', 'Klad no pageböls' ],
+	'Unusedimages'              => [ 'Ragivsnopageböls', 'Magodsnopageböls', 'Magods no pageböls' ],
+	'Upload'                    => [ 'Löpükön' ],
+	'Userlogin'                 => [ 'Gebananunäd' ],
+	'Userlogout'                => [ 'Gebanasenunäd' ],
+	'Version'                   => [ 'Fomam' ],
+	'Wantedcategories'          => [ 'Klads mekabik', 'Kladsmekabik', 'Kladspavilöl', 'Klads pavilöl' ],
+	'Wantedfiles'               => [ 'Ragivsmekabik' ],
+	'Wantedpages'               => [ 'Pads mekabik', 'Padsmekabik', 'Padspavilöl', 'Yümsdädik', 'Pads pavilöl', 'Yüms dädik' ],
+	'Wantedtemplates'           => [ 'Samafomotsmekabik' ],
+	'Watchlist'                 => [ 'Galädalised' ],
+	'Whatlinkshere'             => [ 'Yümsisio', 'Isio' ],
+];
 

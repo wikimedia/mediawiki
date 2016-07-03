@@ -24,188 +24,188 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideFormattableTimes() {
-		return array(
-			array(
+		return [
+			[
 				9.45,
-				array(),
+				[],
 				'9.5 s',
 				'formatTimePeriod() rounding (<10s)'
-			),
-			array(
+			],
+			[
 				9.45,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'9.5 seconds',
 				'formatTimePeriod() rounding (<10s)'
-			),
-			array(
+			],
+			[
 				9.95,
-				array(),
+				[],
 				'10 s',
 				'formatTimePeriod() rounding (<10s)'
-			),
-			array(
+			],
+			[
 				9.95,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'10 seconds',
 				'formatTimePeriod() rounding (<10s)'
-			),
-			array(
+			],
+			[
 				59.55,
-				array(),
+				[],
 				'1 min 0 s',
 				'formatTimePeriod() rounding (<60s)'
-			),
-			array(
+			],
+			[
 				59.55,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'1 minute 0 seconds',
 				'formatTimePeriod() rounding (<60s)'
-			),
-			array(
+			],
+			[
 				119.55,
-				array(),
+				[],
 				'2 min 0 s',
 				'formatTimePeriod() rounding (<1h)'
-			),
-			array(
+			],
+			[
 				119.55,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'2 minutes 0 seconds',
 				'formatTimePeriod() rounding (<1h)'
-			),
-			array(
+			],
+			[
 				3599.55,
-				array(),
+				[],
 				'1 h 0 min 0 s',
 				'formatTimePeriod() rounding (<1h)'
-			),
-			array(
+			],
+			[
 				3599.55,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'1 hour 0 minutes 0 seconds',
 				'formatTimePeriod() rounding (<1h)'
-			),
-			array(
+			],
+			[
 				7199.55,
-				array(),
+				[],
 				'2 h 0 min 0 s',
 				'formatTimePeriod() rounding (>=1h)'
-			),
-			array(
+			],
+			[
 				7199.55,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'2 hours 0 minutes 0 seconds',
 				'formatTimePeriod() rounding (>=1h)'
-			),
-			array(
+			],
+			[
 				7199.55,
 				'avoidseconds',
 				'2 h 0 min',
 				'formatTimePeriod() rounding (>=1h), avoidseconds'
-			),
-			array(
+			],
+			[
 				7199.55,
-				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidseconds', 'noabbrevs' => true ],
 				'2 hours 0 minutes',
 				'formatTimePeriod() rounding (>=1h), avoidseconds'
-			),
-			array(
+			],
+			[
 				7199.55,
 				'avoidminutes',
 				'2 h 0 min',
 				'formatTimePeriod() rounding (>=1h), avoidminutes'
-			),
-			array(
+			],
+			[
 				7199.55,
-				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidminutes', 'noabbrevs' => true ],
 				'2 hours 0 minutes',
 				'formatTimePeriod() rounding (>=1h), avoidminutes'
-			),
-			array(
+			],
+			[
 				172799.55,
 				'avoidseconds',
 				'48 h 0 min',
 				'formatTimePeriod() rounding (=48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				172799.55,
-				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidseconds', 'noabbrevs' => true ],
 				'48 hours 0 minutes',
 				'formatTimePeriod() rounding (=48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				259199.55,
 				'avoidminutes',
 				'3 d 0 h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
-			),
-			array(
+			],
+			[
 				259199.55,
-				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidminutes', 'noabbrevs' => true ],
 				'3 days 0 hours',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
-			),
-			array(
+			],
+			[
 				176399.55,
 				'avoidseconds',
 				'2 d 1 h 0 min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				176399.55,
-				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidseconds', 'noabbrevs' => true ],
 				'2 days 1 hour 0 minutes',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				176399.55,
 				'avoidminutes',
 				'2 d 1 h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
-			),
-			array(
+			],
+			[
 				176399.55,
-				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidminutes', 'noabbrevs' => true ],
 				'2 days 1 hour',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
-			),
-			array(
+			],
+			[
 				259199.55,
 				'avoidseconds',
 				'3 d 0 h 0 min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				259199.55,
-				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidseconds', 'noabbrevs' => true ],
 				'3 days 0 hours 0 minutes',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				172801.55,
 				'avoidseconds',
 				'2 d 0 h 0 min',
 				'formatTimePeriod() rounding, (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				172801.55,
-				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				[ 'avoid' => 'avoidseconds', 'noabbrevs' => true ],
 				'2 days 0 hours 0 minutes',
 				'formatTimePeriod() rounding, (>48h), avoidseconds'
-			),
-			array(
+			],
+			[
 				176460.55,
-				array(),
+				[],
 				'2 d 1 h 1 min 1 s',
 				'formatTimePeriod() rounding, recursion, (>48h)'
-			),
-			array(
+			],
+			[
 				176460.55,
-				array( 'noabbrevs' => true ),
+				[ 'noabbrevs' => true ],
 				'2 days 1 hour 1 minute 1 second',
 				'formatTimePeriod() rounding, recursion, (>48h)'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -261,6 +261,16 @@ class LanguageTest extends LanguageClassesTestCase {
 			$this->getLang()->truncate( "1234567890", 5, 'XXX', false ),
 			'truncate without adjustment'
 		);
+		$this->assertEquals(
+			"泰乐菌...",
+			$this->getLang()->truncate( "泰乐菌素123456789", 11, '...', false ),
+			'truncate does not chop Unicode characters in half'
+		);
+		$this->assertEquals(
+			"\n泰乐菌...",
+			$this->getLang()->truncate( "\n泰乐菌素123456789", 12, '...', false ),
+			'truncate does not chop Unicode characters in half if there is a preceding newline'
+		);
 	}
 
 	/**
@@ -271,7 +281,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,
-			$this->getLang()->truncateHTML( $input, $len, $ellipsis )
+			$this->getLang()->truncateHtml( $input, $len, $ellipsis )
 		);
 	}
 
@@ -279,59 +289,59 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @return array Format is ($len, $ellipsis, $input, $expected)
 	 */
 	public static function provideHTMLTruncateData() {
-		return array(
-			array( 0, 'XXX', "1234567890", "XXX" ),
-			array( 8, 'XXX', "1234567890", "12345XXX" ),
-			array( 5, 'XXXXXXXXXXXXXXX', '1234567890', "1234567890" ),
-			array( 2, '***',
+		return [
+			[ 0, 'XXX', "1234567890", "XXX" ],
+			[ 8, 'XXX', "1234567890", "12345XXX" ],
+			[ 5, 'XXXXXXXXXXXXXXX', '1234567890', "1234567890" ],
+			[ 2, '***',
 				'<p><span style="font-weight:bold;"></span></p>',
 				'<p><span style="font-weight:bold;"></span></p>',
-			),
-			array( 2, '***',
+			],
+			[ 2, '***',
 				'<p><span style="font-weight:bold;">123456789</span></p>',
 				'<p><span style="font-weight:bold;">***</span></p>',
-			),
-			array( 2, '***',
+			],
+			[ 2, '***',
 				'<p><span style="font-weight:bold;">&nbsp;23456789</span></p>',
 				'<p><span style="font-weight:bold;">***</span></p>',
-			),
-			array( 3, '***',
+			],
+			[ 3, '***',
 				'<p><span style="font-weight:bold;">123456789</span></p>',
 				'<p><span style="font-weight:bold;">***</span></p>',
-			),
-			array( 4, '***',
+			],
+			[ 4, '***',
 				'<p><span style="font-weight:bold;">123456789</span></p>',
 				'<p><span style="font-weight:bold;">1***</span></p>',
-			),
-			array( 5, '***',
+			],
+			[ 5, '***',
 				'<tt><span style="font-weight:bold;">123456789</span></tt>',
 				'<tt><span style="font-weight:bold;">12***</span></tt>',
-			),
-			array( 6, '***',
+			],
+			[ 6, '***',
 				'<p><a href="www.mediawiki.org">123456789</a></p>',
 				'<p><a href="www.mediawiki.org">123***</a></p>',
-			),
-			array( 6, '***',
+			],
+			[ 6, '***',
 				'<p><a href="www.mediawiki.org">12&nbsp;456789</a></p>',
 				'<p><a href="www.mediawiki.org">12&nbsp;***</a></p>',
-			),
-			array( 7, '***',
+			],
+			[ 7, '***',
 				'<small><span style="font-weight:bold;">123<p id="#moo">456</p>789</span></small>',
 				'<small><span style="font-weight:bold;">123<p id="#moo">4***</p></span></small>',
-			),
-			array( 8, '***',
+			],
+			[ 8, '***',
 				'<div><span style="font-weight:bold;">123<span>4</span>56789</span></div>',
 				'<div><span style="font-weight:bold;">123<span>4</span>5***</span></div>',
-			),
-			array( 9, '***',
+			],
+			[ 9, '***',
 				'<p><table style="font-weight:bold;"><tr><td>123456789</td></tr></table></p>',
 				'<p><table style="font-weight:bold;"><tr><td>123456789</td></tr></table></p>',
-			),
-			array( 10, '***',
+			],
+			[ 10, '***',
 				'<p><font style="font-weight:bold;">123456789</font></p>',
 				'<p><font style="font-weight:bold;">123456789</font></p>',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -353,37 +363,37 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
 	public static function provideWellFormedLanguageTags() {
-		return array(
-			array( 'fr', 'two-letter code' ),
-			array( 'fr-latn', 'two-letter code with lower case script code' ),
-			array( 'fr-Latn-FR', 'two-letter code with title case script code and uppercase country code' ),
-			array( 'fr-Latn-419', 'two-letter code with title case script code and region number' ),
-			array( 'fr-FR', 'two-letter code with uppercase' ),
-			array( 'ax-TZ', 'Not in the registry, but well-formed' ),
-			array( 'fr-shadok', 'two-letter code with variant' ),
-			array( 'fr-y-myext-myext2', 'non-x singleton' ),
-			array( 'fra-Latn', 'ISO 639 can be 3-letters' ),
-			array( 'fra', 'three-letter language code' ),
-			array( 'fra-FX', 'three-letter language code with country code' ),
-			array( 'i-klingon', 'grandfathered with singleton' ),
-			array( 'I-kLINgon', 'tags are case-insensitive...' ),
-			array( 'no-bok', 'grandfathered without singleton' ),
-			array( 'i-enochian', 'Grandfathered' ),
-			array( 'x-fr-CH', 'private use' ),
-			array( 'es-419', 'two-letter code with region number' ),
-			array( 'en-Latn-GB-boont-r-extended-sequence-x-private', 'weird, but well-formed' ),
-			array( 'ab-x-abc-x-abc', 'anything goes after x' ),
-			array( 'ab-x-abc-a-a', 'anything goes after x, including several non-x singletons' ),
-			array( 'i-default', 'grandfathered' ),
-			array( 'abcd-Latn', 'Language of 4 chars reserved for future use' ),
-			array( 'AaBbCcDd-x-y-any-x', 'Language of 5-8 chars, registered' ),
-			array( 'de-CH-1901', 'with country and year' ),
-			array( 'en-US-x-twain', 'with country and singleton' ),
-			array( 'zh-cmn', 'three-letter variant' ),
-			array( 'zh-cmn-Hant', 'three-letter variant and script' ),
-			array( 'zh-cmn-Hant-HK', 'three-letter variant, script and country' ),
-			array( 'xr-p-lze', 'Extension' ),
-		);
+		return [
+			[ 'fr', 'two-letter code' ],
+			[ 'fr-latn', 'two-letter code with lower case script code' ],
+			[ 'fr-Latn-FR', 'two-letter code with title case script code and uppercase country code' ],
+			[ 'fr-Latn-419', 'two-letter code with title case script code and region number' ],
+			[ 'fr-FR', 'two-letter code with uppercase' ],
+			[ 'ax-TZ', 'Not in the registry, but well-formed' ],
+			[ 'fr-shadok', 'two-letter code with variant' ],
+			[ 'fr-y-myext-myext2', 'non-x singleton' ],
+			[ 'fra-Latn', 'ISO 639 can be 3-letters' ],
+			[ 'fra', 'three-letter language code' ],
+			[ 'fra-FX', 'three-letter language code with country code' ],
+			[ 'i-klingon', 'grandfathered with singleton' ],
+			[ 'I-kLINgon', 'tags are case-insensitive...' ],
+			[ 'no-bok', 'grandfathered without singleton' ],
+			[ 'i-enochian', 'Grandfathered' ],
+			[ 'x-fr-CH', 'private use' ],
+			[ 'es-419', 'two-letter code with region number' ],
+			[ 'en-Latn-GB-boont-r-extended-sequence-x-private', 'weird, but well-formed' ],
+			[ 'ab-x-abc-x-abc', 'anything goes after x' ],
+			[ 'ab-x-abc-a-a', 'anything goes after x, including several non-x singletons' ],
+			[ 'i-default', 'grandfathered' ],
+			[ 'abcd-Latn', 'Language of 4 chars reserved for future use' ],
+			[ 'AaBbCcDd-x-y-any-x', 'Language of 5-8 chars, registered' ],
+			[ 'de-CH-1901', 'with country and year' ],
+			[ 'en-US-x-twain', 'with country and singleton' ],
+			[ 'zh-cmn', 'three-letter variant' ],
+			[ 'zh-cmn-Hant', 'three-letter variant and script' ],
+			[ 'zh-cmn-Hant-HK', 'three-letter variant, script and country' ],
+			[ 'xr-p-lze', 'Extension' ],
+		];
 	}
 
 	/**
@@ -405,40 +415,40 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
 	public static function provideMalformedLanguageTags() {
-		return array(
-			array( 'f', 'language too short' ),
-			array( 'f-Latn', 'language too short with script' ),
-			array( 'xr-lxs-qut', 'variants too short' ), # extlangS
-			array( 'fr-Latn-F', 'region too short' ),
-			array( 'a-value', 'language too short with region' ),
-			array( 'tlh-a-b-foo', 'valid three-letter with wrong variant' ),
-			array(
+		return [
+			[ 'f', 'language too short' ],
+			[ 'f-Latn', 'language too short with script' ],
+			[ 'xr-lxs-qut', 'variants too short' ], # extlangS
+			[ 'fr-Latn-F', 'region too short' ],
+			[ 'a-value', 'language too short with region' ],
+			[ 'tlh-a-b-foo', 'valid three-letter with wrong variant' ],
+			[
 				'i-notexist',
 				'grandfathered but not registered: invalid, even if we only test well-formedness'
-			),
-			array( 'abcdefghi-012345678', 'numbers too long' ),
-			array( 'ab-abc-abc-abc-abc', 'invalid extensions' ),
-			array( 'ab-abcd-abc', 'invalid extensions' ),
-			array( 'ab-ab-abc', 'invalid extensions' ),
-			array( 'ab-123-abc', 'invalid extensions' ),
-			array( 'a-Hant-ZH', 'short language with valid extensions' ),
-			array( 'a1-Hant-ZH', 'invalid character in language' ),
-			array( 'ab-abcde-abc', 'invalid extensions' ),
-			array( 'ab-1abc-abc', 'invalid characters in extensions' ),
-			array( 'ab-ab-abcd', 'invalid order of extensions' ),
-			array( 'ab-123-abcd', 'invalid order of extensions' ),
-			array( 'ab-abcde-abcd', 'invalid extensions' ),
-			array( 'ab-1abc-abcd', 'invalid characters in extensions' ),
-			array( 'ab-a-b', 'extensions too short' ),
-			array( 'ab-a-x', 'extensions too short, even with singleton' ),
-			array( 'ab--ab', 'two separators' ),
-			array( 'ab-abc-', 'separator in the end' ),
-			array( '-ab-abc', 'separator in the beginning' ),
-			array( 'abcd-efg', 'language too long' ),
-			array( 'aabbccddE', 'tag too long' ),
-			array( 'pa_guru', 'A tag with underscore is invalid in strict mode' ),
-			array( 'de-f', 'subtag too short' ),
-		);
+			],
+			[ 'abcdefghi-012345678', 'numbers too long' ],
+			[ 'ab-abc-abc-abc-abc', 'invalid extensions' ],
+			[ 'ab-abcd-abc', 'invalid extensions' ],
+			[ 'ab-ab-abc', 'invalid extensions' ],
+			[ 'ab-123-abc', 'invalid extensions' ],
+			[ 'a-Hant-ZH', 'short language with valid extensions' ],
+			[ 'a1-Hant-ZH', 'invalid character in language' ],
+			[ 'ab-abcde-abc', 'invalid extensions' ],
+			[ 'ab-1abc-abc', 'invalid characters in extensions' ],
+			[ 'ab-ab-abcd', 'invalid order of extensions' ],
+			[ 'ab-123-abcd', 'invalid order of extensions' ],
+			[ 'ab-abcde-abcd', 'invalid extensions' ],
+			[ 'ab-1abc-abcd', 'invalid characters in extensions' ],
+			[ 'ab-a-b', 'extensions too short' ],
+			[ 'ab-a-x', 'extensions too short, even with singleton' ],
+			[ 'ab--ab', 'two separators' ],
+			[ 'ab-abc-', 'separator in the end' ],
+			[ '-ab-abc', 'separator in the beginning' ],
+			[ 'abcd-efg', 'language too long' ],
+			[ 'aabbccddE', 'tag too long' ],
+			[ 'pa_guru', 'A tag with underscore is invalid in strict mode' ],
+			[ 'de-f', 'subtag too short' ],
+		];
 	}
 
 	/**
@@ -465,15 +475,15 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideLanguageCodes() {
-		return array(
-			array( 'fr', true, 'Two letters, minor case' ),
-			array( 'EN', false, 'Two letters, upper case' ),
-			array( 'tyv', true, 'Three letters' ),
-			array( 'tokipona', true, 'long language code' ),
-			array( 'be-tarask', true, 'With dash' ),
-			array( 'be-x-old', true, 'With extension (two dashes)' ),
-			array( 'be_tarask', false, 'Reject underscores' ),
-		);
+		return [
+			[ 'fr', true, 'Two letters, minor case' ],
+			[ 'EN', false, 'Two letters, upper case' ],
+			[ 'tyv', true, 'Three letters' ],
+			[ 'tokipona', true, 'long language code' ],
+			[ 'be-tarask', true, 'With dash' ],
+			[ 'be-x-old', true, 'With extension (two dashes)' ],
+			[ 'be_tarask', false, 'Reject underscores' ],
+		];
 	}
 
 	/**
@@ -489,11 +499,11 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideKnownLanguageTags() {
-		return array(
-			array( 'fr', 'simple code' ),
-			array( 'bat-smg', 'an MW legacy tag' ),
-			array( 'sgs', 'an internal standard MW name, for which a legacy tag is used externally' ),
-		);
+		return [
+			[ 'fr', 'simple code' ],
+			[ 'bat-smg', 'an MW legacy tag' ],
+			[ 'sgs', 'an internal standard MW name, for which a legacy tag is used externally' ],
+		];
 	}
 
 	/**
@@ -525,10 +535,10 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideUnknownLanguageTags() {
-		return array(
-			array( 'mw', 'non-existent two-letter code' ),
-			array( 'foo"<bar', 'very invalid language code' ),
-		);
+		return [
+			[ 'mw', 'non-existent two-letter code' ],
+			[ 'foo"<bar', 'very invalid language code' ],
+		];
 	}
 
 	/**
@@ -629,389 +639,389 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideSprintfDateSamples() {
-		return array(
-			array(
+		return [
+			[
 				'xiY',
 				'20111212000000',
 				'1390', // note because we're testing English locale we get Latin-standard digits
 				'1390',
 				'Iranian calendar full year'
-			),
-			array(
+			],
+			[
 				'xiy',
 				'20111212000000',
 				'90',
 				'90',
 				'Iranian calendar short year'
-			),
-			array(
+			],
+			[
 				'o',
 				'20120101235000',
 				'2011',
 				'2011',
 				'ISO 8601 (week) year'
-			),
-			array(
+			],
+			[
 				'W',
 				'20120101235000',
 				'52',
 				'52',
 				'Week number'
-			),
-			array(
+			],
+			[
 				'W',
 				'20120102235000',
 				'1',
 				'1',
 				'Week number'
-			),
-			array(
+			],
+			[
 				'o-\\WW-N',
 				'20091231235000',
 				'2009-W53-4',
 				'2009-W53-4',
 				'leap week'
-			),
+			],
 			// What follows is mostly copied from
 			// https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
-			array(
+			[
 				'Y',
 				'20120102090705',
 				'2012',
 				'2012',
 				'Full year'
-			),
-			array(
+			],
+			[
 				'y',
 				'20120102090705',
 				'12',
 				'12',
 				'2 digit year'
-			),
-			array(
+			],
+			[
 				'L',
 				'20120102090705',
 				'1',
 				'1',
 				'Leap year'
-			),
-			array(
+			],
+			[
 				'n',
 				'20120102090705',
 				'1',
 				'1',
 				'Month index, not zero pad'
-			),
-			array(
+			],
+			[
 				'N',
 				'20120102090705',
 				'01',
 				'01',
 				'Month index. Zero pad'
-			),
-			array(
+			],
+			[
 				'M',
 				'20120102090705',
 				'Jan',
 				'Jan',
 				'Month abbrev'
-			),
-			array(
+			],
+			[
 				'F',
 				'20120102090705',
 				'January',
 				'January',
 				'Full month'
-			),
-			array(
+			],
+			[
 				'xg',
 				'20120102090705',
 				'January',
 				'January',
 				'Genitive month name (same in EN)'
-			),
-			array(
+			],
+			[
 				'j',
 				'20120102090705',
 				'2',
 				'2',
 				'Day of month (not zero pad)'
-			),
-			array(
+			],
+			[
 				'd',
 				'20120102090705',
 				'02',
 				'02',
 				'Day of month (zero-pad)'
-			),
-			array(
+			],
+			[
 				'z',
 				'20120102090705',
 				'1',
 				'1',
 				'Day of year (zero-indexed)'
-			),
-			array(
+			],
+			[
 				'D',
 				'20120102090705',
 				'Mon',
 				'Mon',
 				'Day of week (abbrev)'
-			),
-			array(
+			],
+			[
 				'l',
 				'20120102090705',
 				'Monday',
 				'Monday',
 				'Full day of week'
-			),
-			array(
+			],
+			[
 				'N',
 				'20120101090705',
 				'7',
 				'7',
 				'Day of week (Mon=1, Sun=7)'
-			),
-			array(
+			],
+			[
 				'w',
 				'20120101090705',
 				'0',
 				'0',
 				'Day of week (Sun=0, Sat=6)'
-			),
-			array(
+			],
+			[
 				'N',
 				'20120102090705',
 				'1',
 				'1',
 				'Day of week'
-			),
-			array(
+			],
+			[
 				'a',
 				'20120102090705',
 				'am',
 				'am',
 				'am vs pm'
-			),
-			array(
+			],
+			[
 				'A',
 				'20120102120000',
 				'PM',
 				'PM',
 				'AM vs PM'
-			),
-			array(
+			],
+			[
 				'a',
 				'20120102000000',
 				'am',
 				'am',
 				'AM vs PM'
-			),
-			array(
+			],
+			[
 				'g',
 				'20120102090705',
 				'9',
 				'9',
 				'12 hour, not Zero'
-			),
-			array(
+			],
+			[
 				'h',
 				'20120102090705',
 				'09',
 				'09',
 				'12 hour, zero padded'
-			),
-			array(
+			],
+			[
 				'G',
 				'20120102090705',
 				'9',
 				'9',
 				'24 hour, not zero'
-			),
-			array(
+			],
+			[
 				'H',
 				'20120102090705',
 				'09',
 				'09',
 				'24 hour, zero'
-			),
-			array(
+			],
+			[
 				'H',
 				'20120102110705',
 				'11',
 				'11',
 				'24 hour, zero'
-			),
-			array(
+			],
+			[
 				'i',
 				'20120102090705',
 				'07',
 				'07',
 				'Minutes'
-			),
-			array(
+			],
+			[
 				's',
 				'20120102090705',
 				'05',
 				'05',
 				'seconds'
-			),
-			array(
+			],
+			[
 				'U',
 				'20120102090705',
 				'1325495225',
 				'1325462825',
 				'unix time'
-			),
-			array(
+			],
+			[
 				't',
 				'20120102090705',
 				'31',
 				'31',
 				'Days in current month'
-			),
-			array(
+			],
+			[
 				'c',
 				'20120102090705',
 				'2012-01-02T09:07:05+00:00',
 				'2012-01-02T09:07:05+09:00',
 				'ISO 8601 timestamp'
-			),
-			array(
+			],
+			[
 				'r',
 				'20120102090705',
 				'Mon, 02 Jan 2012 09:07:05 +0000',
 				'Mon, 02 Jan 2012 09:07:05 +0900',
 				'RFC 5322'
-			),
-			array(
+			],
+			[
 				'e',
 				'20120102090705',
 				'UTC',
 				'Asia/Seoul',
 				'Timezone identifier'
-			),
-			array(
+			],
+			[
 				'I',
 				'19880602090705',
 				'0',
 				'1',
 				'DST indicator'
-			),
-			array(
+			],
+			[
 				'O',
 				'20120102090705',
 				'+0000',
 				'+0900',
 				'Timezone offset'
-			),
-			array(
+			],
+			[
 				'P',
 				'20120102090705',
 				'+00:00',
 				'+09:00',
 				'Timezone offset with colon'
-			),
-			array(
+			],
+			[
 				'T',
 				'20120102090705',
 				'UTC',
 				'KST',
 				'Timezone abbreviation'
-			),
-			array(
+			],
+			[
 				'Z',
 				'20120102090705',
 				'0',
 				'32400',
 				'Timezone offset in seconds'
-			),
-			array(
+			],
+			[
 				'xmj xmF xmn xmY',
 				'20120102090705',
 				'7 Safar 2 1433',
 				'7 Safar 2 1433',
 				'Islamic'
-			),
-			array(
+			],
+			[
 				'xij xiF xin xiY',
 				'20120102090705',
 				'12 Dey 10 1390',
 				'12 Dey 10 1390',
 				'Iranian'
-			),
-			array(
+			],
+			[
 				'xjj xjF xjn xjY',
 				'20120102090705',
 				'7 Tevet 4 5772',
 				'7 Tevet 4 5772',
 				'Hebrew'
-			),
-			array(
+			],
+			[
 				'xjt',
 				'20120102090705',
 				'29',
 				'29',
 				'Hebrew number of days in month'
-			),
-			array(
+			],
+			[
 				'xjx',
 				'20120102090705',
 				'Tevet',
 				'Tevet',
 				'Hebrew genitive month name (No difference in EN)'
-			),
-			array(
+			],
+			[
 				'xkY',
 				'20120102090705',
 				'2555',
 				'2555',
 				'Thai year'
-			),
-			array(
+			],
+			[
 				'xoY',
 				'20120102090705',
 				'101',
 				'101',
 				'Minguo'
-			),
-			array(
+			],
+			[
 				'xtY',
 				'20120102090705',
 				'平成24',
 				'平成24',
 				'nengo'
-			),
-			array(
+			],
+			[
 				'xrxkYY',
 				'20120102090705',
 				'MMDLV2012',
 				'MMDLV2012',
 				'Roman numerals'
-			),
-			array(
+			],
+			[
 				'xhxjYY',
 				'20120102090705',
 				'ה\'תשע"ב2012',
 				'ה\'תשע"ב2012',
 				'Hebrew numberals'
-			),
-			array(
+			],
+			[
 				'xnY',
 				'20120102090705',
 				'2012',
 				'2012',
 				'Raw numerals (doesn\'t mean much in EN)'
-			),
-			array(
+			],
+			[
 				'[[Y "(yea"\\r)]] \\"xx\\"',
 				'20120102090705',
 				'[[2012 (year)]] "x"',
 				'[[2012 (year)]] "x"',
 				'Various escaping'
-			),
+			],
 
-		);
+		];
 	}
 
 	/**
@@ -1027,54 +1037,54 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideFormatSizes() {
-		return array(
-			array(
+		return [
+			[
 				0,
 				"0 bytes",
 				"Zero bytes"
-			),
-			array(
+			],
+			[
 				1024,
 				"1 KB",
 				"1 kilobyte"
-			),
-			array(
+			],
+			[
 				1024 * 1024,
 				"1 MB",
 				"1,024 megabytes"
-			),
-			array(
+			],
+			[
 				1024 * 1024 * 1024,
 				"1 GB",
 				"1 gigabyte"
-			),
-			array(
+			],
+			[
 				pow( 1024, 4 ),
 				"1 TB",
 				"1 terabyte"
-			),
-			array(
+			],
+			[
 				pow( 1024, 5 ),
 				"1 PB",
 				"1 petabyte"
-			),
-			array(
+			],
+			[
 				pow( 1024, 6 ),
 				"1 EB",
 				"1,024 exabyte"
-			),
-			array(
+			],
+			[
 				pow( 1024, 7 ),
 				"1 ZB",
 				"1 zetabyte"
-			),
-			array(
+			],
+			[
 				pow( 1024, 8 ),
 				"1 YB",
 				"1 yottabyte"
-			),
+			],
 			// How big!? THIS BIG!
-		);
+		];
 	}
 
 	/**
@@ -1090,70 +1100,70 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideFormatBitrate() {
-		return array(
-			array(
+		return [
+			[
 				0,
 				"0 bps",
 				"0 bits per second"
-			),
-			array(
+			],
+			[
 				999,
 				"999 bps",
 				"999 bits per second"
-			),
-			array(
+			],
+			[
 				1000,
 				"1 kbps",
 				"1 kilobit per second"
-			),
-			array(
+			],
+			[
 				1000 * 1000,
 				"1 Mbps",
 				"1 megabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 9 ),
 				"1 Gbps",
 				"1 gigabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 12 ),
 				"1 Tbps",
 				"1 terabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 15 ),
 				"1 Pbps",
 				"1 petabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 18 ),
 				"1 Ebps",
 				"1 exabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 21 ),
 				"1 Zbps",
 				"1 zetabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 24 ),
 				"1 Ybps",
 				"1 yottabit per second"
-			),
-			array(
+			],
+			[
 				pow( 10, 27 ),
 				"1,000 Ybps",
 				"1,000 yottabits per second"
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @dataProvider provideFormatDuration
 	 * @covers Language::formatDuration
 	 */
-	public function testFormatDuration( $duration, $expected, $intervals = array() ) {
+	public function testFormatDuration( $duration, $expected, $intervals = [] ) {
 		$this->assertEquals(
 			$expected,
 			$this->getLang()->formatDuration( $duration, $intervals ),
@@ -1162,128 +1172,128 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideFormatDuration() {
-		return array(
-			array(
+		return [
+			[
 				0,
 				'0 seconds',
-			),
-			array(
+			],
+			[
 				1,
 				'1 second',
-			),
-			array(
+			],
+			[
 				2,
 				'2 seconds',
-			),
-			array(
+			],
+			[
 				60,
 				'1 minute',
-			),
-			array(
+			],
+			[
 				2 * 60,
 				'2 minutes',
-			),
-			array(
+			],
+			[
 				3600,
 				'1 hour',
-			),
-			array(
+			],
+			[
 				2 * 3600,
 				'2 hours',
-			),
-			array(
+			],
+			[
 				24 * 3600,
 				'1 day',
-			),
-			array(
+			],
+			[
 				2 * 86400,
 				'2 days',
-			),
-			array(
+			],
+			[
 				// ( 365 + ( 24 * 3 + 25 ) / 400 ) * 86400 = 31556952
 				( 365 + ( 24 * 3 + 25 ) / 400.0 ) * 86400,
 				'1 year',
-			),
-			array(
+			],
+			[
 				2 * 31556952,
 				'2 years',
-			),
-			array(
+			],
+			[
 				10 * 31556952,
 				'1 decade',
-			),
-			array(
+			],
+			[
 				20 * 31556952,
 				'2 decades',
-			),
-			array(
+			],
+			[
 				100 * 31556952,
 				'1 century',
-			),
-			array(
+			],
+			[
 				200 * 31556952,
 				'2 centuries',
-			),
-			array(
+			],
+			[
 				1000 * 31556952,
 				'1 millennium',
-			),
-			array(
+			],
+			[
 				2000 * 31556952,
 				'2 millennia',
-			),
-			array(
+			],
+			[
 				9001,
 				'2 hours, 30 minutes and 1 second'
-			),
-			array(
+			],
+			[
 				3601,
 				'1 hour and 1 second'
-			),
-			array(
+			],
+			[
 				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days, 2 hours and 30 minutes'
-			),
-			array(
+			],
+			[
 				42 * 1000 * 31556952 + 42,
 				'42 millennia and 42 seconds'
-			),
-			array(
+			],
+			[
 				60,
 				'60 seconds',
-				array( 'seconds' ),
-			),
-			array(
+				[ 'seconds' ],
+			],
+			[
 				61,
 				'61 seconds',
-				array( 'seconds' ),
-			),
-			array(
+				[ 'seconds' ],
+			],
+			[
 				1,
 				'1 second',
-				array( 'seconds' ),
-			),
-			array(
+				[ 'seconds' ],
+			],
+			[
 				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
-				array( 'years', 'days', 'minutes' ),
-			),
-			array(
+				[ 'years', 'days', 'minutes' ],
+			],
+			[
 				42,
 				'0 days',
-				array( 'years', 'days' ),
-			),
-			array(
+				[ 'years', 'days' ],
+			],
+			[
 				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
-				array( 'minutes', 'days', 'years' ),
-			),
-			array(
+				[ 'minutes', 'days', 'years' ],
+			],
+			[
 				42,
 				'0 days',
-				array( 'days', 'years' ),
-			),
-		);
+				[ 'days', 'years' ],
+			],
+		];
 	}
 
 	/**
@@ -1300,19 +1310,19 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function provideCheckTitleEncodingData() {
 		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-		return array(
-			array( "" ),
-			array( "United States of America" ), // 7bit ASCII
-			array( rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ),
-			array(
+		return [
+			[ "" ],
+			[ "United States of America" ], // 7bit ASCII
+			[ rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ],
+			[
 				rawurldecode(
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn"
 				)
-			),
+			],
 			// The following two data sets come from bug 36839. They fail if checkTitleEncoding uses a regexp to test for
 			// valid UTF-8 encoding and the pcre.recursion_limit is low (like, say, 1024). They succeed if checkTitleEncoding
 			// uses mb_check_encoding for its test.
-			array(
+			[
 				rawurldecode(
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn%7C"
 						. "Catherine%20Willows%7CDavid%20Hodges%7CDavid%20Phillips%7CGil%20Grissom%7CGreg%20Sanders%7CHodges%7C"
@@ -1329,8 +1339,8 @@ class LanguageTest extends LanguageClassesTestCase {
 						. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 						. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
 				),
-			),
-			array(
+			],
+			[
 				rawurldecode(
 					"Mod%C3%A8le%3AArrondissements%20homonymes%7CMod%C3%A8le%3ABandeau%20standard%20pour%20page%20d'homonymie%7C"
 						. "Mod%C3%A8le%3ABatailles%20homonymes%7CMod%C3%A8le%3ACantons%20homonymes%7C"
@@ -1348,8 +1358,8 @@ class LanguageTest extends LanguageClassesTestCase {
 						. "Mod%C3%A8le%3ATitres%20homonymes%7CMod%C3%A8le%3AToponymie%7CMod%C3%A8le%3AUnit%C3%A9s%20homonymes%7C"
 						. "Mod%C3%A8le%3AVilles%20homonymes%7CMod%C3%A8le%3A%C3%89difices%20religieux%20homonymes"
 				)
-			)
-		);
+			]
+		];
 		// @codingStandardsIgnoreEnd
 	}
 
@@ -1366,50 +1376,50 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideRomanNumeralsData() {
-		return array(
-			array( 1, 'I' ),
-			array( 2, 'II' ),
-			array( 3, 'III' ),
-			array( 4, 'IV' ),
-			array( 5, 'V' ),
-			array( 6, 'VI' ),
-			array( 7, 'VII' ),
-			array( 8, 'VIII' ),
-			array( 9, 'IX' ),
-			array( 10, 'X' ),
-			array( 20, 'XX' ),
-			array( 30, 'XXX' ),
-			array( 40, 'XL' ),
-			array( 49, 'XLIX' ),
-			array( 50, 'L' ),
-			array( 60, 'LX' ),
-			array( 70, 'LXX' ),
-			array( 80, 'LXXX' ),
-			array( 90, 'XC' ),
-			array( 99, 'XCIX' ),
-			array( 100, 'C' ),
-			array( 200, 'CC' ),
-			array( 300, 'CCC' ),
-			array( 400, 'CD' ),
-			array( 500, 'D' ),
-			array( 600, 'DC' ),
-			array( 700, 'DCC' ),
-			array( 800, 'DCCC' ),
-			array( 900, 'CM' ),
-			array( 999, 'CMXCIX' ),
-			array( 1000, 'M' ),
-			array( 1989, 'MCMLXXXIX' ),
-			array( 2000, 'MM' ),
-			array( 3000, 'MMM' ),
-			array( 4000, 'MMMM' ),
-			array( 5000, 'MMMMM' ),
-			array( 6000, 'MMMMMM' ),
-			array( 7000, 'MMMMMMM' ),
-			array( 8000, 'MMMMMMMM' ),
-			array( 9000, 'MMMMMMMMM' ),
-			array( 9999, 'MMMMMMMMMCMXCIX' ),
-			array( 10000, 'MMMMMMMMMM' ),
-		);
+		return [
+			[ 1, 'I' ],
+			[ 2, 'II' ],
+			[ 3, 'III' ],
+			[ 4, 'IV' ],
+			[ 5, 'V' ],
+			[ 6, 'VI' ],
+			[ 7, 'VII' ],
+			[ 8, 'VIII' ],
+			[ 9, 'IX' ],
+			[ 10, 'X' ],
+			[ 20, 'XX' ],
+			[ 30, 'XXX' ],
+			[ 40, 'XL' ],
+			[ 49, 'XLIX' ],
+			[ 50, 'L' ],
+			[ 60, 'LX' ],
+			[ 70, 'LXX' ],
+			[ 80, 'LXXX' ],
+			[ 90, 'XC' ],
+			[ 99, 'XCIX' ],
+			[ 100, 'C' ],
+			[ 200, 'CC' ],
+			[ 300, 'CCC' ],
+			[ 400, 'CD' ],
+			[ 500, 'D' ],
+			[ 600, 'DC' ],
+			[ 700, 'DCC' ],
+			[ 800, 'DCCC' ],
+			[ 900, 'CM' ],
+			[ 999, 'CMXCIX' ],
+			[ 1000, 'M' ],
+			[ 1989, 'MCMLXXXIX' ],
+			[ 2000, 'MM' ],
+			[ 3000, 'MMM' ],
+			[ 4000, 'MMMM' ],
+			[ 5000, 'MMMMM' ],
+			[ 6000, 'MMMMMM' ],
+			[ 7000, 'MMMMMMM' ],
+			[ 8000, 'MMMMMMMM' ],
+			[ 9000, 'MMMMMMMMM' ],
+			[ 9999, 'MMMMMMMMMCMXCIX' ],
+			[ 10000, 'MMMMMMMMMM' ],
+		];
 	}
 
 	/**
@@ -1425,62 +1435,62 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideHebrewNumeralsData() {
-		return array(
-			array( -1, -1 ),
-			array( 0, 0 ),
-			array( 1, "א'" ),
-			array( 2, "ב'" ),
-			array( 3, "ג'" ),
-			array( 4, "ד'" ),
-			array( 5, "ה'" ),
-			array( 6, "ו'" ),
-			array( 7, "ז'" ),
-			array( 8, "ח'" ),
-			array( 9, "ט'" ),
-			array( 10, "י'" ),
-			array( 11, 'י"א' ),
-			array( 14, 'י"ד' ),
-			array( 15, 'ט"ו' ),
-			array( 16, 'ט"ז' ),
-			array( 17, 'י"ז' ),
-			array( 20, "כ'" ),
-			array( 21, 'כ"א' ),
-			array( 30, "ל'" ),
-			array( 40, "מ'" ),
-			array( 50, "נ'" ),
-			array( 60, "ס'" ),
-			array( 70, "ע'" ),
-			array( 80, "פ'" ),
-			array( 90, "צ'" ),
-			array( 99, 'צ"ט' ),
-			array( 100, "ק'" ),
-			array( 101, 'ק"א' ),
-			array( 110, 'ק"י' ),
-			array( 200, "ר'" ),
-			array( 300, "ש'" ),
-			array( 400, "ת'" ),
-			array( 500, 'ת"ק' ),
-			array( 800, 'ת"ת' ),
-			array( 1000, "א' אלף" ),
-			array( 1001, "א'א'" ),
-			array( 1012, "א'י\"ב" ),
-			array( 1020, "א'ך'" ),
-			array( 1030, "א'ל'" ),
-			array( 1081, "א'פ\"א" ),
-			array( 2000, "ב' אלפים" ),
-			array( 2016, "ב'ט\"ז" ),
-			array( 3000, "ג' אלפים" ),
-			array( 4000, "ד' אלפים" ),
-			array( 4904, "ד'תתק\"ד" ),
-			array( 5000, "ה' אלפים" ),
-			array( 5680, "ה'תר\"ף" ),
-			array( 5690, "ה'תר\"ץ" ),
-			array( 5708, "ה'תש\"ח" ),
-			array( 5720, "ה'תש\"ך" ),
-			array( 5740, "ה'תש\"ם" ),
-			array( 5750, "ה'תש\"ן" ),
-			array( 5775, "ה'תשע\"ה" ),
-		);
+		return [
+			[ -1, -1 ],
+			[ 0, 0 ],
+			[ 1, "א'" ],
+			[ 2, "ב'" ],
+			[ 3, "ג'" ],
+			[ 4, "ד'" ],
+			[ 5, "ה'" ],
+			[ 6, "ו'" ],
+			[ 7, "ז'" ],
+			[ 8, "ח'" ],
+			[ 9, "ט'" ],
+			[ 10, "י'" ],
+			[ 11, 'י"א' ],
+			[ 14, 'י"ד' ],
+			[ 15, 'ט"ו' ],
+			[ 16, 'ט"ז' ],
+			[ 17, 'י"ז' ],
+			[ 20, "כ'" ],
+			[ 21, 'כ"א' ],
+			[ 30, "ל'" ],
+			[ 40, "מ'" ],
+			[ 50, "נ'" ],
+			[ 60, "ס'" ],
+			[ 70, "ע'" ],
+			[ 80, "פ'" ],
+			[ 90, "צ'" ],
+			[ 99, 'צ"ט' ],
+			[ 100, "ק'" ],
+			[ 101, 'ק"א' ],
+			[ 110, 'ק"י' ],
+			[ 200, "ר'" ],
+			[ 300, "ש'" ],
+			[ 400, "ת'" ],
+			[ 500, 'ת"ק' ],
+			[ 800, 'ת"ת' ],
+			[ 1000, "א' אלף" ],
+			[ 1001, "א'א'" ],
+			[ 1012, "א'י\"ב" ],
+			[ 1020, "א'ך'" ],
+			[ 1030, "א'ל'" ],
+			[ 1081, "א'פ\"א" ],
+			[ 2000, "ב' אלפים" ],
+			[ 2016, "ב'ט\"ז" ],
+			[ 3000, "ג' אלפים" ],
+			[ 4000, "ד' אלפים" ],
+			[ 4904, "ד'תתק\"ד" ],
+			[ 5000, "ה' אלפים" ],
+			[ 5680, "ה'תר\"ף" ],
+			[ 5690, "ה'תר\"ץ" ],
+			[ 5708, "ה'תש\"ח" ],
+			[ 5720, "ה'תש\"ך" ],
+			[ 5740, "ה'תש\"ם" ],
+			[ 5750, "ה'תש\"ן" ],
+			[ 5775, "ה'תשע\"ה" ],
+		];
 	}
 
 	/**
@@ -1494,38 +1504,38 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function providePluralData() {
 		// Params are: [expected text, number given, [the plural forms]]
-		return array(
-			array( 'plural', 0, array(
+		return [
+			[ 'plural', 0, [
 				'singular', 'plural'
-			) ),
-			array( 'explicit zero', 0, array(
+			] ],
+			[ 'explicit zero', 0, [
 				'0=explicit zero', 'singular', 'plural'
-			) ),
-			array( 'explicit one', 1, array(
+			] ],
+			[ 'explicit one', 1, [
 				'singular', 'plural', '1=explicit one',
-			) ),
-			array( 'singular', 1, array(
+			] ],
+			[ 'singular', 1, [
 				'singular', 'plural', '0=explicit zero',
-			) ),
-			array( 'plural', 3, array(
+			] ],
+			[ 'plural', 3, [
 				'0=explicit zero', '1=explicit one', 'singular', 'plural'
-			) ),
-			array( 'explicit eleven', 11, array(
+			] ],
+			[ 'explicit eleven', 11, [
 				'singular', 'plural', '11=explicit eleven',
-			) ),
-			array( 'plural', 12, array(
+			] ],
+			[ 'plural', 12, [
 				'singular', 'plural', '11=explicit twelve',
-			) ),
-			array( 'plural', 12, array(
+			] ],
+			[ 'plural', 12, [
 				'singular', 'plural', '=explicit form',
-			) ),
-			array( 'other', 2, array(
+			] ],
+			[ 'other', 2, [
 				'kissa=kala', '1=2=3', 'other',
-			) ),
-			array( '', 2, array(
+			] ],
+			[ '', 2, [
 				'0=explicit zero', '1=explicit one',
-			) ),
-		);
+			] ],
+		];
 	}
 
 	/**
@@ -1569,24 +1579,24 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideTranslateBlockExpiry() {
-		return array(
-			array( '2 hours', '2 hours', 'simple data from ipboptions' ),
-			array( 'indefinite', 'infinite', 'infinite from ipboptions' ),
-			array( 'indefinite', 'infinity', 'alternative infinite from ipboptions' ),
-			array( 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ),
-			array( array( 'formatDuration', 1023 * 60 * 60 ), '1023 hours', 'relative' ),
-			array( array( 'formatDuration', -1023 ), '-1023 seconds', 'negative relative' ),
-			array( array( 'formatDuration', 0 ), 'now', 'now' ),
-			array(
-				array( 'timeanddate', '20120102070000' ),
+		return [
+			[ '2 hours', '2 hours', 'simple data from ipboptions' ],
+			[ 'indefinite', 'infinite', 'infinite from ipboptions' ],
+			[ 'indefinite', 'infinity', 'alternative infinite from ipboptions' ],
+			[ 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ],
+			[ [ 'formatDuration', 1023 * 60 * 60 ], '1023 hours', 'relative' ],
+			[ [ 'formatDuration', -1023 ], '-1023 seconds', 'negative relative' ],
+			[ [ 'formatDuration', 0 ], 'now', 'now' ],
+			[
+				[ 'timeanddate', '20120102070000' ],
 				'2012-1-1 7:00 +1 day',
 				'mixed, handled as absolute'
-			),
-			array( array( 'timeanddate', '19910203040506' ), '1991-2-3 4:05:06', 'absolute' ),
-			array( array( 'timeanddate', '19700101000000' ), '1970-1-1 0:00:00', 'absolute at epoch' ),
-			array( array( 'timeanddate', '19691231235959' ), '1969-12-31 23:59:59', 'time before epoch' ),
-			array( 'dummy', 'dummy', 'return garbage as is' ),
-		);
+			],
+			[ [ 'timeanddate', '19910203040506' ], '1991-2-3 4:05:06', 'absolute' ],
+			[ [ 'timeanddate', '19700101000000' ], '1970-1-1 0:00:00', 'absolute at epoch' ],
+			[ [ 'timeanddate', '19691231235959' ], '1969-12-31 23:59:59', 'time before epoch' ],
+			[ 'dummy', 'dummy', 'return garbage as is' ],
+		];
 	}
 
 	/**
@@ -1602,14 +1612,14 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public function parseFormattedNumberProvider() {
-		return array(
-			array( 'de', 377.01 ),
-			array( 'fa', 334 ),
-			array( 'fa', 382.772 ),
-			array( 'ar', 1844 ),
-			array( 'lzh', 3731 ),
-			array( 'zh-classical', 7432 )
-		);
+		return [
+			[ 'de', 377.01 ],
+			[ 'fa', 334 ],
+			[ 'fa', 382.772 ],
+			[ 'ar', 1844 ],
+			[ 'lzh', 3731 ],
+			[ 'zh-classical', 7432 ]
+		];
 	}
 
 	/**
@@ -1625,25 +1635,25 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideCommafyData() {
-		return array(
-			array( -1, '-1' ),
-			array( 10, '10' ),
-			array( 100, '100' ),
-			array( 1000, '1,000' ),
-			array( 10000, '10,000' ),
-			array( 100000, '100,000' ),
-			array( 1000000, '1,000,000' ),
-			array( -1.0001, '-1.0001' ),
-			array( 1.0001, '1.0001' ),
-			array( 10.0001, '10.0001' ),
-			array( 100.0001, '100.0001' ),
-			array( 1000.0001, '1,000.0001' ),
-			array( 10000.0001, '10,000.0001' ),
-			array( 100000.0001, '100,000.0001' ),
-			array( 1000000.0001, '1,000,000.0001' ),
-			array( '200000000000000000000', '200,000,000,000,000,000,000' ),
-			array( '-200000000000000000000', '-200,000,000,000,000,000,000' ),
-		);
+		return [
+			[ -1, '-1' ],
+			[ 10, '10' ],
+			[ 100, '100' ],
+			[ 1000, '1,000' ],
+			[ 10000, '10,000' ],
+			[ 100000, '100,000' ],
+			[ 1000000, '1,000,000' ],
+			[ -1.0001, '-1.0001' ],
+			[ 1.0001, '1.0001' ],
+			[ 10.0001, '10.0001' ],
+			[ 100.0001, '100.0001' ],
+			[ 1000.0001, '1,000.0001' ],
+			[ 10000.0001, '10,000.0001' ],
+			[ 100000.0001, '100,000.0001' ],
+			[ 1000000.0001, '1,000,000.0001' ],
+			[ '200000000000000000000', '200,000,000,000,000,000,000' ],
+			[ '-200000000000000000000', '-200,000,000,000,000,000,000' ],
+		];
 	}
 
 	/**
@@ -1655,11 +1665,11 @@ class LanguageTest extends LanguageClassesTestCase {
 		$s = $lang->getMessageFromDB( 'word-separator' );
 		$c = $lang->getMessageFromDB( 'comma-separator' );
 
-		$this->assertEquals( '', $lang->listToText( array() ) );
-		$this->assertEquals( 'a', $lang->listToText( array( 'a' ) ) );
-		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( array( 'a', 'b' ) ) );
-		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );
-		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( array( 'a', 'b', 'c', 'd' ) ) );
+		$this->assertEquals( '', $lang->listToText( [] ) );
+		$this->assertEquals( 'a', $lang->listToText( [ 'a' ] ) );
+		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( [ 'a', 'b' ] ) );
+		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( [ 'a', 'b', 'c' ] ) );
+		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( [ 'a', 'b', 'c', 'd' ] ) );
 	}
 
 	/**
@@ -1671,12 +1681,12 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideIsSupportedLanguage() {
-		return array(
-			array( 'en', true, 'is supported language' ),
-			array( 'fi', true, 'is supported language' ),
-			array( 'bunny', false, 'is not supported language' ),
-			array( 'FI', false, 'is not supported language, input should be in lower case' ),
-		);
+		return [
+			[ 'en', true, 'is supported language' ],
+			[ 'fi', true, 'is supported language' ],
+			[ 'bunny', false, 'is not supported language' ],
+			[ 'FI', false, 'is not supported language, input should be in lower case' ],
+		];
 	}
 
 	/**
@@ -1693,15 +1703,15 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideGetParentLanguage() {
-		return array(
-			array( 'zh-cn', 'zh', 'zh is the parent language of zh-cn' ),
-			array( 'zh', 'zh', 'zh is defined as the parent language of zh, '
-				. 'because zh converter can convert zh-cn to zh' ),
-			array( 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ),
-			array( 'en-gb', null, 'en does not have converter' ),
-			array( 'en', null, 'en does not have converter. Although FakeConverter '
-					. 'handles en -> en conversion but it is useless' ),
-		);
+		return [
+			[ 'zh-cn', 'zh', 'zh is the parent language of zh-cn' ],
+			[ 'zh', 'zh', 'zh is defined as the parent language of zh, '
+				. 'because zh converter can convert zh-cn to zh' ],
+			[ 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ],
+			[ 'en-gb', null, 'en does not have converter' ],
+			[ 'en', null, 'en does not have converter. Although FakeConverter '
+					. 'handles en -> en conversion but it is useless' ],
+		];
 	}
 
 	/**
@@ -1718,14 +1728,14 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function provideGetNamespaceAliases() {
 		// TODO: Add tests for NS_PROJECT_TALK and GenderNamespaces
-		return array(
-			array(
+		return [
+			[
 				'zh',
-				array(
+				[
 					'文件' => NS_FILE,
 					'檔案' => NS_FILE,
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }

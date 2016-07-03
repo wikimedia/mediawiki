@@ -30,10 +30,11 @@
  */
 class PatrolLogFormatter extends LogFormatter {
 	protected function getMessageKey() {
-		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
 		if ( isset( $params[5] ) && $params[5] ) {
-			$key .= '-auto';
+			$key = 'logentry-patrol-patrol-auto';
+		} else {
+			$key = 'logentry-patrol-patrol';
 		}
 
 		return $key;
@@ -49,11 +50,11 @@ class PatrolLogFormatter extends LogFormatter {
 		if ( $this->plaintext ) {
 			$revlink = $revision;
 		} elseif ( $target->exists() ) {
-			$query = array(
+			$query = [
 				'oldid' => $oldid,
 				'diff' => 'prev'
-			);
-			$revlink = Linker::link( $target, htmlspecialchars( $revision ), array(), $query );
+			];
+			$revlink = Linker::link( $target, htmlspecialchars( $revision ), [], $query );
 		} else {
 			$revlink = htmlspecialchars( $revision );
 		}
@@ -67,14 +68,14 @@ class PatrolLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			'4:number:curid',
 			'5:number:previd',
 			'6:bool:auto',
 			'4::curid' => '4:number:curid',
 			'5::previd' => '5:number:previd',
 			'6::auto' => '6:bool:auto',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];

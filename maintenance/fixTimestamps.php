@@ -36,7 +36,7 @@ require_once __DIR__ . '/Maintenance.php';
 class FixTimestamps extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "";
+		$this->addDescription( '' );
 		$this->addArg( 'offset', '' );
 		$this->addArg( 'start', 'Starting timestamp' );
 		$this->addArg( 'end', 'Ending timestamp' );
@@ -49,7 +49,7 @@ class FixTimestamps extends Maintenance {
 		$grace = 60; // maximum normal clock offset
 
 		# Find bounding revision IDs
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$revisionTable = $dbw->tableName( 'revision' );
 		$res = $dbw->query( "SELECT MIN(rev_id) as minrev, MAX(rev_id) as maxrev FROM $revisionTable " .
 			"WHERE rev_timestamp BETWEEN '{$start}' AND '{$end}'", __METHOD__ );
@@ -75,7 +75,7 @@ class FixTimestamps extends Maintenance {
 		$res = $dbw->query( $sql, __METHOD__ );
 
 		$lastNormal = 0;
-		$badRevs = array();
+		$badRevs = [];
 		$numGoodRevs = 0;
 
 		foreach ( $res as $row ) {

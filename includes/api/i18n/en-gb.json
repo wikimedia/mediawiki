@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Reedy",
-			"Chase me ladies, I'm the Cavalry"
+			"Chase me ladies, I'm the Cavalry",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -65,7 +66,7 @@
 	"apihelp-query+alltransclusions-example-generator": "Gets pages containing the transclusions.",
 	"apihelp-query+backlinks-param-pageid": "Page ID to search. Cannot be used together with <var>$1title</var>.",
 	"apihelp-query+backlinks-param-limit": "How many total pages to return. If <var>$1redirect</var> is enabled, limit applies to each level separately (which means up to 2 * <var>$1limit</var> results may be returned).",
-	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page<kbd>.",
+	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page</kbd>.",
 	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP or CIDR range, including range blocks.\nThis cannot be used together with <var>$3users</var>. CIDR ranges broader than IPv4/$1 or IPv6/$2 will not be not accepted.",
 	"apihelp-query+blocks-example-simple": "List blocks.",
 	"apihelp-query+blocks-example-users": "List blocks of users <kbd>Alice</kbd> and <kbd>Bob</kbd>.",
@@ -77,7 +78,7 @@
 	"apihelp-query+deletedrevs-example-mode3-talk": "List the first 50 deleted pages in the {{ns:talk}} namespace (mode 3).",
 	"apihelp-query+duplicatefiles-example-simple": "Look for duplicates of [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+duplicatefiles-example-generated": "Look for duplicates of all files.",
-	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page<kbd>.",
+	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page</kbd>.",
 	"apihelp-query+exturlusage-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+filerepoinfo-example-simple": "Get information about file repositories.",
 	"apihelp-query+imageinfo-param-metadataversion": "Version of metadata to use. If <kbd>latest</kbd> is specified, use latest version. Defaults to <kbd>1</kbd> for backwards compatibility.",
@@ -143,7 +144,6 @@
 	"apihelp-watch-example-unwatch": "Unwatch the page <kbd>Main Page</kbd>.",
 	"apihelp-dbg-description": "Output data in PHP's <code>var_export()</code> format.",
 	"apihelp-dbgfm-description": "Output data in PHP's <code>var_export()</code> format (pretty-print in HTML).",
-	"apihelp-dump-description": "Output data in PHP's <code>var_dump()</code> format.",
 	"apihelp-php-description": "Output data in serialised PHP format.",
 	"apihelp-phpfm-description": "Output data in serialised PHP format (pretty-print in HTML).",
 	"apihelp-txt-description": "Output data in PHP's <code>print_r()</code> format.",

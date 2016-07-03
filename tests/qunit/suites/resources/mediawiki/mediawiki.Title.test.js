@@ -165,6 +165,32 @@
 		}
 	} );
 
+	QUnit.test( 'makeTitle', 6, function ( assert ) {
+		var cases, i, title, expected,
+			NS_MAIN = 0,
+			NS_TALK = 1,
+			NS_TEMPLATE = 10;
+
+		cases = [
+			[ NS_TEMPLATE, 'Foo', 'Template:Foo' ],
+			[ NS_TEMPLATE, 'Category:Foo', 'Template:Category:Foo' ],
+			[ NS_TEMPLATE, 'Template:Foo', 'Template:Template:Foo' ],
+			[ NS_TALK, 'Help:Foo', null ],
+			[ NS_TEMPLATE, '<', null ],
+			[ NS_MAIN, 'Help:Foo', 'Help:Foo' ]
+		];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			title = mw.Title.makeTitle( cases[ i ][ 0 ], cases[ i ][ 1 ] );
+			expected = cases[ i ][ 2 ];
+			if ( expected === null ) {
+				assert.strictEqual( title, expected );
+			} else {
+				assert.strictEqual( title.getPrefixedText(), expected );
+			}
+		}
+	} );
+
 	QUnit.test( 'Basic parsing', 21, function ( assert ) {
 		var title;
 		title = new mw.Title( 'File:Foo_bar.JPG' );
@@ -332,21 +358,25 @@
 
 	} );
 
-	QUnit.test( 'getUrl', 3, function ( assert ) {
+	QUnit.test( 'getUrl', 4, function ( assert ) {
 		var title;
-
-		// Config
-		mw.config.set( 'wgArticlePath', '/wiki/$1' );
+		mw.config.set( {
+			wgScript: '/w/index.php',
+			wgArticlePath: '/wiki/$1'
+		} );
 
 		title = new mw.Title( 'Foobar' );
 		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
-		assert.equal( title.getUrl( { action: 'edit' } ), '/wiki/Foobar?action=edit', 'Basic functionality, \'params\' parameter' );
+		assert.equal( title.getUrl( { action: 'edit' } ), '/w/index.php?title=Foobar&action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
+
+		title = new mw.Title( 'John Cena#And_His_Name_Is', 3 );
+		assert.equal( title.getUrl( { meme: true } ), '/w/index.php?title=User_talk:John_Cena&meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
 	} );
 
-	QUnit.test( 'newFromImg', 40, function ( assert ) {
+	QUnit.test( 'newFromImg', 44, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
@@ -355,6 +385,14 @@
 					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
 					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
 				},
+
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
+					typeOfUrl: 'Hashed thumb with sha1-ed path',
+					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
+					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
+				},
+
 				{
 					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
 					typeOfUrl: 'Normal hashed directory thumbnail',

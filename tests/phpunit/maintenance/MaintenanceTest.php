@@ -4,7 +4,6 @@
 // instead of the MaintenanceFixup hack below. However, we cannot do
 // without changing the visibility and without working around hacks in
 // Maintenance.php
-//
 // For the same reason, we cannot just use FakeMaintenance.
 
 /**
@@ -81,7 +80,7 @@ class MaintenanceFixup extends Maintenance {
 			return;
 		}
 
-		call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	/**
@@ -118,7 +117,17 @@ class MaintenanceFixup extends Maintenance {
 		// Maintenance::output signature. However, we do not use (or rely on)
 		// those variables. Instead we pass to Maintenance::output whatever we
 		// receive at runtime.
-		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
+	}
+
+	public function addOption( $name, $description, $required = false,
+		$withArg = false, $shortName = false, $multiOccurance = false
+	) {
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
+	}
+
+	public function getOption( $name, $default = null ) {
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	// --- Requirements for getting instance of abstract class
@@ -816,7 +825,10 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 */
 	public function testGetConfig() {
 		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
-		$this->assertSame( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ), $this->m->getConfig() );
+		$this->assertSame(
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+			$this->m->getConfig()
+		);
 	}
 
 	/**
@@ -826,5 +838,38 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$conf = $this->getMock( 'Config' );
 		$this->m->setConfig( $conf );
 		$this->assertSame( $conf, $this->m->getConfig() );
+	}
+
+	function testParseArgs() {
+		$m2 = new MaintenanceFixup( $this );
+		// Create an option with an argument allowed to be specified multiple times
+		$m2->addOption( 'multi', 'This option does stuff', false, true, false, true );
+		$m2->loadWithArgv( [ '--multi', 'this1', '--multi', 'this2' ] );
+
+		$this->assertEquals( [ 'this1', 'this2' ], $m2->getOption( 'multi' ) );
+		$this->assertEquals( [ [ 'multi', 'this1' ], [ 'multi', 'this2' ] ],
+			$m2->orderedOptions );
+
+		$m2->simulateShutdown();
+
+		$m2 = new MaintenanceFixup( $this );
+
+		$m2->addOption( 'multi', 'This option does stuff', false, false, false, true );
+		$m2->loadWithArgv( [ '--multi', '--multi' ] );
+
+		$this->assertEquals( [ 1, 1 ], $m2->getOption( 'multi' ) );
+		$this->assertEquals( [ [ 'multi', 1 ], [ 'multi', 1 ] ], $m2->orderedOptions );
+
+		$m2->simulateShutdown();
+
+		$m2 = new MaintenanceFixup( $this );
+		// Create an option with an argument allowed to be specified multiple times
+		$m2->addOption( 'multi', 'This option doesn\'t actually support multiple occurrences' );
+		$m2->loadWithArgv( [ '--multi=yo' ] );
+
+		$this->assertEquals( 'yo', $m2->getOption( 'multi' ) );
+		$this->assertEquals( [ [ 'multi', 'yo' ] ], $m2->orderedOptions );
+
+		$m2->simulateShutdown();
 	}
 }

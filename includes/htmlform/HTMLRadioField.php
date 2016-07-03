@@ -39,41 +39,44 @@ class HTMLRadioField extends HTMLFormField {
 	}
 
 	function getInputOOUI( $value ) {
-		$options = array();
+		$options = [];
 		foreach ( $this->getOptions() as $label => $data ) {
-			$options[] = array(
+			$options[] = [
 				'data' => $data,
 				'label' => $this->mOptionsLabelsNotFromMessage ? new OOUI\HtmlSnippet( $label ) : $label,
-			);
+			];
 		}
 
-		return new OOUI\RadioSelectInputWidget( array(
+		return new OOUI\RadioSelectInputWidget( [
 			'name' => $this->mName,
+			'id' => $this->mID,
 			'value' => $value,
 			'options' => $options,
 			'classes' => 'mw-htmlform-flatlist-item',
-		) + $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) ) );
+		] + OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'tabindex' ] )
+		) );
 	}
 
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
-		$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
+		$elementFunc = [ 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 
 		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
-				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
+				$html .= Html::rawElement( 'h1', [], $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
-				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + array( 'id' => $id ) );
-				$radio .= '&#160;' . call_user_func( $elementFunc, 'label', array( 'for' => $id ), $label );
+				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + [ 'id' => $id ] );
+				$radio .= '&#160;' . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',
-					array( 'class' => 'mw-htmlform-flatlist-item mw-ui-radio' ),
+					[ 'class' => 'mw-htmlform-flatlist-item mw-ui-radio' ],
 					$radio
 				);
 			}

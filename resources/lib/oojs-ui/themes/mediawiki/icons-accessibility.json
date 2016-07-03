@@ -1,6 +1,13 @@
 {
-	"prefix": "oo-ui-icon",
+	"selectorWithoutVariant": ".oo-ui-icon-{name}",
+	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
 	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#ffffff",
+			"global": true
+		}
+	},
 	"images": {
 		"bright": { "file": "images/icons/bright.svg" },
 		"halfBright": { "file": "images/icons/halfBright.svg" },

@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates the rev_sha1 and ar_sha1 fields";
+		$this->addDescription( 'Populates the rev_sha1 and ar_sha1 fields' );
 		$this->setBatchSize( 200 );
 	}
 
@@ -95,13 +95,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
 			$res = $db->select( $table, '*', $cond, __METHOD__ );
 
-			$db->begin( __METHOD__ );
+			$this->beginTransaction( $db, __METHOD__ );
 			foreach ( $res as $row ) {
 				if ( $this->upgradeRow( $row, $table, $idCol, $prefix ) ) {
 					$count++;
 				}
 			}
-			$db->commit( __METHOD__ );
+			$this->commitTransaction( $db, __METHOD__ );
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
@@ -118,23 +118,23 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
 		$res = $db->select( 'archive', '*',
-			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ), __METHOD__ );
+			[ 'ar_rev_id IS NULL', 'ar_sha1' => '' ], __METHOD__ );
 
 		$updateSize = 0;
-		$db->begin( __METHOD__ );
+		$this->beginTransaction( $db, __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( $this->upgradeLegacyArchiveRow( $row ) ) {
 				++$count;
 			}
 			if ( ++$updateSize >= 100 ) {
 				$updateSize = 0;
-				$db->commit( __METHOD__ );
+				$this->commitTransaction( $db, __METHOD__ );
 				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
 				wfWaitForSlaves();
-				$db->begin( __METHOD__ );
+				$this->beginTransaction( $db, __METHOD__ );
 			}
 		}
-		$db->commit( __METHOD__ );
+		$this->commitTransaction( $db, __METHOD__ );
 
 		return $count;
 	}
@@ -165,8 +165,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			return false;
 		} else {
 			$db->update( $table,
-				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
-				array( $idCol => $row->$idCol ),
+				[ "{$prefix}_sha1" => Revision::base36Sha1( $text ) ],
+				[ $idCol => $row->$idCol ],
 				__METHOD__
 			);
 
@@ -197,13 +197,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			# Archive table as no PK, but (NS,title,time) should be near unique.
 			# Any duplicates on those should also have duplicated text anyway.
 			$db->update( 'archive',
-				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
-				array(
+				[ 'ar_sha1' => Revision::base36Sha1( $text ) ],
+				[
 					'ar_namespace' => $row->ar_namespace,
 					'ar_title' => $row->ar_title,
 					'ar_timestamp' => $row->ar_timestamp,
 					'ar_len' => $row->ar_len // extra sanity
-				),
+				],
 				__METHOD__
 			);
 

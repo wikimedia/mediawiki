@@ -32,10 +32,16 @@
  * @author Mij <mij@bitchx.it>
  */
 
-$optionsWithArgs = array(
+$optionsWithArgs = [
 	'extensions', 'comment', 'comment-file', 'comment-ext', 'summary', 'user',
 	'license', 'sleep', 'limit', 'from', 'source-wiki-url', 'timestamp',
-);
+];
+
+$optionsWithoutArgs = [
+	'protect', 'unprotect', 'search-recursively', 'check-userblock', 'overwrite',
+	'skip-dupes', 'dry'
+];
+
 require_once __DIR__ . '/commandLine.inc';
 require_once __DIR__ . '/importImages.inc';
 $processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
@@ -70,9 +76,9 @@ $files = findFiles( $dir, $extensions, isset( $options['search-recursively'] ) )
 # Initialise the user for this operation
 $user = isset( $options['user'] )
 	? User::newFromName( $options['user'] )
-	: User::newFromName( 'Maintenance script' );
+	: User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 if ( !$user instanceof User ) {
-	$user = User::newFromName( 'Maintenance script' );
+	$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 }
 $wgUser = $user;
 
@@ -136,7 +142,7 @@ $count = count( $files );
 if ( $count > 0 ) {
 
 	foreach ( $files as $file ) {
-		$base = wfBaseName( $file );
+		$base = UtfNormal\Validator::cleanUp( wfBaseName( $file ) );
 
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_FILE, $base );
@@ -241,17 +247,17 @@ if ( $count > 0 ) {
 		} else {
 			$props = FSFile::getPropsFromPath( $file );
 			$flags = 0;
-			$publishOptions = array();
+			$publishOptions = [];
 			$handler = MediaHandler::getHandler( $props['mime'] );
 			if ( $handler ) {
 				$publishOptions['headers'] = $handler->getStreamHeaders( $props['metadata'] );
 			} else {
-				$publishOptions['headers'] = array();
+				$publishOptions['headers'] = [];
 			}
 			$archive = $image->publish( $file, $flags, $publishOptions );
 			if ( !$archive->isGood() ) {
 				echo "failed. (" .
-					$archive->getWikiText() .
+					$archive->getWikiText( false, false, 'en' ) .
 					")\n";
 				$failed++;
 				continue;
@@ -299,13 +305,13 @@ if ( $count > 0 ) {
 				echo "\nSetting image restrictions ... ";
 
 				$cascade = false;
-				$restrictions = array();
+				$restrictions = [];
 				foreach ( $title->getRestrictionTypes() as $type ) {
 					$restrictions[$type] = $protectLevel;
 				}
 
 				$page = WikiPage::factory( $title );
-				$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
+				$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, '', $user );
 				echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
 			}
 		} else {
@@ -328,7 +334,7 @@ if ( $count > 0 ) {
 	# Print out some statistics
 	echo "\n";
 	foreach (
-		array(
+		[
 			'count' => 'Found',
 			'limit' => 'Limit',
 			'ignored' => 'Ignored',
@@ -336,7 +342,7 @@ if ( $count > 0 ) {
 			'skipped' => 'Skipped',
 			'overwritten' => 'Overwritten',
 			'failed' => 'Failed'
-		) as $var => $desc
+		] as $var => $desc
 	) {
 		if ( $$var > 0 ) {
 			echo "{$desc}: {$$var}\n";

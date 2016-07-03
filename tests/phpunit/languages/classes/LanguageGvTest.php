@@ -13,7 +13,7 @@ class LanguageGvTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'two', 'few', 'other' );
+		$forms = [ 'one', 'two', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -26,19 +26,19 @@ class LanguageGvTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'few', 0 ),
-			array( 'one', 1 ),
-			array( 'two', 2 ),
-			array( 'other', 3 ),
-			array( 'few', 20 ),
-			array( 'one', 21 ),
-			array( 'two', 22 ),
-			array( 'other', 23 ),
-			array( 'other', 50 ),
-			array( 'few', 60 ),
-			array( 'few', 80 ),
-			array( 'few', 100 )
-		);
+		return [
+			[ 'few', 0 ],
+			[ 'one', 1 ],
+			[ 'two', 2 ],
+			[ 'other', 3 ],
+			[ 'few', 20 ],
+			[ 'one', 21 ],
+			[ 'two', 22 ],
+			[ 'other', 23 ],
+			[ 'other', 50 ],
+			[ 'few', 60 ],
+			[ 'few', 80 ],
+			[ 'few', 100 ]
+		];
 	}
 }

@@ -62,30 +62,30 @@ class DoubleRedirectJob extends Job {
 		# Need to use the master to get the redirect table updated in the same transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->select(
-			array( 'redirect', 'page' ),
-			array( 'page_namespace', 'page_title' ),
-			array(
+			[ 'redirect', 'page' ],
+			[ 'page_namespace', 'page_title' ],
+			[
 				'page_id = rd_from',
 				'rd_namespace' => $redirTitle->getNamespace(),
 				'rd_title' => $redirTitle->getDBkey()
-			), __METHOD__ );
+			], __METHOD__ );
 		if ( !$res->numRows() ) {
 			return;
 		}
-		$jobs = array();
+		$jobs = [];
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			if ( !$title ) {
 				continue;
 			}
 
-			$jobs[] = new self( $title, array(
+			$jobs[] = new self( $title, [
 				'reason' => $reason,
-				'redirTitle' => $redirTitle->getPrefixedDBkey() ) );
+				'redirTitle' => $redirTitle->getPrefixedDBkey() ] );
 			# Avoid excessive memory usage
 			if ( count( $jobs ) > 10000 ) {
 				JobQueueGroup::singleton()->push( $jobs );
-				$jobs = array();
+				$jobs = [];
 			}
 		}
 		JobQueueGroup::singleton()->push( $jobs );
@@ -184,7 +184,7 @@ class DoubleRedirectJob extends Job {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Circular redirect check
-		$seenTitles = array();
+		$seenTitles = [];
 		$dest = false;
 
 		while ( true ) {
@@ -205,13 +205,13 @@ class DoubleRedirectJob extends Job {
 			}
 
 			$row = $dbw->selectRow(
-				array( 'redirect', 'page' ),
-				array( 'rd_namespace', 'rd_title', 'rd_interwiki' ),
-				array(
+				[ 'redirect', 'page' ],
+				[ 'rd_namespace', 'rd_title', 'rd_interwiki' ],
+				[
 					'rd_from=page_id',
 					'page_namespace' => $title->getNamespace(),
 					'page_title' => $title->getDBkey()
-				), __METHOD__ );
+				], __METHOD__ );
 			if ( !$row ) {
 				# No redirect from here, chain terminates
 				break;

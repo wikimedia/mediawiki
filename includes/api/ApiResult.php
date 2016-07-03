@@ -190,9 +190,9 @@ class ApiResult implements ApiSerializable {
 	 * Clear the current result data.
 	 */
 	public function reset() {
-		$this->data = array(
+		$this->data = [
 			self::META_TYPE => 'assoc', // Usually what's desired
-		);
+		];
 		$this->size = 0;
 	}
 
@@ -249,7 +249,7 @@ class ApiResult implements ApiSerializable {
 	 * @param array $transforms See above
 	 * @return mixed Result data, or null if not found
 	 */
-	public function getResultData( $path = array(), $transforms = array() ) {
+	public function getResultData( $path = [], $transforms = [] ) {
 		$path = (array)$path;
 		if ( !$path ) {
 			return self::applyTransformations( $this->data, $transforms );
@@ -303,7 +303,7 @@ class ApiResult implements ApiSerializable {
 		$exists = isset( $arr[$name] );
 		if ( !$exists || ( $flags & ApiResult::OVERRIDE ) ) {
 			if ( !$exists && ( $flags & ApiResult::ADD_ON_TOP ) ) {
-				$arr = array( $name => $value ) + $arr;
+				$arr = [ $name => $value ] + $arr;
 			} else {
 				$arr[$name] = $value;
 			}
@@ -312,7 +312,7 @@ class ApiResult implements ApiSerializable {
 			if ( !$conflicts ) {
 				$arr[$name] += $value;
 			} else {
-				$keys = join( ', ', array_keys( $conflicts ) );
+				$keys = implode( ', ', array_keys( $conflicts ) );
 				throw new RuntimeException(
 					"Conflicting keys ($keys) when attempting to merge element $name"
 				);
@@ -327,6 +327,7 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Validate a value for addition to the result
 	 * @param mixed $value
+	 * @return array|mixed|string
 	 */
 	private static function validateValue( $value ) {
 		global $wgContLang;
@@ -334,12 +335,12 @@ class ApiResult implements ApiSerializable {
 		if ( is_object( $value ) ) {
 			// Note we use is_callable() here instead of instanceof because
 			// ApiSerializable is an informal protocol (see docs there for details).
-			if ( is_callable( array( $value, 'serializeForApiResult' ) ) ) {
+			if ( is_callable( [ $value, 'serializeForApiResult' ] ) ) {
 				$oldValue = $value;
 				$value = $value->serializeForApiResult();
 				if ( is_object( $value ) ) {
 					throw new UnexpectedValueException(
-						get_class( $oldValue ) . "::serializeForApiResult() returned an object of class " .
+						get_class( $oldValue ) . '::serializeForApiResult() returned an object of class ' .
 							get_class( $value )
 					);
 				}
@@ -350,24 +351,28 @@ class ApiResult implements ApiSerializable {
 					return self::validateValue( $value );
 				} catch ( Exception $ex ) {
 					throw new UnexpectedValueException(
-						get_class( $oldValue ) . "::serializeForApiResult() returned an invalid value: " .
+						get_class( $oldValue ) . '::serializeForApiResult() returned an invalid value: ' .
 							$ex->getMessage(),
 						0,
 						$ex
 					);
 				}
-			} elseif ( is_callable( array( $value, '__toString' ) ) ) {
+			} elseif ( is_callable( [ $value, '__toString' ] ) ) {
 				$value = (string)$value;
 			} else {
-				$value = (array)$value + array( self::META_TYPE => 'assoc' );
+				$value = (array)$value + [ self::META_TYPE => 'assoc' ];
 			}
 		}
 		if ( is_array( $value ) ) {
+			// Work around PHP bug 45959 by copying to a temporary
+			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
+			$tmp = [];
 			foreach ( $value as $k => $v ) {
-				$value[$k] = self::validateValue( $v );
+				$tmp[$k] = self::validateValue( $v );
 			}
+			$value = $tmp;
 		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
-			throw new InvalidArgumentException( "Cannot add non-finite floats to ApiResult" );
+			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );
 		} elseif ( is_string( $value ) ) {
 			$value = $wgContLang->normalize( $value );
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
@@ -533,7 +538,7 @@ class ApiResult implements ApiSerializable {
 		) {
 			throw new RuntimeException(
 				"Attempting to set content element as $name when " . $arr[self::META_CONTENT] .
-					" is already set as the content element"
+					' is already set as the content element'
 			);
 		}
 		$arr[self::META_CONTENT] = $name;
@@ -723,9 +728,9 @@ class ApiResult implements ApiSerializable {
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public static function setArrayType( array &$arr, $type, $kvpKeyName = null ) {
-		if ( !in_array( $type, array(
+		if ( !in_array( $type, [
 				'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp'
-				), true ) ) {
+				], true ) ) {
 			throw new InvalidArgumentException( 'Bad type' );
 		}
 		$arr[self::META_TYPE] = $type;
@@ -738,7 +743,7 @@ class ApiResult implements ApiSerializable {
 	 * Set the array data type for a path
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
-	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $tag See ApiResult::META_TYPE
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayType( $path, $tag, $kvpKeyName = null ) {
@@ -766,7 +771,7 @@ class ApiResult implements ApiSerializable {
 	 * Set the array data type for a path recursively
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
-	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $tag See ApiResult::META_TYPE
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayTypeRecursive( $path, $tag, $kvpKeyName = null ) {
@@ -796,7 +801,7 @@ class ApiResult implements ApiSerializable {
 	 *
 	 * @see ApiResult::getResultData()
 	 * @since 1.25
-	 * @param array $data
+	 * @param array $dataIn
 	 * @param array $transforms
 	 * @return array|object
 	 */
@@ -810,14 +815,14 @@ class ApiResult implements ApiSerializable {
 			throw new InvalidArgumentException( __METHOD__ . ':Value for "Types" must be an array' );
 		}
 
-		$metadata = array();
+		$metadata = [];
 		$data = self::stripMetadataNonRecursive( $dataIn, $metadata );
 
 		if ( isset( $transforms['Custom'] ) ) {
 			if ( !is_callable( $transforms['Custom'] ) ) {
 				throw new InvalidArgumentException( __METHOD__ . ': Value for "Custom" must be callable' );
 			}
-			call_user_func_array( $transforms['Custom'], array( &$data, &$metadata ) );
+			call_user_func_array( $transforms['Custom'], [ &$data, &$metadata ] );
 		}
 
 		if ( ( isset( $transforms['BC'] ) || $transformTypes !== null ) &&
@@ -830,7 +835,6 @@ class ApiResult implements ApiSerializable {
 
 		// BC transformations
 		$boolKeys = null;
-		$forceKVP = false;
 		if ( isset( $transforms['BC'] ) ) {
 			if ( !is_array( $transforms['BC'] ) ) {
 				throw new InvalidArgumentException( __METHOD__ . ':Value for "BC" must be an array' );
@@ -838,7 +842,7 @@ class ApiResult implements ApiSerializable {
 			if ( !in_array( 'nobool', $transforms['BC'], true ) ) {
 				$boolKeys = isset( $metadata[self::META_BC_BOOLS] )
 					? array_flip( $metadata[self::META_BC_BOOLS] )
-					: array();
+					: [];
 			}
 
 			if ( !in_array( 'no*', $transforms['BC'], true ) &&
@@ -855,11 +859,11 @@ class ApiResult implements ApiSerializable {
 			) {
 				foreach ( $metadata[self::META_BC_SUBELEMENTS] as $k ) {
 					if ( isset( $data[$k] ) ) {
-						$data[$k] = array(
+						$data[$k] = [
 							'*' => $data[$k],
 							self::META_CONTENT => '*',
 							self::META_TYPE => 'assoc',
-						);
+						];
 					}
 				}
 			}
@@ -901,16 +905,16 @@ class ApiResult implements ApiSerializable {
 		switch ( $strip ) {
 			case 'all':
 			case 'base':
-				$keepMetadata = array();
+				$keepMetadata = [];
 				break;
 			case 'none':
 				$keepMetadata = &$metadata;
 				break;
 			case 'bc':
-				$keepMetadata = array_intersect_key( $metadata, array(
+				$keepMetadata = array_intersect_key( $metadata, [
 					self::META_INDEXED_TAG_NAME => 1,
 					self::META_SUBELEMENTS => 1,
-				) );
+				] );
 				break;
 			default:
 				throw new InvalidArgumentException( __METHOD__ . ': Unknown value for "Strip"' );
@@ -959,7 +963,7 @@ class ApiResult implements ApiSerializable {
 					$assocAsObject = !empty( $transformTypes['AssocAsObject'] );
 					$merge = !empty( $metadata[self::META_KVP_MERGE] );
 
-					$ret = array();
+					$ret = [];
 					foreach ( $data as $k => $v ) {
 						if ( $merge && ( is_array( $v ) || is_object( $v ) ) ) {
 							$vArr = (array)$v;
@@ -976,23 +980,23 @@ class ApiResult implements ApiSerializable {
 							$mergeType = 'n/a';
 						}
 						if ( $mergeType === 'assoc' ) {
-							$item = $vArr + array(
+							$item = $vArr + [
 								$key => $k,
-							);
+							];
 							if ( $strip === 'none' ) {
-								self::setPreserveKeysList( $item, array( $key ) );
+								self::setPreserveKeysList( $item, [ $key ] );
 							}
 						} else {
-							$item = array(
+							$item = [
 								$key => $k,
 								$valKey => $v,
-							);
+							];
 							if ( $strip === 'none' ) {
-								$item += array(
-									self::META_PRESERVE_KEYS => array( $key ),
+								$item += [
+									self::META_PRESERVE_KEYS => [ $key ],
 									self::META_CONTENT => $valKey,
 									self::META_TYPE => 'assoc',
-								);
+								];
 							}
 						}
 						$ret[] = $assocAsObject ? (object)$item : $item;
@@ -1027,7 +1031,7 @@ class ApiResult implements ApiSerializable {
 			}
 			$preserveKeys = isset( $data[self::META_PRESERVE_KEYS] )
 				? (array)$data[self::META_PRESERVE_KEYS]
-				: array();
+				: [];
 			foreach ( $data as $k => $v ) {
 				if ( self::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
 					unset( $data[$k] );
@@ -1055,7 +1059,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function stripMetadataNonRecursive( $data, &$metadata = null ) {
 		if ( !is_array( $metadata ) ) {
-			$metadata = array();
+			$metadata = [];
 		}
 		if ( is_array( $data ) || is_object( $data ) ) {
 			$isObj = is_object( $data );
@@ -1064,7 +1068,7 @@ class ApiResult implements ApiSerializable {
 			}
 			$preserveKeys = isset( $data[self::META_PRESERVE_KEYS] )
 				? (array)$data[self::META_PRESERVE_KEYS]
-				: array();
+				: [];
 			foreach ( $data as $k => $v ) {
 				if ( self::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
 					$metadata[$k] = $v;
@@ -1090,7 +1094,7 @@ class ApiResult implements ApiSerializable {
 		$s = 0;
 		if ( is_array( $value ) ) {
 			foreach ( $value as $k => $v ) {
-				if ( !self::isMetadataKey( $s ) ) {
+				if ( !self::isMetadataKey( $k ) ) {
 					$s += self::valueSize( $v );
 				}
 			}
@@ -1119,21 +1123,21 @@ class ApiResult implements ApiSerializable {
 			if ( !isset( $ret[$k] ) ) {
 				switch ( $create ) {
 					case 'append':
-						$ret[$k] = array();
+						$ret[$k] = [];
 						break;
 					case 'prepend':
-						$ret = array( $k => array() ) + $ret;
+						$ret = [ $k => [] ] + $ret;
 						break;
 					case 'dummy':
-						$tmp = array();
+						$tmp = [];
 						return $tmp;
 					default:
-						$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+						$fail = implode( '.', array_slice( $path, 0, $i + 1 ) );
 						throw new InvalidArgumentException( "Path $fail does not exist" );
 				}
 			}
 			if ( !is_array( $ret[$k] ) ) {
-				$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+				$fail = implode( '.', array_slice( $path, 0, $i + 1 ) );
 				throw new InvalidArgumentException( "Path $fail is not an array" );
 			}
 			$ret = &$ret[$k];
@@ -1146,14 +1150,14 @@ class ApiResult implements ApiSerializable {
 	 * the API.
 	 *
 	 * @param array $vars
-	 * @param boolean $forceHash
+	 * @param bool $forceHash
 	 * @return array
 	 */
 	public static function addMetadataToResultVars( $vars, $forceHash = true ) {
 		// Process subarrays and determine if this is a JS [] or {}
 		$hash = $forceHash;
 		$maxKey = -1;
-		$bools = array();
+		$bools = [];
 		foreach ( $vars as $k => $v ) {
 			if ( is_array( $v ) || is_object( $v ) ) {
 				$vars[$k] = ApiResult::addMetadataToResultVars( (array)$v, is_object( $v ) );
@@ -1175,24 +1179,24 @@ class ApiResult implements ApiSerializable {
 		if ( $hash ) {
 			// Get the list of keys we actually care about. Unfortunately, we can't support
 			// certain keys that conflict with ApiResult metadata.
-			$keys = array_diff( array_keys( $vars ), array(
+			$keys = array_diff( array_keys( $vars ), [
 				ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
 				ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
-			) );
+			] );
 
-			return array(
+			return [
 				ApiResult::META_TYPE => 'kvp',
 				ApiResult::META_KVP_KEY_NAME => 'key',
 				ApiResult::META_PRESERVE_KEYS => $keys,
 				ApiResult::META_BC_BOOLS => $bools,
 				ApiResult::META_INDEXED_TAG_NAME => 'var',
-			) + $vars;
+			] + $vars;
 		} else {
-			return array(
+			return [
 				ApiResult::META_TYPE => 'array',
 				ApiResult::META_BC_BOOLS => $bools,
 				ApiResult::META_INDEXED_TAG_NAME => 'value',
-			) + $vars;
+			] + $vars;
 		}
 	}
 
@@ -1230,11 +1234,11 @@ class ApiResult implements ApiSerializable {
 	 */
 	public function getData() {
 		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getResultData( null, array(
-			'BC' => array(),
-			'Types' => array(),
+		return $this->getResultData( null, [
+			'BC' => [],
+			'Types' => [],
 			'Strip' => 'all',
-		) );
+		] );
 	}
 
 	/**
@@ -1294,7 +1298,7 @@ class ApiResult implements ApiSerializable {
 			self::setContentValue( $arr, 'content', $value );
 		} else {
 			if ( !isset( $arr[$subElemName] ) ) {
-				$arr[$subElemName] = array();
+				$arr[$subElemName] = [];
 			}
 			self::setContentValue( $arr[$subElemName], 'content', $value );
 		}
@@ -1370,7 +1374,7 @@ class ApiResult implements ApiSerializable {
 	 * @return array
 	 */
 	public function beginContinuation(
-		$continue, array $allModules = array(), array $generatedModules = array()
+		$continue, array $allModules = [], array $generatedModules = []
 	) {
 		wfDeprecated( __METHOD__, '1.25' );
 		if ( $this->mainForContinuation->getContinuationManager() ) {
@@ -1390,13 +1394,13 @@ class ApiResult implements ApiSerializable {
 			$newCtx = new DerivativeContext( $oldCtx );
 			$newCtx->setRequest( new DerivativeRequest(
 				$oldCtx->getRequest(),
-				array( 'continue' => $continue ) + $oldCtx->getRequest()->getValues(),
+				[ 'continue' => $continue ] + $oldCtx->getRequest()->getValues(),
 				$oldCtx->getRequest()->wasPosted()
 			) );
 			$this->mainForContinuation->setContext( $newCtx );
 			$reset = new ScopedCallback(
-				array( $this->mainForContinuation, 'setContext' ),
-				array( $oldCtx )
+				[ $this->mainForContinuation, 'setContext' ],
+				[ $oldCtx ]
 			);
 		}
 		$manager = new ApiContinuationManager(
@@ -1406,10 +1410,10 @@ class ApiResult implements ApiSerializable {
 
 		$this->mainForContinuation->setContinuationManager( $manager );
 
-		return array(
+		return [
 			$manager->isGeneratorDone(),
 			$manager->getRunModules(),
-		);
+		];
 	}
 
 	/**

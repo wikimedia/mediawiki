@@ -103,13 +103,13 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $mode == 'revs' || $mode == 'user' ) {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
-			foreach ( array( 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ) as $p ) {
+			foreach ( [ 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
 					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams' );
 				}
 			}
 		} else {
-			foreach ( array( 'start', 'end' ) as $p ) {
+			foreach ( [ 'start', 'end' ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
 					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams' );
 				}
@@ -121,7 +121,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		$this->addTables( 'archive' );
-		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted', 'ar_id' ) );
+		$this->addFields( [ 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted', 'ar_id' ] );
 
 		$this->addFieldsIf( 'ar_parent_id', $fld_parentid );
 		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
@@ -135,7 +135,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		if ( $fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds(
-				array( 'tag_summary' => array( 'LEFT JOIN', array( 'ar_rev_id=ts_rev_id' ) ) )
+				[ 'tag_summary' => [ 'LEFT JOIN', [ 'ar_rev_id=ts_rev_id' ] ] ]
 			);
 			$this->addFields( 'ts_tags' );
 		}
@@ -143,7 +143,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				array( 'change_tag' => array( 'INNER JOIN', array( 'ar_rev_id=ct_rev_id' ) ) )
+				[ 'change_tag' => [ 'INNER JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
@@ -157,9 +157,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// to be able to tell the difference.
 			$this->addTables( 'text' );
 			$this->addJoinConds(
-				array( 'text' => array( 'LEFT JOIN', array( 'ar_text_id=old_id' ) ) )
+				[ 'text' => [ 'LEFT JOIN', [ 'ar_text_id=old_id' ] ] ]
 			);
-			$this->addFields( array( 'ar_text', 'ar_flags', 'ar_text_id', 'old_text', 'old_flags' ) );
+			$this->addFields( [ 'ar_text', 'ar_flags', 'ar_text_id', 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
 			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
@@ -267,7 +267,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption(
 			'USE INDEX',
-			array( 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) )
+			[ 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) ]
 		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
@@ -275,11 +275,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
 				$sort = ( $dir == 'newer' ? '' : ' DESC' );
-				$this->addOption( 'ORDER BY', array(
+				$this->addOption( 'ORDER BY', [
 					'ar_title' . $sort,
 					'ar_timestamp' . $sort,
 					'ar_id' . $sort,
-				) );
+				] );
 			}
 		} else {
 			if ( $mode == 'revs' ) {
@@ -292,7 +292,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange( 'ar_id', $dir, null, null );
 		}
 		$res = $this->select( __METHOD__ );
-		$pageMap = array(); // Maps ns&title to (fake) pageid
+		$pageMap = []; // Maps ns&title to (fake) pageid
 		$count = 0;
 		$newPageID = 0;
 		foreach ( $res as $row ) {
@@ -308,7 +308,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				break;
 			}
 
-			$rev = array();
+			$rev = [];
 			$anyHidden = false;
 
 			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
@@ -362,7 +362,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
 					if ( $row->ar_sha1 != '' ) {
-						$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
+						$rev['sha1'] = Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
 					} else {
 						$rev['sha1'] = '';
 					}
@@ -389,7 +389,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					ApiResult::setIndexedTagName( $tags, 'tag' );
 					$rev['tags'] = $tags;
 				} else {
-					$rev['tags'] = array();
+					$rev['tags'] = [];
 				}
 			}
 
@@ -400,18 +400,18 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
-				$a['revisions'] = array( $rev );
+				$a['revisions'] = [ $rev ];
 				ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				ApiQueryBase::addTitleInfo( $a, $title );
 				if ( $fld_token ) {
 					$a['token'] = $token;
 				}
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), $pageID, $a );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], $pageID, $a );
 			} else {
 				$pageID = $pageMap[$row->ar_namespace][$row->ar_title];
 				$fit = $result->addValue(
-					array( 'query', $this->getModuleName(), $pageID, 'revisions' ),
+					[ 'query', $this->getModuleName(), $pageID, 'revisions' ],
 					null, $rev );
 			}
 			if ( !$fit ) {
@@ -425,7 +425,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				break;
 			}
 		}
-		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
+		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 	}
 
 	public function isDeprecated() {
@@ -433,52 +433,52 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'start' => array(
+		return [
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 2 ) ),
-			),
-			'end' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 2 ] ],
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 2 ) ),
-			),
-			'dir' => array(
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 2 ] ],
+			],
+			'dir' => [
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 3 ) ),
-			),
-			'from' => array(
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
-			),
-			'to' => array(
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
-			),
-			'prefix' => array(
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
-			),
-			'unique' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 3 ] ],
+			],
+			'from' => [
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
+			],
+			'to' => [
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
+			],
+			'prefix' => [
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
+			],
+			'unique' => [
 				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
-			),
-			'namespace' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
+			],
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_DFLT => NS_MAIN,
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
-			),
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
+			],
 			'tag' => null,
-			'user' => array(
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'excludeuser' => array(
+			],
+			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_DFLT => 'user|comment',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'revid',
 					'parentid',
 					'user',
@@ -491,24 +491,24 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'content',
 					'token',
 					'tags'
-				),
+				],
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
 				'drprop=user|comment|content'
 				=> 'apihelp-query+deletedrevs-example-mode1',
@@ -518,7 +518,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				=> 'apihelp-query+deletedrevs-example-mode3-main',
 			'action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
 				=> 'apihelp-query+deletedrevs-example-mode3-talk',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

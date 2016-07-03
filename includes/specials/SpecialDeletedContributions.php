@@ -25,337 +25,6 @@
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
  */
-class DeletedContribsPager extends IndexPager {
-	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
-	public $messages;
-	public $target;
-	public $namespace = '';
-	public $mDb;
-
-	/**
-	 * @var string Navigation bar with paging links.
-	 */
-	protected $mNavigationBar;
-
-	function __construct( IContextSource $context, $target, $namespace = false ) {
-		parent::__construct( $context );
-		$msgs = array( 'deletionlog', 'undeleteviewlink', 'diff' );
-		foreach ( $msgs as $msg ) {
-			$this->messages[$msg] = $this->msg( $msg )->escaped();
-		}
-		$this->target = $target;
-		$this->namespace = $namespace;
-		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
-	}
-
-	function getDefaultQuery() {
-		$query = parent::getDefaultQuery();
-		$query['target'] = $this->target;
-
-		return $query;
-	}
-
-	function getQueryInfo() {
-		list( $index, $userCond ) = $this->getUserCond();
-		$conds = array_merge( $userCond, $this->getNamespaceCond() );
-		$user = $this->getUser();
-		// Paranoia: avoid brute force searches (bug 17792)
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::DELETED_USER ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::SUPPRESSED_USER ) .
-				' != ' . Revision::SUPPRESSED_USER;
-		}
-
-		return array(
-			'tables' => array( 'archive' ),
-			'fields' => array(
-				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp', 'ar_comment',
-				'ar_minor_edit', 'ar_user', 'ar_user_text', 'ar_deleted'
-			),
-			'conds' => $conds,
-			'options' => array( 'USE INDEX' => $index )
-		);
-	}
-
-	/**
-	 * This method basically executes the exact same code as the parent class, though with
-	 * a hook added, to allow extensions to add additional queries.
-	 *
-	 * @param string $offset Index offset, inclusive
-	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return ResultWrapper
-	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
-		$data = array( parent::reallyDoQuery( $offset, $limit, $descending ) );
-
-		// This hook will allow extensions to add in additional queries, nearly
-		// identical to ContribsPager::reallyDoQuery.
-		Hooks::run(
-			'DeletedContribsPager::reallyDoQuery',
-			array( &$data, $this, $offset, $limit, $descending )
-		);
-
-		$result = array();
-
-		// loop all results and collect them in an array
-		foreach ( $data as $query ) {
-			foreach ( $query as $i => $row ) {
-				// use index column as key, allowing us to easily sort in PHP
-				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
-			}
-		}
-
-		// sort results
-		if ( $descending ) {
-			ksort( $result );
-		} else {
-			krsort( $result );
-		}
-
-		// enforce limit
-		$result = array_slice( $result, 0, $limit );
-
-		// get rid of array keys
-		$result = array_values( $result );
-
-		return new FakeResultWrapper( $result );
-	}
-
-	function getUserCond() {
-		$condition = array();
-
-		$condition['ar_user_text'] = $this->target;
-		$index = 'usertext_timestamp';
-
-		return array( $index, $condition );
-	}
-
-	function getIndexField() {
-		return 'ar_timestamp';
-	}
-
-	function getStartBody() {
-		return "<ul>\n";
-	}
-
-	function getEndBody() {
-		return "</ul>\n";
-	}
-
-	function getNavigationBar() {
-		if ( isset( $this->mNavigationBar ) ) {
-			return $this->mNavigationBar;
-		}
-
-		$linkTexts = array(
-			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'histlast' )->escaped(),
-			'last' => $this->msg( 'histfirst' )->escaped()
-		);
-
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$lang = $this->getLanguage();
-		$limits = $lang->pipeList( $limitLinks );
-
-		$firstLast = $lang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) );
-		$firstLast = $this->msg( 'parentheses' )->rawParams( $firstLast )->escaped();
-		$prevNext = $this->msg( 'viewprevnext' )
-			->rawParams(
-				$pagingLinks['prev'],
-				$pagingLinks['next'],
-				$limits
-			)->escaped();
-		$separator = $this->msg( 'word-separator' )->escaped();
-		$this->mNavigationBar = $firstLast . $separator . $prevNext;
-
-		return $this->mNavigationBar;
-	}
-
-	function getNamespaceCond() {
-		if ( $this->namespace !== '' ) {
-			return array( 'ar_namespace' => (int)$this->namespace );
-		} else {
-			return array();
-		}
-	}
-
-	/**
-	 * Generates each row in the contributions list.
-	 *
-	 * @todo This would probably look a lot nicer in a table.
-	 * @param stdClass $row
-	 * @return string
-	 */
-	function formatRow( $row ) {
-		$ret = '';
-		$classes = array();
-
-		/*
-		 * There may be more than just revision rows. To make sure that we'll only be processing
-		 * revisions here, let's _try_ to build a revision out of our row (without displaying
-		 * notices though) and then trying to grab data from the built object. If we succeed,
-		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
-		 * to extensions to subscribe to the hook to parse the row.
-		 */
-		MediaWiki\suppressWarnings();
-		try {
-			$rev = Revision::newFromArchiveRow( $row );
-			$validRevision = (bool)$rev->getId();
-		} catch ( Exception $e ) {
-			$validRevision = false;
-		}
-		MediaWiki\restoreWarnings();
-
-		if ( $validRevision ) {
-			$ret = $this->formatRevisionRow( $row );
-		}
-
-		// Let extensions add data
-		Hooks::run( 'DeletedContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
-
-		if ( $classes === array() && $ret === '' ) {
-			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
-			$ret = "<!-- Could not format Special:DeletedContribution row. -->\n";
-		} else {
-			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
-		}
-
-		return $ret;
-	}
-
-	/**
-	 * Generates each row in the contributions list for archive entries.
-	 *
-	 * Contributions which are marked "top" are currently on top of the history.
-	 * For these contributions, a [rollback] link is shown for users with sysop
-	 * privileges. The rollback link restores the most recent version that was not
-	 * written by the target user.
-	 *
-	 * @todo This would probably look a lot nicer in a table.
-	 * @param stdClass $row
-	 * @return string
-	 */
-	function formatRevisionRow( $row ) {
-		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
-
-		$rev = new Revision( array(
-			'title' => $page,
-			'id' => $row->ar_rev_id,
-			'comment' => $row->ar_comment,
-			'user' => $row->ar_user,
-			'user_text' => $row->ar_user_text,
-			'timestamp' => $row->ar_timestamp,
-			'minor_edit' => $row->ar_minor_edit,
-			'deleted' => $row->ar_deleted,
-		) );
-
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-
-		$logs = SpecialPage::getTitleFor( 'Log' );
-		$dellog = Linker::linkKnown(
-			$logs,
-			$this->messages['deletionlog'],
-			array(),
-			array(
-				'type' => 'delete',
-				'page' => $page->getPrefixedText()
-			)
-		);
-
-		$reviewlink = Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
-			$this->messages['undeleteviewlink']
-		);
-
-		$user = $this->getUser();
-
-		if ( $user->isAllowed( 'deletedtext' ) ) {
-			$last = Linker::linkKnown(
-				$undelete,
-				$this->messages['diff'],
-				array(),
-				array(
-					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp(),
-					'diff' => 'prev'
-				)
-			);
-		} else {
-			$last = $this->messages['diff'];
-		}
-
-		$comment = Linker::revComment( $rev );
-		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
-		$date = htmlspecialchars( $date );
-
-		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$link = $date; // unusable link
-		} else {
-			$link = Linker::linkKnown(
-				$undelete,
-				$date,
-				array( 'class' => 'mw-changeslist-date' ),
-				array(
-					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp()
-				)
-			);
-		}
-		// Style deleted items
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = '<span class="history-deleted">' . $link . '</span>';
-		}
-
-		$pagelink = Linker::link(
-			$page,
-			null,
-			array( 'class' => 'mw-changeslist-title' )
-		);
-
-		if ( $rev->isMinor() ) {
-			$mflag = ChangesList::flag( 'minor' );
-		} else {
-			$mflag = '';
-		}
-
-		// Revision delete link
-		$del = Linker::getRevDeleteLink( $user, $rev, $page );
-		if ( $del ) {
-			$del .= ' ';
-		}
-
-		$tools = Html::rawElement(
-			'span',
-			array( 'class' => 'mw-deletedcontribs-tools' ),
-			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
-				array( $last, $dellog, $reviewlink ) ) )->escaped()
-		);
-
-		$separator = '<span class="mw-changeslist-separator">. .</span>';
-		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
-
-		# Denote if username is redacted for this edit
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
-		}
-
-		return $ret;
-	}
-
-	/**
-	 * Get the Database object in use
-	 *
-	 * @return IDatabase
-	 */
-	public function getDatabase() {
-		return $this->mDb;
-	}
-}
-
 class DeletedContributionsPage extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'DeletedContributions', 'deletedhistory',
@@ -384,7 +53,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
 
-		$options = array();
+		$options = [];
 
 		if ( $par !== null ) {
 			$target = $par;
@@ -413,7 +82,8 @@ class DeletedContributionsPage extends SpecialPage {
 		$target = $userObj->getName();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
 
-		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
+		$ns = $request->getVal( 'namespace', null );
+		if ( $ns !== null && $ns !== '' ) {
 			$options['namespace'] = intval( $ns );
 		} else {
 			$options['namespace'] = '';
@@ -449,7 +119,7 @@ class DeletedContributionsPage extends SpecialPage {
 			if ( !$this->msg( $message )->isDisabled() ) {
 				$out->wrapWikiMsg(
 					"<div class='mw-contributions-footer'>\n$1\n</div>",
-					array( $message, $target )
+					[ $message, $target ]
 				);
 			}
 		}
@@ -469,7 +139,7 @@ class DeletedContributionsPage extends SpecialPage {
 		}
 		$links = '';
 		$nt = $userObj->getUserPage();
-		$id = $userObj->getID();
+		$id = $userObj->getId();
 		$talk = $nt->getTalkPage();
 		if ( $talk ) {
 			# Talk page link
@@ -485,11 +155,11 @@ class DeletedContributionsPage extends SpecialPage {
 						$tools[] = Linker::linkKnown( # Unblock link
 							SpecialPage::getTitleFor( 'BlockList' ),
 							$this->msg( 'unblocklink' )->escaped(),
-							array(),
-							array(
+							[],
+							[
 								'action' => 'unblock',
 								'ip' => $nt->getDBkey()
-							)
+							]
 						);
 					} else {
 						# User is not blocked
@@ -503,19 +173,19 @@ class DeletedContributionsPage extends SpecialPage {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log' ),
 					$this->msg( 'sp-contributions-blocklog' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'type' => 'block',
 						'page' => $nt->getPrefixedText()
-					)
+					]
 				);
 				# Suppression log link (bug 59120)
 				if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 					$tools[] = Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Log', 'suppress' ),
 						$this->msg( 'sp-contributions-suppresslog' )->escaped(),
-						array(),
-						array( 'offender' => $userObj->getName() )
+						[],
+						[ 'offender' => $userObj->getName() ]
 					);
 				}
 			}
@@ -530,8 +200,8 @@ class DeletedContributionsPage extends SpecialPage {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
 				$this->msg( 'sp-contributions-logs' )->escaped(),
-				array(),
-				array( 'user' => $nt->getText() )
+				[],
+				[ 'user' => $nt->getText() ]
 			);
 			# Link to contributions
 			$tools[] = Linker::linkKnown(
@@ -549,7 +219,7 @@ class DeletedContributionsPage extends SpecialPage {
 				);
 			}
 
-			Hooks::run( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
+			Hooks::run( 'ContributionsToolLinks', [ $id, $nt, &$tools ] );
 
 			$links = $this->getLanguage()->pipeList( $tools );
 
@@ -567,15 +237,15 @@ class DeletedContributionsPage extends SpecialPage {
 					'block',
 					$nt,
 					'',
-					array(
+					[
 						'lim' => 1,
 						'showIfEmpty' => false,
-						'msgKey' => array(
+						'msgKey' => [
 							'sp-contributions-blocked-notice',
 							$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
-						),
+						],
 						'offset' => '' # don't use $this->getRequest() parameter offset
-					)
+					]
 				);
 			}
 		}
@@ -608,10 +278,10 @@ class DeletedContributionsPage extends SpecialPage {
 			$options['target'] = '';
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) );
+		$f = Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] );
 
 		foreach ( $options as $name => $value ) {
-			if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
+			if ( in_array( $name, [ 'namespace', 'target', 'contribs' ] ) ) {
 				continue;
 			}
 			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
@@ -620,41 +290,59 @@ class DeletedContributionsPage extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		$f .= Xml::openElement( 'fieldset' );
-		$f .= Xml::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() );
+		$f .= Xml::element( 'legend', [], $this->msg( 'sp-contributions-search' )->text() );
 		$f .= Xml::tags(
 			'label',
-			array( 'for' => 'target' ),
+			[ 'for' => 'target' ],
 			$this->msg( 'sp-contributions-username' )->parse()
 		) . ' ';
 		$f .= Html::input(
 			'target',
 			$options['target'],
 			'text',
-			array(
+			[
 				'size' => '20',
 				'required' => '',
-				'class' => array(
+				'class' => [
 					'mw-autocomplete-user', // used by mediawiki.userSuggest
-				),
-			) + ( $options['target'] ? array() : array( 'autofocus' ) )
+				],
+			] + ( $options['target'] ? [] : [ 'autofocus' ] )
 		) . ' ';
 		$f .= Html::namespaceSelector(
-			array(
+			[
 				'selected' => $options['namespace'],
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
-			),
-			array(
+			],
+			[
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'class' => 'namespaceselector',
-			)
+			]
 		) . ' ';
 		$f .= Xml::submitButton( $this->msg( 'sp-contributions-submit' )->text() );
 		$f .= Xml::closeElement( 'fieldset' );
 		$f .= Xml::closeElement( 'form' );
 
 		return $f;
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$user = User::newFromName( $search );
+		if ( !$user ) {
+			// No prefix suggestion for invalid user
+			return [];
+		}
+		// Autocomplete subpage as user list - public to allow caching
+		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

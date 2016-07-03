@@ -15,7 +15,7 @@ class StructureTest extends MediaWikiTestCase {
 			$this->markTestSkipped( 'This test does not work on Windows' );
 		}
 		$rootPath = escapeshellarg( __DIR__ . '/..' );
-		$testClassRegex = implode( '|', array(
+		$testClassRegex = implode( '|', [
 			'ApiFormatTestBase',
 			'ApiTestCase',
 			'ApiQueryTestBase',
@@ -26,7 +26,7 @@ class StructureTest extends MediaWikiTestCase {
 			'ResourceLoaderTestCase',
 			'PHPUnit_Framework_TestCase',
 			'DumpTestCase',
-		) );
+		] );
 		$testClassRegex = "^class .* extends ($testClassRegex)";
 		$finder = "find $rootPath -name '*.php' '!' -name '*Test.php'" .
 			" | xargs grep -El '$testClassRegex|function suite\('";
@@ -43,14 +43,14 @@ class StructureTest extends MediaWikiTestCase {
 
 		$results = array_filter(
 			$results,
-			array( $this, 'filterSuites' )
+			[ $this, 'filterSuites' ]
 		);
 		$strip = strlen( $rootPath ) - 1;
 		foreach ( $results as $k => $v ) {
 			$results[$k] = substr( $v, $strip );
 		}
 		$this->assertEquals(
-			array(),
+			[],
 			$results,
 			"Unit test file in $rootPath must end with Test."
 		);

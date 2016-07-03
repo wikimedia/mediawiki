@@ -36,7 +36,7 @@ class RegexlikeReplacer extends Replacer {
 	 * @return string
 	 */
 	public function replace( array $matches ) {
-		$pairs = array();
+		$pairs = [];
 		foreach ( $matches as $i => $match ) {
 			$pairs["\$$i"] = $match;
 		}

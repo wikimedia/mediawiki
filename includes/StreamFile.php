@@ -38,7 +38,7 @@ class StreamFile {
 	 * @throws MWException
 	 * @return bool Success
 	 */
-	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
+	public static function stream( $fname, $headers = [], $sendErrors = true ) {
 
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
 			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
@@ -74,7 +74,7 @@ class StreamFile {
 	 * @return int|bool READY_STREAM, NOT_MODIFIED, or false on failure
 	 */
 	public static function prepareForStream(
-		$path, $info, $headers = array(), $sendErrors = true
+		$path, $info, $headers = [], $sendErrors = true
 	) {
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {

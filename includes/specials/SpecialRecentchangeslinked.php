@@ -55,9 +55,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			return false;
 		}
 		$outputPage = $this->getOutput();
-		$title = Title::newFromURL( $target );
+		$title = Title::newFromText( $target );
 		if ( !$title || $title->isExternal() ) {
-			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
+			$outputPage->addHTML( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
 					->parse() . '</div>' );
 
 			return false;
@@ -79,25 +79,25 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$tables = array( 'recentchanges' );
+		$tables = [ 'recentchanges' ];
 		$select = RecentChange::selectFields();
-		$join_conds = array();
-		$query_options = array();
+		$join_conds = [];
+		$query_options = [];
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();
 		if ( $uid && $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
 			$tables[] = 'watchlist';
 			$select[] = 'wl_user';
-			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
+			$join_conds['watchlist'] = [ 'LEFT JOIN', [
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
-			) );
+			] ];
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
-			$join_conds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
+			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 			$select[] = 'page_latest';
 		}
 		ChangeTags::modifyDisplayQuery(
@@ -118,11 +118,11 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		if ( $ns == NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
 			// XXX: should try to make this less kludgy
-			$link_tables = array( 'categorylinks' );
+			$link_tables = [ 'categorylinks' ];
 			$showlinkedto = true;
 		} else {
 			// for now, always join on these tables; really should be configurable as in whatlinkshere
-			$link_tables = array( 'pagelinks', 'templatelinks' );
+			$link_tables = [ 'pagelinks', 'templatelinks' ];
 			// imagelinks only contains links to pages in NS_FILE
 			if ( $ns == NS_FILE || !$showlinkedto ) {
 				$link_tables[] = 'imagelinks';
@@ -134,14 +134,14 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 
 		// field name prefixes for all the various tables we might want to join with
-		$prefix = array(
+		$prefix = [
 			'pagelinks' => 'pl',
 			'templatelinks' => 'tl',
 			'categorylinks' => 'cl',
 			'imagelinks' => 'il'
-		);
+		];
 
-		$subsql = array(); // SELECT statements to combine with UNION
+		$subsql = []; // SELECT statements to combine with UNION
 
 		foreach ( $link_tables as $link_table ) {
 			$pfx = $prefix[$link_table];
@@ -162,35 +162,35 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 					if ( $ns != $link_ns ) {
 						continue;
 					} // should never happen, but check anyway
-					$subconds = array( "{$pfx}_to" => $dbkey );
+					$subconds = [ "{$pfx}_to" => $dbkey ];
 				} else {
-					$subconds = array( "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey );
+					$subconds = [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ];
 				}
 				$subjoin = "rc_cur_id = {$pfx}_from";
 			} else {
 				// find changes to pages linked from this page
-				$subconds = array( "{$pfx}_from" => $id );
+				$subconds = [ "{$pfx}_from" => $id ];
 				if ( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
 					$subconds["rc_namespace"] = $link_ns;
 					$subjoin = "rc_title = {$pfx}_to";
 				} else {
-					$subjoin = array( "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" );
+					$subjoin = [ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ];
 				}
 			}
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				$order = array( 'ORDER BY' => 'rc_timestamp DESC' );
+				$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
 			} else {
-				$order = array();
+				$order = [];
 			}
 
 			$query = $dbr->selectSQLText(
-				array_merge( $tables, array( $link_table ) ),
+				array_merge( $tables, [ $link_table ] ),
 				$select,
 				$conds + $subconds,
 				__METHOD__,
 				$order + $query_options,
-				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
+				$join_conds + [ $link_table => [ 'INNER JOIN', $subjoin ] ]
 			);
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
@@ -237,12 +237,12 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	function getExtraOptions( $opts ) {
 		$extraOpts = parent::getExtraOptions( $opts );
 
-		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
+		$opts->consumeValues( [ 'showlinkedto', 'target' ] );
 
-		$extraOpts['target'] = array( $this->msg( 'recentchangeslinked-page' )->escaped(),
+		$extraOpts['target'] = [ $this->msg( 'recentchangeslinked-page' )->escaped(),
 			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) .
-			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
-			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
+			Xml::check( 'showlinkedto', $opts['showlinkedto'], [ 'id' => 'showlinkedto' ] ) . ' ' .
+			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) ];
 
 		$this->addHelpLink( 'Help:Related changes' );
 		return $extraOpts;
@@ -262,5 +262,17 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 
 		return $this->rclTargetTitle;
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset );
 	}
 }

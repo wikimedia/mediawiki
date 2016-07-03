@@ -30,14 +30,14 @@ class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
 		$sampled->setValue( 1 );
 		$sampled->setSampleRate( '0.1' );
 
-		return array(
+		return [
 			// $data, $sampleRate, $seed, $expectWrite
-			array( $unsampled, 1, 0 /*0.44*/, $unsampled ),
-			array( $sampled, 1, 0 /*0.44*/, null ),
-			array( $sampled, 1, 4 /*0.03*/, $sampled ),
-			array( $unsampled, 0.1, 4 /*0.03*/, $sampled ),
-			array( $sampled, 0.5, 0 /*0.44*/, null ),
-			array( $sampled, 0.5, 4 /*0.03*/, $sampled ),
-		);
+			[ $unsampled, 1, 0 /*0.44*/, $unsampled ],
+			[ $sampled, 1, 0 /*0.44*/, null ],
+			[ $sampled, 1, 4 /*0.03*/, $sampled ],
+			[ $unsampled, 0.1, 4 /*0.03*/, $sampled ],
+			[ $sampled, 0.5, 0 /*0.44*/, null ],
+			[ $sampled, 0.5, 4 /*0.03*/, $sampled ],
+		];
 	}
 }

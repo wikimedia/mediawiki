@@ -8,10 +8,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideBlockLogDatabaseRows() {
-		return array(
+		return [
 			// Current log format
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -19,23 +19,24 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
-					),
-				),
-				array(
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
-					'api' => array(
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
+						. ' (anonymous users only)',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// Old legacy log
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -43,24 +44,25 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
 						'anononly',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
-					'api' => array(
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
+						. ' (anonymous users only)',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// Old legacy log without flag
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -68,23 +70,23 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite',
-					'api' => array(
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array(),
-					),
-				),
-			),
+						'flags' => [],
+					],
+				],
+			],
 
 			// Very old legacy log without duration
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -92,18 +94,18 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(),
-				),
-				array(
+					'params' => [],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite',
-					'api' => array(
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array(),
-					),
-				),
-			),
-		);
+						'flags' => [],
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -119,10 +121,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideReblockLogDatabaseRows() {
-		return array(
+		return [
 			// Current log format
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'reblock',
 					'comment' => 'Block comment',
@@ -130,24 +132,24 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
-					),
-				),
-				array(
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					],
+				],
+				[
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
-					'api' => array(
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// Old log
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'reblock',
 					'comment' => 'Block comment',
@@ -155,25 +157,25 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
 						'anononly',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
-					'api' => array(
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// Older log without flag
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'reblock',
 					'comment' => 'Block comment',
@@ -181,20 +183,20 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
-					)
-				),
-				array(
+					]
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of indefinite',
-					'api' => array(
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of indefinite',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array(),
-					),
-				),
-			),
-		);
+						'flags' => [],
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -210,10 +212,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideUnblockLogDatabaseRows() {
-		return array(
+		return [
 			// Current log format
-			array(
-				array(
+			[
+				[
 					'type' => 'block',
 					'action' => 'unblock',
 					'comment' => 'Block comment',
@@ -221,14 +223,14 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(),
-				),
-				array(
+					'params' => [],
+				],
+				[
 					'text' => 'Sysop unblocked Logtestuser',
-					'api' => array(),
-				),
-			),
-		);
+					'api' => [],
+				],
+			],
+		];
 	}
 
 	/**
@@ -244,10 +246,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideSuppressBlockLogDatabaseRows() {
-		return array(
+		return [
 			// Current log format
-			array(
-				array(
+			[
+				[
 					'type' => 'suppress',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -255,23 +257,24 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
-					),
-				),
-				array(
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
-					'api' => array(
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
+						. ' (anonymous users only)',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// legacy log
-			array(
-				array(
+			[
+				[
 					'type' => 'suppress',
 					'action' => 'block',
 					'comment' => 'Block comment',
@@ -279,21 +282,22 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
 						'anononly',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
-					'api' => array(
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
+						. ' (anonymous users only)',
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
-		);
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -309,10 +313,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideSuppressReblockLogDatabaseRows() {
-		return array(
+		return [
 			// Current log format
-			array(
-				array(
+			[
+				[
 					'type' => 'suppress',
 					'action' => 'reblock',
 					'comment' => 'Block comment',
@@ -320,24 +324,24 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
-					),
-				),
-				array(
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					],
+				],
+				[
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
-					'api' => array(
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
 
 			// Legacy format
-			array(
-				array(
+			[
+				[
 					'type' => 'suppress',
 					'action' => 'reblock',
 					'comment' => 'Block comment',
@@ -345,22 +349,22 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
-					'params' => array(
+					'params' => [
 						'infinite',
 						'anononly',
-					),
-				),
-				array(
+					],
+				],
+				[
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
-					'api' => array(
+					'api' => [
 						'duration' => 'infinite',
-						'flags' => array( 'anononly' ),
-					),
-				),
-			),
-		);
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+		];
 	}
 
 	/**

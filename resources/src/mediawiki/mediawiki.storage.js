@@ -30,7 +30,7 @@
 		  *
 		  * @param {string} key Key name to store under
 		  * @param {string} value Value to be stored
-		  * @returns {boolean} Whether the save succeeded or not
+		  * @return {boolean} Whether the save succeeded or not
 		  */
 		set: function ( key, value ) {
 			try {
@@ -44,7 +44,7 @@
 		  * Remove a value from device storage.
 		  *
 		  * @param {string} key Key of item to remove
-		  * @returns {boolean} Whether the save succeeded or not
+		  * @return {boolean} Whether the save succeeded or not
 		  */
 		remove: function ( key ) {
 			try {

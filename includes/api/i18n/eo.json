@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robin van der Vliet"
+		]
+	},
+	"apihelp-createaccount-param-name": "Uzantnomo.",
+	"apihelp-delete-description": "Forigi paĝon.",
+	"apihelp-edit-example-edit": "Redakti paĝon.",
+	"apihelp-login-param-name": "Uzantnomo.",
+	"apihelp-login-param-password": "Pasvorto.",
+	"apihelp-login-example-login": "Ensaluti."
+}

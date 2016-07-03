@@ -16,7 +16,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * Compare against an array so we get the cache content difference.
 	 */
 	protected function assertCacheEmpty( $cache, $msg = 'Cache should be empty' ) {
-		$this->assertAttributeEquals( array(), 'cache', $cache, $msg );
+		$this->assertAttributeEquals( [], 'cache', $cache, $msg );
 	}
 
 	/**
@@ -34,11 +34,11 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * size and a number of entries filled in sequentially
 	 */
 	protected function getExpectedCache( $cacheMaxEntries, $entryToFill ) {
-		$expected = array();
+		$expected = [];
 
 		if ( $entryToFill === 0 ) {
 			// The cache is empty!
-			return array();
+			return [];
 		} elseif ( $entryToFill <= $cacheMaxEntries ) {
 			// Cache is not fully filled
 			$firstKey = 1;
@@ -50,7 +50,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		$lastKey = $entryToFill;
 
 		for ( $i = $firstKey; $i <= $lastKey; $i++ ) {
-			$expected["cache-key-$i"] = array( "prop-$i" => "value-$i" );
+			$expected["cache-key-$i"] = [ "prop-$i" => "value-$i" ];
 		}
 
 		return $expected;
@@ -60,8 +60,8 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * Highlight diff between assertEquals and assertNotSame
 	 */
 	public function testPhpUnitArrayEquality() {
-		$one = array( 'A' => 1, 'B' => 2 );
-		$two = array( 'B' => 2, 'A' => 1 );
+		$one = [ 'A' => 1, 'B' => 2 ];
+		$two = [ 'B' => 2, 'A' => 1 ];
 		// ==
 		$this->assertEquals( $one, $two );
 		// ===
@@ -81,20 +81,20 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * Value which are forbidden by the constructor
 	 */
 	public static function provideInvalidConstructorArg() {
-		return array(
-			array( null ),
-			array( array() ),
-			array( new stdClass() ),
-			array( 0 ),
-			array( '5' ),
-			array( -1 ),
-		);
+		return [
+			[ null ],
+			[ [] ],
+			[ new stdClass() ],
+			[ 0 ],
+			[ '5' ],
+			[ -1 ],
+		];
 	}
 
 	/**
 	 * @covers ProcessCacheLRU::get
 	 * @covers ProcessCacheLRU::set
-	 * @covers ProcessCacheLRU::het
+	 * @covers ProcessCacheLRU::has
 	 */
 	public function testAddAndGetAKey() {
 		$oneCache = new ProcessCacheLRUTestable( 1 );
@@ -146,14 +146,14 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 */
 	public static function provideCacheFilling() {
 		// ($cacheMaxEntries, $entryToFill, $msg='')
-		return array(
-			array( 1, 0 ),
-			array( 1, 1 ),
+		return [
+			[ 1, 0 ],
+			[ 1, 1 ],
 			// overflow
-			array( 1, 2 ),
+			[ 1, 2 ],
 			// overflow
-			array( 5, 33 ),
-		);
+			[ 5, 33 ],
+		];
 	}
 
 	/**
@@ -173,10 +173,10 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		$cache->set( "cache-key-1", "prop-1", "new-value-for-1" );
 
 		$this->assertSame(
-			array(
-				'cache-key-2' => array( 'prop-2' => 'value-2' ),
-				'cache-key-1' => array( 'prop-1' => 'new-value-for-1' ),
-			),
+			[
+				'cache-key-2' => [ 'prop-2' => 'value-2' ],
+				'cache-key-1' => [ 'prop-1' => 'new-value-for-1' ],
+			],
 			$cache->getCache()
 		);
 	}
@@ -184,7 +184,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ProcessCacheLRU::get
 	 * @covers ProcessCacheLRU::set
-	 * @covers ProcessCacheLRU::het
+	 * @covers ProcessCacheLRU::has
 	 */
 	public function testRecentlyAccessedKeyStickIn() {
 		$cache = new ProcessCacheLRUTestable( 2 );
@@ -217,11 +217,11 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		// Set an existing cache key
 		$cache->set( "cache-key-2", "prop-2", "new-value-for-2" );
 		$this->assertSame(
-			array(
-				'cache-key-1' => array( 'prop-1' => 'value-1' ),
-				'cache-key-3' => array( 'prop-3' => 'value-3' ),
-				'cache-key-2' => array( 'prop-2' => 'new-value-for-2' ),
-			),
+			[
+				'cache-key-1' => [ 'prop-1' => 'value-1' ],
+				'cache-key-3' => [ 'prop-3' => 'value-3' ],
+				'cache-key-2' => [ 'prop-2' => 'new-value-for-2' ],
+			],
 			$cache->getCache()
 		);
 		$this->assertEquals( 'new-value-for-2',
@@ -239,11 +239,11 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		// Set the very first cache key to a new value
 		$cache->set( "cache-key-1", "prop-1", "new value for 1" );
 		$this->assertEquals(
-			array(
-				'cache-key-2' => array( 'prop-2' => 'value-2' ),
-				'cache-key-3' => array( 'prop-3' => 'value-3' ),
-				'cache-key-1' => array( 'prop-1' => 'new value for 1' ),
-			),
+			[
+				'cache-key-2' => [ 'prop-2' => 'value-2' ],
+				'cache-key-3' => [ 'prop-3' => 'value-3' ],
+				'cache-key-1' => [ 'prop-1' => 'new value for 1' ],
+			],
 			$cache->getCache()
 		);
 	}
@@ -253,7 +253,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
  * Overrides some ProcessCacheLRU methods and properties accessibility.
  */
 class ProcessCacheLRUTestable extends ProcessCacheLRU {
-	public $cache = array();
+	public $cache = [];
 
 	public function getCache() {
 		return $this->cache;

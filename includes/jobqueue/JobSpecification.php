@@ -121,7 +121,7 @@ class JobSpecification implements IJobSpecification {
 	 * @param Title $title Optional descriptive title
 	 */
 	public function __construct(
-		$type, array $params, array $opts = array(), Title $title = null
+		$type, array $params, array $opts = [], Title $title = null
 	) {
 		$this->validateParams( $params );
 		$this->validateParams( $opts );
@@ -168,12 +168,12 @@ class JobSpecification implements IJobSpecification {
 	}
 
 	public function getDeduplicationInfo() {
-		$info = array(
+		$info = [
 			'type' => $this->getType(),
 			'namespace' => $this->getTitle()->getNamespace(),
 			'title' => $this->getTitle()->getDBkey(),
 			'params' => $this->getParams()
-		);
+		];
 		if ( is_array( $info['params'] ) ) {
 			// Identical jobs with different "root" jobs should count as duplicates
 			unset( $info['params']['rootJobSignature'] );
@@ -186,14 +186,14 @@ class JobSpecification implements IJobSpecification {
 	}
 
 	public function getRootJobParams() {
-		return array(
+		return [
 			'rootJobSignature' => isset( $this->params['rootJobSignature'] )
 				? $this->params['rootJobSignature']
 				: null,
 			'rootJobTimestamp' => isset( $this->params['rootJobTimestamp'] )
 				? $this->params['rootJobTimestamp']
 				: null
-		);
+		];
 	}
 
 	public function hasRootJobParams() {
@@ -210,15 +210,15 @@ class JobSpecification implements IJobSpecification {
 	 * @since 1.25
 	 */
 	public function toSerializableArray() {
-		return array(
+		return [
 			'type'   => $this->type,
 			'params' => $this->params,
 			'opts'   => $this->opts,
-			'title'  => array(
+			'title'  => [
 				'ns'  => $this->title->getNamespace(),
-				'key' => $this->title->getDbKey()
-			)
-		);
+				'key' => $this->title->getDBkey()
+			]
+		];
 	}
 
 	/**

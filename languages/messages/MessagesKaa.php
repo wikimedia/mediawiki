@@ -10,16 +10,16 @@
 
 $fallback = 'kk-latn, kk-cyrl';
 
-$separatorTransformTable = array(
+$separatorTransformTable = [
 	',' => "\xc2\xa0",
 	'.' => ',',
-);
+];
 
 $fallback8bitEncoding = 'windows-1254';
 
 $linkPrefixExtension = true;
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Arnawlı',
 	NS_TALK             => 'Sa\'wbet',
@@ -36,89 +36,89 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Anıqlama_sa\'wbeti',
 	NS_CATEGORY         => 'Kategoriya',
 	NS_CATEGORY_TALK    => 'Kategoriya_sa\'wbeti',
-);
+];
 
-$specialPageAliases = array(
-	'Allmessages'               => array( 'Ha\'mme xabarlar' ),
-	'Allpages'                  => array( 'Ha\'mme betler' ),
-	'Ancientpages'              => array( 'Eski betler' ),
-	'BrokenRedirects'           => array( 'Jaramsız burıwshılar' ),
-	'Categories'                => array( 'Kategoriyalar' ),
-	'Contributions'             => array( 'Paydalanıwshı u\'lesi' ),
-	'Deadendpages'              => array( 'Hesh betke siltemeytug\'ın betler' ),
-	'DoubleRedirects'           => array( 'Qos burıwshılar' ),
-	'Emailuser'                 => array( 'Xat jiberiw' ),
-	'Export'                    => array( 'Eksport' ),
-	'Fewestrevisions'           => array( 'Az du\'zetilgenler' ),
-	'Listadmins'                => array( 'Administratorlar' ),
-	'Listfiles'                 => array( 'Su\'wretler dizimi' ),
-	'Listredirects'             => array( 'Burıwshılar dizimi' ),
-	'Listusers'                 => array( 'Paydalanıwshılar', 'Paydalanıwshı dizimi' ),
-	'Log'                       => array( 'Jurnal', 'Jurnallar' ),
-	'Lonelypages'               => array( 'Hesh betten siltelmegen betler' ),
-	'Longpages'                 => array( 'Uzın betler' ),
-	'MIMEsearch'                => array( 'MIME izlew' ),
-	'Mostcategories'            => array( 'Ko\'p kategoriyalang\'anlar' ),
-	'Mostimages'                => array( 'Ko\'p paydalanılg\'an su\'wretler' ),
-	'Mostlinked'                => array( 'Ko\'p siltelgenler' ),
-	'Mostlinkedcategories'      => array( 'Ko\'p paydalanılg\'an kategoriyalar' ),
-	'Mostlinkedtemplates'       => array( 'Ko\'p paydalanılg\'an shablonlar' ),
-	'Mostrevisions'             => array( 'Ko\'p du\'zetilgenler' ),
-	'Movepage'                  => array( 'Betti ko\'shiriw' ),
-	'Mycontributions'           => array( 'Menin\' u\'lesim' ),
-	'Mypage'                    => array( 'Menin\' betim' ),
-	'Mytalk'                    => array( 'Menin\' sa\'wbetim' ),
-	'Newimages'                 => array( 'Taza su\'wretler' ),
-	'Newpages'                  => array( 'Taza betler' ),
-	'Preferences'               => array( 'Sazlawlar' ),
-	'Protectedpages'            => array( 'Qorg\'alg\'an betler' ),
-	'Randompage'                => array( 'Qa\'legen', 'Qa\'legen bet' ),
-	'Randomredirect'            => array( 'Qa\'legen burıwshı' ),
-	'Recentchanges'             => array( 'Aqırg\'ı o\'zgerisler' ),
-	'Recentchangeslinked'       => array( 'Baylanıslı aqırg\'ı o\'zgerisler' ),
-	'Revisiondelete'            => array( 'Nusqanı o\'shiriw' ),
-	'Search'                    => array( 'İzlew' ),
-	'Shortpages'                => array( 'Qqısqa betler' ),
-	'Specialpages'              => array( 'Arnawlı betler' ),
-	'Statistics'                => array( 'Statistika' ),
-	'Uncategorizedcategories'   => array( 'Kategoriyasız kategoriyalar' ),
-	'Uncategorizedimages'       => array( 'Kategoriyasız su\'wretler' ),
-	'Uncategorizedpages'        => array( 'Kategoriyasız betler' ),
-	'Uncategorizedtemplates'    => array( 'Kategoriyasız shablonlar' ),
-	'Unusedcategories'          => array( 'Paydalanılmag\'an kategoriyalar' ),
-	'Unusedimages'              => array( 'Paydalanılmag\'an fayllar', 'Paydalanılmag\'an su\'wretler' ),
-	'Unusedtemplates'           => array( 'Paydalanılmag\'an shablonlar' ),
-	'Unwatchedpages'            => array( 'Baqlanılmag\'an betler' ),
-	'Userlogin'                 => array( 'Kiriw', 'Paydalanıwshı kiriw' ),
-	'Userlogout'                => array( 'Shıg\'ıw', 'Paydalanıwshı shıg\'ıw' ),
-	'Userrights'                => array( 'Paydalanıwshı huqıqları' ),
-	'Version'                   => array( 'Versiya' ),
-	'Wantedcategories'          => array( 'Talap qılıng\'an kategoriyalar' ),
-	'Wantedpages'               => array( 'Talap qılıng\'an betler', 'Jaramsız sıltewler' ),
-	'Watchlist'                 => array( 'Baqlaw dizimi' ),
-	'Whatlinkshere'             => array( 'Siltelgen betler' ),
-	'Withoutinterwiki'          => array( 'Hesh tilge siltemeytug\'ın betler' ),
-);
+$specialPageAliases = [
+	'Allmessages'               => [ 'Ha\'mme xabarlar' ],
+	'Allpages'                  => [ 'Ha\'mme betler' ],
+	'Ancientpages'              => [ 'Eski betler' ],
+	'BrokenRedirects'           => [ 'Jaramsız burıwshılar' ],
+	'Categories'                => [ 'Kategoriyalar' ],
+	'Contributions'             => [ 'Paydalanıwshı u\'lesi' ],
+	'Deadendpages'              => [ 'Hesh betke siltemeytug\'ın betler' ],
+	'DoubleRedirects'           => [ 'Qos burıwshılar' ],
+	'Emailuser'                 => [ 'Xat jiberiw' ],
+	'Export'                    => [ 'Eksport' ],
+	'Fewestrevisions'           => [ 'Az du\'zetilgenler' ],
+	'Listadmins'                => [ 'Administratorlar' ],
+	'Listfiles'                 => [ 'Su\'wretler dizimi' ],
+	'Listredirects'             => [ 'Burıwshılar dizimi' ],
+	'Listusers'                 => [ 'Paydalanıwshılar', 'Paydalanıwshı dizimi' ],
+	'Log'                       => [ 'Jurnal', 'Jurnallar' ],
+	'Lonelypages'               => [ 'Hesh betten siltelmegen betler' ],
+	'Longpages'                 => [ 'Uzın betler' ],
+	'MIMEsearch'                => [ 'MIME izlew' ],
+	'Mostcategories'            => [ 'Ko\'p kategoriyalang\'anlar' ],
+	'Mostimages'                => [ 'Ko\'p paydalanılg\'an su\'wretler' ],
+	'Mostlinked'                => [ 'Ko\'p siltelgenler' ],
+	'Mostlinkedcategories'      => [ 'Ko\'p paydalanılg\'an kategoriyalar' ],
+	'Mostlinkedtemplates'       => [ 'Ko\'p paydalanılg\'an shablonlar' ],
+	'Mostrevisions'             => [ 'Ko\'p du\'zetilgenler' ],
+	'Movepage'                  => [ 'Betti ko\'shiriw' ],
+	'Mycontributions'           => [ 'Menin\' u\'lesim' ],
+	'Mypage'                    => [ 'Menin\' betim' ],
+	'Mytalk'                    => [ 'Menin\' sa\'wbetim' ],
+	'Newimages'                 => [ 'Taza su\'wretler' ],
+	'Newpages'                  => [ 'Taza betler' ],
+	'Preferences'               => [ 'Sazlawlar' ],
+	'Protectedpages'            => [ 'Qorg\'alg\'an betler' ],
+	'Randompage'                => [ 'Qa\'legen', 'Qa\'legen bet' ],
+	'Randomredirect'            => [ 'Qa\'legen burıwshı' ],
+	'Recentchanges'             => [ 'Aqırg\'ı o\'zgerisler' ],
+	'Recentchangeslinked'       => [ 'Baylanıslı aqırg\'ı o\'zgerisler' ],
+	'Revisiondelete'            => [ 'Nusqanı o\'shiriw' ],
+	'Search'                    => [ 'İzlew' ],
+	'Shortpages'                => [ 'Qqısqa betler' ],
+	'Specialpages'              => [ 'Arnawlı betler' ],
+	'Statistics'                => [ 'Statistika' ],
+	'Uncategorizedcategories'   => [ 'Kategoriyasız kategoriyalar' ],
+	'Uncategorizedimages'       => [ 'Kategoriyasız su\'wretler' ],
+	'Uncategorizedpages'        => [ 'Kategoriyasız betler' ],
+	'Uncategorizedtemplates'    => [ 'Kategoriyasız shablonlar' ],
+	'Unusedcategories'          => [ 'Paydalanılmag\'an kategoriyalar' ],
+	'Unusedimages'              => [ 'Paydalanılmag\'an fayllar', 'Paydalanılmag\'an su\'wretler' ],
+	'Unusedtemplates'           => [ 'Paydalanılmag\'an shablonlar' ],
+	'Unwatchedpages'            => [ 'Baqlanılmag\'an betler' ],
+	'Userlogin'                 => [ 'Kiriw', 'Paydalanıwshı kiriw' ],
+	'Userlogout'                => [ 'Shıg\'ıw', 'Paydalanıwshı shıg\'ıw' ],
+	'Userrights'                => [ 'Paydalanıwshı huqıqları' ],
+	'Version'                   => [ 'Versiya' ],
+	'Wantedcategories'          => [ 'Talap qılıng\'an kategoriyalar' ],
+	'Wantedpages'               => [ 'Talap qılıng\'an betler', 'Jaramsız sıltewler' ],
+	'Watchlist'                 => [ 'Baqlaw dizimi' ],
+	'Whatlinkshere'             => [ 'Siltelgen betler' ],
+	'Withoutinterwiki'          => [ 'Hesh tilge siltemeytug\'ın betler' ],
+];
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'mdy',
 	'dmy',
 	'ymd',
 	'yyyy-mm-dd',
 	'ISO 8601',
-);
+];
 
 $defaultDateFormat = 'ymd';
 
-$datePreferenceMigrationMap = array(
+$datePreferenceMigrationMap = [
 	'default',
 	'mdy',
 	'dmy',
 	'ymd'
-);
+];
 
-$dateFormats = array(
+$dateFormats = [
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y "j."',
 	'mdy both' => 'H:i, xg j, Y "j."',
@@ -138,7 +138,7 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-);
+];
 
 $linkTrail = "/^((?:[a-zıʼ’“»]|'(?!'))+)(.*)$/sDu";
 $linkPrefixCharset = 'a-zıA-Zİ\\x80-\\xff';

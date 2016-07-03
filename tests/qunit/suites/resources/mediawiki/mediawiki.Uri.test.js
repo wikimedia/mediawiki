@@ -60,7 +60,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Constructor( String[, Object ] )', 10, function ( assert ) {
+	QUnit.test( 'Constructor( String[, Object ] )', 11, function ( assert ) {
 		var uri;
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
@@ -132,6 +132,20 @@
 			strictMode: false
 		} );
 		assert.equal( uri.toString(), 'http://example.com/bar/baz', 'normalize URI without protocol or // in loose mode' );
+
+		/*jshint -W001 */
+		uri = new mw.Uri( 'http://example.com/index.php?key=key&hasOwnProperty=hasOwnProperty&constructor=constructor&watch=watch' );
+		assert.deepEqual(
+			uri.query,
+			{
+				key: 'key',
+				constructor: 'constructor',
+				hasOwnProperty: 'hasOwnProperty',
+				watch: 'watch'
+			},
+			'Keys in query strings support names of Object prototypes (bug T114344)'
+		);
+		/*jshint +W001 */
 	} );
 
 	QUnit.test( 'Constructor( Object )', 3, function ( assert ) {
@@ -418,7 +432,7 @@
 		relativePath = uri.getRelativePath();
 		assert.ok( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
 		assert.ok( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
-		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragement in relative path' );
+		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragment in relative path' );
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', 1, function ( assert ) {

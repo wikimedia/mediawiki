@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class NukePage extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Remove a page record from the database";
+		$this->addDescription( 'Remove a page record from the database' );
 		$this->addOption( 'delete', "Actually delete the page" );
 		$this->addArg( 'title', 'Title to delete' );
 	}
@@ -43,8 +43,8 @@ class NukePage extends Maintenance {
 		$name = $this->getArg();
 		$delete = $this->getOption( 'delete', false );
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw = $this->getDB( DB_MASTER );
+		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$tbl_pag = $dbw->tableName( 'page' );
 		$tbl_rec = $dbw->tableName( 'recentchanges' );
@@ -62,7 +62,7 @@ class NukePage extends Maintenance {
 			# Get corresponding revisions
 			$this->output( "Searching for revisions..." );
 			$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			$revs = array();
+			$revs = [];
 			foreach ( $res as $row ) {
 				$revs[] = $row->rev_id;
 			}
@@ -79,7 +79,7 @@ class NukePage extends Maintenance {
 				$this->output( "done.\n" );
 			}
 
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 
 			# Delete revisions as appropriate
 			if ( $delete && $count ) {
@@ -99,20 +99,20 @@ class NukePage extends Maintenance {
 			}
 		} else {
 			$this->output( "not found in database.\n" );
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 		}
 	}
 
 	public function deleteRevisions( $ids ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw = $this->getDB( DB_MASTER );
+		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$tbl_rev = $dbw->tableName( 'revision' );
 
 		$set = implode( ', ', $ids );
 		$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
 
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 	}
 }
 

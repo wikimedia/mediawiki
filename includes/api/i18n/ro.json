@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"ANDROBETA"
+		]
+	},
+	"apihelp-createaccount-param-email": "Adresa de e-mail a utilizatorului (opțional).",
+	"apihelp-createaccount-param-realname": "Numele real al utilizatorului (opțional).",
+	"apihelp-createaccount-param-mailpassword": "Dacă este setat la orice valoare, o parolă aleatoare va fi trimisă utilizatorului prin e-mail.",
+	"apihelp-delete-description": "Șterge o pagină.",
+	"apihelp-delete-param-title": "Titlul paginii de șters. Nu poate fi folosit împreună cu <var>$1pageid</var>.",
+	"apihelp-delete-param-pageid": "ID-ul paginii de șters. Nu poate fi folosit împreună cu <var>$1title</var>.",
+	"apihelp-delete-param-reason": "Motivul ștergerii. Dacă nu e specificat, va fi folosit un motiv generat automat.",
+	"apihelp-disabled-description": "Acest modul a fost dezactivat.",
+	"apihelp-edit-description": "Creează și modifică pagini.",
+	"apihelp-edit-example-edit": "Modifică o pagină.",
+	"apihelp-expandtemplates-param-title": "Titlul paginii.",
+	"apihelp-expandtemplates-param-text": "Wikitext de convertit."
+}

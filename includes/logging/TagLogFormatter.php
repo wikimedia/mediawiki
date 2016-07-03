@@ -38,10 +38,14 @@ class TagLogFormatter extends LogFormatter {
 		$remove = ( isset( $params[8] ) && isset( $params[8]['num'] ) && $params[8]['num'] );
 		$key .= ( $remove ? ( $add ? '' : '-remove' ) : '-add' );
 
-		if ( isset( $params[4] ) && $params[4] ) {
-			$key .= '-logentry';
-		} else {
+		if ( isset( $params[3] ) && $params[3] ) {
+			// Messages: logentry-tag-update-add-revision, logentry-tag-update-remove-revision,
+			// logentry-tag-update-revision
 			$key .= '-revision';
+		} else {
+			// Messages: logentry-tag-update-add-logentry, logentry-tag-update-remove-logentry,
+			// logentry-tag-update-logentry
+			$key .= '-logentry';
 		}
 
 		return $key;

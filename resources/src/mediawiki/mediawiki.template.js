@@ -8,43 +8,47 @@
 
 	mw.template = {
 		/**
-		 * Register a new compiler and template.
+		 * Register a new compiler.
 		 *
-		 * @param {string} name of compiler. Should also match with any file extensions of templates that want to use it.
-		 * @param {Function} compiler which must implement a compile function
+		 * A compiler is any object that implements a compile() method. The compile() method must
+		 * return a Template interface with a method render() that returns HTML.
+		 *
+		 * The compiler name must correspond with the name suffix of templates that use this compiler.
+		 *
+		 * @param {string} name Compiler name
+		 * @param {Object} compiler
 		 */
 		registerCompiler: function ( name, compiler ) {
 			if ( !compiler.compile ) {
-				throw new Error( 'Compiler must implement compile method.' );
+				throw new Error( 'Compiler must implement a compile method' );
 			}
 			compilers[ name ] = compiler;
 		},
 
 		/**
-		 * Get the name of the compiler associated with a template based on its name.
+		 * Get the name of the associated compiler based on a template name.
 		 *
-		 * @param {string} templateName Name of template (including file suffix)
-		 * @return {String} Name of compiler
+		 * @param {string} templateName Name of a template (including suffix)
+		 * @return {string} Name of a compiler
 		 */
 		getCompilerName: function ( templateName ) {
-			var templateParts = templateName.split( '.' );
-
-			if ( templateParts.length < 2 ) {
-				throw new Error( 'Unable to identify compiler. Template name must have a suffix.' );
+			var nameParts = templateName.split( '.' );
+			if ( nameParts.length < 2 ) {
+				throw new Error( 'Template name must have a suffix' );
 			}
-			return templateParts[ templateParts.length - 1 ];
+			return nameParts[ nameParts.length - 1 ];
 		},
 
 		/**
-		 * Get the compiler for a given compiler name.
+		 * Get a compiler via its name.
 		 *
-		 * @param {string} compilerName Name of the compiler
-		 * @return {Object} The compiler associated with that name
+		 * @param {string} name Name of a compiler
+		 * @return {Object} The compiler
 		 */
-		getCompiler: function ( compilerName ) {
-			var compiler = compilers[ compilerName ];
+		getCompiler: function ( name ) {
+			var compiler = compilers[ name ];
 			if ( !compiler ) {
-				throw new Error( 'Unknown compiler ' + compilerName );
+				throw new Error( 'Unknown compiler ' + name );
 			}
 			return compiler;
 		},
@@ -52,57 +56,54 @@
 		/**
 		 * Register a template associated with a module.
 		 *
-		 * Compiles the newly added template based on the suffix in its name.
+		 * Precompiles the newly added template based on the suffix in its name.
 		 *
-		 * @param {string} moduleName Name of ResourceLoader module to get the template from
-		 * @param {string} templateName Name of template to add including file extension
-		 * @param {string} templateBody Contents of a template (e.g. html markup)
-		 * @return {Function} Compiled template
+		 * @param {string} moduleName Name of the ResourceLoader module the template is associated with
+		 * @param {string} templateName Name of the template (including suffix)
+		 * @param {string} templateBody Contents of the template (e.g. html markup)
+		 * @return {Object} Compiled template
 		 */
 		add: function ( moduleName, templateName, templateBody ) {
-			var compiledTemplate,
-				compilerName = this.getCompilerName( templateName );
-
+			// Precompile and add to cache
+			var compiled = this.compile( templateBody, this.getCompilerName( templateName ) );
 			if ( !compiledTemplates[ moduleName ] ) {
 				compiledTemplates[ moduleName ] = {};
 			}
+			compiledTemplates[ moduleName ][ templateName ] = compiled;
 
-			compiledTemplate = this.compile( templateBody, compilerName );
-			compiledTemplates[ moduleName ][ templateName ] = compiledTemplate;
-			return compiledTemplate;
+			return compiled;
 		},
 
 		/**
-		 * Retrieve a template by module and template name.
+		 * Get a compiled template by module and template name.
 		 *
 		 * @param {string} moduleName Name of the module to retrieve the template from
 		 * @param {string} templateName Name of template to be retrieved
 		 * @return {Object} Compiled template
 		 */
 		get: function ( moduleName, templateName ) {
-			var moduleTemplates, compiledTemplate;
+			var moduleTemplates;
 
-			// Check if the template has already been compiled, compile it if not
-			if ( !compiledTemplates[ moduleName ] || !compiledTemplates[ moduleName ][ templateName ] ) {
-				moduleTemplates = mw.templates.get( moduleName );
-				if ( !moduleTemplates || !moduleTemplates[ templateName ] ) {
-					throw new Error( 'Template ' + templateName + ' not found in module ' + moduleName );
-				}
-
-				// Add compiled version
-				compiledTemplate = this.add( moduleName, templateName, moduleTemplates[ templateName ] );
-			} else {
-				compiledTemplate = compiledTemplates[ moduleName ][ templateName ];
+			// Try cache first
+			if ( compiledTemplates[ moduleName ] && compiledTemplates[ moduleName ][ templateName ] ) {
+				return compiledTemplates[ moduleName ][ templateName ];
 			}
-			return compiledTemplate;
+
+			moduleTemplates = mw.templates.get( moduleName );
+			if ( !moduleTemplates || !moduleTemplates[ templateName ] ) {
+				throw new Error( 'Template ' + templateName + ' not found in module ' + moduleName );
+			}
+
+			// Compiled and add to cache
+			return this.add( moduleName, templateName, moduleTemplates[ templateName ] );
 		},
 
 		/**
-		 * Wrap our template engine of choice.
+		 * Compile a string of template markup with an engine of choice.
 		 *
 		 * @param {string} templateBody Template body
 		 * @param {string} compilerName The name of a registered compiler
-		 * @return {Object} Template interface
+		 * @return {Object} Compiled template
 		 */
 		compile: function ( templateBody, compilerName ) {
 			return this.getCompiler( compilerName ).compile( templateBody );

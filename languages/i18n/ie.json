@@ -12,7 +12,8 @@
 			"Valodnieks",
 			"לערי ריינהארט",
 			"아라",
-			"Srdjan m"
+			"Srdjan m",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Ultracatenun:",
@@ -295,7 +296,7 @@
 	"badtitletext": "Li titul de págine solicitat esset ínvalid, vacui, o íncorectmen ligat inter-lingue o un titul inter-wiki.\nIt posse contene un o plu carácteres quel ne posse esser usat in titules.",
 	"viewsource": "Vider fonte",
 	"viewsourcetext": "Vu posse vider e copiar li contenete de ti págine:",
-	"titleprotected": "Ti titul ha esset gardat de creation per [[User:$1|$1]]. \nLi motive dat es \"''$2''\".",
+	"titleprotected": "Ti titul ha esset gardat de creation per [[User:$1|$1]]. \nLi motive dat es <em>$2</em>.",
 	"virus-badscanner": "Configuration maliciosi: virus desconosset examinat: ''$1''",
 	"virus-scanfailed": "scandesion fallit (code $1)",
 	"virus-unknownscanner": "antivírus desconosset:",
@@ -572,8 +573,6 @@
 	"upload-description": "Descrition de file",
 	"upload-options": "Optiones de cargament",
 	"watchthisupload": "Vigilar ti file",
-	"upload-failure-subj": "Problema de cargament",
-	"upload-failure-msg": "Ta esset un problema che tui cargament:\n$1",
 	"upload-proto-error": "Protocol incorect",
 	"upload-proto-error-text": "Cargament distant exige comense che <code>http://</code> o <code>ftp://</code>.",
 	"upload-file-error": "Errore intern",
@@ -813,7 +812,6 @@
 	"blocklogpage": "Diarium de bloc",
 	"blocklogentry": "\"[[$1]]\" hat blocat che un témpor de expiration de $2 $3",
 	"block-log-flags-nocreate": "creation de conto debilisat",
-	"movearticle": "Mover págine:",
 	"newtitle": "Por nov titul:",
 	"move-watch": "Vigilar ti págine",
 	"movepagebtn": "Mover págine",
@@ -953,7 +951,6 @@
 	"version-hook-name": "Nómine de croc",
 	"version-hook-subscribedby": "Subscrit per",
 	"version-version": "($1)",
-	"version-svn-revision": "(r$2)",
 	"version-license": "Licentie",
 	"version-software": "Software installat",
 	"version-software-product": "Producte",

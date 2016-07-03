@@ -15,7 +15,7 @@ require_once $basePath . '/maintenance/Maintenance.php';
 class ExportSites extends Maintenance {
 
 	public function __construct() {
-		$this->mDescription = 'Exports site definitions the sites table to XML file';
+		$this->addDescription( 'Exports site definitions the sites table to XML file' );
 
 		$this->addArg( 'file', 'A file to write the XML to (see docs/sitelist.txt). ' .
 			'Use "php://stdout" to write to stdout.', true
@@ -42,8 +42,8 @@ class ExportSites extends Maintenance {
 
 		$exporter = new SiteExporter( $handle );
 
-		$sites = SiteSQLStore::newInstance()->getSites( 'recache' );
-		$exporter->exportSites( $sites );
+		$siteLookup = \MediaWiki\MediaWikiServices::getInstance()->getSiteLookup();
+		$exporter->exportSites( $siteLookup->getSites() );
 
 		fclose( $handle );
 

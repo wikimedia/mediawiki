@@ -108,7 +108,7 @@ class ApiErrorFormatter {
 	 * @param string[] $types 'warning' and/or 'error'
 	 */
 	public function addMessagesFromStatus(
-		$moduleName, Status $status, $types = array( 'warning', 'error' )
+		$moduleName, Status $status, $types = [ 'warning', 'error' ]
 	) {
 		if ( $status->isGood() || !$status->errors ) {
 			return;
@@ -130,19 +130,19 @@ class ApiErrorFormatter {
 			if ( is_array( $error ) && isset( $error['message'] ) ) {
 				// Normal case
 				if ( $error['message'] instanceof Message ) {
-					$msg = ApiMessage::create( $error['message'], null, array() );
+					$msg = ApiMessage::create( $error['message'], null, [] );
 				} else {
-					$args = isset( $error['params'] ) ? $error['params'] : array();
+					$args = isset( $error['params'] ) ? $error['params'] : [];
 					array_unshift( $args, $error['message'] );
-					$error += array( 'params' => array() );
-					$msg = ApiMessage::create( $args, null, array() );
+					$error += [ 'params' => [] ];
+					$msg = ApiMessage::create( $args, null, [] );
 				}
 			} elseif ( is_array( $error ) ) {
 				// Weird case handled by Message::getErrorMessage
-				$msg = ApiMessage::create( $error, null, array() );
+				$msg = ApiMessage::create( $error, null, [] );
 			} else {
 				// Another weird case handled by Message::getErrorMessage
-				$msg = ApiMessage::create( $error, null, array() );
+				$msg = ApiMessage::create( $error, null, [] );
 			}
 
 			$msg->inLanguage( $this->lang )
@@ -161,19 +161,19 @@ class ApiErrorFormatter {
 	 */
 	public function arrayFromStatus( Status $status, $type = 'error', $format = null ) {
 		if ( $status->isGood() || !$status->errors ) {
-			return array();
+			return [];
 		}
 
 		$result = new ApiResult( 1e6 );
 		$formatter = new ApiErrorFormatter(
 			$result, $this->lang, $format ?: $this->format, $this->useDB
 		);
-		$formatter->addMessagesFromStatus( 'dummy', $status, array( $type ) );
+		$formatter->addMessagesFromStatus( 'dummy', $status, [ $type ] );
 		switch ( $type ) {
 			case 'error':
-				return (array)$result->getResultData( array( 'errors', 'dummy' ) );
+				return (array)$result->getResultData( [ 'errors', 'dummy' ] );
 			case 'warning':
-				return (array)$result->getResultData( array( 'warnings', 'dummy' ) );
+				return (array)$result->getResultData( [ 'warnings', 'dummy' ] );
 		}
 	}
 
@@ -184,27 +184,27 @@ class ApiErrorFormatter {
 	 * @param ApiMessage|ApiRawMessage $msg
 	 */
 	protected function addWarningOrError( $tag, $moduleName, $msg ) {
-		$value = array( 'code' => $msg->getApiCode() );
+		$value = [ 'code' => $msg->getApiCode() ];
 		switch ( $this->format ) {
 			case 'wikitext':
-				$value += array(
+				$value += [
 					'text' => $msg->text(),
 					ApiResult::META_CONTENT => 'text',
-				);
+				];
 				break;
 
 			case 'html':
-				$value += array(
+				$value += [
 					'html' => $msg->parse(),
 					ApiResult::META_CONTENT => 'html',
-				);
+				];
 				break;
 
 			case 'raw':
-				$value += array(
+				$value += [
 					'message' => $msg->getKey(),
 					'params' => $msg->getParams(),
-				);
+				];
 				ApiResult::setIndexedTagName( $value['params'], 'param' );
 				break;
 
@@ -213,7 +213,7 @@ class ApiErrorFormatter {
 		}
 		$value += $msg->getApiData();
 
-		$path = array( $tag . 's', $moduleName );
+		$path = [ $tag . 's', $moduleName ];
 		$existing = $this->result->getResultData( $path );
 		if ( $existing === null || !in_array( $value, $existing ) ) {
 			$flags = ApiResult::NO_SIZE_CHECK;
@@ -232,7 +232,10 @@ class ApiErrorFormatter {
  * @deprecated Only for backwards compatibility, do not use
  * @ingroup API
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
+	// @codingStandardsIgnoreEnd
+
 	/**
 	 * @param ApiResult $result Into which data will be added
 	 */
@@ -242,16 +245,16 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 
 	public function arrayFromStatus( Status $status, $type = 'error', $format = null ) {
 		if ( $status->isGood() || !$status->errors ) {
-			return array();
+			return [];
 		}
 
-		$result = array();
+		$result = [];
 		foreach ( $status->getErrorsByType( $type ) as $error ) {
 			if ( $error['message'] instanceof Message ) {
-				$error = array(
+				$error = [
 					'message' => $error['message']->getKey(),
 					'params' => $error['message']->getParams(),
-				) + $error;
+				] + $error;
 			}
 			ApiResult::setIndexedTagName( $error['params'], 'param' );
 			$result[] = $error;
@@ -272,17 +275,17 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 				$code = ApiBase::$messageMap[$code]['code'];
 			}
 
-			$value = array(
+			$value = [
 				'code' => $code,
 				'info' => $value,
-			) + $msg->getApiData();
+			] + $msg->getApiData();
 			$this->result->addValue( null, 'error', $value,
 				ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 		} else {
 			// Don't add duplicate warnings
 			$tag .= 's';
-			$path = array( $tag, $moduleName );
-			$oldWarning = $this->result->getResultData( array( $tag, $moduleName, $tag ) );
+			$path = [ $tag, $moduleName ];
+			$oldWarning = $this->result->getResultData( [ $tag, $moduleName, $tag ] );
 			if ( $oldWarning !== null ) {
 				$warnPos = strpos( $oldWarning, $value );
 				// If $value was found in $oldWarning, check if it starts at 0 or after "\n"

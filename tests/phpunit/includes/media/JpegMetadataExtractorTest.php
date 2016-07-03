@@ -29,21 +29,21 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	 */
 	public function testUtf8Comment( $file ) {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . $file );
-		$this->assertEquals( array( 'UTF-8 JPEG Comment — ¼' ), $res['COM'] );
+		$this->assertEquals( [ 'UTF-8 JPEG Comment — ¼' ], $res['COM'] );
 	}
 
 	public static function provideUtf8Comment() {
-		return array(
-			array( 'jpeg-comment-utf.jpg' ),
-			array( 'jpeg-padding-even.jpg' ),
-			array( 'jpeg-padding-odd.jpg' ),
-		);
+		return [
+			[ 'jpeg-comment-utf.jpg' ],
+			[ 'jpeg-padding-even.jpg' ],
+			[ 'jpeg-padding-odd.jpg' ],
+		];
 	}
 
 	/** The file is iso-8859-1, but it should get auto converted */
 	public function testIso88591Comment() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-comment-iso8859-1.jpg' );
-		$this->assertEquals( array( 'ISO-8859-1 JPEG Comment - ¼' ), $res['COM'] );
+		$this->assertEquals( [ 'ISO-8859-1 JPEG Comment - ¼' ], $res['COM'] );
 	}
 
 	/** Comment values that are non-textual (random binary junk) should not be shown.
@@ -60,7 +60,7 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	 */
 	public function testMultipleComment() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-comment-multiple.jpg' );
-		$this->assertEquals( array( 'foo', 'bar' ), $res['COM'] );
+		$this->assertEquals( [ 'foo', 'bar' ], $res['COM'] );
 	}
 
 	public function testXMPExtraction() {

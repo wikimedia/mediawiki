@@ -13,7 +13,7 @@
 
 $fallback = 'qu, es';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Midya',
 	NS_SPECIAL          => 'Sapak',
 	NS_TALK             => 'Rimanakuy',
@@ -30,8 +30,8 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yanapapak_rimanakuy',
 	NS_CATEGORY         => 'Samiyachiy',
 	NS_CATEGORY_TALK    => 'Samiyachiy_rimanakuy',
-);
+];
 
 // Remove Spanish gender aliases (bug 37090)
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

@@ -33,22 +33,22 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteDefaultMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Deletes all pages in the MediaWiki namespace" .
-			" which were last edited by \"MediaWiki default\"";
+		$this->addDescription( 'Deletes all pages in the MediaWiki namespace' .
+			' which were last edited by "MediaWiki default"' );
 	}
 
 	public function execute() {
 		global $wgUser;
 
 		$this->output( "Checking existence of old default messages..." );
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'page', 'revision' ),
-			array( 'page_namespace', 'page_title' ),
-			array(
+		$dbr = $this->getDB( DB_SLAVE );
+		$res = $dbr->select( [ 'page', 'revision' ],
+			[ 'page_namespace', 'page_title' ],
+			[
 				'page_namespace' => NS_MEDIAWIKI,
 				'page_latest=rev_id',
 				'rev_user_text' => 'MediaWiki default',
-			)
+			]
 		);
 
 		if ( $dbr->numRows( $res ) == 0 ) {
@@ -69,7 +69,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		# Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		foreach ( $res as $row ) {
 			wfWaitForSlaves();

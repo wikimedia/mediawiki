@@ -30,11 +30,11 @@
  * @ingroup Maintenance
  */
 class ForkController {
-	protected $children = array(), $childNumber = 0;
+	protected $children = [], $childNumber = 0;
 	protected $termReceived = false;
 	protected $flags = 0, $procsToStart = 0;
 
-	protected static $restartableSignals = array(
+	protected static $restartableSignals = [
 		SIGFPE,
 		SIGILL,
 		SIGSEGV,
@@ -44,7 +44,7 @@ class ForkController {
 		SIGPIPE,
 		SIGXCPU,
 		SIGXFSZ,
-	);
+	];
 
 	/**
 	 * Pass this flag to __construct() to cause the class to automatically restart
@@ -73,7 +73,7 @@ class ForkController {
 	 */
 	public function start() {
 		// Trap SIGTERM
-		pcntl_signal( SIGTERM, array( $this, 'handleTermSignal' ), false );
+		pcntl_signal( SIGTERM, [ $this, 'handleTermSignal' ], false );
 
 		do {
 			// Start child processes
@@ -153,7 +153,9 @@ class ForkController {
 		wfGetLBFactory()->destroyInstance();
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
+		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		RedisConnectionPool::destroySingletons();
 		$wgMemc = null;
 	}
 

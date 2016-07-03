@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"SolidBlock"
+		]
+	},
+	"config-desc": "MediaWiki安装程序",
+	"config-title": "MediaWiki $1配置",
+	"config-information": "信息",
+	"config-localsettings-upgrade": "发现哒<code>LocalSettings.php</code>文件。要提升啯杂配置，就于啯杂框框中输入<code>$wgUpgradeKey</code>的值。您可以在<code>LocalSettings.php</code>中寻它。",
+	"config-localsettings-cli-upgrade": "查噶<code>LocalSettings.php</code>文件。要升级啯杂配置，请直接走<code>update.php</code>。",
+	"config-localsettings-key": "升级密钥：",
+	"config-localsettings-badkey": "啯杂密钥是错的。",
+	"config-session-error": "搞会话碰哒鬼：$1",
+	"config-your-language": "您使用的语言：",
+	"config-wiki-language": "Wiki语言：",
+	"config-back": "← 后退",
+	"config-continue": "行克 →",
+	"config-page-language": "语言",
+	"config-page-welcome": "欢迎使用MediaWiki！",
+	"config-page-name": "名字",
+	"config-page-options": "选项",
+	"config-page-install": "装下克",
+	"config-page-complete": "搞好哒！",
+	"config-page-readme": "自述",
+	"config-page-copying": "复制",
+	"config-page-upgradedoc": "升级",
+	"config-page-existingwiki": "现成的wiki",
+	"config-help-restart": "要不要哈消嘎输入且存好的东西，并且重新开始装？",
+	"config-restart": "嗯，重搞",
+	"config-env-good": "环境检查哈好哒。你可以安装MediaWiki哒。",
+	"config-env-bad": "环境检查好哒，可惜你搞不了MediaWiki。",
+	"config-env-php": "PHP $1装哒。",
+	"config-env-hhvm": "HHVM $1装哒。"
+}

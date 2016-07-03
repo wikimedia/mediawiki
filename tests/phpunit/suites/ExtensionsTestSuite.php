@@ -8,16 +8,14 @@
 class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		parent::__construct();
-		$paths = array();
+		$paths = [];
 		// Extensions can return a list of files or directories
-		Hooks::run( 'UnitTestsList', array( &$paths ) );
+		Hooks::run( 'UnitTestsList', [ &$paths ] );
 		foreach ( $paths as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.
 				// @since 1.24
-				$suffixes = array(
-					'Test.php',
-				);
+				$suffixes = [ 'Test.php' ];
 				$fileIterator = new File_Iterator_Facade();
 				$matchingFiles = $fileIterator->getFilesAsArray( $path, $suffixes );
 				$this->addTestFiles( $matchingFiles );
@@ -26,7 +24,7 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 				$this->addTestFile( $path );
 			}
 		}
-		if ( !count( $paths ) ) {
+		if ( !$paths ) {
 			$this->addTest( new DummyExtensionsTest( 'testNothing' ) );
 		}
 	}

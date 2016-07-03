@@ -37,24 +37,24 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
-				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
+				$html .= Html::rawElement( 'h1', [], $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
-				$thisAttribs = array(
+				$thisAttribs = [
 					'id' => "{$this->mID}-$info",
 					'value' => $info,
-				);
+				];
 				$checked = in_array( $info, $value, true );
 
 				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs, $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',
-					array( 'class' => 'mw-htmlform-flatlist-item' ),
+					[ 'class' => 'mw-htmlform-flatlist-item' ],
 					$checkbox
 				);
 			}
@@ -69,28 +69,29 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$label = new OOUI\HtmlSnippet( $label );
 			}
 			return new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( array(
+				new OOUI\CheckboxInputWidget( [
 					'name' => "{$this->mName}[]",
 					'selected' => $checked,
-					'value' => $attribs['value'],
-				) + $attribs ),
-				array(
+				] + OOUI\Element::configFromHtmlAttributes(
+					$attribs
+				) ),
+				[
 					'label' => $label,
 					'align' => 'inline',
-				)
+				]
 			);
 		} else {
-			$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
+			$elementFunc = [ 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 			$checkbox =
 				Xml::check( "{$this->mName}[]", $checked, $attribs ) .
 				'&#160;' .
 				call_user_func( $elementFunc,
 					'label',
-					array( 'for' => $attribs['id'] ),
+					[ 'for' => $attribs['id'] ],
 					$label
 				);
 			if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-				$checkbox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+				$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
 					$checkbox .
 					Html::closeElement( 'div' );
 			}
@@ -108,7 +109,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			if ( $request->wasPosted() ) {
 				# Checkboxes are just not added to the request arrays if they're not checked,
 				# so it's perfectly possible for there not to be an entry at all
-				return $request->getArray( $this->mName, array() );
+				return $request->getArray( $this->mName, [] );
 			} else {
 				# That's ok, the user has not yet submitted the form, so show the defaults
 				return $this->getDefault();
@@ -120,7 +121,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			# latter, which basically means that you can't specify 'positive' defaults
 			# for GET forms.
 			# @todo FIXME...
-			return $request->getArray( $this->mName, array() );
+			return $request->getArray( $this->mName, [] );
 		}
 	}
 
@@ -128,7 +129,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -136,7 +137,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		$data = HTMLFormField::forceToStringRecursive( $data );
 		$options = HTMLFormField::flattenOptions( $this->getOptions() );
 
-		$res = array();
+		$res = [];
 		foreach ( $options as $opt ) {
 			$res["$opt"] = in_array( $opt, $data, true );
 		}

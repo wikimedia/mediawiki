@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Midia',
 	NS_SPECIAL          => 'Espesial',
 	NS_TALK             => 'Tungtungan',
@@ -25,5 +25,5 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Tulong_tungtungan',
 	NS_CATEGORY         => 'Kategoria',
 	NS_CATEGORY_TALK    => 'Kategoria_tungtungan',
-);
+];
 

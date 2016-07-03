@@ -31,43 +31,43 @@
 class MediaWikiSiteTest extends SiteTest {
 
 	public function testNormalizePageTitle() {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
-		) );
+		] );
 
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiki' );
 
-		//NOTE: this does not actually call out to the enwiki site to perform the normalization,
+		// NOTE: this does not actually call out to the enwiki site to perform the normalization,
 		//      but uses a local Title object to do so. This is hardcoded on SiteLink::normalizePageTitle
 		//      for the case that MW_PHPUNIT_TEST is set.
 		$this->assertEquals( 'Foo', $site->normalizePageName( ' foo ' ) );
 	}
 
 	public function fileUrlProvider() {
-		return array(
+		return [
 			// url, filepath, path arg, expected
-			array( 'https://en.wikipedia.org', '/w/$1', 'api.php', 'https://en.wikipedia.org/w/api.php' ),
-			array( 'https://en.wikipedia.org', '/w/', 'api.php', 'https://en.wikipedia.org/w/' ),
-			array(
+			[ 'https://en.wikipedia.org', '/w/$1', 'api.php', 'https://en.wikipedia.org/w/api.php' ],
+			[ 'https://en.wikipedia.org', '/w/', 'api.php', 'https://en.wikipedia.org/w/' ],
+			[
 				'https://en.wikipedia.org',
 				'/foo/page.php?name=$1',
 				'api.php',
 				'https://en.wikipedia.org/foo/page.php?name=api.php'
-			),
-			array(
+			],
+			[
 				'https://en.wikipedia.org',
 				'/w/$1',
 				'',
 				'https://en.wikipedia.org/w/'
-			),
-			array(
+			],
+			[
 				'https://en.wikipedia.org',
 				'/w/$1',
 				'foo/bar/api.php',
 				'https://en.wikipedia.org/w/foo/bar/api.php'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -82,16 +82,16 @@ class MediaWikiSiteTest extends SiteTest {
 	}
 
 	public static function provideGetPageUrl() {
-		return array(
+		return [
 			// path, page, expected substring
-			array( 'http://acme.test/wiki/$1', 'Berlin', '/wiki/Berlin' ),
-			array( 'http://acme.test/wiki/', 'Berlin', '/wiki/' ),
-			array( 'http://acme.test/w/index.php?title=$1', 'Berlin', '/w/index.php?title=Berlin' ),
-			array( 'http://acme.test/wiki/$1', '', '/wiki/' ),
-			array( 'http://acme.test/wiki/$1', 'Berlin/sub page', '/wiki/Berlin/sub_page' ),
-			array( 'http://acme.test/wiki/$1', 'Cork (city)   ', '/Cork_(city)' ),
-			array( 'http://acme.test/wiki/$1', 'M&M', '/wiki/M%26M' ),
-		);
+			[ 'http://acme.test/wiki/$1', 'Berlin', '/wiki/Berlin' ],
+			[ 'http://acme.test/wiki/', 'Berlin', '/wiki/' ],
+			[ 'http://acme.test/w/index.php?title=$1', 'Berlin', '/w/index.php?title=Berlin' ],
+			[ 'http://acme.test/wiki/$1', '', '/wiki/' ],
+			[ 'http://acme.test/wiki/$1', 'Berlin/sub page', '/wiki/Berlin/sub_page' ],
+			[ 'http://acme.test/wiki/$1', 'Cork (city)   ', '/Cork_(city)' ],
+			[ 'http://acme.test/wiki/$1', 'M&M', '/wiki/M%26M' ],
+		];
 	}
 
 	/**

@@ -23,7 +23,7 @@ require_once __DIR__ . '/../Maintenance.php';
 
 class StorageTypeStats extends Maintenance {
 	function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$endId = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
 		if ( !$endId ) {
@@ -37,7 +37,7 @@ class StorageTypeStats extends Maintenance {
 		}
 		echo "Using bin size of $binSize\n";
 
-		$stats = array();
+		$stats = [];
 
 		$classSql = <<<SQL
 			IF(old_flags LIKE '%external%',
@@ -64,17 +64,17 @@ SQL;
 			}
 			$res = $dbr->select(
 				'text',
-				array(
+				[
 					'old_flags',
 					"$classSql AS class",
 					'COUNT(*) as count',
-				),
-				array(
+				],
+				[
 					'old_id >= ' . intval( $rangeStart ),
 					'old_id < ' . intval( $rangeStart + $binSize )
-				),
+				],
 				__METHOD__,
-				array( 'GROUP BY' => 'old_flags, class' )
+				[ 'GROUP BY' => 'old_flags, class' ]
 			);
 
 			foreach ( $res as $row ) {
@@ -85,11 +85,11 @@ SQL;
 				$class = $row->class;
 				$count = $row->count;
 				if ( !isset( $stats[$flags][$class] ) ) {
-					$stats[$flags][$class] = array(
+					$stats[$flags][$class] = [
 						'count' => 0,
 						'first' => $rangeStart,
 						'last' => 0
-					);
+					];
 				}
 				$entry =& $stats[$flags][$class];
 				$entry['count'] += $count;

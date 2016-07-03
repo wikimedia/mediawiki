@@ -5,6 +5,8 @@
 	width: 20em;
 	line-height: 1.35;
 	z-index: 10000;
+	/* Avoid horizontal scrollbar on fade in and on fade out */
+	overflow: hidden;
 }
 
 .mw-notification {
@@ -12,9 +14,27 @@
 	margin-bottom: 0.5em;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
-	/* Message hides on-click */
-	/* See also mediawiki.notification.js */
+	/* Click handler in mediawiki.notification.js */
 	cursor: pointer;
+
+	opacity: 0;
+	-webkit-transform: translateX(35px);
+	transform: translateX(35px);
+	-webkit-transition: opacity 0.35s ease-in-out, -webkit-transform 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+}
+
+.mw-notification-visible {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+
+.mw-notification-replaced {
+	opacity: 0;
+	-webkit-transform: translateY(-35px);
+	transform: translateY(-35px);
+	pointer-events: none;
 }
 
 .mw-notification-title {

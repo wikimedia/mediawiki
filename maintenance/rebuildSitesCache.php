@@ -32,13 +32,13 @@ class RebuildSitesCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = "Cache sites as json for file-based lookup.";
+		$this->addDescription( 'Cache sites as json for file-based lookup.' );
 		$this->addOption( 'file', 'File to output the json to', false, true );
 	}
 
 	public function execute() {
 		$sitesCacheFileBuilder = new SitesCacheFileBuilder(
-			new DBSiteStore(),
+			\MediaWiki\MediaWikiServices::getInstance()->getSiteLookup(),
 			$this->getCacheFile()
 		);
 

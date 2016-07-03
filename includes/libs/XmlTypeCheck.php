@@ -56,12 +56,12 @@ class XmlTypeCheck {
 	 * data to the top string of the stack, then pop off the string and process it when the
 	 * element is closed.
 	 */
-	protected $elementData = array();
+	protected $elementData = [];
 
 	/**
 	 * A stack of element names and attributes, as we process them.
 	 */
-	protected $elementDataContext = array();
+	protected $elementDataContext = [];
 
 	/**
 	 * Current depth of the data stack.
@@ -71,9 +71,9 @@ class XmlTypeCheck {
 	/**
 	 * Additional parsing options
 	 */
-	private $parserOptions = array(
+	private $parserOptions = [
 		'processing_instruction_handler' => '',
-	);
+	];
 
 	/**
 	 * @param string $input a filename or string containing the XML element
@@ -87,7 +87,7 @@ class XmlTypeCheck {
 	 * @param array $options list of additional parsing options:
 	 *        processing_instruction_handler: Callback for xml_set_processing_instruction_handler
 	 */
-	function __construct( $input, $filterCallback = null, $isFile = true, $options = array() ) {
+	function __construct( $input, $filterCallback = null, $isFile = true, $options = [] ) {
 		$this->filterCallback = $filterCallback;
 		$this->parserOptions = array_merge( $this->parserOptions, $options );
 		$this->validateFromInput( $input, $isFile );
@@ -132,7 +132,6 @@ class XmlTypeCheck {
 		return $this->rootElement;
 	}
 
-
 	/**
 	 * @param string $fname the filename
 	 */
@@ -165,7 +164,7 @@ class XmlTypeCheck {
 	}
 
 	private function readNext( XMLReader $reader ) {
-		set_error_handler( array( $this, 'XmlErrorHandler' ) );
+		set_error_handler( [ $this, 'XmlErrorHandler' ] );
 		$ret = $reader->read();
 		restore_error_handler();
 		return $ret;
@@ -258,7 +257,7 @@ class XmlTypeCheck {
 	 * @return array of attributes
 	 */
 	private function getAttributesArray( XMLReader $r ) {
-		$attrs = array();
+		$attrs = [];
 		while ( $r->moveToNextAttribute() ) {
 			if ( $r->namespaceURI === 'http://www.w3.org/2000/xmlns/' ) {
 				// XMLReader treats xmlns attributes as normal
@@ -290,7 +289,7 @@ class XmlTypeCheck {
 	 * @param $attribs
 	 */
 	private function elementOpen( $name, $attribs ) {
-		$this->elementDataContext[] = array( $name, $attribs );
+		$this->elementDataContext[] = [ $name, $attribs ];
 		$this->elementData[] = '';
 		$this->stackDepth++;
 	}

@@ -69,8 +69,8 @@ class DjVuImage {
 			$width = $data['width'];
 			$height = $data['height'];
 
-			return array( $width, $height, 'DjVu',
-				"width=\"$width\" height=\"$height\"" );
+			return [ $width, $height, 'DjVu',
+				"width=\"$width\" height=\"$height\"" ];
 		}
 
 		return false;
@@ -166,7 +166,7 @@ class DjVuImage {
 	private function readChunk( $file ) {
 		$header = fread( $file, 8 );
 		if ( strlen( $header ) < 8 ) {
-			return array( false, 0 );
+			return [ false, 0 ];
 		} else {
 			// @todo FIXME: Would be good to replace this extract() call with
 			// something that explicitly initializes local variables.
@@ -174,7 +174,7 @@ class DjVuImage {
 
 			/** @var string $chunk
 			 * @var string $length */
-			return array( $chunk, $length );
+			return [ $chunk, $length ];
 		}
 	}
 
@@ -255,12 +255,12 @@ class DjVuImage {
 		 * @var string $resolution
 		 * @var string $length
 		 * @var string $gamma */
-		return array(
+		return [
 			'width' => $width,
 			'height' => $height,
 			'version' => "$major.$minor",
 			'resolution' => $resolution,
-			'gamma' => $gamma / 10.0 );
+			'gamma' => $gamma / 10.0 ];
 	}
 
 	/**
@@ -292,7 +292,7 @@ class DjVuImage {
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
-			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
+			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
 			if ( $retval == 0 ) {
 				# Strip some control characters
 				$txt = preg_replace( "/[\013\035\037]/", "", $txt );
@@ -307,7 +307,7 @@ class DjVuImage {
 					| # Or page can be empty ; in this case, djvutxt dumps ()
 					\(\s*()\)/sx
 EOR;
-				$txt = preg_replace_callback( $reg, array( $this, 'pageTextCallback' ), $txt );
+				$txt = preg_replace_callback( $reg, [ $this, 'pageTextCallback' ], $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
 				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 );
 				$xml = $xml . $txt . '</mw-djvu>';
@@ -320,7 +320,7 @@ EOR;
 	function pageTextCallback( $matches ) {
 		# Get rid of invalid UTF-8, strip control characters
 		$val = htmlspecialchars( UtfNormal\Validator::cleanUp( stripcslashes( $matches[1] ) ) );
-		$val = str_replace( array( "\n", '�' ), array( '&#10;', '' ), $val );
+		$val = str_replace( [ "\n", '�' ], [ '&#10;', '' ], $val );
 		return '<PAGE value="' . $val . '" />';
 	}
 
@@ -409,16 +409,16 @@ EOT;
 			) ) {
 				$xml .= Xml::tags(
 					'OBJECT',
-					array(
-						#'data' => '',
-						#'type' => 'image/x.djvu',
+					[
+						# 'data' => '',
+						# 'type' => 'image/x.djvu',
 						'height' => $m[2],
 						'width' => $m[1],
-						#'usemap' => '',
-					),
+						# 'usemap' => '',
+					],
 					"\n" .
-						Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
-						Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
+						Xml::element( 'PARAM', [ 'name' => 'DPI', 'value' => $m[3] ] ) . "\n" .
+						Xml::element( 'PARAM', [ 'name' => 'GAMMA', 'value' => $m[4] ] ) . "\n"
 				) . "\n";
 
 				return true;

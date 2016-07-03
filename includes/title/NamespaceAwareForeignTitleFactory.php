@@ -52,7 +52,7 @@ class NamespaceAwareForeignTitleFactory implements ForeignTitleFactory {
 	public function __construct( $foreignNamespaces ) {
 		$this->foreignNamespaces = $foreignNamespaces;
 		if ( !is_null( $foreignNamespaces ) ) {
-			$this->foreignNamespacesFlipped = array();
+			$this->foreignNamespacesFlipped = [];
 			foreach ( $foreignNamespaces as $id => $name ) {
 				$newKey = self::normalizeNamespaceName( $name );
 				$this->foreignNamespacesFlipped[$newKey] = $id;

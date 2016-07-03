@@ -30,8 +30,8 @@ class CheckLess extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			'Checks LESS files for errors by running the LessTestSuite PHPUnit test suite';
+		$this->addDescription(
+			'Checks LESS files for errors by running the LessTestSuite PHPUnit test suite' );
 	}
 
 	public function execute() {
@@ -54,10 +54,10 @@ class CheckLess extends Maintenance {
 		}
 
 		$textUICommand = new PHPUnit_TextUI_Command();
-		$argv = array(
+		$argv = [
 			"$IP/tests/phpunit/phpunit.php",
 			"$IP/tests/phpunit/suites/LessTestSuite.php"
-		);
+		];
 		$textUICommand->run( $argv );
 	}
 }

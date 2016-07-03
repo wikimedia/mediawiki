@@ -33,14 +33,12 @@ require_once __DIR__ . '/Maintenance.php';
 class GetTextMaint extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Outputs page text to stdout';
+		$this->addDescription( 'Outputs page text to stdout' );
 		$this->addOption( 'show-private', 'Show the text even if it\'s not available to the public' );
 		$this->addArg( 'title', 'Page title' );
 	}
 
 	public function execute() {
-		$this->db = wfGetDB( DB_SLAVE );
-
 		$titleText = $this->getArg( 0 );
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {

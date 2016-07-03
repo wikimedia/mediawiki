@@ -46,23 +46,23 @@ class WithoutInterwikiPage extends PageQueryPage {
 			return '';
 		}
 
-		$prefix = $this->prefix;
-		$t = $this->getPageTitle();
+		$formDescriptor = [
+			'prefix' => [
+				'label-message' => 'allpagesprefix',
+				'name' => 'prefix',
+				'id' => 'wiprefix',
+				'type' => 'text',
+				'size' => 20,
+				'default' => $this->prefix
+			]
+		];
 
-		return Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n" .
-			Html::openElement( 'fieldset' ) . "\n" .
-			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
-			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
-			Xml::inputLabel(
-				$this->msg( 'allpagesprefix' )->text(),
-				'prefix',
-				'wiprefix',
-				20,
-				$prefix
-			) . "\n" .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
-			Html::closeElement( 'fieldset' ) . "\n" .
-			Html::closeElement( 'form' );
+		$htmlForm = HTMLForm::factory( 'inline', $formDescriptor, $this->getContext() );
+		$htmlForm->setWrapperLegendMsg( 'withoutinterwiki-legend' )
+			->setSubmitTextMsg( 'withoutinterwiki-submit' )
+			->setMethod( 'get' )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	function sortDescending() {
@@ -70,7 +70,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getOrderFields() {
-		return array( 'page_namespace', 'page_title' );
+		return [ 'page_namespace', 'page_title' ];
 	}
 
 	function isExpensive() {
@@ -82,20 +82,20 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		$query = array(
-			'tables' => array( 'page', 'langlinks' ),
-			'fields' => array(
+		$query = [
+			'tables' => [ 'page', 'langlinks' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'll_title IS NULL',
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
-			),
-			'join_conds' => array( 'langlinks' => array( 'LEFT JOIN', 'll_from = page_id' ) )
-		);
+			],
+			'join_conds' => [ 'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ] ]
+		];
 		if ( $this->prefix ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );

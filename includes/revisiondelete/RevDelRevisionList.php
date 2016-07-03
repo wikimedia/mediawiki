@@ -59,32 +59,48 @@ class RevDelRevisionList extends RevDelList {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		$live = $db->select(
-			array( 'revision', 'page', 'user' ),
-			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
-			array(
+		$queryInfo = [
+			'tables' => [ 'revision', 'user' ],
+			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'conds' => [
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id' => $ids,
-			),
-			__METHOD__,
-			array( 'ORDER BY' => 'rev_id DESC' ),
-			array(
+			],
+			'options' => [ 'ORDER BY' => 'rev_id DESC' ],
+			'join_conds' => [
 				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond() )
+				'user' => Revision::userJoinCond(),
+			],
+		];
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
 		);
 
+		$live = $db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			__METHOD__,
+			$queryInfo['options'],
+			$queryInfo['join_conds']
+		);
 		if ( $live->numRows() >= count( $ids ) ) {
 			// All requested revisions are live, keeps things simple!
 			return $live;
 		}
 
 		// Check if any requested revisions are available fully deleted.
-		$archived = $db->select( array( 'archive' ), Revision::selectArchiveFields(),
-			array(
+		$archived = $db->select( [ 'archive' ], Revision::selectArchiveFields(),
+			[
 				'ar_rev_id' => $ids
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'ar_rev_id DESC' )
+			[ 'ORDER BY' => 'ar_rev_id DESC' ]
 		);
 
 		if ( $archived->numRows() == 0 ) {
@@ -93,7 +109,7 @@ class RevDelRevisionList extends RevDelList {
 			return $archived;
 		} else {
 			// Combine the two! Whee
-			$rows = array();
+			$rows = [];
 			foreach ( $live as $row ) {
 				$rows[$row->rev_id] = $row;
 			}
@@ -137,7 +153,7 @@ class RevDelRevisionList extends RevDelList {
 	public function doPostCommitUpdates() {
 		$this->title->purgeSquid();
 		// Extensions that require referencing previous revisions may need this
-		Hooks::run( 'ArticleRevisionVisibilitySet', array( $this->title, $this->ids ) );
+		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids ] );
 		return Status::newGood();
 	}
 }

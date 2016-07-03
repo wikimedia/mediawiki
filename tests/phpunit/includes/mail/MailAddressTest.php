@@ -18,9 +18,15 @@ class MailAddressTest extends MediaWikiTestCase {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
 		$user = $this->getMock( 'User' );
-		$user->expects( $this->any() )->method( 'getName' )->will( $this->returnValue( 'UserName' ) );
-		$user->expects( $this->any() )->method( 'getEmail' )->will( $this->returnValue( 'foo@bar.baz' ) );
-		$user->expects( $this->any() )->method( 'getRealName' )->will( $this->returnValue( 'Real name' ) );
+		$user->expects( $this->any() )->method( 'getName' )->will(
+			$this->returnValue( 'UserName' )
+		);
+		$user->expects( $this->any() )->method( 'getEmail' )->will(
+			$this->returnValue( 'foo@bar.baz' )
+		);
+		$user->expects( $this->any() )->method( 'getRealName' )->will(
+			$this->returnValue( 'Real name' )
+		);
 
 		$ma = MailAddress::newFromUser( $user );
 		$this->assertInstanceOf( 'MailAddress', $ma );
@@ -44,16 +50,16 @@ class MailAddressTest extends MediaWikiTestCase {
 	}
 
 	public static function provideToString() {
-		return array(
-			array( true, 'foo@bar.baz', 'FooBar', 'Foo Bar', 'Foo Bar <foo@bar.baz>' ),
-			array( true, 'foo@bar.baz', 'UserName', null, 'UserName <foo@bar.baz>' ),
-			array( true, 'foo@bar.baz', 'AUser', 'My real name', 'My real name <foo@bar.baz>' ),
-			array( true, 'foo@bar.baz', 'A.user.name', 'my@real.name', '"my@real.name" <foo@bar.baz>' ),
-			array( false, 'foo@bar.baz', 'AUserName', 'Some real name', 'AUserName <foo@bar.baz>' ),
-			array( false, 'foo@bar.baz', '', '', 'foo@bar.baz' ),
-			array( true, 'foo@bar.baz', '', '', 'foo@bar.baz' ),
-			array( true, '', '', '', '' ),
-		);
+		return [
+			[ true, 'foo@bar.baz', 'FooBar', 'Foo Bar', 'Foo Bar <foo@bar.baz>' ],
+			[ true, 'foo@bar.baz', 'UserName', null, 'UserName <foo@bar.baz>' ],
+			[ true, 'foo@bar.baz', 'AUser', 'My real name', 'My real name <foo@bar.baz>' ],
+			[ true, 'foo@bar.baz', 'A.user.name', 'my@real.name', '"my@real.name" <foo@bar.baz>' ],
+			[ false, 'foo@bar.baz', 'AUserName', 'Some real name', 'AUserName <foo@bar.baz>' ],
+			[ false, 'foo@bar.baz', '', '', 'foo@bar.baz' ],
+			[ true, 'foo@bar.baz', '', '', 'foo@bar.baz' ],
+			[ true, '', '', '', '' ],
+		];
 	}
 
 	/**

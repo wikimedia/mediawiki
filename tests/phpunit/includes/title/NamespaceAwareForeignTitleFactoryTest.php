@@ -27,36 +27,36 @@
 class NamespaceAwareForeignTitleFactoryTest extends MediaWikiTestCase {
 
 	public function basicProvider() {
-		return array(
-			array(
+		return [
+			[
 				'MainNamespaceArticle', 0,
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
-			),
-			array(
+			],
+			[
 				'MainNamespaceArticle', null,
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
-			),
-			array(
+			],
+			[
 				'Talk:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 0,
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', null,
 				new ForeignTitle( 9000, 'Bogus', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 4,
 				new ForeignTitle( 4, 'Bogus', 'Nice_talk' ),
-			),
-			array(
+			],
+			[
 				'Bogus:Nice_talk', 1,
 				new ForeignTitle( 1, 'Talk', 'Nice_talk' ),
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -64,9 +64,9 @@ class NamespaceAwareForeignTitleFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testBasic( $title, $ns, ForeignTitle $foreignTitle ) {
 
-		$foreignNamespaces = array(
+		$foreignNamespaces = [
 			0 => '', 1 => 'Talk', 100 => 'Portal', 9000 => 'Bogus'
-		);
+		];
 
 		$factory = new NamespaceAwareForeignTitleFactory( $foreignNamespaces );
 		$testTitle = $factory->createForeignTitle( $title, $ns );

@@ -16,7 +16,7 @@ class HTMLHiddenField extends HTMLFormField {
 	}
 
 	public function getHiddenFieldData( $value ) {
-		$params = array();
+		$params = [];
 		if ( $this->mID ) {
 			$params['id'] = $this->mID;
 		}
@@ -25,7 +25,7 @@ class HTMLHiddenField extends HTMLFormField {
 			$value = $this->mDefault;
 		}
 
-		return array( $this->mName, $value, $params );
+		return [ $this->mName, $value, $params ];
 	}
 
 	public function getTableRow( $value ) {
@@ -54,5 +54,13 @@ class HTMLHiddenField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		return '';
+	}
+
+	public function canDisplayErrors() {
+		return false;
+	}
+
+	public function hasVisibleOutput() {
+		return false;
 	}
 }

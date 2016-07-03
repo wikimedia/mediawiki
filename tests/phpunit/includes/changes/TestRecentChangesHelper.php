@@ -13,24 +13,24 @@ class TestRecentChangesHelper {
 
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
-			array(
+			[
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
 				'rc_this_oldid' => $thisid,
 				'rc_last_oldid' => $lastid,
 				'rc_cur_id' => $curid
-			)
+			]
 		);
 
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeLogRecentChange( $logType, $logAction, User $user, $titleText, $timestamp, $counter,
-		$watchingUsers
+	public function makeLogRecentChange(
+		$logType, $logAction, User $user, $titleText, $timestamp, $counter, $watchingUsers
 	) {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
-			array(
+			[
 				'rc_cur_id' => 0,
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
@@ -43,7 +43,7 @@ class TestRecentChangesHelper {
 				'rc_log_type' => $logType,
 				'rc_log_action' => $logAction,
 				'rc_source' => 'mw.log'
-			)
+			]
 		);
 
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
@@ -54,14 +54,14 @@ class TestRecentChangesHelper {
 	) {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
-			array(
+			[
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
 				'rc_deleted' => 5,
 				'rc_cur_id' => $curid,
 				'rc_this_oldid' => $thisid,
 				'rc_last_oldid' => $lastid
-			)
+			]
 		);
 
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
@@ -73,7 +73,7 @@ class TestRecentChangesHelper {
 
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
-			array(
+			[
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
 				'rc_this_oldid' => $thisid,
@@ -82,7 +82,7 @@ class TestRecentChangesHelper {
 				'rc_type' => 1,
 				'rc_bot' => 1,
 				'rc_source' => 'mw.new'
-			)
+			]
 		);
 
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
@@ -97,8 +97,38 @@ class TestRecentChangesHelper {
 		return $change;
 	}
 
+	public function getCacheEntry( $recentChange ) {
+		$rcCacheFactory = new RCCacheEntryFactory(
+			new RequestContext(),
+			[ 'diff' => 'diff', 'cur' => 'cur', 'last' => 'last' ]
+		);
+		return $rcCacheFactory->newFromRecentChange( $recentChange, false );
+	}
+
+	public function makeCategorizationRecentChange(
+		User $user, $titleText, $curid, $thisid, $lastid, $timestamp
+	) {
+
+		$attribs = array_merge(
+			$this->getDefaultAttributes( $titleText, $timestamp ),
+			[
+				'rc_type' => RC_CATEGORIZE,
+				'rc_user' => $user->getId(),
+				'rc_user_text' => $user->getName(),
+				'rc_this_oldid' => $thisid,
+				'rc_last_oldid' => $lastid,
+				'rc_cur_id' => $curid,
+				'rc_comment' => '[[:Testpage]] added to category',
+				'rc_old_len' => 0,
+				'rc_new_len' => 0,
+			]
+		);
+
+		return $this->makeRecentChange( $attribs, 0, 0 );
+	}
+
 	private function getDefaultAttributes( $titleText, $timestamp ) {
-		return array(
+		return [
 			'rc_id' => 545,
 			'rc_user' => 0,
 			'rc_user_text' => '127.0.0.1',
@@ -119,12 +149,12 @@ class TestRecentChangesHelper {
 			'rc_log_action' => '',
 			'rc_params' => '',
 			'rc_source' => 'mw.edit'
-		);
+		];
 	}
 
 	public function getTestContext( User $user ) {
 		$context = new RequestContext();
-		$context->setLanguage( Language::factory( 'en' ) );
+		$context->setLanguage( 'en' );
 
 		$context->setUser( $user );
 

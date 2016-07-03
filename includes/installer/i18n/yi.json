@@ -10,7 +10,7 @@
 	"config-title": "מעדיעוויקי $1 אינסטאלירונג",
 	"config-information": "אינפֿארמאציע",
 	"config-localsettings-key": "אקטואליזירונג־שליסל:",
-	"config-localsettings-badkey": "דעם שליסל וואס איר האט אײַנגעגעבן איז פאלש.",
+	"config-localsettings-badkey": "דעם ראנג־העכערונג שליסל וואס איר האט אײַנגעגעבן איז פאלש.",
 	"config-session-error": "פֿעלער ביים אָנהייבן סעסיע: $1",
 	"config-your-language": "אײַער שפראך:",
 	"config-your-language-help": "קלויבט א שפראך צו ניצן ביים אינסטאלירונג פראצעס.",
@@ -69,6 +69,6 @@
 	"config-download-localsettings": "אראפלאדן <code>LocalSettings.php</code>",
 	"config-help": "הילף",
 	"config-nofile": "מ'האט נישט געקענט טרעפן די טעקע \"$1\". צי האט מען זי אויסגעמעקט?",
-	"mainpagetext": "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
-	"mainpagedocfooter": "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.\n\n== נוצליכע וועבלינקען פֿאַר אנהייבערס ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימה פון קאנפֿיגוראציעס]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ אפֿט געפֿרעגטע שאלות]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources איבערזעצן מעדיעוויקי אין אײַער שפראך]"
+	"mainpagetext": "<strong> מעדיעוויקי אינסטאלירט.</strong>",
+	"mainpagedocfooter": "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.\n\n== נוצליכע וועבלינקען פֿאַר אנהייבערס ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימה פון קאנפֿיגוראציעס]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ אפֿט געפֿרעגטע שאלות]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources איבערזעצן מעדיעוויקי אין אײַער שפראך]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam לערנט וויאזוי צו באקעמפן בפעם אויף אייער וויקי]"
 }

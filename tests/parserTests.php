@@ -24,9 +24,11 @@
  * @ingroup Testing
  */
 
-$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output',
-	'record', 'run-disabled', 'run-parsoid' );
-$optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
+define( 'MW_PARSER_TEST', true );
+
+$options = [ 'quick', 'color', 'quiet', 'help', 'show-output',
+	'record', 'run-disabled', 'run-parsoid' ];
+$optionsWithArgs = [ 'regex', 'filter', 'seed', 'setversion', 'file' ];
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';
 require_once __DIR__ . '/TestsAutoLoader.php';
@@ -73,7 +75,7 @@ if ( $wgDBtype == 'sqlite' ) {
 $tester = new ParserTest( $options );
 
 if ( isset( $options['file'] ) ) {
-	$files = array( $options['file'] );
+	$files = [ $options['file'] ];
 } else {
 	// Default parser tests and any set from extensions or local config
 	$files = $wgParserTestFiles;

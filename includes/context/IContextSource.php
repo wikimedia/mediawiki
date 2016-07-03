@@ -21,6 +21,8 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+
 /**
  * Interface for objects which can provide a MediaWiki context on request
  *
@@ -126,10 +128,20 @@ interface IContextSource {
 	/**
 	 * Get the stats object
 	 *
+	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
+	 *
 	 * @since 1.25
-	 * @return BufferingStatsdDataFactory
+	 * @return StatsdDataFactory
 	 */
 	public function getStats();
+
+	/**
+	 * Get the timing object
+	 *
+	 * @since 1.27
+	 * @return Timing
+	 */
+	public function getTiming();
 
 	/**
 	 * Get a Message object with context set.  See wfMessage for parameters.

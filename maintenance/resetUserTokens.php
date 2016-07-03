@@ -34,8 +34,9 @@ require_once __DIR__ . '/Maintenance.php';
 class ResetUserTokens extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			"Reset the user_token of all users on the wiki. Note that this may log some of them out.";
+		$this->addDescription(
+			'Reset the user_token of all users on the wiki. Note that this may log some of them out.'
+		);
 		$this->addOption( 'nowarn', "Hides the 5 seconds warning", false, false );
 		$this->addOption(
 			'nulls',
@@ -65,27 +66,27 @@ class ResetUserTokens extends Maintenance {
 		}
 
 		// We list user by user_id from one of the slave database
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
-		$where = array();
+		$where = [];
 		if ( $this->nullsOnly ) {
 			// Have to build this by hand, because \ is escaped in helper functions
-			$where = array( 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' );
+			$where = [ 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' ];
 		}
 
-		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', array(), __METHOD__ );
+		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', [], __METHOD__ );
 
 		$min = 0;
 		$max = $this->mBatchSize;
 
 		do {
 			$result = $dbr->select( 'user',
-				array( 'user_id' ),
+				[ 'user_id' ],
 				array_merge(
 					$where,
-					array( 'user_id > ' . $dbr->addQuotes( $min ),
+					[ 'user_id > ' . $dbr->addQuotes( $min ),
 						'user_id <= ' . $dbr->addQuotes( $max )
-					)
+					]
 				),
 				__METHOD__
 			);

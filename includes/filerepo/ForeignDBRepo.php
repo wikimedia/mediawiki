@@ -53,8 +53,8 @@ class ForeignDBRepo extends LocalRepo {
 
 	# Other stuff
 	protected $dbConn;
-	protected $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
-	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
+	protected $fileFactory = [ 'ForeignDBFile', 'newFromTitle' ];
+	protected $fileFromRowFactory = [ 'ForeignDBFile', 'newFromRow' ];
 
 	/**
 	 * @param array|null $info
@@ -72,7 +72,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
@@ -84,7 +84,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getSlaveDB() {
 		return $this->getMasterDB();
@@ -94,18 +94,19 @@ class ForeignDBRepo extends LocalRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		return function( $index ) {
-			return DatabaseBase::factory( $this->dbType,
-				array(
-					'host' => $this->dbServer,
-					'user' => $this->dbUser,
-					'password' => $this->dbPassword,
-					'dbname' => $this->dbName,
-					'flags' => $this->dbFlags,
-					'tablePrefix' => $this->tablePrefix,
-					'foreign' => true,
-				)
-			);
+		$type = $this->dbType;
+		$params = [
+			'host' => $this->dbServer,
+			'user' => $this->dbUser,
+			'password' => $this->dbPassword,
+			'dbname' => $this->dbName,
+			'flags' => $this->dbFlags,
+			'tablePrefix' => $this->tablePrefix,
+			'foreign' => true,
+		];
+
+		return function ( $index ) use ( $type, $params ) {
+			return DatabaseBase::factory( $type, $params );
 		};
 	}
 

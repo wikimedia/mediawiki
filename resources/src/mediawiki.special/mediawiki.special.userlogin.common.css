@@ -1,11 +1,12 @@
-/* Styles for user login and signup forms */
-.mw-form-related-link-container {
+/* User login and signup forms */
+.mw-ui-vform .mw-form-related-link-container {
+	margin-bottom: 0.5em;
 	text-align: center;
 }
 
 .mw-ui-vform .mw-secure {
 	/* @embed */
-	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
+	background: url( images/icon-lock.png ) no-repeat left center;
 	margin: 0 0 0 1px;
 	padding: 0 0 0 11px;
 }
@@ -38,7 +39,7 @@ section.mw-form-header {
 	margin-top: 6px;
 }
 
-.mw-createacct-captcha-container {
+.fancycaptcha-captcha-container {
 	background-color: #f8f8f8;
 	border: 1px solid #c9c9c9;
 	padding: 10px;
@@ -52,12 +53,12 @@ section.mw-form-header {
 }
 
 /* Put a border around the fancycaptcha-image-container. */
-.mw-createacct-captcha-and-reload {
+.fancycaptcha-captcha-and-reload {
 	border: 1px solid #c9c9c9;
 	/* Other display formats end up too wide */
 	display: table-cell;
 	width: 270px;
-	background-color: #FFF;
+	background-color: #fff;
 }
 
 /* Make the fancycaptcha-image-container full-width within its parent. */

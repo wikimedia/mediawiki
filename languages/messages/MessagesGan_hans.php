@@ -10,7 +10,7 @@
 
 $fallback = 'zh-hans';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_TALK             => '谈詑',
 	NS_USER_TALK        => '用户谈詑',
 	NS_PROJECT_TALK     => '$1谈詑',
@@ -19,5 +19,5 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => '模板谈詑',
 	NS_HELP_TALK        => '帮助谈詑',
 	NS_CATEGORY_TALK    => '分类谈詑',
-);
+];
 

@@ -20,13 +20,13 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function nonStringProvider() {
-		return array(
-			array( null ),
-			array( 42 ),
-			array( array() ),
-			array( new stdClass() ),
-			array( true ),
-		);
+		return [
+			[ null ],
+			[ 42 ],
+			[ [] ],
+			[ new stdClass() ],
+			[ true ],
+		];
 	}
 
 	/**
@@ -46,13 +46,13 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function simpleVersionProvider() {
-		return array(
-			array( '1.22.0' ),
-			array( '1.19.2' ),
-			array( '1.19.2.0' ),
-			array( '1.9' ),
-			array( '123.321.456.654' ),
-		);
+		return [
+			[ '1.22.0' ],
+			[ '1.19.2' ],
+			[ '1.19.2.0' ],
+			[ '1.9' ],
+			[ '123.321.456.654' ],
+		];
 	}
 
 	/**
@@ -70,15 +70,15 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function complexVersionProvider() {
-		return array(
-			array( '1.22.0alpha', '1.22.0-alpha' ),
-			array( '1.22.0RC', '1.22.0-RC' ),
-			array( '1.19beta', '1.19-beta' ),
-			array( '1.9RC4', '1.9-RC4' ),
-			array( '1.9.1.2RC4', '1.9.1.2-RC4' ),
-			array( '1.9.1.2RC', '1.9.1.2-RC' ),
-			array( '123.321.456.654RC9001', '123.321.456.654-RC9001' ),
-		);
+		return [
+			[ '1.22.0alpha', '1.22.0-alpha' ],
+			[ '1.22.0RC', '1.22.0-RC' ],
+			[ '1.19beta', '1.19-beta' ],
+			[ '1.9RC4', '1.9-RC4' ],
+			[ '1.9.1.2RC4', '1.9.1.2-RC4' ],
+			[ '1.9.1.2RC', '1.9.1.2-RC' ],
+			[ '123.321.456.654RC9001', '123.321.456.654-RC9001' ],
+		];
 	}
 
 	/**
@@ -103,15 +103,15 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function fourLevelVersionsProvider() {
-		return array(
-			array( '1.22.0.0' ),
-			array( '1.19.2.4' ),
-			array( '1.19.2.0' ),
-			array( '1.9.0.1' ),
-			array( '123.321.456.654' ),
-			array( '123.321.456.654RC4' ),
-			array( '123.321.456.654-RC4' ),
-		);
+		return [
+			[ '1.22.0.0' ],
+			[ '1.19.2.4' ],
+			[ '1.19.2.0' ],
+			[ '1.9.0.1' ],
+			[ '123.321.456.654' ],
+			[ '123.321.456.654RC4' ],
+			[ '123.321.456.654-RC4' ],
+		];
 	}
 
 	/**
@@ -129,14 +129,14 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function levelNormalizationProvider() {
-		return array(
-			array( '1.22.0.0', '1.22' ),
-			array( '1.22.0.0', '1.22.0' ),
-			array( '1.19.2.0', '1.19.2' ),
-			array( '12345.0.0.0', '12345' ),
-			array( '12345.0.0.0-RC4', '12345-RC4' ),
-			array( '12345.0.0.0-alpha', '12345-alpha' ),
-		);
+		return [
+			[ '1.22.0.0', '1.22' ],
+			[ '1.22.0.0', '1.22.0' ],
+			[ '1.19.2.0', '1.19.2' ],
+			[ '12345.0.0.0', '12345' ],
+			[ '12345.0.0.0-RC4', '12345-RC4' ],
+			[ '12345.0.0.0-alpha', '12345-alpha' ],
+		];
 	}
 
 	/**
@@ -147,14 +147,14 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function invalidVersionProvider() {
-		return array(
-			array( '1.221-a' ),
-			array( '1.221-' ),
-			array( '1.22rc4a' ),
-			array( 'a1.22rc' ),
-			array( '.1.22rc' ),
-			array( 'a' ),
-			array( 'alpha42' ),
-		);
+		return [
+			[ '1.221-a' ],
+			[ '1.221-' ],
+			[ '1.22rc4a' ],
+			[ 'a1.22rc' ],
+			[ '.1.22rc' ],
+			[ 'a' ],
+			[ 'alpha42' ],
+		];
 	}
 }

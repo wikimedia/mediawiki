@@ -18,6 +18,8 @@
  * @file
  */
 
+use RunningStat\RunningStat;
+
 /**
  * Convenience class for working with XHProf
  * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
@@ -68,20 +70,20 @@ class Xhprof {
 	 *
 	 * @param array $config
 	 */
-	public function __construct( array $config = array() ) {
+	public function __construct( array $config = [] ) {
 		$this->config = array_merge(
-			array(
+			[
 				'flags' => 0,
-				'exclude' => array(),
+				'exclude' => [],
 				'include' => null,
 				'sort' => 'wt',
-			),
+			],
 			$config
 		);
 
-		xhprof_enable( $this->config['flags'], array(
+		xhprof_enable( $this->config['flags'], [
 			'ignored_functions' => $this->config['exclude']
-		) );
+		] );
 	}
 
 	/**
@@ -180,7 +182,7 @@ class Xhprof {
 		$want = array_fill_keys( $this->config['include'], true );
 		$want['main()'] = true;
 
-		$keep = array();
+		$keep = [];
 		foreach ( $data as $key => $stats ) {
 			list( $parent, $child ) = self::splitKey( $key );
 			if ( isset( $want[$parent] ) || isset( $want[$child] ) ) {
@@ -221,14 +223,14 @@ class Xhprof {
 			$hasMu = isset( $main['mu'] );
 			$hasAlloc = isset( $main['alloc'] );
 
-			$this->inclusive = array();
+			$this->inclusive = [];
 			foreach ( $this->hieraData as $key => $stats ) {
 				list( $parent, $child ) = self::splitKey( $key );
 				if ( !isset( $this->inclusive[$child] ) ) {
-					$this->inclusive[$child] = array(
+					$this->inclusive[$child] = [
 						'ct' => 0,
 						'wt' => new RunningStat(),
-					);
+					];
 					if ( $hasCpu ) {
 						$this->inclusive[$child]['cpu'] = new RunningStat();
 					}
@@ -254,7 +256,7 @@ class Xhprof {
 					}
 
 					for ( $i = 0; $i < $stats['ct']; $i++ ) {
-						$this->inclusive[$child][$stat]->push(
+						$this->inclusive[$child][$stat]->addObservation(
 							$value / $stats['ct']
 						);
 					}
@@ -270,14 +272,14 @@ class Xhprof {
 						$percent = ( isset( $main[$name] ) && $main[$name] )
 							? 100 * $total / $main[$name]
 							: 0;
-						$this->inclusive[$func][$name] = array(
+						$this->inclusive[$func][$name] = [
 							'total' => $total,
 							'min' => $value->min,
 							'mean' => $value->m1,
 							'max' => $value->max,
 							'variance' => $value->m2,
 							'percent' => $percent,
-						);
+						];
 					}
 				}
 			}
@@ -317,8 +319,8 @@ class Xhprof {
 					$this->complete[$func][$stat]['exclusive'] = $value['total'];
 				}
 				// Add sapce for call tree information to be filled in later
-				$this->complete[$func]['calls'] = array();
-				$this->complete[$func]['subcalls'] = array();
+				$this->complete[$func]['calls'] = [];
+				$this->complete[$func]['subcalls'] = [];
 			}
 
 			foreach ( $this->hieraData as $key => $stats ) {
@@ -365,7 +367,7 @@ class Xhprof {
 		if ( isset( $edges[$function]['calls'] ) ) {
 			return array_keys( $edges[$function]['calls'] );
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -381,7 +383,7 @@ class Xhprof {
 		if ( isset( $edges[$function]['subcalls'] ) ) {
 			return array_keys( $edges[$function]['subcalls'] );
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -394,9 +396,9 @@ class Xhprof {
 	public function getCriticalPath( $metric = 'wt' ) {
 		$this->stop();
 		$func = 'main()';
-		$path = array(
+		$path = [
 			$func => $this->hieraData[$func],
-		);
+		];
 		while ( $func ) {
 			$callees = $this->getCallees( $func );
 			$maxCallee = null;

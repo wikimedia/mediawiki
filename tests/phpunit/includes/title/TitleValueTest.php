@@ -26,55 +26,75 @@
  */
 class TitleValueTest extends MediaWikiTestCase {
 
-	public function testConstruction() {
-		$title = new TitleValue( NS_USER, 'TestThis', 'stuff' );
+	public function goodConstructorProvider() {
+		return [
+			[ NS_USER, 'TestThis', 'stuff', '', true, false ],
+			[ NS_USER, 'TestThis', '', 'baz', false, true ],
+		];
+	}
 
-		$this->assertEquals( NS_USER, $title->getNamespace() );
-		$this->assertEquals( 'TestThis', $title->getText() );
-		$this->assertEquals( 'stuff', $title->getFragment() );
+	/**
+	 * @dataProvider goodConstructorProvider
+	 */
+	public function testConstruction( $ns, $text, $fragment, $interwiki, $hasFragment,
+		$hasInterwiki
+	) {
+		$title = new TitleValue( $ns, $text, $fragment, $interwiki );
+
+		$this->assertEquals( $ns, $title->getNamespace() );
+		$this->assertTrue( $title->inNamespace( $ns ) );
+		$this->assertEquals( $text, $title->getText() );
+		$this->assertEquals( $fragment, $title->getFragment() );
+		$this->assertEquals( $hasFragment, $title->hasFragment() );
+		$this->assertEquals( $interwiki, $title->getInterwiki() );
+		$this->assertEquals( $hasInterwiki, $title->isExternal() );
 	}
 
 	public function badConstructorProvider() {
-		return array(
-			array( 'foo', 'title', 'fragment' ),
-			array( null, 'title', 'fragment' ),
-			array( 2.3, 'title', 'fragment' ),
+		return [
+			[ 'foo', 'title', 'fragment', '' ],
+			[ null, 'title', 'fragment', '' ],
+			[ 2.3, 'title', 'fragment', '' ],
 
-			array( NS_MAIN, 5, 'fragment' ),
-			array( NS_MAIN, null, 'fragment' ),
-			array( NS_MAIN, '', 'fragment' ),
-			array( NS_MAIN, 'foo bar', '' ),
-			array( NS_MAIN, 'bar_', '' ),
-			array( NS_MAIN, '_foo', '' ),
-			array( NS_MAIN, ' eek ', '' ),
+			[ NS_MAIN, 5, 'fragment', '' ],
+			[ NS_MAIN, null, 'fragment', '' ],
+			[ NS_MAIN, '', 'fragment', '' ],
+			[ NS_MAIN, 'foo bar', '', '' ],
+			[ NS_MAIN, 'bar_', '', '' ],
+			[ NS_MAIN, '_foo', '', '' ],
+			[ NS_MAIN, ' eek ', '', '' ],
 
-			array( NS_MAIN, 'title', 5 ),
-			array( NS_MAIN, 'title', null ),
-			array( NS_MAIN, 'title', array() ),
-		);
+			[ NS_MAIN, 'title', 5, '' ],
+			[ NS_MAIN, 'title', null, '' ],
+			[ NS_MAIN, 'title', [], '' ],
+
+			[ NS_MAIN, 'title', '', 5 ],
+			[ NS_MAIN, 'title', null, 5 ],
+			[ NS_MAIN, 'title', [], 5 ],
+		];
 	}
 
 	/**
 	 * @dataProvider badConstructorProvider
 	 */
-	public function testConstructionErrors( $ns, $text, $fragment ) {
+	public function testConstructionErrors( $ns, $text, $fragment, $interwiki ) {
 		$this->setExpectedException( 'InvalidArgumentException' );
-		new TitleValue( $ns, $text, $fragment );
+		new TitleValue( $ns, $text, $fragment, $interwiki );
 	}
 
 	public function fragmentTitleProvider() {
-		return array(
-			array( new TitleValue( NS_MAIN, 'Test' ), 'foo' ),
-			array( new TitleValue( NS_TALK, 'Test', 'foo' ), '' ),
-			array( new TitleValue( NS_CATEGORY, 'Test', 'foo' ), 'bar' ),
-		);
+		return [
+			[ new TitleValue( NS_MAIN, 'Test' ), 'foo' ],
+			[ new TitleValue( NS_TALK, 'Test', 'foo' ), '' ],
+			[ new TitleValue( NS_CATEGORY, 'Test', 'foo' ), 'bar' ],
+		];
 	}
 
 	/**
 	 * @dataProvider fragmentTitleProvider
 	 */
 	public function testCreateFragmentTitle( TitleValue $title, $fragment ) {
-		$fragmentTitle = $title->createFragmentTitle( $fragment );
+		$fragmentTitle = $title->createFragmentTarget( $fragment );
 
 		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
 		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
@@ -82,10 +102,10 @@ class TitleValueTest extends MediaWikiTestCase {
 	}
 
 	public function getTextProvider() {
-		return array(
-			array( 'Foo', 'Foo' ),
-			array( 'Foo_Bar', 'Foo Bar' ),
-		);
+		return [
+			[ 'Foo', 'Foo' ],
+			[ 'Foo_Bar', 'Foo Bar' ],
+		];
 	}
 
 	/**

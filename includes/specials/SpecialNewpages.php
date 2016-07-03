@@ -55,8 +55,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'invert', false );
 
-		$this->customFilters = array();
-		Hooks::run( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
+		$this->customFilters = [];
+		Hooks::run( 'SpecialNewPagesFilters', [ $this, &$this->customFilters ] );
 		foreach ( $this->customFilters as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}
@@ -93,7 +93,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$this->opts->setValue( 'limit', intval( $bit ) );
 			}
 
-			$m = array();
+			$m = [];
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'limit', intval( $m[1] ) );
 			}
@@ -162,15 +162,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function filterLinks() {
 		// show/hide links
-		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
+		$showhide = [ $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() ];
 
 		// Option value -> message mapping
-		$filters = array(
+		$filters = [
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidebots' => 'rcshowhidebots',
 			'hideredirs' => 'whatlinkshere-hideredirs'
-		);
+		];
 		foreach ( $this->customFilters as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
@@ -183,15 +183,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 			unset( $filters['hidepatrolled'] );
 		}
 
-		$links = array();
+		$links = [];
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['offset'] ); // Reset offset if query type changes
 
 		$self = $this->getPageTitle();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
-			$link = Linker::link( $self, $showhide[$onoff], array(),
-				array( $key => $onoff ) + $changed
+			$link = Linker::link( $self, $showhide[$onoff], [],
+				[ $key => $onoff ] + $changed
 			);
 			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
@@ -215,33 +215,33 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$userText = $ut ? $ut->getText() : '';
 
 		// Store query values in hidden fields so that form submission doesn't lose them
-		$hidden = array();
+		$hidden = [];
 		foreach ( $this->opts->getUnconsumedValues() as $key => $value ) {
 			$hidden[] = Html::hidden( $key, $value );
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$form = array(
-			'namespace' => array(
+		$form = [
+			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'label-message' => 'namespace',
 				'default' => $namespace,
-			),
-			'nsinvert' => array(
+			],
+			'nsinvert' => [
 				'type' => 'check',
 				'name' => 'invert',
 				'label-message' => 'invert',
 				'default' => $nsinvert,
 				'tooltip' => 'invert',
-			),
-			'tagFilter' => array(
+			],
+			'tagFilter' => [
 				'type' => 'tagfilter',
 				'name' => 'tagfilter',
 				'label-raw' => $this->msg( 'tag-filter' )->parse(),
 				'default' => $tagFilterVal,
-			),
-			'username' => array(
+			],
+			'username' => [
 				'type' => 'text',
 				'name' => 'username',
 				'label-message' => 'newpages-username',
@@ -249,12 +249,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'id' => 'mw-np-username',
 				'size' => 30,
 				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-			),
-		);
+			],
+		];
 
 		$htmlForm = new HTMLForm( $form, $this->getContext() );
 
-		$htmlForm->setSubmitText( $this->msg( 'allpagessubmit' )->text() );
+		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
 		$htmlForm->setSubmitProgressive();
 		// The form should be visible on each request (inclusive requests with submitted forms), so
 		// return always false here.
@@ -265,11 +265,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 		$htmlForm->setMethod( 'get' );
 
-		$out->addHtml( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
+		$out->addHTML( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
 
 		$htmlForm->show();
 
-		$out->addHtml(
+		$out->addHTML(
 			Html::rawElement(
 				'div',
 				null,
@@ -290,54 +290,54 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$title = Title::newFromRow( $result );
 
 		# Revision deletion works on revisions, so we should cast one
-		$row = array(
+		$row = [
 			'comment' => $result->rc_comment,
 			'deleted' => $result->rc_deleted,
 			'user_text' => $result->rc_user_text,
 			'user' => $result->rc_user,
-		);
+		];
 		$rev = new Revision( $row );
 		$rev->setTitle( $title );
 
-		$classes = array();
+		$classes = [];
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
 
-		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
+		$spanTime = Html::element( 'span', [ 'class' => 'mw-newpages-time' ],
 			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
 		);
 		$time = Linker::linkKnown(
 			$title,
 			$spanTime,
-			array(),
-			array( 'oldid' => $result->rc_this_oldid ),
-			array()
+			[],
+			[ 'oldid' => $result->rc_this_oldid ],
+			[]
 		);
 
-		$query = array( 'redirect' => 'no' );
+		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
 
 		// Linker::linkKnown() uses 'known' and 'noclasses' options.
 		// This breaks the colouration for stubs.
 		$plink = Linker::link(
 			$title,
 			null,
-			array( 'class' => 'mw-newpages-pagename' ),
+			[ 'class' => 'mw-newpages-pagename' ],
 			$query,
-			array( 'known' )
+			[ 'known' ]
 		);
 		$histLink = Linker::linkKnown(
 			$title,
 			$this->msg( 'hist' )->escaped(),
-			array(),
-			array( 'action' => 'history' )
+			[],
+			[ 'action' => 'history' ]
 		);
-		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
+		$hist = Html::rawElement( 'span', [ 'class' => 'mw-newpages-history' ],
 			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
 		$length = Html::rawElement(
 			'span',
-			array( 'class' => 'mw-newpages-length' ),
+			[ 'class' => 'mw-newpages-length' ],
 			$this->msg( 'brackets' )->rawParams(
 				$this->msg( 'nbytes' )->numParams( $result->length )->escaped()
 			)->escaped()
@@ -359,7 +359,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		if ( isset( $result->ts_tags ) ) {
 			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
 				$result->ts_tags,
-				'newpages'
+				'newpages',
+				$this->getContext()
 			);
 			$classes = array_merge( $classes, $newClasses );
 		} else {
@@ -463,7 +464,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
 		if ( $revision ) {
-			//XXX: include content model/type in feed item?
+			// XXX: include content model/type in feed item?
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
 				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
@@ -476,132 +477,5 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function getGroupName() {
 		return 'changes';
-	}
-}
-
-/**
- * @ingroup SpecialPage Pager
- */
-class NewPagesPager extends ReverseChronologicalPager {
-	// Stored opts
-	protected $opts;
-
-	/**
-	 * @var HtmlForm
-	 */
-	protected $mForm;
-
-	function __construct( $form, FormOptions $opts ) {
-		parent::__construct( $form->getContext() );
-		$this->mForm = $form;
-		$this->opts = $opts;
-	}
-
-	function getQueryInfo() {
-		$conds = array();
-		$conds['rc_new'] = 1;
-
-		$namespace = $this->opts->getValue( 'namespace' );
-		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
-
-		$username = $this->opts->getValue( 'username' );
-		$user = Title::makeTitleSafe( NS_USER, $username );
-
-		$rcIndexes = array();
-
-		if ( $namespace !== false ) {
-			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
-			} else {
-				$conds['rc_namespace'] = $namespace;
-			}
-		}
-
-		if ( $user ) {
-			$conds['rc_user_text'] = $user->getText();
-			$rcIndexes = 'rc_user_text';
-		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
-			$this->opts->getValue( 'hideliu' )
-		) {
-			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds['rc_user'] = 0;
-		}
-
-		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
-		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
-			$conds['rc_patrolled'] = 0;
-		}
-
-		if ( $this->opts->getValue( 'hidebots' ) ) {
-			$conds['rc_bot'] = 0;
-		}
-
-		if ( $this->opts->getValue( 'hideredirs' ) ) {
-			$conds['page_is_redirect'] = 0;
-		}
-
-		// Allow changes to the New Pages query
-		$tables = array( 'recentchanges', 'page' );
-		$fields = array(
-			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_comment', 'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
-			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
-			'page_namespace', 'page_title'
-		);
-		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
-
-		Hooks::run( 'SpecialNewpagesConditions',
-			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
-
-		$options = array();
-
-		if ( $rcIndexes ) {
-			$options = array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) );
-		}
-
-		$info = array(
-			'tables' => $tables,
-			'fields' => $fields,
-			'conds' => $conds,
-			'options' => $options,
-			'join_conds' => $join_conds
-		);
-
-		// Modify query for tags
-		ChangeTags::modifyDisplayQuery(
-			$info['tables'],
-			$info['fields'],
-			$info['conds'],
-			$info['join_conds'],
-			$info['options'],
-			$this->opts['tagfilter']
-		);
-
-		return $info;
-	}
-
-	function getIndexField() {
-		return 'rc_timestamp';
-	}
-
-	function formatRow( $row ) {
-		return $this->mForm->formatRow( $row );
-	}
-
-	function getStartBody() {
-		# Do a batch existence check on pages
-		$linkBatch = new LinkBatch();
-		foreach ( $this->mResult as $row ) {
-			$linkBatch->add( NS_USER, $row->rc_user_text );
-			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );
-			$linkBatch->add( $row->page_namespace, $row->page_title );
-		}
-		$linkBatch->execute();
-
-		return '<ul>';
-	}
-
-	function getEndBody() {
-		return '</ul>';
 	}
 }

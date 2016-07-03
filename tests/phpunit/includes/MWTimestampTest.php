@@ -9,9 +9,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		// Avoid 'GetHumanTimestamp' hook and others
-		$this->setMwGlobals( 'wgHooks', array() );
-
-		RequestContext::getMain()->setLanguage( Language::factory( 'en' ) );
+		$this->setMwGlobals( 'wgHooks', [] );
 	}
 
 	/**
@@ -33,12 +31,12 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideValidTimestampDifferences() {
-		return array(
-			array( '1406833268', '1406833269', '00 00 00 01' ),
-			array( '1406833268', '1406833329', '00 00 01 01' ),
-			array( '1406833268', '1406836929', '00 01 01 01' ),
-			array( '1406833268', '1406923329', '01 01 01 01' ),
-		);
+		return [
+			[ '1406833268', '1406833269', '00 00 00 01' ],
+			[ '1406833268', '1406833329', '00 00 01 01' ],
+			[ '1406833268', '1406836929', '00 01 01 01' ],
+			[ '1406833268', '1406923329', '01 01 01 01' ],
+		];
 	}
 
 	/**
@@ -107,21 +105,21 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	 * array( type, timestamp_of_type, timestamp_in_MW )
 	 */
 	public static function provideValidTimestamps() {
-		return array(
+		return [
 			// Various formats
-			array( TS_UNIX, '1343761268', '20120731190108' ),
-			array( TS_MW, '20120731190108', '20120731190108' ),
-			array( TS_DB, '2012-07-31 19:01:08', '20120731190108' ),
-			array( TS_ISO_8601, '2012-07-31T19:01:08Z', '20120731190108' ),
-			array( TS_ISO_8601_BASIC, '20120731T190108Z', '20120731190108' ),
-			array( TS_EXIF, '2012:07:31 19:01:08', '20120731190108' ),
-			array( TS_RFC2822, 'Tue, 31 Jul 2012 19:01:08 GMT', '20120731190108' ),
-			array( TS_ORACLE, '31-07-2012 19:01:08.000000', '20120731190108' ),
-			array( TS_POSTGRES, '2012-07-31 19:01:08 GMT', '20120731190108' ),
+			[ TS_UNIX, '1343761268', '20120731190108' ],
+			[ TS_MW, '20120731190108', '20120731190108' ],
+			[ TS_DB, '2012-07-31 19:01:08', '20120731190108' ],
+			[ TS_ISO_8601, '2012-07-31T19:01:08Z', '20120731190108' ],
+			[ TS_ISO_8601_BASIC, '20120731T190108Z', '20120731190108' ],
+			[ TS_EXIF, '2012:07:31 19:01:08', '20120731190108' ],
+			[ TS_RFC2822, 'Tue, 31 Jul 2012 19:01:08 GMT', '20120731190108' ],
+			[ TS_ORACLE, '31-07-2012 19:01:08.000000', '20120731190108' ],
+			[ TS_POSTGRES, '2012-07-31 19:01:08 GMT', '20120731190108' ],
 			// Some extremes and weird values
-			array( TS_ISO_8601, '9999-12-31T23:59:59Z', '99991231235959' ),
-			array( TS_UNIX, '-62135596801', '00001231235959' )
-		);
+			[ TS_ISO_8601, '9999-12-31T23:59:59Z', '99991231235959' ],
+			[ TS_UNIX, '-62135596801', '00001231235959' ]
+		];
 	}
 
 	/**
@@ -129,11 +127,11 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	 * array( type, timestamp_of_type )
 	 */
 	public static function provideOutOfRangeTimestamps() {
-		return array(
+		return [
 			// Various formats
-			array( TS_MW, '-62167219201' ), // -0001-12-31T23:59:59Z
-			array( TS_MW, '253402300800' ), // 10000-01-01T00:00:00Z
-		);
+			[ TS_MW, '-62167219201' ], // -0001-12-31T23:59:59Z
+			[ TS_MW, '253402300800' ], // 10000-01-01T00:00:00Z
+		];
 	}
 
 	/**
@@ -169,104 +167,104 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideHumanTimestampTests() {
-		return array(
-			array(
+		return [
+			[
 				'20111231170000',
 				'20120101000000',
 				'Offset|0',
 				'mdy',
 				'Yesterday at 17:00',
 				'"Yesterday" across years',
-			),
-			array(
+			],
+			[
 				'20120717190900',
 				'20120717190929',
 				'Offset|0',
 				'mdy',
 				'just now',
 				'"Just now"',
-			),
-			array(
+			],
+			[
 				'20120717190900',
 				'20120717191530',
 				'Offset|0',
 				'mdy',
 				'6 minutes ago',
 				'X minutes ago',
-			),
-			array(
+			],
+			[
 				'20121006173100',
 				'20121006173200',
 				'Offset|0',
 				'mdy',
 				'1 minute ago',
 				'"1 minute ago"',
-			),
-			array(
+			],
+			[
 				'20120617190900',
 				'20120717190900',
 				'Offset|0',
 				'mdy',
 				'June 17',
 				'Another month'
-			),
-			array(
+			],
+			[
 				'19910130151500',
 				'20120716193700',
 				'Offset|0',
 				'mdy',
 				'15:15, January 30, 1991',
 				'Different year',
-			),
-			array(
+			],
+			[
 				'20120101050000',
 				'20120101080000',
 				'Offset|-360',
 				'mdy',
 				'Yesterday at 23:00',
 				'"Yesterday" across years with time correction',
-			),
-			array(
+			],
+			[
 				'20120714184300',
 				'20120716184300',
 				'Offset|-420',
 				'mdy',
 				'Saturday at 11:43',
 				'Recent weekday with time correction',
-			),
-			array(
+			],
+			[
 				'20120714184300',
 				'20120715040000',
 				'Offset|-420',
 				'mdy',
 				'11:43',
 				'Today at another time with time correction',
-			),
-			array(
+			],
+			[
 				'20120617190900',
 				'20120717190900',
 				'Offset|0',
 				'dmy',
 				'17 June',
 				'Another month with dmy'
-			),
-			array(
+			],
+			[
 				'20120617190900',
 				'20120717190900',
 				'Offset|0',
 				'ISO 8601',
 				'06-17',
 				'Another month with ISO-8601'
-			),
-			array(
+			],
+			[
 				'19910130151500',
 				'20120716193700',
 				'Offset|0',
 				'ISO 8601',
 				'1991-01-30T15:15:00',
 				'Different year with ISO-8601',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -298,71 +296,71 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideRelativeTimestampTests() {
-		return array(
-			array(
+		return [
+			[
 				'20111231170000',
 				'20120101000000',
 				'Offset|0',
 				'mdy',
 				'7 hours ago',
 				'"Yesterday" across years',
-			),
-			array(
+			],
+			[
 				'20120717190900',
 				'20120717190929',
 				'Offset|0',
 				'mdy',
 				'29 seconds ago',
 				'"Just now"',
-			),
-			array(
+			],
+			[
 				'20120717190900',
 				'20120717191530',
 				'Offset|0',
 				'mdy',
 				'6 minutes and 30 seconds ago',
 				'Combination of multiple units',
-			),
-			array(
+			],
+			[
 				'20121006173100',
 				'20121006173200',
 				'Offset|0',
 				'mdy',
 				'1 minute ago',
 				'"1 minute ago"',
-			),
-			array(
+			],
+			[
 				'19910130151500',
 				'20120716193700',
 				'Offset|0',
 				'mdy',
 				'2 decades, 1 year, 168 days, 2 hours, 8 minutes and 48 seconds ago',
 				'A long time ago',
-			),
-			array(
+			],
+			[
 				'20120101050000',
 				'20120101080000',
 				'Offset|-360',
 				'mdy',
 				'3 hours ago',
 				'"Yesterday" across years with time correction',
-			),
-			array(
+			],
+			[
 				'20120714184300',
 				'20120716184300',
 				'Offset|-420',
 				'mdy',
 				'2 days ago',
 				'Recent weekday with time correction',
-			),
-			array(
+			],
+			[
 				'20120714184300',
 				'20120715040000',
 				'Offset|-420',
 				'mdy',
 				'9 hours and 17 minutes ago',
 				'Today at another time with time correction',
-			),
-		);
+			],
+		];
 	}
 }

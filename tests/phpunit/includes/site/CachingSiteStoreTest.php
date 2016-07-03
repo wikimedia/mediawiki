@@ -64,7 +64,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	public function testSaveSites() {
 		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
 
-		$sites = array();
+		$sites = [];
 
 		$site = new Site();
 		$site->setGlobalId( 'ertrywuutr' );
@@ -95,18 +95,15 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		// php 5.3 compatibility!
-		$that = $this;
-
 		$dbSiteStore->expects( $this->any() )
 			->method( 'getSite' )
-			->will( $this->returnValue( $that->getTestSite() ) );
+			->will( $this->returnValue( $this->getTestSite() ) );
 
 		$dbSiteStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnCallback( function() use ( $that ) {
+			->will( $this->returnCallback( function() {
 				$siteList = new SiteList();
-				$siteList->setSite( $that->getTestSite() );
+				$siteList->setSite( $this->getTestSite() );
 
 				return $siteList;
 			} ) );

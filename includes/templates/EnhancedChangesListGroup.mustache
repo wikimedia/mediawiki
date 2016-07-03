@@ -1,0 +1,28 @@
+<table class="{{# tableClasses }}{{ . }} {{/ tableClasses }}">
+	<tr>
+		<td>
+			<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>
+		</td>
+		<td class="mw-enhanced-rc">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
+		<td>
+			{{# rev-deleted-event }}<span class="history-deleted">{{{ . }}}</span>{{/ rev-deleted-event }}
+			{{{ articleLink }}}{{{ languageDirMark }}}{{{ logText }}}
+			<span class="mw-changeslist-separator">. .</span>
+			{{# charDifference }}{{{ . }}} <span class="mw-changeslist-separator">. .</span>{{/ charDifference }}
+			<span class="changedby">{{{ users }}}</span>
+			{{ numberofWatchingusers }}
+		</td>
+	</tr>
+	{{# lines }}
+	<tr class="{{# classes }}{{ . }} {{/ classes }}">
+		<td></td>
+		<td class="mw-enhanced-rc">{{{ recentChangesFlags }}}&#160;</td>
+		<td class="mw-enhanced-rc-nested">
+			{{# timestampLink }}
+			<span class="mw-enhanced-rc-time">{{{ . }}}</span>
+			{{/ timestampLink }}
+			{{# data }}{{{ . }}}{{/ data }}
+		</td>
+	</tr>
+	{{/ lines }}
+</table>

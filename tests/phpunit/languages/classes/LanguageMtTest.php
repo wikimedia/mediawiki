@@ -12,7 +12,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = [ 'one', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -25,24 +25,24 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'few', 0 ),
-			array( 'one', 1 ),
-			array( 'few', 2 ),
-			array( 'few', 10 ),
-			array( 'many', 11 ),
-			array( 'many', 19 ),
-			array( 'other', 20 ),
-			array( 'other', 99 ),
-			array( 'other', 100 ),
-			array( 'other', 101 ),
-			array( 'few', 102 ),
-			array( 'few', 110 ),
-			array( 'many', 111 ),
-			array( 'many', 119 ),
-			array( 'other', 120 ),
-			array( 'other', 201 ),
-		);
+		return [
+			[ 'few', 0 ],
+			[ 'one', 1 ],
+			[ 'few', 2 ],
+			[ 'few', 10 ],
+			[ 'many', 11 ],
+			[ 'many', 19 ],
+			[ 'other', 20 ],
+			[ 'other', 99 ],
+			[ 'other', 100 ],
+			[ 'other', 101 ],
+			[ 'few', 102 ],
+			[ 'few', 110 ],
+			[ 'many', 111 ],
+			[ 'many', 119 ],
+			[ 'other', 120 ],
+			[ 'other', 201 ],
+		];
 	}
 
 	/**
@@ -50,28 +50,28 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = [ 'one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'other', 0 ),
-			array( 'one', 1 ),
-			array( 'other', 2 ),
-			array( 'other', 10 ),
-			array( 'other', 11 ),
-			array( 'other', 19 ),
-			array( 'other', 20 ),
-			array( 'other', 99 ),
-			array( 'other', 100 ),
-			array( 'other', 101 ),
-			array( 'other', 102 ),
-			array( 'other', 110 ),
-			array( 'other', 111 ),
-			array( 'other', 119 ),
-			array( 'other', 120 ),
-			array( 'other', 201 ),
-		);
+		return [
+			[ 'other', 0 ],
+			[ 'one', 1 ],
+			[ 'other', 2 ],
+			[ 'other', 10 ],
+			[ 'other', 11 ],
+			[ 'other', 19 ],
+			[ 'other', 20 ],
+			[ 'other', 99 ],
+			[ 'other', 100 ],
+			[ 'other', 101 ],
+			[ 'other', 102 ],
+			[ 'other', 110 ],
+			[ 'other', 111 ],
+			[ 'other', 119 ],
+			[ 'other', 120 ],
+			[ 'other', 201 ],
+		];
 	}
 }

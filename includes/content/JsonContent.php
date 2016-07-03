@@ -121,19 +121,19 @@ class JsonContent extends TextContent {
 	 */
 	protected function rootValueTable( $val ) {
 		if ( is_object( $val ) ) {
-			return self::objectTable( $val );
+			return $this->objectTable( $val );
 		}
 
 		if ( is_array( $val ) ) {
 			// Wrap arrays in another array so that they're visually boxed in a container.
 			// Otherwise they are visually indistinguishable from a single value.
-			return self::arrayTable( array( $val ) );
+			return $this->arrayTable( [ $val ] );
 		}
 
-		return Html::rawElement( 'table', array( 'class' => 'mw-json mw-json-single-value' ),
-			Html::rawElement( 'tbody', array(),
-				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), self::primitiveValue( $val ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
+			Html::rawElement( 'tbody', [],
+				Html::rawElement( 'tr', [],
+					Html::element( 'td', [], $this->primitiveValue( $val ) )
 				)
 			)
 		);
@@ -146,7 +146,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML
 	 */
 	protected function objectTable( $mapping ) {
-		$rows = array();
+		$rows = [];
 		$empty = true;
 
 		foreach ( $mapping as $key => $val ) {
@@ -154,14 +154,14 @@ class JsonContent extends TextContent {
 			$empty = false;
 		}
 		if ( $empty ) {
-			$rows[] = Html::rawElement( 'tr', array(),
-				Html::element( 'td', array( 'class' => 'mw-json-empty' ),
+			$rows[] = Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'class' => 'mw-json-empty' ],
 					wfMessage( 'content-json-empty-object' )->text()
 				)
 			);
 		}
-		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
-			Html::rawElement( 'tbody', array(), join( '', $rows ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
+			Html::rawElement( 'tbody', [], implode( '', $rows ) )
 		);
 	}
 
@@ -173,9 +173,9 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function objectRow( $key, $val ) {
-		$th = Html::element( 'th', array(), $key );
-		$td = self::valueCell( $val );
-		return Html::rawElement( 'tr', array(), $th . $td );
+		$th = Html::element( 'th', [], $key );
+		$td = $this->valueCell( $val );
+		return Html::rawElement( 'tr', [], $th . $td );
 	}
 
 	/**
@@ -185,7 +185,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML
 	 */
 	protected function arrayTable( $mapping ) {
-		$rows = array();
+		$rows = [];
 		$empty = true;
 
 		foreach ( $mapping as $val ) {
@@ -193,14 +193,14 @@ class JsonContent extends TextContent {
 			$empty = false;
 		}
 		if ( $empty ) {
-			$rows[] = Html::rawElement( 'tr', array(),
-				Html::element( 'td', array( 'class' => 'mw-json-empty' ),
+			$rows[] = Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'class' => 'mw-json-empty' ],
 					wfMessage( 'content-json-empty-array' )->text()
 				)
 			);
 		}
-		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
-			Html::rawElement( 'tbody', array(), join( "\n", $rows ) )
+		return Html::rawElement( 'table', [ 'class' => 'mw-json' ],
+			Html::rawElement( 'tbody', [], implode( "\n", $rows ) )
 		);
 	}
 
@@ -211,8 +211,8 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function arrayRow( $val ) {
-		$td = self::valueCell( $val );
-		return Html::rawElement( 'tr', array(), $td );
+		$td = $this->valueCell( $val );
+		return Html::rawElement( 'tr', [], $td );
 	}
 
 	/**
@@ -223,14 +223,14 @@ class JsonContent extends TextContent {
 	 */
 	protected function valueCell( $val ) {
 		if ( is_object( $val ) ) {
-			return Html::rawElement( 'td', array(), self::objectTable( $val ) );
+			return Html::rawElement( 'td', [], $this->objectTable( $val ) );
 		}
 
 		if ( is_array( $val ) ) {
-			return Html::rawElement( 'td', array(), self::arrayTable( $val ) );
+			return Html::rawElement( 'td', [], $this->arrayTable( $val ) );
 		}
 
-		return Html::element( 'td', array( 'class' => 'value' ), self::primitiveValue( $val ) );
+		return Html::element( 'td', [ 'class' => 'value' ], $this->primitiveValue( $val ) );
 	}
 
 	/**

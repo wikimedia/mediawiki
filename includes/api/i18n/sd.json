@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mehtab ahmed",
+			"Aursani"
+		]
+	},
+	"apihelp-query+allrevisions-description": "سمورن ڀيرن جي فهرست پيش ڪريو.",
+	"apihelp-query+watchlist-param-type": "ڪهڙن قسمن جون تبديليون ڏيکارجن:",
+	"apihelp-query+watchlist-paramvalue-type-edit": "قاعديوار صفحاتي ترميمون.",
+	"apihelp-query+watchlist-paramvalue-type-external": "خارجي تبديليون.",
+	"apihelp-query+watchlist-paramvalue-type-new": "صفحن جون تخليقون.",
+	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون."
+}

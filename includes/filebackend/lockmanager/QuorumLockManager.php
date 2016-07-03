@@ -30,23 +30,23 @@
  */
 abstract class QuorumLockManager extends LockManager {
 	/** @var array Map of bucket indexes to peer server lists */
-	protected $srvsByBucket = array(); // (bucket index => (lsrv1, lsrv2, ...))
+	protected $srvsByBucket = []; // (bucket index => (lsrv1, lsrv2, ...))
 
 	/** @var array Map of degraded buckets */
-	protected $degradedBuckets = array(); // (buckey index => UNIX timestamp)
+	protected $degradedBuckets = []; // (buckey index => UNIX timestamp)
 
 	final protected function doLock( array $paths, $type ) {
-		return $this->doLockByType( array( $type => $paths ) );
+		return $this->doLockByType( [ $type => $paths ] );
 	}
 
 	final protected function doUnlock( array $paths, $type ) {
-		return $this->doUnlockByType( array( $type => $paths ) );
+		return $this->doUnlockByType( [ $type => $paths ] );
 	}
 
 	protected function doLockByType( array $pathsByType ) {
 		$status = Status::newGood();
 
-		$pathsToLock = array(); // (bucket => type => paths)
+		$pathsToLock = []; // (bucket => type => paths)
 		// Get locks that need to be acquired (buckets => locks)...
 		foreach ( $pathsByType as $type => $paths ) {
 			foreach ( $paths as $path ) {
@@ -59,7 +59,7 @@ abstract class QuorumLockManager extends LockManager {
 			}
 		}
 
-		$lockedPaths = array(); // files locked in this attempt (type => paths)
+		$lockedPaths = []; // files locked in this attempt (type => paths)
 		// Attempt to acquire these locks...
 		foreach ( $pathsToLock as $bucket => $pathsToLockByType ) {
 			// Try to acquire the locks for this bucket
@@ -85,7 +85,7 @@ abstract class QuorumLockManager extends LockManager {
 	protected function doUnlockByType( array $pathsByType ) {
 		$status = Status::newGood();
 
-		$pathsToUnlock = array(); // (bucket => type => paths)
+		$pathsToUnlock = []; // (bucket => type => paths)
 		foreach ( $pathsByType as $type => $paths ) {
 			foreach ( $paths as $path ) {
 				if ( !isset( $this->locksHeld[$path][$type] ) ) {
@@ -112,7 +112,7 @@ abstract class QuorumLockManager extends LockManager {
 		}
 		if ( !count( $this->locksHeld ) ) {
 			$status->merge( $this->releaseAllLocks() );
-			$this->degradedBuckets = array(); // safe to retry the normal quorum
+			$this->degradedBuckets = []; // safe to retry the normal quorum
 		}
 
 		return $status;

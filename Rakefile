@@ -8,6 +8,12 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.options = ['-c', '.rubocop.yml']
 end
 
+<<<<<<< HEAD
+=======
+require 'mediawiki_selenium/rake_task'
+MediawikiSelenium::RakeTask.new(site_tag: false)
+
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 task default: [:test]
 
 desc 'Run all build/tests commands (CI entry point)'

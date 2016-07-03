@@ -64,11 +64,11 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function dataIsSupportedFormat() {
-		return array(
-			array( null, true ),
-			array( CONTENT_FORMAT_WIKITEXT, true ),
-			array( 99887766, false ),
-		);
+		return [
+			[ null, true ],
+			[ CONTENT_FORMAT_WIKITEXT, true ],
+			[ 99887766, false ],
+		];
 	}
 
 	/**
@@ -91,20 +91,20 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideMakeRedirectContent() {
-		return array(
-			array( 'Hello', '#REDIRECT [[Hello]]' ),
-			array( 'Template:Hello', '#REDIRECT [[Template:Hello]]' ),
-			array( 'Hello#section', '#REDIRECT [[Hello#section]]' ),
-			array( 'user:john_doe#section', '#REDIRECT [[User:John doe#section]]' ),
-			array( 'MEDIAWIKI:FOOBAR', '#REDIRECT [[MediaWiki:FOOBAR]]' ),
-			array( 'Category:Foo', '#REDIRECT [[:Category:Foo]]' ),
-			array( Title::makeTitle( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ),
-			array( Title::makeTitle( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ),
-			array(
+		return [
+			[ 'Hello', '#REDIRECT [[Hello]]' ],
+			[ 'Template:Hello', '#REDIRECT [[Template:Hello]]' ],
+			[ 'Hello#section', '#REDIRECT [[Hello#section]]' ],
+			[ 'user:john_doe#section', '#REDIRECT [[User:John doe#section]]' ],
+			[ 'MEDIAWIKI:FOOBAR', '#REDIRECT [[MediaWiki:FOOBAR]]' ],
+			[ 'Category:Foo', '#REDIRECT [[:Category:Foo]]' ],
+			[ Title::makeTitle( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ],
+			[ Title::makeTitle( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ],
+			[
 				Title::makeTitle( NS_MAIN, 'Bar', 'fragment', 'google' ),
 				'#REDIRECT [[google:Bar#fragment]]'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -121,8 +121,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function dataMerge3() {
-		return array(
-			array(
+		return [
+			[
 				"first paragraph
 
 					second paragraph\n",
@@ -138,9 +138,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				"FIRST paragraph
 
 					SECOND paragraph\n",
-			),
+			],
 
-			array( "first paragraph
+			[ "first paragraph
 					second paragraph\n",
 
 				"Bla bla\n",
@@ -148,8 +148,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				"Blubberdibla\n",
 
 				false,
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -157,7 +157,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::merge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
-		$this->checkHasDiff3();
+		$this->markTestSkippedIfNoDiff3();
 
 		// test merge
 		$oldContent = new WikitextContent( $old );
@@ -170,29 +170,29 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function dataGetAutosummary() {
-		return array(
-			array(
+		return [
+			[
 				'Hello there, world!',
 				'#REDIRECT [[Foo]]',
 				0,
 				'/^Redirected page .*Foo/'
-			),
+			],
 
-			array(
+			[
 				null,
 				'Hello world!',
 				EDIT_NEW,
 				'/^Created page .*Hello/'
-			),
+			],
 
-			array(
+			[
 				'Hello there, world!',
 				'',
 				0,
 				'/^Blanked/'
-			),
+			],
 
-			array(
+			[
 				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
 				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
 				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -200,15 +200,15 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				'Hello world!',
 				0,
 				'/^Replaced .*Hello/'
-			),
+			],
 
-			array(
+			[
 				'foo',
 				'bar',
 				0,
 				'/^$/'
-			),
-		);
+			],
+		];
 	}
 
 	/**

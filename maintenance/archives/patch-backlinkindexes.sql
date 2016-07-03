@@ -1,7 +1,7 @@
 --
 -- patch-backlinkindexes.sql
 --
--- Per bug 6440 / http://bugzilla.wikimedia.org/show_bug.cgi?id=6440
+-- Per task T8440 / https://phabricator.wikimedia.org/T8440
 --
 -- Improve performance of the "what links here"-type queries
 --

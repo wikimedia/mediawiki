@@ -143,10 +143,10 @@ abstract class FileBackend {
 		}
 		$this->lockManager = isset( $config['lockManager'] )
 			? $config['lockManager']
-			: new NullLockManager( array() );
+			: new NullLockManager( [] );
 		$this->fileJournal = isset( $config['fileJournal'] )
 			? $config['fileJournal']
-			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
+			: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -237,6 +237,8 @@ abstract class FileBackend {
 	 *  - describe (since 1.21)
 	 *  - null
 	 *
+	 * FSFile/TempFSFile object support was added in 1.27.
+	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
 	 *     array(
@@ -253,7 +255,7 @@ abstract class FileBackend {
 	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
-	 *         'src'                 => <file system path>,
+	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
@@ -365,23 +367,22 @@ abstract class FileBackend {
 	 * @param array $opts Batch operation options
 	 * @return Status
 	 */
-	final public function doOperations( array $ops, array $opts = array() ) {
+	final public function doOperations( array $ops, array $opts = [] ) {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( !count( $ops ) ) {
 			return Status::newGood(); // nothing to do
 		}
+
+		$ops = $this->resolveFSFileObjects( $ops );
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 		}
-		foreach ( $ops as &$op ) {
-			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
-				$op['headers']['Content-Disposition'] = $op['disposition'];
-			}
-		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
+
 		return $this->doOperationsInternal( $ops, $opts );
 	}
 
@@ -403,8 +404,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function doOperation( array $op, array $opts = array() ) {
-		return $this->doOperations( array( $op ), $opts );
+	final public function doOperation( array $op, array $opts = [] ) {
+		return $this->doOperations( [ $op ], $opts );
 	}
 
 	/**
@@ -417,8 +418,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function create( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'create' ) + $params, $opts );
+	final public function create( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'create' ] + $params, $opts );
 	}
 
 	/**
@@ -431,8 +432,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function store( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'store' ) + $params, $opts );
+	final public function store( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'store' ] + $params, $opts );
 	}
 
 	/**
@@ -445,8 +446,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function copy( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'copy' ) + $params, $opts );
+	final public function copy( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'copy' ] + $params, $opts );
 	}
 
 	/**
@@ -459,8 +460,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function move( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'move' ) + $params, $opts );
+	final public function move( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'move' ] + $params, $opts );
 	}
 
 	/**
@@ -473,8 +474,8 @@ abstract class FileBackend {
 	 * @param array $opts Operation options
 	 * @return Status
 	 */
-	final public function delete( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'delete' ) + $params, $opts );
+	final public function delete( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'delete' ] + $params, $opts );
 	}
 
 	/**
@@ -488,8 +489,8 @@ abstract class FileBackend {
 	 * @return Status
 	 * @since 1.21
 	 */
-	final public function describe( array $params, array $opts = array() ) {
-		return $this->doOperation( array( 'op' => 'describe' ) + $params, $opts );
+	final public function describe( array $params, array $opts = [] ) {
+		return $this->doOperation( [ 'op' => 'describe' ] + $params, $opts );
 	}
 
 	/**
@@ -508,6 +509,8 @@ abstract class FileBackend {
 	 *  - describe (since 1.21)
 	 *  - null
 	 *
+	 * FSFile/TempFSFile object support was added in 1.27.
+	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
 	 *     array(
@@ -522,7 +525,7 @@ abstract class FileBackend {
 	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
-	 *         'src'                 => <file system path>,
+	 *         'src'                 => <file system path, FSFile, or TempFSFile>,
 	 *         'dst'                 => <storage path>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
@@ -602,21 +605,22 @@ abstract class FileBackend {
 	 * @return Status
 	 * @since 1.20
 	 */
-	final public function doQuickOperations( array $ops, array $opts = array() ) {
+	final public function doQuickOperations( array $ops, array $opts = [] ) {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( !count( $ops ) ) {
 			return Status::newGood(); // nothing to do
 		}
+
+		$ops = $this->resolveFSFileObjects( $ops );
 		foreach ( $ops as &$op ) {
 			$op['overwrite'] = true; // avoids RTTs in key/value stores
-			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
-				$op['headers']['Content-Disposition'] = $op['disposition'];
-			}
 		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
+
 		return $this->doQuickOperationsInternal( $ops );
 	}
 
@@ -638,7 +642,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function doQuickOperation( array $op ) {
-		return $this->doQuickOperations( array( $op ) );
+		return $this->doQuickOperations( [ $op ] );
 	}
 
 	/**
@@ -652,7 +656,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function quickCreate( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'create' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'create' ] + $params );
 	}
 
 	/**
@@ -666,7 +670,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function quickStore( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'store' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'store' ] + $params );
 	}
 
 	/**
@@ -680,7 +684,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function quickCopy( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'copy' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'copy' ] + $params );
 	}
 
 	/**
@@ -694,7 +698,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function quickMove( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'move' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'move' ] + $params );
 	}
 
 	/**
@@ -708,7 +712,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function quickDelete( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'delete' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'delete' ] + $params );
 	}
 
 	/**
@@ -722,7 +726,7 @@ abstract class FileBackend {
 	 * @since 1.21
 	 */
 	final public function quickDescribe( array $params ) {
-		return $this->doQuickOperation( array( 'op' => 'describe' ) + $params );
+		return $this->doQuickOperation( [ 'op' => 'describe' ] + $params );
 	}
 
 	/**
@@ -912,7 +916,7 @@ abstract class FileBackend {
 	 */
 	final public function getFileContents( array $params ) {
 		$contents = $this->getFileContentsMulti(
-			array( 'srcs' => array( $params['src'] ) ) + $params );
+			[ 'srcs' => [ $params['src'] ] ] + $params );
 
 		return $contents[$params['src']];
 	}
@@ -1034,7 +1038,7 @@ abstract class FileBackend {
 	 */
 	final public function getLocalReference( array $params ) {
 		$fsFiles = $this->getLocalReferenceMulti(
-			array( 'srcs' => array( $params['src'] ) ) + $params );
+			[ 'srcs' => [ $params['src'] ] ] + $params );
 
 		return $fsFiles[$params['src']];
 	}
@@ -1067,7 +1071,7 @@ abstract class FileBackend {
 	 */
 	final public function getLocalCopy( array $params ) {
 		$tmpFiles = $this->getLocalCopyMulti(
-			array( 'srcs' => array( $params['src'] ) ) + $params );
+			[ 'srcs' => [ $params['src'] ] ] + $params );
 
 		return $tmpFiles[$params['src']];
 	}
@@ -1154,7 +1158,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function getTopDirectoryList( array $params ) {
-		return $this->getDirectoryList( array( 'topOnly' => true ) + $params );
+		return $this->getDirectoryList( [ 'topOnly' => true ] + $params );
 	}
 
 	/**
@@ -1192,7 +1196,7 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public function getTopFileList( array $params ) {
-		return $this->getFileList( array( 'topOnly' => true ) + $params );
+		return $this->getFileList( [ 'topOnly' => true ] + $params );
 	}
 
 	/**
@@ -1339,6 +1343,28 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Convert FSFile 'src' paths to string paths (with an 'srcRef' field set to the FSFile)
+	 *
+	 * The 'srcRef' field keeps any TempFSFile objects in scope for the backend to have it
+	 * around as long it needs (which may vary greatly depending on configuration)
+	 *
+	 * @param array $ops File operation batch for FileBaclend::doOperations()
+	 * @return array File operation batch
+	 */
+	protected function resolveFSFileObjects( array $ops ) {
+		foreach ( $ops as &$op ) {
+			$src = isset( $op['src'] ) ? $op['src'] : null;
+			if ( $src instanceof FSFile ) {
+				$op['srcRef'] = $src;
+				$op['src'] = $src->getPath();
+			}
+		}
+		unset( $op );
+
+		return $ops;
+	}
+
+	/**
 	 * Check if a given path is a "mwstore://" path.
 	 * This does not do any further validation or any existence checks.
 	 *
@@ -1365,12 +1391,12 @@ abstract class FileBackend {
 				if ( count( $parts ) == 3 ) {
 					return $parts; // e.g. "backend/container/path"
 				} else {
-					return array( $parts[0], $parts[1], '' ); // e.g. "backend/container"
+					return [ $parts[0], $parts[1], '' ]; // e.g. "backend/container"
 				}
 			}
 		}
 
-		return array( null, null, null );
+		return [ null, null, null ];
 	}
 
 	/**
@@ -1450,10 +1476,10 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	final public static function makeContentDisposition( $type, $filename = '' ) {
-		$parts = array();
+		$parts = [];
 
 		$type = strtolower( $type );
-		if ( !in_array( $type, array( 'inline', 'attachment' ) ) ) {
+		if ( !in_array( $type, [ 'inline', 'attachment' ] ) ) {
 			throw new FileBackendError( "Invalid Content-Disposition type '$type'." );
 		}
 		$parts[] = $type;

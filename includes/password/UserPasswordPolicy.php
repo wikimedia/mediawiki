@@ -147,7 +147,7 @@ class UserPasswordPolicy {
 			);
 		}
 
-		Hooks::run( 'PasswordPoliciesForUser', array( $user, &$effectivePolicy, $purpose ) );
+		Hooks::run( 'PasswordPoliciesForUser', [ $user, &$effectivePolicy, $purpose ] );
 
 		return $effectivePolicy;
 	}
@@ -184,7 +184,7 @@ class UserPasswordPolicy {
 	 * @return array containing the more restrictive values of $p1 and $p2
 	 */
 	public static function maxOfPolicies( array $p1, array $p2 ) {
-		$ret = array();
+		$ret = [];
 		$keys = array_merge( array_keys( $p1 ), array_keys( $p2 ) );
 		foreach ( $keys as $key ) {
 			if ( !isset( $p1[$key] ) ) {

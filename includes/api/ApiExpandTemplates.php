@@ -47,7 +47,7 @@ class ApiExpandTemplates extends ApiBase {
 				'legacy format has been used for the output. This format is deprecated, and in ' .
 				'the future, a default value will be set for the prop parameter, causing the new' .
 				'format to always be used.' );
-			$prop = array();
+			$prop = [];
 		} else {
 			$prop = array_flip( $params['prop'] );
 		}
@@ -63,7 +63,7 @@ class ApiExpandTemplates extends ApiBase {
 		} else {
 			$title_obj = Title::newFromText( $params['title'] );
 			if ( !$title_obj || $title_obj->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
 			}
 		}
 
@@ -77,16 +77,12 @@ class ApiExpandTemplates extends ApiBase {
 			$options->setRemoveComments( false );
 		}
 
-		$retval = array();
+		$retval = [];
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
-			if ( !isset( $prop['parsetree'] ) ) {
-				$this->logFeatureUsage( 'action=expandtemplates&generatexml' );
-			}
-
 			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
-			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+			if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 				$xml = $dom->saveXML();
 			} else {
 				$xml = $dom->__toString();
@@ -97,7 +93,7 @@ class ApiExpandTemplates extends ApiBase {
 			} else {
 				// the old way
 				$result->addValue( null, 'parsetree', $xml );
-				$result->addValue( null, ApiResult::META_BC_SUBELEMENTS, array( 'parsetree' ) );
+				$result->addValue( null, ApiResult::META_BC_SUBELEMENTS, [ 'parsetree' ] );
 			}
 		}
 
@@ -115,11 +111,11 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['categories'] ) ) {
 					$categories = $p_output->getCategories();
 					if ( $categories ) {
-						$categories_result = array();
+						$categories_result = [];
 						foreach ( $categories as $category => $sortkey ) {
-							$entry = array();
+							$entry = [];
 							$entry['sortkey'] = $sortkey;
-							ApiResult::setContentValue( $entry, 'category', $category );
+							ApiResult::setContentValue( $entry, 'category', (string)$category );
 							$categories_result[] = $entry;
 						}
 						ApiResult::setIndexedTagName( $categories_result, 'category' );
@@ -162,28 +158,28 @@ class ApiExpandTemplates extends ApiBase {
 					!isset( $prop['jsconfigvars'] ) && !isset( $prop['encodedjsconfigvars'] ) ) {
 					$this->setWarning( "Property 'modules' was set but not 'jsconfigvars' " .
 						"or 'encodedjsconfigvars'. Configuration variables are necessary " .
-						"for proper module usage." );
+						'for proper module usage.' );
 				}
 			}
 		}
-		ApiResult::setSubelementsList( $retval, array( 'wikitext', 'parsetree' ) );
+		ApiResult::setSubelementsList( $retval, [ 'wikitext', 'parsetree' ] );
 		$result->addValue( null, $this->getModuleName(), $retval );
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'title' => array(
+		return [
+			'title' => [
 				ApiBase::PARAM_DFLT => 'API',
-			),
-			'text' => array(
+			],
+			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'revid' => array(
+			],
+			'revid' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'prop' => array(
-				ApiBase::PARAM_TYPE => array(
+			],
+			'prop' => [
+				ApiBase::PARAM_TYPE => [
 					'wikitext',
 					'categories',
 					'properties',
@@ -193,23 +189,23 @@ class ApiExpandTemplates extends ApiBase {
 					'jsconfigvars',
 					'encodedjsconfigvars',
 					'parsetree',
-				),
+				],
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
 			'includecomments' => false,
-			'generatexml' => array(
+			'generatexml' => [
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DEPRECATED => true,
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=expandtemplates&text={{Project:Sandbox}}'
 				=> 'apihelp-expandtemplates-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

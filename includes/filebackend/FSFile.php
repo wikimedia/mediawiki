@@ -98,9 +98,22 @@ class FSFile {
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - size (filesize in bytes)
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *   - file-mime
+	 *   - major_mime
+	 *   - minor_mime
+	 *
 	 * @param string|bool $ext The file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
-	 *
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
@@ -131,7 +144,7 @@ class FSFile {
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)array(); // XXX (hack for File object)
+				$tempImage = (object)[]; // XXX (hack for File object)
 				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
 				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
@@ -151,10 +164,20 @@ class FSFile {
 	/**
 	 * Placeholder file properties to use for files that don't exist
 	 *
+	 * Resulting array fields include:
+	 *   - fileExists
+	 *   - mime (as major/minor)
+	 *   - media_type (value to be used with the MEDIATYPE_xxx constants)
+	 *   - metadata (handler specific)
+	 *   - sha1 (in base 36)
+	 *   - width
+	 *   - height
+	 *   - bits (bitrate)
+	 *
 	 * @return array
 	 */
 	public static function placeholderProps() {
-		$info = array();
+		$info = [];
 		$info['fileExists'] = false;
 		$info['mime'] = null;
 		$info['media_type'] = MEDIATYPE_UNKNOWN;
@@ -174,7 +197,7 @@ class FSFile {
 	 * @return array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {
-		$info = array();
+		$info = [];
 		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
 		$info['width'] = $gis[0];
 		$info['height'] = $gis[1];
@@ -198,7 +221,6 @@ class FSFile {
 	 * @return bool|string False on failure
 	 */
 	public function getSha1Base36( $recache = false ) {
-
 		if ( $this->sha1Base36 !== null && !$recache ) {
 			return $this->sha1Base36;
 		}
@@ -208,7 +230,7 @@ class FSFile {
 		MediaWiki\restoreWarnings();
 
 		if ( $this->sha1Base36 !== false ) {
-			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
+			$this->sha1Base36 = Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );
 		}
 
 		return $this->sha1Base36;

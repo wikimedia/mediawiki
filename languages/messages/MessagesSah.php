@@ -18,7 +18,7 @@
 
 $fallback = 'ru';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Аналлаах',
 	NS_TALK             => 'Ырытыы',
 	NS_USER             => 'Кыттааччы',
@@ -32,13 +32,13 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Көмө_ырытыыта',
 	NS_CATEGORY         => 'Категория',
 	NS_CATEGORY_TALK    => 'Категория_ырытыыта',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Ойуу' => NS_FILE,
 	'Ойуу_ырытыыта' => NS_FILE_TALK,
-);
+];
 
 // Remove Russian aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

@@ -36,7 +36,7 @@ class PhpXmlBugTester {
 		$xml = '<a>' . htmlspecialchars( $charData ) . '</a>';
 
 		$parser = xml_parser_create();
-		xml_set_character_data_handler( $parser, array( $this, 'chardata' ) );
+		xml_set_character_data_handler( $parser, [ $this, 'chardata' ] );
 		$parsedOk = xml_parse( $parser, $xml, true );
 		$this->ok = $parsedOk && ( $this->parsedData == $charData );
 	}

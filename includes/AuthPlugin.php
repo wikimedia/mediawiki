@@ -32,6 +32,8 @@
  * accounts authenticate externally, or use it only as a fallback; also
  * you can transparently create internal wiki accounts the first time
  * someone logs in who can be authenticated externally.
+ *
+ * @deprecated since 1.27
  */
 class AuthPlugin {
 	/**
@@ -157,11 +159,11 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowPropChange( $prop = '' ) {
-		if ( $prop == 'realname' && is_callable( array( $this, 'allowRealNameChange' ) ) ) {
+		if ( $prop == 'realname' && is_callable( [ $this, 'allowRealNameChange' ] ) ) {
 			return $this->allowRealNameChange();
-		} elseif ( $prop == 'emailaddress' && is_callable( array( $this, 'allowEmailChange' ) ) ) {
+		} elseif ( $prop == 'emailaddress' && is_callable( [ $this, 'allowEmailChange' ] ) ) {
 			return $this->allowEmailChange();
-		} elseif ( $prop == 'nickname' && is_callable( array( $this, 'allowNickChange' ) ) ) {
+		} elseif ( $prop == 'nickname' && is_callable( [ $this, 'allowNickChange' ] ) ) {
 			return $this->allowNickChange();
 		} else {
 			return true;
@@ -224,7 +226,7 @@ class AuthPlugin {
 	 * @param array $delgroups Groups to remove.
 	 * @return bool
 	 */
-	public function updateExternalDBGroups( $user, $addgroups, $delgroups = array() ) {
+	public function updateExternalDBGroups( $user, $addgroups, $delgroups = [] ) {
 		return true;
 	}
 
@@ -318,10 +320,13 @@ class AuthPlugin {
 	 * @return array
 	 */
 	public function domainList() {
-		return array();
+		return [];
 	}
 }
 
+/**
+ * @deprecated since 1.27
+ */
 class AuthPluginUser {
 	function __construct( $user ) {
 		# Override this!
@@ -352,6 +357,9 @@ class AuthPluginUser {
 		return false;
 	}
 
+	/**
+	 * @deprecated since 1.28, use SessionManager::invalidateSessionForUser() instead.
+	 */
 	public function resetAuthToken() {
 		# Override this!
 		return true;

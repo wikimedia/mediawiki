@@ -21,9 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-require_once __DIR__ . '/LanguageZh.php';
-
 /**
  * @ingroup Language
  */
@@ -37,10 +34,10 @@ class GanConverter extends LanguageConverter {
 	 * @param array $manualLevel
 	 */
 	function __construct( $langobj, $maincode,
-		$variants = array(),
-		$variantfallbacks = array(),
-		$flags = array(),
-		$manualLevel = array() ) {
+		$variants = [],
+		$variantfallbacks = [],
+		$flags = [],
+		$manualLevel = [] ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 		parent::__construct( $langobj, $maincode,
@@ -48,21 +45,20 @@ class GanConverter extends LanguageConverter {
 			$variantfallbacks,
 			$flags,
 			$manualLevel );
-		$names = array(
+		$names = [
 			'gan' => '原文',
 			'gan-hans' => '简体',
 			'gan-hant' => '繁體',
-		);
+		];
 		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
 	function loadDefaultTables() {
-		require __DIR__ . '/../../includes/ZhConversion.php';
-		$this->mTables = array(
-			'gan-hans' => new ReplacementArray( $zh2Hans ),
-			'gan-hant' => new ReplacementArray( $zh2Hant ),
+		$this->mTables = [
+			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
+			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
 			'gan' => new ReplacementArray
-		);
+		];
 	}
 
 	/**
@@ -82,25 +78,22 @@ class GanConverter extends LanguageConverter {
  */
 class LanguageGan extends LanguageZh {
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
-		$variants = array( 'gan', 'gan-hans', 'gan-hant' );
-		$variantfallbacks = array(
-			'gan' => array( 'gan-hans', 'gan-hant' ),
-			'gan-hans' => array( 'gan' ),
-			'gan-hant' => array( 'gan' ),
-		);
-		$ml = array(
+		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
+		$variantfallbacks = [
+			'gan' => [ 'gan-hans', 'gan-hant' ],
+			'gan-hans' => [ 'gan' ],
+			'gan-hant' => [ 'gan' ],
+		];
+		$ml = [
 			'gan' => 'disable',
-		);
+		];
 
 		$this->mConverter = new GanConverter( $this, 'gan',
 			$variants, $variantfallbacks,
-			array(),
+			[],
 			$ml );
-
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

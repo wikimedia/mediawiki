@@ -43,25 +43,25 @@ class MostcategoriesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'categorylinks', 'page' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'categorylinks', 'page' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'COUNT(*)'
-			),
-			'conds' => array( 'page_namespace' => MWNamespace::getContentNamespaces() ),
-			'options' => array(
+			],
+			'conds' => [ 'page_namespace' => MWNamespace::getContentNamespaces() ],
+			'options' => [
 				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => array( 'page_namespace', 'page_title' )
-			),
-			'join_conds' => array(
-				'page' => array(
+				'GROUP BY' => [ 'page_namespace', 'page_title' ]
+			],
+			'join_conds' => [
+				'page' => [
 					'LEFT JOIN',
 					'page_id = cl_from'
-				)
-			)
-		);
+				]
+			]
+		];
 	}
 
 	/**
@@ -94,7 +94,7 @@ class MostcategoriesPage extends QueryPage {
 		if ( !$title ) {
 			return Html::element(
 				'span',
-				array( 'class' => 'mw-invalidtitle' ),
+				[ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription(
 					$this->getContext(),
 					$result->namespace,

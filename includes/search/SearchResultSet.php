@@ -25,6 +25,21 @@
  * @ingroup Search
  */
 class SearchResultSet {
+
+	/**
+	 * Types of interwiki results
+	 */
+	/**
+	 * Results that are displayed only together with existing main wiki results
+	 * @var int
+	 */
+	const SECONDARY_RESULTS = 0;
+	/**
+	 * Results that can displayed even if no existing main wiki results exist
+	 * @var int
+	 */
+	const INLINE_RESULTS = 1;
+
 	protected $containedSyntax = false;
 
 	public function __construct( $containedSyntax = false ) {
@@ -39,7 +54,7 @@ class SearchResultSet {
 	 * @return array
 	 */
 	function termMatches() {
-		return array();
+		return [];
 	}
 
 	function numRows() {
@@ -98,7 +113,7 @@ class SearchResultSet {
 	}
 
 	/**
-	 * @return string Suggested query, null if none
+	 * @return string|null Suggested query, null if none
 	 */
 	function getSuggestionQuery() {
 		return null;
@@ -114,9 +129,9 @@ class SearchResultSet {
 	/**
 	 * Return a result set of hits on other (multiple) wikis associated with this one
 	 *
-	 * @return SearchResultSet
+	 * @return SearchResultSet[]
 	 */
-	function getInterwikiResults() {
+	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return null;
 	}
 
@@ -125,8 +140,8 @@ class SearchResultSet {
 	 *
 	 * @return bool
 	 */
-	function hasInterwikiResults() {
-		return $this->getInterwikiResults() != null;
+	function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
+		return false;
 	}
 
 	/**
@@ -137,6 +152,12 @@ class SearchResultSet {
 	 */
 	function next() {
 		return false;
+	}
+
+	/**
+	 * Rewind result set back to begining
+	 */
+	function rewind() {
 	}
 
 	/**
@@ -154,91 +175,5 @@ class SearchResultSet {
 	 */
 	public function searchContainedSyntax() {
 		return $this->containedSyntax;
-	}
-}
-
-/**
- * This class is used for different SQL-based search engines shipped with MediaWiki
- * @ingroup Search
- */
-class SqlSearchResultSet extends SearchResultSet {
-	protected $resultSet;
-	protected $terms;
-	protected $totalHits;
-
-	function __construct( $resultSet, $terms, $total = null ) {
-		$this->resultSet = $resultSet;
-		$this->terms = $terms;
-		$this->totalHits = $total;
-	}
-
-	function termMatches() {
-		return $this->terms;
-	}
-
-	function numRows() {
-		if ( $this->resultSet === false ) {
-			return false;
-		}
-
-		return $this->resultSet->numRows();
-	}
-
-	function next() {
-		if ( $this->resultSet === false ) {
-			return false;
-		}
-
-		$row = $this->resultSet->fetchObject();
-		if ( $row === false ) {
-			return false;
-		}
-
-		return SearchResult::newFromTitle(
-			Title::makeTitle( $row->page_namespace, $row->page_title )
-		);
-	}
-
-	function free() {
-		if ( $this->resultSet === false ) {
-			return false;
-		}
-
-		$this->resultSet->free();
-	}
-
-	function getTotalHits() {
-		if ( !is_null( $this->totalHits ) ) {
-			return $this->totalHits;
-		} else {
-			// Special:Search expects a number here.
-			return $this->numRows();
-		}
-	}
-}
-
-/**
- * A SearchResultSet wrapper for SearchEngine::getNearMatch
- */
-class SearchNearMatchResultSet extends SearchResultSet {
-	private $fetched = false;
-
-	/**
-	 * @param Title|null $match Title if matched, else null
-	 */
-	public function __construct( $match ) {
-		$this->result = $match;
-	}
-
-	public function numRows() {
-		return $this->result ? 1 : 0;
-	}
-
-	public function next() {
-		if ( $this->fetched || !$this->result ) {
-			return false;
-		}
-		$this->fetched = true;
-		return SearchResult::newFromTitle( $this->result );
 	}
 }

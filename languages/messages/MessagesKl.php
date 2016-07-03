@@ -16,7 +16,7 @@
 
 $fallback = 'da';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_SPECIAL          => 'Immikkut',
 	NS_TALK             => 'Oqallinneq',
 	NS_USER             => 'Atuisoq',
@@ -32,9 +32,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Ikiuutini_oqallinneq',
 	NS_CATEGORY         => 'Sumut_atassuseq',
 	NS_CATEGORY_TALK    => 'Sumut_atassusermi_oqallinneq',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Speciel' => NS_SPECIAL,
 	'Diskussion' => NS_TALK,
 	'Bruger' => NS_USER,
@@ -53,5 +53,5 @@ $namespaceAliases = array(
 	'Hjælp-diskussion' => NS_HELP_TALK,
 	'Kategori' => NS_CATEGORY,
 	'Kategoridiskussion' => NS_CATEGORY_TALK
-);
+];
 

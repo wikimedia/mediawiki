@@ -34,21 +34,21 @@ class MWDebug {
 	 *
 	 * @var array $log
 	 */
-	protected static $log = array();
+	protected static $log = [];
 
 	/**
 	 * Debug messages from wfDebug().
 	 *
 	 * @var array $debug
 	 */
-	protected static $debug = array();
+	protected static $debug = [];
 
 	/**
 	 * SQL statements of the database queries.
 	 *
 	 * @var array $query
 	 */
-	protected static $query = array();
+	protected static $query = [];
 
 	/**
 	 * Is the debugger enabled?
@@ -63,7 +63,7 @@ class MWDebug {
 	 *
 	 * @var array $deprecationWarnings
 	 */
-	protected static $deprecationWarnings = array();
+	protected static $deprecationWarnings = [];
 
 	/**
 	 * Enabled the debugger and load resource module.
@@ -91,21 +91,21 @@ class MWDebug {
 	/**
 	 * Adds a line to the log
 	 *
-	 * @todo Add support for passing objects
-	 *
 	 * @since 1.19
-	 * @param string $str
+	 * @param mixed $str
 	 */
 	public static function log( $str ) {
 		if ( !self::$enabled ) {
 			return;
 		}
-
-		self::$log[] = array(
+		if ( !is_string( $str ) ) {
+			$str = print_r( $str, true );
+		}
+		self::$log[] = [
 			'msg' => htmlspecialchars( $str ),
 			'type' => 'log',
 			'caller' => wfGetCaller(),
-		);
+		];
 	}
 
 	/**
@@ -122,8 +122,8 @@ class MWDebug {
 	 * @since 1.19
 	 */
 	public static function clearLog() {
-		self::$log = array();
-		self::$deprecationWarnings = array();
+		self::$log = [];
+		self::$deprecationWarnings = [];
 	}
 
 	/**
@@ -155,11 +155,11 @@ class MWDebug {
 		self::sendMessage( $msg, $callerDescription, 'warning', $level );
 
 		if ( self::$enabled ) {
-			self::$log[] = array(
+			self::$log[] = [
 				'msg' => htmlspecialchars( $msg ),
 				'type' => 'warn',
 				'caller' => $callerDescription['func'],
-			);
+			];
 		}
 	}
 
@@ -235,15 +235,15 @@ class MWDebug {
 
 		if ( self::$enabled ) {
 			$logMsg = htmlspecialchars( $msg ) .
-				Html::rawElement( 'div', array( 'class' => 'mw-debug-backtrace' ),
-					Html::element( 'span', array(), 'Backtrace:' ) . wfBacktrace()
+				Html::rawElement( 'div', [ 'class' => 'mw-debug-backtrace' ],
+					Html::element( 'span', [], 'Backtrace:' ) . wfBacktrace()
 				);
 
-			self::$log[] = array(
+			self::$log[] = [
 				'msg' => $logMsg,
 				'type' => 'deprecated',
 				'caller' => $callerFunc,
-			);
+			];
 		}
 	}
 
@@ -281,7 +281,7 @@ class MWDebug {
 			$func = 'unknown';
 		}
 
-		return array( 'file' => $file, 'func' => $func );
+		return [ 'file' => $file, 'func' => $func ];
 	}
 
 	/**
@@ -300,7 +300,7 @@ class MWDebug {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebugLog( $group, $msg, 'log' );
+		wfDebugLog( $group, $msg, 'private' );
 	}
 
 	/**
@@ -311,7 +311,7 @@ class MWDebug {
 	 * @param string $str
 	 * @param array $context
 	 */
-	public static function debugMsg( $str, $context = array() ) {
+	public static function debugMsg( $str, $context = [] ) {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
@@ -368,13 +368,16 @@ class MWDebug {
 			$sql
 		);
 
-		self::$query[] = array(
+		// last check for invalid utf8
+		$sql = UtfNormal\Validator::cleanUp( $sql );
+
+		self::$query[] = [
 			'sql' => $sql,
 			'function' => $function,
 			'master' => (bool)$isMaster,
 			'time' => 0.0,
 			'_start' => microtime( true ),
-		);
+		];
 
 		return count( self::$query ) - 1;
 	}
@@ -402,13 +405,13 @@ class MWDebug {
 	 */
 	protected static function getFilesIncluded( IContextSource $context ) {
 		$files = get_included_files();
-		$fileList = array();
+		$fileList = [];
 		foreach ( $files as $file ) {
 			$size = filesize( $file );
-			$fileList[] = array(
+			$fileList[] = [
 				'name' => $file,
 				'size' => $context->getLanguage()->formatSize( $size ),
-			);
+			];
 		}
 
 		return $fileList;
@@ -433,7 +436,7 @@ class MWDebug {
 			// Cannot use OutputPage::addJsConfigVars because those are already outputted
 			// by the time this method is called.
 			$html = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] )
 			);
 		}
 
@@ -455,59 +458,21 @@ class MWDebug {
 	 * @return string HTML fragment
 	 */
 	public static function getHTMLDebugLog() {
-		global $wgDebugTimestamps, $wgShowDebug;
+		global $wgShowDebug;
 
 		if ( !$wgShowDebug ) {
 			return '';
 		}
 
-		$curIdent = 0;
-		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n<li>";
+		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n";
 
 		foreach ( self::$debug as $line ) {
-			$pre = '';
-			if ( $wgDebugTimestamps ) {
-				$matches = array();
-				if ( preg_match( '/^(\d+\.\d+ {1,3}\d+.\dM\s{2})/', $line, $matches ) ) {
-					$pre = $matches[1];
-					$line = substr( $line, strlen( $pre ) );
-				}
-			}
-			$display = ltrim( $line );
-			$ident = strlen( $line ) - strlen( $display );
-			$diff = $ident - $curIdent;
+			$display = nl2br( htmlspecialchars( trim( $line ) ) );
 
-			$display = $pre . $display;
-			if ( $display == '' ) {
-				$display = "\xc2\xa0";
-			}
-
-			if ( !$ident
-				&& $diff < 0
-				&& substr( $display, 0, 9 ) != 'Entering '
-				&& substr( $display, 0, 8 ) != 'Exiting '
-			) {
-				$ident = $curIdent;
-				$diff = 0;
-				$display = '<span style="background:yellow;">' .
-					nl2br( htmlspecialchars( $display ) ) . '</span>';
-			} else {
-				$display = nl2br( htmlspecialchars( $display ) );
-			}
-
-			if ( $diff < 0 ) {
-				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
-			} elseif ( $diff == 0 ) {
-				$ret .= "</li><li>\n";
-			} else {
-				$ret .= str_repeat( "<ul><li>\n", $diff );
-			}
-			$ret .= "<code>$display</code>\n";
-
-			$curIdent = $ident;
+			$ret .= "<li><code>$display</code></li>\n";
 		}
 
-		$ret .= str_repeat( '</li></ul>', $curIdent ) . "</li>\n</ul>\n";
+		$ret .= '</ul>' . "\n";
 
 		return $ret;
 	}
@@ -554,7 +519,7 @@ class MWDebug {
 	 */
 	public static function getDebugInfo( IContextSource $context ) {
 		if ( !self::$enabled ) {
-			return array();
+			return [];
 		}
 
 		global $wgVersion, $wgRequestTime;
@@ -566,7 +531,7 @@ class MWDebug {
 		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
 		$realMemoryUsage = wfIsHHVM();
 
-		return array(
+		return [
 			'mwVersion' => $wgVersion,
 			'phpEngine' => wfIsHHVM() ? 'HHVM' : 'PHP',
 			'phpVersion' => wfIsHHVM() ? HHVM_VERSION : PHP_VERSION,
@@ -577,15 +542,15 @@ class MWDebug {
 			'log' => self::$log,
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
-			'request' => array(
+			'request' => [
 				'method' => $request->getMethod(),
 				'url' => $request->getRequestURL(),
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
-			),
+			],
 			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
 			'includes' => self::getFilesIncluded( $context ),
-		);
+		];
 	}
 }

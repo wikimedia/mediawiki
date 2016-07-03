@@ -49,14 +49,19 @@ class SamplingStatsdClient extends StatsdClient {
 		return $data;
 	}
 
-	/**
+	/*
+	 * Send the metrics over UDP
 	 * Sample the metrics according to their sample rate and send the remaining ones.
 	 *
-	 * {@inheritDoc}
+	 * @param StatsdDataInterface|StatsdDataInterface[] $data message(s) to sent
+	 *        strings are not allowed here as sampleData requires a StatsdDataInterface
+	 * @param int $sampleRate
+	 *
+	 * @return integer the data sent in bytes
 	 */
 	public function send( $data, $sampleRate = 1 ) {
 		if ( !is_array( $data ) ) {
-			$data = array( $data );
+			$data = [ $data ];
 		}
 		if ( !$data ) {
 			return;
@@ -74,20 +79,21 @@ class SamplingStatsdClient extends StatsdClient {
 		}
 		$data = $this->sampleData( $data );
 
-		$messages = array_map( 'strval', $data );
+		$data = array_map( 'strval', $data );
 
 		// reduce number of packets
 		if ( $this->getReducePacket() ) {
 			$data = $this->reduceCount( $data );
 		}
-		//failures in any of this should be silently ignored if ..
+
+		// failures in any of this should be silently ignored if ..
 		$written = 0;
 		try {
 			$fp = $this->getSender()->open();
 			if ( !$fp ) {
 				return;
 			}
-			foreach ( $messages as $message ) {
+			foreach ( $data as $message ) {
 				$written += $this->getSender()->write( $fp, $message );
 			}
 			$this->getSender()->close( $fp );
@@ -101,11 +107,11 @@ class SamplingStatsdClient extends StatsdClient {
 	/**
 	 * Throw away some of the data according to the sample rate.
 	 * @param StatsdDataInterface[] $data
-	 * @return array
+	 * @return StatsdDataInterface[]
 	 * @throws LogicException
 	 */
 	protected function sampleData( $data ) {
-		$newData = array();
+		$newData = [];
 		$mt_rand_max = mt_getrandmax();
 		foreach ( $data as $item ) {
 			$samplingRate = $item->getSampleRate();

@@ -1,0 +1,74 @@
+@import "mediawiki.widgets.datetime.definitions";
+
+.mw-widgets-datetime-calendarWidget {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	padding: .5em;
+
+	&.mw-widgets-datetime-calendarWidget-dependent {
+		display: block;
+		position: absolute;
+		z-index: 4;
+	}
+
+	&-grid {
+		table-layout: fixed;
+
+		.mw-widgets-datetime-calendarWidget-cell {
+			display: table-cell;
+			white-space: nowrap;
+		}
+	}
+
+	background-color: white;
+	border: 1px solid #ccc;
+
+	&.mw-widgets-datetime-calendarWidget-dependent {
+		margin-top: -1px;
+		border-top: 1px solid white;
+	}
+
+	&-heading {
+		text-align: center;
+		vertical-align: middle;
+		font-weight: bold;
+		white-space: nowrap;
+
+		.mw-widgets-datetime-calendarWidget-previous {
+			float: left;
+		}
+		.mw-widgets-datetime-calendarWidget-next {
+			float: right;
+		}
+	}
+
+	&-grid {
+		margin: 0 auto;
+
+		.mw-widgets-datetime-calendarWidget-cell {
+			text-align: center;
+
+			.oo-ui-buttonElement-button {
+				width: 100%;
+				border: 1px dotted rgba(255,255,255,0.0);
+				.oo-ui-box-sizing( border-box );
+			}
+
+			&.mw-widgets-datetime-calendarWidget-extra .oo-ui-buttonElement-button .oo-ui-labelElement-label {
+				color: #bbb;
+			}
+
+			&.mw-widgets-datetime-calendarWidget-selected .oo-ui-buttonElement-button {
+				background-color: #def;
+				.oo-ui-labelElement-label {
+					color: #38f;
+				}
+			}
+		}
+	}
+
+	&:focus &-grid &-cell&-focused .oo-ui-buttonElement-button {
+		border-color: rgba(0,0,0,0.3);
+	}
+}

@@ -26,33 +26,33 @@ use TestingAccessWrapper;
 class MonologSpiTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers MonologSpi::mergeConfig
+	 * @covers MediaWiki\Logger\MonologSpi::mergeConfig
 	 */
 	public function testMergeConfig() {
-		$base = array(
-			'loggers' => array(
-				'@default' => array(
-					'processors' => array( 'constructor' ),
-					'handlers' => array( 'constructor' ),
-				),
-			),
-			'processors' => array(
-				'constructor' => array(
+		$base = [
+			'loggers' => [
+				'@default' => [
+					'processors' => [ 'constructor' ],
+					'handlers' => [ 'constructor' ],
+				],
+			],
+			'processors' => [
+				'constructor' => [
 					'class' => 'constructor',
-				),
-			),
-			'handlers' => array(
-				'constructor' => array(
+				],
+			],
+			'handlers' => [
+				'constructor' => [
 					'class' => 'constructor',
 					'formatter' => 'constructor',
-				),
-			),
-			'formatters' => array(
-				'constructor' => array(
+				],
+			],
+			'formatters' => [
+				'constructor' => [
 					'class' => 'constructor',
-				),
-			),
-		);
+				],
+			],
+		];
 
 		$fixture = new MonologSpi( $base );
 		$this->assertSame(
@@ -60,75 +60,75 @@ class MonologSpiTest extends MediaWikiTestCase {
 			TestingAccessWrapper::newFromObject( $fixture )->config
 		);
 
-		$fixture->mergeConfig( array(
-			'loggers' => array(
-				'merged' => array(
-					'processors' => array( 'merged' ),
-					'handlers' => array( 'merged' ),
-				),
-			),
-			'processors' => array(
-				'merged' => array(
+		$fixture->mergeConfig( [
+			'loggers' => [
+				'merged' => [
+					'processors' => [ 'merged' ],
+					'handlers' => [ 'merged' ],
+				],
+			],
+			'processors' => [
+				'merged' => [
 					'class' => 'merged',
-				),
-			),
-			'magic' => array(
-				'idkfa' => array( 'xyzzy' ),
-			),
-			'handlers' => array(
-				'merged' => array(
+				],
+			],
+			'magic' => [
+				'idkfa' => [ 'xyzzy' ],
+			],
+			'handlers' => [
+				'merged' => [
 					'class' => 'merged',
 					'formatter' => 'merged',
-				),
-			),
-			'formatters' => array(
-				'merged' => array(
+				],
+			],
+			'formatters' => [
+				'merged' => [
 					'class' => 'merged',
-				),
-			),
-		) );
+				],
+			],
+		] );
 		$this->assertSame(
-			array(
-				'loggers' => array(
-					'@default' => array(
-						'processors' => array( 'constructor' ),
-						'handlers' => array( 'constructor' ),
-					),
-					'merged' => array(
-						'processors' => array( 'merged' ),
-						'handlers' => array( 'merged' ),
-					),
-				),
-				'processors' => array(
-					'constructor' => array(
+			[
+				'loggers' => [
+					'@default' => [
+						'processors' => [ 'constructor' ],
+						'handlers' => [ 'constructor' ],
+					],
+					'merged' => [
+						'processors' => [ 'merged' ],
+						'handlers' => [ 'merged' ],
+					],
+				],
+				'processors' => [
+					'constructor' => [
 						'class' => 'constructor',
-					),
-					'merged' => array(
+					],
+					'merged' => [
 						'class' => 'merged',
-					),
-				),
-				'handlers' => array(
-					'constructor' => array(
+					],
+				],
+				'handlers' => [
+					'constructor' => [
 						'class' => 'constructor',
 						'formatter' => 'constructor',
-					),
-					'merged' => array(
+					],
+					'merged' => [
 						'class' => 'merged',
 						'formatter' => 'merged',
-					),
-				),
-				'formatters' => array(
-					'constructor' => array(
+					],
+				],
+				'formatters' => [
+					'constructor' => [
 						'class' => 'constructor',
-					),
-					'merged' => array(
+					],
+					'merged' => [
 						'class' => 'merged',
-					),
-				),
-				'magic' => array(
-					'idkfa' => array( 'xyzzy' ),
-				),
-			),
+					],
+				],
+				'magic' => [
+					'idkfa' => [ 'xyzzy' ],
+				],
+			],
 			TestingAccessWrapper::newFromObject( $fixture )->config
 		);
 	}

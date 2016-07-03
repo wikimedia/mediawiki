@@ -27,13 +27,13 @@ class SpecialPageAliasTest extends MediaWikiTestCase {
 	public function validSpecialPageAliasesProvider() {
 		$codes = array_keys( Language::fetchLanguageNames( 'mwfile' ) );
 
-		$data = array();
+		$data = [];
 
 		foreach ( $codes as $code ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $code );
 
-			if ( $specialPageAliases !== array() ) {
-				$data[] = array( $code, $specialPageAliases );
+			if ( $specialPageAliases !== [] ) {
+				$data[] = [ $code, $specialPageAliases ];
 			}
 		}
 
@@ -56,7 +56,7 @@ class SpecialPageAliasTest extends MediaWikiTestCase {
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 }

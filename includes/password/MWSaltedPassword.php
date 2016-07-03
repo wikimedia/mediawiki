@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements the BcryptPassword class for the MediaWiki software.
+ * Implements the MWSaltedPassword class for the MediaWiki software.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
  */
 class MWSaltedPassword extends ParameterizedPassword {
 	protected function getDefaultParams() {
-		return array();
+		return [];
 	}
 
 	protected function getDelimiter() {

@@ -19,18 +19,19 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			}
 		}
 
-		$info = array(
+		$info = [
 			'globals' => $globals,
-			'callbacks' => array(),
-			'defines' => array(),
-			'credits' => array(),
-			'attributes' => array(),
-		);
+			'callbacks' => [],
+			'defines' => [],
+			'credits' => [],
+			'attributes' => [],
+			'autoloaderPaths' => []
+		];
 		$registry = new ExtensionRegistry();
 		$class = new ReflectionClass( 'ExtensionRegistry' );
 		$method = $class->getMethod( 'exportExtractedData' );
 		$method->setAccessible( true );
-		$method->invokeArgs( $registry, array( $info ) );
+		$method->invokeArgs( $registry, [ $info ] );
 		foreach ( $expected as $name => $value ) {
 			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
 			$this->assertEquals( $value, $GLOBALS[$name], $desc );
@@ -48,209 +49,209 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 
 	public static function provideExportExtractedDataGlobals() {
 		// "mwtest" prefix used instead of "$wg" to avoid potential conflicts
-		return array(
-			array(
+		return [
+			[
 				'Simple non-array values',
-				array(
+				[
 					'mwtestFooBarConfig' => true,
 					'mwtestFooBarConfig2' => 'string',
-				),
-				array(
+				],
+				[
 					'mwtestFooBarDefault' => 1234,
 					'mwtestFooBarConfig' => false,
-				),
-				array(
+				],
+				[
 					'mwtestFooBarConfig' => true,
 					'mwtestFooBarConfig2' => 'string',
 					'mwtestFooBarDefault' => 1234,
-				),
-			),
-			array(
+				],
+			],
+			[
 				'No global already set, simple array',
 				null,
-				array(
-					'mwtestDefaultOptions' => array(
+				[
+					'mwtestDefaultOptions' => [
 						'foobar' => true,
-					)
-				),
-				array(
-					'mwtestDefaultOptions' => array(
+					]
+				],
+				[
+					'mwtestDefaultOptions' => [
 						'foobar' => true,
-					)
-				),
-			),
-			array(
+					]
+				],
+			],
+			[
 				'Global already set, simple array',
-				array(
-					'mwtestDefaultOptions' => array(
+				[
+					'mwtestDefaultOptions' => [
 						'foobar' => true,
 						'foo' => 'string'
-					),
-				),
-				array(
-					'mwtestDefaultOptions' => array(
+					],
+				],
+				[
+					'mwtestDefaultOptions' => [
 						'barbaz' => 12345,
 						'foobar' => false,
-					),
-				),
-				array(
-					'mwtestDefaultOptions' => array(
+					],
+				],
+				[
+					'mwtestDefaultOptions' => [
 						'barbaz' => 12345,
 						'foo' => 'string',
 						'foobar' => true,
-					),
-				)
-			),
-			array(
+					],
+				]
+			],
+			[
 				'Global already set, 1d array that appends',
-				array(
-					'mwAvailableRights' => array(
+				[
+					'mwAvailableRights' => [
 						'foobar',
 						'foo'
-					),
-				),
-				array(
-					'mwAvailableRights' => array(
+					],
+				],
+				[
+					'mwAvailableRights' => [
 						'barbaz',
-					),
-				),
-				array(
-					'mwAvailableRights' => array(
+					],
+				],
+				[
+					'mwAvailableRights' => [
 						'barbaz',
 						'foobar',
 						'foo',
-					),
-				)
-			),
-			array(
+					],
+				]
+			],
+			[
 				'Global already set, array with integer keys',
-				array(
-					'mwNamespacesFoo' => array(
+				[
+					'mwNamespacesFoo' => [
 						100 => true,
 						102 => false
-					),
-				),
-				array(
-					'mwNamespacesFoo' => array(
+					],
+				],
+				[
+					'mwNamespacesFoo' => [
 						100 => false,
 						500 => true,
 						ExtensionRegistry::MERGE_STRATEGY => 'array_plus',
-					),
-				),
-				array(
-					'mwNamespacesFoo' => array(
+					],
+				],
+				[
+					'mwNamespacesFoo' => [
 						100 => true,
 						102 => false,
 						500 => true,
-					),
-				)
-			),
-			array(
+					],
+				]
+			],
+			[
 				'No global already set, $wgHooks',
-				array(
-					'wgHooks' => array(),
-				),
-				array(
-					'wgHooks' => array(
-						'FooBarEvent' => array(
+				[
+					'wgHooks' => [],
+				],
+				[
+					'wgHooks' => [
+						'FooBarEvent' => [
 							'FooBarClass::onFooBarEvent'
-						),
+						],
 						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive'
-					),
-				),
-				array(
-					'wgHooks' => array(
-						'FooBarEvent' => array(
+					],
+				],
+				[
+					'wgHooks' => [
+						'FooBarEvent' => [
 							'FooBarClass::onFooBarEvent'
-						),
-					),
-				),
-			),
-			array(
+						],
+					],
+				],
+			],
+			[
 				'Global already set, $wgHooks',
-				array(
-					'wgHooks' => array(
-						'FooBarEvent' => array(
+				[
+					'wgHooks' => [
+						'FooBarEvent' => [
 							'FooBarClass::onFooBarEvent'
-						),
-						'BazBarEvent' => array(
+						],
+						'BazBarEvent' => [
 							'FooBarClass::onBazBarEvent',
-						),
-					),
-				),
-				array(
-					'wgHooks' => array(
-						'FooBarEvent' => array(
+						],
+					],
+				],
+				[
+					'wgHooks' => [
+						'FooBarEvent' => [
 							'BazBarClass::onFooBarEvent',
-						),
+						],
 						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive',
-					),
-				),
-				array(
-					'wgHooks' => array(
-						'FooBarEvent' => array(
+					],
+				],
+				[
+					'wgHooks' => [
+						'FooBarEvent' => [
 							'FooBarClass::onFooBarEvent',
 							'BazBarClass::onFooBarEvent',
-						),
-						'BazBarEvent' => array(
+						],
+						'BazBarEvent' => [
 							'FooBarClass::onBazBarEvent',
-						),
-					),
-				),
-			),
-			array(
+						],
+					],
+				],
+			],
+			[
 				'Global already set, $wgGroupPermissions',
-				array(
-					'wgGroupPermissions' => array(
-						'sysop' => array(
+				[
+					'wgGroupPermissions' => [
+						'sysop' => [
 							'something' => true,
-						),
-						'user' => array(
+						],
+						'user' => [
 							'somethingtwo' => true,
-						)
-					),
-				),
-				array(
-					'wgGroupPermissions' => array(
-						'customgroup' => array(
+						]
+					],
+				],
+				[
+					'wgGroupPermissions' => [
+						'customgroup' => [
 							'right' => true,
-						),
-						'user' => array(
+						],
+						'user' => [
 							'right' => true,
 							'somethingtwo' => false,
 							'nonduplicated' => true,
-						),
+						],
 						ExtensionRegistry::MERGE_STRATEGY => 'array_plus_2d',
-					),
-				),
-				array(
-					'wgGroupPermissions' => array(
-						'customgroup' => array(
+					],
+				],
+				[
+					'wgGroupPermissions' => [
+						'customgroup' => [
 							'right' => true,
-						),
-						'sysop' => array(
+						],
+						'sysop' => [
 							'something' => true,
-						),
-						'user' => array(
+						],
+						'user' => [
 							'somethingtwo' => true,
 							'right' => true,
 							'nonduplicated' => true,
-						)
-					),
-				),
-			),
-			array(
+						]
+					],
+				],
+			],
+			[
 				'False local setting should not be overridden (T100767)',
-				array(
+				[
 					'mwtestT100767' => false,
-				),
-				array(
+				],
+				[
 					'mwtestT100767' => true,
-				),
-				array(
+				],
+				[
 					'mwtestT100767' => false,
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }

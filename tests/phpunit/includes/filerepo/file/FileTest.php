@@ -14,19 +14,19 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	function providerCanAnimate() {
-		return array(
-			array( 'nonanimated.gif', true ),
-			array( 'jpeg-comment-utf.jpg', true ),
-			array( 'test.tiff', true ),
-			array( 'Animated_PNG_example_bouncing_beach_ball.png', false ),
-			array( 'greyscale-png.png', true ),
-			array( 'Toll_Texas_1.svg', true ),
-			array( 'LoremIpsum.djvu', true ),
-			array( '80x60-2layers.xcf', true ),
-			array( 'Soccer_ball_animated.svg', false ),
-			array( 'Bishzilla_blink.gif', false ),
-			array( 'animated.gif', true ),
-		);
+		return [
+			[ 'nonanimated.gif', true ],
+			[ 'jpeg-comment-utf.jpg', true ],
+			[ 'test.tiff', true ],
+			[ 'Animated_PNG_example_bouncing_beach_ball.png', false ],
+			[ 'greyscale-png.png', true ],
+			[ 'Toll_Texas_1.svg', true ],
+			[ 'LoremIpsum.djvu', true ],
+			[ '80x60-2layers.xcf', true ],
+			[ 'Soccer_ball_animated.svg', false ],
+			[ 'Bishzilla_blink.gif', false ],
+			[ 'animated.gif', true ],
+		];
 	}
 
 	/**
@@ -38,8 +38,8 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgThumbnailMinimumBucketDistance', $data['minimumBucketDistance'] );
 
 		$fileMock = $this->getMockBuilder( 'File' )
-			->setConstructorArgs( array( 'fileMock', false ) )
-			->setMethods( array( 'getWidth' ) )
+			->setConstructorArgs( [ 'fileMock', false ] )
+			->setMethods( [ 'getWidth' ] )
 			->getMockForAbstractClass();
 
 		$fileMock->expects( $this->any() )
@@ -53,82 +53,82 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	public function getThumbnailBucketProvider() {
-		$defaultBuckets = array( 256, 512, 1024, 2048, 4096 );
+		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
-		return array(
-			array( array(
+		return [
+			[ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 120,
 				'expectedBucket' => 256,
 				'message' => 'Picking bucket bigger than requested size'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 300,
 				'expectedBucket' => 512,
 				'message' => 'Picking bucket bigger than requested size'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => 2048,
 				'message' => 'Picking bucket bigger than requested size'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 2048,
 				'expectedBucket' => false,
 				'message' => 'Picking no bucket because none is bigger than the requested size'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 3500,
 				'expectedBucket' => false,
 				'message' => 'Picking no bucket because requested size is bigger than original'
-			) ),
-			array( array(
-				'buckets' => array( 1024 ),
+			] ],
+			[ [
+				'buckets' => [ 1024 ],
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => false,
 				'message' => 'Picking no bucket because requested size equals biggest bucket'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => null,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => false,
 				'message' => 'Picking no bucket because no buckets have been specified'
-			) ),
-			array( array(
-				'buckets' => array( 256, 512 ),
+			] ],
+			[ [
+				'buckets' => [ 256, 512 ],
 				'minimumBucketDistance' => 10,
 				'width' => 3000,
 				'requestedWidth' => 245,
 				'expectedBucket' => 256,
 				'message' => 'Requested width is distant enough from next bucket for it to be picked'
-			) ),
-			array( array(
-				'buckets' => array( 256, 512 ),
+			] ],
+			[ [
+				'buckets' => [ 256, 512 ],
 				'minimumBucketDistance' => 10,
 				'width' => 3000,
 				'requestedWidth' => 246,
 				'expectedBucket' => 512,
 				'message' => 'Requested width is too close to next bucket, picking next one'
-			) ),
-		);
+			] ],
+		];
 	}
 
 	/**
@@ -137,12 +137,12 @@ class FileTest extends MediaWikiMediaTestCase {
 	 */
 	public function testGetThumbnailSource( $data ) {
 		$backendMock = $this->getMockBuilder( 'FSFileBackend' )
-			->setConstructorArgs( array( array( 'name' => 'backendMock', 'wikiId' => wfWikiId() ) ) )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( 'FileRepo' )
-			->setConstructorArgs( array( array( 'name' => 'repoMock', 'backend' => $backendMock ) ) )
-			->setMethods( array( 'fileExists', 'getLocalReference' ) )
+			->setConstructorArgs( [ [ 'name' => 'repoMock', 'backend' => $backendMock ] ] )
+			->setMethods( [ 'fileExists', 'getLocalReference' ] )
 			->getMock();
 
 		$fsFile = new FSFile( 'fsFilePath' );
@@ -155,14 +155,14 @@ class FileTest extends MediaWikiMediaTestCase {
 			->method( 'getLocalReference' )
 			->will( $this->returnValue( $fsFile ) );
 
-		$handlerMock = $this->getMock( 'BitmapHandler', array( 'supportsBucketing' ) );
+		$handlerMock = $this->getMock( 'BitmapHandler', [ 'supportsBucketing' ] );
 		$handlerMock->expects( $this->any() )
 			->method( 'supportsBucketing' )
 			->will( $this->returnValue( $data['supportsBucketing'] ) );
 
 		$fileMock = $this->getMockBuilder( 'File' )
-			->setConstructorArgs( array( 'fileMock', $repoMock ) )
-			->setMethods( array( 'getThumbnailBucket', 'getLocalRefPath', 'getHandler' ) )
+			->setConstructorArgs( [ 'fileMock', $repoMock ] )
+			->setMethods( [ 'getThumbnailBucket', 'getLocalRefPath', 'getHandler' ] )
 			->getMockForAbstractClass();
 
 		$fileMock->expects( $this->any() )
@@ -189,54 +189,54 @@ class FileTest extends MediaWikiMediaTestCase {
 		}
 
 		$result = $fileMock->getThumbnailSource(
-			array( 'physicalWidth' => $data['physicalWidth'] ) );
+			[ 'physicalWidth' => $data['physicalWidth'] ] );
 
 		$this->assertEquals( $data['expectedPath'], $result['path'], $data['message'] );
 	}
 
 	public function getThumbnailSourceProvider() {
-		return array(
-			array( array(
+		return [
+			[ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'fsFilePath',
 				'message' => 'Path downloaded from storage'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'supportsBucketing' => true,
-				'tmpBucketedThumbCache' => array( 1024 => '/tmp/shouldnotexist' + rand() ),
+				'tmpBucketedThumbCache' => [ 1024 => '/tmp/shouldnotexist' + rand() ],
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'fsFilePath',
 				'message' => 'Path downloaded from storage because temp file is missing'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'supportsBucketing' => true,
-				'tmpBucketedThumbCache' => array( 1024 => '/tmp' ),
+				'tmpBucketedThumbCache' => [ 1024 => '/tmp' ],
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => '/tmp',
 				'message' => 'Temporary path because temp file was found'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'supportsBucketing' => false,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'localRefPath',
 				'message' => 'Original file path because bucketing is unsupported by handler'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => false,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'localRefPath',
 				'message' => 'Original file path because no width provided'
-			) ),
-		);
+			] ],
+		];
 	}
 
 	/**
@@ -247,21 +247,21 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgThumbnailBuckets', $data['buckets'] );
 
 		$backendMock = $this->getMockBuilder( 'FSFileBackend' )
-			->setConstructorArgs( array( array( 'name' => 'backendMock', 'wikiId' => wfWikiId() ) ) )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( 'FileRepo' )
-			->setConstructorArgs( array( array( 'name' => 'repoMock', 'backend' => $backendMock ) ) )
-			->setMethods( array( 'fileExists', 'getLocalReference' ) )
+			->setConstructorArgs( [ [ 'name' => 'repoMock', 'backend' => $backendMock ] ] )
+			->setMethods( [ 'fileExists', 'getLocalReference' ] )
 			->getMock();
 
 		$fileMock = $this->getMockBuilder( 'File' )
-			->setConstructorArgs( array( 'fileMock', $repoMock ) )
-			->setMethods( array( 'getWidth', 'getBucketThumbPath', 'makeTransformTmpFile',
-				'generateAndSaveThumb', 'getHandler' ) )
+			->setConstructorArgs( [ 'fileMock', $repoMock ] )
+			->setMethods( [ 'getWidth', 'getBucketThumbPath', 'makeTransformTmpFile',
+				'generateAndSaveThumb', 'getHandler' ] )
 			->getMockForAbstractClass();
 
-		$handlerMock = $this->getMock( 'JpegHandler', array( 'supportsBucketing' ) );
+		$handlerMock = $this->getMock( 'JpegHandler', [ 'supportsBucketing' ] );
 		$handlerMock->expects( $this->any() )
 			->method( 'supportsBucketing' )
 			->will( $this->returnValue( true ) );
@@ -295,18 +295,18 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $data['expectedResult'],
 			$reflectionMethod->invoke(
 				$fileMock,
-				array(
+				[
 					'physicalWidth' => $data['physicalWidth'],
-					'physicalHeight' => $data['physicalHeight'] )
+					'physicalHeight' => $data['physicalHeight'] ]
 				),
 				$data['message'] );
 	}
 
 	public function generateBucketsIfNeededProvider() {
-		$defaultBuckets = array( 256, 512, 1024, 2048, 4096 );
+		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
-		return array(
-			array( array(
+		return [
+			[ [
 				'buckets' => $defaultBuckets,
 				'width' => 256,
 				'physicalWidth' => 256,
@@ -320,8 +320,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'No bucket found, nothing to generate'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -335,8 +335,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'File already exists, no reason to generate buckets'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -350,8 +350,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'Cannot generate temp file for bucket'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -365,8 +365,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'Bucket image could not be generated'
-			) ),
-			array( array(
+			] ],
+			[ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -380,7 +380,7 @@ class FileTest extends MediaWikiMediaTestCase {
 				'generateAndSaveThumbReturn' => new ThumbnailImage( false, 'bar', false, false ),
 				'expectedResult' => true,
 				'message' => 'Bucket image could not be generated'
-			) ),
-		);
+			] ],
+		];
 	}
 }

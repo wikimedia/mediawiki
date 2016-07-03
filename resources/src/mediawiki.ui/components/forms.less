@@ -36,7 +36,7 @@
 //
 // Styleguide 5.1.
 .mw-ui-vform {
-	.box-sizing(border-box);
+	.box-sizing( border-box );
 
 	width: @defaultFormWidth;
 
@@ -44,7 +44,7 @@
 	select,
 	.mw-ui-button {
 		display: block;
-		.box-sizing(border-box);
+		.box-sizing( border-box );
 		margin: 0;
 		width: 100%;
 	}
@@ -52,13 +52,13 @@
 	// Give dropdown lists the same spacing as input fields for consistency.
 	// Values taken from .agora-field-styling() in mixins/form.less
 	select {
-		padding: 0.35em 0.5em 0.35em 0.5em;
+		padding: 0.35em 0.5em;
 		vertical-align: middle;
 	}
 
 	> label {
 		display: block;
-		.box-sizing(border-box);
+		.box-sizing( border-box );
 		.agora-label-styling();
 		width: auto;
 		margin: 0 0 0.2em;
@@ -68,10 +68,9 @@
 	// Override input styling just for checkboxes and radio inputs.
 	input[type="radio"] {
 		display: inline;
-		.box-sizing(content-box);
+		.box-sizing( content-box );
 		width: auto;
 	}
-
 
 	// Styles for information boxes
 	//
@@ -107,7 +106,7 @@
 	.errorbox,
 	.warningbox,
 	.successbox {
-		.box-sizing(border-box);
+		.box-sizing( border-box );
 		font-size: 0.9em;
 		margin: 0 0 1em 0;
 		padding: 0.5em;
@@ -116,7 +115,7 @@
 
 	// Colours taken from those for .errorbox in shared.css
 	.error {
-		color: #cc0000;
+		color: @colorErrorText;
 		border: 1px solid #fac5c5;
 		background-color: #fae3e3;
 		text-shadow: 0 1px #fae3e3;

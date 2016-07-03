@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan mana untuk dilakukan.",
 	"apihelp-main-param-format": "Format output.",
 	"apihelp-main-param-uselang": "Bahasa yang hendak digunakan untuk penterjemahan mesej. Senarai kod boleh diperoleh dari [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]], ataupun menyatakan \"user\" untuk menggunakan bahasa kegemaran pengguna semasa.",
-	"apihelp-expandtemplates-example-simple": "Perluaskan \"<nowiki>{{Project:Sandbox}}</nowiki>\" wikiteks",
+	"apihelp-expandtemplates-example-simple": "Perluaskan <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd> wikiteks.",
 	"apihelp-help-param-helpformat": "Format output bantuan.",
 	"apihelp-help-example-main": "Bantuan untuk modul utama",
 	"apihelp-help-example-recursive": "Segala bantuan dalam satu halaman",
@@ -17,16 +18,12 @@
 	"apihelp-query+usercontribs-param-show": "Hanya paparkan item-item yang mematuhi kriteria ini, cth. suntingan selain yang kecil sahaja: $2show=!minor.\n\nJika ditetapkannya $2show=patrolled atau $2show=!patrolled, maka semakan-semakan yang lebih lama daripada [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 saat) tidak akan dipaparkan.",
 	"apihelp-userrights-param-userid": "ID pengguna.",
 	"apihelp-dbgfm-description": "Data output dalam format var_export() PHP (''pretty-print'' dalam HTML).",
-	"apihelp-dump-description": "Output data dalam format var_dump() PHP.",
-	"apihelp-dumpfm-description": "Data output dalam format var_dump() PHP (''pretty-print'' dalam HTML).",
 	"apihelp-json-description": "Data output dalam format JSON.",
 	"apihelp-json-param-utf8": "Jika dinyatakan, mengekodkan kenanyakan (tetapi bukan semua) aksara bukan ASCII sebagai UTF-8 daripada menggantikannya dengan jujukan lepasan perenambelasan.",
 	"apihelp-jsonfm-description": "Output data dalam format JSON (''pretty-print'' dalam HTML).",
 	"apihelp-php-description": "Data output dalam format PHP bersiri.",
 	"apihelp-txt-description": "Data output dalam format print_r() PHP.",
 	"apihelp-txtfm-description": "Data output dalam format print_r() PHP (''pretty-print'' dalam HTML).",
-	"apihelp-wddx-description": "Data output dalam format WDDX.",
-	"apihelp-wddxfm-description": "Output data dalam format WDDX (''pretty-print'' dalam HTML).",
 	"apihelp-xml-description": "Data output dalam format XML.",
 	"apihelp-xmlfm-description": "Data output dalam format XML (''pretty-print'' dalam HTML).",
 	"apihelp-yaml-description": "Data output dalam format YAML.",

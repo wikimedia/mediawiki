@@ -18,69 +18,85 @@ class AvroValidatorTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function getErrorsProvider() {
-		$stringSchema = AvroSchema::parse( json_encode( array( 'type' => 'string' ) ) );
-		$recordSchema = AvroSchema::parse( json_encode( array(
+		$stringSchema = AvroSchema::parse( json_encode( [ 'type' => 'string' ] ) );
+		$stringArraySchema = AvroSchema::parse( json_encode( [
+			'type' => 'array',
+			'items' => 'string',
+		] ) );
+		$recordSchema = AvroSchema::parse( json_encode( [
 			'type' => 'record',
 			'name' => 'ut',
-			'fields' => array(
-				array( 'name' => 'id', 'type' => 'int', 'required' => true ),
-			),
-		) ) );
-		$enumSchema = AvroSchema::parse( json_encode( array(
+			'fields' => [
+				[ 'name' => 'id', 'type' => 'int', 'required' => true ],
+			],
+		] ) );
+		$enumSchema = AvroSchema::parse( json_encode( [
 			'type' => 'record',
 			'name' => 'ut',
-			'fields' => array(
-				array( 'name' => 'count', 'type' => array( 'int', 'null' ) ),
-			),
-		) ) );
+			'fields' => [
+				[ 'name' => 'count', 'type' => [ 'int', 'null' ] ],
+			],
+		] ) );
 
-		return array(
-			array(
+		return [
+			[
 				'No errors with a simple string serialization',
-				$stringSchema, 'foobar', array(),
-			),
+				$stringSchema, 'foobar', [],
+			],
 
-			array(
+			[
 				'Cannot serialize integer into string',
 				$stringSchema, 5, 'Expected string, but recieved integer',
-			),
+			],
 
-			array(
+			[
 				'Cannot serialize array into string',
-				$stringSchema, array(), 'Expected string, but recieved array',
-			),
+				$stringSchema, [], 'Expected string, but recieved array',
+			],
 
-			array(
+			[
 				'allows and ignores extra fields',
-				$recordSchema, array( 'id' => 4, 'foo' => 'bar' ), array(),
-			),
+				$recordSchema, [ 'id' => 4, 'foo' => 'bar' ], [],
+			],
 
-			array(
+			[
 				'detects missing fields',
-				$recordSchema, array(), array( 'id' => 'Missing expected field' ),
-			),
+				$recordSchema, [], [ 'id' => 'Missing expected field' ],
+			],
 
-			array(
+			[
 				'handles first element in enum',
-				$enumSchema, array( 'count' => 4 ), array(),
-			),
+				$enumSchema, [ 'count' => 4 ], [],
+			],
 
-			array(
+			[
 				'handles second element in enum',
-				$enumSchema, array( 'count' => null ), array(),
-			),
+				$enumSchema, [ 'count' => null ], [],
+			],
 
-			array(
+			[
 				'rejects element not in union',
-				$enumSchema, array( 'count' => 'invalid' ), array( 'count' => array(
+				$enumSchema, [ 'count' => 'invalid' ], [ 'count' => [
 					'Expected any one of these to be true',
-					array(
+					[
 						'Expected integer, but recieved string',
 						'Expected null, but recieved string',
-					)
-				) )
-			),
-		);
+					]
+				] ]
+			],
+			[
+				'Empty array is accepted',
+				$stringArraySchema, [], []
+			],
+			[
+				'correct array element accepted',
+				$stringArraySchema, [ 'fizzbuzz' ], []
+			],
+			[
+				'incorrect array element rejected',
+				$stringArraySchema, [ '12', 34 ], [ 'Expected string, but recieved integer' ]
+			],
+		];
 	}
 
 	/**

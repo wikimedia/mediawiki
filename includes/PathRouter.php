@@ -75,7 +75,7 @@ class PathRouter {
 	/**
 	 * @var array
 	 */
-	private $patterns = array();
+	private $patterns = [];
 
 	/**
 	 * Protected helper to do the actual bulk work of adding a single pattern.
@@ -124,9 +124,9 @@ class PathRouter {
 					// of a pattern for a little more efficiency
 					$paramArrKey = 'value';
 				}
-				$params[$paramName] = array(
+				$params[$paramName] = [
 					$paramArrKey => $paramData
-				);
+				];
 			}
 		}
 
@@ -135,17 +135,17 @@ class PathRouter {
 		foreach ( $options as $optionName => $optionData ) {
 			if ( preg_match( '/^\$\d+$/u', $optionName ) ) {
 				if ( !is_array( $optionData ) ) {
-					$options[$optionName] = array( $optionData );
+					$options[$optionName] = [ $optionData ];
 				}
 			}
 		}
 
-		$pattern = (object)array(
+		$pattern = (object)[
 			'path' => $path,
 			'params' => $params,
 			'options' => $options,
 			'key' => $key,
-		);
+		];
 		$pattern->weight = self::makeWeight( $pattern );
 		$this->patterns[] = $pattern;
 	}
@@ -157,7 +157,7 @@ class PathRouter {
 	 * @param array $params The params for this path pattern
 	 * @param array $options The options for this path pattern
 	 */
-	public function add( $path, $params = array(), $options = array() ) {
+	public function add( $path, $params = [], $options = [] ) {
 		if ( is_array( $path ) ) {
 			foreach ( $path as $key => $onePath ) {
 				$this->doAdd( $onePath, $params, $options, $key );
@@ -174,7 +174,7 @@ class PathRouter {
 	 * @param array $params
 	 * @param array $options
 	 */
-	public function addStrict( $path, $params = array(), $options = array() ) {
+	public function addStrict( $path, $params = [], $options = [] ) {
 		$options['strict'] = true;
 		$this->add( $path, $params, $options );
 	}
@@ -184,7 +184,7 @@ class PathRouter {
 	 * (most heavily weighted) patterns are at the start of the array.
 	 */
 	protected function sortByWeight() {
-		$weights = array();
+		$weights = [];
 		foreach ( $this->patterns as $key => $pattern ) {
 			$weights[$key] = $pattern->weight;
 		}
@@ -253,7 +253,7 @@ class PathRouter {
 		// array() (a match with no data) but our WebRequest caller
 		// expects array() even when we have no matches so return
 		// a array() when we have null
-		return is_null( $matches ) ? array() : $matches;
+		return is_null( $matches ) ? [] : $matches;
 	}
 
 	/**
@@ -270,8 +270,8 @@ class PathRouter {
 		$regexp = preg_replace( '#\\\\\$(\d+)#u', '(?P<par$1>.+?)', $regexp );
 		$regexp = "#^{$regexp}$#";
 
-		$matches = array();
-		$data = array();
+		$matches = [];
+		$data = [];
 
 		// Try to match the path we were asked to parse with our regexp
 		if ( preg_match( $regexp, $path, $m ) ) {
@@ -342,7 +342,7 @@ class PathRouter {
 
 			// If this match includes a callback, execute it
 			if ( isset( $pattern->options['callback'] ) ) {
-				call_user_func_array( $pattern->options['callback'], array( &$matches, $data ) );
+				call_user_func_array( $pattern->options['callback'], [ &$matches, $data ] );
 			}
 		} else {
 			// Our regexp didn't match, return null to signify no match.
@@ -368,7 +368,7 @@ class PathRouterPatternReplacer {
 	 */
 	public function replace( $value ) {
 		$this->error = false;
-		$value = preg_replace_callback( '/\$(\d+|key)/u', array( $this, 'callback' ), $value );
+		$value = preg_replace_callback( '/\$(\d+|key)/u', [ $this, 'callback' ], $value );
 		if ( $this->error ) {
 			return false;
 		}

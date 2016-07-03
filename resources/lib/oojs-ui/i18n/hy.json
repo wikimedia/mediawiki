@@ -7,7 +7,7 @@
 			"Vahe Gharakhanyan"
 		]
 	},
-	"ooui-outline-control-move-down": "Իջեցնել կետը",
+	"ooui-outline-control-move-down": "Իջեցնել ներքև",
 	"ooui-outline-control-move-up": "Բարձրացնել կետը",
 	"ooui-outline-control-remove": "Հեռացնել տարրը",
 	"ooui-toolbar-more": "Ավելին",
@@ -19,6 +19,8 @@
 	"ooui-dialog-process-dismiss": "Փակել",
 	"ooui-dialog-process-retry": "Կրկին փորձել",
 	"ooui-dialog-process-continue": "Շարունակել",
+	"ooui-selectfile-button-select": "Ընտրել նիշք",
 	"ooui-selectfile-not-supported": "Ֆայլի ընտրությունը չի պաշտպանվում",
-	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ"
+	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ",
+	"ooui-selectfile-dragdrop-placeholder": "Ֆայլը գցել այստե"
 }

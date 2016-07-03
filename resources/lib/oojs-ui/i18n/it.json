@@ -15,7 +15,8 @@
 			"Ontsed",
 			"Alexmar983",
 			"Nemo bis",
-			"Jdforrester"
+			"Jdforrester",
+			"Fringio"
 		]
 	},
 	"ooui-outline-control-move-down": "Sposta in basso",
@@ -33,5 +34,5 @@
 	"ooui-selectfile-button-select": "Seleziona un file",
 	"ooui-selectfile-not-supported": "La selezione del file non è supportata",
 	"ooui-selectfile-placeholder": "Nessun file è selezionato",
-	"ooui-selectfile-dragdrop-placeholder": "Posiziona i files qui"
+	"ooui-selectfile-dragdrop-placeholder": "Posiziona i file qui"
 }

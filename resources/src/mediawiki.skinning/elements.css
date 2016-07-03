@@ -25,6 +25,14 @@ a:hover, a:focus {
 	text-decoration: underline;
 }
 
+a:lang(ar),
+a:lang(kk-arab),
+a:lang(mzn),
+a:lang(ps),
+a:lang(ur) {
+	text-decoration: none;
+}
+
 a.stub {
 	color: #772233;
 }

@@ -25,28 +25,28 @@ class LanguageArTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerSprintfDate() {
-		return array(
-			array(
+		return [
+			[
 				'xg "vs" g',
 				'20120102030410',
 				'يناير vs ٣'
-			),
-			array(
+			],
+			[
 				'xmY',
 				'20120102030410',
 				'١٤٣٣'
-			),
-			array(
+			],
+			[
 				'xnxmY',
 				'20120102030410',
 				'1433'
-			),
-			array(
+			],
+			[
 				'xN xmj xmn xN xmY',
 				'20120102030410',
 				' 7 2  ١٤٣٣'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -54,7 +54,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'zero', 'one', 'two', 'few', 'many', 'other' );
+		$forms = [ 'zero', 'one', 'two', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -67,21 +67,21 @@ class LanguageArTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'zero', 0 ),
-			array( 'one', 1 ),
-			array( 'two', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 9 ),
-			array( 'few', 110 ),
-			array( 'many', 11 ),
-			array( 'many', 15 ),
-			array( 'many', 99 ),
-			array( 'many', 9999 ),
-			array( 'other', 100 ),
-			array( 'other', 102 ),
-			array( 'other', 1000 ),
-			array( 'other', 1.7 ),
-		);
+		return [
+			[ 'zero', 0 ],
+			[ 'one', 1 ],
+			[ 'two', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 9 ],
+			[ 'few', 110 ],
+			[ 'many', 11 ],
+			[ 'many', 15 ],
+			[ 'many', 99 ],
+			[ 'many', 9999 ],
+			[ 'other', 100 ],
+			[ 'other', 102 ],
+			[ 'other', 1000 ],
+			[ 'other', 1.7 ],
+		];
 	}
 }

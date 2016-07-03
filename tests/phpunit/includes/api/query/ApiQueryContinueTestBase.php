@@ -57,13 +57,9 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		} else {
 			$params['action'] = 'query';
 		}
-		// Silence warning
-		if ( !isset( $params['continue'] ) ) {
-			$params['continue'] = '';
-		}
 		$count = 0;
-		$result = array();
-		$continue = array();
+		$result = [];
+		$continue = [];
 		do {
 			$request = array_merge( $params, $continue );
 			uksort( $request, function ( $a, $b ) {
@@ -74,7 +70,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				return strcmp( $a, $b );
 			} );
 			$reqStr = http_build_query( $request );
-			//$reqStr = str_replace( '&', ' & ', $reqStr );
+			// $reqStr = str_replace( '&', ' & ', $reqStr );
 			$this->assertLessThan( $expectedCount, $count, "$id more data: $reqStr" );
 			if ( $this->mVerbose ) {
 				print "$id (#$count): $reqStr\n";
@@ -94,7 +90,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				$continue = $data['continue'];
 				unset( $data['continue'] );
 			} else {
-				$continue = array();
+				$continue = [];
 			}
 			if ( $this->mVerbose ) {
 				$this->printResult( $data );
@@ -116,7 +112,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 */
 	private function printResult( $data ) {
 		$q = $data['query'];
-		$print = array();
+		$print = [];
 		if ( isset( $q['pages'] ) ) {
 			foreach ( $q['pages'] as $p ) {
 				$m = $p['title'];

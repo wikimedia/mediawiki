@@ -145,11 +145,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Blank the internal arrays with query parameters
 	 */
 	protected function resetQueryParams() {
-		$this->tables = array();
-		$this->where = array();
-		$this->fields = array();
-		$this->options = array();
-		$this->join_conds = array();
+		$this->tables = [];
+		$this->where = [];
+		$this->fields = [];
+		$this->options = [];
+		$this->join_conds = [];
 	}
 
 	/**
@@ -300,7 +300,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// Append ORDER BY
 			$optionOrderBy = isset( $this->options['ORDER BY'] )
 				? (array)$this->options['ORDER BY']
-				: array();
+				: [];
 			$optionOrderBy[] = $order;
 			$this->addOption( 'ORDER BY', $optionOrderBy );
 		}
@@ -317,7 +317,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param bool $sort
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addWhereRange( $field, $dir,
 			$db->timestampOrNull( $start ), $db->timestampOrNull( $end ), $sort );
 	}
@@ -350,27 +350,27 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  )
 	 * @return ResultWrapper
 	 */
-	protected function select( $method, $extraQuery = array() ) {
+	protected function select( $method, $extraQuery = [] ) {
 
 		$tables = array_merge(
 			$this->tables,
-			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array()
+			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : []
 		);
 		$fields = array_merge(
 			$this->fields,
-			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array()
+			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : []
 		);
 		$where = array_merge(
 			$this->where,
-			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array()
+			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : []
 		);
 		$options = array_merge(
 			$this->options,
-			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array()
+			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : []
 		);
 		$join_conds = array_merge(
 			$this->join_conds,
-			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array()
+			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : []
 		);
 
 		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
@@ -384,7 +384,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
-		$db = $this->getDb();
+		$db = $this->getDB();
 		if ( !is_null( $query ) || $query != '' ) {
 			if ( is_null( $protocol ) ) {
 				$protocol = 'http://';
@@ -414,14 +414,21 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		$this->addTables( 'ipblocks' );
-		$this->addJoinConds( array(
-			'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-		) );
+		$this->addJoinConds( [
+			'ipblocks' => [ 'LEFT JOIN', 'ipb_user=user_id' ],
+		] );
 
 		$this->addFields( 'ipb_deleted' );
 
 		if ( $showBlockInfo ) {
-			$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry', 'ipb_timestamp' ) );
+			$this->addFields( [
+				'ipb_id',
+				'ipb_by',
+				'ipb_by_text',
+				'ipb_reason',
+				'ipb_expiry',
+				'ipb_timestamp'
+			] );
 		}
 
 		// Don't show hidden names
@@ -459,7 +466,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $data, $this->getModulePrefix() );
 
-		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
+		return $result->addValue( [ 'query', 'pages', intval( $pageId ) ],
 			$this->getModuleName(),
 			$data );
 	}
@@ -477,13 +484,13 @@ abstract class ApiQueryBase extends ApiBase {
 			$elemname = $this->getModulePrefix();
 		}
 		$result = $this->getResult();
-		$fit = $result->addValue( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), null, $item );
+		$fit = $result->addValue( [ 'query', 'pages', $pageId,
+			$this->getModuleName() ], null, $item );
 		if ( !$fit ) {
 			return false;
 		}
-		$result->addIndexedTagName( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), $elemname );
+		$result->addIndexedTagName( [ 'query', 'pages', $pageId,
+			$this->getModuleName() ], $elemname );
 
 		return true;
 	}
@@ -511,7 +518,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::makeTitleSafe( $namespace, $titlePart . 'x' );
 		if ( !$t || $t->hasFragment() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 		if ( $namespace != $t->getNamespace() || $t->isExternal() ) {
 			// This can happen in two cases. First, if you call titlePartToKey with a title part
@@ -519,10 +526,10 @@ abstract class ApiQueryBase extends ApiBase {
 			// difficult to handle such a case. Such cases cannot exist and are therefore treated
 			// as invalid user input. The second case is when somebody specifies a title interwiki
 			// prefix.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 
-		return substr( $t->getDbKey(), 0, -1 );
+		return substr( $t->getDBkey(), 0, -1 );
 	}
 
 	/**
@@ -537,25 +544,10 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
 		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
 		}
 
-		return array( $t->getNamespace(), substr( $t->getDbKey(), 0, -1 ) );
-	}
-
-	/**
-	 * Gets the personalised direction parameter description
-	 *
-	 * @param string $p ModulePrefix
-	 * @param string $extraDirText Any extra text to be appended on the description
-	 * @return array
-	 */
-	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
-		return array(
-			"In which direction to enumerate{$extraDirText}",
-			" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
-			" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
-		);
+		return [ $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) ];
 	}
 
 	/**
@@ -589,166 +581,4 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**@}*/
-
-	/************************************************************************//**
-	 * @name   Deprecated
-	 * @{
-	 */
-
-	/**
-	 * Estimate the row count for the SELECT query that would be run if we
-	 * called select() right now, and check if it's acceptable.
-	 * @deprecated since 1.24
-	 * @return bool True if acceptable, false otherwise
-	 */
-	protected function checkRowCount() {
-		wfDeprecated( __METHOD__, '1.24' );
-		$db = $this->getDB();
-		$rowcount = $db->estimateRowCount(
-			$this->tables,
-			$this->fields,
-			$this->where,
-			__METHOD__,
-			$this->options
-		);
-
-		if ( $rowcount > $this->getConfig()->get( 'APIMaxDBRows' ) ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Convert a title to a DB key
-	 * @deprecated since 1.24, past uses of this were always incorrect and should
-	 *   have used self::titlePartToKey() instead
-	 * @param string $title Page title with spaces
-	 * @return string Page title with underscores
-	 */
-	public function titleToKey( $title ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		// Don't throw an error if we got an empty string
-		if ( trim( $title ) == '' ) {
-			return '';
-		}
-		$t = Title::newFromText( $title );
-		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
-		}
-
-		return $t->getPrefixedDBkey();
-	}
-
-	/**
-	 * The inverse of titleToKey()
-	 * @deprecated since 1.24, unused and probably never needed
-	 * @param string $key Page title with underscores
-	 * @return string Page title with spaces
-	 */
-	public function keyToTitle( $key ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		// Don't throw an error if we got an empty string
-		if ( trim( $key ) == '' ) {
-			return '';
-		}
-		$t = Title::newFromDBkey( $key );
-		// This really shouldn't happen but we gotta check anyway
-		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
-		}
-
-		return $t->getPrefixedText();
-	}
-
-	/**
-	 * Inverse of titlePartToKey()
-	 * @deprecated since 1.24, unused and probably never needed
-	 * @param string $keyPart DBkey, with prefix
-	 * @return string Key part with underscores
-	 */
-	public function keyPartToTitle( $keyPart ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, -1 );
-	}
-
-	/**@}*/
-}
-
-/**
- * @ingroup API
- */
-abstract class ApiQueryGeneratorBase extends ApiQueryBase {
-
-	private $mGeneratorPageSet = null;
-
-	/**
-	 * Switch this module to generator mode. By default, generator mode is
-	 * switched off and the module acts like a normal query module.
-	 * @since 1.21 requires pageset parameter
-	 * @param ApiPageSet $generatorPageSet ApiPageSet object that the module will get
-	 *        by calling getPageSet() when in generator mode.
-	 */
-	public function setGeneratorMode( ApiPageSet $generatorPageSet ) {
-		if ( $generatorPageSet === null ) {
-			ApiBase::dieDebug( __METHOD__, 'Required parameter missing - $generatorPageSet' );
-		}
-		$this->mGeneratorPageSet = $generatorPageSet;
-	}
-
-	/**
-	 * Get the PageSet object to work on.
-	 * If this module is generator, the pageSet object is different from other module's
-	 * @return ApiPageSet
-	 */
-	protected function getPageSet() {
-		if ( $this->mGeneratorPageSet !== null ) {
-			return $this->mGeneratorPageSet;
-		}
-
-		return parent::getPageSet();
-	}
-
-	/**
-	 * Overrides ApiBase to prepend 'g' to every generator parameter
-	 * @param string $paramName Parameter name
-	 * @return string Prefixed parameter name
-	 */
-	public function encodeParamName( $paramName ) {
-		if ( $this->mGeneratorPageSet !== null ) {
-			return 'g' . parent::encodeParamName( $paramName );
-		} else {
-			return parent::encodeParamName( $paramName );
-		}
-	}
-
-	/**
-	 * Overridden to set the generator param if in generator mode
-	 * @param string $paramName Parameter name
-	 * @param string|array $paramValue Parameter value
-	 */
-	protected function setContinueEnumParameter( $paramName, $paramValue ) {
-		if ( $this->mGeneratorPageSet !== null ) {
-			$this->getContinuationManager()->addGeneratorContinueParam( $this, $paramName, $paramValue );
-		} else {
-			parent::setContinueEnumParameter( $paramName, $paramValue );
-		}
-	}
-
-	/**
-	 * @see ApiBase::getHelpFlags()
-	 *
-	 * Corresponding messages: api-help-flag-generator
-	 */
-	protected function getHelpFlags() {
-		$flags = parent::getHelpFlags();
-		$flags[] = 'generator';
-		return $flags;
-	}
-
-	/**
-	 * Execute this module as a generator
-	 * @param ApiPageSet $resultPageSet All output should be appended to this object
-	 */
-	abstract public function executeGenerator( $resultPageSet );
 }

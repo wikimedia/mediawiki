@@ -2,14 +2,15 @@
 	// Enforcing
 	"bitwise": true,
 	"eqeqeq": true,
-	"es3": true,
+	"esversion": 3,
 	"freeze": true,
-	"latedef": true,
+	"futurehostile": true,
+	"latedef": "nofunc",
 	"noarg": true,
 	"nonew": true,
+	"strict": false,
 	"undef": true,
 	"unused": true,
-	"strict": false,
 
 	// Relaxing
 	"laxbreak": true,
@@ -19,6 +20,8 @@
 	"browser": true,
 
 	"globals": {
+		"require": false,
+		"module": false,
 		"mediaWiki": true,
 		"JSON": true,
 		"OO": true,

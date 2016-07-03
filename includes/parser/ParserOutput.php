@@ -22,53 +22,213 @@
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime {
-	public $mText,                       # The output text
-		$mLanguageLinks,              # List of the full text of language links, in the order they appear
-		$mCategories,                 # Map of category names to sort keys
-		$mIndicators = array(),       # Page status indicators, usually displayed in top-right corner
-		$mTitleText,                  # title text of the chosen language variant
-		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
-		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
-		$mImages = array(),           # DB keys of the images used, in the array key only
-		$mFileSearchOptions = array(), # DB keys of the images used mapped to sha1 and MW timestamp
-		$mExternalLinks = array(),    # External link URLs, in the key only
-		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
-		$mNewSection = false,         # Show a new section link?
-		$mHideNewSection = false,     # Hide the new section link?
-		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
-		$mHeadItems = array(),        # Items to put in the <head> section
-		$mModules = array(),          # Modules to be loaded by the resource loader
-		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
-		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
-		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
-		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
-		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
-		$mSections = array(),         # Table of contents
-		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
-		$mProperties = array(),       # Name/value pairs to be cached in the DB
-		$mTOCHTML = '',               # HTML of the TOC
-		$mTimestamp,                  # Timestamp of the revision
-		$mTOCEnabled = true,          # Whether TOC should be shown, can't override __NOTOC__
-		$mEnableOOUI = false;         # Whether OOUI should be enabled
-	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
-	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-	private $mExtensionData = array(); # extra data used by extensions
-	private $mLimitReportData = array(); # Parser limit report data
-	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
-	private $mPreventClickjacking = false; # Whether to emit X-Frame-Options: DENY
-	private $mFlags = array();        # Generic flags
+	/**
+	 * @var string $mText The output text
+	 */
+	public $mText;
+
+	/**
+	 * @var array $mLanguageLinks List of the full text of language links,
+	 *  in the order they appear.
+	 */
+	public $mLanguageLinks;
+
+	/**
+	 * @var array $mCategoriesMap of category names to sort keys
+	 */
+	public $mCategories;
+
+	/**
+	 * @var array $mIndicators Page status indicators, usually displayed in top-right corner.
+	 */
+	public $mIndicators = [];
+
+	/**
+	 * @var string $mTitleText Title text of the chosen language variant, as HTML.
+	 */
+	public $mTitleText;
+
+	/**
+	 * @var array $mLinks 2-D map of NS/DBK to ID for the links in the document.
+	 *  ID=zero for broken.
+	 */
+	public $mLinks = [];
+
+	/**
+	 * @var array $mTemplates 2-D map of NS/DBK to ID for the template references.
+	 *  ID=zero for broken.
+	 */
+	public $mTemplates = [];
+
+	/**
+	 * @var array $mTemplateIds 2-D map of NS/DBK to rev ID for the template references.
+	 *  ID=zero for broken.
+	 */
+	public $mTemplateIds = [];
+
+	/**
+	 * @var array $mImages DB keys of the images used, in the array key only
+	 */
+	public $mImages = [];
+
+	/**
+	 * @var array $mFileSearchOptions DB keys of the images used mapped to sha1 and MW timestamp.
+	 */
+	public $mFileSearchOptions = [];
+
+	/**
+	 * @var array $mExternalLinks External link URLs, in the key only.
+	 */
+	public $mExternalLinks = [];
+
+	/**
+	 * @var array $mInterwikiLinks 2-D map of prefix/DBK (in keys only)
+	 *  for the inline interwiki links in the document.
+	 */
+	public $mInterwikiLinks = [];
+
+	/**
+	 * @var bool $mNewSection Show a new section link?
+	 */
+	public $mNewSection = false;
+
+	/**
+	 * @var bool $mHideNewSection Hide the new section link?
+	 */
+	public $mHideNewSection = false;
+
+	/**
+	 * @var bool $mNoGallery No gallery on category page? (__NOGALLERY__).
+	 */
+	public $mNoGallery = false;
+
+	/**
+	 * @var array $mHeadItems Items to put in the <head> section
+	 */
+	public $mHeadItems = [];
+
+	/**
+	 * @var array $mModules Modules to be loaded by ResourceLoader
+	 */
+	public $mModules = [];
+
+	/**
+	 * @var array $mModuleScripts Modules of which only the JS will be loaded by ResourceLoader.
+	 */
+	public $mModuleScripts = [];
+
+	/**
+	 * @var array $mModuleStyles Modules of which only the CSSS will be loaded by ResourceLoader.
+	 */
+	public $mModuleStyles = [];
+
+	/**
+	 * @var array $mJsConfigVars JavaScript config variable for mw.config combined with this page.
+	 */
+	public $mJsConfigVars = [];
+
+	/**
+	 * @var array $mOutputHooks Hook tags as per $wgParserOutputHooks.
+	 */
+	public $mOutputHooks = [];
+
+	/**
+	 * @var array $mWarnings Warning text to be returned to the user.
+	 *  Wikitext formatted, in the key only.
+	 */
+	public $mWarnings = [];
+
+	/**
+	 * @var array $mSections Table of contents
+	 */
+	public $mSections = [];
+
+	/**
+	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
+	 */
+	public $mEditSectionTokens = false;
+
+	/**
+	 * @var array $mProperties Name/value pairs to be cached in the DB.
+	 */
+	public $mProperties = [];
+
+	/**
+	 * @var string $mTOCHTML HTML of the TOC.
+	 */
+	public $mTOCHTML = '';
+
+	/**
+	 * @var string $mTimestamp Timestamp of the revision.
+	 */
+	public $mTimestamp;
+
+	/**
+	 * @var bool $mTOCEnabled Whether TOC should be shown, can't override __NOTOC__.
+	 */
+	public $mTOCEnabled = true;
+
+	/**
+	 * @var bool $mEnableOOUI Whether OOUI should be enabled.
+	 */
+	public $mEnableOOUI = false;
+
+	/**
+	 * @var string $mIndexPolicy 'index' or 'noindex'?  Any other value will result in no change.
+	 */
+	private $mIndexPolicy = '';
+
+	/**
+	 * @var array $mAccessedOptions List of ParserOptions (stored in the keys).
+	 */
+	private $mAccessedOptions = [];
+
+	/**
+	 * @var array $mExtensionData extra data used by extensions.
+	 */
+	private $mExtensionData = [];
+
+	/**
+	 * @var array $mLimitReportData Parser limit report data.
+	 */
+	private $mLimitReportData = [];
+
+	/**
+	 * @var array $mParseStartTime Timestamps for getTimeSinceStart().
+	 */
+	private $mParseStartTime = [];
+
+	/**
+	 * @var bool $mPreventClickjacking Whether to emit X-Frame-Options: DENY.
+	 */
+	private $mPreventClickjacking = false;
+
+	/**
+	 * @var array $mFlags Generic flags.
+	 */
+	private $mFlags = [];
 
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
-	public function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
+	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
+	}
+
+	/**
+	 * Get the cacheable text with <mw:editsection> markers still in it. The
+	 * return value is suitable for writing back via setText() but is not valid
+	 * for display to the user.
+	 *
+	 * @since 1.27
+	 */
+	public function getRawText() {
+		return $this->mText;
 	}
 
 	public function getText() {
@@ -88,9 +248,9 @@ class ParserOutput extends CacheTime {
 
 					$skin = $wgOut->getSkin();
 					return call_user_func_array(
-						array( $skin, 'doEditSectionLink' ),
-						array( $editsectionPage, $editsectionSection,
-							$editsectionContent, $wgLang->getCode() )
+						[ $skin, 'doEditSectionLink' ],
+						[ $editsectionPage, $editsectionSection,
+							$editsectionContent, $wgLang->getCode() ]
 					);
 				},
 				$text
@@ -101,7 +261,7 @@ class ParserOutput extends CacheTime {
 
 		// If you have an old cached version of this class - sorry, you can't disable the TOC
 		if ( isset( $this->mTOCEnabled ) && $this->mTOCEnabled ) {
-			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
+			$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
 		} else {
 			$text = preg_replace(
 				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
@@ -197,7 +357,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getModuleMessages() {
 		wfDeprecated( __METHOD__, '1.26' );
-		return array();
+		return [];
 	}
 
 	/** @since 1.23 */
@@ -221,6 +381,9 @@ class ParserOutput extends CacheTime {
 		return $this->mTOCHTML;
 	}
 
+	/**
+	 * @return string|null TS_MW timestamp of the revision content
+	 */
 	public function getTimestamp() {
 		return $this->mTimestamp;
 	}
@@ -308,7 +471,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function addOutputHook( $hook, $data = false ) {
-		$this->mOutputHooks[] = array( $hook, $data );
+		$this->mOutputHooks[] = [ $hook, $data ];
 	}
 
 	public function setNewSection( $value ) {
@@ -381,7 +544,7 @@ class ParserOutput extends CacheTime {
 			return;
 		}
 		if ( !isset( $this->mLinks[$ns] ) ) {
-			$this->mLinks[$ns] = array();
+			$this->mLinks[$ns] = [];
 		}
 		if ( is_null( $id ) ) {
 			$id = $title->getArticleID();
@@ -399,7 +562,7 @@ class ParserOutput extends CacheTime {
 	public function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
 		if ( $timestamp !== null && $sha1 !== null ) {
-			$this->mFileSearchOptions[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
+			$this->mFileSearchOptions[$name] = [ 'time' => $timestamp, 'sha1' => $sha1 ];
 		}
 	}
 
@@ -414,11 +577,11 @@ class ParserOutput extends CacheTime {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( !isset( $this->mTemplates[$ns] ) ) {
-			$this->mTemplates[$ns] = array();
+			$this->mTemplates[$ns] = [];
 		}
 		$this->mTemplates[$ns][$dbk] = $page_id;
 		if ( !isset( $this->mTemplateIds[$ns] ) ) {
-			$this->mTemplateIds[$ns] = array();
+			$this->mTemplateIds[$ns] = [];
 		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
@@ -433,7 +596,7 @@ class ParserOutput extends CacheTime {
 		}
 		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
-			$this->mInterwikiLinks[$prefix] = array();
+			$this->mInterwikiLinks[$prefix] = [];
 		}
 		$this->mInterwikiLinks[$prefix][$title->getDBkey()] = 1;
 	}
@@ -549,8 +712,12 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Override the title to be used for display
-	 * -- this is assumed to have been validated
+	 *
+	 * @note this is assumed to have been validated
 	 * (check equal normalisation, etc.)
+	 *
+	 * @note this is expected to be safe HTML,
+	 * ready to be served to the client.
 	 *
 	 * @param string $text Desired title text
 	 */
@@ -560,9 +727,12 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Get the title to be used for display
+	 * Get the title to be used for display.
 	 *
-	 * @return string
+	 * As per the contract of setDisplayTitle(), this is safe HTML,
+	 * ready to be served to the client.
+	 *
+	 * @return string HTML
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
@@ -666,7 +836,7 @@ class ParserOutput extends CacheTime {
 
 	public function getProperties() {
 		if ( !isset( $this->mProperties ) ) {
-			$this->mProperties = array();
+			$this->mProperties = [];
 		}
 		return $this->mProperties;
 	}
@@ -678,7 +848,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
-			return array();
+			return [];
 		}
 		return array_keys( $this->mAccessedOptions );
 	}
@@ -697,60 +867,6 @@ class ParserOutput extends CacheTime {
 	 */
 	public function recordOption( $option ) {
 		$this->mAccessedOptions[$option] = true;
-	}
-
-	/**
-	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
-	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
-	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @param DataUpdate $update
-	 *
-	 * @throws MWException
-	 */
-	public function addSecondaryDataUpdate( DataUpdate $update ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		throw new MWException( 'ParserOutput::addSecondaryDataUpdate() is no longer supported. Override Content::getSecondaryDataUpdates() or use the SecondaryDataUpdates hook instead.' );
-	}
-
-	/**
-	 * @deprecated since 1.25.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @return bool false (since 1.25)
-	 */
-	public function hasCustomDataUpdates() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return false;
-	}
-
-	/**
-	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
-	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
-	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @param Title $title
-	 * @param bool $recursive
-	 *
-	 * @return array An array of instances of DataUpdate
-	 */
-	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return array();
 	}
 
 	/**
@@ -821,7 +937,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	private static function getTimes( $clock = null ) {
-		$ret = array();
+		$ret = [];
 		if ( !$clock || $clock === 'wall' ) {
 			$ret['wall'] = microtime( true );
 		}
@@ -920,7 +1036,7 @@ class ParserOutput extends CacheTime {
 	public function __sleep() {
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
-			array( 'mParseStartTime' )
+			[ 'mParseStartTime' ]
 		);
 	}
 }

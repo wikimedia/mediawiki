@@ -25,14 +25,13 @@
  * @ingroup UtfNormal
  */
 
-
 use UtfNormal\Utils;
 
 /**
  * Return UTF-8 sequence for a given Unicode code point.
  *
- * @param $codepoint Integer:
- * @return String
+ * @param int $codepoint
+ * @return string
  * @throws InvalidArgumentException if fed out of range data.
  * @public
  * @deprecated since 1.25, use UtfNormal\Utils directly
@@ -46,8 +45,8 @@ function codepointToUtf8( $codepoint ) {
  * Unicode code points and return a UTF-8 string composed of those
  * characters. Used by UTF-8 data generation and testing routines.
  *
- * @param $sequence String
- * @return String
+ * @param string $sequence
+ * @return string
  * @throws InvalidArgumentException if fed out of range data.
  * @private
  * @deprecated since 1.25, use UtfNormal\Utils directly
@@ -78,8 +77,8 @@ function utf8ToHexSequence( $str ) {
  * Determine the Unicode codepoint of a single-character UTF-8 sequence.
  * Does not check for invalid input data.
  *
- * @param $char String
- * @return Integer
+ * @param string $char
+ * @return int
  * @public
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */

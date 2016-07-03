@@ -5,8 +5,8 @@
 //
 // Styling radios in a way that works cross browser is a tricky problem to solve.
 // In MediaWiki UI put a radio and label inside a mw-ui-radio div.
-// This renders in all browsers except IE6-8 which do not support the :checked selector;
-// these are kept backwards-compatible using the :not(#noop) selector.
+// This renders in all browsers except IE 6-8 which do not support the :checked selector;
+// these are kept backwards-compatible using the `:not( #noop )` selector.
 // You should give the radio and label matching "id" and "for" attributes, respectively.
 //
 // Markup:
@@ -33,13 +33,11 @@
 	vertical-align: middle;
 }
 
-@radioSize: 2em;
-
 // We use the not selector to cancel out styling on IE 8 and below.
-// We also disable this styling on javascript disabled devices. This fixes the issue with
+// We also disable this styling on JavaScript disabled devices. This fixes the issue with
 // Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
 // more capable browsers with unstyled radio buttons.
-.client-js .mw-ui-radio:not(#noop) {
+.client-js .mw-ui-radio:not( #noop ) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
 	line-height: @radioSize;
@@ -63,28 +61,26 @@
 
 		// the pseudo before element of the label after the radio now looks like a radio
 		& + label::before {
-			.transition( 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) );
 			content: '';
-			cursor: pointer;
-			.box-sizing(border-box);
+			background-color: #fff;
+			.background-image-svg( 'images/radio_checked.svg', 'images/radio_checked.png' );
+			background-origin: border-box;
+			background-position: center center;
+			background-repeat: no-repeat;
+			.background-size( 0, 0 );
+			.box-sizing( border-box );
 			position: absolute;
 			left: 0;
-			border-radius: 100%;
 			width: @radioSize;
 			height: @radioSize;
-			background-color: #fff;
 			border: 1px solid @colorGray7;
-			.background-image-svg('images/radio_checked.svg', 'images/radio_checked.png');
-			.background-size( @radioSize, @radioSize );
-			background-repeat: no-repeat;
-			background-position: center center;
-			background-origin: border-box;
-			background-size: 0 0;
+			border-radius: 100%;
+			cursor: pointer;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked radio
 		&:checked + label::before {
-			background-size: 100% 100%;
+			.background-size( 100%, 100% );
 		}
 
 		&:active + label::before {
@@ -103,14 +99,14 @@
 
 		// disabled radios have a gray background
 		&:disabled + label::before {
-			cursor: default;
 			background-color: @colorGray14;
 			border-color: @colorGray14;
+			cursor: default;
 		}
 
 		// disabled and checked radios have a white circle
 		&:disabled:checked + label::before {
-			.background-image-svg('images/radio_disabled.svg', 'images/radio_disabled.png');
+			.background-image-svg( 'images/radio_disabled.svg', 'images/radio_disabled.png' );
 		}
 	}
 }

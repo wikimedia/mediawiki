@@ -47,7 +47,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
-		$found = preg_match( '/Language(.+)Test/', get_called_class(), $m );
+		$found = preg_match( '/Language(.+)Test/', static::class, $m );
 		if ( $found ) {
 			# Normalize language code since classes uses underscores
 			$m[1] = strtolower( str_replace( '_', '-', $m[1] ) );
@@ -55,8 +55,8 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 			# Fallback to english language
 			$m[1] = 'en';
 			wfDebug(
-				__METHOD__ . " could not extract a language name "
-					. "out of " . get_called_class() . " failling back to 'en'\n"
+				__METHOD__ . ' could not extract a language name '
+					. 'out of ' . static::class . " failling back to 'en'\n"
 			);
 		}
 		// @todo validate $m[1] which should be a valid language code

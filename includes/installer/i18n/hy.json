@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vahe Gharakhanyan"
+			"Vahe Gharakhanyan",
+			"Kareyac"
 		]
 	},
 	"config-title": "ՄեդիաՎիքի $1-ի տեղադրում",
@@ -22,9 +23,12 @@
 	"config-page-releasenotes": "Տեղեկություն տարբերակի մասին",
 	"config-page-existingwiki": "Գոյություն ունեցող վիքի",
 	"config-restart": "Այո, նորից սկսել",
+	"config-ns-generic": "Նախագիծ",
 	"config-admin-password": "Գաղտնաբառ՝",
 	"config-admin-password-confirm": "Գաղտնաբառը կրկին`",
 	"config-admin-email": "Էլ-փոստի հասցեն՝",
+	"config-profile-wiki": "Բաց վիքի",
+	"config-profile-private": "Մասնավոր վիքի",
 	"config-license": "Հեղինակային իրավունք և արտոնագիր`",
 	"config-license-cc-by-sa": "Creative Commons Attribution-ShareAlike",
 	"config-license-cc-by": "Creative Commons Attribution",
@@ -32,6 +36,7 @@
 	"config-license-cc-0": "Creative Commons Zero (հանրային սեփականություն)",
 	"config-license-gfdl": "GNU Free Documentation License 1.3 կամ ավելի ուշ",
 	"config-license-pd": "Հանրային սեփականություն",
+	"config-cc-again": "Ընտրեեք նորից...",
 	"config-help": "օգնություն",
 	"mainpagetext": "'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''",
 	"mainpagedocfooter": "Այցելեք [//meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։\n\n== Որոշ օգտակար ռեսուրսներ ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"

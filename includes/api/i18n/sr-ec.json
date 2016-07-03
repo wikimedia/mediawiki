@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Aktron"
+			"Aktron",
+			"Сербијана"
 		]
 	},
 	"apihelp-block-description": "Блокирај корисника.",
@@ -12,13 +13,16 @@
 	"apihelp-edit-param-text": "Страница са садржајем.",
 	"apihelp-edit-param-minor": "Мања измена.",
 	"apihelp-edit-example-edit": "Уређивање странице.",
-	"apihelp-emailuser-description": "Слање е-поруке кориснику",
-	"apihelp-emailuser-param-target": "Корисник је послао е-поруку.",
+	"apihelp-emailuser-description": "Слање имејла кориснику.",
+	"apihelp-emailuser-param-target": "Корисник је послао имејл.",
 	"apihelp-feedcontributions-param-year": "Од године (и раније).",
+	"apihelp-feedrecentchanges-param-hidepatrolled": "Сакриј патролиране измене.",
 	"apihelp-filerevert-description": "Вратити датотеку у ранију верзију.",
 	"apihelp-help-example-recursive": "Сва помоћ у једној страници.",
 	"apihelp-login-param-name": "Корисничко име.",
 	"apihelp-login-param-password": "Лозинка.",
 	"apihelp-login-example-login": "Пријавa.",
-	"apihelp-move-description": "Премештање странице."
+	"apihelp-move-description": "Премештање странице.",
+	"apihelp-query+allrevisions-param-namespace": "Само списак страница у овом именском простору.",
+	"apihelp-stashedit-param-text": "Страница са садржајем."
 }

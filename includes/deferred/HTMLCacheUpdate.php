@@ -43,24 +43,8 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
-		$job = new HTMLCacheUpdateJob(
-			$this->mTitle,
-			array(
-				'table' => $this->mTable,
-				'recursive' => true
-			) + Job::newRootJobParams( // "overall" refresh links job info
-				"htmlCacheUpdate:{$this->mTable}:{$this->mTitle->getPrefixedText()}"
-			)
-		);
+		$job = HTMLCacheUpdateJob::newForBacklinks( $this->mTitle, $this->mTable );
 
-		$count = $this->mTitle->getBacklinkCache()->getNumLinks( $this->mTable, 100 );
-		if ( $count >= 100 ) { // many backlinks
-			JobQueueGroup::singleton()->lazyPush( $job );
-		} else { // few backlinks ($count might be off even if 0)
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->onTransactionIdle( function () use ( $job ) {
-				$job->run(); // just do the purge query now
-			} );
-		}
+		JobQueueGroup::singleton()->lazyPush( $job );
 	}
 }

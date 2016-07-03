@@ -39,12 +39,12 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = array(
+		$linkTexts = [
 			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
 			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
 			'first' => $this->msg( 'histlast' )->escaped(),
 			'last' => $this->msg( 'histfirst' )->escaped()
-		);
+		];
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
@@ -115,7 +115,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
 		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
-		$timestamp->setTimeZone( $this->getConfig()->get( 'Localtimezone' ) );
+		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
 		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
 	}

@@ -1,0 +1,22 @@
+Don't modify the installer if you want to alter its behavior, including
+the contents of generated LocalSettings.php in your package. Instead,
+you can override classes used by the installer.
+
+You can override 3 classes:
+* LocalSettingsGenerator - generates LocalSettings.php
+* WebInstaller - web installer UI
+* CliInstaller - command line installer
+
+Example override:
+
+$overrides['LocalSettingsGenerator'] = 'MyLocalSettingsGenerator';
+
+class MyLocalSettingsGenerator extends LocalSettingsGenerator {
+	function getText() {
+		// Modify an existing setting
+		$this->values['wgDefaultSkin'] = 'vector';
+		// add a new setting
+		$ls = parent::getText();
+		return $ls . "\n\$wgMiserMode = true;\n";
+	}
+}

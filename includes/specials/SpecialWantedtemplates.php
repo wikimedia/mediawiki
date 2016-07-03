@@ -37,19 +37,22 @@ class WantedTemplatesPage extends WantedQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'templatelinks', 'page' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'templatelinks', 'page' ],
+			'fields' => [
 				'namespace' => 'tl_namespace',
 				'title' => 'tl_title',
 				'value' => 'COUNT(*)'
-			),
-			'conds' => array( 'page_title IS NULL' ),
-			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) ),
-			'join_conds' => array( 'page' => array( 'LEFT JOIN',
-				array( 'page_namespace = tl_namespace',
-					'page_title = tl_title' ) ) )
-		);
+			],
+			'conds' => [
+				'page_title IS NULL',
+				'tl_namespace' => NS_TEMPLATE
+			],
+			'options' => [ 'GROUP BY' => [ 'tl_namespace', 'tl_title' ] ],
+			'join_conds' => [ 'page' => [ 'LEFT JOIN',
+				[ 'page_namespace = tl_namespace',
+					'page_title = tl_title' ] ] ]
+		];
 	}
 
 	protected function getGroupName() {

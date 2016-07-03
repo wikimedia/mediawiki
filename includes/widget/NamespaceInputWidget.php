@@ -20,7 +20,7 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 	 *     namespace dropdown, and use this as the input value for it
 	 * @param number[] $config['exclude'] List of namespace numbers to exclude from the selector
 	 */
-	public function __construct( array $config = array() ) {
+	public function __construct( array $config = [] ) {
 		// Configuration initialization
 		$config['options'] = $this->getNamespaceDropdownOptions( $config );
 
@@ -29,25 +29,25 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 
 		// Properties
 		$this->includeAllValue = isset( $config['includeAllValue'] ) ? $config['includeAllValue'] : null;
-		$this->exclude = isset( $config['exclude'] ) ? $config['exclude'] : array();
+		$this->exclude = isset( $config['exclude'] ) ? $config['exclude'] : [];
 
 		// Initialization
-		$this->addClasses( array( 'mw-widget-namespaceInputWidget' ) );
+		$this->addClasses( [ 'mw-widget-namespaceInputWidget' ] );
 	}
 
 	protected function getNamespaceDropdownOptions( array $config ) {
-		$namespaceOptionsParams = array(
+		$namespaceOptionsParams = [
 			'all' => isset( $config['includeAllValue'] ) ? $config['includeAllValue'] : null,
 			'exclude' => isset( $config['exclude'] ) ? $config['exclude'] : null
-		);
+		];
 		$namespaceOptions = \Html::namespaceSelectorOptions( $namespaceOptionsParams );
 
-		$options = array();
+		$options = [];
 		foreach ( $namespaceOptions as $id => $name ) {
-			$options[] = array(
+			$options[] = [
 				'data' => (string)$id,
 				'label' => $name,
-			);
+			];
 		}
 
 		return $options;

@@ -57,9 +57,9 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 		$this->resetQueryParams();
 		$this->addTables( 'page' );
-		$this->addFields( array( 'page_id', 'page_random' ) );
+		$this->addFields( [ 'page_id', 'page_random' ] );
 		if ( is_null( $resultPageSet ) ) {
-			$this->addFields( array( 'page_title', 'page_namespace' ) );
+			$this->addFields( [ 'page_title', 'page_namespace' ] );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
 		}
@@ -69,7 +69,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		} elseif ( $params['filterredir'] === 'nonredirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		} elseif ( is_null( $resultPageSet ) ) {
-			$this->addFields( array( 'page_is_redirect' ) );
+			$this->addFields( [ 'page_is_redirect' ] );
 		}
 		$this->addOption( 'LIMIT', $limit + 1 );
 
@@ -85,36 +85,36 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		if ( $end !== null ) {
 			$this->addWhere( 'page_random < ' . $this->getDB()->addQuotes( $end ) );
 		}
-		$this->addOption( 'ORDER BY', array( 'page_random', 'page_id' ) );
+		$this->addOption( 'ORDER BY', [ 'page_random', 'page_id' ] );
 
 		$result = $this->getResult();
-		$path = array( 'query', $this->getModuleName() );
+		$path = [ 'query', $this->getModuleName() ];
 
 		$res = $this->select( __METHOD__ );
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( $count++ >= $limit ) {
-				return array( 0, "{$row->page_random}|{$row->page_id}" );
+				return [ 0, "{$row->page_random}|{$row->page_id}" ];
 			}
 			if ( is_null( $resultPageSet ) ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$page = array(
+				$page = [
 					'id' => (int)$row->page_id,
-				);
+				];
 				ApiQueryBase::addTitleInfo( $page, $title );
 				if ( isset( $row->page_is_redirect ) ) {
 					$page['redirect'] = (bool)$row->page_is_redirect;
 				}
 				$fit = $result->addValue( $path, null, $page );
 				if ( !$fit ) {
-					return array( 0, "{$row->page_random}|{$row->page_id}" );
+					return [ 0, "{$row->page_random}|{$row->page_id}" ];
 				}
 			} else {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
 
-		return array( $limit - $count, null );
+		return [ $limit - $count, null ];
 	}
 
 	/**
@@ -128,10 +128,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$request = $this->getMain()->getRequest();
 		if ( $request->getCheck( $this->encodeParamName( 'filterredir' ) ) ) {
 			$this->requireMaxOneParameter( $params, 'filterredir', 'redirect' );
-		}
-
-		if ( $params['redirect'] ) {
-			$this->logFeatureUsage( "list=random&rnredirect=" );
 		}
 
 		if ( isset( $params['continue'] ) ) {
@@ -152,7 +148,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$end = null;
 		}
 
-		list( $left, $continue ) = $this->runQuery( $resultPageSet, $params['limit'], $start, $startId, $end );
+		list( $left, $continue ) =
+			$this->runQuery( $resultPageSet, $params['limit'], $start, $startId, $end );
 		if ( $end === null && $continue === null ) {
 			// Wrap around. We do this even if $left === 0 for continuation
 			// (saving a DB query in this rare case probably isn't worth the
@@ -167,7 +164,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
+			$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 		}
 	}
 
@@ -176,39 +173,39 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'namespace' => array(
+		return [
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'filterredir' => array(
-				ApiBase::PARAM_TYPE => array( 'all', 'redirects', 'nonredirects' ),
+			],
+			'filterredir' => [
+				ApiBase::PARAM_TYPE => [ 'all', 'redirects', 'nonredirects' ],
 				ApiBase::PARAM_DFLT => 'nonredirects', // for BC
-			),
-			'redirect' => array(
+			],
+			'redirect' => [
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_DFLT => false,
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => 1,
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue'
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=random&rnnamespace=0&rnlimit=2'
 				=> 'apihelp-query+random-example-simple',
 			'action=query&generator=random&grnnamespace=0&grnlimit=2&prop=info'
 				=> 'apihelp-query+random-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

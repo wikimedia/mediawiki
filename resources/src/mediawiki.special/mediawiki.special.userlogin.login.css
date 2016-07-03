@@ -1,9 +1,33 @@
 /* The login form invites users to create an account */
 #mw-createaccount-cta {
 	width: 20em;
-	height: 10em;
 	/* @embed */
-	background: url(images/glyph-people-large.png) no-repeat 50%;
+	background: url( images/glyph-people-large.png ) no-repeat 50%;
 	margin: 0 auto;
-	padding-top: 4em;
+	padding-top: 7.8em;
+	font-weight: bold;
+}
+
+/* Login Button, following `ButtonWidget (progressive)‎` from OOjs UI */
+#mw-createaccount-join {
+	color: #347bff;
+}
+#mw-createaccount-join:hover {
+	background-color: #ebf2ff; /* rgba(52, 123, 255, 0.1); */
+	border-color: #859ecc;
+	box-shadow: none;
+}
+#mw-createaccount-join:active {
+	background-color: #ebf2ff;
+	color: #1f4999;
+	border-color: #1f4999;
+}
+#mw-createaccount-join:focus {
+	background-color: #fff;
+	color: #1f4999;
+	border-color: #1f4999;
+	box-shadow: inset 0 0 0 1px #1f4999;
+}
+#mw-createaccount-join:active:focus {
+	background-color: #ebf2ff;
 }

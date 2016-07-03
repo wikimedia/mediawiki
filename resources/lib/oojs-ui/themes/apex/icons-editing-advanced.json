@@ -5,26 +5,31 @@
 		"alignCentre": { "file": "images/icons/align-center.svg" },
 		"alignLeft": { "file": "images/icons/align-float-left.svg" },
 		"alignRight": { "file": "images/icons/align-float-right.svg" },
+		"attachment": { "file": {
+			"ltr": "images/icons/attachment-ltr.svg",
+			"rtl": "images/icons/attachment-rtl.svg"
+		} },
 		"calendar": { "file": {
 			"ltr": "images/icons/calendar-ltr.svg",
 			"rtl": "images/icons/calendar-rtl.svg"
 		} },
+		"code": { "file": "images/icons/code.svg" },
 		"find": { "file": {
 			"ltr": "images/icons/find-ltr.svg",
 			"rtl": "images/icons/find-rtl.svg"
 		} },
-		"insert": { "file": "images/icons/insert.svg" },
+		"language": { "file": {
+			"ltr": "images/icons/language-ltr.svg",
+			"rtl": "images/icons/language-rtl.svg"
+		} },
 		"layout": { "file": {
 			"ltr": "images/icons/layout-ltr.svg",
 			"rtl": "images/icons/layout-rtl.svg"
 		} },
+		"markup": { "file": "images/icons/markup.svg" },
 		"newline": { "file": {
 			"ltr": "images/icons/newline-ltr.svg",
 			"rtl": "images/icons/newline-rtl.svg"
-		} },
-		"redirect": { "file": {
-			"ltr": "images/icons/redirect-ltr.svg",
-			"rtl": "images/icons/redirect-rtl.svg"
 		} },
 		"noWikiText": { "file": {
 			"ltr": "images/icons/noWikiText-ltr.svg",
@@ -47,8 +52,8 @@
 			"rtl": "images/icons/quotesAdd-rtl.svg"
 		} },
 		"redirect": { "file": {
-			"ltr": "images/icons/redirect-ltr.svg",
-			"rtl": "images/icons/redirect-rtl.svg"
+			"ltr": "images/icons/articleRedirect-ltr.svg",
+			"rtl": "images/icons/articleRedirect-rtl.svg"
 		} },
 		"searchCaseSensitive": { "file": "images/icons/case-sensitive.svg" },
 		"searchRegularExpression": { "file": "images/icons/regular-expression.svg" },
@@ -71,8 +76,8 @@
 			"rtl": "images/icons/templateAdd-rtl.svg"
 		} },
 		"translation": { "file": {
-			"ltr": "images/icons/translation-ltr.svg",
-			"rtl": "images/icons/translation-rtl.svg"
+			"ltr": "images/icons/language-ltr.svg",
+			"rtl": "images/icons/language-rtl.svg"
 		} },
 		"wikiText": { "file": "images/icons/wikiText.svg" }
 	}

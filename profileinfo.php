@@ -156,7 +156,7 @@ if ( !$dbr->tableExists( 'profiling' ) ) {
 	exit( 1 );
 }
 
-$expand = array();
+$expand = [];
 if ( isset( $_REQUEST['expand'] ) ) {
 	foreach ( explode( ',', $_REQUEST['expand'] ) as $f ) {
 		$expand[$f] = true;
@@ -179,7 +179,7 @@ class profile_point {
 		$this->count = $count;
 		$this->time = $time;
 		$this->memory = $memory;
-		$this->children = array();
+		$this->children = [];
 	}
 
 	public function add_child( $child ) {
@@ -195,16 +195,16 @@ class profile_point {
 
 		if ( !$ex ) {
 			if ( count( $this->children ) ) {
-				$url = getEscapedProfileUrl( false, false, $expand + array( $this->name() => true ) );
+				$url = getEscapedProfileUrl( false, false, $expand + [ $this->name() => true ] );
 				$extet = " <a id=\"{$anchor}\" href=\"{$url}#{$anchor}\">[+]</a>";
 			} else {
 				$extet = '';
 			}
 		} else {
-			$e = array();
+			$e = [];
 			foreach ( $expand as $name => $ep ) {
 				if ( $name != $this->name() ) {
-					$e += array( $name => $ep );
+					$e += [ $name => $ep ];
 				}
 			}
 			$url = getEscapedProfileUrl( false, false, $e );
@@ -313,14 +313,20 @@ function compare_point( profile_point $a, profile_point $b ) {
 	}
 }
 
-$sorts = array( 'time', 'memory', 'count', 'calls_per_req', 'name',
-	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' );
+$sorts = [ 'time', 'memory', 'count', 'calls_per_req', 'name',
+	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' ];
 $sort = 'time';
 if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 	$sort = $_REQUEST['sort'];
 }
 
-$res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
+$res = $dbr->select(
+	'profiling',
+	'*',
+	[],
+	'profileinfo.php',
+	[ 'ORDER BY' => 'pf_name ASC' ]
+);
 
 if ( isset( $_REQUEST['filter'] ) ) {
 	$filter = $_REQUEST['filter'];
@@ -333,7 +339,9 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	<p>
 		<input type="text" name="filter" value="<?php echo htmlspecialchars( $filter ); ?>">
 		<input type="hidden" name="sort" value="<?php echo htmlspecialchars( $sort ); ?>">
-		<input type="hidden" name="expand" value="<?php echo htmlspecialchars( implode( ",", array_keys( $expand ) ) ); ?>">
+		<input type="hidden" name="expand" value="<?php
+			echo htmlspecialchars( implode( ",", array_keys( $expand ) ) );
+		?>">
 		<input type="submit" value="Filter">
 	</p>
 </form>
@@ -341,15 +349,33 @@ if ( isset( $_REQUEST['filter'] ) ) {
 <table class="mw-profileinfo-table table table-striped table-hover">
 	<thead>
 	<tr>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'name' ); ?>">Name</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time' ); ?>">Time (%)</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory' ); ?>">Memory (%)</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'count' ); ?>">Count</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'calls_per_req' ); ?>">Calls/req</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time_per_call' ); ?>">ms/call</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory_per_call' ); ?>">kb/call</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time_per_req' ); ?>">ms/req</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory_per_req' ); ?>">kb/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'name' );
+		?>">Name</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time' );
+		?>">Time (%)</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory' );
+		?>">Memory (%)</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'count' );
+		?>">Count</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'calls_per_req' );
+		?>">Calls/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time_per_call' );
+		?>">ms/call</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory_per_call' );
+		?>">kb/call</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time_per_req' );
+		?>">ms/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory_per_req' );
+		?>">kb/req</a></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -369,16 +395,16 @@ if ( isset( $_REQUEST['filter'] ) ) {
 
 		return htmlspecialchars(
 			'?' .
-				wfArrayToCgi( array(
+				wfArrayToCgi( [
 					'filter' => $_filter ? $_filter : $filter,
 					'sort' => $_sort ? $_sort : $sort,
 					'expand' => implode( ',', array_keys( $_expand ) )
-				) )
+				] )
 		);
 	}
 
-	$points = array();
-	$queries = array();
+	$points = [];
+	$queries = [];
 	$sqltotal = 0.0;
 
 	$last = false;
@@ -410,7 +436,9 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	}
 	$points[] = $s;
 
-	usort( $points, 'compare_point' );
+	// @codingStandardsIgnoreStart
+	@usort( $points, 'compare_point' );
+	// @codingStandardsIgnoreEnd
 
 	foreach ( $points as $point ) {
 		if ( strlen( $filter ) && !strstr( $point->name(), $filter ) ) {

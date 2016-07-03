@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class TestFileOpPerformance extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Test fileop performance";
+		$this->addDescription( 'Test fileop performance' );
 		$this->addOption( 'b1', 'Backend 1', true, true );
 		$this->addOption( 'b2', 'Backend 2', false, true );
 		$this->addOption( 'srcdir', 'File source directory', true, true );
@@ -42,7 +42,7 @@ class TestFileOpPerformance extends Maintenance {
 	}
 
 	public function execute() {
-		Profiler::setInstance( new ProfilerSimpleText( array() ) ); // clear
+		Profiler::setInstance( new ProfilerSimpleText( [] ) ); // clear
 
 		$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b1' ) );
 		$this->doPerfTest( $backend );
@@ -57,14 +57,14 @@ class TestFileOpPerformance extends Maintenance {
 	}
 
 	protected function doPerfTest( FileBackend $backend ) {
-		$ops1 = array();
-		$ops2 = array();
-		$ops3 = array();
-		$ops4 = array();
-		$ops5 = array();
+		$ops1 = [];
+		$ops2 = [];
+		$ops3 = [];
+		$ops4 = [];
+		$ops5 = [];
 
 		$baseDir = 'mwstore://' . $backend->getName() . '/testing-cont1';
-		$backend->prepare( array( 'dir' => $baseDir ) );
+		$backend->prepare( [ 'dir' => $baseDir ] );
 
 		$dirname = $this->getOption( 'srcdir' );
 		$dir = opendir( $dirname );
@@ -76,14 +76,14 @@ class TestFileOpPerformance extends Maintenance {
 			if ( $file[0] != '.' ) {
 				$this->output( "Using '$dirname/$file' in operations.\n" );
 				$dst = $baseDir . '/' . wfBaseName( $file );
-				$ops1[] = array( 'op' => 'store',
-					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1 );
-				$ops2[] = array( 'op' => 'copy',
-					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1 );
-				$ops3[] = array( 'op' => 'move',
-					'src' => $dst, 'dst' => "$dst-2", 'overwrite' => 1 );
-				$ops4[] = array( 'op' => 'delete', 'src' => "$dst-1" );
-				$ops5[] = array( 'op' => 'delete', 'src' => "$dst-2" );
+				$ops1[] = [ 'op' => 'store',
+					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1 ];
+				$ops2[] = [ 'op' => 'copy',
+					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1 ];
+				$ops3[] = [ 'op' => 'move',
+					'src' => $dst, 'dst' => "$dst-2", 'overwrite' => 1 ];
+				$ops4[] = [ 'op' => 'delete', 'src' => "$dst-1" ];
+				$ops5[] = [ 'op' => 'delete', 'src' => "$dst-2" ];
 			}
 			if ( count( $ops1 ) >= $this->getOption( 'maxfiles', 20 ) ) {
 				break; // enough
@@ -94,7 +94,7 @@ class TestFileOpPerformance extends Maintenance {
 
 		$method = $this->hasOption( 'quick' ) ? 'doQuickOperations' : 'doOperations';
 
-		$opts = array( 'force' => 1 );
+		$opts = [ 'force' => 1 ];
 		if ( $this->hasOption( 'parallelize' ) ) {
 			$opts['parallelize'] = ( $this->getOption( 'parallelize' ) === 'true' );
 		}

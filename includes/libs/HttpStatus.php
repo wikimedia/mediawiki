@@ -32,7 +32,7 @@ class HttpStatus {
 	 * @return string|null Message, or null if $code is not known
 	 */
 	public static function getMessage( $code ) {
-		static $statusMessage = array(
+		static $statusMessage = [
 			100 => 'Continue',
 			101 => 'Switching Protocols',
 			102 => 'Processing',
@@ -83,7 +83,7 @@ class HttpStatus {
 			505 => 'HTTP Version Not Supported',
 			507 => 'Insufficient Storage',
 			511 => 'Network Authentication Required',
-		);
+		];
 		return isset( $statusMessage[$code] ) ? $statusMessage[$code] : null;
 	}
 
@@ -102,7 +102,10 @@ class HttpStatus {
 		}
 
 		if ( $version === null ) {
-			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) && $_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ? '1.0' : '1.1';
+			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) &&
+				$_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ?
+					'1.0' :
+					'1.1';
 		}
 
 		header( "HTTP/$version $code $message" );

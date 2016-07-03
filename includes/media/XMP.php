@@ -55,7 +55,7 @@ class XMPReader implements LoggerAwareInterface {
 	protected $items;
 
 	/** @var array Array to hold the current element (and previous element, and so on) */
-	private $curItem = array();
+	private $curItem = [];
 
 	/** @var bool|string The structure name when processing nested structures. */
 	private $ancestorStruct = false;
@@ -64,10 +64,10 @@ class XMPReader implements LoggerAwareInterface {
 	private $charContent = false;
 
 	/** @var array Stores the state the xmpreader is in (see MODE_FOO constants) */
-	private $mode = array();
+	private $mode = [];
 
 	/** @var array Array to hold results */
-	private $results = array();
+	private $results = [];
 
 	/** @var bool If we're doing a seq or bag. */
 	private $processingArray = false;
@@ -182,10 +182,10 @@ class XMPReader implements LoggerAwareInterface {
 		xml_parser_set_option( $this->xmlParser, XML_OPTION_SKIP_WHITE, 1 );
 
 		xml_set_element_handler( $this->xmlParser,
-			array( $this, 'startElement' ),
-			array( $this, 'endElement' ) );
+			[ $this, 'startElement' ],
+			[ $this, 'endElement' ] );
 
-		xml_set_character_data_handler( $this->xmlParser, array( $this, 'char' ) );
+		xml_set_character_data_handler( $this->xmlParser, [ $this, 'char' ] );
 
 		$this->parsable = self::PARSABLE_UNKNOWN;
 		$this->xmlParsableBuffer = '';
@@ -308,7 +308,7 @@ class XMPReader implements LoggerAwareInterface {
 			// detect encoding by looking for BOM which is supposed to be in processing instruction.
 			// see page 12 of http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart3.pdf
 			if ( !$this->charset ) {
-				$bom = array();
+				$bom = [];
 				if ( preg_match( '/\xEF\xBB\xBF|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00|\xFF\xFE/',
 					$content, $bom )
 				) {
@@ -329,7 +329,7 @@ class XMPReader implements LoggerAwareInterface {
 							$this->charset = 'UTF-8';
 							break;
 						default:
-							//this should be impossible to get to
+							// this should be impossible to get to
 							throw new RuntimeException( "Invalid BOM" );
 					}
 				} else {
@@ -338,7 +338,7 @@ class XMPReader implements LoggerAwareInterface {
 				}
 			}
 			if ( $this->charset !== 'UTF-8' ) {
-				//don't convert if already utf-8
+				// don't convert if already utf-8
 				MediaWiki\suppressWarnings();
 				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
 				MediaWiki\restoreWarnings();
@@ -376,7 +376,7 @@ class XMPReader implements LoggerAwareInterface {
 				$this->logger->warning(
 					'{method} : Error reading XMP content: {error} ' .
 					'(line: {line} column: {column} byte offset: {offset})',
-					array(
+					[
 						'method' => __METHOD__,
 						'error_code' => $code,
 						'error' => $error,
@@ -384,21 +384,21 @@ class XMPReader implements LoggerAwareInterface {
 						'column' => $col,
 						'offset' => $offset,
 						'content' => $content,
-				) );
-				$this->results = array(); // blank if error.
+				] );
+				$this->results = []; // blank if error.
 				$this->destroyXMLParser();
 				return false;
 			}
 		} catch ( Exception $e ) {
 			$this->logger->warning(
 				'{method} Exception caught while parsing: ' . $e->getMessage(),
-				array(
+				[
 					'method' => __METHOD__,
 					'exception' => $e,
 					'content' => $content,
-				)
+				]
 			);
-			$this->results = array();
+			$this->results = [];
 			return false;
 		}
 		if ( $allOfIt ) {
@@ -429,8 +429,14 @@ class XMPReader implements LoggerAwareInterface {
 		}
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
-		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			$this->logger->info( __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+		if ( !$len ||
+			$len['length'] < 4 ||
+			$len['offset'] < 0 ||
+			$len['offset'] > $len['length']
+		) {
+			$this->logger->info(
+				__METHOD__ . 'Error reading extended XMP block, invalid length or offset.'
+			);
 
 			return false;
 		}
@@ -441,9 +447,8 @@ class XMPReader implements LoggerAwareInterface {
 		// immediately following the StandardXMP. However, the JPEG standard
 		// does not require preservation of marker segment order. A robust JPEG
 		// reader should tolerate the marker segments in any order."
-		//
-		// otoh the probability that an image will have more than 128k of
-		// metadata is rather low... so the probability that it will have
+		// On the other hand, the probability that an image will have more than
+		// 128k of metadata is rather low... so the probability that it will have
 		// > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
@@ -543,7 +548,7 @@ class XMPReader implements LoggerAwareInterface {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$reset = new ScopedCallback(
 			'libxml_disable_entity_loader',
-			array( $oldDisable )
+			[ $oldDisable ]
 		);
 		$reader->setParserProperty( XMLReader::SUBST_ENTITIES, false );
 
@@ -662,7 +667,7 @@ class XMPReader implements LoggerAwareInterface {
 				$validate = $info['validate'];
 			} else {
 				$validator = new XMPValidate( $this->logger );
-				$validate = array( $validator, $info['validate'] );
+				$validate = [ $validator, $info['validate'] ];
 			}
 
 			if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
@@ -670,7 +675,7 @@ class XMPReader implements LoggerAwareInterface {
 				$this->logger->debug( __METHOD__ . " <$ns:$tag> has no valid members." );
 			} elseif ( is_callable( $validate ) ) {
 				$val =& $this->results['xmp-' . $info['map_group']][$finalName];
-				call_user_func_array( $validate, array( $info, &$val, false ) );
+				call_user_func_array( $validate, [ $info, &$val, false ] );
 				if ( is_null( $val ) ) {
 					// the idea being the validation function will unset the variable if
 					// its invalid.
@@ -710,7 +715,6 @@ class XMPReader implements LoggerAwareInterface {
 	 * @throws RuntimeException
 	 */
 	private function endElementModeLi( $elm ) {
-
 		list( $ns, $tag ) = explode( ' ', $this->curItem[0], 2 );
 		$info = $this->items[$ns][$tag];
 		$finalName = isset( $info['map_name'] )
@@ -734,7 +738,9 @@ class XMPReader implements LoggerAwareInterface {
 				$this->results['xmp-' . $info['map_group']][$finalName]['_type'] = 'lang';
 			}
 		} else {
-			throw new RuntimeException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
+			throw new RuntimeException(
+				__METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm."
+			);
 		}
 	}
 
@@ -1206,8 +1212,7 @@ class XMPReader implements LoggerAwareInterface {
 			// In practise I have yet to see a file that
 			// uses this element, however it is mentioned
 			// on page 25 of part 1 of the xmp standard.
-			//
-			// also it seems as if exiv2 and exiftool do not support
+			// Also it seems as if exiv2 and exiftool do not support
 			// this either (That or I misunderstand the standard)
 			$this->logger->info( __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
 		}
@@ -1264,6 +1269,7 @@ class XMPReader implements LoggerAwareInterface {
 		}
 	}
 
+	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
 	 * Process attributes.
 	 * Simple values can be stored as either a tag or attribute
@@ -1271,16 +1277,15 @@ class XMPReader implements LoggerAwareInterface {
 	 * Often the initial "<rdf:Description>" tag just has all the simple
 	 * properties as attributes.
 	 *
-	 * @codingStandardsIgnoreStart Long line that cannot be broken
 	 * @par Example:
 	 * @code
 	 * <rdf:Description rdf:about="" xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:DigitalZoomRatio="0/10">
 	 * @endcode
-	 * @codingStandardsIgnoreEnd
 	 *
 	 * @param array $attribs Array attribute=>value
 	 * @throws RuntimeException
 	 */
+	// @codingStandardsIgnoreEnd
 	private function doAttribs( $attribs ) {
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.
@@ -1340,11 +1345,11 @@ class XMPReader implements LoggerAwareInterface {
 				$validate = $info['validate'];
 			} else {
 				$validator = new XMPValidate( $this->logger );
-				$validate = array( $validator, $info['validate'] );
+				$validate = [ $validator, $info['validate'] ];
 			}
 
 			if ( is_callable( $validate ) ) {
-				call_user_func_array( $validate, array( $info, &$val, true ) );
+				call_user_func_array( $validate, [ $info, &$val, true ] );
 				// the reasoning behind using &$val instead of using the return value
 				// is to be consistent between here and validating structures.
 				if ( is_null( $val ) ) {

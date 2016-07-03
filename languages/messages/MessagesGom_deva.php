@@ -1,5 +1,5 @@
 <?php
-/** Goan Konkani - Devanagari script (गोवा कोंकणी)
+/** Goan Konkani - Devanagari script (गोंयची कोंकणी)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -11,7 +11,7 @@
 
 $fallback = 'hi';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'मिडिया',
 	NS_SPECIAL          => 'विशेश',
 	NS_TALK             => 'चर्चा',
@@ -28,4 +28,4 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'मजत_चर्चा',
 	NS_CATEGORY         => 'श्रेणी',
 	NS_CATEGORY_TALK    => 'श्रेणी_चर्चा',
-);
+];

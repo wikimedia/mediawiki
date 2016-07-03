@@ -16,17 +16,17 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$this->mergeMwGlobalArrayValue(
 			'wgExtraNamespaces',
-			array(
+			[
 				12302 => 'TEST-JS',
 				12303 => 'TEST-JS_TALK',
-			)
+			]
 		);
 
 		$this->mergeMwGlobalArrayValue(
 			'wgNamespaceContentModels',
-			array(
+			[
 				12302 => CONTENT_MODEL_JAVASCRIPT,
-			)
+			]
 		);
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
@@ -43,15 +43,15 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideEquals() {
-		return array(
-			array( 'Main Page', 'Main Page', true ),
-			array( 'Main Page', 'Not The Main Page', false ),
-			array( 'Main Page', 'Project:Main Page', false ),
-			array( 'File:Example.png', 'Image:Example.png', true ),
-			array( 'Special:Version', 'Special:Version', true ),
-			array( 'Special:Version', 'Special:Recentchanges', false ),
-			array( 'Special:Version', 'Main Page', false ),
-		);
+		return [
+			[ 'Main Page', 'Main Page', true ],
+			[ 'Main Page', 'Not The Main Page', false ],
+			[ 'Main Page', 'Project:Main Page', false ],
+			[ 'File:Example.png', 'Image:Example.png', true ],
+			[ 'Special:Version', 'Special:Version', true ],
+			[ 'Special:Version', 'Special:Recentchanges', false ],
+			[ 'Special:Version', 'Main Page', false ],
+		];
 	}
 
 	/**
@@ -67,16 +67,16 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideInNamespace() {
-		return array(
-			array( 'Main Page', NS_MAIN, true ),
-			array( 'Main Page', NS_TALK, false ),
-			array( 'Main Page', NS_USER, false ),
-			array( 'User:Foo', NS_USER, true ),
-			array( 'User:Foo', NS_USER_TALK, false ),
-			array( 'User:Foo', NS_TEMPLATE, false ),
-			array( 'User_talk:Foo', NS_USER_TALK, true ),
-			array( 'User_talk:Foo', NS_USER, false ),
-		);
+		return [
+			[ 'Main Page', NS_MAIN, true ],
+			[ 'Main Page', NS_TALK, false ],
+			[ 'Main Page', NS_USER, false ],
+			[ 'User:Foo', NS_USER, true ],
+			[ 'User:Foo', NS_USER_TALK, false ],
+			[ 'User:Foo', NS_TEMPLATE, false ],
+			[ 'User_talk:Foo', NS_USER_TALK, true ],
+			[ 'User_talk:Foo', NS_USER, false ],
+		];
 	}
 
 	/**
@@ -94,22 +94,22 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	public function testInNamespaces() {
 		$mainpage = Title::newFromText( 'Main Page' );
 		$this->assertTrue( $mainpage->inNamespaces( NS_MAIN, NS_USER ) );
-		$this->assertTrue( $mainpage->inNamespaces( array( NS_MAIN, NS_USER ) ) );
-		$this->assertTrue( $mainpage->inNamespaces( array( NS_USER, NS_MAIN ) ) );
-		$this->assertFalse( $mainpage->inNamespaces( array( NS_PROJECT, NS_TEMPLATE ) ) );
+		$this->assertTrue( $mainpage->inNamespaces( [ NS_MAIN, NS_USER ] ) );
+		$this->assertTrue( $mainpage->inNamespaces( [ NS_USER, NS_MAIN ] ) );
+		$this->assertFalse( $mainpage->inNamespaces( [ NS_PROJECT, NS_TEMPLATE ] ) );
 	}
 
 	public static function provideHasSubjectNamespace() {
-		return array(
-			array( 'Main Page', NS_MAIN, true ),
-			array( 'Main Page', NS_TALK, true ),
-			array( 'Main Page', NS_USER, false ),
-			array( 'User:Foo', NS_USER, true ),
-			array( 'User:Foo', NS_USER_TALK, true ),
-			array( 'User:Foo', NS_TEMPLATE, false ),
-			array( 'User_talk:Foo', NS_USER_TALK, true ),
-			array( 'User_talk:Foo', NS_USER, true ),
-		);
+		return [
+			[ 'Main Page', NS_MAIN, true ],
+			[ 'Main Page', NS_TALK, true ],
+			[ 'Main Page', NS_USER, false ],
+			[ 'User:Foo', NS_USER, true ],
+			[ 'User:Foo', NS_USER_TALK, true ],
+			[ 'User:Foo', NS_TEMPLATE, false ],
+			[ 'User_talk:Foo', NS_USER_TALK, true ],
+			[ 'User_talk:Foo', NS_USER, true ],
+		];
 	}
 
 	/**
@@ -122,28 +122,28 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public function dataGetContentModel() {
-		return array(
-			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
-			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
-			array( 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
-			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
-			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
-			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'User:Foo/bar.css', CONTENT_MODEL_CSS ),
-			array( 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ),
-			array( 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ),
-			array( 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ),
-			array( 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ),
-			array( 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ),
-			array( 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ),
-			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
-			array( 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ),
-			array( 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ),
-		);
+		return [
+			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
+			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'User:Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ],
+			[ 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ],
+		];
 	}
 
 	/**
@@ -165,25 +165,25 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsCssOrJsPage() {
-		return array(
-			array( 'Help:Foo', false ),
-			array( 'Help:Foo.js', false ),
-			array( 'Help:Foo/bar.js', false ),
-			array( 'User:Foo', false ),
-			array( 'User:Foo.js', false ),
-			array( 'User:Foo/bar.js', false ),
-			array( 'User:Foo/bar.css', false ),
-			array( 'User talk:Foo/bar.css', false ),
-			array( 'User:Foo/bar.js.xxx', false ),
-			array( 'User:Foo/bar.xxx', false ),
-			array( 'MediaWiki:Foo.js', true ),
-			array( 'MediaWiki:Foo.css', true ),
-			array( 'MediaWiki:Foo.JS', false ),
-			array( 'MediaWiki:Foo.CSS', false ),
-			array( 'MediaWiki:Foo.css.xxx', false ),
-			array( 'TEST-JS:Foo', false ),
-			array( 'TEST-JS:Foo.js', false ),
-		);
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.js', false ],
+			[ 'Help:Foo/bar.js', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo/bar.js', false ],
+			[ 'User:Foo/bar.css', false ],
+			[ 'User talk:Foo/bar.css', false ],
+			[ 'User:Foo/bar.js.xxx', false ],
+			[ 'User:Foo/bar.xxx', false ],
+			[ 'MediaWiki:Foo.js', true ],
+			[ 'MediaWiki:Foo.css', true ],
+			[ 'MediaWiki:Foo.JS', false ],
+			[ 'MediaWiki:Foo.CSS', false ],
+			[ 'MediaWiki:Foo.css.xxx', false ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+		];
 	}
 
 	/**
@@ -196,23 +196,23 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsCssJsSubpage() {
-		return array(
-			array( 'Help:Foo', false ),
-			array( 'Help:Foo.js', false ),
-			array( 'Help:Foo/bar.js', false ),
-			array( 'User:Foo', false ),
-			array( 'User:Foo.js', false ),
-			array( 'User:Foo/bar.js', true ),
-			array( 'User:Foo/bar.css', true ),
-			array( 'User talk:Foo/bar.css', false ),
-			array( 'User:Foo/bar.js.xxx', false ),
-			array( 'User:Foo/bar.xxx', false ),
-			array( 'MediaWiki:Foo.js', false ),
-			array( 'User:Foo/bar.JS', false ),
-			array( 'User:Foo/bar.CSS', false ),
-			array( 'TEST-JS:Foo', false ),
-			array( 'TEST-JS:Foo.js', false ),
-		);
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.js', false ],
+			[ 'Help:Foo/bar.js', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo/bar.js', true ],
+			[ 'User:Foo/bar.css', true ],
+			[ 'User talk:Foo/bar.css', false ],
+			[ 'User:Foo/bar.js.xxx', false ],
+			[ 'User:Foo/bar.xxx', false ],
+			[ 'MediaWiki:Foo.js', false ],
+			[ 'User:Foo/bar.JS', false ],
+			[ 'User:Foo/bar.CSS', false ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+		];
 	}
 
 	/**
@@ -225,15 +225,15 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsCssSubpage() {
-		return array(
-			array( 'Help:Foo', false ),
-			array( 'Help:Foo.css', false ),
-			array( 'User:Foo', false ),
-			array( 'User:Foo.js', false ),
-			array( 'User:Foo.css', false ),
-			array( 'User:Foo/bar.js', false ),
-			array( 'User:Foo/bar.css', true ),
-		);
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.css', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo.css', false ],
+			[ 'User:Foo/bar.js', false ],
+			[ 'User:Foo/bar.css', true ],
+		];
 	}
 
 	/**
@@ -246,15 +246,15 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsJsSubpage() {
-		return array(
-			array( 'Help:Foo', false ),
-			array( 'Help:Foo.css', false ),
-			array( 'User:Foo', false ),
-			array( 'User:Foo.js', false ),
-			array( 'User:Foo.css', false ),
-			array( 'User:Foo/bar.js', true ),
-			array( 'User:Foo/bar.css', false ),
-		);
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.css', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo.css', false ],
+			[ 'User:Foo/bar.js', true ],
+			[ 'User:Foo/bar.css', false ],
+		];
 	}
 
 	/**
@@ -267,26 +267,26 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsWikitextPage() {
-		return array(
-			array( 'Help:Foo', true ),
-			array( 'Help:Foo.js', true ),
-			array( 'Help:Foo/bar.js', true ),
-			array( 'User:Foo', true ),
-			array( 'User:Foo.js', true ),
-			array( 'User:Foo/bar.js', false ),
-			array( 'User:Foo/bar.css', false ),
-			array( 'User talk:Foo/bar.css', true ),
-			array( 'User:Foo/bar.js.xxx', true ),
-			array( 'User:Foo/bar.xxx', true ),
-			array( 'MediaWiki:Foo.js', false ),
-			array( 'MediaWiki:Foo.css', false ),
-			array( 'MediaWiki:Foo/bar.css', false ),
-			array( 'User:Foo/bar.JS', true ),
-			array( 'User:Foo/bar.CSS', true ),
-			array( 'TEST-JS:Foo', false ),
-			array( 'TEST-JS:Foo.js', false ),
-			array( 'TEST-JS_TALK:Foo.js', true ),
-		);
+		return [
+			[ 'Help:Foo', true ],
+			[ 'Help:Foo.js', true ],
+			[ 'Help:Foo/bar.js', true ],
+			[ 'User:Foo', true ],
+			[ 'User:Foo.js', true ],
+			[ 'User:Foo/bar.js', false ],
+			[ 'User:Foo/bar.css', false ],
+			[ 'User talk:Foo/bar.css', true ],
+			[ 'User:Foo/bar.js.xxx', true ],
+			[ 'User:Foo/bar.xxx', true ],
+			[ 'MediaWiki:Foo.js', false ],
+			[ 'MediaWiki:Foo.css', false ],
+			[ 'MediaWiki:Foo/bar.css', false ],
+			[ 'User:Foo/bar.JS', true ],
+			[ 'User:Foo/bar.CSS', true ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+			[ 'TEST-JS_TALK:Foo.js', true ],
+		];
 	}
 
 	/**
@@ -299,13 +299,13 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetOtherPage() {
-		return array(
-			array( 'Main Page', 'Talk:Main Page' ),
-			array( 'Talk:Main Page', 'Main Page' ),
-			array( 'Help:Main Page', 'Help talk:Main Page' ),
-			array( 'Help talk:Main Page', 'Help:Main Page' ),
-			array( 'Special:FooBar', null ),
-		);
+		return [
+			[ 'Main Page', 'Talk:Main Page' ],
+			[ 'Talk:Main Page', 'Main Page' ],
+			[ 'Help:Main Page', 'Help talk:Main Page' ],
+			[ 'Help talk:Main Page', 'Help:Main Page' ],
+			[ 'Special:FooBar', null ],
+		];
 	}
 
 	/**

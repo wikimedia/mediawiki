@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * API interface for page purging
@@ -38,7 +39,7 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$continuationManager = new ApiContinuationManager( $this, array(), array() );
+		$continuationManager = new ApiContinuationManager( $this, [], [] );
 		$this->setContinuationManager( $continuationManager );
 
 		$forceLinkUpdate = $params['forcelinkupdate'];
@@ -47,16 +48,22 @@ class ApiPurge extends ApiBase {
 		$pageSet->execute();
 
 		$result = $pageSet->getInvalidTitlesAndRevisions();
+		$user = $this->getUser();
 
 		foreach ( $pageSet->getGoodTitles() as $title ) {
-			$r = array();
+			$r = [];
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
-			$page->doPurge(); // Directly purge and skip the UI part of purge().
-			$r['purged'] = true;
+			if ( !$user->pingLimiter( 'purge' ) ) {
+				$page->doPurge(); // Directly purge and skip the UI part of purge().
+				$r['purged'] = true;
+			} else {
+				$error = $this->parseMsg( [ 'actionthrottledtext' ] );
+				$this->setWarning( $error['info'] );
+			}
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
-				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
+				if ( !$user->pingLimiter( 'linkpurge' ) ) {
 					$popts = $page->makeParserOptions( 'canonical' );
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
@@ -68,6 +75,17 @@ class ApiPurge extends ApiBase {
 						$popts,
 						$enableParserCache
 					);
+
+					# Logging to better see expensive usage patterns
+					if ( $forceRecursiveLinkUpdate ) {
+						LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
+							"Recursive link purge enqueued for {title}",
+							[
+								'user' => $this->getUser()->getName(),
+								'title' => $title->getPrefixedText()
+							]
+						);
+					}
 
 					# Update the links tables
 					$updates = $content->getSecondaryDataUpdates(
@@ -81,7 +99,7 @@ class ApiPurge extends ApiBase {
 						$pcache->save( $p_result, $page, $popts );
 					}
 				} else {
-					$error = $this->parseMsg( array( 'actionthrottledtext' ) );
+					$error = $this->parseMsg( [ 'actionthrottledtext' ] );
 					$this->setWarning( $error['info'] );
 					$forceLinkUpdate = false;
 				}
@@ -132,13 +150,13 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$result = array(
+		$result = [
 			'forcelinkupdate' => false,
 			'forcerecursivelinkupdate' => false,
-			'continue' => array(
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
@@ -147,12 +165,12 @@ class ApiPurge extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=purge&titles=Main_Page|API'
 				=> 'apihelp-purge-example-simple',
 			'action=purge&generator=allpages&gapnamespace=0&gaplimit=10'
 				=> 'apihelp-purge-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

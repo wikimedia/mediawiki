@@ -1,0 +1,19 @@
+@import "mediawiki.mixins";
+
+/* Table Sorting */
+
+table.jquery-tablesorter th.headerSort {
+	.background-image-svg( 'images/sort_both.svg', 'images/sort_both.png' );
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding-right: 21px;
+}
+
+table.jquery-tablesorter th.headerSortUp {
+	.background-image-svg( 'images/sort_up.svg', 'images/sort_up.png' );
+}
+
+table.jquery-tablesorter th.headerSortDown {
+	.background-image-svg( 'images/sort_down.svg', 'images/sort_down.png' );
+}

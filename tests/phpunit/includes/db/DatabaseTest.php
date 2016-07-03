@@ -74,7 +74,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		$oldPrefix = $wgSharedPrefix;
 
 		$wgSharedDB = $database;
-		$wgSharedTables = array( $table );
+		$wgSharedTables = [ $table ];
 		$wgSharedPrefix = $prefix;
 
 		$ret = $this->db->tableName( $table, $format );
@@ -170,7 +170,7 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	public function testFillPreparedEmpty() {
 		$sql = $this->db->fillPrepared(
-			'SELECT * FROM interwiki', array() );
+			'SELECT * FROM interwiki', [] );
 		$this->assertEquals(
 			"SELECT * FROM interwiki",
 			$sql );
@@ -179,7 +179,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	public function testFillPreparedQuestion() {
 		$sql = $this->db->fillPrepared(
 			'SELECT * FROM cur WHERE cur_namespace=? AND cur_title=?',
-			array( 4, "Snicker's_paradox" ) );
+			[ 4, "Snicker's_paradox" ] );
 
 		$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker''s_paradox'";
 		if ( $this->db->getType() === 'mysql' ) {
@@ -191,7 +191,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	public function testFillPreparedBang() {
 		$sql = $this->db->fillPrepared(
 			'SELECT user_id FROM ! WHERE user_name=?',
-			array( '"user"', "Slash's Dot" ) );
+			[ '"user"', "Slash's Dot" ] );
 
 		$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash''s Dot'";
 		if ( $this->db->getType() === 'mysql' ) {
@@ -203,14 +203,14 @@ class DatabaseTest extends MediaWikiTestCase {
 	public function testFillPreparedRaw() {
 		$sql = $this->db->fillPrepared(
 			"SELECT * FROM cur WHERE cur_title='This_\\&_that,_WTF\\?\\!'",
-			array( '"user"', "Slash's Dot" ) );
+			[ '"user"', "Slash's Dot" ] );
 		$this->assertEquals(
 			"SELECT * FROM cur WHERE cur_title='This_&_that,_WTF?!'",
 			$sql );
 	}
 
 	public function testStoredFunctions() {
-		if ( !in_array( wfGetDB( DB_MASTER )->getType(), array( 'mysql', 'postgres' ) ) ) {
+		if ( !in_array( wfGetDB( DB_MASTER )->getType(), [ 'mysql', 'postgres' ] ) ) {
 			$this->markTestSkipped( 'MySQL or Postgres required' );
 		}
 		global $IP;
@@ -230,8 +230,34 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	public function testUnknownTableCorruptsResults() {
-		$res = $this->db->select( 'page', '*', array( 'page_id' => 1 ) );
+		$res = $this->db->select( 'page', '*', [ 'page_id' => 1 ] );
 		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
 		$this->assertInternalType( 'int', $res->numRows() );
+	}
+
+	public function testTransactionIdle() {
+		$db = $this->db;
+
+		$db->setFlag( DBO_TRX );
+		$flagSet = null;
+		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
+			$flagSet = $db->getFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+
+		$db->clearFlag( DBO_TRX );
+		$flagSet = null;
+		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
+			$flagSet = $db->getFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+
+		$db->clearFlag( DBO_TRX );
+		$db->onTransactionIdle( function() use ( $db ) {
+			$db->setFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 	}
 }

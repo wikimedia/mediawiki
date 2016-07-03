@@ -122,7 +122,7 @@ Lag time of the databases:
 	key: $wgDBname:lag_times
 	ex: wikidb:lag_times
 	stores: array mapping the database id to its lag time
-	expriy: 5 secondes
+	expiry: 5 secondes
 	cleared by: nothing
 
 Localisation:
@@ -139,7 +139,7 @@ Message Cache:
 	ex: wikidb:messages, wikidb:messages-hash, wikidb:messages-status
 	stores: an array where the keys are DB keys and the values are messages
 	set in: wfMessage(), Article::editUpdates() and Title::moveTo()
-	expriy: $wgMsgCacheExpiry
+	expiry: $wgMsgCacheExpiry
 	cleared by: nothing
 
 Newtalk:
@@ -194,14 +194,14 @@ Revision text:
 	ex: wikidb:revisiontext:textid:1012
 	stores: text of a revision
 	cleared by: nothing
-	expriry: $wgRevisionCacheExpiry
+	expiry: $wgRevisionCacheExpiry
 
 Sessions:
 	controlled by: $wgSessionsInObjectCache
 	key: $wgBDname:session:$id
 	ex: wikidb:session:38d7c5b8d3bfc51egf40c69bc40f8be3
 	stores: $SESSION, useful when using a multi-sever wiki
-	expriy: one hour
+	expiry: one hour
 	cleared by: session_destroy()
 
 Sidebar:
@@ -210,7 +210,7 @@ Sidebar:
 	key: $wgDBname:sidebar
 	ex: wikidb:sidebar
 	stores: the html output of the sidebar
-	expriy: $wgSidebarCacheExpiry
+	expiry: $wgSidebarCacheExpiry
 	cleared by: MessageCache::replace()
 
 Special:Allpages:
@@ -231,20 +231,5 @@ Special:Recentchanges (feed):
 	calling Special:Recentchanges?action=purge&feed=rss,
 	Special:Recentchanges?action=purge&feed=atom,
 	but note need $wgGroupPermissions[...]['purge'] permission.
-
-Statistics:
-	controlled by: $wgStatsMethod
-	key: $wgDBname:stats:$key
-	ex: wikibd:stats:request_with_session
-	stores: counter for statistics (see maintenance/showCacheStats.php script)
-	expiry: none (?)
-	cleared by: maintenance/clearCacheStats.php script
-
-User:
-	key: $wgDBname:user:id:$sId
-	ex: wikidb:user:id:51
-	stores: instance of class User
-	set in: User::saveToCache()
-	cleared by: User::saveSettings(), User::clearSharedCache()
 
 ... more to come ...

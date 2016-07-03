@@ -33,6 +33,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * The provided URL is in the form of DB://cluster/id
 	 * or DB://cluster/id/itemid for concatened storage.
 	 *
+	 * @param string $url
+	 * @return string|bool False if missing
 	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
 	public function fetchFromURL( $url ) {
@@ -56,7 +58,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *     are not represented.
 	 */
 	public function batchFetchFromURLs( array $urls ) {
-		$batched = $inverseUrlMap = array();
+		$batched = $inverseUrlMap = [];
 		foreach ( $urls as $url ) {
 			list( $cluster, $id, $itemID ) = $this->parseURL( $url );
 			$batched[$cluster][$id][] = $itemID;
@@ -64,7 +66,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// since we do === from the $itemID in $batched
 			$inverseUrlMap[$cluster][$id][$itemID] = $url;
 		}
-		$ret = array();
+		$ret = [];
 		foreach ( $batched as $cluster => $batchByCluster ) {
 			$res = $this->batchFetchBlobs( $cluster, $batchByCluster );
 			/** @var HistoryBlob $blob */
@@ -83,21 +85,18 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $ret;
 	}
 
-	/**
-	 * @see ExternalStoreMedium::store()
-	 */
-	public function store( $cluster, $data ) {
-		$dbw = $this->getMaster( $cluster );
+	public function store( $location, $data ) {
+		$dbw = $this->getMaster( $location );
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ),
-			array( 'blob_id' => $id, 'blob_text' => $data ),
+			[ 'blob_id' => $id, 'blob_text' => $data ],
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
 			throw new MWException( __METHOD__ . ': no insert ID' );
 		}
 
-		return "DB://$cluster/$id";
+		return "DB://$location/$id";
 	}
 
 	/**
@@ -116,7 +115,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a slave database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
@@ -131,7 +130,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		$db = $lb->getConnection( DB_SLAVE, array(), $wiki );
+		$db = $lb->getConnection( DB_SLAVE, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -141,13 +140,13 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a master database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
 
-		$db = $lb->getConnection( DB_MASTER, array(), $wiki );
+		$db = $lb->getConnection( DB_MASTER, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -156,7 +155,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get the 'blobs' table name for this database
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return string Table name ('blobs' by default)
 	 */
 	function getTable( $db ) {
@@ -175,7 +174,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster
 	 * @param string $id
 	 * @param string $itemID
-	 * @return mixed
+	 * @return HistoryBlob|bool Returns false if missing
 	 * @private
 	 */
 	function fetchBlob( $cluster, $id, $itemID ) {
@@ -185,7 +184,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		 * the same blob. By keeping the last-used one open, we avoid
 		 * redundant unserialization and decompression overhead.
 		 */
-		static $externalBlobCache = array();
+		static $externalBlobCache = [];
 
 		$cacheID = ( $itemID === false ) ? "$cluster/$id" : "$cluster/$id/";
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
@@ -200,14 +199,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		$dbr = $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ),
-			'blob_text', array( 'blob_id' => $id ), __METHOD__ );
+			'blob_text', [ 'blob_id' => $id ], __METHOD__ );
 		if ( $ret === false ) {
 			wfDebugLog( 'ExternalStoreDB',
 				"ExternalStoreDB::fetchBlob master fallback on $cacheID" );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ),
-				'blob_text', array( 'blob_id' => $id ), __METHOD__ );
+				'blob_text', [ 'blob_id' => $id ], __METHOD__ );
 			if ( $ret === false ) {
 				wfDebugLog( 'ExternalStoreDB',
 					"ExternalStoreDB::fetchBlob master failed to find $cacheID" );
@@ -218,7 +217,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$ret = unserialize( $ret );
 		}
 
-		$externalBlobCache = array( $cacheID => $ret );
+		$externalBlobCache = [ $cacheID => $ret ];
 
 		return $ret;
 	}
@@ -234,8 +233,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	function batchFetchBlobs( $cluster, array $ids ) {
 		$dbr = $this->getSlave( $cluster );
 		$res = $dbr->select( $this->getTable( $dbr ),
-			array( 'blob_id', 'blob_text' ), array( 'blob_id' => array_keys( $ids ) ), __METHOD__ );
-		$ret = array();
+			[ 'blob_id', 'blob_text' ], [ 'blob_id' => array_keys( $ids ) ], __METHOD__ );
+		$ret = [];
 		if ( $res !== false ) {
 			$this->mergeBatchResult( $ret, $ids, $res );
 		}
@@ -246,8 +245,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$res = $dbw->select( $this->getTable( $dbr ),
-				array( 'blob_id', 'blob_text' ),
-				array( 'blob_id' => array_keys( $ids ) ),
+				[ 'blob_id', 'blob_text' ],
+				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
 			if ( $res === false ) {
 				wfDebugLog( __CLASS__, __METHOD__ . " master failed on '$cluster'" );
@@ -268,7 +267,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Helper function for self::batchFetchBlobs for merging master/slave results
 	 * @param array &$ret Current self::batchFetchBlobs return value
 	 * @param array &$ids Map from blob_id to requested itemIDs
-	 * @param mixed $res DB result from DatabaseBase::select
+	 * @param mixed $res DB result from Database::select
 	 */
 	private function mergeBatchResult( array &$ret, array &$ids, $res ) {
 		foreach ( $res as $row ) {
@@ -292,10 +291,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	protected function parseURL( $url ) {
 		$path = explode( '/', $url );
 
-		return array(
+		return [
 			$path[2], // cluster
 			$path[3], // id
 			isset( $path[4] ) ? $path[4] : false // itemID
-		);
+		];
 	}
 }

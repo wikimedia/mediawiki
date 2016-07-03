@@ -26,8 +26,9 @@
  *
  * This is a faster and less resource-intensive job queue than JobQueueDB.
  * All data for a queue using this class is placed into one redis server.
+ * The mediawiki/services/jobrunner background service must be set up and running.
  *
- * There are eight main redis keys used to track jobs:
+ * There are eight main redis keys (per queue) used to track jobs:
  *   - l-unclaimed  : A list of job IDs used for ready unclaimed jobs
  *   - z-claimed    : A sorted set of (job ID, UNIX timestamp as score) used for job retries
  *   - z-abandoned  : A sorted set of (job ID, UNIX timestamp as score) used for broken jobs
@@ -42,6 +43,12 @@
  * there should be no other such jobs with that SHA1. Every h-idBySha1 entry has an h-sha1ById
  * entry and every h-sha1ById must refer to an ID that is l-unclaimed. If a job has its
  * ID in z-claimed or z-abandoned, then it must also have an h-attempts entry for its ID.
+ *
+ * The following keys are used to track queue states:
+ *   - s-queuesWithJobs : A set of all queues with non-abandoned jobs
+ *
+ * The background service takes care of undelaying, recycling, and pruning jobs as well as
+ * removing s-queuesWithJobs entries as queues empty.
  *
  * Additionally, "rootjob:* keys track "root jobs" used for additional de-duplication.
  * Aside from root job keys, all keys have no expiry, and are only removed when jobs are run.
@@ -64,11 +71,6 @@ class JobQueueRedis extends JobQueue {
 	protected $server;
 	/** @var string Compression method to use */
 	protected $compression;
-
-	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
-
-	/** @var string Key to prefix the queue keys with (used for testing) */
-	protected $key;
 
 	/**
 	 * @param array $params Possible keys:
@@ -97,7 +99,7 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	protected function supportedOrders() {
-		return array( 'timestamp', 'fifo' );
+		return [ 'timestamp', 'fifo' ];
 	}
 
 	protected function optimalOrder() {
@@ -179,14 +181,14 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doBatchPush()
-	 * @param array $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
 	 * @return void
 	 * @throws JobQueueError
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
 		// Convert the jobs into field maps (de-duplicated against each other)
-		$items = array(); // (job ID => job fields map)
+		$items = []; // (job ID => job fields map)
 		foreach ( $jobs as $job ) {
 			$item = $this->getNewJobFields( $job );
 			if ( strlen( $item['sha1'] ) ) { // hash identifier => de-duplicate
@@ -204,7 +206,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			// Actually push the non-duplicate jobs into the queue...
 			if ( $flags & self::QOS_ATOMIC ) {
-				$batches = array( $items ); // all or nothing
+				$batches = [ $items ]; // all or nothing
 			} else {
 				$batches = array_chunk( $items, 100 ); // avoid tying up the server
 			}
@@ -218,14 +220,15 @@ class JobQueueRedis extends JobQueue {
 					$failed += count( $itemBatch );
 				}
 			}
-			if ( $failed > 0 ) {
-				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
-
-				throw new RedisException( "Could not insert {$failed} {$this->type} job(s)." );
-			}
 			JobQueue::incrStats( 'inserts', $this->type, count( $items ) );
+			JobQueue::incrStats( 'inserts_actual', $this->type, $pushed );
 			JobQueue::incrStats( 'dupe_inserts', $this->type,
 				count( $items ) - $failed - $pushed );
+			if ( $failed > 0 ) {
+				$err = "Could not insert {$failed} {$this->type} job(s).";
+				wfDebugLog( 'JobQueueRedis', $err );
+				throw new RedisException( $err );
+			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
@@ -238,7 +241,8 @@ class JobQueueRedis extends JobQueue {
 	 * @throws RedisException
 	 */
 	protected function pushBlobs( RedisConnRef $conn, array $items ) {
-		$args = array(); // ([id, sha1, rtime, blob [, id, sha1, rtime, blob ... ] ] )
+		$args = [ $this->encodeQueueName() ];
+		// Next args come in 4s ([id, sha1, rtime, blob [, id, sha1, rtime, blob ... ] ] )
 		foreach ( $items as $item ) {
 			$args[] = (string)$item['uuid'];
 			$args[] = (string)$item['sha1'];
@@ -247,10 +251,17 @@ class JobQueueRedis extends JobQueue {
 		}
 		static $script =
 <<<LUA
-		local kUnclaimed, kSha1ById, kIdBySha1, kDelayed, kData = unpack(KEYS)
-		if #ARGV % 4 ~= 0 then return redis.error_reply('Unmatched arguments') end
+		local kUnclaimed, kSha1ById, kIdBySha1, kDelayed, kData, kQwJobs = unpack(KEYS)
+		-- First argument is the queue ID
+		local queueId = ARGV[1]
+		-- Next arguments all come in 4s (one per job)
+		local variadicArgCount = #ARGV - 1
+		if variadicArgCount % 4 ~= 0 then
+			return redis.error_reply('Unmatched arguments')
+		end
+		-- Insert each job into this queue as needed
 		local pushed = 0
-		for i = 1,#ARGV,4 do
+		for i = 2,#ARGV,4 do
 			local id,sha1,rtimestamp,blob = ARGV[i],ARGV[i+1],ARGV[i+2],ARGV[i+3]
 			if sha1 == '' or redis.call('hExists',kIdBySha1,sha1) == 0 then
 				if 1*rtimestamp > 0 then
@@ -268,20 +279,23 @@ class JobQueueRedis extends JobQueue {
 				pushed = pushed + 1
 			end
 		end
+		-- Mark this queue as having jobs
+		redis.call('sAdd',kQwJobs,queueId)
 		return pushed
 LUA;
 		return $conn->luaEval( $script,
 			array_merge(
-				array(
+				[
 					$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
 					$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
 					$this->getQueueKey( 'z-delayed' ), # KEYS[4]
 					$this->getQueueKey( 'h-data' ), # KEYS[5]
-				),
+					$this->getGlobalKey( 's-queuesWithJobs' ), # KEYS[6]
+				],
 				$args
 			),
-			5 # number of first argument(s) that are keys
+			6 # number of first argument(s) that are keys
 		);
 	}
 
@@ -301,7 +315,7 @@ LUA;
 					break; // no jobs; nothing to do
 				}
 
-				JobQueue::incrStats( 'job-pop', $this->type );
+				JobQueue::incrStats( 'pops', $this->type );
 				$item = $this->unserialize( $blob );
 				if ( $item === false ) {
 					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
@@ -327,20 +341,23 @@ LUA;
 		static $script =
 <<<LUA
 		local kUnclaimed, kSha1ById, kIdBySha1, kClaimed, kAttempts, kData = unpack(KEYS)
+		local rTime = unpack(ARGV)
 		-- Pop an item off the queue
 		local id = redis.call('rPop',kUnclaimed)
-		if not id then return false end
+		if not id then
+			return false
+		end
 		-- Allow new duplicates of this job
 		local sha1 = redis.call('hGet',kSha1ById,id)
 		if sha1 then redis.call('hDel',kIdBySha1,sha1) end
 		redis.call('hDel',kSha1ById,id)
 		-- Mark the jobs as claimed and return it
-		redis.call('zAdd',kClaimed,ARGV[1],id)
+		redis.call('zAdd',kClaimed,rTime,id)
 		redis.call('hIncrBy',kAttempts,id,1)
 		return redis.call('hGet',kData,id)
 LUA;
 		return $conn->luaEval( $script,
-			array(
+			[
 				$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 				$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
 				$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
@@ -348,7 +365,7 @@ LUA;
 				$this->getQueueKey( 'h-attempts' ), # KEYS[5]
 				$this->getQueueKey( 'h-data' ), # KEYS[6]
 				time(), # ARGV[1] (injected to be replication-safe)
-			),
+			],
 			6 # number of first argument(s) that are keys
 		);
 	}
@@ -371,19 +388,25 @@ LUA;
 			static $script =
 <<<LUA
 			local kClaimed, kAttempts, kData = unpack(KEYS)
+			local id = unpack(ARGV)
 			-- Unmark the job as claimed
-			redis.call('zRem',kClaimed,ARGV[1])
-			redis.call('hDel',kAttempts,ARGV[1])
+			local removed = redis.call('zRem',kClaimed,id)
+			-- Check if the job was recycled
+			if removed == 0 then
+				return 0
+			end
+			-- Delete the retry data
+			redis.call('hDel',kAttempts,id)
 			-- Delete the job data itself
-			return redis.call('hDel',kData,ARGV[1])
+			return redis.call('hDel',kData,id)
 LUA;
 			$res = $conn->luaEval( $script,
-				array(
+				[
 					$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-attempts' ), # KEYS[2]
 					$this->getQueueKey( 'h-data' ), # KEYS[3]
 					$uuid # ARGV[1]
-				),
+				],
 				3 # number of first argument(s) that are keys
 			);
 
@@ -393,7 +416,7 @@ LUA;
 				return false;
 			}
 
-			JobQueue::incrStats( 'job-ack', $this->type );
+			JobQueue::incrStats( 'acks', $this->type );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
@@ -461,17 +484,20 @@ LUA;
 	 * @throws JobQueueError
 	 */
 	protected function doDelete() {
-		static $props = array( 'l-unclaimed', 'z-claimed', 'z-abandoned',
-			'z-delayed', 'h-idBySha1', 'h-sha1ById', 'h-attempts', 'h-data' );
+		static $props = [ 'l-unclaimed', 'z-claimed', 'z-abandoned',
+			'z-delayed', 'h-idBySha1', 'h-sha1ById', 'h-attempts', 'h-data' ];
 
 		$conn = $this->getConnection();
 		try {
-			$keys = array();
+			$keys = [];
 			foreach ( $props as $prop ) {
 				$keys[] = $this->getQueueKey( $prop );
 			}
 
-			return ( $conn->delete( $keys ) !== false );
+			$ok = ( $conn->delete( $keys ) !== false );
+			$conn->sRem( $this->getGlobalKey( 's-queuesWithJobs' ), $this->encodeQueueName() );
+
+			return $ok;
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
@@ -547,16 +573,14 @@ LUA;
 	 * @return MappedIterator
 	 */
 	protected function getJobIterator( RedisConnRef $conn, array $uids ) {
-		$that = $this;
-
 		return new MappedIterator(
 			$uids,
-			function ( $uid ) use ( $that, $conn ) {
-				return $that->getJobFromUidInternal( $uid, $conn );
+			function ( $uid ) use ( $conn ) {
+				return $this->getJobFromUidInternal( $uid, $conn );
 			},
-			array( 'accept' => function ( $job ) {
+			[ 'accept' => function ( $job ) {
 				return is_object( $job );
-			} )
+			} ]
 		);
 	}
 
@@ -569,7 +593,7 @@ LUA;
 	}
 
 	protected function doGetSiblingQueueSizes( array $types ) {
-		$sizes = array(); // (type => size)
+		$sizes = []; // (type => size)
 		$types = array_values( $types ); // reindex
 		$conn = $this->getConnection();
 		try {
@@ -623,11 +647,32 @@ LUA;
 	}
 
 	/**
+	 * @return array List of (wiki,type) tuples for queues with non-abandoned jobs
+	 * @throws JobQueueConnectionError
+	 * @throws JobQueueError
+	 */
+	public function getServerQueuesWithJobs() {
+		$queues = [];
+
+		$conn = $this->getConnection();
+		try {
+			$set = $conn->sMembers( $this->getGlobalKey( 's-queuesWithJobs' ) );
+			foreach ( $set as $queue ) {
+				$queues[] = $this->decodeQueueName( $queue );
+			}
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $conn, $e );
+		}
+
+		return $queues;
+	}
+
+	/**
 	 * @param IJobSpecification $job
 	 * @return array
 	 */
 	protected function getNewJobFields( IJobSpecification $job ) {
-		return array(
+		return [
 			// Fields that describe the nature of the job
 			'type' => $job->getType(),
 			'namespace' => $job->getTitle()->getNamespace(),
@@ -638,10 +683,10 @@ LUA;
 			// Additional job metadata
 			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
 			'sha1' => $job->ignoreDuplicates()
-				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
+				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',
 			'timestamp' => time() // UNIX timestamp
-		);
+		];
 	}
 
 	/**
@@ -667,7 +712,7 @@ LUA;
 			&& strlen( $blob ) >= 1024
 			&& function_exists( 'gzdeflate' )
 		) {
-			$object = (object)array( 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' );
+			$object = (object)[ 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' ];
 			$blobz = serialize( $object );
 
 			return ( strlen( $blobz ) < strlen( $blob ) ) ? $blobz : $blob;
@@ -702,7 +747,8 @@ LUA;
 	protected function getConnection() {
 		$conn = $this->redisPool->getConnection( $this->server );
 		if ( !$conn ) {
-			throw new JobQueueConnectionError( "Unable to connect to redis server." );
+			throw new JobQueueConnectionError(
+				"Unable to connect to redis server {$this->server}." );
 		}
 
 		return $conn;
@@ -719,25 +765,48 @@ LUA;
 	}
 
 	/**
+	 * @return string JSON
+	 */
+	private function encodeQueueName() {
+		return json_encode( [ $this->type, $this->wiki ] );
+	}
+
+	/**
+	 * @param string $name JSON
+	 * @return array (type, wiki)
+	 */
+	private function decodeQueueName( $name ) {
+		return json_decode( $name );
+	}
+
+	/**
+	 * @param string $name
+	 * @return string
+	 */
+	private function getGlobalKey( $name ) {
+		$parts = [ 'global', 'jobqueue', $name ];
+		foreach ( $parts as $part ) {
+		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
+		        throw new InvalidArgumentException( "Key part characters are out of range." );
+		    }
+		}
+
+		return implode( ':', $parts );
+	}
+
+	/**
 	 * @param string $prop
-	 * @param string|null $type
+	 * @param string|null $type Override this for sibling queues
 	 * @return string
 	 */
 	private function getQueueKey( $prop, $type = null ) {
 		$type = is_string( $type ) ? $type : $this->type;
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		if ( strlen( $this->key ) ) { // namespaced queue (for testing)
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $this->key, $prop );
-		} else {
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $prop );
-		}
-	}
+		$keyspace = $prefix ? "$db-$prefix" : $db;
 
-	/**
-	 * @param string $key
-	 * @return void
-	 */
-	public function setTestingPrefix( $key ) {
-		$this->key = $key;
+		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
+
+		// Parts are typically ASCII, but encode for sanity to escape ":"
+		return implode( ':', array_map( 'rawurlencode', $parts ) );
 	}
 }

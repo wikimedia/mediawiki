@@ -61,13 +61,13 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		$fld_value = isset( $prop['value'] );
 
 		if ( $resultPageSet === null ) {
-			$this->addFields( array( 'page_id' ) );
-			$this->addFieldsIf( array( 'page_title', 'page_namespace' ), $fld_title );
+			$this->addFields( [ 'page_id' ] );
+			$this->addFieldsIf( [ 'page_title', 'page_namespace' ], $fld_title );
 			$this->addFieldsIf( 'pp_value', $fld_value );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
 		}
-		$this->addTables( array( 'page_props', 'page' ) );
+		$this->addTables( [ 'page_props', 'page' ] );
 		$this->addWhere( 'pp_page=page_id' );
 		$this->addWhereFld( 'pp_propname', $params['propname'] );
 
@@ -99,9 +99,9 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = array(
+				$vals = [
 					ApiResult::META_TYPE => 'assoc',
-				);
+				];
 				if ( $fld_ids ) {
 					$vals['pageid'] = (int)$row->page_id;
 				}
@@ -112,7 +112,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 				if ( $fld_value ) {
 					$vals['value'] = $row->pp_value;
 				}
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->page_id );
 					break;
@@ -123,53 +123,53 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet === null ) {
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 		}
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'propname' => array(
+		return [
+			'propname' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_DFLT => 'ids|title',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'title',
 					'value',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'continue' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending',
-				)
-			),
-		);
+				]
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
 				=> 'apihelp-query+pageswithprop-example-simple',
 			'action=query&generator=pageswithprop&gpwppropname=notoc&prop=info'
 				=> 'apihelp-query+pageswithprop-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

@@ -76,7 +76,7 @@ class FileBasedSiteLookupTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getSites() {
-		$sites = array();
+		$sites = [];
 
 		$site = new Site();
 		$site->setGlobalId( 'foobar' );

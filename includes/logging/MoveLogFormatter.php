@@ -32,7 +32,7 @@ class MoveLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 
-		return array( Title::newFromText( $params[3] ) );
+		return [ Title::newFromText( $params[3] ) ];
 	}
 
 	protected function getMessageKey() {
@@ -48,7 +48,7 @@ class MoveLogFormatter extends LogFormatter {
 
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$oldname = $this->makePageLink( $this->entry->getTarget(), array( 'redirect' => 'no' ) );
+		$oldname = $this->makePageLink( $this->entry->getTarget(), [ 'redirect' => 'no' ] );
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
@@ -74,13 +74,13 @@ class MoveLogFormatter extends LogFormatter {
 		$revert = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Movepage' ),
 			$this->msg( 'revertmove' )->escaped(),
-			array(),
-			array(
+			[],
+			[
 				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
 				'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
 				'wpReason' => $this->msg( 'revertmove' )->inContentLanguage()->text(),
 				'wpMovetalk' => 0
-			)
+			]
 		);
 
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
@@ -90,12 +90,12 @@ class MoveLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			'4:title:target',
 			'5:bool:suppressredirect',
 			'4::target' => '4:title:target',
 			'5::noredir' => '5:bool:suppressredirect',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];

@@ -5,10 +5,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgLang' => Language::factory( 'en' ),
-			'wgForceUIMsgAsContentMsg' => array(),
-		) );
+		$this->setMwGlobals( [
+			'wgForceUIMsgAsContentMsg' => [],
+		] );
+		$this->setUserLang( 'en' );
 	}
 
 	/**
@@ -27,7 +27,7 @@ class MessageTest extends MediaWikiLangTestCase {
 			->method( 'getKey' )->will( $this->returnValue( $key ) );
 		$messageSpecifier->expects( $this->any() )
 			->method( 'getParams' )->will( $this->returnValue( $params ) );
-		$message = new Message( $messageSpecifier, array(), $language );
+		$message = new Message( $messageSpecifier, [], $language );
 
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -38,52 +38,52 @@ class MessageTest extends MediaWikiLangTestCase {
 		$langDe = Language::factory( 'de' );
 		$langEn = Language::factory( 'en' );
 
-		return array(
-			array( $langDe, 'foo', array(), $langDe ),
-			array( $langDe, 'foo', array( 'bar' ), $langDe ),
-			array( $langEn, 'foo', array( 'bar' ), null )
-		);
+		return [
+			[ $langDe, 'foo', [], $langDe ],
+			[ $langDe, 'foo', [ 'bar' ], $langDe ],
+			[ $langEn, 'foo', [ 'bar' ], null ]
+		];
 	}
 
 	public static function provideConstructorParams() {
-		return array(
-			array(
-				array(),
-				array(),
-			),
-			array(
-				array( 'foo' ),
-				array( 'foo' ),
-			),
-			array(
-				array( 'foo', 'bar' ),
-				array( 'foo', 'bar' ),
-			),
-			array(
-				array( 'baz' ),
-				array( array( 'baz' ) ),
-			),
-			array(
-				array( 'baz', 'foo' ),
-				array( array( 'baz', 'foo' ) ),
-			),
-			array(
-				array( 'baz', 'foo' ),
-				array( array( 'baz', 'foo' ), 'hhh' ),
-			),
-			array(
-				array( 'baz', 'foo' ),
-				array( array( 'baz', 'foo' ), 'hhh', array( 'ahahahahha' ) ),
-			),
-			array(
-				array( 'baz', 'foo' ),
-				array( array( 'baz', 'foo' ), array( 'ahahahahha' ) ),
-			),
-			array(
-				array( 'baz' ),
-				array( array( 'baz' ), array( 'ahahahahha' ) ),
-			),
-		);
+		return [
+			[
+				[],
+				[],
+			],
+			[
+				[ 'foo' ],
+				[ 'foo' ],
+			],
+			[
+				[ 'foo', 'bar' ],
+				[ 'foo', 'bar' ],
+			],
+			[
+				[ 'baz' ],
+				[ [ 'baz' ] ],
+			],
+			[
+				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ] ],
+			],
+			[
+				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ], 'hhh' ],
+			],
+			[
+				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ], 'hhh', [ 'ahahahahha' ] ],
+			],
+			[
+				[ 'baz', 'foo' ],
+				[ [ 'baz', 'foo' ], [ 'ahahahahha' ] ],
+			],
+			[
+				[ 'baz' ],
+				[ [ 'baz' ], [ 'ahahahahha' ] ],
+			],
+		];
 	}
 
 	/**
@@ -94,17 +94,17 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testConstructorParams( $expected, $args ) {
 		$msg = new Message( 'imasomething' );
 
-		$returned = call_user_func_array( array( $msg, 'params' ), $args );
+		$returned = call_user_func_array( [ $msg, 'params' ], $args );
 
 		$this->assertSame( $msg, $returned );
 		$this->assertEquals( $expected, $msg->getParams() );
 	}
 
 	public static function provideConstructorLanguage() {
-		return array(
-			array( 'foo', array( 'bar' ), 'en' ),
-			array( 'foo', array( 'bar' ), 'de' )
-		);
+		return [
+			[ 'foo', [ 'bar' ], 'en' ],
+			[ 'foo', [ 'bar' ], 'de' ]
+		];
 	}
 
 	/**
@@ -120,35 +120,35 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideKeys() {
-		return array(
-			'string' => array(
+		return [
+			'string' => [
 				'key' => 'mainpage',
-				'expected' => array( 'mainpage' ),
-			),
-			'single' => array(
-				'key' => array( 'mainpage' ),
-				'expected' => array( 'mainpage' ),
-			),
-			'multi' => array(
-				'key' => array( 'mainpage-foo', 'mainpage-bar', 'mainpage' ),
-				'expected' => array( 'mainpage-foo', 'mainpage-bar', 'mainpage' ),
-			),
-			'empty' => array(
-				'key' => array(),
+				'expected' => [ 'mainpage' ],
+			],
+			'single' => [
+				'key' => [ 'mainpage' ],
+				'expected' => [ 'mainpage' ],
+			],
+			'multi' => [
+				'key' => [ 'mainpage-foo', 'mainpage-bar', 'mainpage' ],
+				'expected' => [ 'mainpage-foo', 'mainpage-bar', 'mainpage' ],
+			],
+			'empty' => [
+				'key' => [],
 				'expected' => null,
 				'exception' => 'InvalidArgumentException',
-			),
-			'null' => array(
+			],
+			'null' => [
 				'key' => null,
 				'expected' => null,
 				'exception' => 'InvalidArgumentException',
-			),
-			'bad type' => array(
+			],
+			'bad type' => [
 				'key' => 123,
 				'expected' => null,
 				'exception' => 'InvalidArgumentException',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -191,14 +191,14 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testWfMessageParams() {
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto' )->text() );
-		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', array() )->text() );
+		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', [] )->text() );
 		$this->assertEquals(
 			'You have foo (bar).',
 			wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text()
 		);
 		$this->assertEquals(
 			'You have foo (bar).',
-			wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text()
+			wfMessage( 'youhavenewmessages', [ 'foo', 'bar' ] )->text()
 		);
 	}
 
@@ -207,10 +207,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testExists() {
 		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
-		$this->assertTrue( wfMessage( 'mainpage' )->params( array() )->exists() );
+		$this->assertTrue( wfMessage( 'mainpage' )->params( [] )->exists() );
 		$this->assertTrue( wfMessage( 'mainpage' )->rawParams( 'foo', 123 )->exists() );
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->exists() );
-		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->params( array() )->exists() );
+		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->params( [] )->exists() );
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
 	}
 
@@ -235,11 +235,11 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideToString() {
-		return array(
-			array( 'mainpage', 'Main Page' ),
-			array( 'i-dont-exist-evar', '<i-dont-exist-evar>' ),
-			array( 'i-dont-exist-evar', '&lt;i-dont-exist-evar&gt;', 'escaped' ),
-		);
+		return [
+			[ 'mainpage', 'Main Page' ],
+			[ 'i-dont-exist-evar', '<i-dont-exist-evar>' ],
+			[ 'i-dont-exist-evar', '&lt;i-dont-exist-evar&gt;', 'escaped' ],
+		];
 	}
 
 	/**
@@ -312,7 +312,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testReplaceManyParams() {
 		$msg = new RawMessage( '$1$2$3$4$5$6$7$8$9$10$11$12' );
 		// One less than above has placeholders
-		$params = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' );
+		$params = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ];
 		$this->assertEquals(
 			'abcdefghijka2',
 			$msg->params( $params )->plain(),
@@ -320,7 +320,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 
 		$msg = new RawMessage( 'Params$*' );
-		$params = array( 'ab', 'bc', 'cd' );
+		$params = [ 'ab', 'bc', 'cd' ];
 		$this->assertEquals(
 			'Params: ab, bc, cd',
 			$msg->params( $params )->text()
@@ -420,33 +420,33 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function providePlaintextParams() {
-		return array(
-			array(
+		return [
+			[
 				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
 				'plain',
-			),
+			],
 
-			array(
+			[
 				// expect
 				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
 				// format
 				'text',
-			),
-			array(
+			],
+			[
 				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
 				'escaped',
-			),
+			],
 
-			array(
+			[
 				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
 				'parse',
-			),
+			],
 
-			array(
+			[
 				"<p>one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;\n</p>",
 				'parseAsBlock',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -462,10 +462,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		$lang = Language::factory( 'en' );
 
 		$msg = new RawMessage( '$1 $2' );
-		$params = array(
+		$params = [
 			'one $2',
 			'<div>foo</div> [[Bar]] {{Baz}} &lt;',
-		);
+		];
 		$this->assertEquals(
 			$expect,
 			$msg->inLanguage( $lang )->plaintextParams( $params )->$format(),
@@ -474,26 +474,26 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideParser() {
-		return array(
-			array(
+		return [
+			[
 				"''&'' <x><!-- x -->",
 				'plain',
-			),
+			],
 
-			array(
+			[
 				"''&'' <x><!-- x -->",
 				'text',
-			),
-			array(
+			],
+			[
 				'<i>&amp;</i> &lt;x&gt;',
 				'parse',
-			),
+			],
 
-			array(
+			[
 				"<p><i>&amp;</i> &lt;x&gt;\n</p>",
 				'parseAsBlock',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -517,7 +517,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguage() {
-		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
+		$this->setUserLang( 'fr' );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately
 		$msg = wfMessage( 'mainpage' );
@@ -530,10 +530,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguageOverride() {
-		$this->setMwGlobals( array(
-			'wgLang' => Language::factory( 'fr' ),
-			'wgForceUIMsgAsContentMsg' => array( 'mainpage' ),
-		) );
+		$this->setMwGlobals( [
+			'wgForceUIMsgAsContentMsg' => [ 'mainpage' ],
+		] );
+		$this->setUserLang( 'fr' );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately.
 		// NOTE: wgForceUIMsgAsContentMsg forces the messages *current* language to be used.
@@ -581,4 +581,30 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertEquals( 'Hauptseite', $msg->plain() );
 	}
+
+	/**
+	 * @covers Message::newFromSpecifier
+	 * @dataProvider provideNewFromSpecifier
+	 */
+	public function testNewFromSpecifier( $value, $expectedText ) {
+		$message = Message::newFromSpecifier( $value );
+		$this->assertInstanceOf( Message::class, $message );
+		$this->assertSame( $expectedText, $message->text() );
+	}
+
+	public function provideNewFromSpecifier() {
+		$messageSpecifier = $this->getMockForAbstractClass( MessageSpecifier::class );
+		$messageSpecifier->expects( $this->any() )->method( 'getKey' )->willReturn( 'mainpage' );
+		$messageSpecifier->expects( $this->any() )->method( 'getParams' )->willReturn( [] );
+
+		return [
+			'string' => [ 'mainpage', 'Main Page' ],
+			'array' => [ [ 'youhavenewmessages', 'foo', 'bar' ], 'You have foo (bar).' ],
+			'Message' => [ new Message( 'youhavenewmessages', [ 'foo', 'bar' ] ), 'You have foo (bar).' ],
+			'RawMessage' => [ new RawMessage( 'foo ($1)', [ 'bar' ] ), 'foo (bar)' ],
+			'MessageSpecifier' => [ $messageSpecifier, 'Main Page' ],
+			'nested RawMessage' => [ [ new RawMessage( 'foo ($1)', [ 'bar' ] ) ], 'foo (bar)' ],
+		];
+	}
 }
+

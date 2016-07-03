@@ -15,18 +15,24 @@
 	display: inline !ie;
 }
 .searchresults {
+	margin: 1em 0 1em .4em;
 }
-.searchresults p {
-	margin-left: 0.4em;
-	margin-top: 1em;
-	margin-bottom: 1.2em;
+/* needs extra specificity to override `.mw-body p` selector */
+.mw-body p.mw-search-nonefound {
+	margin: 0;
+}
+.mw-search-interwiki-header {
+	font-weight: bold;
+}
+.mw-search-nonefound + .mw-search-interwiki-header {
+	margin-top: 0;
 }
 div.searchresult {
 	font-size: 95%;
 	width: 38em;
 }
 .mw-search-results {
-	margin-left: 0.4em;
+	margin-left: 0;
 	float: left;
 }
 .mw-search-results li {
@@ -51,9 +57,9 @@ div.searchresult {
 	padding-left: 0.25em;
 }
 .mw-search-profile-tabs div.search-types ul {
-	margin: 0 !important;
-	padding: 0 !important;
-	list-style: none !important;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 .mw-search-profile-tabs div.search-types ul li {
 	float: left;
@@ -81,11 +87,11 @@ div.searchresult {
 
 fieldset#mw-searchoptions {
 	margin: 0;
-	padding: 0.5em 0.75em 0.75em 0.75em !important;
+	padding: 0.5em 0.75em 0.75em 0.75em;
 	border: none;
 	background-color: #f9f9f9;
-	border: 1px solid silver !important;
-	border-top-width: 0 !important;
+	border: 1px solid silver;
+	border-top-width: 0;
 }
 fieldset#mw-searchoptions legend {
 	display: none;

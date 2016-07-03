@@ -4,7 +4,7 @@
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {
-			"color": "#FFFFFF",
+			"color": "#ffffff",
 			"global": true
 		}
 	},

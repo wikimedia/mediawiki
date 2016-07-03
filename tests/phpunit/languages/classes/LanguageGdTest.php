@@ -12,21 +12,21 @@ class LanguageGdTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'two', 'few', 'other' );
+		$forms = [ 'one', 'two', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providerPlural() {
-		return array(
-			array( 'other', 0 ),
-			array( 'one', 1 ),
-			array( 'two', 2 ),
-			array( 'one', 11 ),
-			array( 'two', 12 ),
-			array( 'few', 3 ),
-			array( 'few', 19 ),
-			array( 'other', 200 ),
-		);
+		return [
+			[ 'other', 0 ],
+			[ 'one', 1 ],
+			[ 'two', 2 ],
+			[ 'one', 11 ],
+			[ 'two', 12 ],
+			[ 'few', 3 ],
+			[ 'few', 19 ],
+			[ 'other', 200 ],
+		];
 	}
 
 	/**
@@ -34,20 +34,20 @@ class LanguageGdTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural( $result, $value ) {
-		$forms = array( 'one', 'two', 'few', 'other', '11=Form11', '12=Form12' );
+		$forms = [ 'one', 'two', 'few', 'other', '11=Form11', '12=Form12' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providerPluralExplicit() {
-		return array(
-			array( 'other', 0 ),
-			array( 'one', 1 ),
-			array( 'two', 2 ),
-			array( 'Form11', 11 ),
-			array( 'Form12', 12 ),
-			array( 'few', 3 ),
-			array( 'few', 19 ),
-			array( 'other', 200 ),
-		);
+		return [
+			[ 'other', 0 ],
+			[ 'one', 1 ],
+			[ 'two', 2 ],
+			[ 'Form11', 11 ],
+			[ 'Form12', 12 ],
+			[ 'few', 3 ],
+			[ 'few', 19 ],
+			[ 'other', 200 ],
+		];
 	}
 }

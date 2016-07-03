@@ -60,7 +60,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return FileRepoStatus
 	 * @throws MWException
 	 */
-	function publish( $srcPath, $flags = 0, array $options = array() ) {
+	function publish( $srcPath, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
@@ -87,7 +87,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return FileRepoStatus
 	 * @throws MWException
 	 */
-	function restore( $versions = array(), $unsuppress = false ) {
+	function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -124,7 +124,78 @@ class ForeignDBFile extends LocalFile {
 	 * @return string
 	 */
 	function getDescriptionText( $lang = false ) {
-		// Restore remote behavior
-		return File::getDescriptionText( $lang );
+		global $wgLang;
+
+		if ( !$this->repo->fetchDescription ) {
+			return false;
+		}
+
+		$lang = $lang ?: $wgLang;
+		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
+		if ( !$renderUrl ) {
+			return false;
+		}
+
+		$touched = $this->repo->getSlaveDB()->selectField(
+			'page',
+			'page_touched',
+			[
+				'page_namespace' => NS_FILE,
+				'page_title' => $this->title->getDBkey()
+			]
+		);
+		if ( $touched === false ) {
+			return false; // no description page
+		}
+
+		$cache = ObjectCache::getMainWANInstance();
+
+		return $cache->getWithSetCallback(
+			$this->repo->getLocalCacheKey(
+				'RemoteFileDescription',
+				'url',
+				$lang->getCode(),
+				$this->getName(),
+				$touched
+			),
+			$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl ) {
+				wfDebug( "Fetching shared description from $renderUrl\n" );
+				$res = Http::get( $renderUrl, [], __METHOD__ );
+				if ( !$res ) {
+					$ttl = WANObjectCache::TTL_UNCACHEABLE;
+				}
+
+				return $res;
+			}
+		);
 	}
+
+	/**
+	 * Get short description URL for a file based on the page ID.
+	 *
+	 * @return string
+	 * @throws DBUnexpectedError
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		$dbr = $this->repo->getSlaveDB();
+		$pageId = $dbr->selectField(
+			'page',
+			'page_id',
+			[
+				'page_namespace' => NS_FILE,
+				'page_title' => $this->title->getDBkey()
+			]
+		);
+
+		if ( $pageId !== false ) {
+			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
+			if ( $url !== false ) {
+				return $url;
+			}
+		}
+		return null;
+	}
+
 }

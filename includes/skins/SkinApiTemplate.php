@@ -50,14 +50,14 @@ class SkinApiTemplate extends BaseTemplate {
 	// Skip work and hooks for stuff we don't use
 
 	function getToolbox() {
-		return array();
+		return [];
 	}
 
 	function getPersonalTools() {
-		return array();
+		return [];
 	}
 
-	function getSidebar( $options = array() ) {
-		return array();
+	function getSidebar( $options = [] ) {
+		return [];
 	}
 }

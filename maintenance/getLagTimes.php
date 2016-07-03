@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class GetLagTimes extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Dump replication lag times";
+		$this->addDescription( 'Dump replication lag times' );
 	}
 
 	public function execute() {

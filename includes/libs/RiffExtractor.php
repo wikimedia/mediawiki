@@ -49,11 +49,11 @@ class RiffExtractor {
 		}
 
 		// Create basic info structure
-		$info = array(
+		$info = [
 			'fileSize' => self::extractUInt32( $fileSize ),
 			'fourCC' => $fourCC,
-			'chunks' => array(),
-		);
+			'chunks' => [],
+		];
 		$numberOfChunks = 0;
 
 		// Find out the chunks
@@ -72,11 +72,11 @@ class RiffExtractor {
 			$intChunkSize = self::extractUInt32( $chunkSize );
 
 			// Add chunk info to the info structure
-			$info['chunks'][] = array(
+			$info['chunks'][] = [
 				'fourCC' => $chunkFourCC,
 				'start' => $chunkStart,
 				'size' => $intChunkSize
-			);
+			];
 
 			// Uneven chunks have padding bytes
 			$padding = $intChunkSize % 2;
@@ -94,7 +94,6 @@ class RiffExtractor {
 	 * @return int
 	 */
 	public static function extractUInt32( $string ) {
-		$unpacked = unpack( 'V', $string );
-		return $unpacked[1];
+		return unpack( 'V', $string )[1];
 	}
 };

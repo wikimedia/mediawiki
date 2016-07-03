@@ -32,8 +32,13 @@ require_once __DIR__ . '/Maintenance.php';
 class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
+<<<<<<< HEAD
 		$this->mDescription =
 				'Fix instances of JSON pages prior to them being the ContentHandler default';
+=======
+		$this->addDescription(
+			'Fix instances of JSON pages prior to them being the ContentHandler default' );
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 		$this->setBatchSize( 100 );
 	}
 
@@ -47,16 +52,25 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 			return true;
 		}
 
+<<<<<<< HEAD
 		$dbr = wfGetDB( DB_SLAVE );
 		$namespaces = array(
 			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),
 			NS_USER => $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString(), '.json' ),
 		);
+=======
+		$dbr = $this->getDB( DB_SLAVE );
+		$namespaces = [
+			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),
+			NS_USER => $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString(), '.json' ),
+		];
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 		foreach ( $namespaces as $ns => $like ) {
 			$lastPage = 0;
 			do {
 				$rows = $dbr->select(
 						'page',
+<<<<<<< HEAD
 						array( 'page_id', 'page_title', 'page_namespace', 'page_content_model' ),
 						array(
 								'page_namespace' => $ns,
@@ -65,6 +79,16 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 						),
 						__METHOD__,
 						array( 'ORDER BY' => 'page_id', 'LIMIT' => $this->mBatchSize )
+=======
+						[ 'page_id', 'page_title', 'page_namespace', 'page_content_model' ],
+						[
+								'page_namespace' => $ns,
+								'page_title ' . $like,
+								'page_id > ' . $dbr->addQuotes( $lastPage )
+						],
+						__METHOD__,
+						[ 'ORDER BY' => 'page_id', 'LIMIT' => $this->mBatchSize ]
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 				);
 				foreach ( $rows as $row ) {
 					$this->handleRow( $row );
@@ -80,7 +104,11 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 		$this->output( "Processing {$title} ({$row->page_id})...\n" );
 		$rev = Revision::newFromTitle( $title );
 		$content = $rev->getContent( Revision::RAW );
+<<<<<<< HEAD
 		$dbw = wfGetDB( DB_MASTER );
+=======
+		$dbw = $this->getDB( DB_MASTER );
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 		if ( $content instanceof JsonContent ) {
 			if ( $content->isValid() ) {
 				// Yay, actually JSON. We need to just change the
@@ -89,8 +117,13 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 				$this->output( "Setting page_content_model to json..." );
 				$dbw->update(
 					'page',
+<<<<<<< HEAD
 					array( 'page_content_model' => CONTENT_MODEL_JSON ),
 					array( 'page_id' => $row->page_id ),
+=======
+					[ 'page_content_model' => CONTENT_MODEL_JSON ],
+					[ 'page_id' => $row->page_id ],
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 					__METHOD__
 				);
 				$this->output( "done.\n" );
@@ -105,14 +138,23 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 				$ids = $dbw->selectFieldValues(
 					'revision',
 					'rev_id',
+<<<<<<< HEAD
 					array( 'rev_page' => $row->page_id ),
+=======
+					[ 'rev_page' => $row->page_id ],
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 					__METHOD__
 				);
 				foreach ( array_chunk( $ids, 50 ) as $chunk ) {
 					$dbw->update(
 						'revision',
+<<<<<<< HEAD
 						array( 'rev_content_model' => CONTENT_MODEL_WIKITEXT ),
 						array( 'rev_page' => $row->page_id, 'rev_id' => $chunk )
+=======
+						[ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ],
+						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ]
+>>>>>>> a51acbb6409dd7ab17d9e33a46615bdb3ff32032
 					);
 					wfWaitForSlaves();
 				}

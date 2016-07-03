@@ -39,7 +39,7 @@ class HTMLEditTools extends HTMLFormField {
 		if ( empty( $this->mParams['message'] ) ) {
 			$msg = $this->msg( 'edittools' );
 		} else {
-			$msg = $this->msg( $this->mParams['message'] );
+			$msg = $this->getMessage( $this->mParams['message'] );
 			if ( $msg->isDisabled() ) {
 				$msg = $this->msg( 'edittools' );
 			}

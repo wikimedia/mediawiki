@@ -13,7 +13,7 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = [ 'one', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -22,9 +22,9 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural() {
-		$forms = array( 'one', 'few', 'many', 'other', '12=dozen' );
+		$forms = [ 'one', 'few', 'many', 'other', '12=dozen' ];
 		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
-		$forms = array( 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' );
+		$forms = [ 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' ];
 		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );
 	}
 
@@ -37,19 +37,19 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'one', 1 ),
-			array( 'many', 11 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-			array( 'few', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 4 ),
-			array( 'few', 334 ),
-			array( 'many', 5 ),
-			array( 'many', 15 ),
-			array( 'many', 120 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'many', 11 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+			[ 'few', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 4 ],
+			[ 'few', 334 ],
+			[ 'many', 5 ],
+			[ 'many', 15 ],
+			[ 'many', 120 ],
+		];
 	}
 
 	/**
@@ -57,16 +57,54 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( '1=one', 'other' );
+		$forms = [ '1=one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'other', 91 ),
-			array( 'other', 121 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'other', 91 ],
+			[ 'other', 121 ],
+		];
+	}
+
+	/**
+	 * @dataProvider providerGrammar
+	 * @covers Language::convertGrammar
+	 */
+	public function testGrammar( $result, $word, $case ) {
+		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function providerGrammar() {
+		return [
+			[
+				'Вікіпедії',
+				'Вікіпедія',
+				'genitive',
+			],
+			[
+				'Віківидів',
+				'Віківиди',
+				'genitive',
+			],
+			[
+				'Вікіцитат',
+				'Вікіцитати',
+				'genitive',
+			],
+			[
+				'Вікіпідручника',
+				'Вікіпідручник',
+				'genitive',
+			],
+			[
+				'Вікіпедію',
+				'Вікіпедія',
+				'accusative',
+			],
+		];
 	}
 }

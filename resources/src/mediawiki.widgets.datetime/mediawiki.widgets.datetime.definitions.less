@@ -1,0 +1,37 @@
+/*!
+ * OOJS-UI defines used by the existing CSS (will make it easier to put this
+ * widget in OOJS-UI once OOJS-UI is capable of handling it)
+ */
+
+.oo-ui-box-sizing( @type: border-box ) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	box-sizing: @type;
+}
+
+.oo-ui-unselectable() {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
+	margin-right: @spacing;
+	&:last-child {
+		margin-right: @cancelled-spacing;
+	}
+}
+
+.oo-ui-transition( @value1, @value2: X, ... ) {
+	@value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+	-webkit-transition: @value;
+	-moz-transition: @value;
+	transition: @value;
+}
+
+@indicator-size: unit(12 / 16 / 0.8, em);
+@icon-size: unit(24 / 16 / 0.8, em);
+@quick-ease: 100ms ease;
+@progressive: #347bff;

@@ -12,9 +12,6 @@ class XmlSelectTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( array(
-			'wgWellFormedXml' => true,
-		) );
 		$this->select = new XmlSelect();
 	}
 
@@ -49,22 +46,22 @@ class XmlSelectTest extends MediaWikiTestCase {
 	 * Provides a fourth parameters representing the expected HTML output
 	 */
 	public static function provideConstructionParameters() {
-		return array(
+		return [
 			/**
 			 * Values are set following a 3-bit Gray code where two successive
 			 * values differ by only one value.
 			 * See http://en.wikipedia.org/wiki/Gray_code
 			 */
 			#      $name   $id    $default
-			array( false, false, false, '<select></select>' ),
-			array( false, false, 'foo', '<select></select>' ),
-			array( false, 'id', 'foo', '<select id="id"></select>' ),
-			array( false, 'id', false, '<select id="id"></select>' ),
-			array( 'name', 'id', false, '<select name="name" id="id"></select>' ),
-			array( 'name', 'id', 'foo', '<select name="name" id="id"></select>' ),
-			array( 'name', false, 'foo', '<select name="name"></select>' ),
-			array( 'name', false, false, '<select name="name"></select>' ),
-		);
+			[ false, false, false, '<select></select>' ],
+			[ false, false, 'foo', '<select></select>' ],
+			[ false, 'id', 'foo', '<select id="id"></select>' ],
+			[ false, 'id', false, '<select id="id"></select>' ],
+			[ 'name', 'id', false, '<select name="name" id="id"></select>' ],
+			[ 'name', 'id', 'foo', '<select name="name" id="id"></select>' ],
+			[ 'name', false, 'foo', '<select name="name"></select>' ],
+			[ 'name', false, false, '<select name="name"></select>' ],
+		];
 	}
 
 	/**

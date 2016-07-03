@@ -26,11 +26,11 @@ class MWDebugTest extends MediaWikiTestCase {
 	public function testAddLog() {
 		MWDebug::log( 'logging a string' );
 		$this->assertEquals(
-			array( array(
+			[ [
 				'msg' => 'logging a string',
 				'type' => 'log',
-				'caller' => __METHOD__,
-			) ),
+				'caller' => 'MWDebugTest->testAddLog',
+			] ],
 			MWDebug::getLog()
 		);
 	}
@@ -41,11 +41,11 @@ class MWDebugTest extends MediaWikiTestCase {
 	public function testAddWarning() {
 		MWDebug::warning( 'Warning message' );
 		$this->assertEquals(
-			array( array(
+			[ [
 				'msg' => 'Warning message',
 				'type' => 'warn',
 				'caller' => 'MWDebugTest::testAddWarning',
-			) ),
+			] ],
 			MWDebug::getLog()
 		);
 	}
@@ -86,7 +86,7 @@ class MWDebugTest extends MediaWikiTestCase {
 	 */
 	public function testAppendDebugInfoToApiResultXmlFormat() {
 		$request = $this->newApiRequest(
-			array( 'action' => 'help', 'format' => 'xml' ),
+			[ 'action' => 'help', 'format' => 'xml' ],
 			'/api.php?action=help&format=xml'
 		);
 
@@ -102,9 +102,9 @@ class MWDebugTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( 'ApiResult', $result );
 		$data = $result->getResultData();
 
-		$expectedKeys = array( 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',
+		$expectedKeys = [ 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',
 			'gitViewUrl', 'time', 'log', 'debugLog', 'queries', 'request', 'memory',
-			'memoryPeak', 'includes', '_element' );
+			'memoryPeak', 'includes', '_element' ];
 
 		foreach ( $expectedKeys as $expectedKey ) {
 			$this->assertArrayHasKey( $expectedKey, $data['debuginfo'], "debuginfo has $expectedKey" );
@@ -124,10 +124,10 @@ class MWDebugTest extends MediaWikiTestCase {
 	 */
 	private function newApiRequest( array $params, $requestUrl ) {
 		$request = $this->getMockBuilder( 'FauxRequest' )
-			->setMethods( array( 'getRequestURL' ) )
-			->setConstructorArgs( array(
+			->setMethods( [ 'getRequestURL' ] )
+			->setConstructorArgs( [
 				$params
-			) )
+			] )
 			->getMock();
 
 		$request->expects( $this->any() )

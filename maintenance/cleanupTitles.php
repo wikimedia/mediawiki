@@ -2,10 +2,6 @@
 /**
  * Clean up broken, unparseable titles.
  *
- * Usage: php cleanupTitles.php [--fix]
- * Options:
- *   --fix  Actually clean up titles; otherwise just checks for them
- *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
@@ -39,7 +35,7 @@ require_once __DIR__ . '/cleanupTable.inc';
 class TitleCleanup extends TableCleanup {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to clean up broken, unparseable titles";
+		$this->addDescription( 'Script to clean up broken, unparseable titles' );
 	}
 
 	/**
@@ -82,8 +78,8 @@ class TitleCleanup extends TableCleanup {
 	protected function fileExists( $name ) {
 		// XXX: Doesn't actually check for file existence, just presence of image record.
 		// This is reasonable, since cleanupImages.php only iterates over the image table.
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'image', array( 'img_name' ), array( 'img_name' => $name ), __METHOD__ );
+		$dbr = $this->getDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'image', [ 'img_name' ], [ 'img_name' => $name ], __METHOD__ );
 
 		return $row !== false;
 	}
@@ -94,7 +90,7 @@ class TitleCleanup extends TableCleanup {
 	protected function moveIllegalPage( $row ) {
 		$legal = 'A-Za-z0-9_/\\\\-';
 		$legalized = preg_replace_callback( "!([^$legal])!",
-			array( &$this, 'hexChar' ),
+			[ $this, 'hexChar' ],
 			$row->page_title );
 		if ( $legalized == '.' ) {
 			$legalized = '(dot)';
@@ -122,10 +118,10 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update( 'page',
-				array( 'page_title' => $dest ),
-				array( 'page_id' => $row->page_id ),
+				[ 'page_title' => $dest ],
+				[ 'page_id' => $row->page_id ],
 				__METHOD__ );
 		}
 	}
@@ -175,13 +171,13 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($ns,'$dest')\n" );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update( 'page',
-				array(
+				[
 					'page_namespace' => $ns,
 					'page_title' => $dest
-				),
-				array( 'page_id' => $row->page_id ),
+				],
+				[ 'page_id' => $row->page_id ],
 				__METHOD__ );
 			LinkCache::singleton()->clear();
 		}

@@ -35,23 +35,23 @@ class CheckUsernames extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Verify that database usernames are actually valid";
+		$this->addDescription( 'Verify that database usernames are actually valid' );
 		$this->setBatchSize( 1000 );
 	}
 
 	function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$maxUserId = 0;
 		do {
 			$res = $dbr->select( 'user',
-				array( 'user_id', 'user_name' ),
-				array( 'user_id > ' . $maxUserId ),
+				[ 'user_id', 'user_name' ],
+				[ 'user_id > ' . $maxUserId ],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'user_id',
 					'LIMIT' => $this->mBatchSize,
-				)
+				]
 			);
 
 			foreach ( $res as $row ) {

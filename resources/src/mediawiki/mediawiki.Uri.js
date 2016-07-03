@@ -68,9 +68,8 @@
 		if ( val === undefined || val === null || val === '' ) {
 			return '';
 		}
-		/* jshint latedef:false */
+
 		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
-		/* jshint latedef:true */
 	}
 
 	/**
@@ -158,12 +157,11 @@
 		}() );
 
 		/**
-		 * @class mw.Uri
-		 * @constructor
-		 *
 		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
 		 * otherwise don't parse.
 		 *
+		 * @class mw.Uri
+		 * @constructor
 		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object
@@ -175,7 +173,6 @@
 		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
-		/* jshint latedef:false */
 		function Uri( uri, options ) {
 			var prop,
 				defaultUri = getDefaultUri();
@@ -276,7 +273,8 @@
 			 */
 			parse: function ( str, options ) {
 				var q, matches,
-					uri = this;
+					uri = this,
+					hasOwn = Object.prototype.hasOwnProperty;
 
 				// Apply parser regex and set all properties based on the result
 				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
@@ -298,7 +296,7 @@
 
 							// If overrideKeys, always (re)set top level value.
 							// If not overrideKeys but this key wasn't set before, then we set it as well.
-							if ( options.overrideKeys || q[ k ] === undefined ) {
+							if ( options.overrideKeys || !hasOwn.call( q, k ) ) {
 								q[ k ] = v;
 
 							// Use arrays if overrideKeys is false and key was already seen before

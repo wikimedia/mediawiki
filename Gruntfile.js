@@ -33,9 +33,7 @@ module.exports = function ( grunt ) {
 		},
 		banana: {
 			options: {
-				disallowBlankTranslations: false,
-				disallowDuplicateTranslations: false,
-				disallowUnusedTranslations: false
+				disallowBlankTranslations: false
 			},
 			core: 'languages/i18n/',
 			api: 'includes/api/i18n/',
@@ -58,8 +56,9 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
+				logLevel: 'DEBUG',
 				frameworks: [ 'qunit' ],
-				reporters: [ 'dots' ],
+				reporters: [ 'progress' ],
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)

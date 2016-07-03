@@ -47,16 +47,16 @@ class LanguageCu extends Language {
 		# a special case for your site name if necessary.
 
 		# join and array_slice instead mb_substr
-		$ar = array();
+		$ar = [];
 		preg_match_all( '/./us', $word, $ar );
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родительный падеж
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' )
-						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' )
+					if ( ( implode( '', array_slice( $ar[0], -4 ) ) == 'вики' )
+						|| ( implode( '', array_slice( $ar[0], -4 ) ) == 'Вики' )
 					) {
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ї' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'їѩ';
+					} elseif ( implode( '', array_slice( $ar[0], -2 ) ) == 'ї' ) {
+						$word = implode( '', array_slice( $ar[0], 0, -2 ) ) . 'їѩ';
 					}
 					break;
 				case 'accusative': # винительный падеж

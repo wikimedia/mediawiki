@@ -67,7 +67,7 @@ class LogFormatter {
 	/**
 	 * Handy shortcut for constructing a formatter directly from
 	 * database row.
-	 * @param object $row
+	 * @param stdClass|array $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
 	 */
@@ -237,7 +237,7 @@ class LogFormatter {
 					// @codingStandardsIgnoreStart Long line
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
-					// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
+					// see https://github.com/wikimedia/mediawiki/commit/a9c243b7b5289dad204278dbe7ed571fd914e395
 					//default:
 					// @codingStandardsIgnoreEnd
 				}
@@ -245,7 +245,7 @@ class LogFormatter {
 
 			case 'patrol':
 				// @codingStandardsIgnoreStart Long line
-				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
+				// https://github.com/wikimedia/mediawiki/commit/1a05f8faf78675dc85984f27f355b8825b43efff
 				// @codingStandardsIgnoreEnd
 				// Create a diff link to the patrolled revision
 				if ( $entry->getSubtype() === 'patrol' ) {
@@ -263,7 +263,7 @@ class LogFormatter {
 				switch ( $entry->getSubtype() ) {
 					case 'protect':
 						$text = wfMessage( 'protectedarticle' )
-							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
 						break;
 					case 'unprotect':
 						$text = wfMessage( 'unprotectedarticle' )
@@ -271,7 +271,7 @@ class LogFormatter {
 						break;
 					case 'modify':
 						$text = wfMessage( 'modifiedarticleprotection' )
-							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
 						break;
 					case 'move_prot':
 						$text = wfMessage( 'movedarticleprotection' )
@@ -462,7 +462,7 @@ class LogFormatter {
 	 */
 	protected function extractParameters() {
 		$entry = $this->entry;
-		$params = array();
+		$params = [];
 
 		if ( $entry->isLegacy() ) {
 			foreach ( $entry->getParameters() as $index => $value ) {
@@ -604,12 +604,13 @@ class LogFormatter {
 	 * value in consideration.
 	 * @param Title $title The page
 	 * @param array $parameters Query parameters
+	 * @param string|null $html Linktext of the link as raw html
 	 * @throws MWException
 	 * @return string
 	 */
-	protected function makePageLink( Title $title = null, $parameters = array() ) {
+	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$this->plaintext ) {
-			$link = Linker::link( $title, null, array(), $parameters );
+			$link = Linker::link( $title, $html, [], $parameters );
 		} else {
 			if ( !$title instanceof Title ) {
 				throw new MWException( "Expected title, got null" );
@@ -670,7 +671,7 @@ class LogFormatter {
 		}
 
 		$content = $this->msg( $message )->escaped();
-		$attribs = array( 'class' => 'history-deleted' );
+		$attribs = [ 'class' => 'history-deleted' ];
 
 		return Html::rawElement( 'span', $attribs, $content );
 	}
@@ -684,7 +685,7 @@ class LogFormatter {
 		if ( $this->plaintext ) {
 			return $content;
 		}
-		$attribs = array( 'class' => 'history-deleted' );
+		$attribs = [ 'class' => 'history-deleted' ];
 
 		return Html::rawElement( 'span', $attribs, $content );
 	}
@@ -725,7 +726,7 @@ class LogFormatter {
 	 * @return array Array of titles that should be preloaded with LinkBatch
 	 */
 	public function getPreloadTitles() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -762,7 +763,7 @@ class LogFormatter {
 	 * @return array
 	 */
 	public function formatParametersForApi() {
-		$logParams = array();
+		$logParams = [];
 		foreach ( $this->getParametersForApi() as $key => $value ) {
 			$vals = explode( ':', $key, 3 );
 			if ( count( $vals ) !== 3 ) {
@@ -819,7 +820,7 @@ class LogFormatter {
 				if ( $type === 'msg-content' ) {
 					$msg->inContentLanguage();
 				}
-				$value = array();
+				$value = [];
 				$value["{$name}_key"] = $msg->getKey();
 				if ( $msg->getParams() ) {
 					$value["{$name}_params"] = $msg->getParams();
@@ -831,7 +832,7 @@ class LogFormatter {
 			case 'title-link':
 				$title = Title::newFromText( $value );
 				if ( $title ) {
-					$value = array();
+					$value = [];
 					ApiQueryBase::addTitleInfo( $value, $title, "{$name}_" );
 				}
 				return $value;
@@ -849,7 +850,7 @@ class LogFormatter {
 				break;
 		}
 
-		return array( $name => $value );
+		return [ $name => $value ];
 	}
 }
 
@@ -932,32 +933,6 @@ class LegacyLogFormatter extends LogFormatter {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
 
-		if ( $type == 'protect'
-			&& ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' )
-		) {
-			$links = array(
-				Linker::link( $title,
-					$this->msg( 'hist' )->escaped(),
-					array(),
-					array(
-						'action' => 'history',
-						'offset' => $this->entry->getTimestamp()
-					)
-				)
-			);
-			if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
-				$links[] = Linker::linkKnown(
-					$title,
-					$this->msg( 'protect_change' )->escaped(),
-					array(),
-					array( 'action' => 'protect' )
-				);
-			}
-
-			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
-		}
-
 		// Do nothing. The implementation is handled by the hook modifiying the
 		// passed-by-ref parameters. This also changes the default value so that
 		// getComment() and getActionLinks() do not call them indefinitely.
@@ -971,8 +946,8 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$params = $this->entry->getParameters();
 
-		Hooks::run( 'LogLine', array( $type, $subtype, $title, $params,
-			&$this->comment, &$this->revert, $this->entry->getTimestamp() ) );
+		Hooks::run( 'LogLine', [ $type, $subtype, $title, $params,
+			&$this->comment, &$this->revert, $this->entry->getTimestamp() ] );
 
 		return $this->revert;
 	}

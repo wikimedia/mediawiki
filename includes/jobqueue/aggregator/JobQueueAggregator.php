@@ -142,7 +142,7 @@ abstract class JobQueueAggregator {
 	protected function findPendingWikiQueues() {
 		global $wgLocalDatabases;
 
-		$pendingDBs = array(); // (job type => (db list))
+		$pendingDBs = []; // (job type => (db list))
 		foreach ( $wgLocalDatabases as $db ) {
 			foreach ( JobQueueGroup::singleton( $db )->getQueuesWithJobs() as $type ) {
 				$pendingDBs[$type][] = $db;
@@ -163,7 +163,7 @@ class JobQueueAggregatorNull extends JobQueueAggregator {
 	}
 
 	protected function doGetAllReadyWikiQueues() {
-		return array();
+		return [];
 	}
 
 	protected function doPurge() {

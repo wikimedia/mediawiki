@@ -12,7 +12,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 	 */
 	public function testTemplateCategories() {
 		$user = new User();
-		$user->mRights = array( 'createpage', 'edit', 'purge', 'delete' );
+		$user->mRights = [ 'createpage', 'edit', 'purge', 'delete' ];
 
 		$title = Title::newFromText( "Categorized from template" );
 		$page = WikiPage::factory( $title );
@@ -25,7 +25,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertEquals(
-			array(),
+			[],
 			$title->getParentCategories(),
 			'Verify that the category doesn\'t contain the page before the template is created'
 		);
@@ -43,12 +43,12 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		// Run the job queue
 		JobQueueGroup::destroySingletons();
 		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
 		$jobs->execute();
 
 		// Make sure page is in the category
 		$this->assertEquals(
-			array( 'Category:Solved_bugs' => $title->getPrefixedText() ),
+			[ 'Category:Solved_bugs' => $title->getPrefixedText() ],
 			$title->getParentCategories(),
 			'Verify that the page is in the category after the template is created'
 		);
@@ -65,12 +65,12 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		// Run the job queue
 		JobQueueGroup::destroySingletons();
 		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
 		$jobs->execute();
 
 		// Make sure page is in the right category
 		$this->assertEquals(
-			array( 'Category:Solved_bugs_2' => $title->getPrefixedText() ),
+			[ 'Category:Solved_bugs_2' => $title->getPrefixedText() ],
 			$title->getParentCategories(),
 			'Verify that the page is in the right category after the template is edited'
 		);
@@ -82,12 +82,12 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		// Run the job queue
 		JobQueueGroup::destroySingletons();
 		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
 		$jobs->execute();
 
 		// Make sure the page is no longer in the category
 		$this->assertEquals(
-			array(),
+			[],
 			$title->getParentCategories(),
 			'Verify that the page is no longer in the category after template deletion'
 		);

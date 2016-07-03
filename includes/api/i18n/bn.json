@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aftabuzzaman"
+			"Aftabuzzaman",
+			"Bodhisattwa"
 		]
 	},
+	"apihelp-block-description": "ব্যবহারকারীকে বাধা দিন।",
+	"apihelp-createaccount-param-name": "ব্যবহারকারী নাম।",
+	"apihelp-delete-description": "একটি পাতা মুছে ফেলুন।",
+	"apihelp-delete-example-simple": "<kbd>প্রধান পাতা</kbd> মুছে ফেলুন।",
+	"apihelp-edit-param-minor": "অনুল্লেখ্য সম্পাদনা।",
 	"apihelp-login-example-login": "প্রবেশ"
 }

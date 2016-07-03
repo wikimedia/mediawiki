@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.\nÄr Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>$wgUpgradeKey</code> an d'Këscht.\nDir fannt en am <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "E Fichier <code>LocalSettings.php</code> gouf fonnt.\nFir dës Installatioun z'aktuaéliséieren start w.e.g. <code>update.php</code>",
 	"config-localsettings-key": "Aktualisatiounsschlëssel:",
-	"config-localsettings-badkey": "De Schlëssel deen Dir aginn hutt ass net korrekt",
+	"config-localsettings-badkey": "Den Aktualisatiouns-Schlëssel deen Dir aginn hutt ass net korrekt",
 	"config-localsettings-incomplete": "De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.\nD'Variabel $1 ass net definéiert.\nÄnnert w.e.g. de Fichier <code>LocalSettings.php</code> sou datt déi Variabel definéiert ass a klickt op \"{{int:Config-continue}}\".",
 	"config-session-error": "Feeler beim Starte vun der Sessioun: $1",
 	"config-no-session": "D'Donnéeë vun ärer Sessioun si verluergaangen!\nKuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",
@@ -67,7 +67,6 @@
 	"config-db-install-account": "Benotzerkont fir d'Installatioun",
 	"config-db-username": "Datebank-Benotzernumm:",
 	"config-db-password": "Passwuert vun der Datebank:",
-	"config-db-username-empty": "Dir musst e Wäert fir \"{{int:config-db-username}}\" aginn",
 	"config-db-install-help": "Gitt de Benotzernumm an Passwuert an dat wàhrend der Installatioun benotzt gëtt fir sech mat der Datebank ze verbannen.",
 	"config-db-account-lock": "De selwechte Benotzernumm a Passwuert fir déi normal Operatioune benotzen",
 	"config-db-wiki-account": "Benotzerkont fir normal Operatiounen",
@@ -208,5 +207,5 @@
 	"config-help-tooltip": "klickt fir opzeklappen",
 	"config-nofile": "De Fichier \"$1\" gouf net fonnt. Gouf e geläscht?",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
-	"mainpagedocfooter": "Kuckt w.e.g. [//meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]"
+	"mainpagedocfooter": "Kuckt w.e.g. [//meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
 }

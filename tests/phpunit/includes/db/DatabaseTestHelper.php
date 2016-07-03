@@ -10,14 +10,14 @@ class DatabaseTestHelper extends DatabaseBase {
 	 * __CLASS__ of the test suite,
 	 * used to determine, if the function name is passed every time to query()
 	 */
-	protected $testName = array();
+	protected $testName = [];
 
 	/**
 	 * Array of lastSqls passed to query(),
 	 * This is an array since some methods in DatabaseBase can do more than one
 	 * query. Cleared when calling getLastSqls().
 	 */
-	protected $lastSqls = array();
+	protected $lastSqls = [];
 
 	/**
 	 * Array of tables to be considered as existing by tableExist()
@@ -35,7 +35,7 @@ class DatabaseTestHelper extends DatabaseBase {
 	 */
 	public function getLastSqls() {
 		$lastSqls = implode( '; ', $this->lastSqls );
-		$this->lastSqls = array();
+		$this->lastSqls = [];
 
 		return $lastSqls;
 	}
@@ -165,6 +165,6 @@ class DatabaseTestHelper extends DatabaseBase {
 	}
 
 	protected function doQuery( $sql ) {
-		return array();
+		return [];
 	}
 }

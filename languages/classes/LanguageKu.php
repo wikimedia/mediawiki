@@ -21,16 +21,13 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-require_once __DIR__ . '/LanguageKu_ku.php';
-
 /**
  * Kurdish converter routines
  *
  * @ingroup Language
  */
 class KuConverter extends LanguageConverter {
-	public $mArabicToLatin = array(
+	public $mArabicToLatin = [
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
 		'ہ' => 'h', 'ه' => 'h', 'ح' => 'h', 'ژ' => 'j', 'ك' => 'k', 'ک' => 'k', 'ل' => 'l',
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
@@ -70,9 +67,9 @@ class KuConverter extends LanguageConverter {
 		'٧' => '7', # &#x0667;
 		'٨' => '8', # &#x0668;
 		'٩' => '9', # &#x0669;
-	);
+	];
 
-	public $mLatinToArabic = array(
+	public $mLatinToArabic = [
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',
@@ -144,14 +141,14 @@ class KuConverter extends LanguageConverter {
 		'8' => '٨', # &#x0668;
 		'9' => '٩', # &#x0669;
 */
-		);
+		];
 
 	function loadDefaultTables() {
-		$this->mTables = array(
+		$this->mTables = [
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
 			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
 			'ku' => new ReplacementArray()
-		);
+		];
 	}
 
 	/**
@@ -233,17 +230,15 @@ class KuConverter extends LanguageConverter {
 class LanguageKu extends LanguageKu_ku {
 
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
-		$variants = array( 'ku', 'ku-arab', 'ku-latn' );
-		$variantfallbacks = array(
+		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
+		$variantfallbacks = [
 			'ku' => 'ku-latn',
 			'ku-arab' => 'ku-latn',
 			'ku-latn' => 'ku-arab',
-		);
+		];
 
 		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

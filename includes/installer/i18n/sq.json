@@ -1,22 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ammartivari"
+			"Ammartivari",
+			"Kosovastar"
 		]
 	},
 	"config-desc": "Instaluesi për MediaWiki",
 	"config-title": "Instalimi MediaWiki $1",
-	"config-information": "Të dhëna",
-	"config-your-language": "Gjuha juaj:",
+	"config-information": "Informacion",
+	"config-your-language": "Gjuha e juaj:",
 	"config-your-language-help": "Zgjidhni një gjuhë për ta përdorur gjatë procesit të instalimit.",
-	"config-wiki-language": "Gjuha wiki:",
-	"config-wiki-language-help": "Zgjidhni gjuhën në të cilën wiki do të jetë kryesisht e shkruar.",
+	"config-wiki-language": "Gjuha e wikit:",
+	"config-wiki-language-help": "Zgjidhni gjuhën e cila do të mbizotërojë në shkrimin e wiki-t.",
 	"config-back": "← Prapa",
 	"config-continue": "Para →",
 	"config-page-language": "Gjuha",
-	"config-page-welcome": "Mirë se vini në MediaWiki!",
-	"config-page-dbconnect": "Lidhuni me bazën e të dhënave",
-	"config-page-dbsettings": "Cilësimet e bazës së të dhënave",
+	"config-page-welcome": "Mirësevini në MediaWiki!",
+	"config-page-dbconnect": "Lidhu me bazën e të dhënave",
+	"config-page-dbsettings": "Parametrat e bazës së të dhënave",
 	"config-page-name": "Emri",
 	"config-page-options": "Opcionet",
 	"config-page-install": "Instalo",
@@ -33,10 +34,11 @@
 	"config-admin-box": "Llogari administruesi",
 	"config-admin-name-blank": "Shkruani nofkën e një administruesi.",
 	"config-admin-password-blank": "Shkruani një fjalëkalim për llogarinë e administruesit.",
-	"config-admin-email": "Email adresa:",
+	"config-admin-email": "Adresa e emailit:",
 	"config-license-pd": "Domeni publik",
-	"config-logo": "URL-ja i logos:",
+	"config-logo": "URL e logos:",
 	"config-install-tables": "Duke krijuar tabela",
+	"config-install-stats": "Nisja e statistikave",
 	"config-help": "ndihmë",
 	"mainpagetext": "'''MediaWiki software u instalua me sukses.'''",
 	"mainpagedocfooter": "Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [//meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].\n\n== Sa për fillim==\n* [//www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]\n* [//www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]"

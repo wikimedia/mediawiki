@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:FileDuplicateSearch
  *
@@ -53,7 +55,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	function linkParameters() {
-		return array( 'filename' => $this->filename );
+		return [ 'filename' => $this->filename ];
 	}
 
 	/**
@@ -70,7 +72,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @param array $dupes Array of File objects
 	 */
 	function showList( $dupes ) {
-		$html = array();
+		$html = [];
 		$html[] = $this->openList( 0 );
 
 		foreach ( $dupes as $dupe ) {
@@ -79,20 +81,20 @@ class FileDuplicateSearchPage extends QueryPage {
 		}
 		$html[] = $this->closeList();
 
-		$this->getOutput()->addHtml( implode( "\n", $html ) );
+		$this->getOutput()->addHTML( implode( "\n", $html ) );
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'image' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'image' ],
+			'fields' => [
 				'title' => 'img_name',
 				'value' => 'img_sha1',
 				'img_user_text',
 				'img_timestamp'
-			),
-			'conds' => array( 'img_sha1' => $this->hash )
-		);
+			],
+			'conds' => [ 'img_sha1' => $this->hash ]
+		];
 	}
 
 	public function execute( $par ) {
@@ -110,27 +112,25 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out = $this->getOutput();
 
 		# Create the input form
-		$formFields = array(
-			'filename' => array(
+		$formFields = [
+			'filename' => [
 				'type' => 'text',
 				'name' => 'filename',
 				'label-message' => 'fileduplicatesearch-filename',
 				'id' => 'filename',
 				'size' => 50,
 				'value' => $this->filename,
-				'cssclass' => 'mw-ui-input-inline'
-			),
-		);
-		$hiddenFields = array(
-			'title' => $this->getPageTitle()->getPrefixedDBKey(),
-		);
-		$htmlForm = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
+			],
+		];
+		$hiddenFields = [
+			'title' => $this->getPageTitle()->getPrefixedDBkey(),
+		];
+		$htmlForm = HTMLForm::factory( 'ooui', $formFields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setAction( wfScript() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->setSubmitProgressive();
 		$htmlForm->setSubmitTextMsg( $this->msg( 'fileduplicatesearch-submit' ) );
-		$htmlForm->setWrapperLegendMsg( 'fileduplicatesearch-legend' );
 
 		// The form should be visible always, even if it was submitted (e.g. to perform another action).
 		// To bypass the callback validation of HTMLForm, use prepareForm() and displayForm().
@@ -141,7 +141,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		} elseif ( $this->filename !== '' ) {
 			$out->wrapWikiMsg(
 				"<p class='mw-fileduplicatesearch-noresults'>\n$1\n</p>",
-				array( 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) )
+				[ 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) ]
 			);
 		}
 
@@ -149,10 +149,11 @@ class FileDuplicateSearchPage extends QueryPage {
 			# Show a thumbnail of the file
 			$img = $this->file;
 			if ( $img ) {
-				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
+				$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
 				if ( $thumb ) {
+					$out->addModuleStyles( 'mediawiki.special' );
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
-						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
+						$thumb->toHtml( [ 'desc-link' => false ] ) . '<br />' .
 						$this->msg( 'fileduplicatesearch-info' )->numParams(
 							$img->getWidth(), $img->getHeight() )->params(
 								$this->getLanguage()->formatSize( $img->getSize() ),
@@ -168,13 +169,13 @@ class FileDuplicateSearchPage extends QueryPage {
 			if ( $numRows == 1 ) {
 				$out->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-1'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-1', wfEscapeWikiText( $this->filename ) )
+					[ 'fileduplicatesearch-result-1', wfEscapeWikiText( $this->filename ) ]
 				);
 			} elseif ( $numRows ) {
 				$out->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-n'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
-						$this->getLanguage()->formatNum( $numRows - 1 ) )
+					[ 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
+						$this->getLanguage()->formatNum( $numRows - 1 ) ]
 				);
 			}
 
@@ -229,6 +230,32 @@ class FileDuplicateSearchPage extends QueryPage {
 			$result->getTimestamp(), $this->getUser() ) );
 
 		return "$plink . . $user . . $time";
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$title = Title::newFromText( $search, NS_FILE );
+		if ( !$title || $title->getNamespace() !== NS_FILE ) {
+			// No prefix suggestion outside of file namespace
+			return [];
+		}
+		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
+		$searchEngine->setLimitOffset( $limit, $offset );
+		// Autocomplete subpage the same as a normal search, but just for files
+		$searchEngine->setNamespaces( [ NS_FILE ] );
+		$result = $searchEngine->defaultPrefixSearch( $search );
+
+		return array_map( function ( Title $t ) {
+			// Remove namespace in search suggestion
+			return $t->getText();
+		}, $result );
 	}
 
 	protected function getGroupName() {

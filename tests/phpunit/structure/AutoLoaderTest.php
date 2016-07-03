@@ -5,19 +5,19 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
-		$this->mergeMwGlobalArrayValue( 'wgAutoloadLocalClasses', array(
+		$this->mergeMwGlobalArrayValue( 'wgAutoloadLocalClasses', [
 			'TestAutoloadedLocalClass' =>
 				__DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
 			'TestAutoloadedCamlClass' =>
 				__DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
 			'TestAutoloadedSerializedClass' =>
 				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
-		) );
+		] );
 		AutoLoader::resetAutoloadLocalClassesLower();
 
-		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', array(
+		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', [
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
-		) );
+		] );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
 		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
-		$actual = array();
+		$actual = [];
 
 		$files = array_unique( $expected );
 
@@ -68,10 +68,10 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			}
 
 			// We could use token_get_all() here, but this is faster
-			$matches = array();
+			$matches = [];
 			preg_match_all( '/
 				^ [\t ]* (?:
-					(?:final\s+)? (?:abstract\s+)? (?:class|interface) \s+
+					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait) \s+
 					(?P<class> [a-zA-Z0-9_]+)
 				|
 					class_alias \s* \( \s*
@@ -81,7 +81,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				)
 			/imx', $contents, $matches, PREG_SET_ORDER );
 
-			$namespaceMatch = array();
+			$namespaceMatch = [];
 			preg_match( '/
 				^ [\t ]*
 					namespace \s+
@@ -90,8 +90,8 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			/imx', $contents, $namespaceMatch );
 			$fileNamespace = $namespaceMatch ? $namespaceMatch[1] . '\\' : '';
 
-			$classesInFile = array();
-			$aliasesInFile = array();
+			$classesInFile = [];
+			$aliasesInFile = [];
 
 			foreach ( $matches as $match ) {
 				if ( !empty( $match['class'] ) ) {
@@ -115,10 +115,10 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			}
 		}
 
-		return array(
+		return [
 			'expected' => $expected,
 			'actual' => $actual,
-		);
+		];
 	}
 
 	function testCoreClass() {

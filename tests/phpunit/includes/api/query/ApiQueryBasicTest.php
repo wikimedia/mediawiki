@@ -36,9 +36,10 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
-	 * @see MediaWikiTestCase::addDBData()
+	 *
+*@see MediaWikiTestCase::addDBDataOnce()
 	 */
-	function addDBData() {
+	function addDBDataOnce() {
 		try {
 			if ( Title::newFromText( 'AQBT-All' )->exists() ) {
 				return;
@@ -59,165 +60,165 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 		}
 	}
 
-	private static $links = array(
-		array( 'prop' => 'links', 'titles' => 'AQBT-All' ),
-		array( 'pages' => array(
-			'1' => array(
+	private static $links = [
+		[ 'prop' => 'links', 'titles' => 'AQBT-All' ],
+		[ 'pages' => [
+			'1' => [
 				'pageid' => 1,
 				'ns' => 0,
 				'title' => 'AQBT-All',
-				'links' => array(
-					array( 'ns' => 0, 'title' => 'AQBT-Links' ),
-				)
-			)
-		) )
-	);
+				'links' => [
+					[ 'ns' => 0, 'title' => 'AQBT-Links' ],
+				]
+			]
+		] ]
+	];
 
-	private static $templates = array(
-		array( 'prop' => 'templates', 'titles' => 'AQBT-All' ),
-		array( 'pages' => array(
-			'1' => array(
+	private static $templates = [
+		[ 'prop' => 'templates', 'titles' => 'AQBT-All' ],
+		[ 'pages' => [
+			'1' => [
 				'pageid' => 1,
 				'ns' => 0,
 				'title' => 'AQBT-All',
-				'templates' => array(
-					array( 'ns' => 10, 'title' => 'Template:AQBT-T' ),
-				)
-			)
-		) )
-	);
+				'templates' => [
+					[ 'ns' => 10, 'title' => 'Template:AQBT-T' ],
+				]
+			]
+		] ]
+	];
 
-	private static $categories = array(
-		array( 'prop' => 'categories', 'titles' => 'AQBT-All' ),
-		array( 'pages' => array(
-			'1' => array(
+	private static $categories = [
+		[ 'prop' => 'categories', 'titles' => 'AQBT-All' ],
+		[ 'pages' => [
+			'1' => [
 				'pageid' => 1,
 				'ns' => 0,
 				'title' => 'AQBT-All',
-				'categories' => array(
-					array( 'ns' => 14, 'title' => 'Category:AQBT-Cat' ),
-				)
-			)
-		) )
-	);
+				'categories' => [
+					[ 'ns' => 14, 'title' => 'Category:AQBT-Cat' ],
+				]
+			]
+		] ]
+	];
 
-	private static $allpages = array(
-		array( 'list' => 'allpages', 'apprefix' => 'AQBT-' ),
-		array( 'allpages' => array(
-			array( 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ),
-			array( 'pageid' => 2, 'ns' => 0, 'title' => 'AQBT-Categories' ),
-			array( 'pageid' => 3, 'ns' => 0, 'title' => 'AQBT-Links' ),
-			array( 'pageid' => 4, 'ns' => 0, 'title' => 'AQBT-Templates' ),
-		) )
-	);
+	private static $allpages = [
+		[ 'list' => 'allpages', 'apprefix' => 'AQBT-' ],
+		[ 'allpages' => [
+			[ 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ],
+			[ 'pageid' => 2, 'ns' => 0, 'title' => 'AQBT-Categories' ],
+			[ 'pageid' => 3, 'ns' => 0, 'title' => 'AQBT-Links' ],
+			[ 'pageid' => 4, 'ns' => 0, 'title' => 'AQBT-Templates' ],
+		] ]
+	];
 
-	private static $alllinks = array(
-		array( 'list' => 'alllinks', 'alprefix' => 'AQBT-' ),
-		array( 'alllinks' => array(
-			array( 'ns' => 0, 'title' => 'AQBT-All' ),
-			array( 'ns' => 0, 'title' => 'AQBT-Categories' ),
-			array( 'ns' => 0, 'title' => 'AQBT-Links' ),
-			array( 'ns' => 0, 'title' => 'AQBT-Templates' ),
-		) )
-	);
+	private static $alllinks = [
+		[ 'list' => 'alllinks', 'alprefix' => 'AQBT-' ],
+		[ 'alllinks' => [
+			[ 'ns' => 0, 'title' => 'AQBT-All' ],
+			[ 'ns' => 0, 'title' => 'AQBT-Categories' ],
+			[ 'ns' => 0, 'title' => 'AQBT-Links' ],
+			[ 'ns' => 0, 'title' => 'AQBT-Templates' ],
+		] ]
+	];
 
-	private static $alltransclusions = array(
-		array( 'list' => 'alltransclusions', 'atprefix' => 'AQBT-' ),
-		array( 'alltransclusions' => array(
-			array( 'ns' => 10, 'title' => 'Template:AQBT-T' ),
-			array( 'ns' => 10, 'title' => 'Template:AQBT-T' ),
-		) )
-	);
+	private static $alltransclusions = [
+		[ 'list' => 'alltransclusions', 'atprefix' => 'AQBT-' ],
+		[ 'alltransclusions' => [
+			[ 'ns' => 10, 'title' => 'Template:AQBT-T' ],
+			[ 'ns' => 10, 'title' => 'Template:AQBT-T' ],
+		] ]
+	];
 
 	// Although this appears to have no use it is used by testLists()
-	private static $allcategories = array(
-		array( 'list' => 'allcategories', 'acprefix' => 'AQBT-' ),
-		array( 'allcategories' => array(
-			array( '*' => 'AQBT-Cat' ),
-		) )
-	);
+	private static $allcategories = [
+		[ 'list' => 'allcategories', 'acprefix' => 'AQBT-' ],
+		[ 'allcategories' => [
+			[ '*' => 'AQBT-Cat' ],
+		] ]
+	];
 
-	private static $backlinks = array(
-		array( 'list' => 'backlinks', 'bltitle' => 'AQBT-Links' ),
-		array( 'backlinks' => array(
-			array( 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ),
-		) )
-	);
+	private static $backlinks = [
+		[ 'list' => 'backlinks', 'bltitle' => 'AQBT-Links' ],
+		[ 'backlinks' => [
+			[ 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ],
+		] ]
+	];
 
-	private static $embeddedin = array(
-		array( 'list' => 'embeddedin', 'eititle' => 'Template:AQBT-T' ),
-		array( 'embeddedin' => array(
-			array( 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ),
-			array( 'pageid' => 4, 'ns' => 0, 'title' => 'AQBT-Templates' ),
-		) )
-	);
+	private static $embeddedin = [
+		[ 'list' => 'embeddedin', 'eititle' => 'Template:AQBT-T' ],
+		[ 'embeddedin' => [
+			[ 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ],
+			[ 'pageid' => 4, 'ns' => 0, 'title' => 'AQBT-Templates' ],
+		] ]
+	];
 
-	private static $categorymembers = array(
-		array( 'list' => 'categorymembers', 'cmtitle' => 'Category:AQBT-Cat' ),
-		array( 'categorymembers' => array(
-			array( 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ),
-			array( 'pageid' => 2, 'ns' => 0, 'title' => 'AQBT-Categories' ),
-		) )
-	);
+	private static $categorymembers = [
+		[ 'list' => 'categorymembers', 'cmtitle' => 'Category:AQBT-Cat' ],
+		[ 'categorymembers' => [
+			[ 'pageid' => 1, 'ns' => 0, 'title' => 'AQBT-All' ],
+			[ 'pageid' => 2, 'ns' => 0, 'title' => 'AQBT-Categories' ],
+		] ]
+	];
 
-	private static $generatorAllpages = array(
-		array( 'generator' => 'allpages', 'gapprefix' => 'AQBT-' ),
-		array( 'pages' => array(
-			'1' => array(
+	private static $generatorAllpages = [
+		[ 'generator' => 'allpages', 'gapprefix' => 'AQBT-' ],
+		[ 'pages' => [
+			'1' => [
 				'pageid' => 1,
 				'ns' => 0,
-				'title' => 'AQBT-All' ),
-			'2' => array(
+				'title' => 'AQBT-All' ],
+			'2' => [
 				'pageid' => 2,
 				'ns' => 0,
-				'title' => 'AQBT-Categories' ),
-			'3' => array(
+				'title' => 'AQBT-Categories' ],
+			'3' => [
 				'pageid' => 3,
 				'ns' => 0,
-				'title' => 'AQBT-Links' ),
-			'4' => array(
+				'title' => 'AQBT-Links' ],
+			'4' => [
 				'pageid' => 4,
 				'ns' => 0,
-				'title' => 'AQBT-Templates' ),
-		) )
-	);
+				'title' => 'AQBT-Templates' ],
+		] ]
+	];
 
-	private static $generatorLinks = array(
-		array( 'generator' => 'links', 'titles' => 'AQBT-Links' ),
-		array( 'pages' => array(
-			'1' => array(
+	private static $generatorLinks = [
+		[ 'generator' => 'links', 'titles' => 'AQBT-Links' ],
+		[ 'pages' => [
+			'1' => [
 				'pageid' => 1,
 				'ns' => 0,
-				'title' => 'AQBT-All' ),
-			'2' => array(
+				'title' => 'AQBT-All' ],
+			'2' => [
 				'pageid' => 2,
 				'ns' => 0,
-				'title' => 'AQBT-Categories' ),
-			'4' => array(
+				'title' => 'AQBT-Categories' ],
+			'4' => [
 				'pageid' => 4,
 				'ns' => 0,
-				'title' => 'AQBT-Templates' ),
-		) )
-	);
+				'title' => 'AQBT-Templates' ],
+		] ]
+	];
 
-	private static $generatorLinksPropLinks = array(
-		array( 'prop' => 'links' ),
-		array( 'pages' => array(
-			'1' => array( 'links' => array(
-				array( 'ns' => 0, 'title' => 'AQBT-Links' ),
-			) )
-		) )
-	);
+	private static $generatorLinksPropLinks = [
+		[ 'prop' => 'links' ],
+		[ 'pages' => [
+			'1' => [ 'links' => [
+				[ 'ns' => 0, 'title' => 'AQBT-Links' ],
+			] ]
+		] ]
+	];
 
-	private static $generatorLinksPropTemplates = array(
-		array( 'prop' => 'templates' ),
-		array( 'pages' => array(
-			'1' => array( 'templates' => array(
-				array( 'ns' => 10, 'title' => 'Template:AQBT-T' ) ) ),
-			'4' => array( 'templates' => array(
-				array( 'ns' => 10, 'title' => 'Template:AQBT-T' ) ) ),
-		) )
-	);
+	private static $generatorLinksPropTemplates = [
+		[ 'prop' => 'templates' ],
+		[ 'pages' => [
+			'1' => [ 'templates' => [
+				[ 'ns' => 10, 'title' => 'Template:AQBT-T' ] ] ],
+			'4' => [ 'templates' => [
+				[ 'ns' => 10, 'title' => 'Template:AQBT-T' ] ] ],
+		] ]
+	];
 
 	/**
 	 * Test basic props
@@ -329,23 +330,23 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	public function testGeneratorRedirects() {
 		$this->editPage( 'AQBT-Target', 'test' );
 		$this->editPage( 'AQBT-Redir', '#REDIRECT [[AQBT-Target]]' );
-		$this->check( array(
-			array( 'generator' => 'backlinks', 'gbltitle' => 'AQBT-Target', 'redirects' => '1' ),
-			array(
-				'redirects' => array(
-					array(
+		$this->check( [
+			[ 'generator' => 'backlinks', 'gbltitle' => 'AQBT-Target', 'redirects' => '1' ],
+			[
+				'redirects' => [
+					[
 						'from' => 'AQBT-Redir',
 						'to' => 'AQBT-Target',
-					)
-				),
-				'pages' => array(
-					'6' => array(
+					]
+				],
+				'pages' => [
+					'6' => [
 						'pageid' => 6,
 						'ns' => 0,
 						'title' => 'AQBT-Target',
-					)
-				),
-			)
-		) );
+					]
+				],
+			]
+		] );
 	}
 }

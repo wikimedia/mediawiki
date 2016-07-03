@@ -52,10 +52,10 @@ class SiteExporter {
 	 * @param Site[]|SiteList $sites
 	 */
 	public function exportSites( $sites ) {
-		$attributes = array(
+		$attributes = [
 			'version' => '1.0',
 			'xmlns' => 'http://www.mediawiki.org/xml/sitelist-1.0/',
-		);
+		];
 
 		fwrite( $this->sink, Xml::openElement( 'sites', $attributes ) . "\n" );
 
@@ -74,7 +74,7 @@ class SiteExporter {
 	 */
 	private function exportSite( Site $site ) {
 		if ( $site->getType() !== Site::TYPE_UNKNOWN ) {
-			$siteAttr = array( 'type' => $site->getType() );
+			$siteAttr = [ 'type' => $site->getType() ];
 		} else {
 			$siteAttr = null;
 		}
@@ -96,17 +96,17 @@ class SiteExporter {
 		}
 
 		foreach ( $site->getAllPaths() as $type => $path ) {
-			fwrite( $this->sink, "\t\t" . Xml::element( 'path', array( 'type' => $type ), $path ) . "\n" );
+			fwrite( $this->sink, "\t\t" . Xml::element( 'path', [ 'type' => $type ], $path ) . "\n" );
 		}
 
 		foreach ( $site->getLocalIds() as $type => $ids ) {
 			foreach ( $ids as $id ) {
-				fwrite( $this->sink, "\t\t" . Xml::element( 'localid', array( 'type' => $type ), $id ) . "\n" );
+				fwrite( $this->sink, "\t\t" . Xml::element( 'localid', [ 'type' => $type ], $id ) . "\n" );
 			}
 		}
 
-		//@todo: export <data>
-		//@todo: export <config>
+		// @todo: export <data>
+		// @todo: export <config>
 
 		fwrite( $this->sink, "\t" . Xml::closeElement( 'site' ) . "\n" );
 	}

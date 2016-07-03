@@ -45,31 +45,31 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$categories = $alltitles[NS_CATEGORY];
 
 		$titles = $this->getPageSet()->getGoodAndMissingTitles();
-		$cattitles = array();
+		$cattitles = [];
 		foreach ( $categories as $c ) {
 			/** @var $t Title */
 			$t = $titles[$c];
 			$cattitles[$c] = $t->getDBkey();
 		}
 
-		$this->addTables( array( 'category', 'page', 'page_props' ) );
-		$this->addJoinConds( array(
-			'page' => array( 'LEFT JOIN', array(
+		$this->addTables( [ 'category', 'page', 'page_props' ] );
+		$this->addJoinConds( [
+			'page' => [ 'LEFT JOIN', [
 				'page_namespace' => NS_CATEGORY,
-				'page_title=cat_title' ) ),
-			'page_props' => array( 'LEFT JOIN', array(
+				'page_title=cat_title' ] ],
+			'page_props' => [ 'LEFT JOIN', [
 				'pp_page=page_id',
-				'pp_propname' => 'hiddencat' ) ),
-		) );
+				'pp_propname' => 'hiddencat' ] ],
+		] );
 
-		$this->addFields( array(
+		$this->addFields( [
 			'cat_title',
 			'cat_pages',
 			'cat_subcats',
 			'cat_files',
 			'cat_hidden' => 'pp_propname'
-		) );
-		$this->addWhere( array( 'cat_title' => $cattitles ) );
+		] );
+		$this->addWhere( [ 'cat_title' => $cattitles ] );
 
 		if ( !is_null( $params['continue'] ) ) {
 			$title = $this->getDB()->addQuotes( $params['continue'] );
@@ -81,7 +81,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 
 		$catids = array_flip( $cattitles );
 		foreach ( $res as $row ) {
-			$vals = array();
+			$vals = [];
 			$vals['size'] = intval( $row->cat_pages );
 			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
 			$vals['files'] = intval( $row->cat_files );
@@ -100,18 +100,18 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'continue' => array(
+		return [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar'
 				=> 'apihelp-query+categoryinfo-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

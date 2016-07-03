@@ -10,7 +10,7 @@
 
 # $fallback = 'ru'; // bug 27785
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Служебная',
 	NS_TALK             => 'Тепсэлъэхьыгъуэ',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'ДэӀэпыкъуэгъуэ_тепсэлъэхьыгъуэ',
 	NS_CATEGORY         => 'Категориэ',
 	NS_CATEGORY_TALK    => 'Категориэ_тепсэлъэхьыгъуэ',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	# Russian namespaces
 	'Обсуждение'                         => NS_TALK,
 	'Участник'                           => NS_USER,
@@ -42,8 +42,8 @@ $namespaceAliases = array(
 	'Обсуждение_справки'                 => NS_HELP_TALK,
 	'Категория'                          => NS_CATEGORY,
 	'Обсуждение_категории'               => NS_CATEGORY_TALK,
-);
+];
 
 // Remove Russian gender aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 

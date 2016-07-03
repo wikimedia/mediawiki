@@ -23,13 +23,13 @@ class ExifTest extends MediaWikiTestCase {
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		$exif = new Exif( $filename, $seg['byteOrder'] );
 		$data = $exif->getFilteredData();
-		$expected = array(
+		$expected = [
 			'GPSLatitude' => 88.5180555556,
 			'GPSLongitude' => -21.12357,
 			'GPSAltitude' => -3.141592653,
 			'GPSDOP' => '5/1',
 			'GPSVersionID' => '2.2.0.0',
-		);
+		];
 		$this->assertEquals( $expected, $data, '', 0.0000000001 );
 	}
 
@@ -39,9 +39,9 @@ class ExifTest extends MediaWikiTestCase {
 		$exif = new Exif( $filename, $seg['byteOrder'] );
 		$data = $exif->getFilteredData();
 
-		$expected = array(
+		$expected = [
 			'UserComment' => 'test⁔comment'
-		);
+		];
 		$this->assertEquals( $expected, $data );
 	}
 }

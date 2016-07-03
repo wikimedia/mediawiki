@@ -5,6 +5,9 @@
  * auto-completion and optionally with a select dropdown for selecting common
  * options.
  *
+ * HTMLComboboxField implements most of the same functionality and should be
+ * used instead, if possible.
+ *
  * If one of 'options-messages', 'options', or 'options-message' is provided
  * and non-empty, the select dropdown will be shown. An 'other' key will be
  * appended using message 'htmlform-selectorother-other' if not already
@@ -22,15 +25,14 @@
  *   other-message - Message to use instead of htmlform-selectorother-other for
  *      the 'other' message.
  *   other - Raw text to use for the 'other' message
- *
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
-	protected $autocomplete = array();
+	protected $autocomplete = [];
 
 	function __construct( $params ) {
-		$params += array(
+		$params += [
 			'require-match' => false,
-		);
+		];
 
 		parent::__construct( $params );
 
@@ -51,7 +53,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		$this->getOptions();
 		if ( $this->mOptions && !in_array( 'other', $this->mOptions, true ) ) {
 			if ( isset( $params['other-message'] ) ) {
-				$msg = wfMessage( $params['other-message'] )->text();
+				$msg = $this->getMessage( $params['other-message'] )->text();
 			} elseif ( isset( $params['other'] ) ) {
 				$msg = $params['other'];
 			} else {
@@ -99,15 +101,15 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 	}
 
 	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
-	public function getAttributes( array $list, array $mappings = null ) {
-		$attribs = array(
+	public function getAttributes( array $list ) {
+		$attribs = [
 			'type' => 'text',
 			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocomplete ) ),
-		) + parent::getAttributes( $list, $mappings );
+		] + parent::getAttributes( $list );
 
 		if ( $this->getOptions() ) {
 			$attribs['data-hide-if'] = FormatJson::encode(
-				array( '!==', $this->mName . '-select', 'other' )
+				[ '!==', $this->mName . '-select', 'other' ]
 			);
 		}
 

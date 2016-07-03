@@ -31,10 +31,10 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 *   * body: array( 'html' => ... )
 	 *   * $title and $revision are optional
 	 *  POST /local/v3/transform/wikitext/to/html/{$title}{/$revision}
-	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'bodyOnly' => true/false )
+	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'body_only' => true/false )
 	 *   * $title is optional
 	 *   * $revision is optional
-     *
+	 *
 	 * There are also deprecated "v1" requests; see onParsoid1Request
 	 * for details.
 	 * @param array $params Key/value map
@@ -53,14 +53,14 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			unset( $params['URL'] );
 		}
 		// set up defaults and merge them with the given params
-		$mparams = array_merge( array(
+		$mparams = array_merge( [
 			'name' => 'parsoid',
 			'url' => 'http://localhost:8000/',
 			'prefix' => 'localhost',
 			'domain' => 'localhost',
 			'forwardCookies' => false,
 			'HTTPProxy' => null,
-		), $params );
+		], $params );
 		// Ensure that the url parameter has a trailing slash.
 		$mparams['url'] = preg_replace(
 			'#/?$#',
@@ -79,7 +79,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	}
 
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
-		$result = array();
+		$result = [];
 		foreach ( $reqs as $key => $req ) {
 			$parts = explode( '/', $req['url'] );
 
@@ -202,7 +202,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 					throw new Exception( "You must set a 'wikitext' body key for this request" );
 				}
 				if ( isset( $req['body']['body'] ) ) {
-					$req['body']['bodyOnly'] = $req['body']['body'];
+					$req['body']['body_only'] = $req['body']['body'];
 					unset( $req['body']['body'] );
 				}
 			} else {

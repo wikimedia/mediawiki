@@ -24,7 +24,7 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testBasic() {
 		$matches = $this->basicRouter->parse( "/wiki/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 	}
 
 	/**
@@ -34,17 +34,17 @@ class PathRouterTest extends MediaWikiTestCase {
 		$router = new PathRouter;
 		$router->add( "/" ); # Should be the same as "/$1"
 		$matches = $router->parse( "/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 
 		$router = new PathRouter;
 		$router->add( "/wiki" ); # Should be the same as /wiki/$1
 		$matches = $router->parse( "/wiki/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 
 		$router = new PathRouter;
 		$router->add( "/wiki/" ); # Should be the same as /wiki/$1
 		$matches = $router->parse( "/wiki/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 	}
 
 	/**
@@ -56,14 +56,14 @@ class PathRouterTest extends MediaWikiTestCase {
 		$router->add( "/a/$1" );
 		$router->add( "/b/$1" );
 		$matches = $router->parse( "/a/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 
 		$router = new PathRouter;
 		$router->add( "/b/$1" );
 		$router->add( "/a/$1" );
 		$router->add( "/$1" );
 		$matches = $router->parse( "/a/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo" ] );
 	}
 
 	/**
@@ -71,9 +71,9 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testKeyParameter() {
 		$router = new PathRouter;
-		$router->add( array( 'edit' => "/edit/$1" ), array( 'action' => '$key' ) );
+		$router->add( [ 'edit' => "/edit/$1" ], [ 'action' => '$key' ] );
 		$matches = $router->parse( "/edit/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo", 'action' => 'edit' ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo", 'action' => 'edit' ] );
 	}
 
 	/**
@@ -82,9 +82,9 @@ class PathRouterTest extends MediaWikiTestCase {
 	public function testAdditionalParameter() {
 		// Basic $2
 		$router = new PathRouter;
-		$router->add( '/$2/$1', array( 'test' => '$2' ) );
+		$router->add( '/$2/$1', [ 'test' => '$2' ] );
 		$matches = $router->parse( "/asdf/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo", 'test' => 'asdf' ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo", 'test' => 'asdf' ] );
 	}
 
 	/**
@@ -93,23 +93,23 @@ class PathRouterTest extends MediaWikiTestCase {
 	public function testRestrictedValue() {
 		$router = new PathRouter;
 		$router->add( '/$2/$1',
-			array( 'test' => '$2' ),
-			array( '$2' => array( 'a', 'b' ) )
+			[ 'test' => '$2' ],
+			[ '$2' => [ 'a', 'b' ] ]
 		);
 		$router->add( '/$2/$1',
-			array( 'test2' => '$2' ),
-			array( '$2' => 'c' )
+			[ 'test2' => '$2' ],
+			[ '$2' => 'c' ]
 		);
 		$router->add( '/$1' );
 
 		$matches = $router->parse( "/asdf/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "asdf/Foo" ) );
+		$this->assertEquals( $matches, [ 'title' => "asdf/Foo" ] );
 
 		$matches = $router->parse( "/a/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo", 'test' => 'a' ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo", 'test' => 'a' ] );
 
 		$matches = $router->parse( "/c/Foo" );
-		$this->assertEquals( $matches, array( 'title' => "Foo", 'test2' => 'c' ) );
+		$this->assertEquals( $matches, [ 'title' => "Foo", 'test2' => 'c' ] );
 	}
 
 	public function callbackForTest( &$matches, $data ) {
@@ -120,16 +120,16 @@ class PathRouterTest extends MediaWikiTestCase {
 	public function testCallback() {
 		$router = new PathRouter;
 		$router->add( "/$1",
-			array( 'a' => 'b', 'data:foo' => 'bar' ),
-			array( 'callback' => array( $this, 'callbackForTest' ) )
+			[ 'a' => 'b', 'data:foo' => 'bar' ],
+			[ 'callback' => [ $this, 'callbackForTest' ] ]
 		);
 		$matches = $router->parse( '/Foo' );
-		$this->assertEquals( $matches, array(
+		$this->assertEquals( $matches, [
 			'title' => "Foo",
 			'x' => 'Foo',
 			'a' => 'b',
 			'foo' => 'bar'
-		) );
+		] );
 	}
 
 	/**
@@ -137,9 +137,9 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testFail() {
 		$router = new PathRouter;
-		$router->add( "/wiki/$1", array( 'title' => "$1$2" ) );
+		$router->add( "/wiki/$1", [ 'title' => "$1$2" ] );
 		$matches = $router->parse( "/wiki/A" );
-		$this->assertEquals( array(), $matches );
+		$this->assertEquals( [], $matches );
 	}
 
 	/**
@@ -147,30 +147,30 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testWeight() {
 		$router = new PathRouter;
-		$router->addStrict( "/Bar", array( 'ping' => 'pong' ) );
-		$router->add( "/asdf-$1", array( 'title' => 'qwerty-$1' ) );
+		$router->addStrict( "/Bar", [ 'ping' => 'pong' ] );
+		$router->add( "/asdf-$1", [ 'title' => 'qwerty-$1' ] );
 		$router->add( "/$1" );
-		$router->add( "/qwerty-$1", array( 'title' => 'asdf-$1' ) );
-		$router->addStrict( "/Baz", array( 'marco' => 'polo' ) );
+		$router->add( "/qwerty-$1", [ 'title' => 'asdf-$1' ] );
+		$router->addStrict( "/Baz", [ 'marco' => 'polo' ] );
 		$router->add( "/a/$1" );
 		$router->add( "/asdf/$1" );
-		$router->add( "/$2/$1", array( 'unrestricted' => '$2' ) );
-		$router->add( array( 'qwerty' => "/qwerty/$1" ), array( 'qwerty' => '$key' ) );
-		$router->add( "/$2/$1", array( 'restricted-to-y' => '$2' ), array( '$2' => 'y' ) );
+		$router->add( "/$2/$1", [ 'unrestricted' => '$2' ] );
+		$router->add( [ 'qwerty' => "/qwerty/$1" ], [ 'qwerty' => '$key' ] );
+		$router->add( "/$2/$1", [ 'restricted-to-y' => '$2' ], [ '$2' => 'y' ] );
 
 		foreach (
-			array(
-				'/Foo' => array( 'title' => 'Foo' ),
-				'/Bar' => array( 'ping' => 'pong' ),
-				'/Baz' => array( 'marco' => 'polo' ),
-				'/asdf-foo' => array( 'title' => 'qwerty-foo' ),
-				'/qwerty-bar' => array( 'title' => 'asdf-bar' ),
-				'/a/Foo' => array( 'title' => 'Foo' ),
-				'/asdf/Foo' => array( 'title' => 'Foo' ),
-				'/qwerty/Foo' => array( 'title' => 'Foo', 'qwerty' => 'qwerty' ),
-				'/baz/Foo' => array( 'title' => 'Foo', 'unrestricted' => 'baz' ),
-				'/y/Foo' => array( 'title' => 'Foo', 'restricted-to-y' => 'y' ),
-			) as $path => $result
+			[
+				'/Foo' => [ 'title' => 'Foo' ],
+				'/Bar' => [ 'ping' => 'pong' ],
+				'/Baz' => [ 'marco' => 'polo' ],
+				'/asdf-foo' => [ 'title' => 'qwerty-foo' ],
+				'/qwerty-bar' => [ 'title' => 'asdf-bar' ],
+				'/a/Foo' => [ 'title' => 'Foo' ],
+				'/asdf/Foo' => [ 'title' => 'Foo' ],
+				'/qwerty/Foo' => [ 'title' => 'Foo', 'qwerty' => 'qwerty' ],
+				'/baz/Foo' => [ 'title' => 'Foo', 'unrestricted' => 'baz' ],
+				'/y/Foo' => [ 'title' => 'Foo', 'restricted-to-y' => 'y' ],
+			] as $path => $result
 		) {
 			$this->assertEquals( $router->parse( $path ), $result );
 		}
@@ -181,7 +181,7 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testSpecial() {
 		$matches = $this->basicRouter->parse( "/wiki/Special:Recentchanges" );
-		$this->assertEquals( $matches, array( 'title' => "Special:Recentchanges" ) );
+		$this->assertEquals( $matches, [ 'title' => "Special:Recentchanges" ] );
 	}
 
 	/**
@@ -189,16 +189,16 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testUrlencoding() {
 		$matches = $this->basicRouter->parse( "/wiki/Title_With%20Space" );
-		$this->assertEquals( $matches, array( 'title' => "Title_With Space" ) );
+		$this->assertEquals( $matches, [ 'title' => "Title_With Space" ] );
 	}
 
 	public static function provideRegexpChars() {
-		return array(
-			array( "$" ),
-			array( "$1" ),
-			array( "\\" ),
-			array( "\\$1" ),
-		);
+		return [
+			[ "$" ],
+			[ "$1" ],
+			[ "\\" ],
+			[ "\\$1" ],
+		];
 	}
 
 	/**
@@ -207,7 +207,7 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testRegexpChars( $char ) {
 		$matches = $this->basicRouter->parse( "/wiki/$char" );
-		$this->assertEquals( $matches, array( 'title' => "$char" ) );
+		$this->assertEquals( $matches, [ 'title' => "$char" ] );
 	}
 
 	/**
@@ -215,7 +215,7 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testCharacters() {
 		$matches = $this->basicRouter->parse( "/wiki/Plus+And&Dollar\\Stuff();[]{}*" );
-		$this->assertEquals( $matches, array( 'title' => "Plus+And&Dollar\\Stuff();[]{}*" ) );
+		$this->assertEquals( $matches, [ 'title' => "Plus+And&Dollar\\Stuff();[]{}*" ] );
 	}
 
 	/**
@@ -226,10 +226,10 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testUnicode() {
 		$matches = $this->basicRouter->parse( "/wiki/Spécial:Modifications_récentes" );
-		$this->assertEquals( $matches, array( 'title' => "Spécial:Modifications_récentes" ) );
+		$this->assertEquals( $matches, [ 'title' => "Spécial:Modifications_récentes" ] );
 
 		$matches = $this->basicRouter->parse( "/wiki/Sp%C3%A9cial:Modifications_r%C3%A9centes" );
-		$this->assertEquals( $matches, array( 'title' => "Spécial:Modifications_récentes" ) );
+		$this->assertEquals( $matches, [ 'title' => "Spécial:Modifications_récentes" ] );
 	}
 
 	/**
@@ -237,8 +237,13 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testLength() {
 		// @codingStandardsIgnoreStart Ignore long line warnings
-		$matches = $this->basicRouter->parse( "/wiki/Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum." );
-		$this->assertEquals( $matches, array( 'title' => "Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum." ) );
+		$matches = $this->basicRouter->parse(
+			"/wiki/Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum."
+		);
+		$this->assertEquals(
+			$matches,
+			[ 'title' => "Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum." ]
+		);
 		// @codingStandardsIgnoreEnd
 	}
 
@@ -247,9 +252,9 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testPatternUrlencoding() {
 		$router = new PathRouter;
-		$router->add( "/wiki/$1", array( 'title' => '%20:$1' ) );
+		$router->add( "/wiki/$1", [ 'title' => '%20:$1' ] );
 		$matches = $router->parse( "/wiki/Foo" );
-		$this->assertEquals( $matches, array( 'title' => '%20:Foo' ) );
+		$this->assertEquals( $matches, [ 'title' => '%20:Foo' ] );
 	}
 
 	/**
@@ -257,8 +262,8 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testRawParamValue() {
 		$router = new PathRouter;
-		$router->add( "/wiki/$1", array( 'title' => array( 'value' => 'bar%20$1' ) ) );
+		$router->add( "/wiki/$1", [ 'title' => [ 'value' => 'bar%20$1' ] ] );
 		$matches = $router->parse( "/wiki/Foo" );
-		$this->assertEquals( $matches, array( 'title' => 'bar%20$1' ) );
+		$this->assertEquals( $matches, [ 'title' => 'bar%20$1' ] );
 	}
 }

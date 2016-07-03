@@ -34,26 +34,26 @@ class GetConfiguration extends Maintenance {
 
 	protected $regex = null;
 
-	protected $settings_list = array();
+	protected $settings_list = [];
 
 	/**
 	 * List of format output internally supported.
 	 * Each item MUST be lower case.
 	 */
-	protected static $outFormats = array(
+	protected static $outFormats = [
 		'json',
 		'php',
 		'serialize',
 		'vardump',
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Get serialized MediaWiki site configuration";
+		$this->addDescription( 'Get serialized MediaWiki site configuration' );
 		$this->addOption( 'regex', 'regex to filter variables with', false, true );
 		$this->addOption( 'iregex', 'same as --regex but case insensitive', false, true );
 		$this->addOption( 'settings', 'Space-separated list of wg* variables', false, true );
-		$this->addOption( 'format', join( ', ', self::$outFormats ), false, true );
+		$this->addOption( 'format', implode( ', ', self::$outFormats ), false, true );
 	}
 
 	protected function validateParamsAndArgs() {
@@ -112,7 +112,7 @@ class GetConfiguration extends Maintenance {
 
 	public function execute() {
 		// Settings we will display
-		$res = array();
+		$res = [];
 
 		# Sane default: dump any wg / wmg variable
 		if ( !$this->regex && !$this->getOption( 'settings' ) ) {
@@ -121,7 +121,7 @@ class GetConfiguration extends Maintenance {
 
 		# Filter out globals based on the regex
 		if ( $this->regex ) {
-			$res = array();
+			$res = [];
 			foreach ( $GLOBALS as $name => $value ) {
 				if ( preg_match( $this->regex, $name ) ) {
 					$res[$name] = $value;

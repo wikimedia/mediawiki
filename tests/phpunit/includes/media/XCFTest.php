@@ -13,7 +13,6 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 		$this->handler = new XCFHandler();
 	}
 
-
 	/**
 	 * @param string $filename
 	 * @param int $expectedWidth Width
@@ -29,11 +28,11 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetImageSize() {
-		return array(
-			array( '80x60-2layers.xcf', 80, 60 ),
-			array( '80x60-RGB.xcf', 80, 60 ),
-			array( '80x60-Greyscale.xcf', 80, 60 ),
-		);
+		return [
+			[ '80x60-2layers.xcf', 80, 60 ],
+			[ '80x60-RGB.xcf', 80, 60 ],
+			[ '80x60-Greyscale.xcf', 80, 60 ],
+		];
 	}
 
 	/**
@@ -48,12 +47,12 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideIsMetadataValid() {
-		return array(
-			array( '', XCFHandler::METADATA_BAD ),
-			array( serialize( array( 'error' => true ) ), XCFHandler::METADATA_GOOD ),
-			array( false, XCFHandler::METADATA_BAD ),
-			array( serialize( array( 'colorType' => 'greyscale-alpha' ) ), XCFHandler::METADATA_GOOD ),
-		);
+		return [
+			[ '', XCFHandler::METADATA_BAD ],
+			[ serialize( [ 'error' => true ] ), XCFHandler::METADATA_GOOD ],
+			[ false, XCFHandler::METADATA_BAD ],
+			[ serialize( [ 'colorType' => 'greyscale-alpha' ] ), XCFHandler::METADATA_GOOD ],
+		];
 	}
 
 	/**
@@ -69,10 +68,10 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetMetadata() {
-		return array(
-			array( '80x60-2layers.xcf', 'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}' ),
-			array( '80x60-RGB.xcf', 'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}' ),
-			array( '80x60-Greyscale.xcf', 'a:1:{s:9:"colorType";s:15:"greyscale-alpha";}' ),
-		);
+		return [
+			[ '80x60-2layers.xcf', 'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}' ],
+			[ '80x60-RGB.xcf', 'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}' ],
+			[ '80x60-Greyscale.xcf', 'a:1:{s:9:"colorType";s:15:"greyscale-alpha";}' ],
+		];
 	}
 }

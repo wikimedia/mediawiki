@@ -21,6 +21,7 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
+use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -29,13 +30,10 @@ use Wikimedia\Assert\Assert;
  * @note In contrast to Title, this is designed to be a plain value object. That is,
  * it is immutable, does not use global state, and causes no side effects.
  *
- * @note TitleValue represents the title of a local page (or fragment of a page).
- * It does not represent a link, and does not support interwiki prefixes etc.
- *
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  * @since 1.23
  */
-class TitleValue {
+class TitleValue implements LinkTarget {
 	/**
 	 * @var int
 	 */
@@ -52,6 +50,11 @@ class TitleValue {
 	protected $fragment;
 
 	/**
+	 * @var string
+	 */
+	protected $interwiki;
+
+	/**
 	 * Constructs a TitleValue.
 	 *
 	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
@@ -64,13 +67,15 @@ class TitleValue {
 	 * @param string $dbkey The page title in valid DBkey form. No normalization is applied.
 	 * @param string $fragment The fragment title. Use '' to represent the whole page.
 	 *   No validation or normalization is applied.
+	 * @param string $interwiki The interwiki component
 	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $namespace, $dbkey, $fragment = '' ) {
+	public function __construct( $namespace, $dbkey, $fragment = '', $interwiki = '' ) {
 		Assert::parameterType( 'integer', $namespace, '$namespace' );
 		Assert::parameterType( 'string', $dbkey, '$dbkey' );
 		Assert::parameterType( 'string', $fragment, '$fragment' );
+		Assert::parameterType( 'string', $interwiki, '$interwiki' );
 
 		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey', 'invalid DB key' );
@@ -79,6 +84,7 @@ class TitleValue {
 		$this->namespace = $namespace;
 		$this->dbkey = $dbkey;
 		$this->fragment = $fragment;
+		$this->interwiki = $interwiki;
 	}
 
 	/**
@@ -89,10 +95,27 @@ class TitleValue {
 	}
 
 	/**
+	 * @since 1.27
+	 * @param int $ns
+	 * @return bool
+	 */
+	public function inNamespace( $ns ) {
+		return $this->namespace == $ns;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getFragment() {
 		return $this->fragment;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function hasFragment() {
+		return $this->fragment !== '';
 	}
 
 	/**
@@ -123,12 +146,38 @@ class TitleValue {
 	/**
 	 * Creates a new TitleValue for a different fragment of the same page.
 	 *
+	 * @since 1.27
 	 * @param string $fragment The fragment name, or "" for the entire page.
 	 *
 	 * @return TitleValue
 	 */
-	public function createFragmentTitle( $fragment ) {
-		return new TitleValue( $this->namespace, $this->dbkey, $fragment );
+	public function createFragmentTarget( $fragment ) {
+		return new TitleValue(
+			$this->namespace,
+			$this->dbkey,
+			$fragment,
+			$this->interwiki
+		);
+	}
+
+	/**
+	 * Whether it has an interwiki part
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function isExternal() {
+		return $this->interwiki !== '';
+	}
+
+	/**
+	 * Returns the interwiki part
+	 *
+	 * @since 1.27
+	 * @return string
+	 */
+	public function getInterwiki() {
+		return $this->interwiki;
 	}
 
 	/**
@@ -143,6 +192,10 @@ class TitleValue {
 
 		if ( $this->fragment !== '' ) {
 			$name .= '#' . $this->fragment;
+		}
+
+		if ( $this->interwiki !== '' ) {
+			$name = $this->interwiki . ':' . $name;
 		}
 
 		return $name;

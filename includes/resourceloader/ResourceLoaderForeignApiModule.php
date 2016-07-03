@@ -27,7 +27,7 @@
 class ResourceLoaderForeignApiModule extends ResourceLoaderFileModule {
 	public function getDependencies( ResourceLoaderContext $context = null ) {
 		$dependencies = $this->dependencies;
-		Hooks::run( 'ResourceLoaderForeignApiModules', array( &$dependencies, $context ) );
+		Hooks::run( 'ResourceLoaderForeignApiModules', [ &$dependencies, $context ] );
 		return $dependencies;
 	}
 }

@@ -21,20 +21,22 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function providerImproveTypeFromExtension() {
-		return array(
-			array( 'gif', 'image/gif', 'image/gif' ),
-			array( 'gif', 'unknown/unknown', 'unknown/unknown' ),
-			array( 'wrl', 'unknown/unknown', 'model/vrml' ),
-			array( 'txt', 'text/plain', 'text/plain' ),
-			array( 'csv', 'text/plain', 'text/csv' ),
-			array( 'tsv', 'text/plain', 'text/tab-separated-values' ),
-			array( 'json', 'text/plain', 'application/json' ),
-			array( 'foo', 'application/x-opc+zip', 'application/zip' ),
-			array( 'docx', 'application/x-opc+zip',
-				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ),
-			array( 'djvu', 'image/x-djvu', 'image/vnd.djvu' ),
-			array( 'wav', 'audio/wav', 'audio/wav' ),
-		);
+		return [
+			[ 'gif', 'image/gif', 'image/gif' ],
+			[ 'gif', 'unknown/unknown', 'unknown/unknown' ],
+			[ 'wrl', 'unknown/unknown', 'model/vrml' ],
+			[ 'txt', 'text/plain', 'text/plain' ],
+			[ 'csv', 'text/plain', 'text/csv' ],
+			[ 'tsv', 'text/plain', 'text/tab-separated-values' ],
+			[ 'js', 'text/javascript', 'application/javascript' ],
+			[ 'js', 'application/x-javascript', 'application/javascript' ],
+			[ 'json', 'text/plain', 'application/json' ],
+			[ 'foo', 'application/x-opc+zip', 'application/zip' ],
+			[ 'docx', 'application/x-opc+zip',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ],
+			[ 'djvu', 'image/x-djvu', 'image/vnd.djvu' ],
+			[ 'wav', 'audio/wav', 'audio/wav' ],
+		];
 	}
 
 	/**

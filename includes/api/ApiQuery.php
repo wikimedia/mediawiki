@@ -41,7 +41,7 @@ class ApiQuery extends ApiBase {
 	 * List of Api Query prop modules
 	 * @var array
 	 */
-	private static $QueryPropModules = array(
+	private static $QueryPropModules = [
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
 		'contributors' => 'ApiQueryContributors',
@@ -62,13 +62,13 @@ class ApiQuery extends ApiBase {
 		'stashimageinfo' => 'ApiQueryStashImageInfo',
 		'templates' => 'ApiQueryLinks',
 		'transcludedin' => 'ApiQueryBacklinksprop',
-	);
+	];
 
 	/**
 	 * List of Api Query list modules
 	 * @var array
 	 */
-	private static $QueryListModules = array(
+	private static $QueryListModules = [
 		'allcategories' => 'ApiQueryAllCategories',
 		'alldeletedrevisions' => 'ApiQueryAllDeletedRevisions',
 		'allfileusages' => 'ApiQueryAllLinks',
@@ -76,6 +76,8 @@ class ApiQuery extends ApiBase {
 		'alllinks' => 'ApiQueryAllLinks',
 		'allpages' => 'ApiQueryAllPages',
 		'allredirects' => 'ApiQueryAllLinks',
+		'allrevisions' => 'ApiQueryAllRevisions',
+		'mystashedfiles' => 'ApiQueryMyStashedFiles',
 		'alltransclusions' => 'ApiQueryAllLinks',
 		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
@@ -102,19 +104,20 @@ class ApiQuery extends ApiBase {
 		'users' => 'ApiQueryUsers',
 		'watchlist' => 'ApiQueryWatchlist',
 		'watchlistraw' => 'ApiQueryWatchlistRaw',
-	);
+	];
 
 	/**
 	 * List of Api Query meta modules
 	 * @var array
 	 */
-	private static $QueryMetaModules = array(
+	private static $QueryMetaModules = [
 		'allmessages' => 'ApiQueryAllMessages',
+		'authmanagerinfo' => 'ApiQueryAuthManagerInfo',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
 		'filerepoinfo' => 'ApiQueryFileRepoInfo',
 		'tokens' => 'ApiQueryTokens',
-	);
+	];
 
 	/**
 	 * @var ApiPageSet
@@ -122,7 +125,7 @@ class ApiQuery extends ApiBase {
 	private $mPageSet;
 
 	private $mParams;
-	private $mNamedDB = array();
+	private $mNamedDB = [];
 	private $mModuleMgr;
 
 	/**
@@ -143,7 +146,7 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
-		Hooks::run( 'ApiQuery::moduleManager', array( $this->mModuleMgr ) );
+		Hooks::run( 'ApiQuery::moduleManager', [ $this->mModuleMgr ] );
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
@@ -184,44 +187,6 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Get the array mapping module names to class names
-	 * @deprecated since 1.21, use getModuleManager()'s methods instead
-	 * @return array Array(modulename => classname)
-	 */
-	public function getModules() {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		return $this->getModuleManager()->getNamesWithClasses();
-	}
-
-	/**
-	 * Get the generators array mapping module names to class names
-	 * @deprecated since 1.21, list of generators is maintained by ApiPageSet
-	 * @return array Array(modulename => classname)
-	 */
-	public function getGenerators() {
-		wfDeprecated( __METHOD__, '1.21' );
-		$gens = array();
-		foreach ( $this->mModuleMgr->getNamesWithClasses() as $name => $class ) {
-			if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
-				$gens[$name] = $class;
-			}
-		}
-
-		return $gens;
-	}
-
-	/**
-	 * Get whether the specified module is a prop, list or a meta query module
-	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
-	 * @param string $moduleName Name of the module to find type for
-	 * @return string|null
-	 */
-	function getModuleType( $moduleName ) {
-		return $this->getModuleManager()->getModuleGroup( $moduleName );
-	}
-
-	/**
 	 * @return ApiFormatRaw|null
 	 */
 	public function getCustomPrinter() {
@@ -250,7 +215,7 @@ class ApiQuery extends ApiBase {
 		$this->mParams = $this->extractRequestParams();
 
 		// Instantiate requested modules
-		$allModules = array();
+		$allModules = [];
 		$this->instantiateModules( $allModules, 'prop' );
 		$propModules = array_keys( $allModules );
 		$this->instantiateModules( $allModules, 'list' );
@@ -284,7 +249,7 @@ class ApiQuery extends ApiBase {
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->execute();
-			Hooks::run( 'APIQueryAfterExecute', array( &$module ) );
+			Hooks::run( 'APIQueryAfterExecute', [ &$module ] );
 		}
 
 		// Set the cache mode
@@ -300,17 +265,6 @@ class ApiQuery extends ApiBase {
 			}
 		} else {
 			$continuationManager->setContinuationIntoResult( $this->getResult() );
-		}
-
-		/// @todo: Remove this after a suitable period of time. When REL1_26 is cut, if not before.
-		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] &&
-			$this->getResult()->getResultData( 'continue' ) !== null
-		) {
-			$this->setWarning(
-				'Formatting of continuation data has changed. ' .
-				'To receive raw query-continue data, use the \'rawcontinue\' parameter. ' .
-				'To silence this warning, pass an empty string for \'continue\' in the initial query.'
-			);
 		}
 	}
 
@@ -351,7 +305,7 @@ class ApiQuery extends ApiBase {
 					ApiBase::dieDebug( __METHOD__, 'Error instantiating module' );
 				}
 				if ( !$wasPosted && $instance->mustBePosted() ) {
-					$this->dieUsageMsgOrDebug( array( 'mustbeposted', $moduleName ) );
+					$this->dieUsageMsgOrDebug( [ 'mustbeposted', $moduleName ] );
 				}
 				// Ignore duplicates. TODO 2.0: die()?
 				if ( !array_key_exists( $moduleName, $modules ) ) {
@@ -396,30 +350,30 @@ class ApiQuery extends ApiBase {
 		}
 
 		// Page elements
-		$pages = array();
+		$pages = [];
 
 		// Report any missing titles
 		foreach ( $pageSet->getMissingTitles() as $fakeId => $title ) {
-			$vals = array();
+			$vals = [];
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['missing'] = true;
 			$pages[$fakeId] = $vals;
 		}
 		// Report any invalid titles
 		foreach ( $pageSet->getInvalidTitlesAndReasons() as $fakeId => $data ) {
-			$pages[$fakeId] = $data + array( 'invalid' => true );
+			$pages[$fakeId] = $data + [ 'invalid' => true ];
 		}
 		// Report any missing page ids
 		foreach ( $pageSet->getMissingPageIDs() as $pageid ) {
-			$pages[$pageid] = array(
+			$pages[$pageid] = [
 				'pageid' => $pageid,
 				'missing' => true
-			);
+			];
 		}
 		// Report special pages
 		/** @var $title Title */
 		foreach ( $pageSet->getSpecialTitles() as $fakeId => $title ) {
-			$vals = array();
+			$vals = [];
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = true;
 			if ( $title->isSpecialPage() &&
@@ -436,7 +390,7 @@ class ApiQuery extends ApiBase {
 
 		// Output general page information for found titles
 		foreach ( $pageSet->getGoodTitles() as $pageid => $title ) {
-			$vals = array();
+			$vals = [];
 			$vals['pageid'] = $pageid;
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$pages[$pageid] = $vals;
@@ -472,27 +426,11 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * This method is called by the generator base when generator in the smart-continue
-	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
-	 * until the post-processing when it is known if the generation should continue or repeat.
-	 * @deprecated since 1.24
-	 * @param ApiQueryGeneratorBase $module Generator module
-	 * @param string $paramName
-	 * @param mixed $paramValue
-	 * @return bool True if processed, false if this is a legacy continue
-	 */
-	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		$this->getContinuationManager()->addGeneratorContinueParam( $module, $paramName, $paramValue );
-		return !$this->getParameter( 'rawcontinue' );
-	}
-
-	/**
 	 * @param ApiPageSet $pageSet Pages to be exported
 	 * @param ApiResult $result Result to output to
 	 */
 	private function doExport( $pageSet, $result ) {
-		$exportTitles = array();
+		$exportTitles = [];
 		$titles = $pageSet->getGoodTitles();
 		if ( count( $titles ) ) {
 			$user = $this->getUser();
@@ -526,33 +464,33 @@ class ApiQuery extends ApiBase {
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
 			$result->addValue( 'query', 'export', $exportxml, ApiResult::NO_SIZE_CHECK );
-			$result->addValue( 'query', ApiResult::META_BC_SUBELEMENTS, array( 'export' ) );
+			$result->addValue( 'query', ApiResult::META_BC_SUBELEMENTS, [ 'export' ] );
 		}
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$result = array(
-			'prop' => array(
+		$result = [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'submodule',
-			),
-			'list' => array(
+			],
+			'list' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'submodule',
-			),
-			'meta' => array(
+			],
+			'meta' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'submodule',
-			),
+			],
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
 			'iwurl' => false,
-			'continue' => array(
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
+			],
 			'rawcontinue' => false,
-		);
+		];
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
@@ -591,7 +529,7 @@ class ApiQuery extends ApiBase {
 	 * @return string
 	 */
 	private function makeHelpMsgHelper( $group ) {
-		$moduleDescriptions = array();
+		$moduleDescriptions = [];
 
 		$moduleNames = $this->mModuleMgr->getNames( $group );
 		sort( $moduleNames );
@@ -615,26 +553,53 @@ class ApiQuery extends ApiBase {
 		return implode( "\n", $moduleDescriptions );
 	}
 
-	public function shouldCheckMaxlag() {
-		return true;
+	public function isReadMode() {
+		// We need to make an exception for certain meta modules that should be
+		// accessible even without the 'read' right. Restrict the exception as
+		// much as possible: no other modules allowed, and no pageset
+		// parameters either. We do allow the 'rawcontinue' and 'indexpageids'
+		// parameters since frameworks might add these unconditionally and they
+		// can't expose anything here.
+		$this->mParams = $this->extractRequestParams();
+		$params = array_filter(
+			array_diff_key(
+				$this->mParams + $this->getPageSet()->extractRequestParams(),
+				[ 'rawcontinue' => 1, 'indexpageids' => 1 ]
+			)
+		);
+		if ( array_keys( $params ) !== [ 'meta' ] ) {
+			return true;
+		}
+
+		// Ask each module if it requires read mode. Any true => this returns
+		// true.
+		$modules = [];
+		$this->instantiateModules( $modules, 'meta' );
+		foreach ( $modules as $module ) {
+			if ( $module->isReadMode() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=revisions&meta=siteinfo&' .
 				'titles=Main%20Page&rvprop=user|comment&continue='
 				=> 'apihelp-query-example-revisions',
 			'action=query&generator=allpages&gapprefix=API/&prop=revisions&continue='
 				=> 'apihelp-query-example-allpages',
-		);
+		];
 	}
 
 	public function getHelpUrls() {
-		return array(
+		return [
 			'https://www.mediawiki.org/wiki/API:Query',
 			'https://www.mediawiki.org/wiki/API:Meta',
 			'https://www.mediawiki.org/wiki/API:Properties',
 			'https://www.mediawiki.org/wiki/API:Lists',
-		);
+		];
 	}
 }

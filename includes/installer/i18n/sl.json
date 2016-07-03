@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te inštalacije prosim vnesite vrednost <code>$wgUpgradeKey</code> v polje za vnos spodaj.\nNašli jo boste v <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te namestitve zaženite <code>update.php</code>",
 	"config-localsettings-key": "Nadgraditveni ključ:",
-	"config-localsettings-badkey": "Naveden ključ je napačen.",
+	"config-localsettings-badkey": "Navedeni ključ za nadgradnjo je napačen.",
 	"config-upgrade-key-missing": "Zaznana je bila obstoječa namestitev MediaWiki.\nZa nadgradnjo te namestitve vstavite naslednjo vrstico na dno vaše <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Kaže, da je obstoječa datoteka <code>LocalSettings.php</code> nepopolna. Vrednost $1 ni nastavljena. Prosimo, nastavite to vrednost v <code>LocalSettings.php</code> in kliknite \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Prišlo je do napake pri povezovanju s podatkovno zbirko z nastavitvami, določenimi v <code>LocalSettings.php</code>. Prosimo popravite te nastavitve in poskusite znova.\n\n$1",
@@ -48,7 +48,6 @@
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",
 	"config-env-hhvm": "HHVM $1 je nameščen.",
-	"config-unicode-using-utf8": "Uporaba utf8_normalize.so Briona Vibberja za normalizacijo unikoda.",
 	"config-unicode-using-intl": "Uporaba [http://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.",
 	"config-memory-raised": "PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] je nameščen",
@@ -66,8 +65,6 @@
 	"config-db-install-account": "Uporabniški račun za namestitev",
 	"config-db-username": "Uporabniško ime zbirke podatkov:",
 	"config-db-password": "Geslo zbirke podatkov:",
-	"config-db-password-empty": "Prosimo, vnesite geslo za novega uporabnika podatkovne zbirke: $1. Morda je mogoče ustvarjati uporabnike brez gesel, ni pa varno.",
-	"config-db-username-empty": "Vnesti morate vrednost za \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Vnesite uporabniško ime za povezavo s podatkovno zbirko med postopkom nameščanja.\nTo ni uporabniško ime računa MediaWiki, pač pa uporabniško ime za vašo podatkovno zbirko.",
 	"config-db-install-password": "Vnesite geslo za povezavo s podatkovno zbirko med postopkom nameščanja.\nTo ni geslo računa MediaWiki, pač pa geslo za vašo podatkovno zbirko.",
 	"config-db-install-help": "Vnesite uporabniško ime in geslo za povezavo s podatkovno zbirko med postopkom nameščanja.",
@@ -185,6 +182,6 @@
 	"config-install-tables": "Ustvarjanje tabel",
 	"config-download-localsettings": "Prenesi <code>LocalSettings.php</code>",
 	"config-help": "pomoč",
-	"mainpagetext": "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
-	"mainpagedocfooter": "Oglejte si [//meta.wikimedia.org/wiki/Help:Contents Uporabniški priročnik] za informacije o uporabi programja wiki.\n\n== Kako začeti ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Poogsto zastavljena vprašanja MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Poštni seznam izdaj MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]"
+	"mainpagetext": "<strong>Programje MediaWiki je bilo nameščeno.</strong>",
+	"mainpagedocfooter": "Oglejte si [//meta.wikimedia.org/wiki/Help:Contents Uporabniški priročnik] za informacije o uporabi programja wiki.\n\n== Kako začeti ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Poogsto zastavljena vprašanja MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Poštni seznam izdaj MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Izvedite, kako se boriti proti smetju na svojem wikiju]"
 }

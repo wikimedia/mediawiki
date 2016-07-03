@@ -34,20 +34,20 @@ class PurgeChangedFiles extends Maintenance {
 	 * Mapping from type option to log type and actions.
 	 * @var array
 	 */
-	private static $typeMappings = array(
-		'created' => array(
-			'upload' => array( 'upload' ),
-			'import' => array( 'upload', 'interwiki' ),
-		),
-		'deleted' => array(
-			'delete' => array( 'delete', 'revision' ),
-			'suppress' => array( 'delete', 'revision' ),
-		),
-		'modified' => array(
-			'upload' => array( 'overwrite', 'revert' ),
-			'move' => array( 'move', 'move_redir' ),
-		),
-	);
+	private static $typeMappings = [
+		'created' => [
+			'upload' => [ 'upload' ],
+			'import' => [ 'upload', 'interwiki' ],
+		],
+		'deleted' => [
+			'delete' => [ 'delete', 'revision' ],
+			'suppress' => [ 'delete', 'revision' ],
+		],
+		'modified' => [
+			'upload' => [ 'overwrite', 'revert' ],
+			'move' => [ 'move', 'move_redir' ],
+		],
+	];
 
 	/**
 	 * @var string
@@ -61,7 +61,7 @@ class PurgeChangedFiles extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Scan the logging table and purge files and thumbnails.";
+		$this->addDescription( 'Scan the logging table and purge files and thumbnails.' );
 		$this->addOption( 'starttime', 'Starting timestamp', true, true );
 		$this->addOption( 'endtime', 'Ending timestamp', true, true );
 		$this->addOption( 'type', 'Comma-separated list of types of changes to send purges for (' .
@@ -84,9 +84,9 @@ class PurgeChangedFiles extends Maintenance {
 			}
 
 			// Route all HTCP messages to provided host:port
-			$wgHTCPRouting = array(
-				'' => array( 'host' => $parts[0], 'port' => $parts[1] ),
-			);
+			$wgHTCPRouting = [
+				'' => [ 'host' => $parts[0], 'port' => $parts[1] ],
+			];
 			$this->verbose( "HTCP broadcasts to {$parts[0]}:{$parts[1]}\n" );
 		}
 
@@ -144,14 +144,14 @@ class PurgeChangedFiles extends Maintenance {
 
 			$res = $dbr->select(
 				'logging',
-				array( 'log_title', 'log_timestamp', 'log_params' ),
-				array(
+				[ 'log_title', 'log_timestamp', 'log_params' ],
+				[
 					'log_namespace' => NS_FILE,
 					'log_type' => $logType,
 					'log_action' => $logActions,
 					'log_timestamp >= ' . $dbr->addQuotes( $this->startTimestamp ),
 					'log_timestamp <= ' . $dbr->addQuotes( $this->endTimestamp ),
-				),
+				],
 				__METHOD__
 			);
 
@@ -173,7 +173,7 @@ class PurgeChangedFiles extends Maintenance {
 						$dpath = $this->getDeletedPath( $repo, $file );
 						if ( $repo->fileExists( $dpath ) ) {
 							// Sanity check to avoid data loss
-							$repo->getBackend()->delete( array( 'src' => $file->getPath() ) );
+							$repo->getBackend()->delete( [ 'src' => $file->getPath() ] );
 							$this->verbose( "Deleted orphan file: {$file->getPath()}.\n" );
 						} else {
 							$this->error( "File was not deleted: {$file->getPath()}.\n" );
@@ -209,8 +209,8 @@ class PurgeChangedFiles extends Maintenance {
 		$dbr = $repo->getSlaveDB();
 		$res = $dbr->select(
 			'filearchive',
-			array( 'fa_archive_name' ),
-			array( 'fa_name' => $file->getName() ),
+			[ 'fa_archive_name' ],
+			[ 'fa_name' => $file->getName() ],
 			__METHOD__
 		);
 
@@ -225,7 +225,7 @@ class PurgeChangedFiles extends Maintenance {
 				$dpath = $this->getDeletedPath( $repo, $ofile );
 				if ( $repo->fileExists( $dpath ) ) {
 					// Sanity check to avoid data loss
-					$repo->getBackend()->delete( array( 'src' => $ofile->getPath() ) );
+					$repo->getBackend()->delete( [ 'src' => $ofile->getPath() ] );
 					$this->output( "Deleted orphan file: {$ofile->getPath()}.\n" );
 				} else {
 					$this->error( "File was not deleted: {$ofile->getPath()}.\n" );

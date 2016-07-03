@@ -35,7 +35,7 @@
  */
 abstract class FileOp {
 	/** @var array */
-	protected $params = array();
+	protected $params = [];
 
 	/** @var FileBackendStore */
 	protected $backend;
@@ -149,7 +149,7 @@ abstract class FileOp {
 	 * @return array
 	 */
 	final public static function newPredicates() {
-		return array( 'exists' => array(), 'sha1' => array() );
+		return [ 'exists' => [], 'sha1' => [] ];
 	}
 
 	/**
@@ -158,7 +158,7 @@ abstract class FileOp {
 	 * @return array
 	 */
 	final public static function newDependencies() {
-		return array( 'read' => array(), 'write' => array() );
+		return [ 'read' => [], 'write' => [] ];
 	}
 
 	/**
@@ -204,32 +204,32 @@ abstract class FileOp {
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
 		if ( !$this->doOperation ) {
-			return array(); // this is a no-op
+			return []; // this is a no-op
 		}
-		$nullEntries = array();
-		$updateEntries = array();
-		$deleteEntries = array();
+		$nullEntries = [];
+		$updateEntries = [];
+		$deleteEntries = [];
 		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
 		foreach ( array_unique( $pathsUsed ) as $path ) {
-			$nullEntries[] = array( // assertion for recovery
+			$nullEntries[] = [ // assertion for recovery
 				'op' => 'null',
 				'path' => $path,
 				'newSha1' => $this->fileSha1( $path, $oPredicates )
-			);
+			];
 		}
 		foreach ( $this->storagePathsChanged() as $path ) {
 			if ( $nPredicates['sha1'][$path] === false ) { // deleted
-				$deleteEntries[] = array(
+				$deleteEntries[] = [
 					'op' => 'delete',
 					'path' => $path,
 					'newSha1' => ''
-				);
+				];
 			} else { // created/updated
-				$updateEntries[] = array(
+				$updateEntries[] = [
 					'op' => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
 					'path' => $path,
 					'newSha1' => $nPredicates['sha1'][$path]
-				);
+				];
 			}
 		}
 
@@ -316,7 +316,7 @@ abstract class FileOp {
 	 * @return array (required params list, optional params list, list of params that are paths)
 	 */
 	protected function allowedParams() {
-		return array( array(), array(), array() );
+		return [ [], [], [] ];
 	}
 
 	/**
@@ -326,7 +326,7 @@ abstract class FileOp {
 	 * @return array (required params list, optional params list)
 	 */
 	protected function setFlags( array $params ) {
-		return array( 'async' => $this->async ) + $params;
+		return [ 'async' => $this->async ] + $params;
 	}
 
 	/**
@@ -335,7 +335,7 @@ abstract class FileOp {
 	 * @return array
 	 */
 	public function storagePathsRead() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -344,7 +344,7 @@ abstract class FileOp {
 	 * @return array
 	 */
 	public function storagePathsChanged() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -411,7 +411,7 @@ abstract class FileOp {
 		if ( isset( $predicates['exists'][$source] ) ) {
 			return $predicates['exists'][$source]; // previous op assures this
 		} else {
-			$params = array( 'src' => $source, 'latest' => true );
+			$params = [ 'src' => $source, 'latest' => true ];
 
 			return $this->backend->fileExists( $params );
 		}
@@ -430,7 +430,7 @@ abstract class FileOp {
 		} elseif ( isset( $predicates['exists'][$source] ) && !$predicates['exists'][$source] ) {
 			return false; // previous op assures this
 		} else {
-			$params = array( 'src' => $source, 'latest' => true );
+			$params = [ 'src' => $source, 'latest' => true ];
 
 			return $this->backend->getFileSha1Base36( $params );
 		}
@@ -468,11 +468,11 @@ abstract class FileOp {
  */
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
-		return array(
-			array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ),
-			array( 'dst' )
-		);
+		return [
+			[ 'content', 'dst' ],
+			[ 'overwrite', 'overwriteSame', 'headers' ],
+			[ 'dst' ]
+		];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -513,11 +513,11 @@ class CreateFileOp extends FileOp {
 	}
 
 	protected function getSourceSha1Base36() {
-		return wfBaseConvert( sha1( $this->params['content'] ), 16, 36, 31 );
+		return Wikimedia\base_convert( sha1( $this->params['content'] ), 16, 36, 31 );
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
+		return [ $this->params['dst'] ];
 	}
 }
 
@@ -527,11 +527,11 @@ class CreateFileOp extends FileOp {
  */
 class StoreFileOp extends FileOp {
 	protected function allowedParams() {
-		return array(
-			array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ),
-			array( 'src', 'dst' )
-		);
+		return [
+			[ 'src', 'dst' ],
+			[ 'overwrite', 'overwriteSame', 'headers' ],
+			[ 'src', 'dst' ]
+		];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -581,14 +581,14 @@ class StoreFileOp extends FileOp {
 		$hash = sha1_file( $this->params['src'] );
 		MediaWiki\restoreWarnings();
 		if ( $hash !== false ) {
-			$hash = wfBaseConvert( $hash, 16, 36, 31 );
+			$hash = Wikimedia\base_convert( $hash, 16, 36, 31 );
 		}
 
 		return $hash;
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
+		return [ $this->params['dst'] ];
 	}
 }
 
@@ -598,11 +598,11 @@ class StoreFileOp extends FileOp {
  */
 class CopyFileOp extends FileOp {
 	protected function allowedParams() {
-		return array(
-			array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
-			array( 'src', 'dst' )
-		);
+		return [
+			[ 'src', 'dst' ],
+			[ 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ],
+			[ 'src', 'dst' ]
+		];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -645,10 +645,10 @@ class CopyFileOp extends FileOp {
 			$status = Status::newGood(); // nothing to do
 		} elseif ( $this->params['src'] === $this->params['dst'] ) {
 			// Just update the destination file headers
-			$headers = $this->getParam( 'headers' ) ?: array();
-			$status = $this->backend->describeInternal( $this->setFlags( array(
+			$headers = $this->getParam( 'headers' ) ?: [];
+			$status = $this->backend->describeInternal( $this->setFlags( [
 				'src' => $this->params['dst'], 'headers' => $headers
-			) ) );
+			] ) );
 		} else {
 			// Copy the file to the destination
 			$status = $this->backend->copyInternal( $this->setFlags( $this->params ) );
@@ -658,11 +658,11 @@ class CopyFileOp extends FileOp {
 	}
 
 	public function storagePathsRead() {
-		return array( $this->params['src'] );
+		return [ $this->params['src'] ];
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
+		return [ $this->params['dst'] ];
 	}
 }
 
@@ -672,11 +672,11 @@ class CopyFileOp extends FileOp {
  */
 class MoveFileOp extends FileOp {
 	protected function allowedParams() {
-		return array(
-			array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
-			array( 'src', 'dst' )
-		);
+		return [
+			[ 'src', 'dst' ],
+			[ 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ],
+			[ 'src', 'dst' ]
+		];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -724,14 +724,14 @@ class MoveFileOp extends FileOp {
 			} else {
 				// Just delete the source as the destination file needs no changes
 				$status = $this->backend->deleteInternal( $this->setFlags(
-					array( 'src' => $this->params['src'] )
+					[ 'src' => $this->params['src'] ]
 				) );
 			}
 		} elseif ( $this->params['src'] === $this->params['dst'] ) {
 			// Just update the destination file headers
-			$headers = $this->getParam( 'headers' ) ?: array();
+			$headers = $this->getParam( 'headers' ) ?: [];
 			$status = $this->backend->describeInternal( $this->setFlags(
-				array( 'src' => $this->params['dst'], 'headers' => $headers )
+				[ 'src' => $this->params['dst'], 'headers' => $headers ]
 			) );
 		} else {
 			// Move the file to the destination
@@ -742,11 +742,11 @@ class MoveFileOp extends FileOp {
 	}
 
 	public function storagePathsRead() {
-		return array( $this->params['src'] );
+		return [ $this->params['src'] ];
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['src'], $this->params['dst'] );
+		return [ $this->params['src'], $this->params['dst'] ];
 	}
 }
 
@@ -756,7 +756,7 @@ class MoveFileOp extends FileOp {
  */
 class DeleteFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'ignoreMissingSource' ), array( 'src' ) );
+		return [ [ 'src' ], [ 'ignoreMissingSource' ], [ 'src' ] ];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -795,7 +795,7 @@ class DeleteFileOp extends FileOp {
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['src'] );
+		return [ $this->params['src'] ];
 	}
 }
 
@@ -805,7 +805,7 @@ class DeleteFileOp extends FileOp {
  */
 class DescribeFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'headers' ), array( 'src' ) );
+		return [ [ 'src' ], [ 'headers' ], [ 'src' ] ];
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -837,7 +837,7 @@ class DescribeFileOp extends FileOp {
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['src'] );
+		return [ $this->params['src'] ];
 	}
 }
 

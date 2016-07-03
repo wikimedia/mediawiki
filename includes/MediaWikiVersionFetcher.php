@@ -17,7 +17,7 @@ class MediaWikiVersionFetcher {
 	public function fetchVersion() {
 		$defaultSettings = file_get_contents( __DIR__ . '/DefaultSettings.php' );
 
-		$matches = array();
+		$matches = [];
 		preg_match( "/wgVersion = '([0-9a-zA-Z\.\-]+)';/", $defaultSettings, $matches );
 
 		if ( count( $matches ) !== 2 ) {

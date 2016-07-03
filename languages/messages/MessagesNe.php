@@ -21,7 +21,7 @@
  * @author सरोज कुमार ढकाल
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'मीडिया',
 	NS_SPECIAL          => 'विशेष',
 	NS_TALK             => 'वार्तालाप',
@@ -38,14 +38,14 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'मद्दत_वार्ता',
 	NS_CATEGORY         => 'श्रेणी',
 	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
-);
+];
 
-$specialPageAliases = array(
-	'Activeusers'               => array( 'सक्रिय_प्रयोगकर्ताहरु' ),
-	'Listgrouprights'           => array( 'प्रयोगकर्ता_समूह_अधिकार' ),
-);
+$specialPageAliases = [
+	'Activeusers'               => [ 'सक्रिय_प्रयोगकर्ताहरु' ],
+	'Listgrouprights'           => [ 'प्रयोगकर्ता_समूह_अधिकार' ],
+];
 
-$digitTransformTable = array(
+$digitTransformTable = [
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
 	'2' => '२', # &#x0968;
@@ -56,5 +56,5 @@ $digitTransformTable = array(
 	'7' => '७', # &#x096d;
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
-);
+];
 

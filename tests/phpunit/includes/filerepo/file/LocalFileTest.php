@@ -12,24 +12,24 @@ class LocalFileTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( 'wgCapitalLinks', true );
 
-		$info = array(
+		$info = [
 			'name' => 'test',
 			'directory' => '/testdir',
 			'url' => '/testurl',
 			'hashLevels' => 2,
 			'transformVia404' => false,
-			'backend' => new FSFileBackend( array(
+			'backend' => new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
-				'containerPaths' => array(
+				'wikiId' => wfWikiID(),
+				'containerPaths' => [
 					'cont1' => "/testdir/local-backend/tempimages/cont1",
 					'cont2' => "/testdir/local-backend/tempimages/cont2"
-				)
-			) )
-		);
-		$this->repo_hl0 = new LocalRepo( array( 'hashLevels' => 0 ) + $info );
-		$this->repo_hl2 = new LocalRepo( array( 'hashLevels' => 2 ) + $info );
-		$this->repo_lc = new LocalRepo( array( 'initialCapital' => false ) + $info );
+				]
+			] )
+		];
+		$this->repo_hl0 = new LocalRepo( [ 'hashLevels' => 0 ] + $info );
+		$this->repo_hl2 = new LocalRepo( [ 'hashLevels' => 2 ] + $info );
+		$this->repo_lc = new LocalRepo( [ 'initialCapital' => false ] + $info );
 		$this->file_hl0 = $this->repo_hl0->newFile( 'test!' );
 		$this->file_hl2 = $this->repo_hl2->newFile( 'test!' );
 		$this->file_lc = $this->repo_lc->newFile( 'test!' );

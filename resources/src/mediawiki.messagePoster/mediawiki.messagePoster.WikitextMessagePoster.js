@@ -8,9 +8,10 @@
 	 *
 	 * @constructor
 	 * @param {mw.Title} title Wikitext page in a talk namespace, to post to
+	 * @param {mw.Api} api mw.Api object to use
 	 */
-	function WikitextMessagePoster( title ) {
-		this.api = new mw.Api();
+	function WikitextMessagePoster( title, api ) {
+		this.api = api;
 		this.title = title;
 	}
 
@@ -39,7 +40,7 @@
 			if ( resp.edit.result === 'Success' ) {
 				return $.Deferred().resolve( resp, jqXHR );
 			} else {
-				// mediawiki.api.js checks for resp.error.  Are there actually cases where the
+				// mw.Api checks for response error.  Are there actually cases where the
 				// request fails, but it's not caught there?
 				return $.Deferred().reject( 'api-unexpected' );
 			}

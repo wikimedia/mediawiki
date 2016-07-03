@@ -29,7 +29,7 @@
  * @ingroup Search
  */
 class SearchOracle extends SearchDatabase {
-	private $reservedWords = array(
+	private $reservedWords = [
 		'ABOUT' => 1,
 		'ACCUM' => 1,
 		'AND' => 1,
@@ -56,7 +56,7 @@ class SearchOracle extends SearchDatabase {
 		'TRSYN' => 1,
 		'TT' => 1,
 		'WITHIN' => 1,
-	);
+	];
 
 	/**
 	 * Perform a full text search query and return a result set.
@@ -175,10 +175,10 @@ class SearchOracle extends SearchDatabase {
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 		$lc = $this->legalSearchChars();
-		$this->searchTerms = array();
+		$this->searchTerms = [];
 
 		# @todo FIXME: This doesn't handle parenthetical expressions.
-		$m = array();
+		$m = [];
 		$searchon = '';
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
@@ -191,8 +191,7 @@ class SearchOracle extends SearchDatabase {
 					foreach ( $temp_terms as $t ) {
 						$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $t );
 					}
-				}
-				else {
+				} else {
 					$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $terms[2] );
 				}
 				if ( !empty( $terms[3] ) ) {
@@ -232,12 +231,12 @@ class SearchOracle extends SearchDatabase {
 	function update( $id, $title, $text ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'searchindex',
-			array( 'si_page' ),
-			array(
+			[ 'si_page' ],
+			[
 				'si_page' => $id,
 				'si_title' => $title,
 				'si_text' => $text
-			), 'SearchOracle::update' );
+			], 'SearchOracle::update' );
 
 		// Sync the index
 		// We need to specify the DB name (i.e. user/schema) here so that
@@ -261,10 +260,10 @@ class SearchOracle extends SearchDatabase {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'searchindex',
-			array( 'si_title' => $title ),
-			array( 'si_page' => $id ),
+			[ 'si_title' => $title ],
+			[ 'si_page' => $id ],
 			'SearchOracle::updateTitle',
-			array() );
+			[] );
 	}
 
 	public static function legalSearchChars() {

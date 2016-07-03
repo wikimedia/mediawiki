@@ -49,9 +49,9 @@ final class EnqueueJob extends Job {
 	 * @return EnqueueJob
 	 */
 	public static function newFromLocalJobs( $jobs ) {
-		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 
-		return self::newFromJobsByWiki( array( wfWikiID() => $jobs ) );
+		return self::newFromJobsByWiki( [ wfWikiID() => $jobs ] );
 	}
 
 	/**
@@ -61,9 +61,9 @@ final class EnqueueJob extends Job {
 	public static function newFromJobsByWiki( array $jobsByWiki ) {
 		$deduplicate = true;
 
-		$jobMapsByWiki = array();
+		$jobMapsByWiki = [];
 		foreach ( $jobsByWiki as $wiki => $jobs ) {
-			$jobMapsByWiki[$wiki] = array();
+			$jobMapsByWiki[$wiki] = [];
 			foreach ( $jobs as $job ) {
 				if ( $job instanceof JobSpecification ) {
 					$jobMapsByWiki[$wiki][] = $job->toSerializableArray();
@@ -76,7 +76,7 @@ final class EnqueueJob extends Job {
 
 		$eJob = new self(
 			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-			array( 'jobsByWiki' => $jobMapsByWiki )
+			[ 'jobsByWiki' => $jobMapsByWiki ]
 		);
 		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
 		// de-duplicate this whole job itself to avoid build up in high traffic cases
@@ -87,7 +87,7 @@ final class EnqueueJob extends Job {
 
 	public function run() {
 		foreach ( $this->params['jobsByWiki'] as $wiki => $jobMaps ) {
-			$jobSpecs = array();
+			$jobSpecs = [];
 			foreach ( $jobMaps as $jobMap ) {
 				$jobSpecs[] = JobSpecification::newFromArray( $jobMap );
 			}

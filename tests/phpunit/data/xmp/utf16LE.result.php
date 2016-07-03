@@ -1,12 +1,12 @@
 <?php
 
-$result = array(
+$result = [
 	'xmp-exif' =>
-		array(
+		[
 			'DigitalZoomRatio' => '0/10',
-		),
+		],
 	'xmp-general' =>
-		array(
+		[
 			'Label' => '􊯍'
-		),
-);
+		],
+];

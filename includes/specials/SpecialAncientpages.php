@@ -41,19 +41,19 @@ class AncientPagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
-			'tables' => array( 'page', 'revision' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'page', 'revision' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'rev_timestamp'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0,
 				'page_latest=rev_id'
-			)
-		);
+			]
+		];
 	}
 
 	public function usesTimestamps() {

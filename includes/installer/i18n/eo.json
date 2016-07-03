@@ -6,7 +6,8 @@
 			"KuboF",
 			"Fitoschido",
 			"Ochilov",
-			"Tlustulimu"
+			"Tlustulimu",
+			"Robin van der Vliet"
 		]
 	},
 	"config-desc": "Instalilo de MediaWiki",
@@ -45,6 +46,12 @@
 	"config-db-name": "Nomo de datumbazo:",
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (aŭ kongrua)",
+	"config-header-mysql": "MySQL-agordoj",
+	"config-header-postgres": "PostgreSQL-agordoj",
+	"config-header-sqlite": "SQLite-agordoj",
+	"config-header-oracle": "Oracle-agordoj",
+	"config-header-mssql": "Microsoft SQL Server-agordoj",
+	"config-mysql-binary": "Duuma",
 	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Nomo de vikio:",
 	"config-ns-generic": "Projekto",

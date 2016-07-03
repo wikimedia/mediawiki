@@ -3,9 +3,16 @@
 		"authors": [
 			"Sayginer",
 			"Sadrettin",
-			"Uğurkent"
+			"Uğurkent",
+			"Gorizon",
+			"HakanIST",
+			"Imabadplayer",
+			"İnternion"
 		]
 	},
+	"apihelp-block-description": "Bir kullanıcıyı engelle.",
+	"apihelp-block-param-reason": "Engelleme sebebi.",
+	"apihelp-createaccount-description": "Yeni bir kullanıcı hesabı oluşturun.",
 	"apihelp-createaccount-param-name": "Kullanıcı adı.",
 	"apihelp-createaccount-param-password": "Parola (ignored if <var>$1mailpassword</var> is set).",
 	"apihelp-createaccount-param-email": "Kullanıcının e-posta adresi (isteğe bağlı).",
@@ -42,6 +49,7 @@
 	"apihelp-move-param-noredirect": "Yönlendirme oluşturmayın.",
 	"apihelp-opensearch-param-limit": "Verilecek azami sonuç sayısı.",
 	"apihelp-options-example-reset": "Tüm tercihleri sıfırla",
+	"apihelp-query+mystashedfiles-param-limit": "Alınacak kaç dosya var",
 	"api-help-title": "MediaWiki API yardımı",
 	"api-help-parameters": "{{PLURAL:$1|Parametre|Parametre}}:",
 	"api-help-param-limit": "$1 taneden fazla olamaz.",

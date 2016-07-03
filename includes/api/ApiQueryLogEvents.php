@@ -64,31 +64,31 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		// Order is significant here
-		$this->addTables( array( 'logging', 'user', 'page' ) );
-		$this->addJoinConds( array(
-			'user' => array( 'LEFT JOIN',
-				'user_id=log_user' ),
-			'page' => array( 'LEFT JOIN',
-				array( 'log_namespace=page_namespace',
-					'log_title=page_title' ) ) ) );
+		$this->addTables( [ 'logging', 'user', 'page' ] );
+		$this->addJoinConds( [
+			'user' => [ 'LEFT JOIN',
+				'user_id=log_user' ],
+			'page' => [ 'LEFT JOIN',
+				[ 'log_namespace=page_namespace',
+					'log_title=page_title' ] ] ] );
 
-		$this->addFields( array(
+		$this->addFields( [
 			'log_id',
 			'log_type',
 			'log_action',
 			'log_timestamp',
 			'log_deleted',
-		) );
+		] );
 
 		$this->addFieldsIf( 'page_id', $this->fld_ids );
 		// log_page is the page_id saved at log time, whereas page_id is from a
 		// join at query time.  This leads to different results in various
 		// scenarios, e.g. deletion, recreation.
 		$this->addFieldsIf( 'log_page', $this->fld_ids );
-		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
+		$this->addFieldsIf( [ 'log_user', 'log_user_text', 'user_name' ], $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf(
-			array( 'log_namespace', 'log_title' ),
+			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
 		);
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
@@ -96,14 +96,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', 'log_id=ts_log_id' ) ) );
+			$this->addJoinConds( [ 'tag_summary' => [ 'LEFT JOIN', 'log_id=ts_log_id' ] ] );
 			$this->addFields( 'ts_tags' );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN',
-				array( 'log_id=ct_log_id' ) ) ) );
+			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN',
+				[ 'log_id=ct_log_id' ] ] ] );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
@@ -165,7 +165,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( $userid ) {
 				$this->addWhereFld( 'log_user', $userid );
 			} else {
-				$this->addWhereFld( 'log_user_text', IP::sanitizeIP( $user ) );
+				$this->addWhereFld( 'log_user_text', $user );
 			}
 		}
 
@@ -230,13 +230,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo( $row );
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', "$row->log_timestamp|$row->log_id" );
 				break;
 			}
 		}
-		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'item' );
+		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'item' );
 	}
 
 	/**
@@ -267,9 +267,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	private function extractRowInfo( $row ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
-		$vals = array(
+		$vals = [
 			ApiResult::META_TYPE => 'assoc',
-		);
+		];
 		$anyHidden = false;
 		$user = $this->getUser();
 
@@ -349,7 +349,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
-				$vals['tags'] = array();
+				$vals['tags'] = [];
 			}
 		}
 
@@ -365,7 +365,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 */
 	private function getAllowedLogActions() {
 		$config = $this->getConfig();
-		return array_keys( array_merge( $config->get( 'LogActions' ), $config->get( 'LogActionsHandlers' ) ) );
+		return array_keys( array_merge(
+			$config->get( 'LogActions' ),
+			$config->get( 'LogActionsHandlers' )
+		) );
 	}
 
 	public function getCacheMode( $params ) {
@@ -386,11 +389,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams( $flags = 0 ) {
 		$config = $this->getConfig();
-		$ret = array(
-			'prop' => array(
+		$ret = [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'title',
 					'type',
@@ -401,50 +404,52 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'parsedcomment',
 					'details',
 					'tags'
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'type' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'type' => [
 				ApiBase::PARAM_TYPE => $config->get( 'LogTypes' )
-			),
-			'action' => array(
+			],
+			'action' => [
 				// validation on request is done in execute()
 				ApiBase::PARAM_TYPE => ( $flags & ApiBase::GET_VALUES_FOR_HELP )
 					? $this->getAllowedLogActions()
 					: null
-			),
-			'start' => array(
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'user' => null,
+			],
+			'user' => [
+				ApiBase::PARAM_TYPE => 'user',
+			],
 			'title' => null,
-			'namespace' => array(
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'prefix' => array(),
+			],
+			'prefix' => [],
 			'tag' => null,
-			'limit' => array(
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 
 		if ( $config->get( 'MiserMode' ) ) {
 			$ret['prefix'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
@@ -454,10 +459,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=logevents'
 				=> 'apihelp-query+logevents-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

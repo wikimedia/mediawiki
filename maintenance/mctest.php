@@ -33,8 +33,8 @@ require_once __DIR__ . '/Maintenance.php';
 class McTest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Makes several 'set', 'incr' and 'get' requests on every"
-			. " memcached server and shows a report";
+		$this->addDescription( "Makes several 'set', 'incr' and 'get' requests on every"
+			. " memcached server and shows a report" );
 		$this->addOption( 'i', 'Number of iterations', false, true );
 		$this->addOption( 'cache', 'Use servers from this $wgObjectCaches store', false, true );
 		$this->addArg( 'server[:port]', 'Memcached server to test, with optional port', false );
@@ -51,7 +51,7 @@ class McTest extends Maintenance {
 			}
 			$servers = $wgObjectCaches[$cache]['servers'];
 		} elseif ( $this->hasArg() ) {
-			$servers = array( $this->getArg() );
+			$servers = [ $this->getArg() ];
 		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
 			global $wgMemCachedServers;
 			$servers = $wgMemCachedServers;
@@ -70,11 +70,11 @@ class McTest extends Maintenance {
 				$server # output channel
 			);
 
-			$mcc = new MemCachedClientforWiki( array(
+			$mcc = new MemcachedClient( [
 				'persistant' => true,
 				'timeout' => $wgMemCachedTimeout
-			) );
-			$mcc->set_servers( array( $server ) );
+			] );
+			$mcc->set_servers( [ $server ] );
 			$set = 0;
 			$incr = 0;
 			$get = 0;

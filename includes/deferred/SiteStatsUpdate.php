@@ -52,7 +52,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	public static function factory( array $deltas ) {
 		$update = new self( 0, 0, 0 );
 
-		$fields = array( 'views', 'edits', 'pages', 'articles', 'users', 'images' );
+		$fields = [ 'views', 'edits', 'pages', 'articles', 'users', 'images' ];
 		foreach ( $fields as $field ) {
 			if ( isset( $deltas[$field] ) && $deltas[$field] ) {
 				$update->$field = $deltas[$field];
@@ -74,7 +74,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$this->doUpdatePendingDeltas();
 		} else {
 			// Need a separate transaction because this a global lock
-			wfGetDB( DB_MASTER )->onTransactionIdle( array( $this, 'tryDBUpdateInternal' ) );
+			wfGetDB( DB_MASTER )->onTransactionIdle( [ $this, 'tryDBUpdateInternal' ] );
 		}
 	}
 
@@ -86,7 +86,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
-		$pd = array();
+		$pd = [];
 		if ( $wgSiteStatsAsyncFactor ) {
 			// Lock the table so we don't have double DB/memcached updates
 			if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
@@ -113,7 +113,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		$this->appendUpdate( $updates, 'ss_users', $this->users );
 		$this->appendUpdate( $updates, 'ss_images', $this->images );
 		if ( $updates != '' ) {
-			$dbw->update( 'site_stats', array( $updates ), array(), __METHOD__ );
+			$dbw->update( 'site_stats', [ $updates ], [], __METHOD__ );
 		}
 
 		if ( $wgSiteStatsAsyncFactor ) {
@@ -125,7 +125,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @return bool|mixed
 	 */
 	public static function cacheUpdate( $dbw ) {
@@ -136,19 +136,19 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		$activeUsers = $dbr->selectField(
 			'recentchanges',
 			'COUNT( DISTINCT rc_user_text )',
-			array(
+			[
 				'rc_user != 0',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
 				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX )
 					- $wgActiveUserDays * 24 * 3600 ) ),
-			),
+			],
 			__METHOD__
 		);
 		$dbw->update(
 			'site_stats',
-			array( 'ss_active_users' => intval( $activeUsers ) ),
-			array( 'ss_row_id' => 1 ),
+			[ 'ss_active_users' => intval( $activeUsers ) ],
+			[ 'ss_row_id' => 1 ],
 			__METHOD__
 		);
 
@@ -157,7 +157,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	protected function doUpdateContextStats() {
 		$stats = RequestContext::getMain()->getStats();
-		foreach ( array( 'edits', 'articles', 'pages', 'users', 'images' ) as $type ) {
+		foreach ( [ 'edits', 'articles', 'pages', 'users', 'images' ] as $type ) {
 			$delta = $this->$type;
 			if ( $delta !== 0 ) {
 				$stats->updateCount( "site.$type", $delta );
@@ -207,8 +207,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @param int $delta Delta (positive or negative)
 	 */
 	protected function adjustPending( $type, $delta ) {
-		global $wgMemc;
-
+		$cache = ObjectCache::getMainStashInstance();
 		if ( $delta < 0 ) { // decrement
 			$key = $this->getTypeCacheKey( $type, '-' );
 		} else { // increment
@@ -216,11 +215,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		}
 
 		$magnitude = abs( $delta );
-		if ( !$wgMemc->incr( $key, $magnitude ) ) { // not there?
-			if ( !$wgMemc->add( $key, $magnitude ) ) { // race?
-				$wgMemc->incr( $key, $magnitude );
-			}
-		}
+		$cache->incrWithInit( $key, 0, $magnitude, $magnitude );
 	}
 
 	/**
@@ -228,15 +223,16 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @return array Positive and negative deltas for each type
 	 */
 	protected function getPendingDeltas() {
-		global $wgMemc;
+		$cache = ObjectCache::getMainStashInstance();
 
-		$pending = array();
-		foreach ( array( 'ss_total_edits',
-			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ) as $type
+		$pending = [];
+		foreach ( [ 'ss_total_edits',
+			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ] as $type
 		) {
 			// Get pending increments and pending decrements
-			$pending[$type]['+'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '+' ) );
-			$pending[$type]['-'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '-' ) );
+			$flg = BagOStuff::READ_LATEST;
+			$pending[$type]['+'] = (int)$cache->get( $this->getTypeCacheKey( $type, '+' ), $flg );
+			$pending[$type]['-'] = (int)$cache->get( $this->getTypeCacheKey( $type, '-' ), $flg );
 		}
 
 		return $pending;
@@ -247,12 +243,12 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @param array $pd Result of getPendingDeltas(), used for DB update
 	 */
 	protected function removePendingDeltas( array $pd ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainStashInstance();
 
 		foreach ( $pd as $type => $deltas ) {
 			foreach ( $deltas as $sign => $magnitude ) {
 				// Lower the pending counter now that we applied these changes
-				$wgMemc->decr( $this->getTypeCacheKey( $type, $sign ), $magnitude );
+				$cache->decr( $this->getTypeCacheKey( $type, $sign ), $magnitude );
 			}
 		}
 	}

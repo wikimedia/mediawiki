@@ -35,7 +35,7 @@ class BenchmarkParse extends Maintenance {
 	private $templateTimestamp = null;
 
 	/** @var array Cache that maps a Title DB key to revision ID for the requested timestamp */
-	private $idCache = array();
+	private $idCache = [];
 
 	function __construct() {
 		parent::__construct();
@@ -57,7 +57,7 @@ class BenchmarkParse extends Maintenance {
 	function execute() {
 		if ( $this->hasOption( 'tpl-time' ) ) {
 			$this->templateTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'tpl-time' ) ) );
-			Hooks::register( 'BeforeParserFetchTemplateAndtitle', array( $this, 'onFetchTemplate' ) );
+			Hooks::register( 'BeforeParserFetchTemplateAndtitle', [ $this, 'onFetchTemplate' ] );
 		}
 
 		$title = Title::newFromText( $this->getArg() );
@@ -118,19 +118,19 @@ class BenchmarkParse extends Maintenance {
 	 * @return bool|string Revision ID, or false if not found or error
 	 */
 	function getRevIdForTime( Title $title, $timestamp ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$id = $dbr->selectField(
-			array( 'revision', 'page' ),
+			[ 'revision', 'page' ],
 			'rev_id',
-			array(
+			[
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'rev_timestamp <= ' . $dbr->addQuotes( $timestamp )
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 1 ),
-			array( 'revision' => array( 'INNER JOIN', 'rev_page=page_id' ) )
+			[ 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 1 ],
+			[ 'revision' => [ 'INNER JOIN', 'rev_page=page_id' ] ]
 		);
 
 		return $id;

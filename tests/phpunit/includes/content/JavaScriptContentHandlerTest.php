@@ -1,16 +1,16 @@
 <?php
 
-class JavaScriptContentHandlerTest extends MediaWikiTestCase {
+class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
 	 * @covers JavaScriptContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScript' => '/w/index.php',
-		) );
+		] );
 		$ch = new JavaScriptContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
 		$this->assertInstanceOf( 'JavaScriptContent', $content );
@@ -21,10 +21,21 @@ class JavaScriptContentHandlerTest extends MediaWikiTestCase {
 	 * Keep this in sync with JavaScriptContentTest::provideGetRedirectTarget()
 	 */
 	public static function provideMakeRedirectContent() {
-		return array(
-			array( 'MediaWiki:MonoBook.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");' ),
-			array( 'User:FooBar/common.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");' ),
-			array( 'Gadget:FooBaz.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");' ),
-		);
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		return [
+			[
+				'MediaWiki:MonoBook.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+			[
+				'User:FooBar/common.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+			[
+				'Gadget:FooBaz.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
+		];
+		// @codingStandardsIgnoreEnd
 	}
 }

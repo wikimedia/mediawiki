@@ -4,7 +4,7 @@
  * @group GlobalFunctions
  * @covers ::wfEscapeShellArg
  */
-class wfEscapeShellArgTest extends MediaWikiTestCase {
+class WfEscapeShellArgTest extends MediaWikiTestCase {
 	public function testSingleInput() {
 		if ( wfIsWindows() ) {
 			$expected = '"blah"';
@@ -36,7 +36,7 @@ class wfEscapeShellArgTest extends MediaWikiTestCase {
 			$expected = "'foo' 'bar' 'baz'";
 		}
 
-		$actual = wfEscapeShellArg( array( 'foo', 'bar', 'baz' ) );
+		$actual = wfEscapeShellArg( [ 'foo', 'bar', 'baz' ] );
 
 		$this->assertEquals( $expected, $actual );
 	}

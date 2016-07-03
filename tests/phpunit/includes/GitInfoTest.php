@@ -9,18 +9,23 @@ class GitInfoTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgGitInfoCacheDirectory', __DIR__ . '/../data/gitinfo' );
 	}
 
-	public function testValidJsonData() {
-		$dir = $GLOBALS['IP'] . DIRECTORY_SEPARATOR . 'testValidJsonData';
-		$fixture = new GitInfo( $dir );
-
-		$this->assertTrue( $fixture->cacheIsComplete() );
-		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
+	protected function assertValidGitInfo( GitInfo $gitInfo ) {
+		$this->assertTrue( $gitInfo->cacheIsComplete() );
+		$this->assertEquals( 'refs/heads/master', $gitInfo->getHead() );
 		$this->assertEquals( '0123456789abcdef0123456789abcdef01234567',
-			$fixture->getHeadSHA1() );
-		$this->assertEquals( '1070884800', $fixture->getHeadCommitDate() );
-		$this->assertEquals( 'master', $fixture->getCurrentBranch() );
+			$gitInfo->getHeadSHA1() );
+		$this->assertEquals( '1070884800', $gitInfo->getHeadCommitDate() );
+		$this->assertEquals( 'master', $gitInfo->getCurrentBranch() );
 		$this->assertContains( '0123456789abcdef0123456789abcdef01234567',
-			$fixture->getHeadViewUrl() );
+			$gitInfo->getHeadViewUrl() );
+
+	}
+
+	public function testValidJsonData() {
+		global $IP;
+
+		$this->assertValidGitInfo( new GitInfo( "$IP/testValidJsonData") );
+		$this->assertValidGitInfo( new GitInfo( __DIR__ . "/../data/gitinfo/extension" ) );
 	}
 
 	public function testMissingJsonData() {

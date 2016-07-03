@@ -47,13 +47,13 @@ class DBAccessObjectUtils {
 			? DB_MASTER
 			: DB_SLAVE;
 
-		$options = array();
+		$options = [];
 		if ( self::hasFlags( $bitfield, IDBAccessObject::READ_EXCLUSIVE ) ) {
 			$options[] = 'FOR UPDATE';
 		} elseif ( self::hasFlags( $bitfield, IDBAccessObject::READ_LOCKING ) ) {
 			$options[] = 'LOCK IN SHARE MODE';
 		}
 
-		return array( $index, $options );
+		return [ $index, $options ];
 	}
 }

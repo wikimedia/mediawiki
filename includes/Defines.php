@@ -33,7 +33,7 @@ define( 'DBO_IGNORE', 4 );
 define( 'DBO_TRX', 8 ); // automatically start transaction on first query
 define( 'DBO_DEFAULT', 16 );
 define( 'DBO_PERSISTENT', 32 );
-define( 'DBO_SYSDBA', 64 ); //for oracle maintenance
+define( 'DBO_SYSDBA', 64 ); // for oracle maintenance
 define( 'DBO_DDLMODE', 128 ); // when using schema files: mostly for Oracle
 define( 'DBO_SSL', 256 );
 define( 'DBO_COMPRESS', 512 );
@@ -135,10 +135,10 @@ define( 'MEDIATYPE_ARCHIVE', 'ARCHIVE' );
 /**@{
  * Antivirus result codes, for use in $wgAntivirusSetup.
  */
-define( 'AV_NO_VIRUS', 0 );  #scan ok, no virus found
-define( 'AV_VIRUS_FOUND', 1 );  #virus found!
-define( 'AV_SCAN_ABORTED', -1 );  #scan aborted, the file is probably immune
-define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in scanner)
+define( 'AV_NO_VIRUS', 0 );  # scan ok, no virus found
+define( 'AV_VIRUS_FOUND', 1 );  # virus found!
+define( 'AV_SCAN_ABORTED', -1 );  # scan aborted, the file is probably immune
+define( 'AV_SCAN_FAILED', false );  # scan failed (scanner not found or error in scanner)
 /**@}*/
 
 /**@{
@@ -170,6 +170,7 @@ define( 'RC_EDIT', 0 );
 define( 'RC_NEW', 1 );
 define( 'RC_LOG', 3 );
 define( 'RC_EXTERNAL', 5 );
+define( 'RC_CATEGORIZE', 6 );
 /**@}*/
 
 /**@{
@@ -180,7 +181,7 @@ define( 'EDIT_UPDATE', 2 );
 define( 'EDIT_MINOR', 4 );
 define( 'EDIT_SUPPRESS_RC', 8 );
 define( 'EDIT_FORCE_BOT', 16 );
-define( 'EDIT_DEFER_UPDATES', 32 );
+define( 'EDIT_DEFER_UPDATES', 32 ); // Unused since 1.27
 define( 'EDIT_AUTOSUMMARY', 64 );
 /**@}*/
 
@@ -308,5 +309,5 @@ define( 'CONTENT_FORMAT_XML', 'application/xml' );
 /**@{
  * Max string length for shell invocations; based on binfmts.h
  */
-define( 'SHELL_MAX_ARG_STRLEN', '100000');
+define( 'SHELL_MAX_ARG_STRLEN', '100000' );
 /**@}*/

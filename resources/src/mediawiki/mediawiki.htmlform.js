@@ -16,7 +16,7 @@
 	 * "foo[bar][baz]").
 	 *
 	 * @private
-	 * @param {jQuery} element
+	 * @param {jQuery} $el
 	 * @param {string} name
 	 * @return {jQuery|null}
 	 */
@@ -44,8 +44,8 @@
 	 * dependent fields for a hide-if specification.
 	 *
 	 * @private
-	 * @param {jQuery} element
-	 * @param {Array} hide-if spec
+	 * @param {jQuery} $el
+	 * @param {Array} spec
 	 * @return {Array}
 	 * @return {jQuery} return.0 Dependent fields
 	 * @return {Function} return.1 Test function
@@ -222,11 +222,11 @@
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
-	 * @return {jQuery}
 	 * @chainable
+	 * @return {jQuery}
 	 */
 	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {
-		this
+		return this
 			// Can't really migrate to .on() generically, needs knowledge of
 			// calling code to know the correct selector. Fix callers and
 			// get rid of this .liveAndTestAtStart() hack.

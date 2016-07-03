@@ -41,12 +41,12 @@ class ApiMove extends ApiBase {
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
 			if ( !$fromTitle || $fromTitle->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['from'] ) );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['from'] ] );
 			}
 		} elseif ( isset( $params['fromid'] ) ) {
 			$fromTitle = Title::newFromID( $params['fromid'] );
 			if ( !$fromTitle ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['fromid'] ) );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['fromid'] ] );
 			}
 		}
 
@@ -57,7 +57,7 @@ class ApiMove extends ApiBase {
 
 		$toTitle = Title::newFromText( $params['to'] );
 		if ( !$toTitle || $toTitle->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['to'] ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $params['to'] ] );
 		}
 		$toTalk = $toTitle->getTalkPage();
 
@@ -84,13 +84,13 @@ class ApiMove extends ApiBase {
 			$this->dieStatus( $status );
 		}
 
-		$r = array(
+		$r = [
 			'from' => $fromTitle->getPrefixedText(),
 			'to' => $toTitle->getPrefixedText(),
 			'reason' => $params['reason']
-		);
+		];
 
-		//NOTE: we assume that if the old title exists, it's because it was re-created as
+		// NOTE: we assume that if the old title exists, it's because it was re-created as
 		// a redirect to the new title. This is not safe, but what we did before was
 		// even worse: we just determined whether a redirect should have been created,
 		// and reported that it was created if it should have, without any checks.
@@ -135,10 +135,8 @@ class ApiMove extends ApiBase {
 			$watch = $params['watchlist'];
 		} elseif ( $params['watch'] ) {
 			$watch = 'watch';
-			$this->logFeatureUsage( 'action=move&watch' );
 		} elseif ( $params['unwatch'] ) {
 			$watch = 'unwatch';
-			$this->logFeatureUsage( 'action=move&unwatch' );
 		}
 
 		// Watch pages
@@ -183,16 +181,16 @@ class ApiMove extends ApiBase {
 	 * @return array
 	 */
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect ) {
-		$retval = array();
+		$retval = [];
 		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );
 		if ( isset( $success[0] ) ) {
-			return array( 'error' => $this->parseMsg( $success ) );
+			return [ 'error' => $this->parseMsg( $success ) ];
 		}
 
 		// At least some pages could be moved
 		// Report each of them separately
 		foreach ( $success as $oldTitle => $newTitle ) {
-			$r = array( 'from' => $oldTitle );
+			$r = [ 'from' => $oldTitle ];
 			if ( is_array( $newTitle ) ) {
 				$r['error'] = $this->parseMsg( reset( $newTitle ) );
 			} else {
@@ -214,38 +212,38 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'from' => null,
-			'fromid' => array(
+			'fromid' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'to' => array(
+			],
+			'to' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'reason' => '',
 			'movetalk' => false,
 			'movesubpages' => false,
 			'noredirect' => false,
-			'watch' => array(
+			'watch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
-			),
-			'unwatch' => array(
+			],
+			'unwatch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
-			),
-			'watchlist' => array(
+			],
+			'watchlist' => [
 				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'watch',
 					'unwatch',
 					'preferences',
 					'nochange'
-				),
-			),
+				],
+			],
 			'ignorewarnings' => false
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -253,11 +251,11 @@ class ApiMove extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
 				'reason=Misspelled%20title&movetalk=&noredirect='
 				=> 'apihelp-move-example-move',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

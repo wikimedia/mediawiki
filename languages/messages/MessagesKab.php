@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Uslig',
 	NS_TALK             => 'Mmeslay',
@@ -25,10 +25,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Amyannan_n_tallat',
 	NS_CATEGORY         => 'Taggayt',
 	NS_CATEGORY_TALK    => 'Amyannan_n_taggayt',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Talγa'            => NS_TEMPLATE,
 	'Amyannan_n_talγa' => NS_TEMPLATE_TALK,
-);
+];
 

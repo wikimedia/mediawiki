@@ -1,0 +1,82 @@
+.mw-apisandbox-fullscreen {
+	overflow: hidden;
+}
+
+.mw-apisandbox-toolbar {
+	text-align: right;
+	padding: 0.5em;
+}
+
+.mw-apisandbox-popup .oo-ui-popupWidget-body > .oo-ui-widget {
+	vertical-align: middle;
+}
+
+/* So DateTimeInputWidget's calendar popup works... */
+.mw-apisandbox-popup .oo-ui-popupWidget-popup,
+.mw-apisandbox-popup .oo-ui-popupWidget-body {
+	overflow: visible;
+}
+
+.mw-apisandbox-fullscreen #mw-apisandbox-ui {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: #fff;
+	z-index: 100;
+}
+
+.mw-apisandbox-spacer {
+	display: inline-block;
+	height: 1px;
+	width: 5em;
+}
+
+.mw-apisandbox-help-field {
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
+}
+
+.mw-apisandbox-help-field:last-child {
+	border-bottom: none;
+}
+
+.mw-apisandbox-optionalWidget {
+	width: 100%;
+}
+
+.mw-apisandbox-optionalWidget.oo-ui-widget-disabled {
+	position: relative;
+	z-index: 0; /* New stacking context to prevent the overlay from leaking out */
+}
+
+.mw-apisandbox-optionalWidget-overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mw-apisandbox-optionalWidget-fields {
+	display: table;
+	width: 100%;
+}
+
+.mw-apisandbox-optionalWidget-widget,
+.mw-apisandbox-optionalWidget-checkbox {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mw-apisandbox-optionalWidget-checkbox {
+	width: 1%; /* Will be expanded by content */
+	white-space: nowrap;
+	padding-left: 0.5em;
+}
+
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator.mw-apisandbox-clickable-indicator {
+	cursor: pointer;
+}

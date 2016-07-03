@@ -1,0 +1,101 @@
+/* Galleries */
+/* These display attributes look nonsensical, but are needed to support IE and FF2 */
+/* Don't forget to update gallery-print.css */
+li.gallerybox {
+	vertical-align: top;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+
+ul.gallery,
+li.gallerybox {
+	zoom: 1;
+	*display: inline;
+}
+
+ul.gallery {
+	margin: 2px;
+	padding: 2px;
+	display: block;
+}
+
+li.gallerycaption {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	word-wrap: break-word;
+}
+
+li.gallerybox div.thumb {
+	text-align: center;
+	border: 1px solid #ccc;
+	background-color: #f9f9f9;
+	margin: 2px;
+}
+
+li.gallerybox div.thumb img {
+	display: block;
+	margin: 0 auto;
+}
+
+div.gallerytext {
+	overflow: hidden;
+	font-size: 94%;
+	padding: 2px 4px;
+	word-wrap: break-word;
+}
+
+/* new gallery stuff */
+ul.mw-gallery-nolines li.gallerybox div.thumb {
+	background-color: transparent;
+	border: none;
+}
+
+ul.mw-gallery-nolines li.gallerybox div.gallerytext {
+	text-align: center;
+}
+
+/* height constrained gallery */
+
+ul.mw-gallery-packed li.gallerybox div.thumb,
+ul.mw-gallery-packed-overlay li.gallerybox div.thumb,
+ul.mw-gallery-packed-hover li.gallerybox div.thumb {
+	background-color: transparent;
+	border: none;
+}
+
+ul.mw-gallery-packed li.gallerybox div.thumb img,
+ul.mw-gallery-packed-overlay li.gallerybox div.thumb img,
+ul.mw-gallery-packed-hover li.gallerybox div.thumb img {
+	margin: 0 auto;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox,
+ul.mw-gallery-packed-overlay li.gallerybox {
+	position: relative;
+}
+
+ul.mw-gallery-packed-hover div.gallerytextwrapper {
+	overflow: hidden;
+	height: 0;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+	position: absolute;
+	background: white;
+	background: rgba(255, 255, 255, 0.8);
+	padding: 5px 10px;
+	bottom: 0;
+	left: 0; /* Needed for IE */
+	height: auto;
+	font-weight: bold;
+	margin: 2px; /* correspond to style on div.thumb */
+}
+
+ul.mw-gallery-packed-hover,
+ul.mw-gallery-packed-overlay,
+ul.mw-gallery-packed {
+	text-align: center;
+}

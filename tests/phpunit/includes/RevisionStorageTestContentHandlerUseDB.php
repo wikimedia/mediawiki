@@ -56,8 +56,8 @@ class RevisionTestContentHandlerUseDB extends RevisionStorageTest {
 	 */
 	public function testGetContentModel() {
 		try {
-			$this->makeRevision( array( 'text' => 'hello hello.',
-				'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
+			$this->makeRevision( [ 'text' => 'hello hello.',
+				'content_model' => CONTENT_MODEL_JAVASCRIPT ] );
 
 			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
 				. "\$wgContentHandlerUseDB disabled" );
@@ -76,9 +76,9 @@ class RevisionTestContentHandlerUseDB extends RevisionStorageTest {
 			//       no alternative formats for any of the standard content models that could be
 			//       used for this though.
 
-			$this->makeRevision( array( 'text' => 'hello hello.',
+			$this->makeRevision( [ 'text' => 'hello hello.',
 				'content_model' => CONTENT_MODEL_JAVASCRIPT,
-				'content_format' => 'text/javascript' ) );
+				'content_format' => 'text/javascript' ] );
 
 			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
 				. "\$wgContentHandlerUseDB disabled" );

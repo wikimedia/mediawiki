@@ -23,7 +23,7 @@ class SemiMockedFetchText extends FetchText {
 	/**
 	 * @var array Invocation counters for the mocked aspects
 	 */
-	private $mockInvocations = array( 'getStdin' => 0 );
+	private $mockInvocations = [ 'getStdin' => 0 ];
 
 	/**
 	 * Data for the fake stdin
@@ -210,13 +210,13 @@ class FetchTextTest extends MediaWikiTestCase {
 	function testExistingSeveral() {
 		$this->assertFilter( "$this->textId1\n$this->textId5\n"
 				. "$this->textId3\n$this->textId3",
-			implode( "", array(
+			implode( "", [
 				$this->textId1 . "\n23\nFetchTextTestPage1Text1",
 				$this->textId5 . "\n44\nFetchTextTestPage2Text4 "
 					. "some additional Text",
 				$this->textId3 . "\n23\nFetchTextTestPage2Text2",
 				$this->textId3 . "\n23\nFetchTextTestPage2Text2"
-			) ) );
+			] ) );
 	}
 
 	function testEmpty() {
@@ -249,13 +249,13 @@ class FetchTextTest extends MediaWikiTestCase {
 	function testMix() {
 		$this->assertFilter( "ab\n" . $this->textId4 . ".5cd\n\nefg\n" . $this->textId2
 				. "\n" . $this->textId3,
-			implode( "", array(
+			implode( "", [
 				"0\n-1\n",
 				$this->textId4 . "\n23\nFetchTextTestPage2Text3",
 				"0\n-1\n",
 				"0\n-1\n",
 				$this->textId2 . "\n23\nFetchTextTestPage2Text1",
 				$this->textId3 . "\n23\nFetchTextTestPage2Text2"
-			) ) );
+			] ) );
 	}
 }

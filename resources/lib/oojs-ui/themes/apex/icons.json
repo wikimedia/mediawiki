@@ -29,7 +29,6 @@
 			"rtl": "images/icons/move-rtl.svg"
 		} },
 		"notice": { "file": "images/icons/notice.svg" },
-		"picture": { "file": "images/icons/picture.svg" },
 		"previous": { "file": {
 			"ltr": "images/icons/move-rtl.svg",
 			"rtl": "images/icons/move-ltr.svg"
@@ -38,7 +37,7 @@
 			"ltr": "images/icons/arched-arrow-ltr.svg",
 			"rtl": "images/icons/arched-arrow-rtl.svg"
 		} },
-		"remove": { "file": "images/icons/remove.svg" },
+		"remove": { "file": "images/icons/trash.svg" },
 		"search": { "file": "images/icons/search.svg" },
 		"settings": { "file": "images/icons/settings.svg" },
 		"tag": { "file": "images/icons/tag.svg" },

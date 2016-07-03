@@ -25,7 +25,7 @@
  * 'exception-nologin' as a title and 'exception-nologin-text' for the message.
  *
  * @note In order for this exception to redirect, the error message passed to the
- * constructor has to be explicitly added to LoginForm::validErrorMessages or with
+ * constructor has to be explicitly added to LoginHelper::validErrorMessages or with
  * the LoginFormValidErrorMessages hook. Otherwise, the user will just be shown the message
  * rather than redirected.
  *
@@ -67,7 +67,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
 		$titleMsg = 'exception-nologin',
-		$params = array()
+		$params = []
 	) {
 		parent::__construct( $titleMsg, $reasonMsg, $params );
 	}
@@ -79,7 +79,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	public function report() {
 		// If an unsupported message is used, don't try redirecting to Special:Userlogin,
 		// since the message may not be compatible.
-		if ( !in_array( $this->msg, LoginForm::getValidErrorMessages() ) ) {
+		if ( !in_array( $this->msg, LoginHelper::getValidErrorMessages() ) ) {
 			parent::report();
 		}
 
@@ -92,12 +92,12 @@ class UserNotLoggedIn extends ErrorPageError {
 		// Title will be overridden by returnto
 		unset( $query['title'] );
 		// Redirect to Special:Userlogin
-		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( array(
+		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 			// Return to this page when the user logs in
 			'returnto' => $context->getTitle()->getFullText(),
 			'returntoquery' => wfArrayToCgi( $query ),
 			'warning' => $this->msg,
-		) ) );
+		] ) );
 
 		$output->output();
 	}

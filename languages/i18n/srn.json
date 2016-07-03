@@ -7,7 +7,8 @@
 			"Ooswesthoesbes",
 			"Stretsh",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Poti strepi ondro den miti:",
@@ -517,7 +518,7 @@
 	"filerevert-legend": "Gefre bakadray",
 	"filerevert-intro": "Yu ben '''[[Media:$1|$1]]''' bakadrayn tu a [$4 si opo $2, $3]",
 	"filerevert-comment": "Opotaki:",
-	"filerevert-defaultcomment": "E bakadray tu a si opo $1, $2",
+	"filerevert-defaultcomment": "E bakadray tu a si opo $1, $2 ($3)",
 	"filerevert-submit": "Bakadray",
 	"filerevert-success": "'''[[Media:$1|$1]]''' ben bakadray tu a [$4 si opo $2, $3]",
 	"filedelete": "\"$1\" trowe",
@@ -556,7 +557,6 @@
 	"nlinks": "$1 {{PLURAL:$1|miti|miti}}",
 	"nmembers": "$1 {{PLURAL:$1|memre|memre}}",
 	"nrevisions": "$1 {{PLURAL:$1|si|si}}",
-	"nviews": "$1 {{PLURAL:$1|mansi|mansi}}",
 	"lonelypages": "Weisi papira",
 	"lonelypagestext": "Na den ondroben peprewoysi sey fu u {{SITENAME}} no skaki.",
 	"uncategorizedpages": "Papira sondro grupu",
@@ -610,7 +610,6 @@
 	"listusers-noresult": "No masyin dyaso.",
 	"mailnologin": "No stiradresi",
 	"emailuser": "E-mail a kebroikiman disi",
-	"emailpage": "Mayin e-mail",
 	"defemailsubject": "E-mail fu {{SITENAME}}",
 	"noemailtitle": "Disi masyin abi no e-mailadresi",
 	"emailfrom": "Fu",
@@ -697,7 +696,6 @@
 	"move-page-legend": "Dribi papira",
 	"movepagetext": "Nanaga a ondroben box kan yu wan papira dribi.\nA stori go na a nyun papira.\nA owru nen sey wan stir na a nyun papira sey.\nStir na a owru papira ben no kenki.\nLuku na a dribi efu da no tustir efu broko stir ben e kon.\nYu ben risponsibu fu den stir.\n\nA papira kan '''wawan''' dribi sey leki a nyun papiranen:\n* no da ben, efu\n* a stirpapira nanga no stori ben.\n\n'''ATESSI!'''\nFu poppelari peprewoysi kan a drabi drastiki nanga ofusi folo abi.\nBen suri taki den folo abrasi ben pre yu disi aksi du.",
 	"movepagetalktext": "A takipapira sey a trawan nen, '''iksi''':\n* A takipapira ondro a nyun nen da ala ben;\n* Yu a ondroben box odu.",
-	"movearticle": "Dribi papira:",
 	"newtitle": "Na nyun papiranen:",
 	"move-watch": "Disi papira si",
 	"movepagebtn": "Dribi papira",

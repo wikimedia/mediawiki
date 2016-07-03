@@ -43,12 +43,12 @@ class StatusValue {
 	/** @var bool */
 	protected $ok = true;
 	/** @var array */
-	protected $errors = array();
+	protected $errors = [];
 
 	/** @var mixed */
 	public $value;
 	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
-	public $success = array();
+	public $success = [];
 	/** @var int Counter for batch operations */
 	public $successCount = 0;
 	/** @var int Counter for batch operations */
@@ -58,12 +58,12 @@ class StatusValue {
 	 * Factory function for fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
 		$result = new static();
-		call_user_func_array( array( &$result, 'fatal' ), $params );
+		call_user_func_array( [ &$result, 'fatal' ], $params );
 		return $result;
 	}
 
@@ -71,7 +71,7 @@ class StatusValue {
 	 * Factory function for good results
 	 *
 	 * @param mixed $value
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public static function newGood( $value = null ) {
 		$result = new static();
@@ -142,11 +142,11 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'warning',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 	}
 
 	/**
@@ -156,11 +156,11 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function error( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 	}
 
 	/**
@@ -170,18 +170,18 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 		$this->ok = false;
 	}
 
 	/**
 	 * Merge another status object into this one
 	 *
-	 * @param Status $other Other Status object
+	 * @param StatusValue $other Other StatusValue object
 	 * @param bool $overwriteValue Whether to override the "value" member
 	 */
 	public function merge( $other, $overwriteValue = false ) {
@@ -197,13 +197,15 @@ class StatusValue {
 	/**
 	 * Returns a list of status messages of the given type
 	 *
-	 * Each entry is a map of (message:string or MessageSpecifier,params:array))
+	 * Each entry is a map of:
+	 *   - message: string message key or MessageSpecifier
+	 *   - params: array list of parameters
 	 *
 	 * @param string $type
 	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
-		$result = array();
+		$result = [];
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				$result[] = $error;
@@ -298,7 +300,7 @@ class StatusValue {
 					$params = $error['params'];
 				} else {
 					$key = $error['message'];
-					$params = array();
+					$params = [];
 				}
 
 				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",

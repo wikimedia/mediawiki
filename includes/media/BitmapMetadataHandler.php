@@ -35,19 +35,19 @@ use MediaWiki\Logger\LoggerFactory;
  */
 class BitmapMetadataHandler {
 	/** @var array */
-	private $metadata = array();
+	private $metadata = [];
 
 	/** @var array Metadata priority */
-	private $metaPriority = array(
-		20 => array( 'other' ),
-		40 => array( 'native' ),
-		60 => array( 'iptc-good-hash', 'iptc-no-hash' ),
-		70 => array( 'xmp-deprecated' ),
-		80 => array( 'xmp-general' ),
-		90 => array( 'xmp-exif' ),
-		100 => array( 'iptc-bad-hash' ),
-		120 => array( 'exif' ),
-	);
+	private $metaPriority = [
+		20 => [ 'other' ],
+		40 => [ 'native' ],
+		60 => [ 'iptc-good-hash', 'iptc-no-hash' ],
+		70 => [ 'xmp-deprecated' ],
+		80 => [ 'xmp-general' ],
+		90 => [ 'xmp-exif' ],
+		100 => [ 'iptc-bad-hash' ],
+		120 => [ 'exif' ],
+	];
 
 	/** @var string */
 	private $iptcType = 'iptc-no-hash';
@@ -123,7 +123,7 @@ class BitmapMetadataHandler {
 	function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recomendation.
-		$temp = array();
+		$temp = [];
 		krsort( $this->metaPriority );
 		foreach ( $this->metaPriority as $pri ) {
 			foreach ( $pri as $type ) {
@@ -161,7 +161,7 @@ class BitmapMetadataHandler {
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
-			$meta->addMetadata( array( 'JPEGFileComment' => $seg['COM'] ), 'native' );
+			$meta->addMetadata( [ 'JPEGFileComment' => $seg['COM'] ], 'native' );
 		}
 		if ( isset( $seg['PSIR'] ) && count( $seg['PSIR'] ) > 0 ) {
 			foreach ( $seg['PSIR'] as $curPSIRValue ) {
@@ -235,7 +235,7 @@ class BitmapMetadataHandler {
 		$baseArray = GIFMetadataExtractor::getMetadata( $filename );
 
 		if ( count( $baseArray['comment'] ) > 0 ) {
-			$meta->addMetadata( array( 'GIFFileComment' => $baseArray['comment'] ), 'native' );
+			$meta->addMetadata( [ 'GIFFileComment' => $baseArray['comment'] ], 'native' );
 		}
 
 		if ( $baseArray['xmp'] !== '' && XMPReader::isSupported() ) {

@@ -39,7 +39,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
 		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-		$fld_tags = false, $fld_sha1 = false, $token = array();
+		$fld_tags = false, $fld_sha1 = false, $token = [];
 
 	private $tokenFunctions;
 
@@ -59,13 +59,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
 		if ( $this->lacksSameOriginSecurity() ) {
-			return array();
+			return [];
 		}
 
-		$this->tokenFunctions = array(
-			'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' )
-		);
-		Hooks::run( 'APIQueryRecentChangesTokens', array( &$this->tokenFunctions ) );
+		$this->tokenFunctions = [
+			'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ]
+		];
+		Hooks::run( 'APIQueryRecentChangesTokens', [ &$this->tokenFunctions ] );
 
 		return $this->tokenFunctions;
 	}
@@ -150,7 +150,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
 		 */
 		$this->addTables( 'recentchanges' );
-		$index = array( 'recentchanges' => 'rc_timestamp' ); // May change
+		$index = [ 'recentchanges' => 'rc_timestamp' ]; // May change
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
 
 		if ( !is_null( $params['continue'] ) ) {
@@ -169,10 +169,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';
-		$this->addOption( 'ORDER BY', array(
+		$this->addOption( 'ORDER BY', [
 			"rc_timestamp $order",
 			"rc_id $order",
-		) );
+		] );
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 
@@ -206,7 +206,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieUsage(
-						'You need the patrol right to request the patrolled flag',
+						'You need patrol or patrolmarks permission to request the patrolled flag',
 						'permissiondenied'
 					);
 				}
@@ -224,7 +224,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
 
 			if ( isset( $show['unpatrolled'] ) ) {
-				// See ChangesList:isUnpatrolled
+				// See ChangesList::isUnpatrolled
 				if ( $user->useRCPatrol() ) {
 					$this->addWhere( 'rc_patrolled = 0' );
 				} elseif ( $user->useNPPatrol() ) {
@@ -257,7 +257,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		/* Add the fields we're concerned with to our query. */
-		$this->addFields( array(
+		$this->addFields( [
 			'rc_id',
 			'rc_timestamp',
 			'rc_namespace',
@@ -265,7 +265,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_cur_id',
 			'rc_type',
 			'rc_deleted'
-		) );
+		] );
 
 		$showRedirects = false;
 		/* Determine what properties we need to display. */
@@ -277,44 +277,46 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage(
-					'You need the patrol right to request the patrolled flag',
+					'You need patrol or patrolmarks permission to request the patrolled flag',
 					'permissiondenied'
 				);
 			}
 
 			/* Add fields to our query if they are specified as a needed parameter. */
-			$this->addFieldsIf( array( 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
+			$this->addFieldsIf( [ 'rc_this_oldid', 'rc_last_oldid' ], $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
-			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ), $this->fld_flags );
-			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
-			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
+			$this->addFieldsIf( [ 'rc_minor', 'rc_type', 'rc_bot' ], $this->fld_flags );
+			$this->addFieldsIf( [ 'rc_old_len', 'rc_new_len' ], $this->fld_sizes );
+			$this->addFieldsIf( [ 'rc_patrolled', 'rc_log_type' ], $this->fld_patrolled );
 			$this->addFieldsIf(
-				array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ),
+				[ 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ],
 				$this->fld_loginfo
 			);
 			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
 				|| isset( $show['!redirect'] );
 		}
+		$this->addFieldsIf( [ 'rc_this_oldid' ],
+			$resultPageSet && $params['generaterevisions'] );
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rc_id=ts_rc_id' ) ) ) );
+			$this->addJoinConds( [ 'tag_summary' => [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ] ] );
 			$this->addFields( 'ts_tags' );
 		}
 
 		if ( $this->fld_sha1 ) {
 			$this->addTables( 'revision' );
-			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN',
-				array( 'rc_this_oldid=rev_id' ) ) ) );
-			$this->addFields( array( 'rev_sha1', 'rev_deleted' ) );
+			$this->addJoinConds( [ 'revision' => [ 'LEFT JOIN',
+				[ 'rc_this_oldid=rev_id' ] ] ] );
+			$this->addFields( [ 'rev_sha1', 'rev_deleted' ] );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN',
-				array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
+			$this->addJoinConds( [ 'page' => [ 'LEFT JOIN',
+				[ 'rc_namespace=page_namespace', 'rc_title=page_title' ] ] ] );
 			$this->addFields( 'page_is_redirect' );
 
 			if ( $params['toponly'] ) {
@@ -324,7 +326,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rc_id=ct_rc_id' ) ) ) );
+			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
@@ -351,10 +353,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$bitmask = 0;
 			}
 			if ( $bitmask ) {
-				$this->addWhere( $this->getDB()->makeList( array(
+				$this->addWhere( $this->getDB()->makeList( [
 					'rc_type != ' . RC_LOG,
 					$this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
-				), LIST_OR ) );
+				], LIST_OR ) );
 			}
 		}
 
@@ -366,7 +368,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Perform the actual query. */
 		$res = $this->select( __METHOD__ );
 
-		$titles = array();
+		$revids = [];
+		$titles = [];
 
 		$result = $this->getResult();
 
@@ -384,10 +387,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals = $this->extractRowInfo( $row );
 
 				/* Add that row's data to our final output. */
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
+				}
+			} elseif ( $params['generaterevisions'] ) {
+				$revid = (int)$row->rc_this_oldid;
+				if ( $revid > 0 ) {
+					$revids[] = $revid;
 				}
 			} else {
 				$titles[] = Title::makeTitle( $row->rc_namespace, $row->rc_title );
@@ -396,7 +404,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			/* Format the result */
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'rc' );
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'rc' );
+		} elseif ( $params['generaterevisions'] ) {
+			$resultPageSet->populateFromRevisionIDs( $revids );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -415,7 +425,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$user = $this->getUser();
 
 		/* Our output data. */
-		$vals = array();
+		$vals = [];
 
 		$type = intval( $row->rc_type );
 		$vals['type'] = RecentChange::parseFromRCType( $type );
@@ -531,7 +541,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
-				$vals['tags'] = array();
+				$vals['tags'] = [];
 			}
 		}
 
@@ -542,7 +552,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_TEXT, $user ) ) {
 				if ( $row->rev_sha1 !== '' ) {
-					$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+					$vals['sha1'] = Wikimedia\base_convert( $row->rev_sha1, 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -592,36 +602,36 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'start' => array(
+		return [
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'user' => array(
+			],
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'excludeuser' => array(
+			],
+			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
+			],
 			'tag' => null,
-			'prop' => array(
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'title|timestamp|ids',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'user',
 					'userid',
 					'comment',
@@ -636,17 +646,17 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'loginfo',
 					'tags',
 					'sha1',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'token' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'token' => [
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'show' => array(
+			],
+			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'minor',
 					'!minor',
 					'bot',
@@ -658,39 +668,35 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'patrolled',
 					'!patrolled',
 					'unpatrolled'
-				)
-			),
-			'limit' => array(
+				]
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'type' => array(
-				ApiBase::PARAM_DFLT => 'edit|new|log',
+			],
+			'type' => [
+				ApiBase::PARAM_DFLT => 'edit|new|log|categorize',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
-					'edit',
-					'external',
-					'new',
-					'log'
-				)
-			),
+				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
+			],
 			'toponly' => false,
-			'continue' => array(
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+			'generaterevisions' => false,
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=recentchanges'
 				=> 'apihelp-query+recentchanges-example-simple',
 			'action=query&generator=recentchanges&grcshow=!patrolled&prop=info'
 				=> 'apihelp-query+recentchanges-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

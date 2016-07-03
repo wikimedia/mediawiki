@@ -15,29 +15,23 @@
 	background-color: #b1ffb1;
 }
 
-/* Special:Allpages */
-table.mw-allpages-table-form {
-	width: 100%;
+/* Common for Special:Allpages and Special:PrefixIndex */
+.mw-allpages-body, .mw-prefixindex-body {
+	columns: 22em 3;
+	-moz-columns: 22em 3;
+	-webkit-columns: 22em 3;
+	break-inside: avoid-column;
+	page-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
 }
-table.mw-allpages-table-form tr {
-	vertical-align: top;
-}
-.mw-allpages-nav {
-	text-align: right;
-	margin-bottom: 1em;
+.allpagesredirect {
+	font-style: italic;
 }
 
-ul.mw-allpages-chunk {
-	margin: 0;
-	padding: 0;
-}
-ul.mw-allpages-chunk li {
-	border-top: 1px solid #ccc;
-	display: inline-block;
-	margin: 0 1% 0 0;
-	padding: .2em 0;
-	vertical-align: top;
-	width: 31%;
+/* Special:Block */
+p.mw-ipb-conveniencelinks {
+	font-size: 90%;
+	text-align: right;
 }
 
 /* Special:BlockList */
@@ -51,11 +45,24 @@ span.mw-blocklist-actions {
 .mw-uctop {
 	font-weight: bold;
 }
+.mw-contributions-form select {
+	vertical-align: middle;
+}
+
+/* Special:EditWatchlist */
+.watchlistredir {
+	font-style: italic;
+}
 
 /* Special:EmailUser */
 td#mw-emailuser-sender,
 td#mw-emailuser-recipient {
 	font-weight: bold;
+}
+
+/* Special:FileDuplicateSearch */
+#mw-fileduplicatesearch-icon {
+	float: right;
 }
 
 /* Special:ListGroupRights */
@@ -66,16 +73,9 @@ table.mw-listgrouprights-table tr {
 	text-decoration: line-through;
 }
 
-/* Special:Prefixindex */
-table.mw-prefixindex-list-table,
-table#mw-prefixindex-nav-table {
-	width: 100%;
-}
-td#mw-prefixindex-nav-form {
-	margin-bottom: 1em;
-	vertical-align: top;
-}
-.mw-prefixindex-nav {
+/* Special:RevisionDelete */
+p.mw-revdel-editreasons {
+	font-size: 90%;
 	text-align: right;
 }
 
@@ -116,7 +116,8 @@ table.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
 
-/* Special:Contributions */
-.mw-contributions-form select {
-	vertical-align: middle;
+/* Special:Upload */
+p.mw-upload-editlicenses {
+	font-size: 90%;
+	text-align: right;
 }

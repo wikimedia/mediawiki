@@ -1,0 +1,602 @@
+== MediaWiki 1.27 ==
+
+=== PHP version requirement ===
+As of 1.27, MediaWiki now requires PHP 5.5.9 or higher (see Compatibility
+section). Additionally, the following PHP extensions are required:
+* ctype
+* iconv
+* json
+* mbstring (new requirement in 1.27)
+* xml
+The following PHP extensions are strongly recommended:
+* openssl
+
+=== Configuration changes in 1.27 ===
+* $wgAllowMicrodataAttributes and $wgAllowRdfaAttributes were removed,
+  now always enabled. If you use RDFa on your wiki, you now have to explicitly
+  set $wgHtml5Version to 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
+* $wgUseLinkNamespaceDBFields was removed.
+* Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
+  $wgResourceLoaderMinifierMaxLineLength, because there was little value in
+  making the behavior configurable. The default values (`false` for the former,
+  1000 for the latter) are now hard-coded.
+* $wgDebugDumpSqlLength was removed (deprecated in 1.24).
+* $wgDebugDBTransactions was removed (deprecated in 1.20).
+* $wgUseXVO has been removed, as it provides functionality only used by
+  custom Wikimedia patches against Squid 2.x that probably noone uses in
+  production anymore. There is now $wgUseKeyHeader that provides similar
+  functionality but instead of the MediaWiki-specific X-Vary-Options header,
+  uses the draft Key header standard.
+* $wgScriptExtension (and support for '.php5' entry points) was removed. See the
+  deprecation notice in the release notes for version 1.25 for advice on how to
+  preserve support for '.php5' entry points via URL rewriting.
+* Password handling via the User object has been deprecated and partially
+  removed, pending the future introduction of AuthManager. In particular:
+** expirePassword(), getPasswordExpireDate(), resetPasswordExpiration(), and
+   getPasswordExpired() have been removed. They were unused outside of core.
+** The mPassword, mNewpassword, mNewpassTime, and mPasswordExpires fields are
+   now private and will be removed in the future.
+** The getPassword() and getTemporaryPassword() methods now throw
+   BadMethodCallException and will be removed in the future.
+** The ability to pass 'password' and 'newpassword' to createNew() has been
+   removed. The only users of it seem to have been using it to set invalid
+   passwords, and so shouldn't be greatly affected.
+** setPassword(), setInternalPassword(), and setNewpassword() have been
+   deprecated, pending the introduction of AuthManager.
+** User::randomPassword() is deprecated in favor of a new method
+   PasswordFactory::generateRandomPasswordString()
+** User::getPasswordFactory() is deprecated, callers should just create a
+   PasswordFactory themselves.
+** A new constructor, User::newSystemUser(), has been added to simplify the
+   creation of passwordless "system" users for logged actions.
+* $wgMaxSquidPurgeTitles was removed.
+* $wgAjaxWatch was removed. This is now enabled by default.
+* $wgUseInstantCommons now hotlinks Commons images by default instead of
+  downloading originals and thumbnailing them locally. This allows wikis to save
+  on CPU and bandwidth while reducing time to first byte for pages, even without
+  a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
+* (T27397) WebP is enabled by default as an uploadable filetype.
+* (T48998) $wgArticlePath must now be either a full url, or start with a "/".
+* $wgRateLimitLog was removed; use $wgDebugLogGroups['ratelimit'] instead.
+* Deprecated API formats dbg, txt, and yaml have been removed.
+* CLDRPluralRule* classes have been replaced with
+  wikimedia/cldr-plural-rule-parser.
+* Removed $wgProfilePerHost, $wgUDPProfilerHost, $wgUDPProfilerPort,
+  $wgUDPProfilerFormatString, $wgStatsMethod, $wgAggregateStatsID,
+  $wgStatsFormatString, and $wgProfileCallTree (deprecated since 1.20).
+* For proper operation of LocalIdLookup with shared user tables, ensure that
+  $wgSharedDB and $wgSharedTables are properly set even on the "central" wiki
+  that all others are sharing from and that $wgLocalDatabases is set to the
+  full list of sharing wikis on all those wikis.
+* Massive overhaul to session handling:
+** $wgSessionsInObjectCache is no longer supported and must be true, due to
+   MediaWiki\Session\SessionManager. $wgSessionHandler is similarly no longer
+   used.
+** ObjectCacheSessionHandler is removed, replaced with
+   MediaWiki\Session\PhpSessionHandler.
+** PHP session handling in general ($_SESSION, session_id(), and so on) is
+   deprecated. Use MediaWiki\Session\SessionManager instead. A new config
+   variable, $wgPHPSessionHandling, is available to cause use of $_SESSION to
+   issue a deprecation warning or to cause most PHP session handling to throw
+   exceptions.
+** Deprecated UserSetCookies hook. Session-handling extensions should generally
+   be creating a custom subclass of CookieSessionProvider. Other extensions
+   messing with cookies can no longer count on user data being saved in cookies
+   versus other methods.
+** Deprecated UserLoadFromSession hook, extensions should create a
+   MediaWiki\Session\SessionProvider.
+** The User cannot be loaded from session until after Setup.php completes.
+   Attempts to do so will be ignored and the User will remain unloaded.
+** CSRF tokens may be fetched from the MediaWiki\Session\Session, which uses
+   the MediaWiki\Session\Token class.
+* MediaWiki will now auto-create users as necessary, removing the need for
+  extensions to do so. An 'autocreateaccount' right is added to allow
+  auto-creation when 'createaccount' is not granted to all users.
+* Deprecated AuthPluginAutoCreate hook in favor of LocalUserCreated.
+* Most cookie-handling methods in User are deprecated.
+* $wgAllowAsyncCopyUploads and $CopyUploadAsyncTimeout were removed. This was an
+  experimental feature that has never worked.
+* Login and createaccount tokens now vary by timestamp.
+* LoginForm::getLoginToken() and LoginForm::getCreateaccountToken()
+  return a MediaWiki\Session\Token, and tokens must be checked using that
+  class's methods.
+* $wgEnotifUseJobQ was removed and the job queue is always used.
+* The functionality of the ApiSandbox extension has been merged into core. The
+  extension should no longer be used.
+* $wgPreloadJavaScriptMwUtil was removed (deprecated in 1.26).
+  Extensions, skins, gadgets and scripts that use the mediawiki.util module must
+  express a dependency on it.
+* $wgIncludeLegacyJavaScript, deprecated in MediaWiki 1.26, now defaults false.
+  Extensions, skins, gadgets and scripts that need the mediawiki.legacy.wikibits
+  module should express a dependency on it.
+* Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
+  $wgFooterIcons['copyright']['copyright'] instead.
+* If the openssl and mcrypt PHP extensions are both unavailable, secure
+  session storage (used for login) will raise an exception. This exception may
+  be bypassed by setting $wgSessionInsecureSecrets = true.
+* Massive overhaul to authentication:
+** AuthPlugin and AuthPluginUser are deprecated.
+** LoginForm and associated templates are deprecated. Extensions which called
+   static LoginForm methods should be converted into authentication providers.
+** The following hooks are deprecated:
+*** AbortAutoAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortLogin (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AbortNewAccount (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** AddNewAccount (use LocalUserCreated instead)
+*** AuthPluginSetup (create a MediaWiki\Auth\PrimaryAuthenticationProvider instead)
+*** ChangePasswordForm (use AuthChangeFormFields instead, or security levels)
+*** LoginUserMigrated (create a MediaWiki\Auth\PreAuthenticationProvider instead)
+*** UserCreateForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+*** UserLoginForm (create a MediaWiki\Auth\AuthenticationProvider of some type instead)
+** The following hooks are removed:
+*** AbortChangePassword
+*** LoginPasswordResetMessage
+*** PrefsPasswordAudit
+** The UserLoginComplete hook will no longer be called for all logins, only for
+   those via the web UI. Use UserLoggedIn if you need to do something on all
+   logins.
+** $wgRequirePasswordforEmailChange is removed.
+* $wgWellFormedXml has been removed.
+
+=== New features in 1.27 ===
+* $wgDataCenterUpdateStickTTL was also added. This decides how long a user
+  sticks to the primary DC (via cookies) after they make changes to the site.
+* Added a new hook, 'UserMailerTransformContent', to transform the contents
+  of an email. This is similar to the EmailUser hook but applies to all mail
+  sent via UserMailer.
+* Added a new hook, 'UserMailerTransformMessage', to transform the contents
+  of an emai after MIME encoding.
+* Added a new hook, 'UserMailerSplitTo', to control which users have to be
+  emailed separately (ie. there is a single address in the To: field) so
+  user-specific changes to the email can be applied safely.
+* $wgCdnMaxageLagged was added, which limits the CDN cache TTL
+  when any load balancer uses a DB that is lagged beyond the 'max lag'
+  setting in the relevant section of $wgLBFactoryConf.
+* User::newSystemUser() may be used to simplify the creation of passwordless
+  "system" users for logged actions from scripts and extensions.
+* Extensions can now return detailed error information via the API when
+  preventing user actions using 'getUserPermissionsErrors' and similar hooks
+  by using ApiMessage instances instead of strings for the $result value.
+* $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
+  becomes too high.
+* Skins and extensions can now use FlexBox mixins (.flex-display(@display: flex)
+  and .flex(@grow: 1, @shrink: 1, @width: auto, @order: 1)) in Less to create
+  cross-browser-compatible FlexBox rules. Users will still need to add fallback
+  float rules or the like for compatibility with IE9- separately.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
+* Added CentralIdLookup, a service that allows extensions needing a concept of
+  "central" users to get that without having to know about specific central
+  authentication extensions.
+* $wgMaxUserDBWriteDuration added to limit huge user-generated transactions.
+  Regular web request transactions that takes longer than this are aborted.
+* Added a new hook, 'TitleMoveCompleting', which runs before a page move is
+  committed.
+* $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
+  from CDN to mitigate DB replication lag and WAN cache purge lag.
+* (T49162) Installer will default to setting CACHE_ACCEL as the main cache type
+  if it is available.
+* It is now possible to patrol file uploads (both for new files and new versions
+  of existing files). Special:NewFiles has gained an option to filter by patrol
+  status. This functionality can be disabled using $wgUseFilePatrol.
+* MediaWiki\Session infrastructure allows for easier use of session mechanisms
+  other than the usual cookies.
+** SessionMetadata and SessionCheckInfo hooks allow for setting and checking
+   custom session metadata.
+* Added MWGrants and associated configuration settings $wgGrantPermissions and
+  $wgGrantPermissionGroups to hold configuration for authentication features
+  such as OAuth that want to allow restricting the user rights a user may make
+  use of.
+** If you're already using the OAuth extension, these new variables are
+   identical to (and will replace) $wgMWOAuthGrantPermissions and
+   $wgMWOAuthGrantPermissionGroups.
+* Added MWRestrictions as a class to check restrictions on a WebRequest, e.g.
+  to assert that the request comes from a particular IP range.
+* Added bot passwords, a rights-restricted login mechanism for API-using bots.
+* Whitelisted the following HTML attributes for all elements in wikitext:
+  aria-describedby, aria-flowto, aria-label, aria-labelledby, aria-owns.
+* Removed "presentation" restriction on the HTML role attribute in wikitext.
+  All values are now allowed for the role attribute.
+* $wgContentHandlers now also supports callbacks to create an instance of the
+  appropriate ContentHandler subclass.
+* Added $wgAuthenticationTokenVersion, which if non-null prevents the
+  user_token database field from being exposed in cookies. Setting this would
+  be a good idea, but will log out all current sessions.
+* $wgEventRelayerConfig was added, for managing PubSub event relay configuration,
+  specifically for reliable CDN url purges.
+* Requests have unique IDs, equal to the UNIQUE_ID environment variable (when
+  MediaWiki is behind Apache+mod_unique_id or something similar) or a randomly-
+  generated 24-character string. This request ID is used to annotate log records
+  and error messages. It is available client-side via mw.config.get( 'wgRequestId' ).
+  The request ID supplants exception IDs. Accordingly, MWExceptionHandler::getLogId()
+  is deprecated.
+* (T33313) Add a preference for watching uploads by default, also applies
+  to API-based upload tools.
+* $wgJpegPixelFormat was added to override chroma subsampling for JPEG image
+  thumbnails created via ImageMagick. Defaults to 'yuv420', providing bandwidth
+  savings versus the previous behavior on many files.
+* MediaWiki\Auth infrastructure (called "AuthManager") allows for more flexible
+  configuration of multiple authentication pieces that was possible with
+  AuthPlugin. For example, it's now easy to plug in second-factor
+  authentication, or add additional checks to the login process, or to support
+  multiple login methods at once, or to support non-password-based login methods.
+** Providers are configured via the global setting $wgAuthManagerConfig.
+** New hook, AuthChangeFormFields, to adjust the form fields on
+   AuthManager-related special pages.
+** New hook, AuthManagerLoginAuthenticateAudit, for additional logging of
+   AuthManager-related authentication requests.
+** New hook, ChangeAuthenticationDataAudit, for additional logging of
+   AuthManager-related authentication data changes.
+** New hook, SecuritySensitiveOperationStatus, to work with the new mechanism
+   for requiring a recent login before taking security-sensitive operations
+   like changing a password.
+** Two new globals, $wgChangeCredentialsBlacklist and $wgRemoveCredentialsBlacklist
+   can be used to prevent the web UI and the API changing certain authentication data.
+* The file upload dialog (available if you install WikiEditor or VisualEditor)
+  can now be configured using $wgUploadDialog.
+
+=== External library changes in 1.27 ===
+
+==== Upgraded external libraries ====
+* Updated oojs/oojs-ui from v0.12.12 to v0.13.3.
+* Updated composer/semver from v1.0.0 to v1.2.0.
+* Updated liuggio/statsd-php-client to 1.0.18.
+* Updated QUnit from v1.18.0 to v1.22.0.
+
+==== New external libraries ====
+* Added wikimedia/base-convert v1.0.1.
+* Added wikimedia/cldr-plural-rule-parser v1.0.0.
+* Added wikimedia/relpath v1.0.3.
+* Added wikimedia/running-stat v1.1.0.
+* Added wikimedia/php-session-serializer v1.0.3.
+
+==== Removed and replaced external libraries ====
+
+=== Bug fixes in 1.27 ===
+* Special:Upload will now display correct maximum allowed file size when running
+  under HHVM (T116347).
+* (T54077) The APIEditBeforeSave hook will once again give only the content of
+  the section being edited, rather than the whole revision. This reverts the
+  change made in MediaWiki 1.22.
+
+=== Action API changes in 1.27 ===
+* Added list=allrevisions.
+* generator=recentchanges now has the option to generate revids.
+* ApiPageSet::setRedirectMergePolicy() was added. This allows generator
+  modules to define how generator data for a redirect source gets merged
+  into the redirect destination.
+* prop=imageinfo&iiprop=uploadwarning will no longer include the possibility of
+  "was-deleted" warning.
+* Added difftotextpst to query=revisions which preforms a pre-save transform on
+  the text before diffing it.
+* Deprecated formats dbg, txt, and yaml have been removed.
+* (T47988) The protect log event details now use new-style formatting.
+* The following response properties from action=login are deprecated, and may
+  be removed in the future: lgtoken, cookieprefix, sessionid. Clients should
+  handle cookies to properly manage session state.
+* action=login transparently allows login using bot passwords. Clients should
+  merely need to change the username and password used after setting up a bot
+  password.
+* action=upload no longer understands statuskey, asyncdownload or leavemessage.
+* action=login is deprecated for uses other than bot passwords.
+* list=users can now indicate if a missing username is creatable.
+* action=createaccount is changed in a non-backwards-compatible manner.
+* Added action=query&meta=authmanagerinfo.
+* Added action=clientlogin to be used to log into the main account instead of
+   action=login.
+* Added action=linkaccount.
+* Added action=unlinkaccount.
+* Added action=changeauthenticationdata.
+* Added action=removeauthenticationdata.
+* Added action=resetpassword.
+
+=== Action API internal changes in 1.27 ===
+* ApiQueryORM removed.
+* The following classes have been removed:
+** ApiFormatDbg
+** ApiFormatTxt
+** ApiFormatYaml
+* ApiBase::addTokenProperties() was removed (deprecated since 1.24).
+* ApiBase::getFinalPossibleErrors() was removed (deprecated since 1.24).
+* ApiBase::getFinalResultProperties() was removed (deprecated since 1.24).
+* ApiBase::getRequireAtLeastOneParameterErrorMessages() was removed (deprecated since 1.24).
+* ApiBase::getPossibleErrors() was removed (deprecated since 1.24).
+* ApiBase::getRequireMaxOneParameterErrorMessages() was removed (deprecated since 1.24).
+* ApiBase::getRequireOnlyOneParameterErrorMessages() was removed (deprecated since 1.24).
+* ApiBase::getResultProperties() was removed (deprecated since 1.24).
+* ApiBase::getTitleOrPageIdErrorMessage() was removed (deprecated since 1.24).
+* ApiBase::parseErrors() was removed (deprecated since 1.24).
+* ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
+  ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
+* ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
+* ApiQueryBase::getDirectionDescription() was removed (deprecated since 1.25).
+* ApiQuery::getGenerators() was removed (deprecated since 1.21).
+* ApiQuery::getModules() was removed (deprecated since 1.21).
+* ApiQuery::getModuleType() was removed (deprecated since 1.21).
+* ApiQuery::setGeneratorContinue() was removed (deprecated since 1.24).
+* ApiMain::getModules() was removed (deprecated since 1.21).
+* ApiBase::getVersion() was removed (deprecated since 1.21).
+* ApiMain::getShowVersions() was removed (deprecated in 1.21).
+* ApiMain::addModule() was removed (deprecated in 1.21).
+* ApiMain::addFormat() was removed (deprecated in 1.21).
+* ApiMain::getFormats() was removed (deprecated in 1.21).
+* ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
+* ApiCreateAccount is deprecated, and will be removed soon.
+
+=== Languages updated in 1.27 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Phabricator reports.
+
+* (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
+* (T116020) Aliases of magic words in MessagesXx.php are sorted by usage.
+
+=== Other changes in 1.27 ===
+* Added dependency injection (DI) infrastructure, see docs/injection.txt for details.
+  It is planned to incrementally move MediaWiki code towards using DI, using the
+  service locator (SL) pattern as a stepping stone.
+* ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
+* WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
+  ignore the 2nd and 3rd arguments (formerly $id and $commit).
+* Removed "loaderScripts" option from ResourceLoaderFileModule class.
+* Removed ORM-like wrapper added in 1.20.
+* LinkCache::getGoodLinks and LinkCache::getBadLinks were removed
+  (deprecated in 1.26).
+* WikiPage::doQuickEdit() was removed (deprecated since 1.21).
+* Removed SiteObject and SiteArray classes (deprecated in 1.21).
+* MessageBlobStore::getInstance() was removed (deprecated since 1.25).
+* (T84937) Free external links ("autolinked" urls) will now be terminated
+  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* (T36948) The default file revert message's timestamp is now in
+  $wgLocaltimezone, instead of UTC.
+* The default name of the 'suppress' group page has been changed from
+  'Project:Oversight' to 'Project:Suppress'.
+* DatabaseBase::resultObject() is now protected (use outside Database classes
+  not necessary since 1.11).
+* Calling ResourceLoaderFileModule::readStyleFiles() without a
+  ResourceLoaderContext instance is deprecated.
+* ResourceLoader::getLessCompiler() now takes an optional parameter of
+  additional LESS variables to set for the compiler.
+* wfBaseConvert() marked as deprecated, use Wikimedia\base_convert() directly
+  instead.
+* Obsolete maintenance scripts clearCacheStats.php and showCacheStats.php
+  were removed. The underlying data is sent to StatsD (see $wgStatsdServer).
+* Removed msg_resource_links database table and associated code.
+* Removed msg_resource database table and associated code.
+* Skin::getNamespaceNotice() was removed.
+* wfIsConfiguredProxy() was removed (deprecated since 1.24).
+* wfDebugTimer() was removed (deprecated since 1.25).
+* wfIsTrustedProxy() was removed (deprecated since 1.24).
+* wfGetIP() was removed (deprecated since 1.19).
+* MWHookException was removed.
+* OutputPage::appendSubtitle() was removed (deprecated since 1.19).
+* OutputPage::loginToUse() was removed (deprecated since 1.19).
+* Article::loadContent() was removed (deprecated since 1.19).
+* User::editToken() was removed (deprecated since 1.19).
+* Removed --force-normal option of dumpBackup.php, as it no longer served
+  any useful purpose since 1.22.
+* The functions processOption() and processArgs() on the BackupDumper and
+  TextPassDumper classes have been removed.
+* The maintenance/backupTextPass.inc file was deleted. You should include
+  maintenance/dumpTextPass.php instead.
+* WikiPage::getUsedTemplates() was removed (deprecated since 1.19).
+* wfEmptyMsg() was removed (deprecated since 1.18).
+* OutputPage::permissionRequired() was removed (deprecated since 1.18).
+* OutputPage::blockedPage() was removed (deprecated since 1.18).
+* User::getSkin() was removed (deprecated since 1.18).
+* OutputPage::includeJQuery() was removed (deprecated since 1.17).
+* WikiPage::updateRestrictions() was removed (deprecated since 1.19).
+* WikiPage::testPreSaveTransform() was removed (deprecated since 1.19).
+* LogPage::logName() was removed (deprecated since 1.19).
+* LogPage::logHeader() was removed (deprecated since 1.19).
+* wfCheckLimits() was removed (deprecated since 1.24).
+* Linker::makeKnownLinkObj() was removed (deprecated since 1.16).
+* Linker::makeLinkObj() was removed (deprecated since 1.16).
+* wfMsgForContentNoTrans() was removed (deprecated since 1.18).
+* ChangesList::usePatrol was removed (deprecated since 1.22).
+* wfMsgNoTrans() was removed (deprecated since 1.18).
+* Linker::makeImageLink2 was removed (deprecated since 1.20).
+* Title::userIsWatching() was removed (deprecated since 1.20).
+* Removed WaitForSlave maintenance script; use SELECT MASTER_POS_WAIT()
+  database function directly instead.
+* wfMsg() was removed (deprecated since 1.18).
+* wfMsgForContent() was removed (deprecated since 1.18).
+* wfMsgReal() was removed (deprecated since 1.18).
+* wfMsgGetKey() was removed (deprecated since 1.18).
+* wfMsgHtml() was removed (deprecated since 1.18).
+* wfMsgWikiHtml() was removed (deprecated since 1.18).
+* wfMsgExt() was removed (deprecated since 1.18).
+* Language::armourMath() was removed (deprecated since 1.22).
+* LanguageConverter::armourMath() was removed (deprecated since 1.22).
+* FakeConverter::armourMath() was removed (deprecated since 1.22).
+* The unused jquery.validate ResourceLoader module was removed.
+* FileRepo::getRootUrl() was removed (deprecated since 1.20).
+* User::generateToken() was removed (deprecated since 1.20).
+* WikiPage::getRawText() was removed (deprecated since 1.21).
+* ParserOutput::hasCustomDataUpdates() was removed (deprecated since 1.25).
+* ParserOutput::addSecondaryDataUpdate() was removed (deprecated since 1.25).
+* ParserOutput::getSecondaryDataUpdates() was removed (deprecated since 1.25).
+* Gallery images with multiple caption pipes no longer concatenate them all
+  together but instead pick the final one, similar to image syntax.
+* XML-like parser tags (such as <gallery>), when unclosed, will be left unparsed
+  rather than consume everything until the end of the page.
+* New maintenance script resetUserEmail.php allows sysadmins to reset user emails in case
+  a user forgot password/account was stolen.
+* wfCheckEntropy() was removed (deprecated in 1.27).
+* Browser support for Internet Explorer 8 lowered from Grade A to Grade C.
+* ContentHandler::supportsCategories method added. Default is true.
+  CategoryMembershipChangeJob updates are skipped for content that
+  does not support categories.
+* wikidiff difference engine is no longer supported, anyone still using it are encouraged
+  to upgrade to wikidiff2 which is actively maintained and has better package availability.
+* Database logic was removed from WatchedItem and a WatchedItemStore was created:
+** WatchedItem::IGNORE_USER_RIGHTS and WatchedItem::CHECK_USER_RIGHTS were deprecated.
+   User::IGNORE_USER_RIGHTS and User::CHECK_USER_RIGHTS were introduced.
+** WatchedItem::fromUserTitle was deprecated in favour of the constructor.
+** WatchedItem::resetNotificationTimestamp was deprecated.
+** WatchedItem::batchAddWatch was deprecated.
+** WatchedItem::addWatch was deprecated.
+** WatchedItem::removeWatch was deprecated.
+** WatchedItem::isWatched was deprecated.
+** WatchedItem::duplicateEntries was deprecated.
+** EmailNotification::updateWatchlistTimestamp was deprecated.
+** User::getWatchedItem was removed.
+* Unit tests don't work with external PHPUnit anymore, Composer is now the only supported
+  way. Run `composer install` to install it and other dev dependencies to run unit tests.
+* wl_id field added to the watchlist table.
+* Revision::getRawText() was removed (deprecated since 1.21).
+* WikiPage::replaceSection() was removed (deprecated since 1.21).
+* Article::replaceSection() was removed (deprecated since 1.21).
+* Language::getLangObj() was removed (deprecated since 1.24).
+* Language::getLanguageName() was removed (deprecated since 1.20).
+* Language::getLanguageNames() was removed (deprecated since 1.20).
+* Language::getTranslatedLanguageNames() was removed (deprecated since 1.20).
+* Language::specialPage() was removed (deprecated since 1.24).
+* MediaWikiTestCase::assertException() was removed (deprecated since 1.22).
+* OutputPage::getHeadItems() was removed (deprecated since 1.24).
+* OutputPage::getScript() was removed (deprecated since 1.24).
+* OutputPage::out() was removed (deprecated since 1.22).
+* OutputPage::setAllowedModules() was removed (deprecated since 1.24).
+* UserrightsPage::makeGroupNameListForLog() was removed (deprecated since 1.21).
+* MediaWikiSite::newFromGlobalId() was removed (deprecated since 1.21).
+* Title::newFromRedirect() was removed (deprecated since 1.21).
+* Skin::commonPrintStylesheet() was removed (deprecated since 1.22).
+* Skin::getCommonStylePath() was removed (deprecated since 1.24).
+* Skin::newFromKey() was removed (deprecated since 1.24).
+* Skin::getUsableSkins() was removed (deprecated since 1.23).
+* LoadBalancer::pickRandom() was removed (deprecated in 1.21).
+* Article::getUndoText() and WikiPage::getUndoText were removed (deprecated since
+  1.21).
+* DifferenceEngine::setText() was removed (deprecated in 1.21).
+* Title::newFromRedirectArray() was removed (deprecated in 1.21).
+* UserMailer::send() no longer accepts $replyto as the 5th argument and $contentType
+  as the 6th. These must be passed in the options array now.
+* Title::newFromRedirectRecurse() was removed (deprecated in 1.21).
+* Skin::accesskey was removed (deprecated since 1.21).
+* Skin::blockLink was removed (deprecated since 1.21).
+* Skin::buildRollbackLink was removed (deprecated since 1.21).
+* Skin::emailLink was removed (deprecated since 1.21).
+* Skin::formatComment was removed (deprecated since 1.21).
+* Skin::formatHiddenCategories was removed (deprecated since 1.21).
+* Skin::formatLinksInComment was removed (deprecated since 1.21).
+* Skin::formatRevisionSize was removed (deprecated since 1.21).
+* Skin::formatSize was removed (deprecated since 1.21).
+* Skin::formatTemplates was removed (deprecated since 1.21).
+* Skin::generateTOC was removed (deprecated since 1.21).
+* Skin::getInternalLinkAttributes was removed (deprecated since 1.21).
+* Skin::getInternalLinkAttributesObj was removed (deprecated since 1.21).
+* Skin::getInterwikiLinkAttributes was removed (deprecated since 1.21).
+* Skin::getInvalidTitleDescription was removed (deprecated since 1.21).
+* Skin::getLinkColour was removed (deprecated since 1.21).
+* Skin::getRevDeleteLink was removed (deprecated since 1.21).
+* Skin::getRollbackEditCount was removed (deprecated since 1.21).
+* Skin::makeBrokenImageLinkObj was removed (deprecated since 1.21).
+* Skin::makeCommentLink was removed (deprecated since 1.21).
+* Skin::makeExternalImage was removed (deprecated since 1.21).
+* Skin::makeExternalLink was removed (deprecated since 1.21).
+* Skin::makeHeadline was removed (deprecated since 1.21).
+* Skin::makeImageLink was removed (deprecated since 1.21).
+* Skin::makeMediaLinkFile was removed (deprecated since 1.21).
+* Skin::makeMediaLinkObj was removed (deprecated since 1.21).
+* Skin::makeSelfLinkObj was removed (deprecated since 1.21).
+* Skin::makeThumbLink2 was removed (deprecated since 1.21).
+* Skin::makeThumbLinkObj was removed (deprecated since 1.21).
+* Skin::normaliseSpecialPage was removed (deprecated since 1.21).
+* Skin::normalizeSubpageLink was removed (deprecated since 1.21).
+* Skin::processResponsiveImages was removed (deprecated since 1.21).
+* Skin::revComment was removed (deprecated since 1.21).
+* Skin::revDeleteLink was removed (deprecated since 1.21).
+* Skin::revDeleteLinkDisabled was removed (deprecated since 1.21).
+* Skin::revUserLink was removed (deprecated since 1.21).
+* Skin::revUserTools was removed (deprecated since 1.21).
+* Skin::specialLink was removed (deprecated since 1.21).
+* Skin::splitTrail was removed (deprecated since 1.21).
+* Skin::titleAttrib was removed (deprecated since 1.21).
+* Skin::tocIndent was removed (deprecated since 1.21).
+* Skin::tocLine was removed (deprecated since 1.21).
+* Skin::tocLineEnd was removed (deprecated since 1.21).
+* Skin::tocList was removed (deprecated since 1.21).
+* Skin::tocUnindent was removed (deprecated since 1.21).
+* Skin::tooltip was removed (deprecated since 1.21).
+* Skin::tooltipAndAccesskeyAttribs was removed (deprecated since 1.21).
+* Skin::userTalkLink was removed (deprecated since 1.21).
+* Skin::userToolLinksRedContribs was removed (deprecated since 1.21).
+* wikidiff3 is now the default and only PHP diff engine. It provides improved diff
+  performance on complex changes. $wgExternalDiffEngine = 'wikidiff3' therefore
+  makes no difference now. Users are still recommended to use wikidiff2 if possible,
+  though.
+* User::addNewUserLogEntry() was deprecated.
+* User::addNewUserLogEntryAutoCreate() was deprecated.
+* User::isPasswordReminderThrottled() was deprecated.
+* Bot-oriented parameters to Special:UserLogin (wpCookieCheck, wpSkipCookieCheck)
+  were removed.
+* Installer can now be customized without patching MediaWiki code, see
+  mw-config/overrides/README for details.
+
+== Compatibility ==
+
+MediaWiki 1.27 requires PHP 5.5.9 or later. There is experimental support for
+HHVM 3.6.5 or later.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.0.3 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+
+1.27 has several database changes since 1.26, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.26.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+       https://www.mediawiki.org/wiki/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.

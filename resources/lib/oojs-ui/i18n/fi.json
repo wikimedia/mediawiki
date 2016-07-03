@@ -29,7 +29,8 @@
 	"ooui-dialog-process-dismiss": "Hylkää",
 	"ooui-dialog-process-retry": "Yritä uudelleen",
 	"ooui-dialog-process-continue": "Jatka",
+	"ooui-selectfile-button-select": "Valitse tiedosto",
 	"ooui-selectfile-not-supported": "Tiedoston valitsemista ei tueta",
 	"ooui-selectfile-placeholder": "Tiedostoa ei ole valittu",
-	"ooui-selectfile-dragdrop-placeholder": "Pudota tiedosto (tai selaa tiedostoja napsauttamalla)"
+	"ooui-selectfile-dragdrop-placeholder": "Pudota tiedosto tähän"
 }

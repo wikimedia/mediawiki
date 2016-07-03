@@ -1,5 +1,6 @@
 {
-	"prefix": "oo-ui-icon",
+	"selectorWithoutVariant": ".oo-ui-icon-{name}",
+	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {

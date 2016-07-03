@@ -10,7 +10,7 @@
 
 $fallback = 'tr';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Mediya',
 	NS_SPECIAL          => 'Maasus',
 	NS_TALK             => 'Dartışma',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yardım_dartışma',
 	NS_CATEGORY         => 'Kategoriya',
 	NS_CATEGORY_TALK    => 'Kategoriya_dartışma',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	# Turkish namespaces
 	'Medya'              => NS_MEDIA,
 	'Özel'               => NS_SPECIAL,
@@ -47,45 +47,45 @@ $namespaceAliases = array(
 	'Yardım_tartışma'    => NS_HELP_TALK,
 	'Kategori'           => NS_CATEGORY,
 	'Kategori_tartışma'  => NS_CATEGORY_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'HepsiYazılar', 'HepsiSayfalar', 'HepsiYapraklar' ),
-	'Ancientpages'              => array( 'EskiYazılar', 'EskiSayfalar', 'EskiYapraklar' ),
-	'Categories'                => array( 'Kategoriyalar' ),
-	'Contributions'             => array( 'Katılmaklar' ),
-	'CreateAccount'             => array( 'EsapYarat', 'EsapAç' ),
-	'Deadendpages'              => array( 'BaalantısızYazılar', 'BaalantısızSayfalar', 'BaalantısızYapraklar' ),
-	'DoubleRedirects'           => array( 'İkiKeräYönnendirmäler', 'İkiKeräYönnendirmeler' ),
-	'Listadmins'                => array( 'İzmetliListası' ),
-	'Listbots'                  => array( 'BotListası' ),
-	'Listfiles'                 => array( 'DosyeListası', 'PätretListası' ),
-	'Listredirects'             => array( 'YönnedirmeListası', 'YönndermäListası' ),
-	'Listusers'                 => array( 'KullanıcıListası' ),
-	'Mycontributions'           => array( 'Katılmaklarım' ),
-	'Mytalk'                    => array( 'SözleşmäkSayfam', 'SözleşmäkYapraım' ),
-	'Newimages'                 => array( 'EniDosyeler', 'EniPätretler' ),
-	'Newpages'                  => array( 'EniYazılar', 'EniSayfalar', 'EniYapraklar' ),
-	'Preferences'               => array( 'Seçimner' ),
-	'Prefixindex'               => array( 'Prefiksİndeksi' ),
-	'Randompage'                => array( 'Razgele', 'RazgeleYazı', 'RazgeleSayfa', 'RazgeleYaprak' ),
-	'Randomredirect'            => array( 'RazgeleYönnendirme', 'RazgeleYönndermä' ),
-	'Recentchanges'             => array( 'BitkiDiişikmäklär' ),
-	'Search'                    => array( 'Ara' ),
-	'Specialpages'              => array( 'MaasusSayfalar', 'MaasusYazılar', 'MaasusYapraklar' ),
-	'Statistics'                => array( 'İstatistikalar' ),
-	'Uncategorizedcategories'   => array( 'KategorizațiyasızKategoriyalar' ),
-	'Uncategorizedimages'       => array( 'KategorizațiyasızDosyeler', 'KategorizațiyasızPätretler' ),
-	'Uncategorizedpages'        => array( 'KategorizațiyasızYazılar', 'KategorizațiyasızSayfalar', 'KategorizațiyasızYapraklar' ),
-	'Uncategorizedtemplates'    => array( 'KategorizațiyasızŞablonnar' ),
-	'Unusedcategories'          => array( 'KullanılmayanKategoriyalar' ),
-	'Unusedimages'              => array( 'KullanılmayanDosyeler', 'KullanılmayanPätretler' ),
-	'Upload'                    => array( 'Ükle' ),
-	'Watchlist'                 => array( 'SiirListası', 'BakmaaListası' ),
-	'Withoutinterwiki'          => array( 'İntervikisiz' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'HepsiYazılar', 'HepsiSayfalar', 'HepsiYapraklar' ],
+	'Ancientpages'              => [ 'EskiYazılar', 'EskiSayfalar', 'EskiYapraklar' ],
+	'Categories'                => [ 'Kategoriyalar' ],
+	'Contributions'             => [ 'Katılmaklar' ],
+	'CreateAccount'             => [ 'EsapYarat', 'EsapAç' ],
+	'Deadendpages'              => [ 'BaalantısızYazılar', 'BaalantısızSayfalar', 'BaalantısızYapraklar' ],
+	'DoubleRedirects'           => [ 'İkiKeräYönnendirmäler', 'İkiKeräYönnendirmeler' ],
+	'Listadmins'                => [ 'İzmetliListası' ],
+	'Listbots'                  => [ 'BotListası' ],
+	'Listfiles'                 => [ 'DosyeListası', 'PätretListası' ],
+	'Listredirects'             => [ 'YönnedirmeListası', 'YönndermäListası' ],
+	'Listusers'                 => [ 'KullanıcıListası' ],
+	'Mycontributions'           => [ 'Katılmaklarım' ],
+	'Mytalk'                    => [ 'SözleşmäkSayfam', 'SözleşmäkYapraım' ],
+	'Newimages'                 => [ 'EniDosyeler', 'EniPätretler' ],
+	'Newpages'                  => [ 'EniYazılar', 'EniSayfalar', 'EniYapraklar' ],
+	'Preferences'               => [ 'Seçimner' ],
+	'Prefixindex'               => [ 'Prefiksİndeksi' ],
+	'Randompage'                => [ 'Razgele', 'RazgeleYazı', 'RazgeleSayfa', 'RazgeleYaprak' ],
+	'Randomredirect'            => [ 'RazgeleYönnendirme', 'RazgeleYönndermä' ],
+	'Recentchanges'             => [ 'BitkiDiişikmäklär' ],
+	'Search'                    => [ 'Ara' ],
+	'Specialpages'              => [ 'MaasusSayfalar', 'MaasusYazılar', 'MaasusYapraklar' ],
+	'Statistics'                => [ 'İstatistikalar' ],
+	'Uncategorizedcategories'   => [ 'KategorizațiyasızKategoriyalar' ],
+	'Uncategorizedimages'       => [ 'KategorizațiyasızDosyeler', 'KategorizațiyasızPätretler' ],
+	'Uncategorizedpages'        => [ 'KategorizațiyasızYazılar', 'KategorizațiyasızSayfalar', 'KategorizațiyasızYapraklar' ],
+	'Uncategorizedtemplates'    => [ 'KategorizațiyasızŞablonnar' ],
+	'Unusedcategories'          => [ 'KullanılmayanKategoriyalar' ],
+	'Unusedimages'              => [ 'KullanılmayanDosyeler', 'KullanılmayanPätretler' ],
+	'Upload'                    => [ 'Ükle' ],
+	'Watchlist'                 => [ 'SiirListası', 'BakmaaListası' ],
+	'Withoutinterwiki'          => [ 'İntervikisiz' ],
+];
 
-$magicWords = array(
-	'redirect'                  => array( '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ),
-);
+$magicWords = [
+	'redirect'                  => [ '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ],
+];
 

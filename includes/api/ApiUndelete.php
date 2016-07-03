@@ -33,31 +33,34 @@ class ApiUndelete extends ApiBase {
 		$this->useTransactionalTimeLimit();
 
 		$params = $this->extractRequestParams();
-
-		if ( !$this->getUser()->isAllowed( 'undelete' ) ) {
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'undelete' ) ) {
 			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
-		if ( $this->getUser()->isBlocked() ) {
-			$this->dieUsage(
-				'You have been blocked from editing',
-				'blocked',
-				0,
-				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
-			);
+		if ( $user->isBlocked() ) {
+			$this->dieBlocked( $user->getBlock() );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
+		}
+
+		// Check if user can add tags
+		if ( !is_null( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
 		}
 
 		// Convert timestamps
 		if ( !isset( $params['timestamps'] ) ) {
-			$params['timestamps'] = array();
+			$params['timestamps'] = [];
 		}
 		if ( !is_array( $params['timestamps'] ) ) {
-			$params['timestamps'] = array( $params['timestamps'] );
+			$params['timestamps'] = [ $params['timestamps'] ];
 		}
 		foreach ( $params['timestamps'] as $i => $ts ) {
 			$params['timestamps'][$i] = wfTimestamp( TS_MW, $ts );
@@ -65,11 +68,12 @@ class ApiUndelete extends ApiBase {
 
 		$pa = new PageArchive( $titleObj, $this->getConfig() );
 		$retval = $pa->undelete(
-			( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ),
+			( isset( $params['timestamps'] ) ? $params['timestamps'] : [] ),
 			$params['reason'],
 			$params['fileids'],
 			false,
-			$this->getUser()
+			$user,
+			$params['tags']
 		);
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( 'cannotundelete' );
@@ -77,7 +81,7 @@ class ApiUndelete extends ApiBase {
 
 		if ( $retval[1] ) {
 			Hooks::run( 'FileUndeleteComplete',
-				array( $titleObj, $params['fileids'], $this->getUser(), $params['reason'] ) );
+				[ $titleObj, $params['fileids'], $this->getUser(), $params['reason'] ] );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );
@@ -98,30 +102,34 @@ class ApiUndelete extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'title' => array(
+		return [
+			'title' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'reason' => '',
-			'timestamps' => array(
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
+			'timestamps' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'fileids' => array(
+			],
+			'fileids' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'watchlist' => array(
+			],
+			'watchlist' => [
 				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'watch',
 					'unwatch',
 					'preferences',
 					'nochange'
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 
 	public function needsToken() {
@@ -129,13 +137,13 @@ class ApiUndelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
 				=> 'apihelp-undelete-example-page',
 			'action=undelete&title=Main%20Page&token=123ABC' .
 				'&timestamps=2007-07-03T22:00:45Z|2007-07-02T19:48:56Z'
 				=> 'apihelp-undelete-example-revisions',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

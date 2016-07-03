@@ -3,7 +3,7 @@
 class DummyContentHandlerForTesting extends ContentHandler {
 
 	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, array( "testing" ) );
+		parent::__construct( $dataModel, [ "testing" ] );
 	}
 
 	/**

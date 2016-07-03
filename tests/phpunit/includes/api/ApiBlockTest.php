@@ -17,12 +17,12 @@ class ApiBlockTest extends ApiTestCase {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
 
-	function addDBData() {
+	function addDBDataOnce() {
 		$user = User::newFromName( 'UTApiBlockee' );
 
 		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTApiBlockeePassword' );
+			TestUser::setPasswordForUser( $user, 'UTApiBlockeePassword' );
 
 			$user->saveSettings();
 		}
@@ -30,11 +30,11 @@ class ApiBlockTest extends ApiTestCase {
 
 	/**
 	 * This test has probably always been broken and use an invalid token
-	 * Bug tracking brokenness is https://bugzilla.wikimedia.org/35646
+	 * Bug tracking brokenness is https://phabricator.wikimedia.org/T37646
 	 *
 	 * Root cause is https://gerrit.wikimedia.org/r/3434
 	 * Which made the Block/Unblock API to actually verify the token
-	 * previously always considered valid (bug 34212).
+	 * previously always considered valid (T36212).
 	 */
 	public function testMakeNormalBlock() {
 		$tokens = $this->getTokens();
@@ -49,11 +49,11 @@ class ApiBlockTest extends ApiTestCase {
 			$this->markTestIncomplete( "No block token found" );
 		}
 
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->getUser() );
+			'token' => $tokens['blocktoken'] ], null, false, self::$users['sysop']->getUser() );
 
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 
@@ -70,11 +70,11 @@ class ApiBlockTest extends ApiTestCase {
 	 */
 	public function testBlockingActionWithNoToken() {
 		$this->doApiRequest(
-			array(
+			[
 				'action' => 'block',
 				'user' => 'UTApiBlockee',
 				'reason' => 'Some reason',
-			),
+			],
 			null,
 			false,
 			self::$users['sysop']->getUser()

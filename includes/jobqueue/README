@@ -11,7 +11,7 @@ The data model consist of the following main components:
   background. All jobs subclass the Job object and put the main logic in the
   function called run().
 * The JobQueue object represents a particular queue of jobs of a certain type.
-  For example there may be a queue for email jobs and a queue for squid purge
+  For example there may be a queue for email jobs and a queue for CDN purge
   jobs.
 
 \section jobqueue Job queues
@@ -45,7 +45,7 @@ In-memory queues may lose data when restarted depending on snapshot and journal
 settings (including journal fsync() frequency).  Some queue types may totally remove
 jobs when dequeued while leaving the ack() function as a no-op; if a job is
 dequeued by a job runner, which crashes before completion, the job will be
-lost. Some jobs, like purging squid caches after a template change, may not
+lost. Some jobs, like purging CDN caches after a template change, may not
 require durable queues, whereas other jobs might be more important.
 
 \section aggregator Job queue aggregator
@@ -61,7 +61,6 @@ large amounts of time polling empty queues, aggregators exists to keep track
 of which queues are ready.
 
 The following queue aggregator classes are available:
-* JobQueueAggregatorMemc (uses $wgMemc to track ready queues)
 * JobQueueAggregatorRedis (uses a redis server to track ready queues)
 
 Some aggregators cache data for a few minutes while others may be always up to date.

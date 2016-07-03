@@ -91,7 +91,7 @@ class FormOptionsTest extends MediaWikiTestCase {
 	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnArrayThrowException() {
-		$this->object->guessType( array( 'foo' ) );
+		$this->object->guessType( [ 'foo' ] );
 	}
 	/**
 	 * @expectedException MWException

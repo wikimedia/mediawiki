@@ -33,7 +33,7 @@ class CleanupAncientTables extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Cleanup ancient tables and indexes";
+		$this->addDescription( 'Cleanup ancient tables and indexes' );
 		$this->addOption( 'force', 'Actually run this script' );
 	}
 
@@ -46,8 +46,8 @@ class CleanupAncientTables extends Maintenance {
 			);
 		}
 
-		$db = wfGetDB( DB_MASTER );
-		$ancientTables = array(
+		$db = $this->getDB( DB_MASTER );
+		$ancientTables = [
 			'blobs', // 1.4
 			'brokenlinks', // 1.4
 			'cur', // 1.4
@@ -60,7 +60,7 @@ class CleanupAncientTables extends Maintenance {
 			'trackback', // 1.19
 			'user_rights', // 1.5
 			'validate', // 1.6
-		);
+		];
 
 		foreach ( $ancientTables as $table ) {
 			if ( $db->tableExists( $table, __METHOD__ ) ) {
@@ -72,13 +72,13 @@ class CleanupAncientTables extends Maintenance {
 
 		$this->output( "Cleaning up text table\n" );
 
-		$oldIndexes = array(
+		$oldIndexes = [
 			'old_namespace',
 			'old_timestamp',
 			'name_title_timestamp',
 			'user_timestamp',
 			'usertext_timestamp',
-		);
+		];
 		foreach ( $oldIndexes as $index ) {
 			if ( $db->indexExists( 'text', $index, __METHOD__ ) ) {
 				$this->output( "Dropping index $index from the text table..." );
@@ -88,7 +88,7 @@ class CleanupAncientTables extends Maintenance {
 			}
 		}
 
-		$oldFields = array(
+		$oldFields = [
 			'old_namespace',
 			'old_title',
 			'old_comment',
@@ -97,7 +97,7 @@ class CleanupAncientTables extends Maintenance {
 			'old_timestamp',
 			'old_minor_edit',
 			'inverse_timestamp',
-		);
+		];
 		foreach ( $oldFields as $field ) {
 			if ( $db->fieldExists( 'text', $field, __METHOD__ ) ) {
 				$this->output( "Dropping the $field field from the text table..." );

@@ -29,31 +29,31 @@ class SubpageImportTitleFactoryTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgLanguageCode' => 'en',
 			'wgContLang' => Language::factory( 'en' ),
-			'wgNamespacesWithSubpages' => array( 0 => false, 2 => true ),
-		) );
+			'wgNamespacesWithSubpages' => [ 0 => false, 2 => true ],
+		] );
 	}
 
 	public function basicProvider() {
-		return array(
-			array(
+		return [
+			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
 				Title::newFromText( 'User:Graham' ),
 				Title::newFromText( 'User:Graham/MainNamespaceArticle' )
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 1, 'Discussion', 'Nice_talk' ),
 				Title::newFromText( 'User:Graham' ),
 				Title::newFromText( 'User:Graham/Discussion:Nice_talk' )
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
 				Title::newFromText( 'User:Graham' ),
 				Title::newFromText( 'User:Graham/Bogus:Nice_talk' )
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -69,11 +69,11 @@ class SubpageImportTitleFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function failureProvider() {
-		return array(
-			array(
+		return [
+			[
 				Title::newFromText( 'Graham' ),
-			),
-		);
+			],
+		];
 	}
 
 	/**

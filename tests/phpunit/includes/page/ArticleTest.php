@@ -42,16 +42,6 @@ class ArticleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @depends testImplementsSetMagic
-	 * @covers Article::__call
-	 */
-	public function testImplementsCallMagic() {
-		$this->article->mLatest = 33;
-		$this->article->mDataLoaded = true;
-		$this->assertEquals( 33, $this->article->getLatest(), "Article __call magic" );
-	}
-
-	/**
 	 * @covers Article::__get
 	 * @covers Article::__set
 	 */

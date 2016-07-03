@@ -33,6 +33,11 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,
 			$wgCanonicalServer, $wgScript;
 		$attribs = $rc->getAttributes();
+		if ( $attribs['rc_type'] == RC_CATEGORIZE ) {
+			// Don't send RC_CATEGORIZE events to IRC feed (T127360)
+			return null;
+		}
+
 		if ( $attribs['rc_type'] == RC_LOG ) {
 			// Don't use SpecialPage::getTitleFor, backwards compatibility with
 			// IRC API which expects "Log".
@@ -56,7 +61,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 			// HACK: We need this hook for WMF's secure server setup
-			Hooks::run( 'IRCLineURL', array( &$url, &$query, $rc ) );
+			Hooks::run( 'IRCLineURL', [ &$url, &$query, $rc ] );
 			$url .= $query;
 		}
 
@@ -123,10 +128,10 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 * @return string
 	 */
 	public static function cleanupForIRC( $text ) {
-		return Sanitizer::decodeCharReferences( str_replace(
-			array( "\n", "\r" ),
-			array( " ", "" ),
-			$text
-		) );
+		return str_replace(
+			[ "\n", "\r" ],
+			[ " ", "" ],
+			Sanitizer::decodeCharReferences( $text )
+		);
 	}
 }

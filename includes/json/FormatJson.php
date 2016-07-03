@@ -94,18 +94,18 @@ class FormatJson {
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
 	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
 	 */
-	private static $badChars = array(
+	private static $badChars = [
 		"\xe2\x80\xa8", // U+2028 LINE SEPARATOR
 		"\xe2\x80\xa9", // U+2029 PARAGRAPH SEPARATOR
-	);
+	];
 
 	/**
 	 * Escape sequences for characters listed in FormatJson::$badChars.
 	 */
-	private static $badCharsEscaped = array(
+	private static $badCharsEscaped = [
 		'\u2028', // U+2028 LINE SEPARATOR
 		'\u2029', // U+2029 PARAGRAPH SEPARATOR
-	);
+	];
 
 	/**
 	 * Returns the JSON representation of a value.
@@ -129,11 +129,46 @@ class FormatJson {
 			$pretty = $pretty ? '    ' : false;
 		}
 
-		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
-			return self::encode54( $value, $pretty, $escaping );
+		static $bug66021;
+		if ( $pretty !== false && $bug66021 === null ) {
+			$bug66021 = json_encode( [], JSON_PRETTY_PRINT ) !== '[]';
 		}
 
-		return self::encode53( $value, $pretty, $escaping );
+		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
+		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
+		// escaping negatively impacts the human readability of URLs and similar strings.
+		$options = JSON_UNESCAPED_SLASHES;
+		$options |= $pretty !== false ? JSON_PRETTY_PRINT : 0;
+		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
+		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
+		$json = json_encode( $value, $options );
+		if ( $json === false ) {
+			return false;
+		}
+
+		if ( $pretty !== false ) {
+			// Workaround for <https://bugs.php.net/bug.php?id=66021>
+			if ( $bug66021 ) {
+				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+			}
+			if ( $pretty !== '    ' ) {
+				// Change the four-space indent to a tab indent
+				$json = str_replace( "\n    ", "\n\t", $json );
+				while ( strpos( $json, "\t    " ) !== false ) {
+					$json = str_replace( "\t    ", "\t\t", $json );
+				}
+
+				if ( $pretty !== "\t" ) {
+					// Change the tab indent to the provided indent
+					$json = str_replace( "\t", $pretty, $json );
+				}
+			}
+		}
+		if ( $escaping & self::UTF8_OK ) {
+			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
+		}
+
+		return $json;
 	}
 
 	/**
@@ -224,141 +259,6 @@ class FormatJson {
 				break;
 		}
 		return Status::newFatal( $msg );
-	}
-
-	/**
-	 * JSON encoder wrapper for PHP >= 5.4, which supports useful encoding options.
-	 *
-	 * @param mixed $value
-	 * @param string|bool $pretty
-	 * @param int $escaping
-	 * @return string|false
-	 */
-	private static function encode54( $value, $pretty, $escaping ) {
-		static $bug66021;
-		if ( $pretty !== false && $bug66021 === null ) {
-			$bug66021 = json_encode( array(), JSON_PRETTY_PRINT ) !== '[]';
-		}
-
-		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
-		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
-		// escaping negatively impacts the human readability of URLs and similar strings.
-		$options = JSON_UNESCAPED_SLASHES;
-		$options |= $pretty !== false ? JSON_PRETTY_PRINT : 0;
-		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
-		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
-		$json = json_encode( $value, $options );
-		if ( $json === false ) {
-			return false;
-		}
-
-		if ( $pretty !== false ) {
-			// Workaround for <https://bugs.php.net/bug.php?id=66021>
-			if ( $bug66021 ) {
-				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
-			}
-			if ( $pretty !== '    ' ) {
-				// Change the four-space indent to a tab indent
-				$json = str_replace( "\n    ", "\n\t", $json );
-				while ( strpos( $json, "\t    " ) !== false ) {
-					$json = str_replace( "\t    ", "\t\t", $json );
-				}
-
-				if ( $pretty !== "\t" ) {
-					// Change the tab indent to the provided indent
-					$json = str_replace( "\t", $pretty, $json );
-				}
-			}
-		}
-		if ( $escaping & self::UTF8_OK ) {
-			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
-		}
-
-		return $json;
-	}
-
-	/**
-	 * JSON encoder wrapper for PHP 5.3, which lacks native support for some encoding options.
-	 * Therefore, the missing options are implemented here purely in PHP code.
-	 *
-	 * @param mixed $value
-	 * @param string|bool $pretty
-	 * @param int $escaping
-	 * @return string|false
-	 */
-	private static function encode53( $value, $pretty, $escaping ) {
-		$options = ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
-		$json = json_encode( $value, $options );
-		if ( $json === false ) {
-			return false;
-		}
-
-		// Emulate JSON_UNESCAPED_SLASHES. Because the JSON contains no unescaped slashes
-		// (only escaped slashes), a simple string replacement works fine.
-		$json = str_replace( '\/', '/', $json );
-
-		if ( $escaping & self::UTF8_OK ) {
-			// JSON hex escape sequences follow the format \uDDDD, where DDDD is four hex digits
-			// indicating the equivalent UTF-16 code unit's value. To most efficiently unescape
-			// them, we exploit the JSON extension's built-in decoder.
-			// * We escape the input a second time, so any such sequence becomes \\uDDDD.
-			// * To avoid interpreting escape sequences that were in the original input,
-			//   each double-escaped backslash (\\\\) is replaced with \\\u005c.
-			// * We strip one of the backslashes from each of the escape sequences to unescape.
-			// * Then the JSON decoder can perform the actual unescaping.
-			$json = str_replace( "\\\\\\\\", "\\\\\\u005c", addcslashes( $json, '\"' ) );
-			$json = json_decode( preg_replace( "/\\\\\\\\u(?!00[0-7])/", "\\\\u", "\"$json\"" ) );
-			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
-		}
-
-		if ( $pretty !== false ) {
-			return self::prettyPrint( $json, $pretty );
-		}
-
-		return $json;
-	}
-
-	/**
-	 * Adds non-significant whitespace to an existing JSON representation of an object.
-	 * Only needed for PHP < 5.4, which lacks the JSON_PRETTY_PRINT option.
-	 *
-	 * @param string $json
-	 * @param string $indentString
-	 * @return string
-	 */
-	private static function prettyPrint( $json, $indentString ) {
-		$buf = '';
-		$indent = 0;
-		$json = strtr( $json, array( '\\\\' => '\\\\', '\"' => "\x01" ) );
-		for ( $i = 0, $n = strlen( $json ); $i < $n; $i += $skip ) {
-			$skip = 1;
-			switch ( $json[$i] ) {
-				case ':':
-					$buf .= ': ';
-					break;
-				case '[':
-				case '{':
-					++$indent;
-					// falls through
-				case ',':
-					$buf .= $json[$i] . "\n" . str_repeat( $indentString, $indent );
-					break;
-				case ']':
-				case '}':
-					$buf .= "\n" . str_repeat( $indentString, --$indent ) . $json[$i];
-					break;
-				case '"':
-					$skip = strcspn( $json, '"', $i + 1 ) + 2;
-					$buf .= substr( $json, $i, $skip );
-					break;
-				default:
-					$skip = strcspn( $json, ',]}"', $i + 1 ) + 1;
-					$buf .= substr( $json, $i, $skip );
-			}
-		}
-		$buf = preg_replace( self::WS_CLEANUP_REGEX, '', $buf );
-
-		return str_replace( "\x01", '\"', $buf );
 	}
 
 	/**

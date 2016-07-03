@@ -33,7 +33,7 @@ class FileBackendGroup {
 	protected static $instance = null;
 
 	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
-	protected $backends = array();
+	protected $backends = [];
 
 	protected function __construct() {
 	}
@@ -64,11 +64,11 @@ class FileBackendGroup {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
 
 		// Register explicitly defined backends
-		$this->register( $wgFileBackends );
+		$this->register( $wgFileBackends, wfConfiguredReadOnlyReason() );
 
-		$autoBackends = array();
+		$autoBackends = [];
 		// Automatically create b/c backends for file repos...
-		$repos = array_merge( $wgForeignFileRepos, array( $wgLocalFileRepo ) );
+		$repos = array_merge( $wgForeignFileRepos, [ $wgLocalFileRepo ] );
 		foreach ( $repos as $info ) {
 			$backendName = $info['backend'];
 			if ( is_object( $backendName ) || isset( $this->backends[$backendName] ) ) {
@@ -90,32 +90,33 @@ class FileBackendGroup {
 				? $info['fileMode']
 				: 0644;
 			// Get the FS backend configuration
-			$autoBackends[] = array(
+			$autoBackends[] = [
 				'name' => $backendName,
 				'class' => 'FSFileBackend',
 				'lockManager' => 'fsLockManager',
-				'containerPaths' => array(
+				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
 					"{$repoName}-thumb" => $thumbDir,
 					"{$repoName}-transcoded" => $transcodedDir,
 					"{$repoName}-deleted" => $deletedDir,
 					"{$repoName}-temp" => "{$directory}/temp"
-				),
+				],
 				'fileMode' => $fileMode,
-			);
+			];
 		}
 
 		// Register implicitly defined backends
-		$this->register( $autoBackends );
+		$this->register( $autoBackends, wfConfiguredReadOnlyReason() );
 	}
 
 	/**
 	 * Register an array of file backend configurations
 	 *
 	 * @param array $configs
+	 * @param string|null $readOnlyReason
 	 * @throws FileBackendException
 	 */
-	protected function register( array $configs ) {
+	protected function register( array $configs, $readOnlyReason = null ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
 				throw new FileBackendException( "Cannot register a backend with no name." );
@@ -128,12 +129,16 @@ class FileBackendGroup {
 			}
 			$class = $config['class'];
 
+			$config['readOnly'] = !empty( $config['readOnly'] )
+				? $config['readOnly']
+				: $readOnlyReason;
+
 			unset( $config['class'] ); // backend won't need this
-			$this->backends[$name] = array(
+			$this->backends[$name] = [
 				'class' => $class,
 				'config' => $config,
 				'instance' => null
-			);
+			];
 		}
 	}
 
@@ -159,8 +164,9 @@ class FileBackendGroup {
 				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
-				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
+				: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
+			$config['mimeCallback'] = [ $this, 'guessMimeInternal' ];
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
@@ -181,7 +187,7 @@ class FileBackendGroup {
 		}
 		$class = $this->backends[$name]['class'];
 
-		return array( 'class' => $class ) + $this->backends[$name]['config'];
+		return [ 'class' => $class ] + $this->backends[$name]['config'];
 	}
 
 	/**
@@ -197,5 +203,28 @@ class FileBackendGroup {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param string $storagePath
+	 * @param string|null $content
+	 * @param string|null $fsPath
+	 * @return string
+	 * @since 1.27
+	 */
+	public function guessMimeInternal( $storagePath, $content, $fsPath ) {
+		$magic = MimeMagic::singleton();
+		// Trust the extension of the storage path (caller must validate)
+		$ext = FileBackend::extensionFromPath( $storagePath );
+		$type = $magic->guessTypesForExtension( $ext );
+		// For files without a valid extension (or one at all), inspect the contents
+		if ( !$type && $fsPath ) {
+			$type = $magic->guessMimeType( $fsPath, false );
+		} elseif ( !$type && strlen( $content ) ) {
+			$tmpFile = TempFSFile::factory( 'mime_' );
+			file_put_contents( $tmpFile->getPath(), $content );
+			$type = $magic->guessMimeType( $tmpFile->getPath(), false );
+		}
+		return $type ?: 'unknown/unknown';
 	}
 }

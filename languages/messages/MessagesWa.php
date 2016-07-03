@@ -17,25 +17,25 @@ $fallback = 'fr';
 # lists "no preferences", normall (long) walloon date,
 # short walloon date, and ISO format
 # MW_DATE_DMY is alias for long format, as it is dd mmmmm yyyy.
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'dmy',
 	'walloon short',
 	'ISO 8601'
-);
+];
 
-$datePreferenceMigrationMap = array(
+$datePreferenceMigrationMap = [
 	0 => 'default',
 	2 => 'dmy',
 	4 => 'walloon short',
-);
+];
 $defaultDateFormat = 'dmy';
 
-$dateFormats = array(
+$dateFormats = [
 	'walloon short time' => 'H:i'
-);
+];
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Sipeciås',
 	NS_TALK             => 'Copene',
@@ -52,34 +52,34 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Aidance_copene',
 	NS_CATEGORY         => 'Categoreye',
 	NS_CATEGORY_TALK    => 'Categoreye_copene',
-);
+];
 
 // Remove French aliases
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = [];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'Totes_les_pådjes' ),
-	'Block'                     => array( 'Bloker', 'Blocaedje' ),
-	'Categories'                => array( 'Categoreyes' ),
-	'Listusers'                 => array( 'Djivêye_des_uzeus' ),
-	'Log'                       => array( 'Djournå', 'Djournås' ),
-	'Preferences'               => array( 'Preferinces' ),
-	'Prefixindex'               => array( 'Indecse_pa_betchete' ),
-	'Search'                    => array( 'Cweri' ),
-	'Specialpages'              => array( 'Pådjes_sipeciåles' ),
-	'Statistics'                => array( 'Sitatistikes' ),
-	'Undelete'                  => array( 'Rapexhî' ),
-	'Upload'                    => array( 'Eberweter', 'Eberwetaedje' ),
-	'Userlogin'                 => array( 'Elodjaedje' ),
-	'Userlogout'                => array( 'Dislodjaedje' ),
-	'Version'                   => array( 'Modêye' ),
-	'Watchlist'                 => array( 'Pådjes_shuvowes' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'Totes_les_pådjes' ],
+	'Block'                     => [ 'Bloker', 'Blocaedje' ],
+	'Categories'                => [ 'Categoreyes' ],
+	'Listusers'                 => [ 'Djivêye_des_uzeus' ],
+	'Log'                       => [ 'Djournå', 'Djournås' ],
+	'Preferences'               => [ 'Preferinces' ],
+	'Prefixindex'               => [ 'Indecse_pa_betchete' ],
+	'Search'                    => [ 'Cweri' ],
+	'Specialpages'              => [ 'Pådjes_sipeciåles' ],
+	'Statistics'                => [ 'Sitatistikes' ],
+	'Undelete'                  => [ 'Rapexhî' ],
+	'Upload'                    => [ 'Eberweter', 'Eberwetaedje' ],
+	'Userlogin'                 => [ 'Elodjaedje' ],
+	'Userlogout'                => [ 'Dislodjaedje' ],
+	'Version'                   => [ 'Modêye' ],
+	'Watchlist'                 => [ 'Pådjes_shuvowes' ],
+];
 
 # definixha del cogne po les limeros
 # (number format definition)
 # en: 12,345.67 -> wa: 12 345,67
-$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 
 # $linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
 $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';

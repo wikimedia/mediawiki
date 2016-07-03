@@ -96,7 +96,7 @@
 			 * Inserts text at the beginning and end of a text selection, optionally
 			 * inserting text at the caret when selection is empty.
 			 *
-			 * @fixme document the options parameters
+			 * FIXME document the options parameters
 			 */
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
@@ -268,7 +268,7 @@
 			 *
 			 * Will focus the textarea in some browsers (IE/Opera)
 			 *
-			 * @fixme document the options parameters
+			 * FIXME document the options parameters
 			 */
 			getCaretPosition: function ( options ) {
 				function getCaret( e ) {
@@ -367,7 +367,7 @@
 				return getCaret( this.get( 0 ) );
 			},
 			/**
-			 * @fixme document the options parameters
+			 * FIXME document the options parameters
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
@@ -415,7 +415,7 @@
 			 * @param {boolean} options Whether to force a scroll even if the caret position
 			 *  is already visible. Defaults to false
 			 *
-			 * @fixme document the options parameters (function body suggests options.force is a boolean, not options itself)
+			 * FIXME document the options parameters (function body suggests options.force is a boolean, not options itself)
 			 */
 			scrollToCaretPosition: function ( options ) {
 				function getLineLength( e ) {

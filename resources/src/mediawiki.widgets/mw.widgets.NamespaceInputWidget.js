@@ -40,14 +40,14 @@
 	mw.widgets.NamespaceInputWidget.prototype.getNamespaceDropdownOptions = function ( config ) {
 		var options,
 			exclude = config.exclude || [],
-			NS_MAIN = 0;
+			mainNamespace = mw.config.get( 'wgNamespaceIds' )[ '' ];
 
 		options = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
-			if ( ns < NS_MAIN || exclude.indexOf( Number( ns ) ) !== -1 ) {
+			if ( ns < mainNamespace || exclude.indexOf( Number( ns ) ) !== -1 ) {
 				return null; // skip
 			}
 			ns = String( ns );
-			if ( ns === String( NS_MAIN ) ) {
+			if ( ns === String( mainNamespace ) ) {
 				name = mw.message( 'blanknamespace' ).text();
 			}
 			return { data: ns, label: name };

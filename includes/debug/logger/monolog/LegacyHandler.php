@@ -41,7 +41,7 @@ use UnexpectedValueException;
  * channel as the prefix value.
  *
  * When not targeting a udp2log stream this class will act as a drop-in
- * replacement for Monolog's StreamHandler.
+ * replacement for \Monolog\Handler\StreamHandler.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
@@ -87,7 +87,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 	 */
 	protected $prefix;
 
-
 	/**
 	 * @param string $stream Stream URI
 	 * @param bool $useLegacyFilter Filter log events using legacy rules
@@ -114,7 +113,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 				'Missing stream uri, the stream can not be opened.' );
 		}
 		$this->error = null;
-		set_error_handler( array( $this, 'errorTrap' ) );
+		set_error_handler( [ $this, 'errorTrap' ] );
 
 		if ( substr( $this->uri, 0, 4 ) == 'udp:' ) {
 			$parsed = parse_url( $this->uri );
@@ -160,7 +159,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 		}
 	}
 
-
 	/**
 	 * Custom error handler.
 	 * @param int $code Error number
@@ -170,7 +168,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 		$this->error = $msg;
 	}
 
-
 	/**
 	 * Should we use UDP to send messages to the sink?
 	 * @return bool
@@ -178,7 +175,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 	protected function useUdp() {
 		return $this->host !== null;
 	}
-
 
 	protected function write( array $record ) {
 		if ( $this->useLegacyFilter &&
@@ -227,7 +223,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 			fwrite( $this->sink, $text );
 		}
 	}
-
 
 	public function close() {
 		if ( is_resource( $this->sink ) ) {

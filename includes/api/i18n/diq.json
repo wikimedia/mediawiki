@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gorizon",
+			"Mirzali"
+		]
+	},
+	"apihelp-createaccount-param-name": "Nameyê karberi.",
+	"apihelp-delete-description": "Pele bestere.",
+	"apihelp-disabled-description": "Eno modul aktiv niyo.",
+	"apihelp-edit-description": "Vıraze û pelan bıvurne.",
+	"apihelp-edit-param-text": "Zerreki pele",
+	"apihelp-edit-param-minor": "Vurnayışo qıckek.",
+	"apihelp-edit-param-notminor": "Vurnayışo qıckek niyo.",
+	"apihelp-edit-param-bot": "Nê vurnayışi zey boti nişan ke.",
+	"apihelp-edit-example-edit": "Şeker bıvurne",
+	"apihelp-emailuser-description": "Yew karberi rê e-poste bırışe.",
+	"apihelp-emailuser-param-target": "Karbero ke cı rê e-poste do bırışiyo.",
+	"apihelp-emailuser-param-subject": "Sernameyê mewzuyi.",
+	"apihelp-emailuser-param-text": "Metınê e-posteyi.",
+	"apihelp-emailuser-param-ccme": "Yew kopyaya nê posteyi mı rê bırışe.",
+	"apihelp-expandtemplates-param-title": "Sernameyê pele.",
+	"apihelp-expandtemplates-param-text": "Wikimetıni açarnê.",
+	"apihelp-feedrecentchanges-param-hideminor": "Vurnayışanê qıckekan bınımne.",
+	"apihelp-feedrecentchanges-param-hidebots": "Vurnayışanê botan bınımne.",
+	"apihelp-feedrecentchanges-param-hideanons": "Vurnayışanê karberanê anoniman bınımne.",
+	"apihelp-feedrecentchanges-param-hideliu": "Vurnayışanê karberanê qeydınan bınımne.",
+	"apihelp-login-param-name": "Nameyê karberi.",
+	"apihelp-login-param-password": "Parola.",
+	"apihelp-login-param-domain": "Domain (optional).",
+	"apihelp-login-example-login": "Dekew.",
+	"apihelp-move-description": "Yew pele bere."
+}

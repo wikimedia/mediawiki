@@ -6,7 +6,7 @@ application/mathml+xml mathml
 application/msword doc dot
 application/octet-stream bin dms lha lzh exe class so dll
 application/oda oda
-application/ogg ogx ogg ogm ogv oga spx
+application/ogg ogx ogg ogm ogv oga spx opus
 application/pdf pdf
 application/postscript ai eps ps
 application/rdf+xml rdf
@@ -20,6 +20,7 @@ application/vnd.wap.wbxml wbxml
 application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
 application/voicexml+xml vxml
+application/x-7z-compressed 7z
 application/x-bcpio bcpio
 application/x-bzip bz
 application/x-bzip2 bz2
@@ -35,7 +36,7 @@ application/x-gtar gtar tar
 application/x-gzip gz
 application/x-hdf hdf
 application/x-jar jar
-application/x-javascript js
+application/javascript js
 application/json json
 application/x-koan skp skd skt skm
 application/x-latex latex
@@ -63,16 +64,20 @@ application/xml xml xsl xsd kml
 application/xml-dtd dtd
 application/zip zip jar xpi sxc stc sxd std sxi sti sxm stm sxw stw
 application/x-rar rar
+application/font-woff woff
+application/font-woff2 woff2
+application/vnd.ms-fontobject eot
+application/x-font-ttf ttf
 audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
-audio/ogg oga ogg spx
+audio/ogg oga ogg spx opus
 video/webm webm
 audio/webm webm
 audio/x-aiff aif aiff aifc
 audio/x-matroska mka mkv
 audio/x-mpegurl m3u
-audio/x-ogg oga ogg spx
+audio/x-ogg oga ogg spx opus
 audio/x-pn-realaudio ram rm
 audio/x-pn-realaudio-plugin rpm
 audio/x-realaudio ra
@@ -122,6 +127,7 @@ text/tab-separated-values tsv
 text/vnd.wap.wml wml
 text/vnd.wap.wmlscript wmls
 text/xml xml xsl xslt rss rdf
+text/x-component htc
 text/x-setext etx
 text/x-sawfish jl
 video/mpeg mpeg mpg mpe

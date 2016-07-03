@@ -141,7 +141,7 @@ class FeedItem {
 	 */
 	public function getLanguage() {
 		global $wgLanguageCode;
-		return $wgLanguageCode;
+		return wfBCP47( $wgLanguageCode );
 	}
 
 	/**
@@ -248,12 +248,12 @@ abstract class ChannelFeed extends FeedItem {
 		global $wgRequest;
 
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
-		$allowedctypes = array(
+		$allowedctypes = [
 			'application/xml',
 			'text/xml',
 			'application/rss+xml',
 			'application/atom+xml'
-		);
+		];
 
 		return ( in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml' );
 	}

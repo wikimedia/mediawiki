@@ -12,10 +12,10 @@ class SpecialPageTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgScript' => '/index.php',
 			'wgContLang' => Language::factory( 'en' )
-		) );
+		] );
 	}
 
 	/**
@@ -28,9 +28,9 @@ class SpecialPageTest extends MediaWikiTestCase {
 	}
 
 	public function getTitleForProvider() {
-		return array(
-			array( 'UserLogin', 'Userlogin' )
-		);
+		return [
+			[ 'UserLogin', 'Userlogin' ]
+		];
 	}
 
 	/**
@@ -52,9 +52,9 @@ class SpecialPageTest extends MediaWikiTestCase {
 	}
 
 	public function getTitleForWithWarningProvider() {
-		return array(
-			array( Title::makeTitle( NS_SPECIAL, 'UserLogin' ), 'UserLogin' )
-		);
+		return [
+			[ Title::makeTitle( NS_SPECIAL, 'UserLogin' ), 'UserLogin' ]
+		];
 	}
 
 	/**
@@ -71,8 +71,8 @@ class SpecialPageTest extends MediaWikiTestCase {
 
 		// $specialPage->requireLogin( [ $reason [, $title ] ] )
 		call_user_func_array(
-			array( $specialPage, 'requireLogin' ),
-			array_filter( array( $reason, $title ) )
+			[ $specialPage, 'requireLogin' ],
+			array_filter( [ $reason, $title ] )
 		);
 	}
 
@@ -82,11 +82,11 @@ class SpecialPageTest extends MediaWikiTestCase {
 		$expected1 = wfMessage( 'exception-nologin-text' )->inLanguage( $lang )->text();
 		$expected2 = wfMessage( 'about' )->inLanguage( $lang )->text();
 
-		return array(
-			array( $expected1, null, null ),
-			array( $expected2, 'about', null ),
-			array( $expected2, 'about', 'about' ),
-		);
+		return [
+			[ $expected1, null, null ],
+			[ $expected2, 'about', null ],
+			[ $expected2, 'about', 'about' ],
+		];
 	}
 
 	public function testRequireLoginNotAnon() {

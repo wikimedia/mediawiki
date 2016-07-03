@@ -83,7 +83,7 @@ class MessageContent extends AbstractContent {
 	 * @return Message The message object.
 	 */
 	public function getNativeData() {
-		//NOTE: Message objects are mutable. Cloning here makes MessageContent immutable.
+		// NOTE: Message objects are mutable. Cloning here makes MessageContent immutable.
 		return clone $this->mMessage;
 	}
 
@@ -136,7 +136,7 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @param bool $hasLinks
+	 * @param bool|null $hasLinks
 	 *
 	 * @return bool Always false.
 	 *

@@ -40,15 +40,15 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * @var ApiBase[]
 	 */
-	private $mInstances = array();
+	private $mInstances = [];
 	/**
 	 * @var null[]
 	 */
-	private $mGroups = array();
+	private $mGroups = [];
 	/**
 	 * @var array[]
 	 */
-	private $mModules = array();
+	private $mModules = [];
 
 	/**
 	 * Construct new module manager
@@ -141,7 +141,7 @@ class ApiModuleManager extends ContextSource {
 		}
 
 		$this->mGroups[$group] = null;
-		$this->mModules[$name] = array( $group, $class, $factory );
+		$this->mModules[$name] = [ $group, $class, $factory ];
 	}
 
 	/**
@@ -196,7 +196,9 @@ class ApiModuleManager extends ContextSource {
 			$instance = call_user_func( $factory, $this->mParent, $name );
 
 			if ( !$instance instanceof $class ) {
-				throw new MWException( "The factory function for module $name did not return an instance of $class!" );
+				throw new MWException(
+					"The factory function for module $name did not return an instance of $class!"
+				);
 			}
 		} else {
 			// create instance from class name
@@ -215,7 +217,7 @@ class ApiModuleManager extends ContextSource {
 		if ( $group === null ) {
 			return array_keys( $this->mModules );
 		}
-		$result = array();
+		$result = [];
 		foreach ( $this->mModules as $name => $grpCls ) {
 			if ( $grpCls[0] === $group ) {
 				$result[] = $name;
@@ -231,7 +233,7 @@ class ApiModuleManager extends ContextSource {
 	 * @return array Name=>class map
 	 */
 	public function getNamesWithClasses( $group = null ) {
-		$result = array();
+		$result = [];
 		foreach ( $this->mModules as $name => $grpCls ) {
 			if ( $group === null || $grpCls[0] === $group ) {
 				$result[$name] = $grpCls[1];
@@ -273,7 +275,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Returns the group name for the given module
 	 * @param string $moduleName
-	 * @return string Group name or null if missing
+	 * @return string|null Group name or null if missing
 	 */
 	public function getModuleGroup( $moduleName ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {

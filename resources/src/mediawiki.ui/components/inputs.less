@@ -27,19 +27,16 @@
 //
 // Styleguide 1.1.
 .mw-ui-input {
-	// turn off default input styling for input[type="search"] fields
-	-webkit-appearance: none;
-	border: 1px solid @colorFieldBorder;
-	.box-sizing(border-box);
-	width: 100%;
-	padding: .3em .3em .3em .6em;
+	.box-sizing( border-box );
 	display: block;
-	vertical-align: middle;
+	width: 100%;
+	border: 1px solid @colorFieldBorder;
 	border-radius: @borderRadius;
+	padding: 0.3em 0.3em 0.3em 0.6em;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
-	.transition(~"border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1)");
+	vertical-align: middle;
 
 	// Placeholder text styling must be set individually for each browser @winter
 	&::-webkit-input-placeholder { // webkit
@@ -74,6 +71,23 @@
 	&:disabled {
 		border-color: @colorGray14;
 		color: @colorGray12;
+	}
+
+	// Normalize styling for `<input type="search">`
+	&[type="search"] {
+		// Correct the odd appearance in Chrome and Safari 5
+		-webkit-appearance: textfield;
+
+		// Remove proprietary clear button in IE 10-11
+		&::-ms-clear {
+			display: none;
+		}
+
+		// Remove the inner padding and cancel buttons in Chrome on OS X and Safari on OS X
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-decoration {
+	 		-webkit-appearance: none;
+		}
 	}
 }
 

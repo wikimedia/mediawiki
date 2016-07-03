@@ -33,4 +33,4 @@ Currently there are a few different types of jobs:
     Each job clears $wgUpdateRowsPerJob pages (500 by default).
 
   enotifNotify
-    Used when $wgEnotifUseJobQ is true to send mail using the job queue.
+    Used to send mail using the job queue.

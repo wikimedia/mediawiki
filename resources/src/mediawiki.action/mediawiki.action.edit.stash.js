@@ -44,7 +44,7 @@
 				pending.abort();
 			}
 
-			api.getToken( 'edit' ).then( stashEdit );
+			api.getToken( 'csrf' ).then( stashEdit );
 		}
 
 		function onKeyPress( e ) {

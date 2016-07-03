@@ -70,7 +70,7 @@ class ApiQueryTags extends ApiQueryBase {
 		# Merge in all used tags
 		$this->addTables( 'change_tag' );
 		$this->addFields( 'ct_tag' );
-		$this->addFields( array( 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ) );
+		$this->addFields( [ 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ] );
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption( 'GROUP BY', 'ct_tag' );
 		$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
@@ -89,7 +89,7 @@ class ApiQueryTags extends ApiQueryBase {
 				break;
 			}
 
-			$tag = array();
+			$tag = [];
 			$tag['name'] = $tagName;
 
 			if ( $fld_displayname ) {
@@ -113,7 +113,7 @@ class ApiQueryTags extends ApiQueryBase {
 			}
 
 			if ( $fld_source ) {
-				$tag['source'] = array();
+				$tag['source'] = [];
 				if ( $isExtension ) {
 					$tag['source'][] = 'extension';
 				}
@@ -126,14 +126,14 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['active'] = $isExplicit || isset( $extensionActivatedTags[$tagName] );
 			}
 
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
+			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $tag );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $tagName );
 				break;
 			}
 		}
 
-		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'tag' );
+		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'tag' );
 	}
 
 	public function getCacheMode( $params ) {
@@ -141,20 +141,20 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'continue' => array(
+		return [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_DFLT => 'name',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'name',
 					'displayname',
 					'description',
@@ -162,18 +162,18 @@ class ApiQueryTags extends ApiQueryBase {
 					'defined',
 					'source',
 					'active',
-				),
+				],
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			)
-		);
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			]
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=tags&tgprop=displayname|description|hitcount|defined'
 				=> 'apihelp-query+tags-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

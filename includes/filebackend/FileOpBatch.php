@@ -49,7 +49,7 @@ class FileOpBatch {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
-	 * @param array $performOps List of FileOp operations
+	 * @param FileOp[] $performOps List of FileOp operations
 	 * @param array $opts Batch operation options
 	 * @param FileJournal $journal Journal to log operations to
 	 * @return Status
@@ -69,11 +69,11 @@ class FileOpBatch {
 		$journaled = empty( $opts['nonJournaled'] );
 		$maxConcurrency = isset( $opts['concurrency'] ) ? $opts['concurrency'] : 1;
 
-		$entries = array(); // file journal entry list
+		$entries = []; // file journal entry list
 		$predicates = FileOp::newPredicates(); // account for previous ops in prechecks
-		$curBatch = array(); // concurrent FileOp sub-batch accumulation
+		$curBatch = []; // concurrent FileOp sub-batch accumulation
 		$curBatchDeps = FileOp::newDependencies(); // paths used in FileOp sub-batch
-		$pPerformOps = array(); // ordered list of concurrent FileOp sub-batches
+		$pPerformOps = []; // ordered list of concurrent FileOp sub-batches
 		$lastBackend = null; // last op backend name
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
@@ -86,7 +86,7 @@ class FileOpBatch {
 				|| ( $backendName !== $lastBackend && count( $curBatch ) )
 			) {
 				$pPerformOps[] = $curBatch; // push this batch
-				$curBatch = array(); // start a new sub-batch
+				$curBatch = []; // start a new sub-batch
 				$curBatchDeps = FileOp::newDependencies();
 			}
 			$lastBackend = $backendName;
@@ -147,6 +147,7 @@ class FileOpBatch {
 	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
 		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
+			/** @var FileOp[] $performOpsBatch */
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
 				// Log the remaining ops as failed for recovery...
@@ -157,8 +158,9 @@ class FileOpBatch {
 				}
 				continue;
 			}
-			$statuses = array();
-			$opHandles = array();
+			/** @var Status[] $statuses */
+			$statuses = [];
+			$opHandles = [];
 			// Get the backend; all sub-batch ops belong to a single backend
 			$backend = reset( $performOpsBatch )->getBackend();
 			// Get the operation handles or actually do it if there is just one.

@@ -31,28 +31,28 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchmarkHooks extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Benchmark MediaWiki Hooks.';
+		$this->addDescription( 'Benchmark MediaWiki Hooks.' );
 	}
 
 	public function execute() {
 		global $wgHooks;
-		$wgHooks['Test'] = array();
+		$wgHooks['Test'] = [];
 
 		$time = $this->benchHooks();
 		$this->output( 'Empty hook: ' . $time . "\n" );
 
-		$wgHooks['Test'][] = array( $this, 'test' );
+		$wgHooks['Test'][] = [ $this, 'test' ];
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (one) hook: ' . $time . "\n" );
 
 		for ( $i = 0; $i < 9; $i++ ) {
-			$wgHooks['Test'][] = array( $this, 'test' );
+			$wgHooks['Test'][] = [ $this, 'test' ];
 		}
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
 
 		for ( $i = 0; $i < 90; $i++ ) {
-			$wgHooks['Test'][] = array( $this, 'test' );
+			$wgHooks['Test'][] = [ $this, 'test' ];
 		}
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (one hundred) hook: ' . $time . "\n" );

@@ -16,20 +16,20 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgContentNamespaces' => array( NS_MAIN ),
-			'wgNamespacesWithSubpages' => array(
+		$this->setMwGlobals( [
+			'wgContentNamespaces' => [ NS_MAIN ],
+			'wgNamespacesWithSubpages' => [
 				NS_TALK => true,
 				NS_USER => true,
 				NS_USER_TALK => true,
-			),
+			],
 			'wgCapitalLinks' => true,
-			'wgCapitalLinkOverrides' => array(),
-			'wgNonincludableNamespaces' => array(),
-		) );
+			'wgCapitalLinkOverrides' => [],
+			'wgNonincludableNamespaces' => [],
+		] );
 	}
 
-#### START OF TESTS #########################################################
+# ### START OF TESTS #########################################################
 
 	/**
 	 * @todo Write more texts, handle $wgAllowImageMoving setting
@@ -137,9 +137,9 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertEquals( NS_MAIN, MWNamespace::getAssociated( NS_TALK ) );
 	}
 
-	### Exceptions with getAssociated()
-	### NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
-	### an exception for them.
+	# ## Exceptions with getAssociated()
+	# ## NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
+	# ## an exception for them.
 	/**
 	 * @expectedException MWException
 	 * @covers MWNamespace::getAssociated
@@ -369,46 +369,46 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		global $wgContentNamespaces;
 
 		$this->assertEquals(
-			array( NS_MAIN ),
+			[ NS_MAIN ],
 			MWNamespace::getContentNamespaces(),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
 
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
-		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
+		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = false;
-		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
+		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = null;
-		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
+		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = 5;
-		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
+		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
 		# test $wgContentNamespaces === array()
-		$wgContentNamespaces = array();
-		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
+		$wgContentNamespaces = [];
+		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
 		# test !in_array( NS_MAIN, $wgContentNamespaces )
-		$wgContentNamespaces = array( NS_USER, NS_CATEGORY );
+		$wgContentNamespaces = [ NS_USER, NS_CATEGORY ];
 		$this->assertEquals(
-			array( NS_MAIN, NS_USER, NS_CATEGORY ),
+			[ NS_MAIN, NS_USER, NS_CATEGORY ],
 			MWNamespace::getContentNamespaces(),
 			'NS_MAIN is forced in $wgContentNamespaces even if unwanted'
 		);
 
 		# test other cases, return $wgcontentNamespaces as is
-		$wgContentNamespaces = array( NS_MAIN );
+		$wgContentNamespaces = [ NS_MAIN ];
 		$this->assertEquals(
-			array( NS_MAIN ),
+			[ NS_MAIN ],
 			MWNamespace::getContentNamespaces()
 		);
 
-		$wgContentNamespaces = array( NS_MAIN, NS_USER, NS_CATEGORY );
+		$wgContentNamespaces = [ NS_MAIN, NS_USER, NS_CATEGORY ];
 		$this->assertEquals(
-			array( NS_MAIN, NS_USER, NS_CATEGORY ),
+			[ NS_MAIN, NS_USER, NS_CATEGORY ],
 			MWNamespace::getContentNamespaces()
 		);
 	}
@@ -559,13 +559,13 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testIsNonincludable() {
 		global $wgNonincludableNamespaces;
 
-		$wgNonincludableNamespaces = array( NS_USER );
+		$wgNonincludableNamespaces = [ NS_USER ];
 
 		$this->assertTrue( MWNamespace::isNonincludable( NS_USER ) );
 		$this->assertFalse( MWNamespace::isNonincludable( NS_TEMPLATE ) );
 	}
 
-	####### HELPERS ###########################################################
+	# ###### HELPERS ###########################################################
 	function __call( $method, $args ) {
 		// Call the real method if it exists
 		if ( method_exists( $this, $method ) ) {

@@ -122,7 +122,7 @@ class UploadFromChunks extends UploadFromFile {
 			$this->getOffset() . ' inx:' . $chunkIndex . "\n" );
 
 		// Concatenate all the chunks to mVirtualTempPath
-		$fileList = array();
+		$fileList = [];
 		// The first chunk is stored at the mVirtualTempPath path so we start on "chunk 1"
 		for ( $i = 0; $i <= $chunkIndex; $i++ ) {
 			$fileList[] = $this->getVirtualChunkLocation( $i );
@@ -142,15 +142,15 @@ class UploadFromChunks extends UploadFromFile {
 		$tStart = microtime( true );
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		$tAmount = microtime( true ) - $tStart;
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			return $status;
 		}
+
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds." );
 
-		// File system path
-		$this->mTempPath = $tmpPath;
-		// Since this was set for the last chunk previously
-		$this->mFileSize = filesize( $this->mTempPath );
+		// File system path of the actual full temp file
+		$this->setTempFile( $tmpPath );
+
 		$ret = $this->verifyUpload();
 		if ( $ret['status'] !== UploadBase::OK ) {
 			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );
@@ -234,21 +234,20 @@ class UploadFromChunks extends UploadFromFile {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
-		$dbw = $this->repo->getMasterDb();
+		$dbw = $this->repo->getMasterDB();
 		// Use a quick transaction since we will upload the full temp file into shared
 		// storage, which takes time for large files. We don't want to hold locks then.
-		$dbw->begin( __METHOD__ );
 		$dbw->update(
 			'uploadstash',
-			array(
+			[
 				'us_status' => 'chunks',
 				'us_chunk_inx' => $this->getChunkIndex(),
 				'us_size' => $this->getOffset()
-			),
-			array( 'us_key' => $this->mFileKey ),
+			],
+			[ 'us_key' => $this->mFileKey ],
 			__METHOD__
 		);
-		$dbw->commit( __METHOD__ );
+		$dbw->commit( __METHOD__, 'flush' );
 	}
 
 	/**
@@ -257,15 +256,15 @@ class UploadFromChunks extends UploadFromFile {
 	private function getChunkStatus() {
 		// get Master db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
-		$dbw = $this->repo->getMasterDb();
+		$dbw = $this->repo->getMasterDB();
 		$row = $dbw->selectRow(
 			'uploadstash',
-			array(
+			[
 				'us_chunk_inx',
 				'us_size',
 				'us_path',
-			),
-			array( 'us_key' => $this->mFileKey ),
+			],
+			[ 'us_key' => $this->mFileKey ],
 			__METHOD__
 		);
 		// Handle result:
@@ -324,7 +323,7 @@ class UploadFromChunks extends UploadFromFile {
 				$error = $storeStatus->getWarningsArray();
 				$error = reset( $error );
 				if ( !count( $error ) ) {
-					$error = array( 'unknown', 'no error recorded' );
+					$error = [ 'unknown', 'no error recorded' ];
 				}
 			}
 			throw new UploadChunkFileException( "Error storing file in '$chunkPath': " .

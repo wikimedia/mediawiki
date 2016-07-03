@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hosseinblue",
+			"Arash71",
+			"Lakzon"
+		]
+	},
+	"apihelp-main-param-action": "کام عملیات انجؤم بِ.",
+	"apihelp-main-param-format": "فرمت خروجی",
+	"apihelp-block-description": "بستن کاربر.",
+	"apihelp-createaccount-param-name": "نۆم کاربەری:",
+	"apihelp-delete-description": "حةذف وةڵگة",
+	"apihelp-delete-example-simple": "حذف <kbd>Main Page</kbd>.",
+	"apihelp-disabled-description": "اێ پودمانە إکار کەتێە(غیرفعال بیە).",
+	"apihelp-edit-description": "دؤرس کردن و دۀسکاری وۀلگۀ",
+	"apihelp-edit-param-sectiontitle": "نام سۀر وۀلگ تازۀ",
+	"apihelp-edit-example-edit": ".دةسکاری وةڵگة",
+	"apihelp-emailuser-param-subject": "موضوع سةر وةڵگ",
+	"apihelp-emailuser-param-text": "متن رایانه.",
+	"apihelp-help-example-main": "راهنما برای پودمان اصلی",
+	"apihelp-login-param-name": "نام کاربری",
+	"apihelp-login-param-password": ".رمز",
+	"apihelp-login-example-login": "إنۆم هەتِن.",
+	"apihelp-logout-description": "دۀرچئن و پاک کردن داده متن",
+	"apihelp-logout-example-logout": "خروج کاربر فعلی",
+	"apihelp-options-example-reset": "بازنشانی همه تنظیمات."
+}

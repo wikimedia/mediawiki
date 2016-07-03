@@ -38,7 +38,7 @@ class EmaillingJob extends Job {
 			$this->params['from'],
 			$this->params['subj'],
 			$this->params['body'],
-			array( 'replyTo' => $this->params['replyto'] )
+			[ 'replyTo' => $this->params['replyto'] ]
 		);
 
 		return $status->isOK();

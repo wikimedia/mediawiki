@@ -27,24 +27,24 @@
 class ForeignTitleTest extends MediaWikiTestCase {
 
 	public function basicProvider() {
-		return array(
-			array(
+		return [
+			[
 				new ForeignTitle( 20, 'Contributor', 'JohnDoe' ),
 				20, 'Contributor', 'JohnDoe'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( '1', 'Discussion', 'Capital' ),
 				1, 'Discussion', 'Capital'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 0, '', 'MainNamespace' ),
 				0, '', 'MainNamespace'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 4, 'Some ns', 'Article title with spaces' ),
 				4, 'Some_ns', 'Article_title_with_spaces'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -74,24 +74,24 @@ class ForeignTitleTest extends MediaWikiTestCase {
 	}
 
 	public function fullTextProvider() {
-		return array(
-			array(
+		return [
+			[
 				new ForeignTitle( 20, 'Contributor', 'JohnDoe' ),
 				'Contributor:JohnDoe'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( '1', 'Discussion', 'Capital' ),
 				'Discussion:Capital'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 0, '', 'MainNamespace' ),
 				'MainNamespace'
-			),
-			array(
+			],
+			[
 				new ForeignTitle( 4, 'Some ns', 'Article title with spaces' ),
 				'Some_ns:Article_title_with_spaces'
-			),
-		);
+			],
+		];
 	}
 
 	/**

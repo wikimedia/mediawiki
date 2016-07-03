@@ -11,6 +11,7 @@
 			api = api || new mw.Api();
 
 			$.data( node, 'request', api.get( {
+				formatversion: 2,
 				action: 'query',
 				list: 'allusers',
 				// Prefix of list=allusers is case sensitive. Normalise first

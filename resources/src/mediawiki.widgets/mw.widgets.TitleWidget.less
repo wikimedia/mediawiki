@@ -1,0 +1,79 @@
+/*!
+ * MediaWiki Widgets - TitleWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-titleWidget-menu {
+	.mw-widget-titleOptionWidget {
+		line-height: normal;
+
+		&-description {
+			color: #888;
+		}
+	}
+
+	&-withImages {
+		.mw-widget-titleOptionWidget {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			min-height: 3.75em;
+			padding-left: 4.75em;
+
+			&:not( :last-child ) {
+				margin-bottom: 2px;
+			}
+
+			> .oo-ui-labelElement-label {
+				line-height: 2.8em;
+			}
+
+			&.oo-ui-iconElement {
+				> .oo-ui-iconElement-icon {
+					display: block;
+					width: 3.75em;
+					height: 3.75em;
+					left: 0;
+					&:not( .mw-widget-titleOptionWidget-hasImage ) {
+						background-color: #ccc;
+						opacity: 0.4;
+					}
+					&.mw-widget-titleOptionWidget-hasImage {
+						border: 0;
+						background-size: cover;
+						opacity: 0.7;
+					}
+				}
+			}
+
+			&.oo-ui-optionWidget-highlighted, &.oo-ui-optionWidget-selected {
+				&.oo-ui-iconElement > .mw-widget-titleOptionWidget-hasImage {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&-withDescriptions {
+		.mw-widget-titleOptionWidget {
+			> .oo-ui-labelElement-label {
+				line-height: 1.5em;
+			}
+
+			&-description {
+				display: block;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+	}
+
+	&:not(&-withDescriptions) {
+		.mw-widget-titleOptionWidget-description {
+			display: none;
+		}
+	}
+}

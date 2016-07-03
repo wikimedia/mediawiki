@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Siebrand",
-			"Seb35"
+			"Seb35",
+			"Macofe"
 		]
 	},
 	"config-localsettings-badkey": "De sleutel die je hebt opgegeven is onjuist",
@@ -19,7 +20,6 @@
 	"config-unicode-update-warning": "'''Waarschuwing''': de geïnstalleerde versie van de Unicodenormalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].\nJe moet [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations bijwerken] als Unicode voor jou van belang is.",
 	"config-no-db": "Het was niet mogelijk een geschikte databasedriver te vinden voor PHP.\nJe moet een databasedriver installeren voor PHP.\nDe volgende databases worden ondersteund: $1.\n\nAls je op een gedeelde omgeving zit, vraag dan aan je hostingprovider een geschikte databasedriver te installeren.\nAls je PHP zelf hebt gecompileerd, wijzig dan je instellingen zodat een databasedriver wordt geactiveerd, bijvoorbeeld via <code>./configure --with-mysql</code>.\nAls je PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.",
 	"config-outdated-sqlite": "''' Waarschuwing:''' je gebruikt SQLite $1. SQLite is niet beschikbaar omdat de minimaal vereiste versie $2 is.",
-	"config-register-globals": "'''Waarschuwing: de PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''\n'''Schakel deze uit als dat mogelijk is.'''\nMediaWiki kan ermee werken, maar je server is dan meer kwetsbaar voor beveiligingslekken.",
 	"config-magic-quotes-runtime": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] is actief!'''\nDeze instelling zorgt voor gegevenscorruptie.\nJe kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-magic-quotes-sybase": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] is actief!'''\nDeze instelling zorgt voor gegevenscorruptie.\nJe kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-mbstring": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is actief!'''\nDeze instelling zorgt voor gegevenscorruptie.\nJe kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
@@ -63,7 +63,7 @@
 	"config-enable-email-help": "Als je wilt dat e-mailen mogelijk is, dan moeten de [http://www.php.net/manual/en/mail.configuration.php e-mailinstellingen van PHP] correct zijn.\nAls je niet wilt dat e-mailen mogelijk is, dan kan je de instellingen hier uitschakelen.",
 	"config-upload-help": "Het toestaan van het uploaden van bestanden stelt je server mogelijk bloot aan beveiligingsrisico's.\nEr is meer [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security informatie over beveiliging] beschikbaar in de handleiding.\n\nOm het bestandsuploads mogelijk te maken kan je de rechten op de submap <code>images</code> onder de hoofdmap van MediaWiki aanpassen, zodat de webserver erin kan schrijven.\nDaarmee wordt deze functie ingeschakeld.",
 	"config-logo-help": "Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.\nUpload een afbeelding met de juiste afmetingen en voer de URL hier in.\n\nAls je geen logo wilt gebruiken, kan je dit veld leeg laten.",
-	"config-cc-not-chosen": "Kies de Creative Commonslicentie die je wilt gebruiken en klik op \"doorgaan\".",
+	"config-cc-not-chosen": "Kies de Creative Commonslicentie die je wilt gebruiken en klik op \"proceed\".",
 	"config-memcache-needservers": "Je hebt Memcached geselecteerd als je cache, maar je hebt geen servers opgegeven.",
 	"config-memcache-badip": "Je hebt een ongeldig IP-adres ingevoerd voor Memcached: $1.",
 	"config-memcache-noport": "Je hebt geen poort opgegeven voor de Memcachedserver: $1.\nDe standaardpoort is 11211.",

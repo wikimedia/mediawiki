@@ -56,7 +56,8 @@ class ApiFeedContributions extends ApiBase {
 		}
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
-		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg . ' [' . $config->get( 'LanguageCode' ) . ']';
+		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg .
+			' [' . $config->get( 'LanguageCode' ) . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
 		$target = $params['user'] == 'newbies'
@@ -69,7 +70,7 @@ class ApiFeedContributions extends ApiBase {
 			$feedUrl
 		);
 
-		$pager = new ContribsPager( $this->getContext(), array(
+		$pager = new ContribsPager( $this->getContext(), [
 			'target' => $target,
 			'namespace' => $params['namespace'],
 			'year' => $params['year'],
@@ -79,14 +80,14 @@ class ApiFeedContributions extends ApiBase {
 			'topOnly' => $params['toponly'],
 			'newOnly' => $params['newonly'],
 			'showSizeDiff' => $params['showsizediff'],
-		) );
+		] );
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
 		if ( $pager->getLimit() > $feedLimit ) {
 			$pager->setLimit( $feedLimit );
 		}
 
-		$feedItems = array();
+		$feedItems = [];
 		if ( $pager->getNumRows() > 0 ) {
 			$count = 0;
 			$limit = $pager->getLimit();
@@ -112,7 +113,7 @@ class ApiFeedContributions extends ApiBase {
 		$feedItem = null;
 		$hookResult = Hooks::run(
 			'ApiFeedContributions::feedItem',
-			array( $row, $this->getContext(), &$feedItem )
+			[ $row, $this->getContext(), &$feedItem ]
 		);
 		// Hook returned a valid feed item
 		if ( $feedItem instanceof FeedItem ) {
@@ -132,7 +133,7 @@ class ApiFeedContributions extends ApiBase {
 			return new FeedItem(
 				$title->getPrefixedText(),
 				$this->feedItemDesc( $revision ),
-				$title->getFullURL( array( 'diff' => $revision->getId() ) ),
+				$title->getFullURL( [ 'diff' => $revision->getId() ] ),
 				$date,
 				$this->feedItemAuthor( $revision ),
 				$comments
@@ -163,16 +164,16 @@ class ApiFeedContributions extends ApiBase {
 				// only textual content has a "source view".
 				$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
 			} else {
-				//XXX: we could get an HTML representation of the content via getParserOutput, but that may
+				// XXX: we could get an HTML representation of the content via getParserOutput, but that may
 				//     contain JS magic and generally may not be suitable for inclusion in a feed.
 				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
-				//Compare also FeedUtils::formatDiffRow.
+				// Compare also FeedUtils::formatDiffRow.
 				$html = '';
 			}
 
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
-				"</p>\n<hr />\n<div>" . $html . "</div>";
+				"</p>\n<hr />\n<div>" . $html . '</div>';
 		}
 
 		return '';
@@ -181,36 +182,36 @@ class ApiFeedContributions extends ApiBase {
 	public function getAllowedParams() {
 		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
 
-		$ret = array(
-			'feedformat' => array(
+		$ret = [
+			'feedformat' => [
 				ApiBase::PARAM_DFLT => 'rss',
 				ApiBase::PARAM_TYPE => $feedFormatNames
-			),
-			'user' => array(
+			],
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'year' => array(
+			],
+			'year' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'month' => array(
+			],
+			'month' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'tagfilter' => array(
+			],
+			'tagfilter' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
 				ApiBase::PARAM_DFLT => '',
-			),
+			],
 			'deletedonly' => false,
 			'toponly' => false,
 			'newonly' => false,
-			'showsizediff' => array(
+			'showsizediff' => [
 				ApiBase::PARAM_DFLT => false,
-			),
-		);
+			],
+		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$ret['showsizediff'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
@@ -220,9 +221,9 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=feedcontributions&user=Example'
 				=> 'apihelp-feedcontributions-example-simple',
-		);
+		];
 	}
 }

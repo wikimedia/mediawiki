@@ -76,9 +76,9 @@ application/x-bzip2	[ARCHIVE]
 application/x-tar	[ARCHIVE]
 application/x-stuffit	[ARCHIVE]
 application/x-opc+zip	[ARCHIVE]
+application/x-7z-compressed [ARCHIVE]
 
-
-text/javascript application/x-javascript application/x-ecmascript text/ecmascript	[EXECUTABLE]
+application/javascript text/javascript application/x-javascript application/x-ecmascript text/ecmascript	[EXECUTABLE]
 application/x-bash	[EXECUTABLE]
 application/x-sh	[EXECUTABLE]
 application/x-csh	[EXECUTABLE]

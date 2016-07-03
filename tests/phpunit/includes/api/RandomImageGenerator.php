@@ -42,36 +42,36 @@ class RandomImageGenerator {
 	 * Those seem to be rare in real images anyway (we also would need a
 	 * non-symmetric shape for the images to test those, like a letter F).
 	 */
-	private static $orientations = array(
-		array(
+	private static $orientations = [
+		[
 			'0thRow' => 'top',
 			'0thCol' => 'left',
 			'exifCode' => 1,
-			'counterRotation' => array( array( 1, 0 ), array( 0, 1 ) )
-		),
-		array(
+			'counterRotation' => [ [ 1, 0 ], [ 0, 1 ] ]
+		],
+		[
 			'0thRow' => 'bottom',
 			'0thCol' => 'right',
 			'exifCode' => 3,
-			'counterRotation' => array( array( -1, 0 ), array( 0, -1 ) )
-		),
-		array(
+			'counterRotation' => [ [ -1, 0 ], [ 0, -1 ] ]
+		],
+		[
 			'0thRow' => 'right',
 			'0thCol' => 'top',
 			'exifCode' => 6,
-			'counterRotation' => array( array( 0, 1 ), array( 1, 0 ) )
-		),
-		array(
+			'counterRotation' => [ [ 0, 1 ], [ 1, 0 ] ]
+		],
+		[
 			'0thRow' => 'left',
 			'0thCol' => 'bottom',
 			'exifCode' => 8,
-			'counterRotation' => array( array( 0, -1 ), array( -1, 0 ) )
-		)
-	);
+			'counterRotation' => [ [ 0, -1 ], [ -1, 0 ] ]
+		]
+	];
 
-	public function __construct( $options = array() ) {
-		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight',
-			'maxWidth', 'maxHeight', 'shapesToDraw' ) as $property
+	public function __construct( $options = [] ) {
+		foreach ( [ 'dictionaryFile', 'minWidth', 'minHeight',
+			'maxWidth', 'maxHeight', 'shapesToDraw' ] as $property
 		) {
 			if ( isset( $options[$property] ) ) {
 				$this->$property = $options[$property];
@@ -81,11 +81,11 @@ class RandomImageGenerator {
 		// find the dictionary file, to generate random names
 		if ( !isset( $this->dictionaryFile ) ) {
 			foreach (
-				array(
+				[
 					'/usr/share/dict/words',
 					'/usr/dict/words',
 					__DIR__ . '/words.txt'
-				) as $dictionaryFile
+				] as $dictionaryFile
 			) {
 				if ( is_file( $dictionaryFile ) and is_readable( $dictionaryFile ) ) {
 					$this->dictionaryFile = $dictionaryFile;
@@ -159,7 +159,7 @@ class RandomImageGenerator {
 		if ( is_null( $dir ) ) {
 			$dir = getcwd();
 		}
-		$filenames = array();
+		$filenames = [];
 		foreach ( $this->getRandomWordPairs( $number ) as $pair ) {
 			$basename = $pair[0] . '_' . $pair[1];
 			if ( !is_null( $extension ) ) {
@@ -181,7 +181,7 @@ class RandomImageGenerator {
 	 * @return mixed
 	 */
 	public function getImageSpec() {
-		$spec = array();
+		$spec = [];
 
 		$spec['width'] = mt_rand( $this->minWidth, $this->maxWidth );
 		$spec['height'] = mt_rand( $this->minHeight, $this->maxHeight );
@@ -189,7 +189,7 @@ class RandomImageGenerator {
 
 		$diagonalLength = sqrt( pow( $spec['width'], 2 ) + pow( $spec['height'], 2 ) );
 
-		$draws = array();
+		$draws = [];
 		for ( $i = 0; $i <= $this->shapesToDraw; $i++ ) {
 			$radius = mt_rand( 0, $diagonalLength / 4 );
 			if ( $radius == 0 ) {
@@ -201,14 +201,14 @@ class RandomImageGenerator {
 			$legDeltaX = round( $radius * sin( $angle ) );
 			$legDeltaY = round( $radius * cos( $angle ) );
 
-			$draw = array();
+			$draw = [];
 			$draw['fill'] = $this->getRandomColor();
-			$draw['shape'] = array(
-				array( 'x' => $originX, 'y' => $originY - $radius ),
-				array( 'x' => $originX + $legDeltaX, 'y' => $originY + $legDeltaY ),
-				array( 'x' => $originX - $legDeltaX, 'y' => $originY + $legDeltaY ),
-				array( 'x' => $originX, 'y' => $originY - $radius )
-			);
+			$draw['shape'] = [
+				[ 'x' => $originX, 'y' => $originY - $radius ],
+				[ 'x' => $originX + $legDeltaX, 'y' => $originY + $legDeltaY ],
+				[ 'x' => $originX - $legDeltaX, 'y' => $originY + $legDeltaY ],
+				[ 'x' => $originX, 'y' => $originY - $radius ]
+			];
 			$draws[] = $draw;
 		}
 
@@ -225,12 +225,12 @@ class RandomImageGenerator {
 	 * @return string
 	 */
 	static function shapePointsToString( $shape ) {
-		$points = array();
+		$points = [];
 		foreach ( $shape as $point ) {
 			$points[] = $point['x'] . ',' . $point['y'];
 		}
 
-		return join( " ", $points );
+		return implode( " ", $points );
 	}
 
 	/**
@@ -256,7 +256,8 @@ class RandomImageGenerator {
 			$shape->addAttribute( 'points', self::shapePointsToString( $drawSpec['shape'] ) );
 		}
 
-		if ( !$fh = fopen( $filename, 'w' ) ) {
+		$fh = fopen( $filename, 'w' );
+		if ( !$fh ) {
 			throw new Exception( "couldn't open $filename for writing" );
 		}
 		fwrite( $fh, $svg->asXML() );
@@ -331,7 +332,7 @@ class RandomImageGenerator {
 	 * @return array Transformed Spec
 	 */
 	private static function rotateImageSpec( &$spec, $matrix ) {
-		$tSpec = array();
+		$tSpec = [];
 		$dims = self::matrixMultiply2x2( $matrix, $spec['width'], $spec['height'] );
 		$correctionX = 0;
 		$correctionY = 0;
@@ -344,12 +345,12 @@ class RandomImageGenerator {
 		$tSpec['width'] = abs( $dims['x'] );
 		$tSpec['height'] = abs( $dims['y'] );
 		$tSpec['fill'] = $spec['fill'];
-		$tSpec['draws'] = array();
+		$tSpec['draws'] = [];
 		foreach ( $spec['draws'] as $draw ) {
-			$tDraw = array(
+			$tDraw = [
 				'fill' => $draw['fill'],
-				'shape' => array()
-			);
+				'shape' => []
+			];
 			foreach ( $draw['shape'] as $point ) {
 				$tPoint = self::matrixMultiply2x2( $matrix, $point['x'], $point['y'] );
 				$tPoint['x'] += $correctionX;
@@ -370,10 +371,10 @@ class RandomImageGenerator {
 	 * @return array Transformed with properties x, y
 	 */
 	private static function matrixMultiply2x2( $matrix, $x, $y ) {
-		return array(
+		return [
 			'x' => $x * $matrix[0][0] + $y * $matrix[0][1],
 			'y' => $x * $matrix[1][0] + $y * $matrix[1][1]
-		);
+		];
 	}
 
 	/**
@@ -395,7 +396,7 @@ class RandomImageGenerator {
 	 */
 	public function writeImageWithCommandLine( $spec, $format, $filename ) {
 		global $wgImageMagickConvertCommand;
-		$args = array();
+		$args = [];
 		$args[] = "-size " . wfEscapeShellArg( $spec['width'] . 'x' . $spec['height'] );
 		$args[] = wfEscapeShellArg( "xc:" . $spec['fill'] );
 		foreach ( $spec['draws'] as $draw ) {
@@ -419,12 +420,12 @@ class RandomImageGenerator {
 	 * @return string
 	 */
 	public function getRandomColor() {
-		$components = array();
+		$components = [];
 		for ( $i = 0; $i <= 2; $i++ ) {
 			$components[] = mt_rand( 0, 255 );
 		}
 
-		return 'rgb(' . join( ', ', $components ) . ')';
+		return 'rgb(' . implode( ', ', $components ) . ')';
 	}
 
 	/**
@@ -437,10 +438,10 @@ class RandomImageGenerator {
 	private function getRandomWordPairs( $number ) {
 		$lines = $this->getRandomLines( $number * 2 );
 		// construct pairs of words
-		$pairs = array();
+		$pairs = [];
 		$count = count( $lines );
 		for ( $i = 0; $i < $count; $i += 2 ) {
-			$pairs[] = array( $lines[$i], $lines[$i + 1] );
+			$pairs[] = [ $lines[$i], $lines[$i + 1] ];
 		}
 
 		return $pairs;
@@ -460,7 +461,7 @@ class RandomImageGenerator {
 		$filepath = $this->dictionaryFile;
 
 		// initialize array of lines
-		$lines = array();
+		$lines = [];
 		for ( $i = 0; $i < $number_desired; $i++ ) {
 			$lines[] = null;
 		}

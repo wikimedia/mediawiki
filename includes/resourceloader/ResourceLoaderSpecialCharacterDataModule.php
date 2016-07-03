@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for populating special characters data for some
+ * ResourceLoader module for populating special characters data for some
  * editing extensions to use.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,12 +22,12 @@
  */
 
 /**
- * Resource loader module for populating special characters data for some
+ * ResourceLoader module for populating special characters data for some
  * editing extensions to use.
  */
 class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	private $path = "resources/src/mediawiki.language/specialcharacters.json";
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get all the dynamic data.
@@ -46,9 +46,9 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
 			'mw.language.setSpecialCharacters',
-			array(
+			[
 				$this->getData()
-			),
+			],
 			ResourceLoader::inDebugMode()
 		);
 	}
@@ -65,19 +65,20 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return array( 'mediawiki.language' );
+		return [ 'mediawiki.language' ];
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getMessages() {
-		return array(
+		return [
 			'special-characters-group-latin',
 			'special-characters-group-latinextended',
 			'special-characters-group-ipa',
 			'special-characters-group-symbols',
 			'special-characters-group-greek',
+			'special-characters-group-greekextended',
 			'special-characters-group-cyrillic',
 			'special-characters-group-arabic',
 			'special-characters-group-arabicextended',
@@ -95,6 +96,6 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 			'special-characters-title-endash',
 			'special-characters-title-emdash',
 			'special-characters-title-minus'
-		);
+		];
 	}
 }

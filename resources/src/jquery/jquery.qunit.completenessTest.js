@@ -186,9 +186,9 @@
 		 * Depending on the action it either injects our listener into the methods, or
 		 * reads from our tracker and records which methods have not been called by the test suite.
 		 *
-		 * @param {String|Null} currName Name of the given object member (Initially this is null).
-		 * @param {mixed} currVar The variable to check (initially an object,
+		 * @param {Mixed} currObj The variable to check (initially an object,
 		 *  further down it could be anything).
+		 * @param {string|null} currName Name of the given object member (Initially this is null).
 		 * @param {Object} masterVariable Throughout our interation, always keep track of the master/root.
 		 *  Initially this is the same as currVar.
 		 * @param {Array} parentPathArray Array of names that indicate our breadcrumb path starting at
@@ -258,8 +258,8 @@
 		 * was called during the test suite (as far as the tracker knows).
 		 * If not it adds it to missingTests.
 		 *
-		 * @param {String} fnName
-		 * @return {Boolean}
+		 * @param {string} fnName
+		 * @return {boolean}
 		 */
 		hasTest: function ( fnName ) {
 			if ( !( fnName in this.methodCallTracker ) ) {
@@ -275,9 +275,10 @@
 		 * Injects a function (such as a spy that updates methodCallTracker when
 		 * it's called) inside another function.
 		 *
-		 * @param {Object} masterVariable
-		 * @param {Array} objectPathArray
-		 * @param {Function} injectFn
+		 * @param {Object} obj The object into which `injectFn` will be inserted
+		 * @param {Array} key The key by which `injectFn` will be known in `obj`; if this already
+		 *   exists, a wrapper will first call `injectFn` and then the original `obj[key]` function.
+		 * @param {Function} injectFn The function to insert
 		 */
 		injectCheck: function ( obj, key, injectFn ) {
 			var spy,

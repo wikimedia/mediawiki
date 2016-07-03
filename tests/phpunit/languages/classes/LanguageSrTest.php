@@ -65,35 +65,35 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
-		//A simple convertion of Latin to Cyrillic
+		// A simple convertion of Latin to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'abvg' )
 		);
-		//Same as above, but assert that -{}-s must be removed and not converted
+		// Same as above, but assert that -{}-s must be removed and not converted
 		$this->assertEquals( 'ljабnjвгdž',
 			$this->convertToCyrillic( '-{lj}-ab-{nj}-vg-{dž}-' )
 		);
-		//A simple convertion of Cyrillic to Cyrillic
+		// A simple convertion of Cyrillic to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'абвг' )
 		);
-		//Same as above, but assert that -{}-s must be removed and not converted
+		// Same as above, but assert that -{}-s must be removed and not converted
 		$this->assertEquals( 'ljабnjвгdž',
 			$this->convertToCyrillic( '-{lj}-аб-{nj}-вг-{dž}-' )
 		);
-		//This text has some Latin, but is recognized as Cyrillic, so it should not be converted
+		// This text has some Latin, but is recognized as Cyrillic, so it should not be converted
 		$this->assertEquals( 'abvgшђжчћ',
 			$this->convertToCyrillic( 'abvgшђжчћ' )
 		);
-		//Same as above, but assert that -{}-s must be removed
+		// Same as above, but assert that -{}-s must be removed
 		$this->assertEquals( 'љabvgњшђжчћџ',
 			$this->convertToCyrillic( '-{љ}-abvg-{њ}-шђжчћ-{џ}-' )
 		);
-		//This text has some Cyrillic, but is recognized as Latin, so it should be converted
+		// This text has some Cyrillic, but is recognized as Latin, so it should be converted
 		$this->assertEquals( 'абвгшђжчћ',
 			$this->convertToCyrillic( 'абвгšđžčć' )
 		);
-		//Same as above, but assert that -{}-s must be removed and not converted
+		// Same as above, but assert that -{}-s must be removed and not converted
 		$this->assertEquals( 'ljабвгnjшђжчћdž',
 			$this->convertToCyrillic( '-{lj}-абвг-{nj}-šđžčć-{dž}-' )
 		);
@@ -107,19 +107,19 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToLatin() {
-		//A simple convertion of Latin to Latin
+		// A simple convertion of Latin to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'abcd' )
 		);
-		//A simple convertion of Cyrillic to Latin
+		// A simple convertion of Cyrillic to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'абцд' )
 		);
-		//This text has some Latin, but is recognized as Cyrillic, so it should be converted
+		// This text has some Latin, but is recognized as Cyrillic, so it should be converted
 		$this->assertEquals( 'abcdšđžčć',
 			$this->convertToLatin( 'abcdшђжчћ' )
 		);
-		//This text has some Cyrillic, but is recognized as Latin, so it should not be converted
+		// This text has some Cyrillic, but is recognized as Latin, so it should not be converted
 		$this->assertEquals( 'абцдšđžčć',
 			$this->convertToLatin( 'абцдšđžčć' )
 		);
@@ -130,7 +130,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'other' );
+		$forms = [ 'one', 'few', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -143,19 +143,19 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-			array( 'few', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 4 ),
-			array( 'few', 334 ),
-			array( 'other', 5 ),
-			array( 'other', 15 ),
-			array( 'other', 120 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+			[ 'few', 2 ],
+			[ 'few', 3 ],
+			[ 'few', 4 ],
+			[ 'few', 334 ],
+			[ 'other', 5 ],
+			[ 'other', 15 ],
+			[ 'other', 120 ],
+		];
 	}
 
 	/**
@@ -163,21 +163,21 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = [ 'one', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array(
-			array( 'one', 1 ),
-			array( 'other', 11 ),
-			array( 'other', 4 ),
-			array( 'one', 91 ),
-			array( 'one', 121 ),
-		);
+		return [
+			[ 'one', 1 ],
+			[ 'other', 11 ],
+			[ 'other', 4 ],
+			[ 'one', 91 ],
+			[ 'one', 121 ],
+		];
 	}
 
-	##### HELPERS #####################################################
+	# #### HELPERS #####################################################
 	/**
 	 *Wrapper to verify text stay the same after applying conversion
 	 * @param string $text Text to convert

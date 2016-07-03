@@ -26,33 +26,14 @@
  * @file
  */
 
-# Die if register_globals is enabled (PHP <=5.3)
-# This must be done before any globals are set by the code
-if ( ini_get( 'register_globals' ) ) {
-	die( 'MediaWiki does not support installations where register_globals is enabled. '
-		. 'Please see <a href="https://www.mediawiki.org/wiki/register_globals">mediawiki.org</a> '
-		. 'for help on how to disable it.' );
-}
-
-if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-	die( 'MediaWiki does not function when magic quotes are enabled. '
-		. 'Please see the <a href="https://php.net/manual/security.magicquotes.disabling.php">PHP Manual</a> '
-		. 'for help on how to disable magic quotes.' );
-}
-
 if ( ini_get( 'mbstring.func_overload' ) ) {
-       die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
+	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
 }
 
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
-
-# Approximate $_SERVER['REQUEST_TIME_FLOAT'] for PHP<5.4
-if ( !isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ) {
-	$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
-}
 
 /**
  * @var float Request start time as fractional seconds since epoch
@@ -89,11 +70,10 @@ require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
 
 # Start the profiler
-$wgProfiler = array();
+$wgProfiler = [];
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }
-
 
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
@@ -104,6 +84,24 @@ require_once "$IP/includes/GlobalFunctions.php";
 # Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 	require_once "$IP/vendor/autoload.php";
+}
+
+# Assert that composer dependencies were successfully loaded
+# Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
+# PHP works fine with both versions
+# See https://github.com/facebook/hhvm/issues/5833
+if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
+	$message = (
+		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
+		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
+		"git repository and must be installed separately by the end user.\n\n" .
+		'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
+		'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
+		'the required components.'
+	);
+	echo $message;
+	trigger_error( $message, E_USER_ERROR );
+	die( 1 );
 }
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
@@ -126,7 +124,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require_once MW_CONFIG_FILE;
 }
 
-
 # Initialise output buffering
 # Check that there is no previous output or previously set up buffers, because
 # that would cause us to potentially mix gzip and non-gzip output, creating a
@@ -143,4 +140,26 @@ if ( !defined( 'MW_NO_SETUP' ) ) {
 # Multiple DBs or commits might be used; keep the request as transactional as possible
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	ignore_user_abort( true );
+}
+
+if ( !defined( 'MW_API' ) &&
+	RequestContext::getMain()->getRequest()->getHeader( 'Promise-Non-Write-API-Action' )
+) {
+	header( 'Cache-Control: no-cache' );
+	header( 'Content-Type: text/html; charset=utf-8' );
+	HttpStatus::header( 400 );
+	$error = wfMessage( 'nonwrite-api-promise-error' )->escaped();
+	$content = <<<EOT
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8" /></head>
+<body>
+$error
+</body>
+</html>
+
+EOT;
+	header( 'Content-Length: ' . strlen( $content ) );
+	echo $content;
+	die();
 }

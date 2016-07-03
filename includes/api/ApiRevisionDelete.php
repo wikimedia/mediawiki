@@ -36,28 +36,31 @@ class ApiRevisionDelete extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
-
 		if ( !$user->isAllowed( RevisionDeleter::getRestriction( $params['type'] ) ) ) {
 			$this->dieUsageMsg( 'badaccess-group0' );
+		}
+
+		if ( $user->isBlocked() ) {
+			$this->dieBlocked( $user->getBlock() );
 		}
 
 		if ( !$params['ids'] ) {
 			$this->dieUsage( "At least one value is required for 'ids'", 'badparams' );
 		}
 
-		$hide = $params['hide'] ?: array();
-		$show = $params['show'] ?: array();
+		$hide = $params['hide'] ?: [];
+		$show = $params['show'] ?: [];
 		if ( array_intersect( $hide, $show ) ) {
 			$this->dieUsage( "Mutually exclusive values for 'hide' and 'show'", 'badparams' );
 		} elseif ( !$hide && !$show ) {
 			$this->dieUsage( "At least one value is required for 'hide' or 'show'", 'badparams' );
 		}
-		$bits = array(
+		$bits = [
 			'content' => RevisionDeleter::getRevdelConstant( $params['type'] ),
 			'comment' => Revision::DELETED_COMMENT,
 			'user' => Revision::DELETED_USER,
-		);
-		$bitfield = array();
+		];
+		$bitfield = [];
 		foreach ( $bits as $key => $bit ) {
 			if ( in_array( $key, $hide ) ) {
 				$bitfield[$bit] = 1;
@@ -92,13 +95,13 @@ class ApiRevisionDelete extends ApiBase {
 			$params['type'], $this->getContext(), $targetObj, $params['ids']
 		);
 		$status = $list->setVisibility(
-			array( 'value' => $bitfield, 'comment' => $params['reason'], 'perItemStatus' => true )
+			[ 'value' => $bitfield, 'comment' => $params['reason'], 'perItemStatus' => true ]
 		);
 
 		$result = $this->getResult();
 		$data = $this->extractStatusInfo( $status );
 		$data['target'] = $targetObj->getFullText();
-		$data['items'] = array();
+		$data['items'] = [];
 
 		foreach ( $status->itemStatuses as $id => $s ) {
 			$data['items'][$id] = $this->extractStatusInfo( $s );
@@ -118,9 +121,9 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	private function extractStatusInfo( $status ) {
-		$ret = array(
+		$ret = [
 			'status' => $status->isOK() ? 'Success' : 'Fail',
-		);
+		];
 		$errors = $this->formatStatusMessages( $status->getErrorsByType( 'error' ) );
 		if ( $errors ) {
 			ApiResult::setIndexedTagName( $errors, 'e' );
@@ -137,19 +140,19 @@ class ApiRevisionDelete extends ApiBase {
 
 	private function formatStatusMessages( $messages ) {
 		if ( !$messages ) {
-			return array();
+			return [];
 		}
-		$ret = array();
+		$ret = [];
 		foreach ( $messages as $m ) {
 			if ( $m['message'] instanceof Message ) {
 				$msg = $m['message'];
-				$message = array( 'message' => $msg->getKey() );
+				$message = [ 'message' => $msg->getKey() ];
 				if ( $msg->getParams() ) {
 					$message['params'] = $msg->getParams();
 					ApiResult::setIndexedTagName( $message['params'], 'p' );
 				}
 			} else {
-				$message = array( 'message' => $m['message'] );
+				$message = [ 'message' => $m['message'] ];
 				$msg = wfMessage( $m['message'] );
 				if ( isset( $m['params'] ) ) {
 					$message['params'] = $m['params'];
@@ -173,30 +176,30 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'type' => array(
+		return [
+			'type' => [
 				ApiBase::PARAM_TYPE => RevisionDeleter::getTypes(),
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'target' => null,
-			'ids' => array(
+			'ids' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'hide' => array(
-				ApiBase::PARAM_TYPE => array( 'content', 'comment', 'user' ),
+			],
+			'hide' => [
+				ApiBase::PARAM_TYPE => [ 'content', 'comment', 'user' ],
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'show' => array(
-				ApiBase::PARAM_TYPE => array( 'content', 'comment', 'user' ),
+			],
+			'show' => [
+				ApiBase::PARAM_TYPE => [ 'content', 'comment', 'user' ],
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'suppress' => array(
-				ApiBase::PARAM_TYPE => array( 'yes', 'no', 'nochange' ),
+			],
+			'suppress' => [
+				ApiBase::PARAM_TYPE => [ 'yes', 'no', 'nochange' ],
 				ApiBase::PARAM_DFLT => 'nochange',
-			),
+			],
 			'reason' => null,
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -204,14 +207,14 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
 				'hide=content&token=123ABC'
 				=> 'apihelp-revisiondelete-example-revision',
 			'action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
 				'reason=BLP%20violation&token=123ABC'
 				=> 'apihelp-revisiondelete-example-log',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

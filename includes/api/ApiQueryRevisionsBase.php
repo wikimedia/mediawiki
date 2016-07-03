@@ -31,8 +31,8 @@
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
-	protected $limit, $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
+	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
+		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
@@ -61,6 +61,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected function parseParameters( $params ) {
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
+			$this->difftotextpst = $params['difftotextpst'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -80,10 +81,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $params['diffto'] != 0 ) {
 				$difftoRev = Revision::newFromId( $params['diffto'] );
 				if ( !$difftoRev ) {
-					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
+					$this->dieUsageMsg( [ 'nosuchrevid', $params['diffto'] ] );
 				}
 				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
+					$this->setWarning( "Couldn't diff to r{$difftoRev->getId()}: content is hidden" );
 					$params['diffto'] = null;
 				}
 			}
@@ -159,7 +160,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected function extractRevisionInfo( Revision $revision, $row ) {
 		$title = $revision->getTitle();
 		$user = $this->getUser();
-		$vals = array();
+		$vals = [];
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
@@ -212,7 +213,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
 				if ( $revision->getSha1() != '' ) {
-					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -247,7 +248,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
-				$vals['tags'] = array();
+				$vals['tags'] = [];
 			}
 		}
 
@@ -275,9 +276,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
-			if ( !$this->fld_parsetree ) {
-				$this->logFeatureUsage( 'action=query&prop=revisions+base&generatexml' );
-			}
 			if ( $content ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
@@ -288,7 +286,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						Parser::OT_PREPROCESS
 					);
 					$dom = $wgParser->preprocessToDom( $t );
-					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+					if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 						$xml = $dom->saveXML();
 					} else {
 						$xml = $dom->__toString();
@@ -296,9 +294,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$vals['parsetree'] = $xml;
 				} else {
 					$vals['badcontentformatforparsetree'] = true;
-					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
+					$this->setWarning( 'Conversion to XML is supported for wikitext only, ' .
 						$title->getPrefixedDBkey() .
-						" uses content model " . $content->getModel() );
+						' uses content model ' . $content->getModel() );
 				}
 			}
 		}
@@ -307,7 +305,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
-				#XXX: implement template expansion for all content types in ContentHandler?
+				# XXX: implement template expansion for all content types in ContentHandler?
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getNativeData();
 
@@ -317,9 +315,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						ParserOptions::newFromContext( $this->getContext() )
 					);
 				} else {
-					$this->setWarning( "Template expansion is supported for wikitext only, " .
+					$this->setWarning( 'Template expansion is supported for wikitext only, ' .
 						$title->getPrefixedDBkey() .
-						" uses content model " . $content->getModel() );
+						' uses content model ' . $content->getModel() );
 					$vals['badcontentformat'] = true;
 					$text = false;
 				}
@@ -334,7 +332,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 
 			if ( $text === null ) {
-				$format = $this->contentFormat ? $this->contentFormat : $content->getDefaultFormat();
+				$format = $this->contentFormat ?: $content->getDefaultFormat();
 				$model = $content->getModel();
 
 				if ( !$content->isSupportedFormat( $format ) ) {
@@ -361,7 +359,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			static $n = 0; // Number of uncached diffs we've had
 
 			if ( $n < $this->getConfig()->get( 'APIMaxUncachedDiffs' ) ) {
-				$vals['diff'] = array();
+				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
 				$handler = $revision->getContentHandler();
@@ -385,11 +383,16 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 							$this->contentFormat
 						);
 
+						if ( $this->difftotextpst ) {
+							$popts = ParserOptions::newFromContext( $this->getContext() );
+							$difftocontent = $difftocontent->preSaveTransform( $title, $user, $popts );
+						}
+
 						$engine = $handler->createDifferenceEngine( $context );
 						$engine->setContent( $content, $difftocontent );
 					}
 				} else {
-					$engine = $handler->createDifferenceEngine( $context, $revision->getID(), $this->diffto );
+					$engine = $handler->createDifferenceEngine( $context, $revision->getId(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
 					$vals['diff']['to'] = $engine->getNewid();
 				}
@@ -421,11 +424,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|timestamp|flags|comment|user',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'flags',
 					'timestamp',
@@ -439,9 +442,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'content',
 					'tags',
 					'parsetree',
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-prop',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'ids' => 'apihelp-query+revisions+base-paramvalue-prop-ids',
 					'flags' => 'apihelp-query+revisions+base-paramvalue-prop-flags',
 					'timestamp' => 'apihelp-query+revisions+base-paramvalue-prop-timestamp',
@@ -454,48 +457,48 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'parsedcomment' => 'apihelp-query+revisions+base-paramvalue-prop-parsedcomment',
 					'content' => 'apihelp-query+revisions+base-paramvalue-prop-content',
 					'tags' => 'apihelp-query+revisions+base-paramvalue-prop-tags',
-					'parsetree' => array( 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
-						CONTENT_MODEL_WIKITEXT ),
-				),
-			),
-			'limit' => array(
+					'parsetree' => [ 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
+						CONTENT_MODEL_WIKITEXT ],
+				],
+			],
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-limit',
-			),
-			'expandtemplates' => array(
+			],
+			'expandtemplates' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-expandtemplates',
-			),
-			'generatexml' => array(
+			],
+			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-generatexml',
-			),
-			'parse' => array(
+			],
+			'parse' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-parse',
-			),
-			'section' => array(
-				ApiBase::PARAM_DFLT => null,
+			],
+			'section' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-section',
-			),
-			'diffto' => array(
-				ApiBase::PARAM_DFLT => null,
+			],
+			'diffto' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-diffto',
-			),
-			'difftotext' => array(
-				ApiBase::PARAM_DFLT => null,
+			],
+			'difftotext' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
-			),
-			'contentformat' => array(
+			],
+			'difftotextpst' => [
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
+			],
+			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
-			),
-		);
+			],
+		];
 	}
 
 }

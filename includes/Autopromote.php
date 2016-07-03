@@ -35,7 +35,7 @@ class Autopromote {
 	public static function getAutopromoteGroups( User $user ) {
 		global $wgAutopromote;
 
-		$promote = array();
+		$promote = [];
 
 		foreach ( $wgAutopromote as $group => $cond ) {
 			if ( self::recCheckCondition( $cond, $user ) ) {
@@ -43,7 +43,7 @@ class Autopromote {
 			}
 		}
 
-		Hooks::run( 'GetAutoPromoteGroups', array( $user, &$promote ) );
+		Hooks::run( 'GetAutoPromoteGroups', [ $user, &$promote ] );
 
 		return $promote;
 	}
@@ -63,7 +63,7 @@ class Autopromote {
 	public static function getAutopromoteOnceGroups( User $user, $event ) {
 		global $wgAutopromoteOnce;
 
-		$promote = array();
+		$promote = [];
 
 		if ( isset( $wgAutopromoteOnce[$event] ) && count( $wgAutopromoteOnce[$event] ) ) {
 			$currentGroups = $user->getGroups();
@@ -104,7 +104,7 @@ class Autopromote {
 	 * @return bool Whether the condition is true
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
-		$validOps = array( '&', '|', '^', '!' );
+		$validOps = [ '&', '|', '^', '!' ];
 
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
 			# Recursive condition
@@ -144,7 +144,7 @@ class Autopromote {
 		// If we got here, the array presumably does not contain other conditions;
 		// it's not recursive.  Pass it off to self::checkCondition.
 		if ( !is_array( $cond ) ) {
-			$cond = array( $cond );
+			$cond = [ $cond ];
 		}
 
 		return self::checkCondition( $cond, $user );
@@ -197,8 +197,8 @@ class Autopromote {
 				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
-				Hooks::run( 'AutopromoteCondition', array( $cond[0],
-					array_slice( $cond, 1 ), $user, &$result ) );
+				Hooks::run( 'AutopromoteCondition', [ $cond[0],
+					array_slice( $cond, 1 ), $user, &$result ] );
 				if ( $result === null ) {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}

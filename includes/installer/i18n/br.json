@@ -5,7 +5,8 @@
 			"Fulup",
 			"Gwendal",
 			"Y-M D",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"config-desc": "Poellad staliañ MediaWIki",
@@ -51,7 +52,6 @@
 	"config-env-bad": "Gwiriet eo bet an endro.\nNe c'hallit ket staliañ MediaWiki.",
 	"config-env-php": "Staliet eo PHP $1.",
 	"config-env-hhvm": "HHVM $1 zo staliet.",
-	"config-unicode-using-utf8": "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
 	"config-unicode-using-intl": "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	"config-unicode-pure-php-warning": "'''Diwallit''' : N'haller ket kaout an [http://pecl.php.net/intl intl PECL astenn] evit merañ reoladur Unicode, a zistro d'ar stumm gorrek emplementet e-PHP.\nMa lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",
 	"config-unicode-update-warning": "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].\nDleout a rafec'h [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
@@ -90,8 +90,6 @@
 	"config-db-install-account": "Kont implijer evit ar staliadur",
 	"config-db-username": "Anv implijer an diaz roadennoù :",
 	"config-db-password": "Ger-tremen an diaz roadennoù :",
-	"config-db-password-empty": "Lakait ur ger-tremen evit kont nevez an diaz roadennoù : $1.\nHa pa vefe posupl da grouiñ kontoù hep ger-tremen, n'eo ket erbedet evit abegoù surentez.",
-	"config-db-username-empty": "Ret eo deoc'h ebarzhiñ un talvoud evit  \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Ebarzhit an anv implijer a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.\nN'eo ket anv implijer ar gont MediaWiki, an anv implijer evit ho tiaz roadennoù eo.",
 	"config-db-install-password": "Ebarzhit ar ger-tremen a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.\nN'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roadennoù eo.",
 	"config-db-install-help": "Merkañ anv an implijer hag ar ger-tremen a vo implijet evit kevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.",
@@ -225,7 +223,7 @@
 	"config-instantcommons": "Gweredekaat ''InstantCommons''",
 	"config-cc-error": "N'eus deuet disoc'h ebet gant dibaber aotreoù-implijout Creative Commons.\nMerkit anv an aotre-implijout gant an dorn.",
 	"config-cc-again": "Dibabit adarre...",
-	"config-cc-not-chosen": "Dibabit an aotre-implijout Creative Commons a fell deoc'h ober gantañ ha klikit war \"kenderc'hel\".",
+	"config-cc-not-chosen": "Dibabit an aotre-implijout Creative Commons a fell deoc'h ober gantañ ha klikit war \"proceed\".",
 	"config-advanced-settings": "Kefluniadur araokaet",
 	"config-cache-options": "Arventennoù evit krubuilhañ traezoù :",
 	"config-cache-accel": "Krubuilhañ traezoù PHP (APC, XCache pe WinCache)",

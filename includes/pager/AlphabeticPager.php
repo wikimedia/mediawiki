@@ -42,12 +42,12 @@ abstract class AlphabeticPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = array(
+		$linkTexts = [
 			'prev' => $this->msg( 'prevn' )->numParams( $this->mLimit )->escaped(),
 			'next' => $this->msg( 'nextn' )->numParams( $this->mLimit )->escaped(),
 			'first' => $this->msg( 'page_first' )->escaped(),
 			'last' => $this->msg( 'page_last' )->escaped()
-		);
+		];
 
 		$lang = $this->getLanguage();
 
@@ -56,8 +56,8 @@ abstract class AlphabeticPager extends IndexPager {
 		$limits = $lang->pipeList( $limitLinks );
 
 		$this->mNavigationBar = $this->msg( 'parentheses' )->rawParams(
-			$lang->pipeList( array( $pagingLinks['first'],
-			$pagingLinks['last'] ) ) )->escaped() . " " .
+			$lang->pipeList( [ $pagingLinks['first'],
+			$pagingLinks['last'] ] ) )->escaped() . " " .
 			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
 				$pagingLinks['next'], $limits )->escaped();
 
@@ -81,7 +81,7 @@ abstract class AlphabeticPager extends IndexPager {
 			} else {
 				$extra .= $this->makeLink(
 					$this->msg( $msgs[$order] )->escaped(),
-					array( 'order' => $order )
+					[ 'order' => $order ]
 				);
 			}
 		}

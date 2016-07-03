@@ -27,7 +27,7 @@
  * @since 1.20
  */
 class DBFileJournal extends FileJournal {
-	/** @var DatabaseBase */
+	/** @var IDatabase */
 	protected $dbw;
 
 	protected $wiki = false; // string; wiki DB name
@@ -63,16 +63,16 @@ class DBFileJournal extends FileJournal {
 
 		$now = wfTimestamp( TS_UNIX );
 
-		$data = array();
+		$data = [];
 		foreach ( $entries as $entry ) {
-			$data[] = array(
+			$data[] = [
 				'fj_batch_uuid' => $batchId,
 				'fj_backend' => $this->backend,
 				'fj_op' => $entry['op'],
 				'fj_path' => $entry['path'],
 				'fj_new_sha1' => $entry['newSha1'],
 				'fj_timestamp' => $dbw->timestamp( $now )
-			);
+			];
 		}
 
 		try {
@@ -97,7 +97,7 @@ class DBFileJournal extends FileJournal {
 		$dbw = $this->getMasterDB();
 
 		return $dbw->selectField( 'filejournal', 'MAX(fj_id)',
-			array( 'fj_backend' => $this->backend ),
+			[ 'fj_backend' => $this->backend ],
 			__METHOD__
 		);
 	}
@@ -113,9 +113,9 @@ class DBFileJournal extends FileJournal {
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
 
 		return $dbw->selectField( 'filejournal', 'fj_id',
-			array( 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ),
+			[ 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ],
 			__METHOD__,
-			array( 'ORDER BY' => 'fj_timestamp DESC' )
+			[ 'ORDER BY' => 'fj_timestamp DESC' ]
 		);
 	}
 
@@ -129,17 +129,17 @@ class DBFileJournal extends FileJournal {
 		$dbw = $this->getMasterDB();
 
 		$res = $dbw->select( 'filejournal', '*',
-			array(
+			[
 				'fj_backend' => $this->backend,
-				'fj_id >= ' . $dbw->addQuotes( (int)$start ) ), // $start may be 0
+				'fj_id >= ' . $dbw->addQuotes( (int)$start ) ], // $start may be 0
 			__METHOD__,
-			array_merge( array( 'ORDER BY' => 'fj_id ASC' ),
-				$limit ? array( 'LIMIT' => $limit ) : array() )
+			array_merge( [ 'ORDER BY' => 'fj_id ASC' ],
+				$limit ? [ 'LIMIT' => $limit ] : [] )
 		);
 
-		$entries = array();
+		$entries = [];
 		foreach ( $res as $row ) {
-			$item = array();
+			$item = [];
 			foreach ( (array)$row as $key => $value ) {
 				$item[substr( $key, 3 )] = $value; // "fj_op" => "op"
 			}
@@ -164,7 +164,7 @@ class DBFileJournal extends FileJournal {
 		$dbCutoff = $dbw->timestamp( time() - 86400 * $this->ttlDays );
 
 		$dbw->delete( 'filejournal',
-			array( 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ),
+			[ 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ],
 			__METHOD__
 		);
 
@@ -174,14 +174,14 @@ class DBFileJournal extends FileJournal {
 	/**
 	 * Get a master connection to the logging DB
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 * @throws DBError
 	 */
 	protected function getMasterDB() {
 		if ( !$this->dbw ) {
 			// Get a separate connection in autocommit mode
 			$lb = wfGetLBFactory()->newMainLB();
-			$this->dbw = $lb->getConnection( DB_MASTER, array(), $this->wiki );
+			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->wiki );
 			$this->dbw->clearFlag( DBO_TRX );
 		}
 

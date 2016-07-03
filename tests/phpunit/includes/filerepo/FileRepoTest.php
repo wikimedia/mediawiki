@@ -15,7 +15,7 @@ class FileRepoTest extends MediaWikiTestCase {
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
-		new FileRepo( array() );
+		new FileRepo( [] );
 	}
 
 	/**
@@ -23,9 +23,9 @@ class FileRepoTest extends MediaWikiTestCase {
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedNameKey() {
-		new FileRepo( array(
+		new FileRepo( [
 			'backend' => 'foobar'
-		) );
+		] );
 	}
 
 	/**
@@ -33,23 +33,23 @@ class FileRepoTest extends MediaWikiTestCase {
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedBackendKey() {
-		new FileRepo( array(
+		new FileRepo( [
 			'name' => 'foobar'
-		) );
+		] );
 	}
 
 	/**
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionWithRequiredOptions() {
-		$f = new FileRepo( array(
+		$f = new FileRepo( [
 			'name' => 'FileRepoTestRepository',
-			'backend' => new FSFileBackend( array(
+			'backend' => new FSFileBackend( [
 				'name' => 'local-testing',
 				'wikiId' => 'test_wiki',
-				'containerPaths' => array()
-			) )
-		) );
+				'containerPaths' => []
+			] )
+		] );
 		$this->assertInstanceOf( 'FileRepo', $f );
 	}
 }

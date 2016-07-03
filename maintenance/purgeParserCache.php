@@ -60,7 +60,7 @@ class PurgeParserCache extends Maintenance {
 		$this->output( "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n" );
 
 		$pc = wfGetParserCacheStorage();
-		$success = $pc->deleteObjectsExpiringBefore( $date, array( $this, 'showProgress' ) );
+		$success = $pc->deleteObjectsExpiringBefore( $date, [ $this, 'showProgress' ] );
 		if ( !$success ) {
 			$this->error( "\nCannot purge this kind of parser cache.", 1 );
 		}

@@ -5,7 +5,8 @@
 			"Macofe",
 			"Xavier Dengra",
 			"F3RaN",
-			"Eduardo Martinez"
+			"Eduardo Martinez",
+			"Fitoschido"
 		]
 	},
 	"apihelp-main-param-format": "El format de la sortida.",
@@ -39,11 +40,13 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtra segons etiqueta.",
 	"apihelp-feedrecentchanges-param-target": "Mostra només els canvis de les pàgines enllaçades a aquesta pàgina.",
 	"apihelp-feedrecentchanges-example-simple": "Mostra els canvis recents.",
+	"apihelp-help-description": "Mostra l’ajuda dels mòduls especificats.",
 	"apihelp-help-example-recursive": "Tota l'ajuda en una sola pàgina.",
 	"apihelp-import-param-rootpage": "Importa com a subpàgina d'aquesta pàgina.",
 	"apihelp-login-param-name": "Nom d'usuari.",
 	"apihelp-login-param-password": "Contrasenya.",
 	"apihelp-login-example-login": "Inicia sessió.",
+	"apihelp-options-example-reset": "Reinicialitza totes les preferències.",
 	"apihelp-protect-param-cascade": "Activa la protecció en cascada (és a dir, protegeix les plantilles i imatges utilitzades en aquesta pàgina). S'ignora si cap dels nivells de protecció suporta la protecció en cascada.",
 	"apihelp-query+pageswithprop-example-generator": "Obtenir informació addicional sobre les 10 primeres pàgines utilitzant <code>__NOTOC__</code>.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Afegeix el títol de la pàgina.",

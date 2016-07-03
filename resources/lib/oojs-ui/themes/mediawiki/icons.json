@@ -4,29 +4,32 @@
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {
-			"color": "#FFFFFF",
+			"color": "#ffffff",
 			"global": true
 		},
 		"progressive": {
-			"color": "#347BFF"
+			"color": "#347bff"
 		},
 		"constructive": {
-			"color": "#00AF89"
+			"color": "#347bff"
+		},
+		"constructive-deprecated": {
+			"color": "#00af89"
 		},
 		"destructive": {
-			"color": "#D11D13"
+			"color": "#d11d13"
 		},
 		"warning": {
-			"color": "#FF5D00"
+			"color": "#ff5d00"
 		}
 	},
 	"images": {
-		"add": { "file": "images/icons/add.svg", "variants": [ "constructive" ] },
+		"add": { "file": "images/icons/add.svg", "variants": [ "constructive", "progressive" ] },
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
-		"cancel": { "file": "images/icons/cancel.svg" },
-		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
-		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive" ] },
+		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
+		"check": { "file": "images/icons/check.svg", "variants": [ "constructive-deprecated", "constructive", "progressive", "destructive" ] },
+		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive-deprecated", "constructive", "progressive" ] },
 		"close": { "file": {
 			"ltr": "images/icons/close-ltr.svg",
 			"rtl": "images/icons/close-rtl.svg"
@@ -51,7 +54,6 @@
 			"rtl": "images/icons/move-rtl.svg"
 		} },
 		"notice": { "file": "images/icons/notice.svg" },
-		"picture": { "file": "images/icons/picture.svg" },
 		"previous": { "file": {
 			"ltr": "images/icons/move-rtl.svg",
 			"rtl": "images/icons/move-ltr.svg"
@@ -60,7 +62,7 @@
 			"ltr": "images/icons/arched-arrow-ltr.svg",
 			"rtl": "images/icons/arched-arrow-rtl.svg"
 		} },
-		"remove": { "file": "images/icons/remove.svg", "variants": [ "destructive" ] },
+		"remove": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
 		"search": { "file": {
 			"ltr": "images/icons/search-ltr.svg",
 			"rtl": "images/icons/search-rtl.svg"

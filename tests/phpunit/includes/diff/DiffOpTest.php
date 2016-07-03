@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Adam Shorland
+ * @author Addshore
  *
  * @group Diff
  */
@@ -20,8 +20,8 @@ class DiffOpTest extends MediaWikiTestCase {
 	 */
 	public function testGetOrig() {
 		$obj = new FakeDiffOp();
-		$obj->orig = array( 'foo' );
-		$this->assertEquals( array( 'foo' ), $obj->getOrig() );
+		$obj->orig = [ 'foo' ];
+		$this->assertEquals( [ 'foo' ], $obj->getOrig() );
 	}
 
 	/**
@@ -29,8 +29,8 @@ class DiffOpTest extends MediaWikiTestCase {
 	 */
 	public function testGetClosing() {
 		$obj = new FakeDiffOp();
-		$obj->closing = array( 'foo' );
-		$this->assertEquals( array( 'foo' ), $obj->getClosing() );
+		$obj->closing = [ 'foo' ];
+		$this->assertEquals( [ 'foo' ], $obj->getClosing() );
 	}
 
 	/**
@@ -38,7 +38,7 @@ class DiffOpTest extends MediaWikiTestCase {
 	 */
 	public function testGetClosingWithParameter() {
 		$obj = new FakeDiffOp();
-		$obj->closing = array( 'foo', 'bar', 'baz' );
+		$obj->closing = [ 'foo', 'bar', 'baz' ];
 		$this->assertEquals( 'foo', $obj->getClosing( 0 ) );
 		$this->assertEquals( 'bar', $obj->getClosing( 1 ) );
 		$this->assertEquals( 'baz', $obj->getClosing( 2 ) );
@@ -51,7 +51,7 @@ class DiffOpTest extends MediaWikiTestCase {
 	public function testNorig() {
 		$obj = new FakeDiffOp();
 		$this->assertEquals( 0, $obj->norig() );
-		$obj->orig = array( 'foo' );
+		$obj->orig = [ 'foo' ];
 		$this->assertEquals( 1, $obj->norig() );
 	}
 
@@ -61,7 +61,7 @@ class DiffOpTest extends MediaWikiTestCase {
 	public function testNclosing() {
 		$obj = new FakeDiffOp();
 		$this->assertEquals( 0, $obj->nclosing() );
-		$obj->closing = array( 'foo' );
+		$obj->closing = [ 'foo' ];
 		$this->assertEquals( 1, $obj->nclosing() );
 	}
 

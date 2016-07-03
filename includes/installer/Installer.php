@@ -2,6 +2,9 @@
 /**
  * Base code for MediaWiki installer.
  *
+ * DO NOT PATCH THIS FILE IF YOU NEED TO CHANGE INSTALLER BEHAVIOR IN YOUR PACKAGE!
+ * See mw-config/overrides/README for details.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -63,7 +66,7 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $dbInstallers = array();
+	protected $dbInstallers = [];
 
 	/**
 	 * Minimum memory size in MB.
@@ -95,13 +98,13 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected static $dbTypes = array(
+	protected static $dbTypes = [
 		'mysql',
 		'postgres',
 		'oracle',
 		'mssql',
 		'sqlite',
-	);
+	];
 
 	/**
 	 * A list of environment check methods called by doEnvironmentChecks().
@@ -114,14 +117,9 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $envChecks = array(
+	protected $envChecks = [
 		'envCheckDB',
-		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
-		'envCheckMagicQuotes',
-		'envCheckMbstring',
-		'envCheckSafeMode',
-		'envCheckXML',
 		'envCheckPCRE',
 		'envCheckMemory',
 		'envCheckCache',
@@ -135,20 +133,17 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
-		'envCheckCtype',
-		'envCheckIconv',
-		'envCheckJSON',
-	);
+	];
 
 	/**
 	 * A list of environment preparation methods called by doEnvironmentPreps().
 	 *
 	 * @var array
 	 */
-	protected $envPreps = array(
+	protected $envPreps = [
 		'envPrepServer',
 		'envPrepPath',
-	);
+	];
 
 	/**
 	 * MediaWiki configuration globals that will eventually be passed through
@@ -157,19 +152,19 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $defaultVarNames = array(
+	protected $defaultVarNames = [
 		'wgSitename',
 		'wgPasswordSender',
 		'wgLanguageCode',
 		'wgRightsIcon',
 		'wgRightsText',
 		'wgRightsUrl',
-		'wgMainCacheType',
 		'wgEnableEmail',
 		'wgEnableUserEmail',
 		'wgEnotifUserTalk',
 		'wgEnotifWatchlist',
 		'wgEmailAuthentication',
+		'wgDBname',
 		'wgDBtype',
 		'wgDiff3',
 		'wgImageMagickConvertCommand',
@@ -184,7 +179,7 @@ abstract class Installer {
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
 		'wgDefaultSkin',
-	);
+	];
 
 	/**
 	 * Variables that are stored alongside globals, and are used for any
@@ -193,14 +188,13 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $internalDefaults = array(
+	protected $internalDefaults = [
 		'_UserLang' => 'en',
 		'_Environment' => false,
-		'_SafeMode' => false,
 		'_RaiseMemory' => false,
 		'_UpgradeDone' => false,
 		'_InstallDone' => false,
-		'_Caches' => array(),
+		'_Caches' => [],
 		'_InstallPassword' => '',
 		'_SameAccount' => true,
 		'_CreateDBAccount' => false,
@@ -214,8 +208,8 @@ abstract class Installer {
 		'_RightsProfile' => 'wiki',
 		'_LicenseCode' => 'none',
 		'_CCDone' => false,
-		'_Extensions' => array(),
-		'_Skins' => array(),
+		'_Extensions' => [],
+		'_Skins' => [],
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
@@ -223,100 +217,101 @@ abstract class Installer {
 		// $wgLogo is probably wrong (bug 48084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
 		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
-	);
+		'wgAuthenticationTokenVersion' => 1,
+	];
 
 	/**
 	 * The actual list of installation steps. This will be initialized by getInstallSteps()
 	 *
 	 * @var array
 	 */
-	private $installSteps = array();
+	private $installSteps = [];
 
 	/**
 	 * Extra steps for installation, for things like DatabaseInstallers to modify
 	 *
 	 * @var array
 	 */
-	protected $extraInstallSteps = array();
+	protected $extraInstallSteps = [];
 
 	/**
 	 * Known object cache types and the functions used to test for their existence.
 	 *
 	 * @var array
 	 */
-	protected $objectCaches = array(
+	protected $objectCaches = [
 		'xcache' => 'xcache_get',
 		'apc' => 'apc_fetch',
 		'wincache' => 'wincache_ucache_get'
-	);
+	];
 
 	/**
 	 * User rights profiles.
 	 *
 	 * @var array
 	 */
-	public $rightsProfiles = array(
-		'wiki' => array(),
-		'no-anon' => array(
-			'*' => array( 'edit' => false )
-		),
-		'fishbowl' => array(
-			'*' => array(
+	public $rightsProfiles = [
+		'wiki' => [],
+		'no-anon' => [
+			'*' => [ 'edit' => false ]
+		],
+		'fishbowl' => [
+			'*' => [
 				'createaccount' => false,
 				'edit' => false,
-			),
-		),
-		'private' => array(
-			'*' => array(
+			],
+		],
+		'private' => [
+			'*' => [
 				'createaccount' => false,
 				'edit' => false,
 				'read' => false,
-			),
-		),
-	);
+			],
+		],
+	];
 
 	/**
 	 * License types.
 	 *
 	 * @var array
 	 */
-	public $licenses = array(
-		'cc-by' => array(
-			'url' => 'https://creativecommons.org/licenses/by/3.0/',
+	public $licenses = [
+		'cc-by' => [
+			'url' => 'https://creativecommons.org/licenses/by/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by.png',
-		),
-		'cc-by-sa' => array(
-			'url' => 'https://creativecommons.org/licenses/by-sa/3.0/',
+		],
+		'cc-by-sa' => [
+			'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png',
-		),
-		'cc-by-nc-sa' => array(
-			'url' => 'https://creativecommons.org/licenses/by-nc-sa/3.0/',
+		],
+		'cc-by-nc-sa' => [
+			'url' => 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by-nc-sa.png',
-		),
-		'cc-0' => array(
+		],
+		'cc-0' => [
 			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-0.png',
-		),
-		'pd' => array(
+		],
+		'pd' => [
 			'url' => '',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/public-domain.png',
-		),
-		'gfdl' => array(
+		],
+		'gfdl' => [
 			'url' => 'https://www.gnu.org/copyleft/fdl.html',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/gnu-fdl.png',
-		),
-		'none' => array(
+		],
+		'none' => [
 			'url' => '',
 			'icon' => '',
 			'text' => ''
-		),
-		'cc-choose' => array(
+		],
+		'cc-choose' => [
 			// Details will be filled in by the selector.
 			'url' => '',
 			'icon' => '',
 			'text' => '',
-		),
-	);
+		],
+	];
 
 	/**
 	 * URL to mediawiki-announce subscription
@@ -327,11 +322,11 @@ abstract class Installer {
 	/**
 	 * Supported language codes for Mailman
 	 */
-	protected $mediaWikiAnnounceLanguages = array(
+	protected $mediaWikiAnnounceLanguages = [
 		'ca', 'cs', 'da', 'de', 'en', 'es', 'et', 'eu', 'fi', 'fr', 'hr', 'hu',
 		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
 		'sl', 'sr', 'sv', 'tr', 'uk'
-	);
+	];
 
 	/**
 	 * UI interface for displaying a short message
@@ -360,6 +355,10 @@ abstract class Installer {
 	public function __construct() {
 		global $wgMessagesDirs, $wgUser;
 
+		// Don't attempt to load user language options (T126177)
+		// This will be overridden in the web installer with the user-specified language
+		RequestContext::getMain()->setLanguage( 'en' );
+
 		// Disable the i18n cache
 		Language::getLocalisationCache()->disableBackend();
 		// Disable LoadBalancer and wfGetDB etc.
@@ -369,19 +368,22 @@ abstract class Installer {
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
 		ObjectCache::clear();
-		$emptyCache = array( 'class' => 'EmptyBagOStuff' );
-		$GLOBALS['wgObjectCaches'] = array(
+		$emptyCache = [ 'class' => 'EmptyBagOStuff' ];
+		// disable (problematic) object cache types explicitly, preserving all other (working) ones
+		// bug T113843
+		$GLOBALS['wgObjectCaches'] = [
 			CACHE_NONE => $emptyCache,
 			CACHE_DB => $emptyCache,
 			CACHE_ANYTHING => $emptyCache,
 			CACHE_MEMCACHED => $emptyCache,
-		);
+		] + $GLOBALS['wgObjectCaches'];
 
 		// Load the installer's i18n.
 		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
+		RequestContext::getMain()->setUser( $wgUser );
 
 		$this->settings = $this->internalDefaults;
 
@@ -391,7 +393,7 @@ abstract class Installer {
 
 		$this->doEnvironmentPreps();
 
-		$this->compiledDBs = array();
+		$this->compiledDBs = [];
 		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
 
@@ -402,7 +404,7 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions; // language will be wrong :(
+		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
 	}
 
@@ -534,13 +536,15 @@ abstract class Installer {
 		// then some poorly-formed extensions try to call their own classes
 		// after immediately registering them. We really need to get extension
 		// registration out of the global scope and into a real format.
-		// @see https://bugzilla.wikimedia.org/67440
+		// @see https://phabricator.wikimedia.org/T69440
 		global $wgAutoloadClasses;
-		$wgAutoloadClasses = array();
+		$wgAutoloadClasses = [];
 
+		// @codingStandardsIgnoreStart
 		// LocalSettings.php should not call functions, except wfLoadSkin/wfLoadExtensions
 		// Define the required globals here, to ensure, the functions can do it work correctly.
 		global $wgExtensionDirectory, $wgStyleDirectory;
+		// @codingStandardsIgnoreEnd
 
 		MediaWiki\suppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
@@ -603,8 +607,7 @@ abstract class Installer {
 		# posix_getegid() *not* getmygid() because we want the group of the webserver,
 		# not whoever owns the current script.
 		$gid = posix_getegid();
-		$getpwuid = posix_getpwuid( $gid );
-		$group = $getpwuid['name'];
+		$group = posix_getpwuid( $gid )['name'];
 
 		return $group;
 	}
@@ -673,29 +676,18 @@ abstract class Installer {
 		}
 		$status->value->insert(
 			'site_stats',
-			array(
+			[
 				'ss_row_id' => 1,
 				'ss_total_edits' => 0,
 				'ss_good_articles' => 0,
 				'ss_total_pages' => 0,
 				'ss_users' => 0,
 				'ss_images' => 0
-			),
+			],
 			__METHOD__, 'IGNORE'
 		);
 
 		return Status::newGood();
-	}
-
-	/**
-	 * Exports all wg* variables stored by the installer into global scope.
-	 */
-	public function exportVars() {
-		foreach ( $this->settings as $name => $value ) {
-			if ( substr( $name, 0, 2 ) == 'wg' ) {
-				$GLOBALS[$name] = $value;
-			}
-		}
 	}
 
 	/**
@@ -705,7 +697,7 @@ abstract class Installer {
 	protected function envCheckDB() {
 		global $wgLang;
 
-		$allNames = array();
+		$allNames = [];
 
 		// Messages: config-type-mysql, config-type-postgres, config-type-oracle,
 		// config-type-sqlite
@@ -738,20 +730,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for register_globals.
-	 * Prevent installation if enabled
-	 * @return bool
-	 */
-	protected function envCheckRegisterGlobals() {
-		if ( wfIniGetBool( 'register_globals' ) ) {
-			$this->showMessage( 'config-register-globals-error' );
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Some versions of libxml+PHP break < and > encoding horribly
 	 * @return bool
 	 */
@@ -759,63 +737,6 @@ abstract class Installer {
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
 			$this->showError( 'config-brokenlibxml' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for magic_quotes_(gpc|runtime|sybase).
-	 * @return bool
-	 */
-	protected function envCheckMagicQuotes() {
-		$status = true;
-		foreach ( array( 'gpc', 'runtime', 'sybase' ) as $magicJunk ) {
-			if ( wfIniGetBool( "magic_quotes_$magicJunk" ) ) {
-				$this->showError( "config-magic-quotes-$magicJunk" );
-				$status = false;
-			}
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Environment check for mbstring.func_overload.
-	 * @return bool
-	 */
-	protected function envCheckMbstring() {
-		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
-			$this->showError( 'config-mbstring' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for safe_mode.
-	 * @return bool
-	 */
-	protected function envCheckSafeMode() {
-		if ( wfIniGetBool( 'safe_mode' ) ) {
-			$this->setVar( '_SafeMode', true );
-			$this->showMessage( 'config-safe-mode' );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for the XML module.
-	 * @return bool
-	 */
-	protected function envCheckXML() {
-		if ( !function_exists( "utf8_encode" ) ) {
-			$this->showError( 'config-xml-bad' );
 
 			return false;
 		}
@@ -880,7 +801,7 @@ abstract class Installer {
 	 * Environment check for compiled object cache types.
 	 */
 	protected function envCheckCache() {
-		$caches = array();
+		$caches = [];
 		foreach ( $this->objectCaches as $name => $function ) {
 			if ( function_exists( $function ) ) {
 				if ( $name == 'xcache' && !wfIniGetBool( 'xcache.var_size' ) ) {
@@ -891,7 +812,8 @@ abstract class Installer {
 		}
 
 		if ( !$caches ) {
-			$this->showMessage( 'config-no-cache' );
+			$key = 'config-no-cache-apcu';
+			$this->showMessage( $key );
 		}
 
 		$this->setVar( '_Caches', $caches );
@@ -915,8 +837,8 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckDiff3() {
-		$names = array( "gdiff3", "diff3", "diff3.exe" );
-		$versionInfo = array( '$1 --version 2>&1', 'GNU diffutils' );
+		$names = [ "gdiff3", "diff3", "diff3.exe" ];
+		$versionInfo = [ '$1 --version 2>&1', 'GNU diffutils' ];
 
 		$diff3 = self::locateExecutableInDefaultPaths( $names, $versionInfo );
 
@@ -935,8 +857,8 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckGraphics() {
-		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
-		$versionInfo = array( '$1 -version', 'ImageMagick' );
+		$names = [ wfIsWindows() ? 'convert.exe' : 'convert' ];
+		$versionInfo = [ '$1 -version', 'ImageMagick' ];
 		$convert = self::locateExecutableInDefaultPaths( $names, $versionInfo );
 
 		$this->setVar( 'wgImageMagickConvertCommand', '' );
@@ -961,8 +883,8 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckGit() {
-		$names = array( wfIsWindows() ? 'git.exe' : 'git' );
-		$versionInfo = array( '$1 --version', 'git version' );
+		$names = [ wfIsWindows() ? 'git.exe' : 'git' ];
+		$versionInfo = [ '$1 --version', 'git version' ];
 
 		$git = self::locateExecutableInDefaultPaths( $names, $versionInfo );
 
@@ -1010,7 +932,7 @@ abstract class Installer {
 	 */
 	protected function envCheckShellLocale() {
 		$os = php_uname( 's' );
-		$supported = array( 'Linux', 'SunOS', 'HP-UX', 'Darwin' ); # Tested these
+		$supported = [ 'Linux', 'SunOS', 'HP-UX', 'Darwin' ]; # Tested these
 
 		if ( !in_array( $os, $supported ) ) {
 			return true;
@@ -1025,8 +947,8 @@ abstract class Installer {
 		}
 
 		$lines = array_map( 'trim', explode( "\n", $lines ) );
-		$candidatesByLocale = array();
-		$candidatesByLang = array();
+		$candidatesByLocale = [];
+		$candidatesByLang = [];
 
 		foreach ( $lines as $line ) {
 			if ( $line === '' ) {
@@ -1051,7 +973,7 @@ abstract class Installer {
 		}
 
 		# Try the most common ones.
-		$commonLocales = array( 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' );
+		$commonLocales = [ 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' ];
 		foreach ( $commonLocales as $commonLocale ) {
 			if ( isset( $candidatesByLocale[$commonLocale] ) ) {
 				$this->setVar( 'wgShellLocale', $commonLocale );
@@ -1175,45 +1097,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * @return bool
-	 */
-	protected function envCheckCtype() {
-		if ( !function_exists( 'ctype_digit' ) ) {
-			$this->showError( 'config-ctype' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function envCheckIconv() {
-		if ( !function_exists( 'iconv' ) ) {
-			$this->showError( 'config-iconv' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function envCheckJSON() {
-		if ( !function_exists( 'json_decode' ) ) {
-			$this->showError( 'config-json' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Environment prep for the server hostname.
 	 */
 	protected function envPrepServer() {
@@ -1247,8 +1130,8 @@ abstract class Installer {
 	 */
 	protected static function getPossibleBinPaths() {
 		return array_merge(
-			array( '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
-				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ),
+			[ '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
+				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ],
 			explode( PATH_SEPARATOR, getenv( 'PATH' ) )
 		);
 	}
@@ -1272,7 +1155,7 @@ abstract class Installer {
 	 */
 	public static function locateExecutable( $path, $names, $versionInfo = false ) {
 		if ( !is_array( $names ) ) {
-			$names = array( $names );
+			$names = [ $names ];
 		}
 
 		foreach ( $names as $name ) {
@@ -1329,12 +1212,12 @@ abstract class Installer {
 	 * @return bool|int|string
 	 */
 	public function dirIsExecutable( $dir, $url ) {
-		$scriptTypes = array(
-			'php' => array(
+		$scriptTypes = [
+			'php' => [
 				"<?php echo 'ex' . 'ec';",
 				"#!/var/env php5\n<?php echo 'ex' . 'ec';",
-			),
-		);
+			],
+		];
 
 		// it would be good to check other popular languages here, but it'll be slow.
 
@@ -1349,7 +1232,7 @@ abstract class Installer {
 				}
 
 				try {
-					$text = Http::get( $url . $file, array( 'timeout' => 3 ), __METHOD__ );
+					$text = Http::get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
 				} catch ( Exception $e ) {
 					// Http::get throws with allow_url_fopen = false and no curl extension.
 					$text = null;
@@ -1417,19 +1300,19 @@ abstract class Installer {
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
-			return array();
+			return [];
 		}
 
 		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
 		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
-			return array();
+			return [];
 		}
 
 		// extensions -> extension.json, skins -> skin.json
 		$jsonFile = substr( $directory, 0, strlen( $directory ) -1 ) . '.json';
 
 		$dh = opendir( $extDir );
-		$exts = array();
+		$exts = [];
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
@@ -1477,11 +1360,11 @@ abstract class Installer {
 		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
 		 * if the extension has hidden hook registration in $wgExtensionFunctions,
 		 * but we're not opening that can of worms
-		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
+		 * @see https://phabricator.wikimedia.org/T28857
 		 */
 		global $wgAutoloadClasses;
-		$wgAutoloadClasses = array();
-		$queue = array();
+		$wgAutoloadClasses = [];
+		$queue = [];
 
 		require "$IP/includes/DefaultSettings.php";
 
@@ -1498,7 +1381,7 @@ abstract class Installer {
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			$wgHooks['LoadExtensionSchemaUpdates'] : array();
+			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(
@@ -1508,7 +1391,7 @@ abstract class Installer {
 		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see bug 27171)
-		$GLOBALS['wgHooks'] = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
+		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
 
 		return Status::newGood();
 	}
@@ -1526,16 +1409,16 @@ abstract class Installer {
 	 * @return array
 	 */
 	protected function getInstallSteps( DatabaseInstaller $installer ) {
-		$coreInstallSteps = array(
-			array( 'name' => 'database', 'callback' => array( $installer, 'setupDatabase' ) ),
-			array( 'name' => 'tables', 'callback' => array( $installer, 'createTables' ) ),
-			array( 'name' => 'interwiki', 'callback' => array( $installer, 'populateInterwikiTable' ) ),
-			array( 'name' => 'stats', 'callback' => array( $this, 'populateSiteStats' ) ),
-			array( 'name' => 'keys', 'callback' => array( $this, 'generateKeys' ) ),
-			array( 'name' => 'updates', 'callback' => array( $installer, 'insertUpdateKeys' ) ),
-			array( 'name' => 'sysop', 'callback' => array( $this, 'createSysop' ) ),
-			array( 'name' => 'mainpage', 'callback' => array( $this, 'createMainpage' ) ),
-		);
+		$coreInstallSteps = [
+			[ 'name' => 'database', 'callback' => [ $installer, 'setupDatabase' ] ],
+			[ 'name' => 'tables', 'callback' => [ $installer, 'createTables' ] ],
+			[ 'name' => 'interwiki', 'callback' => [ $installer, 'populateInterwikiTable' ] ],
+			[ 'name' => 'stats', 'callback' => [ $this, 'populateSiteStats' ] ],
+			[ 'name' => 'keys', 'callback' => [ $this, 'generateKeys' ] ],
+			[ 'name' => 'updates', 'callback' => [ $installer, 'insertUpdateKeys' ] ],
+			[ 'name' => 'sysop', 'callback' => [ $this, 'createSysop' ] ],
+			[ 'name' => 'mainpage', 'callback' => [ $this, 'createMainpage' ] ],
+		];
 
 		// Build the array of install steps starting from the core install list,
 		// then adding any callbacks that wanted to attach after a given step
@@ -1560,12 +1443,12 @@ abstract class Installer {
 		// Extensions should always go first, chance to tie into hooks and such
 		if ( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps,
-				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
+				[ 'name' => 'extensions', 'callback' => [ $this, 'includeExtensions' ] ]
 			);
-			$this->installSteps[] = array(
+			$this->installSteps[] = [
 				'name' => 'extension-tables',
-				'callback' => array( $installer, 'createExtensionTables' )
-			);
+				'callback' => [ $installer, 'createExtensionTables' ]
+			];
 		}
 
 		return $this->installSteps;
@@ -1580,13 +1463,13 @@ abstract class Installer {
 	 * @return array Array of Status objects
 	 */
 	public function performInstallation( $startCB, $endCB ) {
-		$installResults = array();
+		$installResults = [];
 		$installer = $this->getDBInstaller();
 		$installer->preInstall();
 		$steps = $this->getInstallSteps( $installer );
 		foreach ( $steps as $stepObj ) {
 			$name = $stepObj['name'];
-			call_user_func_array( $startCB, array( $name ) );
+			call_user_func_array( $startCB, [ $name ] );
 
 			// Perform the callback step
 			$status = call_user_func( $stepObj['callback'], $installer );
@@ -1614,7 +1497,7 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function generateKeys() {
-		$keys = array( 'wgSecretKey' => 64 );
+		$keys = [ 'wgSecretKey' => 64 ];
 		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
 			$keys['wgUpgradeKey'] = 16;
 		}
@@ -1699,11 +1582,11 @@ abstract class Installer {
 	 * @param Status $s
 	 */
 	private function subscribeToMediaWikiAnnounce( Status $s ) {
-		$params = array(
+		$params = [
 			'email' => $this->getVar( '_AdminEmail' ),
 			'language' => 'en',
 			'digest' => 0
-		);
+		];
 
 		// Mailman doesn't support as many languages as we do, so check to make
 		// sure their selected language is available
@@ -1715,7 +1598,7 @@ abstract class Installer {
 
 		if ( MWHttpRequest::canMakeRequests() ) {
 			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-				array( 'method' => 'POST', 'postData' => $params ), __METHOD__ )->execute();
+				[ 'method' => 'POST', 'postData' => $params ], __METHOD__ )->execute();
 			if ( !$res->isOK() ) {
 				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
 			}
@@ -1739,14 +1622,14 @@ abstract class Installer {
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$page->doEditContent( $content,
+			$status = $page->doEditContent( $content,
 				'',
 				EDIT_NEW,
 				false,
 				User::newFromName( 'MediaWiki default' )
 			);
 		} catch ( Exception $e ) {
-			//using raw, because $wgShowExceptionDetails can not be set yet
+			// using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
 		}
 
@@ -1757,7 +1640,9 @@ abstract class Installer {
 	 * Override the necessary bits of the config to run an installation.
 	 */
 	public static function overrideConfig() {
-		define( 'MW_NO_SESSION', 1 );
+		// Use PHP's built-in session handling, since MediaWiki's
+		// SessionHandler can't work before we have an object cache set up.
+		define( 'MW_NO_SESSION_HANDLER', 1 );
 
 		// Don't access the database
 		$GLOBALS['wgUseDatabaseMessages'] = false;
@@ -1780,6 +1665,20 @@ abstract class Installer {
 
 		// Some of the environment checks make shell requests, remove limits
 		$GLOBALS['wgMaxShellMemory'] = 0;
+
+		// Override the default CookieSessionProvider with a dummy
+		// implementation that won't stomp on PHP's cookies.
+		$GLOBALS['wgSessionProviders'] = [
+			[
+				'class' => 'InstallerSessionProvider',
+				'args' => [ [
+					'priority' => 1,
+				] ]
+			]
+		];
+
+		// Don't try to use any object cache for SessionManager either.
+		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
 	}
 
 	/**

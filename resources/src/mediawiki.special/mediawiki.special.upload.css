@@ -1,0 +1,10 @@
+/*!
+ * Styling for Special:Upload
+ */
+.mw-destfile-warning {
+	border: 1px solid #fde29b;
+	padding: .5em 1em;
+	margin-bottom: 1em;
+	color: #705000;
+	background-color: #fdf1d1;
+}

@@ -18,7 +18,7 @@
 
 $fallback = 'tr';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Doxmeli',
 	NS_TALK             => 'Ğarğala',
@@ -35,9 +35,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Meşvela_ğarğala',
 	NS_CATEGORY         => 'Kʼatʼegori',
 	NS_CATEGORY_TALK    => 'Kʼatʼegori_ğarğala',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	// Turkish namespace names.
 	'Medya'              => NS_MEDIA,
 	'Özel'               => NS_SPECIAL,
@@ -54,5 +54,5 @@ $namespaceAliases = array(
 	'Yardım_tartışma'    => NS_HELP_TALK,
 	'Kategori'           => NS_CATEGORY,
 	'Kategori_tartışma'  => NS_CATEGORY_TALK,
-);
+];
 

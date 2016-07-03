@@ -26,21 +26,16 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$langObj = Language::factory( 'en' );
 		$localZone = 'UTC';
 		$localOffset = date( 'Z' ) / 60;
 
-		$this->setMwGlobals( array(
-			'wgMemc' => new EmptyBagOStuff,
-			'wgContLang' => $langObj,
-			'wgLanguageCode' => 'en',
-			'wgLang' => $langObj,
+		$this->setMwGlobals( [
 			'wgLocaltimezone' => $localZone,
 			'wgLocalTZoffset' => $localOffset,
-			'wgNamespaceProtection' => array(
+			'wgNamespaceProtection' => [
 				NS_MEDIAWIKI => 'editinterface',
-			),
-		) );
+			],
+		] );
 		// Without this testUserBlock will use a non-English context on non-English MediaWiki
 		// installations (because of how Title::checkUserBlock is implemented) and fail.
 		RequestContext::resetMain();
@@ -53,18 +48,18 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
-			if ( !$this->userUser->getID() ) {
-				$this->userUser = User::createNew( $this->userName, array(
+			if ( !$this->userUser->getId() ) {
+				$this->userUser = User::createNew( $this->userName, [
 					"email" => "test@example.com",
-					"real_name" => "Test User" ) );
+					"real_name" => "Test User" ] );
 				$this->userUser->load();
 			}
 
 			$this->altUser = User::newFromName( $this->altUserName );
-			if ( !$this->altUser->getID() ) {
-				$this->altUser = User::createNew( $this->altUserName, array(
+			if ( !$this->altUser->getId() ) {
+				$this->altUser = User::createNew( $this->altUserName, [
 					"email" => "alttest@example.com",
-					"real_name" => "Test User Alt" ) );
+					"real_name" => "Test User Alt" ] );
 				$this->altUser->load();
 			}
 
@@ -80,7 +75,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		if ( is_array( $perm ) ) {
 			$this->user->mRights = $perm;
 		} else {
-			$this->user->mRights = array( $perm );
+			$this->user->mRights = [ $perm ];
 		}
 	}
 
@@ -110,219 +105,219 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( "nocreatetext" ) ), $res );
+		$this->assertEquals( [ [ "nocreatetext" ] ], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreatetext' ) ), $res );
+		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreatetext' ) ), $res );
+		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
+		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
+		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
+		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
+		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ), $res );
+		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "movefile" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenotallowed' ) ), $res );
+		$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "movefile" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
+		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setUserPerm( "move" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ) ) );
+		$this->runGroupPermissions( 'move', [ [ 'movenotallowedfile' ] ] );
 
 		$this->setUserPerm( "" );
 		$this->runGroupPermissions(
 			'move',
-			array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) )
+			[ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ]
 		);
 
 		$this->setUser( 'anon' );
 		$this->setUserPerm( "move" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ) ) );
+		$this->runGroupPermissions( 'move', [ [ 'movenotallowedfile' ] ] );
 
 		$this->setUserPerm( "" );
 		$this->runGroupPermissions(
 			'move',
-			array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ),
-			array( array( 'movenotallowedfile' ), array( 'movenologintext' ) )
+			[ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ],
+			[ [ 'movenotallowedfile' ], [ 'movenologintext' ] ]
 		);
 
 		if ( $this->isWikitextNS( NS_MAIN ) ) {
-			//NOTE: some content models don't allow moving
+			// NOTE: some content models don't allow moving
 			// @todo find a Wikitext namespace for testing
 
 			$this->setTitle( NS_MAIN );
 			$this->setUser( 'anon' );
 			$this->setUserPerm( "move" );
-			$this->runGroupPermissions( 'move', array() );
+			$this->runGroupPermissions( 'move', [] );
 
 			$this->setUserPerm( "" );
-			$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ),
-				array( array( 'movenologintext' ) ) );
+			$this->runGroupPermissions( 'move', [ [ 'movenotallowed' ] ],
+				[ [ 'movenologintext' ] ] );
 
 			$this->setUser( $this->userName );
 			$this->setUserPerm( "" );
-			$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ) );
+			$this->runGroupPermissions( 'move', [ [ 'movenotallowed' ] ] );
 
 			$this->setUserPerm( "move" );
-			$this->runGroupPermissions( 'move', array() );
+			$this->runGroupPermissions( 'move', [] );
 
 			$this->setUser( 'anon' );
 			$this->setUserPerm( 'move' );
 			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-			$this->assertEquals( array(), $res );
+			$this->assertEquals( [], $res );
 
 			$this->setUserPerm( '' );
 			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-			$this->assertEquals( array( array( 'movenotallowed' ) ), $res );
+			$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 		}
 
 		$this->setTitle( NS_USER );
 		$this->setUser( $this->userName );
-		$this->setUserPerm( array( "move", "move-rootuserpages" ) );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setUserPerm( "move" );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array( array( 'cant-move-to-user-page' ) ), $res );
+		$this->assertEquals( [ [ 'cant-move-to-user-page' ] ], $res );
 
 		$this->setUser( 'anon' );
-		$this->setUserPerm( array( "move", "move-rootuserpages" ) );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_USER, "User/subpage" );
-		$this->setUserPerm( array( "move", "move-rootuserpages" ) );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setUserPerm( "move" );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array(), $res );
+		$this->assertEquals( [], $res );
 
 		$this->setUser( 'anon' );
-		$check = array(
-			'edit' => array(
-				array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ) ),
-				array( array( 'badaccess-group0' ) ),
-				array(),
+		$check = [
+			'edit' => [
+				[ [ 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ] ],
+				[ [ 'badaccess-group0' ] ],
+				[],
 				true
-			),
-			'protect' => array(
-				array( array(
+			],
+			'protect' => [
+				[ [
 					'badaccess-groups',
-					"[[$prefix:Administrators|Administrators]]", 1 ),
-					array( 'protect-cantedit'
-				) ),
-				array( array( 'badaccess-group0' ), array( 'protect-cantedit' ) ),
-				array( array( 'protect-cantedit' ) ),
+					"[[$prefix:Administrators|Administrators]]", 1 ],
+					[ 'protect-cantedit'
+				] ],
+				[ [ 'badaccess-group0' ], [ 'protect-cantedit' ] ],
+				[ [ 'protect-cantedit' ] ],
 				false
-			),
-			'' => array( array(), array(), array(), true )
-		);
+			],
+			'' => [ [], [], [], true ]
+		];
 
-		foreach ( array( "edit", "protect", "" ) as $action ) {
+		foreach ( [ "edit", "protect", "" ] as $action ) {
 			$this->setUserPerm( null );
 			$this->assertEquals( $check[$action][0],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
@@ -333,7 +328,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
-			$wgGroupPermissions = array();
+			$wgGroupPermissions = [];
 
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
@@ -398,47 +393,47 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_SPECIAL );
 
-		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ], [ 'ns-specialprotected' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
-		$wgNamespaceProtection[NS_USER] = array( 'bogus' );
+		$wgNamespaceProtection[NS_USER] = [ 'bogus' ];
 
 		$this->setTitle( NS_USER );
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'namespaceprotected', 'User', 'bogus' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'namespaceprotected', 'User', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array( array( 'protectedinterface', 'bogus' ) ),
+		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array( array( 'protectedinterface', 'bogus' ) ),
+		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$wgNamespaceProtection = null;
 
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'bogus', $this->user ) );
 
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );
@@ -453,47 +448,47 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_USER, $this->userName . '/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) )
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ]
 		);
 
 		$this->setTitle( NS_USER, $this->userName . '/test.css' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) )
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ]
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) )
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ]
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) )
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ]
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ) )
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ]
 		);
 	}
 
@@ -524,12 +519,12 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 
 		$this->setUserPerm( 'editusercssjs' );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 
-		$this->setUserPerm( array( 'edituserjs', 'editusercss' ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
+		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 	}
@@ -546,50 +541,50 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN );
 		$this->title->mRestrictionsLoaded = true;
 		$this->setUserPerm( "edit" );
-		$this->title->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
+		$this->title->mRestrictions = [ "bogus" => [ 'bogus', "sysop", "protect", "" ] ];
 
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
 		$this->assertEquals( true,
 			$this->title->quickUserCan( 'edit', $this->user ) );
-		$this->title->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
-			"bogus" => array( 'bogus', "sysop", "protect", "" ) );
+		$this->title->mRestrictions = [ "edit" => [ 'bogus', "sysop", "protect", "" ],
+			"bogus" => [ 'bogus', "sysop", "protect", "" ] ];
 
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'protectedpagetext', 'bogus', 'bogus' ],
+				[ 'protectedpagetext', 'editprotected', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
-				array( 'protectedpagetext', 'editprotected', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ) ),
+		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
+				[ 'protectedpagetext', 'editprotected', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 		$this->setUserPerm( "" );
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'protectedpagetext', 'bogus', 'bogus' ],
+				[ 'protectedpagetext', 'editprotected', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ),
-				array( 'protectedpagetext', 'bogus', 'edit' ),
-				array( 'protectedpagetext', 'editprotected', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ) ),
+		$this->assertEquals( [ [ 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ],
+				[ 'protectedpagetext', 'bogus', 'edit' ],
+				[ 'protectedpagetext', 'editprotected', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
-		$this->setUserPerm( array( "edit", "editprotected" ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ) ),
+		$this->setUserPerm( [ "edit", "editprotected" ] );
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'protectedpagetext', 'bogus', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array(
-				array( 'protectedpagetext', 'bogus', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ) ),
+		$this->assertEquals( [
+				[ 'protectedpagetext', 'bogus', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
@@ -599,59 +594,59 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->quickUserCan( 'bogus', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'edit', $this->user ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'protectedpagetext', 'bogus', 'bogus' ],
+				[ 'protectedpagetext', 'editprotected', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
-				array( 'protectedpagetext', 'editprotected', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ) ),
+		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
+				[ 'protectedpagetext', 'editprotected', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
-		$this->setUserPerm( array( "edit", "editprotected" ) );
+		$this->setUserPerm( [ "edit", "editprotected" ] );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'edit', $this->user ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ),
-				array( 'protectedpagetext', 'protect', 'bogus' ) ),
+		$this->assertEquals( [ [ 'badaccess-group0' ],
+				[ 'protectedpagetext', 'bogus', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ],
+				[ 'protectedpagetext', 'protect', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ),
-				array( 'protectedpagetext', 'protect', 'edit' ) ),
+		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ],
+				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 	}
 
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->setUserPerm( array( "edit", "bogus" ) );
+		$this->setUserPerm( [ "edit", "bogus" ] );
 
-		$this->title->mCascadeSources = array(
+		$this->title->mCascadeSources = [
 			Title::makeTitle( NS_MAIN, "Bogus" ),
 			Title::makeTitle( NS_MAIN, "UnBogus" )
-		);
-		$this->title->mCascadingRestrictions = array(
-			"bogus" => array( 'bogus', "sysop", "protect", "" )
-		);
+		];
+		$this->title->mCascadingRestrictions = [
+			"bogus" => [ 'bogus', "sysop", "protect", "" ]
+		];
 
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );
-		$this->assertEquals( array(
-				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
-				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
-				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ) ),
+		$this->assertEquals( [
+				[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
+				[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
+				[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->assertEquals( true,
 			$this->title->userCan( 'edit', $this->user ) );
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 	}
 
@@ -660,53 +655,53 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * data providers
 	 */
 	public function testActionPermissions() {
-		$this->setUserPerm( array( "createpage" ) );
+		$this->setUserPerm( [ "createpage" ] );
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['permission'] = '';
-		$this->title->mTitleProtection['user'] = $this->user->getID();
+		$this->title->mTitleProtection['user'] = $this->user->getId();
 		$this->title->mTitleProtection['expiry'] = 'infinity';
 		$this->title->mTitleProtection['reason'] = 'test';
 		$this->title->mCascadeRestriction = false;
 
-		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
+		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->title->mTitleProtection['permission'] = 'editprotected';
-		$this->setUserPerm( array( 'createpage', 'protect' ) );
-		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
+		$this->setUserPerm( [ 'createpage', 'protect' ] );
+		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->setUserPerm( array( 'createpage', 'editprotected' ) );
-		$this->assertEquals( array(),
+		$this->setUserPerm( [ 'createpage', 'editprotected' ] );
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->setUserPerm( array( 'createpage' ) );
-		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
+		$this->setUserPerm( [ 'createpage' ] );
+		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
-		$this->setUserPerm( array( "move" ) );
+		$this->setUserPerm( [ "move" ] );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move', $this->user ) );
-		$this->assertEquals( array( array( 'immobile-source-namespace', 'Media' ) ),
+		$this->assertEquals( [ [ 'immobile-source-namespace', 'Media' ] ],
 			$this->title->getUserPermissionsErrors( 'move', $this->user ) );
 
 		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'move', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'move', $this->user ) );
 
 		$this->title->mInterwiki = "no";
-		$this->assertEquals( array( array( 'immobile-source-page' ) ),
+		$this->assertEquals( [ [ 'immobile-source-page' ] ],
 			$this->title->getUserPermissionsErrors( 'move', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move', $this->user ) );
@@ -714,17 +709,17 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MEDIA, "test page" );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move-target', $this->user ) );
-		$this->assertEquals( array( array( 'immobile-target-namespace', 'Media' ) ),
+		$this->assertEquals( [ [ 'immobile-target-namespace', 'Media' ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 
 		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'move-target', $this->user ) );
 
 		$this->title->mInterwiki = "no";
-		$this->assertEquals( array( array( 'immobile-target-page' ) ),
+		$this->assertEquals( [ [ 'immobile-target-page' ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move-target', $this->user ) );
@@ -735,17 +730,17 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$wgEmailConfirmToEdit = true;
 		$wgEmailAuthentication = true;
 
-		$this->setUserPerm( array( "createpage", "move" ) );
+		$this->setUserPerm( [ "createpage", "move" ] );
 		$this->setTitle( NS_HELP, "test page" );
 
 		# $short
-		$this->assertEquals( array( array( 'confirmedittext' ) ),
+		$this->assertEquals( [ [ 'confirmedittext' ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		$wgEmailConfirmToEdit = false;
 		$this->assertEquals( true, $this->title->userCan( 'move-target', $this->user ) );
 
 		# $wgEmailConfirmToEdit && !$user->isEmailConfirmed() && $action != 'createaccount'
-		$this->assertEquals( array(),
+		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'move-target',
 				$this->user ) );
 
@@ -753,19 +748,19 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$prev = time();
 		$now = time() + 120;
 		$this->user->mBlockedby = $this->user->getId();
-		$this->user->mBlock = new Block( array(
+		$this->user->mBlock = new Block( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
 			'timestamp' => $prev + 3600,
 			'auto' => true,
 			'expiry' => 0
-		) );
+		] );
 		$this->user->mBlock->mTimestamp = 0;
-		$this->assertEquals( array( array( 'autoblockedtext',
+		$this->assertEquals( [ [ 'autoblockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', null, 'infinite', '127.0.8.1',
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ) ),
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ] ],
 			$this->title->getUserPermissionsErrors( 'move-target',
 				$this->user ) );
 
@@ -776,18 +771,18 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( array(
+		$this->user->mBlock = new Block( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
 			'timestamp' => $now,
 			'auto' => false,
 			'expiry' => 10,
-		) );
-		$this->assertEquals( array( array( 'blockedtext',
+		] );
+		$this->assertEquals( [ [ 'blockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ) ),
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		# $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this )
 		#   $user->blockedFor() == ''

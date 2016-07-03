@@ -166,8 +166,8 @@ class UserDupes {
 	 * @access private
 	 */
 	function lock() {
-		$set = array( 'user', 'revision' );
-		$names = array_map( array( $this, 'lockTable' ), $set );
+		$set = [ 'user', 'revision' ];
+		$names = array_map( [ $this, 'lockTable' ], $set );
 		$tables = implode( ',', $names );
 
 		$this->db->query( "LOCK TABLES $tables", __METHOD__ );
@@ -197,7 +197,7 @@ class UserDupes {
 			GROUP BY user_name
 			  HAVING n > 1", __METHOD__ );
 
-		$list = array();
+		$list = [];
 		foreach ( $result as $row ) {
 			$list[] = $row->user_name;
 		}
@@ -215,8 +215,8 @@ class UserDupes {
 	 */
 	function examine( $name, $doDelete ) {
 		$result = $this->db->select( 'user',
-			array( 'user_id' ),
-			array( 'user_name' => $name ),
+			[ 'user_id' ],
+			[ 'user_name' => $name ],
 			__METHOD__ );
 
 		$firstRow = $this->db->fetchObject( $result );
@@ -266,7 +266,7 @@ class UserDupes {
 		return intval( $this->db->selectField(
 			'revision',
 			'COUNT(*)',
-			array( 'rev_user' => $userid ),
+			[ 'rev_user' => $userid ],
 			__METHOD__ ) );
 	}
 
@@ -278,8 +278,8 @@ class UserDupes {
 	function reassignEdits( $from, $to ) {
 		$this->out( 'reassigning... ' );
 		$this->db->update( 'revision',
-			array( 'rev_user' => $to ),
-			array( 'rev_user' => $from ),
+			[ 'rev_user' => $to ],
+			[ 'rev_user' => $from ],
 			__METHOD__ );
 		$this->out( "ok. " );
 	}
@@ -291,7 +291,7 @@ class UserDupes {
 	 */
 	function trimAccount( $userid ) {
 		$this->out( "deleting..." );
-		$this->db->delete( 'user', array( 'user_id' => $userid ), __METHOD__ );
+		$this->db->delete( 'user', [ 'user_id' => $userid ], __METHOD__ );
 		$this->out( " ok" );
 	}
 }

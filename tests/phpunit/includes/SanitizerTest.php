@@ -117,42 +117,42 @@ class SanitizerTest extends MediaWikiTestCase {
 	public static function provideHtml5Tags() {
 		$ESCAPED = true; # We want tag to be escaped
 		$VERBATIM = false; # We want to keep the tag
-		return array(
-			array( 'data', $VERBATIM ),
-			array( 'mark', $VERBATIM ),
-			array( 'time', $VERBATIM ),
-			array( 'video', $ESCAPED ),
-		);
+		return [
+			[ 'data', $VERBATIM ],
+			[ 'mark', $VERBATIM ],
+			[ 'time', $VERBATIM ],
+			[ 'video', $ESCAPED ],
+		];
 	}
 
 	function dataRemoveHTMLtags() {
-		return array(
+		return [
 			// former testSelfClosingTag
-			array(
+			[
 				'<div>Hello world</div />',
 				'<div>Hello world</div>',
 				'Self-closing closing div'
-			),
+			],
 			// Make sure special nested HTML5 semantics are not broken
 			// http://www.whatwg.org/html/text-level-semantics.html#the-kbd-element
-			array(
+			[
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'Nested <kbd>.'
-			),
+			],
 			// http://www.whatwg.org/html/text-level-semantics.html#the-sub-and-sup-elements
-			array(
+			[
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'Nested <var>.'
-			),
+			],
 			// http://www.whatwg.org/html/text-level-semantics.html#the-dfn-element
-			array(
+			[
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
 				'<abbr> inside <dfn>',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -176,64 +176,64 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	public static function provideTagAttributesToDecode() {
-		return array(
-			array( array( 'foo' => 'bar' ), 'foo=bar', 'Unquoted attribute' ),
-			array( array( 'foo' => 'bar' ), '    foo   =   bar    ', 'Spaced attribute' ),
-			array( array( 'foo' => 'bar' ), 'foo="bar"', 'Double-quoted attribute' ),
-			array( array( 'foo' => 'bar' ), 'foo=\'bar\'', 'Single-quoted attribute' ),
-			array(
-				array( 'foo' => 'bar', 'baz' => 'foo' ),
+		return [
+			[ [ 'foo' => 'bar' ], 'foo=bar', 'Unquoted attribute' ],
+			[ [ 'foo' => 'bar' ], '    foo   =   bar    ', 'Spaced attribute' ],
+			[ [ 'foo' => 'bar' ], 'foo="bar"', 'Double-quoted attribute' ],
+			[ [ 'foo' => 'bar' ], 'foo=\'bar\'', 'Single-quoted attribute' ],
+			[
+				[ 'foo' => 'bar', 'baz' => 'foo' ],
 				'foo=\'bar\'   baz="foo"',
 				'Several attributes'
-			),
-			array(
-				array( 'foo' => 'bar', 'baz' => 'foo' ),
+			],
+			[
+				[ 'foo' => 'bar', 'baz' => 'foo' ],
 				'foo=\'bar\'   baz="foo"',
 				'Several attributes'
-			),
-			array(
-				array( 'foo' => 'bar', 'baz' => 'foo' ),
+			],
+			[
+				[ 'foo' => 'bar', 'baz' => 'foo' ],
 				'foo=\'bar\'   baz="foo"',
 				'Several attributes'
-			),
-			array( array( ':foo' => 'bar' ), ':foo=\'bar\'', 'Leading :' ),
-			array( array( '_foo' => 'bar' ), '_foo=\'bar\'', 'Leading _' ),
-			array( array( 'foo' => 'bar' ), 'Foo=\'bar\'', 'Leading capital' ),
-			array( array( 'foo' => 'BAR' ), 'FOO=BAR', 'Attribute keys are normalized to lowercase' ),
+			],
+			[ [ ':foo' => 'bar' ], ':foo=\'bar\'', 'Leading :' ],
+			[ [ '_foo' => 'bar' ], '_foo=\'bar\'', 'Leading _' ],
+			[ [ 'foo' => 'bar' ], 'Foo=\'bar\'', 'Leading capital' ],
+			[ [ 'foo' => 'BAR' ], 'FOO=BAR', 'Attribute keys are normalized to lowercase' ],
 
 			# Invalid beginning
-			array( array(), '-foo=bar', 'Leading - is forbidden' ),
-			array( array(), '.foo=bar', 'Leading . is forbidden' ),
-			array( array( 'foo-bar' => 'bar' ), 'foo-bar=bar', 'A - is allowed inside the attribute' ),
-			array( array( 'foo-' => 'bar' ), 'foo-=bar', 'A - is allowed inside the attribute' ),
-			array( array( 'foo.bar' => 'baz' ), 'foo.bar=baz', 'A . is allowed inside the attribute' ),
-			array( array( 'foo.' => 'baz' ), 'foo.=baz', 'A . is allowed as last character' ),
-			array( array( 'foo6' => 'baz' ), 'foo6=baz', 'Numbers are allowed' ),
+			[ [], '-foo=bar', 'Leading - is forbidden' ],
+			[ [], '.foo=bar', 'Leading . is forbidden' ],
+			[ [ 'foo-bar' => 'bar' ], 'foo-bar=bar', 'A - is allowed inside the attribute' ],
+			[ [ 'foo-' => 'bar' ], 'foo-=bar', 'A - is allowed inside the attribute' ],
+			[ [ 'foo.bar' => 'baz' ], 'foo.bar=baz', 'A . is allowed inside the attribute' ],
+			[ [ 'foo.' => 'baz' ], 'foo.=baz', 'A . is allowed as last character' ],
+			[ [ 'foo6' => 'baz' ], 'foo6=baz', 'Numbers are allowed' ],
 
 			# This bit is more relaxed than XML rules, but some extensions use
 			# it, like ProofreadPage (see bug 27539)
-			array( array( '1foo' => 'baz' ), '1foo=baz', 'Leading numbers are allowed' ),
-			array( array(), 'foo$=baz', 'Symbols are not allowed' ),
-			array( array(), 'foo@=baz', 'Symbols are not allowed' ),
-			array( array(), 'foo~=baz', 'Symbols are not allowed' ),
-			array(
-				array( 'foo' => '1[#^`*%w/(' ),
+			[ [ '1foo' => 'baz' ], '1foo=baz', 'Leading numbers are allowed' ],
+			[ [], 'foo$=baz', 'Symbols are not allowed' ],
+			[ [], 'foo@=baz', 'Symbols are not allowed' ],
+			[ [], 'foo~=baz', 'Symbols are not allowed' ],
+			[
+				[ 'foo' => '1[#^`*%w/(' ],
 				'foo=1[#^`*%w/(',
 				'All kind of characters are allowed as values'
-			),
-			array(
-				array( 'foo' => '1[#^`*%\'w/(' ),
+			],
+			[
+				[ 'foo' => '1[#^`*%\'w/(' ],
 				'foo="1[#^`*%\'w/("',
 				'Double quotes are allowed if quoted by single quotes'
-			),
-			array(
-				array( 'foo' => '1[#^`*%"w/(' ),
+			],
+			[
+				[ 'foo' => '1[#^`*%"w/(' ],
 				'foo=\'1[#^`*%"w/(\'',
 				'Single quotes are allowed if quoted by double quotes'
-			),
-			array( array( 'foo' => '&"' ), 'foo=&amp;&quot;', 'Special chars can be provided as entities' ),
-			array( array( 'foo' => '&foobar;' ), 'foo=&foobar;', 'Entity-like items are accepted' ),
-		);
+			],
+			[ [ 'foo' => '&"' ], 'foo=&amp;&quot;', 'Special chars can be provided as entities' ],
+			[ [ 'foo' => '&foobar;' ], 'foo=&foobar;', 'Entity-like items are accepted' ],
+		];
 	}
 
 	/**
@@ -249,19 +249,19 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	public static function provideDeprecatedAttributes() {
 		/** array( <attribute>, <element>, [message] ) */
-		return array(
-			array( 'clear="left"', 'br' ),
-			array( 'clear="all"', 'br' ),
-			array( 'width="100"', 'td' ),
-			array( 'nowrap="true"', 'td' ),
-			array( 'nowrap=""', 'td' ),
-			array( 'align="right"', 'td' ),
-			array( 'align="center"', 'table' ),
-			array( 'align="left"', 'tr' ),
-			array( 'align="center"', 'div' ),
-			array( 'align="left"', 'h1' ),
-			array( 'align="left"', 'p' ),
-		);
+		return [
+			[ 'clear="left"', 'br' ],
+			[ 'clear="all"', 'br' ],
+			[ 'width="100"', 'td' ],
+			[ 'nowrap="true"', 'td' ],
+			[ 'nowrap=""', 'td' ],
+			[ 'align="right"', 'td' ],
+			[ 'align="center"', 'table' ],
+			[ 'align="left"', 'tr' ],
+			[ 'align="center"', 'div' ],
+			[ 'align="left"', 'h1' ],
+			[ 'align="left"', 'p' ],
+		];
 	}
 
 	/**
@@ -277,71 +277,44 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	public static function provideCssCommentsFixtures() {
 		/** array( <expected>, <css>, [message] ) */
-		return array(
+		return [
 			// Valid comments spanning entire input
-			array( '/**/', '/**/' ),
-			array( '/* comment */', '/* comment */' ),
+			[ '/**/', '/**/' ],
+			[ '/* comment */', '/* comment */' ],
 			// Weird stuff
-			array( ' ', '/****/' ),
-			array( ' ', '/* /* */' ),
-			array( 'display: block;', "display:/* foo */block;" ),
-			array( 'display: block;', "display:\\2f\\2a foo \\2a\\2f block;",
-				'Backslash-escaped comments must be stripped (bug 28450)' ),
-			array( '', '/* unfinished comment structure',
-				'Remove anything after a comment-start token' ),
-			array( '', "\\2f\\2a unifinished comment'",
-				'Remove anything after a backslash-escaped comment-start token' ),
-			array(
+			[ ' ', '/****/' ],
+			[ ' ', '/* /* */' ],
+			[ 'display: block;', "display:/* foo */block;" ],
+			[ 'display: block;', "display:\\2f\\2a foo \\2a\\2f block;",
+				'Backslash-escaped comments must be stripped (bug 28450)' ],
+			[ '', '/* unfinished comment structure',
+				'Remove anything after a comment-start token' ],
+			[ '', "\\2f\\2a unifinished comment'",
+				'Remove anything after a backslash-escaped comment-start token' ],
+			[
 				'/* insecure input */',
 				'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader'
 					. '(src=\'asdf.png\',sizingMethod=\'scale\');'
-			),
-			array(
+			],
+			[
 				'/* insecure input */',
 				'-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader'
 					. '(src=\'asdf.png\',sizingMethod=\'scale\')";'
-			),
-			array( '/* insecure input */', 'width: expression(1+1);' ),
-			array( '/* insecure input */', 'background-image: image(asdf.png);' ),
-			array( '/* insecure input */', 'background-image: -webkit-image(asdf.png);' ),
-			array( '/* insecure input */', 'background-image: -moz-image(asdf.png);' ),
-			array( '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);' ),
-			array(
+			],
+			[ '/* insecure input */', 'width: expression(1+1);' ],
+			[ '/* insecure input */', 'background-image: image(asdf.png);' ],
+			[ '/* insecure input */', 'background-image: -webkit-image(asdf.png);' ],
+			[ '/* insecure input */', 'background-image: -moz-image(asdf.png);' ],
+			[ '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);' ],
+			[
 				'/* insecure input */',
 				'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);'
-			),
-			array(
+			],
+			[
 				'/* insecure input */',
 				'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);'
-			),
-		);
-	}
-
-	/**
-	 * Test for support or lack of support for specific attributes in the attribute whitelist.
-	 */
-	public static function provideAttributeSupport() {
-		/** array( <attributes>, <expected>, <message> ) */
-		return array(
-			array(
-				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
-			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
-		);
-	}
-
-	/**
-	 * @dataProvider provideAttributeSupport
-	 * @covers Sanitizer::fixTagAttributes
-	 */
-	public function testAttributeSupport( $tag, $attributes, $expected, $message ) {
-		$this->assertEquals( $expected,
-			Sanitizer::fixTagAttributes( $attributes, $tag ),
-			$message
-		);
+			],
+		];
 	}
 
 	/**
@@ -356,11 +329,35 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	public static function provideEscapeHtmlAllowEntities() {
-		return array(
-			array( 'foo', 'foo' ),
-			array( 'a¡b', 'a&#161;b' ),
-			array( 'foo&#039;bar', "foo'bar" ),
-			array( '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ),
+		return [
+			[ 'foo', 'foo' ],
+			[ 'a¡b', 'a&#161;b' ],
+			[ 'foo&#039;bar', "foo'bar" ],
+			[ '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ],
+		];
+	}
+
+	/**
+	 * Test escapeIdReferenceList for consistency with escapeId
+	 *
+	 * @dataProvider provideEscapeIdReferenceList
+	 * @covers Sanitizer::escapeIdReferenceList
+	 */
+	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
+		$this->assertEquals(
+			Sanitizer::escapeIdReferenceList( $referenceList, 'noninitial' ),
+			Sanitizer::escapeId( $id1, 'noninitial' )
+				. ' '
+				. Sanitizer::escapeId( $id2, 'noninitial' )
 		);
+	}
+
+	public static function provideEscapeIdReferenceList() {
+		/** array( <reference list>, <individual id 1>, <individual id 2> ) */
+		return [
+			[ 'foo bar', 'foo', 'bar' ],
+			[ '#1 #2', '#1', '#2' ],
+			[ '+1 +2', '+1', '+2' ],
+		];
 	}
 }

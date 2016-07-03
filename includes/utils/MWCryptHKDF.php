@@ -77,13 +77,13 @@ class MWCryptHKDF {
 	 * a "context information" string CTXinfo (which may be null)
 	 * See http://eprint.iacr.org/2010/264.pdf Section 4.1
 	 */
-	protected $context = array();
+	protected $context = [];
 
 	/**
 	 * Round count is computed based on the hash'es output length,
 	 * which neither php nor openssl seem to provide easily.
 	 */
-	public static $hashLength = array(
+	public static $hashLength = [
 		'md5' => 16,
 		'sha1' => 20,
 		'sha224' => 28,
@@ -95,8 +95,7 @@ class MWCryptHKDF {
 		'ripemd256' => 32,
 		'ripemd320' => 40,
 		'whirlpool' => 64,
-	);
-
+	];
 
 	/**
 	 * @param string $secretKeyMaterial
@@ -114,7 +113,7 @@ class MWCryptHKDF {
 		$this->cache = $cache;
 		$this->salt = ''; // Initialize a blank salt, see getSaltUsingCache()
 		$this->prk = '';
-		$this->context = is_array( $context ) ? $context : array( $context );
+		$this->context = is_array( $context ) ? $context : [ $context ];
 
 		// To prevent every call from hitting the same memcache server, pick
 		// from a set of keys to use. mt_rand is only use to pick a random
@@ -170,13 +169,13 @@ class MWCryptHKDF {
 
 		// In HKDF, the context can be known to the attacker, but this will
 		// keep simultaneous runs from producing the same output.
-		$context = array();
+		$context = [];
 		$context[] = microtime();
 		$context[] = getmypid();
 		$context[] = gethostname();
 
 		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		$cache = ObjectCache::newAccelerator( $wgMainCacheType );
+		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
 
 		if ( is_null( self::$singleton ) ) {
 			self::$singleton = new self( $secret, $wgHKDFAlgorithm, $cache, $context );
@@ -203,7 +202,7 @@ class MWCryptHKDF {
 			);
 		}
 
-		$CTXinfo = implode( ':', array_merge( $this->context, array( $context ) ) );
+		$CTXinfo = implode( ':', array_merge( $this->context, [ $context ] ) );
 
 		return self::HKDFExpand(
 			$this->algorithm,
@@ -213,7 +212,6 @@ class MWCryptHKDF {
 			$this->lastK
 		);
 	}
-
 
 	/**
 	 * RFC5869 defines HKDF in 2 steps, extraction and expansion.

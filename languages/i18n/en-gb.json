@@ -43,6 +43,11 @@
 	"uncategorizedtemplates": "Uncategorised templates",
 	"sessionfailure": "There seems to be a problem with your login session;\nthis action has been cancelled as a precaution against session hijacking.\nGo back to the previous page, reload that page and then try again.",
 	"blockiptext": "Use the form below to block write access from a specific IP address or username.\nThis should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].\nFill in a specific reason below (for example, citing particular pages that were vandalised).",
+	"blocklogentry": "blocked [[$1]] with an expiry time of $2 $3",
+	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\nThe block was made by $1.\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiry of block: $6\n* Intended blockee: $7\n\nYou can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.\nYou cannot use the \"email this user\" feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
+	"autoblockedtext": "Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.\nThe reason given is:\n\n:<em>$2</em>\n\n* Start of block: $8\n* Expiry of block: $6\n* Intended blockee: $7\n\nYou may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.\n\nNote that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.\n\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
+	"reblock-logentry": "changed block settings for [[$1]] with an expiry time of $2 $3",
+	"ipbexpiry": "Expiry:",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behaviour/harassment\n** Abusing multiple accounts\n** Unacceptable username",
 	"proxyblockreason": "Your IP address has been blocked because it is an open proxy.\nPlease contact your Internet service provider or technical support of your organisation and inform them of this serious security problem.",
 	"movecategorypage-warning": "<strong>Warning:</strong> You are about to move a category page. Please note that only the page will be moved and any pages in the old category will <em>not</em> be recategorised into the new one.",
@@ -82,5 +87,13 @@
 	"version-license-not-found": "No detailed licence information was found for this extension.",
 	"version-credits-summary": "We would like to recognise the following persons for their contribution to [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation; either version 2 of the Licence, or (at your option) any later version.\n\nMediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public Licence for more details.\n\nYou should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public Licence] along with this programme; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].",
-	"feedback-error1": "Error: Unrecognised result from API"
+	"feedback-error1": "Error: Unrecognised result from API",
+	"logentry-block-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"logentry-block-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"protect_expiry_invalid": "Expiry time is invalid.",
+	"protect_expiry_old": "Expiry time is in the past.",
+	"protect-existing-expiry": "Existing expiry time: $3, $2",
+	"protect-existing-expiry-infinity": "Existing expiry time: infinite"
 }

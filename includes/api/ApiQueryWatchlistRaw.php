@@ -62,7 +62,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		}
 
 		$this->addTables( 'watchlist' );
-		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
+		$this->addFields( [ 'wl_namespace', 'wl_title' ] );
 		$this->addFieldsIf( 'wl_notificationtimestamp', isset( $prop['changed'] ) );
 		$this->addWhereFld( 'wl_user', $user->getId() );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
@@ -110,15 +110,15 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( count( $params['namespace'] ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', array(
+			$this->addOption( 'ORDER BY', [
 				'wl_namespace' . $sort,
 				'wl_title' . $sort
-			) );
+			] );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
-		$titles = array();
+		$titles = [];
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
@@ -130,7 +130,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			$t = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 
 			if ( is_null( $resultPageSet ) ) {
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $t );
 				if ( isset( $prop['changed'] ) && !is_null( $row->wl_notificationtimestamp ) ) {
 					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
@@ -152,65 +152,65 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'continue' => array(
+		return [
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'prop' => array(
+			],
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'changed',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'show' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'changed',
 					'!changed',
-				)
-			),
-			'owner' => array(
+				]
+			],
+			'owner' => [
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string'
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'fromtitle' => array(
+			],
+			'fromtitle' => [
 				ApiBase::PARAM_TYPE => 'string'
-			),
-			'totitle' => array(
+			],
+			'totitle' => [
 				ApiBase::PARAM_TYPE => 'string'
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=watchlistraw'
 				=> 'apihelp-query+watchlistraw-example-simple',
 			'action=query&generator=watchlistraw&gwrshow=changed&prop=info'
 				=> 'apihelp-query+watchlistraw-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

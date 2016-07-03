@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Susith Chandira Gts"
+			"Susith Chandira Gts",
+			"SusithCM"
 		]
 	},
 	"apihelp-main-param-action": "ඉටු කිරීමට ඇත්තේ කුමන ක්‍රියාවද.",
@@ -17,26 +18,19 @@
 	"apihelp-help-example-main": "ප්‍රධාන ඒකකය සදහා උදවු කරන්න",
 	"apihelp-help-example-recursive": "සියලුම උදවු එක පිටුවක් තුල",
 	"apihelp-help-example-query": "සැකසහිත අනුඒකක සදහා උදවු කරන්න",
+	"apihelp-login-param-name": "පරිශීලක නාමය.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "මෙම පිටුව සඳහා වූ JavaScript වින්‍යාස විචල්‍යයන් ලබා දෙයි.",
+	"apihelp-userrights-param-user": "පරිශීලක නාමය.",
+	"apihelp-userrights-param-userid": "පරිශීලක අනන්‍යාංකය.",
 	"apihelp-format-example-generic": "$1 ආකෘතියේ ඇති සැක සහිත ප්‍රථිපල පරිවර්තනය කරන්න",
-	"apihelp-dbg-description": "ප්‍රතිදාන දත්ත PHP හි var_export() ආකෘතියෙන් පවතී.",
-	"apihelp-dbgfm-description": "ප්‍රතිදාන දත්ත PHP හි var_export() ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
-	"apihelp-dump-description": "ප්‍රතිදාන දත්ත PHP හි var_dump() ආකෘතියෙන් පවතී.",
-	"apihelp-dumpfm-description": "ප්‍රතිදාන දත්ත PHP හි var_dump() ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
 	"apihelp-json-description": "ප්‍රතිදාන දත්ත JSON ආකෘතියෙන් පවතී.",
 	"apihelp-jsonfm-description": "ප්‍රතිදාන දත්ත JSON ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
 	"apihelp-none-description": "ප්‍රතිදානයේ කිසිවක් නොමැත.",
 	"apihelp-php-description": "ප්‍රතිදාන දත්ත serialized PHP ආකෘතියෙන් පවතී.",
 	"apihelp-phpfm-description": "ප්‍රතිදාන දත්ත serialized PHP ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
-	"apihelp-txt-description": "ප්‍රතිදාන දත්ත PHP හි print_r() ආකෘතියෙන් පවතී.",
-	"apihelp-txtfm-description": "ප්‍රතිදාන දත්ත PHP හි print_r() ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
-	"apihelp-wddx-description": "ප්‍රතිදාන දත්ත WDDX ආකෘතියෙන් පවතී",
-	"apihelp-wddxfm-description": "ප්‍රතිදාන දත්ත WDDX ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
 	"apihelp-xml-description": "ප්‍රතිදාන දත්ත XML ආකෘතියෙන් පවතී.",
 	"apihelp-xml-param-includexmlnamespace": "නිරූපණය කළා නම්, XML නාමාවකාශයක් එකතු කරන්න.",
 	"apihelp-xmlfm-description": "ප්‍රතිදාන දත්ත XML ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
-	"apihelp-yaml-description": "ප්‍රතිදාන දත්ත YAML ආකෘතියෙන් පවතී.",
-	"apihelp-yamlfm-description": "ප්‍රතිදාන දත්ත YAML ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",
 	"api-format-title": "මාධ්‍යවිකි API ප්‍රථිපල",
 	"api-help-title": "මාධ්‍යවිකි API උදවු",
 	"api-help-lead": "මෙය ස්වයං-ජනිත මාධ්‍යවිකි API \tප්‍රලේඛන පිටුවකි.\n\nප්‍රලේඛනය සහ උදාහරණ:\nhttps://www.mediawiki.org/wiki/API",

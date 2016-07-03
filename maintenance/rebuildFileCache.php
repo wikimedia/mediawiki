@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Build file cache for content pages";
+		$this->addDescription( 'Build file cache for content pages' );
 		$this->addOption( 'start', 'Page_id to start from', false, true );
 		$this->addOption( 'end', 'Page_id to end on', false, true );
 		$this->addOption( 'overwrite', 'Refresh page cache' );
@@ -70,7 +70,7 @@ class RebuildFileCache extends Maintenance {
 
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$overwrite = $this->getOption( 'overwrite', false );
 		$start = ( $start > 0 )
 			? $start
@@ -89,17 +89,17 @@ class RebuildFileCache extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $this->mBatchSize - 1;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages
-			$res = $dbr->select( 'page', array( 'page_namespace', 'page_title', 'page_id' ),
-				array( 'page_namespace' => $wgContentNamespaces,
-					"page_id BETWEEN $blockStart AND $blockEnd" ),
-				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
+			$res = $dbr->select( 'page', [ 'page_namespace', 'page_title', 'page_id' ],
+				[ 'page_namespace' => $wgContentNamespaces,
+					"page_id BETWEEN $blockStart AND $blockEnd" ],
+				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]
 			);
 
-			$dbw->begin( __METHOD__ ); // for any changes
+			$this->beginTransaction( $dbw, __METHOD__ ); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = microtime( true ); # bug 22852
@@ -128,7 +128,7 @@ class RebuildFileCache extends Maintenance {
 							continue; // done already!
 						}
 					}
-					ob_start( array( &$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
+					ob_start( [ &$cache, 'saveToFileCache' ] ); // save on ob_end_clean()
 					$wgUseFileCache = false; // hack, we don't want $article fiddling with filecache
 					$article->view();
 					MediaWiki\suppressWarnings(); // header notices
@@ -145,7 +145,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page {$row->page_id} not cacheable\n" );
 				}
 			}
-			$dbw->commit( __METHOD__ ); // commit any changes (just for sanity)
+			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes (just for sanity)
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;

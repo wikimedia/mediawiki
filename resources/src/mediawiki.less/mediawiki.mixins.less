@@ -1,4 +1,4 @@
-// Common LESS mixin library for MediaWiki
+// Common Less mixin library for MediaWiki
 //
 // By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
 // which makes this file importable by all less files via '@import "mediawiki.mixins";'.
@@ -8,24 +8,22 @@
 //
 // See <http://lesscss.org/#-mixins> for more information about how to write mixins.
 
-.background-image(@url) {
-	background-image: e('/* @embed */') url(@url);
+.background-image( @url ) {
+	background-image: e( '/* @embed */' ) url( @url );
 }
 
-.background-size(@width, @height) {
-	// Vendor prefix for certain older opera browsers e.g. nintendo ds
-	-o-background-size: @width @height;
+// Deprecated in MW 1.27
+.background-size( @width, @height ) {
 	// Vendor prefix is added to support Android 2
 	-webkit-background-size: @width @height;
 	background-size: @width @height;
 }
 
-
-.vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
+.vertical-gradient( @startColor: gray, @endColor: white, @startPos: 0, @endPos: 100% ) {
 	background-color: @endColor;
-	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
 	background-image: -webkit-gradient( linear, left top, left bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) ); // Safari 4+, Chrome 2+
 	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Safari 5.1+, Chrome 10+
+	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
 	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
 }
 
@@ -37,56 +35,97 @@
 //
 // We do not embed the fallback image on the assumption that the gain for old browsers
 // is not worth the harm done to modern ones.
-.background-image-svg(@svg, @fallback) {
-	background-image: url(@fallback);
-	background-image: -webkit-linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
-	background-image: linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
+.background-image-svg( @svg, @fallback ) {
+	background-image: url( @fallback );
+	background-image: linear-gradient( transparent, transparent ), e( '/* @embed */' ) url( @svg );
 	// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
-	background-image: -o-linear-gradient(transparent, transparent), url(@fallback);
+	background-image: -o-linear-gradient( transparent, transparent ), url( @fallback );
 }
 
-.list-style-image(@url) {
-	list-style-image: e('/* @embed */') url(@url);
+.list-style-image( @url ) {
+	list-style-image: e( '/* @embed */' ) url( @url );
 }
 
-.list-style-image-svg(@svg, @fallback) {
-	list-style-image: e('/* @embed */') url(@svg);
+.list-style-image-svg( @svg, @fallback ) {
+	list-style-image: e( '/* @embed */' ) url( @svg );
 	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
-	list-style-image: e('/* @embed */') url(@fallback) e('\9');
+	list-style-image: e( '/* @embed */' ) url( @fallback ) e( '\9' );
 }
 
-.transition(@value) {
+.transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
-	-o-transition: @value; // Opera 10.5-12.0
 	transition: @value; // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+, iOS 7+, Android 4.4+
 }
 
-.box-sizing(@value) {
+.box-sizing( @value ) {
 	-webkit-box-sizing: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	-moz-box-sizing: @value; // Firefox 4-28,
 	box-sizing: @value; // Chrome 10+, Firefox 29+, IE 8+, Safari 5.1+, Opera 10+, iOS 5+, Android 4+
 }
 
-.box-shadow(@value) {
+.box-shadow( @value ) {
 	-webkit-box-shadow: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	box-shadow: @value; // Chrome 10+, Firefox 4+, IE 9+, Safari 5.1+, Opera 11+, iOS 5+, Android 4+
 }
 
-.column-count(@value) {
+.column-count( @value ) {
 	-webkit-column-count: @value;
 	-moz-column-count: @value;
 	column-count: @value;
 }
 
-.column-width(@value) {
-	-webkit-column-width: @value;// Chrome Any, Safari 3+, Opera 11.1+
-	-moz-column-width: @value;// Firefox 1.5+
-	column-width: @value;// IE 10+
+.column-width( @value ) {
+	-webkit-column-width: @value; // Chrome Any, Safari 3+, Opera 15+
+	-moz-column-width: @value; // Firefox 1.5+
+	column-width: @value; // IE 10+, Opera 11.1-12.1
 }
 
 .column-break-inside-avoid() {
-	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 11.1+
+	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 15+
 	page-break-inside: avoid; // Firefox 1.5+
-	break-inside: avoid-column; // IE 10+
+	break-inside: avoid-column; // IE 10+, Opera 11.1-12.1
+}
+
+.flex-display( @display: flex ) {
+	display: ~"-webkit-@{display}"; // iOS 6-, Safari 3.1-6
+	display: ~"-moz-@{display}"; // Firefox 21-
+	display: ~"-ms-@{display}box"; // IE 10
+	display: @display;
+}
+
+.flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
+	// For 2009/2012 spec alignment consistency with current default
+	-webkit-box-pack: justify; // iOS 6-, Safari 3.1-6
+	-moz-box-pack: justify; // Firefox 21-
+	-ms-flex-pack: justify; // IE 10 (2012 spec)
+	justify-content: space-between; // Current default
+
+	// 2009 spec only supports 'flexible' as opposed to grow (flexPositive)
+	// and shrink (flexNegative); default to grow value
+	-webkit-box-flex: @grow; // iOS 6-, Safari 3.1-6
+	-moz-box-flex: @grow; // Firefox 21-
+	width: @width; // Fallback for flex-basis
+
+	-ms-flex: @grow @shrink @width; // IE 10
+	flex: @grow @shrink @width;
+
+	-webkit-box-ordinal-group: @order; // iOS 6-, Safari 3.1-6
+	-moz-box-ordinal-group: @order; // Firefox 21-
+	-ms-flex-order: @order; // IE 10
+	order: @order;
+}
+
+
+// Screen Reader Helper Mixin
+.mixin-screen-reader-text() {
+	display: block;
+	position: absolute !important;
+	clip: rect( 1px, 1px, 1px, 1px );
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	overflow: hidden;
 }

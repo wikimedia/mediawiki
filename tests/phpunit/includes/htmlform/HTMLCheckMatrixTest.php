@@ -5,15 +5,15 @@
  * @covers HTMLCheckMatrix
  */
 class HtmlCheckMatrixTest extends MediaWikiTestCase {
-	static private $defaultOptions = array(
-		'rows' => array( 'r1', 'r2' ),
-		'columns' => array( 'c1', 'c2' ),
+	static private $defaultOptions = [
+		'rows' => [ 'r1', 'r2' ],
+		'columns' => [ 'c1', 'c2' ],
 		'fieldname' => 'test',
-	);
+	];
 
 	public function testPlainInstantiation() {
 		try {
-			new HTMLCheckMatrix( array() );
+			new HTMLCheckMatrix( [] );
 		} catch ( MWException $e ) {
 			$this->assertInstanceOf( 'HTMLFormFieldRequiredOptionsException', $e );
 			return;
@@ -29,14 +29,14 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 
 	public function testValidateCallsUserDefinedValidationCallback() {
 		$called = false;
-		$field = new HTMLCheckMatrix( self::$defaultOptions + array(
+		$field = new HTMLCheckMatrix( self::$defaultOptions + [
 			'validation-callback' => function () use ( &$called ) {
 				$called = true;
 
 				return false;
 			},
-		) );
-		$this->assertEquals( false, $this->validate( $field, array() ) );
+		] );
+		$this->assertEquals( false, $this->validate( $field, [] ) );
 		$this->assertTrue( $called );
 	}
 
@@ -46,19 +46,19 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 		$this->assertEquals( false, $this->validate( $field, true ) );
 		$this->assertEquals( false, $this->validate( $field, 'abc' ) );
 		$this->assertEquals( false, $this->validate( $field, new stdClass ) );
-		$this->assertEquals( true, $this->validate( $field, array() ) );
+		$this->assertEquals( true, $this->validate( $field, [] ) );
 	}
 
 	public function testValidateAllowsOnlyKnownTags() {
 		$field = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertInternalType( 'string', $this->validate( $field, array( 'foo' ) ) );
+		$this->assertInternalType( 'string', $this->validate( $field, [ 'foo' ] ) );
 	}
 
 	public function testValidateAcceptsPartialTagList() {
 		$field = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertTrue( $this->validate( $field, array() ) );
-		$this->assertTrue( $this->validate( $field, array( 'c1-r1' ) ) );
-		$this->assertTrue( $this->validate( $field, array( 'c1-r1', 'c1-r2', 'c2-r1', 'c2-r2' ) ) );
+		$this->assertTrue( $this->validate( $field, [] ) );
+		$this->assertTrue( $this->validate( $field, [ 'c1-r1' ] ) );
+		$this->assertTrue( $this->validate( $field, [ 'c1-r1', 'c1-r2', 'c2-r1', 'c2-r2' ] ) );
 	}
 
 	/**
@@ -69,28 +69,28 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 	 * }
 	 */
 	public function testValuesForcedOnRemainOn() {
-		$field = new HTMLCheckMatrix( self::$defaultOptions + array(
-				'force-options-on' => array( 'c2-r1' ),
-			) );
-		$expected = array(
+		$field = new HTMLCheckMatrix( self::$defaultOptions + [
+				'force-options-on' => [ 'c2-r1' ],
+			] );
+		$expected = [
 			'c1-r1' => false,
 			'c1-r2' => false,
 			'c2-r1' => true,
 			'c2-r2' => false,
-		);
-		$this->assertEquals( $expected, $field->filterDataForSubmit( array() ) );
+		];
+		$this->assertEquals( $expected, $field->filterDataForSubmit( [] ) );
 	}
 
 	public function testValuesForcedOffRemainOff() {
-		$field = new HTMLCheckMatrix( self::$defaultOptions + array(
-				'force-options-off' => array( 'c1-r2', 'c2-r2' ),
-			) );
-		$expected = array(
+		$field = new HTMLCheckMatrix( self::$defaultOptions + [
+				'force-options-off' => [ 'c1-r2', 'c2-r2' ],
+			] );
+		$expected = [
 			'c1-r1' => true,
 			'c1-r2' => false,
 			'c2-r1' => true,
 			'c2-r2' => false,
-		);
+		];
 		// array_keys on the result simulates submitting all fields checked
 		$this->assertEquals( $expected, $field->filterDataForSubmit( array_keys( $expected ) ) );
 	}
@@ -98,7 +98,7 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 	protected function validate( HTMLFormField $field, $submitted ) {
 		return $field->validate(
 			$submitted,
-			array( self::$defaultOptions['fieldname'] => $submitted )
+			[ self::$defaultOptions['fieldname'] => $submitted ]
 		);
 	}
 

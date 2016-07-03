@@ -35,11 +35,11 @@ class InitEditCount extends Maintenance {
 Background mode will be automatically used if the server is MySQL 4.0
 (which does not support subqueries) or if multiple servers are listed
 in the load balancer, usually indicating a replication environment.' );
-		$this->mDescription = "Batch-recalculate user_editcount fields from the revision table";
+		$this->addDescription( 'Batch-recalculate user_editcount fields from the revision table' );
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$user = $dbw->tableName( 'user' );
 		$revision = $dbw->tableName( 'revision' );
 
@@ -58,7 +58,7 @@ in the load balancer, usually indicating a replication environment.' );
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_SLAVE );
 			$chunkSize = 100;
 			$lastUser = $dbr->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 
@@ -78,8 +78,8 @@ in the load balancer, usually indicating a replication environment.' );
 
 				foreach ( $result as $row ) {
 					$dbw->update( 'user',
-						array( 'user_editcount' => $row->user_editcount ),
-						array( 'user_id' => $row->user_id ),
+						[ 'user_editcount' => $row->user_editcount ],
+						[ 'user_id' => $row->user_id ],
 						__METHOD__ );
 					++$migrated;
 				}

@@ -1,11 +1,11 @@
-@chrome @clean @firefox @internet_explorer_6 @internet_explorer_7 @internet_explorer_8 @internet_explorer_9 @internet_explorer_10 @login @phantomjs
+@chrome @firefox @vagrant
 Feature: Preferences
 
   Scenario: Preferences Appearance
     Given I am logged in
     When I navigate to Preferences
       And I click Appearance
-    Then I can select skins
+    Then I can select skin Vector
       And I can select image size
       And I can select thumbnail size
       And I can select Threshold for stub link
@@ -17,7 +17,6 @@ Feature: Preferences
       And I can see time offset section
       And I can see local time
       And I can select my time zone
-
 
   Scenario: Preferences Editing
     Given I am logged in
@@ -33,7 +32,6 @@ Feature: Preferences
       And I can select show preview on first edit
       And I can select show preview before edit box
       And I can select live preview
-
 
   Scenario: Preferences User profile
     Given I am logged in

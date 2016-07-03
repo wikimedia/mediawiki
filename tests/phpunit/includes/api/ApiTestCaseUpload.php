@@ -10,12 +10,10 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgEnableUploads' => true,
 			'wgEnableAPI' => true,
-		) );
-
-		wfSetupSession();
+		] );
 
 		$this->clearFakeUploads();
 	}
@@ -29,7 +27,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 */
 	public function deleteFileByTitle( $title ) {
 		if ( $title->exists() ) {
-			$file = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
+			$file = wfFindFile( $title, [ 'ignoreRedirect' => true ] );
 			$noOldArchive = ""; // yes this really needs to be set this way
 			$comment = "removing for test";
 			$restrictDeletedVersions = false;
@@ -113,13 +111,13 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[$fieldName] = array(
+		$_FILES[$fieldName] = [
 			'name' => $fileName,
 			'type' => $type,
 			'tmp_name' => $tmpName,
 			'size' => $size,
 			'error' => null
-		);
+		];
 
 		return true;
 	}
@@ -137,19 +135,19 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[$fieldName] = array(
+		$_FILES[$fieldName] = [
 			'name' => $fileName,
 			'type' => $type,
 			'tmp_name' => $tmpName,
 			'size' => $size,
 			'error' => null
-		);
+		];
 	}
 
 	/**
 	 * Remove traces of previous fake uploads
 	 */
 	function clearFakeUploads() {
-		$_FILES = array();
+		$_FILES = [];
 	}
 }

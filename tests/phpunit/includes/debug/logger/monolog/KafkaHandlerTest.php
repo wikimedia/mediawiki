@@ -23,9 +23,6 @@ namespace MediaWiki\Logger\Monolog;
 use MediaWikiTestCase;
 use Monolog\Logger;
 
-// not available in the version of phpunit mw uses, so copied into repo
-require_once __DIR__ . '/../../../ConsecutiveParametersMatcher.php';
-
 class KafkaHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
@@ -39,10 +36,10 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function topicNamingProvider() {
-		return array(
-			array( array(), 'monolog_foo' ),
-			array( array( 'alias' => array( 'foo' => 'bar' ) ), 'bar' )
-		);
+		return [
+			[ [], 'monolog_foo' ],
+			[ [ 'alias' => [ 'foo' => 'bar' ] ], 'bar' ]
+		];
 	}
 
 	/**
@@ -52,30 +49,31 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		$produce = $this->getMockBuilder( 'Kafka\Produce' )
 			->disableOriginalConstructor()
 			->getMock();
-		$produce->expects($this->any())
-			->method('getAvailablePartitions')
-			->will($this->returnValue( array( 'A' ) ) );
-		$produce->expects($this->once())
+		$produce->expects( $this->any() )
+			->method( 'getAvailablePartitions' )
+			->will( $this->returnValue( [ 'A' ] ) );
+		$produce->expects( $this->once() )
 			->method( 'setMessages' )
 			->with( $expect, $this->anything(), $this->anything() );
 
 		$handler = new KafkaHandler( $produce, $options );
-		$handler->handle( array(
+		$handler->handle( [
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
-			'extra' => array(),
-		) );
+			'extra' => [],
+			'context' => [],
+		] );
 	}
 
 	public function swallowsExceptionsWhenRequested() {
-		return array(
+		return [
 			// defaults to false
-			array( array(), true ),
+			[ [], true ],
 			// also try false explicitly
-			array( array( 'swallowExceptions' => false ), true ),
+			[ [ 'swallowExceptions' => false ], true ],
 			// turn it on
-			array( array( 'swallowExceptions' => true ), false ),
-		);
+			[ [ 'swallowExceptions' => true ], false ],
+		];
 	}
 
 	/**
@@ -94,11 +92,12 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		}
 
 		$handler = new KafkaHandler( $produce, $options );
-		$handler->handle( array(
+		$handler->handle( [
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
-			'extra' => array(),
-		) );
+			'extra' => [],
+			'context' => [],
+		] );
 
 		if ( !$expectException ) {
 			$this->assertTrue( true, 'no exception was thrown' );
@@ -114,7 +113,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->getMock();
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
-			->will( $this->returnValue( array( 'A' ) ) );
+			->will( $this->returnValue( [ 'A' ] ) );
 		$produce->expects( $this->any() )
 			->method( 'send' )
 			->will( $this->throwException( new \Kafka\Exception ) );
@@ -124,11 +123,12 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		}
 
 		$handler = new KafkaHandler( $produce, $options );
-		$handler->handle( array(
+		$handler->handle( [
 			'channel' => 'foo',
 			'level' => Logger::EMERGENCY,
-			'extra' => array(),
-		) );
+			'extra' => [],
+			'context' => [],
+		] );
 
 		if ( !$expectException ) {
 			$this->assertTrue( true, 'no exception was thrown' );
@@ -141,32 +141,32 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->getMock();
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
-			->will( $this->returnValue( array( 'A' ) ) );
+			->will( $this->returnValue( [ 'A' ] ) );
 		$mockMethod = $produce->expects( $this->exactly( 2 ) )
 			->method( 'setMessages' );
 		// evil hax
 		\TestingAccessWrapper::newFromObject( $mockMethod )->matcher->parametersMatcher =
-			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( array(
-				array( $this->anything(), $this->anything(), array( 'words' ) ),
-				array( $this->anything(), $this->anything(), array( 'lines' ) )
-			) );
+			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( [
+				[ $this->anything(), $this->anything(), [ 'words' ] ],
+				[ $this->anything(), $this->anything(), [ 'lines' ] ]
+			] );
 
 		$formatter = $this->getMock( 'Monolog\Formatter\FormatterInterface' );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
 
-		$handler = new KafkaHandler( $produce, array() );
+		$handler = new KafkaHandler( $produce, [] );
 		$handler->setFormatter( $formatter );
 		for ( $i = 0; $i < 3; ++$i ) {
-			$handler->handle( array(
+			$handler->handle( [
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
-				'extra' => array(),
-			) );
+				'extra' => [],
+				'context' => [],
+			] );
 		}
 	}
-
 
 	public function testBatchHandlesNullFormatterResult() {
 		$produce = $this->getMockBuilder( 'Kafka\Produce' )
@@ -174,34 +174,37 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->getMock();
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
-			->will( $this->returnValue( array( 'A' ) ) );
+			->will( $this->returnValue( [ 'A' ] ) );
 		$produce->expects( $this->once() )
 			->method( 'setMessages' )
-			->with( $this->anything(), $this->anything(), array( 'words', 'lines' ) );
+			->with( $this->anything(), $this->anything(), [ 'words', 'lines' ] );
 
 		$formatter = $this->getMock( 'Monolog\Formatter\FormatterInterface' );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
 
-		$handler = new KafkaHandler( $produce, array() );
+		$handler = new KafkaHandler( $produce, [] );
 		$handler->setFormatter( $formatter );
-		$handler->handleBatch( array(
-			array(
+		$handler->handleBatch( [
+			[
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
-				'extra' => array(),
-			),
-			array(
+				'extra' => [],
+				'context' => [],
+			],
+			[
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
-				'extra' => array(),
-			),
-			array(
+				'extra' => [],
+				'context' => [],
+			],
+			[
 				'channel' => 'foo',
 				'level' => Logger::EMERGENCY,
-				'extra' => array(),
-			),
-		) );
+				'extra' => [],
+				'context' => [],
+			],
+		] );
 	}
 }

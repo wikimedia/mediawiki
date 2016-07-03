@@ -10,7 +10,7 @@
 
 $fallback = 'bn';
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'মিডিয়া',
 	NS_SPECIAL          => 'বিশেষ',
 	NS_TALK             => 'য়্যারী',
@@ -27,9 +27,9 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'পাংলাকর_য়্যারী',
 	NS_CATEGORY         => 'থাক',
 	NS_CATEGORY_TALK    => 'থাকর_য়্যারী',
-);
+];
 
-$digitTransformTable = array(
+$digitTransformTable = [
 	'0' => '০',
 	'1' => '১',
 	'2' => '২',
@@ -40,5 +40,5 @@ $digitTransformTable = array(
 	'7' => '৭',
 	'8' => '৮',
 	'9' => '৯'
-);
+];
 

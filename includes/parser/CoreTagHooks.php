@@ -32,12 +32,12 @@ class CoreTagHooks {
 	 */
 	public static function register( $parser ) {
 		global $wgRawHtml;
-		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
-		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
-		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
-		$parser->setHook( 'indicator', array( __CLASS__, 'indicator' ) );
+		$parser->setHook( 'pre', [ __CLASS__, 'pre' ] );
+		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
+		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
+		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
 		if ( $wgRawHtml ) {
-			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
+			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
 	}
 
@@ -59,8 +59,8 @@ class CoreTagHooks {
 		// We need to let both '"' and '&' through,
 		// for strip markers and entities respectively.
 		$content = str_replace(
-			array( '>', '<' ),
-			array( '&gt;', '&lt;' ),
+			[ '>', '<' ],
+			[ '&gt;', '&lt;' ],
 			$content
 		);
 		return Html::rawElement( 'pre', $attribs, $content );
@@ -84,7 +84,7 @@ class CoreTagHooks {
 	public static function html( $content, $attributes, $parser ) {
 		global $wgRawHtml;
 		if ( $wgRawHtml ) {
-			return array( $content, 'markerType' => 'nowiki' );
+			return [ $content, 'markerType' => 'nowiki' ];
 		} else {
 			throw new MWException( '<html> extension tag encountered unexpectedly' );
 		}
@@ -103,7 +103,7 @@ class CoreTagHooks {
 	 * @return array
 	 */
 	public static function nowiki( $content, $attributes, $parser ) {
-		$content = strtr( $content, array(
+		$content = strtr( $content, [
 			// lang converter
 			'-{' => '-&#123;',
 			'}-' => '&#125;-',
@@ -112,8 +112,8 @@ class CoreTagHooks {
 			'>' => '&gt;'
 			// Note: Both '"' and '&' are not converted.
 			// This allows strip markers and entities through.
-		) );
-		return array( $content, 'markerType' => 'nowiki' );
+		] );
+		return [ $content, 'markerType' => 'nowiki' ];
 	}
 
 	/**

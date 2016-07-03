@@ -21,25 +21,25 @@ class MediaHandlerTest extends MediaWikiTestCase {
 
 	public static function provideTestFitBoxWidth() {
 		return array_merge(
-			static::generateTestFitBoxWidthData( 50, 50, array(
+			static::generateTestFitBoxWidthData( 50, 50, [
 					50 => 50,
 					17 => 17,
-					18 => 18 )
+					18 => 18 ]
 			),
-			static::generateTestFitBoxWidthData( 366, 300, array(
+			static::generateTestFitBoxWidthData( 366, 300, [
 					50 => 61,
 					17 => 21,
-					18 => 22 )
+					18 => 22 ]
 			),
-			static::generateTestFitBoxWidthData( 300, 366, array(
+			static::generateTestFitBoxWidthData( 300, 366, [
 					50 => 41,
 					17 => 14,
-					18 => 15 )
+					18 => 15 ]
 			),
-			static::generateTestFitBoxWidthData( 100, 400, array(
+			static::generateTestFitBoxWidthData( 100, 400, [
 					50 => 12,
 					17 => 4,
-					18 => 4 )
+					18 => 4 ]
 			)
 		);
 	}
@@ -53,15 +53,15 @@ class MediaHandlerTest extends MediaWikiTestCase {
 	 * out of parameters:
 	 * $width, $height, { $max => $expected, $max2 => $expected2, ... }
 	 *
-	 * @param $width int
-	 * @param $height int
-	 * @param $tests array associative array of $max => $expected values
+	 * @param int $width
+	 * @param int $height
+	 * @param array $tests associative array of $max => $expected values
 	 * @return array
 	 */
 	private static function generateTestFitBoxWidthData( $width, $height, $tests ) {
-		$result = array();
+		$result = [];
 		foreach ( $tests as $max => $expected ) {
-			$result[] = array( $width, $height, $max, $expected );
+			$result[] = [ $width, $height, $max, $expected ];
 		}
 		return $result;
 	}

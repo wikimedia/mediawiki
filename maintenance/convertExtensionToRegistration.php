@@ -4,7 +4,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 class ConvertExtensionToRegistration extends Maintenance {
 
-	protected $custom = array(
+	protected $custom = [
 		'MessagesDirs' => 'handleMessagesDirs',
 		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
@@ -14,48 +14,48 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'Hooks' => 'handleHooks',
 		'ExtensionFunctions' => 'handleExtensionFunctions',
 		'ParserTestFiles' => 'removeAbsolutePath',
-	);
+	];
 
 	/**
 	 * Things that were formerly globals and should still be converted
 	 *
 	 * @var array
 	 */
-	protected $formerGlobals = array(
+	protected $formerGlobals = [
 		'TrackingCategories',
-	);
+	];
 
 	/**
 	 * No longer supported globals (with reason) should not be converted and emit a warning
 	 *
 	 * @var array
 	 */
-	protected $noLongerSupportedGlobals = array(
+	protected $noLongerSupportedGlobals = [
 		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
-	);
+	];
 
 	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
 	 *
 	 * @var array
 	 */
-	protected $promote = array(
+	protected $promote = [
 		'name',
+		'namemsg',
 		'version',
 		'author',
 		'url',
 		'description',
 		'descriptionmsg',
-		'namemsg',
 		'license-name',
 		'type',
-	);
+	];
 
 	private $json, $dir, $hasWarning = false;
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
+		$this->addDescription( 'Converts extension entry points to the new JSON registration format' );
 		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert',
 			/* $required = */ true );
 		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );
@@ -76,16 +76,21 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$__settings = array_merge( $this->getAllGlobals(), array_keys( $this->custom ) );
 		foreach ( $__settings as $var ) {
 			$var = 'wg' . $var;
-			$$var = array();
+			$$var = [];
 		}
 		unset( $var );
-		require $this->getArg( 0 );
+		$arg = $this->getArg( 0 );
+		if ( !is_file( $arg ) ) {
+			$this->error( "$arg is not a file.", true );
+		}
+		require $arg;
+		unset( $arg );
 		// Try not to create any local variables before this line
 		$vars = get_defined_vars();
 		unset( $vars['this'] );
 		unset( $vars['__settings'] );
 		$this->dir = dirname( realpath( $this->getArg( 0 ) ) );
-		$this->json = array();
+		$this->json = [];
 		$globalSettings = $this->getAllGlobals();
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
@@ -96,8 +101,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 
 			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( array( $this, $this->custom[$realName] ),
-					array( $realName, $value, $vars ) );
+				call_user_func_array( [ $this, $this->custom[$realName] ],
+					[ $realName, $value, $vars ] );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
@@ -111,8 +116,15 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 		}
 
+		// check, if the extension requires composer libraries
+		if ( $this->needsComposerAutoloader( dirname( $this->getArg( 0 ) ) ) ) {
+			// set the load composer autoloader automatically property
+			$this->output( "Detected composer dependencies, setting 'load_composer_autoloader' to true.\n" );
+			$this->json['load_composer_autoloader'] = true;
+		}
+
 		// Move some keys to the top
-		$out = array();
+		$out = [];
 		foreach ( $this->promote as $key ) {
 			if ( isset( $this->json[$key] ) ) {
 				$out[$key] = $this->json[$key];
@@ -137,6 +149,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 			if ( $func instanceof Closure ) {
 				$this->error( "Error: Closures cannot be converted to JSON. " .
 					"Please move your extension function somewhere else.", 1
+				);
+			}
+			// check if $func exists in the global scope
+			if ( function_exists( $func ) ) {
+				$this->error( "Error: Global functions cannot be converted to JSON. " .
+					"Please move your extension function ($func) into a class.", 1
 				);
 			}
 		}
@@ -179,7 +197,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	protected function removeAbsolutePath( $realName, $value ) {
-		$out = array();
+		$out = [];
 		foreach ( $value as $key => $val ) {
 			$out[$key] = $this->stripPath( $val, $this->dir );
 		}
@@ -198,20 +216,29 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	public function handleHooks( $realName, $value ) {
-		foreach ( $value as $hookName => $handlers ) {
+		foreach ( $value as $hookName => &$handlers ) {
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
 					$this->error( "Error: Closures cannot be converted to JSON. " .
 						"Please move the handler for $hookName somewhere else.", 1
 					);
 				}
+				// Check if $func exists in the global scope
+				if ( function_exists( $func ) ) {
+					$this->error( "Error: Global functions cannot be converted to JSON. " .
+						"Please move the handler for $hookName inside a class.", 1
+					);
+				}
+			}
+			if ( count( $handlers ) === 1 ) {
+				$handlers = $handlers[0];
 			}
 		}
 		$this->json[$realName] = $value;
 	}
 
 	protected function handleResourceModules( $realName, $value ) {
-		$defaults = array();
+		$defaults = [];
 		$remote = $this->hasOption( 'skin' ) ? 'remoteSkinPath' : 'remoteExtPath';
 		foreach ( $value as $name => $data ) {
 			if ( isset( $data['localBasePath'] ) ) {
@@ -240,6 +267,19 @@ class ConvertExtensionToRegistration extends Maintenance {
 		if ( $defaults ) {
 			$this->json['ResourceFileModulePaths'] = $defaults;
 		}
+	}
+
+	protected function needsComposerAutoloader( $path ) {
+		$path .= '/composer.json';
+		if ( file_exists( $path ) ) {
+			// assume, that the composer.json file is in the root of the extension path
+			$composerJson = new ComposerJson( $path );
+			// check, if there are some dependencies in the require section
+			if ( $composerJson->getRequiredDependencies() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

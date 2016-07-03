@@ -120,13 +120,13 @@ class ParserOptions {
 	 * Callback for current revision fetching. Used as first argument to call_user_func().
 	 */
 	private $mCurrentRevisionCallback =
-		array( 'Parser', 'statelessFetchRevision' );
+		[ 'Parser', 'statelessFetchRevision' ];
 
 	/**
 	 * Callback for template fetching. Used as first argument to call_user_func().
 	 */
 	private $mTemplateCallback =
-		array( 'Parser', 'statelessFetchTemplate' );
+		[ 'Parser', 'statelessFetchTemplate' ];
 
 	/**
 	 * Enable limit report in an HTML comment on output
@@ -600,6 +600,16 @@ class ParserOptions {
 	}
 
 	/**
+	 * Get a ParserOptions object for an anonymous user
+	 * @since 1.27
+	 * @return ParserOptions
+	 */
+	public static function newFromAnon() {
+		global $wgContLang;
+		return new ParserOptions( new User, $wgContLang );
+	}
+
+	/**
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
@@ -680,10 +690,10 @@ class ParserOptions {
 	 */
 	public function matches( ParserOptions $other ) {
 		$fields = array_keys( get_class_vars( __CLASS__ ) );
-		$fields = array_diff( $fields, array(
+		$fields = array_diff( $fields, [
 			'mEnableLimitReport', // only effects HTML comments
 			'onAccessCallback', // only used for ParserOutput option tracking
-		) );
+		] );
 		foreach ( $fields as $field ) {
 			if ( !is_object( $this->$field ) && $this->$field !== $other->$field ) {
 				return false;
@@ -726,14 +736,14 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function legacyOptions() {
-		return array(
+		return [
 			'stubthreshold',
 			'numberheadings',
 			'userlang',
 			'thumbsize',
 			'editsection',
 			'printable'
-		);
+		];
 	}
 
 	/**
@@ -822,7 +832,7 @@ class ParserOptions {
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		Hooks::run( 'PageRenderingHash', array( &$confstr, $this->getUser(), &$forOptions ) );
+		Hooks::run( 'PageRenderingHash', [ &$confstr, $this->getUser(), &$forOptions ] );
 
 		// Make it a valid memcached key fragment
 		$confstr = str_replace( ' ', '_', $confstr );
@@ -831,8 +841,8 @@ class ParserOptions {
 	}
 
 	/**
-	 * Sets a hook to force that a page exists, and sets a current revision callback to return a
-	 * revision with custom content when the current revision of the page is requested.
+	 * Sets a hook to force that a page exists, and sets a current revision callback to return
+	 * a revision with custom content when the current revision of the page is requested.
 	 *
 	 * @since 1.25
 	 * @param Title $title
@@ -841,20 +851,25 @@ class ParserOptions {
 	 * @return ScopedCallback to unset the hook
 	 */
 	public function setupFakeRevision( $title, $content, $user ) {
-		$oldCallback = $this->setCurrentRevisionCallback( function ( $titleToCheck, $parser = false ) use ( $title, $content, $user, &$oldCallback ) {
-			if ( $titleToCheck->equals( $title ) ) {
-				return new Revision( array(
-					'page' => $title->getArticleID(),
-					'user_text' => $user->getName(),
-					'user' => $user->getId(),
-					'parent_id' => $title->getLatestRevId(),
-					'title' => $title,
-					'content' => $content
-				) );
-			} else {
-				return call_user_func( $oldCallback, $titleToCheck, $parser );
+		$oldCallback = $this->setCurrentRevisionCallback(
+			function (
+				$titleToCheck, $parser = false ) use ( $title, $content, $user, &$oldCallback
+			) {
+				if ( $titleToCheck->equals( $title ) ) {
+					return new Revision( [
+						'page' => $title->getArticleID(),
+						'user_text' => $user->getName(),
+						'user' => $user->getId(),
+						'parent_id' => $title->getLatestRevID(),
+						'title' => $title,
+						'content' => $content
+					] );
+				} else {
+					return call_user_func( $oldCallback, $titleToCheck, $parser );
+				}
 			}
-		} );
+		);
+
 		global $wgHooks;
 		$wgHooks['TitleExists'][] =
 			function ( $titleToCheck, &$exists ) use ( $title ) {

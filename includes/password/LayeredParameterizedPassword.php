@@ -36,7 +36,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 	}
 
 	protected function getDefaultParams() {
-		$params = array();
+		$params = [];
 
 		foreach ( $this->config['types'] as $type ) {
 			$passObj = $this->factory->newFromType( $type );

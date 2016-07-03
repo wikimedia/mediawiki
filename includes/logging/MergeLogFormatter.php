@@ -31,12 +31,12 @@ class MergeLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 
-		return array( Title::newFromText( $params[3] ) );
+		return [ Title::newFromText( $params[3] ) ];
 	}
 
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$oldname = $this->makePageLink( $this->entry->getTarget(), array( 'redirect' => 'no' ) );
+		$oldname = $this->makePageLink( $this->entry->getTarget(), [ 'redirect' => 'no' ] );
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
@@ -57,13 +57,13 @@ class MergeLogFormatter extends LogFormatter {
 		$revert = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'MergeHistory' ),
 			$this->msg( 'revertmerge' )->escaped(),
-			array(),
-			array(
+			[],
+			[
 				'target' => $params[3],
 				'dest' => $this->entry->getTarget()->getPrefixedDBkey(),
 				'mergepoint' => $params[4],
 				'submitted' => 1 // show the revisions immediately
-			)
+			]
 		);
 
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
@@ -73,12 +73,12 @@ class MergeLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			'4:title:dest',
 			'5:timestamp:mergepoint',
 			'4::dest' => '4:title:dest',
 			'5::mergepoint' => '5:timestamp:mergepoint',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];

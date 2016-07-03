@@ -28,22 +28,22 @@
  */
 class RevisionDeleter {
 	/** List of known revdel types, with their corresponding list classes */
-	private static $allowedTypes = array(
+	private static $allowedTypes = [
 		'revision' => 'RevDelRevisionList',
 		'archive' => 'RevDelArchiveList',
 		'oldimage' => 'RevDelFileList',
 		'filearchive' => 'RevDelArchivedFileList',
 		'logging' => 'RevDelLogList',
-	);
+	];
 
 	/** Type map to support old log entries */
-	private static $deprecatedTypeMap = array(
+	private static $deprecatedTypeMap = [
 		'oldid' => 'revision',
 		'artimestamp' => 'archive',
 		'oldimage' => 'oldimage',
 		'fileid' => 'filearchive',
 		'logid' => 'logging',
-	);
+	];
 
 	/**
 	 * Lists the valid possible types for revision deletion.
@@ -85,7 +85,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
 		}
-		return new self::$allowedTypes[$typeName]( $context, $title, $ids );
+		$class = self::$allowedTypes[$typeName];
+		return new $class( $context, $title, $ids );
 	}
 
 	/**
@@ -125,7 +126,7 @@ class RevisionDeleter {
 	 */
 	public static function getChanges( $n, $o ) {
 		$diff = $n ^ $o;
-		$ret = array( 0 => array(), 1 => array(), 2 => array() );
+		$ret = [ 0 => [], 1 => [], 2 => [] ];
 		// Build bitfield changes in language
 		self::checkItem( 'revdelete-content',
 			Revision::DELETED_TEXT, $diff, $n, $ret );
@@ -155,7 +156,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( array( self::$allowedTypes[$typeName], 'getRelationType' ) );
+		return call_user_func( [ self::$allowedTypes[$typeName], 'getRelationType' ] );
 	}
 
 	/**
@@ -169,7 +170,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( array( self::$allowedTypes[$typeName], 'getRestriction' ) );
+		return call_user_func( [ self::$allowedTypes[$typeName], 'getRestriction' ] );
 	}
 
 	/**
@@ -183,7 +184,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( array( self::$allowedTypes[$typeName], 'getRevdelConstant' ) );
+		return call_user_func( [ self::$allowedTypes[$typeName], 'getRevdelConstant' ] );
 	}
 
 	/**
@@ -199,7 +200,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return $target;
 		}
-		return call_user_func( array( self::$allowedTypes[$typeName], 'suggestTarget' ), $target, $ids );
+		return call_user_func( [ self::$allowedTypes[$typeName], 'suggestTarget' ], $target, $ids );
 	}
 
 	/**
@@ -214,16 +215,16 @@ class RevisionDeleter {
 	public static function checkRevisionExistence( $title, $revid ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$exists = $dbr->selectField( 'revision', '1',
-				array( 'rev_id' => $revid ), __METHOD__ );
+				[ 'rev_id' => $revid ], __METHOD__ );
 
 		if ( $exists ) {
 			return true;
 		}
 
 		$timestamp = $dbr->selectField( 'archive', 'ar_timestamp',
-				array( 'ar_namespace' => $title->getNamespace(),
+				[ 'ar_namespace' => $title->getNamespace(),
 					'ar_title' => $title->getDBkey(),
-					'ar_rev_id' => $revid ), __METHOD__ );
+					'ar_rev_id' => $revid ], __METHOD__ );
 
 		return $timestamp;
 	}

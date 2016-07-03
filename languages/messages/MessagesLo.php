@@ -10,7 +10,7 @@
  * @author Tuinui
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'ສື່',
 	NS_SPECIAL          => 'ພິເສດ',
 	NS_TALK             => 'ສົນທະນາ',
@@ -27,59 +27,59 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'ສົນທະນາກ່ຽວກັບຊ່ວຍເຫຼືອ',
 	NS_CATEGORY         => 'ໝວດ',
 	NS_CATEGORY_TALK    => 'ສົນທະນາກ່ຽວກັບໝວດ',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'ສື່ອ' => NS_MEDIA,
-);
+];
 
-$specialPageAliases = array(
-	'Allpages'                  => array( 'ໜ້າທັງໝົດ' ),
-	'BrokenRedirects'           => array( 'ໂອນເສຍ' ),
-	'Categories'                => array( 'ໝວດ' ),
-	'ChangePassword'            => array( 'ປ່ຽນລະຫັດຜ່ານ' ),
-	'Contributions'             => array( 'ການປະກອບສ່ວນ' ),
-	'CreateAccount'             => array( 'ສ້າງບັນຊີ' ),
-	'Deadendpages'              => array( 'ໜ້າທີ່ບໍ່ມີໜ້າໃດໂຍງມາ' ),
-	'DoubleRedirects'           => array( 'ໂອນຊ້ອນ' ),
-	'Listadmins'                => array( 'ລາຍຊື່ຜູ້ບໍລິຫານລະບົບ' ),
-	'Listbots'                  => array( 'ລາຍຊື່ບອຕ' ),
-	'Listfiles'                 => array( 'ລາຍຊື່ຮູບ' ),
-	'Listusers'                 => array( 'ລາຍຊື່ຜູ້ໃຊ້' ),
-	'Longpages'                 => array( 'ໜ້າຍາວ' ),
-	'Movepage'                  => array( 'ຍ້າຍ' ),
-	'Mycontributions'           => array( 'ປະກອບສ່ວນຂອງຂ້ອຍ' ),
-	'Mypage'                    => array( 'ໜ້າຂອງຂ້ອຍ' ),
-	'Mytalk'                    => array( 'ສົນທະນາຂອງຂ້ອຍ' ),
-	'Newimages'                 => array( 'ຮູບໃໝ່' ),
-	'Newpages'                  => array( 'ໜ້າໃໝ່' ),
-	'Preferences'               => array( 'ຕັ້ງຄ່າ' ),
-	'Protectedpages'            => array( 'ໜ້າທີ່ຖຶກປົກປ້ອງ' ),
-	'Protectedtitles'           => array( 'ຊື່ທີ່ຖຶກປົກປ້ອງ' ),
-	'Randompage'                => array( 'ບົດຄວາມໃດໜຶ່ງ' ),
-	'Randomredirect'            => array( 'ໜ້າໂອນໃດໜຶ່ງ' ),
-	'Recentchanges'             => array( 'ການດັດແກ້ຫຼ້າສຸດ' ),
-	'Search'                    => array( 'ຊອກຫາ' ),
-	'Shortpages'                => array( 'ໜ້າທີ່ສັ້ນ' ),
-	'Specialpages'              => array( 'ໜ້າພິເສດ' ),
-	'Statistics'                => array( 'ສະຖິຕິ' ),
-	'Uncategorizedcategories'   => array( 'ໝວດທີ່ບໍ່ມີໝວດ' ),
-	'Uncategorizedimages'       => array( 'ຮູບທີ່ບໍ່ມີໝວດ' ),
-	'Uncategorizedpages'        => array( 'ໜ້າທີ່ບໍ່ມີໝວດ' ),
-	'Uncategorizedtemplates'    => array( 'ແມ່ແບບທີ່ບໍ່ມີໝວດ' ),
-	'Unusedcategories'          => array( 'ໝວດທີ່ບໍ່ໄດ້ໃຊ້' ),
-	'Unusedimages'              => array( 'ຮູບທີ່ບໍ່ໄດ້ໃຊ້' ),
-	'Unusedtemplates'           => array( 'ແມ່ແບບທີ່ບໍ່ໄດ້ໃຊ້' ),
-	'Upload'                    => array( 'ອັປໂຫຼດໄຟລ໌' ),
-	'Userlogin'                 => array( 'ເຊັນເຂົ້າ' ),
-	'Userlogout'                => array( 'ເຊັນອອກ' ),
-	'Wantedcategories'          => array( 'ໝວດທີ່ຕ້ອງການ' ),
-	'Wantedpages'               => array( 'ໜ້າທີ່ຕ້ອງການ', 'ລິງກ໌ທີ່້ເສຍ' ),
-	'Watchlist'                 => array( 'ຕິດຕາມ' ),
-	'Whatlinkshere'             => array( 'ໜ້າທີ່ເຊື່ອມຕໍ່ມາ' ),
-);
+$specialPageAliases = [
+	'Allpages'                  => [ 'ໜ້າທັງໝົດ' ],
+	'BrokenRedirects'           => [ 'ໂອນເສຍ' ],
+	'Categories'                => [ 'ໝວດ' ],
+	'ChangePassword'            => [ 'ປ່ຽນລະຫັດຜ່ານ' ],
+	'Contributions'             => [ 'ການປະກອບສ່ວນ' ],
+	'CreateAccount'             => [ 'ສ້າງບັນຊີ' ],
+	'Deadendpages'              => [ 'ໜ້າທີ່ບໍ່ມີໜ້າໃດໂຍງມາ' ],
+	'DoubleRedirects'           => [ 'ໂອນຊ້ອນ' ],
+	'Listadmins'                => [ 'ລາຍຊື່ຜູ້ບໍລິຫານລະບົບ' ],
+	'Listbots'                  => [ 'ລາຍຊື່ບອຕ' ],
+	'Listfiles'                 => [ 'ລາຍຊື່ຮູບ' ],
+	'Listusers'                 => [ 'ລາຍຊື່ຜູ້ໃຊ້' ],
+	'Longpages'                 => [ 'ໜ້າຍາວ' ],
+	'Movepage'                  => [ 'ຍ້າຍ' ],
+	'Mycontributions'           => [ 'ປະກອບສ່ວນຂອງຂ້ອຍ' ],
+	'Mypage'                    => [ 'ໜ້າຂອງຂ້ອຍ' ],
+	'Mytalk'                    => [ 'ສົນທະນາຂອງຂ້ອຍ' ],
+	'Newimages'                 => [ 'ຮູບໃໝ່' ],
+	'Newpages'                  => [ 'ໜ້າໃໝ່' ],
+	'Preferences'               => [ 'ຕັ້ງຄ່າ' ],
+	'Protectedpages'            => [ 'ໜ້າທີ່ຖຶກປົກປ້ອງ' ],
+	'Protectedtitles'           => [ 'ຊື່ທີ່ຖຶກປົກປ້ອງ' ],
+	'Randompage'                => [ 'ບົດຄວາມໃດໜຶ່ງ' ],
+	'Randomredirect'            => [ 'ໜ້າໂອນໃດໜຶ່ງ' ],
+	'Recentchanges'             => [ 'ການດັດແກ້ຫຼ້າສຸດ' ],
+	'Search'                    => [ 'ຊອກຫາ' ],
+	'Shortpages'                => [ 'ໜ້າທີ່ສັ້ນ' ],
+	'Specialpages'              => [ 'ໜ້າພິເສດ' ],
+	'Statistics'                => [ 'ສະຖິຕິ' ],
+	'Uncategorizedcategories'   => [ 'ໝວດທີ່ບໍ່ມີໝວດ' ],
+	'Uncategorizedimages'       => [ 'ຮູບທີ່ບໍ່ມີໝວດ' ],
+	'Uncategorizedpages'        => [ 'ໜ້າທີ່ບໍ່ມີໝວດ' ],
+	'Uncategorizedtemplates'    => [ 'ແມ່ແບບທີ່ບໍ່ມີໝວດ' ],
+	'Unusedcategories'          => [ 'ໝວດທີ່ບໍ່ໄດ້ໃຊ້' ],
+	'Unusedimages'              => [ 'ຮູບທີ່ບໍ່ໄດ້ໃຊ້' ],
+	'Unusedtemplates'           => [ 'ແມ່ແບບທີ່ບໍ່ໄດ້ໃຊ້' ],
+	'Upload'                    => [ 'ອັປໂຫຼດໄຟລ໌' ],
+	'Userlogin'                 => [ 'ເຊັນເຂົ້າ' ],
+	'Userlogout'                => [ 'ເຊັນອອກ' ],
+	'Wantedcategories'          => [ 'ໝວດທີ່ຕ້ອງການ' ],
+	'Wantedpages'               => [ 'ໜ້າທີ່ຕ້ອງການ', 'ລິງກ໌ທີ່້ເສຍ' ],
+	'Watchlist'                 => [ 'ຕິດຕາມ' ],
+	'Whatlinkshere'             => [ 'ໜ້າທີ່ເຊື່ອມຕໍ່ມາ' ],
+];
 
-$digitTransformTable = array(
+$digitTransformTable = [
 	'0' => '໐', # &#x0ed0;
 	'1' => '໑', # &#x0ed1;
 	'2' => '໒', # &#x0ed2;
@@ -90,5 +90,5 @@ $digitTransformTable = array(
 	'7' => '໗', # &#x0ed7;
 	'8' => '໘', # &#x0ed8;
 	'9' => '໙', # &#x0ed9;
-);
+];
 

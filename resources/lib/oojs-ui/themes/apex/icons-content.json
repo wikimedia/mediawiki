@@ -1,0 +1,18 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"articles": { "file": {
+			"ltr": "images/icons/articles-ltr.svg",
+			"rtl": "images/icons/articles-rtl.svg"
+		} },
+		"articleRedirect": { "file": {
+			"ltr": "images/icons/articleRedirect-ltr.svg",
+			"rtl": "images/icons/articleRedirect-rtl.svg"
+		} },
+		"upload": { "file": {
+			"ltr": "images/icons/upload-ltr.svg",
+			"rtl": "images/icons/upload-rtl.svg"
+		} }
+	}
+}

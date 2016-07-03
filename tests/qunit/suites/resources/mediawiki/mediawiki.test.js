@@ -57,6 +57,19 @@
 		this.restoreWarnings();
 	} );
 
+	QUnit.test( 'mw.format', 2, function ( assert ) {
+		assert.equal(
+			mw.format( 'Format $1 $2', 'foo', 'bar' ),
+			'Format foo bar',
+			'Simple parameters'
+		);
+		assert.equal(
+			mw.format( 'Format $1 $2' ),
+			'Format $1 $2',
+			'Missing parameters'
+		);
+	} );
+
 	QUnit.test( 'mw.Map', 35, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
@@ -186,14 +199,14 @@
 
 		hello = mw.message( 'hello' );
 
-		// https://bugzilla.wikimedia.org/show_bug.cgi?id=44459
+		// https://phabricator.wikimedia.org/T46459
 		assert.equal( hello.format, 'text', 'Message property "format" defaults to "text"' );
 
 		assert.strictEqual( hello.map, mw.messages, 'Message property "map" defaults to the global instance in mw.messages' );
 		assert.equal( hello.key, 'hello', 'Message property "key" (currect key)' );
 		assert.deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array' );
 
-		// Todo
+		// TODO
 		assert.ok( hello.params, 'Message prototype "params"' );
 
 		hello.format = 'plain';
@@ -446,7 +459,7 @@
 		} );
 	} );
 
-	QUnit.asyncTest( 'mw.loader.using( .. ).promise', 2, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader.using( .. ) Promise', 2, function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -631,7 +644,7 @@
 	} );
 
 	// @import (bug 31676)
-	QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 7, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader.implement( styles has @import )', 7, function ( assert ) {
 		var isJsExecuted, $element;
 
 		mw.loader.implement(
@@ -747,7 +760,12 @@
 		} );
 	} );
 
-	QUnit.test( 'mw.loader erroneous indirect dependency', 4, function ( assert ) {
+	QUnit.test( 'mw.loader.implement( empty )', 1, function ( assert ) {
+		mw.loader.implement( 'test.empty' );
+		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
+	} );
+
+	QUnit.test( 'mw.loader with broken indirect dependency', 4, function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
 
@@ -764,6 +782,17 @@
 		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
 
 		assert.strictEqual( mw.track.callCount, 1 );
+	} );
+
+	QUnit.test( 'mw.loader with circular dependency', 1, function ( assert ) {
+		mw.loader.register( [
+			[ 'test.circle1', '0', [ 'test.circle2' ] ],
+			[ 'test.circle2', '0', [ 'test.circle3' ] ],
+			[ 'test.circle3', '0', [ 'test.circle1' ] ]
+		] );
+		assert.throws( function () {
+			mw.loader.using( 'test.circle3' );
+		}, /Circular/, 'Detect circular dependency' );
 	} );
 
 	QUnit.test( 'mw.loader out-of-order implementation', 9, function ( assert ) {
@@ -964,80 +993,6 @@
 		} ).always( QUnit.start );
 	} );
 
-	QUnit.test( 'mw.html', 13, function ( assert ) {
-		assert.throws( function () {
-			mw.html.escape();
-		}, TypeError, 'html.escape throws a TypeError if argument given is not a string' );
-
-		assert.equal( mw.html.escape( '<mw awesome="awesome" value=\'test\' />' ),
-			'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'escape() escapes special characters to html entities' );
-
-		assert.equal( mw.html.element(),
-			'<undefined/>', 'element() always returns a valid html string (even without arguments)' );
-
-		assert.equal( mw.html.element( 'div' ), '<div/>', 'element() Plain DIV (simple)' );
-
-		assert.equal( mw.html.element( 'div', {}, '' ), '<div></div>', 'element() Basic DIV (simple)' );
-
-		assert.equal(
-			mw.html.element(
-				'div', {
-					id: 'foobar'
-				}
-			),
-			'<div id="foobar"/>',
-			'html.element DIV (attribs)' );
-
-		assert.equal( mw.html.element( 'p', null, 12 ), '<p>12</p>', 'Numbers are valid content and should be casted to a string' );
-
-		assert.equal( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'Numbers are valid attribute values' );
-
-		// Example from https://www.mediawiki.org/wiki/ResourceLoader/Default_modules#mediaWiki.html
-		assert.equal(
-			mw.html.element(
-				'div',
-				{},
-				new mw.html.Raw(
-					mw.html.element( 'img', { src: '<' } )
-				)
-			),
-			'<div><img src="&lt;"/></div>',
-			'Raw inclusion of another element'
-		);
-
-		assert.equal(
-			mw.html.element(
-				'option', {
-					selected: true
-				}, 'Foo'
-			),
-			'<option selected="selected">Foo</option>',
-			'Attributes may have boolean values. True copies the attribute name to the value.'
-		);
-
-		assert.equal(
-			mw.html.element(
-				'option', {
-					value: 'foo',
-					selected: false
-				}, 'Foo'
-			),
-			'<option value="foo">Foo</option>',
-			'Attributes may have boolean values. False keeps the attribute from output.'
-		);
-
-		assert.equal( mw.html.element( 'div',
-			null, 'a' ),
-			'<div>a</div>',
-			'html.element DIV (content)' );
-
-		assert.equal( mw.html.element( 'a',
-			{ href: 'http://mediawiki.org/w/index.php?title=RL&action=history' }, 'a' ),
-			'<a href="http://mediawiki.org/w/index.php?title=RL&amp;action=history">a</a>',
-			'html.element DIV (attribs + content)' );
-
-	} );
-
 	QUnit.test( 'mw.hook', 13, function ( assert ) {
 		var hook, add, fire, chars, callback;
 
@@ -1128,6 +1083,68 @@
 				'"remove" removes all equal by reference. ' +
 				'"remove" is silent if the function is not found'
 		);
+	} );
+
+	QUnit.test( 'mw.loader.require', 6, function ( assert ) {
+		var module1, module2, module3, module4;
+
+		mw.loader.register( [
+			[ 'test.module.require1', '0' ],
+			[ 'test.module.require2', '0' ],
+			[ 'test.module.require3', '0' ],
+			[ 'test.module.require4', '0', [ 'test.module.require3' ] ]
+		] );
+		mw.loader.implement( 'test.module.require1', function () {} );
+		mw.loader.implement( 'test.module.require2', function ( $, jQuery, require, module ) {
+			module.exports = 1;
+		} );
+		mw.loader.implement( 'test.module.require3', function ( $, jQuery, require, module ) {
+			module.exports = function () {
+				return 'hello world';
+			};
+		} );
+		mw.loader.implement( 'test.module.require4', function ( $, jQuery, require, module ) {
+			var other = require( 'test.module.require3' );
+			module.exports = {
+				pizza: function () {
+					return other();
+				}
+			};
+		} );
+		module1 = mw.loader.require( 'test.module.require1' );
+		module2 = mw.loader.require( 'test.module.require2' );
+		module3 = mw.loader.require( 'test.module.require3' );
+		module4 = mw.loader.require( 'test.module.require4' );
+
+		assert.strictEqual( typeof module1, 'object', 'export of module with no export' );
+		assert.strictEqual( module2, 1, 'export a number' );
+		assert.strictEqual( module3(), 'hello world', 'export a function' );
+		assert.strictEqual( typeof module4.pizza, 'function', 'export an object' );
+		assert.strictEqual( module4.pizza(), 'hello world', 'module can require other modules' );
+
+		assert.throws( function () {
+			mw.loader.require( '_badmodule' );
+		}, /is not loaded/, 'Requesting non-existent modules throws error.' );
+	} );
+
+	QUnit.asyncTest( 'mw.loader require in debug mode', 1, function ( assert ) {
+		var path = mw.config.get( 'wgScriptPath' );
+		mw.loader.register( [
+			[ 'test.require.define', '0' ],
+			[ 'test.require.callback', '0', [ 'test.require.define' ] ]
+		] );
+		mw.loader.implement( 'test.require.callback', [ QUnit.fixurl( path + '/tests/qunit/data/requireCallMwLoaderTestCallback.js' ) ] );
+		mw.loader.implement( 'test.require.define', [ QUnit.fixurl( path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ) ] );
+
+		mw.loader.using( 'test.require.callback', function () {
+			QUnit.start();
+			var exported = mw.loader.require( 'test.require.callback' );
+			assert.strictEqual( exported, 'Require worked.Define worked.',
+				'module.exports worked in debug mode' );
+		}, function () {
+			QUnit.start();
+			assert.ok( false, 'Error callback fired while loader.using "test.require.callback" module' );
+		} );
 	} );
 
 }( mediaWiki, jQuery ) );

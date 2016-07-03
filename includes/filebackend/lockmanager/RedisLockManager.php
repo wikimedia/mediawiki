@@ -39,17 +39,17 @@
  */
 class RedisLockManager extends QuorumLockManager {
 	/** @var array Mapping of lock types to the type actually used */
-	protected $lockTypeMap = array(
+	protected $lockTypeMap = [
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
-	);
+	];
 
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 
 	/** @var array Map server names to hostname/IP and port numbers */
-	protected $lockServers = array();
+	protected $lockServers = [];
 
 	/** @var string Random UUID */
 	protected $session = '';
@@ -91,7 +91,7 @@ class RedisLockManager extends QuorumLockManager {
 			return $status;
 		}
 
-		$pathsByKey = array(); // (type:hash => path) map
+		$pathsByKey = []; // (type:hash => path) map
 		foreach ( $pathsByType as $type => $paths ) {
 			$typeString = ( $type == LockManager::LOCK_SH ) ? 'SH' : 'EX';
 			foreach ( $paths as $path ) {
@@ -143,11 +143,11 @@ LUA;
 			$res = $conn->luaEval( $script,
 				array_merge(
 					array_keys( $pathsByKey ), // KEYS[0], KEYS[1],...,KEYS[N]
-					array(
+					[
 						$this->session, // ARGV[1]
 						$this->lockTTL, // ARGV[2]
 						time() // ARGV[3]
-					)
+					]
 				),
 				count( $pathsByKey ) # number of first argument(s) that are keys
 			);
@@ -182,7 +182,7 @@ LUA;
 			return $status;
 		}
 
-		$pathsByKey = array(); // (type:hash => path) map
+		$pathsByKey = []; // (type:hash => path) map
 		foreach ( $pathsByType as $type => $paths ) {
 			$typeString = ( $type == LockManager::LOCK_SH ) ? 'SH' : 'EX';
 			foreach ( $paths as $path ) {
@@ -213,9 +213,9 @@ LUA;
 			$res = $conn->luaEval( $script,
 				array_merge(
 					array_keys( $pathsByKey ), // KEYS[0], KEYS[1],...,KEYS[N]
-					array(
+					[
 						$this->session, // ARGV[1]
-					)
+					]
 				),
 				count( $pathsByKey ) # number of first argument(s) that are keys
 			);
@@ -252,7 +252,7 @@ LUA;
 	 */
 	protected function recordKeyForPath( $path, $type ) {
 		return implode( ':',
-			array( __CLASS__, 'locks', "$type:" . $this->sha1Base36Absolute( $path ) ) );
+			[ __CLASS__, 'locks', "$type:" . $this->sha1Base36Absolute( $path ) ] );
 	}
 
 	/**
@@ -260,7 +260,7 @@ LUA;
 	 */
 	function __destruct() {
 		while ( count( $this->locksHeld ) ) {
-			$pathsByType = array();
+			$pathsByType = [];
 			foreach ( $this->locksHeld as $path => $locks ) {
 				foreach ( $locks as $type => $count ) {
 					$pathsByType[$type][] = $path;

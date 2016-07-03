@@ -82,9 +82,35 @@ table.toc td {
 	margin: 0 0 0 2em;
 }
 
-#toc .toctoggle,
-.toc .toctoggle {
-	font-size: 94%;
+/* Separate columns for tocnumber and toctext */
+/* Ignored by IE7 and lower */
+.tocnumber,
+.toctext {
+	display: table-cell;
+	/*
+	Text decorations are not propagated to the contents of inline blocks and inline tables,
+	according to <http://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
+	generates an inline table when used without any parent table-rows and tables.
+	*/
+	text-decoration: inherit;
+}
+
+/* Space between the columns for tocnumber and toctext */
+.tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-ltr .tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-rtl .tocnumber {
+	padding-left: 0.5em;
+	padding-right: 0;
 }
 
 /* Warning */
@@ -162,8 +188,6 @@ div.magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url(images/magnify-clip-ltr.png);
 	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/magnify-clip-ltr.svg);
-	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/magnify-clip-ltr.svg);
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
@@ -195,8 +219,6 @@ img.thumbborder {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url(images/magnify-clip-ltr.png);
 	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/magnify-clip-ltr.svg);
-	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/magnify-clip-ltr.svg);
 }
 
@@ -216,8 +238,6 @@ img.thumbborder {
 .mw-content-rtl div.magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url(images/magnify-clip-rtl.png);
-	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/magnify-clip-rtl.svg);
 	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/magnify-clip-rtl.svg);
 }

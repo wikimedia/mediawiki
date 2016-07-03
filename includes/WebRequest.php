@@ -23,26 +23,31 @@
  * @file
  */
 
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionId;
+use MediaWiki\Session\SessionManager;
+
 /**
  * The WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form stripping illegal input characters and
  * normalizing Unicode sequences.
  *
- * Usually this is used via a global singleton, $wgRequest. You should
- * not create a second WebRequest object; make a FauxRequest object if
- * you want to pass arbitrary data to some function in place of the web
- * input.
- *
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data, $headers = array();
+	protected $data, $headers = [];
 
 	/**
 	 * Flag to make WebRequest::getHeader return an array of values.
 	 * @since 1.26
 	 */
 	const GETHEADER_LIST = 1;
+
+	/**
+	 * The unique request ID.
+	 * @var string
+	 */
+	private static $reqId;
 
 	/**
 	 * Lazy-init response object
@@ -67,6 +72,13 @@ class WebRequest {
 	 * @var string
 	 */
 	protected $protocol;
+
+	/**
+	 * @var SessionId|null Session ID to use for this
+	 *  request. We can't save the session directly due to reference cycles not
+	 *  working too well (slow GC in Zend and never collected in HHVM).
+	 */
+	protected $sessionId = null;
 
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
@@ -97,7 +109,7 @@ class WebRequest {
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
-		$matches = array();
+		$matches = [];
 		if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
 			// Slurp out the path portion to examine...
 			$url = $_SERVER['REQUEST_URI'];
@@ -138,18 +150,18 @@ class WebRequest {
 
 				global $wgActionPaths;
 				if ( $wgActionPaths ) {
-					$router->add( $wgActionPaths, array( 'action' => '$key' ) );
+					$router->add( $wgActionPaths, [ 'action' => '$key' ] );
 				}
 
 				global $wgVariantArticlePath, $wgContLang;
 				if ( $wgVariantArticlePath ) {
 					$router->add( $wgVariantArticlePath,
-						array( 'variant' => '$2' ),
-						array( '$2' => $wgContLang->getVariants() )
+						[ 'variant' => '$2' ],
+						[ '$2' => $wgContLang->getVariants() ]
 					);
 				}
 
-				Hooks::run( 'WebRequestPathInfoRouter', array( $router ) );
+				Hooks::run( 'WebRequestPathInfoRouter', [ $router ] );
 
 				$matches = $router->parse( $path );
 			}
@@ -181,7 +193,7 @@ class WebRequest {
 		$proto = self::detectProtocol();
 		$stdPort = $proto === 'https' ? 443 : 80;
 
-		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
+		$varNames = [ 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' ];
 		$host = 'localhost';
 		$port = $stdPort;
 		foreach ( $varNames as $varName ) {
@@ -243,6 +255,34 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the unique request ID.
+	 * This is either the value of the UNIQUE_ID envvar (if present) or a
+	 * randomly-generated 24-character string.
+	 *
+	 * @return string
+	 * @since 1.27
+	 */
+	public static function getRequestId() {
+		if ( !self::$reqId ) {
+			self::$reqId = isset( $_SERVER['UNIQUE_ID'] )
+				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
+		}
+
+		return self::$reqId;
+	}
+
+	/**
+	 * Override the unique request ID. This is for sub-requests, such as jobs,
+	 * that wish to use the same id but are not part of the same execution context.
+	 *
+	 * @param string $id
+	 * @since 1.27
+	 */
+	public static function overrideRequestId( $id ) {
+		self::$reqId = $id;
+	}
+
+	/**
 	 * Get the current URL protocol (http or https)
 	 * @return string
 	 */
@@ -290,7 +330,7 @@ class WebRequest {
 			if ( substr( $path, 0, $baseLen ) == $base ) {
 				$raw = substr( $path, $baseLen );
 				if ( $raw !== '' ) {
-					$matches = array( 'title' => rawurldecode( $raw ) );
+					$matches = [ 'title' => rawurldecode( $raw ) ];
 					if ( $key ) {
 						$matches[$key] = $keyValue;
 					}
@@ -298,7 +338,7 @@ class WebRequest {
 				}
 			}
 		}
-		return array();
+		return [];
 	}
 
 	/**
@@ -315,7 +355,9 @@ class WebRequest {
 			}
 		} else {
 			global $wgContLang;
-			$data = isset( $wgContLang ) ? $wgContLang->normalize( $data ) : UtfNormal\Validator::cleanUp( $data );
+			$data = isset( $wgContLang ) ?
+				$wgContLang->normalize( $data ) :
+				UtfNormal\Validator::cleanUp( $data );
 		}
 		return $data;
 	}
@@ -550,7 +592,7 @@ class WebRequest {
 			$names = array_keys( $this->data );
 		}
 
-		$retVal = array();
+		$retVal = [];
 		foreach ( $names as $name ) {
 			$value = $this->getGPCVal( $this->data, $name, null );
 			if ( !is_null( $value ) ) {
@@ -566,7 +608,7 @@ class WebRequest {
 	 * @param array $exclude
 	 * @return array
 	 */
-	public function getValueNames( $exclude = array() ) {
+	public function getValueNames( $exclude = [] ) {
 		return array_diff( array_keys( $this->getValues() ), $exclude );
 	}
 
@@ -641,18 +683,59 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if there is a session cookie set.
+	 * Return the session for this request
+	 * @since 1.27
+	 * @note For performance, keep the session locally if you will be making
+	 *  much use of it instead of calling this method repeatedly.
+	 * @return Session
+	 */
+	public function getSession() {
+		if ( $this->sessionId !== null ) {
+			$session = SessionManager::singleton()->getSessionById( (string)$this->sessionId, true, $this );
+			if ( $session ) {
+				return $session;
+			}
+		}
+
+		$session = SessionManager::singleton()->getSessionForRequest( $this );
+		$this->sessionId = $session->getSessionId();
+		return $session;
+	}
+
+	/**
+	 * Set the session for this request
+	 * @since 1.27
+	 * @private For use by MediaWiki\Session classes only
+	 * @param SessionId $sessionId
+	 */
+	public function setSessionId( SessionId $sessionId ) {
+		$this->sessionId = $sessionId;
+	}
+
+	/**
+	 * Get the session id for this request, if any
+	 * @since 1.27
+	 * @private For use by MediaWiki\Session classes only
+	 * @return SessionId|null
+	 */
+	public function getSessionId() {
+		return $this->sessionId;
+	}
+
+	/**
+	 * Returns true if the request has a persistent session.
 	 * This does not necessarily mean that the user is logged in!
 	 *
-	 * If you want to check for an open session, use session_id()
-	 * instead; that will also tell you if the session was opened
-	 * during the current request (in which case the cookie will
-	 * be sent back to the client at the end of the script run).
-	 *
+	 * @deprecated since 1.27, use
+	 *  \MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId()
+	 *  instead.
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		global $wgInitialSessionId;
+		wfDeprecated( __METHOD__, '1.27' );
+		return $wgInitialSessionId !== null &&
+			$this->getSession()->getId() === (string)$wgInitialSessionId;
 	}
 
 	/**
@@ -672,13 +755,13 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the path and query string portion of the request URI.
+	 * Return the path and query string portion of the main request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
 	 * @throws MWException
 	 * @return string
 	 */
-	public function getRequestURL() {
+	public static function getGlobalRequestURL() {
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
 		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] )
@@ -716,6 +799,17 @@ class WebRequest {
 	}
 
 	/**
+	 * Return the path and query string portion of the request URI.
+	 * This will be suitable for use as a relative link in HTML output.
+	 *
+	 * @throws MWException
+	 * @return string
+	 */
+	public function getRequestURL() {
+		return self::getGlobalRequestURL();
+	}
+
+	/**
 	 * Return the request URI with the canonical service and hostname, path,
 	 * and query string. This will be suitable for use as an absolute link
 	 * in HTML or other output.
@@ -730,45 +824,26 @@ class WebRequest {
 	}
 
 	/**
-	 * Take an arbitrary query and rewrite the present URL to include it
-	 * @deprecated Use appendQueryValue/appendQueryArray instead
-	 * @param string $query Query string fragment; do not include initial '?'
-	 * @return string
-	 */
-	public function appendQuery( $query ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->appendQueryArray( wfCgiToArray( $query ) );
-	}
-
-	/**
 	 * @param string $key
 	 * @param string $value
-	 * @param bool $onlyquery [deprecated]
 	 * @return string
 	 */
-	public function appendQueryValue( $key, $value, $onlyquery = true ) {
-		return $this->appendQueryArray( array( $key => $value ), $onlyquery );
+	public function appendQueryValue( $key, $value ) {
+		return $this->appendQueryArray( [ $key => $value ] );
 	}
 
 	/**
 	 * Appends or replaces value of query variables.
 	 *
 	 * @param array $array Array of values to replace/add to query
-	 * @param bool $onlyquery Whether to only return the query string and not the complete URL [deprecated]
 	 * @return string
 	 */
-	public function appendQueryArray( $array, $onlyquery = true ) {
-		global $wgTitle;
+	public function appendQueryArray( $array ) {
 		$newquery = $this->getQueryValues();
 		unset( $newquery['title'] );
 		$newquery = array_merge( $newquery, $array );
-		$query = wfArrayToCgi( $newquery );
-		if ( !$onlyquery ) {
-			wfDeprecated( __METHOD__, '1.25' );
-			return $wgTitle->getLocalURL( $query );
-		}
 
-		return $query;
+		return wfArrayToCgi( $newquery );
 	}
 
 	/**
@@ -802,7 +877,7 @@ class WebRequest {
 			$offset = 0;
 		}
 
-		return array( $limit, $offset );
+		return [ $limit, $offset ];
 	}
 
 	/**
@@ -929,26 +1004,25 @@ class WebRequest {
 	}
 
 	/**
-	 * Get data from $_SESSION
+	 * Get data from the session
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @note Prefer $this->getSession() instead if making multiple calls.
+	 * @param string $key Name of key in the session
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if ( !isset( $_SESSION[$key] ) ) {
-			return null;
-		}
-		return $_SESSION[$key];
+		return $this->getSession()->get( $key );
 	}
 
 	/**
 	 * Set session data
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @note Prefer $this->getSession() instead if making multiple calls.
+	 * @param string $key Name of key in the session
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		$_SESSION[$key] = $data;
+		return $this->getSession()->set( $key, $data );
 	}
 
 	/**
@@ -961,9 +1035,8 @@ class WebRequest {
 	 * @throws HttpError
 	 * @return bool
 	 */
-	public function checkUrlExtension( $extWhitelist = array() ) {
-		global $wgScriptExtension;
-		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+	public function checkUrlExtension( $extWhitelist = [] ) {
+		$extWhitelist[] = 'php';
 		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
 			if ( !$this->wasPosted() ) {
 				$newUrl = IEUrlExtension::fixUrlForIE6(
@@ -1026,7 +1099,7 @@ HTML;
 		// http://www.thefutureoftheweb.com/blog/use-accept-language-header
 		$acceptLang = $this->getHeader( 'Accept-Language' );
 		if ( !$acceptLang ) {
-			return array();
+			return [];
 		}
 
 		// Return the language codes in lower case
@@ -1041,7 +1114,7 @@ HTML;
 		);
 
 		if ( !count( $lang_parse[1] ) ) {
-			return array();
+			return [];
 		}
 
 		$langcodes = $lang_parse[1];
@@ -1153,7 +1226,7 @@ HTML;
 		}
 
 		# Allow extensions to improve our guess
-		Hooks::run( 'GetIP', array( &$ip ) );
+		Hooks::run( 'GetIP', [ &$ip ] );
 
 		if ( !$ip ) {
 			throw new MWException( "Unable to determine IP." );
@@ -1171,403 +1244,5 @@ HTML;
 	 */
 	public function setIP( $ip ) {
 		$this->ip = $ip;
-	}
-}
-
-/**
- * Object to access the $_FILES array
- */
-class WebRequestUpload {
-	protected $request;
-	protected $doesExist;
-	protected $fileInfo;
-
-	/**
-	 * Constructor. Should only be called by WebRequest
-	 *
-	 * @param WebRequest $request The associated request
-	 * @param string $key Key in $_FILES array (name of form field)
-	 */
-	public function __construct( $request, $key ) {
-		$this->request = $request;
-		$this->doesExist = isset( $_FILES[$key] );
-		if ( $this->doesExist ) {
-			$this->fileInfo = $_FILES[$key];
-		}
-	}
-
-	/**
-	 * Return whether a file with this name was uploaded.
-	 *
-	 * @return bool
-	 */
-	public function exists() {
-		return $this->doesExist;
-	}
-
-	/**
-	 * Return the original filename of the uploaded file
-	 *
-	 * @return string|null Filename or null if non-existent
-	 */
-	public function getName() {
-		if ( !$this->exists() ) {
-			return null;
-		}
-
-		global $wgContLang;
-		$name = $this->fileInfo['name'];
-
-		# Safari sends filenames in HTML-encoded Unicode form D...
-		# Horrid and evil! Let's try to make some kind of sense of it.
-		$name = Sanitizer::decodeCharReferences( $name );
-		$name = $wgContLang->normalize( $name );
-		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'\n" );
-		return $name;
-	}
-
-	/**
-	 * Return the file size of the uploaded file
-	 *
-	 * @return int File size or zero if non-existent
-	 */
-	public function getSize() {
-		if ( !$this->exists() ) {
-			return 0;
-		}
-
-		return $this->fileInfo['size'];
-	}
-
-	/**
-	 * Return the path to the temporary file
-	 *
-	 * @return string|null Path or null if non-existent
-	 */
-	public function getTempName() {
-		if ( !$this->exists() ) {
-			return null;
-		}
-
-		return $this->fileInfo['tmp_name'];
-	}
-
-	/**
-	 * Return the upload error. See link for explanation
-	 * http://www.php.net/manual/en/features.file-upload.errors.php
-	 *
-	 * @return int One of the UPLOAD_ constants, 0 if non-existent
-	 */
-	public function getError() {
-		if ( !$this->exists() ) {
-			return 0; # UPLOAD_ERR_OK
-		}
-
-		return $this->fileInfo['error'];
-	}
-
-	/**
-	 * Returns whether this upload failed because of overflow of a maximum set
-	 * in php.ini
-	 *
-	 * @return bool
-	 */
-	public function isIniSizeOverflow() {
-		if ( $this->getError() == UPLOAD_ERR_INI_SIZE ) {
-			# PHP indicated that upload_max_filesize is exceeded
-			return true;
-		}
-
-		$contentLength = $this->request->getHeader( 'CONTENT_LENGTH' );
-		if ( $contentLength > wfShorthandToInteger( ini_get( 'post_max_size' ) ) ) {
-			# post_max_size is exceeded
-			return true;
-		}
-
-		return false;
-	}
-}
-
-/**
- * WebRequest clone which takes values from a provided array.
- *
- * @ingroup HTTP
- */
-class FauxRequest extends WebRequest {
-	private $wasPosted = false;
-	private $session = array();
-	private $requestUrl;
-	protected $cookies = array();
-
-	/**
-	 * @param array $data Array of *non*-urlencoded key => value pairs, the
-	 *   fake GET/POST values
-	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param array|null $session Session array or null
-	 * @param string $protocol 'http' or 'https'
-	 * @throws MWException
-	 */
-	public function __construct( $data = array(), $wasPosted = false,
-		$session = null, $protocol = 'http'
-	) {
-		$this->requestTime = microtime( true );
-
-		if ( is_array( $data ) ) {
-			$this->data = $data;
-		} else {
-			throw new MWException( "FauxRequest() got bogus data" );
-		}
-		$this->wasPosted = $wasPosted;
-		if ( $session ) {
-			$this->session = $session;
-		}
-		$this->protocol = $protocol;
-	}
-
-	/**
-	 * Initialise the header list
-	 */
-	protected function initHeaders() {
-		// Nothing to init
-	}
-
-	/**
-	 * @param string $name
-	 * @param string $default
-	 * @return string
-	 */
-	public function getText( $name, $default = '' ) {
-		# Override; don't recode since we're using internal data
-		return (string)$this->getVal( $name, $default );
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getValues() {
-		return $this->data;
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getQueryValues() {
-		if ( $this->wasPosted ) {
-			return array();
-		} else {
-			return $this->data;
-		}
-	}
-
-	public function getMethod() {
-		return $this->wasPosted ? 'POST' : 'GET';
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function wasPosted() {
-		return $this->wasPosted;
-	}
-
-	public function getCookie( $key, $prefix = null, $default = null ) {
-		if ( $prefix === null ) {
-			global $wgCookiePrefix;
-			$prefix = $wgCookiePrefix;
-		}
-		$name = $prefix . $key;
-		return isset( $this->cookies[$name] ) ? $this->cookies[$name] : $default;
-	}
-
-	/**
-	 * @since 1.26
-	 * @param string $name Unprefixed name of the cookie to set
-	 * @param string|null $value Value of the cookie to set
-	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
-	 */
-	public function setCookie( $key, $value, $prefix = null ) {
-		$this->setCookies( array( $key => $value ), $prefix );
-	}
-
-	/**
-	 * @since 1.26
-	 * @param array $cookies
-	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
-	 */
-	public function setCookies( $cookies, $prefix = null ) {
-		if ( $prefix === null ) {
-			global $wgCookiePrefix;
-			$prefix = $wgCookiePrefix;
-		}
-		foreach ( $cookies as $key => $value ) {
-			$name = $prefix . $key;
-			$this->cookies[$name] = $value;
-		}
-	}
-
-	public function checkSessionCookie() {
-		return false;
-	}
-
-	public function setRequestURL( $url ) {
-		$this->requestUrl = $url;
-	}
-
-	public function getRequestURL() {
-		if ( $this->requestUrl === null ) {
-			throw new MWException( 'Request URL not set' );
-		}
-		return $this->requestUrl;
-	}
-
-	public function getProtocol() {
-		return $this->protocol;
-	}
-
-	/**
-	 * @param string $name
-	 * @param string $val
-	 */
-	public function setHeader( $name, $val ) {
-		$this->setHeaders( array( $name => $val ) );
-	}
-
-	/**
-	 * @since 1.26
-	 * @param array $headers
-	 */
-	public function setHeaders( $headers ) {
-		foreach ( $headers as $name => $val ) {
-			$name = strtoupper( $name );
-			$this->headers[$name] = $val;
-		}
-	}
-
-	/**
-	 * @param string $key
-	 * @return array|null
-	 */
-	public function getSessionData( $key ) {
-		if ( isset( $this->session[$key] ) ) {
-			return $this->session[$key];
-		}
-		return null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param array $data
-	 */
-	public function setSessionData( $key, $data ) {
-		$this->session[$key] = $data;
-	}
-
-	/**
-	 * @return array|mixed|null
-	 */
-	public function getSessionArray() {
-		return $this->session;
-	}
-
-	/**
-	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
-	 * @return string
-	 */
-	public function getRawQueryString() {
-		return '';
-	}
-
-	/**
-	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
-	 * @return string
-	 */
-	public function getRawPostString() {
-		return '';
-	}
-
-	/**
-	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
-	 * @return string
-	 */
-	public function getRawInput() {
-		return '';
-	}
-
-	/**
-	 * @param array $extWhitelist
-	 * @return bool
-	 */
-	public function checkUrlExtension( $extWhitelist = array() ) {
-		return true;
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getRawIP() {
-		return '127.0.0.1';
-	}
-}
-
-/**
- * Similar to FauxRequest, but only fakes URL parameters and method
- * (POST or GET) and use the base request for the remaining stuff
- * (cookies, session and headers).
- *
- * @ingroup HTTP
- * @since 1.19
- */
-class DerivativeRequest extends FauxRequest {
-	private $base;
-
-	/**
-	 * @param WebRequest $base
-	 * @param array $data Array of *non*-urlencoded key => value pairs, the
-	 *   fake GET/POST values
-	 * @param bool $wasPosted Whether to treat the data as POST
-	 */
-	public function __construct( WebRequest $base, $data, $wasPosted = false ) {
-		$this->base = $base;
-		parent::__construct( $data, $wasPosted );
-	}
-
-	public function getCookie( $key, $prefix = null, $default = null ) {
-		return $this->base->getCookie( $key, $prefix, $default );
-	}
-
-	public function checkSessionCookie() {
-		return $this->base->checkSessionCookie();
-	}
-
-	public function getHeader( $name, $flags = 0 ) {
-		return $this->base->getHeader( $name, $flags );
-	}
-
-	public function getAllHeaders() {
-		return $this->base->getAllHeaders();
-	}
-
-	public function getSessionData( $key ) {
-		return $this->base->getSessionData( $key );
-	}
-
-	public function setSessionData( $key, $data ) {
-		$this->base->setSessionData( $key, $data );
-	}
-
-	public function getAcceptLang() {
-		return $this->base->getAcceptLang();
-	}
-
-	public function getIP() {
-		return $this->base->getIP();
-	}
-
-	public function getProtocol() {
-		return $this->base->getProtocol();
-	}
-
-	public function getElapsedTime() {
-		return $this->base->getElapsedTime();
 	}
 }

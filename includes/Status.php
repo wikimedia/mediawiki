@@ -44,7 +44,7 @@ class Status {
 	/** @var mixed */
 	public $value;
 	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
-	public $success = array();
+	public $success = [];
 	/** @var int Counter for batch operations */
 	public $successCount = 0;
 	/** @var int Counter for batch operations */
@@ -88,7 +88,7 @@ class Status {
 	 */
 	public static function newFatal( $message /*, parameters...*/ ) {
 		return new self( call_user_func_array(
-			array( 'StatusValue', 'newFatal' ), func_get_args()
+			[ 'StatusValue', 'newFatal' ], func_get_args()
 		) );
 	}
 
@@ -116,6 +116,14 @@ class Status {
 	}
 
 	/**
+	 * Returns the wrapped StatusValue object
+	 * @return StatusValue
+	 */
+	public function getStatusValue() {
+		return $this->sv;
+	}
+
+	/**
 	 * Returns whether the operation completed and didn't have any error or
 	 * warnings
 	 *
@@ -140,7 +148,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'warning' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'warning' ], func_get_args() );
 	}
 
 	/**
@@ -150,7 +158,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function error( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'error' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'error' ], func_get_args() );
 	}
 
 	/**
@@ -160,7 +168,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
-		call_user_func_array( array( $this->sv, 'fatal' ), func_get_args() );
+		call_user_func_array( [ $this->sv, 'fatal' ], func_get_args() );
 	}
 
 	/**
@@ -171,11 +179,29 @@ class Status {
 		if ( !$this->cleanCallback ) {
 			return $params;
 		}
-		$cleanParams = array();
+		$cleanParams = [];
 		foreach ( $params as $i => $param ) {
 			$cleanParams[$i] = call_user_func( $this->cleanCallback, $param );
 		}
 		return $cleanParams;
+	}
+
+	/**
+	 * @param string|Language|null $lang Language to use for processing
+	 *  messages, or null to default to the user language.
+	 * @return Language
+	 */
+	protected function languageFromParam( $lang ) {
+		global $wgLang;
+
+		if ( $lang === null ) {
+			// @todo: Use RequestContext::getMain()->getLanguage() instead
+			return $wgLang;
+		} elseif ( $lang instanceof Language || $lang instanceof StubUserLang ) {
+			return $lang;
+		} else {
+			return Language::factory( $lang );
+		}
 	}
 
 	/**
@@ -184,9 +210,12 @@ class Status {
 	 * @param string|bool $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string|bool $longContext A long enclosing context message name, for a list
+	 * @param string|Language $lang Language to use for processing messages
 	 * @return string
 	 */
-	public function getWikiText( $shortContext = false, $longContext = false ) {
+	public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+
 		$rawErrors = $this->sv->getErrors();
 		if ( count( $rawErrors ) == 0 ) {
 			if ( $this->sv->isOK() ) {
@@ -199,38 +228,50 @@ class Status {
 			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
 		if ( count( $rawErrors ) == 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0] )->plain();
+			$s = $this->getErrorMessage( $rawErrors[0], $lang )->plain();
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s )->plain();
+				$s = wfMessage( $shortContext, $s )->inLanguage( $lang )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMessage( $longContext, "* $s\n" )->plain();
+				$s = wfMessage( $longContext, "* $s\n" )->inLanguage( $lang )->plain();
 			}
 		} else {
-			$errors = $this->getErrorMessageArray( $rawErrors );
+			$errors = $this->getErrorMessageArray( $rawErrors, $lang );
 			foreach ( $errors as &$error ) {
 				$error = $error->plain();
 			}
 			$s = '* ' . implode( "\n* ", $errors ) . "\n";
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s )->plain();
+				$s = wfMessage( $longContext, $s )->inLanguage( $lang )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
+				$s = wfMessage( $shortContext, "\n$s\n" )->inLanguage( $lang )->plain();
 			}
 		}
 		return $s;
 	}
 
 	/**
-	 * Get the error list as a Message object
+	 * Get a bullet list of the errors as a Message object.
 	 *
-	 * @param string|string[] $shortContext A short enclosing context message name (or an array of
-	 * message names), to be used when there is a single error.
-	 * @param string|string[] $longContext A long enclosing context message name (or an array of
-	 * message names), for a list.
+	 * $shortContext and $longContext can be used to wrap the error list in some text.
+	 * $shortContext will be preferred when there is a single error; $longContext will be
+	 * preferred when there are multiple ones. In either case, $1 will be replaced with
+	 * the list of errors.
 	 *
+	 * $shortContext is assumed to use $1 as an inline parameter: if there is a single item,
+	 * it will not be made into a list; if there are multiple items, newlines will be inserted
+	 * around the list.
+	 * $longContext is assumed to use $1 as a standalone parameter; it will always receive a list.
+	 *
+	 * If both parameters are missing, and there is only one error, no bullet will be added.
+	 *
+	 * @param string|string[] $shortContext A message name or an array of message names.
+	 * @param string|string[] $longContext A message name or an array of message names.
+	 * @param string|Language $lang Language to use for processing messages
 	 * @return Message
 	 */
-	public function getMessage( $shortContext = false, $longContext = false ) {
+	public function getMessage( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+
 		$rawErrors = $this->sv->getErrors();
 		if ( count( $rawErrors ) == 0 ) {
 			if ( $this->sv->isOK() ) {
@@ -243,31 +284,27 @@ class Status {
 			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
 		if ( count( $rawErrors ) == 1 ) {
-			$s = $this->getErrorMessage( $rawErrors[0] );
+			$s = $this->getErrorMessage( $rawErrors[0], $lang );
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s );
+				$s = wfMessage( $shortContext, $s )->inLanguage( $lang );
 			} elseif ( $longContext ) {
 				$wrapper = new RawMessage( "* \$1\n" );
 				$wrapper->params( $s )->parse();
-				$s = wfMessage( $longContext, $wrapper );
+				$s = wfMessage( $longContext, $wrapper )->inLanguage( $lang );
 			}
 		} else {
-			$msgs = $this->getErrorMessageArray( $rawErrors );
+			$msgs = $this->getErrorMessageArray( $rawErrors, $lang );
 			$msgCount = count( $msgs );
-
-			if ( $shortContext ) {
-				$msgCount++;
-			}
 
 			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
 			$s->params( $msgs )->parse();
 
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s );
+				$s = wfMessage( $longContext, $s )->inLanguage( $lang );
 			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", $s );
+				$wrapper = new RawMessage( "\n\$1\n", [ $s ] );
 				$wrapper->parse();
-				$s = wfMessage( $shortContext, $wrapper );
+				$s = wfMessage( $shortContext, $wrapper )->inLanguage( $lang );
 			}
 		}
 
@@ -280,10 +317,10 @@ class Status {
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
 	 * message and the remaining items as the params.
-	 *
+	 * @param string|Language $lang Language to use for processing messages
 	 * @return Message
 	 */
-	protected function getErrorMessage( $error ) {
+	protected function getErrorMessage( $error, $lang = null ) {
 		if ( is_array( $error ) ) {
 			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
@@ -298,6 +335,8 @@ class Status {
 		} else {
 			$msg = wfMessage( $error );
 		}
+
+		$msg->inLanguage( $this->languageFromParam( $lang ) );
 		return $msg;
 	}
 
@@ -307,21 +346,27 @@ class Status {
 	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string $longContext A long enclosing context message name, for a list
+	 * @param string|Language $lang Language to use for processing messages
 	 * @return string
 	 */
-	public function getHTML( $shortContext = false, $longContext = false ) {
-		$text = $this->getWikiText( $shortContext, $longContext );
-		$out = MessageCache::singleton()->parse( $text, null, true, true );
+	public function getHTML( $shortContext = false, $longContext = false, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+		$text = $this->getWikiText( $shortContext, $longContext, $lang );
+		$out = MessageCache::singleton()->parse( $text, null, true, true, $lang );
 		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
 	/**
 	 * Return an array with a Message object for each error.
 	 * @param array $errors
+	 * @param string|Language $lang Language to use for processing messages
 	 * @return Message[]
 	 */
-	protected function getErrorMessageArray( $errors ) {
-		return array_map( array( $this, 'getErrorMessage' ), $errors );
+	protected function getErrorMessageArray( $errors, $lang = null ) {
+		$lang = $this->languageFromParam( $lang );
+		return array_map( function ( $e ) use ( $lang ) {
+			return $this->getErrorMessage( $e, $lang );
+		}, $errors );
 	}
 
 	/**
@@ -361,23 +406,23 @@ class Status {
 	 *
 	 * @note: this handles RawMessage poorly
 	 *
-	 * @param string $type
+	 * @param string|bool $type
 	 * @return array
 	 */
 	protected function getStatusArray( $type = false ) {
-		$result = array();
+		$result = [];
 
 		foreach ( $this->sv->getErrors() as $error ) {
 			if ( $type === false || $error['type'] === $type ) {
 				if ( $error['message'] instanceof MessageSpecifier ) {
 					$result[] = array_merge(
-						array( $error['message']->getKey() ),
+						[ $error['message']->getKey() ],
 						$error['message']->getParams()
 					);
 				} elseif ( $error['params'] ) {
-					$result[] = array_merge( array( $error['message'] ), $error['params'] );
+					$result[] = array_merge( [ $error['message'] ], $error['params'] );
 				} else {
-					$result[] = array( $error['message'] );
+					$result[] = [ $error['message'] ];
 				}
 			}
 		}
@@ -389,8 +434,11 @@ class Status {
 	 * Returns a list of status messages of the given type, with message and
 	 * params left untouched, like a sane version of getStatusArray
 	 *
-	 * @param string $type
+	 * Each entry is a map of:
+	 *   - message: string message key or MessageSpecifier
+	 *   - params: array list of parameters
 	 *
+	 * @param string $type
 	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
@@ -474,7 +522,7 @@ class Status {
 	 */
 	function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
-		return array_diff( $keys, array( 'cleanCallback' ) );
+		return array_diff( $keys, [ 'cleanCallback' ] );
 	}
 
 	/**

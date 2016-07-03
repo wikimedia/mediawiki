@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Represents the site configuration of a wiki.
- * Holds a list of sites (ie SiteList) and takes care
- * of retrieving and caching site information when appropriate.
+ * Dummy class for accessing the global SiteStore instance.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,27 +24,37 @@
  * @ingroup Site
  *
  * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
-class SiteSQLStore extends CachingSiteStore {
+class SiteSQLStore {
 
 	/**
-	 * @since 1.21
-	 * @deprecated 1.25 Construct a SiteStore instance directly instead.
+	 * Returns the global SiteStore instance. This is a relict of the first implementation
+	 * of SiteStore, and is kept around for compatibility.
 	 *
-	 * @param ORMTable|null $sitesTable
-	 * @param BagOStuff|null $cache
+	 * @note This does not return an instance of SiteSQLStore!
+	 *
+	 * @since 1.21
+	 * @deprecated 1.27 use MediaWikiServices::getSiteStore() or MediaWikiServices::getSiteLookup()
+	 *             instead.
+	 *
+	 * @param null $sitesTable IGNORED
+	 * @param null $cache IGNORED
 	 *
 	 * @return SiteStore
 	 */
-	public static function newInstance( ORMTable $sitesTable = null, BagOStuff $cache = null ) {
-		if ( $cache === null ) {
-			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+	public static function newInstance( $sitesTable = null, BagOStuff $cache = null ) {
+		if ( $sitesTable !== null ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ': $sitesTable parameter is unused and must be null'
+			);
 		}
 
-		$siteStore = new DBSiteStore();
+		// NOTE: we silently ignore $cache for now, since some existing callers
+		// specify it. If we break compatibility with them, we could just as
+		// well just remove this class.
 
-		return new static( $siteStore, $cache );
+		return \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
 	}
 
 }

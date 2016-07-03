@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"OC Ripper",
-			"Seb35"
+			"Seb35",
+			"Conquistador"
 		]
 	},
-	"mainpagetext": "'''MediaWiki softver is uspješno instaliran.'''",
-	"mainpagedocfooter": "Kontaktirajte [//meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.\n\n== Početak ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki najčešće postavljana pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"config-admin-password": "Lozinka:",
+	"mainpagetext": "<strong>MediaWiki je uspješno instaliran.</strong>",
+	"mainpagedocfooter": "Za informacije o korištenju wiki softvera konzultirajte [//meta.wikimedia.org/wiki/Help:Contents Vodič za korisnike].\n\n== Uvod u rad ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista konfiguracije postavki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista primatelja izdanja MediaWikija]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Saznajte kako se boriti protiv spama na svojem wikiju]"
 }

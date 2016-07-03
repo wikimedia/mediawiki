@@ -1,5 +1,26 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Vrhnje"
+		]
+	},
+	"config-information": "Informacije",
+	"config-your-language": "Vaš jezik:",
+	"config-your-language-help": "Odaberite jezik na kojem će se pojaviti proces instalacije.",
+	"config-wiki-language": "Wiki jezik:",
+	"config-back": "← Povratak",
+	"config-continue": "Dalje →",
+	"config-page-language": "Jezik",
+	"config-page-welcome": "Dobrodošli na MediaWiki!",
+	"config-page-dbconnect": "Spajanje na bazu podataka",
+	"config-page-upgrade": "Ažuriranje postojeće instalacije",
+	"config-page-restart": "Ponovno pokreni instalaciju",
+	"config-page-readme": "Pročitajte više",
+	"config-page-releasenotes": "Informacije o verziji",
+	"config-page-copying": "Kopiranje",
+	"config-page-upgradedoc": "Ažuriranje",
+	"config-page-existingwiki": "Postojeći wiki",
+	"config-restart": "Da, počni iznova",
 	"mainpagetext": "'''Softver MediaWiki je uspješno instaliran.'''",
 	"mainpagedocfooter": "Pogledajte [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]\ni [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju."
 }

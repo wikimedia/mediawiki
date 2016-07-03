@@ -25,107 +25,110 @@
  * @ingroup Dump Maintenance
  */
 
-$originalDir = getcwd();
-
-$optionsWithArgs = array( 'pagelist', 'start', 'end', 'revstart', 'revend' );
-
-require_once __DIR__ . '/commandLine.inc';
 require_once __DIR__ . '/backup.inc';
 
-$dumper = new BackupDumper( $argv );
+class DumpBackup extends BackupDumper {
+	function __construct( $args = null ) {
+		parent::__construct();
 
-if ( isset( $options['quiet'] ) ) {
-	$dumper->reporting = false;
-}
-
-if ( isset( $options['pagelist'] ) ) {
-	$olddir = getcwd();
-	chdir( $originalDir );
-	$pages = file( $options['pagelist'] );
-	chdir( $olddir );
-	if ( $pages === false ) {
-		echo "Unable to open file {$options['pagelist']}\n";
-		die( 1 );
-	}
-	$pages = array_map( 'trim', $pages );
-	$dumper->pages = array_filter( $pages, create_function( '$x', 'return $x !== "";' ) );
-}
-
-if ( isset( $options['start'] ) ) {
-	$dumper->startId = intval( $options['start'] );
-}
-if ( isset( $options['end'] ) ) {
-	$dumper->endId = intval( $options['end'] );
-}
-
-if ( isset( $options['revstart'] ) ) {
-	$dumper->revStartId = intval( $options['revstart'] );
-}
-if ( isset( $options['revend'] ) ) {
-	$dumper->revEndId = intval( $options['revend'] );
-}
-$dumper->skipHeader = isset( $options['skip-header'] );
-$dumper->skipFooter = isset( $options['skip-footer'] );
-$dumper->dumpUploads = isset( $options['uploads'] );
-$dumper->dumpUploadFileContents = isset( $options['include-files'] );
-
-$textMode = isset( $options['stub'] ) ? WikiExporter::STUB : WikiExporter::TEXT;
-
-if ( isset( $options['full'] ) ) {
-	$dumper->dump( WikiExporter::FULL, $textMode );
-} elseif ( isset( $options['current'] ) ) {
-	$dumper->dump( WikiExporter::CURRENT, $textMode );
-} elseif ( isset( $options['stable'] ) ) {
-	$dumper->dump( WikiExporter::STABLE, $textMode );
-} elseif ( isset( $options['logs'] ) ) {
-	$dumper->dump( WikiExporter::LOGS );
-} elseif ( isset( $options['revrange'] ) ) {
-	$dumper->dump( WikiExporter::RANGE, $textMode );
-} else {
-	$dumper->progress( <<<ENDS
+		$this->addDescription( <<<TEXT
 This script dumps the wiki page or logging database into an
 XML interchange wrapper format for export or backup.
 
 XML output is sent to stdout; progress reports are sent to stderr.
 
 WARNING: this is not a full database dump! It is merely for public export
-		 of your wiki. For full backup, see our online help at:
+         of your wiki. For full backup, see our online help at:
          https://www.mediawiki.org/wiki/Backup
+TEXT
+		);
+		$this->stderr = fopen( "php://stderr", "wt" );
+		// Actions
+		$this->addOption( 'full', 'Dump all revisions of every page' );
+		$this->addOption( 'current', 'Dump only the latest revision of every page.' );
+		$this->addOption( 'logs', 'Dump all log events' );
+		$this->addOption( 'stable', 'Dump stable versions of pages' );
+		$this->addOption( 'revrange', 'Dump range of revisions specified by revstart and ' .
+			'revend parameters' );
+		$this->addOption( 'pagelist',
+			'Dump only pages included in the file', false, true );
+		// Options
+		$this->addOption( 'start', 'Start from page_id or log_id', false, true );
+		$this->addOption( 'end', 'Stop before page_id or log_id n (exclusive)', false, true );
+		$this->addOption( 'revstart', 'Start from rev_id', false, true );
+		$this->addOption( 'revend', 'Stop before rev_id n (exclusive)', false, true );
+		$this->addOption( 'skip-header', 'Don\'t output the <mediawiki> header' );
+		$this->addOption( 'skip-footer', 'Don\'t output the </mediawiki> footer' );
+		$this->addOption( 'stub', 'Don\'t perform old_text lookups; for 2-pass dump' );
+		$this->addOption( 'uploads', 'Include upload records without files' );
+		$this->addOption( 'include-files', 'Include files within the XML stream' );
 
-Usage: php dumpBackup.php <action> [<options>]
-Actions:
-  --full      Dump all revisions of every page.
-  --current   Dump only the latest revision of every page.
-  --logs      Dump all log events.
-  --stable    Stable versions of pages?
-  --pagelist=<file>
-			  Where <file> is a list of page titles to be dumped
-  --revrange  Dump specified range of revisions, requires
-              revstart and revend options.
-Options:
-  --quiet     Don't dump status reports to stderr.
-  --report=n  Report position and speed after every n pages processed.
-			  (Default: 100)
-  --server=h  Force reading from MySQL server h
-  --start=n   Start from page_id or log_id n
-  --end=n     Stop before page_id or log_id n (exclusive)
-  --revstart=n  Start from rev_id n
-  --revend=n    Stop before rev_id n (exclusive)
-  --skip-header Don't output the <mediawiki> header
-  --skip-footer Don't output the </mediawiki> footer
-  --stub      Don't perform old_text lookups; for 2-pass dump
-  --uploads   Include upload records without files
-  --include-files Include files within the XML stream
-  --conf=<file> Use the specified configuration file (LocalSettings.php)
+		if ( $args ) {
+			$this->loadWithArgv( $args );
+			$this->processOptions();
+		}
+	}
 
-  --wiki=<wiki>  Only back up the specified <wiki>
+	function execute() {
+		$this->processOptions();
 
-Fancy stuff: (Works? Add examples please.)
-  --plugin=<class>[:<file>]   Load a dump plugin class
-  --output=<type>:<file>      Begin a filtered output stream;
-                              <type>s: file, gzip, bzip2, 7zip
-  --filter=<type>[:<options>] Add a filter on an output branch
+		$textMode = $this->hasOption( 'stub' ) ? WikiExporter::STUB : WikiExporter::TEXT;
 
-ENDS
-	);
+		if ( $this->hasOption( 'full' ) ) {
+			$this->dump( WikiExporter::FULL, $textMode );
+		} elseif ( $this->hasOption( 'current' ) ) {
+			$this->dump( WikiExporter::CURRENT, $textMode );
+		} elseif ( $this->hasOption( 'stable' ) ) {
+			$this->dump( WikiExporter::STABLE, $textMode );
+		} elseif ( $this->hasOption( 'logs' ) ) {
+			$this->dump( WikiExporter::LOGS );
+		} elseif ( $this->hasOption( 'revrange' ) ) {
+			$this->dump( WikiExporter::RANGE, $textMode );
+		} else {
+			$this->error( 'No valid action specified.', 1 );
+		}
+	}
+
+	function processOptions() {
+		parent::processOptions();
+
+		// Evaluate options specific to this class
+		$this->reporting = !$this->hasOption( 'quiet' );
+
+		if ( $this->hasOption( 'pagelist' ) ) {
+			$filename = $this->getOption( 'pagelist' );
+			$pages = file( $filename );
+			if ( $pages === false ) {
+				$this->fatalError( "Unable to open file {$filename}\n" );
+			}
+			$pages = array_map( 'trim', $pages );
+			$this->pages = array_filter( $pages, function ( $x ) {
+				return $x !== '';
+			} );
+		}
+
+		if ( $this->hasOption( 'start' ) ) {
+			$this->startId = intval( $this->getOption( 'start' ) );
+		}
+
+		if ( $this->hasOption( 'end' ) ) {
+			$this->endId = intval( $this->getOption( 'end' ) );
+		}
+
+		if ( $this->hasOption( 'revstart' ) ) {
+			$this->revStartId = intval( $this->getOption( 'revstart' ) );
+		}
+
+		if ( $this->hasOption( 'revend' ) ) {
+			$this->revEndId = intval( $this->getOption( 'revend' ) );
+		}
+
+		$this->skipHeader = $this->hasOption( 'skip-header' );
+		$this->skipFooter = $this->hasOption( 'skip-footer' );
+		$this->dumpUploads = $this->hasOption( 'uploads' );
+		$this->dumpUploadFileContents = $this->hasOption( 'include-files' );
+	}
 }
+
+$maintClass = 'DumpBackup';
+require_once RUN_MAINTENANCE_IF_MAIN;

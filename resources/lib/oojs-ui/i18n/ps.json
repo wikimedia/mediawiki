@@ -18,5 +18,6 @@
 	"ooui-dialog-process-continue": "پرله پورې",
 	"ooui-selectfile-button-select": "يوه دوتنه وټاکئ",
 	"ooui-selectfile-not-supported": "د دوتنې د ټاکنې ملاتړ نه دی شوی",
-	"ooui-selectfile-placeholder": "کومه دوتنه نه ده ټاکل شوې"
+	"ooui-selectfile-placeholder": "کومه دوتنه نه ده ټاکل شوې",
+	"ooui-selectfile-dragdrop-placeholder": "دوتنه مو دلته خوشې کړئ"
 }

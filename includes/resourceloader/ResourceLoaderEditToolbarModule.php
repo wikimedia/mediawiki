@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for the edit toolbar.
+ * ResourceLoader module for the edit toolbar.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,62 +27,18 @@
  */
 class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	/**
-	 * Serialize a string (escape and quote) for use as a CSS string value.
-	 * http://www.w3.org/TR/2013/WD-cssom-20131205/#serialize-a-string
-	 *
-	 * @param string $value
-	 * @return string
-	 * @throws Exception
-	 */
-	private static function cssSerializeString( $value ) {
-		if ( strstr( $value, "\0" ) ) {
-			throw new Exception( "Invalid character in CSS string" );
-		}
-		$value = strtr( $value, array( '\\' => '\\\\', '"' => '\\"' ) );
-		$value = preg_replace_callback( '/[\x01-\x1f\x7f-\x9f]/', function ( $match ) {
-			return '\\' . base_convert( ord( $match[0] ), 10, 16 ) . ' ';
-		}, $value );
-		return '"' . $value . '"';
-	}
-
-	/**
 	 * Get language-specific LESS variables for this module.
 	 *
+	 * @since 1.27
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	private function getLessVars( ResourceLoaderContext $context ) {
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$vars = parent::getLessVars( $context );
 		$language = Language::factory( $context->getLanguage() );
-
-		// This is very conveniently formatted and we can pass it right through
-		$vars = $language->getImageFiles();
-
-		// less.php tries to be helpful and parse our variables as LESS source code
-		foreach ( $vars as $key => &$value ) {
-			$value = self::cssSerializeString( $value );
+		foreach ( $language->getImageFiles() as $key => $value ) {
+			$vars[$key] = CSSMin::serializeStringValue( $value );
 		}
-
 		return $vars;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function enableModuleContentVersion() {
-		return true;
-	}
-
-	/**
-	 * Get a LESS compiler instance for this module.
-	 *
-	 * Set our variables in it.
-	 *
-	 * @throws MWException
-	 * @param ResourceLoaderContext $context
-	 * @return Less_Parser
-	 */
-	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
-		$parser = parent::getLessCompiler();
-		$parser->ModifyVars( $this->getLessVars( $context ) );
-		return $parser;
 	}
 }

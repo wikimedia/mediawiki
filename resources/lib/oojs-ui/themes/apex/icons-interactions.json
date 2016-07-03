@@ -1,0 +1,58 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"beta": { "file": "images/icons/beta.svg" },
+		"betaLaunch": { "file": "images/icons/betaLaunch.svg" },
+		"bookmark": { "file": {
+			"ltr": "images/icons/bookmark-ltr.svg",
+			"rtl": "images/icons/bookmark-rtl.svg"
+		} },
+		"browser": { "file": {
+			"ltr": "images/icons/browser-ltr.svg",
+			"rtl": "images/icons/browser-rtl.svg"
+		} },
+		"clear": { "file": "images/icons/clear.svg" },
+		"clock": { "file": "images/icons/clock.svg" },
+		"funnel": { "file": {
+			"ltr": "images/icons/funnel-ltr.svg",
+			"rtl": "images/icons/funnel-rtl.svg"
+		} },
+		"heart": { "file": "images/icons/heart.svg" },
+		"key": { "file": {
+			"ltr": "images/icons/key-ltr.svg",
+			"rtl": "images/icons/key-rtl.svg"
+		} },
+		"keyboard": { "file": {
+			"ltr": "images/icons/keyboard-ltr.svg",
+			"rtl": "images/icons/keyboard-rtl.svg"
+		} },
+		"logOut": { "file": {
+			"ltr": "images/icons/logOut-ltr.svg",
+			"rtl": "images/icons/logOut-rtl.svg"
+		} },
+		"newWindow": { "file": {
+			"ltr": "images/icons/newWindow-ltr.svg",
+			"rtl": "images/icons/newWindow-rtl.svg"
+		} },
+		"printer": { "file": {
+			"ltr": "images/icons/printer-ltr.svg",
+			"rtl": "images/icons/printer-rtl.svg"
+		} },
+		"ribbonPrize": { "file": "images/icons/ribbonPrize.svg" },
+		"sun": { "file": {
+			"ltr": "images/icons/sun-ltr.svg",
+			"rtl": "images/icons/sun-rtl.svg"
+		} },
+		"watchlist": { "file": {
+			"ltr": "images/icons/watchlist-ltr.svg",
+			"rtl": "images/icons/watchlist-rtl.svg"
+		} }
+	}
+}

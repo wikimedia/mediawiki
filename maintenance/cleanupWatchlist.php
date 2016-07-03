@@ -37,16 +37,16 @@ require_once __DIR__ . '/cleanupTable.inc';
  * @ingroup Maintenance
  */
 class WatchlistCleanup extends TableCleanup {
-	protected $defaultParams = array(
+	protected $defaultParams = [
 		'table' => 'watchlist',
-		'index' => array( 'wl_user', 'wl_namespace', 'wl_title' ),
-		'conds' => array(),
+		'index' => [ 'wl_user', 'wl_namespace', 'wl_title' ],
+		'conds' => [],
 		'callback' => 'processRow'
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to remove broken, unparseable titles in the Watchlist";
+		$this->addDescription( 'Script to remove broken, unparseable titles in the Watchlist' );
 		$this->addOption( 'fix', 'Actually remove entries; without will only report.' );
 	}
 
@@ -77,12 +77,12 @@ class WatchlistCleanup extends TableCleanup {
 
 	private function removeWatch( $row ) {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete(
-				'watchlist', array(
+				'watchlist', [
 				'wl_user' => $row->wl_user,
 				'wl_namespace' => $row->wl_namespace,
-				'wl_title' => $row->wl_title ),
+				'wl_title' => $row->wl_title ],
 				__METHOD__
 			);
 

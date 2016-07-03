@@ -126,12 +126,12 @@ class WebInstallerOutput {
 	public function getCSS() {
 		global $wgStyleDirectory;
 
-		$moduleNames = array(
+		$moduleNames = [
 			// See SkinTemplate::setupSkinUserCss
 			'mediawiki.legacy.shared',
 			// See Vector::setupSkinUserCss
 			'mediawiki.skinning.interface',
-		);
+		];
 
 		$resourceLoader = new ResourceLoader();
 
@@ -139,9 +139,9 @@ class WebInstallerOutput {
 			// Force loading Vector skin if available as a fallback skin
 			// for whatever ResourceLoader wants to have as the default.
 			$registry = new ExtensionRegistry();
-			$data = $registry->readFromQueue( array(
+			$data = $registry->readFromQueue( [
 				"$wgStyleDirectory/Vector/skin.json" => 1,
-			) );
+			] );
 			if ( isset( $data['globals']['wgResourceModules'] ) ) {
 				$resourceLoader->register( $data['globals']['wgResourceModules'] );
 			}
@@ -151,13 +151,13 @@ class WebInstallerOutput {
 
 		$moduleNames[] = 'mediawiki.legacy.config';
 
-		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( array(
+		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( [
 				'debug' => 'true',
 				'lang' => $this->getLanguageCode(),
 				'only' => 'styles',
-		) ) );
+		] ) );
 
-		$styles = array();
+		$styles = [];
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
@@ -170,7 +170,8 @@ class WebInstallerOutput {
 			$styles = array_merge( $styles, ResourceLoader::makeCombinedStyles(
 				$module->readStyleFiles(
 					$module->getStyleFiles( $rlContext ),
-					$module->getFlip( $rlContext )
+					$module->getFlip( $rlContext ),
+					$rlContext
 			) ) );
 		}
 
@@ -227,10 +228,10 @@ class WebInstallerOutput {
 	 * @return string[]
 	 */
 	public function getHeadAttribs() {
-		return array(
+		return [
 			'dir' => $this->getDir(),
 			'lang' => wfBCP47( $this->getLanguageCode() ),
-		);
+		];
 	}
 
 	/**
@@ -272,7 +273,7 @@ class WebInstallerOutput {
 	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
 </head>
 
-<?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
+<?php echo Html::openElement( 'body', [ 'class' => $this->getDir() ] ) . "\n"; ?>
 <div id="mw-page-base"></div>
 <div id="mw-head-base"></div>
 <div id="content" class="mw-body">

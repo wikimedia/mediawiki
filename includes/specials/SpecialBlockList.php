@@ -46,14 +46,13 @@ class SpecialBlockList extends SpecialPage {
 		$out = $this->getOutput();
 		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
-		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addModules( 'mediawiki.userSuggest' );
+		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.special.blocklist' ] );
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
 		$this->target = trim( $request->getVal( 'wpTarget', $par ) );
 
-		$this->options = $request->getArray( 'wpOptions', array() );
+		$this->options = $request->getArray( 'wpOptions', [] );
 
 		$action = $request->getText( 'action' );
 
@@ -69,42 +68,41 @@ class SpecialBlockList extends SpecialPage {
 		$pager = $this->getBlockListPager();
 
 		# Just show the block list
-		$fields = array(
-			'Target' => array(
-				'type' => 'text',
+		$fields = [
+			'Target' => [
+				'type' => 'user',
 				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 				'default' => $this->target,
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-			),
-			'Options' => array(
+			],
+			'Options' => [
 				'type' => 'multiselect',
-				'options-messages' => array(
+				'options-messages' => [
 					'blocklist-userblocks' => 'userblocks',
 					'blocklist-tempblocks' => 'tempblocks',
 					'blocklist-addressblocks' => 'addressblocks',
 					'blocklist-rangeblocks' => 'rangeblocks',
-				),
+				],
 				'flatlist' => true,
-			),
-			'Limit' => array(
+			],
+			'Limit' => [
 				'type' => 'limitselect',
 				'label-message' => 'table_pager_limit_label',
-				'options' => array(
+				'options' => [
 					$lang->formatNum( 20 ) => 20,
 					$lang->formatNum( 50 ) => 50,
 					$lang->formatNum( 100 ) => 100,
 					$lang->formatNum( 250 ) => 250,
 					$lang->formatNum( 500 ) => 500,
-				),
+				],
 				'name' => 'limit',
 				'default' => $pager->getLimit(),
-			),
-		);
+			],
+		];
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new HTMLForm( $fields, $context );
+		$form = HTMLForm::factory( 'ooui', $fields, $context );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
 		$form->setSubmitTextMsg( 'ipblocklist-submit' );
@@ -120,7 +118,7 @@ class SpecialBlockList extends SpecialPage {
 	 * @return BlockListPager
 	 */
 	protected function getBlockListPager() {
-		$conds = array();
+		$conds = [];
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
@@ -140,10 +138,10 @@ class SpecialBlockList extends SpecialPage {
 					list( $start, $end ) = IP::parseRange( $target );
 					$dbr = wfGetDB( DB_SLAVE );
 					$conds[] = $dbr->makeList(
-						array(
+						[
 							'ipb_address' => $target,
 							Block::getRangeCond( $start, $end )
-						),
+						],
 						LIST_OR
 					);
 					$conds['ipb_auto'] = 0;
@@ -181,14 +179,14 @@ class SpecialBlockList extends SpecialPage {
 		$out = $this->getOutput();
 
 		# Check for other blocks, i.e. global/tor blocks
-		$otherBlockLink = array();
-		Hooks::run( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
+		$otherBlockLink = [];
+		Hooks::run( 'OtherBlockLogLink', [ &$otherBlockLink, $this->target ] );
 
 		# Show additional header for the local block only when other blocks exists.
 		# Not necessary in a standard installation without such extensions enabled
 		if ( count( $otherBlockLink ) ) {
 			$out->addHTML(
-				Html::element( 'h2', array(), $this->msg( 'ipblocklist-localblock' )->text() ) . "\n"
+				Html::element( 'h2', [], $this->msg( 'ipblocklist-localblock' )->text() ) . "\n"
 			);
 		}
 
@@ -204,17 +202,17 @@ class SpecialBlockList extends SpecialPage {
 			$out->addHTML(
 				Html::rawElement(
 					'h2',
-					array(),
+					[],
 					$this->msg( 'ipblocklist-otherblocks', count( $otherBlockLink ) )->parse()
 				) . "\n"
 			);
 			$list = '';
 			foreach ( $otherBlockLink as $link ) {
-				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
+				$list .= Html::rawElement( 'li', [], $link ) . "\n";
 			}
 			$out->addHTML( Html::rawElement(
 				'ul',
-				array( 'class' => 'mw-ipblocklist-otherblocks' ),
+				[ 'class' => 'mw-ipblocklist-otherblocks' ],
 				$list
 			) . "\n" );
 		}
@@ -222,246 +220,5 @@ class SpecialBlockList extends SpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
-	}
-}
-
-class BlockListPager extends TablePager {
-	protected $conds;
-	protected $page;
-
-	/**
-	 * @param SpecialPage $page
-	 * @param array $conds
-	 */
-	function __construct( $page, $conds ) {
-		$this->page = $page;
-		$this->conds = $conds;
-		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		parent::__construct( $page->getContext() );
-	}
-
-	function getFieldNames() {
-		static $headers = null;
-
-		if ( $headers === null ) {
-			$headers = array(
-				'ipb_timestamp' => 'blocklist-timestamp',
-				'ipb_target' => 'blocklist-target',
-				'ipb_expiry' => 'blocklist-expiry',
-				'ipb_by' => 'blocklist-by',
-				'ipb_params' => 'blocklist-params',
-				'ipb_reason' => 'blocklist-reason',
-			);
-			foreach ( $headers as $key => $val ) {
-				$headers[$key] = $this->msg( $val )->text();
-			}
-		}
-
-		return $headers;
-	}
-
-	function formatValue( $name, $value ) {
-		static $msg = null;
-		if ( $msg === null ) {
-			$keys = array(
-				'anononlyblock',
-				'createaccountblock',
-				'noautoblockblock',
-				'emailblock',
-				'blocklist-nousertalk',
-				'unblocklink',
-				'change-blocklink',
-			);
-
-			foreach ( $keys as $key ) {
-				$msg[$key] = $this->msg( $key )->escaped();
-			}
-		}
-
-		/** @var $row object */
-		$row = $this->mCurrentRow;
-
-		$language = $this->getLanguage();
-
-		$formatted = '';
-
-		switch ( $name ) {
-			case 'ipb_timestamp':
-				$formatted = htmlspecialchars( $language->userTimeAndDate( $value, $this->getUser() ) );
-				break;
-
-			case 'ipb_target':
-				if ( $row->ipb_auto ) {
-					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
-				} else {
-					list( $target, $type ) = Block::parseTarget( $row->ipb_address );
-					switch ( $type ) {
-						case Block::TYPE_USER:
-						case Block::TYPE_IP:
-							$formatted = Linker::userLink( $target->getId(), $target );
-							$formatted .= Linker::userToolLinks(
-								$target->getId(),
-								$target,
-								false,
-								Linker::TOOL_LINKS_NOBLOCK
-							);
-							break;
-						case Block::TYPE_RANGE:
-							$formatted = htmlspecialchars( $target );
-					}
-				}
-				break;
-
-			case 'ipb_expiry':
-				$formatted = htmlspecialchars( $language->formatExpiry(
-					$value,
-					/* User preference timezone */true
-				) );
-				if ( $this->getUser()->isAllowed( 'block' ) ) {
-					if ( $row->ipb_auto ) {
-						$links[] = Linker::linkKnown(
-							SpecialPage::getTitleFor( 'Unblock' ),
-							$msg['unblocklink'],
-							array(),
-							array( 'wpTarget' => "#{$row->ipb_id}" )
-						);
-					} else {
-						$links[] = Linker::linkKnown(
-							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
-							$msg['unblocklink']
-						);
-						$links[] = Linker::linkKnown(
-							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
-							$msg['change-blocklink']
-						);
-					}
-					$formatted .= ' ' . Html::rawElement(
-						'span',
-						array( 'class' => 'mw-blocklist-actions' ),
-						$this->msg( 'parentheses' )->rawParams(
-							$language->pipeList( $links ) )->escaped()
-					);
-				}
-				break;
-
-			case 'ipb_by':
-				if ( isset( $row->by_user_name ) ) {
-					$formatted = Linker::userLink( $value, $row->by_user_name );
-					$formatted .= Linker::userToolLinks( $value, $row->by_user_name );
-				} else {
-					$formatted = htmlspecialchars( $row->ipb_by_text ); // foreign user?
-				}
-				break;
-
-			case 'ipb_reason':
-				$formatted = Linker::formatComment( $value );
-				break;
-
-			case 'ipb_params':
-				$properties = array();
-				if ( $row->ipb_anon_only ) {
-					$properties[] = $msg['anononlyblock'];
-				}
-				if ( $row->ipb_create_account ) {
-					$properties[] = $msg['createaccountblock'];
-				}
-				if ( $row->ipb_user && !$row->ipb_enable_autoblock ) {
-					$properties[] = $msg['noautoblockblock'];
-				}
-
-				if ( $row->ipb_block_email ) {
-					$properties[] = $msg['emailblock'];
-				}
-
-				if ( !$row->ipb_allow_usertalk ) {
-					$properties[] = $msg['blocklist-nousertalk'];
-				}
-
-				$formatted = $language->commaList( $properties );
-				break;
-
-			default:
-				$formatted = "Unable to format $name";
-				break;
-		}
-
-		return $formatted;
-	}
-
-	function getQueryInfo() {
-		$info = array(
-			'tables' => array( 'ipblocks', 'user' ),
-			'fields' => array(
-				'ipb_id',
-				'ipb_address',
-				'ipb_user',
-				'ipb_by',
-				'ipb_by_text',
-				'by_user_name' => 'user_name',
-				'ipb_reason',
-				'ipb_timestamp',
-				'ipb_auto',
-				'ipb_anon_only',
-				'ipb_create_account',
-				'ipb_enable_autoblock',
-				'ipb_expiry',
-				'ipb_range_start',
-				'ipb_range_end',
-				'ipb_deleted',
-				'ipb_block_email',
-				'ipb_allow_usertalk',
-			),
-			'conds' => $this->conds,
-			'join_conds' => array( 'user' => array( 'LEFT JOIN', 'user_id = ipb_by' ) )
-		);
-
-		# Filter out any expired blocks
-		$db = $this->getDatabase();
-		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
-
-		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
-			$info['conds']['ipb_deleted'] = 0;
-		}
-
-		return $info;
-	}
-
-	public function getTableClass() {
-		return parent::getTableClass() . ' mw-blocklist';
-	}
-
-	function getIndexField() {
-		return 'ipb_timestamp';
-	}
-
-	function getDefaultSort() {
-		return 'ipb_timestamp';
-	}
-
-	function isFieldSortable( $name ) {
-		return false;
-	}
-
-	/**
-	 * Do a LinkBatch query to minimise database load when generating all these links
-	 * @param ResultWrapper $result
-	 */
-	function preprocessResults( $result ) {
-		# Do a link batch query
-		$lb = new LinkBatch;
-		$lb->setCaller( __METHOD__ );
-
-		foreach ( $result as $row ) {
-			$lb->add( NS_USER, $row->ipb_address );
-			$lb->add( NS_USER_TALK, $row->ipb_address );
-
-			if ( isset( $row->by_user_name ) ) {
-				$lb->add( NS_USER, $row->by_user_name );
-				$lb->add( NS_USER_TALK, $row->by_user_name );
-			}
-		}
-
-		$lb->execute();
 	}
 }

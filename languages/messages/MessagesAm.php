@@ -8,7 +8,7 @@
  *
  */
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'ፋይል',
 	NS_SPECIAL          => 'ልዩ',
 	NS_TALK             => 'ውይይት',
@@ -25,16 +25,16 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'እርዳታ_ውይይት',
 	NS_CATEGORY         => 'መደብ',
 	NS_CATEGORY_TALK    => 'መደብ_ውይይት',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'መልጠፊያ' => NS_TEMPLATE,
 	'መልጠፊያ_ውይይት' => NS_TEMPLATE_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Longpages'                 => array( 'ረጃጅም_ገጾች' ),
-	'Newpages'                  => array( 'አዳዲስ_ገጾች' ),
-	'Shortpages'                => array( 'አጫጭር_ገጾች' ),
-);
+$specialPageAliases = [
+	'Longpages'                 => [ 'ረጃጅም_ገጾች' ],
+	'Newpages'                  => [ 'አዳዲስ_ገጾች' ],
+	'Shortpages'                => [ 'አጫጭር_ገጾች' ],
+];
 

@@ -25,39 +25,39 @@
 	 * @private
 	 */
 	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
-		var queue, titles;
+		var queue, titles,
+			cache = this;
 		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
 			this.currentRequest.always( function () {
-				this.currentRequest = null;
-				this.processExistenceCheckQueueDebounced();
-			}.bind( this ) );
+				cache.currentRequest = null;
+				cache.processExistenceCheckQueueDebounced();
+			} );
 			return;
 		}
 		queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
 		titles = Object.keys( queue ).filter( function ( title ) {
-			if ( this.existenceCache.hasOwnProperty( title ) ) {
-				queue[ title ].resolve( this.existenceCache[ title ] );
+			if ( cache.existenceCache.hasOwnProperty( title ) ) {
+				queue[ title ].resolve( cache.existenceCache[ title ] );
 			}
-			return !this.existenceCache.hasOwnProperty( title );
-		}.bind( this ) );
+			return !cache.existenceCache.hasOwnProperty( title );
+		} );
 		if ( !titles.length ) {
 			return;
 		}
 		this.currentRequest = this.api.get( {
+			formatversion: 2,
 			action: 'query',
 			prop: [ 'info' ],
 			titles: titles
 		} ).done( function ( response ) {
-			var index, curr, title;
-			for ( index in response.query.pages ) {
-				curr = response.query.pages[ index ];
-				title = new ForeignTitle( curr.title ).getPrefixedText();
-				this.existenceCache[ title ] = curr.missing === undefined;
-				queue[ title ].resolve( this.existenceCache[ title ] );
-			}
-		}.bind( this ) );
+			$.each( response.query.pages, function ( index, page ) {
+				var title = new ForeignTitle( page.title ).getPrefixedText();
+				cache.existenceCache[ title ] = !page.missing;
+				queue[ title ].resolve( cache.existenceCache[ title ] );
+			} );
+		} );
 	};
 
 	/**
@@ -84,8 +84,11 @@
 	 * @constructor
 	 * @inheritdoc
 	 */
-	function ForeignTitle() {
-		ForeignTitle.parent.apply( this, arguments );
+	function ForeignTitle( title, namespace ) {
+		// We only need to handle categories here... but we don't know the target language.
+		// So assume that any namespace-like prefix is the 'Category' namespace...
+		title = title.replace( /^(.+?)_*:_*(.*)$/, 'Category:$2' ); // HACK
+		ForeignTitle.parent.call( this, title, namespace );
 	}
 	OO.inheritClass( ForeignTitle, mw.Title );
 	ForeignTitle.prototype.getNamespacePrefix = function () {
@@ -108,6 +111,7 @@
 	 * @cfg {string} [apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryCapsuleItemWidget = function MWWCategoryCapsuleItemWidget( config ) {
+		var widget = this;
 		// Parent constructor
 		mw.widgets.CategoryCapsuleItemWidget.parent.call( this, $.extend( {
 			data: config.title.getMainText(),
@@ -138,8 +142,8 @@
 		this.constructor.static.pageExistenceCaches[ this.apiUrl ]
 			.checkPageExistence( new ForeignTitle( this.title.getPrefixedText() ) )
 			.done( function ( exists ) {
-				this.setMissing( !exists );
-			}.bind( this ) );
+				widget.setMissing( !exists );
+			} );
 		/*jshint +W024*/
 	};
 
@@ -175,13 +179,17 @@
 			title = new ForeignTitle( this.title.getPrefixedText() ), // HACK
 			prefix = this.apiUrl.replace( '/w/api.php', '' ); // HACK
 
+		this.missing = missing;
+
 		if ( !missing ) {
 			this.$link
 				.attr( 'href', prefix + title.getUrl() )
+				.attr( 'title', title.getPrefixedText() )
 				.removeClass( 'new' );
 		} else {
 			this.$link
 				.attr( 'href', prefix + title.getUrl( { action: 'edit', redlink: 1 } ) )
+				.attr( 'title', mw.msg( 'red-link-title', title.getPrefixedText() ) )
 				.addClass( 'new' );
 		}
 	};

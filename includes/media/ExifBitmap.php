@@ -34,8 +34,7 @@ class ExifBitmapHandler extends BitmapHandler {
 
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		// basically flattens arrays.
-		$version = explode( ';', $version, 2 );
-		$version = intval( $version[0] );
+		$version = intval( explode( ';', $version, 2 )[0] );
 		if ( $version < 1 || $version >= 2 ) {
 			return $metadata;
 		}
@@ -110,7 +109,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
 				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
 			) {
-				//back-compatible but old
+				// back-compatible but old
 				wfDebug( __METHOD__ . ": back-compat version\n" );
 
 				return self::METADATA_COMPATIBLE;
@@ -146,12 +145,12 @@ class ExifBitmapHandler extends BitmapHandler {
 		) {
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
-			return array();
+			return [];
 		}
 
 		$exif = unserialize( $metadata );
 		if ( !$exif ) {
-			return array();
+			return [];
 		}
 		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
 
@@ -269,9 +268,11 @@ class ExifBitmapHandler extends BitmapHandler {
 	}
 
 	/**
-	 * Swaps an embedded ICC profile for another, if found. Depends on exiftool, no-op if not installed.
+	 * Swaps an embedded ICC profile for another, if found.
+	 * Depends on exiftool, no-op if not installed.
 	 * @param string $filepath File to be manipulated (will be overwritten)
-	 * @param string $oldProfileString Exact name of color profile to look for (the one that will be replaced)
+	 * @param string $oldProfileString Exact name of color profile to look for
+	 *  (the one that will be replaced)
 	 * @param string $profileFilepath ICC profile file to apply to the file
 	 * @since 1.26
 	 * @return bool

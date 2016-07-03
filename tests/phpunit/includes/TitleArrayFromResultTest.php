@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  * @covers TitleArrayFromResult
  */
 class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
@@ -65,11 +65,11 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideNumberOfRows() {
-		return array(
-			array( 0 ),
-			array( 1 ),
-			array( 122 ),
-		);
+		return [
+			[ 0 ],
+			[ 1 ],
+			[ 122 ],
+		];
 	}
 
 	/**
@@ -98,10 +98,10 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideTestValid() {
-		return array(
-			array( $this->getRowWithTitle(), true ),
-			array( false, false ),
-		);
+		return [
+			[ $this->getRowWithTitle(), true ],
+			[ false, false ],
+		];
 	}
 
 	/**
@@ -113,7 +113,7 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expected, $object->valid() );
 	}
 
-	//@todo unit test for key()
-	//@todo unit test for next()
-	//@todo unit test for rewind()
+	// @todo unit test for key()
+	// @todo unit test for next()
+	// @todo unit test for rewind()
 }

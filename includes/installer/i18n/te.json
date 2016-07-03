@@ -3,7 +3,8 @@
 		"authors": [
 			"Veeven",
 			"Chaduvari",
-			"Ravichandra"
+			"Ravichandra",
+			"Macofe"
 		]
 	},
 	"config-desc": "మీడియావికీ కొరకై స్థాపకి",
@@ -48,7 +49,6 @@
 	"config-env-good": "పర్యావరణాన్ని పరీక్షించాం.\nఇక మీరు MediaWiki ని స్థాపించుకోవచ్చు.",
 	"config-env-bad": "పర్యావరణాన్ని పరీక్షించాం.\nమీరు MediaWiki ని స్థాపించలేరు.",
 	"config-env-php": "PHP $1 స్థాపించబడింది.",
-	"config-unicode-using-utf8": "యూనికోడు నార్మలైజేషన్ కోసం బ్రయాన్ విబర్ గారి utf8_normalize.so ను వాడుతున్నాం.",
 	"config-unicode-using-intl": "యూనికోడు నార్మలైజేషన్ కోసం [http://pecl.php.net/intl intl PECL పొడిగింత] ను వాడుతున్నాం.",
 	"config-outdated-sqlite": "<strong>హెచ్చరిక:</strong> మీ వద్ద SQLite $1 ఉంది. అదికావలసిన వెర్షను $2 కంటే దిగువది. SQLite అందుబాటులో ఉండదు.",
 	"config-memory-raised": "PHP యొక్క <code>memory_limit</code> $1, దాన్ని $2 కి పెంచాం.",
@@ -71,8 +71,6 @@
 	"config-db-install-account": "స్థాపనకి వాడుకరి ఖాతా",
 	"config-db-username": "డేటాబేసు వాడుకరిపేరు:",
 	"config-db-password": "డేటాబేసు సంకేతపదం:",
-	"config-db-password-empty": "కొత్త డేటాబేసు వాడుకరి $1 కి ఓ సంకేతపదం ఇవ్వండి. \nసంకేతపదాలేమీ లేకుండా వాడుకరులను సృష్టించేవీలున్నప్పటికీ, అది సురక్షితం కాదు.",
-	"config-db-username-empty": "\"{{int:config-db-username}}\" కి మీరు తప్పకుండా ఏదో ఒక విలువ ఇవ్వాలి.",
 	"config-db-install-username": "స్థాపన దశలో డేటాబేసుకు కనెక్టయ్యేందుకు వాడే వాడుకరిపేరును ఇవ్వండి.\nఇది MediaWiki ఖాతా యొక్క వాడుకరిపేరు కాదు; మీ డేటాబేసు కోసం వాడుకరిపేరు.",
 	"config-db-install-password": "స్థాపన దశలో డేటాబేసుకు కనెక్టయ్యేందుకు వాడే సంకేతపదాన్ని ఇవ్వండి.\nఇది MediaWiki ఖాతా యొక్క సంకేతపదం కాదు; మీ డేటాబేసు కోసం సంకేతపదం.",
 	"config-db-install-help": "స్థాపన దశలో డేటాబేసుకు కనెక్టయ్యేందుకు వాడే వాడుకరిపేరు, సంకేతపదం ఇవ్వండి.",
@@ -190,7 +188,7 @@
 	"config-logo": "లోగో URL:",
 	"config-instantcommons": "తక్షణ కామన్స్ ను చేతనం చెయ్యి",
 	"config-cc-again": "మళ్ళీ ఎంచుకోండి...",
-	"config-cc-not-chosen": "ఏ Creative Commons లైసెన్సు కావాలో ఎంచుకుని \"కొనసాగు\" ను నొక్కండి.",
+	"config-cc-not-chosen": "ఏ Creative Commons లైసెన్సు కావాలో ఎంచుకుని \"proceed\" ను నొక్కండి.",
 	"config-advanced-settings": "ఉన్నత స్వరూపణం",
 	"config-cache-options": "ఆబ్జక్ట్ క్యాషింగ్ అమరికలు:",
 	"config-cache-help": "ఆబ్జక్ట్ క్యాషింగ్ అనేది తరచు వాడే డేటాను సిద్ధంగా ఉంచడం ద్వారా మీడియావికీ పనితీరును మెరుగుపరచడానికి ఉద్దేశించినది.\nమధ్యతరగతి నుంచి పెద్ద సైట్లలో దీనిని చేతనం చేయడాన్ని ప్రోత్సహిస్తున్నాం. అలాగే చిన్న సైట్లు కూడా దీన్నుంచి ప్రయోజనం పొందగలవు.",

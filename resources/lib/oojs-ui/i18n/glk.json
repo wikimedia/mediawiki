@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"V6rg"
+			"V6rg",
+			"شیخ"
 		]
 	},
 	"ooui-outline-control-move-down": "مأسمکه جابجا بۊکۊن جير",
@@ -14,10 +15,10 @@
 	"ooui-dialog-message-reject": "لغو",
 	"ooui-dialog-process-error": "ىک مؤشکلي هنأ",
 	"ooui-dialog-process-dismiss": "وأبدي",
-	"ooui-dialog-process-retry": "هنده حقسأى بۊکۊنين",
-	"ooui-dialog-process-continue": "سره",
+	"ooui-dialog-process-retry": "هندئه حقسأى بۊکۊنين",
+	"ooui-dialog-process-continue": "ايدامه",
 	"ooui-selectfile-button-select": "ىکته فاىله دؤجين بۊکۊنين",
-	"ooui-selectfile-not-supported": "نشأنهىکته فاىله دؤجين گۊدن",
+	"ooui-selectfile-not-supported": "نشأنه فاىله دؤجين گۊدن",
 	"ooui-selectfile-placeholder": "هيچ فاىلي دؤجين نۊبؤ",
-	"ooui-selectfile-dragdrop-placeholder": "فاىله ائره فدي"
+	"ooui-selectfile-dragdrop-placeholder": "فاىله ائره رها بکۊنين"
 }

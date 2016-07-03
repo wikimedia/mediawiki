@@ -25,14 +25,16 @@ class PasswordTest extends MediaWikiTestCase {
 	 * @covers InvalidPassword::equals
 	 */
 	public function testInvalidUnequalInvalid() {
-		$invalid1 = User::getPasswordFactory()->newFromCiphertext( null );
-		$invalid2 = User::getPasswordFactory()->newFromCiphertext( null );
+		$passwordFactory = new PasswordFactory();
+		$invalid1 = $passwordFactory->newFromCiphertext( null );
+		$invalid2 = $passwordFactory->newFromCiphertext( null );
 
 		$this->assertFalse( $invalid1->equals( $invalid2 ) );
 	}
 
 	public function testInvalidPlaintext() {
-		$invalid = User::getPasswordFactory()->newFromPlaintext( null );
+		$passwordFactory = new PasswordFactory();
+		$invalid = $passwordFactory->newFromPlaintext( null );
 
 		$this->assertInstanceOf( 'InvalidPassword', $invalid );
 	}

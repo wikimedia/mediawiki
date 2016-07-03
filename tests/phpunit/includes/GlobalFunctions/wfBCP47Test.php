@@ -6,7 +6,7 @@
 class WfBCP47Test extends MediaWikiTestCase {
 	/**
 	 * test @see wfBCP47().
-	 * Please note the BCP explicitly state that language codes are case
+	 * Please note the BCP 47 explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
 	 * This test is used to verify our formatting against all lower and
 	 * all upper cases language code.
@@ -30,70 +30,70 @@ class WfBCP47Test extends MediaWikiTestCase {
 	 * Array format is ($code, $expected)
 	 */
 	public static function provideLanguageCodes() {
-		return array(
-			// Extracted from BCP47 (list not exhaustive)
+		return [
+			// Extracted from BCP 47 (list not exhaustive)
 			# 2.1.1
-			array( 'en-ca-x-ca', 'en-CA-x-ca' ),
-			array( 'sgn-be-fr', 'sgn-BE-FR' ),
-			array( 'az-latn-x-latn', 'az-Latn-x-latn' ),
+			[ 'en-ca-x-ca', 'en-CA-x-ca' ],
+			[ 'sgn-be-fr', 'sgn-BE-FR' ],
+			[ 'az-latn-x-latn', 'az-Latn-x-latn' ],
 			# 2.2
-			array( 'sr-Latn-RS', 'sr-Latn-RS' ),
-			array( 'az-arab-ir', 'az-Arab-IR' ),
+			[ 'sr-Latn-RS', 'sr-Latn-RS' ],
+			[ 'az-arab-ir', 'az-Arab-IR' ],
 
 			# 2.2.5
-			array( 'sl-nedis', 'sl-nedis' ),
-			array( 'de-ch-1996', 'de-CH-1996' ),
+			[ 'sl-nedis', 'sl-nedis' ],
+			[ 'de-ch-1996', 'de-CH-1996' ],
 
 			# 2.2.6
-			array(
+			[
 				'en-latn-gb-boont-r-extended-sequence-x-private',
 				'en-Latn-GB-boont-r-extended-sequence-x-private'
-			),
+			],
 
-			// Examples from BCP47 Appendix A
+			// Examples from BCP 47 Appendix A
 			# Simple language subtag:
-			array( 'DE', 'de' ),
-			array( 'fR', 'fr' ),
-			array( 'ja', 'ja' ),
+			[ 'DE', 'de' ],
+			[ 'fR', 'fr' ],
+			[ 'ja', 'ja' ],
 
 			# Language subtag plus script subtag:
-			array( 'zh-hans', 'zh-Hans' ),
-			array( 'sr-cyrl', 'sr-Cyrl' ),
-			array( 'sr-latn', 'sr-Latn' ),
+			[ 'zh-hans', 'zh-Hans' ],
+			[ 'sr-cyrl', 'sr-Cyrl' ],
+			[ 'sr-latn', 'sr-Latn' ],
 
 			# Extended language subtags and their primary language subtag
 			# counterparts:
-			array( 'zh-cmn-hans-cn', 'zh-cmn-Hans-CN' ),
-			array( 'cmn-hans-cn', 'cmn-Hans-CN' ),
-			array( 'zh-yue-hk', 'zh-yue-HK' ),
-			array( 'yue-hk', 'yue-HK' ),
+			[ 'zh-cmn-hans-cn', 'zh-cmn-Hans-CN' ],
+			[ 'cmn-hans-cn', 'cmn-Hans-CN' ],
+			[ 'zh-yue-hk', 'zh-yue-HK' ],
+			[ 'yue-hk', 'yue-HK' ],
 
 			# Language-Script-Region:
-			array( 'zh-hans-cn', 'zh-Hans-CN' ),
-			array( 'sr-latn-RS', 'sr-Latn-RS' ),
+			[ 'zh-hans-cn', 'zh-Hans-CN' ],
+			[ 'sr-latn-RS', 'sr-Latn-RS' ],
 
 			# Language-Variant:
-			array( 'sl-rozaj', 'sl-rozaj' ),
-			array( 'sl-rozaj-biske', 'sl-rozaj-biske' ),
-			array( 'sl-nedis', 'sl-nedis' ),
+			[ 'sl-rozaj', 'sl-rozaj' ],
+			[ 'sl-rozaj-biske', 'sl-rozaj-biske' ],
+			[ 'sl-nedis', 'sl-nedis' ],
 
 			# Language-Region-Variant:
-			array( 'de-ch-1901', 'de-CH-1901' ),
-			array( 'sl-it-nedis', 'sl-IT-nedis' ),
+			[ 'de-ch-1901', 'de-CH-1901' ],
+			[ 'sl-it-nedis', 'sl-IT-nedis' ],
 
 			# Language-Script-Region-Variant:
-			array( 'hy-latn-it-arevela', 'hy-Latn-IT-arevela' ),
+			[ 'hy-latn-it-arevela', 'hy-Latn-IT-arevela' ],
 
 			# Language-Region:
-			array( 'de-de', 'de-DE' ),
-			array( 'en-us', 'en-US' ),
-			array( 'es-419', 'es-419' ),
+			[ 'de-de', 'de-DE' ],
+			[ 'en-us', 'en-US' ],
+			[ 'es-419', 'es-419' ],
 
 			# Private use subtags:
-			array( 'de-ch-x-phonebk', 'de-CH-x-phonebk' ),
-			array( 'az-arab-x-aze-derbend', 'az-Arab-x-aze-derbend' ),
+			[ 'de-ch-x-phonebk', 'de-CH-x-phonebk' ],
+			[ 'az-arab-x-aze-derbend', 'az-Arab-x-aze-derbend' ],
 			/**
-			 * Previous test does not reflect the BCP which states:
+			 * Previous test does not reflect the BCP 47 which states:
 			 *  az-Arab-x-AZE-derbend
 			 * AZE being private, it should be lower case, hence the test above
 			 * should probably be:
@@ -101,21 +101,21 @@ class WfBCP47Test extends MediaWikiTestCase {
 			 */
 
 			# Private use registry values:
-			array( 'x-whatever', 'x-whatever' ),
-			array( 'qaa-qaaa-qm-x-southern', 'qaa-Qaaa-QM-x-southern' ),
-			array( 'de-qaaa', 'de-Qaaa' ),
-			array( 'sr-latn-qm', 'sr-Latn-QM' ),
-			array( 'sr-qaaa-rs', 'sr-Qaaa-RS' ),
+			[ 'x-whatever', 'x-whatever' ],
+			[ 'qaa-qaaa-qm-x-southern', 'qaa-Qaaa-QM-x-southern' ],
+			[ 'de-qaaa', 'de-Qaaa' ],
+			[ 'sr-latn-qm', 'sr-Latn-QM' ],
+			[ 'sr-qaaa-rs', 'sr-Qaaa-RS' ],
 
 			# Tags that use extensions
-			array( 'en-us-u-islamcal', 'en-US-u-islamcal' ),
-			array( 'zh-cn-a-myext-x-private', 'zh-CN-a-myext-x-private' ),
-			array( 'en-a-myext-b-another', 'en-a-myext-b-another' ),
+			[ 'en-us-u-islamcal', 'en-US-u-islamcal' ],
+			[ 'zh-cn-a-myext-x-private', 'zh-CN-a-myext-x-private' ],
+			[ 'en-a-myext-b-another', 'en-a-myext-b-another' ],
 
 			# Invalid:
 			// de-419-DE
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
-		);
+		];
 	}
 }

@@ -27,6 +27,14 @@
  */
 class MediaStatisticsPage extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
+	/**
+	* @var integer $totalPerType Combined file size of all files in a section
+	*/
+	protected $totalPerType = 0;
+	/**
+	* @var integer $totalSize Combined file size of all files
+	*/
+	protected $totalSize = 0;
 
 	function __construct( $name = 'MediaStatistics' ) {
 		parent::__construct( $name );
@@ -55,7 +63,7 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$fakeTitle = $dbr->buildConcat( array(
+		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),
 			'img_major_mime',
@@ -65,26 +73,26 @@ class MediaStatisticsPage extends QueryPage {
 			'COUNT(*)',
 			$dbr->addQuotes( ';' ),
 			'SUM( img_size )'
-		) );
-		return array(
-			'tables' => array( 'image' ),
-			'fields' => array(
+		] );
+		return [
+			'tables' => [ 'image' ],
+			'fields' => [
 				'title' => $fakeTitle,
 				'namespace' => NS_MEDIA, /* needs to be something */
 				'value' => '1'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				// WMF has a random null row in the db
 				'img_media_type IS NOT NULL'
-			),
-			'options' => array(
-				'GROUP BY' => array(
+			],
+			'options' => [
+				'GROUP BY' => [
 					'img_media_type',
 					'img_major_mime',
 					'img_minor_mime',
-				)
-			)
-		);
+				]
+			]
+		];
 	}
 
 	/**
@@ -95,18 +103,18 @@ class MediaStatisticsPage extends QueryPage {
 	 * @return Array Fields to sort by
 	 */
 	function getOrderFields() {
-		return array( 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' );
+		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
 	}
 
 	/**
 	 * Output the results of the query.
 	 *
-	 * @param $out OutputPage
-	 * @param $skin Skin (deprecated presumably)
-	 * @param $dbr IDatabase
-	 * @param $res ResultWrapper Results from query
-	 * @param $num integer Number of results
-	 * @param $offset integer Paging offset (Should always be 0 in our case)
+	 * @param OutputPage $out
+	 * @param Skin $skin (deprecated presumably)
+	 * @param IDatabase $dbr
+	 * @param ResultWrapper $res Results from query
+	 * @param int $num Number of results
+	 * @param int $offset Paging offset (Should always be 0 in our case)
 	 */
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		$prevMediaType = null;
@@ -123,6 +131,7 @@ class MediaStatisticsPage extends QueryPage {
 					$this->outputTableEnd();
 				}
 				$this->outputMediaType( $mediaType );
+				$this->totalPerType = 0;
 				$this->outputTableStart( $mediaType );
 				$prevMediaType = $mediaType;
 			}
@@ -130,6 +139,14 @@ class MediaStatisticsPage extends QueryPage {
 		}
 		if ( $prevMediaType !== null ) {
 			$this->outputTableEnd();
+			// add total size of all files
+			$this->outputMediaType( 'total' );
+			$this->getOutput()->addWikiText(
+				$this->msg( 'mediastatistics-allbytes' )
+					->numParams( $this->totalSize )
+					->sizeParams( $this->totalSize )
+					->text()
+			);
 		}
 	}
 
@@ -137,32 +154,40 @@ class MediaStatisticsPage extends QueryPage {
 	 * Output closing </table>
 	 */
 	protected function outputTableEnd() {
-		$this->getOutput()->addHtml( Html::closeElement( 'table' ) );
+		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
+		$this->getOutput()->addWikiText(
+				$this->msg( 'mediastatistics-bytespertype' )
+					->numParams( $this->totalPerType )
+					->sizeParams( $this->totalPerType )
+					->numParams( $this->makePercentPretty( $this->totalPerType / $this->totalBytes ) )
+					->text()
+		);
+		$this->totalSize += $this->totalPerType;
 	}
 
 	/**
 	 * Output a row of the stats table
 	 *
-	 * @param $mime String mime type (e.g. image/jpeg)
-	 * @param $count integer Number of images of this type
-	 * @param $totalBytes integer Total space for images of this type
+	 * @param string $mime mime type (e.g. image/jpeg)
+	 * @param int $count Number of images of this type
+	 * @param int $totalBytes Total space for images of this type
 	 */
 	protected function outputTableRow( $mime, $count, $bytes ) {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
 		$row = Html::rawElement(
 			'td',
-			array(),
+			[],
 			Linker::link( $mimeSearch, htmlspecialchars( $mime ) )
 		);
 		$row .= Html::element(
 			'td',
-			array(),
+			[],
 			$this->getExtensionList( $mime )
 		);
 		$row .= Html::rawElement(
 			'td',
 			// Make sure js sorts it in numeric order
-			array( 'data-sort-value' => $count ),
+			[ 'data-sort-value' => $count ],
 			$this->msg( 'mediastatistics-nfiles' )
 				->numParams( $count )
 				/** @todo Check to be sure this really should have number formatting */
@@ -172,7 +197,7 @@ class MediaStatisticsPage extends QueryPage {
 		$row .= Html::rawElement(
 			'td',
 			// Make sure js sorts it in numeric order
-			array( 'data-sort-value' =>  $bytes ),
+			[ 'data-sort-value' =>  $bytes ],
 			$this->msg( 'mediastatistics-nbytes' )
 				->numParams( $bytes )
 				->sizeParams( $bytes )
@@ -180,8 +205,8 @@ class MediaStatisticsPage extends QueryPage {
 				->numParams( $this->makePercentPretty( $bytes / $this->totalBytes ) )
 				->parse()
 		);
-
-		$this->getOutput()->addHTML( Html::rawElement( 'tr', array(), $row ) );
+		$this->totalPerType += $bytes;
+		$this->getOutput()->addHTML( Html::rawElement( 'tr', [], $row ) );
 	}
 
 	/**
@@ -205,8 +230,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Given a mime type, return a comma separated list of allowed extensions.
 	 *
-	 * @param $mime String mime type
-	 * @return String Comma separated list of allowed extensions (e.g. ".ogg, .oga")
+	 * @param string $mime mime type
+	 * @return string Comma separated list of allowed extensions (e.g. ".ogg, .oga")
 	 */
 	private function getExtensionList( $mime ) {
 		$exts = MimeMagic::singleton()->getExtensionsForType( $mime );
@@ -231,12 +256,12 @@ class MediaStatisticsPage extends QueryPage {
 		$this->getOutput()->addHTML(
 			Html::openElement(
 				'table',
-				array( 'class' => array(
+				[ 'class' => [
 					'mw-mediastats-table',
 					'mw-mediastats-table-' . strtolower( $mediaType ),
 					'sortable',
 					'wikitable'
-				) )
+				] ]
 			)
 		);
 		$this->getOutput()->addHTML( $this->getTableHeaderRow() );
@@ -248,34 +273,34 @@ class MediaStatisticsPage extends QueryPage {
 	 * @return String the header row of the able
 	 */
 	protected function getTableHeaderRow() {
-		$headers = array( 'mimetype', 'extensions', 'count', 'totalbytes' );
+		$headers = [ 'mimetype', 'extensions', 'count', 'totalbytes' ];
 		$ths = '';
 		foreach ( $headers as $header ) {
 			$ths .= Html::rawElement(
 				'th',
-				array(),
+				[],
 				// for grep:
 				// mediastatistics-table-mimetype, mediastatistics-table-extensions
 				// tatistics-table-count, mediastatistics-table-totalbytes
 				$this->msg( 'mediastatistics-table-' . $header )->parse()
 			);
 		}
-		return Html::rawElement( 'tr', array(), $ths );
+		return Html::rawElement( 'tr', [], $ths );
 	}
 
 	/**
 	 * Output a header for a new media type section
 	 *
-	 * @param $mediaType string A media type (e.g. from the MEDIATYPE_xxx constants)
+	 * @param string $mediaType A media type (e.g. from the MEDIATYPE_xxx constants)
 	 */
 	protected function outputMediaType( $mediaType ) {
 		$this->getOutput()->addHTML(
 			Html::element(
 				'h2',
-				array( 'class' => array(
+				[ 'class' => [
 					'mw-mediastats-mediatype',
 					'mw-mediastats-mediatype-' . strtolower( $mediaType )
-				) ),
+				] ],
 				// for grep
 				// mediastatistics-header-unknown, mediastatistics-header-bitmap,
 				// mediastatistics-header-drawing, mediastatistics-header-audio,
@@ -293,8 +318,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * parse the fake title format that this special page abuses querycache with.
 	 *
-	 * @param $fakeTitle String A string formatted as <media type>;<mime type>;<count>;<bytes>
-	 * @return Array The constituant parts of $fakeTitle
+	 * @param string $fakeTitle A string formatted as <media type>;<mime type>;<count>;<bytes>
+	 * @return array The constituant parts of $fakeTitle
 	 */
 	private function splitFakeTitle( $fakeTitle ) {
 		return explode( ';', $fakeTitle, 4 );
@@ -312,8 +337,8 @@ class MediaStatisticsPage extends QueryPage {
 	 * This method isn't used, since we override outputResults, but
 	 * we need to implement since abstract in parent class.
 	 *
-	 * @param $skin Skin
-	 * @param $result stdObject Result row
+	 * @param Skin $skin
+	 * @param stdObject $result Result row
 	 * @return bool|string|void
 	 * @throws MWException
 	 */
@@ -324,8 +349,8 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Initialize total values so we can figure out percentages later.
 	 *
-	 * @param $dbr IDatabase
-	 * @param $res ResultWrapper
+	 * @param IDatabase $dbr
+	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {
 		$this->totalCount = $this->totalBytes = 0;

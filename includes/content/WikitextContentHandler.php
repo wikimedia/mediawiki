@@ -31,7 +31,7 @@
 class WikitextContentHandler extends TextContentHandler {
 
 	public function __construct( $modelId = CONTENT_MODEL_WIKITEXT ) {
-		parent::__construct( $modelId, array( CONTENT_FORMAT_WIKITEXT ) );
+		parent::__construct( $modelId, [ CONTENT_FORMAT_WIKITEXT ] );
 	}
 
 	protected function getContentClass() {

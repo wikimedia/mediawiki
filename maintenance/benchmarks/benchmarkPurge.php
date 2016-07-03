@@ -31,7 +31,7 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchmarkPurge extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark the Squid purge functions.";
+		$this->addDescription( 'Benchmark the Squid purge functions.' );
 	}
 
 	public function execute() {
@@ -41,9 +41,9 @@ class BenchmarkPurge extends Benchmarker {
 		} else {
 			$this->output( "There are " . count( $wgSquidServers ) . " defined squid servers:\n" );
 			if ( $this->hasOption( 'count' ) ) {
-				$lengths = array( intval( $this->getOption( 'count' ) ) );
+				$lengths = [ intval( $this->getOption( 'count' ) ) ];
 			} else {
-				$lengths = array( 1, 10, 100 );
+				$lengths = [ 1, 10, 100 ];
 			}
 			foreach ( $lengths as $length ) {
 				$urls = $this->randomUrlList( $length );
@@ -63,7 +63,7 @@ class BenchmarkPurge extends Benchmarker {
 	private function benchSquid( $urls, $trials = 1 ) {
 		$start = microtime( true );
 		for ( $i = 0; $i < $trials; $i++ ) {
-			SquidUpdate::purge( $urls );
+			CdnCacheUpdate::purge( $urls );
 		}
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
@@ -79,7 +79,7 @@ class BenchmarkPurge extends Benchmarker {
 	 * @return array
 	 */
 	private function randomUrlList( $length ) {
-		$list = array();
+		$list = [];
 		for ( $i = 0; $i < $length; $i++ ) {
 			$list[] = $this->randomUrl();
 		}

@@ -41,7 +41,7 @@ class ApiQueryDisabled extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array();
+		return [];
 	}
 
 	public function getDescriptionMessage() {

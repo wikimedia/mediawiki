@@ -28,7 +28,7 @@
  * @ingroup Language
  */
 class LanguageKsh extends Language {
-	private static $familygender = array(
+	private static $familygender = [
 		// Do not add male wiki families, since that's the default.
 		// No need add neuter wikis having names ending in -wiki.
 			'wikipedia' => 'f',
@@ -40,7 +40,7 @@ class LanguageKsh extends Language {
 			'wikitravel' => 'n',
 			'wikia' => 'f',
 			'translatewiki.net' => 'n',
-		);
+		];
 
 	/**
 	 * Convert from the nominative form of a noun to other cases.

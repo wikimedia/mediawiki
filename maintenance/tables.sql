@@ -130,8 +130,7 @@ CREATE TABLE /*_*/user (
   --
   user_editcount int,
 
-  -- Expiration date for user password. Use $user->expirePassword()
-  -- to force a password reset.
+  -- Expiration date for user password.
   user_password_expires varbinary(14) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/;
@@ -220,6 +219,32 @@ CREATE TABLE /*_*/user_properties (
 
 CREATE UNIQUE INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
 CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
+
+--
+-- This table contains a user's bot passwords: passwords that allow access to
+-- the account via the API with limited rights.
+--
+CREATE TABLE /*_*/bot_passwords (
+  -- User ID obtained from CentralIdLookup.
+  bp_user int NOT NULL,
+
+  -- Application identifier
+  bp_app_id varbinary(32) NOT NULL,
+
+  -- Password hashes, like user.user_password
+  bp_password tinyblob NOT NULL,
+
+  -- Like user.user_token
+  bp_token binary(32) NOT NULL default '',
+
+  -- JSON blob for MWRestrictions
+  bp_restrictions blob NOT NULL,
+
+  -- Grants allowed to the account when authenticated with this bot-password
+  bp_grants blob NOT NULL,
+
+  PRIMARY KEY ( bp_user, bp_app_id )
+) /*$wgDBTableOptions*/;
 
 --
 -- Core of the wiki: each page has an entry here which identifies
@@ -594,8 +619,8 @@ CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_
 -- Used by the API (and some extensions)
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 
--- FIXME: Not used, delete this
-CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
+-- Used when updating collation (e.g. updateCollation.php)
+CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
 --
 -- Track all existing categories.  Something is a category if 1) it has an en-
@@ -1114,6 +1139,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 
 
 CREATE TABLE /*_*/watchlist (
+  wl_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Key to user.user_id
   wl_user int unsigned NOT NULL,
 
@@ -1497,34 +1523,13 @@ CREATE TABLE /*_*/l10n_cache (
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
--- Table for caching JSON message blobs for the resource loader
-CREATE TABLE /*_*/msg_resource (
-  -- Resource name
-  mr_resource varbinary(255) NOT NULL,
-  -- Language code
-  mr_lang varbinary(32) NOT NULL,
-  -- JSON blob
-  mr_blob mediumblob NOT NULL,
-  -- Timestamp of last update
-  mr_timestamp binary(14) NOT NULL
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/mr_resource_lang ON /*_*/msg_resource (mr_resource, mr_lang);
-
--- Table for administering which message is contained in which resource
-CREATE TABLE /*_*/msg_resource_links (
-  mrl_resource varbinary(255) NOT NULL,
-  -- Message key
-  mrl_message varbinary(255) NOT NULL
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_message, mrl_resource);
-
 -- Table caching which local files a module depends on that aren't
 -- registered directly, used for fast retrieval of file dependency.
 -- Currently only used for tracking images that CSS depends on
 CREATE TABLE /*_*/module_deps (
   -- Module name
   md_module varbinary(255) NOT NULL,
-  -- Skin name
+  -- Module context vary (includes skin and language; called "md_skin" for legacy reasons)
   md_skin varbinary(32) NOT NULL,
   -- JSON blob with file dependencies
   md_deps mediumblob NOT NULL

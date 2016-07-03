@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once dirname( __FILE__ ) . '/Maintenance.php';
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to populate the fa_sha1 field.
@@ -32,7 +32,7 @@ require_once dirname( __FILE__ ) . '/Maintenance.php';
 class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populate the fa_sha1 field from fa_storage_key";
+		$this->addDescription( 'Populate the fa_sha1 field from fa_storage_key' );
 	}
 
 	protected function getUpdateKey() {
@@ -45,9 +45,9 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 	public function doDBUpdates() {
 		$startTime = microtime( true );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$table = 'filearchive';
-		$conds = array( 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' );
+		$conds = [ 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' ];
 
 		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
 			$this->output( "fa_sha1 column does not exist\n\n", true );
@@ -64,10 +64,10 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		do {
 			$res = $dbw->select(
 				$table,
-				array( 'fa_id', 'fa_storage_key' ),
+				[ 'fa_id', 'fa_storage_key' ],
 				$conds,
 				__METHOD__,
-				array( 'LIMIT' => $batchSize )
+				[ 'LIMIT' => $batchSize ]
 			);
 
 			$i = 0;
@@ -78,8 +78,8 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 				}
 				$sha1 = LocalRepo::getHashFromKey( $row->fa_storage_key );
 				$dbw->update( $table,
-					array( 'fa_sha1' => $sha1 ),
-					array( 'fa_id' => $row->fa_id ),
+					[ 'fa_sha1' => $sha1 ],
+					[ 'fa_id' => $row->fa_id ],
 					__METHOD__
 				);
 				$lastId = $row->fa_id;

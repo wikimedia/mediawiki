@@ -28,13 +28,13 @@ use \Cdb\Reader as CdbReader;
 require_once __DIR__ . '/commandLine.inc';
 
 function cdbShowHelp( $command ) {
-	$commandList = array(
+	$commandList = [
 		'load' => 'load a cdb file for reading',
 		'get' => 'get a value for a key',
 		'exit' => 'exit cdb',
 		'quit' => 'exit cdb',
 		'help' => 'help about a command',
-	);
+	];
 	if ( !$command ) {
 		$command = 'fullhelp';
 	}
@@ -61,7 +61,7 @@ do {
 		exit;
 	}
 
-	$args = explode( ' ', $line );
+	$args = explode( ' ', $line, 2 );
 	$command = array_shift( $args );
 
 	// process command

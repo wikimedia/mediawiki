@@ -1,8 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sindhu"
+			"Sindhu",
+			"Aursani"
 		]
 	},
-	"config-xml-bad": "PHP جو XML ماڊيول کٽل آهي. ميڊيا وڪيءَ کي هن فنڪشن ۾ ماڊيول گھربل آهن ۽ ترتيب يا ڪنفيگيوريشن ۾ ڪم نه ڪندي. \nتوهان کي گھرجي ته php-xml RPM پيڪيج انسٽال ڪريو."
+	"config-information": "معلومات",
+	"config-localsettings-badkey": "توهان جي ڏنل ڪنجي غيردرست آهي.",
+	"config-your-language": "توهان جي ٻولي:",
+	"config-wiki-language": "وڪِي ٻولي:",
+	"config-back": "پوئتي ←",
+	"config-continue": "اڳتي →",
+	"config-page-language": "ٻولي",
+	"config-page-welcome": "ذريعات‌وڪي تي ڀلي ڪري آيا!",
+	"config-page-dbconnect": "اعدادخاني سان جُڙو",
+	"config-page-upgrade": "هاڻوڪي تنصيبڪاريءَ کي سڌاريو",
+	"config-page-dbsettings": "اعدادخاني جون سيٽڱس",
+	"config-page-name": "نالو",
+	"config-page-options": "آپشنس",
+	"config-page-install": "تنصيبيو",
+	"config-page-complete": "پُورو!",
+	"config-page-restart": "تنصيبڪاري وري کان شروع ڪريو",
+	"config-page-readme": "مون کي پڙهو",
+	"config-page-copying": "پرت ڪندي",
+	"config-page-existingwiki": "موجوده وڪِي",
+	"config-restart": "ها، وري کان شروع ڪريو",
+	"config-env-php": "PHP $1 تنصيب ٿي چڪو",
+	"config-env-hhvm": "HHVM $1 تنصيب ٿي چڪو.",
+	"config-xml-bad": "PHP جو XML ماڊيول کٽل آهي. ذريعات‌وڪيءَ کي ان ماڊيول ۾  فنڪشنس گھربل آهن ۽ اها موجوده ترتيب يا ڪنفيگيوريشن ۾ ڪم نہ ڪندي. \nتوهان کي گھرجي تہ php-xml RPM پيڪيج تنصيب ڪريو."
 }

@@ -7,5 +7,13 @@
 class HTMLSubmitField extends HTMLButtonField {
 	protected $buttonType = 'submit';
 
-	protected $mFlags = array( 'primary', 'constructive' );
+	protected $mFlags = [ 'primary', 'constructive' ];
+
+	public function skipLoadData( $request ) {
+		return !$request->getCheck( $this->mName );
+	}
+
+	public function loadDataFromRequest( $request ) {
+		return $request->getCheck( $this->mName );
+	}
 }

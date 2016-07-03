@@ -63,12 +63,12 @@ class LanguageEo extends Language {
 		if ( strcasecmp( $in, 'x' ) == 0 && strcasecmp( $out, 'utf-8' ) == 0 ) {
 			return preg_replace_callback(
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
-				array( $this, 'strrtxuCallback' ), $string );
+				[ $this, 'strrtxuCallback' ], $string );
 		} elseif ( strcasecmp( $in, 'UTF-8' ) == 0 && strcasecmp( $out, 'x' ) == 0 ) {
 			# Double Xs only if they follow cxapelutaj literoj.
 			return preg_replace_callback(
 				'/((?:[cghjsu]|\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]|\xc5[\x9c\x9d\xac\xad])x*)/i',
-				array( $this, 'strrtuxCallback' ), $string );
+				[ $this, 'strrtuxCallback' ], $string );
 		}
 		return parent::iconv( $in, $out, $string );
 	}
@@ -78,7 +78,7 @@ class LanguageEo extends Language {
 	 * @return string
 	 */
 	function strrtuxCallback( $matches ) {
-		static $ux = array(
+		static $ux = [
 			'x' => 'xx', 'X' => 'Xx',
 			"\xc4\x88" => "Cx", "\xc4\x89" => "cx",
 			"\xc4\x9c" => "Gx", "\xc4\x9d" => "gx",
@@ -86,7 +86,7 @@ class LanguageEo extends Language {
 			"\xc4\xb4" => "Jx", "\xc4\xb5" => "jx",
 			"\xc5\x9c" => "Sx", "\xc5\x9d" => "sx",
 			"\xc5\xac" => "Ux", "\xc5\xad" => "ux",
-		);
+		];
 		return strtr( $matches[1], $ux );
 	}
 
@@ -95,7 +95,7 @@ class LanguageEo extends Language {
 	 * @return string
 	 */
 	function strrtxuCallback( $matches ) {
-		static $xu = array(
+		static $xu = [
 			'xx' => 'x', 'xX' => 'x',
 			'Xx' => 'X', 'XX' => 'X',
 			"Cx" => "\xc4\x88", "CX" => "\xc4\x88",
@@ -110,7 +110,7 @@ class LanguageEo extends Language {
 			"sx" => "\xc5\x9d", "sX" => "\xc5\x9d",
 			"Ux" => "\xc5\xac", "UX" => "\xc5\xac",
 			"ux" => "\xc5\xad", "uX" => "\xc5\xad",
-		);
+		];
 		return strtr( $matches[1], $xu ) . strtr( $matches[2], $xu );
 	}
 

@@ -55,11 +55,11 @@ class RevDelLogItem extends RevDelItem {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'logging',
-			array( 'log_deleted' => $bits ),
-			array(
+			[ 'log_deleted' => $bits ],
+			[
 				'log_id' => $this->row->log_id,
 				'log_deleted' => $this->getBits() // cas
-			),
+			],
 			__METHOD__
 		);
 
@@ -69,14 +69,14 @@ class RevDelLogItem extends RevDelItem {
 		}
 
 		$dbw->update( 'recentchanges',
-			array(
+			[
 				'rc_deleted' => $bits,
 				'rc_patrolled' => 1
-			),
-			array(
+			],
+			[
 				'rc_logid' => $this->row->log_id,
 				'rc_timestamp' => $this->row->log_timestamp // index
-			),
+			],
 			__METHOD__
 		);
 
@@ -95,8 +95,8 @@ class RevDelLogItem extends RevDelItem {
 		$loglink = Linker::link(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->list->msg( 'log' )->escaped(),
-			array(),
-			array( 'page' => $title->getPrefixedText() )
+			[],
+			[ 'page' => $title->getPrefixedText() ]
 		);
 		$loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
 		// User links and action text
@@ -115,34 +115,34 @@ class RevDelLogItem extends RevDelItem {
 	public function getApiData( ApiResult $result ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
 		$user = $this->list->getUser();
-		$ret = array(
+		$ret = [
 			'id' => $logEntry->getId(),
 			'type' => $logEntry->getType(),
 			'action' => $logEntry->getSubtype(),
-		);
+		];
 		$ret += $logEntry->isDeleted( LogPage::DELETED_USER )
-			? array( 'userhidden' => '' )
-			: array();
+			? [ 'userhidden' => '' ]
+			: [];
 		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT )
-			? array( 'commenthidden' => '' )
-			: array();
+			? [ 'commenthidden' => '' ]
+			: [];
 		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION )
-			? array( 'actionhidden' => '' )
-			: array();
+			? [ 'actionhidden' => '' ]
+			: [];
 
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
 			$ret['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
-			$ret += array(
+			$ret += [
 				'userid' => $this->row->log_user,
 				'user' => $this->row->log_user_text,
-			);
+			];
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_COMMENT, $user ) ) {
-			$ret += array(
+			$ret += [
 				'comment' => $this->row->log_comment,
-			);
+			];
 		}
 
 		return $ret;

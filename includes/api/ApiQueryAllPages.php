@@ -102,11 +102,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$selectFields = array(
+			$selectFields = [
 				'page_namespace',
 				'page_title',
 				'page_id'
-			);
+			];
 		} else {
 			$selectFields = $resultPageSet->getPageTableFields();
 		}
@@ -134,7 +134,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 				if ( isset( $params['prlevel'] ) ) {
 					// Remove the empty string and '*' from the prlevel array
-					$prlevel = array_diff( $params['prlevel'], array( '', '*' ) );
+					$prlevel = array_diff( $params['prlevel'], [ '', '*' ] );
 
 					if ( count( $prlevel ) ) {
 						$this->addWhereFld( 'pr_level', $prlevel );
@@ -161,7 +161,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {
 			$this->addTables( 'langlinks' );
-			$this->addJoinConds( array( 'langlinks' => array( 'LEFT JOIN', 'page_id=ll_from' ) ) );
+			$this->addJoinConds( [ 'langlinks' => [ 'LEFT JOIN', 'page_id=ll_from' ] ] );
 			$this->addWhere( 'll_from IS NULL' );
 			$forceNameTitleIndex = false;
 		} elseif ( $params['filterlanglinks'] == 'withlanglinks' ) {
@@ -180,10 +180,10 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				// over non-NULL columns as satisfying the requirement for
 				// "functional dependency" and don't require including
 				// constant-in-WHERE columns in the GROUP BY.
-				$this->addOption( 'GROUP BY', array( 'page_title' ) );
+				$this->addOption( 'GROUP BY', [ 'page_title' ] );
 			} elseif ( $dbType === 'postgres' && $db->getServerVersion() >= 9.1 ) {
 				// 1999 rules only counting primary keys
-				$this->addOption( 'GROUP BY', array( 'page_title', 'page_id' ) );
+				$this->addOption( 'GROUP BY', [ 'page_title', 'page_id' ] );
 			} else {
 				// 1992 rules
 				$this->addOption( 'GROUP BY', $selectFields );
@@ -200,14 +200,14 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$res = $this->select( __METHOD__ );
 
-		//Get gender information
+		// Get gender information
 		if ( MWNamespace::hasGenderDistinction( $params['namespace'] ) ) {
-			$users = array();
+			$users = [];
 			foreach ( $res as $row ) {
 				$users[] = $row->page_title;
 			}
 			GenderCache::singleton()->doQuery( $users, __METHOD__ );
-			$res->rewind(); //reset
+			$res->rewind(); // reset
 		}
 
 		$count = 0;
@@ -222,12 +222,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 			if ( is_null( $resultPageSet ) ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$vals = array(
+				$vals = [
 					'pageid' => intval( $row->page_id ),
 					'ns' => intval( $title->getNamespace() ),
 					'title' => $title->getPrefixedText()
-				);
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				];
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->page_title );
 					break;
@@ -238,87 +238,87 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'p' );
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'p' );
 		}
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'from' => null,
-			'continue' => array(
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
+			],
 			'to' => null,
 			'prefix' => null,
-			'namespace' => array(
+			'namespace' => [
 				ApiBase::PARAM_DFLT => NS_MAIN,
 				ApiBase::PARAM_TYPE => 'namespace',
-			),
-			'filterredir' => array(
+			],
+			'filterredir' => [
 				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'all',
 					'redirects',
 					'nonredirects'
-				)
-			),
-			'minsize' => array(
+				]
+			],
+			'minsize' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'maxsize' => array(
+			],
+			'maxsize' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'prtype' => array(
+			],
+			'prtype' => [
 				ApiBase::PARAM_TYPE => Title::getFilteredRestrictionTypes( true ),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'prlevel' => array(
+			],
+			'prlevel' => [
 				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'RestrictionLevels' ),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'prfiltercascade' => array(
+			],
+			'prfiltercascade' => [
 				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'cascading',
 					'noncascading',
 					'all'
-				),
-			),
-			'limit' => array(
+				],
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				)
-			),
-			'filterlanglinks' => array(
-				ApiBase::PARAM_TYPE => array(
+				]
+			],
+			'filterlanglinks' => [
+				ApiBase::PARAM_TYPE => [
 					'withlanglinks',
 					'withoutlanglinks',
 					'all'
-				),
+				],
 				ApiBase::PARAM_DFLT => 'all'
-			),
-			'prexpiry' => array(
-				ApiBase::PARAM_TYPE => array(
+			],
+			'prexpiry' => [
+				ApiBase::PARAM_TYPE => [
 					'indefinite',
 					'definite',
 					'all'
-				),
+				],
 				ApiBase::PARAM_DFLT => 'all'
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=allpages&apfrom=B'
 				=> 'apihelp-query+allpages-example-B',
 			'action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info'
@@ -326,7 +326,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'action=query&generator=allpages&gaplimit=2&' .
 				'gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
 				=> 'apihelp-query+allpages-example-generator-revisions',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

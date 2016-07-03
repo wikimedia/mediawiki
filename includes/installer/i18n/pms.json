@@ -5,7 +5,8 @@
 			"Dragonòt",
 			"Krinkle",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Macofe"
 		]
 	},
 	"config-desc": "L'instalador për mediaWiki",
@@ -98,7 +99,6 @@
 	"config-db-install-account": "Cont d'utent për l'instalassion.",
 	"config-db-username": "Nòm d'utent dla base ëd dàit:",
 	"config-db-password": "Ciav dla base ëd dàit:",
-	"config-db-password-empty": "Për piasì, ch'a anserissa na ciav për ël neuv utent ëd base ëd dàit: $1.\nCon tut ch'a sia possìbil creé d'utent sensa ciav, a l'é pa na ròba sigura.",
 	"config-db-install-username": "Ch'a nserissa lë stranòm che a sarà dovrà për coleghesse a la base ëd dàit durant ël process d'istalassion.\nCost-sì a l'é nen lë stranòm dël cont MediaWiki; a l'é lë stranòm për soa base ëd dàit.",
 	"config-db-install-password": "Ch'a anserissa la ciav che a sarà dovrà për coleghesse a la base ëd dàit durant ël process d'istalassion.\nCosta-sì a l'é nen la ciav dël cont MediaWiki; a l'é la ciav për soa base ëd dàit.",
 	"config-db-install-help": "Ch'a anserissa lë stranòm d'utent e la ciav che a saran dovrà për coleghesse a la base ëd dàit durant ël process d'instalassion.",
@@ -242,7 +242,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [//commons.wikimedia.org/ Wikimedia Commons].\nPër dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.\n\nPër pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos ël manual].",
 	"config-cc-error": "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.\nCh'a anserissa ël nòm dla licensa a man.",
 	"config-cc-again": "Torna cheuje...",
-	"config-cc-not-chosen": "Sern che licensa Creative Commons it veule e sgnaca \"anans\".",
+	"config-cc-not-chosen": "Sern che licensa Creative Commons it veule e sgnaca \"proceed\".",
 	"config-advanced-settings": "Configurassion avansà",
 	"config-cache-options": "Ampostassion për la memorisassion local d'oget:",
 	"config-cache-help": "La memorisassion loca d'oget a l'é dovrà për amelioré l'andi ëd MediaWiki an butant an local dij dat dovrà 'd soens.\nIj sit da mesan a gròss a son motobin ancoragià a abilité sòn, e ij sit cit a l'avran ëdcò dij benefissi.",

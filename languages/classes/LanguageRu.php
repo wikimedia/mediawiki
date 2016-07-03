@@ -24,7 +24,9 @@
 /**
  * Russian (русский язык)
  *
- * You can contact Alexander Sigachov (alexander.sigachov at Googgle Mail)
+ * You can contact:
+ * Alexander Sigachov (alexander.sigachov at Googgle Mail)
+ * Amir E. Aharoni (amir.aharoni@mail.huji.ac.il)
  *
  * @ingroup Language
  */
@@ -44,63 +46,22 @@ class LanguageRu extends Language {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for Wikimedia
-		# site names so it doesn't matter if they are wrong sometimes.
-		# Just add a special case for your site name if necessary.
+		$grammarDataFile = __DIR__ . '/data/grammar.ru.json';
+		$grammarData = FormatJson::decode( file_get_contents( $grammarDataFile ), true );
 
-		# substr doesn't support Unicode and mb_substr has issues,
-		# so break it to characters using preg_match_all and then use array_slice and join
-		$chars = array();
-		preg_match_all( '/./us', $word, $chars );
-		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
-			switch ( $case ) {
-				case 'genitive': # родительный падеж
-					if ( join( '', array_slice( $chars[0], -1 ) ) === 'ь' ) {
-						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'я';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ия' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ии';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ка' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ки';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ти' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тей';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дов';
-					} elseif ( join( '', array_slice( $chars[0], -1 ) ) === 'д' ) {
-						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'да';
-					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
-						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ника';
-					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
-						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
-					}
+		if ( array_key_exists( $case, $grammarData ) ) {
+			foreach ( array_keys( $grammarData[$case] ) as $form ) {
+				if ( $form === '@metadata' ) {
+					continue;
+				}
+
+				$regex = "/$form/";
+
+				if ( preg_match( $regex, $word ) ) {
+					$word = preg_replace( $regex, $grammarData[$case][$form], $word );
+
 					break;
-				case 'dative': # дательный падеж
-					# stub
-					break;
-				case 'accusative': # винительный падеж
-					# stub
-					break;
-				case 'instrumental': # творительный падеж
-					# stub
-					break;
-				case 'prepositional': # предложный падеж
-					if ( join( '', array_slice( $chars[0], -1 ) ) === 'ь' ) {
-						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'е';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ия' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ии';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ка' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ке';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ти' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тях';
-					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
-						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дах';
-					} elseif ( join( '', array_slice( $chars[0], -1 ) ) === 'д' ) {
-						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'де';
-					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
-						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'нике';
-					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
-						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
-					}
-					break;
+				}
 			}
 		}
 

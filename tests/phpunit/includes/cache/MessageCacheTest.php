@@ -19,17 +19,11 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	protected function configureLanguages() {
 		// for the test, we need the content language to be anything but English,
 		// let's choose e.g. German (de)
-		$langCode = 'de';
-		$langObj = Language::factory( $langCode );
-
-		$this->setMwGlobals( array(
-			'wgLanguageCode' => $langCode,
-			'wgLang' => $langObj,
-			'wgContLang' => $langObj,
-		) );
+		$this->setUserLang( 'de' );
+		$this->setContentLang( 'de' );
 	}
 
-	function addDBData() {
+	function addDBDataOnce() {
 		$this->configureLanguages();
 
 		// Set up messages and fallbacks ab -> ru -> de
@@ -89,20 +83,20 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	function provideMessagesForFallback() {
-		return array(
-			array( 'FallbackLanguageTest-Full', 'ab', 'ab' ),
-			array( 'FallbackLanguageTest-Partial', 'ab', 'ru' ),
-			array( 'FallbackLanguageTest-ContLang', 'ab', 'de' ),
-			array( 'FallbackLanguageTest-None', 'ab', false ),
+		return [
+			[ 'FallbackLanguageTest-Full', 'ab', 'ab' ],
+			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],
+			[ 'FallbackLanguageTest-ContLang', 'ab', 'de' ],
+			[ 'FallbackLanguageTest-None', 'ab', false ],
 
 			// Existing message with customizations on the fallbacks
-			array( 'sunday', 'ab', 'амҽыш' ),
+			[ 'sunday', 'ab', 'амҽыш' ],
 
 			// bug 46579
-			array( 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ),
+			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
 			// UI language different from content language should only use de/none as last option
-			array( 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ),
-		);
+			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ],
+		];
 	}
 
 	/**
@@ -117,11 +111,11 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	function provideMessagesForFullKeys() {
-		return array(
-			array( 'MessageCacheTest-FullKeyTest/ru', 'ru', 'ru' ),
-			array( 'MessageCacheTest-FullKeyTest/ru', 'ab', 'ru' ),
-			array( 'MessageCacheTest-FullKeyTest/ru/foo', 'ru', false ),
-		);
+		return [
+			[ 'MessageCacheTest-FullKeyTest/ru', 'ru', 'ru' ],
+			[ 'MessageCacheTest-FullKeyTest/ru', 'ab', 'ru' ],
+			[ 'MessageCacheTest-FullKeyTest/ru/foo', 'ru', false ],
+		];
 	}
 
 	/**
@@ -133,17 +127,17 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideNormalizeKey() {
-		return array(
-			array( 'Foo', 'foo' ),
-			array( 'foo', 'foo' ),
-			array( 'fOo', 'fOo' ),
-			array( 'FOO', 'fOO' ),
-			array( 'Foo bar', 'foo_bar' ),
-			array( 'Ćab', 'ćab' ),
-			array( 'Ćab_e 3', 'ćab_e_3' ),
-			array( 'ĆAB', 'ćAB' ),
-			array( 'ćab', 'ćab' ),
-			array( 'ćaB', 'ćaB' ),
-		);
+		return [
+			[ 'Foo', 'foo' ],
+			[ 'foo', 'foo' ],
+			[ 'fOo', 'fOo' ],
+			[ 'FOO', 'fOO' ],
+			[ 'Foo bar', 'foo_bar' ],
+			[ 'Ćab', 'ćab' ],
+			[ 'Ćab_e 3', 'ćab_e_3' ],
+			[ 'ĆAB', 'ćAB' ],
+			[ 'ćab', 'ćab' ],
+			[ 'ćaB', 'ćaB' ],
+		];
 	}
 }

@@ -12,7 +12,8 @@ require_once __DIR__ . '/Maintenance.php';
 class CheckComposerLockUpToDate extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Checks whether your composer.lock file is up to date with the current composer.json';
+		$this->addDescription(
+			'Checks whether your composer.lock file is up to date with the current composer.json' );
 	}
 
 	public function execute() {
@@ -23,7 +24,10 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// Maybe they're using mediawiki/vendor?
 			$lockLocation = "$IP/vendor/composer.lock";
 			if ( !file_exists( $lockLocation ) ) {
-				$this->error( 'Could not find composer.lock file. Have you run "composer install"?', 1 );
+				$this->error(
+					'Could not find composer.lock file. Have you run "composer install"?',
+					1
+				);
 			}
 		}
 
@@ -40,7 +44,9 @@ class CheckComposerLockUpToDate extends Maintenance {
 		foreach ( $json->getRequiredDependencies() as $name => $version ) {
 			if ( isset( $installed[$name] ) ) {
 				if ( $installed[$name]['version'] !== $version ) {
-					$this->output( "$name: {$installed[$name]['version']} installed, $version required.\n" );
+					$this->output(
+						"$name: {$installed[$name]['version']} installed, $version required.\n"
+					);
 					$found = true;
 				}
 			} else {
@@ -49,9 +55,14 @@ class CheckComposerLockUpToDate extends Maintenance {
 			}
 		}
 		if ( $found ) {
-			$this->error( 'Error: your composer.lock file is not up to date, run "composer update" to install newer dependencies', 1 );
+			$this->error(
+				'Error: your composer.lock file is not up to date. ' .
+					'Run "composer update" to install newer dependencies',
+				1
+			);
 		} else {
-			// The hash is the entire composer.json file, so it can be updated without any of the dependencies changing
+			// The hash is the entire composer.json file,
+			// so it can be updated without any of the dependencies changing
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 		}

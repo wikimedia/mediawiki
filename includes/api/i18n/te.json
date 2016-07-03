@@ -1,8 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Veeven"
+			"Veeven",
+			"HAUSANRIK",
+			"Ravichandra"
 		]
 	},
-	"apihelp-feedrecentchanges-example-simple": "ఇటీవలి మార్పులను చూడండి"
+	"apihelp-block-description": "ఓ వాడుకరిని నిరోధించండి.",
+	"apihelp-block-param-reason": "నిరోధానికి కారణం.",
+	"apihelp-block-param-nocreate": "ఖాతా సృష్టింపుని నివారించు",
+	"apihelp-createaccount-param-name": "వాడుకరి పేరు:",
+	"apihelp-delete-description": "ఓ పేజీని తొలగించు.",
+	"apihelp-edit-param-minor": "చిన్న మార్పు",
+	"apihelp-edit-example-edit": "ఓ పేజీని మార్చు.",
+	"apihelp-emailuser-description": "వాడుకరికి ఈమెయిలు పంపించండి.",
+	"apihelp-feedrecentchanges-example-simple": "ఇటీవలి మార్పులను చూడండి",
+	"apihelp-rawfm-description": "బయటకు వచ్చిన సమాచారo, డీబగ్గింగ్ అంశముతో కలిపి, JSON పద్ధతిలో (HTMLలో అందంగా-ముద్రించు)"
 }

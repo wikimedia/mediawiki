@@ -38,7 +38,6 @@ CREATE TABLE /*_*/mwuser (
    user_newpassword  NVARCHAR(255)  NOT NULL DEFAULT '',
    user_newpass_time varchar(14) NULL DEFAULT NULL,
    user_email        NVARCHAR(255)  NOT NULL DEFAULT '',
-   user_options      NVARCHAR(MAX) NOT NULL DEFAULT '',
    user_touched      varchar(14)      NOT NULL DEFAULT '',
    user_token        NCHAR(32)      NOT NULL DEFAULT '',
    user_email_authenticated varchar(14) DEFAULT NULL,
@@ -100,6 +99,20 @@ CREATE TABLE /*_*/user_properties (
 );
 CREATE UNIQUE CLUSTERED INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
 CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
+
+--
+-- This table contains a user's bot passwords: passwords that allow access to
+-- the account via the API with limited rights.
+--
+CREATE TABLE /*_*/bot_passwords (
+	bp_user int NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
+	bp_app_id nvarchar(32) NOT NULL,
+	bp_password nvarchar(255) NOT NULL,
+	bp_token nvarchar(255) NOT NULL,
+	bp_restrictions nvarchar(max) NOT NULL,
+	bp_grants nvarchar(max) NOT NULL,
+	PRIMARY KEY (bp_user, bp_app_id)
+);
 
 
 --
@@ -193,17 +206,17 @@ CREATE TABLE /*_*/archive (
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
    ar_text NVARCHAR(MAX) NOT NULL,
    ar_comment NVARCHAR(255) NOT NULL,
-   ar_user INT REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
+   ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
    ar_user_text NVARCHAR(255) NOT NULL,
    ar_timestamp varchar(14) NOT NULL default '',
    ar_minor_edit BIT NOT NULL DEFAULT 0,
    ar_flags NVARCHAR(255) NOT NULL,
    ar_rev_id INT NULL, -- NOT a FK, the row gets deleted from revision and moved here
-   ar_text_id INT REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
+   ar_text_id INT CONSTRAINT ar_text_id__old_id__fk FOREIGN KEY REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
    ar_deleted TINYINT NOT NULL DEFAULT 0,
    ar_len INT,
    ar_page_id INT NULL, -- NOT a FK, the row gets deleted from page and moved here
-   ar_parent_id INT NULL REFERENCES /*_*/revision(rev_id),
+   ar_parent_id INT NULL, -- NOT FK
    ar_sha1 nvarchar(32) default null,
    ar_content_model nvarchar(32) DEFAULT NULL,
   ar_content_format nvarchar(64) DEFAULT NULL
@@ -218,11 +231,13 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 --
 CREATE TABLE /*_*/pagelinks (
    pl_from INT NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+   pl_from_namespace int NOT NULL DEFAULT 0,
    pl_namespace INT NOT NULL DEFAULT 0,
    pl_title NVARCHAR(255) NOT NULL DEFAULT '',
 );
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
 CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_from_namespace,pl_namespace,pl_title,pl_from);
 
 
 --
@@ -230,12 +245,14 @@ CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,p
 --
 CREATE TABLE /*_*/templatelinks (
   tl_from int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+  tl_from_namespace int NOT NULL default 0,
   tl_namespace int NOT NULL default 0,
   tl_title nvarchar(255) NOT NULL default ''
 );
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
 CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_from_namespace,tl_namespace,tl_title,tl_from);
 
 
 --
@@ -246,6 +263,7 @@ CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_tit
 CREATE TABLE /*_*/imagelinks (
   -- Key to page_id of the page containing the image / media link.
   il_from int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
+  il_from_namespace int NOT NULL default 0,
 
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
@@ -255,6 +273,7 @@ CREATE TABLE /*_*/imagelinks (
 
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
 CREATE UNIQUE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
+CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_from_namespace,il_to,il_from);
 
 --
 -- Track category inclusions *used inline*
@@ -313,8 +332,8 @@ CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_
 -- Used by the API (and some extensions)
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 
--- FIXME: Not used, delete this
-CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
+-- Used when updating collation (e.g. updateCollation.php)
+CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
 --
 -- Track all existing categories.  Something is a category if 1) it has an en-
@@ -375,6 +394,9 @@ CREATE TABLE /*_*/externallinks (
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index);
+-- el_to index intentionally not added; we cannot index nvarchar(max) columns,
+-- but we also cannot restrict el_to to a smaller column size as the external
+-- link may be larger.
 
 --
 -- Track interlanguage links
@@ -536,7 +558,7 @@ CREATE TABLE /*_*/image (
   -- Filename.
   -- This is also the title of the associated description page,
   -- which will be in namespace 6 (NS_FILE).
-  img_name varbinary(255) NOT NULL default 0x PRIMARY KEY,
+  img_name nvarchar(255) NOT NULL default '' PRIMARY KEY,
 
   -- File size in bytes.
   img_size int NOT NULL default 0,
@@ -600,11 +622,12 @@ CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,im
 --
 CREATE TABLE /*_*/oldimage (
   -- Base filename: key to image.img_name
-  oi_name varbinary(255) NOT NULL default 0x REFERENCES /*_*/image(img_name) ON DELETE CASCADE ON UPDATE CASCADE,
+  -- Not a FK because deleting images removes them from image
+  oi_name nvarchar(255) NOT NULL default '',
 
   -- Filename of the archived file.
   -- This is generally a timestamp and '!' prepended to the base name.
-  oi_archive_name varbinary(255) NOT NULL default 0x,
+  oi_archive_name nvarchar(255) NOT NULL default '',
 
   -- Other fields as in image...
   oi_size int NOT NULL default 0,
@@ -616,7 +639,7 @@ CREATE TABLE /*_*/oldimage (
   oi_user_text nvarchar(255) NOT NULL,
   oi_timestamp varchar(14) NOT NULL default '',
 
-  oi_metadata nvarchar(max) NOT NULL,
+  oi_metadata varbinary(max) NOT NULL,
   oi_media_type varchar(16) default null,
   oi_major_mime varchar(16) not null default 'unknown',
   oi_minor_mime nvarchar(100) NOT NULL default 'unknown',
@@ -629,7 +652,6 @@ CREATE TABLE /*_*/oldimage (
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
--- oi_archive_name truncated to 14 to avoid key length overflow
 CREATE INDEX /*i*/oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name);
 CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
 
@@ -668,7 +690,7 @@ CREATE TABLE /*_*/filearchive (
   fa_size int default 0,
   fa_width int default 0,
   fa_height int default 0,
-  fa_metadata nvarchar(max),
+  fa_metadata varbinary(max),
   fa_bits int default 0,
   fa_media_type varchar(16) default null,
   fa_major_mime varchar(16) not null default 'unknown',
@@ -763,16 +785,11 @@ CREATE INDEX /*i*/us_timestamp ON /*_*/uploadstash (us_timestamp);
 -- the last few days, see Article::editUpdates()
 --
 CREATE TABLE /*_*/recentchanges (
-  rc_id int NOT NULL PRIMARY KEY IDENTITY,
+  rc_id int NOT NULL CONSTRAINT recentchanges__pk PRIMARY KEY IDENTITY,
   rc_timestamp varchar(14) not null default '',
 
-  -- This is no longer used
-  -- Field kept in database for downgrades
-  -- @todo: add drop patch with 1.24
-  rc_cur_time varchar(14) NOT NULL default '',
-
   -- As in revision
-  rc_user int NOT NULL default 0 REFERENCES /*_*/mwuser(user_id),
+  rc_user int NOT NULL default 0 CONSTRAINT rc_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
   rc_user_text nvarchar(255) NOT NULL,
 
   -- When pages are renamed, their RC entries do _not_ change.
@@ -794,13 +811,13 @@ CREATE TABLE /*_*/recentchanges (
   -- Key to page_id (was cur_id prior to 1.5).
   -- This will keep links working after moves while
   -- retaining the at-the-time name in the changes list.
-  rc_cur_id int REFERENCES /*_*/page(page_id),
+  rc_cur_id int, -- NOT FK
 
   -- rev_id of the given revision
-  rc_this_oldid int REFERENCES /*_*/revision(rev_id),
+  rc_this_oldid int, -- NOT FK
 
   -- rev_id of the prior revision, for generating diff links.
-  rc_last_oldid int REFERENCES /*_*/revision(rev_id),
+  rc_last_oldid int, -- NOT FK
 
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)
   rc_type tinyint NOT NULL default 0,
@@ -847,6 +864,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 
 
 CREATE TABLE /*_*/watchlist (
+  wl_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Key to user.user_id
   wl_user int NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
 
@@ -968,7 +986,7 @@ CREATE TABLE /*_*/logging (
   log_timestamp varchar(14) NOT NULL default '',
 
   -- The user who performed this action; key to user_id
-  log_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
+  log_user int, -- NOT an FK, if a user is deleted we still want to maintain a record of who did a thing
 
   -- Name of the user who performed this action
   log_user_text nvarchar(255) NOT NULL default '',
@@ -977,7 +995,7 @@ CREATE TABLE /*_*/logging (
   -- this will point to the user page.
   log_namespace int NOT NULL default 0,
   log_title nvarchar(255) NOT NULL default '',
-  log_page int NULL REFERENCES /*_*/page(page_id) ON DELETE SET NULL,
+  log_page int NULL, -- NOT an FK, logging entries are inserted for deleted pages which still reference the deleted page ids
 
   -- Freeform text. Interpreted as edit history comments.
   log_comment nvarchar(255) NOT NULL default '',
@@ -1002,7 +1020,7 @@ CREATE INDEX /*i*/log_user_text_time ON /*_*/logging (log_user_text, log_timesta
 
 INSERT INTO /*_*/logging (log_user,log_page,log_params) VALUES(0,0,'');
 
-ALTER TABLE /*_*/recentchanges ADD CONSTRAINT FK_rc_logid_log_id FOREIGN KEY (rc_logid) REFERENCES /*_*/logging(log_id) ON DELETE CASCADE;
+ALTER TABLE /*_*/recentchanges ADD CONSTRAINT rc_logid__log_id__fk FOREIGN KEY (rc_logid) REFERENCES /*_*/logging(log_id) ON DELETE CASCADE;
 
 CREATE TABLE /*_*/log_search (
   -- The type of ID (rev ID, log ID, rev timestamp, username)
@@ -1156,11 +1174,13 @@ CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
   pp_propname nvarchar(60) NOT NULL,
-  pp_value nvarchar(max) NOT NULL
+  pp_value nvarchar(max) NOT NULL,
+  pp_sortkey float DEFAULT NULL
 );
 
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
+CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
 
 -- A table to log updates, one text key row per update.
@@ -1223,27 +1243,6 @@ CREATE TABLE /*_*/l10n_cache (
   lc_value varbinary(max) NOT NULL
 );
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
-
--- Table for caching JSON message texts for the resource loader
-CREATE TABLE /*_*/msg_resource (
-  -- Resource name
-  mr_resource nvarchar(255) NOT NULL,
-  -- Language code
-  mr_lang nvarchar(32) NOT NULL,
-  -- JSON blob
-  mr_blob varbinary(max) NOT NULL,
-  -- Timestamp of last update
-  mr_timestamp varchar(14) NOT NULL
-);
-CREATE UNIQUE INDEX /*i*/mr_resource_lang ON /*_*/msg_resource (mr_resource, mr_lang);
-
--- Table for administering which message is contained in which resource
-CREATE TABLE /*_*/msg_resource_links (
-  mrl_resource varbinary(255) NOT NULL,
-  -- Message key
-  mrl_message varbinary(255) NOT NULL
-);
-CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_message, mrl_resource);
 
 -- Table caching which local files a module depends on that aren't
 -- registered directly, used for fast retrieval of file dependency.

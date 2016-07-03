@@ -8,28 +8,28 @@
  *
  */
 
-$datePreferences = array(
+$datePreferences = [
 	'default',
 	'fy normal',
 	'ISO 8601',
-);
+];
 
 $defaultDateFormat = 'fy normal';
 
-$dateFormats = array(
+$dateFormats = [
 	'fy normal time' => 'H.i',
 	'fy normal date' => 'j M Y',
 	'fy normal both' => 'j M Y, H.i',
-);
+];
 
-$datePreferenceMigrationMap = array(
+$datePreferenceMigrationMap = [
 	'default',
 	'fy normal',
 	'fy normal',
 	'fy normal',
-);
+];
 
-$namespaceNames = array(
+$namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Wiki',
 	NS_TALK             => 'Oerlis',
@@ -46,87 +46,87 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hulp_oerlis',
 	NS_CATEGORY         => 'Kategory',
 	NS_CATEGORY_TALK    => 'Kategory_oerlis',
-);
+];
 
-$namespaceAliases = array(
+$namespaceAliases = [
 	'Brûker' => NS_USER,
 	'Brûker_oerlis' => NS_USER_TALK,
-);
+];
 
-$specialPageAliases = array(
-	'Allmessages'               => array( 'Alle wikiberjochten' ),
-	'Allpages'                  => array( 'Alle titels', 'Alle siden' ),
-	'Ancientpages'              => array( 'Alde siden', 'Âlde siden', 'Siden dy\'t lang net feroare binne' ),
-	'Block'                     => array( 'Slút brûker út', 'Slút meidogger út' ),
-	'Booksources'               => array( 'Boekynformaasje' ),
-	'BrokenRedirects'           => array( 'Misse trochferwizings', 'Missetrochferwizings' ),
-	'Categories'                => array( 'Kategoryen', 'Rubriken' ),
-	'Confirmemail'              => array( 'Befêstigjen netpostadres' ),
-	'Contributions'             => array( 'Meidogger-bydragen', 'Meidogger bydragen', 'Bydragen', 'Brûker bydragen' ),
-	'CreateAccount'             => array( 'Nije ynstellings oanmeitsje', 'Nijeynstellingsoanmeitsje' ),
-	'Deadendpages'              => array( 'Siden sûnder keppelings', 'Siden sûnder ferwizings', 'Siden sûnder links' ),
-	'DoubleRedirects'           => array( 'Dûbele trochferwizings', 'Dûbeletrochferwizings' ),
-	'Emailuser'                 => array( 'Skriuw meidogger', 'Skriuw dizze brûker', 'Skriuw dizze meidogger' ),
-	'Export'                    => array( 'Eksportearje' ),
-	'Fewestrevisions'           => array( 'Siden mei de minste bewurkings', 'Siden mei de minste ferzjes', 'Siden mei de minste wizigings' ),
-	'Filepath'                  => array( 'Triempad' ),
-	'Import'                    => array( 'Ymport' ),
-	'BlockList'                 => array( 'List fan útsletten Ynternet-adressen en brûkersnammen', 'List fan útsletten ynternet-adressen en meidochnammen', 'Útslette brûkers', 'Utslette brûkers', 'Útsletten meidoggers', 'Utsletten meidoggers' ),
-	'Listadmins'                => array( 'Meidoggerlist Behearders' ),
-	'Listbots'                  => array( 'Meidoggerlist Bots' ),
-	'Listfiles'                 => array( 'Ofbyld list', 'Ofbyldlist' ),
-	'Listredirects'             => array( 'List fan trochferwizings' ),
-	'Listusers'                 => array( 'Meidoggerlist', 'Brûkerlist' ),
-	'Lockdb'                    => array( 'Meitsje de database \'Net-skriuwe\'', 'Meitsje de databank \'Net-skriuwe\'' ),
-	'Log'                       => array( 'Loch', 'Logboek', 'Logboeken', 'Lochs' ),
-	'Lonelypages'               => array( 'Lossteande siden' ),
-	'Longpages'                 => array( 'Lange siden' ),
-	'MIMEsearch'                => array( 'Sykje op MIME-type' ),
-	'Mostcategories'            => array( 'Siden mei de measte rubriken', 'Siden mei de measte kategoryen' ),
-	'Mostimages'                => array( 'Ofbylden dy\'t it meast brûkt wurde', 'Meast brûkte ôfbyldings' ),
-	'Mostlinked'                => array( 'Siden wêr it meast mei keppele is', 'Siden dêr\'t it meast nei ferwiisd wurdt' ),
-	'Mostlinkedcategories'      => array( 'Kategoryen dy\'t it meast brûkt wurde', 'Kategoryen dêr\'t it meast nei ferwiisd wurdt' ),
-	'Mostlinkedtemplates'       => array( 'Meast brûkte sjabloanen', 'Meast brûkte berjochten' ),
-	'Mostrevisions'             => array( 'Siden mei de measte wizigings', 'Siden mei de measte bewurkings' ),
-	'Movepage'                  => array( 'Werneam side' ),
-	'Mycontributions'           => array( 'Myn bydragen' ),
-	'Mypage'                    => array( 'Myn side' ),
-	'Mytalk'                    => array( 'Myn oerlis' ),
-	'Newimages'                 => array( 'Nije ôfbylden', 'Nije ôfbyldings', 'Nije ôfbyldingen', 'List mei nije ôfbylden', 'Nije Ofbylden' ),
-	'Newpages'                  => array( 'Nije siden' ),
-	'Preferences'               => array( 'Ynstellings', 'Ynsteld' ),
-	'Prefixindex'               => array( 'Alle siden neffens foarheaksel' ),
-	'Protectedpages'            => array( 'Befeilige siden', 'Skoattele siden' ),
-	'Randompage'                => array( 'Samar in side' ),
-	'Randomredirect'            => array( 'Samar in trochferwizing' ),
-	'Recentchanges'             => array( 'Koartlyn feroare', 'Koarts feroare' ),
-	'Recentchangeslinked'       => array( 'Folgje keppelings' ),
-	'Search'                    => array( 'Sykje' ),
-	'Shortpages'                => array( 'Koarte siden' ),
-	'Specialpages'              => array( 'Bysûndere siden' ),
-	'Statistics'                => array( 'Statistyk' ),
-	'Uncategorizedcategories'   => array( 'Kategoryen sûnder kategory', 'Rubriken sûnder rubryk', 'Net-kategorisearre kategoryen' ),
-	'Uncategorizedimages'       => array( 'Net-kategorisearre ôfbyldings', 'Ofbylden sûnder kategory', 'Ofbylden sûnder rubryk' ),
-	'Uncategorizedpages'        => array( 'Siden sûnder rubryk', 'Siden sûnder kategory', 'Net-kategorisearre siden' ),
-	'Uncategorizedtemplates'    => array( 'Net-kategorisearre sjabloanen', 'Net-kategorisearre berjochten', 'Berjochten sûnder rubryk', 'Berjochten sûnder kategory' ),
-	'Undelete'                  => array( 'Side werom set' ),
-	'Unlockdb'                  => array( 'Meitsje de databank skriuwber' ),
-	'Unusedcategories'          => array( 'Net-brûkte kategoryen', 'Lege kategoryen' ),
-	'Unusedimages'              => array( 'Lossteande ôfbylden' ),
-	'Unusedtemplates'           => array( 'Net brûkte sjabloanen', 'Net brûkte berjochten' ),
-	'Unwatchedpages'            => array( 'Siden dy\'t net op in folchlist steane' ),
-	'Upload'                    => array( 'Bied triem oan', 'Oanbied', 'Bied bestân oan' ),
-	'Userlogin'                 => array( 'Oanmelde', 'Oanmeld' ),
-	'Userlogout'                => array( 'Ofmelde', 'Ofmeld', 'Ôfmelde', 'Ôfmeld' ),
-	'Userrights'                => array( 'Meidoggerrjochten', 'Behear fan meidoggerrjochten' ),
-	'Version'                   => array( 'Ferzje', 'Programmatuerferzje' ),
-	'Wantedcategories'          => array( 'Nedige kategoryen', 'Net-besteande kategoryen dêr\'t it meast nei ferwiisd wurdt' ),
-	'Wantedpages'               => array( 'Nedige siden' ),
-	'Watchlist'                 => array( 'Folchlist', 'Jo Folchlist' ),
-	'Whatlinkshere'             => array( 'Wat is hjirmei keppele', 'Wat is hjirmei keppele?', 'List fan alle siden dy\'t nei dizze side ferwize' ),
-	'Withoutinterwiki'          => array( 'Siden sûnder links nei oare talen', 'Siden sûnder ferwizings nei oare talen', 'Siden sûnder keppelings nei oare talen' ),
-);
+$specialPageAliases = [
+	'Allmessages'               => [ 'Alle wikiberjochten' ],
+	'Allpages'                  => [ 'Alle titels', 'Alle siden' ],
+	'Ancientpages'              => [ 'Alde siden', 'Âlde siden', 'Siden dy\'t lang net feroare binne' ],
+	'Block'                     => [ 'Slút brûker út', 'Slút meidogger út' ],
+	'Booksources'               => [ 'Boekynformaasje' ],
+	'BrokenRedirects'           => [ 'Misse trochferwizings', 'Missetrochferwizings' ],
+	'Categories'                => [ 'Kategoryen', 'Rubriken' ],
+	'Confirmemail'              => [ 'Befêstigjen netpostadres' ],
+	'Contributions'             => [ 'Meidogger-bydragen', 'Meidogger bydragen', 'Bydragen', 'Brûker bydragen' ],
+	'CreateAccount'             => [ 'Nije ynstellings oanmeitsje', 'Nijeynstellingsoanmeitsje' ],
+	'Deadendpages'              => [ 'Siden sûnder keppelings', 'Siden sûnder ferwizings', 'Siden sûnder links' ],
+	'DoubleRedirects'           => [ 'Dûbele trochferwizings', 'Dûbeletrochferwizings' ],
+	'Emailuser'                 => [ 'Skriuw meidogger', 'Skriuw dizze brûker', 'Skriuw dizze meidogger' ],
+	'Export'                    => [ 'Eksportearje' ],
+	'Fewestrevisions'           => [ 'Siden mei de minste bewurkings', 'Siden mei de minste ferzjes', 'Siden mei de minste wizigings' ],
+	'Filepath'                  => [ 'Triempad' ],
+	'Import'                    => [ 'Ymport' ],
+	'BlockList'                 => [ 'List fan útsletten Ynternet-adressen en brûkersnammen', 'List fan útsletten ynternet-adressen en meidochnammen', 'Útslette brûkers', 'Utslette brûkers', 'Útsletten meidoggers', 'Utsletten meidoggers' ],
+	'Listadmins'                => [ 'Meidoggerlist Behearders' ],
+	'Listbots'                  => [ 'Meidoggerlist Bots' ],
+	'Listfiles'                 => [ 'Ofbyld list', 'Ofbyldlist' ],
+	'Listredirects'             => [ 'List fan trochferwizings' ],
+	'Listusers'                 => [ 'Meidoggerlist', 'Brûkerlist' ],
+	'Lockdb'                    => [ 'Meitsje de database \'Net-skriuwe\'', 'Meitsje de databank \'Net-skriuwe\'' ],
+	'Log'                       => [ 'Loch', 'Logboek', 'Logboeken', 'Lochs' ],
+	'Lonelypages'               => [ 'Lossteande siden' ],
+	'Longpages'                 => [ 'Lange siden' ],
+	'MIMEsearch'                => [ 'Sykje op MIME-type' ],
+	'Mostcategories'            => [ 'Siden mei de measte rubriken', 'Siden mei de measte kategoryen' ],
+	'Mostimages'                => [ 'Ofbylden dy\'t it meast brûkt wurde', 'Meast brûkte ôfbyldings' ],
+	'Mostlinked'                => [ 'Siden wêr it meast mei keppele is', 'Siden dêr\'t it meast nei ferwiisd wurdt' ],
+	'Mostlinkedcategories'      => [ 'Kategoryen dy\'t it meast brûkt wurde', 'Kategoryen dêr\'t it meast nei ferwiisd wurdt' ],
+	'Mostlinkedtemplates'       => [ 'Meast brûkte sjabloanen', 'Meast brûkte berjochten' ],
+	'Mostrevisions'             => [ 'Siden mei de measte wizigings', 'Siden mei de measte bewurkings' ],
+	'Movepage'                  => [ 'Werneam side' ],
+	'Mycontributions'           => [ 'Myn bydragen' ],
+	'Mypage'                    => [ 'Myn side' ],
+	'Mytalk'                    => [ 'Myn oerlis' ],
+	'Newimages'                 => [ 'Nije ôfbylden', 'Nije ôfbyldings', 'Nije ôfbyldingen', 'List mei nije ôfbylden', 'Nije Ofbylden' ],
+	'Newpages'                  => [ 'Nije siden' ],
+	'Preferences'               => [ 'Ynstellings', 'Ynsteld' ],
+	'Prefixindex'               => [ 'Alle siden neffens foarheaksel' ],
+	'Protectedpages'            => [ 'Befeilige siden', 'Skoattele siden' ],
+	'Randompage'                => [ 'Samar in side' ],
+	'Randomredirect'            => [ 'Samar in trochferwizing' ],
+	'Recentchanges'             => [ 'Koartlyn feroare', 'Koarts feroare' ],
+	'Recentchangeslinked'       => [ 'Folgje keppelings' ],
+	'Search'                    => [ 'Sykje' ],
+	'Shortpages'                => [ 'Koarte siden' ],
+	'Specialpages'              => [ 'Bysûndere siden' ],
+	'Statistics'                => [ 'Statistyk' ],
+	'Uncategorizedcategories'   => [ 'Kategoryen sûnder kategory', 'Rubriken sûnder rubryk', 'Net-kategorisearre kategoryen' ],
+	'Uncategorizedimages'       => [ 'Net-kategorisearre ôfbyldings', 'Ofbylden sûnder kategory', 'Ofbylden sûnder rubryk' ],
+	'Uncategorizedpages'        => [ 'Siden sûnder rubryk', 'Siden sûnder kategory', 'Net-kategorisearre siden' ],
+	'Uncategorizedtemplates'    => [ 'Net-kategorisearre sjabloanen', 'Net-kategorisearre berjochten', 'Berjochten sûnder rubryk', 'Berjochten sûnder kategory' ],
+	'Undelete'                  => [ 'Side werom set' ],
+	'Unlockdb'                  => [ 'Meitsje de databank skriuwber' ],
+	'Unusedcategories'          => [ 'Net-brûkte kategoryen', 'Lege kategoryen' ],
+	'Unusedimages'              => [ 'Lossteande ôfbylden' ],
+	'Unusedtemplates'           => [ 'Net brûkte sjabloanen', 'Net brûkte berjochten' ],
+	'Unwatchedpages'            => [ 'Siden dy\'t net op in folchlist steane' ],
+	'Upload'                    => [ 'Bied triem oan', 'Oanbied', 'Bied bestân oan' ],
+	'Userlogin'                 => [ 'Oanmelde', 'Oanmeld' ],
+	'Userlogout'                => [ 'Ofmelde', 'Ofmeld', 'Ôfmelde', 'Ôfmeld' ],
+	'Userrights'                => [ 'Meidoggerrjochten', 'Behear fan meidoggerrjochten' ],
+	'Version'                   => [ 'Ferzje', 'Programmatuerferzje' ],
+	'Wantedcategories'          => [ 'Nedige kategoryen', 'Net-besteande kategoryen dêr\'t it meast nei ferwiisd wurdt' ],
+	'Wantedpages'               => [ 'Nedige siden' ],
+	'Watchlist'                 => [ 'Folchlist', 'Jo Folchlist' ],
+	'Whatlinkshere'             => [ 'Wat is hjirmei keppele', 'Wat is hjirmei keppele?', 'List fan alle siden dy\'t nei dizze side ferwize' ],
+	'Withoutinterwiki'          => [ 'Siden sûnder links nei oare talen', 'Siden sûnder ferwizings nei oare talen', 'Siden sûnder keppelings nei oare talen' ],
+];
 
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
 

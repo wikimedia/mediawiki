@@ -302,128 +302,189 @@
 		"ResourceModules": {
 			"type": "object",
 			"description": "ResourceLoader modules to register",
-			"additionalProperties": false,
 			"patternProperties": {
 				"^[a-zA-Z0-9-\\.]+$": {
 					"type": "object",
-					"description": "A single ResourceLoader module descriptor",
-					"properties": {
-						"localBasePath": {
-							"type": "string",
-							"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
-						},
-						"remoteBasePath": {
-							"type": "string",
-							"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
-						},
-						"remoteExtPath": {
-							"type": "string",
-							"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
-						},
-						"scripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to always include (array of file paths)",
-							"items": {
-								"type": "string"
-							}
-						},
-						"languageScripts": {
-							"type": "object",
-							"description": "Scripts to include in specific language contexts (mapping of language code to file path(s))",
-							"patternProperties": {
-								"^[a-zA-Z0-9-]{2,}$": {
-									"type": [
-										"string",
-										"array"
-									],
+					"anyOf": [
+						{
+							"description": "A ResourceLoaderFileModule definition",
+							"additionalProperties": false,
+							"properties": {
+								"localBasePath": {
+									"type": "string",
+									"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
+								},
+								"remoteBasePath": {
+									"type": "string",
+									"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
+								},
+								"remoteExtPath": {
+									"type": "string",
+									"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
+								},
+								"skipFunction": {
+									"type": "string",
+									"description": "Path to a file containing a JavaScript \"skip function\", if desired."
+								},
+								"scripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to always include (array of file paths)",
+									"items": {
+										"type": "string"
+									}
+								},
+								"languageScripts": {
+									"type": "object",
+									"description": "Scripts to include in specific language contexts (mapping of language code to file path(s))",
+									"patternProperties": {
+										"^[a-zA-Z0-9-]{2,}$": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"skinScripts": {
+									"type": "object",
+									"description": "Scripts to include in specific skin contexts (mapping of skin name to script(s)",
+									"patternProperties": {
+										".+": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"debugScripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to include in debug contexts",
+									"items": {
+										"type": "string"
+									}
+								},
+								"loaderScripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to include in the startup module",
+									"items": {
+										"type": "string"
+									}
+								},
+								"dependencies": {
+									"type": ["string", "array"],
+									"description": "Modules which must be loaded before this module",
+									"items": {
+										"type": "string"
+									}
+								},
+								"styles": {
+									"type": ["string", "array", "object"],
+									"description": "Styles to always load",
+									"items": {
+										"type": "string"
+									}
+								},
+								"skinStyles": {
+									"type": "object",
+									"description": "Styles to include in specific skin contexts (mapping of skin name to style(s))",
+									"patternProperties": {
+										".+": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"messages": {
+									"type": ["string", "array"],
+									"description": "Messages to always load",
+									"items": {
+										"type": "string"
+									}
+								},
+								"group": {
+									"type": "string",
+									"description": "Group which this module should be loaded together with"
+								},
+								"position": {
+									"type": "string",
+									"description": "Position on the page to load this module at",
+									"enum": [
+										"bottom",
+										"top"
+									]
+								},
+								"templates": {
+									"type": ["object", "array"],
+									"description": "Templates to be loaded for client-side usage"
+								},
+								"targets": {
+									"type": ["string", "array"],
+									"description": "ResourceLoader target the module can run on",
 									"items": {
 										"type": "string"
 									}
 								}
 							}
 						},
-						"skinScripts": {
-							"type": "object",
-							"description": "Scripts to include in specific skin contexts (mapping of skin name to script(s)",
-							"patternProperties": {
-								".+": {
-									"type": [
-										"string",
-										"array"
-									],
-									"items": {
-										"type": "string"
-									}
+						{
+							"description": "A ResourceLoaderImageModule definition",
+							"additionalProperties": false,
+							"properties": {
+								"class": {
+									"enum": ["ResourceLoaderImageModule"]
+								},
+								"data": {
+									"type": "string"
+								},
+								"prefix": {
+									"type": "string"
+								},
+								"selector": {
+									"type": "string"
+								},
+								"selectorWithoutVariant": {
+									"type": "string"
+								},
+								"selectorWithVariant": {
+									"type": "string"
+								},
+								"variants": {
+									"type": "object"
+								},
+								"images": {
+									"type": "object"
+								},
+								"position": {
+									"enum": [
+										"top",
+										"bottom"
+									]
 								}
 							}
 						},
-						"debugScripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to include in debug contexts",
-							"items": {
-								"type": "string"
-							}
-						},
-						"loaderScripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to include in the startup module",
-							"items": {
-								"type": "string"
-							}
-						},
-						"dependencies": {
-							"type": ["string", "array"],
-							"description": "Modules which must be loaded before this module",
-							"items": {
-								"type": "string"
-							}
-						},
-						"styles": {
-							"type": ["string", "array", "object"],
-							"description": "Styles to always load",
-							"items": {
-								"type": "string"
-							}
-						},
-						"skinStyles": {
-							"type": "object",
-							"description": "Styles to include in specific skin contexts (mapping of skin name to style(s))",
-							"patternProperties": {
-								".+": {
-									"type": [
-										"string",
-										"array"
-									],
-									"items": {
-										"type": "string"
-									}
+						{
+							"description": "An arbitrary ResourceLoaderModule definition",
+							"properties": {
+								"class": {
+									"type": "string",
+									"pattern": "^((?!ResourceLoader(File|Image)Module).)*$"
 								}
-							}
-						},
-						"messages": {
-							"type": ["string", "array"],
-							"description": "Messages to always load",
-							"items": {
-								"type": "string"
-							}
-						},
-						"group": {
-							"type": "string",
-							"description": "Group which this module should be loaded together with"
-						},
-						"position": {
-							"type": "string",
-							"description": "Position on the page to load this module at",
-							"enum": [
-								"bottom",
-								"top"
-							]
-						},
-						"templates": {
-							"type": "object",
-							"description": "Templates to be loaded for client-side usage"
+							},
+							"required": ["class"]
 						}
-					}
+					]
 				}
 			}
 		},
@@ -446,6 +507,33 @@
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
+		},
+		"SessionProviders": {
+			"type": "object",
+			"description": "Session providers"
+		},
+		"AuthManagerAutoConfig": {
+			"type": "object",
+			"description": "AuthManager auto-configuration",
+			"additionalProperties": false,
+			"properties": {
+				"preauth": {
+					"type": "object",
+					"description": "Pre-authentication providers"
+				},
+				"primaryauth": {
+					"type": "object",
+					"description": "Primary authentication providers"
+				},
+				"secondaryauth": {
+					"type": "object",
+					"description": "Secondary authentication providers"
+				}
+			}
+		},
+		"CentralIdLookupProviders": {
+			"type": "object",
+			"description": "Central ID lookup providers"
 		},
 		"namespaces": {
 			"type": "array",
@@ -498,7 +586,10 @@
 		},
 		"TrackingCategories": {
 			"type": "array",
-			"description": "Tracking category message keys"
+			"description": "Tracking category message keys",
+			"items": {
+				"type": "string"
+			}
 		},
 		"DefaultUserOptions": {
 			"type": "object",
@@ -506,15 +597,38 @@
 		},
 		"HiddenPrefs": {
 			"type": "array",
-			"description": "Preferences users cannot set"
+			"description": "Preferences users cannot set",
+			"items": {
+				"type": "string"
+			}
 		},
 		"GroupPermissions": {
 			"type": "object",
-			"description": "Default permissions to give to user groups"
+			"description": "Default permissions to give to user groups",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z]+$": {
+							"type": "boolean"
+						}
+					}
+				}
+			}
 		},
 		"RevokePermissions": {
 			"type": "object",
-			"description": "Default permissions to revoke from user groups"
+			"description": "Default permissions to revoke from user groups",
+			"patternProperties": {
+				"^[a-z]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z]+$": {
+							"type": "boolean"
+						}
+					}
+				}
+			}
 		},
 		"ImplicitGroups": {
 			"type": "array",
@@ -538,11 +652,19 @@
 		},
 		"AvailableRights": {
 			"type": "array",
-			"description": "User rights added by the extension"
+			"description": "User rights added by the extension",
+			"items": {
+				"type": "string"
+			}
 		},
 		"ContentHandlers": {
 			"type": "object",
-			"description": "Mapping of model ID to class name"
+			"description": "Mapping of model ID to class name",
+			"patternProperties": {
+				"^[A-Za-z]+$": {
+					"type": "string"
+				}
+			}
 		},
 		"RateLimits": {
 			"type": "object",
@@ -561,7 +683,10 @@
 				"array",
 				"string"
 			],
-			"description": "Function to call after setup has finished"
+			"description": "Function to call after setup has finished",
+			"items": {
+				"type": "string"
+			}
 		},
 		"ExtensionMessagesFiles": {
 			"type": "object",
@@ -582,7 +707,7 @@
 			"type": "object"
 		},
 		"Hooks": {
-			"type": "object",
+			"type": [ "string", "object" ],
 			"description": "Hooks this extension uses (mapping of hook name to callback)"
 		},
 		"JobClasses": {
@@ -598,6 +723,23 @@
 		},
 		"FilterLogTypes": {
 			"type": "object"
+		},
+		"ActionFilteredLogs": {
+			"type": "object",
+			"description": "List of log types which can be filtered by log actions",
+			"patternProperties": {
+				"^[a-z-]+$": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-z-]+$": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
 		},
 		"LogNames": {
 			"type": "object"
@@ -632,6 +774,10 @@
 		"ValidSkinNames": {
 			"type": "object"
 		},
+		"FeedClasses": {
+			"type": "object",
+			"description": "Available feeds objects"
+		},
 		"SkinOOUIThemes": {
 			"type": "object"
 		},
@@ -654,7 +800,6 @@
 			},
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
-					"type": ["object", "array", "string", "integer", "null", "boolean"],
 					"properties": {
 						"_merge_strategy": {
 							"type": "string",
@@ -673,6 +818,10 @@
 		"ParserTestFiles": {
 			"type": "array",
 			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
+		},
+		"load_composer_autoloader": {
+			"type": "boolean",
+			"description": "Load the composer autoloader for this extension, if one is present"
 		}
 	}
 }

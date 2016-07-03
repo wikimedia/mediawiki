@@ -37,7 +37,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 
@@ -50,7 +50,7 @@ class XCFHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
-		return array( 'png', 'image/png' );
+		return [ 'png', 'image/png' ];
 	}
 
 	/**
@@ -68,21 +68,15 @@ class XCFHandler extends BitmapHandler {
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
-		$metadata = array();
-		$metadata[0] = $header['width'];
-		$metadata[1] = $header['height'];
-		$metadata[2] = null; # IMAGETYPE constant, none exist for XCF.
-		$metadata[3] = sprintf(
-			'height="%s" width="%s"', $header['height'], $header['width']
-		);
-		$metadata['mime'] = 'image/x-xcf';
-		$metadata['channels'] = null;
-		$metadata['bits'] = 8; # Always 8-bits per color
-
-		assert( '7 == count($metadata); ' .
-			'# return array must contains 7 elements just like getimagesize() return' );
-
-		return $metadata;
+		return [
+			0 => $header['width'],
+			1 => $header['height'],
+			2 => null, # IMAGETYPE constant, none exist for XCF.
+			3 => "height=\"{$header['height']}\" width=\"{$header['width']}\"",
+			'mime' => 'image/x-xcf',
+			'channels' => null,
+			'bits' => 8, # Always 8-bits per color
+		];
 	}
 
 	/**
@@ -106,21 +100,23 @@ class XCFHandler extends BitmapHandler {
 		$binaryHeader = fread( $f, 26 );
 		fclose( $f );
 
-		# Master image structure:
-		#
-		# byte[9] "gimp xcf "  File type magic
-		# byte[4] version      XCF version
-		#                        "file" - version 0
-		#                        "v001" - version 1
-		#                        "v002" - version 2
-		# byte    0            Zero-terminator for version tag
-		# uint32  width        With of canvas
-		# uint32  height       Height of canvas
-		# uint32  base_type    Color mode of the image; one of
-		#                         0: RGB color
-		#                         1: Grayscale
-		#                         2: Indexed color
-		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
+		/**
+		 * Master image structure:
+		 *
+		 * byte[9] "gimp xcf "  File type magic
+		 * byte[4] version      XCF version
+		 *                        "file" - version 0
+		 *                        "v001" - version 1
+		 *                        "v002" - version 2
+		 * byte    0            Zero-terminator for version tag
+		 * uint32  width        With of canvas
+		 * uint32  height       Height of canvas
+		 * uint32  base_type    Color mode of the image; one of
+		 *                         0: RGB color
+		 *                         1: Grayscale
+		 *                         2: Indexed color
+		 *        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
+		 */
 		try {
 			$header = wfUnpack(
 				"A9magic" . # A: space padded
@@ -159,8 +155,8 @@ class XCFHandler extends BitmapHandler {
 	 * @return string
 	 */
 	public function getMetadata( $file, $filename ) {
-		$header = self::getXCFMetadata( $filename );
-		$metadata = array();
+		$header = self::getXCFMetaData( $filename );
+		$metadata = [];
 		if ( $header ) {
 			// Try to be consistent with the names used by PNG files.
 			// Unclear from base media type if it has an alpha layer,

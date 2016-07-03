@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class Protect extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Protect or unprotect a page from the command line.";
+		$this->addDescription( 'Protect or unprotect a page from the command line.' );
 		$this->addOption( 'unprotect', 'Removes protection' );
 		$this->addOption( 'semiprotect', 'Adds semi-protection' );
 		$this->addOption( 'cascade', 'Add cascading protection' );
@@ -41,7 +41,7 @@ class Protect extends Maintenance {
 	}
 
 	public function execute() {
-		$userName = $this->getOption( 'u', 'Maintenance script' );
+		$userName = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 
 		$cascade = $this->hasOption( 'cascade' );
@@ -53,20 +53,24 @@ class Protect extends Maintenance {
 			$protection = "";
 		}
 
-		$user = User::newFromName( $userName );
+		if ( $userName === false ) {
+			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+		} else {
+			$user = User::newFromName( $userName );
+		}
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
 
 		// @todo FIXME: This is reset 7 lines down.
-		$restrictions = array( 'edit' => $protection, 'move' => $protection );
+		$restrictions = [ 'edit' => $protection, 'move' => $protection ];
 
 		$t = Title::newFromText( $this->getArg() );
 		if ( !$t ) {
 			$this->error( "Invalid title", true );
 		}
 
-		$restrictions = array();
+		$restrictions = [];
 		foreach ( $t->getRestrictionTypes() as $type ) {
 			$restrictions[$type] = $protection;
 		}
@@ -75,7 +79,7 @@ class Protect extends Maintenance {
 		$this->output( "Updating protection status... " );
 
 		$page = WikiPage::factory( $t );
-		$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, $reason, $user );
+		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );
 
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );

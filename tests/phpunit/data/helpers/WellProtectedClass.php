@@ -17,8 +17,19 @@ class WellProtectedParentClass {
 }
 
 class WellProtectedClass extends WellProtectedParentClass {
+	protected static $staticProperty = 'sp';
+	private static $staticPrivateProperty = 'spp';
+
 	protected $property;
 	private $privateProperty;
+
+	protected static function staticMethod() {
+		return 'sm';
+	}
+
+	private static function staticPrivateMethod() {
+		return 'spm';
+	}
 
 	public function __construct() {
 		parent::__construct();

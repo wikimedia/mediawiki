@@ -15,12 +15,12 @@ class UserInputWidget extends \OOUI\TextInputWidget {
 	/**
 	 * @param array $config Configuration options
 	 */
-	public function __construct( array $config = array() ) {
+	public function __construct( array $config = [] ) {
 		// Parent constructor
-		parent::__construct( array_merge( array( 'infusable' => true ), $config ) );
+		parent::__construct( array_merge( [ 'infusable' => true ], $config ) );
 
 		// Initialization
-		$this->addClasses( array( 'mw-widget-userInputWidget' ) );
+		$this->addClasses( [ 'mw-widget-userInputWidget' ] );
 	}
 
 	protected function getJavaScriptClassName() {

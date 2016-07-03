@@ -52,10 +52,10 @@ class SearchHighlighter {
 		// spli text into text + templates/links/tables
 		$spat = "/(\\{\\{)|(\\[\\[[^\\]:]+:)|(\n\\{\\|)";
 		// first capture group is for detecting nested templates/links/tables/references
-		$endPatterns = array(
+		$endPatterns = [
 			1 => '/(\{\{)|(\}\})/', // template
 			2 => '/(\[\[)|(\]\])/', // image
-			3 => "/(\n\\{\\|)|(\n\\|\\})/" ); // table
+			3 => "/(\n\\{\\|)|(\n\\|\\})/" ]; // table
 
 		// @todo FIXME: This should prolly be a hook or something
 		// instead of hardcoding a class name from the Cite extension
@@ -64,8 +64,8 @@ class SearchHighlighter {
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
 		}
 		$spat .= '/';
-		$textExt = array(); // text extracts
-		$otherExt = array(); // other extracts
+		$textExt = []; // text extracts
+		$otherExt = []; // other extracts
 		$start = 0;
 		$textLen = strlen( $text );
 		$count = 0; // sequence number to maintain ordering
@@ -136,7 +136,7 @@ class SearchHighlighter {
 			if ( preg_match( '/[\x80-\xff]/', $term ) ) {
 				$terms[$index] = preg_replace_callback(
 					'/./us',
-					array( $this, 'caseCallback' ),
+					[ $this, 'caseCallback' ],
 					$terms[$index]
 				);
 			} else {
@@ -161,8 +161,8 @@ class SearchHighlighter {
 
 		$left = $contextlines;
 
-		$snippets = array();
-		$offsets = array();
+		$snippets = [];
+		$offsets = [];
 
 		// show beginning only if it contains all words
 		$first = 0;
@@ -202,7 +202,7 @@ class SearchHighlighter {
 		}
 
 		// add extra chars to each snippet to make snippets constant size
-		$extended = array();
+		$extended = [];
 		if ( count( $snippets ) == 0 ) {
 			// couldn't find the target words, just show beginning of article
 			if ( array_key_exists( $first, $all ) ) {
@@ -214,7 +214,7 @@ class SearchHighlighter {
 			// if begin of the article contains the whole phrase, show only that !!
 			if ( array_key_exists( $first, $snippets ) && preg_match( $pat1, $snippets[$first] )
 				&& $offsets[$first] < $contextchars * 2 ) {
-				$snippets = array( $first => $snippets[$first] );
+				$snippets = [ $first => $snippets[$first] ];
 			}
 
 			// calc by how much to extend existing snippets
@@ -271,7 +271,7 @@ class SearchHighlighter {
 			$extract .= '<b> ... </b>';
 		}
 
-		$processed = array();
+		$processed = [];
 		foreach ( $terms as $term ) {
 			if ( !isset( $processed[$term] ) ) {
 				$pat3 = "/$patPre(" . $term . ")$patPost/ui"; // highlight word
@@ -362,7 +362,7 @@ class SearchHighlighter {
 		$tolerance = 10;
 		$s = max( 0, $point - $tolerance );
 		$l = min( strlen( $text ), $point + $tolerance ) - $s;
-		$m = array();
+		$m = [];
 
 		if ( preg_match(
 			'/[ ,.!?~!@#$%^&*\(\)+=\-\\\|\[\]"\'<>]/',
@@ -408,7 +408,7 @@ class SearchHighlighter {
 				continue; // this line already highlighted
 			}
 
-			$m = array();
+			$m = [];
 			if ( !preg_match( $pattern, $line, $m, PREG_OFFSET_CAPTURE ) ) {
 				continue;
 			}
@@ -448,7 +448,7 @@ class SearchHighlighter {
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
 		$text = preg_replace_callback(
 			"/\\[\\[([^|]+\\|)(.*?)\\]\\]/",
-			array( $this, 'linkReplace' ),
+			[ $this, 'linkReplace' ],
 			$text
 		);
 		$text = preg_replace( "/<\/?[^>]+>/", "", $text );
@@ -508,7 +508,7 @@ class SearchHighlighter {
 				break;
 			}
 			++$lineno;
-			$m = array();
+			$m = [];
 			if ( !preg_match( $pat1, $line, $m ) ) {
 				continue;
 			}
@@ -543,11 +543,13 @@ class SearchHighlighter {
 	 * @return string
 	 */
 	public function highlightNone( $text, $contextlines, $contextchars ) {
-		$match = array();
+		$match = [];
 		$text = ltrim( $text ) . "\n"; // make sure the preg_match may find the last line
 		$text = str_replace( "\n\n", "\n", $text ); // remove empty lines
 		preg_match( "/^(.*\n){0,$contextlines}/", $text, $match );
-		$text = htmlspecialchars( substr( trim( $match[0] ), 0, $contextlines * $contextchars ) ); // trim and limit to max number of chars
+
+		// Trim and limit to max number of chars
+		$text = htmlspecialchars( substr( trim( $match[0] ), 0, $contextlines * $contextchars ) );
 		return str_replace( "\n", '<br>', $text );
 	}
 }

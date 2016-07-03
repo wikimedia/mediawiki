@@ -30,11 +30,11 @@ class ForeignTitle {
 	 * @var int|null
 	 * Null if we don't know the namespace ID (e.g. interwiki links)
 	 */
-	protected $namespaceId;
+	private $namespaceId;
 	/** @var string */
-	protected $namespaceName;
+	private $namespaceName;
 	/** @var string */
-	protected $pageName;
+	private $pageName;
 
 	/**
 	 * Creates a new ForeignTitle object.

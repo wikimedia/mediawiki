@@ -6,8 +6,14 @@
 	},
 	"apihelp-block-description": "Stankañ un implijer",
 	"apihelp-block-param-reason": "Abeg evit stankañ.",
+	"apihelp-createaccount-param-name": "Anv implijer.",
 	"apihelp-delete-description": "Diverkañ ur bajenn.",
+	"apihelp-edit-param-text": "Danvez ar bajenn.",
 	"apihelp-edit-param-minor": "Kemmig dister.",
 	"apihelp-edit-example-edit": "Kemmañ ur bajenn.",
-	"apihelp-expandtemplates-param-title": "Titl ar bajenn."
+	"apihelp-expandtemplates-param-title": "Titl ar bajenn.",
+	"apihelp-login-param-name": "Anv implijer.",
+	"apihelp-login-param-password": "Ger-tremen.",
+	"apihelp-login-example-login": "Kevreañ.",
+	"apihelp-protect-example-protect": "Gwareziñ ur bajenn."
 }

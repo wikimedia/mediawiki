@@ -26,7 +26,8 @@
  * Output is posted from time to time on:
  * https://www.mediawiki.org/wiki/Localisation_statistics
  */
-$optionsWithArgs = array( 'output' );
+$optionsWithArgs = [ 'output' ];
+$optionsWithoutArgs = [ 'help' ];
 
 require_once __DIR__ . '/../commandLine.inc';
 require_once 'languages.inc';
@@ -72,7 +73,7 @@ switch ( $options['output'] ) {
 }
 
 # Languages
-$wgLanguages = new Languages();
+$languages = new Languages();
 
 # Header
 $output->heading();
@@ -88,10 +89,10 @@ $output->element( 'Problematic', true );
 $output->element( '%', true );
 $output->blockend();
 
-$wgGeneralMessages = $wgLanguages->getGeneralMessages();
+$wgGeneralMessages = $languages->getGeneralMessages();
 $wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 
-foreach ( $wgLanguages->getLanguages() as $code ) {
+foreach ( $languages->getLanguages() as $code ) {
 	# Don't check English, RTL English or dummy language codes
 	if ( $code == 'en' || $code == 'enRTL' || ( is_array( $wgDummyLanguageCodes ) &&
 			isset( $wgDummyLanguageCodes[$code] ) )
@@ -101,8 +102,8 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 
 	# Calculate the numbers
 	$language = Language::fetchLanguageName( $code );
-	$fallback = $wgLanguages->getFallback( $code );
-	$messages = $wgLanguages->getMessages( $code );
+	$fallback = $languages->getFallback( $code );
+	$messages = $languages->getMessages( $code );
 	$messagesNumber = count( $messages['translated'] );
 	$requiredMessagesNumber = count( $messages['required'] );
 	$requiredMessagesPercent = $output->formatPercent(
@@ -115,11 +116,11 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 		$messagesNumber,
 		true
 	);
-	$messagesWithMismatchVariables = $wgLanguages->getMessagesWithMismatchVariables( $code );
-	$emptyMessages = $wgLanguages->getEmptyMessages( $code );
-	$messagesWithWhitespace = $wgLanguages->getMessagesWithWhitespace( $code );
-	$nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
-	$messagesWithWrongChars = $wgLanguages->getMessagesWithWrongChars( $code );
+	$messagesWithMismatchVariables = $languages->getMessagesWithMismatchVariables( $code );
+	$emptyMessages = $languages->getEmptyMessages( $code );
+	$messagesWithWhitespace = $languages->getMessagesWithWhitespace( $code );
+	$nonXHTMLMessages = $languages->getNonXHTMLMessages( $code );
+	$messagesWithWrongChars = $languages->getMessagesWithWrongChars( $code );
 	$problematicMessagesNumber = count( array_unique( array_merge(
 		$messagesWithMismatchVariables,
 		$emptyMessages,

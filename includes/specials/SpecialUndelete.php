@@ -51,6 +51,10 @@ class PageArchive {
 		$this->config = $config;
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * List all deleted pages recorded in the archive table. Returns result
 	 * wrapper with (ar_namespace, ar_title, count) fields, ordered by page
@@ -85,10 +89,10 @@ class PageArchive {
 			$ns = 0;
 		}
 
-		$conds = array(
+		$conds = [
 			'ar_namespace' => $ns,
 			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
-		);
+		];
 
 		return self::listPages( $dbr, $conds );
 	}
@@ -100,19 +104,19 @@ class PageArchive {
 	 */
 	protected static function listPages( $dbr, $condition ) {
 		return $dbr->select(
-			array( 'archive' ),
-			array(
+			[ 'archive' ],
+			[
 				'ar_namespace',
 				'ar_title',
 				'count' => 'COUNT(*)'
-			),
+			],
 			$condition,
 			__METHOD__,
-			array(
-				'GROUP BY' => array( 'ar_namespace', 'ar_title' ),
-				'ORDER BY' => array( 'ar_namespace', 'ar_title' ),
+			[
+				'GROUP BY' => [ 'ar_namespace', 'ar_title' ],
+				'ORDER BY' => [ 'ar_namespace', 'ar_title' ],
 				'LIMIT' => 100,
-			)
+			]
 		);
 	}
 
@@ -125,24 +129,24 @@ class PageArchive {
 	function listRevisions() {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$tables = array( 'archive' );
+		$tables = [ 'archive' ];
 
-		$fields = array(
+		$fields = [
 			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
 			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
-		);
+		];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
 
-		$conds = array( 'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey() );
+		$conds = [ 'ar_namespace' => $this->title->getNamespace(),
+			'ar_title' => $this->title->getDBkey() ];
 
-		$options = array( 'ORDER BY' => 'ar_timestamp DESC' );
+		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
 
-		$join_conds = array();
+		$join_conds = [];
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -179,9 +183,9 @@ class PageArchive {
 		return $dbr->select(
 			'filearchive',
 			ArchivedFile::selectFields(),
-			array( 'fa_name' => $this->title->getDBkey() ),
+			[ 'fa_name' => $this->title->getDBkey() ],
 			__METHOD__,
-			array( 'ORDER BY' => 'fa_timestamp DESC' )
+			[ 'ORDER BY' => 'fa_timestamp DESC' ]
 		);
 	}
 
@@ -195,7 +199,7 @@ class PageArchive {
 	function getRevision( $timestamp ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$fields = array(
+		$fields = [
 			'ar_rev_id',
 			'ar_text',
 			'ar_comment',
@@ -208,7 +212,7 @@ class PageArchive {
 			'ar_deleted',
 			'ar_len',
 			'ar_sha1',
-		);
+		];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
@@ -217,13 +221,13 @@ class PageArchive {
 
 		$row = $dbr->selectRow( 'archive',
 			$fields,
-			array( 'ar_namespace' => $this->title->getNamespace(),
+			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
-				'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
+				'ar_timestamp' => $dbr->timestamp( $timestamp ) ],
 			__METHOD__ );
 
 		if ( $row ) {
-			return Revision::newFromArchiveRow( $row, array( 'title' => $this->title ) );
+			return Revision::newFromArchiveRow( $row, [ 'title' => $this->title ] );
 		}
 
 		return null;
@@ -245,28 +249,28 @@ class PageArchive {
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
 			'ar_timestamp',
-			array( 'ar_namespace' => $this->title->getNamespace(),
+			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
 				'ar_timestamp < ' .
-					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
+					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
 			__METHOD__,
-			array(
+			[
 				'ORDER BY' => 'ar_timestamp DESC',
-				'LIMIT' => 1 ) );
+				'LIMIT' => 1 ] );
 		$prevDeleted = $row ? wfTimestamp( TS_MW, $row->ar_timestamp ) : false;
 
-		$row = $dbr->selectRow( array( 'page', 'revision' ),
-			array( 'rev_id', 'rev_timestamp' ),
-			array(
+		$row = $dbr->selectRow( [ 'page', 'revision' ],
+			[ 'rev_id', 'rev_timestamp' ],
+			[
 				'page_namespace' => $this->title->getNamespace(),
 				'page_title' => $this->title->getDBkey(),
 				'page_id = rev_page',
 				'rev_timestamp < ' .
-					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
+					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
 			__METHOD__,
-			array(
+			[
 				'ORDER BY' => 'rev_timestamp DESC',
-				'LIMIT' => 1 ) );
+				'LIMIT' => 1 ] );
 		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
 		$prevLiveId = $row ? intval( $row->rev_id ) : null;
 
@@ -298,8 +302,8 @@ class PageArchive {
 		// New-style: keyed to the text storage backend.
 		$dbr = wfGetDB( DB_SLAVE );
 		$text = $dbr->selectRow( 'text',
-			array( 'old_text', 'old_flags' ),
-			array( 'old_id' => $row->ar_text_id ),
+			[ 'old_text', 'old_flags' ],
+			[ 'old_id' => $row->ar_text_id ],
 			__METHOD__ );
 
 		return Revision::getRevisionText( $text );
@@ -316,11 +320,11 @@ class PageArchive {
 	function getLastRevisionText() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
-			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
-			array( 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ),
+			[ 'ar_text', 'ar_flags', 'ar_text_id' ],
+			[ 'ar_namespace' => $this->title->getNamespace(),
+				'ar_title' => $this->title->getDBkey() ],
 			__METHOD__,
-			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
+			[ 'ORDER BY' => 'ar_timestamp DESC' ] );
 
 		if ( $row ) {
 			return $this->getTextFromRow( $row );
@@ -337,8 +341,8 @@ class PageArchive {
 	function isDeleted() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
-			array( 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ),
+			[ 'ar_namespace' => $this->title->getNamespace(),
+				'ar_title' => $this->title->getDBkey() ],
 			__METHOD__
 		);
 
@@ -356,11 +360,13 @@ class PageArchive {
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
 	 * @param User $user User performing the action, or null to use $wgUser
+	 * @param string|string[] $tags Change tags to add to log entry
+	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array(number of file revisions restored, number of image revisions
 	 *   restored, log message) on success, false on failure.
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = array(),
-		$unsuppress = false, User $user = null
+	function undelete( $timestamps, $comment = '', $fileVersions = [],
+		$unsuppress = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -422,13 +428,14 @@ class PageArchive {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $reason );
+		$logEntry->setTags( $tags );
 
-		Hooks::run( 'ArticleUndeleteLogEntry', array( $this, &$logEntry, $user ) );
+		Hooks::run( 'ArticleUndeleteLogEntry', [ $this, &$logEntry, $user ] );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
-		return array( $textRestored, $filesRestored, $reason );
+		return [ $textRestored, $filesRestored, $reason ];
 	}
 
 	/**
@@ -458,11 +465,11 @@ class PageArchive {
 		$oldcountable = $article->isCountable();
 
 		$page = $dbw->selectRow( 'page',
-			array( 'page_id', 'page_latest' ),
-			array( 'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey() ),
+			[ 'page_id', 'page_latest' ],
+			[ 'page_namespace' => $this->title->getNamespace(),
+				'page_title' => $this->title->getDBkey() ],
 			__METHOD__,
-			array( 'FOR UPDATE' ) // lock page
+			[ 'FOR UPDATE' ] // lock page
 		);
 
 		if ( $page ) {
@@ -474,7 +481,7 @@ class PageArchive {
 
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
-				array( 'rev_id' => $previousRevId ),
+				[ 'rev_id' => $previousRevId ],
 				__METHOD__ );
 
 			if ( $previousTimestamp === false ) {
@@ -492,15 +499,15 @@ class PageArchive {
 			$previousTimestamp = 0;
 		}
 
-		$oldWhere = array(
+		$oldWhere = [
 			'ar_namespace' => $this->title->getNamespace(),
 			'ar_title' => $this->title->getDBkey(),
-		);
+		];
 		if ( !$restoreAll ) {
-			$oldWhere['ar_timestamp'] = array_map( array( &$dbw, 'timestamp' ), $timestamps );
+			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
-		$fields = array(
+		$fields = [
 			'ar_rev_id',
 			'ar_text',
 			'ar_comment',
@@ -514,7 +521,7 @@ class PageArchive {
 			'ar_page_id',
 			'ar_len',
 			'ar_sha1'
-		);
+		];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
@@ -528,7 +535,7 @@ class PageArchive {
 			$fields,
 			$oldWhere,
 			__METHOD__,
-			/* options */ array( 'ORDER BY' => 'ar_timestamp' )
+			/* options */ [ 'ORDER BY' => 'ar_timestamp' ]
 		);
 
 		$rev_count = $result->numRows();
@@ -548,14 +555,14 @@ class PageArchive {
 
 		// grab the content to check consistency with global state before restoring the page.
 		$revision = Revision::newFromArchiveRow( $row,
-			array(
+			[
 				'title' => $article->getTitle(), // used to derive default content model
-			)
+			]
 		);
 		$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 		$content = $revision->getContent( Revision::RAW );
 
-		//NOTE: article ID may not be known yet. prepareSave() should not modify the database.
+		// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
 		$status = $content->prepareSave( $article, 0, -1, $user );
 
 		if ( !$status->isOK() ) {
@@ -568,7 +575,11 @@ class PageArchive {
 				return Status::newFatal( "undeleterevdel" );
 			}
 			// Safe to insert now...
-			$newid = $article->insertOn( $dbw );
+			$newid = $article->insertOn( $dbw, $row->ar_page_id );
+			if ( $newid === false ) {
+				// The old ID is reserved; let's pick another
+				$newid = $article->insertOn( $dbw );
+			}
 			$pageId = $newid;
 		} else {
 			// Check if a deleted revision will become the current revision...
@@ -587,10 +598,10 @@ class PageArchive {
 		$restored = 0;
 
 		foreach ( $result as $row ) {
-			// Check for key dupes due to shitty archive integrity.
+			// Check for key dupes due to needed archive integrity.
 			if ( $row->ar_rev_id ) {
 				$exists = $dbw->selectField( 'revision', '1',
-					array( 'rev_id' => $row->ar_rev_id ), __METHOD__ );
+					[ 'rev_id' => $row->ar_rev_id ], __METHOD__ );
 				if ( $exists ) {
 					continue; // don't throw DB errors
 				}
@@ -598,16 +609,16 @@ class PageArchive {
 			// Insert one revision at a time...maintaining deletion status
 			// unless we are specifically removing all restrictions...
 			$revision = Revision::newFromArchiveRow( $row,
-				array(
+				[
 					'page' => $pageId,
 					'title' => $this->title,
 					'deleted' => $unsuppress ? 0 : $row->ar_deleted
-				) );
+				] );
 
 			$revision->insertOn( $dbw );
 			$restored++;
 
-			Hooks::run( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
+			Hooks::run( 'ArticleRevisionUndeleted', [ &$this->title, $revision, $row->ar_page_id ] );
 		}
 		# Now that it's safely stored, take it out of the archive
 		$dbw->delete( 'archive',
@@ -625,19 +636,21 @@ class PageArchive {
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
-			$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 			$article->doEditUpdates(
 				$revision,
-				$user,
-				array( 'created' => $created, 'oldcountable' => $oldcountable )
+				User::newFromName( $revision->getUserText( Revision::RAW ), false ),
+				[
+					'created' => $created,
+					'oldcountable' => $oldcountable,
+					'restored' => true
+				]
 			);
 		}
 
-		Hooks::run( 'ArticleUndelete', array( &$this->title, $created, $comment, $oldPageId ) );
+		Hooks::run( 'ArticleUndelete', [ &$this->title, $created, $comment, $oldPageId ] );
 
 		if ( $this->title->getNamespace() == NS_FILE ) {
-			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
-			$update->doUpdate();
+			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->title, 'imagelinks' ) );
 		}
 
 		return Status::newGood( $restored );
@@ -665,13 +678,14 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	private $mAction;
+	private	$mAction;
 	private	$mTarget;
 	private	$mTimestamp;
 	private	$mRestore;
+	private	$mRevdel;
 	private	$mInvert;
 	private	$mFilename;
-	private $mTargetTimestamp;
+	private	$mTargetTimestamp;
 	private	$mAllowed;
 	private	$mCanView;
 	private	$mComment;
@@ -682,6 +696,10 @@ class SpecialUndelete extends SpecialPage {
 
 	function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
+	}
+
+	public function doesWrites() {
+		return true;
 	}
 
 	function loadRequest( $par ) {
@@ -698,7 +716,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mTargetObj = null;
 
 		if ( $this->mTarget !== null && $this->mTarget !== '' ) {
-			$this->mTargetObj = Title::newFromURL( $this->mTarget );
+			$this->mTargetObj = Title::newFromText( $this->mTarget );
 		}
 
 		$this->mSearchPrefix = $request->getText( 'prefix' );
@@ -709,6 +727,7 @@ class SpecialUndelete extends SpecialPage {
 		$posted = $request->wasPosted() &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
+		$this->mRevdel = $request->getCheck( 'revdel' ) && $posted;
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
@@ -732,10 +751,10 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mRestore || $this->mInvert ) {
-			$timestamps = array();
-			$this->mFileVersions = array();
+			$timestamps = [];
+			$this->mFileVersions = [];
 			foreach ( $request->getValues() as $key => $val ) {
-				$matches = array();
+				$matches = [];
 				if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
 					array_push( $timestamps, $matches[1] );
 				}
@@ -821,30 +840,59 @@ class SpecialUndelete extends SpecialPage {
 			} else {
 				$this->showFile( $this->mFilename );
 			}
-		} elseif ( $this->mRestore && $this->mAction == 'submit' ) {
-			$this->undelete();
+		} elseif ( $this->mAction === "submit" ) {
+			if ( $this->mRestore ) {
+				$this->undelete();
+			} elseif ( $this->mRevdel ) {
+				$this->redirectToRevDel();
+			}
+
 		} else {
 			$this->showHistory();
 		}
+	}
+
+	/**
+	 * Convert submitted form data to format expected by RevisionDelete and
+	 * redirect the request
+	 */
+	private function redirectToRevDel() {
+		$archive = new PageArchive( $this->mTargetObj );
+
+		$revisions = [];
+
+		foreach ( $this->getRequest()->getValues() as $key => $val ) {
+			$matches = [];
+			if ( preg_match( "/^ts(\d{14})$/", $key, $matches ) ) {
+				$revisions[ $archive->getRevision( $matches[1] )->getId() ] = 1;
+			}
+		}
+		$query = [
+			"type" => "revision",
+			"ids" => $revisions,
+			"target" => $this->mTargetObj->getPrefixedText()
+		];
+		$url = SpecialPage::getTitleFor( "RevisionDelete" )->getFullURL( $query );
+		$this->getOutput()->redirect( $url );
 	}
 
 	function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
 		$out->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) .
+			Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) .
 				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::rawElement(
 					'label',
-					array( 'for' => 'prefix' ),
+					[ 'for' => 'prefix' ],
 					$this->msg( 'undelete-search-prefix' )->parse()
 				) .
 				Xml::input(
 					'prefix',
 					20,
 					$this->mSearchPrefix,
-					array( 'id' => 'prefix', 'autofocus' => '' )
+					[ 'id' => 'prefix', 'autofocus' => '' ]
 				) . ' ' .
 				Xml::submitButton( $this->msg( 'undelete-search-submit' )->text() ) .
 				Xml::closeElement( 'fieldset' ) .
@@ -883,14 +931,14 @@ class SpecialUndelete extends SpecialPage {
 				$item = Linker::linkKnown(
 					$undelete,
 					htmlspecialchars( $title->getPrefixedText() ),
-					array(),
-					array( 'target' => $title->getPrefixedText() )
+					[],
+					[ 'target' => $title->getPrefixedText() ]
 				);
 			} else {
 				// The title is no longer valid, show as text
 				$item = Html::element(
 					'span',
-					array( 'class' => 'mw-invalidtitle' ),
+					[ 'class' => 'mw-invalidtitle' ],
 					Linker::getInvalidTitleDescription(
 						$this->getContext(),
 						$row->ar_namespace,
@@ -913,7 +961,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		if ( !Hooks::run( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) ) ) {
+		if ( !Hooks::run( 'UndeleteForm::showRevision', [ &$archive, $this->mTargetObj ] ) ) {
 			return;
 		}
 		$rev = $archive->getRevision( $timestamp );
@@ -997,7 +1045,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( $this->msg( 'undelete-revision' )->rawParams( $link )->params(
 			$time )->rawParams( $userLink )->params( $d, $t )->parse() . '</div>' );
 
-		if ( !Hooks::run( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) ) ) {
+		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ] ) ) {
 			return;
 		}
 
@@ -1016,48 +1064,48 @@ class SpecialUndelete extends SpecialPage {
 			// source view for textual content
 			$sourceView = Xml::element(
 				'textarea',
-				array(
+				[
 					'readonly' => 'readonly',
 					'cols' => $user->getIntOption( 'cols' ),
 					'rows' => $user->getIntOption( 'rows' )
-				),
+				],
 				$content->getNativeData() . "\n"
 			);
 
-			$previewButton = Xml::element( 'input', array(
+			$previewButton = Xml::element( 'input', [
 				'type' => 'submit',
 				'name' => 'preview',
 				'value' => $this->msg( 'showpreview' )->text()
-			) );
+			] );
 		} else {
 			$sourceView = '';
 			$previewButton = '';
 		}
 
-		$diffButton = Xml::element( 'input', array(
+		$diffButton = Xml::element( 'input', [
 			'name' => 'diff',
 			'type' => 'submit',
-			'value' => $this->msg( 'showdiff' )->text() ) );
+			'value' => $this->msg( 'showdiff' )->text() ] );
 
 		$out->addHTML(
 			$sourceView .
-				Xml::openElement( 'div', array(
-					'style' => 'clear: both' ) ) .
-				Xml::openElement( 'form', array(
+				Xml::openElement( 'div', [
+					'style' => 'clear: both' ] ) .
+				Xml::openElement( 'form', [
 					'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ) ) ) .
-				Xml::element( 'input', array(
+					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ) ] ) .
+				Xml::element( 'input', [
 					'type' => 'hidden',
 					'name' => 'target',
-					'value' => $this->mTargetObj->getPrefixedDBkey() ) ) .
-				Xml::element( 'input', array(
+					'value' => $this->mTargetObj->getPrefixedDBkey() ] ) .
+				Xml::element( 'input', [
 					'type' => 'hidden',
 					'name' => 'timestamp',
-					'value' => $timestamp ) ) .
-				Xml::element( 'input', array(
+					'value' => $timestamp ] ) .
+				Xml::element( 'input', [
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
-					'value' => $user->getEditToken() ) ) .
+					'value' => $user->getEditToken() ] ) .
 				$previewButton .
 				$diffButton .
 				Xml::closeElement( 'form' ) .
@@ -1105,14 +1153,14 @@ class SpecialUndelete extends SpecialPage {
 		if ( $isDeleted ) {
 			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?
 			$targetPage = $this->getPageTitle();
-			$targetQuery = array(
+			$targetQuery = [
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
-			);
+			];
 		} else {
 			/// @todo FIXME: getId() may return non-zero for deleted revs...
 			$targetPage = $rev->getTitle();
-			$targetQuery = array( 'oldid' => $rev->getId() );
+			$targetQuery = [ 'oldid' => $rev->getId() ];
 		}
 
 		// Add show/hide deletion links if available
@@ -1129,10 +1177,10 @@ class SpecialUndelete extends SpecialPage {
 		$tags = wfGetDB( DB_SLAVE )->selectField(
 			'tag_summary',
 			'ts_tags',
-			array( 'ts_rev_id' => $rev->getId() ),
+			[ 'ts_rev_id' => $rev->getId() ],
 			__METHOD__
 		);
-		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff' );
+		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff', $this->getContext() );
 
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
 		// and partially #showDiffPage, but worse
@@ -1145,7 +1193,7 @@ class SpecialUndelete extends SpecialPage {
 					$lang->userDate( $rev->getTimestamp(), $user ),
 					$lang->userTime( $rev->getTimestamp(), $user )
 				)->escaped(),
-				array(),
+				[],
 				$targetQuery
 			) .
 			'</strong></div>' .
@@ -1174,14 +1222,14 @@ class SpecialUndelete extends SpecialPage {
 			$lang->userDate( $file->getTimestamp(), $user ),
 			$lang->userTime( $file->getTimestamp(), $user ) );
 		$out->addHTML(
-			Xml::openElement( 'form', array(
+			Xml::openElement( 'form', [
 					'method' => 'POST',
-					'action' => $this->getPageTitle()->getLocalURL( array(
+					'action' => $this->getPageTitle()->getLocalURL( [
 						'target' => $this->mTarget,
 						'file' => $key,
 						'token' => $user->getEditToken( $key ),
-					) ),
-				)
+					] ),
+				]
 			) .
 				Xml::submitButton( $this->msg( 'undelete-show-file-submit' )->text() ) .
 				'</form>'
@@ -1195,10 +1243,10 @@ class SpecialUndelete extends SpecialPage {
 	private function showFile( $key ) {
 		$this->getOutput()->disable();
 
-		# We mustn't allow the output to be Squid cached, otherwise
+		# We mustn't allow the output to be CDN cached, otherwise
 		# if an admin previews a deleted image, and it's cached, then
 		# a user without appropriate permissions can toddle off and
-		# nab the image, and Squid will serve it
+		# nab the image, and CDN will serve it
 		$response = $this->getRequest()->response();
 		$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 		$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
@@ -1210,17 +1258,19 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	protected function showHistory() {
+		$this->checkReadOnly();
+
 		$out = $this->getOutput();
 		if ( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.special.undelete' );
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
-			array( 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) )
+			[ 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) ]
 		);
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		Hooks::run( 'UndeleteForm::showHistory', array( &$archive, $this->mTargetObj ) );
+		Hooks::run( 'UndeleteForm::showHistory', [ &$archive, $this->mTargetObj ] );
 		/*
 		$text = $archive->getLastRevisionText();
 		if( is_null( $text ) ) {
@@ -1265,11 +1315,11 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mAllowed ) {
-			$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
+			$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 			# Start the form here
 			$top = Xml::openElement(
 				'form',
-				array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' )
+				[ 'method' => 'post', 'action' => $action, 'id' => 'undelete' ]
 			);
 			$out->addHTML( $top );
 		}
@@ -1302,7 +1352,7 @@ class SpecialUndelete extends SpecialPage {
 			}
 
 			$table = Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
+				Xml::openElement( 'table', [ 'id' => 'mw-undelete-table' ] ) .
 				"<tr>
 					<td colspan='2' class='mw-undelete-extrahelp'>" .
 				$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
@@ -1317,7 +1367,7 @@ class SpecialUndelete extends SpecialPage {
 					'wpComment',
 					50,
 					$this->mComment,
-					array( 'id' => 'wpComment', 'autofocus' => '' )
+					[ 'id' => 'wpComment', 'autofocus' => '' ]
 				) .
 				"</td>
 			</tr>
@@ -1326,11 +1376,11 @@ class SpecialUndelete extends SpecialPage {
 				<td class='mw-submit'>" .
 				Xml::submitButton(
 					$this->msg( 'undeletebtn' )->text(),
-					array( 'name' => 'restore', 'id' => 'mw-undelete-submit' )
+					[ 'name' => 'restore', 'id' => 'mw-undelete-submit' ]
 				) . ' ' .
 				Xml::submitButton(
 					$this->msg( 'undeleteinvert' )->text(),
-					array( 'name' => 'invert', 'id' => 'mw-undelete-invert' )
+					[ 'name' => 'invert', 'id' => 'mw-undelete-invert' ]
 				) .
 				"</td>
 			</tr>" .
@@ -1344,7 +1394,20 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( Xml::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n" );
 
 		if ( $haveRevisions ) {
-			# The page's stored (deleted) history:
+			# Show the page's stored (deleted) history
+
+			if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
+				$out->addHTML( Html::element(
+					'button',
+					[
+						'name' => 'revdel',
+						'type' => 'submit',
+						'class' => 'deleterevision-log-submit mw-log-deleterevision-button'
+					],
+					$this->msg( 'showhideselectedversions' )->text()
+				) . "\n" );
+			}
+
 			$out->addHTML( '<ul>' );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
@@ -1382,9 +1445,9 @@ class SpecialUndelete extends SpecialPage {
 
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
-			array(
+			[
 				'title' => $this->mTargetObj
-			) );
+			] );
 
 		$revTextSize = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
@@ -1416,12 +1479,12 @@ class SpecialUndelete extends SpecialPage {
 				$last = Linker::linkKnown(
 					$titleObj,
 					$this->msg( 'diff' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'target' => $this->mTargetObj->getPrefixedText(),
 						'timestamp' => $ts,
 						'diff' => 'prev'
-					)
+					]
 				);
 			} else {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts );
@@ -1448,19 +1511,19 @@ class SpecialUndelete extends SpecialPage {
 		$comment = Linker::revComment( $rev );
 
 		// Tags
-		$attribs = array();
-		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'deletedhistory' );
+		$attribs = [];
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'deletedhistory',
+			$this->getContext()
+		);
 		if ( $classes ) {
 			$attribs['class'] = implode( ' ', $classes );
 		}
 
-		// Revision delete links
-		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
-
-		$revisionRow = $this->msg( 'undelete-revision-row' )
+		$revisionRow = $this->msg( 'undelete-revision-row2' )
 			->rawParams(
 				$checkBox,
-				$revdlink,
 				$last,
 				$pageLink,
 				$userLink,
@@ -1504,11 +1567,11 @@ class SpecialUndelete extends SpecialPage {
 				// Revision was hidden from sysops
 				$revdlink = Linker::revDeleteLinkDisabled( $canHide );
 			} else {
-				$query = array(
+				$query = [
 					'type' => 'filearchive',
 					'target' => $this->mTargetObj->getPrefixedDBkey(),
 					'ids' => $row->fa_id
-				);
+				];
 				$revdlink = Linker::revDeleteLink( $query,
 					$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 			}
@@ -1538,11 +1601,11 @@ class SpecialUndelete extends SpecialPage {
 		$link = Linker::linkKnown(
 			$titleObj,
 			htmlspecialchars( $time ),
-			array(),
-			array(
+			[],
+			[
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => $ts
-			)
+			]
 		);
 
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -1573,12 +1636,12 @@ class SpecialUndelete extends SpecialPage {
 		$link = Linker::linkKnown(
 			$titleObj,
 			htmlspecialchars( $time ),
-			array(),
-			array(
+			[],
+			[
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'file' => $key,
 				'token' => $user->getEditToken( $key )
-			)
+			]
 		);
 
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
@@ -1639,13 +1702,11 @@ class SpecialUndelete extends SpecialPage {
 			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		Hooks::run( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
+		Hooks::run( 'UndeleteForm::undelete', [ &$archive, $this->mTargetObj ] );
 		$ok = $archive->undelete(
 			$this->mTargetTimestamp,
 			$this->mComment,
@@ -1656,9 +1717,9 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( is_array( $ok ) ) {
 			if ( $ok[1] ) { // Undeleted file count
-				Hooks::run( 'FileUndeleteComplete', array(
+				Hooks::run( 'FileUndeleteComplete', [
 					$this->mTargetObj, $this->mFileVersions,
-					$this->getUser(), $this->mComment ) );
+					$this->getUser(), $this->mComment ] );
 			}
 
 			$link = Linker::linkKnown( $this->mTargetObj );
@@ -1688,6 +1749,18 @@ class SpecialUndelete extends SpecialPage {
 				) . '</div>'
 			);
 		}
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

@@ -22,6 +22,8 @@
 	"ooui-dialog-process-dismiss": "Elrejt",
 	"ooui-dialog-process-retry": "Próbáld újra",
 	"ooui-dialog-process-continue": "Folytatás",
+	"ooui-selectfile-button-select": "Fájl kiválasztása",
 	"ooui-selectfile-not-supported": "A fájl kiválasztása nincs támogatva",
-	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva"
+	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva",
+	"ooui-selectfile-dragdrop-placeholder": "Dobd ide a fájlt"
 }

@@ -33,8 +33,8 @@ abstract class TidyDriverBase {
 	/**
 	 * Clean up HTML
 	 *
-	 * @param string HTML document fragment to clean up
-	 * @param string The corrected HTML output
+	 * @param string $text HTML document fragment to clean up
+	 * @return string The corrected HTML output
 	 */
-	public abstract function tidy( $text );
+	abstract public function tidy( $text );
 }
