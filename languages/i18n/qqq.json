@@ -1999,7 +1999,7 @@
 	"prefixindex-namespace": "The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace",
 	"prefixindex-summary": "{{notranslate}}\n\nThe summary displayed at the top of [[Special:Prefixindex]]. [[mw:Manual:Interface/Special pages summary|MediaWiki manual]].",
 	"prefixindex-submit": "Label on submit button in [[Special:PrefixIndex]]\n{{Identical|Show}}",
-	"prefixindex-strip": "Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].\n\nSee the following search results:\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10}} Special:PrefixIndex?prefix=Doc&namespace=10] (prefix NOT stripped)\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10&stripprefix=1}} Special:PrefixIndex?prefix=Doc&namespace=10&stripprefix=1] (prefix stripped)",
+	"prefixindex-strip": "Label for a checkbox. If the checkbox is checked, the prefix searched (do not confuse with prefix of the namespace) will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].\n\nSee the following search results:\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10}} Special:PrefixIndex?prefix=Doc&namespace=10] (prefix NOT stripped)\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10&stripprefix=1}} Special:PrefixIndex?prefix=Doc&namespace=10&stripprefix=1] (prefix stripped)",
 	"shortpages": "{{doc-special|ShortPages}}",
 	"shortpages-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Shortpages]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
 	"longpages": "{{doc-special|LongPages}}",

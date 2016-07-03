@@ -1796,7 +1796,7 @@
 	"prefixindex": "Alle Seiten (mit Präfix)",
 	"prefixindex-namespace": "Alle Seiten mit Präfix (Namensraum $1)",
 	"prefixindex-submit": "Anzeigen",
-	"prefixindex-strip": "Präfix in der Liste abschneiden",
+	"prefixindex-strip": "Suchpräfix ausblenden",
 	"shortpages": "Kurze Seiten",
 	"longpages": "Lange Seiten",
 	"deadendpages": "Nicht verlinkende Seiten",

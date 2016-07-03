@@ -1241,6 +1241,7 @@
 	"upload-too-many-redirects": "URL-en inneheldt for mange omdirigeringar",
 	"upload-http-error": "Ein HTTP-feil oppstod: $1",
 	"upload-copy-upload-invalid-domain": "Kopiopplastingar er ikkje tilgjengelege frå dette domenet.",
+	"upload-dialog-button-cancel": "Bryt av",
 	"backend-fail-stream": "Kunne ikkje strøyma fila «$1».",
 	"backend-fail-backup": "Kunne ikkje tryggingskopiera fila «$1».",
 	"backend-fail-notexists": "Fila $1 finst ikkje.",
