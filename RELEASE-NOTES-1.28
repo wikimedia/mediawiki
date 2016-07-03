@@ -35,6 +35,8 @@ production.
 === Bug fixes in 1.28 ===
 
 === Action API changes in 1.28 ===
+* Added maxarticlesize to action=query&meta=siteinfo which contains the
+  value of $wgMaxArticleSize
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
