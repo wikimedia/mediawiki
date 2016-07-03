@@ -424,3 +424,7 @@
 	path = extensions/BlogPage
 	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
 	branch = REL1_26
+[submodule "extensions/WebChat"]
+	path = extensions/WebChat
+	url = https://github.com/wikimedia/mediawiki-extensions-WebChat
+	branch = REL1_26
