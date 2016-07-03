@@ -1,51 +1,51 @@
 [submodule "extensions/CheckUser"]
 	path = extensions/CheckUser
 	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
 	url = https://github.com/wikimedia/mediawiki-extensions-AbuseFilter
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CentralAuth"]
 	path = extensions/CentralAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-CentralAuth
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/TitleBlacklist"]
 	path = extensions/TitleBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-TitleBlacklist
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SpamBlacklist"]
 	path = extensions/SpamBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/Vector"]
 	path = skins/Vector
 	url = https://github.com/wikimedia/mediawiki-skins-Vector
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/MonoBook"]
 	path = skins/MonoBook
 	url = https://github.com/wikimedia/mediawiki-skins-MonoBook
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/AntiSpoof"]
 	path = extensions/AntiSpoof
 	url = https://github.com/wikimedia/mediawiki-extensions-AntiSpoof
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Babel"]
 	path = extensions/Babel
 	url = https://github.com/wikimedia/mediawiki-extensions-Babel
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Cite"]
 	path = extensions/Cite
 	url = https://github.com/wikimedia/mediawiki-extensions-Cite
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/ConfirmEdit"]
 	path = extensions/ConfirmEdit
 	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
@@ -53,75 +53,75 @@
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://github.com/wikimedia/mediawiki-extensions-Echo
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/GlobalBlocking"]
 	path = extensions/GlobalBlocking
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalBlocking
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Interwiki"]
 	path = extensions/Interwiki
 	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MassMessage"]
 	path = extensions/MassMessage
 	url = https://github.com/wikimedia/mediawiki-extensions-MassMessage
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MobileFrontend"]
 	path = extensions/MobileFrontend
 	url = https://github.com/wikimedia/mediawiki-extensions-MobileFrontend
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
 	url = https://github.com/wikimedia/mediawiki-extensions-Nuke
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/OAuth"]
 	path = extensions/OAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OAuth
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Renameuser"]
 	path = extensions/Renameuser
 	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SiteMatrix"]
 	path = extensions/SiteMatrix
 	url = https://github.com/wikimedia/mediawiki-extensions-SiteMatrix
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Thanks"]
 	path = extensions/Thanks
 	url = https://github.com/wikimedia/mediawiki-extensions-Thanks
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Translate"]
 	path = extensions/Translate
 	url = https://github.com/wikimedia/mediawiki-extensions-Translate
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/UniversalLanguageSelector"]
 	path = extensions/UniversalLanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/UrlShortener"]
 	path = extensions/UrlShortener
 	url = https://github.com/wikimedia/mediawiki-extensions-UrlShortener
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://github.com/wikimedia/mediawiki-extensions-cldr
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/CologneBlue"]
 	path = skins/CologneBlue
 	url = https://github.com/wikimedia/mediawiki-skins-CologneBlue
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/Modern"]
 	path = skins/Modern
 	url = https://github.com/wikimedia/mediawiki-skins-Modern
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CreateWiki"]
 	path = extensions/CreateWiki
 	url = https://github.com/Miraheze/CreateWiki.git
@@ -129,23 +129,23 @@
 [submodule "extensions/Flow"]
 	path = extensions/Flow
 	url = https://github.com/wikimedia/mediawiki-extensions-Flow
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/VisualEditor"]
 	path = extensions/VisualEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/InputBox"]
 	path = extensions/InputBox
 	url = https://github.com/wikimedia/mediawiki-extensions-InputBox
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Scribunto"]
 	path = extensions/Scribunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Math"]
 	path = extensions/Math
 	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MirahezeMagic"]
 	path = extensions/MirahezeMagic
 	url = https://github.com/miraheze/MirahezeMagic
@@ -153,39 +153,39 @@
 [submodule "extensions/MultiUpload"]
 	path = extensions/MultiUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Timeline"]
 	path = extensions/Timeline
 	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CategoryTree"]
 	path = extensions/CategoryTree
 	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CiteThisPage"]
 	path = extensions/CiteThisPage
 	url = https://github.com/wikimedia/mediawiki-extensions-CiteThisPage
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Disambiguator"]
 	path = extensions/Disambiguator
 	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
 	url = https://github.com/wikimedia/mediawiki-extensions-Imagemap
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/GlobalCssJs"]
 	path = extensions/GlobalCssJs
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalCssJs
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/DynamicPageList"]
 	path = extensions/DynamicPageList
 	url = https://github.com/wikimedia/mediawiki-extensions-intersection
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/TemplateData"]
 	path = extensions/TemplateData
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/EmbedVideo"]
 	path = extensions/EmbedVideo
 	url = https://github.com/Alexia/mediawiki-embedvideo.git
@@ -193,23 +193,23 @@
 [submodule "extensions/TimedMediaHandler"]
 	path = extensions/TimedMediaHandler
 	url = https://github.com/wikimedia/mediawiki-extensions-TimedMediaHandler
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MwEmbedSupport"]
 	path = extensions/MwEmbedSupport
 	url = https://github.com/wikimedia/mediawiki-extensions-MwEmbedSupport
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CollapsibleVector"]
 	path = extensions/CollapsibleVector
 	url = https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SubpageFun"]
 	path = extensions/SubpageFun
 	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/DPLForum"]
 	path = extensions/DPLForum
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabs.git
@@ -217,35 +217,35 @@
 [submodule "extensions/Tabber"]
 	path = extensions/Tabber
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabber.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://github.com/wikimedia/mediawiki-extensions-Poem.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/AdminLinks"]
 	path = extensions/AdminLinks
 	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SocialProfile"]
 	path = extensions/SocialProfile
 	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Variables"]
 	path = extensions/Variables
 	url = https://github.com/wikimedia/mediawiki-extensions-Variables.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CharInsert"]
 	path = extensions/CharInsert
 	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/NewUserMessage"]
 	path = extensions/NewUserMessage
 	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CSS"]
 	path = extensions/CSS
 	url = https://github.com/wikimedia/mediawiki-extensions-CSS.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/RandomSelection"]
 	path = extensions/RandomSelection
 	url = https://github.com/Inclumedia/RandomSelection.git
@@ -253,77 +253,77 @@
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Popups"]
 	path = extensions/Popups
 	url = https://github.com/wikimedia/mediawiki-extensions-Popups.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
 	url = https://github.com/wikimedia/mediawiki-extensions-PageImages.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/TitleKey"]
 	path = extensions/TitleKey
 	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MsUpload"]
 	path = extensions/MsUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MsLinks"]
 	path = extensions/MsLinks
 	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MsCatSelect"]
 	path = extensions/MsCatSelect
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MultiBoilerplate"]
 	path = extensions/MultiBoilerplate
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/RelatedArticles"]
 	path = extensions/RelatedArticles
 	url = https://github.com/wikimedia/mediawiki-extensions-RelatedArticles
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/CustomData"]
 	path = extensions/CustomData
 	url = https://github.com/wikimedia/mediawiki-extensions-CustomData
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/YouTube"]
 	path = extensions/YouTube
 	url = https://github.com/miraheze/YouTube.git
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Josa"]
 	path = extensions/Josa
 	url = https://github.com/wikimedia/mediawiki-extensions-Josa
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/PageTriage"]
 	path = extensions/PageTriage
 	url = https://github.com/wikimedia/mediawiki-extensions-PageTriage
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SectionHide"]
 	path = extensions/SectionHide
 	url = https://github.com/miraheze/SectionHide.git
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/FeaturedFeeds"]
 	path = extensions/FeaturedFeeds
 	url = https://github.com/wikimedia/mediawiki-extensions-FeaturedFeeds
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/WikiForum"]
 	path = extensions/WikiForum
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiForum
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/foreground"]
 	path = skins/foreground
 	url = https://github.com/thingles/foreground
@@ -335,7 +335,7 @@
 [submodule "extensions/NoTitle"]
 	path = extensions/NoTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-NoTitle
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/AddHTMLMetaAndTitle"]
 	path = extensions/AddHTMLMetaAndTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
@@ -343,31 +343,31 @@
 [submodule "extensions/OpenGraphMeta"]
 	path = extensions/OpenGraphMeta
 	url = https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiLove
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/BetaFeatures"]
 	path = extensions/BetaFeatures
 	url = https://github.com/wikimedia/mediawiki-extensions-BetaFeatures
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SandboxLink"]
 	path = extensions/SandboxLink
 	url = https://github.com/wikimedia/mediawiki-extensions-SandboxLink
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/MultimediaViewer"]
 	path = extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/ContactPage"]
 	path = extensions/ContactPage
 	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Poll"]
 	path = extensions/Poll
 	url = https://github.com/wikimedia/mediawiki-extensions-Poll
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/HighlightLinksInCategory"]
 	path = extensions/HighlightLinksInCategory
 	url = https://github.com/labster/HighlightLinksInCategory.git
@@ -375,7 +375,7 @@
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Editcount.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/NativeSvgHandler"]
 	path = extensions/NativeSvgHandler
 	url = https://github.com/p12tic/NativeSvgHandler.git
@@ -383,7 +383,7 @@
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/SimpleTooltip"]
 	path = extensions/SimpleTooltip
 	url = https://github.com/Fannon/SimpleTooltip.git
@@ -391,15 +391,15 @@
 [submodule "extensions/Loops"]
 	path = extensions/Loops
 	url = https://github.com/wikimedia/mediawiki-extensions-Loops.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/NewestPages"]
 	path = extensions/NewestPages
 	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/HeaderTabs"]
 	path = extensions/HeaderTabs
 	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/Comments"]
 	path = extensions/Comments
 	url = https://github.com/miraheze/mediawiki-extensions-Comments.git
@@ -411,20 +411,20 @@
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
 	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
 	url = https://github.com/wikimedia/mediawiki-skins-Metrolook.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/AJAXPoll"]
 	path = extensions/AJAXPoll
 	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
 	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
-	branch = REL1_26
+	branch = REL1_27
 [submodule "extensions/WebChat"]
 	path = extensions/WebChat
 	url = https://github.com/wikimedia/mediawiki-extensions-WebChat
-	branch = REL1_26
+	branch = REL1_27
