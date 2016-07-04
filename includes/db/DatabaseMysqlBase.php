@@ -881,6 +881,14 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
+	 * @param string $index
+	 * @return string
+	 */
+	function ignoreIndexClause( $index ) {
+		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+	}
+
+	/**
 	 * @return string
 	 */
 	function lowPriorityOption() {
