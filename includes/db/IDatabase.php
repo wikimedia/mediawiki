@@ -1216,6 +1216,20 @@ interface IDatabase {
 	public function getMasterPos();
 
 	/**
+	 * Run an anonymous function as soon as the current transaction commits or rolls back.
+	 * An error is thrown if no transaction is pending. Queries in the function will run in
+	 * AUTO-COMMIT mode unless there are begin() calls. Callbacks must commit any transactions
+	 * that they begin.
+	 *
+	 * This is useful for combining cooperative locks and DB transactions.
+	 *
+	 * @param callable $callback
+	 * @return mixed
+	 * @since 1.28
+	 */
+	public function onTransactionResolution( callable $callback );
+
+	/**
 	 * Run an anonymous function as soon as there is no transaction pending.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
 	 * Queries in the function will run in AUTO-COMMIT mode unless there are begin() calls.
@@ -1231,7 +1245,7 @@ interface IDatabase {
 	 * @param callable $callback
 	 * @since 1.20
 	 */
-	public function onTransactionIdle( $callback );
+	public function onTransactionIdle( callable $callback );
 
 	/**
 	 * Run an anonymous function before the current transaction commits or now if there is none.
@@ -1246,7 +1260,7 @@ interface IDatabase {
 	 * @param callable $callback
 	 * @since 1.22
 	 */
-	public function onTransactionPreCommitOrIdle( $callback );
+	public function onTransactionPreCommitOrIdle( callable $callback );
 
 	/**
 	 * Begin an atomic section of statements
