@@ -72,6 +72,8 @@
 	"apihelp-createaccount-param-language": "Código de lingua para usar como defecto polo usuario (de xeito opcional, usarase a lingua por defecto)",
 	"apihelp-createaccount-example-pass": "Crear usuario <kbd>testuser</kbd> con contrasinal <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Crear usuario <kbd>testmailuser</kbd>\"testmailuser\" e enviar por correo electrónico un contrasinal xenerado de forma aleatoria.",
+	"apihelp-cspreport-description": "Usado polos navegadores para informar de violacións da política de confidencialidade de contido. Este módulo non debe se usado nunca, excepto cando é usado automaticamente por un navegador web compatible con CSP.",
+	"apihelp-cspreport-param-source": "Que xerou a cabeceira CSP que lanzou este informe",
 	"apihelp-delete-description": "Borrar a páxina.",
 	"apihelp-delete-param-title": "Título da páxina a eliminar. Non pode usarse xunto con <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "Identificador da páxina a eliminar. Non pode usarse xunto con <var>$1title</var>.",

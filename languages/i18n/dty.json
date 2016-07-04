@@ -411,7 +411,7 @@
 	"createacct-reason": "कारण",
 	"createacct-reason-ph": "क्याई तम नयाँ खाता खोल्ला छौ?",
 	"createacct-submit": "तमरो खाता सिर्जना गर",
-	"createacct-another-submit": "दोसरो खाता सिर्जना गर",
+	"createacct-another-submit": "खाता खोल",
 	"createacct-continue-submit": "खाता खोल्लु जारि राख",
 	"createacct-another-continue-submit": "खाता खोल्लु जारि राख",
 	"createacct-benefit-heading": "{{SITENAME}} तम जसाई मान्सुनले सिर्जना गरिया हो ।",
