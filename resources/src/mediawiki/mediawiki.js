@@ -1828,8 +1828,8 @@
 				 *         OO.compare( [ 1 ], [ 1 ] );
 				 *     } );
 				 *
-				 * @param {string|Array} dependencies Module name or array of modules names the callback
-				 *  dependends on to be ready before executing
+				 * @param {string|Array} dependencies Module name or array of modules names the
+				 *  callback depends on to be ready before executing
 				 * @param {Function} [ready] Callback to execute when all dependencies are ready
 				 * @param {Function} [error] Callback to execute if one or more dependencies failed
 				 * @return {jQuery.Promise}
@@ -2009,7 +2009,7 @@
 				require: function ( moduleName ) {
 					var state = mw.loader.getState( moduleName );
 
-					// Only ready mudules can be required
+					// Only ready modules can be required
 					if ( state !== 'ready' ) {
 						// Module may've forgotten to declare a dependency
 						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
