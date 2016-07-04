@@ -186,9 +186,13 @@
 	 * @inheritdoc
 	 */
 	CSP.createItemWidget = function ( data ) {
+		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		if ( !title ) {
+			return null;
+		}
 		return new mw.widgets.CategoryCapsuleItemWidget( {
 			apiUrl: this.api.apiUrl || undefined,
-			title: mw.Title.makeTitle( NS_CATEGORY, data )
+			title: title
 		} );
 	};
 
@@ -198,8 +202,11 @@
 	CSP.getItemFromData = function ( data ) {
 		// This is a bit of a hack... We have to canonicalize the data in the same way that
 		// #createItemWidget and CategoryCapsuleItemWidget will do, otherwise we won't find duplicates.
-		data = mw.Title.makeTitle( NS_CATEGORY, data ).getMainText();
-		return OO.ui.mixin.GroupElement.prototype.getItemFromData.call( this, data );
+		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		if ( !title ) {
+			return null;
+		}
+		return OO.ui.mixin.GroupElement.prototype.getItemFromData.call( this, title.getMainText() );
 	};
 
 	/**
