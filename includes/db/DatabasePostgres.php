@@ -927,7 +927,7 @@ __INDEXATTR__;
 		if ( !is_array( $selectOptions ) ) {
 			$selectOptions = [ $selectOptions ];
 		}
-		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
+		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) = $this->makeSelectOptions( $selectOptions );
 		if ( is_array( $srcTable ) ) {
 			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
 		} else {
@@ -936,7 +936,7 @@ __INDEXATTR__;
 
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex";
+			" FROM $srcTable $useIndex $ignoreIndex ";
 
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
@@ -1482,7 +1482,7 @@ SQL;
 	 */
 	function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
-		$startOpts = $useIndex = '';
+		$startOpts = $useIndex = $ignoreIndex = '';
 
 		$noKeyOptions = [];
 		foreach ( $options as $key => $option ) {
@@ -1512,7 +1512,7 @@ SQL;
 			$startOpts .= 'DISTINCT';
 		}
 
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail ];
+		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
 	function getDBname() {
