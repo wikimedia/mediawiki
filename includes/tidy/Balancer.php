@@ -296,11 +296,8 @@ class BalanceElement {
 	 */
 	public $localName;
 	/**
-	 * Attributes for the element, as normalized by
-	 * Sanitizer::safeEncodeTagAttributes. Attributes are space-separated
-	 * and attribute values are double-quoted.  Elements with no
-	 * attributes should have a zero-length string here.
-	 * @var string $attribs
+	 * Attributes for the element, in array form
+	 * @var array $attribs
 	 */
 	public $attribs;
 
@@ -321,18 +318,38 @@ class BalanceElement {
 	public $children;
 
 	/**
+	 * A unique string identifier for Noah's Ark purposes, lazy initialized
+	 */
+	private $noahKey;
+
+	/**
+	 * The next active formatting element in the list, or null if this is the
+	 * end of the AFE list or if the element is not in the AFE list.
+	 */
+	public $nextAFE;
+
+	/**
+	 * The previous active formatting element in the list, or null if this is
+	 * the start of the list or if the element is not in the AFE list.
+	 */
+	public $prevAFE;
+
+	/**
+	 * The next element in the Noah's Ark species bucket.
+	 */
+	public $nextNoah;
+
+	/**
 	 * Make a new BalanceElement corresponding to the HTML DOM Element
 	 * with the given localname, namespace, and attributes.
 	 *
 	 * @param string $namespaceURI The namespace of the element.
 	 * @param string $localName The lowercased name of the tag.
-	 * @param string $attribs Attributes of the element, as normalized
-	 *   by Sanitizer:safeEncodeTagAttributes.
+	 * @param array $attribs Attributes of the element
 	 */
-	public function __construct( $namespaceURI, $localName, $attribs ) {
+	public function __construct( $namespaceURI, $localName, array $attribs ) {
 		Assert::parameterType( 'string', $namespaceURI, '$namespaceURI' );
 		Assert::parameterType( 'string', $localName, '$localName' );
-		Assert::parameterType( 'string', $attribs, '$attribs' );
 
 		$this->localName = $localName;
 		$this->namespaceURI = $namespaceURI;
@@ -455,8 +472,10 @@ class BalanceElement {
 			} elseif ( $blank ) {
 				// Add 'mw-empty-elt' class so elements can be hidden via CSS
 				// for compatibility with legacy tidy.
-				if ( $this->attribs === '' ) {
-					$this->attribs = ' class="mw-empty-elt"';
+				if ( !count( $this->attribs ) &&
+					( $this->localName === 'tr' || $this->localName === 'li' )
+				) {
+					$this->attribs = [ 'class' => "mw-empty-elt" ];
 				}
 				$blank = false;
 			}
@@ -477,14 +496,20 @@ class BalanceElement {
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#serialising-html-fragments
 	 */
 	public function __toString() {
-		$out = "<{$this->localName}{$this->attribs}>";
+		$encAttribs = '';
+		foreach ( $this->attribs as $name => $value ) {
+			$encValue = Sanitizer::encodeAttribute( $value );
+			$encAttribs .= " $name=\"$encValue\"";
+		}
 		if ( !$this->isA( BalanceSets::$emptyElementSet ) ) {
+			$out = "<{$this->localName}{$encAttribs}>";
 			// flatten children
 			foreach ( $this->children as $elt ) {
 				$out .= "{$elt}";
 			}
 			$out .= "</{$this->localName}>";
 		} else {
+			$out = "<{$this->localName}{$encAttribs} />";
 			Assert::invariant(
 				count( $this->children ) === 0,
 				"Empty elements shouldn't have children."
@@ -550,13 +575,25 @@ class BalanceElement {
 		if (
 			$this->namespaceURI === BalanceSets::MATHML_NAMESPACE &&
 			$this->localName === 'annotation-xml' &&
-			// We rely on Sanitizer::fixTagAttributes having run on $attribs
-			// to normalize the form of the tag parameters.
-			preg_match( ':(^| )encoding="(text/html|application/xhtml+xml)":i', $this->attribs )
+			isset( $this->attribs['encoding'] ) &&
+			( strcasecmp( $this->attribs['encoding'], 'text/html' ) == 0 ||
+			strcasecmp( $this->attribs['encoding'], 'application/xhtml+xml' ) == 0 )
 		) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Get a string key for the Noah's Ark algorithm
+	 */
+	public function getNoahKey() {
+		if ( $this->noahKey === null ) {
+			$attribs = $this->attribs;
+			ksort( $attribs );
+			$this->noahKey = serialize( [ $this->namespaceURI, $this->localName, $attribs ] );
+		}
+		return $this->noahKey;
 	}
 }
 
@@ -601,7 +638,7 @@ class BalanceStack implements IteratorAggregate {
 		# always a root <html> element on the stack
 		array_push(
 			$this->elements,
-			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'html', '' )
+			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'html', [] )
 		);
 	}
 
@@ -1037,7 +1074,7 @@ class BalanceStack implements IteratorAggregate {
 		// elements and abort these steps.
 		if (
 			$this->currentNode()->isA( $tag ) &&
-			$afe->indexOf( $this->currentNode() ) < 0
+			!$afe->isInList( $this->currentNode() )
 		) {
 			$this->pop();
 			return true; // no more handling required
@@ -1116,14 +1153,14 @@ class BalanceStack implements IteratorAggregate {
 				// element in the list of active formatting elements
 				// relative to the elements on either side of it in the
 				// list.
-				$BOOKMARK = new BalanceElement( '[bookmark]', '[bookmark]', '' );
+				$BOOKMARK = new BalanceElement( '[bookmark]', '[bookmark]', [] );
 				$afe->insertAfter( $fmtelt, $BOOKMARK );
 
 				// Let node and last node be the furthest block.
 				$node = $furthestblock;
 				$lastnode = $furthestblock;
 				$nodeindex = $furthestblockindex;
-				$nodeafeindex = -1;
+				$isAFE = false;
 
 				// Let inner loop counter be zero.
 				$inner = 0;
@@ -1148,17 +1185,17 @@ class BalanceStack implements IteratorAggregate {
 					// If the inner loop counter is greater than three and node
 					// is in the list of active formatting elements, then remove
 					// node from the list of active formatting elements.
-					$nodeafeindex = $afe->indexOf( $node );
-					if ( $inner > 3 && $nodeafeindex !== -1 ) {
+					$isAFE = $afe->isInList( $node );
+					if ( $inner > 3 && $isAFE ) {
 						$afe->remove( $node );
-						$nodeafeindex = -1;
+						$isAFE = false;
 					}
 
 					// If node is not in the list of active formatting
 					// elements, then remove node from the stack of open
 					// elements and then go back to the step labeled inner
 					// loop.
-					if ( $nodeafeindex === -1 ) {
+					if ( !$isAFE ) {
 						// Don't flatten here, since we're about to relocate
 						// parts of this $node.
 						$this->removeElement( $node, false );
@@ -1172,7 +1209,8 @@ class BalanceStack implements IteratorAggregate {
 					// entry for the new element, replace the entry for
 					// node in the stack of open elements with an entry for
 					// the new element, and let node be the new element.
-					$newelt = $afe->cloneAt( $nodeafeindex ); // XXX
+					$newelt = new BalanceElement(
+						$node->namespaceURI, $node->localName, $node->attribs );
 					$afe->replace( $node, $newelt );
 					$this->replaceAt( $nodeindex, $newelt );
 					$node = $newelt;
@@ -1212,7 +1250,8 @@ class BalanceStack implements IteratorAggregate {
 				// Create an element for the token for which the
 				// formatting element was created, with furthest block
 				// as the intended parent.
-				$newelt2 = $afe->cloneAt( $afe->indexOf( $fmtelt ) );
+				$newelt2 = new BalanceElement(
+					$fmtelt->namespaceURI, $fmtelt->localName, $fmtelt->attribs );
 
 				// Take all of the child nodes of the furthest block and
 				// append them to the element created in the last step.
@@ -1255,6 +1294,17 @@ class BalanceStack implements IteratorAggregate {
 }
 
 /**
+ * A pseudo-element used as a marker in the list of active formatting elements
+ *
+ * @ingroup Parser
+ * @since 1.27
+ */
+class BalanceMarker {
+	public $nextAFE;
+	public $prevAFE;
+}
+
+/**
  * The list of active formatting elements, which is used to handle
  * mis-nested formatting element tags in the HTML5 tree builder
  * specification.
@@ -1264,57 +1314,118 @@ class BalanceStack implements IteratorAggregate {
  * @see https://html.spec.whatwg.org/multipage/syntax.html#list-of-active-formatting-elements
  */
 class BalanceActiveFormattingElements {
-	private $elemList = [];
-	private $attribList = [];
-	private static $MARKER = '|';
+	/** The last (most recent) element in the list */
+	private $tail;
+
+	/** The first (least recent) element in the list */
+	private $head;
+
+	/**
+	 * An array of arrays representing the population of elements in each bucket
+	 * according to the Noah's Ark clause. The outer array is stack-like, with each
+	 * integer-indexed element representing a segment of the list, bounded by
+	 * markers. The first element represents the segment of the list before the
+	 * first marker.
+	 *
+	 * The inner arrays are indexed by "Noah key", which is a string which uniquely
+	 * identifies each bucket according to the rules in the spec. The value in
+	 * the inner array is the first (least recently inserted) element in the bucket,
+	 * and subsequent members of the bucket can be found by iterating through the
+	 * singly-linked list via $node->nextNoah.
+	 *
+	 * This is optimised for the most common case of inserting into a bucket
+	 * with zero members, and deleting a bucket containing one member. In the
+	 * worst case, iteration through the list is still O(1) in the document
+	 * size, since each bucket can have at most 3 members.
+	 */
+	private $noahTableStack = [ [] ];
 
 	public function insertMarker() {
-		$this->elemList[] = self::$MARKER;
-		$this->attribList[] = self::$MARKER;
+		$elt = new BalanceMarker;
+		if ( $this->tail ) {
+			$this->tail->nextAFE = $elt;
+			$elt->prevAFE = $this->tail;
+		} else {
+			$this->head = $elt;
+		}
+		$this->tail = $elt;
+		$this->noahTableStack[] = [];
 	}
 
-	public function push( $elt, $attribs ) {
+	/**
+	 * Follow the steps required when the spec requires us to "push onto the
+	 * list of active formatting elements".
+	 * @param BalanceElement $elt
+	 */
+	public function push( BalanceElement $elt ) {
+		// Must not be in the list already
+		if ( $elt->prevAFE !== null || $this->head === $elt ) {
+			throw new ParameterAssertionException( '$elt',
+				'Cannot insert a node into the AFE list twice' );
+		}
+
 		// "Noah's Ark clause" -- if there are already three copies of
 		// this element before we encounter a marker, then drop the last
 		// one.
-		$count = 0;
-		for ( $i = count( $this->elemList ) - 1; $i >= 0; $i-- ) {
-			if ( $this->elemList[$i] === self::$MARKER ) {
-				break;
-			}
-			// Note that we rely on Sanitizer::fixTagAttributes having run
-			// previously with the $sorted option true.  The attributes are
-			// thus canonicalized, which allows us to compare $attribs with
-			// a simple string compare.
-			if (
-				$this->elemList[$i]->localName === $elt->localName &&
-				$this->attribList[$i] === $elt->attribs
-			) {
+		$noahKey = $elt->getNoahKey();
+		$table =& $this->noahTableStack[ count( $this->noahTableStack ) - 1 ];
+		if ( !isset( $table[$noahKey] ) ) {
+			$table[$noahKey] = $elt;
+		} else {
+			$count = 1;
+			$head = $tail = $table[$noahKey];
+			while ( $tail->nextNoah ) {
+				$tail = $tail->nextNoah;
 				$count++;
-				if ( $count === 3 ) {
-					array_splice( $this->elemList, $i, 1 );
-					array_splice( $this->attribList, $i, 1 );
-					break;
-				}
 			}
+			if ( $count >= 3 ) {
+				$this->remove( $head );
+			}
+			$tail->nextNoah = $elt;
 		}
-		// Now push the new element onto the list.
-		$this->elemList[] = $elt;
-		// Spec says we have to clone the attribs, in case the element's
-		// attributes are later modified.
-		$this->attribList[] = $elt->attribs;
+		// Add to the main AFE list
+		if ( $this->tail ) {
+			$this->tail->nextAFE = $elt;
+			$elt->prevAFE = $this->tail;
+		} else {
+			$this->head = $elt;
+		}
+		$this->tail = $elt;
 	}
 
+	/**
+	 * Follow the steps required when the spec asks us to "clear the list of
+	 * active formatting elements up to the last marker".
+	 */
 	public function clearToMarker() {
-		# This is deliberately >0 not >=0, since it doesn't matter if element
-		# 0 is the marker, we clear the whole list in that case regardless.
-		for ( $i = count( $this->elemList ) - 1; $i > 0; $i-- ) {
-			if ( $this->elemList[$i] === self::$MARKER ) {
-				break;
+		// Iterate back through the list starting from the tail
+		$tail = $this->tail;
+		while ( $tail && !( $tail instanceof BalanceMarker ) ) {
+			// Unlink the element
+			$prev = $tail->prevAFE;
+			$tail->prevAFE = null;
+			if ( $prev ) {
+				$prev->nextAFE = null;
 			}
+			$tail = $prev;
 		}
-		array_splice( $this->elemList, $i );
-		array_splice( $this->attribList, $i );
+		// If we finished on a marker, unlink it and pop it off the Noah table stack
+		if ( $tail ) {
+			$prev = $tail->prevAFE;
+			if ( $prev ) {
+				$prev->nextAFE = null;
+			}
+			$tail = $prev;
+			array_pop( $this->noahTableStack );
+		} else {
+			// No marker: wipe the top-level Noah table (which is the only one)
+			$this->noahTableStack[0] = [];
+		}
+		// If we removed all the elements, clear the head pointer
+		if ( !$tail ) {
+			$this->head = null;
+		}
+		$this->tail = $tail;
 	}
 
 	/**
@@ -1323,77 +1434,140 @@ class BalanceActiveFormattingElements {
 	 * Used when parsing &lt;a&gt; "in body mode".
 	 */
 	public function findElementByTag( $tag ) {
-		for ( $i = count( $this->elemList ) - 1; $i >= 0; $i-- ) {
-			$elt = $this->elemList[$i];
-			if ( $elt === self::$MARKER ) {
-				break;
-			}
+		$elt = $this->tail;
+		while ( $elt && !( $elt instanceof BalanceMarker ) ) {
 			if ( $elt->localName === $tag ) {
 				return $elt;
 			}
+			$elt = $elt->prevAFE;
 		}
 		return null;
 	}
 
-	public function indexOf( $elt ) {
-		for ( $i = count( $this->elemList ) - 1; $i >= 0; $i-- ) {
-			if ( $this->elemList[$i] === $elt ) {
-				return $i;
-			}
-		}
-		return -1;
+	/**
+	 * Determine whether an element is in the list of formatting elements.
+	 * @return boolean
+	 */
+	public function isInList( BalanceElement $elt ) {
+		return $this->head === $elt || $elt->prevAFE;
 	}
 
 	/**
 	 * Find the element $elt in the list and remove it.
 	 * Used when parsing &lt;a&gt; in body mode.
 	 */
-	public function remove( $elt ) {
-		$idx = $this->indexOf( $elt );
-		Assert::parameter( $idx >= 0, '$elt', 'should be present in afe list' );
-		array_splice( $this->elemList, $idx, 1 );
-		array_splice( $this->attribList, $idx, 1 );
+	public function remove( BalanceElement $elt ) {
+		if ( $this->head !== $elt && !$elt->prevAFE ) {
+			throw new ParameterAssertionException( '$elt',
+				"Attempted to remove an element which is not in the AFE list" );
+		}
+		// Update head and tail pointers
+		if ( $this->head === $elt ) {
+			$this->head = $elt->nextAFE;
+		}
+		if ( $this->tail === $elt ) {
+			$this->tail = $elt->prevAFE;
+		}
+		// Update previous element
+		if ( $elt->prevAFE ) {
+			$elt->prevAFE->nextAFE = $elt->nextAFE;
+		}
+		// Update next element
+		if ( $elt->nextAFE ) {
+			$elt->nextAFE->prevAFE = $elt->prevAFE;
+		}
+		// Clear pointers so that isInList() etc. will work
+		$elt->prevAFE = $elt->nextAFE = null;
+		// Update Noah list
+		$this->removeFromNoahList( $elt );
+	}
+
+	private function addToNoahList( BalanceElement $elt ) {
+		$noahKey = $elt->getNoahKey();
+		$table =& $this->noahTableStack[ count( $this->noahTableStack ) - 1 ];
+		if ( !isset( $table[$noahKey] ) ) {
+			$table[$noahKey] = $elt;
+		} else {
+			$tail = $table[$noahKey];
+			while ( $tail->nextNoah ) {
+				$tail = $tail->nextNoah;
+			}
+			$tail->nextNoah = $elt;
+		}
+	}
+
+	private function removeFromNoahList( BalanceElement $elt ) {
+		$table =& $this->noahTableStack[ count( $this->noahTableStack ) - 1 ];
+		$key = $elt->getNoahKey();
+		$noahElt = $table[$key];
+		if ( $noahElt === $elt ) {
+			if ( $noahElt->nextNoah ) {
+				$table[$key] = $noahElt->nextNoah;
+			} else {
+				unset( $table[$key] );
+			}
+		} else {
+			do {
+				$prevNoahElt = $noahElt;
+				$noahElt = $prevNoahElt->nextNoah;
+				if ( $noahElt === $elt ) {
+					// Found it, unlink
+					$prevNoahElt->nextNoah = $elt->nextNoah;
+					break;
+				}
+			} while ( $noahElt );
+		}
 	}
 
 	/**
-	 * Find element $a in the list and replace it with element $b,
-	 * optionally replacing the stored attributes as well with $attribs.
+	 * Find element $a in the list and replace it with element $b
 	 */
-	public function replace( $a, $b, $attribs=null ) {
-		$idx = $this->indexOf( $a );
-		if ( $idx >= 0 ) {
-			$this->elemList[ $idx ] = $b;
-			if ( $attribs !== null ) {
-				$this->attribList[  $idx ] = $attribs;
-			}
+	public function replace( BalanceElement $a, BalanceElement $b ) {
+		if ( $this->head !== $a && !$a->prevAFE ) {
+			throw new ParameterAssertionException( '$a',
+				"Attempted to replace an element which is not in the AFE list" );
 		}
+		// Update head and tail pointers
+		if ( $this->head === $a ) {
+			$this->head = $b;
+		}
+		if ( $this->tail === $a ) {
+			$this->tail = $b;
+		}
+		// Update previous element
+		if ( $a->prevAFE ) {
+			$a->prevAFE->nextAFE = $b;
+		}
+		// Update next element
+		if ( $a->nextAFE ) {
+			$a->nextAFE->prevAFE = $b;
+		}
+		$b->prevAFE = $a->prevAFE;
+		$b->nextAFE = $a->nextAFE;
+		$a->nextAFE = $a->prevAFE = null;
+		// Update Noah list
+		$this->removeFromNoahList( $a );
+		$this->addToNoahList( $b );
 	}
 
 	/**
 	 * Find $a in the list and insert $b after it.
-	 * This is only used for insert a bookmark object, so the
-	 * $this->attribList contents don't really matter.
 	 */
-	public function insertAfter( $a, $b ) {
-		$idx = $this->indexOf( $a );
-		if ( $idx >= 0 ) {
-			array_splice( $this->elemList, $idx, 0, [ $b ] );
-			array_splice( $this->attribList, $idx, 0, [ '' ] );
+	public function insertAfter( BalanceElement $a, BalanceElement $b ) {
+		if ( $this->head !== $a && !$a->prevAFE ) {
+			throw new ParameterAssertionException( '$a',
+				"Attempted to insert after an element which is not in the AFE list" );
 		}
-	}
-
-	/**
-	 * Make a copy of element $idx on the list of active formatting
-	 * elements, using its original attributes not current attributes.
-	 * (In full HTML spec, current attributes could have been modified
-	 * by a script.)
-	 */
-	public function cloneAt( $idx ) {
-		$node = $this->elemList[$idx];
-		$attribs = $this->attribList[$idx];
-		return new BalanceElement(
-			$node->namespaceURI, $node->localName, $attribs
-		);
+		if ( $this->tail === $a ) {
+			$this->tail = $b;
+		}
+		if ( $a->nextAFE ) {
+			$a->nextAFE->prevAFE = $b;
+		}
+		$b->nextAFE = $a->nextAFE;
+		$b->prevAFE = $a;
+		$a->nextAFE = $b;
+		$this->addToNoahList( $b );
 	}
 
 	// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
@@ -1404,13 +1578,14 @@ class BalanceActiveFormattingElements {
 	 */
 	// @codingStandardsIgnoreEnd
 	public function reconstruct( $stack ) {
-		if ( empty( $this->elemList ) ) {
+		$entry = $this->tail;
+		// If there are no entries in the list of active formatting elements,
+		// then there is nothing to reconstruct
+		if ( !$entry ) {
 			return;
 		}
-		$len = count( $this->elemList );
-		$entry = $this->elemList[$len - 1];
 		// If the last is a marker, do nothing.
-		if ( $entry === self::$MARKER ) {
+		if ( $entry instanceof BalanceMarker ) {
 			return;
 		}
 		// Or if it is an open element, do nothing.
@@ -1419,26 +1594,54 @@ class BalanceActiveFormattingElements {
 		}
 
 		// Loop backward through the list until we find a marker or an
-		// open element, and then move forward one from there.
-		for ( $i = $len - 2; $i >= 0; $i-- ) {
-			$entry = $this->elemList[$i];
-			if ( $entry === self::$MARKER ) {
-				break;
-			}
-			if ( $stack->indexOf( $entry ) >= 0 ) {
+		// open element
+		while ( $entry->prevAFE ) {
+			$entry = $entry->prevAFE;
+			if ( $entry instanceof BalanceMarker || $stack->indexOf( $entry ) >= 0 ) {
 				break;
 			}
 		}
 
-		// Now loop forward, starting from the element after the current
-		// one, recreating formatting elements and pushing them back onto
-		// the list of open elements
-		for ( $i++; $i < $len; $i++ ) {
-			$this->elemList[$i] = $stack->insertHTMLElement(
-				$this->elemList[$i]->localName,
-				$this->attribList[$i]
-			);
+		// If there are no entries before $entry in the list of active formatting
+		// elements, skip the first advance
+		if ( $entry->prevAFE ) {
+			$entry = $entry->nextAFE;
 		}
+		do {
+			$newElement = $stack->insertHTMLElement(
+				$entry->localName,
+				$entry->attribs );
+			$this->replace( $entry, $newElement );
+			$entry = $newElement->nextAFE;
+		} while ( $entry );
+	}
+
+	/**
+	 * Get a string representation of the AFE list, for debugging
+	 */
+	public function __toString() {
+		$prev = null;
+		$s = '';
+		for ( $node = $this->head; $node; $prev = $node, $node = $node->nextAFE ) {
+			if ( $node instanceof BalanceMarker ) {
+				$s .= "MARKER\n";
+				continue;
+			}
+			$s .= $node->localName . '#' . substr( md5( spl_object_hash( $node ) ), 0, 8 );
+			if ( $node->nextNoah ) {
+				$s .= " (noah sibling: {$node->nextNoah->localName}#" .
+					substr( md5( spl_object_hash( $node->nextNoah ) ), 0, 8 ) .
+					')';
+			}
+			if ( $node->nextAFE && $node->nextAFE->prevAFE !== $node ) {
+				$s .= " (reverse link is wrong!)";
+			}
+			$s .= "\n";
+		}
+		if ( $prev !== $this->tail ) {
+			$s .= "(tail pointer is wrong!)\n";
+		}
+		return $s;
 	}
 }
 
@@ -1525,7 +1728,7 @@ class Balancer {
 	 *         <body> and <blockquote> elements, and empty elements
 	 *         are removed.
 	 */
-	public function __construct( array $config ) {
+	public function __construct( array $config = [] ) {
 		$config = $config + [
 			'strict' => false,
 			'allowedHtmlElements' => null,
@@ -1580,7 +1783,7 @@ class Balancer {
 		# The stack is constructed with an <html> element already on it.
 		# Set this up as a fragment parsed with <body> as the context.
 		$this->fragmentContext =
-			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'body', '' );
+			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'body', [] );
 		$this->resetInsertionMode();
 
 		// First element is text not tag
@@ -1667,9 +1870,10 @@ class Balancer {
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
 			case 'font':
-				// We rely on Sanitizer::fixTagAttributes having run on $attribs
-				// to normalize the form of the tag parameters.
-				if ( !preg_match( '/(^| )(color|face|size)="/i', $attribs ) ) {
+				if ( isset( $attribs['color'] )
+					|| isset( $attribs['face'] )
+					|| isset( $attribs['size'] )
+				) {
 					break;
 				}
 				/* otherwise, fall through */
@@ -1771,17 +1975,17 @@ class Balancer {
 		$regs = [];
 		# $slash: Does the current element start with a '/'?
 		# $t: Current element name
-		# $attribs: String between element name and >
+		# $attribStr: String between element name and >
 		# $brace: Ending '>' or '/>'
 		# $rest: Everything until the next element from the $bitsIterator
 		if ( preg_match( Sanitizer::ELEMENT_BITS_REGEX, $x, $regs ) ) {
-			list( /* $qbar */, $slash, $t, $attribs, $brace, $rest ) = $regs;
+			list( /* $qbar */, $slash, $t, $attribStr, $brace, $rest ) = $regs;
 			$t = strtolower( $t );
 			if ( $this->strict ) {
 				/* Verify that attributes are all properly double-quoted */
 				Assert::invariant(
 					preg_match(
-						'/^( [:_A-Z0-9][-.:_A-Z0-9]*="[^"]*")*[ ]*$/i', $attribs
+						'/^( [:_A-Z0-9][-.:_A-Z0-9]*="[^"]*")*[ ]*$/i', $attribStr
 					),
 					"Bad attribute string found"
 				);
@@ -1790,7 +1994,7 @@ class Balancer {
 			Assert::invariant(
 				!$this->strict, "< found which does not start a valid tag"
 			);
-			$slash = $t = $attribs = $brace = $rest = null;
+			$slash = $t = $attribStr = $brace = $rest = null;
 		}
 		$goodtag = $t;
 		$sanitize = $this->allowedHtmlElements !== null;
@@ -1799,22 +2003,21 @@ class Balancer {
 		}
 		if ( $goodtag ) {
 			if ( is_callable( $this->processingCallback ) ) {
-				call_user_func_array( $this->processingCallback, [ &$attribs, $this->processingArgs ] );
+				call_user_func_array( $this->processingCallback, [ &$attribStr, $this->processingArgs ] );
 			}
 			if ( $sanitize ) {
-				$goodtag = Sanitizer::validateTag( $attribs, $t );
+				$goodtag = Sanitizer::validateTag( $attribStr, $t );
 			}
 		}
 		if ( $goodtag ) {
 			if ( $sanitize ) {
-				$newattribs = Sanitizer::fixTagAttributes( $attribs, $t, true );
+				$attribs = Sanitizer::decodeTagAttributes( $attribStr );
+				$attribs = Sanitizer::validateTagAttributes( $attribs, $t );
 			} else {
-				$decoded = Sanitizer::decodeTagAttributes( $attribs );
-				ksort( $decoded );
-				$newattribs = Sanitizer::safeEncodeTagAttributes( $decoded );
+				$attribs = Sanitizer::decodeTagAttributes( $attribStr );
 			}
 			$goodtag = $this->insertToken(
-				$slash ? 'endtag' : 'tag', $t, $newattribs, $brace === '/>'
+				$slash ? 'endtag' : 'tag', $t, $attribs, $brace === '/>'
 			);
 		}
 		if ( $goodtag ) {
@@ -1963,6 +2166,7 @@ class Balancer {
 			case 'basefont':
 			case 'bgsound':
 			case 'link':
+			case 'meta':
 				$this->stack->insertHTMLElement( $value, $attribs );
 				$this->stack->pop();
 				return true;
@@ -2156,7 +2360,7 @@ class Balancer {
 				$activeElement = $this->afe->findElementByTag( 'a' );
 				if ( $activeElement ) {
 					$this->inBodyMode( 'endtag', 'a' );
-					if ( $this->afe->indexOf( $activeElement ) >= 0 ) {
+					if ( $this->afe->isInList( $activeElement ) ) {
 						$this->afe->remove( $activeElement );
 						// Don't flatten here, since when we fall
 						// through below we might foster parent
@@ -2395,7 +2599,7 @@ class Balancer {
 
 			case 'p':
 				if ( !$this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'tag', 'p', '' );
+					$this->inBodyMode( 'tag', 'p', [] );
 					return $this->insertToken( $token, $value, $attribs, $selfclose );
 				}
 				$this->stack->generateImpliedEndTags( $value );
@@ -2468,7 +2672,7 @@ class Balancer {
 
 			case 'br':
 				# Turn </br> into <br>
-				return $this->inBodyMode( 'tag', $value, '' );
+				return $this->inBodyMode( 'tag', $value, [] );
 			}
 
 			// Any other end tag goes here
@@ -2513,7 +2717,7 @@ class Balancer {
 				$this->switchMode( 'inColumnGroupMode' );
 				return true;
 			case 'col':
-				$this->inTableMode( 'tag', 'colgroup', '' );
+				$this->inTableMode( 'tag', 'colgroup', [] );
 				return $this->insertToken( $token, $value, $attribs, $selfclose );
 			case 'tbody':
 			case 'tfoot':
@@ -2525,7 +2729,7 @@ class Balancer {
 			case 'td':
 			case 'th':
 			case 'tr':
-				$this->inTableMode( 'tag', 'tbody', '' );
+				$this->inTableMode( 'tag', 'tbody', [] );
 				return $this->insertToken( $token, $value, $attribs, $selfclose );
 			case 'table':
 				if ( !$this->stack->inTableScope( $value ) ) {
@@ -2540,9 +2744,7 @@ class Balancer {
 				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
 
 			case 'input':
-				// We rely on Sanitizer::fixTagAttributes having run on $attribs
-				// to normalize the form of the tag parameters.
-				if ( !preg_match( '/(^| )type="hidden"/i', $attribs ) ) {
+				if ( !isset( $attribs['type'] ) || strcasecmp( $attribs['type'], 'hidden' ) !== 0 ) {
 					break; // Handle this as "everything else"
 				}
 				$this->stack->insertHTMLElement( $value, $attribs );
@@ -2738,7 +2940,7 @@ class Balancer {
 				return true;
 			case 'th':
 			case 'td':
-				$this->inTableBodyMode( 'tag', 'tr', '' );
+				$this->inTableBodyMode( 'tag', 'tr', [] );
 				$this->insertToken( $token, $value, $attribs, $selfclose );
 				return true;
 			case 'caption':
