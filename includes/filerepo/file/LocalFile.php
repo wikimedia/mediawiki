@@ -1932,15 +1932,20 @@ class LocalFile extends File {
 
 				throw new LocalFileLockError( $status );
 			}
-			// Release the lock *after* commit to avoid row-level contention
-			$this->locked++;
-			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths, $logger ) {
+			// Release the lock *after* commit to avoid row-level contention.
+			// Make sure it triggers on rollback() via ScopedCallback (T132921).
+			$unlocker = new ScopedCallback( function () use ( $backend, $lockPaths, $logger ) {
 				$status = $backend->unlockFiles( $lockPaths, LockManager::LOCK_EX );
 				if ( !$status->isGood() ) {
 					$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
 				}
 			} );
+			$dbw->onTransactionIdle( function () use ( $unlocker ) {
+				// Keep $unlocker alive till commit or rollback
+			} );
 		}
+
+		$this->locked++;
 
 		return $this->lockedOwnTrx;
 	}
