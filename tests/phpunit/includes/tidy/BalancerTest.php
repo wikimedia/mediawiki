@@ -31,6 +31,10 @@ class BalancerTest extends MediaWikiTestCase {
 	 */
 	public function testBalancer( $description, $input, $expected ) {
 		$output = $this->balancer->balance( $input );
+
+		// Ignore self-closing tags
+		$output = preg_replace( '/\s*\/>/', '>', $output );
+
 		$this->assertEquals( $expected, $output, $description );
 	}
 
@@ -65,8 +69,6 @@ class BalancerTest extends MediaWikiTestCase {
 				$html = $case['document']['noQuirksBodyHtml'];
 				// Normalize case of SVG attributes.
 				$html = str_replace( 'foreignObject', 'foreignobject', $html );
-				// The Sanitizer sorts attributes.
-				$html = preg_replace( '/(size="[^"]+") (id="[^"]+")/', '$2 $1', $html );
 
 				if ( isset( $case['document']['props']['comment'] ) ) {
 					// Skip tests which include HTML comments, which
