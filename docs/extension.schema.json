@@ -415,7 +415,7 @@
 								},
 								"group": {
 									"type": "string",
-									"description": "Group which this module should be loaded together with"
+									"description": "Group with which this module should be loaded"
 								},
 								"position": {
 									"type": "string",
@@ -432,6 +432,48 @@
 								"targets": {
 									"type": ["string", "array"],
 									"description": "ResourceLoader target the module can run on",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						{
+							"description": "A ResourceLoaderWikiModule definition",
+							"additionalProperties": false,
+							"properties": {
+								"class": {
+									"enum": ["ResourceLoaderWikiModule"]
+								},
+								"group": {
+									"type": "string",
+									"description": "Group with which this module should be loaded"
+								},
+								"position": {
+									"type": "string",
+									"description": "Position on the page to load this module at",
+									"enum": [
+										"bottom",
+										"top"
+									]
+								},
+								"targets": {
+									"type": ["string", "array"],
+									"description": "ResourceLoader target the module can run on",
+									"items": {
+										"type": "string"
+									}
+								},
+								"scripts": {
+									"type": "array",
+									"description": "A list of on-wiki pages containing JavaScript that should be loaded",
+									"items": {
+										"type": "string"
+									}
+								},
+								"styles": {
+									"type": "array",
+									"description": "A list of on-wiki pages containing CSS that should be loaded",
 									"items": {
 										"type": "string"
 									}
