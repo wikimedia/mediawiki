@@ -739,7 +739,7 @@ class DatabaseOracle extends Database {
 		if ( !is_array( $selectOptions ) ) {
 			$selectOptions = [ $selectOptions ];
 		}
-		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
+		list( $startOpts, $useIndex, $ignoreIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 		if ( is_array( $srcTable ) ) {
 			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
 		} else {
@@ -761,7 +761,7 @@ class DatabaseOracle extends Database {
 
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex ";
+			" FROM $srcTable $useIndex $ignoreIndex ";
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
@@ -1375,7 +1375,13 @@ class DatabaseOracle extends Database {
 			$useIndex = '';
 		}
 
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail ];
+		if ( isset( $options['IGNORE INDEX'] ) && !is_array( $options['IGNORE INDEX'] ) ) {
+			$ignoreIndex = $this->ignoreIndexClause( $options['IGNORE INDEX'] );
+		} else {
+			$ignoreIndex = '';
+		}
+
+		return [ $startOpts, $useIndex, $ignoreIndex, $preLimitTail, $postLimitTail ];
 	}
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {

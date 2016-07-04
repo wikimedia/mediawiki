@@ -1176,8 +1176,13 @@ abstract class DatabaseBase implements IDatabase {
 		} else {
 			$useIndex = '';
 		}
+		if ( isset( $options['IGNORE INDEX'] ) && is_string( $options['IGNORE INDEX'] ) ) {
+			$ignoreIndex = $this->ignoreIndexClause( $options['IGNORE INDEX'] );
+		} else {
+			$ignoreIndex = '';
+		}
 
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail ];
+		return [ $startOpts, $useIndex, $ignoreIndex, $preLimitTail, $postLimitTail ];
 	}
 
 	/**
@@ -1245,31 +1250,34 @@ abstract class DatabaseBase implements IDatabase {
 		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
 			? $options['USE INDEX']
 			: [];
+		$ignoreIndexes = ( isset( $options['IGNORE INDEX'] ) && is_array( $options['IGNORE INDEX'] ) )
+			? $options['IGNORE INDEX']
+			: [];
 
 		if ( is_array( $table ) ) {
 			$from = ' FROM ' .
-				$this->tableNamesWithUseIndexOrJOIN( $table, $useIndexes, $join_conds );
+				$this->tableNamesWithIndexClauseOrJOIN( $table, $useIndexes, $ignoreIndexes, $join_conds );
 		} elseif ( $table != '' ) {
 			if ( $table[0] == ' ' ) {
 				$from = ' FROM ' . $table;
 			} else {
 				$from = ' FROM ' .
-					$this->tableNamesWithUseIndexOrJOIN( [ $table ], $useIndexes, [] );
+					$this->tableNamesWithIndexClauseOrJOIN( [ $table ], $useIndexes, $ignoreIndexes, [] );
 			}
 		} else {
 			$from = '';
 		}
 
-		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail ) =
+		list( $startOpts, $useIndex, $ignoreIndex, $preLimitTail, $postLimitTail ) =
 			$this->makeSelectOptions( $options );
 
 		if ( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
-			$sql = "SELECT $startOpts $vars $from $useIndex WHERE $conds $preLimitTail";
+			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex WHERE $conds $preLimitTail";
 		} else {
-			$sql = "SELECT $startOpts $vars $from $useIndex $preLimitTail";
+			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
 		}
 
 		if ( isset( $options['LIMIT'] ) ) {
@@ -1871,19 +1879,21 @@ abstract class DatabaseBase implements IDatabase {
 
 	/**
 	 * Get the aliased table name clause for a FROM clause
-	 * which might have a JOIN and/or USE INDEX clause
+	 * which might have a JOIN and/or USE INDEX or IGNORE INDEX clause
 	 *
 	 * @param array $tables ( [alias] => table )
 	 * @param array $use_index Same as for select()
+	 * @param array $ignore_index Same as for select()
 	 * @param array $join_conds Same as for select()
 	 * @return string
 	 */
-	protected function tableNamesWithUseIndexOrJOIN(
-		$tables, $use_index = [], $join_conds = []
+	protected function tableNamesWithIndexClauseOrJOIN(
+		$tables, $use_index = [], $ignore_index = [], $join_conds = []
 	) {
 		$ret = [];
 		$retJOIN = [];
 		$use_index = (array)$use_index;
+		$ignore_index = (array)$ignore_index;
 		$join_conds = (array)$join_conds;
 
 		foreach ( $tables as $alias => $table ) {
@@ -1902,6 +1912,12 @@ abstract class DatabaseBase implements IDatabase {
 						$tableClause .= ' ' . $use;
 					}
 				}
+				if ( isset( $ignore_index[$alias] ) ) { // has IGNORE INDEX?
+					$ignore = $this->ignoreIndexClause( implode( ',', (array)$ignore_index[$alias] ) );
+					if ( $ignore != '' ) {
+						$tableClause .= ' ' . $ignore;
+					}
+				}
 				$on = $this->makeList( (array)$conds, LIST_AND );
 				if ( $on != '' ) {
 					$tableClause .= ' ON (' . $on . ')';
@@ -1913,6 +1929,14 @@ abstract class DatabaseBase implements IDatabase {
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
 				$tableClause .= ' ' . $this->useIndexClause(
 					implode( ',', (array)$use_index[$alias] )
+				);
+
+				$ret[] = $tableClause;
+			} elseif ( isset( $ignore_index[$alias] ) ) {
+				// Is there an INDEX clause for this table?
+				$tableClause = $this->tableNameWithAlias( $table, $alias );
+				$tableClause .= ' ' . $this->ignoreIndexClause(
+					implode( ',', (array)$ignore_index[$alias] )
 				);
 
 				$ret[] = $tableClause;
@@ -2044,6 +2068,20 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string
 	 */
 	public function useIndexClause( $index ) {
+		return '';
+	}
+
+	/**
+	 * IGNORE INDEX clause. Unlikely to be useful for anything but MySQL. This
+	 * is only needed because a) MySQL must be as efficient as possible due to
+	 * its use on Wikipedia, and b) MySQL 4.0 is kind of dumb sometimes about
+	 * which index to pick. Anyway, other databases might have different
+	 * indexes on a given table. So don't bother overriding this unless you're
+	 * MySQL.
+	 * @param string $index
+	 * @return string
+	 */
+	public function ignoreIndexClause( $index ) {
 		return '';
 	}
 
@@ -2272,7 +2310,8 @@ abstract class DatabaseBase implements IDatabase {
 			$selectOptions = [ $selectOptions ];
 		}
 
-		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
+		list( $startOpts, $useIndex, $ignoreIndex, $tailOpts ) = $this->makeSelectOptions(
+			$selectOptions );
 
 		if ( is_array( $srcTable ) ) {
 			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
@@ -2282,7 +2321,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$sql = "INSERT $insertOptions INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex ";
+			" FROM $srcTable $useIndex $ignoreIndex ";
 
 		if ( $conds != '*' ) {
 			if ( is_array( $conds ) ) {
