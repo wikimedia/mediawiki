@@ -880,6 +880,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
 	'MediaWiki\\Tidy\\BalanceActiveFormattingElements' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceElement' => __DIR__ . '/includes/tidy/Balancer.php',
+	'MediaWiki\\Tidy\\BalanceMarker' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceSets' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceStack' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\Balancer' => __DIR__ . '/includes/tidy/Balancer.php',
