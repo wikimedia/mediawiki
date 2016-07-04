@@ -52,10 +52,12 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mConn = null;
 	protected $mOpened = false;
 
-	/** @var callable[] */
+	/** @var array[] List of (callable, method name) */
 	protected $mTrxIdleCallbacks = [];
-	/** @var callable[] */
+	/** @var array[] List of (callable, method name) */
 	protected $mTrxPreCommitCallbacks = [];
+	/** @var array[] List of (callable, method name) */
+	protected $mTrxEndCallbacks = [];
 
 	protected $mTablePrefix;
 	protected $mSchema;
@@ -2448,14 +2450,21 @@ abstract class DatabaseBase implements IDatabase {
 		return false;
 	}
 
-	final public function onTransactionIdle( $callback ) {
+	final public function onTransactionResolution( callable $callback ) {
+		if ( !$this->mTrxLevel ) {
+			throw new DBUnexpectedError( $this, "No transaction is active." );
+		}
+		$this->mTrxEndCallbacks[] = [ $callback, wfGetCaller() ];
+	}
+
+	final public function onTransactionIdle( callable $callback ) {
 		$this->mTrxIdleCallbacks[] = [ $callback, wfGetCaller() ];
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks();
 		}
 	}
 
-	final public function onTransactionPreCommitOrIdle( $callback ) {
+	final public function onTransactionPreCommitOrIdle( callable $callback ) {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
 		} else {
@@ -2473,8 +2482,12 @@ abstract class DatabaseBase implements IDatabase {
 
 		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
-			$callbacks = $this->mTrxIdleCallbacks;
+			$callbacks = array_merge(
+				$this->mTrxIdleCallbacks,
+				$this->mTrxEndCallbacks // include "transaction resolution" callbacks
+			);
 			$this->mTrxIdleCallbacks = []; // recursion guard
+			$this->mTrxEndCallbacks = []; // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
 					list( $phpCallback ) = $callback;
@@ -2607,10 +2620,11 @@ abstract class DatabaseBase implements IDatabase {
 				$this->getTransactionProfiler()->transactionWritingOut(
 					$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 			}
+
 			$this->runOnTransactionIdleCallbacks();
 		}
 
-		# Avoid fatals if close() was called
+		// Avoid fatals if close() was called
 		$this->assertOpen();
 
 		$this->doBegin( $fname );
@@ -2671,7 +2685,7 @@ abstract class DatabaseBase implements IDatabase {
 			}
 		}
 
-		# Avoid fatals if close() was called
+		// Avoid fatals if close() was called
 		$this->assertOpen();
 
 		$this->runOnTransactionPreCommitCallbacks();
@@ -2682,6 +2696,7 @@ abstract class DatabaseBase implements IDatabase {
 			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 		}
+
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -2710,17 +2725,19 @@ abstract class DatabaseBase implements IDatabase {
 			}
 		}
 
-		# Avoid fatals if close() was called
+		// Avoid fatals if close() was called
 		$this->assertOpen();
 
 		$this->doRollback( $fname );
-		$this->mTrxIdleCallbacks = []; // cancel
-		$this->mTrxPreCommitCallbacks = []; // cancel
 		$this->mTrxAtomicLevels = [];
 		if ( $this->mTrxDoneWrites ) {
 			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
+
+		$this->mTrxIdleCallbacks = []; // clear
+		$this->mTrxPreCommitCallbacks = []; // clear
+		$this->runOnTransactionIdleCallbacks();
 	}
 
 	/**
@@ -3294,9 +3311,14 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
 			trigger_error( "Uncommitted DB writes (transaction from {$this->mTrxFname})." );
 		}
-		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
+		$danglingCallbacks = array_merge(
+			$this->mTrxIdleCallbacks,
+			$this->mTrxPreCommitCallbacks,
+			$this->mTrxEndCallbacks
+		);
+		if ( $danglingCallbacks ) {
 			$callers = [];
-			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
+			foreach ( $danglingCallbacks as $callbackInfo ) {
 				$callers[] = $callbackInfo[1];
 			}
 			$callers = implode( ', ', $callers );
