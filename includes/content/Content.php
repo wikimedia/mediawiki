@@ -93,6 +93,20 @@ interface Content {
 	public function getSize();
 
 	/**
+	 * Returns the content's hash. Typically, but not necessarily, based on the serialization.
+	 *
+	 * Implementations should take care that the hash should stay stable when the content does
+	 * not change. Changing the hashing algorithm is permitted, but should be rare, since it
+	 * causes false negatives when checking Content objects for equality.
+	 *
+	 * equals() should return true for two Content objects that have the same hash with extremely
+	 * high probability. Two Content objects for which equals returns ture must have the same hash.
+	 *
+	 * @return string
+	 */
+	public function getHash();
+
+	/**
 	 * Returns the ID of the content model used by this Content object.
 	 * Corresponds to the CONTENT_MODEL_XXX constants.
 	 *
