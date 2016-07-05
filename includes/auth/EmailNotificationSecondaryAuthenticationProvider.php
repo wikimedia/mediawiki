@@ -3,7 +3,6 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use StatusValue;
 
 /**
  * Handles email notification / email address confirmation for account creation.

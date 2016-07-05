@@ -27,7 +27,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Session\SessionManager;
-use Psr\Log\LogLevel;
 
 /**
  * Holds shared logic for login and account creation pages.

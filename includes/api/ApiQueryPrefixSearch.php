@@ -1,5 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
 
 /**
  * This program is free software; you can redistribute it and/or modify

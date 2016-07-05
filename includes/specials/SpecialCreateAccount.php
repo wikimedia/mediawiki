@@ -23,7 +23,6 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LogLevel;
 
 /**
  * Implements Special:CreateAccount

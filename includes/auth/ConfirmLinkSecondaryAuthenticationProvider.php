@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use StatusValue;
 use User;
 
 /**

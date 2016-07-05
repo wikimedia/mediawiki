@@ -23,7 +23,6 @@ namespace MediaWiki\Auth;
 
 use Config;
 use StatusValue;
-use User;
 
 /**
  * Check if the user is blocked, and prevent authentication if so.

@@ -22,13 +22,10 @@
 namespace MediaWiki\Auth;
 
 use BagOStuff;
-use Config;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Psr\Log\NullLogger;
-use User;
 
 /**
  * A helper class for throttling authentication attempts.
