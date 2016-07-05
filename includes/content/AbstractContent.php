@@ -163,6 +163,16 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * Returns the SHA1 hash of the default serialization in Base36 encoding.
+	 *
+	 * @return string
+	 */
+	public function getHash() {
+		$text = $this->serialize();
+		return ContentHandler::base36Sha1( $text );
+	}
+
+	/**
 	 * Subclasses may override this to implement (light weight) validation.
 	 *
 	 * @since 1.21

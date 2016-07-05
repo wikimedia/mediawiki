@@ -15,7 +15,7 @@ namespace MediaWiki\Storage;
 interface BlobStore extends BlobLookup {
 
 	/**
-	 * Hin at an address of a blob that is superseded by the new data.
+	 * Hin at an address of a blob that is superseded by the new data, if known and applicable.
 	 * Value must be an address string as returned by BlobStore::storeData()
 	 * BlobStores may use this to discard obsolete data.
 	 * @todo How to handle ref counting for content-addressable storage?
@@ -23,14 +23,14 @@ interface BlobStore extends BlobLookup {
 	const HINT_REPLACE = 'replace';
 
 	/**
-	 * Hin at an address of a blob that is probably similar.
+	 * Hin at an address of a blob that is probably similar, if known and applicable.
 	 * Value must be an address string as returned by BlobStore::storeData()
 	 * BlobStores may use this to group similar data together, e.g. for compression.
 	 */
 	const HINT_SIMILAR = 'similar';
 
 	/**
-	 * Hin at the parent revision pf the viceWrevision the data belongs to.
+	 * Hin at the parent revision pf the revision the data belongs to, if known and applicable.
 	 * Value must be an int that corresponds to a rev_id as used in rev_parent_id.
 	 * BlobStores may use this to group similar data together, e.g. for compression.
 	 */

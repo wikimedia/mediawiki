@@ -16,9 +16,9 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Storage\BlobAddressResolver;
-use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreRegistry;
 use MediaWiki\Storage\RevisionContentLookup;
+use MediaWiki\Storage\RevisionContentStore;
 use MediaWiki\Storage\RevisionContentStore;
 use MWException;
 use ObjectCache;
@@ -575,6 +575,38 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlobStore() {
 		return $this->getService( 'BlobStore' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return BlobStoreRegistry
+	 */
+	public function getBlobStoreRegistry() {
+		return $this->getService( 'BlobStoreRegistry' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return BlobAddressResolver
+	 */
+	public function getBlobAddressResolver() {
+		return $this->getService( 'BlobAddressResolver' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return RevisionContentStore
+	 */
+	public function getRevisionContentStore() {
+		return $this->getService( 'RevisionContentStore' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return RevisionContentLookup
+	 */
+	public function getRevisionContentLookup() {
+		return $this->getService( 'RevisionContentLookup' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

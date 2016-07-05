@@ -225,17 +225,66 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'_TextTableBlobStore' => function ( MediaWikiServices $services ) {
+		return new TextTableBlobStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainConfig()->get( 'DefaultExternalStore' )
+		);
+	},
+
 	'BlobStore' => function ( MediaWikiServices $services ) {
-		$store = new TextTableBlobStore(
-			$services->getDBLoadBalancer()
+		return $services->getService( '_TextTableBlobStore' );
+	}
+
+	'BlobStoreRegistry' => function ( MediaWikiServices $services ) {
+		$registry = new BlobStoreRegistry();
+
+		// TODO: load extra wiring files
+
+		// NOTE: for now, external store is handled via the TextTableBlobStore
+		// This means we have to continue supporting this indefinitely at least for reading!
+		$registry->defineService(
+			'text-table',
+			function () use ( $services ) {
+				return $services->getService( '_TextTableBlobStore' );
+			}
 		);
 
-		$config = $services->getMainConfig();
-		$store->setExternalStore( $config->get( 'DefaultExternalStore' ) );
-		$store->setCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
-		$store->setWanCache( ObjectCache::getMainWANInstance() );
+		return $registry;
+	},
 
-		return $store;
+	'BlobAddressResolver' => function ( MediaWikiServices $services ) {
+		return new BlobAddressResolver(
+			$services->getBlobStoreRegistry()
+		);
+	},
+
+	'_SlotMappingRevisionContentStore' => function ( MediaWikiServices $services ) {
+
+		// TODO: take from config
+		$slotDefinitions = [
+			'main' => [
+				'store' => 'text-table',
+				'type' => 'primary',
+			],
+		];
+
+		$revisionSlotTable = new RevisionSlotTable( $services->getDBLoadBalancer() );
+
+		return new SlotMappingRevisionContentStore(
+			$slotDefinitions,
+			$services->getBlobStoreRegistry(),
+			$services->getBlobAddressResolver(),
+			$revisionSlotTable
+		);
+	},
+
+	'RevisionContentStore' => function ( MediaWikiServices $services ) {
+		return $services->getService( '_SlotMappingRevisionContentStore' );
+	},
+
+	'RevisionContentLookup' => function ( MediaWikiServices $services ) {
+		return $services->getService( '_SlotMappingRevisionContentStore' );
 	},
 
 	///////////////////////////////////////////////////////////////////////////

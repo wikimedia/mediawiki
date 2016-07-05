@@ -9,35 +9,42 @@ namespace MediaWiki\Storage;
 interface BlobLookup {
 
 	/**
-	 * Hin at the content model of the data.
+	 * Hin at the slot the data belongs to, aka. the content role, if known and applicable.
+	 * Value must be a slot ID as used by RevisionContentLookup.
+	 * BlobStores may use this to optimize storage for well known content roles.
+	 */
+	const HINT_SLOT = 'slot';
+
+	/**
+	 * Hin at the content model of the data, if known and applicable.
 	 * Value must be a content model ID as used by ContentHandler.
 	 * BlobStores may use this to optimize storage for well known content models.
 	 */
 	const HINT_MODEL = 'model';
 
 	/**
-	 * Hin at the serialization format of the data.
+	 * Hin at the serialization format of the data, if known and applicable.
 	 * Value must be a MIME type.
 	 * BlobStores may use this to optimize storage for well known data formats.
 	 */
 	const HINT_FORMAT = 'format';
 
 	/**
-	 * Hin at the hash of the data.
+	 * Hin at the hash of the data, if known and applicable.
 	 * Value must be encoded as a string.
 	 * BlobStores that need a content hash may use this instead of re-calculating the hash.
 	 */
 	const HINT_HASH = 'hash';
 
 	/**
-	 * Hin at the page the data belongs to.
+	 * Hin at the page the data belongs to, if known and applicable.
 	 * Value must be an int that corresponds to a page_id.
 	 * BlobStores may use this to group related data together, e.g. for prefetching.
 	 */
 	const HINT_PAGE = 'page';
 
 	/**
-	 * Hin at the revision the data belongs to.
+	 * Hin at the revision the data belongs to, if known and applicable.
 	 * Value must be an int that corresponds to a rev_id.
 	 * BlobStores may use this to group related data together, e.g. for prefetching.
 	 */

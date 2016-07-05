@@ -763,13 +763,15 @@ abstract class ContentHandler {
 	 * content model can be used where.
 	 *
 	 * @param Title $title The page's title.
+	 * @param string $slotName //FIXME: update all implementations!
 	 *
 	 * @return bool True if content of this kind can be used on the given page, false otherwise.
 	 */
-	public function canBeUsedOn( Title $title ) {
+	public function canBeUsedOn( Title $title, $slotName = 'main' ) {
 		$ok = true;
 
-		Hooks::run( 'ContentModelCanBeUsedOn', [ $this->getModelID(), $title, &$ok ] );
+		//FIXME: update hook signature
+		Hooks::run( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok, $slotName ) );
 
 		return $ok;
 	}
@@ -1247,6 +1249,17 @@ abstract class ContentHandler {
 		}
 
 		return $ok;
+	}
+
+	/**
+	 * Get the base 36 SHA-1 value for a string of text
+	 * @param string $text
+	 *
+	 * @todo FIXME this doesn't belong here, does it?
+	 * @return string
+	 */
+	public static function base36Sha1( $text ) {
+		return Wikimedia\base_convert( sha1( $text ), 16, 36, 31 );
 	}
 
 	/**
