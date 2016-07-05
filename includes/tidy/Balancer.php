@@ -813,7 +813,7 @@ class BalanceStack implements IteratorAggregate {
 		$endTagSet = $thorough ?
 			BalanceSets::$thoroughImpliedEndTagsSet :
 			BalanceSets::$impliedEndTagsSet;
-		while ( $this->length() > 0 ) {
+		while ( $this->currentNode ) {
 			if ( $butnot !== null && $this->currentNode->isHtmlNamed( $butnot ) ) {
 				break;
 			}
@@ -828,7 +828,7 @@ class BalanceStack implements IteratorAggregate {
 	 * Return the adjusted current node.
 	 */
 	public function adjustedCurrentNode( $fragmentContext ) {
-		return ( $fragmentContext && $this->length() === 1 ) ?
+		return ( $fragmentContext && count( $this->elements ) === 1 ) ?
 			$fragmentContext : $this->currentNode;
 	}
 
@@ -916,7 +916,8 @@ class BalanceStack implements IteratorAggregate {
 	 * @param int $idx
 	 */
 	public function popTo( $idx ) {
-		while ( $this->length() > $idx ) {
+		$length = count( $this->elements );
+		for ( $length = count( $this->elements ); $length > $idx; $length-- ) {
 			$this->pop();
 		}
 	}
@@ -928,7 +929,7 @@ class BalanceStack implements IteratorAggregate {
 	 * @param BalanceElement|array|string $tag
 	 */
 	public function popTag( $tag ) {
-		while ( $this->length() > 0 ) {
+		while ( $this->currentNode ) {
 			if ( $this->currentNode->isA( $tag ) ) {
 				$this->pop();
 				break;
@@ -944,7 +945,7 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function clearToContext( $set ) {
 		// Note that we don't loop to 0. Never pop the <html> elt off.
-		while ( $this->length() > 1 ) {
+		for ( $length = count( $this->elements ); $length > 1; $length-- ) {
 			if ( $this->currentNode->isA( $set ) ) {
 				break;
 			}
