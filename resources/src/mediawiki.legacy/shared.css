@@ -688,33 +688,6 @@ ol:lang(or) li {
 	direction: ltr;
 }
 
-/* tooltip styles */
-.mw-help-field-hint {
-	display: none;
-	margin-left: 2px;
-	margin-bottom: -8px;
-	padding: 0 0 0 15px;
-	background-image: url( images/help-question.gif );
-	background-position: left center;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	font-size: .8em;
-	text-decoration: underline;
-	color: #0645ad;
-}
-
-.mw-help-field-hint:hover {
-	background-image: url( images/help-question-hover.gif );
-}
-
-.mw-help-field-data {
-	display: block;
-	background-color: #d6f3ff;
-	padding: 5px 8px 4px 8px;
-	border: 1px solid #5dc9f4;
-	margin-left: 20px;
-}
-
 #mw-clearyourcache,
 #mw-sitecsspreview,
 #mw-sitejspreview,
