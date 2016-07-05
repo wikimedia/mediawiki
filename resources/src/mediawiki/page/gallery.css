@@ -90,8 +90,33 @@ ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapp
 	bottom: 0;
 	left: 0; /* Needed for IE */
 	height: auto;
+	max-height: 40%;
+	overflow: hidden;
 	font-weight: bold;
 	margin: 2px; /* correspond to style on div.thumb */
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper p,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper p,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper p {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox div.gallerytextwrapper:hover,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper:hover,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper:hover {
+	overflow: visible;
+	max-height: none;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox div.gallerytextwrapper:hover p,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper:hover p,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper:hover p {
+	text-overflow: clip;
+	white-space: normal;
+	overflow: visible;
 }
 
 ul.mw-gallery-packed-hover,
