@@ -15,6 +15,10 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Storage\BlobLookup;
+use MediaWiki\Storage\BlobStoreRegistry;
+use MediaWiki\Storage\RevisionContentLookup;
+use MediaWiki\Storage\RevisionContentStore;
 use MWException;
 use ObjectCache;
 use SearchEngine;
@@ -560,6 +564,38 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser() {
 		return $this->getService( 'TitleParser' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return BlobStoreRegistry
+	 */
+	public function getBlobStoreRegistry() {
+		return $this->getService( 'BlobStoreRegistry' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return BlobLookup
+	 */
+	public function getBlobLookup() {
+		return $this->getService( 'BlobLookup' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return RevisionContentStore
+	 */
+	public function getRevisionContentStore() {
+		return $this->getService( 'RevisionContentStore' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return RevisionContentLookup
+	 */
+	public function getRevisionContentLookup() {
+		return $this->getService( 'RevisionContentLookup' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
