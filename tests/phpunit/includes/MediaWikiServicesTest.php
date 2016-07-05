@@ -7,6 +7,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
+use MediaWiki\Storage\BlobAddressResolver;
+use MediaWiki\Storage\BlobStoreRegistry;
+use MediaWiki\Storage\RevisionContentLookup;
+use MediaWiki\Storage\RevisionContentStore;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -323,6 +327,10 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
 			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
 			'TitleParser' => [ 'TitleParser', TitleParser::class ],
+			'BlobStoreRegistry' => [ 'BlobStoreRegistry', BlobStoreRegistry::class ],
+			'BlobAddressResolver' => [ 'BlobAddressResolver', BlobAddressResolver::class ],
+			'RevisionContentStore' => [ 'RevisionContentStore', RevisionContentStore::class ],
+			'RevisionContentLookup' => [ 'RevisionContentLookup', RevisionContentLookup::class ],
 		];
 	}
 
