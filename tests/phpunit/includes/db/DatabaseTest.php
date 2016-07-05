@@ -239,12 +239,15 @@ class DatabaseTest extends MediaWikiTestCase {
 		$db = $this->db;
 
 		$db->setFlag( DBO_TRX );
+		$called = false;
 		$flagSet = null;
-		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
+		$db->onTransactionIdle( function() use ( $db, &$flagSet, &$called ) {
+			$called = true;
 			$flagSet = $db->getFlag( DBO_TRX );
 		} );
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+		$this->assertTrue( $called, 'Callback reached' );
 
 		$db->clearFlag( DBO_TRX );
 		$flagSet = null;
@@ -259,5 +262,31 @@ class DatabaseTest extends MediaWikiTestCase {
 			$db->setFlag( DBO_TRX );
 		} );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+	}
+
+	public function testTransactionResolution() {
+		$db = $this->db;
+
+		$db->clearFlag( DBO_TRX );
+		$db->begin( __METHOD__ );
+		$called = false;
+		$db->onTransactionResolution( function() use ( $db, &$called ) {
+			$called = true;
+			$db->setFlag( DBO_TRX );
+		} );
+		$db->commit( __METHOD__ );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+		$this->assertTrue( $called, 'Callback reached' );
+
+		$db->clearFlag( DBO_TRX );
+		$db->begin( __METHOD__ );
+		$called = false;
+		$db->onTransactionResolution( function() use ( $db, &$called ) {
+			$called = true;
+			$db->setFlag( DBO_TRX );
+		} );
+		$db->rollback( __METHOD__ );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+		$this->assertTrue( $called, 'Callback reached' );
 	}
 }
