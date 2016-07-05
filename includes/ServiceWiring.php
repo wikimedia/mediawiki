@@ -40,9 +40,14 @@
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\BlobStoreRegistry;
+use MediaWiki\Storage\SlotMappingRevisionContentStore;
+use MediaWiki\Storage\Sql\PrefixRoutingBlobLookup;
+use MediaWiki\Storage\Sql\RevisionSlotTable;
+use MediaWiki\Storage\Sql\TextTableBlobStore;
 
 return [
-	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
+	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
 
 		$class = LBFactory::getLBFactoryClass( $config );
@@ -54,12 +59,12 @@ return [
 		return new $class( $config );
 	},
 
-	'DBLoadBalancer' => function( MediaWikiServices $services ) {
+	'DBLoadBalancer' => function ( MediaWikiServices $services ) {
 		// just return the default LB from the DBLoadBalancerFactory service
 		return $services->getDBLoadBalancerFactory()->getMainLB();
 	},
 
-	'SiteStore' => function( MediaWikiServices $services ) {
+	'SiteStore' => function ( MediaWikiServices $services ) {
 		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
 
 		// TODO: replace wfGetCache with a CacheFactory service.
@@ -69,12 +74,12 @@ return [
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
 
-	'SiteLookup' => function( MediaWikiServices $services ) {
+	'SiteLookup' => function ( MediaWikiServices $services ) {
 		// Use the default SiteStore as the SiteLookup implementation for now
 		return $services->getSiteStore();
 	},
 
-	'ConfigFactory' => function( MediaWikiServices $services ) {
+	'ConfigFactory' => function ( MediaWikiServices $services ) {
 		// Use the bootstrap config to initialize the ConfigFactory.
 		$registry = $services->getBootstrapConfig()->get( 'ConfigRegistry' );
 		$factory = new ConfigFactory();
@@ -82,17 +87,19 @@ return [
 		foreach ( $registry as $name => $callback ) {
 			$factory->register( $name, $callback );
 		}
+
 		return $factory;
 	},
 
-	'MainConfig' => function( MediaWikiServices $services ) {
+	'MainConfig' => function ( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
 	},
 
-	'InterwikiLookup' => function( MediaWikiServices $services ) {
+	'InterwikiLookup' => function ( MediaWikiServices $services ) {
 		global $wgContLang; // TODO: manage $wgContLang as a service
 		$config = $services->getMainConfig();
+
 		return new ClassicInterwikiLookup(
 			$wgContLang,
 			ObjectCache::getMainWANInstance(),
@@ -103,74 +110,89 @@ return [
 		);
 	},
 
-	'StatsdDataFactory' => function( MediaWikiServices $services ) {
+	'StatsdDataFactory' => function ( MediaWikiServices $services ) {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
 		);
 	},
 
-	'EventRelayerGroup' => function( MediaWikiServices $services ) {
+	'EventRelayerGroup' => function ( MediaWikiServices $services ) {
 		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
 	},
 
-	'SearchEngineFactory' => function( MediaWikiServices $services ) {
+	'SearchEngineFactory' => function ( MediaWikiServices $services ) {
 		return new SearchEngineFactory( $services->getSearchEngineConfig() );
 	},
 
-	'SearchEngineConfig' => function( MediaWikiServices $services ) {
+	'SearchEngineConfig' => function ( MediaWikiServices $services ) {
 		global $wgContLang;
+
 		return new SearchEngineConfig( $services->getMainConfig(), $wgContLang );
 	},
 
-	'SkinFactory' => function( MediaWikiServices $services ) {
+	'SkinFactory' => function ( MediaWikiServices $services ) {
 		$factory = new SkinFactory();
 
 		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
 
 		foreach ( $names as $name => $skin ) {
-			$factory->register( $name, $skin, function () use ( $name, $skin ) {
-				$class = "Skin$skin";
-				return new $class( $name );
-			} );
+			$factory->register(
+				$name,
+				$skin,
+				function () use ( $name, $skin ) {
+					$class = "Skin$skin";
+
+					return new $class( $name );
+				}
+			);
 		}
 		// Register a hidden "fallback" skin
-		$factory->register( 'fallback', 'Fallback', function () {
-			return new SkinFallback;
-		} );
+		$factory->register(
+			'fallback',
+			'Fallback',
+			function () {
+				return new SkinFallback;
+			}
+		);
 		// Register a hidden skin for api output
-		$factory->register( 'apioutput', 'ApiOutput', function () {
-			return new SkinApi;
-		} );
+		$factory->register(
+			'apioutput',
+			'ApiOutput',
+			function () {
+				return new SkinApi;
+			}
+		);
 
 		return $factory;
 	},
 
-	'WatchedItemStore' => function( MediaWikiServices $services ) {
+	'WatchedItemStore' => function ( MediaWikiServices $services ) {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+
 		return $store;
 	},
 
-	'WatchedItemQueryService' => function( MediaWikiServices $services ) {
+	'WatchedItemQueryService' => function ( MediaWikiServices $services ) {
 		return new WatchedItemQueryService( $services->getDBLoadBalancer() );
 	},
 
-	'LinkCache' => function( MediaWikiServices $services ) {
+	'LinkCache' => function ( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter()
 		);
 	},
 
-	'LinkRendererFactory' => function( MediaWikiServices $services ) {
+	'LinkRendererFactory' => function ( MediaWikiServices $services ) {
 		return new LinkRendererFactory(
 			$services->getTitleFormatter()
 		);
 	},
 
-	'LinkRenderer' => function( MediaWikiServices $services ) {
+	'LinkRenderer' => function ( MediaWikiServices $services ) {
 		global $wgUser;
 
 		if ( defined( 'MW_NO_SESSION' ) ) {
@@ -180,11 +202,11 @@ return [
 		}
 	},
 
-	'GenderCache' => function( MediaWikiServices $services ) {
+	'GenderCache' => function ( MediaWikiServices $services ) {
 		return new GenderCache();
 	},
 
-	'_MediaWikiTitleCodec' => function( MediaWikiServices $services ) {
+	'_MediaWikiTitleCodec' => function ( MediaWikiServices $services ) {
 		global $wgContLang;
 
 		return new MediaWikiTitleCodec(
@@ -194,12 +216,70 @@ return [
 		);
 	},
 
-	'TitleFormatter' => function( MediaWikiServices $services ) {
+	'TitleFormatter' => function ( MediaWikiServices $services ) {
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
-	'TitleParser' => function( MediaWikiServices $services ) {
+	'TitleParser' => function ( MediaWikiServices $services ) {
 		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'_TextTableBlobStore' => function ( MediaWikiServices $services ) {
+		return new TextTableBlobStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainConfig()->get( 'DefaultExternalStore' )
+		);
+	},
+
+	'BlobStoreRegistry' => function ( MediaWikiServices $services ) {
+		$registry = new BlobStoreRegistry();
+
+		// TODO: load extra wiring files
+
+		// NOTE: for now, external store is handled via the TextTableBlobStore
+		// This means we have to continue supporting this indefinitely at least for reading!
+		$registry->defineService(
+			'text-table',
+			function () use ( $services ) {
+				return $services->getService( '_TextTableBlobStore' );
+			}
+		);
+
+		return $registry;
+	},
+
+	'BlobLookup' => function ( MediaWikiServices $services ) {
+		return new PrefixRoutingBlobLookup(
+			$services->getBlobStoreRegistry()
+		);
+	},
+
+	'_SlotMappingRevisionContentStore' => function ( MediaWikiServices $services ) {
+
+		// TODO: take from config
+		$slotDefinitions = [
+			'main' => [
+				'store' => 'text-table',
+				'type' => 'primary',
+			],
+		];
+
+		$revisionSlotTable = new RevisionSlotTable( $services->getDBLoadBalancer() );
+
+		return new SlotMappingRevisionContentStore(
+			$slotDefinitions,
+			$services->getBlobStoreRegistry(),
+			$services->getBlobLookup(),
+			$revisionSlotTable
+		);
+	},
+
+	'RevisionContentStore' => function ( MediaWikiServices $services ) {
+		return $services->getService( '_SlotMappingRevisionContentStore' );
+	},
+
+	'RevisionContentLookup' => function ( MediaWikiServices $services ) {
+		return $services->getService( '_SlotMappingRevisionContentStore' );
 	},
 
 	///////////////////////////////////////////////////////////////////////////
