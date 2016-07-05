@@ -467,7 +467,7 @@ class BalanceElement {
 					$blank = false;
 				}
 			}
-			if ( $this->isA( 'mw:p-wrap' ) ) {
+			if ( $this->isHtmlNamed( 'mw:p-wrap' ) ) {
 				$this->localName = 'p';
 			} elseif ( $blank ) {
 				// Add 'mw-empty-elt' class so elements can be hidden via CSS
@@ -539,6 +539,16 @@ class BalanceElement {
 			# assume this is an HTML element name.
 			return $this->isHtml() && $this->localName === $set;
 		}
+	}
+
+	/**
+	 * Determine if this element is an HTML element with the specified name
+	 * @param string $tagName
+	 * @return bool
+	 */
+	public function isHtmlNamed( $tagName ) {
+		return $this->namespaceURI === BalanceSets::HTML_NAMESPACE
+			&& $this->localName === $tagName;
 	}
 
 	/**
@@ -724,7 +734,7 @@ class BalanceStack implements IteratorAggregate {
 	public function insertElement( $elt ) {
 		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
 		if (
-			$this->currentNode->isA( 'mw:p-wrap' ) &&
+			$this->currentNode->isHtmlNamed( 'mw:p-wrap' ) &&
 			!$elt->isA( BalanceSets::$tidyInlineSet )
 		) {
 			// Tidy compatibility.
@@ -806,7 +816,7 @@ class BalanceStack implements IteratorAggregate {
 
 	/**
 	 * Generate implied end tags.
-	 * @param BalanceElement|array|string|null $butnot
+	 * @param string $butnot
 	 * @param bool $thorough True if we should generate end tags thoroughly.
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#generate-implied-end-tags
 	 */
@@ -815,7 +825,7 @@ class BalanceStack implements IteratorAggregate {
 			BalanceSets::$thoroughImpliedEndTagsSet :
 			BalanceSets::$impliedEndTagsSet;
 		while ( $this->length() > 0 ) {
-			if ( $butnot !== null && $this->currentNode->isA( $butnot ) ) {
+			if ( $butnot !== null && $this->currentNode->isHtmlNamed( $butnot ) ) {
 				break;
 			}
 			if ( !$this->currentNode->isA( $endTagSet ) ) {
@@ -907,7 +917,7 @@ class BalanceStack implements IteratorAggregate {
 		} else {
 			$this->currentNode = null;
 		}
-		if ( !$elt->isA( 'mw:p-wrap' ) ) {
+		if ( !$elt->isHtmlNamed( 'mw:p-wrap' ) ) {
 			$elt->flatten( $this->tidyCompat );
 		}
 	}
@@ -1046,14 +1056,14 @@ class BalanceStack implements IteratorAggregate {
 				}
 			} else {
 				// We're fostering an element; do we need to merge p-wrappers?
-				if ( $elt->isA( 'mw:p-wrap' ) ) {
+				if ( $elt->isHtmlNamed( 'mw:p-wrap' ) ) {
 					$idx = $before ?
 						array_search( $before, $parent->children, true ) :
 						count( $parent->children );
 					$after = $idx > 0 ? $parent->children[$idx - 1] : '';
 					if (
 						$after instanceof BalanceElement &&
-						$after->isA( 'mw:p-wrap' )
+						$after->isHtmlNamed( 'mw:p-wrap' )
 					) {
 						return $after; // Re-use existing p-wrapper.
 					}
@@ -1085,7 +1095,7 @@ class BalanceStack implements IteratorAggregate {
 		// elements, then pop the current node off the stack of open
 		// elements and abort these steps.
 		if (
-			$this->currentNode->isA( $tag ) &&
+			$this->currentNode->isHtmlNamed( $tag ) &&
 			!$afe->isInList( $this->currentNode )
 		) {
 			$this->pop();
@@ -2083,10 +2093,10 @@ class Balancer {
 					$stacklen = $this->stack->length();
 					for ( $j = $i + 1; $j < $stacklen-1; $j++ ) {
 						$ancestor = $this->stack->node( $stacklen-$j-1 );
-						if ( $ancestor->isA( 'template' ) ) {
+						if ( $ancestor->isHtmlNamed( 'template' ) ) {
 							break;
 						}
-						if ( $ancestor->isA( 'table' ) ) {
+						if ( $ancestor->isHtmlNamed( 'table' ) ) {
 							$this->switchMode( 'inSelectInTableMode' );
 							return;
 						}
@@ -2327,7 +2337,7 @@ class Balancer {
 			case 'li':
 				# OMITTED: frameset_ok
 				foreach ( $this->stack as $node ) {
-					if ( $node->isA( 'li' ) ) {
+					if ( $node->isHtmlNamed( 'li' ) ) {
 						$this->inBodyMode( 'endtag', 'li' );
 						break;
 					}
@@ -2348,11 +2358,11 @@ class Balancer {
 			case 'dt':
 				# OMITTED: frameset_ok
 				foreach ( $this->stack as $node ) {
-					if ( $node->isA( 'dd' ) ) {
+					if ( $node->isHtmlNamed( 'dd' ) ) {
 						$this->inBodyMode( 'endtag', 'dd' );
 						break;
 					}
-					if ( $node->isA( 'dt' ) ) {
+					if ( $node->isHtmlNamed( 'dt' ) ) {
 						$this->inBodyMode( 'endtag', 'dt' );
 						break;
 					}
@@ -2506,7 +2516,7 @@ class Balancer {
 
 			case 'optgroup':
 			case 'option':
-				if ( $this->stack->currentNode->isA( 'option' ) ) {
+				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
 					$this->inBodyMode( 'endtag', 'option' );
 				}
 				$this->afe->reconstruct( $this->stack );
@@ -2701,7 +2711,7 @@ class Balancer {
 
 			// Any other end tag goes here
 			foreach ( $this->stack as $i => $node ) {
-				if ( $node->isA( $value ) ) {
+				if ( $node->isHtmlNamed( $value ) ) {
 					$this->stack->generateImpliedEndTags( $value );
 					$this->stack->popTo( $i ); # including $i
 					break;
@@ -2916,7 +2926,7 @@ class Balancer {
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
 			case 'colgroup':
-				if ( !$this->stack->currentNode->isA( 'colgroup' ) ) {
+				if ( !$this->stack->currentNode->isHtmlNamed( 'colgroup' ) ) {
 					return true; // Ignore the token.
 				}
 				$this->stack->pop();
@@ -2933,7 +2943,7 @@ class Balancer {
 		}
 
 		// Anything else
-		if ( !$this->stack->currentNode->isA( 'colgroup' ) ) {
+		if ( !$this->stack->currentNode->isHtmlNamed( 'colgroup' ) ) {
 			return true; // Ignore the token.
 		}
 		$this->inColumnGroupMode( 'endtag', 'colgroup' );
