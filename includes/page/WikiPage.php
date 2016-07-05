@@ -21,6 +21,11 @@
  */
 
 use \MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Storage\PageUpdateController;
+use MediaWiki\Storage\PageUpdateException;
+use MediaWiki\Storage\Sql\WikiPageUpdateController;
+use MediaWiki\Storage\StorageException;
+use MediaWiki\Storage\StorageServices;
 
 /**
  * Class representing a MediaWiki article and history.
@@ -43,9 +48,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public $mIsRedirect = false;         // !< Boolean
 	public $mLatest = false;             // !< Integer (false means "not loaded")
 	/**@}}*/
-
-	/** @var stdClass Map of cache fields (text, parser output, ect) for a proposed/new edit */
-	public $mPreparedEdit = false;
 
 	/**
 	 * @var int
@@ -238,19 +240,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->mTimestamp = '';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
-		// Bug 57026: do not clear mPreparedEdit since prepareTextForEdit() already checks
-		// the requested rev ID and content against the cached one for equality. For most
-		// content types, the output should not change during the lifetime of this cache.
-		// Clearing it can cause extra parses on edit for no reason.
-	}
-
-	/**
-	 * Clear the mPreparedEdit cache field, as may be needed by mutable content types
-	 * @return void
-	 * @since 1.23
-	 */
-	public function clearPreparedEdit() {
-		$this->mPreparedEdit = false;
 	}
 
 	/**
@@ -1586,31 +1575,75 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null, $tags = null
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries;
+		global $wgUser;
+		$user = $user ?: $wgUser;
+
+		try {
+			$controller = $this->getUpdateController( $baseRevId );
+
+			$controller->setSlotContent( 'main', $content );
+
+			$revision = $controller->save( $summary, $user, $flags, $tags );
+
+			$value = [
+				'new' => $controller->isNew(),
+				'revision' => $revision
+			];
+
+			$status = Status::newGood( $value );
+
+			if ( !$controller->isEdit() ) {
+				$status->warning( 'edit-no-change' );
+			}
+
+			return $status;
+		} catch ( PageUpdateException $ex ) {
+			Status::newFatal( $ex->getErrorCode() );
+		} catch ( StorageException $ex ) {
+			throw new MWException( $ex->getMessage(), 0, $ex );
+		}
+	}
+
+	/**
+	 * @return PageUpdateController
+	 */
+	public function getUpdateController( $baseRevId = false ) {
+		$services = StorageServices::getDefaultInstance();
+		$controller = new WikiPageUpdateController(
+			$services->getRevisionContentLookup(),
+			$services->getRevisionContentStore(),
+			$this
+		);
+		$controller->loadBaseRevision( $baseRevId );
+		return $controller;
+	}
+
+	/**
+	 * @note Internal interface for use by WikiPageUpdateController. Application logic
+	 * should use doEditContent() or getUpdateController() and PageUpdateController::save instead.
+	 *
+	 * @param string $summary
+	 * @param int $flags
+	 * @param bool $baseRevId
+	 * @param User $user
+	 * @param array $meta
+	 *
+	 * @return Revision A temporary, incomplete Revision object, with no slot content.
+	 */
+	public function prepareEdit(
+		$summary, User $user, array $meta
+	) {
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
 			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
-		// Make sure the given content type is allowed for this page
-		if ( !$content->getContentHandler()->canBeUsedOn( $this->mTitle ) ) {
-			return Status::newFatal( 'content-not-allowed-here',
-				ContentHandler::getLocalizedName( $content->getModel() ),
-				$this->mTitle->getPrefixedText()
-			);
-		}
 
-		// Load the data from the master database if needed.
-		// The caller may already loaded it from the master or even loaded it using
-		// SELECT FOR UPDATE, so do not override that using clear().
-		$this->loadPageData( 'fromdbmaster' );
-
-		$user = $user ?: $wgUser;
-		$flags = $this->checkFlags( $flags );
+		$flags = $this->checkFlags( $meta['flags'] );
 
 		// Trigger pre-save hook (using provided edit summary)
 		$hookStatus = Status::newGood( [] );
-		$hook_args = [ &$this, &$user, &$content, &$summary,
+		$hook_args = [ &$this, &$user, $meta['main_content'], &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
@@ -1618,50 +1651,41 @@ class WikiPage implements Page, IDBAccessObject {
 		) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
-				$hookStatus->fatal( 'edit-hook-aborted' );
+				throw new PageUpdateException( 'edit-hook-aborted' );
+			} else {
+				throw new PageUpdateException( $hookStatus /* FIXME */ ) ;
 			}
-
-			return $hookStatus;
 		}
-
-		$old_revision = $this->getRevision(); // current revision
-		$old_content = $this->getContent( Revision::RAW ); // current revision's content
-
-		// Provide autosummaries if one is not provided and autosummaries are enabled
-		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
-			$handler = $content->getContentHandler();
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
-		}
-
-		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
-		if ( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) ) {
-			$useCache = false;
-		} else {
-			$useCache = true;
-		}
-
-		// Get the pre-save transform content and final parser output
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, $useCache );
-		$pstContent = $editInfo->pstContent; // Content object
-		$meta = [
-			'bot' => ( $flags & EDIT_FORCE_BOT ),
-			'minor' => ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' ),
-			'serialized' => $editInfo->pst,
-			'serialFormat' => $serialFormat,
-			'baseRevId' => $baseRevId,
-			'oldRevision' => $old_revision,
-			'oldContent' => $old_content,
-			'oldId' => $this->getLatest(),
-			'oldIsRedirect' => $this->isRedirect(),
-			'oldCountable' => $this->isCountable(),
-			'tags' => ( $tags !== null ) ? (array)$tags : []
-		];
 
 		// Actually create the revision and create/update the page
 		if ( $flags & EDIT_UPDATE ) {
-			$status = $this->doModify( $pstContent, $flags, $user, $summary, $meta );
+			return $this->prepareModify( $flags, $user, $summary, $meta );
 		} else {
-			$status = $this->doCreate( $pstContent, $flags, $user, $summary, $meta );
+			return $this->prepareCreate( $flags, $user, $summary, $meta );
+		}
+	}
+
+	/**
+	 * @note Internal interface for use by WikiPageUpdateController. Application logic
+	 * should use doEditContent() or getUpdateController() and PageUpdateController::save instead.
+	 *
+	 * @param Revision $revision A temporary, incomplete Revision object, as returned by prepareEdit()
+	 * @param array $meta Meta-data to set in the revision, or to include in the RecentChanges entry.
+	 * @param array $preparedContent Prepared Content records // FIXME: make EditInfo a proper class!
+	 *
+	 * @return Revision A temporary, incomplete Revision object, with no slot content.
+	 */
+	public function finishEdit(
+		Revision $revision,
+		User $user,
+		array $meta,
+		array $preparedContent
+	) {
+		// Actually create the revision and create/update the page
+		if ( $meta['flags'] && EDIT_UPDATE ) {
+			$this->finishModify( $revision, $user, $meta, $preparedContent );
+		} else {
+			$this->finishCreate( $revision, $user, $meta, $preparedContent );
 		}
 
 		// Promote user to any groups they meet the criteria for
@@ -1669,45 +1693,30 @@ class WikiPage implements Page, IDBAccessObject {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
-
-		return $status;
 	}
 
 	/**
-	 * @param Content $content Pre-save transform content
 	 * @param integer $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
-	 * @return Status
+	 * @return Revision A temporary, incomplete Revision object, with no slot content.
 	 * @throws DBUnexpectedError
 	 * @throws Exception
 	 * @throws FatalError
 	 * @throws MWException
 	 */
-	private function doModify(
-		Content $content, $flags, User $user, $summary, array $meta
+	private function prepareModify(
+		$flags, User $user, $summary, array $meta
 	) {
-		global $wgUseRCPatrol;
-
-		// Update article, but only if changed.
-		$status = Status::newGood( [ 'new' => false, 'revision' => null ] );
-
 		// Convenience variables
-		$now = wfTimestampNow();
+		$now = $meta['now'];
 		$oldid = $meta['oldId'];
-		/** @var $oldContent Content|null */
-		$oldContent = $meta['oldContent'];
-		$newsize = $content->getSize();
+		$newsize = $meta['size'];
 
 		if ( !$oldid ) {
 			// Article gone missing
-			$status->fatal( 'edit-gone-missing' );
-
-			return $status;
-		} elseif ( !$oldContent ) {
-			// Sanity check for bug 37225
-			throw new MWException( "Could not find text for current revision {$oldid}." );
+			throw new PageUpdateException( 'edit-gone-missing' );
 		}
 
 		// @TODO: pass content object?!
@@ -1722,21 +1731,15 @@ class WikiPage implements Page, IDBAccessObject {
 			'user'       => $user->getId(),
 			'user_text'  => $user->getName(),
 			'timestamp'  => $now,
-			'content_model' => $content->getModel(),
+			'content_model' => $meta['contentModel'],
 			'content_format' => $meta['serialFormat'],
 		] );
 
-		$changed = !$content->equals( $oldContent );
+		$changed = $meta['changed'];
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $changed ) {
-			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-			$status->merge( $prepStatus );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-
 			$dbw->startAtomic( __METHOD__ );
 			// Get the latest page_latest value while locking it.
 			// Do a CAS style check to see if it's the same as when this method
@@ -1745,9 +1748,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( $latestNow != $oldid ) {
 				$dbw->endAtomic( __METHOD__ );
 				// Page updated or deleted in the mean time
-				$status->fatal( 'edit-conflict' );
-
-				return $status;
+				throw new PageUpdateException( 'edit-conflict' );
 			}
 
 			// At this point we are now comitted to returning an OK
@@ -1766,34 +1767,8 @@ class WikiPage implements Page, IDBAccessObject {
 			Hooks::run( 'NewRevisionFromEditComplete',
 				[ $this, $revision, $meta['baseRevId'], $user ] );
 
-			// Update recentchanges
-			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				// Mark as patrolled if the user can do so
-				$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-				// Add RC row to the DB
-				RecentChange::notifyEdit(
-					$now,
-					$this->mTitle,
-					$revision->isMinor(),
-					$user,
-					$summary,
-					$oldid,
-					$this->getTimestamp(),
-					$meta['bot'],
-					'',
-					$oldContent ? $oldContent->getSize() : 0,
-					$newsize,
-					$revisionId,
-					$patrolled,
-					$meta['tags']
-				);
-			}
-
-			$user->incEditCount();
-
 			$dbw->endAtomic( __METHOD__ );
-			$this->mTimestamp = $now;
+			$this->mTimestamp = $now; // FIXME ????
 		} else {
 			// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
@@ -1804,21 +1779,45 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		if ( $changed ) {
-			// Return the new revision to the caller
-			$status->value['revision'] = $revision;
-		} else {
-			$status->warning( 'edit-no-change' );
+		if ( !$changed ) {
 			// Update page_touched as updateRevisionOn() was not called.
 			// Other cache updates are managed in onArticleEdit() via doEditUpdates().
 			$this->mTitle->invalidateCache( $now );
 		}
 
+		return $revision;
+	}
+
+	/**
+	 * @param integer $flags
+	 * @param User $user
+	 * @param string $summary
+	 * @param array $meta
+	 * @throws DBUnexpectedError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function finishModify(
+		Revision $revision,
+		User $user,
+		array $meta,
+		array $preparedContent
+	) {
+
+		$changed = $meta['changed'];
+		$summary = $meta['summary'];
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		// FIXME: for each content in $preparedContent!
+
 		// Do secondary updates once the main changes have been committed...
 		$that = $this;
+		$mainContent = $meta['main_content'];
 		$dbw->onTransactionIdle(
 			function () use (
-				$dbw, &$that, $revision, &$user, $content, $summary, &$flags,
+				$dbw, &$that, $revision, &$user, $mainContent, $summary, &$flags,
 				$changed, $meta, &$status
 			) {
 				// Do per-page updates in a transaction
@@ -1832,44 +1831,36 @@ class WikiPage implements Page, IDBAccessObject {
 						'oldcountable' => $meta['oldCountable'],
 						'oldrevision' => $meta['oldRevision']
 					]
+				/* FIXME: pass prepared edit here! */
 				);
 				// Trigger post-save hook
-				$params = [ &$that, &$user, $content, $summary, $flags & EDIT_MINOR,
+				$params = [ &$that, &$user, $mainContent, $summary, $flags & EDIT_MINOR,
 					null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
 				ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
 				Hooks::run( 'PageContentSaveComplete', $params );
 			}
 		);
 
-		return $status;
+		// FIXME: $status may change later, when the transaction gets idle!
 	}
 
+
 	/**
-	 * @param Content $content Pre-save transform content
 	 * @param integer $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
-	 * @return Status
+	 * @return Revision A temporary, incomplete Revision object, with no slot content.
 	 * @throws DBUnexpectedError
 	 * @throws Exception
 	 * @throws FatalError
 	 * @throws MWException
 	 */
-	private function doCreate(
-		Content $content, $flags, User $user, $summary, array $meta
+	private function prepareCreate(
+		$flags, User $user, $summary, array $meta
 	) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
-
-		$status = Status::newGood( [ 'new' => true, 'revision' => null ] );
-
-		$now = wfTimestampNow();
-		$newsize = $content->getSize();
-		$prepStatus = $content->prepareSave( $this, $flags, $meta['oldId'], $user );
-		$status->merge( $prepStatus );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
+		$now = $meta['now'];
+		$newsize = $meta['size'];
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -1878,9 +1869,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$newid = $this->insertOn( $dbw );
 		if ( $newid === false ) {
 			$dbw->endAtomic( __METHOD__ ); // nothing inserted
-			$status->fatal( 'edit-already-exists' );
-
-			return $status; // nothing done
+			throw new PageUpdateException( 'edit-already-exists' );
 		}
 
 		// At this point we are now comitted to returning an OK
@@ -1899,7 +1888,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'user'       => $user->getId(),
 			'user_text'  => $user->getName(),
 			'timestamp'  => $now,
-			'content_model' => $content->getModel(),
+			'content_model' => $meta['contentModel'],
 			'content_format' => $meta['serialFormat'],
 		] );
 
@@ -1913,22 +1902,48 @@ class WikiPage implements Page, IDBAccessObject {
 
 		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user ] );
 
+		// FIXME: we no end the atomic section before calling RecentChange::notifyNew(). Ok?
+		$dbw->endAtomic( __METHOD__ );
+
+		return $revision;
+	}
+
+
+	/**
+	 * @param integer $flags
+	 * @param User $user
+	 * @param string $summary
+	 * @param array $meta
+	 * @return Revision A temporary, incomplete Revision object, with no slot content.
+	 * @throws DBUnexpectedError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function finishCreate(
+		Revision $revision,
+		User $user,
+		array $meta,
+		array $preparedContent
+	) {
+		global $wgUseRCPatrol, $wgUseNPPatrol;
+
 		// Update recentchanges
-		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+		if ( !( $meta['flags'] & EDIT_SUPPRESS_RC ) ) {
 			// Mark as patrolled if the user can do so
 			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
 				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 			// Add RC row to the DB
 			RecentChange::notifyNew(
-				$now,
+				$meta['new'],
 				$this->mTitle,
 				$revision->isMinor(),
 				$user,
-				$summary,
+				$meta['summary'],
 				$meta['bot'],
 				'',
-				$newsize,
-				$revisionId,
+				$meta['size'],
+				$revision->getId(),
 				$patrolled,
 				$meta['tags']
 			);
@@ -1936,24 +1951,23 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$user->incEditCount();
 
-		$dbw->endAtomic( __METHOD__ );
-		$this->mTimestamp = $now;
-
-		// Return the new revision to the caller
-		$status->value['revision'] = $revision;
+		$this->mTimestamp = $meta['new'];
 
 		// Do secondary updates once the main changes have been committed...
 		$that = $this;
+		$summary = $meta['summary'];
+		$mainContent = $meta['main_content'];
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->onTransactionIdle(
 			function () use (
-				&$that, $dbw, $revision, &$user, $content, $summary, &$flags, $meta, &$status
+				&$that, $dbw, $revision, &$user, $mainContent, $summary, &$flags, $meta, &$status
 			) {
 				// Do per-page updates in a transaction
 				$dbw->setFlag( DBO_TRX );
 				// Update links, etc.
-				$that->doEditUpdates( $revision, $user, [ 'created' => true ] );
+				$that->doEditUpdates( $revision, $user, [ 'created' => true ] /* FIXME: pass prepared edit here! */ );
 				// Trigger post-create hook
-				$params = [ &$that, &$user, $content, $summary,
+				$params = [ &$that, &$user, $mainContent, $summary,
 					$flags & EDIT_MINOR, null, null, &$flags, $revision ];
 				ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
 				Hooks::run( 'PageContentInsertComplete', $params );
@@ -1964,8 +1978,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 			}
 		);
-
-		return $status;
 	}
 
 	/**
@@ -2052,16 +2064,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$serialFormat = $content->getContentHandler()->getDefaultFormat();
 		}
 
-		if ( $this->mPreparedEdit
-			&& $this->mPreparedEdit->newContent
-			&& $this->mPreparedEdit->newContent->equals( $content )
-			&& $this->mPreparedEdit->revid == $revid
-			&& $this->mPreparedEdit->format == $serialFormat
-			// XXX: also check $user here?
-		) {
-			// Already prepared
-			return $this->mPreparedEdit;
-		}
+		// FIXME: removed local caching here, can we cache in WikiPageUpdateController??
 
 		// The edit may have already been prepared via api.php?action=stashedit
 		$cachedEdit = $useCache && $wgAjaxEditStash
@@ -2140,9 +2143,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$edit->output->setCacheTime( wfTimestampNow() );
 		}
 
-		// Process cache the result
-		$this->mPreparedEdit = $edit;
-
 		return $edit;
 	}
 
@@ -2167,7 +2167,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *     is true, do update the article count
 	 *   - 'no-change': don't update the article count, ever
 	 */
-	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
+	public function doEditUpdates( Revision $revision, User $user, array $options = [], $preparedEdit = null ) {
 		global $wgRCWatchCategoryMembership, $wgContLang;
 
 		$options += [
@@ -2184,19 +2184,19 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// See if the parser output before $revision was inserted is still valid
 		$editInfo = false;
-		if ( !$this->mPreparedEdit ) {
+		if ( !$preparedEdit ) {
 			$logger->debug( __METHOD__ . ": No prepared edit...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
+		} elseif ( $preparedEdit->output->getFlag( 'vary-revision' ) ) {
 			$logger->info( __METHOD__ . ": Prepared edit has vary-revision...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision-id' )
-			&& $this->mPreparedEdit->output->getSpeculativeRevIdUsed() !== $revision->getId()
+		} elseif ( $preparedEdit->output->getFlag( 'vary-revision-id' )
+			&& $preparedEdit->output->getSpeculativeRevIdUsed() !== $revision->getId()
 		) {
 			$logger->info( __METHOD__ . ": Prepared edit has vary-revision-id with wrong ID...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
+		} elseif ( $preparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
 			$logger->info( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
 		} else {
 			wfDebug( __METHOD__ . ": Using prepared edit...\n" );
-			$editInfo = $this->mPreparedEdit;
+			$editInfo = $preparedEdit;
 		}
 
 		if ( !$editInfo ) {
