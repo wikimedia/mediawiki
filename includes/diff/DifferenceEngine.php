@@ -638,7 +638,7 @@ class DifferenceEngine extends ContextSource {
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if ( $parserOutput ) {
 					// Allow extensions to change parser output here
-					if ( !Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $this, $out, $parserOutput, $wikiPage ] ) ) {
+					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $this, $out, $parserOutput, $wikiPage ] ) ) {
 						$out->addParserOutput( $parserOutput );
 					}
 				}
