@@ -690,7 +690,9 @@ wfDebugLog( 'caches',
 	', WAN: ' . $wgMainWANCache .
 	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
-	', parser: ' . get_class( $parserMemc ) );
+	', parser: ' . get_class( $parserMemc ) .
+	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
+);
 
 Profiler::instance()->scopedProfileOut( $ps_memcached );
 
