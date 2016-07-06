@@ -31,6 +31,32 @@ class XmlTypeCheckTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Verify we check for recursive entity DOS
+	 *
+	 * (If the DOS isn't properly handled, the test runner will probably go OOM...)
+	 */
+	public function testRecursiveEntity() {
+		$xml = <<<'XML'
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE foo [
+	<!ENTITY test "&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;">
+	<!ENTITY a "&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;">
+	<!ENTITY b "&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;&c;">
+	<!ENTITY c "&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;&d;">
+	<!ENTITY d "&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;&e;">
+	<!ENTITY e "&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;&f;">
+	<!ENTITY f "&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;&g;">
+	<!ENTITY g "-00000000000000000000000000000000000000000000000000000000000000000000000-">
+]>
+<foo>
+<bar>&test;</bar>
+</foo>
+XML;
+		$check = XmlTypeCheck::newFromString( $xml );
+		$this->assertFalse( $check->wellFormed );
+	}
+
+	/**
 	 * @covers XMLTypeCheck::processingInstructionHandler
 	 */
 	public function testProcessingInstructionHandler() {
