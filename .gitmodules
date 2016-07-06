@@ -454,6 +454,10 @@
 	path = extensions/RestBaseUpdateJobs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RestBaseUpdateJobs.git
 	branch = wmf/1.28.0-wmf.9
+[submodule "extensions/RevisionSlider"]
+	path = extensions/RevisionSlider
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/RevisionSlider
+	branch = wmf/1.28.0-wmf.9
 [submodule "extensions/RSS"]
 	path = extensions/RSS
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RSS.git
