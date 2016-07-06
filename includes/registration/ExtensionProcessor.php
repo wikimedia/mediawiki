@@ -10,7 +10,6 @@ class ExtensionProcessor implements Processor {
 	protected static $globalSettings = [
 		'ResourceLoaderSources',
 		'ResourceLoaderLESSVars',
-		'ResourceLoaderLESSImportPaths',
 		'DefaultUserOptions',
 		'HiddenPrefs',
 		'GroupPermissions',
