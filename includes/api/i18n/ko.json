@@ -323,7 +323,7 @@
 	"apihelp-query+linkshere-param-limit": "반환할 항목 수.",
 	"apihelp-query+linkshere-param-show": "이 기준을 충족하는 항목만 표시합니다:\n;redirect:넘겨주기만 표시합니다.\n;!redirect:넘겨주기가 아닌 항목만 표시합니다.",
 	"apihelp-query+logevents-paramvalue-prop-ids": "로그 이벤트의 ID를 추가합니다.",
-	"apihelp-query+logevents-paramvalue-prop-type": "로그 이벤트의.유형을 추가합니다.",
+	"apihelp-query+logevents-paramvalue-prop-type": "로그 이벤트의 유형을 추가합니다.",
 	"apihelp-query+pagepropnames-param-limit": "반환할 이름의 최대 수.",
 	"apihelp-query+pageswithprop-param-prop": "포함할 정보:",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "페이지 ID를 추가합니다.",

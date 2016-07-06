@@ -884,7 +884,7 @@
 	"rev-deleted-comment": "（编辑摘要被移除）",
 	"rev-deleted-user": "（用户名被删除）",
 	"rev-deleted-event": "（日志详情已移除）",
-	"rev-deleted-user-contribs": "[用户名或IP地址被删除 - 编辑在贡献中隐藏]",
+	"rev-deleted-user-contribs": "[用户名或IP地址被移除 - 编辑在贡献中隐藏]",
 	"rev-deleted-text-permission": "本页面版本已被<strong>删除</strong>。详情请见[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]。",
 	"rev-suppressed-text-permission": "此页面修订已经被<strong>监督隐藏</strong>。详细信息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中找到。",
 	"rev-deleted-text-unhide": "本页面版本已被<strong>删除</strong>。详情请见[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]。如果您想继续操作，您仍然可以[$1 查看本版本]。",

@@ -279,7 +279,7 @@
 	"category-file-count-limited": "{{PLURAL:$1|El siguiente archivo pertenece|Los siguientes $1 archivos pertenecen}} a esta categoría.",
 	"listingcontinuesabbrev": "cont.",
 	"index-category": "Páginas indizadas",
-	"noindex-category": "Páginas no indizadas",
+	"noindex-category": "Páginas no indexadas",
 	"broken-file-category": "Páginas con enlaces rotos a archivos",
 	"about": "Acerca de",
 	"article": "Página de contenido",

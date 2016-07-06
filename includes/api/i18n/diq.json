@@ -26,6 +26,8 @@
 	"apihelp-emailuser-param-ccme": "Yew kopyaya nê posteyi mı rê bırışe.",
 	"apihelp-expandtemplates-param-title": "Sernameyê pele.",
 	"apihelp-expandtemplates-param-text": "Wikimetıni açarnê.",
+	"apihelp-feedcontributions-param-hideminor": "Vuryayışanê werdiyan bınımne",
+	"apihelp-feedcontributions-param-showsizediff": "Goreyê ebati ferqê versiyoni bıasne.",
 	"apihelp-feedrecentchanges-param-hideminor": "Vurnayışanê qıckekan bınımne.",
 	"apihelp-feedrecentchanges-param-hidebots": "Vurnayışanê botan bınımne.",
 	"apihelp-feedrecentchanges-param-hideanons": "Vurnayışanê karberanê anoniman bınımne.",
