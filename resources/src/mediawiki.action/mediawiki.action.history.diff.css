@@ -93,3 +93,28 @@ td.diff-addedline .diffchange {
 td.diff-deletedline .diffchange {
 	background: #feeec8;
 }
+
+/* Correct user & content directionality when viewing a diff */
+.diff-currentversion-title,
+.diff {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+/* @noflip */ .diff-contentalign-right td {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+/* @noflip */ .diff-contentalign-left td {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+.diff-multi,
+.diff-otitle,
+.diff-ntitle,
+.diff-lineno {
+	direction: ltr !important;
+	unicode-bidi: embed;
+}
