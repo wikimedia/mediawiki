@@ -93,6 +93,57 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::getRights
+	 */
+	public function testUserGetRightsHooks() {
+		$user = new User;
+		$user->addGroup( 'unittesters' );
+		$user->addGroup( 'testwriters' );
+		$userWrapper = TestingAccessWrapper::newFromObject( $user );
+
+		$rights = $user->getRights();
+		$this->assertContains( 'test', $rights, 'sanity check' );
+		$this->assertContains( 'runtest', $rights, 'sanity check' );
+		$this->assertContains( 'writetest', $rights, 'sanity check' );
+		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
+
+		// Add a hook manipluating the rights
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserGetRights' => [ function ( $user, &$rights ) {
+			$rights[] = 'nukeworld';
+			$rights = array_diff( $rights, array( 'writetest' ) );
+		} ] ] );
+
+		$userWrapper->mRights = null;
+		$rights = $user->getRights();
+		$this->assertContains( 'test', $rights );
+		$this->assertContains( 'runtest', $rights );
+		$this->assertNotContains( 'writetest', $rights );
+		$this->assertContains( 'nukeworld', $rights );
+
+		// Add a Session that limits rights
+		$mock = $this->getMockBuilder( stdclass::class )
+			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
+			->getMock();
+		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
+		$mock->method( 'getSessionId' )->willReturn(
+			new MediaWiki\Session\SessionId( str_repeat( 'X', 32 ) )
+		);
+		$session = MediaWiki\Session\TestUtils::getDummySession( $mock );
+		$mockRequest = $this->getMockBuilder( FauxRequest::class )
+			->setMethods( [ 'getSession' ] )
+			->getMock();
+		$mockRequest->method( 'getSession' )->willReturn( $session );
+		$userWrapper->mRequest = $mockRequest;
+
+		$userWrapper->mRights = null;
+		$rights = $user->getRights();
+		$this->assertContains( 'test', $rights );
+		$this->assertNotContains( 'runtest', $rights );
+		$this->assertNotContains( 'writetest', $rights );
+		$this->assertNotContains( 'nukeworld', $rights );
+	}
+
+	/**
 	 * @dataProvider provideGetGroupsWithPermission
 	 * @covers User::getGroupsWithPermission
 	 */
