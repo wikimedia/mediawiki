@@ -1110,7 +1110,7 @@ class Revision implements IDBAccessObject {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
 			if ( $title ) {
-				$this->mContentModel = ContentHandler::getDefaultModelFor( $title );
+				$this->mContentModel = $title->getContentModel();
 			} else {
 				$this->mContentModel = CONTENT_MODEL_WIKITEXT;
 			}
