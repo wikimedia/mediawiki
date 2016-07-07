@@ -3306,6 +3306,19 @@ $mime: (string) The uploaded file's MIME type, as detected by MediaWiki.
   representing the problem with the file, where the first element is the message
   key and the remaining elements are used as parameters to the message.
 
+'UploadVerifyUpload': Upload verification, based on both file properties like
+MIME type (same as UploadVerifyFile) and the information entered by the user
+(upload comment, file page contents etc.).
+$upload: (object) An instance of UploadBase, with all info about the upload
+$user: (object) An instance of User, the user uploading this file
+$props: (array) File properties, as returned by FSFile::getPropsFromPath()
+$comment: (string) Upload log comment (also used as edit summary)
+$pageText: (string) File description page text (only used for new uploads)
+&$error: output: If the file upload should be prevented, set this to the reason
+  in the form of array( messagename, param1, param2, ... ) or a MessageSpecifier
+  instance (you might want to use ApiMessage to provide machine-readable details
+  for the API).
+
 'UserIsBot': when determining whether a user is a bot account
 $user: the user
 &$isBot: whether this is user a bot or not (boolean)
