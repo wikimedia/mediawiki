@@ -333,16 +333,21 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
-			$context = $this->getContext();
+			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
-			$context->getOutput()->addParserOutputNoText( $p_result );
+			$context->setWikiPage( $pageObj );
+
+			// We need an OutputPage tied to $context, not to the
+			// RequestContext at the root of the stack.
+			$output = new OutputPage( $context );
+			$output->addParserOutputNoText( $p_result );
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
 
-				$css = $this->formatCss( $context->getOutput()->buildCssLinksArray() );
+				$css = $this->formatCss( $output->buildCssLinksArray() );
 
-				$scripts = array( $context->getOutput()->getHeadScripts() );
+				$scripts = array( $output->getHeadScripts() );
 
 				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 			}
@@ -351,7 +356,7 @@ class ApiParse extends ApiBase {
 				$result_array['headhtml'] = array();
 				ApiResult::setContent(
 					$result_array['headhtml'],
-					$context->getOutput()->headElement( $context->getSkin() )
+					$output->headElement( $context->getSkin() )
 				);
 			}
 		}
