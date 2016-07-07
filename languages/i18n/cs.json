@@ -1130,7 +1130,7 @@
 	"group-suppress-member": "{{GENDER:$1|utajovatel|utajovatelka|utajovatel}}",
 	"grouppage-user": "{{ns:project}}:Uživatelé",
 	"grouppage-autoconfirmed": "{{ns:project}}:Automaticky schválení uživatelé",
-	"grouppage-bot": "{{ns:project}}:Boti",
+	"grouppage-bot": "{{ns:project}}:Roboti",
 	"grouppage-sysop": "{{ns:project}}:Správci",
 	"grouppage-bureaucrat": "{{ns:project}}:Byrokraté",
 	"grouppage-suppress": "{{ns:project}}:Utajovatelé",

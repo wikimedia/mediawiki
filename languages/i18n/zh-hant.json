@@ -3580,7 +3580,7 @@
 	"limitreport-cputime-value": "$1 秒",
 	"limitreport-walltime": "實際使用時間",
 	"limitreport-walltime-value": "$1 秒",
-	"limitreport-ppvisitednodes": "預處理器已訪問節點計數",
+	"limitreport-ppvisitednodes": "前置處理器造訪節點計數",
 	"limitreport-ppgeneratednodes": "預處理器產生節點次數",
 	"limitreport-postexpandincludesize": "展開後的引用大小",
 	"limitreport-postexpandincludesize-value": "$1/$2 個{{PLURAL:$2|位元組}}",
