@@ -1341,8 +1341,10 @@ class Parser {
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ( MWTidy::isEnabled() && $this->mOptions->getTidy() ) {
-			$text = MWTidy::tidy( $text );
+		if ( MWTidy::isEnabled() ) {
+			if ( $this->mOptions->getTidy() ) {
+				$text = MWTidy::tidy( $text );
+			}
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (bug #2702 and quite a few others)
