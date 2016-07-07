@@ -37,8 +37,10 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addModuleStyles( 'mediawiki.special.changeslist' );
+		$out->addModuleStyles( [
+			'mediawiki.special',
+			'mediawiki.special.changeslist',
+		] );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = [];
