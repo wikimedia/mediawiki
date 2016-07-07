@@ -85,6 +85,8 @@ changes to languages because of Phabricator reports.
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   respectively. See docs/hooks.txt for the specific changes needed for those hooks.
 * The 'ParserLimitReportFormat' hook was removed.
+* Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
+  disabled.
 
 == Compatibility ==
 
