@@ -22,6 +22,9 @@ production.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
   interact with API parsing.
+* Added a new hook, 'UploadVerifyUpload', which can be used to reject a file
+  upload. Unlike 'UploadVerifyFile' it provides information about upload comment
+  and the file description page, but does not run for uploads to stash.
 
 === External library changes in 1.28 ===
 
