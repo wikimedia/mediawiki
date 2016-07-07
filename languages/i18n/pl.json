@@ -3151,7 +3151,7 @@
 	"size-megabytes": "$1&nbsp;MB",
 	"size-gigabytes": "$1&nbsp;GB",
 	"lag-warn-normal": "Zmiany nowsze niż $1 {{PLURAL:$1|sekunda|sekundy|sekund}} mogą nie być widoczne na tej liście.",
-	"lag-warn-high": "Z powodu dużego obciążenia serwerów bazy danych, zmiany nowsze niż $1 {{PLURAL:$1|sekunda|sekundy|sekund}} mogą nie być widoczne na tej liście.",
+	"lag-warn-high": "Z powodu dużego obciążenia serwerów bazy danych zmiany nowsze niż $1 {{PLURAL:$1|sekunda|sekundy|sekund}} mogą nie być widoczne na tej liście.",
 	"watchlistedit-normal-title": "Edytuj listę obserwowanych stron",
 	"watchlistedit-normal-legend": "Usuń strony z listy obserwowanych",
 	"watchlistedit-normal-explain": "Poniżej znajduje się lista obserwowanych przez Ciebie stron.\nAby usunąć stronę z listy zaznacz znajdujące się obok niej pole i naciśnij „{{int:Watchlistedit-normal-submit}}”.\nMożesz także skorzystać z [[Special:EditWatchlist/raw|tekstowego edytora listy obserwowanych]].",
