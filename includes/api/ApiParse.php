@@ -346,22 +346,27 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
-			$context = $this->getContext();
+			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
-			$context->getOutput()->addParserOutputMetadata( $p_result );
+			$context->setWikiPage( $pageObj );
+
+			// We need an OutputPage tied to $context, not to the
+			// RequestContext at the root of the stack.
+			$output = new OutputPage( $context );
+			$output->addParserOutputMetadata( $p_result );
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
 
-				$css = $this->formatCss( $context->getOutput()->buildCssLinksArray() );
+				$css = $this->formatCss( $output->buildCssLinksArray() );
 
-				$scripts = [ $context->getOutput()->getHeadScripts() ];
+				$scripts = [ $output->getHeadScripts() ];
 
 				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 			}
 
 			if ( isset( $prop['headhtml'] ) ) {
-				$result_array['headhtml'] = $context->getOutput()->headElement( $context->getSkin() );
+				$result_array['headhtml'] = $output->headElement( $context->getSkin() );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 			}
 		}
