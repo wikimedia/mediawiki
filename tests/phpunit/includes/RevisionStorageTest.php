@@ -317,7 +317,30 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContentModel
 	 */
-	public function testGetContentModel() {
+	public function testGetContentModel_default_model() {
+		global $wgContentHandlerUseDB;
+
+		if ( !$wgContentHandlerUseDB ) {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
+
+		$orig = $this->makeRevision( [ 'text' => 'hello hello.', ] );
+
+		// Change namespace default content model, to make sure getContentModel() uses the
+		// page content model, not the namespace default.
+		$ns = $this->getDefaultWikitextNS();
+		$this->mergeMwGlobalArrayValue( 'wgNamespaceContentModels', [ $ns => CONTENT_MODEL_JSON ] );
+
+		$rev = Revision::newFromId( $orig->getId() );
+
+		// we should still get the correct content model from the page table
+		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $rev->getContentModel() );
+	}
+
+	/**
+	 * @covers Revision::getContentModel
+	 */
+	public function testGetContentModel_other_model() {
 		global $wgContentHandlerUseDB;
 
 		if ( !$wgContentHandlerUseDB ) {
@@ -325,7 +348,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		}
 
 		$orig = $this->makeRevision( [ 'text' => 'hello hello.',
-			'content_model' => CONTENT_MODEL_JAVASCRIPT ] );
+			                             'content_model' => CONTENT_MODEL_JAVASCRIPT ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
