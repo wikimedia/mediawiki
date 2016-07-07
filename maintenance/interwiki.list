@@ -26,7 +26,7 @@ imdb|http://www.imdb.com/find?q=$1&tt=on|0|
 jargonfile|http://sunir.org/apps/meta.pl?wiki=JargonFile&redirect=$1|0|
 kmwiki|http://kmwiki.wikispaces.com/$1|0|
 linuxwiki|http://linuxwiki.de/$1|0|
-lojban|http://www.lojban.org/tiki/tiki-index.php?page=$1|0|
+lojban|http://mw.lojban.org/papri/$1|0|
 lqwiki|http://wiki.linuxquestions.org/wiki/$1|0|
 lugkr|http://www.lug-kr.de/wiki/$1|0|
 meatball|http://www.usemod.com/cgi-bin/mb.pl?$1|0|
