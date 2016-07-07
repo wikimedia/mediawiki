@@ -1110,7 +1110,7 @@ class Revision implements IDBAccessObject {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
 			if ( $title ) {
-				$this->mContentModel = ContentHandler::getDefaultModelFor( $title );
+				$this->mContentModel = $title->getContentModel();
 			} else {
 				$this->mContentModel = CONTENT_MODEL_WIKITEXT;
 			}
@@ -1455,7 +1455,7 @@ class Revision implements IDBAccessObject {
 					. "revision's page!" );
 			}
 
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
+			$defaultModel = $title->getContentModel();
 			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
 			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
