@@ -107,7 +107,10 @@ class OutputPage extends ContextSource {
 	protected $mCategoryLinks = [];
 
 	/** @var array */
-	protected $mCategories = [];
+	protected $mCategories = [
+		'hidden' => [],
+		'normal' => [],
+	];
 
 	/** @var array */
 	protected $mIndicators = [];
@@ -1252,31 +1255,7 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-		# Add the links to a LinkBatch
-		$arr = [ NS_CATEGORY => $categories ];
-		$lb = new LinkBatch;
-		$lb->setArray( $arr );
-
-		# Fetch existence plus the hiddencat property
-		$dbr = wfGetDB( DB_REPLICA );
-		$fields = array_merge(
-			LinkCache::getSelectFields(),
-			[ 'page_namespace', 'page_title', 'pp_value' ]
-		);
-
-		$res = $dbr->select( [ 'page', 'page_props' ],
-			$fields,
-			$lb->constructSet( 'page', $dbr ),
-			__METHOD__,
-			[],
-			[ 'page_props' => [ 'LEFT JOIN', [
-				'pp_propname' => 'hiddencat',
-				'pp_page = page_id'
-			] ] ]
-		);
-
-		# Add the results to the link cache
-		$lb->addResultToCache( LinkCache::singleton(), $res );
+		$res = $this->addCategoryLinksToLBAndGetResult( $categories );
 
 		# Set all the values to 'normal'.
 		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
@@ -1306,10 +1285,44 @@ class OutputPage extends ContextSource {
 					continue;
 				}
 				$text = $wgContLang->convertHtml( $title->getText() );
-				$this->mCategories[] = $title->getText();
+				$this->mCategories[$type][] = $title->getText();
 				$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 			}
 		}
+	}
+
+	/**
+	 * @param array $categories
+	 * @return bool|ResultWrapper
+	 */
+	protected function addCategoryLinksToLBAndGetResult( array $categories ) {
+		# Add the links to a LinkBatch
+		$arr = [ NS_CATEGORY => $categories ];
+		$lb = new LinkBatch;
+		$lb->setArray( $arr );
+
+		# Fetch existence plus the hiddencat property
+		$dbr = wfGetDB( DB_REPLICA );
+		$fields = array_merge(
+			LinkCache::getSelectFields(),
+			[ 'page_namespace', 'page_title', 'pp_value' ]
+		);
+
+		$res = $dbr->select( [ 'page', 'page_props' ],
+			$fields,
+			$lb->constructSet( 'page', $dbr ),
+			__METHOD__,
+			[],
+			[ 'page_props' => [ 'LEFT JOIN', [
+				'pp_propname' => 'hiddencat',
+				'pp_page = page_id'
+			] ] ]
+		);
+
+		# Add the results to the link cache
+		$lb->addResultToCache( LinkCache::singleton(), $res );
+
+		return $res;
 	}
 
 	/**
@@ -1335,12 +1348,26 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the list of category names this page belongs to
+	 * Get the list of category names this page belongs to.
 	 *
+	 * @param string $type The type of categories which should be returned. Possible values:
+	 *  * all: all categories of all types
+	 *  * hidden: only the hidden categories
+	 *  * normal: all categories, except hidden categories
 	 * @return array Array of strings
 	 */
-	public function getCategories() {
-		return $this->mCategories;
+	public function getCategories( $type = 'all' ) {
+		if ( $type === 'all' ) {
+			$allCategories = [];
+			foreach ( $this->mCategories as $type => $categories ) {
+				$allCategories = array_merge( $allCategories, $categories );
+			}
+			return $allCategories;
+		}
+		if ( isset( $this->mCategories[$type] ) ) {
+			return $this->mCategories[$type];
+		}
+		throw new InvalidArgumentException( 'Invalid category type given: ' . $type );
 	}
 
 	/**
