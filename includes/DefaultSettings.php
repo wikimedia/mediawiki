@@ -1444,7 +1444,8 @@ $wgGalleryOptions = [
 	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
 	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
 	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
-	'captionLength' => 25, // Length to truncate filename to when included in caption (with "showfilename")
+	'captionLength' => null, // Length to truncate filename to when included in caption (with "showfilename").
+	                         // A value of 'null' will use CSS truncation.
 	'showBytes' => true, // Show the filesize in bytes in categories
 	'mode' => 'traditional',
 ];
