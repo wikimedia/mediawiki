@@ -22,7 +22,9 @@ interface SearchIndexField {
 	 */
 	const FLAG_CASEFOLD = 1;
 	/**
-	 * This field is for scoring only.
+	 * This field contains secondary information, which is
+	 * already present in other fields, but can be used for
+	 * scoring.
 	 */
 	const FLAG_SCORING = 2;
 	/**
@@ -30,7 +32,7 @@ interface SearchIndexField {
 	 */
 	const FLAG_NO_HIGHLIGHT = 4;
 	/**
-	 * Do not index this field.
+	 * Do not index this field, just store it.
 	 */
 	const FLAG_NO_INDEX = 8;
 	/**
