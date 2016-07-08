@@ -443,16 +443,14 @@ class ApiQuery extends ApiBase {
 		}
 
 		$exporter = new WikiExporter( $this->getDB() );
-		// WikiExporter writes to stdout, so catch its
-		// output with an ob
-		ob_start();
+		$sink = new DumpStringOutput;
+		$exporter->setOutputSink( $sink );
 		$exporter->openStream();
 		foreach ( $exportTitles as $title ) {
 			$exporter->pageByTitle( $title );
 		}
 		$exporter->closeStream();
-		$exportxml = ob_get_contents();
-		ob_end_clean();
+		$exportxml = $sink->getOutput();
 
 		// Don't check the size of exported stuff
 		// It's not continuable, so it would cause more
