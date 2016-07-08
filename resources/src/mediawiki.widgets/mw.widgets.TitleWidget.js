@@ -96,6 +96,8 @@
 	/**
 	 * Get a promise which resolves with an API repsonse for suggested
 	 * links for the current query.
+	 *
+	 * @return {jQuery.Promise} Suggestions promise
 	 */
 	mw.widgets.TitleWidget.prototype.getSuggestionsPromise = function () {
 		var req,
