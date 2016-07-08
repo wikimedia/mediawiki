@@ -358,6 +358,37 @@ class OutputPageTest extends MediaWikiTestCase {
 		$request->setCookie( 'Token', '123' );
 		$this->assertTrue( $outputPage->haveCacheVaryCookies() );
 	}
+
+	/*
+	 * @covers OutputPage::addCategoryLinks
+	 * @covers OutputPage::getCategories
+	 */
+	function testGetCategories() {
+		$fakeResultWrapper = new FakeResultWrapper( [
+			(object) [
+				'pp_value' => 1,
+				'page_title' => 'Test'
+			],
+			(object) [
+				'page_title' => 'Test2'
+			]
+		] );
+		$outputPage = $this->getMockBuilder( 'OutputPage' )
+			->setConstructorArgs( [ new RequestContext() ] )
+			->setMethods( [ 'addCategoryLinksToLBAndGetResult' ] )
+			->getMock();
+		$outputPage->expects( $this->any() )
+			->method( 'addCategoryLinksToLBAndGetResult' )
+			->will( $this->returnValue( $fakeResultWrapper ) );
+
+		$outputPage->addCategoryLinks( [
+			'Test' => 'Test',
+			'Test2' => 'Test2',
+		] );
+		$this->assertEquals( [ 0 => 'Test', '1' => 'Test2' ], $outputPage->getCategories() );
+		$this->assertEquals( [ 0 => 'Test2' ], $outputPage->getCategories( 'normal' ) );
+		$this->assertEquals( [ 0 => 'Test' ], $outputPage->getCategories( 'hidden' ) );
+	}
 }
 
 /**
