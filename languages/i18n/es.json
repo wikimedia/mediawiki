@@ -146,7 +146,8 @@
 			"Codynguyen1116",
 			"2axterix2",
 			"Matma Rex",
-			"Dgstranz"
+			"Dgstranz",
+			"Copper12"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -717,6 +718,9 @@
 	"passwordreset-emailerror-capture": "Se ha generado un correo electrónico de restablecimiento de contraseña, que se muestra a continuación, pero ha fallado el envío {{GENDER:$2|al usuario|a la usuaria}}: $1",
 	"passwordreset-emailsent-capture2": "{{PLURAL:$1|El e-mail de restablecimiento de contraseña ha sido enviado|Los e-mails de restablecimiento de contraseña han sido enviados}}. {{PLURAL:$1|El nombre de usuario y la contraseña se muestra a continuación|La lista de nombres de usuarios y contraseñas se muestra a continuación}}.",
 	"passwordreset-emailerror-capture2": "No fue posible mandar un correo electrónico {{Gender:$2|al usuario|a la usuaria}}: $1 {{PLURAL:$3|El nombre de usuario y la contraseña|La lista de nombres de usuarios y contraseñas}} se muestra a continuación.",
+	"passwordreset-nocaller": "Debe de proporcionarse un interlocutor",
+	"passwordreset-nosuchcaller": "La persona que llama no existe: $1",
+	"passwordreset-ignored": "No se logró el reestablecimiento de la contraseña. ¿Tal vez no se configuró un proveedor?",
 	"passwordreset-invalideamil": "Dirección de correo electrónico no válida.",
 	"passwordreset-nodata": "No se ha proporcionado ni un nombre de usuario ni una dirección de correo electrónico",
 	"changeemail": "Cambiar o eliminar la dirección de correo electrónico",
@@ -1575,6 +1579,7 @@
 	"upload-http-error": "Ha ocurrido un error HTTP: $1",
 	"upload-copy-upload-invalid-domain": "No se pueden realizar subidas remotas desde este dominio.",
 	"upload-foreign-cant-upload": "Este wiki no está configurado para subir archivos al repositorio de archivos externo solicitado.",
+	"upload-foreign-cant-load-config": "Fallo la carga de la configuracion para subir archivos al depósito de archivos extranjero.",
 	"upload-dialog-disabled": "En este wiki están desactivadas las subidas de archivos mediante este cuadro de diálogo.",
 	"upload-dialog-title": "Subir archivo",
 	"upload-dialog-button-cancel": "Cancelar",
@@ -2140,6 +2145,7 @@
 	"rollbacklinkcount": "revertir $1 {{PLURAL:$1|edición|ediciones}}",
 	"rollbacklinkcount-morethan": "revertir más de $1 {{PLURAL:$1|edición|ediciones}}",
 	"rollbackfailed": "No se pudo revertir",
+	"rollback-missingparam": "Faltan parámetros requeridos en la solicitud.",
 	"cantrollback": "No se puede revertir la edición;\nel último colaborador es el único autor de esta página.",
 	"alreadyrolled": "No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nalguien más ya ha editado o revertido esa página.\n\nLa última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "El resumen de la edición fue: <em>$1</em>.",
@@ -3835,13 +3841,18 @@
 	"authmanager-provider-password": "Autenticación basada en contraseña",
 	"authmanager-provider-password-domain": "Autenticación basada en contraseña y dominio",
 	"authmanager-provider-temporarypassword": "Contraseña temporal",
+	"authprovider-confirmlink-message": "Basado en sus últimos intentos para iniciar sesión, las siguientes cuentas pueden vincularse a su cuenta wiki. Vincularlas permite el registro a traves de esas cuentas. Por favor, selecciones cuales deben vincularse.",
 	"authprovider-confirmlink-request-label": "Cuentas que deberían vincularse",
 	"authprovider-confirmlink-success-line": "$1: vinculado exitosamente.",
 	"authprovider-confirmlink-failed": "La vinculación de cuentas no se ha realizado con éxito: $1",
 	"authprovider-confirmlink-ok-help": "Continuar luego de mostrar los mensajes de error en la vinculación.",
 	"authprovider-resetpass-skip-label": "Omitir",
+	"authprovider-resetpass-skip-help": "Saltar el reestableciiento de la contraseña.",
 	"authform-nosession-login": "La autenticación fue exitosa, pero tu navegador no puede \"recordar\" haber iniciado sesión.\n\n$1",
 	"authform-nosession-signup": "La cuenta ha sido creada, pero tu navegador no \"recuerda\" haber iniciado sesión.\n\n$1",
+	"authform-newtoken": "Falta token. $1",
+	"authform-notoken": "Falta token",
+	"authform-wrongtoken": "Token incorrecto",
 	"specialpage-securitylevel-not-allowed-title": "No está permitido",
 	"specialpage-securitylevel-not-allowed": "Lo siento, no tienes permitido usar esta página, porque tu identidad no pudo verificarse.",
 	"authpage-cannot-login": "No se puede iniciar la sesión.",
@@ -3868,5 +3879,6 @@
 	"linkaccounts-success-text": "La cuenta fue vinculada.",
 	"linkaccounts-submit": "Vincular cuentas",
 	"unlinkaccounts": "Desvincular cuentas",
-	"unlinkaccounts-success": "Se ha desvinculado la cuenta."
+	"unlinkaccounts-success": "Se ha desvinculado la cuenta.",
+	"authenticationdatachange-ignored": "El cambio den los datos de autentificacion no fue realizado. ¿Tal vez, no se configuró un proveedor?"
 }

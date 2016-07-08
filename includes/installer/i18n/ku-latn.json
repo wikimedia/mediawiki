@@ -36,6 +36,7 @@
 	"config-db-install-account": "Hesabê bikarhêner bo avakirinê",
 	"config-db-username": "Navê bikarhêner bo danagehê:",
 	"config-db-password": "Şîfreya danegehê:",
+	"config-invalid-db-type": "Cureya danegehê ya nederbasdar",
 	"config-db-web-account": "Hesabê danegehê bô têgihiştina tora înternetê",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-utf8": "UTF-8",

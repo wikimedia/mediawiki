@@ -1008,7 +1008,7 @@
 	"rows": "Filas:",
 	"columns": "Columnas:",
 	"searchresultshead": "Procurar",
-	"stub-threshold": "Límite superior para o formato de ligazóns de bosquexo($1):",
+	"stub-threshold": "Límite superior de tamaño para o formato das ligazóns cara bosquexos ($1):",
 	"stub-threshold-sample-link": "exemplo",
 	"stub-threshold-disabled": "Desactivado",
 	"recentchangesdays": "Número de días a mostrar nos cambios recentes:",

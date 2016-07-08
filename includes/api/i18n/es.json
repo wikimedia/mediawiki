@@ -21,7 +21,8 @@
 			"Mgpena",
 			"Rubentl134",
 			"2axterix2",
-			"Dgstranz"
+			"Dgstranz",
+			"Copper12"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].\n\n<strong>Pruebas:</strong> para facilitar las pruebas de solicitudes a la API, consulta [[Special:ApiSandbox]].",
@@ -50,6 +51,8 @@
 	"apihelp-block-param-watchuser": "Vigilar las páginas de usuario y de discusión del usuario o de la dirección IP.",
 	"apihelp-block-example-ip-simple": "Bloquear la dirección IP <kbd>192.0.2.5</kbd> durante 3 días por el motivo <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Bloquear al usuario <kbd>Vandal</kbd> indefinidamente con el motivo <kbd>Vandalism</kbd> y evitar que se cree nuevas cuentas o envíe correos.",
+	"apihelp-changeauthenticationdata-description": "Cambiar los datos de autentificación para el usuario actual.",
+	"apihelp-changeauthenticationdata-example-password": "Intento para cambiar la contraseña actual del usuario a <kbd>ExamplePassword</kbd>.",
 	"apihelp-checktoken-description": "Comprueba la validez de una ficha desde <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Tipo de ficha a probar.",
 	"apihelp-checktoken-param-token": "Ficha a probar.",
@@ -57,6 +60,8 @@
 	"apihelp-checktoken-example-simple": "Probar la validez de una ficha <kbd>csrf</kbd>.",
 	"apihelp-clearhasmsg-description": "Limpia la marca <code>hasmsg</code> del usuario actual.",
 	"apihelp-clearhasmsg-example-1": "Limpiar la marca <code>hasmsg</code> del usuario actual.",
+	"apihelp-clientlogin-description": "Entrar en wiki usando el flujo interactivo.",
+	"apihelp-clientlogin-example-login": "Iniciar el proceso para iniciar sesión en wiki como usuario <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
 	"apihelp-compare-description": "Obtener la diferencia entre 2 páginas.\n\nSe debe pasar un número de revisión, un título de página o una ID tanto desde \"de\" hasta \"a\".",
 	"apihelp-compare-param-fromtitle": "Primer título para comparar",
 	"apihelp-compare-param-fromid": "ID de la primera página a comparar.",
