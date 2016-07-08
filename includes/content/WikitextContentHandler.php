@@ -127,7 +127,8 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$fields['opening_text'] =
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING );
+		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
+		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
 
 		$fields['outgoing_link'] =
 			$engine->makeSearchFieldMapping( 'outgoing_link', SearchIndexField::INDEX_TYPE_KEYWORD );
