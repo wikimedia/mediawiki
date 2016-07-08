@@ -189,8 +189,16 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				// Preloaded into LinkCache above
 				Linker::linkKnown(
 					$nt,
-					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) )
-				) . "<br />\n" :
+					htmlspecialchars(
+						$this->mCaptionLength !== true ?
+							$lang->truncate( $nt->getText(), $this->mCaptionLength ) :
+							$nt->getText()
+					),
+					[
+						'class' => 'galleryfilename' .
+							( $this->mCaptionLength === true ? ' galleryfilename-truncate' : '' )
+					]
+				) . "\n" :
 				'';
 
 			$galleryText = $textlink . $text . $fileSize;
