@@ -356,7 +356,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log', 'suppress' ),
-					$this->msg( 'sp-contributions-suppresslog' )->escaped(),
+					$this->msg( 'sp-contributions-suppresslog', $username )->escaped(),
 					[],
 					[ 'offender' => $username ]
 				);
@@ -378,7 +378,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
-				$this->msg( 'sp-contributions-deleted' )->escaped()
+				$this->msg( 'sp-contributions-deleted', $username )->escaped()
 			);
 		}
 

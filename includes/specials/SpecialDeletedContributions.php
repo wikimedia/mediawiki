@@ -183,7 +183,7 @@ class DeletedContributionsPage extends SpecialPage {
 				if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 					$tools[] = Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Log', 'suppress' ),
-						$this->msg( 'sp-contributions-suppresslog' )->escaped(),
+						$this->msg( 'sp-contributions-suppresslog', $username )->escaped(),
 						[],
 						[ 'offender' => $userObj->getName() ]
 					);
