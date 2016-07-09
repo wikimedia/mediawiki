@@ -2529,7 +2529,7 @@
 	"tooltip-feed-atom": "הזנת Atom עבור דף זה",
 	"tooltip-t-contributions": "רשימת העריכות שנעשו על־ידי {{GENDER:$1|משתמש זה|משתמשת זו}}",
 	"tooltip-t-emailuser": "שליחת דואר אלקטרוני {{GENDER:$1|למשתמש זה|למשתמשת זו}}",
-	"tooltip-t-info": "מידע על דף זה",
+	"tooltip-t-info": "מידע נוסף על דף זה",
 	"tooltip-t-upload": "העלאת קבצים",
 	"tooltip-t-specialpages": "רשימה של כל הדפים המיוחדים באתר",
 	"tooltip-t-print": "גרסה להדפסה של דף זה",

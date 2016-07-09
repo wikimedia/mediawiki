@@ -3453,7 +3453,7 @@
 	"logentry-protect-unprotect": "{{GENDER:$2|رفع|رفعت}} $1 الحماية عن $3",
 	"logentry-protect-protect": "$1 {{GENDER:$2|حمى|حمت}} $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|حمى|حمت}} $3 $4 [مضمنة]",
-	"logentry-protect-modify": "{{GENDER:$2|غير|غيرت}} $1 مستوى الحماية ل$3 $4",
+	"logentry-protect-modify": "{{GENDER:$2|غير|غيرت}} $1 مستوى حماية $3 $4",
 	"logentry-rights-rights": "{{GENDER:$2|غيّر|غيّرت}} $1 عضوية $3 من $4 إلى $5",
 	"logentry-rights-rights-legacy": "{{GENDER:$2|غيّر|غيّرت}} $1 عضوية $3",
 	"logentry-rights-autopromote": "تمت تلقائيا ترقية {{GENDER:$2|المستخدم|المستخدمة}} $1 من  $4 إلى $5",
