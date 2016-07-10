@@ -129,6 +129,7 @@ class RefreshLinksJob extends Job {
 	 */
 	protected function runForTitle( Title $title ) {
 		$page = WikiPage::factory( $title );
+		$page->loadPageData( WikiPage::READ_LATEST );
 		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 			// Fetch the specified revision; lockAndGetLatest() below detects if the page
 			// was edited since and aborts in order to avoid corrupting the link tables
@@ -147,7 +148,7 @@ class RefreshLinksJob extends Job {
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
-		} elseif ( !$revision->isCurrent() ) {
+		} elseif ( !$revision->isCurrent() || $revision->getPage() != $page->getId() ) {
 			// If the revision isn't current, there's no point in doing a bunch
 			// of work just to fail at the lockAndGetLatest() check later.
 			$stats->increment( 'refreshlinks.rev_not_current' );
