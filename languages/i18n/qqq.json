@@ -4370,5 +4370,7 @@
 	"linkaccounts-submit": "Text of the main submit button on [[Special:LinkAccounts]] (when there is one)",
 	"unlinkaccounts": "Title of the special page [[Special:UnlinkAccounts]] which allows the user to remove linked remote accounts.",
 	"unlinkaccounts-success": "Account unlinking form success message",
-	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems.\n\nCf. e.g. {{msg-mw|Passwordreset-ignored}}."
+	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems.\n\nCf. e.g. {{msg-mw|Passwordreset-ignored}}.",
+	"userjsispublic": "A reminder to users that Javascript subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .js. See also {{msg-mw|usercssispublic}}.",
+	"usercssispublic": "A reminder to users that CSS subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .css. See also {{msg-mw|userjsispublic}}"
 }

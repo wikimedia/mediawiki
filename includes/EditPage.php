@@ -2889,6 +2889,9 @@ class EditPage {
 					);
 				}
 				if ( $this->getTitle()->isSubpageOf( $wgUser->getUserPage() ) ) {
+					$wgOut->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
+						$this->isCssSubpage ? 'usercssispublic' : 'userjsispublic'
+					);
 					if ( $this->formtype !== 'preview' ) {
 						if ( $this->isCssSubpage && $wgAllowUserCss ) {
 							$wgOut->wrapWikiMsg(

@@ -4189,5 +4189,7 @@
 	"linkaccounts-submit": "Link accounts",
 	"unlinkaccounts": "Unlink accounts",
 	"unlinkaccounts-success": "The account was unlinked.",
-	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?"
+	"authenticationdatachange-ignored": "The authentication data change was not handled. Maybe no provider was configured?",
+	"userjsispublic": "Please note: JavaScript subpages should not contain confidential data as they are viewable by other users.",
+	"usercssispublic": "Please note: CSS subpages should not contain confidential data as they are viewable by other users."
 }
