@@ -1241,6 +1241,8 @@ abstract class Skin extends ContextSource {
 		$lines = explode( "\n", $text );
 
 		$heading = '';
+		$messageTitle = $this->getConfig()->get( 'EnableSidebarCache' )
+			? Title::newMainPage() : $this->getTitle();
 
 		foreach ( $lines as $line ) {
 			if ( strpos( $line, '*' ) !== 0 ) {
@@ -1257,7 +1259,7 @@ abstract class Skin extends ContextSource {
 				$line = trim( $line, '* ' );
 
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
-					$line = MessageCache::singleton()->transform( $line, false, null, $this->getTitle() );
+					$line = MessageCache::singleton()->transform( $line, false, null, $messageTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second sanity check, could be hit by people doing
@@ -1267,7 +1269,7 @@ abstract class Skin extends ContextSource {
 
 					$extraAttribs = [];
 
-					$msgLink = $this->msg( $line[0] )->inContentLanguage();
+					$msgLink = $this->msg( $line[0] )->title( $messageTitle )->inContentLanguage();
 					if ( $msgLink->exists() ) {
 						$link = $msgLink->text();
 						if ( $link == '-' ) {
@@ -1276,7 +1278,7 @@ abstract class Skin extends ContextSource {
 					} else {
 						$link = $line[0];
 					}
-					$msgText = $this->msg( $line[1] );
+					$msgText = $this->msg( $line[1] )->title( $messageTitle );
 					if ( $msgText->exists() ) {
 						$text = $msgText->text();
 					} else {
