@@ -39,10 +39,3 @@
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
 }
-
-/* Comment portions of RC entries */
-span.comment {
-	font-style: italic;
-	unicode-bidi: -moz-isolate;
-	unicode-bidi: isolate;
-}
