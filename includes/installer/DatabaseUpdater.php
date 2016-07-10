@@ -409,7 +409,6 @@ abstract class DatabaseUpdater {
 	public function doUpdates( $what = [ 'core', 'extensions', 'stats' ] ) {
 		global $wgVersion;
 
-		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
@@ -431,8 +430,6 @@ abstract class DatabaseUpdater {
 			$this->writeSchemaUpdateFile();
 			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
 		}
-
-		$this->db->commit( __METHOD__ );
 	}
 
 	/**
