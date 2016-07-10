@@ -45,6 +45,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-title": "د يو مخ سرليک ورگډوي.",
 	"apihelp-query+watchlist-paramvalue-type-new": "مخ جوړونې.",
 	"apihelp-stashedit-param-sectiontitle": "د يوې نوې برخې سرليک.",
+	"apihelp-stashedit-param-summary": "د بدلون لنډيز.",
 	"apihelp-tag-param-reason": "د بدلون سبب.",
 	"apihelp-unblock-param-reason": "د بنديز ليرې کولو سبب.",
 	"apihelp-undelete-param-reason": "د بيازېرملو سبب.",

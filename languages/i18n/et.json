@@ -1601,7 +1601,7 @@
 	"pageswithprop-prophidden-long": "pika tekstiatribuudi väärtus peidetud ($1)",
 	"pageswithprop-prophidden-binary": "kahendatribuudi väärtus peidetud ($1)",
 	"doubleredirects": "Kahekordsed ümbersuunamised",
-	"doubleredirectstext": "See lehekülg loetleb leheküljed, mis on ümber suunatud teistele ümbersuunamislehekülgedel.\nIgal real on toodud esimene ja teine ümbersuunamislehekülg ning samuti lehekülg, kuhu teine ümbersuunamislehekülg on suunatud ja kuhu tavaliselt ka esimene ümbersuunamislehekülg tegelikult peaks suunama.\n<del>Läbikriipsutatud</del> kirjed on kohendatud.",
+	"doubleredirectstext": "See lehekülg loetleb leheküljed, mis on ümber suunatud teistele ümbersuunamislehekülgedele.\nIgal real on toodud esimene ja teine ümbersuunamislehekülg ning samuti lehekülg, kuhu teine ümbersuunamislehekülg on suunatud ja kuhu tavaliselt ka esimene ümbersuunamislehekülg tegelikult peaks suunama.\n<del>Läbikriipsutatud</del> kirjed on kohendatud.",
 	"double-redirect-fixed-move": "[[$1]] on teisaldatud.\nLehekülg uuendati automaatselt ja see suunab nüüd leheküljele [[$2]].",
 	"double-redirect-fixed-maintenance": "Hooldustöö käigus parandati automaatselt kahekordne suunamine leheküljelt [[$1]] leheküljele [[$2]].",
 	"double-redirect-fixer": "Ümbersuunamiste parandaja",

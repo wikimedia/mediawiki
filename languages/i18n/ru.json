@@ -92,7 +92,8 @@
 			"Lemondoge",
 			"SamGold",
 			"Jdforrester",
-			"Jack who built the house"
+			"Jack who built the house",
+			"Cat1987"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3778,8 +3779,8 @@
 	"log-action-filter-newusers": "Тип создания учётной записи:",
 	"log-action-filter-patrol": "Тип патрулирования:",
 	"log-action-filter-protect": "Тип защиты:",
-	"log-action-filter-rights": "Тип изменения прав",
-	"log-action-filter-suppress": "Тип сокрытия",
+	"log-action-filter-rights": "Тип изменения прав:",
+	"log-action-filter-suppress": "Тип сокрытия:",
 	"log-action-filter-upload": "Тип загрузки:",
 	"log-action-filter-all": "Все",
 	"log-action-filter-block-block": "Блокировка",

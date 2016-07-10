@@ -9,7 +9,9 @@
 			"Fitoschido"
 		]
 	},
+	"apihelp-main-param-action": "Quina acció realitzar.",
 	"apihelp-main-param-format": "El format de la sortida.",
+	"apihelp-main-param-curtimestamp": "Inclou la marca horària actual en el resultat.",
 	"apihelp-block-description": "Bloca un usuari.",
 	"apihelp-block-param-reason": "Raó del blocatge.",
 	"apihelp-block-param-nocreate": "Evita la creació de comptes.",

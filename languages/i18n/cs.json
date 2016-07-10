@@ -2160,7 +2160,7 @@
 	"tooltip-namespace_association": "Zaškrtnutím tohoto políčka zahrnete i diskusní či obsahový jmenný prostor příslušný k vybranému jmennému prostoru",
 	"blanknamespace": "(Hlavní)",
 	"contributions": "Příspěvky {{GENDER:$1|uživatele|uživatelky}}",
-	"contributions-title": "Příspěvky uživatele $1",
+	"contributions-title": "Příspěvky {{GENDER:$1|uživatele|uživatelky}} $1",
 	"mycontris": "Příspěvky",
 	"anoncontribs": "Příspěvky",
 	"contribsub2": "{{GENDER:$3|uživatele|uživatelky}} $1 ($2)",

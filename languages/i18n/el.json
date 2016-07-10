@@ -48,7 +48,8 @@
 			"Gts-tg",
 			"Nemo bis",
 			"Αντιγόνη",
-			"Matma Rex"
+			"Matma Rex",
+			"Ανώνυμος Βικιπαιδιστής"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -3536,5 +3537,6 @@
 	"sessionprovider-generic": "$1 συνεδρίες",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "συνεδρίες με βάση τα cookies",
 	"sessionprovider-nocookies": "Τα Cookies μπορούν να απενεργοποιηθούν. Βεβαιωθείτε ότι έχετε ενεργοποιημένα τα cookies και ξεκινήστε πάλι.",
-	"randomrootpage": "Τυχαία κύρια σελίδα"
+	"randomrootpage": "Τυχαία κύρια σελίδα",
+	"log-action-filter-rights": "Πληκτρολογήστε για αλλαγή δικαιωμάτων:"
 }

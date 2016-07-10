@@ -219,7 +219,7 @@
 	"jumpto": "Siirry",
 	"jumptonavigation": "navigatsii",
 	"jumptosearch": "eči",
-	"view-pool-error": "Pahakse mielekse palvelimet ollah ylikuormittunnuot täl hetkel. Liijan moni käyttäi oppiu tarkastella tädä sivuu. Vuota kodvaine, enne gu opit uvvessah.",
+	"view-pool-error": "Pahakse mielekse palvelimet ollah ylikuormittunnuot täl hetkel. Liijan moni käyttäi oppiu tarkastella tädä sivuu. Vuota kodvaine, enne gu opit uvvessah.\n\n$1",
 	"generic-pool-error": "Pahakse mielekse palvelimet ollah ylikuormittunnuot nygöi. Liijan moni käyttäi oppiu tarkastella tädä sivuu.",
 	"pool-timeout": "Lukittumizen vuotanduaigu on loppenuhes.",
 	"pool-queuefull": "Ečindykyzymykzien tallendustila on täyzi",
