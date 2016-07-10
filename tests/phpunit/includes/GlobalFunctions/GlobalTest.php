@@ -413,8 +413,8 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
-	/** array( shorthand, expected integer ) */
 	public static function provideShorthand() {
+		// Syntax: [ shorthand, expected integer ]
 		return [
 			# Null, empty ...
 			[ '', -1 ],

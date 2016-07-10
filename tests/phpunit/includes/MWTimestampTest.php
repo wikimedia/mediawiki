@@ -102,7 +102,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Returns a list of valid timestamps in the format:
-	 * array( type, timestamp_of_type, timestamp_in_MW )
+	 * [ type, timestamp_of_type, timestamp_in_MW ]
 	 */
 	public static function provideValidTimestamps() {
 		return [
@@ -124,7 +124,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Returns a list of out of range timestamps in the format:
-	 * array( type, timestamp_of_type )
+	 * [ type, timestamp_of_type ]
 	 */
 	public static function provideOutOfRangeTimestamps() {
 		return [

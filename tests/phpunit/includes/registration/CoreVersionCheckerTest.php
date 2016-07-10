@@ -14,7 +14,7 @@ class CoreVersionCheckerTest extends PHPUnit_Framework_TestCase {
 
 	public static function provideCheck() {
 		return [
-			// array( $wgVersion, constraint, expected )
+			// [ $wgVersion, constraint, expected ]
 			[ '1.25alpha', '>= 1.26', false ],
 			[ '1.25.0', '>= 1.26', false ],
 			[ '1.26alpha', '>= 1.26', true ],

@@ -80,12 +80,12 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 
 	/**
 	 * Format is either:
-	 *   array( 'input', 'expected' );
+	 *   [ 'input', 'expected' ];
 	 * Or:
-	 *   array( 'input',
-	 *       array( 'Apache', 'expected' ),
-	 *       array( 'Microsoft-IIS/7', 'expected' ),
-	 *    ),
+	 *   [ 'input',
+	 *       [ 'Apache', 'expected' ],
+	 *       [ 'Microsoft-IIS/7', 'expected' ],
+	 *   ],
 	 * If you want to add other HTTP server name, you will have to add a new
 	 * testing method much like the testEncodingUrlWith() method above.
 	 */
