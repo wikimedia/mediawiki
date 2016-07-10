@@ -2606,7 +2606,7 @@ abstract class DatabaseBase implements IDatabase {
 			} else {
 				// The transaction was automatic and has done write operations
 				if ( $this->mTrxDoneWrites ) {
-					wfDebug( "$fname: Automatic transaction with writes in progress" .
+					wfLogDBError( "$fname: Automatic transaction with writes in progress" .
 						" (from {$this->mTrxFname}), performing implicit commit!\n"
 					);
 				}
