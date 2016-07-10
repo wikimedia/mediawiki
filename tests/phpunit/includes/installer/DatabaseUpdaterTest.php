@@ -124,7 +124,7 @@ class FakeDatabase extends DatabaseBase {
 	 *
 	 * Example:
 	 * $id = $dbw->nextSequenceValue( 'page_page_id_seq' );
-	 * $dbw->insert( 'page', array( 'page_id' => $id ) );
+	 * $dbw->insert( 'page', [ 'page_id' => $id ] );
 	 * $id = $dbw->insertId();
 	 *
 	 * @return int

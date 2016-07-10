@@ -1516,7 +1516,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			[ "$base/unittest-cont1/e/a/z/some_file1.txt", true ],
 			[ "$base/unittest-cont2/a/z/some_file2.txt", true ],
 			# Specific to FS backend with no basePath field set
-			# array( "$base/unittest-cont3/a/z/some_file3.txt", false ),
+			# [ "$base/unittest-cont3/a/z/some_file3.txt", false ],
 		];
 	}
 

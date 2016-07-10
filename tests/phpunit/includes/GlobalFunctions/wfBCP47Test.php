@@ -97,7 +97,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 			 *  az-Arab-x-AZE-derbend
 			 * AZE being private, it should be lower case, hence the test above
 			 * should probably be:
-			 *  array( 'az-arab-x-aze-derbend', 'az-Arab-x-AZE-derbend' ),
+			 * [ 'az-arab-x-aze-derbend', 'az-Arab-x-AZE-derbend' ],
 			 */
 
 			# Private use registry values:

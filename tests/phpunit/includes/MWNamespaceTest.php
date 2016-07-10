@@ -387,7 +387,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$wgContentNamespaces = 5;
 		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
-		# test $wgContentNamespaces === array()
+		# test $wgContentNamespaces === []
 		$wgContentNamespaces = [];
 		$this->assertEquals( [ NS_MAIN ], MWNamespace::getContentNamespaces() );
 
@@ -474,7 +474,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * global $wgCapitalLink setting to have extended coverage.
 	 *
 	 * MWNamespace::isCapitalized() rely on two global settings:
-	 *   $wgCapitalLinkOverrides = array(); by default
+	 *   $wgCapitalLinkOverrides = []; by default
 	 *   $wgCapitalLinks = true; by default
 	 * This function test $wgCapitalLinks
 	 *
