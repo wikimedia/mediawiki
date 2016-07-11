@@ -358,8 +358,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = [] ) {
 		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 
-		# Classes to apply -- TODO implement
-		$classes = [];
+		$classes = [ 'mw-enhanced-rc' ];
 		$type = $rcObj->mAttribs['rc_type'];
 		$data = [];
 		$lineParams = [];
@@ -367,7 +366,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $rcObj->watched
 			&& $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
 		) {
-			$lineParams['classes'] = [ 'mw-enhanced-watched' ];
+			$classes = [ 'mw-enhanced-watched' ];
 		}
 
 		$separator = ' <span class="mw-changeslist-separator">. .</span> ';
@@ -461,6 +460,8 @@ class EnhancedChangesList extends ChangesList {
 			$lineParams['timestampLink'] = $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
+
+		$lineParams['classes'] = array_values( $classes );
 
 		// everything else: makes it easier for extensions to add or remove data
 		$lineParams['data'] = array_values( $data );
