@@ -3676,7 +3676,6 @@
 	"mw-widgets-dateinput-no-date": "未選擇日期",
 	"mw-widgets-titleinput-description-new-page": "頁面不存在",
 	"mw-widgets-titleinput-description-redirect": "重新導向至 $1",
-	"api-error-blacklisted": "請選擇另一個更具描述性的標題。",
 	"sessionmanager-tie": "無法合併多個請求認証類型：$1。",
 	"sessionprovider-generic": "$1 連線階段",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "以 cookie 為基礎的連線階段",

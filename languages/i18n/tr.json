@@ -3558,6 +3558,8 @@
 	"log-action-filter-delete": "Silme türü:",
 	"log-action-filter-patrol": "Devriye türü:",
 	"log-action-filter-protect": "Koruma tipi:",
+	"log-action-filter-rights": "Hak türü seçimi:",
+	"log-action-filter-suppress": "Kaldırma türü:",
 	"log-action-filter-upload": "Yükleme türü:",
 	"log-action-filter-all": "Tümü",
 	"log-action-filter-block-block": "Blok",

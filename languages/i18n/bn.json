@@ -3488,7 +3488,6 @@
 	"mw-widgets-dateinput-placeholder-month": "বববব-মম",
 	"mw-widgets-titleinput-description-new-page": "পাতা এখনো বিদ্যমান নয়",
 	"mw-widgets-titleinput-description-redirect": "$1-এ পুনঃনির্দেশিত",
-	"api-error-blacklisted": "অনুগ্রহ করে অপর কোনো বর্ণনামূলক নাম ব্যবহার করুন।",
 	"sessionmanager-tie": "একাধিক অনুরোধের প্রমাণীকরণের ধরন একত্রিত করা যাবে না: $1।",
 	"sessionprovider-generic": "$1টি সেশন",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "কুকি-ভিত্তিক সেশন",

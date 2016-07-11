@@ -3644,7 +3644,6 @@
 	"mw-widgets-dateinput-no-date": "لا تاريخ تم اختياره",
 	"mw-widgets-titleinput-description-new-page": "الصفحة غير موجودة بعد",
 	"mw-widgets-titleinput-description-redirect": "تحويل إلى $1",
-	"api-error-blacklisted": "اختر عنوانا مختلفا ومفهوما.",
 	"sessionmanager-tie": "لا يمكن جمع أنواع استيثاق متعددة: $1.",
 	"sessionprovider-generic": "جلسات $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "جلسات قائمة على ملفات تعريف الارتباط (كوكيز)",

@@ -3397,6 +3397,5 @@
 	"special-characters-title-minus": "علامت منفی",
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
 	"mw-widgets-titleinput-description-new-page": "اێ وەڵگە هەنی(هالی)وجود نِئرێ",
-	"mw-widgets-titleinput-description-redirect": "گؤەڕانن/تغییر مسیر به $1",
-	"api-error-blacklisted": "لطفاً یک عنوان توصیفی متفاوت انتخاب کنید."
+	"mw-widgets-titleinput-description-redirect": "گؤەڕانن/تغییر مسیر به $1"
 }

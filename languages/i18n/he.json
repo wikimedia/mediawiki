@@ -3715,7 +3715,6 @@
 	"mw-widgets-dateinput-no-date": "לא נבחר תאריך",
 	"mw-widgets-titleinput-description-new-page": "הדף עדיין לא קיים",
 	"mw-widgets-titleinput-description-redirect": "הפניה ל{{GRAMMAR:תחילית|$1}}",
-	"api-error-blacklisted": "נא לבחור כותרת אחרת, המתארת טוב יותר את התוכן.",
 	"sessionmanager-tie": "לא ניתן לצרף מספר סוגי אימות זהות: $1.",
 	"sessionprovider-generic": "התחברויות של $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "התחברויות המבוססות על עוגיות",

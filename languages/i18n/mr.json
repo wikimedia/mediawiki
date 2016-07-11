@@ -3370,7 +3370,6 @@
 	"mw-widgets-dateinput-no-date": "कोणताही दिनांक निवडला नाही",
 	"mw-widgets-titleinput-description-new-page": "अद्याप पान अस्तित्वात नाही",
 	"mw-widgets-titleinput-description-redirect": "$1ला पुनर्निर्देशित करा",
-	"api-error-blacklisted": "कुपया वेगळे वर्णनात्मक शीर्षक निवडा",
 	"sessionmanager-tie": "हे एकत्रित करु शकत नाही,बहुविध विनंती अधिप्रमाणन प्रकार:$1",
 	"sessionprovider-generic": "$1 सत्रे",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "कुकी-आधारीत सत्रे",

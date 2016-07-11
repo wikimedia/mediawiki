@@ -3585,7 +3585,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la pàgina no existeix encara",
 	"mw-widgets-titleinput-description-redirect": "redirigeix a $1",
-	"api-error-blacklisted": "Trieu un títol diferent, més descriptiu.",
 	"sessionmanager-tie": "No es poden combinar diferents tipus de sol·licituds d'autenticació: $1.",
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessions basades en galetes",

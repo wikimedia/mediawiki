@@ -3599,7 +3599,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "a página ainda não existe.",
 	"mw-widgets-titleinput-description-redirect": "redirecionar para $1",
-	"api-error-blacklisted": "Escolha um título diferente e descritivo, por favor.",
 	"sessionprovider-generic": "Sessões $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessões baseadas em cookie",
 	"sessionprovider-nocookies": "Os cookies podem estar desativados. Certifique-se de que os cookies estão ativados e inicie novamente.",

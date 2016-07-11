@@ -3679,7 +3679,6 @@
 	"mw-widgets-dateinput-placeholder-month": "წწწწ-თთ",
 	"mw-widgets-titleinput-description-new-page": "გვერდი ჯერ არ არსებობს",
 	"mw-widgets-titleinput-description-redirect": "გადამისამართება $1-ზე",
-	"api-error-blacklisted": "გთხოვთ, აირჩიეთ სხვა, აღწერილობითი სათაური.",
 	"sessionmanager-tie": "შეუძლებელია მრავალი მოთხოვნის ავთენთიფიკაციის ტიპების გაერთიანება: $1.",
 	"sessionprovider-generic": "$1 სესიები",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-სთან დაკავშირებული სესიები",

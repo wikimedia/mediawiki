@@ -3726,7 +3726,6 @@
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM (năm-tháng)",
 	"mw-widgets-titleinput-description-new-page": "trang này chưa tồn tại",
 	"mw-widgets-titleinput-description-redirect": "đổi hướng đến $1",
-	"api-error-blacklisted": "Xin vui lòng chọn một tên khác miêu tả đầy đủ.",
 	"sessionmanager-tie": "Không thể kết hợp nhiều yêu cầu xác thực loại: $1.",
 	"sessionprovider-generic": "phiên $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "phiên dựa trên cookie",

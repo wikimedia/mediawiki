@@ -3400,7 +3400,6 @@
 	"mw-widgets-dateinput-no-date": "திகதி தெரிவுச் செய்யப்படவில்லை",
 	"mw-widgets-titleinput-description-new-page": "இப்பக்கம் இன்னும் உருவாக்கப்படவில்லை",
 	"mw-widgets-titleinput-description-redirect": "$1-க்கு வழிமாற்று",
-	"api-error-blacklisted": "தயவுகூர்ந்து வேறு, விளக்கமான தலைப்பைத் தேர்ந்தெடுக்கவும்.",
 	"sessionprovider-generic": "$1 பகுதி",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "குக்கீயை அடிபடையாக்கக் கொண்ட பகுதிகள்",
 	"sessionprovider-nocookies": "குக்கீசு செயலற்று இருக்கலாம். உங்களது குக்கீசு செயலில் உள்ளது என உறுதிப்படுத்திவிட்டு மீண்டும் முயல்க.",

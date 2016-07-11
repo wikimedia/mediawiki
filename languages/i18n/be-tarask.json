@@ -2029,6 +2029,7 @@
 	"changecontentmodel-success-text": "Тып зьместу [[:$1]] быў зьменены.",
 	"changecontentmodel-cannot-convert": "Зьмест [[:$1]] ня можа быць ператвораны ў тып $2.",
 	"changecontentmodel-nodirectediting": "Мадэль зьместу $1 не падтрымлівае наўпроставае рэдагаваньне",
+	"changecontentmodel-emptymodels-title": "Няма даступных мадэляў зьместу",
 	"log-name-contentmodel": "Журнал зьменаў мадэляў зьместу",
 	"log-description-contentmodel": "Падзеі, зьвязаныя з мадэлямі зьместу старонак",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} мадэль зьместу старонкі $3 з «$4» на «$5»",
@@ -3582,6 +3583,6 @@
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе",
 	"mw-widgets-titleinput-description-redirect": "перанакіраваньне на $1",
-	"api-error-blacklisted": "Калі ласка, выбярыце іншую, апісальную назву.",
-	"randomrootpage": "Выпадковая карэнная старонка"
+	"randomrootpage": "Выпадковая карэнная старонка",
+	"changecredentials": "Зьмена ўліковых зьвестак"
 }

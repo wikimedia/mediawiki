@@ -3617,7 +3617,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "a páxina aínda non existe",
 	"mw-widgets-titleinput-description-redirect": "redirección cara a $1",
-	"api-error-blacklisted": "Escolla un título diferente e descritivo.",
 	"sessionmanager-tie": "Non pode combinar peticións múltiples de tipos de autenticación: $1.",
 	"sessionprovider-generic": "sesións $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesións baseadas nas cookies",

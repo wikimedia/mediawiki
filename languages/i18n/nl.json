@@ -3656,7 +3656,6 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "pagina bestaat nog niet",
 	"mw-widgets-titleinput-description-redirect": "doorverwijzing naar $1",
-	"api-error-blacklisted": "Kies een andere, beschrijvende naam.",
 	"sessionmanager-tie": "Het is niet mogelijk om meerdere authenticatietypen voor verzoeken te combineren: $1.",
 	"sessionprovider-generic": "$1-sessies",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "op cookies gebaseerde sessies",

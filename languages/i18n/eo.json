@@ -3683,7 +3683,6 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "paĝo ankoraŭ ne ekzistas",
 	"mw-widgets-titleinput-description-redirect": "alidirekti al $1",
-	"api-error-blacklisted": "Bonvolu elekti alian, priskriban titolon.",
 	"sessionmanager-tie": "Kombini diversajn tipojn de ensaluta peto ne estas permisita: $1.",
 	"sessionprovider-generic": "$1 seancoj",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "kuketaj seancoj",

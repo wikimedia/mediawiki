@@ -3705,7 +3705,6 @@
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
 	"mw-widgets-titleinput-description-new-page": "این صفحه هنوز وجود ندارد",
 	"mw-widgets-titleinput-description-redirect": "تغییر مسیر به $1",
-	"api-error-blacklisted": "لطفاً یک عنوان توصیفی متفاوت انتخاب کنید.",
 	"sessionmanager-tie": "نمی‌توان چندین نوع درخواست هویت‌سنجی را ترکیب کرد: $1.",
 	"sessionprovider-generic": "$1 فصل",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "فصل‌های کوکی‌محور",

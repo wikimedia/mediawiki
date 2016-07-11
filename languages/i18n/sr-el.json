@@ -577,7 +577,7 @@
 	"minoredit": "manja izmena",
 	"watchthis": "nadgledaj ovu stranicu",
 	"savearticle": "Sačuvaj stranicu",
-	"preview": "Pregled",
+	"preview": "Pretpregled",
 	"showpreview": "Prikaži pretpregled",
 	"showdiff": "Prikaži izmene",
 	"blankarticle": "<strong>Upozorenje:</strong> stranica koju pravite nema nikakav sadržaj.\nAko još jednom pritisnete „{{int:savearticle}}“ napravićete praznu stranicu.",
@@ -754,7 +754,7 @@
 	"rev-showdeleted": "prikaži",
 	"revisiondelete": "Obriši/vrati izmene",
 	"revdelete-nooldid-title": "Nema tražene izmene",
-	"revdelete-nooldid-text": "Niste naveli željenu izmenu, ona ne postoji ili pokušavate da je sakrijete.",
+	"revdelete-nooldid-text": "Niste izabrali odredišnu izmenu na kojoj treba da se izvrši ova funkcija, ta izmena ne postoji, ili pokušavate sakriti trenutnu izmenu.",
 	"revdelete-no-file": "Tražena datoteka ne postoji.",
 	"revdelete-show-file-confirm": "Želite li da vidite obrisanu izmenu datoteke „<nowiki>$1</nowiki>“ od $2; $3?",
 	"revdelete-show-file-submit": "Da",
@@ -1035,7 +1035,7 @@
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|administrator|administratorka}}",
 	"group-bureaucrat-member": "{{GENDER:$1|birokrata}}",
-	"group-suppress-member": "{{GENDER:$1|revizor|revizorka}}",
+	"group-suppress-member": "{{GENDER:$1|brisač izmena}}",
 	"grouppage-user": "{{ns:project}}:Korisnici",
 	"grouppage-autoconfirmed": "{{ns:project}}:Automatski potvrđeni korisnici",
 	"grouppage-bot": "{{ns:project}}:Botovi",
@@ -3438,6 +3438,5 @@
 	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
 	"mw-widgets-titleinput-description-new-page": "stranica još uvek ne postoji",
 	"mw-widgets-titleinput-description-redirect": "preusmerava na $1",
-	"api-error-blacklisted": "Izaberite drugačiji, opisan naziv.",
 	"randomrootpage": "Slučajna korenska stranica"
 }

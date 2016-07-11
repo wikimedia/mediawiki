@@ -3513,7 +3513,6 @@
 	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM",
 	"mw-widgets-titleinput-description-new-page": "síðan er ekki enn til",
 	"mw-widgets-titleinput-description-redirect": "tilvísun á $1",
-	"api-error-blacklisted": "Veldu annan lýsandi titil",
 	"sessionmanager-tie": "Get ekki sameinað margar gerðir auðkenningarbeiðna: $1.",
 	"sessionprovider-generic": "$1 setur",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "setur með vefkökum",

@@ -3135,7 +3135,6 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "bladsy bestaan nog nie",
 	"mw-widgets-titleinput-description-redirect": "aanstuur na $1",
-	"api-error-blacklisted": "Kies asseblief 'n ander, beskrywende titel.",
 	"log-action-filter-all": "Alle",
 	"authprovider-resetpass-skip-label": "Slaan oor"
 }

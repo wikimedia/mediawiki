@@ -3580,7 +3580,6 @@
 	"mw-widgets-dateinput-no-date": "Nisciuna data scigliuta",
 	"mw-widgets-titleinput-description-new-page": "'a pàggene nun esiste ancore",
 	"mw-widgets-titleinput-description-redirect": "redirezionate ncopp' a $1",
-	"api-error-blacklisted": "Pe' piacere sciglite nu titolo differente e descrittivo.",
 	"sessionmanager-tie": "Nun se ponno cumbinà 'e tipe 'e richiesta 'autenticaziona: $1.",
 	"sessionprovider-generic": "$1 sessiune",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessiune basate ncopp' 'e cookie",

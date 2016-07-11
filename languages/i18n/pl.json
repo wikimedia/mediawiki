@@ -3677,7 +3677,6 @@
 	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
 	"mw-widgets-titleinput-description-new-page": "strona jeszcze nie istnieje",
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1",
-	"api-error-blacklisted": "Wybierz inny, opisowy tytuł.",
 	"sessionmanager-tie": "Nie można łączyć kilku rodzajów uwierzytelniania dla zapytania: $1.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesje na podstawie cookie",
 	"sessionprovider-nocookies": "Być może cookies są wyłączone. Upewnij się, że masz włączone cookies i zacznij od nowa.",
