@@ -467,9 +467,13 @@ abstract class UploadBase {
 			}
 		}
 
-		Hooks::run( 'UploadVerifyFile', [ $this, $mime, &$status ] );
-		if ( $status !== true ) {
-			return $status;
+		$error = true;
+		Hooks::run( 'UploadVerifyFile', [ $this, $mime, &$error ] );
+		if ( $error !== true ) {
+			if ( !is_array( $error ) ) {
+				$error = [ $error ];
+			}
+			return $error;
 		}
 
 		wfDebug( __METHOD__ . ": all clear; passing.\n" );
