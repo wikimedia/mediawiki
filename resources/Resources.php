@@ -1297,7 +1297,6 @@ return [
 			'filename-thumb-name',
 			'badfilename',
 			'protectedpagetext',
-			'api-error-blacklisted', // HACK
 		],
 	],
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => [

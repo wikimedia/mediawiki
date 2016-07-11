@@ -4240,7 +4240,6 @@
 	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
-	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}.",
 	"sessionmanager-tie": "Used as an error message when multiple session sources are tied in priority.\n\nParameters:\n* $1 - List of dession type descriptions, from messages like {{msg-mw|sessionprovider-mediawiki-session-cookiesessionprovider}}.",
 	"sessionprovider-generic": "Used to create a generic session type description when one isn't provided via the proper message. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.\n\nParameters:\n* $1 - PHP classname.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "Description of the sessions provided by the CookieSessionProvider class, which use HTTP cookies. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.",

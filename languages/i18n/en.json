@@ -4059,7 +4059,6 @@
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
-	"api-error-blacklisted": "Please choose a different, descriptive title.",
 	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1.",
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
