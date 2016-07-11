@@ -31,7 +31,8 @@
 		"wikimedia/ip-set": "1.0.1",
 		"wikimedia/utfnormal": "1.0.3",
 		"wikimedia/wrappedstring": "2.0.0",
-		"zordius/lightncandy": "0.21"
+		"zordius/lightncandy": "0.21",
+		"monolog/monolog": "1.14.0"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9",
