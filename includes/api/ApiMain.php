@@ -298,6 +298,12 @@ class ApiMain extends ApiBase {
 			return true;
 		}
 
+		// Anonymous CORS
+		if ( $request->getVal( 'origin' ) === '*' ) {
+			$this->lacksSameOriginSecurity = true;
+			return true;
+		}
+
 		// Header to be used from XMLHTTPRequest when the request might
 		// otherwise be used for XSS.
 		if ( $request->getHeader( 'Treat-as-Untrusted' ) !== false ) {
@@ -644,31 +650,49 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 		$response = $request->response();
 
-		// Origin: header is a space-separated list of origins, check all of them
-		$originHeader = $request->getHeader( 'Origin' );
-		if ( $originHeader === false ) {
-			$origins = [];
+		$matchOrigin = false;
+		$allowTiming = false;
+		$varyOrigin = true;
+
+		if ( $originParam === '*' ) {
+			// Request for anonymous CORS
+			$matchOrigin = true;
+			$allowOrigin = '*';
+			$allowCredentials = 'false';
+			$varyOrigin = false; // No need to vary
 		} else {
-			$originHeader = trim( $originHeader );
-			$origins = preg_split( '/\s+/', $originHeader );
+			// Non-anonymous CORS, check we allow the domain
+
+			// Origin: header is a space-separated list of origins, check all of them
+			$originHeader = $request->getHeader( 'Origin' );
+			if ( $originHeader === false ) {
+				$origins = [];
+			} else {
+				$originHeader = trim( $originHeader );
+				$origins = preg_split( '/\s+/', $originHeader );
+			}
+
+			if ( !in_array( $originParam, $origins ) ) {
+				// origin parameter set but incorrect
+				// Send a 403 response
+				$response->statusHeader( 403 );
+				$response->header( 'Cache-Control: no-cache' );
+				echo "'origin' parameter does not match Origin header\n";
+
+				return false;
+			}
+
+			$config = $this->getConfig();
+			$matchOrigin = count( $origins ) === 1 && self::matchOrigin(
+				$originParam,
+				$config->get( 'CrossSiteAJAXdomains' ),
+				$config->get( 'CrossSiteAJAXdomainExceptions' )
+			);
+
+			$allowOrigin = $originHeader;
+			$allowCredentials = 'true';
+			$allowTiming = $originHeader;
 		}
-
-		if ( !in_array( $originParam, $origins ) ) {
-			// origin parameter set but incorrect
-			// Send a 403 response
-			$response->statusHeader( 403 );
-			$response->header( 'Cache-Control: no-cache' );
-			echo "'origin' parameter does not match Origin header\n";
-
-			return false;
-		}
-
-		$config = $this->getConfig();
-		$matchOrigin = count( $origins ) === 1 && self::matchOrigin(
-			$originParam,
-			$config->get( 'CrossSiteAJAXdomains' ),
-			$config->get( 'CrossSiteAJAXdomainExceptions' )
-		);
 
 		if ( $matchOrigin ) {
 			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
@@ -692,10 +716,12 @@ class ApiMain extends ApiBase {
 				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
 			}
 
-			$response->header( "Access-Control-Allow-Origin: $originHeader" );
-			$response->header( 'Access-Control-Allow-Credentials: true' );
+			$response->header( "Access-Control-Allow-Origin: $allowOrigin" );
+			$response->header( "Access-Control-Allow-Credentials: $allowCredentials" );
 			// http://www.w3.org/TR/resource-timing/#timing-allow-origin
-			$response->header( "Timing-Allow-Origin: $originHeader" );
+			if ( $allowTiming !== false ) {
+				$response->header( "Timing-Allow-Origin: $allowTiming" );
+			}
 
 			if ( !$preflight ) {
 				$response->header(
@@ -704,7 +730,10 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		$this->getOutput()->addVaryHeader( 'Origin' );
+		if ( $varyOrigin ) {
+			$this->getOutput()->addVaryHeader( 'Origin' );
+		}
+
 		return true;
 	}
 
