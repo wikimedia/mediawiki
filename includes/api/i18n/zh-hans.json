@@ -33,7 +33,7 @@
 	"apihelp-main-param-requestid": "任何在此提供的值将包含在响应中。可能可以用以区别请求。",
 	"apihelp-main-param-servedby": "包含保存结果请求的主机名。",
 	"apihelp-main-param-curtimestamp": "在结果中包括当前时间戳。",
-	"apihelp-main-param-origin": "当通过跨域名AJAX请求（CORS）访问API时，设置此作为起始域名。这必须包括在任何pre-flight请求中，并因此必须是请求的URI的一部分（而不是POST正文）。这必须匹配<code>Origin</code>中的一个起点：从头到底，因此它已经设置为像<kbd>https://zh.wikipedia.org</kbd>或<kbd>https://meta.wikimedia.org</kbd>的东西。如果此参数不匹配<code>Origin</code>页顶，就返回403错误响应。如果此参数匹配<code>Origin</code>页顶并且起点被白名单，将设置一个<code>Access-Control-Allow-Origin</code>开头。",
+	"apihelp-main-param-origin": "当通过跨域名AJAX请求（CORS）访问API时，设置此作为起始域名。这必须包括在任何pre-flight请求中，并因此必须是请求的URI的一部分（而不是POST正文）。\n\n对于已验证的请求，这必须正确匹配<code>Origin</code>标头中的原点之一，因此它已经设置为像<kbd>https://zh.wikipedia.org</kbd>或<kbd>https://meta.wikimedia.org</kbd>的东西。如果此参数不匹配<code>Origin</code>页顶，就返回403错误响应。如果此参数匹配<code>Origin</code>页顶并且起点被白名单，将设置<code>Access-Control-Allow-Origin</code>和<code>Access-Control-Allow-Credentials</code>开头。\n\n对于未验证的请求，会指定值<kbd>*</kbd>。这将导致<code>Access-Control-Allow-Origin</code>标头被设置，但<code>Access-Control-Allow-Credentials</code>将为<code>false</code>，且所有用户特定数据将受限制。",
 	"apihelp-main-param-uselang": "用于消息翻译的语言。<kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>与<kbd>siprop=languages</kbd>可返回语言代码列表，或指定<kbd>user</kbd>以使用当前用户的语言设置，或指定<kbd>content</kbd>以使用此wiki的内容语言。",
 	"apihelp-block-description": "封禁一位用户。",
 	"apihelp-block-param-user": "您要封禁的用户、IP地址或IP地址段。",

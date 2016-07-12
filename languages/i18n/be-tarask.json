@@ -747,6 +747,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Пусты аб’ект",
 	"content-json-empty-array": "Пусты масіў",
+	"deprecated-self-close-category": "Старонкі зь няслушнымі самазакрытымі HTML-тэгамі",
 	"duplicate-args-warning": "<strong>Папярэджаньне:</strong> [[:$1]] выклікае [[:$2]] з больш чым адным значэньнем парамэтру «$3». Толькі апошняе з пададзеных значэньняў будзе ўжытае.",
 	"duplicate-args-category": "Старонкі, на якіх у шаблёнах выкарыстоўваюцца парамэтры-дублікаты",
 	"duplicate-args-category-desc": "Старонкі, якія ўтрымліваюць шаблёны з парамэтрамі-дублікатамі, напрыклад, <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> або <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
@@ -3584,5 +3585,6 @@
 	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе",
 	"mw-widgets-titleinput-description-redirect": "перанакіраваньне на $1",
 	"randomrootpage": "Выпадковая карэнная старонка",
-	"changecredentials": "Зьмена ўліковых зьвестак"
+	"changecredentials": "Зьмена ўліковых зьвестак",
+	"removecredentials": "Выдаленьне ўліковых зьвестак"
 }

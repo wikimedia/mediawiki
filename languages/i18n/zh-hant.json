@@ -1504,6 +1504,8 @@
 	"upload-http-error": "發生 HTTP 錯誤：$1",
 	"upload-copy-upload-invalid-domain": "此網域不允許複製上傳的檔案。",
 	"upload-foreign-cant-upload": "此 wiki 未設定可上傳來自遠端檔案庫的請求的檔案。",
+	"upload-foreign-cant-load-config": "載入要上傳檔案到遠端檔案儲存庫的設定失敗。",
+	"upload-dialog-disabled": "此 wiki 已關閉使用此對話框上傳檔案的功能。",
 	"upload-dialog-title": "上傳檔案",
 	"upload-dialog-button-cancel": "取消",
 	"upload-dialog-button-done": "完成",
@@ -3800,5 +3802,6 @@
 	"linkaccounts-success-text": "已連結帳號。",
 	"linkaccounts-submit": "連結帳號",
 	"unlinkaccounts": "取消連結帳號",
-	"unlinkaccounts-success": "已取消連結帳號。"
+	"unlinkaccounts-success": "已取消連結帳號。",
+	"authenticationdatachange-ignored": "認証資料變更未被處理，可能未設定提供者？"
 }
