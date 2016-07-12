@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:08Z
+ * Date: 2016-07-12T20:26:03Z
  */
 ( function ( OO ) {
 
@@ -1426,10 +1426,12 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			if ( !selectedItem || selectedItem !== items[ i ] ) {
 				items[ i ].$element.addClass( 'oo-ui-element-hidden' );
+				items[ i ].$element.attr( 'aria-hidden', 'true' );
 			}
 		}
 		if ( selectedItem ) {
 			selectedItem.$element.removeClass( 'oo-ui-element-hidden' );
+			selectedItem.$element.removeAttr( 'aria-hidden' );
 		}
 	}
 };
@@ -1553,6 +1555,7 @@ OO.ui.MenuLayout.prototype.toggleMenu = function ( showMenu ) {
 		this.$element
 			.toggleClass( 'oo-ui-menuLayout-showMenu', this.showMenu )
 			.toggleClass( 'oo-ui-menuLayout-hideMenu', !this.showMenu );
+		this.$menu.attr( 'aria-hidden', this.showMenu ? 'false' : 'true' );
 	}
 
 	return this;
@@ -3692,13 +3695,17 @@ OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IconElement );
 
 /**
  * Construct a OO.ui.CapsuleItemWidget (or a subclass thereof) from given label and data.
+ * May return `null` if the given label and data are not valid.
  *
  * @protected
  * @param {Mixed} data Custom data of any type.
  * @param {string} label The label text.
- * @return {OO.ui.CapsuleItemWidget}
+ * @return {OO.ui.CapsuleItemWidget|null}
  */
 OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget = function ( data, label ) {
+	if ( label === '' ) {
+		return null;
+	}
 	return new OO.ui.CapsuleItemWidget( { data: data, label: label } );
 };
 
@@ -3748,7 +3755,9 @@ OO.ui.CapsuleMultiselectWidget.prototype.setItemsFromData = function ( datas ) {
 		if ( !item ) {
 			item = widget.createItemWidget( data, label );
 		}
-		widget.addItems( [ item ], i );
+		if ( item ) {
+			widget.addItems( [ item ], i );
+		}
 	} );
 
 	if ( items.length ) {
@@ -3776,9 +3785,12 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
 		if ( !widget.getItemFromData( data ) ) {
 			item = menu.getItemFromData( data );
 			if ( item ) {
-				items.push( widget.createItemWidget( data, item.label ) );
+				item = widget.createItemWidget( data, item.label );
 			} else if ( widget.allowArbitrary ) {
-				items.push( widget.createItemWidget( data, String( data ) ) );
+				item = widget.createItemWidget( data, String( data ) );
+			}
+			if ( item ) {
+				items.push( item );
 			}
 		}
 	} );
@@ -3797,13 +3809,15 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
  * @return {boolean} Whether the item was added or not
  */
 OO.ui.CapsuleMultiselectWidget.prototype.addItemFromLabel = function ( label ) {
-	var item = this.menu.getItemFromLabel( label, true );
+	var item, items;
+	item = this.menu.getItemFromLabel( label, true );
 	if ( item ) {
 		this.addItemsFromData( [ item.data ] );
 		return true;
-	} else if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
+	} else if ( this.allowArbitrary ) {
+		items = this.getItems();
 		this.addItemsFromData( [ label ] );
-		return true;
+		return !OO.compare( this.getItems(), items );
 	}
 	return false;
 };

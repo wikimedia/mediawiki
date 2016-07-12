@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:11Z
+ * Date: 2016-07-12T20:26:07Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -573,7 +573,7 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 	display: block;
-	line-height: 2.3em;
+	line-height: 2.3;
 	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
@@ -846,7 +846,7 @@
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input {
 	border: 0;
-	line-height: 1.675em;
+	line-height: 1.675;
 	margin: 0 0 0 0.2em;
 	padding: 0;
 	font-size: inherit;
@@ -900,7 +900,7 @@
 	        box-sizing: border-box;
 	vertical-align: middle;
 	height: 1.7em;
-	line-height: 1.7em;
+	line-height: 1.7;
 	background-color: #eeeeee;
 	color: #555555;
 	margin: 0.1em;

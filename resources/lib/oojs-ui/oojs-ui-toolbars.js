@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:08Z
+ * Date: 2016-07-12T20:26:03Z
  */
 ( function ( OO ) {
 
@@ -1292,24 +1292,26 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 	var i, len, item, name, tool,
 		names = [];
 
-	if ( collection === '*' ) {
-		for ( name in this.registry ) {
-			tool = this.registry[ name ];
-			if (
-				// Only add tools by group name when auto-add is enabled
-				tool.static.autoAddToCatchall &&
-				// Exclude already used tools
-				( !used || !used[ name ] )
-			) {
-				names.push( name );
-				if ( used ) {
-					used[ name ] = true;
+	collection = !Array.isArray( collection ) ? [ collection ] : collection;
+
+	for ( i = 0, len = collection.length; i < len; i++ ) {
+		item = collection[ i ];
+		if ( item === '*' ) {
+			for ( name in this.registry ) {
+				tool = this.registry[ name ];
+				if (
+					// Only add tools by group name when auto-add is enabled
+					tool.static.autoAddToCatchall &&
+					// Exclude already used tools
+					( !used || !used[ name ] )
+				) {
+					names.push( name );
+					if ( used ) {
+						used[ name ] = true;
+					}
 				}
 			}
-		}
-	} else if ( Array.isArray( collection ) ) {
-		for ( i = 0, len = collection.length; i < len; i++ ) {
-			item = collection[ i ];
+		} else {
 			// Allow plain strings as shorthand for named tools
 			if ( typeof item === 'string' ) {
 				item = { name: item };

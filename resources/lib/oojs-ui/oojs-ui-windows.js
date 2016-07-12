@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:08Z
+ * Date: 2016-07-12T20:26:03Z
  */
 ( function ( OO ) {
 
@@ -2135,10 +2135,18 @@ OO.ui.Window.prototype.initialize = function () {
  * @param {jQuery.Event} event Focus event
  */
 OO.ui.Window.prototype.onFocusTrapFocused = function ( event ) {
-	if ( this.$focusTrapBefore.is( event.target ) ) {
-		OO.ui.findFocusable( this.$content, true ).focus();
+	var backwards = this.$focusTrapBefore.is( event.target ),
+		element = OO.ui.findFocusable( this.$content, backwards );
+	if ( element ) {
+		// There's a focusable element inside the content, at the front or
+		// back depending on which focus trap we hit; select it.
+		element.focus();
 	} else {
-		// this.$content is the part of the focus cycle, and is the first focusable element
+		// There's nothing focusable inside the content. As a fallback,
+		// this.$content is focusable, and focusing it will keep our focus
+		// properly trapped. It's not a *meaningful* focus, since it's just
+		// the content-div for the Window, but it's better than letting focus
+		// escape into the page.
 		this.$content.focus();
 	}
 };
@@ -2512,11 +2520,10 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 	return OO.ui.Dialog.parent.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			var config = this.constructor.static,
-				actions = data.actions !== undefined ? data.actions : config.actions;
+				actions = data.actions !== undefined ? data.actions : config.actions,
+				title = data.title !== undefined ? data.title : config.title;
 
-			this.title.setLabel(
-				data.title !== undefined ? data.title : this.constructor.static.title
-			);
+			this.title.setLabel( title ).setTitle( title );
 			this.actions.add( this.getActionWidgets( actions ) );
 
 			this.$element.on( 'keydown', this.onDialogKeyDownHandler );

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:08Z
+ * Date: 2016-07-12T20:26:03Z
  */
 ( function ( OO ) {
 
@@ -1632,6 +1632,18 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
 	$elements
 		.removeClass( classes.off.join( ' ' ) )
 		.addClass( classes.on.join( ' ' ) );
+};
+
+/**
+ * Get the transition duration in milliseconds for dialogs opening/closing
+ *
+ * The dialog should be fully rendered this many milliseconds after the
+ * ready process has executed.
+ *
+ * @return {number} Transition duration in milliseconds
+ */
+OO.ui.Theme.prototype.getDialogTransitionDuration = function () {
+	return 0;
 };
 
 /**
@@ -3727,6 +3739,7 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -7580,7 +7593,7 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
  * ButtonInputWidget is used to submit HTML forms and is intended to be used within
  * a OO.ui.FormLayout. If you do not need the button to work with HTML forms, you probably
  * want to use OO.ui.ButtonWidget instead. Button input widgets can be rendered as either an
- * HTML `<button/>` (the default) or an HTML `<input/>` tags. See the
+ * HTML `<button>` (the default) or an HTML `<input>` tags. See the
  * [OOjs UI documentation on MediaWiki] [1] for more information.
  *
  *     @example
@@ -7605,8 +7618,8 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='button'] The value of the HTML `'type'` attribute: 'button', 'submit' or 'reset'.
- * @cfg {boolean} [useInputTag=false] Use an `<input/>` tag instead of a `<button/>` tag, the default.
- *  Widgets configured to be an `<input/>` do not support {@link #icon icons} and {@link #indicator indicators},
+ * @cfg {boolean} [useInputTag=false] Use an `<input>` tag instead of a `<button>` tag, the default.
+ *  Widgets configured to be an `<input>` do not support {@link #icon icons} and {@link #indicator indicators},
  *  non-plaintext {@link #label labels}, or {@link #value values}. In general, useInputTag should only
  *  be set to `true` when there’s need to support IE 6 in a form with multiple buttons.
  */
@@ -7671,7 +7684,7 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
 /**
  * Set label value.
  *
- * If #useInputTag is `true`, the label is set as the `value` of the `<input/>` tag.
+ * If #useInputTag is `true`, the label is set as the `value` of the `<input>` tag.
  *
  * @param {jQuery|string|Function|null} label Label nodes, text, a function that returns nodes or
  *  text, or `null` for no label
@@ -7697,7 +7710,7 @@ OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
 /**
  * Set the value of the input.
  *
- * This method is disabled for button inputs configured as {@link #useInputTag <input/> tags}, as
+ * This method is disabled for button inputs configured as {@link #useInputTag <input> tags}, as
  * they do not support {@link #value values}.
  *
  * @param {string} value New value

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:08Z
+ * Date: 2016-07-12T20:26:03Z
  */
 ( function ( OO ) {
 
@@ -26,6 +26,15 @@ OO.ui.ApexTheme = function OoUiApexTheme() {
 /* Setup */
 
 OO.inheritClass( OO.ui.ApexTheme, OO.ui.Theme );
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ApexTheme.prototype.getDialogTransitionDuration = function () {
+	return 250;
+};
 
 /* Instantiation */
 

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.5
+ * OOjs UI v0.17.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-06-29T13:27:11Z
+ * Date: 2016-07-12T20:26:07Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -30,6 +30,11 @@
 }
 .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
 	cursor: default;
+}
+.oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus {
+	z-index: 2;
 }
 .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
@@ -303,7 +308,7 @@
 }
 .oo-ui-fieldLayout > .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
 	padding: 0.5em 0.75em;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 .oo-ui-fieldLayout:last-child {
 	margin-bottom: 0;
@@ -395,7 +400,7 @@
 }
 .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
 	padding: 0.5em 0.75em;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 .oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout,
 .oo-ui-fieldsetLayout + .oo-ui-formLayout {
