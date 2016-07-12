@@ -1,6 +1,6 @@
 <?php
 /**
- * Slider gallery shows one image at a time with controls to move around.
+ * A slideshow gallery shows one image at a time with controls to move around.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
  * @file
  */
 
-class SliderImageGallery extends TraditionalImageGallery {
+class SlideshowImageGallery extends TraditionalImageGallery {
 	function __construct( $mode = 'traditional', IContextSource $context = null ) {
 		parent::__construct( $mode, $context );
 		// Does not support per row option.
@@ -32,6 +32,6 @@ class SliderImageGallery extends TraditionalImageGallery {
 	 * @return array
 	 */
 	protected function getModules() {
-		return [ 'mediawiki.page.gallery.slider' ];
+		return [ 'mediawiki.page.gallery.slideshow' ];
 	}
 }

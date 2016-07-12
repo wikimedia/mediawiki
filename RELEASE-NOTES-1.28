@@ -19,7 +19,7 @@ production.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
-* Added a new 'slider' mode for galleries.
+* Added a new 'slideshow' mode for galleries.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
   interact with API parsing.

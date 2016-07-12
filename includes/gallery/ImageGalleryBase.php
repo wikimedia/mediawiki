@@ -113,7 +113,7 @@ abstract class ImageGalleryBase extends ContextSource {
 				'packed' => 'PackedImageGallery',
 				'packed-hover' => 'PackedHoverImageGallery',
 				'packed-overlay' => 'PackedOverlayImageGallery',
-				'slider' => 'SliderImageGallery',
+				'slideshow' => 'SlideshowImageGallery',
 			];
 			// Allow extensions to make a new gallery format.
 			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );

@@ -1655,8 +1655,8 @@ return [
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.page.gallery.slider' => [
-		'scripts' => 'resources/src/mediawiki/page/gallery-slider.js',
+	'mediawiki.page.gallery.slideshow' => [
+		'scripts' => 'resources/src/mediawiki/page/gallery-slideshow.js',
 		'position' => 'top',
 		'dependencies' => [
 			'mediawiki.api',

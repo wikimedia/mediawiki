@@ -1,18 +1,18 @@
 /*!
- * mw.GallerySlider: Interface controls for the slider gallery
+ * mw.GallerySlideshow: Interface controls for the slideshow gallery
  */
 ( function ( mw, $, OO ) {
 	/**
-	 * mw.GallerySlider encapsulates the user interface of the slider
-	 * galleries. An object is instantiated for each `.mw-gallery-slider`
+	 * mw.GallerySlideshow encapsulates the user interface of the slideshow
+	 * galleries. An object is instantiated for each `.mw-gallery-slideshow`
 	 * element.
 	 *
-	 * @class mw.GallerySlider
+	 * @class mw.GallerySlideshow
 	 * @uses mw.Title
 	 * @uses mw.Api
 	 * @param {jQuery} gallery The `<ul>` element of the gallery.
 	 */
-	mw.GallerySlider = function ( gallery ) {
+	mw.GallerySlideshow = function ( gallery ) {
 		// Properties
 		this.$gallery = $( gallery );
 		this.$galleryCaption = this.$gallery.find( '.gallerycaption' );
@@ -106,13 +106,13 @@
 	 */
 
 	/* Setup */
-	OO.initClass( mw.GallerySlider );
+	OO.initClass( mw.GallerySlideshow );
 
 	/* Methods */
 	/**
 	 * Draws the carousel and the interface around it.
 	 */
-	mw.GallerySlider.prototype.drawCarousel = function () {
+	mw.GallerySlideshow.prototype.drawCarousel = function () {
 		var next, prev, toggle,	interfaceElements, carouselStack;
 
 		this.$carousel = $( '<li>' ).addClass( 'gallerycarousel' );
@@ -135,7 +135,7 @@
 
 		interfaceElements = new OO.ui.PanelLayout( {
 			expanded: false,
-			classes: [ 'mw-gallery-slider-buttons' ],
+			classes: [ 'mw-gallery-slideshow-buttons' ],
 			$content: $( '<div>' ).append(
 				prev.$element,
 				toggle.$element,
@@ -147,9 +147,9 @@
 		// Containers for the current image, caption etc.
 		this.$img = $( '<img>' );
 		this.$imgLink = $( '<a>' ).append( this.$img );
-		this.$imgCaption = $( '<p>' ).attr( 'class', 'mw-gallery-slider-caption' );
+		this.$imgCaption = $( '<p>' ).attr( 'class', 'mw-gallery-slideshow-caption' );
 		this.$imgContainer = $( '<div>' )
-			.attr( 'class', 'mw-gallery-slider-img-container' )
+			.attr( 'class', 'mw-gallery-slideshow-img-container' )
 			.append( this.$imgLink );
 
 		carouselStack = new OO.ui.StackLayout( {
@@ -183,7 +183,7 @@
 	 * {@link #imageInfoCache} as we'll now need URLs for a different
 	 * size.
 	 */
-	mw.GallerySlider.prototype.setSizeRequirement = function () {
+	mw.GallerySlideshow.prototype.setSizeRequirement = function () {
 		var w, h;
 
 		if ( this.$container !== undefined ) {
@@ -207,7 +207,7 @@
 	 * Gets the height of the interface elements and the
 	 * gallery's caption.
 	 */
-	mw.GallerySlider.prototype.getChromeHeight = function () {
+	mw.GallerySlideshow.prototype.getChromeHeight = function () {
 		return this.$interface.outerHeight() + this.$galleryCaption.outerHeight();
 	};
 
@@ -218,7 +218,7 @@
 	 *
 	 * @return {boolean} Whether or not the image was sized.
 	 */
-	mw.GallerySlider.prototype.setImageSize = function () {
+	mw.GallerySlideshow.prototype.setImageSize = function () {
 		if ( this.$img === undefined || this.$thumbnail === undefined ) {
 			return false;
 		}
@@ -255,15 +255,15 @@
 	/**
 	 * Displays the image set as {@link #$currentImage} in the carousel.
 	 */
-	mw.GallerySlider.prototype.showCurrentImage = function () {
+	mw.GallerySlideshow.prototype.showCurrentImage = function () {
 		var imageLi = this.getCurrentImage(),
 			caption = imageLi.find( '.gallerytext' );
 
 		// Highlight current thumbnail
 		this.$gallery
-			.find( '.gallerybox.slider-current' )
-			.removeClass( 'slider-current' );
-		imageLi.addClass( 'slider-current' );
+			.find( '.gallerybox.slideshow-current' )
+			.removeClass( 'slideshow-current' );
+		imageLi.addClass( 'slideshow-current' );
 
 		// Show thumbnail stretched to the right size while the image loads
 		this.$thumbnail = imageLi.find( 'img' );
@@ -296,7 +296,7 @@
 	 * @return {jQuery.Promise} Resolves with the images URL and original
 	 *	element once the image has loaded.
 	 */
-	mw.GallerySlider.prototype.loadImage = function ( $img ) {
+	mw.GallerySlideshow.prototype.loadImage = function ( $img ) {
 		var img, d = $.Deferred();
 
 		this.getImageInfo( $img ).done( function ( info ) {
@@ -321,7 +321,7 @@
 	 * @param {Object} $img
 	 * @return {jQuery.Promise} Resolves with the image's info.
 	 */
-	mw.GallerySlider.prototype.getImageInfo = function ( $img ) {
+	mw.GallerySlideshow.prototype.getImageInfo = function ( $img ) {
 		var api, title, params,
 			imageSrc = $img.attr( 'src' );
 
@@ -364,7 +364,7 @@
 	 * @param {jQuery} $img
 	 * @return {string}
 	 */
-	mw.GallerySlider.prototype.getDimensionToRequest = function ( $img ) {
+	mw.GallerySlideshow.prototype.getDimensionToRequest = function ( $img ) {
 		var ratio = $img.width() / $img.height();
 
 		if ( this.imageHeight * ratio <= this.imageWidth ) {
@@ -379,9 +379,9 @@
 	 *
 	 * @param {boolean} show Optional argument to control the state
 	 */
-	mw.GallerySlider.prototype.toggleThumbnails = function ( show ) {
+	mw.GallerySlideshow.prototype.toggleThumbnails = function ( show ) {
 		this.$galleryBox.toggle( show );
-		this.$carousel.toggleClass( 'mw-gallery-slider-thumbnails-toggled', show );
+		this.$carousel.toggleClass( 'mw-gallery-slideshow-thumbnails-toggled', show );
 	};
 
 	/**
@@ -389,7 +389,7 @@
 	 *
 	 * @return {jQuery}
 	 */
-	mw.GallerySlider.prototype.getCurrentImage = function () {
+	mw.GallerySlideshow.prototype.getCurrentImage = function () {
 		this.$currentImage = this.$currentImage || this.$galleryBox.eq( 0 );
 		return this.$currentImage;
 	};
@@ -400,7 +400,7 @@
 	 *
 	 * @return {jQuery}
 	 */
-	mw.GallerySlider.prototype.getNextImage = function () {
+	mw.GallerySlideshow.prototype.getNextImage = function () {
 		// Not the last image in the gallery
 		if ( this.$currentImage.next( '.gallerybox' )[ 0 ] !== undefined ) {
 			return this.$currentImage.next( '.gallerybox' );
@@ -415,7 +415,7 @@
 	 *
 	 * @return {jQuery}
 	 */
-	mw.GallerySlider.prototype.getPrevImage = function () {
+	mw.GallerySlideshow.prototype.getPrevImage = function () {
 		// Not the first image in the gallery
 		if ( this.$currentImage.prev( '.gallerybox' )[ 0 ] !== undefined ) {
 			return this.$currentImage.prev( '.gallerybox' );
@@ -428,7 +428,7 @@
 	 * Sets the {@link #$currentImage} to the next one and shows
 	 * it in the carousel
 	 */
-	mw.GallerySlider.prototype.nextImage = function () {
+	mw.GallerySlideshow.prototype.nextImage = function () {
 		this.$currentImage = this.getNextImage();
 		this.showCurrentImage();
 	};
@@ -437,16 +437,16 @@
 	 * Sets the {@link #$currentImage} to the previous one and shows
 	 * it in the carousel
 	 */
-	mw.GallerySlider.prototype.prevImage = function () {
+	mw.GallerySlideshow.prototype.prevImage = function () {
 		this.$currentImage = this.getPrevImage();
 		this.showCurrentImage();
 	};
 
-	// Bootstrap all slider galleries
+	// Bootstrap all slideshow galleries
 	$( function () {
-		$( '.mw-gallery-slider' ).each( function () {
+		$( '.mw-gallery-slideshow' ).each( function () {
 			/*jshint -W031 */
-			new mw.GallerySlider( this );
+			new mw.GallerySlideshow( this );
 			/*jshint +W031 */
 		} );
 	} );
