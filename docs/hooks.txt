@@ -903,6 +903,7 @@ $image: File
 'BlockIpComplete': After an IP address or user is blocked.
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
+$priorBlock: the Block object for the prior block or null if there was none
 
 'BookInformation': Before information output on Special:Booksources.
 $isbn: ISBN to show information for
