@@ -2927,6 +2927,8 @@ class WikiPage implements Page, IDBAccessObject {
 			],
 			__METHOD__
 		);
+		// Save this so we can pass it to the ArticleDeleteComplete hook.
+		$archivedRevisionCount = $dbw->affectedRows();
 
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
@@ -2957,7 +2959,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete',
-			[ &$this, &$user, $reason, $id, $content, $logEntry ] );
+			[ &$this, &$user, $reason, $id, $content, $logEntry, $archivedRevisionCount ] );
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
