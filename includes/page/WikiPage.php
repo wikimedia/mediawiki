@@ -2931,6 +2931,12 @@ class WikiPage implements Page, IDBAccessObject {
 		// Save this so we can pass it to the ArticleDeleteComplete hook.
 		$archivedRevisionCount = $dbw->affectedRows();
 
+		// Before we actually delete this page, save the fact that is
+		// is a redirect.  After it is deleted, this information
+		// is not available via $this->isRedirect().  This will be passed
+		// to the ArticleDeleteComplete hook.
+		$articleIsRedirect = $this->isRedirect();
+
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
@@ -2960,8 +2966,16 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->doDeleteUpdates( $id, $content );
 
-		Hooks::run( 'ArticleDeleteComplete',
-			[ &$this, &$user, $reason, $id, $content, $logEntry, $archivedRevisionCount ] );
+		Hooks::run( 'ArticleDeleteComplete', [
+			&$this,
+			&$user,
+			$reason,
+			$id,
+			$content,
+			$logEntry,
+			$archivedRevisionCount,
+			$articleIsRedirect
+		] );
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
