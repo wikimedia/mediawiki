@@ -2169,6 +2169,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.DateInputWidget' => [
+		'class' => 'ResourceLoaderOOUIThemedFileModule',
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
