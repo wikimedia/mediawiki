@@ -629,6 +629,10 @@ class BalanceStack implements IteratorAggregate {
 	 * Tidy compatibility mode, determines behavior of body/blockquote
 	 */
 	public $tidyCompat = false;
+	/**
+	 * Reference to the current element
+	 */
+	public $currentNode;
 
 	/**
 	 * Create a new BalanceStack with a single BalanceElement on it,
@@ -640,6 +644,7 @@ class BalanceStack implements IteratorAggregate {
 			$this->elements,
 			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'html', [] )
 		);
+		$this->currentNode = $this->elements[0];
 	}
 
 	/**
@@ -666,17 +671,17 @@ class BalanceStack implements IteratorAggregate {
 		Assert::parameterType( 'string', $value, '$value' );
 		if (
 			$this->fosterParentMode &&
-			$this->currentNode()->isA( BalanceSets::$tableSectionRowSet )
+			$this->currentNode->isA( BalanceSets::$tableSectionRowSet )
 		) {
 			$this->fosterParent( $value );
 		} elseif (
 			$this->tidyCompat &&
-			$this->currentNode()->isA( BalanceSets::$tidyPWrapSet )
+			$this->currentNode->isA( BalanceSets::$tidyPWrapSet )
 		) {
 			$this->insertHTMLELement( 'mw:p-wrap', [] );
 			return $this->insertText( $value );
 		} else {
-			$this->currentNode()->appendChild( $value );
+			$this->currentNode->appendChild( $value );
 		}
 	}
 
@@ -719,7 +724,7 @@ class BalanceStack implements IteratorAggregate {
 	public function insertElement( $elt ) {
 		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
 		if (
-			$this->currentNode()->isA( 'mw:p-wrap' ) &&
+			$this->currentNode->isA( 'mw:p-wrap' ) &&
 			!$elt->isA( BalanceSets::$tidyInlineSet )
 		) {
 			// Tidy compatibility.
@@ -727,15 +732,16 @@ class BalanceStack implements IteratorAggregate {
 		}
 		if (
 			$this->fosterParentMode &&
-			$this->currentNode()->isA( BalanceSets::$tableSectionRowSet )
+			$this->currentNode->isA( BalanceSets::$tableSectionRowSet )
 		) {
 			$elt = $this->fosterParent( $elt );
 		} else {
-			$this->currentNode()->appendChild( $elt );
+			$this->currentNode->appendChild( $elt );
 		}
 		Assert::invariant( $elt->parent !== null, "$elt must be in tree" );
 		Assert::invariant( $elt->parent !== 'flat', "$elt must not have been previous flattened" );
 		array_push( $this->elements, $elt );
+		$this->currentNode = $elt;
 		return $elt;
 	}
 
@@ -809,10 +815,10 @@ class BalanceStack implements IteratorAggregate {
 			BalanceSets::$thoroughImpliedEndTagsSet :
 			BalanceSets::$impliedEndTagsSet;
 		while ( $this->length() > 0 ) {
-			if ( $butnot !== null && $this->currentNode()->isA( $butnot ) ) {
+			if ( $butnot !== null && $this->currentNode->isA( $butnot ) ) {
 				break;
 			}
-			if ( !$this->currentNode()->isA( $endTagSet ) ) {
+			if ( !$this->currentNode->isA( $endTagSet ) ) {
 				break;
 			}
 			$this->pop();
@@ -820,21 +826,11 @@ class BalanceStack implements IteratorAggregate {
 	}
 
 	/**
-	 * Return the current node (the element in the stack with the largest
-	 * index).
-	 * @return BalanceElement
-	 * @see https://html.spec.whatwg.org/multipage/syntax.html#current-node
-	 */
-	public function currentNode() {
-		return $this->node( count( $this->elements ) - 1 );
-	}
-
-	/**
 	 * Return the adjusted current node.
 	 */
 	public function adjustedCurrentNode( $fragmentContext ) {
 		return ( $fragmentContext && $this->length() === 1 ) ?
-			$fragmentContext : $this->currentNode();
+			$fragmentContext : $this->currentNode;
 	}
 
 	/**
@@ -872,6 +868,9 @@ class BalanceStack implements IteratorAggregate {
 			'New element should not have already been flattened.'
 		);
 		$this->elements[$idx] = $elt;
+		if ( $idx === count( $this->elements ) - 1 ) {
+			$this->currentNode = $elt;
+		}
 	}
 
 	/**
@@ -903,6 +902,11 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function pop() {
 		$elt = array_pop( $this->elements );
+		if ( count( $this->elements ) ) {
+			$this->currentNode = $this->elements[ count( $this->elements ) - 1 ];
+		} else {
+			$this->currentNode = null;
+		}
 		if ( !$elt->isA( 'mw:p-wrap' ) ) {
 			$elt->flatten( $this->tidyCompat );
 		}
@@ -927,7 +931,7 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function popTag( $tag ) {
 		while ( $this->length() > 0 ) {
-			if ( $this->currentNode()->isA( $tag ) ) {
+			if ( $this->currentNode->isA( $tag ) ) {
 				$this->pop();
 				break;
 			}
@@ -943,7 +947,7 @@ class BalanceStack implements IteratorAggregate {
 	public function clearToContext( $set ) {
 		// Note that we don't loop to 0. Never pop the <html> elt off.
 		while ( $this->length() > 1 ) {
-			if ( $this->currentNode()->isA( $set ) ) {
+			if ( $this->currentNode->isA( $set ) ) {
 				break;
 			}
 			$this->pop();
@@ -971,6 +975,9 @@ class BalanceStack implements IteratorAggregate {
 		$idx = array_search( $elt, $this->elements, true );
 		Assert::parameter( $idx !== false, '$elt', 'must be in stack' );
 		array_splice( $this->elements, $idx, 1 );
+		if ( $idx === count( $this->elements ) ) {
+			$this->currentNode = $this->elements[$idx - 1];
+		}
 		if ( $flatten ) {
 			// serialize $elt into its parent
 			// otherwise, it will eventually serialize when the parent
@@ -994,7 +1001,12 @@ class BalanceStack implements IteratorAggregate {
 		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $b, '$b' );
 		$idx = $this->indexOf( $a );
 		Assert::parameter( $idx !== false, '$a', 'must be in stack' );
-		array_splice( $this->elements, $idx + 1, 0, [ $b ] );
+		if ( $idx === count( $this->elements ) - 1 ) {
+			array_push( $this->elements, $b );
+			$this->currentNode = $b;
+		} else {
+			array_splice( $this->elements, $idx + 1, 0, [ $b ] );
+		}
 	}
 
 	# Fostering and adoption.
@@ -1073,8 +1085,8 @@ class BalanceStack implements IteratorAggregate {
 		// elements, then pop the current node off the stack of open
 		// elements and abort these steps.
 		if (
-			$this->currentNode()->isA( $tag ) &&
-			!$afe->isInList( $this->currentNode() )
+			$this->currentNode->isA( $tag ) &&
+			!$afe->isInList( $this->currentNode )
 		) {
 			$this->pop();
 			return true; // no more handling required
@@ -1939,7 +1951,7 @@ class Balancer {
 				}
 				while ( true ) {
 					$this->stack->pop();
-					$node = $this->stack->currentNode();
+					$node = $this->stack->currentNode;
 					if (
 						$node->isMathmlTextIntegrationPoint() ||
 						$node->isHtmlIntegrationPoint() ||
@@ -1952,7 +1964,7 @@ class Balancer {
 			}
 			// "Any other start tag"
 			$adjusted = ( $this->fragmentContext && $this->stack->length()===1 ) ?
-				$this->fragmentContext : $this->stack->currentNode();
+				$this->fragmentContext : $this->stack->currentNode;
 			$this->stack->insertForeignElement(
 				$adjusted->namespaceURI, $value, $attribs
 			);
@@ -2300,7 +2312,7 @@ class Balancer {
 				if ( $this->stack->inButtonScope( 'p' ) ) {
 					$this->inBodyMode( 'endtag', 'p' );
 				}
-				if ( $this->stack->currentNode()->isA( BalanceSets::$headingSet ) ) {
+				if ( $this->stack->currentNode->isA( BalanceSets::$headingSet ) ) {
 					$this->stack->pop();
 				}
 				$this->stack->insertHTMLElement( $value, $attribs );
@@ -2501,7 +2513,7 @@ class Balancer {
 
 			case 'optgroup':
 			case 'option':
-				if ( $this->stack->currentNode()->isA( 'option' ) ) {
+				if ( $this->stack->currentNode->isA( 'option' ) ) {
 					$this->inBodyMode( 'endtag', 'option' );
 				}
 				$this->afe->reconstruct( $this->stack );
@@ -2714,7 +2726,7 @@ class Balancer {
 		if ( $token === 'text' ) {
 			if ( $this->textIntegrationMode ) {
 				return $this->inBodyMode( $token, $value, $attribs, $selfclose );
-			} elseif ( $this->stack->currentNode()->isA( BalanceSets::$tableSectionRowSet ) ) {
+			} elseif ( $this->stack->currentNode->isA( BalanceSets::$tableSectionRowSet ) ) {
 				$this->pendingTableText = '';
 				$this->originalInsertionMode = $this->parseMode;
 				return $this->switchModeAndReprocess( 'inTableTextMode', $token, $value, $attribs, $selfclose );
@@ -2911,7 +2923,7 @@ class Balancer {
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
 			case 'colgroup':
-				if ( !$this->stack->currentNode()->isA( 'colgroup' ) ) {
+				if ( !$this->stack->currentNode->isA( 'colgroup' ) ) {
 					return true; // Ignore the token.
 				}
 				$this->stack->pop();
@@ -2928,7 +2940,7 @@ class Balancer {
 		}
 
 		// Anything else
-		if ( !$this->stack->currentNode()->isA( 'colgroup' ) ) {
+		if ( !$this->stack->currentNode->isA( 'colgroup' ) ) {
 			return true; // Ignore the token.
 		}
 		$this->inColumnGroupMode( 'endtag', 'colgroup' );
