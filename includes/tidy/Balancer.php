@@ -348,9 +348,6 @@ class BalanceElement {
 	 * @param array $attribs Attributes of the element
 	 */
 	public function __construct( $namespaceURI, $localName, array $attribs ) {
-		Assert::parameterType( 'string', $namespaceURI, '$namespaceURI' );
-		Assert::parameterType( 'string', $localName, '$localName' );
-
 		$this->localName = $localName;
 		$this->namespaceURI = $namespaceURI;
 		$this->attribs = $attribs;
@@ -363,11 +360,10 @@ class BalanceElement {
 	 * Remove the given child from this element.
 	 * @param BalanceElement $elt
 	 */
-	private function removeChild( $elt ) {
+	private function removeChild( BalanceElement $elt ) {
 		Assert::precondition(
 			$this->parent !== 'flat', "Can't removeChild after flattening $this"
 		);
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
 		Assert::parameter(
 			$elt->parent === $this, 'elt', 'must have $this as a parent'
 		);
@@ -382,12 +378,10 @@ class BalanceElement {
 	 * @param BalanceElement $a
 	 * @param BalanceElement|string $b
 	 */
-	public function insertBefore( $a, $b ) {
+	public function insertBefore( BalanceElement $a, $b ) {
 		Assert::precondition(
 			$this->parent !== 'flat', "Can't insertBefore after flattening."
 		);
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $a, '$a' );
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement|string', $b, '$b' );
 		$idx = array_search( $a, $this->children, true );
 		Assert::parameter( $idx !== false, '$a', 'must be a child of $this' );
 		if ( is_string( $b ) ) {
@@ -410,7 +404,6 @@ class BalanceElement {
 		Assert::precondition(
 			$this->parent !== 'flat', "Can't appendChild after flattening."
 		);
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement|string', $elt, '$elt' );
 		if ( is_string( $elt ) ) {
 			array_push( $this->children, $elt );
 			return;
@@ -427,8 +420,7 @@ class BalanceElement {
 	 * Transfer all of the children of $elt to $this.
 	 * @param BalanceElement $elt
 	 */
-	public function adoptChildren( $elt ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
+	public function adoptChildren( BalanceElement $elt ) {
 		Assert::precondition(
 			$elt->parent !== 'flat', "Can't adoptChildren after flattening."
 		);
@@ -529,7 +521,6 @@ class BalanceElement {
 	 * @return bool
 	 */
 	public function isA( $set ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement|array|string', $set, '$set' );
 		if ( $set instanceof BalanceElement ) {
 			return $this === $set;
 		} elseif ( is_array( $set ) ) {
@@ -678,7 +669,6 @@ class BalanceStack implements IteratorAggregate {
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#appropriate-place-for-inserting-a-node
 	 */
 	public function insertText( $value ) {
-		Assert::parameterType( 'string', $value, '$value' );
 		if (
 			$this->fosterParentMode &&
 			$this->currentNode->isA( BalanceSets::$tableSectionRowSet )
@@ -731,8 +721,7 @@ class BalanceStack implements IteratorAggregate {
 	 * @return BalanceElement
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#appropriate-place-for-inserting-a-node
 	 */
-	public function insertElement( $elt ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
+	public function insertElement( BalanceElement $elt ) {
 		if (
 			$this->currentNode->isHtmlNamed( 'mw:p-wrap' ) &&
 			!$elt->isA( BalanceSets::$tidyInlineSet )
@@ -867,8 +856,7 @@ class BalanceStack implements IteratorAggregate {
 	 * @param int $idx
 	 * @param BalanceElement $elt
 	 */
-	public function replaceAt( $idx, $elt ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
+	public function replaceAt( $idx, BalanceElement $elt ) {
 		Assert::precondition(
 			$this->elements[$idx]->parent !== 'flat',
 			'Replaced element should not have already been flattened.'
@@ -970,8 +958,7 @@ class BalanceStack implements IteratorAggregate {
 	 * @param BalanceElement $elt The element to remove.
 	 * @param bool $flatten Whether to flatten the removed element.
 	 */
-	public function removeElement( $elt, $flatten = true ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $elt, '$elt' );
+	public function removeElement( BalanceElement $elt, $flatten = true ) {
 		Assert::parameter(
 			$elt->parent !== 'flat',
 			'$elt',
@@ -1006,9 +993,7 @@ class BalanceStack implements IteratorAggregate {
 	 * @param BalanceElement $a
 	 * @param BalanceElement $b
 	 */
-	public function insertAfter( $a, $b ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $a, '$a' );
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement', $b, '$b' );
+	public function insertAfter( BalanceElement $a, BalanceElement $b ) {
 		$idx = $this->indexOf( $a );
 		Assert::parameter( $idx !== false, '$a', 'must be in stack' );
 		if ( $idx === count( $this->elements ) - 1 ) {
@@ -1027,7 +1012,6 @@ class BalanceStack implements IteratorAggregate {
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#foster-parent
 	 */
 	private function fosterParent( $elt ) {
-		Assert::parameterType( 'MediaWiki\Tidy\BalanceElement|string', $elt, '$elt' );
 		$lastTable = $this->indexOf( 'table' );
 		$lastTemplate = $this->indexOf( 'template' );
 		$parent = null;
