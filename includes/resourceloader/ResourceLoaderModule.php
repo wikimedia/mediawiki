@@ -528,7 +528,13 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return array Module-specific LESS variables.
 	 */
 	protected function getLessVars( ResourceLoaderContext $context ) {
-		return [];
+		$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
+		$skin = $context->getSkin();
+		$theme = isset( $themes[$skin] ) ? $themes[$skin] : 'MediaWiki';
+
+		return [
+			'oo-ui-theme' => $theme,
+		];
 	}
 
 	/**

@@ -64,71 +64,148 @@
 	}
 
 	// Theme-specific styles
-	width: 21em;
-	margin: 0.25em 0;
+	.styles() when ( default() ) {
+		width: 21em;
+		margin: 0.25em 0;
 
-	.oo-ui-inline-spacing(0.5em);
+		.oo-ui-inline-spacing(0.5em);
 
-	&-handle {
-		padding: 0.5em 1em;
-		border: 1px solid #ccc;
-		border-radius: 0.1em;
-		line-height: 1.275em;
-		background-color: #fff;
-	}
-
-	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
-		width: @indicator-size;
-		margin: 0 0.775em;
-	}
-
-	> .oo-ui-textInputWidget input {
-		padding-left: 1em;
-	}
-
-	> .oo-ui-textInputWidget {
-		z-index: 2;
-	}
-
-	&-calendar {
-		background-color: #fff;
-		margin-top: -2px;
-
-		&:focus {
-			z-index: 3;
+		&-handle {
+			padding: 0.5em 1em;
+			border: 1px solid #ccc;
+			border-radius: 0.1em;
+			line-height: 1.275em;
+			background-color: #fff;
 		}
-	}
 
-	&.oo-ui-widget-enabled {
-		.mw-widget-dateInputWidget-handle:hover {
-			border-color: #347bff;
+		&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+			width: @indicator-size;
+			margin: 0 0.775em;
 		}
-	}
 
-	&.oo-ui-widget-disabled {
-		.mw-widget-dateInputWidget-handle {
-			color: #ccc;
-			text-shadow: 0 1px 1px #fff;
-			border-color: #ddd;
-			background-color: #f3f3f3;
+		> .oo-ui-textInputWidget input {
+			padding-left: 1em;
+		}
 
-			> .oo-ui-indicatorElement-indicator {
-				opacity: 0.2;
+		> .oo-ui-textInputWidget {
+			z-index: 2;
+		}
+
+		&-calendar {
+			background-color: #fff;
+			margin-top: -2px;
+
+			&:focus {
+				z-index: 3;
 			}
 		}
 
-	}
+		&.oo-ui-widget-enabled {
+			.mw-widget-dateInputWidget-handle:hover {
+				border-color: #347bff;
+			}
+		}
 
-	&.oo-ui-flaggedElement-invalid {
-		.mw-widget-dateInputWidget-handle {
-			border-color: #f00;
-			box-shadow: inset 0 0 0 0 #f00;
+		&.oo-ui-widget-disabled {
+			.mw-widget-dateInputWidget-handle {
+				color: #ccc;
+				text-shadow: 0 1px 1px #fff;
+				border-color: #ddd;
+				background-color: #f3f3f3;
+
+				> .oo-ui-indicatorElement-indicator {
+					opacity: 0.2;
+				}
+			}
+
+		}
+
+		&.oo-ui-flaggedElement-invalid {
+			.mw-widget-dateInputWidget-handle {
+				border-color: #f00;
+				box-shadow: inset 0 0 0 0 #f00;
+			}
+		}
+
+		&-empty {
+			.mw-widget-dateInputWidget-handle {
+				color: #ccc;
+			}
 		}
 	}
 
-	&-empty {
-		.mw-widget-dateInputWidget-handle {
-			color: #ccc;
+	.styles() when ( @oo-ui-theme = Apex ) {
+		width: 21em;
+		margin: 0.25em 0;
+
+		.oo-ui-inline-spacing(0.5em);
+
+		&-handle {
+			padding: 0.5em 1em;
+			border: 1px solid rgba( 0, 0, 0, 0.1 );
+			border-radius: 0.25em;
+			line-height: 1.275em;
+			background-color: #fff;
+
+			> .oo-ui-labelElement-label {
+				padding: 0;
+			}
+		}
+
+		&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+			width: @indicator-size;
+			margin: 0 0.775em;
+		}
+
+		> .oo-ui-textInputWidget input {
+			padding-left: 1em;
+		}
+
+		> .oo-ui-textInputWidget {
+			z-index: 2;
+		}
+
+		&-calendar {
+			background-color: #fff;
+			margin-top: -2px;
+
+			&:focus {
+				z-index: 3;
+			}
+		}
+
+		&.oo-ui-widget-enabled {
+			.mw-widget-dateInputWidget-handle:hover {
+				border-color: rgba( 0, 0, 0, 0.2 );
+			}
+		}
+
+		&.oo-ui-widget-disabled {
+			.mw-widget-dateInputWidget-handle {
+				color: #ccc;
+				text-shadow: 0 1px 1px #fff;
+				border-color: #ddd;
+				background-color: #f3f3f3;
+
+				> .oo-ui-indicatorElement-indicator {
+					opacity: 0.2;
+				}
+			}
+
+		}
+
+		&.oo-ui-flaggedElement-invalid {
+			.mw-widget-dateInputWidget-handle {
+				background-color: #fdd;
+			}
+		}
+
+		&-empty {
+			.mw-widget-dateInputWidget-handle {
+				color: #ccc;
+			}
 		}
 	}
+
+	.styles();
 }
