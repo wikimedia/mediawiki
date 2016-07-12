@@ -280,6 +280,9 @@ class ExtensionRegistry {
 		foreach ( $info['callbacks'] as $cb ) {
 			call_user_func( $cb );
 		}
+		foreach ( $info['functions'] as $function ) {
+			$function;
+		}
 
 		$this->loaded += $info['credits'];
 		if ( $info['attributes'] ) {

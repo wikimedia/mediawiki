@@ -100,6 +100,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected static $notAttributes = [
 		'callback',
+		'function',
 		'Hooks',
 		'namespaces',
 		'ResourceFileModulePaths',
@@ -142,6 +143,13 @@ class ExtensionProcessor implements Processor {
 	protected $callbacks = [];
 
 	/**
+	 * Things to be called at the same time as the extension
+	 *
+	 * @var array
+	 */
+	protected $functions = [];
+
+	/**
 	 * @var array
 	 */
 	protected $credits = [];
@@ -172,6 +180,9 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
 		}
+		if ( isset( $info['function'] ) ) {
+			$this->functions[] = $info['function'];
+		}
 
 		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
@@ -198,6 +209,7 @@ class ExtensionProcessor implements Processor {
 			'globals' => $this->globals,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
+			'functions' => $this->functions,
 			'credits' => $this->credits,
 			'attributes' => $this->attributes,
 		];

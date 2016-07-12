@@ -857,6 +857,13 @@
 			],
 			"description": "A function to be called right after MediaWiki processes this file"
 		},
+		"function": {
+			"type": [
+				"array",
+				"string"
+			],
+			"description": "A function to be called at the same time as extension being proccessed."
+		},
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension",
