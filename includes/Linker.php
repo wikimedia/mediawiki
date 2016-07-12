@@ -165,6 +165,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
+	 *
 	 * This function returns an HTML link to the given target.  It serves a few
 	 * purposes:
 	 *   1) If $target is a Title, the correct URL to link to will be figured
@@ -251,6 +253,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
+	 *
 	 * Identical to link(), except $options defaults to 'known'.
 	 * @since 1.16.3
 	 * @see Linker::link
