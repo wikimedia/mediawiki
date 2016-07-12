@@ -170,6 +170,7 @@ class Linker {
 	 * link() replaces the old functions in the makeLink() family.
 	 *
 	 * @since 1.18 Method exists since 1.16 as non-static, made static in 1.18.
+	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 *
 	 * @param Title $target Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
@@ -245,7 +246,9 @@ class Linker {
 
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
+	 *
 	 * @since 1.16.3
+	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 * @see Linker::link
 	 * @return string
 	 */

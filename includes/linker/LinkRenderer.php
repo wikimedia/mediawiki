@@ -36,6 +36,7 @@ use TitleFormatter;
 /**
  * Class that generates HTML <a> links for pages.
  *
+ * @see https://www.mediawiki.org/wiki/Manual:LinkRenderer
  * @since 1.28
  */
 class LinkRenderer {
