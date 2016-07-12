@@ -4553,10 +4553,10 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function canUseNoindex() {
-		global $wgContentNamespaces, $wgExemptFromUserRobotsControl;
+		global $wgExemptFromUserRobotsControl;
 
 		$bannedNamespaces = is_null( $wgExemptFromUserRobotsControl )
-			? $wgContentNamespaces
+			? MWNamespace::getContentNamespaces()
 			: $wgExemptFromUserRobotsControl;
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
