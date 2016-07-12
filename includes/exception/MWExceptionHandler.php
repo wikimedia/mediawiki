@@ -488,7 +488,11 @@ TXT;
 		return "[$id] $url   $type from line $line of $file: $message";
 	}
 
-	public static function getPublicLogMessage( Exception $e ) {
+	/**
+	 * @param Exception|Throwable $e
+	 * @return string
+	 */
+	public static function getPublicLogMessage( $e ) {
 		$reqId = WebRequest::getRequestId();
 		$type = get_class( $e );
 		return '[' . $reqId . '] '
