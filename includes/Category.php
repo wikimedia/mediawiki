@@ -79,6 +79,11 @@ class Category {
 				$this->mSubcats = 0;
 				$this->mFiles = 0;
 
+				# If the title exists, call refreshCounts to add a row for it.
+				if ( $this->mTitle->exists() ) {
+					DeferredUpdates::addCallableUpdate( [ $this, 'refreshCounts' ] );
+				}
+
 				return true;
 			} else {
 				return false; # Fail
@@ -331,21 +336,35 @@ class Category {
 			[ 'LOCK IN SHARE MODE' ]
 		);
 
+		$shouldExist = $result->pages > 0 || $this->getTitle()->exists();
+
 		if ( $this->mID ) {
-			# The category row already exists, so do a plain UPDATE instead
-			# of INSERT...ON DUPLICATE KEY UPDATE to avoid creating a gap
-			# in the cat_id sequence. The row may or may not be "affected".
-			$dbw->update(
-				'category',
-				[
-					'cat_pages' => $result->pages,
-					'cat_subcats' => $result->subcats,
-					'cat_files' => $result->files
-				],
-				[ 'cat_title' => $this->mName ],
-				__METHOD__
-			);
-		} else {
+			if ( $shouldExist ) {
+				# The category row already exists, so do a plain UPDATE instead
+				# of INSERT...ON DUPLICATE KEY UPDATE to avoid creating a gap
+				# in the cat_id sequence. The row may or may not be "affected".
+				$dbw->update(
+					'category',
+					[
+						'cat_pages' => $result->pages,
+						'cat_subcats' => $result->subcats,
+						'cat_files' => $result->files
+					],
+					[ 'cat_title' => $this->mName ],
+					__METHOD__
+				);
+			} else {
+				# The category is empty and has no description page, delete it
+				$dbw->delete(
+					'category',
+					[ 'cat_title' => $this->mName ],
+					__METHOD__
+				);
+				$this->mID = false;
+			}
+		} elseif ( $shouldExist ) {
+			# The category row doesn't exist but should, so create it. Use
+			# upsert in case of races.
 			$dbw->upsert(
 				'category',
 				[
@@ -362,6 +381,8 @@ class Category {
 				],
 				__METHOD__
 			);
+			// @todo: Should we update $this->mID here? Or not since Category
+			// objects tend to be short lived enough to not matter?
 		}
 
 		$dbw->endAtomic( __METHOD__ );
