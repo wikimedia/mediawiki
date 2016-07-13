@@ -27075,8 +27075,8 @@ Empty LI (T49673)
 !! html/php+tidy
 <ul>
 <li>a</li>
-<li class="mw-empty-li"></li>
-<li class="mw-empty-li"></li>
+<li class="mw-empty-elt"></li>
+<li class="mw-empty-elt"></li>
 <li>b</li>
 </ul>
 !! end

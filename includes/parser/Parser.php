@@ -1357,7 +1357,6 @@ class Parser {
 
 		if ( MWTidy::isEnabled() && $this->mOptions->getTidy() ) {
 			$text = MWTidy::tidy( $text );
-			$this->mOutput->addModuleStyles( MWTidy::getModuleStyles() );
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (bug #2702 and quite a few others)
