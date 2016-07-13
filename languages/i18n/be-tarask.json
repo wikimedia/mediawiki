@@ -2031,6 +2031,7 @@
 	"changecontentmodel-cannot-convert": "Зьмест [[:$1]] ня можа быць ператвораны ў тып $2.",
 	"changecontentmodel-nodirectediting": "Мадэль зьместу $1 не падтрымлівае наўпроставае рэдагаваньне",
 	"changecontentmodel-emptymodels-title": "Няма даступных мадэляў зьместу",
+	"changecontentmodel-emptymodels-text": "Зьмест на [[:$1]] ня можа быць ператвораны ні ў які тып.",
 	"log-name-contentmodel": "Журнал зьменаў мадэляў зьместу",
 	"log-description-contentmodel": "Падзеі, зьвязаныя з мадэлямі зьместу старонак",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} мадэль зьместу старонкі $3 з «$4» на «$5»",
@@ -3586,5 +3587,6 @@
 	"mw-widgets-titleinput-description-redirect": "перанакіраваньне на $1",
 	"randomrootpage": "Выпадковая карэнная старонка",
 	"changecredentials": "Зьмена ўліковых зьвестак",
-	"removecredentials": "Выдаленьне ўліковых зьвестак"
+	"removecredentials": "Выдаленьне ўліковых зьвестак",
+	"credentialsform-account": "Назва рахунку:"
 }

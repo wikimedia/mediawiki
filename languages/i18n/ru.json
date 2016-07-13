@@ -1030,7 +1030,7 @@
 	"searchall": "все",
 	"showingresults": "Ниже {{PLURAL:$1|1=показан <strong>1</strong> результат|показан  <strong>$1</strong> результат|показано <strong>$1</strong> результата|показаны <strong>$1</strong> результатов}}, начиная с № <strong>$2</strong>.",
 	"showingresultsinrange": "Ниже показано до {{PLURAL:$1|<strong>1</strong> результата|<strong>$1</strong> результата|<strong>$1</strong> результатов}} в диапазоне от <strong>$2</strong> до <strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Результат <strong>$1</strong> из <strong>$3</strong>|Результаты <strong>$1—$2</strong> из <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Результат <strong>$1</strong> из <strong>$3</strong>|Результаты <strong>$1—$2</strong> из <strong>$3</strong>}}",
 	"search-nonefound": "Соответствий запросу не найдено.",
 	"search-nonefound-thiswiki": "Нет результатов, соответствующих запросу на этом сайте.",
 	"powersearch-legend": "Расширенный поиск",

@@ -29,6 +29,8 @@
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Wikitestu zabaldua.",
 	"apihelp-feedcontributions-param-year": "Urtetik aurrera (eta lehenagotik)",
 	"apihelp-feedcontributions-param-month": "Hilabetetik aurrera (eta lehenagotik)",
+	"apihelp-feedcontributions-param-newonly": "Orrialde sorkuntza direnak soilik erakutsi",
+	"apihelp-feedcontributions-param-hideminor": "Aldaketa txikiak ezkutatu",
 	"apihelp-feedrecentchanges-param-hideminor": "Ezkutatu aldaketa txikiak.",
 	"apihelp-feedrecentchanges-param-hidebots": "Ezkutatu botek egindako aldaketak.",
 	"apihelp-feedrecentchanges-param-hideanons": "Ezkutatu erabiltzaile anonimoek egindako aldaketak.",

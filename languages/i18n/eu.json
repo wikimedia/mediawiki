@@ -1889,6 +1889,8 @@
 	"sp-contributions-search": "Ekarpenentzako bilaketa",
 	"sp-contributions-username": "IP helbidea edo erabiltzaile izena:",
 	"sp-contributions-toponly": "Azken aldaketak direnak soilik erakutsi",
+	"sp-contributions-newonly": "Orrialde sorkuntza direnak soilik erakutsi",
+	"sp-contributions-hideminor": "Aldaketa txikiak ezkutatu",
 	"sp-contributions-submit": "Bilatu",
 	"whatlinkshere": "Honanzko lotura duten orriak",
 	"whatlinkshere-title": "$1(e)ra lotura duten orriak",
@@ -3165,6 +3167,5 @@
 	"mw-widgets-dateinput-no-date": "Ez duzu datarik aukeratu",
 	"mw-widgets-titleinput-description-new-page": "orri hori oraindik ez da existitzen",
 	"mw-widgets-titleinput-description-redirect": "$1ra birzuzendu",
-	"api-error-blacklisted": "Aukera ezazu, mesedez, izenburu ezberdin eta deskriptiboago bat.",
 	"sessionprovider-generic": "$1 sesio"
 }

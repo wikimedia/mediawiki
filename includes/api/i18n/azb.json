@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ilğım"
+		]
+	},
+	"apihelp-main-param-action": "هانسی ایش گؤرولسون.",
+	"apihelp-main-param-requestid": "بۇرادا یازیلان هر میقدار جاوابا آرتیلاجاقدیر. ایستک‌لری فرقلندیرمه‌یه ایشلنه بیلر.",
+	"apihelp-block-param-nocreate": "حساب آچماغین قاباغینی آل.",
+	"apihelp-checktoken-param-token": "تِست اۆچون توکن.",
+	"apihelp-compare-param-fromtitle": "مۆقاییسه اۆچون ایلک باشلیق.",
+	"apihelp-delete-description": "بیر صفحه‌نی سیل.",
+	"apihelp-delete-param-unwatch": "صفحه‌نی ایزله‌دیکلر لیستیندن سیل.",
+	"apihelp-edit-description": "صفحه‌لری یارادیب دَییشدیر."
+}

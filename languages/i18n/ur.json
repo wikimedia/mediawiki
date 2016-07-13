@@ -596,6 +596,7 @@
 	"defaultmessagetext": "طے شدہ پیغام کا متن",
 	"content-model-text": "سادہ متن",
 	"content-model-javascript": "جاوا اسکرپٹ",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|تبادلہ خیال]]) کی جانب سے کی گئی ترمیم $1 رد کردی گئی ہے۔",
 	"viewpagelogs": "اس صفحہ کیلیے نوشتہ جات دیکھیے",
 	"nohistory": "اِس صفحہ کیلئے کوئی تدوینی تاریخچہ موجود نہیں ہے.",
 	"currentrev": "حـالیـہ تـجدید",

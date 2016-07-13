@@ -770,6 +770,8 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tom matrise",
+	"deprecated-self-close-category": "Sider som bruker ugyldige, balanserte HTML-tagger.",
+	"deprecated-self-close-category-desc": "Siden inneholder balanserte HTML-tagger slike som <code>&lt;b/></code> or <code>&lt;span/></code>. Oppførselen til disse vil snart endret for å være i samsvar med HTML-spesifikasjonen, og da vil de ikke kunne brukes som wikitekst.",
 	"duplicate-args-warning": "<strong>Advarsel:</strong> [[:$1]] kaller [[:$2]] med flere enn en verdi for \"$3\"-parameteren. Bare den sist angitte verdien vil brukes.",
 	"duplicate-args-category": "Sider med duplikate argumenter i malkall",
 	"duplicate-args-category-desc": "Denne siden inneholder malkall med duplikate parametre, slik som <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> eller <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
