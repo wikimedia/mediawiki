@@ -3279,6 +3279,12 @@ class WikiPage implements Page, IDBAccessObject {
 		$title->touchLinks();
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
+
+		if ( $title->getNamespace() == NS_CATEGORY ) {
+			// Load the Category object, which will schedule a job to create
+			// the category table row if necessary.
+			Category::newFromTitle( $title )->getID();
+		}
 	}
 
 	/**
@@ -3524,6 +3530,12 @@ class WikiPage implements Page, IDBAccessObject {
 				foreach ( $deleted as $catName ) {
 					$cat = Category::newFromName( $catName );
 					Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
+
+					// If the category is supposed to be empty now, refresh the
+					// counts to delete the category table row if necessary.
+					if ( $cat->getPageCount() <= 0 ) {
+						$cat->refreshCounts();
+					}
 				}
 			}
 		);
