@@ -853,8 +853,21 @@ class PPDAccum_Hash {
 			$this->firstNode = $accum->firstNode;
 			$this->lastNode = $accum->lastNode;
 		} else {
-			$this->lastNode->nextSibling = $accum->firstNode;
-			$this->lastNode = $accum->lastNode;
+			// Combine PPNode_Hash_Text nodes to avoid insanely long node
+			// chains (T135483)
+			for (
+				$node = $accum->firstNode;
+				$node && $this->lastNode instanceof PPNode_Hash_Text && $node instanceof PPNode_Hash_Text;
+				$node = $node->nextSibling
+			) {
+				$this->lastNode->value .= $node->value;
+			}
+
+			// If there are any nodes left, append them.
+			if ( $node ) {
+				$this->lastNode->nextSibling = $node;
+				$this->lastNode = $accum->lastNode;
+			}
 		}
 	}
 }
