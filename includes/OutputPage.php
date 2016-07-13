@@ -2688,6 +2688,11 @@ class OutputPage extends ContextSource {
 			$bodyClasses[] = 'capitalize-all-nouns';
 		}
 
+		// Parser feature migration class
+		// The idea is that this will eventually be removed, after the wikitext
+		// which requires it is cleaned up.
+		$bodyClasses[] = 'mw-hide-empty-elt';
+
 		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 		$bodyClasses[] =
