@@ -1354,12 +1354,15 @@ class AuthManager implements LoggerAwareInterface {
 			// Step 2: Primary authentication succeeded, create the User object
 			// and add the user locally.
 
+			$T119736TimingData = [];
 			if ( $state['userid'] === 0 ) {
 				$this->logger->info( 'Creating user {user} during account creation', [
 					'user' => $user->getName(),
 					'creator' => $creator->getName(),
 				] );
+				$T119736TimingData['start'] = microtime( true );
 				$status = $user->addToDatabase();
+				$T119736TimingData['after addToDatabase'] = microtime( true );
 				if ( !$status->isOk() ) {
 					// @codeCoverageIgnoreStart
 					$ret = AuthenticationResponse::newFail( $status->getMessage() );
@@ -1369,8 +1372,11 @@ class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				}
 				$this->setDefaultUserOptions( $user, $creator->isAnon() );
+				$T119736TimingData['before LocalUserCreated'] = microtime( true );
 				\Hooks::run( 'LocalUserCreated', [ $user, false ] );
+				$T119736TimingData['before saveSettings'] = microtime( true );
 				$user->saveSettings();
+				$T119736TimingData['after saveSettings'] = microtime( true );
 				$state['userid'] = $user->getId();
 
 				// Update user count
@@ -1381,6 +1387,8 @@ class AuthManager implements LoggerAwareInterface {
 
 				// Inform the provider
 				$logSubtype = $provider->finishAccountCreation( $user, $creator, $state['primaryResponse'] );
+
+				$T119736TimingData['before MW log entry'] = microtime( true );
 
 				// Log the creation
 				if ( $this->config->get( 'NewUserLog' ) ) {
@@ -1399,8 +1407,10 @@ class AuthManager implements LoggerAwareInterface {
 						'4::userid' => $user->getId(),
 					] );
 					$logid = $logEntry->insert();
+					$T119736TimingData['before publishing MW log entry'] = microtime( true );
 					$logEntry->publish( $logid );
 				}
+				$T119736TimingData['after MW log entry'] = microtime( true );
 			}
 
 			// Step 3: Iterate over all the secondary authentication providers.
@@ -1408,6 +1418,7 @@ class AuthManager implements LoggerAwareInterface {
 			$beginReqs = $state['reqs'];
 
 			foreach ( $this->getSecondaryAuthenticationProviders() as $id => $provider ) {
+				$T119736TimingData['starting secondary ' . $id] = microtime( true );
 				if ( !isset( $state['secondary'][$id] ) ) {
 					// This provider isn't started yet, so we pass it the set
 					// of reqs from beginAuthentication instead of whatever
@@ -1420,6 +1431,7 @@ class AuthManager implements LoggerAwareInterface {
 				} else {
 					continue;
 				}
+				$T119736TimingData['after secondary ' . $id] = microtime( true );
 				switch ( $res->status ) {
 					case AuthenticationResponse::PASS;
 						$this->logger->debug( __METHOD__ . ": Secondary creation passed by $id", [
@@ -1456,6 +1468,7 @@ class AuthManager implements LoggerAwareInterface {
 				}
 			}
 
+			$T119736TimingData['after secondaries'] = microtime( true );
 			$id = $user->getId();
 			$name = $user->getName();
 			$req = new CreatedAccountAuthenticationRequest( $id, $name );
@@ -1463,9 +1476,11 @@ class AuthManager implements LoggerAwareInterface {
 			$ret->loginRequest = $req;
 			$this->createdAccountAuthenticationRequests[] = $req;
 
+			$T119736TimingData['end'] = microtime( true );
 			$this->logger->info( __METHOD__ . ': Account creation succeeded for {user}', [
 				'user' => $user->getName(),
 				'creator' => $creator->getName(),
+				'T119736TimingData' => $T119736TimingData,
 			] );
 
 			$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
