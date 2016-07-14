@@ -417,6 +417,10 @@
 									"type": "string",
 									"description": "Group with which this module should be loaded"
 								},
+								"deprecated": {
+									"type": ["object", "boolean"],
+									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean or an object with key message can be used to customise deprecation message."
+								},
 								"position": {
 									"type": "string",
 									"description": "Position on the page to load this module at",
