@@ -69,7 +69,7 @@ class BalanceSets {
 	public static $unsupportedSet = [
 		self::HTML_NAMESPACE => [
 			'html' => true, 'head' => true, 'body' => true, 'frameset' => true,
-			'form' => true, 'frame' => true,
+			'frame' => true,
 			'plaintext' => true, 'isindex' => true, 'textarea' => true,
 			'xmp' => true, 'iframe' => true, 'noembed' => true,
 			'noscript' => true, 'script' => true,
@@ -185,7 +185,14 @@ class BalanceSets {
 		]
 	];
 
-	# OMITTED: formAssociatedSet, since we don't allow <form>
+	// See https://html.spec.whatwg.org/multipage/forms.html#form-associated-element
+	public static $formAssociatedSet = [
+		self::HTML_NAMESPACE => [
+			'button' => true, 'fieldset' => true, 'input' => true,
+			'keygen' => true, 'object' => true, 'output' => true,
+			'select' => true, 'textarea' => true, 'img' => true
+		]
+	];
 
 	public static $inScopeSet = [
 		self::HTML_NAMESPACE => [
@@ -1721,11 +1728,10 @@ class BalanceActiveFormattingElements {
  * - All comments and null characters are assumed to have been removed.
  * - We don't alter linefeeds after <pre>/<listing>.
  * - The following elements are disallowed: <html>, <head>, <body>, <frameset>,
- *   <form>, <frame>, <plaintext>, <isindex>, <textarea>, <xmp>, <iframe>,
+ *   <frame>, <plaintext>, <isindex>, <textarea>, <xmp>, <iframe>,
  *   <noembed>, <noscript>, <script>, <title>.  As a result,
  *   further simplifications can be made:
  *   - `frameset-ok` is not tracked.
- *   - `form element pointer` is not tracked.
  *   - `head element pointer` is not tracked (but presumed non-null)
  *   - Tokenizer has only a single mode.
  *
@@ -1754,6 +1760,7 @@ class Balancer {
 	private $pendingTableText;
 	private $originalInsertionMode;
 	private $fragmentContext;
+	private $formElementPointer;
 
 	/**
 	 * Create a new Balancer.
@@ -1831,6 +1838,13 @@ class Balancer {
 		$this->fragmentContext =
 			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'body', [] );
 		$this->resetInsertionMode();
+		$this->formElementPointer = null;
+		for ( $e = $this->fragmentContext; $e != null; $e = $e->parent ) {
+			if ( $e->isHtmlNamed( 'form' ) ) {
+				$this->formElementPointer = $e;
+				break;
+			}
+		}
 
 		// First element is text not tag
 		$x = $this->bitsIterator->current();
@@ -1847,6 +1861,7 @@ class Balancer {
 		$this->afe = null;
 		$this->stack = null;
 		$this->fragmentContext = null;
+		$this->formElementPointer = null;
 		return $result;
 	}
 
@@ -2347,7 +2362,21 @@ class Balancer {
 				# 2. OMITTED: frameset_ok
 				return true;
 
-			# OMITTED: <form>
+			case 'form':
+				if (
+					$this->formElementPointer &&
+					$this->stack->indexOf( 'template' ) < 0
+				) {
+					return true; // in a form, not in a template.
+				}
+				if ( $this->stack->inButtonScope( "p" ) ) {
+					$this->inBodyMode( 'endtag', 'p' );
+				}
+				$elt = $this->stack->insertHTMLElement( $value, $attribs );
+				if ( $this->stack->indexOf( 'template' ) < 0 ) {
+					$this->formElementPointer = $elt;
+				}
+				return true;
 
 			case 'li':
 				# OMITTED: frameset_ok
@@ -2641,7 +2670,23 @@ class Balancer {
 				$this->stack->popTag( $value );
 				return true;
 
-			# OMITTED: <form>
+			case 'form':
+				if ( $this->stack->indexOf( 'template' ) < 0 ) {
+					$openform = $this->formElementPointer;
+					$this->formElementPointer = null;
+					if ( !$openform || !$this->stack->inScope( $openform ) ) {
+						return true;
+					}
+					$this->stack->generateImpliedEndTags();
+					$this->stack->removeElement( $openform );
+				} else {
+					if ( !$this->stack->inScope( 'form' ) ) {
+						return true;
+					}
+					$this->stack->generateImpliedEndTags();
+					$this->stack->popTag( 'form' );
+				}
+				return true;
 
 			case 'p':
 				if ( !$this->stack->inButtonScope( 'p' ) ) {
@@ -2797,7 +2842,17 @@ class Balancer {
 				$this->stack->pop();
 				return true;
 
-			# OMITTED: <form>
+			case 'form':
+				if (
+					$this->formElementPointer ||
+					$this->stack->indexOf( 'template' ) >= 0
+				) {
+					return true; // ignore this token
+				}
+				$this->formElementPointer =
+					$this->stack->insertHTMLElement( $value, $attribs );
+				$this->stack->popTag( $this->formElementPointer );
+				return true;
 			}
 			// Fall through for "anything else" clause.
 		} elseif ( $token === 'endtag' ) {
