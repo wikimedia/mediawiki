@@ -2,8 +2,8 @@
 /**
  * PHPUnit tests for the Serbian language.
  * The language can be represented using two scripts:
- *  - Latin (SR_el)
- *  - Cyrillic (SR_ec)
+ *  - Latin (SR_latn)
+ *  - Cyrillic (SR_cyrl)
  * Both representations seems to be bijective, hence MediaWiki can convert
  * from one script to the other.
  *
@@ -52,11 +52,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	public function testSameAmountOfLatinAndCyrillicGetConverted() {
 		$this->assertConverted(
 			'4 latin: šđčć | 4 cyrillic: шђчћ',
-			'sr-ec'
+			'sr-cyrl'
 		);
 		$this->assertConverted(
 			'4 latin: šđčć | 4 cyrillic: шђчћ',
-			'sr-el'
+			'sr-latn'
 		);
 	}
 
@@ -181,7 +181,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	/**
 	 *Wrapper to verify text stay the same after applying conversion
 	 * @param string $text Text to convert
-	 * @param string $variant Language variant 'sr-ec' or 'sr-el'
+	 * @param string $variant Language variant 'sr-cyrl' or 'sr-latn'
 	 * @param string $msg Optional message
 	 */
 	protected function assertUnConverted( $text, $variant, $msg = '' ) {
@@ -195,7 +195,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
 	 * @param string $text Text to convert
-	 * @param string $variant Language variant 'sr-ec' or 'sr-el'
+	 * @param string $variant Language variant 'sr-cyrl' or 'sr-latn'
 	 * @param string $msg Optional message
 	 */
 	protected function assertConverted( $text, $variant, $msg = '' ) {
@@ -214,8 +214,8 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @param string $msg Optional message
 	 */
 	protected function assertCyrillic( $text, $msg = '' ) {
-		$this->assertUnConverted( $text, 'sr-ec', $msg );
-		$this->assertConverted( $text, 'sr-el', $msg );
+		$this->assertUnConverted( $text, 'sr-cyrl', $msg );
+		$this->assertConverted( $text, 'sr-latn', $msg );
 	}
 
 	/**
@@ -226,8 +226,8 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @param string $msg Optional message
 	 */
 	protected function assertLatin( $text, $msg = '' ) {
-		$this->assertUnConverted( $text, 'sr-el', $msg );
-		$this->assertConverted( $text, 'sr-ec', $msg );
+		$this->assertUnConverted( $text, 'sr-latn', $msg );
+		$this->assertConverted( $text, 'sr-cyrl', $msg );
 	}
 
 	/** Wrapper for converter::convertTo() method*/
@@ -240,10 +240,10 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	protected function convertToCyrillic( $text ) {
-		return $this->convertTo( $text, 'sr-ec' );
+		return $this->convertTo( $text, 'sr-cyrl' );
 	}
 
 	protected function convertToLatin( $text ) {
-		return $this->convertTo( $text, 'sr-el' );
+		return $this->convertTo( $text, 'sr-latn' );
 	}
 }
