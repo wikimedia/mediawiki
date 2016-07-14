@@ -2164,6 +2164,7 @@
 	"sp-contributions-username": "IP-адрас альбо імя ўдзельніка/ўдзельніцы:",
 	"sp-contributions-toponly": "Паказваць толькі зьмены, якія зьяўляюцца апошнімі вэрсіямі",
 	"sp-contributions-newonly": "Паказваць толькі праўкі, якімі былі створаныя старонкі",
+	"sp-contributions-hideminor": "Схаваць дробныя праўкі",
 	"sp-contributions-submit": "Шукаць",
 	"whatlinkshere": "Спасылкі на старонку",
 	"whatlinkshere-title": "Старонкі, якія спасылаюцца на $1",
@@ -3588,5 +3589,6 @@
 	"randomrootpage": "Выпадковая карэнная старонка",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
+	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:"
 }

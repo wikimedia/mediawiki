@@ -317,6 +317,7 @@
 	"config-install-extension-tables": "有効にした拡張機能のためのテーブルを作成しています",
 	"config-install-mainpage-failed": "メインページを挿入できませんでした: $1",
 	"config-install-done": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、ウィキをインストールした基準ディレクトリ (index.phpと同じディレクトリ) に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
+	"config-install-done-path": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、<code>$4</code> に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
 	"config-download-localsettings": "<code>LocalSettings.php</code> をダウンロード",
 	"config-help": "ヘルプ",
 	"config-help-tooltip": "クリックで展開",

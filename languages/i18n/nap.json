@@ -743,6 +743,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Oggetto abbacante",
 	"content-json-empty-array": "Array abbacante",
+	"deprecated-self-close-category": "Paggene ausanno nu tag HTML auto-nchiuse nun valido",
 	"duplicate-args-warning": "<strong>Attenziò:</strong> [[:$1]] sta chiammanno [[:$2]] cu cchiù 'e nu volore p' 'o parametro \"$3\". Surtanto ll'urdemo valore s'auserrà.",
 	"duplicate-args-category": "Paggene c'ausano argomiente dupprecate dint' 'e chiammate a 'e mudelle",
 	"duplicate-args-category-desc": "'A paggena tene chiammate a mudelle c'ausassero argomiente dupprecate, comme p'esempio <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
@@ -3595,7 +3596,7 @@
 	"log-action-filter-patrol": "Tipo 'e verifica:",
 	"log-action-filter-protect": "Tipo 'e protezione:",
 	"log-action-filter-rights": "Tipo 'e cagnamiento 'e deritte",
-	"log-action-filter-suppress": "Tipo 'e suppressione",
+	"log-action-filter-suppress": "Tipo 'e suppressione:",
 	"log-action-filter-upload": "Tipo 'e carreca:",
 	"log-action-filter-all": "Tutte",
 	"log-action-filter-block-block": "Blocco",
@@ -3669,5 +3670,6 @@
 	"authprovider-confirmlink-message": "Verenno 'e tentative d'acciesso mò, l'utente ccà putessero avé nu cullegamento c' 'o cunto wiki d' 'o vuosto. A ffà cullegamento premmettesse appiccià 'o sistema 'e trasuta pe' bbìa 'e sti cunte. Pe' piacere sciglite 'e cunte addò vulite fà cullegamento.",
 	"authprovider-confirmlink-request-label": "Cunte ca s'avesser'a cullegà",
 	"authprovider-confirmlink-success-line": "$1: cullegato e apposto.",
-	"authprovider-confirmlink-failed": "'O cullegamento 'e ll'utenza nun è ngarrato sano sano: $1"
+	"authprovider-confirmlink-failed": "'O cullegamento 'e ll'utenza nun è ngarrato sano sano: $1",
+	"authprovider-confirmlink-ok-help": "Cuntinuà aropp'a fà veré 'e mmasciate 'errore 'e cullegamento."
 }

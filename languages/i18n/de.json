@@ -2644,7 +2644,7 @@
 	"creditspage": "Seitenzuschreibung",
 	"nocredits": "Für diese Seite sind keine Zuschreibungen vorhanden.",
 	"spamprotectiontitle": "Spamschutzfilter",
-	"spamprotectiontext": "Der Text, die du speichern willst, wurde vom Spamschutzfilter blockiert.\nDas liegt wahrscheinlich an einem Link auf eine externe Seite.",
+	"spamprotectiontext": "Der Text, den du speichern möchtest, wurde vom Spamschutzfilter blockiert.\nDas liegt wahrscheinlich an einem Link auf eine externe Seite.",
 	"spamprotectionmatch": "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
 	"spambot_username": "MediaWiki-Spam-Säuberung",
 	"spam_reverting": "Letzte Version ohne Links zu $1 wiederhergestellt.",
