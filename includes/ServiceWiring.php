@@ -40,6 +40,7 @@
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\Sql\TextTableBlobStore;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
@@ -200,6 +201,19 @@ return [
 
 	'TitleParser' => function( MediaWikiServices $services ) {
 		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'BlobStore' => function ( MediaWikiServices $services ) {
+		$store = new TextTableBlobStore(
+			$services->getDBLoadBalancer()
+		);
+
+		$config = $services->getMainConfig();
+		$store->setExternalStore( $config->get( 'DefaultExternalStore' ) );
+		$store->setCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
+		$store->setWanCache( ObjectCache::getMainWANInstance() );
+
+		return $store;
 	},
 
 	///////////////////////////////////////////////////////////////////////////

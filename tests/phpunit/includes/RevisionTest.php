@@ -61,96 +61,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = new stdClass;
 		$row->old_flags = '';
 		$row->old_text = 'This is a bunch of revision text.';
-		$this->assertEquals(
+		$this->assertSame(
 			'This is a bunch of revision text.',
 			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextGzip() {
-		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip';
-		$row->old_text = gzdeflate( 'This is a bunch of revision text.' );
-		$this->assertEquals(
-			'This is a bunch of revision text.',
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8Native() {
-		$row = new stdClass;
-		$row->old_flags = 'utf-8';
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8Legacy() {
-		$row = new stdClass;
-		$row->old_flags = '';
-		$row->old_text = "Wiki est l'\xe9cole superieur !";
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8NativeGzip() {
-		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip,utf-8';
-		$row->old_text = gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" );
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8LegacyGzip() {
-		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip';
-		$row->old_text = gzdeflate( "Wiki est l'\xe9cole superieur !" );
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::compressRevisionText
-	 */
-	public function testCompressRevisionTextUtf8() {
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
-			"Flags should contain 'utf-8'" );
-		$this->assertFalse( false !== strpos( $row->old_flags, 'gzip' ),
-			"Flags should not contain 'gzip'" );
-		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			$row->old_text, "Direct check" );
-		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
 	/**
@@ -160,17 +73,15 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->checkPHPExtension( 'zlib' );
 		$this->setMwGlobals( 'wgCompressRevisions', true );
 
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
-			"Flags should contain 'utf-8'" );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'gzip' ),
-			"Flags should contain 'gzip'" );
-		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			gzinflate( $row->old_text ), "Direct check" );
-		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ), "getRevisionText" );
+		$text = "Wiki est l'\xc3\xa9cole superieur !";
+		$flags = Revision::compressRevisionText( $text );
+		$flags = explode( ',', $flags );
+
+		$this->assertContains( 'gzip', $flags, "Flags should contain 'gzip'" );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !",
+			gzinflate( $text ), "Direct check" );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !",
+			Revision::decompressRevisionText( $text, $flags ), "decompressRevisionText" );
 	}
 
 	# =========================================================================
