@@ -2929,15 +2929,17 @@ class WikiPage implements Page, IDBAccessObject {
 			__METHOD__
 		);
 
+		// Clone the title and wikiPage, so we have the information we need when
+		// we log and run the ArticleDeleteComplete hook.
+		$logTitle = clone $this->mTitle;
+		$wikiPageBeforeDelete = clone $this;
+
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
 		}
-
-		// Clone the title, so we have the information we need when we log
-		$logTitle = clone $this->mTitle;
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
@@ -2958,7 +2960,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete',
-			[ &$this, &$user, $reason, $id, $content, $logEntry ] );
+			[ &$wikiPageBeforeDelete, &$user, $reason, $id, $content, $logEntry ] );
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
