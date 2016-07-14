@@ -83,9 +83,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected $config;
 
 	/**
-	 * @var boolean
+	 * @var Array|false
 	 */
-	protected $deprecated = false;
+	protected $deprecationInformation = false;
 
 	/**
 	 * @var LoggerInterface
@@ -610,6 +610,14 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				}
 			}
 			$content['scripts'] = $scripts;
+		}
+		if ( $this->deprecationInformation ) {
+			$content['deprecation-info'] = [];
+			if ( is_array( $this->deprecationInformation ) ) {
+				$content['deprecation-info'] = $this->deprecationInformation;
+			}
+			// ensure never empty
+			$content['deprecation-info']['warning'] = true;
 		}
 
 		// Styles

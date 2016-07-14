@@ -981,7 +981,7 @@ MESSAGE;
 							$strContent = $scripts;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs
-							$strContent = self::makeLoaderImplementScript( $name, $scripts, [], [], [] );
+							$strContent = self::makeLoaderImplementScript( $name, $scripts, [], [], [], $deprecationInfo );
 						}
 						break;
 					case 'styles':
@@ -997,7 +997,8 @@ MESSAGE;
 							isset( $content['scripts'] ) ? $content['scripts'] : '',
 							isset( $content['styles'] ) ? $content['styles'] : [],
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
-							isset( $content['templates'] ) ? $content['templates'] : []
+							isset( $content['templates'] ) ? $content['templates'] : [],
+							isset( $content['deprecation-info'] ) ? $content['deprecation-info'] : null
 						);
 						break;
 				}
@@ -1085,7 +1086,7 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderImplementScript(
-		$name, $scripts, $styles, $messages, $templates
+		$name, $scripts, $styles, $messages, $templates, $deprecationInfo
 	) {
 		if ( is_string( $scripts ) ) {
 			// Site and user module are a legacy scripts that run in the global scope (no closure).
@@ -1111,6 +1112,7 @@ MESSAGE;
 			(object)$styles,
 			(object)$messages,
 			(object)$templates,
+			(object)$deprecationInfo,
 		];
 		self::trimArray( $module );
 

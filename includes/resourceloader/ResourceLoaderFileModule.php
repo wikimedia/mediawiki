@@ -256,7 +256,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					}
 					break;
 				case 'deprecated':
-					$this->deprecated = true;
+					$this->deprecationInformation = $option;
 					break;
 				// Lists of strings
 				case 'dependencies':
