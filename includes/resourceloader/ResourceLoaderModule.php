@@ -83,6 +83,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected $config;
 
 	/**
+	 * @var boolean
+	 */
+	protected $deprecated = false;
+
+	/**
 	 * @var LoggerInterface
 	 */
 	protected $logger;

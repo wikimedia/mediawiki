@@ -255,6 +255,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						$this->{$member}[$key] = (array)$value;
 					}
 					break;
+				case 'deprecated':
+					$this->deprecated = true;
+					break;
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
