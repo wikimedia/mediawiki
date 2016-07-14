@@ -1821,8 +1821,18 @@
 				 *
 				 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
+				 * @param {Object} [deprecationInfo] information about the modules deprecation status.
 				 */
-				implement: function ( module, script, style, messages, templates ) {
+				implement: function ( module, script, style, messages, templates, deprecationInfo ) {
+					var warning;
+					if ( deprecationInfo ) {
+						warning = 'This page is using the deprecated ResourceLoader module `' + module + '`.';
+						if ( deprecationInfo.message ) {
+							warning += '\n' + deprecationInfo.message;
+						}
+						mw.log.warn( warning );
+					}
+
 					// Automatically register module
 					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
@@ -1836,6 +1846,7 @@
 					registry[ module ].style = style || null;
 					registry[ module ].messages = messages || null;
 					registry[ module ].templates = templates || null;
+
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[ module ].state, [ 'error', 'missing' ] ) === -1 ) {
 						registry[ module ].state = 'loaded';
