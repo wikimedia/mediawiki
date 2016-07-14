@@ -1069,7 +1069,6 @@ $wgAutoloadLocalClasses = [
 	'Preprocessor_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
 	'ProcessCacheLRU' => __DIR__ . '/includes/libs/ProcessCacheLRU.php',
 	'Processor' => __DIR__ . '/includes/registration/Processor.php',
-	'ProfileSection' => __DIR__ . '/includes/profiler/ProfileSection.php',
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
 	'ProfilerOutput' => __DIR__ . '/includes/profiler/output/ProfilerOutput.php',
 	'ProfilerOutputDb' => __DIR__ . '/includes/profiler/output/ProfilerOutputDb.php',
