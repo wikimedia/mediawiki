@@ -3513,13 +3513,11 @@ HTML
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$this, &$wgOut ] ) ) {
 			$stats = $wgOut->getContext()->getStats();
 			$stats->increment( 'edit.failures.conflict' );
-			if ( $this->mTitle->isTalkPage() ) {
-				$stats->increment( 'edit.failures.conflict.byType.talk' );
-			} else {
-				$stats->increment( 'edit.failures.conflict.byType.subject' );
-			}
-			if ( $this->mTitle->getNamespace() === NS_PROJECT ) {
-				$stats->increment( 'edit.failures.conflict.byNamespace.project' );
+			if (
+				$this->mTitle->getNamespace() >= NS_MAIN &&
+				$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
+			) {
+				$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
 			}
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
