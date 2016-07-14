@@ -27,6 +27,15 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		return [
 			'noTemplateModule' => [],
 
+			'deprecatedModule' => $base + [
+				'deprecated' => true,
+			],
+			'deprecatedTomorrow' => $base + [
+				'deprecated' => [
+					'message' => 'Will be removed tomorrow.'
+				],
+			],
+
 			'htmlTemplateModule' => $base + [
 				'templates' => [
 					'templates/template.html',
@@ -94,6 +103,34 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	public function testTemplateDependencies( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );
 		$this->assertEquals( $rl->getDependencies(), $expected );
+	}
+
+	public static function providerDeprecatedModules() {
+		return [
+			[
+				'deprecatedModule',
+				'mw.log.warn("This page is using the deprecated ResourceLoader module \"deprecatedModule\".");',
+			],
+			[
+				'deprecatedTomorrow',
+				'mw.log.warn(' .
+					'"This page is using the deprecated ResourceLoader module \"deprecatedTomorrow\".\\n' .
+					"Will be removed tomorrow." .
+					'");'
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider providerDeprecatedModules
+	 * @covers ResourceLoaderFileModule::getScripts
+	 */
+	public function testDeprecatedModules( $name, $expected ) {
+		$modules = self::getModules();
+		$rl = new ResourceLoaderFileModule( $modules[$name] );
+		$rl->setName( $name );
+		$ctx = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$this->assertEquals( $rl->getScript( $ctx ), $expected );
 	}
 
 	/**
