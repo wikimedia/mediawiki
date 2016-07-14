@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 /**
  * @group AuthManager
  * @group Database
+ * @group Foo
  * @covers MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
  */
 class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
