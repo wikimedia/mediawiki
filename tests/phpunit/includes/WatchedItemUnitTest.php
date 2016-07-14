@@ -78,35 +78,6 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 		$this->assertEquals( $timestamp, $item->getNotificationTimestamp() );
 	}
 
-	/**
-	 * @dataProvider provideUserTitleTimestamp
-	 */
-	public function testResetNotificationTimestamp( $user, $linkTarget, $timestamp ) {
-		$force = 'XXX';
-		$oldid = 999;
-
-		$store = $this->getMockWatchedItemStore();
-		$store->expects( $this->once() )
-			->method( 'resetNotificationTimestamp' )
-			->with( $user, $this->isInstanceOf( Title::class ), $force, $oldid )
-			->will( $this->returnCallback(
-				function ( $user, Title $title, $force, $oldid ) use ( $linkTarget ) {
-					/** @var LinkTarget $linkTarget */
-					$this->assertInstanceOf( 'Title', $title );
-					$this->assertSame( $linkTarget->getDBkey(), $title->getDBkey() );
-					$this->assertSame( $linkTarget->getFragment(), $title->getFragment() );
-					$this->assertSame( $linkTarget->getNamespace(), $title->getNamespace() );
-					$this->assertSame( $linkTarget->getText(), $title->getText() );
-
-					return true;
-				}
-			) );
-		$this->setService( 'WatchedItemStore', $store );
-
-		$item = new WatchedItem( $user, $linkTarget, $timestamp );
-		$item->resetNotificationTimestamp( $force, $oldid );
-	}
-
 	public function testAddWatch() {
 		$title = Title::newFromText( 'SomeTitle' );
 		$timestamp = null;
@@ -174,40 +145,6 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 		$this->setService( 'WatchedItemStore', $store );
 
 		WatchedItem::duplicateEntries( $oldTitle, $newTitle );
-	}
-
-	public function testBatchAddWatch() {
-		$itemOne = new WatchedItem( $this->getMockUser( 1 ), new TitleValue( 0, 'Title1' ), null );
-		$itemTwo = new WatchedItem(
-			$this->getMockUser( 3 ),
-			Title::newFromText( 'Title2' ),
-			'20150101010101'
-		);
-
-		$store = $this->getMockWatchedItemStore();
-		$store->expects( $this->exactly( 2 ) )
-			->method( 'addWatchBatchForUser' );
-		$store->expects( $this->at( 0 ) )
-			->method( 'addWatchBatchForUser' )
-			->with(
-				$itemOne->getUser(),
-				[
-					$itemOne->getTitle()->getSubjectPage(),
-					$itemOne->getTitle()->getTalkPage(),
-				]
-			);
-		$store->expects( $this->at( 1 ) )
-			->method( 'addWatchBatchForUser' )
-			->with(
-				$itemTwo->getUser(),
-				[
-					$itemTwo->getTitle()->getSubjectPage(),
-					$itemTwo->getTitle()->getTalkPage(),
-				]
-			);
-		$this->setService( 'WatchedItemStore', $store );
-
-		WatchedItem::batchAddWatch( [ $itemOne, $itemTwo ] );
 	}
 
 }

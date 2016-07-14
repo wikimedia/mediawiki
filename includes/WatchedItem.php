@@ -157,54 +157,6 @@ class WatchedItem {
 	}
 
 	/**
-	 * @deprecated since 1.27 Use WatchedItemStore::resetNotificationTimestamp()
-	 */
-	public function resetNotificationTimestamp( $force = '', $oldid = 0 ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		if ( $this->checkRights && !$this->user->isAllowed( 'editmywatchlist' ) ) {
-			return;
-		}
-		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
-			$this->user,
-			$this->getTitle(),
-			$force,
-			$oldid
-		);
-	}
-
-	/**
-	 * @deprecated since 1.27 Use WatchedItemStore::addWatchBatch()
-	 */
-	public static function batchAddWatch( array $items ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		if ( !$items ) {
-			return false;
-		}
-
-		$targets = [];
-		$users = [];
-		/** @var WatchedItem $watchedItem */
-		foreach ( $items as $watchedItem ) {
-			$user = $watchedItem->getUser();
-			if ( $watchedItem->checkRights && !$user->isAllowed( 'editmywatchlist' ) ) {
-				continue;
-			}
-			$userId = $user->getId();
-			$users[$userId] = $user;
-			$targets[$userId][] = $watchedItem->getTitle()->getSubjectPage();
-			$targets[$userId][] = $watchedItem->getTitle()->getTalkPage();
-		}
-
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$success = true;
-		foreach ( $users as $userId => $user ) {
-			$success &= $store->addWatchBatchForUser( $user, $targets[$userId] );
-		}
-
-		return $success;
-	}
-
-	/**
 	 * @deprecated since 1.27 Use User::addWatch()
 	 * @return bool
 	 */

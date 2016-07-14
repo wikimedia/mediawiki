@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 /**
  * @author Addshore
@@ -63,7 +64,9 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 			WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp()
 		);
 
-		WatchedItem::fromUserTitle( $user, $title )->resetNotificationTimestamp();
+		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
+			$user, $title
+		);
 		$this->assertNull( WatchedItem::fromUserTitle( $user, $title )->getNotificationTimestamp() );
 	}
 
@@ -107,7 +110,9 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		$user = $this->getUser();
 		$title = Title::newFromText( 'WatchedItemIntegrationTestPage' );
 		WatchedItem::fromUserTitle( $user, $title )->addWatch();
-		WatchedItem::fromUserTitle( $user, $title )->resetNotificationTimestamp();
+		MediaWikiServices::getInstance()->getWatchedItemStore()->resetNotificationTimestamp(
+			$user, $title
+		);
 
 		$this->assertEquals(
 			null,
