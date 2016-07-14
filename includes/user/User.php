@@ -772,15 +772,15 @@ class User implements IDBAccessObject {
 			return self::$idCacheByName[$name];
 		}
 
-		$db = ( $flags & self::READ_LATEST )
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = wfGetDB( $index );
 
 		$s = $db->selectRow(
 			'user',
 			[ 'user_id' ],
 			[ 'user_name' => $nt->getText() ],
-			__METHOD__
+			__METHOD__,
+			$options
 		);
 
 		if ( $s === false ) {
