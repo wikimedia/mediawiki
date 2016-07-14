@@ -94,7 +94,6 @@ class BalancerTest extends MediaWikiTestCase {
 					isset( $case['document']['props']['tags']['noembed'] ) ||
 					isset( $case['document']['props']['tags']['noscript'] ) ||
 					isset( $case['document']['props']['tags']['script'] ) ||
-					isset( $case['document']['props']['tags']['select'] ) ||
 					isset( $case['document']['props']['tags']['svg script'] ) ||
 					isset( $case['document']['props']['tags']['svg title'] ) ||
 					isset( $case['document']['props']['tags']['textarea'] ) ||
