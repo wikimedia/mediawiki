@@ -15,6 +15,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Storage\BlobStore;
 use MWException;
 use ObjectCache;
 use SearchEngine;
@@ -560,6 +561,16 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser() {
 		return $this->getService( 'TitleParser' );
+	}
+
+	/**
+	 * Gets the default blob store used to store revision content.
+	 *
+	 * @since 1.28
+	 * @return BlobStore
+	 */
+	public function getBlobStore() {
+		return $this->getService( 'BlobStore' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
