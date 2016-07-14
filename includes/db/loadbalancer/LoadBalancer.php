@@ -1116,6 +1116,28 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Call runOnTransactionPreCommitCallbacks() on all DB handles
+	 *
+	 * This method should not be used outside of LBFactory/LoadBalancer
+	 *
+	 * @since 1.28
+	 */
+	public function runPreCommitCallbacks() {
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
+					$conn->runOnTransactionPreCommitCallbacks();
+				}
+			}
+		}
+	}
+
+	/**
 	 * @return bool Whether a master connection is already open
 	 * @since 1.24
 	 */

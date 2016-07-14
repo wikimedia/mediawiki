@@ -224,6 +224,10 @@ abstract class LBFactory implements DestructibleService {
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
 
+		// Run pre-commit callbacks to keep them out of the COMMIT step. If one errors out here
+		// then all DB transactions can be rolled back before anything was committed yet.
+		$this->forEachLBCallMethod( 'runPreCommitCallbacks' );
+
 		$this->logMultiDbTransaction();
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
 			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
