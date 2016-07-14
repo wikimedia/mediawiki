@@ -5,7 +5,7 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 	// Version hash for a blank file module.
 	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
 	// and ResourceLoaderFileModule::getDefinitionSummary().
-	protected static $blankVersion = '0a56zyi';
+	protected static $blankVersion = '09p30q0';
 
 	protected static function expandPlaceholders( $text ) {
 		return strtr( $text, [
