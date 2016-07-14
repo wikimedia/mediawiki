@@ -87,7 +87,11 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'updateSchema', 'recentchanges', 'recentchanges-drop-fks',
 				'patch-recentchanges-drop-fks.sql' ],
 			[ 'updateSchema', 'logging', 'logging-drop-fks', 'patch-logging-drop-fks.sql' ],
-			[ 'updateSchema', 'archive', 'archive-drop-fks', 'patch-archive-drop-fks.sql' ]
+			[ 'updateSchema', 'archive', 'archive-drop-fks', 'patch-archive-drop-fks.sql' ],
+
+			// 1.28
+			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
+				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
 		];
 	}
 
