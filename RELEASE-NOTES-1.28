@@ -52,6 +52,8 @@ changes to languages because of Phabricator reports.
 
 * (T137411) ban (Balinese), thanks to translators Adi Mayndra, Andru,
   BASAbali, M. Adiputra, Naval Scene, Nemo bis, NoiX180, and 아라.
+* (T135867) shn (Shan), thanks to translators Khun Sar, Piangpha,
+  Saiddzone Saimawnkham, Saosukham, and Sengwan.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.
