@@ -109,6 +109,7 @@ class ExtensionProcessor implements Processor {
 		'MessagesDirs',
 		'type',
 		'config',
+		'config_prefix',
 		'ParserTestFiles',
 		'AutoloadClasses',
 		'manifest_version',
@@ -161,7 +162,12 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
-		$this->extractConfig( $info );
+		if ( $version === 2 ) {
+			$this->extractConfig2( $info );
+		} else {
+			// $version === 1
+			$this->extractConfig1( $info );
+		}
 		$this->extractHooks( $info );
 		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
@@ -349,12 +355,12 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
-	 * Set configuration settings
+	 * Set configuration settings for manifest_version == 1
 	 * @todo In the future, this should be done via Config interfaces
 	 *
 	 * @param array $info
 	 */
-	protected function extractConfig( array $info ) {
+	protected function extractConfig1( array $info ) {
 		if ( isset( $info['config'] ) ) {
 			if ( isset( $info['config']['_prefix'] ) ) {
 				$prefix = $info['config']['_prefix'];
@@ -366,6 +372,29 @@ class ExtensionProcessor implements Processor {
 				if ( $key[0] !== '@' ) {
 					$this->globals["$prefix$key"] = $val;
 				}
+			}
+		}
+	}
+
+	/**
+	 * Set configuration settings for manifest_version == 2
+	 * @todo In the future, this should be done via Config interfaces
+	 *
+	 * @param array $info
+	 */
+	protected function extractConfig2( array $info ) {
+		if ( isset( $info['config_prefix'] ) ) {
+			$prefix = $info['config_prefix'];
+		} else {
+			$prefix = 'wg';
+		}
+		if ( isset( $info['config'] ) ) {
+			foreach ( $info['config'] as $key => $data ) {
+				$value = $data['value'];
+				if ( isset( $value['merge_strategy'] ) ) {
+					$value[ExtensionRegistry::MERGE_STRATEGY] = $value['merge_strategy'];
+				}
+				$this->globals["$prefix$key"] = $value;
 			}
 		}
 	}

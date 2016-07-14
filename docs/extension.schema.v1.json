@@ -415,7 +415,7 @@
 								},
 								"group": {
 									"type": "string",
-									"description": "Group with which this module should be loaded"
+									"description": "Group which this module should be loaded together with"
 								},
 								"position": {
 									"type": "string",
@@ -447,7 +447,7 @@
 								},
 								"group": {
 									"type": "string",
-									"description": "Group with which this module should be loaded"
+									"description": "Group which this module should be loaded together with"
 								},
 								"position": {
 									"type": "string",
@@ -466,14 +466,12 @@
 								},
 								"scripts": {
 									"type": "array",
-									"description": "A list of on-wiki pages containing JavaScript that should be loaded",
 									"items": {
 										"type": "string"
 									}
 								},
 								"styles": {
 									"type": "array",
-									"description": "A list of on-wiki pages containing CSS that should be loaded",
 									"items": {
 										"type": "string"
 									}
@@ -572,14 +570,6 @@
 		"CentralIdLookupProviders": {
 			"type": "object",
 			"description": "Central ID lookup providers"
-		},
-		"ChangeCredentialsBlacklist": {
-			"type": "object",
-			"description": "AuthenticationRequest classes which can only be used internally for credentials change"
-		},
-		"RemoveCredentialsBlacklist": {
-			"type": "object",
-			"description": "AuthenticationRequest classes which can only be used internally for credentials removal"
 		},
 		"namespaces": {
 			"type": "array",
@@ -857,21 +847,20 @@
 			],
 			"description": "A function to be called right after MediaWiki processes this file"
 		},
-		"config_prefix": {
-			"type": "string",
-			"default": "wg",
-			"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
-		},
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension",
+			"properties": {
+				"_prefix": {
+					"type": "string",
+					"default": "wg",
+					"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
+				}
+			},
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
 					"properties": {
-						"value": {
-							"required": true
-						},
-						"merge_strategy": {
+						"_merge_strategy": {
 							"type": "string",
 							"enum": [
 								"array_merge_recursive",
@@ -880,10 +869,6 @@
 								"array_merge"
 							],
 							"default": "array_merge"
-						},
-						"description": {
-							"type": ["string", "array"],
-							"description": "A description of the config setting, mostly for documentation/developers"
 						}
 					}
 				}
