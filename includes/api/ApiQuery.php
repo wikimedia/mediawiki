@@ -450,7 +450,6 @@ class ApiQuery extends ApiBase {
 			$exporter->pageByTitle( $title );
 		}
 		$exporter->closeStream();
-		$exportxml = $sink->getOutput();
 
 		// Don't check the size of exported stuff
 		// It's not continuable, so it would cause more
@@ -458,10 +457,10 @@ class ApiQuery extends ApiBase {
 		if ( $this->mParams['exportnowrap'] ) {
 			$result->reset();
 			// Raw formatter will handle this
-			$result->addValue( null, 'text', $exportxml, ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'text', $sink, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
-			$result->addValue( 'query', 'export', $exportxml, ApiResult::NO_SIZE_CHECK );
+			$result->addValue( 'query', 'export', $sink, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( 'query', ApiResult::META_BC_SUBELEMENTS, [ 'export' ] );
 		}
 	}

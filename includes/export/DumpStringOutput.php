@@ -39,7 +39,7 @@ class DumpStringOutput extends DumpOutput {
 	 *
 	 * @return string
 	 */
-	public function getOutput() {
+	public function __toString() {
 		return $this->output;
 	}
 }

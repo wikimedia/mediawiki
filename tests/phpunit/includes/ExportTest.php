@@ -35,10 +35,9 @@ class ExportTest extends MediaWikiLangTestCase {
 		$exporter->openStream();
 		$exporter->pageByTitle( $title );
 		$exporter->closeStream();
-		$xmlString = $sink->getOutput();
 
 		// This throws error if invalid xml output
-		$xmlObject = simplexml_load_string( $xmlString );
+		$xmlObject = simplexml_load_string( $sink );
 
 		/**
 		 * Check namespaces match xml
