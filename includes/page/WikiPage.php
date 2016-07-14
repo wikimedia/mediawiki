@@ -91,6 +91,14 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Makes sure that the mTitle object is cloned
+	 * to the newly cloned WikiPage.
+	 */
+	public function __clone() {
+		$this->mTitle = clone $this->mTitle;
+	}
+
+	/**
 	 * Create a WikiPage object of the appropriate class for the given title.
 	 *
 	 * @param Title $title
@@ -2934,15 +2942,17 @@ class WikiPage implements Page, IDBAccessObject {
 		// Save this so we can pass it to the ArticleDeleteComplete hook.
 		$archivedRevisionCount = $dbw->affectedRows();
 
+		// Clone the title and wikiPage, so we have the information we need when
+		// we log and run the ArticleDeleteComplete hook.
+		$logTitle = clone $this->mTitle;
+		$wikiPageBeforeDelete = clone $this;
+
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
 		}
-
-		// Clone the title, so we have the information we need when we log
-		$logTitle = clone $this->mTitle;
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
@@ -2962,8 +2972,15 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->doDeleteUpdates( $id, $content );
 
-		Hooks::run( 'ArticleDeleteComplete',
-			[ &$this, &$user, $reason, $id, $content, $logEntry, $archivedRevisionCount ] );
+		Hooks::run( 'ArticleDeleteComplete', [
+			&$wikiPageBeforeDelete,
+			&$user,
+			$reason,
+			$id,
+			$content,
+			$logEntry,
+			$archivedRevisionCount
+		] );
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
