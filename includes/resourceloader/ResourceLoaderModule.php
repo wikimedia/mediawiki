@@ -83,6 +83,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected $config;
 
 	/**
+	 * @var Array|false
+	 */
+	protected $deprecated = false;
+
+	/**
 	 * @var LoggerInterface
 	 */
 	protected $logger;
@@ -131,6 +136,28 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get JS representing deprecation information for the current module if available
+	 *
+	 * @return string JavaScript code
+	 */
+	protected function getDeprecatedInformation() {
+		$deprecationInfo = $this->deprecated;
+		if ( $deprecationInfo ) {
+			$name = $this->getName();
+			$warning = 'This page is using the deprecated ResourceLoader module "' . $name . '".';
+			if ( isset( $deprecationInfo['message'] ) ) {
+				$warning .= "\n" . $deprecationInfo['message'];
+			}
+			return Xml::encodeJsCall(
+				'mw.log.warn',
+				[ $warning ]
+			);
+		} else {
+			return '';
+		}
+	}
+
+	/**
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
 	 *
@@ -138,8 +165,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		// Stub, override expected
-		return '';
+		return $this->getDeprecatedInformation();
 	}
 
 	/**
