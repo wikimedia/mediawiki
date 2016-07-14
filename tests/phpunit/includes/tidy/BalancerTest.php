@@ -83,13 +83,12 @@ class BalancerTest extends MediaWikiTestCase {
 					// Skip tests involving doctypes.
 					continue;
 				}
-				if ( preg_match( ',</?(html|head|body|frame|plaintext)>|<rdar:,i', $case['data'] ) ) {
+				if ( preg_match( ',</?(html|head|body|frame|plaintext)>|<rdar:|<isindex,i', $case['data'] ) ) {
 					// Skip tests involving some literal tags, which are
 					// unsupported but don't show up in the expected output.
 					continue;
 				}
 				if (
-					isset( $case['document']['props']['tags']['form'] ) ||
 					isset( $case['document']['props']['tags']['iframe'] ) ||
 					isset( $case['document']['props']['tags']['noembed'] ) ||
 					isset( $case['document']['props']['tags']['noscript'] ) ||
