@@ -72,7 +72,7 @@ class BalanceSets {
 			'form' => true, 'frame' => true,
 			'plaintext' => true, 'isindex' => true, 'textarea' => true,
 			'xmp' => true, 'iframe' => true, 'noembed' => true,
-			'noscript' => true, 'select' => true, 'script' => true,
+			'noscript' => true, 'script' => true,
 			'title' => true
 		]
 	];
@@ -225,6 +225,12 @@ class BalanceSets {
 	public static $inTableScopeSet = [
 		self::HTML_NAMESPACE => [
 			'html' => true, 'table' => true, 'template' => true
+		]
+	];
+
+	public static $inInvertedSelectScopeSet = [
+		self::HTML_NAMESPACE => [
+			'option' => true, 'optgroup' => true
 		]
 	];
 
@@ -782,6 +788,26 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public function inTableScope( $tag ) {
 		return $this->inSpecificScope( $tag, BalanceSets::$inTableScopeSet );
+	}
+
+	/**
+	 * Determine if the stack has $tag in select scope.
+	 * @param BalanceElement|array|string $tag
+	 * @return bool
+	 * @see https://html.spec.whatwg.org/multipage/syntax.html#has-an-element-in-select-scope
+	 */
+	public function inSelectScope( $tag ) {
+		// Can't use inSpecificScope to implement this, since it involves
+		// *inverting* a set of tags.  Implement manually.
+		foreach ( $this as $elt ) {
+			if ( $elt->isA( $tag ) ) {
+				return true;
+			}
+			if ( !$elt->isA( BalanceSets::$inInvertedSelectScopeSet ) ) {
+				return false;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -1698,7 +1724,7 @@ class BalanceActiveFormattingElements {
  * - We don't alter linefeeds after <pre>/<listing>.
  * - The following elements are disallowed: <html>, <head>, <body>, <frameset>,
  *   <form>, <frame>, <plaintext>, <isindex>, <textarea>, <xmp>, <iframe>,
- *   <noembed>, <noscript>, <select>, <script>, <title>.  As a result,
+ *   <noembed>, <noscript>, <script>, <title>.  As a result,
  *   further simplifications can be made:
  *   - `frameset-ok` is not tracked.
  *   - `form element pointer` is not tracked.
@@ -2076,8 +2102,6 @@ class Balancer {
 			}
 			if ( $node->isHtml() ) {
 				switch ( $node->localName ) {
-				# OMITTED: <select>
-				/*
 				case 'select':
 					$stacklen = $this->stack->length();
 					for ( $j = $i + 1; $j < $stacklen-1; $j++ ) {
@@ -2092,7 +2116,6 @@ class Balancer {
 					}
 					$this->switchMode( 'inSelectMode' );
 					return;
-				*/
 				case 'tr':
 					$this->switchMode( 'inRowMode' );
 					return;
@@ -2489,8 +2512,6 @@ class Balancer {
 			# OMITTED: <noembed>
 			# OMITTED: <noscript>
 
-			# OMITTED: <select>
-			/*
 			case 'select':
 				$this->afe->reconstruct( $this->stack );
 				$this->stack->insertHTMLElement( $value, $attribs );
@@ -2506,7 +2527,6 @@ class Balancer {
 					$this->switchMode( 'inSelectMode' );
 					return true;
 				}
-			*/
 
 			case 'optgroup':
 			case 'option':
@@ -3143,16 +3163,103 @@ class Balancer {
 		return $this->inBodyMode( $token, $value, $attribs, $selfclose );
 	}
 
-	# OMITTED: <select>
-	/*
 	private function inSelectMode( $token, $value, $attribs = null, $selfclose = false ) {
-		Assert::invariant( false, 'Unimplemented' );
+		if ( $token === 'text' ) {
+			$this->stack->insertText( $value );
+			return true;
+		} elseif ( $token === 'eof' ) {
+			return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+		} elseif ( $token === 'tag' ) {
+			switch ( $value ) {
+			# OMITTED: <html>
+			case 'option':
+				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+					$this->stack->pop();
+				}
+				$this->stack->insertHTMLElement( $value, $attribs );
+				return true;
+			case 'optgroup':
+				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+					$this->stack->pop();
+				}
+				if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
+					$this->stack->pop();
+				}
+				$this->stack->insertHTMLElement( $value, $attribs );
+				return true;
+			case 'select':
+				$this->inSelectMode( 'endtag', $value ); // treat it like endtag
+				return true;
+			case 'input':
+			case 'keygen':
+			case 'textarea':
+				if ( !$this->stack->inSelectScope( 'select' ) ) {
+					return true; // ignore token (fragment case)
+				}
+				$this->inSelectMode( 'endtag', 'select' );
+				return $this->insertToken( $token, $value, $attribs, $selfclose );
+			case 'script':
+			case 'template':
+				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+			}
+		} elseif ( $token === 'endtag' ) {
+			switch ( $value ) {
+			case 'optgroup':
+				if (
+					$this->stack->currentNode->isHtmlNamed( 'option' ) &&
+					$this->stack->length() >= 2 &&
+					$this->stack->node( $this->stack->length() - 2 )->isHtmlNamed( 'optgroup' )
+				) {
+					$this->stack->pop();
+				}
+				if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
+					$this->stack->pop();
+				}
+				return true;
+			case 'option':
+				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+					$this->stack->pop();
+				}
+				return true;
+			case 'select':
+				if ( !$this->stack->inSelectScope( $value ) ) {
+					return true; // fragment case
+				}
+				$this->stack->popTag( $value );
+				$this->resetInsertionMode();
+				return true;
+			case 'template':
+				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+			}
+		}
+		// anything else: just ignore the token
+		return true;
 	}
 
 	private function inSelectInTableMode( $token, $value, $attribs = null, $selfclose = false ) {
-		Assert::invariant( false, 'Unimplemented' );
+		switch ( $value ) {
+		case 'caption':
+		case 'table':
+		case 'tbody':
+		case 'tfoot':
+		case 'thead':
+		case 'tr':
+		case 'td':
+		case 'th':
+			if ( $token === 'tag' ) {
+				$this->inSelectInTableMode( 'endtag', 'select' );
+				return $this->insertToken( $token, $value, $attribs, $selfclose );
+			} elseif ( $token === 'endtag' ) {
+				if ( $this->stack->inTableScope( $value ) ) {
+					$this->inSelectInTableMode( 'endtag', 'select' );
+					return $this->insertToken( $token, $value, $attribs, $selfclose );
+				}
+				return true;
+			}
+		}
+		// anything else
+		return $this->inSelectMode( $token, $value, $attribs, $selfclose );
 	}
-	*/
 
 	private function inTemplateMode( $token, $value, $attribs = null, $selfclose = false ) {
 		if ( $token === 'text' ) {
