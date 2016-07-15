@@ -2520,9 +2520,11 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Actually any "on transaction pre-commit" callbacks.
 	 *
+	 * This method should not be used outside of Database/LoadBalancer
+	 *
 	 * @since 1.22
 	 */
-	protected function runOnTransactionPreCommitCallbacks() {
+	public function runOnTransactionPreCommitCallbacks() {
 		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxPreCommitCallbacks;
