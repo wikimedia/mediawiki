@@ -129,6 +129,8 @@ class LocalFile extends File {
 	// @note: higher than IDBAccessObject constants
 	const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
 
+	const ATOMIC_SECTION_LOCK = 'LocalFile::lockingTransaction';
+
 	/**
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
@@ -1905,19 +1907,19 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Start a transaction and lock the image for update
-	 * Increments a reference counter if the lock is already held
+	 * Start an atomic DB section and lock the image for update
+	 * or increments a reference counter if the lock is already held
+	 *
 	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
 	function lock() {
 		if ( !$this->locked ) {
 			$logger = LoggerFactory::getInstance( 'LocalFile' );
+
 			$dbw = $this->repo->getMasterDB();
-			if ( !$dbw->trxLevel() ) {
-				$dbw->begin( __METHOD__ );
-				$this->lockedOwnTrx = true;
-			}
+			$makesTransaction = !$dbw->trxLevel();
+			$dbw->startAtomic( self::ATOMIC_SECTION_LOCK );
 			// Bug 54736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
@@ -1925,9 +1927,7 @@ class LocalFile extends File {
 			$lockPaths = [ $this->getPath() ]; // represents all versions of the file
 			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 10 );
 			if ( !$status->isGood() ) {
-				if ( $this->lockedOwnTrx ) {
-					$dbw->rollback( __METHOD__ );
-				}
+				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$logger->warning( "Failed to lock '{file}'", [ 'file' => $this->name ] );
 
 				throw new LocalFileLockError( $status );
@@ -1940,6 +1940,8 @@ class LocalFile extends File {
 					$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
 				}
 			} );
+			// Callers might care if the SELECT snapshot is safely fresh
+			$this->lockedOwnTrx = $makesTransaction;
 		}
 
 		$this->locked++;
@@ -1948,15 +1950,17 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Decrement the lock reference count. If the reference count is reduced to zero, commits
-	 * the transaction and thereby releases the image lock.
+	 * Decrement the lock reference count and end the atomic section if it reaches zero
+	 *
+	 * The commit and loc release will happen when no atomic sections are active, which
+	 * may happen immediately or at some point after calling this
 	 */
 	function unlock() {
 		if ( $this->locked ) {
 			--$this->locked;
-			if ( !$this->locked && $this->lockedOwnTrx ) {
+			if ( !$this->locked ) {
 				$dbw = $this->repo->getMasterDB();
-				$dbw->commit( __METHOD__ );
+				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$this->lockedOwnTrx = false;
 			}
 		}
