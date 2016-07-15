@@ -137,6 +137,7 @@
 	"noindex-category": "Noindexed pages",
 	"broken-file-category": "Pages with broken file links",
 	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "About",
 	"article": "Content page",
 	"newwindow": "(opens in new window)",
