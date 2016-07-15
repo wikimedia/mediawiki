@@ -532,17 +532,17 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Format a list of articles chunked by letter in a three-column
-	 * list, ordered vertically.
+	 * Format a list of articles chunked by letter in a three-column list, ordered
+	 * vertically. This is used for categories with a significant number of pages.
 	 *
 	 * TODO: Take the headers into account when creating columns, so they're
 	 * more visually equal.
 	 *
 	 * TODO: shortList and columnList are similar, need merging
 	 *
-	 * @param array $articles
-	 * @param string[] $articles_start_char
-	 * @return string
+	 * @param string[] $articles HTML links to each article
+	 * @param string[] $articles_start_char The header characters for each article
+	 * @return string HTML to output
 	 * @private
 	 */
 	static function columnList( $articles, $articles_start_char ) {
@@ -579,10 +579,11 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Format a list of articles chunked by letter in a bullet list.
-	 * @param array $articles
-	 * @param string[] $articles_start_char
-	 * @return string
+	 * Format a list of articles chunked by letter in a bullet list. This is used
+	 * for categories with a small number of pages (when columns aren't needed).
+	 * @param string[] $articles HTML links to each article
+	 * @param string[] $articles_start_char The header characters for each article
+	 * @return string HTML to output
 	 * @private
 	 */
 	static function shortList( $articles, $articles_start_char ) {
