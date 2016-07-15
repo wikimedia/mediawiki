@@ -139,58 +139,24 @@ class OutputPageTest extends MediaWikiTestCase {
 	public static function provideMakeResourceLoaderLink() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return [
-			// Load module script only
+			// Single only=scripts load
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
 			],
-			[
-				// Don't condition wrap raw modules (like the startup module)
-				[ 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ],
-				'<script async="" src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
-			],
-			// Load module styles only
-			// This also tests the order the modules are put into the url
+			// Multiple only=styles load
 			[
 				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
 
 				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback"/>'
 			],
-			// Load private module (only=scripts)
+			// Private embed (only=scripts)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});"
-					. "});</script>"
-			],
-			// Load private module (combined)
-			[
-				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
-				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. "mw.loader.implement(\"test.quux\",function($,jQuery,require,module){"
-					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
-					. "\"]});});</script>"
-			],
-			// Load no modules
-			[
-				[ [], ResourceLoaderModule::TYPE_COMBINED ],
-				'',
-			],
-			// noscript group
-			[
-				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
-				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"/></noscript>'
-			],
-			// Load two modules in separate groups
-			[
-				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
-				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
-					. "});</script>\n"
-					. "<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
 					. "});</script>"
 			],
 		];
@@ -198,13 +164,10 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * See ResourceLoaderClientHtmlTest for full coverage.
+	 *
 	 * @dataProvider provideMakeResourceLoaderLink
 	 * @covers OutputPage::makeResourceLoaderLink
-	 * @covers ResourceLoader::makeLoaderImplementScript
-	 * @covers ResourceLoader::makeModuleResponse
-	 * @covers ResourceLoader::makeInlineScript
-	 * @covers ResourceLoader::makeLoaderStateScript
-	 * @covers ResourceLoader::createLoaderURL
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->setMwGlobals( [
@@ -238,25 +201,9 @@ class OutputPageTest extends MediaWikiTestCase {
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
 			] ),
-			'test.raw' => new ResourceLoaderTestModule( [
-				'script' => 'mw.test.baz( { token: 123 } );',
-				'isRaw' => true,
-			] ),
-			'test.noscript' => new ResourceLoaderTestModule( [
-				'styles' => '.mw-test-noscript { content: "style"; }',
-				'group' => 'noscript',
-			] ),
-			'test.group.bar' => new ResourceLoaderTestModule( [
-				'styles' => '.mw-group-bar { content: "style"; }',
-				'group' => 'bar',
-			] ),
-			'test.group.foo' => new ResourceLoaderTestModule( [
-				'styles' => '.mw-group-foo { content: "style"; }',
-				'group' => 'foo',
-			] ),
 		] );
 		$links = $method->invokeArgs( $out, $args );
-		$actualHtml = implode( "\n", $links['html'] );
+		$actualHtml = strval( $links );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 

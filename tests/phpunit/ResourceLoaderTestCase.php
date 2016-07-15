@@ -64,10 +64,13 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $dependencies = [];
 	protected $group = null;
 	protected $source = 'local';
+	protected $position = 'bottom';
 	protected $script = '';
 	protected $styles = '';
 	protected $skipFunction = null;
 	protected $isRaw = false;
+	protected $isKnownEmpty = false;
+	protected $type = ResourceLoaderModule::LOAD_GENERAL;
 	protected $targets = [ 'phpunit' ];
 
 	public function __construct( $options = [] ) {
@@ -99,6 +102,13 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	public function getSource() {
 		return $this->source;
 	}
+	public function getPosition() {
+		return $this->position;
+	}
+
+	public function getType() {
+		return $this->type;
+	}
 
 	public function getSkipFunction() {
 		return $this->skipFunction;
@@ -106,6 +116,9 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 
 	public function isRaw() {
 		return $this->isRaw;
+	}
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		return $this->isKnownEmpty;
 	}
 
 	public function enableModuleContentVersion() {
