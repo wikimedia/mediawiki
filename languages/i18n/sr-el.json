@@ -1722,7 +1722,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "Prava potrebna za uređivanje",
 	"listgrants-rights": "Prava",
 	"trackingcategories": "Medijaviki kategorije",
-	"trackingcategories-summary": "Ova posebna stranica je spisak kategorija koje su deo Medijavikija, one se automatski ažuriraju i njihovi nazivi se mogu menjanjati uređivanjem sistemskih poruka u imenskom prostoru {{ns:8}}.",
+	"trackingcategories-summary": "Ova posebna stranica je spisak kategorija koje su deo Medijavikija, one se automatski ažuriraju i njihovi nazivi se mogu menjati uređivanjem sistemskih poruka u imenskom prostoru {{ns:8}}.",
 	"trackingcategories-name": "Ime poruke",
 	"trackingcategories-desc": "Koje stranice se nalaze u kategoriji",
 	"noindex-category-desc": "Stranice koje u sebi imaju magičnu reč <code><nowiki>__NOINDEX__</nowiki></code>.",

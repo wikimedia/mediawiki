@@ -71,7 +71,8 @@
 			"Dammråtta",
 			"Mgr",
 			"Matma Rex",
-			"McDutchie"
+			"McDutchie",
+			"Larske"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -804,7 +805,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tomt fält",
-	"deprecated-self-close-category": "Sidan använder ogiltiga självstängda HTML-taggar",
+	"deprecated-self-close-category": "Sidor som använder ogiltiga självstängda HTML-taggar",
 	"deprecated-self-close-category-desc": "Sidan använder ogiltiga självstängda HTML-taggar, som <code>&lt;b/></code> eller <code>&lt;span/></code>.  Beteendet för dessa kommer snart att ändras för att bli konsistent med HTML5-specifikationen, så dessa anses vara för föråldrade för att använda i wikitext.",
 	"duplicate-args-warning": "<strong>Varning:</strong> [[:$1]] anropar [[:$2]] med mer än ett värde för parametern \"$3\". Endast det sista värdet kommer att användas.",
 	"duplicate-args-category": "Sidor som använder upprepade argument i mallanrop",

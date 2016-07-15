@@ -147,7 +147,8 @@
 			"2axterix2",
 			"Matma Rex",
 			"Dgstranz",
-			"Copper12"
+			"Copper12",
+			"Ivanhercaz"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -881,6 +882,8 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vacío",
 	"content-json-empty-array": "Matriz vacía",
+	"deprecated-self-close-category": "Páginas que utilizan etiquetas HTML autocerradas no válidas",
+	"deprecated-self-close-category-desc": "Esta página contiene etiquetas HTML de auto-cierre invalidas, tales como <code>&lt;b/></code> o <code>&lt;span/></code>. El comportamiento de estas en  cambiará pronto para ser coherente con la especificación de HTML5, por lo que su utilización en wikitext está en desuso.",
 	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] llama a [[:$2]] con más de un valor para el parámetro «$3». Se usará solo el último valor proporcionado.",
 	"duplicate-args-category": "Páginas que usan argumentos duplicados en invocaciones de plantillas",
 	"duplicate-args-category-desc": "La página contiene invocaciones de plantillas que utilizan argumentos duplicados, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -589,6 +589,8 @@
 	"minoredit": "Ini adalah suntingan kecil",
 	"watchthis": "Pantau laman ini",
 	"savearticle": "Simpan",
+	"publishpage": "Terbitkan",
+	"publishchanges": "Terbit perubahan",
 	"preview": "Pralihat",
 	"showpreview": "Paparkan pralihat",
 	"showdiff": "Lihat perubahan",
@@ -3422,6 +3424,5 @@
 	"mw-widgets-dateinput-no-date": "Tarik belum dipilih",
 	"mw-widgets-titleinput-description-new-page": "laman belum wujud",
 	"mw-widgets-titleinput-description-redirect": "melencong ke $1",
-	"api-error-blacklisted": "Sila pilih tajuk yang berbeza dan deskriptif.",
 	"randomrootpage": "Laman akar rawak"
 }

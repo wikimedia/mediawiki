@@ -2217,6 +2217,7 @@
 	"ipb-unblock": "Разблякаваць рахунак ўдзельніка ці IP-адрас",
 	"ipb-blocklist": "Паказаць існуючыя блякаваньні",
 	"ipb-blocklist-contribs": "Унёсак $1",
+	"ipb-blocklist-duration-left": "засталося $1",
 	"unblockip": "Разблякаваць удзельніка",
 	"unblockiptext": "Карыстайцеся пададзенай ніжэй формай для аднаўленьня магчымасьці рэдагаваньня для раней заблякаванага IP-адрасу альбо рахунку ўдзельніка.",
 	"ipusubmit": "Зьняць гэта блякаваньне",
@@ -3589,6 +3590,7 @@
 	"randomrootpage": "Выпадковая карэнная старонка",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
+	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",
 	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:"
 }

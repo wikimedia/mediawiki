@@ -768,6 +768,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Đối tượng trống",
 	"content-json-empty-array": "Mảng trống",
+	"deprecated-self-close-category": "Trang có thẻ HTML tự đóng không hợp lệ",
 	"duplicate-args-warning": "<strong>Cảnh báo:</strong> [[:$1]] đang gọi  [[:$2]] với nhiều hơn một giá trị cho thông số “$3”. Chỉ giá trị cuối cùng mới được sử dụng.",
 	"duplicate-args-category": "Trang đưa đối số thừa vào bản mẫu",
 	"duplicate-args-category-desc": "Trang đưa một đối số nhiều lần vào một bản mẫu được nhúng, thí dụ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> hoặc <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

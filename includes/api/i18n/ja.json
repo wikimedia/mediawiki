@@ -122,6 +122,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "削除された投稿記録のみ表示します。",
 	"apihelp-feedcontributions-param-toponly": "最新版の編集のみ表示します。",
 	"apihelp-feedcontributions-param-newonly": "ページ作成を伴う編集のみを表示します。",
+	"apihelp-feedcontributions-param-hideminor": "細部の編集を非表示",
 	"apihelp-feedcontributions-param-showsizediff": "版間のサイズの増減を表示する。",
 	"apihelp-feedcontributions-example-simple": "利用者 <kbd>Example</kbd> の投稿記録を取得する。",
 	"apihelp-feedrecentchanges-description": "最近の更新フィードを返します。",
