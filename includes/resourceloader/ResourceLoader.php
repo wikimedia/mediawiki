@@ -241,7 +241,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->config = $config;
 
 		// Add 'local' source first
-		$this->addSource( 'local', wfScript( 'load' ) );
+		$this->addSource( 'local', $config->get( 'LoadScript' ) );
 
 		// Add other sources
 		$this->addSource( $config->get( 'ResourceLoaderSources' ) );
