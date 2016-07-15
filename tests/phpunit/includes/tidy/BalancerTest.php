@@ -15,6 +15,7 @@ class BalancerTest extends MediaWikiTestCase {
 			'strict' => false, /* not strict */
 			'allowedHtmlElements' => null, /* no sanitization */
 			'tidyCompat' => false, /* standard parser */
+			'allowComments' => true, /* comment parsing */
 		] );
 	}
 
@@ -70,9 +71,12 @@ class BalancerTest extends MediaWikiTestCase {
 				// Normalize case of SVG attributes.
 				$html = str_replace( 'foreignObject', 'foreignobject', $html );
 
-				if ( isset( $case['document']['props']['comment'] ) ) {
-					// Skip tests which include HTML comments, which
-					// the balancer requires to have been stripped.
+				if (
+					isset( $case['document']['props']['comment'] ) &&
+					preg_match( ',<!--[^>]*<,', $html )
+				) {
+					// Skip tests which include HTML comments containing
+					// the < character, which we don't support.
 					continue;
 				}
 				if ( strpos( $case['data'], '<![CDATA[' ) !== false ) {
