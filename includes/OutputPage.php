@@ -293,6 +293,12 @@ class OutputPage extends ContextSource {
 	/** @var array Profiling data */
 	private $limitReportData = [];
 
+	/** @var ResourceLoaderClientHtml */
+	private $rlClient;
+
+	/** @var ResourceLoaderContext */
+	private $rlClientContext;
+
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
@@ -501,7 +507,7 @@ class OutputPage extends ContextSource {
 	 * Add a self-contained script tag with the given contents
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
-	 * @param string $script JavaScript text, no "<script>" tags
+	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( $script );
@@ -541,10 +547,12 @@ class OutputPage extends ContextSource {
 	 * @param string $param
 	 * @return array Array of module names
 	 */
-	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
+	public function getModules( $filter = false, $position = null, $param = 'mModules',
+		$type = ResourceLoaderModule::TYPE_COMBINED
+	) {
 		$modules = array_values( array_unique( $this->$param ) );
 		return $filter
-			? $this->filterModules( $modules, $position )
+			? $this->filterModules( $modules, $position, $type )
 			: $modules;
 	}
 
@@ -564,11 +572,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position
-	 *
 	 * @return array Array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleScripts' );
+		return $this->getModules( $filter, $position, 'mModuleScripts',
+			ResourceLoaderModule::TYPE_SCRIPTS
+		);
 	}
 
 	/**
@@ -587,11 +596,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position
-	 *
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleStyles' );
+		return $this->getModules( $filter, $position, 'mModuleStyles',
+			ResourceLoaderModule::TYPE_STYLES
+		);
 	}
 
 	/**
@@ -2255,7 +2265,7 @@ class OutputPage extends ContextSource {
 			// add skin specific modules
 			$modules = $sk->getDefaultModules();
 
-			// Enforce various default modules for all skins
+			// Enforce various default modules for all pages and all skins
 			$coreModules = [
 				// Keep this list as small as possible
 				'site',
@@ -2277,6 +2287,7 @@ class OutputPage extends ContextSource {
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
+			$this->getSkin()->setupSkinUserCss( $this );
 
 			try {
 				$sk->outputPage();
@@ -2601,6 +2612,61 @@ class OutputPage extends ContextSource {
 		$this->addReturnTo( $titleObj, wfCgiToArray( $returntoquery ) );
 	}
 
+	private function getRlClientContext() {
+		if ( !$this->rlClientContext ) {
+			$query = ResourceLoader::makeLoaderQuery(
+				[], // modules; not relevant
+				$this->getLanguage()->getCode(),
+				$this->getSkin()->getSkinName(),
+				$this->getUser()->isLoggedIn() ? $this->getUser()->getName() : null,
+				null, // version; not relevant
+				ResourceLoader::inDebugMode(),
+				null, // only; not relevant
+				$this->isPrintable(),
+				$this->getRequest()->getBool( 'handheld' )
+			);
+			$this->rlClientContext = new ResourceLoaderContext(
+				$this->getResourceLoader(),
+				new FauxRequest( $query )
+			);
+		}
+		return $this->rlClientContext;
+	}
+
+	/**
+	 * Call this to freeze the module queue and JS config and create a formatter.
+	 *
+	 * Depending on the Skin, this may get lazy-initialised in either headElement() or
+	 * getBottomScripts(). See SkinTemplate::prepareQuickTemplate(). Calling this too early may
+	 * cause unexpected side-effects since disallowUserJs() may be called at any time to change
+	 * the module filters retroactively. Skins and extension hooks may also add modules until very
+	 * late in the request lifecycle.
+	 *
+	 * @return ResourceLoaderClientHtml
+	 */
+	public function getRlClient() {
+		if ( !$this->rlClient ) {
+			$this->addModules( [
+				'user.options',
+				'user.tokens',
+			] );
+			$rlClient = new ResourceLoaderClientHtml( $this->getRlClientContext() );
+			$rlClient->setConfig( $this->getJSVars() );
+			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
+			$rlClient->setModuleStyles( $this->getModuleStyles( /*filter*/ true ) );
+			$rlClient->setModuleScripts( $this->getModuleScripts( /*filter*/ true ) );
+			$rlClient->setExemptStates( [
+				// Manually handled by buildExemptModules() and getBottomScripts()
+				'site.styles' => 'ready',
+				'noscript' => 'ready',
+				'user.cssprefs' => 'ready',
+				'user' => 'loading'
+			] );
+			$this->rlClient = $rlClient;
+		}
+		return $this->rlClient;
+	}
+
 	/**
 	 * @param Skin $sk The given Skin
 	 * @param bool $includeStyle Unused
@@ -2613,15 +2679,14 @@ class OutputPage extends ContextSource {
 		$sitedir = $wgContLang->getDir();
 
 		$pieces = [];
-		$pieces[] = Html::htmlHeader( $sk->getHtmlElementAttributes() );
+		$pieces[] = Html::htmlHeader( Sanitizer::mergeAttributes(
+			$this->getRlClient()->getDocumentAttributes(),
+			$sk->getHtmlElementAttributes()
+		) );
+		$pieces[] = Html::openElement( 'head' );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->inContentLanguage() );
-		}
-
-		$openHead = Html::openElement( 'head' );
-		if ( $openHead ) {
-			$pieces[] = $openHead;
 		}
 
 		if ( !Html::isXmlMimeType( $this->getConfig()->get( 'MimeType' ) ) ) {
@@ -2637,22 +2702,11 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
-		$pieces[] = $this->getInlineHeadScripts();
-		$pieces[] = $this->buildCssLinks();
-		$pieces[] = $this->getExternalHeadScripts();
-
-		foreach ( $this->getHeadLinksArray() as $item ) {
-			$pieces[] = $item;
-		}
-
-		foreach ( $this->mHeadItems as $item ) {
-			$pieces[] = $item;
-		}
-
-		$closeHead = Html::closeElement( 'head' );
-		if ( $closeHead ) {
-			$pieces[] = $closeHead;
-		}
+		$pieces[] = $this->getRlClient()->getHeadHtml();
+		$pieces[] = $this->buildExemptModules();
+		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
+		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
+		$pieces[] = Html::closeElement( 'head' );
 
 		$bodyClasses = [];
 		$bodyClasses[] = 'mediawiki';
@@ -2687,7 +2741,7 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::openElement( 'body', $bodyAttrs );
 
-		return WrappedStringList::join( "\n", $pieces );
+		return self::combineWrappedStrings( $pieces );
 	}
 
 	/**
@@ -2706,350 +2760,61 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Construct neccecary html and loader preset states to load modules on a page.
-	 *
-	 * Use getHtmlFromLoaderLinks() to convert this array to HTML.
+	 * Explicily load or embed modules on a page.
 	 *
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
-	 * @return array A list of HTML strings and array of client loader preset states
+	 * @return string|WrappedStringList HTML
 	 */
 	public function makeResourceLoaderLink( $modules, $only, array $extraQuery = [] ) {
-		$modules = (array)$modules;
-
-		$links = [
-			// List of html strings
-			'html' => [],
-			// Associative array of module names and their states
-			'states' => [],
-		];
-
-		if ( !count( $modules ) ) {
-			return $links;
-		}
-
-		if ( count( $modules ) > 1 ) {
-			// Remove duplicate module requests
-			$modules = array_unique( $modules );
-			// Sort module names so requests are more uniform
-			sort( $modules );
-
-			if ( ResourceLoader::inDebugMode() ) {
-				// Recursively call us for every item
-				foreach ( $modules as $name ) {
-					$link = $this->makeResourceLoaderLink( $name, $only, $extraQuery );
-					$links['html'] = array_merge( $links['html'], $link['html'] );
-					$links['states'] += $link['states'];
-				}
-				return $links;
-			}
-		}
-
-		if ( !is_null( $this->mTarget ) ) {
-			$extraQuery['target'] = $this->mTarget;
-		}
-
-		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
-		$sortedModules = [];
-		$resourceLoader = $this->getResourceLoader();
-		foreach ( $modules as $name ) {
-			$module = $resourceLoader->getModule( $name );
-			# Check that we're allowed to include this module on this page
-			if ( !$module
-				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS )
-					&& $only == ResourceLoaderModule::TYPE_SCRIPTS )
-				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
-					&& $only == ResourceLoaderModule::TYPE_STYLES )
-				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_COMBINED )
-					&& $only == ResourceLoaderModule::TYPE_COMBINED )
-				|| ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) )
-			) {
-				continue;
-			}
-
-			if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-				if ( $module->getType() !== ResourceLoaderModule::LOAD_STYLES ) {
-					$logger = $resourceLoader->getLogger();
-					$logger->debug( 'Unexpected general module "{module}" in styles queue.', [
-						'module' => $name,
-					] );
-				} else {
-					$links['states'][$name] = 'ready';
-				}
-			}
-
-			$sortedModules[$module->getSource()][$module->getGroup()][$name] = $module;
-		}
-
-		foreach ( $sortedModules as $source => $groups ) {
-			foreach ( $groups as $group => $grpModules ) {
-				// Special handling for user-specific groups
-				$user = null;
-				if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
-					$user = $this->getUser()->getName();
-				}
-
-				// Create a fake request based on the one we are about to make so modules return
-				// correct timestamp and emptiness data
-				$query = ResourceLoader::makeLoaderQuery(
-					[], // modules; not determined yet
-					$this->getLanguage()->getCode(),
-					$this->getSkin()->getSkinName(),
-					$user,
-					null, // version; not determined yet
-					ResourceLoader::inDebugMode(),
-					$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
-					$this->isPrintable(),
-					$this->getRequest()->getBool( 'handheld' ),
-					$extraQuery
-				);
-				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
-
-				// Extract modules that know they're empty and see if we have one or more
-				// raw modules
-				$isRaw = false;
-				foreach ( $grpModules as $key => $module ) {
-					// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
-					// If we're only getting the styles, we don't need to do anything for empty modules.
-					if ( $module->isKnownEmpty( $context ) ) {
-						unset( $grpModules[$key] );
-						if ( $only !== ResourceLoaderModule::TYPE_STYLES ) {
-							$links['states'][$key] = 'ready';
-						}
-					}
-
-					$isRaw |= $module->isRaw();
-				}
-
-				// If there are no non-empty modules, skip this group
-				if ( count( $grpModules ) === 0 ) {
-					continue;
-				}
-
-				// Inline private modules. These can't be loaded through load.php for security
-				// reasons, see bug 34907. Note that these modules should be loaded from
-				// getExternalHeadScripts() before the first loader call. Otherwise other modules can't
-				// properly use them as dependencies (bug 30914)
-				if ( $group === 'private' ) {
-					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-						$links['html'][] = Html::inlineStyle(
-							$resourceLoader->makeModuleResponse( $context, $grpModules )
-						);
-					} else {
-						$links['html'][] = ResourceLoader::makeInlineScript(
-							$resourceLoader->makeModuleResponse( $context, $grpModules )
-						);
-					}
-					continue;
-				}
-
-				// Special handling for the user group; because users might change their stuff
-				// on-wiki like user pages, or user preferences; we need to find the highest
-				// timestamp of these user-changeable modules so we can ensure cache misses on change
-				// This should NOT be done for the site group (bug 27564) because anons get that too
-				// and we shouldn't be putting timestamps in CDN-cached HTML
-				$version = null;
-				if ( $group === 'user' ) {
-					$query['version'] = $resourceLoader->getCombinedVersion( $context, array_keys( $grpModules ) );
-				}
-
-				$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
-				$moduleContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
-				$url = $resourceLoader->createLoaderURL( $source, $moduleContext, $extraQuery );
-
-				// Automatically select style/script elements
-				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-					$link = Html::linkedStyle( $url );
-				} else {
-					if ( $context->getRaw() || $isRaw ) {
-						// Startup module can't load itself, needs to use <script> instead of mw.loader.load
-						$link = Html::element( 'script', [
-							// In SpecialJavaScriptTest, QUnit must load synchronous
-							'async' => !isset( $extraQuery['sync'] ),
-							'src' => $url
-						] );
-					} else {
-						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'mw.loader.load', [ $url ] )
-						);
-					}
-
-					// For modules requested directly in the html via <script> or mw.loader.load
-					// tell mw.loader they are being loading to prevent duplicate requests.
-					foreach ( $grpModules as $key => $module ) {
-						// Don't output state=loading for the startup module.
-						if ( $key !== 'startup' ) {
-							$links['states'][$key] = 'loading';
-						}
-					}
-				}
-
-				if ( $group == 'noscript' ) {
-					$links['html'][] = Html::rawElement( 'noscript', [], $link );
-				} else {
-					$links['html'][] = $link;
-				}
-			}
-		}
-
-		return $links;
+		return ResourceLoaderClientHtml::makeLoad(
+			$this->getRlClientContext(),
+			(array)$modules,
+			$only,
+			$extraQuery
+		);
 	}
 
 	/**
-	 * Build html output from an array of links from makeResourceLoaderLink.
-	 * @param array $links
+	 * Combine WrappedString chunks and filter out empty ones
+	 *
+	 * @param array $chunks
 	 * @return string|WrappedStringList HTML
 	 */
-	protected static function getHtmlFromLoaderLinks( array $links ) {
-		$html = [];
-		$states = [];
-		foreach ( $links as $link ) {
-			if ( !is_array( $link ) ) {
-				$html[] = $link;
-			} else {
-				$html = array_merge( $html, $link['html'] );
-				$states += $link['states'];
-			}
-		}
+	protected static function combineWrappedStrings( array $chunks ) {
 		// Filter out empty values
-		$html = array_filter( $html, 'strlen' );
-
-		if ( $states ) {
-			array_unshift( $html, ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states )
-			) );
-		}
-
-		return WrappedString::join( "\n", $html );
+		$chunks = array_filter( $chunks, 'strlen' );
+		return WrappedString::join( "\n", $chunks );
 	}
 
 	/**
-	 * JS stuff to put in the "<head>". This is the startup module, config
-	 * vars and modules marked with position 'top'
-	 *
-	 * @return string HTML fragment
-	 */
-	function getHeadScripts() {
-		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
-	}
-
-	/**
-	 * <script src="..."> tags for "<head>".This is the startup module
-	 * and other modules marked with position 'top'.
+	 * JS stuff to put at the bottom of the `<body>`. These are modules with position 'bottom',
+	 * legacy scripts ($this->mScripts), and user JS.
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	function getExternalHeadScripts() {
-		// Startup - this provides the client with the module
-		// manifest and loads jquery and mediawiki base modules
-		$links = [];
-		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
-		return self::getHtmlFromLoaderLinks( $links );
-	}
+	public function getBottomScripts() {
+		$chunks = [];
+		$chunks[] = $this->getRlClient()->getBodyHtml();
 
-	/**
-	 * Inline "<script>" tags to put in "<head>".
-	 *
-	 * @return string|WrappedStringList HTML
-	 */
-	function getInlineHeadScripts() {
-		$links = [];
+		// Legacy non-ResourceLoader scripts
+		$chunks[] = $this->mScripts;
 
-		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
-		// Must be done synchronously on every page to avoid flashes of wrong content.
-		// Note: This class distinguishes MediaWiki-supported JavaScript from the rest.
-		// The "rest" includes browsers that support JavaScript but not supported by our runtime.
-		// For the performance benefit of the majority, this is added unconditionally here and is
-		// then fixed up by the startup module for unsupported browsers.
-		$links[] = Html::inlineScript(
-			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
-		);
-
-		// Load config before anything else
-		$links[] = ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript( $this->getJSVars() )
-		);
-
-		// Load embeddable private modules before any loader links
-		// This needs to be TYPE_COMBINED so these modules are properly wrapped
-		// in mw.loader.implement() calls and deferred until mw.user is available
-		$embedScripts = [ 'user.options' ];
-		$links[] = $this->makeResourceLoaderLink(
-			$embedScripts,
-			ResourceLoaderModule::TYPE_COMBINED
-		);
-		// Separate user.tokens as otherwise caching will be allowed (T84960)
-		$links[] = $this->makeResourceLoaderLink(
-			'user.tokens',
-			ResourceLoaderModule::TYPE_COMBINED
-		);
-
-		// Modules requests - let the client calculate dependencies and batch requests as it likes
-		// Only load modules that have marked themselves for loading at the top
-		$modules = $this->getModules( true, 'top' );
-		if ( $modules ) {
-			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
-			);
-		}
-
-		// "Scripts only" modules marked for top inclusion
-		$links[] = $this->makeResourceLoaderLink(
-			$this->getModuleScripts( true, 'top' ),
-			ResourceLoaderModule::TYPE_SCRIPTS
-		);
-
-		return self::getHtmlFromLoaderLinks( $links );
-	}
-
-	/**
-	 * JS stuff to put at the 'bottom', which goes at the bottom of the `<body>`.
-	 * These are modules marked with position 'bottom', legacy scripts ($this->mScripts),
-	 * site JS, and user JS.
-	 *
-	 * @param bool $unused Previously used to let this method change its output based
-	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
-	 * @return string|WrappedStringList HTML
-	 */
-	function getScriptsForBottomQueue( $unused = null ) {
-		// Scripts "only" requests marked for bottom inclusion
-		// If we're in the <head>, use load() calls rather than <script src="..."> tags
-		$links = [];
-
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_SCRIPTS
-		);
-
-		// Modules requests - let the client calculate dependencies and batch requests as it likes
-		// Only load modules that have marked themselves for loading at the bottom
-		$modules = $this->getModules( true, 'bottom' );
-		if ( $modules ) {
-			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
-			);
-		}
-
-		// Legacy Scripts
-		$links[] = $this->mScripts;
-
-		// Add user JS if enabled
-		// This must use TYPE_COMBINED instead of only=scripts so that its request is handled by
-		// mw.loader.implement() which ensures that execution is scheduled after the "site" module.
+		// Exempt 'user' module
+		// - May need excludepages for live preview. (T28283)
+		// - Must use TYPE_COMBINED so its response is handled by mw.loader.implement() which
+		//   ensures execution is scheduled after the "site" module.
 		if ( $this->getConfig()->get( 'AllowUserJs' )
 			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isJsSubpage()
 			&& $this->userCanPreview()
 		) {
-			// We're on a preview of a JS subpage. Exclude this page from the user module (T28283)
-			// and include the draft contents as a raw script instead.
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
+			$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
 				[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
 			);
-			// Load the previewed JS
-			$links[] = ResourceLoader::makeInlineScript(
+			$chunks[] = ResourceLoader::makeInlineScript(
 				Xml::encodeJsCall( 'mw.loader.using', [
 					[ 'user', 'site' ],
 					new XmlJsCode(
@@ -3061,7 +2826,6 @@ class OutputPage extends ContextSource {
 					)
 				] )
 			);
-
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
 			// asynchronously and may arrive *after* the inline script here. So the previewed code
 			// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js.
@@ -3069,25 +2833,18 @@ class OutputPage extends ContextSource {
 			// it will arrive without common.js and the inline script runs after.
 			// Thus running common after the excluded subpage.
 		} else {
-			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
+			// Load normally
+			$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
 		}
 
-		return self::getHtmlFromLoaderLinks( $links );
-	}
+		$chunks[] = ResourceLoader::makeInlineScript(
+			ResourceLoader::makeConfigSetScript(
+				[ 'wgPageParseReport' => $this->limitReportData ],
+				true
+			)
+		);
 
-	/**
-	 * JS stuff to put at the bottom of the "<body>"
-	 * @return string
-	 */
-	function getBottomScripts() {
-		return $this->getScriptsForBottomQueue() .
-			ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript(
-					[ 'wgPageParseReport' => $this->limitReportData ],
-					true
-				)
-			);
+		return self::combineWrappedStrings( $chunks );
 	}
 
 	/**
@@ -3616,79 +3373,72 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Build a set of "<link>" elements for stylesheets specified in the $this->styles array.
+	 * Build exempt modules and legacy non-ResourceLoader styles.
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	public function buildCssLinks() {
+	protected function buildExemptModules() {
 		global $wgContLang;
 
-		$this->getSkin()->setupSkinUserCss( $this );
-
-		// Add ResourceLoader styles
-		// Split the styles into these groups
-		$styles = [
-			'other' => [],
-			'user' => [],
-			'site' => [],
-			'private' => [],
-			'noscript' => []
-		];
-		$links = [];
-		$otherTags = []; // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
+		$chunks = [];
+		// Things that should be appended after the other link and style chunks
+		$append = [];
+		$moduleStyles = [
+			'site.styles',
+			'noscript'
+		];
 
-		$moduleStyles = $this->getModuleStyles();
-
-		// Per-site custom styles
-		$moduleStyles[] = 'site.styles';
-		$moduleStyles[] = 'noscript';
-
-		// Per-user custom styles
+		// Exempt 'user' styles module.
+		// - May need excludepages for live preview.
+		// - Position after ResourceLoaderDynamicStyles marker
 		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage()
 			&& $this->userCanPreview()
 		) {
-			// We're on a preview of a CSS subpage
-			// Exclude this page from the user module in case it's in there (bug 26283)
-			$link = $this->makeResourceLoaderLink( 'user.styles', ResourceLoaderModule::TYPE_STYLES,
+			$append[] = $this->makeResourceLoaderLink(
+				'user.styles',
+				ResourceLoaderModule::TYPE_STYLES,
 				[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
 			);
-			$otherTags = array_merge( $otherTags, $link['html'] );
 
-			// Load the previewed CSS
-			// If needed, Janus it first. This is user-supplied CSS, so it's
-			// assumed to be right for the content language directionality.
+			// Load the previewed CSS. Janus it if needed.
+			// User-supplied CSS is assumed to in the wiki's content language.
 			$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
 			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
 				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
 			}
-			$otherTags[] = Html::inlineStyle( $previewedCSS );
+			$append[] = Html::inlineStyle( $previewedCSS );
 		} else {
-			// Load the user styles normally
+			// Load styles normally
 			$moduleStyles[] = 'user.styles';
 		}
 
-		// Per-user preference styles
+		// Exempt 'user.cssprefs' module
+		// - Position after ResourceLoaderDynamicStyles marker
 		$moduleStyles[] = 'user.cssprefs';
 
+		$groups = [
+			'other' => [],
+			'site' => [],
+			'noscript' => [],
+			'private' => [],
+			'user' => [],
+		];
 		foreach ( $moduleStyles as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			if ( !$module ) {
 				continue;
 			}
 			if ( $name === 'site.styles' ) {
-				// HACK: The site module shouldn't be fragmented with a cache group and
-				// http request. But in order to ensure its styles are separated and after the
-				// ResourceLoaderDynamicStyles marker, pretend it is in a group called 'site'.
-				// The scripts remain ungrouped and rides the bottom queue.
-				$styles['site'][] = $name;
+				// HACK: Technically, the 'site.styles' module isn't in a separate request group.
+				// But, in order to ensure its styles are in the right position after the marker,
+				// pretend it's in a group called 'site'.
+				$groups['site'][] = $name;
 				continue;
 			}
 			$group = $module->getGroup();
-			// Modules in groups other than the ones needing special treatment
-			// (see $styles assignment)
-			// will be placed in the "other" style category.
-			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
+			// Use "other" in case. All exempt modules are in one of the known groups though.
+			$groups[isset( $groups[$group] ) ? $group : 'other'][] = $name;
 		}
 
 		// We want site, private and user styles to override dynamically added
@@ -3696,33 +3446,23 @@ class OutputPage extends ContextSource {
 		// statically added styles from other modules. So the order has to be
 		// other, dynamic, site, private, user. Add statically added styles for
 		// other modules
-		$links[] = $this->makeResourceLoaderLink(
-			$styles['other'],
-			ResourceLoaderModule::TYPE_STYLES
-		);
-		// Add normal styles added through addStyle()/addInlineStyle() here
-		$links[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
-		// Add marker tag to mark the place where the client-side
-		// loader should inject dynamic styles
-		// We use a <meta> tag with a made-up name for this because that's valid HTML
-		$links[] = Html::element(
+
+		// Add legacy styles added through addStyle()/addInlineStyle() here
+		$chunks[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
+
+		// Client-side mw.loader will inject dynamic styles before this marker.
+		$chunks[] = Html::element(
 			'meta',
 			[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
 		);
 
-		// Add site-specific and user-specific styles
-		// 'private' at present only contains user.options, so put that before 'user'
-		// Any future private modules will likely have a similar user-specific character
-		foreach ( [ 'site', 'noscript', 'private', 'user' ] as $group ) {
-			$links[] = $this->makeResourceLoaderLink( $styles[$group],
+		foreach ( [ 'other', 'site', 'noscript', 'private', 'user' ] as $group ) {
+			$chunks[] = $this->makeResourceLoaderLink( $groups[$group],
 				ResourceLoaderModule::TYPE_STYLES
 			);
 		}
 
-		// Add stuff in $otherTags (previewed user CSS if applicable)
-		$links[] = implode( '', $otherTags );
-
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::combineWrappedStrings( array_merge( $chunks, $append ) );
 	}
 
 	/**
