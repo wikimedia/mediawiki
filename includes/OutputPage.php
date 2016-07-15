@@ -2947,7 +2947,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string HTML fragment
 	 */
-	function getHeadScripts() {
+	protected function getHeadScripts() {
 		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
 	}
 
@@ -2957,7 +2957,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	function getExternalHeadScripts() {
+	protected function getExternalHeadScripts() {
 		// Startup - this provides the client with the module
 		// manifest and loads jquery and mediawiki base modules
 		$links = [];
@@ -2970,7 +2970,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	function getInlineHeadScripts() {
+	protected function getInlineHeadScripts() {
 		$links = [];
 
 		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
@@ -3030,7 +3030,7 @@ class OutputPage extends ContextSource {
 	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
 	 * @return string|WrappedStringList HTML
 	 */
-	function getScriptsForBottomQueue( $unused = null ) {
+	protected function getScriptsForBottomQueue( $unused = null ) {
 		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		$links = [];
@@ -3631,7 +3631,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	public function buildCssLinks() {
+	protected function buildCssLinks() {
 		global $wgContLang;
 
 		$this->getSkin()->setupSkinUserCss( $this );
