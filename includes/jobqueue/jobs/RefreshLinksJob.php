@@ -128,8 +128,18 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
+
+		// Serialize links updates by page ID so they see each others' changes
+		$scopedLock = LinksUpdate::acquirePageLock( wfGetDB( DB_MASTER ), $page->getId(), 'job' );
+		// Get the latest ID *after* acquirePageLock() flushed the transaction.
+		// This is used to detect edits/moves after loadPageData() but before the scope lock.
+		// The works around the chicken/egg problem of determining the scope lock key.
+		$latest = $title->getLatestRevID( Title::GAID_FOR_UPDATE );
+
 		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 			// Fetch the specified revision; lockAndGetLatest() below detects if the page
 			// was edited since and aborts in order to avoid corrupting the link tables
@@ -142,15 +152,15 @@ class RefreshLinksJob extends Job {
 			$revision = Revision::newFromTitle( $title, false, Revision::READ_LATEST );
 		}
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-
 		if ( !$revision ) {
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
-		} elseif ( !$revision->isCurrent() || $revision->getPage() != $page->getId() ) {
-			// If the revision isn't current, there's no point in doing a bunch
-			// of work just to fail at the lockAndGetLatest() check later.
+		} elseif ( $revision->getId() != $latest || $revision->getPage() !== $page->getId() ) {
+			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
+			// serialized, it would be OK to update links based on older revisions since it
+			// would eventually get to the latest. Since that is not the case (by design),
+			// only update the link tables to a state matching the current revision's output.
 			$stats->increment( 'refreshlinks.rev_not_current' );
 			$this->setLastError( "Revision {$revision->getId()} is not current" );
 			return false;
@@ -248,17 +258,6 @@ class RefreshLinksJob extends Job {
 					$update->setTriggeringUser( $user );
 				}
 			}
-		}
-
-		$latestNow = $page->lockAndGetLatest();
-		if ( !$latestNow || $revision->getId() != $latestNow ) {
-			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
-			// serialized, it would be OK to update links based on older revisions since it
-			// would eventually get to the latest. Since that is not the case (by design),
-			// only update the link tables to a state matching the current revision's output.
-			$stats->increment( 'refreshlinks.rev_cas_failure' );
-			$this->setLastError( "page_latest changed from {$revision->getId()} to $latestNow" );
-			return false;
 		}
 
 		DataUpdate::runUpdates( $updates );
