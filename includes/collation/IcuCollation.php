@@ -190,6 +190,12 @@ class IcuCollation extends Collation {
 
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
+
+		// If the special suffix for numeric collation is present, turn on numeric collation.
+		if ( strpos( $locale, '-u-kn' ) !== false ) {
+			$this->mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
+			$this->primaryCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
+		}
 	}
 
 	public function getSortKey( $string ) {
@@ -254,6 +260,10 @@ class IcuCollation extends Collation {
 	 * @throws MWException
 	 */
 	private function fetchFirstLetterData() {
+		// If the special suffix for numeric collation is present, strip it off the locale.
+		if ( strpos( $this->locale, '-u-kn' ) !== false ) {
+			$this->locale = substr( $this->locale, 0, -5 );
+		}
 		// Generate data from serialized data file
 		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
 			$letters = wfGetPrecompiledData( 'first-letters-root.ser' );
