@@ -212,6 +212,29 @@ class Http {
 
 		return "";
 	}
+
+	/**
+	 * Asynchronously transfer small HTTP data from the User Agent to a web server.
+	 *
+	 * This method closely matches navigator.sendBeacon(), which is part of the
+	 * Beacon web API. See <https://w3c.github.io/beacon/#sec-sendBeacon-method>
+	 * and <https://developer.mozilla.org/en/docs/Web/API/Navigator/sendBeacon>.
+	 *
+	 * If you need to pass advanced options to Http::post, call it directly.
+	 *
+	 * @param string $url the URL where the data is to be transmitted.
+	 * @param mixed $data (optional) data to be transmitted as an array of
+	 *   key-value pairs or as URL-encoded form data.
+	 * @return true
+	 */
+	public static function sendBeacon( $url, array $data = [] ) {
+		$options = $data ? [ 'postData' => $data ] : [];
+		DeferredUpdates::addCallableUpdate( function () use ( $url, $options ) {
+			Http::post( $url, $options );
+		} );
+
+		return true;
+	}
 }
 
 /**
