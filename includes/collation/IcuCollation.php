@@ -36,6 +36,9 @@ class IcuCollation extends Collation {
 	/** @var Language */
 	protected $digitTransformLanguage;
 
+	/** @var boolean */
+	private $useNumericCollation = false;
+
 	/** @var array */
 	private $firstLetterData;
 
@@ -190,6 +193,15 @@ class IcuCollation extends Collation {
 
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
+
+		// If the special suffix for numeric collation is present, turn on numeric collation.
+		if ( strpos( $locale, '-u-kn' ) !== false ) {
+			$this->useNumericCollation = true;
+			// Strip off the special suffix so it doesn't trip up fetchFirstLetterData().
+			$this->locale = substr( $this->locale, 0, -5 );
+			$this->mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
+			$this->primaryCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
+		}
 	}
 
 	public function getSortKey( $string ) {
@@ -206,8 +218,9 @@ class IcuCollation extends Collation {
 			return '';
 		}
 
-		// Check for CJK
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
+
+		// If the first character is a Chinese character, just return that character.
 		if ( ord( $firstChar ) > 0x7f && self::isCjk( UtfNormal\Utils::utf8ToCodepoint( $firstChar ) ) ) {
 			return $firstChar;
 		}
@@ -225,7 +238,19 @@ class IcuCollation extends Collation {
 			// Before the first letter
 			return '';
 		}
-		return $this->getLetterByIndex( $min );
+
+		$sortLetter = $this->getLetterByIndex( $min );
+
+		// We do this last since non-Arabic numerals are mapped to Arabic numerals
+		// for sorting when numeric sorting is activated, and it's a lot easier to
+		// check for 0–9 rather than checking for all possible numerals in Unicode.
+		if ( $this->useNumericCollation ) {
+			// If the sort letter is a number, return '0–9' (or localized equiv.)
+			if ( ord( $sortLetter ) >= 48 && ord( $sortLetter ) <= 57 ) {
+				$sortLetter = wfMessage( 'category-header-numerals' )->escaped();
+			}
+		}
+		return $sortLetter;
 	}
 
 	/**
@@ -401,6 +426,7 @@ class IcuCollation extends Collation {
 	}
 
 	/**
+	 * Test if a code point is a Chinese character
 	 * @since 1.16.3
 	 */
 	public static function isCjk( $codepoint ) {
