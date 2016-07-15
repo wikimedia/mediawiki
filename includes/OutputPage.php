@@ -2962,7 +2962,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	function getExternalHeadScripts() {
+	protected function getExternalHeadScripts() {
 		// Startup - this provides the client with the module
 		// manifest and loads jquery and mediawiki base modules
 		$links = [];
@@ -2975,7 +2975,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|WrappedStringList HTML
 	 */
-	function getInlineHeadScripts() {
+	protected function getInlineHeadScripts() {
 		$links = [];
 
 		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
