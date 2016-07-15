@@ -168,18 +168,16 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 *
 	 * @param IDatabase $dbw
 	 * @param integer $pageId
-	 * @return ScopedCallback|null Returns null on failure
+	 * @param string $why One of (job, atomicity)
+	 * @return ScopedCallback
 	 * @throws RuntimeException
 	 * @since 1.27
 	 */
-	public static function acquirePageLock( IDatabase $dbw, $pageId ) {
-		$scopedLock = $dbw->getScopedLockAndFlush(
-			"LinksUpdate:pageid:$pageId",
-			__METHOD__,
-			15
-		);
+	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ) {
+		$key = "LinksUpdate:$why:pageid:$pageId";
+		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 15 );
 		if ( !$scopedLock ) {
-			throw new RuntimeException( "Could not acquire lock on page #$pageId." );
+			throw new RuntimeException( "Could not acquire lock '$key'." );
 		}
 
 		return $scopedLock;
