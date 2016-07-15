@@ -360,7 +360,7 @@ class ApiParse extends ApiBase {
 
 				$css = $this->formatCss( $output->buildCssLinksArray() );
 
-				$scripts = [ $output->getHeadScripts() ];
+				$scripts = [ $output->getRlClient()->getHeadHtml() ];
 
 				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 			}
