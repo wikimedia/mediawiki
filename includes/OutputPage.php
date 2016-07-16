@@ -2300,6 +2300,19 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
 
+			// Skin::outputPage() extracts all data it needs. After this point the
+			// OutputPage object is effectively immutable.
+
+			// Ideally we'd construct ResourceLoaderClientHtml earlier and forward
+			// addModules() calls to it, but because disallowUserJs() can affect
+			// getAllowedModules() retroactively we can't.
+
+			$rlClient = new ResourceLoaderClientHtml( $this->getResourceLoader() );
+			$rlClient->setConfig( $this->getJSVars() );
+			$rlClient->setModules( $this->getModules() );
+			$rlClient->setModuleStyles( $this->getModuleStyles() );
+			$rlClient->setModuleScripts( $this->getModuleScripts() );
+
 			try {
 				$sk->outputPage();
 			} catch ( Exception $e ) {
@@ -2950,6 +2963,7 @@ class OutputPage extends ContextSource {
 	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
+	 * @deprecated since 1.28 Unused
 	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
