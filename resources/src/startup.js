@@ -77,7 +77,7 @@ function isCompatible( str ) {
 	var NORLQ, script;
 	if ( !isCompatible() ) {
 		// Undo class swapping in case of an unsupported browser.
-		// See OutputPage::getHeadScripts().
+		// See ResourceLoaderClientHtml::getDocumentAttributes().
 		document.documentElement.className = document.documentElement.className
 			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
 
