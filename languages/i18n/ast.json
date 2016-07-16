@@ -12,7 +12,8 @@
 			"아라",
 			"Fitoschido",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Tokvo"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -3088,7 +3089,7 @@
 	"table_pager_limit_label": "Elementos por páxina:",
 	"table_pager_limit_submit": "Dir",
 	"table_pager_empty": "Nun hai resultaos",
-	"autosumm-blank": "Desaniciáu el conteníu de la páxina",
+	"autosumm-blank": "Desaniciáu'l conteníu de la páxina",
 	"autosumm-replace": "Sustituyendo la páxina por '$1'",
 	"autoredircomment": "Redirixendo a [[$1]]",
 	"autosumm-new": "Páxina creada con «$1»",
@@ -3671,6 +3672,7 @@
 	"authmanager-provider-temporarypassword": "Contraseña temporal",
 	"authprovider-resetpass-skip-label": "Saltar",
 	"authprovider-resetpass-skip-help": "Saltar el reaniciu de la contraseña.",
+	"specialpage-securitylevel-not-allowed-title": "Nun ta permitío",
 	"credentialsform-account": "Nome de la cuenta:",
 	"cannotlink-no-provider-title": "Nun hai cuentes enllazables",
 	"cannotlink-no-provider": "Nun hai cuentes enllazables.",

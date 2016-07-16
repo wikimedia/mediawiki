@@ -445,7 +445,7 @@
 	"noname": "ଆପଣ ଗୋଟିଏ ବୈଧ ଇଉଜର ନାମ ଦେଇନାହାନ୍ତି ।",
 	"loginsuccesstitle": "ଠିକଭାବେ ଲଗ-ଇନ ହେଲା",
 	"loginsuccess": "'''ଆପଣ {{SITENAME}}ରେ \"$1\" ନାମରେ ଲଗ-ଇନ କରିଛନ୍ତି ।'''",
-	"nosuchuser": "\"$1\" ନାମରେ କେହି ଜଣେ ବି ସଭ୍ୟ ନାହାନ୍ତି ।\nଇଉଜର ନାମ ଇଂରାଜୀ ଛୋଟ ଓ ବଡ଼ ଅକ୍ଷର ପ୍ରତି ସମ୍ବେଦନଶୀଳ ।\nଆପଣ ନିଜର ବନାନ ପରଖି ନିଅନ୍ତୁ, ଅଥବା [[Special:CreateAccount|ନୂଆ ଖାତାଟିଏ ତିଆରି କରନ୍ତୁ]] ।",
+	"nosuchuser": "\"$1\" ନାମରେ କେହି ଜଣେ ବି ସଭ୍ୟ ନାହାନ୍ତି ।\nଇଉଜର ନାମ ଇଂରାଜୀ ଛୋଟ ଓ ବଡ଼ ଅକ୍ଷର ପ୍ରତି ସମ୍ବେଦନଶୀଳ ।\nବନାନ ପରଖି ନିଅନ୍ତୁ, ଅଥବା [[Special:CreateAccount|ନୂଆ ଖାତାଟିଏ ତିଆରି କରନ୍ତୁ]] ।",
 	"nosuchusershort": "\"$1\" ନାମରେ କେହି ଜଣେ ବି ସଭ୍ୟ ନାହାନ୍ତି ।\nଆପଣ ବନାନ ପରଖି ନିଅନ୍ତୁ ।",
 	"nouserspecified": "ଆପଣଙ୍କୁ ଇଉଜର ନାମଟିଏ ଦେବାକୁ ପଡ଼ିବ ।",
 	"login-userblocked": "ଏହି ସଭ୍ୟଙ୍କୁ ଅଟକାଯାଇଛି । ଲଗ ଇନ କରିବାକୁ ଅନୁମତି ନାହିଁ ।",
@@ -3190,6 +3190,5 @@
 	"special-characters-title-endash": "en ଡ୍ୟାସ",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "ମେନୁଗୁଡିକର ଚିହ୍ନ",
-	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ",
-	"api-error-blacklisted": "ଦୟାକରି ଏକ ଅଲଗା, ବିବରଣୀ ଶିରୋନାମାରେ ରଖିବେ ।"
+	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ"
 }

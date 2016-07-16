@@ -21,6 +21,9 @@
 	"apihelp-emailuser-param-target": "Bikarhênerê ku e-name jê rê bê şandin.",
 	"apihelp-expandtemplates-param-title": "Sernavê rûpelê.",
 	"apihelp-feedcontributions-param-deletedonly": "Tenê beşdariyên jêbirî nîşan bide.",
+	"apihelp-feedcontributions-param-hideminor": "Guherandinên biçûk veşêre.",
+	"apihelp-feedrecentchanges-param-hideminor": "Guherandinên biçûk veşêre.",
+	"apihelp-feedrecentchanges-param-hidebots": "Guherandinên botan veşêre.",
 	"apihelp-feedrecentchanges-example-simple": "Guherandinên dawî nîşan bide.",
 	"apihelp-feedrecentchanges-example-30days": "Guherandinên dawî yên 30 rojan nîşan bide",
 	"apihelp-filerevert-param-comment": "Şîroveyê bar bike.",
@@ -35,5 +38,7 @@
 	"apihelp-parse-example-summary": "Kurteyekê analîz bike",
 	"apihelp-protect-description": "Asta parastinê ya rûpelekê biguherîne.",
 	"apihelp-protect-example-protect": "Rûpelekê biparêze.",
-	"apihelp-tag-param-reason": "Sedemê bo guherandinê."
+	"apihelp-query+alllinks-paramvalue-prop-title": "Sernavê girêdanê lê zêde dike.",
+	"apihelp-tag-param-reason": "Sedemê bo guherandinê.",
+	"api-help-parameters": "{{PLURAL:$1|Parametre}}:"
 }
