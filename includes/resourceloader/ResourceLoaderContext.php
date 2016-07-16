@@ -260,7 +260,7 @@ class ResourceLoaderContext {
 
 	/**
 	 * @see ResourceLoaderModule::getVersionHash
-	 * @see OutputPage::makeResourceLoaderLink
+	 * @see ResourceLoaderClientHtml::makeResourceLoaderLink
 	 * @return string|null
 	 */
 	public function getVersion() {
