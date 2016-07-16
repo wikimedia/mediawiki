@@ -296,6 +296,12 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @since 1.28
+	 * @var ResourceLoaderClientHtml Initialised in headElement()
+	 */
+	private $rlClient;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -503,7 +509,7 @@ class OutputPage extends ContextSource {
 	 * Add a self-contained script tag with the given contents
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
-	 * @param string $script JavaScript text, no "<script>" tags
+	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( $script );
@@ -543,10 +549,12 @@ class OutputPage extends ContextSource {
 	 * @param string $param
 	 * @return array Array of module names
 	 */
-	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
+	public function getModules( $filter = false, $position = null, $param = 'mModules',
+		$type = ResourceLoaderModule::TYPE_COMBINED
+	) {
 		$modules = array_values( array_unique( $this->$param ) );
 		return $filter
-			? $this->filterModules( $modules, $position )
+			? $this->filterModules( $modules, $position, $type )
 			: $modules;
 	}
 
@@ -566,11 +574,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position
-	 *
 	 * @return array Array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleScripts' );
+		return $this->getModules( $filter, $position, 'mModuleScripts',
+			ResourceLoaderModule::TYPE_SCRIPTS
+		);
 	}
 
 	/**
@@ -589,11 +598,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position
-	 *
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleStyles' );
+		return $this->getModules( $filter, $position, 'mModuleStyles',
+			ResourceLoaderModule::TYPE_STYLES
+		);
 	}
 
 	/**
@@ -2659,9 +2669,54 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
+
+		$this->getSkin()->setupSkinUserCss( $this );
+
 		$pieces[] = $this->getInlineHeadScripts();
 		$pieces[] = $this->buildCssLinks();
 		$pieces[] = $this->getExternalHeadScripts();
+
+		$this->addModules( [
+			'user.options',
+			'user.tokens',
+		] );
+
+		// Most modules are added before OutputPage::out() calls Skin::outputPage(). However,
+		// SkinTempalte::initPage() and Skin::setupSkinUserCss() may still add more. There is
+		// no call to OutputPage before the skin calls headElement() to let it know it's done.
+
+		// Ideally we'd construct ResourceLoaderClientHtml earlier and forward addModules() calls
+		// to it, but we can't because disallowUserJs() affects getAllowedModules() retroactively.
+		$query = ResourceLoader::makeLoaderQuery(
+			[], // modules; not relevant
+			$this->getLanguage()->getCode(),
+			$this->getSkin()->getSkinName(),
+			$this->getUser()->isLoggedIn() ? $this->getUser()->getName() : null,
+			null, // version; not relevant
+			ResourceLoader::inDebugMode(),
+			null, // only; not relevant
+			$this->isPrintable(),
+			$this->getRequest()->getBool( 'handheld' )
+		);
+		$resourceLoader = $this->getResourceLoader();
+		$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
+		$rlClient = new ResourceLoaderClientHtml( $context );
+		$rlClient->setConfig( $this->getJSVars() );
+		$rlClient->setModules( $this->getModules( /*originFilter=*/ true ) );
+		$rlClient->setModuleStyles( $this->getModuleStyles( /*originFilter=*/ true ) );
+		$rlClient->setModuleScripts( $this->getModuleScripts( /*originFilter=*/ true ) );
+		$rlClient->setExemptStates( [
+			// Manually loaded by buildCssLinks()
+			'site.styles' => 'ready',
+			'noscript' => 'ready',
+			'user.cssprefs' => 'ready'
+		] );
+		$this->rlClient = $rlClient;
+
+		$pieces[] = '<!-- rlClient -->';
+		$pieces[] = $rlClient->getHeadHtml();
+		$pieces[] = $this->buildExemptModules();
+		$pieces[] = '<!-- /rlClient -->';
 
 		foreach ( $this->getHeadLinksArray() as $item ) {
 			$pieces[] = $item;
@@ -2728,7 +2783,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Construct neccecary html and loader preset states to load modules on a page.
+	 * Construct necessary html and loader preset states to load modules on a page.
 	 *
 	 * Use getHtmlFromLoaderLinks() to convert this array to HTML.
 	 *
@@ -2850,9 +2905,7 @@ class OutputPage extends ContextSource {
 				}
 
 				// Inline private modules. These can't be loaded through load.php for security
-				// reasons, see bug 34907. Note that these modules should be loaded from
-				// getExternalHeadScripts() before the first loader call. Otherwise other modules can't
-				// properly use them as dependencies (bug 30914)
+				// reasons, see bug 34907.
 				if ( $group === 'private' ) {
 					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 						$links['html'][] = Html::inlineStyle(
@@ -2871,7 +2924,6 @@ class OutputPage extends ContextSource {
 				// timestamp of these user-changeable modules so we can ensure cache misses on change
 				// This should NOT be done for the site group (bug 27564) because anons get that too
 				// and we shouldn't be putting timestamps in CDN-cached HTML
-				$version = null;
 				if ( $group === 'user' ) {
 					$query['version'] = $resourceLoader->getCombinedVersion( $context, array_keys( $grpModules ) );
 				}
@@ -2947,16 +2999,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * JS stuff to put in the "<head>". This is the startup module, config
-	 * vars and modules marked with position 'top'
-	 *
-	 * @return string HTML fragment
-	 */
-	protected function getHeadScripts() {
-		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
-	}
-
-	/**
 	 * <script src="..."> tags for "<head>".This is the startup module
 	 * and other modules marked with position 'top'.
 	 *
@@ -3027,18 +3069,124 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Build additional module scripts and/or styles that need special treatment.
+	 *
+	 * See headElement() for non-special cases.
+	 *
+	 * @return string|WrappedStringList HTML
+	 */
+	protected function buildExemptModules() {
+		global $wgContLang;
+
+		$resourceLoader = $this->getResourceLoader();
+
+		$chunks = [];
+		// Things that should be appended after the other link and style chunks
+		$append = [];
+
+		$moduleStyles = [
+			'site.styles',
+			'noscript'
+		];
+
+		// Per-user custom styles
+		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage()
+			&& $this->userCanPreview()
+		) {
+			// We're on a preview of a CSS subpage
+			// Exclude this page from the user module in case it's in there (bug 26283)
+			$chunk = $this->rlClient->makeResourceLoaderLink(
+				'user',
+				ResourceLoaderModule::TYPE_STYLES,
+				[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
+			);
+			$append[] = $chunk;
+
+			// Load the previewed CSS
+			// If needed, Janus it first. This is user-supplied CSS, so it's
+			// assumed to be right for the content language directionality.
+			$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
+			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
+				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
+			}
+			$append[] = Html::inlineStyle( $previewedCSS );
+		} else {
+			// Load the user styles normally
+			$moduleStyles[] = 'user';
+		}
+
+		// Per-user preference styles
+		$moduleStyles[] = 'user.cssprefs';
+
+		// Sort by module group. For this purpose we only care about specific groups that require
+		// a different output order. Other groups are merged here as "other".
+		$groups = [
+			'other' => [],
+			'site' => [],
+			'noscript' => [],
+			'private' => [],
+			'user' => [],
+		];
+		foreach ( $moduleStyles as $name ) {
+			$module = $resourceLoader->getModule( $name );
+			if ( !$module ) {
+				continue;
+			}
+			if ( $name === 'site.styles' ) {
+				// HACK: The site module shouldn't be fragmented with a cache group and
+				// http request. But in order to ensure its styles are separated and after the
+				// ResourceLoaderDynamicStyles marker, pretend it is in a group called 'site'.
+				// The scripts remain ungrouped and rides the bottom queue.
+				$groups['site'][] = $name;
+				continue;
+			}
+			$group = $module->getGroup();
+			$groups[isset( $groups[$group] ) ? $group : 'other'][] = $name;
+		}
+
+		// We want site, private and user styles to override dynamically added
+		// styles from modules, but we want dynamically added styles to override
+		// statically added styles from other modules. So the order has to be
+		// other, dynamic, site, private, user. Add statically added styles for
+		// other modules
+
+		// Add legacy styles added through addStyle()/addInlineStyle() here
+		$chunks[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
+
+		// Add marker tag to mark the place where the client-side
+		// loader should inject dynamic styles
+		// We use a <meta> tag with a made-up name for this because that's valid HTML
+		$chunks[] = Html::element(
+			'meta',
+			[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
+		);
+
+		// Add site-specific and user-specific styles
+		foreach ( $groups as $group ) {
+			// FIXME: Must embed user.cssprefs instead of using <link>
+			$chunks[] = $this->rlClient->makeResourceLoaderLink( $group,
+				ResourceLoaderModule::TYPE_STYLES
+			);
+		}
+
+		// Add stuff in $append (previewed user CSS if applicable)
+		return self::getHtmlFromLoaderLinks( array_merge( $chunks, $append ) );
+	}
+
+	/**
 	 * JS stuff to put at the 'bottom', which goes at the bottom of the `<body>`.
 	 * These are modules marked with position 'bottom', legacy scripts ($this->mScripts),
 	 * site JS, and user JS.
 	 *
-	 * @param bool $unused Previously used to let this method change its output based
-	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
+	 * @param bool $unused
 	 * @return string|WrappedStringList HTML
 	 */
 	protected function getScriptsForBottomQueue( $unused = null ) {
 		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		$links = [];
+
+		// $links[] = $this->rlClient->getBodyHtml()
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
@@ -3638,8 +3786,6 @@ class OutputPage extends ContextSource {
 	 */
 	protected function buildCssLinks() {
 		global $wgContLang;
-
-		$this->getSkin()->setupSkinUserCss( $this );
 
 		// Add ResourceLoader styles
 		// Split the styles into these groups
