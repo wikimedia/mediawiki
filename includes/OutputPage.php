@@ -296,6 +296,12 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @since 1.28
+	 * @var ResourceLoaderClientHtml
+	 */
+	private $rlClient;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -2300,6 +2306,20 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
 
+			// Skin::outputPage() extracts all data it needs. After this point the
+			// OutputPage object is effectively immutable.
+
+			// Ideally we'd construct ResourceLoaderClientHtml earlier and forward
+			// addModules() calls to it, but because disallowUserJs() can affect
+			// getAllowedModules() retroactively we can't.
+
+			$rlClient = new ResourceLoaderClientHtml( $this->getResourceLoader() );
+			$rlClient->setConfig( $this->getJSVars() );
+			// FIXME: $rlClient->setModules( $this->getModules() );
+			// FIXME: $rlClient->setModuleStyles( $this->getModuleStyles() );
+			// FIXME: $rlClient->setModuleScripts( $this->getModuleScripts() );
+			$this->rlClient = $rlClient;
+
 			try {
 				$sk->outputPage();
 			} catch ( Exception $e ) {
@@ -2663,6 +2683,8 @@ class OutputPage extends ContextSource {
 		$pieces[] = $this->buildCssLinks();
 		$pieces[] = $this->getExternalHeadScripts();
 
+		// $pieces[] = $this->rlClient->getHeadHtml();
+
 		foreach ( $this->getHeadLinksArray() as $item ) {
 			$pieces[] = $item;
 		}
@@ -2947,16 +2969,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * JS stuff to put in the "<head>". This is the startup module, config
-	 * vars and modules marked with position 'top'
-	 *
-	 * @return string HTML fragment
-	 */
-	protected function getHeadScripts() {
-		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
-	}
-
-	/**
 	 * <script src="..."> tags for "<head>".This is the startup module
 	 * and other modules marked with position 'top'.
 	 *
@@ -3039,6 +3051,8 @@ class OutputPage extends ContextSource {
 		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		$links = [];
+
+		// $links[] = $this->rlClient->getBodyHtml()
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
