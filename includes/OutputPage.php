@@ -2950,6 +2950,7 @@ class OutputPage extends ContextSource {
 	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
+	 * @deprecated since 1.28 Unused
 	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
