@@ -935,13 +935,7 @@ class Html {
 			$attribs['version'] = $wgHtml5Version;
 		}
 
-		$html = self::openElement( 'html', $attribs );
-
-		if ( $html ) {
-			$html .= "\n";
-		}
-
-		$ret .= $html;
+		$ret .= self::openElement( 'html', $attribs );
 
 		return $ret;
 	}
