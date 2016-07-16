@@ -188,8 +188,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
-					. "});</script>\n"
-					. "<script>(window.RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
 					. "});</script>"
 			],
@@ -198,6 +196,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @todo Remove these in favour of ResourceLoaderClientHtmlTest.
+	 *
 	 * @dataProvider provideMakeResourceLoaderLink
 	 * @covers OutputPage::makeResourceLoaderLink
 	 * @covers ResourceLoader::makeLoaderImplementScript
@@ -256,7 +256,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			] ),
 		] );
 		$links = $method->invokeArgs( $out, $args );
-		$actualHtml = implode( "\n", $links['html'] );
+		$actualHtml = strval( $links );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 
