@@ -166,7 +166,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 			[ 'raw' => true, 'sync' => true ]
 		);
 
-		$head = implode( "\n", array_merge( $styles['html'], $scripts['html'] ) );
+		$head = implode( "\n", [ $styles, $scripts ] );
 		$summary = $this->getSummaryHtml();
 		$html = <<<HTML
 <!DOCTYPE html>
