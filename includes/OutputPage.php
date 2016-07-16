@@ -296,6 +296,12 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @since 1.28
+	 * @var ResourceLoaderClientHtml
+	 */
+	private $rlClient;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -503,7 +509,7 @@ class OutputPage extends ContextSource {
 	 * Add a self-contained script tag with the given contents
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
-	 * @param string $script JavaScript text, no "<script>" tags
+	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( $script );
@@ -543,10 +549,12 @@ class OutputPage extends ContextSource {
 	 * @param string $param
 	 * @return array Array of module names
 	 */
-	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
+	public function getModules( $filter = false, $position = null, $param = 'mModules',
+		$type = $type = ResourceLoaderModule::TYPE_COMBINED
+	) {
 		$modules = array_values( array_unique( $this->$param ) );
 		return $filter
-			? $this->filterModules( $modules, $position )
+			? $this->filterModules( $modules, $position, $type )
 			: $modules;
 	}
 
@@ -570,7 +578,9 @@ class OutputPage extends ContextSource {
 	 * @return array Array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleScripts' );
+		return $this->getModules( $filter, $position, 'mModuleScripts',
+			ResourceLoaderModule::TYPE_SCRIPTS
+		);
 	}
 
 	/**
@@ -593,7 +603,9 @@ class OutputPage extends ContextSource {
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleStyles' );
+		return $this->getModules( $filter, $position, 'mModuleStyles',
+			ResourceLoaderModule::TYPE_STYLES
+		);
 	}
 
 	/**
@@ -2300,6 +2312,19 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
 
+			// Skin::outputPage() extracts all data it needs. After this point the
+			// OutputPage object is effectively immutable.
+
+			// Ideally we'd construct ResourceLoaderClientHtml earlier and forward
+			// addModules() calls to it, but we can't because disallowUserJs() can affect
+			// filterModules()/getAllowedModules() retroactively.
+			$rlClient = new ResourceLoaderClientHtml( $this->getResourceLoader() );
+			$rlClient->setConfig( $this->getJSVars() );
+			$rlClient->setModules( $this->getModules( /*originFilter=*/ true ) );
+			$rlClient->setModuleStyles( $this->getModuleStyles( /*originFilter=*/ true ) );
+			$rlClient->setModuleScripts( $this->getModuleScripts( /*originFilter=*/ true ) );
+			$this->rlClient = $rlClient;
+
 			try {
 				$sk->outputPage();
 			} catch ( Exception $e ) {
@@ -2659,9 +2684,15 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
+		$this->addModules( [
+			'user.options',
+			'user.tokens',
+		] );
 		$pieces[] = $this->getInlineHeadScripts();
 		$pieces[] = $this->buildCssLinks();
 		$pieces[] = $this->getExternalHeadScripts();
+
+		// $pieces[] = $this->rlClient->getHeadHtml();
 
 		foreach ( $this->getHeadLinksArray() as $item ) {
 			$pieces[] = $item;
@@ -2850,9 +2881,7 @@ class OutputPage extends ContextSource {
 				}
 
 				// Inline private modules. These can't be loaded through load.php for security
-				// reasons, see bug 34907. Note that these modules should be loaded from
-				// getExternalHeadScripts() before the first loader call. Otherwise other modules can't
-				// properly use them as dependencies (bug 30914)
+				// reasons, see bug 34907.
 				if ( $group === 'private' ) {
 					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 						$links['html'][] = Html::inlineStyle(
@@ -2947,16 +2976,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * JS stuff to put in the "<head>". This is the startup module, config
-	 * vars and modules marked with position 'top'
-	 *
-	 * @return string HTML fragment
-	 */
-	protected function getHeadScripts() {
-		return $this->getInlineHeadScripts() . $this->getExternalHeadScripts();
-	}
-
-	/**
 	 * <script src="..."> tags for "<head>".This is the startup module
 	 * and other modules marked with position 'top'.
 	 *
@@ -3031,14 +3050,15 @@ class OutputPage extends ContextSource {
 	 * These are modules marked with position 'bottom', legacy scripts ($this->mScripts),
 	 * site JS, and user JS.
 	 *
-	 * @param bool $unused Previously used to let this method change its output based
-	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
+	 * @param bool $unused
 	 * @return string|WrappedStringList HTML
 	 */
 	protected function getScriptsForBottomQueue( $unused = null ) {
 		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		$links = [];
+
+		// $links[] = $this->rlClient->getBodyHtml()
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
