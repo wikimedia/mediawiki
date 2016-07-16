@@ -1,0 +1,480 @@
+<?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+use WrappedString\WrappedString;
+use WrappedString\WrappedStringList;
+
+/**
+ * Bootstrapping for a ResourceLoader client on an HTML page.
+ *
+ * @since 1.28
+ */
+class ResourceLoaderClientHtml {
+
+	/** @var ResourceLoaderContext */
+	private $context;
+
+	/** @var ResourceLoader */
+	private $resourceLoader;
+
+	/** @var array */
+	private $config = [];
+
+	/** @var array */
+	private $modules = [];
+
+	/** @var array */
+	private $moduleScripts = [];
+
+	/** @var array */
+	private $moduleStyles = [];
+
+	/** @var array */
+	private $outsource = [];
+
+	/** @var array */
+	private $data;
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 */
+	public function __construct( ResourceLoaderContext $context ) {
+		$this->context = $context;
+		$this->resourceLoader = $context->getResourceLoader();
+	}
+
+	/**
+	 * Ensure one or more modules are loaded.
+	 *
+	 * @param array $vars Array of key/value pairs
+	 */
+	public function setConfig( array $vars ) {
+		foreach ( $vars as $key => $value ) {
+			$this->config[$key] = $value;
+		}
+	}
+
+	/**
+	 * Ensure one or more modules are loaded.
+	 *
+	 * @param array $modules Array of module names
+	 */
+	public function setModules( array $modules ) {
+		$this->modules = $modules;
+	}
+
+	/**
+	 * Ensure the scripts of one or more modules are loaded.
+	 *
+	 * @deprecated since 1.28
+	 * @param array $modules Array of module names
+	 */
+	public function setModuleScripts( array $modules ) {
+		$this->moduleScripts = $modules;
+	}
+
+	/**
+	 * Ensure the styles of one or more modules are loaded.
+	 *
+	 * @deprecated since 1.28
+	 * @param array $modules Array of module names
+	 */
+	public function setModuleStyles( array $modules ) {
+		$this->moduleStyles = $modules;
+	}
+
+	/**
+	 * Set state of special modules that are handled by the caller manually.
+	 *
+	 * See OutputPage::buildExemptModules() for use cases.
+	 *
+	 * @param array $modules Module state keyed by module name
+	 */
+	public function setExemptStates( array $states ) {
+		$this->exemptStates = $states;
+	}
+
+	/**
+	 * Relevant tasks:
+	 *
+	 * @return array
+	 */
+	private function getData() {
+		if ( $this->data ) {
+			return $this->data;
+		}
+
+		$rl = $this->resourceLoader;
+		$data = [
+			'states' => [
+				// moduleName => state
+			],
+			'general' => [
+				// position => [ moduleName ]
+				'top' => [],
+				'bottom' => [],
+			],
+			'styles' => [
+				// moduleName
+			],
+			'scripts' => [
+				// position => [ moduleName ]
+				'top' => [],
+				'bottom' => [],
+			],
+			// Embedding for private modules
+			'embed' => [
+				'styles' => [],
+				'general' => [
+					'top' => [],
+					'bottom' => [],
+				],
+			],
+
+		];
+
+		foreach ( $this->modules as $name ) {
+			$module = $rl->getModule( $name );
+			if ( !$module ) {
+				continue;
+			}
+
+			$group = $module->getGroup();
+			$position = $module->getPosition();
+
+			if ( $group === 'private' ) {
+				// Embed via mw.loader.implement per T36907.
+				$data['embed']['general'][$position][] = $name;
+				// Avoid duplicate request from mw.loader
+				$data['states'][$name] = 'loading';
+			} else {
+				// Load via mw.loader.load()
+				$data['general'][$position][] = $name;
+			}
+		}
+
+		foreach ( $this->moduleStyles as $name ) {
+			$module = $rl->getModule( $name );
+			if ( !$module ) {
+				continue;
+			}
+
+			if ( $module->getType() !== ResourceLoaderModule::LOAD_STYLES ) {
+				$logger = $rl->getLogger();
+				$logger->debug( 'Unexpected general module "{module}" in styles queue.', [
+					'module' => $name,
+				] );
+			} else {
+				// Stylesheet doesn't trigger mw.loader callback.
+				// Set "ready" state to allow dependencies and avoid duplicate requests. (T87871)
+				$data['states'][$name] = 'ready';
+			}
+
+			$group = $module->getGroup();
+			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
+			if ( $module->isKnownEmpty( $context ) ) {
+				// Avoid needless request for empty module
+				$data['states'][$name] = 'ready';
+			} else {
+				if ( $group === 'private' ) {
+					// Embed via style element
+					$data['embed']['styles'][] = $name;
+					// Avoid duplicate request from mw.loader
+					$data['states'][$name] = 'ready';
+				} else {
+					// Load from load.php?only=styles via <link rel=stylesheet>
+					$data['styles'][] = $name;
+				}
+			}
+		}
+
+		foreach ( $this->moduleScripts as $name ) {
+			$module = $rl->getModule( $name );
+			if ( !$module ) {
+				continue;
+			}
+
+			$group = $module->getGroup();
+			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_SCRIPTS );
+			if ( $module->isKnownEmpty( $context ) ) {
+				// Avoid needless request for empty module
+				$data['states'][$name] = 'ready';
+			} else {
+				// Load from load.php?only=scripts via <script src></script>
+				$data['scripts'][$position][] = $name;
+
+				// Avoid duplicate request from mw.loader
+				$data['states'][$name] = 'loading';
+			}
+		}
+
+		return $data;
+	}
+
+	/**
+	 * @return array Attribute key-value pairs for the HTML document element
+	 */
+	public function getDocumentAttributes() {
+		return [ 'class' => 'client-nojs' ];
+	}
+
+	/**
+	 * The order of elements in the head is as follows:
+	 * - Inline scripts.
+	 * - Stylesheets.
+	 * - Async external script-src.
+	 *
+	 * Reasons:
+	 * - Script execution may be blocked on preceeding stylesheets.
+	 * - Async scripts are not blocked on stylesheets.
+	 * - Inline scripts can't be asynchronous.
+	 * - For styles, earlier is better.
+	 *
+	 * @return string|WrappedStringList HTML
+	 */
+	public function getHeadHtml() {
+		$data = $this->getData();
+		$chunks = [];
+		// $chunks[] = '<!--  ' . json_encode( $data, JSON_PRETTY_PRINT ) . ' -->';
+
+		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
+		// This happens synchronously on every page view to avoid flashes of wrong content.
+		// See also #getDocumentAttributes() and /resources/src/startup.js.
+		$chunks[] = Html::inlineScript(
+			'document.documentElement.className = document.documentElement.className'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+		);
+
+		// Inline RLQ: Set page variables
+		if ( $this->config ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript( $this->config )
+			);
+		}
+
+		// Inline RLQ: Initial module states
+		$states = array_merge( $this->exemptStates, $data['states'] );
+		if ( $states ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeLoaderStateScript( $states )
+			);
+		}
+
+		// Inline RLQ: Embedded modules
+		if ( $data['embed']['general']['top'] ) {
+			$chunks[] = $this->getLoad(
+				$data['embed']['general']['top'],
+				ResourceLoaderModule::TYPE_COMBINED
+			);
+		}
+
+		// Inline RLQ: Load general modules
+		if ( $data['general']['top'] ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general']['top'] ] )
+			);
+		}
+
+		// Inline RLQ: Load only=scripts
+		if ( $data['scripts']['top'] ) {
+			$chunks[] = $this->getLoad(
+				$data['scripts']['top'],
+				ResourceLoaderModule::TYPE_SCRIPTS
+			);
+		}
+
+		// External stylesheets
+		if ( $data['styles'] ) {
+			$chunks[] = $this->getLoad(
+				$data['styles'],
+				ResourceLoaderModule::TYPE_STYLES
+			);
+		}
+
+		// Inline stylesheets (embedded only=styles)
+		if ( $data['embed']['styles'] ) {
+			$chunks[] = $this->getLoad(
+				$data['embed']['styles'],
+				ResourceLoaderModule::TYPE_STYLES
+			);
+		}
+
+		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
+		$chunks[] = $this->getLoad( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
+
+		return WrappedStringList::join( "\n", $chunks );
+	}
+
+	public function getBodyHtml() {
+		$data = $this->getData();
+		$chunks = [];
+
+		// Inline RLQ: Embedded modules
+		if ( $data['embed']['general']['bottom'] ) {
+			$chunks[] = $this->getLoad(
+				$data['embed']['general']['bottom'],
+				ResourceLoaderModule::TYPE_COMBINED
+			);
+		}
+
+		// Inline RLQ: Load only=scripts
+		if ( $data['scripts']['bottom'] ) {
+			$chunks[] = $this->getLoad(
+				$data['scripts']['bottom'],
+				ResourceLoaderModule::TYPE_SCRIPTS
+			);
+		}
+
+		// Inline RLQ: Load general modules
+		if ( $data['general']['bottom'] ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general']['bottom'] ] )
+			);
+		}
+
+		return WrappedStringList::join( "\n", $chunks );
+	}
+
+	private function getContext( $group, $type ) {
+		return self::makeContext( $this->context, $group, $type );
+	}
+
+	private function getLoad( $modules, $only ) {
+		return self::makeLoad( $this->context, (array)$modules, $only );
+	}
+
+	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
+		array $extraQuery = []
+	) {
+		// Create new ResourceLoaderContext so that $extraQuery may trigger isRaw().
+		$req = new FauxRequest( array_merge( $mainContext->getRequest()->getValues(), $extraQuery ) );
+		// Set 'only' if not combined
+		$req->setVal( 'only', $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
+		// Remove user parameter in most cases
+		if ( $group !== 'user' && $group !== 'private' ) {
+			$req->setVal( 'user', null );
+		}
+		$context = new ResourceLoaderContext( $mainContext->getResourceLoader(), $req );
+		// Allow caller to setVersion() and setModules()
+		return new DerivativeResourceLoaderContext( $context );
+	}
+
+	/**
+	 * Explicily load or embed modules on a page.
+	 *
+	 * @param ResourceLoaderContext $mainContext
+	 * @param array $modules One or more module names
+	 * @param string $only ResourceLoaderModule TYPE_ class constant
+	 * @param array $extraQuery [optional] Array with extra query parameters for the request
+	 * @return string|WrappedStringList HTML
+	 */
+	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,
+		array $extraQuery = []
+	) {
+		$rl = $mainContext->getResourceLoader();
+		$chunks = [];
+
+		if ( ResourceLoader::inDebugMode() && count( $modules ) > 1 ) {
+			$chunks = [];
+			// Recursively call us for every item
+			foreach ( $modules as $name ) {
+				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery );
+			}
+			return WrappedString::join( "\n", $chunks );
+		}
+
+		// Sort module names so requests are more uniform
+		sort( $modules );
+		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
+		$sortedModules = [];
+		foreach ( $modules as $name ) {
+			$module = $rl->getModule( $name );
+			if ( !$module ) {
+				$rl->getLogger()->warning( 'Unknown module "{module}"', [ 'module' => $name ] );
+				continue;
+			}
+			$sortedModules[$module->getSource()][$module->getGroup()][$name] = $module;
+		}
+
+		foreach ( $sortedModules as $source => $groups ) {
+			foreach ( $groups as $group => $grpModules ) {
+				$context = self::makeContext( $mainContext, $group, $only, $extraQuery );
+
+				if ( $group === 'private' ) {
+					// Decide whether to use style or script element
+					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
+						$chunks[] = Html::inlineStyle(
+							$rl->makeModuleResponse( $context, $grpModules )
+						);
+					} else {
+						$chunks[] = ResourceLoader::makeInlineScript(
+							$rl->makeModuleResponse( $context, $grpModules )
+						);
+					}
+					continue;
+				}
+
+				// See if we have one or more raw modules
+				$isRaw = false;
+				foreach ( $grpModules as $key => $module ) {
+					$isRaw |= $module->isRaw();
+				}
+
+				// Special handling for the user group; because users might change their stuff
+				// on-wiki like user pages, or user preferences; we need to find the highest
+				// timestamp of these user-changeable modules so we can ensure cache misses on change
+				// This should NOT be done for the site group (bug 27564) because anons get that too
+				// and we shouldn't be putting timestamps in CDN-cached HTML
+				if ( $group === 'user' ) {
+					$version = $rl->getCombinedVersion( $context, array_keys( $grpModules ) );
+					$context->setVersion( $version );
+				}
+
+				$context->setModules( array_keys( $grpModules ) );
+				$url = $rl->createLoaderURL( $source, $context, $extraQuery );
+
+				// Device whether to use 'style' or 'script' element
+				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
+					$chunk = Html::linkedStyle( $url );
+				} else {
+					if ( $context->getRaw() || $isRaw ) {
+						$chunk = Html::element( 'script', [
+							// In SpecialJavaScriptTest, QUnit must load synchronous
+							'async' => !isset( $extraQuery['sync'] ),
+							'src' => $url
+						] );
+					} else {
+						$chunk = ResourceLoader::makeInlineScript(
+							Xml::encodeJsCall( 'mw.loader.load', [ $url ] )
+						);
+					}
+				}
+
+				if ( $group == 'noscript' ) {
+					$chunks[] = Html::rawElement( 'noscript', [], $chunk );
+				} else {
+					$chunks[] = $chunk;
+				}
+			}
+		}
+
+		return WrappedString::join( "\n", $chunks );
+	}
+}
