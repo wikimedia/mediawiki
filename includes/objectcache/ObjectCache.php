@@ -259,7 +259,7 @@ class ObjectCache {
 	 * @since 1.27
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
-		if ( function_exists( 'apc_fetch' ) ) {
+		if ( function_exists( 'apcu_fetch' ) ) {
 			$id = 'apc';
 		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';
