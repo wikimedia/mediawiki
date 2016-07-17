@@ -164,6 +164,7 @@ return [
 	'jquery.arrowSteps' => [
 		'scripts' => 'resources/src/jquery/jquery.arrowSteps.js',
 		'styles' => 'resources/src/jquery/jquery.arrowSteps.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
@@ -328,6 +329,7 @@ return [
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery/jquery.spinner.js',
 		'styles' => 'resources/src/jquery/jquery.spinner.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
@@ -940,6 +942,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.api.rollback' => [
 		'scripts' => 'resources/src/mediawiki/api/rollback.js',
@@ -1011,6 +1014,7 @@ return [
 			'feedback-thanks-title',
 			'feedback-useragent'
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.feedlink' => [
 		'position' => 'top',
@@ -1078,6 +1082,7 @@ return [
 	],
 	'mediawiki.icon' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.inspect' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
@@ -1638,6 +1643,7 @@ return [
 
 	'mediawiki.libs.jpegmeta' => [
 		'scripts' => 'resources/src/mediawiki.libs/mediawiki.libs.jpegmeta.js',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* MediaWiki Page */
