@@ -242,7 +242,7 @@ abstract class Installer {
 	 */
 	protected $objectCaches = [
 		'xcache' => 'xcache_get',
-		'apc' => 'apc_fetch',
+		'apc' => 'apcu_fetch',
 		'wincache' => 'wincache_ucache_get'
 	];
 

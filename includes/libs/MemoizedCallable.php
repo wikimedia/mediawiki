@@ -77,8 +77,8 @@ class MemoizedCallable {
 	 */
 	protected function fetchResult( $key, &$success ) {
 		$success = false;
-		if ( function_exists( 'apc_fetch' ) ) {
-			return apc_fetch( $key, $success );
+		if ( function_exists( 'apcu_fetch' ) ) {
+			return apcu_fetch( $key, $success );
 		}
 		return false;
 	}
@@ -90,8 +90,8 @@ class MemoizedCallable {
 	 * @param mixed $result
 	 */
 	protected function storeResult( $key, $result ) {
-		if ( function_exists( 'apc_store' ) ) {
-			apc_store( $key, $result, $this->ttl );
+		if ( function_exists( 'apcu_store' ) ) {
+			apcu_store( $key, $result, $this->ttl );
 		}
 	}
 

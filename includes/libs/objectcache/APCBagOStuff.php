@@ -45,7 +45,7 @@ class APCBagOStuff extends BagOStuff {
 	 * Constructor
 	 *
 	 * Available parameters are:
-	 *   - nativeSerialize:     If true, pass objects to apc_store(), and trust it
+	 *   - nativeSerialize:     If true, pass objects to apcu_store(), and trust it
 	 *                          to serialize them correctly. If false, serialize
 	 *                          all values in PHP.
 	 *
@@ -75,7 +75,7 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
-		$val = apc_fetch( $key . self::KEY_SUFFIX );
+		$val = apcu_fetch( $key . self::KEY_SUFFIX );
 
 		if ( is_string( $val ) && !$this->nativeSerialize ) {
 			$val = $this->isInteger( $val )
@@ -91,22 +91,22 @@ class APCBagOStuff extends BagOStuff {
 			$value = serialize( $value );
 		}
 
-		apc_store( $key . self::KEY_SUFFIX, $value, $exptime );
+		apcu_store( $key . self::KEY_SUFFIX, $value, $exptime );
 
 		return true;
 	}
 
 	public function delete( $key ) {
-		apc_delete( $key . self::KEY_SUFFIX );
+		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return apc_inc( $key . self::KEY_SUFFIX, $value );
+		return apcu_inc( $key . self::KEY_SUFFIX, $value );
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return apc_dec( $key . self::KEY_SUFFIX, $value );
+		return apcu_dec( $key . self::KEY_SUFFIX, $value );
 	}
 }

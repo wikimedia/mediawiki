@@ -44,7 +44,7 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	 * Consecutive calls to the memoized callable with the same arguments
 	 * should result in just one invocation of the underlying callable.
 	 *
-	 * @requires function apc_store
+	 * @requires function apcu_store
 	 */
 	public function testCallableMemoized() {
 		$observer = $this->getMock( 'stdClass', [ 'computeSomething' ] );
