@@ -148,7 +148,8 @@
 			"Matma Rex",
 			"Dgstranz",
 			"Copper12",
-			"Ivanhercaz"
+			"Ivanhercaz",
+			"AlvaroMolina"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -333,7 +334,7 @@
 	"undelete_short": "Restaurar {{PLURAL:$1|una edición|$1 ediciones}}",
 	"viewdeleted_short": "Ver {{PLURAL:$1|una edición borrada|$1 ediciones borradas}}",
 	"protect": "Proteger",
-	"protect_change": "cambiar",
+	"protect_change": "Cambiar",
 	"protectthispage": "Proteger esta página",
 	"unprotect": "Cambiar protección",
 	"unprotectthispage": "Cambiar la protección de esta página",
@@ -347,9 +348,9 @@
 	"views": "Vistas",
 	"toolbox": "Herramientas",
 	"userpage": "Ver página de usuario",
-	"projectpage": "Ver página de proyecto",
+	"projectpage": "Ver página del proyecto",
 	"imagepage": "Ver página del archivo",
-	"mediawikipage": "Ver página de mensaje",
+	"mediawikipage": "Ver página del mensaje",
 	"templatepage": "Ver página de plantilla",
 	"viewhelppage": "Ver página de ayuda",
 	"categorypage": "Ver página de categoría",

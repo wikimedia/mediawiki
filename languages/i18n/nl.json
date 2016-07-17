@@ -800,6 +800,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Leeg object",
 	"content-json-empty-array": "Lege reeks",
+	"deprecated-self-close-category": "Pagina's met ongeldige zelfsluitende HTML-tags",
 	"duplicate-args-warning": "<strong>Waarschuwing:</strong> [[:$1]] roept [[:$2]] aan met meer dan één waarde voor de parameter \"$3\". Alleen de laatste waarde wordt gebruikt.",
 	"duplicate-args-category": "Pagina's met dubbele sjabloonparameters",
 	"duplicate-args-category-desc": "De pagina bevat aanroepen van sjablonen waarin hetzelfde argument meerdere keren wordt gebruikt, bijvoorbeeld <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

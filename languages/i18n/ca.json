@@ -587,6 +587,7 @@
 	"botpasswords-updated-title": "Contrasenya de bot actualitzada",
 	"botpasswords-not-exist": "L'usuari «$1» no té una contrasenya de bot anomenada «$2».",
 	"resetpass_forbidden": "No poden canviar-se les contrasenyes",
+	"resetpass_forbidden-reason": "Les contrasenyes no es poden canviar: $1",
 	"resetpass-no-info": "Heu d'estar registrats en un compte per a poder accedir directament a aquesta pàgina.",
 	"resetpass-submit-loggedin": "Canvia la contrasenya",
 	"resetpass-submit-cancel": "Cancel·la",

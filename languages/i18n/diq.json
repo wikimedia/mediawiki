@@ -146,7 +146,7 @@
 	"category-empty": "''Ena kategoriye de hewna qet nuştey ya zi medya çıniyê.''",
 	"hidden-categories": "{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıtey}}",
 	"hidden-category-category": "Kategoriyê nımıtey",
-	"category-subcat-count": "{{PLURAL:$2|Na kategoriya de $1 bınkategoriyay estê.|$2 kategoriyan ra $1 bınkategoriyay asenê.}}",
+	"category-subcat-count": "{{PLURAL:$2|Na kategoriya de $1 bınkategoriyay estê.|$2 kategoriyan ra $1 bınkategoriyay asenê.}} \n(K) Kategori (D) Dosya (P) Pela",
 	"category-subcat-count-limited": "Na kategoriya de {{PLURAL:$1|ena kategoriya bınên est a|enê $1 kategoriyay bınêni est ê}}.",
 	"category-article-count": "{{PLURAL:$2|Na kategoriye de teyna ena pele esta.|Ebe $2 ra pêro piya {{PLURAL:$1|ena pela na kategoriye dera|$1 enê peli na kategoriye derê.}}}}",
 	"category-article-count-limited": "{{PLURAL:$1|Pela cêrêne|$1 Pelê cêrêni}} na kategoriye derê.",

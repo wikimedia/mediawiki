@@ -1305,7 +1305,7 @@
 	"nchanges": "$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|ekde lasta vizito}}",
 	"enhancedrc-history": "historio",
-	"recentchanges": "Ĵusaj ŝanĝoj",
+	"recentchanges": "Lastaj ŝanĝoj",
 	"recentchanges-legend": "Opcioj pri lastaj ŝanĝoj",
 	"recentchanges-summary": "Per ĉi tiu paĝo vi povas sekvi la plej lastajn ŝanĝojn en la {{SITENAME}}.",
 	"recentchanges-noresult": "En la donita tempo ne estis ŝanĝoj, kiuj konformas al la kriterioj.",
