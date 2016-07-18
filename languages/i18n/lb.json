@@ -143,7 +143,7 @@
 	"hidden-category-category": "Verstoppt Kategorien",
 	"category-subcat-count": "Dës Kategorie huet {{PLURAL:$2|nëmmen dës Ënnerkategorie.|dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}, vu(n) $2 am Ganzen.}}",
 	"category-subcat-count-limited": "Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.",
-	"category-article-count": "An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vu(n) $2 am Ganzen.}}",
+	"category-article-count": "An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|sinn dës $1 Säiten}}, vu(n) $2 am Ganzen.}}",
 	"category-article-count-limited": "Dës {{PLURAL:$1|Säit ass|$1 Säite sinn}} an dëser Kategorie.",
 	"category-file-count": "{{PLURAL:$2|Just dëse Fichier ass an dëser Kategorie.|{{PLURAL:$1|Just dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie, vu(n) $2 am Ganzen.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie.",

@@ -95,7 +95,7 @@
 	"apihelp-edit-param-section": "מספר הפסקה <kbd>0</kbd> לפסקה העליונה, <kbd>new</kbd> לפסקה חדשה.",
 	"apihelp-edit-param-sectiontitle": "הכותרת לפסקה החדשה.",
 	"apihelp-edit-param-text": "תוכן הדף.",
-	"apihelp-edit-param-summary": "תקציר עריכה. גם גותרת פסקה כש־$1section=new ו־$1sectiontitle אינו מוגדר.",
+	"apihelp-edit-param-summary": "תקציר עריכה. גם כותרת פסקה כש־$1section=new ו־$1sectiontitle אינו מוגדר.",
 	"apihelp-edit-param-tags": "אילו תגי שינוי להחיל על הגרסה.",
 	"apihelp-edit-param-minor": "עריכה משנית.",
 	"apihelp-edit-param-notminor": "שינוי לא משני.",

@@ -46,7 +46,8 @@
 			"Xð",
 			"Robin van der Vliet",
 			"Zciric",
-			"Psychoslave"
+			"Psychoslave",
+			"Orikrin1998"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -664,6 +665,7 @@
 	"minoredit": "Ĉi tiu ŝanĝo estas redakteto",
 	"watchthis": "Atenti ĉi tiun paĝon",
 	"savearticle": "Konservi paĝon",
+	"savechanges": "Konservi ŝanĝojn",
 	"publishpage": "Publikigi paĝon",
 	"preview": "Antaŭrigardo",
 	"showpreview": "Antaŭrigardo",

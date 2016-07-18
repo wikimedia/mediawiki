@@ -15,7 +15,8 @@
 			"LNDDYL",
 			"NigelSoft",
 			"Macofe",
-			"Reke"
+			"Reke",
+			"Suchichi02"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -315,6 +316,6 @@
 	"config-help-tooltip": "點選以展開",
 	"config-nofile": "查無檔案 \"$1\"，是否已被刪除？",
 	"config-extension-link": "您是否了解您的 Wiki 支援 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 擴充套件]？\n\n\n您可以瀏覽 [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 擴充套件分類] 或 [https://www.mediawiki.org/wiki/Extension_Matrix 擴充套件資料表] 以取得相關的資訊。",
-	"mainpagetext": "<strong>已成功安裝 MediaWiki。</strong>",
+	"mainpagetext": "<strong>已安裝 MediaWiki。</strong>",
 	"mainpagedocfooter": "請參閱 [https://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以取得使用 Wiki 的相關訊息！\n\n== 新手入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki 系統設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常見問答集]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵寄清單]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki 介面在地化]"
 }

@@ -74,6 +74,7 @@
 	"apihelp-createaccount-param-language": "Код мови для встановлення за замовчуванням для користувача (необов'язково, за замовчуванням — мова вмісту).",
 	"apihelp-createaccount-example-pass": "Створити користувача <kbd>testuser</kbd> з паролем <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Створити користувача <kbd>testmailuser</kbd> і надіслати на електронну пошту випадково-згенерований пароль.",
+	"apihelp-cspreport-description": "Використовується браузерами для повідомлення порушень Правил безпеки контенту (Content Security Policy). Цей модуль не повинен використовуватися, окрім випадків автоматичного використання веб-браузером для CSP-скарги.",
 	"apihelp-delete-description": "Вилучити сторінку.",
 	"apihelp-delete-param-title": "Назва сторінки для вилучення. Не можна використати разом з <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "ID-сторінки на вилучення. Не можна використати разом з <var>$1title</var>.",
