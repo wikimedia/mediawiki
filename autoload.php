@@ -986,7 +986,6 @@ $wgAutoloadLocalClasses = [
 	'PNGMetadataExtractor' => __DIR__ . '/includes/media/PNGMetadataExtractor.php',
 	'PPCustomFrame_DOM' => __DIR__ . '/includes/parser/Preprocessor_DOM.php',
 	'PPCustomFrame_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
-	'PPDAccum_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
 	'PPDPart' => __DIR__ . '/includes/parser/Preprocessor_DOM.php',
 	'PPDPart_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
 	'PPDStack' => __DIR__ . '/includes/parser/Preprocessor_DOM.php',
