@@ -1613,9 +1613,11 @@ class BalanceActiveFormattingElements {
 
 		// Loop backward through the list until we find a marker or an
 		// open element
+		$foundit = false;
 		while ( $entry->prevAFE ) {
 			$entry = $entry->prevAFE;
 			if ( $entry instanceof BalanceMarker || $stack->indexOf( $entry ) >= 0 ) {
+				$foundit = true;
 				break;
 			}
 		}
@@ -1624,7 +1626,7 @@ class BalanceActiveFormattingElements {
 		// the first element if we didn't find a marker or open element),
 		// recreating formatting elements and pushing them back onto the list
 		// of open elements.
-		if ( $entry->prevAFE ) {
+		if ( $foundit ) {
 			$entry = $entry->nextAFE;
 		}
 		do {
@@ -2656,7 +2658,7 @@ class Balancer {
 			case 'h5':
 			case 'h6':
 				if ( !$this->stack->inScope( BalanceSets::$headingSet ) ) {
-					return;
+					return true; # ignore
 				}
 				$this->stack->generateImpliedEndTags();
 				$this->stack->popTag( BalanceSets::$headingSet );
