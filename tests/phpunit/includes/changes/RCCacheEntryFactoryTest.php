@@ -35,9 +35,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1'
 		] );
 
-		$this->linkRenderer = new LinkRenderer(
-			MediaWikiServices::getInstance()->getTitleFormatter()
-		);
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 	}
 
 	public function testNewFromRecentChange() {

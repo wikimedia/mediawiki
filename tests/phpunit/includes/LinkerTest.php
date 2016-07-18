@@ -429,6 +429,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers Linker::getLinkColour
 	 */
 	public function testGetLinkColour() {
+		$this->hideDeprecated( 'Linker::getLinkColour' );
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$foobarTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
 		$redirectTitle = Title::makeTitle( NS_MAIN, 'Redirect' );

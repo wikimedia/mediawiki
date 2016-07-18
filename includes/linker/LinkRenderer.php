@@ -25,8 +25,10 @@ use DummyLinker;
 use Hooks;
 use Html;
 use HtmlArmor;
+use LinkCache;
 use Linker;
 use MediaWiki\MediaWikiServices;
+use MWNamespace;
 use Sanitizer;
 use Title;
 use TitleFormatter;
@@ -63,6 +65,11 @@ class LinkRenderer {
 	private $titleFormatter;
 
 	/**
+	 * @var LinkCache
+	 */
+	private $linkCache;
+
+	/**
 	 * Whether to run the legacy Linker hooks
 	 *
 	 * @var bool
@@ -71,9 +78,11 @@ class LinkRenderer {
 
 	/**
 	 * @param TitleFormatter $titleFormatter
+	 * @param LinkCache $linkCache
 	 */
-	public function __construct( TitleFormatter $titleFormatter ) {
+	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache ) {
 		$this->titleFormatter = $titleFormatter;
+		$this->linkCache = $linkCache;
 	}
 
 	/**
@@ -225,7 +234,7 @@ class LinkRenderer {
 	}
 
 	/**
-	 * If you have already looked up the proper CSS classes using Linker::getLinkColour()
+	 * If you have already looked up the proper CSS classes using LinkRenderer::getLinkClasses()
 	 * or some other method, use this to avoid looking it up again.
 	 *
 	 * @param LinkTarget $target
@@ -276,7 +285,7 @@ class LinkRenderer {
 		if ( $target->isExternal() ) {
 			$classes[] = 'extiw';
 		}
-		$colour = Linker::getLinkColour( $target, $this->stubThreshold );
+		$colour = $this->getLinkClasses( $target );
 		if ( $colour !== '' ) {
 			$classes[] = $colour;
 		}
@@ -445,4 +454,30 @@ class LinkRenderer {
 		return $ret;
 	}
 
+	/**
+	 * Return the CSS classes of a known link
+	 *
+	 * @param LinkTarget $target
+	 * @return string CSS class
+	 */
+	public function getLinkClasses( LinkTarget $target ) {
+		// Make sure the target is in the cache
+		$id = $this->linkCache->addLinkObj( $target );
+		if ( $id == 0 ) {
+			// Doesn't exist
+			return '';
+		}
+
+		if ( $this->linkCache->getGoodLinkFieldObj( $target, 'redirect' ) ) {
+			# Page is a redirect
+			return 'mw-redirect';
+		} elseif ( $this->stubThreshold > 0 && MWNamespace::isContent( $target->getNamespace() )
+			&& $this->linkCache->getGoodLinkFieldObj( $target, 'length' ) < $this->stubThreshold
+		) {
+			# Page is a stub
+			return 'stub';
+		}
+
+		return '';
+	}
 }

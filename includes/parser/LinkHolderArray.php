@@ -288,7 +288,6 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
-		$threshold = $linkRenderer->getStubThreshold();
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -321,7 +320,7 @@ class LinkHolderArray {
 				} else {
 					$id = $linkCache->getGoodLinkID( $pdbk );
 					if ( $id != 0 ) {
-						$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
+						$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
 						$output->addLink( $title, $id );
 						$linkcolour_ids[$id] = $pdbk;
 					} elseif ( $linkCache->isBadLink( $pdbk ) ) {
@@ -353,7 +352,7 @@ class LinkHolderArray {
 				$pdbk = $title->getPrefixedDBkey();
 				$linkCache->addGoodLinkObjFromRow( $title, $s );
 				$output->addLink( $title, $s->page_id );
-				$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
+				$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
 				// add id to the extension todolist
 				$linkcolour_ids[$s->page_id] = $pdbk;
 			}
@@ -456,7 +455,6 @@ class LinkHolderArray {
 		$variantMap = []; // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
 		$linkCache = LinkCache::singleton();
-		$threshold = $this->parent->getOptions()->getStubThreshold();
 		$titlesToBeConverted = '';
 		$titlesAttrs = [];
 
@@ -549,6 +547,7 @@ class LinkHolderArray {
 			);
 
 			$linkcolour_ids = [];
+			$linkRenderer = $this->parent->getLinkRenderer();
 
 			// for each found variants, figure out link holders and replace
 			foreach ( $varRes as $s ) {
@@ -575,7 +574,7 @@ class LinkHolderArray {
 						$entry['pdbk'] = $varPdbk;
 
 						// set pdbk and colour
-						$colours[$varPdbk] = Linker::getLinkColour( $variantTitle, $threshold );
+						$colours[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
 						$linkcolour_ids[$s->page_id] = $pdbk;
 					}
 				}
