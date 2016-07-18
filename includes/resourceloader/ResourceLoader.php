@@ -1394,7 +1394,7 @@ MESSAGE;
 		return Xml::encodeJsCall(
 			'mw.config.set',
 			[ $configuration ],
-			ResourceLoader::inDebugMode()
+			true // readable
 		);
 	}
 

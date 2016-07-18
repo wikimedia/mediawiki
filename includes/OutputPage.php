@@ -295,6 +295,9 @@ class OutputPage extends ContextSource {
 	 */
 	private $copyrightUrl;
 
+	/** @var array Profiling data */
+	private $limitReportData = [];
+
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
@@ -1782,10 +1785,13 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// enable OOUI if requested via ParserOutput
+		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
 		}
+
+		// Include profiling data
+		$this->limitReportData = $parserOutput->getLimitReportData();
 
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
@@ -3103,7 +3109,8 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	function getBottomScripts() {
-		return $this->getScriptsForBottomQueue();
+		return $this->getScriptsForBottomQueue() .
+			Skin::makeVariablesScript( [ 'wgPageParseReport' => $this->limitReportData ] );
 	}
 
 	/**

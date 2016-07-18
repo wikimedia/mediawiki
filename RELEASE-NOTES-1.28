@@ -61,6 +61,7 @@ changes to languages because of Phabricator reports.
   use or update a custom session provider if needed.
 * Deprecated APIEditBeforeSave hook in favor of EditFilterMergedContent.
 * The 'UploadVerification' hook is deprecated. Use 'UploadVerifyFile' instead.
+* The 'ParserLimitReportFormat' hook was removed.
 
 == Compatibility ==
 
