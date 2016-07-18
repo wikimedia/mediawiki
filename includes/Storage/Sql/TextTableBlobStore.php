@@ -11,6 +11,7 @@ use MapCacheLRU;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NotFoundException;
 use MediaWiki\Storage\StorageException;
+use MediaWiki\Storage\Transaction\TransactionBuilder;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 
@@ -174,7 +175,7 @@ class TextTableBlobStore implements BlobStore {
 	/**
 	 * @see BlobLookup::loadData
 	 *
-	 * @param string $address A text table row ID
+	 * @param string $address A text table old_id value in decimal form.
 	 * @param int $queryFlags
 	 *
 	 * @return string the data loaded from the given address
@@ -253,16 +254,31 @@ class TextTableBlobStore implements BlobStore {
 	 *
 	 * @param string $data
 	 * @param array $hints Currently unused.
+	 * @param TransactionBuilder|null $trx
 	 *
-	 * @return string The address of the stored data, given as the canonical decimal
+	 * @return string The address of the stored data, given as the decimal
 	 *         representation of the value of the old_id field in the text table.
+	 * @throws \DBUnexpectedError
+	 * @throws \MWException
 	 */
-	public function storeData( $data, $hints = [] ) {
+	public function storeData( $data, $hints = [], TransactionBuilder $trx = null ) {
 		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+
+		$dbw->startAtomic( __METHOD__ );
 
 		$old_id = $this->insert( $dbw, $data );
 
-		$this->dbLoadBalancer->reuseConnection( $dbw );
+		if ( $trx ) {
+			$method = __METHOD__;
+			$trx->onCommitDo( function() use ( $dbw, $method ) {
+				$dbw->endAtomic( $method );
+				// XXX: call $this->dbLoadBalancer->reuseConnection( $dbw ) here?
+			}, __METHOD__ );
+		} else {
+			$dbw->endAtomic( __METHOD__ );
+			$this->dbLoadBalancer->reuseConnection( $dbw );
+		}
+
 		return "$old_id";
 	}
 
@@ -272,7 +288,7 @@ class TextTableBlobStore implements BlobStore {
 	 *
 	 * @param DatabaseBase $dbw (master connection)
 	 * @throws StorageException
-	 * @return int
+	 * @return int old_id value of the row inserted into the text table
 	 */
 	private function insert( DatabaseBase $dbw, $data ) {
 		$flags = self::compressRevisionText( $data );
