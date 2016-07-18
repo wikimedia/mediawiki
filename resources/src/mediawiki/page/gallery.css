@@ -45,6 +45,16 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
+.galleryfilename {
+	display: block;
+}
+
+.galleryfilename-truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 /* new gallery stuff */
 ul.mw-gallery-nolines li.gallerybox div.thumb {
 	background-color: transparent;
