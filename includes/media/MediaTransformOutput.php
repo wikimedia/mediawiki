@@ -421,8 +421,10 @@ class ThumbnailImage extends MediaTransformOutput {
 		}
 
 		// Additional densities for responsive images, if specified.
-		if ( !empty( $this->responsiveUrls ) ) {
-			$attribs['srcset'] = Html::srcSet( $this->responsiveUrls );
+		// If any of these urls is the same as src url, it'll be excluded.
+		$responsiveUrls = array_diff( $this->responsiveUrls, [ $this->url ] );
+		if ( !empty( $responsiveUrls ) ) {
+			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
 		}
 
 		Hooks::run( 'ThumbnailBeforeProduceHTML', [ $this, &$attribs, &$linkAttribs ] );
