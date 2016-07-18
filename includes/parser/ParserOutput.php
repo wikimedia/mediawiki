@@ -189,11 +189,6 @@ class ParserOutput extends CacheTime {
 	private $mExtensionData = [];
 
 	/**
-	 * @var array $mLimitReportData Parser limit report data.
-	 */
-	private $mLimitReportData = [];
-
-	/**
 	 * @var array $mParseStartTime Timestamps for getTimeSinceStart().
 	 */
 	private $mParseStartTime = [];
@@ -405,7 +400,9 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function getLimitReportData() {
-		return $this->mLimitReportData;
+		return isset( $this->mJsConfigVars['parser-report'] )
+			? $this->mJsConfigVars['parser-report']
+			: [];
 	}
 
 	public function getTOCEnabled() {
@@ -998,24 +995,34 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Sets parser limit report data for a key
 	 *
-	 * The key is used as the prefix for various messages used for formatting:
-	 *  - $key: The label for the field in the limit report
-	 *  - $key-value-text: Message used to format the value in the "NewPP limit
-	 *      report" HTML comment. If missing, uses $key-format.
-	 *  - $key-value-html: Message used to format the value in the preview
-	 *      limit report table. If missing, uses $key-format.
-	 *  - $key-value: Message used to format the value. If missing, uses "$1".
-	 *
-	 * Note that all values are interpreted as wikitext, and so should be
-	 * encoded with htmlspecialchars() as necessary, but should avoid complex
-	 * HTML for sanity of display in the "NewPP limit report" comment.
+	 * If $value consist of a list of two floats, it will be interpreted as
+	 * (actual value, maximum allowed value). The presence of a "-" in $key will cause
+	 * the first part of the key to be interpreted as a namespace.
 	 *
 	 * @since 1.22
-	 * @param string $key Message key
-	 * @param mixed $value Appropriate for Message::params()
+	 * @param string $key Data key
+	 * @param mixed $value Data value One of (float, string, bool, JSON serializable array)
 	 */
 	public function setLimitReportData( $key, $value ) {
-		$this->mLimitReportData[$key] = $value;
+		if ( is_array( $value ) ) {
+			if ( array_keys( $value ) === [ 0, 1 ]
+				&& is_numeric( $value[0] )
+				&& is_numeric( $value[1] )
+			) {
+				$data = [ 'value' => $value[0], 'limit' => $value[1] ];
+			} else {
+				$data = $value;
+			}
+		} else {
+			$data = $value;
+		}
+
+		if ( strpos( $key, '-' ) ) {
+			list( $ns, $name ) = explode( '-', $key, 2 );
+			$this->mJsConfigVars['wgPageParseReport'][$ns][$name] = $data;
+		} else {
+			$this->mJsConfigVars['wgPageParseReport'][$key] = $data;
+		}
 	}
 
 	/**
