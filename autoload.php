@@ -1438,6 +1438,7 @@ $wgAutoloadLocalClasses = [
 	'UpdateArticleCount' => __DIR__ . '/maintenance/updateArticleCount.php',
 	'UpdateCollation' => __DIR__ . '/maintenance/updateCollation.php',
 	'UpdateDoubleWidthSearch' => __DIR__ . '/maintenance/updateDoubleWidthSearch.php',
+	'UpdateExtensionJsonSchema' => __DIR__ . '/maintenance/updateExtensionJsonSchema.php',
 	'UpdateLogging' => __DIR__ . '/maintenance/archives/upgradeLogging.php',
 	'UpdateMediaWiki' => __DIR__ . '/maintenance/update.php',
 	'UpdateRestrictions' => __DIR__ . '/maintenance/updateRestrictions.php',
