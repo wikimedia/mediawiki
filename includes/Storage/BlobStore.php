@@ -1,6 +1,7 @@
 <?php
 
 namespace MediaWiki\Storage;
+use MediaWiki\Storage\Transaction\TransactionBuilder;
 
 /**
  * Service interface for storing arbitrary binary data.
@@ -50,12 +51,11 @@ interface BlobStore extends BlobLookup {
 	 *        choose to store some or all hints, and return them when queried
 	 *        via BlobLoader::getHints(). A hint being set to null is considered
 	 *        equivalent to the hint being absent.
+	 * @param TransactionBuilder|null $trx
 	 *
 	 * @throws StorageException if a storage level error occurred
-	 *
-	 * @return string the permanent canonical address of the blob. Can be used
-	 *         with BlobLookup::loadData().
+	 * @return string if a storage level error occurred
 	 */
-	public function storeData( $data, $hints = [] );
+	public function storeData( $data, $hints = [], TransactionBuilder $trx = null );
 
 }
