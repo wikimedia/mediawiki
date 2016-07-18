@@ -84,6 +84,7 @@ changes to languages because of Phabricator reports.
   MediaWiki\Linker\LinkRenderer. In addition, the LinkBegin and LinkEnd hooks
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   respectively. See docs/hooks.txt for the specific changes needed for those hooks.
+* The 'ParserLimitReportFormat' hook was removed.
 
 == Compatibility ==
 
