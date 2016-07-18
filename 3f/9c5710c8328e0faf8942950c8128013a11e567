@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Kaldari <rkaldari@wikimedia.org>
+Code-Review+1: MusikAnimal <musikanimal@wikimedia.org>
+Verified+1: MusikAnimal <musikanimal@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Mon, 18 Jul 2016 19:44:17 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/299110
+Project: mediawiki/core
+Branch: refs/heads/master
