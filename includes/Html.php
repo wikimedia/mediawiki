@@ -1020,9 +1020,21 @@ class Html {
 	static function srcSet( array $urls ) {
 		$candidates = [];
 		foreach ( $urls as $density => $url ) {
-			// Cast density to float to strip 'x'.
-			$candidates[] = $url . ' ' . (float)$density . 'x';
+			// Cast density to float to strip 'x', then back to string to serve
+			// as array index.
+			$density = (string)(float)$density;
+			$candidates[$density] = $url;
 		}
+
+		// Remove duplicates that are the same as a smaller value
+		ksort( $candidates, SORT_NUMERIC );
+		$candidates = array_unique( $candidates );
+
+		// Append density info to the url
+		foreach ( $candidates as $density => $url ) {
+			$candidates[$density] = $url . ' ' . $density . 'x';
+		}
+
 		return implode( ", ", $candidates );
 	}
 }

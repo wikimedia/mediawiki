@@ -738,6 +738,16 @@ class HtmlTest extends MediaWikiTestCase {
 				'1x.png 1x, 1_5x.png 1.5x, 2x.png 2x',
 				'pixel depth keys may omit a trailing "x"'
 			],
+			[
+				[ '1'  => 'small.png', '1.5' => 'large.png', '2'  => 'large.png' ],
+				'small.png 1x, large.png 1.5x',
+				'omit larger duplicates'
+			],
+			[
+				[ '1'  => 'small.png', '2'  => 'large.png', '1.5' => 'large.png' ],
+				'small.png 1x, large.png 1.5x',
+				'omit larger duplicates in irregular order'
+			],
 		];
 	}
 
