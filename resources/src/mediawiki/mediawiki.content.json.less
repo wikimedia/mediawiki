@@ -5,17 +5,37 @@
  * @author Munaf Assaf <massaf@wikimedia.org>
  */
 
+@borderColor: #808080;
+@backgroundGray: #eee;
+
 .mw-json {
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-style: normal;
-}
 
-.mw-json th,
-.mw-json td {
-	border: 1px solid #808080;
-	font-size: 16px;
-	padding: 0.5em 1em;
+	tbody,
+	th,
+	tr,
+	td {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 1em;
+	}
+
+	th {
+		border: 1px solid @borderColor;
+	}
+
+	td {
+		border-bottom: 1px solid @borderColor;
+		padding: 0.5em 1em;
+		background-color: @backgroundGray;
+	}
+
+	.value {
+		font-size: .9em;
+	}
 }
 
 .mw-json .value,
@@ -26,7 +46,7 @@
 }
 
 .mw-json-single-value {
-	background-color: #eee;
+	background-color: @backgroundGray;
 }
 
 .mw-json-empty {
@@ -36,7 +56,6 @@
 
 .mw-json tr {
 	margin-bottom: 0.5em;
-	background-color: #eee;
 }
 
 .mw-json th {
@@ -50,10 +69,40 @@
 }
 
 .mw-json table caption {
-	color: #808080;
+	color: @borderColor;
 	display: inline-block;
 	font-size: 10px;
 	font-style: italic;
 	margin-bottom: 0.5em;
 	text-align: left;
+}
+
+@media all and (min-width: @deviceWidthTablet) {
+
+	.mw-json {
+
+		tbody,
+		tr,
+		th,
+		td {
+			box-sizing: inherit;
+			width: auto;
+		}
+
+		tbody {
+			display: table-row-group;
+		}
+
+		th,
+		td {
+			border: 1px solid @borderColor;
+			padding: 0.5em 1em;
+			display: table-cell;
+		}
+
+		tr {
+			background-color: @backgroundGray;
+			display: table-row;
+		}
+	}
 }
