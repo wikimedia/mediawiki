@@ -251,11 +251,6 @@ class OutputPage extends ContextSource {
 	 */
 	protected $styles = [];
 
-	/**
-	 * Whether jQuery is already handled.
-	 */
-	protected $mJQueryDone = false;
-
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
 	private $mVaryHeader = [
