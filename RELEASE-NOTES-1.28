@@ -16,6 +16,9 @@ production.
 * $wgForeignUploadTargets now defaults to `[ 'local' ]`, where `'local'`
   signifies local uploads. A value of `[]` (empty array) now means that
   no upload targets are allowed, effectively disabling the upload dialog.
+* The deprecated $wgEditEncoding variable has been removed; it was only used
+  for Esperanto language character conversion. You are now recommended to use
+  input methods provided by the UniversalLanguageSelector extension.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

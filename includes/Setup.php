@@ -705,7 +705,6 @@ $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
  * @var Language $wgContLang
  */
 $wgContLang = Language::factory( $wgLanguageCode );
-$wgContLang->initEncoding();
 $wgContLang->initContLang();
 
 // Now that variant lists may be available...
