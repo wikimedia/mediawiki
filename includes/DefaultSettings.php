@@ -75,7 +75,7 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.27.0';
+$wgVersion = '1.27.0-fundraising';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
