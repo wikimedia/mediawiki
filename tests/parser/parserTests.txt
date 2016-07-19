@@ -35,7 +35,7 @@
 #
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
-#  wgLinkHolderBatchSize, wgRawHtml
+#  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -8361,6 +8361,7 @@ Blah blah blah
 <link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
 !! end
 
+## parsoid html2wt will lose the space variations
 !! test
 Interlanguage link with spacing
 !! options
@@ -8391,6 +8392,7 @@ Blah blah blah
 <link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
 !! end
 
+## parsoid html2wt will lose the space variations
 !! test
 Interlanguage link variations
 !! options
@@ -8410,6 +8412,7 @@ Blah blah blah
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo_bar" />
 !! end
 
+## parsoid html2wt will normalize the space to _
 !! test
 Space and question mark encoding in interlanguage links (T95473)
 !! options
@@ -8468,6 +8471,34 @@ Blah blah blah
 !! html/parsoid
 <p>Blah blah blah</p>
 <link rel="mw:PageProp/Language" title="Multilingual" href="http://wikisource.org/wiki/Article"/>
+!! end
+
+## PHP parser tests script needs an update
+## Parsoid html2wt will normalize output to [[:zh:Chinese]]
+!! test
+Language links render as inline links if $wgInterwikiMagic=false
+!! options
+wgInterwikiMagic=false
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/parsoid
+<p>Blah blah blah <a rel="mw:ExtLink" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese">zh:Chinese</a></p>
+!! end
+
+## PHP parser tests script needs an update
+## Parsoid html2wt will normalize output to [[:zh:Chinese]]
+!! test
+Language links render as inline links in the Talk namespace
+!! options
+title=Talk:Foo
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/parsoid
+<p>Blah blah blah <a rel="mw:ExtLink" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese">zh:Chinese</a></p>
 !! end
 
 !! test
@@ -27063,6 +27094,21 @@ B <ref group="X" name="b" />
 <references group="X">
 <ref name="b"><span id="Z">foo</span>bar</ref>
 </references>
+!! end
+
+!! test
+DOMDiff: Edits to content nested in elements with templated attributes should not be lost (T139388)
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    [ "div:first-child", "text", "bar" ]
+  ]
+}
+!! wikitext
+<div style="{{1x|color:red;}}%">foo</div>
+!! wikitext/edited
+<div style="{{1x|color:red;}}%">bar</div>
 !! end
 
 !! test
