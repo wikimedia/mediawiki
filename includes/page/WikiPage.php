@@ -1103,15 +1103,10 @@ class WikiPage implements Page, IDBAccessObject {
 			return false;
 		}
 
-		$title = $this->mTitle;
-		wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $title ) {
-			// Invalidate the cache in auto-commit mode
-			$title->invalidateCache();
-		} );
-
+		$this->mTitle->invalidateCache();
 		// Send purge after above page_touched update was committed
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $title->getCdnUrls() ),
+			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
 			DeferredUpdates::PRESEND
 		);
 
