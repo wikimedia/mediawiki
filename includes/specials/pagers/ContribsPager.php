@@ -224,6 +224,11 @@ class ContribsPager extends ReverseChronologicalPager {
 					]
 				];
 			}
+			// (T140537) Disallow looking too far in the past for 'newbies' queries. If the user requested
+			// a timestamp offset far in the past such that there are no edits by users with user_ids in
+			// the range, we would end up scanning all revisions from that offset until start of time.
+			$condition[] = 'rev_timestamp > ' .
+				$this->mDb->addQuotes( $this->mDb->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
 		} else {
 			$uid = User::idFromName( $this->target );
 			if ( $uid ) {
