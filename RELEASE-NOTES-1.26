@@ -6,6 +6,9 @@ turn it off. MediaWiki will not work with it enabled.
 This is a maintenance release of the MediaWiki 1.26 branch.
 
 === Changes since 1.26.3 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
 * (T124163) Fixed fatal error in DifferenceEngine under HHVM.
 
 == MediaWiki 1.26.3 ==

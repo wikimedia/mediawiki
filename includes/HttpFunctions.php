@@ -46,7 +46,6 @@ class Http {
 	 *    - postData            An array of key-value pairs or a url-encoded form data
 	 *    - proxy               The proxy to use.
 	 *                          Otherwise it will use $wgHTTPProxy (if set)
-	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
 	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
 	 *    - sslVerifyHost       Verify hostname against certificate
 	 *    - sslVerifyCert       Verify SSL certificate
@@ -374,14 +373,12 @@ class MWHttpRequest {
 			return;
 		}
 
-		// Otherwise, fallback to $wgHTTPProxy/http_proxy (when set) if this is not a machine
+		// Otherwise, fallback to $wgHTTPProxy (when set) if this is not a machine
 		// local URL and proxies are not disabled
 		if ( Http::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} elseif ( $wgHTTPProxy ) {
 			$this->proxy = $wgHTTPProxy;
-		} elseif ( getenv( "http_proxy" ) ) {
-			$this->proxy = getenv( "http_proxy" );
 		}
 	}
 
