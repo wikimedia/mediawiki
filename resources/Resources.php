@@ -948,7 +948,7 @@ return [
 	],
 	'mediawiki.content.json' => [
 		'position' => 'top',
-		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
+		'styles' => 'resources/src/mediawiki/mediawiki.content.json.less',
 	],
 	'mediawiki.confirmCloseWindow' => [
 		'scripts' => [
