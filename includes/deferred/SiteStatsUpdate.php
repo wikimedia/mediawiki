@@ -74,7 +74,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$this->doUpdatePendingDeltas();
 		} else {
 			// Need a separate transaction because this a global lock
-			wfGetDB( DB_MASTER )->onTransactionIdle( [ $this, 'tryDBUpdateInternal' ] );
+			DeferredUpdates::addCallableUpdate( [ $this, 'tryDBUpdateInternal' ] );
 		}
 	}
 
