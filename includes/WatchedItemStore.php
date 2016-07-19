@@ -719,27 +719,28 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnection( DB_MASTER );
-		$res = $dbw->select( [ 'watchlist' ],
-			[ 'wl_user' ],
+		$uids = $dbw->selectFieldValues(
+			'watchlist',
+			'wl_user',
 			[
 				'wl_user != ' . intval( $editor->getId() ),
 				'wl_namespace' => $target->getNamespace(),
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
-			], __METHOD__
+			],
+			__METHOD__
 		);
+		$this->reuseConnection( $dbw );
 
-		$watchers = [];
-		foreach ( $res as $row ) {
-			$watchers[] = intval( $row->wl_user );
-		}
-
+		$watchers = array_map( 'intval', $uids );
 		if ( $watchers ) {
 			// Update wl_notificationtimestamp for all watching users except the editor
 			$fname = __METHOD__;
-			$dbw->onTransactionIdle(
-				function () use ( $dbw, $timestamp, $watchers, $target, $fname ) {
+			DeferredUpdates::addCallableUpdate(
+				function () use ( $timestamp, $watchers, $target, $fname ) {
 					global $wgUpdateRowsPerQuery;
+
+					$dbw = $this->getConnection( DB_MASTER );
 
 					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
 					foreach ( $watchersChunks as $watchersChunk ) {
@@ -758,11 +759,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 						}
 					}
 					$this->uncacheLinkTarget( $target );
+
+					$this->reuseConnection( $dbw );
 				}
 			);
 		}
-
-		$this->reuseConnection( $dbw );
 
 		return $watchers;
 	}
