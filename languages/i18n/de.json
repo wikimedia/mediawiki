@@ -1108,7 +1108,7 @@
 	"prefs-namespaces": "Namensräume",
 	"default": "Voreinstellung",
 	"prefs-files": "Dateien",
-	"prefs-custom-css": "Benutzerdefinierte CSS",
+	"prefs-custom-css": "Benutzerdefiniertes CSS",
 	"prefs-custom-js": "Benutzerdefiniertes JavaScript",
 	"prefs-common-css-js": "Gemeinsames CSS/JavaScript aller Benutzeroberflächen:",
 	"prefs-reset-intro": "Du kannst diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.\nDies kann nicht mehr rückgängig gemacht werden.",
