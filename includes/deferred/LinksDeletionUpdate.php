@@ -179,10 +179,8 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			}
 		}
 
-		$this->mDb->onTransactionIdle( function() use ( &$scopedLock ) {
-			// Release the lock *after* the final COMMIT for correctness
-			ScopedCallback::consume( $scopedLock );
-		} );
+		// Commit and release the lock
+		ScopedCallback::consume( $scopedLock );
 	}
 
 	private function batchDeleteByPK( $table, array $conds, array $pk, $bSize ) {
