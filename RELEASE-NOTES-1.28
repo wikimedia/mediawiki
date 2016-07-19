@@ -6,6 +6,9 @@ MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.28 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
 * The load.php entry point now enforces the existing policy of not allowing
   access to session data, which includes the session user and the session
   user's language. If such access is attempted, an exception will be thrown.
