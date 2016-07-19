@@ -9,22 +9,18 @@ class AtomicSectionUpdate implements DeferrableUpdate {
 	private $dbw;
 	/** @var string */
 	private $fname;
-	/** @var Closure|callable */
+	/** @var callable */
 	private $callback;
 
 	/**
 	 * @param IDatabase $dbw
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback
-	 * @throws InvalidArgumentException
 	 * @see IDatabase::doAtomicSection()
 	 */
-	public function __construct( IDatabase $dbw, $fname, $callback ) {
+	public function __construct( IDatabase $dbw, $fname, callable $callback ) {
 		$this->dbw = $dbw;
 		$this->fname = $fname;
-		if ( !is_callable( $callback ) ) {
-			throw new InvalidArgumentException( 'Not a valid callback/closure!' );
-		}
 		$this->callback = $callback;
 	}
 

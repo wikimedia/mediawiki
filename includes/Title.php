@@ -4366,18 +4366,23 @@ class Title implements LinkTarget {
 			return true; // avoid gap locking if we know it's not there
 		}
 
-		$method = __METHOD__;
-		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->pageCond();
-		$dbw->onTransactionIdle( function () use ( $dbw, $conds, $method, $purgeTime ) {
-			$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
-			$dbw->update(
-				'page',
-				[ 'page_touched' => $dbTimestamp ],
-				$conds + [ 'page_touched < ' . $dbw->addQuotes( $dbTimestamp ) ],
-				$method
-			);
-		} );
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate(
+				wfGetDB( DB_MASTER ),
+				__METHOD__,
+				function ( IDatabase $dbw, $fname ) use ( $conds, $purgeTime ) {
+					$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
+					$dbw->update(
+						'page',
+						[ 'page_touched' => $dbTimestamp ],
+						$conds + [ 'page_touched < ' . $dbw->addQuotes( $dbTimestamp ) ],
+						$fname
+					);
+				}
+			),
+			DeferredUpdates::PRESEND
+		);
 
 		return true;
 	}

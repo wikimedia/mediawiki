@@ -157,6 +157,7 @@ $wgAutoloadLocalClasses = [
 	'AuthManagerSpecialPage' => __DIR__ . '/includes/specialpage/AuthManagerSpecialPage.php',
 	'AuthPlugin' => __DIR__ . '/includes/AuthPlugin.php',
 	'AuthPluginUser' => __DIR__ . '/includes/AuthPlugin.php',
+	'AutoCommitUpdate' => __DIR__ . '/includes/deferred/AutoCommitUpdate.php',
 	'AutoLoader' => __DIR__ . '/includes/AutoLoader.php',
 	'AutoloadGenerator' => __DIR__ . '/includes/utils/AutoloadGenerator.php',
 	'Autopromote' => __DIR__ . '/includes/Autopromote.php',
