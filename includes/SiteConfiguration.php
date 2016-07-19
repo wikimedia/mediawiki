@@ -566,17 +566,6 @@ class SiteConfiguration {
 	}
 
 	/**
-	 * Returns true if the given vhost is handled locally.
-	 *
-	 * @deprecated since 1.25; check if the host is in $wgLocalVirtualHosts instead.
-	 * @param string $vhost
-	 * @return bool
-	 */
-	public function isLocalVHost( $vhost ) {
-		return in_array( $vhost, $this->localVHosts );
-	}
-
-	/**
 	 * Merge multiple arrays together.
 	 * On encountering duplicate keys, merge the two, but ONLY if they're arrays.
 	 * PHP's array_merge_recursive() merges ANY duplicate values into arrays,
