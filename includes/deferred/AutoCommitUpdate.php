@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Deferrable Update for closure/callback updates via IDatabase::doAtomicSection()
- * @since 1.27
+ * Deferrable Update for closure/callback updates that should use auto-commit mode
+ * @since 1.28
  */
-class AtomicSectionUpdate implements DeferrableUpdate {
+class AutoCommitUpdate implements DeferrableUpdate {
 	/** @var IDatabase */
 	private $dbw;
 	/** @var string */
@@ -15,8 +15,7 @@ class AtomicSectionUpdate implements DeferrableUpdate {
 	/**
 	 * @param IDatabase $dbw
 	 * @param string $fname Caller name (usually __METHOD__)
-	 * @param callable $callback
-	 * @see IDatabase::doAtomicSection()
+	 * @param callable $callback Callback that takes (IDatabase, method name string)
 	 */
 	public function __construct( IDatabase $dbw, $fname, callable $callback ) {
 		$this->dbw = $dbw;
@@ -27,8 +26,23 @@ class AtomicSectionUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
-		if ( $this->callback ) {
-			$this->dbw->doAtomicSection( $this->fname, $this->callback );
+		if ( !$this->callback ) {
+			return;
+		}
+
+		$autoTrx = $this->dbw->getFlag( DBO_TRX );
+		$this->dbw->clearFlag( DBO_TRX );
+		try {
+			/** @var Exception $e */
+			$e = null;
+			call_user_func_array( $this->callback, [ $this->dbw, $this->fname ] );
+		} catch ( Exception $e ) {
+		}
+		if ( $autoTrx ) {
+			$this->dbw->setFlag( DBO_TRX );
+		}
+		if ( $e ) {
+			throw $e;
 		}
 	}
 
