@@ -459,7 +459,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					]
 				);
 
-				$dbw->onTransactionIdle( function () use ( &$scopeLock ) {
+				$dbw->onTransactionResolution( function () use ( &$scopeLock ) {
 					ScopedCallback::consume( $scopeLock ); // release after commit
 				} );
 			}
