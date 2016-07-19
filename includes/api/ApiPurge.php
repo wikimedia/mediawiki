@@ -68,35 +68,37 @@ class ApiPurge extends ApiBase {
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
 					$content = $page->getContent( Revision::RAW );
-					$enableParserCache = $this->getConfig()->get( 'EnableParserCache' );
-					$p_result = $content->getParserOutput(
-						$title,
-						$page->getLatest(),
-						$popts,
-						$enableParserCache
-					);
-
-					# Logging to better see expensive usage patterns
-					if ( $forceRecursiveLinkUpdate ) {
-						LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
-							"Recursive link purge enqueued for {title}",
-							[
-								'user' => $this->getUser()->getName(),
-								'title' => $title->getPrefixedText()
-							]
+					if ( $content ) {
+						$enableParserCache = $this->getConfig()->get( 'EnableParserCache' );
+						$p_result = $content->getParserOutput(
+							$title,
+							$page->getLatest(),
+							$popts,
+							$enableParserCache
 						);
-					}
 
-					# Update the links tables
-					$updates = $content->getSecondaryDataUpdates(
-						$title, null, $forceRecursiveLinkUpdate, $p_result );
-					DataUpdate::runUpdates( $updates );
+						# Logging to better see expensive usage patterns
+						if ( $forceRecursiveLinkUpdate ) {
+							LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
+								"Recursive link purge enqueued for {title}",
+								[
+									'user' => $this->getUser()->getName(),
+									'title' => $title->getPrefixedText()
+								]
+							);
+						}
 
-					$r['linkupdate'] = true;
+						# Update the links tables
+						$updates = $content->getSecondaryDataUpdates(
+							$title, null, $forceRecursiveLinkUpdate, $p_result );
+						DataUpdate::runUpdates( $updates );
 
-					if ( $enableParserCache ) {
-						$pcache = ParserCache::singleton();
-						$pcache->save( $p_result, $page, $popts );
+						$r['linkupdate'] = true;
+
+						if ( $enableParserCache ) {
+							$pcache = ParserCache::singleton();
+							$pcache->save( $p_result, $page, $popts );
+						}
 					}
 				} else {
 					$error = $this->parseMsg( [ 'actionthrottledtext' ] );
