@@ -75,6 +75,7 @@ abstract class DatabaseUpdater {
 		PopulateFilearchiveSha1::class,
 		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
+		CleanupEmptyCategories::class,
 	];
 
 	/**

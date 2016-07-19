@@ -61,6 +61,8 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		// This handles the case when updates have to batched into several COMMITs.
 		$scopedLock = LinksUpdate::acquirePageLock( $this->mDb, $id );
 
+		$title = $this->page->getTitle();
+
 		// Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
 
@@ -77,6 +79,20 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			if ( count( $catBatches ) > 1 ) {
 				$this->mDb->commit( __METHOD__, 'flush' );
 				wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+			}
+		}
+
+		// Refresh the category table entry if it seems to have no pages. Check
+		// master for the most up-to-date cat_pages count.
+		if ( $title->getNamespace() === NS_CATEGORY ) {
+			$row = $this->mDb->selectRow(
+				'category',
+				[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
+				[ 'cat_title' => $title->getDBkey(), 'cat_pages <= 0' ],
+				__METHOD__
+			);
+			if ( $row ) {
+				$cat = Category::newFromRow( $row, $title )->refreshCounts();
 			}
 		}
 
@@ -132,7 +148,6 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 
 		// If using cleanup triggers, we can skip some manual deletes
 		if ( !$this->mDb->cleanupTriggers() ) {
-			$title = $this->page->getTitle();
 			// Find recentchanges entries to clean up...
 			$rcIdsForTitle = $this->mDb->selectFieldValues(
 				'recentchanges',
