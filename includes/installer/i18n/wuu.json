@@ -7,6 +7,7 @@
 		]
 	},
 	"config-information": "信息",
+	"config-back": "← 转去",
 	"config-page-language": "闲话",
 	"mainpagetext": "<strong>MediaWiki安装好哉。</strong>",
 	"mainpagedocfooter": "请访问[https://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件个信息！\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki 配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常见问题解答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]"

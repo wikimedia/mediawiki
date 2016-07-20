@@ -806,6 +806,8 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "空物件",
 	"content-json-empty-array": "空陣列",
+	"deprecated-self-close-category": "使用無效 Self-closed HTML 標籤的頁面",
+	"deprecated-self-close-category-desc": "頁面包含無效的 Self-closed HTML 標籤，如 <code>&lt;b/></code> or <code>&lt;span/></code>。這些標籤的模式將會更改為與 HTML5 規格一致，因此 wikitext 的這種用法已停用。",
 	"duplicate-args-warning": "<strong>警告：</strong> [[:$1]] 呼叫 [[:$2]] 的 \"$3\" 參數使用了超過一次，僅會使用提供的最後一個參數值。",
 	"duplicate-args-category": "模板呼叫時使用重複的參數的頁面",
 	"duplicate-args-category-desc": "該頁面包含重複使用參數的模板呼叫，如 <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> 或 <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>。",

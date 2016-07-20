@@ -2616,7 +2616,7 @@
 	"spamprotectiontext": "스팸 필터가 문서 저장을 막았습니다.\n바깥 사이트로 연결하는 링크 중에 블랙리스트에 포함된 사이트가 있을 것입니다.",
 	"spamprotectionmatch": "문제가 되는 부분은 다음과 같습니다: $1",
 	"spambot_username": "미디어위키 스팸 정리",
-	"spam_reverting": "$1(을)를 포함하지 않는 최신 버전으로 되돌림",
+	"spam_reverting": "$1에 대한 링크를 포함하지 않는 최신 버전으로 되돌림",
 	"spam_blanking": "모든 버전에 $1 링크를 포함하고 있어 차단함",
 	"spam_deleting": "모든 버전에 $1 링크를 포함하고 있어 삭제함",
 	"simpleantispam-label": "스팸 방지 검사입니다.\n이것을 입력하지 <strong>마세요</strong>!",
