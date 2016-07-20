@@ -140,7 +140,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( [ 'href', 'class', 'text', 'dir' ] as $k ) {
+			foreach ( [ 'href', 'class', 'text', 'dir', 'data' ] as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -361,6 +361,13 @@ abstract class BaseTemplate extends QuickTemplate {
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
 				'tooltip-params' ] as $k ) {
 				unset( $attrs[$k] );
+			}
+
+			if ( isset( $attrs['data'] ) ) {
+				foreach ( $attrs['data'] as $key => $value ) {
+					$attrs[ 'data-' . $key ] = $value;
+					unset( $attrs[ 'data' ] );
+				}
 			}
 
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
