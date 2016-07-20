@@ -1262,7 +1262,8 @@ class LoginFormPreAuthManager extends SpecialPage {
 		# Run any hooks; display injected HTML if any, else redirect
 		$currentUser = $this->getUser();
 		$injected_html = '';
-		Hooks::run( 'UserLoginComplete', [ &$currentUser, &$injected_html ] );
+		$direct = RequestContext::getMain()->getRequest()->wasPosted();
+		Hooks::run( 'UserLoginComplete', [ &$currentUser, &$injected_html, $direct ] );
 
 		if ( $injected_html !== '' ) {
 			$this->displaySuccessfulAction( 'success', $this->msg( 'loginsuccesstitle' ),
@@ -1283,8 +1284,9 @@ class LoginFormPreAuthManager extends SpecialPage {
 		$currentUser = $this->getUser();
 		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation-msg';
+		$direct = RequestContext::getMain()->getRequest()->wasPosted();
 
-		Hooks::run( 'UserLoginComplete', [ &$currentUser, &$injected_html ] );
+		Hooks::run( 'UserLoginComplete', [ &$currentUser, &$injected_html, $direct ] );
 
 		/**
 		 * Let any extensions change what message is shown.

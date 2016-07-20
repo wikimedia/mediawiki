@@ -3467,6 +3467,9 @@ $user: User object for the logged-in user
 For functionality that needs to run after any login (API or web) use UserLoggedIn.
 &$user: the user object that was created on login
 &$inject_html: Any HTML to inject after the "logged in" message.
+$direct: (bool) The hook is called directly after a successful login. This will only happen once
+  per login. A UserLoginComplete call with direct=false can happen when the user visits the login
+  page while already logged in.
 
 'UserLoginForm': DEPRECATED! Create an AuthenticationProvider instead.
 Manipulate the login form.
