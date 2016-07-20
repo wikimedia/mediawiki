@@ -10,7 +10,8 @@
 			"GeekEmad",
 			"Nemo bis",
 			"Shbib Al-Subaie",
-			"Macofe"
+			"Macofe",
+			"علاء"
 		]
 	},
 	"tog-usenewrc": ")جمّع التعديلات حسب الصفحة في أحدث التغييرات وقائمة المراقبة (يتطلب جافاسكربت",
@@ -517,9 +518,9 @@
 	"rc-enhanced-hide": "أخفِ التفاصيل",
 	"recentchangeslinked": "تغييرات ذات علاقة",
 	"recentchangeslinked-title": "التغييرات المرتبطة ب \"$1\"",
-	"recentchangeslinked-summary": "هذه قائمة بالتغييرات التي تمت حديثا للصفحات الموصولة من صفحة معينة (أو إلى الأعضاء ضمن تصنيف معين).\nالصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''عريضة'''",
+	"recentchangeslinked-summary": "هذه قائمة بالتغييرات التي تمت حديثاً للصفحات الموصولة من صفحة معينة (أو إلى الأعضاء ضمن تصنيف معين).\nالصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''عريضة'''",
 	"recentchangeslinked-page": "اسم الصفحة:",
-	"recentchangeslinked-to": "أظهر التغييرات للصفحات الموصولة للصفحة المعطاة عوضا عن ذلك",
+	"recentchangeslinked-to": "أظهر التغييرات للصفحات الموصولة للصفحة المعطاة عوضاً عن ذلك",
 	"uploadlogpage": "سجل الرفع",
 	"filedesc": "ملخص:",
 	"license": "ترخيص:",
