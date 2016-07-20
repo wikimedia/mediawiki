@@ -1477,7 +1477,7 @@ MESSAGE;
 	 * @param array $extraQuery
 	 * @return array
 	 */
-	public static function createLoaderQuery( ResourceLoaderContext $context, $extraQuery = [] ) {
+	protected static function createLoaderQuery( ResourceLoaderContext $context, $extraQuery = [] ) {
 		return self::makeLoaderQuery(
 			$context->getModules(),
 			$context->getLanguage(),
