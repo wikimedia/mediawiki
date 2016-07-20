@@ -93,7 +93,7 @@ class IcuCollation extends Collation {
 		'be-tarask' => [ "Ё" ],
 		'cy' => [ "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ],
 		'en' => [],
-		'fa' => [ "آ", "ء", "ه" ],
+		'fa' => [ "آ", "ء", "ه", "ا" ],
 		'fi' => [ "Å", "Ä", "Ö" ],
 		'fr' => [],
 		'hu' => [ "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ],
