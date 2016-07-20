@@ -129,7 +129,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		# Run any hooks; display injected HTML
 		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation-msg';
-		Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html ] );
+		Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html, $direct ] );
 
 		/**
 		 * Let any extensions change what message is shown.
