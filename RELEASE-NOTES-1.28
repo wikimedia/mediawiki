@@ -70,6 +70,7 @@ changes to languages because of Phabricator reports.
 * SiteConfiguration::isLocalVHost() was removed (deprecated since 1.25).
 * The 'UserLoginComplete' hook has a new parameter to differentiate between actual
   login and visiting the login page while already logged in.
+* ResourceLoader::makeLoaderURL() was removed (deprecated since 1.24).
 
 == Compatibility ==
 
