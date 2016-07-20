@@ -93,7 +93,14 @@ class IcuCollation extends Collation {
 		'be-tarask' => [ "Ё" ],
 		'cy' => [ "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ],
 		'en' => [],
-		'fa' => [ "آ", "ء", "ه" ],
+		// RTL, let's put each letter on a new line
+		'fa' => [
+			"آ",
+			"ء",
+			"ه",
+			"ا",
+			"و"
+		],
 		'fi' => [ "Å", "Ä", "Ö" ],
 		'fr' => [],
 		'hu' => [ "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ],
