@@ -68,6 +68,7 @@ changes to languages because of Phabricator reports.
 * Deprecated APIEditBeforeSave hook in favor of EditFilterMergedContent.
 * The 'UploadVerification' hook is deprecated. Use 'UploadVerifyFile' instead.
 * SiteConfiguration::isLocalVHost() was removed (deprecated since 1.25).
+* ResourceLoader::makeLoaderURL() was removed (deprecated since 1.24).
 
 == Compatibility ==
 
