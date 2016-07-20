@@ -208,7 +208,7 @@ class ApiLogin extends ApiBase {
 
 				// Deprecated hook
 				$injected_html = '';
-				Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html ] );
+				Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html, true ] );
 
 				$result['lguserid'] = intval( $user->getId() );
 				$result['lgusername'] = $user->getName();
