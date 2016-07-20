@@ -27126,3 +27126,17 @@ Empty LI (T49673)
 <li>b</li>
 </ul>
 !! end
+
+!! test
+Thumbnail output
+!! wikitext
+[[File:Thumb.png|thumb]]
+!! html/php+tidy
+<div class="thumb tright">
+<div class="thumbinner" style="width:137px;"><a href="/wiki/File:Thumb.png" class="image"><img alt="Thumb.png" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Thumb.png" class="internal" title="Enlarge"></a></div>
+</div>
+</div>
+</div>
+!! end
