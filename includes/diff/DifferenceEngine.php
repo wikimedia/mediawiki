@@ -21,12 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
-/**
- * Constant to indicate diff cache compatibility.
- * Bump this when changing the diff formatting in a way that
- * fixes important bugs or such to force cached diff views to
- * clear.
- */
+// Deprecated, use class constant instead
 define( 'MW_DIFF_VERSION', '1.11a' );
 
 /**
@@ -34,6 +29,13 @@ define( 'MW_DIFF_VERSION', '1.11a' );
  * @ingroup DifferenceEngine
  */
 class DifferenceEngine extends ContextSource {
+	/**
+	 * Constant to indicate diff cache compatibility.
+	 * Bump this when changing the diff formatting in a way that
+	 * fixes important bugs or such to force cached diff views to
+	 * clear.
+	 */
+	const DIFF_VERSION = MW_DIFF_VERSION;
 
 	/** @var int */
 	public $mOldid;
@@ -777,7 +779,7 @@ class DifferenceEngine extends ContextSource {
 			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
-		return wfMemcKey( 'diff', 'version', MW_DIFF_VERSION,
+		return wfMemcKey( 'diff', 'version', self::MW_DIFF_VERSION,
 			'oldid', $this->mOldid, 'newid', $this->mNewid );
 	}
 
