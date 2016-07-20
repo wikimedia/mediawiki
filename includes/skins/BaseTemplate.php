@@ -140,7 +140,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( [ 'href', 'class', 'text', 'dir' ] as $k ) {
+			foreach ( [ 'href', 'class', 'text', 'dir', 'data' ] as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -318,6 +318,15 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
 	 *
+	 * If a "data" key is present, it must be an array, where the keys represent
+	 * the data-xxx properties with their provided values. For example,
+	 *  $item['data'] = array(
+	 *  	 'foo' => 1,
+	 *  	 'bar' => 'baz',
+	 *  );
+	 * will render as element properties:
+	 *  data-foo='1' data-bar='baz'
+	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
@@ -361,6 +370,13 @@ abstract class BaseTemplate extends QuickTemplate {
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
 				'tooltip-params' ] as $k ) {
 				unset( $attrs[$k] );
+			}
+
+			if ( isset( $attrs['data'] ) ) {
+				foreach ( $attrs['data'] as $key => $value ) {
+					$attrs[ 'data-' . $key ] = $value;
+				}
+				unset( $attrs[ 'data' ] );
 			}
 
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
