@@ -85,6 +85,7 @@ class ParserTest {
 	private $useDwdiff = false;
 	private $markWhitespace = false;
 	private $normalizationFunctions = [];
+	private $oldTablePrefix = false;
 
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
@@ -1019,6 +1020,143 @@ class ParserTest {
 	}
 
 	/**
+	 * Creates an empty skeleton of the wiki database by cloning its structure
+	 * to equivalent tables using the given $prefix. Then sets MediaWiki to
+	 * use the new set of tables (aka schema) instead of the original set.
+	 *
+	 * This is used to generate a dummy table set, typically consisting of temporary
+	 * tables, that will be used by tests instead of the original wiki database tables.
+	 *
+	 * @since 1.21
+	 *
+	 * @note this method only works when first called. Subsequent calls have no effect,
+	 * even if using different parameters.
+	 *
+	 * @param DatabaseBase $db The database connection
+	 * @param string $prefix The prefix to use for the new table set (aka schema).
+	 *
+	 * @throws MWException If the database table prefix is already $prefix
+	 */
+	protected function setupTestDB( DatabaseBase $db, $prefix ) {
+		global $wgDBprefix;
+
+		if ( $this->databaseSetupDone ) {
+			return;
+		}
+
+		if ( $wgDBprefix === $prefix ) {
+			throw new MWException( 'setupDatabase should be called before setupGlobals' );
+		}
+
+		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
+		// and DatabaseBase no longer use global state.
+
+		$this->setupDatabaseWithTestPrefix( $db, $prefix, $this->listTables() );
+
+		// Assuming this isn't needed for External Store database, and not sure if the procedure
+		// would be available there.
+		if ( $db->getType() == 'oracle' ) {
+			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+
+			# Anonymous user
+			$this->db->insert( 'user', [
+				'user_id' => 0,
+				'user_name' => 'Anonymous' ] );
+		}
+	}
+
+	/**
+	 * Clones the External Store database(s) for testing
+	 *
+	 * @param string $prefix Prefix for test tables
+	 */
+	protected function setupExternalStoreTestDBs( $prefix ) {
+		$connections = $this->getExternalStoreDatabaseConnections();
+		foreach ( $connections as $dbw ) {
+			// Hack: cloneTableStructure sets $wgDBprefix to the unit test
+			// prefix,.  Even though listTables now uses tablePrefix, that
+			// itself is populated from $wgDBprefix by default.
+
+			// We have to set it back, or we won't find the original 'blobs'
+			// table to copy.
+
+			$dbw->tablePrefix( $this->oldTablePrefix );
+			$this->setupDatabaseWithTestPrefix( $dbw, $prefix, [ 'blobs' ] );
+		}
+	}
+
+	/**
+	 * Setups a database with the given prefix.
+	 *
+	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
+	 * Otherwise, it will clone the tables and change the prefix.
+	 *
+	 * Clones all tables in the given database (whatever database that connection has
+	 * open), to versions with the test prefix.
+	 *
+	 * @param DatabaseBase $db Database to use
+	 * @param string $prefix Prefix to use for test tables
+	 * @param array $tables List of tables to be cloned
+	 * @return bool True if tables were cloned, false if only the prefix was changed
+	 */
+	protected function setupDatabaseWithTestPrefix( DatabaseBase $db, $prefix, array $tables ) {
+		# CREATE TEMPORARY TABLE breaks if there is more than one server
+		if ( wfGetLB()->getServerCount() != 1 ) {
+			$this->useTemporaryTables = false;
+		}
+
+		$temporary = $this->useTemporaryTables || $this->db->getType() == 'postgres';
+
+		$this->dbClone = new CloneDatabase( $db, $tables, $prefix );
+		$this->dbClone->useTemporaryTables( $temporary );
+		$this->dbClone->cloneTableStructure();
+	}
+
+	/**
+	 * Gets master database connections for all of the ExternalStoreDB
+	 * stores configured in $wgDefaultExternalStore.
+	 *
+	 * @return array Array of DatabaseBase master connections
+	 */
+	protected function getExternalStoreDatabaseConnections() {
+		global $wgDefaultExternalStore;
+
+		$externalStoreDB = ExternalStore::getStoreObject( 'DB' );
+		$defaultArray = (array) $wgDefaultExternalStore;
+		$dbws = [];
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				list( $proto, $cluster ) = explode( '://', $url, 2 );
+				$dbw = $externalStoreDB->getMaster( $cluster );
+				$dbws[] = $dbw;
+			}
+		}
+
+		return $dbws;
+	}
+
+	/**
+	 * Check whether ExternalStoreDB is being used
+	 *
+	 * @return bool True if it's being used
+	 */
+	protected function isUsingExternalStoreDB() {
+		global $wgDefaultExternalStore;
+		if ( !$wgDefaultExternalStore ) {
+			return false;
+		}
+
+		$defaultArray = (array) $wgDefaultExternalStore;
+		foreach ( $defaultArray as $url ) {
+			if ( strpos( $url, 'DB://' ) === 0 ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Set up a temporary set of wiki tables to work with for the tests.
 	 * Currently this will only be done once per run, and any changes to
 	 * the db will be visible to later tests in the run.
@@ -1031,10 +1169,12 @@ class ParserTest {
 		}
 
 		$this->db = wfGetDB( DB_MASTER );
-		$dbType = $this->db->getType();
+		$this->oldTablePrefix = $wgDBprefix;
+		$testPrefix = $this->db->getType() != 'oracle' ? 'parsertest_' : 'pt_';
+		$this->setupTestDB( $this->db, $testPrefix );
 
-		if ( $wgDBprefix === 'parsertest_' || ( $dbType == 'oracle' && $wgDBprefix === 'pt_' ) ) {
-			throw new MWException( 'setupDatabase should be called before setupGlobals' );
+		if ( $this->isUsingExternalStoreDB() ) {
+			$this->setupExternalStoreTestDBs( $testPrefix );
 		}
 
 		$this->databaseSetupDone = true;
@@ -1043,28 +1183,6 @@ class ParserTest {
 		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
 		# This works around it for now...
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
-
-		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		if ( wfGetLB()->getServerCount() != 1 ) {
-			$this->useTemporaryTables = false;
-		}
-
-		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
-		$prefix = $dbType != 'oracle' ? 'parsertest_' : 'pt_';
-
-		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );
-		$this->dbClone->useTemporaryTables( $temporary );
-		$this->dbClone->cloneTableStructure();
-
-		if ( $dbType == 'oracle' ) {
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-			# Insert 0 user to prevent FK violations
-
-			# Anonymous user
-			$this->db->insert( 'user', [
-				'user_id' => 0,
-				'user_name' => 'Anonymous' ] );
-		}
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
