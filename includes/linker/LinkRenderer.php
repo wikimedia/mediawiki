@@ -400,16 +400,13 @@ class LinkRenderer {
 	private function getLinkURL( LinkTarget $target, array $query = [] ) {
 		// TODO: Use a LinkTargetResolver service instead of Title
 		$title = Title::newFromLinkTarget( $target );
-		$proto = $this->expandUrls !== false
-			? $this->expandUrls
-			: PROTO_RELATIVE;
 		if ( $this->forceArticlePath ) {
 			$realQuery = $query;
 			$query = [];
 		} else {
 			$realQuery = [];
 		}
-		$url = $title->getLinkURL( $query, false, $proto );
+		$url = $title->getLinkURL( $query, false, $this->expandUrls );
 
 		if ( $this->forceArticlePath && $realQuery ) {
 			$url = wfAppendQuery( $url, $realQuery );
