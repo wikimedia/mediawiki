@@ -108,7 +108,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ExtensionProcessor::extractConfig
+	 * @covers ExtensionProcessor::extractConfig1
 	 */
 	public function testExtractConfig() {
 		$processor = new ExtensionProcessor;
