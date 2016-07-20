@@ -1469,34 +1469,6 @@ MESSAGE;
 	}
 
 	/**
-	 * Build a load.php URL
-	 * @deprecated since 1.24 Use createLoaderURL() instead
-	 * @param array $modules Array of module names (strings)
-	 * @param string $lang Language code
-	 * @param string $skin Skin name
-	 * @param string|null $user User name. If null, the &user= parameter is omitted
-	 * @param string|null $version Versioning timestamp
-	 * @param bool $debug Whether the request should be in debug mode
-	 * @param string|null $only &only= parameter
-	 * @param bool $printable Printable mode
-	 * @param bool $handheld Handheld mode
-	 * @param array $extraQuery Extra query parameters to add
-	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
-	 */
-	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
-		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, $extraQuery = []
-	) {
-		global $wgLoadScript;
-
-		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
-			$only, $printable, $handheld, $extraQuery
-		);
-
-		return wfAppendQuery( $wgLoadScript, $query );
-	}
-
-	/**
 	 * Helper for createLoaderURL()
 	 *
 	 * @since 1.24
@@ -1522,7 +1494,7 @@ MESSAGE;
 
 	/**
 	 * Build a query array (array representation of query string) for load.php. Helper
-	 * function for makeLoaderURL().
+	 * function for createLoaderURL().
 	 *
 	 * @param array $modules
 	 * @param string $lang
