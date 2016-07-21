@@ -392,11 +392,16 @@ class MovePage {
 			$reason,
 			$nullRevision
 		];
-		$dbw->onTransactionIdle( function () use ( $params, $dbw ) {
-			// Keep each single hook handler atomic
-			$dbw->setFlag( DBO_TRX ); // flag is automatically reset by DB layer
-			Hooks::run( 'TitleMoveComplete', $params );
-		} );
+		// Keep each single hook handler atomic
+		DeferredUpdates::addUpdate(
+			new AtomicSectionUpdate(
+				$dbw,
+				__METHOD__,
+				function () use ( $params ) {
+					Hooks::run( 'TitleMoveComplete', $params );
+				}
+			)
+		);
 
 		return Status::newGood();
 	}

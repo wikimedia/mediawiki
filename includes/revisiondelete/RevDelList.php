@@ -264,11 +264,13 @@ abstract class RevDelList extends RevisionListBase {
 			]
 		);
 
-		// Clear caches
-		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that, $visibilityChangeMap ) {
-			$that->doPostCommitUpdates( $visibilityChangeMap );
-		} );
+		// Clear caches after commit
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $visibilityChangeMap ) {
+				$this->doPostCommitUpdates( $visibilityChangeMap );
+			},
+			DeferredUpdates::PRESEND
+		);
 
 		$dbw->endAtomic( __METHOD__ );
 

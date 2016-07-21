@@ -1422,97 +1422,103 @@ class LocalFile extends File {
 		# Do some cache purges after final commit so that:
 		# a) Changes are more likely to be seen post-purge
 		# b) They won't cause rollback of the log publish/update above
-		$that = $this;
-		$dbw->onTransactionIdle( function () use (
-			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId, $tags
-		) {
-			# Update memcache after the commit
-			$that->invalidateCache();
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate(
+				$dbw,
+				__METHOD__,
+				function () use (
+					$reupload, $wikiPage, $newPageContent, $comment, $user,
+					$logEntry, $logId, $descId, $tags
+				) {
+					# Update memcache after the commit
+					$this->invalidateCache();
 
-			$updateLogPage = false;
-			if ( $newPageContent ) {
-				# New file page; create the description page.
-				# There's already a log entry, so don't make a second RC entry
-				# CDN and file cache for the description page are purged by doEditContent.
-				$status = $wikiPage->doEditContent(
-					$newPageContent,
-					$comment,
-					EDIT_NEW | EDIT_SUPPRESS_RC,
-					false,
-					$user
-				);
+					$updateLogPage = false;
+					if ( $newPageContent ) {
+						# New file page; create the description page.
+						# There's already a log entry, so don't make a second RC entry
+						# CDN and file cache for the description page are purged by doEditContent.
+						$status = $wikiPage->doEditContent(
+							$newPageContent,
+							$comment,
+							EDIT_NEW | EDIT_SUPPRESS_RC,
+							false,
+							$user
+						);
 
-				if ( isset( $status->value['revision'] ) ) {
-					// Associate new page revision id
-					$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+						if ( isset( $status->value['revision'] ) ) {
+							// Associate new page revision id
+							$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+						}
+						// This relies on the resetArticleID() call in WikiPage::insertOn(),
+						// which is triggered on $descTitle by doEditContent() above.
+						if ( isset( $status->value['revision'] ) ) {
+							/** @var $rev Revision */
+							$rev = $status->value['revision'];
+							$updateLogPage = $rev->getPage();
+						}
+					} else {
+						# Existing file page: invalidate description page cache
+						$wikiPage->getTitle()->invalidateCache();
+						$wikiPage->getTitle()->purgeSquid();
+						# Allow the new file version to be patrolled from the page footer
+						Article::purgePatrolFooterCache( $descId );
+					}
+
+					# Update associated rev id. This should be done by $logEntry->insert() earlier,
+					# but setAssociatedRevId() wasn't called at that point yet...
+					$logParams = $logEntry->getParameters();
+					$logParams['associated_rev_id'] = $logEntry->getAssociatedRevId();
+					$update = [ 'log_params' => LogEntryBase::makeParamBlob( $logParams ) ];
+					if ( $updateLogPage ) {
+						# Also log page, in case where we just created it above
+						$update['log_page'] = $updateLogPage;
+					}
+					$this->getRepo()->getMasterDB()->update(
+						'logging',
+						$update,
+						[ 'log_id' => $logId ],
+						__METHOD__
+					);
+					$this->getRepo()->getMasterDB()->insert(
+						'log_search',
+						[
+							'ls_field' => 'associated_rev_id',
+							'ls_value' => $logEntry->getAssociatedRevId(),
+							'ls_log_id' => $logId,
+						],
+						__METHOD__
+					);
+
+					# Add change tags, if any
+					if ( $tags ) {
+						$logEntry->setTags( $tags );
+					}
+
+					# Uploads can be patrolled
+					$logEntry->setIsPatrollable( true );
+
+					# Now that the log entry is up-to-date, make an RC entry.
+					$logEntry->publish( $logId );
+
+					# Run hook for other updates (typically more cache purging)
+					Hooks::run( 'FileUpload', [ $this, $reupload, !$newPageContent ] );
+
+					if ( $reupload ) {
+						# Delete old thumbnails
+						$this->purgeThumbnails();
+						# Remove the old file from the CDN cache
+						DeferredUpdates::addUpdate(
+							new CdnCacheUpdate( [ $this->getUrl() ] ),
+							DeferredUpdates::PRESEND
+						);
+					} else {
+						# Update backlink pages pointing to this title if created
+						LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
+					}
 				}
-				// This relies on the resetArticleID() call in WikiPage::insertOn(),
-				// which is triggered on $descTitle by doEditContent() above.
-				if ( isset( $status->value['revision'] ) ) {
-					/** @var $rev Revision */
-					$rev = $status->value['revision'];
-					$updateLogPage = $rev->getPage();
-				}
-			} else {
-				# Existing file page: invalidate description page cache
-				$wikiPage->getTitle()->invalidateCache();
-				$wikiPage->getTitle()->purgeSquid();
-				# Allow the new file version to be patrolled from the page footer
-				Article::purgePatrolFooterCache( $descId );
-			}
-
-			# Update associated rev id. This should be done by $logEntry->insert() earlier,
-			# but setAssociatedRevId() wasn't called at that point yet...
-			$logParams = $logEntry->getParameters();
-			$logParams['associated_rev_id'] = $logEntry->getAssociatedRevId();
-			$update = [ 'log_params' => LogEntryBase::makeParamBlob( $logParams ) ];
-			if ( $updateLogPage ) {
-				# Also log page, in case where we just created it above
-				$update['log_page'] = $updateLogPage;
-			}
-			$that->getRepo()->getMasterDB()->update(
-				'logging',
-				$update,
-				[ 'log_id' => $logId ],
-				__METHOD__
-			);
-			$that->getRepo()->getMasterDB()->insert(
-				'log_search',
-				[
-					'ls_field' => 'associated_rev_id',
-					'ls_value' => $logEntry->getAssociatedRevId(),
-					'ls_log_id' => $logId,
-				],
-				__METHOD__
-			);
-
-			# Add change tags, if any
-			if ( $tags ) {
-				$logEntry->setTags( $tags );
-			}
-
-			# Uploads can be patrolled
-			$logEntry->setIsPatrollable( true );
-
-			# Now that the log entry is up-to-date, make an RC entry.
-			$logEntry->publish( $logId );
-
-			# Run hook for other updates (typically more cache purging)
-			Hooks::run( 'FileUpload', [ $that, $reupload, !$newPageContent ] );
-
-			if ( $reupload ) {
-				# Delete old thumbnails
-				$that->purgeThumbnails();
-				# Remove the old file from the CDN cache
-				DeferredUpdates::addUpdate(
-					new CdnCacheUpdate( [ $that->getUrl() ] ),
-					DeferredUpdates::PRESEND
-				);
-			} else {
-				# Update backlink pages pointing to this title if created
-				LinksUpdate::queueRecursiveJobsForTable( $that->getTitle(), 'imagelinks' );
-			}
-		} );
+			)
+		);
 
 		if ( !$reupload ) {
 			# This is a new file, so update the image count
