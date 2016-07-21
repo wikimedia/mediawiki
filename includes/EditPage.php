@@ -1286,7 +1286,7 @@ class EditPage {
 			return $this->mPreloadContent;
 		}
 
-		$handler = ContentHandler::getForTitle( $this->getTitle() );
+		$handler = ContentHandler::getForModelID( $this->contentModel );
 
 		if ( $preload === '' ) {
 			return $handler->makeEmptyContent();
