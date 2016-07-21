@@ -357,12 +357,10 @@ class ApiParse extends ApiBase {
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
-
-				$css = $this->formatCss( $output->buildCssLinksArray() );
-
-				$scripts = [ $output->getHeadScripts() ];
-
-				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
+				$headItems[] = $output->getHeadHtml();
+				$result_array['headitems'] = $headItems;
+				$this->setWarning( 'headitems is deprecated since MediaWiki 1.28. ' .
+					'Use headhtml instead.' );
 			}
 
 			if ( isset( $prop['headhtml'] ) ) {

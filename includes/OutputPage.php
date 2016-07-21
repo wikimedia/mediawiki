@@ -2942,6 +2942,26 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Copy of headElement() for ApiParse with scripts and styles only.
+	 *
+	 * @deprecated since 1.28 Use headElement() instead.
+	 * @since 1.28
+	 * @return string HTML fragment
+	 */
+	public function getHeadHtml() {
+		$pieces = array_merge(
+			[
+				$this->getInlineHeadScripts(),
+				$this->buildCssLinks(),
+				$this->getExternalHeadScripts()
+			],
+			array_values( $this->getHeadLinksArray() ),
+			array_values( $this->mHeadItems )
+		);
+		return WrappedStringList::join( "\n", $pieces );
+	}
+
+	/**
 	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
