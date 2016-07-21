@@ -40,7 +40,7 @@
 		"wikimedia/relpath": "1.0.3",
 		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/utfnormal": "1.0.3",
-		"wikimedia/wrappedstring": "2.1.1",
+		"wikimedia/wrappedstring": "2.2.0",
 		"zordius/lightncandy": "0.23"
 	},
 	"require-dev": {
