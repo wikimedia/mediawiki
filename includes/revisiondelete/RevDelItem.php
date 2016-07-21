@@ -61,4 +61,22 @@ abstract class RevDelItem extends RevisionItemBase {
 	 * @return array Data for the API result
 	 */
 	abstract public function getApiData( ApiResult $result );
+
+	/**
+	 * Lock the item against changes outside of the DB
+	 * @return Status
+	 * @since 1.28
+	 */
+	public function lock() {
+		return Status::newGood();
+	}
+
+	/**
+	 * Unlock the item against changes outside of the DB
+	 * @return Status
+	 * @since 1.28
+	 */
+	public function unlock() {
+		return Status::newGood();
+	}
 }

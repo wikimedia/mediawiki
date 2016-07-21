@@ -81,14 +81,13 @@ abstract class RevDelList extends RevisionListBase {
 	public function areAnySuppressed() {
 		$bit = $this->getSuppressBit();
 
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
-		for ( $this->reset(); $this->current(); $this->next() ) {
-			// @codingStandardsIgnoreEnd
-			$item = $this->current();
+		/** @var $item RevDelItem */
+		foreach ( $this as $item ) {
 			if ( $item->getBits() & $bit ) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -104,6 +103,8 @@ abstract class RevDelList extends RevisionListBase {
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
 	public function setVisibility( array $params ) {
+		$status = Status::newGood();
+
 		$bitPars = $params['value'];
 		$comment = $params['comment'];
 		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
@@ -113,9 +114,13 @@ abstract class RevDelList extends RevisionListBase {
 		$dbw = wfGetDB( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 
+		$status->merge( $this->acquireItemLocks() );
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
 		$dbw->startAtomic( __METHOD__ );
 
-		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
 		$idsForLog = [];
@@ -136,11 +141,8 @@ abstract class RevDelList extends RevisionListBase {
 		// passed to doPostCommitUpdates().
 		$visibilityChangeMap = [];
 
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
-		for ( $this->reset(); $this->current(); $this->next() ) {
-			// @codingStandardsIgnoreEnd
-			/** @var $item RevDelItem */
-			$item = $this->current();
+		/** @var $item RevDelItem */
+		foreach ( $this as $item ) {
 			unset( $missing[$item->getId()] );
 
 			if ( $perItemStatus ) {
@@ -271,6 +273,27 @@ abstract class RevDelList extends RevisionListBase {
 		} );
 
 		$dbw->endAtomic( __METHOD__ );
+		$status->merge( $this->releaseItemLocks() );
+
+		return $status;
+	}
+
+	final protected function acquireItemLocks() {
+		$status = Status::newGood();
+		/** @var $item RevDelItem */
+		foreach ( $this as $item ) {
+			$status->merge( $item->lock() );
+		}
+
+		return $status;
+	}
+
+	final protected function releaseItemLocks() {
+		$status = Status::newGood();
+		/** @var $item RevDelItem */
+		foreach ( $this as $item ) {
+			$status->merge( $item->unlock() );
+		}
 
 		return $status;
 	}
