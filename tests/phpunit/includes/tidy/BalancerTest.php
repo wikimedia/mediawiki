@@ -41,15 +41,16 @@ class BalancerTest extends MediaWikiTestCase {
 		// for providers, and filter out HTML constructs which
 		// the balancer doesn't support.
 		$tests = [];
-		$start = '<html><head></head><body>';
-		$end = '</body></html>';
+		$okre = "~ \A
+			(?i:<!DOCTYPE\ html>)?
+			<html><head></head><body>
+			.*
+			</body></html>
+		\z ~xs";
 		foreach ( $json as $filename => $cases ) {
 			foreach ( $cases as $case ) {
 				$html = $case['document']['html'];
-				if (
-					substr( $html, 0, strlen( $start ) ) !== $start ||
-					substr( $html, -strlen( $end ) ) !== $end
-				) {
+				if ( !preg_match( $okre, $html ) ) {
 					// Skip tests which involve stuff in the <head> or
 					// weird doctypes.
 					continue;
@@ -63,6 +64,8 @@ class BalancerTest extends MediaWikiTestCase {
 				$html = $case['document']['noQuirksBodyHtml'];
 				// Normalize case of SVG attributes.
 				$html = str_replace( 'foreignObject', 'foreignobject', $html );
+				// Normalize case of MathML attributes.
+				$html = str_replace( 'definitionURL', 'definitionurl', $html );
 
 				if (
 					isset( $case['document']['props']['comment'] ) &&
@@ -76,11 +79,17 @@ class BalancerTest extends MediaWikiTestCase {
 					// Skip tests involving <![CDATA[ ]]> quoting.
 					continue;
 				}
-				if ( stripos( $case['data'], '<!DOCTYPE' ) !== false ) {
-					// Skip tests involving doctypes.
+				if (
+					stripos( $case['data'], '<!DOCTYPE' ) !== false &&
+					stripos( $case['data'], '<!DOCTYPE html>' ) === false
+				) {
+					// Skip tests involving unusual doctypes.
 					continue;
 				}
-				if ( preg_match( ',</?(html|head|body|frame|plaintext)>|<rdar:|<isindex,i', $case['data'] ) ) {
+				$literalre = "~ <rdar: | <isindex | < /? (
+					html | head | body | frame | frameset | plaintext
+				) > ~xi";
+				if ( preg_match( $literalre, $case['data'] ) ) {
 					// Skip tests involving some literal tags, which are
 					// unsupported but don't show up in the expected output.
 					continue;
@@ -112,7 +121,8 @@ class BalancerTest extends MediaWikiTestCase {
 					isset( $case['document']['props']['tagWithLt'] ) ||
 					isset( $case['document']['props']['attrWithFunnyChar'] ) ||
 					preg_match( ':^(</b test|<di|<foo bar=qux/>)$:', $case['data'] ) ||
-					preg_match( ':</p<p>:', $case['data'] )
+					preg_match( ':</p<p>:', $case['data'] ) ||
+					preg_match( ':<b &=&amp>|<p/x/y/z>:', $case['data'] )
 				) {
 					// Skip tests with funny tag or attribute names,
 					// which are really tests of the HTML tokenizer, not
@@ -120,7 +130,7 @@ class BalancerTest extends MediaWikiTestCase {
 					continue;
 				}
 				if (
-					stripos( $case['data'], 'encoding=" text/html "' ) !== false
+					preg_match( ':encoding=" text/html "|type=" hidden":', $case['data'] )
 				) {
 					// The Sanitizer normalizes whitespace in attribute
 					// values, which makes this test case invalid.
@@ -130,9 +140,12 @@ class BalancerTest extends MediaWikiTestCase {
 					// Skip tests with ASCII null, etc.
 					continue;
 				}
+				$data = preg_replace(
+					'~<!DOCTYPE html>~i', '', $case['data']
+				);
 				$tests[] = [
 					$filename, # use better description?
-					$case['data'],
+					$data,
 					$html
 				];
 			}
