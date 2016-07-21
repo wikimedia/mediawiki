@@ -1810,30 +1810,31 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Do secondary updates once the main changes have been committed...
-		$that = $this;
-		$dbw->onTransactionIdle(
-			function () use (
-				$dbw, &$that, $revision, &$user, $content, $summary, &$flags,
-				$changed, $meta, &$status
-			) {
-				// Do per-page updates in a transaction
-				$dbw->setFlag( DBO_TRX );
-				// Update links tables, site stats, etc.
-				$that->doEditUpdates(
-					$revision,
-					$user,
-					[
-						'changed' => $changed,
-						'oldcountable' => $meta['oldCountable'],
-						'oldrevision' => $meta['oldRevision']
-					]
-				);
-				// Trigger post-save hook
-				$params = [ &$that, &$user, $content, $summary, $flags & EDIT_MINOR,
-					null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
-				ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
-				Hooks::run( 'PageContentSaveComplete', $params );
-			}
+		DeferredUpdates::addUpdate(
+			new AtomicSectionUpdate(
+				$dbw,
+				__METHOD__,
+				function () use (
+					$revision, &$user, $content, $summary, &$flags,
+					$changed, $meta, &$status
+				) {
+					// Update links tables, site stats, etc.
+					$this->doEditUpdates(
+						$revision,
+						$user,
+						[
+							'changed' => $changed,
+							'oldcountable' => $meta['oldCountable'],
+							'oldrevision' => $meta['oldRevision']
+						]
+					);
+					// Trigger post-save hook
+					$params = [ &$this, &$user, $content, $summary, $flags & EDIT_MINOR,
+						null, null, &$flags, $revision, &$status, $meta['baseRevId'] ];
+					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
+					Hooks::run( 'PageContentSaveComplete', $params );
+				}
+			)
 		);
 
 		return $status;
@@ -1938,26 +1939,27 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		// Do secondary updates once the main changes have been committed...
-		$that = $this;
-		$dbw->onTransactionIdle(
-			function () use (
-				&$that, $dbw, $revision, &$user, $content, $summary, &$flags, $meta, &$status
-			) {
-				// Do per-page updates in a transaction
-				$dbw->setFlag( DBO_TRX );
-				// Update links, etc.
-				$that->doEditUpdates( $revision, $user, [ 'created' => true ] );
-				// Trigger post-create hook
-				$params = [ &$that, &$user, $content, $summary,
-					$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-				ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
-				Hooks::run( 'PageContentInsertComplete', $params );
-				// Trigger post-save hook
-				$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
-				ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
-				Hooks::run( 'PageContentSaveComplete', $params );
+		DeferredUpdates::addUpdate(
+			new AtomicSectionUpdate(
+				$dbw,
+				__METHOD__,
+				function () use (
+					$revision, &$user, $content, $summary, &$flags, $meta, &$status
+				) {
+					// Update links, etc.
+					$this->doEditUpdates( $revision, $user, [ 'created' => true ] );
+					// Trigger post-create hook
+					$params = [ &$this, &$user, $content, $summary,
+						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
+					ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
+					Hooks::run( 'PageContentInsertComplete', $params );
+					// Trigger post-save hook
+					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
+					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
+					Hooks::run( 'PageContentSaveComplete', $params );
 
-			}
+				}
+			)
 		);
 
 		return $status;
