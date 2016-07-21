@@ -261,7 +261,7 @@
 	"config-memcache-needservers": "캐시 종류로 Memcached를 선택했지만 어떠한 서버도 지정하지 않았습니다.",
 	"config-memcache-badip": "Memcached에 대해 잘못된 IP 주소를 입력했습니다: $1.",
 	"config-memcache-noport": "Memcached 서버에 사용할 포트를 지정하지 않았습니다: $1.\n포트를 모를 경우 기본 값은 11211입니다.",
-	"config-memcache-badport": "Memcached 포트 번호는 $1(와)과 $2 사이여야 합니다.",
+	"config-memcache-badport": "Memcached 포트 번호는 $1와(과) $2 사이여야 합니다.",
 	"config-extensions": "확장 기능",
 	"config-extensions-help": "위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.\n\n추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.",
 	"config-skins": "스킨",

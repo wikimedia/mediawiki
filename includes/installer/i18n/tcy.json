@@ -1,18 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"Vishwanatha Badikana"
 		]
 	},
-	"config-title": "ಮೀಡಿಯಾವಿಕಿ ಆವೃತ್ತಿ $1 ರ ಅನುಸ್ಥಾಪನೆ",
+	"config-desc": "ಮೀಡಿಯ ವಿಕಿದ ಪ್ರತಿಸ್ಟಾಪನೆ",
+	"config-title": "ಮೀಡಿಯಾವಿಕಿ ಆವೃತ್ತಿ $1 ರ ಪ್ರತಿಸ್ಟಾಪನೆ",
 	"config-information": "ಮಾಹಿತಿ",
-	"config-localsettings-key": "ಉನ್ನತೀಕರಣ ಕೀಲಿ",
-	"config-session-error": "ಅವಧಿ ಪ್ರಾರಂಭದ ದೋಷ: $1",
+	"config-localsettings-upgrade": "ಒಂಜಿ<code>LocalSettings.php</code>ದ ಕಡತೊ ಪತ್ತೆ ಆತ್ಂಡ್.  ಈ ಪ್ರತಿಸ್ಟಾಪನೆನ್ ಪೊಸತ್ ಮಲ್ಪೆರೆ, ದಯದೀಡ್ದ್ ತಿರ್ತ್‌ದ ಪಟ್ಟಿಗೆದ <code>$wgUpgradeKey</code>ದ ಬಿಲೆನ್ ನಮೂದಿಸಲೆ.\nಈರ್ <code>LocalSettings.php</code>ನ್ ನಾಡೊಲಿ",
+	"config-localsettings-cli-upgrade": "ಒಂಜಿ<code>LocalSettings.php</code>ದ ಕಡತೊ ಪತ್ತೆ ಆತ್ಂಡ್.  ಈ ಪ್ರತಿಸ್ಟಾಪನೆನ್ ಪೊಸತ್ ಮಲ್ಪೆರೆ, ದಯದೀಡ್ದ್ ತಿರ್ತ್‌ದ ಪಟ್ಟಿಗೆದ <code>$wgUpgradeKey</code>ದ ಬಿಲೆನ್ ನಮೂದಿಸಲೆ.\nದಯಮಲ್ತ್ <code>LocalSettings.php</code>ಗ್ ಬದಲಾದ್  ಬಲಿಪಾಲೆ",
+	"config-localsettings-key": "ಏಲಿಗೆದ ಕೀ",
+	"config-session-error": "ಸಬೆ ಸುರುಮಲ್ಪುನ ದೋಸೊ: $1",
 	"config-your-language": "ಇರೆನಾ ಬಾಸೆ",
-	"config-wiki-language": "ವಿಕಿ ಭಾಷೆ:",
+	"config-wiki-language": "ವಿಕಿ ಬಾಸೆ:",
 	"config-back": "← ಪಿರ",
 	"config-continue": "ಮುಂದುವರೆಸಾಲೆ →",
-	"config-page-language": "ಭಾಸೆ",
+	"config-page-language": "ಬಾಸೆ",
 	"config-page-welcome": "ಮಾಧ್ಯಮವಿಕಿಗ್ ಸ್ವಾಗತ",
 	"config-page-dbconnect": "ದತ್ತಾಂಶಸಂಚಯಗ್ ಸಂಪರ್ಕಕೊರ್ಲೆ",
 	"config-page-name": "ಪುದರ್",

@@ -533,7 +533,7 @@
 	"history-show-deleted": "صرفی حذف شدہ",
 	"histfirst": "قدیم ترین",
 	"histlast": "تازہ ترین",
-	"historysize": "({{PLURAL:$1|1 بائٹ|$1 بائٹس}})",
+	"historysize": "({{PLURAL:$1|1 بائٹ|$1 بائٹ}})",
 	"historyempty": "(خالی)",
 	"history-feed-title": "تاریخچۂ نظرثانی",
 	"history-feed-description": "ویکیپیڈیا ھیہ صفحو تاریخچۂ نظرثانی",
