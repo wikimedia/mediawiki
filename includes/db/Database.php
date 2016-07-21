@@ -2564,12 +2564,12 @@ abstract class DatabaseBase implements IDatabase {
 
 	final public function endAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
-			throw new DBUnexpectedError( $this, 'No atomic transaction is open.' );
+			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
 		}
 		if ( !$this->mTrxAtomicLevels ||
 			array_pop( $this->mTrxAtomicLevels ) !== $fname
 		) {
-			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
+			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
 		}
 
 		if ( !$this->mTrxAtomicLevels && $this->mTrxAutomaticAtomic ) {
