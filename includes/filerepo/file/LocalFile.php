@@ -1637,16 +1637,20 @@ class LocalFile extends File {
 		// Purge the source and target files...
 		$oldTitleFile = wfLocalFile( $this->title );
 		$newTitleFile = wfLocalFile( $target );
-		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
-		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
-		$this->getRepo()->getMasterDB()->onTransactionIdle(
-			function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
-				$oldTitleFile->purgeEverything();
-				foreach ( $archiveNames as $archiveName ) {
-					$oldTitleFile->purgeOldThumbnails( $archiveName );
+		// To avoid slow purges in the transaction, move them outside...
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate(
+				$this->getRepo()->getMasterDB(),
+				__METHOD__,
+				function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
+					$oldTitleFile->purgeEverything();
+					foreach ( $archiveNames as $archiveName ) {
+						$oldTitleFile->purgeOldThumbnails( $archiveName );
+					}
+					$newTitleFile->purgeEverything();
 				}
-				$newTitleFile->purgeEverything();
-			}
+			),
+			DeferredUpdates::PRESEND
 		);
 
 		if ( $status->isOK() ) {
@@ -1682,7 +1686,7 @@ class LocalFile extends File {
 
 		$this->lock(); // begin
 		$batch->addCurrent();
-		# Get old version relative paths
+		// Get old version relative paths
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
 		$this->unlock(); // done
@@ -1691,16 +1695,19 @@ class LocalFile extends File {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => -1 ] ) );
 		}
 
-		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
-		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
-		$that = $this;
-		$this->getRepo()->getMasterDB()->onTransactionIdle(
-			function () use ( $that, $archiveNames ) {
-				$that->purgeEverything();
-				foreach ( $archiveNames as $archiveName ) {
-					$that->purgeOldThumbnails( $archiveName );
+		// To avoid slow purges in the transaction, move them outside...
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate(
+				$this->getRepo()->getMasterDB(),
+				__METHOD__,
+				function () use ( $archiveNames ) {
+					$this->purgeEverything();
+					foreach ( $archiveNames as $archiveName ) {
+						$this->purgeOldThumbnails( $archiveName );
+					}
 				}
-			}
+			),
+			DeferredUpdates::PRESEND
 		);
 
 		// Purge the CDN
