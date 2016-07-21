@@ -20,14 +20,7 @@ class BalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Anything cleanup you need to do should go here.
-	 */
-	protected function tearDown() {
-		parent::tearDown();
-	}
-
-	/**
-	 * @covers Balancer::balance
+	 * @covers MediaWiki\Tidy\Balancer::balance
 	 * @dataProvider provideBalancerTests
 	 */
 	public function testBalancer( $description, $input, $expected ) {
