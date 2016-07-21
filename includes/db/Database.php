@@ -2606,13 +2606,13 @@ abstract class DatabaseBase implements IDatabase {
 					"$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 						" performing implicit commit!"
 				);
-			} else {
+			} elseif ( $this->mTrxDoneWrites ) {
 				// The transaction was automatic and has done write operations
-				if ( $this->mTrxDoneWrites ) {
-					wfLogDBError( "$fname: Automatic transaction with writes in progress" .
+				throw new DBUnexpectedError(
+					$this,
+					"$fname: Automatic transaction with writes in progress" .
 						" (from {$this->mTrxFname}), performing implicit commit!\n"
-					);
-				}
+				);
 			}
 
 			$this->runOnTransactionPreCommitCallbacks();
