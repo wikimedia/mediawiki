@@ -345,7 +345,15 @@ class ApiParse extends ApiBase {
 				$titleObj->getPrefixedText();
 		}
 
-		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
+		if ( isset( $prop['headitems'] ) ) {
+			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );
+			$this->logFeatureUsage( 'action=parse&prop=headitems' );
+			$this->setWarning( 'headitems is deprecated since MediaWiki 1.28. '
+				. 'Use prop=headhtml when creating new HTML documents, or '
+				. 'prop=modules|jsconfigvars when updating a document client-side.' );
+		}
+
+		if ( isset( $prop['headhtml'] ) ) {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
 			$context->setWikiPage( $pageObj );
@@ -355,20 +363,8 @@ class ApiParse extends ApiBase {
 			$output = new OutputPage( $context );
 			$output->addParserOutputMetadata( $p_result );
 
-			if ( isset( $prop['headitems'] ) ) {
-				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
-
-				$css = $this->formatCss( $output->buildCssLinksArray() );
-
-				$scripts = [ $output->getHeadScripts() ];
-
-				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
-			}
-
-			if ( isset( $prop['headhtml'] ) ) {
-				$result_array['headhtml'] = $output->headElement( $context->getSkin() );
-				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
-			}
+			$result_array['headhtml'] = $output->headElement( $context->getSkin() );
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 		}
 
 		if ( isset( $prop['modules'] ) ) {
@@ -703,18 +699,6 @@ class ApiParse extends ApiBase {
 			$entry = [];
 			$entry['tag'] = $tag;
 			ApiResult::setContentValue( $entry, 'content', $content );
-			$result[] = $entry;
-		}
-
-		return $result;
-	}
-
-	private function formatCss( $css ) {
-		$result = [];
-		foreach ( $css as $file => $link ) {
-			$entry = [];
-			$entry['file'] = $file;
-			ApiResult::setContentValue( $entry, 'link', $link );
 			$result[] = $entry;
 		}
 
