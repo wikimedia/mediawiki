@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * The edit page/HTML interface (split from Article)
  * The actual database and text munging is still in Article,
@@ -1249,9 +1251,31 @@ class EditPage {
 
 			return $handler->makeEmptyContent();
 		} else {
-			# nasty side-effect, but needed for consistency
-			$this->contentModel = $rev->getContentModel();
-			$this->contentFormat = $rev->getContentFormat();
+			// Content models should always be the same since we error
+			// out if they are different before this point.
+			$logger = LoggerFactory::getInstance( 'editpage' );
+			if ( $this->contentModel !== $rev->getContentModel() ) {
+				$logger->warning( "Overriding content model from current edit {prev} to {new}", [
+					'prev' => $this->contentModel,
+					'new' => $rev->getContentModel(),
+					'title' => $this->getTitle()->getPrefixedDBkey(),
+					'method' => __METHOD__
+				] );
+				$this->contentModel = $rev->getContentModel();
+			}
+
+			// Given that the content models should match, the current selected
+			// format should be supported.
+			if ( !$content->isSupportedFormat( $this->contentFormat ) ) {
+				$logger->warning( "Current revision content format unsupported. Overriding {prev} to {new}", [
+
+					'prev' => $this->contentFormat,
+					'new' => $rev->getContentFormat(),
+					'title' => $this->getTitle()->getPrefixedDBkey(),
+					'method' => __METHOD__
+				] );
+				$this->contentFormat = $rev->getContentFormat();
+			}
 
 			return $content;
 		}
