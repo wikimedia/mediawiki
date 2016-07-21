@@ -234,7 +234,6 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		if ( $status->successCount == 0 ) {
-			$dbw->rollback( __METHOD__ );
 			return $status;
 		}
 
