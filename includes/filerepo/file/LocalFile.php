@@ -2286,13 +2286,6 @@ class LocalFileDeleteBatch {
 			}
 		}
 
-		// Lock the filearchive rows so that the files don't get deleted by a cleanup operation
-		// We acquire this lock by running the inserts now, before the file operations.
-		// This potentially has poor lock contention characteristics -- an alternative
-		// scheme would be to insert stub filearchive entries with no fa_name and commit
-		// them in a separate transaction, then run the file ops, then update the fa_name fields.
-		$this->doDBInserts();
-
 		if ( !$repo->hasSha1Storage() ) {
 			// Removes non-existent file from the batch, so we don't get errors.
 			// This also handles files in the 'deleted' zone deleted via revision deletion.
@@ -2305,21 +2298,20 @@ class LocalFileDeleteBatch {
 
 			// Execute the file deletion batch
 			$status = $this->file->repo->deleteBatch( $this->deletionBatch );
-
 			if ( !$status->isGood() ) {
 				$this->status->merge( $status );
 			}
 		}
 
 		if ( !$this->status->isOK() ) {
-			// Critical file deletion error
-			// Roll back inserts, release lock and abort
-			// TODO: delete the defunct filearchive rows if we are using a non-transactional DB
-			$this->file->unlockAndRollback();
+			// Critical file deletion error; abort
+			$this->file->unlock();
 
 			return $this->status;
 		}
 
+		// Copy the image/oldimage rows to filearchive
+		$this->doDBInserts();
 		// Delete image/oldimage rows
 		$this->doDBDeletes();
 
