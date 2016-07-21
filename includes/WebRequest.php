@@ -565,8 +565,7 @@ class WebRequest {
 
 	/**
 	 * Fetch a text string from the given array or return $default if it's not
-	 * set. Carriage returns are stripped from the text, and with some language
-	 * modules there is an input transliteration applied. This should generally
+	 * set. Carriage returns are stripped from the text. This should generally
 	 * be used for form "<textarea>" and "<input>" fields, and for
 	 * user-supplied freeform text input.
 	 *
