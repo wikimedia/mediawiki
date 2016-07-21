@@ -1,16 +1,24 @@
 <?php
 
 /**
- * Interface to key-value storage on HTTP RESTful server, such as RESTBase.
- * Uses URL of the form URL/{KEY} to store/fetch/delete.
- * E.g., when base URL is /v1/sessions/ then the store would do:
- * PUT /v1/sessions/12345758
+ * Interface to key-value storage behind an HTTP server.
+ *
+ * Uses URL of the form "baseURL/{KEY}" to store, fetch, and delete values.
+ *
+ * E.g., when base URL is `/v1/sessions/`, then the store would do:
+ *
+ * `PUT /v1/sessions/12345758`
+ *
  * and fetch would do:
- * GET /v1/sessions/12345758
+ *
+ * `GET /v1/sessions/12345758`
+ *
  * delete would do:
- * DELETE /v1/sessions/12345758
+ *
+ * `DELETE /v1/sessions/12345758`
  *
  * Configure with:
+ *
  * @code
  * $wgObjectCaches['sessions'] = array(
  *	'class' => 'RESTBagOStuff',
