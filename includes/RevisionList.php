@@ -23,7 +23,7 @@
 /**
  * List for revision table items for a single page
  */
-abstract class RevisionListBase extends ContextSource {
+abstract class RevisionListBase extends ContextSource implements Iterator {
 	/** @var Title */
 	public $title;
 
@@ -89,6 +89,10 @@ abstract class RevisionListBase extends ContextSource {
 		return $this->current;
 	}
 
+	public function rewind() {
+		$this->reset();
+	}
+
 	/**
 	 * Get the current list item, or false if we are at the end
 	 * @return Revision
@@ -105,6 +109,14 @@ abstract class RevisionListBase extends ContextSource {
 		$this->res->next();
 		$this->initCurrent();
 		return $this->current;
+	}
+
+	public function key() {
+		return $this->res ? $this->res->key(): 0;
+	}
+
+	public function valid() {
+		return $this->res ? $this->res->valid() : false;
 	}
 
 	/**

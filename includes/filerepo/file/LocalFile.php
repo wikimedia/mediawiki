@@ -1907,13 +1907,35 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @return Status
+	 * @since 1.28
+	 */
+	public function acquireFileLock() {
+		return $this->getRepo()->getBackend()->lockFiles(
+			[ $this->getPath() ], LockManager::LOCK_EX, 10
+		);
+	}
+
+	/**
+	 * @return Status
+	 * @since 1.28
+	 */
+	public function releaseFileLock() {
+		return $this->getRepo()->getBackend()->unlockFiles(
+			[ $this->getPath() ], LockManager::LOCK_EX
+		);
+	}
+
+	/**
 	 * Start an atomic DB section and lock the image for update
 	 * or increments a reference counter if the lock is already held
+	 *
+	 * This method should not be used outside of LocalFile and its helper classes
 	 *
 	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
-	function lock() {
+	public function lock() {
 		if ( !$this->locked ) {
 			$logger = LoggerFactory::getInstance( 'LocalFile' );
 
@@ -1923,9 +1945,7 @@ class LocalFile extends File {
 			// Bug 54736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
-			$backend = $this->getRepo()->getBackend();
-			$lockPaths = [ $this->getPath() ]; // represents all versions of the file
-			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 10 );
+			$status = $this->acquireFileLock(); // represents all versions of the file
 			if ( !$status->isGood() ) {
 				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$logger->warning( "Failed to lock '{file}'", [ 'file' => $this->name ] );
@@ -1934,8 +1954,8 @@ class LocalFile extends File {
 			}
 			// Release the lock *after* commit to avoid row-level contention.
 			// Make sure it triggers on rollback() as well as commit() (T132921).
-			$dbw->onTransactionResolution( function () use ( $backend, $lockPaths, $logger ) {
-				$status = $backend->unlockFiles( $lockPaths, LockManager::LOCK_EX );
+			$dbw->onTransactionResolution( function () use ( $logger ) {
+				$status = $this->releaseFileLock();
 				if ( !$status->isGood() ) {
 					$logger->error( "Failed to unlock '{file}'", [ 'file' => $this->name ] );
 				}
@@ -1952,10 +1972,12 @@ class LocalFile extends File {
 	/**
 	 * Decrement the lock reference count and end the atomic section if it reaches zero
 	 *
+	 * This method should not be used outside of LocalFile and its helper classes
+	 *
 	 * The commit and loc release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
 	 */
-	function unlock() {
+	public function unlock() {
 		if ( $this->locked ) {
 			--$this->locked;
 			if ( !$this->locked ) {
