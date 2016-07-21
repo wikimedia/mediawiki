@@ -2460,7 +2460,7 @@ abstract class DatabaseBase implements IDatabase {
 	final public function onTransactionIdle( callable $callback ) {
 		$this->mTrxIdleCallbacks[] = [ $callback, wfGetCaller() ];
 		if ( !$this->mTrxLevel ) {
-			$this->runOnTransactionIdleCallbacks();
+			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
 	}
 
@@ -2475,9 +2475,10 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Actually any "on transaction idle" callbacks.
 	 *
+	 * @param integer $trigger IDatabase::TRIGGER_* constant
 	 * @since 1.20
 	 */
-	protected function runOnTransactionIdleCallbacks() {
+	protected function runOnTransactionIdleCallbacks( $trigger ) {
 		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
 
 		$e = $ePrior = null; // last exception
@@ -2492,7 +2493,7 @@ abstract class DatabaseBase implements IDatabase {
 				try {
 					list( $phpCallback ) = $callback;
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
-					call_user_func( $phpCallback );
+					call_user_func_array( $phpCallback, [ $trigger ] );
 					if ( $autoTrx ) {
 						$this->setFlag( DBO_TRX ); // restore automatic begin()
 					} else {
@@ -2623,7 +2624,7 @@ abstract class DatabaseBase implements IDatabase {
 					$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 			}
 
-			$this->runOnTransactionIdleCallbacks();
+			$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
 		}
 
 		// Avoid fatals if close() was called
@@ -2699,7 +2700,7 @@ abstract class DatabaseBase implements IDatabase {
 				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 		}
 
-		$this->runOnTransactionIdleCallbacks();
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
 	}
 
 	/**
@@ -2739,7 +2740,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$this->mTrxIdleCallbacks = []; // clear
 		$this->mTrxPreCommitCallbacks = []; // clear
-		$this->runOnTransactionIdleCallbacks();
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
 	/**

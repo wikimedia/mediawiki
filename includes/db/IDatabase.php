@@ -33,6 +33,11 @@
  * @ingroup Database
  */
 interface IDatabase {
+	/* Constants to onTransactionResolution() callbacks */
+	const TRIGGER_IDLE = 1;
+	const TRIGGER_COMMIT = 2;
+	const TRIGGER_ROLLBACK = 3;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -1223,6 +1228,9 @@ interface IDatabase {
 	 *
 	 * This is useful for combining cooperative locks and DB transactions.
 	 *
+	 * The callback takes one argument:
+	 * How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
+	 *
 	 * @param callable $callback
 	 * @return mixed
 	 * @since 1.28
@@ -1241,6 +1249,9 @@ interface IDatabase {
 	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
 	 * Updates will execute in the order they were enqueued.
+	 *
+	 * The callback takes one argument:
+	 * How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
 	 *
 	 * @param callable $callback
 	 * @since 1.20
