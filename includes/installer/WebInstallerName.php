@@ -50,6 +50,11 @@ class WebInstallerName extends WebInstallerPage {
 			wfMessage( 'config-ns-other-default' )->inContentLanguage()->text()
 		);
 
+		$pingbackInfo = ( new Pingback() )->getSystemInfo();
+		// Database isn't available in config yet, so take it
+		// from the installer
+		$pingbackInfo['database'] = $this->getVar( 'wgDBtype' );
+
 		$this->addHTML(
 			$this->parent->getTextBox( [
 				'var' => 'wgSitename',
@@ -103,7 +108,10 @@ class WebInstallerName extends WebInstallerPage {
 			$this->parent->getCheckBox( [
 				'var' => 'wgPingback',
 				'label' => 'config-pingback',
-				'help' => $this->parent->getHelpBox( 'config-pingback-help' ),
+				'help' => $this->parent->getHelpBox(
+					'config-pingback-help',
+					FormatJson::encode( $pingbackInfo, true )
+				),
 				'value' => true,
 			] ) .
 			$this->getFieldsetEnd() .
