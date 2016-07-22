@@ -34,9 +34,9 @@ class TextTableBlobStore implements BlobStore {
 	private $dbLoadBalancer;
 
 	/**
-	 * @var bool|string|array
+	 * @var BlobStore|null
 	 */
-	private $externalStore = false;
+	private $externalStore = null;
 
 	/**
 	 * @var MapCacheLRU|null
@@ -59,6 +59,16 @@ class TextTableBlobStore implements BlobStore {
 	private $cacheCapacity = 10;
 
 	/**
+	 * @var string|bool
+	 */
+	private $wiki = false;
+
+	/**
+	 * @var string[] groups for use with LoadBalancer::getConnection
+	 */
+	private $dbGroups = [];
+
+	/**
 	 * TextTableBlobStore constructor.
 	 *
 	 * @param LoadBalancer $dbLoadBalancer
@@ -68,16 +78,16 @@ class TextTableBlobStore implements BlobStore {
 	}
 
 	/**
-	 * @return bool|string|array See $wgDefaultExternalStore
+	 * @return BlobStore|null
 	 */
 	public function getExternalStore() {
 		return $this->externalStore;
 	}
 
 	/**
-	 * @param bool|string|array $externalStore See $wgDefaultExternalStore
+	 * @param null|BlobStore $externalStore See $wgDefaultExternalStore
 	 */
-	public function setExternalStore( $externalStore ) {
+	public function setExternalStore( BlobStore $externalStore = null ) {
 		$this->externalStore = $externalStore;
 	}
 
@@ -121,6 +131,7 @@ class TextTableBlobStore implements BlobStore {
 	 */
 	public function setCacheExpiry( $cacheExpiry ) {
 		Assert::parameterType( 'integer', $cacheExpiry, '$cacheExpiry' );
+		Assert::parameterType( 'integer', $cacheExpiry, '$cacheExpiry' );
 		Assert::parameter( $cacheExpiry >= 0, '$cacheExpiry', 'must be positive!' );
 
 		$this->cacheExpiry = $cacheExpiry;
@@ -155,6 +166,36 @@ class TextTableBlobStore implements BlobStore {
 				$newCache->set( $key, $oldCache->get( $key ) );
 			}
 		}
+	}
+
+	/**
+	 * @return bool|string
+	 */
+	public function getWiki() {
+		return $this->wiki;
+	}
+
+	/**
+	 * @param bool|string $wiki A logical wiki database ID, as understood by LoadBalancer
+	 */
+	public function setWiki( $wiki ) {
+		Assert::parameterType( 'string|bool', $wiki, '$wiki' );
+		$this->wiki = $wiki;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getDbGroups() {
+		return $this->dbGroups;
+	}
+
+	/**
+	 * @param string[] $dbGroups
+	 */
+	public function setDbGroups( $dbGroups ) {
+		Assert::parameterElementType( 'string', $dbGroups, '$dbGroups' );
+		$this->dbGroups = $dbGroups;
 	}
 
 	/**
@@ -206,22 +247,26 @@ class TextTableBlobStore implements BlobStore {
 
 		// Text data is immutable; check slaves first.
 		try {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->dbLoadBalancer->getConnection( DB_SLAVE, $this->dbGroups, $this->wiki );
 			$row = $dbr->selectRow( 'text',
 				[ 'old_text', 'old_flags' ],
 				[ 'old_id' => $textId ],
 				__METHOD__ );
 
+			$this->dbLoadBalancer->reuseConnection( $dbr );
+
 			// Fallback to the master in case of slave lag. Also use FOR UPDATE if it was
 			// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
 			$forUpdate = ( $queryFlags & IDBAccessObject::READ_LOCKING == IDBAccessObject::READ_LOCKING );
-			if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
-				$dbw = wfGetDB( DB_MASTER );
+			if ( !$row && ( $forUpdate || $this->dbLoadBalancer->getServerCount() > 1 ) ) {
+				$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER, $this->dbGroups, $this->wiki );
 				$row = $dbw->selectRow( 'text',
 					[ 'old_text', 'old_flags' ],
 					[ 'old_id' => $textId ],
 					__METHOD__,
 					$forUpdate ? [ 'FOR UPDATE' ] : [] );
+
+				$this->dbLoadBalancer->reuseConnection( $dbw );
 			}
 
 			if ( !$row ) {
@@ -229,7 +274,25 @@ class TextTableBlobStore implements BlobStore {
 				throw new NotFoundException( "No text row with ID $address" );
 			}
 
-			$text = self::getRevisionText( $row );
+			list( $text, $flags ) = self::getRawTextAndFlags( $row );
+
+			if ( in_array( 'external', $flags ) ) {
+				$url = $text;
+				$parts = explode( '://', $url, 2 );
+				if ( count( $parts ) == 1 || $parts[1] == '' ) {
+					return false;
+				}
+
+				if ( !$this->externalStore ) {
+					throw new StorageException( 'No external store configured, cannot resolve ' . $url );
+				}
+
+				$text = $this->externalStore->loadData( $url, $queryFlags );
+			}
+
+			// TODO: use a version of decompressRevisionText that doesn't rely on global state
+			$text = self::decompressRevisionText( $text, $flags );
+
 			if ( $text === false ) {
 				throw new StorageException( "Failed to decode blob from text row $address" );
 			}
@@ -258,7 +321,7 @@ class TextTableBlobStore implements BlobStore {
 	 *         representation of the value of the old_id field in the text table.
 	 */
 	public function storeData( $data, $hints = [] ) {
-		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER, $this->dbGroups, $this->wiki );
 
 		$old_id = $this->insert( $dbw, $data );
 
@@ -271,17 +334,19 @@ class TextTableBlobStore implements BlobStore {
 	 * number on success and dies horribly on failure.
 	 *
 	 * @param DatabaseBase $dbw (master connection)
-	 * @throws StorageException
+	 * @param $data
+	 * @param array $hints
+	 *
 	 * @return int
 	 */
-	private function insert( DatabaseBase $dbw, $data ) {
+	private function insert( DatabaseBase $dbw, $data, $hints = [] ) {
+		// TODO: use a version of compressRevisionText that doesn't rely on global state
 		$flags = self::compressRevisionText( $data );
 
 		# Write to external storage if required
 		if ( $this->externalStore ) {
 			// Store and get the URL
-			// TODO: replace static ExternalStore interface with a proper BlobStore implementation.
-			$data = ExternalStore::insertWithFallback( (array)$this->externalStore, $data );
+			$data = $this->externalStore->storeData( $data, $hints );
 			if ( !$data ) {
 				throw new StorageException( "Unable to store text to external storage" );
 			}
@@ -294,11 +359,11 @@ class TextTableBlobStore implements BlobStore {
 		try {
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
-			              [
-				              'old_id' => $old_id,
-				              'old_text' => $data,
-				              'old_flags' => $flags,
-			              ], __METHOD__
+				[
+					'old_id' => $old_id,
+					'old_text' => $data,
+					'old_flags' => $flags,
+				], __METHOD__
 			);
 
 			$old_id = $dbw->insertId();
@@ -326,18 +391,9 @@ class TextTableBlobStore implements BlobStore {
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 
 		# Get data
-		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
-
-		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = [];
-		}
-
-		if ( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
+		try {
+			list( $text, $flags ) = self::getRawTextAndFlags( $row, $prefix );
+		} catch ( StorageException $ex ) {
 			return false;
 		}
 
@@ -356,6 +412,33 @@ class TextTableBlobStore implements BlobStore {
 			$text = self::decompressRevisionText( $text, $flags );
 		}
 		return $text;
+	}
+
+	/**
+	 * @param $row
+	 * @param string $prefix
+	 *
+	 * @return array|bool
+	 */
+	protected static function getRawTextAndFlags( $row, $prefix = 'old_' ) {
+
+		# Get data
+		$textField = $prefix . 'text';
+		$flagsField = $prefix . 'flags';
+
+		if ( isset( $row->$flagsField ) ) {
+			$flags = explode( ',', $row->$flagsField );
+		} else {
+			$flags = [];
+		}
+
+		if ( isset( $row->$textField ) ) {
+			$text = $row->$textField;
+		} else {
+			throw new StorageException( "Expected field $textField is not set." );
+		}
+
+		return [ $text, $flags ];
 	}
 
 	/**

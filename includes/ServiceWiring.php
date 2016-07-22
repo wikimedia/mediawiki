@@ -40,6 +40,7 @@
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\Sql\ExternalBlobStoreAdapter;
 use MediaWiki\Storage\Sql\TextTableBlobStore;
 
 return [
@@ -209,7 +210,13 @@ return [
 		);
 
 		$config = $services->getMainConfig();
-		$store->setExternalStore( $config->get( 'DefaultExternalStore' ) );
+		$extStoreMediaLocations = $config->get( 'DefaultExternalStore' );
+
+		if ( !empty( $esLocations ) ) {
+			$extStore = new ExternalStore( (array)$extStoreMediaLocations );
+			$store->setExternalStore( $extStore );
+		}
+
 		$store->setCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
 		$store->setWanCache( ObjectCache::getMainWANInstance() );
 

@@ -2,6 +2,10 @@
 /**
  * @defgroup ExternalStorage ExternalStorage
  */
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\NotFoundException;
+use MediaWiki\Storage\StorageException;
+use Wikimedia\Assert\Assert;
 
 /**
  * Interface for data storage in external repositories.
@@ -43,7 +47,89 @@
  *
  * @ingroup ExternalStorage
  */
-class ExternalStore {
+class ExternalStore implements BlobStore {
+
+	/**
+	 * @var string[] location urls
+	 */
+	private $storeLocations;
+
+	/**
+	 * @var array associative array of ExternalStoreMedium parameters
+	 */
+	private $mediumParameters;
+
+	/**
+	 * ExternalStore constructor.
+	 *
+	 * @param string[] $storeLocations List of storage location URLs of the form "medium://path",
+	 *                 e.g. [ 'DB://cluster1', 'DB://cluster2' ]. See $wgDefaultExternalStore.
+	 * @param array $mediumParameters associative array of ExternalStoreMedium parameters
+	 */
+	public function __construct( array $storeLocations, array $mediumParameters = [] ) {
+		Assert::parameterElementType( 'string', $storeLocations, '$storeLocations' );
+
+		$this->storeLocations = $storeLocations;
+		$this->mediumParameters = $mediumParameters;
+	}
+
+	/**
+	 * @see BlobLookup::loadData
+	 *
+	 * @param string $address An ExternalStore data URL
+	 * @param int $queryFlags
+	 *
+	 * @throws NotFoundException if the requested data blob was not found
+	 * @return string the data loaded from the given address
+	 */
+	public function loadData( $address, $queryFlags = 0 ) {
+		$data = self::fetchFromURL( $address );
+
+		if ( $data === false ) {
+			throw new NotFoundException( 'Failed to load blob from address ' . $address );
+		}
+
+		return $data;
+	}
+
+	/**
+	 * @see BlobLookup::getHints
+	 *
+	 * The current implementation always returns an empty array.
+	 *
+	 * @param string $address
+	 * @param string $fetchBlob
+	 *
+	 * @return array
+	 */
+	public function getHints( $address, $fetchBlob = 'no' ) {
+		return [];
+	}
+
+	/**
+	 * @see BlobStore::storeData
+	 *
+	 * @param string $data
+	 * @param array $hints Currently unused.
+	 *
+	 * @throws StorageException if a storage level error occurred
+	 * @return string The address of the stored data, given as the canonical decimal
+	 *         representation of the value of the old_id field in the text table.
+	 */
+	public function storeData( $data, $hints = [] ) {
+		$url = self::insertWithFallback(
+			$this->storeLocations,
+			$data,
+			$this->mediumParameters
+		);
+
+		if ( $url === false ) {
+			throw new StorageException( 'Failed to store blob!' );
+		}
+
+		return $url;
+	}
+
 	/**
 	 * Get an external store object of the given type, with the given parameters
 	 *
@@ -54,6 +140,7 @@ class ExternalStore {
 	public static function getStoreObject( $proto, array $params = [] ) {
 		global $wgExternalStores;
 
+		// TODO: use a ServiceContainer instead of $wgExternalStores
 		if ( !$wgExternalStores || !in_array( $proto, $wgExternalStores ) ) {
 			return false; // protocol not enabled
 		}
@@ -226,4 +313,5 @@ class ExternalStore {
 	public static function insertToForeignDefault( $data, $wiki ) {
 		return self::insertToDefault( $data, [ 'wiki' => $wiki ] );
 	}
+
 }
