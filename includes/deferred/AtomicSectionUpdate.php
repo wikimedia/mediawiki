@@ -4,7 +4,7 @@
  * Deferrable Update for closure/callback updates via IDatabase::doAtomicSection()
  * @since 1.27
  */
-class AtomicSectionUpdate implements DeferrableUpdate {
+class AtomicSectionUpdate implements DeferrableUpdate, DeferrableCallback {
 	/** @var IDatabase */
 	private $dbw;
 	/** @var string */
@@ -38,5 +38,9 @@ class AtomicSectionUpdate implements DeferrableUpdate {
 		if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
 			$this->callback = null;
 		}
+	}
+
+	public function getOrigin() {
+		return $this->fname;
 	}
 }
