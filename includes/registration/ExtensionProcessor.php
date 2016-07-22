@@ -162,14 +162,14 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
+		$dir = dirname( $path );
 		if ( $version === 2 ) {
-			$this->extractConfig2( $info );
+			$this->extractConfig2( $info, $dir );
 		} else {
 			// $version === 1
 			$this->extractConfig1( $info );
 		}
 		$this->extractHooks( $info );
-		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -381,8 +381,9 @@ class ExtensionProcessor implements Processor {
 	 * @todo In the future, this should be done via Config interfaces
 	 *
 	 * @param array $info
+	 * @param string $dir
 	 */
-	protected function extractConfig2( array $info ) {
+	protected function extractConfig2( array $info, $dir ) {
 		if ( isset( $info['config_prefix'] ) ) {
 			$prefix = $info['config_prefix'];
 		} else {
@@ -393,6 +394,9 @@ class ExtensionProcessor implements Processor {
 				$value = $data['value'];
 				if ( isset( $value['merge_strategy'] ) ) {
 					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
+				}
+				if ( isset( $data['path'] ) && $data['path'] ) {
+					$value = "$dir/$value";
 				}
 				$this->globals["$prefix$key"] = $value;
 			}
