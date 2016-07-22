@@ -37,7 +37,7 @@
  * @since 1.19
  */
 abstract class DBLockManager extends QuorumLockManager {
-	/** @var array Map of DB names to server config */
+	/** @var array[] Map of DB names to server config */
 	protected $dbServers; // (DB name => server config array)
 	/** @var BagOStuff */
 	protected $statusCache;
@@ -46,7 +46,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	protected $safeDelay; // integer number of seconds
 
 	protected $session = 0; // random integer
-	/** @var array Map Database connections (DB name => Database) */
+	/** @var IDatabase[] Map Database connections (DB name => Database) */
 	protected $conns = [];
 
 	/**
@@ -112,6 +112,8 @@ abstract class DBLockManager extends QuorumLockManager {
 
 		return $status;
 	}
+
+	abstract protected function doGetLocksOnServer( $lockSrv, array $paths, $type );
 
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		return Status::newGood();
