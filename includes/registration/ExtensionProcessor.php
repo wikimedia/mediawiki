@@ -392,7 +392,7 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];
 				if ( isset( $value['merge_strategy'] ) ) {
-					$value[ExtensionRegistry::MERGE_STRATEGY] = $value['merge_strategy'];
+					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
 				}
 				$this->globals["$prefix$key"] = $value;
 			}
