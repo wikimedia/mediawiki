@@ -200,6 +200,7 @@
 	"config-subscribe": "Donn de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce \n<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>-Leß met de Aanköndijonge vum MehdijaWikki] abonnehre.",
 	"config-subscribe-help": "Do kumme bloß winnish Meddeilunge un di jonn övver neu Versiohne vom MediaWiki un weeshtejje Saache vun däm sing Sesherheit.\nDo sullts se abbonneere, un Ding MediWiki_Projramme op der neue Shtand bränge, wann neu Version eruß kumme.",
 	"config-subscribe-noemail": "Do has versöhk, der ohne en Addräß för Ding <i lang=\"en\">e-mail<i> aanzejävve, de Aanköndijonge för Aanköndijunge för neue Versione ze abboneere. Jivv en Addräß aan, wann De di Aanköndijonge hann wells.",
+	"config-pingback": "Jivv Dahte övver heh di Enschtallazjuhn vum Mehdijawikki aan de Äntwerkere.",
 	"config-almost-done": "Do bes beinah dorsch!\nDo künnts jez der Räß vun de einzel Enschtällonge övverjonn, un et Wiki tiräktemang fähdesch opsäze.",
 	"config-optional-continue": "De wells noch mih Frohre jeschtallt krijje un noch mih Enschtällonge maache?",
 	"config-optional-skip": "Nä, lohß dä Ömshtand, donn eifarr_et Wiki opsäze.",

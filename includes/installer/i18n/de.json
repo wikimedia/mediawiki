@@ -213,6 +213,8 @@
 	"config-subscribe": "Bitte die Mailingliste [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mitteilungen zu Versionsveröffentlichungen] abonnieren.",
 	"config-subscribe-help": "Es handelt sich hierbei um eine Mailingliste mit wenigen Aussendungen, die für Mitteilungen zu Versionsveröffentlichungen, einschließlich wichtiger Sicherheitsveröffentlichungen, genutzt wird.\nDiese Mailingliste sollte abonniert werden. Zudem sollte die MediaWiki-Installation stets aktualisiert werden, sobald eine neue Programmversion veröffentlicht wurde.",
 	"config-subscribe-noemail": "Beim Abonnieren der Mailingliste mit Mitteilungen zu Versionsveröffentlichungen wurde keine E-Mail-Adresse angegeben.\nBitte eine E-Mail-Adresse angeben, sofern die Mailingliste abonniert werden soll.",
+	"config-pingback": "Daten über diese Installation mit den MediaWiki-Entwicklern teilen.",
+	"config-pingback-help": "Wenn du diese Option auswählst, pingt MediaWiki regelmäßig https://www.mediawiki.org mit Basisdaten über diese MediaWiki-Instanz an. Diese Daten enthalten zum Beispiel den Systemtyp, die PHP-Version und das ausgewählte Datenbank-Backend. Die Wikimedia Foundation teilt diese Daten mit MediaWiki-Entwicklern, um dabei zu helfen, zukünftigen Entwicklungsaufwand zu leiten.",
 	"config-almost-done": "Der Vorgang ist fast abgeschlossen!\nDie verbleibenden Konfigurationseinstellungen können übersprungen und das Wiki umgehend installiert werden.",
 	"config-optional-continue": "Ja, es sollen weitere Konfigurationseinstellungen vorgenommen werden.",
 	"config-optional-skip": "Nein, das Wiki soll nun installiert werden.",

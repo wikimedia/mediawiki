@@ -486,5 +486,5 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|다음 그룹에 부여됨}}: $2",
 	"api-help-open-in-apisandbox": "<small>[연습장에서 열기]</small>",
 	"api-help-authmanagerhelper-messageformat": "반환 메시지에 사용할 형식.",
-	"api-credits": "API 개발자:\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (초기 개발자, 선임 개발자 2006년 9월~2007년 9월)\n* Brad Jorsch (선임 개발자 2013년–현재)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시거나,\nhttps://phabricator.wikimedia.org/ 에 버그 신고를 해 주시기 바랍니다.."
+	"api-credits": "API 개발자:\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (초기 개발자, 선임 개발자 2006년 9월~2007년 9월)\n* Brad Jorsch (선임 개발자 2013년–현재)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시거나,\nhttps://phabricator.wikimedia.org/ 에 버그 보고를 해 주시기 바랍니다."
 }

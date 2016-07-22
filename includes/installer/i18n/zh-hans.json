@@ -216,6 +216,8 @@
 	"config-subscribe": "订阅[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 发行公告邮件列表]。",
 	"config-subscribe-help": "此低流量的邮件列表仅用于发行公告，其中包括重要安全公告。请订阅该列表以便在新的版本推出时升级您的MediaWiki。",
 	"config-subscribe-noemail": "您选择了订阅发行公告邮件列表，但没有提供电子邮件地址。请提供一个电子邮件地址以订阅邮件列表。",
+	"config-pingback": "与MediaWiki开发人员分享有关此安装程序的数据。",
+	"config-pingback-help": "如果您选择此选项，MediaWiki将定期与https://www.mediawiki.org通信，传输与此MediaWiki实例相关的基础数据。此数据包括例如系统类型、PHP版本和选择的数据库后端。维基媒体基金会与MediaWiki开发人员分享此数据，以帮助引导将来的开发计划。",
 	"config-almost-done": "您几乎已经完成了！现在您可以跳过剩下的配置流程并立即安装wiki。",
 	"config-optional-continue": "多问我一些问题吧。",
 	"config-optional-skip": "我已经不耐烦了，赶紧安装我的wiki。",
