@@ -120,7 +120,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 				$this->hasWarning = true;
 			} elseif ( strpos( $name, $configPrefix ) === 0 ) {
 				// Most likely a config setting
-				$this->json['config'][substr( $name, strlen( $configPrefix ) )] = $value;
+				$this->json['config'][substr( $name, strlen( $configPrefix ) )] = [ 'value' => $value ];
 			} elseif ( $configPrefix !== 'wg' && strpos( $name, 'wg' ) === 0 ) {
 				// Warn about this
 				$this->output( 'Warning: Skipped global "' . $name . '" (' .
