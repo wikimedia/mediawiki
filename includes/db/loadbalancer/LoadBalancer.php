@@ -49,6 +49,8 @@ class LoadBalancer {
 	private $mLoadMonitor;
 	/** @var BagOStuff */
 	private $srvCache;
+	/** @var WANObjectCache */
+	private $wanCache;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
@@ -76,6 +78,8 @@ class LoadBalancer {
 	const MAX_LAG = 10;
 	/** @var integer Max time to wait for a slave to catch up (e.g. ChronologyProtector) */
 	const POS_WAIT_TIMEOUT = 10;
+	/** @var integer Seconds to cache master server read-only status */
+	const TTL_CACHE_READONLY = 5;
 
 	/**
 	 * @var boolean
@@ -135,6 +139,7 @@ class LoadBalancer {
 		}
 
 		$this->srvCache = ObjectCache::getLocalServerInstance();
+		$this->wanCache = ObjectCache::getMainWANInstance();
 
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];
@@ -578,7 +583,7 @@ class LoadBalancer {
 
 		if ( $masterOnly ) {
 			# Make master-requested DB handles inherit any read-only mode setting
-			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $wiki ) );
+			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $wiki, $conn ) );
 		}
 
 		return $conn;
@@ -1267,10 +1272,11 @@ class LoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param DatabaseBase|null DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 * @since 1.27
 	 */
-	public function getReadOnlyReason( $wiki = false ) {
+	public function getReadOnlyReason( $wiki = false, DatabaseBase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
@@ -1281,9 +1287,35 @@ class LoadBalancer {
 				return 'The database has been automatically locked ' .
 					'while the slave database servers catch up to the master.';
 			}
+		} elseif ( $this->masterRunningReadOnly( $wiki, $conn ) ) {
+			return 'The database master is running in read-only mode.';
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param DatabaseBase|null DB master connectionl used to avoid loops [optional]
+	 * @return bool
+	 */
+	private function masterRunningReadOnly( $wiki, DatabaseBase $conn = null ) {
+		$cache = $this->wanCache;
+		$masterServer = $this->getServerName( $this->getWriterIndex() );
+
+		return (bool)$cache->getWithSetCallback(
+			$cache->makeGlobalKey( __CLASS__, 'server-read-only', $masterServer ),
+			self::TTL_CACHE_READONLY,
+			function () use ( $wiki, $conn ) {
+				try {
+					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $wiki );
+					return (int)$dbw->serverIsReadOnly();
+				} catch ( DBError $e ) {
+					return 0;
+				}
+			},
+			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'busyValue' => 0 ]
+		);
 	}
 
 	/**

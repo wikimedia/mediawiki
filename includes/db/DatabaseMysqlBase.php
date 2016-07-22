@@ -885,6 +885,13 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 	}
 
+	public function serverIsReadOnly() {
+		$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'read_only'", __METHOD__ );
+		$row = $this->fetchObject( $res );
+
+		return $row ? ( strtolower( $row->Value ) === 'on' ) : false;
+	}
+
 	/**
 	 * @param string $index
 	 * @return string
