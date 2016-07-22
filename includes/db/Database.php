@@ -694,9 +694,6 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function close() {
-		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
-			throw new MWException( "Transaction idle callbacks still pending." );
-		}
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
 				if ( !$this->mTrxAutomatic ) {
@@ -709,6 +706,8 @@ abstract class DatabaseBase implements IDatabase {
 
 			$closed = $this->closeConnection();
 			$this->mConn = false;
+		} elseif ( $this->mTrxIdleCallbacks || $this->mTrxEndCallbacks ) { // sanity
+			throw new MWException( "Transaction callbacks still pending." );
 		} else {
 			$closed = true;
 		}
@@ -2473,7 +2472,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Actually any "on transaction idle" callbacks.
+	 * Actually run and consume any "on transaction idle" callbacks.
 	 *
 	 * @param integer $trigger IDatabase::TRIGGER_* constant
 	 * @since 1.20
@@ -2519,7 +2518,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Actually any "on transaction pre-commit" callbacks.
+	 * Actually run and consume any "on transaction pre-commit" callbacks.
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
@@ -2637,8 +2636,6 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxAutomatic = false;
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = [];
-		$this->mTrxIdleCallbacks = [];
-		$this->mTrxPreCommitCallbacks = [];
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
 		$this->mTrxWriteCallers = [];
