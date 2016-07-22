@@ -221,18 +221,18 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
-		$this->assertEquals( $value, $ret );
+		$this->assertEquals( $value, $ret, 'Old value used' );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
 
 		$cache->delete( $key );
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
-			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] ); // should use interim value
-		$this->assertEquals( $value, $ret );
-		$this->assertEquals( 2, $calls, 'Callback was used' );
+			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret, 'Callback was used; interim saved' );
+		$this->assertEquals( 2, $calls, 'Callback was used; interim saved' );
 
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
-		$this->assertEquals( $value, $ret );
+		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
 		$this->assertEquals( 2, $calls, 'Callback was not used; used interim' );
 	}
 
@@ -265,6 +265,59 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
+	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
+	 */
+	public function testBusyValue() {
+		$cache = $this->cache;
+		$key = wfRandomString();
+		$value = wfRandomString();
+		$busyValue = wfRandomString();
+
+		$calls = 0;
+		$func = function() use ( &$calls, $value ) {
+			++$calls;
+			return $value;
+		};
+
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'busyValue' => $busyValue ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 1, $calls, 'Value was populated' );
+
+		// Acquire a lock to verify that getWithSetCallback uses busyValue properly
+		$this->internalCache->lock( $key, 0 );
+
+		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret, 'Callback used' );
+		$this->assertEquals( 2, $calls, 'Callback used' );
+
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'lockTSE' => 30, 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret, 'Old value used' );
+		$this->assertEquals( 2, $calls, 'Callback was not used' );
+
+		$cache->delete( $key ); // no value at all anymore and still locked
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $busyValue, $ret, 'Callback was not used; used busy value' );
+		$this->assertEquals( 2, $calls, 'Callback was not used; used busy value' );
+
+		$this->internalCache->unlock( $key );
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'lockTSE' => 30, 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret, 'Callback was used; saved interim' );
+		$this->assertEquals( 3, $calls, 'Callback was used; saved interim' );
+
+		$this->internalCache->lock( $key, 0 );
+		$ret = $cache->getWithSetCallback( $key, 30, $func,
+			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
+		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
+		$this->assertEquals( 3, $calls, 'Callback was not used; used interim' );
 	}
 
 	/**
