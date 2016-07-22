@@ -267,6 +267,7 @@ class WebInstallerOutput {
 		}
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
+
 <head>
 	<meta name="robots" content="noindex, nofollow" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
