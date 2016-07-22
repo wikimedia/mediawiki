@@ -1221,6 +1221,12 @@ interface IDatabase {
 	public function getMasterPos();
 
 	/**
+	 * @return bool Whether the DB is marked as read-only server-side
+	 * @since 1.28
+	 */
+	public function serverIsReadOnly();
+
+	/**
 	 * Run a callback as soon as the current transaction commits or rolls back.
 	 * An error is thrown if no transaction is pending. Queries in the function will run in
 	 * AUTO-COMMIT mode unless there are begin() calls. Callbacks must commit any transactions
