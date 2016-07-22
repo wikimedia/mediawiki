@@ -199,12 +199,12 @@ class LocalRepo extends FileRepo {
 			$expiry = 86400; // has invalidation, 1 day
 		}
 
-		$that = $this;
+		$method = __METHOD__;
 		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			$memcKey,
 			$expiry,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
-				$dbr = $that->getSlaveDB(); // possibly remote DB
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
+				$dbr = $this->getSlaveDB(); // possibly remote DB
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -217,7 +217,7 @@ class LocalRepo extends FileRepo {
 							'page_title' => $title->getDBkey(),
 							'rd_from = page_id'
 						],
-						__METHOD__
+						$method
 					);
 				} else {
 					$row = false;
