@@ -881,6 +881,11 @@
 							],
 							"default": "array_merge"
 						},
+						"path": {
+							"description": "Whether this should be interpreted as a filesystem path, relative to extension directory root",
+							"type": "boolean",
+							"default": false
+						},
 						"description": {
 							"type": ["string", "array"],
 							"description": "A description of the config setting, mostly for documentation/developers"
