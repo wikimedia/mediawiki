@@ -115,9 +115,11 @@ class Pingback {
 	 * as an associative array conforming to the Pingback schema on MetaWiki
 	 * (<https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>).
 	 *
+	 * This is public so we can display it in the installer
+	 *
 	 * @return array
 	 */
-	private function getData() {
+	public function getSystemInfo() {
 		$event = [
 			'database'   => $this->config->get( 'DBtype' ),
 			'MediaWiki'  => $this->config->get( 'Version' ),
@@ -136,11 +138,20 @@ class Pingback {
 			$event['memoryLimit'] = $limit;
 		}
 
+		return $event;
+	}
+
+	/**
+	 * Get the EventLogging packet to be sent to the server
+	 *
+	 * @return array
+	 */
+	private function getData() {
 		return [
 			'schema'           => 'MediaWikiPingback',
 			'revision'         => self::SCHEMA_REV,
 			'wiki'             => $this->getOrCreatePingbackId(),
-			'event'            => $event,
+			'event'            => $this->getSystemInfo(),
 		];
 	}
 
