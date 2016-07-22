@@ -61,7 +61,7 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
+	 * Add a callable update. In a lot of cases, we just need a callback/closure,
 	 * defining a new DeferrableUpdate object is not necessary
 	 *
 	 * @see MWCallableUpdate::__construct()
@@ -70,7 +70,7 @@ class DeferredUpdates {
 	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
 	public static function addCallableUpdate( $callable, $type = self::POSTSEND ) {
-		self::addUpdate( new MWCallableUpdate( $callable ), $type );
+		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller() ), $type );
 	}
 
 	/**
@@ -143,7 +143,11 @@ class DeferredUpdates {
 				} else {
 					$otherUpdates[] = $update;
 				}
-				$stats->increment( 'deferred_updates.' . $method . '.' . get_class( $update ) );
+
+				$name = $update instanceof DeferrableCallback
+					? get_class( $update ) . '-' . $update->getOrigin()
+					: get_class( $update );
+				$stats->increment( 'deferred_updates.' . $method . '.' . $name );
 			}
 
 			// Delegate DataUpdate execution to the DataUpdate class

@@ -4,7 +4,7 @@
  * Deferrable Update for closure/callback updates that should use auto-commit mode
  * @since 1.28
  */
-class AutoCommitUpdate implements DeferrableUpdate {
+class AutoCommitUpdate implements DeferrableUpdate, DeferrableCallback {
 	/** @var IDatabase */
 	private $dbw;
 	/** @var string */
@@ -52,5 +52,9 @@ class AutoCommitUpdate implements DeferrableUpdate {
 		if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
 			$this->callback = null;
 		}
+	}
+
+	public function getOrigin() {
+		return $this->fname;
 	}
 }
