@@ -203,7 +203,7 @@ class FileDeleteForm {
 						$dbw->endAtomic( __METHOD__ );
 					} else {
 						// Page deleted but file still there? rollback page delete
-						$dbw->rollback( __METHOD__ );
+						wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 					}
 				} else {
 					// Done; nothing changed
