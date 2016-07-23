@@ -3671,5 +3671,16 @@
 	"authprovider-confirmlink-request-label": "Cunte ca s'avesser'a cullegà",
 	"authprovider-confirmlink-success-line": "$1: cullegato e apposto.",
 	"authprovider-confirmlink-failed": "'O cullegamento 'e ll'utenza nun è ngarrato sano sano: $1",
-	"authprovider-confirmlink-ok-help": "Cuntinuà aropp'a fà veré 'e mmasciate 'errore 'e cullegamento."
+	"authprovider-confirmlink-ok-help": "Cuntinuà aropp'a fà veré 'e mmasciate 'errore 'e cullegamento.",
+	"authprovider-resetpass-skip-label": "Passa 'a vacca",
+	"authprovider-resetpass-skip-help": "Passa 'a vacca 'mpustazion' 'e password.",
+	"authform-nosession-login": "'O prucesso 'autenticazione iette buono, ma 'o navigatóre d' 'o tuojo nun \"s'arricuorda\" si site trasuto/a.",
+	"authform-nosession-signup": "'O cunto è stato criato buono, ma 'o navigatóre d' 'o tuojo nun \"s'arricuorda\" si site trasuto/a.",
+	"authform-newtoken": "Token mancante. $1",
+	"authform-notoken": "Token mancante",
+	"authform-wrongtoken": "Token errato",
+	"specialpage-securitylevel-not-allowed-title": "Nun permesso",
+	"authpage-cannot-login": "Nun se pò accummencià a trasì.",
+	"authpage-cannot-login-continue": "Nun se pò cuntinuà a trasì. 'A sessione vosta fosse scaduta.",
+	"authpage-cannot-create": "Nun se pò accummencià 'a criazione 'utenza."
 }

@@ -149,7 +149,8 @@
 			"Dgstranz",
 			"Copper12",
 			"Ivanhercaz",
-			"AlvaroMolina"
+			"AlvaroMolina",
+			"Tokvo"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2375,7 +2376,7 @@
 	"blocklist-timestamp": "Fecha y hora",
 	"blocklist-target": "Destino",
 	"blocklist-expiry": "Caduca",
-	"blocklist-by": "Administrador bloqueante",
+	"blocklist-by": "Administrador que bloqueó",
 	"blocklist-params": "Parámetros de bloqueo",
 	"blocklist-reason": "Motivo",
 	"ipblocklist-submit": "Buscar",
