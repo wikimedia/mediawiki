@@ -204,15 +204,12 @@ abstract class LBFactory implements DestructibleService {
 	 * 1. To commit changes to the masters.
 	 * 2. To release the snapshot on all connections, master and slave.
 	 * @param string $fname Caller name
+	 * @param array $options Options map:
+	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 */
-	public function commitAll( $fname = __METHOD__ ) {
-		$this->logMultiDbTransaction();
-
-		$start = microtime( true );
+	public function commitAll( $fname = __METHOD__, array $options = [] ) {
+		$this->commitMasterChanges( $fname, $options );
 		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
-		$timeMs = 1000 * ( microtime( true ) - $start );
-
-		RequestContext::getMain()->getStats()->timing( "db.commit-all", $timeMs );
 	}
 
 	/**
@@ -222,25 +219,17 @@ abstract class LBFactory implements DestructibleService {
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
-
-		// Run pre-commit callbacks to keep them out of the COMMIT step. If one errors out here
-		// then all DB transactions can be rolled back before anything was committed yet.
-		$this->forEachLBCallMethod( 'runPreCommitCallbacks' );
-
-		$this->logMultiDbTransaction();
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
-			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
-				$time = $db->pendingWriteQueryDuration();
-				if ( $limit > 0 && $time > $limit ) {
-					throw new DBTransactionError(
-						$db,
-						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
-					);
-				}
-			} );
-		} );
-
+		// Perform all pre-commit callbacks, aborting on failure
+		$this->forEachLBCallMethod( 'runMasterPreCommitCallbacks' );
+		// Perform all pre-commit checks, aborting on failure
+		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options ] );
+		// Log the DBs and methods involved in multi-DB transactions
+		$this->logIfMultiDbTransaction();
+		// Actually perform the commit on all master DB connections
+		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		// Run all post-commit callbacks
+		$this->forEachLBCallMethod( 'runMasterPostCommitCallbacks' );
+		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 	}
 
@@ -256,7 +245,7 @@ abstract class LBFactory implements DestructibleService {
 	/**
 	 * Log query info if multi DB transactions are going to be committed now
 	 */
-	private function logMultiDbTransaction() {
+	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$callersByDB ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
