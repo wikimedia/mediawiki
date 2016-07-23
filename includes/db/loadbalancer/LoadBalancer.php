@@ -1116,28 +1116,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Call runOnTransactionPreCommitCallbacks() on all DB handles
-	 *
-	 * This method should not be used outside of LBFactory/LoadBalancer
-	 *
-	 * @since 1.28
-	 */
-	public function runPreCommitCallbacks() {
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
-					$conn->runOnTransactionPreCommitCallbacks();
-				}
-			}
-		}
-	}
-
-	/**
 	 * @return bool Whether a master connection is already open
 	 * @since 1.24
 	 */
@@ -1328,6 +1306,25 @@ class LoadBalancer {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
+					$mergedParams = array_merge( [ $conn ], $params );
+					call_user_func_array( $callback, $mergedParams );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Call a function with each open connection object to a master
+	 * @param callable $callback
+	 * @param array $params
+	 * @since 1.28
+	 */
+	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( isset( $conns2[$masterIndex] ) ) {
+				/** @var DatabaseBase $conn */
+				foreach ( $conns2[$masterIndex] as $conn ) {
 					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );
 				}

@@ -58,6 +58,8 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mTrxPreCommitCallbacks = [];
 	/** @var array[] List of (callable, method name) */
 	protected $mTrxEndCallbacks = [];
+	/** @var bool Whether to suppress triggering of post-commit callbacks */
+	protected $suppressPostCommitCallbacks = false;
 
 	protected $mTablePrefix;
 	protected $mSchema;
@@ -2472,12 +2474,30 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Actually run and consume any "on transaction idle" callbacks.
+	 * Whether to disable running of post-commit callbacks
+	 *
+	 * This method should not be used outside of Database/LoadBalancer
+	 *
+	 * @param bool $suppress
+	 * @since 1.28
+	 */
+	final public function setPostCommitCallbackSupression( $suppress ) {
+		$this->suppressPostCommitCallbacks = $suppress;
+	}
+
+	/**
+	 * Actually run and consume any "on transaction idle/resolution" callbacks.
+	 *
+	 * This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @param integer $trigger IDatabase::TRIGGER_* constant
 	 * @since 1.20
 	 */
-	protected function runOnTransactionIdleCallbacks( $trigger ) {
+	public function runOnTransactionIdleCallbacks( $trigger ) {
+		if ( $this->suppressPostCommitCallbacks ) {
+			return;
+		}
+
 		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
 
 		$e = $ePrior = null; // last exception

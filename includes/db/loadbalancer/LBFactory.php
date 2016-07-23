@@ -206,7 +206,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @param string $fname Caller name
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
-		$this->logMultiDbTransaction();
+		$this->logIfMultiDbTransaction();
 
 		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
@@ -223,14 +223,15 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
-
-		// Run pre-commit callbacks to keep them out of the COMMIT step. If one errors out here
-		// then all DB transactions can be rolled back before anything was committed yet.
-		$this->forEachLBCallMethod( 'runPreCommitCallbacks' );
-
-		$this->logMultiDbTransaction();
+		// Perform all pre-commit updates and checks...
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
-			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
+			$lb->forEachOpenMasterConnection( function ( DatabaseBase $db ) use ( $limit ) {
+				// Run pre-commit callbacks to keep them out of the COMMIT step. If one errors out
+				// then all DB transactions can be rolled back before anything was committed yet.
+				if ( $db->writesOrCallbacksPending() ) {
+					$db->runOnTransactionPreCommitCallbacks();
+				}
+				// Assert that the time to replicate the transactions will be sane.
 				$time = $db->pendingWriteQueryDuration();
 				if ( $limit > 0 && $time > $limit ) {
 					throw new DBTransactionError(
@@ -238,10 +239,21 @@ abstract class LBFactory implements DestructibleService {
 						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
 					);
 				}
+				// Defer post-commit callbacks until COMMIT finishes for all DBs.
+				$db->setPostCommitCallbackSupression( true );
 			} );
 		} );
-
+		// Log the DBs and methods involved in multi-DB transactions
+		$this->logIfMultiDbTransaction();
+		// Actually perform the COMMIT on all DBs
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		// Run the deferred post-commit callbacks
+		$this->forEachLB( function ( LoadBalancer $lb ) {
+			$lb->forEachOpenMasterConnection( function ( DatabaseBase $db ) {
+				$db->setPostCommitCallbackSupression( false );
+				$db->runOnTransactionIdleCallbacks( IDatabase::TRIGGER_COMMIT );
+			} );
+		} );
 	}
 
 	/**
@@ -256,7 +268,7 @@ abstract class LBFactory implements DestructibleService {
 	/**
 	 * Log query info if multi DB transactions are going to be committed now
 	 */
-	private function logMultiDbTransaction() {
+	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$callersByDB ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
