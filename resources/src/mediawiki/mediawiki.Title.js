@@ -213,7 +213,7 @@
 		},
 		// slash, colon (not supported by file systems like NTFS/Windows, Mac OS 9 [:], ext4 [/])
 		{
-			pattern: /[:\/#]/g,
+			pattern: new RegExp( '[' + mw.config.get( 'wgIllegalFileChars', '' ) + ']', 'g' ),
 			replace: '-',
 			fileRule: true
 		},

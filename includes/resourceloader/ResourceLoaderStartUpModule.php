@@ -39,7 +39,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return $this->configVars[$hash];
 		}
 
-		global $wgContLang;
+		global $wgContLang, $wgIllegalFileChars;
 		$conf = $this->getConfig();
 
 		// We can't use Title::newMainPage() if 'mainpage' is in
@@ -107,6 +107,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderMaxQueryLength' => $conf->get( 'ResourceLoaderMaxQueryLength' ),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
+			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $wgIllegalFileChars ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
