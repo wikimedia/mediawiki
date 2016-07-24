@@ -1221,7 +1221,7 @@ interface IDatabase {
 	public function getMasterPos();
 
 	/**
-	 * Run an anonymous function as soon as the current transaction commits or rolls back.
+	 * Run a callback as soon as the current transaction commits or rolls back.
 	 * An error is thrown if no transaction is pending. Queries in the function will run in
 	 * AUTO-COMMIT mode unless there are begin() calls. Callbacks must commit any transactions
 	 * that they begin.
@@ -1238,7 +1238,7 @@ interface IDatabase {
 	public function onTransactionResolution( callable $callback );
 
 	/**
-	 * Run an anonymous function as soon as there is no transaction pending.
+	 * Run a callback as soon as there is no transaction pending.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
 	 * Queries in the function will run in AUTO-COMMIT mode unless there are begin() calls.
 	 * Callbacks must commit any transactions that they begin.
@@ -1259,9 +1259,10 @@ interface IDatabase {
 	public function onTransactionIdle( callable $callback );
 
 	/**
-	 * Run an anonymous function before the current transaction commits or now if there is none.
+	 * Run a callback before the current transaction commits or now if there is none.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
-	 * Callbacks must not start nor commit any transactions.
+	 * Callbacks must not start nor commit any transactions. If no transaction is active,
+	 * then a transaction will wrap the callback.
 	 *
 	 * This is useful for updates that easily cause deadlocks if locks are held too long
 	 * but where atomicity is strongly desired for these updates and some related updates.
