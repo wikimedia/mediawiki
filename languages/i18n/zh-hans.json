@@ -394,7 +394,7 @@
 	"databaseerror-query": "查询：$1",
 	"databaseerror-function": "函数：$1",
 	"databaseerror-error": "错误：$1",
-	"transaction-duration-limit-exceeded": "因为写入时间（$1）超过了$2{{PLURAL:$2|秒}}的限制，为防止创建大量复制延迟，此次处理已被中止。如果您正在同时更改很多项目，请尝试进行多次小规模操作。",
+	"transaction-duration-limit-exceeded": "因为写入时间（$1）超过了$2秒的限制，为防止创建大量复制延迟，此次处理已被中止。如果您正在同时更改很多项目，请尝试进行多次小规模操作。",
 	"laggedslavemode": "<strong>警告：</strong>页面中可能没有包含最近的更新。",
 	"readonly": "数据库被锁定",
 	"enterlockreason": "请输入锁定的原因，这包括预计解除锁定的时间",

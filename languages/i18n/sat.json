@@ -932,7 +932,7 @@
 	"watchlisttools-view": "Jońgṛao bodolaḱko ńel",
 	"watchlisttools-edit": "Ńelok tạlika ńel ar joṛao",
 	"watchlisttools-raw": "Baṇ purạo akan ńelok tạlika purạomẽ",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_galmarao}}:$1|talk]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|galmarao]])",
 	"duplicate-defaultsort": "'''Sontoroḱmẽ:''' ḍifolṭ sajao reaḱ cạbi: $2 lahare ḍifolṭ sajao reaḱ sakam: ''$1'' e bae luturaḱ kana.",
 	"specialpages": "Osokayteaḱ sakamko",
 	"external_image_whitelist": "#Noa sakam do cet leka menaḱa oṅkage dohoemẽ\n#Sanam okte re jạhiren kuṭrạ latar re (khạli hạtiń //talare) bạisạomẽ\n#Noako do bahre reaḱ (hotlinked) chubi reaḱ URL saõte milạo hoyoḱa\n#Okako milạḱa, onako do chubi lekate udugoḱa, baṅkhan do khali chubi joṛao udugoḱa\n#Noa layen reaḱ ehoṕre # menaḱa ona layenko menko hisapte beohar hoyoḱka\n#Noa do kas-baṅ rimjhạoaḱge\n#Noa dag cetanre regex kuṭrạ bạsạomẽ. Noa layen cetleka menaḱa oṅkage dohoemẽ</pre>",

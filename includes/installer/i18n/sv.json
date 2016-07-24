@@ -203,6 +203,7 @@
 	"config-subscribe": "Prenumerera på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlistan för kungörelser av nya versioner].",
 	"config-subscribe-help": "Detta är en e-postlista med låg volym vilken används för meddelanden om nya versionssläpp, inklusive viktiga säkerhetsmeddelanden.\nDu bör prenumerera på den och uppdatera din MediaWiki-installation när nya versioner kommer ut.",
 	"config-subscribe-noemail": "Du försökte att prenumerera på e-postlistan för versionssläppsmeddelanden utan att tillhandahålla en e-postadress.\nAnge en e-postadress om du vill prenumerera på e-postlistan.",
+	"config-pingback": "Dela data om denna installation med MediaWikis utvecklare.",
 	"config-almost-done": "Du är nästan färdig!\nDu kan nu hoppa över återstående konfigurationer och installera wikin direkt.",
 	"config-optional-continue": "Ställ fler frågor till mig.",
 	"config-optional-skip": "Jag är redan uttråkad, bara installera wiki.",

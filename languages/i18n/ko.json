@@ -388,7 +388,7 @@
 	"formerror": "오류: 양식을 제출할 수 없습니다.",
 	"badarticleerror": "이 명령은 이 문서에서 수행할 수 없습니다.",
 	"cannotdelete": "\"$1\" 문서나 파일을 삭제할 수 없습니다.\n이미 삭제되었을 수도 있습니다.",
-	"cannotdelete-title": "\"$1\" 문서를 삭제할 수 없습니다.",
+	"cannotdelete-title": "\"$1\" 문서를 삭제할 수 없습니다",
 	"delete-hook-aborted": "훅이 삭제를 중단했습니다.\n아무런 설명도 주어지지 않았습니다.",
 	"no-null-revision": "\"$1\" 문서에 대한 빈 판을 새로 만들 수 없습니다.",
 	"badtitle": "잘못된 제목",
