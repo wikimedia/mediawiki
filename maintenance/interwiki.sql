@@ -63,6 +63,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local,iw_api) VALUES
 ('wiki','http://c2.com/cgi/wiki?$1',0,''),
 ('wikia','http://www.wikia.com/wiki/$1',0,''),
 ('wikibooks','https://en.wikibooks.org/wiki/$1',0,'https://en.wikibooks.org/w/api.php'),
+('wikidata','https://www.wikidata.org/wiki/$1',0,'https://www.wikidata.org/w/api.php'),
 ('wikif1','http://www.wikif1.org/$1',0,''),
 ('wikihow','http://www.wikihow.com/$1',0,'http://www.wikihow.com/api.php'),
 ('wikinfo','http://wikinfo.co/English/index.php/$1',0,''),
