@@ -43,6 +43,7 @@ production.
 * Updated es5-shim from v4.1.5 to v4.5.8
 
 ==== New external libraries ====
+* Added justinrainbow/json-schema v1.6 (promoted from dev dependency).
 
 ==== Removed and replaced external libraries ====
 
