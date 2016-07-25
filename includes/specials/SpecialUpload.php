@@ -467,7 +467,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// Upload verification
-		$details = $this->mUpload->verifyUpload();
+		$details = $this->mUpload->verifyUpload( /*$forImmediatePublishing*/ true );
 		if ( $details['status'] != UploadBase::OK ) {
 			$this->processVerificationError( $details );
 

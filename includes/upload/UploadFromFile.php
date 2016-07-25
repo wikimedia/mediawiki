@@ -74,10 +74,7 @@ class UploadFromFile extends UploadBase {
 		return 'file';
 	}
 
-	/**
-	 * @return array
-	 */
-	public function verifyUpload() {
+	public function verifyUpload( $forImmediatePublishing = false ) {
 		# Check for a post_max_size or upload_max_size overflow, so that a
 		# proper error can be shown to the user
 		if ( is_null( $this->mTempPath ) || $this->isEmptyFile() ) {
@@ -92,6 +89,6 @@ class UploadFromFile extends UploadBase {
 			}
 		}
 
-		return parent::verifyUpload();
+		return parent::verifyUpload( $forImmediatePublishing );
 	}
 }

@@ -3307,6 +3307,10 @@ $mime: (string) The uploaded file's MIME type, as detected by MediaWiki.
   in the form of array( messagename, param1, param2, ... ) or a MessageSpecifier
   instance (you might want to use ApiMessage to provide machine-readable details
   for the API).
+$forImmediatePublishing: (bool) If true, indicates that the file will be
+  published immediately if the checks are successful, calling the
+  UploadVerifyUpload hook beforehand. In this case extensions may skip
+  expensive checks that they also perform from the UploadVerifyUpload hook.
 
 'UploadVerifyUpload': Upload verification, based on both file properties like
 MIME type (same as UploadVerifyFile) and the information entered by the user

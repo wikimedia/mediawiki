@@ -63,7 +63,7 @@ class PublishStashedFileJob extends Job {
 			$upload->initialize( $this->params['filekey'], $this->params['filename'] );
 
 			// Check if the local file checks out (this is generally a no-op)
-			$verification = $upload->verifyUpload();
+			$verification = $upload->verifyUpload( /*$forImmediatePublishing*/ true );
 			if ( $verification['status'] !== UploadBase::OK ) {
 				$status = Status::newFatal( 'verification-error' );
 				$status->value = [ 'verification' => $verification ];

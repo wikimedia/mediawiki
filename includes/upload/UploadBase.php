@@ -308,9 +308,14 @@ abstract class UploadBase {
 
 	/**
 	 * Verify whether the upload is sane.
+	 *
+	 * @param bool $forImmediatePublishing Caller may pass 'true' to indicate that they will call
+	 *     performUpload() immediately if the checks are successful, rather than stash the file. This
+	 *     is passed to the UploadVerifyFile hook to allow extensions to skip expensive checks that
+	 *     can also be performed from the UploadVerifyUpload hook when attempting to publish the file.
 	 * @return mixed Const self::OK or else an array with error information
 	 */
-	public function verifyUpload() {
+	public function verifyUpload( $forImmediatePublishing = false ) {
 
 		/**
 		 * If there was no filename or a zero size given, give up quick.
@@ -335,7 +340,7 @@ abstract class UploadBase {
 		 * type but it's corrupt or data of the wrong type, we should
 		 * probably not accept it.
 		 */
-		$verification = $this->verifyFile();
+		$verification = $this->verifyFile( $forImmediatePublishing );
 		if ( $verification !== true ) {
 			return [
 				'status' => self::VERIFICATION_ERROR,
@@ -427,9 +432,10 @@ abstract class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
+	 * @param bool $forImmediatePublishing See verifyUpload().
 	 * @return mixed True of the file is verified, array otherwise.
 	 */
-	protected function verifyFile() {
+	protected function verifyFile( $forImmediatePublishing = false ) {
 		global $wgVerifyMimeType, $wgDisableUploadScriptChecks;
 
 		$status = $this->verifyPartialFile();
@@ -468,7 +474,7 @@ abstract class UploadBase {
 		}
 
 		$error = true;
-		Hooks::run( 'UploadVerifyFile', [ $this, $mime, &$error ] );
+		Hooks::run( 'UploadVerifyFile', [ $this, $mime, &$error, $forImmediatePublishing ] );
 		if ( $error !== true ) {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];

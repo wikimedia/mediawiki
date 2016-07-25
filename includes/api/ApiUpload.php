@@ -92,7 +92,8 @@ class ApiUpload extends ApiBase {
 			// defer verification to background process
 		} else {
 			wfDebug( __METHOD__ . " about to verify\n" );
-			$this->verifyUpload();
+			$forImmediatePublishing = !$this->mParams['chunk'] && !$this->mParams['stash'];
+			$this->verifyUpload( $forImmediatePublishing );
 		}
 
 		// Check if the user has the rights to modify or overwrite the requested title
@@ -507,8 +508,8 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Performs file verification, dies on error.
 	 */
-	protected function verifyUpload() {
-		$verification = $this->mUpload->verifyUpload();
+	protected function verifyUpload( $forImmediatePublishing ) {
+		$verification = $this->mUpload->verifyUpload( $forImmediatePublishing );
 		if ( $verification['status'] === UploadBase::OK ) {
 			return;
 		}

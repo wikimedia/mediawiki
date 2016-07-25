@@ -151,7 +151,7 @@ class UploadFromChunks extends UploadFromFile {
 		// File system path of the actual full temp file
 		$this->setTempFile( $tmpPath );
 
-		$ret = $this->verifyUpload();
+		$ret = $this->verifyUpload( /*$forImmediatePublishing*/ false );
 		if ( $ret['status'] !== UploadBase::OK ) {
 			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );
 			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
