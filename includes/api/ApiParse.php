@@ -375,9 +375,6 @@ class ApiParse extends ApiBase {
 			$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
 			$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
 			$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
-			// To be removed in 1.27
-			$result_array['modulemessages'] = [];
-			$this->setWarning( 'modulemessages is deprecated since MediaWiki 1.26' );
 		}
 
 		if ( isset( $prop['jsconfigvars'] ) ) {
@@ -461,7 +458,6 @@ class ApiParse extends ApiBase {
 			'indicators' => 'ind',
 			'modulescripts' => 'm',
 			'modulestyles' => 'm',
-			'modulemessages' => 'm',
 			'properties' => 'pp',
 			'limitreportdata' => 'lr',
 		];

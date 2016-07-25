@@ -605,29 +605,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the list of module messages to include on this page
-	 *
-	 * @deprecated since 1.26 Obsolete
-	 * @param bool $filter
-	 * @param string|null $position
-	 * @return array Array of module names
-	 */
-	public function getModuleMessages( $filter = false, $position = null ) {
-		wfDeprecated( __METHOD__, '1.26' );
-		return [];
-	}
-
-	/**
-	 * Load messages of one or more ResourceLoader modules.
-	 *
-	 * @deprecated since 1.26 Use addModules() instead
-	 * @param string|array $modules Module name (string) or array of module names
-	 */
-	public function addModuleMessages( $modules ) {
-		wfDeprecated( __METHOD__, '1.26' );
-	}
-
-	/**
 	 * @return null|string ResourceLoader target
 	 */
 	public function getTarget() {
