@@ -653,7 +653,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add or replace an header item to the output
+	 * Add or replace a head item to the output
 	 *
 	 * Whenever possible, use more specific options like ResourceLoader modules,
 	 * OutputPage::addLink(), OutputPage::addMetaLink() and OutputPage::addFeedLink()
@@ -666,6 +666,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function addHeadItem( $name, $value ) {
 		$this->mHeadItems[$name] = $value;
+	}
+
+	/**
+	 * Add one or more head items to the output
+	 *
+	 * @since 1.28
+	 * @param string|string[] $value Raw HTML
+	 */
+	public function addHeadItems( $values ) {
+		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$values );
 	}
 
 	/**
