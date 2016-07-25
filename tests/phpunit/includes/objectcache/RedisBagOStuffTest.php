@@ -2,13 +2,16 @@
 /**
  * @group BagOStuff
  */
-class RedisBagOStuffTest extends MediaWikiTestCase {
+class RedisBagOStuffTest extends PHPUnit_Framework_TestCase {
 	/** @var RedisBagOStuff */
 	private $cache;
 
 	protected function setUp() {
 		parent::setUp();
-		$this->cache = TestingAccessWrapper::newFromObject( new RedisBagOStuff( [ 'servers' => [] ] ) );
+		$cache = $this->getMockBuilder( 'RedisBagOStuff' )
+			->disableOriginalConstructor()
+			->getMock();
+		$this->cache = TestingAccessWrapper::newFromObject( $cache );
 	}
 
 	/**
