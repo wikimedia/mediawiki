@@ -779,7 +779,7 @@ class DifferenceEngine extends ContextSource {
 			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
-		return wfMemcKey( 'diff', 'version', self::MW_DIFF_VERSION,
+		return wfMemcKey( 'diff', 'version', self::DIFF_VERSION,
 			'oldid', $this->mOldid, 'newid', $this->mNewid );
 	}
 
