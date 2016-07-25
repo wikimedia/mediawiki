@@ -222,17 +222,17 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * Merge arrays in the style of getUserPermissionsErrors, with duplicate removal
  * e.g.
  *	wfMergeErrorArrays(
- *		array( array( 'x' ) ),
- *		array( array( 'x', '2' ) ),
- *		array( array( 'x' ) ),
- *		array( array( 'y' ) )
+ *		[ [ 'x' ] ],
+ *		[ [ 'x', '2' ] ],
+ *		[ [ 'x' ] ],
+ *		[ [ 'y' ] ]
  *	);
  * returns:
- * 		array(
- *   		array( 'x', '2' ),
- *   		array( 'x' ),
- *   		array( 'y' )
- *   	)
+ * 		[
+ *   		[ 'x', '2' ],
+ *   		[ 'x' ],
+ *   		[ 'y' ]
+ *   	]
  *
  * @param array $array1,...
  * @return array
@@ -827,7 +827,7 @@ function wfParseUrl( $url ) {
 	$bits = parse_url( $url );
 	MediaWiki\restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
-	// parse_url("%0Ahttp://example.com") == array( 'host' => '%0Ahttp', 'path' => 'example.com' )
+	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
 		return false;
 	}

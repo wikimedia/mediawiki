@@ -48,7 +48,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * The prototype for a token function is func($pageid, $title, $rc)
 	 * it should return a token or false (permission denied)
 	 * @deprecated since 1.24
-	 * @return array Array(tokenname => function)
+	 * @return array [ tokenname => function ]
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice

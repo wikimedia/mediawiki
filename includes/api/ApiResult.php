@@ -217,7 +217,7 @@ class ApiResult implements ApiSerializable {
 	 *    set to '*'. This may be skipped by including 'no*' in the value
 	 *    array.
 	 *  - Tags listed in META_BC_SUBELEMENTS will have their values changed to
-	 *    array( '*' => $value ). This may be skipped by including 'nosub' in
+	 *    [ '*' => $value ]. This may be skipped by including 'nosub' in
 	 *    the value array.
 	 *  - If META_TYPE is 'BCarray', set it to 'default'
 	 *  - If META_TYPE is 'BCassoc', set it to 'default'
@@ -230,9 +230,9 @@ class ApiResult implements ApiSerializable {
 	 *    as objects.
 	 *  - ArmorKVP: (string) If provided, transform arrays with META_TYPE 'kvp'
 	 *    and 'BCkvp' into arrays of two-element arrays, something like this:
-	 *      $output = array();
+	 *      $output = [];
 	 *      foreach ( $input as $key => $value ) {
-	 *          $pair = array();
+	 *          $pair = [];
 	 *          $pair[$META_KVP_KEY_NAME ?: $ArmorKVP_value] = $key;
 	 *          ApiResult::setContentValue( $pair, 'value', $value );
 	 *          $output[] = $pair;
@@ -390,7 +390,7 @@ class ApiResult implements ApiSerializable {
 	 * Add value to the output data at the given path.
 	 *
 	 * Path can be an indexed array, each element specifying the branch at which to add the new
-	 * value. Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value.
+	 * value. Setting $path to [ 'a', 'b', 'c' ] is equivalent to data['a']['b']['c'] = $value.
 	 * If $path is null, the value will be inserted at the data root.
 	 *
 	 * @param array|string|int|null $path

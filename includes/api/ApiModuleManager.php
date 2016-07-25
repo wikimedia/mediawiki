@@ -81,14 +81,14 @@ class ApiModuleManager extends ContextSource {
 	 *
 	 * @code
 	 *  $modules['foo'] = 'ApiFoo';
-	 *  $modules['bar'] = array(
+	 *  $modules['bar'] = [
 	 *      'class' => 'ApiBar',
 	 *      'factory' => function( $main, $name ) { ... }
-	 *  );
-	 *  $modules['xyzzy'] = array(
+	 *  ];
+	 *  $modules['xyzzy'] = [
 	 *      'class' => 'ApiXyzzy',
-	 *      'factory' => array( 'XyzzyFactory', 'newApiModule' )
-	 *  );
+	 *      'factory' => [ 'XyzzyFactory', 'newApiModule' ]
+	 *  ];
 	 * @endcode
 	 *
 	 * @param array $modules A map of ModuleName => ModuleSpec; The ModuleSpec
