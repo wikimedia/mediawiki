@@ -46,8 +46,6 @@ class SectionProfiler {
 	protected $collateOnly = true;
 	/** @var array Cache of a standard broken collation entry */
 	protected $errorEntry;
-	/** @var callable Cache of a profile out callback */
-	protected $profileOutCallback;
 
 	/**
 	 * @param array $params
@@ -55,9 +53,6 @@ class SectionProfiler {
 	public function __construct( array $params = [] ) {
 		$this->errorEntry = $this->getErrorEntry();
 		$this->collateOnly = empty( $params['trace'] );
-		$this->profileOutCallback = function ( $profiler, $section ) {
-			$profiler->profileOutInternal( $section );
-		};
 	}
 
 	/**
