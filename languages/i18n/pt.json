@@ -373,6 +373,7 @@
 	"databaseerror-query": "Consulta: $1",
 	"databaseerror-function": "Função: $1",
 	"databaseerror-error": "Erro: $1",
+	"transaction-duration-limit-exceeded": "Para evitar a criação de lag replicação alta, esta operação foi abortada porque a duração de gravação ($1) excedeu o limite de $2 {{PLURAL:$2|segundo|segundos}}. Se você está mudando muitos itens de uma vez, tente fazer várias operações menores em vez disso.",
 	"laggedslavemode": "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 	"readonly": "Base de dados bloqueada (limitada a leituras)",
 	"enterlockreason": "Introduza um motivo para bloquear, incluindo uma estimativa de quando será desbloqueada",

@@ -3054,6 +3054,8 @@
 	"confirmemail_invalidated": "Пацьверджаньне адрасу электроннай пошты адмененае",
 	"invalidateemail": "Скасаваць пацьверджаньне адрасу электроннай пошты",
 	"notificationemail_subject_changed": "Адрас электроннай пошты на сайце {{SITENAME}} быў зьменены",
+	"notificationemail_subject_removed": "Адрас электроннай пошты на сайце {{SITENAME}} быў выдалены",
+	"notificationemail_body_changed": "Некім, магчыма вамі, з IP-адрасу $1,\nбыў зьменены адрас электроннай пошты «$2» на «$3» на сайце {{SITENAME}}.\n\nКалі гэта былі ня вы, неадкладна зьвяжыцеся з адміністратарам.",
 	"scarytranscludedisabled": "[Улучэньне інтэрвікі было адключанае]",
 	"scarytranscludefailed": "[Памылка атрыманьня шаблёну $1]",
 	"scarytranscludefailed-httpstatus": "[Памылка атрыманьня шаблёну $1: HTTP $2]",

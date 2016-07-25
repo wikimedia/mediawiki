@@ -84,6 +84,7 @@
 	"apihelp-createaccount-example-pass": "创建用户<kbd>testuser</kbd>和密码<kbd>test123</kbd>。",
 	"apihelp-createaccount-example-mail": "创建用户<kbd>testmailuser</kbd>并电邮发送一个随机生成的密码。",
 	"apihelp-cspreport-description": "由浏览器使用以报告违反内容安全方针的内容。此模块应永不使用，除了在被CSP兼容的浏览器自动使用时。",
+	"apihelp-cspreport-param-reportonly": "标记作为来自监视方针的报告，而不是执行方针的报告",
 	"apihelp-delete-description": "删除一个页面。",
 	"apihelp-delete-param-title": "要删除的页面标题。不能与<var>$1pageid</var>一起使用。",
 	"apihelp-delete-param-pageid": "要删除的页面的页面 ID。不能与<var>$1title</var>一起使用。",

@@ -944,7 +944,7 @@
 	"badsig": "Baliogabeko sinadura; egiaztatu HTML etiketak.",
 	"badsiglength": "Zure sinadura luzeegia da.\n$1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.",
 	"yourgender": "Nola nahiagu duzu deskribatua izatea?",
-	"gender-unknown": "Nahiago dut ez esatea",
+	"gender-unknown": "Aipatzen zaituztenean, softwareak genero neutroa erabiliko du hori posible denean",
 	"gender-male": "Wiki orrialdeak editatzen dituen gizona",
 	"gender-female": "Wiki orrialdeak editatzen dituen emakumea",
 	"prefs-help-gender": "Hobespen hau jartzea aukerazkoa da.\nSoftwareak bere balioak erabiltzen ditu zu aipatzeko eta beste batzuek genero gramatikala erabiltzeko aukera izan dezaten.\nInformazio hau publikoa da.",
