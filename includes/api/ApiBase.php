@@ -2144,7 +2144,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Return the error message related to a certain array
 	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @return array('code' => code, 'info' => info)
+	 * @return [ 'code' => code, 'info' => info ]
 	 */
 	public function parseMsg( $error ) {
 		// Check whether someone passed the whole array, instead of one element as

@@ -58,7 +58,7 @@ class ApiPageSet extends ApiBase {
 	private $mGoodTitles = [];
 	private $mMissingPages = []; // [ns][dbkey] => fake page_id
 	private $mMissingTitles = [];
-	/** @var array [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason ) */
+	/** @var array [fake_page_id] => [ 'title' => $title, 'invalidreason' => $reason ] */
 	private $mInvalidTitles = [];
 	private $mMissingPageIDs = [];
 	private $mRedirectTitles = [];
@@ -777,7 +777,7 @@ class ApiPageSet extends ApiBase {
 		$res = $db->select( 'page', $this->getPageTableFields(), $set,
 			__METHOD__ );
 
-		// Hack: get the ns:titles stored in array(ns => array(titles)) format
+		// Hack: get the ns:titles stored in [ ns => [ titles ] ] format
 		$this->initFromQueryResult( $res, $linkBatch->data, true ); // process Titles
 
 		// Resolve any found redirects

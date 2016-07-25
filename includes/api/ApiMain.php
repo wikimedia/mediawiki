@@ -117,9 +117,9 @@ class ApiMain extends ApiBase {
 	// @codingStandardsIgnoreStart String contenation on "msg" not allowed to break long line
 	/**
 	 * List of user roles that are specifically relevant to the API.
-	 * array( 'right' => array ( 'msg'    => 'Some message with a $1',
-	 *                           'params' => array ( $someVarToSubst ) ),
-	 *                          );
+	 * [ 'right' => [ 'msg'    => 'Some message with a $1',
+	 *                'params' => [ $someVarToSubst ] ],
+	 * ];
 	 */
 	private static $mRights = [
 		'writeapi' => [

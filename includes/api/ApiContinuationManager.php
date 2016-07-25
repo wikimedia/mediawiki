@@ -167,7 +167,7 @@ class ApiContinuationManager {
 
 	/**
 	 * Fetch continuation result data
-	 * @return array Array( (array)$data, (bool)$batchcomplete )
+	 * @return array [ (array)$data, (bool)$batchcomplete ]
 	 */
 	public function getContinuation() {
 		$data = [];
