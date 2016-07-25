@@ -204,12 +204,7 @@
                 eventOut = options.trigger == 'hover' ? 'mouseleave blur' : 'blur';
             if ( options.live ) {
                 mw.track( 'mw.deprecate', 'tipsy-live' );
-                mw.log.warn( 'Use of the "live" option of jquery.tipsy is deprecated.' );
-                // XXX: The official status of 'context' is deprecated, and the official status of
-                // 'selector' is removed, so this really needs to go.
-                $( this.context )
-                    .on( eventIn, this.selector, enter )
-                    .on( eventOut, this.selector, leave );
+                throw new Error( 'Use of the "live" option of jquery.tipsy is no longer supported.' );
             } else {
                 this
                     .on( eventIn, enter )
