@@ -2467,7 +2467,15 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
 		} else {
-			$this->onTransactionIdle( $callback ); // this will trigger immediately
+			// If no transaction is active, then make one for this callback
+			$this->begin( __METHOD__ );
+			try {
+				call_user_func( $callback );
+				$this->commit( __METHOD__ );
+			} catch ( Exception $e ) {
+				$this->rollback( __METHOD__ );
+				throw $e;
+			}
 		}
 	}
 
