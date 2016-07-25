@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Composer\Semver\Semver;
+
 /**
  * Checks whether your composer-installed dependencies are up to date
  *
@@ -43,7 +45,7 @@ class CheckComposerLockUpToDate extends Maintenance {
 		$installed = $lock->getInstalledDependencies();
 		foreach ( $json->getRequiredDependencies() as $name => $version ) {
 			if ( isset( $installed[$name] ) ) {
-				if ( $installed[$name]['version'] !== $version ) {
+				if ( !Semver::satisfies( $installed[$name]['version'], $version ) ) {
 					$this->output(
 						"$name: {$installed[$name]['version']} installed, $version required.\n"
 					);
