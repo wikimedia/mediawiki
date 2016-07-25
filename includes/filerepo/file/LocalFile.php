@@ -1974,16 +1974,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Roll back the DB transaction and mark the image unlocked
-	 */
-	function unlockAndRollback() {
-		$this->locked = false;
-		$dbw = $this->repo->getMasterDB();
-		$dbw->rollback( __METHOD__ );
-		$this->lockedOwnTrx = false;
-	}
-
-	/**
 	 * @return Status
 	 */
 	protected function readOnlyFatalStatus() {
@@ -2858,33 +2848,30 @@ class LocalFileMoveBatch {
 	public function execute() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
-
-		$triplets = $this->getMoveTriplets();
-		$checkStatus = $this->removeNonexistentFiles( $triplets );
-		if ( !$checkStatus->isGood() ) {
-			$status->merge( $checkStatus );
-			return $status;
-		}
-		$triplets = $checkStatus->value;
 		$destFile = wfLocalFile( $this->target );
 
 		$this->file->lock(); // begin
 		$destFile->lock(); // quickly fail if destination is not available
-		// Rename the file versions metadata in the DB.
-		// This implicitly locks the destination file, which avoids race conditions.
-		// If we moved the files from A -> C before DB updates, another process could
-		// move files from B -> C at this point, causing storeBatch() to fail and thus
-		// cleanupTarget() to trigger. It would delete the C files and cause data loss.
-		$statusDb = $this->doDBUpdates();
+
+		$triplets = $this->getMoveTriplets();
+		$checkStatus = $this->removeNonexistentFiles( $triplets );
+		if ( !$checkStatus->isGood() ) {
+			$destFile->unlock();
+			$this->file->unlock();
+			$status->merge( $checkStatus ); // couldn't talk to file backend
+			return $status;
+		}
+		$triplets = $checkStatus->value;
+
+		// Verify the file versions metadata in the DB.
+		$statusDb = $this->verifyDBUpdates();
 		if ( !$statusDb->isGood() ) {
 			$destFile->unlock();
-			$this->file->unlockAndRollback();
+			$this->file->unlock();
 			$statusDb->ok = false;
 
 			return $statusDb;
 		}
-		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: " .
-			"{$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 
 		if ( !$repo->hasSha1Storage() ) {
 			// Copy the files into their new location.
@@ -2897,7 +2884,7 @@ class LocalFileMoveBatch {
 				// Delete any files copied over (while the destination is still locked)
 				$this->cleanupTarget( $triplets );
 				$destFile->unlock();
-				$this->file->unlockAndRollback(); // unlocks the destination
+				$this->file->unlock();
 				wfDebugLog( 'imagemove', "Error in moving files: "
 					. $statusMove->getWikiText( false, false, 'en' ) );
 				$statusMove->ok = false;
@@ -2906,6 +2893,12 @@ class LocalFileMoveBatch {
 			}
 			$status->merge( $statusMove );
 		}
+
+		// Rename the file versions metadata in the DB.
+		$this->doDBUpdates();
+
+		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: " .
+			"{$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 
 		$destFile->unlock();
 		$this->file->unlock(); // done
@@ -2919,14 +2912,53 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Do the database updates and return a new FileRepoStatus indicating how
-	 * many rows where updated.
+	 * Verify the database updates and return a new FileRepoStatus indicating how
+	 * many rows would be updated.
 	 *
 	 * @return FileRepoStatus
 	 */
-	protected function doDBUpdates() {
+	protected function verifyDBUpdates() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
+		$dbw = $this->db;
+
+		$hasCurrent = $dbw->selectField(
+			'image',
+			'1',
+			[ 'img_name' => $this->oldName ],
+			__METHOD__,
+			[ 'FOR UPDATE' ]
+		);
+		$oldRowCount = $dbw->selectField(
+			'oldimage',
+			'COUNT(*)',
+			[ 'oi_name' => $this->oldName ],
+			__METHOD__,
+			[ 'FOR UPDATE' ]
+		);
+
+		if ( $hasCurrent ) {
+			$status->successCount++;
+		} else {
+			$status->failCount++;
+		}
+		$status->successCount += $oldRowCount;
+		// Bug 34934: oldCount is based on files that actually exist.
+		// There may be more DB rows than such files, in which case $affected
+		// can be greater than $total. We use max() to avoid negatives here.
+		$status->failCount += max( 0, $this->oldCount - $oldRowCount );
+		if ( $status->failCount ) {
+			$status->error( 'imageinvalidfilename' );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Do the database updates and return a new FileRepoStatus indicating how
+	 * many rows where updated.
+	 */
+	protected function doDBUpdates() {
 		$dbw = $this->db;
 
 		// Update current image
@@ -2936,16 +2968,6 @@ class LocalFileMoveBatch {
 			[ 'img_name' => $this->oldName ],
 			__METHOD__
 		);
-
-		if ( $dbw->affectedRows() ) {
-			$status->successCount++;
-		} else {
-			$status->failCount++;
-			$status->fatal( 'imageinvalidfilename' );
-
-			return $status;
-		}
-
 		// Update old images
 		$dbw->update(
 			'oldimage',
@@ -2957,19 +2979,6 @@ class LocalFileMoveBatch {
 			[ 'oi_name' => $this->oldName ],
 			__METHOD__
 		);
-
-		$affected = $dbw->affectedRows();
-		$total = $this->oldCount;
-		$status->successCount += $affected;
-		// Bug 34934: $total is based on files that actually exist.
-		// There may be more DB rows than such files, in which case $affected
-		// can be greater than $total. We use max() to avoid negatives here.
-		$status->failCount += max( 0, $total - $affected );
-		if ( $status->failCount ) {
-			$status->error( 'imageinvalidfilename' );
-		}
-
-		return $status;
 	}
 
 	/**
