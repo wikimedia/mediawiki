@@ -867,6 +867,7 @@
 			"description": "Configuration options for this extension",
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
+					"type": "object",
 					"properties": {
 						"value": {
 							"required": true
