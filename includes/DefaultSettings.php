@@ -2886,6 +2886,16 @@ $wgDummyLanguageCodes = [
 ];
 
 /**
+ * List of language codes for a mapping from the internal language codes to
+ * BCP 47 conform language codes.
+ */
+$wgBCP47LanguageCodes = [
+	'de-formal' => 'de',
+	'en-rtl' => 'en',
+	'nl-informal' => 'nl',
+];
+
+/**
  * Set this to true to replace Arabic presentation forms with their standard
  * forms in the U+0600-U+06FF block. This only works if $wgLanguageCode is
  * set to "ar".
