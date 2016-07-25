@@ -213,29 +213,6 @@
 		return this.stop( true, true ).fadeOut();
 	};
 
-	/**
-	 * Bind a function to the jQuery object via live(), and also immediately trigger
-	 * the function on the objects with an 'instant' parameter set to true.
-	 *
-	 * @method liveAndTestAtStart
-	 * @deprecated since 1.24 Use .on() and .each() directly.
-	 * @param {Function} callback
-	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
-	 *  an event object when triggered from an event.
-	 * @chainable
-	 * @return {jQuery}
-	 */
-	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {
-		return this
-			// Can't really migrate to .on() generically, needs knowledge of
-			// calling code to know the correct selector. Fix callers and
-			// get rid of this .liveAndTestAtStart() hack.
-			.live( 'change', callback )
-			.each( function () {
-				callback.call( this, true );
-			} );
-	} );
-
 	function enhance( $root ) {
 		var $matrixTooltips, $autocomplete,
 			// cache the separator to avoid object creation on each keypress
