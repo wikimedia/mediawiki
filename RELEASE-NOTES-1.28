@@ -51,6 +51,8 @@ production.
 === Action API changes in 1.28 ===
 * Added 'maxarticlesize' property to action=query&meta=siteinfo which contains
   the value of $wgMaxArticleSize.
+* Property 'modulemessages' from action=parse&prop=modules was removed
+  (deprecated since 1.26).
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
