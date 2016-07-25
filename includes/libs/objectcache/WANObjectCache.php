@@ -759,7 +759,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $opts Options map:
 	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
 	 *      touchCheckKey() or resetCheckKey() is called on any of these keys.
-	 *      Default: [];
+	 *      Default: [].
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (sec) of the key is less than
 	 *      this. It becomes more likely over time, becoming a certainty once the key is expired.
 	 *      Default: WANObjectCache::LOW_TTL seconds.
@@ -788,6 +788,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      however, as this reduces compatibility (due to serialization).
 	 *      Default: null.
 	 * @return mixed Value found or written to the key
+	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
@@ -862,6 +863,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - minTime: Treat values older than this UNIX timestamp as not existing. Default: null.
 	 * @param float &$asOf Cache generation timestamp of returned value [returned]
 	 * @return mixed
+	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts, &$asOf = null ) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
