@@ -63,7 +63,16 @@ class ImportTextFiles extends Maintenance {
 			if ( file_exists( $arg ) ) {
 				$files[$arg] = file_get_contents( $arg );
 			} else {
-				$this->error( "Fatal error: The file '$arg' does not exist!", 1 );
+				// use glob to support the Windows shell, which doesn't automatically
+				// expand wildcards
+				$found = false;
+				foreach ( glob( $arg ) as $filename ) {
+					$found = true;
+					$files[$filename] = file_get_contents( $filename );
+				}
+				if ( !$found ) {
+					$this->error( "Fatal error: The file '$arg' does not exist!", 1 );
+				}
 			}
 		};
 
