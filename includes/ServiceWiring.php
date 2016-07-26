@@ -158,6 +158,10 @@ return [
 		return new WatchedItemQueryService( $services->getDBLoadBalancer() );
 	},
 
+	'MediaHandlerFactory' => function( MediaWikiServices $services ) {
+		return new MediaHandlerFactory();
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter()
