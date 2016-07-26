@@ -407,7 +407,29 @@
 	}
 
 	$( function () {
+		var $oouiNodes, modules;
+
 		enhance( $( document ) );
+
+		// Infuse OOjs UI HTMLForm fields
+		$oouiNodes = $( '.mw-htmlform-field-autoinfuse' );
+		if ( $oouiNodes.length ) {
+			// The modules are preloaded (added server-side in HTMLFormField, and the individual fields
+			// which need extra ones), but this module doesn't depend on them. Wait until they're loaded.
+			modules = [ 'oojs-ui-core' ];
+			if ( $oouiNodes.filter( '.mw-htmlform-field-HTMLTitleTextField' ).length ) {
+				// FIXME: TitleInputWidget should be in its own module
+				modules.push( 'mediawiki.widgets' );
+			}
+			if ( $oouiNodes.filter( '.mw-htmlform-field-HTMLUserTextField' ).length ) {
+				modules.push( 'mediawiki.widgets.UserInputWidget' );
+			}
+			mw.loader.using( modules ).done( function () {
+				$oouiNodes.each( function () {
+					OO.ui.infuse( this );
+				} );
+			} );
+		}
 	} );
 
 	/**
