@@ -52,6 +52,7 @@ return [
 
 	// Scripts managed by the current user (stored in their user space)
 	'user' => [ 'class' => 'ResourceLoaderUserModule' ],
+	'user.styles' => [ 'class' => 'ResourceLoaderUserStylesModule' ],
 
 	// Scripts generated based on the current user's preferences
 	'user.cssprefs' => [ 'class' => 'ResourceLoaderUserCSSPrefsModule' ],
