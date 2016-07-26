@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Although marked as a stub, can work independently.
  *
@@ -127,22 +130,6 @@ class NewParserTest extends MediaWikiTestCase {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
 
-		# Replace all media handlers with a mock. We do not need to generate
-		# actual thumbnails to do parser testing, we only care about receiving
-		# a ThumbnailImage properly initialized.
-		global $wgMediaHandlers;
-		foreach ( $wgMediaHandlers as $type => $handler ) {
-			$tmpGlobals['wgMediaHandlers'][$type] = 'MockBitmapHandler';
-		}
-		// Vector images have to be handled slightly differently
-		$tmpGlobals['wgMediaHandlers']['image/svg+xml'] = 'MockSvgHandler';
-
-		// DjVu images have to be handled slightly differently
-		$tmpGlobals['wgMediaHandlers']['image/vnd.djvu'] = 'MockDjVuHandler';
-
-		// Ogg video/audio increasingly more differently
-		$tmpGlobals['wgMediaHandlers']['application/ogg'] = 'MockOggHandler';
-
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
@@ -177,6 +164,13 @@ class NewParserTest extends MediaWikiTestCase {
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
 		ParserTest::resetTitleServices();
+		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
+		MediaWikiServices::getInstance()->redefineService(
+			'MediaHandlerFactory',
+			function() {
+				return new MockMediaHandlerFactory();
+			}
+		);
 	}
 
 	protected function tearDown() {
@@ -196,6 +190,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		// Restore message cache (temporary pages and $wgUseDatabaseMessages)
 		MessageCache::destroyInstance();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaHandlerFactory' );
 
 		parent::tearDown();
 
