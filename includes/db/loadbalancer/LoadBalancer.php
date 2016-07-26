@@ -1004,14 +1004,10 @@ class LoadBalancer {
 	 * Close all open connections
 	 */
 	public function closeAll() {
-		foreach ( $this->mConns as $conns2 ) {
-			foreach ( $conns2 as $conns3 ) {
-				/** @var DatabaseBase $conn */
-				foreach ( $conns3 as $conn ) {
-					$conn->close();
-				}
-			}
-		}
+		$this->forEachOpenConnection( function ( DatabaseBase $conn ) {
+			$conn->close();
+		} );
+
 		$this->mConns = [
 			'local' => [],
 			'foreignFree' => [],
@@ -1305,16 +1301,11 @@ class LoadBalancer {
 	 */
 	public function pingAll() {
 		$success = true;
-		foreach ( $this->mConns as $conns2 ) {
-			foreach ( $conns2 as $conns3 ) {
-				/** @var DatabaseBase[] $conns3 */
-				foreach ( $conns3 as $conn ) {
-					if ( !$conn->ping() ) {
-						$success = false;
-					}
-				}
+		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( &$success ) {
+			if ( !$conn->ping() ) {
+				$success = false;
 			}
-		}
+		} );
 
 		return $success;
 	}
@@ -1325,9 +1316,9 @@ class LoadBalancer {
 	 * @param array $params
 	 */
 	public function forEachOpenConnection( $callback, array $params = [] ) {
-		foreach ( $this->mConns as $conns2 ) {
-			foreach ( $conns2 as $conns3 ) {
-				foreach ( $conns3 as $conn ) {
+		foreach ( $this->mConns as $connsByServer ) {
+			foreach ( $connsByServer as $serverConns ) {
+				foreach ( $serverConns as $conn ) {
 					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );
 				}
