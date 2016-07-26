@@ -29,11 +29,36 @@
 class MediaHandlerFactory {
 
 	/**
+	 * Default, MediaWiki core media handlers
+	 *
+	 * @var array
+	 */
+	private static $coreHandlers = [
+		'image/jpeg' => JpegHandler::class,
+		'image/png' => PNGHandler::class,
+		'image/gif' => GIFHandler::class,
+		'image/tiff' => TiffHandler::class,
+		'image/webp' => WebPHandler::class,
+		'image/x-ms-bmp' => BmpHandler::class,
+		'image/x-bmp' => BmpHandler::class,
+		'image/x-xcf' => XCFHandler::class,
+		'image/svg+xml' => SvgHandler::class, // official
+		'image/svg' => SvgHandler::class, // compat
+		'image/vnd.djvu' => DjVuHandler::class, // official
+		'image/x.djvu' => DjVuHandler::class, // compat
+		'image/x-djvu' => DjVuHandler::class, // compat
+	];
+
+	/**
+	 * Mapping of mimetype to handler class
+	 *
 	 * @var array
 	 */
 	private $registry;
 
 	/**
+	 * Instance cache of MediaHandler objects by mimetype
+	 *
 	 * @var MediaHandler[]
 	 */
 	private $handlers;
@@ -42,7 +67,7 @@ class MediaHandlerFactory {
 	 * @param array $registry
 	 */
 	public function __construct( array $registry ) {
-		$this->registry = $registry;
+		$this->registry = $registry + self::$coreHandlers;
 	}
 
 	protected function getHandlerClass( $type) {
