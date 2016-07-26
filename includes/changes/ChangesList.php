@@ -236,6 +236,9 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Show formatted char difference
+	 *
+	 * Needs the css module 'mediawiki.special.changeslist' to style output
+	 *
 	 * @param int $old Number of bytes
 	 * @param int $new Number of bytes
 	 * @param IContextSource $context
