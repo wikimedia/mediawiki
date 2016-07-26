@@ -45,25 +45,37 @@ class MediaHandlerFactory {
 		$this->registry = $registry;
 	}
 
+	protected function getHandlerClass( $type) {
+		if ( isset( $this->registry[$type] ) ) {
+			return $this->registry[$type];
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * @param string $type mimetype
 	 * @return bool|MediaHandler
 	 */
 	public function getHandler( $type ) {
-		if ( !isset( $this->registry[$type] ) ) {
-			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
-
-			return false;
+		if ( isset( $this->handlers[$type] ) ) {
+			return $this->handlers[$type];
 		}
-		$class = $this->registry[$type];
-		if ( !isset( $this->handlers[$class] ) ) {
-			$this->handlers[$class] = new $class;
-			if ( !$this->handlers[$class]->isEnabled() ) {
+
+		$class = $this->getHandlerClass( $type );
+		if ( $class !== false ) {
+			/** @var MediaHandler $handler */
+			$handler = new $class;
+			if ( !$handler->isEnabled() ) {
 				wfDebug( __METHOD__ . ": $class is not enabled\n" );
-				$this->handlers[$class] = false;
+				$handler = false;
 			}
+		} else {
+			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
+			$handler = false;
 		}
 
-		return $this->handlers[$class];
+		$this->handlers[$type] = $handler;
+		return $handler;
 	}
 }
