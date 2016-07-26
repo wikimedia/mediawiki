@@ -29,14 +29,39 @@
 class MediaHandlerFactory {
 
 	/**
+	 * Default, MediaWiki core media handlers
+	 *
+	 * @var array
+	 */
+	private static $coreHandlers = [
+		'image/jpeg' => JpegHandler::class,
+		'image/png' => PNGHandler::class,
+		'image/gif' => GIFHandler::class,
+		'image/tiff' => TiffHandler::class,
+		'image/webp' => WebPHandler::class,
+		'image/x-ms-bmp' => BmpHandler::class,
+		'image/x-bmp' => BmpHandler::class,
+		'image/x-xcf' => XCFHandler::class,
+		'image/svg+xml' => SvgHandler::class, // official
+		'image/svg' => SvgHandler::class, // compat
+		'image/vnd.djvu' => DjVuHandler::class, // official
+		'image/x.djvu' => DjVuHandler::class, // compat
+		'image/x-djvu' => DjVuHandler::class, // compat
+	];
+
+	/**
+	 * Instance cache of MediaHandler objects by mimetype
+	 *
 	 * @var MediaHandler[]
 	 */
 	private $handlers;
 
 	protected function getHandlerClass( $type ) {
 		global $wgMediaHandlers;
-		if ( isset( $wgMediaHandlers[$type] ) ) {
-			return $wgMediaHandlers[$type];
+
+		$registry = $wgMediaHandlers + self::$coreHandlers;
+		if ( isset( $registry[$type] ) ) {
+			return $registry[$type];
 		} else {
 			return false;
 		}
