@@ -57,6 +57,10 @@ class HTMLRadioField extends HTMLFormField {
 		) );
 	}
 
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
+
 	function formatOptions( $options, $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
