@@ -205,6 +205,8 @@
 	"config-subscribe": "Přihlásit se k odběru [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-mailové konference pro oznamování nových verzí].",
 	"config-subscribe-help": "Tohle je e-mailová konference s nízkým provozem, na které se oznamují nové verze, včetně důležitých bezpečnostních oznámení.\nMěli byste se do ní přihlásit a při vydání nových verzí aktualizovat svou instalaci MediaWiki.",
 	"config-subscribe-noemail": "Pokusili jste se přihlásit k odběru e-mailové konference pro oznamování nových verzí, aniž byste poskytli e-mailovou adresu.\nPokud se chcete přihlásit k odběru, zadejte e-mailovou adresu.",
+	"config-pingback": "Sdílet údaje o této instalaci s vývojáři MediaWiki.",
+	"config-pingback-help": "Pokud zaškrtnete tuto volbu, bude MediaWiki pravidelně zasílat základní údaje této instance MediaWiki na https://www.mediawiki.org. Tyto údaje zahrnují například typ systému, verzi PHP a zvolené databázové úložiště. Nadace Wikimedia sdílí tato data s vývojáři MediaWiki, aby pomohla směrovat budoucí rozvoj. Pro váš systém budou zaslány tyto údaje:\n<pre>$1</pre>",
 	"config-almost-done": "Už jsme skoro hotovi!\nZbývající konfiguraci už můžete přeskočit a nainstalovat wiki hned teď.",
 	"config-optional-continue": "Ptejte se mě dál.",
 	"config-optional-skip": "Už mě to nudí, prostě nainstalujte wiki.",

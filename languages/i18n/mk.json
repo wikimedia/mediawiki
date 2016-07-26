@@ -1204,7 +1204,7 @@
 	"right-applychangetags": "Задавање на [[Special:Tags|ознаки]] заедно со направените измени",
 	"right-changetags": "Додавате и отстранување на произволни [[Special:Tags|ознаки]] во поединечни преработки и дневнички записи",
 	"right-deletechangetags": "Бришење [[Special:Tags|ознаки]] од базата",
-	"grant-generic": "Група права „$1“",
+	"grant-generic": "Збир права „$1“",
 	"grant-group-page-interaction": "Опходување со страници",
 	"grant-group-file-interaction": "Опходување со слики и снимки",
 	"grant-group-watchlist-interaction": "Опходување со набљудуваните",
