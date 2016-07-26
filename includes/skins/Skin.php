@@ -321,12 +321,13 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @param array $data
+	 * @param bool $pretty Pretty-print with extra whitespace
 	 * @return string
 	 */
-	static function makeVariablesScript( $data ) {
+	static function makeVariablesScript( $data, $pretty = false ) {
 		if ( $data ) {
 			return ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( $data )
+				ResourceLoader::makeConfigSetScript( $data, $pretty )
 			);
 		} else {
 			return '';

@@ -3082,7 +3082,10 @@ class OutputPage extends ContextSource {
 	 */
 	function getBottomScripts() {
 		return $this->getScriptsForBottomQueue() .
-			Skin::makeVariablesScript( [ 'wgPageParseReport' => $this->limitReportData ] );
+			Skin::makeVariablesScript(
+				[ 'wgPageParseReport' => $this->limitReportData ],
+				true /* pretty */
+			);
 	}
 
 	/**
