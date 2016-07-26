@@ -341,7 +341,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
-		MediaHandler::resetCache();
 		if ( session_id() !== '' ) {
 			session_write_close();
 			session_id( '' );
@@ -530,7 +529,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
-		MediaHandler::resetCache();
 		if ( session_id() !== '' ) {
 			session_write_close();
 			session_id( '' );
