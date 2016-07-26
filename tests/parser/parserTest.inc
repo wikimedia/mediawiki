@@ -174,10 +174,6 @@ class ParserTest {
 			echo "Warning: tidy is not installed, skipping some tests\n";
 		}
 
-		if ( !extension_loaded( 'gd' ) ) {
-			echo "Warning: GD extension is not present, thumbnailing tests will probably fail\n";
-		}
-
 		$this->hooks = [];
 		$this->functionHooks = [];
 		$this->transparentHooks = [];
