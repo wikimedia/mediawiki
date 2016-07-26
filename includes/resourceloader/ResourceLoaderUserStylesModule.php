@@ -21,9 +21,9 @@
  */
 
 /**
- * Module for user customizations scripts
+ * Module for user customizations styles
  */
-class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
+class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 	protected $targets = [ 'desktop', 'mobile' ];
@@ -43,18 +43,18 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		$userPage = $user->getUserPage()->getPrefixedDBkey();
 		$pages = [];
 
-		if ( $config->get( 'AllowUserJs' ) ) {
-			$pages["$userPage/common.js"] = [ 'type' => 'script' ];
-			$pages["$userPage/" . $context->getSkin() . '.js'] = [ 'type' => 'script' ];
+		if ( $config->get( 'AllowUserCss' ) ) {
+			$pages["$userPage/common.css"] = [ 'type' => 'style' ];
+			$pages["$userPage/" . $context->getSkin() . '.css'] = [ 'type' => 'style' ];
 		}
 
 		// User group pages are maintained site-wide and enabled with site JS/CSS.
-		if ( $config->get( 'UseSiteJs' ) ) {
+		if ( $config->get( 'UseSiteCss' ) ) {
 			foreach ( $user->getEffectiveGroups() as $group ) {
 				if ( $group == '*' ) {
 					continue;
 				}
-				$pages["MediaWiki:Group-$group.js"] = [ 'type' => 'script' ];
+				$pages["MediaWiki:Group-$group.css"] = [ 'type' => 'style' ];
 			}
 		}
 
@@ -69,18 +69,18 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getType() {
+		return self::LOAD_STYLES;
+	}
+
+	/**
 	 * Get group name
 	 *
 	 * @return string
 	 */
 	public function getGroup() {
 		return 'user';
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return [ 'user.styles' ];
 	}
 }

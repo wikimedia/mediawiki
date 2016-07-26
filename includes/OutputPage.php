@@ -3650,7 +3650,7 @@ class OutputPage extends ContextSource {
 		) {
 			// We're on a preview of a CSS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
-			$link = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES,
+			$link = $this->makeResourceLoaderLink( 'user.styles', ResourceLoaderModule::TYPE_STYLES,
 				[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
 			);
 			$otherTags = array_merge( $otherTags, $link['html'] );
@@ -3665,7 +3665,7 @@ class OutputPage extends ContextSource {
 			$otherTags[] = Html::inlineStyle( $previewedCSS );
 		} else {
 			// Load the user styles normally
-			$moduleStyles[] = 'user';
+			$moduleStyles[] = 'user.styles';
 		}
 
 		// Per-user preference styles
