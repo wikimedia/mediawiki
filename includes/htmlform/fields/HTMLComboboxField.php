@@ -56,4 +56,8 @@ class HTMLComboboxField extends HTMLTextField {
 			'disabled' => $disabled,
 		] + $attribs );
 	}
+
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
 }

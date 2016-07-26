@@ -81,6 +81,10 @@ class HTMLTitleTextField extends HTMLTextField {
 		return new TitleInputWidget( $params );
 	}
 
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
+
 	public function getInputHtml( $value ) {
 		// add mw-searchInput class to enable search suggestions for non-OOUI, too
 		$this->mClass .= 'mw-searchInput';

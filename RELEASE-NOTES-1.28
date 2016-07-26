@@ -105,6 +105,9 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* OOjs UI PHP widgets constructed with the `'infusable' => true` config option
+  will no longer be automatically infused. You should call `OO.ui.infuse()`
+  on them yourself from your JavaScript code.
 
 == Compatibility ==
 
