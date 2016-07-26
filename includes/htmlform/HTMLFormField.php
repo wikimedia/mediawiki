@@ -626,6 +626,11 @@ abstract class HTMLFormField {
 			'infusable' => $infusable,
 		];
 
+		if ( $infusable && $this->shouldInfuseOOUI() ) {
+			$this->mParent->getOutput()->addModules( 'oojs-ui-core' );
+			$config['classes'][] = 'mw-htmlform-field-autoinfuse';
+		}
+
 		// the element could specify, that the label doesn't need to be added
 		$label = $this->getLabel();
 		if ( $label ) {
@@ -653,6 +658,18 @@ abstract class HTMLFormField {
 			return new OOUI\ActionFieldLayout( $inputField, $buttonWidget, $config );
 		}
 		return new OOUI\FieldLayout( $inputField, $config );
+	}
+
+	/**
+	 * Whether the field should be automatically infused. Note that all OOjs UI HTMLForm fields are
+	 * infusable (you can call OO.ui.infuse() on them), but not all are infused by default, since
+	 * there is no benefit in doing it e.g. for buttons and it's a small performance hit on page load.
+	 *
+	 * @return bool
+	 */
+	protected function shouldInfuseOOUI() {
+		// Always infuse fields with help text, since the interface for it is nicer with JS
+		return $this->getHelpText() !== null;
 	}
 
 	/**
