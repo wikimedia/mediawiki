@@ -101,29 +101,40 @@ class MWTidy {
 			} else {
 				return false;
 			}
-			switch ( $config['driver'] ) {
-				case 'RaggettInternalHHVM':
-					self::$instance = new MediaWiki\Tidy\RaggettInternalHHVM( $config );
-					break;
-				case 'RaggettInternalPHP':
-					self::$instance = new MediaWiki\Tidy\RaggettInternalPHP( $config );
-					break;
-				case 'RaggettExternal':
-					self::$instance = new MediaWiki\Tidy\RaggettExternal( $config );
-					break;
-				case 'Html5Depurate':
-					self::$instance = new MediaWiki\Tidy\Html5Depurate( $config );
-					break;
-				case 'Html5Internal':
-					self::$instance = new MediaWiki\Tidy\Html5Internal( $config );
-					break;
-				case 'disabled':
-					return false;
-				default:
-					throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
-			}
+			self::$instance = self::factory( $config );
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Create a new Tidy driver object from configuration.
+	 * @see $wgTidyConfig
+	 * @param array $config
+	 * @return TidyDriverBase
+	 */
+	public static function factory( array $config ) {
+		switch ( $config['driver'] ) {
+			case 'RaggettInternalHHVM':
+				$instance = new MediaWiki\Tidy\RaggettInternalHHVM( $config );
+				break;
+			case 'RaggettInternalPHP':
+				$instance = new MediaWiki\Tidy\RaggettInternalPHP( $config );
+				break;
+			case 'RaggettExternal':
+				$instance = new MediaWiki\Tidy\RaggettExternal( $config );
+				break;
+			case 'Html5Depurate':
+				$instance = new MediaWiki\Tidy\Html5Depurate( $config );
+				break;
+			case 'Html5Internal':
+				$instance = new MediaWiki\Tidy\Html5Internal( $config );
+				break;
+			case 'disabled':
+				return false;
+			default:
+				throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
+		}
+		return $instance;
 	}
 
 	/**
