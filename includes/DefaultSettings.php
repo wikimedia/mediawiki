@@ -941,22 +941,11 @@ $wgTrustedMediaFormats = [
 /**
  * Plugins for media file type handling.
  * Each entry in the array maps a MIME type to a class name
+ *
+ * Core media handlers are listed in MediaHandlerFactory,
+ * and extensions should use extension.json.
  */
-$wgMediaHandlers = [
-	'image/jpeg' => 'JpegHandler',
-	'image/png' => 'PNGHandler',
-	'image/gif' => 'GIFHandler',
-	'image/tiff' => 'TiffHandler',
-	'image/webp' => 'WebPHandler',
-	'image/x-ms-bmp' => 'BmpHandler',
-	'image/x-bmp' => 'BmpHandler',
-	'image/x-xcf' => 'XCFHandler',
-	'image/svg+xml' => 'SvgHandler', // official
-	'image/svg' => 'SvgHandler', // compat
-	'image/vnd.djvu' => 'DjVuHandler', // official
-	'image/x.djvu' => 'DjVuHandler', // compat
-	'image/x-djvu' => 'DjVuHandler', // compat
-];
+$wgMediaHandlers = [];
 
 /**
  * Plugins for page content model handling.
