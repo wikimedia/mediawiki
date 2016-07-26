@@ -64,7 +64,8 @@ class ApiHelpParamValueMessage extends Message {
 	 */
 	public function fetchMessage() {
 		if ( $this->message === null ) {
-			$this->message = ";{$this->paramValue}:" . parent::fetchMessage();
+			$this->message = ";<span dir=\"ltr\" lang=\"en\">{$this->paramValue}</span>:"
+				. parent::fetchMessage();
 		}
 		return $this->message;
 	}
