@@ -51,7 +51,7 @@
 	 * @return {Function} return.1 Test function
 	 */
 	function hideIfParse( $el, spec ) {
-		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
+		var op, i, l, v, $field, $fields, fields, method, negate, func, funcs, getVal;
 
 		op = spec[ 0 ];
 		l = spec.length;
@@ -72,56 +72,29 @@
 				}
 				$fields = $( fields );
 
-				l = funcs.length;
+				negate = false;
 				switch ( op ) {
-					case 'AND':
-						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
-									return false;
-								}
-							}
-							return true;
-						};
-						break;
-
-					case 'OR':
-						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
-									return true;
-								}
-							}
-							return false;
-						};
-						break;
-
 					case 'NAND':
-						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
-									return true;
-								}
-							}
-							return false;
-						};
+						negate = true;
+						/* falls through */
+					case 'AND':
+						method = 'every';
 						break;
-
 					case 'NOR':
-						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
-									return false;
-								}
-							}
-							return true;
-						};
+						negate = true;
+						/* falls through */
+					case 'OR':
+						method = 'some';
 						break;
 				}
+
+				func = function () {
+					// This calls funcs.some() or funcs.every()
+					var result = funcs[ method ]( function ( f ) {
+						return f();
+					} );
+					return negate ? !result : result;
+				};
 
 				return [ $fields, func ];
 
