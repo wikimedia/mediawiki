@@ -40,28 +40,62 @@ abstract class MediaHandler {
 	protected static $handlers = [];
 
 	/**
+	 * @var array Mapping of mimetype to MediaHandler class
+	 */
+	protected static $registry = [
+		'image/jpeg' => 'JpegHandler',
+		'image/png' => 'PNGHandler',
+		'image/gif' => 'GIFHandler',
+		'image/tiff' => 'TiffHandler',
+		'image/webp' => 'WebPHandler',
+		'image/x-ms-bmp' => 'BmpHandler',
+		'image/x-bmp' => 'BmpHandler',
+		'image/x-xcf' => 'XCFHandler',
+		'image/svg+xml' => 'SvgHandler', // official
+		'image/svg' => 'SvgHandler', // compat
+		'image/vnd.djvu' => 'DjVuHandler', // official
+		'image/x.djvu' => 'DjVuHandler', // compat
+		'image/x-djvu' => 'DjVuHandler', // compat
+	];
+
+	/**
+	 * @param string $type mimetype
+	 * @return string|bool false if no class found
+	 */
+	private function getHandlerClass( $type ) {
+		global $wgMediaHandlers;
+
+		$classes = $wgMediaHandlers + self::$registry;
+
+		return isset( $classes[$type] ) ? $classes[$type] : false;
+	}
+
+	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
 	 * @param string $type
 	 * @return MediaHandler|bool
 	 */
 	static function getHandler( $type ) {
-		global $wgMediaHandlers;
-		if ( !isset( $wgMediaHandlers[$type] ) ) {
-			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
-
-			return false;
+		if ( isset( self::$handlers[$type] ) ) {
+			return self::$handlers[$type];
 		}
-		$class = $wgMediaHandlers[$type];
-		if ( !isset( self::$handlers[$class] ) ) {
-			self::$handlers[$class] = new $class;
-			if ( !self::$handlers[$class]->isEnabled() ) {
+
+		$class = self::getHandlerClass( $type );
+		if ( $class !== false ) {
+			/** @var MediaHandler $handler */
+			$handler = new $class;
+			if ( !$handler->isEnabled() ) {
 				wfDebug( __METHOD__ . ": $class is not enabled\n" );
-				self::$handlers[$class] = false;
+				$handler = false;
 			}
+		} else {
+			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
+			$handler = false;
 		}
 
-		return self::$handlers[$class];
+		self::$handlers[$type] = $handler;
+		return $handler;
 	}
 
 	/**
