@@ -33,4 +33,8 @@ class HTMLSelectNamespace extends HTMLFormField {
 			'includeAllValue' => $this->mAllValue,
 		] );
 	}
+
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
 }
