@@ -1169,6 +1169,7 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoaderUserDefaultsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserDefaultsModule.php',
 	'ResourceLoaderUserModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserModule.php',
 	'ResourceLoaderUserOptionsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserOptionsModule.php',
+	'ResourceLoaderUserStylesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserStylesModule.php',
 	'ResourceLoaderUserTokensModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserTokensModule.php',
 	'ResourceLoaderWikiModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderWikiModule.php',
 	'RestbaseVirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/RestbaseVirtualRESTService.php',
