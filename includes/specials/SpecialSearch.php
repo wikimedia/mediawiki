@@ -1244,6 +1244,7 @@ class SpecialSearch extends SpecialPage {
 			'autofocus' => trim( $term ) === '',
 			'value' => $term,
 			'dataLocation' => 'content',
+			'infusable' => true,
 		] );
 
 		$layout = new OOUI\ActionFieldLayout( $searchWidget, new OOUI\ButtonInputWidget( [

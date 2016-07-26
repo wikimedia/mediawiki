@@ -32,7 +32,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	public function __construct( array $config = [] ) {
 		// Parent constructor
 		parent::__construct(
-			array_merge( [ 'infusable' => true, 'maxLength' => 255 ], $config )
+			array_merge( [ 'maxLength' => 255 ], $config )
 		);
 
 		// Properties, which are ignored in PHP and just shipped back to JS

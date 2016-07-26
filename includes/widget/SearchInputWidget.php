@@ -30,7 +30,6 @@ class SearchInputWidget extends TitleInputWidget {
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
-			'infusable' => true,
 			'maxLength' => null,
 			'type' => 'search',
 			'icon' => 'search',
