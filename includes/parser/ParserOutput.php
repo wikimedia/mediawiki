@@ -367,15 +367,6 @@ class ParserOutput extends CacheTime {
 		return $this->mModuleStyles;
 	}
 
-	/**
-	 * @deprecated since 1.26 Obsolete
-	 * @return array
-	 */
-	public function getModuleMessages() {
-		wfDeprecated( __METHOD__, '1.26' );
-		return [];
-	}
-
 	/** @since 1.23 */
 	public function getJsConfigVars() {
 		return $this->mJsConfigVars;
@@ -642,14 +633,6 @@ class ParserOutput extends CacheTime {
 
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
-	}
-
-	/**
-	 * @deprecated since 1.26 Use addModules() instead
-	 * @param string|array $modules
-	 */
-	public function addModuleMessages( $modules ) {
-		wfDeprecated( __METHOD__, '1.26' );
 	}
 
 	/**
