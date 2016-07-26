@@ -268,9 +268,9 @@ class SyncFileBackend extends Maintenance {
 			sleep( 10 ); // wait and retry copy again
 			$status = $dst->doQuickOperations( $ops, [ 'bypassReadOnly' => 1 ] );
 		}
-		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( $status->isOK() && $this->getOption( 'verbose' ) ) {
-			$this->output( "Synchronized these file(s) [{$ellapsed_ms}ms]:\n" .
+			$this->output( "Synchronized these file(s) [{$elapsed_ms}ms]:\n" .
 				implode( "\n", $dPaths ) . "\n" );
 		}
 
