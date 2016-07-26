@@ -1260,8 +1260,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		if ( !$this->isSignup() ) {
-			// FIXME HACK don't focus on non-empty field
-			// maybe there should be an autofocus-if similar to hide-if?
+			// Autofocus username field, unless it's prefilled, in which case autofocus password field
 			if (
 				isset( $formDescriptor['username'] )
 				&& empty( $formDescriptor['username']['default'] )
