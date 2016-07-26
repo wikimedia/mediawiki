@@ -840,7 +840,7 @@ class WikiImporter {
 				'text',
 				''
 			] ) ) &&
-			(int)( strlen( $revisionInfo['text'] ) / 1024 ) > $wgMaxArticleSize
+			strlen( $revisionInfo['text'] ) > $wgMaxArticleSize * 1024
 		) {
 			throw new MWException( 'The text of ' .
 				( isset( $revisionInfo['id'] ) ?
