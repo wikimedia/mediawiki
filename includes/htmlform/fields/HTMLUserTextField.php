@@ -45,6 +45,10 @@ class HTMLUserTextField extends HTMLTextField {
 		return new UserInputWidget( $params );
 	}
 
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
+
 	public function getInputHtml( $value ) {
 		// add the required module and css class for user suggestions in non-OOUI mode
 		$this->mParent->getOutput()->addModules( 'mediawiki.userSuggest' );

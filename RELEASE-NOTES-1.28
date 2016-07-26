@@ -93,6 +93,9 @@ changes to languages because of Phabricator reports.
 * Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
   disabled.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
+* OOjs UI PHP widgets constructed with the `'infusable' => true` config option
+  will no longer be automatically infused. You should call `OO.ui.infuse()`
+  on them yourself from your JavaScript code.
 
 == Compatibility ==
 
