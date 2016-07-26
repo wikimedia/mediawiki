@@ -85,6 +85,9 @@ changes to languages because of Phabricator reports.
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   respectively. See docs/hooks.txt for the specific changes needed for those hooks.
 * The 'ParserLimitReportFormat' hook was removed.
+* OOjs UI PHP widgets constructed with the `'infusable' => true` config option
+  will no longer be automatically infused. You should call `OO.ui.infuse()`
+  on them yourself from your JavaScript code.
 
 == Compatibility ==
 

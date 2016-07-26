@@ -65,4 +65,8 @@ class HTMLSelectField extends HTMLFormField {
 			'disabled' => $disabled,
 		] + $attribs );
 	}
+
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
 }
