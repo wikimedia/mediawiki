@@ -799,7 +799,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 		$config->set( 'ExtendedLoginCookieExpiration', null );
 
-		$this->assertSame( 100, $provider->getRememberUserDuration() );
+		$this->assertSame( null, $provider->getRememberUserDuration() );
 
 		$config->set( 'ExtendedLoginCookieExpiration', 0 );
 

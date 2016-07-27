@@ -400,8 +400,15 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function getRememberUserDuration() {
-		return min( $this->getLoginCookieExpiration( 'UserID', true ),
+		$rememberDuration = min( $this->getLoginCookieExpiration( 'UserID', true ),
 			$this->getLoginCookieExpiration( 'Token', true ) ) ?: null;
+
+		if ( $rememberDuration === $this->getLoginCookieExpiration( 'Token', false ) ) {
+			// remembering or not would not actually matter
+			return null;
+		}
+
+		return $rememberDuration;
 	}
 
 	/**
