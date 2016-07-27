@@ -586,7 +586,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->fakeTemplate = $fakeTemplate; // FIXME there should be a saner way to pass this to the hook
 		// this will call onAuthChangeFormFields()
 		$formDescriptor = static::fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
-		$this->postProcessFormDescriptor( $formDescriptor );
+		$this->postProcessFormDescriptor( $formDescriptor, $requests );
 
 		$context = $this->getContext();
 		if ( $context->getRequest() !== $this->getRequest() ) {
@@ -1249,7 +1249,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * @param array $formDescriptor
 	 */
-	protected function postProcessFormDescriptor( &$formDescriptor ) {
+	protected function postProcessFormDescriptor( &$formDescriptor, $requests ) {
 		// Pre-fill username (if not creating an account, T46775).
 		if (
 			isset( $formDescriptor['username'] ) &&
@@ -1267,7 +1267,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		// don't show a submit button if there is nothing to submit (i.e. the only form content
 		// is other submit buttons, for redirect flows)
-		if ( !$this->needsSubmitButton( $formDescriptor ) ) {
+		if ( !$this->needsSubmitButton( $requests ) ) {
 			unset( $formDescriptor['createaccount'], $formDescriptor['loginattempt'] );
 		}
 
