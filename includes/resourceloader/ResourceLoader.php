@@ -1388,13 +1388,14 @@ MESSAGE;
 	 * the given value.
 	 *
 	 * @param array $configuration List of configuration values keyed by variable name
+	 * @param bool $pretty Pretty-print with extra whitespace
 	 * @return string
 	 */
-	public static function makeConfigSetScript( array $configuration ) {
+	public static function makeConfigSetScript( array $configuration, $pretty = null ) {
 		return Xml::encodeJsCall(
 			'mw.config.set',
 			[ $configuration ],
-			true // readable
+			( $pretty === null ) ? ResourceLoader::inDebugMode() : $pretty
 		);
 	}
 
