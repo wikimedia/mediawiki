@@ -2064,7 +2064,9 @@ class AuthManager implements LoggerAwareInterface {
 		// AuthManager has its own req for some actions
 		switch ( $providerAction ) {
 			case self::ACTION_LOGIN:
-				$reqs[] = new RememberMeAuthenticationRequest;
+				if ( (int)$this->config->get( 'ExtendedLoginCookieExpiration' ) > 0 ) {
+					$reqs[] = new RememberMeAuthenticationRequest;
+				}
 				break;
 
 			case self::ACTION_CREATE:
