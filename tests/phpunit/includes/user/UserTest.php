@@ -451,4 +451,37 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
 	}
+
+	/**
+	 * @covers User::findUsersByGroup
+	 */
+	public function testFindUsersByGroup() {
+		$users = User::findUsersByGroup( [] );
+		$this->assertEquals( 0, iterator_count( $users ) );
+
+		$users = User::findUsersByGroup( 'foo' );
+		$this->assertEquals( 0, iterator_count( $users ) );
+
+		$user = $this->getMutableTestUser( [ 'foo' ] )->getUser();
+		$users = User::findUsersByGroup( 'foo' );
+		$this->assertEquals( 1, iterator_count( $users ) );
+		$users->rewind();
+		$this->assertTrue( $user->equals( $users->current() ) );
+
+		// arguments have OR relationship
+		$user2 = $this->getMutableTestUser( [ 'bar' ] )->getUser();
+		$users = User::findUsersByGroup( [ 'foo', 'bar' ] );
+		$this->assertEquals( 2, iterator_count( $users ) );
+		$users->rewind();
+		$this->assertTrue( $user->equals( $users->current() ) );
+		$users->next();
+		$this->assertTrue( $user2->equals( $users->current() ) );
+
+		// users are not duplicated
+		$user = $this->getMutableTestUser( [ 'baz', 'boom' ] )->getUser();
+		$users = User::findUsersByGroup( [ 'baz', 'boom' ] );
+		$this->assertEquals( 1, iterator_count( $users ) );
+		$users->rewind();
+		$this->assertTrue( $user->equals( $users->current() ) );
+	}
 }
