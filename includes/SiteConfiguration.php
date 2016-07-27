@@ -108,6 +108,11 @@
  * extract( $globals );
  * @endcode
  *
+ * @note For WikiMap to function, the configuration must define string values for
+ *  $wgServer (or $wgCanonicalServer) and $wgArticlePath, even if these are the
+ *  same for all wikis or can be correctly determined by the logic in
+ *  Setup.php.
+ *
  * @todo Give examples for,
  * suffixes:
  * $conf->suffixes = array( 'wiki' );
