@@ -53,6 +53,9 @@ production.
   the value of $wgMaxArticleSize.
 * Property 'modulemessages' from action=parse&prop=modules was removed
   (deprecated since 1.26).
+* The following response properties from action=login, deprecated in 1.27, are
+  now removed: lgtoken, cookieprefix, sessionid. Clients should handle cookies
+  to properly manage session state.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
