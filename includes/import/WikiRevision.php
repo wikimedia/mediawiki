@@ -574,7 +574,7 @@ class WikiRevision {
 		if ( !$this->getTitle() ) {
 			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
 				$this->timestamp . "\n" );
-			return;
+			return false;
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
@@ -594,7 +594,7 @@ class WikiRevision {
 			wfDebug( __METHOD__
 				. ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp "
 				. $this->timestamp . "\n" );
-			return;
+			return false;
 		}
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 		$data = [
@@ -610,6 +610,8 @@ class WikiRevision {
 			'log_params' => $this->params
 		];
 		$dbw->insert( 'logging', $data, __METHOD__ );
+
+		return true;
 	}
 
 	/**

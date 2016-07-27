@@ -2388,14 +2388,19 @@ abstract class DatabaseBase implements IDatabase {
 	 * queries. If a deadlock occurs during the processing, the transaction
 	 * will be rolled back and the callback function will be called again.
 	 *
+	 * Avoid using this method outside of Job or Maintenance classes.
+	 *
 	 * Usage:
 	 *   $dbw->deadlockLoop( callback, ... );
 	 *
 	 * Extra arguments are passed through to the specified callback function.
+	 * This method requires that no transactions are already active to avoid
+	 * causing premature commits or exceptions.
 	 *
 	 * Returns whatever the callback function returned on its successful,
 	 * iteration, or false on error, for example if the retry limit was
 	 * reached.
+	 *
 	 * @return mixed
 	 * @throws DBUnexpectedError
 	 * @throws Exception

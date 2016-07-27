@@ -332,8 +332,7 @@ class WikiImporter {
 		}
 
 		try {
-			$dbw = wfGetDB( DB_MASTER );
-			return $dbw->deadlockLoop( [ $revision, 'importOldRevision' ] );
+			return $revision->importOldRevision();
 		} catch ( MWContentSerializationException $ex ) {
 			$this->notice( 'import-error-unserialize',
 				$revision->getTitle()->getPrefixedText(),
@@ -351,8 +350,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importLogItem( $revision ) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( [ $revision, 'importLogItem' ] );
+		return $revision->importLogItem();
 	}
 
 	/**
@@ -361,8 +359,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
+		return $revision->importUpload();
 	}
 
 	/**
