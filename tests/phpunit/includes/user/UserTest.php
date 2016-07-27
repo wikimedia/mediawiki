@@ -451,4 +451,18 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
 	}
+
+	/**
+	 * @covers User::findUsersByGroup
+	 */
+	public function testFindUsersByGroup() {
+		$users = User::findUsersByGroup( 'foo' );
+		$this->assertEquals( 0, iterator_count( $users ) );
+
+		$user = $this->getMutableTestUser( [ 'foo' ] )->getUser();
+		$users = User::findUsersByGroup( 'foo' );
+		$this->assertEquals( 1, iterator_count( $users ) );
+		$users->rewind();
+		$this->assertTrue( $user->equals( $users->current() ) );
+	}
 }

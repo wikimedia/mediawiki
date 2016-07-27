@@ -912,6 +912,45 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Return the users who are members of the given group(s). In case of multiple groups,
+	 * users who are members of at least one of them are returned.
+	 *
+	 * @param string|array $groups A single group name or an array of group names
+	 * @param int $limit Max number of users to return
+	 * @param string $after Username of the user to start after
+	 * @return User[]|UserArrayFromResult
+	 */
+	public static function findUsersByGroup( $groups, $limit = null, $after = null ) {
+		/** @var DatabaseBase $dbr */
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$groups = array_unique( (array)$groups );
+
+		$conds = [ 'ug_group' => $groups ];
+		if ( $after !== null ) {
+			$conds[] = 'user_name > ' . $dbr->addQuotes( $after );
+		}
+
+		$options = [
+			'GROUP BY' => User::selectFields(),
+			'ORDER BY' => 'user_name',
+		];
+		if ( $limit !== null ) {
+			$options['LIMIT'] = $limit;
+		}
+
+		$res = $dbr->select(
+			[ 'user', 'user_groups' ],
+			User::selectFields(),
+			$conds,
+			__METHOD__,
+			$options,
+			[ 'user_groups' => [ 'LEFT JOIN', 'user_id = ug_user' ] ]
+		);
+		return UserArray::newFromResult( $res );
+	}
+
+	/**
 	 * Usernames which fail to pass this function will be blocked
 	 * from new account registrations, but may be used internally
 	 * either by batch processes or by user accounts which have
