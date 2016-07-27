@@ -536,7 +536,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		$form->setAction( $this->getFullTitle()->getFullURL( $this->getPreservedParams() ) );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		$form->addHiddenField( 'authAction', $this->authAction );
-		$form->suppressDefaultSubmit( !$this->needsSubmitButton( $formDescriptor ) );
+		$form->suppressDefaultSubmit( !$this->needsSubmitButton( $requests ) );
 
 		return $form;
 	}
@@ -554,24 +554,38 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns true if the form has fields which take values. If all available providers use the
-	 * redirect flow, the form might contain nothing but submit buttons, in which case we should
-	 * not add an extra submit button which does nothing.
+	 * Returns true if the form built from the given AuthenticationRequests has fields which take
+	 * values. If all available providers use the redirect flow, the form might contain nothing
+	 * but submit buttons, in which case we should not add an extra submit button which does nothing.
 	 *
-	 * @param array $formDescriptor A HTMLForm descriptor
+	 * @param AuthenticationRequest[] $requests An array of AuthenticationRequests from which the
+	 *  form will be built
 	 * @return bool
 	 */
-	protected function needsSubmitButton( $formDescriptor ) {
-		return (bool)array_filter( $formDescriptor, function ( $item ) {
-			$class = false;
-			if ( array_key_exists( 'class', $item ) ) {
-				$class = $item['class'];
-			} elseif ( array_key_exists( 'type', $item ) ) {
-				$class = HTMLForm::$typeMappings[$item['type']];
+	protected function needsSubmitButton( array $requests ) {
+		foreach ( $requests as $req ) {
+			if ( $req->required === AuthenticationRequest::PRIMARY_REQUIRED &&
+				$this->doesClassNeedsSubmitButton( $req )
+			) {
+				return true;
 			}
-			return !is_a( $class, \HTMLInfoField::class, true ) &&
-				!is_a( $class, \HTMLSubmitField::class, true );
-		} );
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the given AuthenticationRequest needs a submit button or not.
+	 *
+	 * @param AuthenticationRequest $req The request to check
+	 * @return bool
+	 */
+	protected function doesClassNeedsSubmitButton( AuthenticationRequest $req ) {
+		foreach ( $req->getFieldInfo() as $field => $info ) {
+			if ( $info['type'] === 'submit' ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
