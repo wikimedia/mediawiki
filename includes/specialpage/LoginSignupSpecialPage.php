@@ -1275,6 +1275,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$this->addTabIndex( $formDescriptor );
 	}
+
+	protected function doesClassNeedsSubmitButton( $class ) {
+		// the rememberMe button doesn't need a submit button, too, like any other checkbox
+		return parent::doesClassNeedsSubmitButton( $class ) &&
+			!is_a( $class, \HTMLCheckField::class, true );
+	}
 }
 
 /**
