@@ -39,7 +39,8 @@ production.
 * (T141604) Extensions can now provide a better error message when their
   maintenance scripts are run without the extension being installed.
 * (T8948) Numeric sorting in categories is now supported by setting $wgCategoryCollation
-  to uca-default-u-kn or uca-<langcode>-u-kn. If migrating from another
+  to 'uca-default-u-kn' or 'uca-<langcode>-u-kn'. If you can't use UCA collations,
+  a 'numeric' collation is also available. If migrating from another
   collation, you will need to run the updateCollation.php maintenance script.
 
 === External library changes in 1.28 ===
