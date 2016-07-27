@@ -105,42 +105,18 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		if ( $this->allowedParams !== null ) {
 			return $this->allowedParams;
 		}
-		$this->allowedParams = [
-			'search' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
-			],
-			'namespace' => [
-				ApiBase::PARAM_DFLT => NS_MAIN,
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_ISMULTI => true,
-			],
-			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				// Non-standard value for compatibility with action=opensearch
-				ApiBase::PARAM_MAX => 100,
-				ApiBase::PARAM_MAX2 => 200,
-			],
-			'offset' => [
-				ApiBase::PARAM_DFLT => 0,
-				ApiBase::PARAM_TYPE => 'integer',
-			],
-		];
-		$profileParam = $this->buildProfileApiParam( SearchEngine::COMPLETION_PROFILE_TYPE,
-			'apihelp-query+prefixsearch-param-profile' );
-		if ( $profileParam ) {
-			$this->allowedParams['profile'] = $profileParam;
-		}
+		$this->allowedParams = $this->buildCommonApiParams();
+
 		return $this->allowedParams;
 	}
 
 	public function getSearchProfileParams() {
-		if ( isset( $this->getAllowedParams()['profile'] ) ) {
-			return [ SearchEngine::COMPLETION_PROFILE_TYPE => 'profile' ];
-		}
-		return [];
+		return [
+			'profile' => [
+				'profile-type' => SearchEngine::COMPLETION_PROFILE_TYPE,
+				'help-message' => 'apihelp-query+prefixsearch-param-profile',
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
