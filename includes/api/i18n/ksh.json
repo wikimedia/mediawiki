@@ -422,6 +422,7 @@
 	"apihelp-query+allrevisions-param-generatetitles": "Wann als ene  Jenerahtor enjesaz, brängk dat Övverschreffte un kein Kännonge vun Väsjohne.",
 	"apihelp-query+allrevisions-example-user": "Donn de läzde fuffzisch Beijdrähsch vum Metmaacher „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Example</kbd>“ opleßte.",
 	"apihelp-query+allrevisions-example-ns-main": "Donn de eezde fuffzisch Väsjohne em Houp-Appachemang opleßte.",
+	"apihelp-query+mystashedfiles-description": "Holl en Leß vun dem aktoälle Metmaacher singe upload stash.",
 	"apihelp-query+mystashedfiles-param-prop": "Wat för en Aanjahbe holle för di Datteije.",
 	"apihelp-query+mystashedfiles-param-limit": "Wi vill Datteije holle?",
 	"apihelp-query+alltransclusions-param-from": "De Övverschreff vun dä ennjeföhschte Sigg, woh de Leß medd aanfange sull.",

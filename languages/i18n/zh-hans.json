@@ -90,7 +90,8 @@
 			"Apflu",
 			"飞舞回堂前",
 			"Cosine02",
-			"Arthur2e5"
+			"Arthur2e5",
+			"Myy730"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -554,7 +555,7 @@
 	"password-login-forbidden": "这个用户名称及密码的使用是被禁止的。",
 	"mailmypassword": "重置密码",
 	"passwordremindertitle": "{{SITENAME}}的新临时密码",
-	"passwordremindertext": "有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。用户“$2”的一个新临时密码现在已被设置好为“$3”。如果这个动作是您所指示的，您便需要立即登录并选择一个新的密码。您的临时密码会于{{PLURAL:$5|一天|$5天}}内过期。\n\n如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。",
+	"passwordremindertext": "有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。用户“$2”的临时密码现在已被设置为“$3”。如果这个动作是您所指示的，您便需要立即登录并设置一个新的密码。您的临时密码会于{{PLURAL:$5|一天|$5天}}内过期。\n\n如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。",
 	"noemail": "用户\"$1\"没有登记电子邮件地址。",
 	"noemailcreate": "您需要提供一个有效的电子邮件地址",
 	"passwordsent": "用户\"$1\"的新密码已经寄往所登记的电子邮件地址。\n请在收到后再登录。",
@@ -3272,7 +3273,7 @@
 	"version-license-not-found": "未找到此扩展相关的详细授权信息。",
 	"version-credits-title": "$1贡献者名单",
 	"version-credits-not-found": "未找到此扩展相关的详细制作人信息。",
-	"version-poweredby-credits": "本Wiki由'''[https://www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
+	"version-poweredby-credits": "本Wiki由<strong>[https://www.mediawiki.org/ MediaWiki]</strong>驱动，版权所有 © 2001-$1 $2。",
 	"version-poweredby-others": "其他",
 	"version-poweredby-translators": "translatewiki.net上的翻译者",
 	"version-credits-summary": "我们感谢下列人士为[[Special:Version|MediaWiki]]作出的贡献。",
