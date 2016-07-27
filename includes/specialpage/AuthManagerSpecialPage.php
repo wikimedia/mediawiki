@@ -562,16 +562,25 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	protected function needsSubmitButton( $formDescriptor ) {
-		return (bool)array_filter( $formDescriptor, function ( $item ) {
-			$class = false;
-			if ( array_key_exists( 'class', $item ) ) {
-				$class = $item['class'];
-			} elseif ( array_key_exists( 'type', $item ) ) {
-				$class = HTMLForm::$typeMappings[$item['type']];
-			}
-			return !is_a( $class, \HTMLInfoField::class, true ) &&
-				!is_a( $class, \HTMLSubmitField::class, true );
-		} );
+		return (bool)array_filter( $formDescriptor, [ $this, 'doesClassNeedsSubmitButton' ] );
+	}
+
+	/**
+	 * Checks if the given class name needs a submit button or not.
+	 *
+	 * @param array $item The item to check
+	 * @return bool
+	 */
+	protected function doesClassNeedsSubmitButton( $item ) {
+		$class = false;
+		if ( array_key_exists( 'class', $item ) ) {
+			$class = $item['class'];
+		} elseif ( array_key_exists( 'type', $item ) ) {
+			$class = HTMLForm::$typeMappings[$item['type']];
+		}
+
+		return !is_a( $class, \HTMLInfoField::class, true ) &&
+			!is_a( $class, \HTMLSubmitField::class, true );
 	}
 
 	/**

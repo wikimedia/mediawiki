@@ -1275,6 +1275,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$this->addTabIndex( $formDescriptor );
 	}
+
+	protected function doesClassNeedsSubmitButton( $item ) {
+		// the rememberMe button doesn't need a submit button, too, like any other checkbox
+		return parent::doesClassNeedsSubmitButton( $item ) &&
+			isset( $item['name'] ) && $item['name'] !== 'wpRemember';
+	}
 }
 
 /**
