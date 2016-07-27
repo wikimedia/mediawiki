@@ -975,6 +975,7 @@ $wgAutoloadLocalClasses = [
 	'NullLockManager' => __DIR__ . '/includes/filebackend/lockmanager/LockManager.php',
 	'NullRepo' => __DIR__ . '/includes/filerepo/NullRepo.php',
 	'NullStatsdDataFactory' => __DIR__ . '/includes/libs/stats/NullStatsdDataFactory.php',
+	'NumericUppercaseCollation' => __DIR__ . '/includes/collation/NumericUppercaseCollation.php',
 	'OOUIHTMLForm' => __DIR__ . '/includes/htmlform/OOUIHTMLForm.php',
 	'ORAField' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'ORAResult' => __DIR__ . '/includes/db/DatabaseOracle.php',
