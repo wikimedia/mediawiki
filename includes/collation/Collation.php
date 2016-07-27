@@ -49,6 +49,8 @@ abstract class Collation {
 		switch ( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
+			case 'numeric':
+				return new NumericUppercaseCollation;
 			case 'identity':
 				return new IdentityCollation;
 			case 'uca-default':
