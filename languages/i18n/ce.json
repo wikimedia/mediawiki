@@ -393,6 +393,7 @@
 	"password-change-forbidden": "Хьан йиш яц хӀокху вики чохь пароль хийца.",
 	"externaldberror": "Арахьара хаамийн базан гӀоьнца аутентификаци ечу хенахь гӀалат даьлла я хьа дӀаяздаран хийцам бан бакъонаш яц.",
 	"login": "Системин довзийтар",
+	"login-security": "Хьой хилар бакъде",
 	"nav-login-createaccount": "Довзийтар / дӀаяздар кхоллар",
 	"userlogin": "Довзийтар я декъашхочун дӀаяздар кхоллар",
 	"userloginnocreate": "Довзийта",
@@ -410,6 +411,7 @@
 	"userlogin-resetpassword-link": "Пароль кхоссар?",
 	"userlogin-helplink2": "Системин чудахаран гӀодар",
 	"userlogin-loggedin": "Хьо {{GENDER:$1|$1}} цӀарца чохь ву/ю.\nЛахара форманца кхин цӀарца чугӀо.",
+	"userlogin-reauth": "{{GENDER:$1|$1}} хьой хилар бакъдан системин чугӀо.",
 	"userlogin-createanother": "Кхолла декъашхочун кхин дӀаяздар",
 	"createacct-emailrequired": "Электронан поштан адрес",
 	"createacct-emailoptional": "Электронан поштан адрес (ца яздича мега)",
@@ -2926,5 +2928,7 @@
 	"special-characters-title-minus": "хьаьрк минус",
 	"mw-widgets-titleinput-description-redirect": "ДӀасхьажорг $1 тӀе",
 	"sessionprovider-generic": "$1 сесси",
-	"randomrootpage": "Цахууш нисъелла ораман агӀо"
+	"randomrootpage": "Цахууш нисъелла ораман агӀо",
+	"changecredentials": "Декъашхочун дӀаяздаран хийцам",
+	"removecredentials": "ДӀадаха декъашхойн дӀаяздарш"
 }
