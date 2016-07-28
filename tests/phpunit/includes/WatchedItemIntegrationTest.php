@@ -19,7 +19,6 @@ class WatchedItemIntegrationTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'WatchedItem::addWatch' );
 		$this->hideDeprecated( 'WatchedItem::removeWatch' );
 		$this->hideDeprecated( 'WatchedItem::isWatched' );
-		$this->hideDeprecated( 'WatchedItem::resetNotificationTimestamp' );
 		$this->hideDeprecated( 'WatchedItem::duplicateEntries' );
 		$this->hideDeprecated( 'WatchedItem::batchAddWatch' );
 	}
