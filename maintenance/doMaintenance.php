@@ -99,6 +99,9 @@ require_once "$IP/includes/Setup.php";
 // Initialize main config instance
 $maintenance->setConfig( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 
+// Sanity-check required extensions are installed
+$maintenance->checkRequiredExtensions();
+
 // Do the work
 $maintenance->execute();
 

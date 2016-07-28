@@ -124,6 +124,12 @@ abstract class Maintenance {
 	private $config;
 
 	/**
+	 * @see Maintenance::requireExtension
+	 * @var array
+	 */
+	private $requiredExtensions = [];
+
+	/**
 	 * Used to read the options in the order they were passed.
 	 * Useful for option chaining (Ex. dumpBackup.php). It will
 	 * be an empty array if the options are passed in through
@@ -504,6 +510,42 @@ abstract class Maintenance {
 	 */
 	public function setConfig( Config $config ) {
 		$this->config = $config;
+	}
+
+	/**
+	 * Indicate that the specified extension must be
+	 * loaded before the script can run.
+	 *
+	 * This *must* be called in the constructor.
+	 *
+	 * @since 1.28
+	 * @param string $name
+	 */
+	protected function requireExtension( $name ) {
+		$this->requiredExtensions[] = $name;
+	}
+
+	/**
+	 * Verify that the required extensions are installed
+	 *
+	 * @since 1.28
+	 */
+	public function checkRequiredExtensions() {
+		$registry = ExtensionRegistry::getInstance();
+		$missing = [];
+		foreach ( $this->requiredExtensions as $name ) {
+			if ( !$registry->isLoaded( $name ) ) {
+				$missing[] = $name;
+			}
+		}
+
+		if ( $missing ) {
+			$joined = implode( ', ', $missing );
+			$msg = "The following extensions are required to be installed "
+				. "for this script to run: $joined. Please enable them and then try again.";
+			$this->error( $msg, 1 );
+		}
+
 	}
 
 	/**
