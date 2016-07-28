@@ -3350,9 +3350,9 @@ function wfCountDown( $seconds ) {
 }
 
 /**
- * Replace all invalid characters with -
- * Additional characters can be defined in $wgIllegalFileChars (see bug 20489)
- * By default, $wgIllegalFileChars = ':'
+ * Replace all invalid characters with '-'.
+ * Additional characters can be defined in $wgIllegalFileChars (see T22489).
+ * By default, $wgIllegalFileChars includes ':', '/', '\'.
  *
  * @param string $name Filename to process
  * @return string
@@ -3360,12 +3360,13 @@ function wfCountDown( $seconds ) {
 function wfStripIllegalFilenameChars( $name ) {
 	global $wgIllegalFileChars;
 	$illegalFileChars = $wgIllegalFileChars ? "|[" . $wgIllegalFileChars . "]" : '';
-	$name = wfBaseName( $name );
 	$name = preg_replace(
 		"/[^" . Title::legalChars() . "]" . $illegalFileChars . "/",
 		'-',
 		$name
 	);
+	// $wgIllegalFileChars may not include '/' and '\', so we still need to do this
+	$name = wfBaseName( $name );
 	return $name;
 }
 

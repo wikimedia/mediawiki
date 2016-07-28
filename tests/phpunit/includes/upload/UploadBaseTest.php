@@ -52,7 +52,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 			[ 'ValidTitle.jpg', 'ValidTitle.jpg', UploadBase::OK,
 				'upload valid title' ],
 			/* A title with a slash */
-			[ 'A/B.jpg', 'B.jpg', UploadBase::OK,
+			[ 'A/B.jpg', 'A-B.jpg', UploadBase::OK,
 				'upload title with slash' ],
 			/* A title with illegal char */
 			[ 'A:B.jpg', 'A-B.jpg', UploadBase::OK,
