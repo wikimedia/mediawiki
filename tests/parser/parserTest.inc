@@ -75,6 +75,11 @@ class ParserTest {
 	 */
 	private $tidySupport;
 
+	/**
+	 * @var ITestRecorder
+	 */
+	private $recorder;
+
 	private $maxFuzzTestLength = 300;
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
