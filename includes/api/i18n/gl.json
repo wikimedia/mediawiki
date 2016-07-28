@@ -73,6 +73,7 @@
 	"apihelp-createaccount-example-pass": "Crear usuario <kbd>testuser</kbd> con contrasinal <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Crear usuario <kbd>testmailuser</kbd>\"testmailuser\" e enviar por correo electrónico un contrasinal xenerado de forma aleatoria.",
 	"apihelp-cspreport-description": "Usado polos navegadores para informar de violacións da política de confidencialidade de contido. Este módulo non debe se usado nunca, excepto cando é usado automaticamente por un navegador web compatible con CSP.",
+	"apihelp-cspreport-param-reportonly": "Marcar un informe dunha política de vixiancia e non unha política esixida",
 	"apihelp-cspreport-param-source": "Que xerou a cabeceira CSP que lanzou este informe",
 	"apihelp-delete-description": "Borrar a páxina.",
 	"apihelp-delete-param-title": "Título da páxina a eliminar. Non pode usarse xunto con <var>$1pageid</var>.",

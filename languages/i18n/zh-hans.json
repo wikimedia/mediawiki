@@ -91,7 +91,8 @@
 			"飞舞回堂前",
 			"Cosine02",
 			"Arthur2e5",
-			"Myy730"
+			"Myy730",
+			"SolidBlock"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1048,7 +1049,7 @@
 	"searchdisabled": "{{SITENAME}}的搜索已被禁用。您可以暂时使用搜索引擎进行搜索，须注意他们索引的{{SITENAME}}内容可能不是最新的。",
 	"search-error": "搜索时发生错误：$1",
 	"preferences": "设置",
-	"mypreferences": "设置",
+	"mypreferences": "参数设置",
 	"prefs-edits": "编辑数：",
 	"prefsnologintext2": "请登录以更改您的用户设置。",
 	"prefs-skin": "皮肤",
