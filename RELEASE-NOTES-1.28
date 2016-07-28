@@ -36,6 +36,8 @@ production.
 * Added a new hook, 'UploadVerifyUpload', which can be used to reject a file
   upload. Unlike 'UploadVerifyFile' it provides information about upload comment
   and the file description page, but does not run for uploads to stash.
+* (T141604) Extensions can now provide a better error message when their
+  maintenance scripts are run without the extension being installed.
 
 === External library changes in 1.28 ===
 
