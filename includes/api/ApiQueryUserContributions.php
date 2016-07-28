@@ -337,7 +337,9 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 		}
 
-		$this->addOption( 'USE INDEX', $index );
+		if ( isset( $index ) ) {
+			$this->addOption( 'USE INDEX', $index );
+		}
 	}
 
 	/**
