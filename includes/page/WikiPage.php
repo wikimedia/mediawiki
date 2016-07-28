@@ -2050,7 +2050,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->mPreparedEdit
-			&& $this->mPreparedEdit->newContent
+			&& isset( $this->mPreparedEdit->newContent )
 			&& $this->mPreparedEdit->newContent->equals( $content )
 			&& $this->mPreparedEdit->revid == $revid
 			&& $this->mPreparedEdit->format == $serialFormat
