@@ -294,7 +294,7 @@ class ApiOpenSearch extends ApiBase {
 
 	public function getSearchProfileParams() {
 		return [
-			'qiprofile' => [
+			'profile' => [
 				'profile-type' => SearchEngine::COMPLETION_PROFILE_TYPE,
 				'help-message' => 'apihelp-query+prefixsearch-param-profile'
 			],

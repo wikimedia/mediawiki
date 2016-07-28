@@ -30,8 +30,8 @@ class ApiOpenSearchTest extends MediaWikiTestCase {
 		$params = $api->getAllowedParams();
 
 		$this->assertArrayNotHasKey( 'offset', $params );
-		$this->assertArrayHasKey( 'qiprofile', $params, print_r( $params, true ) );
-		$this->assertEquals( 'normal', $params['qiprofile'][ApiBase::PARAM_DFLT] );
+		$this->assertArrayHasKey( 'profile', $params, print_r( $params, true ) );
+		$this->assertEquals( 'normal', $params['profile'][ApiBase::PARAM_DFLT] );
 	}
 
 	private function replaceSearchEngineConfig() {
