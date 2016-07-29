@@ -873,7 +873,7 @@
 	"last": "之前",
 	"page_first": "首页",
 	"page_last": "末页",
-	"histlegend": "差异选择：选中要对比的版本的单选按钮，按Enter键或下方的按钮。<br />\n说明：<strong>（{{int:cur}}）</strong>=与最后版本之间的差异，<strong>（{{int:last}}）</strong>=与上一版本之间的差异，<strong>{{int:minoreditletter}}</strong>=小编辑。",
+	"histlegend": "差异选择：选中要对比的版本的单选按钮，按Enter键或下方的按钮。<br />说明：<strong>（{{int:cur}}）</strong>=与最后版本之间的差异，<strong>（{{int:last}}）</strong>=与上一版本之间的差异，<strong>{{int:minoreditletter}}</strong>=小编辑。",
 	"history-fieldset-title": "浏览历史",
 	"history-show-deleted": "仅显示已删除的版本",
 	"histfirst": "最旧",
