@@ -42,6 +42,7 @@
 	"apihelp-feedcontributions-param-year": "A partir de l’annada (e mai recent) :",
 	"apihelp-feedcontributions-param-month": "A partir del mes (e mai recent) :",
 	"apihelp-feedrecentchanges-param-feedformat": "Lo format del flux.",
+	"apihelp-feedrecentchanges-param-hideminor": "Amagar las modificacions menoras.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar per balisa.",
 	"apihelp-filerevert-param-comment": "Telecargar lo comentari.",
 	"apihelp-filerevert-param-archivename": "Nom d’archiu de la revision de restablir.",
