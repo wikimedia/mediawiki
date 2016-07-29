@@ -50,18 +50,24 @@ class MediaHandlerFactory {
 	];
 
 	/**
+	 * @var array
+	 */
+	private $registry;
+
+	/**
 	 * Instance cache of MediaHandler objects by mimetype
 	 *
 	 * @var MediaHandler[]
 	 */
 	private $handlers;
 
-	protected function getHandlerClass( $type ) {
-		global $wgMediaHandlers;
+	public function __construct( array $registry ) {
+		$this->registry = $registry + self::$coreHandlers;
+	}
 
-		$registry = $wgMediaHandlers + self::$coreHandlers;
-		if ( isset( $registry[$type] ) ) {
-			return $registry[$type];
+	protected function getHandlerClass( $type ) {
+		if ( isset( $this->registry[$type] ) ) {
+			return $this->registry[$type];
 		} else {
 			return false;
 		}
