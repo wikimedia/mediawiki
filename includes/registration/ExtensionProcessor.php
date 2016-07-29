@@ -243,7 +243,10 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['namespaces'] as $ns ) {
 				$id = $ns['id'];
 				$this->defines[$ns['constant']] = $id;
-				$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
+				if ( !( isset( $ns['conditional'] ) && $ns['conditional'] ) ) {
+					// If it is not conditional, register it
+					$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
+				}
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
 				}
