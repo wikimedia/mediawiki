@@ -159,7 +159,9 @@ return [
 	},
 
 	'MediaHandlerFactory' => function( MediaWikiServices $services ) {
-		return new MediaHandlerFactory();
+		return new MediaHandlerFactory(
+			$services->getMainConfig()->get( 'MediaHandlers' )
+		);
 	},
 
 	'LinkCache' => function( MediaWikiServices $services ) {
