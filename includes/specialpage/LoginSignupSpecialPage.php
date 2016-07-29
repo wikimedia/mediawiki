@@ -1008,7 +1008,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'size' => '20',
 					'placeholder-message' => 'createacct-reason-ph',
 				],
-				'extrainput' => [], // placeholder for fields coming from the template
+				'extraInput' => [], // placeholder for fields coming from the template
 				'createaccount' => [
 					// submit button
 					'type' => 'submit',
@@ -1031,7 +1031,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'placeholder-message' => 'userlogin-yourpassword-ph',
 				],
 				'domain' => [],
-				'extrainput' => [],
+				'extraInput' => [],
 				'rememberMe' => [
 					// option for saving the user token to a cookie
 					'type' => 'check',
@@ -1207,7 +1207,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// poor man's associative array_splice
-		$extraInputPos = array_search( 'extrainput', array_keys( $fieldDefinitions ), true );
+		$extraInputPos = array_search( 'extraInput', array_keys( $fieldDefinitions ), true );
 		$fieldDefinitions = array_slice( $fieldDefinitions, 0, $extraInputPos, true )
 							+ $template->getExtraInputDefinitions()
 							+ array_slice( $fieldDefinitions, $extraInputPos + 1, null, true );
@@ -1387,7 +1387,7 @@ class FakeAuthTemplate extends BaseTemplate {
 	 */
 	public function addInputItem( $name, $value, $type, $msg, $helptext = false ) {
 		// use the same indexes as UserCreateForm just in case someone adds an item manually
-		$this->data['extrainput'][] = [
+		$this->data['extraInput'][] = [
 			'name' => $name,
 			'value' => $value,
 			'type' => $type,
@@ -1403,7 +1403,7 @@ class FakeAuthTemplate extends BaseTemplate {
 	public function getExtraInputDefinitions() {
 		$definitions = [];
 
-		foreach ( $this->get( 'extrainput', [] ) as $field ) {
+		foreach ( $this->get( 'extraInput', [] ) as $field ) {
 			$definition = [
 				'type' => $field['type'] === 'checkbox' ? 'check' : $field['type'],
 				'name' => $field['name'],
