@@ -1630,7 +1630,7 @@ abstract class Installer {
 			);
 		} catch ( Exception $e ) {
 			// using raw, because $wgShowExceptionDetails can not be set yet
-			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
+			$status->warning( 'config-install-mainpage-failed', $e->getMessage() );
 		}
 
 		return $status;
