@@ -386,7 +386,7 @@ class SpecialSearch extends SpecialPage {
 		if ( $textMatches && !$textStatus ) {
 			// output appropriate heading
 			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
-				$out->addHTML( '<div class="visualClear"></div>' );
+				$out->addHTML( '<div class="mw-search-visualclear"></div>' );
 				// if no title matches the heading is redundant
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			}
@@ -435,7 +435,7 @@ class SpecialSearch extends SpecialPage {
 			$textMatches->free();
 		}
 
-		$out->addHTML( '<div class="visualClear"></div>' );
+		$out->addHTML( '<div class="mw-search-visualclear"></div>' );
 
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
@@ -456,7 +456,7 @@ class SpecialSearch extends SpecialPage {
 	protected function interwikiHeader( $interwiki, $interwikiResult ) {
 		// TODO: we need to figure out how to name wikis correctly
 		$wikiMsg = $this->msg( 'search-interwiki-results-' . $interwiki )->parse();
-		return "<p class=\"mw-search-interwiki-header\">\n$wikiMsg</p>";
+		return "<p class=\"mw-search-interwiki-header mw-search-visualclear\">\n$wikiMsg</p>";
 	}
 
 	/**
@@ -1166,7 +1166,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function searchProfileTabs( $term ) {
-		$out = Html::element( 'div', [ 'class' => 'visualClear' ] ) .
+		$out = Html::element( 'div', [ 'class' => 'mw-search-visualclear' ] ) .
 			Xml::openElement( 'div', [ 'class' => 'mw-search-profile-tabs' ] );
 
 		$bareterm = $term;
