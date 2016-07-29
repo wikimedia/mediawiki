@@ -594,7 +594,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$ret['description'] = $ext['description'];
 				}
 				if ( isset( $ext['descriptionmsg'] ) ) {
-					// Can be a string or array( key, param1, param2, ... )
+					// Can be a string or [ key, param1, param2, ... ]
 					if ( is_array( $ext['descriptionmsg'] ) ) {
 						$ret['descriptionmsg'] = $ext['descriptionmsg'][0];
 						$ret['descriptionmsgparams'] = array_slice( $ext['descriptionmsg'], 1 );

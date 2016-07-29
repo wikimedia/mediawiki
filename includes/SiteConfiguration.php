@@ -36,15 +36,15 @@
  *
  * @code
  * $conf = new SiteConfiguration;
- * $conf->wikis = array( 'de', 'en', 'beta' );
+ * $conf->wikis = [ 'de', 'en', 'beta' ];
  * @endcode
  *
  * When configuring the MediaWiki global settings (the $wg variables),
  * the identifiers will be available to specify settings on a per wiki basis.
  *
  * @code
- * $conf->settings = array(
- *	'wgSomeSetting' => array(
+ * $conf->settings = [
+ *	'wgSomeSetting' => [
  *
  *		# production:
  *		'de'     => false,
@@ -52,8 +52,8 @@
  *
  *		# test:
  *		'beta    => true,
- *	),
- * );
+ *	],
+ * ];
  * @endcode
  *
  * With three wikis, that is easy to manage. But what about a farm with
@@ -62,15 +62,15 @@
  * the above code could be written:
  *
  * @code
- * $conf->settings = array(
- *	'wgSomeSetting' => array(
+ * $conf->settings = [
+ *	'wgSomeSetting' => [
  *
  *		'default' => false,
  *
  *		# Enable feature on test
  *		'beta'    => true,
- *	),
- * );
+ *	],
+ * ];
  * @endcode
  *
  *
@@ -80,23 +80,23 @@
  * on a per wiki basis.
  *
  * @code
- * $conf->settings = array(
- *	'wgMergeSetting' = array(
+ * $conf->settings = [
+ *	'wgMergeSetting' = [
  *		# Value that will be shared among all wikis:
- *		'default' => array( NS_USER => true ),
+ *		'default' => [ NS_USER => true ],
  *
  *		# Leading '+' means merging the array of value with the defaults
- *		'+beta' => array( NS_HELP => true ),
- *	),
- * );
+ *		'+beta' => [ NS_HELP => true ],
+ *	],
+ * ];
  *
  * # Get configuration for the German site:
  * $conf->get( 'wgMergeSetting', 'de' );
- * // --> array( NS_USER => true );
+ * // --> [ NS_USER => true ];
  *
  * # Get configuration for the testing site:
  * $conf->get( 'wgMergeSetting', 'beta' );
- * // --> array( NS_USER => true, NS_HELP => true );
+ * // --> [ NS_USER => true, NS_HELP => true ];
  * @endcode
  *
  * Finally, to load all configuration settings, extract them in global context:
@@ -115,7 +115,7 @@
  *
  * @todo Give examples for,
  * suffixes:
- * $conf->suffixes = array( 'wiki' );
+ * $conf->suffixes = [ 'wiki' ];
  * localVHosts
  * callbacks!
  */

@@ -96,7 +96,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		}
 
 		// find all files with the hashes, result format is:
-		// array( hash => array( dup1, dup2 ), hash1 => ... )
+		// [ hash => [ dup1, dup2 ], hash1 => ... ]
 		$filesToFindBySha1s = array_unique( array_values( $sha1s ) );
 		if ( $params['localonly'] ) {
 			$filesBySha1s = RepoGroup::singleton()->getLocalRepo()->findBySha1s( $filesToFindBySha1s );

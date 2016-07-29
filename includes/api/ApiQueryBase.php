@@ -176,10 +176,9 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add a set of JOIN conditions to the internal array
 	 *
-	 * JOIN conditions are formatted as array( tablename => array(jointype,
-	 * conditions) e.g. array('page' => array('LEFT JOIN',
-	 * 'page_id=rev_page')) . conditions may be a string or an
-	 * addWhere()-style array
+	 * JOIN conditions are formatted as [ tablename => [ jointype, conditions ] ]
+	 * e.g. [ 'page' => [ 'LEFT JOIN', 'page_id=rev_page' ] ].
+	 * Conditions may be a string or an addWhere()-style array.
 	 * @param array $join_conds JOIN conditions
 	 */
 	protected function addJoinConds( $join_conds ) {
@@ -219,12 +218,12 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of WHERE clauses to the internal array.
-	 * Clauses can be formatted as 'foo=bar' or array('foo' => 'bar'),
+	 * Clauses can be formatted as 'foo=bar' or [ 'foo' => 'bar' ],
 	 * the latter only works if the value is a constant (i.e. not another field)
 	 *
 	 * If $value is an empty array, this function does nothing.
 	 *
-	 * For example, array('foo=bar', 'baz' => 3, 'bla' => 'foo') translates
+	 * For example, [ 'foo=bar', 'baz' => 3, 'bla' => 'foo' ] translates
 	 * to "foo=bar AND baz='3' AND bla='foo'"
 	 * @param string|array $value
 	 */
@@ -341,13 +340,13 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $method Function the query should be attributed to.
 	 *  You should usually use __METHOD__ here
 	 * @param array $extraQuery Query data to add but not store in the object
-	 *  Format is array(
+	 *  Format is [
 	 *    'tables' => ...,
 	 *    'fields' => ...,
 	 *    'where' => ...,
 	 *    'options' => ...,
 	 *    'join_conds' => ...
-	 *  )
+	 *  ]
 	 * @return ResultWrapper
 	 */
 	protected function select( $method, $extraQuery = [] ) {
