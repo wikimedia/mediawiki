@@ -18,18 +18,25 @@
 			format = $form.find( '[name=format]' ).val(),
 			revId = $form.find( '[name=parentRevId]' ).val(),
 			lastText = $text.textSelection( 'getContents' ),
-			timer = null;
+			lastSummary = $summary.textSelection( 'getContents' ),
+			origSummary = lastSummary,
+			lastPriority = 0,
+			timer = null,
+			PRIORITY_LOW = 1,
+			PRIORITY_HIGH = 2;
 
 		// Send a request to stash the edit to the API.
 		// If a request is in progress, abort it since its payload is stale and the API
 		// may limit concurrent stash parses.
-		function stashEdit() {
+		function stashEdit( priority ) {
 			if ( pending ) {
 				pending.abort();
 			}
 
 			api.getToken( 'csrf' ).then( function ( token ) {
 				lastText = $text.textSelection( 'getContents' );
+				lastSummary = $summary.textSelection( 'getContents' );
+				lastPriority = priority;
 
 				pending = api.post( {
 					action: 'stashedit',
@@ -48,17 +55,35 @@
 
 		// Check if edit body text changed since the last stashEdit() call or if no edit
 		// stash calls have yet been made
-		function isChanged() {
+		function isTextChanged() {
 			var newText = $text.textSelection( 'getContents' );
 			return newText !== lastText;
 		}
 
+		// Check if summary changed since the last stashEdit() call or if no edit
+		// stash calls have yet been made
+		function isSummaryChanged() {
+			var newSummary = $summary.textSelection( 'getContents' );
+			return newSummary !== lastSummary;
+		}
+
 		function onEditorIdle() {
-			if ( !isChanged() ) {
+			var textChanged = isTextChanged(),
+				summaryChanged = isSummaryChanged(),
+				priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
+
+			if ( !textChanged && !summaryChanged ) {
+				return; // nothing to do
+			}
+
+			if ( pending && pending.state() === 'pending' && lastPriority > priority ) {
+				// Stash requests for summary changes should wait on pending text change stashes
+				clearTimeout( timer );
+				timer = setTimeout( onEditorIdle, idleTimeout );
 				return;
 			}
 
-			stashEdit();
+			stashEdit( priority );
 		}
 
 		function onTextKeyUp( e ) {
@@ -85,20 +110,34 @@
 				// probably save the page soon
 				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
 			) {
-				stashEdit();
+				stashEdit( PRIORITY_HIGH );
 			}
 		}
 
-		// We don't attempt to stash new section edits because in such cases
-		// the parser output varies on the edit summary (since it determines
-		// the new section's name).
+		function onSummaryFocus() {
+			// Summary typing is usually near the end of the workflow and involves less pausing.
+			// Re-stash frequently in hopes of capturing the final summary before submission.
+			idleTimeout = 1000;
+			// Stash now since the text is likely the final version. The re-stashes based on the
+			// summary are targeted at caching edit checks that need the final summary.
+			onEditorIdle();
+		}
+
+		function onTextFocus() {
+			// User returned to the text field...
+			if ( $summary.textSelection( 'getContents' ) === origSummary ) {
+				idleTimeout = 3000; // no summary yet; reset stash rate to default
+			}
+		}
+
+		// We don't attempt to stash new section edits because in such cases the parser output
+		// varies on the edit summary (since it determines the new section's name).
 		if ( $form.find( 'input[name=wpSection]' ).val() === 'new' ) {
 			return;
 		}
 
-		$text.on( { change: onEditorIdle, keyup: onTextKeyUp } );
-		$summary.on( { focus: onEditorIdle } );
+		$text.on( { change: onEditorIdle, keyup: onTextKeyUp, focus: onTextFocus } );
+		$summary.on( { focus: onSummaryFocus, focusout: onEditorIdle, keyup: onTextKeyUp } );
 		onFormLoaded();
-
 	} );
 }( mediaWiki, jQuery ) );
