@@ -38,6 +38,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 	protected $dbLockThreshold = 3.0;
 	/** @var float Seconds */
 	protected $eventThreshold = .25;
+	/** @var bool */
+	protected $silenced = false;
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = [];
@@ -75,6 +77,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @param bool $value
+	 * @since 1.28
+	 */
+	public function setSilenced( $value ) {
+		$this->silenced = $value;
 	}
 
 	/**
@@ -302,6 +312,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string|float|int $actual [optional]
 	 */
 	protected function reportExpectationViolated( $expect, $query, $actual = null ) {
+		if ( $this->silenced ) {
+			return;
+		}
+
 		$n = $this->expect[$expect];
 		$by = $this->expectBy[$expect];
 		$actual = ( $actual !== null ) ? " (actual: $actual)" : "";
