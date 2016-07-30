@@ -67,7 +67,8 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSuccess() {
-		$this->getOutput()->addWikiMsg( 'addedwatchtext', $this->getTitle()->getPrefixedText() );
+		$msgKey = $this->getTitle()->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
+		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText() );
 	}
 
 	/* Static utility methods */
