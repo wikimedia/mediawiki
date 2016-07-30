@@ -39,6 +39,7 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_PARSE = 'error_parse';
 	const ERROR_CACHE = 'error_cache';
 	const ERROR_UNCACHEABLE = 'uncacheable';
+	const ERROR_BUSY = 'busy';
 
 	const PRESUME_FRESH_TTL_SEC = 30;
 	const MAX_CACHE_TTL = 300; // 5 minutes
@@ -51,6 +52,7 @@ class ApiStashEdit extends ApiBase {
 			$this->dieUsage( 'This interface is not supported for bots', 'botsnotsupported' );
 		}
 
+		$cache = ObjectCache::getLocalClusterInstance();
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
 
@@ -60,8 +62,23 @@ class ApiStashEdit extends ApiBase {
 			$this->dieUsage( 'Unsupported content model/format', 'badmodelformat' );
 		}
 
-		// Trim and fix newlines so the key SHA1's match (see RequestContext::getText())
-		$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
+		if ( strlen( $params['stashedtexthash'] ) ) {
+			// Load from cache since the client indicates the text is the same as last stash
+			$textHash = $params['stashedtexthash'];
+			$textKey = $cache->makeKey( 'stashedit', 'text', $textHash );
+			$text = $cache->get( $textKey );
+			if ( !is_string( $text ) ) {
+				$this->dieUsage( 'No stashed text found with the given hash', 'missingtext' );
+			}
+		} elseif ( $params['text'] !== null ) {
+			// Trim and fix newlines so the key SHA1's match (see RequestContext::getText())
+			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
+			$textHash = sha1( $text );
+		} else {
+			$this->dieUsage(
+				'The text or stashedtexthash parameter must be given', 'missingtextparam' );
+		}
+
 		$textContent = ContentHandler::makeContent(
 			$text, $title, $params['contentmodel'], $params['contentformat'] );
 
@@ -113,24 +130,24 @@ class ApiStashEdit extends ApiBase {
 		// The user will abort the AJAX request by pressing "save", so ignore that
 		ignore_user_abort( true );
 
-		// Use the master DB for fast blocking locks
-		$dbw = wfGetDB( DB_MASTER );
-
-		// Get a key based on the source text, format, and user preferences
-		$key = self::getStashKey( $title, $content, $user );
-		// De-duplicate requests on the same key
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
-		} elseif ( $dbw->lock( $key, __METHOD__, 1 ) ) {
-			$status = self::parseAndStash( $page, $content, $user, $params['summary'] );
-			$dbw->unlock( $key, __METHOD__ );
 		} else {
-			$status = 'busy';
+			$status = self::parseAndStash( $page, $content, $user, $params['summary'] );
+			$textKey = $cache->makeKey( 'stashedit', 'text', $textHash );
+			$cache->set( $textKey, $text, self::MAX_CACHE_TTL );
 		}
 
 		$this->getStats()->increment( "editstash.cache_stores.$status" );
 
-		$this->getResult()->addValue( null, $this->getModuleName(), [ 'status' => $status ] );
+		$this->getResult()->addValue(
+			null,
+			$this->getModuleName(),
+			[
+				'status' => $status,
+				'texthash' => $textHash
+			]
+		);
 	}
 
 	/**
@@ -145,16 +162,40 @@ class ApiStashEdit extends ApiBase {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
-		$format = $content->getDefaultFormat();
-		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
 		$title = $page->getTitle();
+		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
+
+		// Use the master DB for fast blocking locks
+		$dbw = wfGetDB( DB_MASTER );
+		if ( !$dbw->lock( $key, __METHOD__, 1 ) ) {
+			// De-duplicate requests on the same key
+			return self::ERROR_BUSY;
+		}
+		$unlocker = new ScopedCallback( function () use ( $dbw, $key ) {
+			$dbw->unlock( $key, __METHOD__ );
+		} );
+
+		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
+
+		// Reuse any freshly build matching edit stash cache
+		$editInfo = $cache->get( $key );
+		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+			$alreadyCached = true;
+		} else {
+			$format = $content->getDefaultFormat();
+			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+			$alreadyCached = false;
+		}
 
 		if ( $editInfo && $editInfo->output ) {
-			$key = self::getStashKey( $title, $content, $user );
-
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit',
 				[ $page, $content, $editInfo->output, $summary, $user ] );
+
+			if ( $alreadyCached ) {
+				$logger->debug( "Already cached parser output for key '$key' ('$title')." );
+				return self::ERROR_NONE;
+			}
 
 			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
 				$editInfo->pstContent,
@@ -207,7 +248,7 @@ class ApiStashEdit extends ApiBase {
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 		$stats = RequestContext::getMain()->getStats();
 
-		$key = self::getStashKey( $title, $content, $user );
+		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
 		$editInfo = $cache->get( $key );
 		if ( !is_object( $editInfo ) ) {
 			$start = microtime( true );
@@ -283,6 +324,20 @@ class ApiStashEdit extends ApiBase {
 	}
 
 	/**
+	 * Get hash of the content, factoring in model/format
+	 *
+	 * @param Content $content
+	 * @return string
+	 */
+	private static function getContentHash( Content $content ) {
+		return sha1( implode( "\n", [
+			$content->getModel(),
+			$content->getDefaultFormat(),
+			$content->serialize( $content->getDefaultFormat() )
+		] ) );
+	}
+
+	/**
 	 * Get the temporary prepared edit stash key for a user
 	 *
 	 * This key can be used for caching prepared edits provided:
@@ -290,22 +345,19 @@ class ApiStashEdit extends ApiBase {
 	 *   - b) The parser output was made from the PST using cannonical matching options
 	 *
 	 * @param Title $title
-	 * @param Content $content
+	 * @param string $contentHash Result of getContentHash()
 	 * @param User $user User to get parser options from
 	 * @return string
 	 */
-	private static function getStashKey( Title $title, Content $content, User $user ) {
-		$hash = sha1( implode( ':', [
+	private static function getStashKey( Title $title, $contentHash, User $user ) {
+		return ObjectCache::getLocalClusterInstance()->makeKey(
+			'prepared-edit',
+			md5( $title->getPrefixedDBkey() ),
 			// Account for the edit model/text
-			$content->getModel(),
-			$content->getDefaultFormat(),
-			sha1( $content->serialize( $content->getDefaultFormat() ) ),
+			$contentHash,
 			// Account for user name related variables like signatures
-			$user->getId(),
-			md5( $user->getName() )
-		] ) );
-
-		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
+			md5( $user->getId() . "\n" . $user->getName() )
+		);
 	}
 
 	/**
@@ -313,7 +365,7 @@ class ApiStashEdit extends ApiBase {
 	 *
 	 * This makes a simple version of WikiPage::prepareContentForEdit() as stash info
 	 *
-	 * @param Content $pstContent
+	 * @param Content $pstContent Pre-Save transformed content
 	 * @param ParserOutput $parserOutput
 	 * @param string $timestamp TS_MW
 	 * @param User $user
@@ -355,7 +407,11 @@ class ApiStashEdit extends ApiBase {
 			],
 			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
-				ApiBase::PARAM_REQUIRED => true
+				ApiBase::PARAM_DFLT => null
+			],
+			'stashedtexthash' => [
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => null
 			],
 			'summary' => [
 				ApiBase::PARAM_TYPE => 'string',
