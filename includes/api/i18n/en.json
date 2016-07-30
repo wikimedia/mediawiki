@@ -1350,6 +1350,7 @@
 	"apihelp-stashedit-param-section": "Section number. <kbd>0</kbd> for the top section, <kbd>new</kbd> for a new section.",
 	"apihelp-stashedit-param-sectiontitle": "The title for a new section.",
 	"apihelp-stashedit-param-text": "Page content.",
+	"apihelp-stashedit-param-stashedtexthash": "Page content hash from a prior stash to use instead.",
 	"apihelp-stashedit-param-contentmodel": "Content model of the new content.",
 	"apihelp-stashedit-param-contentformat": "Content serialization format used for the input text.",
 	"apihelp-stashedit-param-baserevid": "Revision ID of the base revision.",
