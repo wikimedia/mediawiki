@@ -1090,6 +1090,15 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.htmlform.ooui' => [
+		'scripts' => [
+			'resources/src/mediawiki/htmlform/htmlform.Element.js',
+		],
+		'dependencies' => [
+			'oojs-ui-core',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.htmlform.styles' => [
 		'styles' => 'resources/src/mediawiki/htmlform/styles.css',
 		'position' => 'top',
