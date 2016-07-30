@@ -696,7 +696,7 @@
 	"resetpass-expired": "Votre mot de passe a expiré. Veuillez en fournir un nouveau pour vous connecter.",
 	"resetpass-expired-soft": "Votre mot de passe a expiré, et doit être réinitialisé. Veuillez en choisir un nouveau maintenant ou cliquer sur « {{int:authprovider-resetpass-skip-label}} » pour le faire plus tard.",
 	"resetpass-validity-soft": "Votre mot de passe n’est pas valide : $1\n\nVeuillez choisir un nouveau mot de passe maintenant, ou cliquez sur « {{int:authprovider-resetpass-skip-label}} » pour le réinitialiser plus tard.",
-	"passwordreset": "Remise à zéro du mot de passe",
+	"passwordreset": "Réinitialisation du mot de passe",
 	"passwordreset-text-one": "Remplissez ce formulaire pour réinitialiser votre mot de passe.",
 	"passwordreset-text-many": "{{PLURAL:$1|Remplissez un des champs pour recevoir un mot de passe temporaire par courriel.}}",
 	"passwordreset-disabled": "La réinitialisation des mots de passe a été désactivée sur ce wiki.",

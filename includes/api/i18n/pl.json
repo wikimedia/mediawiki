@@ -177,7 +177,7 @@
 	"apihelp-protect-param-reason": "Powód zabezpieczania/odbezpieczania.",
 	"apihelp-protect-param-cascade": "Włącz ochronę kaskadową (chronione są wszystkie osadzone szablony i obrazki na tej stronie). Ignorowane, jeśli żaden z danych poziomów ochrony nie wspiera kaskadowania.",
 	"apihelp-protect-example-protect": "Zabezpiecz stronę",
-	"apihelp-protect-example-unprotect": "Odbezpiecz stronę ustawiając ograniczenia na <kbd>all</kbd>.",
+	"apihelp-protect-example-unprotect": "Odbezpiecz stronę ustawiając ograniczenia na <kbd>all</kbd> (czyli każdy może wykonać działanie).",
 	"apihelp-protect-example-unprotect2": "Odbezpiecz stronę ustawiając brak ograniczeń.",
 	"apihelp-purge-param-forcelinkupdate": "Uaktualnij tabele linków.",
 	"apihelp-purge-example-generator": "Przeczyść pierwsze 10 stron w przestrzeni głównej.",

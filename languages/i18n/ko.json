@@ -582,7 +582,7 @@
 	"botpasswords-label-delete": "삭제",
 	"botpasswords-label-resetpassword": "비밀번호 재설정",
 	"botpasswords-label-grants": "적용할 수 있는 부여:",
-	"botpasswords-help-grants": "개개의 부여 기능은 사용자 계정이 이미 소유하고 있는 사용자 권한에 대한 접근을 제공합니다. 자세한 사항은 [[Special:ListGrants|부여 목록]]을 확인해 주십시오.",
+	"botpasswords-help-grants": "각각 부여된 값은 목록에서 사용자 계정을 이미 갖고 있는 사용자 권한에 접근할 수 있는 권한을 줍니다. 자세한 정보는 [[Special:ListGrants|부여 표]]을 보세요.",
 	"botpasswords-label-restrictions": "사용 제한:",
 	"botpasswords-label-grants-column": "승인됨",
 	"botpasswords-bad-appid": "\"$1\"이라는 봇 이름은 유효하지 않습니다.",

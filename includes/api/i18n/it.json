@@ -228,7 +228,7 @@
 	"apihelp-protect-param-pageid": "ID della pagina da (s)proteggere. Non può essere usato insieme con $1title.",
 	"apihelp-protect-param-tags": "Modifica etichette da applicare all'elemento del registro delle protezioni.",
 	"apihelp-protect-example-protect": "Proteggi una pagina.",
-	"apihelp-protect-example-unprotect": "Sproteggi una pagina impostando restrizione su <kbd>all</kbd>.",
+	"apihelp-protect-example-unprotect": "Sproteggi una pagina impostando restrizione su <kbd>all</kbd> (cioè a tutti è consentito intraprendere l'azione).",
 	"apihelp-protect-example-unprotect2": "Sproteggi una pagina impostando nessuna restrizione.",
 	"apihelp-purge-param-forcelinkupdate": "Aggiorna la tabella dei collegamenti.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Aggiorna la tabella dei collegamenti per questa pagina, e per ogni pagina che usa questa pagina come template.",
