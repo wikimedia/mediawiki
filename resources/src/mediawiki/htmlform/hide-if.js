@@ -15,10 +15,10 @@
 	 * @private
 	 * @param {jQuery} $el
 	 * @param {string} name
-	 * @return {jQuery|null}
+	 * @return {jQuery|OO.ui.Widget|null}
 	 */
 	function hideIfGetField( $el, name ) {
-		var $found, $p,
+		var $found, $p, $widget,
 			suffix = name.replace( /^([^\[]+)/, '[$1]' );
 
 		function nameFilter() {
@@ -30,6 +30,10 @@
 		for ( $p = $el.parent(); $p.length > 0; $p = $p.parent() ) {
 			$found = $p.find( '[name]' ).filter( nameFilter );
 			if ( $found.length ) {
+				$widget = $found.closest( '.oo-ui-widget[data-ooui]' );
+				if ( $widget.length ) {
+					return OO.ui.Widget.static.infuse( $widget );
+				}
 				return $found;
 			}
 		}
@@ -44,11 +48,11 @@
 	 * @param {jQuery} $el
 	 * @param {Array} spec
 	 * @return {Array}
-	 * @return {jQuery} return.0 Dependent fields
+	 * @return {Array} return.0 Dependent fields, array of jQuery objects or OO.ui.Widgets
 	 * @return {Function} return.1 Test function
 	 */
 	function hideIfParse( $el, spec ) {
-		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
+		var op, i, l, v, field, $field, fields, func, funcs, getVal;
 
 		op = spec[ 0 ];
 		l = spec.length;
@@ -64,10 +68,9 @@
 						throw new Error( op + ' parameters must be arrays' );
 					}
 					v = hideIfParse( $el, spec[ i ] );
-					fields = fields.concat( v[ 0 ].toArray() );
+					fields = fields.concat( v[ 0 ] );
 					funcs.push( v[ 1 ] );
 				}
-				$fields = $( fields );
 
 				l = funcs.length;
 				switch ( op ) {
@@ -120,7 +123,7 @@
 						break;
 				}
 
-				return [ $fields, func ];
+				return [ fields, func ];
 
 			case 'NOT':
 				if ( l !== 2 ) {
@@ -130,9 +133,9 @@
 					throw new Error( 'NOT parameters must be arrays' );
 				}
 				v = hideIfParse( $el, spec[ 1 ] );
-				$fields = v[ 0 ];
+				fields = v[ 0 ];
 				func = v[ 1 ];
-				return [ $fields, function () {
+				return [ fields, function () {
 					return !func();
 				} ];
 
@@ -141,25 +144,37 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				$field = hideIfGetField( $el, spec[ 1 ] );
-				if ( !$field ) {
-					return [ $(), function () {
+				field = hideIfGetField( $el, spec[ 1 ] );
+				if ( !field ) {
+					return [ [], function () {
 						return false;
 					} ];
 				}
 				v = spec[ 2 ];
 
-				if ( $field.first().prop( 'type' ) === 'radio' ||
-					$field.first().prop( 'type' ) === 'checkbox'
-				) {
-					getVal = function () {
-						var $selected = $field.filter( ':checked' );
-						return $selected.length ? $selected.val() : '';
-					};
+				if ( field instanceof OO.ui.Widget ) {
+					if ( field.supports( 'isSelected' ) ) {
+						getVal = function () {
+							var selected = field.isSelected();
+							return selected ? field.getValue() : '';
+						};
+					} else {
+						getVal = function () {
+							return field.getValue();
+						};
+					}
 				} else {
-					getVal = function () {
-						return $field.val();
-					};
+					$field = $( field );
+					if ( $field.prop( 'type' ) === 'radio' || $field.prop( 'type' ) === 'checkbox' ) {
+						getVal = function () {
+							var $selected = $field.filter( ':checked' );
+							return $selected.length ? $selected.val() : '';
+						};
+					} else {
+						getVal = function () {
+							return $field.val();
+						};
+					}
 				}
 
 				switch ( op ) {
@@ -175,7 +190,7 @@
 						break;
 				}
 
-				return [ $field, func ];
+				return [ [ field ], func ];
 
 			default:
 				throw new Error( 'Unrecognized operation \'' + op + '\'' );
@@ -184,26 +199,57 @@
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		$root.find( '.mw-htmlform-hide-if' ).each( function () {
-			var v, $fields, test, func,
-				$el = $( this ),
-				spec = $el.data( 'hideIf' );
+			var v, i, fields, test, func, spec, self, modules,
+				$el = $( this );
 
-			if ( !spec ) {
-				return;
+			modules = [];
+			if ( $el.is( '[data-ooui]' ) ) {
+				modules.push( 'mediawiki.htmlform.ooui' );
+				if ( $el.filter( '.mw-htmlform-field-HTMLTitleTextField' ).length ) {
+					// FIXME: TitleInputWidget should be in its own module
+					modules.push( 'mediawiki.widgets' );
+				}
+				if ( $el.filter( '.mw-htmlform-field-HTMLUserTextField' ).length ) {
+					modules.push( 'mediawiki.widgets.UserInputWidget' );
+				}
+				if (
+					$el.filter( '.mw-htmlform-field-HTMLSelectNamespace' ).length ||
+					$el.filter( '.mw-htmlform-field-HTMLSelectNamespaceWithButton' ).length
+				) {
+					// FIXME: NamespaceInputWidget should be in its own module (probably?)
+					modules.push( 'mediawiki.widgets' );
+				}
 			}
 
-			v = hideIfParse( $el, spec );
-			$fields = v[ 0 ];
-			test = v[ 1 ];
-			func = function () {
-				if ( test() ) {
-					$el.hide();
+			mw.loader.using( modules ).done( function () {
+				if ( $el.is( '[data-ooui]' ) ) {
+					// self should be a FieldLayout that mixes in mw.htmlform.Element
+					self = OO.ui.FieldLayout.static.infuse( $el );
+					spec = self.hideIf;
+					// The original element has been replaced with infused one
+					$el = self.$element;
 				} else {
-					$el.show();
+					self = $el;
+					spec = $el.data( 'hideIf' );
 				}
-			};
-			$fields.on( 'change', func );
-			func();
+
+				if ( !spec ) {
+					return;
+				}
+
+				v = hideIfParse( $el, spec );
+				fields = v[ 0 ];
+				test = v[ 1 ];
+				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
+				func = function () {
+					self.toggle( !test() );
+				};
+				for ( i = 0; i < fields.length; i++ ) {
+					// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
+					fields[ i ].on( 'change', func );
+				}
+				func();
+			} );
 		} );
 	} );
 

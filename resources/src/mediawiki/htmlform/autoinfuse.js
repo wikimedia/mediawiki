@@ -11,7 +11,7 @@
 		if ( $oouiNodes.length ) {
 			// The modules are preloaded (added server-side in HTMLFormField, and the individual fields
 			// which need extra ones), but this module doesn't depend on them. Wait until they're loaded.
-			modules = [ 'oojs-ui-core' ];
+			modules = [ 'mediawiki.htmlform.ooui' ];
 			if ( $oouiNodes.filter( '.mw-htmlform-field-HTMLTitleTextField' ).length ) {
 				// FIXME: TitleInputWidget should be in its own module
 				modules.push( 'mediawiki.widgets' );
