@@ -127,7 +127,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() || $user->getNewtalk() || $ulang->equals( $wgContLang ) ) {
+		if ( $user->getId() || $user->getNewtalk() || !$ulang->equals( $wgContLang ) ) {
 			return false;
 		}
 		// Allow extensions to disable caching
