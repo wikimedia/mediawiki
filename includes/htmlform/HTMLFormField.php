@@ -627,7 +627,7 @@ abstract class HTMLFormField {
 		];
 
 		if ( $infusable && $this->shouldInfuseOOUI() ) {
-			$this->mParent->getOutput()->addModules( 'oojs-ui-core' );
+			$this->mParent->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
 			$config['classes'][] = 'mw-htmlform-field-autoinfuse';
 		}
 
@@ -635,6 +635,11 @@ abstract class HTMLFormField {
 		$label = $this->getLabel();
 		if ( $label ) {
 			$config['label'] = new OOUI\HtmlSnippet( $label );
+		}
+
+		if ( $this->mHideIf ) {
+			$this->mParent->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
+			$config['hideIf'] = $this->mHideIf;
 		}
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
@@ -655,9 +660,9 @@ abstract class HTMLFormField {
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		if ( isset( $this->mClassWithButton ) ) {
 			$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
-			return new OOUI\ActionFieldLayout( $inputField, $buttonWidget, $config );
+			return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );
 		}
-		return new OOUI\FieldLayout( $inputField, $config );
+		return new HTMLFormFieldLayout( $inputField, $config );
 	}
 
 	/**
