@@ -1041,6 +1041,7 @@ class Language {
 	 *    xin  n (month number) in Iranian calendar
 	 *    xiy  y (two digit year) in Iranian calendar
 	 *    xiY  Y (full year) in Iranian calendar
+	 *    xit  t (days in month) in Iranian calendar
 	 *
 	 *    xjj  j (day number) in Hebrew calendar
 	 *    xjF  F (month name) in Hebrew calendar
@@ -1336,6 +1337,13 @@ class Language {
 					}
 					$num = substr( $iranian[0], -2 );
 					break;
+				case 'xit':
+					$usedIranianYear = true;
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
+					$num = $iranian[3];
+					break;
 				case 'a':
 					$usedAMPM = true;
 					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
@@ -1601,7 +1609,7 @@ class Language {
 		$jm = $i + 1;
 		$jd = $jDayNo + 1;
 
-		return [ $jy, $jm, $jd ];
+		return [ $jy, $jm, $jd, self::$IRANIAN_DAYS[$i] ];
 	}
 
 	/**
