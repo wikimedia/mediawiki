@@ -19,6 +19,9 @@
 	width: 39%;
 }
 
+/* Flatlist styling for PHP widgets... */
+.mw-htmlform-flatlist .oo-ui-fieldLayout-align-inline,
+/* ...and for JS widgets */
 .mw-htmlform-flatlist .oo-ui-optionWidget,
 .mw-htmlform-flatlist .oo-ui-multioptionWidget {
 	display: inline-block;
