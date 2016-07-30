@@ -186,12 +186,13 @@ class Revision implements IDBAccessObject {
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
 			'content_model'   => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
 			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
+				// FIXME: new archive entries need to record the original revision ID,
+				// so it can be joined against revision_content. Old entries need to keep the
+				// text_id, etc!
 		];
 
-		if ( !$wgContentHandlerUseDB ) {
-			unset( $attribs['content_model'] );
-			unset( $attribs['content_format'] );
-		}
+		unset( $attribs['content_model'] );
+		unset( $attribs['content_format'] );
 
 		if ( !isset( $attribs['title'] )
 			&& isset( $row->ar_namespace )
@@ -200,6 +201,7 @@ class Revision implements IDBAccessObject {
 			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 		}
 
+		// FIXME: use revision_content table, see above
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
@@ -427,12 +429,9 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgContentHandlerUseDB;
-
 		$fields = [
 			'rev_id',
 			'rev_page',
-			'rev_text_id',
 			'rev_timestamp',
 			'rev_comment',
 			'rev_user_text',
@@ -443,11 +442,6 @@ class Revision implements IDBAccessObject {
 			'rev_parent_id',
 			'rev_sha1',
 		];
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'rev_content_format';
-			$fields[] = 'rev_content_model';
-		}
 
 		return $fields;
 	}
@@ -1417,52 +1411,33 @@ class Revision implements IDBAccessObject {
 			$this->mComment = "";
 		}
 
+		if ( $this->mParentId === null ) {
+			$this->mParentId = $this->getPreviousRevisionId( $dbw );
+		}
+
+		if ( $this->mSha1 === null ) {
+			$this->mSha1 = Revision::base36Sha1( $this->mText );
+		}
+
 		# Record the edit in revisions
 		$rev_id = $this->mId !== null
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
-		$row = [
+		$revRow = [
 			'rev_id'         => $rev_id,
 			'rev_page'       => $this->mPage,
-			'rev_text_id'    => $this->mTextId,
 			'rev_comment'    => $this->mComment,
 			'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
 			'rev_user'       => $this->mUser,
 			'rev_user_text'  => $this->mUserText,
 			'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 			'rev_deleted'    => $this->mDeleted,
-			'rev_len'        => $this->mSize,
-			'rev_parent_id'  => $this->mParentId === null
-				? $this->getPreviousRevisionId( $dbw )
-				: $this->mParentId,
-			'rev_sha1'       => $this->mSha1 === null
-				? Revision::base36Sha1( $this->mText )
-				: $this->mSha1,
+			'rev_len'        => $this->mSize, // TODO: logical size across all primary slots
+			'rev_parent_id'  => $this->mParentId,
+			'rev_sha1'       => $this->mSha1, // TODO: cascading hash over all primary slots
 		];
 
-		if ( $wgContentHandlerUseDB ) {
-			// NOTE: Store null for the default model and format, to save space.
-			// XXX: Makes the DB sensitive to changed defaults.
-			// Make this behavior optional? Only in miser mode?
-
-			$model = $this->getContentModel();
-			$format = $this->getContentFormat();
-
-			$title = $this->getTitle();
-
-			if ( $title === null ) {
-				throw new MWException( "Insufficient information to determine the title of the "
-					. "revision's page!" );
-			}
-
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
-			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
-
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
-		}
-
-		$dbw->insert( 'revision', $row, __METHOD__ );
+		$dbw->insert( 'revision', $revRow, __METHOD__ );
 
 		$this->mId = $rev_id !== null ? $rev_id : $dbw->insertId();
 
@@ -1470,9 +1445,44 @@ class Revision implements IDBAccessObject {
 		if ( (int)$this->mId === 0 ) {
 			throw new UnexpectedValueException(
 				'After insert, Revision mId is ' . var_export( $this->mId, 1 ) . ': ' .
-					var_export( $row, 1 )
+					var_export( $revRow, 1 )
 			);
 		}
+
+		// TODO: insert one row per slot!
+		$model = $this->getContentModel();
+		$format = $this->getContentFormat();
+
+		$title = $this->getTitle();
+
+		if ( $title === null ) {
+			throw new MWException( "Insufficient information to determine the title of the "
+				. "revision's page!" );
+		}
+
+		$defaultModel = ContentHandler::getDefaultModelFor( $title );
+		$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
+
+		$contRow = [
+			'cnt_revision' => $this->mId,
+			'cnt_role' => 1, // FIXME: get from ContentRoleLookup
+			'cnt_address' => 'tt:' . $this->mTextId, // NOTE: for now, only text table storage ("tt")
+			'cnt_timestamp' => $dbw->timestamp( $this->mTimestamp ), // could also leave this NULL
+			'cnt_blob_length' => strlen( $data ), // NOTE: bad info when an external store reference is stored in the text table
+			'cnt_model' => ( $model === $defaultModel ) ? null : $model,
+			'cnt_format' => ( $format === $defaultFormat ) ? null : $format,
+			'cnt_hash' => $this->mSha1,
+			'cnt_logical_size' => $this->mSize
+		];
+
+		$dbw->insert( 'content', $contRow, __METHOD__ );
+		$contentId = $dbw->insertId();
+
+		$revContRow = [
+			'revc_revision' => $this->mId,
+			'revc_content' => $contentId,
+		];
+		$dbw->insert( 'revision_content', $revContRow, __METHOD__ );
 
 		Hooks::run( 'RevisionInsertComplete', [ &$this, $data, $flags ] );
 
@@ -1643,17 +1653,13 @@ class Revision implements IDBAccessObject {
 		$fields = [ 'page_latest', 'page_namespace', 'page_title',
 						'rev_text_id', 'rev_len', 'rev_sha1' ];
 
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'rev_content_model';
-			$fields[] = 'rev_content_format';
-		}
-
 		$current = $dbw->selectRow(
-			[ 'page', 'revision' ],
+			[ 'page', 'revision', 'revision_content' ],
 			$fields,
 			[
 				'page_id' => $pageId,
 				'page_latest=rev_id',
+				'revc_revision=rev_id',
 			],
 			__METHOD__,
 			[ 'FOR UPDATE' ] // T51581
@@ -1680,10 +1686,9 @@ class Revision implements IDBAccessObject {
 				'sha1'       => $current->rev_sha1
 			];
 
-			if ( $wgContentHandlerUseDB ) {
-				$row['content_model'] = $current->rev_content_model;
-				$row['content_format'] = $current->rev_content_format;
-			}
+			// FIXME: make insertOn() use this if given!
+			// FIXME: in the future, we can have more than once content ID here!
+			$row['content_id'] = $current->revc_content;
 
 			$row['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
