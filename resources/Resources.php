@@ -1068,7 +1068,16 @@ return [
 		'styles' => 'resources/src/mediawiki/mediawiki.hlist.css',
 	],
 	'mediawiki.htmlform' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
+		'scripts' => [
+			'resources/src/mediawiki/htmlform/htmlform.js',
+			'resources/src/mediawiki/htmlform/autocomplete.js',
+			'resources/src/mediawiki/htmlform/checkmatrix.js',
+			'resources/src/mediawiki/htmlform/cloner.js',
+			'resources/src/mediawiki/htmlform/hide-if.js',
+			'resources/src/mediawiki/htmlform/multiselect.js',
+			'resources/src/mediawiki/htmlform/selectandother.js',
+			'resources/src/mediawiki/htmlform/selectorother.js',
+		],
 		'dependencies' => [
 			'mediawiki.RegExp',
 			'jquery.byteLimit',
@@ -1081,12 +1090,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.styles' => [
-		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.css',
+		'styles' => 'resources/src/mediawiki/htmlform/styles.css',
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
-		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.css',
+		'styles' => 'resources/src/mediawiki/htmlform/ooui.styles.css',
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
