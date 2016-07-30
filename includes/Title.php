@@ -500,7 +500,7 @@ class Title implements LinkTarget {
 	 * @param string $interwiki The interwiki prefix
 	 * @return Title The new object
 	 */
-	public static function &makeTitle( $ns, $title, $fragment = '', $interwiki = '' ) {
+	public static function makeTitle( $ns, $title, $fragment = '', $interwiki = '' ) {
 		$t = new Title();
 		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
