@@ -145,16 +145,29 @@ class ApiStashEdit extends ApiBase {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
-		$format = $content->getDefaultFormat();
-		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
 		$title = $page->getTitle();
+		$key = self::getStashKey( $title, $content, $user );
+		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
+
+		// Reuse any freshly build matching edit stash cache
+		$editInfo = $cache->get( $key );
+		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+			$alreadyCached = true;
+		} else {
+			$format = $content->getDefaultFormat();
+			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+			$alreadyCached = false;
+		}
 
 		if ( $editInfo && $editInfo->output ) {
-			$key = self::getStashKey( $title, $content, $user );
-
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit',
 				[ $page, $content, $editInfo->output, $summary, $user ] );
+
+			if ( $alreadyCached ) {
+				$logger->debug( "Already cached parser output for key '$key' ('$title')." );
+				return self::ERROR_NONE;
+			}
 
 			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
 				$editInfo->pstContent,
