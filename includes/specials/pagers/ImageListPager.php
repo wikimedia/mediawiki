@@ -429,8 +429,11 @@ class ImageListPager extends TablePager {
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
-
-					return $thumb->toHtml( [ 'desc-link' => true ] );
+					if ( $thumb ) {
+						return $thumb->toHtml( [ 'desc-link' => true ] );
+					} else {
+						return wfMessage( 'thumbnail_error', '' )->escaped();
+					}
 				} else {
 					return htmlspecialchars( $value );
 				}
