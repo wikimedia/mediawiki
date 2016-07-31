@@ -788,8 +788,12 @@ class WebRequest {
 			$base = substr( $base, 0, $hash );
 		}
 
-		if ( $base[0] == '/' ) {
-			// More than one slash will look like it is protocol relative
+		if( $base[0] === '/'
+                 // Protocol-relative links with domain names usually contain a dot.
+                 // TODO: deal with dotless domains (local) and wikipages titled "/foo.bar".
+                 && strpos( $base, '.', 1 )	// -- 
+                ) {
+			// More than one slash will look like it is protocol relative.
 			return preg_replace( '!^/+!', '/', $base );
 		} else {
 			// We may get paths with a host prepended; strip it.
