@@ -1295,6 +1295,7 @@
 	"upload-form-label-infoform-title": "Xehetasunak",
 	"upload-form-label-infoform-name": "Izena",
 	"upload-form-label-infoform-description": "Deskribapena",
+	"upload-form-label-infoform-description-tooltip": "Azaldu laburki lanaren inguruko kontu aipagarri guztiak. Argazki batean, aipatu agertzen den gai nagusia, momentua, edo lekua.",
 	"upload-form-label-usage-title": "Erabilera",
 	"upload-form-label-usage-filename": "Fitxategiaren izena",
 	"upload-form-label-own-work": "Hau neure lana da",

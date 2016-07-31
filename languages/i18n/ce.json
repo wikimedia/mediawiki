@@ -1590,6 +1590,7 @@
 	"activeusers-hidebots": "Къайлабаха боташ",
 	"activeusers-hidesysops": "Къайлабаха куьйгалхой",
 	"activeusers-noresult": "Декъашхой цакарий.",
+	"activeusers-submit": "Гайта жигара декъашхой",
 	"listgrouprights": "Декъашхойн тобанийн бакъонаш",
 	"listgrouprights-summary": "Лахахьа гойту декъашхошна яла йиш йолу бакъонаш. [[{{MediaWiki:Listgrouprights-helppage}}|хьажа кхин хааме]].",
 	"listgrouprights-key": "Легенда:\n* <span class=\"listgrouprights-granted\">Ела бакъонаш</span>\n* <span class=\"listgrouprights-revoked\">ДӀаяьхна бакъонаш</span>",

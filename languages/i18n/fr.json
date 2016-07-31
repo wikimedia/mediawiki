@@ -903,7 +903,7 @@
 	"parser-unstrip-loop-warning": "Boucle non démontable détectée",
 	"parser-unstrip-recursion-limit": "Limite de récursion non démontable dépassée ($1)",
 	"converter-manual-rule-error": "Erreur détectée dans la règle manuelle de conversion de langue",
-	"undo-success": "Cette modification va être défaite. \nVeuillez vérifier les différences ci-dessous, puis publier l'annulation si c’est bien ce que vous voulez faire.",
+	"undo-success": "Cette modification va être annulée.\nVeuillez vérifier les différences ci-dessous, puis publier l’annulation si c’est bien ce que vous voulez faire.",
 	"undo-failure": "Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.",
 	"undo-norev": "La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.",
 	"undo-nochange": "Il semblerait que la modification ait déjà été annulée.",
