@@ -73,7 +73,6 @@ class HTMLTitleTextField extends HTMLTextField {
 	}
 
 	protected function getInputWidget( $params ) {
-		$this->mParent->getOutput()->addModules( 'mediawiki.widgets' );
 		if ( $this->mParams['namespace'] !== false ) {
 			$params['namespace'] = $this->mParams['namespace'];
 		}
@@ -83,6 +82,11 @@ class HTMLTitleTextField extends HTMLTextField {
 
 	protected function shouldInfuseOOUI() {
 		return true;
+	}
+
+	protected function getOOUIModules() {
+		// FIXME: TitleInputWidget should be in its own module
+		return [ 'mediawiki.widgets' ];
 	}
 
 	public function getInputHtml( $value ) {
