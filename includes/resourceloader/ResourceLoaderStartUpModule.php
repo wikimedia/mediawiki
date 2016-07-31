@@ -66,6 +66,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 
+		$illegalFileChars = $conf->get( 'IllegalFileChars' );
+
 		// Build list of variables
 		$vars = [
 			'wgLoadScript' => wfScript( 'load' ),
@@ -107,6 +109,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderMaxQueryLength' => $conf->get( 'ResourceLoaderMaxQueryLength' ),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
+			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
