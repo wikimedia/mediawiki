@@ -1,9 +1,12 @@
+== User Information ==
+
 Extensions are distributed separately. Drop them into this directory and enable
 as per the extension's installation instructions.
 
 You can find a list of extensions and documentation at
-<https://www.mediawiki.org/wiki/Category:Extensions>.
+<https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions>.
 
+== Development Information ==
 
 If you are a developer, you might want to fetch the extension tree in another
 directory and make a symbolic link:
