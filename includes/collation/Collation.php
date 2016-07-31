@@ -59,6 +59,8 @@ abstract class Collation {
 				return new CollationCkb;
 			case 'xx-uca-et':
 				return new CollationEt;
+			case 'uca-fa':
+				return new CollationFa;
 			default:
 				$match = [];
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
