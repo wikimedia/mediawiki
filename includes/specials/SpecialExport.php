@@ -201,6 +201,7 @@ class SpecialExport extends SpecialPage {
 				'buttontype' => 'submit',
 				'buttonname' => 'addcat',
 				'buttondefault' => $this->msg( 'export-addcat' )->text(),
+				'hide-if' => [ '===', 'exportall', '1' ],
 			],
 		];
 		if ( $config->get( 'ExportFromNamespaces' ) ) {
@@ -216,6 +217,7 @@ class SpecialExport extends SpecialPage {
 					'buttontype' => 'submit',
 					'buttonname' => 'addns',
 					'buttondefault' => $this->msg( 'export-addns' )->text(),
+					'hide-if' => [ '===', 'exportall', '1' ],
 				],
 			];
 		}
@@ -240,6 +242,7 @@ class SpecialExport extends SpecialPage {
 				'nodata' => true,
 				'rows' => 10,
 				'default' => $page,
+				'hide-if' => [ '===', 'exportall', '1' ],
 			],
 		];
 
