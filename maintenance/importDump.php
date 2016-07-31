@@ -80,6 +80,7 @@ TEXT
 			'Disable link table updates. Is faster but leaves the wiki in an inconsistent state'
 		);
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
+		$this->addOption( 'file', 'Dump file to import [else use stdin]', false );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
 	}
 
@@ -102,8 +103,17 @@ TEXT
 			$this->setNsfilter( explode( '|', $this->getOption( 'namespaces' ) ) );
 		}
 
-		if ( $this->hasArg() ) {
-			$this->importFromFile( $this->getArg() );
+		$importFromFile = false;
+		if ( $this->hasOption( 'file' ) ) {
+			$importFromFile = true;
+			$file = $this->getOption( 'file' );
+		} elseif ( $this->hasArg() ) {
+			$importFromFile = true;
+			$file = $this->getArg();
+		}
+
+		if ( $importFromFile ) {
+			$this->importFromFile( $file );
 		} else {
 			$this->importFromStdin();
 		}
