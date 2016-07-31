@@ -34,6 +34,11 @@ class HTMLSelectNamespace extends HTMLFormField {
 		] );
 	}
 
+	protected function getOOUIModules() {
+		// FIXME: NamespaceInputWidget should be in its own module (probably?)
+		return [ 'mediawiki.widgets' ];
+	}
+
 	protected function shouldInfuseOOUI() {
 		return true;
 	}

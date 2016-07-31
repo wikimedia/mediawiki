@@ -201,25 +201,15 @@
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		$root.find( '.mw-htmlform-hide-if' ).each( function () {
-			var v, i, fields, test, func, spec, self, modules,
+			var v, i, fields, test, func, spec, self, modules, extraModules,
 				$el = $( this );
 
 			modules = [];
 			if ( $el.is( '[data-ooui]' ) ) {
 				modules.push( 'mediawiki.htmlform.ooui' );
-				if ( $el.filter( '.mw-htmlform-field-HTMLTitleTextField' ).length ) {
-					// FIXME: TitleInputWidget should be in its own module
-					modules.push( 'mediawiki.widgets' );
-				}
-				if ( $el.filter( '.mw-htmlform-field-HTMLUserTextField' ).length ) {
-					modules.push( 'mediawiki.widgets.UserInputWidget' );
-				}
-				if (
-					$el.filter( '.mw-htmlform-field-HTMLSelectNamespace' ).length ||
-					$el.filter( '.mw-htmlform-field-HTMLSelectNamespaceWithButton' ).length
-				) {
-					// FIXME: NamespaceInputWidget should be in its own module (probably?)
-					modules.push( 'mediawiki.widgets' );
+				if ( $el.data( 'modules' ) ) {
+					extraModules = $el.data( 'modules' ).split( ',' );
+					modules.push.apply( modules, extraModules );
 				}
 			}
 
