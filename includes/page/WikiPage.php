@@ -1960,7 +1960,8 @@ class WikiPage implements Page, IDBAccessObject {
 					Hooks::run( 'PageContentSaveComplete', $params );
 
 				}
-			)
+			),
+			DeferredUpdates::PRESEND
 		);
 
 		return $status;
