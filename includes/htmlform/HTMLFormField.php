@@ -626,8 +626,10 @@ abstract class HTMLFormField {
 			'infusable' => $infusable,
 		];
 
+		$preloadModules = false;
+
 		if ( $infusable && $this->shouldInfuseOOUI() ) {
-			$this->mParent->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
+			$preloadModules = true;
 			$config['classes'][] = 'mw-htmlform-field-autoinfuse';
 		}
 
@@ -638,8 +640,15 @@ abstract class HTMLFormField {
 		}
 
 		if ( $this->mHideIf ) {
-			$this->mParent->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
+			$preloadModules = true;
 			$config['hideIf'] = $this->mHideIf;
+		}
+
+		$config['modules'] = $this->getOOUIModules();
+
+		if ( $preloadModules ) {
+			$this->mParent->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
+			$this->mParent->getOutput()->addModules( $this->getOOUIModules() );
 		}
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
@@ -675,6 +684,16 @@ abstract class HTMLFormField {
 	protected function shouldInfuseOOUI() {
 		// Always infuse fields with help text, since the interface for it is nicer with JS
 		return $this->getHelpText() !== null;
+	}
+
+	/**
+	 * Get the list of extra ResourceLoader modules which must be loaded client-side before it's
+	 * possible to infuse this field's OOjs UI widget.
+	 *
+	 * @return string[]
+	 */
+	protected function getOOUIModules() {
+		return [];
 	}
 
 	/**

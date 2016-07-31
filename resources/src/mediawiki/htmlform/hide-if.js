@@ -205,20 +205,7 @@
 			modules = [];
 			if ( $el.is( '[data-ooui]' ) ) {
 				modules.push( 'mediawiki.htmlform.ooui' );
-				if ( $el.filter( '.mw-htmlform-field-HTMLTitleTextField' ).length ) {
-					// FIXME: TitleInputWidget should be in its own module
-					modules.push( 'mediawiki.widgets' );
-				}
-				if ( $el.filter( '.mw-htmlform-field-HTMLUserTextField' ).length ) {
-					modules.push( 'mediawiki.widgets.UserInputWidget' );
-				}
-				if (
-					$el.filter( '.mw-htmlform-field-HTMLSelectNamespace' ).length ||
-					$el.filter( '.mw-htmlform-field-HTMLSelectNamespaceWithButton' ).length
-				) {
-					// FIXME: NamespaceInputWidget should be in its own module (probably?)
-					modules.push( 'mediawiki.widgets' );
-				}
+				modules = modules.concat( $el.data( 'modules' ) || [] );
 			}
 
 			mw.loader.using( modules ).done( function () {
