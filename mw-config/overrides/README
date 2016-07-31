@@ -5,7 +5,7 @@ you can override classes used by the installer.
 You can override 3 classes:
 * LocalSettingsGenerator - generates LocalSettings.php
 * WebInstaller - web installer UI
-* CliInstaller - command line installer
+* CliInstaller - command-line installer
 
 Example override:
 
