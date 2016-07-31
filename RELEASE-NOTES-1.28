@@ -1,6 +1,6 @@
 == MediaWiki 1.28 ==
 
-THIS IS NOT A RELEASE YET
+CAUTION! THIS IS NOT A RELEASE YET
 
 MediaWiki 1.28 is an alpha-quality branch and is not recommended for use in
 production.
@@ -153,7 +153,7 @@ Documentation for both end-users and site administrators is available on
 MediaWiki.org, and is covered under the GNU Free Documentation License (except
 for pages that explicitly state that their contents are in the public domain):
 
-       https://www.mediawiki.org/wiki/Documentation
+       https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation
 
 == Mailing list ==
 
