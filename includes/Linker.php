@@ -748,6 +748,14 @@ class Linker {
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
 		global $wgResponsiveImages;
 		if ( $wgResponsiveImages && $thumb && !$thumb->isError() ) {
+			if ( !isset( $hp['width'] ) ) {
+				wfDebugLog(
+					'T138987',
+					'Undefined index: width in' . __METHOD__,
+					'all',
+					[ 'trace' => wfBacktrace( true ) ]
+				);
+			}
 			$hp15 = $hp;
 			$hp15['width'] = round( $hp['width'] * 1.5 );
 			$hp20 = $hp;
