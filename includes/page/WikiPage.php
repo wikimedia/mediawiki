@@ -1834,7 +1834,8 @@ class WikiPage implements Page, IDBAccessObject {
 					ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
-			)
+			),
+			DeferredUpdates::PRESEND
 		);
 
 		return $status;
