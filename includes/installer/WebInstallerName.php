@@ -112,7 +112,6 @@ class WebInstallerName extends WebInstallerPage {
 					'config-pingback-help',
 					FormatJson::encode( $pingbackInfo, true )
 				),
-				'value' => true,
 			] ) .
 			$this->getFieldsetEnd() .
 			$this->parent->getInfoBox( wfMessage( 'config-almost-done' )->text() ) .
