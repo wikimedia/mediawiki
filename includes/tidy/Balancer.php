@@ -1156,34 +1156,28 @@ class BalanceStack implements IteratorAggregate {
 			return true; // no more handling required
 		}
 
-		// Let outer loop counter be zero.
-		$outer = 0;
-
 		// Outer loop: If outer loop counter is greater than or
 		// equal to eight, then abort these steps.
-		while ( $outer < 8 ) {
-			// Increment outer loop counter by one.
-			$outer++;
-
+		for ( $outer = 0; $outer < 8; $outer++ ) {
 			// Let the formatting element be the last element in the list
 			// of active formatting elements that: is between the end of
 			// the list and the last scope marker in the list, if any, or
 			// the start of the list otherwise, and has the same tag name
 			// as the token.
-			$fmtelt = $afe->findElementByTag( $tag );
+			$fmtElt = $afe->findElementByTag( $tag );
 
 			// If there is no such node, then abort these steps and instead
 			// act as described in the "any other end tag" entry below.
-			if ( !$fmtelt ) {
+			if ( !$fmtElt ) {
 				return false; // false means handle by the default case
 			}
 
 			// Otherwise, if there is such a node, but that node is not in
 			// the stack of open elements, then this is a parse error;
 			// remove the element from the list, and abort these steps.
-			$index = $this->indexOf( $fmtelt );
+			$index = $this->indexOf( $fmtElt );
 			if ( $index < 0 ) {
-				$afe->remove( $fmtelt );
+				$afe->remove( $fmtElt );
 				return true;   // true means no more handling required
 			}
 
@@ -1191,7 +1185,7 @@ class BalanceStack implements IteratorAggregate {
 			// the stack of open elements, but the element is not in scope,
 			// then this is a parse error; ignore the token, and abort
 			// these steps.
-			if ( !$this->inScope( $fmtelt ) ) {
+			if ( !$this->inScope( $fmtElt ) ) {
 				return true;
 			}
 
@@ -1199,13 +1193,13 @@ class BalanceStack implements IteratorAggregate {
 			// open elements that is lower in the stack than the formatting
 			// element, and is an element in the special category. There
 			// might not be one.
-			$furthestblock = null;
-			$furthestblockindex = -1;
-			$stacklen = $this->length();
-			for ( $i = $index+1; $i < $stacklen; $i++ ) {
+			$furthestBlock = null;
+			$furthestBlockIndex = -1;
+			$stackLength = $this->length();
+			for ( $i = $index+1; $i < $stackLength; $i++ ) {
 				if ( $this->node( $i )->isA( BalanceSets::$specialSet ) ) {
-					$furthestblock = $this->node( $i );
-					$furthestblockindex = $i;
+					$furthestBlock = $this->node( $i );
+					$furthestBlockIndex = $i;
 					break;
 				}
 			}
@@ -1216,140 +1210,134 @@ class BalanceStack implements IteratorAggregate {
 			// up to and including the formatting element, and remove the
 			// formatting element from the list of active formatting
 			// elements.
-			if ( !$furthestblock ) {
-				$this->popTag( $fmtelt );
-				$afe->remove( $fmtelt );
+			if ( !$furthestBlock ) {
+				$this->popTag( $fmtElt );
+				$afe->remove( $fmtElt );
 				return true;
-			} else {
-				// Let the common ancestor be the element immediately above
-				// the formatting element in the stack of open elements.
-				$ancestor = $this->node( $index-1 );
+			}
 
-				// Let a bookmark note the position of the formatting
-				// element in the list of active formatting elements
-				// relative to the elements on either side of it in the
-				// list.
-				$BOOKMARK = new BalanceElement( '[bookmark]', '[bookmark]', [] );
-				$afe->insertAfter( $fmtelt, $BOOKMARK );
+			// Let the common ancestor be the element immediately above
+			// the formatting element in the stack of open elements.
+			$ancestor = $this->node( $index-1 );
 
-				// Let node and last node be the furthest block.
-				$node = $furthestblock;
-				$lastnode = $furthestblock;
-				$nodeindex = $furthestblockindex;
-				$isAFE = false;
+			// Let a bookmark note the position of the formatting
+			// element in the list of active formatting elements
+			// relative to the elements on either side of it in the
+			// list.
+			$BOOKMARK = new BalanceElement( '[bookmark]', '[bookmark]', [] );
+			$afe->insertAfter( $fmtElt, $BOOKMARK );
 
-				// Let inner loop counter be zero.
-				$inner = 0;
+			// Let node and last node be the furthest block.
+			$node = $furthestBlock;
+			$lastNode = $furthestBlock;
+			$nodeIndex = $furthestBlockIndex;
+			$isAFE = false;
 
-				while ( true ) {
+			// Inner loop
+			for ( $inner = 1; true; $inner++ ) {
+				// Let node be the element immediately above node in
+				// the stack of open elements, or if node is no longer
+				// in the stack of open elements (e.g. because it got
+				// removed by this algorithm), the element that was
+				// immediately above node in the stack of open elements
+				// before node was removed.
+				$node = $this->node( --$nodeIndex );
 
-					// Increment inner loop counter by one.
-					$inner++;
+				// If node is the formatting element, then go
+				// to the next step in the overall algorithm.
+				if ( $node === $fmtElt ) break;
 
-					// Let node be the element immediately above node in
-					// the stack of open elements, or if node is no longer
-					// in the stack of open elements (e.g. because it got
-					// removed by this algorithm), the element that was
-					// immediately above node in the stack of open elements
-					// before node was removed.
-					$node = $this->node( --$nodeindex );
-
-					// If node is the formatting element, then go
-					// to the next step in the overall algorithm.
-					if ( $node === $fmtelt ) break;
-
-					// If the inner loop counter is greater than three and node
-					// is in the list of active formatting elements, then remove
-					// node from the list of active formatting elements.
-					$isAFE = $afe->isInList( $node );
-					if ( $inner > 3 && $isAFE ) {
-						$afe->remove( $node );
-						$isAFE = false;
-					}
-
-					// If node is not in the list of active formatting
-					// elements, then remove node from the stack of open
-					// elements and then go back to the step labeled inner
-					// loop.
-					if ( !$isAFE ) {
-						// Don't flatten here, since we're about to relocate
-						// parts of this $node.
-						$this->removeElement( $node, false );
-						continue;
-					}
-
-					// Create an element for the token for which the
-					// element node was created with common ancestor as
-					// the intended parent, replace the entry for node
-					// in the list of active formatting elements with an
-					// entry for the new element, replace the entry for
-					// node in the stack of open elements with an entry for
-					// the new element, and let node be the new element.
-					$newelt = new BalanceElement(
-						$node->namespaceURI, $node->localName, $node->attribs );
-					$afe->replace( $node, $newelt );
-					$this->replaceAt( $nodeindex, $newelt );
-					$node = $newelt;
-
-					// If last node is the furthest block, then move the
-					// aforementioned bookmark to be immediately after the
-					// new node in the list of active formatting elements.
-					if ( $lastnode === $furthestblock ) {
-						$afe->remove( $BOOKMARK );
-						$afe->insertAfter( $newelt, $BOOKMARK );
-					}
-
-					// Insert last node into node, first removing it from
-					// its previous parent node if any.
-					$node->appendChild( $lastnode );
-
-					// Let last node be node.
-					$lastnode = $node;
+				// If the inner loop counter is greater than three and node
+				// is in the list of active formatting elements, then remove
+				// node from the list of active formatting elements.
+				$isAFE = $afe->isInList( $node );
+				if ( $inner > 3 && $isAFE ) {
+					$afe->remove( $node );
+					$isAFE = false;
 				}
 
-				// If the common ancestor node is a table, tbody, tfoot,
-				// thead, or tr element, then, foster parent whatever last
-				// node ended up being in the previous step, first removing
-				// it from its previous parent node if any.
-				if (
-					$this->fosterParentMode &&
-					$ancestor->isA( BalanceSets::$tableSectionRowSet )
-				) {
-					$this->fosterParent( $lastnode );
-				} else {
-					// Otherwise, append whatever last node ended up being in
-					// the previous step to the common ancestor node, first
-					// removing it from its previous parent node if any.
-					$ancestor->appendChild( $lastnode );
+				// If node is not in the list of active formatting
+				// elements, then remove node from the stack of open
+				// elements and then go back to the step labeled inner
+				// loop.
+				if ( !$isAFE ) {
+					// Don't flatten here, since we're about to relocate
+					// parts of this $node.
+					$this->removeElement( $node, false );
+					continue;
 				}
 
 				// Create an element for the token for which the
-				// formatting element was created, with furthest block
-				// as the intended parent.
-				$newelt2 = new BalanceElement(
-					$fmtelt->namespaceURI, $fmtelt->localName, $fmtelt->attribs );
+				// element node was created with common ancestor as
+				// the intended parent, replace the entry for node
+				// in the list of active formatting elements with an
+				// entry for the new element, replace the entry for
+				// node in the stack of open elements with an entry for
+				// the new element, and let node be the new element.
+				$newElt = new BalanceElement(
+					$node->namespaceURI, $node->localName, $node->attribs );
+				$afe->replace( $node, $newElt );
+				$this->replaceAt( $nodeIndex, $newElt );
+				$node = $newElt;
 
-				// Take all of the child nodes of the furthest block and
-				// append them to the element created in the last step.
-				$newelt2->adoptChildren( $furthestblock );
+				// If last node is the furthest block, then move the
+				// aforementioned bookmark to be immediately after the
+				// new node in the list of active formatting elements.
+				if ( $lastNode === $furthestBlock ) {
+					$afe->remove( $BOOKMARK );
+					$afe->insertAfter( $newElt, $BOOKMARK );
+				}
 
-				// Append that new element to the furthest block.
-				$furthestblock->appendChild( $newelt2 );
+				// Insert last node into node, first removing it from
+				// its previous parent node if any.
+				$node->appendChild( $lastNode );
 
-				// Remove the formatting element from the list of active
-				// formatting elements, and insert the new element into the
-				// list of active formatting elements at the position of
-				// the aforementioned bookmark.
-				$afe->remove( $fmtelt );
-				$afe->replace( $BOOKMARK, $newelt2 );
-
-				// Remove the formatting element from the stack of open
-				// elements, and insert the new element into the stack of
-				// open elements immediately below the position of the
-				// furthest block in that stack.
-				$this->removeElement( $fmtelt );
-				$this->insertAfter( $furthestblock, $newelt2 );
+				// Let last node be node.
+				$lastNode = $node;
 			}
+
+			// If the common ancestor node is a table, tbody, tfoot,
+			// thead, or tr element, then, foster parent whatever last
+			// node ended up being in the previous step, first removing
+			// it from its previous parent node if any.
+			if (
+				$this->fosterParentMode &&
+				$ancestor->isA( BalanceSets::$tableSectionRowSet )
+			) {
+				$this->fosterParent( $lastNode );
+			} else {
+				// Otherwise, append whatever last node ended up being in
+				// the previous step to the common ancestor node, first
+				// removing it from its previous parent node if any.
+				$ancestor->appendChild( $lastNode );
+			}
+
+			// Create an element for the token for which the
+			// formatting element was created, with furthest block
+			// as the intended parent.
+			$newElt2 = new BalanceElement(
+				$fmtElt->namespaceURI, $fmtElt->localName, $fmtElt->attribs );
+
+			// Take all of the child nodes of the furthest block and
+			// append them to the element created in the last step.
+			$newElt2->adoptChildren( $furthestBlock );
+
+			// Append that new element to the furthest block.
+			$furthestBlock->appendChild( $newElt2 );
+
+			// Remove the formatting element from the list of active
+			// formatting elements, and insert the new element into the
+			// list of active formatting elements at the position of
+			// the aforementioned bookmark.
+			$afe->remove( $fmtElt );
+			$afe->replace( $BOOKMARK, $newElt2 );
+
+			// Remove the formatting element from the stack of open
+			// elements, and insert the new element into the stack of
+			// open elements immediately below the position of the
+			// furthest block in that stack.
+			$this->removeElement( $fmtElt );
+			$this->insertAfter( $furthestBlock, $newElt2 );
 		}
 
 		return true;
@@ -1682,11 +1670,11 @@ class BalanceActiveFormattingElements {
 
 		// Loop backward through the list until we find a marker or an
 		// open element
-		$foundit = false;
+		$foundIt = false;
 		while ( $entry->prevAFE ) {
 			$entry = $entry->prevAFE;
 			if ( $entry instanceof BalanceMarker || $stack->indexOf( $entry ) >= 0 ) {
-				$foundit = true;
+				$foundIt = true;
 				break;
 			}
 		}
@@ -1695,7 +1683,7 @@ class BalanceActiveFormattingElements {
 		// the first element if we didn't find a marker or open element),
 		// recreating formatting elements and pushing them back onto the list
 		// of open elements.
-		if ( $foundit ) {
+		if ( $foundIt ) {
 			$entry = $entry->nextAFE;
 		}
 		do {
@@ -1956,7 +1944,7 @@ class Balancer {
 	 * Pass a token to the tree builder.  The $token will be one of the
 	 * strings "tag", "endtag", or "text".
 	 */
-	private function insertToken( $token, $value, $attribs = null, $selfclose = false ) {
+	private function insertToken( $token, $value, $attribs = null, $selfClose = false ) {
 		// validate tags against $unsupportedSet
 		if ( $token === 'tag' || $token === 'endtag' ) {
 			if ( isset( BalanceSets::$unsupportedSet[BalanceSets::HTML_NAMESPACE][$value] ) ) {
@@ -2017,14 +2005,14 @@ class Balancer {
 			$isForeign = false;
 		}
 		if ( $isForeign ) {
-			return $this->insertForeignToken( $token, $value, $attribs, $selfclose );
+			return $this->insertForeignToken( $token, $value, $attribs, $selfClose );
 		} else {
 			$func = $this->parseMode;
-			return $this->$func( $token, $value, $attribs, $selfclose );
+			return $this->$func( $token, $value, $attribs, $selfClose );
 		}
 	}
 
-	private function insertForeignToken( $token, $value, $attribs = null, $selfclose = false ) {
+	private function insertForeignToken( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			$this->stack->insertText( $value );
 			return true;
@@ -2096,7 +2084,7 @@ class Balancer {
 						break;
 					}
 				}
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			}
 			// "Any other start tag"
 			$adjusted = ( $this->fragmentContext && $this->stack->length()===1 ) ?
@@ -2104,7 +2092,7 @@ class Balancer {
 			$this->stack->insertForeignElement(
 				$adjusted->namespaceURI, $value, $attribs
 			);
-			if ( $selfclose ) {
+			if ( $selfClose ) {
 				$this->stack->pop();
 			}
 			return true;
@@ -2114,7 +2102,7 @@ class Balancer {
 				if ( $node->isHtml() && !$first ) {
 					// process the end tag as HTML
 					$func = $this->parseMode;
-					return $this->$func( $token, $value, $attribs, $selfclose );
+					return $this->$func( $token, $value, $attribs, $selfClose );
 				} elseif ( $i === 0 ) {
 					return true;
 				} elseif ( $node->localName === $value ) {
@@ -2172,13 +2160,13 @@ class Balancer {
 			);
 			$slash = $t = $attribStr = $brace = $rest = null;
 		}
-		$goodtag = $t;
+		$goodTag = $t;
 		if ( $this->inRCDATA ) {
 			if ( $slash && $t === $this->inRCDATA ) {
 				$this->inRCDATA = false;
 			} else {
 				// No tags allowed; this emulates the "rcdata" tokenizer mode.
-				$goodtag = false;
+				$goodTag = false;
 			}
 		}
 		if ( $this->inRAWTEXT ) {
@@ -2186,33 +2174,33 @@ class Balancer {
 				$this->inRAWTEXT = false;
 			} else {
 				// No tags allowed, no entity-escaping done.
-				$goodtag = false;
+				$goodTag = false;
 			}
 		}
 		$sanitize = $this->allowedHtmlElements !== null;
 		if ( $sanitize ) {
-			$goodtag = $t && isset( $this->allowedHtmlElements[$t] );
+			$goodTag = $t && isset( $this->allowedHtmlElements[$t] );
 		}
-		if ( $goodtag ) {
+		if ( $goodTag ) {
 			if ( is_callable( $this->processingCallback ) ) {
 				call_user_func_array( $this->processingCallback, [ &$attribStr, $this->processingArgs ] );
 			}
 			if ( $sanitize ) {
-				$goodtag = Sanitizer::validateTag( $attribStr, $t );
+				$goodTag = Sanitizer::validateTag( $attribStr, $t );
 			}
 		}
-		if ( $goodtag ) {
+		if ( $goodTag ) {
 			if ( $sanitize ) {
 				$attribs = Sanitizer::decodeTagAttributes( $attribStr );
 				$attribs = Sanitizer::validateTagAttributes( $attribs, $t );
 			} else {
 				$attribs = Sanitizer::decodeTagAttributes( $attribStr );
 			}
-			$goodtag = $this->insertToken(
+			$goodTag = $this->insertToken(
 				$slash ? 'endtag' : 'tag', $t, $attribs, $brace === '/>'
 			);
 		}
-		if ( $goodtag ) {
+		if ( $goodTag ) {
 			$rest = str_replace( '>', '&gt;', $rest );
 			$this->insertToken( 'text', str_replace( '>', '&gt;', $rest ) );
 		} elseif ( $this->inRAWTEXT ) {
@@ -2232,9 +2220,9 @@ class Balancer {
 		return $oldMode;
 	}
 
-	private function switchModeAndReprocess( $mode, $token, $value, $attribs, $selfclose ) {
+	private function switchModeAndReprocess( $mode, $token, $value, $attribs, $selfClose ) {
 		$this->switchMode( $mode );
-		return $this->insertToken( $token, $value, $attribs, $selfclose );
+		return $this->insertToken( $token, $value, $attribs, $selfClose );
 	}
 
 	private function resetInsertionMode() {
@@ -2249,9 +2237,9 @@ class Balancer {
 			if ( $node->isHtml() ) {
 				switch ( $node->localName ) {
 				case 'select':
-					$stacklen = $this->stack->length();
-					for ( $j = $i + 1; $j < $stacklen-1; $j++ ) {
-						$ancestor = $this->stack->node( $stacklen-$j-1 );
+					$stackLength = $this->stack->length();
+					for ( $j = $i + 1; $j < $stackLength-1; $j++ ) {
+						$ancestor = $this->stack->node( $stackLength-$j-1 );
 						if ( $ancestor->isHtmlNamed( 'template' ) ) {
 							break;
 						}
@@ -2327,14 +2315,14 @@ class Balancer {
 		return true;
 	}
 
-	private function inTextMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inTextMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			$this->stack->insertText( $value );
 			return true;
 		} elseif ( $token === 'eof' ) {
 			$this->stack->pop();
 			return $this->switchModeAndReprocess(
-				$this->originalInsertionMode, $token, $value, $attribs, $selfclose
+				$this->originalInsertionMode, $token, $value, $attribs, $selfClose
 			);
 		} elseif ( $token === 'endtag' ) {
 			$this->stack->pop();
@@ -2344,7 +2332,7 @@ class Balancer {
 		return true;
 	}
 
-	private function inHeadMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inHeadMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			if ( preg_match( '/^[\x09\x0A\x0C\x0D\x20]+/', $value, $matches ) ) {
 				$this->stack->insertText( $matches[0] );
@@ -2411,17 +2399,17 @@ class Balancer {
 		// If not handled above
 		$this->inHeadMode( 'endtag', 'head' ); // synthetic </head>
 		// Then redo this one
-		return $this->insertToken( $token, $value, $attribs, $selfclose );
+		return $this->insertToken( $token, $value, $attribs, $selfClose );
 	}
 
-	private function inBodyMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inBodyMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			$this->afe->reconstruct( $this->stack );
 			$this->stack->insertText( $value );
 			return true;
 		} elseif ( $token === 'eof' ) {
 			if ( !empty( $this->templateInsertionModes ) ) {
-				return $this->inTemplateMode( $token, $value, $attribs, $selfclose );
+				return $this->inTemplateMode( $token, $value, $attribs, $selfClose );
 			}
 			$this->stopParsing();
 			return true;
@@ -2438,7 +2426,7 @@ class Balancer {
 			case 'style':
 			case 'template':
 			// OMITTED: <title>
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			// OMITTED: <body>
 			// OMITTED: <frameset>
 
@@ -2563,7 +2551,7 @@ class Balancer {
 			case 'button':
 				if ( $this->stack->inScope( 'button' ) ) {
 					$this->inBodyMode( 'endtag', 'button' );
-					return $this->insertToken( $token, $value, $attribs, $selfclose );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				$this->afe->reconstruct( $this->stack );
 				$this->stack->insertHTMLElement( $value, $attribs );
@@ -2665,7 +2653,7 @@ class Balancer {
 
 			case 'image':
 				// warts!
-				return $this->inBodyMode( $token, 'img', $attribs, $selfclose );
+				return $this->inBodyMode( $token, 'img', $attribs, $selfClose );
 
 			// OMITTED: <isindex>
 
@@ -2731,7 +2719,7 @@ class Balancer {
 				$this->stack->insertForeignElement(
 					BalanceSets::MATHML_NAMESPACE, $value, $attribs
 				);
-				if ( $selfclose ) {
+				if ( $selfClose ) {
 					// emit explicit </math> tag.
 					$this->stack->pop();
 				}
@@ -2746,7 +2734,7 @@ class Balancer {
 				$this->stack->insertForeignElement(
 					BalanceSets::SVG_NAMESPACE, $value, $attribs
 				);
-				if ( $selfclose ) {
+				if ( $selfClose ) {
 					// emit explicit </svg> tag.
 					$this->stack->pop();
 				}
@@ -2776,7 +2764,7 @@ class Balancer {
 			// </body>,</html> are unsupported.
 
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 
 			case 'address':
 			case 'article':
@@ -2836,7 +2824,7 @@ class Balancer {
 			case 'p':
 				if ( !$this->stack->inButtonScope( 'p' ) ) {
 					$this->inBodyMode( 'tag', 'p', [] );
-					return $this->insertToken( $token, $value, $attribs, $selfclose );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				$this->stack->generateImpliedEndTags( $value );
 				$this->stack->popTag( $value );
@@ -2930,15 +2918,15 @@ class Balancer {
 		}
 	}
 
-	private function inTableMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inTableMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			if ( $this->textIntegrationMode ) {
-				return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+				return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 			} elseif ( $this->stack->currentNode->isA( BalanceSets::$tableSectionRowSet ) ) {
 				$this->pendingTableText = '';
 				$this->originalInsertionMode = $this->parseMode;
 				return $this->switchModeAndReprocess( 'inTableTextMode',
-					$token, $value, $attribs, $selfclose );
+					$token, $value, $attribs, $selfClose );
 			}
 			// fall through to default case.
 		} elseif ( $token === 'eof' ) {
@@ -2958,7 +2946,7 @@ class Balancer {
 				return true;
 			case 'col':
 				$this->inTableMode( 'tag', 'colgroup', [] );
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			case 'tbody':
 			case 'tfoot':
 			case 'thead':
@@ -2970,18 +2958,18 @@ class Balancer {
 			case 'th':
 			case 'tr':
 				$this->inTableMode( 'tag', 'tbody', [] );
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			case 'table':
 				if ( !$this->stack->inTableScope( $value ) ) {
 					return true; // Ignore this tag.
 				}
 				$this->inTableMode( 'endtag', $value );
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 
 			case 'style':
 			// OMITTED: <script>
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 
 			case 'input':
 				if ( !isset( $attribs['type'] ) || strcasecmp( $attribs['type'], 'hidden' ) !== 0 ) {
@@ -3026,7 +3014,7 @@ class Balancer {
 			case 'tr':
 				return true; // Ignore the token.
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else" clause.
 		} elseif ( $token === 'comment' ) {
@@ -3035,12 +3023,12 @@ class Balancer {
 		}
 		// This is the "anything else" case:
 		$this->stack->fosterParentMode = true;
-		$this->inBodyMode( $token, $value, $attribs, $selfclose );
+		$this->inBodyMode( $token, $value, $attribs, $selfClose );
 		$this->stack->fosterParentMode = false;
 		return true;
 	}
 
-	private function inTableTextMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inTableTextMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			$this->pendingTableText .= $value;
 			return true;
@@ -3058,7 +3046,7 @@ class Balancer {
 			$this->stack->insertText( $text );
 		}
 		return $this->switchModeAndReprocess(
-			$this->originalInsertionMode, $token, $value, $attribs, $selfclose
+			$this->originalInsertionMode, $token, $value, $attribs, $selfClose
 		);
 	}
 
@@ -3074,7 +3062,7 @@ class Balancer {
 		return true;
 	}
 
-	private function inCaptionMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inCaptionMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
 			case 'caption':
@@ -3087,7 +3075,7 @@ class Balancer {
 			case 'thead':
 			case 'tr':
 				if ( $this->endCaption() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
@@ -3099,7 +3087,7 @@ class Balancer {
 				return true;
 			case 'table':
 				if ( $this->endCaption() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			case 'body':
@@ -3118,10 +3106,10 @@ class Balancer {
 			// Fall through to "anything else" case.
 		}
 		// The Anything Else case
-		return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+		return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 	}
 
-	private function inColumnGroupMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inColumnGroupMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			if ( preg_match( '/^[\x09\x0A\x0C\x0D\x20]+/', $value, $matches ) ) {
 				$this->stack->insertText( $matches[0] );
@@ -3139,7 +3127,7 @@ class Balancer {
 				$this->stack->pop();
 				return true;
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else".
 		} elseif ( $token === 'endtag' ) {
@@ -3154,11 +3142,11 @@ class Balancer {
 			case 'col':
 				return true; // Ignore the token.
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else".
 		} elseif ( $token === 'eof' ) {
-			return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+			return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 		} elseif ( $token === 'comment' ) {
 			$this->stack->insertComment( $value );
 			return true;
@@ -3169,7 +3157,7 @@ class Balancer {
 			return true; // Ignore the token.
 		}
 		$this->inColumnGroupMode( 'endtag', 'colgroup' );
-		return $this->insertToken( $token, $value, $attribs, $selfclose );
+		return $this->insertToken( $token, $value, $attribs, $selfClose );
 	}
 
 	// Helper function for inTableBodyMode
@@ -3186,7 +3174,7 @@ class Balancer {
 		$this->switchMode( 'inTableMode' );
 		return true;
 	}
-	private function inTableBodyMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inTableBodyMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
 			case 'tr':
@@ -3197,7 +3185,7 @@ class Balancer {
 			case 'th':
 			case 'td':
 				$this->inTableBodyMode( 'tag', 'tr', [] );
-				$this->insertToken( $token, $value, $attribs, $selfclose );
+				$this->insertToken( $token, $value, $attribs, $selfClose );
 				return true;
 			case 'caption':
 			case 'col':
@@ -3206,7 +3194,7 @@ class Balancer {
 			case 'tfoot':
 			case 'thead':
 				if ( $this->endSection() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
@@ -3214,7 +3202,7 @@ class Balancer {
 			switch ( $value ) {
 			case 'table':
 				if ( $this->endSection() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			case 'tbody':
@@ -3236,7 +3224,7 @@ class Balancer {
 			}
 		}
 		// Anything else:
-		return $this->inTableMode( $token, $value, $attribs, $selfclose );
+		return $this->inTableMode( $token, $value, $attribs, $selfClose );
 	}
 
 	// Helper function for inRowMode
@@ -3249,7 +3237,7 @@ class Balancer {
 		$this->switchMode( 'inTableBodyMode' );
 		return true;
 	}
-	private function inRowMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inRowMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
 			case 'th':
@@ -3267,7 +3255,7 @@ class Balancer {
 			case 'thead':
 			case 'tr':
 				if ( $this->endRow() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
@@ -3278,7 +3266,7 @@ class Balancer {
 				return true;
 			case 'table':
 				if ( $this->endRow() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			case 'tbody':
@@ -3288,7 +3276,7 @@ class Balancer {
 					$this->stack->inTableScope( $value ) &&
 					$this->endRow()
 				) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			// OMITTED: <body>
@@ -3302,7 +3290,7 @@ class Balancer {
 			}
 		}
 		// Anything else:
-		return $this->inTableMode( $token, $value, $attribs, $selfclose );
+		return $this->inTableMode( $token, $value, $attribs, $selfClose );
 	}
 
 	// Helper for inCellMode
@@ -3317,7 +3305,7 @@ class Balancer {
 			return false;
 		}
 	}
-	private function inCellMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inCellMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
 			case 'caption':
@@ -3330,7 +3318,7 @@ class Balancer {
 			case 'thead':
 			case 'tr':
 				if ( $this->endCell() ) {
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
@@ -3362,21 +3350,21 @@ class Balancer {
 					$this->stack->popTag( BalanceSets::$tableCellSet );
 					$this->afe->clearToMarker();
 					$this->switchMode( 'inRowMode' );
-					$this->insertToken( $token, $value, $attribs, $selfclose );
+					$this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
 		}
 		// Anything else:
-		return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+		return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 	}
 
-	private function inSelectMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inSelectMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' ) {
 			$this->stack->insertText( $value );
 			return true;
 		} elseif ( $token === 'eof' ) {
-			return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+			return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
 			// OMITTED: <html>
@@ -3405,10 +3393,10 @@ class Balancer {
 					return true; // ignore token (fragment case)
 				}
 				$this->inSelectMode( 'endtag', 'select' );
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			case 'script':
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
@@ -3437,7 +3425,7 @@ class Balancer {
 				$this->resetInsertionMode();
 				return true;
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 		} elseif ( $token === 'comment' ) {
 			$this->stack->insertComment( $value );
@@ -3447,7 +3435,7 @@ class Balancer {
 		return true;
 	}
 
-	private function inSelectInTableMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inSelectInTableMode( $token, $value, $attribs = null, $selfClose = false ) {
 		switch ( $value ) {
 		case 'caption':
 		case 'table':
@@ -3459,22 +3447,22 @@ class Balancer {
 		case 'th':
 			if ( $token === 'tag' ) {
 				$this->inSelectInTableMode( 'endtag', 'select' );
-				return $this->insertToken( $token, $value, $attribs, $selfclose );
+				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			} elseif ( $token === 'endtag' ) {
 				if ( $this->stack->inTableScope( $value ) ) {
 					$this->inSelectInTableMode( 'endtag', 'select' );
-					return $this->insertToken( $token, $value, $attribs, $selfclose );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
 				}
 				return true;
 			}
 		}
 		// anything else
-		return $this->inSelectMode( $token, $value, $attribs, $selfclose );
+		return $this->inSelectMode( $token, $value, $attribs, $selfClose );
 	}
 
-	private function inTemplateMode( $token, $value, $attribs = null, $selfclose = false ) {
+	private function inTemplateMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'text' || $token === 'comment' ) {
-			return $this->inBodyMode( $token, $value, $attribs, $selfclose );
+			return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 		} elseif ( $token === 'eof' ) {
 			if ( $this->stack->indexOf( 'template' ) < 0 ) {
 				$this->stopParsing();
@@ -3483,7 +3471,7 @@ class Balancer {
 				$this->afe->clearToMarker();
 				array_pop( $this->templateInsertionModes );
 				$this->resetInsertionMode();
-				$this->insertToken( $token, $value, $attribs, $selfclose );
+				$this->insertToken( $token, $value, $attribs, $selfClose );
 			}
 			return true;
 		} elseif ( $token === 'tag' ) {
@@ -3498,7 +3486,7 @@ class Balancer {
 			case 'style':
 			case 'template':
 			// OMITTED: <title>
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 
 			case 'caption':
 			case 'colgroup':
@@ -3506,32 +3494,32 @@ class Balancer {
 			case 'tfoot':
 			case 'thead':
 				return $this->switchModeAndReprocess(
-					'inTableMode', $token, $value, $attribs, $selfclose
+					'inTableMode', $token, $value, $attribs, $selfClose
 				);
 
 			case 'col':
 				return $this->switchModeAndReprocess(
-					'inColumnGroupMode', $token, $value, $attribs, $selfclose
+					'inColumnGroupMode', $token, $value, $attribs, $selfClose
 				);
 
 			case 'tr':
 				return $this->switchModeAndReprocess(
-					'inTableBodyMode', $token, $value, $attribs, $selfclose
+					'inTableBodyMode', $token, $value, $attribs, $selfClose
 				);
 
 			case 'td':
 			case 'th':
 				return $this->switchModeAndReprocess(
-					'inRowMode', $token, $value, $attribs, $selfclose
+					'inRowMode', $token, $value, $attribs, $selfClose
 				);
 			}
 			return $this->switchModeAndReprocess(
-				'inBodyMode', $token, $value, $attribs, $selfclose
+				'inBodyMode', $token, $value, $attribs, $selfClose
 			);
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
 			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfclose );
+				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			return true;
 		} else {
