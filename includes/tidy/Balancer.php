@@ -980,7 +980,6 @@ class BalanceStack implements IteratorAggregate {
 	 * @param int $idx
 	 */
 	public function popTo( $idx ) {
-		$length = count( $this->elements );
 		for ( $length = count( $this->elements ); $length > $idx; $length-- ) {
 			$this->pop();
 		}
