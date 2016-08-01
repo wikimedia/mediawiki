@@ -145,12 +145,31 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
 
+		$byTS = ( isset( $params['start'] ) || isset( $params['end'] ) );
+		$byID = ( isset( $params['startid'] ) || isset( $params['endid'] ) );
+
+		if ( $byTS && $byID ) {
+			$this->dieWithError( 'apierror-rc-range' );
+		}
+
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
 		 *   AND rc_timestamp < $end AND rc_namespace = $namespace
 		 */
 		$this->addTables( 'recentchanges' );
-		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
+
+		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';
+
+		if ( $byID ) {
+			$this->addWhereRange( 'rc_id', $params['dir'], $params['startid'], $params['endid'] );
+		} else {
+			$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'],
+				$params['end'] );
+			$this->addOption( 'ORDER BY', [
+				"rc_timestamp $order",
+				"rc_id $order",
+			] );
+		}
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
@@ -160,18 +179,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$id = intval( $cont[1] );
 			$this->dieContinueUsageIf( $id != $cont[1] );
 			$op = $params['dir'] === 'older' ? '<' : '>';
-			$this->addWhere(
-				"rc_timestamp $op $timestamp OR " .
-				"(rc_timestamp = $timestamp AND " .
-				"rc_id $op= $id)"
-			);
+			if ( $byID ) {
+				$this->addWhere( "rc_id $op= $id)" );
+			} else {
+				$this->addWhere( "rc_timestamp $op $timestamp OR " .
+				                 "(rc_timestamp = $timestamp AND " . "rc_id $op= $id)" );
+			}
 		}
-
-		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';
-		$this->addOption( 'ORDER BY', [
-			"rc_timestamp $order",
-			"rc_id $order",
-		] );
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 
@@ -606,6 +620,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			],
 			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
+			],
+			'startid' => [
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN  => 0,
+			],
+			'endid' => [
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN  => 0,
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
