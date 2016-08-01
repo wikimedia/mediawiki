@@ -396,6 +396,23 @@ class UploadBaseTest extends MediaWikiTestCase {
 		];
 		// @codingStandardsIgnoreEnd
 	}
+
+	/**
+	 * @dataProvider provideCheckXMLEncodingMissmatch
+	 */
+	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {
+		$filename = $this->getNewTempFile();
+		file_put_contents( $filename, $fileContents );
+		$this->assertSame( UploadBase::checkXMLEncodingMissmatch( $filename ), $evil );
+	}
+
+	public function provideCheckXMLEncodingMissmatch() {
+		return [
+			[ '<?xml version="1.0" encoding="utf-7"?><svg></svg>', true ],
+			[ '<?xml version="1.0" encoding="utf-8"?><svg></svg>', false ],
+			[ '<?xml version="1.0" encoding="WINDOWS-1252"?><svg></svg>', false ],
+		];
+	}
 }
 
 class UploadTestHandler extends UploadBase {
