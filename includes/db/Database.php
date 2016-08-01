@@ -2456,10 +2456,6 @@ abstract class DatabaseBase implements IDatabase {
 		return false;
 	}
 
-	public function serverIsReadOnly() {
-		return false;
-	}
-
 	final public function onTransactionResolution( callable $callback ) {
 		if ( !$this->mTrxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
