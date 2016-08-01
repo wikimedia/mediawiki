@@ -1314,15 +1314,12 @@ class LoadBalancer {
 			$cache->makeGlobalKey( __CLASS__, 'server-read-only', $masterServer ),
 			self::TTL_CACHE_READONLY,
 			function () use ( $wiki, $conn ) {
-				$this->trxProfiler->setSilenced( true );
 				try {
 					$dbw = $conn ?: $this->getConnection( DB_MASTER, [], $wiki );
-					$readOnly = (int)$dbw->serverIsReadOnly();
+					return (int)$dbw->serverIsReadOnly();
 				} catch ( DBError $e ) {
-					$readOnly = 0;
+					return 0;
 				}
-				$this->trxProfiler->setSilenced( false );
-				return $readOnly;
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'busyValue' => 0 ]
 		);
