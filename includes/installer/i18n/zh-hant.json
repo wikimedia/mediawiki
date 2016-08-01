@@ -189,7 +189,7 @@
 	"config-ns-site-name": "同 Wiki 名稱：$1",
 	"config-ns-other": "其他 (請註明)",
 	"config-ns-other-default": "我的 wiki",
-	"config-project-namespace-help": "許多 Wiki 以維基百科(Wikipedia)做為範例將政策頁面從內容頁面抽離，放置在 \"'''專案命名空間'''\" 中。\n所有在此命名空間裡的頁面都會有特定的字首，您可以在此處設定。\n通常這些字首是由該 Wiki 的名稱所衍伸出來，但無法使用標點符號，如 \"#\" 或 \":\"。",
+	"config-project-namespace-help": "許多 Wiki 以維基百科 (Wikipedia) 做為範例將政策頁面從內容頁面抽離，放置在 \"'''專案命名空間'''\" 中。\n所有在此命名空間裡的頁面都會有特定的字首，您可以在此處設定。\n通常這些字首是由該 Wiki 的名稱所衍伸出來，但無法使用標點符號，如 \"#\" 或 \":\"。",
 	"config-ns-invalid": "您指定的命名空間 \"<nowiki>$1</nowiki>\" 無效，\n請指定另一個專案命名空間。",
 	"config-ns-conflict": "您指定的命名空間 \"<nowiki>$1</nowiki>\" 與 MediaWiki 預設的命名空間衝突。\n請指定另一個專案命名空間。",
 	"config-admin-box": "管理員帳號",

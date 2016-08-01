@@ -3171,7 +3171,7 @@
 	"version-license-not-found": "Não foi encontrada informação detalhada da licença para esta extensão.",
 	"version-credits-title": "Créditos de autoria da extensão $1",
 	"version-credits-not-found": "Não foi encontrada informação detalhada dos créditos para esta extensão.",
-	"version-poweredby-credits": "Esta wiki é potenciada por <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.",
+	"version-poweredby-credits": "Este é um wiki <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "outros",
 	"version-poweredby-translators": "os tradutores da translatewiki.net",
 	"version-credits-summary": "Gostaríamos de reconhecer as seguintes pessoas pela sua contribuição para o [[Special:Version|MediaWiki]].",

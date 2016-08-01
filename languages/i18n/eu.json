@@ -2316,6 +2316,7 @@
 	"pageinfo-category-files": "Fitxategi kopurua",
 	"markaspatrolleddiff": "Patruilatutzat markatu",
 	"markaspatrolledtext": "Artikulu hau patruilatutzat markatu",
+	"markaspatrolledtext-file": "Fitxategi honen bertsioa patruilatutzat markatu",
 	"markedaspatrolled": "Patruilatutzat markatu da",
 	"markedaspatrolledtext": "[[:$1]]-(r)en bertsio hautatua patruilatutzat markatu da.",
 	"rcpatroldisabled": "Aldaketa berrien patruilaketa ezgaituta dago",
