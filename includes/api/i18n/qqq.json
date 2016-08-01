@@ -930,6 +930,8 @@
 	"apihelp-query+recentchanges-description": "{{doc-apihelp-description|query+recentchanges}}",
 	"apihelp-query+recentchanges-param-start": "{{doc-apihelp-param|query+recentchanges|start}}",
 	"apihelp-query+recentchanges-param-end": "{{doc-apihelp-param|query+recentchanges|end}}",
+	"apihelp-query+recentchanges-param-startid": "{{doc-apihelp-param|query+recentchanges|startid}}",
+	"apihelp-query+recentchanges-param-endid": "{{doc-apihelp-param|query+recentchanges|endid}}",
 	"apihelp-query+recentchanges-param-namespace": "{{doc-apihelp-param|query+recentchanges|namespace}}",
 	"apihelp-query+recentchanges-param-user": "{{doc-apihelp-param|query+recentchanges|user}}",
 	"apihelp-query+recentchanges-param-excludeuser": "{{doc-apihelp-param|query+recentchanges|excludeuser}}",

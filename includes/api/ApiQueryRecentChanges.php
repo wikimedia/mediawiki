@@ -151,6 +151,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		 */
 		$this->addTables( 'recentchanges' );
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addWhereRange( 'rc_id', $params['dir'], $params['startid'], $params['endid'] );
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
@@ -605,6 +606,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			],
 			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
+			],
+			'startid' => [
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN  => 0,
+			],
+			'endid' => [
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN  => 0,
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',

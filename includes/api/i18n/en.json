@@ -1001,6 +1001,8 @@
 	"apihelp-query+recentchanges-description": "Enumerate recent changes.",
 	"apihelp-query+recentchanges-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+recentchanges-param-end": "The timestamp to end enumerating.",
+	"apihelp-query+recentchanges-param-startid": "The RC ID to start enumerating from.",
+	"apihelp-query+recentchanges-param-endid": "The RC ID to end enumerating.",
 	"apihelp-query+recentchanges-param-namespace": "Filter changes to only these namespaces.",
 	"apihelp-query+recentchanges-param-user": "Only list changes by this user.",
 	"apihelp-query+recentchanges-param-excludeuser": "Don't list changes by this user.",
