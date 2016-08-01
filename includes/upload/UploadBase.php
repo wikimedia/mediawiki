@@ -53,7 +53,16 @@ abstract class UploadBase {
 		'ISO-8859-1',
 		'ISO-8859-2',
 		'UTF-16',
-		'UTF-32'
+		'UTF-32',
+		'WINDOWS-1250',
+		'WINDOWS-1251',
+		'WINDOWS-1252',
+		'WINDOWS-1253',
+		'WINDOWS-1254',
+		'WINDOWS-1255',
+		'WINDOWS-1256',
+		'WINDOWS-1257',
+		'WINDOWS-1258',
 	];
 
 	const SUCCESS = 0;

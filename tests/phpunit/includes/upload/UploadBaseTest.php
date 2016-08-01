@@ -393,6 +393,18 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with local urls, including filter: in style'
 			],
+			[
+				'<?xml version="1.0" encoding="windows-1252"?><svg></svg>',
+				true,
+				false,
+				'SVG using windows-1252 encoding is allowed'
+			],
+			[
+				'<?xml version="1.0" encoding="utf-7"?><svg></svg>',
+				true,
+				true,
+				'UTF-7 is banned'
+			],
 		];
 		// @codingStandardsIgnoreEnd
 	}
