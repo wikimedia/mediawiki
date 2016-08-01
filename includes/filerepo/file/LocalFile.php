@@ -1517,7 +1517,8 @@ class LocalFile extends File {
 						LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 					}
 				}
-			)
+			),
+			DeferredUpdates::PRESEND
 		);
 
 		if ( !$reupload ) {
