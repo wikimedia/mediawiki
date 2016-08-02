@@ -42,4 +42,11 @@ interface IExpiringStore {
 	const TTL_PROC_LONG = 30; // loose cache time that can survive slow web requests
 
 	const TTL_INDEFINITE = 0;
+
+	// Attribute and QoS constants; higher QOS values with the same prefix rank higher...
+	// Medium attributes constants related to emulation or media type
+	const ATTR_EMULATION = 1;
+	const QOS_EMULATION_SQL = 1;
+	// Generic "unknown" value that is useful for comparisons (e.g. always good enough)
+	const QOS_UNKNOWN = INF;
 }
