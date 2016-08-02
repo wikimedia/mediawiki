@@ -25,7 +25,7 @@
  * Let users reset tokens like the watchlist token.
  *
  * @ingroup SpecialPage
- * @deprecated 1.26
+ * @deprecated since 1.26
  */
 class SpecialResetTokens extends FormSpecialPage {
 	private $tokensList;

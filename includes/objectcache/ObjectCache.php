@@ -278,7 +278,7 @@ class ObjectCache {
 	 * @param array $params [optional] Array key 'fallback' for $fallback.
 	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
 	 * @return BagOStuff
-	 * @deprecated 1.27
+	 * @deprecated since 1.27
 	 */
 	public static function newAccelerator( $params = [], $fallback = null ) {
 		if ( $fallback === null ) {
