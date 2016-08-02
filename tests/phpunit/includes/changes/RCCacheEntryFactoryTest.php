@@ -67,8 +67,8 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$this->assertUserLinks( $user->getName(), $cacheEntry );
 		$this->assertTitleLink( 'Xyz', $cacheEntry );
 
-		$diff = [ 'curid' => 5, 'diff' => 191, 'oldid' => 190 ];
-		$cur = [ 'curid' => 5, 'diff' => 0, 'oldid' => 191 ];
+		$diff = [ 'diff' => 191, 'oldid' => 190 ];
+		$cur = [ 'diff' => 0, 'oldid' => 191 ];
 		$this->assertQueryLink( 'cur', $cur, $cacheEntry->curlink );
 		$this->assertQueryLink( 'prev', $diff, $cacheEntry->lastlink );
 		$this->assertQueryLink( 'diff', $diff, $cacheEntry->difflink );
