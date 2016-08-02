@@ -46,7 +46,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
 
-	/** @var integer */
+	/** @var integer ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
 
 	/** @var string */
@@ -69,6 +69,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/** @var bool */
 	private $dupeTrackScheduled = false;
+
+	/** @var integer[] Map of (ATTR_* class constant => QOS_* class constant) */
+	protected $attrMap = [];
 
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
@@ -733,5 +736,35 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function makeKey() {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
+	}
+
+	/**
+	 * @param integer $flag ATTR_* class constant
+	 * @return integer QOS_* class constant
+	 * @since 1.28
+	 */
+	public function getQoS( $flag ) {
+		return isset( $this->attrMap[$flag] ) ? $this->attrMap[$flag] : self::QOS_UNKNOWN;
+	}
+
+	/**
+	 * Merge the flag maps of one or more BagOStuff objects into a "lowest common denominator" map
+	 *
+	 * @param BagOStuff[] $bags
+	 * @return integer[] Resulting flag map (class ATTR_* constant => class QOS_* constant)
+	 */
+	protected function mergeFlagMaps( array $bags ) {
+		$map = [];
+		foreach ( $bags as $bag ) {
+			foreach ( $bag->attrMap as $attr => $rank ) {
+				if ( isset( $map[$attr] ) ) {
+					$map[$attr] = min( $map[$attr], $rank );
+				} else {
+					$map[$attr] = $rank;
+				}
+			}
+		}
+
+		return $map;
 	}
 }
