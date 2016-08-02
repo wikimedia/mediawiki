@@ -162,14 +162,6 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * This should return the key instead of the UploadStashFile instance, for backward compatibility.
-	 * @return string
-	 */
-	public function stashSession() {
-		return $this->stashFile()->getFileKey();
-	}
-
-	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
 	 * @return bool Success
 	 */

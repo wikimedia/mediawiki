@@ -336,7 +336,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $message HTML message to be passed to mainUploadForm
 	 */
 	protected function showRecoverableUploadError( $message ) {
-		$sessionKey = $this->mUpload->stashSession();
+		$sessionKey = $this->mUpload->stashFile()->getFileKey();
 		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
 
@@ -365,7 +365,7 @@ class SpecialUpload extends SpecialPage {
 			return false;
 		}
 
-		$sessionKey = $this->mUpload->stashSession();
+		$sessionKey = $this->mUpload->stashFile()->getFileKey();
 
 		// Add styles for the warning, reused from the live preview
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
