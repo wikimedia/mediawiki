@@ -395,7 +395,6 @@ class ChangesList extends ContextSource {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = [
-				'curid' => $rc->mAttribs['rc_cur_id'],
 				'diff' => $rc->mAttribs['rc_this_oldid'],
 				'oldid' => $rc->mAttribs['rc_last_oldid']
 			];
@@ -417,7 +416,6 @@ class ChangesList extends ContextSource {
 				new HtmlArmor( $this->message['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
 				[
-					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
 				]
 			);
