@@ -39,7 +39,11 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
-		header( $string, $replace, $http_response_code );
+		if ($http_response_code) {
+			header( $string, $replace, $http_response_code );
+		} else {
+			header( $string, $replace );
+		}
 	}
 
 	/**
