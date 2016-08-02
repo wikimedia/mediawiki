@@ -4,10 +4,27 @@
  * An information field (text blob), not a proper input.
  */
 class HTMLInfoField extends HTMLFormField {
+	/**
+	 * @param array $info
+	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   - default: the value (text) of the field. Unlike other form field types, HTMLInfoField can
+	 *     take a closure as a default value, which will be evaluated with $info as its only parameter.
+	 *   - raw: if true, the value won't be escaped.
+	 *   - rawrow: if true, the usual wrapping of form fields (e.g. into a table row + cell when
+	 *     display mode is table) will not happen and the value must contain it already.
+	 */
 	public function __construct( $info ) {
 		$info['nodata'] = true;
 
 		parent::__construct( $info );
+	}
+
+	function getDefault() {
+		$default = parent::getDefault();
+		if ( $default instanceof Closure ) {
+			$default = call_user_func( $default, $this->mParams );
+		}
+		return $default;
 	}
 
 	public function getInputHTML( $value ) {
