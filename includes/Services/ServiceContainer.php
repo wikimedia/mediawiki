@@ -367,4 +367,12 @@ class ServiceContainer implements DestructibleService {
 		return $service;
 	}
 
+	/**
+	 * @param string $name
+	 * @return bool Whether the service is disabled
+	 * @since 1.28
+	 */
+	public function isServiceDisabled( $name ) {
+		return isset( $this->disabled[$name] );
+	}
 }
