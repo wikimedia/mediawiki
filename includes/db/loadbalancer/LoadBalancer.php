@@ -91,6 +91,8 @@ class LoadBalancer {
 	 *  - servers : Required. Array of server info structures.
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
+	 *  - srvCache : BagOStuff object [optional]
+	 *  - wanCache : WANObjectCache object [optional]
 	 * @throws MWException
 	 */
 	public function __construct( array $params ) {
@@ -138,21 +140,16 @@ class LoadBalancer {
 			}
 		}
 
-		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		// @TODO: inject these in via LBFactory at some point
-		$cache = ObjectCache::getLocalServerInstance();
-		if ( $cache->getQoS( $cache::ATTR_EMULATION ) > $cache::QOS_EMULATION_SQL ) {
-			$this->srvCache = $cache;
+		if ( isset( $params['srvCache'] ) ) {
+			$this->srvCache = $params['srvCache'];
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
 		}
-		$wCache = ObjectCache::getMainWANInstance();
-		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
-			$this->wanCache = $wCache;
+		if ( isset( $params['wanCache'] ) ) {
+			$this->wanCache = $params['wanCache'];
 		} else {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
-
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];
 		} else {
