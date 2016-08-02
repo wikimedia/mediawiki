@@ -88,13 +88,13 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
 		$this->assertRegExp(
-			'/title=Cat&amp;curid=20131103212153&amp;diff=5&amp;oldid=191/',
+			'/title=Cat&amp;diff=5&amp;oldid=191/',
 			$line,
 			'assert diff link'
 		);
 
 		$this->assertRegExp(
-			'/title=Cat&amp;curid=20131103212153&amp;action=history"/',
+			'/title=Cat&amp;action=history"/',
 			$line,
 			'assert history link'
 		);
