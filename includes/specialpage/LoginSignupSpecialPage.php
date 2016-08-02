@@ -616,87 +616,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$form->setId( 'userlogin2' );
 		}
 
-		// add pre/post text
-		// header used by ConfirmEdit, CondfirmAccount, Persona, WikimediaIncubator, SemanticSignup
-		// should be above the error message but HTMLForm doesn't support that
-		$form->addHeaderText( $fakeTemplate->get( 'header' ) );
-
-		// FIXME the old form used this for error/warning messages which does not play well with
-		// HTMLForm (maybe it could with a subclass?); for now only display it for signups
-		// (where the JS username validation needs it) and alway empty
-		if ( $this->isSignup() ) {
-			// used by the mediawiki.special.userlogin.signup.js module
-			$statusAreaAttribs = [ 'id' => 'mw-createacct-status-area' ];
-			// $statusAreaAttribs += $msg ? [ 'class' => "{$msgType}box" ] : [ 'style' => 'display: none;' ];
-			$form->addHeaderText( Html::element( 'div', $statusAreaAttribs ) );
-		}
-
-		// header used by MobileFrontend
-		$form->addHeaderText( $fakeTemplate->get( 'formheader' ) );
-
-		// blank signup footer for site customization
-		if ( $this->isSignup() && $this->showExtraInformation() ) {
-			// Use signupend-https for HTTPS requests if it's not blank, signupend otherwise
-			$signupendMsg = $this->msg( 'signupend' );
-			$signupendHttpsMsg = $this->msg( 'signupend-https' );
-			if ( !$signupendMsg->isDisabled() ) {
-				$signupendText = ( $usingHTTPS && !$signupendHttpsMsg->isBlank() )
-					? $signupendHttpsMsg ->parse() : $signupendMsg->parse();
-				$form->addPostText( Html::rawElement( 'div', [ 'id' => 'signupend' ], $signupendText ) );
-			}
-		}
-
 		// warning header for non-standard workflows (e.g. security reauthentication)
 		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
 			$form->addHeaderText( Html::rawElement( 'div', [ 'class' => 'warningbox' ],
 				$this->msg( $reauthMessage )->params( $this->getUser()->getName() )->parse() ) );
-		}
-
-		if ( !$this->isSignup() && $this->showExtraInformation() ) {
-			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
-			if ( $passwordReset->isAllowed( $this->getUser() ) ) {
-				$form->addFooterText( Html::rawElement(
-					'div',
-					[ 'class' => 'mw-ui-vform-field mw-form-related-link-container' ],
-					Linker::link(
-						SpecialPage::getTitleFor( 'PasswordReset' ),
-						$this->msg( 'userlogin-resetpassword-link' )->escaped()
-					)
-				) );
-			}
-
-			// Don't show a "create account" link if the user can't.
-			if ( $this->showCreateAccountLink() ) {
-				// link to the other action
-				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
-				$linkq = $this->getReturnToQueryStringFragment();
-				// Pass any language selection on to the mode switch link
-				if ( $wgLoginLanguageSelector && $this->mLanguage ) {
-					$linkq .= '&uselang=' . $this->mLanguage;
-				}
-
-				$loggedIn = $this->getUser()->isLoggedIn();
-				$createOrLoginHtml = Html::rawElement( 'div',
-					[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
-						'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-					( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
-					. Html::element( 'a',
-						[
-							'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
-							'href' => $linkTitle->getLocalURL( $linkq ),
-							'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
-							'tabindex' => 100,
-						],
-						$this->msg(
-							( $this->getUser()->isLoggedIn() ?
-								'userlogin-createanother' :
-								'userlogin-joinproject'
-							) )->escaped()
-					)
-				);
-				$form->addFooterText( $createOrLoginHtml );
-			}
 		}
 
 		$form->suppressDefaultSubmit();
@@ -837,7 +761,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
 		$coreFieldDescriptors = $this->getFieldDefinitions( $this->fakeTemplate );
-		$specialFields = array_merge( [ 'extraInput', 'linkcontainer', 'entryError' ],
+		$specialFields = array_merge( [ 'extraInput' ],
 			array_keys( $this->fakeTemplate->getExtraInputDefinitions() ) );
 
 		// keep the ordering from getCoreFieldDescriptors() where there is no explicit weight
@@ -852,8 +776,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				&& (
 					!isset( $coreField['baseField'] )
 					|| !isset( $fieldInfo[$coreField['baseField']] )
-				) && !in_array( $fieldName, $specialFields, true )
-				&& ( !isset( $coreField['type'] ) || $coreField['type'] !== 'submit' )
+				)
+				&& !in_array( $fieldName, $specialFields, true )
+				&& (
+					!isset( $coreField['type'] )
+					|| !in_array( $coreField['type'], [ 'submit', 'info' ], true )
+				)
 			) {
 				$coreFieldDescriptors[$fieldName] = null;
 				continue;
@@ -892,13 +820,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions( $template ) {
-		global $wgEmailConfirmToEdit;
+		global $wgEmailConfirmToEdit, $wgLoginLanguageSelector;
 
 		$isLoggedIn = $this->getUser()->isLoggedIn();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isLoggedIn ? 'another-' : '';
-		$expiration = $this->getRequest()->getSession()->getProvider()
-			->getRememberUserDuration();
+		$expiration = $this->getRequest()->getSession()->getProvider()->getRememberUserDuration();
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
 		$secureLoginLink = '';
 		if ( $this->mSecureLoginUrl ) {
@@ -910,6 +837,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		if ( $this->isSignup() ) {
 			$fieldDefinitions = [
+				'statusarea' => [
+					// used by the mediawiki.special.userlogin.signup.js module for error display
+					// FIXME merge this with HTMLForm's normal status (error) area
+					'type' => 'info',
+					'raw' => true,
+					'default' => Html::element( 'div', [ 'id' => 'mw-createacct-status-area' ] ),
+					'weight' => - 105,
+				],
 				'username' => [
 					'label-message' => 'userlogin-yourname',
 					// FIXME help-message does not match old formatting
@@ -930,7 +865,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'placeholder-message' => 'createacct-yourpassword-ph',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
 				],
-				'domain' => [],
+				'domain' => [ ],
 				'retype' => [
 					'baseField' => 'password',
 					'type' => 'password',
@@ -997,12 +932,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'size' => '20',
 					'placeholder-message' => 'createacct-reason-ph',
 				],
-				'extrainput' => [], // placeholder for fields coming from the template
+				'extrainput' => [ ], // placeholder for fields coming from the template
 				'createaccount' => [
 					// submit button
 					'type' => 'submit',
 					'default' => $this->msg( 'createacct-' . $anotherPart . $continuePart .
-						'submit' )->text(),
+											 'submit' )->text(),
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
 					'weight' => 100,
@@ -1019,8 +954,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'id' => 'wpPassword1',
 					'placeholder-message' => 'userlogin-yourpassword-ph',
 				],
-				'domain' => [],
-				'extrainput' => [],
+				'domain' => [ ],
+				'extrainput' => [ ],
 				'rememberMe' => [
 					// option for saving the user token to a cookie
 					'type' => 'check',
@@ -1052,10 +987,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				// button for ResetPasswordSecondaryAuthenticationProvider
 				'skipReset' => [
 					'weight' => 110,
-					'flags' => [],
+					'flags' => [ ],
 				],
 			];
 		}
+
 		$fieldDefinitions['username'] += [
 			'type' => 'text',
 			'name' => 'wpName',
@@ -1072,6 +1008,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// 'required' => true,
 		];
 
+		if ( $template->get( 'header' ) || $template->get( 'formheader' ) ) {
+			// B/C for old extensions that haven't been converted to AuthManager and
+			// still use templates via UserCreateForm/UserLoginForm hook
+			// 'header' used by ConfirmEdit, CondfirmAccount, Persona, WikimediaIncubator,
+			// SemanticSignup; 'formheader' used by MobileFrontend
+			$fieldDefinitions['header'] = [
+				'type' => 'info',
+				'raw' => true,
+				'default' => $template->get( 'header' ) ?: $template->get( 'formheader' ),
+				'weight' => - 110,
+			];
+		}
 		if ( $this->mEntryError ) {
 			$fieldDefinitions['entryError'] = [
 				'type' => 'info',
@@ -1082,9 +1030,77 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'weight' => -100,
 			];
 		}
-
 		if ( !$this->showExtraInformation() ) {
-			unset( $fieldDefinitions['linkcontainer'] );
+			unset( $fieldDefinitions['linkcontainer'], $fieldDefinitions['signupend'] );
+		}
+		if ( $this->isSignup() && $this->showExtraInformation() ) {
+			// blank signup footer for site customization
+			// uses signupend-https for HTTPS requests if it's not blank, signupend otherwise
+			$signupendMsg = $this->msg( 'signupend' );
+			$signupendHttpsMsg = $this->msg( 'signupend-https' );
+			if ( !$signupendMsg->isDisabled() ) {
+				$usingHTTPS = $this->getRequest()->getProtocol() === 'https';
+				$signupendText = ( $usingHTTPS && !$signupendHttpsMsg->isBlank() )
+					? $signupendHttpsMsg ->parse() : $signupendMsg->parse();
+				$fieldDefinitions['signupend'] = [
+					'type' => 'info',
+					'raw' => true,
+					'default' => Html::rawElement( 'div', [ 'id' => 'signupend' ], $signupendText ),
+					'weight' => 225,
+				];
+			}
+		}
+		if ( !$this->isSignup() && $this->showExtraInformation() ) {
+			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+			if ( $passwordReset->isAllowed( $this->getUser() ) ) {
+				$fieldDefinitions['passwordReset'] = [
+					'type' => 'info',
+					'raw' => true,
+					'cssclass' => 'mw-form-related-link-container',
+					'default' => Linker::link(
+						SpecialPage::getTitleFor( 'PasswordReset' ),
+						$this->msg( 'userlogin-resetpassword-link' )->escaped()
+					),
+					'weight' => 230,
+				];
+			}
+
+			// Don't show a "create account" link if the user can't.
+			if ( $this->showCreateAccountLink() ) {
+				// link to the other action
+				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
+				$linkq = $this->getReturnToQueryStringFragment();
+				// Pass any language selection on to the mode switch link
+				if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+					$linkq .= '&uselang=' . $this->mLanguage;
+				}
+				$loggedIn = $this->getUser()->isLoggedIn();
+
+				$fieldDefinitions['createOrLogin'] = [
+					'type' => 'info',
+					'raw' => true,
+					'linkQuery' => $linkq,
+					'default' => function ( $params ) use ( $loggedIn, $linkTitle ) {
+						return Html::rawElement( 'div',
+							[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
+								'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
+							( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
+							. Html::element( 'a',
+								[
+									'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
+									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
+									'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
+									'tabindex' => 100,
+								],
+								$this->msg(
+									$loggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
+								)->escaped()
+							)
+						);
+					},
+					'weight' => 235,
+				];
+			}
 		}
 
 		$fieldDefinitions = $this->getBCFieldDefinitions( $fieldDefinitions, $template );
