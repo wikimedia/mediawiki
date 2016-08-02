@@ -35,7 +35,7 @@ class SiteSQLStore {
 	 * @note This does not return an instance of SiteSQLStore!
 	 *
 	 * @since 1.21
-	 * @deprecated 1.27 use MediaWikiServices::getSiteStore() or MediaWikiServices::getSiteLookup()
+	 * @deprecated since 1.27 use MediaWikiServices::getSiteStore() or MediaWikiServices::getSiteLookup()
 	 *             instead.
 	 *
 	 * @param null $sitesTable IGNORED

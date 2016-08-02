@@ -3018,7 +3018,7 @@ class User implements IDBAccessObject {
 	 * @return string|bool User's current value for the option, or false if this option is disabled.
 	 * @see resetTokenFromOption()
 	 * @see getOption()
-	 * @deprecated 1.26 Applications should use the OAuth extension
+	 * @deprecated since 1.26 Applications should use the OAuth extension
 	 */
 	public function getTokenFromOption( $oname ) {
 		global $wgHiddenPrefs;

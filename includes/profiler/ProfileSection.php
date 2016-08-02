@@ -25,7 +25,7 @@
  * Class for handling function-scope profiling
  *
  * @since 1.22
- * @deprecated 1.25 No-op now
+ * @deprecated since 1.25 No-op now
  */
 class ProfileSection {
 	/**

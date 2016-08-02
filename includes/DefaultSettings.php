@@ -2524,7 +2524,7 @@ $wgFileCacheDepth = 2;
 
 /**
  * Kept for extension compatibility; see $wgParserCacheType
- * @deprecated 1.26
+ * @deprecated since 1.26
  */
 $wgEnableParserCache = true;
 
