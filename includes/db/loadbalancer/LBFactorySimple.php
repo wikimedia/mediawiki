@@ -84,12 +84,7 @@ class LBFactorySimple extends LBFactory {
 			] ];
 		}
 
-		return new LoadBalancer( [
-			'servers' => $servers,
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		] );
+		return $this->newLoadBalancer( $servers );
 	}
 
 	/**
@@ -118,12 +113,7 @@ class LBFactorySimple extends LBFactory {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
-		return new LoadBalancer( [
-			'servers' => $wgExternalServers[$cluster],
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		] );
+		return $this->newLoadBalancer( $wgExternalServers[$cluster] );
 	}
 
 	/**
@@ -139,6 +129,17 @@ class LBFactorySimple extends LBFactory {
 		}
 
 		return $this->extLBs[$cluster];
+	}
+
+	private function newLoadBalancer( array $servers ) {
+		return new LoadBalancer( [
+			'servers' => $servers,
+			'loadMonitor' => $this->loadMonitorClass,
+			'readOnlyReason' => $this->readOnlyReason,
+			'trxProfiler' => $this->trxProfiler,
+			'srvCache' => $this->srvCache,
+			'wanCache' => $this->wanCache
+		] );
 	}
 
 	/**
