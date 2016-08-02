@@ -2197,7 +2197,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		}
 
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
-		wfLogWarning( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ) );
+		wfDebug( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ) );
 	}
 	return $ok;
 }
