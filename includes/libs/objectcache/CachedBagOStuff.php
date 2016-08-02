@@ -42,8 +42,10 @@ class CachedBagOStuff extends HashBagOStuff {
 	 * @param array $params Parameters for HashBagOStuff
 	 */
 	function __construct( BagOStuff $backend, $params = [] ) {
-		$this->backend = $backend;
 		parent::__construct( $params );
+
+		$this->backend = $backend;
+		$this->attrMap = $backend->attrMap;
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
@@ -101,5 +103,4 @@ class CachedBagOStuff extends HashBagOStuff {
 	public function modifySimpleRelayEvent( array $event ) {
 		return $this->backend->modifySimpleRelayEvent( $event );
 	}
-
 }
