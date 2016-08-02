@@ -892,7 +892,7 @@
 	"post-expand-template-argument-warning": "<strong>Attention :</strong> cette page contient au moins un paramètre de modèle dont la taille après expansion est trop importante. \nCes arguments n’ont donc pas été inclus.",
 	"post-expand-template-argument-category": "Pages contenant des paramètres de modèle non évalués",
 	"parser-template-loop-warning": "Modèle en boucle détecté : [[$1]]",
-	"parser-template-recursion-depth-warning": "Limite de profondeur des appels de modèles dépassée ($1)",
+	"parser-template-recursion-depth-warning": "Limite de profondeur des appels récursifs de modèles dépassée ($1)",
 	"language-converter-depth-warning": "Limite de profondeur du convertisseur de langue dépassée ($1)",
 	"node-count-exceeded-category": "Pages dépassant le nombre de nœuds maximal",
 	"node-count-exceeded-category-desc": "Ces pages dépassent le nombre maximal de nœuds.",

@@ -2095,7 +2095,7 @@
 	"protectlogtext": "아래의 목록은 문서 보호에 관한 바뀜에 대한 기록입니다.\n현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참조하세요.",
 	"protectedarticle": "님이 \"[[$1]]\" 문서를 보호했습니다",
 	"modifiedarticleprotection": "님이 \"[[$1]]\" 문서의 보호 설정을 바꿨습니다",
-	"unprotectedarticle": "님이 \"[[$1]]\" 문서를 보호 해제했습니다",
+	"unprotectedarticle": "\"[[$1]]\" 문서를 보호 해제했습니다",
 	"movedarticleprotection": "님이 문서의 보호 설정을 \"[[$2]]\"에서 \"[[$1]]\"(으)로 이동했습니다",
 	"protect-title": "\"$1\" 보호하기",
 	"protect-title-notallowed": "\"$1\" 문서의 보호 수준 보기",

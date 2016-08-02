@@ -32,7 +32,8 @@
 			"LordMsz",
 			"Matma Rex",
 			"Dvorapa",
-			"Walter Klosse"
+			"Walter Klosse",
+			"Martin Urbanec"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1899,7 +1900,7 @@
 	"listgrouprights-namespaceprotection-namespace": "Jmenný prostor",
 	"listgrouprights-namespaceprotection-restrictedto": "Oprávnění umožňující uživateli editovat",
 	"listgrants": "Skupiny oprávnění",
-	"listgrants-summary": "Následující seznam obsahuje svolení a jim odpovídající přístup k uživatelským právům. Uživatelé mohou aplikace autorizovat k využití jejich účtu, ale s omezenými právy na základě svolení, která uživatel aplikaci poskytl. Aplikace konající jménem uživatele ale nemůže využít oprávnění, která uživatel nemá.\nK jednotlivým oprávněním mohou existovat [[{{MediaWiki:Listgrouprights-helppage}}|doplňující informace]].",
+	"listgrants-summary": "Následující seznam obsahuje skupiny oprávnění a jim odpovídající přístup k uživatelským právům. Uživatelé mohou aplikace autorizovat k využití jejich účtu, ale s omezenými právy na základě skupin oprávnění, která uživatel aplikaci dovolil použít. Aplikace konající jménem uživatele ale nemůže využít oprávnění, která uživatel nemá.\nK jednotlivým oprávněním mohou existovat [[{{MediaWiki:Listgrouprights-helppage}}|doplňující informace]].",
 	"listgrants-grant": "Skupina oprávnění",
 	"listgrants-rights": "Oprávnění",
 	"trackingcategories": "Sledovací kategorie",

@@ -1352,6 +1352,7 @@
 	"action-applychangetags": "Markierungen zusammen mit deinen Änderungen anzuwenden",
 	"action-changetags": "beliebige Markierungen zu einzelnen Versionen und Logbucheinträgen hinzuzufügen und zu entfernen",
 	"action-deletechangetags": "Markierungen aus der Datenbank zu löschen",
+	"action-purge": "den Cache dieser Seite zu leeren",
 	"nchanges": "$1 {{PLURAL:$1|Änderung|Änderungen}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|seit dem letzten Besuch}}",
 	"enhancedrc-history": "Versionsgeschichte",

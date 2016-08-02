@@ -6,7 +6,8 @@
 			"Marmase",
 			"Mirzali",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Kumkumuk"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bonce:",
@@ -358,6 +359,7 @@
 	"retypenew": "Parola newiye tekrar ke:",
 	"resetpass_submit": "Parola ayar ke u cı kuye",
 	"changepassword-success": "Parola sıma ebe serkotene vurriye! Nıka hesabê sıma beno ra...",
+	"botpasswords-label-cancel": "Bıtexelne",
 	"resetpass_forbidden": "Paroley nêşikinê bıvurniyê",
 	"resetpass-submit-loggedin": "Parola bıvurne",
 	"resetpass-submit-cancel": "Bıtexelne",
@@ -384,7 +386,7 @@
 	"watchthis": "Na pele de şêr ke",
 	"savearticle": "Pele qeyd ke",
 	"preview": "Verqayt",
-	"showpreview": "Verqayti bıasne",
+	"showpreview": "Verqayti bımocne",
 	"showdiff": "Vurnaisun bıasne",
 	"anoneditwarning": "'''Diqet:''' Tı cınêkota.\nTarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 	"missingcommenttext": "Cêr de jü xulasa bınuse.",
@@ -698,6 +700,7 @@
 	"upload-source": "Dosya çımey",
 	"sourcefilename": "Namê dosya çımey:",
 	"watchthisupload": "Na dosya de şêr ke",
+	"upload-dialog-button-cancel": "Bıtexelne",
 	"license": "Lisans:",
 	"license-header": "Lisansdais",
 	"imgfile": "dosya",
@@ -1107,5 +1110,6 @@
 	"compare-page1": "Pele 1",
 	"compare-page2": "Pele 2",
 	"rightsnone": "(qet jü)",
-	"revdelete-summary": "xulasa vurnaene"
+	"revdelete-summary": "xulasa vurnaene",
+	"feedback-cancel": "Bıtexelne"
 }

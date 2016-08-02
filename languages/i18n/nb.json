@@ -48,7 +48,8 @@
 			"Tarjeimo",
 			"Matma Rex",
 			"SuperPotato",
-			"Nemo bis"
+			"Nemo bis",
+			"Telaneo"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -658,6 +659,8 @@
 	"minoredit": "Dette er en mindre endring",
 	"watchthis": "Overvåk denne siden",
 	"savearticle": "Lagre siden",
+	"publishpage": "Publiser siden",
+	"publishchanges": "Publiser endringene",
 	"preview": "Forhåndsvisning",
 	"showpreview": "Forhåndsvisning",
 	"showdiff": "Vis endringer",

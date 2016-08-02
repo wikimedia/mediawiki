@@ -552,6 +552,8 @@
 	"minoredit": "આ એક નાનો સુધારો છે",
 	"watchthis": "આ પાનાને ધ્યાનમાં રાખો",
 	"savearticle": "પાનું સાચવો",
+	"publishpage": "પાનું પ્રકાશિત કરો",
+	"publishchanges": "ફેરફારો પ્રકાશિત કરો",
 	"preview": "પૂર્વાવલોકન",
 	"showpreview": "ઝલક જુવો",
 	"showdiff": "ફેરફારો દર્શાવો",
@@ -2981,6 +2983,5 @@
 	"special-characters-group-thai": "થાઈ",
 	"special-characters-group-lao": "લાઓ",
 	"special-characters-group-khmer": "ખ્મેર",
-	"mw-widgets-titleinput-description-new-page": "પાનું અસ્તિત્વ ધરાવતું નથી.",
-	"api-error-blacklisted": "મહેરબાની કરી વધુ વિસ્તૃત અર્થ સભર શીર્ષક આપો."
+	"mw-widgets-titleinput-description-new-page": "પાનું અસ્તિત્વ ધરાવતું નથી."
 }
