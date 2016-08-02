@@ -385,7 +385,7 @@ class Status {
 	 *
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
-	 * @deprecated 1.25
+	 * @deprecated since 1.25
 	 */
 	public function getErrorsArray() {
 		return $this->getStatusArray( 'error' );
@@ -396,7 +396,7 @@ class Status {
 	 *
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
-	 * @deprecated 1.25
+	 * @deprecated since 1.25
 	 */
 	public function getWarningsArray() {
 		return $this->getStatusArray( 'warning' );

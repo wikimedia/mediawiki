@@ -24,7 +24,7 @@
 /**
  * Generic operation result class for FileRepo-related operations
  * @ingroup FileRepo
- * @deprecated 1.25
+ * @deprecated since 1.25
  */
 class FileRepoStatus extends Status {
 }

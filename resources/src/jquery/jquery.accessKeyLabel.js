@@ -197,7 +197,7 @@ $.fn.updateTooltipAccessKeys.getAccessKeyLabel = getAccessKeyLabel;
  * getAccessKeyPrefix
  *
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
- * @deprecated 1.27 Use #getAccessKeyModifiers
+ * @deprecated since 1.27 Use #getAccessKeyModifiers
  */
 $.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( ua ) {
 	return getAccessKeyModifiers( ua ).join( '-' ) + '-';
