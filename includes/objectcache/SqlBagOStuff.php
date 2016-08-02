@@ -91,6 +91,9 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
+
+		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
+
 		if ( isset( $params['servers'] ) ) {
 			$this->serverInfos = [];
 			$this->serverTags = [];
