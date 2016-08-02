@@ -1319,6 +1319,7 @@
 	"action-managechangetags": "create and delete tags from the database",
 	"action-applychangetags": "apply tags along with your changes",
 	"action-changetags": "add and remove arbitrary tags on individual revisions and log entries",
+	"action-purge": "purge this page",
 	"nchanges": "$1 {{PLURAL:$1|change|changes}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|since last visit}}",
 	"enhancedrc-history": "history",
