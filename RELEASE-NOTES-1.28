@@ -89,6 +89,13 @@ changes to languages because of Phabricator reports.
   MediaWiki\Linker\LinkRenderer. In addition, the LinkBegin and LinkEnd hooks
   were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   respectively. See docs/hooks.txt for the specific changes needed for those hooks.
+* Aliases for Linker methods, deprecated since 1.21, were removed from Skin:
+  * Skin::commentBlock() (use Linker::commentBlock() instead)
+  * Skin::generateRollback() (use Linker::generateRollback() instead)
+  * Skin::link() (use MediaWiki\Linker\LinkRenderer instead)
+  * Skin::linkKnown() (use MediaWiki\Linker\LinkRenderer instead)
+  * Skin::userLink() (use Linker::userLink() instead)
+  * Skin::userToolLinks() (use Linker::userToolLinks() instead)
 * The 'ParserLimitReportFormat' hook was removed.
 * Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
   disabled.
