@@ -977,7 +977,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* constant for the "last error" registry
+	 * @return int ERR_* class constant for the "last error" registry
 	 */
 	final public function getLastError() {
 		if ( $this->lastRelayError ) {
@@ -1017,6 +1017,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function clearProcessCache() {
 		$this->procCache->clear();
+	}
+
+	/**
+	 * @param integer $flag ATTR_* class constant
+	 * @return integer QOS_* class constant
+	 * @since 1.28
+	 */
+	public function getQoS( $flag ) {
+		return $this->cache->getQoS( $flag );
 	}
 
 	/**
