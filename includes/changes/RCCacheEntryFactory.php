@@ -164,7 +164,6 @@ class RCCacheEntryFactory {
 	 */
 	private function buildCurQueryParams( RecentChange $recentChange ) {
 		return [
-			'curid' => $recentChange->mAttribs['rc_cur_id'],
 			'diff' => 0,
 			'oldid' => $recentChange->mAttribs['rc_this_oldid']
 		];
@@ -199,7 +198,6 @@ class RCCacheEntryFactory {
 	 */
 	private function buildDiffQueryParams( RecentChange $recentChange ) {
 		return [
-			'curid' => $recentChange->mAttribs['rc_cur_id'],
 			'diff' => $recentChange->mAttribs['rc_this_oldid'],
 			'oldid' => $recentChange->mAttribs['rc_last_oldid']
 		];

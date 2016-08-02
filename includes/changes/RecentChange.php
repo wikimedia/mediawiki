@@ -947,8 +947,7 @@ class RecentChange {
 	 */
 	public function diffLinkTrail( $forceCur ) {
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
-			$trail = "curid=" . (int)( $this->mAttribs['rc_cur_id'] ) .
-				"&oldid=" . (int)( $this->mAttribs['rc_last_oldid'] );
+			$trail = "oldid=" . (int)( $this->mAttribs['rc_last_oldid'] );
 			if ( $forceCur ) {
 				$trail .= '&diff=0';
 			} else {
