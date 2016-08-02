@@ -704,7 +704,6 @@ ol:lang(or) li {
 #mw-revision-info-current,
 #mw-revision-nav {
 	direction: ltr;
-	display: inline;
 }
 
 /* Images */
