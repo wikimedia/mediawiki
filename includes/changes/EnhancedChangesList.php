@@ -183,8 +183,6 @@ class EnhancedChangesList extends ChangesList {
 
 		# Collate list of users
 		$userlinks = [];
-		# Other properties
-		$curId = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
@@ -219,11 +217,6 @@ class EnhancedChangesList extends ChangesList {
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
 			}
-			# Get the latest entry with a page_id and oldid
-			# since logs may not have these.
-			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
-				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
 
 			$userlinks[$u]++;
 		}
@@ -254,12 +247,10 @@ class EnhancedChangesList extends ChangesList {
 			$articleLink = $this->getArticleLink( $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$queryParams['curid'] = $curId;
-
 		# Sub-entries
 		$lines = [];
 		foreach ( $block as $i => $rcObj ) {
-			$line = $this->getLineData( $block, $rcObj, $queryParams );
+			$line = $this->getLineData( $block, $rcObj );
 			if ( !$line ) {
 				// completely ignore this RC entry if we don't want to render it
 				unset( $block[$i] );
@@ -298,7 +289,7 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		$logText = $this->getLogText( $block, $queryParams, $allLogs,
+		$logText = $this->getLogText( $block, $allLogs,
 			$collectedRcFlags['newpage'], $namehidden
 		);
 
@@ -473,13 +464,12 @@ class EnhancedChangesList extends ChangesList {
 	 * Generates amount of changes (linking to diff ) & link to history.
 	 *
 	 * @param array $block
-	 * @param array $queryParams
 	 * @param bool $allLogs
 	 * @param bool $isnew
 	 * @param bool $namehidden
 	 * @return string
 	 */
-	protected function getLogText( $block, $queryParams, $allLogs, $isnew, $namehidden ) {
+	protected function getLogText( $block, $allLogs, $isnew, $namehidden ) {
 		if ( empty( $block ) ) {
 			return '';
 		}
@@ -531,7 +521,7 @@ class EnhancedChangesList extends ChangesList {
 					$block0->getTitle(),
 					new HtmlArmor( $nchanges[$n] ),
 					[],
-					$queryParams + [
+					[
 						'diff' => $currentRevision,
 						'oldid' => $last->mAttribs['rc_last_oldid'],
 					]
@@ -541,7 +531,7 @@ class EnhancedChangesList extends ChangesList {
 							$block0->getTitle(),
 							new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
 							[],
-							$queryParams + [
+							[
 								'diff' => $currentRevision,
 								'oldid' => $unvisitedOldid,
 							]
@@ -556,14 +546,12 @@ class EnhancedChangesList extends ChangesList {
 		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
 			$links['history'] = $this->message['enhancedrc-history'];
 		} else {
-			$params = $queryParams;
-			$params['action'] = 'history';
 
 			$links['history'] = $this->linkRenderer->makeKnownLink(
 					$block0->getTitle(),
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
 					[],
-					$params
+					[ 'action' => 'history' ]
 				);
 		}
 
@@ -588,8 +576,6 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
-
-		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
