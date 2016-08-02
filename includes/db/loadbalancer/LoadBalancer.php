@@ -138,8 +138,20 @@ class LoadBalancer {
 			}
 		}
 
-		$this->srvCache = ObjectCache::getLocalServerInstance();
-		$this->wanCache = ObjectCache::getMainWANInstance();
+		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
+		// @TODO: inject these in via LBFactory at some point
+		$cache = ObjectCache::getLocalServerInstance();
+		if ( $cache->getQoS( $cache::ATTR_EMULATION ) > $cache::QOS_EMULATION_SQL ) {
+			$this->srvCache = $cache;
+		} else {
+			$this->srvCache = new EmptyBagOStuff();
+		}
+		$wCache = ObjectCache::getMainWANInstance();
+		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
+			$this->wanCache = $wCache;
+		} else {
+			$this->wanCache = WANObjectCache::newEmpty();
+		}
 
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];

@@ -65,6 +65,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->readStore = ( $params['readFactory'] instanceof BagOStuff )
 			? $params['readFactory']
 			: ObjectFactory::getObjectFromSpec( $params['readFactory'] );
+		$this->attrMap = $this->mergeFlagMaps( [ $this->readStore, $this->writeStore ] );
 	}
 
 	public function setDebug( $debug ) {
