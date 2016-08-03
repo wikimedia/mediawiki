@@ -221,17 +221,15 @@ class UserTest extends MediaWikiTestCase {
 			$page->doEdit( (string)$i, 'test', 0, false, $user );
 		}
 
-		$user->clearInstanceCache();
 		$this->assertEquals(
 			3,
 			$user->getEditCount(),
 			'After three edits, the user edit count should be 3'
 		);
 
-		// increase the edit count and clear the cache
+		// increase the edit count
 		$user->incEditCount();
 
-		$user->clearInstanceCache();
 		$this->assertEquals(
 			4,
 			$user->getEditCount(),
