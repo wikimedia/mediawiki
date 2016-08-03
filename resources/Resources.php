@@ -335,6 +335,9 @@ return [
 	'jquery.jStorage' => [
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
 		'dependencies' => 'json',
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.storage" instead.',
+		],
 	],
 	'jquery.suggestions' => [
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
@@ -370,6 +373,7 @@ return [
 	/* jQuery Tipsy */
 
 	'jquery.tipsy' => [
+		'deprecated' => true,
 		'scripts' => 'resources/src/jquery.tipsy/jquery.tipsy.js',
 		'styles' => 'resources/src/jquery.tipsy/jquery.tipsy.css',
 	],
@@ -377,6 +381,7 @@ return [
 	/* jQuery UI */
 
 	'jquery.ui.core' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.core.js',
 		'dependencies' => [
 			'jquery.ui.core.styles',
@@ -394,6 +399,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.accordion' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.accordion.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -405,6 +411,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.autocomplete' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.autocomplete.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -418,6 +425,9 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.button' => [
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.ui.button" or "oojs-ui" instead.',
+		],
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.button.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -429,6 +439,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.datepicker' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.datepicker.js',
 		'dependencies' => 'jquery.ui.core',
 		'skinStyles' => [
@@ -508,6 +519,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.dialog' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.dialog.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -524,6 +536,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.draggable' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.draggable.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -533,6 +546,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.droppable' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.droppable.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -543,6 +557,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.menu' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.menu.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -555,11 +570,13 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.mouse' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.mouse.js',
 		'dependencies' => 'jquery.ui.widget',
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.position' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.position.js',
 		'group' => 'jquery.ui',
 	],
@@ -575,6 +592,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.resizable' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.resizable.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -587,6 +605,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.selectable' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.selectable.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -599,6 +618,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.slider' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.slider.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -611,6 +631,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.sortable' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.sortable.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -620,6 +641,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.spinner' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.spinner.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -632,6 +654,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.tabs' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.tabs.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -643,6 +666,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.tooltip' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.tooltip.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -655,75 +679,90 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.widget' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.widget.js',
 		'group' => 'jquery.ui',
 	],
 	// Effects
 	'jquery.effects.core' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect.js',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.blind' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-blind.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.bounce' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-bounce.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.clip' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-clip.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.drop' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-drop.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.explode' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-explode.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.fade' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-fade.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.fold' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-fold.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.highlight' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-highlight.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.pulsate' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-pulsate.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.scale' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-scale.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.shake' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-shake.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.slide' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-slide.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
 	'jquery.effects.transfer' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-transfer.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
