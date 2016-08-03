@@ -212,7 +212,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @group medium
 	 * @covers User::getEditCount
 	 */
-	public function testEditCount() {
+	public function testGetEditCount() {
 		$user = $this->getMutableTestUser()->getUser();
 
 		// let the user have a few (3) edits
@@ -221,21 +221,59 @@ class UserTest extends MediaWikiTestCase {
 			$page->doEdit( (string)$i, 'test', 0, false, $user );
 		}
 
-		$user->clearInstanceCache();
 		$this->assertEquals(
 			3,
 			$user->getEditCount(),
 			'After three edits, the user edit count should be 3'
 		);
 
-		// increase the edit count and clear the cache
+		// increase the edit count
 		$user->incEditCount();
 
-		$user->clearInstanceCache();
 		$this->assertEquals(
 			4,
 			$user->getEditCount(),
 			'After increasing the edit count manually, the user edit count should be 4'
+		);
+	}
+
+	/**
+	 * Test User::editCount
+	 * @group medium
+	 * @covers User::getEditCount
+	 */
+	public function testGetEditCountForAnons() {
+		$user = User::newFromName( 'Anonymous' );
+
+		$this->assertNull(
+			$user->getEditCount(),
+			'Edit count starts null for anonymous users.'
+		);
+
+		$user->incEditCount();
+
+		$this->assertNull(
+			$user->getEditCount(),
+			'Edit count remains null for anonymous users despite calls to increase it.'
+		);
+	}
+
+	/**
+	 * Test User::editCount
+	 * @group medium
+	 * @covers User::incEditCount
+	 */
+	public function testIncEditCount() {
+		$user = $this->getMutableTestUser()->getUser();
+		$user->incEditCount();
+
+		$reloadedUser = User::newFromId( $user->getId() );
+		$reloadedUser->incEditCount();
+
+		$this->assertEquals(
+			2,
+			$reloadedUser->getEditCount(),
+			'Increasing the edit count after a fresh load leaves the object up to date.'
 		);
 	}
 

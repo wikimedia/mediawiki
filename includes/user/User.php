@@ -5161,12 +5161,18 @@ class User implements IDBAccessObject {
 				// If we actually have a slave server, the count is
 				// at least one behind because the current transaction
 				// has not been committed and replicated.
-				$this->initEditCount( 1 );
+				$this->mEditCount = $this->initEditCount( 1 );
 			} else {
 				// But if DB_SLAVE is selecting the master, then the
 				// count we just read includes the revision that was
 				// just added in the working transaction.
-				$this->initEditCount();
+				$this->mEditCount = $this->initEditCount();
+			}
+		} else {
+			if ( $this->mEditCount === null ) {
+				$this->getEditCount();
+			} else {
+				$this->mEditCount++;
 			}
 		}
 		// Edit count in user cache too
