@@ -945,6 +945,27 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Like stashFile(), but respects extensions' wishes to prevent the stashing.
+	 *
+	 * @since 1.28
+	 * @param User $user
+	 * @return Status If successful, value is an UploadStashFile instance
+	 */
+	public function tryStashFile( User $user ) {
+		$props = $this->mFileProps;
+		$error = null;
+		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
+		if ( $error ) {
+			if ( !is_array( $error ) ) {
+				$error = [ $error ];
+			}
+			return call_user_func_array( 'Status::newFatal', $error );
+		}
+		$file = $this->doStashFile( $user );
+		return Status::newGood( $file );
+	}
+
+	/**
 	 * If the user does not supply all necessary information in the first upload
 	 * form submission (either by accident or by design) then we may want to
 	 * stash the file temporarily, get more information, and publish the file
@@ -956,6 +977,7 @@ abstract class UploadBase {
 	 * which can be passed through a form or API request to find this stashed
 	 * file again.
 	 *
+	 * @deprecated since 1.28 Use tryStashFile() instead
 	 * @param User $user
 	 * @return UploadStashFile Stashed file
 	 * @throws UploadStashBadPathException
@@ -963,6 +985,16 @@ abstract class UploadBase {
 	 * @throws UploadStashNotLoggedInException
 	 */
 	public function stashFile( User $user = null ) {
+		return $this->doStashFile( $user );
+	}
+
+	/**
+	 * Implementation for stashFile() and tryStashFile().
+	 *
+	 * @param User $user
+	 * @return UploadStashFile Stashed file
+	 */
+	protected function doStashFile( User $user = null ) {
 		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mLocalFile = $file;
@@ -979,7 +1011,7 @@ abstract class UploadBase {
 	 */
 	public function stashFileGetKey() {
 		wfDeprecated( __METHOD__, '1.28' );
-		return $this->stashFile()->getFileKey();
+		return $this->doStashFile()->getFileKey();
 	}
 
 	/**
@@ -990,7 +1022,7 @@ abstract class UploadBase {
 	 */
 	public function stashSession() {
 		wfDeprecated( __METHOD__, '1.28' );
-		return $this->stashFile()->getFileKey();
+		return $this->doStashFile()->getFileKey();
 	}
 
 	/**

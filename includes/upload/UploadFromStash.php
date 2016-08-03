@@ -153,10 +153,10 @@ class UploadFromStash extends UploadBase {
 	 * @param User $user
 	 * @return UploadStashFile
 	 */
-	public function stashFile( User $user = null ) {
+	protected function doStashFile( User $user = null ) {
 		// replace mLocalFile with an instance of UploadStashFile, which adds some methods
 		// that are useful for stashed files.
-		$this->mLocalFile = parent::stashFile( $user );
+		$this->mLocalFile = parent::doStashFile( $user );
 
 		return $this->mLocalFile;
 	}
