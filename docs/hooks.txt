@@ -3278,6 +3278,18 @@ added to the descriptor
 &$radio: Boolean, if source type should be shown as radio button
 $selectedSourceType: The selected source type
 
+'UploadStashFile': Before a file is stashed (uploaded to stash).
+Note that code which has not been updated for MediaWiki 1.28 may not call this
+hook. If your extension absolutely, positively must prevent some files from
+being uploaded, use UploadVerifyFile or UploadVerifyUpload.
+$upload: (object) An instance of UploadBase, with all info about the upload
+$user: (object) An instance of User, the user uploading this file
+$props: (array) File properties, as returned by FSFile::getPropsFromPath()
+&$error: output: If the file stashing should be prevented, set this to the reason
+  in the form of array( messagename, param1, param2, ... ) or a MessageSpecifier
+  instance (you might want to use ApiMessage to provide machine-readable details
+  for the API).
+
 'UploadVerification': DEPRECATED! Use UploadVerifyFile instead.
 Additional chances to reject an uploaded file.
 $saveName: (string) destination file name
