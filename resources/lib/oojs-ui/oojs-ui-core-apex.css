@@ -1,15 +1,16 @@
 /*!
- * OOjs UI v0.17.6
+ * OOjs UI v0.17.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-07-12T20:26:07Z
+ * Date: 2016-08-03T16:38:27Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
+	/* stylelint-disable-line declaration-no-important */
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
 	cursor: pointer;
@@ -797,6 +798,14 @@
 	overflow: auto;
 	resize: none;
 }
+.oo-ui-textInputWidget [type="number"] {
+	-moz-appearance: textfield;
+}
+.oo-ui-textInputWidget [type="number"]::-webkit-outer-spin-button,
+.oo-ui-textInputWidget [type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
 .oo-ui-textInputWidget [type="search"] {
 	-webkit-appearance: textfield;
 }
@@ -1052,8 +1061,8 @@
 .oo-ui-comboBoxInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: pointer;
 }
-.oo-ui-comboBoxInputWidget-php input::-webkit-calendar-picker-indicator {
-	opacity: 0 !important;
+.oo-ui-comboBoxInputWidget-php ::-webkit-calendar-picker-indicator {
+	opacity: 0;
 	position: absolute;
 	right: 0;
 	top: 0;

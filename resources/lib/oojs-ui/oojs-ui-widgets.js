@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.6
+ * OOjs UI v0.17.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-07-12T20:26:03Z
+ * Date: 2016-08-03T16:38:22Z
  */
 ( function ( OO ) {
 
@@ -4365,8 +4365,8 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 		this.selectButton.setIcon( 'upload' );
 		this.$thumbnail = $( '<div>' ).addClass( 'oo-ui-selectFileWidget-thumbnail' );
 		this.setPendingElement( this.$thumbnail );
-		this.$dropTarget = $( '<div>' )
-			.addClass( 'oo-ui-selectFileWidget-dropTarget' )
+		this.$element
+			.addClass( 'oo-ui-selectFileWidget-dropTarget oo-ui-selectFileWidget' )
 			.on( {
 				click: this.onDropTargetClick.bind( this )
 			} )
@@ -4378,7 +4378,6 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 					.addClass( 'oo-ui-selectFileWidget-dropLabel' )
 					.text( OO.ui.msg( 'ooui-selectfile-dragdrop-placeholder' ) )
 			);
-		this.$element.append( this.$dropTarget );
 	} else {
 		this.$element
 			.addClass( 'oo-ui-selectFileWidget' )
@@ -4504,12 +4503,12 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 				}.bind( this ) ).always( function () {
 					this.popPending();
 				}.bind( this ) );
-				this.$dropTarget.off( 'click' );
+				this.$element.off( 'click' );
 			}
 		} else {
 			if ( this.showDropTarget ) {
-				this.$dropTarget.off( 'click' );
-				this.$dropTarget.on( {
+				this.$element.off( 'click' );
+				this.$element.on( {
 					click: this.onDropTargetClick.bind( this )
 				} );
 				this.$thumbnail
@@ -5053,24 +5052,20 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 		this.minusButton = new OO.ui.ButtonWidget( $.extend(
 			{
 				disabled: this.isDisabled(),
-				tabIndex: -1
-			},
-			config.minusButton,
-			{
+				tabIndex: -1,
 				classes: [ 'oo-ui-numberInputWidget-minusButton' ],
 				label: '−'
-			}
+			},
+			config.minusButton
 		) );
 		this.plusButton = new OO.ui.ButtonWidget( $.extend(
 			{
 				disabled: this.isDisabled(),
-				tabIndex: -1
-			},
-			config.plusButton,
-			{
+				tabIndex: -1,
 				classes: [ 'oo-ui-numberInputWidget-plusButton' ],
 				label: '+'
-			}
+			},
+			config.plusButton
 		) );
 	}
 

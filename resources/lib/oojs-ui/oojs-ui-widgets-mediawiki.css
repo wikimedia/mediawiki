@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.6
+ * OOjs UI v0.17.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-07-12T20:26:07Z
+ * Date: 2016-08-03T16:38:27Z
  */
 .oo-ui-draggableElement-handle,
 .oo-ui-draggableElement-handle.oo-ui-widget {
@@ -95,6 +95,8 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
+	/* stylelint-disable declaration-no-important */
+	/* stylelint-enable declaration-no-important */
 }
 .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-content {
@@ -242,7 +244,7 @@
 	        transform: translateZ(0);
 	height: 2em;
 	width: 3.5em;
-	border: 1px solid #777777;
+	border: 1px solid #767676;
 	border-radius: 1em;
 	background-color: #ffffff;
 	margin-right: 0.5em;
@@ -285,7 +287,6 @@
 	min-height: 16px;
 	height: 1.2em;
 	border-radius: 1.2em;
-	background-color: #555555;
 	-webkit-transition: left 100ms, margin-left 100ms;
 	   -moz-transition: left 100ms, margin-left 100ms;
 	        transition: left 100ms, margin-left 100ms;
@@ -301,41 +302,57 @@
 	left: 1.9em;
 	margin-left: -2px;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on {
-	background-color: #347bff;
-	border-color: #347bff;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-	background-color: #ffffff;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled .oo-ui-toggleSwitchWidget-grip {
+	border: 1px solid #767676;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover {
 	border-color: #2962cc;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover.oo-ui-toggleWidget-on {
-	background-color: #2962cc;
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
 	border-color: #2962cc;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover {
+	background-color: #767676;
+	border-color: #347bff;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active .oo-ui-toggleSwitchWidget-grip,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover .oo-ui-toggleSwitchWidget-grip {
+	background-color: #ffffff;
+	border-color: #ffffff;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
 	border-color: #347bff;
 	box-shadow: inset 0 0 0 1px #347bff;
 	outline: 0;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on {
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus .oo-ui-toggleSwitchWidget-grip {
 	border-color: #347bff;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on:before {
-	border-color: #ffffff;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active,
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover {
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on {
 	background-color: #347bff;
 	border-color: #347bff;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active .oo-ui-toggleSwitchWidget-grip,
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover .oo-ui-toggleSwitchWidget-grip {
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
 	background-color: #ffffff;
+	border-color: #ffffff;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:hover {
+	background-color: #2962cc;
+	border-color: #2962cc;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:active,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:active:hover {
+	background-color: #1f4999;
+	border-color: #1f4999;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:focus {
+	border-color: #347bff;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:focus:before {
+	border-color: #ffffff;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	background-color: #dddddd;
@@ -462,32 +479,32 @@
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-clearButton {
 	z-index: 2;
 }
-.oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget {
 	cursor: default;
 	height: 5.5em;
 	padding: 0;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
 	display: none;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail {
 	height: 5.5em;
 	width: 5.5em;
 	position: absolute;
 	background-size: cover;
 	background-position: center center;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail.oo-ui-pendingElement-pending {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail.oo-ui-pendingElement-pending {
 	background-size: auto;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail > .oo-ui-selectFileWidget-noThumbnail-icon {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail > .oo-ui-selectFileWidget-noThumbnail-icon {
 	opacity: 0.4;
 	background-color: #cccccc;
 	height: 5.5em;
 	width: 5.5em;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
 	border: 0;
 	background: none;
 	display: block;
@@ -495,37 +512,37 @@
 	width: auto;
 	margin-left: 5.5em;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
 	position: relative;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileName {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileName {
 	display: block;
 	padding-right: 2.375em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileType {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-fileType {
 	display: block;
 	float: none;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	position: absolute;
 	right: 0.5em;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail,
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail,
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
 	display: none;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
 	display: block;
 	margin: 0.7em;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget {
 	text-align: center;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info {
 	margin: 0;
 }
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-clearButton,
@@ -535,18 +552,18 @@
 .oo-ui-selectFileWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileWidget-dropLabel {
 	display: block;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget,
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button {
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button {
 	cursor: no-drop;
 }
 .oo-ui-selectFileWidget:last-child {
@@ -642,22 +659,22 @@
 	right: 2em;
 	padding-left: 0;
 }
-.oo-ui-selectFileWidget-supported.oo-ui-widget-enabled.oo-ui-selectFileWidget-canDrop .oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget-supported.oo-ui-widget-enabled.oo-ui-selectFileWidget-canDrop.oo-ui-selectFileWidget-dropTarget {
 	background-color: #ebf2ff;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget {
 	border-color: #dddddd;
 	background-color: #f3f3f3;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel {
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-info,
+.oo-ui-selectFileWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel {
 	color: #cccccc;
 	text-shadow: 0 1px 1px #ffffff;
 }
-.oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget {
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	margin-bottom: 0.5em;
@@ -665,10 +682,10 @@
 	overflow: hidden;
 	border-radius: 2px;
 }
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button {
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button {
 	border-radius: 2px;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-dropTarget {
+.oo-ui-selectFileWidget-empty.oo-ui-selectFileWidget-dropTarget {
 	background-color: #eeeeee;
 	border-style: dashed;
 }
@@ -996,14 +1013,6 @@
 }
 .oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
 	width: 100%;
-}
-.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"]::-webkit-outer-spin-button,
-.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"]::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget [type="number"] {
-	-moz-appearance: textfield;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
 	white-space: nowrap;

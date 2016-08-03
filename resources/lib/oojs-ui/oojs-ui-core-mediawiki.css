@@ -1,15 +1,16 @@
 /*!
- * OOjs UI v0.17.6
+ * OOjs UI v0.17.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-07-12T20:26:07Z
+ * Date: 2016-08-03T16:38:27Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
+	/* stylelint-disable-line declaration-no-important */
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
 	cursor: pointer;
@@ -419,7 +420,7 @@
 	margin-bottom: 1.25em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-	padding: 0.25em 0.25em 0.25em 1em;
+	padding: 0.25em 0.25em 0.25em 0.5em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding-top: 0.25em;
@@ -497,9 +498,8 @@
 	margin-top: 2em;
 }
 .oo-ui-fieldsetLayout > .oo-ui-labelElement-label {
-	font-size: 1.1em;
 	margin-bottom: 0.5em;
-	padding: 0.25em 0;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-labelElement-label {
@@ -639,7 +639,7 @@
 	background-color: transparent;
 }
 .oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
-	padding: 0.25em 0.25em 0.25em 1em;
+	padding: 0.25em 0.25em 0.25em 0.5em;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
 	margin-right: 0;
@@ -858,15 +858,15 @@
 	background-position: center center;
 	background-origin: border-box;
 	background-size: 0 0;
-	border: 1px solid #777777;
+	border: 1px solid #767676;
 	border-radius: 2px;
 }
 .oo-ui-checkboxInputWidget [type="checkbox"]:checked + span {
 	background-size: 100% 100%;
 }
 .oo-ui-checkboxInputWidget [type="checkbox"]:active + span {
-	background-color: #cccccc;
-	border-color: #cccccc;
+	background-color: #767676;
+	border-color: #767676;
 }
 .oo-ui-checkboxInputWidget [type="checkbox"]:focus + span {
 	border-width: 2px;
@@ -985,15 +985,15 @@
 	background-position: center center;
 	background-origin: border-box;
 	background-size: 0 0;
-	border: 1px solid #777777;
+	border: 1px solid #767676;
 	border-radius: 100%;
 }
 .oo-ui-radioInputWidget [type="radio"]:checked + span {
 	background-size: 100% 100%;
 }
 .oo-ui-radioInputWidget [type="radio"]:active + span {
-	background-color: #cccccc;
-	border-color: #cccccc;
+	background-color: #767676;
+	border-color: #767676;
 }
 .oo-ui-radioInputWidget [type="radio"]:focus + span {
 	border-width: 2px;
@@ -1044,6 +1044,14 @@
 .oo-ui-textInputWidget textarea {
 	overflow: auto;
 	resize: none;
+}
+.oo-ui-textInputWidget [type="number"] {
+	-moz-appearance: textfield;
+}
+.oo-ui-textInputWidget [type="number"]::-webkit-outer-spin-button,
+.oo-ui-textInputWidget [type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 .oo-ui-textInputWidget [type="search"] {
 	-webkit-appearance: textfield;
@@ -1118,6 +1126,10 @@
 	   -moz-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	        transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
+.oo-ui-textInputWidget.oo-ui-widget-enabled input:hover,
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:hover {
+	border-color: #aaaaaa;
+}
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
 	outline: 0;
@@ -1128,6 +1140,10 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
 	color: #777777;
 	text-shadow: 0 1px 1px #ffffff;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly]:hover,
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly]:hover {
+	border-color: #cccccc;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly]:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly]:focus {
@@ -1150,6 +1166,10 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea {
+	border-color: #ff0000;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input:hover,
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea:hover {
 	border-color: #ff0000;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input:focus,
@@ -1343,8 +1363,8 @@
 .oo-ui-comboBoxInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: pointer;
 }
-.oo-ui-comboBoxInputWidget-php input::-webkit-calendar-picker-indicator {
-	opacity: 0 !important;
+.oo-ui-comboBoxInputWidget-php ::-webkit-calendar-picker-indicator {
+	opacity: 0;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -1394,7 +1414,7 @@
 	vertical-align: middle;
 }
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
-	padding: 0.25em 0.25em 0.25em 1em;
+	padding: 0.25em 0.25em 0.25em 0.5em;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
 	margin-right: 0;
