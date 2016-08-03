@@ -202,7 +202,7 @@ class Pingback {
 	 * <https://github.com/wikimedia/mediawiki-extensions-EventLogging/
 	 *   blob/7e5fe4f1ef/includes/EventLogging.php#L32-L74>
 	 *
-	 * @param data Pingback data as an associative array
+	 * @param array $data Pingback data as an associative array
 	 * @return bool true on success, false on failure
 	 */
 	private function postPingback( array $data ) {
