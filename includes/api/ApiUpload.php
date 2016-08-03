@@ -64,7 +64,8 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( 'No upload module set', 'nomodule' );
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
-			$this->handleStashException( $e );
+			list( $msg, $code ) = $this->handleStashException( get_class( $e ), $e->getMessage() );
+			$this->dieUsage( $msg, $code );
 		}
 
 		// First check permission to upload
@@ -112,7 +113,8 @@ class ApiUpload extends ApiBase {
 				$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
-			$this->handleStashException( $e );
+			list( $msg, $code ) = $this->handleStashException( get_class( $e ), $e->getMessage() );
+			$this->dieUsage( $msg, $code );
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -156,20 +158,13 @@ class ApiUpload extends ApiBase {
 	 */
 	private function getStashResult( $warnings ) {
 		$result = [];
+		$result['result'] = 'Success';
+		if ( $warnings && count( $warnings ) > 0 ) {
+			$result['warnings'] = $warnings;
+		}
 		// Some uploads can request they be stashed, so as not to publish them immediately.
 		// In this case, a failure to stash ought to be fatal
-		try {
-			$result['result'] = 'Success';
-			$result['filekey'] = $this->performStash();
-			$result['sessionkey'] = $result['filekey']; // backwards compatibility
-			if ( $warnings && count( $warnings ) > 0 ) {
-				$result['warnings'] = $warnings;
-			}
-		} catch ( UploadStashException $e ) {
-			$this->handleStashException( $e );
-		} catch ( Exception $e ) {
-			$this->dieUsage( $e->getMessage(), 'stashfailed' );
-		}
+		$this->performStash( 'critical', $result );
 
 		return $result;
 	}
@@ -185,12 +180,7 @@ class ApiUpload extends ApiBase {
 		$result['warnings'] = $warnings;
 		// in case the warnings can be fixed with some further user action, let's stash this upload
 		// and return a key they can use to restart it
-		try {
-			$result['filekey'] = $this->performStash();
-			$result['sessionkey'] = $result['filekey']; // backwards compatibility
-		} catch ( Exception $e ) {
-			$result['warnings']['stashfailed'] = $e->getMessage();
-		}
+		$this->performStash( 'optional', $result );
 
 		return $result;
 	}
@@ -228,14 +218,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		if ( $this->mParams['offset'] == 0 ) {
-			try {
-				$filekey = $this->performStash();
-			} catch ( UploadStashException $e ) {
-				$this->handleStashException( $e );
-			} catch ( Exception $e ) {
-				// FIXME: Error handling here is wrong/different from rest of this
-				$this->dieUsage( $e->getMessage(), 'stashfailed' );
-			}
+			$filekey = $this->performStash( 'critical' );
 		} else {
 			$filekey = $this->mParams['filekey'];
 
@@ -320,27 +303,57 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Stash the file and return the file key
-	 * Also re-raises exceptions with slightly more informative message strings (useful for API)
-	 * @throws MWException
-	 * @return string File key
+	 * Stash the file and add the file key, or error information if it fails, to the data.
+	 *
+	 * @param string $failureMode What to do on failure to stash:
+	 *   - When 'critical', use dieStatus() to produce an error response and throw an exception.
+	 *     Use this when stashing the file was the primary purpose of the API request.
+	 *   - When 'optional', only add a 'stashfailed' key to the data and return null.
+	 *     Use this when some error happened for a non-stash upload and we're stashing the file
+	 *     only to save the client the trouble of re-uploading it.
+	 * @param array &$data API result to which to add the information
+	 * @return string|null File key
 	 */
-	private function performStash() {
+	private function performStash( $failureMode, &$data = null ) {
 		try {
-			$stashFile = $this->mUpload->stashFile( $this->getUser() );
+			$status = $this->mUpload->tryStashFile( $this->getUser() );
 
-			if ( !$stashFile ) {
-				throw new MWException( 'Invalid stashed file' );
+			if ( $status->isGood() && !$status->getValue() ) {
+				// Not actually a 'good' status...
+				$status->fatal( new ApiRawMessage( 'Invalid stashed file', 'stashfailed' ) );
 			}
-			$fileKey = $stashFile->getFileKey();
 		} catch ( Exception $e ) {
-			$message = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
-			wfDebug( __METHOD__ . ' ' . $message . "\n" );
-			$className = get_class( $e );
-			throw new $className( $message );
+			$debugMessage = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
+			wfDebug( __METHOD__ . ' ' . $debugMessage . "\n" );
+			$status = Status::newFatal( new ApiRawMessage( $e->getMessage(), 'stashfailed' ) );
 		}
 
-		return $fileKey;
+		if ( $status->isGood() ) {
+			$stashFile = $status->getValue();
+			$data['filekey'] = $stashFile->getFileKey();
+			// Backwards compatibility
+			$data['sessionkey'] = $data['filekey'];
+			return $data['filekey'];
+		}
+
+		if ( $status->getMessage()->getKey() === 'uploadstash-exception' ) {
+			// The exceptions thrown by upload stash code and pretty silly and UploadBase returns poor
+			// Statuses for it. Just extract the exception details and parse them ourselves.
+			list( $exceptionType, $message ) = $status->getMessage()->getParams();
+			$debugMessage = 'Stashing temporary file failed: ' . $exceptionType . ' ' . $message;
+			wfDebug( __METHOD__ . ' ' . $debugMessage . "\n" );
+			list( $msg, $code ) = $this->handleStashException( $exceptionType, $message );
+			$status = Status::newFatal( new ApiRawMessage( $msg, $code ) );
+		}
+
+		// Bad status
+		if ( $failureMode !== 'optional' ) {
+			$this->dieStatus( $status );
+		} else {
+			list( $code, $msg ) = $this->getErrorFromStatus( $status );
+			$data['stashfailed'] = $msg;
+			return null;
+		}
 	}
 
 	/**
@@ -354,12 +367,7 @@ class ApiUpload extends ApiBase {
 	 * @throws UsageException
 	 */
 	private function dieRecoverableError( $error, $parameter, $data = [], $code = 'unknownerror' ) {
-		try {
-			$data['filekey'] = $this->performStash();
-			$data['sessionkey'] = $data['filekey'];
-		} catch ( Exception $e ) {
-			$data['stashfailed'] = $e->getMessage();
-		}
+		$this->performStash( 'optional', $data );
 		$data['invalidparameter'] = $parameter;
 
 		$parsed = $this->parseMsg( $error );
@@ -653,49 +661,41 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Handles a stash exception, giving a useful error to the user.
-	 * @param Exception $e The exception we encountered.
+	 * @param string $exceptionType Class name of the exception we encountered.
+	 * @param string $message Message of the exception we encountered.
+	 * @return array Array of message and code, suitable for passing to dieUsage()
 	 */
-	protected function handleStashException( $e ) {
-		$exceptionType = get_class( $e );
-
+	protected function handleStashException( $exceptionType, $message ) {
 		switch ( $exceptionType ) {
 			case 'UploadStashFileNotFoundException':
-				$this->dieUsage(
-					'Could not find the file in the stash: ' . $e->getMessage(),
+				return [
+					'Could not find the file in the stash: ' . $message,
 					'stashedfilenotfound'
-				);
-				break;
+				];
 			case 'UploadStashBadPathException':
-				$this->dieUsage(
-					'File key of improper format or otherwise invalid: ' . $e->getMessage(),
+				return [
+					'File key of improper format or otherwise invalid: ' . $message,
 					'stashpathinvalid'
-				);
-				break;
+				];
 			case 'UploadStashFileException':
-				$this->dieUsage(
-					'Could not store upload in the stash: ' . $e->getMessage(),
+				return [
+					'Could not store upload in the stash: ' . $message,
 					'stashfilestorage'
-				);
-				break;
+				];
 			case 'UploadStashZeroLengthFileException':
-				$this->dieUsage(
+				return [
 					'File is of zero length, and could not be stored in the stash: ' .
-						$e->getMessage(),
+						$message,
 					'stashzerolength'
-				);
-				break;
+				];
 			case 'UploadStashNotLoggedInException':
-				$this->dieUsage( 'Not logged in: ' . $e->getMessage(), 'stashnotloggedin' );
-				break;
+				return [ 'Not logged in: ' . $message, 'stashnotloggedin' ];
 			case 'UploadStashWrongOwnerException':
-				$this->dieUsage( 'Wrong owner: ' . $e->getMessage(), 'stashwrongowner' );
-				break;
+				return [ 'Wrong owner: ' . $message, 'stashwrongowner' ];
 			case 'UploadStashNoSuchKeyException':
-				$this->dieUsage( 'No such filekey: ' . $e->getMessage(), 'stashnosuchfilekey' );
-				break;
+				return [ 'No such filekey: ' . $message, 'stashnosuchfilekey' ];
 			default:
-				$this->dieUsage( $exceptionType . ': ' . $e->getMessage(), 'stasherror' );
-				break;
+				return [ $exceptionType . ': ' . $message, 'stasherror' ];
 		}
 	}
 

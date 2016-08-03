@@ -1774,6 +1774,7 @@
 	"uploadstash-errclear": "Used as error message in [[Special:UploadStash]].",
 	"uploadstash-refresh": "Used as link text in [[Special:UploadStash]].",
 	"uploadstash-thumbnail": "Used as link text in [[Special:UploadStash]].",
+	"uploadstash-exception": "Error message shown when an action related to the upload stash fails unexpectedly.\n\nParameters:\n* $1 - exception name, e.g. 'UploadStashFileNotFoundException'\n* $2 - exceptions details (always in English), e.g. 'cannot find path, or not a plain file'",
 	"invalid-chunk-offset": "Error that can happen if chunks get uploaded out of order.\nAs a result of this error, clients can continue from an offset provided or restart the upload.\nUsed on [[Special:UploadWizard]].",
 	"img-auth-accessdenied": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied\n{{Identical|Access denied}}",
 	"img-auth-nopathinfo": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description\n{{Doc-important|This is plain text. Do not use any wiki syntax.}}",

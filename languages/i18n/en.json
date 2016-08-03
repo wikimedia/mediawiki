@@ -1592,6 +1592,7 @@
 	"uploadstash-errclear": "Clearing the files failed.",
 	"uploadstash-refresh": "Refresh the list of files",
 	"uploadstash-thumbnail": "view thumbnail",
+	"uploadstash-exception": "Could not store upload in the stash ($1): \"$2\".",
 	"invalid-chunk-offset": "Invalid chunk offset",
 	"img-auth-accessdenied": "Access denied",
 	"img-auth-nopathinfo": "Missing PATH_INFO.\nYour server is not set up to pass this information.\nIt may be CGI-based and cannot support img_auth.\nSee https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
