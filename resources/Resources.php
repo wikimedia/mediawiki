@@ -333,6 +333,9 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.storage" instead.',
+		],
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
 		'dependencies' => 'json',
 	],
@@ -370,6 +373,7 @@ return [
 	/* jQuery Tipsy */
 
 	'jquery.tipsy' => [
+		'deprecated' => true,
 		'scripts' => 'resources/src/jquery.tipsy/jquery.tipsy.js',
 		'styles' => 'resources/src/jquery.tipsy/jquery.tipsy.css',
 	],
@@ -377,6 +381,9 @@ return [
 	/* jQuery UI */
 
 	'jquery.ui.core' => [
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.ui.button" or "oojs-ui" instead.',
+		],
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.core.js',
 		'dependencies' => [
 			'jquery.ui.core.styles',
@@ -655,11 +662,13 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.widget' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.widget.js',
 		'group' => 'jquery.ui',
 	],
 	// Effects
 	'jquery.effects.core' => [
+		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect.js',
 		'group' => 'jquery.ui',
 	],
