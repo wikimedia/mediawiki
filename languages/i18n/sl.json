@@ -1274,6 +1274,7 @@
 	"action-applychangetags": "uveljavitev oznak skupaj z vašimi spremembami",
 	"action-changetags": "dodajanje in odstranjevanje poljubnih oznak na posameznih redakcijah in dnevniških vnosih",
 	"action-deletechangetags": "izbris oznak iz zbirke podatkov",
+	"action-purge": "počiščenje strani",
 	"nchanges": "$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od zadnjega obiska}}",
 	"enhancedrc-history": "zgodovina",

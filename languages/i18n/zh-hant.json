@@ -73,7 +73,8 @@
 			"Zerng07",
 			"Reke",
 			"Kly",
-			"Cosine02"
+			"Cosine02",
+			"一個正常人"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1333,6 +1334,7 @@
 	"action-applychangetags": "連同您的變更一起套用標籤",
 	"action-changetags": "加入與移除任何於各別修訂與日誌項目的標籤",
 	"action-deletechangetags": "從資料庫刪除標籤",
+	"action-purge": "刷新此頁面",
 	"nchanges": "$1 次變更",
 	"enhancedrc-since-last-visit": "{{PLURAL:$1|自上次拜訪}}已有 $1",
 	"enhancedrc-history": "歷史",

@@ -1239,7 +1239,7 @@
 	"right-applychangetags": "자신이 편집할 때 [[Special:Tags|태그]]를 적용하기",
 	"right-changetags": "문서의 특정 판과 특정 기록 항목에 임의의 [[Special:Tags|태그]]를 추가하거나 제거하기",
 	"right-deletechangetags": "데이터베이스에서 [[Special:Tags|태그]]를 지우기",
-	"grant-generic": "\"$1\" 권한 번들",
+	"grant-generic": "\"$1\" 권한 묶음",
 	"grant-group-page-interaction": "문서로 상호 작용",
 	"grant-group-file-interaction": "미디어로 상호 작용",
 	"grant-group-watchlist-interaction": "당신의 주시문서로 상호작용",

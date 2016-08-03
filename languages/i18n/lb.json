@@ -1224,6 +1224,7 @@
 	"action-viewmyprivateinfo": "Är privat Informatioune kucken",
 	"action-editmyprivateinfo": "Är privat Informatiounen änneren",
 	"action-editcontentmodel": "de Modell vum Inhalt vun enger Säit änneren",
+	"action-purge": "dës Säit eidelzemaachen",
 	"nchanges": "$1 {{PLURAL:$1|Ännerung|Ännerungen}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|zanter dem leschte Passage}}",
 	"enhancedrc-history": "Versiounen",

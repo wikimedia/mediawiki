@@ -1316,6 +1316,7 @@
 	"action-managechangetags": "criar e (des)ativar etiquetas",
 	"action-applychangetags": "aplicar etiquetas juntamente com as suas alterações",
 	"action-changetags": "adicionar e remover etiquetas arbitrárias em revisões e entradas de registo individuais",
+	"action-purge": "recarregar esta página",
 	"nchanges": "$1 {{PLURAL:$1|alteração|alterações}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|desde a última visita}}",
 	"enhancedrc-history": "histórico",

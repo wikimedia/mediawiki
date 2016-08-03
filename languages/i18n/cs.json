@@ -1294,6 +1294,7 @@
 	"action-applychangetags": "přidávat značky k vlastním změnám",
 	"action-changetags": "přidávat libovolné značky na jednotlivé revize a protokolovací záznamy a odebírat je",
 	"action-deletechangetags": "mazat značky z databáze",
+	"action-purge": "vyčistit vyrovnávací paměť této stránky",
 	"nchanges": "$1 {{PLURAL:$1|změna|změny|změn}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od poslední návštěvy}}",
 	"enhancedrc-history": "historie",

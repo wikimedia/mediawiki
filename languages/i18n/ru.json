@@ -1354,6 +1354,7 @@
 	"action-applychangetags": " применять теги наряду с Вашими изменениями",
 	"action-changetags": "Добавлять и удалять произвольные теги на отдельных изменениях и записях в журнале",
 	"action-deletechangetags": "удаление меток из базы данных",
+	"action-purge": "очистку кэша этой страницы",
 	"nchanges": "$1 {{PLURAL:$1|изменение|изменения|изменений}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|с последнего посещения}}",
 	"enhancedrc-history": "история",

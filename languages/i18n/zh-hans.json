@@ -1354,6 +1354,7 @@
 	"action-applychangetags": "连同您的更改应用标签",
 	"action-changetags": "在个别修订和日志记录中添加和移除任意标签",
 	"action-deletechangetags": "从数据库删除标签",
+	"action-purge": "刷新此页面",
 	"nchanges": "$1次更改",
 	"enhancedrc-since-last-visit": "{{PLURAL:$1|上次访问后}}$1个",
 	"enhancedrc-history": "历史",
