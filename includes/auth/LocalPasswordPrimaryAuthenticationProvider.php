@@ -110,7 +110,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		$status = $this->checkPasswordValidity( $username, $req->password );
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			// Fatal, can't log in
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
