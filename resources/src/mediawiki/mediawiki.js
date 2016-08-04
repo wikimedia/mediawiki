@@ -903,6 +903,7 @@
 			 * The CSS will be appended to an existing ResourceLoader-created `<style>` tag
 			 * or create a new one based on whether the given `cssText` is safe for extension.
 			 *
+			 * @private
 			 * @param {string} [cssText=cssBuffer] If called without cssText,
 			 *  the internal buffer will be inserted instead.
 			 * @param {Function} [callback]
@@ -981,7 +982,7 @@
 			}
 
 			/**
-			 * @since 1.26
+			 * @private
 			 * @param {Array} modules List of module names
 			 * @return {string} Hash of concatenated version hashes.
 			 */
@@ -1544,6 +1545,7 @@
 			 * size of the startup module. This function changes those dependency lists back to
 			 * arrays of strings.
 			 *
+			 * @private
 			 * @param {Array} modules Modules array
 			 */
 			function resolveIndexedDependencies( modules ) {
@@ -1576,6 +1578,8 @@
 
 				/**
 				 * Batch-request queued dependencies from the server.
+				 *
+				 * @protected
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
@@ -2056,8 +2060,9 @@
 				/**
 				 * Get the exported value of a module.
 				 *
-				 * Module provide this value via their local `module.exports`.
+				 * Modules may provide this via their local `module.exports`.
 				 *
+				 * @protected
 				 * @since 1.27
 				 * @return {Array}
 				 */
