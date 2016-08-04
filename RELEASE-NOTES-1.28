@@ -102,6 +102,9 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* AuthenticationRequest::$required is now changed from REQUIRED to PRIMARY_REQUIRED
+  on requests needed by primary providers even if all primaries need them.
+  Primary providers are discouraged from returning multiple REQUIRED requests.
 
 == Compatibility ==
 
