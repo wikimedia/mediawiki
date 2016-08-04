@@ -36,6 +36,10 @@ class MockMediaHandlerFactory extends MediaHandlerFactory {
 		'application/ogg' => MockOggHandler::class,
 	];
 
+	public function __construct() {
+		// override parent
+	}
+
 	protected function getHandlerClass( $type ) {
 		if ( isset( self::$overrides[$type] ) ) {
 			return self::$overrides[$type];
