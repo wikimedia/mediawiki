@@ -20,6 +20,7 @@
  * @file
  * @ingroup Media
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base media handler class
@@ -36,9 +37,6 @@ abstract class MediaHandler {
 	 */
 	const MAX_ERR_LOG_SIZE = 65535;
 
-	/** @var MediaHandler[] Instance cache with array of MediaHandler */
-	protected static $handlers = [];
-
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
@@ -46,29 +44,8 @@ abstract class MediaHandler {
 	 * @return MediaHandler|bool
 	 */
 	static function getHandler( $type ) {
-		global $wgMediaHandlers;
-		if ( !isset( $wgMediaHandlers[$type] ) ) {
-			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
-
-			return false;
-		}
-		$class = $wgMediaHandlers[$type];
-		if ( !isset( self::$handlers[$class] ) ) {
-			self::$handlers[$class] = new $class;
-			if ( !self::$handlers[$class]->isEnabled() ) {
-				wfDebug( __METHOD__ . ": $class is not enabled\n" );
-				self::$handlers[$class] = false;
-			}
-		}
-
-		return self::$handlers[$class];
-	}
-
-	/**
-	 * Resets all static caches
-	 */
-	public static function resetCache() {
-		self::$handlers = [];
+		return MediaWikiServices::getInstance()
+			->getMediaHandlerFactory()->getHandler( $type );
 	}
 
 	/**

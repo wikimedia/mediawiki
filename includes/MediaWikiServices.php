@@ -11,6 +11,7 @@ use LBFactory;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use LoadBalancer;
+use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
@@ -509,6 +510,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemQueryService() {
 		return $this->getService( 'WatchedItemQueryService' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return MediaHandlerFactory
+	 */
+	public function getMediaHandlerFactory() {
+		return $this->getService( 'MediaHandlerFactory' );
 	}
 
 	/**

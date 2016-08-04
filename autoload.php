@@ -790,6 +790,7 @@ $wgAutoloadLocalClasses = [
 	'MarkpatrolledAction' => __DIR__ . '/includes/actions/MarkpatrolledAction.php',
 	'McTest' => __DIR__ . '/maintenance/mctest.php',
 	'MediaHandler' => __DIR__ . '/includes/media/MediaHandler.php',
+	'MediaHandlerFactory' => __DIR__ . '/includes/media/MediaHandlerFactory.php',
 	'MediaStatisticsPage' => __DIR__ . '/includes/specials/SpecialMediaStatistics.php',
 	'MediaTransformError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'MediaTransformInvalidParametersException' => __DIR__ . '/includes/media/MediaTransformInvalidParametersException.php',
