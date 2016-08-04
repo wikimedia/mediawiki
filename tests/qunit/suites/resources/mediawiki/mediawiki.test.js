@@ -1085,49 +1085,52 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.require', 6, function ( assert ) {
-		var module1, module2, module3, module4;
-
+	QUnit.test( 'mw.loader require()', 6, function ( assert ) {
 		mw.loader.register( [
-			[ 'test.module.require1', '0' ],
-			[ 'test.module.require2', '0' ],
-			[ 'test.module.require3', '0' ],
-			[ 'test.module.require4', '0', [ 'test.module.require3' ] ]
+			[ 'test.require1', '0' ],
+			[ 'test.require2', '0' ],
+			[ 'test.require3', '0' ],
+			[ 'test.require4', '0', [ 'test.require3' ] ]
 		] );
-		mw.loader.implement( 'test.module.require1', function () {} );
-		mw.loader.implement( 'test.module.require2', function ( $, jQuery, require, module ) {
+		mw.loader.implement( 'test.require1', function () {} );
+		mw.loader.implement( 'test.require2', function ( $, jQuery, require, module ) {
 			module.exports = 1;
 		} );
-		mw.loader.implement( 'test.module.require3', function ( $, jQuery, require, module ) {
+		mw.loader.implement( 'test.require3', function ( $, jQuery, require, module ) {
 			module.exports = function () {
 				return 'hello world';
 			};
 		} );
-		mw.loader.implement( 'test.module.require4', function ( $, jQuery, require, module ) {
-			var other = require( 'test.module.require3' );
+		mw.loader.implement( 'test.require4', function ( $, jQuery, require, module ) {
+			var other = require( 'test.require3' );
 			module.exports = {
 				pizza: function () {
 					return other();
 				}
 			};
 		} );
-		module1 = mw.loader.require( 'test.module.require1' );
-		module2 = mw.loader.require( 'test.module.require2' );
-		module3 = mw.loader.require( 'test.module.require3' );
-		module4 = mw.loader.require( 'test.module.require4' );
+		return mw.loader.using( [ 'test.require1', 'test.require2', 'test.require3', 'test.require4' ] )
+		.then( function ( require ) {
+			var module1, module2, module3, module4;
 
-		assert.strictEqual( typeof module1, 'object', 'export of module with no export' );
-		assert.strictEqual( module2, 1, 'export a number' );
-		assert.strictEqual( module3(), 'hello world', 'export a function' );
-		assert.strictEqual( typeof module4.pizza, 'function', 'export an object' );
-		assert.strictEqual( module4.pizza(), 'hello world', 'module can require other modules' );
+			module1 = require( 'test.require1' );
+			module2 = require( 'test.require2' );
+			module3 = require( 'test.require3' );
+			module4 = require( 'test.require4' );
 
-		assert.throws( function () {
-			mw.loader.require( '_badmodule' );
-		}, /is not loaded/, 'Requesting non-existent modules throws error.' );
+			assert.strictEqual( typeof module1, 'object', 'export of module with no export' );
+			assert.strictEqual( module2, 1, 'export a number' );
+			assert.strictEqual( module3(), 'hello world', 'export a function' );
+			assert.strictEqual( typeof module4.pizza, 'function', 'export an object' );
+			assert.strictEqual( module4.pizza(), 'hello world', 'module can require other modules' );
+
+			assert.throws( function () {
+				require( '_badmodule' );
+			}, /is not loaded/, 'Requesting non-existent modules throws error.' );
+		} );
 	} );
 
-	QUnit.asyncTest( 'mw.loader require in debug mode', 1, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader require() in debug mode', 1, function ( assert ) {
 		var path = mw.config.get( 'wgScriptPath' );
 		mw.loader.register( [
 			[ 'test.require.define', '0' ],
@@ -1136,9 +1139,9 @@
 		mw.loader.implement( 'test.require.callback', [ QUnit.fixurl( path + '/tests/qunit/data/requireCallMwLoaderTestCallback.js' ) ] );
 		mw.loader.implement( 'test.require.define', [ QUnit.fixurl( path + '/tests/qunit/data/defineCallMwLoaderTestCallback.js' ) ] );
 
-		mw.loader.using( 'test.require.callback', function () {
+		mw.loader.using( 'test.require.callback', function ( require ) {
 			QUnit.start();
-			var exported = mw.loader.require( 'test.require.callback' );
+			var exported = require( 'test.require.callback' );
 			assert.strictEqual( exported, 'Require worked.Define worked.',
 				'module.exports worked in debug mode' );
 		}, function () {

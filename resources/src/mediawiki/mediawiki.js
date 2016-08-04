@@ -1852,6 +1852,7 @@
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
+				 * @protected
 				 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
@@ -1893,6 +1894,7 @@
 				 * @param {Function} [error] Callback to execute if one or more dependencies failed
 				 * @return {jQuery.Promise}
 				 * @since 1.23 this returns a promise
+				 * @since 1.28 the promise is resolved with the `require` function
 				 */
 				using: function ( dependencies, ready, error ) {
 					var deferred = $.Deferred();
@@ -1913,7 +1915,7 @@
 					dependencies = resolve( dependencies );
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
-						deferred.resolve();
+						deferred.resolve( mw.loader.require );
 					} else if ( anyFailed( dependencies ) ) {
 						// Execute error immediately if any dependencies have errors
 						deferred.reject(
@@ -2064,7 +2066,6 @@
 				 *
 				 * @protected
 				 * @since 1.27
-				 * @return {Array}
 				 */
 				require: function ( moduleName ) {
 					var state = mw.loader.getState( moduleName );
