@@ -134,6 +134,7 @@ $wgAutoloadClasses += [
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 	'MockOggHandler' => "$testDir/phpunit/mocks/media/MockOggHandler.php",
+	'MockMediaHandlerFactory' => "$testDir/phpunit/mocks/media/MockMediaHandlerFactory.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
 	'MediaWiki\\Session\\DummySessionBackend'
 		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",

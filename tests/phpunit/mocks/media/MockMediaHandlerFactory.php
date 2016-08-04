@@ -22,49 +22,26 @@
  */
 
 /**
- * Class to construct MediaHandler objects
+ * Replace all media handlers with a mock. We do not need to generate
+ * actual thumbnails to do parser testing, we only care about receiving
+ * a ThumbnailImage properly initialized.
  *
  * @since 1.28
  */
-class MediaHandlerFactory {
+class MockMediaHandlerFactory extends MediaHandlerFactory {
 
-	/**
-	 * @var MediaHandler[]
-	 */
-	private $handlers;
+	private static $overrides = [
+		'image/svg+xml' => MockSvgHandler::class,
+		'image/vnd.djvu' => MockDjVuHandler::class,
+		'application/ogg' => MockOggHandler::class,
+	];
 
 	protected function getHandlerClass( $type ) {
-		global $wgMediaHandlers;
-		if ( isset( $wgMediaHandlers[$type] ) ) {
-			return $wgMediaHandlers[$type];
-		} else {
-			return false;
+		if ( isset( self::$overrides[$type] ) ) {
+			return self::$overrides[$type];
 		}
+
+		return MockBitmapHandler::class;
 	}
 
-	/**
-	 * @param string $type mimetype
-	 * @return bool|MediaHandler
-	 */
-	public function getHandler( $type ) {
-		if ( isset( $this->handlers[$type] ) ) {
-			return $this->handlers[$type];
-		}
-
-		$class = $this->getHandlerClass( $type );
-		if ( $class !== false ) {
-			/** @var MediaHandler $handler */
-			$handler = new $class;
-			if ( !$handler->isEnabled() ) {
-				wfDebug( __METHOD__ . ": $class is not enabled\n" );
-				$handler = false;
-			}
-		} else {
-			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
-			$handler = false;
-		}
-
-		$this->handlers[$type] = $handler;
-		return $handler;
-	}
 }
