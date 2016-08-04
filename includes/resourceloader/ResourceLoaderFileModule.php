@@ -255,6 +255,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						$this->{$member}[$key] = (array)$value;
 					}
 					break;
+				case 'deprecated':
+					$this->deprecated = $option;
+					break;
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
@@ -352,7 +355,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$files = $this->getScriptFiles( $context );
-		return $this->readScriptFiles( $files );
+		return $this->getDeprecationInformation() . $this->readScriptFiles( $files );
 	}
 
 	/**
