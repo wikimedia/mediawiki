@@ -1324,7 +1324,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Creates a temp FS file with the same extension and the thumbnail
 	 * @param string $thumbPath Thumbnail path
-	 * @return TempFSFile
+	 * @return TempFSFile|null
 	 */
 	protected function makeTransformTmpFile( $thumbPath ) {
 		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
