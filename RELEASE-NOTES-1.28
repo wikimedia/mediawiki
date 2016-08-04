@@ -108,6 +108,9 @@ changes to languages because of Phabricator reports.
   Use ...->stashFile()->getFileKey() instead.
 * "Public domain" was removed as a wiki license option from the installer, in
   favour of CC-0.
+* AuthenticationRequest::$required is now changed from REQUIRED to PRIMARY_REQUIRED
+  on requests needed by primary providers even if all primaries need them.
+  Primary providers are discouraged from returning multiple REQUIRED requests.
 
 == Compatibility ==
 
