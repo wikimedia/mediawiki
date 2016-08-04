@@ -102,6 +102,7 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* The semantics of AuthenticationRequest::$required have changed.
 
 == Compatibility ==
 
