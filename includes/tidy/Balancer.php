@@ -464,20 +464,23 @@ class BalanceElement {
 	 * by the HTML serialization specification, and replace this node
 	 * in its parent by that string.
 	 *
+	 * @param array $config Balancer configuration; see Balancer::__construct().
+	 *
 	 * @see __toString()
 	 */
-	public function flatten( $tidyCompat = false ) {
+	public function flatten( array $config ) {
 		Assert::parameter( $this->parent !== null, '$this', 'must be a child' );
 		Assert::parameter( $this->parent !== 'flat', '$this', 'already flat' );
 		$idx = array_search( $this, $this->parent->children, true );
 		Assert::parameter(
 			$idx !== false, '$this', 'must be a child of its parent'
 		);
+		$tidyCompat = $config['tidyCompat'];
 		if ( $tidyCompat ) {
 			$blank = true;
 			foreach ( $this->children as $elt ) {
 				if ( !is_string( $elt ) ) {
-					$elt = $elt->flatten( $tidyCompat );
+					$elt = $elt->flatten( $config );
 				}
 				if ( $blank && preg_match( '/[^\t\n\f\r ]/', $elt ) ) {
 					$blank = false;
@@ -661,9 +664,11 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public $fosterParentMode = false;
 	/**
-	 * Tidy compatibility mode, determines behavior of body/blockquote
+	 * Configuration options governing flattening.
+	 * @var array $config
+	 * @see Balancer::__construct()
 	 */
-	public $tidyCompat = false;
+	private $config;
 	/**
 	 * Reference to the current element
 	 */
@@ -672,14 +677,16 @@ class BalanceStack implements IteratorAggregate {
 	/**
 	 * Create a new BalanceStack with a single BalanceElement on it,
 	 * representing the root &lt;html&gt; node.
+	 * @param array $config Balancer configuration; see Balancer::_construct().
 	 */
-	public function __construct() {
+	public function __construct( array $config ) {
 		// always a root <html> element on the stack
 		array_push(
 			$this->elements,
 			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'html', [] )
 		);
 		$this->currentNode = $this->elements[0];
+		$this->config = $config;
 	}
 
 	/**
@@ -692,7 +699,7 @@ class BalanceStack implements IteratorAggregate {
 		$out = '';
 		foreach ( $this->elements[0]->children as $elt ) {
 			$out .= is_string( $elt ) ? $elt :
-				$elt->flatten( $this->tidyCompat );
+				$elt->flatten( $this->config );
 		}
 		return $out;
 	}
@@ -719,7 +726,7 @@ class BalanceStack implements IteratorAggregate {
 		) {
 			$this->fosterParent( $value );
 		} elseif (
-			$this->tidyCompat && !$isComment &&
+			$this->config['tidyCompat'] && !$isComment &&
 			$this->currentNode->isA( BalanceSets::$tidyPWrapSet )
 		) {
 			$this->insertHTMLELement( 'mw:p-wrap', [] );
@@ -970,7 +977,7 @@ class BalanceStack implements IteratorAggregate {
 			$this->currentNode = null;
 		}
 		if ( !$elt->isHtmlNamed( 'mw:p-wrap' ) ) {
-			$elt->flatten( $this->tidyCompat );
+			$elt->flatten( $this->config );
 		}
 	}
 
@@ -1044,7 +1051,7 @@ class BalanceStack implements IteratorAggregate {
 			// otherwise, it will eventually serialize when the parent
 			// is serialized, we just hold onto the memory for its
 			// tree of objects a little longer.
-			$elt->flatten( $this->tidyCompat );
+			$elt->flatten( $this->config );
 		}
 		Assert::postcondition(
 			array_search( $elt, $this->elements, true ) === false,
@@ -1094,7 +1101,7 @@ class BalanceStack implements IteratorAggregate {
 			$parent = $this->elements[0]; // the `html` element.
 		}
 
-		if ( $this->tidyCompat ) {
+		if ( $this->config['tidyCompat'] ) {
 			if ( is_string( $elt ) ) {
 				// We're fostering text: do we need a p-wrapper?
 				if ( $parent->isA( BalanceSets::$tidyPWrapSet ) ) {
@@ -1776,8 +1783,8 @@ class Balancer {
 	private $afe;
 	private $stack;
 	private $strict;
-	private $tidyCompat;
 	private $allowComments;
+	private $config;
 
 	private $textIntegrationMode;
 	private $pendingTableText;
@@ -1844,7 +1851,7 @@ class Balancer {
 	 *         false to get a bit more performance.
 	 */
 	public function __construct( array $config = [] ) {
-		$config = $config + [
+		$this->config = $config = $config + [
 			'strict' => false,
 			'allowedHtmlElements' => null,
 			'tidyCompat' => false,
@@ -1852,7 +1859,6 @@ class Balancer {
 		];
 		$this->allowedHtmlElements = $config['allowedHtmlElements'];
 		$this->strict = $config['strict'];
-		$this->tidyCompat = $config['tidyCompat'];
 		$this->allowComments = $config['allowComments'];
 		if ( $this->allowedHtmlElements !== null ) {
 			// Sanity check!
@@ -1892,8 +1898,7 @@ class Balancer {
 		$this->parseMode = 'inBodyMode';
 		$this->bitsIterator = new ExplodeIterator( '<', $text );
 		$this->afe = new BalanceActiveFormattingElements();
-		$this->stack = new BalanceStack();
-		$this->stack->tidyCompat = $this->tidyCompat;
+		$this->stack = new BalanceStack( $this->config );
 		$this->processingCallback = $processingCallback;
 		$this->processingArgs = $processingArgs;
 
