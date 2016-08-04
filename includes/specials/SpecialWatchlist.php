@@ -429,7 +429,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$out->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+				->rawParams( SpecialEditWatchlist::buildTools(
+					$this->getLanguage(),
+					$this->getLinkRenderer()
+				) )
 		);
 
 		$this->setTopText( $opts );
