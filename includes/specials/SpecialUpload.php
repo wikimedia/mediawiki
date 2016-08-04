@@ -22,6 +22,9 @@
  * @ingroup Upload
  */
 
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Form for handling uploads and special page.
  *
@@ -261,7 +264,7 @@ class SpecialUpload extends SpecialPage {
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
 			'destfile' => $this->mDesiredDestName,
-		], $context );
+		], $context, $this->getLinkRenderer() );
 
 		# Check the token, but only if necessary
 		if (
@@ -313,9 +316,9 @@ class SpecialUpload extends SpecialPage {
 		if ( $title instanceof Title ) {
 			$count = $title->isDeleted();
 			if ( $count > 0 && $user->isAllowed( 'deletedhistory' ) ) {
-				$restorelink = Linker::linkKnown(
+				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-					$this->msg( 'restorelink' )->numParams( $count )->escaped()
+					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
 				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
 					->rawParams( $restorelink )->parseAsBlock();
@@ -370,6 +373,7 @@ class SpecialUpload extends SpecialPage {
 		// Add styles for the warning, reused from the live preview
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
 
+		$linkRenderer = $this->getLinkRenderer();
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
 			. '<div class="mw-destfile-warning"><ul>';
 		foreach ( $warnings as $warning => $args ) {
@@ -381,9 +385,9 @@ class SpecialUpload extends SpecialPage {
 			} elseif ( $warning == 'was-deleted' ) {
 				# If the file existed before and was deleted, warn the user of this
 				$ltitle = SpecialPage::getTitleFor( 'Log' );
-				$llink = Linker::linkKnown(
+				$llink = $linkRenderer->makeKnownLink(
 					$ltitle,
-					wfMessage( 'deletionlog' )->escaped(),
+					wfMessage( 'deletionlog' )->text(),
 					[],
 					[
 						'type' => 'delete',
@@ -833,9 +837,15 @@ class UploadForm extends HTMLForm {
 
 	protected $mMaxUploadSize = [];
 
-	public function __construct( array $options = [], IContextSource $context = null ) {
+	public function __construct( array $options = [], IContextSource $context = null,
+		LinkRenderer $linkRenderer = null
+	) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
+		}
+
+		if ( !$linkRenderer ) {
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}
 
 		$this->mWatch = !empty( $options['watch'] );
@@ -862,12 +872,12 @@ class UploadForm extends HTMLForm {
 		Hooks::run( 'UploadFormInitDescriptor', [ &$descriptor ] );
 		parent::__construct( $descriptor, $context, 'upload' );
 
-		# Add a link to edit MediaWik:Licenses
+		# Add a link to edit MediaWiki:Licenses
 		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
-			$licensesLink = Linker::linkKnown(
+			$licensesLink = $linkRenderer->makeKnownLink(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
-				$this->msg( 'licenses-edit' )->escaped(),
+				$this->msg( 'licenses-edit' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
