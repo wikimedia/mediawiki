@@ -1104,6 +1104,9 @@ $row: the DB row for this line
 $id: User identifier
 $title: User page title
 &$tools: Array of tool links
+$specialPage: SpecialPage instance for context and services. Can be either
+  SpecialContributions or DeletedContributionsPage. Extensions should type
+  hint against a generic SpecialPage though.
 
 'ConvertContent': Called by AbstractContent::convert when a conversion to
 another content model is requested.

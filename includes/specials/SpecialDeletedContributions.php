@@ -219,7 +219,7 @@ class DeletedContributionsPage extends SpecialPage {
 				);
 			}
 
-			Hooks::run( 'ContributionsToolLinks', [ $id, $nt, &$tools ] );
+			Hooks::run( 'ContributionsToolLinks', [ $id, $nt, &$tools, $this ] );
 
 			$links = $this->getLanguage()->pipeList( $tools );
 

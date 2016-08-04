@@ -392,7 +392,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
-		Hooks::run( 'ContributionsToolLinks', [ $id, $userpage, &$tools ] );
+		Hooks::run( 'ContributionsToolLinks', [ $id, $userpage, &$tools, $this ] );
 
 		return $tools;
 	}
