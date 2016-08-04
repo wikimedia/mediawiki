@@ -261,6 +261,7 @@
 	"tagline": "De {{SITENAME}}",
 	"help": "Ajuda",
 	"search": "Pesquisa",
+	"search-ignored-headings": " #<!-- deixe esta linha exatamente como está --> <pre>\n# Subtítulos que serão ignorados pela busca.\n# Mudanças feitas aqui têm efeito quando a página com o subtítulo é indexada.\n# Você pode forçar a reindexação realizando uma edição nula.\n# A sintaxe é a seguinte:\n#   * Tudo a partir do caractere \"#\" até o final da linha é um comentário\n#   * Cada linha não vazia é o título exato a ser ignorado, inclusive no uso de maiúsculas\nReferências\nLigações externas\nVer também\n #</pre> <!-- deixe esta linha exatamente como está -->",
 	"searchbutton": "Pesquisar",
 	"go": "Ir",
 	"searcharticle": "Ir",

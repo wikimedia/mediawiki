@@ -173,6 +173,7 @@
 	"tagline": "Da {{SITENAME}}.",
 	"help": "Agiut",
 	"search": "Sërché",
+	"search-ignored-headings": " #<!-- lassé costa linia 'me ch'a l'é --> <pre>\n# Antestassion ch'a saran ignorà da l'arserca.\n# Le modìfiche a sòn a l'han efet pen-a che la pàgina con l'antestassion a l'é indicisà.\n# A peul forsé la riandesassion ëd la pàgina an fasend na modìfica veuida.\n# La sintassi a l'é costa-sì:\n#   * Tut a parte da 'n caràter «#» a l'é un coment.\n#   * Tuta linia nen veuida a l'é ël tìtol precis da ignoré, caràter majùscoj o minùscoj comprèis.\nArferiment\nLiure esterne\nVëdde ëdcò\n #</pre> <!-- lassé costa linia 'me ch'a l'é -->",
 	"searchbutton": "Sërché",
 	"go": "Andé",
 	"searcharticle": "Andé",
