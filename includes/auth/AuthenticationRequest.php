@@ -43,7 +43,8 @@ abstract class AuthenticationRequest {
 	const REQUIRED = 1;
 
 	/** Indicates that the request is required by a primary authentication
-	 * provdier, but other primary authentication providers do not require it. */
+	 * provdier. Since the user can choose which primary to authenticate with,
+	 * the request might or might not end up being actually required. */
 	const PRIMARY_REQUIRED = 2;
 
 	/** @var string|null The AuthManager::ACTION_* constant this request was
