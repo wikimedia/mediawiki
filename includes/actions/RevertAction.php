@@ -118,6 +118,7 @@ class RevertAction extends FormAction {
 		$comment = $data['comment'];
 
 		// TODO: Preserve file properties from database instead of reloading from file
+		// (Don't fix it until T140543 is fixed, the properties for old files may be very stale)
 		return $this->page->getFile()->upload(
 			$source,
 			$comment,

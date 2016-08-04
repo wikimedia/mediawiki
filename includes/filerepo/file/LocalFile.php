@@ -2523,6 +2523,9 @@ class LocalFileRestoreBatch {
 				|| is_null( $row->fa_minor_mime ) || $row->fa_minor_mime == 'unknown'
 				|| is_null( $row->fa_media_type ) || $row->fa_media_type == 'UNKNOWN'
 				|| is_null( $row->fa_metadata )
+				// Always refresh for the new current version, as due to T140543 the properties for deleted
+				// files may be very stale
+				|| ( $first && !$exists )
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
