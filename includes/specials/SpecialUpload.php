@@ -263,6 +263,19 @@ class SpecialUpload extends SpecialPage {
 			'destfile' => $this->mDesiredDestName,
 		], $context );
 
+		# Add a link to edit MediaWiki:Licenses
+		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
+			$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
+			$licensesLink = $this->getLinkRenderer()->makeKnownLink(
+				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
+				$this->msg( 'licenses-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$editLicenses = '<p class="mw-upload-editlicenses">' . $licensesLink . '</p>';
+			$form->addFooterText( $editLicenses, 'description' );
+		}
+
 		# Check the token, but only if necessary
 		if (
 			!$this->mTokenOk && !$this->mCancelUpload &&
@@ -313,9 +326,9 @@ class SpecialUpload extends SpecialPage {
 		if ( $title instanceof Title ) {
 			$count = $title->isDeleted();
 			if ( $count > 0 && $user->isAllowed( 'deletedhistory' ) ) {
-				$restorelink = Linker::linkKnown(
+				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-					$this->msg( 'restorelink' )->numParams( $count )->escaped()
+					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
 				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
 					->rawParams( $restorelink )->parseAsBlock();
@@ -370,6 +383,7 @@ class SpecialUpload extends SpecialPage {
 		// Add styles for the warning, reused from the live preview
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
 
+		$linkRenderer = $this->getLinkRenderer();
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
 			. '<div class="mw-destfile-warning"><ul>';
 		foreach ( $warnings as $warning => $args ) {
@@ -381,9 +395,9 @@ class SpecialUpload extends SpecialPage {
 			} elseif ( $warning == 'was-deleted' ) {
 				# If the file existed before and was deleted, warn the user of this
 				$ltitle = SpecialPage::getTitleFor( 'Log' );
-				$llink = Linker::linkKnown(
+				$llink = $linkRenderer->makeKnownLink(
 					$ltitle,
-					wfMessage( 'deletionlog' )->escaped(),
+					wfMessage( 'deletionlog' )->text(),
 					[],
 					[
 						'type' => 'delete',
@@ -861,19 +875,6 @@ class UploadForm extends HTMLForm {
 
 		Hooks::run( 'UploadFormInitDescriptor', [ &$descriptor ] );
 		parent::__construct( $descriptor, $context, 'upload' );
-
-		# Add a link to edit MediaWik:Licenses
-		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-			$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
-			$licensesLink = Linker::linkKnown(
-				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
-				$this->msg( 'licenses-edit' )->escaped(),
-				[],
-				[ 'action' => 'edit' ]
-			);
-			$editLicenses = '<p class="mw-upload-editlicenses">' . $licensesLink . '</p>';
-			$this->addFooterText( $editLicenses, 'description' );
-		}
 
 		# Set some form properties
 		$this->setSubmitText( $this->msg( 'uploadbtn' )->text() );
