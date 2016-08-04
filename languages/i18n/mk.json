@@ -1286,6 +1286,7 @@
 	"action-applychangetags": "ставање на ознаки заедно со напревените промени",
 	"action-changetags": "додавање и отстранување на произволни ознаки во поединечни преработки и дневнички записи",
 	"action-deletechangetags": "бришење ознаки од базата",
+	"action-purge": "превчитување на оваа страница",
 	"nchanges": "$1 {{PLURAL:$1|промена|промени}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|од последната посаета}}",
 	"enhancedrc-history": "историја",

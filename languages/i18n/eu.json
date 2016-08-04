@@ -1415,7 +1415,7 @@
 	"filerevert-legend": "Fitxategia leheneratu",
 	"filerevert-intro": "'''[[Media:$1|$1]]''' berrezartzen ari zara [$4 $3(e)ko, $2(e)tako bertsiora].",
 	"filerevert-comment": "Arrazoia:",
-	"filerevert-defaultcomment": "$2, $1 bertsiora leheneratu da",
+	"filerevert-defaultcomment": "$2, $1 ($3) bertsiora leheneratu da",
 	"filerevert-submit": "Leheneratu",
 	"filerevert-success": "'''[[Media:$1|$1]]''' [$4 $3(e)ko, $2(e)tako bertsiora] lehenratua izan da.",
 	"filerevert-badversion": "Ez dago aurreragoko fitxategi honen bertsio lokalik emandako denbora tartean.",

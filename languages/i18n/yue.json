@@ -26,7 +26,8 @@
 			"Yueman",
 			"CRCHF",
 			"Shinjiman",
-			"Macofe"
+			"Macofe",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -585,6 +586,8 @@
 	"minoredit": "呢個係小修改",
 	"watchthis": "睇實呢一頁",
 	"savearticle": "儲存呢頁",
+	"publishpage": "發佈呢頁",
+	"publishchanges": "發佈修改",
 	"preview": "預覽",
 	"showpreview": "顯示預覽",
 	"showdiff": "顯示差異",

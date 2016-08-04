@@ -51,7 +51,7 @@
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
-	"tog-hideminor": "Kaŝi malgrandajn redaktetojn de la lastaj ŝanĝoj",
+	"tog-hideminor": "Kaŝi etajn redaktojn de la lastaj ŝanĝoj",
 	"tog-hidepatrolled": "Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj",
 	"tog-newpageshidepatrolled": "Kaŝi patrolitajn paĝojn de listo de novaj paĝoj",
 	"tog-hidecategorization": "Kaŝi enkategoriigon de paĝoj",
@@ -65,7 +65,7 @@
 	"tog-watchdefault": "Aldoni al mia atentaro paĝojn kaj dosierojn redaktitajn de mi",
 	"tog-watchmoves": "Aldoni paĝojn kaj dosierojn, kiujn mi movas, al mia atentaro",
 	"tog-watchdeletion": "Aldoni paĝojn kaj dosierojn, kiujn mi forigas, al mia atentaro",
-	"tog-watchuploads": "Aldoni novajn dosierojn, kiujn mi alŝutas, al mia atentaro",
+	"tog-watchuploads": "Aldoni novajn dosierojn, kiujn mi alŝutos, al mia atentaro",
 	"tog-watchrollback": "Aldoni paĝojn, kie mi amasmalfaris, al mia atentaro.",
 	"tog-minordefault": "Marki defaŭlte ĉiujn redaktojn kiel etajn",
 	"tog-previewontop": "Montri antaŭrigardon antaŭ redaktilo",

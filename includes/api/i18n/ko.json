@@ -187,6 +187,8 @@
 	"apihelp-parse-paramvalue-prop-displaytitle": "구문 분석된 위키텍스트의 제목을 추가합니다.",
 	"apihelp-parse-paramvalue-prop-headitems": "<span class=\"apihelp-deprecated\">사용되지 않습니다.</span> 문서의 <code>&lt;head&gt;</code> 안에 넣을 항목을 제공합니다.",
 	"apihelp-parse-paramvalue-prop-headhtml": "문서의 구문 분석된 <code>&lt;head&gt;</code>를 제공합니다.",
+	"apihelp-parse-paramvalue-prop-modules": "문서에 사용되는 ResourceLoader 모듈을 제공합니다. 불러오려면, <code>mw.loader.using()</code>을 사용하세요. <kbd>jsconfigvars</kbd> 또는 <kbd>encodedjsconfigvars</kbd>는 <kbd>modules</kbd>와 함께 요청해야 합니다.",
+	"apihelp-parse-paramvalue-prop-jsconfigvars": "문서에 특화된 자바스크립트 구성 변수를 제공합니다. 적용하려면 <code>mw.config.set()</code>을 사용하세요.",
 	"apihelp-parse-paramvalue-prop-iwlinks": "구문 분석된 위키텍스트의 인터위키 링크를 제공합니다.",
 	"apihelp-parse-paramvalue-prop-wikitext": "구문 분석된 위키텍스트 원문을 제공합니다.",
 	"apihelp-parse-paramvalue-prop-properties": "구문 분석된 위키텍스트에 정의된 다양한 속성을 제공합니다.",

@@ -1334,6 +1334,7 @@
 	"action-applychangetags": "tillämpa märken tillsammans med dina ändringar",
 	"action-changetags": "lägg till och ta bort godtyckliga märken på individuella sidversioner och loggposter",
 	"action-deletechangetags": "radera märken från databasen",
+	"action-purge": "rensa denna sida",
 	"nchanges": "$1 {{PLURAL:$1|ändring|ändringar}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|sedan senaste besöket}}",
 	"enhancedrc-history": "historik",

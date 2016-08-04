@@ -1321,6 +1321,7 @@
 	"action-applychangetags": "당신이 편집할 때 태그를 적용하기",
 	"action-changetags": "문서의 특정 판과 특정 기록 항목에 임의의 태그를 추가하거나 제거하기",
 	"action-deletechangetags": "데이터베이스에서 태그를 지우기",
+	"action-purge": "이 문서 새로 고침",
 	"nchanges": "$1개 {{PLURAL:$1|바뀜}}",
 	"enhancedrc-since-last-visit": "{{PLURAL:$1|마지막 방문 이후}} $1개",
 	"enhancedrc-history": "역사",

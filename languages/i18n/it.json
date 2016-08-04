@@ -1360,6 +1360,7 @@
 	"action-applychangetags": "applicare delle etichette alle tue modifiche",
 	"action-changetags": "aggiungere o rimuovere specifiche etichette su singole versioni o voci di registro",
 	"action-deletechangetags": "cancellare le etichette dal database",
+	"action-purge": "aggiornare questa pagina",
 	"nchanges": "$1 {{PLURAL:$1|modifica|modifiche}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|dall'ultima visita}}",
 	"enhancedrc-history": "cronologia",

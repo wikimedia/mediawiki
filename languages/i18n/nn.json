@@ -25,7 +25,8 @@
 			"Macofe",
 			"Chameleon222",
 			"Matma Rex",
-			"Mortensson"
+			"Mortensson",
+			"Danmichaelo"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -551,6 +552,8 @@
 	"minoredit": "Småplukk",
 	"watchthis": "Overvak sida",
 	"savearticle": "Lagra sida",
+	"publishpage": "Publiser sida",
+	"publishchanges": "Publiser endringar",
 	"preview": "Førehandsvising",
 	"showpreview": "Førehandsvis",
 	"showdiff": "Sjå skilnader",

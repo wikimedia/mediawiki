@@ -3559,7 +3559,7 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|вилучив|вилучила}} сторінку $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|відновив|відновила}} сторінку $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|змінив|змінила}} видимість {{PLURAL:$5 запису журналу|$5 записів журналу}} на $3: $4",
-	"logentry-delete-revision": "$1 {{GENDER:$2|змінив|змінила}} видимість {{PLURAL:$5 версії|$5 версій}} на сторінці $3: $4",
+	"logentry-delete-revision": "$1 {{GENDER:$2|змінив|змінила}} видимість {{PLURAL:$5|$5 версії|$5 версій}} на сторінці $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|змінив|змінила}} видимість записів журналу подій $3",
 	"logentry-delete-revision-legacy": "$1 {{GENDER:$2|змінив|змінила}} видимість версій на сторінці $3",
 	"logentry-suppress-delete": "$1 {{GENDER:$2|подавив|подавила}} сторінку $3",

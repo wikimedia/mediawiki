@@ -3299,7 +3299,6 @@
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-titleinput-description-new-page": "side eksisterer ikke endnu",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
-	"api-error-blacklisted": "Vælg venligst en anden, beskrivende titel.",
 	"randomrootpage": "Tilfældig stamside",
 	"log-action-filter-block": "Blokeringstype:",
 	"log-action-filter-move": "Flyttetype:",

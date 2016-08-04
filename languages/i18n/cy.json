@@ -17,7 +17,8 @@
 			"Matma Rex",
 			"Diafol",
 			"Nemo bis",
-			"Dafyddt"
+			"Dafyddt",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -564,6 +565,8 @@
 	"minoredit": "Golygiad bychan yw hwn",
 	"watchthis": "Gwylier y dudalen hon",
 	"savearticle": "Cadw'r dudalen",
+	"publishpage": "Cyhoeddi tudalen",
+	"publishchanges": "Cyhoeddi newidiadau",
 	"preview": "Rhagolwg",
 	"showpreview": "Dangos rhagolwg",
 	"showdiff": "Dangos newidiadau",
@@ -3220,6 +3223,5 @@
 	"special-characters-title-emdash": "heiffen em",
 	"special-characters-title-minus": "arwydd minws",
 	"mw-widgets-dateinput-placeholder-day": "BBBB-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "BBBB-MM",
-	"api-error-blacklisted": "Dewiswch deitl gwahanol sy'n disgrifio'r gwaith, os gwelwch yn dda."
+	"mw-widgets-dateinput-placeholder-month": "BBBB-MM"
 }

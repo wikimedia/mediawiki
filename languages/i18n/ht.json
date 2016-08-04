@@ -13,7 +13,7 @@
 			"Lucas"
 		]
 	},
-	"tog-underline": "Souliyen lyen yo&nbsp;:",
+	"tog-underline": "Souliyen lyen yo :",
 	"tog-hideminor": "Kache tout modifikasyon resan yo ki tou piti",
 	"tog-hidepatrolled": "Kache modifikasyon yo ki fèk fèt pou moun ki ap veye yo",
 	"tog-newpageshidepatrolled": "Kache paj ki siveye yo nan mitan lis nouvo paj yo",
@@ -642,7 +642,7 @@
 	"skin-preview": "Voye kout je",
 	"youremail": "Adrès imèl :",
 	"username": "Non itilizatè a:",
-	"prefs-memberingroups": "Manm {{PLURAL:$1|nan gwoup sa|nan gwoup sa yo }} :",
+	"prefs-memberingroups": "{{GENDER:$2|Manm}} {{PLURAL:$1|nan gwoup sa|nan gwoup sa yo}} :",
 	"yourrealname": "Vre non ou:",
 	"yourlanguage": "Lang:",
 	"yournick": "Siyati pou espas diskisyon :",

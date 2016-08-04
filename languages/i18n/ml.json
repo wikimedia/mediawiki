@@ -3494,7 +3494,6 @@
 	"mw-widgets-dateinput-no-date": "തീയതി ഒന്നും തിരഞ്ഞെടുത്തിട്ടില്ല",
 	"mw-widgets-titleinput-description-new-page": "താൾ ഇപ്പോൾ നിലവിലില്ല",
 	"mw-widgets-titleinput-description-redirect": "$1 എന്ന താളിലേക്കുള്ള തിരിച്ചുവിടൽ",
-	"api-error-blacklisted": "ദയവായി മറ്റൊരു വിവരണാത്മകമായ തലക്കെട്ട് തിരഞ്ഞെടുക്കുക.",
 	"sessionmanager-tie": "വ്യത്യസ്ത തരത്തിലുള്ള അനുമതി നൽകൽ തരങ്ങൾ സംയോജിപ്പിക്കാനാവില്ല: $1.",
 	"sessionprovider-generic": "$1 സെഷനുകൾ",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "കൂക്കി-അധിഷ്ഠിത സെഷനുകൾ",

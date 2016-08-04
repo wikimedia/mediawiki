@@ -1250,6 +1250,7 @@
 	"action-managechangetags": "ট্যাগ তৈরি ও সক্রিয়/নিষ্ক্রিয়",
 	"action-applychangetags": "আপনার পরিবর্তনগুলোর সাথে ট্যাগ সংযোজন করুন",
 	"action-changetags": "নির্দিষ্ট সংস্করণ এবং দীর্ঘ সম্পাদনাগুলোতে ট্যাগ সংযোজন ও অপসারণ করুন",
+	"action-purge": "এই পাতা হালনাগাদ করুন",
 	"nchanges": "$1টি {{PLURAL:$1|পরিবর্তন}}",
 	"enhancedrc-since-last-visit": "{{PLURAL:$1|সর্বশেষ প্রদর্শনের পর}} $1টি",
 	"enhancedrc-history": "ইতিহাস",

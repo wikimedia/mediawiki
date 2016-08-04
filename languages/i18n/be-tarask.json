@@ -3613,6 +3613,8 @@
 	"log-action-filter-block": "Тып блякаваньня:",
 	"log-action-filter-delete": "Тып выдаленьня:",
 	"log-action-filter-import": "Тып імпарту:",
+	"log-action-filter-move": "Тып пераносу:",
+	"log-action-filter-all": "Усе",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

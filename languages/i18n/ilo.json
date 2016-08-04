@@ -3481,7 +3481,6 @@
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
 	"mw-widgets-titleinput-description-new-page": "awan pay ti panid",
 	"mw-widgets-titleinput-description-redirect": "ibaw-ing iti $1",
-	"api-error-blacklisted": "Pangngaasi nga agpili iti sabali, a mangipalpalawag a titulo.",
 	"sessionmanager-tie": "Saan a mabalin nga itipon dagiti nadumaduma kita ti kiddaw ti pammasingked: $1.",
 	"sessionprovider-generic": "Dagiti sesion ti $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "dagiti sesion a naibatay iti galieta",

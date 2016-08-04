@@ -2950,6 +2950,5 @@
 	"expand_templates_generate_xml": "Ipahiling an panlunhay na kahoy nin XML",
 	"expand_templates_preview": "Patânaw",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
-	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
-	"api-error-blacklisted": "Pakipili tabi nin sarong nalalaen, deskriptibong titulo."
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
 }

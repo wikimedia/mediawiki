@@ -3541,7 +3541,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-LL",
 	"mw-widgets-titleinput-description-new-page": "pagina nu există încă",
 	"mw-widgets-titleinput-description-redirect": "redirecționare către $1",
-	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv.",
 	"sessionmanager-tie": "Nu se pot combina multiple tipuri de cereri de autentificare: $1.",
 	"sessionprovider-generic": "sesiuni $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiuni pe bază de module cookie.",
