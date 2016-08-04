@@ -49,5 +49,4 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'test', $mappedFields['language']['testData'] );
 		$this->assertEquals( 'language', $mappedFields['language']['name'] );
 	}
-
 }

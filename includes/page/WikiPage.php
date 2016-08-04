@@ -1043,14 +1043,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.19
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
-	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
-	 *   get the current revision (default value)
-	 *
-	 * @return ParserOutput|bool ParserOutput or false if the revision was not found
+	 * @param null|int      $oldid Revision ID to get the text from, passing null or 0 will
+	 *                             get the current revision (default value)
+	 * @param bool          $forceParse Force reindexing, regardless of cache settings
+	 * @return bool|ParserOutput ParserOutput or false if the revision was not found
 	 */
-	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
+	public function getParserOutput( ParserOptions $parserOptions, $oldid = null,
+	                                 $forceParse = false ) {
 
-		$useParserCache = $this->shouldCheckParserCache( $parserOptions, $oldid );
+		$useParserCache =
+			( !$forceParse ) && $this->shouldCheckParserCache( $parserOptions, $oldid );
 		wfDebug( __METHOD__ .
 			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
