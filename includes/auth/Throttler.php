@@ -157,6 +157,43 @@ class Throttler implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Check whether the user is throttled, without increasing the throttle counter. Arguments
+	 * and return value are similar to increase().
+	 * @param string|null $username
+	 * @param string|null $ip
+	 * @return array|false
+	 * @see increase()
+	 */
+	public function check( $username = null, $ip = null ) {
+		if ( $username === null && $ip === null ) {
+			throw new \InvalidArgumentException( 'Either username or IP must be set for throttling' );
+		}
+
+		$userKey = $username ? md5( $username ) : null;
+		foreach ( $this->conditions as $index => $throttleCondition ) {
+			$ipKey = isset( $throttleCondition['allIPs'] ) ? null : $ip;
+			$count = $throttleCondition['count'];
+			$expiry = $throttleCondition['seconds'];
+
+			if ( !$count || $userKey === null && $ipKey === null ) {
+				continue;
+			}
+
+			$throttleKey = wfGlobalCacheKey( 'throttler', $this->type, $index, $ipKey, $userKey );
+			$throttleCount = $this->cache->get( $throttleKey );
+
+			if ( $throttleCount >= $count ) {  // counter not started yet
+				return [
+					'throttleIndex' => $index,
+					'count' => $count,
+					'wait' => $expiry,
+				];
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Clear the throttle counter.
 	 *
 	 * Should be called after a successful authentication attempt.

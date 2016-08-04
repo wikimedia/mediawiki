@@ -135,11 +135,13 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->testForAccountCreation( $user, $creator, [] ),
 			'attempt #1'
 		);
+		$provider->postAccountCreation( $user, $creator, AuthenticationResponse::newPass( 'Foo' ) );
 		$this->assertEquals(
 			\StatusValue::newGood(),
 			$provider->testForAccountCreation( $user, $creator, [] ),
 			'attempt #2'
 		);
+		$provider->postAccountCreation( $user, $creator, AuthenticationResponse::newPass( 'Bar' ) );
 		$this->assertEquals(
 			$succeed ? \StatusValue::newGood() : \StatusValue::newFatal( 'acct_creation_throttle_hit', 2 ),
 			$provider->testForAccountCreation( $user, $creator, [] ),
@@ -153,6 +155,41 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'Sysop' => [ 'UTSysop', true, false ],
 			'Normal user with hook' => [ 'NormalUser', true, true ],
 		];
+	}
+
+	public function testTestForAccountCreation_failed() {
+		$provider = new ThrottlePreAuthenticationProvider( [
+			'accountCreationThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
+			'cache' => new \HashBagOStuff(),
+		] );
+		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setConfig( new \HashConfig( [
+			'AccountCreationThrottle' => null,
+			'PasswordAttemptThrottle' => null,
+		] ) );
+		$provider->setManager( AuthManager::singleton() );
+
+		$user = \User::newFromName( 'RandomUser' );
+		$creator = \User::newFromName( 'NormalUser' );
+
+		$this->assertEquals(
+			\StatusValue::newGood(),
+			$provider->testForAccountCreation( $user, $creator, [] ),
+			'attempt #1'
+		);
+		$provider->postAccountCreation( $user, $creator, AuthenticationResponse::newPass( 'Foo' ) );
+		$this->assertEquals(
+			\StatusValue::newGood(),
+			$provider->testForAccountCreation( $user, $creator, [] ),
+			'attempt #2'
+		);
+		$provider->postAccountCreation( $user, $creator, AuthenticationResponse::newFail(
+			wfMessage( '?' ) ) );
+		$this->assertEquals(
+			\StatusValue::newGood(),
+			$provider->testForAccountCreation( $user, $creator, [] ),
+			'attempt #3'
+		);
 	}
 
 	public function testTestForAuthentication() {

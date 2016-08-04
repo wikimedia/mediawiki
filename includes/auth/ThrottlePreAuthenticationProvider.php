@@ -105,10 +105,12 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 			return \StatusValue::newGood();
 		}
 
-		$result = $this->accountCreationThrottle->increase( null, $ip, __METHOD__ );
+		$result = $this->accountCreationThrottle->check( null, $ip );
 		if ( $result ) {
 			return \StatusValue::newFatal( 'acct_creation_throttle_hit', $result['count'] );
 		}
+
+		$this->manager->setAuthenticationSessionData( 'AccountCreationThrottle', [ 'ip' => $ip ] );
 
 		return \StatusValue::newGood();
 	}
@@ -143,6 +145,19 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 			$this->manager->setAuthenticationSessionData( 'LoginThrottle',
 				[ 'users' => $usernames, 'ip' => $ip ] );
 			return \StatusValue::newGood();
+		}
+	}
+
+	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
+		if ( $response->status !== AuthenticationResponse::PASS ) {
+			return;
+		} elseif ( !$this->accountCreationThrottle ) {
+			return;
+		}
+
+		$data = $this->manager->getAuthenticationSessionData( 'AccountCreationThrottle' );
+		if ( $data ) {
+			$this->accountCreationThrottle->increase( null, $data['ip'], __METHOD__ );
 		}
 	}
 

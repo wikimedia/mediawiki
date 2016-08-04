@@ -243,4 +243,24 @@ class ThrottlerTest extends \MediaWikiTestCase {
 		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
 		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
 	}
+
+	public function testCheck() {
+		$cache = new \HashBagOStuff();
+		$throttler = new Throttler( [
+			[ 'count' => 2, 'seconds' => 10, ],
+			[ 'count' => 4, 'seconds' => 15, 'allIPs' => true ],
+		], [ 'cache' => $cache ] );
+		$throttler->setLogger( new NullLogger() );
+
+		$result = $throttler->check( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not be throttled' );
+
+		$throttler->increase( 'SomeUser', '1.2.3.4' );
+		$result = $throttler->check( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not be throttled' );
+
+		$throttler->increase( 'SomeUser', '1.2.3.4' );
+		$result = $throttler->check( 'SomeUser', '1.2.3.4' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 2, 'wait' => 10 ], $result );
+	}
 }
