@@ -372,7 +372,7 @@
 	branch = REL1_27
 [submodule "extensions/AccessControl"]
 	path = extensions/AccessControl
-	url = https://github.com/wikimedia/mediawiki-extensions-AccessControl.git
+	url = https://github.com/wikimedia/mediawiki-extensions-AccessControl
 	branch = REL1_27
 [submodule "extensions/Widgets"]
 	path = extensions/Widgets
