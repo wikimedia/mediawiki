@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Linker\LinkRenderer;
+
 /**
  * A special page that lists protected pages
  *
@@ -59,7 +61,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$size,
 			$indefOnly,
 			$cascadeOnly,
-			$noRedirect
+			$noRedirect,
+			$this->getLinkRenderer()
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(
@@ -279,8 +282,27 @@ class ProtectedPagesPager extends TablePager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
+	/**
+	 * @var LinkRenderer
+	 */
+	private $linkRenderer;
+
+	/**
+	 * @param SpecialProtectedpages $form
+	 * @param array $conds
+	 * @param $type
+	 * @param $level
+	 * @param $namespace
+	 * @param string $sizetype
+	 * @param int $size
+	 * @param bool $indefonly
+	 * @param bool $cascadeonly
+	 * @param bool $noredirect
+	 * @param LinkRenderer $linkRenderer
+	 */
 	function __construct( $form, $conds = [], $type, $level, $namespace,
-		$sizetype = '', $size = 0, $indefonly = false, $cascadeonly = false, $noredirect = false
+		$sizetype = '', $size = 0, $indefonly = false, $cascadeonly = false, $noredirect = false,
+		LinkRenderer $linkRenderer
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
@@ -292,6 +314,7 @@ class ProtectedPagesPager extends TablePager {
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;
+		$this->linkRenderer = $linkRenderer;
 		parent::__construct( $form->getContext() );
 	}
 
@@ -354,8 +377,6 @@ class ProtectedPagesPager extends TablePager {
 		/** @var $row object */
 		$row = $this->mCurrentRow;
 
-		$formatted = '';
-
 		switch ( $field ) {
 			case 'log_timestamp':
 				// when timestamp is null, this is a old protection row
@@ -384,7 +405,7 @@ class ProtectedPagesPager extends TablePager {
 						)
 					);
 				} else {
-					$formatted = Linker::link( $title );
+					$formatted = $this->linkRenderer->makeLink( $title );
 				}
 				if ( !is_null( $row->page_len ) ) {
 					$formatted .= $this->getLanguage()->getDirMark() .
@@ -401,9 +422,9 @@ class ProtectedPagesPager extends TablePager {
 					$value, /* User preference timezone */true ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
-					$changeProtection = Linker::linkKnown(
+					$changeProtection = $this->linkRenderer->makeKnownLink(
 						$title,
-						$this->msg( 'protect_change' )->escaped(),
+						$this->msg( 'protect_change' )->text(),
 						[],
 						[ 'action' => 'unprotect' ]
 					);
