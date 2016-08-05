@@ -229,7 +229,7 @@ EOD;
 
 		$fileinfo = $this->getTargetFileinfo();
 
-		if ( $fileinfo['type'] === AutoloadGenerator::FILETYPE_JSON ) {
+		if ( $fileinfo['type'] === self::FILETYPE_JSON ) {
 			return $this->generateJsonAutoload( $fileinfo['filename'] );
 		} else {
 			return $this->generatePHPAutoload( $commandName, $fileinfo['filename'] );
@@ -247,17 +247,17 @@ EOD;
 	public function getTargetFileinfo() {
 		$fileinfo = [
 			'filename' => $this->basepath . '/autoload.php',
-			'type' => AutoloadGenerator::FILETYPE_PHP
+			'type' => self::FILETYPE_PHP
 		];
 		if ( file_exists( $this->basepath . '/extension.json' ) ) {
 			$fileinfo = [
 				'filename' => $this->basepath . '/extension.json',
-				'type' => AutoloadGenerator::FILETYPE_JSON
+				'type' => self::FILETYPE_JSON
 			];
 		} elseif ( file_exists( $this->basepath . '/skin.json' ) ) {
 			$fileinfo = [
 				'filename' => $this->basepath . '/skin.json',
-				'type' => AutoloadGenerator::FILETYPE_JSON
+				'type' => self::FILETYPE_JSON
 			];
 		}
 
