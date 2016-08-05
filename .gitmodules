@@ -46,10 +46,6 @@
 	path = extensions/CodeEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor
 	branch = REL1_27
-[submodule "extensions/ConfirmEdit"]
-	path = extensions/ConfirmEdit
-	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
-	branch = master
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://github.com/wikimedia/mediawiki-extensions-Echo
@@ -122,10 +118,6 @@
 	path = extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
 	branch = REL1_27
-[submodule "extensions/CreateWiki"]
-	path = extensions/CreateWiki
-	url = https://github.com/Miraheze/CreateWiki.git
-	branch = master
 [submodule "extensions/Flow"]
 	path = extensions/Flow
 	url = https://github.com/wikimedia/mediawiki-extensions-Flow
@@ -146,10 +138,6 @@
 	path = extensions/Math
 	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
 	branch = REL1_27
-[submodule "extensions/MirahezeMagic"]
-	path = extensions/MirahezeMagic
-	url = https://github.com/miraheze/MirahezeMagic
-	branch = master
 [submodule "extensions/MultiUpload"]
 	path = extensions/MultiUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
@@ -186,10 +174,6 @@
 	path = extensions/TemplateData
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
 	branch = REL1_27
-[submodule "extensions/EmbedVideo"]
-	path = extensions/EmbedVideo
-	url = https://github.com/Alexia/mediawiki-embedvideo.git
-	branch = master
 [submodule "extensions/TimedMediaHandler"]
 	path = extensions/TimedMediaHandler
 	url = https://github.com/wikimedia/mediawiki-extensions-TimedMediaHandler
@@ -210,10 +194,6 @@
 	path = extensions/DPLForum
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
 	branch = REL1_27
-[submodule "extensions/Tabs"]
-	path = extensions/Tabs
-	url = https://github.com/wikimedia/mediawiki-extensions-Tabs.git
-	branch = master
 [submodule "extensions/Tabber"]
 	path = extensions/Tabber
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabber.git
@@ -246,10 +226,6 @@
 	path = extensions/CSS
 	url = https://github.com/wikimedia/mediawiki-extensions-CSS.git
 	branch = REL1_27
-[submodule "extensions/RandomSelection"]
-	path = extensions/RandomSelection
-	url = https://github.com/Inclumedia/RandomSelection.git
-	branch = master
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
@@ -294,9 +270,6 @@
 	path = extensions/CustomData
 	url = https://github.com/wikimedia/mediawiki-extensions-CustomData
 	branch = REL1_27
-[submodule "extensions/YouTube"]
-	path = extensions/YouTube
-	url = https://github.com/miraheze/YouTube.git
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
@@ -309,9 +282,6 @@
 	path = extensions/PageTriage
 	url = https://github.com/wikimedia/mediawiki-extensions-PageTriage
 	branch = REL1_27
-[submodule "extensions/SectionHide"]
-	path = extensions/SectionHide
-	url = https://github.com/miraheze/SectionHide.git
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
@@ -324,18 +294,10 @@
 	path = extensions/WikiForum
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiForum
 	branch = REL1_27
-[submodule "skins/foreground"]
-	path = skins/foreground
-	url = https://github.com/thingles/foreground
-	branch = master
 [submodule "extensions/NoTitle"]
 	path = extensions/NoTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-NoTitle
 	branch = REL1_27
-[submodule "extensions/AddHTMLMetaAndTitle"]
-	path = extensions/AddHTMLMetaAndTitle
-	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
-	branch = master
 [submodule "extensions/OpenGraphMeta"]
 	path = extensions/OpenGraphMeta
 	url = https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta
@@ -364,26 +326,14 @@
 	path = extensions/Poll
 	url = https://github.com/wikimedia/mediawiki-extensions-Poll
 	branch = REL1_27
-[submodule "extensions/HighlightLinksInCategory"]
-	path = extensions/HighlightLinksInCategory
-	url = https://github.com/labster/HighlightLinksInCategory.git
-	branch = master
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Editcount.git
 	branch = REL1_27
-[submodule "extensions/NativeSvgHandler"]
-	path = extensions/NativeSvgHandler
-	url = https://github.com/p12tic/NativeSvgHandler.git
-	branch = master
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
 	branch = REL1_27
-[submodule "extensions/SimpleTooltip"]
-	path = extensions/SimpleTooltip
-	url = https://github.com/Fannon/SimpleTooltip.git
-	branch = master
 [submodule "extensions/Loops"]
 	path = extensions/Loops
 	url = https://github.com/wikimedia/mediawiki-extensions-Loops.git
@@ -396,14 +346,6 @@
 	path = extensions/HeaderTabs
 	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git
 	branch = REL1_27
-[submodule "extensions/Comments"]
-	path = extensions/Comments
-	url = https://github.com/miraheze/mediawiki-extensions-Comments.git
-	branch = master
-[submodule "extensions/ScratchBlocks"]
-	path = extensions/ScratchBlocks
-	url = https://github.com/tjvr/wiki-scratchblocks.git
-	branch = master
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
 	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
@@ -424,10 +366,6 @@
 	path = extensions/WebChat
 	url = https://github.com/wikimedia/mediawiki-extensions-WebChat
 	branch = REL1_27
-[submodule "skins/Monaco"]
-	path = skins/Monaco
-	url = https://github.com/Arcane21/monaco-port
-	branch = master
 [submodule "extensions/MSCalendar"]
 	path = extensions/MSCalendar
 	url = https://github.com/wikimedia/mediawiki-extensions-MSCalendar
@@ -435,6 +373,7 @@
 [submodule "extensions/AccessControl"]
 	path = extensions/AccessControl
 	url = https://github.com/wikimedia/mediawiki-extensions-AccessControl.git
+	branch = REL1_27
 [submodule "extensions/Widgets"]
 	path = extensions/Widgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Widgets.git
@@ -451,3 +390,79 @@
 	path = skins/DuskToDawn
 	url = https://github.com/wikimedia/mediawiki-skins-DuskToDawn.git
 	branch = REL1_27
+[submodule "skins/apex"]
+	path = skins/apex
+	url = https://github.com/wikimedia/mediawiki-skins-apex.git
+	branch = REL1_27
+[submodule "skins/erudite"]
+	path = skins/erudite
+	url = https://github.com/wikimedia/mediawiki-skins-erudite.git
+	branch = REL1_27
+[submodule "extensions/ConfirmEdit"]
+	path = extensions/ConfirmEdit
+	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
+	branch = REL1_27
+[submodule "extensions/CreateWiki"]
+	path = extensions/CreateWiki
+	url = https://github.com/Miraheze/CreateWiki.git
+	branch = master
+[submodule "extensions/MirahezeMagic"]
+	path = extensions/MirahezeMagic
+	url = https://github.com/miraheze/MirahezeMagic
+	branch = master
+[submodule "extensions/EmbedVideo"]
+	path = extensions/EmbedVideo
+	url = https://github.com/Alexia/mediawiki-embedvideo.git
+	branch = master
+[submodule "extensions/Tabs"]
+	path = extensions/Tabs
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
+	branch = REL1_27
+[submodule "extensions/RandomSelection"]
+	path = extensions/RandomSelection
+	url = https://github.com/Inclumedia/RandomSelection.git
+	branch = master
+[submodule "skins/foreground"]
+	path = skins/foreground
+	url = https://github.com/thingles/foreground.git
+	branch = master
+[submodule "extensions/AddHTMLMetaAndTitle"]
+	path = extensions/AddHTMLMetaAndTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle.git
+	branch = REL1_27
+[submodule "extensions/HighlightLinksInCategory"]
+	path = extensions/HighlightLinksInCategory
+	url = https://github.com/labster/HighlightLinksInCategory.git
+	branch = master
+[submodule "extensions/NativeSvgHandler"]
+	path = extensions/NativeSvgHandler
+	url = https://github.com/p12tic/NativeSvgHandler.git
+	branch = master
+[submodule "extensions/SimpleTooltip"]
+	path = extensions/SimpleTooltip
+	url = https://github.com/Fannon/SimpleTooltip.git
+	branch = master
+[submodule "extensions/Comments"]
+	path = extensions/Comments
+	url = https://github.com/miraheze/mediawiki-extensions-Comments.git
+	branch = REL1_27
+[submodule "extensions/ScratchBlocks"]
+	path = extensions/ScratchBlocks
+	url = https://github.com/tjvr/wiki-scratchblocks.git
+	branch = master
+[submodule "skins/Monaco"]
+	path = skins/Monaco
+	url = https://github.com/Arcane21/monaco-port.git
+	branch = master
+[submodule "extensions/PDFEmbed"]
+	path = extensions/PDFEmbed
+	url = https://github.com/HydraWiki/PDFEmbed.git
+	branch = master
+[submodule "extensions/YouTube"]
+	path = extensions/YouTube
+	url = https://github.com/miraheze/YouTube.git
+	branch = master
+[submodule "extensions/SectionHide"]
+	path = extensions/SectionHide
+	url = https://github.com/miraheze/SectionHide.git
+	branch = master
