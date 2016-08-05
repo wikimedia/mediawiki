@@ -183,8 +183,6 @@ class EnhancedChangesList extends ChangesList {
 
 		# Collate list of users
 		$userlinks = [];
-		# Other properties
-		$curId = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
@@ -219,11 +217,6 @@ class EnhancedChangesList extends ChangesList {
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
 			}
-			# Get the latest entry with a page_id and oldid
-			# since logs may not have these.
-			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
-				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
 
 			$userlinks[$u]++;
 		}
@@ -253,8 +246,6 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$articleLink = $this->getArticleLink( $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
-
-		$queryParams['curid'] = $curId;
 
 		# Sub-entries
 		$lines = [];
@@ -588,8 +579,6 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
-
-		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
