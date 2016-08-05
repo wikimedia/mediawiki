@@ -216,6 +216,8 @@
 	"config-subscribe": "Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłoszeniami o nowych wersjach].",
 	"config-subscribe-help": "Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.\nPowinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.",
 	"config-subscribe-noemail": "Próbowano subskrybować listę mailingową ogłoszeń wersji bez podania adresu e-mail.\nProszę podać adres e-mail, jeśli chcesz subskrybować listę wysyłkową.",
+	"config-pingback": "Udostępnij dane o instalacji twórcom MediaWiki.",
+	"config-pingback-help": "Jeżeli wybierzesz tę opcję, MediaWiki będzie okresowo wysyłać na https://www.mediawiki.org podstawowe dane na temat tej instancji MediaWiki. Te dane zawierają np. typ systemu, wersję PHP i wybrany silnik bazy danych. Fundacja Wikimedia dzieli się tymi danymi z twórcami MediaWiki, aby pomóc w podejmowaniu dalszych wysiłków co do rozwoju. Poniższe dane o Twoim systemie zostaną wysłane:\n<pre>$1</pre>",
 	"config-almost-done": "To już prawie koniec!\nMożesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.",
 	"config-optional-continue": "Zadaj mi więcej pytań.",
 	"config-optional-skip": "Jestem już znudzony, po prostu zainstaluj wiki.",

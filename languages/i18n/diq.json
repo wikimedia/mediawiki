@@ -2476,7 +2476,7 @@
 	"svg-long-desc-animated": "SVG dosya, nominalin $1 × $2 piksela, ebatê dosya: $3",
 	"svg-long-error": "Nêmeqbul dosyaya SVG'i: $1",
 	"show-big-image": "Dosyaya oricinale",
-	"show-big-image-preview": "Verqayd dergiya: $1'i.",
+	"show-big-image-preview": "Verqaytê dergiya: $1.",
 	"show-big-image-other": "Zewmi{{PLURAL:$2|Vılêşnayış|Vılêşnayışê}}: $1.",
 	"show-big-image-size": "$1 × $2 piksel",
 	"file-info-gif-looped": "viyariye biyo",

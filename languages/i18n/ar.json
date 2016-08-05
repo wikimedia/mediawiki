@@ -3668,6 +3668,7 @@
 	"log-action-filter-block-reblock": "منع التعديل",
 	"log-action-filter-block-unblock": "رفع المنع",
 	"log-action-filter-delete-delete": "حذف الصفحات",
+	"log-action-filter-delete-restore": "استرجاع الصفحات",
 	"log-action-filter-delete-event": "حذف السجلات",
 	"log-action-filter-delete-revision": "حذف المراجعات",
 	"log-action-filter-import-interwiki": "استيراد عابر للويكي",

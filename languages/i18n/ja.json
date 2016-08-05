@@ -2579,6 +2579,7 @@
 	"tooltip-ca-nstab-category": "カテゴリページを閲覧",
 	"tooltip-minoredit": "この編集に細部の変更の印を付ける",
 	"tooltip-save": "変更を保存する",
+	"tooltip-publish": "あなたによる変更を公開",
 	"tooltip-preview": "変更内容をプレビューで確認できます。保存前に使用してください。",
 	"tooltip-diff": "文章への変更箇所を表示する",
 	"tooltip-compareselectedversions": "選択した2つの版の差分を表示する",

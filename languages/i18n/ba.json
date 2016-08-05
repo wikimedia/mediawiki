@@ -3321,7 +3321,7 @@
 	"logentry-delete-delete": "$1 $3 битен {{GENDER:$2|юйҙы}}",
 	"logentry-delete-restore": "$1 $3 битен {{GENDER:$2|тергеҙҙе}}",
 	"logentry-delete-event": "$1 журналдағы {{PLURAL:$5|яҙманы}} $3: $4 {{GENDER:$2|үҙгәртте}}",
-	"logentry-delete-revision": "$1 {{PLURAL:$5|$5 версияның}} күренеүсәнлеген   $3: $4 битендә {{GENDER:$2|үҙгәртте}}",
+	"logentry-delete-revision": "Ҡатнашыусы $1 $3: $4 битенең {{PLURAL:$5|$5 версиялары|$5 версияларының|1=версиялар}} күренешен {{GENDER:$2|үҙгәртте|үҙгәртте}}.",
 	"logentry-delete-event-legacy": "$1  $3 журналы яҙмаларының күренеүсәнлеген {{GENDER:$2|үҙгәртте}}",
 	"logentry-delete-revision-legacy": "$1  $3 битендә версияларҙың күренеүсәнлеген {{GENDER:$2|үҙгәртте}}",
 	"logentry-suppress-delete": "$1 $3 битен {{GENDER:$2|баҫырылдырҙы}}",
