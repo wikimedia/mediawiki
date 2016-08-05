@@ -376,11 +376,11 @@
 	branch = REL1_27
 [submodule "extensions/Widgets"]
 	path = extensions/Widgets
-	url = https://github.com/wikimedia/mediawiki-extensions-Widgets.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Widgets
 	branch = REL1_27
 [submodule "extensions/AuthorProtect"]
 	path = extensions/AuthorProtect
-	url = https://github.com/wikimedia/mediawiki-extensions-AuthorProtect.git
+	url = https://github.com/wikimedia/mediawiki-extensions-AuthorProtect
 	branch = REL1_27
 [submodule "extensions/LinkSuggest"]
 	path = extensions/LinkSuggest
@@ -388,7 +388,7 @@
 	branch = REL1_27
 [submodule "skins/DuskToDawn"]
 	path = skins/DuskToDawn
-	url = https://github.com/wikimedia/mediawiki-skins-DuskToDawn.git
+	url = https://github.com/wikimedia/mediawiki-skins-DuskToDawn
 	branch = REL1_27
 [submodule "skins/apex"]
 	path = skins/apex
@@ -466,3 +466,7 @@
 	path = extensions/SectionHide
 	url = https://github.com/miraheze/SectionHide.git
 	branch = master
+[submodule "extensions/MsCalendar"]
+	path = extensions/MsCalendar
+	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
+	branch = REL1_27
