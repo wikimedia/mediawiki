@@ -1412,6 +1412,7 @@ return [
 		'class' => 'ResourceLoaderEditToolbarModule',
 		'scripts' => 'resources/src/mediawiki.toolbar/toolbar.js',
 		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
+		'dependencies' => 'jquery.textSelection',
 		'position' => 'top',
 	],
 	'mediawiki.experiments' => [
