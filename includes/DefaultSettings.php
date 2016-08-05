@@ -1644,6 +1644,12 @@ $wgAdditionalMailParams = null;
 $wgAllowHTMLEmail = false;
 
 /**
+ * If the mail to be sent is to be converted to HTML by the functions employed by core
+ * for the same
+ */
+$wgCoreHTMLEmail = false;
+
+/**
  * True: from page editor if s/he opted-in. False: Enotif mails appear to come
  * from $wgEmergencyContact
  */
@@ -4769,6 +4775,7 @@ $wgReservedUsernames = [
  */
 $wgDefaultUserOptions = [
 	'ccmeonemails' => 0,
+	'plaintextemailonly' => 1,
 	'cols' => 80,
 	'date' => 'default',
 	'diffonly' => 0,

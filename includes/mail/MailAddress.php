@@ -88,4 +88,13 @@ class MailAddress {
 	function __toString() {
 		return $this->toString();
 	}
+
+	/**
+	* Get the User associated with this MailAddress object
+	* @return User
+	*/
+	public function getUser() {
+		$user = User::newFromName( $this->name );
+		return $user;
+	}
 }

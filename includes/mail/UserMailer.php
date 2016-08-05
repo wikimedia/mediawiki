@@ -401,6 +401,10 @@ class UserMailer {
 
 			try {
 				foreach ( $to as $recip ) {
+					$toUser = $recip->getUser();
+					if( $toUser->getOption( 'plaintextemailonly' ) ) {
+						$body = $body['text'];
+					}
 					$sent = mail(
 						$recip,
 						self::quotedPrintable( $subject ),

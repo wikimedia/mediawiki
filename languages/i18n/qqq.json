@@ -229,6 +229,7 @@
 	"tog-norollbackdiff": "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that. {{Gender}}\n{{Identical|Rollback}}",
 	"tog-useeditwarning": "Used as label for the checkbox in [[Special:Preferences#mw-prefsection-editing|Special:Preferences]].",
 	"tog-prefershttps": "Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in",
+	"tog-plaintextemailonly": "Receive emails in plain text only",
 	"underline-always": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"always underline links\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Always}}",
 	"underline-never": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"never underline links\", there are also options {{msg-mw|Underline-always}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Never}}",
 	"underline-default": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"underline links as in your user skin or your browser\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-always}}.\n\n{{Gender}}\n{{Identical|Browser default}}",
