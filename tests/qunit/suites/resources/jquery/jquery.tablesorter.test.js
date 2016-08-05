@@ -81,6 +81,24 @@
 			[ 'Strasse' ]
 		],
 
+		// Data set "digraph"
+		digraphWords = [
+			[ 'London' ],
+			[ 'Ljubljana' ],
+			[ 'Luxembourg' ],
+			[ 'Njivice' ],
+			[ 'Norwich' ],
+			[ 'New York' ]
+		],
+		digraphWordsSorted = [
+			[ 'London' ],
+			[ 'Luxembourg' ],
+			[ 'Ljubljana' ],
+			[ 'New York' ],
+			[ 'Norwich' ],
+			[ 'Njivice' ]
+		],
+
 		complexMDYDates = [
 			[ 'January, 19 2010' ],
 			[ 'April 21 1991' ],
@@ -690,6 +708,22 @@
 				ö: 'oe',
 				ß: 'ss',
 				ü: 'ue'
+			} );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+
+	tableTest(
+		'Digraphs with custom collation',
+		[ 'City' ],
+		digraphWords,
+		digraphWordsSorted,
+		function ( $table ) {
+			mw.config.set( 'tableSorterCollation', {
+				lj: 'lzzzz',
+				nj: 'nzzzz'
 			} );
 
 			$table.tablesorter();

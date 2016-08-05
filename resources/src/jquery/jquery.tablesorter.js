@@ -696,11 +696,11 @@
 			for ( key in ts.collationTable ) {
 				// Check hasOwn to be safe
 				if ( ts.collationTable.hasOwnProperty( key ) ) {
-					keys.push( key );
+					keys.push( mw.RegExp.escape( key ) );
 				}
 			}
 			if ( keys.length ) {
-				ts.collationRegex = new RegExp( '[' + keys.join( '' ) + ']', 'ig' );
+				ts.collationRegex = new RegExp( keys.join( '|' ), 'ig' );
 			}
 		}
 	}
