@@ -508,17 +508,62 @@ class EmailNotification {
 			'replyTo' => $this->replyto,
 		] );
 	}
-
-	public static function transformContentToHTML ( $content ) {
-		$body['text'] = $content;
-		$content = htmlspecialchars( $content );
-		$pattern = '/(' . wfUrlProtocols() . ')[^\s\'\"]+/';
-		$replace = '<a href="$0">$0</a>';
-		$content = preg_replace($pattern, $replace, $content);
-		$content = nl2br( $content );
-		$content = "<html><body>" . $content . "</body></html>";
-		$body['html'] = $content;
+	/**
+	 * Responsible for preparing the text and html parts of a multipart email when
+	 * the $wgCoreHTMLEmail is set, given the key of the messgae to be used as the
+	 * body of the email (the first parameter). The second parameter of this function is an array of
+	 * parameters, if any, that are to be passed to wfMessage along with the key.
+	 *@param string $key
+	 *@param array|null $parameters
+	 *@return array|string
+	 */
+	public static function prepareHTMLEmail ( $key, $parameters = null ){
+		global $wgCoreHTMLEmail;
+		if ( is_array( $parameters ) ) {
+			$params = array_merge( [ $key ], $parameters );
+			$msg = call_user_func_array( 'wfMessage', $params );
+		} else {
+			$msg = wfMessage( $key );
+		}
+		$content = $msg->text();
+		if( !$wgCoreHTMLEmail ) {
+			return $content;
+		}
+		$body['html'] = transformContentToHTML( $content );
+		$body['text'] = transformContentToPlainText( $content );
 		return $body;
+	}
+
+	/**
+	 * Does the actual construction of the HTML part of the multipart email, when
+	 * $wgCoreHTMLEmail is set.
+	 *@param string $content
+	 *@return string
+	 */
+	public static function transformContentToHTML( $content ) {
+		$parser = new Parser;
+		$output = $parser->parse( $content, new Title, new ParserOptions );
+		return $output->mText;
+	}
+
+	/**
+	 * Does the actual construction of the plain text part of the multipart email,
+	 * when $wgCoreHTMLEmail is set.
+	 *@param string $content
+	 *@return string
+	 */
+	public static function transformContentToPlainText( $content ) {
+		$parser = new Parser;
+		$output = $parser->parse( $content, new Title, new ParserOptions );
+		$pattern = '/<a .*href=[[:alnum:]]*\"([^\"]*)\"\s?.*>(.*)<\/a>/';
+		$replace = '$2 ($1)';
+		$content = preg_replace( $pattern, $replace, $output->mText );
+		// enclose bold, italics and underlined words within asterisks (*)
+		$search = [ "<i>", "</i>", "<b>", "</b>", "<u>", "</u>", "***", "**" ];
+		$replace = [ "*", "*", "*", "*", "*", "*", "*", "*" ];
+		$content = str_replace( $search, $replace, $content );
+		$content = strip_tags( $content );
+		return $content;
 	}
 
 }
