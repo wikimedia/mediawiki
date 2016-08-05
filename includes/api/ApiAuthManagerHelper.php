@@ -25,6 +25,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Helper class for AuthManager-using API modules. Intended for use via
@@ -218,6 +219,30 @@ class ApiAuthManagerHelper {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Logs successful or failed authentication.
+	 * @param string|AuthenticationResponse $result Response or error message
+	 * @param string $event Event type (e.g. 'accountcreation')
+	 */
+	public function logAuthenticationResult( $event, $result ) {
+		if ( is_string( $result ) ) {
+			$status = Status::newFatal( $result );
+		} elseif ( $result->status === AuthenticationResponse::PASS ) {
+			$status = Status::newGood();
+		} elseif ( $result->status === AuthenticationResponse::FAIL ) {
+			$status = Status::newFatal( $result->message );
+		} else {
+			return;
+		}
+
+		$module = $this->module->getModuleName();
+		LoggerFactory::getInstance( 'authmanager' )->info( "$module API attempt", [
+			'event' => $event,
+			'status' => $status,
+			'module' => $module,
+		] );
 	}
 
 	/**
