@@ -145,8 +145,12 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-body' );
 		}
 
-		if ( !$wgAllowHTMLEmail && is_array( $body ) ) {
-			// HTML not wanted.  Dump it.
+		if ( $wgAllowHTMLEmail ) {
+			if ( !$wgCoreHTMLEmail && is_array( $body ) ) {
+				$body = EmailNotification::prepareHTMLEmail( $body );
+			}
+		} else if ( !$wgAllowHTMLEmail && is_array( $body ) ) {
+			// HTML not wanted. Dump it.
 			$body = $body['text'];
 		}
 
@@ -401,6 +405,10 @@ class UserMailer {
 
 			try {
 				foreach ( $to as $recip ) {
+					$toUser = $recip->getUser();
+					if( $toUser->getOption( 'plaintextemailonly' ) ) {
+						$body = $body['text'];
+					}
 					$sent = mail(
 						$recip,
 						self::quotedPrintable( $subject ),
