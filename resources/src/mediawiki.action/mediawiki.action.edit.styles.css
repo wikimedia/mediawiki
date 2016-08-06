@@ -34,3 +34,11 @@
 .editButtons input:first-child {
 	margin-left: .1em;
 }
+
+/*
+ * Add a bit of margin space between the preview and the toolbar.
+ * This replaces the ugly <p><br /></p> we used to insert into the page source
+ */
+#wikiPreview.ontop {
+	margin-bottom: 1em;
+}
