@@ -470,3 +470,7 @@
 	path = extensions/MsCalendar
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
 	branch = REL1_27
+[submodule "extensions/LabeledSectionTransclusion"]
+	path = extensions/LabeledSectionTransclusion
+	url = https://github.com/wikimedia/mediawiki-extensions-LabeledSectionTransclusion
+	branch = REL1_27
