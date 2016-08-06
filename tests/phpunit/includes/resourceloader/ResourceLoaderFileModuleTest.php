@@ -123,7 +123,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providerDeprecatedModules
-	 * @covers ResourceLoaderFileModule::getScripts
+	 * @covers ResourceLoaderFileModule::getScript
 	 */
 	public function testDeprecatedModules( $name, $expected ) {
 		$modules = self::getModules();
