@@ -307,7 +307,7 @@ class JobRunner implements LoggerAwareInterface {
 		$stats->timing( "jobqueue.run.$jType", $timeMs );
 		// Track RSS increases for jobs (in case of memory leaks)
 		if ( $rssStart && $rssEnd ) {
-			$stats->increment( "jobqueue.rss_delta.$jType", $rssEnd - $rssStart );
+			$stats->updateCount( "jobqueue.rss_delta.$jType", $rssEnd - $rssStart );
 		}
 
 		if ( $status === false ) {
