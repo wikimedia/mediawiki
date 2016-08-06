@@ -72,6 +72,7 @@ class ApiClientLogin extends ApiBase {
 			$this->getResult()->addValue( null, 'clientlogin', $helper->formatAuthenticationResponse(
 				AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_LOGIN ) )
 			) );
+			$helper->logAuthenticationResult( 'login', 'userlogin-cannot-' . AuthManager::ACTION_LOGIN );
 			return;
 		}
 
@@ -99,6 +100,7 @@ class ApiClientLogin extends ApiBase {
 
 		$this->getResult()->addValue( null, 'clientlogin',
 			$helper->formatAuthenticationResponse( $res ) );
+		$helper->logAuthenticationResult( 'login', $res );
 	}
 
 	public function isReadMode() {
