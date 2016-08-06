@@ -1,0 +1,13 @@
+.not-patrolled {
+	background-color: #ffa;
+}
+
+.unpatrolled {
+	font-weight: bold;
+	color: #f00;
+}
+
+.patrollink {
+	font-size: 75%;
+	text-align: right;
+}

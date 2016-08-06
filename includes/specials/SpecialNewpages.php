@@ -349,6 +349,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';
+			$this->getOutput()->addModuleStyles( 'mediawiki.page.patrol' );
 		}
 
 		# Add a class for zero byte pages

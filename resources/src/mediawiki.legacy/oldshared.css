@@ -289,11 +289,6 @@ table.small {
 	font-style: italic;
 }
 
-span.unpatrolled {
-	font-weight: bold;
-	color: #f00;
-}
-
 div.gallerybox {
 	width: 150px;
 }
