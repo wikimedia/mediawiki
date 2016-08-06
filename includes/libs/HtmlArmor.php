@@ -50,7 +50,7 @@ class HtmlArmor {
 		if ( $input instanceof HtmlArmor ) {
 			return $input->value;
 		} else {
-			return htmlspecialchars( $input );
+			return htmlspecialchars( $input, ENT_QUOTES );
 		}
 	}
 }
