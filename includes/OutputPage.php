@@ -1773,7 +1773,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Include profiling data
-		$this->limitReportData = $parserOutput->getLimitReportData();
+		$this->setLimitReportData( $parserOutput->getLimitReportData() );
 
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
@@ -4050,5 +4050,13 @@ class OutputPage extends ContextSource {
 		// Used by 'skipFunction' of the four 'oojs-ui.styles.*' modules. Please don't treat this as a
 		// public API or you'll be severely disappointed when T87871 is fixed and it disappears.
 		$this->addMeta( 'X-OOUI-PHP', '1' );
+	}
+
+	/**
+	 * @param array $data Data from ParserOutput::getLimitReportData()
+	 * @since 1.28
+	 */
+	public function setLimitReportData( array $data ) {
+		$this->limitReportData = $data;
 	}
 }

@@ -2714,8 +2714,9 @@ class EditPage {
 		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'hiddencats' ],
 			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
 
-		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'limitreport' ],
-			self::getPreviewLimitReport( $this->mParserOutput ) ) );
+		if ( $this->mParserOutput ) {
+			$wgOut->setLimitReportData( $this->mParserOutput->getLimitReportData() );
+		}
 
 		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
@@ -3442,41 +3443,12 @@ HTML
 			return '';
 		}
 
-		$limitReport = Html::rawElement( 'div', [ 'class' => 'mw-limitReportExplanation' ],
-			wfMessage( 'limitreport-title' )->parseAsBlock()
+		return ResourceLoader::makeInlineScript(
+			ResourceLoader::makeConfigSetScript(
+				[ 'wgPageParseReport' => $output->getLimitReportData() ],
+				true
+			)
 		);
-
-		// Show/hide animation doesn't work correctly on a table, so wrap it in a div.
-		$limitReport .= Html::openElement( 'div', [ 'class' => 'preview-limit-report-wrapper' ] );
-
-		$limitReport .= Html::openElement( 'table', [
-			'class' => 'preview-limit-report wikitable'
-		] ) .
-			Html::openElement( 'tbody' );
-
-		foreach ( $output->getLimitReportData() as $key => $value ) {
-			if ( Hooks::run( 'ParserLimitReportFormat',
-				[ $key, &$value, &$limitReport, true, true ]
-			) ) {
-				$keyMsg = wfMessage( $key );
-				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
-				if ( !$valueMsg->exists() ) {
-					$valueMsg = new RawMessage( '$1' );
-				}
-				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
-					$limitReport .= Html::openElement( 'tr' ) .
-						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
-						Html::closeElement( 'tr' );
-				}
-			}
-		}
-
-		$limitReport .= Html::closeElement( 'tbody' ) .
-			Html::closeElement( 'table' ) .
-			Html::closeElement( 'div' );
-
-		return $limitReport;
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
