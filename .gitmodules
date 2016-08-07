@@ -478,3 +478,7 @@
 	path = extensions/CustomNavBlocks
 	url = https://github.com/mathiasertl/CustomNavBlocks.git
 	branch = master
+[submodule "extensions/ReplaceText"]
+	path = extensions/ReplaceText
+	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
+	branch = REL1_27
