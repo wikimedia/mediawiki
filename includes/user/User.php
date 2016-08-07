@@ -1387,8 +1387,6 @@ class User implements IDBAccessObject {
 	 */
 	protected function loadFromUserObject( $user ) {
 		$user->load();
-		$user->loadGroups();
-		$user->loadOptions();
 		foreach ( self::$mCacheVars as $var ) {
 			$this->$var = $user->$var;
 		}
