@@ -128,8 +128,7 @@ class SpecialTags extends SpecialPage {
 			ChangeTags::listExtensionDefinedTags(), true );
 
 		// List all defined tags, even if they were never applied
-		$definedTags = array_keys( array_merge(
-			$this->explicitlyDefinedTags, $this->extensionDefinedTags ) );
+		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->extensionDefinedTags );
 
 		// Show header only if there exists atleast one tag
 		if ( !$tagStats && !$definedTags ) {
