@@ -230,6 +230,13 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 	public function handleHooks( $realName, $value ) {
 		foreach ( $value as $hookName => &$handlers ) {
+			if ( $hookName === 'UnitTestsList' ) {
+				$this->output( "Note: the UnitTestsList hook is no longer necessary as " .
+					"long as your tests are located in the \"tests/phpunit/\" directory. " .
+					"Please see <https://www.mediawiki.org/wiki/Manual:PHP_unit_testing/" .
+					"Writing_unit_tests_for_extensions#Register_your_tests> for more details.\n"
+				);
+			}
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
 					$this->error( "Error: Closures cannot be converted to JSON. " .
