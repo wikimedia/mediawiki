@@ -1276,6 +1276,7 @@
 	"action-applychangetags": "applicar etiquettas al proprie modificationes",
 	"action-changetags": "adder e remover qualcunque etiquettas sur individual versiones e entratas de registro",
 	"action-deletechangetags": "deler etiquettas del base de datos",
+	"action-purge": "purgar iste pagina",
 	"nchanges": "$1 {{PLURAL:$1|modification|modificationes}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|desde le ultime visita}}",
 	"enhancedrc-history": "historia",

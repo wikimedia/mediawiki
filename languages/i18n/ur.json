@@ -1479,7 +1479,7 @@
 	"specialpages": "خصوصی صفحات",
 	"specialpages-group-pages": "فہارست صفحات",
 	"tag-filter": "[[Special:Tags|لوحہ]] فلٹر:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٹیگ|ٹیگز}}]]: $2)",
+	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٹیگ|ٹیگ}}]]: $2)",
 	"tags-source-header": "ماخذ",
 	"tags-active-header": "فعال؟",
 	"tags-active-yes": "ہاں",

@@ -1709,7 +1709,7 @@
 	"listgrouprights-group": "समूह",
 	"listgrouprights-rights": "अधिकारहरु",
 	"listgrouprights-helppage": "Help:सामूहिक अधिकारहरु",
-	"listgrouprights-members": "(सदस्यहरुको सूची)",
+	"listgrouprights-members": "(सदस्यहरूको सूची)",
 	"listgrouprights-addgroup": "{{PLURAL:$2|समूह|समूहहरु}}: $1 थप्ने",
 	"listgrouprights-removegroup": "{{PLURAL:$2|समूह|समूहहरु}}: $1 हटाउने",
 	"listgrouprights-addgroup-all": "सबै समूह थप्ने",
@@ -3449,6 +3449,5 @@
 	"special-characters-title-emdash": "इएम ड्यास",
 	"special-characters-title-minus": "घटाउने चिन्ह",
 	"mw-widgets-titleinput-description-new-page": "हालसम्म पृष्ठ उपलब्ध छैन्",
-	"mw-widgets-titleinput-description-redirect": "$1 मा जाने",
-	"api-error-blacklisted": "एउटा फरक वर्णनात्मक शीर्षक चयन गर्नुहोस् ।"
+	"mw-widgets-titleinput-description-redirect": "$1 मा जाने"
 }

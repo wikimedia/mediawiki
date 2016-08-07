@@ -78,7 +78,8 @@
 			"Lemondoge",
 			"Dinosaur918",
 			"Jdforrester",
-			"Jeleniccz"
+			"Jeleniccz",
+			"MrLeopold"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -1325,6 +1326,7 @@
 	"action-managechangetags": "labels aan te maken en te verwijderen",
 	"action-applychangetags": "labels aan uw bewerkingen toe te voegen",
 	"action-changetags": "willekeurige labels toe te voegen aan en te verwijderen van versies en logboekregels",
+	"action-purge": "Schoon deze pagina op",
 	"nchanges": "$1 {{PLURAL:$1|bewerking|bewerkingen}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|sinds uw laatste bezoek}}",
 	"enhancedrc-history": "geschiedenis",

@@ -3439,7 +3439,7 @@
 	"feedback-thanks-title": "Obrigado!",
 	"feedback-useragent": "Agente de usuário:",
 	"searchsuggest-search": "Pesquisa",
-	"searchsuggest-containing": "contendo...",
+	"searchsuggest-containing": "páginas contendo…",
 	"api-error-badaccess-groups": "Você não tem permissão para enviar arquivos para este wiki.",
 	"api-error-badtoken": "Erro interno: token inválido.",
 	"api-error-copyuploaddisabled": "O upload por URL está desativado neste servidor.",
