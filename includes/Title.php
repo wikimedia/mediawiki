@@ -2319,8 +2319,11 @@ class Title implements LinkTarget {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
 		} elseif ( $this->isSpecial( 'Userlogin' )
+			// TODO: Remove the 'ChangePassword' condition once AuthManager is enabled by default, as it
+			// will redirect to a more powerful Special:ChangeCredentials (see discussion at 465e062a)
 			|| $this->isSpecial( 'ChangePassword' )
 			|| $this->isSpecial( 'PasswordReset' )
+			|| $this->isSpecial( 'UserLogout' )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
