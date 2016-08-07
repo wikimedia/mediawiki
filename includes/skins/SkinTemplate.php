@@ -1302,6 +1302,7 @@ class SkinTemplate extends Skin {
 
 			if ( $this->showEmailUser( $user ) ) {
 				$nav_urls['emailuser'] = [
+					'text' => $this->msg( 'tool-link-emailuser', $rootUser )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
 					'tooltip-params' => [ $rootUser ],
 				];
@@ -1312,6 +1313,7 @@ class SkinTemplate extends Skin {
 				$sur->setContext( $this->getContext() );
 				if ( $sur->userCanExecute( $this->getUser() ) ) {
 					$nav_urls['userrights'] = [
+						'text' => $this->msg( 'tool-link-userrights', $this->getUser()->getName() )->text(),
 						'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
 					];
 				}
