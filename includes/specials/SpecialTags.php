@@ -143,7 +143,7 @@ class SpecialTags extends SpecialPage {
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
-			( $userCanManage ?
+			( ( $userCanManage || $userCanDelete ) ?
 				Xml::tags( 'th', [ 'class' => 'unsortable' ],
 					$this->msg( 'tags-actions-header' )->parse() ) :
 				'' )
@@ -261,7 +261,7 @@ class SpecialTags extends SpecialPage {
 
 		}
 
-		if ( $actionLinks ) {
+		if ( $showDeleteActions || $showManageActions ) {
 			$newRow .= Xml::tags( 'td', null, $this->getLanguage()->pipeList( $actionLinks ) );
 		}
 
