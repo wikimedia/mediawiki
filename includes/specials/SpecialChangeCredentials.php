@@ -184,6 +184,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			$groupedRequests[(string)$info['provider']][] = $req;
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
 		$out->addHTML( Html::openElement( 'dl' ) );
 		foreach ( $groupedRequests as $group => $members ) {
 			$out->addHTML( Html::element( 'dt', [], $group ) );
@@ -191,8 +192,10 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 				/** @var AuthenticationRequest $req */
 				$info = $req->describeCredentials();
 				$out->addHTML( Html::rawElement( 'dd', [],
-					Linker::link( $this->getPageTitle( $req->getUniqueId() ),
-						htmlspecialchars( $info['account'], ENT_QUOTES ) )
+					$linkRenderer->makeLink(
+						$this->getPageTitle( $req->getUniqueId() ),
+						$info['account']
+					)
 				) );
 			}
 		}
