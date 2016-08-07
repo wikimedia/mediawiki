@@ -212,6 +212,15 @@ class ApiLogin extends ApiBase {
 
 				$result['lguserid'] = intval( $user->getId() );
 				$result['lgusername'] = $user->getName();
+
+				// @todo: These are deprecated, and should be removed at some
+				// point (1.28 at the earliest, and see T121527). They were ok
+				// when the core cookie-based login was the only thing, but
+				// CentralAuth broke that a while back and
+				// SessionManager/AuthManager *really* break it.
+				$result['lgtoken'] = $user->getToken();
+				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
+				$result['sessionid'] = $session->getId();
 				break;
 
 			case 'NeedToken':
@@ -219,6 +228,10 @@ class ApiLogin extends ApiBase {
 				$this->setWarning( 'Fetching a token via action=login is deprecated. ' .
 				   'Use action=query&meta=tokens&type=login instead.' );
 				$this->logFeatureUsage( 'action=login&!lgtoken' );
+
+				// @todo: See above about deprecation
+				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
+				$result['sessionid'] = $session->getId();
 				break;
 
 			case 'WrongToken':
