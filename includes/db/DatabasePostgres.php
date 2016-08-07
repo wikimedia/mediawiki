@@ -888,7 +888,7 @@ __INDEXATTR__;
 
 	/**
 	 * INSERT SELECT wrapper
-	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
+	 * $varMap must be an associative array of the form [ 'dest1' => 'source1', ... ]
 	 * Source items may be literals rather then field names, but strings should
 	 * be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table

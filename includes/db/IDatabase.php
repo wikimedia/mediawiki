@@ -329,7 +329,7 @@ interface IDatabase {
 	 *
 	 * Example:
 	 * $id = $dbw->nextSequenceValue( 'page_page_id_seq' );
-	 * $dbw->insert( 'page', array( 'page_id' => $id ) );
+	 * $dbw->insert( 'page', [ 'page_id' => $id ] );
 	 * $id = $dbw->insertId();
 	 *
 	 * @return int
@@ -519,7 +519,7 @@ interface IDatabase {
 	 * May be either an array of table names, or a single string holding a table
 	 * name. If an array is given, table aliases can be specified, for example:
 	 *
-	 *    array( 'a' => 'user' )
+	 *    [ 'a' => 'user' ]
 	 *
 	 * This includes the user table in the query, with the alias "a" available
 	 * for use in field names (e.g. a.user_name).
@@ -537,7 +537,7 @@ interface IDatabase {
 	 * can be complete fragments of SQL, for direct inclusion into the SELECT
 	 * query. If an array is given, field aliases can be specified, for example:
 	 *
-	 *   array( 'maxrev' => 'MAX(rev_id)' )
+	 *   [ 'maxrev' => 'MAX(rev_id)' ]
 	 *
 	 * This includes an expression with the alias "maxrev" in the query.
 	 *
@@ -582,7 +582,7 @@ interface IDatabase {
 	 * including them in the array as a string value with a numeric key, for
 	 * example:
 	 *
-	 *    array( 'FOR UPDATE' )
+	 *    [ 'FOR UPDATE' ]
 	 *
 	 * The supported options are:
 	 *
@@ -644,7 +644,7 @@ interface IDatabase {
 	 * an SQL fragment, or an array where the string keys are equality and the
 	 * numeric keys are SQL fragments all AND'd together. For example:
 	 *
-	 *    array( 'page' => array( 'LEFT JOIN', 'page_latest=rev_id' ) )
+	 *    [ 'page' => [ 'LEFT JOIN', 'page_latest=rev_id' ] ]
 	 *
 	 * @return ResultWrapper|bool If the query returned no rows, a ResultWrapper
 	 *   with no rows in it will be returned. If there was a query error, a
@@ -857,7 +857,7 @@ interface IDatabase {
 	 * The keys on each level may be either integers or strings.
 	 *
 	 * @param array $data Organized as 2-d
-	 *    array(baseKeyVal => array(subKeyVal => [ignored], ...), ...)
+	 *    [ baseKeyVal => [ subKeyVal => [ignored], ... ], ... ]
 	 * @param string $baseKey Field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param string $subKey Field name to match the sub-level keys to (eg 'pl_title')
 	 * @return string|bool SQL fragment, or false if no items in array
@@ -950,7 +950,7 @@ interface IDatabase {
 	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns
 	 * a LIKE clause that searches for subpages of 'My page title'.
 	 * Alternatively:
-	 *   $pattern = array( 'My_page_title/', $dbr->anyString() );
+	 *   $pattern = [ 'My_page_title/', $dbr->anyString() ];
 	 *   $query .= $dbr->buildLike( $pattern );
 	 *
 	 * @since 1.16
@@ -1092,7 +1092,7 @@ interface IDatabase {
 	 *    to include in a join.
 	 *
 	 * @param array $varMap Must be an associative array of the form
-	 *    array( 'dest1' => 'source1', ...). Source items may be literals
+	 *    [ 'dest1' => 'source1', ... ]. Source items may be literals
 	 *    rather than field names, but strings should be quoted with
 	 *    IDatabase::addQuotes()
 	 *

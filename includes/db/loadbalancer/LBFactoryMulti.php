@@ -38,26 +38,26 @@
  *
  *     sectionLoads                A 2-d map. For each section, gives a map of server names to
  *                                 load ratios. For example:
- *                                 array(
- *                                     'section1' => array(
+ *                                 [
+ *                                     'section1' => [
  *                                         'db1' => 100,
  *                                         'db2' => 100
- *                                     )
- *                                 )
+ *                                     ]
+ *                                 ]
  *
  *     serverTemplate              A server info associative array as documented for $wgDBservers.
  *                                 The host, hostName and load entries will be overridden.
  *
  *     groupLoadsBySection         A 3-d map giving server load ratios for each section and group.
  *                                 For example:
- *                                 array(
- *                                     'section1' => array(
- *                                         'group1' => array(
+ *                                 [
+ *                                     'section1' => [
+ *                                         'group1' => [
  *                                             'db1' => 100,
  *                                             'db2' => 100
- *                                         )
- *                                     )
- *                                 )
+ *                                         ]
+ *                                     ]
+ *                                 ]
  *
  *     groupLoadsByDB              A 3-d map giving server load ratios by DB name.
  *

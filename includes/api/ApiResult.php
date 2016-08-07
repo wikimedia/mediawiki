@@ -20,7 +20,7 @@
 
 /**
  * This class represents the result of the API operations.
- * It simply wraps a nested array() structure, adding some functions to simplify
+ * It simply wraps a nested array structure, adding some functions to simplify
  * array's modifications. As various modules execute, they add different pieces
  * of information to this result, structuring it as it will be given to the client.
  *

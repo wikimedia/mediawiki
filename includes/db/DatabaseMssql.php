@@ -378,10 +378,10 @@ class DatabaseMssql extends Database {
 	 * @param mixed $conds Array or string, condition(s) for WHERE
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Associative array of options (e.g.
-	 *   array('GROUP BY' => 'page_title')), see Database::makeSelectOptions
+	 *   [ 'GROUP BY' => 'page_title' ]), see Database::makeSelectOptions
 	 *   code for list of supported stuff
 	 * @param array $join_conds Associative array of table join conditions
-	 *   (optional) (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 *   (optional) (e.g. [ 'page' => [ 'LEFT JOIN','page_latest=rev_id' ] ]
 	 * @return mixed Database result resource (feed to Database::fetchObject
 	 *   or whatever), or false on failure
 	 * @throws DBQueryError
@@ -434,10 +434,10 @@ class DatabaseMssql extends Database {
 	 * @param mixed $vars Array or string, field name(s) to be retrieved
 	 * @param mixed $conds Array or string, condition(s) for WHERE
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 * @param array $options Associative array of options (e.g. [ 'GROUP BY' => 'page_title' ]),
 	 *   see Database::makeSelectOptions code for list of supported stuff
 	 * @param array $join_conds Associative array of table join conditions (optional)
-	 *    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 *    (e.g. [ 'page' => [ 'LEFT JOIN','page_latest=rev_id' ] ]
 	 * @return string The SQL text
 	 */
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
@@ -717,7 +717,7 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * INSERT SELECT wrapper
-	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
+	 * $varMap must be an associative array of the form [ 'dest1' => 'source1', ... ]
 	 * Source items may be literals rather than field names, but strings should
 	 * be quoted with Database::addQuotes().
 	 * @param string $destTable

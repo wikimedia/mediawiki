@@ -617,7 +617,7 @@ class LoadBalancer {
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( DB_SLAVE, array(), $db );
+			 *     $conn = $lb->getConnection( DB_SLAVE, [], $db );
 			 *     ...
 			 *     $lb->reuseConnection( $conn );
 			 *   }

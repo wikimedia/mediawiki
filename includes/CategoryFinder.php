@@ -33,8 +33,8 @@
  *
  *     $cf = new CategoryFinder;
  *     $cf->seed(
- *         array( 12345 ),
- *         array( 'Category 1', 'Category 2' ),
+ *         [ 12345 ],
+ *         [ 'Category 1', 'Category 2' ],
  *         'AND'
  *     );
  *     $a = $cf->run();
@@ -49,7 +49,7 @@ class CategoryFinder {
 	/** @var array Array of DBKEY category names for categories that don't have a page */
 	protected $deadend = [];
 
-	/** @var array Array of [ID => array()] */
+	/** @var array Array of [ ID => [] ] */
 	protected $parents = [];
 
 	/** @var array Array of article/category IDs */

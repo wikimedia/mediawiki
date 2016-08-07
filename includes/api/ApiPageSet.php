@@ -1002,7 +1002,7 @@ class ApiPageSet extends ApiBase {
 				// Get pageIDs data from the `page` table
 				$res = $db->select( 'page', $pageFlds, $set, __METHOD__ );
 
-				// Hack: get the ns:titles stored in array(ns => array(titles)) format
+				// Hack: get the ns:titles stored in [ns => array(titles)] format
 				$this->initFromQueryResult( $res, $linkBatch->data, true );
 			}
 		}
