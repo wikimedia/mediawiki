@@ -5706,6 +5706,8 @@ $wgGrantPermissions['sendemail']['sendemail'] = true;
 
 $wgGrantPermissions['createaccount']['createaccount'] = true;
 
+$wgGrantPermissions['privateinfo']['viewmyprivateinfo'] = true;
+
 /**
  * @var Array Map of grants to their UI grouping
  * @since 1.27
@@ -5739,6 +5741,8 @@ $wgGrantPermissionGroups = [
 	'createaccount'       => 'administration',
 
 	'highvolume'          => 'high-volume',
+
+	'privateinfo'         => 'private-information',
 ];
 
 /**
