@@ -6,7 +6,7 @@
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
+			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen|mw-htmlform-dropdown)/g, '' ),
 			$select = $( '<select>' ),
 			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
 		oldClass = $.trim( oldClass );
@@ -53,9 +53,9 @@
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		if ( $root.find( '.mw-chosen' ).length ) {
+		if ( $root.find( '.mw-htmlform-dropdown' ).length ) {
 			mw.loader.using( 'jquery.chosen', function () {
-				$root.find( '.mw-chosen' ).each( function () {
+				$root.find( '.mw-htmlform-dropdown' ).each( function () {
 					var type = this.nodeName.toLowerCase(),
 						$converted = convertCheckboxesToMulti( $( this ), type );
 					$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
