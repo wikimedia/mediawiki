@@ -958,6 +958,9 @@ abstract class UploadBase {
 	 *
 	 * @param User $user
 	 * @return UploadStashFile Stashed file
+	 * @throws UploadStashBadPathException
+	 * @throws UploadStashFileException
+	 * @throws UploadStashNotLoggedInException
 	 */
 	public function stashFile( User $user = null ) {
 		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
