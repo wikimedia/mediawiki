@@ -4,6 +4,22 @@
  * Multi-select field
  */
 class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
+	/**
+	 * @param array $params
+	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   - dropdown: If given, the options will be displayed inside a dropdown with a text field that
+	 *     can be used to filter them. This is desirable mostly for very long lists of options.
+	 *     This only works for users with JavaScript support and falls back to the list of checkboxes.
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		// For backwards compatibility, also handle the old way with 'cssclass' => 'mw-chosen'
+		if ( isset( $params['dropdown'] ) || strpos( $this->mClass, 'mw-chosen' ) !== false ) {
+			$this->mClass .= ' mw-htmlform-dropdown';
+		}
+	}
+
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -28,6 +44,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function getInputHTML( $value ) {
+		if ( isset( $this->mParams['dropdown'] ) ) {
+			$this->mParent->getOutput()->addModules( 'jquery.chosen' );
+		}
+
 		$value = HTMLFormField::forceToStringRecursive( $value );
 		$html = $this->formatOptions( $this->getOptions(), $value );
 
