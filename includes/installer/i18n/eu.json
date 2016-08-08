@@ -63,6 +63,7 @@
 	"config-header-oracle": "Oracle hobespenak",
 	"config-header-mssql": "Microsoft SQL Server-en ezarpenak",
 	"config-invalid-db-type": "Datu-base mota baliogabea.",
+	"config-db-sys-user-exists-oracle": "$1 erabiltzaile kontua dagoeneko existitzen da. SYSDBA kontu berri bat sortzeko erabili daiteke soilik!",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-binary": "Bitarra",

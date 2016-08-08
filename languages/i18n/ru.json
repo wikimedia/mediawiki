@@ -373,7 +373,7 @@
 	"site-atom-feed": "$1 — Atom-лента",
 	"page-rss-feed": "«$1» — RSS-лента",
 	"page-atom-feed": "«$1» — Atom-лента",
-	"feed-atom": "Атом",
+	"feed-atom": "Atom",
 	"red-link-title": "$1 (страница не существует)",
 	"sort-descending": "Упорядочить по убыванию",
 	"sort-ascending": "Упорядочить по возрастанию",
