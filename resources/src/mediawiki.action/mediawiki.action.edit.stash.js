@@ -9,7 +9,11 @@
 	$( function () {
 		var idleTimeout = 3000,
 			api = new mw.Api(),
-			pending = null,
+			timer,
+			pending,
+			lastText,
+			lastSummary,
+			lastTextHash,
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
@@ -17,33 +21,39 @@
 			model = $form.find( '[name=model]' ).val(),
 			format = $form.find( '[name=format]' ).val(),
 			revId = $form.find( '[name=parentRevId]' ).val(),
-			lastText = $text.textSelection( 'getContents' ),
-			lastSummary = $summary.textSelection( 'getContents' ),
-			lastTextHash = null,
 			lastPriority = 0,
-			origSummary = lastSummary,
-			timer = null,
 			PRIORITY_LOW = 1,
 			PRIORITY_HIGH = 2;
 
 		// Send a request to stash the edit to the API.
 		// If a request is in progress, abort it since its payload is stale and the API
 		// may limit concurrent stash parses.
-		function stashEdit( priority, hashForReuse ) {
-			if ( pending ) {
-				pending.abort();
-				pending = null;
-			}
-
+		function stashEdit() {
 			api.getToken( 'csrf' ).then( function ( token ) {
-				// If applicable, just send the hash key to reuse the last text server-side
-				var req = null;
+				var textHash, req,
+					textChanged = isTextChanged(),
+					priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
 
-				// Update tracking of the last text/summary sent out
-				lastText = $text.textSelection( 'getContents' );
+				if ( pending ) {
+					if ( lastPriority > priority ) {
+						// Stash request for summary change should wait on pending text change stash
+						pending.then( checkStash );
+						return;
+					}
+					pending.abort();
+				}
+
+				// Update the "last" tracking variables
 				lastSummary = $summary.textSelection( 'getContents' );
 				lastPriority = priority;
-				lastTextHash = null; // "failed" until proven successful
+				if ( textChanged ) {
+					lastText = $text.textSelection( 'getContents' );
+					// Reset hash
+					lastTextHash = null;
+				} else {
+					// Send the hash to let the server reuse the last text (and save bandwidth)
+					textHash = lastTextHash;
+				}
 
 				req = api.post( {
 					action: 'stashedit',
@@ -51,8 +61,8 @@
 					title: mw.config.get( 'wgPageName' ),
 					section: section,
 					sectiontitle: '',
-					text: hashForReuse ? '' : lastText,
-					stashedtexthash: hashForReuse ? hashForReuse : '',
+					text: textHash ? '' : lastText,
+					stashedtexthash: textHash ? textHash : '',
 					summary: lastSummary,
 					contentmodel: model,
 					contentformat: format,
@@ -70,36 +80,23 @@
 			} );
 		}
 
-		// Check if edit body text changed since the last stashEdit() call or if no edit
-		// stash calls have yet been made
+		// Whether the body text content changed since the last stashEdit()
 		function isTextChanged() {
-			var newText = $text.textSelection( 'getContents' );
-			return newText !== lastText;
+			return lastText !== $text.textSelection( 'getContents' );
 		}
 
-		// Check if summary changed since the last stashEdit() call or if no edit
-		// stash calls have yet been made
+		// Whether the edit summary has changed since the last stashEdit()
 		function isSummaryChanged() {
-			var newSummary = $summary.textSelection( 'getContents' );
-			return newSummary !== lastSummary;
+			return lastSummary !== $summary.textSelection( 'getContents' );
 		}
 
-		function onEditorIdle() {
-			var textChanged = isTextChanged(),
-				summaryChanged = isSummaryChanged(),
-				priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
-
-			if ( !textChanged && !summaryChanged ) {
-				return; // nothing to do
-			}
-
-			if ( pending && lastPriority > priority ) {
-				// Stash requests for summary changes should wait on pending text change stashes
-				pending.then( onEditorIdle );
+		// Check whether text or summary have changed and call stashEdit()
+		function checkStash() {
+			if ( !isTextChanged() && !isSummaryChanged() ) {
 				return;
 			}
 
-			stashEdit( priority, textChanged ? null : lastTextHash );
+			stashEdit();
 		}
 
 		function onKeyUp( e ) {
@@ -114,23 +111,21 @@
 			}
 
 			clearTimeout( timer );
-			timer = setTimeout( onEditorIdle, idleTimeout );
+			timer = setTimeout( checkStash, idleTimeout );
 		}
 
 		function onSummaryFocus() {
 			// Summary typing is usually near the end of the workflow and involves less pausing.
-			// Re-stash frequently in hopes of capturing the final summary before submission.
+			// Re-stash more frequently in hopes of capturing the final summary before submission.
 			idleTimeout = 1000;
 			// Stash now since the text is likely the final version. The re-stashes based on the
 			// summary are targeted at caching edit checks that need the final summary.
-			onEditorIdle();
+			checkStash();
 		}
 
 		function onTextFocus() {
-			// User returned to the text field...
-			if ( $summary.textSelection( 'getContents' ) === origSummary ) {
-				idleTimeout = 3000; // no summary yet; reset stash rate to default
-			}
+			// User returned to the text field... reset stash rate to default
+			idleTimeout = 3000;
 		}
 
 		function onFormLoaded() {
@@ -142,7 +137,7 @@
 				// probably save the page soon
 				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
 			) {
-				stashEdit( PRIORITY_HIGH, null );
+				checkStash();
 			}
 		}
 
@@ -153,13 +148,13 @@
 		}
 
 		$text.on( {
-			change: onEditorIdle,
+			change: checkStash,
 			keyup: onKeyUp,
 			focus: onTextFocus
 		} );
 		$summary.on( {
 			focus: onSummaryFocus,
-			focusout: onEditorIdle,
+			focusout: checkStash,
 			keyup: onKeyUp
 		} );
 		onFormLoaded();
