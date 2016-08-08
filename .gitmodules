@@ -482,3 +482,7 @@
 	path = extensions/ReplaceText
 	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
 	branch = REL1_27
+[submodule "extensions/JavascriptSlideshow"]
+	path = extensions/JavascriptSlideshow
+	url = https://github.com/DaSchTour/JavascriptSlideshow.git
+	branch = master
