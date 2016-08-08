@@ -113,6 +113,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @return OOUI\CheckboxMultiselectInputWidget
 	 */
 	public function getInputOOUI( $value ) {
+		$this->mParent->getOutput()->addModules( 'oojs-ui-widgets' );
+
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 		$attr['name'] = "{$this->mName}[]";

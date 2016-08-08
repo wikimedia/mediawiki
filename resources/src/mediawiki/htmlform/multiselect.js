@@ -32,9 +32,9 @@
 
 	function convertCheckboxesToMulti( $oldContainer, type ) {
 		var $fieldLabel = $( '<td>' ),
-		$td = $( '<td>' ),
-		$fieldLabelText = $( '<label>' ),
-		$container;
+			$td = $( '<td>' ),
+			$fieldLabelText = $( '<label>' ),
+			$container;
 		if ( type === 'tr' ) {
 			addMulti( $oldContainer, $td );
 			$container = $( '<tr>' );
@@ -52,14 +52,62 @@
 		return $container;
 	}
 
+	function convertCheckboxesWidgetToCapsules( fieldLayout ) {
+		var checkboxesWidget, checkboxesOptions, capsulesOptions, capsulesWidget;
+
+		checkboxesWidget = fieldLayout.fieldWidget;
+		checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
+		capsulesOptions = checkboxesOptions.map( function ( option ) {
+			return new OO.ui.MenuOptionWidget( {
+				data: option.getData(),
+				label: option.getLabel()
+			} );
+		} );
+		capsulesWidget = new OO.ui.CapsuleMultiselectWidget( {
+			menu: {
+				items: capsulesOptions
+			}
+		} );
+		capsulesWidget.setItemsFromData( checkboxesWidget.getValue() );
+
+		// Data from CapsuleMultiselectWidget will not be submitted with the form, so keep the original
+		// CheckboxMultiselectInputWidget up-to-date.
+		capsulesWidget.on( 'change', function () {
+			checkboxesWidget.setValue( capsulesWidget.getItemsData() );
+		} );
+
+		// Hide original widget and add new one in its place. This is a bit hacky, since the FieldLayout
+		// still thinks it's connected to the old widget.
+		checkboxesWidget.toggle( false );
+		checkboxesWidget.$element.after( capsulesWidget.$element );
+	}
+
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		if ( $root.find( '.mw-htmlform-dropdown' ).length ) {
-			mw.loader.using( 'jquery.chosen', function () {
-				$root.find( '.mw-htmlform-dropdown' ).each( function () {
-					var type = this.nodeName.toLowerCase(),
-						$converted = convertCheckboxesToMulti( $( this ), type );
-					$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
-				} );
+		var $dropdowns = $root.find( '.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-dropdown' );
+		if ( $dropdowns.length ) {
+			$dropdowns.each( function () {
+				var $el = $( this ),
+					data, modules, extraModules;
+				if ( $el.is( '[data-ooui]' ) ) {
+					// Load 'oojs-ui-widgets' for CapsuleMultiselectWidget
+					modules = [ 'mediawiki.htmlform.ooui', 'oojs-ui-widgets' ];
+					data = $el.data( 'mw-modules' );
+					if ( data ) {
+						// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
+						extraModules = data.split( ',' );
+						modules.push.apply( modules, extraModules );
+					}
+					mw.loader.using( modules, function () {
+						/*jshint -W024*/
+						convertCheckboxesWidgetToCapsules( OO.ui.FieldLayout.static.infuse( $el ) );
+					} );
+				} else {
+					mw.loader.using( 'jquery.chosen', function () {
+						var type = $el.is( 'tr' ) ? 'tr' : 'div',
+							$converted = convertCheckboxesToMulti( $el, type );
+						$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+					} );
+				}
 			} );
 		}
 	} );
