@@ -798,7 +798,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		if ( $this->useGTIDs && $pos->gtids ) {
 			// Wait on the GTID set (MariaDB only)
-			$gtidArg = implode( ',', $pos->gtids );
+			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
 		} else {
 			// Wait on the binlog coordinates
