@@ -4,6 +4,28 @@
  * Radio checkbox fields.
  */
 class HTMLRadioField extends HTMLFormField {
+	/**
+	 * @param array $params
+	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   - flatlist: If given, the options will be displayed on a single line (wrapping to following
+	 *     lines if necessary), rather than each one on a line of its own. This is desirable mostly
+	 *     for very short lists of concisely labelled options.
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		$this->useDropdown = isset( $params['dropdown'] ) ? $params['dropdown'] : false;
+
+		// For backwards compatibility, also handle the old way with 'cssclass' => 'mw-chosen'
+		if ( $this->useDropdown || strpos( $this->mClass, 'mw-chosen' ) !== false ) {
+			$this->mClass .= ' mw-htmlform-dropdown';
+		}
+
+		if ( isset( $params['flatlist'] ) ) {
+			$this->mClass .= ' mw-htmlform-flatlist';
+		}
+	}
+
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
