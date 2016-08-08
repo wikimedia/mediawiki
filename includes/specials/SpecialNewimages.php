@@ -55,6 +55,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->opts = $opts;
 
 		if ( !$this->including() ) {
+			$this->setTopText();
 			$this->buildForm();
 		}
 
