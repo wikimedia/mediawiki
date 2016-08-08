@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
@@ -761,8 +762,9 @@ class MediaWiki {
 	 * @param string $mode Use 'fast' to always skip job running
 	 */
 	public function restInPeace( $mode = 'fast' ) {
+		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+		$factory->commitMasterChanges( __METHOD__ );
 
 		// Loosen DB query expectations since the HTTP client is unblocked
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -788,7 +790,6 @@ class MediaWiki {
 		wfLogProfilingData();
 
 		// Commit and close up!
-		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges( __METHOD__ );
 		$factory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
