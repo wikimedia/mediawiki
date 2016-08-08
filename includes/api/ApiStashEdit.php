@@ -71,7 +71,7 @@ class ApiStashEdit extends ApiBase {
 				$this->dieUsage( 'No stashed text found with the given hash', 'missingtext' );
 			}
 		} elseif ( $params['text'] !== null ) {
-			// Trim and fix newlines so the key SHA1's match (see RequestContext::getText())
+			// Trim and fix newlines so the key SHA1's match (see WebRequest::getText())
 			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 			$textHash = sha1( $text );
 		} else {
