@@ -926,9 +926,9 @@ class DifferenceEngine extends ContextSource {
 		} elseif ( $wgExternalDiffEngine == 'wikidiff2' ) {
 			// Same as above, but with no deprecation warnings
 			$wgExternalDiffEngine = false;
-		} elseif ( !is_string( $wgExternalDiffEngine ) ) {
+		} elseif ( $wgExternalDiffEngine !== false && !is_string( $wgExternalDiffEngine ) ) {
 			// And prevent people from shooting themselves in the foot...
-			wfWarn( '$wgExternalDiffEngine is set to a non-string value, forcing it to false' );
+			wfWarn( '$wgExternalDiffEngine is neither false nor a string, forcing it to false' );
 			$wgExternalDiffEngine = false;
 		}
 
