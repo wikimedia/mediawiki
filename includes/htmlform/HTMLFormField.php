@@ -455,10 +455,6 @@ abstract class HTMLFormField {
 			$this->mFilterCallback = $params['filter-callback'];
 		}
 
-		if ( isset( $params['flatlist'] ) ) {
-			$this->mClass .= ' mw-htmlform-flatlist';
-		}
-
 		if ( isset( $params['hidelabel'] ) ) {
 			$this->mShowEmptyLabels = false;
 		}

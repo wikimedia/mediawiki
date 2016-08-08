@@ -10,6 +10,9 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 *   - dropdown: If given, the options will be displayed inside a dropdown with a text field that
 	 *     can be used to filter them. This is desirable mostly for very long lists of options.
 	 *     This only works for users with JavaScript support and falls back to the list of checkboxes.
+	 *   - flatlist: If given, the options will be displayed on a single line (wrapping to following
+	 *     lines if necessary), rather than each one on a line of its own. This is desirable mostly
+	 *     for very short lists of concisely labelled options.
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
@@ -17,6 +20,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		// For backwards compatibility, also handle the old way with 'cssclass' => 'mw-chosen'
 		if ( isset( $params['dropdown'] ) || strpos( $this->mClass, 'mw-chosen' ) !== false ) {
 			$this->mClass .= ' mw-htmlform-dropdown';
+		}
+
+		if ( isset( $params['flatlist'] ) ) {
+			$this->mClass .= ' mw-htmlform-flatlist';
 		}
 	}
 
