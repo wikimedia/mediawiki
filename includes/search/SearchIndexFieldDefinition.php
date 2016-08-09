@@ -2,8 +2,10 @@
 
 /**
  * Basic infrastructure of the field definition.
- * Specific engines will need to override it at least for getMapping,
- * but can reuse other parts.
+ *
+ * Specific engines should extend this class and at at least,
+ * override the getMapping method, but can reuse other parts.
+ *
  * @since 1.28
  */
 abstract class SearchIndexFieldDefinition implements SearchIndexField {
@@ -115,4 +117,12 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 		$this->subfields = $subfields;
 		return $this;
 	}
+
+	/**
+	 * @param SearchEngine $engine
+	 *
+	 * @return array
+	 */
+	abstract public function getMapping( SearchEngine $engine );
+
 }
