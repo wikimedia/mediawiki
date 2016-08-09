@@ -921,6 +921,7 @@ $wgAutoloadLocalClasses = [
 	'MessageCache' => __DIR__ . '/includes/cache/MessageCache.php',
 	'MessageContent' => __DIR__ . '/includes/content/MessageContent.php',
 	'MessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
+	'MigrateCentralIds' => __DIR__ . '/maintenance/migrateCentralIds.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
 	'MimeMagic' => __DIR__ . '/includes/MimeMagic.php',
