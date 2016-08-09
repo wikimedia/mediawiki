@@ -5,7 +5,7 @@
 	path = extensions/ContributionTracking
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContributionTracking.git
 [submodule "extensions/DonationEmailUnsubscribe"]
-	path = extensions/DonationEmailUnsubscribe
+	path = extensions/FundraisingEmailUnsubscribe
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingEmailUnsubscribe.git
 [submodule "extensions/DonationInterface"]
 	path = extensions/DonationInterface
