@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Search\Field\ParserOutputDataSearchFieldFactory;
+
 /**
  * Content handler for wiki text pages.
  *
@@ -109,40 +112,30 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		$fields = [];
+		$fieldMappings = [];
 
-		$fields['category'] =
-			$engine->makeSearchFieldMapping( 'category', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+		foreach ( $this->getParserOutputDataSearchFields( $engine ) as $key => $field ) {
+			$fieldMappings[$key] = $field->getMapping();
+		}
 
-		$fields['external_link'] =
-			$engine->makeSearchFieldMapping( 'external_link', SearchIndexField::INDEX_TYPE_KEYWORD );
-
-		$fields['heading'] =
+		$fieldMappings['heading'] =
 			$engine->makeSearchFieldMapping( 'heading', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['heading']->setFlag( SearchIndexField::FLAG_SCORING );
+		$fieldMappings['heading']->setFlag( SearchIndexField::FLAG_SCORING );
 
-		$fields['auxiliary_text'] =
+		$fieldMappings['auxiliary_text'] =
 			$engine->makeSearchFieldMapping( 'auxiliary_text', SearchIndexField::INDEX_TYPE_TEXT );
 
-		$fields['opening_text'] =
+		$fieldMappings['opening_text'] =
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
-		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
-
-		$fields['outgoing_link'] =
-			$engine->makeSearchFieldMapping( 'outgoing_link', SearchIndexField::INDEX_TYPE_KEYWORD );
-
-		$fields['template'] =
-			$engine->makeSearchFieldMapping( 'template', SearchIndexField::INDEX_TYPE_KEYWORD );
-		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+		$fieldMappings['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
+										  SearchIndexField::FLAG_NO_HIGHLIGHT );
 
 		// FIXME: this really belongs in separate file handler but files
 		// do not have separate handler. Sadness.
-		$fields['file_text'] =
+		$fieldMappings['file_text'] =
 			$engine->makeSearchFieldMapping( 'file_text', SearchIndexField::INDEX_TYPE_TEXT );
 
-		return $fields;
+		return $fieldMappings;
 	}
 
 	/**
@@ -160,29 +153,54 @@ class WikitextContentHandler extends TextContentHandler {
 		return null;
 	}
 
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
-	                                       SearchEngine $engine ) {
-		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
+	/**
+	 * @param WikiPage $page
+	 * @param ParserOutput $parserOutput
+	 * @param SearchEngine $engine
+	 */
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $parserOutput,
+		SearchEngine $engine
+	) {
+		$fieldData = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
+
+		foreach ( $this->getParserOutputDataSearchFields( $engine ) as $key => $field ) {
+			$fieldData[$key] = $field->getData( $parserOutput );
+		}
 
 		$structure = new WikiTextStructure( $parserOutput );
-		$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
-		$fields['category'] = $structure->categories();
-		$fields['heading'] = $structure->headings();
-		$fields['outgoing_link'] = $structure->outgoingLinks();
-		$fields['template'] = $structure->templates();
+
+		$fieldData['heading'] = $structure->headings();
+
 		// text fields
-		$fields['opening_text'] = $structure->getOpeningText();
-		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
-		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		$fieldData['opening_text'] = $structure->getOpeningText();
+		$fieldData['text'] = $structure->getMainText(); // overwrites one from ContentHandler
+		$fieldData['auxiliary_text'] = $structure->getAuxiliaryText();
 
 		$title = $page->getTitle();
+
 		if ( NS_FILE == $title->getNamespace() ) {
 			$fileText = $this->getFileText( $title );
 			if ( $fileText ) {
-				$fields['file_text'] = $fileText;
+				$fieldData['file_text'] = $fileText;
 			}
 		}
-		return $fields;
+
+		return $fieldData;
+	}
+
+	/**
+	 * @param SearchEngine $engine
+	 *
+	 * @return ParserOutputDataSearchField[]
+	 */
+	private function getParserOutputDataSearchFields( SearchEngine $engine ) {
+		$fieldNames = [ 'category', 'external_link', 'outgoing_link', 'template' ];
+
+		$fieldFactory = new ParserOutputDataSearchFieldFactory( $engine );
+
+		return $fieldFactory->newFields( $fieldNames );
 	}
 
 }
