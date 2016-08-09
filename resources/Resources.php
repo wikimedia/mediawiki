@@ -923,6 +923,7 @@ return [
 			'mediawiki.api.edit',
 			'json',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.api.user' => [
 		'scripts' => 'resources/src/mediawiki/api/user.js',
