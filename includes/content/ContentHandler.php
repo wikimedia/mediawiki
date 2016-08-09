@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Search\ParserOutputSearchDataExtractor;
+
 /**
  * Base class for content handling.
  *
@@ -1256,19 +1259,31 @@ abstract class ContentHandler {
 	 * @since 1.28
 	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		/* Default fields:
-		/*
-		 * namespace
-		 * namespace_text
-		 * redirect
-		 * source_text
-		 * suggest
-		 * timestamp
-		 * title
-		 * text
-		 * text_bytes
-		 */
-		return [];
+		$fields['category'] = $engine->makeSearchFieldMapping(
+			'category',
+			SearchIndexField::INDEX_TYPE_TEXT
+		);
+
+		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		$fields['external_link'] = $engine->makeSearchFieldMapping(
+			'external_link',
+			SearchIndexField::INDEX_TYPE_KEYWORD
+		);
+
+		$fields['outgoing_link'] = $engine->makeSearchFieldMapping(
+			'outgoing_link',
+			SearchIndexField::INDEX_TYPE_KEYWORD
+		);
+
+		$fields['template'] = $engine->makeSearchFieldMapping(
+			'template',
+			SearchIndexField::INDEX_TYPE_KEYWORD
+		);
+
+		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		return $fields;
 	}
 
 	/**
@@ -1298,16 +1313,26 @@ abstract class ContentHandler {
 	 */
 	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
 	                                       SearchEngine $engine ) {
-		$fields = [];
+		$fieldData = [];
 		$content = $page->getContent();
+
 		if ( $content ) {
+			$searchDataExtractor = new ParserOutputSearchDataExtractor();
+
+			$fieldData['category'] = $searchDataExtractor->getCategories( $output );
+			$fieldData['external_link'] = $searchDataExtractor->getExternalLinks( $output );
+			$fieldData['outgoing_link'] = $searchDataExtractor->getOutgoingLinks( $output );
+			$fieldData['template'] = $searchDataExtractor->getTemplates( $output );
+
 			$text = $content->getTextForSearchIndex();
-			$fields['text'] = $text;
-			$fields['source_text'] = $text;
-			$fields['text_bytes'] = $content->getSize();
+
+			$fieldData['text'] = $text;
+			$fieldData['source_text'] = $text;
+			$fieldData['text_bytes'] = $content->getSize();
 		}
-		Hooks::run( 'SearchDataForIndex', [ &$fields, $this, $page, $output, $engine ] );
-		return $fields;
+
+		Hooks::run( 'SearchDataForIndex', [ &$fieldData, $this, $page, $output, $engine ] );
+		return $fieldData;
 	}
 
 	/**
