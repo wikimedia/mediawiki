@@ -29,7 +29,8 @@
 			"ImGelu",
 			"Wintereu",
 			"Rsocol",
-			"Nemo bis"
+			"Nemo bis",
+			"Turbojet"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -627,6 +628,7 @@
 	"watchthis": "Urmărește această pagină",
 	"savearticle": "Salvare pagină",
 	"publishpage": "Publică pagina",
+	"publishchanges": "Publică modificările",
 	"preview": "Previzualizare",
 	"showpreview": "Previzualizare",
 	"showdiff": "Afișare diferențe",

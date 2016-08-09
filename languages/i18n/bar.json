@@ -16,7 +16,8 @@
 			"아라",
 			"Matthias Klostermayr",
 			"Macofe",
-			"George Animal"
+			"George Animal",
+			"Lokal Profil"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -358,6 +359,7 @@
 	"accountcreated": "Benytzerkonto is erstöid worn",
 	"accountcreatedtext": "'s Benytzerkonto $1 is aigrichtt worn.",
 	"loginlanguagelabel": "Sproch: $1",
+	"pt-login": "Eilogga",
 	"changepassword": "Posswort ändern",
 	"oldpassword": "Oids Posswort:",
 	"newpassword": "Neichs Posswort:",
