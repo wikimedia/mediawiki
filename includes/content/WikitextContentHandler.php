@@ -111,13 +111,6 @@ class WikitextContentHandler extends TextContentHandler {
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields = parent::getFieldsForSearchIndex( $engine );
 
-		$fields['category'] =
-			$engine->makeSearchFieldMapping( 'category', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
-
-		$fields['external_link'] =
-			$engine->makeSearchFieldMapping( 'external_link', SearchIndexField::INDEX_TYPE_KEYWORD );
-
 		$fields['heading'] =
 			$engine->makeSearchFieldMapping( 'heading', SearchIndexField::INDEX_TYPE_TEXT );
 		$fields['heading']->setFlag( SearchIndexField::FLAG_SCORING );
@@ -129,13 +122,6 @@ class WikitextContentHandler extends TextContentHandler {
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
 		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
 		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
-
-		$fields['outgoing_link'] =
-			$engine->makeSearchFieldMapping( 'outgoing_link', SearchIndexField::INDEX_TYPE_KEYWORD );
-
-		$fields['template'] =
-			$engine->makeSearchFieldMapping( 'template', SearchIndexField::INDEX_TYPE_KEYWORD );
-		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
 
 		// FIXME: this really belongs in separate file handler but files
 		// do not have separate handler. Sadness.
@@ -165,11 +151,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
 
 		$structure = new WikiTextStructure( $parserOutput );
-		$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
-		$fields['category'] = $structure->categories();
 		$fields['heading'] = $structure->headings();
-		$fields['outgoing_link'] = $structure->outgoingLinks();
-		$fields['template'] = $structure->templates();
 		// text fields
 		$fields['opening_text'] = $structure->getOpeningText();
 		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
