@@ -24,7 +24,7 @@
  * Static accessor class for site_stats and related things
  */
 class SiteStats {
-	/** @var bool|ResultWrapper */
+	/** @var bool|stdClass */
 	private static $row;
 
 	/** @var bool */
@@ -62,7 +62,7 @@ class SiteStats {
 	}
 
 	/**
-	 * @return bool|ResultWrapper
+	 * @return bool|stdClass
 	 */
 	static function loadAndLazyInit() {
 		global $wgMiserMode;
@@ -96,7 +96,7 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return bool|ResultWrapper
+	 * @return bool|stdClass
 	 */
 	static function doLoad( $db ) {
 		return $db->selectRow( 'site_stats', [
@@ -107,7 +107,7 @@ class SiteStats {
 				'ss_users',
 				'ss_active_users',
 				'ss_images',
-			], false, __METHOD__ );
+			], [], __METHOD__ );
 	}
 
 	/**
