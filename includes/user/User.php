@@ -248,6 +248,11 @@ class User implements IDBAccessObject {
 	 * Array with already loaded items or true if all items have been loaded.
 	 */
 	protected $mLoadedItems = [];
+
+	/**
+	 * @var bool whether a call to load() is currently in progress.
+	 */
+	private $mLoading = false;
 	// @}
 
 	/**
@@ -366,54 +371,71 @@ class User implements IDBAccessObject {
 			return;
 		}
 
-		// Set it now to avoid infinite recursion in accessors
-		$oldLoadedItems = $this->mLoadedItems;
-		$this->mLoadedItems = true;
-		$this->queryFlagsUsed = $flags;
-
-		// If this is called too early, things are likely to break.
-		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
-				->warning( 'User::loadFromSession called before the end of Setup.php', [
-					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
-				] );
-			$this->loadDefaults();
-			$this->mLoadedItems = $oldLoadedItems;
-			return;
+		if ( $this->mLoading === true ) {
+			throw new LogicException( 'Detected recursive call to User::load()!' );
 		}
 
-		switch ( $this->mFrom ) {
-			case 'defaults':
-				$this->loadDefaults();
-				break;
-			case 'name':
-				// Make sure this thread sees its own changes
-				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
-					$flags |= self::READ_LATEST;
-					$this->queryFlagsUsed = $flags;
-				}
+		// Set it now to avoid infinite recursion in accessors
+		$this->mLoading = true;
 
-				$this->mId = self::idFromName( $this->mName, $flags );
-				if ( !$this->mId ) {
-					// Nonexistent user placeholder object
-					$this->loadDefaults( $this->mName );
-				} else {
-					$this->loadFromId( $flags );
-				}
-				break;
-			case 'id':
-				$this->loadFromId( $flags );
-				break;
-			case 'session':
-				if ( !$this->loadFromSession() ) {
-					// Loading from session failed. Load defaults.
+		try {
+			$this->queryFlagsUsed = $flags;
+
+			// If this is called too early, things are likely to break.
+			if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
+				\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+					->warning(
+						'User::loadFromSession called before the end of Setup.php',
+						[
+							'exception' => new Exception(
+								'User::loadFromSession called before the end of Setup.php'
+							),
+						]
+					);
+				$this->loadDefaults();
+
+				return;
+			}
+
+			switch ( $this->mFrom ) {
+				case 'defaults':
 					$this->loadDefaults();
-				}
-				Hooks::run( 'UserLoadAfterLoadFromSession', [ $this ] );
-				break;
-			default:
-				throw new UnexpectedValueException(
-					"Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
+					break;
+				case 'name':
+					// Make sure this thread sees its own changes
+					if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+						$flags |= self::READ_LATEST;
+						$this->queryFlagsUsed = $flags;
+					}
+
+					$this->mId = self::idFromName( $this->mName, $flags );
+					if ( !$this->mId ) {
+						// Nonexistent user placeholder object
+						$this->loadDefaults( $this->mName );
+					} else {
+						$this->loadFromId( $flags );
+					}
+					break;
+				case 'id':
+					$this->loadFromId( $flags );
+					break;
+				case 'session':
+					if ( !$this->loadFromSession() ) {
+						// FIXME: this triggers a recursive call via getBlockedStatus()
+						// Loading from session failed. Load defaults.
+						$this->loadDefaults();
+					}
+					Hooks::run( 'UserLoadAfterLoadFromSession', [ $this ] );
+					break;
+				default:
+					throw new UnexpectedValueException(
+						"Unrecognised value for User->mFrom: \"{$this->mFrom}\""
+					);
+			}
+
+			$this->mLoadedItems = true;
+		} finally {
+			$this->mLoading = false;
 		}
 	}
 
@@ -495,7 +517,7 @@ class User implements IDBAccessObject {
 
 				$this->loadFromDatabase( self::READ_NORMAL );
 				$this->loadGroups();
-				$this->loadOptions();
+				$this->loadOptions(); // XXX: beware possible recursion
 
 				$data = [];
 				foreach ( self::$mCacheVars as $name ) {
@@ -1422,6 +1444,10 @@ class User implements IDBAccessObject {
 	 * Load the groups from the database if they aren't already loaded.
 	 */
 	private function loadGroups() {
+		if ( !$this->isItemLoaded( 'id' ) ) {
+			throw new LogicException( 'Cannot load groups if user ID is not yet known!' );
+		}
+
 		if ( is_null( $this->mGroupMemberships ) ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
@@ -1647,7 +1673,7 @@ class User implements IDBAccessObject {
 		// things get lazy-loaded later, causing false positive block hits
 		// due to -1 !== 0. Probably session-related... Nothing should be
 		// overwriting mBlockedby, surely?
-		$this->load();
+		$this->load(); // FIXME: recursive call of load() when this code gets called from loadFromSession()!
 
 		# We only need to worry about passing the IP address to the Block generator if the
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
@@ -2249,7 +2275,7 @@ class User implements IDBAccessObject {
 	 * @return string User's name or IP address
 	 */
 	public function getName() {
-		if ( $this->isItemLoaded( 'name', 'only' ) ) {
+		if ( $this->isItemLoaded( 'name' ) ) {
 			// Special case optimisation
 			return $this->mName;
 		} else {
@@ -5265,10 +5291,18 @@ class User implements IDBAccessObject {
 	protected function loadOptions( $data = null ) {
 		global $wgContLang;
 
-		$this->load();
+		// avoid recursion
+		// XXX: can we remove the call to load() here completely?
+		if ( !$this->mLoading && !$this->isItemLoaded( 'id' ) ) {
+			$this->load();
+		}
 
 		if ( $this->mOptionsLoaded ) {
 			return;
+		}
+
+		if ( !$this->isItemLoaded( 'id' ) ) {
+			throw new LogicException( 'Cannot load options while ID is still unknown.' );
 		}
 
 		$this->mOptions = self::getDefaultOptions();
