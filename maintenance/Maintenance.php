@@ -37,6 +37,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -122,6 +123,13 @@ abstract class Maintenance {
 	 * @var Config
 	 */
 	private $config;
+
+	/**
+	 * Accessible via getServices()
+	 *
+	 * @var MediaWikiServices
+	 */
+	private $services;
 
 	/**
 	 * @see Maintenance::requireExtension
@@ -510,6 +518,26 @@ abstract class Maintenance {
 	 */
 	public function setConfig( Config $config ) {
 		$this->config = $config;
+	}
+
+	/**
+	 * @since 1.28
+	 * @return MediaWikiServices
+	 */
+	public function getServices() {
+		if ( $this->services === null ) {
+			$this->services = MediaWikiServices::getInstance();
+		}
+
+		return $this->services;
+	}
+
+	/**
+	 * @since 1.28
+	 * @param MediaWikiServices $services
+	 */
+	public function setServices( MediaWikiServices $services ) {
+		$this->services = $services;
 	}
 
 	/**
