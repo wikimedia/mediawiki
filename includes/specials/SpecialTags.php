@@ -175,12 +175,13 @@ class SpecialTags extends SpecialPage {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
+		$linkRenderer = $this->getLinkRenderer();
 		$disp = ChangeTags::tagDescription( $tag );
 		if ( $showEditLinks ) {
 			$disp .= ' ';
-			$editLink = Linker::link(
+			$editLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->escaped()
+				$this->msg( 'tags-edit' )->text()
 			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
@@ -190,9 +191,9 @@ class SpecialTags extends SpecialPage {
 		$desc = !$msg->exists() ? '' : $msg->parse();
 		if ( $showEditLinks ) {
 			$desc .= ' ';
-			$editDescLink = Linker::link(
+			$editDescLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag-description" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->escaped()
+				$this->msg( 'tags-edit' )->text()
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
@@ -216,14 +217,16 @@ class SpecialTags extends SpecialPage {
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
-		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
+		$hitcountLabelMsg = $this->msg( 'tags-hitcount' )->numParams( $hitcount );
 		if ( $this->getConfig()->get( 'UseTagFilter' ) ) {
-			$hitcountLabel = Linker::link(
+			$hitcountLabel = $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'Recentchanges' ),
-				$hitcountLabel,
+				$hitcountLabelMsg->text(),
 				[],
 				[ 'tagfilter' => $tag ]
 			);
+		} else {
+			$hitcountLabel = $hitcountLabelMsg->escaped();
 		}
 
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
@@ -234,8 +237,9 @@ class SpecialTags extends SpecialPage {
 
 		// delete
 		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
-			$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'delete' ),
-				$this->msg( 'tags-delete' )->escaped(),
+			$actionLinks[] = $linkRenderer->makeKnownLink(
+				$this->getPageTitle( 'delete' ),
+				$this->msg( 'tags-delete' )->text(),
 				[],
 				[ 'tag' => $tag ] );
 		}
@@ -244,16 +248,18 @@ class SpecialTags extends SpecialPage {
 
 			// activate
 			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
-				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'activate' ),
-					$this->msg( 'tags-activate' )->escaped(),
+				$actionLinks[] = $linkRenderer->makeKnownLink(
+					$this->getPageTitle( 'activate' ),
+					$this->msg( 'tags-activate' )->text(),
 					[],
 					[ 'tag' => $tag ] );
 			}
 
 			// deactivate
 			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
-				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'deactivate' ),
-					$this->msg( 'tags-deactivate' )->escaped(),
+				$actionLinks[] = $linkRenderer->makeKnownLink(
+					$this->getPageTitle( 'deactivate' ),
+					$this->msg( 'tags-deactivate' )->text(),
 					[],
 					[ 'tag' => $tag ] );
 			}
