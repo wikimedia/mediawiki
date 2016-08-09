@@ -1,4 +1,8 @@
 <?php
+
+use MediaWiki\Search\Field\ParserOutputSearchIndexFieldFactory;
+use MediaWiki\Search\ParserOutputSearchDataExtractor;
+
 /**
  * Content handler for wiki text pages.
  *
@@ -108,15 +112,17 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	/**
+	 * @param SearchEngine $engine
+	 *
+	 * @return array
+	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		$fields = [];
+		$parserOutputFieldFactory = new ParserOutputSearchIndexFieldFactory( $engine );
 
-		$fields['category'] =
-			$engine->makeSearchFieldMapping( 'category', SearchIndexField::INDEX_TYPE_TEXT );
-		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+		$fieldNames = [ 'category', 'external_link', 'outgoing_link', 'template' ];
 
-		$fields['external_link'] =
-			$engine->makeSearchFieldMapping( 'external_link', SearchIndexField::INDEX_TYPE_KEYWORD );
+		$fields = $parserOutputFieldFactory->newFields( $fieldNames );
 
 		$fields['heading'] =
 			$engine->makeSearchFieldMapping( 'heading', SearchIndexField::INDEX_TYPE_TEXT );
@@ -128,14 +134,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['opening_text'] =
 			$engine->makeSearchFieldMapping( 'opening_text', SearchIndexField::INDEX_TYPE_TEXT );
 		$fields['opening_text']->setFlag( SearchIndexField::FLAG_SCORING |
-		                                  SearchIndexField::FLAG_NO_HIGHLIGHT );
-
-		$fields['outgoing_link'] =
-			$engine->makeSearchFieldMapping( 'outgoing_link', SearchIndexField::INDEX_TYPE_KEYWORD );
-
-		$fields['template'] =
-			$engine->makeSearchFieldMapping( 'template', SearchIndexField::INDEX_TYPE_KEYWORD );
-		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+										  SearchIndexField::FLAG_NO_HIGHLIGHT );
 
 		// FIXME: this really belongs in separate file handler but files
 		// do not have separate handler. Sadness.
@@ -160,29 +159,43 @@ class WikitextContentHandler extends TextContentHandler {
 		return null;
 	}
 
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
-	                                       SearchEngine $engine ) {
-		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
+	/**
+	 * @param WikiPage $page
+	 * @param ParserOutput $parserOutput
+	 * @param SearchEngine $engine
+	 */
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $parserOutput,
+		SearchEngine $engine
+	) {
+		$fieldData = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
 
+		$parserOutputSearchDataExtractor = new ParserOutputSearchDataExtractor( $parserOutput );
 		$structure = new WikiTextStructure( $parserOutput );
-		$fields['external_link'] = array_keys( $parserOutput->getExternalLinks() );
-		$fields['category'] = $structure->categories();
-		$fields['heading'] = $structure->headings();
-		$fields['outgoing_link'] = $structure->outgoingLinks();
-		$fields['template'] = $structure->templates();
+
+		$fieldData['category'] = $parserOutputSearchDataExtractor->getCategories();
+		$fieldData['external_link'] = $parserOutputSearchDataExtractor->getExternalLinks();
+		$fieldData['outgoing_link'] = $parserOutputSearchDataExtractor->getOutgoingLinks();
+		$fieldData['template'] = $parserOutputSearchDataExtractor->getTemplates();
+
+		$fieldData['heading'] = $structure->headings();
+
 		// text fields
-		$fields['opening_text'] = $structure->getOpeningText();
-		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
-		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
+		$fieldData['opening_text'] = $structure->getOpeningText();
+		$fieldData['text'] = $structure->getMainText(); // overwrites one from ContentHandler
+		$fieldData['auxiliary_text'] = $structure->getAuxiliaryText();
 
 		$title = $page->getTitle();
+
 		if ( NS_FILE == $title->getNamespace() ) {
 			$fileText = $this->getFileText( $title );
 			if ( $fileText ) {
-				$fields['file_text'] = $fileText;
+				$fieldData['file_text'] = $fileText;
 			}
 		}
-		return $fields;
+
+		return $fieldData;
 	}
 
 }
