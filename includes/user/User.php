@@ -1714,7 +1714,6 @@ class User implements IDBAccessObject {
 
 		// Extensions
 		Hooks::run( 'GetBlockedStatus', [ &$this ] );
-
 	}
 
 	/**
@@ -3337,7 +3336,7 @@ class User implements IDBAccessObject {
 	public function getGroups() {
 		$this->load();
 		$this->loadGroups();
-		return $this->mGroups;
+		return $this->mGroups === null ? [] : $this->mGroups;
 	}
 
 	/**
@@ -3348,17 +3347,28 @@ class User implements IDBAccessObject {
 	 * @return array Array of String internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
-		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
-			$this->mEffectiveGroups = array_unique( array_merge(
-				$this->getGroups(), // explicit groups
-				$this->getAutomaticGroups( $recache ) // implicit groups
-			) );
-			// Hook for additional groups
-			Hooks::run( 'UserEffectiveGroups', [ &$this, &$this->mEffectiveGroups ] );
-			// Force reindexation of groups when a hook has unset one of them
-			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
+		if ( !$recache && !is_null( $this->mEffectiveGroups ) ) {
+			return $this->mEffectiveGroups;
 		}
-		return $this->mEffectiveGroups;
+
+		$effectiveGroups = array_unique( array_merge(
+			$this->getGroups(), // explicit groups
+			$this->getAutomaticGroups( $recache ) // implicit groups
+		) );
+		// Hook for additional groups
+		Hooks::run( 'UserEffectiveGroups', [ &$this, &$effectiveGroups ] );
+		// Force reindexation of groups when a hook has unset one of them
+		$effectiveGroups = array_values( array_unique( $effectiveGroups ) );
+
+		if ( is_null( $this->mId ) ) {
+			// This can happen when getEffectiveGroups() is called (perhaps via a hook)
+			// while a call to load() is in progress. Avoid caching bad data.
+			wfWarn( 'getEffectiveGroups() called on uninitialized User object.' );
+		} else {
+			$this->mEffectiveGroups = $effectiveGroups;
+		}
+
+		return $effectiveGroups;
 	}
 
 	/**
@@ -3369,23 +3379,34 @@ class User implements IDBAccessObject {
 	 * @return array Array of String internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
-		if ( $recache || is_null( $this->mImplicitGroups ) ) {
-			$this->mImplicitGroups = [ '*' ];
-			if ( $this->getId() ) {
-				$this->mImplicitGroups[] = 'user';
-
-				$this->mImplicitGroups = array_unique( array_merge(
-					$this->mImplicitGroups,
-					Autopromote::getAutopromoteGroups( $this )
-				) );
-			}
-			if ( $recache ) {
-				// Assure data consistency with rights/groups,
-				// as getEffectiveGroups() depends on this function
-				$this->mEffectiveGroups = null;
-			}
+		if ( !$recache && !is_null( $this->mImplicitGroups ) ) {
+			return $this->mImplicitGroups;
 		}
-		return $this->mImplicitGroups;
+
+		$implicitGroups = [ '*' ];
+		if ( $this->getId() ) {
+			$implicitGroups[] = 'user';
+
+			$implicitGroups = array_unique( array_merge(
+				$implicitGroups,
+				Autopromote::getAutopromoteGroups( $this )
+			) );
+		}
+		if ( $recache ) {
+			// Assure data consistency with rights/groups,
+			// as getEffectiveGroups() depends on this function
+			$this->mEffectiveGroups = null;
+		}
+
+		if ( is_null( $this->mId ) ) {
+			// This can happen when getAutomaticGroups() is called (perhaps via a hook)
+			// while a call to load() is in progress. Avoid caching bad data.
+			wfWarn( 'getAutomaticGroups() called on uninitialized User object.' );
+		} else {
+			$this->mImplicitGroups = $implicitGroups;
+		}
+
+		return $implicitGroups;
 	}
 
 	/**
