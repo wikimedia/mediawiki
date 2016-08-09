@@ -1186,12 +1186,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $this->lastErrno() == 1205;
 	}
 
-	/**
-	 * Determines if the last query error was something that should be dealt
-	 * with by pinging the connection and reissuing the query
-	 *
-	 * @return bool
-	 */
 	function wasErrorReissuable() {
 		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
 	}
