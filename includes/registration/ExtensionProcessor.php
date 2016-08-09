@@ -394,6 +394,9 @@ class ExtensionProcessor implements Processor {
 		}
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
+				if ( $key[0] === '@' ) {
+					continue;
+				}
 				$value = $data['value'];
 				if ( isset( $value['merge_strategy'] ) ) {
 					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
