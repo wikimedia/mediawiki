@@ -1,4 +1,8 @@
 <?php
+
+use MediaWiki\Search\Field\SearchIndexFieldFactory;
+use MediaWiki\Search\ParserOutputSearchDataExtractor;
+
 /**
  * Base class for content handling.
  *
@@ -1256,19 +1260,14 @@ abstract class ContentHandler {
 	 * @since 1.28
 	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		/* Default fields:
-		/*
-		 * namespace
-		 * namespace_text
-		 * redirect
-		 * source_text
-		 * suggest
-		 * timestamp
-		 * title
-		 * text
-		 * text_bytes
-		 */
-		return [];
+		$searchIndexFieldFactory = new SearchIndexFieldFactory( $engine );
+
+		$fields['category'] = $searchIndexFieldFactory->newCategoryField();
+		$fields['external_link'] = $searchIndexFieldFactory->newKeywordField( 'external_link' );
+		$fields['outgoing_link'] = $searchIndexFieldFactory->newKeywordField( 'outgoing_link' );
+		$fields['template'] = $searchIndexFieldFactory->newTemplateField();
+
+		return $fields;
 	}
 
 	/**
@@ -1298,15 +1297,25 @@ abstract class ContentHandler {
 	 */
 	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
 	                                       SearchEngine $engine ) {
-		$fields = [];
+		$fieldData = [];
 		$content = $page->getContent();
+
 		if ( $content ) {
+			$searchDataExtractor = new ParserOutputSearchDataExtractor();
+
+			$fieldData['category'] = $searchDataExtractor->getCategories( $output );
+			$fieldData['external_link'] = $searchDataExtractor->getExternalLinks( $output );
+			$fieldData['outgoing_link'] = $searchDataExtractor->getOutgoingLinks( $output );
+			$fieldData['template'] = $searchDataExtractor->getTemplates( $output );
+
 			$text = $content->getTextForSearchIndex();
-			$fields['text'] = $text;
-			$fields['source_text'] = $text;
-			$fields['text_bytes'] = $content->getSize();
+
+			$fieldData['text'] = $text;
+			$fieldData['source_text'] = $text;
+			$fieldData['text_bytes'] = $content->getSize();
 		}
-		Hooks::run( 'SearchDataForIndex', [ &$fields, $this, $page, $output, $engine ] );
+
+		Hooks::run( 'SearchDataForIndex', [ &$fieldData, $this, $page, $output, $engine ] );
 		return $fields;
 	}
 
