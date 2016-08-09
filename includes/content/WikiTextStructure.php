@@ -59,50 +59,6 @@ class WikiTextStructure {
 	}
 
 	/**
-	 * Get categories in the text.
-	 * @return string[]
-	 */
-	public function categories() {
-		$categories = [];
-		foreach ( array_keys( $this->parserOutput->getCategories() ) as $key ) {
-			$categories[] = Category::newFromName( $key )->getTitle()->getText();
-		}
-		return $categories;
-	}
-
-	/**
-	 * Get outgoing links.
-	 * @return string[]
-	 */
-	public function outgoingLinks() {
-		$outgoingLinks = [];
-		foreach ( $this->parserOutput->getLinks() as $linkedNamespace => $namespaceLinks ) {
-			foreach ( array_keys( $namespaceLinks ) as $linkedDbKey ) {
-				$outgoingLinks[] =
-					Title::makeTitle( $linkedNamespace, $linkedDbKey )->getPrefixedDBkey();
-			}
-		}
-		return $outgoingLinks;
-	}
-
-	/**
-	 * Get templates in the text.
-	 * @return string[]
-	 */
-	public function templates() {
-		$templates = [];
-		foreach ( $this->parserOutput->getTemplates() as $tNS => $templatesInNS ) {
-			foreach ( array_keys( $templatesInNS ) as $tDbKey ) {
-				$templateTitle = Title::makeTitleSafe( $tNS, $tDbKey );
-				if ( $templateTitle && $templateTitle->exists() ) {
-					$templates[] = $templateTitle->getPrefixedText();
-				}
-			}
-		}
-		return $templates;
-	}
-
-	/**
 	 * Get headings on the page.
 	 * @return string[]
 	 * First strip out things that look like references.  We can't use HTML filtering because
