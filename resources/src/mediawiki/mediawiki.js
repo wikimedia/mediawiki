@@ -823,9 +823,6 @@
 				//
 				sources = {},
 
-				// List of modules which will be loaded as when ready
-				batch = [],
-
 				// Pending queueModuleScript() requests
 				handlingPendingRequests = false,
 				pendingRequests = [],
@@ -1439,8 +1436,7 @@
 			}
 
 			/**
-			 * Adds all dependencies to the queue with optional callbacks to be run
-			 * when the dependencies are ready or fail
+			 * Add one or more modules to the request queue
 			 *
 			 * @private
 			 * @param {string|string[]} dependencies Module name or array of string module names
@@ -1520,14 +1516,14 @@
 			}
 
 			/**
-			 * Load modules from load.php
+			 * Fetch a list of modules from a load.php end-point
 			 *
 			 * @private
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
+			function doFetch( moduleMap, currReqBase, sourceLoadScript ) {
 				var request = $.extend(
 					{ modules: buildModulesString( moduleMap ) },
 					currReqBase
@@ -1558,6 +1554,113 @@
 				} );
 			}
 
+			/**
+			 * Create network requests for a batch of modules.
+			 *
+			 * This is an internal method for #work(). This must not be called
+			 * directly unless the modules are already registered, no fetch is in progress
+			 * already and the module state has been set to `loading`.
+			 *
+			 * @private
+			 * @param {string[]} batch
+			 */
+			function fetchBatch( batch ) {
+				var reqBase, splits, maxQueryLength, b, bSource, bGroup, bSourceGroup,
+					source, group, i, modules, sourceLoadScript,
+					currReqBase, currReqBaseLength, moduleMap, l,
+					lastDotIndex, prefix, suffix, bytesAdded;
+
+				if ( !batch.length ) {
+					return;
+				}
+
+				// Always order modules alphabetically to help reduce cache
+				// misses for otherwise identical content.
+				batch.sort();
+
+				// Build a list of request parameters common to all requests.
+				reqBase = {
+					skin: mw.config.get( 'skin' ),
+					lang: mw.config.get( 'wgUserLanguage' ),
+					debug: mw.config.get( 'debug' )
+				};
+				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
+
+				// Split module list by source and by group.
+				splits = {};
+				for ( b = 0; b < batch.length; b++ ) {
+					bSource = registry[ batch[ b ] ].source;
+					bGroup = registry[ batch[ b ] ].group;
+					if ( !hasOwn.call( splits, bSource ) ) {
+						splits[ bSource ] = {};
+					}
+					if ( !hasOwn.call( splits[ bSource ], bGroup ) ) {
+						splits[ bSource ][ bGroup ] = [];
+					}
+					bSourceGroup = splits[ bSource ][ bGroup ];
+					bSourceGroup.push( batch[ b ] );
+				}
+
+				for ( source in splits ) {
+
+					sourceLoadScript = sources[ source ];
+
+					for ( group in splits[ source ] ) {
+
+						// Cache access to currently selected list of
+						// modules for this group from this source.
+						modules = splits[ source ][ group ];
+
+						currReqBase = $.extend( {
+							version: getCombinedVersion( modules )
+						}, reqBase );
+						// For user modules append a user name to the request.
+						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
+							currReqBase.user = mw.config.get( 'wgUserName' );
+						}
+						currReqBaseLength = $.param( currReqBase ).length;
+						// We may need to split up the request to honor the query string length limit,
+						// so build it piece by piece.
+						l = currReqBaseLength + 9; // '&modules='.length == 9
+
+						moduleMap = {}; // { prefix: [ suffixes ] }
+
+						for ( i = 0; i < modules.length; i++ ) {
+							// Determine how many bytes this module would add to the query string
+							lastDotIndex = modules[ i ].lastIndexOf( '.' );
+
+							// If lastDotIndex is -1, substr() returns an empty string
+							prefix = modules[ i ].substr( 0, lastDotIndex );
+							suffix = modules[ i ].slice( lastDotIndex + 1 );
+
+							bytesAdded = hasOwn.call( moduleMap, prefix )
+								? suffix.length + 3 // '%2C'.length == 3
+								: modules[ i ].length + 3; // '%7C'.length == 3
+
+							// If the request would become too long, create a new one,
+							// but don't create empty requests
+							if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
+								// This request would become too long, create a new one
+								// and fire off the old one
+								doFetch( moduleMap, currReqBase, sourceLoadScript );
+								moduleMap = {};
+								l = currReqBaseLength + 9;
+								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
+							}
+							if ( !hasOwn.call( moduleMap, prefix ) ) {
+								moduleMap[ prefix ] = [];
+							}
+							moduleMap[ prefix ].push( suffix );
+							l += bytesAdded;
+						}
+						// If there's anything left in moduleMap, request that too
+						if ( !$.isEmptyObject( moduleMap ) ) {
+							doFetch( moduleMap, currReqBase, sourceLoadScript );
+						}
+					}
+				}
+			}
+
 			/* Public Members */
 			return {
 				/**
@@ -1577,25 +1680,14 @@
 				addStyleTag: newStyleTag,
 
 				/**
-				 * Batch-request queued dependencies from the server.
+				 * Start loading of all queued module dependencies.
 				 *
 				 * @protected
 				 */
 				work: function () {
-					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, concatSource, origBatch, group, i, modules, sourceLoadScript,
-						currReqBase, currReqBaseLength, moduleMap, l,
-						lastDotIndex, prefix, suffix, bytesAdded;
+					var q, batch, concatSource, origBatch;
 
-					// Build a list of request parameters common to all requests.
-					reqBase = {
-						skin: mw.config.get( 'skin' ),
-						lang: mw.config.get( 'wgUserLanguage' ),
-						debug: mw.config.get( 'debug' )
-					};
-					// Split module batch by source and by group.
-					splits = {};
-					maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
+					batch = [];
 
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q++ ) {
@@ -1647,97 +1739,14 @@
 						}
 					}
 
-					// Early exit if there's nothing to load...
-					if ( !batch.length ) {
-						return;
-					}
-
-					// The queue has been processed into the batch, clear up the queue.
+					// Now that the queue has been processed into a batch, clear up the queue.
+					// This MUST happen before we initiate any network fetch. Else it's possible
+					// that a script will be locally cached, instantly load, and work the queue
+					// again; all before we've cleared it causing each request to include modules
+					// which are already loaded.
 					queue = [];
 
-					// Always order modules alphabetically to help reduce cache
-					// misses for otherwise identical content.
-					batch.sort();
-
-					// Split batch by source and by group.
-					for ( b = 0; b < batch.length; b++ ) {
-						bSource = registry[ batch[ b ] ].source;
-						bGroup = registry[ batch[ b ] ].group;
-						if ( !hasOwn.call( splits, bSource ) ) {
-							splits[ bSource ] = {};
-						}
-						if ( !hasOwn.call( splits[ bSource ], bGroup ) ) {
-							splits[ bSource ][ bGroup ] = [];
-						}
-						bSourceGroup = splits[ bSource ][ bGroup ];
-						bSourceGroup.push( batch[ b ] );
-					}
-
-					// Clear the batch - this MUST happen before we append any
-					// script elements to the body or it's possible that a script
-					// will be locally cached, instantly load, and work the batch
-					// again, all before we've cleared it causing each request to
-					// include modules which are already loaded.
-					batch = [];
-
-					for ( source in splits ) {
-
-						sourceLoadScript = sources[ source ];
-
-						for ( group in splits[ source ] ) {
-
-							// Cache access to currently selected list of
-							// modules for this group from this source.
-							modules = splits[ source ][ group ];
-
-							currReqBase = $.extend( {
-								version: getCombinedVersion( modules )
-							}, reqBase );
-							// For user modules append a user name to the request.
-							if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
-								currReqBase.user = mw.config.get( 'wgUserName' );
-							}
-							currReqBaseLength = $.param( currReqBase ).length;
-							// We may need to split up the request to honor the query string length limit,
-							// so build it piece by piece.
-							l = currReqBaseLength + 9; // '&modules='.length == 9
-
-							moduleMap = {}; // { prefix: [ suffixes ] }
-
-							for ( i = 0; i < modules.length; i++ ) {
-								// Determine how many bytes this module would add to the query string
-								lastDotIndex = modules[ i ].lastIndexOf( '.' );
-
-								// If lastDotIndex is -1, substr() returns an empty string
-								prefix = modules[ i ].substr( 0, lastDotIndex );
-								suffix = modules[ i ].slice( lastDotIndex + 1 );
-
-								bytesAdded = hasOwn.call( moduleMap, prefix )
-									? suffix.length + 3 // '%2C'.length == 3
-									: modules[ i ].length + 3; // '%7C'.length == 3
-
-								// If the request would become too long, create a new one,
-								// but don't create empty requests
-								if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
-									// This request would become too long, create a new one
-									// and fire off the old one
-									doRequest( moduleMap, currReqBase, sourceLoadScript );
-									moduleMap = {};
-									l = currReqBaseLength + 9;
-									mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
-								}
-								if ( !hasOwn.call( moduleMap, prefix ) ) {
-									moduleMap[ prefix ] = [];
-								}
-								moduleMap[ prefix ].push( suffix );
-								l += bytesAdded;
-							}
-							// If there's anything left in moduleMap, request that too
-							if ( !$.isEmptyObject( moduleMap ) ) {
-								doRequest( moduleMap, currReqBase, sourceLoadScript );
-							}
-						}
-					}
+					fetchBatch( batch );
 				},
 
 				/**
