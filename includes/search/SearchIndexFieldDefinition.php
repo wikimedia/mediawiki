@@ -2,11 +2,13 @@
 
 /**
  * Basic infrastructure of the field definition.
- * Specific engines will need to override it at least for getMapping,
- * but can reuse other parts.
+ *
+ * Specific engines should extend this class and at at least,
+ * override the getMapping method, but can reuse other parts.
+ *
  * @since 1.28
  */
-abstract class SearchIndexFieldDefinition implements SearchIndexField {
+class SearchIndexFieldDefinition implements SearchIndexField {
 	/**
 	 * Name of the field
 	 *
@@ -115,4 +117,23 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 		$this->subfields = $subfields;
 		return $this;
 	}
+
+	/**
+	 * @return array
+	 */
+	public function getMapping( SearchEngine $engine ) {
+		$mapping = [
+			'name' => $this->name,
+			'type' => $this->type,
+			'flags' => $this->flags,
+			'subfields' => []
+		];
+
+		foreach ( $this->subfields as $subfield ) {
+			$mapping['subfields'][] = $subfield->getMapping();
+		}
+
+		return $mapping;
+	}
+
 }
