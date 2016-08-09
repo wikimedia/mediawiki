@@ -64,11 +64,4 @@ abstract class CodeContentHandler extends TextContentHandler {
 		throw new MWException( 'Subclass must override' );
 	}
 
-	/**
-	 * @param SearchEngine $engine
-	 * @return array
-	 */
-	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		return parent::getFieldsForSearchIndex( $engine );
-	}
 }
