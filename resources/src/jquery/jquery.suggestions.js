@@ -345,7 +345,7 @@
 							} else {
 								// Expand from right
 								newCSS.left = 'auto';
-								newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
+								newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() - $( window ).scrollLeft() );
 							}
 
 							context.data.$container.css( newCSS );
