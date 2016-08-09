@@ -1156,7 +1156,6 @@ interface IDatabase {
 
 	/**
 	 * Determines how long the server has been up
-	 * STUB
 	 *
 	 * @return int
 	 */
@@ -1164,7 +1163,6 @@ interface IDatabase {
 
 	/**
 	 * Determines if the last failure was due to a deadlock
-	 * STUB
 	 *
 	 * @return bool
 	 */
@@ -1172,16 +1170,14 @@ interface IDatabase {
 
 	/**
 	 * Determines if the last failure was due to a lock timeout
-	 * STUB
 	 *
 	 * @return bool
 	 */
 	public function wasLockTimeout();
 
 	/**
-	 * Determines if the last query error was something that should be dealt
-	 * with by pinging the connection and reissuing the query.
-	 * STUB
+	 * Determines if the last query error was due to a dropped connection and should
+	 * be dealt with by pinging the connection and reissuing the query.
 	 *
 	 * @return bool
 	 */
@@ -1189,7 +1185,6 @@ interface IDatabase {
 
 	/**
 	 * Determines if the last failure was due to the database being read-only.
-	 * STUB
 	 *
 	 * @return bool
 	 */
