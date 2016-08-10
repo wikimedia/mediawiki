@@ -783,6 +783,7 @@ abstract class DatabaseBase implements IDatabase {
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		global $wgUser;
 
+		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
 		$isWriteQuery = $this->isWriteQuery( $sql );
@@ -810,7 +811,10 @@ abstract class DatabaseBase implements IDatabase {
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
 
-		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX ) && $this->isTransactableQuery( $sql ) ) {
+		# Start implicit transactions that wrap the request if DBO_TRX is enabled
+		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX )
+			&& $this->isTransactableQuery( $sql )
+		) {
 			$this->begin( __METHOD__ . " ($fname)" );
 			$this->mTrxAutomatic = true;
 		}
@@ -862,11 +866,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
-			# Transaction is gone; this can mean lost writes or REPEATABLE-READ snapshots
-			$hadTrx = $this->mTrxLevel;
-			# T127428: for non-write transactions, a disconnect and a COMMIT are similar:
-			# neither changed data and in both cases any read snapshots are reset anyway.
-			$isNoopCommit = ( !$this->writesOrCallbacksPending() && $sql === 'COMMIT' );
+			$recoverable = $this->canRecoverOnDisconnect( $sql, $priorWritesPending );
 			# Update state tracking to reflect transaction loss
 			$this->mTrxLevel = 0;
 			$this->mTrxIdleCallbacks = []; // bug 65263
@@ -875,16 +875,15 @@ abstract class DatabaseBase implements IDatabase {
 			# Stash the last error values since ping() might clear them
 			$lastError = $this->lastError();
 			$lastErrno = $this->lastErrno();
-			if ( $this->ping() ) {
+			if ( $this->reconnect() ) {
 				wfDebug( "Reconnected\n" );
-				$server = $this->getServer();
-				$msg = __METHOD__ . ": lost connection to $server; reconnected";
+				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
 				wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
 
-				if ( ( $hadTrx && !$isNoopCommit ) || $this->mNamedLocksHeld ) {
+				if ( !$recoverable ) {
 					# Leave $ret as false and let an error be reported.
 					# Callers may catch the exception and continue to use the DB.
-					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
+					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, false );
 				} else {
 					# Should be safe to silently retry (no trx/callbacks/locks)
 					$startTime = microtime( true );
@@ -900,6 +899,13 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( false === $ret ) {
+			# Deadlocks cause the entire transaction to abort, not just the statement.
+			# http://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
+			# https://www.postgresql.org/docs/9.1/static/explicit-locking.html
+			if ( $priorWritesPending && $this->wasDeadlock() ) {
+				$tempIgnore = false; // not recoverable
+			}
+
 			$this->reportQueryError(
 				$this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
@@ -916,6 +922,26 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		return $res;
+	}
+
+	private function canRecoverOnDisconnect( $sql, $priorWritesPending ) {
+		# Transaction dropped; this can mean lost writes, or REPEATABLE-READ snapshots.
+		# Dropped connections also mean that named locks are automatically released.
+		# Only allow error suppression in autocommit mode or when the lost transaction
+		# didn't matter anyway (aside from DBO_TRX snapshot loss).
+		if ( $this->mNamedLocksHeld ) {
+			return false; // possible critical section violation
+		} elseif ( $sql === 'COMMIT' ) {
+			return !$this->writesOrCallbacksPending(); // nothing written anyway (T127428)
+		} elseif ( $sql === 'ROLLBACK' ) {
+			return true; // transaction lost...which is also what was requested :)
+		} elseif ( $this->inExplicitTransaction() ) {
+			return false; // don't drop atomocity
+		} elseif ( $priorWritesPending ) {
+			return false; // prior writes lost from implicit transaction
+		}
+
+		return true;
 	}
 
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
@@ -2785,9 +2811,18 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected function doRollback( $fname ) {
 		if ( $this->mTrxLevel ) {
-			$this->query( 'ROLLBACK', $fname, true );
+			# Disconnects cause rollback anyway, so ignore those errors
+			$ignoreErrors = true;
+			$this->query( 'ROLLBACK', $fname, $ignoreErrors );
 			$this->mTrxLevel = 0;
 		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function inExplicitTransaction() {
+		return ( $this->mTrxAtomicLevels || !$this->mTrxAutomatic );
 	}
 
 	/**
@@ -2891,6 +2926,19 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function ping() {
+		try {
+			// This will reconnect if possible, or error out if not
+			$this->query( "SELECT 1 AS ping", __METHOD__ );
+			return true;
+		} catch ( DBError $e ) {
+			return false;
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function reconnect() {
 		# Stub. Not essential to override.
 		return true;
 	}

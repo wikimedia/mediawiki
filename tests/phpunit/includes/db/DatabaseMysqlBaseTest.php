@@ -76,9 +76,6 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function mysqlFetchField( $res, $n ) {
 	}
 
-	protected function mysqlPing() {
-	}
-
 	protected function mysqlRealEscapeString( $s ) {
 
 	}
