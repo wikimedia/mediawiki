@@ -164,8 +164,12 @@ class PurgeChangedFiles extends Maintenance {
 					continue;
 				}
 
-				// Purge current version and any versions in oldimage table
+				// Purge current version and its thumbnails
 				$file->purgeCache();
+				// Purge the old versions and their thumbnails
+				foreach ( $file->getHistory() as $oldFile ) {
+					$oldFile->purgeCache();
+				}
 
 				if ( $logType === 'delete' ) {
 					// If there is an orphaned storage file... delete it
