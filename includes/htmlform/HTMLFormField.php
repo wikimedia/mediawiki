@@ -620,7 +620,7 @@ abstract class HTMLFormField {
 		$config = [
 			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
 			'align' => $this->getLabelAlignOOUI(),
-			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
+			'help' => $helpText ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'errors' => $errors,
 			'notices' => $notices,
 			'infusable' => $infusable,
