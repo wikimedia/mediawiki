@@ -570,14 +570,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	function strencode( $s ) {
-		$sQuoted = $this->mysqlRealEscapeString( $s );
-
-		if ( $sQuoted === false ) {
-			$this->ping();
-			$sQuoted = $this->mysqlRealEscapeString( $s );
-		}
-
-		return $sQuoted;
+		return $this->mysqlRealEscapeString( $s );
 	}
 
 	/**
@@ -606,18 +599,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
-	/**
-	 * @return bool
-	 */
-	function ping() {
-		$ping = $this->mysqlPing();
-		if ( $ping ) {
-			// Connection was good or lost but reconnected...
-			// @note: mysqlnd (php 5.6+) does not support this (PHP bug 52561)
-			return true;
-		}
-
-		// Try a full disconnect/reconnect cycle if ping() failed
+	function reconnect() {
 		$this->closeConnection();
 		$this->mOpened = false;
 		$this->mConn = false;
@@ -625,13 +607,6 @@ abstract class DatabaseMysqlBase extends Database {
 
 		return true;
 	}
-
-	/**
-	 * Ping a server connection or reconnect if there is no connection
-	 *
-	 * @return bool
-	 */
-	abstract protected function mysqlPing();
 
 	function getLag() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {

@@ -534,7 +534,7 @@ class JobRunner implements LoggerAwareInterface {
 		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( $fname ) {
 			$lb->forEachOpenConnection( function( IDatabase $conn ) use ( $fname ) {
 				if ( $conn->writesOrCallbacksPending() ) {
-					$conn->query( "SELECT 1", $fname );
+					$conn->ping();
 				}
 			} );
 		} );
