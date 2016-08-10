@@ -77,7 +77,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
-		global $wgAuthManagerConfig, $wgAuth, $wgDisableAuthManager;
+		global $wgAuthManagerConfig, $wgAuth;
 
 		// Inject test autoloader
 		require_once __DIR__ . '/../TestsAutoLoader.php';
@@ -147,7 +147,7 @@ class PHPUnitMaintClass extends Maintenance {
 			],
 			'secondaryauth' => [],
 		];
-		$wgAuth = $wgDisableAuthManager ? new AuthPlugin : new MediaWiki\Auth\AuthManagerAuthPlugin();
+		$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin();
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );

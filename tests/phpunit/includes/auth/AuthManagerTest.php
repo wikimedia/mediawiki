@@ -30,12 +30,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	protected $managerPriv;
 
 	protected function setUp() {
-		global $wgDisableAuthManager;
-
 		parent::setUp();
-		if ( $wgDisableAuthManager ) {
-			$this->markTestSkipped( '$wgDisableAuthManager is set' );
-		}
 
 		$this->setMwGlobals( [ 'wgAuth' => null ] );
 		$this->stashMwGlobals( [ 'wgHooks' ] );
@@ -200,14 +195,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			\RequestContext::getMain()->getConfig(),
 			\TestingAccessWrapper::newFromObject( $singleton )->config
 		);
-
-		$this->setMwGlobals( [ 'wgDisableAuthManager' => true ] );
-		try {
-			AuthManager::singleton();
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( \BadMethodCallException $ex ) {
-			$this->assertSame( '$wgDisableAuthManager is set', $ex->getMessage() );
-		}
 	}
 
 	public function testCanAuthenticateNow() {

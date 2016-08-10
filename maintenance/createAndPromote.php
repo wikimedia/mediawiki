@@ -56,8 +56,6 @@ class CreateAndPromote extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgDisableAuthManager;
-
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
 		$force = $this->hasOption( 'force' );
@@ -122,17 +120,13 @@ class CreateAndPromote extends Maintenance {
 		if ( $password ) {
 			# Try to set the password
 			try {
-				if ( $wgDisableAuthManager ) {
-					$user->setPassword( $password );
-				} else {
-					$status = $user->changeAuthenticationData( [
-						'username' => $user->getName(),
-						'password' => $password,
-						'retype' => $password,
-					] );
-					if ( !$status->isGood() ) {
-						throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
-					}
+				$status = $user->changeAuthenticationData( [
+					'username' => $user->getName(),
+					'password' => $password,
+					'retype' => $password,
+				] );
+				if ( !$status->isGood() ) {
+					throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
 				}
 				if ( $exists ) {
 					$this->output( "Password set.\n" );
