@@ -606,7 +606,7 @@ abstract class HTMLFormField {
 		}
 
 		$fieldType = get_class( $this );
-		$helpText = $this->getHelpText();
+		$help = $this->getHelpText();
 		$errors = $this->getErrorsRaw( $value );
 		foreach ( $errors as &$error ) {
 			$error = new OOUI\HtmlSnippet( $error );
@@ -620,7 +620,7 @@ abstract class HTMLFormField {
 		$config = [
 			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
 			'align' => $this->getLabelAlignOOUI(),
-			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
+			'help' => ( $help !== null && $help !== '' ) ? new OOUI\HtmlSnippet( $help ) : null,
 			'errors' => $errors,
 			'notices' => $notices,
 			'infusable' => $infusable,
