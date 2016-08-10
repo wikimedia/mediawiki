@@ -486,3 +486,7 @@
 	path = extensions/JavascriptSlideshow
 	url = https://github.com/DaSchTour/JavascriptSlideshow.git
 	branch = master
+[submodule "extensions/googleAnalytics"]
+	path = extensions/googleAnalytics
+	url = https://github.com/wikimedia/mediawiki-extensions-googleAnalytics
+	branch = REL1_27
