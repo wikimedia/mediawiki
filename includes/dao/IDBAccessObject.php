@@ -35,25 +35,36 @@
  *   - READ_EXCLUSIVE : Up-to-date read as of now, that locks (exclusive) the records
  * All record locks persist for the duration of the transaction.
  *
+ * A special constant READ_LATEST_IMMUTABLE can be used for fetching append-only data. Such
+ * data is either (a) on a slave and up-to-date or (b) not yet there, but on the master/quorum.
+ * Because the data is append-only, it can never be stale on a slave if present.
+ *
  * Callers should use READ_NORMAL (or pass in no flags) unless the read determines a write.
  * In theory, such cases may require READ_LOCKING, though to avoid contention, READ_LATEST is
  * often good enough. If UPDATE race condition checks are required on a row and expensive code
  * must run after the row is fetched to determine the UPDATE, it may help to do something like:
- *   - a) Read the current row
- *   - b) Determine the new row (expensive, so we don't want to hold locks now)
- *   - c) Re-read the current row with READ_LOCKING; if it changed then bail out
- *   - d) otherwise, do the updates
+ *   - a) Start transaction
+ *   - b) Read the current row with READ_LATEST
+ *   - c) Determine the new row (expensive, so we don't want to hold locks now)
+ *   - d) Re-read the current row with READ_LOCKING; if it changed then bail out
+ *   - e) otherwise, do the updates
+ *   - f) Commit transaction
  *
  * @since 1.20
  */
 interface IDBAccessObject {
-	// Constants for object loading bitfield flags (higher => higher QoS)
-	const READ_LATEST = 1; // read from the master
+	/** Constants for object loading bitfield flags (higher => higher QoS) */
+	/** @var integer Read from a slave/non-quorum */
+	const READ_NORMAL = 0;
+	/** @var integer Read from the master/quorum */
+	const READ_LATEST = 1;
+	/* @var integer Read from the master/quorum and lock out other writers */
 	const READ_LOCKING = 3; // READ_LATEST (1) and "LOCK IN SHARE MODE" (2)
+	/** @var integer Read from the master/quorum and lock out other writers and locking readers */
 	const READ_EXCLUSIVE = 7; // READ_LOCKING (3) and "FOR UPDATE" (4)
 
-	// Convenience constant for callers to explicitly request slave data
-	const READ_NORMAL = 0; // read from the slave
+	/** @var integer Read from a slave/non-quorum immutable data, using the master/quorum on miss */
+	const READ_LATEST_IMMUTABLE = 8;
 
 	// Convenience constant for tracking how data was loaded (higher => higher QoS)
 	const READ_NONE = -1; // not loaded yet (or the object was cleared)
