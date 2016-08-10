@@ -493,8 +493,6 @@
 	"passwordreset-emailtext-user": "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio de na password nova par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:\n\n$2\n\n{{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.\n\nSarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
 	"passwordreset-emailelement": "Nome utente: \n$1\n\nPassword tenporanea: \n$2",
 	"passwordreset-emailsentemail": "Xe stà invià na mail de reset password.",
-	"passwordreset-emailsent-capture": "Xe stà invià na mail de reset password: el contegù xe riportà cuà de seguito.",
-	"passwordreset-emailerror-capture": "Xe stà generà na mail de reset password, riportà cuà de seguito. L'invio a {{GENDER:$2|l'utente}} no xe riusido: $1",
 	"changeemail": "Canbia indiriso de posta ełetronega",
 	"changeemail-header": "Canbia el indiriso de posta ełetronega del account",
 	"changeemail-no-info": "Te ghe da aver efetuà l'aceso par acedare a sta pajina diretamente.",
@@ -527,6 +525,8 @@
 	"minoredit": "Segna come canbiamento picenin",
 	"watchthis": "Tien d'ocio sta pagina",
 	"savearticle": "Salva sta pagina",
+	"publishpage": "Pùblica la pàjina",
+	"publishchanges": "Pùblica i to canbiamenti",
 	"preview": "Anteprima",
 	"showpreview": "Varda anteprima",
 	"showdiff": "Mostra canbiamenti",
@@ -646,7 +646,6 @@
 	"undo-failure": "No se pol mìa anular la modifica, par via de un conflito con modifiche intermedie.",
 	"undo-norev": "La modifica no la pode vegner anulà parché no la esiste o la xe stà scancelà.",
 	"undo-summary": "Anulà la modifica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
-	"cantcreateaccounttitle": "Inpossibile registrar l'utente",
 	"cantcreateaccount-text": "La creazion de account novi a partir da sto indirizo IP ('''$1''') la xe stà blocà da [[User:$3|$3]].\n\nLa motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 	"viewpagelogs": "Varda i registri de sta pagina",
 	"nohistory": "La cronołogia de łe version de sta pàxena no la xè reperibiłe.",
@@ -2966,6 +2965,5 @@
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-GG",
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-redirect": "rimando a $1",
-	"api-error-blacklisted": "Par piaser siełi un titoło difarente e descritivo.",
 	"randomrootpage": "Pagina raìsa caxuale"
 }

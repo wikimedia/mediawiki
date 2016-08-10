@@ -449,7 +449,6 @@
 	"post-expand-template-argument-warning": "'''Obocht:''' De Seitn enthoit mindastns oa Argument in da Vorlog, wo expandiat z grouss is. \nDe Parameta wean ignoriad.",
 	"post-expand-template-argument-category": "Seitn mid ignoriadn Voalognparametan",
 	"undo-summary": "Änderrung $1 voh [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussión]]) ryckgängig gmocht.",
-	"cantcreateaccounttitle": "Benutzerkonto kå ned erstöd wern",
 	"viewpagelogs": "Logbiacha fia de Datei ozoagn",
 	"currentrev": "Aktuelle Versión",
 	"currentrev-asof": "Letzte Version vo $1",

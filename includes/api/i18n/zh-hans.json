@@ -229,7 +229,6 @@
 	"apihelp-linkaccount-example-link": "开始从<kbd>Example</kbd>链接至账户的过程。",
 	"apihelp-login-description": "登录并获取身份验证Cookie。\n\n此操作只应与[[Special:BotPasswords]]一起使用；用于主账户登录的方式已弃用，并可能在没有警告的情况下失败。要安全登录主账户，请使用<kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",
 	"apihelp-login-description-nobotpasswords": "登录并获取身份验证Cookie。\n\n此操作已弃用，并可能在没有警告的情况下失败。要安全登录，请使用<kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",
-	"apihelp-login-description-nonauthmanager": "登录并获取身份验证Cookie。\n\n在成功登录的情况下，所需的Cookie将包含在HTTP响应头中。在登录失败的情况下，进一步的尝试可能会被自动密码猜解攻击的限制所遏制。",
 	"apihelp-login-param-name": "用户名。",
 	"apihelp-login-param-password": "密码。",
 	"apihelp-login-param-domain": "域名（可选）。",

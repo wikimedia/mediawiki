@@ -560,7 +560,6 @@
 	"parser-template-recursion-depth-warning": "Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)",
 	"language-converter-depth-warning": "Limit sou pwofondè konvètisè lang yo depase ($1)",
 	"undo-summary": "Revoke revizyon $1 ki te fèt pa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskite]])",
-	"cantcreateaccounttitle": "Ou pa kapab kreye yon kont.",
 	"viewpagelogs": "gade jounal paj sa a",
 	"nohistory": "Istorik pou paj sa pa egziste ditou.",
 	"currentrev": "Vèsyon kounye a",

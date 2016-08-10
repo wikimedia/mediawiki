@@ -621,7 +621,6 @@
 	"parser-unstrip-loop-warning": "अनस्ट्रिप लुप धेखिन्छ",
 	"parser-unstrip-recursion-limit": "अन्स्ट्रिप पुनरावर्तन सिमा पार गरियो ($1)",
 	"converter-manual-rule-error": "म्यानुअल भाषा अनुवाद सिध्दान्तमी समस्या धेखियो",
-	"cantcreateaccounttitle": "खाता बनाउन सकिएन",
 	"viewpagelogs": "यै पानाका लगहरू हेर",
 	"nohistory": "ये पृष्ठका लागी कोइ सम्पादन इतिहास छैन।",
 	"currentrev": "अहिलको पुनरावलोकन",
