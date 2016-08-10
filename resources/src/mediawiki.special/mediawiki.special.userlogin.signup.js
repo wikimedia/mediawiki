@@ -33,21 +33,14 @@
 	// Check if the username is invalid or already taken
 	$( function () {
 		var
-			// We need to hook to all of these events to be sure we are notified of all changes to the
-			// value of an <input type=text> field.
-			events = 'keyup keydown change mouseup cut paste focus blur',
-			$input = $( '#wpName2' ),
-			$statusContainer = $( '#mw-createacct-status-area' ),
+			input = OO.ui.TextInputWidget.static.infuse( $( '#wpName2' ) ),
+			statusContainer = OO.ui.FieldLayout.static.infuse( $( '#wpName2' ).closest( '.oo-ui-fieldLayout' ) ),
 			api = new mw.Api(),
 			currentRequest;
 
 		// Hide any present status messages.
 		function clearStatus() {
-			$statusContainer.slideUp( function () {
-				$statusContainer
-					.removeAttr( 'class' )
-					.empty();
-			} );
+			statusContainer.setErrors( [] );
 		}
 
 		// Returns a promise receiving a { state:, username: } object, where:
@@ -85,7 +78,7 @@
 
 		function updateUsernameStatus() {
 			var
-				username = $.trim( $input.val() ),
+				username = $.trim( input.getValue() ),
 				currentRequestInternal;
 
 			// Abort any pending requests.
@@ -118,23 +111,20 @@
 						message = mw.message( 'userexists' ).text();
 					}
 
-					$statusContainer
-						.attr( 'class', 'errorbox' )
-						.empty()
-						.append(
-							// Ugh…
-							// TODO Change the HTML structure in includes/templates/Usercreate.php
-							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() ),
-							$( '<br>' ),
-							document.createTextNode( message )
-						)
-						.slideDown();
+					statusContainer
+						// Ugh…
+						// TODO Change the HTML structure in includes/templates/Usercreate.php
+						.setErrors( [
+							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() )
+								.add( $( '<br>' ) )
+								.add( document.createTextNode( message ) )
+						] );
 				}
 			} ).fail( function () {
 				clearStatus();
 			} );
 		}
 
-		$input.on( events, $.debounce( 1000, updateUsernameStatus ) );
+		input.on( 'change', $.debounce( 1000, updateUsernameStatus ) );
 	} );
 }( mediaWiki, jQuery ) );
