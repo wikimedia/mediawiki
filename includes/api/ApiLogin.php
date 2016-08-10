@@ -115,7 +115,7 @@ class ApiLogin extends ApiBase {
 			} else {
 				$authRes = 'Failed';
 				$message = $status->getMessage();
-				LoggerFactory::getInstance( 'authmanager' )->info(
+				LoggerFactory::getInstance( 'authentication' )->info(
 					'BotPassword login failed: ' . $status->getWikiText( false, false, 'en' )
 				);
 			}
@@ -226,7 +226,7 @@ class ApiLogin extends ApiBase {
 		if ( $loginType === 'LoginForm' && isset( LoginForm::$statusCodes[$authRes] ) ) {
 			$authRes = LoginForm::$statusCodes[$authRes];
 		}
-		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', [
+		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $authRes === 'Success',
 			'loginType' => $loginType,

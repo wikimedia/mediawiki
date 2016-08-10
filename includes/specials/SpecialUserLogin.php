@@ -153,7 +153,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	}
 
 	protected function logAuthResult( $success, $status = null ) {
-		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', [
+		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $success,
 			'status' => $status,

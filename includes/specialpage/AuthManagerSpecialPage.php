@@ -455,7 +455,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				// passed to AuthManager. Normally we would display the form with an error message,
 				// but for the data we received via the redirect flow that would not be helpful at all.
 				// Let's just submit the data to AuthManager directly instead.
-				LoggerFactory::getInstance( 'authmanager' )
+				LoggerFactory::getInstance( 'authentication' )
 					->warning( 'Validation error on return', [ 'data' => $form->mFieldData,
 						'status' => $status->getWikiText() ] );
 				$status = $this->handleFormSubmit( $form->mFieldData );
