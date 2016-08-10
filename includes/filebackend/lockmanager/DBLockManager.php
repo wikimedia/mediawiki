@@ -150,8 +150,7 @@ abstract class DBLockManager extends QuorumLockManager {
 		if ( !isset( $this->conns[$lockDb] ) ) {
 			$db = null;
 			if ( $lockDb === 'localDBMaster' ) {
-				$lb = wfGetLBFactory()->getMainLB( $this->domain );
-				$db = $lb->getConnection( DB_MASTER, [], $this->domain );
+				$db = $this->getLocalLB()->getConnection( DB_MASTER, [], $this->domain );
 			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
 				$config = $this->dbServers[$lockDb];
 				$db = DatabaseBase::factory( $config['type'], $config );
@@ -176,6 +175,13 @@ abstract class DBLockManager extends QuorumLockManager {
 		}
 
 		return $this->conns[$lockDb];
+	}
+
+	/**
+	 * @return LoadBalancer
+	 */
+	protected function getLocalLB() {
+		return wfGetLBFactory()->getMainLB( $this->domain );
 	}
 
 	/**
@@ -249,10 +255,11 @@ class MySqlLockManager extends DBLockManager {
 		self::LOCK_EX => self::LOCK_EX
 	];
 
-	/**
-	 * @param string $lockDb
-	 * @param IDatabase $db
-	 */
+	protected function getLocalLB() {
+		// Use a separate connection so releaseAllLocks() doesn't rollback the main trx
+		return wfGetLBFactory()->newMainLB( $this->domain );
+	}
+
 	protected function initConnection( $lockDb, IDatabase $db ) {
 		# Let this transaction see lock rows from other transactions
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
