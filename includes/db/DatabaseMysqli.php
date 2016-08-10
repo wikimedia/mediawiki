@@ -309,12 +309,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $conn->real_escape_string( $s );
 	}
 
-	protected function mysqlPing() {
-		$conn = $this->getBindingHandle();
-
-		return $conn->ping();
-	}
-
 	/**
 	 * Give an id for the connection
 	 *

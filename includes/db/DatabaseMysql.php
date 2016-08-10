@@ -201,10 +201,4 @@ class DatabaseMysql extends DatabaseMysqlBase {
 
 		return mysql_real_escape_string( $s, $conn );
 	}
-
-	protected function mysqlPing() {
-		$conn = $this->getBindingHandle();
-
-		return mysql_ping( $conn );
-	}
 }
