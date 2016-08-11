@@ -699,6 +699,8 @@ class SpecialPageFactory {
 		}
 
 		if ( $subpage !== false && !is_null( $subpage ) ) {
+			// Make sure it's in dbkey form
+			$subpage = str_replace( ' ', '_', $subpage );
 			$name = "$name/$subpage";
 		}
 

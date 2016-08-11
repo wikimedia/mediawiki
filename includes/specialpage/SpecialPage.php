@@ -67,6 +67,8 @@ class SpecialPage {
 
 	/**
 	 * Get a localised Title object for a specified special page name
+	 * If you don't need a full Title object, consider using TitleValue through
+	 * getTitleValueFor() below.
 	 *
 	 * @since 1.9
 	 * @since 1.21 $fragment parameter added
@@ -78,9 +80,24 @@ class SpecialPage {
 	 * @throws MWException
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
+		return Title::newFromTitleValue(
+			self::getTitleValueFor( $name, $subpage, $fragment )
+		);
+	}
+
+	/**
+	 * Get a localised TitleValue object for a specified special page name
+	 *
+	 * @since 1.28
+	 * @param string $name
+	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string $fragment The link fragment (after the "#")
+	 * @return TitleValue
+	 */
+	public static function getTitleValueFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
 
-		return Title::makeTitle( NS_SPECIAL, $name, $fragment );
+		return new TitleValue( NS_SPECIAL, $name, $fragment );
 	}
 
 	/**
