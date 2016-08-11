@@ -694,4 +694,26 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( false, $this->cache->get( $key ), "Pending value not written." );
 	}
+
+	public function testMcRouterSupport() {
+		$localBag = $this->getMock( 'EmptyBagOStuff', [ 'set', 'delete' ] );
+		$localBag->expects( $this->never() )->method( 'set' );
+		$localBag->expects( $this->never() )->method( 'delete' );
+		$wanCache = new WANObjectCache( [
+			'cache' => $localBag,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
+		$valFunc = function () {
+			return 1;
+		};
+
+		// None of these should use broadcasting commands (e.g. SET, DELETE)
+		$wanCache->get( 'x' );
+		$wanCache->get( 'x', $ctl, [ 'check1' ] );
+		$wanCache->getMulti( [ 'x', 'y' ] );
+		$wanCache->getMulti( [ 'x', 'y' ], $ctls, [ 'check2' ] );
+		$wanCache->getWithSetCallback( 'p', 30, $valFunc );
+		$wanCache->getCheckKeyTime( 'zzz' );
+	}
 }
