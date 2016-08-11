@@ -117,6 +117,9 @@ class LocalFile extends File {
 	/** @var bool Whether the row was upgraded on load */
 	private $upgraded;
 
+	/** @var bool Whether the row was scheduled to upgrade on load */
+	private $upgrading;
+
 	/** @var bool True if the image row is locked */
 	private $locked;
 
@@ -559,37 +562,43 @@ class LocalFile extends File {
 	 */
 	function maybeUpgradeRow() {
 		global $wgUpdateCompatibleMetadata;
-		if ( wfReadOnly() ) {
+
+		if ( wfReadOnly() || $this->upgrading ) {
 			return;
 		}
 
 		$upgrade = false;
-		if ( is_null( $this->media_type ) ||
-			$this->mime == 'image/svg'
-		) {
+		if ( is_null( $this->media_type ) || $this->mime == 'image/svg' ) {
 			$upgrade = true;
 		} else {
 			$handler = $this->getHandler();
 			if ( $handler ) {
 				$validity = $handler->isMetadataValid( $this, $this->getMetadata() );
-				if ( $validity === MediaHandler::METADATA_BAD
-					|| ( $validity === MediaHandler::METADATA_COMPATIBLE && $wgUpdateCompatibleMetadata )
-				) {
+				if ( $validity === MediaHandler::METADATA_BAD ) {
 					$upgrade = true;
+				} elseif ( $validity === MediaHandler::METADATA_COMPATIBLE ) {
+					$upgrade = $wgUpdateCompatibleMetadata;
 				}
 			}
 		}
 
 		if ( $upgrade ) {
-			try {
-				$this->upgradeRow();
-			} catch ( LocalFileLockError $e ) {
-				// let the other process handle it (or do it next time)
-			}
-			$this->upgraded = true; // avoid rework/retries
+			$this->upgrading = true;
+			// Defer updates unless in auto-commit CLI mode
+			DeferredUpdates::addCallableUpdate( function() {
+				$this->upgrading = false; // avoid duplicate updates
+				try {
+					$this->upgradeRow();
+				} catch ( LocalFileLockError $e ) {
+					// let the other process handle it (or do it next time)
+				}
+			} );
 		}
 	}
 
+	/**
+	 * @return bool Whether upgradeRow() ran for this object
+	 */
 	function getUpgraded() {
 		return $this->upgraded;
 	}
@@ -639,7 +648,7 @@ class LocalFile extends File {
 		$this->invalidateCache();
 
 		$this->unlock(); // done
-
+		$this->upgraded = true; // avoid rework/retries
 	}
 
 	/**

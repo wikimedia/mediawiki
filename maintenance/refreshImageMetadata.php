@@ -139,6 +139,7 @@ class RefreshImageMetadata extends Maintenance {
 			}
 
 			foreach ( $res as $row ) {
+				// LocalFile will upgrade immediately here if obsolete
 				$file = $repo->newFileFromRow( $row );
 				if ( $file->getUpgraded() ) {
 					// File was upgraded.
