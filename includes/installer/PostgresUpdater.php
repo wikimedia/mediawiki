@@ -68,6 +68,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
 			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
 			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
+			[ 'addSequence', 'change_tag', false, 'change_tag_ct_id_seq' ],
+			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
