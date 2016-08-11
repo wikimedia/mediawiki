@@ -1256,6 +1256,7 @@
 	"apihelp-stashedit-param-section": "{{doc-apihelp-param|stashedit|section}}",
 	"apihelp-stashedit-param-sectiontitle": "{{doc-apihelp-param|stashedit|sectiontitle}}",
 	"apihelp-stashedit-param-text": "{{doc-apihelp-param|stashedit|text}}",
+	"apihelp-stashedit-param-stashedtexthash": "{{doc-apihelp-param|stashedit|stashedtexthash}}",
 	"apihelp-stashedit-param-contentmodel": "{{doc-apihelp-param|stashedit|contentmodel}}",
 	"apihelp-stashedit-param-contentformat": "{{doc-apihelp-param|stashedit|contentformat}}",
 	"apihelp-stashedit-param-baserevid": "{{doc-apihelp-param|stashedit|baserevid}}",
