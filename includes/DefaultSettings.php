@@ -1670,6 +1670,9 @@ $wgEnotifWatchlist = false;
 /**
  * Allow users to enable email notification ("enotif") when someone edits their
  * user talk page.
+ *
+ * The owner of the user talk page must also have the 'enotifusertalkpages' user
+ * preference set to true.
  */
 $wgEnotifUserTalk = false;
 
@@ -1680,9 +1683,17 @@ $wgEnotifUserTalk = false;
 $wgEnotifRevealEditorAddress = false;
 
 /**
- * Send notification mails on minor edits to watchlist pages. This is enabled
- * by default. User talk notifications are affected by this, $wgEnotifUserTalk, and
- * the nominornewtalk user right.
+ * Potentially send notification mails on minor edits to pages. This is enabled
+ * by default.  If this is false, users will never be notified on minor edits.
+ *
+ * If it is true, editors with the 'nominornewtalk' right (typically bots) will still not
+ * trigger notifications for minor edits they make (to any page, not just user talk).
+ *
+ * Finally, if the watcher/recipient has the 'enotifminoredits' user preference set to
+ * false, they will not receive notifications for minor edits.
+ *
+ * User talk notifications are also affected by $wgEnotifMinorEdits, the above settings,
+ * $wgEnotifUserTalk, and the preference described there.
  */
 $wgEnotifMinorEdits = true;
 
