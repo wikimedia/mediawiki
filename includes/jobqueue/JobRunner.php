@@ -522,10 +522,10 @@ class JobRunner implements LoggerAwareInterface {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
-		// Wait for the generic slave to catch up
+		// Wait for the slave DBs to catch up
 		$pos = $lb->getMasterPos();
 		if ( $pos ) {
-			$lb->waitForOne( $pos );
+			$lb->waitForAll( $pos );
 		}
 
 		$fname = __METHOD__;
