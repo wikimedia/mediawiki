@@ -11,7 +11,7 @@
  *     $gen = new AutoloadGenerator( __DIR__ );
  *     $gen->readDir( __DIR__ . '/includes' );
  *     $gen->readFile( __DIR__ . '/foo.php' )
- *     $gen->generateAutoload();
+ *     $gen->getAutoload();
  */
 class AutoloadGenerator {
 	const FILETYPE_JSON = 'json';
