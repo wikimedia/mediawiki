@@ -1661,6 +1661,17 @@
 				}
 			}
 
+
+			/**
+			 * Execute a batch of load.php responses retreived from mw.loader.store.
+			 *
+			 * @private
+			 * @param {string[]} concatSource Array of JavaScript source code in the form of
+			 * calls to mw.loader#implement().
+			 */
+			function runSourceBatch( concatSource ) {
+			}
+
 			/* Public Members */
 			return {
 				/**
