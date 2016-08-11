@@ -1706,14 +1706,6 @@ return [
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.page.patrol' => [
-		'position' => 'top',
-		'styles' => [
-			'resources/src/mediawiki/page/mediawiki.page.patrol.css',
-			'resources/src/mediawiki/page/mediawiki.page.patrol.print.css'
-				=> [ 'media' => 'print' ],
-		]
-	],
 	'mediawiki.page.patrol.ajax' => [
 		'scripts' => 'resources/src/mediawiki/page/patrol.ajax.js',
 		'dependencies' => [

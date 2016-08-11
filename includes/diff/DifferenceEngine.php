@@ -533,7 +533,6 @@ class DifferenceEngine extends ContextSource {
 			// Build the link
 			if ( $rcid ) {
 				$this->getOutput()->preventClickjacking();
-				$this->getOutput()->addModuleStyles( 'mediawiki.page.patrol' );
 				if ( $wgEnableAPI && $wgEnableWriteAPI
 					&& $user->isAllowed( 'writeapi' )
 				) {

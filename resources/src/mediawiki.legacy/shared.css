@@ -124,6 +124,23 @@ span.history-deleted {
 }
 
 /**
+ * Patrol stuff
+ */
+.not-patrolled {
+	background-color: #ffa;
+}
+
+.unpatrolled {
+	font-weight: bold;
+	color: #f00;
+}
+
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+
+/**
  * Forms
  */
 td.mw-label {
