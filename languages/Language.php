@@ -1,6 +1,7 @@
 <?php
 /**
  * Internationalisation code.
+ * See https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation for more information.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
