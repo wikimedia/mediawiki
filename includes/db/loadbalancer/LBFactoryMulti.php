@@ -317,7 +317,9 @@ class LBFactoryMulti extends LBFactory {
 			'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
 			'loadMonitor' => $this->loadMonitorClass,
 			'readOnlyReason' => $readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
+			'trxProfiler' => $this->trxProfiler,
+			'srvCache' => $this->srvCache,
+			'wanCache' => $this->wanCache
 		] );
 	}
 

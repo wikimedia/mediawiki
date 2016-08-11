@@ -31,15 +31,16 @@ use MediaWiki\Logger\LoggerFactory;
  * @ingroup Database
  */
 abstract class LBFactory implements DestructibleService {
-
 	/** @var ChronologyProtector */
 	protected $chronProt;
-
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
-
 	/** @var LoggerInterface */
-	protected $logger;
+	protected $trxLogger;
+	/** @var BagOStuff */
+	protected $srvCache;
+	/** @var WANObjectCache */
+	protected $wanCache;
 
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
@@ -49,15 +50,28 @@ abstract class LBFactory implements DestructibleService {
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
+	 * @TODO: inject objects via dependency framework
 	 */
 	public function __construct( array $conf ) {
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
-
 		$this->chronProt = $this->newChronologyProtector();
 		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$this->logger = LoggerFactory::getInstance( 'DBTransaction' );
+		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
+		$cache = ObjectCache::getLocalServerInstance();
+		if ( $cache->getQoS( $cache::ATTR_EMULATION ) > $cache::QOS_EMULATION_SQL ) {
+			$this->srvCache = $cache;
+		} else {
+			$this->srvCache = new EmptyBagOStuff();
+		}
+		$wCache = ObjectCache::getMainWANInstance();
+		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
+			$this->wanCache = $wCache;
+		} else {
+			$this->wanCache = WANObjectCache::newEmpty();
+		}
+		$this->trxLogger = LoggerFactory::getInstance( 'DBTransaction' );
 	}
 
 	/**
@@ -261,7 +275,7 @@ abstract class LBFactory implements DestructibleService {
 			foreach ( $callersByDB as $db => $callers ) {
 				$msg .= "$db: " . implode( '; ', $callers ) . "\n";
 			}
-			$this->logger->info( $msg );
+			$this->trxLogger->info( $msg );
 		}
 	}
 

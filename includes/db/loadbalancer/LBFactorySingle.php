@@ -37,7 +37,9 @@ class LBFactorySingle extends LBFactory {
 
 		$this->lb = new LoadBalancerSingle( [
 			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
+			'trxProfiler' => $this->trxProfiler,
+			'srvCache' => $this->srvCache,
+			'wanCache' => $this->wanCache
 		] + $conf );
 	}
 
@@ -106,7 +108,9 @@ class LoadBalancerSingle extends LoadBalancer {
 					'load' => 1,
 				]
 			],
-			'trxProfiler' => $this->trxProfiler
+			'trxProfiler' => isset( $params['trxProfiler'] ) ? $params['trxProfiler'] : null,
+			'srvCache' => isset( $params['srvCache'] ) ? $params['srvCache'] : null,
+			'wanCache' => isset( $params['wanCache'] ) ? $params['wanCache'] : null
 		] );
 
 		if ( isset( $params['readOnlyReason'] ) ) {
