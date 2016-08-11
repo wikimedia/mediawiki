@@ -43,16 +43,23 @@ use Psr\Log\NullLogger;
  *
  * The simplest purge method is delete().
  *
- * Instances of this class must be configured to point to a valid
- * PubSub endpoint, and there must be listeners on the cache servers
- * that subscribe to the endpoint and update the caches.
+ * There are two supported ways to handle broadcasted operations:
+ *   - a) Configure the 'purge' EventRelayer to point to a valid PubSub endpoint
+ *        that has subscribed listeners on the cache servers applying the cache updates.
+ *        Broadcasted operations like delete() and touchCheckKey() are done synchronously
+ *        in the local datacenter, but are relayed asynchronously to the others.
+ *   - b) Ignore the 'purge' EventRelayer configuration (default is NullEventRelayer)
+ *        and set up mcrouter as the underlying cache backend. Using OperationSelectorRoute,
+ *        configure 'set' and 'delete' operations to go to all DCs via AllAsyncRoute and
+ *        configure other operations to go to the local DC via PoolRoute (for reference,
+ *        see https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles).
+ *        Broadcasted operations like delete() and touchCheckKey() are done asynchronously
+ *        in all datacenters this way, though the local one should likely be near immediate.
  *
- * Broadcasted operations like delete() and touchCheckKey() are done
- * synchronously in the local datacenter, but are relayed asynchronously.
- * This means that callers in other datacenters will see older values
- * for however many milliseconds the datacenters are apart. As with
- * any cache, this should not be relied on for cases where reads are
- * used to determine writes to source (e.g. non-cache) data stores.
+ * This means that callers in all datacenters may see older values for however many
+ * milliseconds the the purge took to reach that datacenter. As with any cache, this
+ * should not be relied on for cases where reads are used to determine writes to source
+ * (e.g. non-cache) data stores.
  *
  * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix
  * to avoid collisions with keys that are not wrapped as metadata arrays. The
@@ -495,12 +502,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$key = self::VALUE_KEY_PREFIX . $key;
 
 		if ( $ttl <= 0 ) {
-			// Update the local datacenter immediately
+			// Update the local datacenter immediately (or relay if mcrouter is used)
 			$ok = $this->cache->delete( $key );
 			// Publish the purge to all datacenters
 			$ok = $this->relayDelete( $key ) && $ok;
 		} else {
-			// Update the local datacenter immediately
+			// Update the local datacenter immediately (or relay if mcrouter is used)
 			$ok = $this->cache->set( $key,
 				$this->makePurgeValue( microtime( true ), self::HOLDOFF_NONE ),
 				$ttl
@@ -583,7 +590,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		$key = self::TIME_KEY_PREFIX . $key;
-		// Update the local datacenter immediately
+		// Update the local datacenter immediately (or relay if mcrouter is used)
 		$ok = $this->cache->set( $key,
 			$this->makePurgeValue( microtime( true ), $holdoff ),
 			self::CHECK_KEY_TTL
@@ -621,7 +628,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function resetCheckKey( $key ) {
 		$key = self::TIME_KEY_PREFIX . $key;
-		// Update the local datacenter immediately
+		// Update the local datacenter immediately (or relay if mcrouter is used)
 		$ok = $this->cache->delete( $key );
 		// Publish the purge to all datacenters
 		return $this->relayDelete( $key ) && $ok;
@@ -939,7 +946,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( ( $isTombstone && $lockTSE > 0 ) && $value !== false && $ttl >= 0 ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 			$wrapped = $this->wrap( $value, $tempTTL, $asOf );
-			$this->cache->set( self::INTERIM_KEY_PREFIX . $key, $wrapped, $tempTTL );
+			// Avoid using set() to avoid pointless mcrouter broadcasting
+			$this->cache->merge(
+				self::INTERIM_KEY_PREFIX . $key,
+				function () use ( $wrapped ) {
+					return $wrapped;
+				},
+				$tempTTL,
+				1
+			);
 		}
 
 		if ( $lockAcquired ) {
