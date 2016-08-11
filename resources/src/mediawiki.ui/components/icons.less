@@ -59,8 +59,14 @@
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
 		background-size: 100% auto;
-		float: left;
 		display: block;
+	}
+
+	&.mw-ui-icon-before:before,
+	&.mw-ui-icon-element:before,
+	&.mw-ui-icon-before:after,
+	&.mw-ui-icon-element:after {
+		float: left;
 		min-height: @iconSize;
 		content: '';
 	}
