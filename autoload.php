@@ -1144,6 +1144,7 @@ $wgAutoloadLocalClasses = [
 	'ResetUserTokens' => __DIR__ . '/maintenance/resetUserTokens.php',
 	'ResourceFileCache' => __DIR__ . '/includes/cache/ResourceFileCache.php',
 	'ResourceLoader' => __DIR__ . '/includes/resourceloader/ResourceLoader.php',
+	'ResourceLoaderClientHtml' => __DIR__ . '/includes/resourceloader/ResourceLoaderClientHtml.php',
 	'ResourceLoaderContext' => __DIR__ . '/includes/resourceloader/ResourceLoaderContext.php',
 	'ResourceLoaderEditToolbarModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderEditToolbarModule.php',
 	'ResourceLoaderFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderFileModule.php',
