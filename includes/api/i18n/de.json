@@ -831,6 +831,7 @@
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "An allen beobachteten Seiten arbeiten.",
 	"apihelp-stashedit-param-sectiontitle": "Der Titel für einen neuen Abschnitt.",
 	"apihelp-stashedit-param-text": "Seiteninhalt.",
+	"apihelp-stashedit-param-stashedtexthash": "Stattdessen zu verwendende Prüfsumme des Seiteninhalts von einem vorherigen Speicher.",
 	"apihelp-stashedit-param-summary": "Änderungszusammenfassung.",
 	"apihelp-tag-param-reason": "Grund für die Änderung.",
 	"apihelp-tokens-param-type": "Abzufragende Tokentypen.",

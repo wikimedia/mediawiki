@@ -1265,6 +1265,7 @@
 	"apihelp-stashedit-param-section": "段落数。<kbd>0</kbd>用于首段，<kbd>new</kbd>用于新的段落。",
 	"apihelp-stashedit-param-sectiontitle": "新段落的标题。",
 	"apihelp-stashedit-param-text": "页面内容。",
+	"apihelp-stashedit-param-stashedtexthash": "要使用的来自先前暂存处的页面内容哈希。",
 	"apihelp-stashedit-param-contentmodel": "新内容的内容模型。",
 	"apihelp-stashedit-param-contentformat": "用于输入文本的内容序列化格式。",
 	"apihelp-stashedit-param-baserevid": "基础修订的修订ID。",

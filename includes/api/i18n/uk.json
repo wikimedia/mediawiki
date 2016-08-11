@@ -1255,6 +1255,7 @@
 	"apihelp-stashedit-param-section": "Номер розділу. <kbd>0</kbd> для вступного розділу, <kbd>new</kbd> для нового розділу.",
 	"apihelp-stashedit-param-sectiontitle": "Назва нового розділу.",
 	"apihelp-stashedit-param-text": "Вміст сторінки.",
+	"apihelp-stashedit-param-stashedtexthash": "Хеш вмісту сторінки з попереднього сховку, який треба використати натомість.",
 	"apihelp-stashedit-param-contentmodel": "Модель вмісту нового вмісту.",
 	"apihelp-stashedit-param-contentformat": "Формат серіалізації вмісту, використовуваний для введеного тексту.",
 	"apihelp-stashedit-param-baserevid": "Ідентифікатор базової версії.",

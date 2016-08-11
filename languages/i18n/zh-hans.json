@@ -1598,6 +1598,7 @@
 	"uploadstash-errclear": "清除文件失败。",
 	"uploadstash-refresh": "更新文件列表",
 	"uploadstash-thumbnail": "显示缩略图",
+	"uploadstash-exception": "不能将上传内容存储至暂存处（$1）：“$2”。",
 	"invalid-chunk-offset": "无效区块偏移量",
 	"img-auth-accessdenied": "拒绝访问",
 	"img-auth-nopathinfo": "PATH_INFO缺失。\n您的服务器尚未设置传送该信息。\n它可能基于CGI，因而不支持img_auth。\n请参见https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization。",

@@ -279,7 +279,7 @@
 	"difference-title": "Ero šivun ”$1” versijien välillä",
 	"lineno": "Rivi $1:",
 	"editundo": "lakauttua",
-	"diff-multi-sameuser": "({{PLURAL:$1|Yksi keškitasšon versija |$1 keškitašon versijua}} šamalta käyttäjältä ei näytetty)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Yksi keškitašon versija |$1 keškitašon versijua}} šamalta käyttäjältä ei näytetty)",
 	"searchresults": "Eččimisen tulokšet",
 	"searchresults-title": "Eči \"$1\"",
 	"prevn": "iellini {{PLURAL:$1|$1}}",

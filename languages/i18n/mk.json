@@ -1530,6 +1530,7 @@
 	"uploadstash-errclear": "Чистењето на податотеките не успеа.",
 	"uploadstash-refresh": "Превчитај го списокот на податотеки",
 	"uploadstash-thumbnail": "погл. минијатура",
+	"uploadstash-exception": "Не можев да го складирам подигнатото во складиштето ($1): „$2“.",
 	"invalid-chunk-offset": "Неважечка појдовна точка",
 	"img-auth-accessdenied": "Оневозможен пристап",
 	"img-auth-nopathinfo": "Недостасува PATH_INFO.\nВашиот опслужувач не е нагоден за да ја предаде оваа информација.\nМожеби се заснова на CGI, и така не подржува img_auth.\nПогл. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

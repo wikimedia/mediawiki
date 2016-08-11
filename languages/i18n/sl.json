@@ -1517,6 +1517,7 @@
 	"uploadstash-errclear": "Čiščenje datotek je spodletelo.",
 	"uploadstash-refresh": "Osveži seznam datotek",
 	"uploadstash-thumbnail": "ogled sličice",
+	"uploadstash-exception": "Nalaganja nismo uspeli shraniti v zalogo ($1): »$2«.",
 	"invalid-chunk-offset": "Neveljaven odmik delčka",
 	"img-auth-accessdenied": "Dostop zavrnjen",
 	"img-auth-nopathinfo": "Manjka PATH_INFO.\nVaš strežnik ne poda te informacije.\nMorda temelji na CGI in ne more podpirati img_auth.\nOglejte si  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

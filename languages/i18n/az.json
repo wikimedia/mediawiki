@@ -1426,6 +1426,8 @@
 	"unwatching": "İzlənilmir...",
 	"enotif_reset": "Baxılmış bütün səhifələri işarələ.",
 	"enotif_impersonal_salutation": "{{SITENAME}} istifadəçisi",
+	"enotif_subject_moved": "{{SITENAME}} səhifəsi $1 $2 tərəfindən {{GENDER:$2|köçürüldü}}.",
+	"enotif_subject_changed": "{{SITENAME}} səhifəsi $1 $2 tərəfindən {{GENDER:$2|dəyişdirildi}}.",
 	"enotif_body_intro_moved": "{{SITENAME}}da  $1 səhifəsinin adı $PAGEEDITDATE tarixində $2 tərəfindən {{GENDER:$2|dəyişdirilib}}, son versiya üçün bura baxın: $3.",
 	"enotif_lastvisited": "Sonuncu ziyarətinizdən indiyədək olan bütün dəyişiklikləri görmək üçün baxın: $1.",
 	"enotif_lastdiff": "Bu dəyişikliyi görmək üçün $1 səhifəsinə baxın.",

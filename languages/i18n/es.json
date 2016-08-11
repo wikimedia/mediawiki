@@ -2027,7 +2027,7 @@
 	"noindex-category-desc": "La página contiene la palabra mágica <code><nowiki>__NOINDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots no la indizan.",
 	"index-category-desc": "La página contiene la palabra mágica <code><nowiki>__INDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots la indizarán.",
 	"post-expand-template-inclusion-category-desc": "Después de expandir todas las plantillas, el tamaño de la página es más grande que <code>$wgMaxArticleSize</code>, así que algunas plantillas no se expandieron.",
-	"post-expand-template-argument-category-desc": "Después de expandir un argumento de plantilla (algunos en tres llaves, como <code>{{{Foo}}})</code>, la página es más grande que <code>$wgMaxArticleSize</code>.",
+	"post-expand-template-argument-category-desc": "Después de expandir un argumento de plantilla (cualquier cosa encerrada en tres llaves, como <code>{{{Foo}}}</code>), la página es más grande que <code>$wgMaxArticleSize</code>.",
 	"expensive-parserfunction-category-desc": "La página usa demasiadas funciones sintácticas costosas (como <code>#ifexist</code>). Consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "La página contiene un enlace roto a archivos (un enlace para incrustar un archivo cuando el archivo no existe).",
 	"hidden-category-category-desc": "La categoría contiene <code><nowiki>__HIDDENCAT__</nowiki></code> en su página de contenido, lo que evita que aparezca en el cuadro de enlaces de categorías en las páginas, de forma predeterminada.",

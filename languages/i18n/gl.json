@@ -1526,6 +1526,7 @@
 	"uploadstash-errclear": "Fallou o borrado de ficheiros.",
 	"uploadstash-refresh": "Actualizar a lista de ficheiros",
 	"uploadstash-thumbnail": "ver miniatura",
+	"uploadstash-exception": "Imposible gardar a subida na reserva ($1): \"$2\".",
 	"invalid-chunk-offset": "Desprazamento inválido do fragmento",
 	"img-auth-accessdenied": "Acceso rexeitado",
 	"img-auth-nopathinfo": "Falta a PATH_INFO.\nO seu servidor non está configurado para pasar esta información.\nPode ser que estea baseado en CGI e non soporte img_auth.\nVéxase https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
