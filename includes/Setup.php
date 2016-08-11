@@ -840,7 +840,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 			true
 		);
 		Profiler::instance()->scopedProfileOut( $ps_autocreate );
-		\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Autocreation attempt', [
+		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Autocreation attempt', [
 			'event' => 'autocreate',
 			'status' => $res,
 		] );

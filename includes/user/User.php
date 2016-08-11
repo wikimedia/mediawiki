@@ -3768,7 +3768,7 @@ class User implements IDBAccessObject {
 			ScopedCallback::consume( $delay );
 			$error = false;
 		}
-		\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Logout', [
+		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Logout', [
 			'event' => 'logout',
 			'successful' => $error === false,
 			'status' => $error ?: 'success',
