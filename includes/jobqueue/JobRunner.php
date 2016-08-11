@@ -525,7 +525,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Wait for the generic slave to catch up
 		$pos = $lb->getMasterPos();
 		if ( $pos ) {
-			$lb->waitForOne( $pos );
+			$lb->waitForAll( $pos );
 		}
 
 		$fname = __METHOD__;
