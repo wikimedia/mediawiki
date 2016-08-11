@@ -2718,7 +2718,10 @@ abstract class DatabaseBase implements IDatabase {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
 				return; // nothing to do
 			} elseif ( $this->mTrxAutomatic ) {
-				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
+				throw new DBUnexpectedError(
+					$this,
+					"$fname: Explicit commit of implicit transaction."
+				);
 			}
 		}
 
