@@ -222,7 +222,11 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.special.changeslist',
+			'mediawiki.page.patrol',
+
+		] );
 
 		return '<div class="mw-changeslist">';
 	}

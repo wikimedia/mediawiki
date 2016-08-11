@@ -72,6 +72,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
+			'mediawiki.page.patrol',
 		] );
 		$this->getOutput()->addModules( [
 			'jquery.makeCollapsible',
