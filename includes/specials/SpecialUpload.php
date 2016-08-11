@@ -339,7 +339,13 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $message HTML message to be passed to mainUploadForm
 	 */
 	protected function showRecoverableUploadError( $message ) {
-		$sessionKey = $this->mUpload->stashFile()->getFileKey();
+		$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
+		if ( $stashStatus->isGood() ) {
+			$sessionKey = $stashStatus->getValue()->getFileKey();
+		} else {
+			$sessionKey = null;
+			// TODO Add a warning message about the failure to stash here?
+		}
 		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
 
@@ -368,7 +374,13 @@ class SpecialUpload extends SpecialPage {
 			return false;
 		}
 
-		$sessionKey = $this->mUpload->stashFile()->getFileKey();
+		$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
+		if ( $stashStatus->isGood() ) {
+			$sessionKey = $stashStatus->getValue()->getFileKey();
+		} else {
+			$sessionKey = null;
+			// TODO Add a warning message about the failure to stash here?
+		}
 
 		// Add styles for the warning, reused from the live preview
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );

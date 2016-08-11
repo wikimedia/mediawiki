@@ -65,19 +65,19 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks"
+	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */
-	public function stashFile( User $user = null ) {
+	protected function doStashFile( User $user = null ) {
 		// Stash file is the called on creating a new chunk session:
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
 
 		$this->verifyChunk();
 		// Create a local stash target
-		$this->mLocalFile = parent::stashFile( $user );
+		$this->mLocalFile = parent::doStashFile( $user );
 		// Update the initial file offset (based on file size)
 		$this->mOffset = $this->mLocalFile->getSize();
 		$this->mFileKey = $this->mLocalFile->getFileKey();
@@ -162,7 +162,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Update the mTempPath and mLocalFile
 		// (for FileUpload or normal Stash to take over)
 		$tStart = microtime( true );
-		$this->mLocalFile = parent::stashFile( $this->user );
+		$this->mLocalFile = parent::doStashFile( $this->user );
 		$tAmount = microtime( true ) - $tStart;
 		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
 		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds." );
