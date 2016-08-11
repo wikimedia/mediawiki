@@ -8,7 +8,7 @@
  * See the README, INSTALL, and UPGRADE files for basic setup instructions
  * and pointers to the online documentation.
  *
- * https://www.mediawiki.org/
+ * https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki
  *
  * ----------
  *
