@@ -2319,8 +2319,8 @@ class Title implements LinkTarget {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
 		} elseif ( $this->isSpecial( 'Userlogin' )
-			|| $this->isSpecial( 'ChangePassword' )
 			|| $this->isSpecial( 'PasswordReset' )
+			|| $this->isSpecial( 'Userlogout' )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
