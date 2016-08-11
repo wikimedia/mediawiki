@@ -61,7 +61,7 @@ class SpecialPage {
 	protected $mContext;
 
 	/**
-	 * @var LinkRenderer|null
+	 * @var \MediaWiki\Linker\LinkRenderer|null
 	 */
 	private $linkRenderer;
 
@@ -834,7 +834,7 @@ class SpecialPage {
 
 	/**
 	 * @since 1.28
-	 * @return LinkRenderer
+	 * @return \MediaWiki\Linker\LinkRenderer
 	 */
 	protected function getLinkRenderer() {
 		if ( $this->linkRenderer ) {
@@ -846,7 +846,7 @@ class SpecialPage {
 
 	/**
 	 * @since 1.28
-	 * @param LinkRenderer $linkRenderer
+	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
 	 */
 	public function setLinkRenderer( LinkRenderer $linkRenderer ) {
 		$this->linkRenderer = $linkRenderer;
