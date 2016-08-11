@@ -1196,7 +1196,6 @@ class Article implements Page {
 		$token = $user->getEditToken( $rcid );
 
 		$outputPage->preventClickjacking();
-		$outputPage->addModuleStyles( 'mediawiki.page.patrol' );
 		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
