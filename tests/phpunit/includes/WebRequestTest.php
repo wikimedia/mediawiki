@@ -109,7 +109,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getIP
 	 */
 	public function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
-		$_SERVER = $input;
+		$_SERVER = $input + [ 'REQUEST_TIME_FLOAT' => microtime( true ) ];
 		$this->setMwGlobals( [
 			'wgSquidServersNoPurge' => $squid,
 			'wgUsePrivateIPs' => $private,
