@@ -206,8 +206,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$value = wfRandomString();
 
 		$calls = 0;
-		$func = function() use ( &$calls, $value ) {
+		$func = function() use ( &$calls, $value, $cache, $key ) {
 			++$calls;
+			// Immediately kill any mutex rather than waiting a second
+			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 			return $value;
 		};
 
@@ -216,7 +218,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $calls, 'Value was populated' );
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
-		$this->internalCache->lock( $key, 0 );
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
@@ -246,9 +248,11 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$value = wfRandomString();
 
 		$calls = 0;
-		$func = function( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
+		$func = function( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $cache, $key ) {
 			++$calls;
 			$setOpts['since'] = microtime( true ) - 10;
+			// Immediately kill any mutex rather than waiting a second
+			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 			return $value;
 		};
 
@@ -261,7 +265,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $calls, 'Value was generated' );
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
-		$this->internalCache->lock( $key, 0 );
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
@@ -278,8 +282,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$busyValue = wfRandomString();
 
 		$calls = 0;
-		$func = function() use ( &$calls, $value ) {
+		$func = function() use ( &$calls, $value, $cache, $key ) {
 			++$calls;
+			// Immediately kill any mutex rather than waiting a second
+			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 			return $value;
 		};
 
@@ -288,7 +294,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $calls, 'Value was populated' );
 
 		// Acquire a lock to verify that getWithSetCallback uses busyValue properly
-		$this->internalCache->lock( $key, 0 );
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
@@ -307,13 +313,13 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( $busyValue, $ret, 'Callback was not used; used busy value' );
 		$this->assertEquals( 2, $calls, 'Callback was not used; used busy value' );
 
-		$this->internalCache->unlock( $key );
+		$this->internalCache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 30, 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was used; saved interim' );
 		$this->assertEquals( 3, $calls, 'Callback was used; saved interim' );
 
-		$this->internalCache->lock( $key, 0 );
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
@@ -693,5 +699,27 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$opts = [ 'pending' => true ];
 		$this->cache->set( $key, $value, 30, $opts );
 		$this->assertEquals( false, $this->cache->get( $key ), "Pending value not written." );
+	}
+
+	public function testMcRouterSupport() {
+		$localBag = $this->getMock( 'EmptyBagOStuff', [ 'set', 'delete' ] );
+		$localBag->expects( $this->never() )->method( 'set' );
+		$localBag->expects( $this->never() )->method( 'delete' );
+		$wanCache = new WANObjectCache( [
+			'cache' => $localBag,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
+		$valFunc = function () {
+			return 1;
+		};
+
+		// None of these should use broadcasting commands (e.g. SET, DELETE)
+		$wanCache->get( 'x' );
+		$wanCache->get( 'x', $ctl, [ 'check1' ] );
+		$wanCache->getMulti( [ 'x', 'y' ] );
+		$wanCache->getMulti( [ 'x', 'y' ], $ctls, [ 'check2' ] );
+		$wanCache->getWithSetCallback( 'p', 30, $valFunc );
+		$wanCache->getCheckKeyTime( 'zzz' );
 	}
 }
