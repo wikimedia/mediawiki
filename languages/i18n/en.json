@@ -408,7 +408,6 @@
 	"yourpasswordagain": "Retype password:",
 	"createacct-yourpasswordagain": "Confirm password",
 	"createacct-yourpasswordagain-ph": "Enter password again",
-	"remembermypassword": "Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"userlogin-remembermypassword": "Keep me logged in",
 	"userlogin-signwithsecure": "Use secure connection",
 	"cannotloginnow-title": "Cannot log in now",
