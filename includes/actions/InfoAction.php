@@ -671,7 +671,7 @@ class InfoAction extends FormlessAction {
 
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			self::getCacheKey( $page->getTitle(), $page->getLatest() ),
-			86400 * 7,
+			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
