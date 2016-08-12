@@ -57,8 +57,6 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgRequestTime;
-
 		if ( !$this->enabled ) {
 			$this->fatalError( "Nothing to do -- \$wgUseFileCache is disabled." );
 		}
@@ -90,7 +88,8 @@ class RebuildFileCache extends Maintenance {
 			$this->fatalError( "Nothing to do." );
 		}
 
-		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip'; // hack, no real client
+		// Mock request (hack, no real client)
+		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip';
 
 		# Do remaining chunk
 		$end += $batchSize - 1;
@@ -141,22 +140,27 @@ class RebuildFileCache extends Maintenance {
 					}
 
 					Wikimedia\suppressWarnings(); // header notices
-					// Cache ?action=view
-					$wgRequestTime = microtime( true ); # T24852
+
+					// 1. Cache ?action=view
+					// Be sure to reset the mocked request time (T24852)
+					$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
 					ob_start();
 					$article->view();
 					$context->getOutput()->output();
 					$context->getOutput()->clearHTML();
 					$viewHtml = ob_get_clean();
 					$viewCache->saveToFileCache( $viewHtml );
-					// Cache ?action=history
-					$wgRequestTime = microtime( true ); # T24852
+
+					// 2. Cache ?action=history
+					// Be sure to reset the mocked request time (T24852)
+					$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
 					ob_start();
 					Action::factory( 'history', $article, $context )->show();
 					$context->getOutput()->output();
 					$context->getOutput()->clearHTML();
 					$historyHtml = ob_get_clean();
 					$historyCache->saveToFileCache( $historyHtml );
+
 					Wikimedia\restoreWarnings();
 
 					if ( $rebuilt ) {
