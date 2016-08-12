@@ -361,6 +361,48 @@ class MemcachedClient {
 	}
 
 	/**
+	 * Changes the TTL on a key from the server to $time
+	 *
+	 * @param string $key Key
+	 * @param int $time TTL in seconds
+	 *
+	 * @return bool True on success, false on failure
+	 */
+	public function touch( $key, $time = 0 ) {
+		if ( !$this->_active ) {
+			return false;
+		}
+
+		$sock = $this->get_sock( $key );
+		if ( !is_resource( $sock ) ) {
+			return false;
+		}
+
+		$key = is_array( $key ) ? $key[1] : $key;
+
+		if ( isset( $this->stats['touch'] ) ) {
+			$this->stats['touch']++;
+		} else {
+			$this->stats['touch'] = 1;
+		}
+		$cmd = "touch $key $time\r\n";
+		if ( !$this->_fwrite( $sock, $cmd ) ) {
+			return false;
+		}
+		$res = $this->_fgets( $sock );
+
+		if ( $this->_debug ) {
+			$this->_debugprint( sprintf( "MemCache: touch %s (%s)", $key, $res ) );
+		}
+
+		if ( $res == "TOUCHED" ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param string $key
 	 * @param int $timeout
 	 * @return bool

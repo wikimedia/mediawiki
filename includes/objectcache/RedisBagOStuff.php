@@ -272,10 +272,10 @@ class RedisBagOStuff extends BagOStuff {
 		if ( !$conn ) {
 			return false;
 		}
-		if ( !$conn->exists( $key ) ) {
-			return null;
-		}
 		try {
+			if ( !$conn->exists( $key ) ) {
+				return null;
+			}
 			// @FIXME: on races, the key may have a 0 TTL
 			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
@@ -284,6 +284,24 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		$this->logRequest( 'incr', $key, $server, $result );
+		return $result;
+	}
+
+	public function changeTTL( $key, $expiry = 0 ) {
+		list( $server, $conn ) = $this->getConnection( $key );
+		if ( !$conn ) {
+			return false;
+		}
+
+		$expiry = $this->convertToRelative( $expiry );
+		try {
+			$result = $conn->expire( $key, $expiry );
+		} catch ( RedisException $e ) {
+			$result = false;
+			$this->handleException( $conn, $e );
+		}
+
+		$this->logRequest( 'expire', $key, $server, $result );
 		return $result;
 	}
 
