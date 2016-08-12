@@ -1539,6 +1539,7 @@
 	"uploadstash-errclear": "מחיקת הקבצים נכשלה.",
 	"uploadstash-refresh": "רענון רשימת הקבצים",
 	"uploadstash-thumbnail": "הצגת תמונה ממוזערת",
+	"uploadstash-exception": "לא ניתן לאחסן את ההעלאה בסליק ($1): \"$2\".",
 	"invalid-chunk-offset": "היסט גוש לא תקין",
 	"img-auth-accessdenied": "הגישה נדחתה",
 	"img-auth-nopathinfo": "PATH_INFO חסר.\nהשרת אינו מוגדר להעברת מידע זה.\nייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.\nראו https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

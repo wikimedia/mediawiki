@@ -2801,6 +2801,7 @@
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 страница беше добавена|$1 страници бяха добавени}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Една страница беше премахната|$1 страници бяха премахнати}}:",
 	"watchlistedit-clear-legend": "Изчистване на списъка за наблюдение",
+	"watchlistedit-clear-explain": "Всички заглавия ще бъдат премахнати от списъка ви за наблюдение",
 	"watchlistedit-clear-titles": "Заглавия:",
 	"watchlistedit-clear-submit": "Изчистване на списъка за наблюдение (Необратимо!)",
 	"watchlistedit-clear-done": "Списъкът за наблюдение беше изчистен.",

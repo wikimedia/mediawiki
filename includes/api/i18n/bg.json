@@ -47,5 +47,6 @@
 	"apihelp-move-param-ignorewarnings": "Пренебрегване на всякакви предупреждения.",
 	"apihelp-protect-example-protect": "Защита на страница.",
 	"apihelp-query+langlinks-paramvalue-prop-url": "Добавя пълният URL-адрес.",
-	"apihelp-query+linkshere-paramvalue-prop-title": "Заглавие на всяка страница."
+	"apihelp-query+linkshere-paramvalue-prop-title": "Заглавие на всяка страница.",
+	"apihelp-query+watchlist-paramvalue-type-log": "Записи в дневника."
 }
