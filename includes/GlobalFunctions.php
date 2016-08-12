@@ -996,7 +996,7 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
-	global $wgDebugTimestamps, $wgRequestTime;
+	global $wgDebugTimestamps;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -1007,7 +1007,7 @@ function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	if ( $wgDebugTimestamps ) {
 		$context['seconds_elapsed'] = sprintf(
 			'%6.4f',
-			microtime( true ) - $wgRequestTime
+			microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT']
 		);
 		$context['memory_used'] = sprintf(
 			'%5.1fM',
@@ -1481,17 +1481,12 @@ function wfHostname() {
  * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
  * hostname of the server handling the request.
  *
- * @return string
+ * @deprecated since 1.28; use Skin::getReportTime()
+ * @return WrappedString\WrappedString
  */
 function wfReportTime() {
-	global $wgRequestTime, $wgShowHostnames;
-
-	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
-	$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
-	if ( $wgShowHostnames ) {
-		$reportVars['wgHostname'] = wfHostname();
-	}
-	return Skin::makeVariablesScript( $reportVars );
+	wfDeprecated( __FUNCTION__, '1.28' );
+	return RequestContext::getMain()->getSkin()->getReportTime();
 }
 
 /**

@@ -597,6 +597,27 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Returns a script tag that stores the amount of time it took MediaWiki to
+	 * handle the request in milliseconds as 'wgBackendResponseTime'.
+	 *
+	 * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
+	 * hostname of the server handling the request.
+	 *
+	 * @since 1.28
+	 * @return WrappedString\WrappedString
+	 */
+	public function getReportTime() {
+		global $wgShowHostnames;
+
+		$responseTime = round( $this->getRequest()->getElapsedTime() * 1000 );
+		$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
+		if ( $wgShowHostnames ) {
+			$reportVars['wgHostname'] = wfHostname();
+		}
+		return self::makeVariablesScript( $reportVars );
+	}
+
+	/**
 	 * Text with the permalink to the source page,
 	 * usually shown on the footer of a printed page
 	 *
