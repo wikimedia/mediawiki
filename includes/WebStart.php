@@ -35,13 +35,6 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-/**
- * @var float Request start time as fractional seconds since epoch
- * @deprecated since 1.25; use $_SERVER['REQUEST_TIME_FLOAT'] or
- *   WebRequest::getElapsedTime() instead.
- */
-$wgRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
-
 unset( $IP );
 
 # Valid web server entry point, enable includes.

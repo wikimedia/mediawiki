@@ -634,7 +634,7 @@ abstract class Maintenance {
 	 * Do some sanity checking and basic setup
 	 */
 	public function setup() {
-		global $IP, $wgCommandLineMode, $wgRequestTime;
+		global $IP, $wgCommandLineMode;
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && isset( $_SERVER['REQUEST_METHOD'] ) ) {
@@ -669,8 +669,6 @@ abstract class Maintenance {
 		# "When running PHP from the command line the default setting is 0."
 		# But sometimes this doesn't seem to be the case.
 		ini_set( 'max_execution_time', 0 );
-
-		$wgRequestTime = microtime( true );
 
 		# Define us as being in MediaWiki
 		define( 'MEDIAWIKI', true );

@@ -56,8 +56,6 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgRequestTime;
-
 		if ( !$this->enabled ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
@@ -137,7 +135,6 @@ class RebuildFileCache extends Maintenance {
 
 					MediaWiki\suppressWarnings(); // header notices
 					// Cache ?action=view
-					$wgRequestTime = microtime( true ); # bug 22852
 					ob_start();
 					$article->view();
 					$context->getOutput()->output();
@@ -145,7 +142,6 @@ class RebuildFileCache extends Maintenance {
 					$viewHtml = ob_get_clean();
 					$viewCache->saveToFileCache( $viewHtml );
 					// Cache ?action=history
-					$wgRequestTime = microtime( true ); # bug 22852
 					ob_start();
 					Action::factory( 'history', $article, $context )->show();
 					$context->getOutput()->output();

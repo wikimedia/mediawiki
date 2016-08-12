@@ -206,6 +206,8 @@ changes to languages because of Phabricator reports.
 * IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
   migrate to using the same functions on a ProxyLookup instance, obtainable from
   MediaWikiServices.
+* $wgRequestTime was removed (deprecated since 1.25). Use
+  $_SERVER['REQUEST_TIME_FLOAT'] or WebRequest::getElapsedTime() instead.
 
 == Compatibility ==
 

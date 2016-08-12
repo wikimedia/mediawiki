@@ -222,7 +222,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 			if ( $this->getIsWrappedHtml() ) {
 				// This is a special output mode mainly intended for ApiSandbox use
-				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
+				$time = $this->getMain()->getRequest()->getElapsedTime();
 				$json = FormatJson::encode(
 					[
 						'html' => $out->getHTML(),
