@@ -103,16 +103,15 @@ class ImportTextFiles extends Maintenance {
 			$timestamp = $useTimestamp ? wfTimestamp( TS_UNIX, filemtime( $file ) ) : wfTimestampNow();
 
 			$title = Title::newFromText( $pageName );
-			$exists = $title->exists();
-			$oldRevID = $title->getLatestRevID();
-			$oldRev = $oldRevID ? Revision::newFromId( $oldRevID ) : null;
-
-			if ( !$title ) {
+			if ( !$title || $title->getPrefixedText() === '' ) {
 				$this->error( "Invalid title $pageName. Skipping.\n" );
 				$skipCount++;
 				continue;
 			}
 
+			$exists = $title->exists();
+			$oldRevID = $title->getLatestRevID();
+			$oldRev = $oldRevID ? Revision::newFromId( $oldRevID ) : null;
 			$actualTitle = $title->getPrefixedText();
 
 			if ( $exists ) {
