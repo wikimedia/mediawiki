@@ -105,6 +105,8 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* $wgRequestTime was removed (deprecated since 1.25). Use
+  $_SERVER['REQUEST_TIME_FLOAT'] or WebRequest::getElapsedTime() instead.
 
 == Compatibility ==
 
