@@ -373,6 +373,20 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Reset the TTL on a key if it exists
+	 *
+	 * @param string $key
+	 * @param int $expiry
+	 * @return bool Success Returns false if there is no key
+	 * @since 1.28
+	 */
+	public function changeTTL( $key, $expiry = 0 ) {
+		$value = $this->get( $key );
+
+		return ( $value === false ) ? false : $this->set( $key, $value, $expiry );
+	}
+
+	/**
 	 * Acquire an advisory lock on a key string
 	 *
 	 * Note that if reentry is enabled, duplicate calls ignore $expiry
