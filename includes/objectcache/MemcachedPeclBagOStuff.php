@@ -226,4 +226,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$result = $this->client->setMulti( $data, $this->fixExpiry( $exptime ) );
 		return $this->checkResult( false, $result );
 	}
+
+	public function changeTTL( $key, $expiry = 0 ) {
+		$this->debugLog( "touch($key)" );
+		$result = $this->client->touch( $key, $expiry );
+		return $this->checkResult( $key, $result );
+	}
 }

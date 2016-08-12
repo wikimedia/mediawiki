@@ -139,6 +139,20 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers BagOStuff::changeTTL
+	 */
+	public function testChangeTTL() {
+		$key = wfMemcKey( 'test' );
+		$value = 'meow';
+
+		$this->cache->add( $key, $value );
+		$this->assertTrue( $this->cache->changeTTL( $key, 5 ) );
+		$this->assertEquals( $this->cache->get( $key ), $value );
+		$this->cache->delete( $key );
+		$this->assertFalse( $this->cache->changeTTL( $key, 5 ) );
+	}
+
+	/**
 	 * @covers BagOStuff::add
 	 */
 	public function testAdd() {

@@ -79,6 +79,11 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
+	public function changeTTL( $key, $exptime = 0 ) {
+		return $this->client->touch( $this->validateKeyEncoding( $key ),
+			$this->fixExpiry( $exptime ) );
+	}
+
 	/**
 	 * Get the underlying client object. This is provided for debugging
 	 * purposes.
