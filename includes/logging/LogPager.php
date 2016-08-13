@@ -171,10 +171,12 @@ class LogPager extends ReverseChronologicalPager {
 		if ( is_null( $usertitle ) ) {
 			return;
 		}
+		$name = $usertitle->getText();
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $name );
 		if ( !$userid ) {
-			$this->mConds['log_user_text'] = IP::sanitizeIP( $name );
+			// Use db key form to normalize for non-existent users (eg. maintenance scripts)
+			$this->mConds['log_user_text'] = IP::sanitizeIP( $usertitle->getDBkey() );
 		} else {
 			$this->mConds['log_user'] = $userid;
 		}
@@ -187,7 +189,7 @@ class LogPager extends ReverseChronologicalPager {
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
 
-		$this->performer = $usertitle->getText();
+		$this->performer = $name;
 	}
 
 	/**
