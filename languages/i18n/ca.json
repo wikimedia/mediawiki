@@ -1307,6 +1307,7 @@
 	"action-applychangetags": "aplica les etiquetes juntament amb els canvis",
 	"action-changetags": "afegeix i elimina etiquetes a les revisions i les entrades de registre individuals",
 	"action-deletechangetags": "eliminar etiquetes des de la base de dades",
+	"action-purge": "purga la pàgina",
 	"nchanges": "$1 {{PLURAL:$1|canvi|canvis}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|des de la darrera visita}}",
 	"enhancedrc-history": "historial",

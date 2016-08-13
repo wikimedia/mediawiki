@@ -2191,6 +2191,7 @@
 	"undeletehistorynoadmin": "Diese Seite wurde gelöscht. Der Löschgrund ist in der Zusammenfassung angegeben,\ngenauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bearbeitet hat.\nDer aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.",
 	"undelete-revision": "Gelöschte Version von $1 (vom $4 um $5 Uhr), $3:",
 	"undeleterevision-missing": "Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.",
+	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Eine Version konnte|$1 Versionen konnten}} nicht wiederhergestellt werden, da ihre <code>rev_id</code> bereits in Verwendung {{PLURAL:$1|ist|sind}}.",
 	"undelete-nodiff": "Keine vorhergehende Version vorhanden.",
 	"undeletebtn": "Wiederherstellen",
 	"undeletelink": "ansehen/wiederherstellen",

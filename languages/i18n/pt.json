@@ -953,7 +953,7 @@
 	"showhideselectedversions": "Mostrar/ocultar versões selecionadas",
 	"editundo": "desfazer",
 	"diff-empty": "(Sem diferenças)",
-	"diff-multi-sameuser": "(Há {{PLURAL:$1|uma edição intermédia|$1 edições intermédias}} do mesmo utilizador que não estão a ser apresentadas)",
+	"diff-multi-sameuser": "(Há {{PLURAL:$1|uma edição intermédia do mesmo utilizador que não está a ser apresentada|$1 edições intermédias do mesmo utilizador que não estão a ser apresentadas}})",
 	"diff-multi-otherusers": "(Há {{PLURAL:$1|uma revisão intermédia|$1 revisões intermédias}} de {{PLURAL:$2|outro utilizador|$2 utilizadores}} que não {{PLURAL:$1|está a ser apresentada|estão a ser apresentadas}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})",
 	"difference-missing-revision": "{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.\n\nIsto é geralmente causado por seguir uma ligação de histórico desatualizada para uma página que foi eliminada.\nOs detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
