@@ -12,14 +12,27 @@ class MWCallableUpdate implements DeferrableUpdate, DeferrableCallback {
 	/**
 	 * @param callable $callback
 	 * @param string $fname Calling method
+	 * @param IDatabase|null $dbw Abort if this DB is rolled back [optional] (since 1.28)
 	 */
-	public function __construct( callable $callback, $fname = 'unknown' ) {
+	public function __construct( callable $callback, $fname = 'unknown', IDatabase $dbw = null ) {
 		$this->callback = $callback;
 		$this->fname = $fname;
+
+		if ( $dbw && $dbw->trxLevel() ) {
+			$dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ] );
+		}
 	}
 
 	public function doUpdate() {
-		call_user_func( $this->callback );
+		if ( $this->callback ) {
+			call_user_func( $this->callback );
+		}
+	}
+
+	public function cancelOnRollback( $trigger ) {
+		if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
+			$this->callback = null;
+		}
 	}
 
 	public function getOrigin() {

@@ -68,9 +68,12 @@ class DeferredUpdates {
 	 *
 	 * @param callable $callable
 	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 * @param IDatabase|null $dbw Abort if this DB is rolled back [optional] (since 1.28)
 	 */
-	public static function addCallableUpdate( $callable, $type = self::POSTSEND ) {
-		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller() ), $type );
+	public static function addCallableUpdate(
+		$callable, $type = self::POSTSEND, IDatabase $dbw = null
+	) {
+		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dbw ), $type );
 	}
 
 	/**
