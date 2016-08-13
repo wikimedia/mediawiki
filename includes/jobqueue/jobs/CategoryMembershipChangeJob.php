@@ -64,7 +64,7 @@ class CategoryMembershipChangeJob extends Job {
 			return false;
 		}
 		// Clear any stale REPEATABLE-READ snapshot
-		$dbr->commit( __METHOD__, 'flush' );
+		wfGetLBFactory()->commitAll( __METHOD__ );
 
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
@@ -157,6 +157,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$factory = wfGetLBFactory();
 		$catMembChange = new CategoryMembershipChange( $title, $newRev );
 		$catMembChange->checkTemplateLinks();
 
@@ -167,8 +168,8 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication();
+				$factory->commitMasterChanges( __METHOD__ );
+				$factory->waitForReplication();
 			}
 		}
 
@@ -176,8 +177,8 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication();
+				$factory->commitMasterChanges( __METHOD__ );
+				$factory->waitForReplication();
 			}
 		}
 	}

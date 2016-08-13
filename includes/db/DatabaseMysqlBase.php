@@ -767,9 +767,6 @@ abstract class DatabaseMysqlBase extends Database {
 			return 0; // already reached this point for sure
 		}
 
-		// Commit any open transactions
-		$this->commit( __METHOD__, 'flush' );
-
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		if ( $this->useGTIDs && $pos->gtids ) {
 			// Wait on the GTID set (MariaDB only)
