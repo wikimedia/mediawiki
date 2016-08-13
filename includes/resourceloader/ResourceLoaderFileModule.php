@@ -41,7 +41,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of paths to JavaScript files to always include
 	 * @par Usage:
 	 * @code
-	 * array( [file-path], [file-path], ... )
+	 * [ [file-path], [file-path], ... ]
 	 * @endcode
 	 */
 	protected $scripts = [];
@@ -50,7 +50,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of JavaScript files to include when using a specific language
 	 * @par Usage:
 	 * @code
-	 * array( [language-code] => array( [file-path], [file-path], ... ), ... )
+	 * [ [language-code] => [ [file-path], [file-path], ... ], ... ]
 	 * @endcode
 	 */
 	protected $languageScripts = [];
@@ -59,7 +59,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of JavaScript files to include when using a specific skin
 	 * @par Usage:
 	 * @code
-	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * [ [skin-name] => [ [file-path], [file-path], ... ], ... ]
 	 * @endcode
 	 */
 	protected $skinScripts = [];
@@ -68,7 +68,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of paths to JavaScript files to include in debug mode
 	 * @par Usage:
 	 * @code
-	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * [ [skin-name] => [ [file-path], [file-path], ... ], ... ]
 	 * @endcode
 	 */
 	protected $debugScripts = [];
@@ -77,7 +77,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of paths to CSS files to always include
 	 * @par Usage:
 	 * @code
-	 * array( [file-path], [file-path], ... )
+	 * [ [file-path], [file-path], ... ]
 	 * @endcode
 	 */
 	protected $styles = [];
@@ -86,7 +86,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of paths to CSS files to include when using specific skins
 	 * @par Usage:
 	 * @code
-	 * array( [file-path], [file-path], ... )
+	 * [ [file-path], [file-path], ... ]
 	 * @endcode
 	 */
 	protected $skinStyles = [];
@@ -95,7 +95,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of modules this module depends on
 	 * @par Usage:
 	 * @code
-	 * array( [file-path], [file-path], ... )
+	 * [ [file-path], [file-path], ... ]
 	 * @endcode
 	 */
 	protected $dependencies = [];
@@ -109,7 +109,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of message keys used by this module
 	 * @par Usage:
 	 * @code
-	 * array( [message-key], [message-key], ... )
+	 * [ [message-key], [message-key], ... ]
 	 * @endcode
 	 */
 	protected $messages = [];
@@ -138,7 +138,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array Place where readStyleFile() tracks file dependencies
 	 * @par Usage:
 	 * @code
-	 * array( [file-path], [file-path], ... )
+	 * [ [file-path], [file-path], ... ]
 	 * @endcode
 	 */
 	protected $localFileRefs = [];
@@ -165,7 +165,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @throws InvalidArgumentException
 	 * @par Construction options:
 	 * @code
-	 *     array(
+	 *     [
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
 	 *         // Base path to prepend to all remote paths in $options. Defaults to $wgResourceBasePath
@@ -207,7 +207,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         // The file must contain valid JavaScript for execution in a private function.
 	 *         // The file must not contain the "function () {" and "}" wrapper though.
 	 *         'skipFunction' => [file path]
-	 *     )
+	 *     ]
 	 * @endcode
 	 */
 	public function __construct(

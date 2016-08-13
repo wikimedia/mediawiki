@@ -700,8 +700,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * not be used in the pager offset or in any links for users.
 	 *
 	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
-	 * this must return a corresponding array of 'querykey' => array( fields...) pairs
-	 * in order for a request with &count=querykey to use array( fields...) to sort.
+	 * this must return a corresponding array of 'querykey' => [ fields... ] pairs
+	 * in order for a request with &count=querykey to use [ fields... ] to sort.
 	 *
 	 * This is useful for pagers that GROUP BY a unique column (say page_id)
 	 * and ORDER BY another (say page_len). Using GROUP BY and ORDER BY both on

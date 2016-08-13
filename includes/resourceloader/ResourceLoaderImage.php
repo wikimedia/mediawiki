@@ -54,8 +54,8 @@ class ResourceLoaderImage {
 		$this->variants = $variants;
 
 		// Expand shorthands:
-		// array( "en,de,fr" => "foo.svg" )
-		// → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
+		// [ "en,de,fr" => "foo.svg" ]
+		// → [ "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" ]
 		if ( is_array( $this->descriptor ) && isset( $this->descriptor['lang'] ) ) {
 			foreach ( array_keys( $this->descriptor['lang'] ) as $langList ) {
 				if ( strpos( $langList, ',' ) !== false ) {

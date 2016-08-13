@@ -249,7 +249,7 @@ class ObjectCache {
 	 *     ObjectCache::getLocalServerInstance( $fallbackType );
 	 *
 	 *     // From $wgObjectCaches via newFromParams()
-	 *     ObjectCache::getLocalServerInstance( array( 'fallback' => $fallbackType ) );
+	 *     ObjectCache::getLocalServerInstance( [ 'fallback' => $fallbackType ] );
 	 *
 	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff

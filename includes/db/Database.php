@@ -1864,7 +1864,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Gets an array of aliased table names
 	 *
-	 * @param array $tables Array( [alias] => table )
+	 * @param array $tables [ [alias] => table ]
 	 * @return string[] See tableNameWithAlias()
 	 */
 	public function tableNamesWithAlias( $tables ) {
@@ -1898,7 +1898,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Gets an array of aliased field names
 	 *
-	 * @param array $fields Array( [alias] => field )
+	 * @param array $fields [ [alias] => field ]
 	 * @return string[] See fieldNameWithAlias()
 	 */
 	public function fieldNamesWithAlias( $fields ) {

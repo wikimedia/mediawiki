@@ -91,7 +91,7 @@ class MWException extends Exception {
 				is_string( $hook ) ||
 				( is_array( $hook ) && count( $hook ) >= 2 && is_string( $hook[0] ) )
 			) {
-				// 'function' or array( 'class', hook' )
+				// 'function' or [ 'class', 'hook' ]
 				$result = call_user_func_array( $hook, $callargs );
 			} else {
 				$result = null;

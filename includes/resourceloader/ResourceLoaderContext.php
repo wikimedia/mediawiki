@@ -91,8 +91,8 @@ class ResourceLoaderContext {
 
 	/**
 	 * Expand a string of the form jquery.foo,bar|jquery.ui.baz,quux to
-	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
-	 * 'jquery.ui.baz', 'jquery.ui.quux' )
+	 * an array of module names like [ 'jquery.foo', 'jquery.bar',
+	 * 'jquery.ui.baz', 'jquery.ui.quux' ]
 	 * @param string $modules Packed module name list
 	 * @return array Array of module names
 	 */
@@ -113,7 +113,7 @@ class ResourceLoaderContext {
 				} else {
 					// We have a prefix and a bunch of suffixes
 					$prefix = substr( $group, 0, $pos ); // 'foo'
-					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // array( 'bar', 'baz' )
+					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
 					foreach ( $suffixes as $suffix ) {
 						$retval[] = "$prefix.$suffix";
 					}

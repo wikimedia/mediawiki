@@ -48,7 +48,7 @@ class BacklinkCache {
 	 *  > (string) links table name
 	 *   > (int) batch size
 	 *    > 'numRows' : Number of rows for this link table
-	 *    > 'batches' : array( $start, $end )
+	 *    > 'batches' : [ $start, $end ]
 	 *
 	 * @see BacklinkCache::partitionResult()
 	 *

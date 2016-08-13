@@ -60,13 +60,13 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * Associative array mapping framework ids to a list of names of test suite modules
-	 * like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. )
+	 * like [ 'qunit' => [ 'mediawiki.tests.qunit.suites', 'ext.foo.tests', ... ], ... ]
 	 * @var array
 	 */
 	protected $testModuleNames = [];
 
 	/**
-	 * E.g. array( 'source-id' => 'http://.../load.php' )
+	 * E.g. [ 'source-id' => 'http://.../load.php' ]
 	 * @var array
 	 */
 	protected $sources = [];
@@ -433,7 +433,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * Source IDs are typically the same as the Wiki ID or database name (e.g. lowercase a-z).
 	 *
-	 * @param array|string $id Source ID (string), or array( id1 => loadUrl, id2 => loadUrl, ... )
+	 * @param array|string $id Source ID (string), or [ id1 => loadUrl, id2 => loadUrl, ... ]
 	 * @param string|array $loadUrl load.php url (string), or array with loadUrl key for
 	 *  backwards-compatibility.
 	 * @throws MWException
@@ -573,7 +573,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Get the list of sources.
 	 *
-	 * @return array Like array( id => load.php url, .. )
+	 * @return array Like [ id => load.php url, ... ]
 	 */
 	public function getSources() {
 		return $this->sources;
@@ -1173,7 +1173,7 @@ MESSAGE;
 	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
 	 *         Set the state of a single module called $name to $state
 	 *
-	 *    - ResourceLoader::makeLoaderStateScript( array( $name => $state, ... ) ):
+	 *    - ResourceLoader::makeLoaderStateScript( [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
 	 * @param string $name
@@ -1264,14 +1264,14 @@ MESSAGE;
 	 *     ):
 	 *        Register a single module.
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
+	 *   - ResourceLoader::makeLoaderRegisterScript( [ $name1, $name2 ] ):
 	 *        Register modules with the given names.
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( array(
-	 *        array( $name1, $version1, $dependencies1, $group1, $source1, $skip1 ),
-	 *        array( $name2, $version2, $dependencies1, $group2, $source2, $skip2 ),
+	 *   - ResourceLoader::makeLoaderRegisterScript( [
+	 *        [ $name1, $version1, $dependencies1, $group1, $source1, $skip1 ],
+	 *        [ $name2, $version2, $dependencies1, $group2, $source2, $skip2 ],
 	 *        ...
-	 *     ) ):
+	 *     ] ):
 	 *        Registers modules with the given names and parameters.
 	 *
 	 * @param string $name Module name
@@ -1329,7 +1329,7 @@ MESSAGE;
 	 *   - ResourceLoader::makeLoaderSourcesScript( $id, $properties ):
 	 *       Register a single source
 	 *
-	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $loadUrl, $id2 => $loadUrl, ... ) );
+	 *   - ResourceLoader::makeLoaderSourcesScript( [ $id1 => $loadUrl, $id2 => $loadUrl, ... ] );
 	 *       Register sources with the given IDs and properties.
 	 *
 	 * @param string $id Source ID
@@ -1402,13 +1402,13 @@ MESSAGE;
 	/**
 	 * Convert an array of module names to a packed query string.
 	 *
-	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
+	 * For example, [ 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ]
 	 * becomes 'foo.bar,baz|bar.baz,quux'
 	 * @param array $modules List of module names (strings)
 	 * @return string Packed query string
 	 */
 	public static function makePackedModulesString( $modules ) {
-		$groups = []; // array( prefix => array( suffixes ) )
+		$groups = []; // [ prefix => [ suffixes ] ]
 		foreach ( $modules as $module ) {
 			$pos = strrpos( $module, '.' );
 			$prefix = $pos === false ? '' : substr( $module, 0, $pos );
