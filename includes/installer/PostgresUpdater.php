@@ -68,6 +68,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
 			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
 			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
+			[ 'addSequence', 'change_tag', false, 'change_tag_ct_id_seq' ],
+			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -437,6 +439,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
+			[ 'addPgField', 'change_tag', 'ct_id',
+				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
+			[ 'addPgField', 'tag_summary', 'ts_id',
+				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq')" ],
 		];
 	}
 

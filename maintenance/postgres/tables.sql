@@ -25,6 +25,8 @@ DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS tag_summary_ts_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -653,7 +655,9 @@ CREATE TABLE category (
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
+CREATE SEQUENCE change_tag_ct_id_seq;
 CREATE TABLE change_tag (
+  ct_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq'),
   ct_rc_id   INTEGER      NULL,
   ct_log_id  INTEGER      NULL,
   ct_rev_id  INTEGER      NULL,
@@ -665,11 +669,13 @@ CREATE UNIQUE INDEX change_tag_log_tag ON change_tag(ct_log_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_rev_tag ON change_tag(ct_rev_id,ct_tag);
 CREATE INDEX change_tag_tag_id ON change_tag(ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 
+CREATE SEQUENCE tag_summary_ts_id_seq;
 CREATE TABLE tag_summary (
-  ts_rc_id   INTEGER     NULL,
-  ts_log_id  INTEGER     NULL,
-  ts_rev_id  INTEGER     NULL,
-  ts_tags    TEXT    NOT NULL
+  ts_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq'),
+  ts_rc_id   INTEGER      NULL,
+  ts_log_id  INTEGER      NULL,
+  ts_rev_id  INTEGER      NULL,
+  ts_tags    TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX tag_summary_rc_id ON tag_summary(ts_rc_id);
 CREATE UNIQUE INDEX tag_summary_log_id ON tag_summary(ts_log_id);
