@@ -39,7 +39,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	 * @return string
 	 */
 	protected function getContentClass() {
-		return 'JavaScriptContent';
+		return JavaScriptContent::class;
 	}
 
 	public function supportsRedirects() {

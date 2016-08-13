@@ -35,7 +35,7 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	protected function getContentClass() {
-		return 'WikitextContent';
+		return WikitextContent::class;
 	}
 
 	/**
