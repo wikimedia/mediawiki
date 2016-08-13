@@ -241,7 +241,10 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
+		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		foreach ( $updates as $key => $update ) {
+			$update->setTransactionTicket( $ticket );
 			// FIXME: This code probably shouldn't be here?
 			// Needed by things like Echo notifications which need
 			// to know which user caused the links update
