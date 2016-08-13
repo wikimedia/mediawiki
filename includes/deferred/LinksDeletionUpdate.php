@@ -78,8 +78,9 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		foreach ( $catBatches as $catBatch ) {
 			$this->page->updateCategoryCounts( [], $catBatch, $id );
 			if ( count( $catBatches ) > 1 ) {
-				$factory->commitMasterChanges( __METHOD__ );
-				$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+				$factory->commitAndWaitForReplication(
+					__METHOD__, $this->ticket, [ 'wiki' => $this->mDb->getWikiID() ]
+				);
 			}
 		}
 
@@ -174,8 +175,9 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			foreach ( $rcIdBatches as $rcIdBatch ) {
 				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
 				if ( count( $rcIdBatches ) > 1 ) {
-					$factory->commitMasterChanges( __METHOD__ );
-					$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+					$factory->commitAndWaitForReplication(
+						__METHOD__, $this->ticket, [ 'wiki' => $this->mDb->getWikiID() ]
+					);
 				}
 			}
 		}
@@ -194,8 +196,9 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			$pkDeleteConds[] = $this->mDb->makeList( (array)$row, LIST_AND );
 			if ( count( $pkDeleteConds ) >= $bSize ) {
 				$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
-				$factory->commitMasterChanges( __METHOD__ );
-				$factory->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
+				$factory->commitAndWaitForReplication(
+					__METHOD__, $this->ticket, [ 'wiki' => $this->mDb->getWikiID() ]
+				);
 				$pkDeleteConds = [];
 			}
 		}
