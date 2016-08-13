@@ -159,6 +159,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( preg_match( '/^namespace=(\d+)$/', $bit, $m ) ) {
 				$opts['namespace'] = $m[1];
 			}
+			if ( preg_match( '/^tagfilter=(.*)$/', $bit, $m ) ) {
+				$opts['tagfilter'] = $m[1];
+			}
 		}
 	}
 
