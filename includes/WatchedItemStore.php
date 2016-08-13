@@ -761,7 +761,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 					$this->uncacheLinkTarget( $target );
 
 					$this->reuseConnection( $dbw );
-				}
+				},
+				DeferredUpdates::POSTSEND,
+				$dbw
 			);
 		}
 

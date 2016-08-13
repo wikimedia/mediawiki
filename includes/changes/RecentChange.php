@@ -589,16 +589,20 @@ class RecentChange {
 			'pageStatus' => 'changed'
 		];
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc, $tags ) {
-			$rc->save();
-			if ( $rc->mAttribs['rc_patrolled'] ) {
-				PatrolLog::record( $rc, true, $rc->getPerformer() );
-			}
-			if ( count( $tags ) ) {
-				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
-			}
-		} );
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $rc, $tags ) {
+				$rc->save();
+				if ( $rc->mAttribs['rc_patrolled'] ) {
+					PatrolLog::record( $rc, true, $rc->getPerformer() );
+				}
+				if ( count( $tags ) ) {
+					ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
+						$rc->mAttribs['rc_this_oldid'], null, null );
+				}
+			},
+			DeferredUpdates::POSTSEND,
+			wfGetDB( DB_MASTER )
+		);
 
 		return $rc;
 	}
@@ -661,16 +665,20 @@ class RecentChange {
 			'pageStatus' => 'created'
 		];
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc, $tags ) {
-			$rc->save();
-			if ( $rc->mAttribs['rc_patrolled'] ) {
-				PatrolLog::record( $rc, true, $rc->getPerformer() );
-			}
-			if ( count( $tags ) ) {
-				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
-			}
-		} );
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $rc, $tags ) {
+				$rc->save();
+				if ( $rc->mAttribs['rc_patrolled'] ) {
+					PatrolLog::record( $rc, true, $rc->getPerformer() );
+				}
+				if ( count( $tags ) ) {
+					ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
+						$rc->mAttribs['rc_this_oldid'], null, null );
+				}
+			},
+			DeferredUpdates::POSTSEND,
+			wfGetDB( DB_MASTER )
+		);
 
 		return $rc;
 	}
