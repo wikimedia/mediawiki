@@ -171,6 +171,9 @@ class LogPager extends ReverseChronologicalPager {
 		if ( is_null( $usertitle ) ) {
 			return;
 		}
+		// Normalize username first so that non-existent users used
+		// in maintenance scripts work
+		$name = $usertitle->getText();
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $name );
 		if ( !$userid ) {
@@ -187,7 +190,7 @@ class LogPager extends ReverseChronologicalPager {
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
 
-		$this->performer = $usertitle->getText();
+		$this->performer = $name;
 	}
 
 	/**
