@@ -42,6 +42,8 @@ abstract class LBFactory implements DestructibleService {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
+	/** @var mixed */
+	protected $ticket;
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
@@ -72,6 +74,7 @@ abstract class LBFactory implements DestructibleService {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
 		$this->trxLogger = LoggerFactory::getInstance( 'DBTransaction' );
+		$this->ticket = mt_rand();
 	}
 
 	/**
@@ -402,6 +405,44 @@ abstract class LBFactory implements DestructibleService {
 				implode( ', ', $failed )
 			);
 		}
+	}
+
+	/**
+	 * Get a token asserting that no transaction writes are active
+	 *
+	 * @param string $fname Caller name (e.g. __METHOD__)
+	 * @return mixed A value to pass to commitAndWaitForReplication()
+	 * @since 1.28
+	 */
+	public function getEmptyTransactionTicket( $fname ) {
+		if ( $this->hasMasterChanges() ) {
+			wfWarn( __METHOD__ . ": $fname does not have outer scope." );
+			return null;
+		}
+
+		return $this->ticket;
+	}
+
+	/**
+	 * Convenience method for safely running commitMasterChanges()/waitForReplication()
+	 *
+	 * This will commit and wait unless $ticket indicates it is unsafe to do so
+	 *
+	 * @param string $fname Caller name (e.g. __METHOD__)
+	 * @param mixed $ticket Result of getOuterTransactionScopeTicket()
+	 * @param array $opts Options to waitForReplication()
+	 * @throws DBReplicationWaitError
+	 * @since 1.28
+	 */
+	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
+		if ( $ticket !== $this->ticket ) {
+			$logger = LoggerFactory::getInstance( 'DBPerformance' );
+			$logger->error( __METHOD__ . ": cannot commit; $fname does not have outer scope." );
+			return;
+		}
+
+		$this->commitMasterChanges( $fname );
+		$this->waitForReplication( $opts );
 	}
 
 	/**
