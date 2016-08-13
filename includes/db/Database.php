@@ -703,7 +703,7 @@ abstract class DatabaseBase implements IDatabase {
 						" performing implicit commit before closing connection!" );
 				}
 
-				$this->commit( __METHOD__, 'flush' );
+				$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 			}
 
 			$closed = $this->closeConnection();
@@ -2651,7 +2651,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( !$this->mTrxAtomicLevels && $this->mTrxAutomaticAtomic ) {
-			$this->commit( $fname, 'flush' );
+			$this->commit( $fname, self::FLUSHING_INTERNAL );
 		}
 	}
 
@@ -2746,7 +2746,7 @@ abstract class DatabaseBase implements IDatabase {
 			);
 		}
 
-		if ( $flush === 'flush' ) {
+		if ( $flush === self::FLUSHING_INTERNAL || $flush === self::FLUSHING_ALL_PEERS ) {
 			if ( !$this->mTrxLevel ) {
 				return; // nothing to do
 			} elseif ( !$this->mTrxAutomatic ) {
@@ -2796,7 +2796,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	final public function rollback( $fname = __METHOD__, $flush = '' ) {
-		if ( $flush !== 'flush' ) {
+		if ( $flush !== self::FLUSHING_INTERNAL && $flush !== self::FLUSHING_ALL_PEERS ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
 				return; // nothing to do
@@ -3302,11 +3302,11 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$unlocker = new ScopedCallback( function () use ( $lockKey, $fname ) {
-			$this->commit( __METHOD__, 'flush' );
+			$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 			$this->unlock( $lockKey, $fname );
 		} );
 
-		$this->commit( __METHOD__, 'flush' );
+		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 
 		return $unlocker;
 	}

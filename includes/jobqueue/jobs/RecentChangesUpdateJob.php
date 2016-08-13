@@ -81,6 +81,7 @@ class RecentChangesUpdateJob extends Job {
 			return; // already in progress
 		}
 
+		$factory = wfGetLBFactory();
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
 			$rcIds = $dbw->selectFieldValues( 'recentchanges',
@@ -93,7 +94,7 @@ class RecentChangesUpdateJob extends Job {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
 			}
 			// Commit in chunks to avoid slave lag
-			$dbw->commit( __METHOD__, 'flush' );
+			$factory->commitMasterChanges( __METHOD__ );
 
 			if ( count( $rcIds ) === $wgUpdateRowsPerQuery ) {
 				// There might be more, so try waiting for slaves
