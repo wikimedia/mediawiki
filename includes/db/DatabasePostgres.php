@@ -149,7 +149,7 @@ class SavepointPostgres {
 		$this->didbegin = false;
 		/* If we are not in a transaction, we need to be for savepoint trickery */
 		if ( !$dbw->trxLevel() ) {
-			$dbw->begin( "FOR SAVEPOINT" );
+			$dbw->begin( "FOR SAVEPOINT", DatabasePostgres::TRANSACTION_INTERNAL );
 			$this->didbegin = true;
 		}
 	}
@@ -1207,7 +1207,7 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	function determineCoreSchema( $desiredSchema ) {
-		$this->begin( __METHOD__ );
+		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->mCoreSchema = $desiredSchema;
