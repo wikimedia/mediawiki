@@ -445,7 +445,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function begin( $fname = __METHOD__ ) {
+	public function begin( $fname = __METHOD__, $mode = '' ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
