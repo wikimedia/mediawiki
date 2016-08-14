@@ -815,7 +815,7 @@ abstract class DatabaseBase implements IDatabase {
 		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX )
 			&& $this->isTransactableQuery( $sql )
 		) {
-			$this->begin( __METHOD__ . " ($fname)" );
+			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->mTrxAutomatic = true;
 		}
 
@@ -2203,7 +2203,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$useTrx = !$this->mTrxLevel;
 		if ( $useTrx ) {
-			$this->begin( $fname );
+			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 		}
 		try {
 			# Update any existing conflicting row(s)
@@ -2221,7 +2221,7 @@ abstract class DatabaseBase implements IDatabase {
 			throw $e;
 		}
 		if ( $useTrx ) {
-			$this->commit( $fname );
+			$this->commit( $fname, self::TRANSACTION_INTERNAL );
 		}
 
 		return $ok;
@@ -2520,7 +2520,7 @@ abstract class DatabaseBase implements IDatabase {
 			$this->mTrxPreCommitCallbacks[] = [ $callback, wfGetCaller() ];
 		} else {
 			// If no transaction is active, then make one for this callback
-			$this->begin( __METHOD__ );
+			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 			try {
 				call_user_func( $callback );
 				$this->commit( __METHOD__ );
@@ -2628,7 +2628,7 @@ abstract class DatabaseBase implements IDatabase {
 
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
-			$this->begin( $fname );
+			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			$this->mTrxAutomatic = true;
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
@@ -2666,43 +2666,21 @@ abstract class DatabaseBase implements IDatabase {
 		$this->endAtomic( $fname );
 	}
 
-	final public function begin( $fname = __METHOD__ ) {
-		if ( $this->mTrxLevel ) { // implicit commit
+	final public function begin( $fname = __METHOD__, $mode = '' ) {
+		if ( $this->mTrxLevel ) {
+			// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 			if ( $this->mTrxAtomicLevels ) {
-				// If the current transaction was an automatic atomic one, then we definitely have
-				// a problem. Same if there is any unclosed atomic level.
 				$levels = implode( ', ', $this->mTrxAtomicLevels );
-				throw new DBUnexpectedError(
-					$this,
-					"Got explicit BEGIN from $fname while atomic section(s) $levels are open."
-				);
+				$msg = "Got explicit BEGIN from $fname while atomic section(s) $levels are open.";
 			} elseif ( !$this->mTrxAutomatic ) {
-				// We want to warn about inadvertently nested begin/commit pairs, but not about
-				// auto-committing implicit transactions that were started by query() via DBO_TRX
-				throw new DBUnexpectedError(
-					$this,
-					"$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-						" performing implicit commit!"
-				);
-			} elseif ( $this->mTrxDoneWrites ) {
-				// The transaction was automatic and has done write operations
-				throw new DBUnexpectedError(
-					$this,
-					"$fname: Automatic transaction with writes in progress" .
-						" (from {$this->mTrxFname}), performing implicit commit!\n"
-				);
+				$msg = "$fname: Explicit transaction already active (from {$this->mTrxFname}).";
+			} else {
+				$msg = "$fname: Implicit transaction already active (from {$this->mTrxFname}).";
 			}
-
-			$this->runOnTransactionPreCommitCallbacks();
-			$writeTime = $this->pendingWriteQueryDuration();
-			$this->doCommit( $fname );
-			if ( $this->mTrxDoneWrites ) {
-				$this->mDoneWrites = microtime( true );
-				$this->getTransactionProfiler()->transactionWritingOut(
-					$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
-			}
-
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
+			throw new DBUnexpectedError( $this, $msg );
+		} elseif ( $this->getFlag( DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
+			// @TODO: make this an exception for multi-DB commit safety
+			wfLogDBError( "$fname: Implicit transaction expected (DBO_TRX set)." );
 		}
 
 		// Avoid fatals if close() was called
