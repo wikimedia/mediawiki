@@ -804,6 +804,10 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addWikiMsg( 'movesubpagetext', $this->getLanguage()->formatNum( $count ) );
 		$out->addHTML( "<ul>\n" );
 
+		$linkBatch = new LinkBatch( $subpages );
+		$linkBatch->setCaller( __METHOD__ );
+		$linkBatch->execute();
+
 		$linkRenderer = $this->getLinkRenderer();
 		foreach ( $subpages as $subpage ) {
 			$link = $linkRenderer->makeLink( $subpage );
