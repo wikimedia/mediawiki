@@ -275,14 +275,12 @@ class HTMLForm extends ContextSource {
 
 		switch ( $displayFormat ) {
 			case 'vform':
-				$reflector = new ReflectionClass( 'VFormHTMLForm' );
-				return $reflector->newInstanceArgs( $arguments );
+				return ObjectFactory::constructClassInstance( VFormHTMLForm::class, $arguments );
 			case 'ooui':
-				$reflector = new ReflectionClass( 'OOUIHTMLForm' );
-				return $reflector->newInstanceArgs( $arguments );
+				return ObjectFactory::constructClassInstance( OOUIHTMLForm::class, $arguments );
 			default:
-				$reflector = new ReflectionClass( 'HTMLForm' );
-				$form = $reflector->newInstanceArgs( $arguments );
+				/** @var HTMLForm $form */
+				$form = ObjectFactory::constructClassInstance( HTMLForm::class, $arguments );
 				$form->setDisplayFormat( $displayFormat );
 				return $form;
 		}
