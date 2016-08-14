@@ -40,6 +40,8 @@ interface IDatabase {
 	/** @var int Callback triggered by rollback */
 	const TRIGGER_ROLLBACK = 3;
 
+	/** @var string Transaction is started interally via DBO_TRX/startAtomic() */
+	const TRANSACTION_INTERNAL = 'implicit';
 	/** @var string Transaction operation comes from service managing all DBs */
 	const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Transaction operation comes from the database class internally */
@@ -1362,9 +1364,10 @@ interface IDatabase {
 	 * automatically because of the DBO_TRX flag.
 	 *
 	 * @param string $fname
+	 * @param string $mode A situationally valid IDatabase::TRANSACTION_* constant
 	 * @throws DBError
 	 */
-	public function begin( $fname = __METHOD__ );
+	public function begin( $fname = __METHOD__, $mode = '' );
 
 	/**
 	 * Commits a transaction previously started using begin().
