@@ -69,6 +69,6 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 * @return array
 	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		return [];
+		return parent::getFieldsForSearchIndex( $engine );
 	}
 }
