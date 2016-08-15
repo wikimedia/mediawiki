@@ -172,11 +172,17 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 					$name,
 					$type
 				] )->getMock();
+
 			$mockField->expects( $this->any() )->method( 'getMapping' )->willReturn( [
 				'testData' => 'test',
 				'name' => $name,
 				'type' => $type,
 			] );
+
+			$mockField->expects( $this->any() )
+				->method( 'merge' )
+				->willReturn( $mockField );
+
 			return $mockField;
 		};
 
