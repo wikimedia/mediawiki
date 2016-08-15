@@ -109,7 +109,7 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		$fields = [];
+		$fields = parent::getFieldsForSearchIndex( $engine );
 
 		$fields['category'] =
 			$engine->makeSearchFieldMapping( 'category', SearchIndexField::INDEX_TYPE_TEXT );
