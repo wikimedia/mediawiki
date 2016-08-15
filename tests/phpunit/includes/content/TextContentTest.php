@@ -102,6 +102,11 @@ class TextContentTest extends MediaWikiLangTestCase {
 				" Foo \n ",
 				' Foo',
 			],
+			[
+				# 2: newline normalization
+				"LF\n\nCRLF\r\n\r\nCR\r\rEND",
+				"LF\n\nCRLF\n\nCR\n\nEND",
+			],
 		];
 	}
 

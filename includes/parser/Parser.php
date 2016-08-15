@@ -4364,11 +4364,7 @@ class Parser {
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
-		$pairs = [
-			"\r\n" => "\n",
-			"\r" => "\n",
-		];
-		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
+		$text = str_replace( [ "\r\n", "\r" ], "\n", $text );
 		if ( $options->getPreSaveTransform() ) {
 			$text = $this->pstPass2( $text, $user );
 		}
