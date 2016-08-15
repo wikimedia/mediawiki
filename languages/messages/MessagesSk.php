@@ -33,6 +33,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'cs';
+
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktívniPoužívatelia' ],
 	'Allmessages'               => [ 'VšetkySprávy' ],
