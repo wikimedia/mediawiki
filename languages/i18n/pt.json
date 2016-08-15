@@ -792,6 +792,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Matriz vazia",
+	"deprecated-self-close-category": "Páginas com etiquetas HTML de autofechamento não válidas",
 	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] chama [[:$2]] com mais de um valor para o parâmetro \"$3\". Somente o último valor fornecido será utilizado.",
 	"duplicate-args-category": "Páginas com argumentos de predefinições duplicados",
 	"duplicate-args-category-desc": "A página contém campos de predefinições que utilizam duplicatas de argumentos, tais como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

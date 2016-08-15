@@ -3846,7 +3846,7 @@
 	"tags-active-yes": "Table cell contents if given tag is \"active\".\n\nSee also:\n* {{msg-mw|Tags-active-no}}\n{{Identical|Yes}}",
 	"tags-active-no": "Table cell contents if given tag is not \"active\".\n\nSee also:\n* {{msg-mw|Tags-active-yes}}\n{{Identical|No}}",
 	"tags-source-extension": "Table cell contents if given tag can be applied automatically by a software [[mw:Manual:Extensions|extension]].\n\nSee also:\n* {{msg-mw|Tags-source-manual}}\n* {{msg-mw|Tags-source-none}}",
-	"tags-source-manual": "Table cell contents if given tag can be applied by users or bots.\n\nSee also:\n* {{msg-mw|Tags-source-extension}}\n* {{msg-mw|Tags-source-none}}",
+	"tags-source-manual": "\"Applied\" is not past tense, but an adjective that describes an action that sometimes happens, as in the sentence: \"(this tag is usually) applied by users and bots\".\n\nTable cell contents if given tag can be applied by users or bots.\n\nSee also:\n* {{msg-mw|Tags-source-extension}}\n* {{msg-mw|Tags-source-none}}",
 	"tags-source-none": "Table cell contents if given tag is no longer in use. (It was applied in the past, but it is currently not applied.)\n\nSee also:\n* {{msg-mw|Tags-source-extension}}\n* {{msg-mw|Tags-source-manual}}",
 	"tags-edit": "Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.\n{{Identical|Edit}}",
 	"tags-delete": "Used on [[Special:Tags]]. Verb. Used as display text on a link to delete a tag.\n{{Identical|Delete}}",

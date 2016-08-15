@@ -2205,7 +2205,7 @@
 	"undeletedrevisions": "{{PLURAL:$1|Una versione recuperata|$1 versioni recuperate}}",
 	"undeletedrevisions-files": "{{PLURAL:$1|Una versione|$1 versioni}} e $2 file recuperati",
 	"undeletedfiles": "{{PLURAL:$1|Un file recuperato|$1 file recuperati}}",
-	"cannotundelete": "Ripristino non riuscito:\n$1",
+	"cannotundelete": "Alcuni o tutti i ripristini non riusciti:\n$1",
 	"undeletedpage": "'''La pagina $1 è stata recuperata'''\n\nConsulta il [[Special:Log/delete|registro delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 	"undelete-header": "Consulta il [[Special:Log/delete|registro delle cancellazioni]] per vedere le cancellazioni più recenti.",
 	"undelete-search-title": "Ricerca nelle pagine cancellate",

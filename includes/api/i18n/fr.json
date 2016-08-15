@@ -1269,7 +1269,7 @@
 	"apihelp-stashedit-param-section": "Numéro de section. <kbd>0</kbd> pour la section du haut, <kbd>new</kbd> pour une nouvelle section.",
 	"apihelp-stashedit-param-sectiontitle": "Le titre pour une nouvelle section.",
 	"apihelp-stashedit-param-text": "Contenu de la page.",
-	"apihelp-stashedit-param-stashedtexthash": "Hachage du contenu de la page d’une réserve antérieure à utiliser à la place.",
+	"apihelp-stashedit-param-stashedtexthash": "A substituer par le hachage du contenu de la page venant d’une réserve antérieure.",
 	"apihelp-stashedit-param-contentmodel": "Modèle de contenu du nouveau contenu.",
 	"apihelp-stashedit-param-contentformat": "Format de sérialisation de contenu utilisé pour le texte saisi.",
 	"apihelp-stashedit-param-baserevid": "ID de révision de la révision de base.",

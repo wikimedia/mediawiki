@@ -14,7 +14,8 @@
 			"아라",
 			"Dpk",
 			"Macofe",
-			"WhatamIdoing"
+			"WhatamIdoing",
+			"Hogweard"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -125,6 +126,8 @@
 	"october-date": "$1. Winterfylleðes",
 	"november-date": "$1. Blōtmōnaðes",
 	"december-date": "$1. Ǣrran Gēolan",
+	"period-am": "on undernmǣl",
+	"period-pm": "on ofernōn",
 	"pagecategories": "{{PLURAL:$1|Flocc|Floccas}}",
 	"category_header": "Trametas in \"$1\" flocce",
 	"subcategories": "Underfloccas",
@@ -223,7 +226,9 @@
 	"jumptonavigation": "þurhfōr",
 	"jumptosearch": "sēcan",
 	"view-pool-error": "Wālā, þā þegntōlas nū oferlīce wyrcaþ.\nTō mænige brūcendas gesēcaþ tō sēonne þisne tramet.\nWē biddaþ þæt þū abīde scortne tīman ǣr þū gesēce to sēonne þisne tramet eft.\n\n$1",
+	"pool-queuefull": "Pundfaldes forepenn is full",
 	"pool-errorunknown": "Uncūþ wōh",
+	"pool-servererror": "Seo pundaldgetalere þēgnung nis gearo",
 	"aboutsite": "Gecȳþness ymbe {{GRAMMAR:wrēgendlīc|{{SITENAME}}}}",
 	"aboutpage": "Project:Gefrǣge",
 	"copyright": "Man mæg innunge under $1 findan, būton þǣr hit is elles amearcod.",

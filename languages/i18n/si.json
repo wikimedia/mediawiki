@@ -32,7 +32,8 @@
 			"Roonyh",
 			"Matma Rex",
 			"SusithCM",
-			"Sandaru"
+			"Sandaru",
+			1100100
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -428,7 +429,7 @@
 	"userlogout": "නික්මීම",
 	"notloggedin": "ප්‍රවිසී නැත",
 	"userlogin-noaccount": "ගිණුමක් නොමැතිද?",
-	"userlogin-joinproject": "{{SITENAME}}හා එක්වන්න",
+	"userlogin-joinproject": "{{SITENAME}} හා එක්වන්න",
 	"nologin": "ඔබ හට ගිණුමක් නොමැතිද? '''$1'''.",
 	"nologinlink": "ගිණුමක් තනන්න",
 	"createaccount": "අලුත් ගිණුමක් තනන්න",
@@ -547,8 +548,6 @@
 	"passwordreset-emailtext-user": "{{SITENAME}} හි පරිශීලක $1,{{SITENAME}}($4)සඳහා මුරපදය යලි පිහිටුවීමට ඉල්ලා ඇත.\n\n$2\n\n{{PLURAL:$3|මෙම මුරපදය|මෙම මුරපද}}{{PLURAL:$5|එක් දිනකින්|දවස්$5කින්}}කල් ඉකුත් වනු ඇත.\nඔබ දැන් ඇතුළු වී නව මුරපදයක් තේරිය යුතුය.මෙම ඉල්ලීම වෙන කෙනෙකු විසින් හෝ ඔබට ඔබගේ මුල් මුරපදය මතක නම් හෝ ඔබ තව දුරටත් එය වෙනස් කිරීමට අදහස් නොකරයි නම් හෝ ඔබ මෙම පනිවිඩය නොසලකාහැර ඔබගේ පැරණි මුරපදය භාවිතා කරන්න.",
 	"passwordreset-emailelement": "පරිශීලක නාමය: \n$1\n\nතාවකාලික මුරපදය: \n$2",
 	"passwordreset-emailsentemail": "මුර-පදය නැවත සකස් කිරීම පිළිබඳව විද්‍යුත් තැපෑලක් යවන ලදී.",
-	"passwordreset-emailsent-capture": "මුර-පදය වෙනස් කිරීම පිළිබඳව විද්‍යුත් තැපෑලක් යවන ලදී, එය පහත දැක්වේ.",
-	"passwordreset-emailerror-capture": "සිහිකැඳවුම් ඊ-තැපෑල ජනිත කරනු ලැබූ අතර, එය පහත දැක්වේ, නමුත් එය {{GENDER:$2|}}පරිශීලකයාට යැවීම අසාර්ථක වුනි: $1",
 	"changeemail": "විද්‍යුත් තැපෑල වෙනස් කරන්න හෝ ඉවත් කරන්න",
 	"changeemail-header": "ගිණුම් විද්‍යුත් තැපැල් ලිපිනය වෙනස් කරන්න",
 	"changeemail-no-info": "මෙම පිටුව සෘජු ලෙස සම්ප්‍රවේශය කෙරුමට පළමුව ඔබ ප්‍රවිෂ්ටව සිටිය යුතුය.",
@@ -724,7 +723,6 @@
 	"undo-nochange": "මෙම සංස්කරණය දැනටමත් අතහැර දමන ලද කර ඇති බව පෙනී යයි.",
 	"undo-summary": " [[Special:Contributions/$2|$2]] මගින් සිදුකල  $1 සංශෝධනය අහෝසි කරන්න ([[User talk:$2|සාකච්ඡා]])",
 	"undo-summary-username-hidden": "සැඟවුණු පරිශීලකයෙක් විසින් සංශෝධනය $1 අස් කරන්න",
-	"cantcreateaccounttitle": "ගිණුම තැනිය නොහැක",
 	"cantcreateaccount-text": "මෙම IP ලිපිනය ('''$1''') මගින් ගිණුම් තැනීම [[User:$3|$3]] විසින් වාරණය කොට ඇත.\n\n$3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 	"cantcreateaccount-range-text": "ඔබේ IP ලිපිනය ('' '$4' '') ද ඇතුළත් වන පරාසය තුළ IP ලිපිනයන් '' '$1', '' සිට ගිණුම් තැනීම  [[User:$3|$3]] විසින් වාරණය කොට ඇත. $3 විසින් දී ඇති හේතුව '' '$2' වේ",
 	"viewpagelogs": "මෙම පිටුව පිලිබඳ සටහන් නරඹන්න",
@@ -3251,6 +3249,5 @@
 	"special-characters-title-endash": "en තේජස",
 	"special-characters-title-emdash": "em තේජස",
 	"special-characters-title-minus": "ඍණ ලකුණ",
-	"api-error-blacklisted": "කරුණාකර වෙනස්, විස්තරාත්මක මාතෘකාවක් තෝරන්න.",
 	"randomrootpage": "අහඹු මූල පිටුව"
 }
