@@ -257,7 +257,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @param array $values
 	 * @return string
 	 */
-	protected function getInputHTMLForKey( $key, $values ) {
+	protected function getInputHTMLForKey( $key, array $values ) {
 		$displayFormat = isset( $this->mParams['format'] )
 			? $this->mParams['format']
 			: $this->mParent->getDisplayFormat();
