@@ -641,6 +641,8 @@ class ApiParse extends ApiBase {
 			$hiddencats[$row->page_title] = isset( $row->pp_propname );
 		}
 
+		$linkCache = LinkCache::singleton();
+
 		foreach ( $links as $link => $sortkey ) {
 			$entry = [];
 			$entry['sortkey'] = $sortkey;
@@ -648,6 +650,14 @@ class ApiParse extends ApiBase {
 			ApiResult::setContentValue( $entry, 'category', (string)$link );
 			if ( !isset( $hiddencats[$link] ) ) {
 				$entry['missing'] = true;
+
+				// We already know the link doesn't exist in the database, so
+				// tell LinkCache that before calling $title->isKnown().
+				$title = Title::makeTitle( NS_CATEGORY, $link );
+				$linkCache->addBadLinkObj( $title );
+				if ( $title->isKnown() ) {
+					$entry['known'] = true;
+				}
 			} elseif ( $hiddencats[$link] ) {
 				$entry['hidden'] = true;
 			}
