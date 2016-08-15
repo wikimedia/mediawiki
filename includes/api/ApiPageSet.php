@@ -86,10 +86,10 @@ class ApiPageSet extends ApiBase {
 	 * Add all items from $values into the result
 	 * @param array $result Output
 	 * @param array $values Values to add
-	 * @param string $flag The name of the boolean flag to mark this element
+	 * @param string[] $flags The names of boolean flags to mark this element
 	 * @param string $name If given, name of the value
 	 */
-	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
+	private static function addValues( array &$result, $values, $flags = [], $name = null ) {
 		foreach ( $values as $val ) {
 			if ( $val instanceof Title ) {
 				$v = [];
@@ -99,7 +99,7 @@ class ApiPageSet extends ApiBase {
 			} else {
 				$v = $val;
 			}
-			if ( $flag !== null ) {
+			foreach ( $flags as $flag ) {
 				$v[$flag] = true;
 			}
 			$result[] = $v;
@@ -596,19 +596,39 @@ class ApiPageSet extends ApiBase {
 	) {
 		$result = [];
 		if ( in_array( 'invalidTitles', $invalidChecks ) ) {
-			self::addValues( $result, $this->getInvalidTitlesAndReasons(), 'invalid' );
+			self::addValues( $result, $this->getInvalidTitlesAndReasons(), [ 'invalid' ] );
 		}
 		if ( in_array( 'special', $invalidChecks ) ) {
-			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
+			$known = [];
+			$unknown = [];
+			foreach ( $this->getSpecialTitles() as $title ) {
+				if ( $title->isKnown() ) {
+					$known[] = $title;
+				} else {
+					$unknown[] = $title;
+				}
+			}
+			self::addValues( $result, $unknown, [ 'special', 'missing' ] );
+			self::addValues( $result, $known, [ 'special' ] );
 		}
 		if ( in_array( 'missingIds', $invalidChecks ) ) {
-			self::addValues( $result, $this->getMissingPageIDs(), 'missing', 'pageid' );
+			self::addValues( $result, $this->getMissingPageIDs(), [ 'missing' ], 'pageid' );
 		}
 		if ( in_array( 'missingRevIds', $invalidChecks ) ) {
-			self::addValues( $result, $this->getMissingRevisionIDs(), 'missing', 'revid' );
+			self::addValues( $result, $this->getMissingRevisionIDs(), [ 'missing' ], 'revid' );
 		}
 		if ( in_array( 'missingTitles', $invalidChecks ) ) {
-			self::addValues( $result, $this->getMissingTitles(), 'missing' );
+			$known = [];
+			$unknown = [];
+			foreach ( $this->getMissingTitles() as $title ) {
+				if ( $title->isKnown() ) {
+					$known[] = $title;
+				} else {
+					$unknown[] = $title;
+				}
+			}
+			self::addValues( $result, $unknown, [ 'missing' ] );
+			self::addValues( $result, $known, [ 'missing', 'known' ] );
 		}
 		if ( in_array( 'interwikiTitles', $invalidChecks ) ) {
 			self::addValues( $result, $this->getInterwikiTitlesAsResult() );

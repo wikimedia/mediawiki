@@ -638,6 +638,9 @@ class ApiParse extends ApiBase {
 			ApiResult::setContentValue( $entry, 'category', (string)$link );
 			if ( !isset( $hiddencats[$link] ) ) {
 				$entry['missing'] = true;
+				if ( Title::makeTitle( NS_CATEGORY, $link )->isKnown() ) {
+					$entry['known'] = true;
+				}
 			} elseif ( $hiddencats[$link] ) {
 				$entry['hidden'] = true;
 			}

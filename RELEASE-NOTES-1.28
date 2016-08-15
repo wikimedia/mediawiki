@@ -61,6 +61,8 @@ production.
 * The following response properties from action=login, deprecated in 1.27, are
   now removed: lgtoken, cookieprefix, sessionid. Clients should handle cookies
   to properly manage session state.
+* (T141963) Added a 'known' property when missing-but-known titles (e.g. from
+  the 'TitleIsAlwaysKnown' hook) are output in various modules.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better

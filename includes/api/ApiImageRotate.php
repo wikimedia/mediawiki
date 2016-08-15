@@ -24,30 +24,6 @@
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
 
-	/**
-	 * Add all items from $values into the result
-	 * @param array $result Output
-	 * @param array $values Values to add
-	 * @param string $flag The name of the boolean flag to mark this element
-	 * @param string $name If given, name of the value
-	 */
-	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
-		foreach ( $values as $val ) {
-			if ( $val instanceof Title ) {
-				$v = [];
-				ApiQueryBase::addTitleInfo( $v, $val );
-			} elseif ( $name !== null ) {
-				$v = [ $name => $val ];
-			} else {
-				$v = $val;
-			}
-			if ( $flag !== null ) {
-				$v[$flag] = true;
-			}
-			$result[] = $v;
-		}
-	}
-
 	public function execute() {
 		$this->useTransactionalTimeLimit();
 
@@ -62,11 +38,9 @@ class ApiImageRotate extends ApiBase {
 
 		$result = [];
 
-		self::addValues( $result, $pageSet->getInvalidTitlesAndReasons(), 'invalid' );
-		self::addValues( $result, $pageSet->getSpecialTitles(), 'special', 'title' );
-		self::addValues( $result, $pageSet->getMissingPageIDs(), 'missing', 'pageid' );
-		self::addValues( $result, $pageSet->getMissingRevisionIDs(), 'missing', 'revid' );
-		self::addValues( $result, $pageSet->getInterwikiTitlesAsResult() );
+		$result = $pageSet->getInvalidTitlesAndRevisions( [
+			'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'interwikiTitles',
+		] );
 
 		foreach ( $pageSet->getTitles() as $title ) {
 			$r = [];
@@ -74,6 +48,9 @@ class ApiImageRotate extends ApiBase {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			if ( !$title->exists() ) {
 				$r['missing'] = true;
+				if ( $title->isKnown() ) {
+					$r['known'] = true;
+				}
 			}
 
 			$file = wfFindFile( $title, [ 'latest' => true ] );
