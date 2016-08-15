@@ -1605,9 +1605,6 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		// Ignore warnings about master connections/writes...hard to avoid here
-		\Profiler::instance()->getTransactionProfiler()->resetExpectations();
-
 		$backoffKey = wfMemcKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
 		if ( $cache->get( $backoffKey ) ) {
 			$this->logger->debug( __METHOD__ . ': {username} denied by prior creation attempt failures', [
@@ -1625,6 +1622,9 @@ class AuthManager implements LoggerAwareInterface {
 			'from' => $from,
 		] );
 
+		// Ignore warnings about master connections/writes...hard to avoid here
+		$trxProfiler = \Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setSilenced( true );
 		try {
 			$status = $user->addToDatabase();
 			if ( !$status->isOk() ) {
@@ -1652,6 +1652,7 @@ class AuthManager implements LoggerAwareInterface {
 				return $status;
 			}
 		} catch ( \Exception $ex ) {
+			$trxProfiler->setSilenced( false );
 			$this->logger->error( __METHOD__ . ': {username} failed with exception {exception}', [
 				'username' => $username,
 				'exception' => $ex,
@@ -1673,9 +1674,10 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Update user count
 		\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
-
 		// Watch user's userpage and talk page
-		$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
+		\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+			$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
+		} );
 
 		// Log the creation
 		if ( $this->config->get( 'NewUserLog' ) ) {
@@ -1692,6 +1694,8 @@ class AuthManager implements LoggerAwareInterface {
 		// Commit database changes, so even if something else later blows up
 		// the newly-created user doesn't get lost.
 		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+
+		$trxProfiler->setSilenced( false );
 
 		if ( $login ) {
 			$this->setSessionDataForUser( $user );
