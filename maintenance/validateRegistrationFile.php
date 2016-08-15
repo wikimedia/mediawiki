@@ -8,7 +8,7 @@ class ValidateRegistrationFile extends Maintenance {
 		$this->addArg( 'path', 'Path to extension.json/skin.json file.', true );
 	}
 	public function execute() {
-		if ( !class_exists( 'JsonSchema\Uri\UriRetriever' ) ) {
+		if ( !class_exists( 'JsonSchema\Validato' ) ) {
 			$this->error( 'The JsonSchema library cannot be found, please install it through composer.', 1 );
 		}
 
@@ -38,11 +38,8 @@ class ValidateRegistrationFile extends Maintenance {
 			$this->output( "Warning: $path is using a deprecated schema, and should be updated to "
 				. ExtensionRegistry::MANIFEST_VERSION . "\n" );
 		}
-		$retriever = new JsonSchema\Uri\UriRetriever();
-		$schema = $retriever->retrieve( 'file://' . $schemaPath );
-
-		$validator = new JsonSchema\Validator();
-		$validator->check( $data, $schema );
+		$validator = new JsonSchema\Validator;
+		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() ) {
 			$this->output( "$path validates against the version $version schema!\n" );
 		} else {
