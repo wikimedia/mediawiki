@@ -354,7 +354,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			);
 		}
 
-		$template = $this->getInputHTMLForKey( $this->uniqueId, null );
+		$template = $this->getInputHTMLForKey( $this->uniqueId, [] );
 		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',
