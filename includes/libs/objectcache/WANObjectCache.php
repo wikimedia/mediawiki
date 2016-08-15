@@ -466,7 +466,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * Example usage:
 	 * @code
-	 *     $dbw->begin( __METHOD__ ); // start of request
+	 *     $dbw->startAtomic( __METHOD__ ); // start of request
 	 *     ... <execute some stuff> ...
 	 *     // Update the row in the DB
 	 *     $dbw->update( ... );
@@ -476,7 +476,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         $cache->delete( $key );
 	 *     } );
 	 *     ... <execute some stuff> ...
-	 *     $dbw->commit( __METHOD__ ); // end of request
+	 *     $dbw->endAtomic( __METHOD__ ); // end of request
 	 * @endcode
 	 *
 	 * The $ttl parameter can be used when purging values that have not actually changed
@@ -689,7 +689,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             // Calling touchCheckKey() on this key invalidates the cache
 	 *             'checkKeys' => [ $cache->makeKey( 'site-cat-config' ) ],
 	 *             // Try to only let one datacenter thread manage cache updates at a time
-	 *             'lockTSE' => 30
+	 *             'lockTSE' => 30,
+	 *             // Avoid querying cache servers multiple times in a web request
+	 *             'pcTTL' => $cache::TTL_PROC_LONG
 	 *         ]
 	 *     );
 	 * @endcode
@@ -743,8 +745,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             // Merge them and get the new "last 100" rows
 	 *             return array_slice( array_merge( $new, $list ), 0, 100 );
 	 *        },
-	 *        // Try to only let one datacenter thread manage cache updates at a time
-	 *        [ 'lockTSE' => 30 ]
+	 *        [
+	 *             // Try to only let one datacenter thread manage cache updates at a time
+	 *             'lockTSE' => 30,
+	 *             // Use a magic value when no cache value is ready rather than stampeding
+	 *             'busyValue' => 'computing'
+	 *        ]
 	 *     );
 	 * @endcode
 	 *
