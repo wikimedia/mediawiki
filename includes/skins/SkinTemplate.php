@@ -455,7 +455,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'indicators', $out->getIndicators() );
 
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
-		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
 		// Wrap the bodyText with #mw-content-text element
 		$out->mBodytext = $this->wrapHTML( $title, $out->mBodytext );
@@ -507,6 +506,9 @@ class SkinTemplate extends Skin {
 		// allow extensions adding stuff after the page content.
 		// See Skin::afterContentHook() for further documentation.
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
+
+		// Do this last in case hooks above add bottom scripts
+		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
 		return $tpl;
 	}
