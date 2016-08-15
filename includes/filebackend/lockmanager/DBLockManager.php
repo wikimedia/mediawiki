@@ -26,9 +26,8 @@
  *
  * This is meant for multi-wiki systems that may share files.
  *
- * All lock requests for a resource, identified by a hash string, will map
- * to one bucket. Each bucket maps to one or several peer DBs, each on their
- * own server, all having the filelocks.sql tables (with row-level locking).
+ * All lock requests for a resource, identified by a hash string, will map to one bucket.
+ * Each bucket maps to one or several peer DBs, each on their own server.
  * A majority of peer DBs must agree for a lock to be acquired.
  *
  * Caching is used to avoid hitting servers that are down.
@@ -243,6 +242,8 @@ abstract class DBLockManager extends QuorumLockManager {
 
 /**
  * MySQL version of DBLockManager that supports shared locks.
+ *
+ * All lock servers must have the innodb table defined in locking/filelocks.sql.
  * All locks are non-blocking, which avoids deadlocks.
  *
  * @ingroup LockManager
