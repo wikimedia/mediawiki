@@ -471,6 +471,27 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
+	public function changeTTL( $key, $expiry = 0 ) {
+		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		try {
+			$db = $this->getDB( $serverIndex );
+			$db->update(
+				$tableName,
+				[ 'exptime' => $db->timestamp( $this->convertExpiry( $expiry ) ) ],
+				[ 'keyname' => $key, 'exptime > ' . $db->addQuotes( $db->timestamp( time() ) ) ],
+				__METHOD__
+			);
+			if ( $db->affectedRows() == 0 ) {
+				return false;
+			}
+		} catch ( DBError $e ) {
+			$this->handleWriteError( $e, $serverIndex );
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * @param IDatabase $db
 	 * @param string $exptime
