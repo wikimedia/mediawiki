@@ -161,6 +161,9 @@ return [
 	],
 	'jquery.appear' => [
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
+		'deprecated' => [
+			'message' => 'Please use "mediawiki.viewport" instead.",
+		],
 	],
 	'jquery.arrowSteps' => [
 		'scripts' => 'resources/src/jquery/jquery.arrowSteps.js',
