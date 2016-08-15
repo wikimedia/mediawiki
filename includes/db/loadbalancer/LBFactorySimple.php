@@ -56,6 +56,7 @@ class LBFactorySimple extends LBFactory {
 				} else {
 					$server['slave'] = true;
 				}
+				$server += [ 'flags' => DBO_DEFAULT ];
 			}
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;

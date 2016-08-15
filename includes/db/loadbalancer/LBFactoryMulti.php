@@ -364,6 +364,8 @@ class LBFactoryMulti extends LBFactory {
 			}
 			$serverInfo['hostName'] = $serverName;
 			$serverInfo['load'] = $load;
+			$serverInfo += [ 'flags' => DBO_DEFAULT ];
+
 			$servers[] = $serverInfo;
 		}
 
