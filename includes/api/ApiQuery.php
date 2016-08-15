@@ -362,6 +362,9 @@ class ApiQuery extends ApiBase {
 			$vals = [];
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['missing'] = true;
+			if ( $title->isKnown() ) {
+				$vals['known'] = true;
+			}
 			$pages[$fakeId] = $vals;
 		}
 		// Report any invalid titles
@@ -372,7 +375,7 @@ class ApiQuery extends ApiBase {
 		foreach ( $pageSet->getMissingPageIDs() as $pageid ) {
 			$pages[$pageid] = [
 				'pageid' => $pageid,
-				'missing' => true
+				'missing' => true,
 			];
 		}
 		// Report special pages
@@ -381,13 +384,7 @@ class ApiQuery extends ApiBase {
 			$vals = [];
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = true;
-			if ( $title->isSpecialPage() &&
-				!SpecialPageFactory::exists( $title->getDBkey() )
-			) {
-				$vals['missing'] = true;
-			} elseif ( $title->getNamespace() == NS_MEDIA &&
-				!wfFindFile( $title )
-			) {
+			if ( !$title->isKnown() ) {
 				$vals['missing'] = true;
 			}
 			$pages[$fakeId] = $vals;

@@ -158,6 +158,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 					];
 					if ( !$title->exists() ) {
 						$r['missing'] = true;
+						if ( $title->isKnown() ) {
+							$r['known'] = true;
+						}
 					}
 					if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
 						$r['notificationtimestamp'] = '';
