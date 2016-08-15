@@ -109,6 +109,8 @@ production.
   indicated by a 'fromencoded' boolean alongside the existing 'from' parameter.
 * (T28680) action=paraminfo can now return info about all submodules of a
   module without listing them all explicitly.
+* (T141963) Added a 'known' property when missing-but-known titles (e.g. from
+  the 'TitleIsAlwaysKnown' hook) are output in various modules.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
