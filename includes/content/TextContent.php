@@ -149,7 +149,7 @@ class TextContent extends AbstractContent {
 
 	/**
 	 * Returns a Content object with pre-save transformations applied.
-	 * This implementation just trims trailing whitespace.
+	 * This implementation just trims trailing whitespace and normalizes newlines.
 	 *
 	 * @param Title $title
 	 * @param User $user
@@ -160,6 +160,7 @@ class TextContent extends AbstractContent {
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		$text = $this->getNativeData();
 		$pst = rtrim( $text );
+		$pst = str_replace( [ "\r\n", "\r" ], "\n", $pst );
 
 		return ( $text === $pst ) ? $this : new static( $pst, $this->getModel() );
 	}
