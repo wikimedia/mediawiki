@@ -48,7 +48,7 @@
 		"justinrainbow/json-schema": "~1.6",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",
 		"monolog/monolog": "~1.18.2",
-		"nikic/php-parser": "1.4.1",
+		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.24",
 		"wikimedia/avro": "1.7.7"
