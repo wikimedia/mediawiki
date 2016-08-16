@@ -18,6 +18,7 @@ use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MWException;
 use ObjectCache;
+use Parser;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -518,6 +519,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMediaHandlerFactory() {
 		return $this->getService( 'MediaHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return Parser
+	 */
+	public function getParser() {
+		return $this->getService( 'Parser' );
 	}
 
 	/**
