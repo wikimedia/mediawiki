@@ -478,6 +478,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
+		// Do this last in case hooks above add bottom scripts
+		$tpl->set( 'bottomscripts', $this->bottomScripts() );
+
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		$tpl->set( 'headelement', $out->headElement( $this ) );
 
@@ -507,9 +510,6 @@ class SkinTemplate extends Skin {
 		// allow extensions adding stuff after the page content.
 		// See Skin::afterContentHook() for further documentation.
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
-
-		// Do this last in case hooks above add bottom scripts
-		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
 		return $tpl;
 	}
