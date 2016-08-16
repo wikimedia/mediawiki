@@ -751,27 +751,6 @@ abstract class UploadBase {
 	 * @since  1.25
 	 */
 	public function postProcessUpload() {
-		global $wgUploadThumbnailRenderMap;
-
-		$jobs = [];
-
-		$sizes = $wgUploadThumbnailRenderMap;
-		rsort( $sizes );
-
-		$file = $this->getLocalFile();
-
-		foreach ( $sizes as $size ) {
-			if ( $file->isVectorized() || $file->getWidth() > $size ) {
-				$jobs[] = new ThumbnailRenderJob(
-					$file->getTitle(),
-					[ 'transformParams' => [ 'width' => $size ] ]
-				);
-			}
-		}
-
-		if ( $jobs ) {
-			JobQueueGroup::singleton()->push( $jobs );
-		}
 	}
 
 	/**
