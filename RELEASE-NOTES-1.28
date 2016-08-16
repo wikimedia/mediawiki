@@ -42,6 +42,9 @@ production.
   to 'uca-default-u-kn' or 'uca-<langcode>-u-kn'. If you can't use UCA collations,
   a 'numeric' collation is also available. If migrating from another
   collation, you will need to run the updateCollation.php maintenance script.
+* mw.Api has a new option, useUS, to use U+001F (Unit Separator) when
+  appropriate for sending multi-valued parameters. This defaults to true when
+  the mw.Api instance seems to be for the local wiki.
 
 === External library changes in 1.28 ===
 
@@ -79,6 +82,9 @@ production.
   action=createaccount, action=linkaccount, and action=changeauthenticationdata
   in the query string is now deprecated and outputs a warning. They should be
   submitted in the POST body instead.
+* (T141960) Multi-valued parameters may now be separated using U+001F (Unit Separator)
+  instead of the pipe character. This will be useful if some of the multiple
+  values need to contain pipes, e.g. for action=options.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better

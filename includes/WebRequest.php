@@ -395,6 +395,32 @@ class WebRequest {
 	}
 
 	/**
+	 * Fetch a scalar from the input without normalization, or return $default
+	 * if it's not set.
+	 *
+	 * Unlike self::getVal(), this does not perform any normalization on the
+	 * input value.
+	 *
+	 * @since 1.28
+	 * @param string $name
+	 * @param string|null $default Optional default
+	 * @return string
+	 */
+	public function getRawVal( $name, $default = null ) {
+		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
+		if ( isset( $this->data[$name] ) && !is_array( $this->data[$name] ) ) {
+			$val = $this->data[$name];
+		} else {
+			$val = $default;
+		}
+		if ( is_null( $val ) ) {
+			return $val;
+		} else {
+			return (string)$val;
+		}
+	}
+
+	/**
 	 * Fetch a scalar from the input or return $default if it's not set.
 	 * Returns a string. Arrays are discarded. Useful for
 	 * non-freeform text inputs (e.g. predefined internal text keys
