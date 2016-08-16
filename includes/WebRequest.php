@@ -395,6 +395,22 @@ class WebRequest {
 	}
 
 	/**
+	 * Fetch a value from the input without normalization, or return $default
+	 * if it's not set.
+	 *
+	 * Unlike self::getVal() and self::getArray(), this does not perform any
+	 * normalization.
+	 *
+	 * @since 1.28
+	 * @param string $name
+	 * @param mixed $default Optional default
+	 * @return mixed
+	 */
+	public function getRawVal( $name, $default = null ) {
+		return isset( $this->data[$name] ) ? $this->data[$name] : $default;
+	}
+
+	/**
 	 * Fetch a scalar from the input or return $default if it's not set.
 	 * Returns a string. Arrays are discarded. Useful for
 	 * non-freeform text inputs (e.g. predefined internal text keys

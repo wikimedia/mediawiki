@@ -967,6 +967,20 @@ abstract class ApiBase extends ContextSource {
 					$type = $this->getModuleManager()->getNames( $paramName );
 				}
 			}
+
+			// Preserve U+001F for self::parseMultiValue()
+			if ( isset( $value ) && ( $multi || is_array( $type ) ) &&
+				substr( $value, 0, 3 ) === "\xef\xbf\xbd"
+			) {
+				$request = $this->getMain()->getRequest();
+				$raw = $request->getRawVal( $encParamName, $default );
+				if ( substr( $raw, 0, 1 ) === "\x1f" ) {
+					$value = join(
+						"\x1f",
+						array_map( [ $request, 'normalizeUnicode' ], explode( "\x1f", $raw ) )
+					);
+				}
+			}
 		}
 
 		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
@@ -1126,13 +1140,20 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
 	 */
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues ) {
-		if ( trim( $value ) === '' && $allowMultiple ) {
+		if ( ( trim( $value ) === '' || trim( $value ) === "\x1f" ) && $allowMultiple ) {
 			return [];
+		}
+
+		if ( strpos( $value, "\x1f" ) === 0 ) {
+			$sep = "\x1f";
+			$value = substr( $value, 1 );
+		} else {
+			$sep = '|';
 		}
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
 		// because it unstubs $wgUser
-		$valuesList = explode( '|', $value, self::LIMIT_SML2 + 1 );
+		$valuesList = explode( $sep, $value, self::LIMIT_SML2 + 1 );
 		$sizeLimit = count( $valuesList ) > self::LIMIT_SML1 && $this->mMainModule->canApiHighLimits()
 			? self::LIMIT_SML2
 			: self::LIMIT_SML1;

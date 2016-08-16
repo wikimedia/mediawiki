@@ -41,6 +41,9 @@ production.
 * (T8948) Numeric sorting in categories is now supported by setting $wgCategoryCollation
   to uca-default-u-kn or uca-<langcode>-u-kn. If migrating from another
   collation, you will need to run the updateCollation.php maintenance script.
+* mw.Api has a new option, useUS, to use U+001F (Unit Separator) when
+  appropriate for sending multi-valued parameters. This defaults to true when
+  the mw.Api instance seems to be for the local wiki.
 
 === External library changes in 1.28 ===
 
@@ -61,6 +64,9 @@ production.
 * The following response properties from action=login, deprecated in 1.27, are
   now removed: lgtoken, cookieprefix, sessionid. Clients should handle cookies
   to properly manage session state.
+* (T141960) Multi-valued parameters may now be separated using U+001F (Unit Separator)
+  instead of the pipe character. This will be useful if some of the multiple
+  values need to contain pipes, e.g. for action=options.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
