@@ -33,10 +33,17 @@
  * @ingroup Database
  */
 interface IDatabase {
-	/* Constants to onTransactionResolution() callbacks */
+	/** @var int Callback triggered immediately due to no active transaction */
 	const TRIGGER_IDLE = 1;
+	/** @var int Callback triggered by commit */
 	const TRIGGER_COMMIT = 2;
+	/** @var int Callback triggered by rollback */
 	const TRIGGER_ROLLBACK = 3;
+
+	/** @var string Transaction operation comes from service managing all DBs */
+	const FLUSHING_ALL_PEERS = 'flush';
+	/** @var string Transaction operation comes from the database class internally */
+	const FLUSHING_INTERNAL = 'flush';
 
 	/**
 	 * A string describing the current software version, and possibly
@@ -1366,9 +1373,9 @@ interface IDatabase {
 	 * Nesting of transactions is not supported.
 	 *
 	 * @param string $fname
-	 * @param string $flush Flush flag, set to 'flush' to disable warnings about
-	 *   explicitly committing implicit transactions, or calling commit when no
-	 *   transaction is in progress.
+	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*
+	 *   constant to disable warnings about explicitly committing implicit transactions,
+	 *   or calling commit when no transaction is in progress.
 	 *
 	 *   This will trigger an exception if there is an ongoing explicit transaction.
 	 *
@@ -1386,10 +1393,10 @@ interface IDatabase {
 	 * No-op on non-transactional databases.
 	 *
 	 * @param string $fname
-	 * @param string $flush Flush flag, set to 'flush' to disable warnings about
-	 *   calling rollback when no transaction is in progress. This will silently
-	 *   break any ongoing explicit transaction. Only set the flush flag if you
-	 *   are sure that it is safe to ignore these warnings in your context.
+	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
+	 *   constant to disable warnings about calling rollback when no transaction is in
+	 *   progress. This will silently break any ongoing explicit transaction. Only set the
+	 *   flush flag if you are sure that it is safe to ignore these warnings in your context.
 	 * @throws DBUnexpectedError
 	 * @since 1.23 Added $flush parameter
 	 */

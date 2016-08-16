@@ -1062,7 +1062,7 @@ class LoadBalancer {
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
 		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			$conn->commit( $fname, 'flush' );
+			$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 		} );
 	}
 
@@ -1109,7 +1109,7 @@ class LoadBalancer {
 	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
 			if ( $conn->writesOrCallbacksPending() ) {
-				$conn->commit( $fname, 'flush' );
+				$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 			}
 		} );
 	}
@@ -1143,7 +1143,7 @@ class LoadBalancer {
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					try {
-						$conn->rollback( $fname, 'flush' );
+						$conn->rollback( $fname, IDatabase::FLUSHING_ALL_PEERS );
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
 						$failedServers[] = $conn->getServer();

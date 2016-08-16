@@ -113,11 +113,12 @@ class HTMLCacheUpdateJob extends Job {
 		$touchTimestamp = wfTimestampNow();
 
 		$dbw = wfGetDB( DB_MASTER );
+		$factory = wfGetLBFactory();
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
 		foreach ( array_chunk( $pageIds, $wgUpdateRowsPerQuery ) as $batch ) {
-			$dbw->commit( __METHOD__, 'flush' );
-			wfGetLBFactory()->waitForReplication();
+			$factory->commitMasterChanges( __METHOD__ );
+			$factory->waitForReplication();
 
 			$dbw->update( 'page',
 				[ 'page_touched' => $dbw->timestamp( $touchTimestamp ) ],

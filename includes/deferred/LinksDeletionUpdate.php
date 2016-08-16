@@ -54,6 +54,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 	public function doUpdate() {
 		$config = RequestContext::getMain()->getConfig();
 		$batchSize = $config->get( 'UpdateRowsPerQuery' );
+		$factory = wfGetLBFactory();
 
 		// Page may already be deleted, so don't just getId()
 		$id = $this->pageId;
@@ -77,8 +78,8 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		foreach ( $catBatches as $catBatch ) {
 			$this->page->updateCategoryCounts( [], $catBatch, $id );
 			if ( count( $catBatches ) > 1 ) {
-				$this->mDb->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+				$factory->commitMasterChanges( __METHOD__ );
+				$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
 			}
 		}
 
@@ -173,8 +174,8 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			foreach ( $rcIdBatches as $rcIdBatch ) {
 				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
 				if ( count( $rcIdBatches ) > 1 ) {
-					$this->mDb->commit( __METHOD__, 'flush' );
-					wfGetLBFactory()->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+					$factory->commitMasterChanges( __METHOD__ );
+					$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
 				}
 			}
 		}
@@ -185,6 +186,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 
 	private function batchDeleteByPK( $table, array $conds, array $pk, $bSize ) {
 		$dbw = $this->mDb; // convenience
+		$factory = wfGetLBFactory();
 		$res = $dbw->select( $table, $pk, $conds, __METHOD__ );
 
 		$pkDeleteConds = [];
@@ -192,8 +194,8 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			$pkDeleteConds[] = $this->mDb->makeList( (array)$row, LIST_AND );
 			if ( count( $pkDeleteConds ) >= $bSize ) {
 				$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
-				$dbw->commit( __METHOD__, 'flush' );
-				wfGetLBFactory()->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
+				$factory->commitMasterChanges( __METHOD__ );
+				$factory->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
 				$pkDeleteConds = [];
 			}
 		}
