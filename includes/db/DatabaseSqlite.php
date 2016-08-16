@@ -911,7 +911,7 @@ class DatabaseSqlite extends Database {
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		if ( !is_dir( "{$this->dbDir}/locks" ) ) { // create dir as needed
 			if ( !is_writable( $this->dbDir ) || !mkdir( "{$this->dbDir}/locks" ) ) {
-				throw new DBError( "Cannot create directory \"{$this->dbDir}/locks\"." );
+				throw new DBError( $this, "Cannot create directory \"{$this->dbDir}/locks\"." );
 			}
 		}
 
