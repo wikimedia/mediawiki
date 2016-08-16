@@ -108,9 +108,6 @@
 		$links.click( function ( e ) {
 			var action, api, $link;
 
-			// Preload the notification module for mw.notify
-			mw.loader.load( 'mediawiki.notification' );
-
 			action = mwUriGetAction( this.href );
 
 			if ( action !== 'watch' && action !== 'unwatch' ) {
@@ -127,6 +124,9 @@
 			}
 
 			updateWatchLink( $link, action, 'loading' );
+
+			// Preload the notification module for mw.notify
+			mw.loader.load( 'mediawiki.notification' );
 
 			api = new mw.Api();
 
