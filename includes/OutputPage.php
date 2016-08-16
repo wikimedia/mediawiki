@@ -2671,7 +2671,7 @@ class OutputPage extends ContextSource {
 				'user.options',
 				'user.tokens',
 			] );
-			$rlClient = new ResourceLoaderClientHtml( $context );
+			$rlClient = new ResourceLoaderClientHtml( $context, $this->getTarget() );
 			$rlClient->setConfig( $this->getJSVars() );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
 			$rlClient->setModuleStyles( $this->getModuleStyles( /*filter*/ true ) );
@@ -2790,9 +2790,12 @@ class OutputPage extends ContextSource {
 	 * @return string|WrappedStringList HTML
 	 */
 	public function makeResourceLoaderLink( $modules, $only, array $extraQuery = [] ) {
+		// Apply 'target' and 'origin' filters
+		$modules = $this->filterModules( (array)$modules, null, $only );
+
 		return ResourceLoaderClientHtml::makeLoad(
 			$this->getRlClientContext(),
-			(array)$modules,
+			$modules,
 			$only,
 			$extraQuery
 		);

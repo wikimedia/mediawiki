@@ -33,6 +33,9 @@ class ResourceLoaderClientHtml {
 	/** @var ResourceLoader */
 	private $resourceLoader;
 
+	/** @var string|null */
+	private $target;
+
 	/** @var array */
 	private $config = [];
 
@@ -53,10 +56,12 @@ class ResourceLoaderClientHtml {
 
 	/**
 	 * @param ResourceLoaderContext $context
+	 * @param aray $target [optional] Custom 'target' parameter for the startup module
 	 */
-	public function __construct( ResourceLoaderContext $context ) {
+	public function __construct( ResourceLoaderContext $context, $target = null ) {
 		$this->context = $context;
 		$this->resourceLoader = $context->getResourceLoader();
+		$this->target = $target;
 	}
 
 	/**
@@ -316,7 +321,13 @@ class ResourceLoaderClientHtml {
 		}
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
-		$chunks[] = $this->getLoad( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
+		// Pass-through a custom target from OutputPage (T143066).
+		$startupQuery = $this->target ? [ 'target' => $this->target ] : [];
+		$chunks[] = $this->getLoad(
+			'startup',
+			ResourceLoaderModule::TYPE_SCRIPTS,
+			$startupQuery
+		);
 
 		return WrappedStringList::join( "\n", $chunks );
 	}
@@ -358,8 +369,8 @@ class ResourceLoaderClientHtml {
 		return self::makeContext( $this->context, $group, $type );
 	}
 
-	private function getLoad( $modules, $only ) {
-		return self::makeLoad( $this->context, (array)$modules, $only );
+	private function getLoad( $modules, $only, array $extraQuery = [] ) {
+		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery );
 	}
 
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
