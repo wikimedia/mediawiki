@@ -43,4 +43,80 @@ class ApiBaseTest extends ApiTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideGetParameterFromSettings
+	 * @param string|null $input
+	 * @param array $paramSettings
+	 * @param mixed $expected
+	 * @param string[] $warnings
+	 */
+	public function testGetParameterFromSettings( $input, $paramSettings, $expected, $warnings ) {
+		$mock = new MockApi();
+		$wrapper = TestingAccessWrapper::newFromObject( $mock );
+
+		$context = new DerivativeContext( $mock );
+		$context->setRequest( new FauxRequest( $input !== null ? [ 'foo' => $input ] : [] ) );
+		$wrapper->mMainModule = new ApiMain( $context );
+
+		if ( $expected instanceof UsageException ) {
+			try {
+				$wrapper->getParameterFromSettings( 'foo', $paramSettings, true );
+			} catch ( UsageException $ex ) {
+				$this->assertEquals( $expected, $ex );
+			}
+		} else {
+			$result = $wrapper->getParameterFromSettings( 'foo', $paramSettings, true );
+			$this->assertSame( $expected, $result );
+			$this->assertSame( $warnings, $mock->warnings );
+		}
+	}
+
+	public static function provideGetParameterFromSettings() {
+		$c0 = '';
+		$enc = '';
+		for ( $i = 0; $i < 32; $i++ ) {
+			$c0 .= chr( $i );
+			$enc .= ( $i === 9 || $i === 10 || $i === 13 )
+				? chr( $i )
+				: '�';
+		}
+
+		return [
+			'Basic param' => [ 'bar', null, 'bar', [] ],
+			'String param' => [ 'bar', '', 'bar', [] ],
+			'String param, defaulted' => [ null, '', '', [] ],
+			'String param, empty' => [ '', 'default', '', [] ],
+			'String param, required, empty' => [
+				'',
+				[ ApiBase::PARAM_DFLT => 'default', ApiBase::PARAM_REQUIRED => true ],
+				new UsageException( 'The foo parameter must be set', 'nofoo' ),
+				[]
+			],
+			'Multi-valued parameter' => [
+				'a|b|c',
+				[ ApiBase::PARAM_ISMULTI => true ],
+				[ 'a', 'b', 'c' ],
+				[]
+			],
+			'Multi-valued parameter, alternative separator' => [
+				"\x1fa|b\x1fc|d",
+				[ ApiBase::PARAM_ISMULTI => true ],
+				[ 'a|b', 'c|d' ],
+				[]
+			],
+			'Multi-valued parameter, other C0 controls' => [
+				$c0,
+				[ ApiBase::PARAM_ISMULTI => true ],
+				[ $enc ],
+				[]
+			],
+			'Multi-valued parameter, other C0 controls (2)' => [
+				"\x1f" . $c0,
+				[ ApiBase::PARAM_ISMULTI => true ],
+				[ substr( $enc, 0, -3 ), '' ],
+				[]
+			],
+		];
+	}
+
 }
