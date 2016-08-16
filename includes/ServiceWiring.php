@@ -207,6 +207,11 @@ return [
 		);
 	},
 
+	'Parser' => function( MediaWikiServices $services ) {
+		$conf = $services->getMainConfig()->get( 'ParserConf' );
+		return ObjectFactory::constructClassInstance( $conf['class'], [ $conf ] );
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),
