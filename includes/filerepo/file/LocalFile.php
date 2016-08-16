@@ -974,6 +974,33 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Prerenders a configurable set of thumbnails
+	 *
+	 * @since 1.28
+	 */
+	public function prerenderThumbnails() {
+		global $wgUploadThumbnailRenderMap;
+
+		$jobs = [];
+
+		$sizes = $wgUploadThumbnailRenderMap;
+		rsort( $sizes );
+
+		foreach ( $sizes as $size ) {
+			if ( $this->isVectorized() || $this->getWidth() > $size ) {
+				$jobs[] = new ThumbnailRenderJob(
+					$this->getTitle(),
+					[ 'transformParams' => [ 'width' => $size ] ]
+				);
+			}
+		}
+
+		if ( $jobs ) {
+			JobQueueGroup::singleton()->push( $jobs );
+		}
+	}
+
+	/**
 	 * Delete a list of thumbnails visible at urls
 	 * @param string $dir Base dir of the files.
 	 * @param array $files Array of strings: relative filenames (to $dir)
@@ -1525,6 +1552,8 @@ class LocalFile extends File {
 						# Update backlink pages pointing to this title if created
 						LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 					}
+
+					$this->prerenderThumbnails();
 				}
 			),
 			DeferredUpdates::PRESEND
