@@ -4364,7 +4364,11 @@ class Parser {
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
-		$text = str_replace( [ "\r\n", "\r" ], "\n", $text );
+		// We still normalize line endings for backwards-compatibility
+		// with other code that just calls PST, but this should already
+		// be handled in TextContent subclasses
+		$text = ( new TextContent( '' ) )->normalizeLineEndings( $text );
+
 		if ( $options->getPreSaveTransform() ) {
 			$text = $this->pstPass2( $text, $user );
 		}
@@ -4441,9 +4445,6 @@ class Parser {
 			# if there's no context, don't bother duplicating the title
 			$text = preg_replace( $p2, '[[\\1]]', $text );
 		}
-
-		# Trim trailing whitespace
-		$text = rtrim( $text );
 
 		return $text;
 	}

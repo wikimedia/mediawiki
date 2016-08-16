@@ -459,4 +459,31 @@ class TextContentTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $expectedNative, $converted->getNativeData() );
 		}
 	}
+
+	/**
+	 * @covers TextContent::normalizeLineEndings
+	 * @dataProvider provideNormalizeLineEndings
+	 */
+	public function testNormalizeLineEndings( $input, $expected ) {
+		$content = new TextContent( '' );
+		$this->assertEquals( $expected, $content->normalizeLineEndings( $input ) );
+	}
+
+	public static function provideNormalizeLineEndings() {
+		return [
+			[
+				"Foo\r\nbar",
+				"Foo\nbar"
+			],
+			[
+				"Foo\rbar",
+				"Foo\nbar"
+			],
+			[
+				"Foobar\n  ",
+				"Foobar"
+			]
+		];
+	}
+
 }

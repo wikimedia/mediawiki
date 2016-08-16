@@ -86,7 +86,7 @@ class JsonContent extends TextContent {
 			return $this;
 		}
 
-		return new static( $this->beautifyJSON() );
+		return new static( $this->normalizeLineEndings( $this->beautifyJSON() ) );
 	}
 
 	/**
