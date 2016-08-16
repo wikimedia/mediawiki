@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.7
+ * OOjs UI v0.17.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-03T16:38:27Z
+ * Date: 2016-08-16T21:13:53Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -16,7 +16,8 @@
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
-	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
 	line-height: normal;
 	white-space: nowrap;
 	-webkit-touch-callout: none;
@@ -62,6 +63,7 @@
 	margin-left: 0;
 }
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
+	margin-right: 0.25em;
 	margin-left: 0.46875em;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
@@ -185,11 +187,15 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	background-color: #d9d9d9;
 	border-color: #d9d9d9;
-	box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
 	background-color: #999999;
 	color: #ffffff;
+	border-color: #999999;
+	z-index: 3;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button:focus {
+	border-color: #347bff;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
 	color: #347bff;
@@ -451,8 +457,8 @@
 }
 .oo-ui-fieldLayout-messages .oo-ui-labelWidget {
 	display: table-cell;
-	padding: 0;
-	line-height: 1.875;
+	padding: 0.1em 0;
+	line-height: 1.5;
 	vertical-align: middle;
 }
 .oo-ui-actionFieldLayout {
@@ -699,6 +705,10 @@
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
 	border-bottom-right-radius: 2px;
 	border-top-right-radius: 2px;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement .oo-ui-buttonElement-button:focus {
+	border-color: #347bff;
+	z-index: 3;
 }
 .oo-ui-popupWidget {
 	position: absolute;
@@ -1225,6 +1235,8 @@
 }
 .oo-ui-menuSelectWidget {
 	position: absolute;
+	width: 100%;
+	z-index: 4;
 	background-color: #ffffff;
 	margin-top: -1px;
 	border: 1px solid #aaaaaa;
@@ -1275,7 +1287,6 @@
 	position: relative;
 	width: 100%;
 	max-width: 50em;
-	background-color: #ffffff;
 	margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
@@ -1301,10 +1312,6 @@
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
 	cursor: pointer;
 }
-.oo-ui-dropdownWidget > .oo-ui-menuSelectWidget {
-	z-index: 1;
-	width: 100%;
-}
 .oo-ui-dropdownWidget:last-child {
 	margin-right: 0;
 }
@@ -1328,7 +1335,13 @@
 .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
 	margin: 0 1em;
 }
-.oo-ui-dropdownWidget:hover .oo-ui-dropdownWidget-handle {
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+	background-color: #ffffff;
+	-webkit-transition: border-color 100ms;
+	   -moz-transition: border-color 100ms;
+	        transition: border-color 100ms;
+}
+.oo-ui-dropdownWidget.oo-ui-widget-enabled:hover .oo-ui-dropdownWidget-handle {
 	border-color: #aaaaaa;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
@@ -1355,10 +1368,6 @@
 	width: 100%;
 	max-width: 50em;
 	margin-right: 0.5em;
-}
-.oo-ui-comboBoxInputWidget > .oo-ui-menuSelectWidget {
-	z-index: 1;
-	width: 100%;
 }
 .oo-ui-comboBoxInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: pointer;
@@ -1418,4 +1427,53 @@
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
 	margin-right: 0;
+}
+.oo-ui-progressBarWidget {
+	max-width: 50em;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+	overflow: hidden;
+}
+.oo-ui-progressBarWidget-bar {
+	background-color: #dddddd;
+	height: 1em;
+	-webkit-transition: width 200ms, margin-left 200ms;
+	   -moz-transition: width 200ms, margin-left 200ms;
+	        transition: width 200ms, margin-left 200ms;
+}
+.oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
+	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	        animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	width: 40%;
+	margin-left: -10%;
+	border-left-width: 1px;
+}
+.oo-ui-progressBarWidget.oo-ui-widget-disabled {
+	opacity: 0.6;
+}
+@-webkit-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@-moz-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
 }

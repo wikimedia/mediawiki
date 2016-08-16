@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.7
+ * OOjs UI v0.17.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-03T16:38:27Z
+ * Date: 2016-08-16T21:13:53Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -16,7 +16,8 @@
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
-	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
 	line-height: normal;
 	white-space: nowrap;
 	-webkit-touch-callout: none;
@@ -361,8 +362,8 @@
 	color: #d45353;
 }
 .oo-ui-fieldLayout-messages .oo-ui-labelWidget {
-	padding: 0;
-	line-height: 1.875em;
+	padding: 0.1em 0;
+	line-height: 1.5em;
 	vertical-align: middle;
 }
 .oo-ui-actionFieldLayout {
@@ -932,6 +933,8 @@
 }
 .oo-ui-menuSelectWidget {
 	position: absolute;
+	width: 100%;
+	z-index: 4;
 	background-color: #ffffff;
 	margin-top: -1px;
 	border: 1px solid #cccccc;
@@ -1000,10 +1003,6 @@
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
 	cursor: pointer;
 }
-.oo-ui-dropdownWidget > .oo-ui-menuSelectWidget {
-	z-index: 1;
-	width: 100%;
-}
 .oo-ui-dropdownWidget:last-child {
 	margin-right: 0;
 }
@@ -1053,10 +1052,6 @@
 	width: 100%;
 	max-width: 50em;
 	margin-right: 0.5em;
-}
-.oo-ui-comboBoxInputWidget > .oo-ui-menuSelectWidget {
-	z-index: 1;
-	width: 100%;
 }
 .oo-ui-comboBoxInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: pointer;
@@ -1117,4 +1112,59 @@
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
 	margin-right: 0;
+}
+.oo-ui-progressBarWidget {
+	max-width: 50em;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 0.25em;
+	overflow: hidden;
+}
+.oo-ui-progressBarWidget-bar {
+	height: 1em;
+	border-right: 1px solid #cccccc;
+	-webkit-transition: width 250ms ease, margin-left 250ms ease;
+	   -moz-transition: width 250ms ease, margin-left 250ms ease;
+	        transition: width 250ms ease, margin-left 250ms ease;
+	background-color: #cde7f4;
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
+	background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+	background-image:    -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
+	background-image:         linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
+}
+.oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
+	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	        animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	width: 40%;
+	margin-left: -10%;
+	border-left: 1px solid #a6cee1;
+}
+.oo-ui-progressBarWidget.oo-ui-widget-disabled {
+	opacity: 0.6;
+}
+@-webkit-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@-moz-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
 }

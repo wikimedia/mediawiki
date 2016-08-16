@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.17.7
+ * OOjs UI v0.17.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-08-03T16:38:27Z
+ * Date: 2016-08-16T21:13:53Z
  */
 .oo-ui-window {
 	background: transparent;
@@ -320,6 +320,7 @@
 	width: 0;
 	height: 0;
 	overflow: hidden;
+	z-index: 4;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-active {
 	width: auto;
