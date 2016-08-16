@@ -325,6 +325,11 @@
 		var api, title, params,
 			imageSrc = $img.attr( 'src' );
 
+		// Reject promise if there is no thumbnail image
+		if ( $img[ 0 ] === undefined ) {
+			return $.Deferred().reject();
+		}
+
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
 			api = new mw.Api();
 			// TODO: This supports only gallery of images
