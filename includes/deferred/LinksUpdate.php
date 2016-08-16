@@ -387,15 +387,17 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 
 		foreach ( $deleteWheres as $deleteWhere ) {
 			$this->mDb->delete( $table, $deleteWhere, __METHOD__ );
-			$factory->commitMasterChanges( __METHOD__ );
-			$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+			$factory->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'wiki' => $this->mDb->getWikiID() ]
+			);
 		}
 
 		$insertBatches = array_chunk( $insertions, $bSize );
 		foreach ( $insertBatches as $insertBatch ) {
 			$this->mDb->insert( $table, $insertBatch, __METHOD__, 'IGNORE' );
-			$factory->commitMasterChanges( __METHOD__ );
-			$factory->waitForReplication( [ 'wiki' => $this->mDb->getWikiID() ] );
+			$factory->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'wiki' => $this->mDb->getWikiID() ]
+			);
 		}
 
 		if ( count( $insertions ) ) {

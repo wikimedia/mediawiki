@@ -82,6 +82,7 @@ class RecentChangesUpdateJob extends Job {
 		}
 
 		$factory = wfGetLBFactory();
+		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
 			$rcIds = $dbw->selectFieldValues( 'recentchanges',
@@ -92,14 +93,11 @@ class RecentChangesUpdateJob extends Job {
 			);
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
-			}
-			// Commit in chunks to avoid slave lag
-			$factory->commitMasterChanges( __METHOD__ );
-
-			if ( count( $rcIds ) === $wgUpdateRowsPerQuery ) {
 				// There might be more, so try waiting for slaves
 				try {
-					wfGetLBFactory()->waitForReplication( [ 'timeout' => 3 ] );
+					$factory->commitAndWaitForReplication(
+						__METHOD__, $ticket, [ 'timeout' => 3 ]
+					);
 				} catch ( DBReplicationWaitError $e ) {
 					// Another job will continue anyway
 					break;
@@ -122,6 +120,8 @@ class RecentChangesUpdateJob extends Job {
 		// JobRunner uses DBO_TRX, but doesn't call begin/commit itself;
 		// onTransactionIdle() will run immediately since there is no trx.
 		$dbw->onTransactionIdle( function() use ( $dbw, $days, $window ) {
+			$factory = wfGetLBFactory();
+			$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 			// Avoid disconnect/ping() cycle that makes locks fall off
 			$dbw->setSessionOptions( [ 'connTimeout' => 900 ] );
 
@@ -205,7 +205,7 @@ class RecentChangesUpdateJob extends Job {
 				}
 				foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
 					$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
-					wfGetLBFactory()->waitForReplication();
+					$factory->commitAndWaitForReplication( __METHOD__, $ticket );
 				}
 			}
 

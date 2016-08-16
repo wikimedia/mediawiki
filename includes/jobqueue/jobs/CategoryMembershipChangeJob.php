@@ -158,6 +158,8 @@ class CategoryMembershipChangeJob extends Job {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$factory = wfGetLBFactory();
+		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+
 		$catMembChange = new CategoryMembershipChange( $title, $newRev );
 		$catMembChange->checkTemplateLinks();
 
@@ -168,8 +170,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$factory->commitMasterChanges( __METHOD__ );
-				$factory->waitForReplication();
+				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 
@@ -177,8 +178,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$factory->commitMasterChanges( __METHOD__ );
-				$factory->waitForReplication();
+				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
 		}
 	}

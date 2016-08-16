@@ -742,6 +742,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 					$dbw = $this->getConnection( DB_MASTER );
 					$factory = wfGetLBFactory();
+					$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 
 					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
 					foreach ( $watchersChunks as $watchersChunk ) {
@@ -755,8 +756,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 							], $fname
 						);
 						if ( count( $watchersChunks ) > 1 ) {
-							$factory->commitMasterChanges( __METHOD__ );
-							$factory->waitForReplication( [ 'wiki' => $dbw->getWikiID() ] );
+							$factory->commitAndWaitForReplication(
+								__METHOD__, $ticket, [ 'wiki' => $dbw->getWikiID() ]
+							);
 						}
 					}
 					$this->uncacheLinkTarget( $target );

@@ -30,8 +30,19 @@
  *       subclasses can override the beginTransaction() and commitTransaction() methods.
  */
 abstract class DataUpdate implements DeferrableUpdate {
+	/** @var mixed Result from LBFactory::getEmptyTransactionTicket() */
+	protected $ticket;
+
 	public function __construct() {
 		// noop
+	}
+
+	/**
+	 * @param mixed $ticket Result of getEmptyTransactionTicket()
+	 * @since 1.28
+	 */
+	public function setTransactionTicket( $ticket ) {
+		$this->ticket = $ticket;
 	}
 
 	/**
