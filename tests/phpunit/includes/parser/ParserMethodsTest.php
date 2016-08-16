@@ -187,6 +187,31 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideNormalizeLineEndings
+	 */
+	public function testNormalizeLineEndings( $input, $expected ) {
+		global $wgParser;
+		$this->assertEquals( $expected, $wgParser->normalizeLineEndings( $input ) );
+	}
+
+	public static function provideNormalizeLineEndings() {
+		return [
+			[
+				"Foo\r\nbar",
+				"Foo\nbar"
+			],
+			[
+				"Foo\rbar",
+				"Foo\nbar"
+			],
+			[
+				"Foobar\n  ",
+				"Foobar"
+			]
+		];
+	}
+
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
 	// replaceSection(), getPreloadText()
 }

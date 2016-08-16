@@ -4345,6 +4345,23 @@ class Parser {
 	}
 
 	/**
+	 * Do a "\r\n" -> "\n" and "\r" -> "\n" transformation
+	 * as well as trim trailing whitespace
+	 *
+	 * This is normally part of preSaveTransform, but for
+	 * non-wikitext content models they probably still want
+	 * to normalize line endings without all of the other PST
+	 * changes.
+	 *
+	 * @since 1.28
+	 * @param $text
+	 * @return string
+	 */
+	public function normalizeLineEndings( $text ) {
+		return str_replace( [ "\r\n", "\r" ], "\n", rtrim( $text ) );
+	}
+
+	/**
 	 * Transform wiki markup when saving a page by doing "\r\n" -> "\n"
 	 * conversion, substituting signatures, {{subst:}} templates, etc.
 	 *
@@ -4364,7 +4381,7 @@ class Parser {
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
-		$text = str_replace( [ "\r\n", "\r" ], "\n", $text );
+		$text = $this->normalizeLineEndings( $text );
 		if ( $options->getPreSaveTransform() ) {
 			$text = $this->pstPass2( $text, $user );
 		}
@@ -4441,9 +4458,6 @@ class Parser {
 			# if there's no context, don't bother duplicating the title
 			$text = preg_replace( $p2, '[[\\1]]', $text );
 		}
-
-		# Trim trailing whitespace
-		$text = rtrim( $text );
 
 		return $text;
 	}

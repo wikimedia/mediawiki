@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content object implementation for representing flat text.
  *
@@ -149,7 +151,9 @@ class TextContent extends AbstractContent {
 
 	/**
 	 * Returns a Content object with pre-save transformations applied.
-	 * This implementation just trims trailing whitespace and normalizes newlines.
+	 *
+	 * At a minimum, subclasses should make sure to call Parser::normalizeLineEndings()
+	 * either directly or part of Parser::preSaveTransform().
 	 *
 	 * @param Title $title
 	 * @param User $user
@@ -159,8 +163,8 @@ class TextContent extends AbstractContent {
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		$text = $this->getNativeData();
-		$pst = rtrim( $text );
-		$pst = str_replace( [ "\r\n", "\r" ], "\n", $pst );
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$pst = $parser->normalizeLineEndings( $text );
 
 		return ( $text === $pst ) ? $this : new static( $pst, $this->getModel() );
 	}
