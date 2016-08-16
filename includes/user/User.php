@@ -4190,6 +4190,8 @@ class User implements IDBAccessObject {
 	 * login credentials aren't being hijacked with a foreign form
 	 * submission.
 	 *
+	 * The $salt for 'edit' and 'csrf' tokens is the default (empty string).
+	 *
 	 * @since 1.19
 	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
