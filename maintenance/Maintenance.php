@@ -907,7 +907,7 @@ abstract class Maintenance {
 
 		// Description ...
 		if ( $this->mDescription ) {
-			$this->output( "\n" . $this->mDescription . "\n" );
+			$this->output( "\n" . wordwrap( $this->mDescription, $screenWidth ) . "\n" );
 		}
 		$output = "\nUsage: php " . basename( $this->mSelf );
 
