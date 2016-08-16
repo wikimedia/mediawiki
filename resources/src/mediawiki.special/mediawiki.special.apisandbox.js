@@ -116,10 +116,24 @@
 
 		capsuleWidget: {
 			getApiValue: function () {
-				return this.getItemsData().join( '|' );
+				var items = this.getItemsData();
+				if ( items.join( '' ).indexOf( '|' ) === -1 ) {
+					return items.join( '|' );
+				} else {
+					return '\x1f' + items.join( '\x1f' );
+				}
 			},
 			setApiValue: function ( v ) {
-				this.setItemsFromData( v === undefined || v === '' ? [] : String( v ).split( '|' ) );
+				if ( v === undefined || v === '' || v === '\x1f' ) {
+					this.setItemsFromData( [] );
+				} else {
+					v = String( v );
+					if ( v.indexOf( '\x1f' ) !== 0 ) {
+						this.setItemsFromData( v.split( '|' ) );
+					} else {
+						this.setItemsFromData( v.substr( 1 ).split( '\x1f' ) );
+					}
+				}
 			},
 			apiCheckValid: function () {
 				var ok = this.getApiValue() !== undefined || suppressErrors;
