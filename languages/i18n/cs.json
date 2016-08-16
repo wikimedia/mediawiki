@@ -33,7 +33,8 @@
 			"Matma Rex",
 			"Dvorapa",
 			"Walter Klosse",
-			"Martin Urbanec"
+			"Martin Urbanec",
+			"Marek Pavlica"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1218,6 +1219,7 @@
 	"grant-group-high-volume": "Velkoobjemové činnosti",
 	"grant-group-customization": "Nastavení a přizpůsobení",
 	"grant-group-administration": "Provádění správcovských činností",
+	"grant-group-private-information": "Zpřístupnit soukromá data o vás",
 	"grant-group-other": "Různé činnosti",
 	"grant-blockusers": "Blokovat a odblokovávat uživatele",
 	"grant-createaccount": "Zakládat účty",
@@ -1907,7 +1909,7 @@
 	"trackingcategories-name": "Název hlášení",
 	"trackingcategories-desc": "Kritéria pro vložení do kategorie",
 	"restricted-displaytitle-ignored": "Stránky s ignorovanými zobrazovanými názvy",
-	"restricted-displaytitle-ignored-desc": "Stránka obsahuje příkaz <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, který se ignoruje, protože není ekvivalentní skutečnému názvu stránky.",
+	"restricted-displaytitle-ignored-desc": "Stránky obsahující příkaz <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, který se ignoruje, neboť není ekvivalentní skutečnému názvu stránky.",
 	"noindex-category-desc": "Stránka není indexována roboty, protože obsahuje kouzelné slovo <code><nowiki>__NOINDEX__</nowiki></code> a je ve jmenném prostoru, ve kterém je tento příznak dovolen.",
 	"index-category-desc": "Stránka obsahuje kouzelné slovo <code><nowiki>__INDEX__</nowiki></code> (a je ve jmenném prostoru, ve kterém je tento příznak dovolen), takže je indexována roboty, přestože by normálně nebyla.",
 	"post-expand-template-inclusion-category-desc": "Stránka je po rozbalení všech šablon větší než <code>$wgMaxArticleSize</code>, takže některé šablony rozbaleny nebyly.",

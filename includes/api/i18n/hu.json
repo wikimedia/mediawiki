@@ -6,7 +6,8 @@
 			"Tacsipacsi",
 			"ViDam",
 			"Macofe",
-			"Wolf Rex"
+			"Wolf Rex",
+			"Dj"
 		]
 	},
 	"apihelp-main-param-action": "Milyen műveletet hajtson végre.",
@@ -42,6 +43,7 @@
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Ellenőrzött változtatások elrejtése.",
 	"apihelp-login-param-name": "Szerkesztőnév.",
 	"apihelp-login-param-password": "Jelszó.",
+	"apihelp-login-param-domain": "Tartomány (opcionális)",
 	"apihelp-login-example-login": "Bejelentkezés.",
 	"apihelp-logout-example-logout": "Aktuális felhasználó kijelentkeztetése.",
 	"apihelp-mergehistory-description": "Laptörténetek egyesítése",
