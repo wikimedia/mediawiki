@@ -85,7 +85,8 @@
 			"Imabadplayer",
 			"İnternion",
 			"Hbseren",
-			"Kumkumuk"
+			"Kumkumuk",
+			"Basak"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -696,6 +697,7 @@
 	"savearticle": "Sayfayı kaydet",
 	"savechanges": "Değişiklikleri kaydet",
 	"publishpage": "Sayfayı yayımla",
+	"publishchanges": "Değişiklikleri yayımla",
 	"preview": "Önizleme",
 	"showpreview": "Önizlemeyi göster",
 	"showdiff": "Değişiklikleri göster",

@@ -3498,7 +3498,7 @@
 	"logentry-protect-modify-cascade": "$1 سطح حفاظت برای $3 $4 را {{GENDER:$2|تغییر داد}}[آبشاری]",
 	"logentry-rights-rights": "$1 دسترسی $3 را از گروه $4 به $5 تغییر داد",
 	"logentry-rights-rights-legacy": "$1 گروه عضویت $3 را {{GENDER:$2|تغییر داد}}",
-	"logentry-rights-autopromote": "$1 به طور خودکار از $4 به $5 {{GENDER:$2|ارتقاء داد}}",
+	"logentry-rights-autopromote": "$1 به طور خودکار از $4 به $5 {{GENDER:$2|ارتقاء یافت}}",
 	"logentry-upload-upload": "$1 $3 را {{GENDER:$2|بارگذاری کرد}}",
 	"logentry-upload-overwrite": "$1 نسخهٔ تازه‌ای از $3 را {{GENDER:$2|بارگذاری کرد}}",
 	"logentry-upload-revert": "$1 {{GENDER:$2|بارگذاری کرد}} $3",

@@ -6,7 +6,8 @@
 			"Marwan Mohamad",
 			"Matma Rex",
 			"NoiX180",
-			"Zhoelyakin"
+			"Zhoelyakin",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Garisiyi totibawa pranala",
@@ -737,7 +738,7 @@
 	"exif-orientation-1": "Normal",
 	"namespacesall": "nga'amila",
 	"monthsall": "nga'amila",
-	"signature": "[[{{ns:user}}:$1|$2]]\n([[{{ns:user_talk}}:$1|bisala]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bisala]])",
 	"specialpages": "Halaman Spesial",
 	"tag-filter": "[[Special:Tags|Tag]]filter:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag}}]]: $2)",

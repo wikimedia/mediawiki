@@ -15,7 +15,8 @@
 			"Dpk",
 			"Macofe",
 			"WhatamIdoing",
-			"Hogweard"
+			"Hogweard",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -445,6 +446,7 @@
 	"minoredit": "Þēos is lytel adihtung",
 	"watchthis": "Behealdan þisne tramet",
 	"savearticle": "Hordian tramet",
+	"publishpage": "Geswutele tramet",
 	"publishchanges": "Geswutele wrixlung",
 	"preview": "Forebysen",
 	"showpreview": "Īwan forebysene",
@@ -1063,7 +1065,7 @@
 	"watchlisttools-view": "Sēon andwendunga",
 	"watchlisttools-edit": "Sēon and adihtan behealdungtæl",
 	"watchlisttools-raw": "Adihtan hrēaw behealdungtæl",
-	"signature": "[[{{ns:user}}:$1|$2]]\n([[{{ns:user_talk}}:$1|mōtung]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|mōtung]])",
 	"version": "Fadung",
 	"version-specialpages": "Syndrige trametas",
 	"version-other": "Ōðer",
