@@ -1537,9 +1537,12 @@ class User implements IDBAccessObject {
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
 		}
-		$namespaces = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
-		foreach ( $namespaces as $nsnum => $nsname ) {
-			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
+
+		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
+		// since extensions may change the set of searchable namespaces depending
+		// on user groups/permissions.
+		foreach ( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
+			$defOpt['searchNs' . $nsnum] = (boolean)$val;
 		}
 		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
