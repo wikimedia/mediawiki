@@ -30,6 +30,9 @@ require_once __DIR__ . '/../autoload.php';
 class AutoLoader {
 	static protected $autoloadLocalClassesLower = null;
 
+	// For fun and logging
+	static protected $autoloadedFiles = array();
+
 	/**
 	 * autoload - take a class name and attempt to load it
 	 *
@@ -78,7 +81,20 @@ class AutoLoader {
 			$filename = "$IP/$filename";
 		}
 
+		// Log these for later
+		self::$autoloadedFiles[] = $filename;
+
 		require $filename;
+	}
+
+	/**
+	 * Return the files that were included/required but not via the AutoLoader.
+	 * Useful for debugging and such.
+	 *
+	 * @return array
+	 */
+	public static function getNonAutoloadedFiles() {
+		return array_diff( get_included_files(), self::$autoloadedFiles );
 	}
 
 	/**
