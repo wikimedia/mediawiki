@@ -967,6 +967,22 @@ abstract class ApiBase extends ContextSource {
 					$type = $this->getModuleManager()->getNames( $paramName );
 				}
 			}
+
+			// Preserve U+001F for self::parseMultiValue(), or error out if that won't be called
+			if ( isset( $value ) && substr( $value, 0, 3 ) === "\xef\xbf\xbd" ) {
+				$request = $this->getMain()->getRequest();
+				$raw = $request->getRawVal( $encParamName, $default );
+				if ( substr( $raw, 0, 1 ) === "\x1f" ) {
+					if ( $multi ) {
+						$value = join( "\x1f", $request->normalizeUnicode( explode( "\x1f", $raw ) ) );
+					} else {
+						$this->dieUsage(
+							"U+001F multi-value separation may only be used for multi-valued parameters.",
+							'badvalue_notmultivalue'
+						);
+					}
+				}
+			}
 		}
 
 		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
@@ -1126,13 +1142,20 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
 	 */
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues ) {
-		if ( trim( $value ) === '' && $allowMultiple ) {
+		if ( ( trim( $value ) === '' || trim( $value ) === "\x1f" ) && $allowMultiple ) {
 			return [];
+		}
+
+		if ( substr( $value, 0, 1 ) === "\x1f" ) {
+			$sep = "\x1f";
+			$value = substr( $value, 1 );
+		} else {
+			$sep = '|';
 		}
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
 		// because it unstubs $wgUser
-		$valuesList = explode( '|', $value, self::LIMIT_SML2 + 1 );
+		$valuesList = explode( $sep, $value, self::LIMIT_SML2 + 1 );
 		$sizeLimit = count( $valuesList ) > self::LIMIT_SML1 && $this->mMainModule->canApiHighLimits()
 			? self::LIMIT_SML2
 			: self::LIMIT_SML1;
