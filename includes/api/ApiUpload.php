@@ -315,8 +315,9 @@ class ApiUpload extends ApiBase {
 	 * @return string|null File key
 	 */
 	private function performStash( $failureMode, &$data = null ) {
+		$isPartial = (bool)$this->mParams['chunk'];
 		try {
-			$status = $this->mUpload->tryStashFile( $this->getUser() );
+			$status = $this->mUpload->tryStashFile( $this->getUser(), $isPartial );
 
 			if ( $status->isGood() && !$status->getValue() ) {
 				// Not actually a 'good' status...

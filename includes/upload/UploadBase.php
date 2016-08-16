@@ -924,23 +924,27 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Like stashFile(), but respects extensions' wishes to prevent the stashing.
+	 * Like stashFile(), but respects extensions' wishes to prevent the stashing. verifyUpload() must
+	 * be called before calling this method (unless $isPartial is true).
 	 *
 	 * Upload stash exceptions are also caught and converted to an error status.
 	 *
 	 * @since 1.28
 	 * @param User $user
+	 * @param bool $isPartial Pass `true` if this is a part of a chunked upload (not a complete file).
 	 * @return Status If successful, value is an UploadStashFile instance
 	 */
-	public function tryStashFile( User $user ) {
-		$props = $this->mFileProps;
-		$error = null;
-		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
-		if ( $error ) {
-			if ( !is_array( $error ) ) {
-				$error = [ $error ];
+	public function tryStashFile( User $user, $isPartial = false ) {
+		if ( !$isPartial ) {
+			$props = $this->mFileProps;
+			$error = null;
+			Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
+			if ( $error ) {
+				if ( !is_array( $error ) ) {
+					$error = [ $error ];
+				}
+				return call_user_func_array( 'Status::newFatal', $error );
 			}
-			return call_user_func_array( 'Status::newFatal', $error );
 		}
 		try {
 			$file = $this->doStashFile( $user );
