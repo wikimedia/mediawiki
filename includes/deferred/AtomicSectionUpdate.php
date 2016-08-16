@@ -9,7 +9,7 @@ class AtomicSectionUpdate implements DeferrableUpdate, DeferrableCallback {
 	private $dbw;
 	/** @var string */
 	private $fname;
-	/** @var callable */
+	/** @var callable|null */
 	private $callback;
 
 	/**

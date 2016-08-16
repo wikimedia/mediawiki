@@ -275,7 +275,8 @@ abstract class RevDelList extends RevisionListBase {
 			function () use ( $visibilityChangeMap ) {
 				$this->doPostCommitUpdates( $visibilityChangeMap );
 			},
-			DeferredUpdates::PRESEND
+			DeferredUpdates::PRESEND,
+			$dbw
 		);
 
 		$dbw->endAtomic( __METHOD__ );
