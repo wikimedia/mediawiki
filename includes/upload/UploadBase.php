@@ -762,9 +762,16 @@ abstract class UploadBase {
 
 		foreach ( $sizes as $size ) {
 			if ( $file->isVectorized() || $file->getWidth() > $size ) {
+				$params = [
+					'transformParams' => [ 'width' => $size ],
+					// Delay the job start because the original can be
+					// unreadable immediately after being uploaded
+					'jobReleaseTimestamp' => strtotime( '+1 second' )
+				];
+
 				$jobs[] = new ThumbnailRenderJob(
 					$file->getTitle(),
-					[ 'transformParams' => [ 'width' => $size ] ]
+					$params
 				);
 			}
 		}
