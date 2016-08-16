@@ -795,7 +795,9 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 /**
  * @var Parser $wgParser
  */
-$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
+$wgParser = new StubObject( 'wgParser', function () {
+	return MediaWikiServices::getInstance()->getParser();
+} );
 
 /**
  * @var Title $wgTitle

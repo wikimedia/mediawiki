@@ -317,6 +317,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'WatchedItemQueryService' => [ 'WatchedItemQueryService', WatchedItemQueryService::class ],
 			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
+			'Parser' => [ 'Parser', Parser::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
