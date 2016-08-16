@@ -143,9 +143,10 @@ class TextContentHandler extends ContentHandler {
 	}
 
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
-		$fields = [];
+		$fields = parent::getFieldsForSearchIndex( $engine );
 		$fields['language'] =
 			$engine->makeSearchFieldMapping( 'language', SearchIndexField::INDEX_TYPE_KEYWORD );
+
 		return $fields;
 	}
 
