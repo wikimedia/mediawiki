@@ -44,6 +44,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers ObjectFactory::getObjectFromSpec
+	 * @covers ObjectFactory::expandClosures
 	 */
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( [
@@ -110,6 +111,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers ObjectFactory::constructClassInstance
 	 * @expectedException InvalidArgumentException
 	 */
 	public function testNamedArgs() {
