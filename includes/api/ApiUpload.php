@@ -274,6 +274,12 @@ class ApiUpload extends ApiBase {
 					$this->dieStatusWithCode( $status, 'stashfailed' );
 				}
 
+				// We can only get warnings like 'duplicate' after concatenating the chunks
+				$warnings = $this->getApiWarnings();
+				if ( $warnings ) {
+					$result['warnings'] = $warnings;
+				}
+
 				// The fully concatenated file has a new filekey. So remove
 				// the old filekey and fetch the new one.
 				UploadBase::setSessionStatus( $this->getUser(), $filekey, false );
@@ -430,6 +436,12 @@ class ApiUpload extends ApiBase {
 			}
 			if ( isset( $progress['status']->value['verification'] ) ) {
 				$this->checkVerification( $progress['status']->value['verification'] );
+			}
+			if ( isset( $progress['status']->value['warnings'] ) ) {
+				$warnings = $this->transformWarnings( $progress['status']->value['warnings'] );
+				if ( $warnings ) {
+					$progress['warnings'] = $warnings;
+				}
 			}
 			unset( $progress['status'] ); // remove Status object
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
