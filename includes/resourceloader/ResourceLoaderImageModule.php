@@ -393,6 +393,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
 		$summary = parent::getDefinitionSummary( $context );
+
+		$options = [];
 		foreach ( [
 			'localBasePath',
 			'images',
@@ -401,29 +403,27 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			'selectorWithoutVariant',
 			'selectorWithVariant',
 		] as $member ) {
-			$summary[$member] = $this->{$member};
+			$options[$member] = $this->{$member};
 		};
+
+		$summary[] = [
+			'options' => $options,
+			'fileHashes' => $this->getFileHashes( $context ),
+		];
 		return $summary;
 	}
 
 	/**
-	 * Get the last modified timestamp of this module.
-	 *
-	 * @param ResourceLoaderContext $context Context in which to calculate
-	 *     the modified time
-	 * @return int UNIX timestamp
+	 * Helper method for getDefinitionSummary.
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
+	protected function getFileHashes( ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
 		$files = [];
 		foreach ( $this->getImages( $context ) as $name => $image ) {
 			$files[] = $image->getPath( $context );
 		}
-
 		$files = array_values( array_unique( $files ) );
-		$filesMtime = max( array_map( [ __CLASS__, 'safeFilemtime' ], $files ) );
-
-		return $filesMtime;
+		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
 	}
 
 	/**
