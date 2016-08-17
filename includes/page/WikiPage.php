@@ -2760,8 +2760,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			$expiryText = $this->formatExpiry( $expiry[$action] );
-			$protectDescriptionLog .= $wgContLang->getDirMark() .
-				"[$action=$restrictions] ($expiryText)";
+			$protectDescriptionLog .= Html::element( 'span',
+				[ 'dir' => 'ltr' ],
+				"[$action=$restrictions] ($expiryText)" );
 		}
 
 		return trim( $protectDescriptionLog );
