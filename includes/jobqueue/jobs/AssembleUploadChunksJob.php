@@ -74,7 +74,7 @@ class AssembleUploadChunksJob extends Job {
 			}
 
 			// We have a new filekey for the fully concatenated file
-			$newFileKey = $upload->getLocalFile()->getFileKey();
+			$newFileKey = $upload->getStashFile()->getFileKey();
 
 			// Remove the old stash file row and first chunk file
 			$upload->stash->removeFileNoAuth( $this->params['filekey'] );

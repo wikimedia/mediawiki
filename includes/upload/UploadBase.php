@@ -44,7 +44,7 @@ abstract class UploadBase {
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
 	protected $mTitle = false, $mTitleError = 0;
 	protected $mFilteredName, $mFinalExtension;
-	protected $mLocalFile, $mFileSize, $mFileProps;
+	protected $mLocalFile, $mStashFile, $mFileSize, $mFileProps;
 	protected $mBlackListedExtensions;
 	protected $mJavaDetected, $mSVGNSError;
 
@@ -912,7 +912,7 @@ abstract class UploadBase {
 	/**
 	 * Return the local file and initializes if necessary.
 	 *
-	 * @return LocalFile|UploadStashFile|null
+	 * @return LocalFile|null
 	 */
 	public function getLocalFile() {
 		if ( is_null( $this->mLocalFile ) ) {
@@ -921,6 +921,13 @@ abstract class UploadBase {
 		}
 
 		return $this->mLocalFile;
+	}
+
+	/**
+	 * @return UploadStashFile|null
+	 */
+	public function getStashFile() {
+		return $this->mStashFile;
 	}
 
 	/**
@@ -997,7 +1004,7 @@ abstract class UploadBase {
 	protected function doStashFile( User $user = null ) {
 		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
-		$this->mLocalFile = $file;
+		$this->mStashFile = $file;
 
 		return $file;
 	}
@@ -1975,18 +1982,16 @@ abstract class UploadBase {
 	 * @return array Image info
 	 */
 	public function getImageInfo( $result ) {
-		$file = $this->getLocalFile();
-		/** @todo This cries out for refactoring.
-		 *  We really want to say $file->getAllInfo(); here.
-		 * Perhaps "info" methods should be moved into files, and the API should
-		 * just wrap them in queries.
-		 */
-		if ( $file instanceof UploadStashFile ) {
+		$localFile = $this->getLocalFile();
+		$stashFile = $this->getStashFile();
+		// Calling a different API module depending on whether the file was stashed is less than optimal.
+		// In fact, calling API modules here at all is less than optimal. Maybe it should be refactored.
+		if ( $stashFile ) {
 			$imParam = ApiQueryStashImageInfo::getPropertyNames();
-			$info = ApiQueryStashImageInfo::getInfo( $file, array_flip( $imParam ), $result );
+			$info = ApiQueryStashImageInfo::getInfo( $stashFile, array_flip( $imParam ), $result );
 		} else {
 			$imParam = ApiQueryImageInfo::getPropertyNames();
-			$info = ApiQueryImageInfo::getInfo( $file, array_flip( $imParam ), $result );
+			$info = ApiQueryImageInfo::getInfo( $localFile, array_flip( $imParam ), $result );
 		}
 
 		return $info;
