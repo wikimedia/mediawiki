@@ -82,6 +82,44 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers ObjectFactory::getObjectFromSpec
+	 */
+	public function testGetObjectFromFactory() {
+		$args = [ 'a', 'b' ];
+		$obj = ObjectFactory::getObjectFromSpec( [
+			'factory' => function ( $a, $b ) {
+				return new ObjectFactoryTestFixture( $a, $b );
+			},
+			'args' => $args,
+		] );
+		$this->assertSame( $args, $obj->args );
+	}
+
+	/**
+	 * @covers ObjectFactory::getObjectFromSpec
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testGetObjectFromInvalid() {
+		$args = [ 'a', 'b' ];
+		$obj = ObjectFactory::getObjectFromSpec( [
+			// Missing 'class' or 'factory'
+			'args' => $args,
+		] );
+	}
+
+	/**
+	 * @covers ObjectFactory::getObjectFromSpec
+	 * @dataProvider provideConstructClassInstance
+	 */
+	public function testGetObjectFromClass( $args ) {
+		$obj = ObjectFactory::getObjectFromSpec( [
+			'class' => 'ObjectFactoryTestFixture',
+			'args' => $args,
+		] );
+		$this->assertSame( $args, $obj->args );
+	}
+
+	/**
 	 * @covers ObjectFactory::constructClassInstance
 	 * @dataProvider provideConstructClassInstance
 	 */
@@ -92,7 +130,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( $args, $obj->args );
 	}
 
-	public function provideConstructClassInstance() {
+	public static function provideConstructClassInstance() {
 		// These args go to 11. I thought about making 10 one louder, but 11!
 		return [
 			'0 args' => [ [] ],
