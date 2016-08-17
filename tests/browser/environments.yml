@@ -23,12 +23,12 @@ mw-vagrant-guest:
   mediawiki_url: http://127.0.0.1/wiki/
 
 beta:
-  mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
+  mediawiki_url: https://en.wikipedia.beta.wmflabs.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
 
 test2:
-  mediawiki_url: http://test2.wikipedia.org/wiki/
+  mediawiki_url: https://test2.wikipedia.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
 
