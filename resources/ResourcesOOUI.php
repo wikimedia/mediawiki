@@ -68,6 +68,9 @@ return call_user_func( function () {
 			'es5-shim',
 			'oojs',
 			'oojs-ui-core.styles',
+			'oojs-ui.styles.icons',
+			'oojs-ui.styles.indicators',
+			'oojs-ui.styles.textures',
 			'mediawiki.language',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -78,14 +81,6 @@ return call_user_func( function () {
 		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
 		'skinStyles' => $getSkinSpecific( 'core' ),
 		'targets' => [ 'desktop', 'mobile' ],
-		// ResourceLoaderImageModule doesn't support 'skipFunction', so instead we set this up so that
-		// this module is skipped together with its dependencies. Nothing else depends on these modules.
-		'dependencies' => [
-			'oojs-ui.styles.icons',
-			'oojs-ui.styles.indicators',
-			'oojs-ui.styles.textures',
-		],
-		'skipFunction' => 'resources/src/oojs-ui-styles-skip.js',
 	];
 
 	// Additional widgets and layouts module.
