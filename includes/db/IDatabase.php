@@ -1342,6 +1342,7 @@ interface IDatabase {
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates
+	 * @return mixed $res Result of the callback (since 1.28)
 	 * @throws DBError
 	 * @throws RuntimeException
 	 * @throws UnexpectedValueException

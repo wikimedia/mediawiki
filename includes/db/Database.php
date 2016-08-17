@@ -2658,12 +2658,14 @@ abstract class DatabaseBase implements IDatabase {
 	final public function doAtomicSection( $fname, callable $callback ) {
 		$this->startAtomic( $fname );
 		try {
-			call_user_func_array( $callback, [ $this, $fname ] );
+			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
 			$this->rollback( $fname );
 			throw $e;
 		}
 		$this->endAtomic( $fname );
+
+		return $res;
 	}
 
 	final public function begin( $fname = __METHOD__ ) {
