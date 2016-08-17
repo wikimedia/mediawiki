@@ -936,13 +936,8 @@ abstract class UploadBase {
 	 */
 	public function tryStashFile( User $user, $isPartial = false ) {
 		if ( !$isPartial ) {
-			$props = $this->mFileProps;
-			$error = null;
-			Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
+			$error = $this->runUploadStashFileHook( $user );
 			if ( $error ) {
-				if ( !is_array( $error ) ) {
-					$error = [ $error ];
-				}
 				return call_user_func_array( 'Status::newFatal', $error );
 			}
 		}
@@ -952,6 +947,22 @@ abstract class UploadBase {
 		} catch ( UploadStashException $e ) {
 			return Status::newFatal( 'uploadstash-exception', get_class( $e ), $e->getMessage() );
 		}
+	}
+
+	/**
+	 * @param User $user
+	 * @return array|null Error message and parameters, null if there's no error
+	 */
+	protected function runUploadStashFileHook( User $user ) {
+		$props = $this->mFileProps;
+		$error = null;
+		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
+		if ( $error ) {
+			if ( !is_array( $error ) ) {
+				$error = [ $error ];
+			}
+		}
+		return $error;
 	}
 
 	/**
