@@ -285,8 +285,42 @@ class DatabaseTest extends MediaWikiTestCase {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
-		$db->rollback( __METHOD__ );
+		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 		$this->assertTrue( $called, 'Callback reached' );
+	}
+
+	public function testGetScopedLock() {
+		$db = $this->db;
+
+		$db->setFlag( DBO_TRX );
+		try {
+			$this->badLockingMethodImplicit( $db );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->clearFlag( DBO_TRX );
+		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
+
+		try {
+			$this->badLockingMethodExplicit( $db );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
+	}
+
+	private function badLockingMethodImplicit( IDatabase $db ) {
+		$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+		$db->query( "SELECT 1" ); // trigger DBO_TRX
+		throw new RunTimeException( "Uh oh!" );
+	}
+
+	private function badLockingMethodExplicit( IDatabase $db ) {
+		$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+		$db->begin( __METHOD__ );
+		throw new RunTimeException( "Uh oh!" );
 	}
 }
