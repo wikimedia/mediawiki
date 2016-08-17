@@ -1474,7 +1474,7 @@ class EditPage {
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
-				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText() . '</div>' );
+				$wgOut->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1551,7 +1551,7 @@ class EditPage {
 				// is if an extension hook aborted from inside ArticleSave.
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
-				$this->hookError = '<div class="error">' . $status->getWikiText() .
+				$this->hookError = '<div class="error">' ."\n" . $status->getWikiText() .
 					'</div>';
 				return true;
 		}
