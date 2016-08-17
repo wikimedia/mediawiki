@@ -38,12 +38,11 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
 	 *
-	 * @param User|null $user Default: null
+	 * @param User $user
 	 * @param UploadStash|bool $stash Default: false
 	 * @param FileRepo|bool $repo Default: false
 	 */
-	public function __construct( $user = null, $stash = false, $repo = false ) {
-		// user object. sometimes this won't exist, as when running from cron.
+	public function __construct( User $user, $stash = false, $repo = false ) {
 		$this->user = $user;
 
 		if ( $repo ) {
@@ -162,7 +161,20 @@ class UploadFromChunks extends UploadFromFile {
 		// Update the mTempPath and mLocalFile
 		// (for FileUpload or normal Stash to take over)
 		$tStart = microtime( true );
-		$this->mLocalFile = parent::doStashFile( $this->user );
+		// This is a re-implementation of UploadBase::tryStashFile(), we can't call it because we
+		// override doStashFile() with completely different functionality in this class...
+		$error = $this->runUploadStashFileHook( $this->user );
+		if ( $error ) {
+			call_user_func_array( [ $status, 'fatal' ], $error );
+			return $status;
+		}
+		try {
+			$this->mLocalFile = parent::doStashFile( $this->user );
+		} catch ( UploadStashException $e ) {
+			$status->fatal( 'uploadstash-exception', get_class( $e ), $e->getMessage() );
+			return $status;
+		}
+
 		$tAmount = microtime( true ) - $tStart;
 		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
 		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds." );

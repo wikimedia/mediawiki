@@ -240,7 +240,7 @@ class ApiUpload extends ApiBase {
 					'offset' => $this->mUpload->getOffset(),
 				];
 
-				$this->dieUsage( $status->getWikiText( false, false, 'en' ), 'stashfailed', 0, $extradata );
+				$this->dieStatusWithCode( $status, 'stashfailed', $extradata );
 			}
 		}
 
@@ -271,7 +271,7 @@ class ApiUpload extends ApiBase {
 						$filekey,
 						[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 					);
-					$this->dieUsage( $status->getWikiText( false, false, 'en' ), 'stashfailed' );
+					$this->dieStatusWithCode( $status, 'stashfailed' );
 				}
 
 				// The fully concatenated file has a new filekey. So remove
@@ -383,6 +383,28 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
+	 * Like dieStatus(), but always uses $overrideCode for the error code, unless the code comes from
+	 * IApiMessage.
+	 *
+	 * @param Status $status
+	 * @param string $overrideCode Error code to use if there isn't one from IApiMessage
+	 * @param array|null $moreExtraData
+	 * @throws UsageException
+	 */
+	public function dieStatusWithCode( $status, $overrideCode, $moreExtraData = null ) {
+		$extraData = null;
+		list( $code, $msg ) = $this->getErrorFromStatus( $status, $extraData );
+		$errors = $status->getErrorsByType( 'error' ) ?: $status->getErrorsByType( 'warning' );
+		if ( !( $errors[0]['message'] instanceof IApiMessage ) ) {
+			$code = $overrideCode;
+		}
+		if ( $moreExtraData ) {
+			$extraData += $moreExtraData;
+		}
+		$this->dieUsage( $msg, $code, 0, $extraData );
+	}
+
+	/**
 	 * Select an upload module and set it to mUpload. Dies on failure. If the
 	 * request was a status request and not a true upload, returns false;
 	 * otherwise true
@@ -404,7 +426,7 @@ class ApiUpload extends ApiBase {
 			if ( !$progress ) {
 				$this->dieUsage( 'No result in status data', 'missingresult' );
 			} elseif ( !$progress['status']->isGood() ) {
-				$this->dieUsage( $progress['status']->getWikiText( false, false, 'en' ), 'stashfailed' );
+				$this->dieStatusWithCode( $progress['status'], 'stashfailed' );
 			}
 			if ( isset( $progress['status']->value['verification'] ) ) {
 				$this->checkVerification( $progress['status']->value['verification'] );
@@ -422,7 +444,7 @@ class ApiUpload extends ApiBase {
 
 		if ( $this->mParams['chunk'] ) {
 			// Chunk upload
-			$this->mUpload = new UploadFromChunks();
+			$this->mUpload = new UploadFromChunks( $this->getUser() );
 			if ( isset( $this->mParams['filekey'] ) ) {
 				if ( $this->mParams['offset'] === 0 ) {
 					$this->dieUsage( 'Cannot supply a filekey when offset is 0', 'badparams' );
