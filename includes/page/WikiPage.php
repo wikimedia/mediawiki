@@ -2754,14 +2754,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string
 	 */
 	public function protectDescriptionLog( array $limit, array $expiry ) {
-		global $wgContLang;
-
 		$protectDescriptionLog = '';
 
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			$expiryText = $this->formatExpiry( $expiry[$action] );
-			$protectDescriptionLog .= $wgContLang->getDirMark() .
-				"[$action=$restrictions] ($expiryText)";
+			$protectDescriptionLog .= Html::element( 'span',
+				[ 'dir' => 'ltr' ],
+				"[$action=$restrictions] ($expiryText)" );
 		}
 
 		return trim( $protectDescriptionLog );
