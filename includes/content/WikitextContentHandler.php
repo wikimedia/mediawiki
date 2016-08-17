@@ -154,7 +154,11 @@ class WikitextContentHandler extends TextContentHandler {
 	protected function getFileText( Title $title ) {
 		$file = wfLocalFile( $title );
 		if ( $file && $file->exists() ) {
-			return $file->getHandler()->getEntireText( $file );
+			$handler = $file->getHandler();
+			if ( !$handler ) {
+				return null;
+			}
+			return $handler->getEntireText( $file );
 		}
 
 		return null;
