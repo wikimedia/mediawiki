@@ -34,6 +34,15 @@ class GlobalVarConfig implements Config {
 	private $prefix;
 
 	/**
+	 * A list of keys that are "part" of this Config instance.
+	 * If set, this will be an array, otherwise false for all
+	 * keys
+	 *
+	 * @var bool|array
+	 */
+	private $keys = false;
+
+	/**
 	 * Default builder function
 	 * @return GlobalVarConfig
 	 */
@@ -41,8 +50,15 @@ class GlobalVarConfig implements Config {
 		return new GlobalVarConfig();
 	}
 
-	public function __construct( $prefix = 'wg' ) {
+	/**
+	 * @param string $prefix
+	 * @param array|bool $keys A list of keys that are "part" of this Config
+	 *                         instance. If set, accessing a key not in the list
+	 *                         will throw a ConfigException.
+	 */
+	public function __construct( $prefix = 'wg', $keys = false ) {
 		$this->prefix = $prefix;
+		$this->keys = $keys;
 	}
 
 	/**
@@ -59,6 +75,10 @@ class GlobalVarConfig implements Config {
 	 * @see Config::has
 	 */
 	public function has( $name ) {
+		if ( $this->keys !== false && !in_array( $name, $this->keys ) ) {
+			// If we have a whitelist, and it is not set, throw an exception.
+			return false;
+		}
 		return $this->hasWithPrefix( $this->prefix, $name );
 	}
 
