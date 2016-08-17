@@ -4051,8 +4051,5 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		) );
-		// Used by 'skipFunction' of the four 'oojs-ui.styles.*' modules. Please don't treat this as a
-		// public API or you'll be severely disappointed when T87871 is fixed and it disappears.
-		$this->addMeta( 'X-OOUI-PHP', '1' );
 	}
 }
