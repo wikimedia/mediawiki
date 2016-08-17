@@ -376,8 +376,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$content = new WikitextContent( 'test text' );
 		$ok = ContentHandler::runLegacyHooks(
 			'testRunLegacyHooks',
-			[ 'foo', &$content, 'bar' ],
-			false
+			[ 'foo', &$content, 'bar' ]
 		);
 
 		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
