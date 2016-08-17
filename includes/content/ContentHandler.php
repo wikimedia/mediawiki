@@ -1156,60 +1156,17 @@ abstract class ContentHandler {
 	 *
 	 * @param string $event Event name
 	 * @param array $args Parameters passed to hook functions
-	 * @param bool $warn Whether to log a warning.
-	 *                    Default to self::$enableDeprecationWarnings.
-	 *                    May be set to false for testing.
+	 * @param string|null $deprecatedVersion Emit a deprecation notice
+	 *   when the hook is run for the provided version
 	 *
 	 * @return bool True if no handler aborted the hook
-	 *
-	 * @see ContentHandler::$enableDeprecationWarnings
 	 */
 	public static function runLegacyHooks( $event, $args = [],
-		$warn = null
+		$deprecatedVersion = null
 	) {
-
-		if ( $warn === null ) {
-			$warn = self::$enableDeprecationWarnings;
-		}
 
 		if ( !Hooks::isRegistered( $event ) ) {
 			return true; // nothing to do here
-		}
-
-		if ( $warn ) {
-			// Log information about which handlers are registered for the legacy hook,
-			// so we can find and fix them.
-
-			$handlers = Hooks::getHandlers( $event );
-			$handlerInfo = [];
-
-			MediaWiki\suppressWarnings();
-
-			foreach ( $handlers as $handler ) {
-				if ( is_array( $handler ) ) {
-					if ( is_object( $handler[0] ) ) {
-						$info = get_class( $handler[0] );
-					} else {
-						$info = $handler[0];
-					}
-
-					if ( isset( $handler[1] ) ) {
-						$info .= '::' . $handler[1];
-					}
-				} elseif ( is_object( $handler ) ) {
-					$info = get_class( $handler[0] );
-					$info .= '::on' . $event;
-				} else {
-					$info = $handler;
-				}
-
-				$handlerInfo[] = $info;
-			}
-
-			MediaWiki\restoreWarnings();
-
-			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " .
-				implode( ', ', $handlerInfo ), 2 );
 		}
 
 		// convert Content objects to text
@@ -1229,7 +1186,7 @@ abstract class ContentHandler {
 		}
 
 		// call the hook functions
-		$ok = Hooks::run( $event, $args );
+		$ok = Hooks::run( $event, $args, $deprecatedVersion );
 
 		// see if the hook changed the text
 		foreach ( $contentTexts as $k => $orig ) {
