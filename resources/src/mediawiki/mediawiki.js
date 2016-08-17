@@ -1673,8 +1673,11 @@
 			 * @return {string[]} List of module names that failed evaluation
 			 */
 			function batchEval( modules, sources ) {
+				var i;
 				try {
-					$.globalEval( sources.join( ';' ) );
+					for ( i = 0; i < sources.length; i++ ) {
+						$.globalEval( sources[ i ] );
+					}
 				} catch ( err ) {
 					// Not good, the cached mw.loader.implement calls failed! This should
 					// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
