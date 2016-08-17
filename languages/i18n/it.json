@@ -2198,6 +2198,7 @@
 	"undeletehistorynoadmin": "Questa pagina è stata cancellata.\nIl motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione.\nIl testo contenuto nelle versioni cancellate è disponibile solo agli amministratori.",
 	"undelete-revision": "Versione cancellata della pagina $1, inserita il $4 alle $5 da $3:",
 	"undeleterevision-missing": "Versione errata o mancante. Il collegamento è errato oppure la versione è stata già ripristinata o eliminata dall'archivio.",
+	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Una versione non può essere ripristinata|$1 versioni non possono essere ripristinate}}, poiché {{PLURAL:$1|il suo|i loro}} <code>rev_id</code> {{PLURAL:$1|è già utilizzato|sono già utilizzati}}.",
 	"undelete-nodiff": "Non è stata trovata nessuna versione precedente.",
 	"undeletebtn": "Ripristina",
 	"undeletelink": "visualizza/ripristina",

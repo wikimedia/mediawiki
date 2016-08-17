@@ -1242,6 +1242,7 @@
 	"grant-group-high-volume": "Realizar actividades em grande quantidade",
 	"grant-group-customization": "Personalização e preferências",
 	"grant-group-administration": "Executar acções administrativas",
+	"grant-group-private-information": "Aceder aos seus dados privados",
 	"grant-group-other": "Actividade diversa",
 	"grant-blockusers": "Bloquear e desbloquear utilizadores",
 	"grant-createaccount": "Criar contas",

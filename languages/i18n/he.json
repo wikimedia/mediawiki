@@ -995,7 +995,7 @@
 	"datedefault": "ברירת המחדל",
 	"prefs-labs": "אפשרויות מעבדה",
 	"prefs-user-pages": "דפי משתמש",
-	"prefs-personal": "פרטי המשתמש",
+	"prefs-personal": "פרטי ה{{GENDER:|משתמש|משתמשת}}",
 	"prefs-rc": "שינויים אחרונים",
 	"prefs-watchlist": "רשימת המעקב",
 	"prefs-editwatchlist": "עריכת רשימת המעקב",
