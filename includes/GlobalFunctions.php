@@ -811,7 +811,7 @@ function wfUrlProtocolsWithoutProtRel() {
  * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2)).
  *
  * @param string $url A URL to parse
- * @return string[] Bits of the URL in an associative array, per PHP docs
+ * @return string[]|bool Bits of the URL in an associative array, per PHP docs, false on failure
  */
 function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
