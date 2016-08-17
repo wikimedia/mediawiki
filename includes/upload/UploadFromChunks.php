@@ -76,18 +76,18 @@ class UploadFromChunks extends UploadFromFile {
 
 		$this->verifyChunk();
 		// Create a local stash target
-		$this->mLocalFile = parent::doStashFile( $user );
+		$this->mStashFile = parent::doStashFile( $user );
 		// Update the initial file offset (based on file size)
-		$this->mOffset = $this->mLocalFile->getSize();
-		$this->mFileKey = $this->mLocalFile->getFileKey();
+		$this->mOffset = $this->mStashFile->getSize();
+		$this->mFileKey = $this->mStashFile->getFileKey();
 
 		// Output a copy of this first to chunk 0 location:
-		$this->outputChunk( $this->mLocalFile->getPath() );
+		$this->outputChunk( $this->mStashFile->getPath() );
 
 		// Update db table to reflect initial "chunk" state
 		$this->updateChunkStatus();
 
-		return $this->mLocalFile;
+		return $this->mStashFile;
 	}
 
 	/**
@@ -158,7 +158,7 @@ class UploadFromChunks extends UploadFromFile {
 			return $status;
 		}
 
-		// Update the mTempPath and mLocalFile
+		// Update the mTempPath and mStashFile
 		// (for FileUpload or normal Stash to take over)
 		$tStart = microtime( true );
 		// This is a re-implementation of UploadBase::tryStashFile(), we can't call it because we
@@ -169,14 +169,14 @@ class UploadFromChunks extends UploadFromFile {
 			return $status;
 		}
 		try {
-			$this->mLocalFile = parent::doStashFile( $this->user );
+			$this->mStashFile = parent::doStashFile( $this->user );
 		} catch ( UploadStashException $e ) {
 			$status->fatal( 'uploadstash-exception', get_class( $e ), $e->getMessage() );
 			return $status;
 		}
 
 		$tAmount = microtime( true ) - $tStart;
-		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
+		$this->mStashFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
 		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds." );
 
 		return $status;

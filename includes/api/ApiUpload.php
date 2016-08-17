@@ -278,7 +278,7 @@ class ApiUpload extends ApiBase {
 				// the old filekey and fetch the new one.
 				UploadBase::setSessionStatus( $this->getUser(), $filekey, false );
 				$this->mUpload->stash->removeFile( $filekey );
-				$filekey = $this->mUpload->getLocalFile()->getFileKey();
+				$filekey = $this->mUpload->getStashFile()->getFileKey();
 
 				$result['result'] = 'Success';
 			}
@@ -735,7 +735,7 @@ class ApiUpload extends ApiBase {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
 
-		/** @var $file File */
+		/** @var $file LocalFile */
 		$file = $this->mUpload->getLocalFile();
 
 		// For preferences mode, we want to watch if 'watchdefault' is set,
