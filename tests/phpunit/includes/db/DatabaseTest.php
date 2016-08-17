@@ -289,4 +289,38 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 		$this->assertTrue( $called, 'Callback reached' );
 	}
+
+	public function testGetScopedCallback() {
+		$db = $this->db;
+
+		$db->setFlag( DBO_TRX );
+		try {
+			$this->badLockingMethodImplicit( $db );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->rollback( __METHOD__ );
+		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
+		$db->clearFlag( DBO_TRX );
+
+		try {
+			$this->badLockingMethodExplicit( $db );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->rollback( __METHOD__ );
+		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
+	}
+
+	private function badLockingMethodImplicit( IDatabase $db ) {
+		$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+		$db->query( "SELECT 1" ); // trigger DBO_TRX
+		throw new RunTimeException( "Uh oh!" );
+	}
+
+	private function badLockingMethodExplicit( IDatabase $db ) {
+		$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+		$db->begin( __METHOD__ );
+		throw new RunTimeException( "Uh oh!" );
+	}
 }

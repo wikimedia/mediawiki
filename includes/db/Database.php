@@ -3291,8 +3291,16 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$unlocker = new ScopedCallback( function () use ( $lockKey, $fname ) {
-			$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
-			$this->unlock( $lockKey, $fname );
+			if ( $this->trxLevel() ) {
+				// There is a good chance an exception was thrown, causing any early return
+				// from the caller. Let any error handler get a chance to issue rollback().
+				// If there isn't one, let the error bubble up and trigger server-side rollback.
+				$this->onTransactionResolution( function () use ( $lockKey, $fname ) {
+					$this->unlock( $lockKey, $fname );
+				} );
+			} else {
+				$this->unlock( $lockKey, $fname );
+			}
 		} );
 
 		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
