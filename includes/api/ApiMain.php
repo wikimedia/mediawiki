@@ -25,6 +25,8 @@
  * @defgroup API API
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * This is the main API class, used for both external and internal processing.
  * When executed, it will create the requested formatter object,
@@ -206,7 +208,7 @@ class ApiMain extends ApiBase {
 					$config->get( 'CrossSiteAJAXdomainExceptions' )
 				)
 			) ) {
-				MediaWiki\Logger\LoggerFactory::getInstance( 'cors' )->warning(
+				LoggerFactory::getInstance( 'cors' )->warning(
 					'Non-whitelisted CORS request with session cookies', [
 						'origin' => $originHeader,
 						'cookies' => $sessionCookies,
@@ -1453,6 +1455,7 @@ class ApiMain extends ApiBase {
 	protected function setRequestExpectations( ApiBase $module ) {
 		$limits = $this->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		if ( $this->getRequest()->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $limits['GET'], __METHOD__ );
 		} elseif ( $this->getRequest()->wasPosted() && !$module->isWriteMode() ) {
