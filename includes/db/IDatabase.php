@@ -1353,6 +1353,10 @@ interface IDatabase {
 	 * Begin a transaction. If a transaction is already in progress,
 	 * that transaction will be committed before the new transaction is started.
 	 *
+	 * Only call this from code with outer transcation scope.
+	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
+	 * Nesting of transactions is not supported.
+	 *
 	 * Note that when the DBO_TRX flag is set (which is usually the case for web
 	 * requests, but not for maintenance scripts), any previous database query
 	 * will have started a transaction automatically.
@@ -1370,6 +1374,8 @@ interface IDatabase {
 	 * Commits a transaction previously started using begin().
 	 * If no transaction is in progress, a warning is issued.
 	 *
+	 * Only call this from code with outer transcation scope.
+	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 * Nesting of transactions is not supported.
 	 *
 	 * @param string $fname
@@ -1390,7 +1396,11 @@ interface IDatabase {
 	 * Rollback a transaction previously started using begin().
 	 * If no transaction is in progress, a warning is issued.
 	 *
-	 * No-op on non-transactional databases.
+	 * Only call this from code with outer transcation scope.
+	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
+	 * Nesting of transactions is not supported. If a serious unexpected error occurs,
+	 * throwing an Exception is preferrable, using a pre-installed error handler to trigger
+	 * rollback (in any case, failure to issue COMMIT will cause rollback server-side).
 	 *
 	 * @param string $fname
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
@@ -1561,10 +1571,14 @@ interface IDatabase {
 	/**
 	 * Acquire a named lock, flush any transaction, and return an RAII style unlocker object
 	 *
+	 * Only call this from outer transcation scope and when only one DB will be affected.
+	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
+	 *
 	 * This is suitiable for transactions that need to be serialized using cooperative locks,
 	 * where each transaction can see each others' changes. Any transaction is flushed to clear
 	 * out stale REPEATABLE-READ snapshot data. Once the returned object falls out of PHP scope,
-	 * any transaction will be committed and the lock will be released.
+	 * the lock will be released unless a transaction is active. If one is active, then the lock
+	 * will be released when it either commits or rolls back.
 	 *
 	 * If the lock acquisition failed, then no transaction flush happens, and null is returned.
 	 *

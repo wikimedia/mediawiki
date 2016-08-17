@@ -289,4 +289,27 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 		$this->assertTrue( $called, 'Callback reached' );
 	}
+
+	public function testGetScopedCallback() {
+		$db = $this->db;
+
+		try {
+			$db->setFlag( DBO_TRX );
+			$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+			$db->query( "SELECT 1" );
+			throw new RunTimeException( "Uh oh!" );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->rollback( __METHOD__ );
+
+		try {
+			$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
+			$db->begin( __METHOD__ );
+			throw new RunTimeException( "Uh oh!" );
+		} catch ( RunTimeException $e ) {
+			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
+		}
+		$db->rollback( __METHOD__ );
+	}
 }
