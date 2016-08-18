@@ -326,6 +326,7 @@ class ApiAuthManagerHelper {
 			$this->formatMessage( $ret, 'label', $field['label'] );
 			$this->formatMessage( $ret, 'help', $field['help'] );
 			$ret['optional'] = !empty( $field['optional'] );
+			$ret['sensitive'] = !empty( $field['sensitive'] );
 
 			$retFields[$name] = $ret;
 		}

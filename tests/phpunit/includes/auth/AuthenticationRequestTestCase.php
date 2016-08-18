@@ -32,6 +32,13 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 			if ( isset( $data['image'] ) ) {
 				$this->assertType( 'string', $data['image'], "Field $field, image" );
 			}
+			if ( isset( $data['sensitive'] ) ) {
+				$this->assertType( 'bool', $data['sensitive'], "Field $field, sensitive" );
+			}
+			if ( $data['type'] === 'password' ) {
+				$this->assertTrue( !empty( $data['sensitive'] ),
+					"Field $field, password field must be sensitive" );
+			}
 
 			switch ( $data['type'] ) {
 				case 'string':
