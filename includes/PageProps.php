@@ -79,9 +79,10 @@ class PageProps {
 
 	/**
 	 * Create a PageProps object
+	 * @param int|null $size Cache size, by default self::CACHE_SIZE
 	 */
-	private function __construct() {
-		$this->cache = new ProcessCacheLRU( self::CACHE_SIZE );
+	private function __construct( $size = null ) {
+		$this->cache = new ProcessCacheLRU( $size ?: self::CACHE_SIZE );
 	}
 
 	/**
