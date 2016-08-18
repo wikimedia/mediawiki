@@ -455,4 +455,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$this->loadFromDefinition();
 		return $this->position;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return self::LOAD_STYLES;
+	}
 }
