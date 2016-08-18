@@ -27,6 +27,8 @@ was released.
   to interwiki links.
 * (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
   $wgAdvancedSearchHighlighting is true.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
 
 == MediaWiki 1.27.1 ==
 
@@ -341,6 +343,8 @@ The following PHP extensions are strongly recommended:
 * Added action=changeauthenticationdata.
 * Added action=removeauthenticationdata.
 * Added action=resetpassword.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
