@@ -1688,12 +1688,8 @@ class AuthManager implements LoggerAwareInterface {
 			$logEntry->setParameters( [
 				'4::userid' => $user->getId(),
 			] );
-			$logid = $logEntry->insert();
+			$logEntry->insert();
 		}
-
-		// Commit database changes, so even if something else later blows up
-		// the newly-created user doesn't get lost.
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 		$trxProfiler->setSilenced( false );
 
