@@ -2673,7 +2673,7 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $this->mTrxLevel ) {
 			if ( $this->mTrxAtomicLevels ) {
 				$levels = implode( ', ', $this->mTrxAtomicLevels );
-				$msg = "Got explicit BEGIN from $fname while atomic section(s) $levels are open.";
+				$msg = "$fname: Got explicit BEGIN while atomic section(s) $levels are open.";
 				throw new DBUnexpectedError( $this, $msg );
 			} elseif ( !$this->mTrxAutomatic ) {
 				$msg = "$fname: Explicit transaction already active (from {$this->mTrxFname}).";
@@ -2727,7 +2727,7 @@ abstract class DatabaseBase implements IDatabase {
 			$levels = implode( ', ', $this->mTrxAtomicLevels );
 			throw new DBUnexpectedError(
 				$this,
-				"Got COMMIT while atomic sections $levels are still open."
+				"$fname: Got COMMIT while atomic sections $levels are still open."
 			);
 		}
 
@@ -3286,6 +3286,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+		if ( $this->writesOrCallbacksPending() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Cannot COMMIT to clear snapshot because writes are pending."
+			);
+		}
+
 		if ( !$this->lock( $lockKey, $fname, $timeout ) ) {
 			return null;
 		}
