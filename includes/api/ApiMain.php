@@ -1103,18 +1103,7 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( [ 'missingparam', 'token' ] );
 			}
 
-			if ( !$this->getConfig()->get( 'DebugAPI' ) &&
-				array_key_exists(
-					$module->encodeParamName( 'token' ),
-					$this->getRequest()->getQueryValues()
-				)
-			) {
-				$this->dieUsage(
-					"The '{$module->encodeParamName( 'token' )}' parameter was " .
-						'found in the query string, but must be in the POST body',
-					'mustposttoken'
-				);
-			}
+			$module->requirePostedParameters( [ 'token' ] );
 
 			if ( !$module->validateToken( $moduleParams['token'], $moduleParams ) ) {
 				$this->dieUsageMsg( 'sessionfailure' );

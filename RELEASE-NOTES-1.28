@@ -61,6 +61,13 @@ production.
 * The following response properties from action=login, deprecated in 1.27, are
   now removed: lgtoken, cookieprefix, sessionid. Clients should handle cookies
   to properly manage session state.
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
+* Submitting sensitive authentication request parameters to action=clientlogin,
+  action=createaccount, action=linkaccount, and action=changeauthenticationdata
+  in the query string is now deprecated and outputs a warning. They should be
+  submitted in the POST body instead.
 
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
