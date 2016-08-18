@@ -102,6 +102,8 @@ abstract class AuthenticationRequest {
 	 *  - label: (Message) Text suitable for a label in an HTML form
 	 *  - help: (Message) Text suitable as a description of what the field is
 	 *  - optional: (bool) If set and truthy, the field may be left empty
+	 *  - sensitive: (bool) If set and truthy, the field is considered sensitive. Code using the
+	 *      request should avoid exposing the value of the field.
 	 *
 	 * @return array As above
 	 */
@@ -315,6 +317,8 @@ abstract class AuthenticationRequest {
 					$options['optional'] = !empty( $options['optional'] );
 				}
 
+				$options['sensitive'] = !empty( $options['sensitive'] );
+
 				if ( !array_key_exists( $name, $merged ) ) {
 					$merged[$name] = $options;
 				} elseif ( $merged[$name]['type'] !== $options['type'] ) {
@@ -333,6 +337,7 @@ abstract class AuthenticationRequest {
 					}
 
 					$merged[$name]['optional'] = $merged[$name]['optional'] && $options['optional'];
+					$merged[$name]['sensitive'] = $merged[$name]['sensitive'] || $options['sensitive'];
 
 					// No way to merge 'value', 'image', 'help', or 'label', so just use
 					// the value from the first request.

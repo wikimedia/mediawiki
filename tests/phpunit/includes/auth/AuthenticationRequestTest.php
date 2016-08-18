@@ -172,6 +172,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 				'type' => 'string',
 				'label' => $msg,
 				'help' => $msg,
+				'sensitive' => true,
 			],
 			'string3' => [
 				'type' => 'string',
@@ -206,6 +207,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 		$expect = $req1->getFieldInfo();
 		foreach ( $expect as $name => &$options ) {
 			$options['optional'] = !empty( $options['optional'] );
+			$options['sensitive'] = !empty( $options['sensitive'] );
 		}
 		unset( $options );
 		$this->assertEquals( $expect, $fields );
@@ -225,8 +227,10 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
 		$expect += $req2->getFieldInfo();
+		$expect['string1']['sensitive'] = true;
 		$expect['string2']['optional'] = false;
 		$expect['string3']['optional'] = false;
+		$expect['string3']['sensitive'] = false;
 		$expect['select']['options']['bar'] = $msg;
 		$this->assertEquals( $expect, $fields );
 
@@ -237,6 +241,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
 		$expect += $req2->getFieldInfo();
 		$expect['string1']['optional'] = false;
+		$expect['string1']['sensitive'] = true;
 		$expect['string3']['optional'] = false;
 		$expect['select']['optional'] = false;
 		$expect['select']['options']['bar'] = $msg;
@@ -246,7 +251,11 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1, $req2 ] );
 		$expect = $req1->getFieldInfo() + $req2->getFieldInfo();
+		foreach ( $expect as $name => &$options ) {
+			$options['sensitive'] = !empty( $options['sensitive'] );
+		}
 		$expect['string1']['optional'] = false;
+		$expect['string1']['sensitive'] = true;
 		$expect['string2']['optional'] = true;
 		$expect['string3']['optional'] = true;
 		$expect['select']['optional'] = false;
