@@ -25,11 +25,6 @@
  * @defgroup Language Language
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo "This file is part of MediaWiki, it is not a valid entry point.\n";
-	exit( 1 );
-}
-
 use CLDRPluralRuleParser\Evaluator;
 
 /**
