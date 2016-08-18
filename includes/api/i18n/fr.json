@@ -25,7 +25,8 @@
 			"Lbayle",
 			"Verdy p",
 			"Yasten",
-			"Trial"
+			"Trial",
+			"Pols12"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
@@ -1269,7 +1270,7 @@
 	"apihelp-stashedit-param-section": "Numéro de section. <kbd>0</kbd> pour la section du haut, <kbd>new</kbd> pour une nouvelle section.",
 	"apihelp-stashedit-param-sectiontitle": "Le titre pour une nouvelle section.",
 	"apihelp-stashedit-param-text": "Contenu de la page.",
-	"apihelp-stashedit-param-stashedtexthash": "A substituer par le hachage du contenu de la page venant d’une réserve antérieure.",
+	"apihelp-stashedit-param-stashedtexthash": "Empreinte du contenu de la page venant d’une réserve préalable à utiliser à la place.",
 	"apihelp-stashedit-param-contentmodel": "Modèle de contenu du nouveau contenu.",
 	"apihelp-stashedit-param-contentformat": "Format de sérialisation de contenu utilisé pour le texte saisi.",
 	"apihelp-stashedit-param-baserevid": "ID de révision de la révision de base.",
