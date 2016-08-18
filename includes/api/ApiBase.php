@@ -171,6 +171,13 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
+	/**
+	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
+	 * always sensitive regardless of the value of this field.
+	 * @since 1.28
+	 */
+	const PARAM_SENSITIVE = 17;
+
 	/**@}*/
 
 	/** Fast query, standard limit. */
@@ -948,6 +955,11 @@ abstract class ApiBase extends ContextSource {
 					$type = 'NULL'; // allow everything
 				}
 			}
+
+			if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
+				$this->getMain()->markParamsSensitive( $encParamName );
+			}
+
 		}
 
 		if ( $type == 'boolean' ) {
@@ -2300,6 +2312,7 @@ abstract class ApiBase extends ContextSource {
 			$params['token'] = [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_SENSITIVE => true,
 				ApiBase::PARAM_HELP_MSG => [
 					'api-help-param-token',
 					$this->needsToken(),
