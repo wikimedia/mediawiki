@@ -169,6 +169,7 @@ class ApiAuthManagerHelper {
 		$this->module->getMain()->markParamsUsed( array_keys( $data ) );
 
 		if ( $sensitive ) {
+			$this->module->getMain()->markParamsSensitive( array_keys( $sensitive ) );
 			$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
 		}
 
