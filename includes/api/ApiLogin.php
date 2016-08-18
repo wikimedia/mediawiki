@@ -243,6 +243,7 @@ class ApiLogin extends ApiBase {
 				),
 				'token' => array(
 					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PARAM_SENSITIVE => true,
 					ApiBase::PROP_NULLABLE => true
 				),
 				'details' => array(

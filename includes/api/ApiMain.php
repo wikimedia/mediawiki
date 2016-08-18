@@ -143,6 +143,7 @@ class ApiMain extends ApiBase {
 	private $mCacheMode = 'private';
 	private $mCacheControl = array();
 	private $mParamsUsed = array();
+	private $mParamsSensitive = [];
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
 	private $lacksSameOriginSecurity = null;
@@ -971,13 +972,18 @@ class ApiMain extends ApiBase {
 			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
 			' ' . $request->getIP() .
 			' T=' . $milliseconds . 'ms';
+
+		$sensitive = array_flip( $this->getSensitiveParams() );
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
 			$s .= ' ' . $name . '=';
-			if ( strlen( $value ) > 256 ) {
+			if ( isset( $sensitive[$name] ) ) {
+				$value = '[redacted]';
+				$encValue = '[redacted]';
+			} elseif ( strlen( $value ) > 256 ) {
 				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
 				$s .= $encValue . '[...]';
 			} else {
@@ -1009,6 +1015,24 @@ class ApiMain extends ApiBase {
 	 */
 	protected function getParamsUsed() {
 		return array_keys( $this->mParamsUsed );
+	}
+
+ 	/**
+	 * Get the request parameters that should be considered sensitive
+	 * @since 1.28
+	 * @return array
+	 */
+	protected function getSensitiveParams() {
+		return array_keys( $this->mParamsSensitive );
+	}
+
+	/**
+	 * Mark parameters as sensitive
+	 * @since 1.28
+	 * @param string|string[] $params
+	 */
+	public function markParamsSensitive( $params ) {
+		$this->mParamsSensitive += array_fill_keys( (array)$params, true );
 	}
 
 	/**

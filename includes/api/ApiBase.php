@@ -65,6 +65,13 @@ abstract class ApiBase extends ContextSource {
 	// Only applies if TYPE='integer' Use with extreme caution
 	const PARAM_RANGE_ENFORCE = 9;
 
+	/**
+	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
+	 * always sensitive regardless of the value of this field.
+	 * @since 1.28
+	 */
+	const PARAM_SENSITIVE = 17;
+
 	// Name of property group that is on the root element of the result,
 	// i.e. not part of a list
 	const PROP_ROOT = 'ROOT';
@@ -668,6 +675,7 @@ abstract class ApiBase extends ContextSource {
 		foreach ( array_keys( $tokenFunctions ) as $token ) {
 			$props[''][$token . 'token'] = array(
 				ApiBase::PROP_TYPE => 'string',
+				ApiBase::PARAM_SENSITIVE => true,
 				ApiBase::PROP_NULLABLE => true
 			);
 		}
@@ -1060,6 +1068,10 @@ abstract class ApiBase extends ContextSource {
 				} else {
 					$type = 'NULL'; // allow everything
 				}
+			}
+
+			if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
+				$this->getMain()->markParamsSensitive( $encParamName );
 			}
 		}
 

@@ -15,6 +15,8 @@ This is not a release yet!
   to interwiki links.
 * (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
   $wgAdvancedSearchHighlighting is true.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
 
 == MediaWiki 1.23.15 ==
 

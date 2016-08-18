@@ -555,7 +555,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'user'
 			),
 			'token' => array(
-				ApiBase::PARAM_TYPE => 'string'
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_SENSITIVE => true,
 			),
 			'continue' => null,
 		);
