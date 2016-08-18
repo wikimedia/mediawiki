@@ -170,7 +170,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'user'
 			],
 			'token' => [
-				ApiBase::PARAM_TYPE => 'string'
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_SENSITIVE => true,
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
