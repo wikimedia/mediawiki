@@ -85,6 +85,8 @@ production.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 * (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
   to interwiki links.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
 
 === Action API changes in 1.29 ===
 * Submitting sensitive authentication request parameters to action=login,
@@ -145,6 +147,8 @@ production.
   various methods now take a module path rather than a module name.
 * ApiMessageTrait::getApiCode() now strips 'apierror-' and 'apiwarn-' prefixes
   from the message key, and maps some message keys for backwards compatibility.
+* API parameters may now be marked as "sensitive" to keep their values out of
+  the logs.
 
 === Languages updated in 1.29 ===
 
