@@ -70,6 +70,14 @@ class ApiLogin extends ApiBase {
 			return;
 		}
 
+		try {
+			$this->requirePostedParameters( [ 'password', 'token' ] );
+		} catch ( UsageException $ex ) {
+			// Make this a warning for now, upgrade to an error in 1.29.
+			$this->setWarning( $ex->getMessage() );
+			$this->logFeatureUsage( 'login-params-in-query-string' );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$result = [];
