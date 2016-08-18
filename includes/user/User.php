@@ -4527,8 +4527,8 @@ class User implements IDBAccessObject {
 			$sender = new MailAddress( $wgPasswordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		}
-		if ( is_array( $body ) && isset( $body['html'] ) ){
-			if ( $this->getOption('plaintextemailonly') ){
+		if ( is_array( $body ) && isset( $body['html'] ) ) {
+			if ( $this->getOption( 'plaintextemailonly' ) ) {
 				$body = $body['text'];
 			}
 		}

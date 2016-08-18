@@ -543,7 +543,9 @@ class EmailNotification {
 	public static function transformContentToHTML( $content ) {
 		$parser = new Parser;
 		$output = $parser->parse( $content, new Title, new ParserOptions );
-		return $output->mText;
+		$templateParser = new TemplateParser();
+		$content = $templateParser->processTemplate( 'HTMLEmail', [ 'body' => $output->mText ] );
+		return $content;
 	}
 
 	/**
