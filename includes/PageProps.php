@@ -61,11 +61,15 @@ class PageProps {
 	}
 
 	/**
+	 * @param int|null $size Cache size, by default self::CACHE_SIZE
 	 * @return PageProps
 	 */
-	public static function getInstance() {
+	public static function getInstance( $size = null ) {
+		if ( !is_null( $size ) ) {
+			return new self( $size );
+		}
 		if ( self::$instance === null ) {
-			self::$instance = new self();
+			self::$instance = new self( self::CACHE_SIZE );
 		}
 		return self::$instance;
 	}
@@ -79,9 +83,10 @@ class PageProps {
 
 	/**
 	 * Create a PageProps object
+	 * @param int $size Cache size
 	 */
-	private function __construct() {
-		$this->cache = new ProcessCacheLRU( self::CACHE_SIZE );
+	private function __construct( $size ) {
+		$this->cache = new ProcessCacheLRU( $size );
 	}
 
 	/**
