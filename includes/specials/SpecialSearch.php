@@ -100,6 +100,25 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $par
 	 */
 	public function execute( $par ) {
+		$request = $this->getRequest();
+
+		// Fetch the search term
+		$search = str_replace( "\n", " ", $request->getText( 'search' ) );
+
+		// Historically search terms have been accepted not only in the search query
+		// parameter, but also as part of the primary url. This can have PII implications
+		// in releasing page view data. As such issue a 301 redirect to the correct
+		// URL.
+		if ( strlen( $par ) && !strlen( $search ) ) {
+			$query = $request->getValues();
+			unset( $query['title'] );
+			// Strip underscores from title parameter; most of the time we'll want
+			// text form here. But don't strip underscores from actual text params!
+			$query['search'] = str_replace( '_', ' ', $par );
+			$this->getOutput()->redirect( $this->getPageTitle()->getFullURL( $query ), 301 );
+			return;
+		}
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
@@ -109,15 +128,6 @@ class SpecialSearch extends SpecialPage {
 			'mediawiki.ui.input', 'mediawiki.widgets.SearchInputWidget.styles',
 		] );
 		$this->addHelpLink( 'Help:Searching' );
-
-		// Strip underscores from title parameter; most of the time we'll want
-		// text form here. But don't strip underscores from actual text params!
-		$titleParam = str_replace( '_', ' ', $par );
-
-		$request = $this->getRequest();
-
-		// Fetch the search term
-		$search = str_replace( "\n", " ", $request->getText( 'search', $titleParam ) );
 
 		$this->load();
 		if ( !is_null( $request->getVal( 'nsRemember' ) ) ) {
