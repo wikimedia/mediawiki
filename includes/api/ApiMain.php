@@ -805,6 +805,8 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			}
 
+			$module->requirePostedParameters( [ 'token' ] );
+
 			if ( !$this->getUser()->matchEditToken(
 				$moduleParams['token'],
 				$salt,

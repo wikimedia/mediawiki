@@ -7,6 +7,9 @@ This is not a release yet!
 === Changes since 1.23.15 ===
 * (T68404) CSS3 attr() function with url type is no longer allowed
   in inline styles.
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
 
 == MediaWiki 1.23.15 ==
 
