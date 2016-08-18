@@ -845,6 +845,40 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Die if any of the specified parameters were found in the query part of
+	 * the URL rather than the post body.
+	 * @since 1.28
+	 * @param string[] $params Parameters to check
+	 * @param string $prefix Set to 'noprefix' to skip calling $this->encodeParamName()
+	 */
+	public function requirePostedParameters( $params, $prefix = 'prefix' ) {
+		global $wgDebugAPI;
+		// Skip if $wgDebugAPI is set or we're in internal mode
+		if ( $wgDebugAPI || $this->getMain()->isInternalMode() ) {
+			return;
+		}
+
+		$queryValues = $this->getRequest()->getQueryValues();
+		$badParams = array();
+		foreach ( $params as $param ) {
+			if ( $prefix !== 'noprefix' ) {
+				$param = $this->encodeParamName( $param );
+			}
+			if ( array_key_exists( $param, $queryValues ) ) {
+				$badParams[] = $param;
+			}
+		}
+
+		if ( $badParams ) {
+			$this->dieUsage(
+				'The following parameters were found in the query string, but must be in the POST body: '
+					. join( ', ', $badParams ),
+				'mustpostparams'
+			);
+		}
+	}
+
+	/**
 	 * Generates the possible errors requireAtLeastOneParameter() can die with
 	 *
 	 * @since 1.23
