@@ -245,10 +245,7 @@ class JobQueueDB extends JobQueue {
 				count( $rowSet ) + count( $rowList ) - count( $rows )
 			);
 		} catch ( DBError $e ) {
-			if ( $flags & self::QOS_ATOMIC ) {
-				$dbw->rollback( $method );
-			}
-			throw $e;
+			$this->throwDBException( $e );
 		}
 		if ( $flags & self::QOS_ATOMIC ) {
 			$dbw->endAtomic( $method );
