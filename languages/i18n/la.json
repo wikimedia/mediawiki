@@ -968,7 +968,7 @@
 	"shared-repo-from": "apud {{grammar:accusative|$1}}",
 	"shared-repo": "repositorium commune",
 	"shared-repo-name-wikimediacommons": "Vicimedia Communia",
-	"upload-disallowed-here": "Hunc facisculum substituere tibi non licet.",
+	"upload-disallowed-here": "Hunc fasciculum substituere tibi non licet.",
 	"filerevert": "Revertere $1",
 	"filerevert-legend": "Reverti fasciculum",
 	"filerevert-intro": "Reversurus es '''[[Media:$1|$1]]''' ad [$4 redactionem quae $2, $3 facta erat].",

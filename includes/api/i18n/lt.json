@@ -1,13 +1,25 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zygimantus"
+			"Zygimantus",
+			"Eitvys200"
 		]
 	},
+	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
+	"apihelp-block-description": "Blokuoti vartotoją.",
+	"apihelp-block-param-reason": "Blokavimo priežastis.",
+	"apihelp-block-param-nocreate": "Neleisti kurti paskyrų.",
 	"apihelp-createaccount-param-name": "Naudotojo vardas.",
 	"apihelp-createaccount-param-realname": "Vardas (nebūtina).",
 	"apihelp-delete-description": "Ištrinti puslapį.",
+	"apihelp-delete-example-simple": "Ištrinti <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-reason": "Ištrinti <kbd>Main Page</kbd> su priežastimi <kbd>Preparing for move</kbd>.",
+	"apihelp-disabled-description": "Šis modulis buvo išjungtas.",
+	"apihelp-edit-description": "Kurti ir redaguoti puslapius.",
+	"apihelp-edit-param-sectiontitle": "Naujo skyriaus pavadinimas.",
 	"apihelp-edit-param-text": "Puslapio turinys.",
+	"apihelp-edit-param-minor": "Smulkus pakeitimas.",
+	"apihelp-edit-param-notminor": "Nesmulkus pakeitimas.",
 	"apihelp-emailuser-description": "Siųsti el. laišką naudotojui.",
 	"apihelp-expandtemplates-param-title": "Puslapio pavadinimas.",
 	"apihelp-feedrecentchanges-example-simple": "Parodyti naujausius keitimus.",
