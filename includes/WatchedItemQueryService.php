@@ -55,7 +55,7 @@ class WatchedItemQueryService {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return Database
 	 * @throws MWException
 	 */
 	private function getConnection() {
@@ -63,10 +63,10 @@ class WatchedItemQueryService {
 	}
 
 	/**
-	 * @param DatabaseBase $connection
+	 * @param Database $connection
 	 * @throws MWException
 	 */
-	private function reuseConnection( DatabaseBase $connection ) {
+	private function reuseConnection( Database $connection ) {
 		$this->loadBalancer->reuseConnection( $connection );
 	}
 
@@ -337,7 +337,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getWatchedItemsWithRCInfoQueryConds(
-		DatabaseBase $db,
+		Database $db,
 		User $user,
 		array $options
 	) {
@@ -445,7 +445,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getStartEndConds( DatabaseBase $db, array $options ) {
+	private function getStartEndConds( Database $db, array $options ) {
 		if ( !isset( $options['start'] ) && ! isset( $options['end'] ) ) {
 			return [];
 		}
@@ -464,7 +464,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getUserRelatedConds( DatabaseBase $db, User $user, array $options ) {
+	private function getUserRelatedConds( Database $db, User $user, array $options ) {
 		if ( !array_key_exists( 'onlyByUser', $options ) && !array_key_exists( 'notByUser', $options ) ) {
 			return [];
 		}
@@ -491,7 +491,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getExtraDeletedPageLogEntryRelatedCond( DatabaseBase $db, User $user ) {
+	private function getExtraDeletedPageLogEntryRelatedCond( Database $db, User $user ) {
 		// LogPage::DELETED_ACTION hides the affected page, too. So hide those
 		// entirely from the watchlist, or someone could guess the title.
 		$bitmask = 0;
@@ -509,7 +509,7 @@ class WatchedItemQueryService {
 		return '';
 	}
 
-	private function getStartFromConds( DatabaseBase $db, array $options ) {
+	private function getStartFromConds( Database $db, array $options ) {
 		$op = $options['dir'] === self::DIR_OLDER ? '<' : '>';
 		list( $rcTimestamp, $rcId ) = $options['startFrom'];
 		$rcTimestamp = $db->addQuotes( $db->timestamp( $rcTimestamp ) );
@@ -529,7 +529,7 @@ class WatchedItemQueryService {
 		);
 	}
 
-	private function getWatchedItemsForUserQueryConds( DatabaseBase $db, User $user, array $options ) {
+	private function getWatchedItemsForUserQueryConds( Database $db, User $user, array $options ) {
 		$conds = [ 'wl_user' => $user->getId() ];
 		if ( $options['namespaceIds'] ) {
 			$conds['wl_namespace'] = array_map( 'intval', $options['namespaceIds'] );
@@ -563,12 +563,12 @@ class WatchedItemQueryService {
 	 * Creates a query condition part for getting only items before or after the given link target
 	 * (while ordering using $sort mode)
 	 *
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param LinkTarget $target
 	 * @param string $op comparison operator to use in the conditions
 	 * @return string
 	 */
-	private function getFromUntilTargetConds( DatabaseBase $db, LinkTarget $target, $op ) {
+	private function getFromUntilTargetConds( Database $db, LinkTarget $target, $op ) {
 		return $db->makeList(
 			[
 				"wl_namespace $op " . $target->getNamespace(),

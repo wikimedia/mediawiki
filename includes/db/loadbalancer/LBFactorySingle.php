@@ -30,7 +30,7 @@ class LBFactorySingle extends LBFactory {
 
 	/**
 	 * @param array $conf An associative array with one member:
-	 *  - connection: The DatabaseBase connection object
+	 *  - connection: The Database connection object
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
@@ -90,7 +90,7 @@ class LBFactorySingle extends LBFactory {
  * Helper class for LBFactorySingle.
  */
 class LoadBalancerSingle extends LoadBalancer {
-	/** @var DatabaseBase */
+	/** @var Database */
 	private $db;
 
 	/**
@@ -123,7 +123,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	 * @param string $server
 	 * @param bool $dbNameOverride
 	 *
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		return $this->db;

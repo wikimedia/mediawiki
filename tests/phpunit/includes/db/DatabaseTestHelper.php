@@ -4,7 +4,7 @@
  * Helper for testing the methods from the DatabaseBase class
  * @since 1.22
  */
-class DatabaseTestHelper extends DatabaseBase {
+class DatabaseTestHelper extends Database {
 
 	/**
 	 * __CLASS__ of the test suite,

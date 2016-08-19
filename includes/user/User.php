@@ -1432,11 +1432,11 @@ class User implements IDBAccessObject {
 	 * protected against race conditions using a compare-and-set (CAS) mechanism
 	 * based on comparing $this->mTouched with the user_touched field.
 	 *
-	 * @param DatabaseBase $db
-	 * @param array $conditions WHERE conditions for use with DatabaseBase::update
-	 * @return array WHERE conditions for use with DatabaseBase::update
+	 * @param Database $db
+	 * @param array $conditions WHERE conditions for use with Database::update
+	 * @return array WHERE conditions for use with Database::update
 	 */
-	protected function makeUpdateConditions( DatabaseBase $db, array $conditions ) {
+	protected function makeUpdateConditions( Database $db, array $conditions ) {
 		if ( $this->mTouched ) {
 			// CAS check: only update if the row wasn't changed sicne it was loaded.
 			$conditions['user_touched'] = $db->timestamp( $this->mTouched );

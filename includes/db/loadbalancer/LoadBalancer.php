@@ -30,7 +30,7 @@
 class LoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
+	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => Database array) */
 	private $mConns;
 	/** @var array Map of (server index => weight) */
 	private $mLoads;
@@ -52,7 +52,7 @@ class LoadBalancer {
 	/** @var WANObjectCache */
 	private $wanCache;
 
-	/** @var bool|DatabaseBase Database connection that caused a problem */
+	/** @var bool|Database Database connection that caused a problem */
 	private $mErrorConnection;
 	/** @var integer The generic (not query grouped) slave index (of $mServers) */
 	private $mReadIndex;
@@ -443,7 +443,7 @@ class LoadBalancer {
 	 * Returns false if there is no connection open
 	 *
 	 * @param int $i
-	 * @return DatabaseBase|bool False on failure
+	 * @return Database|bool False on failure
 	 */
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $conns ) {
@@ -529,7 +529,7 @@ class LoadBalancer {
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 *
 	 * @throws MWException
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public function getConnection( $i, $groups = [], $wiki = false ) {
 		if ( $i === null || $i === false ) {
@@ -603,7 +603,7 @@ class LoadBalancer {
 	 * DB name or prefix. This mechanism is reference-counted, and must be called
 	 * the same number of times as getConnection() to work.
 	 *
-	 * @param DatabaseBase $conn
+	 * @param Database $conn
 	 * @throws MWException
 	 */
 	public function reuseConnection( $conn ) {
@@ -648,7 +648,7 @@ class LoadBalancer {
 	/**
 	 * Get a database connection handle reference
 	 *
-	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 * The handle's methods wrap simply wrap those of a Database handle
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
@@ -664,7 +664,7 @@ class LoadBalancer {
 	/**
 	 * Get a database connection handle reference without connecting yet
 	 *
-	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 * The handle's methods wrap simply wrap those of a Database handle
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
@@ -689,7 +689,7 @@ class LoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @return DatabaseBase|bool Returns false on errors
+	 * @return Database|bool Returns false on errors
 	 */
 	public function openConnection( $i, $wiki = false ) {
 		if ( $wiki !== false ) {
@@ -741,7 +741,7 @@ class LoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $wiki Wiki ID to open
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	private function openForeignConnection( $i, $wiki ) {
 		list( $dbName, $prefix ) = wfSplitWikiID( $wiki );
@@ -823,7 +823,7 @@ class LoadBalancer {
 	 * @param array $server
 	 * @param bool $dbNameOverride
 	 * @throws MWException
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if ( $this->disabled ) {
@@ -852,7 +852,7 @@ class LoadBalancer {
 
 		# Create object
 		try {
-			$db = DatabaseBase::factory( $server['type'], $server );
+			$db = Database::factory( $server['type'], $server );
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
@@ -1018,7 +1018,7 @@ class LoadBalancer {
 	 * Close all open connections
 	 */
 	public function closeAll() {
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenConnection( function ( Database $conn ) {
 			$conn->close();
 		} );
 
@@ -1034,7 +1034,7 @@ class LoadBalancer {
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 * @param DatabaseBase $conn
+	 * @param Database $conn
 	 */
 	public function closeConnection( $conn ) {
 		$done = false;
@@ -1061,7 +1061,7 @@ class LoadBalancer {
 	 * @param string $fname Caller name
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( $fname ) {
+		$this->forEachOpenConnection( function ( Database $conn ) use ( $fname ) {
 			$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 		} );
 	}
@@ -1072,7 +1072,7 @@ class LoadBalancer {
 	 * @since 1.28
 	 */
 	public function runMasterPreCommitCallbacks() {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) {
 			// Any error will cause all DB transactions to be rolled back together.
 			$conn->runOnTransactionPreCommitCallbacks();
 			// Defer post-commit callbacks until COMMIT finishes for all DBs.
@@ -1089,7 +1089,7 @@ class LoadBalancer {
 	 */
 	public function approveMasterChanges( array $options ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $limit ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $limit ) {
 			// Assert that the time to replicate the transaction will be sane.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration();
@@ -1107,7 +1107,7 @@ class LoadBalancer {
 	 * @param string $fname Caller name
 	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
+		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $fname ) {
 			if ( $conn->writesOrCallbacksPending() ) {
 				$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 			}
@@ -1119,7 +1119,7 @@ class LoadBalancer {
 	 * @since 1.28
 	 */
 	public function runMasterPostCommitCallbacks() {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $db ) {
+		$this->forEachOpenMasterConnection( function ( Database $db ) {
 			$db->setPostCommitCallbackSupression( false );
 			$db->runOnTransactionIdleCallbacks( IDatabase::TRIGGER_COMMIT );
 		} );
@@ -1139,7 +1139,7 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
-			/** @var DatabaseBase $conn */
+			/** @var Database $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					try {
@@ -1177,7 +1177,7 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
-			/** @var DatabaseBase $conn */
+			/** @var Database $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					return true;
@@ -1199,7 +1199,7 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
-			/** @var DatabaseBase $conn */
+			/** @var Database $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				$lastTime = max( $lastTime, $conn->lastDoneWrites() );
 			}
@@ -1236,7 +1236,7 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
-			/** @var DatabaseBase $conn */
+			/** @var Database $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
 			}
@@ -1288,11 +1288,11 @@ class LoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @param DatabaseBase|null DB master connection; used to avoid loops [optional]
+	 * @param Database|null DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 * @since 1.27
 	 */
-	public function getReadOnlyReason( $wiki = false, DatabaseBase $conn = null ) {
+	public function getReadOnlyReason( $wiki = false, Database $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->getLaggedSlaveMode( $wiki ) ) {
@@ -1312,10 +1312,10 @@ class LoadBalancer {
 
 	/**
 	 * @param string $wiki Wiki ID, or false for the current wiki
-	 * @param DatabaseBase|null DB master connectionl used to avoid loops [optional]
+	 * @param Database|null DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
-	private function masterRunningReadOnly( $wiki, DatabaseBase $conn = null ) {
+	private function masterRunningReadOnly( $wiki, Database $conn = null ) {
 		$cache = $this->wanCache;
 		$masterServer = $this->getServerName( $this->getWriterIndex() );
 
@@ -1356,7 +1356,7 @@ class LoadBalancer {
 	 */
 	public function pingAll() {
 		$success = true;
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( &$success ) {
+		$this->forEachOpenConnection( function ( Database $conn ) use ( &$success ) {
 			if ( !$conn->ping() ) {
 				$success = false;
 			}
@@ -1391,7 +1391,7 @@ class LoadBalancer {
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( isset( $connsByServer[$masterIndex] ) ) {
-				/** @var DatabaseBase $conn */
+				/** @var Database $conn */
 				foreach ( $connsByServer[$masterIndex] as $conn ) {
 					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );

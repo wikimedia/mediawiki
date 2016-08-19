@@ -11,7 +11,7 @@ class DBConnRef implements IDatabase {
 	/** @var LoadBalancer */
 	private $lb;
 
-	/** @var DatabaseBase|null */
+	/** @var Database|null */
 	private $conn;
 
 	/** @var array|null */
@@ -19,11 +19,11 @@ class DBConnRef implements IDatabase {
 
 	/**
 	 * @param LoadBalancer $lb
-	 * @param DatabaseBase|array $conn Connection or (server index, group, wiki ID) array
+	 * @param Database|array $conn Connection or (server index, group, wiki ID) array
 	 */
 	public function __construct( LoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
-		if ( $conn instanceof DatabaseBase ) {
+		if ( $conn instanceof Database ) {
 			$this->conn = $conn;
 		} else {
 			$this->params = $conn;

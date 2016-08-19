@@ -29,7 +29,7 @@ use Psr\Log\NullLogger;
 /**
  * Helper class that detects high-contention DB queries via profiling calls
  *
- * This class is meant to work with a DatabaseBase object, which manages queries
+ * This class is meant to work with a Database object, which manages queries
  *
  * @since 1.24
  */

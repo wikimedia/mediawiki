@@ -26,15 +26,15 @@
  * @ingroup Database
  */
 class DBError extends MWException {
-	/** @var DatabaseBase */
+	/** @var Database */
 	public $db;
 
 	/**
 	 * Construct a database error
-	 * @param DatabaseBase $db Object which threw the error
+	 * @param Database $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 */
-	function __construct( DatabaseBase $db = null, $error ) {
+	function __construct( Database $db = null, $error ) {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
@@ -105,10 +105,10 @@ class DBConnectionError extends DBExpectedError {
 	public $error;
 
 	/**
-	 * @param DatabaseBase $db Object throwing the error
+	 * @param Database $db Object throwing the error
 	 * @param string $error Error text
 	 */
-	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
+	function __construct( Database $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
 		if ( trim( $error ) != '' ) {
@@ -326,13 +326,13 @@ class DBQueryError extends DBExpectedError {
 	public $error, $errno, $sql, $fname;
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param string $error
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
 	 */
-	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
+	function __construct( Database $db, $error, $errno, $sql, $fname ) {
 		if ( $db->wasConnectionError( $errno ) ) {
 			$message = "A connection error occured. \n" .
 				"Query: $sql\n" .

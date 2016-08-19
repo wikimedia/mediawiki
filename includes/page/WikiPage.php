@@ -3402,7 +3402,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'categorylinks',
 			[ 'cl_to AS page_title, ' . NS_CATEGORY . ' AS page_namespace' ],
-			// Have to do that since DatabaseBase::fieldNamesWithAlias treats numeric indexes
+			// Have to do that since Database::fieldNamesWithAlias treats numeric indexes
 			// as not being aliases, and NS_CATEGORY is numeric
 			[ 'cl_from' => $id ],
 			__METHOD__ );

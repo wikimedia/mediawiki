@@ -2832,7 +2832,7 @@ class LocalFileMoveBatch {
 
 	protected $archive;
 
-	/** @var DatabaseBase */
+	/** @var Database */
 	protected $db;
 
 	/**

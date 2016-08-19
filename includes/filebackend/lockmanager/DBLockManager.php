@@ -60,7 +60,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                     - user        : DB user
 	 *                     - password    : DB user password
 	 *                     - tablePrefix : DB table prefix
-	 *                     - flags       : DB flags (see DatabaseBase)
+	 *                     - flags       : DB flags (see Database)
 	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                   each having an odd-numbered list of DB names (peers) as values.
 	 *                   Any DB named 'localDBMaster' will automatically use the DB master
@@ -152,7 +152,7 @@ abstract class DBLockManager extends QuorumLockManager {
 				$db = $this->getLocalLB()->getConnection( DB_MASTER, [], $this->domain );
 			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
 				$config = $this->dbServers[$lockDb];
-				$db = DatabaseBase::factory( $config['type'], $config );
+				$db = Database::factory( $config['type'], $config );
 			}
 			if ( !$db ) {
 				return null; // config error?

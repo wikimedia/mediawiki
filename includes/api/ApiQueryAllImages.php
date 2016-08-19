@@ -44,7 +44,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	 * which may not necessarily be the same as the local DB.
 	 *
 	 * TODO: allow querying non-local repos.
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function getDB() {
 		return $this->mRepo->getSlaveDB();

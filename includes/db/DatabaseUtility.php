@@ -78,7 +78,7 @@ class ResultWrapper implements Iterator {
 	/** @var resource */
 	public $result;
 
-	/** @var DatabaseBase */
+	/** @var Database */
 	protected $db;
 
 	/** @var int */
@@ -90,7 +90,7 @@ class ResultWrapper implements Iterator {
 	/**
 	 * Create a new result object from a result resource and a Database object
 	 *
-	 * @param DatabaseBase $database
+	 * @param Database $database
 	 * @param resource|ResultWrapper $result
 	 */
 	function __construct( $database, $result ) {
@@ -286,9 +286,9 @@ class FakeResultWrapper extends ResultWrapper {
 }
 
 /**
- * Used by DatabaseBase::buildLike() to represent characters that have special
+ * Used by Database::buildLike() to represent characters that have special
  * meaning in SQL LIKE clauses and thus need no escaping. Don't instantiate it
- * manually, use DatabaseBase::anyChar() and anyString() instead.
+ * manually, use Database::anyChar() and anyString() instead.
  */
 class LikeMatch {
 	/** @var string */

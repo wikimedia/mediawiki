@@ -16,7 +16,7 @@ class DatabaseUpdaterTest extends MediaWikiTestCase {
 	}
 }
 
-class FakeDatabase extends DatabaseBase {
+class FakeDatabase extends Database {
 	public $lastInsertTable;
 	public $lastInsertData;
 
