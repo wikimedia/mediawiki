@@ -2875,6 +2875,10 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
+		// Given the lock above, we can be confident in the title and page ID values
+		$namespace = $this->getTitle()->getNamespace();
+		$dbKey = $this->getTitle()->getDBkey();
+
 		// At this point we are now comitted to returning an OK
 		// status unless some DB query error or other exception comes up.
 		// This way callers don't have to call rollback() if $status is bad
@@ -2895,54 +2899,54 @@ class WikiPage implements Page, IDBAccessObject {
 			$bitfield = 'rev_deleted';
 		}
 
-		/**
-		 * For now, shunt the revision data into the archive table.
-		 * Text is *not* removed from the text table; bulk storage
-		 * is left intact to avoid breaking block-compression or
-		 * immutable storage schemes.
-		 *
-		 * For backwards compatibility, note that some older archive
-		 * table entries will have ar_text and ar_flags fields still.
-		 *
-		 * In the future, we may keep revisions and mark them with
-		 * the rev_deleted field, which is reserved for this purpose.
-		 */
+		// For now, shunt the revision data into the archive table.
+		// Text is *not* removed from the text table; bulk storage
+		// is left intact to avoid breaking block-compression or
+		// immutable storage schemes.
+		//
+		// For backwards compatibility, note that some older archive
+		// table entries will have ar_text and ar_flags fields still.
+		//
+		// In the future, we may keep revisions and mark them with
+		// the rev_deleted field, which is reserved for this purpose.
 
-		$row = [
-			'ar_namespace'  => 'page_namespace',
-			'ar_title'      => 'page_title',
-			'ar_comment'    => 'rev_comment',
-			'ar_user'       => 'rev_user',
-			'ar_user_text'  => 'rev_user_text',
-			'ar_timestamp'  => 'rev_timestamp',
-			'ar_minor_edit' => 'rev_minor_edit',
-			'ar_rev_id'     => 'rev_id',
-			'ar_parent_id'  => 'rev_parent_id',
-			'ar_text_id'    => 'rev_text_id',
-			'ar_text'       => '\'\'', // Be explicit to appease
-			'ar_flags'      => '\'\'', // MySQL's "strict mode"...
-			'ar_len'        => 'rev_len',
-			'ar_page_id'    => 'page_id',
-			'ar_deleted'    => $bitfield,
-			'ar_sha1'       => 'rev_sha1',
-		];
-
-		if ( $wgContentHandlerUseDB ) {
-			$row['ar_content_model'] = 'rev_content_model';
-			$row['ar_content_format'] = 'rev_content_format';
-		}
-
-		// Copy all the page revisions into the archive table
-		$dbw->insertSelect(
-			'archive',
-			[ 'page', 'revision' ],
-			$row,
-			[
-				'page_id' => $id,
-				'page_id = rev_page'
-			],
-			__METHOD__
+		// Get all of the page revisions
+		$res = $dbw->select(
+			'revision',
+			Revision::selectFields(),
+			[ 'rev_page' => $id ],
+			__METHOD__,
+			'FOR UPDATE'
 		);
+		// Build their equivalent archive rows
+		$rowsInsert = [];
+		foreach ( $res as $row ) {
+			$rowInsert = [
+				'ar_namespace'  => $namespace,
+				'ar_title'      => $dbKey,
+				'ar_comment'    => $row->rev_comment,
+				'ar_user'       => $row->rev_user,
+				'ar_user_text'  => $row->rev_user_text,
+				'ar_timestamp'  => $row->rev_timestamp,
+				'ar_minor_edit' => $row->rev_minor_edit,
+				'ar_rev_id'     => $row->rev_id,
+				'ar_parent_id'  => $row->rev_parent_id,
+				'ar_text_id'    => $row->rev_text_id,
+				'ar_text'       => '\'\'', // Be explicit to appease
+				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
+				'ar_len'        => $row->rev_len,
+				'ar_page_id'    => $id,
+				'ar_deleted'    => $bitfield,
+				'ar_sha1'       => $row->rev_sha1,
+			];
+			if ( $wgContentHandlerUseDB ) {
+				$rowInsert['ar_content_model'] = $row->rev_content_model;
+				$rowInsert['ar_content_format'] = $row->rev_content_format;
+			}
+			$rowsInsert[] = $rowInsert;
+		}
+		// Copy them into the archive table
+		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
 		// Save this so we can pass it to the ArticleDeleteComplete hook.
 		$archivedRevisionCount = $dbw->affectedRows();
 
