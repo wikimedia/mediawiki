@@ -297,19 +297,25 @@ class MovePage {
 
 		if ( $protected ) {
 			# Protect the redirect title as the title used to be...
-			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
-				[
-					'pr_page' => $redirid,
-					'pr_type' => 'pr_type',
-					'pr_level' => 'pr_level',
-					'pr_cascade' => 'pr_cascade',
-					'pr_user' => 'pr_user',
-					'pr_expiry' => 'pr_expiry'
-				],
+			$res = $dbw->select(
+				'page_restrictions',
+				'*',
 				[ 'pr_page' => $pageid ],
 				__METHOD__,
-				[ 'IGNORE' ]
+				'FOR UPDATE'
 			);
+			$rowsInsert = [];
+			foreach ( $res as $row ) {
+				$rowsInsert[] = [
+					'pr_page' => $redirid,
+					'pr_type' => $row->pr_type,
+					'pr_level' => $row->pr_level,
+					'pr_cascade' => $row->pr_cascade,
+					'pr_user' => $row->pr_user,
+					'pr_expiry' => $row->pr_expiry
+				];
+			}
+			$dbw->insert( 'page_restrictions', $rowsInsert, __METHOD__, [ 'IGNORE' ] );
 
 			// Build comment for log
 			$comment = wfMessage(
