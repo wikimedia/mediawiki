@@ -2826,10 +2826,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
-	protected function explicitTrxActive() {
+	public function explicitTrxActive() {
 		return $this->mTrxLevel && ( $this->mTrxAtomicLevels || !$this->mTrxAutomatic );
 	}
 
