@@ -60,19 +60,25 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Fram
 		$creator = $this->getMock( 'User' );
 		$userWithoutEmail = $this->getMock( 'User' );
 		$userWithoutEmail->expects( $this->any() )->method( 'getEmail' )->willReturn( '' );
+		$userWithoutEmail->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
 		$userWithEmailError = $this->getMock( 'User' );
 		$userWithEmailError->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
+		$userWithEmailError->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->expects( $this->any() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newFatal( 'fail' ) );
 		$userExpectsConfirmation = $this->getMock( 'User' );
 		$userExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
+		$userExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
+			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newGood() );
 		$userNotExpectsConfirmation = $this->getMock( 'User' );
 		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
+		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
+			->willReturnSelf();
 		$userNotExpectsConfirmation->expects( $this->never() )->method( 'sendConfirmationMail' );
 
 		$provider = new EmailNotificationSecondaryAuthenticationProvider( [
