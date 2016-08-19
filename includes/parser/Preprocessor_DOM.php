@@ -93,9 +93,9 @@ class Preprocessor_DOM extends Preprocessor {
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
-			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2
+			// LIBXML_PARSEHUGE needed so newer versions of libxml2
 			// don't barf when the XML is >256 levels deep
-			$result = $dom->loadXML( $xml, 1 << 19 );
+			$result = $dom->loadXML( $xml, LIBXML_PARSEHUGE );
 		}
 
 		if ( !$result ) {
@@ -171,9 +171,9 @@ class Preprocessor_DOM extends Preprocessor {
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
-			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2
+			// LIBXML_PARSEHUGE needed so newer versions of libxml2
 			// don't barf when the XML is >256 levels deep.
-			$result = $dom->loadXML( $xml, 1 << 19 );
+			$result = $dom->loadXML( $xml, LIBXML_PARSEHUGE );
 		}
 		if ( $result ) {
 			$obj = new PPNode_DOM( $dom->documentElement );
