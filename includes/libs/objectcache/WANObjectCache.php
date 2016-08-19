@@ -33,6 +33,7 @@ use Psr\Log\NullLogger;
  * This class is intended for caching data from primary stores.
  * If the get() method does not return a value, then the caller
  * should query the new value and backfill the cache using set().
+ * The preferred way to do this logic is through getWithSetCallback().
  * When querying the store on cache miss, the closest DB replica
  * should be used. Try to avoid heavyweight DB master or quorum reads.
  * When the source data changes, a purge method should be called.
@@ -47,8 +48,9 @@ use Psr\Log\NullLogger;
  *   - a) Configure the 'purge' EventRelayer to point to a valid PubSub endpoint
  *        that has subscribed listeners on the cache servers applying the cache updates.
  *   - b) Ignore the 'purge' EventRelayer configuration (default is NullEventRelayer)
- *        and set up mcrouter as the underlying cache backend. Using OperationSelectorRoute,
- *        configure 'set' and 'delete' operations to go to all DCs via AllAsyncRoute and
+ *        and set up mcrouter as the underlying cache backend, using one of the memcached
+ *        BagOStuff classes as 'cache'. Use OperationSelectorRoute in the mcrouter settings
+ *        to configure 'set' and 'delete' operations to go to all DCs via AllAsyncRoute and
  *        configure other operations to go to the local DC via PoolRoute (for reference,
  *        see https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles).
  *
@@ -56,9 +58,9 @@ use Psr\Log\NullLogger;
  * in all datacenters this way, though the local one should likely be near immediate.
  *
  * This means that callers in all datacenters may see older values for however many
- * milliseconds the the purge took to reach that datacenter. As with any cache, this
+ * milliseconds that the purge took to reach that datacenter. As with any cache, this
  * should not be relied on for cases where reads are used to determine writes to source
- * (e.g. non-cache) data stores.
+ * (e.g. non-cache) data stores, except when reading immutable data.
  *
  * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix
  * to avoid collisions with keys that are not wrapped as metadata arrays. The
