@@ -414,6 +414,32 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( $handlerClass, $handler );
 	}
 
+	public function testGetFieldsForSearchIndex() {
+		$searchEngine = $this->newSearchEngine();
+
+		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
+
+		$fields = $handler->getFieldsForSearchIndex( $searchEngine );
+
+		$this->assertArrayHasKey( 'category', $fields );
+		$this->assertArrayHasKey( 'external_link', $fields );
+		$this->assertArrayHasKey( 'outgoing_link', $fields );
+		$this->assertArrayHasKey( 'template', $fields );
+	}
+
+	private function newSearchEngine() {
+		$searchEngine = $this->getMockBuilder( 'SearchEngine' )
+			->getMock();
+
+		$searchEngine->expects( $this->any() )
+			->method( 'makeSearchFieldMapping' )
+			->will( $this->returnCallback( function( $name, $type ) {
+					return new DummySearchIndexFieldDefinition( $name, $type );
+			} ) );
+
+		return $searchEngine;
+	}
+
 	/**
 	 * @covers ContentHandler::getDataForSearchIndex
 	 */
@@ -424,7 +450,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
 			function ( &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output,
-			           SearchEngine $engine ) {
+					   SearchEngine $engine ) {
 				$fields['testDataField'] = 'test content';
 			} );
 
