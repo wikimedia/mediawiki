@@ -149,4 +149,12 @@ class ProcessCacheLRU {
 		unset( $this->cache[$key] );
 		$this->cache[$key] = $item;
 	}
+
+	/**
+	 * Get cache size
+	 * @return int
+	 */
+	public function getSize() {
+		return $this->maxCacheKeys;
+	}
 }
