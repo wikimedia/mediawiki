@@ -1770,7 +1770,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$revisionId = $revision->insertOn( $dbw );
 			// Update page_latest and friends to reflect the new revision
 			if ( !$this->updateRevisionOn( $dbw, $revision, null, $meta['oldIsRedirect'] ) ) {
-				$dbw->rollback( __METHOD__ ); // sanity; this should never happen
 				throw new MWException( "Failed to update page row to use new revision." );
 			}
 
@@ -1920,7 +1919,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$revisionId = $revision->insertOn( $dbw );
 		// Update the page record with revision data
 		if ( !$this->updateRevisionOn( $dbw, $revision, 0 ) ) {
-			$dbw->rollback( __METHOD__ ); // sanity; this should never happen
 			throw new MWException( "Failed to update page row to use new revision." );
 		}
 
