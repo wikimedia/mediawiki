@@ -2852,7 +2852,6 @@ class OutputPage extends ContextSource {
 
 	private function isUserJsPreview() {
 		return $this->getConfig()->get( 'AllowUserJs' )
-			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isJsSubpage()
 			&& $this->userCanPreview();
@@ -3097,6 +3096,11 @@ class OutputPage extends ContextSource {
 		}
 
 		$user = $this->getUser();
+
+		if ( !$this->getUser()->isLoggedIn() ) {
+			// Anons have predictable edit tokens
+			return false;
+		}
 		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			return false;
 		}
