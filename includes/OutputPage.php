@@ -164,6 +164,9 @@ class OutputPage extends ContextSource {
 	private $rlUserModuleState;
 
 	/** @var array */
+	private $rlExemptStyleModules;
+
+	/** @var array */
 	protected $mJsConfigVars = [];
 
 	/** @var array */
@@ -2660,30 +2663,64 @@ class OutputPage extends ContextSource {
 	public function getRlClient() {
 		if ( !$this->rlClient ) {
 			$context = $this->getRlClientContext();
-			$userModule = $this->getResourceLoader()->getModule( 'user' );
-			// Manually handled by getBottomScripts()
-			$userState = $userModule->isKnownEmpty( $context ) && !$this->isUserModulePreview()
-				? 'ready'
-				: 'loading';
-			$this->rlUserModuleState = $userState;
-
+			$rl = $this->getResourceLoader();
 			$this->addModules( [
 				'user.options',
 				'user.tokens',
 			] );
+			$this->addModuleStyles( [
+				'site.styles',
+				'noscript',
+				'user.styles',
+				'user.cssprefs',
+			] );
+
+			// Prepare exempt modules for buildExemptModules()
+			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
+			$exemptStates = [];
+			$moduleStyles = array_filter( $this->getModuleStyles( /*filter*/ true ),
+				function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
+					$module = $rl->getModule( $name );
+					if ( $module ) {
+						$group = $module->getGroup();
+						if ( $name === 'user.styles' && $this->isUserCssPreview() ) {
+							$exemptStates[$name] = 'ready';
+							// Special case in buildExemptModules()
+							return false;
+						}
+						if ( $name === 'site.styles' ) {
+							// HACK: Technically, 'site.styles' isn't in a separate request group.
+							// But, in order to ensure its styles are in the right position,
+							// pretend it's in a group called 'site'.
+							$group = 'site';
+						}
+						if ( isset( $exemptGroups[$group] ) ) {
+							$exemptStates[$name] = 'ready';
+							if ( !$module->isKnownEmpty( $context ) ) {
+								// E.g. Don't output empty <styles>
+								$exemptGroups[$group][] = $name;
+							}
+							return false;
+						}
+					}
+					return true;
+				}
+			);
+			$this->rlExemptStyleModules = $exemptGroups;
+
+			// Manually handled by getBottomScripts()
+			$userModule = $rl->getModule( 'user' );
+			$userState = $userModule->isKnownEmpty( $context ) && !$this->isUserJsPreview()
+				? 'ready'
+				: 'loading';
+			$this->rlUserModuleState = $exemptStates['user'] = $userState;
+
 			$rlClient = new ResourceLoaderClientHtml( $context, $this->getTarget() );
 			$rlClient->setConfig( $this->getJSVars() );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
-			$rlClient->setModuleStyles( $this->getModuleStyles( /*filter*/ true ) );
+			$rlClient->setModuleStyles( $moduleStyles );
 			$rlClient->setModuleScripts( $this->getModuleScripts( /*filter*/ true ) );
-			$rlClient->setExemptStates( [
-				'user' => $userState,
-				// Manually handled by buildExemptModules() and getBottomScripts()
-				'site.styles' => 'ready',
-				'noscript' => 'ready',
-				'user.cssprefs' => 'ready',
-				'user.styles' => 'ready',
-			] );
+			$rlClient->setExemptStates( $exemptStates );
 			$this->rlClient = $rlClient;
 		}
 		return $this->rlClient;
@@ -2813,12 +2850,19 @@ class OutputPage extends ContextSource {
 		return WrappedString::join( "\n", $chunks );
 	}
 
-	/** @return bool */
-	private function isUserModulePreview() {
+	private function isUserJsPreview() {
 		return $this->getConfig()->get( 'AllowUserJs' )
 			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isJsSubpage()
+			&& $this->userCanPreview();
+	}
+
+	private function isUserCssPreview() {
+		return $this->getConfig()->get( 'AllowUserCss' )
+			&& $this->getUser()->isLoggedIn()
+			&& $this->getTitle()
+			&& $this->getTitle()->isCssSubpage()
 			&& $this->userCanPreview();
 	}
 
@@ -2841,7 +2885,7 @@ class OutputPage extends ContextSource {
 		//   ensures execution is scheduled after the "site" module.
 		// - Don't load if module state is already resolved as "ready".
 		if ( $this->rlUserModuleState === 'loading' ) {
-			if ( $this->isUserModulePreview() ) {
+			if ( $this->isUserJsPreview() ) {
 				$chunks[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
 					[ 'excludepage' => $this->getTitle()->getPrefixedDBkey() ]
 				);
@@ -3414,19 +3458,11 @@ class OutputPage extends ContextSource {
 
 		$resourceLoader = $this->getResourceLoader();
 		$chunks = [];
-		// Things that should be appended after the other link and style chunks
+		// Things that go after the ResourceLoaderDynamicStyles marker
 		$append = [];
-		$moduleStyles = [
-			'site.styles',
-			'noscript'
-		];
 
-		// Exempt 'user' styles module.
-		// - May need excludepages for live preview.
-		// - Position after ResourceLoaderDynamicStyles marker
-		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage()
-			&& $this->userCanPreview()
-		) {
+		// Exempt 'user' styles module (may need 'excludepages' for live preview)
+		if ( $this->isUserCssPreview() ) {
 			$append[] = $this->makeResourceLoaderLink(
 				'user.styles',
 				ResourceLoaderModule::TYPE_STYLES,
@@ -3440,60 +3476,26 @@ class OutputPage extends ContextSource {
 				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
 			}
 			$append[] = Html::inlineStyle( $previewedCSS );
-		} else {
-			$module = $this->getResourceLoader()->getModule( 'user.styles' );
-			if ( !$module->isKnownEmpty( $this->getRlClientContext() ) ) {
-				// Load styles normally
-				$moduleStyles[] = 'user.styles';
-			}
 		}
 
-		// Exempt 'user.cssprefs' module
-		// - Position after ResourceLoaderDynamicStyles marker
-		$moduleStyles[] = 'user.cssprefs';
-
-		$groups = [
-			'other' => [],
-			'site' => [],
-			'noscript' => [],
-			'private' => [],
-			'user' => [],
-		];
-		foreach ( $moduleStyles as $name ) {
-			$module = $resourceLoader->getModule( $name );
-			if ( !$module || $module->isKnownEmpty( $this->getRlClientContext() ) ) {
-				// E.g. Don't output empty <styles> for user.cssprefs
-				continue;
-			}
-			if ( $name === 'site.styles' ) {
-				// HACK: Technically, the 'site.styles' module isn't in a separate request group.
-				// But, in order to ensure its styles are in the right position after the marker,
-				// pretend it's in a group called 'site'.
-				$groups['site'][] = $name;
-				continue;
-			}
-			$group = $module->getGroup();
-			// Use "other" in case. All exempt modules are in one of the known groups though.
-			$groups[isset( $groups[$group] ) ? $group : 'other'][] = $name;
-		}
-
-		// We want site, private and user styles to override dynamically added
-		// styles from modules, but we want dynamically added styles to override
-		// statically added styles from other modules. So the order has to be
-		// other, dynamic, site, private, user. Add statically added styles for
-		// other modules
+		// We want site, private and user styles to override dynamically added styles from
+		// general modules, but we want dynamically added styles to override statically added
+		// style modules. So the order has to be:
+		// - page style modules (formatted by ResourceLoaderClientHtml::getHeadHtml())
+		// - dynamically loaded styles (added by mw.loader before ResourceLoaderDynamicStyles)
+		// - ResourceLoaderDynamicStyles marker
+		// - site/private/user styles
 
 		// Add legacy styles added through addStyle()/addInlineStyle() here
 		$chunks[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
 
-		// Client-side mw.loader will inject dynamic styles before this marker.
 		$chunks[] = Html::element(
 			'meta',
 			[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
 		);
 
-		foreach ( [ 'other', 'site', 'noscript', 'private', 'user' ] as $group ) {
-			$chunks[] = $this->makeResourceLoaderLink( $groups[$group],
+		foreach ( $this->rlExemptStyleModules as $group => $moduleNames ) {
+			$chunks[] = $this->makeResourceLoaderLink( $moduleNames,
 				ResourceLoaderModule::TYPE_STYLES
 			);
 		}
