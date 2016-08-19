@@ -103,7 +103,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the Query database connection (read-only)
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {
@@ -119,7 +119,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param array $groups Query groups
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {
 		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );

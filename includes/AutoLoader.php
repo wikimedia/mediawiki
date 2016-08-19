@@ -91,3 +91,7 @@ class AutoLoader {
 }
 
 spl_autoload_register( [ 'AutoLoader', 'autoload' ] );
+
+// B/C until nothing type hints for Database
+class_alias( '\Database', '\DatabaseBase' );
+

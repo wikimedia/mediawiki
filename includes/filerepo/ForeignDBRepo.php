@@ -106,7 +106,7 @@ class ForeignDBRepo extends LocalRepo {
 		];
 
 		return function ( $index ) use ( $type, $params ) {
-			return DatabaseBase::factory( $type, $params );
+			return Database::factory( $type, $params );
 		};
 	}
 

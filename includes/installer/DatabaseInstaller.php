@@ -41,7 +41,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * The database connection.
 	 *
-	 * @var DatabaseBase
+	 * @var Database
 	 */
 	public $db = null;
 

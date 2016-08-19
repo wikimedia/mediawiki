@@ -192,7 +192,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	/**
 	 * @param int $slaveOrMaster DB_MASTER or DB_SLAVE
 	 *
-	 * @return DatabaseBase
+	 * @return Database
 	 * @throws MWException
 	 */
 	private function getConnection( $slaveOrMaster ) {
@@ -200,7 +200,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param DatabaseBase $connection
+	 * @param Database $connection
 	 *
 	 * @throws MWException
 	 */

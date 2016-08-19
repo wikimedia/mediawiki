@@ -29,7 +29,7 @@
  * Database abstraction object
  * @ingroup Database
  */
-abstract class DatabaseBase implements IDatabase {
+abstract class Database implements IDatabase {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 
@@ -89,7 +89,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * Either a short hexidecimal string if a transaction is active or ""
 	 *
 	 * @var string
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	protected $mTrxShortId = '';
 
@@ -99,7 +99,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * point (possibly more up-to-date since the first SELECT defines the snapshot).
 	 *
 	 * @var float|null
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxTimestamp = null;
 
@@ -111,7 +111,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * Used to provide additional context for error reporting.
 	 *
 	 * @var string
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxFname = null;
 
@@ -119,7 +119,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * Record if possible write queries were done in the last transaction started
 	 *
 	 * @var bool
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxDoneWrites = false;
 
@@ -127,7 +127,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * Record if the current transaction was started implicitly due to DBO_TRX being set.
 	 *
 	 * @var bool
-	 * @see DatabaseBase::mTrxLevel
+	 * @see Database::mTrxLevel
 	 */
 	private $mTrxAutomatic = false;
 
@@ -139,7 +139,7 @@ abstract class DatabaseBase implements IDatabase {
 	private $mTrxAtomicLevels = [];
 
 	/**
-	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
+	 * Record if the current transaction was started implicitly by Database::startAtomic
 	 *
 	 * @var bool
 	 */
@@ -494,10 +494,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * connection object, by specifying no parameters to __construct(). This
 	 * feature is deprecated and should be removed.
 	 *
-	 * DatabaseBase subclasses should not be constructed directly in external
-	 * code. DatabaseBase::factory() should be used instead.
+	 * Database subclasses should not be constructed directly in external
+	 * code. Database::factory() should be used instead.
 	 *
-	 * @param array $params Parameters passed from DatabaseBase::factory()
+	 * @param array $params Parameters passed from Database::factory()
 	 */
 	function __construct( array $params ) {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode;
@@ -561,7 +561,7 @@ abstract class DatabaseBase implements IDatabase {
 
 	/**
 	 * Given a DB type, construct the name of the appropriate child class of
-	 * DatabaseBase. This is designed to replace all of the manual stuff like:
+	 * Database. This is designed to replace all of the manual stuff like:
 	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
@@ -579,7 +579,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $p An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
 	 * @throws MWException If the database driver or extension cannot be found
-	 * @return DatabaseBase|null DatabaseBase subclass or null
+	 * @return Database|null Database subclass or null
 	 */
 	final public static function factory( $dbType, $p = [] ) {
 		$canonicalDBTypes = [
@@ -626,7 +626,7 @@ abstract class DatabaseBase implements IDatabase {
 		];
 
 		$class = 'Database' . ucfirst( $driver );
-		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, 'Database' ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
 			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
@@ -830,11 +830,11 @@ abstract class DatabaseBase implements IDatabase {
 		# generalizeSQL will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
 		if ( $isMaster ) {
-			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query-master';
+			$queryProf = 'query-m: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+			$totalProf = 'Database::query-master';
 		} else {
-			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query';
+			$queryProf = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+			$totalProf = 'Database::query';
 		}
 		# Include query transaction state
 		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
@@ -993,7 +993,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @return array
 	 */
-	protected function prepare( $sql, $func = 'DatabaseBase::prepare' ) {
+	protected function prepare( $sql, $func = 'Database::prepare' ) {
 		/* MySQL doesn't support prepared statements (yet), so just
 		 * pack up the query for reference. We'll manually replace
 		 * the bits later.
@@ -1146,7 +1146,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 */
 	public function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
@@ -1229,7 +1229,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @param array $options Associative array of options
 	 * @return string
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 * @since 1.21
 	 */
 	public function makeGroupByWithHaving( $options ) {
@@ -1255,7 +1255,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @param array $options Associative array of options
 	 * @return string
-	 * @see DatabaseBase::select()
+	 * @see Database::select()
 	 * @since 1.21
 	 */
 	public function makeOrderBy( $options ) {
@@ -1447,7 +1447,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Helper for DatabaseBase::insert().
+	 * Helper for Database::insert().
 	 *
 	 * @param array $options
 	 * @return string
@@ -1509,7 +1509,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Make UPDATE options array for DatabaseBase::makeUpdateOptions
+	 * Make UPDATE options array for Database::makeUpdateOptions
 	 *
 	 * @param array $options
 	 * @return array
@@ -1533,9 +1533,9 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Make UPDATE options for the DatabaseBase::update function
+	 * Make UPDATE options for the Database::update function
 	 *
-	 * @param array $options The options passed to DatabaseBase::update
+	 * @param array $options The options passed to Database::update
 	 * @return string
 	 */
 	protected function makeUpdateOptions( $options ) {
@@ -1558,7 +1558,7 @@ abstract class DatabaseBase implements IDatabase {
 
 	public function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::makeList called with incorrect parameters' );
+			throw new DBUnexpectedError( $this, 'Database::makeList called with incorrect parameters' );
 		}
 
 		$first = true;
@@ -2232,7 +2232,7 @@ abstract class DatabaseBase implements IDatabase {
 	) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this,
-				'DatabaseBase::deleteJoin() called with empty $conds' );
+				'Database::deleteJoin() called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
@@ -2256,7 +2256,7 @@ abstract class DatabaseBase implements IDatabase {
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
-		$res = $this->query( $sql, 'DatabaseBase::textFieldSize' );
+		$res = $this->query( $sql, 'Database::textFieldSize' );
 		$row = $this->fetchObject( $res );
 
 		$m = [];
@@ -2284,7 +2284,7 @@ abstract class DatabaseBase implements IDatabase {
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
+			throw new DBUnexpectedError( $this, 'Database::delete() called with no conditions' );
 		}
 
 		$table = $this->tableName( $table );
@@ -2713,7 +2713,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Issues the BEGIN command to the database server.
 	 *
-	 * @see DatabaseBase::begin()
+	 * @see Database::begin()
 	 * @param string $fname
 	 */
 	protected function doBegin( $fname ) {
@@ -2769,7 +2769,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Issues the COMMIT command to the database server.
 	 *
-	 * @see DatabaseBase::commit()
+	 * @see Database::commit()
 	 * @param string $fname
 	 */
 	protected function doCommit( $fname ) {
@@ -2814,7 +2814,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Issues the ROLLBACK command to the database server.
 	 *
-	 * @see DatabaseBase::rollback()
+	 * @see Database::rollback()
 	 * @param string $fname
 	 */
 	protected function doRollback( $fname ) {
@@ -2852,11 +2852,11 @@ abstract class DatabaseBase implements IDatabase {
 		$fname = __METHOD__
 	) {
 		throw new MWException(
-			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
+			'Database::duplicateTableStructure is not implemented in descendant class' );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		throw new MWException( 'Database::listTables is not implemented in descendant class' );
 	}
 
 	/**
@@ -2880,7 +2880,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+		throw new MWException( 'Database::listViews is not implemented in descendant class' );
 	}
 
 	/**
@@ -2892,7 +2892,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.22
 	 */
 	public function isView( $name ) {
-		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
+		throw new MWException( 'Database::isView is not implemented in descendant class' );
 	}
 
 	public function timestamp( $ts = 0 ) {
@@ -2912,7 +2912,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * necessary. Boolean values are passed through as is, to indicate success
 	 * of write queries or failure.
 	 *
-	 * Once upon a time, DatabaseBase::query() returned a bare MySQL result
+	 * Once upon a time, Database::query() returned a bare MySQL result
 	 * resource, and it was necessary to call this function to convert it to
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
 	 * callers, so this is unnecessary in external code.
@@ -3434,12 +3434,4 @@ abstract class DatabaseBase implements IDatabase {
 			trigger_error( "DB transaction callbacks still pending (from $callers)." );
 		}
 	}
-}
-
-/**
- * @since 1.27
- */
-abstract class Database extends DatabaseBase {
-	// B/C until nothing type hints for DatabaseBase
-	// @TODO: finish renaming DatabaseBase => Database
 }

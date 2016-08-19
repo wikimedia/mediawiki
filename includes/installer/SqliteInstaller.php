@@ -188,7 +188,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			# @todo FIXME: Need more sensible constructor parameters, e.g. single associative array
 			# Setting globals kind of sucks
 			$wgSQLiteDataDir = $dir;
-			$db = DatabaseBase::factory( 'sqlite', [ 'dbname' => $dbName ] );
+			$db = Database::factory( 'sqlite', [ 'dbname' => $dbName ] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
@@ -246,7 +246,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			global $wgSQLiteDataDir;
 			# @todo FIXME: setting globals kind of sucks
 			$wgSQLiteDataDir = $dir;
-			$conn = DatabaseBase::factory( 'sqlite', [ 'dbname' => "wikicache" ] );
+			$conn = Database::factory( 'sqlite', [ 'dbname' => "wikicache" ] );
 			# @todo: don't duplicate objectcache definition, though it's very simple
 			$sql =
 <<<EOT

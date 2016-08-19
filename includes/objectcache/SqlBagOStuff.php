@@ -158,7 +158,7 @@ class SqlBagOStuff extends BagOStuff {
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
 				// Use a blank trx profiler to ignore expections as this is a cache
 				$info['trxProfiler'] = new TransactionProfiler();
-				$db = DatabaseBase::factory( $type, $info );
+				$db = Database::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
 				// We must keep a separate connection to MySQL in order to avoid deadlocks

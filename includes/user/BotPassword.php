@@ -68,7 +68,7 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * Get a database connection for the bot passwords database
 	 * @param int $db Index of the connection to get, e.g. DB_MASTER or DB_SLAVE.
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public static function getDB( $db ) {
 		global $wgBotPasswordsCluster, $wgBotPasswordsDatabase;

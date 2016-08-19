@@ -603,10 +603,10 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
-	 * @param string|array $tables Table names, see DatabaseBase::select
-	 * @param string|array $fields Fields used in query, see DatabaseBase::select
-	 * @param string|array $conds Conditions used in query, see DatabaseBase::select
-	 * @param array $join_conds Join conditions, see DatabaseBase::select
+	 * @param string|array $tables Table names, see Database::select
+	 * @param string|array $fields Fields used in query, see Database::select
+	 * @param string|array $conds Conditions used in query, see Database::select
+	 * @param array $join_conds Join conditions, see Database::select
 	 * @param array $options Options, see Database::select
 	 * @param bool|string $filter_tag Tag to select on
 	 *

@@ -537,7 +537,7 @@ interface IDatabase {
 	 * for use in field names (e.g. a.user_name).
 	 *
 	 * All of the table names given here are automatically run through
-	 * DatabaseBase::tableName(), which causes the table prefix (if any) to be
+	 * Database::tableName(), which causes the table prefix (if any) to be
 	 * added, and various other table name mappings to be performed.
 	 *
 	 * Do not use untrusted user input as a table name. Alias names should
@@ -819,7 +819,7 @@ interface IDatabase {
 	 *     IDatabase::affectedRows().
 	 *
 	 * @param string $table Table name. This will be passed through
-	 *   DatabaseBase::tableName().
+	 *   Database::tableName().
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
@@ -832,7 +832,7 @@ interface IDatabase {
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
 	 * @param string $table Name of the table to UPDATE. This will be passed through
-	 *   DatabaseBase::tableName().
+	 *   Database::tableName().
 	 * @param array $values An array of values to SET. For each array element,
 	 *   the key gives the field name, and the value gives the data to set
 	 *   that field to. The data will be quoted by IDatabase::addQuotes().
@@ -1045,7 +1045,7 @@ interface IDatabase {
 	 *
 	 * @since 1.22
 	 *
-	 * @param string $table Table name. This will be passed through DatabaseBase::tableName().
+	 * @param string $table Table name. This will be passed through Database::tableName().
 	 * @param array $rows A single row or list of rows to insert
 	 * @param array $uniqueIndexes List of single field names or field name tuples
 	 * @param array $set An array of values to SET. For each array element, the
@@ -1342,8 +1342,8 @@ interface IDatabase {
 	 *
 	 * This can be an alternative to explicit startAtomic()/endAtomic() calls.
 	 *
-	 * @see DatabaseBase::startAtomic
-	 * @see DatabaseBase::endAtomic
+	 * @see Database::startAtomic
+	 * @see Database::endAtomic
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates

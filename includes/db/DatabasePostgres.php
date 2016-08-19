@@ -26,7 +26,7 @@ class PostgresField implements Field {
 		$has_default, $default;
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param string $table
 	 * @param string $field
 	 * @return null|PostgresField
@@ -140,7 +140,7 @@ class SavepointPostgres {
 	protected $didbegin;
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param Database $dbw
 	 * @param int $id
 	 */
 	public function __construct( $dbw, $id ) {
@@ -276,7 +276,7 @@ class DatabasePostgres extends Database {
 	 * @param string $password
 	 * @param string $dbName
 	 * @throws DBConnectionError|Exception
-	 * @return DatabaseBase|null
+	 * @return Database|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
@@ -741,7 +741,7 @@ __INDEXATTR__;
 	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
 	 *
 	 * MySQL uses "ORDER BY NULL" as an optimization hint, but that syntax is illegal in PostgreSQL.
-	 * @see DatabaseBase::selectSQLText
+	 * @see Database::selectSQLText
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []

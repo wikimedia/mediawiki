@@ -108,7 +108,7 @@ class DatabaseSqlite extends Database {
 		$p['schema'] = false;
 		$p['tablePrefix'] = '';
 
-		return DatabaseBase::factory( 'sqlite', $p );
+		return Database::factory( 'sqlite', $p );
 	}
 
 	/**
@@ -278,7 +278,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @see DatabaseBase::isWriteQuery()
+	 * @see Database::isWriteQuery()
 	 *
 	 * @param string $sql
 	 * @return bool

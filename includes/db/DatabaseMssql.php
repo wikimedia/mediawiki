@@ -81,7 +81,7 @@ class DatabaseMssql extends Database {
 	 * @param string $password
 	 * @param string $dbName
 	 * @throws DBConnectionError
-	 * @return bool|DatabaseBase|null
+	 * @return bool|Database|null
 	 */
 	public function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
@@ -757,15 +757,15 @@ class DatabaseMssql extends Database {
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
 	 * @param string $table Name of the table to UPDATE. This will be passed through
-	 *                DatabaseBase::tableName().
+	 *                Database::tableName().
 	 *
 	 * @param array $values An array of values to SET. For each array element,
 	 *                the key gives the field name, and the value gives the data
 	 *                to set that field to. The data will be quoted by
-	 *                DatabaseBase::addQuotes().
+	 *                Database::addQuotes().
 	 *
 	 * @param array $conds An array of conditions (WHERE). See
-	 *                DatabaseBase::select() for the details of the format of
+	 *                Database::select() for the details of the format of
 	 *                condition arrays. Use '*' to update all rows.
 	 *
 	 * @param string $fname The function name of the caller (from __METHOD__),
@@ -807,7 +807,7 @@ class DatabaseMssql extends Database {
 	 * @param int $mode Constant
 	 *      - LIST_COMMA:          comma separated, no field names
 	 *      - LIST_AND:            ANDed WHERE clause (without the WHERE). See
-	 *        the documentation for $conds in DatabaseBase::select().
+	 *        the documentation for $conds in Database::select().
 	 *      - LIST_OR:             ORed WHERE clause (without the WHERE)
 	 *      - LIST_SET:            comma separated with field names, like a SET clause
 	 *      - LIST_NAMES:          comma separated field names
@@ -820,7 +820,7 @@ class DatabaseMssql extends Database {
 	public function makeList( $a, $mode = LIST_COMMA, $binaryColumns = [] ) {
 		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this,
-				'DatabaseBase::makeList called with incorrect parameters' );
+				'Database::makeList called with incorrect parameters' );
 		}
 
 		if ( $mode != LIST_NAMES ) {

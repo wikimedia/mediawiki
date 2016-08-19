@@ -43,13 +43,13 @@ class CloneDatabase {
 	/**
 	 * Constructor
 	 *
-	 * @param DatabaseBase $db A database subclass
+	 * @param Database $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( DatabaseBase $db, array $tablesToClone,
+	public function __construct( Database $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
 	) {
 		$this->db = $db;
@@ -143,7 +143,7 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param Database $db
 	 * @param string $prefix
 	 * @return void
 	 */

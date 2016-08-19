@@ -42,7 +42,7 @@ class MergeHistory {
 	/** @var Title Page to which history will be merged */
 	protected $dest;
 
-	/** @var DatabaseBase Database that we are using */
+	/** @var Database Database that we are using */
 	protected $dbw;
 
 	/** @var MWTimestamp Maximum timestamp that we can use (oldest timestamp of dest) */

@@ -600,7 +600,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Gets a default slave database connection object
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	protected function getDB() {
 		if ( !isset( $this->mSlaveDB ) ) {
