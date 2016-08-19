@@ -1090,6 +1090,15 @@ class LoadBalancer {
 	public function approveMasterChanges( array $options ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $limit ) {
+			// If atomic section or explicit transactions are still open, some caller must have
+			// caught an exception but failed to properly rollback any changes. Detect that and
+			// throw and error (causing rollback).
+			if ( $conn->explicitTrxActive() ) {
+				throw new DBTransactionError(
+					$conn,
+					"Explicit transaction still active. A caller may have caught an error."
+				);
+			}
 			// Assert that the time to replicate the transaction will be sane.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration();

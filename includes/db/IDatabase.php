@@ -104,6 +104,12 @@ interface IDatabase {
 	public function trxTimestamp();
 
 	/**
+	 * @return bool Whether an explicit transaction or atomic sections are still open
+	 * @since 1.28
+	 */
+	public function explicitTrxActive();
+
+	/**
 	 * Get/set the table prefix.
 	 * @param string $prefix The table prefix to set, or omitted to leave it unchanged.
 	 * @return string The previous table prefix.
