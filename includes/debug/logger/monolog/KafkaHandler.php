@@ -120,7 +120,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 			$options['logExceptions'] = LoggerFactory::getInstance( $options['logExceptions'] );
 		}
 
-		if ( isset( $options['requireAck'] ) ) {
+		if ( isset( $options['requireAck'] ) && $options['requireAck'] ) {
 			$produce->setRequireAck( $options['requireAck'] );
 		}
 
