@@ -234,6 +234,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
+	 * @throws Exception
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		// Perform all pre-commit callbacks, aborting on failure
@@ -245,9 +246,23 @@ abstract class LBFactory implements DestructibleService {
 		// Actually perform the commit on all master DB connections
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Run all post-commit callbacks
+		/** @var Exception $e */
+		$e = null; // first callback exception
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$e ) {
+			$ex = $lb->runMasterPostCommitCallbacks();
+			if ( $e ) {
+				MWExceptionHandler::logException( $ex ); // log extra errors
+			} else {
+				$e = $ex; // first error; throw it
+			}
+		} );
 		$this->forEachLBCallMethod( 'runMasterPostCommitCallbacks' );
 		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		// Throw any last post-commit callback error
+		if ( $e instanceof Exception ) {
+			throw $e;
+		}
 	}
 
 	/**
