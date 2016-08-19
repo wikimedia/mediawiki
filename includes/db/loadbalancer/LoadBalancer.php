@@ -1116,13 +1116,25 @@ class LoadBalancer {
 
 	/**
 	 * Issue all pending post-commit callbacks
+	 * @return Exception|null The first exception or null if there were none
 	 * @since 1.28
 	 */
 	public function runMasterPostCommitCallbacks() {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $db ) {
+		$e = null; // first exception
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $db ) use ( &$e ) {
 			$db->setPostCommitCallbackSupression( false );
-			$db->runOnTransactionIdleCallbacks( IDatabase::TRIGGER_COMMIT );
+			try {
+				$db->runOnTransactionIdleCallbacks( IDatabase::TRIGGER_COMMIT );
+			} catch ( Exception $ex ) {
+				if ( $e ) {
+					MWExceptionHandler::logException( $ex ); // log extra errors
+				} else {
+					$e = $ex; // first error; return it
+				}
+			}
 		} );
+
+		return $e;
 	}
 
 	/**

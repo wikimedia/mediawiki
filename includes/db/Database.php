@@ -2559,7 +2559,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
 		/** @var Exception $e */
-		$e = $ePrior = null; // last exception
+		$e = null; // first exception
 		do { // callbacks may add callbacks :)
 			$callbacks = array_merge(
 				$this->mTrxIdleCallbacks,
@@ -2577,11 +2577,12 @@ abstract class DatabaseBase implements IDatabase {
 					} else {
 						$this->clearFlag( DBO_TRX ); // restore auto-commit
 					}
-				} catch ( Exception $e ) {
-					if ( $ePrior ) {
-						MWExceptionHandler::logException( $ePrior );
+				} catch ( Exception $ex ) {
+					if ( $e ) {
+						MWExceptionHandler::logException( $ex ); // log extra errors
+					} else {
+						$e = $ex; // first error; throw it later
 					}
-					$ePrior = $e;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
@@ -2592,7 +2593,7 @@ abstract class DatabaseBase implements IDatabase {
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
 		if ( $e instanceof Exception ) {
-			throw $e; // re-throw any last exception
+			throw $e; // re-throw any first exception
 		}
 	}
 
