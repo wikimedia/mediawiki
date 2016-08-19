@@ -189,31 +189,24 @@ class FileDeleteForm {
 			);
 			$page = WikiPage::factory( $title );
 			$dbw = wfGetDB( DB_MASTER );
-			try {
-				$dbw->startAtomic( __METHOD__ );
-				// delete the associated article first
-				$error = '';
-				$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
-				// doDeleteArticleReal() returns a non-fatal error status if the page
-				// or revision is missing, so check for isOK() rather than isGood()
-				if ( $deleteStatus->isOK() ) {
-					$status = $file->delete( $reason, $suppress, $user );
-					if ( $status->isOK() ) {
-						$status->value = $deleteStatus->value; // log id
-						$dbw->endAtomic( __METHOD__ );
-					} else {
-						// Page deleted but file still there? rollback page delete
-						wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
-					}
-				} else {
-					// Done; nothing changed
+			$dbw->startAtomic( __METHOD__ );
+			// delete the associated article first
+			$error = '';
+			$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
+			// doDeleteArticleReal() returns a non-fatal error status if the page
+			// or revision is missing, so check for isOK() rather than isGood()
+			if ( $deleteStatus->isOK() ) {
+				$status = $file->delete( $reason, $suppress, $user );
+				if ( $status->isOK() ) {
+					$status->value = $deleteStatus->value; // log id
 					$dbw->endAtomic( __METHOD__ );
+				} else {
+					// Page deleted but file still there? rollback page delete
+					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 				}
-			} catch ( Exception $e ) {
-				// Rollback before returning to prevent UI from displaying
-				// incorrect "View or restore N deleted edits?"
-				$dbw->rollback( __METHOD__ );
-				throw $e;
+			} else {
+				// Done; nothing changed
+				$dbw->endAtomic( __METHOD__ );
 			}
 		}
 

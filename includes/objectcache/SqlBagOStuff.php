@@ -695,6 +695,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *
 	 * @param DBError $exception
 	 * @param int $serverIndex
+	 * @throws Exception
 	 */
 	protected function handleWriteError( DBError $exception, $serverIndex ) {
 		if ( $exception instanceof DBConnectionError ) {
@@ -702,6 +703,13 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		if ( $exception->db && $exception->db->wasReadOnlyError() ) {
 			if ( $exception->db->trxLevel() ) {
+				if ( !$this->serverInfos ) {
+					// Errors like deadlocks and connection drops already cause rollback.
+					// For consistency, we have no choice but to throw an error and trigger
+					// complete rollback if the main DB is also being used as the cache DB.
+					throw $exception;
+				}
+
 				try {
 					$exception->db->rollback( __METHOD__ );
 				} catch ( DBError $e ) {
