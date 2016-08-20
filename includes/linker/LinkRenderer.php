@@ -280,8 +280,12 @@ class LinkRenderer {
 	 * @return string
 	 */
 	public function makeKnownLink(
-		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
+		LinkTarget $target = null, $text = null, array $extraAttribs = [], array $query = []
 	) {
+		if ( ! $target instanceof LinkTarget ) {
+			// Throw an exception to gather a stack trace to fix T143477 bug.
+			throw new MWException( 'LinkTarget object expected, null received instead.' );
+		}
 		$classes = [];
 		if ( $target->isExternal() ) {
 			$classes[] = 'extiw';
