@@ -1,7 +1,7 @@
 <?php
 
 class DatabaseSqliteMock extends DatabaseSqlite {
-	private $lastQuery;
+	private $mLastQuery;
 
 	public static function newInstance( array $p = [] ) {
 		$p['dbFilePath'] = ':memory:';
@@ -11,7 +11,7 @@ class DatabaseSqliteMock extends DatabaseSqlite {
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
-		$this->lastQuery = $sql;
+		$this->mLastQuery = $sql;
 
 		return true;
 	}

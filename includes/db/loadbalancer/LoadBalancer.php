@@ -1108,6 +1108,14 @@ class LoadBalancer {
 					wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
 				);
 			}
+			// If a connection sits idle while slow queries execute on another, that connection
+			// may end up dropped before the commit round is reached. Ping servers to detect this.
+			if ( $conn->writesOrCallbacksPending() && !$conn->ping() ) {
+				throw new DBTransactionError(
+					$conn,
+					"A connection to server {$conn->getServer()} was lost before commit."
+				);
+			}
 		} );
 	}
 
