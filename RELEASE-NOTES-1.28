@@ -118,6 +118,9 @@ changes to languages because of Phabricator reports.
 * AuthenticationRequest::$required is now changed from REQUIRED to PRIMARY_REQUIRED
   on requests needed by primary providers even if all primaries need them.
   Primary providers are discouraged from returning multiple REQUIRED requests.
+* OOjs UI PHP widgets constructed with the `'infusable' => true` config option
+  will no longer be automatically infused. You should call `OO.ui.infuse()`
+  on them yourself from your JavaScript code.
 
 == Compatibility ==
 
