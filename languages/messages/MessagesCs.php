@@ -8,7 +8,6 @@
  *
  */
 
-$fallback = 'sk';
 $fallback8bitEncoding = 'cp1250';
 
 $namespaceNames = [
