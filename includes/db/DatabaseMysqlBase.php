@@ -599,15 +599,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
-	function reconnect() {
-		$this->closeConnection();
-		$this->mOpened = false;
-		$this->mConn = false;
-		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
-
-		return true;
-	}
-
 	function getLag() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
