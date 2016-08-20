@@ -275,6 +275,11 @@ $namespaceAliases = [
 	"Komentár_k_MediaWiki"   => NS_MEDIAWIKI_TALK,
 ];
 
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Užívateľ', 'female' => 'Užívateľka' ],
+	NS_USER_TALK => [ 'male' => 'Diskusia s užívateľom', 'female' => 'Diskusia s užívateľkou' ],
+];
+
 $separatorTransformTable = [
 	',' => "\xc2\xa0",
 	'.' => ','
