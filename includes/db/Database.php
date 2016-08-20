@@ -32,24 +32,35 @@
 abstract class DatabaseBase implements IDatabase {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
-
 	/** Minimum time to wait before retry, in microseconds */
 	const DEADLOCK_DELAY_MIN = 500000;
-
 	/** Maximum time to wait before retry */
 	const DEADLOCK_DELAY_MAX = 1500000;
 
-	protected $mLastQuery = '';
-	protected $mDoneWrites = false;
-	protected $mPHPError = false;
+	/** How long before it is worth doing a dummy query to test the connection */
+	const PING_TTL = 5.0;
 
-	protected $mServer, $mUser, $mPassword, $mDBname;
+	/** @var string SQL query */
+	protected $mLastQuery = '';
+	/** @var bool */
+	protected $mDoneWrites = false;
+	/** @var string|bool */
+	protected $mPHPError = false;
+	/** @var string */
+	protected $mServer;
+	/** @var string */
+	protected $mUser;
+	/** @var string */
+	protected $mPassword;
+	/** @var string */
+	protected $mDBname;
 
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
 
 	/** @var resource Database connection */
 	protected $mConn = null;
+	/** @var bool */
 	protected $mOpened = false;
 
 	/** @var array[] List of (callable, method name) */
@@ -61,20 +72,27 @@ abstract class DatabaseBase implements IDatabase {
 	/** @var bool Whether to suppress triggering of post-commit callbacks */
 	protected $suppressPostCommitCallbacks = false;
 
+	/** @var string */
 	protected $mTablePrefix;
+	/** @var string */
 	protected $mSchema;
+	/** @var integer */
 	protected $mFlags;
+	/** @var bool */
 	protected $mForeign;
+	/** @var array */
 	protected $mLBInfo = [];
+	/** @var bool|null */
 	protected $mDefaultBigSelects = null;
+	/** @var array|bool */
 	protected $mSchemaVars = false;
 	/** @var array */
 	protected $mSessionVars = [];
-
+	/** @var array|null */
 	protected $preparedArgs;
-
+	/** @var string|bool|null Stashed value of html_errors INI setting */
 	protected $htmlErrors;
-
+	/** @var string */
 	protected $delimiter = ';';
 
 	/**
@@ -176,6 +194,9 @@ abstract class DatabaseBase implements IDatabase {
 	 * @var string[] Process cache of VIEWs names in the database
 	 */
 	protected $allViews = null;
+
+	/** @var float UNIX timestamp */
+	protected $lastPing = 0.0;
 
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -786,8 +807,8 @@ abstract class DatabaseBase implements IDatabase {
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
-		$isWriteQuery = $this->isWriteQuery( $sql );
-		if ( $isWriteQuery ) {
+		$isWrite = $this->isWriteQuery( $sql );
+		if ( $isWrite ) {
 			$reason = $this->getReadOnlyReason();
 			if ( $reason !== false ) {
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
@@ -820,49 +841,23 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Keep track of whether the transaction has write queries pending
-		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $isWriteQuery ) {
+		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $isWrite ) {
 			$this->mTrxDoneWrites = true;
 			$this->getTransactionProfiler()->transactionWritingIn(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
-		}
-
-		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		# generalizeSQL will probably cut down the query to reasonable
-		# logging size most of the time. The substr is really just a sanity check.
-		if ( $isMaster ) {
-			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query-master';
-		} else {
-			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-			$totalProf = 'DatabaseBase::query';
-		}
-		# Include query transaction state
-		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
-
-		$profiler = Profiler::instance();
-		if ( !$profiler instanceof ProfilerStub ) {
-			$totalProfSection = $profiler->scopedProfileIn( $totalProf );
-			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
 		}
 
 		if ( $this->debug() ) {
 			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
 		}
 
-		$queryId = MWDebug::query( $sql, $fname, $isMaster );
-
 		# Avoid fatals if close() was called
 		$this->assertOpen();
 
-		# Do the query and handle errors
-		$startTime = microtime( true );
-		$ret = $this->doQuery( $commentedSql );
-		$queryRuntime = microtime( true ) - $startTime;
-		# Log the query time and feed it into the DB trx profiler
-		$this->getTransactionProfiler()->recordQueryCompletion(
-			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
-
-		MWDebug::queryTime( $queryId );
+		# Send the query to the server
+		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
+		$queryId = MWDebug::query( $sql, $fname, $isMaster );
+		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isWrite, $fname, $queryId );
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
@@ -883,12 +878,8 @@ abstract class DatabaseBase implements IDatabase {
 					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname );
 				} else {
 					# Should be safe to silently retry the query
-					$startTime = microtime( true );
-					$ret = $this->doQuery( $commentedSql );
-					$queryRuntime = microtime( true ) - $startTime;
-					# Log the query time and feed it into the DB trx profiler
-					$this->getTransactionProfiler()->recordQueryCompletion(
-						$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
+					$ret = $this->doProfiledQuery(
+						$sql, $commentedSql, $isWrite, $fname, $queryId );
 				}
 			} else {
 				wfDebug( "Failed\n" );
@@ -913,16 +904,45 @@ abstract class DatabaseBase implements IDatabase {
 
 		$res = $this->resultObject( $ret );
 
-		// Destroy profile sections in the opposite order to their creation
-		ScopedCallback::consume( $queryProfSection );
-		ScopedCallback::consume( $totalProfSection );
+		return $res;
+	}
 
-		if ( $isWriteQuery && $this->mTrxLevel ) {
-			$this->mTrxWriteDuration += $queryRuntime;
-			$this->mTrxWriteCallers[] = $fname;
+	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname, $queryId ) {
+		# generalizeSQL() will probably cut down the query to reasonable
+		# logging size most of the time. The substr is really just a sanity check.
+		if ( !is_null( $this->getLBInfo( 'master' ) ) ) {
+			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+		} else {
+			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+		}
+		# Include query transaction state
+		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
+
+		$profiler = Profiler::instance();
+		if ( !( $profiler instanceof ProfilerStub ) ) {
+			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
 		}
 
-		return $res;
+		$startTime = microtime( true );
+		$ret = $this->doQuery( $commentedSql );
+		$queryRuntime = microtime( true ) - $startTime;
+
+		unset( $queryProfSection ); // profile out (if set)
+
+		if ( $ret !== false ) {
+			$this->lastPing = $startTime;
+			if ( $isWrite && $this->mTrxLevel ) {
+				$this->mTrxWriteDuration += $queryRuntime;
+				$this->mTrxWriteCallers[] = $fname;
+			}
+		}
+
+		$this->getTransactionProfiler()->recordQueryCompletion(
+			$queryProf, $startTime, $isWrite, $this->affectedRows()
+		);
+		MWDebug::queryTime( $queryId );
+
+		return $ret;
 	}
 
 	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
@@ -2931,6 +2951,9 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function ping() {
+		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
+			return true;
+		}
 		try {
 			// This will reconnect if possible, or error out if not
 			$this->query( "SELECT 1 AS ping", __METHOD__ );
@@ -2944,8 +2967,18 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return bool
 	 */
 	protected function reconnect() {
-		# Stub. Not essential to override.
-		return true;
+		$this->closeConnection();
+		$this->mOpened = false;
+		$this->mConn = false;
+		try {
+			$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+			$this->lastPing = microtime( true );
+			$ok = true;
+		} catch ( DBConnectionError $e ) {
+			$ok = false;
+		}
+
+		return $ok;
 	}
 
 	public function getSessionLagStatus() {
