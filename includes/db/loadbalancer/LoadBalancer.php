@@ -1090,7 +1090,7 @@ class LoadBalancer {
 	public function approveMasterChanges( array $options ) {
 		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $limit ) {
-			// If atomic section or explicit transactions are still open, some caller must have
+			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and
 			// throw and error (causing rollback).
 			if ( $conn->explicitTrxActive() ) {
@@ -1106,6 +1106,14 @@ class LoadBalancer {
 				throw new DBTransactionError(
 					$conn,
 					wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
+				);
+			}
+			// If a connection sits idle while slow queries execute on another, that connection
+			// may end up dropped before the commit round is reached. Ping servers to detect this.
+			if ( $conn->writesOrCallbacksPending() && !$conn->ping() ) {
+				throw new DBTransactionError(
+					$conn,
+					"A connection to the {$conn->getDBname()} database was lost before commit."
 				);
 			}
 		} );
