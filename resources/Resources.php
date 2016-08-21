@@ -979,7 +979,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.footHovzer',
-			'jquery.tipsy',
 		],
 		'position' => 'bottom',
 	],
