@@ -1043,6 +1043,43 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Get a TTL that is higher for objects that have not changed recently
+	 *
+	 * This is useful for keys that get explicit purges and DB or purge relay
+	 * lag is a potential concern (especially how it interacts with CDN cache)
+	 *
+	 * Example usage:
+	 * @code
+	 *     // Last-modified time of page
+	 *     $mtime = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+	 *     // Get adjusted TTL. If $mtime is 3600 seconds ago and $minTTL/$factor left at
+	 *     // defaults, then $ttl is 3600 * .2 = 720. If $minTTL was greater than 720, then
+	 *     // $ttl would be $minTTL. If $maxTTL was smaller than 720, $ttl would be $maxTTL.
+	 *     $ttl = $cache->adaptiveTTL( $mtime, $cache::TTL_DAY );
+	 * @endcode
+	 *
+	 * @param integer|float $mtime UNIX timestamp
+	 * @param integer $maxTTL Maximum TTL (seconds)
+	 * @param integer $minTTL Minimum TTL (seconds); Default: 30
+	 * @param float $factor Value in the range (0,1); Default: .2
+	 * @return integer Adaptive TTL
+	 * @since 1.28
+	 */
+	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = .2 ) {
+		if ( is_float( $mtime ) ) {
+			$mtime = (int)$mtime; // ignore fractional seconds
+		}
+
+		if ( !is_int( $mtime ) || $mtime <= 0 ) {
+			return $minTTL; // no last-modified time provided
+		}
+
+		$age = time() - $mtime;
+
+		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
+	}
+
+	/**
 	 * Do the actual async bus purge of a key
 	 *
 	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
