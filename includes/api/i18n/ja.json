@@ -8,7 +8,8 @@
 			"Mfuji",
 			"Otokoume",
 			"Sujiniku",
-			"Macofe"
+			"Macofe",
+			"Suchichi02"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|説明文書]]\n* [[mw:API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> このページに表示されている機能は全て動作するはずですが、この API は未だ活発に開発されており、変更される可能性があります。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。",
@@ -816,6 +817,7 @@
 	"apihelp-query+watchlist-param-prop": "追加で取得するプロパティ:",
 	"apihelp-query+watchlist-paramvalue-prop-ids": "版IDとページIDを追加します。",
 	"apihelp-query+watchlist-paramvalue-prop-title": "ページ名を追加します。",
+	"apihelp-query+watchlist-paramvalue-prop-flags": "編集のフラグを追加します。",
 	"apihelp-query+watchlist-paramvalue-prop-comment": "編集のコメントを追加します。",
 	"apihelp-query+watchlist-paramvalue-prop-parsedcomment": "編集の構文解析されたコメントを追加します。",
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "編集のタイムスタンプを追加します。",
