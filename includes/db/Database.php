@@ -2559,7 +2559,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
 		/** @var Exception $e */
-		$e = $ePrior = null; // last exception
+		$e = null; // first exception
 		do { // callbacks may add callbacks :)
 			$callbacks = array_merge(
 				$this->mTrxIdleCallbacks,
@@ -2577,11 +2577,9 @@ abstract class DatabaseBase implements IDatabase {
 					} else {
 						$this->clearFlag( DBO_TRX ); // restore auto-commit
 					}
-				} catch ( Exception $e ) {
-					if ( $ePrior ) {
-						MWExceptionHandler::logException( $ePrior );
-					}
-					$ePrior = $e;
+				} catch ( Exception $ex ) {
+					MWExceptionHandler::logException( $ex );
+					$e = $e ?: $ex;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
@@ -2592,7 +2590,7 @@ abstract class DatabaseBase implements IDatabase {
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
 		if ( $e instanceof Exception ) {
-			throw $e; // re-throw any last exception
+			throw $e; // re-throw any first exception
 		}
 	}
 
@@ -2602,9 +2600,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @since 1.22
+	 * @throws Exception
 	 */
 	public function runOnTransactionPreCommitCallbacks() {
-		$e = $ePrior = null; // last exception
+		$e = null; // first exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxPreCommitCallbacks;
 			$this->mTrxPreCommitCallbacks = []; // consumed (and recursion guard)
@@ -2612,17 +2611,15 @@ abstract class DatabaseBase implements IDatabase {
 				try {
 					list( $phpCallback ) = $callback;
 					call_user_func( $phpCallback );
-				} catch ( Exception $e ) {
-					if ( $ePrior ) {
-						MWExceptionHandler::logException( $ePrior );
-					}
-					$ePrior = $e;
+				} catch ( Exception $ex ) {
+					MWExceptionHandler::logException( $ex );
+					$e = $e ?: $ex;
 				}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
 
 		if ( $e instanceof Exception ) {
-			throw $e; // re-throw any last exception
+			throw $e; // re-throw any first exception
 		}
 	}
 
