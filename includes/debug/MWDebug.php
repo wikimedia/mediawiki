@@ -347,10 +347,11 @@ class MWDebug {
 	 * @param string $sql
 	 * @param string $function
 	 * @param bool $isMaster
+	 * @param float $runTime Query run time
 	 * @return int ID number of the query to pass to queryTime or -1 if the
 	 *  debugger is disabled
 	 */
-	public static function query( $sql, $function, $isMaster ) {
+	public static function query( $sql, $function, $isMaster, $runTime ) {
 		if ( !self::$enabled ) {
 			return -1;
 		}
@@ -384,26 +385,10 @@ class MWDebug {
 			'sql' => $sql,
 			'function' => $function,
 			'master' => (bool)$isMaster,
-			'time' => 0.0,
-			'_start' => microtime( true ),
+			'time' => $runTime,
 		];
 
 		return count( self::$query ) - 1;
-	}
-
-	/**
-	 * Calculates how long a query took.
-	 *
-	 * @since 1.19
-	 * @param int $id
-	 */
-	public static function queryTime( $id ) {
-		if ( $id === -1 || !self::$enabled ) {
-			return;
-		}
-
-		self::$query[$id]['time'] = microtime( true ) - self::$query[$id]['_start'];
-		unset( self::$query[$id]['_start'] );
 	}
 
 	/**

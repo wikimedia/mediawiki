@@ -849,8 +849,6 @@ abstract class DatabaseBase implements IDatabase {
 			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
 		}
 
-		$queryId = MWDebug::query( $sql, $fname, $isMaster );
-
 		# Avoid fatals if close() was called
 		$this->assertOpen();
 
@@ -862,7 +860,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->getTransactionProfiler()->recordQueryCompletion(
 			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
 
-		MWDebug::queryTime( $queryId );
+		MWDebug::query( $sql, $fname, $isMaster, $queryRuntime );
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
