@@ -599,7 +599,7 @@ class MWHttpRequest {
 	 * Returns the value of the given response header.
 	 *
 	 * @param string $header
-	 * @return string
+	 * @return string|null
 	 */
 	public function getResponseHeader( $header ) {
 		if ( !$this->respHeaders ) {

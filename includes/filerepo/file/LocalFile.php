@@ -279,8 +279,9 @@ class LocalFile extends File {
 
 	/**
 	 * Save the file metadata to memcached
+	 * @param array $cacheSetOpts Result of Database::getCacheSetOptions()
 	 */
-	private function saveToCache() {
+	private function saveToCache( array $cacheSetOpts ) {
 		$this->load();
 
 		$key = $this->getCacheKey();
@@ -308,9 +309,14 @@ class LocalFile extends File {
 		}
 
 		// Cache presence for 1 week and negatives for 1 day
-		$ttl = $this->fileExists ? 86400 * 7 : 86400;
-		$opts = Database::getCacheSetOptions( $this->repo->getSlaveDB() );
-		ObjectCache::getMainWANInstance()->set( $key, $cacheVal, $ttl, $opts );
+		$wanCache = ObjectCache::getMainWANInstance();
+		if ( $this->fileExists ) {
+			$ttl = $wanCache::TTL_WEEK;
+			$ttl = $wanCache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
+		} else {
+			$ttl = $wanCache::TTL_DAY;
+		}
+		$wanCache->set( $key, $cacheVal, $ttl, $cacheSetOpts );
 	}
 
 	/**
@@ -546,8 +552,9 @@ class LocalFile extends File {
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
 			if ( ( $flags & self::READ_LATEST ) || !$this->loadFromCache() ) {
+				$opts = Database::getCacheSetOptions( $this->repo->getSlaveDB() );
 				$this->loadFromDB( $flags );
-				$this->saveToCache();
+				$this->saveToCache( $opts );
 			}
 			$this->dataLoaded = true;
 		}
