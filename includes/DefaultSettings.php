@@ -685,7 +685,7 @@ $wgUseSharedUploads = false;
 /**
  * Full path on the web server where shared uploads can be found
  */
-$wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
+$wgSharedUploadPath = "https://commons.wikimedia.org/shared/images";
 
 /**
  * Fetch commons image description pages and display them on the local wiki?
