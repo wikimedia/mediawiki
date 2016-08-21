@@ -237,8 +237,6 @@ class VirtualRESTServiceClient {
 					$checkReqIndexesByPrefix[$prefix][$index] = 1;
 				}
 			}
-			// Update index of requests to inspect for replacement
-			$replaceReqsByService = $newReplaceReqsByService;
 			// Run the actual work HTTP requests
 			foreach ( $this->http->runMulti( $executeReqs ) as $index => $ranReq ) {
 				$doneReqs[$index] = $ranReq;
