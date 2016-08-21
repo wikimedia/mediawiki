@@ -63,8 +63,8 @@ class ForeignAPIRepo extends FileRepo {
 	/** @var array */
 	protected $mFileExists = [];
 
-	/** @var array */
-	private $mQueryCache = [];
+	/** @var string */
+	private $mApiBase;
 
 	/**
 	 * @param array|null $info
@@ -397,7 +397,8 @@ class ForeignAPIRepo extends FileRepo {
 			}
 			/* There is a new Commons file, or existing thumbnail older than a month */
 		}
-		$thumb = self::httpGet( $foreignUrl );
+
+		$thumb = self::httpGet( $foreignUrl, 'default', [], $mtime );
 		if ( !$thumb ) {
 			wfDebug( __METHOD__ . " Could not download thumb\n" );
 
@@ -413,7 +414,9 @@ class ForeignAPIRepo extends FileRepo {
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
-		$cache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
+
+		$ttl = $cache->adaptiveTTL( $mtime, $this->apiThumbCacheExpiry );
+		$cache->set( $key, $knownThumbUrls, $ttl );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 
 		return $localUrl;
@@ -506,9 +509,12 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options
+	 * @param integer|bool &$mtime Resulting Last-Modified UNIX timestamp if received
 	 * @return bool|string
 	 */
-	public static function httpGet( $url, $timeout = 'default', $options = [] ) {
+	public static function httpGet(
+		$url, $timeout = 'default', $options = [], &$mtime = false
+	) {
 		$options['timeout'] = $timeout;
 		/* Http::get */
 		$url = wfExpandUrl( $url, PROTO_HTTP );
@@ -524,6 +530,9 @@ class ForeignAPIRepo extends FileRepo {
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
+			$mtime = wfTimestampOrNull( TS_UNIX, $req->getResponseHeader( 'Last-Modified' ) );
+			$mtime = $mtime ?: false;
+
 			return $req->getContent();
 		} else {
 			$logger = LoggerFactory::getInstance( 'http' );
@@ -531,6 +540,7 @@ class ForeignAPIRepo extends FileRepo {
 				$status->getWikiText( false, false, 'en' ),
 				[ 'caller' => 'ForeignAPIRepo::httpGet' ]
 			);
+
 			return false;
 		}
 	}
@@ -548,7 +558,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $target Used in cache key creation, mostly
 	 * @param array $query The query parameters for the API request
 	 * @param int $cacheTTL Time to live for the memcached caching
-	 * @return null
+	 * @return string|null
 	 */
 	public function httpGetCached( $target, $query, $cacheTTL = 3600 ) {
 		if ( $this->mApiBase ) {
@@ -557,28 +567,19 @@ class ForeignAPIRepo extends FileRepo {
 			$url = $this->makeUrl( $query, 'api' );
 		}
 
-		if ( !isset( $this->mQueryCache[$url] ) ) {
-			$data = ObjectCache::getMainWANInstance()->getWithSetCallback(
-				$this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) ),
-				$cacheTTL,
-				function () use ( $url ) {
-					return ForeignAPIRepo::httpGet( $url );
-				}
-			);
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->getWithSetCallback(
+			$this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) ),
+			$cacheTTL,
+			function ( $curValue, &$ttl ) use ( $url, $cache ) {
+				$html = self::httpGet( $url, 'default', [], $mtime );
 
-			if ( !$data ) {
-				return null;
-			}
+				$ttl = $cache->adaptiveTTL( $mtime, $ttl );
 
-			if ( count( $this->mQueryCache ) > 100 ) {
-				// Keep the cache from growing infinitely
-				$this->mQueryCache = [];
-			}
-
-			$this->mQueryCache[$url] = $data;
-		}
-
-		return $this->mQueryCache[$url];
+				return ( $html !== false ) ? $html : null; // cache negatives
+			},
+			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
+		);
 	}
 
 	/**
