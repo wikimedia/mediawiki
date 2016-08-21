@@ -722,4 +722,24 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$wanCache->getWithSetCallback( 'p', 30, $valFunc );
 		$wanCache->getCheckKeyTime( 'zzz' );
 	}
+
+	/**
+	 * @dataProvider provideAdaptiveTTL
+	 * @covers WANObjectCache::adaptiveTTL()
+	 */
+	public function testAdaptiveTTL( $mtime, $maxTTL, $minTTL, $adaptiveTTL ) {
+		$margin = 3;
+		$ttl = $this->cache->adaptiveTTL( $mtime, $maxTTL, $minTTL );
+		$this->assertGreaterThanOrEqual( $adaptiveTTL - $margin, $ttl, .2 );
+		$this->assertLessThanOrEqual( $adaptiveTTL + $margin, $ttl, .2 );
+	}
+
+	public static function provideAdaptiveTTL() {
+		$now = time();
+		return [
+			[ $now - 3600, 900, 30, 720 ],
+			[ $now - 3600, 500, 30, 500 ],
+			[ $now - 3600, 86400, 800, 800 ]
+		];
+	}
 }
