@@ -2547,6 +2547,7 @@ class OutputPage extends ContextSource {
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();
 		if ( $lag >= $config->get( 'SlaveLagWarning' ) ) {
+			$lag = floor( $lag ); // floor to avoid nano seconds to display
 			$message = $lag < $config->get( 'SlaveLagCritical' )
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
