@@ -473,7 +473,7 @@ class User implements IDBAccessObject {
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 				wfDebug( "User: cache miss for user {$this->mId}\n" );
 
@@ -485,6 +485,8 @@ class User implements IDBAccessObject {
 				foreach ( self::$mCacheVars as $name ) {
 					$data[$name] = $this->$name;
 				}
+
+				$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
 
 				return $data;
 
