@@ -347,8 +347,8 @@
 					}
 
 				} else if ( $collapsible.parent().is( 'li' ) &&
-					$collapsible.parent().children( '.mw-collapsible' ).size() === 1 &&
-					$collapsible.find( '> .mw-collapsible-toggle' ).size() === 0
+					$collapsible.parent().children( '.mw-collapsible' ).length === 1 &&
+					$collapsible.find( '> .mw-collapsible-toggle' ).length === 0
 				) {
 					// special case of one collapsible in <li> tag
 					$toggleLink = buildDefaultToggleLink();
