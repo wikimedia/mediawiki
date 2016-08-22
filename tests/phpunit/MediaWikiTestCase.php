@@ -474,9 +474,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
+			MediaWikiServices::getInstance()->getDBLoadBalancer()->rollbackMasterChanges();
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
+			DeferredUpdates::installDBListener( wfGetDB( DB_MASTER ) );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
@@ -511,6 +513,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
+			MediaWikiServices::getInstance()->getDBLoadBalancer()->rollbackMasterChanges();
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
