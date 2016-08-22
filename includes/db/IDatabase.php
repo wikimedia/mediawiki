@@ -50,6 +50,11 @@ interface IDatabase {
 	/** @var string Transaction operation comes from the database class internally */
 	const FLUSHING_INTERNAL = 'flush';
 
+	/** @var string Restore to the prior flag state */
+	const RESTORE_PRIOR = 'prior';
+	/** @var string Restore to the initial flag state */
+	const RESTORE_INITIAL = 'initial';
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -245,6 +250,14 @@ interface IDatabase {
 	 *   - DBO_PERSISTENT: use persistant database connection
 	 */
 	public function clearFlag( $flag );
+
+	/**
+	 * Restore the flags to their prior state before the last setFlag/clearFlag call
+	 *
+	 * @param string $state IDatabase::RESTORE_* constant. [default: RESTORE_PRIOR]
+	 * @since 1.28
+	 */
+	public function restoreFlags( $state = self::RESTORE_PRIOR );
 
 	/**
 	 * Returns a boolean whether the flag $flag is set for this connection

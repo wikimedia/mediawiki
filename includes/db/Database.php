@@ -177,6 +177,9 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected $allViews = null;
 
+	/** @var int[] Prior mFlags values */
+	private $priorFlags = [];
+
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 
@@ -410,11 +413,26 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function setFlag( $flag ) {
+		array_push( $this->priorFlags, $this->mFlags );
 		$this->mFlags |= $flag;
 	}
 
 	public function clearFlag( $flag ) {
+		array_push( $this->priorFlags, $this->mFlags );
 		$this->mFlags &= ~$flag;
+	}
+
+	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
+		if ( !$this->priorFlags ) {
+			return;
+		}
+
+		if ( $state === self::RESTORE_INITIAL ) {
+			$this->mFlags = reset( $this->priorFlags );
+			$this->priorFlags = [];
+		} else {
+			$this->mFlags = array_pop( $this->priorFlags );
+		}
 	}
 
 	public function getFlag( $flag ) {
