@@ -40,13 +40,15 @@ class HTMLUserTextField extends HTMLTextField {
 	}
 
 	protected function getInputWidget( $params ) {
-		$this->mParent->getOutput()->addModules( 'mediawiki.widgets.UserInputWidget' );
-
 		return new UserInputWidget( $params );
 	}
 
 	protected function shouldInfuseOOUI() {
 		return true;
+	}
+
+	protected function getOOUIModules() {
+		return [ 'mediawiki.widgets.UserInputWidget' ];
 	}
 
 	public function getInputHtml( $value ) {
