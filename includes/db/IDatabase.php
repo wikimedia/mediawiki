@@ -50,6 +50,15 @@ interface IDatabase {
 	/** @var string Transaction operation comes from the database class internally */
 	const FLUSHING_INTERNAL = 'flush';
 
+	/** @var string No not remember the prior flags */
+	const REMEMBER_NOTHING = '';
+	/** @var string Remember the prior flags */
+	const REMEMBER_PRIOR = 'remember';
+	/** @var string Restore to the prior flag state */
+	const RESTORE_PRIOR = 'prior';
+	/** @var string Restore to the initial flag state */
+	const RESTORE_INITIAL = 'initial';
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -230,8 +239,9 @@ interface IDatabase {
 	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
 	 *       and removes it in command line mode
 	 *   - DBO_PERSISTENT: use persistant database connection
+	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
-	public function setFlag( $flag );
+	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING );
 
 	/**
 	 * Clear a flag for this connection
@@ -243,8 +253,17 @@ interface IDatabase {
 	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
 	 *       and removes it in command line mode
 	 *   - DBO_PERSISTENT: use persistant database connection
+	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
-	public function clearFlag( $flag );
+	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING );
+
+	/**
+	 * Restore the flags to their prior state before the last setFlag/clearFlag call
+	 *
+	 * @param string $state IDatabase::RESTORE_* constant. [default: RESTORE_PRIOR]
+	 * @since 1.28
+	 */
+	public function restoreFlags( $state = self::RESTORE_PRIOR );
 
 	/**
 	 * Returns a boolean whether the flag $flag is set for this connection
