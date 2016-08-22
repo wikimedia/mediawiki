@@ -76,23 +76,9 @@ class DeferredUpdates {
 			return; // update loop is already active and will pick this up
 		}
 
-		// CLI scripts may forget to periodically flush these updates,
-		// so try to handle that rather than OOMing and losing them entirely.
-		// Try to run the updates as soon as there is no current wiki transaction.
-		static $waitingOnTrx = false; // de-duplicate callback
-		if ( $wgCommandLineMode && !$waitingOnTrx ) {
-			$lb = wfGetLB();
-			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
-			// Do the update as soon as there is no transaction
-			if ( $dbw && $dbw->trxLevel() ) {
-				$waitingOnTrx = true;
-				$dbw->onTransactionIdle( function() use ( &$waitingOnTrx ) {
-					DeferredUpdates::doUpdates();
-					$waitingOnTrx = false;
-				} );
-			} else {
-				self::doUpdates();
-			}
+		if ( $wgCommandLineMode ) {
+			// If no writes are pending, then callbacks can run immediately
+			self::tryOpportunisticExecute( 'run' );
 		}
 	}
 
