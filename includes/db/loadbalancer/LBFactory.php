@@ -217,6 +217,22 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
+	 *
+	 * The DBO_TRX setting will be reverted to the default in each of these methods:
+	 *   - commitMasterChanges()
+	 *   - rollbackMasterChanges()
+	 *   - commitAll()
+	 * This allows for custom transaction rounds from any outer transaction scope.
+	 *
+	 * @param string $fname
+	 * @since 1.28
+	 */
+	public function beginMasterChanges( $fname = __METHOD__ ) {
+		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
+	}
+
+	/**
 	 * Commit on all connections. Done for two reasons:
 	 * 1. To commit changes to the masters.
 	 * 2. To release the snapshot on all connections, master and slave.
