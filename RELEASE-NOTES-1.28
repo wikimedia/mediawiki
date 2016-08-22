@@ -52,6 +52,16 @@ production.
 ==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.28 ===
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T139670) Move 'UserGetRights' call before application of
+  Session::getAllowedUserRights()
 
 === Action API changes in 1.28 ===
 * Added 'maxarticlesize' property to action=query&meta=siteinfo which contains
@@ -72,6 +82,8 @@ production.
 === Action API internal changes in 1.28 ===
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
   interact with ApiParse and ApiExpandTemplates.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
 
 === Languages updated in 1.28 ===
 
