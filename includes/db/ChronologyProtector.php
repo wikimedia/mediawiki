@@ -147,31 +147,20 @@ class ChronologyProtector {
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
-		$shutdownPositions = $this->shutdownPositions;
-		$ok = $this->store->merge(
-			$this->key,
-			function ( $store, $key, $curValue ) use ( $shutdownPositions ) {
-				/** @var $curPositions DBMasterPos[] */
-				if ( $curValue === false ) {
-					$curPositions = $shutdownPositions;
-				} else {
-					$curPositions = $curValue['positions'];
-					// Use the newest positions for each DB master
-					foreach ( $shutdownPositions as $db => $pos ) {
-						if ( !isset( $curPositions[$db] )
-							|| $pos->asOfTime() > $curPositions[$db]->asOfTime()
-						) {
-							$curPositions[$db] = $pos;
-						}
-					}
-				}
-
-				return [ 'positions' => $curPositions ];
-			},
-			BagOStuff::TTL_MINUTE,
-			10,
-			BagOStuff::WRITE_SYNC // visible in all datacenters
-		);
+		// CP-protected writes should overwhemingly go to the master datacenter, so get DC-local
+		// lock to merge the values. Use a DC-local get() and a synchronous all-DC set(). This
+		// makes it possible for the BagOStuff class to write in parallel to all DCs with one RTT.
+		if ( $this->store->lock( $this->key, 3 ) ) {
+			$ok = $this->store->set(
+				$this->key,
+				self::mergePositions( $this->store->get( $this->key ), $this->shutdownPositions ),
+				BagOStuff::TTL_MINUTE,
+				BagOStuff::WRITE_SYNC
+			);
+			$this->store->unlock( $this->key );
+		} else {
+			$ok = false;
+		}
 
 		if ( !$ok ) {
 			// Raced out too many times or stash is down
@@ -205,5 +194,29 @@ class ChronologyProtector {
 
 			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (unread)\n" );
 		}
+	}
+
+	/**
+	 * @param array|bool $curValue
+	 * @param DBMasterPos[] $shutdownPositions
+	 * @return array
+	 */
+	private static function mergePositions( $curValue, array $shutdownPositions ) {
+		/** @var $curPositions DBMasterPos[] */
+		if ( $curValue === false ) {
+			$curPositions = $shutdownPositions;
+		} else {
+			$curPositions = $curValue['positions'];
+			// Use the newest positions for each DB master
+			foreach ( $shutdownPositions as $db => $pos ) {
+				if ( !isset( $curPositions[$db] )
+					|| $pos->asOfTime() > $curPositions[$db]->asOfTime()
+				) {
+					$curPositions[$db] = $pos;
+				}
+			}
+		}
+
+		return [ 'positions' => $curPositions ];
 	}
 }
