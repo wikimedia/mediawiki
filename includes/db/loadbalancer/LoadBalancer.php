@@ -51,6 +51,8 @@ class LoadBalancer {
 	private $srvCache;
 	/** @var WANObjectCache */
 	private $wanCache;
+	/** @var TransactionProfiler */
+	protected $trxProfiler;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
@@ -68,9 +70,6 @@ class LoadBalancer {
 	private $readOnlyReason = false;
 	/** @var integer Total connections opened */
 	private $connsOpened = 0;
-
-	/** @var TransactionProfiler */
-	protected $trxProfiler;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -1133,24 +1132,24 @@ class LoadBalancer {
 	 */
 	public function beginMasterChanges( $fname = __METHOD__ ) {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			if ( $conn->writesOrCallbacksPending() ) {
-				throw new DBTransactionError(
-					$conn,
-					"Transaction with pending writes still active."
-				);
-			} elseif ( $conn->trxLevel() ) {
-				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
-			}
-			if ( $conn->getFlag( DBO_DEFAULT ) ) {
-				// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
-				// Force DBO_TRX even in CLI mode since a commit round is expected soon.
-				$conn->setFlag( DBO_TRX, $conn::REMEMBER_PRIOR );
-				$conn->onTransactionResolution( function () use ( $conn ) {
-					$conn->restoreFlags( $conn::RESTORE_PRIOR );
-				} );
-			} else {
-				// Config has explicitly requested DBO_TRX be either on or off; respect that.
-				// This is useful for things like blob stores which use auto-commit mode.
+			try {
+				if ( $conn->writesOrCallbacksPending() ) {
+					throw new DBTransactionError(
+						$conn,
+						"Transaction with pending writes still active."
+					);
+				} elseif ( $conn->trxLevel() ) {
+					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+				}
+			} finally {
+				if ( $conn->getFlag( DBO_DEFAULT ) ) {
+					// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
+					// Force DBO_TRX even in CLI mode since a commit round is expected soon.
+					$conn->setFlag( DBO_TRX, $conn::REMEMBER_PRIOR );
+					// If config has explicitly requested DBO_TRX be either on or off by not
+					// setting DBO_DEFAULT, then respect that. Forcing no transactions is useful
+					// for things like blob stores (ExternalStore) which use auto-commit mode.
+				}
 			}
 		} );
 	}
@@ -1158,13 +1157,22 @@ class LoadBalancer {
 	/**
 	 * Issue COMMIT on all master connections where writes where done
 	 * @param string $fname Caller name
+	 * @param bool $endingRound Whether a requested transaction round is ending
 	 */
-	public function commitMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			if ( $conn->writesOrCallbacksPending() ) {
-				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+	public function commitMasterChanges( $fname = __METHOD__, $endingRound = false ) {
+		$this->forEachOpenMasterConnection(
+			function ( DatabaseBase $conn ) use ( $fname, $endingRound ) {
+				try {
+					if ( $conn->writesOrCallbacksPending() ) {
+						$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+					}
+				} finally {
+					if ( $endingRound && $conn->getFlag( DBO_DEFAULT ) ) {
+						$conn->restoreFlags( $conn::RESTORE_PRIOR );
+					}
+				}
 			}
-		} );
+		);
 	}
 
 	/**
@@ -1189,10 +1197,11 @@ class LoadBalancer {
 	/**
 	 * Issue ROLLBACK only on master, only if queries were done on connection
 	 * @param string $fname Caller name
+	 * @param bool $endingRound Whether a requested transaction round is ending
 	 * @throws DBExpectedError
 	 * @since 1.23
 	 */
-	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+	public function rollbackMasterChanges( $fname = __METHOD__ , $endingRound = false ) {
 		$failedServers = [];
 
 		$masterIndex = $this->getWriterIndex();
@@ -1208,6 +1217,10 @@ class LoadBalancer {
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
 						$failedServers[] = $conn->getServer();
+					} finally {
+						if ( $endingRound && $conn->getFlag( DBO_DEFAULT ) ) {
+							$conn->restoreFlags( $conn::RESTORE_PRIOR );
+						}
 					}
 				}
 			}

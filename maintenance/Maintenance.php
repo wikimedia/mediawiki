@@ -37,6 +37,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -1050,8 +1051,22 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
-			LBFactory::destroyInstance();
+
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
 		}
+
+		// A good time when no DBs have writes pending is around lag checks.
+		// This avoids having long running scripts just OOM and lose all the updates.
+		$class = get_class( $this );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->onEachWaitFoReplication( function () use ( $lbFactory, $class ) {
+			if ( !$lbFactory->hasMasterChanges() ) {
+				DeferredUpdates::doUpdates( 'enqueue' );
+			} else {
+				$logger = LoggerFactory::getInstance( 'DBPerformance' );
+				$logger->warning( "$class: cannot run deferred updates; writes are pending." );
+			}
+		} );
 
 		// Per-script profiling; useful for debugging
 		$this->activateProfiler();
