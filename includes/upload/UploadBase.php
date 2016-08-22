@@ -458,6 +458,9 @@ abstract class UploadBase {
 
 		# check for htmlish code and javascript
 		if ( !$wgDisableUploadScriptChecks ) {
+			if ( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
+				return [ 'uploadscripted' ];
+			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, false );
 				if ( $svgStatus !== false ) {
@@ -515,9 +518,6 @@ abstract class UploadBase {
 
 		# check for htmlish code and javascript
 		if ( !$wgDisableUploadScriptChecks ) {
-			if ( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
-				return [ 'uploadscripted' ];
-			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, true );
 				if ( $svgStatus !== false ) {
