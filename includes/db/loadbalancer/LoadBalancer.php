@@ -1062,6 +1062,7 @@ class LoadBalancer {
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
 		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( $fname ) {
+			$conn->restoreFlags( IDatabase::RESTORE_INITIAL );
 			$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 		} );
 	}
@@ -1112,12 +1113,45 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
+	 *
+	 * The DBO_TRX setting will be reverted to the default in each of these methods:
+	 *   - commitMasterChanges()
+	 *   - rollbackMasterChanges()
+	 *   - commitAll()
+	 * This allows for custom transaction rounds from any outer transaction scope.
+	 *
+	 * @param string $fname
+	 * @since 1.28
+	 */
+	public function beginMasterChanges( $fname = __METHOD__ ) {
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
+			if ( $conn->writesOrCallbacksPending() ) {
+				throw new DBTransactionError(
+					$conn,
+					"Cannot clear snapshot; transaction with pending writes still active."
+				);
+			} elseif ( $conn->trxLevel() ) {
+				$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
+			}
+			if ( $conn->getFlag( DBO_DEFAULT ) ) {
+				// DBO_TRX is controlled entirely by CLI mode implicitly with DBO_DEFAULT.
+				// Force DBO_TRX even in CLI mode since a commit round is expected soon.
+				$conn->setFlag( DBO_TRX );
+			} else {
+				// Config has explicitly requested DBO_TRX be either on or off; respect that.
+			}
+		} );
+	}
+
+	/**
 	 * Issue COMMIT on all master connections where writes where done
 	 * @param string $fname Caller name
 	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
 			if ( $conn->writesOrCallbacksPending() ) {
+				$conn->restoreFlags( IDatabase::RESTORE_INITIAL );
 				$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
 			}
 		} );
@@ -1160,6 +1194,7 @@ class LoadBalancer {
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					try {
+						$conn->restoreFlags( IDatabase::RESTORE_INITIAL );
 						$conn->rollback( $fname, IDatabase::FLUSHING_ALL_PEERS );
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
