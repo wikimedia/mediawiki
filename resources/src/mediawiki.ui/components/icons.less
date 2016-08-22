@@ -33,8 +33,8 @@
 	// Standalone icons
 	//
 	// Markup:
-	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok">OK</div><br/>
-	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok mw-ui-button mw-ui-progressive">OK</div><br/>
+	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok">OK</div><br>
+	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok mw-ui-button mw-ui-progressive">OK</div><br>
 	// <button class="mw-ui-icon mw-ui-icon-ok mw-ui-icon-element mw-ui-button mw-ui-quiet" title="">Close</button>
 	//
 	// Styleguide 6.1.1.
@@ -79,5 +79,15 @@
 			width: @iconSize;
 			margin-right: @iconGutterWidth;
 		}
+	}
+
+	// Icons small for elements like indicators
+	//
+	// Markup:
+	// <div class="mw-ui-icon mw-ui-icon-small mw-ui-icon-help"></div>
+	//
+	// Styleguide 6.1.3
+	&.mw-ui-icon-small:before {
+		background-size: 66.67% auto; // 66.67% of 24px equals 16px
 	}
 }
