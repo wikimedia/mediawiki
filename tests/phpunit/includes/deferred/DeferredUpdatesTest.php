@@ -4,6 +4,9 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
+		$dbw = wfGetDB( DB_MASTER );
+		$this->assertEquals( 0, $dbw->trxLevel(), "No transaction yet." );
+
 		$updates = [
 			'1' => 'deferred update 1',
 			'2' => 'deferred update 2',
@@ -34,6 +37,8 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$this->expectOutputString( implode( '', $updates ) );
 
 		DeferredUpdates::doUpdates();
+
+		$this->assertEquals( 0, $dbw->trxLevel(), "No transaction yet." );
 
 		$x = null;
 		$y = null;
