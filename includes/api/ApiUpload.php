@@ -405,6 +405,7 @@ class ApiUpload extends ApiBase {
 			$code = $overrideCode;
 		}
 		if ( $moreExtraData ) {
+			$extraData = $extraData ?: [];
 			$extraData += $moreExtraData;
 		}
 		$this->dieUsage( $msg, $code, 0, $extraData );
