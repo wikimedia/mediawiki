@@ -36,6 +36,8 @@
  *
  * @since 1.19
  */
+use \MediaWiki\MediaWikiServices;
+
 class DeferredUpdates {
 	/** @var DeferrableUpdate[] Updates to be deferred until before request end */
 	private static $preSendUpdates = [];
@@ -113,7 +115,7 @@ class DeferredUpdates {
 		// Try to run the updates as soon as there is no current wiki transaction.
 		static $waitingOnTrx = false; // de-duplicate callback
 		if ( $wgCommandLineMode && !$waitingOnTrx ) {
-			$lb = wfGetLB();
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 			// Do the update as soon as there is no transaction
 			if ( $dbw && $dbw->trxLevel() ) {
@@ -128,57 +130,116 @@ class DeferredUpdates {
 		}
 	}
 
+	/**
+	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
+	 * @throws ErrorPageError
+	 */
 	public static function execute( array &$queue, $mode ) {
-		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$services = MediaWikiServices::getInstance();
+		$stats = $services->getStatsdDataFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
-		$updates = $queue; // snapshot of queue
-		// Keep doing rounds of updates until none get enqueued
-		while ( count( $updates ) ) {
+		/** @var ErrorPageError $reportError */
+		$reportError = null;
+		/** @var DeferrableUpdate[] $updates Snapshot of queue */
+		$updates = $queue;
+
+		// Keep doing rounds of updates until none get enqueued...
+		while ( $updates ) {
 			$queue = []; // clear the queue
-			/** @var DataUpdate[] $dataUpdates */
-			$dataUpdates = [];
-			/** @var DeferrableUpdate[] $otherUpdates */
+			if ( $mode === 'enqueue' ) {
+				// When possible, push updates as jobs instead of calling doUpdate()
+				try {
+					// Push enqueuable updates to the job queue and get the rest
+					$updates = self::enqueueUpdates( $updates );
+					$lbFactory->commitMasterChanges( __METHOD__ ); // in case of DB queue
+				} catch ( Exception $e ) {
+					// Let other updates have a chance to run if this failed
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				}
+			}
+
+			$trxDataUpdates = [];
 			$otherUpdates = [];
 			foreach ( $updates as $update ) {
-				if ( $update instanceof DataUpdate ) {
-					$dataUpdates[] = $update;
+				if ( $update instanceof DataUpdate && $update->useTransaction() ) {
+					$trxDataUpdates[] = $update;
 				} else {
 					$otherUpdates[] = $update;
 				}
 
-				$name = $update instanceof DeferrableCallback
+				$name = ( $update instanceof DeferrableCallback )
 					? get_class( $update ) . '-' . $update->getOrigin()
 					: get_class( $update );
 				$stats->increment( 'deferred_updates.' . $method . '.' . $name );
 			}
 
-			// Delegate DataUpdate execution to the DataUpdate class
-			try {
-				DataUpdate::runUpdates( $dataUpdates, $mode );
-			} catch ( Exception $e ) {
-				// Let the other updates occur if these had to rollback
-				MWExceptionHandler::logException( $e );
+			// Run a transactional DataUpdate task round...
+			if ( $trxDataUpdates ) {
+				try {
+					$lbFactory->beginMasterChanges( __METHOD__ );
+					foreach ( $trxDataUpdates as $trxUpdate ) {
+						/** @var $trxUpdate DataUpdate */
+						$trxUpdate->doUpdate();
+					}
+					$lbFactory->commitMasterChanges( __METHOD__ );
+				} catch ( Exception $e ) {
+					// Let other updates have a chance to run if this failed
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				}
 			}
-			// Execute the non-DataUpdate tasks
+
+			// Execute the non-transactional DataUpdate and non-DataUpdate tasks...
 			foreach ( $otherUpdates as $update ) {
+				/** @var $update DeferrableUpdate */
 				try {
 					$update->doUpdate();
-					wfGetLBFactory()->commitMasterChanges( __METHOD__ );
-				} catch ( Exception $e ) {
-					// We don't want exceptions thrown during deferred updates to
-					// be reported to the user since the output is already sent
-					if ( !$e instanceof ErrorPageError ) {
+					$lbFactory->commitMasterChanges( __METHOD__ );
+				} catch ( ErrorPageError $e ) {
+					// Let other updates have a chance to run if this failed
+					if ( $mode === self::PRESEND ) {
+						$reportError = $reportError ?: $e;
+					} else {
+						// Reporting GUI exceptions does not work post-send
 						MWExceptionHandler::logException( $e );
 					}
-					// Make sure incomplete transactions are not committed and end any
-					// open atomic sections so that other DB updates have a chance to run
-					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
+					$lbFactory->commitMasterChanges( __METHOD__ );
+				} catch ( Exception $e ) {
+					// Let other updates have a chance to run if this failed
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 				}
 			}
 
 			$updates = $queue; // new snapshot of queue (check for new entries)
 		}
+
+		if ( $reportError ) {
+			throw $reportError; // throw the first of any GUI errors
+		}
+	}
+
+	/**
+	 * Enqueue jobs for every DataUpdate that support enqueueUpdate()
+	 * and return the remaining DataUpdate objects (those that do not)
+	 *
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @return DataUpdate[]
+	 */
+	private static function enqueueUpdates( array $updates ) {
+		$remaining = [];
+
+		foreach ( $updates as $update ) {
+			if ( $update instanceof EnqueueableDataUpdate ) {
+				$spec = $update->getAsJobSpecification();
+				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+			} else {
+				$remaining[] = $update;
+			}
+		}
+
+		return $remaining;
 	}
 
 	/**
