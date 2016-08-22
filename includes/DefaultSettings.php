@@ -8342,7 +8342,7 @@ $wgEventRelayerConfig = [
  * PHP version, and chosen database backend. The Wikimedia Foundation shares this data with
  * MediaWiki developers to help guide future development efforts.
  *
- * For details about what data is sent, see: https://www.mediawiki.org/wiki/Pingback
+ * For details about what data is sent, see: https://www.mediawiki.org/wiki/Manual:$wgPingback
  *
  * @var bool
  * @since 1.28

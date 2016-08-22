@@ -117,6 +117,9 @@ class Pingback {
 	 *
 	 * This is public so we can display it in the installer
 	 *
+	 * Developers: If you're adding a new piece of data to this, please ensure
+	 * that you update https://www.mediawiki.org/wiki/Manual:$wgPingback
+	 *
 	 * @return array
 	 */
 	public function getSystemInfo() {
