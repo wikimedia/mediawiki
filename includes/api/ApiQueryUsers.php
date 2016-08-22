@@ -328,7 +328,6 @@ class ApiQueryUsers extends ApiQueryBase {
 			],
 			'attachedwiki' => null,
 			'users' => [
-				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'token' => [
