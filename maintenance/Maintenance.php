@@ -37,6 +37,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -546,6 +547,25 @@ abstract class Maintenance {
 			$this->error( $msg, 1 );
 		}
 
+	}
+
+	/**
+	 * Set triggers like when to try to run deferred updates
+	 * @since 1.28
+	 */
+	public function setTriggers() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->setWaitForReplicationListener(
+			__METHOD__,
+			[ 'DeferredUpdates', 'tryOpportunisticExecute' ]
+		);
+
+		// Hook into active master connections to find a moment where no writes are pending
+		try {
+			DeferredUpdates::installDBListener( $this->getDB( DB_MASTER ) );
+		} catch ( DBConnectionError $e ) {
+			// Nevermind...maybe the script wont touch this DB anyway
+		}
 	}
 
 	/**
