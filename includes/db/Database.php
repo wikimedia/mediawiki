@@ -2542,8 +2542,10 @@ abstract class DatabaseBase implements IDatabase {
 		return false;
 	}
 
-	final public function onTransactionResolution( callable $callback ) {
-		if ( !$this->mTrxLevel ) {
+	final public function onTransactionResolution(
+		callable $callback, $which = self::TRANSACTION_CURRENT
+	) {
+		if ( !$this->mTrxLevel && $which == self::TRANSACTION_CURRENT ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
 		$this->mTrxEndCallbacks[] = [ $callback, wfGetCaller() ];

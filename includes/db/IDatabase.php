@@ -40,6 +40,11 @@ interface IDatabase {
 	/** @var int Callback triggered by rollback */
 	const TRIGGER_ROLLBACK = 3;
 
+	/** @var string Apply this callback to the current transaction */
+	const TRANSACTION_CURRENT = 'current';
+	/** @var string Apply this callback to the next transaction */
+	const TRANSACTION_NEXT = 'next';
+
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
 	const TRANSACTION_EXPLICIT = '';
 	/** @var string Transaction is requested interally via DBO_TRX/startAtomic() */
@@ -1270,10 +1275,11 @@ interface IDatabase {
 	 * How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
 	 *
 	 * @param callable $callback
+	 * @param string $which (IDatabase::TRANSACTION_NOW or IDatabase::TRANSACTION_NEXT)
 	 * @return mixed
 	 * @since 1.28
 	 */
-	public function onTransactionResolution( callable $callback );
+	public function onTransactionResolution( callable $callback, $which = self::TRANSACTION_CURRENT );
 
 	/**
 	 * Run a callback as soon as there is no transaction pending.

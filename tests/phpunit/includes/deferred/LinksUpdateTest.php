@@ -369,10 +369,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	) {
 		$update = new LinksUpdate( $title, $parserOutput );
 
-		// NOTE: make sure LinksUpdate does not generate warnings when called inside a transaction.
-		$update->beginTransaction();
 		$update->doUpdate();
-		$update->commitTransaction();
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
 		return $update;
