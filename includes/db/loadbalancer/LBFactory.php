@@ -44,8 +44,12 @@ abstract class LBFactory implements DestructibleService {
 
 	/** @var mixed */
 	protected $ticket;
+	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	protected $trxRoundActive = false;
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
+	/** @var callable[] */
+	protected $replicationWaitCallbacks = [];
 
 	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
 
@@ -229,6 +233,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @since 1.28
 	 */
 	public function beginMasterChanges( $fname = __METHOD__ ) {
+		$this->trxRoundActive = $fname;
 		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
 	}
 
@@ -260,7 +265,8 @@ abstract class LBFactory implements DestructibleService {
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all master DB connections
-		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname, $this->trxRoundActive ] );
+		$this->trxRoundActive = false;
 		// Run all post-commit callbacks
 		/** @var Exception $e */
 		$e = null; // first callback exception
@@ -282,7 +288,8 @@ abstract class LBFactory implements DestructibleService {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname, $this->trxRoundActive ] );
+		$this->trxRoundActive = false;
 	}
 
 	/**
@@ -381,6 +388,10 @@ abstract class LBFactory implements DestructibleService {
 			'ifWritesSince' => null
 		];
 
+		foreach ( $this->replicationWaitCallbacks as $callback ) {
+			$callback();
+		}
+
 		// Figure out which clusters need to be checked
 		/** @var LoadBalancer[] $lbs */
 		$lbs = [];
@@ -431,6 +442,16 @@ abstract class LBFactory implements DestructibleService {
 				implode( ', ', $failed )
 			);
 		}
+	}
+
+	/**
+	 * Add a callback to be run after every call to waitForReplication()
+	 *
+	 * @param callable $callback
+	 * @since 1.28
+	 */
+	public function onEachWaitForReplication( callable $callback ) {
+		$this->replicationWaitCallbacks[] = $callback;
 	}
 
 	/**
@@ -525,6 +546,15 @@ abstract class LBFactory implements DestructibleService {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
 			}
 		} );
+	}
+
+	/**
+	 * @param LoadBalancer $lb
+	 */
+	protected function initLoadBalancer( LoadBalancer $lb ) {
+		if ( $this->trxRoundActive !== false ) {
+			$lb->beginMasterChanges( $this->trxRoundActive );
+		}
 	}
 
 	/**
