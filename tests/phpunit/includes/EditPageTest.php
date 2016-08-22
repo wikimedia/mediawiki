@@ -332,7 +332,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 			} ],
 		] );
 
-		wfGetDB( DB_MASTER )->begin( __METHOD__ );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
 
 		$edit = [ 'wpTextbox1' => $editText ];
 		if ( $ignoreBlank ) {
@@ -346,10 +347,14 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page2 = $this->assertEdit(
 			$pageTitle2, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
-		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+		$dbw->commit( __METHOD__ );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
+
+			$this->assertEquals( 0, $dbw->trxLevel(), "Transaction committed." );
+			$this->assertEquals( false, $dbw->getFlag( DBO_TRX ), "In auto-commit CLI mode." );
+
 			$page->doDeleteArticleReal( $pageTitle );
 
 			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
