@@ -35,10 +35,12 @@
 interface IDatabase {
 	/** @var int Callback triggered immediately due to no active transaction */
 	const TRIGGER_IDLE = 1;
-	/** @var int Callback triggered by commit */
-	const TRIGGER_COMMIT = 2;
-	/** @var int Callback triggered by rollback */
-	const TRIGGER_ROLLBACK = 3;
+	/** @var int Callback triggered by BEGIN */
+	const TRIGGER_BEGIN = 2;
+	/** @var int Callback triggered by COMMIT */
+	const TRIGGER_COMMIT = 3;
+	/** @var int Callback triggered by ROLLBACK */
+	const TRIGGER_ROLLBACK = 4;
 
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
 	const TRANSACTION_EXPLICIT = '';
@@ -200,6 +202,7 @@ interface IDatabase {
 	/**
 	 * Returns true if there is a transaction open with possible write
 	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
+	 * This does *not* count recurring callbacks, e.g. from setTransactionListener().
 	 *
 	 * @return bool
 	 */
@@ -1267,7 +1270,7 @@ interface IDatabase {
 	 * This is useful for combining cooperative locks and DB transactions.
 	 *
 	 * The callback takes one argument:
-	 * How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
+	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
 	 *
 	 * @param callable $callback
 	 * @return mixed
@@ -1289,7 +1292,7 @@ interface IDatabase {
 	 * Updates will execute in the order they were enqueued.
 	 *
 	 * The callback takes one argument:
-	 * How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
+	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
 	 *
 	 * @param callable $callback
 	 * @since 1.20
@@ -1311,6 +1314,19 @@ interface IDatabase {
 	 * @since 1.22
 	 */
 	public function onTransactionPreCommitOrIdle( callable $callback );
+
+	/**
+	 * Run a callback each time any transaction begins, commits, or rolls back
+	 *
+	 * The callback takes one argument:
+	 *  - One of (IDatabase::TRIGGER_BEGIN, IDatabase::TRIGGER_COMMIT, IDatabase::TRIGGER_ROLLBACK)
+	 *
+	 * @param string $name
+	 * @param callable|null $callback Use null to unset a listener
+	 * @return mixed
+	 * @since 1.28
+	 */
+	public function setTransactionListener( $name, callable $callback = null );
 
 	/**
 	 * Begin an atomic section of statements

@@ -44,8 +44,12 @@ abstract class LBFactory implements DestructibleService {
 
 	/** @var mixed */
 	protected $ticket;
+	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	protected $trxRoundId = false;
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
+	/** @var callable[] */
+	protected $replicationWaitCallbacks = [];
 
 	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
 
@@ -226,9 +230,17 @@ abstract class LBFactory implements DestructibleService {
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
 	 * @param string $fname
+	 * @throws DBTransactionError
 	 * @since 1.28
 	 */
 	public function beginMasterChanges( $fname = __METHOD__ ) {
+		if ( $this->trxRoundId !== false ) {
+			throw new DBTransactionError(
+				null,
+				"Transaction round '{$this->trxRoundId}' already started."
+			);
+		}
+		$this->trxRoundId = $fname;
 		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
 	}
 
@@ -253,9 +265,9 @@ abstract class LBFactory implements DestructibleService {
 	 * @throws Exception
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		// Perform all pre-commit callbacks, aborting on failure
+		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		$this->forEachLBCallMethod( 'runMasterPreCommitCallbacks' );
-		// Perform all pre-commit checks, aborting on failure
+		// Perform pre-commit checks, aborting on failure
 		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options ] );
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
@@ -270,6 +282,7 @@ abstract class LBFactory implements DestructibleService {
 		} );
 		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		$this->trxRoundId = false;
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
 			throw $e;
@@ -282,6 +295,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		$this->trxRoundId = false;
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
 	}
 
@@ -381,6 +395,10 @@ abstract class LBFactory implements DestructibleService {
 			'ifWritesSince' => null
 		];
 
+		foreach ( $this->replicationWaitCallbacks as $callback ) {
+			$callback();
+		}
+
 		// Figure out which clusters need to be checked
 		/** @var LoadBalancer[] $lbs */
 		$lbs = [];
@@ -430,6 +448,21 @@ abstract class LBFactory implements DestructibleService {
 				"Could not wait for slaves to catch up to " .
 				implode( ', ', $failed )
 			);
+		}
+	}
+
+	/**
+	 * Add a callback to be run after every call to waitForReplication()
+	 *
+	 * @param string $name
+	 * @param callable|null $callback Use null to unset a callback
+	 * @since 1.28
+	 */
+	public function onEachWaitForReplication( $name, callable $callback = null ) {
+		if ( $callback ) {
+			$this->replicationWaitCallbacks[$name] = $callback;
+		} else {
+			unset( $this->replicationWaitCallbacks[$name] );
 		}
 	}
 
@@ -525,6 +558,15 @@ abstract class LBFactory implements DestructibleService {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
 			}
 		} );
+	}
+
+	/**
+	 * @param LoadBalancer $lb
+	 */
+	protected function initLoadBalancer( LoadBalancer $lb ) {
+		if ( $this->trxRoundId !== false ) {
+			$lb->beginMasterChanges( $this->trxRoundId );
+		}
 	}
 
 	/**

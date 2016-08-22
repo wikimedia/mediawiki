@@ -51,6 +51,8 @@ class LoadBalancer {
 	private $srvCache;
 	/** @var WANObjectCache */
 	private $wanCache;
+	/** @var TransactionProfiler */
+	protected $trxProfiler;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
@@ -68,9 +70,8 @@ class LoadBalancer {
 	private $readOnlyReason = false;
 	/** @var integer Total connections opened */
 	private $connsOpened = 0;
-
-	/** @var TransactionProfiler */
-	protected $trxProfiler;
+	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	private $trxRoundId = false;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -865,6 +866,10 @@ class LoadBalancer {
 		);
 		$db->setTransactionProfiler( $this->trxProfiler );
 
+		if ( $this->trxRoundId !== false ) {
+			$this->setTransactionRoundFlags( $db );
+		}
+
 		return $db;
 	}
 
@@ -1059,11 +1064,31 @@ class LoadBalancer {
 	/**
 	 * Commit transactions on all open connections
 	 * @param string $fname Caller name
+	 * @throws DBExpectedError
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
-		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
-		} );
+		$failures = [];
+		$this->forEachOpenConnection(
+			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
+				try {
+					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+				} catch ( DBError $e ) {
+					MWExceptionHandler::logException( $e );
+					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
+				}
+				if ( $this->trxRoundId !== false && $conn->getLBInfo( 'master' ) ) {
+					$this->unsetTransactionRoundFlags( $conn );
+				}
+			}
+		);
+		$this->trxRoundId = false;
+
+		if ( $failures ) {
+			throw new DBExpectedError(
+				null,
+				"Commit failed on server(s) " . implode( "\n", array_unique( $failures ) )
+			);
+		}
 	}
 
 	/**
@@ -1129,42 +1154,70 @@ class LoadBalancer {
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
 	 * @param string $fname
+	 * @throws DBExpectedError
 	 * @since 1.28
 	 */
 	public function beginMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			if ( $conn->writesOrCallbacksPending() ) {
-				throw new DBTransactionError(
-					$conn,
-					"Transaction with pending writes still active."
-				);
-			} elseif ( $conn->trxLevel() ) {
-				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+		if ( $this->trxRoundId !== false ) {
+			throw new DBTransactionError(
+				null,
+				"Transaction round '{$this->trxRoundId}' already started."
+			);
+		}
+		$this->trxRoundId = $fname;
+
+		$failures = [];
+		$this->forEachOpenMasterConnection(
+			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
+				try {
+					// Clear any REPEATABLE-READ snapshot
+					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+				} catch ( DBError $e ) {
+					MWExceptionHandler::logException( $e );
+					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
+				}
+				$this->setTransactionRoundFlags( $conn );
 			}
-			if ( $conn->getFlag( DBO_DEFAULT ) ) {
-				// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
-				// Force DBO_TRX even in CLI mode since a commit round is expected soon.
-				$conn->setFlag( DBO_TRX, $conn::REMEMBER_PRIOR );
-				$conn->onTransactionResolution( function () use ( $conn ) {
-					$conn->restoreFlags( $conn::RESTORE_PRIOR );
-				} );
-			} else {
-				// Config has explicitly requested DBO_TRX be either on or off; respect that.
-				// This is useful for things like blob stores which use auto-commit mode.
-			}
-		} );
+		);
+
+		if ( $failures ) {
+			throw new DBExpectedError(
+				null,
+				"Flush failed on server(s) " . implode( "\n", array_unique( $failures ) )
+			);
+		}
 	}
 
 	/**
 	 * Issue COMMIT on all master connections where writes where done
 	 * @param string $fname Caller name
+	 * @throws DBExpectedError
 	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			if ( $conn->writesOrCallbacksPending() ) {
-				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+		$failures = [];
+		$this->forEachOpenMasterConnection(
+			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
+				try {
+					if ( $conn->writesOrCallbacksPending() ) {
+						$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+					}
+				} catch ( DBError $e ) {
+					MWExceptionHandler::logException( $e );
+					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
+				}
+				if ( $this->trxRoundId !== false ) {
+					$this->unsetTransactionRoundFlags( $conn );
+				}
 			}
-		} );
+		);
+		$this->trxRoundId = false;
+
+		if ( $failures ) {
+			throw new DBExpectedError(
+				null,
+				"Commit failed on server(s) " . implode( "\n", array_unique( $failures ) )
+			);
+		}
 	}
 
 	/**
@@ -1178,6 +1231,7 @@ class LoadBalancer {
 			$conn->setPostCommitCallbackSupression( false );
 			try {
 				$conn->runOnTransactionIdleCallbacks( $conn::TRIGGER_COMMIT );
+				$conn->runTransactionListenerCallbacks( $conn::TRIGGER_COMMIT );
 			} catch ( Exception $ex ) {
 				$e = $e ?: $ex;
 			}
@@ -1193,29 +1247,52 @@ class LoadBalancer {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$failedServers = [];
-
-		$masterIndex = $this->getWriterIndex();
-		foreach ( $this->mConns as $conns2 ) {
-			if ( empty( $conns2[$masterIndex] ) ) {
-				continue;
-			}
-			/** @var DatabaseBase $conn */
-			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
+		$failures = [];
+		$this->forEachOpenMasterConnection(
+			function ( DatabaseBase $conn ) use ( $fname, &$failures ) {
+				if ( $conn->writesOrCallbacksPending() ) {
 					try {
 						$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
-						$failedServers[] = $conn->getServer();
+						$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
 					}
 				}
+				if ( $this->trxRoundId !== false ) {
+					$this->unsetTransactionRoundFlags( $conn );
+				}
 			}
-		}
+		);
+		$this->trxRoundId = false;
 
-		if ( $failedServers ) {
-			throw new DBExpectedError( null, "Rollback failed on server(s) " .
-				implode( ', ', array_unique( $failedServers ) ) );
+		if ( $failures ) {
+			throw new DBExpectedError(
+				null,
+				"Rollback failed on server(s) " . implode( "\n", array_unique( $failures ) )
+			);
+		}
+	}
+
+	/**
+	 * @param DatabaseBase $conn
+	 */
+	private function setTransactionRoundFlags( DatabaseBase $conn ) {
+		if ( $conn->getFlag( DBO_DEFAULT ) ) {
+			// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
+			// Force DBO_TRX even in CLI mode since a commit round is expected soon.
+			$conn->setFlag( DBO_TRX, $conn::REMEMBER_PRIOR );
+			// If config has explicitly requested DBO_TRX be either on or off by not
+			// setting DBO_DEFAULT, then respect that. Forcing no transactions is useful
+			// for things like blob stores (ExternalStore) which want auto-commit mode.
+		}
+	}
+
+	/**
+	 * @param DatabaseBase $conn
+	 */
+	private function unsetTransactionRoundFlags( DatabaseBase $conn ) {
+		if ( $conn->getFlag( DBO_DEFAULT ) ) {
+			$conn->restoreFlags( $conn::RESTORE_PRIOR );
 		}
 	}
 

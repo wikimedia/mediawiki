@@ -69,6 +69,8 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mTrxPreCommitCallbacks = [];
 	/** @var array[] List of (callable, method name) */
 	protected $mTrxEndCallbacks = [];
+	/** @var array[] Map of (name => (callable, method name)) */
+	protected $mTrxRecurringCallbacks = [];
 	/** @var bool Whether to suppress triggering of post-commit callbacks */
 	protected $suppressPostCommitCallbacks = false;
 
@@ -993,6 +995,7 @@ abstract class DatabaseBase implements IDatabase {
 		try {
 			// Handle callbacks in mTrxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 			return null;
 		} catch ( Exception $e ) {
 			// Already logged; move on...
@@ -2572,6 +2575,14 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
+	final public function setTransactionListener( $name, callable $callback = null ) {
+		if ( $callback ) {
+			$this->mTrxRecurringCallbacks[$name] = [ $callback, wfGetCaller() ];
+		} else {
+			unset( $this->mTrxRecurringCallbacks[$name] );
+		}
+	}
+
 	/**
 	 * Whether to disable running of post-commit callbacks
 	 *
@@ -2664,6 +2675,38 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
+	/**
+	 * Actually run any "transaction listener" callbacks.
+	 *
+	 * This method should not be used outside of Database/LoadBalancer
+	 *
+	 * @param integer $trigger IDatabase::TRIGGER_* constant
+	 * @throws Exception
+	 * @since 1.20
+	 */
+	public function runTransactionListenerCallbacks( $trigger ) {
+		if ( $this->suppressPostCommitCallbacks && $trigger !== self::TRIGGER_BEGIN ) {
+			return;
+		}
+
+		/** @var Exception $e */
+		$e = null; // first exception
+
+		foreach ( $this->mTrxRecurringCallbacks as $callback ) {
+			try {
+				list( $phpCallback ) = $callback;
+				$phpCallback( $trigger );
+			} catch ( Exception $ex ) {
+				MWExceptionHandler::logException( $ex );
+				$e = $e ?: $ex;
+			}
+		}
+
+		if ( $e instanceof Exception ) {
+			throw $e; // re-throw any first exception
+		}
+	}
+
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
@@ -2746,6 +2789,8 @@ abstract class DatabaseBase implements IDatabase {
 		// as lag itself just to be safe
 		$status = $this->getApproximateLagStatus();
 		$this->mTrxSlaveLag = $status['lag'] + ( microtime( true ) - $status['since'] );
+
+		$this->runTransactionListenerCallbacks( self::TRIGGER_BEGIN );
 	}
 
 	/**
@@ -2802,6 +2847,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT );
 	}
 
 	/**
@@ -2847,6 +2893,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxIdleCallbacks = []; // clear
 		$this->mTrxPreCommitCallbacks = []; // clear
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
 	/**
