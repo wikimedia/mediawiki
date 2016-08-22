@@ -61,7 +61,7 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function canDisplayErrors() {
-		return true;
+		return $this->hasVisibleOutput();
 	}
 
 	/**
