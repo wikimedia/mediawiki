@@ -8256,12 +8256,19 @@ $wgPageLanguageUseDB = false;
  * result will then be passed to VirtualRESTService::__construct() in the
  * module.
  *
+ * The 'autoMount' setting is used to automatically mount services to the MediaWikiServices
+ * managed VRS instance. All callers of MediaWikiServices::getVirtualRESTServiceClient get
+ * a shared VRS instance with all auto-mount services applied. Collisions will cause errors.
+ * The setting should be a map with the fields 'prefix' and 'class' for the mount prefix
+ * and the service class name, respectively.
+ *
  * Example config for Parsoid:
  *
  *   $wgVirtualRestConfig['modules']['parsoid'] = [
  *     'url' => 'http://localhost:8000',
  *     'prefix' => 'enwiki',
  *     'domain' => 'en.wikipedia.org',
+ *     'autoMount' => [ 'prefix' => '/parsoid/', 'class' => 'ParsoidVirtualRESTService' ]
  *   ];
  *
  * @var array
