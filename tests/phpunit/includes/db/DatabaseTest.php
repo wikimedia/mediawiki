@@ -23,6 +23,7 @@ class DatabaseTest extends MediaWikiTestCase {
 			$this->dropFunctions();
 			$this->functionTest = false;
 		}
+		$this->db->restoreFlags( IDatabase::RESTORE_INITIAL );
 	}
 	/**
 	 * @covers DatabaseBase::dropTable
@@ -322,5 +323,43 @@ class DatabaseTest extends MediaWikiTestCase {
 		$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
 		$db->begin( __METHOD__ );
 		throw new RunTimeException( "Uh oh!" );
+	}
+
+	/**
+	 * @covers DatabaseBase::getFlag(
+	 * @covers DatabaseBase::setFlag()
+	 * @covers DatabaseBase::restoreFlags()
+	 */
+	public function testFlagSetting() {
+		$db = $this->db;
+		$origTrx = $db->getFlag( DBO_TRX );
+		$origSsl = $db->getFlag( DBO_SSL );
+
+		if ( $origTrx ) {
+			$db->clearFlag( DBO_TRX );
+		} else {
+			$db->setFlag( DBO_TRX );
+		}
+		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
+
+		if ( $origSsl ) {
+			$db->clearFlag( DBO_SSL );
+		} else {
+			$db->setFlag( DBO_SSL );
+		}
+		$this->assertEquals( !$origSsl, $db->getFlag( DBO_SSL ) );
+
+		$db2 = clone $db;
+		$db2->restoreFlags( $db::RESTORE_INITIAL );
+		$this->assertEquals( $origTrx, $db2->getFlag( DBO_TRX ) );
+		$this->assertEquals( $origSsl, $db2->getFlag( DBO_SSL ) );
+
+		$db->restoreFlags();
+		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
+
+		$db->restoreFlags();
+		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
 	}
 }

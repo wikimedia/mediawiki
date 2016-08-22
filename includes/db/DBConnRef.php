@@ -115,11 +115,15 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setFlag( $flag ) {
+	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function clearFlag( $flag ) {
+	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

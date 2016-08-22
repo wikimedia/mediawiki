@@ -1062,7 +1062,8 @@ class LoadBalancer {
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
 		$this->forEachOpenConnection( function ( DatabaseBase $conn ) use ( $fname ) {
-			$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
+			$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+			$conn->restoreFlags();
 		} );
 	}
 
@@ -1120,13 +1121,47 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
+	 *
+	 * The DBO_TRX setting will be reverted to the default in each of these methods:
+	 *   - commitMasterChanges()
+	 *   - rollbackMasterChanges()
+	 *   - commitAll()
+	 * This allows for custom transaction rounds from any outer transaction scope.
+	 *
+	 * @param string $fname
+	 * @since 1.28
+	 */
+	public function beginMasterChanges( $fname = __METHOD__ ) {
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
+			if ( $conn->writesOrCallbacksPending() ) {
+				throw new DBTransactionError(
+					$conn,
+					"Transaction with pending writes still active."
+				);
+			} elseif ( $conn->trxLevel() ) {
+				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+			}
+			if ( $conn->getFlag( DBO_DEFAULT ) ) {
+				// DBO_TRX is controlled entirely by CLI mode implicitly with DBO_DEFAULT.
+				// Force DBO_TRX even in CLI mode since a commit round is expected soon.
+				$conn->setFlag( DBO_TRX );
+			} else {
+				// Config has explicitly requested DBO_TRX be either on or off; respect that.
+				// This is useful for things like blob stores which use auto-commit mode.
+			}
+		} );
+	}
+
+	/**
 	 * Issue COMMIT on all master connections where writes where done
 	 * @param string $fname Caller name
 	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( $fname ) {
 			if ( $conn->writesOrCallbacksPending() ) {
-				$conn->commit( $fname, IDatabase::FLUSHING_ALL_PEERS );
+				$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
+				$conn->restoreFlags();
 			}
 		} );
 	}
@@ -1138,10 +1173,10 @@ class LoadBalancer {
 	 */
 	public function runMasterPostCommitCallbacks() {
 		$e = null; // first exception
-		$this->forEachOpenMasterConnection( function ( DatabaseBase $db ) use ( &$e ) {
-			$db->setPostCommitCallbackSupression( false );
+		$this->forEachOpenMasterConnection( function ( DatabaseBase $conn ) use ( &$e ) {
+			$conn->setPostCommitCallbackSupression( false );
 			try {
-				$db->runOnTransactionIdleCallbacks( IDatabase::TRIGGER_COMMIT );
+				$conn->runOnTransactionIdleCallbacks( $conn::TRIGGER_COMMIT );
 			} catch ( Exception $ex ) {
 				$e = $e ?: $ex;
 			}
@@ -1168,7 +1203,8 @@ class LoadBalancer {
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					try {
-						$conn->rollback( $fname, IDatabase::FLUSHING_ALL_PEERS );
+						$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
+						$conn->restoreFlags();
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
 						$failedServers[] = $conn->getServer();
