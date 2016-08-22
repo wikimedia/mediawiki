@@ -8250,11 +8250,29 @@ $wgPageLanguageUseDB = false;
 
 /**
  * Global configuration variable for Virtual REST Services.
- * Parameters for different services are to be declared inside
- * $wgVirtualRestConfig['modules'], which is to be treated as an associative
- * array. Global parameters will be merged with service-specific ones. The
- * result will then be passed to VirtualRESTService::__construct() in the
- * module.
+ *
+ * Use the 'path' key to define automatically mounted services. The value for this
+ * key is a map of path prefixes to service configuration. The later is an array of:
+ *   - class : the fully qualified class name
+ *   - options : map of arguments to the class constructor
+ * Such services will be available to handle queries under their path from the VRS
+ * singleton, e.g. MediaWikiServices::getInstance()->getVirtualRESTServiceClient();
+ *
+ * Auto-mounting example for Parsoid:
+ *
+ * $wgVirtualRestConfig['paths']['/parsoid/'] = [
+ *     'class' => 'ParsoidVirtualRESTService',
+ *     'options' => [
+ *         'url' => 'http://localhost:8000',
+ *         'prefix' => 'enwiki',
+ *         'domain' => 'en.wikipedia.org'
+ *     ]
+ * ];
+ *
+ * Parameters for different services can also be declared inside the 'modules' value,
+ * which is to be treated as an associative array. The parameters in 'global' will be
+ * merged with service-specific ones. The result will then be passed to
+ * VirtualRESTService::__construct() in the module.
  *
  * Example config for Parsoid:
  *
@@ -8268,6 +8286,7 @@ $wgPageLanguageUseDB = false;
  * @since 1.25
  */
 $wgVirtualRestConfig = [
+	'paths' => [],
 	'modules' => [],
 	'global' => [
 		# Timeout in seconds

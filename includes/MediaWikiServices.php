@@ -28,6 +28,7 @@ use WatchedItemQueryService;
 use SkinFactory;
 use TitleFormatter;
 use TitleParser;
+use VirtualRESTServiceClient;
 use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
@@ -569,6 +570,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser() {
 		return $this->getService( 'TitleParser' );
+	}
+
+	/**
+	 * @since 1.28
+	 * @return VirtualRESTServiceClient
+	 */
+	public function getVirtualRESTServiceClient() {
+		return $this->getService( 'VirtualRESTServiceClient' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
