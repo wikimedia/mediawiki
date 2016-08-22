@@ -209,6 +209,24 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'VirtualRESTServiceClient' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
+
+		$vrsClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
+		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
+			$class = $serviceConfig['class'];
+			// Merge in the global defaults
+			$constructArg = isset( $serviceConfig['options'] )
+				? $serviceConfig['options']
+				: [];
+			$constructArg += $config['global'];
+			// Make the VRS service available at the mount point
+			$vrsClient->mount( $prefix, [ 'class' => $class, 'config' => $constructArg ] );
+		}
+
+		return $vrsClient;
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
