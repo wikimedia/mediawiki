@@ -33,13 +33,8 @@
 abstract class SqlDataUpdate extends DataUpdate {
 	/** @var IDatabase Database connection reference */
 	protected $mDb;
-
 	/** @var array SELECT options to be used (array) */
 	protected $mOptions = [];
-
-	/** @var bool Whether a transaction is open on this object (internal use only!) */
-	private $mHasTransaction;
-
 	/** @var bool Whether this update should be wrapped in a transaction */
 	protected $mUseTransaction;
 
@@ -54,49 +49,11 @@ abstract class SqlDataUpdate extends DataUpdate {
 		parent::__construct();
 
 		$this->mDb = wfGetLB()->getLazyConnectionRef( DB_MASTER );
-
-		$this->mWithTransaction = $withTransaction;
-		$this->mHasTransaction = false;
+		$this->mUseTransaction = $withTransaction;
 	}
 
-	/**
-	 * Begin a database transaction, if $withTransaction was given as true in
-	 * the constructor for this SqlDataUpdate.
-	 *
-	 * Because nested transactions are not supported by the Database class,
-	 * this implementation checks Database::trxLevel() and only opens a
-	 * transaction if none is already active.
-	 */
-	public function beginTransaction() {
-		if ( !$this->mWithTransaction ) {
-			return;
-		}
-
-		// NOTE: nested transactions are not supported, only start a transaction if none is open
-		if ( $this->mDb->trxLevel() === 0 ) {
-			$this->mDb->begin( get_class( $this ) . '::beginTransaction' );
-			$this->mHasTransaction = true;
-		}
-	}
-
-	/**
-	 * Commit the database transaction started via beginTransaction (if any).
-	 */
-	public function commitTransaction() {
-		if ( $this->mHasTransaction ) {
-			$this->mDb->commit( get_class( $this ) . '::commitTransaction' );
-			$this->mHasTransaction = false;
-		}
-	}
-
-	/**
-	 * Abort the database transaction started via beginTransaction (if any).
-	 */
-	public function abortTransaction() {
-		if ( $this->mHasTransaction ) { // XXX: actually... maybe always?
-			$this->mDb->rollback( get_class( $this ) . '::abortTransaction' );
-			$this->mHasTransaction = false;
-		}
+	public function useTransaction() {
+		return $this->mUseTransaction;
 	}
 
 	/**
@@ -105,6 +62,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 *
 	 * @param int $namespace Namespace number
 	 * @param array $dbkeys
+	 * @TODO: why is this method here???
 	 */
 	protected function invalidatePages( $namespace, array $dbkeys ) {
 		if ( $dbkeys === [] ) {
