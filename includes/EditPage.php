@@ -2310,6 +2310,8 @@ class EditPage {
 		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
 			$displayTitle = $contextTitle->getPrefixedText();
+		} else {
+			$wgOut->setDisplayTitle( $displayTitle );
 		}
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
 		# Transmit the name of the message to JavaScript for live preview
