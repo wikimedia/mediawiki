@@ -596,6 +596,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 		$this->db->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
+		$this->commitTransaction( $this->db, __METHOD__ );
+
 		/* Call LinksDeletionUpdate to delete outgoing links from the old title,
 		 * and update category counts.
 		 *
@@ -605,9 +607,8 @@ class NamespaceConflictChecker extends Maintenance {
 		 * accidentally introduce an assumption of title validity to the code we
 		 * are calling.
 		 */
-		$update = new LinksDeletionUpdate( $wikiPage );
-		$update->doUpdate();
-		$this->commitTransaction( $this->db, __METHOD__ );
+		$updates = [ new LinksDeletionUpdate( $wikiPage ) ];
+		DataUpdate::runUpdates( $updates );
 
 		return true;
 	}
