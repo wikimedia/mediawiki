@@ -62,6 +62,15 @@ class OutputPage extends ContextSource {
 	public $mPagetitle = '';
 
 	/**
+	 * @var string The displayed title of the page. Different from page title
+	 * if overridden by display title magic word or hooks. Can contain safe
+	 * HTML. Different from page title which may contain messages such as
+	 * "Editing X" which is displayed in h1. This can be used for other places
+	 * where the page name is referred on the page.
+	 */
+	private $displayTitle;
+
+	/**
 	 * @var string Contains all of the "<body>" content. Should be private we
 	 *   got set/get accessors and the append() method.
 	 */
@@ -971,6 +980,48 @@ class OutputPage extends ContextSource {
 	 */
 	public function getPageTitle() {
 		return $this->mPagetitle;
+	}
+
+	/**
+	 * Same as page title but only contains name of the page, not any other text.
+	 *
+	 * Performs some normalization on the HTML to make it safe.
+	 *
+	 * @see OutputPage::setPageTitle
+	 * @since 1.28
+	 * @param string $html Page title text.
+	 */
+	public function setDisplayTitle( $html ) {
+		$this->displayTitle = $html;
+	}
+
+	/**
+	 * Returns page display title.
+	 *
+	 * @since 1.28
+	 * @return HTML
+	 */
+	public function getDisplayTitle() {
+		$html = $this->displayTitle;
+		if ( $html === null ) {
+			$html = $this->getTitle()->getPrefixedText();
+		}
+
+		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $html ) );
+	}
+
+	/**
+	 * Returns page display title without namespace prefix if possible.
+	 *
+	 * @since 1.28
+	 * @return HTML
+	 */
+	public function getUnprefixedDisplayTitle() {
+		$text = $this->getDisplayTitle();
+		$nsPrefix = $this->getTitle()->getNsText() . ':';
+		$prefix = preg_quote( $nsPrefix, '/' );
+
+		return preg_replace( "/^$prefix/", '', $text );
 	}
 
 	/**

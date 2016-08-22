@@ -408,25 +408,10 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Return pretty name which is display name if given and different from prefix text or
-	 * the unprefixed page name.
-	 *
-	 * @return string HTML safe name.
-	 */
-	function getPrettyPageNameHtml() {
-		$displayTitle = $this->getOutput()->getPageTitle();
-		if ( $displayTitle === $this->getTitle()->getPrefixedText() ) {
-			return htmlspecialchars( $this->getTitle()->getText() );
-		} else {
-			return $displayTitle;
-		}
-	}
-
-	/**
 	 * @return string
 	 */
 	function getPagesSection() {
-		$name = $this->getPrettyPageNameHtml();
+		$name = $this->getOutput()->getUnprefixedDisplayTitle();
 		# Don't show articles section if there are none.
 		$r = '';
 
@@ -456,7 +441,7 @@ class CategoryViewer extends ContextSource {
 	 * @return string
 	 */
 	function getImageSection() {
-		$name = $this->getPrettyPageNameHtml();
+		$name = $this->getOutput()->getUnprefixedDisplayTitle();
 		$r = '';
 		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
 		$dbcnt = $this->cat->getFileCount();
