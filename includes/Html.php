@@ -627,6 +627,17 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = 'all' ) {
+		// Don't escape '>' since that is used
+		// as direct child selector.
+		// Remember, in css, there is no "x" for hexadecimal escapes, and
+		// the space immediately after an escape sequence is swallowed.
+		$contents = strtr( $contents, [
+			'<' => '\3C ',
+			// CDATA end tag for good measure, but the main security
+			// is from escaping the '<'.
+			']]>' => '\5D\5D\3E '
+		] );
+
 		if ( preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
