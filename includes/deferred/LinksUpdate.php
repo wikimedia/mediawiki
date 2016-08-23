@@ -304,7 +304,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $cats
 	 */
 	function invalidateCategories( $cats ) {
-		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
+		PurgeJobUtils::invalidatePages( $this->mDb, NS_CATEGORY, array_keys( $cats ) );
 	}
 
 	/**
@@ -323,7 +323,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $images
 	 */
 	function invalidateImageDescriptions( $images ) {
-		$this->invalidatePages( NS_FILE, array_keys( $images ) );
+		PurgeJobUtils::invalidatePages( $this->mDb, NS_FILE, array_keys( $images ) );
 	}
 
 	/**
