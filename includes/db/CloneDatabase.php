@@ -129,25 +129,11 @@ class CloneDatabase {
 	 */
 	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( [ 'CloneDatabase', 'changeLBPrefix' ], [ $prefix ] );
+		wfGetLBFactory()->forEachLB( function( $lb ) use ( $prefix ) {
+			$lb->forEachOpenConnection( function ( $db ) use ( $prefix ) {
+				$db->tablePrefix( $prefix );
+			} );
+		} );
 		$wgDBprefix = $prefix;
-	}
-
-	/**
-	 * @param LoadBalancer $lb
-	 * @param string $prefix
-	 * @return void
-	 */
-	public static function changeLBPrefix( $lb, $prefix ) {
-		$lb->forEachOpenConnection( [ 'CloneDatabase', 'changeDBPrefix' ], [ $prefix ] );
-	}
-
-	/**
-	 * @param DatabaseBase $db
-	 * @param string $prefix
-	 * @return void
-	 */
-	public static function changeDBPrefix( $db, $prefix ) {
-		$db->tablePrefix( $prefix );
 	}
 }
