@@ -1,0 +1,69 @@
+This document describes a migration strategy for introducing the content table.
+
+NOTE: This is intended as a guide for manual migration for large wikis, with millions of rows in
+the revision table. Wikis with only a moderate number of revisions can rely on the update.php
+script[*].
+
+== Phase 0: Create new tables ==
+The following tables need to be created:
+* content
+* content_models
+* content_formats
+* content_roles
+
+== Phase I: Populate ar_rev_id ==
+* Determine how many rows in archive have ar_rev_id = NULL. Let's call that number m.
+* Reserve m (or m+k, for good measure) IDs in the revision table:
+* Make a note of max( max( rev_id ), max( ar_rev_id ) ), let's call it b.
+* Insert a row with rev_id = b+m+k into the revision table, and delete it again, to bump the
+  auto-increment counter.
+* For any row in archive that has ar_rev_id = NULL, set ar_rev_id to a unique id between b+1
+  and b+m+k. This could be done via a temporary table, or programmatically.
+
+== Phase II: Population ==
+* Set MediaWiki to write content meta-data to the old AND the new columns (via config[**]).
+  Don't forget to also do this for new entries in the archive table.
+* Wait a bit and watch for performance issues caused by writing to the new table.
+* Run maintenance/populateContentTable.php to populate the content table. The script needs to
+  support chunking (and maybe also sharding, for parallel operation).
+* Keep watching for performance issues while the new table grows.
+
+Operation of populateContentTable.php:
+* Select n rows from the revision table that do not have a corresponding entry in the content
+  table (a WHERE NOT EXISTS subquery is probably better than a LEFT JOIN for this, because of LIMIT).
+* For each such row, construct a corresponding row for the content table[***]. The rows can either
+  be collected in an array for later mass-insert, or inserted individually, possibly buffered in a
+  transaction.
+* The content_models, content_formats, and content_roles tables will be populated as a side-effect,
+  by virtue of calling the assignId() function in order to get a numeric ID for content models,
+  formats, and roles.
+* When all rows in one chunk have been processed, insert/commit the new rows in the content table.
+* Repeat until there are no more rows in revision that have no corresponding row in content.
+  This will eventually be the case, since web requests are already populating the content table
+  when creating new rows in revision.
+* Repeat the same procedure as above for the archive table.
+
+== Phase III: Normalization ==
+* Set MediaWiki to read content meta-data from the new content table.
+* Watch for performance issues caused by adding a level of indirection (a JOIN) to revision loads.
+* Set MediaWiki to insert content meta-data ONLY into the new columns in the content table.
+  (To allow this, the old columns must have a DEFAULT).
+* Optional: Drop the redundant columns from the page, revision, and archive tables. Besides
+  model and format as well as size and hash, this is in particular the rev_text_id field.
+
+== Phase IV: Consolidation ==
+If desired, we can migrate data stored in the External Store away from the text table:
+The External Store URL that is contained in the text blob can be written to the cont_address field
+(possibly with a prefix, to be decided). Then the corresponding row can be deleted from the text
+table.
+
+---------------------------------------------------------------------------------------------------
+[*] update.php creates the tables, populates the content table using the same code as
+populateContentTable.php, and then drops the redundant columns.
+
+[**] Instead of introducing new global settings for each schema migration, $wgMigrationSettings
+is introduced, with fields for each migration step, as needed. The above migration could use,
+$wgMigrationSettings['content-meta-data/write'] and $wgMigrationSettings['content-meta-data/read'].
+
+[***] This generally does not involve loading the content blob, except for cases where rev_hash or
+rev_len is NULL, and need to be computed.

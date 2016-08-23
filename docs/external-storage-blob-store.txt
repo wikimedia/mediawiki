@@ -1,0 +1,74 @@
+The proposed BlobStore interface defines the following methods:
+
+    public function storeData( string $data, string[] $hints = [] ): string;
+
+    public function loadData( string $address, int $queryFlags = 0 ): string;
+
+A multiplexing BlobStore can be made by using prefixes to indicate the actual
+blob store when loading. For storing, a separate interface is needed to pick
+a blob store explicitly, and compose the address:
+
+    public function storeDataTo( string $location, string $data, string[] $hints = [] ): string;
+
+Alternatively, a registry interface could be used, but this would leave it
+to the caller to correctly compose the address from prefix and suffix:
+
+    public function getBlobStore( string $name );
+
+[
+Current draft for composition:
+A BlobStoreMux instance that implements BlobLookup and MultiplexingBlobStore.
+The MuxInstance knows a BlobStoreRegistry instance.
+]
+
+
+The old ExternalStoreMedium exposes similar methods:
+
+ public function fetchFromURL( $url );
+
+ public function store( $location, $data );
+
+The main difference is that the caller has to always specify the "location",
+the specific store. The interface resembles the multiplexer interface more than
+the basic BlobStore.
+
+ExternalStoreMedium is not accessed directly; instead, a purely static interface
+in the ExternalStore class is used to do the multiplexing between different
+ExternalStoreMedium objects. It exposes the following methods:
+
+  public static function fetchFromURL( $url, array $params = [] )
+
+  public function insertWithFallback( array $tryStores, $data, array $params = [] )
+
+Note that insertWithFallback doesn't get one store, but a fallback chain of stores; this
+doesn't seem to be used in practice, though.
+
+The $params argument means that for each call to insertWithFallback or fetchFromURL, a
+new ExternalStoreMedium instance is created based on these parameters. The main purpose
+of $params seems to be to select a wiki, in case we are trying to load blobs that
+belong to another site. With the BlobStore interface, each service instance would be
+permanent, and bound to a specific wiki. To access blobs for a different wiki, an
+appropriate BlobStore instance would have to be acquired from a factory.
+
+
+When introducing BlobStore, the existing older interface needs to be integrated. There
+seem to be three options:
+
+1) Don't introduce a new blob storage interface, expand and adopt the existing one.
+This would be a big logical break: ExternalStore would no longer be an implementation
+detail hidden by the code that manages the text table - to the contrary, it would be
+the primary way to access content data, and the text table would just be one possible
+ExternalStoreMedium. Addresses for direct storage in the text table would look
+something like "TT:7641432", externally stored blobs would keep using addresses like
+"DB://cluster5/873284".
+
+2) Turn ExternalStore into a BlobStore (with MultiplexingBlobStore interface), in
+addition to the purely static interface. This means two-level multiplexing, once
+for the BlobStore interface, and once for the ExternalStoreMedium interface. Blob
+addresses using the external store would look something like "ES:DB://cluster5/873284".
+
+3) Create an ExternalStoreMediumBlobStore adapter, that implements the BlobStore
+interface on top of an ExternalStoreMedium instance. The multiplexing BlobStore
+would use these adapters directly, bypassing the old EntityStore class completely.
+Blob addresses from this adapter would be the same as the old external store URLs,
+e.g. "DB://cluster5/873284".
