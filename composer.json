@@ -45,7 +45,7 @@
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9.2",
-		"justinrainbow/json-schema": "~1.6",
+		"justinrainbow/json-schema": "~3.0",
 		"mediawiki/mediawiki-codesniffer": "0.7.2",
 		"monolog/monolog": "~1.18.2",
 		"nikic/php-parser": "2.1.0",

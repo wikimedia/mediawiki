@@ -74,11 +74,9 @@ class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 			$version <= ExtensionRegistry::MANIFEST_VERSION,
 			"$path is using a non-supported schema version"
 		);
-		$retriever = new JsonSchema\Uri\UriRetriever();
-		$schema = $retriever->retrieve( 'file://' . $schemaPath );
 
-		$validator = new JsonSchema\Validator();
-		$validator->check( $data, $schema );
+		$validator = new JsonSchema\Validator;
+		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() ) {
 			// All good.
 			$this->assertTrue( true );
