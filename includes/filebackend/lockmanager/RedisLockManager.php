@@ -81,10 +81,12 @@ class RedisLockManager extends QuorumLockManager {
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 
+		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
+
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server );
 		if ( !$conn ) {
-			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
+			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
 
@@ -157,7 +159,7 @@ LUA;
 		}
 
 		if ( $res === false ) {
-			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
+			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
 		} else {
@@ -172,10 +174,12 @@ LUA;
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 
+		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
+
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server );
 		if ( !$conn ) {
-			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
+			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
 
@@ -225,7 +229,7 @@ LUA;
 		}
 
 		if ( $res === false ) {
-			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
+			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
 		} else {
