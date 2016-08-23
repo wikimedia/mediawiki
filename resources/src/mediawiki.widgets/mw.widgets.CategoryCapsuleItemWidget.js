@@ -55,6 +55,10 @@
 			$.each( response.query.pages, function ( index, page ) {
 				var title = new ForeignTitle( page.title ).getPrefixedText();
 				cache.existenceCache[ title ] = !page.missing;
+				if ( !queue[ title ] ) {
+					// Debugging for T139130
+					throw new Error( 'No queue for "' + title + '", requested "' + titles.join( '|' ) + '"' );
+				}
 				queue[ title ].resolve( cache.existenceCache[ title ] );
 			} );
 		} );
