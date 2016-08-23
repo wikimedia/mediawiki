@@ -70,6 +70,8 @@ TEXT
 		$this->addOption( 'namespaces',
 			'Import only the pages from namespaces belonging to the list of ' .
 			'pipe-separated namespace names or namespace indexes', false, true );
+		$this->addOption( 'to-namespace', 'Pages will be imported into specified namespace',
+			false, true );
 		$this->addOption( 'rootpage', 'Pages will be imported as subpages of the specified page',
 			false, true );
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
@@ -296,6 +298,9 @@ TEXT
 				$this->error( $statusRootPage->getMessage()->text(), 1 );
 				return false;
 			}
+		}
+		if ( $this->hasOption( 'to-namespace' ) ) {
+			$importer->setTargetNamespace( intval( $this->getOption( 'to-namespace' ) ) );
 		}
 		$importer->setPageCallback( [ $this, 'reportPage' ] );
 		$this->importCallback = $importer->setRevisionCallback(
