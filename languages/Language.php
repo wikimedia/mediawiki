@@ -1036,6 +1036,7 @@ class Language {
 	 *    xin  n (month number) in Iranian calendar
 	 *    xiy  y (two digit year) in Iranian calendar
 	 *    xiY  Y (full year) in Iranian calendar
+	 *    xit  t (days in month) in Iranian calendar
 	 *
 	 *    xjj  j (day number) in Hebrew calendar
 	 *    xjF  F (month name) in Hebrew calendar
@@ -1330,6 +1331,13 @@ class Language {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$num = substr( $iranian[0], -2 );
+					break;
+				case 'xit':
+					$usedIranianYear = true;
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
+					$num = self::$IRANIAN_DAYS[$iranian[1] - 1];
 					break;
 				case 'a':
 					$usedAMPM = true;
