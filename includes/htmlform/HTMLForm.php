@@ -355,6 +355,26 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * @param string $fieldname
+	 * @return bool
+	 */
+	public function hasField( $fieldname ) {
+		return isset( $this->mFlatFields[$fieldname] );
+	}
+
+	/**
+	 * @param string $fieldname
+	 * @return HTMLFormField
+	 * @throws DomainException on invalid field name
+	 */
+	public function getField( $fieldname ) {
+		if ( !$this->hasField( $fieldname ) ) {
+			throw new DomainException( __METHOD__ . ': no field named ' . $fieldname );
+		}
+		return $this->mFlatFields[$fieldname];
+	}
+
+	/**
 	 * Set format in which to display the form
 	 *
 	 * @param string $format The name of the format to use, must be one of
