@@ -80,6 +80,10 @@ class CategoryPage extends Article {
 		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$this->closeShowCategory();
 		}
+
+		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often
+		$outputPage = $this->getContext()->getOutput();
+		$outputPage->adaptCdnTTL( $this->mPage->getTouched(), IExpiringStore::TTL_MINUTE );
 	}
 
 	function openShowCategory() {
