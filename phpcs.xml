@@ -1,14 +1,52 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki"/>
-	<file>.</file>
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.EmptyComment"/>
+		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
+		<exclude name="Generic.Files.LineLength.TooLong"/>
+		<exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/>
+		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
+		<exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceBeforeCloseParenthesis"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+		<exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine"/>
+		<exclude name="PSR2.Classes.PropertyDeclaration.Underscore"/>
+		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
+		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.StaticBeforeVisibility"/>
+		<exclude name="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed"/>
+		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
+		<exclude name="MediaWiki.VariableAnalysis.UnusedGlobalVariables"/>
+		<exclude name="Squiz.WhiteSpace.LogicalOperatorSpacing.TooMuchSpaceBefore"/>
+		<exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
+		<exclude name="Squiz.Scope.StaticThisUsage.Found"/>
+		<exclude name="Zend.Files.ClosingTag.NotAllowed"/>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
+		<properties>
+			<property name="ignoreList" type="array" value="bfNormalizeTitleStrReplace,bfNormalizeTitleStrTr,cdbShowHelp,codepointToUtf8,compare_point,cssfilter,escapeSingleString,findAuxFile,findFiles,getEscapedProfileUrl,getFileCommentFromSourceWiki,getFileUserFromSourceWiki,hexSequenceToUtf8,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage,splitFilename,utf8ToCodepoint,utf8ToHexSequence" />
+		</properties>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
+		<properties>
+			<property name="ignoreList" type="array" value="$IP,$messageMemc,$parserMemc" />
+		</properties>
+	</rule>	<file>.</file>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
 	</rule>
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found"/>
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>extensions</exclude-pattern>
 	<exclude-pattern>skins</exclude-pattern>
+	<exclude-pattern>.git</exclude-pattern>
 </ruleset>
