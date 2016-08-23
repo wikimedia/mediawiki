@@ -8033,9 +8033,13 @@ $wgJobRunRate = 1;
  * When $wgJobRunRate > 0, try to run jobs asynchronously, spawning a new process
  * to handle the job execution, instead of blocking the request until the job
  * execution finishes.
+ *
  * @since 1.23
  */
-$wgRunJobsAsync = true;
+$wgRunJobsAsync = (
+	!function_exists( 'register_postsend_function' ) &&
+	!function_exists( 'fastcgi_finish_request' )
+);
 
 /**
  * Number of rows to update per job
