@@ -3977,7 +3977,6 @@ class User implements IDBAccessObject {
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$inWrite = $dbw->writesOrCallbacksPending();
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
 			[
@@ -3996,25 +3995,17 @@ class User implements IDBAccessObject {
 			[ 'IGNORE' ]
 		);
 		if ( !$dbw->affectedRows() ) {
-			// The queries below cannot happen in the same REPEATABLE-READ snapshot.
-			// Handle this by COMMIT, if possible, or by LOCK IN SHARE MODE otherwise.
-			if ( $inWrite ) {
-				// Can't commit due to pending writes that may need atomicity.
-				// This may cause some lock contention unlike the case below.
-				$options = [ 'LOCK IN SHARE MODE' ];
-				$flags = self::READ_LOCKING;
-			} else {
-				// Often, this case happens early in views before any writes when
-				// using CentralAuth. It's should be OK to commit and break the snapshot.
-				$dbw->commit( __METHOD__, 'flush' );
-				$options = [];
-				$flags = self::READ_LATEST;
-			}
-			$this->mId = $dbw->selectField( 'user', 'user_id',
-				[ 'user_name' => $this->mName ], __METHOD__, $options );
+			// Use locking reads to bypass any REPEATABLE-READ snapshot.
+			$this->mId = $dbw->selectField(
+				'user',
+				'user_id',
+				[ 'user_name' => $this->mName ],
+				__METHOD__,
+				[ 'LOCK IN SHARE MODE' ]
+			);
 			$loaded = false;
 			if ( $this->mId ) {
-				if ( $this->loadFromDatabase( $flags ) ) {
+				if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
 					$loaded = true;
 				}
 			}
