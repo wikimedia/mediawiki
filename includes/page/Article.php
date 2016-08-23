@@ -727,6 +727,7 @@ class Article implements Page {
 
 		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
 
+
 	}
 
 	/**

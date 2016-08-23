@@ -1096,6 +1096,7 @@ $wgAutoloadLocalClasses = [
 	'PurgeAction' => __DIR__ . '/includes/actions/PurgeAction.php',
 	'PurgeChangedFiles' => __DIR__ . '/maintenance/purgeChangedFiles.php',
 	'PurgeChangedPages' => __DIR__ . '/maintenance/purgeChangedPages.php',
+	'PurgeJobUtils' => __DIR__ . '/includes/jobqueue/utils/PurgeJobUtils.php',
 	'PurgeList' => __DIR__ . '/maintenance/purgeList.php',
 	'PurgeOldText' => __DIR__ . '/maintenance/purgeOldText.php',
 	'PurgeParserCache' => __DIR__ . '/maintenance/purgeParserCache.php',
