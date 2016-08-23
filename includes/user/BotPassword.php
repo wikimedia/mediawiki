@@ -389,6 +389,41 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
+	 * Returns a (raw, unhashed) random password string.
+	 * @param Config $config
+	 * @return string
+	 */
+	public static function generatePassword( $config ) {
+		return PasswordFactory::generateRandomPasswordString(
+			max( 32, $config->get( 'MinimalPasswordLength' ) ) );
+	}
+
+	/**
+	 * There are two ways to login with a bot password: "username@appId", "password" and
+	 * "username", "appId@password". Transform it so it is always in the first form.
+	 * Returns [bot username, bot password, could be normal password?] where the last one is a flag
+	 * meaning this could either be a bot password or a normal password, it cannot be decided for
+	 * certain (although in such cases it almost always will be a bot password).
+	 * If this cannot be a bot password login just return false.
+	 * @param string $username
+	 * @param string $password
+	 * @return array|false
+	 */
+	public static function canonicalizeLoginData( $username, $password ) {
+		$sep = BotPassword::getSeparator();
+		if ( strpos( $username, $sep ) !== false ) {
+			// the separator is not valid in usernames so this must be a bot login
+			return [ $username, $password, false ];
+		} elseif ( strpos( $password, $sep ) !== false ) {
+			list ( $appId, $password ) = explode( $sep, $password, 2 );
+			if ( preg_match( "/^[0-9a-w]{32,}$/", $password ) ) {
+				return [ $username . BotPassword::getSeparator() . $appId, $password, true ];
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Try to log the user in
 	 * @param string $username Combined user name and app ID
 	 * @param string $password Supplied password
