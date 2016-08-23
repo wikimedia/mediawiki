@@ -717,6 +717,10 @@ class Article implements Page {
 			}
 		}
 
+		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often.
+		# This could use getTouched(), but that could be scary for major template edits.
+		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), IExpiringStore::TTL_MINUTE );
+
 		# Check for any __NOINDEX__ tags on the page using $pOutput
 		$policy = $this->getRobotPolicy( 'view', $pOutput );
 		$outputPage->setIndexPolicy( $policy['index'] );
@@ -726,7 +730,6 @@ class Article implements Page {
 		$this->mPage->doViewUpdates( $user, $oldid );
 
 		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
-
 	}
 
 	/**
