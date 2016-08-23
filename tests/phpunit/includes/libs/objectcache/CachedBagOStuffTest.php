@@ -5,6 +5,10 @@
  */
 class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 
+	/**
+	 * @covers CachedBagOStuff::__construct
+	 * @covers CachedBagOStuff::doGet
+	 */
 	public function testGetFromBackend() {
 		$backend = new HashBagOStuff;
 		$cache = new CachedBagOStuff( $backend );
@@ -16,6 +20,10 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'bar', $cache->get( 'foo' ), 'cached' );
 	}
 
+	/**
+	 * @covers CachedBagOStuff::set
+	 * @covers CachedBagOStuff::delete
+	 */
 	public function testSetAndDelete() {
 		$backend = new HashBagOStuff;
 		$cache = new CachedBagOStuff( $backend );
@@ -30,6 +38,10 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * @covers CachedBagOStuff::set
+	 * @covers CachedBagOStuff::delete
+	 */
 	public function testWriteCacheOnly() {
 		$backend = new HashBagOStuff;
 		$cache = new CachedBagOStuff( $backend );
@@ -50,6 +62,9 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'old', $cache->get( 'foo' ) ); // Reloaded from backend
 	}
 
+	/**
+	 * @covers CachedBagOStuff::doGet
+	 */
 	public function testCacheBackendMisses() {
 		$backend = new HashBagOStuff;
 		$cache = new CachedBagOStuff( $backend );

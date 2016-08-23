@@ -5,6 +5,9 @@
  */
 class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
+	/**
+	 * @covers HashBagOStuff::delete
+	 */
 	public function testDelete() {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
@@ -15,6 +18,9 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * @covers HashBagOStuff::clear
+	 */
 	public function testClear() {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
@@ -27,6 +33,10 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * @covers HashBagOStuff::doGet
+	 * @covers HashBagOStuff::expire
+	 */
 	public function testExpire() {
 		$cache = new HashBagOStuff();
 		$cacheInternal = TestingAccessWrapper::newFromObject( $cache );
@@ -45,6 +55,9 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Ensure maxKeys eviction prefers keeping new keys.
+	 *
+	 * @covers HashBagOStuff::__construct
+	 * @covers HashBagOStuff::set
 	 */
 	public function testEvictionAdd() {
 		$cache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
@@ -62,6 +75,9 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Ensure maxKeys eviction prefers recently set keys
 	 * even if the keys pre-exist.
+	 *
+	 * @covers HashBagOStuff::__construct
+	 * @covers HashBagOStuff::set
 	 */
 	public function testEvictionSet() {
 		$cache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
@@ -85,6 +101,10 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Ensure maxKeys eviction prefers recently retrieved keys (LRU).
+	 *
+	 * @covers HashBagOStuff::__construct
+	 * @covers HashBagOStuff::doGet
+	 * @covers HashBagOStuff::hasKey
 	 */
 	public function testEvictionGet() {
 		$cache = new HashBagOStuff( [ 'maxKeys' => 3 ] );

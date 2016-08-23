@@ -23,6 +23,10 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 		] );
 	}
 
+	/**
+	 * @covers MultiWriteBagOStuff::set
+	 * @covers MultiWriteBagOStuff::doWrite
+	 */
 	public function testSetImmediate() {
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -34,6 +38,9 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( $value, $this->cache2->get( $key ), 'Written to tier 2' );
 	}
 
+	/**
+	 * @covers MultiWriteBagOStuff
+	 */
 	public function testSyncMerge() {
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -69,6 +76,9 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 		$dbw->commit();
 	}
 
+	/**
+	 * @covers MultiWriteBagOStuff::set
+	 */
 	public function testSetDelayed() {
 		$key = wfRandomString();
 		$value = wfRandomString();
