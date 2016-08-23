@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -122,7 +123,8 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		// Flush any pending DB writes for sanity
-		wfGetLBFactory()->commitAll( __METHOD__ );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->commitAll( __METHOD__ );
 
 		// Catch huge single updates that lead to slave lag
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -176,9 +178,11 @@ class JobRunner implements LoggerAwareInterface {
 					$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
 				}
 
+				$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 				$info = $this->executeJob( $job, $stats, $popTime );
 				if ( $info['status'] !== false || !$job->allowRetries() ) {
 					$group->ack( $job ); // succeeded or job cannot be retried
+					$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 				}
 
 				// Back off of certain jobs for a while (for throttling and for errors)
@@ -212,7 +216,7 @@ class JobRunner implements LoggerAwareInterface {
 				$timePassed = microtime( true ) - $lastCheckTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
 					try {
-						wfGetLBFactory()->waitForReplication( [
+						$lbFactory->waitForReplication( [
 							'ifWritesSince' => $lastCheckTime,
 							'timeout' => self::MAX_ALLOWED_LAG
 						] );
@@ -257,6 +261,7 @@ class JobRunner implements LoggerAwareInterface {
 		$msg = $job->toString() . " STARTING";
 		$this->logger->debug( $msg );
 		$this->debugCallback( $msg );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		// Run the job...
 		$rssStart = $this->getMaxRssKb();
@@ -284,7 +289,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Commit all outstanding connections that are in a transaction
 		// to get a fresh repeatable read snapshot on every connection.
 		// Note that jobs are still responsible for handling slave lag.
-		wfGetLBFactory()->commitAll( __METHOD__ );
+		$lbFactory->commitAll( __METHOD__ );
 		// Clear out title cache data from prior snapshots
 		LinkCache::singleton()->clear();
 		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );

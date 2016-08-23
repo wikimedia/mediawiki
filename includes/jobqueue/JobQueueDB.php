@@ -261,7 +261,6 @@ class JobQueueDB extends JobQueue {
 	protected function doPop() {
 		$dbw = $this->getMasterDB();
 		try {
-			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
 			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
 			$scopedReset = new ScopedCallback( function () use ( $dbw, $autoTrx ) {
@@ -457,7 +456,6 @@ class JobQueueDB extends JobQueue {
 
 		$dbw = $this->getMasterDB();
 		try {
-			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
 			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
 			$scopedReset = new ScopedCallback( function () use ( $dbw, $autoTrx ) {
