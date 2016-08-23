@@ -40,7 +40,6 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 	public function execute( $par = '' ) {
 		$this->getOutput()->disable();
-
 		if ( wfReadOnly() ) {
 			// HTTP 423 Locked
 			HttpStatus::header( 423 );

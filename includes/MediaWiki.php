@@ -803,10 +803,10 @@ class MediaWiki {
 	 */
 	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
-		if ( $jobRunRate <= 0 || wfReadOnly() ) {
-			return;
-		} elseif ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
+		if ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
 			return; // recursion guard
+		} elseif ( $jobRunRate <= 0 || wfReadOnly() ) {
+			return;
 		}
 
 		if ( $jobRunRate < 1 ) {
@@ -843,7 +843,7 @@ class MediaWiki {
 			$query, $this->config->get( 'SecretKey' ) );
 
 		$errno = $errstr = null;
-		$info = wfParseUrl( $this->config->get( 'Server' ) );
+		$info = wfParseUrl( $this->config->get( 'CanonicalServer' ) );
 		MediaWiki\suppressWarnings();
 		$host = $info['host'];
 		$port = 80;
@@ -872,7 +872,8 @@ class MediaWiki {
 			return;
 		}
 
-		$url = wfAppendQuery( wfScript( 'index' ), $query );
+		$special = SpecialPageFactory::getPage( 'RunJobs' );
+		$url = $special->getPageTitle()->getCanonicalURL( $query );
 		$req = (
 			"POST $url HTTP/1.1\r\n" .
 			"Host: {$info['host']}\r\n" .
@@ -883,7 +884,7 @@ class MediaWiki {
 		$runJobsLogger->info( "Running $n job(s) via '$url'" );
 		// Send a cron API request to be performed in the background.
 		// Give up if this takes too long to send (which should be rare).
-		stream_set_timeout( $sock, 1 );
+		stream_set_timeout( $sock, 2 );
 		$bytes = fwrite( $sock, $req );
 		if ( $bytes !== strlen( $req ) ) {
 			$runJobsLogger->error( "Failed to start cron API (socket write error)" );
