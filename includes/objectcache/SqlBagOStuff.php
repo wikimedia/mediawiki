@@ -276,6 +276,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( isset( $dataRows[$key] ) ) { // HIT?
 				$row = $dataRows[$key];
 				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
+				$db = null;
 				try {
 					$db = $this->getDB( $row->serverIndex );
 					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
@@ -284,7 +285,7 @@ class SqlBagOStuff extends BagOStuff {
 						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
 					}
 				} catch ( DBQueryError $e ) {
-					$this->handleWriteError( $e, $row->serverIndex );
+					$this->handleWriteError( $e, $db, $row->serverIndex );
 				}
 			} else { // MISS
 				$this->debug( 'get: no matching rows' );
@@ -306,10 +307,11 @@ class SqlBagOStuff extends BagOStuff {
 		$result = true;
 		$exptime = (int)$expiry;
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
+			$db = null;
 			try {
 				$db = $this->getDB( $serverIndex );
 			} catch ( DBError $e ) {
-				$this->handleWriteError( $e, $serverIndex );
+				$this->handleWriteError( $e, $db, $serverIndex );
 				$result = false;
 				continue;
 			}
@@ -342,7 +344,7 @@ class SqlBagOStuff extends BagOStuff {
 						__METHOD__
 					);
 				} catch ( DBError $e ) {
-					$this->handleWriteError( $e, $serverIndex );
+					$this->handleWriteError( $e, $db, $serverIndex );
 					$result = false;
 				}
 
@@ -364,6 +366,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		$db = null;
 		try {
 			$db = $this->getDB( $serverIndex );
 			$exptime = intval( $exptime );
@@ -394,7 +397,7 @@ class SqlBagOStuff extends BagOStuff {
 				__METHOD__
 			);
 		} catch ( DBQueryError $e ) {
-			$this->handleWriteError( $e, $serverIndex );
+			$this->handleWriteError( $e, $db, $serverIndex );
 
 			return false;
 		}
@@ -404,6 +407,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	public function delete( $key ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		$db = null;
 		try {
 			$db = $this->getDB( $serverIndex );
 			$db->delete(
@@ -411,7 +415,7 @@ class SqlBagOStuff extends BagOStuff {
 				[ 'keyname' => $key ],
 				__METHOD__ );
 		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $serverIndex );
+			$this->handleWriteError( $e, $db, $serverIndex );
 			return false;
 		}
 
@@ -420,6 +424,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	public function incr( $key, $step = 1 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		$db = null;
 		try {
 			$db = $this->getDB( $serverIndex );
 			$step = intval( $step );
@@ -455,7 +460,7 @@ class SqlBagOStuff extends BagOStuff {
 				$newValue = null;
 			}
 		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $serverIndex );
+			$this->handleWriteError( $e, $db, $serverIndex );
 			return null;
 		}
 
@@ -473,6 +478,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	public function changeTTL( $key, $expiry = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		$db = null;
 		try {
 			$db = $this->getDB( $serverIndex );
 			$db->update(
@@ -485,7 +491,7 @@ class SqlBagOStuff extends BagOStuff {
 				return false;
 			}
 		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $serverIndex );
+			$this->handleWriteError( $e, $db, $serverIndex );
 			return false;
 		}
 
@@ -542,6 +548,7 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
+			$db = null;
 			try {
 				$db = $this->getDB( $serverIndex );
 				$dbTimestamp = $db->timestamp( $timestamp );
@@ -604,7 +611,7 @@ class SqlBagOStuff extends BagOStuff {
 					}
 				}
 			} catch ( DBError $e ) {
-				$this->handleWriteError( $e, $serverIndex );
+				$this->handleWriteError( $e, $db, $serverIndex );
 				return false;
 			}
 		}
@@ -618,13 +625,14 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	public function deleteAll() {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
+			$db = null;
 			try {
 				$db = $this->getDB( $serverIndex );
 				for ( $i = 0; $i < $this->shards; $i++ ) {
 					$db->delete( $this->getTableNameByShard( $i ), '*', __METHOD__ );
 				}
 			} catch ( DBError $e ) {
-				$this->handleWriteError( $e, $serverIndex );
+				$this->handleWriteError( $e, $db, $serverIndex );
 				return false;
 			}
 		}
@@ -694,16 +702,16 @@ class SqlBagOStuff extends BagOStuff {
 	 * Handle a DBQueryError which occurred during a write operation.
 	 *
 	 * @param DBError $exception
+	 * @param IDatabase|null $db DB handle or null if connection failed
 	 * @param int $serverIndex
 	 */
-	protected function handleWriteError( DBError $exception, $serverIndex ) {
-		if ( $exception instanceof DBConnectionError ) {
+	protected function handleWriteError( DBError $exception, IDatabase $db = null, $serverIndex ) {
+		if ( !$db ) {
 			$this->markServerDown( $exception, $serverIndex );
-		}
-		if ( $exception->db && $exception->db->wasReadOnlyError() ) {
-			if ( $exception->db->trxLevel() ) {
+		} elseif ( $db->wasReadOnlyError() ) {
+			if ( $db->trxLevel() ) {
 				try {
-					$exception->db->rollback( __METHOD__ );
+					$db->rollback( __METHOD__ );
 				} catch ( DBError $e ) {
 				}
 			}
@@ -725,7 +733,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @param DBError $exception
 	 * @param int $serverIndex
 	 */
-	protected function markServerDown( $exception, $serverIndex ) {
+	protected function markServerDown( DBError $exception, $serverIndex ) {
 		unset( $this->conns[$serverIndex] ); // bug T103435
 
 		if ( isset( $this->connFailureTimes[$serverIndex] ) ) {
@@ -762,8 +770,15 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @return bool Whether the main DB is used, e.g. wfGetDB( DB_MASTER )
+	 */
+	protected function usesMainDB() {
+		return !$this->serverInfos;
+	}
+
 	protected function waitForSlaves() {
-		if ( !$this->serverInfos ) {
+		if ( $this->usesMainDB() ) {
 			// Main LB is used; wait for any slaves to catch up
 			try {
 				wfGetLBFactory()->waitForReplication( [ 'wiki' => wfWikiID() ] );
