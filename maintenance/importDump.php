@@ -70,6 +70,8 @@ TEXT
 		$this->addOption( 'namespaces',
 			'Import only the pages from namespaces belonging to the list of ' .
 			'pipe-separated namespace names or namespace indexes', false, true );
+		$this->addOption( 'to-namespace', 'Pages will be imported into specified namespace',
+			false, true );
 		$this->addOption( 'rootpage', 'Pages will be imported as subpages of the specified page',
 			false, true );
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
