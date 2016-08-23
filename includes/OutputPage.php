@@ -1939,6 +1939,36 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get TTL in [$minTTL,$maxTTL] in pass it to lowerCdnMaxage()
+	 *
+	 * This sets and returns $minTTL if $mtime is false or null. Otherwise,
+	 * the TTL is higher the older the $mtime timestamp is. Essentially, the
+	 * TTL is 90% of the age of the object, subject to the min and max.
+	 *
+	 * @param string|integer|float|bool|null $mtime Last-Modified timestamp
+	 * @param integer $minTTL Mimimum TTL in seconds [default: 1 minute]
+	 * @param integer $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
+	 * @return integer TTL in seconds
+	 * @since 1.28
+	 */
+	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
+		$minTTL = $minTTL ?: IExpiringStore::TTL_MINUTE;
+		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'SquidMaxage' );
+
+		if ( $mtime === null || $mtime === false ) {
+			return $minTTL; // entity does not exist
+		}
+
+		$age = time() - wfTimestamp( TS_UNIX, $mtime );
+		$adaptiveTTL = max( .9 * $age, $minTTL );
+		$adaptiveTTL = min( $adaptiveTTL, $maxTTL );
+
+		$this->lowerCdnMaxage( (int)$adaptiveTTL );
+
+		return $adaptiveTTL;
+	}
+
+	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
 	 *
 	 * @param bool $state
