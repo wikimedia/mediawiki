@@ -2271,13 +2271,17 @@ class Title implements LinkTarget {
 	 * @return array List of errors
 	 */
 	private function checkUserBlock( $action, $user, $errors, $rigor, $short ) {
+		global $wgEmailConfirmToEdit, $wgBlockDisablesLogin;
 		// Account creation blocks handled at userlogin.
 		// Unblocking handled in SpecialUnblock
 		if ( $rigor === 'quick' || in_array( $action, [ 'createaccount', 'unblock' ] ) ) {
 			return $errors;
 		}
 
-		global $wgEmailConfirmToEdit;
+		// Optimize for a very common case
+		if ( $action === 'read' && !$wgBlockDisablesLogin ) {
+			return $errors;
+		}
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = [ 'confirmedittext' ];
@@ -2434,6 +2438,7 @@ class Title implements LinkTarget {
 			$checks = [
 				'checkPermissionHooks',
 				'checkReadPermissions',
+				'checkUserBlock', // for wgBlockDisablesLogin
 			];
 		# Don't call checkSpecialsAndNSPermissions or checkCSSandJSPermissions
 		# here as it will lead to duplicate error messages. This is okay to do
