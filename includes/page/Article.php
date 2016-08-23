@@ -467,7 +467,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache, $wgDebugToolbar, $wgMaxRedirects;
+		global $wgUseFileCache, $wgDebugToolbar, $wgMaxRedirects, $wgSquidMaxage;
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -717,6 +717,12 @@ class Article implements Page {
 			}
 		}
 
+		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often.
+		# This could use getTouched(), but that could be scary for major template edits.
+		$age = time() - wfTimestamp( TS_UNIX, $this->mPage->getTimestamp() );
+		$adaptiveTTL = max( .8 * $age, IExpiringStore::TTL_MINUTE );
+		$outputPage->lowerCdnMaxage( min( $adaptiveTTL, $wgSquidMaxage ) );
+
 		# Check for any __NOINDEX__ tags on the page using $pOutput
 		$policy = $this->getRobotPolicy( 'view', $pOutput );
 		$outputPage->setIndexPolicy( $policy['index'] );
@@ -726,7 +732,6 @@ class Article implements Page {
 		$this->mPage->doViewUpdates( $user, $oldid );
 
 		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
-
 	}
 
 	/**

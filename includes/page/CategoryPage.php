@@ -56,6 +56,8 @@ class CategoryPage extends Article {
 	}
 
 	function view() {
+		global $wgSquidMaxage;
+
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly',
@@ -79,6 +81,14 @@ class CategoryPage extends Article {
 
 		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$this->closeShowCategory();
+		}
+
+		if ( $this->mPage->exists() ) {
+			$outputPage = $this->getContext()->getOutput();
+			# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often
+			$age = time() - wfTimestamp( TS_UNIX, $this->mPage->getTouched() );
+			$adaptiveTTL = max( .8 * $age, IExpiringStore::TTL_MINUTE );
+			$outputPage->lowerCdnMaxage( min( $adaptiveTTL, $wgSquidMaxage ) );
 		}
 	}
 
