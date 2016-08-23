@@ -3134,6 +3134,7 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -3144,7 +3145,6 @@ class User implements IDBAccessObject {
 				}
 			}
 
-			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
 
