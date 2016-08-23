@@ -3096,7 +3096,7 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$user->isLoggedIn() ) {
 			// Anons have predictable edit tokens
 			return false;
 		}
