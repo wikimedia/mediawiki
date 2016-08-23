@@ -2859,7 +2859,6 @@ class OutputPage extends ContextSource {
 
 	private function isUserCssPreview() {
 		return $this->getConfig()->get( 'AllowUserCss' )
-			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isCssSubpage()
 			&& $this->userCanPreview();
