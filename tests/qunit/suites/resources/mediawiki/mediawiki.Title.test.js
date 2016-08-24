@@ -38,6 +38,8 @@
 			'A < B',
 			'A > B',
 			'A | B',
+			'A \t B',
+			'A \n B',
 			// URL encoding
 			'A%20B',
 			'A%23B',
@@ -222,7 +224,7 @@
 		assert.equal( title.getPrefixedText(), '.foo' );
 	} );
 
-	QUnit.test( 'Transformation', 11, function ( assert ) {
+	QUnit.test( 'Transformation', 12, function ( assert ) {
 		var title;
 
 		title = new mw.Title( 'File:quux pif.jpg' );
@@ -242,9 +244,11 @@
 		assert.equal( title.toText(), 'User:HAshAr' );
 		assert.equal( title.getNamespaceId(), 2, 'Case-insensitive namespace prefix' );
 
-		// Don't ask why, it's the way the backend works. One space is kept of each set.
-		title = new mw.Title( 'Foo  __  \t __ bar' );
+		title = new mw.Title( 'Foo \u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000 bar' );
 		assert.equal( title.getMain(), 'Foo_bar', 'Merge multiple types of whitespace/underscores into a single underscore' );
+
+		title = new mw.Title( 'Foo\u200E\u200F\u202A\u202B\u202C\u202D\u202Ebar' );
+		assert.equal( title.getMain(), 'Foobar', 'Strip Unicode bidi override characters' );
 
 		// Regression test: Previously it would only detect an extension if there is no space after it
 		title = new mw.Title( 'Example.js  ' );
