@@ -45,30 +45,25 @@ use Psr\Log\NullLogger;
 abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
-
 	/** @var integer ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
-
 	/** @var string */
 	protected $keyspace = 'local';
-
 	/** @var LoggerInterface */
 	protected $logger;
-
 	/** @var callback|null */
 	protected $asyncHandler;
 
 	/** @var bool */
 	private $debugMode = false;
-
 	/** @var array */
 	private $duplicateKeyLookups = [];
-
 	/** @var bool */
 	private $reportDupes = false;
-
 	/** @var bool */
 	private $dupeTrackScheduled = false;
+	/** @var callable[] */
+	private $busyCallbacks = [];
 
 	/** @var integer[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
@@ -640,6 +635,44 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function setLastError( $err ) {
 		$this->lastError = $err;
+	}
+
+	/**
+	 * Let a callback be run to avoid wasting time on special blocking calls
+	 *
+	 * The result of the callback can be fetched by reapBusyCallback() using
+	 * the request ID this returns. It will run the method if this had not done so yet.
+	 *
+	 * @param callable $workCallback
+	 * @since 1.28
+	 */
+	public function addBusyCallback( callable $workCallback ) {
+		$this->busyCallbacks[] = $workCallback;
+	}
+
+	/**
+	 * Run callbacks to due useful things instead of blocking for stuff to happen
+	 *
+	 * @param integer $maxRun Maximum number of tasks to run
+	 * @return integer Number of callbacks run this time
+	 * @since 1.28
+	 */
+	protected function runBusyCallbacks( $maxRun = INF ) {
+		$runCount = 0;
+		foreach ( $this->busyCallbacks as $i => $workCallback ) {
+			if ( $runCount >= $maxRun ) {
+				break;
+			}
+			unset( $this->busyCallbacks[$i] ); // consume
+			try {
+				$workCallback();
+				++$runCount;
+			} finally {
+				// rethrow
+			}
+		}
+
+		return $runCount;
 	}
 
 	/**
