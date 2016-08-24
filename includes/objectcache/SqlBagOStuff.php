@@ -97,6 +97,7 @@ class SqlBagOStuff extends BagOStuff {
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
+		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 
 		if ( isset( $params['servers'] ) ) {
 			$this->serverInfos = [];
@@ -119,6 +120,7 @@ class SqlBagOStuff extends BagOStuff {
 			// Default to using the main wiki's database servers
 			$this->serverInfos = false;
 			$this->numServers = 1;
+			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE;
 		}
 		if ( isset( $params['purgePeriod'] ) ) {
 			$this->purgePeriod = intval( $params['purgePeriod'] );
