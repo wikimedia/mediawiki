@@ -525,12 +525,19 @@ class MWDebug {
 		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
 		$realMemoryUsage = wfIsHHVM();
 
+		$branch = GitInfo::currentBranch();
+		if ( GitInfo::isSHA1( $branch ) ) {
+			// If it's a detached HEAD, the SHA1 will already be
+			// included in the MW version, so don't show it.
+			$branch = false;
+		}
+
 		return [
 			'mwVersion' => $wgVersion,
 			'phpEngine' => wfIsHHVM() ? 'HHVM' : 'PHP',
 			'phpVersion' => wfIsHHVM() ? HHVM_VERSION : PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
-			'gitBranch' => GitInfo::currentBranch(),
+			'gitBranch' => $branch,
 			'gitViewUrl' => GitInfo::headViewUrl(),
 			'time' => microtime( true ) - $wgRequestTime,
 			'log' => self::$log,
