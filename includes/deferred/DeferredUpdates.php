@@ -133,6 +133,7 @@ class DeferredUpdates {
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
 		$updates = $queue; // snapshot of queue
+
 		// Keep doing rounds of updates until none get enqueued
 		while ( count( $updates ) ) {
 			$queue = []; // clear the queue
@@ -142,7 +143,10 @@ class DeferredUpdates {
 			$otherUpdates = [];
 			foreach ( $updates as $update ) {
 				if ( $update instanceof DataUpdate ) {
-					$dataUpdates[] = $update;
+					// Ignore jobs that lost their triggering transaction via rollback
+					if ( $update->shouldAbort() ) {
+						$dataUpdates[] = $update;
+					}
 				} else {
 					$otherUpdates[] = $update;
 				}
