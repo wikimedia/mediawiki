@@ -83,6 +83,8 @@ class RedisBagOStuff extends BagOStuff {
 		} else {
 			$this->automaticFailover = true;
 		}
+
+		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
