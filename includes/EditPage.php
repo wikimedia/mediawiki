@@ -507,7 +507,6 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
 			return;
@@ -515,13 +514,15 @@ class EditPage {
 
 		wfDebug( __METHOD__ . ": enter\n" );
 
+		$request = $this->context->getRequest();
+		$out = $this->context->getOutput();
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+		if ( $request->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+			$out->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
-		$this->importFormData( $wgRequest );
+		$this->importFormData( $request );
 		$this->firsttime = false;
 
 		if ( wfReadOnly() && $this->save ) {
@@ -550,7 +551,7 @@ class EditPage {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
-				$user = $wgUser;
+				$user = $this->context->getUser();
 				DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 					$user->spreadAnyEditBlock();
 				} );
@@ -624,15 +625,14 @@ class EditPage {
 	 * @return array
 	 */
 	protected function getEditPermissionErrors( $rigor = 'secure' ) {
-		global $wgUser;
-
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser, $rigor );
+		$user = $this->context->getUser();
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user, $rigor );
 		# Can this title be created?
 		if ( !$this->mTitle->exists() ) {
 			$permErrors = array_merge(
 				$permErrors,
 				wfArrayDiff2(
-					$this->mTitle->getUserPermissionsErrors( 'create', $wgUser, $rigor ),
+					$this->mTitle->getUserPermissionsErrors( 'create', $user, $rigor ),
 					$permErrors
 				)
 			);
@@ -665,13 +665,12 @@ class EditPage {
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
-		global $wgRequest, $wgOut;
-
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		$out = $this->context->getOutput();
+		if ( $this->context->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+			$out->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
@@ -686,7 +685,7 @@ class EditPage {
 
 		$this->displayViewSourcePage(
 			$content,
-			$wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' )
+			$out->formatPermissionsErrorMessage( $permErrors, 'edit' )
 		);
 	}
 
@@ -696,29 +695,28 @@ class EditPage {
 	 * @param string $errorMessage additional wikitext error message to display
 	 */
 	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
-		global $wgOut;
+		$out = $this->context->getOutput();
+		Hooks::run( 'EditPage::showReadOnlyForm:initial', [ $this, &$out ] );
 
-		Hooks::run( 'EditPage::showReadOnlyForm:initial', [ $this, &$wgOut ] );
-
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setPageTitle( wfMessage(
+		$out->setRobotPolicy( 'noindex,nofollow' );
+		$out->setPageTitle( wfMessage(
 			'viewsource-title',
 			$this->getContextTitle()->getPrefixedText()
 		) );
-		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
-		$wgOut->addHTML( $this->editFormPageTop );
-		$wgOut->addHTML( $this->editFormTextTop );
+		$out->addBacklinkSubtitle( $this->getContextTitle() );
+		$out->addHTML( $this->editFormPageTop );
+		$out->addHTML( $this->editFormTextTop );
 
 		if ( $errorMessage !== '' ) {
-			$wgOut->addWikiText( $errorMessage );
-			$wgOut->addHTML( "<hr />\n" );
+			$out->addWikiText( $errorMessage );
+			$out->addHTML( "<hr />\n" );
 		}
 
 		# If the user made changes, preserve them when showing the markup
 		# (This happens when a user is blocked during edit, for instance)
 		if ( !$this->firsttime ) {
 			$text = $this->textbox1;
-			$wgOut->addWikiMsg( 'viewyourtext' );
+			$out->addWikiMsg( 'viewyourtext' );
 		} else {
 			try {
 				$text = $this->toEditText( $content );
@@ -727,21 +725,21 @@ class EditPage {
 				# (e.g. for an old revision with a different model)
 				$text = $content->serialize();
 			}
-			$wgOut->addWikiMsg( 'viewsourcetext' );
+			$out->addWikiMsg( 'viewsourcetext' );
 		}
 
-		$wgOut->addHTML( $this->editFormTextBeforeContent );
+		$out->addHTML( $this->editFormTextBeforeContent );
 		$this->showTextbox( $text, 'wpTextbox1', [ 'readonly' ] );
-		$wgOut->addHTML( $this->editFormTextAfterContent );
+		$out->addHTML( $this->editFormTextAfterContent );
 
-		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
+		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'templatesUsed' ],
 			Linker::formatTemplates( $this->getTemplates() ) ) );
 
-		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
+		$out->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
-		$wgOut->addHTML( $this->editFormTextBottom );
+		$out->addHTML( $this->editFormTextBottom );
 		if ( $this->mTitle->exists() ) {
-			$wgOut->returnToMain( null, $this->mTitle );
+			$out->returnToMain( null, $this->mTitle );
 		}
 	}
 
@@ -751,18 +749,19 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgUser, $wgPreviewOnOpenNamespaces;
-		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
+		global $wgPreviewOnOpenNamespaces;
+		$request = $this->context->getRequest();
+		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() )
-			&& $wgUser->getOption( 'previewonfirst' )
+		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() )
+			&& $this->context->getUser()->getOption( 'previewonfirst' )
 		) {
 			// Standard preference behavior
 			return true;
@@ -815,7 +814,7 @@ class EditPage {
 	 * @throws ErrorPageError
 	 */
 	function importFormData( &$request ) {
-		global $wgContLang, $wgUser;
+		global $wgContLang;
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -927,13 +926,14 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 			# Don't force edit summaries when a user is editing their own user or talk page
+			$user = $this->context->getUser();
 			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
-				&& $this->mTitle->getText() == $wgUser->getName()
+				&& $this->mTitle->getText() == $user->getName()
 			) {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
-					|| !$wgUser->getOption( 'forceeditsummary' );
+					|| !$user->getOption( 'forceeditsummary' );
 			}
 
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
