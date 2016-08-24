@@ -23,10 +23,10 @@ class FakeDatabase extends DatabaseBase {
 	function __construct() {
 	}
 
-	function clearFlag( $arg ) {
+	function clearFlag( $arg, $remember = self::REMEMBER_NOTHING ) {
 	}
 
-	function setFlag( $arg ) {
+	function setFlag( $arg, $remember = self::REMEMBER_NOTHING ) {
 	}
 
 	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
