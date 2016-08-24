@@ -494,3 +494,7 @@
 	path = extensions/Wikibase
 	url = https://github.com/wikimedia/mediawiki-extensions-Wikibase
 	branch = REL1_27
+[submodule "extensions/RSS"]
+	path = extensions/RSS
+	url = https://github.com/wikimedia/mediawiki-extensions-RSS
+	branch = REL1_27
