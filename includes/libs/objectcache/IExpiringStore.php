@@ -47,6 +47,11 @@ interface IExpiringStore {
 	// Medium attributes constants related to emulation or media type
 	const ATTR_EMULATION = 1;
 	const QOS_EMULATION_SQL = 1;
+	// Medium attributes constants related to replica consistency
+	const ATTR_SYNCWRITES = 2; // SYNC_WRITES flag support
+	const QOS_SYNCWRITES_NONE = 1; // replication only supports eventual consistency or less
+	const QOS_SYNCWRITES_BE = 2; // best effort synchronous with limited retries
+	const QOS_SYNCWRITES_SS = 3; // strict-serializable, nodes refuse reads if possible stale
 	// Generic "unknown" value that is useful for comparisons (e.g. always good enough)
 	const QOS_UNKNOWN = INF;
 }
