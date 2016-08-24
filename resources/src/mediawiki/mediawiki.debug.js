@@ -381,4 +381,8 @@
 		}
 	};
 
+	$( function () {
+		debug.init();
+	} );
+
 }( mediaWiki, jQuery ) );
