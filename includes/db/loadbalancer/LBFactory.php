@@ -47,7 +47,9 @@ abstract class LBFactory implements DestructibleService {
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
-	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
+	const SHUTDOWN_CHRONPROT = 0; // save ChronologyProtector positions across all DCs
+	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save positions, but do not block on remote DCs
+	const SHUTDOWN_NO_CHRONPROT = 2; // don't save ChronologyProtector positions (for async code)
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
@@ -195,11 +197,13 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $flags Supports SHUTDOWN_* flags
+	 * @param integer $flags Bitfield; supports SHUTDOWN_* constants
+	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 */
-	public function shutdown( $flags = 0 ) {
+	public function shutdown( $flags = 0, callable $workCallback = null ) {
 		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
-			$this->shutdownChronologyProtector( $this->chronProt );
+			$sync = ( $flags & self::SHUTDOWN_CHRONPROT_ASYNC );
+			$this->shutdownChronologyProtector( $this->chronProt, $workCallback, $sync );
 		}
 		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}
@@ -341,13 +345,14 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Determine if any master connection has pending/written changes from this request
+	 * @param float $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
 	 * @return bool
 	 * @since 1.27
 	 */
-	public function hasOrMadeRecentMasterChanges() {
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$ret = false;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->hasOrMadeRecentMasterChanges();
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( $age, &$ret ) {
+			$ret = $ret || $lb->hasOrMadeRecentMasterChanges( $age );
 		} );
 		return $ret;
 	}
@@ -494,8 +499,9 @@ abstract class LBFactory implements DestructibleService {
 			ObjectCache::getMainStashInstance(),
 			[
 				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' )
-			]
+				'agent' => $request->getHeader( 'User-Agent' ),
+			],
+			$request->getFloat( 'cpPosTime', null )
 		);
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );
@@ -510,14 +516,19 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * @param ChronologyProtector $cp
+	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
+	 * @param bool $sync Sync positions accross all DCs
 	 */
-	protected function shutdownChronologyProtector( ChronologyProtector $cp ) {
-		// Get all the master positions needed
+	protected function shutdownChronologyProtector(
+		ChronologyProtector $cp, $workCallback, $sync = true
+	) {
+		// Record all the master positions needed
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $cp ) {
 			$cp->shutdownLB( $lb );
 		} );
-		// Write them to the stash
-		$unsavedPositions = $cp->shutdown();
+		// Write them to the persistent stash. Try to do something useful by running $work
+		// while ChronologyProtector waits for the stash write to replicate to all DCs.
+		$unsavedPositions = $cp->shutdown( $workCallback, $sync );
 		// If the positions failed to write to the stash, at least wait on local datacenter
 		// slaves to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
@@ -528,6 +539,20 @@ abstract class LBFactory implements DestructibleService {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
 			}
 		} );
+	}
+
+	/**
+	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes
+	 *
+	 * Note that unlike cookies, this works accross domains
+	 *
+	 * @param string $url
+	 * @param float $time UNIX timestamp just before shutdown() was called
+	 * @return string
+	 * @since 1.28
+	 */
+	public function appendPreShutdownTimeAsQuery( $url, $time ) {
+		return wfAppendQuery( $url, [ 'cpPosTime' => $time ] );
 	}
 
 	/**
