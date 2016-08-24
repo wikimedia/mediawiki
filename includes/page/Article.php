@@ -543,13 +543,8 @@ class Article implements Page {
 				}
 			}
 
-			# Is it client cached?
-			if ( $outputPage->checkLastModified( $timestamp ) ) {
-				wfDebug( __METHOD__ . ": done 304\n" );
-
-				return;
-			# Try file cache
-			} elseif ( $wgUseFileCache && $this->tryFileCache() ) {
+			# Try to stream the output from file cache
+			if ( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();

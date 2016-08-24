@@ -504,13 +504,13 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Loads page_touched and returns a value indicating if it should be used
-	 * @return bool True if not a redirect
+	 * @return bool True if this page exists and is not a redirect
 	 */
 	public function checkTouched() {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		return !$this->mIsRedirect;
+		return ( $this->mId && !$this->mIsRedirect );
 	}
 
 	/**
