@@ -1466,6 +1466,8 @@
 	"file-thumbnail-no": "The filename begins with <strong>$1</strong>.\nIt seems to be an image of reduced size <em>(thumbnail)</em>.\nIf you have this image in full resolution upload this one, otherwise change the filename please.",
 	"fileexists-forbidden": "A file with this name already exists, and cannot be overwritten.\nIf you still want to upload your file, please go back and use a new name.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "A file with this name exists already in the shared file repository.\nIf you still want to upload your file, please go back and use a new name.\n[[File:$1|thumb|center|$1]]",
+	"fileexists-no-change": "The upload is an exact duplicate of the current version of <strong>[[:$1]]</strong>",
+	"fileexists-duplicate-version": "The upload is an exact duplicate of {{PLURAL:$2|an older version|older versions}} of <strong>[[:$1]]</strong>",
 	"file-exists-duplicate": "This file is a duplicate of the following {{PLURAL:$1|file|files}}:",
 	"file-deleted-duplicate": "A file identical to this file ([[:$1]]) has previously been deleted.\nYou should check that file's deletion history before proceeding to re-upload it.",
 	"file-deleted-duplicate-notitle": "A file identical to this file has previously been deleted, and the title has been suppressed.\nYou should ask someone with the ability to view suppressed file data to review the situation before proceeding to re-upload it.",
