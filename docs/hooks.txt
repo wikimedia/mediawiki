@@ -297,16 +297,6 @@ After a user account is created.
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
-'AddNewAccountApiForm': Allow modifying internal login form when creating an
-account via API.
-$apiModule: the ApiCreateAccount module calling
-$loginForm: the LoginForm used
-
-'AddNewAccountApiResult': Modify API output when creating a new account via API.
-$apiModule: the ApiCreateAccount module calling
-$loginForm: the LoginForm used
-&$result: associative array for API result data
-
 'AfterBuildFeedLinks': Executed in OutputPage.php after all feed links (atom, rss,...)
 are created. Can be used to omit specific feeds from being outputted. You must not use
 this hook to add feeds, use OutputPage::addFeedLink() instead.
@@ -2068,13 +2058,6 @@ will NOT prevent logging.
 $e: The exception (in case of a plain old PHP error, a wrapping ErrorException)
 $suppressed: true if the error was suppressed via
   error_reporting()/wfSuppressWarnings()
-
-'LoginAuthenticateAudit': A login attempt for a valid user account either
-succeeded or failed. No return data is accepted; this hook is for auditing only.
-$user: the User object being authenticated against
-$password: the password being submitted and found wanting
-$retval: a LoginForm class constant with authenticateUserData() return
-  value (SUCCESS, WRONG_PASS, etc.).
 
 'LoginFormValidErrorMessages': Called in LoginForm when a function gets valid
 error messages. Allows to add additional error messages (except messages already
