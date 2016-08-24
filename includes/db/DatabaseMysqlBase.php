@@ -38,7 +38,14 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $lagDetectionOptions = [];
 	/** @var bool bool Whether to use GTID methods */
 	protected $useGTIDs = false;
-
+	/** @var string|null */
+	protected $sslKeyPath;
+	/** @var string|null */
+	protected $sslCertPath;
+	/** @var string|null */
+	protected $sslCAPath;
+	/** @var string[]|null */
+	protected $sslCiphers;
 	/** @var string|null */
 	private $serverVersion = null;
 
@@ -53,6 +60,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       ID of this server's master will be used. Set the "conds" field to
 	 *       override the query conditions, e.g. ['shard' => 's1'].
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
+	 *   - sslKeyPath : path to key file [default: null]
+	 *   - sslCertPath : path to certificate file [default: null]
+	 *   - sslCAPath : parth to certificate authority PEM files [default: null]
+	 *   - sslCiphers : array list of allowable ciphers [default: null]
 	 * @param array $params
 	 */
 	function __construct( array $params ) {
@@ -65,6 +76,12 @@ abstract class DatabaseMysqlBase extends Database {
 			? $params['lagDetectionOptions']
 			: [];
 		$this->useGTIDs = !empty( $params['useGTIDs' ] );
+		foreach ( [ 'KeyPath', 'CertPath', 'CAPath', 'Ciphers' ] as $name ) {
+			$var = "ssl{$name}";
+			if ( isset( $params[$var] ) ) {
+				$this->$var = $params[$var];
+			}
+		}
 	}
 
 	/**

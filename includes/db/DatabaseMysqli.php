@@ -81,9 +81,18 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			$socket = $hostAndSocket[1];
 		}
 
+		$mysqli = mysqli_init();
+
 		$connFlags = 0;
 		if ( $this->mFlags & DBO_SSL ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;
+			$mysqli->ssl_set(
+				$this->sslKeyPath,
+				$this->sslCertPath,
+				null,
+				$this->sslCAPath,
+				$this->sslCiphers
+			);
 		}
 		if ( $this->mFlags & DBO_COMPRESS ) {
 			$connFlags |= MYSQLI_CLIENT_COMPRESS;
@@ -92,7 +101,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			$realServer = 'p:' . $realServer;
 		}
 
-		$mysqli = mysqli_init();
 		if ( $wgDBmysql5 ) {
 			// Tell the server we're communicating with it in UTF-8.
 			// This may engage various charset conversions.
