@@ -72,6 +72,11 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public static function provideGetParameterFromSettings() {
+		$warnings = [
+			'The value passed for \'foo\' contains invalid or non-normalized data. Textual data should ' .
+			'be valid, NFC-normalized Unicode without C0 control characters other than HT, LF, and CR.'
+		];
+
 		$c0 = '';
 		$enc = '';
 		for ( $i = 0; $i < 32; $i++ ) {
@@ -83,6 +88,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		return [
 			'Basic param' => [ 'bar', null, 'bar', [] ],
+			'Basic param, C0 controls' => [ $c0, null, $enc, $warnings ],
 			'String param' => [ 'bar', '', 'bar', [] ],
 			'String param, defaulted' => [ null, '', '', [] ],
 			'String param, empty' => [ '', 'default', '', [] ],
@@ -108,13 +114,13 @@ class ApiBaseTest extends ApiTestCase {
 				$c0,
 				[ ApiBase::PARAM_ISMULTI => true ],
 				[ $enc ],
-				[]
+				$warnings
 			],
 			'Multi-valued parameter, other C0 controls (2)' => [
 				"\x1f" . $c0,
 				[ ApiBase::PARAM_ISMULTI => true ],
 				[ substr( $enc, 0, -3 ), '' ],
-				[]
+				$warnings
 			],
 		];
 	}
