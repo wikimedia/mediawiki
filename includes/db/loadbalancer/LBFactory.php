@@ -51,7 +51,9 @@ abstract class LBFactory implements DestructibleService {
 	/** @var callable[] */
 	protected $replicationWaitCallbacks = [];
 
-	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
+	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
+	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
+	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
@@ -87,7 +89,7 @@ abstract class LBFactory implements DestructibleService {
 	 * @see LoadBalancer::disable()
 	 */
 	public function destroy() {
-		$this->shutdown();
+		$this->shutdown( self::SHUTDOWN_NO_CHRONPROT );
 		$this->forEachLBCallMethod( 'disable' );
 	}
 
@@ -199,12 +201,18 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $flags Supports SHUTDOWN_* flags
+	 * @param integer $mode One of the class SHUTDOWN_* constants
+	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 */
-	public function shutdown( $flags = 0 ) {
-		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
-			$this->shutdownChronologyProtector( $this->chronProt );
+	public function shutdown(
+		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null
+	) {
+		if ( $mode === self::SHUTDOWN_CHRONPROT_SYNC ) {
+			$this->shutdownChronologyProtector( $this->chronProt, $workCallback, 'sync' );
+		} elseif ( $mode === self::SHUTDOWN_CHRONPROT_ASYNC ) {
+			$this->shutdownChronologyProtector( $this->chronProt, null, 'async' );
 		}
+
 		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}
 
@@ -387,13 +395,14 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Determine if any master connection has pending/written changes from this request
+	 * @param float $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
 	 * @return bool
 	 * @since 1.27
 	 */
-	public function hasOrMadeRecentMasterChanges() {
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$ret = false;
-		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->hasOrMadeRecentMasterChanges();
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( $age, &$ret ) {
+			$ret = $ret || $lb->hasOrMadeRecentMasterChanges( $age );
 		} );
 		return $ret;
 	}
@@ -584,8 +593,9 @@ abstract class LBFactory implements DestructibleService {
 			ObjectCache::getMainStashInstance(),
 			[
 				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' )
-			]
+				'agent' => $request->getHeader( 'User-Agent' ),
+			],
+			$request->getFloat( 'cpPosTime', null )
 		);
 		if ( PHP_SAPI === 'cli' ) {
 			$chronProt->setEnabled( false );
@@ -599,15 +609,26 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * Get and record all of the staged DB positions into persistent memory storage
+	 *
 	 * @param ChronologyProtector $cp
+	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
+	 * @param string $mode One of (sync, async); whether to wait on remote datacenters
 	 */
-	protected function shutdownChronologyProtector( ChronologyProtector $cp ) {
-		// Get all the master positions needed
+	protected function shutdownChronologyProtector(
+		ChronologyProtector $cp, $workCallback, $mode
+	) {
+		// Record all the master positions needed
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $cp ) {
 			$cp->shutdownLB( $lb );
 		} );
-		// Write them to the stash
-		$unsavedPositions = $cp->shutdown();
+		// Write them to the persistent stash. Try to do something useful by running $work
+		// while ChronologyProtector waits for the stash write to replicate to all DCs.
+		$unsavedPositions = $cp->shutdown( $workCallback, $mode );
+		if ( $unsavedPositions && $workCallback ) {
+			// Invoke callback in case it did not cache the result yet
+			$workCallback(); // work now to block for less time in waitForAll()
+		}
 		// If the positions failed to write to the stash, at least wait on local datacenter
 		// replica DBs to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
@@ -630,11 +651,33 @@ abstract class LBFactory implements DestructibleService {
 	}
 
 	/**
+	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes if needed
+	 *
+	 * Note that unlike cookies, this works accross domains
+	 *
+	 * @param string $url
+	 * @param float $time UNIX timestamp just before shutdown() was called
+	 * @return string
+	 * @since 1.28
+	 */
+	public function appendPreShutdownTimeAsQuery( $url, $time ) {
+		$usedCluster = 0;
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$usedCluster ) {
+			$usedCluster |= ( $lb->getServerCount() > 1 );
+		} );
+
+		if ( !$usedCluster ) {
+			return $url; // no master/replica clusters touched
+		}
+
+		return wfAppendQuery( $url, [ 'cpPosTime' => $time ] );
+	}
+
+	/**
 	 * Close all open database connections on all open load balancers.
 	 * @since 1.28
 	 */
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll', [] );
 	}
-
 }
