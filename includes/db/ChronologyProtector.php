@@ -135,9 +135,10 @@ class ChronologyProtector {
 	 * Notify the ChronologyProtector that the LBFactory is done calling shutdownLB() for now.
 	 * May commit chronology data to persistent storage.
 	 *
+	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
 	 * @return array Empty on success; returns the (db name => position) map on failure
 	 */
-	public function shutdown() {
+	public function shutdown( callable $workCallback = null ) {
 		if ( !$this->enabled || !count( $this->shutdownPositions ) ) {
 			return true; // nothing to save
 		}
@@ -147,32 +148,39 @@ class ChronologyProtector {
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
+		$store = $this->store;
+		if ( $workCallback ) {
+			// Let the store run the work before blocking on a replication sync barrier. By the
+			// time it's done with the work, the barrier should be fast if replication caught up.
+			$store->addBusyCallback( $workCallback );
+		}
 		// CP-protected writes should overwhemingly go to the master datacenter, so get DC-local
 		// lock to merge the values. Use a DC-local get() and a synchronous all-DC set(). This
 		// makes it possible for the BagOStuff class to write in parallel to all DCs with one RTT.
-		if ( $this->store->lock( $this->key, 3 ) ) {
-			$ok = $this->store->set(
+		if ( $store->lock( $this->key, 3 ) ) {
+			$ok = $store->set(
 				$this->key,
-				self::mergePositions( $this->store->get( $this->key ), $this->shutdownPositions ),
-				BagOStuff::TTL_MINUTE,
-				BagOStuff::WRITE_SYNC
+				self::mergePositions( $store->get( $this->key ), $this->shutdownPositions ),
+				$store::TTL_MINUTE,
+				$store::WRITE_SYNC
 			);
-			$this->store->unlock( $this->key );
+			$store->unlock( $this->key );
 		} else {
 			$ok = false;
 		}
 
 		if ( !$ok ) {
+			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
 			wfDebugLog( 'replication',
 				__METHOD__ . ": failed to save master pos for " .
 				implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 			);
-
-			return $this->shutdownPositions;
+		} else {
+			$bouncedPositions = [];
 		}
 
-		return [];
+		return $bouncedPositions;
 	}
 
 	/**

@@ -35,6 +35,8 @@ class RedisBagOStuff extends BagOStuff {
 	/** @var bool */
 	protected $automaticFailover;
 
+	const SYNC_TIMEOUT_SEC = 3;
+
 	/**
 	 * Construct a RedisBagOStuff object. Parameters are:
 	 *
@@ -114,6 +116,9 @@ class RedisBagOStuff extends BagOStuff {
 			} else {
 				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
+			}
+			if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+				$result = $this->waitForSlaves( $conn ) && $result;
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -415,6 +420,61 @@ class RedisBagOStuff extends BagOStuff {
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @return bool
+	 */
+	protected function waitForSlaves( RedisConnRef $conn ) {
+		// http://redis.io/commands/info
+		$info = $conn->info( 'replication' );
+		if ( !isset( $info['slave0'] ) || !isset( $info['master_repl_offset'] ) ) {
+			return true; // no slaves configured
+		}
+
+		$masterPos = (int)$info['master_repl_offset'];
+
+		$elapsed = 0.0; // seconds
+		$sleepUs = 0; // microseconds to sleep each time
+		do {
+			$startTime = microtime( true );
+			if ( $this->runBusyCallbacks( 1 ) == 0 ) {
+				// Wait for a few ms, increasing up to 50ms
+				$sleepUs = min( $sleepUs + 3 * 1e3, 50 * 1e3 );
+				usleep( $sleepUs );
+			}
+			// The max() protects against the clock getting set back
+			$elapsed += max( microtime( true ) - $startTime, 0 );
+
+			if ( $this->wasReplicated( $masterPos, $conn->info( 'replication' ) ) ) {
+				return true; // all synced
+			}
+		} while ( $elapsed < self::SYNC_TIMEOUT_SEC );
+
+		return false;
+	}
+
+	/**
+	 * @param integer $masterPos
+	 * @param array $info Info from 'replication' group
+	 * @return bool
+	 */
+	private function wasReplicated( $masterPos, array $info ) {
+		foreach ( $info as $key => $value ) {
+			$m = [];
+			// https://github.com/antirez/redis/issues/2375
+			if ( preg_match( '/^slave\d+$/', $key )
+				&& preg_match( '/offset=(\d+)/', $value, $m )
+			) {
+				$slavePos = (int)$m[1];
+				if ( $slavePos < $masterPos ) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/**
