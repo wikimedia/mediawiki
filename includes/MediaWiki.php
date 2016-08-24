@@ -545,10 +545,11 @@ class MediaWiki {
 
 	/**
 	 * @see MediaWiki::preOutputCommit()
+	 * @param callable $postCommitWork [default: null]
 	 * @since 1.26
 	 */
-	public function doPreOutputCommit() {
-		self::preOutputCommit( $this->context );
+	public function doPreOutputCommit( callable $postCommitWork = null ) {
+		self::preOutputCommit( $this->context, $postCommitWork );
 	}
 
 	/**
@@ -556,33 +557,61 @@ class MediaWiki {
 	 * the user can receive a response (in case commit fails)
 	 *
 	 * @param IContextSource $context
+	 * @param callable $postCommitWork [default: null]
 	 * @since 1.27
 	 */
-	public static function preOutputCommit( IContextSource $context ) {
+	public static function preOutputCommit(
+		IContextSource $context, callable $postCommitWork = null
+	) {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
 
 		$config = $context->getConfig();
+		$request = $context->getRequest();
+		$output = $context->getOutput();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-		$factory = wfGetLBFactory();
 		// Commit all changes
-		$factory->commitMasterChanges(
+		$lbFactory->commitMasterChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
 		);
-		// Record ChronologyProtector positions
-		$factory->shutdown();
-		wfDebug( __METHOD__ . ': all transactions committed' );
+		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
+		// Run updates that need to block the user or effect output (this is the last chance)
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
+
+		// Decide when clients block on ChronologyProtector DB position writes
+		$postChangeRedirect =
+			( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges( INF ) )
+			? Title::newFromUrl( $output->getRedirect() )
+			: null;
+		if ( $postChangeRedirect && $postChangeRedirect->isLocal() ) {
+			// OutputPage::output() will be fast; $postCommitWork will not be useful for
+			// masking the latency of syncing DB positions accross all datacenters synchronously.
+			// Instead, make use of the RTT time of the client follow redirects.
+			$flags = $lbFactory::SHUTDOWN_CHRONPROT | $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
+			// Client's next request should see 1+ positions with this DBMasterPos::asOf() time
+			$safeUrl = $lbFactory->appendPreShutdownTimeAsQuery(
+				$output->getRedirect(),
+				microtime( true )
+			);
+			$output->redirect( $safeUrl );
+		} else {
+			// OutputPage::output() will be slow; let $postCommitWork will mask the
+			// latency of syncing DB positions accross all datacenters synchronously
+			$flags = $lbFactory::SHUTDOWN_CHRONPROT;
+		}
+
+		// Record ChronologyProtector positions for DBs affected in this request at this point
+		$lbFactory->shutdown( $flags, $postCommitWork );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
 		// ChronologyProtector works for cacheable URLs.
-		$request = $context->getRequest();
-		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
+		if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
 			$options = [ 'prefix' => '' ];
 			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
@@ -591,9 +620,9 @@ class MediaWiki {
 
 		// Avoid letting a few seconds of slave lag cause a month of stale data. This logic is
 		// also intimately related to the value of $wgCdnReboundPurgeDelay.
-		if ( $factory->laggedSlaveUsed() ) {
+		if ( $lbFactory->laggedSlaveUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );
-			$context->getOutput()->lowerCdnMaxage( $maxAge );
+			$output->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Database-Lagged: true" );
 			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
 		}
@@ -601,7 +630,7 @@ class MediaWiki {
 		// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
 		if ( MessageCache::singleton()->isDisabled() ) {
 			$maxAge = $config->get( 'CdnMaxageSubstitute' );
-			$context->getOutput()->lowerCdnMaxage( $maxAge );
+			$output->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Response-Substitute: true" );
 		}
 	}
@@ -623,10 +652,9 @@ class MediaWiki {
 		// Show visible profiling data if enabled (which cannot be post-send)
 		Profiler::instance()->logDataPageOutputOnly();
 
-		$that = $this;
-		$callback = function () use ( $that, $mode ) {
+		$callback = function () use ( $mode ) {
 			try {
-				$that->restInPeace( $mode );
+				$this->restInPeace( $mode );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::handleException( $e );
 			}
@@ -652,6 +680,7 @@ class MediaWiki {
 	private function main() {
 		global $wgTitle;
 
+		$output = $this->context->getOutput();
 		$request = $this->context->getRequest();
 
 		// Send Ajax requests to the Ajax dispatcher.
@@ -665,6 +694,7 @@ class MediaWiki {
 
 			$dispatcher = new AjaxDispatcher( $this->config );
 			$dispatcher->performAction( $this->context->getUser() );
+
 			return;
 		}
 
@@ -726,11 +756,11 @@ class MediaWiki {
 				// Setup dummy Title, otherwise OutputPage::redirect will fail
 				$title = Title::newFromText( 'REDIR', NS_MAIN );
 				$this->context->setTitle( $title );
-				$output = $this->context->getOutput();
 				// Since we only do this redir to change proto, always send a vary header
 				$output->addVaryHeader( 'X-Forwarded-Proto' );
 				$output->redirect( $redirUrl );
 				$output->output();
+
 				return;
 			}
 		}
@@ -742,14 +772,15 @@ class MediaWiki {
 				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
 					// Check incoming headers to see if client has this cached
 					$timestamp = $cache->cacheTimestamp();
-					if ( !$this->context->getOutput()->checkLastModified( $timestamp ) ) {
+					if ( !$output->checkLastModified( $timestamp ) ) {
 						$cache->loadFromFileCache( $this->context );
 					}
 					// Do any stats increment/watchlist stuff
 					// Assume we're viewing the latest revision (this should always be the case with file cache)
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					// Tell OutputPage that output is taken care of
-					$this->context->getOutput()->disable();
+					$output->disable();
+
 					return;
 				}
 			}
@@ -758,13 +789,28 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
+		// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
+		// ChronologyProtector synchronizes DB positions or slaves accross all datacenters.
+		$buffer = null;
+		$outputWork = function () use ( $output, &$buffer ) {
+			if ( $buffer === null ) {
+				ob_start();
+				$output->output();
+				$buffer = ob_get_clean();
+			}
+
+			return $buffer;
+		};
+
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction and so that
 		// we avoid having both success and error text in the response
-		$this->doPreOutputCommit();
+		$this->doPreOutputCommit( $outputWork );
 
-		// Output everything!
-		$this->context->getOutput()->output();
+		// Now send the actual output
+		ob_start();
+		print $outputWork();
+		ob_end_flush();
 	}
 
 	/**
