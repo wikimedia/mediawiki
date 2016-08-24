@@ -2824,7 +2824,7 @@ parsoid
 !! wikitext
 {{echo|[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]}}
 !! html
-<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]"}},"i":0}}]}'>[Main_Page bar]</p>
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]"}},"i":0}}]}'>[Main Page bar]</p>
 !! end
 
 !! test
@@ -3173,58 +3173,19 @@ foo
 
 !!end
 
-!!test
+!! test
 4. Indent-Pre and extension tags
 !! wikitext
- a <gallery>
-File:foobar.jpg
-</gallery>
-!! html
- a <ul class="gallery mw-gallery-traditional">
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
-			<div class="gallerytext">
-			</div>
-		</div></li>
-</ul>
+ a <tag />
+!! html/php
+ a <pre>
+NULL
+array (
+)
+</pre>
 
-!! html+tidy
-<p>a</p>
-<ul class="gallery mw-gallery-traditional">
-<li class="gallerybox" style="width: 155px">
-<div style="width: 155px">
-<div class="thumb" style="width: 150px;">
-<div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div>
-</div>
-<div class="gallerytext"></div>
-</div>
-</li>
-</ul>
-!!end
-
-!! test
-Table wikitext syntax outside wiki-tables
-!! wikitext
-a
-! not a table heading
-|- not a table row
-| not a table cell
-| class="foo bar" | baz
-b
-|}
-|-
-c
-!! html
-<p>a
-! not a table heading
-|- not a table row
-| not a table cell
-| class="foo bar" | baz
-b
-|}
-|-
-c
-</p>
+!! html/parsoid
+ a <pre typeof="mw:Extension/tag" about="#mwt2" data-parsoid='{}' data-mw='{"name":"tag","attrs":{},"body":null}'></pre>
 !! end
 
 !!test
@@ -4865,13 +4826,20 @@ And again with mixed protocols: [ftp://example.com?url=http://example.com link]
 </p>
 !!end
 
+# Since Parsoid is starting to emit canonical wikitext for links,
+# [http://example.com http://example.com] will not RT back to that
+# form anymore.
 !! test
 External links: URL in text
+!! options
+parsoid=wt2html
 !! wikitext
 URL in text: [http://example.com http://example.com]
-!! html
+!! html/php
 <p>URL in text: <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
 </p>
+!! html/parsoid
+<p>URL in text: <a rel="mw:ExtLink" href="http://example.com">http://example.com</a></p>
 !! end
 
 !! test
@@ -7619,11 +7587,14 @@ Just a test of an article title containing a percent.
 Link containing % (not as a hex sequence)
 !! wikitext
 [[7% Solution]]
+[[7% Solution|7%25 Solution]]
 !! html/php
 <p><a href="/wiki/7%25_Solution" title="7% Solution">7% Solution</a>
+<a href="/wiki/7%25_Solution" title="7% Solution">7%25 Solution</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7% Solution</a></p>
+<p><a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7% Solution</a>
+<a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7%25 Solution</a></p>
 !! end
 
 # note that the parsoid HTML is identical to the previous test output,
@@ -7635,11 +7606,14 @@ Link containing % as a single hex sequence interpreted to char
 parsoid=wt2wt,wt2html,html2html
 !! wikitext
 [[7%25 Solution]]
+[[7%25 Solution|7%25 Solution]]
 !! html/php
 <p><a href="/wiki/7%25_Solution" title="7% Solution">7% Solution</a>
+<a href="/wiki/7%25_Solution" title="7% Solution">7%25 Solution</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7% Solution</a></p>
+<p><a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7% Solution</a>
+<a rel="mw:WikiLink" href="./7%25_Solution" title="7% Solution">7%25 Solution</a></p>
 !!end
 
 !! test
@@ -8002,6 +7976,28 @@ Link with multiple ":" in a subpage-supporting namespace (bug 63636)
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:Foo/Test/63636:Bar" title="User:Foo/Test/63636:Bar">Test</a></p>
+!! end
+
+## Mainly a sanity check for Parsoid
+!! test
+Handle title parsing for subpages
+!! options
+title=[[/123123]]
+!! wikitext
+123
+!! html/parsoid
+<p>123</p>
+!! end
+
+## FIXME: Add a working php section here
+!! test
+Link to a subpage from a namespace other than main
+!! options
+title=[[User:test]]
+!! wikitext
+[[/123]]
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./User:Test/123" title="User:Test/123" data-parsoid='{"stx":"simple","a":{"href":"./User:Test/123"},"sa":{"href":"/123"}}'>/123</a></p>
 !! end
 
 !! test
@@ -8515,18 +8511,25 @@ language=ln
 !! test
 Parsoid bug 53221: Wikilinks should be properly entity-escaped
 !! options
-parsoid=html2wt
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
 <p>He&amp;nbsp;llo <a href="Foo" rel="mw:WikiLink">He&amp;nbsp;llo</a></p>
 <p>He&amp;nbsp;llo <a href="He&amp;nbsp;llo" rel="mw:WikiLink">He&amp;nbsp;llo</a></p>
 !! wikitext
 He&amp;nbsp;llo [[Foo|He&amp;nbsp;llo]]
 
-He&amp;nbsp;llo [[He&amp;nbsp;llo]]
+He&amp;nbsp;llo He&amp;nbsp;llo
+!! html/php
+<p>He&amp;nbsp;llo <a href="/wiki/Foo" title="Foo">He&amp;nbsp;llo</a>
+</p><p>He&amp;nbsp;llo He&amp;nbsp;llo
+</p>
 !! end
 
+# html2wt will fail because of title normalization without data-parsoid
 !! test
 Parsoid: handle constructor well
+!! options
+parsoid=wt2html,wt2wt
 !! wikitext
 [[constructor]]
 
@@ -8536,9 +8539,9 @@ Parsoid: handle constructor well
 </p><p><a href="/index.php?title=Constructor:foo&amp;action=edit&amp;redlink=1" class="new" title="Constructor:foo (page does not exist)">constructor:foo</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Constructor" title="Constructor" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Constructor&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor&quot;}}">constructor</a></p>
+<p><a rel="mw:WikiLink" href="./Constructor" title="Constructor" data-parsoid='{"stx":"simple","a":{"href":"./Constructor"},"sa":{"href":"constructor"}}'>constructor</a></p>
 
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Foo&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor:foo&quot;}}">constructor:foo</a></p>
+<p><a rel="mw:WikiLink" href="./Constructor:foo" title="Constructor:foo" data-parsoid='{"stx":"simple","a":{"href":"./Constructor:foo"},"sa":{"href":"constructor:foo"}}'>constructor:foo</a></p>
 !! end
 
 !! article
@@ -10140,7 +10143,7 @@ Parsoid: Page property magic word with magic word contents
 !! wikitext
 {{DISPLAYTITLE:''{{PAGENAME}}''}}
 !! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Main_Page" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main_Page&lt;/span>&lt;/i>"}]]}'/>
+<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main Page&lt;/span>&lt;/i>"}]]}'/>
 !! end
 
 !! test
@@ -10970,7 +10973,7 @@ foo {{''}} baz
 <p>foo bar baz
 </p>
 !! html/parsoid
-<p>foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"&#39;&#39;"},"params":{},"i":0}}]}'>bar</span> baz
+<p>foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"&#39;&#39;","href":"./Template:&#39;&#39;"},"params":{},"i":0}}]}'>bar</span> baz
 </p>
 !! end
 
@@ -11443,6 +11446,33 @@ parsoid=wt2html
 <tbody><tr><td>c</td></tr>
 </tbody></table>
 !!end
+
+!! test
+Table wikitext syntax outside wiki-tables
+!! wikitext
+a
+|+ not a caption
+! not a table heading
+|- not a table row
+| not a table cell
+| class="foo bar" | baz
+b
+|}
+|-
+c
+!! html
+<p>a
+|+ not a caption
+! not a table heading
+|- not a table row
+| not a table cell
+| class="foo bar" | baz
+b
+|}
+|-
+c
+</p>
+!! end
 
 ###
 ### Testing parsing of templates where a template arg
@@ -13956,6 +13986,17 @@ Escape HTML special chars in image alt text
 !! end
 
 !! test
+Entities in file name and attributes
+!! wikitext
+[[File:7%25 solution.gif|manualthumb=7%25 solution.gif|link=7%25 solution|[[7%25 solution]]]]
+!! html/php
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=7%25_solution.gif" class="new" title="File:7% solution.gif">7% solution</a>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&#39;>7% solution&lt;/a>"}'><a href="./7%25_solution" data-parsoid='{"a":{"href":"./7%25_solution"},"sa":{"href":"link=7%25 solution"}}'><img resource="./File:7%25_solution.gif" src="./Special:FilePath/7%25_solution.gif" height="220" width="220" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif","height":"220","width":"220"},"sa":{"resource":"File:7%25 solution.gif"}}'/></a></span></p>
+!! end
+
+!! test
 BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! wikitext
 [[File:Foobar.jpg|&#9792;]]
@@ -14918,6 +14959,14 @@ parsoid=wt2html
 <link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Foo]]\n[[Category:Bar]]"}},"i":0}}]}'/><span about="#mwt1">
 </span><link rel="mw:PageProp/Category" href="./Category:Bar" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"}}'/>
 <link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"}}'/>
+!! end
+
+!! test
+Category links with multiple namespaces
+!! wikitext
+[[Category:Project:Foo]]
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Project:Foo" />
 !! end
 
 !! test
@@ -19329,10 +19378,14 @@ subpage title=[[Subpage test/L1/L2]]
 </p>
 !! end
 
+# This is wt2html only in Parsoid because we add <nowiki>
+# because of {{..}} and we don't expect to fix that to
+# eliminate the nowikis selective for {{..}} markup.
 !! test
 Non-transclusion because of too many up levels
 !! options
 subpage title=[[Subpage test/L1/L2/L3]]
+parsoid=wt2html
 !! wikitext
 {{../../../../More than parent}}
 !! html
@@ -20036,10 +20089,14 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 </p>
 !! end
 
+# Since Parsoid is starting to emit canonical wikitext for links,
+# [http://example.com http://example.com] will not RT back to that
+# form anymore.
 !! test
 Proper conversion of text in external links
 !! options
 language=sr variant=sr-ec
+parsoid=wt2html
 !! wikitext
 http://www.google.com
 gopher://www.google.com
@@ -20048,7 +20105,7 @@ gopher://www.google.com
 [https://www.google.com irc://www.google.com]
 [ftp://www.google.com www.google.com/ftp://dir]
 [//www.google.com www.google.com]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
 <a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
 <a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
@@ -20057,6 +20114,14 @@ gopher://www.google.com
 <a rel="nofollow" class="external text" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
 <a rel="nofollow" class="external text" href="//www.google.com">www.гоогле.цом</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.google.com">http://www.google.com</a>
+<a rel="mw:ExtLink" href="gopher://www.google.com">gopher://www.google.com</a>
+<a rel="mw:ExtLink" href="http://www.google.com">http://www.google.com</a>
+<a rel="mw:ExtLink" href="gopher://www.google.com">gopher://www.google.com</a>
+<a rel="mw:ExtLink" href="https://www.google.com">irc://www.google.com</a>
+<a rel="mw:ExtLink" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
+<a rel="mw:ExtLink" href="//www.google.com">www.гоогле.цом</a></p>
 !! end
 
 !! test
@@ -24954,10 +25019,24 @@ Don't block XML namespace declaration
 
 # -----------------------------------------------------------------
 # The following section of tests are primarily to spec requirements
-# around serialization of new/edited content.
+# around Parsoid's serialization (old, new, edited content)
 #
 # All these tests are marked Parsoid html2wt and html2html only
 # ----------------------------------------------------------------
+
+!! test
+Ignore rel attribute in a-tags during serialization to url-links
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href='http://en.wikipedia.org/wiki/Foobar'>http://en.wikipedia.org/wiki/Foobar</a>
+<a href='http://en.wikipedia.org/wiki/Foobar' rel='mw:ExtLink'>http://en.wikipedia.org/wiki/Foobar</a>
+<a href='http://en.wikipedia.org/wiki/Foobar' rel='mw:WikiLink'>http://en.wikipedia.org/wiki/Foobar</a>
+!! wikitext
+http://en.wikipedia.org/wiki/Foobar
+http://en.wikipedia.org/wiki/Foobar
+http://en.wikipedia.org/wiki/Foobar
+!! end
 
 # 'mi' is a localinterwiki prefix as well as a language
 !! test
@@ -24978,9 +25057,15 @@ parsoid=html2wt
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{}'>Foo</a>
 <a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a>
+<a href="//en.wikipedia.org/wiki/Foo">//en.wikipedia.org/wiki/Foo</a>
+<a href="http://en.wikipedia.org/wiki/Foo">http://en.wikipedia.org/wiki/Foo</a>
+<a href="//en.wikipedia.org/wiki/Foo_bar">//en.wikipedia.org/wiki/Foo bar</a>
 !! wikitext
 [[Foo]]
 [[Foo]]
+[[:en:Foo|//en.wikipedia.org/wiki/Foo]]
+http://en.wikipedia.org/wiki/Foo
+[[:en:Foo_bar|//en.wikipedia.org/wiki/Foo bar]]
 !! end
 
 !! test
@@ -25289,6 +25374,17 @@ parsoid=html2wt
 <img src="./File:Foobar.jpg">
 !! wikitext
 [[File:Foobar.jpg|link=]]
+!! end
+
+!! test
+Image: Invalid title as link
+!! wikitext
+[[File:Foobar.jpg|link=<]]
+!! html/php
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="link=&lt;"><img alt="link=&lt;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=&lt;"}]}' data-mw='{"caption":"link=&amp;lt;"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
 !! test
