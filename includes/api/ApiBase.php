@@ -1017,6 +1017,11 @@ abstract class ApiBase extends ContextSource {
 					}
 				}
 			}
+
+			// Check for NFC normalization, and warn
+			if ( $rawValue !== $value ) {
+				$this->handleParamNormalization( $paramName, $value, $rawValue );
+			}
 		}
 
 		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
@@ -1160,6 +1165,22 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Handle when a parameter was Unicode-normalized
+	 * @since 1.28
+	 * @param string $paramName Unprefixed parameter name
+	 * @param string $value Input that will be used.
+	 * @param string $rawValue Input before normalization.
+	 */
+	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
+		$encParamName = $this->encodeParamName( $paramName );
+		$this->setWarning(
+			"The value passed for '$encParamName' contains invalid or non-normalized data. "
+			. 'Textual data should be valid, NFC-normalized Unicode without '
+			. 'C0 control characters other than HT (\\t), LF (\\n), and CR (\\r).'
+		);
 	}
 
 	/**
