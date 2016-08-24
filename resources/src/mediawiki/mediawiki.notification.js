@@ -4,6 +4,7 @@
 	var notification,
 		// The #mw-notification-area div that all notifications are contained inside.
 		$area,
+		$globalArea,
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
 		isPageReady = false,
@@ -71,6 +72,7 @@
 		// Private state parameters, meant for internal use only
 		// isOpen: Set to true after .start() is called to avoid double calls.
 		//         Set back to false after .close() to avoid duplicating the close animation.
+		// isGlobal: The notification is in the global area rather than the content area
 		// isPaused: false after .resume(), true after .pause(). Avoids duplicating or breaking the hide timeouts.
 		//           Set to true initially so .start() can call .resume().
 		// message: The message passed to the notification. Unused now but may be used in the future
@@ -78,6 +80,7 @@
 		// options: The options passed to the notification with a little sanitization. Used by various methods.
 		// $notification: jQuery object containing the notification DOM node.
 		this.isOpen = false;
+		this.isGlobal = !!options.global;
 		this.isPaused = true;
 		this.message = message;
 		this.options = options;
@@ -91,12 +94,14 @@
 	 * This inserts the notification into the page, closes any matching tagged notifications,
 	 * handles the fadeIn animations and replacement transitions, and starts autoHide timers.
 	 *
+	 * @param {boolean} [showInGlobalOverlay] Show the popup in global overlay
 	 * @private
 	 */
 	Notification.prototype.start = function () {
-		var options, $notification, $tagMatches, autohideCount;
+		var options, $notification, $tagMatches, autohideCount,
+			$usedArea = this.isGlobal ? $globalArea : $area;
 
-		$area.show();
+		$usedArea.show();
 
 		if ( this.isOpen ) {
 			return;
@@ -110,7 +115,7 @@
 
 		if ( options.tag ) {
 			// Find notifications with the same tag
-			$tagMatches = $area.find( '.mw-notification-tag-' + options.tag );
+			$tagMatches = $usedArea.find( '.mw-notification-tag-' + options.tag );
 		}
 
 		// If we found existing notification with the same tag, replace them
@@ -138,7 +143,7 @@
 				.insertBefore( $tagMatches.first() )
 				.addClass( 'mw-notification-visible' );
 		} else {
-			$area.append( $notification );
+			$usedArea.append( $notification );
 			rAF( function () {
 				// This frame renders the element in the area (invisible)
 				rAF( function () {
@@ -150,7 +155,7 @@
 		// By default a notification is paused.
 		// If this notification is within the first {autoHideLimit} notifications then
 		// start the auto-hide timer as soon as it's created.
-		autohideCount = $area.find( '.mw-notification-autohide' ).length;
+		autohideCount = $usedArea.find( '.mw-notification-autohide' ).length;
 		if ( autohideCount <= notification.autoHideLimit ) {
 			this.resume();
 		}
@@ -260,9 +265,12 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, $window = $( window );
+		var offset, offsetGlobal,
+			$window = $( window );
 
-		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
+		$area = $( '<div>' )
+			.attr( 'id', 'mw-notification-area' )
+			.addClass( 'mw-notification-area mw-notification-area-layout' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
 				mouseenter: notification.pause,
@@ -280,15 +288,28 @@
 			.on( 'click', 'a', function ( e ) {
 				e.stopPropagation();
 			} );
+		$globalArea = $area.clone( true, true );
+		$globalArea
+			.addClass( 'mw-notification-area-global' );
 
 		// Prepend the notification area to the content area and save it's object.
 		mw.util.$content.prepend( $area );
+		// Also append a notification area to the body to make sure
+		// the z-index counts, and it always appears on top of everything else
+		$( 'body' ).append( $globalArea );
+
 		offset = $area.offset();
+		offsetGlobal = $globalArea.offset();
+
 		$area.hide();
+		$globalArea.hide();
 
 		function updateAreaMode() {
 			var isFloating = $window.scrollTop() > offset.top;
 			$area
+				.toggleClass( 'mw-notification-area-floating', isFloating )
+				.toggleClass( 'mw-notification-area-layout', !isFloating );
+			$globalArea
 				.toggleClass( 'mw-notification-area-floating', isFloating )
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
 		}
