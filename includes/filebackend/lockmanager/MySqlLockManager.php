@@ -23,6 +23,8 @@ class MySqlLockManager extends DBLockManager {
 	protected function initConnection( $lockDb, IDatabase $db ) {
 		# Let this transaction see lock rows from other transactions
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
+		# Do everything in a transaction as it all gets rolled back eventually
+		$db->startAtomic( __CLASS__ );
 	}
 
 	/**

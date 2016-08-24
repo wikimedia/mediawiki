@@ -144,33 +144,38 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * @param string $lockDb
 	 * @return IDatabase
 	 * @throws DBError
+	 * @throws UnexpectedValueException
 	 */
 	protected function getConnection( $lockDb ) {
 		if ( !isset( $this->conns[$lockDb] ) ) {
-			$db = null;
 			if ( $lockDb === 'localDBMaster' ) {
-				$db = $this->getLocalLB()->getConnection( DB_MASTER, [], $this->domain );
+				$lb = $this->getLocalLB();
+				$db = $lb->getConnection( DB_MASTER, [], $this->domain );
+				# Do not mess with settings if the LoadBalancer is the main singleton
+				# to avoid clobbering the settings of handles from wfGetDB( DB_MASTER ).
+				$init = ( wfGetLB() !== $lb );
 			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
 				$config = $this->dbServers[$lockDb];
 				$db = DatabaseBase::factory( $config['type'], $config );
+				$init = true;
+			} else {
+				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}
-			if ( !$db ) {
-				return null; // config error?
+
+			if ( $init ) {
+				$db->clearFlag( DBO_TRX );
+				# If the connection drops, try to avoid letting the DB rollback
+				# and release the locks before the file operations are finished.
+				# This won't handle the case of DB server restarts however.
+				$options = [];
+				if ( $this->lockExpiry > 0 ) {
+					$options['connTimeout'] = $this->lockExpiry;
+				}
+				$db->setSessionOptions( $options );
+				$this->initConnection( $lockDb, $db );
 			}
+
 			$this->conns[$lockDb] = $db;
-			$this->conns[$lockDb]->clearFlag( DBO_TRX );
-			# If the connection drops, try to avoid letting the DB rollback
-			# and release the locks before the file operations are finished.
-			# This won't handle the case of DB server restarts however.
-			$options = [];
-			if ( $this->lockExpiry > 0 ) {
-				$options['connTimeout'] = $this->lockExpiry;
-			}
-			$this->conns[$lockDb]->setSessionOptions( $options );
-			$this->initConnection( $lockDb, $this->conns[$lockDb] );
-		}
-		if ( !$this->conns[$lockDb]->trxLevel() ) {
-			$this->conns[$lockDb]->begin( __METHOD__ ); // start transaction
 		}
 
 		return $this->conns[$lockDb];
