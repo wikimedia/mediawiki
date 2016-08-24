@@ -267,15 +267,53 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			'user_case_dbkey' => $dbkey,
 		];
 
-		# Strip Unicode bidi override characters.
-		# Sometimes they slip into cut-n-pasted page titles, where the
-		# override chars get included in list displays.
+		/*
+		 * Strip Unicode bidi override characters.
+		 * Sometimes they slip into cut-n-pasted page titles, where the
+		 * override chars get included in list displays.
+		 *
+		 * Prevented characters:
+		 * U+200E "‎" LEFT-TO-RIGHT MARK (as \xe2\x80\x83)
+		 * U+200F "‏" RIGHT-TO-LEFT MARK (as \xe2\x80\x8f)
+		 * U+202A "‪" LEFT-TO-RIGHT EMBEDDING (as \xe2\x80\xaa)
+		 * U+202B "‫" RIGHT-TO-LEFT EMBEDDING (as \xe2\x80\xab)
+		 * U+202C "‬" POP DIRECTIONAL FORMATTING (as \xe2\x80\xac)
+		 * U+202D "‭" LEFT-TO-RIGHT OVERRIDE (as \xe2\x80\xad)
+		 * U+202E "‮" RIGHT-TO-LEFT OVERRIDE (as \xe2\x80\xae)
+		 *
+		 * This should be kept in sync with mediawiki.Title.js's rUnicodeBidi.
+		*/
 		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
 
-		# Clean up whitespace
-		# Note: use of the /u option on preg_replace here will cause
-		# input with invalid UTF-8 sequences to be nullified out in PHP 5.2.x,
-		# conveniently disabling them.
+		/*
+		 * Clean up whitespace
+		 * Note: use of the /u option on preg_replace here will cause
+		 * input with invalid UTF-8 sequences to be nullified out in PHP 5.2.x,
+		 * conveniently disabling them.
+		 *
+		 * Prevented characters:
+		 * U+00A0 " " NO-BREAK SPACE
+		 * U+1680 " " OGHAM SPACE MARK
+		 * U+180E "᠎" MONGOLIAN VOWEL SEPARATOR
+		 * U+2000 " " EN QUAD
+		 * U+2001 " " EM QUAD
+		 * U+2002 " " EN SPACE
+		 * U+2003 " " EM SPACE
+		 * U+2004 " " THREE-PER-EM SPACE
+		 * U+2005 " " FOUR-PER-EM SPACE
+		 * U+2006 " " SIX-PER-EM SPACE
+		 * U+2007 " " FIGURE SPACE
+		 * U+2008 " " PUNCTUATION SPACE
+		 * U+2009 " " THIN SPACE
+		 * U+200A " " HAIR SPACE
+		 * U+2028 " " LINE SEPARATOR
+		 * U+2029 " " PARAGRAPH SEPARATOR
+		 * U+202F " " NARROW NO-BREAK SPACE
+		 * U+205F " " MEDIUM MATHEMATICAL SPACE
+		 * U+3000 "　" IDEOGRAPHIC SPACE
+		 *
+		 * This should be kept in sync with mediawiki.Title.js's rWhitespace.
+		 */
 		$dbkey = preg_replace(
 			'/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u',
 			'_',

@@ -164,9 +164,54 @@
 		'|&#x[0-9A-Fa-f]+;'
 	),
 
-	// From MediaWikiTitleCodec.php#L225 @26fcab1f18c568a41
-	// "Clean up whitespace" in function MediaWikiTitleCodec::splitTitleString()
-	rWhitespace = /[ _\u0009\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\s]+/g,
+	/* jshint -W100 */
+	/*
+	 * Strip Unicode bidi override characters.
+	 * Sometimes they slip into cut-n-pasted page titles, where the
+	 * override chars get included in list displays.
+	 *
+	 * Prevented characters:
+	 * U+200E "‎" LEFT-TO-RIGHT MARK (as \xe2\x80\x83)
+	 * U+200F "‏" RIGHT-TO-LEFT MARK (as \xe2\x80\x8f)
+	 * U+202A "‪" LEFT-TO-RIGHT EMBEDDING (as \xe2\x80\xaa)
+	 * U+202B "‫" RIGHT-TO-LEFT EMBEDDING (as \xe2\x80\xab)
+	 * U+202C "‬" POP DIRECTIONAL FORMATTING (as \xe2\x80\xac)
+	 * U+202D "‭" LEFT-TO-RIGHT OVERRIDE (as \xe2\x80\xad)
+	 * U+202E "‮" RIGHT-TO-LEFT OVERRIDE (as \xe2\x80\xae)
+	 *
+	 * This should be kept in sync with MediaWikiTitleCodec's splitTitleString.
+	*/
+	rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]/g,
+
+	/*
+	 * Clean up whitespace
+	 * Note that this is not equivalent to /\s/, e.g. underscore is included, tab is not included.
+	 *
+	 * Prevented characters:
+	 * U+00A0 " " NO-BREAK SPACE
+	 * U+1680 " " OGHAM SPACE MARK
+	 * U+180E "᠎" MONGOLIAN VOWEL SEPARATOR
+	 * U+2000 " " EN QUAD
+	 * U+2001 " " EM QUAD
+	 * U+2002 " " EN SPACE
+	 * U+2003 " " EM SPACE
+	 * U+2004 " " THREE-PER-EM SPACE
+	 * U+2005 " " FOUR-PER-EM SPACE
+	 * U+2006 " " SIX-PER-EM SPACE
+	 * U+2007 " " FIGURE SPACE
+	 * U+2008 " " PUNCTUATION SPACE
+	 * U+2009 " " THIN SPACE
+	 * U+200A " " HAIR SPACE
+	 * U+2028 " " LINE SEPARATOR
+	 * U+2029 " " PARAGRAPH SEPARATOR
+	 * U+202F " " NARROW NO-BREAK SPACE
+	 * U+205F " " MEDIUM MATHEMATICAL SPACE
+	 * U+3000 "　" IDEOGRAPHIC SPACE
+	 *
+	 * This should be kept in sync with MediaWikiTitleCodec's splitTitleString.
+	 */
+	rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
+	/* jshint +W100 */
 
 	/**
 	 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
@@ -178,18 +223,6 @@
 		// "signature"
 		{
 			pattern: /~{3}/g,
-			replace: '',
-			generalRule: true
-		},
-		// Space, underscore, tab, NBSP and other unusual spaces
-		{
-			pattern: rWhitespace,
-			replace: ' ',
-			generalRule: true
-		},
-		// unicode bidi override characters: Implicit, Embeds, Overrides
-		{
-			pattern: /[\u200E\u200F\u202A-\u202E]/g,
 			replace: '',
 			generalRule: true
 		},
@@ -261,8 +294,10 @@
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		title = title
+			// Strip Unicode bidi override characters
+			.replace( rUnicodeBidi, '' )
 			// Normalise whitespace to underscores and remove duplicates
-			.replace( /[ _\s]+/g, '_' )
+			.replace( rWhitespace, '_' )
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 
@@ -557,8 +592,8 @@
 
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
-		// Normalise whitespace and remove duplicates
-		title = $.trim( title.replace( rWhitespace, ' ' ) );
+		// Normalise additional whitespace
+		title = $.trim( title.replace( /\s/g, ' ' ) );
 
 		// Process initial colon
 		if ( title !== '' && title[ 0 ] === ':' ) {
