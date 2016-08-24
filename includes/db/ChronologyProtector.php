@@ -33,6 +33,10 @@ class ChronologyProtector {
 	protected $key;
 	/** @var array Map of (ip: <IP>, agent: <user-agent>) */
 	protected $client;
+	/** @var float Minimum UNIX timestamp of 1+ expected startup positions */
+	protected $waitForPosTime;
+	/** @var int Max seconds to wait on positions to appear */
+	protected $waitForPosTimeout = self::POS_WAIT_TIMEOUT;
 	/** @var bool Whether to no-op all method calls */
 	protected $enabled = true;
 	/** @var bool Whether to check and wait on positions */
@@ -45,18 +49,25 @@ class ChronologyProtector {
 	/** @var DBMasterPos[] Map of (DB master name => position) */
 	protected $shutdownPositions = [];
 
+	/** @var integer Seconds to store positions */
+	const POSITION_TTL = 60;
+	/** @var integer Max time to wait for positions to appear */
+	const POS_WAIT_TIMEOUT = 5;
+
 	/**
 	 * @param BagOStuff $store
 	 * @param array $client Map of (ip: <IP>, agent: <user-agent>)
+	 * @param float $posTime UNIX timestamp
 	 * @since 1.27
 	 */
-	public function __construct( BagOStuff $store, array $client ) {
+	public function __construct( BagOStuff $store, array $client, $posTime ) {
 		$this->store = $store;
 		$this->client = $client;
 		$this->key = $store->makeGlobalKey(
 			'ChronologyProtector',
 			md5( $client['ip'] . "\n" . $client['agent'] )
 		);
+		$this->waitForPosTime = $posTime;
 	}
 
 	/**
@@ -135,9 +146,11 @@ class ChronologyProtector {
 	 * Notify the ChronologyProtector that the LBFactory is done calling shutdownLB() for now.
 	 * May commit chronology data to persistent storage.
 	 *
+	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
+	 * @param bool $sync Sync positions accross all DCs
 	 * @return array Empty on success; returns the (db name => position) map on failure
 	 */
-	public function shutdown() {
+	public function shutdown( callable $workCallback = null, $sync = true ) {
 		if ( !$this->enabled || !count( $this->shutdownPositions ) ) {
 			return true; // nothing to save
 		}
@@ -147,32 +160,39 @@ class ChronologyProtector {
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
+		$store = $this->store;
+		if ( $workCallback ) {
+			// Let the store run the work before blocking on a replication sync barrier. By the
+			// time it's done with the work, the barrier should be fast if replication caught up.
+			$store->addBusyCallback( $workCallback );
+		}
 		// CP-protected writes should overwhemingly go to the master datacenter, so get DC-local
 		// lock to merge the values. Use a DC-local get() and a synchronous all-DC set(). This
 		// makes it possible for the BagOStuff class to write in parallel to all DCs with one RTT.
-		if ( $this->store->lock( $this->key, 3 ) ) {
-			$ok = $this->store->set(
+		if ( $store->lock( $this->key, 3 ) ) {
+			$ok = $store->set(
 				$this->key,
-				self::mergePositions( $this->store->get( $this->key ), $this->shutdownPositions ),
-				BagOStuff::TTL_MINUTE,
-				BagOStuff::WRITE_SYNC
+				self::mergePositions( $store->get( $this->key ), $this->shutdownPositions ),
+				self::POSITION_TTL,
+				$sync ? $store::WRITE_SYNC : 0
 			);
-			$this->store->unlock( $this->key );
+			$store->unlock( $this->key );
 		} else {
 			$ok = false;
 		}
 
 		if ( !$ok ) {
+			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
 			wfDebugLog( 'replication',
 				__METHOD__ . ": failed to save master pos for " .
 				implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 			);
-
-			return $this->shutdownPositions;
+		} else {
+			$bouncedPositions = [];
 		}
 
-		return [];
+		return $bouncedPositions;
 	}
 
 	/**
@@ -186,6 +206,42 @@ class ChronologyProtector {
 		$this->initialized = true;
 		if ( $this->wait ) {
 			$data = $this->store->get( $this->key );
+			// If there is an expectation to see master positions with a certain min
+			// timestamp, then block until they appear, or until a timeout is reached.
+			if ( $this->waitForPosTime ) {
+				$sleepMs = 10;
+				$waitedMs = 0;
+				$timeoutMs = $this->waitForPosTimeout * 1e3;
+				$found = false;
+				while ( $waitedMs < $timeoutMs ) {
+					if ( $data &&
+						self::minPosTime( $data['positions'] ) >= $this->waitForPosTime
+					) {
+						$found = true;
+						break;
+					}
+
+					$age = microtime( true ) - $this->waitForPosTime;
+					if ( $age > self::POSITION_TTL ) {
+						$found = false; // probably expired anyway
+						break;
+					}
+
+					usleep( $sleepMs * 1e3 );
+					$waitedMs += $sleepMs;
+					// 10 queries = 10(10+100)/2 ms = 550ms, 14 queries = 1050ms
+					$sleepMs = min( $sleepMs + 10, 1e3 ); // stop incrementing at ~1s
+
+					$data = $this->store->get( $this->key );
+				}
+				if ( $found ) {
+					$msg = "expected and found pos time {$this->waitForPosTime} ({$waitedMs}ms)";
+				} else {
+					$msg = "expected but missed pos time {$this->waitForPosTime} ({$waitedMs}ms)";
+				}
+				wfDebugLog( 'replication', $msg );
+			}
+
 			$this->startupPositions = $data ? $data['positions'] : [];
 
 			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (read)\n" );
@@ -194,6 +250,19 @@ class ChronologyProtector {
 
 			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (unread)\n" );
 		}
+	}
+
+	/**
+	 * @param DBMasterPos[] $positions
+	 * @return float|null
+	 */
+	private static function minPosTime( array $positions ) {
+		$min = null;
+		foreach ( $positions as $pos ) {
+			$min = $min ? min( $pos->asOfTime(), $min ) : $pos->asOfTime();
+		}
+
+		return $min;
 	}
 
 	/**
