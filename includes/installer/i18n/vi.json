@@ -200,6 +200,7 @@
 	"config-subscribe": "Theo dõi [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce danh sách thư thông báo phát hành].",
 	"config-subscribe-help": "thông báo an ninh.\nBạn nên đồng ý với nó và cập nhật bản cài đặt MediaWiki của bạn khi phiên bản mới xuất hiện.",
 	"config-subscribe-noemail": "Bạn đã cố gắng để đăng ký vào danh sách thư thông báo phát hành mà không cung cấp một địa chỉ thư điện tử nào cả.\nVui lòng cung cấp một địa chỉ thư điện tử nếu bạn muốn đăng ký vào danh sách thư.",
+	"config-pingback": "Chia sẻ dữ liệu về bản cài đặt này với nhóm phát triển MediaWiki.",
 	"config-almost-done": "Bạn gần như đã hoàn tất!\nBây giờ bạn có thể bỏ qua cấu hình còn lại và cài đặt wiki ngay bây giờ.",
 	"config-optional-continue": "Hỏi tôi về thêm chi tiết.",
 	"config-optional-skip": "Chán quá, cài đặt wiki rỗi.",

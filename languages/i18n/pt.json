@@ -597,7 +597,7 @@
 	"botpasswords-insert-failed": "Falhou ao adicionar o nome do robô \"$1\". Já foi adicionado?",
 	"botpasswords-update-failed": "Falha ao atualizar o nome do robô \"$1\". Será que foi eliminado?",
 	"botpasswords-created-title": "Criada palavra-passe para o robô",
-	"botpasswords-created-body": "O robô palavra-passe para o nome do robô \"$1\" do utilizador \"$2\" foi criado.",
+	"botpasswords-created-body": "A palavra-passe de robô para o robô \"$1\" do utilizador \"$2\" foi criada.",
 	"botpasswords-updated-title": "A palavra-passe de robô foi actualizada.",
 	"botpasswords-updated-body": "O robô palavra-passe para o nome do robô \"$1\" do utilizador \"$2\" foi atualizado.",
 	"botpasswords-deleted-title": "Palavra-passe de robô eliminada",

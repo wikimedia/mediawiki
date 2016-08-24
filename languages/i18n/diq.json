@@ -852,7 +852,7 @@
 	"lineno": "Xeta $1:",
 	"compareselectedversions": "Rewizyonanê weçineyan pêver ke",
 	"showhideselectedversions": "Revizyonanê weçinıtan bımocne/bınımne",
-	"editundo": "peyser bıgê",
+	"editundo": "peyser bıya",
 	"diff-empty": "(Babetna niyo)",
 	"diff-multi-sameuser": "(Terefê eyni karberi ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni nêmocnê}})",
 	"diff-multi-otherusers": "(Terefê {{PLURAL:$2|yew karberi|$2 karberan}} ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni nêmocnê}})",

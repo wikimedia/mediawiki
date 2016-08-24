@@ -150,7 +150,13 @@
 	"config-install-user": "Kuriamas duomenų bazės naudotojas",
 	"config-install-user-alreadyexists": "Naudotojas „$1“ jau yra",
 	"config-install-user-create-failed": "Nepavyko sukurti naudotojo „$1“: $2",
+	"config-install-user-missing": "Nurodytas vartotojas „$1“ neegzistuoja.",
+	"config-install-user-missing-create": "Nurodytas vartotojas „$1“ neegzistuoja.\nPrašome pažymėti „sukurti paskyrą“ laukelį žemiau jei norite jį sukurti.",
 	"config-install-tables": "Kuriamos lentelės",
+	"config-install-tables-exist": "<strong>Įspėjimas:</strong> MediaWiki lentelės, atrodo, jau egzistuoja.\nKūrimas praleidžiamas.",
+	"config-install-tables-failed": "<strong>Klaida:</strong> Lentelės sukūrimas nepavyko dėl šios klaidos: $1",
+	"config-install-interwiki-list": "Nepavyko perskaityti failo <code>interwiki.list</code>.",
+	"config-install-interwiki-exists": "<strong>Įspėjimas:</strong> Interwiki lentelė, atrodo, jau turi įrašų.\nNumatytasis sąrašas praleidžiamas.",
 	"config-install-stats": "Inicijuojamos statistikos",
 	"config-install-keys": "Generuojami slapti raktai",
 	"config-install-sysop": "Administratoriaus vartotojo paskyra kuriama",
@@ -162,6 +168,6 @@
 	"config-help": "pagalba",
 	"config-help-tooltip": "spustelėkite išplėtimui",
 	"config-nofile": "Failas \"$1\" nerastas. Ar jis buvo ištrintas?",
-	"mainpagetext": "'''MediaWiki sėkmingai įdiegta.'''",
+	"mainpagetext": "<strong>MediaWiki sėkmingai įdiegta.</strong>",
 	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [https://meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
 }

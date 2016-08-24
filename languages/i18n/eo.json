@@ -2022,7 +2022,7 @@
 	"actionfailed": "Ago malsukcesis",
 	"deletedtext": "\"$1\" estas forigita.\nVidu la paĝon $2 por registro de lastatempaj forigoj.",
 	"dellogpage": "Protokolo pri forigoj",
-	"dellogpagetext": "Jen listo de la plej lastaj forigoj el la datumaro.\nĈiuj tempoj sekvas la horzonon UTC.",
+	"dellogpagetext": "Jen listo de la plej lastaj forigoj.",
 	"deletionlog": "protokolo pri forigoj",
 	"reverted": "Malfaris al antaŭa revisio",
 	"deletecomment": "Kialo:",
