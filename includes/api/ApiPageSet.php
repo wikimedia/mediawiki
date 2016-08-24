@@ -495,10 +495,14 @@ class ApiPageSet extends ApiBase {
 	 * @since 1.21
 	 */
 	public function getNormalizedTitlesAsResult( $result = null ) {
+		global $wgContLang;
+
 		$values = [];
 		foreach ( $this->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
+			$encode = ( $wgContLang->normalize( $rawTitleStr ) !== $rawTitleStr );
 			$values[] = [
-				'from' => $rawTitleStr,
+				'fromencoded' => $encode,
+				'from' => $encode ? rawurlencode( $rawTitleStr ) : $rawTitleStr,
 				'to' => $titleStr
 			];
 		}
@@ -1401,6 +1405,23 @@ class ApiPageSet extends ApiBase {
 		}
 
 		return $result;
+	}
+
+	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
+		parent::handleParamNormalization( $paramName, $value, $rawValue );
+
+		if ( $paramName === 'titles' ) {
+			// For the 'titles' parameter, we want to split it like ApiBase would
+			// and add any changed titles to $this->mNormalizedTitles
+			$value = $this->explodeMultiValue( $value, self::LIMIT_SML2 + 1 );
+			$l = count( $value );
+			$rawValue = $this->explodeMultiValue( $rawValue, $l );
+			for ( $i = 0; $i < $l; $i++ ) {
+				if ( $value[$i] !== $rawValue[$i] ) {
+					$this->mNormalizedTitles[$rawValue[$i]] = $value[$i];
+				}
+			}
+		}
 	}
 
 	private static $generators = null;
