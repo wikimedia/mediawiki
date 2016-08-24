@@ -1521,6 +1521,9 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.action.purge' => [
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.purge.js',
+	],
 	'mediawiki.action.view.dblClickEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => [
