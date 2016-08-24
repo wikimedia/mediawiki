@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LegacyLogger;
+
 /**
  * New debugger system that outputs a toolbar on page view.
  *
@@ -334,6 +336,7 @@ class MWDebug {
 				if ( isset( $context['seconds_elapsed'] ) && isset( $context['memory_used'] ) ) {
 					$prefix .= "{$context['seconds_elapsed']} {$context['memory_used']}  ";
 				}
+				$str = LegacyLogger::interpolate( $str, $context );
 				$str = $prefix . $str;
 			}
 			self::$debug[] = rtrim( UtfNormal\Validator::cleanUp( $str ) );
