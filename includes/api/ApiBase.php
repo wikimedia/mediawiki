@@ -1171,6 +1171,7 @@ abstract class ApiBase extends ContextSource {
 			: self::LIMIT_SML1;
 
 		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
+			$this->logFeatureUsage( "too-many-$valueName-for-{$this->getModulePath()}" );
 			$this->setWarning( "Too many values supplied for parameter '$valueName': " .
 				"the limit is $sizeLimit" );
 		}
