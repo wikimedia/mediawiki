@@ -4050,13 +4050,14 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
+		$buttonLabelKey = $this->isNew ? 'savearticle' : 'savechanges';
+		$buttonLabel = wfMessage( $buttonLabelKey )->text();
 		$attribs = [
 			'id' => 'wpSave',
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( wfMessage( 'savearticle' )->text(),
-			$attribs, [ 'mw-ui-constructive' ] );
+		$buttons['save'] = Html::submitButton( $buttonLabel, $attribs, [ 'mw-ui-constructive' ] );
 
 		++$tabindex; // use the same for preview and live preview
 		$attribs = [
