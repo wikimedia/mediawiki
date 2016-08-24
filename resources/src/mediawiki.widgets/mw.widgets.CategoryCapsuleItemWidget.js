@@ -52,7 +52,13 @@
 			prop: [ 'info' ],
 			titles: titles
 		} ).done( function ( response ) {
+			var unnormalized = {};
+			$.each( response.query.normalized || [], function ( index, data ) {
+				unnormalized[ data.to ] = data.fromencoded ? decodeURIComponent( data.from ) : data.from;
+			} );
 			$.each( response.query.pages, function ( index, page ) {
+				page.title = unnormalized[ page.title ] || page.title;
+				page.title = unnormalized[ page.title ] || page.title; // Yes, we do this twice
 				var title = new ForeignTitle( page.title ).getPrefixedText();
 				cache.existenceCache[ title ] = !page.missing;
 				if ( !queue[ title ] ) {
