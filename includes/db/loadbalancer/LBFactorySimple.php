@@ -160,9 +160,11 @@ class LBFactorySimple extends LBFactory {
 		}
 	}
 
-	public function shutdown( $flags = 0 ) {
+	public function shutdown( $flags = 0, callable $work = null ) {
 		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
-			$this->shutdownChronologyProtector( $this->chronProt );
+			$this->shutdownChronologyProtector( $this->chronProt, $work );
+		} elseif ( $work ) {
+			$work(); // nothing to mask; run it now
 		}
 		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}

@@ -47,6 +47,7 @@ abstract class LBFactory implements DestructibleService {
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
+	const SHUTDOWN_CHRONPROT = 0; // save ChronologyProtector positions
 	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
 
 	/**
@@ -195,10 +196,13 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $flags Supports SHUTDOWN_* flags
-	 * STUB
+	 * @param integer $flags Supports SHUTDOWN_*
+	 * @param callable $work Useful work to mask ChronologyProtector writes [default: null]
 	 */
-	public function shutdown( $flags = 0 ) {
+	public function shutdown( $flags = 0, callable $work = null ) {
+		if ( $work ) {
+			$work();
+		}
 	}
 
 	/**
@@ -507,14 +511,16 @@ abstract class LBFactory implements DestructibleService {
 
 	/**
 	 * @param ChronologyProtector $cp
+	 * @param callable|null $work Useful work to do to reduce time waiting on syncing positions
 	 */
-	protected function shutdownChronologyProtector( ChronologyProtector $cp ) {
-		// Get all the master positions needed
+	protected function shutdownChronologyProtector( ChronologyProtector $cp, $work ) {
+		// Record all the master positions needed
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( $cp ) {
 			$cp->shutdownLB( $lb );
 		} );
-		// Write them to the stash
-		$unsavedPositions = $cp->shutdown();
+		// Write them to the persistent stash. Try to do something useful by running $work
+		// while ChronologyProtector waits for the stash write to replicate to all DCs.
+		$unsavedPositions = $cp->shutdown( $work );
 		// If the positions failed to write to the stash, at least wait on local datacenter
 		// slaves to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
