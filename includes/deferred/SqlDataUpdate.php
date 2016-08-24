@@ -20,6 +20,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Abstract base class for update jobs that put some secondary data extracted
@@ -43,6 +44,9 @@ abstract class SqlDataUpdate extends DataUpdate {
 	/** @var bool Whether this update should be wrapped in a transaction */
 	protected $mUseTransaction;
 
+	/** @var bool Whether the parent changes were rolled back */
+	protected $abort = false;
+
 	/**
 	 * Constructor
 	 *
@@ -53,10 +57,25 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function __construct( $withTransaction = true ) {
 		parent::__construct();
 
-		$this->mDb = wfGetLB()->getLazyConnectionRef( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbw = $lb->getAnyOpenConnection( DB_MASTER );
+		if ( $dbw && $dbw->trxLevel() ) {
+			$dbw->onTransactionResolution( function ( $trigger ) {
+				if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
+					$this->abort = true;
+				}
+			} );
+			$this->mDb = $dbw;
+		} else {
+			$this->mDb = $lb->getLazyConnectionRef( DB_MASTER );
+		}
 
 		$this->mWithTransaction = $withTransaction;
 		$this->mHasTransaction = false;
+	}
+
+	public function shouldAbort() {
+		return $this->abort;
 	}
 
 	/**
