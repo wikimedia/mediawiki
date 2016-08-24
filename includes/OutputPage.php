@@ -2214,10 +2214,16 @@ class OutputPage extends ContextSource {
 	/**
 	 * Finally, all the text has been munged and accumulated into
 	 * the object, let's actually output it:
+	 *
+	 * @param bool $return Set to true to get the result as a string rather than sending it
+	 * @return string|null
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
 	 */
-	public function output() {
+	public function output( $return = false ) {
 		if ( $this->mDoNothing ) {
-			return;
+			return $return ? '' : null;
 		}
 
 		$response = $this->getRequest()->response();
@@ -2253,7 +2259,7 @@ class OutputPage extends ContextSource {
 				}
 			}
 
-			return;
+			return $return ? '' : null;
 		} elseif ( $this->mStatusCode ) {
 			$response->statusHeader( $this->mStatusCode );
 		}
@@ -2322,8 +2328,12 @@ class OutputPage extends ContextSource {
 
 		$this->sendCacheControl();
 
-		ob_end_flush();
-
+		if ( $return ) {
+			return ob_get_clean();
+		} else {
+			ob_end_flush();
+			return null;
+		}
 	}
 
 	/**
