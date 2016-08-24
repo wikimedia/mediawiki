@@ -71,12 +71,15 @@ class PurgeAction extends FormAction {
 			$form = $this->getForm();
 			if ( $form->show() ) {
 				$this->onSuccess();
+			} else {
+				$this->getOutput()->addModules( 'mediawiki.action.purge' );
 			}
 		}
 	}
 
 	protected function alterForm( HTMLForm $form ) {
 		$form->setSubmitTextMsg( 'confirm_purge_button' );
+		$form->setSubmitID( 'mw-purge-submit' );
 	}
 
 	protected function preText() {
