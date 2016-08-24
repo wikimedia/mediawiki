@@ -30,6 +30,12 @@ class MemcachedBagOStuff extends BagOStuff {
 	/** @var MemcachedClient|Memcached */
 	protected $client;
 
+	function __construct( array $params ) {
+		parent::__construct( $params );
+
+		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
+	}
+
 	/**
 	 * Fill in some defaults for missing keys in $params.
 	 *
