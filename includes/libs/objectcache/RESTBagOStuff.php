@@ -51,6 +51,8 @@ class RESTBagOStuff extends BagOStuff {
 		}
 		// Make sure URL ends with /
 		$this->url = rtrim( $params['url'], '/' ) . '/';
+		// Default config, R+W > N; no locks on reads though; writes go straight to state-machine
+		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_QC;
 	}
 
 	/**
