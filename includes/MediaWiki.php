@@ -528,7 +528,10 @@ class MediaWiki {
 	public function run() {
 		try {
 			try {
-				$this->main();
+				/** @var callable $outputPageFunc */
+				$outputPageFunc = null;
+				$this->main( $outputPageFunc );
+				$outputPageFunc();
 			} catch ( ErrorPageError $e ) {
 				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
@@ -545,10 +548,11 @@ class MediaWiki {
 
 	/**
 	 * @see MediaWiki::preOutputCommit()
+	 * @param callable $postCommitWork [default: null]
 	 * @since 1.26
 	 */
-	public function doPreOutputCommit() {
-		self::preOutputCommit( $this->context );
+	public function doPreOutputCommit( callable $postCommitWork = null ) {
+		self::preOutputCommit( $this->context, $postCommitWork );
 	}
 
 	/**
@@ -556,33 +560,38 @@ class MediaWiki {
 	 * the user can receive a response (in case commit fails)
 	 *
 	 * @param IContextSource $context
+	 * @param callable $postCommitWork [default: null]
 	 * @since 1.27
 	 */
-	public static function preOutputCommit( IContextSource $context ) {
+	public static function preOutputCommit(
+		IContextSource $context, callable $postCommitWork = null
+	) {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
 
 		$config = $context->getConfig();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-		$factory = wfGetLBFactory();
 		// Commit all changes
-		$factory->commitMasterChanges(
+		$lbFactory->commitMasterChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
 		);
-		// Record ChronologyProtector positions
-		$factory->shutdown();
-		wfDebug( __METHOD__ . ': all transactions committed' );
+		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
+		// Run updates that need to block the user or effect output (this is the last chance)
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
+
+		// Record ChronologyProtector positions for DBs affected in this request so far
+		$lbFactory->shutdown( $lbFactory::SHUTDOWN_CHRONPROT, $postCommitWork );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
 		// ChronologyProtector works for cacheable URLs.
 		$request = $context->getRequest();
-		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
+		if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
 			$options = [ 'prefix' => '' ];
 			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
@@ -591,7 +600,7 @@ class MediaWiki {
 
 		// Avoid letting a few seconds of slave lag cause a month of stale data. This logic is
 		// also intimately related to the value of $wgCdnReboundPurgeDelay.
-		if ( $factory->laggedSlaveUsed() ) {
+		if ( $lbFactory->laggedSlaveUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );
 			$context->getOutput()->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Database-Lagged: true" );
@@ -649,10 +658,14 @@ class MediaWiki {
 		}
 	}
 
-	private function main() {
+	/**
+	 * @param callable|null &$outputPageFunc Callback to do the job of OutputPage::output()
+	 */
+	private function main( &$outputPageFunc ) {
 		global $wgTitle;
 
 		$request = $this->context->getRequest();
+		$output = $this->context->getOutput();
 
 		// Send Ajax requests to the Ajax dispatcher.
 		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action' ) === 'ajax' ) {
@@ -726,7 +739,6 @@ class MediaWiki {
 				// Setup dummy Title, otherwise OutputPage::redirect will fail
 				$title = Title::newFromText( 'REDIR', NS_MAIN );
 				$this->context->setTitle( $title );
-				$output = $this->context->getOutput();
 				// Since we only do this redir to change proto, always send a vary header
 				$output->addVaryHeader( 'X-Forwarded-Proto' );
 				$output->redirect( $redirUrl );
@@ -742,14 +754,14 @@ class MediaWiki {
 				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
 					// Check incoming headers to see if client has this cached
 					$timestamp = $cache->cacheTimestamp();
-					if ( !$this->context->getOutput()->checkLastModified( $timestamp ) ) {
+					if ( !$output->checkLastModified( $timestamp ) ) {
 						$cache->loadFromFileCache( $this->context );
 					}
 					// Do any stats increment/watchlist stuff
 					// Assume we're viewing the latest revision (this should always be the case with file cache)
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					// Tell OutputPage that output is taken care of
-					$this->context->getOutput()->disable();
+					$output->disable();
 					return;
 				}
 			}
@@ -758,13 +770,29 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
+		// Case A: GUI-ify and flush the output right in MediaWiki::run()
+		$outputPageFunc = function() use ( $output ) {
+			$output->output();
+		};
+		// Case B: GUI-fy the output while syncing DB data (possibly across datacenters)
+		// and output the buffer in MediaWiki::run() once the syncing is done. This only
+		// happens if a user caused database writes in this request.
+		$outputWork = function () use ( $output, &$outputPageFunc ) {
+			ob_start();
+			$output->output();
+			$buffer = ob_get_clean();
+			// Set this to a closure that can flush the output at an appropriate time
+			$outputPageFunc = function () use ( $buffer ) {
+				ob_start();
+				print $buffer;
+				ob_end_flush();
+			};
+		};
+
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction and so that
 		// we avoid having both success and error text in the response
-		$this->doPreOutputCommit();
-
-		// Output everything!
-		$this->context->getOutput()->output();
+		$this->doPreOutputCommit( $outputWork );
 	}
 
 	/**
