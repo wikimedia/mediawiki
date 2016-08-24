@@ -90,6 +90,8 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'A < B', 'title-invalid-characters' ],
 			[ 'A > B', 'title-invalid-characters' ],
 			[ 'A | B', 'title-invalid-characters' ],
+			[ "A \t B", 'title-invalid-characters' ],
+			[ "A \n B", 'title-invalid-characters' ],
 			// URL encoding
 			[ 'A%20B', 'title-invalid-characters' ],
 			[ 'A%23B', 'title-invalid-characters' ],
