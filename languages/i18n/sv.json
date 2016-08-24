@@ -3804,5 +3804,7 @@
 	"linkaccounts-submit": "Länka konton",
 	"unlinkaccounts": "Avlänka konton",
 	"unlinkaccounts-success": "Kontot avlänkades.",
-	"authenticationdatachange-ignored": "Ändringen av autentiseringsdata hanterades inte. Kanske ingen tillhandahållare har konfigurerats?"
+	"authenticationdatachange-ignored": "Ändringen av autentiseringsdata hanterades inte. Kanske ingen tillhandahållare har konfigurerats?",
+	"userjsispublic": "Observera: JavaScript-undersidor bör inte innehålla konfidentiella uppgifter eftersom de kan ses av andra användare.",
+	"usercssispublic": "Observera: CSS-undersidor bör inte innehålla konfidentiella uppgifter eftersom de kan ses av andra användare."
 }

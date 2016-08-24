@@ -3848,5 +3848,7 @@
 	"linkaccounts-submit": "Benutzerkonten verknüpfen",
 	"unlinkaccounts": "Benutzerkonten trennen",
 	"unlinkaccounts-success": "Das Benutzerkonto wurde getrennt.",
-	"authenticationdatachange-ignored": "Die Änderung der Authentifizierungsdaten wurde nicht bearbeitet. Vielleicht wurde kein Anbieter konfiguriert?"
+	"authenticationdatachange-ignored": "Die Änderung der Authentifizierungsdaten wurde nicht bearbeitet. Vielleicht wurde kein Anbieter konfiguriert?",
+	"userjsispublic": "Bitte beachten: JavaScript-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können.",
+	"usercssispublic": "Bitte beachten: CSS-Unterseiten sollten keine vertraulichen Daten enthalten, da sie von anderen Benutzern eingesehen werden können."
 }

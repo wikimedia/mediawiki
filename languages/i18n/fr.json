@@ -3970,5 +3970,7 @@
 	"linkaccounts-submit": "Lier les comptes",
 	"unlinkaccounts": "Dissocier les comptes",
 	"unlinkaccounts-success": "Le compte a été dissocié.",
-	"authenticationdatachange-ignored": "Les modifications de données d’authentification n’ont pas été gérées. Peut-être aucun fournisseur n’a-t-il été configuré ?"
+	"authenticationdatachange-ignored": "Les modifications de données d’authentification n’ont pas été gérées. Peut-être aucun fournisseur n’a-t-il été configuré ?",
+	"userjsispublic": "Veuillez noter: les sous-pages JavaScript ne doivent pas contenir de données confidentielles parce qu'elles sont visibles des autres utilisateurs.",
+	"usercssispublic": "Veuillez noter: les sous-pages CSS ne doivent pas contenir de données confidentielles parce qu'elles sont visibles des autres utilisateurs."
 }

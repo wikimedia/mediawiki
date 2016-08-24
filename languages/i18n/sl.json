@@ -3733,5 +3733,7 @@
 	"linkaccounts-submit": "Poveži račune",
 	"unlinkaccounts": "Razveži račune",
 	"unlinkaccounts-success": "Račun smo razvezali.",
-	"authenticationdatachange-ignored": "Sprememba overitvenih podatkov ni bila obdelana. Morda ni bil konfiguriran noben ponudnik?"
+	"authenticationdatachange-ignored": "Sprememba overitvenih podatkov ni bila obdelana. Morda ni bil konfiguriran noben ponudnik?",
+	"userjsispublic": "Pomnite: Podstrani JavaScript naj ne vsebujejo zaupnih podatkov, saj so vidne tudi drugim uporabnikom.",
+	"usercssispublic": "Pomnite: Podstrani CSS naj ne vsebujejo zaupnih podatkov, saj so vidne tudi drugim uporabnikom."
 }
