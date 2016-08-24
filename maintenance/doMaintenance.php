@@ -121,4 +121,4 @@ wfLogProfilingData();
 // Commit and close up!
 $factory = wfGetLBFactory();
 $factory->commitMasterChanges( 'doMaintenance' );
-$factory->shutdown();
+$factory->shutdown( $factory::SHUTDOWN_NO_CHRONPROT );
