@@ -48,6 +48,8 @@ class SqlBagOStuff extends BagOStuff {
 	/** @var int */
 	protected $syncTimeout = 3;
 
+	/** @var LoadBalancer|null */
+	protected $unsharedLb;
 	/** @var array */
 	protected $conns;
 	/** @var array UNIX timestamps */
@@ -114,6 +116,7 @@ class SqlBagOStuff extends BagOStuff {
 			$this->serverInfos = [ $params['server'] ];
 			$this->numServers = count( $this->serverInfos );
 		} else {
+			// Default to using the main wiki's database servers
 			$this->serverInfos = false;
 			$this->numServers = 1;
 		}
@@ -130,6 +133,23 @@ class SqlBagOStuff extends BagOStuff {
 			$this->syncTimeout = $params['syncTimeout'];
 		}
 		$this->slaveOnly = !empty( $params['slaveOnly'] );
+	}
+
+	protected function getUnsharedLb() {
+		global $wgDBtype;
+
+		if ( $wgDBtype === 'mysql' ) {
+			if ( !$this->unsharedLb ) {
+				// We must keep a separate connection to MySQL in order to avoid deadlocks
+				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+				$this->unsharedLb = $lbFactory->newMainLB();
+			}
+			return $this->unsharedLb;
+		} else {
+			// However, SQLite has an opposite behavior. And PostgreSQL needs to know
+			// if we are in transaction or not (@TODO: find some PostgreSQL work-around).
+			return null;
+		}
 	}
 
 	/**
@@ -163,16 +183,13 @@ class SqlBagOStuff extends BagOStuff {
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
-				// We must keep a separate connection to MySQL in order to avoid deadlocks
-				// However, SQLite has an opposite behavior. And PostgreSQL needs to know
-				// if we are in transaction or not (@TODO: find some work-around).
 				$index = $this->slaveOnly ? DB_SLAVE : DB_MASTER;
-				if ( wfGetDB( $index )->getType() == 'mysql' ) {
-					$lb = wfGetLBFactory()->newMainLB();
-					$db = $lb->getConnection( $index );
+				if ( $this->getUnsharedLb() ) {
+					$db = $this->getUnsharedLb()->getConnection( $index );
 					$db->clearFlag( DBO_TRX ); // auto-commit mode
 				} else {
 					$db = wfGetDB( $index );
+					// Can't mess with transaction rounds (DBO_TRX) :(
 				}
 			}
 			$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
@@ -782,17 +799,19 @@ class SqlBagOStuff extends BagOStuff {
 
 	protected function waitForSlaves() {
 		if ( $this->usesMainDB() ) {
+			$lb = $this->getUnsharedLb() ?: MediaWikiServices::getInstance()->getDBLoadBalancer();
 			// Main LB is used; wait for any slaves to catch up
 			try {
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$lbFactory->waitForReplication( [ 'wiki' => wfWikiID() ] );
-				return true;
+				$pos = $lb->getMasterPos();
+				if ( $pos ) {
+					return $lb->waitForAll( $pos, 3 );
+				}
 			} catch ( DBReplicationWaitError $e ) {
 				return false;
 			}
-		} else {
-			// Custom DB server list; probably doesn't use replication
-			return true;
 		}
+
+		// Custom DB server list; probably doesn't use replication
+		return true;
 	}
 }
