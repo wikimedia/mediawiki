@@ -281,8 +281,9 @@
 				e.stopPropagation();
 			} );
 
-		// Prepend the notification area to the content area and save it's object.
-		mw.util.$content.prepend( $area );
+		// Append the notification area to the body to make sure
+		// the z-index counts, and it always appears on top of everything else
+		$( 'body' ).append( $area );
 		offset = $area.offset();
 		$area.hide();
 
