@@ -133,6 +133,11 @@ class DeferredUpdates {
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
 		$updates = $queue; // snapshot of queue
+		// Filter out DataUpdate jobs that lost their triggering transaction via rollback
+		$updates = array_filter( $updates, function ( $u ) {
+			return ( !( $u instanceof DataUpdate ) || !$u->shouldAbort() );
+		} );
+
 		// Keep doing rounds of updates until none get enqueued
 		while ( count( $updates ) ) {
 			$queue = []; // clear the queue
