@@ -37,6 +37,10 @@ abstract class DataUpdate implements DeferrableUpdate {
 		// noop
 	}
 
+	public function shouldAbort() {
+		return false;
+	}
+
 	/**
 	 * @param mixed $ticket Result of getEmptyTransactionTicket()
 	 * @since 1.28
