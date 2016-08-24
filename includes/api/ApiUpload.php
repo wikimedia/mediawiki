@@ -704,6 +704,30 @@ class ApiUpload extends ApiBase {
 					: $warning['file'];
 				$warnings[$warning['warning']] = $localFile->getName();
 			}
+
+			if ( isset( $warnings['no-change'] ) ) {
+				/** @var File $file */
+				$file = $warnings['no-change'];
+				unset( $warnings['no-change'] );
+
+				$warnings['nochange'] = [
+					'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() )
+				];
+			}
+
+			if ( isset( $warnings['duplicate-of-old-version'] ) ) {
+				$dupes = [];
+				/** @var File $dupe */
+				foreach ( $warnings['duplicate-of-old-version'] as $dupe ) {
+					$dupes[] = [
+						'timestamp' => wfTimestamp( TS_ISO_8601, $dupe->getTimestamp() )
+					];
+				}
+				unset( $warnings['duplicate-of-old-version'] );
+
+				ApiResult::setIndexedTagName( $dupes, 'ver' );
+				$warnings['duplicateversions'] = $dupes;
+			}
 		}
 
 		return $warnings;
