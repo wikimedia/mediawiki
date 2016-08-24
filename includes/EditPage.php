@@ -402,12 +402,18 @@ class EditPage {
 	private $enableApiEditOverride = false;
 
 	/**
+	 * @var IContextSource
+	 */
+	protected $context;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
+		$this->context = $article->getContext();
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
@@ -420,6 +426,14 @@ class EditPage {
 	 */
 	public function getArticle() {
 		return $this->mArticle;
+	}
+
+	/**
+	 * @since 1.28
+	 * @return IContextSource
+	 */
+	public function getContext() {
+		return $this->context;
 	}
 
 	/**
