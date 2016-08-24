@@ -115,6 +115,9 @@ class RedisBagOStuff extends BagOStuff {
 				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
 			}
+			if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+				$result = $this->waitForSlaves( $conn ) && $result;
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
@@ -415,6 +418,49 @@ class RedisBagOStuff extends BagOStuff {
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @param integer $timeout Millisecond timeout
+	 * @return bool
+	 */
+	protected function waitForSlaves( RedisConnRef $conn, $timeout = 3000 ) {
+		// http://redis.io/commands/info
+		$info = $conn->info( 'replication' );
+		if ( !isset( $info['slave0'] ) ) {
+			return true; // no slaves configured
+		}
+
+		$masterPos = (int)$info['master_repl_offset'];
+
+		$sleepUs = 0; // microseconds to sleep each time
+		$sleptUs = 0; // microseconds slept for so far
+		$timeoutUs = $timeout * 1e3;
+
+		do {
+			$sleptUs += $sleepUs;
+			$sleepUs = min( $sleepUs + 3 * 1e3, 50 * 1e3 );
+
+			$info = $conn->info( 'replication' );
+
+			$slavesSynced = true;
+			foreach ( $info as $key => $value ) {
+				$m = [];
+				// https://github.com/antirez/redis/issues/2375
+				if ( preg_match( '/^slave\d+$/', $key )
+					&& preg_match( '/offset=(\d+)/', $value, $m )
+				) {
+					$slavePos = (int)$m[1];
+					$slavesSynced = $slavesSynced && ( $slavePos >= $masterPos );
+				}
+			}
+			if ( $slavesSynced ) {
+				return true;
+			}
+		} while ( $sleptUs < $timeoutUs && usleep( $sleepUs ) == null );
+
+		return false;
 	}
 
 	/**
