@@ -3649,6 +3649,15 @@ $userId: User id of the current user
 $userText: User name of the current user
 &$items: Array of user tool links as HTML fragments
 
+'UsersPagerDoBatchLookups': Called in UsersPager::doBatchLookups() to give
+extensions providing global user groups a chance to add their data into the
+cache array so that global groups are displayed correctly in Special:ListUsers.
+$dbr: Read-only database handle
+$userIds: Array of user IDs whose groups we should look up
+&$cache: Array of user ID -> internal user group name (e.g. 'sysop') mappings
+&$groups: Array of group name -> bool true mappings for members of a given user
+group
+
 'ValidateExtendedMetadataCache': Called to validate the cached metadata in
 FormatMetadata::getExtendedMeta (return false means cache will be
 invalidated and GetExtendedMetadata hook called again).
