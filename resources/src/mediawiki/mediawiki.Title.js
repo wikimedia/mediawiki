@@ -164,9 +164,12 @@
 		'|&#x[0-9A-Fa-f]+;'
 	),
 
-	// From MediaWikiTitleCodec.php#L225 @26fcab1f18c568a41
-	// "Clean up whitespace" in function MediaWikiTitleCodec::splitTitleString()
-	rWhitespace = /[ _\u0009\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\s]+/g,
+	// From MediaWikiTitleCodec::splitTitleString() in PHP
+	// Note that this is not equivalent to /\s/, e.g. underscore is included, tab is not included.
+	rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
+
+	// From MediaWikiTitleCodec::splitTitleString() in PHP
+	rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]/g,
 
 	/**
 	 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
@@ -178,18 +181,6 @@
 		// "signature"
 		{
 			pattern: /~{3}/g,
-			replace: '',
-			generalRule: true
-		},
-		// Space, underscore, tab, NBSP and other unusual spaces
-		{
-			pattern: rWhitespace,
-			replace: ' ',
-			generalRule: true
-		},
-		// unicode bidi override characters: Implicit, Embeds, Overrides
-		{
-			pattern: /[\u200E\u200F\u202A-\u202E]/g,
 			replace: '',
 			generalRule: true
 		},
@@ -261,8 +252,10 @@
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		title = title
+			// Strip Unicode bidi override characters
+			.replace( rUnicodeBidi, '' )
 			// Normalise whitespace to underscores and remove duplicates
-			.replace( /[ _\s]+/g, '_' )
+			.replace( rWhitespace, '_' )
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 
@@ -557,8 +550,8 @@
 
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
-		// Normalise whitespace and remove duplicates
-		title = $.trim( title.replace( rWhitespace, ' ' ) );
+		// Normalise additional whitespace
+		title = $.trim( title.replace( /\s/g, ' ' ) );
 
 		// Process initial colon
 		if ( title !== '' && title[ 0 ] === ':' ) {
