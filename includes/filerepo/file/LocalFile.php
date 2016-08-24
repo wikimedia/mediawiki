@@ -2216,8 +2216,9 @@ class LocalFileDeleteBatch {
 	}
 
 	protected function doDBInserts() {
+		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
-		$encTimestamp = $dbw->addQuotes( $dbw->timestamp() );
+		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
 		$encReason = $dbw->addQuotes( $this->reason );
 		$encGroup = $dbw->addQuotes( 'deleted' );
@@ -2239,15 +2240,15 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( $deleteCurrent ) {
-			$concat = $dbw->buildConcat( [ "img_sha1", $encExt ] );
-			$where = [ 'img_name' => $this->file->getName() ];
-			$dbw->insertSelect( 'filearchive', 'image',
+			$dbw->insertSelect(
+				'filearchive',
+				'image',
 				[
 					'fa_storage_group' => $encGroup,
 					'fa_storage_key' => $dbw->conditional(
 						[ 'img_sha1' => '' ],
 						$dbw->addQuotes( '' ),
-						$concat
+						$dbw->buildConcat( [ "img_sha1", $encExt ] )
 					),
 					'fa_deleted_user' => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
@@ -2268,44 +2269,56 @@ class LocalFileDeleteBatch {
 					'fa_user' => 'img_user',
 					'fa_user_text' => 'img_user_text',
 					'fa_timestamp' => 'img_timestamp',
-					'fa_sha1' => 'img_sha1',
-				], $where, __METHOD__ );
+					'fa_sha1' => 'img_sha1'
+				],
+				[ 'img_name' => $this->file->getName() ],
+				__METHOD__
+			);
 		}
 
 		if ( count( $oldRels ) ) {
-			$concat = $dbw->buildConcat( [ "oi_sha1", $encExt ] );
-			$where = [
-				'oi_name' => $this->file->getName(),
-				'oi_archive_name' => array_keys( $oldRels ) ];
-			$dbw->insertSelect( 'filearchive', 'oldimage',
+			$res = $dbw->select(
+				'oldimage',
+				OldLocalFile::selectFields(),
 				[
-					'fa_storage_group' => $encGroup,
-					'fa_storage_key' => $dbw->conditional(
-						[ 'oi_sha1' => '' ],
-						$dbw->addQuotes( '' ),
-						$concat
-					),
-					'fa_deleted_user' => $encUserId,
-					'fa_deleted_timestamp' => $encTimestamp,
-					'fa_deleted_reason' => $encReason,
-					'fa_deleted' => $this->suppress ? $bitfield : 'oi_deleted',
+					'oi_name' => $this->file->getName(),
+					'oi_archive_name' => array_keys( $oldRels )
+				],
+				__METHOD__,
+				[ 'FOR UPDATE' ]
+			);
+			$rowsInsert = [];
+			foreach ( $res as $row ) {
+				$rowsInsert[] = [
+					// Deletion-specific fields
+					'fa_storage_group' => 'deleted',
+					'fa_storage_key' => ( $row->oi_sha1 === '' )
+						? ''
+						: "{$row->oi_sha1}{$dotExt}",
+					'fa_deleted_user' => $this->user->getId(),
+					'fa_deleted_timestamp' => $dbw->timestamp( $now ),
+					'fa_deleted_reason' => $this->reason,
+					// Counterpart fields
+					'fa_deleted' => $this->suppress ? $bitfield : $row->oi_deleted,
+					'fa_name' => $row->oi_name,
+					'fa_archive_name' => $row->oi_archive_name,
+					'fa_size' => $row->oi_size,
+					'fa_width' => $row->oi_width,
+					'fa_height' => $row->oi_height,
+					'fa_metadata' => $row->oi_metadata,
+					'fa_bits' => $row->oi_bits,
+					'fa_media_type' => $row->oi_media_type,
+					'fa_major_mime' => $row->oi_major_mime,
+					'fa_minor_mime' => $row->oi_minor_mime,
+					'fa_description' => $row->oi_description,
+					'fa_user' => $row->oi_user,
+					'fa_user_text' => $row->oi_user_text,
+					'fa_timestamp' => $row->oi_timestamp,
+					'fa_sha1' => $row->oi_sha1
+				];
+			}
 
-					'fa_name' => 'oi_name',
-					'fa_archive_name' => 'oi_archive_name',
-					'fa_size' => 'oi_size',
-					'fa_width' => 'oi_width',
-					'fa_height' => 'oi_height',
-					'fa_metadata' => 'oi_metadata',
-					'fa_bits' => 'oi_bits',
-					'fa_media_type' => 'oi_media_type',
-					'fa_major_mime' => 'oi_major_mime',
-					'fa_minor_mime' => 'oi_minor_mime',
-					'fa_description' => 'oi_description',
-					'fa_user' => 'oi_user',
-					'fa_user_text' => 'oi_user_text',
-					'fa_timestamp' => 'oi_timestamp',
-					'fa_sha1' => 'oi_sha1',
-				], $where, __METHOD__ );
+			$dbw->insert( 'filearchive', $rowsInsert, __METHOD__ );
 		}
 	}
 
