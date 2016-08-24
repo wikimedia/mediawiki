@@ -394,6 +394,18 @@ class SpecialUpload extends SpecialPage {
 			}
 			if ( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
+			} elseif ( $warning == 'no-change' ) {
+				$file = $args;
+				$filename = $file->getTitle()->getPrefixedText();
+				$msg = "\t<li>" . wfMessage( 'fileexists-no-change', $filename )->parse() . "</li>\n";
+			} elseif ( $warning == 'duplicate-version' ) {
+				$file = $args[0];
+				$count = count( $args );
+				$filename = $file->getTitle()->getPrefixedText();
+				$message = wfMessage( 'fileexists-duplicate-version' )
+					->params( $filename )
+					->numParams( $count );
+				$msg = "\t<li>" . $message->parse() . "</li>\n";
 			} elseif ( $warning == 'was-deleted' ) {
 				# If the file existed before and was deleted, warn the user of this
 				$ltitle = SpecialPage::getTitleFor( 'Log' );

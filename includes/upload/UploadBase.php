@@ -679,9 +679,23 @@ abstract class UploadBase {
 			$warnings['empty-file'] = true;
 		}
 
+		$hash = $this->getTempFileSha1Base36();
 		$exists = self::getExistsWarning( $localFile );
 		if ( $exists !== false ) {
 			$warnings['exists'] = $exists;
+
+			// check if file is an exact duplicate of current file version
+			if ( $hash === $localFile->getSha1() ) {
+				$warnings['no-change'] = $localFile;
+			}
+
+			// check if file is an exact duplicate of older versions of this file
+			$history = $localFile->getHistory();
+			foreach ( $history as $oldFile ) {
+				if ( $hash === $oldFile->getSha1() ) {
+					$warnings['duplicate-version'][] = $oldFile;
+				}
+			}
 		}
 
 		if ( $localFile->wasDeleted() && !$localFile->exists() ) {
@@ -689,7 +703,6 @@ abstract class UploadBase {
 		}
 
 		// Check dupes against existing files
-		$hash = $this->getTempFileSha1Base36();
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
 		// Remove all matches against self
