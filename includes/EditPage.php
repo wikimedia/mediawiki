@@ -1424,7 +1424,7 @@ class EditPage {
 
 	/**
 	 * Attempt submission
-	 * @param array $resultDetails See docs for $result in internalAttemptSave
+	 * @param array|bool $resultDetails See docs for $result in internalAttemptSave
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return Status The resulting status object.
 	 */
@@ -2507,7 +2507,7 @@ class EditPage {
 	 * content.
 	 *
 	 * @param string|null|bool $text Text to unserialize
-	 * @return Content The content object created from $text. If $text was false
+	 * @return Content|bool|null The content object created from $text. If $text was false
 	 *   or null, false resp. null will be  returned instead.
 	 *
 	 * @throws MWException If unserializing the text results in a Content
@@ -3812,8 +3812,8 @@ HTML
 	 * Parse the page for a preview. Subclasses may override this class, in order
 	 * to parse with different options, or to otherwise modify the preview HTML.
 	 *
-	 * @param Content @content The page content
-	 * @return Associative array with keys:
+	 * @param Content $content The page content
+	 * @return array with keys:
 	 *   - parserOutput: The ParserOutput object
 	 *   - html: The HTML to be displayed
 	 */
