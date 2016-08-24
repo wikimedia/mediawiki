@@ -4182,7 +4182,7 @@ HTML
 	 * @return string
 	 */
 	protected function safeUnicodeInput( $request, $field ) {
-		$text = rtrim( $request->getText( $field ) );
+		$text = $request->getText( $field );
 		return $request->getBool( 'safemode' )
 			? $this->unmakeSafe( $text )
 			: $text;

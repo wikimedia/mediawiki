@@ -575,7 +575,7 @@ class WebRequest {
 	 */
 	public function getText( $name, $default = '' ) {
 		$val = $this->getVal( $name, $default );
-		return str_replace( "\r\n", "\n", $val );
+		return TextContent::normalizeLineEndings( $val );
 	}
 
 	/**
