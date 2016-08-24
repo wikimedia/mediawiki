@@ -45,30 +45,27 @@ use Psr\Log\NullLogger;
 abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
-
 	/** @var integer ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
-
 	/** @var string */
 	protected $keyspace = 'local';
-
 	/** @var LoggerInterface */
 	protected $logger;
-
 	/** @var callback|null */
 	protected $asyncHandler;
 
 	/** @var bool */
 	private $debugMode = false;
-
 	/** @var array */
 	private $duplicateKeyLookups = [];
-
 	/** @var bool */
 	private $reportDupes = false;
-
 	/** @var bool */
 	private $dupeTrackScheduled = false;
+	/** @var array Map of (int => (callable|null,mixed)) */
+	private $busyCallbacks = [];
+	/** @var integer */
+	private $busyCallbackNextId = 1;
 
 	/** @var integer[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
@@ -614,6 +611,38 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $newValue;
+	}
+
+	public function addBusyCallback( callable $callback ) {
+		$index = $this->busyCallbackNextId;
+		$this->busyCallbacks[$index] = [ $callback, null ];
+		++$this->busyCallbackNextId;
+
+		return $index;
+	}
+
+	protected function runBusyCallbacks() {
+		foreach ( $this->busyCallbacks as $i => $tuple ) {
+			list( $callback ) = $tuple;
+			if ( $callback === null ) {
+				continue; // already ran
+			}
+			$this->busyCallbacks[$i] = [ null, $callback() ];
+		}
+	}
+
+	public function reapBusyCallback( $index ) {
+		list( $callback, $res ) = $this->busyCallbacks[$index];
+		if ( $callback ) {
+			$res = $callback();
+		}
+		unset( $this->busyCallbacks[$index] );
+
+		if ( !$this->busyCallbacks ) {
+			$this->busyCallbackNextId = 1; // restart IDs
+		}
+
+		return $res;
 	}
 
 	/**
