@@ -36,6 +36,12 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	private function checkReadPermissions( Title $title ) {
+		if ( !$title->userCan( 'read', $this->getUser() ) ) {
+			$this->dieUsage( "You don't have permission to view this page", 'permissiondenied' );
+		}
+	}
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -102,6 +108,8 @@ class ApiParse extends ApiBase {
 				if ( !$rev ) {
 					$this->dieUsage( "There is no revision ID $oldid", 'missingrev' );
 				}
+
+				$this->checkReadPermissions( $rev->getTitle() );
 				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->dieUsage( "You don't have permission to view deleted revisions", 'permissiondenied' );
 				}
@@ -161,6 +169,8 @@ class ApiParse extends ApiBase {
 				if ( !$titleObj || !$titleObj->exists() ) {
 					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
 				}
+
+				$this->checkReadPermissions( $titleObj );
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {
@@ -346,22 +356,27 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
-			$context = $this->getContext();
+			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
-			$context->getOutput()->addParserOutputMetadata( $p_result );
+			$context->setWikiPage( $pageObj );
+
+			// We need an OutputPage tied to $context, not to the
+			// RequestContext at the root of the stack.
+			$output = new OutputPage( $context );
+			$output->addParserOutputMetadata( $p_result );
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
 
-				$css = $this->formatCss( $context->getOutput()->buildCssLinksArray() );
+				$css = $this->formatCss( $output->buildCssLinksArray() );
 
-				$scripts = [ $context->getOutput()->getHeadScripts() ];
+				$scripts = [ $output->getHeadScripts() ];
 
 				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 			}
 
 			if ( isset( $prop['headhtml'] ) ) {
-				$result_array['headhtml'] = $context->getOutput()->headElement( $context->getSkin() );
+				$result_array['headhtml'] = $output->headElement( $context->getSkin() );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 			}
 		}

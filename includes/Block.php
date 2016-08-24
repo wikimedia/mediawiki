@@ -457,6 +457,7 @@ class Block {
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert( $dbw = null ) {
+		global $wgBlockDisablesLogin;
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 
 		if ( $dbw === null ) {
@@ -499,6 +500,13 @@ class Block {
 
 		if ( $affected ) {
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
+
+			if ( $wgBlockDisablesLogin && $this->target instanceof User ) {
+				// Change user login token to force them to be logged out.
+				$this->target->setToken();
+				$this->target->saveSettings();
+			}
+
 			return [ 'id' => $this->mId, 'autoIds' => $auto_ipd_ids ];
 		}
 
@@ -961,28 +969,40 @@ class Block {
 
 	/**
 	 * Get/set whether the Block prevents a given action
-	 * @param string $action
-	 * @param bool|null $x
-	 * @return bool
+	 *
+	 * @param string $action Action to check
+	 * @param bool|null $x Value for set, or null to just get value
+	 * @return bool|null Null for unrecognized rights.
 	 */
 	public function prevents( $action, $x = null ) {
+		global $wgBlockDisablesLogin;
+		$res = null;
 		switch ( $action ) {
 			case 'edit':
 				# For now... <evil laugh>
-				return true;
-
+				$res = true;
+				break;
 			case 'createaccount':
-				return wfSetVar( $this->mCreateAccount, $x );
-
+				$res = wfSetVar( $this->mCreateAccount, $x );
+				break;
 			case 'sendemail':
-				return wfSetVar( $this->mBlockEmail, $x );
-
+				$res = wfSetVar( $this->mBlockEmail, $x );
+				break;
 			case 'editownusertalk':
-				return wfSetVar( $this->mDisableUsertalk, $x );
-
-			default:
-				return null;
+				$res = wfSetVar( $this->mDisableUsertalk, $x );
+				break;
+			case 'read':
+				$res = false;
+				break;
 		}
+		if ( !$res && $wgBlockDisablesLogin ) {
+			// If a block would disable login, then it should
+			// prevent any action that all users cannot do
+			$anon = new User;
+			$res = $anon->isAllowed( $action ) ? $res : true;
+		}
+
+		return $res;
 	}
 
 	/**

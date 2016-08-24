@@ -1,3 +1,24 @@
+== MediaWiki 1.27.1 ==
+
+This is a maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since 1.27.0 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* (T57548) Remove support for $wgWellFormedXml = false, all output is now well formed
+* (T139670) Move 'UserGetRights' call before application of Session::getAllowedUserRights()
+
 == MediaWiki 1.27 ==
 
 === PHP version requirement ===

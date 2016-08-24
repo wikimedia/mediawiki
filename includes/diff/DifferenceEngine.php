@@ -891,18 +891,23 @@ class DifferenceEngine extends ContextSource {
 		if ( $wgExternalDiffEngine == 'wikidiff' || $wgExternalDiffEngine == 'wikidiff3' ) {
 			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.27' );
 			$wgExternalDiffEngine = false;
+		} elseif ( $wgExternalDiffEngine == 'wikidiff2' ) {
+			// Same as above, but with no deprecation warnings
+			$wgExternalDiffEngine = false;
+		} elseif ( !is_string( $wgExternalDiffEngine ) && $wgExternalDiffEngine !== false ) {
+			// And prevent people from shooting themselves in the foot...
+			wfWarn( '$wgExternalDiffEngine is set to a non-string value, forcing it to false' );
+			$wgExternalDiffEngine = false;
 		}
 
-		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
-			if ( function_exists( 'wikidiff2_do_diff' ) ) {
-				# Better external diff engine, the 2 may some day be dropped
-				# This one does the escaping and segmenting itself
-				$text = wikidiff2_do_diff( $otext, $ntext, 2 );
-				$text .= $this->debug( 'wikidiff2' );
+		if ( function_exists( 'wikidiff2_do_diff' ) && $wgExternalDiffEngine === false ) {
+			# Better external diff engine, the 2 may some day be dropped
+			# This one does the escaping and segmenting itself
+			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+			$text .= $this->debug( 'wikidiff2' );
 
-				return $text;
-			}
-		} elseif ( $wgExternalDiffEngine !== false ) {
+			return $text;
+		} elseif ( $wgExternalDiffEngine !== false && is_executable( $wgExternalDiffEngine ) ) {
 			# Diff via the shell
 			$tmpDir = wfTempDir();
 			$tempName1 = tempnam( $tmpDir, 'diff_' );

@@ -3124,6 +3124,7 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -3134,9 +3135,24 @@ class User implements IDBAccessObject {
 				}
 			}
 
-			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
+
+			// If block disables login, we should also remove any
+			// extra rights blocked users might have, in case the
+			// blocked user has a pre-existing session (T129738).
+			// This is checked here for cases where people only call
+			// $user->isAllowed(). It is also checked in Title::checkUserBlock()
+			// to give a better error message in the common case.
+			$config = RequestContext::getMain()->getConfig();
+			if (
+				$this->isLoggedIn() &&
+				$config->get( 'BlockDisablesLogin' ) &&
+				$this->isBlocked()
+			) {
+				$anon = new User;
+				$this->mRights = array_intersect( $this->mRights, $anon->getRights() );
+			}
 		}
 		return $this->mRights;
 	}

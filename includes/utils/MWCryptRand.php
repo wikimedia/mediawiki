@@ -324,7 +324,7 @@ class MWCryptRand {
 				": Falling back to using a pseudo random state to generate randomness.\n" );
 		}
 		while ( strlen( $buffer ) < $bytes ) {
-			$buffer .= MWCryptHash::hmac( $this->randomState(), mt_rand() );
+			$buffer .= MWCryptHash::hmac( $this->randomState(), strval( mt_rand() ) );
 			// This code is never really cryptographically strong, if we use it
 			// at all, then set strong to false.
 			$this->strong = false;
