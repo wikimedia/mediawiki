@@ -980,11 +980,6 @@ return [
 		'dependencies' => [
 			'jquery.footHovzer',
 		],
-		'position' => 'bottom',
-	],
-	'mediawiki.debug.init' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.debug.init.js',
-		'dependencies' => 'mediawiki.debug',
 		// Uses a custom mw.config variable that is set in debughtml,
 		// must be loaded on the bottom
 		'position' => 'bottom',

@@ -93,7 +93,7 @@ class MWDebug {
 	 */
 	public static function addModules( OutputPage $out ) {
 		if ( self::$enabled ) {
-			$out->addModules( 'mediawiki.debug.init' );
+			$out->addModules( 'mediawiki.debug' );
 		}
 	}
 
