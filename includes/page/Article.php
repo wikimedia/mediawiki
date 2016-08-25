@@ -150,6 +150,15 @@ class Article implements Page {
 	}
 
 	/**
+	 * Get the page this view was redirected from
+	 * @return Title|null
+	 * @since 1.28
+	 */
+	public function getRedirectedFrom() {
+		return $this->mRedirectedFrom;
+	}
+
+	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
 	 * @param Title $from
@@ -520,29 +529,6 @@ class Article implements Page {
 
 		# Try client and file cache
 		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
-			# Use the greatest of the page's timestamp or the timestamp of any
-			# redirect in the chain (bug 67849)
-			$timestamp = $this->mPage->getTouched();
-			if ( isset( $this->mRedirectedFrom ) ) {
-				$timestamp = max( $timestamp, $this->mRedirectedFrom->getTouched() );
-
-				# If there can be more than one redirect in the chain, we have
-				# to go through the whole chain too in case an intermediate
-				# redirect was changed.
-				if ( $wgMaxRedirects > 1 ) {
-					$titles = Revision::newFromTitle( $this->mRedirectedFrom )
-						->getContent( Revision::FOR_THIS_USER, $user )
-						->getRedirectChain();
-					$thisTitle = $this->getTitle();
-					foreach ( $titles as $title ) {
-						if ( Title::compare( $title, $thisTitle ) === 0 ) {
-							break;
-						}
-						$timestamp = max( $timestamp, $title->getTouched() );
-					}
-				}
-			}
-
 			# Try to stream the output from file cache
 			if ( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache\n" );
