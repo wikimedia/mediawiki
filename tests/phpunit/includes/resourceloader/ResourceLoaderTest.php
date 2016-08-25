@@ -17,18 +17,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		] );
 	}
 
-	public static function provideValidModules() {
-		return [
-			[ 'TEST.validModule1', new ResourceLoaderTestModule() ],
-		];
-	}
-
 	/**
-	 * Ensures that the ResourceLoaderRegisterModules hook is called when a new
-	 * ResourceLoader object is constructed.
+	 * Ensure the ResourceLoaderRegisterModules hook is called.
+	 *
 	 * @covers ResourceLoader::__construct
 	 */
-	public function testCreatingNewResourceLoaderCallsRegistrationHook() {
+	public function testConstructRegistrationHook() {
 		$resourceLoaderRegisterModulesHook = false;
 
 		$this->setMwGlobals( 'wgHooks', [
@@ -39,26 +33,97 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			]
 		] );
 
-		$resourceLoader = new ResourceLoader();
+		$unused = new ResourceLoader();
 		$this->assertTrue(
 			$resourceLoaderRegisterModulesHook,
 			'Hook ResourceLoaderRegisterModules called'
 		);
-
-		return $resourceLoader;
 	}
 
 	/**
-	 * @dataProvider provideValidModules
-	 * @depends testCreatingNewResourceLoaderCallsRegistrationHook
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
 	 */
-	public function testRegisteredValidModulesAreAccessible(
-		$name, ResourceLoaderModule $module, ResourceLoader $resourceLoader
-	) {
-		$resourceLoader->register( $name, $module );
-		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
+	public function testRegisterValid() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( 'test', $module );
+		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 */
+	public function testRegisterInvalidName() {
+		$resourceLoader = new EmptyResourceLoader();
+		$this->setExpectedException( 'MWException', "name 'test!invalid' is invalid" );
+		$resourceLoader->register( 'test!invalid', new ResourceLoaderTestModule() );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 */
+	public function testRegisterInvalidType() {
+		$resourceLoader = new EmptyResourceLoader();
+		$this->setExpectedException( 'MWException', 'ResourceLoader module info type error' );
+		$resourceLoader->register( 'test', new stdClass() );
+	}
+
+	/**
+	 * @covers ResourceLoader::getModuleNames
+	 */
+	public function testGetModuleNames() {
+		// Use an empty one so that core and extension modules don't get in.
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( 'test.foo', new ResourceLoaderTestModule() );
+		$resourceLoader->register( 'test.bar', new ResourceLoaderTestModule() );
+		$this->assertEquals(
+			[ 'test.foo', 'test.bar' ],
+			$resourceLoader->getModuleNames()
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::isModuleRegistered
+	 */
+	public function testIsModuleRegistered() {
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', new ResourceLoaderTestModule() );
+		$this->assertTrue( $rl->isModuleRegistered( 'test' ) );
+		$this->assertFalse( $rl->isModuleRegistered( 'test.unknown' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testGetModuleUnknown() {
+		$rl = new EmptyResourceLoader();
+		$this->assertSame( null, $rl->getModule( 'test' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testGetModuleClass() {
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', [ 'class' => ResourceLoaderTestModule::class ] );
+		$this->assertInstanceOf(
+			ResourceLoaderTestModule::class,
+			$rl->getModule( 'test' )
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testGetModuleClassDefault() {
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', [] );
+		$this->assertInstanceOf(
+			ResourceLoaderFileModule::class,
+			$rl->getModule( 'test' ),
+			'Array-style module registrations default to FileModule'
+		);
 	}
 
 	/**
@@ -74,31 +139,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module->setName( 'test.less' );
 		$styles = $module->getStyles( $context );
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
-	}
-
-	/**
-	 * Strip @noflip annotations from CSS code.
-	 * @param string $css
-	 * @return string
-	 */
-	private static function stripNoflip( $css ) {
-		return str_replace( '/*@noflip*/ ', '', $css );
-	}
-
-	/**
-	 * @dataProvider providePackedModules
-	 * @covers ResourceLoader::makePackedModulesString
-	 */
-	public function testMakePackedModulesString( $desc, $modules, $packed ) {
-		$this->assertEquals( $packed, ResourceLoader::makePackedModulesString( $modules ), $desc );
-	}
-
-	/**
-	 * @dataProvider providePackedModules
-	 * @covers ResourceLoaderContext::expandModuleNames
-	 */
-	public function testexpandModuleNames( $desc, $modules, $packed ) {
-		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
 	}
 
 	public static function providePackedModules() {
@@ -126,20 +166,34 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider providePackedModules
+	 * @covers ResourceLoader::makePackedModulesString
+	 */
+	public function testMakePackedModulesString( $desc, $modules, $packed ) {
+		$this->assertEquals( $packed, ResourceLoader::makePackedModulesString( $modules ), $desc );
+	}
+
+	/**
+	 * @dataProvider providePackedModules
+	 * @covers ResourceLoaderContext::expandModuleNames
+	 */
+	public function testexpandModuleNames( $desc, $modules, $packed ) {
+		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
+	}
+
 	public static function provideAddSource() {
 		return [
-			[ 'examplewiki', '//example.org/w/load.php', 'examplewiki' ],
-			[ 'example2wiki', [ 'loadScript' => '//example.com/w/load.php' ], 'example2wiki' ],
+			[ 'foowiki', 'https://example.org/w/load.php', 'foowiki' ],
+			[ 'foowiki', [ 'loadScript' => 'https://example.org/w/load.php' ], 'foowiki' ],
 			[
-				[ 'foowiki' => '//foo.org/w/load.php', 'bazwiki' => '//baz.org/w/load.php' ],
+				[
+					'foowiki' => 'https://example.org/w/load.php',
+					'bazwiki' => 'https://example.com/w/load.php',
+				],
 				null,
 				[ 'foowiki', 'bazwiki' ]
-			],
-			[
-				[ 'foowiki' => '//foo.org/w/load.php' ],
-				null,
-				false,
-			],
+			]
 		];
 	}
 
@@ -150,10 +204,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSource( $name, $info, $expected ) {
 		$rl = new ResourceLoader;
-		if ( $expected === false ) {
-			$this->setExpectedException( 'MWException', 'ResourceLoader duplicate source addition error' );
-			$rl->addSource( $name, $info );
-		}
 		$rl->addSource( $name, $info );
 		if ( is_array( $expected ) ) {
 			foreach ( $expected as $source ) {
@@ -164,17 +214,23 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		}
 	}
 
-	public static function fakeSources() {
-		return [
-			'examplewiki' => [
-				'loadScript' => '//example.org/w/load.php',
-				'apiScript' => '//example.org/w/api.php',
-			],
-			'example2wiki' => [
-				'loadScript' => '//example.com/w/load.php',
-				'apiScript' => '//example.com/w/api.php',
-			],
-		];
+	/**
+	 * @covers ResourceLoader::addSource
+	 */
+	public function testAddSourceDupe() {
+		$rl = new ResourceLoader;
+		$this->setExpectedException( 'MWException', 'ResourceLoader duplicate source addition error' );
+		$rl->addSource( 'foo', 'https://example.org/w/load.php' );
+		$rl->addSource( 'foo', 'https://example.com/w/load.php' );
+	}
+
+	/**
+	 * @covers ResourceLoader::addSource
+	 */
+	public function testAddSourceInvalid() {
+		$rl = new ResourceLoader;
+		$this->setExpectedException( 'MWException', 'with no "loadScript" key' );
+		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
 	}
 
 	public static function provideLoaderImplement() {
@@ -204,8 +260,6 @@ mw.example();
 				'name' => 'test.example',
 				'scripts' => 'mw.example();',
 				'styles' => [],
-				'messages' => new XmlJsCode( '{}' ),
-				'templates' => [],
 
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
@@ -218,7 +272,6 @@ mw.example();
 				'scripts' => [],
 				'styles' => [ 'css' => [ '.mw-example {}' ] ],
 				'messages' => new XmlJsCode( '{}' ),
-				'templates' => [],
 
 				'expected' => 'mw.loader.implement( "test.example", [], {
     "css": [
@@ -231,9 +284,7 @@ mw.example();
 
 				'name' => 'test.example',
 				'scripts' => 'mw.example();',
-				'styles' => [],
 				'messages' => [ 'example' => '' ],
-				'templates' => [],
 
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
@@ -246,8 +297,6 @@ mw.example();
 
 				'name' => 'test.example',
 				'scripts' => 'mw.example();',
-				'styles' => [],
-				'messages' => new XmlJsCode( '{}' ),
 				'templates' => [ 'example.html' => '' ],
 
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
@@ -256,14 +305,39 @@ mw.example();
     "example.html": ""
 } );',
 			] ],
+			[ [
+				'title' => 'Implement unwrapped user script',
+
+				'name' => 'user',
+				'scripts' => 'mw.example( 1 );',
+
+				'expected' => 'mw.loader.implement( "user", "mw.example( 1 );" );',
+			] ],
+			[ [
+				'title' => 'Implement unwrapped user script',
+				'debug' => false,
+
+				'name' => 'user',
+				'scripts' => 'mw.example( 1 );',
+
+				'expected' => 'mw.loader.implement("user","mw.example(1);");',
+			] ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideLoaderImplement
 	 * @covers ResourceLoader::makeLoaderImplementScript
+	 * @covers ResourceLoader::trimArray
 	 */
 	public function testMakeLoaderImplementScript( $case ) {
+		$case += [
+			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' ),
+			'debug' => true
+		];
+		ResourceLoader::clearCache();
+		$this->setMwGlobals( 'wgResourceLoaderDebug', $case['debug'] );
+
 		$this->assertEquals(
 			$case['expected'],
 			ResourceLoader::makeLoaderImplementScript(
@@ -274,6 +348,63 @@ mw.example();
 				$case['templates']
 			)
 		);
+	}
+
+	/**
+	 * @covers ResourceLoader::makeLoaderImplementScript
+	 */
+	public function testMakeLoaderImplementScriptInvalid() {
+		$this->setExpectedException( 'MWException', 'Invalid scripts error' );
+		ResourceLoader::makeLoaderImplementScript(
+			'test', // name
+			123, // scripts
+			null, // styles
+			null, // messages
+			null // templates
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::makeLoaderSourcesScript
+	 */
+	public function testMakeLoaderSourcesScript() {
+		$this->assertEquals(
+			'mw.loader.addSource( "local", "/w/load.php" );',
+			ResourceLoader::makeLoaderSourcesScript( 'local', '/w/load.php' )
+		);
+		$this->assertEquals(
+			'mw.loader.addSource( {
+    "local": "/w/load.php"
+} );',
+			ResourceLoader::makeLoaderSourcesScript( [ 'local' => '/w/load.php' ] )
+		);
+		$this->assertEquals(
+			'mw.loader.addSource( {
+    "local": "/w/load.php",
+    "example": "https://example.org/w/load.php"
+} );',
+			ResourceLoader::makeLoaderSourcesScript( [
+				'local' => '/w/load.php',
+				'example' => 'https://example.org/w/load.php'
+			] )
+		);
+		$this->assertEquals(
+			'mw.loader.addSource( [] );',
+			ResourceLoader::makeLoaderSourcesScript( [] )
+		);
+	}
+
+	private static function fakeSources() {
+		return [
+			'examplewiki' => [
+				'loadScript' => '//example.org/w/load.php',
+				'apiScript' => '//example.org/w/api.php',
+			],
+			'example2wiki' => [
+				'loadScript' => '//example.com/w/load.php',
+				'apiScript' => '//example.com/w/api.php',
+			],
+		];
 	}
 
 	/**
@@ -294,15 +425,5 @@ mw.example();
 		} catch ( MWException $e ) {
 			$this->assertTrue( true );
 		}
-	}
-
-	/**
-	 * @covers ResourceLoader::isModuleRegistered
-	 */
-	public function testIsModuleRegistered() {
-		$rl = new ResourceLoader();
-		$rl->register( 'test.module', new ResourceLoaderTestModule() );
-		$this->assertTrue( $rl->isModuleRegistered( 'test.module' ) );
-		$this->assertFalse( $rl->isModuleRegistered( 'test.modulenotregistered' ) );
 	}
 }
