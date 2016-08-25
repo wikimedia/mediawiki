@@ -2688,12 +2688,6 @@ class OutputPage extends ContextSource {
 							// Special case in buildExemptModules()
 							return false;
 						}
-						if ( $name === 'site.styles' ) {
-							// HACK: Technically, 'site.styles' isn't in a separate request group.
-							// But, in order to ensure its styles are in the right position,
-							// pretend it's in a group called 'site'.
-							$group = 'site';
-						}
 						if ( isset( $exemptGroups[$group] ) ) {
 							$exemptStates[$name] = 'ready';
 							if ( !$module->isKnownEmpty( $context ) ) {

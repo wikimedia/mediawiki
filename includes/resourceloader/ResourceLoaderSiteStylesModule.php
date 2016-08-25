@@ -50,4 +50,11 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 	public function getType() {
 		return self::LOAD_STYLES;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getGroup() {
+		return 'site';
+	}
 }
