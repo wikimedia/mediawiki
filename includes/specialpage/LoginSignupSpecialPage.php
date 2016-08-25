@@ -835,6 +835,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'class' => 'mw-ui-flush-right mw-secure',
 			], $this->msg( 'userlogin-signwithsecure' )->text() );
 		}
+		$usernameHelpLink = '';
+		if ( !$this->msg( 'createacct-helpusername' )->isDisabled() ) {
+			$usernameHelpLink = Html::rawElement( 'span', [
+				'class' => 'mw-ui-flush-right',
+			], $this->msg( 'createacct-helpusername' )->parse() );
+		}
 
 		if ( $this->isSignup() ) {
 			$fieldDefinitions = [
@@ -847,9 +853,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'weight' => -105,
 				],
 				'username' => [
-					'label-message' => 'userlogin-yourname',
-					// FIXME help-message does not match old formatting
-					'help-message' => 'createacct-helpusername',
+					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
 					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
