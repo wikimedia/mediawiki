@@ -554,38 +554,46 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns true if the form built from the given AuthenticationRequests has fields which take
-	 * values. If all available providers use the redirect flow, the form might contain nothing
-	 * but submit buttons, in which case we should not add an extra submit button which does nothing.
+	 * Returns true if the form built from the given AuthenticationRequests needs a submit button.
+	 * Providers using redirect flow (e.g. Google login) need their own submit buttons; if using
+	 * one of those custom buttons is the only way to proceed, there is no point in displaying the
+	 * default button which won't do anything useful.
 	 *
 	 * @param AuthenticationRequest[] $requests An array of AuthenticationRequests from which the
 	 *  form will be built
 	 * @return bool
 	 */
 	protected function needsSubmitButton( array $requests ) {
+		$customSubmitButtonPresent = false;
+
+		// Secondary and preauth providers always need their data; they will not care what button
+		// is used, so they can be ignored. So can OPTIONAL buttons createdby primary providers;
+		// that's the point in being optional. Se we need to check whether all primary providers
+		// have their own buttons and whether there is at least one button present.
 		foreach ( $requests as $req ) {
-			if ( $req->required === AuthenticationRequest::PRIMARY_REQUIRED &&
-				$this->doesRequestNeedsSubmitButton( $req )
-			) {
+			if ( $req->required === AuthenticationRequest::PRIMARY_REQUIRED ) {
+				if ( $this->hasOwnSubmitButton( $req ) ) {
+					$customSubmitButtonPresent = true;
+				} else {
+					return true;
+				}
+			}
+		}
+		return !$customSubmitButtonPresent ;
+	}
+
+	/**
+	 * Checks whether the given AuthenticationRequest has its own submit button.
+	 * @param AuthenticationRequest $req
+	 * @return bool
+	 */
+	protected function hasOwnSubmitButton( AuthenticationRequest $req ) {
+		foreach ( $req->getFieldInfo() as $field => $info ) {
+			if ( $info['type'] === 'button' ) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Checks if the given AuthenticationRequest needs a submit button or not.
-	 *
-	 * @param AuthenticationRequest $req The request to check
-	 * @return bool
-	 */
-	protected function doesRequestNeedsSubmitButton( AuthenticationRequest $req ) {
-		foreach ( $req->getFieldInfo() as $field => $info ) {
-			if ( $info['type'] === 'button' ) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/**
