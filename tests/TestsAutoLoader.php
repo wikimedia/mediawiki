@@ -45,6 +45,7 @@ $wgAutoloadClasses += [
 	'ResourceLoaderTestCase' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderFileModuleTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
+	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 	'TestUserRegistry' => "$testDir/phpunit/includes/TestUserRegistry.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
