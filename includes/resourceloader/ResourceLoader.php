@@ -56,7 +56,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected $moduleInfos = [];
 
 	/** @var Config $config */
-	private $config;
+	protected $config;
 
 	/**
 	 * Associative array mapping framework ids to a list of names of test suite modules
@@ -1333,10 +1333,10 @@ MESSAGE;
 	 *       Register sources with the given IDs and properties.
 	 *
 	 * @param string $id Source ID
-	 * @param array $properties Source properties (see addSource())
+	 * @param string $loadUrl load.php url
 	 * @return string
 	 */
-	public static function makeLoaderSourcesScript( $id, $properties = null ) {
+	public static function makeLoaderSourcesScript( $id, $loadUrl = null ) {
 		if ( is_array( $id ) ) {
 			return Xml::encodeJsCall(
 				'mw.loader.addSource',
@@ -1346,7 +1346,7 @@ MESSAGE;
 		} else {
 			return Xml::encodeJsCall(
 				'mw.loader.addSource',
-				[ $id, $properties ],
+				[ $id, $loadUrl ],
 				ResourceLoader::inDebugMode()
 			);
 		}

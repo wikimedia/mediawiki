@@ -1,5 +1,8 @@
 <?php
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	/**
 	 * @param string $lang
@@ -127,4 +130,15 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 }
 
 class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
+}
+
+
+class EmptyResourceLoader extends ResourceLoader {
+	// TODO: This won't be needed once ResourceLoader is empty by default
+	// and default registrations are done from ServiceWiring instead.
+	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
+		$this->setLogger( $logger ?: new NullLogger() );
+		$this->config = $config ?: ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->getLogger() ) );
+	}
 }
