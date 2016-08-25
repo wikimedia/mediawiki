@@ -286,16 +286,6 @@ class MediaWiki {
 				// may still be a wikipage redirect to another article or URL.
 				$article = $this->initializeArticle();
 				if ( is_object( $article ) ) {
-					$url = $request->getFullRequestURL(); // requested URL
-					if (
-						$request->getMethod() === 'GET' &&
-						$url === $article->getTitle()->getCanonicalURL() &&
-						$article->checkTouched() &&
-						$output->checkLastModified( $article->getTouched() )
-					) {
-						wfDebug( __METHOD__ . ": done 304\n" );
-						return;
-					}
 					$this->performAction( $article, $requestTitle );
 				} elseif ( is_string( $article ) ) {
 					$output->redirect( $article );
