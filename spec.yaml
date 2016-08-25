@@ -1,0 +1,51 @@
+swagger: '2.0'
+info:
+  version: 1.28.0
+  title: MediaWiki
+  description: The Wiki software solution used on Wikipedia and its sister projects
+  termsOfService: https://wikimediafoundation.org/wiki/Terms_of_Use
+paths:
+  /wiki/{title}:
+    get:
+      x-amples:
+        - title: en.wp Main Page
+          request:
+            params:
+              title: Main_Page
+            headers:
+              host: en.wikipedia.org
+          response:
+            status: 200
+            headers:
+              content-type: /text\/html/
+            body: /"wgPageName":"Main_Page"/
+        - title: en.wp Special Version
+          request:
+            params:
+              title: Special:Version
+            headers:
+              host: en.wikipedia.org
+          response:
+            status: 200
+            headers:
+              content-type: /text\/html/
+            body: /MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY/
+  /w/api.php:
+    post:
+      x-amples:
+        - title: en.wp Main Page pageprops
+          request:
+            body:
+              action: query
+              prop: pageprops
+              titles: Main_Page
+              format: json
+              formatversion: 2
+            headers:
+              host: en.wikipedia.org
+              accept: application/json
+          response:
+            status: 200
+            headers:
+              content-type: /application\/json/
+            body: /.+/
