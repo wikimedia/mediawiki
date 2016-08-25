@@ -95,6 +95,32 @@ class ApiCSPReport extends ApiBase {
 		if ( $reportOnly ) {
 			$flags[] = 'report-only';
 		}
+
+		// List of urls which appear often but seem to be triggered
+		// by client software (Ad-Ware) and not our site.
+		// List comes from Wikimedia logs.
+		$falsePositiveUrls = [
+			'https://3hub.co' => true,
+			'https://morepro.info' => true,
+			'https://p.ato.mx' => true,
+			'https://s.ato.mx' => true,
+			'https://adserver.adtech.de' => true,
+			'https://ums.adtechus.com' => true,
+			'https://cas.criteo.com' => true,
+			'https://cat.nl.eu.criteo.com' => true,
+			'https://atpixel.alephd.com' => true,
+			'https://rtb.metrigo.com' => true,
+			'https://d5p.de17a.com' => true,
+		];
+		if (
+			( isset( $report['blocked-uri'] ) &&
+			isset( $falsePositiveUrls[$report['blocked-uri']] ) )
+			|| ( isset( $report['source-file'] ) &&
+			isset( $falsePositiveUrls[$report['source-file']] ) )
+		) {
+			// Report caused by Ad-Ware
+			$flags[] = 'false-positive';
+		}
 		return $flags;
 	}
 
