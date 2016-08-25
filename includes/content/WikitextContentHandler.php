@@ -153,11 +153,16 @@ class WikitextContentHandler extends TextContentHandler {
 	 */
 	protected function getFileText( Title $title ) {
 		$file = wfLocalFile( $title );
-		if ( $file && $file->exists() ) {
-			return $file->getHandler()->getEntireText( $file );
+		if ( !$file || !$file->exists() ) {
+			return null;
 		}
 
-		return null;
+		$handler = $file->getHandler();
+		if ( !$handler ) {
+			return null;
+		}
+
+		return $handler->getEntireText( $file );
 	}
 
 	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
