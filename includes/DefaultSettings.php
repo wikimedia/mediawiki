@@ -8102,10 +8102,7 @@ $wgJobRunRate = 1;
  *
  * @since 1.23
  */
-$wgRunJobsAsync = (
-	!function_exists( 'register_postsend_function' ) &&
-	!function_exists( 'fastcgi_finish_request' )
-);
+$wgRunJobsAsync = false;
 
 /**
  * Number of rows to update per job
