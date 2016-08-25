@@ -41,6 +41,25 @@ class ViewAction extends FormlessAction {
 	}
 
 	public function show() {
+		$config = $this->context->getConfig();
+
+		if (
+			$config->get( 'MaxRedirects' ) <= 1 && // avoid expensive last-modified derivation
+			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck
+			$this->page->checkTouched() // page exists and is not a redirect
+		) {
+			// Include any redirect in the last-modified calculation
+			$redirFromTitle = $this->page->getRedirectedFrom();
+			$touched = $redirFromTitle
+				? max( $this->page->getTouched(), $redirFromTitle->getTouched() )
+				: $this->page->getTouched();
+			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers
+			if ( $this->getOutput()->checkLastModified( $touched ) ) {
+				wfDebug( __METHOD__ . ": done 304\n" );
+				return;
+			}
+		}
+
 		$this->page->view();
 	}
 }
