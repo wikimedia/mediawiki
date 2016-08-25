@@ -156,7 +156,8 @@
 				}
 				v = spec[ 2 ];
 
-				if ( field instanceof OO.ui.Widget ) {
+				if ( !( field instanceof jQuery ) ) {
+					// field is a OO.ui.Widget
 					if ( field.supports( 'isSelected' ) ) {
 						getVal = function () {
 							var selected = field.isSelected();
