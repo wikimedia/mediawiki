@@ -8382,6 +8382,28 @@ $wgEventRelayerConfig = [
 $wgPingback = false;
 
 /**
+ * List of urls which appear often to be triggering CSP reports
+ * but do not appear to be caused by actual content, but by client
+ * software inserting scripts (i.e. Ad-Ware).
+ * List based on results from Wikimedia logs.
+ *
+ * @since 1.28
+ */
+$wgCSPFalsePositiveUrls = [
+	'https://3hub.co' => true,
+	'https://morepro.info' => true,
+	'https://p.ato.mx' => true,
+	'https://s.ato.mx' => true,
+	'https://adserver.adtech.de' => true,
+	'https://ums.adtechus.com' => true,
+	'https://cas.criteo.com' => true,
+	'https://cat.nl.eu.criteo.com' => true,
+	'https://atpixel.alephd.com' => true,
+	'https://rtb.metrigo.com' => true,
+	'https://d5p.de17a.com' => true,
+];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
