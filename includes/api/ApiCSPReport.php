@@ -84,6 +84,8 @@ class ApiCSPReport extends ApiBase {
 	 * @return Array
 	 */
 	private function getFlags( $report ) {
+		global $wgCSPFalsePositiveUrls;
+
 		$reportOnly = $this->getParameter( 'reportonly' );
 		$userAgent = $this->getRequest()->getHeader( 'user-agent' );
 		$source = $this->getParameter( 'source' );
@@ -94,6 +96,16 @@ class ApiCSPReport extends ApiBase {
 		}
 		if ( $reportOnly ) {
 			$flags[] = 'report-only';
+		}
+
+		if (
+			( isset( $report['blocked-uri'] ) &&
+			isset( $wgCSPFalsePositiveUrls[$report['blocked-uri']] ) )
+			|| ( isset( $report['source-file'] ) &&
+			isset( $wgCSPFalsePositiveUrls[$report['source-file']] ) )
+		) {
+			// Report caused by Ad-Ware
+			$flags[] = 'false-positive';
 		}
 		return $flags;
 	}
