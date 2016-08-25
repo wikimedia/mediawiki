@@ -159,6 +159,8 @@ class ImagePage extends Article {
 			$this->openShowImage();
 		}
 
+		$out->setFileVersion( $this->displayImg );
+
 		# No need to display noarticletext, we use our own message, output in openShowImage()
 		if ( $this->mPage->getId() ) {
 			# NS_FILE is in the user language, but this section (the actual wikitext)
@@ -630,7 +632,6 @@ EOT
 				$request->response()->statusHeader( 404 );
 			}
 		}
-		$out->setFileVersion( $this->displayImg );
 	}
 
 	/**
